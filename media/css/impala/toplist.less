@@ -1,0 +1,29 @@
+@import 'lib';
+
+.toplist {
+    li {
+        list-style: decimal inside;
+        line-height: 1em;
+        white-space: nowrap;
+        height: 30px;
+        position: relative;
+
+        a {
+            vertical-align: top;
+            padding: 10px 0 10px 20px;
+            position: absolute;
+            top: 0;
+        }
+
+        &::-moz-list-number {
+            margin-top: 9px;
+            width: 1em;
+            text-align: right;
+            color: #444;
+        }
+    }
+    .vital {
+        color: @note-gray;
+        font-size: .9em;
+    }
+}

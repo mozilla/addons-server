@@ -130,6 +130,20 @@ def addon_listing_header(context, url_base, sort_opts, selected):
     return new_context(**locals())
 
 
+@register.filter
+@jinja2.contextfilter
+@register.inclusion_tag('addons/impala/addon_grid.html')
+def addon_grid(context, addons, src=None):
+    return new_context(**locals())
+
+
+@register.filter
+@jinja2.contextfilter
+@register.inclusion_tag('addons/impala/toplist.html')
+def addon_toplist(context, addons, vital=None, src=None):
+    return new_context(**locals())
+
+
 def new_context(context, **kw):
     c = dict(context.items())
     c.update(kw)

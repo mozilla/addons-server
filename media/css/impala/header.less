@@ -1,0 +1,223 @@
+@import 'lib';
+
+.amo-header {
+    font-family: @head-sans;
+    height: 120px;
+    margin-bottom: 25px;
+}
+
+.island {
+    background: repeat scroll 0 0 transparent;
+    .gradient-two-color(#FCFDFE, #F4F8FC);
+    border: 1px solid #C9DDF2;
+    .border-radius(5px);
+    .box-shadow(0 -2px 0 rgba(204, 223, 243, 0.3) inset, 0 0 2px rgba(0, 0, 0, 0.1));
+    display: block;
+    margin-bottom: 15px;
+    padding: 14px 14px 16px;
+    float: left;
+}
+
+#masthead {
+    padding-top: 40px;
+    max-width: 600px;
+}
+
+#aux-nav {
+    float: right;
+}
+.html-rtl #aux-nav {
+    float: left;
+}
+
+#aux-nav .context,
+#aux-nav ul {
+    border-left: 1px solid #9FA7AF;
+    display: inline-block;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 1em;
+}
+
+.site-title img {
+    float: left;
+    margin-right: 12px;
+}
+.html-rtl .site-title img {
+    float: right;
+    margin: 0 0 0 12px;
+}
+
+.site-title {
+    margin-bottom: 8px;
+}
+
+.site-title a {
+    color: #333;
+    text-decoration: none;
+}
+
+/** site navigation */
+
+#site-nav {
+    font-size: 12px;
+    margin-left: 66px;
+    z-index: 50;
+}
+
+#site-nav > ul > li > a {
+    position: relative;
+    font-weight: bold;
+    text-transform: uppercase;
+    z-index: 60;
+    padding: 4px 8px;
+    line-height: 12px;
+    border-style: solid;
+    .border-radius(3px 3px 0 0);
+    border-color: transparent;
+    border-width: 1px 1px 0;
+}
+
+#site-nav > ul > li:hover > a {
+    background: #fff;
+    border-color: #98B2C9 #98B2C9 #fff;
+    .box-shadow(0 0 4px rgba(0, 0, 0, 0.4));
+}
+#site-nav > ul > li:hover:after {
+    content: "";
+    width: 100px;
+    z-index: 62;
+    height: 5px;
+    background: #fff;
+    position: absolute;
+    top: 18px;
+    left: 1px;
+}
+.html-rtl #site-nav > ul > li:hover:after {
+    left: auto;
+    right: 1px;
+}
+
+#site-nav > ul > li {
+    float: left;
+    position: relative;
+    border-left: 1px solid #9FA7AF;
+    left: -9px;
+}
+.html-rtl #site-nav > ul > li {
+    border-left: 0;
+    border-right: 1px solid #9FA7AF;
+    float: right;
+    left: auto;
+    right: -9px;
+}
+
+#site-nav > ul > li:first-child {
+    border: 0;
+}
+
+#site-nav > ul > li > ul {
+    width: 190px;
+    position: absolute;
+    top: 17px;
+    z-index: 59;
+    padding: 8px;
+    display: none;
+    background: #fff;
+    border: 1px solid #98B2C9;
+    .border-radius(0 3px 3px);
+    .box-shadow(0 0 4px rgba(0, 0, 0, 0.4));
+}
+
+#site-nav > ul > li:hover > ul {
+    display: block;
+}
+
+#site-nav > ul > li > ul.two-col {
+    .columns(2, 8px);
+    width: 340px;
+}
+
+#site-nav hr {
+    border: 0;
+    margin: 6px 8px;
+    border-top: 1px dotted #ccc;
+}
+
+#site-nav em {
+    background: #F4F8FC;
+    display: block;
+    font-weight: bold;
+}
+
+#site-nav > ul > li > ul a {
+    text-decoration: none;
+    display: block;
+    padding: 6px 8px;
+}
+
+#site-nav > ul ul a:hover {
+    background: #ebf4fe;
+}
+
+#site-nav > ul em a:hover {
+    background: #e1edfb;
+}
+
+/** search box */
+
+.header-search {
+    position: absolute;
+    top: 64px;
+    right: 0;
+    background: #F8FBFF;
+    border: 1px solid #98B2C9;
+    .border-radius(4px);
+    .box-shadow(0 -2px 0 rgba(152, 178, 201, 0.3) inset, 0 2px 0 rgba(0, 0, 0, 0.05));
+    padding: 5px 7px 7px;
+    width: 280px;
+}
+.html-rtl .header-search {
+    left: 0;
+    right: auto;
+}
+
+button.search-button {
+    background: #84C63C url("../../img/icons/go-arrow.png") center no-repeat;
+    background-image: url("../../img/icons/go-arrow.png"),
+                      -moz-linear-gradient(#84C63C, #489615);
+    background-image: url("../../img/icons/go-arrow.png"),
+                      -webkit-linear-gradient(#84C63C, #489615);
+    border: 0;
+    float: right;
+    vertical-align: bottom;
+    cursor: pointer;
+    height: 30px;
+    width: 36px;
+
+    .border-radius(6px);
+    .box-shadow(0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset);
+}
+.html-rtl button.search-button {
+    float: left;
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+}
+
+.header-search input {
+    background: url("../../img/icons/search.png") no-repeat scroll 8px center #FFFFFF;
+    float: left;
+    border: 0 none;
+    .border-radius(4px);
+    .box-shadow(0 0 2px rgba(0, 0, 0, 0.4) inset);
+    font-family: Trebuchet MS;
+    font-size: 14px;
+    height: 30px;
+    padding: 0 0 0 32px;
+    width: 206px;
+}
+.html-rtl .header-search input {
+    float: right;
+    padding: 0 32px 0 0;
+    background-position: 212px center;
+}

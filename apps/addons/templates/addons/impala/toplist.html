@@ -1,0 +1,8 @@
+<ol class="toplist">
+  {% for addon in addons %}
+    <li><a href="{{ addon.get_url_path() }}">
+      {{ addon.name }}
+      <br><span class="vital">999 users</span>
+    </a></li>
+  {% endfor %}
+</ol>

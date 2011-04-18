@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="{{ LANG }}" dir="{{ DIR }}">
+  <head>
+    <meta charset="utf-8">
+    {% if not settings.ENGAGE_ROBOTS %}
+      <meta name="robots" content="noindex">
+    {% endif %}
+    {% block extrameta %}{% endblock %}
+    <title>{% block title %}{{ _('Mozilla Add-ons') }}{% endblock %}</title>
+
+    <link rel="shortcut icon" type="image/x-icon"
+          href="{{ MEDIA_URL}}img/favicon.ico">
+
+    {% block rss_feed %}{% endblock %}
+
+    {# L10n: {0} is an application, like Firefox. #}
+    <link title="{{ _('{0} Add-ons')|f(APP.pretty) }}"
+          rel="search" type="application/opensearchdescription+xml"
+          href="{{ url('amo.opensearch') }}" />
+
+    {% block site_css %}
+      {{ css('zamboni/impala') }}
+      <!--[if IE]><link rel="stylesheet" href="{{ media('css/impala/ie.css') }}"><![endif]-->
+      <!--[if IE 7]><link rel="stylesheet" href="{{ media('css/impala/ie7.css') }}"><![endif]-->
+    {% endblock %}
+
+    {% block extrahead %}{% endblock %}
+    <noscript><link rel="stylesheet" href="{{ media('css/legacy/nojs.css') }}"></noscript>
+
+    {% if settings.DEBUG %}
+      {% if settings.LESS_LIVE_REFRESH %}
+        <meta id="live_refresh" name="live_refresh" value="1">
+      {% endif %}
+      {{ js('debug') }}
+    {% endif %}
+
+  </head>
+  <body class="html-{{ DIR }} {{ request.APP.short }} moz-header-slim {% block bodyclass %}{% endblock %}"
+        data-app="{{ request.APP.short }}"
+        data-appname="{{ request.APP.pretty }}"
+        data-appid="{{ request.APP.id }}"
+        data-min-beta-version="{{ settings.MIN_BETA_VERSION }}"
+        data-anonymous="{{ (not request.user.is_authenticated())|json }}"
+        data-readonly="{{ settings.READ_ONLY|json }}"
+        data-media-url="{{ MEDIA_URL }}"
+        {% if settings.PAYPAL_USE_EMBEDDED %}data-paypal-url="{{ settings.PAYPAL_JS_URL }}"{% endif %}
+        {% block bodyattrs %}{% endblock %}>
+
+    {% if ADMIN_MESSAGE or settings.READ_ONLY%}
+      <div id="site-notice">
+        {% if ADMIN_MESSAGE %}
+          <p>{{ ADMIN_MESSAGE|safe }}</p>
+        {% endif %}
+        {% if settings.READ_ONLY %}
+          <p>{{ _("Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly.") }}</p>
+        {% endif %}
+      </div>
+      </div>
+    {% endif %}
+    <div id="page">
+      {% block site_header %}
+        {# Well that's an awful tiny mozilla header #}
+        <div id="global-header-tab">
+          <a href="http://mozilla.org/"><img src="{{ media('img/zamboni/mozilla-tab.png') }}"></a>
+        </div>
+        <div class="amo-header">
+          <div id="aux-nav" role="navigation" class="c">
+            {% block aux_nav %}
+            <ul id="other-apps" class="change"
+                title="{{ _('Find add-ons for other applications') }}">
+              <li>
+                <a href="#" class="controller">{{ _('Other Applications') }}</a>
+                <ul>
+                  {% for app in amo.APP_USAGE %}
+                    {% if app != request.APP %}
+                      <li id="app-{{ app.short }}" class="{{ app.short }}">
+                        <a href="{{ locale_url(app.short) }}">{{ app.pretty }}</a>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              </li>
+            </ul>
+            {% endblock aux_nav %}
+            {% if not settings.READ_ONLY %}
+              {% include "user_login.html" %}
+            {% endif %}
+          </div>
+          <div class="header-search" role="search">
+            {% block search_form %}
+            {% include 'impala/search.html' %}
+            {% endblock %}
+          </div>
+          <div id="masthead">
+            {% block site_header_title %}
+            {% include "impala/header_title.html" %}
+            {{ site_nav() }}
+            {% endblock %}
+          </div>
+        </div>
+      {% endblock site_header %}
+
+      {# Overridden in base_side_categories, which expands categories
+         on the side of the page. #}
+      {% block main_content %}
+        {% block navbar %}
+        {% endblock %}
+        {# outer_content is for something you want above content on every page. #}
+        {% block outer_content %}{% endblock %}
+        {% block content %}{% endblock %}
+      {% endblock %}
+    </div>
+    <div id="tooltip">
+      <span></span>
+    </div>
+    <div id="popup-staging">
+      {% block popups %}
+      {% endblock %}
+    </div>
+    {# js #}
+    {% block site_js %}
+      <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>
+      {{ js('common') }}
+      <script async defer src="{{ url('addons.buttons.js') }}/build:{{ BUILD_ID_JS }}"></script>
+    {% endblock %}
+    {% block js %}{% endblock %}
+    {% block footer %}
+      <div id="footer" role="contentinfo">
+        <div class="section">
+          {% block footer_extras %}
+            <img class="footerlogo" src="{{ media('img/zamboni/footer-logo-med.png') }}" alt="">
+          {% endblock %}
+          {% include "footer.html" %}
+        </div> {# section #}
+      </div> {# footer #}
+    {% endblock %}
+    {# Webtrends Stats Tracking #}
+    <script defer src="{{ media('js/webtrends/webtrends-v0.1.js') }}"></script>
+    <noscript>
+      <img id="DCSIMG" width="1" height="1"
+        src="https://statse.webtrendslive.com/dcso6de4r0000082npfcmh4rf_4b1e/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=8.6.2" />
+    </noscript>
+    {# End Webtrends #}
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{% set extras = (
+    ('featured', _('Featured')),
+    ('popular', _('Most Popular')),
+    ('rating', _('Top Rated')),
+) %}
+<nav id="side-nav" class="c">
+  <h2>{{ _('Explore') }}</h2>
+  <ul>
+    {% for sort, title in extras %}
+      <li><em><a href="{{ base_url|urlparams(sort=sort) }}">{{ title }}</a></em></li>
+    {% endfor %}
+  </ul>
+
+  <h2>{{ _('Categories') }}</h2>
+  <ul>
+    {% for cat in categories %}
+      <li><a href="{{ cat.get_url_path() }}">{{ cat.name }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>

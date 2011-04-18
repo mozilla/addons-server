@@ -6,7 +6,7 @@
 
 {% macro section(title, base_url, extras, categories) %}
   <li>
-    <a href="{{ base_url }}">{{ _('Extensions') }}</a>
+    <a href="{{ base_url }}">{{ title }}</a>
     <ul class="two-col">
       {% for sort, title in extras %}
         <li><em><a href="{{ base_url|urlparams(sort=sort) }}">{{ title }}</a></em></li>

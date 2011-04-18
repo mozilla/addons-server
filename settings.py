@@ -381,6 +381,17 @@ MINIFY_BUNDLES = {
             'css/zamboni/tags.css',
             'css/zamboni/tabs.css',
         ),
+        'zamboni/impala': (
+            'css/impala/base.css',
+            'css/impala/site.less',
+            'css/impala/typography.less',
+            'css/impala/header.less',
+            'css/global/headerfooter.css',
+            'css/impala/moz-tab.css',
+            'css/impala/hovercards.less',
+            'css/impala/toplist.less',
+            # 'css/zamboni/amo_headerfooter.css',
+        ),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',
             'css/legacy/jquery-lightbox.css',

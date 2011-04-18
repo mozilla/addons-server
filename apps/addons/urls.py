@@ -41,6 +41,8 @@ detail_patterns = patterns('',
 urlpatterns = patterns('',
     # The homepage.
     url('^$', views.home, name='home'),
+    # The impala homepage.
+    url('^i/$', views.impala_home, name='i_home'),
 
     # URLs for a single add-on.
     ('^addon/%s/' % ADDON_ID, include(detail_patterns)),

@@ -1,0 +1,79 @@
+@import 'lib';
+
+html {
+    background: #fff url(../../img/zamboni/global/bg-header.png) left top repeat-x;
+}
+
+#page {
+    max-width: 960px;
+    width: 960px;
+    margin: 0 auto;
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+    color: @link;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.primary {
+    margin-left: 210px;
+
+    .primary {
+        margin-right: 210px;
+        margin-left: 0;
+    }
+
+    .secondary {
+        float: right;
+    }
+}
+.secondary {
+    width: 180px;
+    float: left;
+}
+
+.html-rtl {
+    .primary {
+        margin-left: 0;
+        margin-right: 210px;
+
+        .primary {
+            margin-right: 0;
+            margin-left: 210px;
+        }
+
+        .secondary {
+            float: left;
+        }
+    }
+    .secondary {
+        float: right;
+    }
+}
+
+.secondary {
+    ul, ol {
+        margin-bottom: 2em;
+        font-size: 12px;
+    }
+
+    li {
+        line-height: 28px;
+        border: 1px solid rgba(3, 48, 81, 0.2);
+        border-width: 0 0 1px 0;
+        &:first-child {
+            border-top-width: 1px;
+        }
+    }
+    h2 {
+        font-size: 14px;
+    }
+    li a, h2 {
+        display: block;
+        padding: 0 6px;
+    }
+}

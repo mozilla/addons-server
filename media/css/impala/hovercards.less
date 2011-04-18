@@ -1,0 +1,117 @@
+@import 'lib';
+
+.addon-grid li {
+  width: 50%;
+  height: 76px;
+  overflow: visible;
+  float: left;
+}
+.addon-grid .item {
+  position: relative;
+  margin: 5px 5px 5px 61px;
+  border: 1px solid transparent;
+  float: left;
+  z-index: 20;
+}
+.addon-grid .item h3 {
+  font-family: Georgia;
+  color: #447BC4;
+  margin: 0 0 2px 0;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+}
+.addon-grid .category {
+  font-family: Georgia;
+  color: #666;
+  font-size: 12px;
+  line-height: 14px;
+  white-space: nowrap;
+}
+.addon-grid .item .more,
+.addon-grid .item .summary,
+.addon-grid .item .icon {
+  position: relative;
+  padding: 8px;
+}
+.addon-grid .item .more {
+  color: #666;
+  font-size: .9em;
+  display: none;
+  z-index: 29;
+  padding: 0 14px 8px 12px;
+}
+.addon-grid .item img {
+  margin: 8px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  padding: 0;
+}
+.addon-grid .item a {
+  display: block;
+  color: black;
+  text-decoration: none;
+}
+.addon-grid .item .summary {
+  height: 48px;
+  width: 182px;
+  z-index: 21;
+  overflow: hidden;
+}
+.addon-grid .item .summary h3,
+.addon-grid .item .summary div {
+  white-space: nowrap;
+}
+.addon-grid .item .icon {
+  position: absolute;
+  left: -57px;
+  top: -1px;
+  padding-right: 0;
+  height: 48px;
+  width: 48px;
+  border-width: 1px 0 1px 1px;
+  border-style: solid;
+  z-index: 22;
+  border-color: transparent;
+}
+.addon-grid .item:before {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 66px;
+  width: 56px;
+  top: -1px;
+  left: -57px;
+  z-index: 1;
+}
+.addon-grid .item:hover {
+    z-index: 25;
+    background: #fff;
+    border-color: #888;
+    .box-shadow(0 0 4px rgba(0,0,0,.4));
+}
+.addon-grid .item:hover .summary {
+    background: white;
+    z-index: 26;
+}
+.addon-grid .item:hover .icon {
+    background: #fff;
+    border-color: #888;
+    z-index: 27;
+}
+.addon-grid .item:hover:before {
+    .box-shadow(0 0 4px rgba(0,0,0,.4));
+}
+.addon-grid .item:hover .more {
+    background: #fff;
+    display: block;
+    z-index: 28;
+}
+.addon-grid .item:hover h3 {
+  text-decoration: underline;
+}
+.addon-grid .rating {
+  font-size: 14px;
+  color: #fc0;
+}

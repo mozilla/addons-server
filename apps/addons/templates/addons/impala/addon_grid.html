@@ -1,0 +1,30 @@
+{% cache addons %}
+<ul class="addon-grid c">
+{% for addon in addons %}
+  <li>
+    <div class="item">
+      <a href="{{ addon.get_url_path() }}">
+        <div class="icon">
+          <img src="{{ addon.icon_url }}">
+        </div>
+        <div class="summary">
+          <h3>{{ addon.name }}</h3>
+          {% with categories = addon.categories.filter(application=APP.id) %}
+            {% if categories %}
+              <div class="category" class="more-info">
+                {{ categories[0] }}
+              </div>
+            {% endif %}
+          {% endwith %}
+          <div class="rating">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
+        </div>
+      </a>
+      <div class="more">
+        {{ addon.summary|truncate(250)|nl2br }}
+        {{ install_button(addon) }}
+      </div>
+    </div>
+  </li>
+{% endfor %}
+</ul>
+{% endcache %}

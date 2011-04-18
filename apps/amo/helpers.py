@@ -18,7 +18,7 @@ from tower import ugettext as _
 
 import amo
 from amo import utils, urlresolvers
-from addons.models import Category
+from addons.models import Category, AddonType
 from translations.query import order_by_translation
 from translations.helpers import truncate
 
@@ -366,6 +366,22 @@ def media(context, url):
 @jinja2.evalcontextfunction
 def attrs(ctx, *args, **kw):
     return jinja2.filters.do_xmlattr(ctx, dict(*args, **kw))
+
+
+@register.function
+@jinja2.contextfunction
+def side_nav(context, addon_type):
+    return caching.cached(lambda: _side_nav(context, addon_type), 'side-nav')
+
+
+def _side_nav(context, addon_type):
+    request = context['request']
+    qs = Category.objects.filter(application=request.APP.id, weight__gte=0)
+    sort_key = attrgetter('weight', 'name')
+    categories = sorted(qs.filter(type=addon_type), key=sort_key)
+    ctx = dict(request=request, base_url=AddonType(addon_type).get_url_path(),
+               categories=categories, addon_type=addon_type)
+    return jinja2.Markup(env.get_template('amo/side_nav.html').render(ctx))
 
 
 @register.function

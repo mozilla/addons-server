@@ -1,0 +1,35 @@
+@import 'lib';
+
+/************************************/
+/*             TYPOGRAPHY           */
+/************************************/
+
+@font-face {
+    font-family: 'MetaBlack';
+    src: url('https://www.mozilla.com/img/fonts/MetaWebPro-Black.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+body {
+    font-family: @copy-stack;
+    font-style: normal;
+    font-size: 13px;
+}
+
+h1 {
+    font-size: 40px;
+    font-family: MetaBlack;
+    text-transform: uppercase;
+}
+
+pre, code, kbd, tt, samp, tt {
+    font-family: @mono-stack;
+}
+
+.secondary h2 {
+    font-family: @head-sans;
+    font-weight: bold;
+    text-transform: uppercase;
+}

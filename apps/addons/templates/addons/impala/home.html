@@ -1,0 +1,55 @@
+{% extends "impala/base.html" %}
+
+{% block title %}{{ _('Add-ons for {0}')|f(request.APP.pretty) }}{% endblock %}
+
+{% block bodyclass %}home{% endblock %}
+
+{% set ext, extrss = url('browse.extensions'), url('browse.extensions.rss') %}
+{% set view_all = {
+  'featured': {
+    'text': _('Featured Extensions'),
+    'link': url('browse.featured'),
+    'feed': url('browse.featured.rss'),
+  },
+  'popular': {
+    'text': _('Popular Extensions'),
+    'link': ext|urlparams(sort='popular'),
+    'feed': extrss|urlparams(sort='popular'),
+  }
+}
+%}
+
+
+{% block content %}
+
+<section class="secondary">
+  {{ side_nav(amo.ADDON_EXTENSION) }}
+</section>
+
+<section class="primary" id="homepage">
+  <div class="island">
+    <h1>Promos</h1>
+    Morbi laoreet, lorem nec volutpat ullamcorper, mauris dui vulputate nulla, sed aliquet ipsum diam euismod tellus. Fusce congue adipiscing quam eget posuere. Mauris in ipsum ut dui varius eleifend et placerat erat. Nulla pretium elementum nulla hendrerit dapibus. Sed in commodo mauris. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed sagittis egestas tortor a adipiscing. Pellentesque consequat consectetur porttitor. Praesent et dictum elit. Vestibulum vulputate porta hendrerit.<br>
+    Curabitur lobortis blandit consectetur. Phasellus ac eros quam. Mauris interdum molestie magna, in vehicula nisi laoreet in. Aenean et convallis mi. Phasellus lobortis tempus felis, vel tincidunt ante aliquam id. Ut lectus eros, tincidunt vitae porta eget, vestibulum non mauris. Curabitur venenatis fringilla tortor sed pulvinar. Vivamus turpis nibh, facilisis auctor aliquet id, iaculis eu arcu. Maecenas vestibulum volutpat elit eget euismod.
+  </div>
+  <section class="secondary">
+    <h2>{{ _('Most Popular') }}</h2>
+    {{ popular|addon_toplist }}
+  </section>
+  <section class="primary">
+    {% for key, addons in addon_sets.items() %}
+      <div id="list-{{ key }}" class="island">
+        {{ addons|addon_grid }}
+      </div>
+    {% endfor %}
+  </section>
+</section>
+
+{% endblock content %}
+
+{% block extrahead %}
+{% for feed in view_all.itervalues() %}
+  <link rel="alternate" type="application/rss+xml" title="{{ feed['text'] }}"
+        href="{{ feed['feed'] }}">
+{% endfor %}
+{% endblock %}
