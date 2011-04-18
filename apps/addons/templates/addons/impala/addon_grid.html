@@ -9,13 +9,7 @@
         </div>
         <div class="summary">
           <h3>{{ addon.name }}</h3>
-          {% with categories = addon.categories.filter(application=APP.id) %}
-            {% if categories %}
-              <div class="category" class="more-info">
-                {{ categories[0] }}
-              </div>
-            {% endif %}
-          {% endwith %}
+          <div class="category" class="more-info">{{ addon.get_category(APP.id) }}</div>
           <div class="rating">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
         </div>
       </a>

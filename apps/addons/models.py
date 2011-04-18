@@ -373,6 +373,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def reviews(self):
         return Review.objects.filter(addon=self, reply_to=None)
 
+    def get_category(self, app):
+        return self.categories.filter(application=app)[0]
+
     def language_ascii(self):
         return settings.LANGUAGES[translation.to_language(self.default_locale)]
 
