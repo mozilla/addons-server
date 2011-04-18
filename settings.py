@@ -198,7 +198,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.debug',
     'django.core.context_processors.media',
     'django.core.context_processors.request',
-    'csrf_context.csrf',
+    'session_csrf.context_processor',
 
     'django.contrib.messages.context_processors.messages',
 
@@ -255,7 +255,7 @@ MIDDLEWARE_CLASSES = (
     'amo.middleware.NoVarySessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    'session_csrf.CsrfMiddleware',
 
     'cake.middleware.CakeCookieMiddleware',
     'cake.middleware.CookieCleaningMiddleware',
@@ -591,6 +591,7 @@ REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
 REDIRECT_SECRET_KEY = ''
 
 # Default to short expiration; check "remember me" to override
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 1209600
 SESSION_COOKIE_SECURE = True
@@ -770,7 +771,7 @@ def read_only_mode(env):
 
     # Add in the read-only middleware before csrf middleware.
     extra = 'amo.middleware.ReadOnlyMiddleware'
-    before = 'django.middleware.csrf.CsrfViewMiddleware'
+    before = 'session_csrf.CsrfMiddleware'
     m = list(env['MIDDLEWARE_CLASSES'])
     m.insert(m.index(before), extra)
     env['MIDDLEWARE_CLASSES'] = tuple(m)
