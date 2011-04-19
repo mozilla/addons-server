@@ -384,6 +384,11 @@ def _group_addons(qs):
         if len(cs) > 3:
             # array.array() lets us calculate similarities much faster.
             addons[addon] = array.array('l', cs)
+    # Don't generate recs for frozen add-ons.
+    for addon in FrozenAddon.objects.values_list('addon', flat=True):
+        if addon in addons:
+            recs_log.info('Skipping frozen addon %s.' % addon)
+            del addons[addon]
     return addons
 
 
