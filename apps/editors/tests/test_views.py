@@ -1328,7 +1328,7 @@ class TestStatusFile(ReviewBase):
             self.addon.update(status=status)
             res = self.client.get(self.url)
             node = pq(res.content)('ul.files li:first-child')
-            assert 'Listed' in node.text()
+            assert 'Pending Preliminary Review' in node.text()
 
     def test_status_full(self):
         for status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
@@ -1336,7 +1336,18 @@ class TestStatusFile(ReviewBase):
             self.addon.update(status=status)
             res = self.client.get(self.url)
             node = pq(res.content)('ul.files li:first-child')
-            assert 'Listed' in node.text()
+            assert 'Pending Full Review' in node.text()
+
+    def test_status_full_reviewed(self):
+        version_file = self.addon.versions.all()[0].files.all()[0]
+        version_file.update(status=amo.STATUS_PUBLIC)
+
+        for status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE,
+                       amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED]:
+            self.addon.update(status=status)
+            res = self.client.get(self.url)
+            node = pq(res.content)('ul.files li:first-child')
+            assert 'Fully Reviewed' in node.text()
 
     def test_other(self):
         self.addon.update(status=amo.STATUS_BETA)
