@@ -112,7 +112,8 @@ def blocked_list(request):
                         {'items': items})
 
 
-blmodels = BlocklistItem, BlocklistPlugin, BlocklistGfx
+# We don't show BlocklistGfx publicly (bug 650107).
+blmodels = BlocklistItem, BlocklistPlugin  #, BlocklistGfx
 bltypes = dict((m._type, m) for m in blmodels)
 
 
