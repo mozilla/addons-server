@@ -20,6 +20,7 @@ import caching.invalidation
 import commonware.log
 import jingo
 import phpserialize as php
+import waffle
 
 import amo
 import mongoutils
@@ -349,6 +350,9 @@ def loaded(request):
 def cspreport(request):
     """Accept CSP reports and log them."""
     report = ('blocked-uri', 'violated-directive', 'original-policy')
+
+    if not waffle.sample_is_active('csp-store-reports'):
+        return HttpResponse()
 
     try:
         v = json.loads(request.raw_post_data)['csp-report']
