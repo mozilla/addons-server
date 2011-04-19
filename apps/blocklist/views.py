@@ -50,7 +50,8 @@ def _blocklist(request, apiver, app, appver):
     return jingo.render(request, 'blocklist/blocklist.xml',
                         dict(items=items, plugins=plugins, gfxs=gfxs,
                              apiver=apiver, appguid=app, appver=appver,
-                             last_update=last_update))
+                             last_update=last_update),
+                        content_type='text/xml')
 
 
 def clear_blocklist(*args, **kw):
