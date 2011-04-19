@@ -248,10 +248,12 @@ class TestHome(EditorTest):
         r = self.client.get(reverse('editors.home'))
         doc = pq(r.content)
 
-        display_name = doc('.editor-stats-table:eq(0)').find('td')[0].text
+        div = doc('#editors-stats .editor-stats-table:eq(1)')
+
+        display_name = div.find('td')[0].text
         eq_(display_name, self.user.display_name)
 
-        approval_count = doc('.editor-stats-table:eq(0)').find('td')[1].text
+        approval_count = div.find('td')[1].text
         eq_(int(approval_count), 50)
 
     def test_stats_monthly(self):
@@ -260,10 +262,12 @@ class TestHome(EditorTest):
         r = self.client.get(reverse('editors.home'))
         doc = pq(r.content)
 
-        display_name = doc('.editor-stats-table:eq(1)').find('td')[0].text
+        div = doc('#editors-stats .editor-stats-table:eq(1)')
+
+        display_name = div.find('td')[0].text
         eq_(display_name, self.user.display_name)
 
-        approval_count = doc('.editor-stats-table:eq(1)').find('td')[1].text
+        approval_count = div.find('td')[1].text
         eq_(int(approval_count), 50)
 
     def test_new_editors(self):
@@ -273,7 +277,9 @@ class TestHome(EditorTest):
         r = self.client.get(reverse('editors.home'))
         doc = pq(r.content)
 
-        name = doc('.editor-stats-table:eq(2)').find('td a')[0].text.strip()
+        div = doc('#editors-stats .editor-stats-table:eq(2)')
+
+        name = div.find('td a')[0].text.strip()
         eq_(name, self.user.display_name)
 
 
@@ -398,6 +404,85 @@ class TestQueueBasics(QueueTest):
             eq_(response.status_code, 200)
             doc = pq(response.content)
             eq_(doc('th.ordered a').text(), text)
+
+    def test_full_reviews_bar(self):
+        addon = Addon.objects.filter(status=amo.STATUS_LITE_AND_NOMINATED)[0]
+
+        review_data = ((1, (0, 0, 100), 2),
+                       (8, (0, 50, 50), 1),
+                       (11, (50, 0, 50), 1))
+
+        style = lambda w: "width:%s%%" % (float(w) if w > 0 else 0)
+
+        for (days, widths, under_7) in review_data:
+            new_nomination = datetime.now() - timedelta(days=days)
+            addon.versions.all()[0].update(nomination=new_nomination)
+
+            r = self.client.get(reverse('editors.home'))
+            doc = pq(r.content)
+
+            div = doc('#editors-stats-charts .editor-stats-table:eq(0)')
+
+            eq_(doc('.waiting_old', div).attr('style'), style(widths[0]))
+            eq_(doc('.waiting_med', div).attr('style'), style(widths[1]))
+            eq_(doc('.waiting_new', div).attr('style'), style(widths[2]))
+
+            assert "%s submi" % under_7 in doc('div>div:eq(0)', div).text()
+
+    def test_pending_bar(self):
+        review_data = ((1, (0, 0, 100), 2),
+                       (8, (0, 50, 50), 1),
+                       (11, (50, 0, 50), 1))
+
+        style = lambda w: "width:%s%%" % (float(w) if w > 0 else 0)
+
+        for (days, widths, under_7) in review_data:
+            addon = self.versions['Pending One'].addon
+            new_created = datetime.now() - timedelta(days=days)
+            version = addon.versions.all()[0]
+            version.modified = new_created
+            version.created = new_created
+            version.save()
+
+            # We have to re-set the status of the add-on after saving version
+            addon.update(status=amo.STATUS_PUBLIC)
+
+            r = self.client.get(reverse('editors.home'))
+            doc = pq(r.content)
+
+            div = doc('#editors-stats-charts .editor-stats-table:eq(1)')
+
+            eq_(doc('.waiting_old', div).attr('style'), style(widths[0]))
+            eq_(doc('.waiting_med', div).attr('style'), style(widths[1]))
+            eq_(doc('.waiting_new', div).attr('style'), style(widths[2]))
+
+            assert "%s submi" % under_7 in doc('div>div:eq(0)', div).text()
+
+    def test_prelim_bar(self):
+        review_data = ((1, (0, 0, 100), 2),
+                       (8, (0, 50, 50), 1),
+                       (11, (50, 0, 50), 1))
+
+        style = lambda w: "width:%s%%" % (float(w) if w > 0 else 0)
+
+        for (days, widths, under_7) in review_data:
+            addon = self.versions['Prelim One'].addon
+            new_created = datetime.now() - timedelta(days=days)
+            version = addon.versions.all()[0]
+            version.modified = new_created
+            version.created = new_created
+            version.save()
+
+            r = self.client.get(reverse('editors.home'))
+            doc = pq(r.content)
+
+            div = doc('#editors-stats-charts .editor-stats-table:eq(2)')
+
+            eq_(doc('.waiting_old', div).attr('style'), style(widths[0]))
+            eq_(doc('.waiting_med', div).attr('style'), style(widths[1]))
+            eq_(doc('.waiting_new', div).attr('style'), style(widths[2]))
+
+            assert "%s submi" % under_7 in doc('div>div:eq(0)', div).text()
 
 
 class TestPendingQueue(QueueTest):

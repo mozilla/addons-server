@@ -293,7 +293,7 @@ class RawSQLManager(object):
         if parts.get('group_by'):
             stmt = u"%s\nGROUP BY\n%s" % (stmt, parts['group_by'])
         if parts.get('having'):
-            stmt = u"%s\nHAVING\n%s" % (stmt, sep.join(parts['having']))
+            stmt = u"%s\nHAVING\n%s" % (stmt, and_.join(parts['having']))
         if parts.get('order_by'):
             stmt = u"%s\nORDER BY\n%s" % (stmt, sep.join(parts['order_by']))
         if len(parts['limit']):

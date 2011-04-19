@@ -173,6 +173,7 @@ ul.tabnav a:hover {
     padding-bottom: 9px;
 }
 
+/* Home */
 #editors_main .listing .results-inner {
     padding: 0;
 }
@@ -199,18 +200,19 @@ ul.tabnav a:hover {
 
 .editor-stats-title,
 .editor-stats-table {
-    width: 33%;
+    width: 33.3333%;
     float: left;
 }
 
-.editor-stats-title span {
+.editor-stats-title span,
+.editor-stats-title a {
     font-weight: bold;
     padding-left: 7px;
 }
 
 .editor-stats-table > div {
-    padding: 0 10px;
-    margin: 5px 0;
+    padding: 0 10px 5px;
+    margin: 5px 0 0;
     border-left: 1px dotted #ADD0DC;
 }
 
@@ -295,6 +297,54 @@ ul.tabnav a:hover {
 
 tr.comments {
     background: #def;
+}
+
+.waiting_old, .waiting_med, .waiting_new {
+    height: 20px;
+    box-shadow: 0px 2px rgba(0, 0, 0, 0.1) inset;
+    float: left;
+    -moz-transition: 0.3s background-color;
+}
+
+.waiting_old:hover, .waiting_med:hover, .waiting_new:hover {
+    -moz-transition: 0.1s background-color;
+}
+
+.waiting_old {
+    background-color: #FFD3D3;
+}
+.waiting_old:hover {
+    background-color: #FCBCBC;
+}
+
+.waiting_med {
+    background-color: #FFFFB4;
+}
+.waiting_med:hover {
+    background-color: #F5F484;
+}
+.waiting_new {
+    background-color: #B8E6B8;
+}
+.waiting_new:hover {
+    background-color: #9DE19C;
+}
+
+div.editor-waiting {
+    border: 1px solid #999999;
+    border-radius: 5px 5px 5px 5px;
+    overflow: hidden;
+}
+
+div.editor-stats-dark {
+    background-color: #F3F3F3;
+    border-top: 1px dotted #CCCCCC;
+    display: block;
+    padding: 5px 10px 10px;
+}
+
+div.editor-stats-table > div.editor-stats-dark {
+    border-left: 1px solid #DDDDDD;
 }
 
 /* Moderated reviews css */

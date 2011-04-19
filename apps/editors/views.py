@@ -74,12 +74,43 @@ def eventlog_detail(request, id):
 
 @editor_required
 def home(request):
+    durations = (('new', _('New Add-ons (Under 5 days)')),
+                 ('med', _('Passable (5 to 10 days)')),
+                 ('old', _('Overdue (Over 10 days)')))
+
+    progress, percentage = _editor_progress()
+
     data = context(reviews_total=ActivityLog.objects.total_reviews()[:5],
                    reviews_monthly=ActivityLog.objects.monthly_reviews()[:5],
                    new_editors=EventLog.new_editors(),
-                   eventlog=ActivityLog.objects.editor_events()[:6])
+                   eventlog=ActivityLog.objects.editor_events()[:6],
+                   progress=progress, percentage=percentage,
+                   durations=durations)
 
     return jingo.render(request, 'editors/home.html', data)
+
+
+def _editor_progress():
+    """Return the progress (number of add-ons still unreviewed for a given
+       period of time) and the percentage (out of all add-ons of that type)."""
+
+    types = ['nominated', 'prelim', 'pending']
+    progress = {'new': _queue_counts(types, days_max=4),
+                'med': _queue_counts(types, days_min=5, days_max=10),
+                'old': _queue_counts(types, days_min=11),
+                'week': _queue_counts(types, days_max=7)}
+
+    # Return the percent of (p)rogress out of (t)otal.
+    pct = lambda p, t: (p / float(t)) * 100 if p > 0 else 0
+
+    percentage = {}
+    for t in types:
+        total = progress['new'][t] + progress['med'][t] + progress['old'][t]
+        percentage[t] = {}
+        for duration in ('new', 'med', 'old'):
+            percentage[t][duration] = pct(progress[duration][t], total)
+
+    return (progress, percentage)
 
 
 @editor_required
@@ -152,17 +183,33 @@ def _queue(request, TableObj, tab):
                                 search_form=search_form))
 
 
-def _queue_counts(type=None):
-    counts = {'pending': ViewPendingQueue.objects.count,
-              'nominated': ViewFullReviewQueue.objects.count,
-              'prelim': ViewPreliminaryQueue.objects.count,
+def _queue_counts(type=None, **kw):
+    def construct_query(query_type, days_min=None, days_max=None):
+        def apply_query(query, *args):
+            query = query.having(*args)
+            return query
+
+        query = query_type.objects
+
+        if days_min:
+            query = apply_query(query, 'waiting_time_days >=', days_min)
+        if days_max:
+            query = apply_query(query, 'waiting_time_days <=', days_max)
+
+        return query.count
+
+    counts = {'pending': construct_query(ViewPendingQueue, **kw),
+              'nominated': construct_query(ViewFullReviewQueue, **kw),
+              'prelim': construct_query(ViewPreliminaryQueue, **kw),
               'moderated': Review.objects.filter(reviewflag__isnull=False,
                                                  editorreview=1).count}
-    if type:
+    rv = {}
+    if isinstance(type, basestring):
         return counts[type]()
     for k, v in counts.items():
-        counts[k] = v()
-    return counts
+        if not isinstance(type, list) or k in type:
+            rv[k] = v()
+    return rv
 
 
 @editor_required

@@ -122,12 +122,14 @@ class ActivityLogManager(amo.models.ManagerBase):
         return self.filter(action__in=amo.LOG_REVIEW_QUEUE)
 
     def total_reviews(self):
+        """Return the top users, and their # of reviews."""
         return (self.values('user', 'user__display_name')
                     .filter(action__in=amo.LOG_REVIEW_QUEUE)
                     .annotate(approval_count=models.Count('id'))
                     .order_by('-approval_count'))
 
     def monthly_reviews(self):
+        """Return the top users for the month, and their # of reviews."""
         now = datetime.now()
         created_date = datetime(now.year, now.month, 1)
         return (self.values('user', 'user__display_name')

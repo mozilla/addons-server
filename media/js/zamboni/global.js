@@ -21,24 +21,43 @@ $('html').ajaxSend(function(event, xhr, ajaxSettings) {
 
 // Tooltip display. If you give an element a class of 'tooltip', it will
 // display a tooltip on hover. The contents of the tip will be the element's
-// title attriubute OR the first title attribute in its children. titles are
+// title attribute OR the first title attribute in its children. Titles are
 // swapped out by the code so the native title doesn't display. If the title of
 // the element is changed while the tooltip is displayed, you can update the
 // tooltip by with the following:
 //      $el.trigger("tooltip_change");
+//
+// You can add a title by using the following format for the title attribute:
+//      <div title="Title here :: Rest goes after the two colons"></div>
+//
+// You can set a custom timeout (milliseconds) by using data-delay:
+//      <div data-delay="100" title="hi"></div>
+
 jQuery.fn.tooltip = function(tip_el) {
     var $tip = $(tip_el),
         $msg = $('span', $tip),
         $targets = this,
         timeout = false,
-        $tgt, $title;
+        $tgt, $title, delay;
+
 
     function setTip() {
         if (!$tgt) return;
-        var pos = $tgt.offset();
+        var pos = $tgt.offset(),
+            title = $title.attr('title');
 
-        $msg.text($title.attr("title"));
-        $title.attr('data-oldtitle', $title.attr('title')).attr('title', '');
+        delay = $title.is('[data-delay]') ? $title.attr('data-delay') : 300;
+
+        if(title.indexOf('::') > 0) {
+            var title_split = title.split('::');
+            $msg.text("");
+            $msg.append($("<strong>", {'text': title_split[0].trim()}));
+            $msg.append($("<span>", {'text': title_split[1].trim()}));
+        } else {
+            $msg.text(title);
+        }
+
+        $title.attr('data-oldtitle', title).attr('title', '');
 
         var tw  = $tip.outerWidth() / 2,
             th  = $tip.outerHeight(),
@@ -50,7 +69,7 @@ jQuery.fn.tooltip = function(tip_el) {
                 left:   toX + "px",
                 top:    toY + "px"
             }).show();
-        }, 300);
+        }, delay);
     }
 
     $(document.body).bind("tooltip_change", setTip);

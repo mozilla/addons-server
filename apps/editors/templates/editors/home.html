@@ -2,6 +2,61 @@
 
 {% block content %}
 <div id="editors_main">
+
+  <div class="featured" id="editors-stats-charts">
+    <div class="featured-inner">
+      <div class="listing-header">
+        <div class="editor-stats-title">
+          <a href="{{ url('editors.queue_nominated') }}">
+            {{ ngettext('Full Review ({num})',
+                        'Full Reviews ({num})',
+                        queue_counts['nominated'])|f(num=queue_counts['nominated']) }}
+          </a>
+        </div>
+        <div class="editor-stats-title">
+          <a href="{{ url('editors.queue_pending') }}">
+            {{ ngettext('Pending Update ({num})',
+                        'Pending Updates ({num})',
+                        queue_counts['pending'])|f(num=queue_counts['pending']) }}
+          </a>
+        </div>
+        <div class="editor-stats-title">
+          <a href="{{ url('editors.queue_prelim') }}">
+            {{ ngettext('Preliminary Review ({num})',
+                        'Preliminary Reviews ({num})',
+                        queue_counts['prelim'])|f(num=queue_counts['prelim']) }}
+          </a>
+        </div>
+      </div>
+
+      <div class="editor-stats">
+        {% for type in ('nominated', 'pending', 'prelim'): %}
+          <div class="editor-stats-table">
+            <div>
+              {{ ngettext("{c} submission in the past 7 days.",
+                          "{c} submissions in the past 7 days.",
+                          progress['week'][type])|f(c=progress['week'][type]) }}
+            </div>
+            <div class="editor-stats-dark">
+              <strong>{{ _('Current waiting times:') }}</strong>
+              <div class="editor-waiting">
+                {% for (d, duration) in durations: %}
+                {% set total = progress[d][type] %}
+                <div class="waiting_{{ d }} tooltip"
+                     data-delay="100"
+                     style="width:{{ percentage[type][d] }}%"
+                     title="{{ duration }} ::
+                            {{ ngettext('{0} add-on', '{0} add-ons', total)|f(total) }}
+                            &bull; {{ _('{0}%')|f(percentage[type][d]|round|int) }}"></div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
   <div class="featured" id="editors-stats">
     <div class="featured-inner">
       <div class="listing-header">
