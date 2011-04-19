@@ -53,7 +53,7 @@
         <div>
         {% if viewer %}
             {% if selected['binary'] and not selected['directory'] %}
-                <p>{{ _('Binary file, hash:') }} {{ selected.md5 }}</p>
+                {% include "files/file.html" %}
             {% else %}
                 {% if selected and content %}
                     <pre id="content" class="wrapped">{{ content }}</pre>
@@ -70,10 +70,16 @@
         {% if diff and diff.is_binary() %}
             <p>
             {% if diff.is_different() %}
-                {{ _('Files are different.') }}
-            {% else %}
-                {{ _('Files are the same.') }}
+                {{ _('Files are different.') }}<br/>
+              {% else %}
+                {{ _('Files are the same.') }}<br/>
             {% endif %}
+            {% with selected = diff.one, file = diff.file_one.file %}
+                {% include "files/file.html" %}
+            {% endwith %}
+            {% with selected = diff.two, file = diff.file_two.file %}
+                {% include "files/file.html" %}
+            {% endwith %}
             </p>
         {% endif %}
         {% if diff and not diff.is_binary() %}

@@ -8,6 +8,7 @@ import time
 import unicodedata
 import urllib
 import urlparse
+import uuid
 
 from django import http
 from django.conf import settings
@@ -447,3 +448,46 @@ def memoize(prefix, time=60):
         return wrapper
     return decorator
 
+
+class Token:
+    _well_formed = re.compile('^[a-z0-9-]+$')
+
+    def __init__(self, token=None, data=True):
+        if token is None:
+            token = str(uuid.uuid4())
+        self.token = token
+        self.data = data
+
+    def cache_key(self):
+        assert self.token, 'No token value set.'
+        return '%s:token:%s' % (settings.CACHE_PREFIX, self.token)
+
+    def save(self, time=60):
+        cache.set(self.cache_key(), self.data, time)
+
+    def well_formed(self):
+        return self._well_formed.match(self.token)
+
+    @classmethod
+    def valid(cls, key, data=True):
+        """Checks that the token is valid."""
+        token = cls(key)
+        if not token.well_formed():
+            return False
+        result = cache.get(token.cache_key())
+        if result is not None:
+            return result == data
+        return False
+
+    @classmethod
+    def pop(cls, key, data=True):
+        """Checks that the token is valid and deletes it."""
+        token = cls(key)
+        if not token.well_formed():
+            return False
+        result = cache.get(token.cache_key())
+        if result is not None:
+            if result == data:
+                cache.delete(token.cache_key())
+                return True
+        return False

@@ -15,7 +15,7 @@ import test_utils
 
 import amo
 from amo import urlresolvers, utils, helpers
-from amo.utils import ImageCheck
+from amo.utils import ImageCheck, Token
 from versions.models import License
 
 
@@ -361,6 +361,42 @@ class TestAnimatedImages(test_utils.TestCase):
         assert not img.is_image()
         img = ImageCheck(open(get_image_path('non-animated.gif')))
         assert img.is_image()
+
+
+class TestToken(test_utils.TestCase):
+
+    def test_token_pop(self):
+        new = Token()
+        new.save()
+        assert Token.pop(new.token)
+        assert not Token.pop(new.token)
+
+    def test_token_valid(self):
+        new = Token()
+        new.save()
+        assert Token.valid(new.token)
+
+    def test_token_fails(self):
+        assert not Token.pop('some-random-token')
+
+    def test_token_ip(self):
+        new = Token(data='127.0.0.1')
+        new.save()
+        assert Token.valid(new.token, '127.0.0.1')
+
+    def test_token_no_ip_invalid(self):
+        new = Token()
+        assert not Token.valid(new.token, '255.255.255.0')
+
+    def test_token_bad_ip_invalid(self):
+        new = Token(data='127.0.0.1')
+        new.save()
+        assert not Token.pop(new.token, '255.255.255.0')
+        assert Token.pop(new.token, '127.0.0.1')
+
+    def test_token_well_formed(self):
+        new = Token('some badly formed token')
+        assert not new.well_formed()
 
 
 def test_site_nav():

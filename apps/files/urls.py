@@ -5,6 +5,9 @@ from files import views
 file_patterns = patterns('',
     url(r'^$', views.files_list, name='files.list'),
     url(r'file/(?P<key>.*)$', views.files_list, name='files.list'),
+    url(r'file-redirect/(?P<key>.*)$', views.files_redirect,
+        name='files.redirect'),
+    url(r'file-serve/(?P<key>.*)$', views.files_serve, name='files.serve'),
     url(r'status$', views.files_poll, name='files.poll'),
 )
 

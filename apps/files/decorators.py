@@ -4,6 +4,7 @@ from django import http
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404
 
+from amo.utils import Token
 from access.acl import check_addon_ownership, action_allowed
 from files.helpers import DiffHelper, FileViewer
 from files.models import File
@@ -50,4 +51,18 @@ def compare_file_view(func, **kwargs):
                 return result
 
         return func(request, DiffHelper(one, two), *args, **kw)
+    return wrapper
+
+
+def file_view_token(func, **kwargs):
+    @functools.wraps(func)
+    def wrapper(request, file_id, key, *args, **kw):
+        viewer = FileViewer(get_object_or_404(File, pk=file_id))
+        token = request.GET.get('token')
+        if not token:
+            return http.HttpResponseForbidden()
+        if not Token.valid(token, [request.META.get('REMOTE_ADDR'),
+                                   viewer.file.id, key]):
+            return http.HttpResponseForbidden()
+        return func(request, viewer, key, *args, **kw)
     return wrapper

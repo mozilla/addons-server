@@ -12,7 +12,6 @@ import test_utils
 
 from amo.urlresolvers import reverse
 from files.helpers import FileViewer, DiffHelper
-from files.utils import extract_zip
 
 root = os.path.join(settings.ROOT, 'apps/files/fixtures/files')
 dictionary = '%s/dictionary-test.xpi' % root
@@ -148,8 +147,9 @@ class TestDiffHelper(test_utils.TestCase):
         self.helper.extract()
         eq_(self.helper.is_extracted, True)
 
-    def test_primary_files(self):
-        eq_(self.helper.file_one.get_files(), self.helper.primary_files())
+    def test_get_files(self):
+        eq_(self.helper.file_one.get_files(),
+            self.helper.get_files(self.helper.file_one))
 
     def test_diffable(self):
         self.helper.extract()

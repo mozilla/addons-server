@@ -2,6 +2,7 @@ import json
 import os
 import shutil
 import tempfile
+import urlparse
 
 from django.conf import settings
 from django.core.cache import cache
@@ -17,9 +18,10 @@ from files.helpers import FileViewer, DiffHelper
 from files.models import File
 from users.models import UserProfile
 
-
 dictionary = 'apps/files/fixtures/files/dictionary-test.xpi'
 unicode_filenames = 'apps/files/fixtures/files/unicode-filenames.xpi'
+not_binary = 'install.js'
+binary = 'dictionaries/ar.dic'
 
 
 class FilesBase:
@@ -61,6 +63,12 @@ class FilesBase:
         self.file_viewer.cleanup()
         settings.TMP_PATH = self.old_tmp
         settings.ADDONS_PATH = self.old_addon
+
+    def files_redirect(self, file):
+        return reverse('files.redirect', args=[self.file.pk, file])
+
+    def files_serve(self, file):
+        return reverse('files.serve', args=[self.file.pk, file])
 
     def test_view_access_anon(self):
         self.client.logout()
@@ -133,7 +141,7 @@ class FilesBase:
 
     def test_file_header(self):
         self.file_viewer.extract()
-        res = self.client.get(self.file_url('install.js'))
+        res = self.client.get(self.file_url(not_binary))
         url = res.context['file_url']
         eq_(url, reverse('editors.review', args=[self.version.pk]))
 
@@ -141,7 +149,7 @@ class FilesBase:
         self.client.logout()
         self.file_viewer.extract()
         self.addon.update(view_source=True)
-        res = self.client.get(self.file_url('install.js'))
+        res = self.client.get(self.file_url(not_binary))
         url = res.context['file_url']
         eq_(url, reverse('addons.detail', args=[self.addon.pk]))
 
@@ -169,7 +177,7 @@ class FilesBase:
 
     def test_files_file(self):
         self.file_viewer.extract()
-        res = self.client.get(self.file_url('install.js'))
+        res = self.client.get(self.file_url(not_binary))
         eq_(res.status_code, 200)
         assert 'selected' in res.context
 
@@ -250,6 +258,44 @@ class TestFileViewer(FilesBase, test_utils.TestCase):
         res = self.client.get(self.file_url(iri_to_uri(u'\u1109\u1161\u11a9')))
         eq_(res.status_code, 200)
 
+    def test_serve_no_token(self):
+        self.file_viewer.extract()
+        res = self.client.get(self.files_serve(binary))
+        eq_(res.status_code, 403)
+
+    def test_serve_fake_token(self):
+        self.file_viewer.extract()
+        res = self.client.get(self.files_serve(binary) + '?token=aasd')
+        eq_(res.status_code, 403)
+
+    def test_serve_bad_token(self):
+        self.file_viewer.extract()
+        res = self.client.get(self.files_serve(binary) + '?token=a asd')
+        eq_(res.status_code, 403)
+
+    def test_serve_get_token(self):
+        self.file_viewer.extract()
+        res = self.client.get(self.files_redirect(binary))
+        eq_(res.status_code, 302)
+        url = res['Location']
+        assert url.startswith(settings.STATIC_URL)
+        assert urlparse.urlparse(url).query.startswith('token=')
+
+    def test_memcache_goes_bye_bye(self):
+        self.file_viewer.extract()
+        res = self.client.get(self.files_redirect(binary))
+        url = res['Location'][len(settings.STATIC_URL):]
+        cache.clear()
+        res = self.client.get(url)
+        eq_(res.status_code, 403)
+
+    def test_bounce(self):
+        self.file_viewer.extract()
+        res = self.client.get(self.files_redirect(binary), follow=True)
+        eq_(res.status_code, 200)
+        eq_(res['X-SENDFILE'],
+            self.file_viewer.get_files().get(binary)['full'])
+
 
 class TestDiffViewer(FilesBase, test_utils.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
@@ -283,7 +329,15 @@ class TestDiffViewer(FilesBase, test_utils.TestCase):
 
     def test_content_file(self):
         self.file_viewer.extract()
-        res = self.client.get(self.file_url('install.js'))
+        res = self.client.get(self.file_url(not_binary))
         doc = pq(res.content)
         eq_(len(doc('#file-one')), 1)
         eq_(len(doc('#file-two')), 1)
+
+    def test_binary_serve_links(self):
+        self.file_viewer.extract()
+        res = self.client.get(self.file_url(binary))
+        doc = pq(res.content)
+        node = doc('#content-wrapper a')
+        eq_(len(node), 2)
+        assert node[0].text.startswith('Download ar.dic')

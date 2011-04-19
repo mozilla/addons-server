@@ -128,22 +128,20 @@ class FileViewer:
             filename = smart_unicode(filename)
             short = smart_unicode(path[len(self.dest) + 1:])
             mime, encoding = mimetypes.guess_type(filename)
-            binary = self.is_binary(mime, filename)
-            # TODO: handling for st.a.m.o will be going in here
-            url = reverse('files.list', args=[self.file.id, short])
             directory = os.path.isdir(path)
-            res[short] = {'full': path,
-                          'filename': filename,
-                          'truncated': self.truncate(filename),
-                          'short': short,
-                          'directory': directory,
-                          'url': url,
-                          'binary': binary,
+            args = [self.file.id, short]
+            res[short] = {'binary': self.is_binary(mime, filename),
                           'depth': short.count(os.sep),
-                          'modified': os.stat(path)[stat.ST_MTIME],
-                          'mimetype': mime or 'application/octet-stream',
-                          'encoding': encoding,
+                          'directory': directory,
+                          'filename': filename,
+                          'full': path,
                           'md5': get_md5(path) if not directory else '',
+                          'mimetype': mime or 'application/octet-stream',
+                          'modified': os.stat(path)[stat.ST_MTIME],
+                          'short': short,
+                          'truncated': self.truncate(filename),
+                          'url': reverse('files.list', args=args),
+                          'url_serve': reverse('files.redirect', args=args),
                           'parent': '/'.join(short.split(os.sep)[:-1])}
         return res
 
@@ -170,12 +168,12 @@ class DiffHelper:
     def is_extracted(self):
         return self.file_one.is_extracted and self.file_two.is_extracted
 
-    def primary_files(self):
+    def get_files(self, file_obj):
         """
         Get the files from the primary and remap any diffable ones
         to the compare url as opposed to the other url.
         """
-        files = self.file_one.get_files()
+        files = file_obj.get_files()
         for file in files.values():
             file['url'] = reverse('files.compare',
                                   args=[self.file_one.file.id,
@@ -186,8 +184,8 @@ class DiffHelper:
 
     def select(self, key):
         self.key = key
-        self.one = self.file_one.get_files().get(key)
-        self.two = self.file_two.get_files().get(key)
+        self.one = self.get_files(self.file_one).get(key)
+        self.two = self.get_files(self.file_two).get(key)
 
     def is_different(self):
         if self.one and self.two:

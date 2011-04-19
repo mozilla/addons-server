@@ -112,3 +112,12 @@ pre del {
 #file-viewer p.help {
     clear: both;
 }
+
+dl dt {
+    padding: 0;
+    margin: 0;
+}
+
+dl dd {
+    padding-left: 1em;
+}

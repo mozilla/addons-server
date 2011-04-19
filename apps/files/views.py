@@ -10,7 +10,8 @@ import jingo
 from access import acl
 from amo.decorators import json_view
 from amo.urlresolvers import reverse
-from files.decorators import file_view, compare_file_view
+from amo.utils import HttpResponseSendFile, Token
+from files.decorators import file_view, compare_file_view, file_view_token
 from files.tasks import extract_file
 
 
@@ -80,7 +81,7 @@ def files_compare(request, diff, key='install.rdf'):
                                      diff.file_two.file.id])
 
     if diff.is_extracted:
-        files = diff.primary_files()
+        files = diff.get_files(diff.file_one)
         data.update({'status': True, 'files': files})
 
         if key:
@@ -106,3 +107,26 @@ def files_compare(request, diff, key='install.rdf'):
         response['Last-Modified'] = http_date(data['selected']['modified'] if
                                               data['selected'] else None)
     return response
+
+
+@file_view
+def files_redirect(request, viewer, key):
+    new = Token(data=[request.META.get('REMOTE_ADDR'), viewer.file.id, key])
+    new.save()
+    url = '%s%s?token=%s' % (settings.STATIC_URL,
+                             reverse('files.serve', args=[viewer, key]),
+                             new.token)
+    return http.HttpResponseRedirect(url)
+
+
+@file_view_token
+def files_serve(request, viewer, key):
+    """
+    This is to serve files off of st.a.m.o, not standard a.m.o. For this we
+    use token based authentication.
+    """
+    files = viewer.get_files()
+    obj = files.get(key)
+    if not obj:
+        raise http.Http404()
+    return HttpResponseSendFile(request, obj['full'])
