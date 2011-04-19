@@ -8,8 +8,9 @@ from django.conf import settings
 from django.utils.datastructures import SortedDict
 from django.utils.encoding import smart_unicode
 
+import jinja2
 import commonware.log
-from jingo import register
+from jingo import register, env
 from tower import ugettext as _
 
 from amo.utils import memoize
@@ -30,6 +31,22 @@ def file_viewer_class(value, selected):
     if selected and value['short'] == selected['short']:
         result.append('selected')
     return ' '.join(result)
+
+
+@register.function
+def file_tree(files, selected):
+    depth = 0
+    output = ['<ul class="root">']
+    t = env.get_template('files/node.html')
+    for k, v in files.items():
+        if v['depth'] > depth:
+            output.append('<ul class="hidden">')
+        elif v['depth'] < depth:
+            output.extend(['</ul>' for x in range(v['depth'], depth) ])
+        output.append(t.render(value=v, selected=selected))
+        depth = v['depth']
+    output.extend(['</ul>' for x in range(depth, -1, -1) ])
+    return jinja2.Markup('\n'.join(output))
 
 
 class FileViewer:
@@ -123,12 +140,18 @@ class FileViewer:
     @memoize(prefix='file-viewer')
     def _get_files(self):
         all_files, res = [], SortedDict()
-        for root, dirs, files in os.walk(self.dest):
-            for filename in dirs + files:
-                all_files.append([os.path.join(root, filename), filename])
+        # Not using os.path.walk so we get just the right order.
 
-        for path, filename in sorted(all_files):
-            filename = smart_unicode(filename)
+        def iterate(node):
+            for filename in os.listdir(node):
+                full = os.path.join(node, filename)
+                all_files.append(full)
+                if os.path.isdir(full):
+                    iterate(full)
+        iterate(self.dest)
+
+        for path in all_files:
+            filename = smart_unicode(os.path.basename(path))
             short = smart_unicode(path[len(self.dest) + 1:])
             mime, encoding = mimetypes.guess_type(filename)
             directory = os.path.isdir(path)
@@ -144,8 +167,8 @@ class FileViewer:
                           'short': short,
                           'truncated': self.truncate(filename),
                           'url': reverse('files.list', args=args),
-                          'url_serve': reverse('files.redirect', args=args),
-                          'parent': '/'.join(short.split(os.sep)[:-1])}
+                          'url_serve': reverse('files.redirect', args=args)}
+
         return res
 
 

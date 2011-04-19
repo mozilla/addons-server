@@ -1,12 +1,25 @@
 $(document).ready(function(){
+    var fileViewer = {
+        setup: function() {
+            this.sandbox = tests.createSandbox('#files-wrapper');
+        },
+        teardown: function() {
+            this.sandbox.remove();
+        }
+    };
 
-    module('File viewer');
+    module('File viewer', fileViewer);
 
     test('Show leaf', function() {
-        var viewer = bind_viewer();
-        viewer.show_leaf(['foo']);
-        equal($($('#files li a')[1]).hasClass('open'), true);
-        equal($($('#files li')[2]).hasClass('hidden'), false);
+        var nodes = {
+            $files: this.sandbox.find($('#files'))
+        };
+        var viewer = bind_viewer(nodes);
+        viewer.toggle_leaf(this.sandbox.find('a.directory'));
+        equal(this.sandbox.find('a.directory').hasClass('open'), true);
+        equal(this.sandbox.find('ul').hasClass('hidden'), false);
+        viewer.toggle_leaf(this.sandbox.find('a.directory'));
+        equal(this.sandbox.find('a.directory').hasClass('open'), false);
+        equal(this.sandbox.find('ul').hasClass('hidden'), true);
     });
-
 });

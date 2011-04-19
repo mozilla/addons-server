@@ -114,12 +114,22 @@ class TestFileHelper(test_utils.TestCase):
         self.viewer.extract()
         files = self.viewer.get_files()
         eq_(files['dictionaries/license.txt']['depth'], 1)
-        eq_(files['dictionaries/license.txt']['parent'], 'dictionaries')
 
     def test_bom(self):
         dest = tempfile.mkstemp()[1]
         open(dest, 'w').write('foo'.encode('utf-16'))
         eq_(self.viewer.read_file({'full': dest}), (u'foo', ''))
+
+    def test_file_order(self):
+        self.viewer.extract()
+        dest = self.viewer.dest
+        open(os.path.join(dest, 'chrome.manifest'), 'w')
+        subdir = os.path.join(dest, 'chrome')
+        os.mkdir(subdir)
+        open(os.path.join(subdir, 'foo'), 'w')
+        cache.clear()
+        eq_(self.viewer.get_files().keys()[8:11],
+            [u'chrome', u'chrome/foo', u'chrome.manifest'])
 
 
 class TestDiffHelper(test_utils.TestCase):

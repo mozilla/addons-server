@@ -19,121 +19,115 @@ if (typeof diff_match_patch !== 'undefined') {
             for (var t = 0; t < lines.length; t++) {
                 switch (op) {
                     case DIFF_INSERT:
-                        html.push(format('<div><div class="number"><a href="#L{0}" name="L{0}">{0}</a>' +
-                                         '</div><div class="code add">{1}</div></div>', k, lines[t]));
+                        // TODO (andym): templates might work here as suggested by cvan
+                        html.push(format('<div class="line add"><span class="number"><a href="#L{0}" name="L{0}">{0}</a> +' +
+                                         '</span><span class="code">{1}</span></div>', k, lines[t]));
                         k++;
                         break;
                     case DIFF_DELETE:
-                        html.push(format('<div><div class="number"></div>' +
-                                         '<div class="code delete">{0}</div></div>', lines[t]));
+                        html.push(format('<div class="line delete"><span class="number"> -</span>' +
+                                         '<span class="code">{0}</span></div>', lines[t]));
                         break;
                     case DIFF_EQUAL:
-                        html.push(format('<div><div class="number"><a href="#L{0}" name="L{0}">{0}</a>' +
-                                         '</div><div class="code">{1}</div></div>', k, lines[t]));
+                        html.push(format('<div class="line"><span class="number"><a href="#L{0}" name="L{0}">{0}</a>&nbsp;&nbsp;' +
+                                         '</span><span class="code">{1}</span></div>', k, lines[t]));
                         k++;
                         break;
                 }
             }
         }
-        return html.join('\n');
+        return html.join('');
     };
 }
 
-function bind_viewer() {
+function bind_viewer(nodes) {
     function Viewer() {
-        this.$tree = $('#files ul');
-        this.compute = function() {
-            var node = $('#content');
-            if (node.length) {
-                var splitted = node.text().split('\n'),
+        this.nodes = nodes;
+        this.wrapped = true;
+        this.hidden = false;
+        this.compute = function(node) {
+            var $content = node.find('#content'),
+                $diff = node.find('#diff');
+            if ($content.length) {
+                var splitted = $content.text().split('\n'),
                     length = splitted.length,
                     html = [];
-                if (splitted.splice(length-1, length) == '') {
+                if (splitted.slice(length-1) == '') {
                     length = length - 1;
                 }
-                for (var k = 0; k < splitted.length; k++) {
-                    var text = splitted[k].replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                    html.push(format('<div><div class="number"><a href="#L{0}" name="L{0}">{0}</a></div>' +
-                                     '<div class="code">{1}</div></div>', k+1, text));
+                for (var k = 0; k < length; k++) {
+                    if (splitted[k] !== undefined) {
+                        var text = splitted[k].replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                        html.push(format('<div class="line"><span class="number"><a href="#L{0}" name="L{0}">{0}</a></span>' +
+                                         '<span class="code"> {1}</span></div>', k+1, text));
+                    }
                 }
-                node.html(html.join('\n'));
+                $content.html(html.join('')).removeClass('hidden').show();
             }
 
-            if ($('#diff').length) {
+            if ($diff.length) {
                 var dmp = new diff_match_patch();
-                var diff = dmp.diff_main($('#file-one').text(), $('#file-two').text());
-                $('#diff').html(dmp.diff_prettyHtml(diff));
+                var diff = dmp.diff_main($diff.siblings('.left').text(), $diff.siblings('.right').text());
+                $diff.html(dmp.diff_prettyHtml(diff)).removeClass('hidden').show();
             }
 
             if (window.location.hash) {
                 window.location = window.location;
             }
-            this.$tree.show();
         };
-        this.show_leaf = function(names) {
-            /* Exposes the leaves for a given set of nodes. */
-            this.$tree.find('li').each(function() {
-                var $this = $(this),
-                    parent = $this.attr('data-parent'),
-                    shrt = $this.attr('data-short'),
-                    a = $this.find('a');
-
-                if (parent && (names.indexOf(parent) > -1) &&
-                    $this.hasClass('hidden')) {
-                        $this.removeClass('hidden').show();
-                }
-
-                else if (names.length === 1 &&
-                         (shrt.length > names[0].length) &&
-                         (shrt.indexOf(names[0]) === 0)) {
-                    $this.addClass('hidden').hide();
-                    if (a.hasClass('open')) {
-                        a.removeClass('open').addClass('closed');
-                    }
-                }
-
-                if (names.indexOf($this.attr('data-short')) > -1) {
-                    if (a.hasClass('closed')) {
-                        a.removeClass('closed').addClass('open');
-                    }
-                }
-            });
+        this.toggle_leaf = function($leaf) {
+            if ($leaf.hasClass('open')) {
+                this.hide_leaf($leaf);
+            } else {
+                this.show_leaf($leaf);
+            }
+        };
+        this.hide_leaf = function($leaf) {
+            $leaf.removeClass('open').addClass('closed')
+                 .closest('li').next('ul')
+                 .addClass('hidden').hide();
+        };
+        this.show_leaf = function($leaf) {
+            /* Exposes the leaves for a given set of node. */
+            $leaf.removeClass('closed').addClass('open')
+                 .closest('li').next('ul')
+                 .removeClass('hidden').show();
         };
         this.selected = function($link) {
-            /* Updates the tree, showing the leaves relevant to node */
-            var $curr = $link.closest('li'),
-                leaf = $curr.attr('data-parent').split('/'),
-                names = [];
-            $curr.removeClass('hidden').show();
-            if (leaf.length && (leaf[0])) {
-                for (var k = 0; k <= leaf.length; k += 1) {
-                    names.push(leaf.slice(0, k).join('/'));
-                }
-                this.show_leaf(names);
-            }
+            /* Exposes all the leaves to an element */
+            $link.parentsUntil('ul.root').filter('ul')
+                 .removeClass('hidden').show()
+                 .each(function() {
+                        $(this).prev('li').find('a:first')
+                               .removeClass('closed').addClass('open');
+            });
         };
         this.load = function($link) {
             /* Accepts a jQuery wrapped node, which is part of the tree.
                Hides content, shows spinner, gets the content and then
-               shows it all. */
+               shows it all. Then alters the title. */
             var self = this,
-                $thinking = $('#thinking'),
-                $wrapper = $('#content-wrapper');
-            $wrapper.hide();
-            $thinking.removeClass('hidden').show();
+                $old_wrapper = $('#content-wrapper');
+            $old_wrapper.hide();
+            this.nodes.$thinking.removeClass('hidden').show();
             if (history.pushState !== undefined) {
                 history.pushState({ path: $link.text() }, '', $link.attr('href'));
             }
-            $('#content-wrapper').load($link.attr('href') + ' #content-wrapper', function() {
+            $old_wrapper.load($link.attr('href') + ' #content-wrapper', function() {
                 $(this).children().unwrap();
-                self.compute();
-                $thinking.hide();
-                $wrapper.slideDown();
+                var $new_wrapper = $('#content-wrapper');
+                self.compute($new_wrapper);
+                self.nodes.$thinking.hide();
+                $new_wrapper.slideDown();
+                if (self.hidden) {
+                    self.toggle_files('hide');
+                }
             });
+            this.nodes.$title.text($link.closest('li').attr('data-short'));
         };
         this.select = function($link) {
             /* Given a node, alters the tree and then loads the content. */
-            this.$tree.find('a.selected').each(function() {
+            this.nodes.$files.find('a.selected').each(function() {
                 $(this).removeClass('selected');
             });
             $link.addClass('selected');
@@ -141,72 +135,94 @@ function bind_viewer() {
             this.load($link);
         };
         this.get_selected = function() {
-            return this.$tree.find('a.selected');
+            var k = 0;
+            $.each(this.nodes.$files.find('a.file'), function(i, el) {
+                if ($(el).hasClass("selected")) {
+                   k = i;
+                }
+            });
+            return k;
+        };
+        this.toggle_wrap = function(state) {
+            this.wrapped = (state == 'wrap' || !this.wrapped);
+            $('pre').toggleClass('wrapped', this.wrapped);
+        };
+        this.toggle_files = function(state) {
+            this.hidden = (state == 'hide' || !this.hidden);
+            if (this.hidden) {
+                this.nodes.$files.hide();
+                this.nodes.$commands.detach().appendTo('#content-wrapper');
+            } else {
+                this.nodes.$files.show();
+                this.nodes.$commands.detach().appendTo('#files');
+            }
         };
     }
 
     var viewer = new Viewer();
 
-    viewer.$tree.find('.directory').click(_pd(function() {
-        viewer.show_leaf([$(this).closest('li').attr('data-short')]);
+    viewer.nodes.$files.find('.directory').click(_pd(function() {
+        viewer.toggle_leaf($(this));
     }));
 
     $('#files-prev').click(_pd(function() {
-        var $curr = viewer.get_selected().closest('li'),
-            choices = $curr.prevUntil('ul').find('a.file');
-        if (choices.length) { viewer.select($(choices[0])); }
+        viewer.select(viewer.nodes.$files.find('a.file').eq(viewer.get_selected() - 1));
     }));
 
     $('#files-next').click(_pd(function() {
-        var $curr = viewer.get_selected().closest('li'),
-            choices = $curr.nextUntil('ul').find('a.file');
-        if (choices.length) { viewer.select($(choices[0])); }
+        viewer.select(viewer.nodes.$files.find('a.file').eq(viewer.get_selected() + 1));
     }));
 
     $('#files-wrap').click(_pd(function() {
-        $('pre').addClass('wrapped');
-        $('#files-wrap').hide();
-        $('#files-unwrap').removeClass('hidden').show();
+        viewer.toggle_wrap();
     }));
 
-    $('#files-unwrap').click(_pd(function() {
-        $('pre').removeClass('wrapped');
-        $('#files-wrap').removeClass('hidden').show();
-        $('#files-unwrap').hide();
+    $('#files-hide').click(_pd(function() {
+        viewer.toggle_files();
     }));
 
     $('#files-expand-all').click(_pd(function() {
-        viewer.$tree.find('li.hidden').removeClass('hidden').show();
-        viewer.$tree.find('a.directory').removeClass('closed').addClass('open');
+        viewer.nodes.$files.find('a.closed').each(function() {
+            viewer.show_leaf($(this));
+        });
     }));
 
-    viewer.$tree.find('.file').click(_pd(function() {
+    viewer.nodes.$files.find('.file').click(_pd(function() {
         viewer.select($(this));
-        $('#files-unwrap').removeClass('hidden').show();
-        $('#files-wrap').hide();
+        viewer.toggle_wrap('wrap');
     }));
 
     $(document).bind('keyup', _pd(function(e) {
-        if (e.keyCode === 75) {
+        if (e.keyCode == 72) {
+            $('#files-hide').trigger('click');
+        } else if (e.keyCode == 75) {
             $('#files-next').trigger('click');
-        } else if (e.keyCode === 74) {
+        } else if (e.keyCode == 74) {
             $('#files-prev').trigger('click');
+        } else if (e.keyCode == 87) {
+            $('#files-wrap').trigger('click');
+        } else if (e.keyCode == 69) {
+            $('#files-expand-all').trigger('click');
         }
     }));
-
     return viewer;
 }
 
 $(document).ready(function() {
     var viewer = null;
-
+    var nodes = {
+        $files: $('#files'),
+        $thinking: $('#thinking'),
+        $title: $('#breadcrumb'),
+        $commands: $('#commands')
+    };
     function poll_file_extraction() {
         $.getJSON($('#extracting').attr('data-url'), function(json) {
             if (json && json.status) {
                 $('#file-viewer').load(window.location.pathname + ' #file-viewer', function() {
-                    viewer = bind_viewer();
+                    viewer = bind_viewer(nodes);
                     viewer.selected(viewer.$tree.find('a.selected'));
-                    viewer.compute();
+                    viewer.compute($('#content-wrapper'));
                 });
             } else {
                 setTimeout(poll_file_extraction, 2000);
@@ -217,8 +233,8 @@ $(document).ready(function() {
     if ($('#extracting').length) {
         poll_file_extraction();
     } else if ($('#file-viewer').length) {
-        viewer = bind_viewer();
-        viewer.selected(viewer.$tree.find('a.selected'));
-        viewer.compute();
+        viewer = bind_viewer(nodes);
+        viewer.selected(viewer.nodes.$files.find('a.selected'));
+        viewer.compute($('#content-wrapper'));
     }
 });

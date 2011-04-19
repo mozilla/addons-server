@@ -1,123 +1,82 @@
-#file-viewer {
-    background: white;
-    padding-top: 1em
+#file-viewer div.featured-inner {
+    padding: 1em;
 }
 
 #files {
+    width: 20%;
+    display: block;
     float: left;
 }
 
 #files li a {
     display: inline-block;
+    margin-left: 20px;
+    padding: 2px 5px 2px 15px;
 }
 
-#content a {
-    padding: 0em;
-    margin: 0em;
+#files ul.root {
+    overflow-x: scroll;
 }
 
-#content-wrapper, #thinking {
-    width: 50em;
-    float: left;
-    margin-left: 1em;
-    padding-left: 3em;
-}
-
-#content div.number, #diff div.number {
-    display: inline;
-    float: left;
-    vertical-align: top;
-}
-
-
-#content div.code, #diff div.code {
-    width: 50em;
-    display: block;
-    position: relative;
-    left: 3em;
+#files ul {
     padding-left: 1em;
 }
 
-.wrapped {
+#thinking {
+    padding-left: 25%;
+}
+
+span.number {
+    width: 4em;
+    display: inline-block;
+    text-align: right;
+}
+
+pre {
+    overflow-x: scroll;
+}
+
+pre.wrapped {
     white-space: pre-wrap;
     word-wrap: break-word;
+    overflow-x: hidden;
 }
 
-pre div, pre ins, pre del {
-    display: inline-block;
-    padding: 0;
-    margin: 0;
-}
-
-pre div:hover, pre ins:hover, pre del:hover {
+pre div.line:hover {
     background-color: #ffffcc;
 }
 
-pre ins {
-    background-color: #e6ffe6;
-    text-decoration: none;
-}
-
-pre del {
-    background-color: #ffe6e6;
-    text-decoration: none;
-}
-
-#content, #diff {
-    background: white;
-    float: left;
-}
-
 .add {
-    background-color: #ddf8dd;
-    width: 100%;
+    background-color: #e6ffe6;
 }
 
 .delete {
-    background-color: #ffdddd;
-    width: 100%;
+    background-color: #ffe6e6;
 }
 
-#file-viewer span {
-    margin: 0;
-    padding: 0;
-    line-height: 0;
-}
-
-#file-viewer li a {
-    margin-left: 20px;
-    padding: 2px 5px 2px 15px;
-    width: 100%;
-}
-
-#file-viewer a.selected {
+a.selected {
     background-color: #ddf8dd;
 }
 
-#file-viewer a.closed {
+a.closed {
     background: url('/media/img/icons/plus.gif') 0 no-repeat;
 }
 
-#file-viewer a.open {
+a.open {
     background: url('/media/img/icons/minus.gif') 0 no-repeat;
 }
 
-#file-viewer .waiting {
+.waiting {
     background-image: url(../../img/zamboni/loading-white.gif);
     background-repeat: no-repeat;
     background-position: left top;
     padding-left: 2em;
 }
 
-#file-viewer p.help {
-    clear: both;
-}
-
-dl dt {
-    padding: 0;
-    margin: 0;
-}
-
-dl dd {
-    padding-left: 1em;
+code {
+    font-weight: bold;
+    color: white;
+    background-color: darkgrey;
+    padding: 2px 6px 2px 6px;
+    margin: 2px;
 }

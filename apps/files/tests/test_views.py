@@ -331,8 +331,7 @@ class TestDiffViewer(FilesBase, test_utils.TestCase):
         self.file_viewer.extract()
         res = self.client.get(self.file_url(not_binary))
         doc = pq(res.content)
-        eq_(len(doc('#file-one')), 1)
-        eq_(len(doc('#file-two')), 1)
+        eq_(len(doc('pre')), 3)
 
     def test_binary_serve_links(self):
         self.file_viewer.extract()

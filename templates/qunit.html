@@ -255,18 +255,22 @@
         </div>
     </div>
   </div>
-    <div id="files">
+    <div id="files-wrapper">
+      <div id="files>
       <ul>
-        <li class="" style="padding-left: 0em;" data-parent="" data-short="someurl">
+        <li>
             <a class="file" href="">someurl</a>
         </li>
-        <li style="padding-left: 1em; display: list-item;" data-parent="" data-short="foo">
+        <li>
             <a class="directory closed" href="">foo</a>
         </li>
-        <li class="hidden" style="padding-left: 1em; display: list-item;" data-parent="foo" data-short="foo/bar.txt">
-            <a class="file" href="someurl">foo/bar.txt</a>
-        </li>
+        <ul class="hidden">
+            <li>
+                <a class="file" href="someurl">foo/bar.txt</a>
+            </li>
+        </ul>
       </ul>
+      </div>
     </div>
     <div id="paypal">
         <div class="contribute">
