@@ -197,7 +197,7 @@
 
                     // L10n: "{bytes uploaded} of {total filesize}".
                     upload_status_progress.text(format(gettext('{0} of {1}'),
-                                [textSize(size), textSize(size)]));
+                                [textSize(size), textSize(file.size)]));
                 }
             }
 
