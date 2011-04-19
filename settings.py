@@ -725,7 +725,9 @@ CSP_ALLOW = ("'self'",)
 CSP_IMG_SRC = ("'self'", STATIC_URL,
                "https://www.google.com",  # Recaptcha comes from google
                "https://statse.webtrendslive.com",
-               "https://www.getpersonas.com",)
+               "https://www.getpersonas.com",
+               "https://s3.amazonaws.com", # getsatisfaction
+              )
 CSP_SCRIPT_SRC = ("'self'", STATIC_URL,
                   "https://api-secure.recaptcha.net",
                   "https://www.google.com",  # Recaptcha
@@ -734,7 +736,9 @@ CSP_SCRIPT_SRC = ("'self'", STATIC_URL,
 CSP_STYLE_SRC = ("'self'", STATIC_URL,)
 CSP_OBJECT_SRC = ("'none'",)
 CSP_MEDIA_SRC = ("'none'",)
-CSP_FRAME_SRC = ("'none'",)
+CSP_FRAME_SRC = ("https://s3.amazonaws.com", # getsatisfaction
+                 "https://getsatisfaction.com", # getsatisfaction
+                )
 CSP_FONT_SRC = ("'self'", "fonts.mozilla.com", "www.mozilla.com", )
 # self is needed for paypal which sends x-frame-options:allow when needed.
 # x-frame-options:DENY is sent the rest of the time.
