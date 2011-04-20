@@ -53,6 +53,9 @@ setup_environ(settings)
 import safe_django_forms
 safe_django_forms.monkeypatch()
 
+import session_csrf
+session_csrf.monkeypatch()
+
 # Import for side-effect: configures our logging handlers.
 # pylint: disable-msg=W0611
 import log_settings

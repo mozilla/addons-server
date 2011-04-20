@@ -7,6 +7,7 @@ from django.template import Context, loader
 import commonware.log
 import jingo
 from tower import ugettext as _
+from session_csrf import anonymous_csrf
 
 
 import amo
@@ -221,6 +222,7 @@ def _clean_next_url(request):
     return request
 
 
+@anonymous_csrf
 def login(request):
     logout(request)
 
