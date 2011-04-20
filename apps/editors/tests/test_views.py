@@ -113,10 +113,10 @@ class TestReviewLog(EditorTest):
     def setUp(self):
         self.login_as_editor()
 
-    def make_approvals(self):
+    def make_approvals(self, count=51):
         Platform.objects.create(id=amo.PLATFORM_ALL.id)
         u = UserProfile.objects.filter()[0]
-        for i in xrange(51):
+        for i in xrange(count):
             a = Addon.objects.create(type=amo.ADDON_EXTENSION)
             v = Version.objects.create(addon=a)
             amo.log(amo.LOG.REJECT_VERSION, a, v, user=u,
@@ -137,6 +137,24 @@ class TestReviewLog(EditorTest):
         # Should have 50 showing.
         eq_(len(doc('tbody tr').not_('.hide')), 50)
         eq_(doc('tbody tr.hide').eq(0).text(), 'youwin')
+
+    def test_xss(self):
+        u = UserProfile.objects.filter()[0]
+        a = Addon.objects.create(type=amo.ADDON_EXTENSION,
+                                 name="<script>alert('')</script>")
+        v = Version.objects.create(addon=a)
+        amo.log(amo.LOG.REJECT_VERSION, a, v, user=u,
+                details={'comments': 'xss!'})
+
+        self.make_approvals(count=0)
+        r = self.client.get(reverse('editors.reviewlog'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+
+        inner_html = doc('tbody tr td').eq(1).html()
+
+        assert "&lt;script&gt;" in inner_html
+        assert "<script>" not in inner_html
 
     def test_end_filter(self):
         """
