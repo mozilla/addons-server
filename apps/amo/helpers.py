@@ -35,7 +35,8 @@ register.function(utils.randslice)
 
 @register.filter
 def link(item):
-    html = """<a href="%s">%s</a>""" % (item.get_url_path(), item.name)
+    html = """<a href="%s">%s</a>""" % (item.get_url_path(),
+                                        jinja2.escape(item.name))
     return jinja2.Markup(html)
 
 
