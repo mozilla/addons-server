@@ -626,6 +626,7 @@ header:after,
 #monthly img {
     display: block;
     float: right;
+    max-width: 50%;
 }
 /* @end */
 
@@ -1036,7 +1037,7 @@ ul.addons {
 }
 
 /* @Narrow *********/
-@media (max-width: 980px) {
+@media (max-width: 860px) {
     body {
         margin: 0 10px;
         min-width: 620px;
