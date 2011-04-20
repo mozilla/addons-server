@@ -121,7 +121,8 @@ def _queue(request, TableObj, tab):
         else:
             try:
                 # Force a limit query for efficiency:
-                row = qs[review_num - 1:1][0]
+                start = review_num - 1
+                row = qs[start : start + 1][0]
                 return redirect('%s?num=%s' % (
                                 reverse('editors.review',
                                         args=[row.latest_version_id]),

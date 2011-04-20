@@ -151,6 +151,17 @@ class TestSQLModel(unittest.TestCase):
         qs = Summary.objects.all()[0:]
         eq_(sorted([c.category for c in qs]), ['apparel','safety'])
 
+    def test_slice5(self):
+        eq_([c.product for c in
+             ProductDetail.objects.all().order_by('product')[0:1]],
+            ['defilbrilator'])
+        eq_([c.product for c in
+             ProductDetail.objects.all().order_by('product')[1:2]],
+            ['life jacket'])
+        eq_([c.product for c in
+             ProductDetail.objects.all().order_by('product')[2:3]],
+            ['snake skin jacket'])
+
     @raises(IndexError)
     def test_negative_slices_not_supported(self):
         qs = Summary.objects.all()[:-1]

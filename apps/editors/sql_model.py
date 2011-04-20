@@ -60,8 +60,15 @@ class RawSQLManager(object):
     def __getitem__(self, key):
         if isinstance(key, slice):
             if key.start and key.stop:
-                self.base_query['limit'] = [self._check_limit(key.start),
-                                            self._check_limit(key.stop)]
+                # Translate slice into LIMIT, e.g.
+                # [0:2] ->
+                #          LIMIT 0, 2
+                # [10:15] ->
+                #          LIMIT 10, 5
+                offset = self._check_limit(key.start)
+                end = self._check_limit(key.stop)
+                row_count = max(0, end - offset)
+                self.base_query['limit'] = [offset, row_count]
             elif key.start:
                 self.base_query['limit'] = [self._check_limit(key.start)]
             elif key.stop:
