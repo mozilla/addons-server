@@ -68,6 +68,7 @@ detail_patterns = patterns('',
     url('^request-review/(?P<status>[%s])$'
         % ''.join(map(str, views.REQUEST_REVIEW)),
         views.request_review, name='devhub.request-review'),
+    url('^rmlocale$', views.remove_locale, name='devhub.remove-locale'),
 )
 
 # These will all start with /ajax/addon/<addon_id>/

@@ -1006,6 +1006,16 @@ def submit_select_review(request, addon_id, addon, step):
 
 
 @dev_required
+@post_required
+def remove_locale(request, addon_id, addon):
+    POST = request.POST
+    if 'locale' in POST and POST['locale'] != addon.default_locale:
+        addon.remove_locale(POST['locale'])
+        return http.HttpResponse()
+    return http.HttpResponseBadRequest()
+
+
+@dev_required
 @submit_step(7)
 def submit_done(request, addon_id, addon, step):
     # Bounce to the versions page if they don't have any versions.

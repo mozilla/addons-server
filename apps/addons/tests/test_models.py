@@ -25,7 +25,7 @@ from devhub.models import ActivityLog
 from files.models import File, Platform
 from files.tests.test_models import UploadTest
 from reviews.models import Review
-from translations.models import TranslationSequence
+from translations.models import TranslationSequence, Translation
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
 
@@ -1240,3 +1240,17 @@ class TestFrozenAddons(test_utils.TestCase):
         a = Addon.objects.create(type=1, hotness=22)
         FrozenAddon.objects.create(addon=a)
         eq_(Addon.objects.get(id=a.id).hotness, 0)
+
+
+class TestRemoveLocale(test_utils.TestCase):
+
+    def test_remove(self):
+        a = Addon.objects.create(type=1)
+        a.name = {'en-US': 'woo', 'el': 'yeah'}
+        a.description = {'en-US': 'woo', 'el': 'yeah', 'he': 'ola'}
+        a.save()
+        a.remove_locale('el')
+        qs = (Translation.objects.filter(localized_string__isnull=False)
+              .values_list('locale', flat=True))
+        eq_(sorted(qs.filter(id=a.name_id)), ['en-US'])
+        eq_(sorted(qs.filter(id=a.description_id)), ['en-US', 'he'])

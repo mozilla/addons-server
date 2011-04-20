@@ -38,6 +38,7 @@ from files.models import File, FileUpload, Platform, FileValidation
 from files.tests.test_models import UploadTest as BaseUploadTest
 from reviews.models import Review
 from tags.models import Tag, AddonTag
+from translations.models import Translation
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, License, Version
 
@@ -3296,3 +3297,31 @@ class TestNewsletter(test_utils.TestCase):
         # Test call to responsys
         eq_(v.call_args[0], ('http://awesomeness.mozilla.org/pub/rf',))
         assert(urlencode({'EMAIL_ADDRESS_': email}) in v.call_args[1]['data'])
+
+
+class TestRemoveLocale(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+
+    def setUp(self):
+        self.url = reverse('devhub.remove-locale', args=['a3615'])
+        assert self.client.login(username='del@icio.us', password='password')
+
+    def test_bad_request(self):
+        r = self.client.post(self.url)
+        eq_(r.status_code, 400)
+
+    def test_success(self):
+        a = Addon.objects.get(id=3615)
+        a.name = {'en-US': 'woo', 'el': 'yeah'}
+        a.save()
+        a.remove_locale('el')
+        qs = (Translation.objects.filter(localized_string__isnull=False)
+              .values_list('locale', flat=True))
+        r = self.client.post(self.url, {'locale': 'el'})
+        eq_(r.status_code, 200)
+        eq_(sorted(qs.filter(id=a.name_id)), ['en-US'])
+
+    def test_delete_default_locale(self):
+        a = Addon.objects.get(id=3615)
+        r = self.client.post(self.url, {'locale': a.default_locale})
+        eq_(r.status_code, 400)

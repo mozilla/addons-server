@@ -837,6 +837,13 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             app_cats.append((amo.APP_IDS[app], list(cats)))
         return app_cats
 
+    def remove_locale(self, locale):
+        """NULLify the add-on's strings in this locale."""
+        ids = [getattr(self, f.attname) for f in self._meta.translated_fields]
+        qs = Translation.objects.filter(id__in=filter(None, ids),
+                                        locale=locale)
+        qs.update(localized_string=None, localized_string_clean=None)
+
 
 def update_name_table(sender, **kw):
     from . import cron
