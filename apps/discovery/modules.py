@@ -67,8 +67,13 @@ class MonthlyPick(TemplatePromo):
     slug = 'Monthly Pick'
     template = 'discovery/modules/monthly.html'
 
+    # TODO A bit of hardcoding here to support an alternative locale.  This
+    # will all be redone with the mango bugs: http://bugzil.la/[t:mango]
     def context(self):
-        return {'addon': Addon.objects.get(id=197224)}
+        return {
+                'addon': Addon.objects.get(id=3456),
+                'addon_de': Addon.objects.get(id=146384)
+               }
 
 
 class GoMobile(TemplatePromo):
