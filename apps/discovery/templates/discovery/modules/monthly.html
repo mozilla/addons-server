@@ -5,16 +5,26 @@
     </hgroup>
     <div class="wrap">
       <div>
-        <h3>{{ addon.name }}</h3>
-        <div>
-          <p>{% trans %}
-          Copy ShortURL lets you instantly create a short URL for web pages
-          that you visit, so you can easily share links with friends.
-          {% endtrans %}</p>
-          {{ install_button(addon, src='discovery-promo') }}
-        </div>
-        {# TODO: Change this screenshot when changing the monthly pick. #}
-        <img src="{{ MEDIA_URL }}img/zamboni/discovery_pane/promos/monthly-screenshot.png">
+        {% if LANG == 'de' %}
+          <h3>addon_de.name</h3>
+          <div>
+            <p>Surfen und sparen: Wenn Sie einen Online-Shop besuchen, zeigt Ihnen dieses
+            Add-on, ob für die Seite Gutscheine zur Verfügung stehen.</p>
+            {{ install_button(addon_de, src='discovery-promo') }}
+          </div>
+          {# TODO: Change this screenshot when changing the monthly pick. #}
+          <img src="{{ MEDIA_URL }}img/uploads/previews/thumbs/56/56897.png?modified=1303294213">
+        {% else %}
+          <h3>{{ addon.name }}</h3>
+          <div>
+            <p>{% trans %}
+            Web of Trust lets you know whether the site you're visiting is safe.
+            {% endtrans %}</p>
+            {{ install_button(addon, src='discovery-promo') }}
+          </div>
+          {# TODO: Change this screenshot when changing the monthly pick. #}
+          <img src="{{ MEDIA_URL }}img/uploads/previews/thumbs/31/31153.png?modified=1239092219">
+        {% endif %}
       </div>
     </div>
   </div>
