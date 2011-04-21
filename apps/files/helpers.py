@@ -73,10 +73,13 @@ class FileViewer:
             major, minor = mimetype.split('/')
             if major == 'text' and minor in ['plain', 'html', 'css']:
                 return False
-            elif minor in ['xml', 'rdf+xml', 'javascript', 'x-javascript',
-                         'xml-dtd', 'vnd.mozilla.xul+xml']:
+            elif major == 'application' and minor in ['json']:
                 return False
-        elif os.path.splitext(filename)[1] in ['.dtd', '.xul', '.properties']:
+            elif minor in ['xml', 'rdf+xml', 'javascript', 'x-javascript',
+                           'xml-dtd', 'vnd.mozilla.xul+xml']:
+                return False
+        elif os.path.splitext(filename)[1] in ['.dtd', '.xul', '.properties',
+                                               '.src', '.mf', '.sf', '.json']:
             return False
         return True
 
