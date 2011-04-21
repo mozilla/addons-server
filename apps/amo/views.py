@@ -160,7 +160,7 @@ def monitor(request, format=None):
     status_summary['rabbit'] = True
     for queue, (threshold, actual) in rabbit_results.items():
         if actual > threshold or actual < 0 or actual is None:
-            status_summary['rabbit'] = False
+            # status_summary['rabbit'] = False  # Disabled, see template.
             monitor_log.critical(
                 'Celery[%s] did not respond within %s seconds. (actual: %s)'
                 % (queue, threshold, actual))

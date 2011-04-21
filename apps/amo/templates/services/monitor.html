@@ -100,7 +100,11 @@
 
 <div class="notification-box {{ status(status_summary.rabbit) }}">
   <h2>[RabbitMQ] celeryd queues</h2>
-  <p>Tasks are sent to rabbit in a cronjob and results are stored in redis.</p>
+  <p>Tasks are sent to rabbit in a cronjob and results are stored in
+      redis.<strong>I disabled the paging on this because a broken check is worse
+      than no check at all.  Times (such as they are) are still reported here
+      and in the logs. --clouserw</strong>
+  </p>
   <ul>
     {% for queue, (threshold, actual) in rabbit_results.items() %}
     <li>
