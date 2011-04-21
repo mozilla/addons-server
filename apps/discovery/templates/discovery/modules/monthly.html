@@ -13,7 +13,7 @@
             {{ install_button(addon_de, src='discovery-promo') }}
           </div>
           {# TODO: Change this screenshot when changing the monthly pick. #}
-          <img src="{{ MEDIA_URL }}img/uploads/previews/thumbs/56/56897.png?modified=1303294213">
+          <img src="{{ addon_de.thumbnail_url }}">
         {% else %}
           <h3>{{ addon.name }}</h3>
           <div>
@@ -23,7 +23,7 @@
             {{ install_button(addon, src='discovery-promo') }}
           </div>
           {# TODO: Change this screenshot when changing the monthly pick. #}
-          <img src="{{ MEDIA_URL }}img/uploads/previews/thumbs/31/31153.png?modified=1239092219">
+          <img src="{{ addon.thumbnail_url }}">
         {% endif %}
       </div>
     </div>
