@@ -164,22 +164,28 @@ def extract_xpi(xpi, path, expand=False):
     """
     If expand is given, will look inside the expanded file
     and find anything in the whitelist and try and expand it as well.
-    Currently only does one iteration of this.
+    It will do up to 10 iterations, after that you are on your own.
 
     It will replace the expanded file with a directory and the expanded
     contents. If you have 'foo.jar', that contains 'some-image.jpg', then
     it will create a folder, foo.jar, with an image inside.
     """
-    expand_whitelist = ['.jar']
+    expand_whitelist = ['.jar', '.xpi']
     tempdir = extract_zip(xpi)
 
     if expand:
-        for root, dirs, files in os.walk(tempdir):
-            for name in files:
-                if os.path.splitext(name)[1] in expand_whitelist:
-                    src = os.path.join(root, name)
-                    dest = extract_zip(src, remove=True)
-                    copy_over(dest, src)
+        for x in xrange(0, 10):
+            flag = False
+            for root, dirs, files in os.walk(tempdir):
+                for name in files:
+                    if os.path.splitext(name)[1] in expand_whitelist:
+                        src = os.path.join(root, name)
+                        if not os.path.isdir(src):
+                            dest = extract_zip(src, remove=True)
+                            copy_over(dest, src)
+                            flag = True
+            if not flag:
+                break
 
     copy_over(tempdir, path)
 

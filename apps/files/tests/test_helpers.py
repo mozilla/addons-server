@@ -50,10 +50,11 @@ class TestFileHelper(test_utils.TestCase):
         self.viewer.src = recurse
         self.viewer.extract()
         files = self.viewer.get_files()
-        for name in ['chrome/test-root.txt', 'chrome/test.jar',
-                     'chrome/test.jar/test/test.text']:
+        nm = ['recurse/recurse.xpi/chrome/test-root.txt',
+              'recurse/somejar.jar/recurse/recurse.xpi/chrome/test.jar',
+              'recurse/somejar.jar/recurse/recurse.xpi/chrome/test.jar/test']
+        for name in nm:
             eq_(name in files, True, 'File %r not extracted' % name)
-        eq_(files['chrome/test.jar/test']['directory'], True)
 
     def test_cleanup(self):
         self.viewer.extract()
