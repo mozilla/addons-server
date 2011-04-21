@@ -26,17 +26,19 @@ $.fn.truncate = function(opts) {
                 break;
             }
             var chunk = Math.ceil(txt.length/2), oc=0, wid, delim;
-            for (counter = 0; counter < 10; counter++) {
+            for (counter = 0; counter < 15; counter++) {
                 $tel.html(txt.slice(0,cutoff).join(delim)+truncText);
                 wid = (this[scrollProp] - this[offsetProp]);
-                if (wid < 2 && chunk == oc || cutoff < 1) {
-                   success = true;
-                   $el.addClass("truncated");
-                   break;
+                if (cutoff < 1) {
+                    break;
+                } else if (wid < 2 && chunk == oc) {
+                    success = true;
+                    $el.addClass("truncated");
+                    break;
                 } else if (wid > 1) {
-                   cutoff -= chunk;
+                    cutoff -= chunk;
                 } else {
-                   cutoff += chunk;
+                    cutoff += chunk;
                 }
                 oc = chunk;
                 chunk = Math.ceil(chunk/2);
