@@ -193,7 +193,7 @@ ul.tabnav a:hover {
     border-bottom-width: 0px;
 }
 
-#editors_main .listing .listing-header {
+.listing .listing-header {
     text-align: center;
     font-weight: bold;
 }

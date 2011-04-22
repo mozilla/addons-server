@@ -1,0 +1,46 @@
+{% extends "editors/base.html" %}
+
+{% block breadcrumbs %}
+{{ editors_breadcrumbs(items=[(None, _('Performance'))]) }}
+{% endblock %}
+
+{% block content %}
+  <h2>{{ _('Add-on Editor Performance', 'editorcp_reviewlog_page_heading') }}</h2>
+
+  <div class="featured">
+    <div class="featured-inner">
+      <table class="data-grid">
+        <tr class="listing-header">
+          <th>{{ _('Range') }}</th>
+          <th>{{ _('My Reviews') }}</th>
+          <th>{{ _('Total Reviews') }}</th>
+          {# <th>{{ _('Team Average') }}</th> #}
+          <th>{{ _('Active Contributors') }}</th>
+        </tr>
+        <tr>
+          <td><strong>{{ _('This Month') }}</strong></td>
+          <td>{{ performance_month['usercount'] }}</td>
+          <td>{{ performance_month['teamcount'] }}</td>
+          <td>{{ performance_month['teamamt'] }}</td>
+        </tr>
+        <tr>
+          <td><strong>{{ _('Past Year') }}</strong></td>
+          <td>{{ performance_year['usercount'] }}</td>
+          <td>{{ performance_year['teamcount'] }}</td>
+          <td>{{ performance_year['teamamt'] }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="featured">
+    <div class="featured-inner listing">
+      <div class="listing-header"><span>{{ _('Monthly Performance') }}</span></div>
+          <div id="monthly" class="highcharts-container"
+            data-chart="{{ monthly_data }}"></div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+

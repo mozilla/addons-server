@@ -743,6 +743,25 @@ class TestModeratedQueue(QueueTest):
         eq_(doc('.review-saved button').length, 1)  # Only show one button.
 
 
+class TestPerformance(QueueTest):
+    fixtures = ('base/users', 'editors/pending-queue', 'base/approvals')
+
+    """Test the page at /editors/performance."""
+    def setUp(self):
+        super(TestPerformance, self).setUp()
+        self.url_performance = reverse('editors.performance')
+
+    def test_performance_chart(self):
+        r = self.client.get(self.url_performance)
+        doc = pq(r.content)
+
+        data = {u'2010-08': {u'teamcount': 1, u'teamavg': u'1.0',
+                             u'usercount': 1, u'teamamt': 1,
+                             u'label': u'Aug 2010'}}
+
+        eq_(json.loads(doc('#monthly').attr('data-chart')), data)
+
+
 class SearchTest(EditorTest):
 
     def setUp(self):

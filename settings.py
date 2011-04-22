@@ -487,6 +487,7 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/editors': (
             'js/zamboni/editors.js',
+            'js/lib/highcharts.src.js'
         ),
         'zamboni/files': (
             'js/diff/diff_match_patch_uncompressed.js',

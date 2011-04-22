@@ -189,6 +189,31 @@ class ViewPreliminaryQueue(VersionSpecificQueue):
         return q
 
 
+class PerformanceGraph(ViewQueue):
+    id = models.IntegerField()
+    yearmonth = models.CharField(max_length=7)
+    approval_created = models.DateTimeField()
+    user_id = models.IntegerField()
+    total = models.IntegerField()
+
+    def base_query(self):
+        return {
+            'select': SortedDict([
+                ('yearmonth', "DATE_FORMAT(`approvals`.`created`, '%%Y-%%m')"),
+                ('approval_created', '`approvals`.`created`'),
+                ('user_id', '`users`.`id`'),
+                ('total', 'COUNT(*)')]),
+            'from': [
+                'approvals',
+                'LEFT JOIN `users` ON (`users`.`id`=`approvals`.`user_id`)',
+                """INNER JOIN `groups_users` ON
+                   (`users`.`id` = `groups_users`.`user_id` AND
+                   `groups_users`.`group_id` = 2)"""],
+            'where': [],
+            'group_by': 'yearmonth, user_id'
+            }
+
+
 class EditorSubscription(amo.models.ModelBase):
     user = models.ForeignKey(UserProfile)
     addon = models.ForeignKey(Addon)

@@ -1,9 +1,12 @@
-from datetime import date
+from datetime import date, datetime
 import functools
+import json
+import time
 
 from django import http
 from django.conf import settings
 from django.shortcuts import redirect, get_object_or_404
+from django.utils.datastructures import SortedDict
 
 import jingo
 from tower import ugettext as _
@@ -18,7 +21,7 @@ from devhub.models import ActivityLog
 from editors import forms
 from editors.models import (EditorSubscription, ViewPendingQueue,
                             ViewFullReviewQueue, ViewPreliminaryQueue,
-                            EventLog, CannedResponse)
+                            EventLog, CannedResponse, PerformanceGraph)
 from editors.helpers import (ViewPendingQueueTable, ViewFullReviewQueueTable,
                              ViewPreliminaryQueueTable)
 from files.models import Approval
@@ -111,6 +114,82 @@ def _editor_progress():
             percentage[t][duration] = pct(progress[duration][t], total)
 
     return (progress, percentage)
+
+
+@editor_required
+def performance(request):
+    monthly_data = _performanceByMonth(request.amo_user.id)
+    performance_total = _performance_total(monthly_data)
+
+    data = context(monthly_data=json.dumps(monthly_data),
+                   performance_month=performance_total['month'],
+                   performance_year=performance_total['year'])
+
+    return jingo.render(request, 'editors/performance.html', data)
+
+
+def _performance_total(data):
+    # TODO(gkoberger): Fix this so it's the past X, rather than this X to date.
+    # (ex: March 15-April 15, not April 1 - April 15)
+    total_yr = dict(usercount=0, teamamt=0, teamcount=0, teamavg=0)
+    total_month = dict(usercount=0, teamamt=0, teamcount=0, teamavg=0)
+    current_year = datetime.now().year
+
+    for k, val in data.items():
+        if k.startswith(str(current_year)):
+            total_yr['usercount'] = total_yr['usercount'] + val['usercount']
+            total_yr['teamamt'] = total_yr['teamamt'] + val['teamamt']
+            total_yr['teamcount'] = total_yr['teamcount'] + val['teamcount']
+
+    current_label_month = datetime.now().isoformat()[:7]
+    if current_label_month in data:
+        total_month = data[current_label_month]
+
+    return dict(month=total_month, year=total_yr)
+
+
+def _performanceByMonth(user_id, months=12, end_month=None, end_year=None):
+    monthly_data = SortedDict()
+
+    now = datetime.now()
+    if not end_month:
+        end_month = now.month
+    if not end_year:
+        end_year = now.year
+
+    end_time = time.mktime((end_year, end_month + 1, 1, 0, 0, 0, 0, 0, -1))
+    start_time = time.mktime((end_year, end_month + 1 - months,
+                              1, 0, 0, 0, 0, 0, -1))
+
+    sql = (PerformanceGraph.objects
+          .filter_raw('approvals.created >=',
+                      date.fromtimestamp(start_time).isoformat())
+          .filter_raw('approvals.created <',
+                      date.fromtimestamp(end_time).isoformat())
+          )
+
+    for row in sql.all():
+        label = row.approval_created.isoformat()[:7]
+
+        if not label in monthly_data:
+            xaxis = row.approval_created.strftime('%b %Y')
+            monthly_data[label] = dict(teamcount=0, usercount=0,
+                                       teamamt=0, label=xaxis)
+
+        monthly_data[label]['teamamt'] = monthly_data[label]['teamamt'] + 1
+        monthly_data_count = monthly_data[label]['teamcount']
+        monthly_data[label]['teamcount'] = monthly_data_count + row.total
+
+        if row.user_id == user_id:
+            user_count = monthly_data[label]['usercount']
+            monthly_data[label]['usercount'] =  user_count + row.total
+
+    # Calculate averages
+    for i, vals in monthly_data.items():
+        average = round(vals['teamcount'] / float(vals['teamamt']), 1)
+        monthly_data[i]['teamavg'] = str(average)  # floats aren't valid json
+
+    return monthly_data;
 
 
 @editor_required
