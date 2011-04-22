@@ -26,7 +26,7 @@
     {% endif %}
   </li>
   <li><a href="{{ url('addons.detail', addon.slug, src='discovery-learnmore') }}"
-         class="button">{{ _('Learn More') }}</a></li>
+         id="learn-more" class="button">{{ _('Learn More') }}</a></li>
   {% with files = addon.current_version.all_files %}
     {% if files and files[0].no_restart %}
       <li id="no-restart">

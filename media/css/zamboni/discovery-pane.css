@@ -169,14 +169,14 @@ header:after,
     padding: 0 0 0 120px;
 }
 
-#intro .button {
+#intro #learn-more {
     position: absolute;
     right: 0;
     top: 0;
     max-width: 100px;
 }
 
-.html-rtl #intro .button {
+.html-rtl #intro #learn-more {
     right: auto;
     left: 0;
 }
