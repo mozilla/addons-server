@@ -15,6 +15,8 @@ $(document).ready(function () {
         currentLocale = dl,
         unsavedModalMsg = $('#modal-l10n-unsaved .msg').html(),
         unsavedModal = $('#modal-l10n-unsaved').modal(),
+        rmLocaleModalMsg = $('#modal-l10n-rm .msg').html(),
+        rmLocaleModal = $('#modal-l10n-rm').modal(),
         modalActions = $(".modal-actions", unsavedModal),
         translations = {}; //hold the initial values of the fields to check for changes
 
@@ -93,8 +95,6 @@ $(document).ready(function () {
         $tgt = $(this);
         var new_locale = $tgt.attr("data-lang") || $tgt.attr("href").substring(1);
         var unsaved = $("form .trans .unsaved");
-
-        $.cookie('current_locale', new_locale, {expires: 0});
 
         if (unsaved.length) {
             unsavedModal.children(".msg")
@@ -177,14 +177,31 @@ $(document).ready(function () {
                 e.preventDefault();
                 e.stopPropagation();
                 var toRemove = $(this).closest("li").find("a:not(.remove)").attr("href").substring(1);
-                $(format(".trans [lang={0}]", [toRemove])).each(function () {
-                    var n = $(this).attr('name');
-                    $(this).attr('name', n + '_delete').attr('lang', toRemove + '_delete');
-                });
-                if (currentLocale == toRemove) {
-                    updateLocale(dl);
+                rmLocaleModal.children(".msg").html(format(rmLocaleModalMsg,toRemove));
+                rmLocaleModal.render();
+                $('#l10n-cancel-rm').unbind().click(rmLocaleModal.hideMe);
+                function cleanUp() {
+                    $(".modal-actions", rmLocaleModal).removeClass('ajax-loading');
+                    rmLocaleModal.hideMe();
                 }
-                showExistingLocales();
+                $('#l10n-confirm-rm').unbind().click(function(e) {
+                    $(".modal-actions", rmLocaleModal).addClass('ajax-loading');
+                    $.ajax({
+                        url: $('#l10n-menu').attr('data-rm-locale'),
+                        type: "post",
+                        data: {locale: toRemove},
+                        error: function() {
+                            cleanUp();
+                        },
+                        success: function() {
+                            if (currentLocale == toRemove) {
+                                updateLocale(dl);
+                            }
+                            $('.trans [lang='+toRemove+']').remove();
+                            cleanUp();
+                        }
+                    });
+                });
             });
             return true;
         }
@@ -235,6 +252,7 @@ $(document).ready(function () {
         $(format(".trans>:not([lang={0}])", currentLocale)).hide();
         $(format(".trans [lang={0}]", currentLocale)).show();
         initCharCount();
+        $.cookie('current_locale', currentLocale, {expires: 0});
     }
 
     function discoverLocales(locale) {

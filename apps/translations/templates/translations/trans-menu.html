@@ -1,4 +1,6 @@
-<div class="transbox-new" data-default="{{ default_locale }}" id="l10n-menu">
+<div class="transbox-new"
+     data-rm-locale="{{ url('devhub.remove-locale', addon.slug) }}"
+     data-default="{{ default_locale }}" id="l10n-menu">
   {% set dl = languages[default_locale] %}
   <p>
   {# l10n: {0} is a language name, like 'French' #}
@@ -36,6 +38,18 @@
       <button id="l10n-save-changes" class="button">{{ _('Save Changes') }}</button>
       <button id="l10n-discard-changes" class="button">{{ _('Discard Changes') }}</button>
       {{ _('or') }} <a id="l10n-cancel-changes" href="#">{{ _('Cancel') }}</a>
+    </div>
+  </div>
+  <div id="modal-l10n-rm" class="modal hidden">
+    <p class="msg">
+    {# l10n: {0} is a language name, like 'French' #}
+    {% trans %}
+      Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone.
+    {% endtrans %}
+    </p>
+    <div class="modal-actions">
+      <button id="l10n-confirm-rm" class="button">{{ _('Delete Locale') }}</button>
+      {{ _('or') }} <a id="l10n-cancel-rm" href="#">{{ _('Cancel') }}</a>
     </div>
   </div>
 </div>
