@@ -702,10 +702,10 @@ form .char-count b {
     display: inline-block;
 }
 .item-actions>ul>li {
-    margin-right: 4px;
+    margin-right: 2px;
 }
 .item-actions>ul>li:after {
-    margin: 0 0 4px 4px;
+    margin: 0 0 4px 2px;
 }
 .item-actions>ul>li:not(:last-child):after {
     background-color: #aaa;
