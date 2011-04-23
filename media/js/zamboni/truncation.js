@@ -12,15 +12,15 @@ $.fn.truncate = function(opts) {
             $tel = textEl ? $(textEl, $el) : $el,
             txt, cutoff,
             oldtext = $tel.attr("oldtext") || $tel.text();
-        if ($tel.attr("oldtext")) {
-            $tel.text(oldtext);
-        }
         $tel.attr("oldtext", oldtext);
         for (var i in split) {
             delim = split[i];
             txt = oldtext.split(delim);
             cutoff = txt.length;
             success = false;
+            if ($tel.attr("oldtext")) {
+                $tel.text(oldtext);
+            }
             if ((this[scrollProp] - this[offsetProp]) < 2) {
                 $el.removeClass("truncated");
                 break;
@@ -32,9 +32,11 @@ $.fn.truncate = function(opts) {
                 if (cutoff < 1) {
                     break;
                 } else if (wid < 2 && chunk == oc) {
-                    success = true;
-                    $el.addClass("truncated");
-                    break;
+                    if (dir == 'h' || (delim == '' && this["scrollWidth"] < this["offsetWidth"])) {
+                        success = true;
+                        $el.addClass("truncated");
+                        break;
+                    }
                 } else if (wid > 1) {
                     cutoff -= chunk;
                 } else {
