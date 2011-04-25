@@ -185,10 +185,8 @@ class QueueSearchForm(happyforms.Form):
                         int(data['waiting_time_days'][:-1]))
             else:
                 args = ('waiting_time_days <=', data['waiting_time_days'])
-            if qs.sql_model.is_version_specific:
-                qs = qs.having(*args)
-            else:
-                qs = qs.filter_raw(*args)
+
+            qs = qs.having(*args)
         return qs
 
 

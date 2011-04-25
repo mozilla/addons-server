@@ -140,11 +140,11 @@ class ViewFullReviewQueue(ViewQueue):
         q = super(ViewFullReviewQueue, self).base_query()
         q['select'].update({
             'waiting_time_days':
-                'TIMESTAMPDIFF(DAY, versions.nomination, NOW())',
+                'TIMESTAMPDIFF(DAY, MAX(versions.nomination), NOW())',
             'waiting_time_hours':
-                'TIMESTAMPDIFF(HOUR, versions.nomination, NOW())',
+                'TIMESTAMPDIFF(HOUR, MAX(versions.nomination), NOW())',
             'waiting_time_min':
-                'TIMESTAMPDIFF(MINUTE, versions.nomination, NOW())',
+                'TIMESTAMPDIFF(MINUTE, MAX(versions.nomination), NOW())',
         })
         q['where'].extend(['files.status <> %s' % amo.STATUS_BETA,
                            'addons.status IN (%s, %s)' % (

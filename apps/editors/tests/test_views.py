@@ -452,6 +452,35 @@ class TestNominatedQueue(QueueTest):
             reverse('editors.review',
                     args=[self.versions[u'Nominated Two'].id]) + '?num=2')
 
+    def test_results_two_versions(self):
+        ver = Addon.objects.get(pk=4).versions.all()[0]
+        file = ver.files.all()[0]
+
+        original_nomination = ver.nomination
+        ver.nomination = ver.nomination - timedelta(days=1)
+        ver.save()
+
+        ver.pk = None
+        ver.nomination = original_nomination
+        ver.version = "0.2"
+        ver.save()
+
+        file.pk = None
+        file.version = ver
+        file.save()
+
+        r = self.client.get(reverse('editors.queue_nominated'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+
+        row = doc('table.data-grid tr:eq(2)')
+        eq_(doc('td:eq(0)', row).text(), u'Nominated Two 0.2')
+
+        # Make sure the time isn't the same as the original time.
+        # (We're using the other row as a constant for comparison.)
+        row_constant = doc('table.data-grid tr:eq(1)')
+        eq_(doc('td:eq(2)', row).text(), doc('td:eq(2)', row_constant).text())
+
     def test_queue_count(self):
         r = self.client.get(reverse('editors.queue_nominated'))
         eq_(r.status_code, 200)
