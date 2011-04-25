@@ -56,26 +56,29 @@
                     {% endif %}
                 {% endif %}
             {% endif %}
-            {% if diff and diff.is_binary() %}
-                <p>
-                {% if diff.is_different() %}
-                    {{ _('Files are different.') }}<br/>
-                  {% else %}
-                    {{ _('Files are the same.') }}<br/>
+            {% if diff %}
+                {% if diff.is_diffable() %}
+                    <p>
+                    {% if diff.is_different() %}
+                        {{ _('Files are different.') }}<br/>
+                      {% else %}
+                        {{ _('Files are the same.') }}<br/>
+                    {% endif %}
+                    </p>
                 {% endif %}
-                {% with selected = diff.one, file = diff.file_one.file %}
-                    {% include "files/file.html" %}
-                {% endwith %}
-                {% with selected = diff.two, file = diff.file_two.file %}
-                    {% include "files/file.html" %}
-                {% endwith %}
-                </p>
-            {% endif %}
-            {% if diff and not diff.is_binary() %}
-                {% if text_one and text_two %}
-                    <pre id="diff" class="wrapped hidden"></pre>
-                    <pre class="left hidden">{{ text_one }}</pre>
-                    <pre class="right hidden">{{ text_two }}</pre>
+                {% if diff.is_binary() %}
+                    {% with selected = diff.one, file = diff.file_one.file %}
+                        {% include "files/file.html" %}
+                    {% endwith %}
+                    {% with selected = diff.two, file = diff.file_two.file %}
+                        {% include "files/file.html" %}
+                    {% endwith %}
+                {% else %}
+                    {% if text_one and text_two %}
+                        <pre id="diff" class="wrapped hidden"></pre>
+                        <pre class="left hidden">{{ text_one }}</pre>
+                        <pre class="right hidden">{{ text_two }}</pre>
+                    {% endif %}
                 {% endif %}
             {% endif %}
             </div>

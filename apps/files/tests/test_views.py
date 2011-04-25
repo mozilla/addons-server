@@ -340,3 +340,16 @@ class TestDiffViewer(FilesBase, test_utils.TestCase):
         node = doc('#content-wrapper a')
         eq_(len(node), 2)
         assert node[0].text.startswith('Download ar.dic')
+
+    def test_files_different_msg(self):
+        self.file_viewer.extract()
+        self.add_file(self.file_viewer.file_one, not_binary, 'something')
+        res = self.client.get(self.file_url(not_binary))
+        doc = pq(res.content)
+        eq_(doc('#content-wrapper p').text(), 'Files are different.')
+
+    def test_files_same_msg(self):
+        self.file_viewer.extract()
+        res = self.client.get(self.file_url(not_binary))
+        doc = pq(res.content)
+        eq_(doc('#content-wrapper p').text(), 'Files are the same.')
