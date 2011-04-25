@@ -453,7 +453,7 @@ class TestNominatedQueue(QueueTest):
                     args=[self.versions[u'Nominated Two'].id]) + '?num=2')
 
     def test_results_two_versions(self):
-        ver = Addon.objects.get(pk=4).versions.all()[0]
+        ver = self.versions['Nominated Two'].addon.versions.all()[0]
         file = ver.files.all()[0]
 
         original_nomination = ver.nomination
