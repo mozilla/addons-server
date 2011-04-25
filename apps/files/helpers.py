@@ -143,7 +143,7 @@ class FileViewer:
         # Not using os.path.walk so we get just the right order.
 
         def iterate(node):
-            for filename in os.listdir(node):
+            for filename in sorted(os.listdir(node)):
                 full = os.path.join(node, filename)
                 all_files.append(full)
                 if os.path.isdir(full):
