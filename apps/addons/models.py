@@ -279,6 +279,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @transaction.commit_on_success
     def delete(self, msg):
+        from amo.helpers import absolutify
         delete_harder = self.highest_status or self.status
         if delete_harder:
             if self.guid:
@@ -295,6 +296,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             email_msg = u"""
             The following add-on was deleted.
             ADD-ON: %s
+            URL: %s
             DELETED BY: %s
             ID: %s
             GUID: %s
@@ -302,8 +304,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             TOTAL DOWNLOADS: %s
             AVERAGE DAILY USERS: %s
             NOTES: %s
-            """ % (self.name, user_str, self.id, self.guid, authors,
-                   self.total_downloads, self.average_daily_users, msg)
+            """ % (self.name, absolutify(self.get_url_path()), user_str,
+                   self.id, self.guid, authors, self.total_downloads,
+                   self.average_daily_users, msg)
             log.debug('Sending delete email for add-on %s' % self.id)
             subject = 'Deleting add-on %s (%d)' % (self.slug, self.id)
 

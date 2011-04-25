@@ -15,6 +15,7 @@ import test_utils
 
 import amo
 from amo import set_user
+from amo.helpers import absolutify
 from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonCategory, AddonDependency,
                            AddonRecommendation, AddonType, BlacklistedGuid,
@@ -151,6 +152,12 @@ class TestAddonModels(test_utils.TestCase):
         a.delete('bye')
         eq_(len(mail.outbox), 1)
         assert BlacklistedGuid.objects.filter(guid=a.guid)
+
+    def test_delete_url(self):
+        """Test deleting addon has URL in the email."""
+        a = Addon.objects.get(pk=4594)
+        a.delete('bye')
+        assert absolutify(a.get_url_path()) in mail.outbox[0].body
 
     def test_delete_searchengine(self):
         """
