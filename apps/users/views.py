@@ -346,6 +346,7 @@ def profile(request, user_id):
     return jingo.render(request, 'users/profile.html', data)
 
 
+@anonymous_csrf
 def register(request):
     if request.user.is_authenticated():
         messages.info(request, _("You are already logged in to an account."))
