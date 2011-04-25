@@ -142,7 +142,7 @@ class FilesBase:
     def test_file_header(self):
         self.file_viewer.extract()
         res = self.client.get(self.file_url(not_binary))
-        url = res.context['file_url']
+        url = res.context['file_link']['url']
         eq_(url, reverse('editors.review', args=[self.version.pk]))
 
     def test_file_header_anon(self):
@@ -150,7 +150,7 @@ class FilesBase:
         self.file_viewer.extract()
         self.addon.update(view_source=True)
         res = self.client.get(self.file_url(not_binary))
-        url = res.context['file_url']
+        url = res.context['file_link']['url']
         eq_(url, reverse('addons.detail', args=[self.addon.pk]))
 
     def test_content_no_file(self):
@@ -180,6 +180,21 @@ class FilesBase:
         res = self.client.get(self.file_url(not_binary))
         eq_(res.status_code, 200)
         assert 'selected' in res.context
+
+    def test_files_back_link(self):
+        self.file_viewer.extract()
+        res = self.client.get(self.file_url(not_binary))
+        doc = pq(res.content)
+        eq_(doc('#files a.no-key').text(), 'Back to review')
+
+    def test_files_back_link_anon(self):
+        self.file_viewer.extract()
+        self.client.logout()
+        self.addon.update(view_source=True)
+        res = self.client.get(self.file_url(not_binary))
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(doc('#files a.no-key').text(), 'Back to addon')
 
 
 class TestFileViewer(FilesBase, test_utils.TestCase):

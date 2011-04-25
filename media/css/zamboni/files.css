@@ -80,3 +80,7 @@ code {
     padding: 2px 6px 2px 6px;
     margin: 2px;
 }
+
+a.no-key {
+    margin-left: 29px;
+}

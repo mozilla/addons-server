@@ -14,6 +14,8 @@ from amo.utils import HttpResponseSendFile, Token
 from files.decorators import file_view, compare_file_view, file_view_token
 from files.tasks import extract_file
 
+from tower import ugettext as _
+
 
 def setup_viewer(request, file_obj):
     data = {'file': file_obj,
@@ -23,9 +25,13 @@ def setup_viewer(request, file_obj):
             'selected': {}}
 
     if acl.action_allowed(request, 'Editors', '%'):
-        data['file_url'] = reverse('editors.review', args=[data['version'].pk])
+        data['file_link'] = {'text': _('Back to review'),
+                             'url': reverse('editors.review',
+                                            args=[file_obj.version.pk])}
     else:
-        data['file_url'] = reverse('addons.detail', args=[data['addon'].pk])
+        data['file_link'] = {'text': _('Back to addon'),
+                             'url': reverse('addons.detail',
+                                            args=[file_obj.version.addon.pk])}
     return data
 
 
