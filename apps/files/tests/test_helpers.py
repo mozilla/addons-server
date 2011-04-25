@@ -128,8 +128,9 @@ class TestFileHelper(test_utils.TestCase):
         os.mkdir(subdir)
         open(os.path.join(subdir, 'foo'), 'w')
         cache.clear()
-        eq_(self.viewer.get_files().keys()[8:11],
-            [u'chrome', u'chrome/foo', u'chrome.manifest'])
+        files = self.viewer.get_files().keys()
+        root = files.index(u'chrome')
+        eq_(files[root:root+3], [u'chrome', u'chrome/foo', u'chrome.manifest'])
 
 
 class TestDiffHelper(test_utils.TestCase):

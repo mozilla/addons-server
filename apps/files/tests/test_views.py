@@ -208,7 +208,7 @@ class TestFileViewer(FilesBase, test_utils.TestCase):
         res = self.client.get(self.file_url())
         doc = pq(res.content)
         # Note: this is text, not a DOM element, so escaped correctly.
-        assert doc('#files li a')[0].text.startswith('<script')
+        assert '<script>alert("' in doc('#files li a').text()
 
     def test_content_file(self):
         self.file_viewer.extract()
