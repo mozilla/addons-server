@@ -220,7 +220,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         src, dst = self.file_path, self.guarded_file_path
         self.mv(src, dst, 'Moving disabled file: %s => %s')
         # Remove the file from the mirrors if necessary.
-        if os.path.exists(self.mirror_file_path):
+        if os.path.exists(smart_str(self.mirror_file_path)):
             log.info('Unmirroring disabled file: %s'
                      % self.mirror_file_path)
             os.remove(self.mirror_file_path)
