@@ -39,7 +39,7 @@ def blocklist(request, apiver, app, appver):
 
 def _blocklist(request, apiver, app, appver):
     apiver = int(apiver)
-    items = get_items(apiver, app, appver)
+    items = get_items(apiver, app, appver)[0]
     plugins = get_plugins(apiver, app, appver)
     gfxs = BlocklistGfx.objects.filter(Q(guid__isnull=True) | Q(guid=app))
     # Find the latest created/modified date across all sections.
@@ -67,16 +67,17 @@ for m in BlocklistItem, BlocklistPlugin, BlocklistGfx, BlocklistApp:
                                    dispatch_uid='delete_%s' % m)
 
 
-def get_items(apiver, app, appver):
+def get_items(apiver, app, appver=None):
     # Collapse multiple blocklist items (different version ranges) into one
     # item and collapse each item's apps.
     addons = (BlocklistItem.uncached
+              .select_related('details')
               .filter(Q(app__guid__isnull=True) | Q(app__guid=app))
               .order_by('-modified')
               .extra(select={'app_guid': 'blapps.guid',
                              'app_min': 'blapps.min',
                              'app_max': 'blapps.max'}))
-    items = {}
+    items, details = {}, {}
     for guid, rows in sorted_groupby(addons, 'guid'):
         rows = list(rows)
         rr = []
@@ -88,55 +89,36 @@ def get_items(apiver, app, appver):
         os = [r.os for r in rr if r.os]
         items[guid] = BlItem(rr, os[0] if os else None, rows[0].modified,
                              rows[0].block_id)
-    return items
+        details[guid] = sorted(rows, key=attrgetter('id'))[0]
+    return items, details
 
 
-def get_plugins(apiver, app, appver):
+def get_plugins(apiver, app, appver=None):
     # API versions < 3 ignore targetApplication entries for plugins so only
     # block the plugin if the appver is within the block range.
-    plugins = BlocklistPlugin.uncached.filter(
-        Q(guid__isnull=True) | Q(guid=app))
-    if apiver < 3:
+    plugins = (BlocklistPlugin.uncached.select_related('details')
+               .filter(Q(guid__isnull=True) | Q(guid=app)))
+    if apiver < 3 and appver is not None:
         def between(ver, min, max):
             if not (min and max):
                 return True
             return version_int(min) < ver < version_int(max)
         app_version = version_int(appver)
         plugins = [p for p in plugins if between(app_version, p.min, p.max)]
-    return plugins
+    return list(plugins)
 
 
-def blocked_list(request):
-    items = blocklist_objects()
+def blocked_list(request, apiver=3):
+    app = request.APP.guid
+    objs = get_items(apiver, app)[1].values() + get_plugins(apiver, app)
+    items = sorted(objs, key=attrgetter('created'), reverse=True)
     return jingo.render(request, 'blocklist/blocked_list.html',
                         {'items': items})
 
 
-# We don't show BlocklistGfx publicly (bug 650107).
-blmodels = BlocklistItem, BlocklistPlugin  #, BlocklistGfx
-bltypes = dict((m._type, m) for m in blmodels)
-
-
-# The id is prefixed with [ipg] so we know which model to use.
+# The id is prefixed with [ip] so we know which model to use.
 def blocked_detail(request, id):
-    item = blocklist_item(id)
+    bltypes = dict((m._type, m) for m in (BlocklistItem, BlocklistPlugin))
+    item = get_object_or_404(bltypes[id[0]], details=id[1:])
     return jingo.render(request, 'blocklist/blocked_detail.html',
                         {'item': item})
-
-
-def blocklist_objects():
-    objs = [o for m in blmodels for o in m.objects.select_related('details')]
-    # Make sure all the blocklist objects have details.
-    for obj in objs:
-        if obj.details is None:
-            if obj.created is None:
-                obj.created = datetime.now()
-            d = BlocklistDetail.objects.create(
-                name=repr(obj), why='', who='', bug='', created=obj.created)
-            obj.details = d
-            obj.save()
-    return sorted(objs, key=attrgetter('created'), reverse=True)
-
-
-def blocklist_item(id):
-    return get_object_or_404(bltypes[id[0]], details=id[1:])

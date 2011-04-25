@@ -5,5 +5,5 @@ from . import views
 urlpatterns = patterns('',
   url('^$', views.blocked_list, name='blocked.list'),
   # The prefix tells us to look at item, plugin, or gfx.
-  url('^([ipg]\d+)$', views.blocked_detail, name='blocked.detail'),
+  url('^([ip]\d+)$', views.blocked_detail, name='blocked.detail'),
 )
