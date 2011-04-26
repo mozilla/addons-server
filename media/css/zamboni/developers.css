@@ -702,10 +702,10 @@ form .char-count b {
     display: inline-block;
 }
 .item-actions>ul>li {
-    margin-right: 2px;
+    margin-right: 1px;
 }
 .item-actions>ul>li:after {
-    margin: 0 0 4px 2px;
+    margin: 0 0 4px 1px;
 }
 .item-actions>ul>li:not(:last-child):after {
     background-color: #aaa;
@@ -716,7 +716,7 @@ form .char-count b {
     display: inline-block;
     height: 2px;
     width: 2px;
-    margin: 0 0 4px 4px;
+    margin: 0 0 4px 1px;
 }
 #dashboard .item:hover .item-actions>ul>li:not(:last-child):after {
     background-color: #555;
