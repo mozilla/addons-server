@@ -11,6 +11,7 @@ from mock import patch, patch_object
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
+from waffle.models import Switch
 
 import amo
 from amo.urlresolvers import reverse
@@ -1288,6 +1289,7 @@ class TestReview(ReviewBase):
         doc(len('.files a'), 3)
 
     def test_compare_link(self):
+        Switch.objects.create(name='zamboni-file-viewer', active=1)
         version = Version.objects.create(addon=self.addon, version='0.2')
         version.created = datetime.today() + timedelta(days=1)
         version.save()
@@ -1297,7 +1299,7 @@ class TestReview(ReviewBase):
         first_file.save()
 
         url = reverse('editors.review', args=[version.pk])
-        File.objects.create(version=version, status=amo.STATUS_PUBLIC)
+        next_file = File.objects.create(version=version, status=amo.STATUS_PUBLIC)
         self.addon.update(_current_version=version)
         eq_(self.addon.current_version, version)
         r = self.client.get(url)
@@ -1305,11 +1307,9 @@ class TestReview(ReviewBase):
 
         assert r.context['show_diff']
         eq_(doc('.files a:last-child').text(), 'Compare With Public Version')
-        # Note: remora url will be to the old version, the diff viewer figures
-        # out the version to compare too.
-
         eq_(doc('.files a:last-child').attr('href'),
-            remora_url('/files/diff/%d/' % version.files.all()[0].pk))
+            reverse('files.compare', args=(next_file.pk,
+                                           first_file.version.pk)))
 
 
 class TestReviewPreliminary(ReviewBase):

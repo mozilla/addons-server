@@ -389,11 +389,14 @@ def review(request, version_id):
     statuses = [amo.STATUS_PUBLIC, amo.STATUS_LITE,
                 amo.STATUS_LITE_AND_NOMINATED]
 
-    show_diff = (addon.versions.exclude(id=version.id)
-                               .filter(files__isnull=False,
+    try:
+        show_diff = (addon.versions.exclude(id=version.id)
+                                   .filter(files__isnull=False,
                                        created__lt=version.created,
                                        files__status__in=statuses)
-                               .exists())
+                                   .latest())
+    except Version.DoesNotExist:
+        show_diff = None
 
     # The actions we should show a minimal form from.
     actions_minimal = [k for (k, a) in actions if not a.get('minimal')]
