@@ -101,6 +101,7 @@ function bind_viewer(nodes) {
                         $(this).prev('li').find('a:first')
                                .removeClass('closed').addClass('open');
             });
+            this.nodes.$title.text($link.attr('data-short'));
         };
         this.load = function($link) {
             /* Accepts a jQuery wrapped node, which is part of the tree.
@@ -123,7 +124,6 @@ function bind_viewer(nodes) {
                     self.toggle_files('hide');
                 }
             });
-            this.nodes.$title.text($link.closest('li').attr('data-short'));
         };
         this.select = function($link) {
             /* Given a node, alters the tree and then loads the content. */
@@ -220,8 +220,9 @@ $(document).ready(function() {
         $.getJSON($('#extracting').attr('data-url'), function(json) {
             if (json && json.status) {
                 $('#file-viewer').load(window.location.pathname + ' #file-viewer', function() {
+                    nodes.$files = $('#files') // rebind
                     viewer = bind_viewer(nodes);
-                    viewer.selected(viewer.$tree.find('a.selected'));
+                    viewer.selected(viewer.nodes.$files.find('a.selected'));
                     viewer.compute($('#content-wrapper'));
                 });
             } else {
