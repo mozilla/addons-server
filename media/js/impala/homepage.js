@@ -15,7 +15,7 @@ $('.island .addon-grid').bind('grid.init', function(e, data) {
             e.preventDefault();
             var $tgt = $(this);
             if ($tgt.hasClass('dot')) {
-                $grid.goto($tgt.index() - 1);
+                $grid.go($tgt.index() - 1);
             } else if ($tgt.hasClass('prev')){
                 $grid.prev();
             } else if ($tgt.hasClass('next')){
@@ -41,19 +41,19 @@ $(function() {
 
         $grid.trigger("grid.init", {self: $grid, current: current, maxPage: maxPage});
 
-        $grid.goto = function(n) {
+        $grid.go = function(n) {
             if (n != current) {
                 n = n < 0 ? 0 : (n > maxPage ? maxPage : n);
                 current = n;
                 $pages.hide().eq(n).show();
-                $grid.trigger("grid.update", {self: $grid, current: current, maxPage: maxPage})
+                $grid.trigger("grid.update", {self: $grid, current: current, maxPage: maxPage});
             }
         };
         $grid.prev = function() {
-            $grid.goto(current-1);
+            $grid.go(current-1);
         };
         $grid.next = function() {
-            $grid.goto(current+1);
+            $grid.go(current+1);
         };
     });
 
