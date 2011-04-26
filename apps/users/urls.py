@@ -2,6 +2,7 @@ from django.contrib.auth import views as auth_views
 from django.conf.urls.defaults import patterns, url, include
 
 from zadmin import jinja_for_django
+from session_csrf import anonymous_csrf
 
 from . import forms, views
 from .models import UserProfile
@@ -31,7 +32,7 @@ users_patterns = patterns('',
     url('^login', views.login, name='users.login'),
     url('^logout', views.logout, name='users.logout'),
     url('^register$', views.register, name='users.register'),
-    url(r'^pwreset/?$', auth_views.password_reset,
+    url(r'^pwreset/?$', anonymous_csrf(auth_views.password_reset),
                         {'template_name': 'users/pwreset_request.html',
                          'email_template_name': 'users/email/pwreset.ltxt',
                          'password_reset_form': forms.PasswordResetForm,
