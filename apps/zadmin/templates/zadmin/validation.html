@@ -1,0 +1,56 @@
+{% extends "admin/base.html" %}
+
+{% set title = _('Bulk Addon Validation') %}
+{% block title %}{{ page_title(title) }}{% endblock %}
+
+{% block js %}
+{{ super() }}
+<script src="{{ media('js/zamboni/admin_validation.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<section id="admin-validation">
+  <h2>{{ title }}</h2>
+  {{ form.errors }}
+  <form action="{{ url('zadmin.start_validation') }}" method="post">
+  {{ csrf() }}
+  <div class="form-row">
+    {% for elem in ('application', 'curr_max_version', 'target_version') %}
+      <label id="label-{{ elem }}" for="id_{{ elem }}">{{ form[elem].label }}</label>
+      <span id="elem-{{ elem }}">{{ form[elem] }}</span>
+    {% endfor %}
+  </div>
+  <div class="form-row last-row">
+    <label for="id_finish_email">{{ form['finish_email'].label }}</label>
+    <span id="elem-finish_email">{{ form['finish_email'] }}</span>
+    <div class="button">
+      <button type="submit">{{ _('Start validation') }}</button>
+    </div>
+  </div>
+  </form>
+  <table>
+    <tr>
+      <th>{{ _('Tests Started') }}</th>
+      <th>{{ _('Tests Finished') }}</th>
+      <th>{{ _('Current Version') }}</th>
+      <th>{{ _('Target Version') }}</th>
+      <th>{{ _('Tested') }}</th>
+      <th>{{ _('Failing') }}</th>
+      <th>{{ _('Passing') }}</th>
+      <th>{{ _('Actions') }}</th>
+    </tr>
+    {% for job in validation_jobs %}
+    <tr>
+      <td>{{ job.created }}</td>
+      <td>{{ job.completed }}</td>
+      <td>{{ job.curr_max_version.version }}</td>
+      <td>{{ job.target_version.version }}</td>
+      <td>{{ job.stats['number_of_addons'] }}</td>
+      <td>{{ job.stats['failing_addons'] }}</td>
+      <td>{{ job.stats['passing_addons'] }}</td>
+      <td></td>
+    </tr>
+    {% endfor %}
+  </table>
+</section>
+{% endblock %}

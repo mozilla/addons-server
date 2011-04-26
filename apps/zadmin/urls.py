@@ -14,6 +14,12 @@ urlpatterns = patterns('',
     url('^hera', views.hera, name='zadmin.hera'),
     url('^settings', views.settings, name='zadmin.settings'),
     url('^fix-disabled', views.fix_disabled_file, name='zadmin.fix-disabled'),
+    url(r'^validation/application_versions\.json$',
+        views.application_versions_json,
+        name='zadmin.application_versions_json'),
+    url(r'^validation/start$', views.start_validation,
+        name='zadmin.start_validation'),
+    url(r'^validation$', views.validation, name='zadmin.validation'),
 
     # The Django admin.
     url('^models/', include(admin.site.urls)),

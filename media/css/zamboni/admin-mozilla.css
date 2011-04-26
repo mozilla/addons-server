@@ -38,3 +38,54 @@ fieldset {
 .footerlogo {
     display: none;
 }
+
+#admin-validation form label,
+#admin-validation form span {
+    display: block;
+    float: left;
+}
+#admin-validation form label {
+    padding: 0 1em;
+    width: 10em;
+}
+#admin-validation form #label-application {
+    width: 5em;
+}
+#admin-validation form #elem-application {
+    width: 8em;
+}
+#admin-validation form #label-target_version {
+    width: 7em;
+}
+#admin-validation form #elem-finish_email,
+#admin-validation form #elem-finish_email input {
+    width: 13em;
+}
+#admin-validation form span {
+    width: 14em;
+}
+#admin-validation form .form-row {
+    clear: both;
+    height: 2.5em;
+}
+#admin-validation form .last-row {
+    padding-left: 15em;
+}
+#admin-validation form .button {
+    float: left;
+    padding-left: 10em;
+}
+#admin-validation .errorlist li {
+    list-style: disc;
+    margin-left: 2em;
+}
+#admin-validation .errorlist li li {
+    list-style: none;
+    margin-left: 1em;
+}
+#admin-validation .errorlist ul {
+    margin-bottom: 1em;
+}
+#admin-validation .errorlist ul ul {
+    margin: 0;
+}

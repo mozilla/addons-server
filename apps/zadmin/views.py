@@ -14,10 +14,14 @@ import jinja2
 import jingo
 
 from amo import messages
+from amo.decorators import login_required, json_view, post_required
 import amo.models
+from amo.urlresolvers import reverse
 from addons.models import Addon
 from files.models import Approval, File
 from versions.models import Version
+from zadmin.forms import BulkValidationForm
+from zadmin.models import ValidationJob
 
 log = commonware.log.getLogger('z.zadmin')
 
@@ -131,3 +135,31 @@ def fix_disabled_file(request):
     return jingo.render(request, 'zadmin/fix-disabled.html',
                         {'file': file_,
                          'file_id': request.POST.get('file', '')})
+
+
+@login_required
+@post_required
+@json_view
+def application_versions_json(request):
+    app_id = request.POST['application_id']
+    f = BulkValidationForm()
+    return {'choices': f.version_choices_for_app_id(app_id)}
+
+
+@admin.site.admin_view
+def validation(request, form=None):
+    if not form:
+        form = BulkValidationForm()
+    jobs = ValidationJob.objects.filter(completed=None).order_by('-created')
+    return jingo.render(request, 'zadmin/validation.html',
+                        {'form': form, 'validation_jobs': jobs})
+
+
+@admin.site.admin_view
+def start_validation(request):
+    form = BulkValidationForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect(reverse('zadmin.validation'))
+    else:
+        return validation(request, form=form)
