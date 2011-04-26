@@ -60,8 +60,10 @@
               </td>
             </tr>
             <tr class="comments hide">
-              <td colspan="5">{{ item.details['comments'] }}</td>
+              <td>&nbsp;</td>
+              <td colspan="4">{{ item.details['comments'] }}</td>
             </tr>
+            <tr class="hide"><td>{{ item.action }}</td></tr>
           {% endfor %}
         </tbody>
       </table>

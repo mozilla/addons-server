@@ -295,7 +295,8 @@ ul.tabnav a:hover {
     padding: 15px;
 }
 
-tr.comments {
+table.data-grid tr.comments td {
+    border-top: none;
     background: #def;
 }
 
