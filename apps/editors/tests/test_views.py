@@ -1270,6 +1270,17 @@ class TestReview(ReviewBase):
         eq_(list_items.eq(0).find('a').text(), "Editor Tools")
         eq_(list_items.eq(1).find('a').text(), "Pending Updates")
 
+    def test_breadcrumbs_all(self):
+        queues = {'Full Reviews': [3, 9],
+                  'Preliminary Reviews': [1, 8],
+                  'Pending Updates': [2, 4]}
+
+        for text, queue_ids in queues.items():
+            for qid in queue_ids:
+                self.addon.update(status=qid)
+                doc = pq(self.client.get(self.url).content)
+                eq_(doc('ol.breadcrumbs li:eq(1)').text(), text)
+
     def test_no_compare_link(self):
         r = self.client.get(self.url)
         doc = pq(r.content)

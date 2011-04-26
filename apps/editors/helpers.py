@@ -61,7 +61,9 @@ def editors_breadcrumbs(context, queue=None, queue_id=None, items=None):
     crumbs = [(reverse('editors.home'), _('Editor Tools'))]
 
     if queue_id:
-        queue_ids = {4: 'pending', 3: 'nominated', 1: 'prelim'}
+        queue_ids = {1: 'prelim', 3: 'nominated', 4: 'pending',
+                     8: 'prelim', 9: 'nominated', 2: 'pending'}
+
         queue = queue_ids.get(queue_id, 'queue')
 
     if queue:
