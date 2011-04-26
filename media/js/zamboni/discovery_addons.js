@@ -88,18 +88,6 @@ $(document).ready(function(){
 });
 
 
-function debounce(fn, ms, ctxt) {
-    var ctx = ctxt || window;
-    var to, del = ms, fun = fn;
-    return function () {
-        var args = arguments;
-        clearTimeout(to);
-        to = setTimeout(function() {
-            fun.apply(ctx, args);
-        }, del);
-    };
-}
-
 function initDetail() {
     $(".install-action a").attr("target", "_self");
 

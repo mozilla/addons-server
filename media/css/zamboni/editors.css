@@ -482,6 +482,10 @@ div.editor-stats-table > div.editor-stats-dark {
     width: 13.49%;
 }
 
+.secondary.scroll_sidebar_parent {
+    position: relative;
+}
+
 #review-actions-form textarea,
 #review-actions-form input[type=text],
 #review-actions-form select {

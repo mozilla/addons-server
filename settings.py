@@ -430,6 +430,7 @@ MINIFY_BUNDLES = {
             'js/lib/jquery-ui/jqModal.js',
             'js/amo2009/home.js',
             'js/zamboni/l10n.js',
+            'js/zamboni/debouncer.js',
             'js/zamboni/storage.js',
 
             # Homepage
@@ -524,6 +525,7 @@ MINIFY_BUNDLES = {
             'js/lib/jquery.hoverIntent.min.js',
             'js/zamboni/personas.js',
 
+            'js/zamboni/debouncer.js',
             'js/zamboni/truncation.js',
             'js/lib/jquery.cookie.js',
             'js/zamboni/storage.js',

@@ -34,6 +34,10 @@ $(function() {
     if($('#monthly').exists()) {
         initPerformanceStats();
     }
+
+    if($('#scroll_sidebar').exists()) {
+        initScrollingSidebar();
+    }
 });
 
 function initReviewActions() {
@@ -179,6 +183,48 @@ function initQueueSearch(doc) {
             });
         });
     });
+}
+
+
+function initScrollingSidebar() {
+    var $sb = $('#scroll_sidebar'),
+        $sb_parent = $sb.parent(),
+        sb_top = $sb_parent.offset().top,
+        sb_height = $sb.height(),
+        $addon = $('#addon'),
+        addon_top = $addon.offset().top,
+        current_state = false,
+        addon_height_current = 0;
+
+    function updateState(state){
+        if(state == current_state) return;
+
+        if(state == "bottom") {
+            $sb.css({'position': 'absolute', 'top': addon_height_current - sb_height});
+        } else if(state == "middle") {
+            $sb.css({'position': 'fixed', 'top': 0});
+        } else if(state == "top") {
+            $sb.css({'position': 'absolute', 'top': 0});
+        }
+    }
+
+    $(window).scroll(debounce(function(){
+        var scroll_top = $(window).scrollTop(),
+            addon_height = $addon.height();
+
+        if(addon_height_current != addon_height) {
+            $sb_parent.css('height', addon_height);
+            addon_height_current = addon_height;
+        }
+
+        if(addon_top + addon_height < scroll_top + sb_height) {
+            updateState('bottom', addon_height);
+        } else if(scroll_top > sb_top) {
+            updateState('middle');
+        } else {
+            updateState('top');
+        }
+    }), 200);
 }
 
 

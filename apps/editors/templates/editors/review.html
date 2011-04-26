@@ -196,7 +196,8 @@
 
 </div> {# /#primary #}
 
-<div class="secondary">
+<div class="secondary scroll_sidebar_parent">
+  <div id="scroll_sidebar">
   {{ num }}
   {% if paging %}
   <div class="review-paging">
@@ -223,7 +224,9 @@
   <strong>{{ _('Review This Add-on') }}</strong>
   <ul>
     <li><a href="#more-about">{{ _('More Information') }}</a></li>
-    <li><a href="#review-files">{{ _('Add-on Files') }}</a></li>
+    <li><a href="#file-about">{{ _('Item History') }}</a></li>
+    <li><a href="#compatibility">{{ _('Compatibility') }}</a></li>
+    <li><a href="#validation">{{ _('Add-on Files') }}</a></li>
     <li><a href="#review-actions">{{ _('Editor Actions') }}</a></li>
   </ul>
 
@@ -251,5 +254,6 @@
   </ul>
   {% endif %}
 
+  </div>
 </div>
 {% endblock %}
