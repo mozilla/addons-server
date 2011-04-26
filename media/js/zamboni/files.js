@@ -67,8 +67,11 @@ function bind_viewer(nodes) {
 
             if ($diff.length) {
                 var dmp = new diff_match_patch();
-                var diff = dmp.diff_main($diff.siblings('.left').text(), $diff.siblings('.right').text());
-                $diff.html(dmp.diff_prettyHtml(diff)).removeClass('hidden').show();
+                // Line diffs http://code.google.com/p/google-diff-match-patch/wiki/LineOrWordDiffs
+                var a = dmp.diff_linesToChars_($diff.siblings('.left').text(), $diff.siblings('.right').text());
+                var diffs = dmp.diff_main(a[0], a[1], false);
+                dmp.diff_charsToLines_(diffs, a[2]);
+                $diff.html(dmp.diff_prettyHtml(diffs)).removeClass('hidden').show();
             }
 
             if (window.location.hash) {
@@ -151,11 +154,14 @@ function bind_viewer(nodes) {
             this.hidden = (state == 'hide' || !this.hidden);
             if (this.hidden) {
                 this.nodes.$files.hide();
-                this.nodes.$commands.detach().appendTo('#content-wrapper');
+                this.nodes.$commands.detach().appendTo('div.featured-inner:first');
+                this.nodes.$thinking.addClass('full');
             } else {
                 this.nodes.$files.show();
                 this.nodes.$commands.detach().appendTo('#files');
+                this.nodes.$thinking.removeClass('full');
             }
+            $('#content-wrapper').toggleClass('full');
         };
     }
 

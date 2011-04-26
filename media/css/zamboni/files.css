@@ -26,6 +26,10 @@
     padding-left: 25%;
 }
 
+#content-wrapper.full, #thinking.full {
+    padding-left: 0;
+}
+
 span.number {
     width: 4em;
     display: inline-block;

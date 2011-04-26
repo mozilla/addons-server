@@ -70,12 +70,16 @@
                         <pre class="right hidden">{{ text_two }}</pre>
                 {% endif %}
                 {% if selected and not selected['directory']%}
-                {% with selected = diff.one, file = diff.file_one.file %}
-                    {% include "files/file.html" %}
-                {% endwith %}
-                {% with selected = diff.two, file = diff.file_two.file %}
-                    {% include "files/file.html" %}
-                {% endwith %}
+                    {% if diff.one %}
+                        {% with selected = diff.one, file = diff.file_one.file %}
+                            {% include "files/file.html" %}
+                        {% endwith %}
+                    {% endif %}
+                    {% if diff.two %}
+                        {% with selected = diff.two, file = diff.file_two.file %}
+                            {% include "files/file.html" %}
+                        {% endwith %}
+                    {% endif %}
                 {% endif %}
             {% endif %}
             </div>
