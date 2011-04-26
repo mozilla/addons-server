@@ -186,6 +186,13 @@
       {% endif %}
       {# /beta #}
     </div>{# /article #}
+    {% elif not show_actions %}
+      <h3 id="more-about">{{ _('More about this add-on') }}</h3>
+      <div class="article">
+        <em>
+          {{ _('Nothing to see here!  The developer did not include any details.') }}
+        </em>
+      </div>
     {% endif %}
 
   {% if reviews is defined %}
