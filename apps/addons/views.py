@@ -11,10 +11,12 @@ from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.translation import trans_real as translation
 from django.utils import http as urllib
 from django.views.decorators.cache import cache_page, cache_control
+
 import caching.base as caching
 import jingo
 import jinja2
 import commonware.log
+import session_csrf
 from tower import ugettext as _, ugettext_lazy as _lazy
 from mobility.decorators import mobilized
 
@@ -641,6 +643,7 @@ def license_redirect(request, version):
     return redirect(version.license_url(), permanent=True)
 
 
+@session_csrf.anonymous_csrf_exempt
 @addon_view
 def report_abuse(request, addon):
     if not settings.REPORT_ABUSE:
@@ -651,10 +654,10 @@ def report_abuse(request, addon):
         url = reverse('addons.detail', args=[addon.slug])
         send_abuse_report(request, addon, url, form.cleaned_data['text'])
         messages.success(request, _('Abuse reported.'))
+        return redirect('addons.detail', addon.slug)
     else:
         return jingo.render(request, 'addons/report_abuse_full.html',
                             {'addon': addon, 'abuse_form': form, })
-    return redirect('addons.detail', addon.slug)
 
 
 @cache_control(max_age=60 * 60 * 24)
