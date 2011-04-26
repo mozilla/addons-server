@@ -438,6 +438,13 @@ class TestReviewHelper(test_utils.TestCase):
             assert not os.path.exists(self.file.mirror_file_path)
             eq_(self.check_log_count(amo.LOG.REJECT_VERSION.id), 1)
 
+    def test_email_unicode_monster(self):
+        self.addon.name = u'TaobaoShopping淘宝网导航按钮'
+        self.addon.save()
+        self.setup_data(helpers.NOMINATED_STATUSES[0])
+        self.helper.handler.process_sandbox()
+        assert u'TaobaoShopping淘宝网导航按钮' in mail.outbox[0].subject
+
     def test_nomination_to_super_review(self):
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)

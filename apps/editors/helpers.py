@@ -378,7 +378,7 @@ class ReviewBase:
         log.info(u'Sending request for information for %s to %s' %
                  (self.addon, emails))
         send_mail('editors/emails/info.ltxt',
-                   'Mozilla Add-ons: %s %s' %
+                   u'Mozilla Add-ons: %s %s' %
                    (self.addon.name, self.version.version),
                    emails, Context(self.get_context_data()))
 
@@ -386,7 +386,7 @@ class ReviewBase:
         self.log_action(amo.LOG.REQUEST_SUPER_REVIEW)
         log.info(u'Super review requested for %s' % (self.addon))
         send_mail('editors/emails/super_review.ltxt',
-                   'Super review requested: %s' % (self.addon.name),
+                   u'Super review requested: %s' % (self.addon.name),
                    [settings.SENIOR_EDITORS_EMAIL],
                    Context(self.get_context_data()))
 
@@ -407,7 +407,7 @@ class ReviewAddon(ReviewBase):
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         self.notify_email('%s_to_public' % self.review_type,
-                          'Mozilla Add-ons: %s %s Fully Reviewed')
+                          u'Mozilla Add-ons: %s %s Fully Reviewed')
 
         log.info(u'Making %s public' % (self.addon))
         log.info(u'Sending email for %s' % (self.addon))
@@ -420,7 +420,7 @@ class ReviewAddon(ReviewBase):
 
         self.log_action(amo.LOG.REJECT_VERSION)
         self.notify_email('%s_to_sandbox' % self.review_type,
-                          'Mozilla Add-ons: %s %s Reviewed')
+                          u'Mozilla Add-ons: %s %s Reviewed')
 
         log.info(u'Making %s disabled' % (self.addon))
         log.info(u'Sending email for %s' % (self.addon))
@@ -443,7 +443,7 @@ class ReviewAddon(ReviewBase):
 
         self.log_action(amo.LOG.PRELIMINARY_VERSION)
         self.notify_email(template,
-                          'Mozilla Add-ons: %s %s Preliminary Reviewed')
+                          u'Mozilla Add-ons: %s %s Preliminary Reviewed')
 
         log.info(u'Making %s preliminary' % (self.addon))
         log.info(u'Sending email for %s' % (self.addon))
@@ -466,7 +466,7 @@ class ReviewFiles(ReviewBase):
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         self.notify_email('%s_to_public' % self.review_type,
-                          'Mozilla Add-ons: %s %s Fully Reviewed')
+                          u'Mozilla Add-ons: %s %s Fully Reviewed')
 
         log.info(u'Making %s files %s public' %
                  (self.addon,
@@ -480,7 +480,7 @@ class ReviewFiles(ReviewBase):
 
         self.log_action(amo.LOG.REJECT_VERSION)
         self.notify_email('%s_to_sandbox' % self.review_type,
-                          'Mozilla Add-ons: %s %s Reviewed')
+                          u'Mozilla Add-ons: %s %s Reviewed')
 
         log.info(u'Making %s files %s disabled' %
                  (self.addon,
@@ -494,7 +494,7 @@ class ReviewFiles(ReviewBase):
 
         self.log_action(amo.LOG.PRELIMINARY_VERSION)
         self.notify_email('%s_to_preliminary' % self.review_type,
-                          'Mozilla Add-ons: %s %s Preliminary Reviewed')
+                          u'Mozilla Add-ons: %s %s Preliminary Reviewed')
 
         log.info(u'Making %s files %s preliminary' %
                  (self.addon,
