@@ -15,7 +15,7 @@
 }
 
 #files ul.root {
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 #files ul {
