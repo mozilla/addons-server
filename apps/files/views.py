@@ -5,6 +5,7 @@ from django.conf import settings
 from django.utils.http import http_date
 from django.views.decorators.cache import never_cache
 
+import commonware.log
 import jingo
 
 from access import acl
@@ -15,6 +16,9 @@ from files.decorators import file_view, compare_file_view, file_view_token
 from files.tasks import extract_file
 
 from tower import ugettext as _
+
+
+log = commonware.log.getLogger('z.addons')
 
 
 def setup_viewer(request, file_obj):
@@ -134,5 +138,7 @@ def files_serve(request, viewer, key):
     files = viewer.get_files()
     obj = files.get(key)
     if not obj:
+        log.error(u'Couldn\'t find %s in %s (%d entries) for file %s' %
+                  (key, files.keys()[:10], len(files.keys()), viewer.file.id))
         raise http.Http404()
     return HttpResponseSendFile(request, obj['full'])
