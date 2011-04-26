@@ -501,7 +501,7 @@ div.editor-stats-table > div.editor-stats-dark {
 }
 
 .review-actions {
-    margin: auto;
+    margin: 1em auto 0;
     border: 3px solid #E0EFFD;
     -moz-border-radius: 7px;
     -webkit-border-radius: 7px;
@@ -636,6 +636,10 @@ div.editor-stats-table > div.editor-stats-dark {
 
 #editor-motd .buttons {
     text-align: right;
+}
+
+.article ul {
+    margin-bottom: 0;
 }
 
 .light {

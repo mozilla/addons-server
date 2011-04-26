@@ -64,12 +64,15 @@
   </div>
 </div>
 {% else %}
-<p>
-  {{ _('No previous review entries could be found.') }}
+<p class="article">
+  <em>
+    {{ _('No previous review entries could be found.') }}
+  </em>
 </p>
 {% endif %}
 
 <h3 id="compatibility">{{ _('Compatibility') }}</h3>
+<div class="article">
 <ul>
   {% for compat in version.compatible_apps.values() %}
   <li>
@@ -81,11 +84,13 @@
   </li>
   {% endfor %}
 </ul>
+</div>
 
 <h3 id="validation">
   {{ _('Files and Validation Results') }}
   <span>[<a href="{{ remora_url('pages/validation') }}">{{ _('help') }}</a>]</span>
 </h3>
+<div class="article">
 <ul class="files">
 {% for file in version.files.all() %}
 <li>
@@ -113,6 +118,7 @@
 </li>
 {% endfor %}
 </ul>
+</div>
 
 <form method="POST" action="#review-actions">
   {{ csrf() }}
