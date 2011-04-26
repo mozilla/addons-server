@@ -1,8 +1,9 @@
 <ol class="toplist">
   {% for addon in addons %}
     <li><a href="{{ addon.get_url_path() }}">
+      <b>{{ loop.index }}.</b>
       {{ addon.name }}
-      <br><span class="vital">999 users</span>
+      <small>{{ _('{0} users')|f(addon.average_daily_users|numberfmt) }}</small>
     </a></li>
   {% endfor %}
 </ol>

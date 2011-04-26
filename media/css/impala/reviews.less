@@ -1,0 +1,20 @@
+@import 'lib';
+
+.stars {
+    display: inline-block;
+    vertical-align: middle;
+    width: 63px;
+    height: 12px;
+    background: url(../../img/impala/stars.png) no-repeat left top;
+    &.stars-4 { background-position: -13px 0; }
+    &.stars-3 { background-position: -26px 0; }
+    &.stars-2 { background-position: -39px 0; }
+    &.stars-1 { background-position: -52px 0; }
+    text-indent: -9999px;
+    margin-right: 4px;
+}
+.html-rtl .stars {
+    text-indent: 9999px;
+    margin-right: 0;
+    margin-left: 4px;
+}

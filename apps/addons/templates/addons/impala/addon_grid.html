@@ -1,24 +1,33 @@
 {% cache addons %}
 <ul class="addon-grid c">
-{% for addon in addons %}
-  <li>
-    <div class="item">
-      <a href="{{ addon.get_url_path() }}">
-        <div class="icon">
-          <img src="{{ addon.icon_url }}">
+{% for page in pages %}
+  {% set first_page = loop.first %}
+  <section>
+  {% for addon in page %}
+    <li>
+      <div class="item">
+        <a href="{{ addon.get_url_path() }}">
+          <div class="icon">
+            {% if first_page %}
+              <img src="{{ addon.icon_url }}">
+            {% else %}
+              <img data-defer-src="{{ addon.icon_url }}">
+            {% endif %}
+          </div>
+          <div class="summary">
+            <h3>{{ addon.name }}</h3>
+            <div class="category" class="more-info">{{ addon.get_category(APP.id) }}</div>
+            <div class="rating">{{ addon.average_rating|stars }} ({{ addon.total_reviews|numberfmt }})</div>
+          </div>
+        </a>
+        <div class="more">
+          {{ install_button(addon) }}
+          {{ addon.summary|truncate(250)|nl2br }}
         </div>
-        <div class="summary">
-          <h3>{{ addon.name }}</h3>
-          <div class="category" class="more-info">{{ addon.get_category(APP.id) }}</div>
-          <div class="rating">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
-        </div>
-      </a>
-      <div class="more">
-        {{ addon.summary|truncate(250)|nl2br }}
-        {{ install_button(addon) }}
       </div>
-    </div>
-  </li>
+    </li>
+  {% endfor %}
+  </section>
 {% endfor %}
 </ul>
 {% endcache %}

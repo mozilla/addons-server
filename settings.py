@@ -390,6 +390,8 @@ MINIFY_BUNDLES = {
             'css/impala/moz-tab.css',
             'css/impala/hovercards.less',
             'css/impala/toplist.less',
+            'css/impala/carousel.less',
+            'css/impala/reviews.less',
             # 'css/zamboni/amo_headerfooter.css',
         ),
         'zamboni/discovery-pane': (
@@ -432,6 +434,54 @@ MINIFY_BUNDLES = {
 
             # Homepage
             'js/zamboni/homepage.js',
+
+            # Add-ons details page
+            'js/lib/jquery-ui/ui.lightbox.js',
+            'js/get-satisfaction-v2.js',
+            'js/zamboni/contributions.js',
+            'js/zamboni/addon_details.js',
+            'js/zamboni/reviews.js',
+
+            # Personas
+            'js/lib/jquery.hoverIntent.min.js',
+            'js/zamboni/personas.js',
+
+            # Collections
+            'js/zamboni/collections.js',
+
+            # Performance
+            'js/zamboni/perf.js',
+
+            # Users
+            'js/zamboni/users.js',
+
+            # Fix-up outgoing links
+            'js/zamboni/outgoing_links.js',
+
+            # Hover delay for global header
+            'js/global/menu.js',
+        ),
+        'impala': (
+            'js/lib/jquery-1.4.2.min.js',
+            'js/lib/jquery-ui/custom-1.8.5.min.js',
+            'js/lib/underscore-min.js',
+            'js/zamboni/browser.js',
+            'js/amo2009/addons.js',
+            'js/zamboni/init.js',
+            'js/zamboni/format.js',
+            'js/zamboni/buttons.js',
+            'js/zamboni/tabs.js',
+
+            'js/lib/jquery.cookie.js',
+            'js/zamboni/global.js',
+            'js/amo2009/global.js',
+            'js/lib/jquery-ui/jqModal.js',
+            'js/amo2009/home.js',
+            'js/zamboni/l10n.js',
+            'js/zamboni/storage.js',
+
+            # Homepage
+            'js/impala/homepage.js',
 
             # Add-ons details page
             'js/lib/jquery-ui/ui.lightbox.js',

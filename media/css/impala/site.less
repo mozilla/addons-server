@@ -4,6 +4,10 @@ html {
     background: #fff url(../../img/zamboni/global/bg-header.png) left top repeat-x;
 }
 
+body {
+    border-top: 2px solid #686868;
+}
+
 #page {
     max-width: 960px;
     width: 960px;
@@ -57,16 +61,17 @@ a {
 
 .secondary {
     ul, ol {
-        margin-bottom: 2em;
+        margin-bottom: 28px;
         font-size: 12px;
     }
-
     li {
-        line-height: 28px;
         border: 1px solid rgba(3, 48, 81, 0.2);
         border-width: 0 0 1px 0;
         &:first-child {
             border-top-width: 1px;
+        }
+        a:hover {
+            background: #ECF5FE;
         }
     }
     h2 {
@@ -75,5 +80,14 @@ a {
     li a, h2 {
         display: block;
         padding: 0 6px;
+        text-decoration: none;
+        line-height: 28px;
     }
+}
+
+#promos {
+    height: 270px;
+    max-height: 270px;
+    margin-bottom: 30px;
+    padding: 0;
 }

@@ -311,19 +311,20 @@ def home(request):
 def impala_home(request):
     # Add-ons.
     base = Addon.objects.listed(request.APP).exclude(type=amo.ADDON_PERSONA)
-    filter = HomepageFilter(request, base, key='browse', default='featured')
-    addon_sets = dict((key, qs[:4]) for key, qs in filter.all().items())
 
     # Collections.
     q = Collection.objects.filter(listed=True, application=request.APP.id)
     collections = q.order_by('-weekly_subscribers')[:3]
     promobox = CollectionPromoBox(request)
 
+    featured = Addon.featured(request.APP, request.LANG)
+    featured = Addon.objects.filter(id__in=random.sample(featured, 18))
     popular = Addon.objects.listed(request.APP).order_by('-weekly_downloads')[:10]
+    hotness = Addon.objects.listed(request.APP).order_by('-hotness')[:18]
 
     return jingo.render(request, 'addons/impala/home.html',
-                        {'popular': popular,
-                         'filter': filter, 'addon_sets': addon_sets,
+                        {'popular': popular, 'featured': featured,
+                         'filter': filter, 'hotness': hotness,
                          'collections': collections, 'promobox': promobox})
 
 

@@ -1,0 +1,48 @@
+@import 'lib';
+
+.pager {
+    font-family: @head-serif;
+    display: block;
+    .prev, .next {
+        height: 22px;
+        width: 22px;
+        margin: 0;
+        overflow: hidden;
+        text-indent: 0;
+        font-size: 20px;
+        .border-radius(0);
+        background: transparent;
+        color: lighten(@link, 20%);
+        &:hover {
+            color: darken(@link, 10%);
+            background: transparent;
+        }
+    }
+    a {
+        display: inline-block;
+        text-align: center;
+        margin: 4px 0;
+        overflow: hidden;
+        position: relative;
+        text-indent: -1000em;
+        vertical-align: bottom;
+        height: 8px;
+        width: 8px;
+        margin: 0 3px 6px;
+        .border-radius(4px);
+        background: #ddd;
+        &.selected {
+            background: #447BC4;
+        }
+        &:hover {
+            background: #888;
+            text-decoration: none;
+        }
+    }
+}
+.island .pager {
+    float: right;
+}
+.html-rtl .island .pager {
+    float: left;
+}

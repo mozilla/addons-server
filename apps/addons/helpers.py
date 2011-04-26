@@ -6,6 +6,7 @@ from jingo import register, env
 from tower import ugettext as _
 
 from . import buttons
+from amo.utils import chunked
 import amo
 
 
@@ -133,14 +134,15 @@ def addon_listing_header(context, url_base, sort_opts, selected):
 @register.filter
 @jinja2.contextfilter
 @register.inclusion_tag('addons/impala/addon_grid.html')
-def addon_grid(context, addons, src=None):
+def addon_grid(context, addons, src=None, pagesize=6):
+    pages = chunked(addons, pagesize)
     return new_context(**locals())
 
 
 @register.filter
 @jinja2.contextfilter
 @register.inclusion_tag('addons/impala/toplist.html')
-def addon_toplist(context, addons, vital=None, src=None):
+def addon_toplist(context, addons, vital='users', src=None):
     return new_context(**locals())
 
 

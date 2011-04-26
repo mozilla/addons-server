@@ -2,28 +2,35 @@
 
 .toplist {
     li {
-        list-style: decimal inside;
-        line-height: 1em;
         white-space: nowrap;
-        height: 30px;
-        position: relative;
-
         a {
-            vertical-align: top;
-            padding: 10px 0 10px 20px;
-            position: absolute;
-            top: 0;
+            line-height: 1.1em;
+            padding: .5em 0;
+            overflow: hidden;
+            &:hover {
+                small {
+                    text-decoration: none;
+                }
+            }
         }
-
-        &::-moz-list-number {
-            margin-top: 9px;
-            width: 1em;
-            text-align: right;
-            color: #444;
+        b {
+            float: left;
+            color: #888;
+            width: 2em;
+            text-align: center;
+            height: 2em;
         }
     }
-    .vital {
+    small {
         color: @note-gray;
         font-size: .9em;
+        display: block;
+    }
+}
+.html-rtl {
+    .toplist {
+        li b {
+            float: right;
+        }
     }
 }
