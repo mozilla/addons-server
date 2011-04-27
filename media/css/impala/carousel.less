@@ -4,8 +4,8 @@
     font-family: @head-serif;
     display: block;
     .prev, .next {
-        height: 22px;
-        width: 22px;
+        height: 20px;
+        width: 16px;
         margin: 0;
         overflow: hidden;
         text-indent: 0;
@@ -21,22 +21,27 @@
     a {
         display: inline-block;
         text-align: center;
-        margin: 4px 0;
-        overflow: hidden;
         position: relative;
-        text-indent: -1000em;
         vertical-align: bottom;
-        height: 8px;
-        width: 8px;
-        margin: 0 3px 6px;
-        .border-radius(4px);
-        background: #ddd;
-        &.selected {
+        padding: 2px 4px 6px;
+        margin-bottom: 4px;
+        overflow: hidden;
+        b {
+            display: block;
+            text-indent: -1000em;
+            height: 8px;
+            width: 8px;
+            .border-radius(4px);
+            background: #ddd;
+        }
+        &.selected b {
             background: #447BC4;
         }
         &:hover {
-            background: #888;
             text-decoration: none;
+            b {
+                background: #888;
+            }
         }
     }
 }

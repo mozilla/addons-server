@@ -7,7 +7,7 @@ $('.island .addon-grid').bind('grid.init', function(e, data) {
         var $nav = $('<nav class="pager">');
         $nav.append('<a href="#" class="prev">&laquo;</a>');
         for (var i=0; i<=numPages; i++) {
-            $nav.append('<a href="#" class="' + (i==0 ? 'selected ': '') + 'dot"></a>');
+            $nav.append('<a href="#" class="' + (i==0 ? 'selected ': '') + 'dot"><b></b></a>');
         }
         $nav.append('<a href="#" class="next">&raquo;</a>');
         $grid.parents('.island').prepend($nav);
