@@ -134,7 +134,14 @@ class QueueSearchForm(happyforms.Form):
         if data['addon_type_ids']:
             qs = qs.filter_raw('addon_type_id IN', data['addon_type_ids'])
         if data['application_id']:
-            qs = qs.filter_raw('apps.application_id =', data['application_id'])
+            qs = qs.filter_raw('apps_match.application_id =',
+                               data['application_id'])
+            # We join twice so it includes all apps, and not just the ones
+            # filtered by the search criteria.
+            app_join = ('LEFT JOIN applications_versions apps_match ON '
+                        '(versions.id = apps_match.version_id)')
+            qs.base_query['from'].extend([app_join])
+
             if data['max_version']:
                 joins = [
                     'JOIN versions_summary vs ON (versions.id = vs.version_id)',

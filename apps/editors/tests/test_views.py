@@ -929,6 +929,19 @@ class TestQueueSearch(SearchTest):
         eq_(r.status_code, 200)
         eq_(self.named_addons(r), ['Bieber For Mobile'])
 
+    def test_preserve_multi_apps(self):
+        for app in (amo.MOBILE, amo.FIREFOX):
+            create_addon_file('Multi Application', '0.1',
+                              amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+                              application=app)
+
+        r = self.search({'application_id': [amo.MOBILE.id]})
+        doc = pq(r.content)
+        td = doc('table.data-grid tr').eq(2).children('td').eq(4)
+        eq_(td.children().length, 2)
+        eq_(td.children('.ed-sprite-firefox').length, 1)
+        eq_(td.children('.ed-sprite-mobile').length, 1)
+
     def test_search_by_version_requires_app(self):
         r = self.client.get(self.url, data={'max_version': '3.6'})
         eq_(r.status_code, 200)
