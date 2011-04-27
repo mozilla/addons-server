@@ -7,6 +7,7 @@ import stat
 from django.conf import settings
 from django.utils.datastructures import SortedDict
 from django.utils.encoding import smart_unicode
+from django.template.defaultfilters import filesizeformat
 
 import jinja2
 import commonware.log
@@ -96,11 +97,16 @@ class FileViewer:
                            'xml-dtd', 'vnd.mozilla.xul+xml']:
                 return False
         elif os.path.splitext(filename)[1] in ['.dtd', '.xul', '.properties',
-                                               '.src', '.mf', '.sf', '.json']:
+                                               '.src', '.mf', '.sf', '.json',
+                                               '.manifest']:
             return False
         return True
 
     def read_file(self, selected):
+        if selected['size'] > settings.FILE_VIEWER_SIZE_LIMIT:
+            return '', _('File size is over the limit of %s.'
+                         % (filesizeformat(settings.FILE_VIEWER_SIZE_LIMIT)))
+
         with open(selected['full'], 'r') as opened:
             cont = opened.read()
             codec = 'utf-16' if cont.startswith(codecs.BOM_UTF16) else 'utf-8'
@@ -165,6 +171,7 @@ class FileViewer:
                           'mimetype': mime or 'application/octet-stream',
                           'modified': os.stat(path)[stat.ST_MTIME],
                           'short': short,
+                          'size': os.stat(path)[stat.ST_SIZE],
                           'truncated': self.truncate(filename),
                           'url': reverse('files.list', args=args),
                           'url_serve': reverse('files.redirect', args=args)}

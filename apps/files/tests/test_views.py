@@ -8,6 +8,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 
+from mock import patch_object
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
@@ -310,6 +311,13 @@ class TestFileViewer(FilesBase, test_utils.TestCase):
         eq_(res.status_code, 200)
         eq_(res['X-SENDFILE'],
             self.file_viewer.get_files().get(binary)['full'])
+
+    @patch_object(settings._wrapped, 'FILE_VIEWER_SIZE_LIMIT', 5)
+    def test_file_size(self):
+        self.file_viewer.extract()
+        res = self.client.get(self.file_url(not_binary))
+        doc = pq(res.content)
+        assert doc('p.notification-box').text().startswith('File size is')
 
 
 class TestDiffViewer(FilesBase, test_utils.TestCase):

@@ -22,7 +22,7 @@
     padding-left: 1em;
 }
 
-#thinking {
+#content-wrapper, #thinking {
     padding-left: 25%;
 }
 

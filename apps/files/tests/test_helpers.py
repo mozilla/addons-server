@@ -6,7 +6,7 @@ import tempfile
 from django.conf import settings
 from django.core.cache import cache
 
-from mock import Mock
+from mock import Mock, patch_object
 from nose.tools import eq_
 import test_utils
 
@@ -118,7 +118,7 @@ class TestFileHelper(test_utils.TestCase):
     def test_bom(self):
         dest = tempfile.mkstemp()[1]
         open(dest, 'w').write('foo'.encode('utf-16'))
-        eq_(self.viewer.read_file({'full': dest}), (u'foo', ''))
+        eq_(self.viewer.read_file({'full': dest, 'size': 1}), (u'foo', ''))
 
     def test_file_order(self):
         self.viewer.extract()
@@ -129,8 +129,16 @@ class TestFileHelper(test_utils.TestCase):
         open(os.path.join(subdir, 'foo'), 'w')
         cache.clear()
         files = self.viewer.get_files().keys()
-        root = files.index(u'chrome')
-        eq_(files[root:root+3], [u'chrome', u'chrome/foo', u'chrome.manifest'])
+        rt = files.index(u'chrome')
+        eq_(files[rt:rt + 3], [u'chrome', u'chrome/foo', u'chrome.manifest'])
+
+    @patch_object(settings, 'FILE_VIEWER_SIZE_LIMIT', 5)
+    def test_file_size(self):
+        self.viewer.extract()
+        files = self.viewer.get_files()
+        res = self.viewer.read_file(files.get('install.js'))
+        eq_(res[0], '')
+        assert res[1].startswith('File size is')
 
 
 class TestDiffHelper(test_utils.TestCase):

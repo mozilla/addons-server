@@ -43,23 +43,18 @@
         </div>
         <div id="content-wrapper">
             {% if msg %}
-                <p>{{ msg }}</p>
+                <p class="notification-box warning">{{ msg }}</p>
             {% endif %}
             <div>
             {% if viewer %}
-                {% if selected['binary'] and not selected['directory'] %}
-                    {% include "files/file.html" %}
-                {% else %}
-                    {% if selected and content %}
-                        <pre id="content" class="wrapped">{{ content }}</pre>
-                    {% elif content == '' %}
-                        <p>{{ _('No content.') }}</p>
-                    {% endif %}
+                {% if selected and not selected['binary'] and not selected['directory'] and content %}
+                    <pre id="content" class="wrapped">{{ content }}</pre>
                 {% endif %}
+                {% include "files/file.html" %}
             {% endif %}
             {% if diff %}
                 {% if diff.is_diffable() %}
-                    <p>
+                    <p class="notification-box info">
                     {% if diff.is_different() %}
                         {{ _('Files are different.') }}<br/>
                       {% else %}
@@ -67,20 +62,17 @@
                     {% endif %}
                     </p>
                 {% endif %}
-                {% if diff.is_binary() %}
-                    {% with selected = diff.one, file = diff.file_one.file %}
-                        {% include "files/file.html" %}
-                    {% endwith %}
-                    {% with selected = diff.two, file = diff.file_two.file %}
-                        {% include "files/file.html" %}
-                    {% endwith %}
-                {% else %}
-                    {% if text_one and text_two %}
+                {% if text_one and text_two %}
                         <pre id="diff" class="wrapped hidden"></pre>
                         <pre class="left hidden">{{ text_one }}</pre>
                         <pre class="right hidden">{{ text_two }}</pre>
-                    {% endif %}
                 {% endif %}
+                {% with selected = diff.one, file = diff.file_one.file %}
+                    {% include "files/file.html" %}
+                {% endwith %}
+                {% with selected = diff.two, file = diff.file_two.file %}
+                    {% include "files/file.html" %}
+                {% endwith %}
             {% endif %}
             </div>
         </div>

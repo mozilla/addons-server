@@ -882,3 +882,5 @@ BLOCKLIST_COOKIE = 'BLOCKLIST_v1'
 
 # Responsys id used for newsletter subscribing
 RESPONSYS_ID = ''
+
+FILE_VIEWER_SIZE_LIMIT = 1048576
