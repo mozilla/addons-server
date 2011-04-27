@@ -93,7 +93,7 @@ def collection_watchers(*ids, **kw):
     for pk in ids:
         watchers = (CollectionWatcher.objects.filter(collection=pk)
                     .using(using).count())
-        Collection.objects.get(pk=pk).update(subscribers=watchers)
+        Collection.objects.filter(pk=pk).update(subscribers=watchers)
 
 
 @task(rate_limit='10/m')

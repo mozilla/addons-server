@@ -1,4 +1,4 @@
-import datetime
+from datetime import date, timedelta
 import itertools
 
 from django.db import connection, transaction
@@ -10,8 +10,8 @@ from celeryutils import task
 
 import amo
 from amo.utils import chunked, slugify
-from bandwagon.models import (CollectionWatcher,
-                              CollectionVote, Collection, CollectionUser)
+from bandwagon.models import (Collection, SyncedCollection, CollectionUser,
+                              CollectionVote, CollectionWatcher)
 import cronjobs
 
 task_log = commonware.log.getLogger('z.task')
@@ -57,7 +57,7 @@ def update_collections_subscribers():
 
     d = (CollectionWatcher.objects.values('collection_id')
          .annotate(count=Count('collection'))
-         .extra(where=['DATE(created)=%s'], params=[datetime.date.today()]))
+         .extra(where=['DATE(created)=%s'], params=[date.today()]))
 
     with establish_connection() as conn:
         for chunk in chunked(d, 1000):
@@ -70,7 +70,7 @@ def _update_collections_subscribers(data, **kw):
     task_log.info("[%s@%s] Updating collections' subscribers totals." %
                    (len(data), _update_collections_subscribers.rate_limit))
     cursor = connection.cursor()
-    today = datetime.date.today()
+    today = date.today()
     for var in data:
         q = """REPLACE INTO
                     stats_collections(`date`, `name`, `collection_id`, `count`)
@@ -97,12 +97,12 @@ def update_collections_votes():
     up = (CollectionVote.objects.values('collection_id')
           .annotate(count=Count('collection'))
           .filter(vote=1)
-          .extra(where=['DATE(created)=%s'], params=[datetime.date.today()]))
+          .extra(where=['DATE(created)=%s'], params=[date.today()]))
 
     down = (CollectionVote.objects.values('collection_id')
             .annotate(count=Count('collection'))
             .filter(vote=-1)
-            .extra(where=['DATE(created)=%s'], params=[datetime.date.today()]))
+            .extra(where=['DATE(created)=%s'], params=[date.today()]))
 
     with establish_connection() as conn:
         for chunk in chunked(up, 1000):
@@ -122,7 +122,7 @@ def _update_collections_votes(data, stat, **kw):
     for var in data:
         q = ('REPLACE INTO stats_collections(`date`, `name`, '
              '`collection_id`, `count`) VALUES (%s, %s, %s, %s)')
-        p = [datetime.date.today(), stat,
+        p = [date.today(), stat,
              var['collection_id'], var['count']]
         cursor.execute(q, p)
     transaction.commit_unless_managed()
@@ -147,3 +147,48 @@ def collections_add_slugs():
                 c.slug = 'collection'
             c.save(force_update=True)
             task_log.info(u'%s. %s => %s' % (next(cnt), c.name, c.slug))
+
+
+@cronjobs.register
+def cleanup_synced_collections():
+    _cleanup_synced_collections.delay()
+
+
+@task(rate_limit='1/m')
+@transaction.commit_on_success
+def _cleanup_synced_collections(**kw):
+    task_log.info("[300@%s] Dropping synced collections." %
+                   _cleanup_synced_collections.rate_limit)
+
+    thirty_days = date.today() - timedelta(days=30)
+    ids = (SyncedCollection.objects.filter(created__lte=thirty_days)
+           .values_list('id', flat=True))[:300]
+
+    for chunk in chunked(ids, 100):
+        SyncedCollection.objects.filter(id__in=chunk).delete()
+
+    if ids:
+        _cleanup_synced_collections.delay()
+
+
+@cronjobs.register
+def drop_collection_recs():
+    _drop_collection_recs.delay()
+
+
+@task(rate_limit='1/m')
+@transaction.commit_on_success
+def _drop_collection_recs(**kw):
+    task_log.info("[300@%s] Dropping recommended collections." %
+                   _drop_collection_recs.rate_limit)
+    # Get the first 300 collections and delete them in smaller chunks.
+    types = amo.COLLECTION_SYNCHRONIZED, amo.COLLECTION_RECOMMENDED
+    ids = (Collection.objects.filter(type__in=types, author__isnull=True)
+           .values_list('id', flat=True))[:300]
+
+    for chunk in chunked(ids, 100):
+        Collection.objects.filter(id__in=chunk).delete()
+
+    # Go again if we found something to delete.
+    if ids:
+        _drop_collection_recs.delay()
