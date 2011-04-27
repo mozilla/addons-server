@@ -39,10 +39,10 @@ class EventLogForm(happyforms.Form):
     def clean(self):
         data = self.cleaned_data
         # We want this to be inclusive of the end date.
-        if data['end']:
+        if 'end' in data and data['end']:
             data['end'] += timedelta(days=1)
 
-        if data['filter']:
+        if 'filter' in data and data['filter']:
             data['filter'] = ACTION_DICT[data['filter']]
         return data
 
@@ -56,7 +56,7 @@ class ReviewLogForm(happyforms.Form):
     def clean(self):
         data = self.cleaned_data
         # We want this to be inclusive of the end date.
-        if data['end']:
+        if 'end' in data and data['end']:
             data['end'] += timedelta(days=1)
 
         return data

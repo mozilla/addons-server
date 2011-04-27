@@ -171,6 +171,20 @@ class TestReviewLog(EditorTest):
         eq_(len(doc('tbody tr').not_('.hide')), 50)
         eq_(doc('tbody tr.hide').eq(0).text(), 'youwin')
 
+    def test_end_filter_wrong(self):
+        """
+        Let's use today as an end-day filter and make sure we see stuff if we
+        filter.
+        """
+        self.make_approvals()
+        date = 'wrong!'
+        r = self.client.get(reverse('editors.reviewlog') + '?end=' + date)
+        # If this is broken, we'll get a traceback.
+        eq_(r.status_code, 200)
+
+        doc = pq(r.content)
+        eq_(doc('#log-listing tr:not(.hide)').length, 51)
+
     def test_breadcrumbs(self):
         r = self.client.get(reverse('editors.reviewlog'))
         doc = pq(r.content)
