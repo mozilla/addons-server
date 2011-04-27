@@ -246,7 +246,6 @@ MIDDLEWARE_CLASSES = (
     'commonware.middleware.SetRemoteAddrFromForwardedFor',
 
     'commonware.middleware.FrameOptionsHeader',
-    'commonware.log.ThreadRequestMiddleware',
     'multidb.middleware.PinningRouterMiddleware',
 
     'csp.middleware.CSPMiddleware',
@@ -255,6 +254,7 @@ MIDDLEWARE_CLASSES = (
     'amo.middleware.NoVarySessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'commonware.log.ThreadRequestMiddleware',
     'session_csrf.CsrfMiddleware',
 
     'cake.middleware.CakeCookieMiddleware',
