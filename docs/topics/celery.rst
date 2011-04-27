@@ -47,10 +47,10 @@ Then run the following commands: ::
   # RabbitMQ insists on writing to /var
   sudo rabbitmq-server -detached
 
-  # Setup rabitty things
-  rabbitmqctl add_user zamboni zamboni
-  rabbitmqctl add_vhost zamboni
-  rabbitmqctl set_permissions -p zamboni zamboni ".*" ".*" ".*"
+  # Setup rabitty things (sudo is required to read the cookie file)
+  sudo rabbitmqctl add_user zamboni zamboni
+  sudo rabbitmqctl add_vhost zamboni
+  sudo rabbitmqctl set_permissions -p zamboni zamboni ".*" ".*" ".*"
 
 Back in safe and happy django-land you should be able to run: ::
 
