@@ -30,14 +30,14 @@ cfg = {
         'prod': {
             '()': commonware.log.Formatter,
             'datefmt': '%H:%M:%s',
-            'format': '%s: [%%(REMOTE_ADDR)s] %s' % (settings.SYSLOG_TAG,
-                                                     base_fmt),
+            'format': ('%s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
+                       % (settings.SYSLOG_TAG, base_fmt)),
         },
         'prod2': {
             '()': commonware.log.Formatter,
             'datefmt': '%H:%M:%s',
-            'format': '%s: [%%(REMOTE_ADDR)s] %s' % (settings.SYSLOG_TAG2,
-                                                     base_fmt),
+            'format': ('%s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
+                       % (settings.SYSLOG_TAG2, base_fmt)),
         },
         'csp': {
             '()': cef.SysLogFormatter,
