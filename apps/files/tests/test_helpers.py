@@ -12,6 +12,7 @@ import test_utils
 
 from amo.urlresolvers import reverse
 from files.helpers import FileViewer, DiffHelper
+from files.models import File
 
 root = os.path.join(settings.ROOT, 'apps/files/fixtures/files')
 dictionary = '%s/dictionary-test.xpi' % root
@@ -139,6 +140,23 @@ class TestFileHelper(test_utils.TestCase):
         res = self.viewer.read_file(files.get('install.js'))
         eq_(res[0], '')
         assert res[1].startswith('File size is')
+
+
+class TestSearchEngineHelper(test_utils.TestCase):
+    fixtures = ['base/addon_4594_a9']
+
+    def setUp(self):
+        file = File.objects.get(pk=25753)
+        self.viewer = FileViewer(file)
+
+    def test_is_search_engine(self):
+        assert self.viewer.is_search_engine
+
+    def test_extract_search_engine(self):
+        os.makedirs(os.path.dirname(self.viewer.src))
+        open(self.viewer.src, 'w')
+        self.viewer.extract()
+        assert os.path.exists(self.viewer.dest)
 
 
 class TestDiffHelper(test_utils.TestCase):

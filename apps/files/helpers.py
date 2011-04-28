@@ -14,6 +14,7 @@ import commonware.log
 from jingo import register, env
 from tower import ugettext as _
 
+import amo
 from amo.utils import memoize
 from amo.urlresolvers import reverse
 from files.utils import extract_xpi, get_md5
@@ -72,15 +73,24 @@ class FileViewer:
         except OSError, err:
             pass
 
-        try:
-            extract_xpi(self.src, self.dest, expand=True)
-        except Exception, err:
-            task_log.error('Error (%s) extracting %s' % (err, self.src))
-            raise
+        if self.is_search_engine and self.src.endswith('.xml'):
+            os.makedirs(self.dest)
+            shutil.copyfile(self.src,
+                            os.path.join(self.dest, self.file.filename))
+        else:
+            try:
+                extract_xpi(self.src, self.dest, expand=True)
+            except Exception, err:
+                task_log.error('Error (%s) extracting %s' % (err, self.src))
 
     def cleanup(self):
         if os.path.exists(self.dest):
             shutil.rmtree(self.dest)
+
+    @property
+    def is_search_engine(self):
+        """Is our file for a search engine?"""
+        return self.file.version.addon.type == amo.ADDON_SEARCH
 
     @property
     def is_extracted(self):

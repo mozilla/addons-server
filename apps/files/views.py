@@ -48,7 +48,10 @@ def files_poll(request, viewer):
 
 
 @file_view
-def files_list(request, viewer, key='install.rdf'):
+def files_list(request, viewer, key=None):
+    if not key and not viewer.is_search_engine:
+        key = 'install.rdf'
+
     data = setup_viewer(request, viewer.file)
     data['viewer'] = viewer
     data['poll_url'] = reverse('files.poll', args=[viewer.file.id])
@@ -89,7 +92,10 @@ def files_compare_poll(request, diff):
 
 
 @compare_file_view
-def files_compare(request, diff, key='install.rdf'):
+def files_compare(request, diff, key=None):
+    if not key and not diff.file_one.is_search_engine:
+        key = 'install.rdf'
+
     data = setup_viewer(request, diff.file_one.file)
     data['diff'] = diff
     data['poll_url'] = reverse('files.compare.poll',
