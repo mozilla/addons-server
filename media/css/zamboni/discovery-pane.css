@@ -605,6 +605,8 @@ header:after,
 }
 #monthly .wrap > div {
     overflow: hidden;
+    position: relative;
+    max-height: 120px;
 }
 #monthly h2 {
     color: #8b0101;
@@ -627,6 +629,7 @@ header:after,
     display: block;
     float: right;
     max-width: 50%;
+    max-height: 120px;
 }
 /* @end */
 
