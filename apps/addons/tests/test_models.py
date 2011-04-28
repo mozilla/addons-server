@@ -9,7 +9,7 @@ from django.core import mail
 from django.core.cache import cache
 from django.utils import translation
 
-from mock import patch, patch_object
+from mock import patch, patch_object, Mock
 from nose.tools import eq_, assert_not_equal
 import test_utils
 
@@ -1261,3 +1261,45 @@ class TestRemoveLocale(test_utils.TestCase):
               .values_list('locale', flat=True))
         eq_(sorted(qs.filter(id=a.name_id)), ['en-US'])
         eq_(sorted(qs.filter(id=a.description_id)), ['en-US', 'he'])
+
+
+class TestAddonWatchDisabled(test_utils.TestCase):
+
+    def setUp(self):
+        self.addon = Addon(type=amo.ADDON_THEME, disabled_by_user=False,
+                           status=amo.STATUS_PUBLIC)
+        self.addon.save()
+
+    @patch('addons.models.File.objects.filter')
+    def test_no_disabled_change(self, file_mock):
+        mock = Mock()
+        file_mock.return_value = [mock]
+        self.addon.save()
+        assert not mock.unhide_disabled_file.called
+        assert not mock.hide_disabled_file.called
+
+    @patch('addons.models.File.objects.filter')
+    def test_disable_addon(self, file_mock):
+        mock = Mock()
+        file_mock.return_value = [mock]
+        self.addon.update(disabled_by_user=True)
+        assert not mock.unhide_disabled_file.called
+        assert mock.hide_disabled_file.called
+
+    @patch('addons.models.File.objects.filter')
+    def test_admin_disable_addon(self, file_mock):
+        mock = Mock()
+        file_mock.return_value = [mock]
+        self.addon.update(status=amo.STATUS_DISABLED)
+        assert not mock.unhide_disabled_file.called
+        assert mock.hide_disabled_file.called
+
+    @patch('addons.models.File.objects.filter')
+    def test_enable_addon(self, file_mock):
+        mock = Mock()
+        file_mock.return_value = [mock]
+        self.addon.update(status=amo.STATUS_DISABLED)
+        mock.reset_mock()
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        assert mock.unhide_disabled_file.called
+        assert not mock.hide_disabled_file.called
