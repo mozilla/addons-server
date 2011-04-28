@@ -783,7 +783,6 @@ CSP_IMG_SRC = ("'self'", STATIC_URL,
                "https://s3.amazonaws.com", # getsatisfaction
               )
 CSP_SCRIPT_SRC = ("'self'", STATIC_URL,
-                  "https://api-secure.recaptcha.net",
                   "https://www.google.com",  # Recaptcha
                   "https://www.paypalobjects.com",
                   )
@@ -837,7 +836,7 @@ MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
 # RECAPTCHA - copy all three statements to settings_local.py
 RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
-RECAPTCHA_URL = ('https://api-secure.recaptcha.net/challenge?k=%s' %
+RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' %
                  RECAPTCHA_PUBLIC_KEY)
 
 # Send Django signals asynchronously on a background thread.
