@@ -1,3 +1,4 @@
+import datetime
 from django.conf import settings
 
 import commonware.log
@@ -35,3 +36,15 @@ def flush_front_end_cache_urls(urls, **kw):
                 urls[index] = u"%s%s" % (settings.SITE_URL, url)
 
     flush_urls(urls)
+
+
+@task
+def set_modified_on_object(obj, **kw):
+    """Sets modified on one object at a time."""
+    try:
+        log.info('Setting modified on object: %s, %s' %
+                 (obj.__class__.__name__, obj.pk))
+        obj.update(modified=datetime.datetime.now())
+    except Exception, e:
+        log.error('Failed to set modified on: %s, %s - %s' %
+                  (obj.__class__.__name__, obj.pk, e))

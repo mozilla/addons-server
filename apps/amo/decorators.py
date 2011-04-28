@@ -1,13 +1,13 @@
-import datetime
 import functools
 import json
 
 import commonware.log
 
 from django import http
+from django.conf import settings
 from django.utils.http import urlquote
 
-
+from amo.tasks import set_modified_on_object
 from . import models as context
 from .urlresolvers import reverse
 
@@ -99,12 +99,9 @@ def set_modified_on(f):
         result = f(*args, **kw)
         if objs and result:
             for obj in objs:
-                try:
-                    task_log.info('Setting modified on object: %s, %s' %
-                                  (obj.__class__.__name__, obj.pk))
-                    obj.update(modified=datetime.datetime.now())
-                except Exception, e:
-                    task_log.error('Failed to set modified on: %s, %s - %s' %
-                                   (obj.__class__.__name__, obj.pk, e))
+                task_log.info('Delaying setting modified on object: %s, %s' %
+                              (obj.__class__.__name__, obj.pk))
+                set_modified_on_object.delay(obj,
+                                             countdown=settings.MODIFIED_DELAY)
         return result
     return wrapper
