@@ -7,7 +7,7 @@ from django.template import Context, loader
 import commonware.log
 import jingo
 from tower import ugettext as _
-from session_csrf import anonymous_csrf
+from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 
 
 import amo
@@ -387,6 +387,7 @@ def register(request):
     return jingo.render(request, 'users/register.html', {'form': form, })
 
 
+@anonymous_csrf_exempt
 def report_abuse(request, user_id):
     if not settings.REPORT_ABUSE:
         raise http.Http404()
