@@ -113,7 +113,13 @@
 
   <div class="listing results">
     <div class="results-inner">
-      <div class="listing-header">{{ _('Recent Editor Activity') }}</div>
+      <div class="listing-header">
+        <a href="{{ url('editors.queue_moderated') }}">
+        {# L10n: num = number of reviews in the queue #}
+        {{ ngettext('Moderated Review ({num})',
+                    'Moderated Reviews ({num})',
+                    queue_counts['moderated'])|f(num=queue_counts['moderated']) }}</a>
+      </div>
       {% for item in eventlog %}
       <div class="row">
         {{ item.to_string('editor') }}

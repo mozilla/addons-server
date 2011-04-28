@@ -100,7 +100,7 @@ class TestEventLog(EditorTest):
         eq_(list_items.length, 2)
 
         eq_(list_items.eq(0).find('a').text(), "Editor Tools")
-        eq_(list_items.eq(1).text(), "Event Log")
+        eq_(list_items.eq(1).text(), "Moderated Review Log")
 
 
 class TestEventLogDetail(TestEventLog):
@@ -192,7 +192,7 @@ class TestReviewLog(EditorTest):
         eq_(list_items.length, 2)
 
         eq_(list_items.eq(0).find('a').text(), "Editor Tools")
-        eq_(list_items.eq(1).text(), "Review Log")
+        eq_(list_items.eq(1).text(), "Add-on Review Log")
 
     @patch('devhub.models.ActivityLog.arguments')
     def test_addon_missing(self, arguments):
