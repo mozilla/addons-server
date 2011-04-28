@@ -393,9 +393,10 @@ def _group_addons(qs):
 
 
 @cronjobs.register
+@transaction.commit_on_success
 def give_personas_versions():
     cursor = connections['default'].cursor()
     path = os.path.join(settings.ROOT, 'migrations/149-personas-versions.sql')
     with open(path) as f:
         cursor.execute(f.read())
-    transaction.commit_unless_managed()
+        log.info('Gave versions to %s personas.' % cursor.rowcount)
