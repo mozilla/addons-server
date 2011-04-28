@@ -5,9 +5,9 @@ from django.conf import settings
 import commonware.log
 from celeryutils import task
 
+from amo.decorators import set_modified_on
 import amo.signals
 from amo.utils import resize_image
-from . import cron
 
 task_log = commonware.log.getLogger('z.task')
 
@@ -28,11 +28,13 @@ def delete_photo(dst, **kw):
 
 
 @task
+@set_modified_on
 def resize_photo(src, dst, **kw):
     """Resizes userpics to 200x200"""
     task_log.info('[1@None] Resizing photo: %s' % dst)
 
     try:
         resize_image(src, dst, (200, 200))
+        return True
     except Exception, e:
         task_log.error("Error saving userpic: %s" % e)

@@ -277,7 +277,8 @@ class AddonFormMedia(AddonFormBase):
 
             remove_icons(destination)
             tasks.resize_icon.delay(upload_path, destination,
-                                    amo.ADDON_ICON_SIZES)
+                                    amo.ADDON_ICON_SIZES,
+                                    set_modified_on=[addon])
 
         return super(AddonFormMedia, self).save(commit)
 

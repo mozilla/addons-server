@@ -8,12 +8,14 @@ from django.utils.http import int_to_base36
 
 import test_utils
 from manage import settings
-from mock import patch
+from mock import Mock, patch
 from nose.tools import eq_
 
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
+from amo.tests.test_helpers import get_uploaded_file
 from users.models import UserProfile
+from users.forms import UserEditForm
 
 
 class UserFormBase(test_utils.TestCase):
@@ -403,3 +405,20 @@ class TestBlacklistedEmailDomainAdminAddForm(UserFormBase):
         msg += '1 duplicates were ignored.'
         self.assertContains(r, msg)
         self.assertNotContains(r, 'fubar')
+
+
+class TestUserEditForm(UserFormBase):
+
+    @patch('amo.models.ModelBase.update')
+    def test_photo_modified(self, update_mock):
+        dummy = Mock()
+        dummy.user = self.user
+
+        data = {'username': self.user_profile.username,
+                'email': self.user_profile.email}
+        files = {'photo': get_uploaded_file('transparent.png')}
+        form = UserEditForm(data, files=files, instance=self.user_profile,
+                            request=dummy)
+        assert form.is_valid()
+        form.save()
+        assert update_mock.called

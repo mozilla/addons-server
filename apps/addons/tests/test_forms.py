@@ -4,8 +4,11 @@ import shutil
 import tempfile
 
 import test_utils
-from nose.tools import eq_
 from mock import patch
+from nose.tools import eq_
+import path
+
+from django.conf import settings
 
 import amo
 import amo.tests
@@ -196,7 +199,7 @@ class TestTagsForm(test_utils.TestCase):
                                   ' after invalid characters are removed.'])
 
 
-class TestIconRemoval(test_utils.TestCase):
+class TestIconForm(test_utils.TestCase):
     fixtures = ['base/addon_3615']
 
     # TODO: AddonFormMedia save() method could do with cleaning up
@@ -209,6 +212,13 @@ class TestIconRemoval(test_utils.TestCase):
             FILES = None
         self.request = DummyRequest()
 
+        self.paths = [path.path(settings.TMP_PATH) / 'uploads' /
+                      'addon_icons' / str(self.addon.pk)[0],
+                      path.path(settings.TMP_PATH) / 'icon']
+        for p in self.paths:
+            if not os.path.exists(p):
+                os.makedirs(p)
+
     def tearDown(self):
         shutil.rmtree(self.temp_dir)
 
@@ -218,6 +228,7 @@ class TestIconRemoval(test_utils.TestCase):
 
     @patch('apps.addons.models.Addon.get_icon_dir')
     def testIconUpload(self, get_icon_dir):
+        # TODO(gkoberger): clarify this please.
         # We no longer use AddonFormMedia to upload icons, so
         # skipping until I can ask andym what the point of this
         # test is.  Additionally, it's called "TestIconRemoval",
@@ -237,6 +248,21 @@ class TestIconRemoval(test_utils.TestCase):
         form.save(self.addon)
         for path in self.get_icon_paths():
             assert os.path.exists(path)
+
+    @patch('amo.models.ModelBase.update')
+    def test_icon_modified(self, update_mock):
+        name = 'transparent.png'
+        form = forms.AddonFormMedia({'icon_upload_hash': name},
+                                    request=self.request,
+                                    instance=self.addon)
+
+        img = get_image_path(name)
+        dest = self.paths[1] / name
+        shutil.copyfile(get_image_path(name), dest)
+
+        assert form.is_valid()
+        form.save(addon=self.addon)
+        assert update_mock.called
 
 
 class TestCategoryForm(test_utils.TestCase):

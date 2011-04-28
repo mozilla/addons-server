@@ -221,7 +221,8 @@ class UserEditForm(UserRegisterForm):
                 fh.write(chunk)
 
             fh.close()
-            tasks.resize_photo.delay(tmp_destination, u.picture_path)
+            tasks.resize_photo.delay(tmp_destination, u.picture_path,
+                                     set_modified_on=[u])
 
         if data['password']:
             u.set_password(data['password'])

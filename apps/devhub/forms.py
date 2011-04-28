@@ -530,13 +530,13 @@ class PreviewForm(happyforms.ModelForm):
                 return
 
             super(PreviewForm, self).save(commit=commit)
-
             if self.cleaned_data['upload_hash']:
                 upload_hash = self.cleaned_data['upload_hash']
                 upload_path = path.path(settings.TMP_PATH) / 'preview' / upload_hash
                 tasks.resize_preview.delay(str(upload_path),
                                            self.instance.thumbnail_path,
-                                           self.instance.image_path)
+                                           self.instance.image_path,
+                                           set_modified_on=[self.instance])
 
     class Meta:
         model = Preview

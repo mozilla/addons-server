@@ -1,10 +1,14 @@
+from datetime import datetime
 from django import http
 
 import mock
 from nose.tools import eq_
+import test_utils
 
 from amo import decorators
 from amo.urlresolvers import reverse
+
+from users.models import UserProfile
 
 
 def test_post_required():
@@ -80,3 +84,25 @@ class TestLoginRequired(object):
         self.request.user.is_authenticated.return_value = True
         response = func(self.request)
         assert self.f.called
+
+
+class TestSetModifiedOn(test_utils.TestCase):
+    fixtures = ['base/users']
+
+    @decorators.set_modified_on
+    def some_method(self, worked):
+        return worked
+
+    def test_set_modified_on(self):
+        users = list(UserProfile.objects.all()[:3])
+        self.some_method(True, set_modified_on=users)
+        for user in users:
+            eq_(UserProfile.objects.get(pk=user.pk).modified.date(),
+                datetime.today().date())
+
+    def test_not_set_modified_on(self):
+        users = list(UserProfile.objects.all()[:3])
+        self.some_method(False, set_modified_on=users)
+        for user in users:
+            date = UserProfile.objects.get(pk=user.pk).modified.date()
+            assert date < datetime.today().date()

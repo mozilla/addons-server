@@ -8,7 +8,7 @@ from django.core.management import call_command
 from celeryutils import task
 
 import amo
-from amo.decorators import write
+from amo.decorators import write, set_modified_on
 from amo.utils import resize_image
 from files.models import FileUpload, File, FileValidation
 from applications.management.commands import dump_apps
@@ -71,10 +71,10 @@ def _validator(file_path):
 
 
 @task
+@set_modified_on
 def resize_icon(src, dst, size, **kw):
     """Resizes addon icons."""
     log.info('[1@None] Resizing icon: %s' % dst)
-
     try:
         if isinstance(size, list):
             for s in size:
@@ -83,16 +83,16 @@ def resize_icon(src, dst, size, **kw):
             os.remove(src)
         else:
             resize_image(src, dst, (size, size), remove_src=True)
-
+        return True
     except Exception, e:
         log.error("Error saving addon icon: %s" % e)
 
 
 @task
+@set_modified_on
 def resize_preview(src, thumb_dst, full_dst, **kw):
     """Resizes preview images."""
     log.info('[1@None] Resizing preview: %s' % thumb_dst)
-
     try:
         # Generate the thumb.
         size = amo.ADDON_PREVIEW_SIZES[0]
@@ -101,6 +101,6 @@ def resize_preview(src, thumb_dst, full_dst, **kw):
         # Resize the original.
         size = amo.ADDON_PREVIEW_SIZES[1]
         resize_image(src, full_dst, size, remove_src=True)
-
+        return True
     except Exception, e:
         log.error("Error saving preview: %s" % e)

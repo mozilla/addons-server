@@ -205,7 +205,8 @@ class CollectionForm(ModelForm):
                 fh.write(chunk)
 
             fh.close()
-            tasks.resize_icon.delay(tmp_destination, destination)
+            tasks.resize_icon.delay(tmp_destination, destination,
+                                    set_modified_on=[c])
 
         return c
 

@@ -1,11 +1,18 @@
+import datetime
 import functools
 import json
+
+import commonware.log
 
 from django import http
 from django.utils.http import urlquote
 
+
 from . import models as context
 from .urlresolvers import reverse
+
+
+task_log = commonware.log.getLogger('z.task')
 
 
 def login_required(f=None, redirect=True):
@@ -78,3 +85,26 @@ def use_master(f):
 
 def write(f):
     return use_master(skip_cache(f))
+
+
+def set_modified_on(f):
+    """
+    Will update the modified timestamp on the provided objects
+    when the wrapped function exits sucessfully (returns True).
+    Looks up objects defined in the set_modified_on kwarg.
+    """
+    @functools.wraps(f)
+    def wrapper(*args, **kw):
+        objs = kw.pop('set_modified_on', None)
+        result = f(*args, **kw)
+        if objs and result:
+            for obj in objs:
+                try:
+                    task_log.info('Setting modified on object: %s, %s' %
+                                  (obj.__class__.__name__, obj.pk))
+                    obj.update(modified=datetime.datetime.now())
+                except Exception, e:
+                    task_log.error('Failed to set modified on: %s, %s - %s' %
+                                   (obj.__class__.__name__, obj.pk, e))
+        return result
+    return wrapper

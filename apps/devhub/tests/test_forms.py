@@ -1,8 +1,12 @@
-from django.conf import settings
+import shutil
 
+import path
 import mock
 
+from django.conf import settings
+
 import amo
+from amo.tests.test_helpers import get_image_path
 import paypal
 import test_utils
 from applications.models import Application, AppVersion
@@ -81,3 +85,19 @@ class TestCompatForm(test_utils.TestCase):
         fs = forms.CompatFormSet(None, queryset=v.apps.all())
         apps = [f.app for f in fs.forms]
         assert moz in apps
+
+
+class TestPreviewForm(test_utils.TestCase):
+    fixtures = ['base/addon_3615']
+
+    @mock.patch('amo.models.ModelBase.update')
+    def test_preview_modified(self, update_mock):
+        addon = Addon.objects.get(pk=3615)
+        name = 'transparent.png'
+        form = forms.PreviewForm({'caption': 'test','upload_hash': name,
+                                  'position': 1})
+        dest = path.path(settings.TMP_PATH) / 'preview' / name
+        shutil.copyfile(get_image_path(name), dest)
+        assert form.is_valid()
+        form.save(addon)
+        assert update_mock.called

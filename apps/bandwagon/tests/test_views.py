@@ -16,6 +16,7 @@ from addons.models import Addon
 from addons.tests.test_views import TestMobile
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
+from amo.tests.test_helpers import get_uploaded_file
 from bandwagon import forms
 from bandwagon.models import (Collection, CollectionVote, CollectionUser,
                               CollectionWatcher)
@@ -864,3 +865,23 @@ class TestMine(test_utils.TestCase):
                             follow=True)
         expected = reverse('collections.detail', args=['admin', 'favorites'])
         self.assertRedirects(r, expected)
+
+
+class TestCollectionForm(test_utils.TestCase):
+    fixtures = ['base/collection_57181']
+
+    @patch('amo.models.ModelBase.update')
+    def test_icon(self, update_mock):
+        collection = Collection.objects.get(pk=57181)
+        # TODO(andym): altering this form is too complicated, can we simplify?
+        form = forms.CollectionForm(
+                        {'listed': collection.listed,
+                         'slug': collection.slug,
+                         'name': collection.name},
+                        instance=collection,
+                        files= {'icon': get_uploaded_file('transparent.png')},
+                        initial= {'author':collection.author,
+                                 'application_id':collection.application.pk})
+        assert form.is_valid()
+        form.save()
+        assert update_mock.called

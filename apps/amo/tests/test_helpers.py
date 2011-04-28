@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
+import mimetypes
 import os
 
 from django.conf import settings
 from django.core import mail
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.utils import encoding
 
 import jingo
@@ -341,6 +343,12 @@ class AbuseDisabledBase:
 
 def get_image_path(name):
     return os.path.join(settings.ROOT, 'apps', 'amo', 'tests', 'images', name)
+
+
+def get_uploaded_file(name):
+    data = open(get_image_path(name)).read()
+    return SimpleUploadedFile(name, data,
+                              content_type=mimetypes.guess_type(name)[0])
 
 
 class TestAnimatedImages(test_utils.TestCase):
