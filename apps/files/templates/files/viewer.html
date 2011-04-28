@@ -50,7 +50,9 @@
                 {% if selected and not selected['binary'] and not selected['directory'] and content %}
                     <pre id="content" class="wrapped">{{ content }}</pre>
                 {% endif %}
-                {% include "files/file.html" %}
+                {% if selected and not selected['directory'] %}
+                    {% include "files/file.html" %}
+                {% endif %}
             {% endif %}
             {% if diff %}
                 {% if diff.is_diffable() %}
@@ -67,12 +69,14 @@
                         <pre class="left hidden">{{ text_one }}</pre>
                         <pre class="right hidden">{{ text_two }}</pre>
                 {% endif %}
+                {% if selected and not selected['directory']%}
                 {% with selected = diff.one, file = diff.file_one.file %}
                     {% include "files/file.html" %}
                 {% endwith %}
                 {% with selected = diff.two, file = diff.file_two.file %}
                     {% include "files/file.html" %}
                 {% endwith %}
+                {% endif %}
             {% endif %}
             </div>
         </div>

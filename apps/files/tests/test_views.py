@@ -369,10 +369,10 @@ class TestDiffViewer(FilesBase, test_utils.TestCase):
         self.add_file(self.file_viewer.file_one, not_binary, 'something')
         res = self.client.get(self.file_url(not_binary))
         doc = pq(res.content)
-        eq_(doc('#content-wrapper p').text(), 'Files are different.')
+        assert doc('#content-wrapper p').text().startswith('Files are diff')
 
     def test_files_same_msg(self):
         self.file_viewer.extract()
         res = self.client.get(self.file_url(not_binary))
         doc = pq(res.content)
-        eq_(doc('#content-wrapper p').text(), 'Files are the same.')
+        assert doc('#content-wrapper p').text().startswith('Files are the s')

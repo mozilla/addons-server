@@ -132,7 +132,7 @@ class TestFileHelper(test_utils.TestCase):
         rt = files.index(u'chrome')
         eq_(files[rt:rt + 3], [u'chrome', u'chrome/foo', u'chrome.manifest'])
 
-    @patch_object(settings, 'FILE_VIEWER_SIZE_LIMIT', 5)
+    @patch_object(settings._wrapped, 'FILE_VIEWER_SIZE_LIMIT', 5)
     def test_file_size(self):
         self.viewer.extract()
         files = self.viewer.get_files()

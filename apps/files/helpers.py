@@ -105,7 +105,7 @@ class FileViewer:
     def read_file(self, selected):
         if selected['size'] > settings.FILE_VIEWER_SIZE_LIMIT:
             return '', _('File size is over the limit of %s.'
-                         % (filesizeformat(settings.FILE_VIEWER_SIZE_LIMIT)))
+                     % (filesizeformat(settings.FILE_VIEWER_SIZE_LIMIT)))
 
         with open(selected['full'], 'r') as opened:
             cont = opened.read()
