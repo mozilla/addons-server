@@ -643,6 +643,26 @@ div.editor-stats-table > div.editor-stats-dark {
     text-align: right;
 }
 
+.currently_viewing_warning {
+    display: none;
+}
+
+div.currently_viewing_warning {
+    background-color: #FFE4E4;
+    margin: 1em 0;
+    border: 1px dashed #FE7272;
+    padding: 10px;
+}
+
+div.currently_viewing_warning strong {
+    display: block;
+}
+
+span.currently_viewing_warning {
+    color: red;
+    padding-right: 15px;
+}
+
 .article ul {
     margin-bottom: 0;
 }

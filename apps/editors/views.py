@@ -5,8 +5,10 @@ import time
 
 from django import http
 from django.conf import settings
+from django.core.cache import cache
 from django.shortcuts import redirect, get_object_or_404
 from django.utils.datastructures import SortedDict
+from django.views.decorators.cache import never_cache
 
 import jingo
 from tower import ugettext as _
@@ -27,6 +29,7 @@ from editors.helpers import (ViewPendingQueueTable, ViewFullReviewQueueTable,
 from files.models import Approval
 from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
+from users.models import UserProfile
 from zadmin.models import get_config, set_config
 
 
@@ -415,6 +418,37 @@ def review(request, version_id):
                           .filter(action__in=amo.LOG_REVIEW_QUEUE))
 
     return jingo.render(request, 'editors/review.html', ctx)
+
+
+@never_cache
+@json_view
+@editor_required
+def review_viewing(request):
+    if 'addon_id' not in request.POST:
+        return {}
+
+    addon_id = request.POST['addon_id']
+    user_id = request.amo_user.id
+    current_name = ''
+    is_user = 0
+    key = '%s:review_viewing:%s' % (settings.CACHE_PREFIX, addon_id)
+
+    # Check who is viewing.
+    currently_viewing = cache.get(key)
+
+    # If nobody is viewing or current user is, set current user as viewing
+    if not currently_viewing or currently_viewing == user_id:
+        # We want to save it for twice as long as the ping interval,
+        # just to account for latency and the like.
+        cache.set(key, user_id, amo.EDITOR_VIEWING_INTERVAL * 2)
+        currently_viewing = user_id
+        current_name = request.amo_user.name
+        is_user = 1
+    else:
+        current_name = UserProfile.objects.get(pk=currently_viewing).name
+
+    return {'current': currently_viewing, 'current_name': current_name,
+            'is_user': is_user}
 
 
 @editor_required

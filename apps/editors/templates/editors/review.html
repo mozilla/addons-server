@@ -136,6 +136,10 @@
       </div>
       {% endfor %}
 
+      <div class="currently_viewing_warning">
+        {{ _("You can still submit this form, however only do so if you know it won't conflict.") }}
+      </div>
+
       <label for="id_comments">{{ form.comments.label }}</label>
       {{ form.comments }}
       {{ form.comments.errors }}
@@ -188,6 +192,11 @@
         {{ form.notify.errors }}
       </div>
       <div class="review-actions-section review-actions-save">
+        <span class="currently_viewing_warning">
+          {% trans %}
+          <strong>Warning!</strong> Another user was viewing this page before you.
+          {% endtrans %}
+        </span>
         <input type="submit" value="{{ _('Save') }}" />
       </div>
     </div>

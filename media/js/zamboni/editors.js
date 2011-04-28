@@ -109,6 +109,21 @@ function initReviewActions() {
         installer($this.text(), $this.attr('href'), "")
     }));
 
+
+    /* Who's currently on this page? */
+    function check_currently_viewing() {
+      $.post('/en-US/editors/review_viewing', {'addon_id':1}, function(d){
+        $current = $('.currently_viewing_warning');
+        $current.toggle(d.is_user != 1);
+
+        var title = format(gettext('{name} was viewing this page first.'), {name: d.current_name})
+        $current_div = $current.filter('div');
+        $current_div.find('strong').remove();
+        $current_div.prepend($('<strong>', {'text': title}));
+      });
+    }
+    check_currently_viewing();
+    setInterval(check_currently_viewing, 8000);
 }
 
 function insertAtCursor(textarea, text) {

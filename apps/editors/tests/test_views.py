@@ -1317,6 +1317,23 @@ class TestReview(ReviewBase):
                 doc = pq(self.client.get(self.url).content)
                 eq_(doc('ol.breadcrumbs li:eq(1)').text(), text)
 
+    def test_viewing(self):
+        r = self.client.post(reverse('editors.review_viewing'),
+                             {'addon_id': self.addon.id })
+        data = json.loads(r.content)
+        eq_(data['current'], self.editor.id)
+        eq_(data['current_name'], self.editor.name)
+        eq_(data['is_user'], 1)
+
+        # Now, login as someone else and test.
+        self.login_as_admin()
+        r = self.client.post(reverse('editors.review_viewing'),
+                             {'addon_id': self.addon.id })
+        data = json.loads(r.content)
+        eq_(data['current'], self.editor.id)
+        eq_(data['current_name'], self.editor.name)
+        eq_(data['is_user'], 0)
+
     def test_no_compare_link(self):
         r = self.client.get(self.url)
         doc = pq(r.content)
