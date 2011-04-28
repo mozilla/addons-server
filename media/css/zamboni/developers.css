@@ -1793,7 +1793,7 @@ form.select-review .errorlist {
     content: "\00a0";
     display: block;
     position: absolute;
-    background: #040204 url("../../img/zamboni/loading.gif") no-repeat center center;;
+    background: #040204 url("../../img/zamboni/loading.gif") no-repeat center center;
     opacity: .4;
     margin: 0;
     padding: 0;
@@ -1811,16 +1811,9 @@ form.select-review .errorlist {
 }
 
 /* newsletter signup */
-.newsletter-signup {
-    width: 240px;
-    padding: 15px 20px;
-    float: right;
-    background-color: #C8E8F3;
-}
-
 .newsletter-signup input[type="email"],
 .newsletter-signup select {
-    width: 95%;
+    width: 30%;
 }
 
 .newsletter-signup input[type="submit"] {

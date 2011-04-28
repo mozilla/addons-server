@@ -22,6 +22,7 @@ import commonware.log
 import jingo
 import jinja2
 from tower import ugettext_lazy as _lazy, ugettext as _
+from session_csrf import anonymous_csrf
 
 import amo
 import amo.utils
@@ -1109,6 +1110,7 @@ def admin(request, addon):
 
 
 # Newsletter details & signup
+@anonymous_csrf
 def newsletter(request):
     regions = get_regions(getattr(request, 'LANG', settings.LANGUAGE_CODE))
     form = forms.NewsletterForm(request.POST or None,

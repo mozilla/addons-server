@@ -1,18 +1,9 @@
 {% extends "devhub/base.html" %}
 
 {% block content %}
-<h2>{{ _('about:addons Newsletter') }}</h2>
-
-<p>
-  {% trans %}
-  about:addons is our monthly newsletter highlighting noteworthy
-  information and events in the world of add-ons. Take a look through
-  our archives below and sign up!
-  {% endtrans %}
-</p>
-
 <div class="newsletter-signup">
-  <h3>{{ _('Subscribe to Quarterly News') }}</h3>
+  <h2>{{ _('about:addons Newsletter') }}</h2>
+
   <p>
     {% trans %}
     Enter your email address to subscribe to
@@ -30,8 +21,8 @@
     </ul>
 
     <p>{{ newsletter_form.email }}</p>
-    <p>{{ _('Country') }} {{ newsletter_form.region }}</p>
-    <p>{{ _('Email format') }} {{ newsletter_form.format }}</p>
+    <p>{{ _('Country') }}:<br /> {{ newsletter_form.region }}</p>
+    <p>{{ _('Email format') }}: {{ newsletter_form.format }}</p>
     <p>
       {{ newsletter_form.policy }}
       {% trans url='http://www.mozilla.com/privacy-policy' %}
