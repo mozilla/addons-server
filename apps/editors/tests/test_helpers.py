@@ -316,7 +316,8 @@ class TestReviewHelper(test_utils.TestCase):
         for template in ['nominated_to_nominated', 'nominated_to_preliminary',
                          'nominated_to_public', 'nominated_to_sandbox',
                          'pending_to_preliminary', 'pending_to_public',
-                         'pending_to_sandbox', 'preliminary_to_preliminary']:
+                         'pending_to_sandbox', 'preliminary_to_preliminary',
+                         'author_super_review']:
             mail.outbox = []
             self.helper.handler.notify_email(template, 'Sample subject %s, %s')
             eq_(len(mail.outbox), 1)
@@ -452,9 +453,12 @@ class TestReviewHelper(test_utils.TestCase):
 
             eq_(self.addon.admin_review, True)
 
-            eq_(len(mail.outbox), 1)
-            eq_(mail.outbox[0].subject,
+            eq_(len(mail.outbox), 2)
+            eq_(mail.outbox[1].subject,
                 'Super review requested: Delicious Bookmarks')
+            eq_(mail.outbox[0].subject,
+                ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
+                 'Admin Review'))
             eq_(self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id), 1)
 
     def test_unreviewed_to_public(self):
@@ -503,9 +507,12 @@ class TestReviewHelper(test_utils.TestCase):
 
             eq_(self.addon.admin_review, True)
 
-            eq_(len(mail.outbox), 1)
-            eq_(mail.outbox[0].subject,
+            eq_(len(mail.outbox), 2)
+            eq_(mail.outbox[1].subject,
                 'Super review requested: Delicious Bookmarks')
+            eq_(mail.outbox[0].subject,
+                ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
+                 'Admin Review'))
             eq_(self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id), 1)
 
     def test_nomination_to_super_review_and_escalate(self):
@@ -517,9 +524,12 @@ class TestReviewHelper(test_utils.TestCase):
 
             eq_(self.addon.admin_review, True)
 
-            eq_(len(mail.outbox), 1)
-            eq_(mail.outbox[0].subject,
+            eq_(len(mail.outbox), 2)
+            eq_(mail.outbox[1].subject,
                 'Super review requested: Delicious Bookmarks')
+            eq_(mail.outbox[0].subject,
+                ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
+                 'Admin Review'))
 
             eq_(self.check_log_count(amo.LOG.ESCALATE_VERSION.id), 1)
             eq_(self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id), 1)
@@ -594,9 +604,12 @@ class TestReviewHelper(test_utils.TestCase):
 
             eq_(self.addon.admin_review, True)
 
-            eq_(len(mail.outbox), 1)
-            eq_(mail.outbox[0].subject,
+            eq_(len(mail.outbox), 2)
+            eq_(mail.outbox[1].subject,
                 'Super review requested: Delicious Bookmarks')
+            eq_(mail.outbox[0].subject,
+                ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
+                 'Admin Review'))
 
     def test_nominated_review_time_set(self):
         for status in REVIEW_ADDON_STATUSES:
