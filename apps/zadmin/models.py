@@ -7,7 +7,7 @@ from django.utils.functional import memoize
 import amo
 import amo.models
 from applications.models import Application, AppVersion
-from files.models import FileValidation
+from files.models import File
 
 _config_cache = {}
 
@@ -56,13 +56,15 @@ class ValidationJob(amo.models.ModelBase):
         total = self.result_set.count()
         completed = self.result_set.exclude(completed=None).count()
         passing = (self.result_set.exclude(completed=None)
-                   .filter(file_validation__errors=0).count())
-        # TODO(Kumar) count exceptions here?
+                   .filter(errors=0).count())
+        errors = self.result_set.exclude(task_error=None).count()
         return {
-            'number_of_addons': total,
-            'passing_addons': passing,
-            'failing_addons': total - passing,
-            'percent_complete': ((Decimal(total) / Decimal(completed))
+            'total': total,
+            'completed': completed,
+            'passing': passing,
+            'failing': completed - passing,
+            'errors': errors,
+            'percent_complete': (Decimal(completed) / Decimal(total)
                                  * Decimal(100)
                                  if (total and completed) else 0)
         }
@@ -72,11 +74,29 @@ class ValidationJob(amo.models.ModelBase):
 
 
 class ValidationResult(amo.models.ModelBase):
+    """Result of a single validation task based on the addon file.
+
+    This is different than FileValidation because it allows multiple
+    validation results per file.
+    """
     validation_job = models.ForeignKey(ValidationJob,
                                        related_name='result_set')
-    file_validation = models.ForeignKey(FileValidation, null=True)
+    file = models.ForeignKey(File, related_name='validation_results')
+    valid = models.BooleanField(default=False)
+    errors = models.IntegerField(default=0, null=True)
+    warnings = models.IntegerField(default=0, null=True)
+    notices = models.IntegerField(default=0, null=True)
+    validation = models.TextField(null=True)
     task_error = models.TextField(null=True)
     completed = models.DateTimeField(null=True, db_index=True)
 
     class Meta:
         db_table = 'validation_result'
+
+    def apply_validation(self, validation):
+        js = json.loads(validation)
+        self.validation = validation
+        self.errors = js['errors']
+        self.warnings = js['warnings']
+        self.notices = js['notices']
+        self.valid = self.errors == 0

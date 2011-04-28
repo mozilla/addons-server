@@ -3,16 +3,19 @@ import json
 
 from django import test
 
+import mock
+from nose.plugins.attrib import attr
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
 
 import amo
+from amo.tests import close_to_now, assert_no_validation_errors
 from amo.urlresolvers import reverse
 from addons.models import Addon
-from applications.models import AppVersion, Application
-from files.models import Approval, FileValidation, File
-from versions.models import Version, VersionSummary
+from applications.models import AppVersion
+from files.models import Approval, File
+from versions.models import Version
 from zadmin.models import ValidationJob, ValidationResult
 
 
@@ -68,31 +71,31 @@ class TestFlagged(test_utils.TestCase):
         eq_(addons[0], Addon.objects.get(id=3))
 
 
-class TestBulkValidation(test_utils.TestCase):
-    fixtures = ['base/addon_3615', 'base/appversion', 'base/users']
+class BulkValidationTest(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/addon_3615', 'base/appversion',
+                'base/users']
 
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self.addon = Addon.objects.get(pk=3615)
         self.version = self.addon.get_version()
-        app = Application.objects.get(pk=amo.FIREFOX.id)
-        # pretend this version supports all Firefox versions:
-        for av in AppVersion.objects.filter(application=app):
-            VersionSummary.objects.create(application=app,
-                                          version=self.version,
-                                          addon=self.addon,
-                                          max=av.id)
+        self.curr_max = self.appversion('3.7a1pre')
 
     def appversion(self, version, application=amo.FIREFOX.id):
         return AppVersion.objects.get(application=application,
                                       version=version)
 
-    def test_start(self):
+
+class TestBulkValidation(BulkValidationTest):
+
+    @mock.patch('zadmin.tasks.bulk_validate_file')
+    def test_start(self, bulk_validate_file):
+        new_max = self.appversion('3.7a3')
         r = self.client.post(reverse('zadmin.start_validation'),
                              {'application': amo.FIREFOX.id,
-                              'curr_max_version': self.appversion('3.5.*').id,
-                              'target_version': self.appversion('3.6.*').id,
+                              'curr_max_version': self.curr_max.id,
+                              'target_version': new_max.id,
                               'finish_email': 'fliggy@mozilla.com'},
                              follow=True)
         if 'form' in r.context:
@@ -100,17 +103,18 @@ class TestBulkValidation(test_utils.TestCase):
         self.assertRedirects(r, reverse('zadmin.validation'))
         job = ValidationJob.objects.get()
         eq_(job.application_id, amo.FIREFOX.id)
-        eq_(job.curr_max_version.version, '3.5.*')
-        eq_(job.target_version.version, '3.6.*')
+        eq_(job.curr_max_version.version, self.curr_max.version)
+        eq_(job.target_version.version, new_max.version)
         eq_(job.finish_email, 'fliggy@mozilla.com')
         eq_(job.completed, None)
         eq_(job.result_set.all().count(),
             len(self.version.all_files))
+        assert bulk_validate_file.delay.called
 
     def test_grid(self):
         kw = dict(application_id=amo.FIREFOX.id,
-                  curr_max_version=self.appversion('3.5.*'),
-                  target_version=self.appversion('3.6.*'))
+                  curr_max_version=self.curr_max,
+                  target_version=self.appversion('3.7a3'))
         job = ValidationJob.objects.create(**kw)
         for i, res in enumerate((dict(errors=0), dict(errors=1))):
             f = File.objects.create(version=self.version,
@@ -121,22 +125,22 @@ class TestBulkValidation(test_utils.TestCase):
                       validation='{}',
                       errors=0,
                       warnings=0,
-                      notices=0)
+                      notices=0,
+                      validation_job=job,
+                      task_error=None,
+                      completed=datetime.now())
             kw.update(res)
             res['valid'] = kw['errors'] == 0
-            fv = FileValidation.objects.create(**kw)
-            ValidationResult.objects.create(file_validation=fv,
-                                            validation_job=job,
-                                            task_error=None,
-                                            completed=datetime.now())
+            ValidationResult.objects.create(**kw)
         r = self.client.get(reverse('zadmin.validation'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('table tr td').eq(2).text(), '3.5.*')
-        eq_(doc('table tr td').eq(3).text(), '3.6.*')
+        eq_(doc('table tr td').eq(2).text(), self.curr_max.version)
+        eq_(doc('table tr td').eq(3).text(), '3.7a3')
         eq_(doc('table tr td').eq(4).text(), '2')
         eq_(doc('table tr td').eq(5).text(), '1')
         eq_(doc('table tr td').eq(6).text(), '1')
+        eq_(doc('table tr td').eq(7).text(), '0')
 
     def test_application_versions_json(self):
         r = self.client.post(reverse('zadmin.application_versions_json'),
@@ -148,6 +152,50 @@ class TestBulkValidation(test_utils.TestCase):
             empty = False
             eq_(AppVersion.objects.get(pk=id).version, ver)
         assert not empty, "Unexpected: %r" % data
+
+
+class TestBulkValidationTask(BulkValidationTest):
+
+    def start_validation(self):
+        new_max = self.appversion('3.7a3')
+        r = self.client.post(reverse('zadmin.start_validation'),
+                             {'application': amo.FIREFOX.id,
+                              'curr_max_version': self.curr_max.id,
+                              'target_version': new_max.id,
+                              'finish_email': 'fliggy@mozilla.com'},
+                             follow=True)
+        eq_(r.status_code, 200)
+
+    @attr('validator')
+    def test_validate(self):
+        self.start_validation()
+        res = ValidationResult.objects.get()
+        assert close_to_now(res.completed)
+        assert_no_validation_errors(res)
+        eq_(res.errors, 1)  # package could not be found
+        eq_(res.valid, False)
+        eq_(res.warnings, 0)
+        eq_(res.notices, 0)
+        v = json.loads(res.validation)
+        eq_(v['errors'], 1)
+        assert close_to_now(res.validation_job.completed)
+        eq_(res.validation_job.stats['total'], 1)
+        eq_(res.validation_job.stats['completed'], 1)
+        eq_(res.validation_job.stats['passing'], 0)
+        eq_(res.validation_job.stats['failing'], 1)
+        eq_(res.validation_job.stats['errors'], 0)
+
+    @mock.patch('zadmin.tasks._validator')
+    def test_task_error(self, _validator):
+        _validator.side_effect = RuntimeError('validation error')
+        self.start_validation()
+        res = ValidationResult.objects.get()
+        err = res.task_error.strip()
+        assert err.endswith('RuntimeError: validation error'), (
+                                                    'Unexpected: %s' % err)
+        assert close_to_now(res.completed)
+        eq_(res.validation_job.stats['total'], 1)
+        eq_(res.validation_job.stats['errors'], 1)
 
 
 def test_settings():

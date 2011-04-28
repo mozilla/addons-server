@@ -37,6 +37,7 @@
       <th>{{ _('Tested') }}</th>
       <th>{{ _('Failing') }}</th>
       <th>{{ _('Passing') }}</th>
+      <th>{{ _('Errors') }}</th>
       <th>{{ _('Actions') }}</th>
     </tr>
     {% for job in validation_jobs %}
@@ -45,9 +46,10 @@
       <td>{{ job.completed }}</td>
       <td>{{ job.curr_max_version.version }}</td>
       <td>{{ job.target_version.version }}</td>
-      <td>{{ job.stats['number_of_addons'] }}</td>
-      <td>{{ job.stats['failing_addons'] }}</td>
-      <td>{{ job.stats['passing_addons'] }}</td>
+      <td>{{ job.stats['total'] }}</td>
+      <td>{{ job.stats['failing'] }}</td>
+      <td>{{ job.stats['passing'] }}</td>
+      <td>{{ job.stats['errors'] }}</td>
       <td></td>
     </tr>
     {% endfor %}

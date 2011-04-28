@@ -336,6 +336,8 @@ class VersionComment(amo.models.ModelBase):
         db_table = 'versioncomments'
 
 
+# WARNING: this table is no longer supported!
+# Use ApplicationsVersions instead
 class VersionSummary(amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon')
     version = models.ForeignKey(Version)

@@ -4,6 +4,7 @@ from django import http
 # I'm so glad we named a function in here settings...
 from django.conf import settings as site_settings
 from django.contrib import admin
+from django.db import connection, transaction
 from django.shortcuts import redirect, get_object_or_404
 from django.views import debug
 
@@ -21,7 +22,8 @@ from addons.models import Addon
 from files.models import Approval, File
 from versions.models import Version
 from zadmin.forms import BulkValidationForm
-from zadmin.models import ValidationJob
+from zadmin.models import ValidationJob, ValidationResult
+from zadmin import tasks
 
 log = commonware.log.getLogger('z.zadmin')
 
@@ -150,16 +152,46 @@ def application_versions_json(request):
 def validation(request, form=None):
     if not form:
         form = BulkValidationForm()
-    jobs = ValidationJob.objects.filter(completed=None).order_by('-created')
+    jobs = ValidationJob.objects.order_by('-created')
     return jingo.render(request, 'zadmin/validation.html',
                         {'form': form, 'validation_jobs': jobs})
 
 
 @admin.site.admin_view
+@transaction.commit_manually
 def start_validation(request):
     form = BulkValidationForm(request.POST)
     if form.is_valid():
-        form.save()
+        try:
+            job = form.save()
+            sql = """
+                select files.id
+                from files
+                join versions v on v.id=files.version_id
+                join applications_versions av on av.version_id=v.id
+                where
+                    av.application_id = %(application_id)s
+                    and av.max = %(curr_max_version)s
+                    and files.status in %(file_status)s"""
+            cursor = connection.cursor()
+            cursor.execute(sql, {'application_id': job.application.id,
+                                 'curr_max_version': job.curr_max_version.id,
+                                 'file_status': [amo.STATUS_LISTED,
+                                                 amo.STATUS_PUBLIC]})
+            results = []
+            for row in cursor:
+                res = ValidationResult.objects.create(validation_job=job,
+                                                      file_id=row[0])
+                results.append(res.id)
+            transaction.commit()
+        except:
+            transaction.rollback()
+            raise
+
+        for result_id in results:
+            tasks.bulk_validate_file.delay(result_id)
+
         return redirect(reverse('zadmin.validation'))
     else:
+        transaction.rollback()
         return validation(request, form=form)
