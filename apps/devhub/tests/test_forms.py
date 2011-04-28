@@ -1,3 +1,4 @@
+import os
 import shutil
 
 import path
@@ -96,8 +97,10 @@ class TestPreviewForm(test_utils.TestCase):
         name = 'transparent.png'
         form = forms.PreviewForm({'caption': 'test','upload_hash': name,
                                   'position': 1})
-        dest = path.path(settings.TMP_PATH) / 'preview' / name
-        shutil.copyfile(get_image_path(name), dest)
+        dest = path.path(settings.TMP_PATH) / 'preview'
+        if not os.path.exists(dest):
+            os.makedirs(dest)
+        shutil.copyfile(get_image_path(name), dest / name)
         assert form.is_valid()
         form.save(addon)
         assert update_mock.called
