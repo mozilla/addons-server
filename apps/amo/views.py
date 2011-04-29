@@ -16,6 +16,7 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
+from django_arecibo.tasks import post
 import caching.invalidation
 import commonware.log
 import jingo
@@ -332,6 +333,9 @@ def handler404(request):
 
 
 def handler500(request):
+    arecibo = getattr(settings, 'ARECIBO_SERVER_URL', '')
+    if arecibo:
+        post(request, 500)
     return jingo.render(request, 'amo/500.lhtml', status=500)
 
 

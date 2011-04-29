@@ -727,6 +727,7 @@ BROKER_VHOST = 'zamboni'
 BROKER_CONNECTION_TIMEOUT = 0.1
 CELERY_RESULT_BACKEND = 'amqp'
 CELERY_IGNORE_RESULT = True
+CELERY_IMPORTS = ('django_arecibo.tasks',)
 # We have separate celeryds for processing devhub & images as fast as possible.
 CELERY_ROUTES = {
     'devhub.tasks.validator': {'queue': 'devhub'},
@@ -914,3 +915,6 @@ COMPAT = (
     dict(app=1, version='5.0', alpha='5.0a', previous='4.0'),
     dict(app=1, version='6.0', alpha='6.0a', previous='5.0'),
 )
+
+# URL for reporting arecibo errors too. If not set, won't be sent.
+ARECIBO_SERVER_URL = ""
