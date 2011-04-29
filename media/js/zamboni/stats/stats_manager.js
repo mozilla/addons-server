@@ -1,7 +1,7 @@
 // (function () {
 
     // Versioning for offline storage
-    var version = "11";
+    var version = "12";
 
     // where all the time-series data for the page is kept
     var datastore = {};
@@ -53,7 +53,7 @@
 
     // Worker pool for Web Worker management
 
-    var stats_worker_url = z.media_url+"js/workers/stats_worker.js";
+    var stats_worker_url = '/media/js/workers/stats_worker.js';
 
     var StatsWorkerPool = new WorkerPool(4);
 
@@ -245,7 +245,7 @@
         init: function () {
             dbg("looking for local data");
             if (AMO.StatsManager.verify_local()) {
-                var cacheObject = storageCache.get(AMO.getAddonId());
+                var cacheObject = AMO.StatsManager.storageCache.get(AMO.getAddonId());
                 if (cacheObject) {
                     dbg("found local data, loading...");
                     cacheObject = JSON.parse(cacheObject);
@@ -258,18 +258,18 @@
 
         write_local: function () {
             dbg("saving local data");
-            storageCache.set(AMO.getAddonId(), JSON.stringify(datastore));
-            storage.set("version", version);
+            AMO.StatsManager.storageCache.set(AMO.getAddonId(), JSON.stringify(datastore));
+            AMO.StatsManager.storage.set("version", version);
             dbg("saved local data");
         },
 
         clear_local: function () {
-            storageCache.remove(AMO.getAddonId());
+            AMO.StatsManager.storageCache.remove(AMO.getAddonId());
             dbg("cleared local data");
         },
 
         verify_local: function () {
-            if (storage.get("version") == version) {
+            if (AMO.StatsManager.storage.get("version") == version) {
                 return true;
             } else {
                 dbg("wrong offline data verion");

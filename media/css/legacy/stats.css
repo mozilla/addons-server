@@ -110,7 +110,7 @@ div.statbox {
 .criteria.range {
     float: right;
     position: relative;
-    top: -18px;
+    top: -2px;
     z-index: 1000;
 }
 .criteria li {

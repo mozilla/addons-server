@@ -249,6 +249,7 @@ function SeriesChart() {
     this.render = function(view) {
         var newView = $.extend({}, currentView, view);
         dbg("rendering", newView);
+        set_loading(chartObj.container);
         Series.get(newView, function(seriesSet) {
             var s = chartObj.series;
             while(chartObj.series.length) {
@@ -266,6 +267,7 @@ function SeriesChart() {
             if ('time' in view) {
                 drawFieldMenu();
             }
+            $(chartObj.container).addClass("loaded");
         });
     };
     this.chart = function() { return chartObj; };

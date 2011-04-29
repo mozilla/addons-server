@@ -25,7 +25,7 @@ def report_menu(context, addon, report):
                 {
                     'name': 'sources',
                     'url': '/downloads/sources/',
-                    'title': _('by Download Source'),
+                    'title': _('by Source'),
                 },
             ]
         },

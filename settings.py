@@ -556,6 +556,15 @@ MINIFY_BUNDLES = {
             'js/zamboni/truncation.js',
             'js/zamboni/mobile.js',
         ),
+        'stats': (
+            'js/lib/jquery-datepicker.js',
+            'js/lib/highcharts.src.js',
+            'js/zamboni/stats/csv_keys.js',
+            'js/zamboni/stats/helpers.js',
+            'js/zamboni/stats/stats_manager.js',
+            'js/zamboni/stats/stats_tables.js',
+            'js/zamboni/stats/stats.js',
+        ),
         # This is included when DEBUG is True.  Bundle in <head>.
         'debug': (
             'js/debug/less_setup.js',
