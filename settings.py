@@ -556,7 +556,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/truncation.js',
             'js/zamboni/mobile.js',
         ),
-        'stats': (
+        'zamboni/stats': (
             'js/lib/jquery-datepicker.js',
             'js/lib/highcharts.src.js',
             'js/zamboni/stats/csv_keys.js',
