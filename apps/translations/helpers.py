@@ -58,9 +58,10 @@ def all_locales(addon, field_name, nl2br=False):
     field = getattr(addon, field_name)
     if not (addon and field):
         return
+    trans = field.__class__.objects.filter(id=field.id,
+                                           localized_string__isnull=False)
     ctx = dict(addon=addon, field=field, field_name=field_name,
-               translations=field.__class__.objects.filter(id=field.id),
-               nl2br=nl2br)
+               translations=trans, nl2br=nl2br)
     t = jingo.env.get_template('translations/all-locales.html')
     return jinja2.Markup(t.render(ctx))
 
