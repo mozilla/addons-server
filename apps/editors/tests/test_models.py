@@ -8,8 +8,7 @@ import test_utils
 
 import amo
 from addons.models import Addon
-from versions.models import (Version, version_uploaded,
-                             ApplicationsVersions, VersionSummary)
+from versions.models import Version, version_uploaded, ApplicationsVersions
 from files.models import Platform, File
 from applications.models import Application, AppVersion
 from editors.models import (EditorSubscription, send_notifications,
@@ -33,11 +32,6 @@ def create_addon_file(name, version_str, addon_status, file_status,
     if admin_review:
         ad.update(admin_review=True)
     vr, created = Version.objects.get_or_create(addon=ad, version=version_str)
-    vs, created = VersionSummary.objects.get_or_create(version=vr,
-                                                       addon=ad,
-                                                       application=app,
-                                                       max=app_vr.id,
-                                                       min=app_vr.id)
     va, created = ApplicationsVersions.objects.get_or_create(
                         version=vr, application=app, min=app_vr, max=app_vr)
     File.objects.create(version=vr, filename=u"%s.xpi" % name,

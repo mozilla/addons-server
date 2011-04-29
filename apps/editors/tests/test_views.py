@@ -25,7 +25,7 @@ from files.models import Approval, Platform, File
 import reviews
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
-from versions.models import Version, VersionSummary, AppVersion
+from versions.models import Version, AppVersion, ApplicationsVersions
 from zadmin.models import set_config
 from . test_models import create_addon_file
 
@@ -957,10 +957,8 @@ class TestQueueSearch(SearchTest):
                               application=amo.MOBILE)
         app = Application.objects.get(pk=amo.MOBILE.id)
         max = AppVersion.objects.get(application=app, version='4.0b2pre')
-        VersionSummary.objects.create(application=app,
-                                      version=d['version'],
-                                      addon=d['addon'],
-                                      max=max.id)
+        (ApplicationsVersions.objects
+         .filter(application=app, version=d['version']).update(max=max))
         r = self.search({'application_id': amo.MOBILE.id,
                          'max_version': '4.0b2pre'})
         eq_(self.named_addons(r), [u'Bieber For Mobile 4.0b2pre'])

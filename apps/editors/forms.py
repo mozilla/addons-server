@@ -143,11 +143,13 @@ class QueueSearchForm(happyforms.Form):
             qs.base_query['from'].extend([app_join])
 
             if data['max_version']:
-                joins = [
-                    'JOIN versions_summary vs ON (versions.id = vs.version_id)',
-                    'JOIN appversions max_version on (max_version.id = vs.max)']
+                joins = ["""JOIN applications_versions vs
+                            ON (versions.id = vs.version_id)""",
+                         """JOIN appversions max_version
+                            ON (max_version.id = vs.max)"""]
                 qs.base_query['from'].extend(joins)
-                qs = qs.filter_raw('max_version.version =', data['max_version'])
+                qs = qs.filter_raw('max_version.version =',
+                                   data['max_version'])
         if data['platform_ids']:
             qs = qs.filter_raw('files.platform_id IN', data['platform_ids'])
             # Adjust _file_platform_ids so that it includes ALL platforms

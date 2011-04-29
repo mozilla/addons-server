@@ -336,19 +336,6 @@ class VersionComment(amo.models.ModelBase):
         db_table = 'versioncomments'
 
 
-# WARNING: this table is no longer supported!
-# Use ApplicationsVersions instead
-class VersionSummary(amo.models.ModelBase):
-    addon = models.ForeignKey('addons.Addon')
-    version = models.ForeignKey(Version)
-    application = models.ForeignKey(Application)
-    min = models.IntegerField(null=True)
-    max = models.IntegerField(null=True)
-
-    class Meta(amo.models.ModelBase.Meta):
-        db_table = 'versions_summary'
-
-
 class ApplicationsVersions(caching.base.CachingMixin, models.Model):
 
     application = models.ForeignKey(Application)
