@@ -235,15 +235,20 @@ $(document).ready(function() {
                     viewer.selected(viewer.nodes.$files.find('a.selected'));
                     viewer.compute($('#content-wrapper'));
                 });
-            } else if (json && json.msg) {
-                $('#extracting').hide();
+            } else if (json) {
+                var errors = false;
                 $.each(json.msg, function(k) {
-                    $('<p>').text(json.msg[k])
-                                .appendTo($('#file-viewer div.error'));
+                    if (json.msg[k] !== null) {
+                        errors = true;
+                        $('<p>').text(json.msg[k]).appendTo($('#file-viewer div.error'));
+                    }
                 });
-                $('#file-viewer div.error').show();
-            } else {
-                setTimeout(poll_file_extraction, 2000);
+                if (errors) {
+                    $('#file-viewer div.error').show();
+                    $('#extracting').hide()
+                } else {
+                    setTimeout(poll_file_extraction, 2000);
+                }
             }
         });
     }
