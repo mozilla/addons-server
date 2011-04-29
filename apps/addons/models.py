@@ -1203,23 +1203,6 @@ class Category(amo.models.ModelBase):
             addon.all_categories = cats.get(addon.id, [])
 
 
-class CompatibilityReport(models.Model):
-    guid = models.CharField(max_length=128, db_index=True)
-    works_properly = models.NullBooleanField()
-    app_guid = models.CharField(max_length=128, blank=True)
-    app_version = models.CharField(max_length=128, blank=True)
-    app_build = models.CharField(max_length=128, blank=True)
-    client_os = models.CharField(max_length=128, blank=True)
-    client_ip = models.CharField(max_length=128, blank=True)
-    version = models.CharField(max_length=128, default='0.0')
-    comments = models.TextField()
-    other_addons = models.TextField()
-    created = models.DateTimeField(null=True)
-
-    class Meta:
-        db_table = 'compatibility_reports'
-
-
 class Feature(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)
     start = models.DateTimeField()

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title(_('Add-on Compatibility Reports')) }}{% endblock %}
+
+{% block content %}
+<div class="primary">
+  <hgroup>
+    <h2>{{ _('Add-on Compatibility Reports') }}</h2>
+    <h4>{{ _("Enter the GUID of an add-on below to view any reports we've received.") }}</h4>
+  </hgroup>
+  <form action="">
+    <input name="guid" value="{{ query }}" id="compat-query">
+  </form>
+</div>
+<div class="secondary">
+  <div class="highlight">
+    {% trans url_ = '/en-US/firefox/addon/15003' %}<p>
+    Reports submitted to us through the
+    <a href="{{ url_ }}">Add-on Compatibility Reporter</a> are collected here
+    for developers to view. These reports help us determine which add-ons will
+    need help supporting an upcoming Firefox version.
+    </p>{% endtrans %}
+  </div>
+  {% if addons %}
+  <div class="highlight">
+    <h4>{{ _('Reports for your Add-ons') }}</h4>
+    <ul>
+      {% for addon in addons %}
+      <li>
+        <a href="{{ url('compat.reporter_detail', addon.guid) }}">{{ addon.name }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
