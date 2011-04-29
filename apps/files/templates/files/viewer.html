@@ -18,6 +18,7 @@
             <p class="waiting" id="extracting" data-url="{{ poll_url }}">
                 {{ _('Add-on file being processed, please wait.') }}
             </p>
+            <div class="notification-box error js-hidden"></div>
         {% endif %}
         <div id="files">
             {% if files %}
@@ -36,7 +37,7 @@
                 <p>{{ _('No files in the uploaded file.') }}</p>
             {% endif %}
         </div>
-        <div id="thinking" class="hidden">
+        <div id="thinking" class="js-hidden">
             <p class="waiting">
                 {{ _('Fetching file.') }}
             </p>
@@ -65,9 +66,9 @@
                     </p>
                 {% endif %}
                 {% if text_one and text_two %}
-                        <pre id="diff" class="wrapped hidden"></pre>
-                        <pre class="left hidden">{{ text_one }}</pre>
-                        <pre class="right hidden">{{ text_two }}</pre>
+                        <pre id="diff" class="wrapped js-hidden"></pre>
+                        <pre class="left js-hidden">{{ text_one }}</pre>
+                        <pre class="right js-hidden">{{ text_two }}</pre>
                 {% endif %}
                 {% if selected and not selected['directory']%}
                     {% if diff.one %}

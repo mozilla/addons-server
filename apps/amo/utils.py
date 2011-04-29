@@ -449,7 +449,34 @@ def memoize(prefix, time=60):
     return decorator
 
 
+class Message:
+    """
+    A simple message class for when you don't have a session, but wish
+    to pass a message through memcache. For example, memcache up to the
+    user.
+    """
+    def __init__(self, key):
+        self.key = '%s:message:%s' % (settings.CACHE_PREFIX, key)
+
+    def delete(self):
+        cache.delete(self.key)
+
+    def save(self, message, time=60 * 5):
+        cache.set(self.key, message, time)
+
+    def get(self, delete=False):
+        res = cache.get(self.key)
+        cache.delete(self.key)
+        return res
+
+
 class Token:
+    """
+    A simple token, useful for security. It can have an expiry
+    or be grabbed and deleted. It will check that the key is valid and
+    and well formed before checking. If you don't have a key, it will
+    generate a randomish one for you.
+    """
     _well_formed = re.compile('^[a-z0-9-]+$')
 
     def __init__(self, token=None, data=True):

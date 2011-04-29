@@ -13,6 +13,7 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
 
+from amo.utils import Message
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from files.helpers import FileViewer, DiffHelper
@@ -318,6 +319,15 @@ class TestFileViewer(FilesBase, test_utils.TestCase):
         res = self.client.get(self.file_url(not_binary))
         doc = pq(res.content)
         assert doc('p.notification-box').text().startswith('File size is')
+
+    def test_poll_failed(self):
+        msg = Message('file-viewer:%s' % self.file_viewer)
+        msg.save('I like cheese.')
+        res = self.client.get(self.poll_url())
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['status'], False)
+        eq_(data['msg'], ['I like cheese.'])
 
 
 class TestDiffViewer(FilesBase, test_utils.TestCase):

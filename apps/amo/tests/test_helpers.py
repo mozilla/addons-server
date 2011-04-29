@@ -5,6 +5,7 @@ import os
 
 from django.conf import settings
 from django.core import mail
+from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.utils import encoding
 
@@ -17,7 +18,7 @@ import test_utils
 
 import amo
 from amo import urlresolvers, utils, helpers
-from amo.utils import ImageCheck, Token
+from amo.utils import ImageCheck, Message, Token
 from versions.models import License
 
 
@@ -405,6 +406,32 @@ class TestToken(test_utils.TestCase):
     def test_token_well_formed(self):
         new = Token('some badly formed token')
         assert not new.well_formed()
+
+
+class TestMessage(test_utils.TestCase):
+
+    def test_message_save(self):
+        new = Message('abc')
+        new.save('123')
+
+        new = Message('abc')
+        eq_(new.get(), '123')
+
+    def test_message_expires(self):
+        new = Message('abc')
+        new.save('123')
+        cache.clear()
+
+        new = Message('abc')
+        eq_(new.get(), None)
+
+    def test_message_get_delete(self):
+        new = Message('abc')
+        new.save('123')
+
+        new = Message('abc')
+        eq_(new.get(delete=True), '123')
+        eq_(new.get(delete=True), None)
 
 
 def test_site_nav():

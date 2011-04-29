@@ -62,7 +62,7 @@ function bind_viewer(nodes) {
                                          '<span class="code"> {1}</span></div>', k+1, text));
                     }
                 }
-                $content.html(html.join('')).removeClass('hidden').show();
+                $content.html(html.join('')).show();
             }
 
             if ($diff.length) {
@@ -71,7 +71,7 @@ function bind_viewer(nodes) {
                 var a = dmp.diff_linesToChars_($diff.siblings('.left').text(), $diff.siblings('.right').text());
                 var diffs = dmp.diff_main(a[0], a[1], false);
                 dmp.diff_charsToLines_(diffs, a[2]);
-                $diff.html(dmp.diff_prettyHtml(diffs)).removeClass('hidden').show();
+                $diff.html(dmp.diff_prettyHtml(diffs)).show();
             }
 
             if (window.location.hash) {
@@ -93,13 +93,11 @@ function bind_viewer(nodes) {
         this.show_leaf = function($leaf) {
             /* Exposes the leaves for a given set of node. */
             $leaf.removeClass('closed').addClass('open')
-                 .closest('li').next('ul')
-                 .removeClass('hidden').show();
+                 .closest('li').next('ul').show();
         };
         this.selected = function($link) {
             /* Exposes all the leaves to an element */
-            $link.parentsUntil('ul.root').filter('ul')
-                 .removeClass('hidden').show()
+            $link.parentsUntil('ul.root').filter('ul').show()
                  .each(function() {
                         $(this).prev('li').find('a:first')
                                .removeClass('closed').addClass('open');
@@ -113,7 +111,7 @@ function bind_viewer(nodes) {
             var self = this,
                 $old_wrapper = $('#content-wrapper');
             $old_wrapper.hide();
-            this.nodes.$thinking.removeClass('hidden').show();
+            this.nodes.$thinking.show();
             if (history.pushState !== undefined) {
                 history.pushState({ path: $link.text() }, '', $link.attr('href'));
             }
@@ -172,11 +170,17 @@ function bind_viewer(nodes) {
     }));
 
     $('#files-prev').click(_pd(function() {
-        viewer.select(viewer.nodes.$files.find('a.file').eq(viewer.get_selected() - 1));
+        var prev = viewer.get_selected() - 1
+        if (prev >= 0) {
+            viewer.select(viewer.nodes.$files.find('a.file').eq(prev));
+        }
     }));
 
     $('#files-next').click(_pd(function() {
-        viewer.select(viewer.nodes.$files.find('a.file').eq(viewer.get_selected() + 1));
+        var next = viewer.nodes.$files.find('a.file').eq(viewer.get_selected() + 1);
+        if (next.length) {
+            viewer.select(next);
+        }
     }));
 
     $('#files-wrap').click(_pd(function() {
@@ -231,6 +235,13 @@ $(document).ready(function() {
                     viewer.selected(viewer.nodes.$files.find('a.selected'));
                     viewer.compute($('#content-wrapper'));
                 });
+            } else if (json && json.msg) {
+                $('#extracting').hide();
+                $.each(json.msg, function(k) {
+                    $('<p>').text(json.msg[k])
+                                .appendTo($('#file-viewer div.error'));
+                });
+                $('#file-viewer div.error').show();
             } else {
                 setTimeout(poll_file_extraction, 2000);
             }

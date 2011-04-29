@@ -41,12 +41,12 @@ def file_tree(files, selected):
     t = env.get_template('files/node.html')
     for k, v in files.items():
         if v['depth'] > depth:
-            output.append('<ul class="hidden">')
+            output.append('<ul class="js-hidden">')
         elif v['depth'] < depth:
-            output.extend(['</ul>' for x in range(v['depth'], depth) ])
+            output.extend(['</ul>' for x in range(v['depth'], depth)])
         output.append(t.render(value=v, selected=selected))
         depth = v['depth']
-    output.extend(['</ul>' for x in range(depth, -1, -1) ])
+    output.extend(['</ul>' for x in range(depth, -1, -1)])
     return jinja2.Markup('\n'.join(output))
 
 
@@ -71,10 +71,12 @@ class FileViewer:
             os.makedirs(os.path.dirname(self.dest))
         except OSError, err:
             pass
+
         try:
             extract_xpi(self.src, self.dest, expand=True)
         except Exception, err:
             task_log.error('Error (%s) extracting %s' % (err, self.src))
+            raise
 
     def cleanup(self):
         if os.path.exists(self.dest):

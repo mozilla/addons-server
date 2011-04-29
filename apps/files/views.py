@@ -11,7 +11,7 @@ import jingo
 from access import acl
 from amo.decorators import json_view
 from amo.urlresolvers import reverse
-from amo.utils import HttpResponseSendFile, Token
+from amo.utils import HttpResponseSendFile, Message, Token
 from files.decorators import file_view, compare_file_view, file_view_token
 from files.tasks import extract_file
 
@@ -43,7 +43,8 @@ def setup_viewer(request, file_obj):
 @json_view
 @file_view
 def files_poll(request, viewer):
-    return {'status': viewer.is_extracted}
+    return {'status': viewer.is_extracted,
+            'msg': [Message('file-viewer:%s' % viewer).get(delete=True)]}
 
 
 @file_view
@@ -79,7 +80,12 @@ def files_list(request, viewer, key='install.rdf'):
 @compare_file_view
 @json_view
 def files_compare_poll(request, diff):
-    return {'status': diff.is_extracted}
+    msgs = []
+    for f in (diff.file_one, diff.file_two):
+        m = Message('file-viewer:%s' % f).get(delete=True)
+        if m:
+            msgs.append(m)
+    return {'status': diff.is_extracted, 'msg': msgs}
 
 
 @compare_file_view
@@ -109,7 +115,8 @@ def files_compare(request, diff, key='install.rdf'):
                 data['msg'] = omsg or tmsg
 
     else:
-        extract_file.delay(diff)
+        extract_file.delay(diff.file_one)
+        extract_file.delay(diff.file_two)
 
     response = jingo.render(request, 'files/viewer.html', data)
     if not settings.DEBUG:
