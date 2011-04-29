@@ -886,4 +886,4 @@ RESPONSYS_ID = ''
 FILE_VIEWER_SIZE_LIMIT = 1048576
 
 # How long to delay modify updates to cope with alleged NFS slowness.
-MODIFIED_DELAY = 3
+MODIFIED_DELAY = 120
