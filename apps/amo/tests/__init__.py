@@ -1,3 +1,6 @@
+from datetime import datetime, timedelta
+import time
+
 from django import forms
 
 from redisutils import mock_redis, reset_redis
@@ -48,3 +51,34 @@ class RedisTest(object):
     def tearDown(self):
         super(RedisTest, self).tearDown()
         reset_redis(self._redis)
+
+
+def close_to_now(dt):
+    """
+    Make sure the datetime is within a minute from `now`.
+    """
+    dt_ts = time.mktime(dt.timetuple())
+    dt_minute_ts = time.mktime((dt + timedelta(minutes=1)).timetuple())
+    now_ts = time.mktime(datetime.now().timetuple())
+
+    return now_ts >= dt_ts and now_ts < dt_minute_ts
+
+
+def assert_no_validation_errors(validation):
+    """Assert that the validation (JSON) does not contain a traceback.
+
+    Note that this does not test whether the addon passed
+    validation or not.
+    """
+    if hasattr(validation, 'task_error'):
+        # FileUpload object:
+        error = validation.task_error
+    else:
+        # Upload detail - JSON output
+        error = validation['error']
+    if error:
+        print '-' * 70
+        print error
+        print '-' * 70
+        raise AssertionError("Unexpected task error: %s" %
+                             error.rstrip().split("\n")[-1])

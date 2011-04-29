@@ -5,7 +5,6 @@ import re
 import shutil
 import socket
 import tempfile
-import time
 from datetime import datetime, timedelta
 from decimal import Decimal
 from collections import namedtuple
@@ -25,7 +24,8 @@ import amo
 import amo.tests
 import paypal
 from amo.urlresolvers import reverse
-from amo.tests import formset, initial
+from amo.tests import (formset, initial, close_to_now,
+                       assert_no_validation_errors)
 from amo.tests.test_helpers import get_image_path
 from addons import cron
 from addons.forms import AddonFormBasic
@@ -41,37 +41,6 @@ from tags.models import Tag, AddonTag
 from translations.models import Translation
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, License, Version
-
-
-def assert_no_validation_errors(validation):
-    """Assert that the validation (JSON) does not contain a traceback.
-
-    Note that this does not test whether the addon passed
-    validation or not.
-    """
-    if hasattr(validation, 'task_error'):
-        # FileUpload object:
-        error = validation.task_error
-    else:
-        # Upload detail - JSON output
-        error = validation['error']
-    if error:
-        print '-' * 70
-        print error
-        print '-' * 70
-        raise AssertionError("Unexpected task error: %s" %
-                             error.rstrip().split("\n")[-1])
-
-
-def close_to_now(dt):
-    """
-    Make sure the datetime is within a minute from `now`.
-    """
-    dt_ts = time.mktime(dt.timetuple())
-    dt_minute_ts = time.mktime((dt + timedelta(minutes=1)).timetuple())
-    now_ts = time.mktime(datetime.now().timetuple())
-
-    return now_ts >= dt_ts and now_ts < dt_minute_ts
 
 
 class MetaTests(test_utils.TestCase):
