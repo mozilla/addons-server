@@ -82,6 +82,7 @@ class FileViewer:
                 extract_xpi(self.src, self.dest, expand=True)
             except Exception, err:
                 task_log.error('Error (%s) extracting %s' % (err, self.src))
+                raise
 
     def cleanup(self):
         if os.path.exists(self.dest):

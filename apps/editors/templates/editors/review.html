@@ -110,7 +110,7 @@
   {% if show_diff %}
     &middot;
     {% if waffle.switch('zamboni-file-viewer') %}
-        <a href="{{ url('files.compare', file.id, show_diff.id) }}">{{ _('Compare With Public Version') }}</a>
+        <a href="{{ url('files.compare', file.id, file_compare(file, show_diff)) }}">{{ _('Compare With Public Version') }}</a>
     {% else %}
         <a href="{{ remora_url('/files/diff/%d/' % file.id) }}">{{ _('Compare With Public Version') }}</a>
     {% endif %}

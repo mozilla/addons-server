@@ -1361,7 +1361,7 @@ class TestReview(ReviewBase):
         eq_(doc('.files a:last-child').text(), 'Compare With Public Version')
         eq_(doc('.files a:last-child').attr('href'),
             reverse('files.compare', args=(next_file.pk,
-                                           first_file.version.pk)))
+                                           first_file.pk)))
 
 
 class TestReviewPreliminary(ReviewBase):

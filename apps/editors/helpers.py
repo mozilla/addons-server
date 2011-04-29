@@ -20,6 +20,20 @@ from editors.sql_table import SQLTable
 
 
 @register.function
+def file_compare(file_obj, version):
+    # Compare this file to the one in the version with same platform
+    file_obj = version.files.filter(platform=file_obj.platform)
+    # If not there, just compare to all.
+    if not file_obj:
+        file_obj = version.files.filter(platform=amo.PLATFORM_ALL.id)
+    # At this point we've got no idea what Platform file to
+    # compare with, so just chose the first.
+    if not file_obj:
+        file_obj = version.files.all()
+    return file_obj[0]
+
+
+@register.function
 def file_review_status(addon, file):
     if file.status not in [amo.STATUS_DISABLED, amo.STATUS_PUBLIC]:
         if addon.status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]:

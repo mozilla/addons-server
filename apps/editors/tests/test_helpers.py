@@ -20,6 +20,7 @@ from editors import helpers
 from files.models import File
 from translations.models import Translation
 from users.models import UserProfile
+from versions.models import Version
 
 
 REVIEW_ADDON_STATUSES = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
@@ -649,3 +650,39 @@ def test_send_email_autoescape():
                       'aww yeah', ['xx'], ctx)
     eq_(len(mail.outbox), 1)
     eq_(mail.outbox[0].body.count(s), len(ctx))
+
+
+class TestCompareLink(test_utils.TestCase):
+    fixtures = ['base/addon_3615', 'base/platforms']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(pk=3615)
+        self.current = File.objects.get(pk=67442)
+        self.version = Version.objects.create(addon=self.addon)
+
+    def test_same_platform(self):
+        file = File.objects.create(version=self.version,
+                                   platform=self.current.platform)
+        eq_(file.pk, helpers.file_compare(self.current, self.version).pk)
+
+    def test_different_platform(self):
+        file = File.objects.create(version=self.version,
+                                   platform=self.current.platform)
+        File.objects.create(version=self.version,
+                            platform_id=amo.PLATFORM_LINUX.id)
+        eq_(file.pk, helpers.file_compare(self.current, self.version).pk)
+
+    def test_specific_platform(self):
+        self.current.platform_id = amo.PLATFORM_LINUX.id
+        self.current.save()
+
+        linux = File.objects.create(version=self.version,
+                                    platform_id=amo.PLATFORM_LINUX.id)
+        eq_(linux.pk, helpers.file_compare(self.current, self.version).pk)
+
+    def test_no_platform(self):
+        self.current.platform_id = amo.PLATFORM_LINUX.id
+        self.current.save()
+        file = File.objects.create(version=self.version,
+                                   platform_id=amo.PLATFORM_WIN.id)
+        eq_(file.pk, helpers.file_compare(self.current, self.version).pk)
