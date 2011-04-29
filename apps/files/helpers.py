@@ -108,9 +108,9 @@ class FileViewer:
             elif minor in ['xml', 'rdf+xml', 'javascript', 'x-javascript',
                            'xml-dtd', 'vnd.mozilla.xul+xml']:
                 return False
-        elif os.path.splitext(filename)[1] in ['.dtd', '.xul', '.properties',
-                                               '.src', '.mf', '.sf', '.json',
-                                               '.manifest']:
+        if os.path.splitext(filename)[1] in ['.dtd', '.xul', '.properties',
+                                             '.src', '.mf', '.sf', '.json',
+                                             '.manifest']:
             return False
         return True
 

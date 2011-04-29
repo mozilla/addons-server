@@ -66,7 +66,7 @@ class TestFileHelper(test_utils.TestCase):
         binary = self.viewer.is_binary
         for f in ['foo.rdf', 'foo.xml', 'foo.js', 'foo.py'
                   'foo.html', 'foo.txt', 'foo.dtd', 'foo.xul',
-                  'foo.properties', 'foo.json']:
+                  'foo.properties', 'foo.json', 'foo.src']:
             m, encoding = mimetypes.guess_type(f)
             assert not binary(m, f), '%s should not be binary' % f
 
