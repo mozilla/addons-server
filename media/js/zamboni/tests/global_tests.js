@@ -65,25 +65,6 @@ asyncTest('header sent', function() {
     });
 });
 
-module('CSRF Token from cookie', {
-    setup: function() {
-        this._csrf = $.cookie('csrftoken');
-        $.cookie('csrftoken', '<csrf-cookie>');
-    },
-    teardown: function() {
-        $.mockjaxClear();
-        if (this._csrf) {
-            $.cookie('csrftoken', this._csrf);
-        }
-    }
-});
-
-asyncTest('header sent', function() {
-    _inspectHeaders(function(headers) {
-        equals(headers['X-CSRFToken'], '<csrf-cookie>');
-    });
-});
-
 module('CSRF Token: remote', {
     setup: function() {
         $.cookie('csrftoken', null);
