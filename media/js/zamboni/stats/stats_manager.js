@@ -1,4 +1,3 @@
-// (function () {
 
     // Versioning for offline storage
     var version = "12";
@@ -581,4 +580,3 @@
 
 
     };
-// })();
