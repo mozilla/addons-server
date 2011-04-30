@@ -83,8 +83,8 @@ python manage.py syncdb --noinput
 echo "Starting JS tests..." `date`
 
 rm $LOG
-# NOTE: the host value here needs to match the 'zambnoi' suite in jstestnet
 cd scripts
-python run_jstests.py -v --with-xunit --with-zamboni --zamboni-host sm-hudson01 --zamboni-log $LOG --with-jstests --jstests-server http://jstestnet.farmdev.com/ --jstests-suite zamboni --jstests-browsers firefox --debug nose.plugins.jstests
+# These env vars are set in the Jenkins build step.
+python run_jstests.py -v --with-xunit --with-django-serv --django-host "$DJANGO_HOST" --django-port "$DJANGO_PORT" --django-log $LOG --with-jstests --jstests-server http://jstestnet.farmdev.com/ --jstests-suite zamboni --jstests-token "$JSTESTS_TOKEN" --jstests-url http://$DJANGO_HOST:$DJANGO_PORT/en-US/qunit --jstests-browsers firefox --debug nose.plugins.jstests
 
 echo 'shazam!'
