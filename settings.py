@@ -897,7 +897,7 @@ RESPONSYS_ID = ''
 FILE_VIEWER_SIZE_LIMIT = 1048576
 
 # How long to delay modify updates to cope with alleged NFS slowness.
-MODIFIED_DELAY = 60
+MODIFIED_DELAY = 3
 
 # This is a list of dictionaries that we should generate compat info for.
 # app: should match amo.FIREFOX.id.
