@@ -17,9 +17,9 @@ $(document).ready(function(){
         var viewer = bind_viewer(nodes);
         viewer.toggle_leaf(this.sandbox.find('a.directory'));
         equal(this.sandbox.find('a.directory').hasClass('open'), true);
-        equal(this.sandbox.find('ul').hasClass('hidden'), false);
+        equal(this.sandbox.find('ul:hidden').length, 0);
         viewer.toggle_leaf(this.sandbox.find('a.directory'));
         equal(this.sandbox.find('a.directory').hasClass('open'), false);
-        equal(this.sandbox.find('ul').hasClass('hidden'), true);
+        equal(this.sandbox.find('ul:hidden').length, 1);
     });
 });
