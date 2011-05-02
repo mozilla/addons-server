@@ -87,8 +87,7 @@ function bind_viewer(nodes) {
         };
         this.hide_leaf = function($leaf) {
             $leaf.removeClass('open').addClass('closed')
-                 .closest('li').next('ul')
-                 .addClass('hidden').hide();
+                 .closest('li').next('ul').hide();
         };
         this.show_leaf = function($leaf) {
             /* Exposes the leaves for a given set of node. */
