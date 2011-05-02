@@ -28,11 +28,14 @@ def index(request, version=None):
     COMPAT = [v for v in settings.COMPAT if v['app'] == request.APP.id]
     if version is None and COMPAT:
         version = COMPAT[0]['version']
-    if version not in [v['version'] for v in COMPAT]:
-        raise http.Http404()
+
     redis = redisutils.connections['master']
     compat = redis.hgetall('compat:%s:%s' % (request.APP.id, version))
     versions = dict((k, int(v)) for k, v in compat.items())
+
+    if version not in [v['version'] for v in COMPAT] or not versions:
+        raise http.Http404()
+
     total = sum(versions.values())
     keys = [(k, unicode(v)) for k, v in KEYS]
     return jingo.render(request, 'compat/index.html',

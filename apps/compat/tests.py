@@ -2,10 +2,12 @@ import json
 
 from django.conf import settings
 
+import redisutils
 import test_utils
 from nose.tools import eq_
 
 import amo
+import amo.tests
 from amo.urlresolvers import reverse
 from compat.models import CompatReport
 
@@ -62,14 +64,20 @@ class TestIncoming(test_utils.TestCase):
         eq_(r.status_code, 400)
 
 
-class TestCompat(test_utils.TestCase):
+class TestCompat(amo.tests.RedisTest, test_utils.TestCase):
+
+    def setUp(self):
+        super(TestCompat, self).setUp()
+        self.version = [v['version'] for v in settings.COMPAT
+                        if v['app'] == amo.FIREFOX.id][0]
+        d = {'latest': 10, 'beta': 5, 'alpha': 3, 'other': 12}
+        redis = redisutils.connections['master']
+        redis.hmset('compat:%s:%s' % (amo.FIREFOX.id, self.version), d)
 
     def test_success(self):
         r = self.client.get(reverse('compat.index'))
         eq_(r.status_code, 200)
-        version = [v['version'] for v in settings.COMPAT
-                   if v['app'] == amo.FIREFOX.id][0]
-        eq_(r.context['version'], version)
+        eq_(r.context['version'], self.version)
 
 
 class TestReporter(test_utils.TestCase):
