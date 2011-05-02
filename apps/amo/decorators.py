@@ -101,7 +101,8 @@ def set_modified_on(f):
             for obj in objs:
                 task_log.info('Delaying setting modified on object: %s, %s' %
                               (obj.__class__.__name__, obj.pk))
-                set_modified_on_object.delay(obj,
-                                             countdown=settings.MODIFIED_DELAY)
+                set_modified_on_object.apply_async(
+                                            args=[obj], kwargs=None,
+                                            countdown=settings.MODIFIED_DELAY)
         return result
     return wrapper
