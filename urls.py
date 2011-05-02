@@ -72,7 +72,7 @@ urlpatterns = patterns('',
     url('^statistics/', lambda r: redirect('/'), name='statistics.dashboard'),
 
     # Javascript translations.
-    url('^jsi18n/.*$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
+    url('^jsi18n.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
         {'domain': 'javascript', 'packages': ['zamboni']}, name='jsi18n'),
 
     # SAMO/API
