@@ -103,5 +103,5 @@ data-account-url="{{ services_url('discovery.pane_account') }}"
 
 {% block js %}
   {{ js('zamboni/discovery') }}
-  <script async defer src="{{ url('addons.buttons.js') }}/build:{{ BUILD_ID_JS }}"></script>
+  <script async defer src="{{ url('addons.buttons.js') }}?build={{ BUILD_ID_JS }}"></script>
 {% endblock %}
