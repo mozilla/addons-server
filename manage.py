@@ -2,6 +2,7 @@
 import os
 import site
 import sys
+import warnings
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -44,6 +45,9 @@ except ImportError:
             "but neither could be found (or they're throwing an ImportError)."
             " Please come back and try again later.")
         raise
+
+if not settings.DEBUG:
+    warnings.simplefilter('ignore')
 
 # The first thing execute_manager does is call `setup_environ`.  Logging config
 # needs to access settings, so we'll setup the environ early.
