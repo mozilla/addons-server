@@ -74,7 +74,9 @@ def incoming(request):
 def reporter(request):
     query = request.GET.get('guid')
     if query:
-        qs = Addon.objects.filter(id=query)
+        qs = None
+        if query.isdigit():
+            qs = Addon.objects.filter(id=query)
         if not qs:
             qs = Addon.objects.filter(slug=query)
         if not qs:
@@ -95,7 +97,7 @@ def reporter_detail(request, guid):
         raise http.Http404()
 
     works_ = dict(qs.values_list('works_properly').annotate(Count('id')))
-    works = {'success': works_[True], 'failure': works_[False]}
+    works = {'success': works_.get(True, 0), 'failure': works_.get(False, 0)}
 
     if 'works_properly' in request.GET:
         qs = qs.filter(works_properly=request.GET['works_properly'])

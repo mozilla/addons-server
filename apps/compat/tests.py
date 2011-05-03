@@ -9,6 +9,7 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
+from addons.models import Addon
 from compat.models import CompatReport
 
 
@@ -81,7 +82,23 @@ class TestCompat(amo.tests.RedisTest, test_utils.TestCase):
 
 
 class TestReporter(test_utils.TestCase):
+    fixtures = ['base/addon_3615']
 
     def test_success(self):
         r = self.client.get(reverse('compat.reporter'))
         eq_(r.status_code, 200)
+
+    def test_redirect(self):
+        addon = Addon.objects.get(id=3615)
+        CompatReport.objects.create(guid=addon.guid, app_guid=amo.FIREFOX.guid)
+        url = reverse('compat.reporter')
+        expected = reverse('compat.reporter_detail', args=[addon.guid])
+
+        self.assertRedirects(self.client.get(url + '?guid=%s' % addon.id),
+                                             expected)
+        self.assertRedirects(self.client.get(url + '?guid=%s' % addon.slug),
+                                             expected)
+        self.assertRedirects(self.client.get(url + '?guid=%s' % addon.guid),
+                                             expected)
+        self.assertRedirects(self.client.get(url + '?guid=%s' % addon.guid[:5]),
+                                             expected)
