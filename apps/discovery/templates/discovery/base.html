@@ -22,7 +22,7 @@
         data-show-recs="{{ waffle.flag('disco-pane-show-recs')|json }}"
         {% block bodyattrs %}{% endblock %}>
     {% block content %}{% endblock %}
-    <script src="{{ url('jsi18n') }}?build={{ BUILD_ID_JS }}"></script>
+    <script src="{{ production_media(url('jsi18n')) }}"></script>
     {% block js %}{% endblock %}
   </body>
 </html>
