@@ -50,3 +50,6 @@ SESSION_COOKIE_DOMAIN = None
 
 # Run tasks immediately, don't try using the queue.
 CELERY_ALWAYS_EAGER = True
+
+# paths for images, not necessary for dev
+STATIC_URL = ''

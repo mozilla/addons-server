@@ -49,8 +49,8 @@ echo "Updating vendor..."
 pushd $VENDOR && git pull && git submodule --quiet sync && git submodule update --init;
 popd
 
-cat > settings_local.py <<SETTINGS
-from settings import *
+cp -f docs/settings/settings_local.dev.py settings_local.py
+cat >> settings_local.py <<SETTINGS
 ROOT_URLCONF = '%s.urls' % ROOT_PACKAGE
 LOG_LEVEL = logging.ERROR
 # Database name has to be set because of sphinx
