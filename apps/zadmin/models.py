@@ -51,13 +51,21 @@ class ValidationJob(amo.models.ModelBase):
     finish_email = models.CharField(max_length=255, null=True)
     completed = models.DateTimeField(null=True, db_index=True)
 
+    def result_passing(self):
+        return self.result_set.exclude(completed=None).filter(errors=0)
+
+    def result_completed(self):
+        return self.result_set.exclude(completed=None)
+
+    def result_errors(self):
+        return self.result_set.exclude(task_error=None)
+
     @amo.cached_property
     def stats(self):
         total = self.result_set.count()
-        completed = self.result_set.exclude(completed=None).count()
-        passing = (self.result_set.exclude(completed=None)
-                   .filter(errors=0).count())
-        errors = self.result_set.exclude(task_error=None).count()
+        completed = self.result_completed().count()
+        passing = self.result_passing().count()
+        errors = self.result_errors().count()
         return {
             'total': total,
             'completed': completed,
@@ -66,7 +74,7 @@ class ValidationJob(amo.models.ModelBase):
             'errors': errors,
             'percent_complete': (Decimal(completed) / Decimal(total)
                                  * Decimal(100)
-                                 if (total and completed) else 0)
+                                 if (total and completed) else 0),
         }
 
     class Meta:

@@ -13,11 +13,13 @@ from hera.contrib.django_forms import FlushForm
 from hera.contrib.django_utils import get_hera, flush_urls
 import jinja2
 import jingo
+from tower import ugettext as _
 
 from amo import messages
 from amo.decorators import login_required, json_view, post_required
 import amo.models
 from amo.urlresolvers import reverse
+from amo.utils import chunked
 from addons.models import Addon
 from files.models import Approval, File
 from versions.models import Version
@@ -195,3 +197,23 @@ def start_validation(request):
     else:
         transaction.rollback()
         return validation(request, form=form)
+
+
+def completed_versions_dirty(job):
+    """Given a job, calculate which unique versions could need updating."""
+    return (Version.objects
+                   .filter(files__validation_results__validation_job=job)
+                   .filter(files__validation_results__errors=0)
+                   .filter(files__validation_results__completed__isnull=False)
+                   .values_list('pk', flat=True)
+                   .distinct())
+
+@post_required
+@admin.site.admin_view
+def set_max_version(request, job):
+    job = get_object_or_404(ValidationJob, pk=job)
+    versions = completed_versions_dirty(job)
+    for chunk in chunked(versions, 100):
+        tasks.set_max_versions.delay(chunk, job.pk)
+    messages.success(request, _('Updating max version task started.'))
+    return redirect(reverse('zadmin.validation'))

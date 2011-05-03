@@ -31,12 +31,29 @@ function initAdminValidation(doc) {
         });
     });
 
-    if ($elem.children('option:selected').val()
-        && !$('#id_curr_max_version option:selected, ' +
-              '#id_target_version option:selected', doc).val()) {
+    if ($elem.children('option:selected').val() &&
+        !$('#id_curr_max_version option:selected, ' +
+           '#id_target_version option:selected', doc).val()) {
         // If an app is selected when page loads and it's not a form post.
         $elem.trigger('change');
     }
+
+    var $version_popup = $('#set-max-version').popup('a.set-max-version', {
+        callback: function(obj) {
+            var ct = $(obj.click_target),
+                $popup = $(this);
+            var msg = ngettext('Set {0} addon-on to a max version of {1}.',
+                               'Set {0} addon-ons to a max version of {1}.',
+                               ct.attr('data-job-count'));
+            $popup.children('p').text(format(msg, [ct.attr('data-job-count'),
+                                                   ct.attr('data-job-version')]));
+            $popup.children('form').attr('action', ct.attr('data-job-url'));
+            return { pointTo: ct };
+        }
+    });
+    $('#set-max-version span.cancel a').click(function() {
+        $version_popup.hideMe();
+    });
 }
 
 

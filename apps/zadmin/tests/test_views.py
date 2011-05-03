@@ -14,9 +14,11 @@ from amo.tests import close_to_now, assert_no_validation_errors
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from applications.models import AppVersion
+from devhub.models import ActivityLog
 from files.models import Approval, File
 from versions.models import Version
 from zadmin.models import ValidationJob, ValidationResult
+from zadmin.views import completed_versions_dirty
 
 
 class TestFlagged(test_utils.TestCase):
@@ -81,10 +83,40 @@ class BulkValidationTest(test_utils.TestCase):
         self.addon = Addon.objects.get(pk=3615)
         self.version = self.addon.get_version()
         self.curr_max = self.appversion('3.7a1pre')
+        self.counter = 0
 
     def appversion(self, version, application=amo.FIREFOX.id):
         return AppVersion.objects.get(application=application,
                                       version=version)
+
+    def create_job(self, **kwargs):
+        kw = dict(application_id=amo.FIREFOX.id,
+                  curr_max_version=self.curr_max,
+                  target_version=self.appversion('3.7a3'))
+        kw.update(kwargs)
+        return ValidationJob.objects.create(**kw)
+
+    def create_file(self, version=None):
+        if not version:
+            version = self.version
+        return File.objects.create(version=version,
+                                   filename='file-%s' % self.counter,
+                                   platform_id=amo.PLATFORM_ALL.id,
+                                   status=amo.STATUS_PUBLIC)
+
+    def create_result(self, job, f, **kwargs):
+        self.counter += 1
+        kw = dict(file=f,
+                  validation='{}',
+                  errors=0,
+                  warnings=0,
+                  notices=0,
+                  validation_job=job,
+                  task_error=None,
+                  valid=0,
+                  completed=datetime.now())
+        kw.update(kwargs)
+        return ValidationResult.objects.create(**kw)
 
 
 class TestBulkValidation(BulkValidationTest):
@@ -112,26 +144,10 @@ class TestBulkValidation(BulkValidationTest):
         assert bulk_validate_file.delay.called
 
     def test_grid(self):
-        kw = dict(application_id=amo.FIREFOX.id,
-                  curr_max_version=self.curr_max,
-                  target_version=self.appversion('3.7a3'))
-        job = ValidationJob.objects.create(**kw)
-        for i, res in enumerate((dict(errors=0), dict(errors=1))):
-            f = File.objects.create(version=self.version,
-                                    filename='file-%s' % i,
-                                    platform_id=amo.PLATFORM_ALL.id,
-                                    status=amo.STATUS_PUBLIC)
-            kw = dict(file=f,
-                      validation='{}',
-                      errors=0,
-                      warnings=0,
-                      notices=0,
-                      validation_job=job,
-                      task_error=None,
-                      completed=datetime.now())
-            kw.update(res)
-            res['valid'] = kw['errors'] == 0
-            ValidationResult.objects.create(**kw)
+        job = self.create_job()
+        for res in (dict(errors=0), dict(errors=1)):
+            self.create_result(job, self.create_file(), **res)
+
         r = self.client.get(reverse('zadmin.validation'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
@@ -139,7 +155,7 @@ class TestBulkValidation(BulkValidationTest):
         eq_(doc('table tr td').eq(3).text(), '3.7a3')
         eq_(doc('table tr td').eq(4).text(), '2')
         eq_(doc('table tr td').eq(5).text(), '1')
-        eq_(doc('table tr td').eq(6).text(), '1')
+        eq_(doc('table tr td').eq(6).text()[0], '1')
         eq_(doc('table tr td').eq(7).text(), '0')
 
     def test_application_versions_json(self):
@@ -152,6 +168,89 @@ class TestBulkValidation(BulkValidationTest):
             empty = False
             eq_(AppVersion.objects.get(pk=id).version, ver)
         assert not empty, "Unexpected: %r" % data
+
+
+class TestBulkUpdate(BulkValidationTest):
+
+    def setUp(self):
+        super(TestBulkUpdate, self).setUp()
+
+        self.job = self.create_job()
+        self.update_url = reverse('zadmin.set-max-version', args=[self.job.pk])
+        self.list_url = reverse('zadmin.validation')
+
+        self.version_one = Version.objects.create(addon=self.addon)
+        self.version_one
+        self.version_two = Version.objects.create(addon=self.addon)
+
+    def test_no_update_link(self):
+        self.create_result(self.job, self.create_file(), **{})
+        r = self.client.get(self.list_url)
+        doc = pq(r.content)
+        eq_(doc('table tr td a').text(), 'Set max version')
+
+    def test_update_link(self):
+        self.create_result(self.job, self.create_file(), **{'valid': 1})
+        r = self.client.get(self.list_url)
+        doc = pq(r.content)
+        eq_(doc('table tr td a').text(), 'Set max version')
+
+    def test_update_url(self):
+        self.create_result(self.job, self.create_file(), **{'valid': 1})
+        r = self.client.get(self.list_url)
+        doc = pq(r.content)
+        eq_(doc('table tr td a').attr('data-job-url'), self.update_url)
+
+    def test_update_anonymous(self):
+        self.client.logout()
+        r = self.client.post(self.update_url)
+        eq_(r.status_code, 302)
+
+    def test_version_pks(self):
+        for version in [self.version_one, self.version_two]:
+            for x in range(0, 3):
+                self.create_result(self.job, self.create_file(version))
+
+        eq_(sorted(completed_versions_dirty(self.job)),
+            [self.version_one.pk, self.version_two.pk])
+
+    def test_update_passing_only(self):
+        self.create_result(self.job, self.create_file(self.version_one))
+        self.create_result(self.job, self.create_file(self.version_two),
+                           errors=1)
+        eq_(sorted(completed_versions_dirty(self.job)),
+            [self.version_one.pk])
+
+    def test_update_pks(self):
+        self.create_result(self.job, self.create_file(self.version))
+        r = self.client.post(self.update_url)
+        eq_(r.status_code, 302)
+        eq_(self.version.apps.all()[0].max,
+            self.job.target_version)
+
+    def test_update_unclean_pks(self):
+        self.create_result(self.job, self.create_file(self.version))
+        self.create_result(self.job, self.create_file(self.version),
+                           errors=1)
+        r = self.client.post(self.update_url)
+        eq_(r.status_code, 302)
+        eq_(self.version.apps.all()[0].max, self.job.curr_max_version)
+
+    def test_update_pks_logs(self):
+        self.create_result(self.job, self.create_file(self.version))
+        eq_(ActivityLog.objects.for_addons(self.addon).count(), 0)
+        self.client.post(self.update_url)
+        upd = amo.LOG.BULK_VALIDATION_UPDATED.id
+        eq_((ActivityLog.objects.for_addons(self.addon)
+                                .filter(action=upd).count()), 1)
+
+    def test_update_wrong_version(self):
+        self.create_result(self.job, self.create_file(self.version))
+        av = self.version.apps.all()[0]
+        av.max = self.appversion('3.6')
+        av.save()
+        self.client.post(self.update_url)
+        eq_(self.version.apps.all()[0].max, self.appversion('3.6'))
 
 
 class TestBulkValidationTask(BulkValidationTest):

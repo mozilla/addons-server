@@ -337,6 +337,9 @@ class DELETE_REVIEW(_LOG):
     keep = True
     editor_event = True
 
+class BULK_VALIDATION_UPDATED(_LOG):
+    id = 46
+    format = _(u'Application max version for {version} updated.')
 
 class CUSTOM_TEXT(_LOG):
     id = 98

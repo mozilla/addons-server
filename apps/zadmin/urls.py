@@ -19,6 +19,8 @@ urlpatterns = patterns('',
         name='zadmin.application_versions_json'),
     url(r'^validation/start$', views.start_validation,
         name='zadmin.start_validation'),
+    url(r'^validation/set/(?P<job>\d+)$', views.set_max_version,
+        name='zadmin.set-max-version'),
     url(r'^validation$', views.validation, name='zadmin.validation'),
 
     # The Django admin.

@@ -11,6 +11,7 @@
 {% block content %}
 <section id="admin-validation">
   <h2>{{ title }}</h2>
+  {% include "messages.html" %}
   {{ form.errors }}
   <form action="{{ url('zadmin.start_validation') }}" method="post">
   {{ csrf() }}
@@ -48,11 +49,30 @@
       <td>{{ job.target_version.version }}</td>
       <td>{{ job.stats['total'] }}</td>
       <td>{{ job.stats['failing'] }}</td>
-      <td>{{ job.stats['passing'] }}</td>
+      <td>{{ job.stats['passing'] }}
+          {% if job.stats['passing'] > 0 %}
+              <a href="#" data-job-version="{{ job.target_version.version }}"
+                          data-job-url="{{ url('zadmin.set-max-version', job.pk) }}"
+                          data-job-count="{{ job.stats['passing'] }}" class="set-max-version">Set max version</a>
+          {% endif %}
+      </td>
       <td>{{ job.stats['errors'] }}</td>
       <td></td>
     </tr>
     {% endfor %}
   </table>
 </section>
+
+<div class="hidden">
+    <div class="popup" id="set-max-version">
+        <p></p>
+        <form method="post" action="">
+            {{ csrf() }}
+            <button type="submit">
+                {{ _('Continue') }}
+            </button>
+            <span class="cancel"><a href="#">{{ _('Cancel') }}</a></span>
+        </form>
+    </div>
+</div>
 {% endblock %}
