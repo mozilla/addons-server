@@ -1,25 +1,7 @@
-from django.contrib.admin import options, actions, sites
 from django.template import loader
+from django.template.response import SimpleTemplateResponse
 
 import jingo
-
-
-def django_to_jinja(template_name, context, **kw):
-    """
-    We monkeypatch Django admin's render_to_response to work in our Jinja
-    environment.  We have an admin/base_site.html template that Django's
-    templates inherit, but instead of rendering html, it renders the Django
-    pieces into a Jinja template.  We get all of Django's html, but wrapped in
-    our normal site structure.
-    """
-    context_instance = kw.pop('context_instance')
-    source = loader.render_to_string(template_name, context, context_instance)
-    request = context_instance['request']
-    return jingo.render(request, jingo.env.from_string(source))
-
-actions.render_to_response = django_to_jinja
-options.render_to_response = django_to_jinja
-sites.render_to_response = django_to_jinja
 
 
 def jinja_for_django(template_name, context=None, **kw):
@@ -37,3 +19,22 @@ def jinja_for_django(template_name, context=None, **kw):
     for d in context_instance.dicts:
         context.update(d)
     return jingo.render(request, template_name, context, **kw)
+
+
+# We monkeypatch SimpleTemplateResponse.rendered_content to use our jinja
+# rendering pipeline (most of the time). The exception is the admin app, where
+# we render their Django templates and pipe the result through jinja to render
+# our page skeleton.
+def rendered_content(self):
+    template = self.template_name
+    context_instance = self.resolve_context(self.context_data)
+    request = context_instance['request']
+
+    # Gross, let's figure out if we're in the admin.
+    if self._current_app == 'admin':
+        source = loader.render_to_string(template, context_instance)
+        template = jingo.env.from_string(source)
+
+    return jingo.render_to_string(request, template, self.context_data)
+
+SimpleTemplateResponse.rendered_content = property(rendered_content)

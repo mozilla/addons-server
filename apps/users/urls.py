@@ -1,14 +1,10 @@
 from django.contrib.auth import views as auth_views
 from django.conf.urls.defaults import patterns, url, include
 
-from zadmin import jinja_for_django
 from session_csrf import anonymous_csrf
 
 from . import forms, views
 from .models import UserProfile
-
-# So we can use the contrib logic for password resets, etc.
-auth_views.render_to_response = jinja_for_django
 
 # We need Django to use our User model.
 auth_views.User = UserProfile

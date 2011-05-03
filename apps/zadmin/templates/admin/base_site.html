@@ -4,7 +4,7 @@
 All the templatetag junk is here because we're rendering a Jinja template with
 all of Django's html inside.  The templatetag parts are defining our site's
 normal blocks, and need to be escaped so the Django template engine doesn't see
-them.  See admin.django_to_jinja for more details.
+them.  See zadmin.rendered_content for more details.
 #}
 
 {% templatetag openblock %} block title {% templatetag closeblock %}
