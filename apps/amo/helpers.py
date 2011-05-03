@@ -352,7 +352,7 @@ def mobile_sort_by(base_url, options, selected):
 
 @register.function
 @jinja2.contextfunction
-def media(context, url):
+def media(context, url, key='MEDIA_URL'):
     """Get a MEDIA_URL link with a cache buster querystring."""
     if url.endswith('.js'):
         build = context['BUILD_ID_JS']
@@ -360,16 +360,14 @@ def media(context, url):
         build = context['BUILD_ID_CSS']
     else:
         build = context['BUILD_ID_IMG']
-    return context['MEDIA_URL'] + utils.urlparams(url, b=build)
+    return context[key] + utils.urlparams(url, b=build)
 
 
 @register.function
 @jinja2.contextfunction
-def production_media(context, url):
-    """Call media() on the URL if DEBUG is off."""
-    if not settings.DEBUG:
-        return media(context, url)
-    return url
+def static(context, url):
+    """Get a STATIC_URL link with a cache buster querystring."""
+    return media(context, url, 'STATIC_URL')
 
 
 

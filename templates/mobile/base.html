@@ -75,7 +75,7 @@
     {% endblock %}
     {# js #}
     {% block site_js %}
-      <script src="{{ production_media(url('jsi18n')) }}"></script>
+      <script src="{{ static(url('jsi18n')) }}"></script>
       {{ js('zamboni/mobile') }}
     {% endblock %}
     {% block js %}{% endblock %}

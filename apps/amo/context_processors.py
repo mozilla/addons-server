@@ -16,6 +16,10 @@ def app(request):
     return {'APP': request.APP}
 
 
+def static_url(request):
+    return {'STATIC_URL': settings.STATIC_URL}
+
+
 def i18n(request):
     return {'LANGUAGES': settings.LANGUAGES,
             'LANG': settings.LANGUAGE_URL_MAP.get(translation.get_language())
