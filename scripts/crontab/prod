@@ -12,7 +12,6 @@ HOME = /tmp
 
 # Every 20 minutes.
 */20 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron check_queues
-*/20 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron migrate_activity_log
 
 # Every 30 minutes.
 */30 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron tag_jetpacks
