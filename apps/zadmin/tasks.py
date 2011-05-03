@@ -27,7 +27,7 @@ def tally_job_results(job_id, **kw):
         ValidationJob.objects.get(pk=job_id).update(completed=datetime.now())
 
 
-@task
+@task(rate_limit='20/m')
 @write
 def bulk_validate_file(result_id, **kw):
     res = ValidationResult.objects.get(pk=result_id)
