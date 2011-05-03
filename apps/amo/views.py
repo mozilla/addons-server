@@ -254,10 +254,12 @@ def _paypal(request):
     if request.method != 'POST':
         return http.HttpResponseNotAllowed(['POST'])
 
-    post = request.POST.copy()
+    # raw_post_data has to be accessed before request.POST. wtf django?
+    raw, post = request.raw_post_data, request.POST.copy()
 
     # Check that the request is valid and coming from PayPal.
-    data = u'cmd=_notify-validate&%s' % post.urlencode()
+    # The order of the params has to match the original request.
+    data = u'cmd=_notify-validate&' + raw
     paypal_response = urllib2.urlopen(settings.PAYPAL_CGI_URL,
                                       data, 20).readline()
 
