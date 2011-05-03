@@ -51,15 +51,23 @@ popd
 
 cp -f docs/settings/settings_local.dev.py settings_local.py
 cat >> settings_local.py <<SETTINGS
+
 ROOT_URLCONF = '%s.urls' % ROOT_PACKAGE
 LOG_LEVEL = logging.ERROR
-# Database name has to be set because of sphinx
-DATABASES['default']['NAME'] = 'zamboni_$1'
-DATABASES['default']['HOST'] = 'localhost'
-DATABASES['default']['USER'] = 'hudson'
-DATABASES['default']['TEST_NAME'] = 'test_zamboni_$1'
-DATABASES['default']['TEST_CHARSET'] = 'utf8'
-DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
+
+DATABASES = {
+    'default': {
+        'NAME': 'zamboni_$1',
+        'HOST': 'localhost',
+        'ENGINE': 'django.db.backends.mysql',
+        'USER': 'hudson',
+        'OPTIONS':  {'init_command': 'SET storage_engine=InnoDB'},
+        'TEST_NAME': 'test_zamboni_$1',
+        'TEST_CHARSET': 'utf8',
+        'TEST_COLLATION': 'utf8_general_ci',
+    },
+}
+
 CACHE_BACKEND = 'caching.backends.locmem://'
 CELERY_ALWAYS_EAGER = True
 ADDONS_PATH = '/tmp/warez'
