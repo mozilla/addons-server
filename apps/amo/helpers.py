@@ -364,6 +364,16 @@ def media(context, url):
 
 
 @register.function
+@jinja2.contextfunction
+def production_media(context, url):
+    """Call media() on the URL if DEBUG is off."""
+    if not settings.DEBUG:
+        return media(context, url)
+    return url
+
+
+
+@register.function
 @jinja2.evalcontextfunction
 def attrs(ctx, *args, **kw):
     return jinja2.filters.do_xmlattr(ctx, dict(*args, **kw))

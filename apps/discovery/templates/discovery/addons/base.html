@@ -27,5 +27,5 @@
 
 {% block js %}
   {{ js('zamboni/discovery') }}
-  <script async defer src="{{ url('addons.buttons.js') }}?build={{ BUILD_ID_JS }}"></script>
+  <script async defer src="{{ production_media(url('addons.buttons.js')) }}"></script>
 {% endblock %}
