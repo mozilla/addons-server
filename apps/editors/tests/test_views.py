@@ -52,7 +52,7 @@ class TestEventLog(EditorTest):
         self.login_as_editor()
         amo.set_user(UserProfile.objects.get(username='editor'))
         review = self.make_review()
-        for i in xrange(30):
+        for i in xrange(4):
             amo.log(amo.LOG.APPROVE_REVIEW, review, review.addon)
             amo.log(amo.LOG.DELETE_REVIEW, review.id, review.addon)
 
@@ -85,7 +85,7 @@ class TestEventLog(EditorTest):
         """
         r = self.client.get(reverse('editors.eventlog') + '?filter=deleted')
         doc = pq(r.content)
-        eq_(len(doc('tbody tr')), 30)
+        eq_(len(doc('tbody tr')), 4)
 
     def test_no_results(self):
         r = self.client.get(reverse('editors.eventlog') + '?end=' +
@@ -114,7 +114,7 @@ class TestReviewLog(EditorTest):
     def setUp(self):
         self.login_as_editor()
 
-    def make_approvals(self, count=51):
+    def make_approvals(self, count=6):
         Platform.objects.create(id=amo.PLATFORM_ALL.id)
         u = UserProfile.objects.filter()[0]
         for i in xrange(count):
@@ -135,8 +135,8 @@ class TestReviewLog(EditorTest):
         eq_(r.status_code, 200)
         doc = pq(r.content)
         assert doc('.listing button'), 'No filters.'
-        # Should have 50 showing.
-        eq_(len(doc('tbody tr').not_('.hide')), 50)
+        # Should have 6 showing.
+        eq_(len(doc('tbody tr').not_('.hide')), 6)
         eq_(doc('tbody tr.hide').eq(0).text(), 'youwin')
 
     def test_xss(self):
@@ -168,7 +168,7 @@ class TestReviewLog(EditorTest):
         r = self.client.get(reverse('editors.reviewlog') + '?end=' + date)
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(len(doc('tbody tr').not_('.hide')), 50)
+        eq_(len(doc('tbody tr').not_('.hide')), 6)
         eq_(doc('tbody tr.hide').eq(0).text(), 'youwin')
 
     def test_end_filter_wrong(self):
@@ -183,7 +183,7 @@ class TestReviewLog(EditorTest):
         eq_(r.status_code, 200)
 
         doc = pq(r.content)
-        eq_(doc('#log-listing tr:not(.hide)').length, 51)
+        eq_(doc('#log-listing tr:not(.hide)').length, 7)
 
     def test_breadcrumbs(self):
         r = self.client.get(reverse('editors.reviewlog'))
@@ -234,7 +234,7 @@ class TestHome(EditorTest):
         now = datetime.now()
         created = datetime(now.year - 1, now.month, 1)
 
-        for i in xrange(50):
+        for i in xrange(4):
             a = Addon.objects.create(type=amo.ADDON_EXTENSION)
             v = Version.objects.create(addon=a)
 
@@ -269,7 +269,7 @@ class TestHome(EditorTest):
         eq_(display_name, self.user.display_name)
 
         approval_count = div.find('td')[1].text
-        eq_(int(approval_count), 50)
+        eq_(int(approval_count), 4)
 
     def test_stats_monthly(self):
         self.approve_reviews()
@@ -283,7 +283,7 @@ class TestHome(EditorTest):
         eq_(display_name, self.user.display_name)
 
         approval_count = div.find('td')[1].text
-        eq_(int(approval_count), 50)
+        eq_(int(approval_count), 4)
 
     def test_new_editors(self):
         EventLog(type='admin', action='group_addmember', changed_id=2,
