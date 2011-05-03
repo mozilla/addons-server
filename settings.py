@@ -730,7 +730,6 @@ CELERY_ROUTES = {
     'users.tasks.delete_photo': {'queue': 'images'},
     'devhub.tasks.resize_icon': {'queue': 'images'},
     'devhub.tasks.resize_preview': {'queue': 'images'},
-    'zadmin.tasks.bulk_validate_file': {'queue': 'bulk-validation'},
 }
 
 
