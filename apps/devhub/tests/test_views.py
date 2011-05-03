@@ -2561,7 +2561,7 @@ class TestUploadDetail(BaseUploadTest):
         eq_(suite.attr('data-validateurl'),
             reverse('devhub.upload_detail', args=[upload.uuid, 'json']))
 
-    @mock.patch('devhub.tasks._validator')
+    @mock.patch('devhub.tasks.run_validator')
     def test_multi_app_addon_can_have_all_platforms(self, v):
         v.return_value = json.dumps(self.validation_ok())
         self.upload_file('mobile-2.9.10-fx+fn.xpi')
@@ -2572,7 +2572,7 @@ class TestUploadDetail(BaseUploadTest):
         data = json.loads(r.content)
         eq_(data['platforms_to_exclude'], [])
 
-    @mock.patch('devhub.tasks._validator')
+    @mock.patch('devhub.tasks.run_validator')
     def test_mobile_excludes_desktop_platforms(self, v):
         v.return_value = json.dumps(self.validation_ok())
         self.upload_file('mobile-0.1-fn.xpi')
@@ -2584,7 +2584,7 @@ class TestUploadDetail(BaseUploadTest):
         eq_(sorted(data['platforms_to_exclude']),
             sorted([str(p) for p in amo.DESKTOP_PLATFORMS]))
 
-    @mock.patch('devhub.tasks._validator')
+    @mock.patch('devhub.tasks.run_validator')
     def test_search_tool_excludes_all_platforms(self, v):
         v.return_value = json.dumps(self.validation_ok())
         self.upload_file('searchgeek-20090701.xml')
@@ -2596,7 +2596,7 @@ class TestUploadDetail(BaseUploadTest):
         eq_(sorted(data['platforms_to_exclude']),
             sorted([str(p) for p in amo.SUPPORTED_PLATFORMS]))
 
-    @mock.patch('devhub.tasks._validator')
+    @mock.patch('devhub.tasks.run_validator')
     def test_desktop_excludes_mobile(self, v):
         v.return_value = json.dumps(self.validation_ok())
         self.upload_file('desktop.xpi')
@@ -2608,7 +2608,7 @@ class TestUploadDetail(BaseUploadTest):
         eq_(sorted(data['platforms_to_exclude']),
             sorted([str(p) for p in amo.MOBILE_PLATFORMS]))
 
-    @mock.patch('devhub.tasks._validator')
+    @mock.patch('devhub.tasks.run_validator')
     def test_unparsable_xpi(self, v):
         v.return_value = json.dumps(self.validation_ok())
         self.upload_file('unopenable.xpi')
@@ -2766,7 +2766,7 @@ class TestValidateFile(BaseUploadTest):
         msg = data['validation']['messages'][0]
         eq_(msg['message'], 'The value of &lt;em:id&gt; is invalid.')
 
-    @mock.patch('devhub.tasks._validator')
+    @mock.patch('devhub.tasks.run_validator')
     def test_validator_errors(self, v):
         v.side_effect = ValueError('catastrophic failure in amo-validator')
         r = self.client.post(reverse('devhub.json_file_validation',

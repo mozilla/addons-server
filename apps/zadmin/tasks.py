@@ -9,7 +9,7 @@ from django.db import connection
 from celeryutils import task
 
 from amo.decorators import write
-from devhub.tasks import _validator
+from devhub.tasks import run_validator
 from zadmin.models import ValidationResult, ValidationJob
 
 log = logging.getLogger('z.task')
@@ -31,14 +31,15 @@ def tally_job_results(job_id, **kw):
 @write
 def bulk_validate_file(result_id, **kw):
     res = ValidationResult.objects.get(pk=result_id)
-    file_base = os.path.basename(res.file.file_path)
-    log.info('[1@None] Validating file %s (%s) for result_id %s'
-             % (res.file, file_base, res.id))
     task_error = None
     validation = None
     try:
-        # TODO(Kumar) when supported, add for_appversions={'{guid}': [1,2]}
-        validation = _validator(res.file.file_path)
+        file_base = os.path.basename(res.file.file_path)
+        log.info('[1@None] Validating file %s (%s) for result_id %s'
+                 % (res.file, file_base, res.id))
+        target = res.validation_job.target_version
+        ver = {target.application.guid: [target.version]}
+        validation = run_validator(res.file.file_path, for_appversions=ver)
     except:
         task_error = sys.exc_info()
         log.error(task_error[1])

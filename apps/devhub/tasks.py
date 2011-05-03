@@ -24,7 +24,7 @@ def validator(upload_id, **kw):
     log.info('VALIDATING: %s' % upload_id)
     upload = FileUpload.objects.get(pk=upload_id)
     try:
-        result = _validator(upload.path)
+        result = run_validator(upload.path)
         upload.validation = result
         upload.save()  # We want to hit the custom save().
     except:
@@ -44,11 +44,29 @@ def file_validator(file_id, **kw):
     file = File.objects.get(pk=file_id)
     # Unlike upload validation, let the validator
     # raise an exception if there is one.
-    result = _validator(file.file_path)
+    result = run_validator(file.file_path)
     return FileValidation.from_json(file, result)
 
 
-def _validator(file_path):
+def run_validator(file_path, for_appversions=None):
+    """A pre-configured wrapper around the addon validator.
+
+    *file_path*
+        Path to addon / extension file to validate.
+
+    *for_appversions=None*
+        An optional dict of application versions to validate this addon
+        for. The key is an application GUID and its value is a list of
+        versions.
+
+    To validate the addon for compatibility with Firefox 5 and 6,
+    you'd pass in::
+
+        for_appversions={amo.FIREFOX.guid: ['5.0.*', '6.0.*']}
+
+    Not all application versions will have a set of registered
+    compatibility tests.
+    """
 
     from validator.validate import validate
 
@@ -62,7 +80,9 @@ def _validator(file_path):
     if not os.path.exists(apps):
         call_command('dump_apps')
 
-    return validate(file_path, format='json',
+    return validate(file_path,
+                    for_appversions=for_appversions,
+                    format='json',
                     # This flag says to stop testing after one tier fails.
                     # bug 615426
                     determined=False,

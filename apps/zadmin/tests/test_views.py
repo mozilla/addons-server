@@ -157,11 +157,11 @@ class TestBulkValidation(BulkValidationTest):
 class TestBulkValidationTask(BulkValidationTest):
 
     def start_validation(self):
-        new_max = self.appversion('3.7a3')
+        self.new_max = self.appversion('3.7a3')
         r = self.client.post(reverse('zadmin.start_validation'),
                              {'application': amo.FIREFOX.id,
                               'curr_max_version': self.curr_max.id,
-                              'target_version': new_max.id,
+                              'target_version': self.new_max.id,
                               'finish_email': 'fliggy@mozilla.com'},
                              follow=True)
         eq_(r.status_code, 200)
@@ -185,9 +185,9 @@ class TestBulkValidationTask(BulkValidationTest):
         eq_(res.validation_job.stats['failing'], 1)
         eq_(res.validation_job.stats['errors'], 0)
 
-    @mock.patch('zadmin.tasks._validator')
-    def test_task_error(self, _validator):
-        _validator.side_effect = RuntimeError('validation error')
+    @mock.patch('zadmin.tasks.run_validator')
+    def test_task_error(self, run_validator):
+        run_validator.side_effect = RuntimeError('validation error')
         self.start_validation()
         res = ValidationResult.objects.get()
         err = res.task_error.strip()
@@ -196,6 +196,13 @@ class TestBulkValidationTask(BulkValidationTest):
         assert close_to_now(res.completed)
         eq_(res.validation_job.stats['total'], 1)
         eq_(res.validation_job.stats['errors'], 1)
+
+    @mock.patch('zadmin.tasks.run_validator')
+    def test_validate_for_appversions(self, run_validator):
+        self.start_validation()
+        assert run_validator.called
+        eq_(run_validator.call_args[1]['for_appversions'],
+            {amo.FIREFOX.guid: [self.new_max.version]})
 
 
 def test_settings():

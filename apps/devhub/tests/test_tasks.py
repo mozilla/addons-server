@@ -92,19 +92,19 @@ class TestValidator(test_utils.TestCase):
     def get_upload(self):
         return FileUpload.objects.get(pk=self.upload.pk)
 
-    @mock.patch('devhub.tasks._validator')
+    @mock.patch('devhub.tasks.run_validator')
     def test_pass_validation(self, _mock):
         _mock.return_value = '{"errors": 0}'
         validator(self.upload.pk)
         assert self.get_upload().valid
 
-    @mock.patch('devhub.tasks._validator')
+    @mock.patch('devhub.tasks.run_validator')
     def test_fail_validation(self, _mock):
         _mock.return_value = '{"errors": 2}'
         validator(self.upload.pk)
         assert not self.get_upload().valid
 
-    @mock.patch('devhub.tasks._validator')
+    @mock.patch('devhub.tasks.run_validator')
     def test_validation_error(self, _mock):
         _mock.side_effect = Exception
         eq_(self.upload.task_error, None)
