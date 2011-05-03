@@ -279,9 +279,9 @@
     </div>
 
 
-  <script src="{{ production_media(url('jsi18n')) }}"></script>
+  <script src="{{ static(url('jsi18n')) }}"></script>
   {{ js('common') }}
-  <script async defer src="{{ production_media(url('addons.buttons.js')) }}"></script>
+  <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
   <script type="text/javascript" src="{{ url('qunit_js') }}"></script>
   <script type="text/javascript" src="{{ MEDIA_URL }}js/lib/jquery.mockjax.js"></script>
   {% for url in suite.extra_urls %}
