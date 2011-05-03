@@ -44,7 +44,7 @@ def index(request, version=None):
 
 
 def details(request, version):
-    pass
+    return http.HttpResponse('go away')
 
 
 @csrf_exempt
