@@ -254,17 +254,10 @@ def _paypal(request):
     if request.method != 'POST':
         return http.HttpResponseNotAllowed(['POST'])
 
-    if not request.META['CONTENT_LENGTH']:
-        post = {}
-        raw = ""
-    else:
-        # Copying request.POST to avoid this issue:
-        # http://code.djangoproject.com/ticket/12522
-        post = request.POST.copy()
-        raw = request.raw_post_data
+    post = request.POST.copy()
 
     # Check that the request is valid and coming from PayPal.
-    data = '%s&%s' % ('cmd=_notify-validate', raw)
+    data = u'cmd=_notify-validate&%s' % post.urlencode()
     paypal_response = urllib2.urlopen(settings.PAYPAL_CGI_URL,
                                       data, 20).readline()
 
