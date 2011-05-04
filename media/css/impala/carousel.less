@@ -1,7 +1,7 @@
 @import 'lib';
 
 .pager {
-    font-family: @head-serif;
+    font-family: @serif-stack;
     display: block;
     .prev, .next {
         height: 20px;
@@ -50,4 +50,27 @@
 }
 .html-rtl .island .pager {
     float: left;
+}
+
+.slider {
+    white-space: nowrap;
+    position: relative;
+    left: 0;
+    -moz-transition-duration: .3s;
+    -moz-transition-property: left, right;
+    -webkit-transition-duration: .3s;
+    -webkit-transition-property: left, right;
+}
+
+.slider.noslide {
+    -moz-transition: none;
+    -webkit-transition: none;
+}
+
+.slider > li {
+    width: 100%;
+    white-space: normal;
+    display: inline-block;
+    vertical-align: top;
+    top: 0;
 }

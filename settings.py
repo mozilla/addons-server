@@ -385,16 +385,19 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/impala': (
             'css/impala/base.css',
+            'css/legacy/jquery-lightbox.css',
             'css/impala/site.less',
             'css/impala/typography.less',
-            'css/impala/header.less',
             'css/global/headerfooter.css',
+            'css/impala/header.less',
+            'css/impala/footer.less',
             'css/impala/moz-tab.css',
             'css/impala/hovercards.less',
             'css/impala/toplist.less',
             'css/impala/carousel.less',
             'css/impala/reviews.less',
-            # 'css/zamboni/amo_headerfooter.css',
+            'css/impala/buttons.less',
+            'css/impala/addon_details.less',
         ),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',
@@ -465,9 +468,10 @@ MINIFY_BUNDLES = {
             'js/global/menu.js',
         ),
         'impala': (
-            'js/lib/jquery-1.4.2.min.js',
+            'js/lib/jquery-1.6.min.js',
             'js/lib/jquery-ui/custom-1.8.5.min.js',
             'js/lib/underscore-min.js',
+            'js/impala/carousel.js',
             'js/zamboni/browser.js',
             'js/amo2009/addons.js',
             'js/zamboni/init.js',
@@ -490,7 +494,7 @@ MINIFY_BUNDLES = {
             'js/lib/jquery-ui/ui.lightbox.js',
             'js/get-satisfaction-v2.js',
             'js/zamboni/contributions.js',
-            'js/zamboni/addon_details.js',
+            'js/impala/addon_details.js',
             'js/zamboni/reviews.js',
 
             # Personas
@@ -518,6 +522,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
             'js/zamboni/format.js',
+            'js/impala/carousel.js',
 
             # Add-ons details
             'js/zamboni/buttons.js',

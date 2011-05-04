@@ -1,0 +1,36 @@
+<li class="account">
+  {% if user.is_authenticated() %}
+    <a href="#" class="user" title="{{ user.email }}">
+      {{ user.get_profile().welcome_name }}
+    </a>
+    {% if account_links %}
+      <ul>
+        {% for link in account_links %}
+          <li><a href="{{ link.href }}">{{ link.text }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% else %}
+    {# TODO(jbalogh): reverse #}
+    {% trans reg="/users/register", login=login_link() %}
+      <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>
+    {% endtrans %}
+  {% endif %}
+</li>
+
+{% if user.is_authenticated() %}
+  {% if tools_links and tools_links|count > 1 %}
+    <li class="tools">
+      <a href="#">{{ _('Tools') }}</a>
+      <ul>
+        {% for link in tools_links %}
+          <li><a href="{{ link.href }}">{{ link.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% else %}
+    <p class="context tools">
+      <a href="{{ tools_links[0].href }}">{{ tools_links[0].text }}</a>
+    </p>
+  {% endif %}
+{% endif %}

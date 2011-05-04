@@ -46,6 +46,8 @@ urlpatterns = patterns('',
 
     # URLs for a single add-on.
     ('^addon/%s/' % ADDON_ID, include(detail_patterns)),
+    # Impala deets.
+    url('^i/addon/%s/$' % ADDON_ID, views.impala_addon_detail, name='addons.i_detail'),
 
     # Accept extra junk at the end for a cache-busting build id.
     url('^addons/buttons.js(?:/.+)?$', 'addons.buttons.js'),

@@ -11,7 +11,6 @@
         position: relative;
         margin: 5px 5px 5px 61px;
         border: 1px solid transparent;
-        float: left;
         z-index: 20;
         h3 {
             color: #447BC4;
@@ -40,8 +39,10 @@
         }
         a {
             display: block;
-            color: black;
             text-decoration: none;
+        }
+        .button {
+            display: inline-block;
         }
         .summary {
             height: 48px;
@@ -75,6 +76,7 @@
             z-index: 1;
         }
         &:hover {
+            float: left;
             z-index: 25;
             background: #fff;
             border-color: #888;

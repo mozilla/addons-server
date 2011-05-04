@@ -252,6 +252,32 @@ def breadcrumbs(context, items=list(), add_default=True, crumb_size=40):
     return jinja2.Markup(t)
 
 
+@register.function
+@jinja2.contextfunction
+def impala_breadcrumbs(context, items=list(), add_default=True, crumb_size=40):
+    """
+    show a list of breadcrumbs. If url is None, it won't be a link.
+    Accepts: [(url, label)]
+    """
+    if add_default:
+        app = context['request'].APP
+        crumbs = [(urlresolvers.reverse('home'), page_name(app))]
+    else:
+        crumbs = []
+
+    # add user-defined breadcrumbs
+    if items:
+        try:
+            crumbs += items
+        except TypeError:
+            crumbs.append(items)
+
+    crumbs = [(url, truncate(label, crumb_size)) for (url, label) in crumbs]
+    c = {'breadcrumbs': crumbs}
+    t = env.get_template('amo/impala/breadcrumbs.html').render(**c)
+    return jinja2.Markup(t)
+
+
 @register.filter
 def json(s):
     return jsonlib.dumps(s)

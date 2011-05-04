@@ -87,6 +87,33 @@ def addon_detail(request, addon):
                 'addons.detail', args=[addon.slug]))
 
 
+@author_addon_clicked
+@addon_view
+def impala_addon_detail(request, addon):
+    """Add-ons details page dispatcher."""
+    # addon needs to have a version and be valid for this app.
+    if addon.type in request.APP.types:
+        if addon.type == amo.ADDON_PERSONA:
+            return persona_detail(request, addon)
+        else:
+            if not addon.current_version:
+                raise http.Http404
+
+            return impala_extension_detail(request, addon)
+    else:
+        # Redirect to an app that supports this type.
+        try:
+            new_app = [a for a in amo.APP_USAGE if addon.type
+                       in a.types][0]
+        except IndexError:
+            raise http.Http404
+        else:
+            prefixer = urlresolvers.get_url_prefix()
+            prefixer.app = new_app.short
+            return http.HttpResponsePermanentRedirect(reverse(
+                'addons.i_detail', args=[addon.slug]))
+
+
 def extension_detail(request, addon):
     """Extensions details page."""
 
@@ -138,6 +165,59 @@ def extension_detail(request, addon):
         data['abuse_form'] = AbuseForm(request=request)
 
     return jingo.render(request, 'addons/details.html', data)
+
+
+def impala_extension_detail(request, addon):
+    """Extensions details page."""
+
+    # if current version is incompatible with this app, redirect
+    comp_apps = addon.compatible_apps
+    if comp_apps and request.APP not in comp_apps:
+        prefixer = urlresolvers.get_url_prefix()
+        prefixer.app = comp_apps.keys()[0].short
+        return http.HttpResponsePermanentRedirect(reverse(
+            'addons.detail', args=[addon.slug]))
+
+    # source tracking
+    src = request.GET.get('src', 'addondetail')
+
+    # get satisfaction only supports en-US
+    lang = translation.to_locale(translation.get_language())
+    addon.has_satisfaction = (lang == 'en_US' and
+                              addon.get_satisfaction_company)
+
+    # other add-ons from the same author(s)
+    author_addons = order_by_translation(addon.authors_other_addons, 'name')
+
+    # tags
+    tags = addon.tags.not_blacklisted()
+
+    # addon recommendations
+    recommended = MiniAddon.objects.valid().filter(
+        recommended_for__addon=addon)[:5]
+
+    # popular collections this addon is part of
+    collections = Collection.objects.listed().filter(
+        addons=addon, application__id=request.APP.id)
+
+    data = {
+        'addon': addon,
+        'author_addons': author_addons,
+
+        'src': src,
+        'tags': tags,
+
+        'recommendations': recommended,
+        'review_form': ReviewForm(),
+        'reviews': Review.objects.latest().filter(addon=addon),
+        'get_replies': Review.get_replies,
+
+        'collections': collections.order_by('-subscribers')[:3],
+    }
+    if settings.REPORT_ABUSE:
+        data['abuse_form'] = AbuseForm(request=request)
+
+    return jingo.render(request, 'addons/impala/details.html', data)
 
 
 @mobilized(extension_detail)

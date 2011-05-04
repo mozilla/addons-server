@@ -13,7 +13,7 @@
 
 
 body {
-    font-family: @copy-stack;
+    font-family: @sans-stack;
     font-style: normal;
     font-size: 13px;
 }
@@ -25,20 +25,42 @@ h1 {
     text-transform: uppercase;
 }
 
+h4 {
+    font-size: 14px;
+}
+
 pre, code, kbd, tt, samp, tt {
     font-family: @mono-stack;
 }
 
+.primary {
+    h2 {
+        color: #333;
+        font-family: @serif-stack;
+        font-style: italic;
+    }
+    p {
+        font-size: 14px;
+        margin-top: 1em;
+        color: #666;
+        line-height: 1.3em;
+    }
+}
+
+.gutter {
+    .primary, .secondary {
+        font-family: @serif-stack;
+    }
+}
+
 .island h2 {
-    color: #333;
-    font-family: @head-serif;
     font-size: 18px;
-    font-style: italic;
     margin-bottom: .5em;
 }
 
 .secondary h2 {
-    font-family: @copy-stack;
+    font-family: @sans-stack;
+    font-style: normal;
     font-weight: bold;
     text-transform: uppercase;
     color: #484848;

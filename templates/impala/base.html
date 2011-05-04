@@ -67,28 +67,27 @@
           <a href="http://mozilla.org/"><img src="{{ media('img/zamboni/mozilla-tab.png') }}"></a>
         </div>
         <div class="amo-header">
-          <div id="aux-nav" role="navigation" class="c">
-            {% block aux_nav %}
-            <ul id="other-apps" class="change"
-                title="{{ _('Find add-ons for other applications') }}">
-              <li>
-                <a href="#" class="controller">{{ _('Other Applications') }}</a>
-                <ul>
-                  {% for app in amo.APP_USAGE %}
-                    {% if app != request.APP %}
-                      <li id="app-{{ app.short }}" class="{{ app.short }}">
-                        <a href="{{ locale_url(app.short) }}">{{ app.pretty }}</a>
-                      </li>
-                    {% endif %}
-                  {% endfor %}
-                </ul>
-              </li>
+          <nav id="aux-nav" role="navigation" class="menu-nav">
+            <ul class="c">
+              {% if not settings.READ_ONLY %}
+                {% include "impala/user_login.html" %}
+              {% endif %}
+              {% block aux_nav %}
+                <li>
+                  <a href="#" class="controller" title="{{ _('Find add-ons for other applications') }}">{{ _('Other Applications') }}</a>
+                  <ul>
+                    {% for app in amo.APP_USAGE %}
+                      {% if app != request.APP %}
+                        <li id="app-{{ app.short }}" class="{{ app.short }}">
+                          <a href="{{ locale_url(app.short) }}">{{ app.pretty }}</a>
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                </li>
+              {% endblock aux_nav %}
             </ul>
-            {% endblock aux_nav %}
-            {% if not settings.READ_ONLY %}
-              {% include "user_login.html" %}
-            {% endif %}
-          </div>
+          </nav>
           <div class="header-search" role="search">
             {% block search_form %}
             {% include 'impala/search.html' %}

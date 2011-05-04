@@ -57,10 +57,34 @@ def performance_note(context, amount, listing=False):
     return new_context(**locals())
 
 
+@register.inclusion_tag('addons/impala/performance_note.html')
+@jinja2.contextfunction
+def impala_performance_note(context, amount, listing=False):
+    return new_context(**locals())
+
+
 @register.inclusion_tag('addons/contribution.html')
 @jinja2.contextfunction
 def contribution(context, addon, text=None, src='', show_install=False,
-                 show_help=True):
+                 show_help=True, large=False):
+    """
+    Show a contribution box.
+
+    Parameters:
+        addon
+        text: The begging text at the top of the box.
+        src: The page where the contribution link is coming from.
+        show_install: Whether or not to show the install button.
+        show_help: Show "What's this?" link?
+    """
+    has_suggested = bool(addon.suggested_amount)
+    return new_context(**locals())
+
+
+@register.inclusion_tag('addons/impala/contribution.html')
+@jinja2.contextfunction
+def impala_contribution(context, addon, text=None, src='', show_install=False,
+                 show_help=True, large=False):
     """
     Show a contribution box.
 

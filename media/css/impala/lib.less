@@ -3,9 +3,9 @@
 @note-gray: #999;
 
 // Font Stacks
-@copy-stack: "helvetica neue", arial, helvetica, sans-serif;
+@sans-stack: "helvetica neue", arial, helvetica, sans-serif;
 @head-sans: "trebuchet ms", sans-serif;
-@head-serif: Georgia, serif;
+@serif-stack: Georgia, serif;
 @mono-stack: "andale mono", monospace;
 
 // Mixins
@@ -45,4 +45,12 @@
     background-image: linear-gradient(@color1, @color2);
     background-image: -moz-linear-gradient(@color1, @color2);
     background-image: -webkit-linear-gradient(@color1, @color2);
+}
+
+.sprite(@url, @pos, @spacing, @offset) {
+    background: url(@url) no-repeat;
+    background-position: 0 (@spacing * @pos * -1 + @offset) + 0px;
+}
+.sprite-pos(@pos, @spacing, @offset) {
+    background-position: 0 (@spacing * @pos * -1 + @offset) + 0px;
 }

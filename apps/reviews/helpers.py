@@ -5,7 +5,7 @@ from tower import ugettext as _
 
 
 @jingo.register.filter
-def stars(num):
+def stars(num, large=False):
     # check for 0.0 incase None was cast to a float. Should
     # be safe since lowest rating you can give is 1.0
     if num is None or num == 0.0:
@@ -15,8 +15,9 @@ def stars(num):
         rating = '<span itemprop="rating">%s</span>' % num
         title = _('Rated %s out of 5 stars') % num
         msg = _('Rated %s out of 5 stars') % rating
-        s = (u'<span class="stars stars-{num}" title="{title}">{msg}</span>'
-             .format(num=num, title=title, msg=msg))
+        size = 'large' if large else ''
+        s = (u'<span class="stars {size} stars-{num}" title="{title}">{msg}</span>'
+             .format(num=num, size=size, title=title, msg=msg))
         return jinja2.Markup(s)  # Inspected by #10
 
 

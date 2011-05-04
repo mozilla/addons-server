@@ -24,32 +24,32 @@ a {
 }
 
 .primary {
-    margin-left: 210px;
+    position: relative;
+}
 
+.primary, .html-rtl.gutter .primary {
+    margin-left: 210px;
     .primary {
         margin-right: 210px;
         margin-left: 0;
     }
-
     .secondary {
         float: right;
     }
 }
-.secondary {
-    width: 180px;
+.secondary, .html-rtl.gutter .primary {
     float: left;
+    width: 180px;
 }
 
-.html-rtl {
+.html-rtl, .gutter {
     .primary {
         margin-left: 0;
         margin-right: 210px;
-
         .primary {
             margin-right: 0;
             margin-left: 210px;
         }
-
         .secondary {
             float: left;
         }
@@ -58,6 +58,7 @@ a {
         float: right;
     }
 }
+
 
 .secondary {
     ul, ol {
@@ -82,6 +83,23 @@ a {
         padding: 0 6px;
         text-decoration: none;
         line-height: 28px;
+    }
+}
+
+#breadcrumbs {
+    margin-bottom: 1.2em;
+    font-family: @serif-stack;
+    color: #666;
+    li {
+        display: inline;
+        &:before {
+            content: '\00bb';
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        &:first-child:before {
+            content: none;
+        }
     }
 }
 

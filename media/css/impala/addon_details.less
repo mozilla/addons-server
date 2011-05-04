@@ -1,0 +1,140 @@
+@import 'lib';
+
+#addon {
+    font-size: 1.2em;
+    padding: 20px 20px 20px 104px;
+    .icon {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        margin: 0 12px 1em 0;
+    }
+    h2 {
+        font-size: 24px;
+    }
+}
+
+.version {
+    color: #999;
+}
+
+.notice {
+    .border-radius(5px);
+    padding: 1em 1em 1em 104px;
+    background: #ECF5FE;
+    margin-bottom: 1em;
+    h3 {
+        font-style: italic;
+        font-size: 16px;
+    }
+    p {
+        margin-top: .5em;
+    }
+    b {
+        color: #333;
+    }
+}
+
+.notice.performance-note {
+    background: url("../../img/impala/turtle.png") no-repeat 28px 16px #FFF8DC;
+}
+
+.addon-vitals {
+    padding-top: 1em;
+    font-size: 16px;
+    line-height: 1.4em;
+    div {
+        margin-top: 4px;
+    }
+    .widgets {
+        margin-top: 23px;
+        font-size: 14px;
+        .widget {
+            color: #999;
+            display: block;
+        }
+    }
+}
+
+.widget {
+    padding-left: 21px;
+    background: url(../../img/impala/widgets.png) no-repeat 0 4px;
+    &:hover {
+        color: @link;
+    }
+    &.favorite {
+        &.faved {
+            .sprite-pos(2, 20, 4px);
+        }
+        &:hover {
+            .sprite-pos(1, 20, 4px);
+        }
+    }
+    &.collection-add {
+        .sprite-pos(3, 20, 4px);
+        &:hover {
+            .sprite-pos(4, 20, 4px);
+        }
+    }
+    &.share {
+        .sprite-pos(5, 20, 4px);
+        &:hover {
+            .sprite-pos(6, 20, 4px);
+        }
+    }
+    &.ajax-loading {
+        background: url(../../img/zamboni/loading-white.gif) no-repeat 0 2px !important;
+    }
+}
+
+#contribution {
+    .aux {
+        float: right;
+        text-align: center;
+        margin: 0 1em;
+        p {
+            font-size: 11px;
+        }
+    }
+    #contribute-box {
+        display: none;
+    }
+}
+
+.previews {
+    overflow: hidden;
+    position: relative;
+    margin: 2em 0;
+    padding: 0 5%;
+    .panel {
+        width: 100% / 3;
+        a {
+            display: block;
+            text-align: center;
+        }
+    }
+    .control {
+        font-size: 
+        display: block;
+        position: absolute;
+        height: 100%;
+        width: 5%;
+        text-decoration: none;
+        font-size: 48px;
+        font-family: @serif-stack;
+        text-align: center;
+        line-height: 140px;
+        background: rgba(255,255,255,.5);
+        top: 0;
+        z-index: 100;
+        &.next {
+            right: 0;
+        }
+        &.prev {
+            left: 0;
+        }
+        &.disabled {
+            color: #ccc;
+        }
+    }
+}
