@@ -1206,7 +1206,7 @@ class TestReview(ReviewBase):
 
         a = admin.find('a').eq(1)
         eq_(a.text(), "Admin Page")
-        assert "admin/addons?q=%s" % self.addon.id in a.attr('href')
+        assert "admin/addons/status/%s" % self.addon.id in a.attr('href')
 
     def test_admin_links_as_non_admin(self):
         self.login_as_editor()
