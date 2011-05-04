@@ -339,6 +339,7 @@ class DELETE_REVIEW(_LOG):
 
 class BULK_VALIDATION_UPDATED(_LOG):
     id = 46
+    action_class = None
     format = _(u'Application max version for {version} updated.')
 
 class CUSTOM_TEXT(_LOG):
