@@ -44,7 +44,8 @@
     </p>
   {% endif %}
 
-  <div id="perf-results" data-platforms="{{ platforms|json }}">
+  <div id="perf-results" data-platforms="{{ platforms|json }}"
+       data-threshold="{{ settings.PERF_THRESHOLD }}">
     <div id="perf-results-inner">
       <table>
         <thead>

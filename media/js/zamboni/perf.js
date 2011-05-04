@@ -13,8 +13,10 @@ function initPerf() {
     "use strict";
 
     var $perfResults = $('#perf-results'),
+        $rows = $perfResults.find('tbody tr').clone(),
         platforms = JSON.parse($perfResults.attr('data-platforms')),
-        results = [];
+        results = [],
+        THRESHOLD = $perfResults.attr('data-threshold');
 
     // We only show 10 at the beginning and toggle the rest here.
     $('#perf-more a').click(function(e) {
@@ -47,14 +49,21 @@ function initPerf() {
     // Change numbers and bar graphs to the selected platform data.
     function switchNumbers(selected) {
         var platform = platforms[selected],
-            numbers = $.map(results, function(e) { return e[platform] || 0; }),
-            worst = Math.max.apply(null, numbers);
-        $perfResults.find('tbody tr').each(function(i, e) {
-            var $this = $(this),
-                num = results[i][platform] || 0;
-            $this.find('.slower b').text(num === 0 ? gettext('N/A') : num + '%');
-            $this.find('.bar').css('width', num / worst * 100 + '%');
+            numbers = _.map(results, function(e, i) { return [e[platform] || 0, i]; }),
+            $newTbody = $('<tbody>');
+        numbers.sort(function(a, b){ return b[0] - a[0]; });
+        var worst = numbers[0][0];
+        $.each(numbers, function(i, e) {
+            var num = e[0], index = e[1];
+            if (num > THRESHOLD) {
+                var $row = $rows.eq(index).clone();
+                $row.find('.slower b').text(num + '%');
+                $row.find('.bar').css('width', num / worst * 100 + '%');
+                $row.find('.rank b').text(i + 1);
+                $row.appendTo($newTbody);
+            }
         });
+        $perfResults.find('tbody').replaceWith($newTbody);
         showPlatforms(selected);
     }
 
@@ -70,5 +79,4 @@ function initPerf() {
     }
 }
 
-// END global protection
 })();
