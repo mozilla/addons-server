@@ -1191,6 +1191,31 @@ class TestReview(ReviewBase):
         text = pq(response.content).find('#actions-addon li a').eq(0).text()
         eq_(text, "View Listing")
 
+    def test_admin_links_as_admin(self):
+        self.login_as_admin()
+        response = self.client.get(self.url)
+
+        doc = pq(response.content)
+
+        admin = doc('#actions-admin')
+        assert admin.length > 0
+
+        a = admin.find('a').eq(0)
+        eq_(a.text(), "Edit Add-on")
+        assert "developers/addon/%s" % self.addon.slug in a.attr('href')
+
+        a = admin.find('a').eq(1)
+        eq_(a.text(), "Admin Page")
+        assert "admin/addons?q=%s" % self.addon.id in a.attr('href')
+
+    def test_admin_links_as_non_admin(self):
+        self.login_as_editor()
+        response = self.client.get(self.url)
+
+        doc = pq(response.content)
+        admin = doc('#actions-admin')
+        eq_(admin.length, 0)
+
     def test_no_public(self):
         s = amo.STATUS_PUBLIC
 

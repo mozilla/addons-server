@@ -227,6 +227,7 @@
   <strong>{{ _('Admin Tools') }}</strong>
   <ul id="actions-admin">
     <li><a href="{{ url('devhub.addons.edit', addon.slug) }}">{{ _('Edit Add-on') }}</a></li>
+    <li><a href="{{ remora_url('admin/addons?q=%s' % addon.id) }}">{{ _('Admin Page') }}</a></li>
   </ul>
   {% endif %}
 
