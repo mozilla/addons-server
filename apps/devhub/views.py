@@ -17,6 +17,7 @@ from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
 from django.views.decorators.cache import never_cache
+from django.views.decorators.csrf import csrf_view_exempt
 
 import commonware.log
 import jingo
@@ -539,6 +540,8 @@ def file_validation(request, addon_id, addon, file_id):
 
 
 @json_view
+@csrf_view_exempt
+@post_required
 @dev_required(allow_editors=True)
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)
