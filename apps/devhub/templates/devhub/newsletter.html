@@ -1,6 +1,13 @@
 {% extends "devhub/base.html" %}
 
+{% block title %}{{ dev_page_title("about:Add-ons Newsletter") }}{% endblock %}
+
 {% block content %}
+
+{{ breadcrumbs(items=[(url('devhub.index'), _('Developer Hub')),
+                      (None, _('about:addons Newsletter'))],
+               add_default=False) }}
+
 <div class="newsletter-signup">
   <h2>{{ _('about:addons Newsletter') }}</h2>
 
