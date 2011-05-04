@@ -2,6 +2,7 @@ from datetime import datetime
 import json
 
 from django import test
+from django.core import mail
 
 import mock
 from nose.plugins.attrib import attr
@@ -17,6 +18,7 @@ from applications.models import AppVersion
 from devhub.models import ActivityLog
 from files.models import Approval, File
 from versions.models import Version
+from zadmin.forms import NotifyForm
 from zadmin.models import ValidationJob, ValidationResult
 from zadmin.views import completed_versions_dirty
 
@@ -175,31 +177,31 @@ class TestBulkUpdate(BulkValidationTest):
     def setUp(self):
         super(TestBulkUpdate, self).setUp()
 
-        self.job = self.create_job()
+        self.job = self.create_job(completed=datetime.now())
         self.update_url = reverse('zadmin.set-max-version', args=[self.job.pk])
         self.list_url = reverse('zadmin.validation')
 
         self.version_one = Version.objects.create(addon=self.addon)
-        self.version_one
         self.version_two = Version.objects.create(addon=self.addon)
 
     def test_no_update_link(self):
         self.create_result(self.job, self.create_file(), **{})
         r = self.client.get(self.list_url)
         doc = pq(r.content)
-        eq_(doc('table tr td a').text(), 'Set max version')
+        eq_(doc('table tr td a.set-max-version').text(), 'Set max version')
 
     def test_update_link(self):
         self.create_result(self.job, self.create_file(), **{'valid': 1})
         r = self.client.get(self.list_url)
         doc = pq(r.content)
-        eq_(doc('table tr td a').text(), 'Set max version')
+        eq_(doc('table tr td a.set-max-version').text(), 'Set max version')
 
     def test_update_url(self):
         self.create_result(self.job, self.create_file(), **{'valid': 1})
         r = self.client.get(self.list_url)
         doc = pq(r.content)
-        eq_(doc('table tr td a').attr('data-job-url'), self.update_url)
+        eq_(doc('table tr td a.set-max-version').attr('data-job-url'),
+            self.update_url)
 
     def test_update_anonymous(self):
         self.client.logout()
@@ -251,6 +253,104 @@ class TestBulkUpdate(BulkValidationTest):
         av.save()
         self.client.post(self.update_url)
         eq_(self.version.apps.all()[0].max, self.appversion('3.6'))
+
+
+class TestBulkNotify(BulkValidationTest):
+
+    def setUp(self):
+        super(TestBulkNotify, self).setUp()
+
+        self.job = self.create_job(completed=datetime.now())
+        self.update_url = reverse('zadmin.notify', args=[self.job.pk])
+        self.syntax_url = reverse('zadmin.notify.syntax')
+        self.list_url = reverse('zadmin.validation')
+
+        self.version_one = Version.objects.create(addon=self.addon)
+        self.version_two = Version.objects.create(addon=self.addon)
+
+    def test_no_notify_link(self):
+        self.create_result(self.job, self.create_file(), **{})
+        r = self.client.get(self.list_url)
+        doc = pq(r.content)
+        eq_(len(doc('table tr td a.notify')), 0)
+
+    def test_notify_link(self):
+        self.create_result(self.job, self.create_file(), **{'errors': 1})
+
+        r = self.client.get(self.list_url)
+        doc = pq(r.content)
+        eq_(doc('table tr td a.notify').text(), 'Notify')
+
+    def test_notify_url(self):
+        self.create_result(self.job, self.create_file(), **{'errors': 1})
+        r = self.client.get(self.list_url)
+        doc = pq(r.content)
+        eq_(doc('table tr td a.notify').attr('data-job-url'), self.update_url)
+
+    def test_notify_anonymous(self):
+        self.client.logout()
+        r = self.client.post(self.update_url)
+        eq_(r.status_code, 302)
+
+    def test_notify_log(self):
+        self.create_result(self.job, self.create_file(self.version),
+                           **{'errors': 1})
+        eq_(ActivityLog.objects.for_addons(self.addon).count(), 0)
+        self.client.post(self.update_url, {'text': '..'})
+        upd = amo.LOG.BULK_VALIDATION_EMAILED.id
+        eq_((ActivityLog.objects.for_addons(self.addon)
+                                .filter(action=upd).count()), 1)
+
+    def test_notify_mail(self):
+        self.create_result(self.job, self.create_file(self.version),
+                           **{'errors': 1})
+        r = self.client.post(self.update_url, {'text': '..'})
+        eq_(r.status_code, 302)
+        eq_(len(mail.outbox), 1)
+        eq_(mail.outbox[0].body, '..')
+        eq_(mail.outbox[0].subject, 'Mozilla Add-ons: Delicious Bookmarks')
+        eq_(mail.outbox[0].to, [u'del@icio.us'])
+
+    def test_notify_mail_partial(self):
+        self.create_result(self.job, self.create_file(self.version),
+                           **{'errors': 1})
+        self.create_result(self.job, self.create_file(self.version))
+        r = self.client.post(self.update_url, {'text': '..'})
+        eq_(r.status_code, 302)
+        eq_(len(mail.outbox), 1)
+
+    def test_notify_mail_multiple(self):
+        self.create_result(self.job, self.create_file(self.version),
+                           **{'errors': 1})
+        self.create_result(self.job, self.create_file(self.version),
+                           **{'errors': 1})
+        r = self.client.post(self.update_url, {'text': '..'})
+        eq_(r.status_code, 302)
+        eq_(len(mail.outbox), 2)
+
+    def test_notify_rendering(self):
+        self.create_result(self.job, self.create_file(self.version),
+                           **{'errors': 1})
+        r = self.client.post(self.update_url,
+                             {'text': '{{ ADDON_NAME }}{{ COMPAT_LINK }}'})
+        eq_(r.status_code, 302)
+        eq_(len(mail.outbox), 1)
+        url = reverse('devhub.versions.edit', args=[self.addon.pk,
+                                                    self.version.pk])
+        assert str(self.addon.name) in mail.outbox[0].body
+        assert url in mail.outbox[0].body
+
+    def test_notify_template(self):
+        for text, res in (['some sample text', True],
+                          ['{{ fooo }}{% if %}', False]):
+            eq_(NotifyForm({'text': text}).is_valid(), res)
+
+    def test_notify_syntax(self):
+        for text, res in (['some sample text', True],
+                          ['{{ fooo }}{% if %}', False]):
+            r = self.client.post(self.syntax_url, {'text': text})
+            eq_(r.status_code, 200)
+            eq_(json.loads(r.content)['valid'], res)
 
 
 class TestBulkValidationTask(BulkValidationTest):

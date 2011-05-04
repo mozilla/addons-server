@@ -21,6 +21,10 @@ urlpatterns = patterns('',
         name='zadmin.start_validation'),
     url(r'^validation/set/(?P<job>\d+)$', views.set_max_version,
         name='zadmin.set-max-version'),
+    url(r'^validation/notify/(?P<job>\d+)$', views.notify,
+        name='zadmin.notify'),
+    url(r'^validation/notify/syntax.json$', views.notify_syntax,
+        name='zadmin.notify.syntax'),
     url(r'^validation$', views.validation, name='zadmin.validation'),
 
     # The Django admin.

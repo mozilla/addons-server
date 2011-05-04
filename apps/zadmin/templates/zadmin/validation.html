@@ -48,9 +48,15 @@
       <td>{{ job.curr_max_version.version }}</td>
       <td>{{ job.target_version.version }}</td>
       <td>{{ job.stats['total'] }}</td>
-      <td>{{ job.stats['failing'] }}</td>
+      <td>{{ job.stats['failing'] }}
+        {% if job.completed and job.stats['failing'] > 0 %}
+            <a href="" class="notify"
+                       data-job-url="{{ url('zadmin.notify', job.pk) }}"
+                       data-notify-count="{{ job.stats['failing'] }}">Notify</a>
+        {% endif %}
+      </td>
       <td>{{ job.stats['passing'] }}
-          {% if job.stats['passing'] > 0 %}
+          {% if job.completed and job.stats['passing'] > 0 %}
               <a href="#" data-job-version="{{ job.target_version.version }}"
                           data-job-url="{{ url('zadmin.set-max-version', job.pk) }}"
                           data-job-count="{{ job.stats['passing'] }}" class="set-max-version">Set max version</a>
@@ -75,4 +81,21 @@
         </form>
     </div>
 </div>
+
+<div class="hidden">
+    <div class="popup" id="notify">
+        <form method="post" action="" data-url="{{ url('zadmin.notify.syntax') }}">
+            {{ csrf() }}
+            <p></p>
+            <p>Available variables: {{ ', '.join(notify_form.variables) }}</p>
+            <p class="js-hidden error"></p>
+            {{ notify_form.text }}
+            <button type="submit">
+                {{ _('Continue') }}
+            </button>
+            <span class="cancel"><a href="#">{{ _('Cancel') }}</a></span>
+        </form>
+    </div>
+</div>
+
 {% endblock %}

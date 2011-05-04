@@ -4,13 +4,19 @@ import os
 import sys
 import traceback
 
+from django.conf import settings
 from django.db import connection
+from django.template import Context, Template
 
 from celeryutils import task
 
 import amo
 from amo.decorators import write
+from amo.helpers import absolutify
+from amo.urlresolvers import reverse
+from amo.utils import send_mail
 from devhub.tasks import run_validator
+from files.models import File
 from versions.models import Version
 from zadmin.models import ValidationResult, ValidationJob
 
@@ -97,3 +103,38 @@ def set_max_versions(version_pks, job_pk, **kw):
                          'current max version is %s not %s'
                          % (version.pk, version.addon.pk,
                             app.max.version, job.curr_max_version.version))
+
+
+@task
+@write
+def notify_failed(file_pks, job_pk, data, **kw):
+    log.info('[%s@None] Notifying failed for job %s.'
+             % (len(file_pks), job_pk))
+    job = ValidationJob.objects.get(pk=job_pk)
+    template = Template(data['text'])
+
+    for obj in File.objects.filter(pk__in=file_pks):
+        version = obj.version
+        addon = version.addon
+        context = Context({
+            'ADDON_NAME': addon.name,
+            # TODO(andym): link when we have results page bug 649863 maybe?
+            'RESULTS_LINK': '',
+            'COMPAT_LINK': (absolutify(reverse('devhub.versions.edit',
+                                               args=[addon.pk, version.pk]))),
+        })
+
+        for author in addon.authors.all():
+            log.info(u'Emailing %s for addon %s, file %s about '
+                     'error from bulk validation job %s'
+                     % (author.email, addon.pk, obj.pk, job_pk))
+            send_mail(u'Mozilla Add-ons: %s' % addon.name,
+                      template.render(context),
+                      from_email=settings.DEFAULT_FROM_EMAIL,
+                      recipient_list=[author.email])
+
+        amo.log(amo.LOG.BULK_VALIDATION_EMAILED,
+                addon, version,
+                details={'version': version.version,
+                         'file': obj.filename,
+                         'target': job.target_version.version})

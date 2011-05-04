@@ -1,4 +1,8 @@
+import os
+
 from django import forms
+from django.conf import settings
+from django.template import Context, Template, TemplateSyntaxError
 
 import happyforms
 from tower import ugettext_lazy as _lazy
@@ -7,7 +11,6 @@ import amo
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from zadmin.models import ValidationJob
-from zadmin import tasks
 
 
 class BulkValidationForm(happyforms.ModelForm):
@@ -55,3 +58,23 @@ class BulkValidationForm(happyforms.ModelForm):
 
     def clean_target_version(self):
         return self._clean_appversion(self.cleaned_data['target_version'])
+
+
+class NotifyForm(happyforms.Form):
+    text = forms.CharField(widget=forms.Textarea, required=True)
+    variables = ['{{ADDON_NAME}}', '{{RESULTS_LINK}}', '{{COMPAT_LINK}}']
+    default_text = os.path.join(settings.ROOT,
+                                'apps/zadmin/templates/zadmin/mail.txt')
+
+    def __init__(self, *args, **kw):
+        kw.setdefault('initial', {})
+        kw['initial']['text'] = open(self.default_text, 'r').read()
+        super(NotifyForm, self).__init__(*args, **kw)
+
+    def clean_text(self):
+        text = self.cleaned_data['text']
+        try:
+            Template(text).render(Context({}))
+        except TemplateSyntaxError, err:
+            raise forms.ValidationError(err)
+        return text

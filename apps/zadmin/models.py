@@ -60,6 +60,9 @@ class ValidationJob(amo.models.ModelBase):
     def result_errors(self):
         return self.result_set.exclude(task_error=None)
 
+    def result_failing(self):
+        return self.result_set.exclude(completed=None).exclude(errors=0)
+
     @amo.cached_property
     def stats(self):
         total = self.result_set.count()

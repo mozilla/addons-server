@@ -40,19 +40,48 @@ function initAdminValidation(doc) {
 
     var $version_popup = $('#set-max-version').popup('a.set-max-version', {
         callback: function(obj) {
-            var ct = $(obj.click_target),
-                $popup = $(this);
+            var $ct = $(obj.click_target);
             var msg = ngettext('Set {0} addon-on to a max version of {1}.',
                                'Set {0} addon-ons to a max version of {1}.',
-                               ct.attr('data-job-count'));
-            $popup.children('p').text(format(msg, [ct.attr('data-job-count'),
-                                                   ct.attr('data-job-version')]));
-            $popup.children('form').attr('action', ct.attr('data-job-url'));
-            return { pointTo: ct };
+                               $ct.attr('data-job-count'));
+            $(this).children('p').text(format(msg, [$ct.attr('data-job-count'),
+                                                   $ct.attr('data-job-version')]));
+            $(this).children('form').attr('action', $ct.attr('data-job-url'));
+            return { pointTo: $ct };
         }
     });
     $('#set-max-version span.cancel a').click(function() {
         $version_popup.hideMe();
+    });
+
+    var $notify_popup = $('#notify').popup('a.notify', {
+        callback: function(obj) {
+            var $ct = $(obj.click_target);
+            var msg = ngettext('This will send emails to the authors of {0} file.',
+                               'This will send emails to the authors of {0} files.',
+                               $ct.attr('data-notify-count'));
+            $(this).find('p').eq(0).text(format(msg, [$ct.attr('data-notify-count')]));
+            $(this).children('form').attr('action', $ct.attr('data-job-url'));
+            return { pointTo: $ct };
+        }
+    });
+    $('#notify form').submit(function(e) {
+        var $form = $(this);
+        if ($form.attr('data-valid') != 'valid') {
+            $.post($form.attr('data-url'), $(this).serialize(), function(json) {
+                if (json && json.valid) {
+                    $form.attr('data-valid', 'valid').submit();
+                } else {
+                    $form.find('p.error').text(json.error).show();
+                }
+            });
+            e.preventDefault();
+        } else {
+            return true;
+        }
+    });
+    $('#notify span.cancel a').click(function() {
+        $notify_popup.hideMe();
     });
 }
 

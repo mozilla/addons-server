@@ -23,7 +23,7 @@ from amo.utils import chunked
 from addons.models import Addon
 from files.models import Approval, File
 from versions.models import Version
-from zadmin.forms import BulkValidationForm
+from zadmin.forms import BulkValidationForm, NotifyForm
 from zadmin.models import ValidationJob, ValidationResult
 from zadmin import tasks
 
@@ -155,8 +155,11 @@ def validation(request, form=None):
     if not form:
         form = BulkValidationForm()
     jobs = ValidationJob.objects.order_by('-created')
+    notify_form = NotifyForm()
     return jingo.render(request, 'zadmin/validation.html',
-                        {'form': form, 'validation_jobs': jobs})
+                        {'form': form,
+                         'notify_form': notify_form,
+                         'validation_jobs': jobs})
 
 
 @admin.site.admin_view
@@ -208,6 +211,7 @@ def completed_versions_dirty(job):
                    .values_list('pk', flat=True)
                    .distinct())
 
+
 @post_required
 @admin.site.admin_view
 def set_max_version(request, job):
@@ -216,4 +220,34 @@ def set_max_version(request, job):
     for chunk in chunked(versions, 100):
         tasks.set_max_versions.delay(chunk, job.pk)
     messages.success(request, _('Updating max version task started.'))
+    return redirect(reverse('zadmin.validation'))
+
+
+@post_required
+@admin.site.admin_view
+@json_view
+def notify_syntax(request):
+    notify_form = NotifyForm(request.POST)
+    if not notify_form.is_valid():
+        return {'valid': False, 'error': notify_form.errors['text'][0]}
+    else:
+        return {'valid': True, 'error': None}
+
+
+@post_required
+@admin.site.admin_view
+def notify(request, job):
+    job = get_object_or_404(ValidationJob, pk=job)
+    notify_form = NotifyForm(request.POST)
+
+    if not notify_form.is_valid():
+        messages.error(request, _('Error processing the mail template: %s'
+                                  % notify_form.errors['text'][0]))
+
+    else:
+        file_pks = job.result_failing().values_list('file_id', flat=True)
+        for chunk in chunked(file_pks, 100):
+            tasks.notify_failed.delay(chunk, job.pk, notify_form.cleaned_data)
+        messages.success(request, _('Notifying authors task started.'))
+
     return redirect(reverse('zadmin.validation'))
