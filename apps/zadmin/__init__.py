@@ -34,6 +34,9 @@ def rendered_content(self):
     if self._current_app == 'admin':
         source = loader.render_to_string(template, context_instance)
         template = jingo.env.from_string(source)
+        # This interferes with our media() helper.
+        if 'media' in self.context_data:
+            del self.context_data['media']
 
     return jingo.render_to_string(request, template, self.context_data)
 
