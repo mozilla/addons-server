@@ -197,19 +197,23 @@ class PerformanceGraph(ViewQueue):
     total = models.IntegerField()
 
     def base_query(self):
+        request_ver = amo.LOG.REQUEST_VERSION
+        review_ids = [str(r) for r in amo.LOG_REVIEW_QUEUE if r != request_ver]
+
         return {
             'select': SortedDict([
-                ('yearmonth', "DATE_FORMAT(`approvals`.`created`, '%%Y-%%m')"),
-                ('approval_created', '`approvals`.`created`'),
+                ('yearmonth',
+                 "DATE_FORMAT(`log_activity`.`created`, '%%Y-%%m')"),
+                ('approval_created', '`log_activity`.`created`'),
                 ('user_id', '`users`.`id`'),
                 ('total', 'COUNT(*)')]),
             'from': [
-                'approvals',
-                'LEFT JOIN `users` ON (`users`.`id`=`approvals`.`user_id`)',
+                'log_activity',
+                'LEFT JOIN `users` ON (`users`.`id`=`log_activity`.`user_id`)',
                 """INNER JOIN `groups_users` ON
                    (`users`.`id` = `groups_users`.`user_id` AND
                    `groups_users`.`group_id` = 2)"""],
-            'where': [],
+            'where': ['log_activity.action in (%s)' % ', '.join(review_ids)],
             'group_by': 'yearmonth, user_id'
             }
 

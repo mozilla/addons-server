@@ -759,20 +759,29 @@ class TestModeratedQueue(QueueTest):
 
 
 class TestPerformance(QueueTest):
-    fixtures = ('base/users', 'editors/pending-queue', 'base/approvals')
+    fixtures = ('base/users', 'editors/pending-queue')
 
     """Test the page at /editors/performance."""
     def setUp(self):
         super(TestPerformance, self).setUp()
+
+        self.login_as_editor()
+        amo.set_user(UserProfile.objects.get(username='editor'))
+        addon = Addon.objects.all()[0]
+        version = addon.versions.all()[0]
+
+        for i in amo.LOG_REVIEW_QUEUE:
+            amo.log(amo.LOG_BY_ID[i], addon, version)
+
         self.url_performance = reverse('editors.performance')
 
     def test_performance_chart(self):
         r = self.client.get(self.url_performance)
         doc = pq(r.content)
 
-        data = {u'2010-08': {u'teamcount': 1, u'teamavg': u'1.0',
-                             u'usercount': 1, u'teamamt': 1,
-                             u'label': u'Aug 2010'}}
+        data =  {u'2011-05': {u'teamcount': 8, u'teamavg': u'8.0',
+                              u'usercount': 8, u'teamamt': 1,
+                              u'label': u'May 2011'}}
 
         eq_(json.loads(doc('#monthly').attr('data-chart')), data)
 
