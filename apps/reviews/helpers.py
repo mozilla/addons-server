@@ -15,8 +15,8 @@ def stars(num, large=False):
         rating = '<span itemprop="rating">%s</span>' % num
         title = _('Rated %s out of 5 stars') % num
         msg = _('Rated %s out of 5 stars') % rating
-        size = 'large' if large else ''
-        s = (u'<span class="stars {size} stars-{num}" title="{title}">{msg}</span>'
+        size = 'large ' if large else ''
+        s = (u'<span class="stars {size}stars-{num}" title="{title}">{msg}</span>'
              .format(num=num, size=size, title=title, msg=msg))
         return jinja2.Markup(s)  # Inspected by #10
 
