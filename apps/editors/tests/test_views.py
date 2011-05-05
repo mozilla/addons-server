@@ -779,8 +779,10 @@ class TestPerformance(QueueTest):
         r = self.client.get(self.url_performance)
         doc = pq(r.content)
 
-        data =  {u'2011-05': {u'teamcount': 8, u'teamavg': u'8.0',
-                              u'usercount': 8, u'teamamt': 1,
+        # The ' - 1' is to account for REQUEST_VERSION not being displayed.
+        num = len(amo.LOG_REVIEW_QUEUE) - 1
+        data =  {u'2011-05': {u'teamcount': num, u'teamavg': u'%s.0' % num,
+                              u'usercount': num, u'teamamt': 1,
                               u'label': u'May 2011'}}
 
         eq_(json.loads(doc('#monthly').attr('data-chart')), data)

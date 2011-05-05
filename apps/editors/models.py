@@ -197,7 +197,7 @@ class PerformanceGraph(ViewQueue):
     total = models.IntegerField()
 
     def base_query(self):
-        request_ver = amo.LOG.REQUEST_VERSION
+        request_ver = amo.LOG.REQUEST_VERSION.id
         review_ids = [str(r) for r in amo.LOG_REVIEW_QUEUE if r != request_ver]
 
         return {
