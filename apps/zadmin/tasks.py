@@ -84,8 +84,10 @@ def set_max_versions(version_pks, job_pk, **kw):
                      % (version.pk, version.addon.pk))
             continue
 
-        for app in version.apps.all():
-            if app.max == job.curr_max_version:
+        for app in version.apps.filter(application=
+                                       job.curr_max_version.application):
+            if (app.max.version == job.curr_max_version.version and
+                job.target_version.version != app.max.version):
                 log.info('Updating version %s for addon %s from version %s '
                          'to version %s'
                          % (version.pk, version.addon.pk,

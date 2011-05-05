@@ -205,11 +205,10 @@ def start_validation(request):
 def completed_versions_dirty(job):
     """Given a job, calculate which unique versions could need updating."""
     return (Version.objects
-                   .filter(files__validation_results__validation_job=job)
-                   .filter(files__validation_results__errors=0)
-                   .filter(files__validation_results__completed__isnull=False)
-                   .values_list('pk', flat=True)
-                   .distinct())
+                   .filter(files__validation_results__validation_job=job,
+                           files__validation_results__errors=0,
+                           files__validation_results__completed__isnull=False)
+                   .values_list('pk', flat=True).distinct())
 
 
 @post_required

@@ -254,6 +254,21 @@ class TestBulkUpdate(BulkValidationTest):
         self.client.post(self.update_url)
         eq_(self.version.apps.all()[0].max, self.appversion('3.6'))
 
+    def test_update_different_app(self):
+        self.create_result(self.job, self.create_file(self.version))
+        target = self.version.apps.all()[0]
+        target.application_id = amo.FIREFOX.id
+        target.save()
+        eq_(self.version.apps.all()[0].max, self.curr_max)
+
+    def test_update_twice(self):
+        self.create_result(self.job, self.create_file(self.version))
+        self.client.post(self.update_url)
+        eq_(self.version.apps.all()[0].max, self.job.target_version)
+        now = self.version.modified
+        self.client.post(self.update_url)
+        eq_(self.version.modified, now)
+
 
 class TestBulkNotify(BulkValidationTest):
 
