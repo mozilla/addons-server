@@ -60,6 +60,18 @@ bad_rdf = """<?xml version="1.0"?>
 </RDF:RDF>"""
 
 
+no_updates_rdf = """<?xml version="1.0"?>
+<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+    <RDF:Description about="urn:mozilla:%(type)s:%(guid)s">
+        <em:updates>
+            <RDF:Seq>
+            </RDF:Seq>
+        </em:updates>
+    </RDF:Description>
+</RDF:RDF>"""
+
+
 timing_log = commonware.log.getLogger('z.timer')
 
 
@@ -99,14 +111,14 @@ class Update(object):
         if not data['app_id']:
             return False
 
-        sql = """SELECT id, status FROM addons
+        sql = """SELECT id, status, addontype_id, guid FROM addons
                  WHERE guid = %(guid)s AND inactive = 0 LIMIT 1;"""
         self.cursor.execute(sql, {'guid': self.data['id']})
         result = self.cursor.fetchone()
         if result is None:
             return False
 
-        data['id'], data['addon_status'] = result
+        data['id'], data['addon_status'], data['type'], data['guid'] = result
         data['version_int'] = version_int(data['appVersion'])
 
         if 'appOS' in data:
@@ -224,14 +236,21 @@ class Update(object):
         return bad_rdf
 
     def get_rdf(self):
-        if self.is_valid() and self.get_update():
-            rdf = self.get_good_rdf()
+        if self.is_valid():
+            if self.get_update():
+                rdf = self.get_good_rdf()
+            else:
+                rdf = self.get_no_updates_rdf()
         else:
             rdf = self.get_bad_rdf()
         self.cursor.close()
         if self.conn:
             self.conn.close()
         return rdf
+
+    def get_no_updates_rdf(self):
+        name = ADDON_SLUGS_UPDATE[self.data['type']]
+        return no_updates_rdf % ({'guid': self.data['guid'], 'type': name})
 
     def get_good_rdf(self):
         data = self.data['row']

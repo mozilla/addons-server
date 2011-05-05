@@ -408,7 +408,7 @@ class TestResponse(test_utils.TestCase):
 
         data["appOS"] = self.mac.api_name
         up = self.get(data)
-        eq_(up.get_rdf(), up.get_bad_rdf())
+        eq_(up.get_rdf(), up.get_no_updates_rdf())
 
     def test_different_platform(self):
         file = File.objects.get(pk=67442)
@@ -572,3 +572,14 @@ class TestResponse(test_utils.TestCase):
         eq_(up.data['row']['min'], '1.0')
         eq_(up.data['row']['version'], '0.5.2')
         assert rdf.find(data['appID']) > -1
+
+    def test_no_updates_at_all(self):
+        self.addon_one.versions.all().delete()
+        upd = self.get(self.good_data)
+        eq_(upd.get_rdf(), upd.get_no_updates_rdf())
+
+    def test_no_updates_my_fx(self):
+        data = self.good_data.copy()
+        data['appVersion'] = '5.0.1'
+        upd = self.get(data)
+        eq_(upd.get_rdf(), upd.get_no_updates_rdf())
