@@ -1,5 +1,6 @@
 from django import http
 from django.conf import settings
+from django.db import IntegrityError
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib import auth
 from django.template import Context, loader
@@ -356,27 +357,37 @@ def register(request):
         form = forms.UserRegisterForm(request.POST)
 
         if form.is_valid():
-            u = form.save(commit=False)
-            u.set_password(form.cleaned_data['password'])
-            u.generate_confirmationcode()
-            u.save()
-            u.create_django_user()
-            log.info(u"Registered new account for user (%s)", u)
+            try:
+                u = form.save(commit=False)
+                u.set_password(form.cleaned_data['password'])
+                u.generate_confirmationcode()
+                u.save()
+                u.create_django_user()
+                log.info(u"Registered new account for user (%s)", u)
 
-            u.email_confirmation_code()
+                u.email_confirmation_code()
 
-            messages.success(request, _('Congratulations! Your user account '
-                                        'was successfully created.'))
-            msg = _(('An email has been sent to your address {0} to confirm '
-                     'your account. Before you can log in, you have to '
-                     'activate your account by clicking on the link provided '
-                     ' in this email.').format(u.email))
-            messages.info(request, _('Confirmation Email Sent'), msg)
+                msg = _('Congratulations! Your user account was successfully '
+                        'created.')
+                messages.success(request, msg)
+
+                msg = _(('An email has been sent to your address {0} to '
+                         'confirm your account. Before you can log in, you '
+                         'have to activate your account by clicking on the '
+                         'link provided in this email.').format(u.email))
+                messages.info(request, _('Confirmation Email Sent'), msg)
+            except IntegrityError, e:
+                # I was unable to reproduce this, but I suspect it happens
+                # when they POST twice quickly and the slaves don't have the
+                # new info yet (total guess).  Anyway, I'm assuming the
+                # first one worked properly, so this is still a success
+                # case to tne end user so we just log it...
+                log.error("Failed to register new user (%s): %s" % (u, e))
 
             amo.utils.clear_messages(request)
             return http.HttpResponseRedirect(reverse('users.login') + '?m=3')
-            # TODO POSTREMORA Replace the above with this line
-            # when remora goes away
+            # TODO POSTREMORA Replace the above two lines
+            # when remora goes away with this:
             #return http.HttpResponseRedirect(reverse('users.login'))
 
         else:
