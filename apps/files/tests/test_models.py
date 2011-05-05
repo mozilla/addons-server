@@ -400,7 +400,8 @@ class TestFileUpload(UploadTest):
         assert not f.valid
 
     def test_save_with_validation(self):
-        f = FileUpload.objects.create(validation='{"errors": 0}')
+        f = FileUpload.objects.create(
+                                validation='{"errors": 0, "metadata": {}}')
         assert f.valid
 
         f = FileUpload.objects.create(validation='wtf')
@@ -408,7 +409,7 @@ class TestFileUpload(UploadTest):
 
     def test_update_with_validation(self):
         f = FileUpload.objects.create()
-        f.validation = '{"errors": 0}'
+        f.validation = '{"errors": 0, "metadata": {}}'
         f.save()
         assert f.valid
 
@@ -448,7 +449,7 @@ class TestFileFromUpload(UploadTest):
         self.version = Version.objects.create(addon=self.addon)
 
     def upload(self, name):
-        v = json.dumps(dict(errors=0, warnings=1, notices=2))
+        v = json.dumps(dict(errors=0, warnings=1, notices=2, metadata={}))
         d = dict(path=self.xpi_path(name), name='%s.xpi' % name,
                  hash='sha256:%s' % name, validation=v)
         return FileUpload.objects.create(**d)
