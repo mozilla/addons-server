@@ -208,5 +208,5 @@ VERSION_BETA = re.compile('(a|alpha|b|beta|pre|rc)\d*$')
 VERSION_SEARCH = re.compile('\.(\d+)$')
 
 # Editor Tools
-EDITOR_VIEWING_INTERVAL = 8
+EDITOR_VIEWING_INTERVAL = 8  # How often we ping for "who's watching?"
 

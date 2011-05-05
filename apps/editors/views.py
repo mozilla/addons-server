@@ -432,6 +432,7 @@ def review_viewing(request):
     current_name = ''
     is_user = 0
     key = '%s:review_viewing:%s' % (settings.CACHE_PREFIX, addon_id)
+    interval = amo.EDITOR_VIEWING_INTERVAL
 
     # Check who is viewing.
     currently_viewing = cache.get(key)
@@ -440,7 +441,7 @@ def review_viewing(request):
     if not currently_viewing or currently_viewing == user_id:
         # We want to save it for twice as long as the ping interval,
         # just to account for latency and the like.
-        cache.set(key, user_id, amo.EDITOR_VIEWING_INTERVAL * 2)
+        cache.set(key, user_id, interval * 2)
         currently_viewing = user_id
         current_name = request.amo_user.name
         is_user = 1
@@ -448,7 +449,7 @@ def review_viewing(request):
         current_name = UserProfile.objects.get(pk=currently_viewing).name
 
     return {'current': currently_viewing, 'current_name': current_name,
-            'is_user': is_user}
+            'is_user': is_user, 'interval_seconds': interval}
 
 
 @editor_required
