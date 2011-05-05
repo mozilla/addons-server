@@ -474,6 +474,9 @@ class TestVersionEditFiles(TestVersionEdit):
         return super(TestVersionEditFiles, self).formset(*args, **compat)
 
     def test_delete_file(self):
+        version = self.addon.current_version
+        version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
+
         eq_(self.version.files.count(), 1)
         forms = map(initial,
                     self.client.get(self.url).context['file_form'].forms)
@@ -481,8 +484,8 @@ class TestVersionEditFiles(TestVersionEdit):
         eq_(ActivityLog.objects.count(), 0)
         r = self.client.post(self.url, self.formset(*forms, prefix='files'))
 
-        eq_(ActivityLog.objects.count(), 2)
-        log = ActivityLog.objects.order_by('created')[1]
+        eq_(ActivityLog.objects.count(), 3)
+        log = ActivityLog.objects.order_by('created')[2]
         eq_(log.to_string(), u'File delicious_bookmarks-2.1.072-fx.xpi deleted'
                               ' from <a href="/en-US/firefox/addon/a3615'
                               '/versions/2.1.072">Version 2.1.072</a> of <a '
@@ -505,13 +508,19 @@ class TestVersionEditFiles(TestVersionEdit):
                     self.client.get(self.url).context['file_form'].forms)
         forms[1]['platform'] = forms[0]['platform']
         r = self.client.post(self.url, self.formset(*forms, prefix='files'))
+
         doc = pq(r.content)
         assert doc('#id_files-0-platform')
         eq_(r.status_code, 200)
         eq_(r.context['file_form'].non_form_errors(),
             ['A platform can only be chosen once.'])
 
+    test_unique_platforms.x = 1
+
     def test_all_platforms(self):
+        version = self.addon.current_version
+        version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
+
         File.objects.create(version=self.version,
                             platform_id=amo.PLATFORM_MAC.id)
         forms = self.client.get(self.url).context['file_form'].forms
@@ -521,6 +530,9 @@ class TestVersionEditFiles(TestVersionEdit):
             'The platform All cannot be combined with specific platforms.')
 
     def test_all_platforms_and_delete(self):
+        version = self.addon.current_version
+        version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
+
         File.objects.create(version=self.version,
                     platform_id=amo.PLATFORM_MAC.id)
         forms = self.client.get(self.url).context['file_form'].forms

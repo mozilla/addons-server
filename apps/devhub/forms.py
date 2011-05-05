@@ -471,6 +471,18 @@ class FileForm(happyforms.ModelForm):
                 plats.append([pid, amo.PLATFORMS[pid].name])
             self.fields['platform'].choices = plats
 
+    def clean_DELETE(self):
+        if any(self.errors):
+            return
+        delete = self.cleaned_data['DELETE']
+
+        if (delete and not self.instance.version.is_all_unreviewed):
+            error = _('You cannot delete a file once the review process has '
+                      'started.  You must delete the whole version.')
+            raise forms.ValidationError(error)
+
+        return delete
+
 
 class BaseFileFormSet(BaseModelFormSet):
 

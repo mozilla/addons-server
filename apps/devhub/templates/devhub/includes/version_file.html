@@ -12,9 +12,25 @@
         <span class="delete">{{ form.DELETE }}</span>
         {{ form.id }}
       </span>
-      <a class="remove" href="#">x</a>
+      {# Don't let them delete an individual file any of the files have been reviewed. #}
+      {% if version and version.is_all_unreviewed: %}
+        <a class="remove" href="#">x</a>
+      {% else: %}
+      <span class="remove tooltip" href="#"
+            title="{% trans -%}
+               You cannot remove an individual file after the review process has begun.
+               You must delete the entire version.
+               {%- endtrans %}">x</span>
+      {% endif %}
     </td>
   </tr>
+  {% if form.DELETE.errors %}
+  <tr>
+    <td colspan="4">
+      {{ form.DELETE.errors }}
+    </td>
+  </tr>
+  {% endif %}
   <tr class="hide">
     <td colspan="4">
       <span class="delete-msg error_message">{% trans %}This file will be deleted on save.{% endtrans %}</span>

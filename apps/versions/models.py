@@ -211,6 +211,11 @@ class Version(amo.models.ModelBase):
                       self.all_files)
 
     @property
+    def is_all_unreviewed(self):
+        return not bool([f for f in self.all_files if f.status not in
+                         amo.UNREVIEWED_STATUSES])
+
+    @property
     def is_beta(self):
         return filter(lambda f: f.status == amo.STATUS_BETA, self.all_files)
 

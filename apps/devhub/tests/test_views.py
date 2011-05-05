@@ -2686,6 +2686,77 @@ class TestVersionAddFile(UploadTest):
         r = self.post()
         assert_json_error(r, None, "Version doesn't match")
 
+    def test_delete_button_enabled(self):
+        version = self.addon.current_version
+        version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
+
+        r = self.client.get(self.edit_url)
+        doc = pq(r.content)('#file-list')
+        eq_(doc.find('a.remove').length, 1)
+        eq_(doc.find('span.remove.tooltip').length, 0)
+
+    def test_delete_button_disabled(self):
+        r = self.client.get(self.edit_url)
+        doc = pq(r.content)('#file-list')
+        eq_(doc.find('a.remove').length, 0)
+        eq_(doc.find('span.remove.tooltip').length, 1)
+
+        tip = doc.find('span.remove.tooltip')
+        assert "You cannot remove an individual file" in tip.attr('title')
+
+    def test_delete_button_multiple(self):
+        file = self.addon.current_version.files.all()[0]
+        file.pk = None
+        file.save()
+
+        cases = [(amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED, True),
+                 (amo.STATUS_LISTED, amo.STATUS_UNREVIEWED, False),
+                 (amo.STATUS_LISTED, amo.STATUS_LISTED, False)]
+
+        for c in cases:
+            files = self.addon.current_version.files.all()
+            files[0].update(status=c[0])
+            files[1].update(status=c[1])
+
+            r = self.client.get(self.edit_url)
+            doc = pq(r.content)('#file-list')
+
+            assert (doc.find('a.remove').length > 0) == c[2]
+            assert not (doc.find('span.remove').length > 0) == c[2]
+
+            if not c[2]:
+                tip = doc.find('span.remove.tooltip')
+                assert "You cannot remove an individual" in tip.attr('title')
+
+    def test_delete_submit_disabled(self):
+        file_id = self.addon.current_version.files.all()[0].id
+        platform = amo.PLATFORM_MAC.id
+        form = {'DELETE': 'checked', 'id': file_id, 'platform': platform}
+
+        data = formset(form, platform=platform, upload=self.upload.pk,
+                       initial_count=1, prefix='files')
+
+        r = self.client.post(self.edit_url, data)
+        doc = pq(r.content)
+
+        assert "You cannot delete a file once" in doc('.errorlist li').text()
+
+    def test_delete_submit_enabled(self):
+        version = self.addon.current_version
+        version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
+
+        file_id = self.addon.current_version.files.all()[0].id
+        platform = amo.PLATFORM_MAC.id
+        form = {'DELETE': 'checked', 'id': file_id, 'platform': platform}
+
+        data = formset(form, platform=platform, upload=self.upload.pk,
+                       initial_count=1, prefix='files')
+
+        r = self.client.post(self.edit_url, data)
+        doc = pq(r.content)
+
+        eq_(doc('.errorlist li').length, 0)
+
     def test_platform_limits(self):
         r = self.post(platform=amo.PLATFORM_BSD)
         assert_json_error(r, 'platform',

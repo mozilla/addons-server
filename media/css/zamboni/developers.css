@@ -124,7 +124,8 @@ form .char-count:after {
 
 .devhub-form .tip,
 .addon-submission-process .tip,
-a.remove {
+a.remove,
+span.remove {
     -moz-border-radius: 20px;
     -webkit-border-radius :20px;
     border-radius: 20px;
@@ -149,6 +150,9 @@ a.remove {
     line-height: 16px;
     float: right;
     margin-top: 2px;
+}
+span.remove {
+    background-color: #EEE;
 }
 
 .devhub-form .author:hover .remove,
