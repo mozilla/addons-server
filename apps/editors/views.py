@@ -165,9 +165,9 @@ def _performanceByMonth(user_id, months=12, end_month=None, end_year=None):
                               1, 0, 0, 0, 0, 0, -1))
 
     sql = (PerformanceGraph.objects
-          .filter_raw('approvals.created >=',
+          .filter_raw('log_activity.created >=',
                       date.fromtimestamp(start_time).isoformat())
-          .filter_raw('approvals.created <',
+          .filter_raw('log_activity.created <',
                       date.fromtimestamp(end_time).isoformat())
           )
 
