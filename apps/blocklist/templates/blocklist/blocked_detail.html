@@ -41,11 +41,11 @@
     {% endtrans %}</dd>
   </dl>
   {% if details.bug %}
-    <footer>{% trans date = details.created|datetime, link = details.bug %}
+    <footer>{% trans date = item.created|datetime, link = details.bug %}
       Blocked on {{ date }}. <a href="{{ link }}">View block request</a>.
     {% endtrans %}</footer>
   {% else %}
-    <footer>{% trans date = details.created|datetime %}
+    <footer>{% trans date = item.created|datetime %}
       Blocked on {{ date }}.
     {% endtrans %}</footer>
   {% endif %}
