@@ -9,6 +9,7 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
 
+from addons.models import Addon
 from amo.tests import assert_no_validation_errors
 from amo.urlresolvers import reverse
 from files.models import File, FileUpload, FileValidation
@@ -174,3 +175,29 @@ class TestValidateFile(BaseUploadTest):
         assert data['error'].endswith(
                     "ValueError: catastrophic failure in amo-validator\n"), (
                         'Unexpected error: ...%s' % data['error'][-50:-1])
+
+    @mock.patch('devhub.tasks.run_validator')
+    def test_validator_sets_binary_flag(self, v):
+        v.return_value = json.dumps({
+            "errors": 0,
+            "success": True,
+            "warnings": 0,
+            "notices": 0,
+            "message_tree": {},
+            "messages": [],
+            "metadata": {
+                "contains_binary_extension": True,
+                "version": "1.0",
+                "name": "gK0Bes Bot",
+                "id": "gkobes@gkobes"
+            }
+        })
+        eq_(self.addon.binary, False)
+        r = self.client.post(reverse('devhub.json_file_validation',
+                                     args=[self.addon.slug, self.file.id]),
+                                     follow=True)
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        assert_no_validation_errors(data)
+        addon = Addon.objects.get(pk=self.addon.id)
+        eq_(addon.binary, True)

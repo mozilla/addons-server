@@ -2519,7 +2519,8 @@ class TestUploadDetail(BaseUploadTest):
             'notices': 0,
             'message_tree': {},
             'messages': [],
-            'rejected': False}
+            'rejected': False,
+            'metadata': {}}
 
     def upload_file(self, file):
         addon = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',

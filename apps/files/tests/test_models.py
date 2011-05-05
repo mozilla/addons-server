@@ -59,7 +59,8 @@ class UploadTest(test_utils.TestCase):
         xpi = open(self.file_path(filename)).read()
         upload = FileUpload.from_post([xpi], filename=filename, size=1234)
         upload.validation = (validation or
-                             json.dumps(dict(errors=0, warnings=1, notices=2)))
+                             json.dumps(dict(errors=0, warnings=1, notices=2,
+                                             metadata={})))
         upload.save()
         return upload
 

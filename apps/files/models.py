@@ -168,7 +168,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
             return self.filename
         if len(m.group('slug')) < maxlen:
             return self.filename
-        return u'%s...%s' % (m.group('slug')[0:(maxlen-3)], m.group('suffix'))
+        return u'%s...%s' % (m.group('slug')[0:(maxlen - 3)],
+                             m.group('suffix'))
 
     def latest_xpi_url(self):
         addon = self.version.addon_id
@@ -390,6 +391,8 @@ class FileValidation(amo.models.ModelBase):
         new = cls(file=file, validation=validation, errors=js['errors'],
                   warnings=js['warnings'], notices=js['notices'])
         new.valid = new.errors == 0
+        if js['metadata'].get('contains_binary_extension', False):
+            file.version.addon.update(binary=True)
         new.save()
         return new
 
