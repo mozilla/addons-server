@@ -508,14 +508,11 @@ class TestVersionEditFiles(TestVersionEdit):
                     self.client.get(self.url).context['file_form'].forms)
         forms[1]['platform'] = forms[0]['platform']
         r = self.client.post(self.url, self.formset(*forms, prefix='files'))
-
         doc = pq(r.content)
         assert doc('#id_files-0-platform')
         eq_(r.status_code, 200)
         eq_(r.context['file_form'].non_form_errors(),
             ['A platform can only be chosen once.'])
-
-    test_unique_platforms.x = 1
 
     def test_all_platforms(self):
         version = self.addon.current_version
