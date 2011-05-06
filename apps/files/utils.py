@@ -8,6 +8,7 @@ import shutil
 import tempfile
 import unicodedata
 import zipfile
+from zipfile import BadZipfile
 from datetime import datetime
 from xml.dom import minidom
 
@@ -138,12 +139,19 @@ def parse_search(filename, addon=None):
 def extract_zip(source, remove=False):
     """Extracts the zip file. If remove is given, removes the source file."""
     tempdir = tempfile.mkdtemp()
-    zip = zipfile.ZipFile(source)
+
+    try:
+        zip = zipfile.ZipFile(source)
+    except BadZipfile, err:
+        log.error('Error (%s) extracting %s' % (err, source))
+        raise
+
     for f in zip.namelist():
         if '..' in f or f.startswith('/'):
             log.error('Extraction error, Invalid archive: %s' % source)
             raise forms.ValidationError(_('Invalid archive.'))
     zip.extractall(tempdir)
+
     if remove:
         os.remove(source)
     return tempdir
