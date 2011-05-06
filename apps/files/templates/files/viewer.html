@@ -25,16 +25,16 @@
                 {{ file_tree(files, selected) }}
             {% endif %}
             {% if files %}
-            <p id="commands">
-                <code>j</code> <a href="#" id="files-prev">{{ _('Previous file') }}</a><br/>
-                <code>k</code> <a href="#" id="files-next">{{ _('Next file') }}</a><br/>
-                <code>e</code> <a href="#" id="files-expand-all">{{ _('Expand all') }}</a><br/>
-                <code>h</code> <a href="#" id="files-hide">{{ _('Hide or unhide tree') }}</a><br/>
-                <code>w</code> <a href="#" id="files-wrap">{{ _('Wrap or unwrap text') }}</a><br/>
-                <a class="no-key" href="{{ file_link['url'] }}">{{ file_link['text'] }}</a>
-            </p>
+            <div id="commands">
+                <div><code>j</code> <a href="#" id="files-prev">{{ _('Previous file') }}</a></div>
+                <div><code>k</code> <a href="#" id="files-next">{{ _('Next file') }}</a></div>
+                <div><code>e</code> <a href="#" id="files-expand-all">{{ _('Expand all') }}</a></div>
+                <div><code>h</code> <a href="#" id="files-hide">{{ _('Hide or unhide tree') }}</a></div>
+                <div><code>w</code> <a href="#" id="files-wrap">{{ _('Wrap or unwrap text') }}</a></div>
+                <div><a class="no-key" href="{{ file_link['url'] }}">{{ file_link['text'] }}</a></div>
+            </div>
             {% elif not files and status %}
-                <p>{{ _('No files in the uploaded file.') }}</p>
+                <div>{{ _('No files in the uploaded file.') }}</div>
             {% endif %}
         </div>
         <div id="thinking" class="js-hidden">

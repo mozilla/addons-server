@@ -143,6 +143,8 @@ class TestFileHelper(test_utils.TestCase):
         eq_(res[0], '')
         assert res[1].startswith('File size is')
 
+    def test_default(self):
+        eq_(self.viewer.get_default(None), 'install.rdf')
 
 class TestSearchEngineHelper(test_utils.TestCase):
     fixtures = ['base/addon_4594_a9']
@@ -151,6 +153,10 @@ class TestSearchEngineHelper(test_utils.TestCase):
         self.file_one = File.objects.get(pk=25753)
         self.viewer = FileViewer(self.file_one)
 
+        if not os.path.exists(os.path.dirname(self.viewer.src)):
+            os.makedirs(os.path.dirname(self.viewer.src))
+            open(self.viewer.src, 'w')
+
     def tearDown(self):
         self.viewer.cleanup()
 
@@ -158,10 +164,12 @@ class TestSearchEngineHelper(test_utils.TestCase):
         assert self.viewer.is_search_engine
 
     def test_extract_search_engine(self):
-        os.makedirs(os.path.dirname(self.viewer.src))
-        open(self.viewer.src, 'w')
         self.viewer.extract()
         assert os.path.exists(self.viewer.dest)
+
+    def test_default(self):
+        self.viewer.extract()
+        eq_(self.viewer.get_default(None), 'a9.xml')
 
 
 class TestDiffSearchEngine(test_utils.TestCase):

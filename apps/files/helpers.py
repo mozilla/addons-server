@@ -130,6 +130,11 @@ class FileViewer:
                 #L10n: {0} is the filename.
                 return cont, _('Problems decoding using: %s.' % codec)
 
+    def get_default(self, key):
+        if self.is_search_engine and not key:
+            return self.get_files().keys()[0]
+        return key if key else 'install.rdf'
+
     def get_files(self):
         """
         Returns a SortedDict, ordered by the filename of all the files in the
