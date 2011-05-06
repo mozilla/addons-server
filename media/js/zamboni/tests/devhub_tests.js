@@ -276,6 +276,174 @@ asyncTest('Test failing', function() {
 });
 
 
+var compatibilityFixtures = {
+    setup: function() {
+        this.sandbox = tests.createSandbox('#addon-compatibility-template');
+        $.mockjaxSettings = {
+            status: 200,
+            responseTime: 0,
+            contentType: 'text/json',
+            dataType: 'json'
+        };
+    },
+    teardown: function() {
+        $.mockjaxClear();
+        this.sandbox.remove();
+    }
+};
+
+module('Validator: Compatibility', compatibilityFixtures);
+
+asyncTest('Test passing', function() {
+    var $suite = $('.addon-validator-suite', this.sandbox),
+        tiers=[], results=[];
+
+    $.mockjax({
+        url: '/validate',
+        responseText: {
+            "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
+            "full_report_url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "upload": "d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "error": null,
+            "validation": {
+                "errors": 0,
+                "success": false,
+                "warnings": 5,
+                "ending_tier": 5,
+                "messages": [{
+                    "context": null,
+                    "description": ["IGNORE THIS MESSAGE."],
+                    "column": null,
+                    "id": ["testcases_packagelayout", "test_blacklisted_files", "disallowed_extension"],
+                    "file": "ffmpeg/libmp3lame-0.dll",
+                    "tier": 1,
+                    "for_appversions": null,
+                    "message": "Flagged file extension found",
+                    "type": "warning",
+                    "line": null,
+                    "uid": "bb0b38812d8f450a85fa90a2e7e6693b"
+                },
+                {
+                    "context": ["<code>"],
+                    "description": ["A dangerous or banned global..."],
+                    "column": 23,
+                    "id": [],
+                    "file": "chrome/content/youtune.js",
+                    "tier": 3,
+                    "for_appversions": {
+                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.0b3"]
+                    },
+                    "message": "Dangerous Global Object",
+                    "type": "warning",
+                    "line": 533,
+                    "uid": "2a96f7faee7a41cca4d6ead26dddc6b3"
+                },
+                {
+                    "context": ["<code>"],
+                    "description": ["some other error..."],
+                    "column": 23,
+                    "id": [],
+                    "file": "file.js",
+                    "tier": 3,
+                    "for_appversions": {
+                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.0b3"]
+                    },
+                    "message": "Some error",
+                    "type": "error",
+                    "line": 533,
+                    "uid": "dd96f7faee7a41cca4d6ead26dddc6c2"
+                },
+                {
+                    "context": ["<code>"],
+                    "description": "To prevent vulnerabilities...",
+                    "column": 2,
+                    "id": [],
+                    "file": "chrome/content/youtune.js",
+                    "tier": 3,
+                    "for_appversions": {
+                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.0b1"]
+                    },
+                    "message": "on* attribute being set using setAttribute",
+                    "type": "notice",
+                    "line": 226,
+                    "uid": "9a07163bb74e476c96a2bd467a2bbe52"
+                },
+                {
+                    "context": null,
+                    "description": "The add-on doesn\'t have...",
+                    "column": null,
+                    "id": [],
+                    "file": "chrome.manifest",
+                    "tier": 4,
+                    "for_appversions": {
+                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.0b1"]
+                    },
+                    "message": "Add-on cannot be localized",
+                    "type": "notice",
+                    "line": null,
+                    "uid": "92a0be84024a464e87046b04e26232c4"
+                }],
+                "detected_type": "extension",
+                "notices": 2,
+                "message_tree": {},
+                "metadata": {}
+            }
+        }
+    });
+
+    $suite.trigger('validate');
+
+    tests.waitFor(function() {
+        // Wait until last app/version section was created.
+        return $('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b1', $suite).length;
+    }).thenDo(function() {
+        equals($('#suite-results-tier-errors', $suite).length, 0);
+        equals($('.result-header h4:eq(1)', $suite).text(),
+               'Firefox 4.0b3 Tests');
+        equals($('.result-header h4:eq(2)', $suite).text(),
+               'Firefox 4.0b1 Tests');
+        equals($('#v-msg-2a96f7faee7a41cca4d6ead26dddc6b3 p:eq(0)', $suite).text(),
+               'Warning: A dangerous or banned global...');
+        equals($('#v-msg-9a07163bb74e476c96a2bd467a2bbe52 p:eq(0)', $suite).text(),
+               'Error: To prevent vulnerabilities...');
+        equals($('#v-msg-92a0be84024a464e87046b04e26232c4 p:eq(0)', $suite).text(),
+               'Error: The add-on doesn\'t have...');
+        ok($('#v-msg-bb0b38812d8f450a85fa90a2e7e6693b', $suite).length == 0,
+           'Non-compatibility message should be hidden');
+        equals($('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .result-summary', $suite).text(),
+               '1 error, 1 warning');
+        start();
+    });
+});
+
+asyncTest('Test task error', function() {
+    var $suite = $('.addon-validator-suite', this.sandbox),
+        tiers=[], results=[];
+
+    $.mockjax({
+        url: '/validate',
+        responseText: {
+            "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
+            "full_report_url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "upload": "d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "error": "Traceback (most recent call last):\n  File \"/Users/kumar/dev/zamboni/apps/devhub/tasks.py\", line 23, in validator\n    result = _validator(upload)\n  File \"/Users/kumar/dev/zamboni/apps/devhub/tasks.py\", line 49, in _validator\n    import validator.main as addon_validator\n  File \"/Users/kumar/dev/zamboni/vendor/src/amo-validator/validator/main.py\", line 17, in <module>\n    import validator.testcases.l10ncompleteness\n  File \"/Users/kumar/dev/zamboni/vendor/src/amo-validator/validator/testcases/l10ncompleteness.py\", line 3, in <module>\n    import chardet\nImportError: No module named chardet\n",
+            "validation": ""
+        }
+    });
+
+    $suite.trigger('validate');
+
+    tests.waitFor(function() {
+        return $('#suite-results-tier-errors .msg', $suite).length > 0;
+    }).thenDo(function() {
+        equals($('.msg', $suite).text(),
+               'ErrorError: Validation task could not complete or ' +
+               'completed with errors')
+        start();
+    });
+});
+
+
 module('Validator: Incomplete', validatorFixtures);
 
 asyncTest('Test incomplete validation', function() {
@@ -393,7 +561,7 @@ asyncTest('Test 500 error', function() {
             ok(result.hasClass('tests-failed'),
                 'Checking class: ' + result.attr('class'));
             ok(!result.hasClass('tests-passed'),
-                'Should not have this class');
+                'Should not have this class: tests-passed');
             equals(result.hasClass('ajax-loading'), false,
                 'Checking class: ' + result.attr('class'));
         });

@@ -42,6 +42,14 @@
       {% endwith %}
     </div>
   </div>
+  <div id="addon-compatibility-template">
+    <div class="addon-validator-suite" id="addon-validator-suite-test"
+         data-validateurl="/validate">
+      {% with app_trans={'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': 'Firefox'} %}
+        {% include "devhub/addons/includes/validation_compat_test_results.html" %}
+      {% endwith %}
+    </div>
+  </div>
   <div id="l10n-translation">
     <div data-name="summary" class="trans" id="trans-summary">
       <textarea lang="en-us" name="summary_en-us" cols="40" rows="10"

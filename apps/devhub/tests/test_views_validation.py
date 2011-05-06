@@ -2,6 +2,8 @@
 import json
 import os
 import shutil
+import sys
+import traceback
 
 import mock
 from nose.plugins.attrib import attr
@@ -10,11 +12,13 @@ from pyquery import PyQuery as pq
 import test_utils
 
 from addons.models import Addon
+import amo
 from amo.tests import assert_no_validation_errors
 from amo.urlresolvers import reverse
 from files.models import File, FileUpload, FileValidation
 from files.tests.test_models import UploadTest as BaseUploadTest
 from users.models import UserProfile
+from zadmin.models import ValidationResult
 
 
 class TestUploadValidation(BaseUploadTest):
@@ -201,3 +205,56 @@ class TestValidateFile(BaseUploadTest):
         assert_no_validation_errors(data)
         addon = Addon.objects.get(pk=self.addon.id)
         eq_(addon.binary, True)
+
+
+class TestCompatibilityResults(test_utils.TestCase):
+    fixtures = ['base/users', 'devhub/addon-compat-results']
+
+    def setUp(self):
+        super(TestCompatibilityResults, self).setUp()
+        assert self.client.login(username='editor@mozilla.com',
+                                 password='password')
+        self.addon = Addon.objects.get(slug='addon-compat-results')
+        self.result = ValidationResult.objects.get(
+                                        file__version__addon=self.addon)
+
+    def test_login_protected(self):
+        self.client.logout()
+        r = self.client.get(reverse('devhub.validation_result',
+                                     args=[self.addon.slug, self.result.id]))
+        eq_(r.status_code, 302)
+        r = self.client.post(reverse('devhub.json_validation_result',
+                                     args=[self.addon.slug, self.result.id]))
+        eq_(r.status_code, 302)
+
+    def test_app_trans(self):
+        r = self.client.get(reverse('devhub.validation_result',
+                                     args=[self.addon.slug, self.result.id]))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        trans = json.loads(doc('.results').attr('data-app-trans'))
+        for app in amo.APPS.values():
+            eq_(trans[app.guid], app.pretty)
+
+    def test_validation_success(self):
+        r = self.client.post(reverse('devhub.json_validation_result',
+                                     args=[self.addon.slug, self.result.id]),
+                                     follow=True)
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        eq_(data['validation']['messages'][3]['for_appversions'],
+            {'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': ['4.0b3']})
+
+    def test_validation_error(self):
+        try:
+            raise RuntimeError('simulated task error')
+        except:
+            error = ''.join(traceback.format_exception(*sys.exc_info()))
+        self.result.update(validation='', task_error=error)
+        r = self.client.post(reverse('devhub.json_validation_result',
+                                     args=[self.addon.slug, self.result.id]),
+                                     follow=True)
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        eq_(data['validation'], '')
+        eq_(data['error'], error)
