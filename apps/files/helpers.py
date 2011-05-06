@@ -231,7 +231,13 @@ class DiffHelper:
     def select(self, key):
         self.key = key
         self.one = self.get_files(self.file_one).get(key)
-        self.two = self.get_files(self.file_two).get(key)
+        if key and self.file_two.is_search_engine:
+            # There's only one file in a search engine.
+            files = self.get_files(self.file_two)
+            self.two = files[files.keys()[0]]
+        else:
+            self.two = self.get_files(self.file_two).get(key)
+        return self.one and self.two
 
     def is_different(self):
         if self.one and self.two:

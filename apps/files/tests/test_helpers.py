@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import mimetypes
+import shutil
 import tempfile
 
 from django.conf import settings
@@ -17,6 +18,7 @@ from files.models import File
 root = os.path.join(settings.ROOT, 'apps/files/fixtures/files')
 dictionary = '%s/dictionary-test.xpi' % root
 recurse = '%s/recurse.xpi' % root
+search = '%s/search.xml' % root
 
 
 class TestFileHelper(test_utils.TestCase):
@@ -146,8 +148,11 @@ class TestSearchEngineHelper(test_utils.TestCase):
     fixtures = ['base/addon_4594_a9']
 
     def setUp(self):
-        file = File.objects.get(pk=25753)
-        self.viewer = FileViewer(file)
+        self.file_one = File.objects.get(pk=25753)
+        self.viewer = FileViewer(self.file_one)
+
+    def tearDown(self):
+        self.viewer.cleanup()
 
     def test_is_search_engine(self):
         assert self.viewer.is_search_engine
@@ -159,10 +164,38 @@ class TestSearchEngineHelper(test_utils.TestCase):
         assert os.path.exists(self.viewer.dest)
 
 
+class TestDiffSearchEngine(test_utils.TestCase):
+
+    def setUp(self):
+        src = os.path.join(settings.ROOT, search)
+
+        file_one = Mock()
+        file_one.id = file_one.pk = 1
+        file_one.file_path = src
+        file_one.filename = 'search.xml'
+
+        file_two = Mock()
+        file_two.id = file_two.pk = 2
+        file_two.file_path = src
+        file_two.filename = 'search.xml'
+
+        self.helper = DiffHelper(file_one, file_two)
+        self.helper.file_one.is_search_engine = True
+        self.helper.file_two.is_search_engine = True
+
+    def tearDown(self):
+        self.helper.cleanup()
+
+    def test_diff_search(self):
+        self.helper.extract()
+        shutil.move(os.path.join(self.helper.file_two.dest, 'search.xml'),
+                    os.path.join(self.helper.file_two.dest, 's-20010101.xml'))
+        assert self.helper.select('search.xml')
+
+
 class TestDiffHelper(test_utils.TestCase):
 
     def setUp(self):
-        dictionary = 'apps/files/fixtures/files/dictionary-test.xpi'
         src = os.path.join(settings.ROOT, dictionary)
 
         file_one = Mock()
