@@ -209,10 +209,7 @@ class PerformanceGraph(ViewQueue):
                 ('total', 'COUNT(*)')]),
             'from': [
                 'log_activity',
-                'LEFT JOIN `users` ON (`users`.`id`=`log_activity`.`user_id`)',
-                """INNER JOIN `groups_users` ON
-                   (`users`.`id` = `groups_users`.`user_id` AND
-                   `groups_users`.`group_id` = 2)"""],
+                'LEFT JOIN `users` ON (`users`.`id`=`log_activity`.`user_id`)'],
             'where': ['log_activity.action in (%s)' % ', '.join(review_ids)],
             'group_by': 'yearmonth, user_id'
             }

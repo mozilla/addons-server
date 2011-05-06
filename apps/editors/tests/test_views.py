@@ -764,7 +764,9 @@ class TestPerformance(QueueTest):
     """Test the page at /editors/performance."""
     def setUp(self):
         super(TestPerformance, self).setUp()
+        self.url_performance = reverse('editors.performance')
 
+    def test_performance_chart_editor(self):
         self.login_as_editor()
         amo.set_user(UserProfile.objects.get(username='editor'))
         addon = Addon.objects.all()[0]
@@ -773,9 +775,26 @@ class TestPerformance(QueueTest):
         for i in amo.LOG_REVIEW_QUEUE:
             amo.log(amo.LOG_BY_ID[i], addon, version)
 
-        self.url_performance = reverse('editors.performance')
+        r = self.client.get(self.url_performance)
+        doc = pq(r.content)
 
-    def test_performance_chart(self):
+        # The ' - 1' is to account for REQUEST_VERSION not being displayed.
+        num = len(amo.LOG_REVIEW_QUEUE) - 1
+        data =  {u'2011-05': {u'teamcount': num, u'teamavg': u'%s.0' % num,
+                              u'usercount': num, u'teamamt': 1,
+                              u'label': u'May 2011'}}
+
+        eq_(json.loads(doc('#monthly').attr('data-chart')), data)
+
+    def test_performance_chart_as_admin(self):
+        self.login_as_admin()
+        amo.set_user(UserProfile.objects.get(username='admin'))
+        addon = Addon.objects.all()[0]
+        version = addon.versions.all()[0]
+
+        for i in amo.LOG_REVIEW_QUEUE:
+            amo.log(amo.LOG_BY_ID[i], addon, version)
+
         r = self.client.get(self.url_performance)
         doc = pq(r.content)
 
