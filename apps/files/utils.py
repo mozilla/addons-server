@@ -136,15 +136,17 @@ def parse_search(filename, addon=None):
             'version': datetime.now().strftime('%Y%m%d')}
 
 
-def extract_zip(source, remove=False):
+def extract_zip(source, remove=False, fatal=True):
     """Extracts the zip file. If remove is given, removes the source file."""
     tempdir = tempfile.mkdtemp()
 
     try:
         zip = zipfile.ZipFile(source)
-    except BadZipfile, err:
+    except (BadZipfile, IOError), err:
         log.error('Error (%s) extracting %s' % (err, source))
-        raise
+        if fatal:
+            raise
+        return None
 
     for f in zip.namelist():
         if '..' in f or f.startswith('/'):
@@ -189,9 +191,10 @@ def extract_xpi(xpi, path, expand=False):
                     if os.path.splitext(name)[1] in expand_whitelist:
                         src = os.path.join(root, name)
                         if not os.path.isdir(src):
-                            dest = extract_zip(src, remove=True)
-                            copy_over(dest, src)
-                            flag = True
+                            dest = extract_zip(src, remove=True, fatal=False)
+                            if dest:
+                                copy_over(dest, src)
+                                flag = True
             if not flag:
                 break
 
