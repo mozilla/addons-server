@@ -202,7 +202,8 @@ def monitor(request, format=None):
 
 def robots(request):
     """Generate a robots.txt"""
-    if not settings.ENGAGE_ROBOTS:
+    _service = (request.META['SERVER_NAME'] == settings.SERVICES_DOMAIN)
+    if _service or not settings.ENGAGE_ROBOTS:
         template = "User-agent: *\nDisallow: /"
     else:
         template = jingo.render(request, 'amo/robots.html',

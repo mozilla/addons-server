@@ -122,9 +122,13 @@ DOMAIN = HOSTNAME
 #   Example: https://addons.mozilla.org
 SITE_URL = 'http://%s' % DOMAIN
 
+# Domain of the services site.  This is where your API, and in-product pages
+# live.
+SERVICES_DOMAIN = 'services.%s' % DOMAIN
+
 # Full URL to your API service. No trailing slash.
 #   Example: https://services.addons.mozilla.org
-SERVICES_URL = 'http://services.%s' % DOMAIN
+SERVICES_URL = 'http://%s' % SERVICES_DOMAIN
 
 # The domain of the mobile site.
 MOBILE_DOMAIN = 'm.%s' % DOMAIN
