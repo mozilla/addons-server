@@ -74,9 +74,10 @@ function bind_viewer(nodes) {
                 $diff.html(dmp.diff_prettyHtml(diffs)).show();
             }
 
-            if (window.location.hash) {
-                window.location = window.location;
+            if (!window.location.hash) {
+                window.location.hash = 'file-viewer';
             }
+            window.location = window.location;
         };
         this.toggle_leaf = function($leaf) {
             if ($leaf.hasClass('open')) {
