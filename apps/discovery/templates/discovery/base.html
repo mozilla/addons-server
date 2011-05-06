@@ -2,9 +2,7 @@
 <html lang="{{ LANG }}" dir="{{ DIR }}">
   <head>
     <meta charset="utf-8">
-    {% if not settings.ENGAGE_ROBOTS %}
-      <meta name="robots" content="noindex">
-    {% endif %}
+    <meta name="robots" content="noindex">
     <meta name="viewport" content="width=700">
     <title>{% block title %}{{ _('Discover Add-ons') }}{% endblock %}</title>
     {{ css('zamboni/discovery-pane') }}
