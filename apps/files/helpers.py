@@ -3,6 +3,8 @@ import mimetypes
 import os
 import shutil
 import stat
+import sys
+import traceback
 
 from django.conf import settings
 from django.utils.datastructures import SortedDict
@@ -81,7 +83,9 @@ class FileViewer:
             try:
                 extract_xpi(self.src, self.dest, expand=True)
             except Exception, err:
-                task_log.error('Error (%s) extracting %s' % (err, self.src))
+                exc_info = sys.exc_info()
+                task_log.error('Error (%s) extracting %s, %s' %
+                               (err, self.src, traceback.format_tb(exc_info[2])))
                 raise
 
     def cleanup(self):
