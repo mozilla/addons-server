@@ -628,6 +628,11 @@ div.editor-stats-table > div.editor-stats-dark {
     font-weight: normal;
 }
 
+.history_comment {
+    overflow: auto;
+    width: 613px;
+}
+
 .review-paging {
     border-bottom: 1px dotted #ccc;
     margin-bottom: 2em;
