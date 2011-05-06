@@ -1811,3 +1811,9 @@ body.eula #main {
 #eula p:last-child {
     margin-bottom: 0;
 }
+
+/* App Specific ****/
+.seamonkey #main-feature {
+    /* Hide this for SeaMonkey as it has no content */
+    display: none !important;
+}
