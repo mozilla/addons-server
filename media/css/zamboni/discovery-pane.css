@@ -684,6 +684,12 @@ ul.addons {
     margin-right: 0;
 }
 
+/* Limit to 6 Featured and 5 Up & Coming add-ons at a time. */
+#featured-addons li:nth-child(n+7),
+#up-and-coming li:nth-child(n+6) {
+    display: none;
+}
+
 .addons li > a,
 .rec-addons li > a,
 #monthly > div,
