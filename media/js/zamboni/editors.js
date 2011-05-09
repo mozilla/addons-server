@@ -292,7 +292,8 @@ function initPerformanceStats() {
                 },
                 yAxis: {
                     title: { text: gettext('Number of Reviews') },
-                    plotLines: [{value: 0, width: 1, color: '#808080'}]
+                    plotLines: [{value: 0, width: 1, color: '#808080'}],
+                    min: 0
                 },
                 tooltip: {
                     formatter: function() {
@@ -307,7 +308,10 @@ function initPerformanceStats() {
                     y: 100,
                     borderWidth: 0
                 },
-                series: chart_series
+                series: chart_series,
+                credits: {
+                  enabled: false
+                }
             });
     }
 
