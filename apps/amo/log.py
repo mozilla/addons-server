@@ -347,7 +347,7 @@ class BULK_VALIDATION_UPDATED(_LOG):
 class BULK_VALIDATION_EMAILED(_LOG):
     id = 47
     action_class = None
-    format = _(u'Authors emailed about compatability of {version}.')
+    format = _(u'Authors emailed about compatibility of {version}.')
 
 
 class CUSTOM_TEXT(_LOG):
