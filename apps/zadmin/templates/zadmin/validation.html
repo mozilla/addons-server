@@ -51,15 +51,16 @@
       <td>{{ job.stats['failing'] }}
         {% if job.completed and job.stats['failing'] > 0 %}
             <a href="" class="notify"
-                       data-job-url="{{ url('zadmin.notify', job.pk) }}"
+                       data-job-url="{{ url('zadmin.notify.failure', job.pk) }}"
                        data-notify-count="{{ job.stats['failing'] }}">Notify</a>
         {% endif %}
       </td>
       <td>{{ job.stats['passing'] }}
           {% if job.completed and job.stats['passing'] > 0 %}
-              <a href="#" data-job-version="{{ job.target_version.version }}"
-                          data-job-url="{{ url('zadmin.set-max-version', job.pk) }}"
-                          data-job-count="{{ job.stats['passing'] }}" class="set-max-version">Set max version</a>
+              <a href="#" class="set-max-version"
+                          data-job-version="{{ job.target_version.version }}"
+                          data-job-url="{{ url('zadmin.notify.success', job.pk) }}"
+                          data-job-count="{{ job.stats['passing'] }}">Set max version</a>
           {% endif %}
       </td>
       <td>{{ job.stats['errors'] }}</td>
@@ -70,26 +71,13 @@
 </section>
 
 <div class="hidden">
-    <div class="popup" id="set-max-version">
-        <p></p>
-        <form method="post" action="">
-            {{ csrf() }}
-            <button type="submit">
-                {{ _('Continue') }}
-            </button>
-            <span class="cancel"><a href="#">{{ _('Cancel') }}</a></span>
-        </form>
-    </div>
-</div>
-
-<div class="hidden">
     <div class="popup" id="notify">
         <form method="post" action="" data-url="{{ url('zadmin.notify.syntax') }}">
             {{ csrf() }}
-            <p></p>
-            <p>Available variables: {{ ', '.join(notify_form.variables) }}</p>
+            <p>{# placeholder for form text #}</p>
+            <p>Available variables: {{ ', '.join(success_form.variables) }}</p>
             <p class="js-hidden error"></p>
-            {{ notify_form.text }}
+            <div>{# placeholder for the form #}</div>
             <button type="submit">
                 {{ _('Continue') }}
             </button>
@@ -98,4 +86,11 @@
     </div>
 </div>
 
+<div class="hidden" id="success-form">
+    {{ success_form.as_p() }}
+</div>
+
+<div class="hidden" id="failure-form">
+    {{ failure_form.as_p() }}
+</div>
 {% endblock %}

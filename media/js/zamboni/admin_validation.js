@@ -38,34 +38,33 @@ function initAdminValidation(doc) {
         $elem.trigger('change');
     }
 
-    var $version_popup = $('#set-max-version').popup('a.set-max-version', {
+    var $popup = $('#notify').popup('td a', {
+        width: '600px',
         callback: function(obj) {
-            var $ct = $(obj.click_target);
-            // L10n: {0} is the number of add-ons, {1} is a version like 4.0
-            var msg = ngettext('Set {0} add-on to a max version of {1}.',
-                               'Set {0} add-ons to a max version of {1}.',
+            var $ct = $(obj.click_target),
+                msg = '',
+                form = '';
+            if ($ct.hasClass('set-max-version')) {
+                // L10n: {0} is the number of add-ons, {1} is a version like 4.0
+                msg = ngettext('Set {0} add-on to a max version of {1} and email the author.',
+                               'Set {0} add-ons to a max version of {1} and email the authors',
                                $ct.attr('data-job-count'));
-            $(this).children('p').text(format(msg, [$ct.attr('data-job-count'),
-                                                   $ct.attr('data-job-version')]));
-            $(this).children('form').attr('action', $ct.attr('data-job-url'));
-            return { pointTo: $ct };
-        }
-    });
-    $('#set-max-version span.cancel a').click(function() {
-        $version_popup.hideMe();
-    });
-
-    var $notify_popup = $('#notify').popup('a.notify', {
-        callback: function(obj) {
-            var $ct = $(obj.click_target);
-            var msg = ngettext('This will send emails to the authors of {0} file.',
+                msg = format(msg, [$ct.attr('data-job-count'), $ct.attr('data-job-version')]);
+                form = $('#success-form').html();
+            } else {
+                msg = ngettext('This will send emails to the authors of {0} file.',
                                'This will send emails to the authors of {0} files.',
                                $ct.attr('data-notify-count'));
-            $(this).find('p').eq(0).text(format(msg, [$ct.attr('data-notify-count')]));
+                msg = format(msg, [$ct.attr('data-notify-count')]);
+                form = $('#failure-form').html();
+            }
+            $(this).find('p').eq(0).text(msg);
             $(this).children('form').attr('action', $ct.attr('data-job-url'));
+            $(this).find('div').eq(1).html(form); // note eq(0) is the csrf hidden div
             return { pointTo: $ct };
         }
     });
+
     $('#notify form').submit(function(e) {
         var $form = $(this);
         if ($form.attr('data-valid') != 'valid') {
@@ -77,14 +76,14 @@ function initAdminValidation(doc) {
                 }
             });
             e.preventDefault();
+            return false;
         } else {
             return true;
         }
     });
-    $('#notify span.cancel a').click(function() {
-        $notify_popup.hideMe();
-    });
+    $('#notify form span.cancel a').click(_pd(function() {
+        $popup.hideMe();
+    }));
 }
-
 
 })();

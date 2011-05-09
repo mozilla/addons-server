@@ -155,10 +155,10 @@ def validation(request, form=None):
     if not form:
         form = BulkValidationForm()
     jobs = ValidationJob.objects.order_by('-created')
-    notify_form = NotifyForm()
     return jingo.render(request, 'zadmin/validation.html',
                         {'form': form,
-                         'notify_form': notify_form,
+                         'success_form': NotifyForm(text='success'),
+                         'failure_form': NotifyForm(text='failure'),
                          'validation_jobs': jobs})
 
 
@@ -213,17 +213,6 @@ def completed_versions_dirty(job):
 
 @post_required
 @admin.site.admin_view
-def set_max_version(request, job):
-    job = get_object_or_404(ValidationJob, pk=job)
-    versions = completed_versions_dirty(job)
-    for chunk in chunked(versions, 100):
-        tasks.set_max_versions.delay(chunk, job.pk)
-    messages.success(request, _('Updating max version task started.'))
-    return redirect(reverse('zadmin.validation'))
-
-
-@post_required
-@admin.site.admin_view
 @json_view
 def notify_syntax(request):
     notify_form = NotifyForm(request.POST)
@@ -235,18 +224,36 @@ def notify_syntax(request):
 
 @post_required
 @admin.site.admin_view
-def notify(request, job):
+def notify_failure(request, job):
     job = get_object_or_404(ValidationJob, pk=job)
-    notify_form = NotifyForm(request.POST)
+    notify_form = NotifyForm(request.POST, text='failure')
 
     if not notify_form.is_valid():
-        msg = _('Error processing the mail template: %s')
-        messages.error(request, msg % notify_form.errors['text'][0])
+        messages.error(request, notify_form)
 
     else:
         file_pks = job.result_failing().values_list('file_id', flat=True)
         for chunk in chunked(file_pks, 100):
             tasks.notify_failed.delay(chunk, job.pk, notify_form.cleaned_data)
         messages.success(request, _('Notifying authors task started.'))
+
+    return redirect(reverse('zadmin.validation'))
+
+
+@post_required
+@admin.site.admin_view
+def notify_success(request, job):
+    job = get_object_or_404(ValidationJob, pk=job)
+    notify_form = NotifyForm(request.POST, text='success')
+
+    if not notify_form.is_valid():
+        messages.error(request, notify_form.errors)
+
+    else:
+        versions = completed_versions_dirty(job)
+        for chunk in chunked(versions, 100):
+            tasks.notify_success.delay(chunk, job.pk, notify_form.cleaned_data)
+        messages.success(request, _('Updating max version task and '
+                                    'notifying authors started.'))
 
     return redirect(reverse('zadmin.validation'))

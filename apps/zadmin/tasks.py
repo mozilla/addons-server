@@ -67,13 +67,27 @@ def bulk_validate_file(result_id, **kw):
         raise etype, val, tb
 
 
+def get_context(addon, version, job):
+    return Context({
+            'ADDON_NAME': addon.name,
+            'APPLICATION': str(job.application),
+            'COMPAT_LINK': (absolutify(reverse('devhub.versions.edit',
+                                               args=[addon.pk, version.pk]))),
+            # TODO(andym): link when we have results page bug 649863 maybe?
+            'RESULTS_LINK': '',
+            'VERSION': job.target_version.version,
+        })
+
+
 @task
 @write
-def set_max_versions(version_pks, job_pk, **kw):
+def notify_success(version_pks, job_pk, data, **kw):
     log.info('[%s@None] Updating max version for job %s.'
              % (len(version_pks), job_pk))
     job = ValidationJob.objects.get(pk=job_pk)
     for version in Version.objects.filter(pk__in=version_pks):
+        addon = version.addon
+        context = get_context(addon, version, job)
         file_pks = version.files.values_list('pk', flat=True)
         errors = (ValidationResult.objects.filter(validation_job=job,
                                                   file__pk__in=file_pks)
@@ -84,6 +98,7 @@ def set_max_versions(version_pks, job_pk, **kw):
                      % (version.pk, version.addon.pk))
             continue
 
+        app_flag = False
         for app in version.apps.filter(application=
                                        job.curr_max_version.application):
             if (app.max.version == job.curr_max_version.version and
@@ -95,16 +110,27 @@ def set_max_versions(version_pks, job_pk, **kw):
                             job.target_version.version))
                 app.max = job.target_version
                 app.save()
-                amo.log(amo.LOG.BULK_VALIDATION_UPDATED,
-                        version.addon, version,
-                        details={'version': version.version,
-                                 'target': job.target_version.version})
+                app_flag = True
 
             else:
                 log.info('Version %s for addon %s not updated, '
                          'current max version is %s not %s'
                          % (version.pk, version.addon.pk,
                             app.max.version, job.curr_max_version.version))
+
+        if app_flag:
+            for author in addon.authors.all():
+                log.info(u'Emailing %s for addon %s, version %s about '
+                         'success from bulk validation job %s'
+                         % (author.email, addon.pk, version.pk, job_pk))
+                send_mail(Template(data['subject']).render(context),
+                          Template(data['text']).render(context),
+                          from_email=settings.DEFAULT_FROM_EMAIL,
+                          recipient_list=[author.email])
+                amo.log(amo.LOG.BULK_VALIDATION_UPDATED,
+                        version.addon, version,
+                        details={'version': version.version,
+                                 'target': job.target_version.version})
 
 
 @task
@@ -113,25 +139,17 @@ def notify_failed(file_pks, job_pk, data, **kw):
     log.info('[%s@None] Notifying failed for job %s.'
              % (len(file_pks), job_pk))
     job = ValidationJob.objects.get(pk=job_pk)
-    template = Template(data['text'])
 
     for obj in File.objects.filter(pk__in=file_pks):
         version = obj.version
         addon = version.addon
-        context = Context({
-            'ADDON_NAME': addon.name,
-            # TODO(andym): link when we have results page bug 649863 maybe?
-            'RESULTS_LINK': '',
-            'COMPAT_LINK': (absolutify(reverse('devhub.versions.edit',
-                                               args=[addon.pk, version.pk]))),
-        })
-
+        context = get_context(addon, version, job)
         for author in addon.authors.all():
             log.info(u'Emailing %s for addon %s, file %s about '
                      'error from bulk validation job %s'
                      % (author.email, addon.pk, obj.pk, job_pk))
-            send_mail(u'Mozilla Add-ons: %s' % addon.name,
-                      template.render(context),
+            send_mail(Template(data['subject']).render(context),
+                      Template(data['text']).render(context),
                       from_email=settings.DEFAULT_FROM_EMAIL,
                       recipient_list=[author.email])
 

@@ -89,3 +89,6 @@ fieldset {
 #admin-validation .errorlist ul ul {
     margin: 0;
 }
+div.popup input[type="text"] {
+    width: 588px;
+}

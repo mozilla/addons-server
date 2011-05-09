@@ -60,21 +60,36 @@ class BulkValidationForm(happyforms.ModelForm):
         return self._clean_appversion(self.cleaned_data['target_version'])
 
 
+path = os.path.join(settings.ROOT, 'apps/zadmin/templates/zadmin')
+texts = {
+    'success': open('%s/%s' % (path, 'success.txt')).read(),
+    'failure': open('%s/%s' % (path, 'failure.txt')).read(),
+}
+
+
 class NotifyForm(happyforms.Form):
+    subject = forms.CharField(widget=forms.TextInput, required=True)
     text = forms.CharField(widget=forms.Textarea, required=True)
-    variables = ['{{ADDON_NAME}}', '{{RESULTS_LINK}}', '{{COMPAT_LINK}}']
-    default_text = os.path.join(settings.ROOT,
-                                'apps/zadmin/templates/zadmin/mail.txt')
+    variables = ['{{ADDON_NAME}}', '{{APPLICATION}}', '{{COMPAT_LINK}}',
+                 '{{RESULTS_LINK}}', '{{VERSION}}']
 
     def __init__(self, *args, **kw):
         kw.setdefault('initial', {})
-        kw['initial']['text'] = open(self.default_text, 'r').read()
+        if 'text' in kw:
+            kw['initial']['text'] = texts[kw.pop('text')]
+        kw['initial']['subject'] = ('{{ADDON_NAME}} compatibility with '
+                                    '{{APPLICATION}} {{VERSION}}')
         super(NotifyForm, self).__init__(*args, **kw)
 
-    def clean_text(self):
-        text = self.cleaned_data['text']
+    def check_template(self, data):
         try:
-            Template(text).render(Context({}))
+            Template(data).render(Context({}))
         except TemplateSyntaxError, err:
             raise forms.ValidationError(err)
-        return text
+        return data
+
+    def clean_text(self):
+        return self.check_template(self.cleaned_data['text'])
+
+    def clean_subject(self):
+        return self.check_template(self.cleaned_data['subject'])
