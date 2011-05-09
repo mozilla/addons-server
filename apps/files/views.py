@@ -149,4 +149,5 @@ def files_serve(request, viewer, key):
         log.error(u'Couldn\'t find %s in %s (%d entries) for file %s' %
                   (key, files.keys()[:10], len(files.keys()), viewer.file.id))
         raise http.Http404()
-    return HttpResponseSendFile(request, obj['full'])
+    return HttpResponseSendFile(request, obj['full'],
+                                content_type=obj['mimetype'])
