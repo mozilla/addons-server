@@ -71,7 +71,7 @@ class MonthlyPick(TemplatePromo):
     # will all be redone with the mango bugs: http://bugzil.la/[t:mango]
     def context(self):
         return {
-                'addon': Addon.objects.get(id=3456),
+                'addon': Addon.objects.get(id=6416),
                 'addon_de': Addon.objects.get(id=146384)
                }
 
