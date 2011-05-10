@@ -794,7 +794,7 @@ LOGGING = {
 
 # CSP Settings
 CSP_REPORT_URI = '/services/csp/report'
-CSP_POLICY_URI = '/services/csp/policy'
+CSP_POLICY_URI = '/services/csp/policy?build=%s' % build_id
 CSP_REPORT_ONLY = True
 
 CSP_ALLOW = ("'self'",)
