@@ -7,10 +7,9 @@
     <a href="{{ file_link['url'] }}">{{ addon.name }} {{ version }}</a>
     {% if file.platform.id != amo.PLATFORM_ALL.id %}({{ file.platform }}){% endif %}
 </h3>
-<ol class="breadcrumbs">
-    <li>{{ addon.name }}</li>
-    <li>{{ version }}</li>
-    <li id="breadcrumb">{{ selected['filename'] }}</li>
+<ol id="top" class="breadcrumbs">
+    <li><a href="{{ file_link['url'] }}">{{ addon.name }}</a></li>
+    <li><a href="{{ url('addons.versions', version.pk) }}">{{ version }}</a></li>
 </ol>
 <div id="file-viewer" class="featured">
     <div class="featured-inner">
