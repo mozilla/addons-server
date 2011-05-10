@@ -106,7 +106,7 @@ function bind_viewer(nodes) {
             }
 
             if (!window.location.hash) {
-                window.location.hash = 'file-viewer';
+                window.location.hash = 'top';
             }
             window.location = window.location;
         };
@@ -137,7 +137,11 @@ function bind_viewer(nodes) {
                         $(this).prev('li').find('a:first')
                                .removeClass('closed').addClass('open');
             });
-            this.nodes.$title.text($link.attr('data-short'));
+            if ($('.breadcrumbs li').length > 2) {
+                $('.breadcrumbs li').eq(2).text($link.attr('data-short'));
+            } else {
+                $('.breadcrumbs').append(format('<li>{0}</li>', $link.attr('data-short')));
+            }
         };
         this.load = function($link) {
             /* Accepts a jQuery wrapped node, which is part of the tree.
@@ -265,7 +269,6 @@ $(document).ready(function() {
     var nodes = {
         $files: $('#files'),
         $thinking: $('#thinking'),
-        $title: $('#breadcrumb'),
         $commands: $('#commands')
     };
     function poll_file_extraction() {
