@@ -3,7 +3,8 @@ if (typeof diff_match_patch !== 'undefined') {
         /* An override of prettyHthml from diff_match_patch. This
            one will not put any style attrs in the ins or del. */
         var html = [];
-        var k = 1;
+        var k = 1, // Line numbers of existing or added lines.
+            dk = 1; // Line numbers of deleted lines.
         for (var x = 0; x < diffs.length; x++) {
             var op = diffs[x][0];    // Operation (insert, delete, equal)
             var data = diffs[x][1];  // Text of change.
@@ -21,17 +22,15 @@ if (typeof diff_match_patch !== 'undefined') {
                     case DIFF_INSERT:
                         // TODO (andym): templates might work here as suggested by cvan
                         html.push(format('<div class="line add"><span class="number"><a href="#L{0}" name="L{0}">{0}</a> +' +
-                                         '</span><span class="code">{1}</span></div>', k, lines[t]));
-                        k++;
+                                         '</span><span class="code">{1}</span></div>', k++, lines[t]));
                         break;
                     case DIFF_DELETE:
-                        html.push(format('<div class="line delete"><span class="number"> -</span>' +
-                                         '<span class="code">{0}</span></div>', lines[t]));
+                        html.push(format('<div class="line delete"><span class="number"><a href="#D{0}" name="D{0}"></a> -</span>' +
+                                         '<span class="code">{1}</span></div>', dk++, lines[t]));
                         break;
                     case DIFF_EQUAL:
                         html.push(format('<div class="line"><span class="number"><a href="#L{0}" name="L{0}">{0}</a>&nbsp;&nbsp;' +
-                                         '</span><span class="code">{1}</span></div>', k, lines[t]));
-                        k++;
+                                         '</span><span class="code">{1}</span></div>', k++, lines[t]));
                         break;
                 }
             }
@@ -45,6 +44,22 @@ function bind_viewer(nodes) {
         this.nodes = nodes;
         this.wrapped = true;
         this.hidden = false;
+        this.fix_vertically = function($inner, $outer) {
+            function update() {
+                var $sb_top = $outer.position().top,
+                    $sb_bottom = $sb_top + $outer.height() - $inner.height();
+
+                if ($(window).scrollTop() > $sb_bottom) {
+                    $inner.css({'position': 'absolute', 'top': $sb_bottom});
+                } else if ($(window).scrollTop() > $sb_top) {
+                    $inner.css({'position': 'fixed', 'top': 0});
+                } else {
+                    $inner.css({'position': 'absolute', 'top': $sb_top});
+                }
+            }
+            $(window).scroll(debounce(update), 200);
+            update();
+        };
         this.compute = function(node) {
             var $content = node.find('#content'),
                 $diff = node.find('#diff');
@@ -72,12 +87,32 @@ function bind_viewer(nodes) {
                 var diffs = dmp.diff_main(a[0], a[1], false);
                 dmp.diff_charsToLines_(diffs, a[2]);
                 $diff.html(dmp.diff_prettyHtml(diffs)).show();
+
+                var $sb = $diff.siblings('.diff-bar').eq(0);
+                var $lines = $diff.find('.line');
+                var state = {'start':1, 'type':$lines.eq(0).attr('class'),
+                             'href':$lines.eq(0).find('a').attr('href')};
+                for (var j = 1; j < $lines.length; j++) {
+                    var $node = $lines.eq(j);
+                    if ($node.hasClass(state.type)) {
+                        this.side_bar_append($sb, state, j);
+                        state = {'start': j, 'type': $node.attr('class'),
+                                 'href': $node.find('a').attr('href')};
+                    }
+                }
+                this.side_bar_append($sb, state, j);
+                this.fix_vertically($sb, $diff);
+                $sb.show();
             }
 
             if (!window.location.hash) {
                 window.location.hash = 'file-viewer';
             }
             window.location = window.location;
+        };
+        this.side_bar_append = function($sb, state, k) {
+            $sb.append($('<a>', {'href': state.href, 'class': state.type,
+                                 'css': {'height': ((k-1-state.start)/$sb.height()) * 100}}));
         };
         this.toggle_leaf = function($leaf) {
             if ($leaf.hasClass('open')) {
@@ -177,7 +212,7 @@ function bind_viewer(nodes) {
     }));
 
     $('#files-prev').click(_pd(function() {
-        var prev = viewer.get_selected() - 1
+        var prev = viewer.get_selected() - 1;
         if (prev >= 0) {
             viewer.select(viewer.nodes.$files.find('a.file').eq(prev));
         }
@@ -237,7 +272,7 @@ $(document).ready(function() {
         $.getJSON($('#extracting').attr('data-url'), function(json) {
             if (json && json.status) {
                 $('#file-viewer').load(window.location.pathname + ' #file-viewer', function() {
-                    nodes.$files = $('#files') // rebind
+                    nodes.$files = $('#files'); // rebind
                     viewer = bind_viewer(nodes);
                     viewer.selected(viewer.nodes.$files.find('a.selected'));
                     viewer.compute($('#content-wrapper'));
@@ -252,7 +287,7 @@ $(document).ready(function() {
                 });
                 if (errors) {
                     $('#file-viewer div.error').show();
-                    $('#extracting').hide()
+                    $('#extracting').hide();
                 } else {
                     setTimeout(poll_file_extraction, 2000);
                 }

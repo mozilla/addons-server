@@ -88,3 +88,24 @@ code {
 a.no-key {
     margin-left: 29px;
 }
+
+#diff {
+    padding-left: 11px
+}
+
+.diff-bar {
+    border: 1px solid grey;
+    width: 10px;
+    position: fixed;
+    overflow: hidden;
+    height: 200px;
+}
+
+.diff-bar a {
+    display: block;
+    width: 100%;
+}
+
+.diff-bar a:hover {
+    text-decoration: none;
+}

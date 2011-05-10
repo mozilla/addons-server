@@ -66,6 +66,7 @@
                     </p>
                 {% endif %}
                 {% if text_one and text_two %}
+                        <div class="diff-bar js-hidden"></div>
                         <pre id="diff" class="wrapped js-hidden"></pre>
                         <pre class="left js-hidden">{{ text_one }}</pre>
                         <pre class="right js-hidden">{{ text_two }}</pre>
