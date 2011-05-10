@@ -165,6 +165,13 @@ function bind_viewer(nodes) {
 
     var viewer = new Viewer();
 
+    if (viewer.nodes.$files.find('li').length == 1) {
+        viewer.toggle_files();
+        $('#files-prev').parent().hide();
+        $('#files-next').parent().hide();
+        $('#files-expand-all').parent().hide();
+    }
+
     viewer.nodes.$files.find('.directory').click(_pd(function() {
         viewer.toggle_leaf($(this));
     }));

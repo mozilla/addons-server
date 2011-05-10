@@ -43,7 +43,7 @@ data-account-url="{{ services_url('discovery.pane_account') }}"
     <section id="featured-addons">
       <h2>{{ _('Featured Add-ons') }}</h2>
       <div class="addons">
-        {{ addon_list(featured_addons, limit=6) }}
+        {{ addon_list(featured_addons) }}
       </div>
     </section>
 
@@ -76,7 +76,7 @@ data-account-url="{{ services_url('discovery.pane_account') }}"
       <section class="featured" id="up-and-coming">
         <h2><a class="all" href="{{ url('browse.extensions') }}">{{ _('See all') }}</a>
           {{ _('Up & Coming') }}</h2>
-        {{ addon_list(top_addons, 5, sidebar=True) }}
+        {{ addon_list(top_addons, sidebar=True) }}
       </section>
     {% endif %}
     {% if featured_personas %}

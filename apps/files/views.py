@@ -49,9 +49,6 @@ def files_poll(request, viewer):
 
 @file_view
 def files_list(request, viewer, key=None):
-    if not key and not viewer.is_search_engine:
-        key = 'install.rdf'
-
     data = setup_viewer(request, viewer.file)
     data['viewer'] = viewer
     data['poll_url'] = reverse('files.poll', args=[viewer.file.id])
@@ -59,14 +56,13 @@ def files_list(request, viewer, key=None):
     if viewer.is_extracted:
         files = viewer.get_files()
         data.update({'status': True, 'files': files})
-        if key:
-            if key not in files:
-                raise http.Http404
+        key = viewer.get_default(key)
+        if key not in files:
+            raise http.Http404
 
-            selected = data['selected'] = files.get(key)
-            if (not selected['directory'] and
-                not selected['binary']):
-                    data['content'], data['msg'] = viewer.read_file(selected)
+        selected = data['selected'] = files.get(key)
+        if (not selected['directory'] and not selected['binary']):
+            data['content'], data['msg'] = viewer.read_file(selected)
 
     else:
         extract_file.delay(viewer)
@@ -105,20 +101,19 @@ def files_compare(request, diff, key=None):
     if diff.is_extracted:
         files = diff.get_files(diff.file_one)
         data.update({'status': True, 'files': files})
+        key = diff.file_one.get_default(key)
+        if key not in files:
+            raise http.Http404
 
-        if key:
-            if key not in files:
-                raise http.Http404
+        diff.select(key)
+        data['selected'] = diff.one
+        if not diff.is_diffable():
+            data['msg'] = diff.status
 
-            diff.select(key)
-            data['selected'] = diff.one
-            if not diff.is_diffable():
-                data['msg'] = diff.status
-
-            elif not diff.is_binary():
-                data['text_one'], omsg = diff.file_one.read_file(diff.one)
-                data['text_two'], tmsg = diff.file_two.read_file(diff.two)
-                data['msg'] = omsg or tmsg
+        elif not diff.is_binary():
+            data['text_one'], omsg = diff.file_one.read_file(diff.one)
+            data['text_two'], tmsg = diff.file_two.read_file(diff.two)
+            data['msg'] = omsg or tmsg
 
     else:
         extract_file.delay(diff.file_one)
@@ -154,4 +149,5 @@ def files_serve(request, viewer, key):
         log.error(u'Couldn\'t find %s in %s (%d entries) for file %s' %
                   (key, files.keys()[:10], len(files.keys()), viewer.file.id))
         raise http.Http404()
-    return HttpResponseSendFile(request, obj['full'])
+    return HttpResponseSendFile(request, obj['full'],
+                                content_type=obj['mimetype'])

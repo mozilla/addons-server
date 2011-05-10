@@ -74,18 +74,12 @@ function initSidebar() {
 
 function hideInstalled() {
     // Do not show installed extensions in the promo modules or sidebar.
-    $('li[data-guid]').each(function() {
-        var $el = $(this),
-            guid = $el.attr('data-guid');
-        if ($el.siblings().length > 1) {
-            for (key in z.guids) {
-                if (z.guids[key] == guid) {
-                    $el.remove();
-                    break;
-                }
-            }
+    for (key in z.guids) {
+        var $el = $('li[data-guid=' + z.guids[key] + ']');
+        if ($el.length && $el.siblings().length) {
+            $el.remove();
         }
-    });
+    }
 }
 
 

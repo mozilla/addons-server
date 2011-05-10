@@ -240,8 +240,8 @@ def notify(request, job):
     notify_form = NotifyForm(request.POST)
 
     if not notify_form.is_valid():
-        messages.error(request, _('Error processing the mail template: %s'
-                                  % notify_form.errors['text'][0]))
+        msg = _('Error processing the mail template: %s')
+        messages.error(request, msg % notify_form.errors['text'][0])
 
     else:
         file_pks = job.result_failing().values_list('file_id', flat=True)
