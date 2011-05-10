@@ -15,6 +15,19 @@
     display: block;
     margin-bottom: 15px;
     padding: 14px 14px 16px;
+    section {
+        border-bottom: 1px solid #C9DDF2;
+        border-top: 1px solid #FFFFFF;
+        margin: 0 -14px;
+        padding: 14px;
+        &:first-child {
+            border-top: 0;
+            padding-top: 0;
+        }
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
 }
 
 #masthead {
@@ -190,6 +203,21 @@
             > ul {
                 top: 31px;
             }
+            &.anonymous {
+                a {
+                    display: inline-block;
+                }
+                &:hover {
+                    a {
+                        background: transparent;
+                        .box-shadow(0 0);
+                        border-color: transparent;
+                    }
+                    &:after {
+                        content: none;
+                    }
+                }
+            }
         }
     }
 }
@@ -199,10 +227,10 @@
     position: absolute;
     top: 63px;
     right: 0;
-    background: #F8FBFF;
-    border: 1px solid #98B2C9;
-    .border-radius(4px);
-    .box-shadow(0 -2px 0 rgba(152, 178, 201, 0.3) inset, 0 2px 0 rgba(0, 0, 0, 0.05));
+    background: #1B5898;
+    .gradient-two-color(#2E89CA, #1B5898);
+    .border-radius(5px);
+    .box-shadow(0 -2px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 0 rgba(0, 0, 0, 0.1));
     padding: 5px 7px 7px;
     width: 280px;
 }

@@ -1,5 +1,5 @@
-<li class="account">
-  {% if user.is_authenticated() %}
+{% if user.is_authenticated() %}
+  <li class="account">
     <a href="#" class="user" title="{{ user.email }}">
       {{ user.get_profile().welcome_name }}
     </a>
@@ -10,13 +10,15 @@
         {% endfor %}
       </ul>
     {% endif %}
-  {% else %}
+  </li>
+{% else %}
+  <li class="account anonymous">
     {# TODO(jbalogh): reverse #}
     {% trans reg="/users/register", login=login_link() %}
       <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>
     {% endtrans %}
-  {% endif %}
-</li>
+  </li>
+{% endif %}
 
 {% if user.is_authenticated() %}
   {% if tools_links and tools_links|count > 1 %}

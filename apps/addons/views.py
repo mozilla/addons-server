@@ -31,7 +31,7 @@ from amo.urlresolvers import reverse
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
 import paypal
 from reviews.forms import ReviewForm
-from reviews.models import Review
+from reviews.models import Review, GroupedRating
 from sharing.views import share as share_redirect
 from stats.models import GlobalStat, Contribution
 from translations.query import order_by_translation
@@ -207,6 +207,7 @@ def impala_extension_detail(request, addon):
         'src': src,
         'tags': tags,
 
+        'grouped_ratings': GroupedRating.get(addon.id),
         'recommendations': recommended,
         'review_form': ReviewForm(),
         'reviews': Review.objects.latest().filter(addon=addon),

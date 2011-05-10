@@ -72,35 +72,61 @@
   {% endif %}
 {% endif %}
 
+<aside class="secondary addon-reviews">
+  {% include "reviews/grouped_ratings.html" %}
+</aside>
+
 {% if addon.description %}
   <section class="primary island">
-    <h2>About this Add-on</h2>
+    <h2>{{ _('About this Add-on') }}'</h2>
     <p{{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
   </section>
 {% endif %}
 
-{# addon recommendations #}
-{% if recommendations %}
-  <section class="primary island">
-    <h2 class="compact-bottom">{{ _('Often used with&hellip;')|safe }}</h2>
-    {{ recommendations|addon_grid }}
-  </section>
-{% endif %}
-{# /recommendations #}
+<aside class="secondary metadata">
+  <h3>{{ _('Related Categories') }}</h3>
+  {# categories and other add-ons #}
+  {% with categories = addon.categories.filter(application=APP.id) %}
+    {% if categories %}
+      <ul>
+        {# TODO reverse URL #}
+        {% for category in categories %}
+        <li>
+          <a href="{{ category.get_url_path() }}">
+            {{ category }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  {# /categories #}
+  {{ tags_box(addon=addon, tags=tags) }}
+</aside>
 
-{% if author_addons %}
-  <section class="primary island">
-    <h2>
-      {% trans count = addon.listed_authors|length,
-               author = users_list(addon.listed_authors) %}
-        Other add-ons by {{ author }}
-      {% pluralize %}
-        Other add-ons by these authors
-      {% endtrans %}
-    </h2>
-    {{ author_addons|addon_grid }}
-  </section>
-{% endif %}
+<section class="primary island">
+  {# addon recommendations #}
+  {% if recommendations %}
+    <section>
+      <h2 class="compact-bottom">{{ _('Often used with&hellip;')|safe }}</h2>
+      {{ recommendations|addon_grid(cols=3) }}
+    </section>
+  {% endif %}
+  {# /recommendations #}
+  {% if author_addons %}
+    <section>
+      <h2>
+        {% trans count = addon.listed_authors|length,
+                 author = users_list(addon.listed_authors) %}
+          Other add-ons by {{ author }}
+        {% pluralize %}
+          Other add-ons by these authors
+        {% endtrans %}
+      </h2>
+      {{ author_addons|addon_grid(cols=3) }}
+    </section>
+  {% endif %}
+</section>
 
 <div class="secondary" role="navigation">
 
@@ -131,27 +157,6 @@
   </div>
   {% endif %}{# /meet the devs #}
 
-  {# categories and other add-ons #}
-  {% with categories = addon.categories.filter(application=APP.id) %}
-    {% if categories or author_addons %}
-    <div class="highlight">
-      {% if categories %}
-        <ul>
-          {# TODO reverse URL #}
-          {% for category in categories %}
-          <li>
-            <a href="{{ category.get_url_path() }}" class="more-info">
-              {# L10n: {0} is the name of a category #}
-              {{ _('See All {0} Add-ons')|f(category) }}
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    </div>
-    {% endif %}
-  {% endwith %}
-  {# /categories #}
 
   {# support box #}
   {% if addon.support_email or addon.support_url or addon.has_satisfaction %}
@@ -184,8 +189,6 @@
   </div>
   {% endif %}
   {# /support #}
-
-  {{ tags_box(addon=addon, tags=tags) }}
 
   {# related collections #}
   <div class="collections-add">

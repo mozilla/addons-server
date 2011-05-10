@@ -102,10 +102,44 @@
 }
 
 .previews {
+    background: -moz-radial-gradient(top,
+                                     ellipse farthest-side,
+                                     rgba(16, 83, 130, 0.5),
+                                     rgba(16, 83, 130, 0)),
+                -moz-radial-gradient(bottom,
+                                     ellipse farthest-side,
+                                     rgba(16, 83, 130, 0.5),
+                                     rgba(16, 83, 130, 0)),
+                -moz-linear-gradient(left,
+                                     #F4F8FC,
+                                     rgba(255,255,255,0),
+                                     #F4F8FC),
+                -moz-linear-gradient(top,
+                                     rgba(255,255,255,0),
+                                     #F4F8FC 50px,
+                                     #F4F8FC 180px,
+                                     rgba(255,255,255,0));
+    background-size: 100% 5px, 100% 5px, auto, auto;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+    background-position: 0 0, 0 bottom, 0 0, 0 0;
     overflow: hidden;
     position: relative;
     margin: 2em 0;
-    padding: 0 5%;
+    padding: 30px 5%;
+    li a {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        height: 150px;
+        width: 200px;
+        background: #fff;
+        padding: 5px;
+        border: 1px solid #ccc;
+        img {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
     .panel {
         width: 100% / 3;
         a {
@@ -114,7 +148,6 @@
         }
     }
     .control {
-        font-size: 
         display: block;
         position: absolute;
         height: 100%;
@@ -123,18 +156,41 @@
         font-size: 48px;
         font-family: @serif-stack;
         text-align: center;
-        line-height: 140px;
-        background: rgba(255,255,255,.5);
+        line-height: 200px;
         top: 0;
         z-index: 100;
+        -moz-transition: .3s color;
         &.next {
             right: 0;
+            background: -moz-linear-gradient(left, fadeOut(#fff, 100%), #fff 50%);
         }
         &.prev {
             left: 0;
+            background: -moz-linear-gradient(left, #fff 50%, fadeOut(#fff, 100%));
         }
         &.disabled {
             color: #ccc;
         }
+    }
+}
+
+.metadata {
+    li {
+        border: none;
+        a:hover {
+            background: transparent;
+            text-decoration: underline;
+        }
+    }
+}
+#tagbox {
+    li, a {
+        border: none;
+        display: inline;
+        padding: 0 4px 0 0;
+        line-height: 1.2em;
+    }
+    li:not(:last-child):after {
+        content: '\00B7';
     }
 }
