@@ -17,6 +17,22 @@
         <div class="history_comment">
           {{ record.details.comments|nl2br }}
         </div>
+        {% if record.details.files %}
+        <ul>
+          {% for file_id in record.details.files %}
+            {% if file_id in files: %}
+              {% set file = files[file_id] %}
+              <li>
+                <strong>{{ file.platform }}</strong>
+                [<a href="{{ file.get_url_path(addon.app, 'editor') }}" class="install"
+                  data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ file.filename }}</a>]
+              </li>
+            {% else %}
+              <li><em>{{ _('File deleted') }}</em></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+        {% endif %}
       {% endif %}
     </td>
 </tr>

@@ -222,7 +222,7 @@ class ReviewHelper:
         self.actions = self.get_actions()
 
     def set_data(self, data):
-        self.handler.data = data
+        self.handler.set_data(data)
 
     def get_review_type(self, request, addon, version):
         if self.addon.status in NOMINATED_STATUSES:
@@ -333,6 +333,7 @@ class ReviewBase:
         self.addon = addon
         self.version = version
         self.review_type = review_type
+        self.files = None
 
     def set_addon(self, **kw):
         """Alters addon and sets reviewed timestamp on version."""
@@ -354,10 +355,13 @@ class ReviewBase:
             file.save()
 
     def log_action(self, action):
+        details = {'comments': self.data['comments'],
+                   'reviewtype': self.review_type}
+        if self.files:
+            details['files'] = [f.id for f in self.files]
+
         amo.log(action, self.addon, self.version, user=self.user.get_profile(),
-                created=datetime.now(),
-                details={'comments': self.data['comments'],
-                         'reviewtype': self.review_type})
+                created=datetime.now(), details=details)
 
     def notify_email(self, template, subject):
         """Notify the authors that their addon has been reviewed."""
@@ -406,6 +410,10 @@ class ReviewBase:
 
 
 class ReviewAddon(ReviewBase):
+
+    def set_data(self, data):
+        self.data = data
+        self.files = self.version.files.all()
 
     def process_public(self):
         """Set an addon to public."""
@@ -471,6 +479,10 @@ class ReviewAddon(ReviewBase):
 
 
 class ReviewFiles(ReviewBase):
+
+    def set_data(self, data):
+        self.data = data
+        self.files = data.get('addon_files', None)
 
     def process_public(self):
         """Set an addons files to public."""

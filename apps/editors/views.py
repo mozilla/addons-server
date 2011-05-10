@@ -26,7 +26,7 @@ from editors.models import (EditorSubscription, ViewPendingQueue,
                             EventLog, CannedResponse, PerformanceGraph)
 from editors.helpers import (ViewPendingQueueTable, ViewFullReviewQueueTable,
                              ViewPreliminaryQueueTable)
-from files.models import Approval
+from files.models import Approval, File
 from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
@@ -117,6 +117,18 @@ def _editor_progress():
             percentage[t][duration] = pct(progress[duration][t], total)
 
     return (progress, percentage)
+
+
+def _get_history(addon):
+    files = []
+    history = (ActivityLog.objects.for_addons(addon).order_by('created')
+                          .filter(action__in=amo.LOG_REVIEW_QUEUE))
+
+    for h in history:
+        if 'files' in h.details:
+            files.extend(h.details['files'])
+
+    return history, File.objects.in_bulk(files)
 
 
 @editor_required
@@ -429,15 +441,15 @@ def review(request, version_id):
     # We only allow the user to check/uncheck files for "pending"
     allow_unchecking_files = form.helper.review_type == "pending"
 
+    history, files = _get_history(addon)
+
     ctx = context(version=version, addon=addon,
                   flags=Review.objects.filter(addon=addon, flag=True),
                   form=form, paging=paging, canned=canned, is_admin=is_admin,
                   status_types=amo.STATUS_CHOICES, show_diff=show_diff,
                   allow_unchecking_files=allow_unchecking_files,
                   actions=actions, actions_minimal=actions_minimal,
-                  history=ActivityLog.objects.for_addons(addon)
-                          .order_by('created')
-                          .filter(action__in=amo.LOG_REVIEW_QUEUE))
+                  history=history, files=files)
 
     return jingo.render(request, 'editors/review.html', ctx)
 

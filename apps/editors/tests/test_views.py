@@ -1237,6 +1237,21 @@ class TestReview(ReviewBase):
 
         eq_(validation.find('a').length, 3)
 
+    def test_files_in_item_history(self):
+        data = {'action': 'public', 'operating_systems': 'win',
+                'applications': 'something', 'comments': 'something',
+                'addon_files': [self.version.files.all()[0].pk]}
+
+        self.client.post(self.url, data)
+
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+
+        eq_(doc('#review-files tbody tr').length, 1)
+        li = doc('#review-files .history_comment').parent().find('li')
+        eq_(li.length, 1)
+        eq_(li.find('strong').text(), "All Platforms")
+
     def test_no_items(self):
         response = self.client.get(self.url)
         eq_(pq(response.content).find('#file-history').next().text(),
