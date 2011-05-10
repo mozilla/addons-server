@@ -40,12 +40,11 @@ log = commonware.log.getLogger('z.disco')
 def pane(request, version, platform):
 
     def from_api(list_type):
-        r = api_view(request, platform, version, list_type)
-        return json.loads(r.content)
+        return api_view(request, platform, version, list_type)
 
     return jingo.render(request, 'discovery/pane.html',
                         {'modules': get_modules(request, platform, version),
-                         'top_addons': from_api('hotness'),
+                         'up_and_coming': from_api('hotness'),
                          'featured_addons': from_api('featured'),
                          'featured_personas': get_featured_personas(request),
                          'version': version, 'platform': platform})
@@ -60,6 +59,19 @@ def pane_account(request):
 
     return jingo.render(request, 'discovery/pane_account.html',
                         {'addon_downloads': addon_downloads})
+
+
+def pane_more_addons(request, section, version, platform):
+
+    def from_api(list_type):
+        return api_view(request, platform, version, list_type)
+
+    ctx = {}
+    if section == 'featured':
+        ctx = {'featured_addons': from_api('featured')}
+    elif section == 'up-and-coming':
+        ctx = {'up_and_coming': from_api('hotness')}
+    return jingo.render(request, 'discovery/more_addons.html', ctx)
 
 
 def get_modules(request, platform, version):
@@ -88,7 +100,8 @@ def api_view(request, platform, version, list_type,
     view = api.views.ListView()
     view.request, view.version = request, api_version
     view.format, view.mimetype = format, mimetype
-    return view.process_request(list_type, platform=platform, version=version)
+    r = view.process_request(list_type, platform=platform, version=version)
+    return json.loads(r.content)
 
 
 @admin.site.admin_view

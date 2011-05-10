@@ -2,6 +2,12 @@
 // recommendations and "Starter Pack" promo pane.
 z.MIN_EXTENSIONS = 3;
 
+// Number of Featured Add-ons.
+z.MAX_FEATURED = 6;
+
+// Number of Up & Coming Add-ons.
+z.MAX_UPANDCOMING = 5;
+
 // Parse GUIDS of installed extensions from JSON fragment.
 z.guids = getGuids();
 
@@ -74,12 +80,42 @@ function initSidebar() {
 
 function hideInstalled() {
     // Do not show installed extensions in the promo modules or sidebar.
-    for (key in z.guids) {
-        var $el = $('li[data-guid=' + z.guids[key] + ']');
+    $.each(z.guids, function(i, val) {
+        var $el = $('li[data-guid=' + val + ']');
         if ($el.length && $el.siblings().length) {
             $el.remove();
         }
+    });
+
+    // Get more add-ons so we can fill the vacant spots.
+    function fillSpots(ul, minSpots, url) {
+        var numListed = ul.find('li').length;
+        if (numListed < minSpots) {
+            var emptySpots = minSpots - numListed;
+            $.get(url, function(data) {
+                $.each($(data).find('li'), function() {
+                    var $el = $(this),
+                        guid = $el.attr('data-guid');
+                    // Ensure that the add-on isn't already in the list and
+                    // that it's not already installed by the user.
+                    if (!ul.find('li[data-guid=' + guid + ']').length &&
+                        $.inArray(guid, z.guids) === -1) {
+                        ul.append($el);
+                        // We're done if all spots have been filled.
+                        if (emptySpots-- == 1) {
+                            return false;
+                        }
+                    }
+                });
+                initTrunc();
+            });
+        }
     }
+
+    fillSpots($('#featured-addons ul'), z.MAX_FEATURED,
+              document.body.getAttribute('data-featured-url'));
+    fillSpots($('#up-and-coming ul'), z.MAX_UPANDCOMING,
+              document.body.getAttribute('data-upandcoming-url'));
 }
 
 

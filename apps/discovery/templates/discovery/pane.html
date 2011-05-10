@@ -8,7 +8,9 @@
 {% block bodyattrs %}
 data-services-url="{{ settings.SERVICES_URL }}"
 data-recs-url="{{ services_url('discovery.recs', version, platform) }}"
-data-account-url="{{ services_url('discovery.pane_account') }}"
+data-account-url="{{ services_url('discovery.pane.account') }}"
+data-featured-url="{{ services_url('discovery.pane.more_addons', 'featured', version, platform) }}"
+data-upandcoming-url="{{ services_url('discovery.pane.more_addons', 'up-and-coming', version, platform) }}"
 {% endblock %}
 
 {% block content %}
@@ -43,7 +45,7 @@ data-account-url="{{ services_url('discovery.pane_account') }}"
     <section id="featured-addons">
       <h2>{{ _('Featured Add-ons') }}</h2>
       <div class="addons">
-        {{ addon_list(featured_addons) }}
+        {{ addon_list(featured_addons, limit=6) }}
       </div>
     </section>
 
@@ -72,11 +74,11 @@ data-account-url="{{ services_url('discovery.pane_account') }}"
   </section>
 
   <section id="sub">
-    {% if top_addons %}
+    {% if up_and_coming %}
       <section class="featured" id="up-and-coming">
         <h2><a class="all" href="{{ url('browse.extensions') }}">{{ _('See all') }}</a>
           {{ _('Up & Coming') }}</h2>
-        {{ addon_list(top_addons, sidebar=True) }}
+        {{ addon_list(up_and_coming, sidebar=True) }}
       </section>
     {% endif %}
     {% if featured_personas %}
