@@ -7,12 +7,31 @@
 {% block content %}
   <h2>{{ _('Add-on Editor Performance', 'editorcp_reviewlog_page_heading') }}</h2>
 
+  {% if is_admin %}
+  <p>
+    {{ _('View statistics for user') }}
+    <select id="select_user" data-url="{{ url('editors.performance') }}">
+      <option value="" selected="selected">{{ current_user.display_name }}</option>
+      <option value="">-----------------------</option>
+      {% for editor in editors %}
+        <option value="{{ editor.id }}">{{ editor.display_name }}</option>
+      {% endfor %}
+    </select>
+  </p>
+  {% endif %}
+
   <div class="featured">
     <div class="featured-inner">
       <table class="data-grid">
         <tr class="listing-header">
           <th>{{ _('Range') }}</th>
-          <th>{{ _('My Reviews') }}</th>
+          <th id="reviews_user">
+            {% if is_user: %}
+              {{ _('Your Reviews') }}
+            {% else: %}
+              {{ _('By {user_name}')|f(user_name=current_user.display_name) }}
+            {% endif %}
+          </th>
           <th>{{ _('Total Reviews') }}</th>
           {# <th>{{ _('Team Average') }}</th> #}
           <th>{{ _('Active Contributors') }}</th>
@@ -36,11 +55,9 @@
   <div class="featured">
     <div class="featured-inner listing">
       <div class="listing-header"><span>{{ _('Monthly Performance') }}</span></div>
-          <div id="monthly" class="highcharts-container"
-            data-chart="{{ monthly_data }}"></div>
-        </div>
-      </div>
+      <div id="monthly" class="highcharts-container" data-chart="{{ monthly_data }}"></div>
     </div>
+  </div>
 
 {% endblock %}
 

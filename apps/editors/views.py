@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 import functools
 import json
 import time
@@ -120,15 +120,37 @@ def _editor_progress():
 
 
 @editor_required
-def performance(request):
-    monthly_data = _performanceByMonth(request.amo_user.id)
+def performance(request, user_id=False):
+    user = request.amo_user
+    editors = _recent_editors()
+
+    is_admin = acl.action_allowed(request, 'Admin', '%')
+
+    if is_admin and user_id:
+        user_new = UserProfile.objects.filter(pk=user_id)
+        if user_new.exists():
+            user = user_new.all()[0]
+
+    monthly_data = _performanceByMonth(user.id)
     performance_total = _performance_total(monthly_data)
 
     data = context(monthly_data=json.dumps(monthly_data),
                    performance_month=performance_total['month'],
-                   performance_year=performance_total['year'])
+                   performance_year=performance_total['year'],
+                   editors=editors, current_user=user, is_admin=is_admin,
+                   is_user=(request.amo_user.id == user.id))
 
     return jingo.render(request, 'editors/performance.html', data)
+
+
+def _recent_editors(days=90):
+    since_date = datetime.now() - timedelta(1)
+    editors = (UserProfile.objects
+                          .filter(activitylog__action__in=amo.LOG_REVIEW_QUEUE,
+                                  activitylog__created__lt=since_date)
+                          .order_by('display_name')
+                          .distinct())
+    return editors
 
 
 def _performance_total(data):

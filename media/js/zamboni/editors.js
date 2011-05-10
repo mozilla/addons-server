@@ -247,8 +247,21 @@ function initScrollingSidebar() {
 
 function initPerformanceStats() {
     var container = $('#monthly'),
-        groups = {'usercount': gettext('Your Reviews'),
+        groups = {'usercount': $('#reviews_user').text(),
                   'teamavg': gettext('Average Reviews')}
+
+    /* View Other User Stats */
+    $('#select_user').change(function(){
+        var $this = $(this),
+            user = $this.val();
+
+        if(user != "") {
+            window.location.href = $this.attr('data-url') + user;
+        }
+    });
+
+
+    /* Create Charts */
 
     createChart(container, groups, JSON.parse(container.attr('data-chart')));
 

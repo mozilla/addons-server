@@ -766,14 +766,24 @@ class TestPerformance(QueueTest):
         super(TestPerformance, self).setUp()
         self.url_performance = reverse('editors.performance')
 
-    def test_performance_chart_editor(self):
+    def setUpEditor(self):
         self.login_as_editor()
         amo.set_user(UserProfile.objects.get(username='editor'))
+        self.createLogs()
+
+    def setUpAdmin(self):
+        self.login_as_admin()
+        amo.set_user(UserProfile.objects.get(username='admin'))
+        self.createLogs()
+
+    def createLogs(self):
         addon = Addon.objects.all()[0]
         version = addon.versions.all()[0]
-
         for i in amo.LOG_REVIEW_QUEUE:
             amo.log(amo.LOG_BY_ID[i], addon, version)
+
+    def test_performance_chart_editor(self):
+        self.setUpEditor()
 
         r = self.client.get(self.url_performance)
         doc = pq(r.content)
@@ -787,13 +797,7 @@ class TestPerformance(QueueTest):
         eq_(json.loads(doc('#monthly').attr('data-chart')), data)
 
     def test_performance_chart_as_admin(self):
-        self.login_as_admin()
-        amo.set_user(UserProfile.objects.get(username='admin'))
-        addon = Addon.objects.all()[0]
-        version = addon.versions.all()[0]
-
-        for i in amo.LOG_REVIEW_QUEUE:
-            amo.log(amo.LOG_BY_ID[i], addon, version)
+        self.setUpAdmin()
 
         r = self.client.get(self.url_performance)
         doc = pq(r.content)
@@ -805,6 +809,24 @@ class TestPerformance(QueueTest):
                               u'label': u'May 2011'}}
 
         eq_(json.loads(doc('#monthly').attr('data-chart')), data)
+
+    def test_performance_other_user_as_admin(self):
+        self.setUpAdmin()
+
+        r = self.client.get(reverse('editors.performance', args=[10482]))
+        doc = pq(r.content)
+
+        eq_(doc('#select_user').length, 1)  # Don't let them choose editors
+        assert "clouserw" in doc('#reviews_user').text()
+
+    def test_performance_other_user_not_admin(self):
+        self.setUpEditor()
+
+        r = self.client.get(reverse('editors.performance', args=[10482]))
+        doc = pq(r.content)
+
+        eq_(doc('#select_user').length, 0)  # Don't let them choose editors
+        eq_(doc('#reviews_user').text(), "Your Reviews")
 
 
 class SearchTest(EditorTest):
