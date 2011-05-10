@@ -68,11 +68,35 @@ a {
     li {
         border: 1px solid rgba(3, 48, 81, 0.2);
         border-width: 0 0 1px 0;
+        position: relative;
         &:first-child {
             border-top-width: 1px;
         }
+        a.selected {
+            color: #333;
+            font-weight: bold;
+        }
         a:hover {
             background: #ECF5FE;
+        }
+    }
+    nav li {
+        a:after {
+            content: '\203a';
+            position: absolute;
+            right: 6px;
+            top: -2px;
+            font-family: Georgia;
+            font-weight: normal;
+            font-size: 18px;
+            color: #dadada;
+            color: rgba(0,0,0, .125);
+        }
+        a:hover:after,
+        a:focus:after,
+        a.selected:after {
+            color: inherit;
+            display: inline;
         }
     }
     h2 {
