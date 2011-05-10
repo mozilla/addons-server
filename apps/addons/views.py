@@ -400,8 +400,10 @@ def impala_home(request):
 
     featured = Addon.featured(request.APP, request.LANG)
     featured = Addon.objects.filter(id__in=random.sample(featured, 18))
-    popular = Addon.objects.listed(request.APP).order_by('-weekly_downloads')[:10]
-    hotness = Addon.objects.listed(request.APP).order_by('-hotness')[:18]
+    popular = (Addon.objects.listed(request.APP).exclude(type=amo.ADDON_PERSONA)
+               .order_by('-weekly_downloads')[:10])
+    hotness = (Addon.objects.listed(request.APP).exclude(type=amo.ADDON_PERSONA)
+               .order_by('-hotness')[:18])
 
     return jingo.render(request, 'addons/impala/home.html',
                         {'popular': popular, 'featured': featured,
