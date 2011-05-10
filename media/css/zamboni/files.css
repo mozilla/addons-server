@@ -70,6 +70,11 @@ a.open {
     background: url('/media/img/icons/minus.gif') 0 no-repeat;
 }
 
+a.diff {
+    background-color: #ffffcc;
+}
+
+
 .waiting {
     background-image: url(../../img/zamboni/loading-white.gif);
     background-repeat: no-repeat;

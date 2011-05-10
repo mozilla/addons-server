@@ -32,6 +32,8 @@ def file_viewer_class(value, selected):
         result.append('file')
     if selected and value['short'] == selected['short']:
         result.append('selected')
+    if value.get('diff'):
+        result.append('diff')
     return ' '.join(result)
 
 
@@ -205,7 +207,7 @@ class DiffHelper:
         self.status, self.one, self.two = None, None, None
 
     def __str__(self):
-        return '%s, %s' % (self.file_one, self.file_two)
+        return '%s:%s' % (self.file_one, self.file_two)
 
     def extract(self):
         self.file_one.extract()
@@ -219,38 +221,50 @@ class DiffHelper:
     def is_extracted(self):
         return self.file_one.is_extracted and self.file_two.is_extracted
 
-    def get_files(self, file_obj):
+    @memoize(prefix='file-viewer')
+    def get_files(self):
         """
-        Get the files from the primary and remap any diffable ones
-        to the compare url as opposed to the other url.
+        Get the files from the primary and:
+        - remap any diffable ones to the compare url as opposed to the other
+        - highlight any diffs
         """
-        files = file_obj.get_files()
-        for file in files.values():
+        file_one_files = self.file_one.get_files()
+        file_two_files = self.file_two.get_files()
+        different = []
+        for key, file in file_one_files.items():
             file['url'] = reverse('files.compare',
                                   args=[self.file_one.file.id,
                                         self.file_two.file.id,
                                         file['short']])
+            diff = file['md5'] != file_two_files.get(key, {}).get('md5')
+            file['diff'] = diff
+            if diff:
+                different.append(file)
 
-        return files
+        # Now mark every directory above each different file as different.
+        for diff in different:
+            for depth in range(diff['depth']):
+                key = '/'.join(diff['short'].split('/')[:depth - 1])
+                file_one_files[key]['diff'] = True
+
+        return file_one_files
 
     def select(self, key):
+        """
+        Select a file and adds the file object to self.one and self.two
+        for later fetching. Does special work for search engines.
+        """
         self.key = key
-        self.one = self.get_files(self.file_one).get(key)
+        self.one = self.get_files().get(key)
         if key and self.file_two.is_search_engine:
             # There's only one file in a search engine.
-            files = self.get_files(self.file_two)
-            self.two = files[files.keys()[0]]
+            self.two = self.file_two.get_files().values()[0]
         else:
-            self.two = self.get_files(self.file_two).get(key)
+            self.two = self.file_two.get_files().get(key)
         return self.one and self.two
 
-    def is_different(self):
-        if self.one and self.two:
-            return self.one['md5'] != self.two['md5']
-
     def is_binary(self):
-        if self.one and self.two:
-            return self.one['binary'] or self.two['binary']
+        return self.one.get('binary') or self.two.get('binary')
 
     def is_diffable(self):
         if not self.one and not self.two:

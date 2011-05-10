@@ -99,7 +99,7 @@ def files_compare(request, diff, key=None):
                                      diff.file_two.file.id])
 
     if diff.is_extracted:
-        files = diff.get_files(diff.file_one)
+        files = diff.get_files()
         data.update({'status': True, 'files': files})
         key = diff.file_one.get_default(key)
         if key not in files:

@@ -146,6 +146,7 @@ class TestFileHelper(test_utils.TestCase):
     def test_default(self):
         eq_(self.viewer.get_default(None), 'install.rdf')
 
+
 class TestSearchEngineHelper(test_utils.TestCase):
     fixtures = ['base/addon_4594_a9']
 
@@ -228,7 +229,7 @@ class TestDiffHelper(test_utils.TestCase):
 
     def test_get_files(self):
         eq_(self.helper.file_one.get_files(),
-            self.helper.get_files(self.helper.file_one))
+            self.helper.get_files())
 
     def test_diffable(self):
         self.helper.extract()
@@ -253,7 +254,7 @@ class TestDiffHelper(test_utils.TestCase):
         self.helper.select('install.js')
         self.helper.one['binary'] = True
         assert self.helper.is_binary()
-        assert not self.helper.is_different()
+        assert not self.helper.one['diff']
 
     def test_diffable_one_binary_diff(self):
         self.helper.extract()
@@ -262,7 +263,7 @@ class TestDiffHelper(test_utils.TestCase):
         self.helper.select('install.js')
         self.helper.one['binary'] = True
         assert self.helper.is_binary()
-        assert self.helper.is_different()
+        assert self.helper.one['diff']
 
     def test_diffable_two_binary_diff(self):
         self.helper.extract()
@@ -273,7 +274,7 @@ class TestDiffHelper(test_utils.TestCase):
         self.helper.one['binary'] = True
         self.helper.two['binary'] = True
         assert self.helper.is_binary()
-        assert self.helper.is_different()
+        assert self.helper.one['diff']
 
     def test_diffable_one_directory(self):
         self.helper.extract()
@@ -283,8 +284,17 @@ class TestDiffHelper(test_utils.TestCase):
         eq_(unicode(self.helper.status),
             'install.js is a directory in file 1.')
 
-    def change(self, file, text):
-        path = os.path.join(file, 'install.js')
+    def test_diffable_parent(self):
+        self.helper.extract()
+        self.change(self.helper.file_one.dest, 'asd',
+                    filename='__MACOSX/._dictionaries')
+        cache.clear()
+        files = self.helper.get_files()
+        eq_(files['__MACOSX/._dictionaries']['diff'], True)
+        eq_(files['__MACOSX']['diff'], True)
+
+    def change(self, file, text, filename='install.js'):
+        path = os.path.join(file, filename)
         data = open(path, 'r').read()
         data += text
         open(path, 'w').write(data)

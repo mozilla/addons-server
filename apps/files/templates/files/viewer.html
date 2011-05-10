@@ -55,15 +55,6 @@
                 {% endif %}
             {% endif %}
             {% if diff %}
-                {% if diff.is_diffable() %}
-                    <p class="notification-box info">
-                    {% if diff.is_different() %}
-                        {{ _('Files are different.') }}<br/>
-                      {% else %}
-                        {{ _('Files are the same.') }}<br/>
-                    {% endif %}
-                    </p>
-                {% endif %}
                 {% if text_one and text_two %}
                         <div class="diff-bar js-hidden"></div>
                         <pre id="diff" class="wrapped js-hidden"></pre>
