@@ -816,7 +816,11 @@ class TestPerformance(QueueTest):
         r = self.client.get(reverse('editors.performance', args=[10482]))
         doc = pq(r.content)
 
-        eq_(doc('#select_user').length, 1)  # Don't let them choose editors
+        eq_(doc('#select_user').length, 1)  # Let them choose editors
+        options = doc('#select_user option')
+        eq_(options.length, 3)
+        eq_(options.eq(2).val(), '4043307')
+
         assert "clouserw" in doc('#reviews_user').text()
 
     def test_performance_other_user_not_admin(self):
