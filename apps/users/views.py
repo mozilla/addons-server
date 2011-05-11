@@ -209,8 +209,12 @@ def _clean_next_url(request):
     gets = request.GET.copy()
     url = gets['to']
 
-    # We want to not redirect outside of AMO via login/logout.
-    if url and '://' in url:
+    if not url:
+        url = settings.LOGIN_REDIRECT_URL
+
+    # We want to not redirect outside of AMO via login/logout (also see
+    # "domain" below)
+    if '://' in url:
         url = '/'
 
     # TODO(davedash): This is a remora-ism, let's remove this after remora and
@@ -219,12 +223,20 @@ def _clean_next_url(request):
         url = '/' + url
 
     gets['to'] = url
+
+    domain = gets.get('domain',None)
+    if domain in settings.VALID_LOGIN_REDIRECTS.keys():
+        gets['to'] = "%s%s" % (settings.VALID_LOGIN_REDIRECTS[domain], url)
+
     request.GET = gets
     return request
 
 
 @anonymous_csrf
 def login(request):
+    # In case we need it later.  See below.
+    get_copy = request.GET.copy()
+
     logout(request)
 
     if 'to' in request.GET:
@@ -235,6 +247,14 @@ def login(request):
                          authentication_form=forms.AuthenticationForm)
 
     if isinstance(r, http.HttpResponseRedirect):
+        # Django's auth.views.login has security checks to prevent someone from
+        # redirecting to another domain.  Since we want to allow this in certain
+        # cases, we have to make a new response object here to replace the above
+        if 'domain' in request.GET:
+            request.GET = get_copy
+            request = _clean_next_url(request)
+            r = http.HttpResponseRedirect(request.GET['to'])
+
         # Succsesful log in according to django.  Now we do our checks.  I do
         # the checks here instead of the form's clean() because I want to use
         # the messages framework and it's not available in the request there

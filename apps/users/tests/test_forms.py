@@ -217,9 +217,26 @@ class TestUserLoginForm(UserFormBase):
                                    'password': 'foo'}, follow=True)
         self.assertRedirects(r, '/en-US/firefox/about')
 
+        # Test a valid domain.  Note that assertRedirects doesn't work on
+        # external domains
+        url = urlparams(self._get_login_url(), to="addon/new",
+                        domain="builder")
+        r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
+                                   'password': 'foo'}, follow=True)
+        print r.redirect_chain
+        to, code = r.redirect_chain[0]
+        self.assertEqual(to, 'https://builder.addons.mozilla.org/addon/new')
+        self.assertEqual(code, 302)
+
     def test_redirect_after_login_evil(self):
         "http://foo.com is a bad value for redirection."
         url = urlparams(self._get_login_url(), to="http://foo.com")
+        r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
+                                   'password': 'foo'}, follow=True)
+        self.assertRedirects(r, '/en-US/firefox/')
+
+        url = urlparams(self._get_login_url(), to="/en-US/firefox",
+                domain="http://evil.com")
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
                                    'password': 'foo'}, follow=True)
         self.assertRedirects(r, '/en-US/firefox/')

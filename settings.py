@@ -923,3 +923,11 @@ COMPAT = (
 
 # URL for reporting arecibo errors too. If not set, won't be sent.
 ARECIBO_SERVER_URL = ""
+
+# A whitelist of domains that the authentication script will redirect to upon
+# successfully logging in or out.
+VALID_LOGIN_REDIRECTS = {
+    'builder': 'https://builder.addons.mozilla.org',
+    'builderstage': 'https://builder-addons-next.allizom.org',
+    'buildertrunk': 'https://builder-addons.allizom.org',
+}

@@ -157,6 +157,21 @@ class TestLogout(UserViewBase):
                             follow=True)
         self.assertRedirects(r, url, status_code=302)
 
+        # Test a valid domain.  Note that assertRedirects doesn't work on
+        # external domains
+        url = urlparams(reverse('users.logout'), to='/addon/new',
+                        domain='builder')
+        r = self.client.get(url, follow=True)
+        to, code = r.redirect_chain[0]
+        self.assertEqual(to, 'https://builder.addons.mozilla.org/addon/new')
+        self.assertEqual(code, 302)
+
+        # Test an invalid domain
+        url = urlparams(reverse('users.logout'), to='/en-US/firefox/about',
+                        domain='http://evil.com')
+        r = self.client.get(url, follow=True)
+        self.assertRedirects(r, '/en-US/firefox/about', status_code=302)
+
 
 class TestRegistration(UserViewBase):
 
