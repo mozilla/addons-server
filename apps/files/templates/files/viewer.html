@@ -9,7 +9,7 @@
 </h3>
 <ol id="top" class="breadcrumbs">
     <li><a href="{{ file_link['url'] }}">{{ addon.name }}</a></li>
-    <li><a href="{{ url('addons.versions', version.pk) }}">{{ version }}</a></li>
+    <li><a href="{{ url('addons.versions', addon.slug) }}">{{ version }}</a></li>
 </ol>
 <div id="file-viewer" class="featured">
     <div class="featured-inner">
