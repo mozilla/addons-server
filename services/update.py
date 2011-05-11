@@ -289,7 +289,8 @@ def mail_exception(data):
     msg['To'] = settings.ADMINS
     msg['From'] = settings.DEFAULT_FROM_EMAIL
 
-    conn = smtplib.SMTP(settings.EMAIL_HOST, settings.EMAIL_PORT)
+    conn = smtplib.SMTP(getattr(settings, 'EMAIL_HOST', 'localhost'),
+                        getattr(settings, 'EMAIL_PORT', '25'))
     conn.sendmail(settings.DEFAULT_FROM_EMAIL, settings.ADMINS,
                   msg.as_string())
     conn.close()
