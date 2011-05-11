@@ -111,7 +111,7 @@ section > section {
     width: -moz-calc(24% - 2px);
 }
 
-.html-rtl .recs header {
+.html-rtl.recs header {
     float: left;
 }
 
@@ -274,10 +274,12 @@ header:after,
 .html-rtl #mission,
 .html-rtl #my-account {
     float: left;
+    margin-left: 0;
+    text-align: right;
 }
 
-.html-rtl .recs #mission,
-.html-rtl .recs #my-account {
+.html-rtl.recs #mission,
+.html-rtl.recs #my-account {
     float: right;
 }
 
@@ -680,8 +682,12 @@ ul.addons {
     float: right;
 }
 
-.addons li:nth-child(3n) {
+.addons li:nth-child(3n),
+.html-rtl .addons li:nth-child(3n + 1) {
     margin-right: 0;
+}
+.html-rtl .addons li:nth-child(3n) {
+    margin-right: 5%;
 }
 
 .addons li > a,
@@ -1321,6 +1327,7 @@ p#back:hover:before {
     box-shadow: 0 1px 3px rgba(0,0,0,0.35);
     margin-top: 12px;
     padding: 10px;
+    z-index: 10;
 }
 
 .install-note {
