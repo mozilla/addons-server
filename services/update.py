@@ -286,13 +286,12 @@ def mail_exception(data):
     msg = MIMEText('%s\n\n%s' % (
         '\n'.join(traceback.format_exception(*sys.exc_info())), data))
     msg['Subject'] = '[Update] ERROR at /services/update'
-    msg['To'] = settings.ADMINS
+    msg['To'] = ','.join([a[1] for a in settings.ADMINS])
     msg['From'] = settings.DEFAULT_FROM_EMAIL
 
     conn = smtplib.SMTP(getattr(settings, 'EMAIL_HOST', 'localhost'),
                         getattr(settings, 'EMAIL_PORT', '25'))
-    conn.sendmail(settings.DEFAULT_FROM_EMAIL, settings.ADMINS,
-                  msg.as_string())
+    conn.sendmail(settings.DEFAULT_FROM_EMAIL, msg['To'], msg.as_string())
     conn.close()
 
 
