@@ -10,8 +10,9 @@ import test_utils
 from nose.tools import eq_
 from PIL import Image
 
+from addons.models import Addon
 from files.models import FileUpload
-from devhub.tasks import resize_icon, validator
+from devhub.tasks import flag_binary, resize_icon, validator
 
 
 def test_resize_icon_shrink():
@@ -112,3 +113,29 @@ class TestValidator(test_utils.TestCase):
             validator(self.upload.pk)
         error = self.get_upload().task_error
         assert error.startswith('Traceback (most recent call last)'), error
+
+
+class TestFlagBinary(test_utils.TestCase):
+    fixtures = ['base/addon_3615']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(pk=3615)
+        self.addon.update(binary=False)
+
+    @mock.patch('devhub.tasks.run_validator')
+    def test_flag_binary(self, _mock):
+        _mock.return_value = '{"metadata":{"contains_binary_extension": 1}}'
+        flag_binary([self.addon.pk])
+        eq_(Addon.objects.get(pk=self.addon.pk).binary, True)
+
+    @mock.patch('devhub.tasks.run_validator')
+    def test_flag_not_binary(self, _mock):
+        _mock.return_value = '{"metadata":{"contains_binary_extension": 0}}'
+        flag_binary([self.addon.pk])
+        eq_(Addon.objects.get(pk=self.addon.pk).binary, False)
+
+    @mock.patch('devhub.tasks.run_validator')
+    def test_flag_error(self, _mock):
+        _mock.side_effect = RuntimeError()
+        flag_binary([self.addon.pk])
+        eq_(Addon.objects.get(pk=self.addon.pk).binary, False)

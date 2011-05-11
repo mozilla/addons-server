@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 import sys
@@ -7,6 +8,7 @@ from django.conf import settings
 from django.core.management import call_command
 from celeryutils import task
 
+from addons.models import Addon
 import amo
 from amo.decorators import write, set_modified_on
 from amo.utils import resize_image
@@ -88,6 +90,28 @@ def run_validator(file_path, for_appversions=None):
                     determined=False,
                     approved_applications=apps,
                     spidermonkey=settings.SPIDERMONKEY)
+
+
+@task(rate_limit='1/m')
+@write
+def flag_binary(ids, **kw):
+    log.info('[%s@%s] Flagging binary addons starting with id: %s...'
+             % (len(ids), flag_binary.rate_limit, ids[0]))
+    addons = Addon.objects.filter(pk__in=ids).no_transforms()
+
+    for addon in addons:
+        try:
+            log.info('Validating addon with id: %s' % addon.pk)
+            file = File.objects.filter(version__addon=addon).latest('created')
+            result = run_validator(file.file_path)
+            binary = (json.loads(result)['metadata']
+                          .get('contains_binary_extension', False))
+            log.info('Setting binary for addon with id: %s to %s'
+                     % (addon.pk, binary))
+            addon.update(binary=binary)
+        except Exception, err:
+            log.error('Failed to run validation on addon id: %s, %s'
+                      % (addon.pk, err))
 
 
 @task
