@@ -81,7 +81,7 @@ def getconn():
                          passwd=db['PASSWORD'], db=db['NAME'])
 
 
-mypool = pool.QueuePool(getconn, max_overflow=10, pool_size=5)
+mypool = pool.QueuePool(getconn, max_overflow=10, pool_size=5, recycle=3600)
 
 
 class Update(object):
