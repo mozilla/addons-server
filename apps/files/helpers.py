@@ -245,7 +245,8 @@ class DiffHelper:
         for diff in different:
             for depth in range(diff['depth']):
                 key = '/'.join(diff['short'].split('/')[:depth - 1])
-                file_one_files[key]['diff'] = True
+                if key in file_one_files:
+                    file_one_files[key]['diff'] = True
 
         return file_one_files
 
