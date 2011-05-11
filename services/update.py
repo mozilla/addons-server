@@ -73,6 +73,7 @@ no_updates_rdf = """<?xml version="1.0"?>
 
 
 timing_log = commonware.log.getLogger('z.timer')
+error_log = commonware.log.getLogger('z.services')
 
 
 def getconn():
@@ -295,6 +296,11 @@ def mail_exception(data):
     conn.close()
 
 
+def log_exception(data):
+    (typ, value, traceback) = sys.exc_info()
+    error_log.error(u'Type: %s, %s. Query: %s' % (typ, value, data))
+
+
 def application(environ, start_response):
     start = time()
     status = '200 OK'
@@ -308,7 +314,8 @@ def application(environ, start_response):
     except:
         timing_log.info('%s "%s" (500) %.2f [ANON]' %
                         (timing[0], timing[1], time() - start))
-        mail_exception(data)
+        #mail_exception(data)
+        log_exception(data)
         raise
     timing_log.info('%s "%s" (200) %.2f [ANON]' %
                     (timing[0], timing[1], time() - start))
