@@ -235,7 +235,7 @@ class TestPane(test_utils.TestCase):
 
     def test_header_logged_in(self):
         self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.get(reverse('discovery.pane_account'))
+        r = self.client.get(reverse('discovery.pane.account'))
         eq_(r.status_code, 200)
 
     def test_header_logged_out(self):
