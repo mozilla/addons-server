@@ -94,7 +94,7 @@ function bind_viewer(nodes) {
                              'href':$lines.eq(0).find('a').attr('href')};
                 for (var j = 1; j < $lines.length; j++) {
                     var $node = $lines.eq(j);
-                    if ($node.hasClass(state.type)) {
+                    if ($node.attr('class') != state.type) {
                         this.side_bar_append($sb, state, j);
                         state = {'start': j, 'type': $node.attr('class'),
                                  'href': $node.find('a').attr('href')};
@@ -112,7 +112,7 @@ function bind_viewer(nodes) {
         };
         this.side_bar_append = function($sb, state, k) {
             $sb.append($('<a>', {'href': state.href, 'class': state.type,
-                                 'css': {'height': ((k-1-state.start)/$sb.height()) * 100}}));
+                                 'css': {'height': ((k-state.start)/$sb.height()) * 100}}));
         };
         this.toggle_leaf = function($leaf) {
             if ($leaf.hasClass('open')) {
