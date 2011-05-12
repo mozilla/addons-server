@@ -32,6 +32,8 @@ class BulkValidationForm(happyforms.ModelForm):
                   'finish_email')
 
     def __init__(self, *args, **kw):
+        kw.setdefault('initial', {})
+        kw['initial']['finish_email'] = settings.FLIGTAR
         super(BulkValidationForm, self).__init__(*args, **kw)
         w = self.fields['application'].widget
         # Get the URL after the urlconf has loaded.

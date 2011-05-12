@@ -433,6 +433,11 @@ class TestBulkValidationTask(BulkValidationTest):
         eq_(res.validation_job.stats['passing'], 0)
         eq_(res.validation_job.stats['failing'], 1)
         eq_(res.validation_job.stats['errors'], 0)
+        eq_(len(mail.outbox), 1)
+        eq_(mail.outbox[0].subject,
+            'Behold! Validation results for Firefox %s->%s'
+            % (self.curr_max.version, self.new_max.version))
+        eq_(mail.outbox[0].to, ['fliggy@mozilla.com'])
 
     @mock.patch('zadmin.tasks.run_validator')
     def test_task_error(self, run_validator):

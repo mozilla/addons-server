@@ -48,7 +48,7 @@ class ValidationJob(amo.models.ModelBase):
                                          related_name='validation_current_set')
     target_version = models.ForeignKey(AppVersion,
                                        related_name='validation_target_set')
-    finish_email = models.CharField(max_length=255, null=True)
+    finish_email = models.EmailField(null=True)
     completed = models.DateTimeField(null=True, db_index=True)
 
     def result_passing(self):

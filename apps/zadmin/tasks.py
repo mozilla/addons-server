@@ -2,6 +2,7 @@ from datetime import datetime
 import logging
 import os
 import sys
+import textwrap
 import traceback
 
 from django.conf import settings
@@ -32,7 +33,20 @@ def tally_job_results(job_id, **kw):
     cursor.execute(sql, [job_id])
     total, completed = cursor.fetchone()
     if completed == total:
-        ValidationJob.objects.get(pk=job_id).update(completed=datetime.now())
+        # The job has finished.
+        job = ValidationJob.objects.get(pk=job_id)
+        job.update(completed=datetime.now())
+        if job.finish_email:
+            send_mail(u'Behold! Validation results for %s %s->%s'
+                      % (amo.APP_IDS[job.application.id].pretty,
+                         job.curr_max_version.version,
+                         job.target_version.version),
+                      textwrap.dedent("""
+                          Aww yeah
+                          %s
+                          """ % absolutify(reverse('zadmin.validation'))),
+                      from_email=settings.DEFAULT_FROM_EMAIL,
+                      recipient_list=[job.finish_email])
 
 
 @task(rate_limit='2/s')
