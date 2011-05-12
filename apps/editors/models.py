@@ -160,11 +160,11 @@ class VersionSpecificQueue(ViewQueue):
         q = copy.deepcopy(super(VersionSpecificQueue, self).base_query())
         q['select'].update({
             'waiting_time_days':
-                'TIMESTAMPDIFF(DAY, MAX(versions.created), NOW())',
+                'TIMESTAMPDIFF(DAY, MAX(files.created), NOW())',
             'waiting_time_hours':
-                'TIMESTAMPDIFF(HOUR, MAX(versions.created), NOW())',
+                'TIMESTAMPDIFF(HOUR, MAX(files.created), NOW())',
             'waiting_time_min':
-                'TIMESTAMPDIFF(MINUTE, MAX(versions.created), NOW())',
+                'TIMESTAMPDIFF(MINUTE, MAX(files.created), NOW())',
         })
         return q
 

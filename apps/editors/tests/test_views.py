@@ -445,59 +445,56 @@ class TestQueueBasics(QueueTest):
             assert "%s submi" % under_7 in doc('div>div:eq(0)', div).text()
 
     def test_pending_bar(self):
+        # Format: (Created n days ago, percentages of (< 5, 5-10, >10),
+        #          how many are under 7 days?)
         review_data = ((1, (0, 0, 100), 2),
                        (8, (0, 50, 50), 1),
                        (11, (50, 0, 50), 1))
 
-        style = lambda w: "width:%s%%" % (float(w) if w > 0 else 0)
-
-        for (days, widths, under_7) in review_data:
-            addon = self.versions['Pending One'].addon
-            new_created = datetime.now() - timedelta(days=days)
-            version = addon.versions.all()[0]
-            version.modified = new_created
-            version.created = new_created
-            version.save()
-
-            # We have to re-set the status of the add-on after saving version
-            addon.update(status=amo.STATUS_PUBLIC)
-
-            r = self.client.get(reverse('editors.home'))
-            doc = pq(r.content)
-
-            div = doc('#editors-stats-charts .editor-stats-table:eq(1)')
-
-            eq_(doc('.waiting_old', div).attr('style'), style(widths[0]))
-            eq_(doc('.waiting_med', div).attr('style'), style(widths[1]))
-            eq_(doc('.waiting_new', div).attr('style'), style(widths[2]))
-
-            assert "%s submi" % under_7 in doc('div>div:eq(0)', div).text()
+        addon = self.versions['Pending One'].addon
+        for data in review_data:
+            self.check_bar(addon, eq=1, data=data, reset_status=True)
 
     def test_prelim_bar(self):
+        # Format: (Created n days ago, percentages of (< 5, 5-10, >10),
+        #          how many are under 7 days?)
         review_data = ((1, (0, 0, 100), 2),
                        (8, (0, 50, 50), 1),
                        (11, (50, 0, 50), 1))
 
+        addon = self.versions['Prelim One'].addon
+        for data in review_data:
+            self.check_bar(addon, eq=2, data=data)
+
+    def check_bar(self, addon, eq, data, reset_status=False):
+        # `eq` is the table number (0, 1 or 2)
         style = lambda w: "width:%s%%" % (float(w) if w > 0 else 0)
 
-        for (days, widths, under_7) in review_data:
-            addon = self.versions['Prelim One'].addon
-            new_created = datetime.now() - timedelta(days=days)
-            version = addon.versions.all()[0]
-            version.modified = new_created
-            version.created = new_created
-            version.save()
+        days, widths, under_7 = data
+        new_created = datetime.now() - timedelta(days=days)
+        version = addon.versions.all()[0]
+        version.modified = new_created
+        version.created = new_created
+        version.save()
 
-            r = self.client.get(reverse('editors.home'))
-            doc = pq(r.content)
+        file = version.files.all()[0]
+        file.created = new_created
+        file.save()
 
-            div = doc('#editors-stats-charts .editor-stats-table:eq(2)')
+        # For pending, we must reset the add-on status after saving version
+        if reset_status:
+            addon.update(status=amo.STATUS_PUBLIC)
 
-            eq_(doc('.waiting_old', div).attr('style'), style(widths[0]))
-            eq_(doc('.waiting_med', div).attr('style'), style(widths[1]))
-            eq_(doc('.waiting_new', div).attr('style'), style(widths[2]))
+        r = self.client.get(reverse('editors.home'))
+        doc = pq(r.content)
 
-            assert "%s submi" % under_7 in doc('div>div:eq(0)', div).text()
+        div = doc('#editors-stats-charts .editor-stats-table:eq(%s)' % eq)
+
+        eq_(doc('.waiting_old', div).attr('style'), style(widths[0]))
+        eq_(doc('.waiting_med', div).attr('style'), style(widths[1]))
+        eq_(doc('.waiting_new', div).attr('style'), style(widths[2]))
+
+        assert "%s submi" % under_7 in doc('div>div:eq(0)', div).text()
 
 
 class TestPendingQueue(QueueTest):
@@ -1077,31 +1074,38 @@ class TestQueueSearchVersionSpecific(SearchTest):
         create_addon_file('Justin Bieber Persona', '0.1',
                           amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
                           addon_type=amo.ADDON_THEME)
+        self.bieber = (Version.objects.filter(
+                addon__name__localized_string='Justin Bieber Persona'))
+
+    def update_beiber(self, days):
+        new_created = datetime.now() - timedelta(days=days)
+        self.bieber.update(created=new_created)
+        file = self.bieber[0].files.all()[0]
+        file.created = new_created
+        file.save()
 
     def test_age_of_submission(self):
         Version.objects.update(created=datetime.now() - timedelta(days=1))
-        bieber = (Version.objects.filter(
-                  addon__name__localized_string='Justin Bieber Persona'))
         # Exclude anything out of range:
-        bieber.update(created=datetime.now() - timedelta(days=5))
+        self.update_beiber(5)
         r = self.search({'waiting_time_days': 2})
         addons = self.named_addons(r)
         assert 'Justin Bieber Persona' not in addons, (
                                 'Unexpected results: %r' % addons)
         # Include anything submitted up to requested days:
-        bieber.update(created=datetime.now() - timedelta(days=2))
+        self.update_beiber(2)
         r = self.search({'waiting_time_days': 4})
         addons = self.named_addons(r)
         assert 'Justin Bieber Persona' in addons, (
                                 'Unexpected results: %r' % addons)
         # Special case: exclude anything under 10 days:
-        bieber.update(created=datetime.now() - timedelta(days=8))
+        self.update_beiber(8)
         r = self.search({'waiting_time_days': '10+'})
         addons = self.named_addons(r)
         assert 'Justin Bieber Persona' not in addons, (
                                 'Unexpected results: %r' % addons)
         # Special case: include anything 10 days and over:
-        bieber.update(created=datetime.now() - timedelta(days=12))
+        self.update_beiber(12)
         r = self.search({'waiting_time_days': '10+'})
         addons = self.named_addons(r)
         assert 'Justin Bieber Persona' in addons, (
