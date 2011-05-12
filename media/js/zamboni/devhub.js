@@ -1141,7 +1141,12 @@ $(document).ready(function() {
     function buildResults(suite, data) {
         var validation = data.validation,
             msgMap = buildMsgMap(validation.messages),
-            summaryTxt;
+            summaryTxt,
+            isCompat = $('.results', suite).hasClass('compatibility-results'),
+            compatResults = {},
+            appTrans,
+            versionChangeLinks,
+            $resultsHolder = $('.results', suite);
 
         if (validation.errors > 0) {
             summaryTxt = gettext('Add-on failed validation.');
@@ -1151,23 +1156,24 @@ $(document).ready(function() {
         $('.suite-summary span', suite).text(summaryTxt);
         $('.result-summary', suite).text('').css('visibility', 'visible');
         $('.suite-summary', suite).show();
+        if ($resultsHolder.attr('data-app-trans')) {
+            appTrans = JSON.parse($resultsHolder.attr('data-app-trans'));
+        }
+        if ($resultsHolder.attr('data-version-change-links')) {
+            versionChangeLinks = JSON.parse(
+                    $resultsHolder.attr('data-version-change-links'));
+        }
 
         for (var tierNum in msgMap) {
             var tierData = msgMap[tierNum],
                 tier = $('[class~="test-tier"]' +
                          '[data-tier="' + tierNum + '"]', suite),
-                resContainer = $('#suite-results-tier-' + tierNum),
+                resContainer = $('#suite-results-tier-' + tierNum, suite),
                 results = $('.tier-results', resContainer),
                 errorsTxt, warningsTxt, summaryMsg;
 
             results.empty();
-            // e.g. '1 error, 3 warnings'
-            summaryMsg = format(ngettext('{0} error', '{0} errors',
-                                         tierData.errors),
-                                         [tierData.errors]) + ', ' +
-                         format(ngettext('{0} warning', '{0} warnings',
-                                         tierData.warnings),
-                                         [tierData.warnings]);
+            summaryMsg = resultSummary(tierData.errors, tierData.warnings);
             $('.tier-summary', tier).text(summaryMsg);
             $('.result-summary', resContainer).text(summaryMsg);
 
@@ -1203,7 +1209,48 @@ $(document).ready(function() {
                 var msgDiv = $('<div class="msg"><h5></h5></div>'),
                     prefix = msg['type']=='warning' ? gettext('Warning')
                                                     : gettext('Error'),
-                    ctxDiv, lines, code, innerCode, ctxFile;
+                    ctxDiv, lines, code, innerCode, ctxFile,
+                    $compatSections = null,
+                    $compatTier = null,
+                    compatIds = [];
+
+                if (msg.for_appversions) {
+                    eachAppVer(msg.for_appversions, function(app, version, id) {
+                        // Lazily remove the error tier:
+                        $('#suite-results-tier-errors', suite).remove();
+                        // Lazily build the header section for this app/version.
+                        var selId = '#' + id,
+                            res,
+                            summary = resultSummary(msgMap.appVersions[id].errors,
+                                                    msgMap.appVersions[id].warnings),
+                            changeLink = versionChangeLinks[app + ' ' + version];
+                        compatIds.push(selId);
+                        if (!$(selId, suite).length) {
+                            res = $($('.template', suite).html());
+                            res.attr('id', id);
+                            if (changeLink) {
+                                res.prepend(format('<a class="version-change-link" href="{0}">{1}</a>',
+                                                   changeLink,
+                                                   // L10n: Example: Changes in Firefox 5
+                                                   gettext(format('Changes in {0} {1}',
+                                                                  appTrans[app],
+                                                                  version.substring(0,1)))));
+                            }
+                            $('h4', res).text(format('{0} {1} {2}',
+                                                     appTrans[app],
+                                                     version,
+                                                     gettext('Tests')));
+                            $('.tier-results', res).empty()
+                                .addClass('tests-passed-warnings');
+                            $('.result-summary', res).empty()
+                                .text(summary)
+                                .css('visibility', 'visible');
+                            $('.results', suite).append(res);
+                        }
+                    });
+                    $compatTier = $(compatIds.join(','), suite);
+                    $compatSections = $('.tier-results', $compatTier);
+                }
                 msgDiv.attr('id', msgId(msg.uid));
                 msgDiv.addClass('msg-' + msg['type']);
                 $('h5', msgDiv).html(msg.message);
@@ -1253,9 +1300,37 @@ $(document).ready(function() {
                     }
                     msgDiv.append(ctxDiv);
                 }
-                results.append(msgDiv);
+                if ($compatSections) {
+                    $compatSections.removeClass('ajax-loading');
+                    $compatSections.append(msgDiv);
+                } else {
+                    results.append(msgDiv);
+                }
             });
         }
+    }
+
+    function eachAppVer(appVer, visit) {
+        // e.g. {'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}':["4.0b1"]}
+        if (appVer) {
+            $.each(appVer, function(app, all_versions) {
+                $.each(all_versions, function(i, version) {
+                    var key = (app + '-' + version).replace(/[^a-z0-9_-]+/gi, '');
+                    visit(app, version, key);
+                });
+            });
+        }
+    }
+
+    function resultSummary(numErrors, numWarnings) {
+        // e.g. '1 error, 3 warnings'
+        var errors = format(ngettext('{0} error', '{0} errors',
+                                     numErrors),
+                            [numErrors]),
+            warnings = format(ngettext('{0} warning', '{0} warnings',
+                                       numWarnings),
+                              [numWarnings]);
+        return format('{0}, {1}', errors, warnings);
     }
 
     function buildMsgMap(messages) {
@@ -1265,15 +1340,31 @@ $(document).ready(function() {
             1: {errors: 0, warnings: 0, messages: []},
             2: {errors: 0, warnings: 0, messages: []},
             3: {errors: 0, warnings: 0, messages: []},
-            4: {errors: 0, warnings: 0, messages: []}
+            4: {errors: 0, warnings: 0, messages: []},
+            errors: {errors: 0, warnings: 0, messages: []},
+            appVersions: {}
         };
         $.each(messages, function(i, msg) {
+            eachAppVer(msg.for_appversions, function(app, ver, k) {
+                if (typeof msgMap.appVersions[k] === 'undefined') {
+                    msgMap.appVersions[k] = {errors: 0, warnings: 0, messages: []};
+                }
+                msgMap.appVersions[k].messages.push(msg);
+            });
+
             msgMap[msg.tier].messages.push(msg);
+
             if (msg['type'] == 'error') {
                 msgMap[msg.tier].errors += 1;
+                eachAppVer(msg.for_appversions, function(app, ver, k) {
+                    msgMap.appVersions[k].errors += 1;
+                });
             }
             else if (msg['type'] == 'warning' || msg['type'] == 'notice') {
                 msgMap[msg.tier].warnings += 1;
+                eachAppVer(msg.for_appversions, function(app, ver, k) {
+                    msgMap.appVersions[k].warnings += 1;
+                });
             }
         });
         return msgMap;
@@ -1326,7 +1417,10 @@ $(document).ready(function() {
             {'type':'error', message: header,
              description: [description], tier: 3, uuid: '3'},
             {'type':'error', message: header,
-             description: [description], tier: 4, uuid: '4'}
+             description: [description], tier: 4, uuid: '4'},
+            // This exists to report errors on non-tiered results:
+            {'type':'error', message: header,
+             description: [description], tier: 'errors', uuid: 'errors'}
         ]
     }
 

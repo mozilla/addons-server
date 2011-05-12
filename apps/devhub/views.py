@@ -25,6 +25,7 @@ import jinja2
 from tower import ugettext_lazy as _lazy, ugettext as _
 from session_csrf import anonymous_csrf
 
+from applications.models import AppVersion
 import amo
 import amo.utils
 from amo import messages
@@ -44,6 +45,7 @@ from translations.models import delete_translation
 from users.models import UserProfile
 from versions.models import License, Version
 from product_details import get_regions
+from zadmin.models import ValidationResult
 
 from . import forms, tasks, feeds, responsys
 
@@ -539,6 +541,30 @@ def file_validation(request, addon_id, addon, file_id):
                              addon=addon))
 
 
+@dev_required(allow_editors=True)
+def validation_result(request, addon_id, addon, result_id):
+    qs = ValidationResult.objects.exclude(completed=None)
+    result = get_object_or_404(qs, pk=result_id)
+
+    v = reverse('devhub.json_validation_result', args=[addon.slug, result.id])
+    app_trans = dict((g, unicode(a.pretty)) for g, a in amo.APP_GUIDS.items())
+    ff_versions = (AppVersion.objects.filter(application=amo.FIREFOX.id,
+                                             version_int__gte=4000000000000)
+                   .values_list('application', 'version')
+                   .order_by('version_int'))
+    tpl = 'https://developer.mozilla.org/en/Firefox_%s_for_developers'
+    change_links = dict()
+    for app, ver in ff_versions:
+        major = ver[0]  # 4.0b3 -> 4
+        change_links['%s %s' % (amo.APP_IDS[app].guid, ver)] = tpl % major
+    return jingo.render(request, 'devhub/validation.html',
+                        dict(validate_url=v, filename=result.file.filename,
+                             addon=result.file.version.addon,
+                             result_type='compat',
+                             app_trans=app_trans,
+                             version_change_links=change_links))
+
+
 @json_view
 @csrf_view_exempt
 @post_required
@@ -563,6 +589,21 @@ def json_file_validation(request, addon_id, addon, file_id):
     r = dict(validation=validation,
              error=None)
     return r
+
+
+@json_view
+@csrf_view_exempt
+@post_required
+@dev_required(allow_editors=True)
+def json_validation_result(request, addon_id, addon, result_id):
+    qs = ValidationResult.objects.exclude(completed=None)
+    result = get_object_or_404(qs, pk=result_id)
+    if result.task_error:
+        return {'validation': '', 'error': result.task_error}
+    else:
+        validation = json.loads(result.validation)
+        prepare_validation_results(validation)
+        return dict(validation=validation, error=None)
 
 
 @json_view

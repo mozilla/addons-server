@@ -63,6 +63,13 @@ detail_patterns = patterns('',
         views.json_file_validation,
         name='devhub.json_file_validation'),
 
+    url('^validation-result/(?P<result_id>\d+)$',
+        views.validation_result,
+        name='devhub.validation_result'),
+    url('^validation-result/(?P<result_id>\d+).json$',
+        views.json_validation_result,
+        name='devhub.json_validation_result'),
+
     url('^submit/', include(submit_patterns)),
     url('^submit/resume$', views.submit_resume, name='devhub.submit.resume'),
     url('^request-review/(?P<status>[%s])$'

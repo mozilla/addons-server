@@ -11,6 +11,10 @@
 </header>
 <div class="addon-validator-suite" id="addon-validator-suite"
      data-validateurl="{{ validate_url }}">
-  {% include "devhub/addons/includes/validation_test_results.html" %}
+  {% if result_type == 'compat' %}
+    {% include "devhub/addons/includes/validation_compat_test_results.html" %}
+  {% else %}
+    {% include "devhub/addons/includes/validation_test_results.html" %}
+  {% endif %}
 </div>
 {% endblock %}
