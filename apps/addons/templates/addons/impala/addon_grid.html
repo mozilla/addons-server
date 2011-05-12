@@ -1,11 +1,11 @@
 {% cache pages %}
-<ul class="addon-grid {{ columns }} c">
+<ul class="addon-grid c {{ columns }}">
 {% for page in pages %}
   {% set first_page = loop.first %}
   <section>
   {% for addon in page %}
     <li>
-      <div class="item">
+      <div class="item addon">
         <a href="{{ addon.get_url_path(impala=True) }}">
           <div class="icon">
             {% if first_page %}

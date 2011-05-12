@@ -2,7 +2,6 @@
 
 .amo-header {
     font-family: @head-sans;
-    height: 120px;
     margin-bottom: 15px;
 }
 
@@ -13,8 +12,8 @@
     .border-radius(5px);
     .box-shadow(0 -2px 0 rgba(204, 223, 243, 0.3) inset, 0 0 1px rgba(0, 0, 0, 0.1));
     display: block;
-    margin-bottom: 15px;
     float: left;
+    margin-bottom: 15px;
     padding: 14px 14px 16px;
     > section {
         border-bottom: 1px solid #C9DDF2;
@@ -278,4 +277,57 @@ button.search-button {
     float: right;
     padding: 0 32px 0 0;
     background-position: 212px center;
+}
+
+.site-balloon {
+    position: relative;
+    margin-top: 22px;
+    padding: 15px 15px;
+    border: 2px solid #E3873B;
+    background: #FCEFB7;
+    font-family: Arial;
+    font-size: 14px;
+    color: #333;
+    -moz-border-radius: 10px;
+    h3, p {
+        display: inline;
+    }
+    h3, strong {
+        font-weight: bold;
+    }
+    b, em {
+        position: absolute;
+        border-left: 18px solid #E3873B;
+        border-top: 18px solid transparent;
+    }
+    b {
+        left: 34px;
+        top: -18px;
+    }
+    em {
+        left: -16px;
+        top: -13px;
+        border-left-color: #FCEFB7;
+    }
+    p a {
+        color: #c40000;
+        font-weight: bold;
+    }
+    .close {
+        position: absolute;
+        overflow: hidden;
+        right: 15px;
+        top: 0;
+        bottom: 0;
+        width: 25px;
+        height: 25px;
+        margin: auto 0;
+        -moz-border-radius: 4px;
+        background: url(img/banner-close.png) no-repeat 0 0;
+        text-indent: -1000em;
+        &:hover {
+            background-color: #c40000;
+            background-position: -25px 0;
+        }
+    }
 }

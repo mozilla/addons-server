@@ -7,12 +7,14 @@
         float: left;
         height: 66px;
     }
+    &.personas li {
+        height: 78px;
+    }
     &.three-col li {
         width: 100% / 3;
     }
     .item {
         position: relative;
-        margin: 5px 5px 5px 61px;
         border: 1px solid transparent;
         z-index: 20;
         h3 {
@@ -21,10 +23,7 @@
             margin: 0 0 2px 0;
             font-size: 13px;
             line-height: 16px;
-        }
-        .more, .summary, .icon {
-            position: relative;
-            padding: 8px;
+            white-space: nowrap;
         }
         .more {
             color: #666;
@@ -33,68 +32,15 @@
             z-index: 29;
             padding: 0 14px 8px 12px;
         }
-        img {
-            margin: 8px;
-            width: 32px;
-            height: 32px;
-            border: 0;
-            padding: 0;
-        }
         a {
             display: block;
             text-decoration: none;
         }
-        .button {
-            display: inline-block;
-        }
-        .summary {
-            height: 48px;
-            z-index: 21;
-            overflow: hidden;
-            h3, div {
-                white-space: nowrap;
-            }
-        }
-        .icon {
-            position: absolute;
-            left: -57px;
-            top: -1px;
-            padding-right: 0;
-            height: 48px;
-            width: 48px;
-            border-width: 1px 0 1px 1px;
-            border-style: solid;
-            z-index: 22;
-            border-color: transparent;
-        }
-        &:before {
-            content: "";
-            display: block;
-            position: absolute;
-            height: 66px;
-            width: 56px;
-            top: -1px;
-            left: -57px;
-            z-index: 1;
-        }
         &:hover {
-            float: left;
             z-index: 25;
             background: #fff;
             border-color: #888;
             .box-shadow(0 0 4px rgba(0,0,0,.4));
-            .summary {
-                background: white;
-                z-index: 26;
-            }
-            .icon {
-                background: #fff;
-                border-color: #888;
-                z-index: 27;
-            }
-            &:before {
-                .box-shadow(0 0 4px rgba(0,0,0,.4));
-            }
             .more {
                 background: #fff;
                 display: block;
@@ -102,6 +48,105 @@
             }
             h3 {
                 text-decoration: underline;
+            }
+        }
+        &.persona {
+            overflow: hidden;
+            padding: 9px;
+            height: 78px;
+            a {
+                overflow: hidden;
+            }
+            .persona-preview {
+                width: 200px;
+                height: 48px;
+                float: right;
+                overflow: hidden;
+                position: relative;
+                img {
+                    width: 200px;
+                    height: 67px;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                }
+            }
+            .more {
+                padding: 0;
+                margin-top: 10px;
+            }
+            h3 {
+                clear: right;
+            }
+            &:hover {
+                .border-radius(5px);
+                height: auto;
+            }
+        }
+        &.addon {
+            margin: 5px 5px 5px 61px;
+            .more, .summary, .icon {
+                position: relative;
+                padding: 8px;
+            }
+            img {
+                margin: 8px;
+                width: 32px;
+                height: 32px;
+                border: 0;
+                padding: 0;
+            }
+            .button {
+                display: inline-block;
+            }
+            .summary {
+                height: 48px;
+                z-index: 21;
+                overflow: hidden;
+                h3, div {
+                    white-space: nowrap;
+                }
+            }
+            .icon {
+                position: absolute;
+                left: -57px;
+                top: -1px;
+                padding-right: 0;
+                height: 48px;
+                width: 48px;
+                border-width: 1px 0 1px 1px;
+                border-style: solid;
+                z-index: 22;
+                border-color: transparent;
+            }
+            &:before {
+                content: "";
+                display: block;
+                position: absolute;
+                height: 66px;
+                width: 56px;
+                top: -1px;
+                left: -57px;
+                z-index: 1;
+            }
+            &:hover {
+                float: left;
+                z-index: 25;
+                background: #fff;
+                border-color: #888;
+                .box-shadow(0 0 4px rgba(0,0,0,.4));
+                .summary {
+                    background: white;
+                    z-index: 26;
+                }
+                .icon {
+                    background: #fff;
+                    border-color: #888;
+                    z-index: 27;
+                }
+                &:before {
+                    .box-shadow(0 0 4px rgba(0,0,0,.4));
+                }
             }
         }
     }
@@ -118,6 +163,7 @@
     }
     section {
         display: none;
+        position: relative;
         &:first-child {
             display: block;
         }

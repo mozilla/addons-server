@@ -198,6 +198,14 @@ def persona_grid(context, addons):
     return new_context(**locals())
 
 
+@register.filter
+@jinja2.contextfilter
+@register.inclusion_tag('addons/impala/persona_grid.html')
+def impala_persona_grid(context, personas, src=None, pagesize=6):
+    pages = chunked(personas, pagesize)
+    return new_context(**locals())
+
+
 @register.inclusion_tag('addons/report_abuse.html')
 @jinja2.contextfunction
 def addon_report_abuse(context, hide, addon):

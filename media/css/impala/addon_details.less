@@ -123,6 +123,7 @@
     background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
     background-position: 0 0, 0 bottom, 0 0, 0 0;
     overflow: hidden;
+    clear: both;
     position: relative;
     margin: 2em 0;
     padding: 30px 5%;
@@ -177,6 +178,9 @@
 .metadata {
     li {
         border: none;
+        a {
+            padding: 0;
+        }
         a:hover {
             background: transparent;
             text-decoration: underline;
@@ -187,7 +191,7 @@
     li, a {
         border: none;
         display: inline;
-        padding: 0 4px 0 0;
+        padding: 0 1px 0 0;
         line-height: 1.2em;
     }
     li:not(:last-child):after {
