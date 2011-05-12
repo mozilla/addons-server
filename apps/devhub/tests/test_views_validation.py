@@ -236,6 +236,15 @@ class TestCompatibilityResults(test_utils.TestCase):
         for app in amo.APPS.values():
             eq_(trans[app.guid], app.pretty)
 
+    def test_app_version_change_links(self):
+        r = self.client.get(reverse('devhub.validation_result',
+                                     args=[self.addon.slug, self.result.id]))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        trans = json.loads(doc('.results').attr('data-version-change-links'))
+        eq_(trans['%s 4.0.*' % amo.FIREFOX.guid],
+            'https://developer.mozilla.org/en/Firefox_4_for_developers')
+
     def test_validation_success(self):
         r = self.client.post(reverse('devhub.json_validation_result',
                                      args=[self.addon.slug, self.result.id]),

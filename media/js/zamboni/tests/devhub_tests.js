@@ -412,6 +412,9 @@ asyncTest('Test passing', function() {
            'Non-compatibility message should be hidden');
         equals($('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .result-summary', $suite).text(),
                '1 error, 1 warning');
+        equals($('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .version-change-link').attr('href'),
+               '/firefox-4-changes');
+        equals($('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b1 .version-change-link').length, 0);
         start();
     });
 });

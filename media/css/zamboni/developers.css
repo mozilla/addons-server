@@ -1790,6 +1790,12 @@ form.select-review .errorlist {
 #addon-validator-suite .context .lines div {
     margin-right: 0.3em;
 }
+#addon-validator-suite .version-change-link {
+    display: block;
+    float: right;
+    font-size: 95%;
+    margin-right: 5px;
+}
 /* @end */
 
 .loading, .loaded {

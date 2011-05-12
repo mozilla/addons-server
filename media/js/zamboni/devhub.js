@@ -1144,7 +1144,9 @@ $(document).ready(function() {
             summaryTxt,
             isCompat = $('.results', suite).hasClass('compatibility-results'),
             compatResults = {},
-            appTrans;
+            appTrans,
+            versionChangeLinks,
+            $resultsHolder = $('.results', suite);
 
         if (validation.errors > 0) {
             summaryTxt = gettext('Add-on failed validation.');
@@ -1154,8 +1156,12 @@ $(document).ready(function() {
         $('.suite-summary span', suite).text(summaryTxt);
         $('.result-summary', suite).text('').css('visibility', 'visible');
         $('.suite-summary', suite).show();
-        if ($('.results', suite).attr('data-app-trans')) {
-            appTrans = JSON.parse($('.results', suite).attr('data-app-trans'));
+        if ($resultsHolder.attr('data-app-trans')) {
+            appTrans = JSON.parse($resultsHolder.attr('data-app-trans'));
+        }
+        if ($resultsHolder.attr('data-version-change-links')) {
+            versionChangeLinks = JSON.parse(
+                    $resultsHolder.attr('data-version-change-links'));
         }
 
         for (var tierNum in msgMap) {
@@ -1216,11 +1222,20 @@ $(document).ready(function() {
                         var selId = '#' + id,
                             res,
                             summary = resultSummary(msgMap.appVersions[id].errors,
-                                                    msgMap.appVersions[id].warnings);
+                                                    msgMap.appVersions[id].warnings),
+                            changeLink = versionChangeLinks[app + ' ' + version];
                         compatIds.push(selId);
                         if (!$(selId, suite).length) {
                             res = $($('.template', suite).html());
                             res.attr('id', id);
+                            if (changeLink) {
+                                res.prepend(format('<a class="version-change-link" href="{0}">{1}</a>',
+                                                   changeLink,
+                                                   // L10n: Example: Changes in Firefox 5
+                                                   gettext(format('Changes in {0} {1}',
+                                                                  appTrans[app],
+                                                                  version.substring(0,1)))));
+                            }
                             $('h4', res).text(format('{0} {1} {2}',
                                                      appTrans[app],
                                                      version,
