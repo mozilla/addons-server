@@ -163,7 +163,7 @@ class FileViewer:
             ext = ext[:post_length] + ellipsis
         return root + ext
 
-    @memoize(prefix='file-viewer')
+    @memoize(prefix='file-viewer', time=60 * 60)
     def _get_files(self):
         all_files, res = [], SortedDict()
         # Not using os.path.walk so we get just the right order.
@@ -194,7 +194,8 @@ class FileViewer:
                           'size': os.stat(path)[stat.ST_SIZE],
                           'truncated': self.truncate(filename),
                           'url': reverse('files.list', args=args),
-                          'url_serve': reverse('files.redirect', args=args)}
+                          'url_serve': reverse('files.redirect', args=args),
+                          'version': self.file.version.version}
 
         return res
 
@@ -221,7 +222,7 @@ class DiffHelper:
     def is_extracted(self):
         return self.file_one.is_extracted and self.file_two.is_extracted
 
-    @memoize(prefix='file-viewer')
+    @memoize(prefix='file-viewer', time=60 * 60)
     def get_files(self):
         """
         Get the files from the primary and:

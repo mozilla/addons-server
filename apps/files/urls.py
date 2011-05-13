@@ -3,18 +3,18 @@ from django.conf.urls.defaults import patterns, include, url
 from files import views
 
 file_patterns = patterns('',
-    url(r'^$', views.files_list, name='files.list'),
-    url(r'file/(?P<key>.*)$', views.files_list, name='files.list'),
-    url(r'file-redirect/(?P<key>.*)$', views.files_redirect,
+    url(r'^$', views.browse, name='files.list'),
+    url(r'file/(?P<key>.*)$', views.browse, name='files.list'),
+    url(r'file-redirect/(?P<key>.*)$', views.redirect,
         name='files.redirect'),
-    url(r'file-serve/(?P<key>.*)$', views.files_serve, name='files.serve'),
-    url(r'status$', views.files_poll, name='files.poll'),
+    url(r'file-serve/(?P<key>.*)$', views.serve, name='files.serve'),
+    url(r'status$', views.poll, name='files.poll'),
 )
 
 compare_patterns = patterns('',
-    url(r'^$', views.files_compare, name='files.compare'),
-    url(r'file/(?P<key>.*)$', views.files_compare, name='files.compare'),
-    url(r'status$', views.files_compare_poll, name='files.compare.poll'),
+    url(r'^$', views.compare, name='files.compare'),
+    url(r'file/(?P<key>.*)$', views.compare, name='files.compare'),
+    url(r'status$', views.compare_poll, name='files.compare.poll'),
 )
 
 # All URLs under /editors/

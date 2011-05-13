@@ -12,6 +12,7 @@ from mock import patch_object
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
+from waffle.models import Switch
 
 from amo.utils import Message
 from amo.urlresolvers import reverse
@@ -60,6 +61,7 @@ class FilesBase:
             shutil.copyfile(src, file_obj.file_path)
 
         self.file_viewer = FileViewer(self.file)
+        Switch.objects.create(name='delay-file-viewer', active=True)
 
     def tearDown(self):
         self.file_viewer.cleanup()

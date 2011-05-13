@@ -1,5 +1,11 @@
 {% extends "files/base.html" %}
-
+{% block title -%}
+    {% if diff %}
+        {{ _('File Compare :: Editor tools') }}
+    {% else %}
+        {{ _('File Viewer :: Editor tools') }}
+    {% endif %}
+{% endblock %}
 {% block bodyclass %}inverse{% endblock %}
 
 {% block content %}
@@ -22,8 +28,6 @@
         <div id="files">
             {% if files %}
                 {{ file_tree(files, selected) }}
-            {% endif %}
-            {% if files %}
             <div id="commands">
                 <div><code>j</code> <a href="#" id="files-prev">{{ _('Previous file') }}</a></div>
                 <div><code>k</code> <a href="#" id="files-next">{{ _('Next file') }}</a></div>
@@ -41,41 +45,7 @@
                 {{ _('Fetching file.') }}
             </p>
         </div>
-        <div id="content-wrapper">
-            {% if msg %}
-                <p class="notification-box warning">{{ msg }}</p>
-            {% endif %}
-            <div>
-            {% if viewer %}
-                {% if selected and not selected['binary'] and not selected['directory'] and content %}
-                    <pre id="content" class="wrapped">{{ content }}</pre>
-                {% endif %}
-                {% if selected and not selected['directory'] %}
-                    {% include "files/file.html" %}
-                {% endif %}
-            {% endif %}
-            {% if diff %}
-                {% if text_one and text_two %}
-                        <div class="diff-bar js-hidden"></div>
-                        <pre id="diff" class="wrapped js-hidden"></pre>
-                        <pre class="left js-hidden">{{ text_one }}</pre>
-                        <pre class="right js-hidden">{{ text_two }}</pre>
-                {% endif %}
-                {% if selected and not selected['directory']%}
-                    {% if diff.one %}
-                        {% with selected = diff.one, file = diff.file_one.file %}
-                            {% include "files/file.html" %}
-                        {% endwith %}
-                    {% endif %}
-                    {% if diff.two %}
-                        {% with selected = diff.two, file = diff.file_two.file %}
-                            {% include "files/file.html" %}
-                        {% endwith %}
-                    {% endif %}
-                {% endif %}
-            {% endif %}
-            </div>
-        </div>
+        {% include "files/content.html" %}
     </div>
 </div>
 

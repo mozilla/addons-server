@@ -7,6 +7,7 @@ from django.views.decorators.cache import never_cache
 
 import commonware.log
 import jingo
+import waffle
 
 from access import acl
 from amo.decorators import json_view
@@ -42,16 +43,20 @@ def setup_viewer(request, file_obj):
 @never_cache
 @json_view
 @file_view
-def files_poll(request, viewer):
+def poll(request, viewer):
     return {'status': viewer.is_extracted,
             'msg': [Message('file-viewer:%s' % viewer).get(delete=True)]}
 
 
 @file_view
-def files_list(request, viewer, key=None):
+def browse(request, viewer, key=None):
     data = setup_viewer(request, viewer.file)
     data['viewer'] = viewer
     data['poll_url'] = reverse('files.poll', args=[viewer.file.id])
+
+    if (not waffle.switch_is_active('delay-file-viewer')
+        and not viewer.is_extracted):
+        extract_file(viewer)
 
     if viewer.is_extracted:
         files = viewer.get_files()
@@ -67,7 +72,8 @@ def files_list(request, viewer, key=None):
     else:
         extract_file.delay(viewer)
 
-    response = jingo.render(request, 'files/viewer.html', data)
+    tmpl = 'files/content.html' if request.is_ajax() else 'files/viewer.html'
+    response = jingo.render(request, tmpl, data)
     if not settings.DEBUG:
         response['ETag'] = '"%s"' % hashlib.md5(response.content).hexdigest()
         response['Last-Modified'] = http_date(data['selected']['modified'] if
@@ -78,7 +84,7 @@ def files_list(request, viewer, key=None):
 @never_cache
 @compare_file_view
 @json_view
-def files_compare_poll(request, diff):
+def compare_poll(request, diff):
     msgs = []
     for f in (diff.file_one, diff.file_two):
         m = Message('file-viewer:%s' % f).get(delete=True)
@@ -88,7 +94,7 @@ def files_compare_poll(request, diff):
 
 
 @compare_file_view
-def files_compare(request, diff, key=None):
+def compare(request, diff, key=None):
     if not key and not diff.file_one.is_search_engine:
         key = 'install.rdf'
 
@@ -97,6 +103,11 @@ def files_compare(request, diff, key=None):
     data['poll_url'] = reverse('files.compare.poll',
                                args=[diff.file_one.file.id,
                                      diff.file_two.file.id])
+
+    if (not waffle.switch_is_active('delay-file-viewer')
+        and not diff.is_extracted):
+        extract_file(diff.file_one)
+        extract_file(diff.file_two)
 
     if diff.is_extracted:
         files = diff.get_files()
@@ -111,15 +122,16 @@ def files_compare(request, diff, key=None):
             data['msg'] = diff.status
 
         elif not diff.is_binary():
-            data['text_one'], omsg = diff.file_one.read_file(diff.one)
-            data['text_two'], tmsg = diff.file_two.read_file(diff.two)
+            data['one'], omsg = diff.file_one.read_file(diff.one)
+            data['two'], tmsg = diff.file_two.read_file(diff.two)
             data['msg'] = omsg or tmsg
 
     else:
         extract_file.delay(diff.file_one)
         extract_file.delay(diff.file_two)
 
-    response = jingo.render(request, 'files/viewer.html', data)
+    tmpl = 'files/content.html' if request.is_ajax() else 'files/viewer.html'
+    response = jingo.render(request, tmpl, data)
     if not settings.DEBUG:
         response['ETag'] = '"%s"' % hashlib.md5(response.content).hexdigest()
         response['Last-Modified'] = http_date(data['selected']['modified'] if
@@ -128,7 +140,7 @@ def files_compare(request, diff, key=None):
 
 
 @file_view
-def files_redirect(request, viewer, key):
+def redirect(request, viewer, key):
     new = Token(data=[request.META.get('REMOTE_ADDR'), viewer.file.id, key])
     new.save()
     url = '%s%s?token=%s' % (settings.STATIC_URL,
@@ -138,7 +150,7 @@ def files_redirect(request, viewer, key):
 
 
 @file_view_token
-def files_serve(request, viewer, key):
+def serve(request, viewer, key):
     """
     This is to serve files off of st.a.m.o, not standard a.m.o. For this we
     use token based authentication.

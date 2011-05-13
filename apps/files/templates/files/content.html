@@ -1,0 +1,35 @@
+<div id="content-wrapper">
+    {% if msg %}
+        <p class="notification-box warning">{{ msg }}</p>
+    {% endif %}
+    <div>
+    {% if viewer %}
+        {% if selected and not selected['binary'] and not selected['directory'] and content %}
+            <pre id="content" class="wrapped">{{ content }}</pre>
+        {% endif %}
+        {% if selected and not selected['directory'] %}
+            {% include "files/file.html" %}
+        {% endif %}
+    {% endif %}
+    {% if diff %}
+        {% if one and two %}
+                <div class="diff-bar js-hidden"></div>
+                <pre id="diff" class="wrapped js-hidden"></pre>
+                <pre class="left js-hidden">{{ one }}</pre>
+                <pre class="right js-hidden">{{ two }}</pre>
+        {% endif %}
+        {% if selected and not selected['directory'] %}
+            {% if diff.one %}
+                {% with selected = diff.one %}
+                    {% include "files/file.html" %}
+                {% endwith %}
+            {% endif %}
+            {% if diff.two %}
+                {% with selected = diff.two %}
+                    {% include "files/file.html" %}
+                {% endwith %}
+            {% endif %}
+        {% endif %}
+    {% endif %}
+    </div>
+</div>
