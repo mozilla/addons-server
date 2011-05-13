@@ -672,10 +672,3 @@ span.currently_viewing_warning {
     margin-bottom: 0;
 }
 
-.light {
-    color: #888;
-}
-
-.light .light {
-    color: #ccc;
-}

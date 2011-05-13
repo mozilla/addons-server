@@ -97,11 +97,21 @@
           </tr>
           <tr>
             <th>{{ _('Approval Status') }}</th>
-            <td>
+            <td id="approval_status">
               <ul>
                 {% for file in version.all_files %}
                 <li>
                     {{ file_status_message(file, addon) }}
+                    {% if file.id in file_history %}
+                    <div class="version-comments">
+                      {% set fh = file_history[file.id] %}
+                      <div><strong>{{ _('Comments:') }}</strong></div>
+                      <div>{{ fh.details['comments'] }}</div>
+                      <div class="light">
+                        {{ _('Reviewed by {user_name}')|f(user_name=fh.user.display_name) }}
+                      </div>
+                    </div>
+                    {% endif %}
                 </li>
                 {% endfor %}
               </ul>

@@ -801,7 +801,10 @@ def version_edit(request, addon_id, addon, version_id):
 
     file_form = forms.FileFormSet(request.POST or None, prefix='files',
                                   queryset=version.files.all())
-    data = {'version_form': version_form, 'file_form': file_form}
+
+    file_history = _get_file_history(version)
+    data = {'version_form': version_form, 'file_form': file_form,
+            'file_history': file_history}
 
     if addon.accepts_compatible_apps():
         compat_form = forms.CompatFormSet(request.POST or None,
@@ -827,6 +830,23 @@ def version_edit(request, addon_id, addon, version_id):
 
     data.update(addon=addon, version=version, new_file_form=new_file_form)
     return jingo.render(request, 'devhub/versions/edit.html', data)
+
+
+def _get_file_history(version):
+    file_ids = [f.id for f in version.all_files]
+    addon = version.addon
+    file_history = (ActivityLog.objects.for_addons(addon)
+                               .filter(action__in=amo.LOG_REVIEW_QUEUE))
+    files = {}
+    for log in file_history:
+        details = log.details
+        current_file_ids = details["files"] if 'files' in details else []
+        for fid in current_file_ids:
+            if fid in file_ids and (fid not in files or
+                                    log.created < files[fid].created):
+                files[fid] = log
+
+    return files
 
 
 @dev_required

@@ -120,6 +120,14 @@ ul.errorlist {
     display: none;
 }
 
+.light {
+    color: #888;
+}
+
+.light .light {
+    color: #ccc;
+}
+
 /************************************/
 /*             GRADIENTS            */
 /************************************/

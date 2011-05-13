@@ -2839,6 +2839,24 @@ class TestVersionAddFile(UploadTest):
         new_file = self.version.files.get(platform=amo.PLATFORM_MAC.id)
         eq_(r.context['form'].instance, new_file)
 
+    def test_something(self):
+        version = self.addon.current_version
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+
+        details = {'comments': 'yo', 'files': [version.files.all()[0].id]}
+        amo.log(amo.LOG.APPROVE_VERSION, self.addon,
+                self.addon.current_version, user=user, created=datetime.now(),
+                details=details)
+
+        doc = pq(self.client.get(self.edit_url).content)
+        appr = doc('#approval_status')
+
+        eq_(appr.length, 1)
+        eq_(appr.find('strong').eq(0).text(), "File  (Linux)")
+        eq_(appr.find('.version-comments').length, 1)
+        eq_(appr.find('.version-comments strong').text(), "Comments:")
+        eq_(appr.find('.version-comments div').eq(1).text(), "yo")
+
 
 class TestAddVersion(UploadTest):
 

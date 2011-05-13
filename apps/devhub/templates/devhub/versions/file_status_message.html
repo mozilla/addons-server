@@ -1,11 +1,13 @@
-{% if status_date %}
+<strong>{{ _('File {file_id} ({platform})')|f(file_id=file_id, platform=platform) }}</strong>
+<div class="light">
+  {% if status_date %}
     {% trans %}
-    File {{ file_id }} ({{ platform }}) created on {{ created }}
-    and changed to {{ status }} on {{ status_date }}
+      Created on {{ created }} and changed to {{ status }} on {{ status_date }}
     {% endtrans %}
-{% else %}
+  {% else %}
     {% trans %}
-    File {{ file_id }} ({{ platform }}) created on {{ created }}
-    and changed to {{ status }}
+      Created on {{ created }} and changed to {{ status }}
     {% endtrans %}
-{% endif %}
+  {% endif %}
+</div>
+

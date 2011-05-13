@@ -650,6 +650,13 @@ form .char-count b {
     display: none;
 }
 
+.version-comments {
+    background-color: #f3f3f3;
+    border-left: 3px solid #DDD;
+    margin-left: 10px;
+    padding: 3px 10px;
+}
+
 /* @end */
 
 /* @group Dashboard */
