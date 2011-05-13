@@ -1587,7 +1587,8 @@ form.select-review .errorlist {
     width: 56em;
     color: #929292;
 }
-#addon-validator-suite .template {
+#addon-validator-suite .template,
+#addon-validator-suite .hidden {
     display: none;
 }
 #addon-validator-suite .suite,

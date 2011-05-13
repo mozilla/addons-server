@@ -1165,6 +1165,10 @@ $(document).ready(function() {
         }
 
         for (var tierNum in msgMap) {
+            if (tierNum == 'non_compat' && msgMap[tierNum].messages.length) {
+                // This is hidden by default.
+                $('#suite-results-tier-non_compat', suite).css('display', 'block').removeClass('hidden');
+            }
             var tierData = msgMap[tierNum],
                 tier = $('[class~="test-tier"]' +
                          '[data-tier="' + tierNum + '"]', suite),
@@ -1342,10 +1346,16 @@ $(document).ready(function() {
             3: {errors: 0, warnings: 0, messages: []},
             4: {errors: 0, warnings: 0, messages: []},
             errors: {errors: 0, warnings: 0, messages: []},
-            appVersions: {}
+            appVersions: {},
+            // catch-all tier for messages not related to compatibility:
+            non_compat: {errors: 0, warnings: 0, messages: [],
+                         message_uids: {}}
         };
         $.each(messages, function(i, msg) {
+            var isCompat = false,
+                isUniqueNonCompat = false;
             eachAppVer(msg.for_appversions, function(app, ver, k) {
+                isCompat = true;
                 if (typeof msgMap.appVersions[k] === 'undefined') {
                     msgMap.appVersions[k] = {errors: 0, warnings: 0, messages: []};
                 }
@@ -1353,18 +1363,31 @@ $(document).ready(function() {
             });
 
             msgMap[msg.tier].messages.push(msg);
+            if (!isCompat) {
+                if (typeof msgMap.non_compat.message_uids[msg.uid] === 'undefined') {
+                    msgMap.non_compat.messages.push(msg);
+                    msgMap.non_compat.message_uids[msg.uid] = true;
+                    isUniqueNonCompat = true;
+                }
+            }
 
             if (msg['type'] == 'error') {
                 msgMap[msg.tier].errors += 1;
                 eachAppVer(msg.for_appversions, function(app, ver, k) {
                     msgMap.appVersions[k].errors += 1;
                 });
+                if (!isCompat && isUniqueNonCompat) {
+                    msgMap.non_compat.errors += 1;
+                }
             }
             else if (msg['type'] == 'warning' || msg['type'] == 'notice') {
                 msgMap[msg.tier].warnings += 1;
                 eachAppVer(msg.for_appversions, function(app, ver, k) {
                     msgMap.appVersions[k].warnings += 1;
                 });
+                if (!isCompat && isUniqueNonCompat) {
+                    msgMap.non_compat.warnings += 1;
+                }
             }
         });
         return msgMap;
@@ -1409,18 +1432,16 @@ $(document).ready(function() {
     // Displays a global error on all tiers.
     // NOTE: this can probably be simplified if the JSON format is updated.
     function messagesForAllTiers(header, description) {
+        // The UID is identical so the message doesn't get duplicated.
         return [
             {'type':'error', message: header,
-             description: [description], tier: 1, uuid: '1'},
+             description: [description], tier: 1, uuid: '__global_error__'},
             {'type':'error', message: header,
-             description: [description], tier: 2, uuid: '2'},
+             description: [description], tier: 2, uuid: '__global_error__'},
             {'type':'error', message: header,
-             description: [description], tier: 3, uuid: '3'},
+             description: [description], tier: 3, uuid: '__global_error__'},
             {'type':'error', message: header,
-             description: [description], tier: 4, uuid: '4'},
-            // This exists to report errors on non-tiered results:
-            {'type':'error', message: header,
-             description: [description], tier: 'errors', uuid: 'errors'}
+             description: [description], tier: 4, uuid: '__global_error__'}
         ]
     }
 

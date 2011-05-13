@@ -312,7 +312,7 @@ asyncTest('Test passing', function() {
                 "ending_tier": 5,
                 "messages": [{
                     "context": null,
-                    "description": ["IGNORE THIS MESSAGE."],
+                    "description": ["Some non-compatibility warning."],
                     "column": null,
                     "id": ["testcases_packagelayout", "test_blacklisted_files", "disallowed_extension"],
                     "file": "ffmpeg/libmp3lame-0.dll",
@@ -398,9 +398,10 @@ asyncTest('Test passing', function() {
         return $('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b1', $suite).length;
     }).thenDo(function() {
         equals($('#suite-results-tier-errors', $suite).length, 0);
-        equals($('.result-header h4:eq(1)', $suite).text(),
-               'Firefox 4.0b3 Tests');
+        equals($('.result-header h4:eq(1)', $suite).text(), 'Tests');
         equals($('.result-header h4:eq(2)', $suite).text(),
+               'Firefox 4.0b3 Tests');
+        equals($('.result-header h4:eq(3)', $suite).text(),
                'Firefox 4.0b1 Tests');
         equals($('#v-msg-2a96f7faee7a41cca4d6ead26dddc6b3 p:eq(0)', $suite).text(),
                'Warning: A dangerous or banned global...');
@@ -408,13 +409,15 @@ asyncTest('Test passing', function() {
                'Error: To prevent vulnerabilities...');
         equals($('#v-msg-92a0be84024a464e87046b04e26232c4 p:eq(0)', $suite).text(),
                'Error: The add-on doesn\'t have...');
-        ok($('#v-msg-bb0b38812d8f450a85fa90a2e7e6693b', $suite).length == 0,
-           'Non-compatibility message should be hidden');
+        ok($('#v-msg-bb0b38812d8f450a85fa90a2e7e6693b', $suite).length == 1,
+           'Non-compatibility message should be shown');
         equals($('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .result-summary', $suite).text(),
                '1 error, 1 warning');
         equals($('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .version-change-link').attr('href'),
                '/firefox-4-changes');
         equals($('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b1 .version-change-link').length, 0);
+        equals($('#suite-results-tier-non_compat .result-summary', $suite).text(),
+               '0 errors, 1 warning');
         start();
     });
 });
@@ -437,11 +440,64 @@ asyncTest('Test task error', function() {
     $suite.trigger('validate');
 
     tests.waitFor(function() {
-        return $('#suite-results-tier-errors .msg', $suite).length > 0;
+        return $('#suite-results-tier-non_compat .msg', $suite).length > 0;
     }).thenDo(function() {
         equals($('.msg', $suite).text(),
                'ErrorError: Validation task could not complete or ' +
                'completed with errors')
+        start();
+    });
+});
+
+module('Validator: Compatibility Only', compatibilityFixtures);
+
+asyncTest('Test no tests section', function() {
+    var $suite = $('.addon-validator-suite', this.sandbox),
+        tiers=[], results=[];
+
+    $.mockjax({
+        url: '/validate',
+        responseText: {
+            "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
+            "full_report_url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "upload": "d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "error": null,
+            "validation": {
+                "errors": 0,
+                "success": false,
+                "warnings": 1,
+                "ending_tier": 5,
+                "messages": [{
+                    "context": ["<code>"],
+                    "description": ["A dangerous or banned global..."],
+                    "column": 23,
+                    "id": [],
+                    "file": "chrome/content/youtune.js",
+                    "tier": 3,
+                    "for_appversions": {
+                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.0b3"]
+                    },
+                    "message": "Dangerous Global Object",
+                    "type": "warning",
+                    "line": 533,
+                    "uid": "2a96f7faee7a41cca4d6ead26dddc6b3"
+                }],
+                "detected_type": "extension",
+                "notices": 2,
+                "message_tree": {},
+                "metadata": {}
+            }
+        }
+    });
+
+    $suite.trigger('validate');
+
+    tests.waitFor(function() {
+        // Wait until last app/version section was created.
+        return $('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3', $suite).length;
+    }).thenDo(function() {
+        equals($('#suite-results-tier-non_compat:visible', $suite).length, 0);
+        equals($('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .msg', $suite).length, 1);
         start();
     });
 });
