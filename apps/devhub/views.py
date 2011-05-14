@@ -801,10 +801,9 @@ def version_edit(request, addon_id, addon, version_id):
 
     file_form = forms.FileFormSet(request.POST or None, prefix='files',
                                   queryset=version.files.all())
-
     file_history = _get_file_history(version)
-    data = {'version_form': version_form, 'file_form': file_form,
-            'file_history': file_history}
+
+    data = {'version_form': version_form, 'file_form': file_form}
 
     if addon.accepts_compatible_apps():
         compat_form = forms.CompatFormSet(request.POST or None,
@@ -828,7 +827,8 @@ def version_edit(request, addon_id, addon, version_id):
         messages.success(request, _('Changes successfully saved.'))
         return redirect('devhub.versions.edit', addon.slug, version_id)
 
-    data.update(addon=addon, version=version, new_file_form=new_file_form)
+    data.update(addon=addon, version=version, new_file_form=new_file_form,
+                file_history=file_history)
     return jingo.render(request, 'devhub/versions/edit.html', data)
 
 
