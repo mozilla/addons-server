@@ -95,9 +95,6 @@ def compare_poll(request, diff):
 
 @compare_file_view
 def compare(request, diff, key=None):
-    if not key and not diff.file_one.is_search_engine:
-        key = 'install.rdf'
-
     data = setup_viewer(request, diff.file_one.file)
     data['diff'] = diff
     data['poll_url'] = reverse('files.compare.poll',

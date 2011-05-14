@@ -21,17 +21,25 @@ recurse = '%s/recurse.xpi' % root
 search = '%s/search.xml' % root
 
 
+def make_file(pk, file_path, **kwargs):
+    obj = Mock()
+    obj.id = pk
+    for k, v in kwargs.items():
+        setattr(obj, k, v)
+    obj.file_path = file_path
+    obj.__str__ = lambda x: x.pk
+    obj.version = Mock()
+    obj.version.version = 1
+    return obj
+
+
 class TestFileHelper(test_utils.TestCase):
 
     def setUp(self):
-        file_obj = Mock()
-        file_obj.id = file_obj.pk = 1
-        file_obj.file_path = dictionary
-
         self.old_tmp = settings.TMP_PATH
         settings.TMP_PATH = tempfile.mkdtemp()
 
-        self.viewer = FileViewer(file_obj)
+        self.viewer = FileViewer(make_file(1, dictionary))
 
     def tearDown(self):
         self.viewer.cleanup()
@@ -177,18 +185,8 @@ class TestDiffSearchEngine(test_utils.TestCase):
 
     def setUp(self):
         src = os.path.join(settings.ROOT, search)
-
-        file_one = Mock()
-        file_one.id = file_one.pk = 1
-        file_one.file_path = src
-        file_one.filename = 'search.xml'
-
-        file_two = Mock()
-        file_two.id = file_two.pk = 2
-        file_two.file_path = src
-        file_two.filename = 'search.xml'
-
-        self.helper = DiffHelper(file_one, file_two)
+        self.helper = DiffHelper(make_file(1, src, filename='search.xml'),
+                                 make_file(2, src, filename='search.xml'))
         self.helper.file_one.is_search_engine = True
         self.helper.file_two.is_search_engine = True
 
@@ -206,16 +204,7 @@ class TestDiffHelper(test_utils.TestCase):
 
     def setUp(self):
         src = os.path.join(settings.ROOT, dictionary)
-
-        file_one = Mock()
-        file_one.id = file_one.pk = 1
-        file_one.file_path = src
-
-        file_two = Mock()
-        file_two.id = file_two.pk = 2
-        file_two.file_path = src
-
-        self.helper = DiffHelper(file_one, file_two)
+        self.helper = DiffHelper(make_file(1, src), make_file(2, src))
 
     def tearDown(self):
         self.helper.cleanup()
