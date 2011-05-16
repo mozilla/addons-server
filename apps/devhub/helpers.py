@@ -120,11 +120,13 @@ def status_choices(addon):
 
 
 @register.inclusion_tag('devhub/versions/file_status_message.html')
-def file_status_message(file, addon):
+def file_status_message(file, addon, file_history=False):
     choices = status_choices(addon)
     return {'fileid': file.id, 'platform': file.amo_platform.name,
             'created': datetime(file.created),
             'status': choices[file.status],
+            'file_history': file_history,
+            'actions': amo.LOG_REVIEW_EMAIL_USER,
             'status_date': datetime(file.datestatuschanged)}
 
 

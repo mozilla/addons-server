@@ -639,6 +639,11 @@ function initEditVersions() {
         row.show();
         row.next().hide();
     });
+
+    $('.show_file_history').click(_pd(function(){
+        $(this).closest('p').hide().closest('div').find('.version-comments').fadeIn();
+    }));
+
 }
 
 function initPayments() {

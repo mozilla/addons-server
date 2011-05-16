@@ -1,5 +1,6 @@
 <strong>{{ _('File {file_id} ({platform})')|f(file_id=file_id, platform=platform) }}</strong>
-<div class="light">
+<div>
+  <div class="light">
   {% if status_date %}
     {% trans %}
       Created on {{ created }} and changed to {{ status }} on {{ status_date }}
@@ -9,5 +10,29 @@
       Created on {{ created }} and changed to {{ status }}
     {% endtrans %}
   {% endif %}
+  </div>
+  {% if file_history %}
+  <p>
+  (<a class="show_file_history" href="#">Show File History</a>)
+  </p>
+
+  <div>
+    {% for fh in file_history %}
+    <div class="version-comments">
+      <div><strong>{{ fh }}</strong></div>
+      {% if fh.action in actions %}
+        <div class="email_comment">{{ fh.details['comments'] }}</div>
+      {% endif %}
+      <div class="light">
+        {% trans user_name=fh.user|user_link, date=fh.modified|babel_datetime %}
+        By {{user_name}} on {{date}}
+        {% endtrans %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% endif %}
+
 </div>
 

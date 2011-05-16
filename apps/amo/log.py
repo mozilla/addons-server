@@ -162,6 +162,7 @@ class APPROVE_VERSION(_LOG):
     action_class = 'approve'
     format = _(u'{addon} {version} approved.')
     keep = True
+    review_email_user = True
     review_queue = True
 
 
@@ -170,6 +171,7 @@ class PRELIMINARY_VERSION(_LOG):
     action_class = 'approve'
     format = _(u'{addon} {version} given preliminary review.')
     keep = True
+    review_email_user = True
     review_queue = True
 
 
@@ -179,6 +181,7 @@ class REJECT_VERSION(_LOG):
     action_class = 'reject'
     format = _(u'{addon} {version} rejected.')
     keep = True
+    review_email_user = True
     review_queue = True
 
 
@@ -188,6 +191,7 @@ class RETAIN_VERSION(_LOG):
     action_class = None
     format = _(u'{addon} {version} retained.')
     keep = True
+    review_email_user = True
     review_queue = True
 
 
@@ -197,6 +201,7 @@ class ESCALATE_VERSION(_LOG):
     action_class = None
     format = _(u'{addon} {version} escalated.')
     keep = True
+    review_email_user = True
     review_queue = True
 
 
@@ -206,6 +211,7 @@ class REQUEST_VERSION(_LOG):
     action_class = None
     format = _(u'{addon} {version} review requested.')
     keep = True
+    review_email_user = True
     review_queue = True
 
 
@@ -214,6 +220,7 @@ class REQUEST_INFORMATION(_LOG):
     action_class = None
     format = _(u'{addon} {version} more information requested.')
     keep = True
+    review_email_user = True
     review_queue = True
 
 
@@ -371,6 +378,8 @@ LOG_KEEP = [l.id for l in LOGS if hasattr(l, 'keep')]
 LOG_EDITORS = [l.id for l in LOGS if hasattr(l, 'editor_event')]
 LOG_REVIEW_QUEUE = [l.id for l in LOGS if hasattr(l, 'review_queue')]
 
+# Is the user emailed the message?
+LOG_REVIEW_EMAIL_USER = [l.id for l in LOGS if hasattr(l, 'review_email_user')]
 
 def log(action, *args, **kw):
     """

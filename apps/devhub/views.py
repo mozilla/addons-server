@@ -837,14 +837,13 @@ def _get_file_history(version):
     addon = version.addon
     file_history = (ActivityLog.objects.for_addons(addon)
                                .filter(action__in=amo.LOG_REVIEW_QUEUE))
-    files = {}
+    files = dict([(fid, []) for fid in file_ids])
     for log in file_history:
         details = log.details
         current_file_ids = details["files"] if 'files' in details else []
         for fid in current_file_ids:
-            if fid in file_ids and (fid not in files or
-                                    log.created < files[fid].created):
-                files[fid] = log
+            if fid in file_ids:
+                files[fid].append(log)
 
     return files
 

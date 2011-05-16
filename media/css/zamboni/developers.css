@@ -650,11 +650,15 @@ form .char-count b {
     display: none;
 }
 
+.version-comments:first-child {
+    border-top: 0 none;
+    padding-top: 10px;
+}
 .version-comments {
-    background-color: #f3f3f3;
-    border-left: 3px solid #DDD;
-    margin-left: 10px;
-    padding: 3px 10px;
+    border-top: 1px dotted #BBBBBB;
+    display: none;
+    margin: 0 10px;
+    padding: 6px;
 }
 
 /* @end */

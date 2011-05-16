@@ -2853,7 +2853,7 @@ class TestVersionAddFile(UploadTest):
         new_file = self.version.files.get(platform=amo.PLATFORM_MAC.id)
         eq_(r.context['form'].instance, new_file)
 
-    def test_something(self):
+    def test_show_item_history(self):
         version = self.addon.current_version
         user = UserProfile.objects.get(email='editor@mozilla.com')
 
@@ -2868,8 +2868,47 @@ class TestVersionAddFile(UploadTest):
         eq_(appr.length, 1)
         eq_(appr.find('strong').eq(0).text(), "File  (Linux)")
         eq_(appr.find('.version-comments').length, 1)
-        eq_(appr.find('.version-comments strong').text(), "Comments:")
-        eq_(appr.find('.version-comments div').eq(1).text(), "yo")
+
+        comment = appr.find('.version-comments').eq(0)
+        eq_(comment.find('strong a').text(), "Delicious Bookmarks Version 0.1")
+        eq_(comment.find('div.email_comment').length, 1)
+        eq_(comment.find('div').eq(1).text(), "yo")
+
+    def test_show_item_history_hide_message(self):
+        """ Test to make sure comments not to the user aren't shown. """
+        version = self.addon.current_version
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+
+        details = {'comments': 'yo', 'files': [version.files.all()[0].id]}
+        amo.log(amo.LOG.REQUEST_SUPER_REVIEW, self.addon,
+                self.addon.current_version, user=user, created=datetime.now(),
+                details=details)
+
+        doc = pq(self.client.get(self.edit_url).content)
+        comment = doc('#approval_status').find('.version-comments').eq(0)
+
+        eq_(comment.find('div.email_comment').length, 0)
+
+    def test_show_item_history_multiple(self):
+        version = self.addon.current_version
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+
+        details = {'comments': 'yo', 'files': [version.files.all()[0].id]}
+        amo.log(amo.LOG.APPROVE_VERSION, self.addon,
+                self.addon.current_version, user=user, created=datetime.now(),
+                details=details)
+
+        amo.log(amo.LOG.REQUEST_SUPER_REVIEW, self.addon,
+                self.addon.current_version, user=user, created=datetime.now(),
+                details=details)
+
+        doc = pq(self.client.get(self.edit_url).content)
+        comments = doc('#approval_status').find('.version-comments')
+
+        eq_(comments.length, 2)
+
+        assert "approved" in comments.eq(0).find('strong').text()
+        assert "super review" in comments.eq(1).find('strong').text()
 
 
 class TestAddVersion(UploadTest):
