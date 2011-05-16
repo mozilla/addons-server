@@ -44,17 +44,20 @@ function bind_viewer(nodes) {
         this.nodes = nodes;
         this.wrapped = true;
         this.hidden = false;
+        this.top = null;
         this.fix_vertically = function($inner, $outer) {
+            var $self = this;
+            if (!$self.top) {
+                $self.top = $outer.position().top;
+            }
             function update() {
-                var $sb_top = $outer.position().top,
-                    $sb_bottom = $sb_top + $outer.height() - $inner.height();
-
-                if ($(window).scrollTop() > $sb_bottom) {
-                    $inner.css({'position': 'absolute', 'top': $sb_bottom});
-                } else if ($(window).scrollTop() > $sb_top) {
+                var sb_bottom = $self.top + $outer.height() - $inner.height();
+                if ($(window).scrollTop() > sb_bottom) {
+                    $inner.css({'position': 'absolute', 'top': sb_bottom});
+                } else if ($(window).scrollTop() > $self.top) {
                     $inner.css({'position': 'fixed', 'top': 0});
                 } else {
-                    $inner.css({'position': 'absolute', 'top': $sb_top});
+                    $inner.css({'position': 'absolute', 'top': $self.top});
                 }
             }
             $(window).scroll(debounce(update), 200);
@@ -90,7 +93,7 @@ function bind_viewer(nodes) {
 
                 var $sb = $diff.siblings('.diff-bar').eq(0);
                 var $lines = $diff.find('.line');
-                var state = {'start':1, 'type':$lines.eq(0).attr('class'),
+                var state = {'start':0, 'type':$lines.eq(0).attr('class'),
                              'href':$lines.eq(0).find('a').attr('href')};
                 for (var j = 1; j < $lines.length; j++) {
                     var $node = $lines.eq(j);
