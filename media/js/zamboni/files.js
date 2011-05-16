@@ -86,7 +86,7 @@ function bind_viewer(nodes) {
             if ($diff.length) {
                 var dmp = new diff_match_patch();
                 // Line diffs http://code.google.com/p/google-diff-match-patch/wiki/LineOrWordDiffs
-                var a = dmp.diff_linesToChars_($diff.siblings('.left').text(), $diff.siblings('.right').text());
+                var a = dmp.diff_linesToChars_($diff.siblings('.right').text(), $diff.siblings('.left').text());
                 var diffs = dmp.diff_main(a[0], a[1], false);
                 dmp.diff_charsToLines_(diffs, a[2]);
                 $diff.html(dmp.diff_prettyHtml(diffs)).show();

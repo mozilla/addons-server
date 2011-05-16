@@ -383,6 +383,21 @@ class TestDiffViewer(FilesBase, test_utils.TestCase):
         eq_(len(node), 2)
         assert node[0].text.startswith('Download ar.dic')
 
+    def test_view_both_present(self):
+        self.file_viewer.extract()
+        res = self.client.get(self.file_url(not_binary))
+        doc = pq(res.content)
+        eq_(len(doc('pre')), 3)
+        eq_(len(doc('#content-wrapper p')), 2)
+
+    def test_view_one_missing(self):
+        self.file_viewer.extract()
+        os.remove(os.path.join(self.file_viewer.right.dest, 'install.js'))
+        res = self.client.get(self.file_url(not_binary))
+        doc = pq(res.content)
+        eq_(len(doc('pre')), 3)
+        eq_(len(doc('#content-wrapper p')), 1)
+
 
 class TestBuilderPingback(test_utils.TestCase):
 

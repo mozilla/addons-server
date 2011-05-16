@@ -9,19 +9,17 @@
         {% endif %}
     {% endif %}
     {% if diff %}
-        {% if left and right %}
-                <div class="diff-bar js-hidden"></div>
-                <pre id="diff" class="wrapped js-hidden"></pre>
-                <pre class="left js-hidden">{{ left }}</pre>
-                <pre class="right js-hidden">{{ right }}</pre>
-        {% endif %}
+        <div class="diff-bar js-hidden"></div>
+        <pre id="diff" class="wrapped js-hidden"></pre>
+        <pre class="left js-hidden">{{ left }}</pre>
+        <pre class="right js-hidden">{{ right }}</pre>
         {% if selected and not selected['directory'] %}
-            {% if diff.left %}
+            {% if diff.left and diff.left.selected %}
                 {% with selected = diff.left.selected %}
                     {% include "files/file.html" %}
                 {% endwith %}
             {% endif %}
-            {% if diff.right %}
+            {% if diff.right and diff.right.selected %}
                 {% with selected = diff.right.selected %}
                     {% include "files/file.html" %}
                 {% endwith %}
