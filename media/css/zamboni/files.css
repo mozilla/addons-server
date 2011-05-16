@@ -59,6 +59,10 @@ pre div.line:hover {
     background-color: #ffe6e6;
 }
 
+a.diff {
+    background-color: #ffffcc;
+}
+
 a.selected {
     background-color: #ddf8dd;
 }
@@ -70,11 +74,6 @@ a.closed {
 a.open {
     background: url('/media/img/icons/minus.gif') 0 no-repeat;
 }
-
-a.diff {
-    background-color: #ffffcc;
-}
-
 
 .waiting {
     background-image: url(../../img/zamboni/loading-white.gif);
