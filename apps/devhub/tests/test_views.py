@@ -3211,6 +3211,31 @@ class TestNewsletter(test_utils.TestCase):
         assert(urlencode({'EMAIL_ADDRESS_': email}) in v.call_args[1]['data'])
 
 
+class TestDocs(test_utils.TestCase):
+
+    def test_doc_urls(self):
+        eq_('/en-US/developers/docs/', reverse('devhub.docs', args=[]))
+        eq_('/en-US/developers/docs/te', reverse('devhub.docs', args=['te']))
+        eq_('/en-US/developers/docs/te/st', reverse('devhub.docs',
+                                                    args=['te', 'st']))
+
+        urls = [(reverse('devhub.docs', args=["getting-started"]), 200),
+                (reverse('devhub.docs', args=["how-to"]), 200),
+                (reverse('devhub.docs', args=["how-to", "other-addons"]), 200),
+                (reverse('devhub.docs', args=["fake-page"]), 302),
+                (reverse('devhub.docs', args=["how-to", "fake-page"]), 200),
+                (reverse('devhub.docs'), 302)]
+
+        index = reverse('devhub.index')
+
+        for url in urls:
+            r = self.client.get(url[0])
+            eq_(r.status_code, url[1])
+
+            if url[1] == 302:  # Redirect to the index page
+                self.assertRedirects(r, index)
+
+
 class TestRemoveLocale(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 

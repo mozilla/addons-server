@@ -37,6 +37,15 @@ def dev_page_title(context, title=None, addon=None):
 
 @register.function
 @jinja2.contextfunction
+def docs_page_title(context, title=None):
+    """Wrapper for docs page titles."""
+    devhub = _('Add-on Documentation :: Developer Hub')
+    title = '%s :: %s' % (title, devhub) if title else devhub
+    return page_title(context, title)
+
+
+@register.function
+@jinja2.contextfunction
 def dev_breadcrumbs(context, addon=None, items=None, add_default=False):
     """
     Wrapper function for ``breadcrumbs``. Prepends 'Developer Hub'
@@ -66,6 +75,21 @@ def dev_breadcrumbs(context, addon=None, items=None, add_default=False):
     if items:
         crumbs.extend(items)
     return breadcrumbs(context, crumbs, add_default)
+
+
+@register.function
+@jinja2.contextfunction
+def docs_breadcrumbs(context, items=None):
+    """
+    Wrapper function for `breadcrumbs` for devhub docs.
+    """
+    crumbs = [(reverse('devhub.index'), _('Developer Hub')),
+              (reverse('devhub.index'), _('Developer Docs'))]
+
+    if items:
+        crumbs.extend(items)
+
+    return breadcrumbs(context, crumbs, True)
 
 
 @register.inclusion_tag('devhub/versions/add_file_modal.html')

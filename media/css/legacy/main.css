@@ -1932,36 +1932,6 @@ div.section-teaser .column .button {
     margin-left: 0.7%;
 }
 
-/* @group Steps */
-
-ol.numbered {
-    margin-left: 0;
-    list-style-type: none;
-}
-
-ol.numbered li {
-    position: relative;
-    margin-bottom: 1em;
-    overflow: hidden;
-    min-height:35px;
-    padding-left: 50px;
-}
-
-h4.step {
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-image: url(../../img/icons/step.png);
-    background-repeat: no-repeat;
-    background-position: left top;
-    color: #FFFFFF;
-    font-size:1.6em;
-    font-weight:lighter;
-    padding:5px 13px 15px;
-}
-
-/* @end */
-
 /* @group Pagination */
 
 ol.pagination {

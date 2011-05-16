@@ -1173,6 +1173,28 @@ def admin(request, addon):
                         {'addon': addon, 'admin_form': form})
 
 
+def docs(request, doc_name=None, doc_page=None):
+    filename = ''
+
+    all_docs = {'getting-started': [], 'reference': [],
+                'policies': ['submission', 'reviews', 'maintenance',
+                             'recommended', 'agreement', 'contact'],
+                'case-studies': ['cooliris', 'stumbleupon',
+                                 'download-statusbar'],
+                'how-to': ['getting-started', 'extension-development',
+                           'thunderbird-mobile', 'theme-development',
+                           'other-addons']}
+
+    if doc_name and doc_name in all_docs:
+        filename = '%s.html' % doc_name
+        if doc_page and doc_page in all_docs[doc_name]:
+            filename = '%s-%s.html' % (doc_name, doc_page)
+
+    if not filename:
+        return redirect('devhub.index')
+
+    return jingo.render(request, 'devhub/docs/%s' % filename)
+
 # Newsletter details & signup
 @anonymous_csrf
 def newsletter(request):

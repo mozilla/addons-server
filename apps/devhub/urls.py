@@ -136,4 +136,10 @@ urlpatterns = decorate(write, patterns('',
     # Newsletter archive & signup
     url('community/newsletter', views.newsletter,
         name='devhub.community.newsletter'),
+
+    # Developer docs
+    url('docs/(?P<doc_name>[-_\w]+)?$',
+        views.docs, name='devhub.docs'),
+    url('docs/(?P<doc_name>[-_\w]+)/(?P<doc_page>[-_\w]+)',
+        views.docs, name='devhub.docs'),
 ))

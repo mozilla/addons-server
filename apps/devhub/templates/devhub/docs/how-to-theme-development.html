@@ -1,0 +1,77 @@
+{% extends "devhub/docs/how-to.html" %}
+
+{% block title %}{{ docs_page_title("Theme Development") }}{% endblock %}
+
+{% block content %}
+{{ docs_breadcrumbs(items=[(url('devhub.docs', doc_name='how-to'), _("How-to Library")), (None, _("Theme Development"))]) }}
+{% trans %}
+<h2>Theme Development</h2>
+<div class="primary" role="main">
+  <p class="hub-category-description">Style Mozilla applications the way you want with pixel-perfect themes.</p>
+
+  <h3>Getting Started</h3>
+  <div class="table-listing">
+    <div class="item">
+      <div class="main-info">
+        <h4>
+          <a href="https://developer.mozilla.org/en/Creating_a_Skin_for_Firefox"  target="_blank">Creating a Skin for Firefox</a>
+        </h4>
+
+        <p>Learn how to find the right files to edit, make your changes, and package up your new theme in this tutorial.</p>
+      </div>
+    </div>
+    <div class="item">
+      <div class="main-info">
+        <h4>
+          <a href="http://www.twistermc.com/blog/2006/09/22/how-to-create-a-firefox-theme/"  target="_blank">How to Create a Firefox Theme</a>
+        </h4>
+        <p>Thomas McMahon explains how to create a Firefox theme from start-to-finish in this tutorial.</p>
+      </div>
+    </div>
+  </div>
+  <h3>Theme Development</h3>
+
+  <div class="table-listing">
+    <div class="item">
+      <div class="main-info">
+        <h4>
+          <a href="https://developer.mozilla.org/en/Theme_Packaging"  target="_blank">Theme Packaging</a>
+        </h4>
+        <p>This article explains the packaging of themes.</p>
+      </div>
+    </div>
+    <div class="item">
+      <div class="main-info">
+
+        <h4>
+          <a href="http://cheeaun.com/blog/2004/12/first-steps-in-theme-design"  target="_blank">First Steps in Theme Design</a>
+        </h4>
+        <p>This blog post by Lim Chee Aun explains the use of -moz-image-region in themes.</p>
+      </div>
+    </div>
+    <div class="item">
+      <div class="main-info">
+        <h4>
+          <a href="https://developer.mozilla.org/en/Making_Sure_Your_Theme_Works_with_RTL_Locales"  target="_blank">Making Sure Your Theme Works with RTL Locales</a>
+
+        </h4>
+        <p>It&#039;s important to make sure your theme works in all locales. This article explains how to tweak your theme to look great for users who browse in right-to-left.</p>
+      </div>
+    </div>
+    <div class="item">
+      <div class="main-info">
+        <h4>
+          <a href="https://developer.mozilla.org/en/Themes"  target="_blank">Theme Documentation Index</a>
+        </h4>
+        <p>If you haven&#039;t found what you&#039;re looking for yet, try the Mozilla Developer Center&#039;s Themes section.</p>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endtrans %}
+{{ sidebar() }}
+{% endblock %}
+
