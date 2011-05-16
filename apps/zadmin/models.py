@@ -1,11 +1,13 @@
 from decimal import Decimal
 import json
 
+from django.conf import settings
 from django.db import models
 from django.utils.functional import memoize
 
 import amo
 import amo.models
+from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from files.models import File
 
@@ -64,6 +66,31 @@ class ValidationJob(amo.models.ModelBase):
         return self.result_set.exclude(completed=None).exclude(errors=0)
 
     @amo.cached_property
+    def preview_success_mail_link(self):
+        return self._preview_link(EmailPreviewTopic(self, 'success'))
+
+    @amo.cached_property
+    def preview_failure_mail_link(self):
+        return self._preview_link(EmailPreviewTopic(self, 'failures'))
+
+    def _preview_link(self, topic):
+        qs = topic.filter()
+        if qs.count():
+            return reverse('zadmin.email_preview_csv', args=[topic.topic])
+
+    def preview_success_mail(self, *args, **kwargs):
+        EmailPreviewTopic(self, 'success').send_mail(*args, **kwargs)
+
+    def preview_failure_mail(self, *args, **kwargs):
+        EmailPreviewTopic(self, 'failures').send_mail(*args, **kwargs)
+
+    def get_success_preview_emails(self):
+        return EmailPreviewTopic(self, 'success').filter()
+
+    def get_failure_preview_emails(self):
+        return EmailPreviewTopic(self, 'failures').filter()
+
+    @amo.cached_property
     def stats(self):
         total = self.result_set.count()
         completed = self.result_completed().count()
@@ -111,3 +138,51 @@ class ValidationResult(amo.models.ModelBase):
         self.warnings = js['warnings']
         self.notices = js['notices']
         self.valid = self.errors == 0
+
+
+class EmailPreviewTopic(object):
+    """Store emails in a given topic so an admin can preview before
+    re-sending.
+
+    A topic is a unique string identifier that groups together preview emails.
+    If you pass in an object (a Model instance) you will get a poor man's
+    foreign key as your topic.
+
+    For example, EmailPreviewTopic(addon) will link all preview emails to
+    the ID of that addon object.
+    """
+
+    def __init__(self, object=None, suffix='', topic=None):
+        if not topic:
+            assert object, 'object keyword is required when topic is empty'
+            topic = '%s-%s-%s' % (object.__class__._meta.db_table, object.pk,
+                                  suffix)
+        self.topic = topic
+
+    def filter(self, *args, **kw):
+        kw['topic'] = self.topic
+        return EmailPreview.objects.filter(**kw)
+
+    def send_mail(self, subject, body,
+                  from_email=settings.DEFAULT_FROM_EMAIL,
+                  recipient_list=tuple([])):
+        return EmailPreview.objects.create(
+                        topic=self.topic,
+                        subject=subject, body=body,
+                        recipient_list=u','.join(recipient_list),
+                        from_email=from_email)
+
+
+class EmailPreview(amo.models.ModelBase):
+    """A log of emails for previewing purposes.
+
+    This is only for development and the data might get deleted at any time.
+    """
+    topic = models.CharField(max_length=255, db_index=True)
+    recipient_list = models.TextField()  # comma separated list of emails
+    from_email = models.EmailField()
+    subject = models.CharField(max_length=255)
+    body = models.TextField()
+
+    class Meta:
+        db_table = 'email_preview'

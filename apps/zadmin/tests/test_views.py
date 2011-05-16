@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import csv
+from cStringIO import StringIO
 from datetime import datetime
 import json
 
@@ -20,7 +22,7 @@ from devhub.models import ActivityLog
 from files.models import Approval, File
 from versions.models import Version
 from zadmin.forms import NotifyForm
-from zadmin.models import ValidationJob, ValidationResult
+from zadmin.models import ValidationJob, ValidationResult, EmailPreviewTopic
 from zadmin.views import completed_versions_dirty
 
 
@@ -288,6 +290,15 @@ class TestBulkUpdate(BulkValidationTest):
         self.client.post(self.update_url, self.data)
         eq_(mail.outbox[0].body, 'Firefox 3.7a3')
 
+    def test_notify_mail_preview(self):
+        self.create_result(self.job, self.create_file(self.version))
+        self.client.post(self.update_url,
+                         {'text': 'the message', 'subject': 'the subject',
+                          'preview_only': 'on'})
+        eq_(len(mail.outbox), 0)
+        rs = self.job.get_success_preview_emails()
+        eq_([e.subject for e in rs], ['the subject'])
+
 
 class TestBulkNotify(BulkValidationTest):
 
@@ -362,6 +373,18 @@ class TestBulkNotify(BulkValidationTest):
         r = self.client.post(self.update_url, {'text': '..', 'subject': '..'})
         eq_(r.status_code, 302)
         eq_(len(mail.outbox), 2)
+
+    def test_notify_mail_preview(self):
+        for i in range(2):
+            self.create_result(self.job, self.create_file(self.version),
+                               **{'errors': 1})
+        r = self.client.post(self.update_url,
+                             {'text': 'the message', 'subject': 'the subject',
+                              'preview_only': 'on'})
+        eq_(r.status_code, 302)
+        eq_(len(mail.outbox), 0)
+        rs = self.job.get_failure_preview_emails()
+        eq_([e.subject for e in rs], ['the subject', 'the subject'])
 
     def test_notify_rendering(self):
         self.create_result(self.job, self.create_file(self.version),
@@ -463,3 +486,25 @@ def test_settings():
     # Are you there, settings page?
     response = test.Client().get(reverse('zadmin.settings'), follow=True)
     eq_(response.status_code, 200)
+
+
+class TestEmailPreview(test_utils.TestCase):
+    fixtures = ['base/addon_3615', 'base/users']
+
+    def setUp(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        addon = Addon.objects.get(pk=3615)
+        self.topic = EmailPreviewTopic(addon)
+
+    def test_csv(self):
+        self.topic.send_mail('the subject', u'Hello Ivan Krsti\u0107',
+                             from_email='admin@mozilla.org',
+                             recipient_list=['funnyguy@mozilla.org'])
+        r = self.client.get(reverse('zadmin.email_preview_csv',
+                            args=[self.topic.topic]))
+        eq_(r.status_code, 200)
+        rdr = csv.reader(StringIO(r.content))
+        eq_(rdr.next(), ['from_email', 'recipient_list', 'subject', 'body'])
+        eq_(rdr.next(), ['admin@mozilla.org', 'funnyguy@mozilla.org',
+                         'the subject', 'Hello Ivan Krsti\xc4\x87'])

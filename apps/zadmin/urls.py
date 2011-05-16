@@ -26,6 +26,8 @@ urlpatterns = patterns('',
     url(r'^validation/notify/syntax.json$', views.notify_syntax,
         name='zadmin.notify.syntax'),
     url(r'^validation$', views.validation, name='zadmin.validation'),
+    url(r'^email_preview/(?P<topic>.*)\.csv$',
+        views.email_preview_csv, name='zadmin.email_preview_csv'),
 
     # The Django admin.
     url('^models/', include(admin.site.urls)),

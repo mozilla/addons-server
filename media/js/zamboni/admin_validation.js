@@ -38,7 +38,7 @@ function initAdminValidation(doc) {
         $elem.trigger('change');
     }
 
-    var $popup = $('#notify').popup('td a', {
+    var $popup = $('#notify').popup('td a.v-popup', {
         width: '600px',
         callback: function(obj) {
             var $ct = $(obj.click_target),

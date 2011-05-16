@@ -134,13 +134,19 @@ def notify_success(version_pks, job_pk, data, **kw):
 
         if app_flag:
             for author in addon.authors.all():
-                log.info(u'Emailing %s for addon %s, version %s about '
+                log.info(u'Emailing %s%s for addon %s, version %s about '
                          'success from bulk validation job %s'
-                         % (author.email, addon.pk, version.pk, job_pk))
-                send_mail(Template(data['subject']).render(context),
-                          Template(data['text']).render(context),
-                          from_email=settings.DEFAULT_FROM_EMAIL,
-                          recipient_list=[author.email])
+                         % (author.email,
+                            ' [PREVIEW]' if data['preview_only'] else '',
+                            addon.pk, version.pk, job_pk))
+                args = (Template(data['subject']).render(context),
+                        Template(data['text']).render(context))
+                kwargs = dict(from_email=settings.DEFAULT_FROM_EMAIL,
+                              recipient_list=[author.email])
+                if data['preview_only']:
+                    job.preview_success_mail(*args, **kwargs)
+                else:
+                    send_mail(*args, **kwargs)
                 amo.log(amo.LOG.BULK_VALIDATION_UPDATED,
                         version.addon, version,
                         details={'version': version.version,
@@ -159,13 +165,19 @@ def notify_failed(file_pks, job_pk, data, **kw):
         addon = version.addon
         context = get_context(addon, version, job)
         for author in addon.authors.all():
-            log.info(u'Emailing %s for addon %s, file %s about '
+            log.info(u'Emailing %s%s for addon %s, file %s about '
                      'error from bulk validation job %s'
-                     % (author.email, addon.pk, obj.pk, job_pk))
-            send_mail(Template(data['subject']).render(context),
-                      Template(data['text']).render(context),
-                      from_email=settings.DEFAULT_FROM_EMAIL,
-                      recipient_list=[author.email])
+                     % (author.email,
+                        ' [PREVIEW]' if data['preview_only'] else '',
+                        addon.pk, obj.pk, job_pk))
+            args = (Template(data['subject']).render(context),
+                    Template(data['text']).render(context))
+            kwargs = dict(from_email=settings.DEFAULT_FROM_EMAIL,
+                          recipient_list=[author.email])
+            if data['preview_only']:
+                job.preview_failure_mail(*args, **kwargs)
+            else:
+                send_mail(*args, **kwargs)
 
         amo.log(amo.LOG.BULK_VALIDATION_EMAILED,
                 addon, version,

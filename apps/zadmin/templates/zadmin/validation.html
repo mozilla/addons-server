@@ -50,17 +50,23 @@
       <td>{{ job.stats['total'] }}</td>
       <td>{{ job.stats['failing'] }}
         {% if job.completed and job.stats['failing'] > 0 %}
-            <a href="" class="notify"
+            <a href="" class="notify v-popup"
                        data-job-url="{{ url('zadmin.notify.failure', job.pk) }}"
                        data-notify-count="{{ job.stats['failing'] }}">Notify</a>
+          {% if job.preview_failure_mail_link %}
+            [<a href="{{ job.preview_failure_mail_link }}">Download Email Log</a>]
+          {% endif %}
         {% endif %}
       </td>
       <td>{{ job.stats['passing'] }}
           {% if job.completed and job.stats['passing'] > 0 %}
-              <a href="#" class="set-max-version"
+              <a href="#" class="set-max-version v-popup"
                           data-job-version="{{ job.target_version.version }}"
                           data-job-url="{{ url('zadmin.notify.success', job.pk) }}"
                           data-job-count="{{ job.stats['passing'] }}">Set max version</a>
+            {% if job.preview_success_mail_link %}
+              [<a href="{{ job.preview_success_mail_link }}">Download Email Log</a>]
+            {% endif %}
           {% endif %}
       </td>
       <td>{{ job.stats['errors'] }}</td>
