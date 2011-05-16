@@ -114,7 +114,7 @@ _.haskey = function(obj, key) {
 
 /* Detect browser, version, and OS. */
 $.extend(z, BrowserUtils());
-$(document.body).addClass(z.platform);
+$(document.body).addClass(z.platform).toggleClass('badbrowser', z.badBrowser);
 
 
 /* Details for the current application. */

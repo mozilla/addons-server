@@ -56,10 +56,4 @@ $(function() {
             $grid.go(current+1);
         };
     });
-
-    // this belongs in a more global place.
-    $("img[data-defer-src]").each(function() {
-        var $img = $(this);
-        $img.attr('src', $img.attr('data-defer-src'));
-    });
 });

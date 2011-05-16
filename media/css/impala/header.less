@@ -2,7 +2,7 @@
 
 .amo-header {
     font-family: @head-sans;
-    margin-bottom: 15px;
+    margin-bottom: 35px;
 }
 
 .island {
@@ -282,30 +282,35 @@ button.search-button {
 .site-balloon {
     position: relative;
     margin-top: 22px;
-    padding: 15px 15px;
+    padding: 15px 45px 15px 15px;
     border: 2px solid #E3873B;
     background: #FCEFB7;
     font-family: Arial;
     font-size: 14px;
     color: #333;
-    -moz-border-radius: 10px;
+    display: none;
+    .border-radius(10px);
     h3, p {
         display: inline;
     }
     h3, strong {
         font-weight: bold;
     }
-    b, em {
+    &:before, &:after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
         position: absolute;
         border-left: 18px solid #E3873B;
         border-top: 18px solid transparent;
     }
-    b {
+    &:before {
         left: 34px;
         top: -18px;
     }
-    em {
-        left: -16px;
+    &:after {
+        left: 36px;
         top: -13px;
         border-left-color: #FCEFB7;
     }
@@ -322,12 +327,39 @@ button.search-button {
         width: 25px;
         height: 25px;
         margin: auto 0;
-        -moz-border-radius: 4px;
-        background: url(img/banner-close.png) no-repeat 0 0;
+        .border-radius(4px);
+        background: url(../../img/impala/banner-close.png) no-repeat 0 0;
         text-indent: -1000em;
         &:hover {
             background-color: #c40000;
             background-position: -25px 0;
         }
     }
+}
+
+.html-rtl .site-balloon {
+    padding: 15px 15px 15px 45px;
+    &:before, &:after {
+        border-color: transparent;
+        border-right: 18px solid #E3873B;
+        border-top: 18px solid transparent;
+        left: auto;
+    }
+    &:before {
+        right: 34px;
+        top: -18px;
+    }
+    &:after {
+        right: 36px;
+        top: -13px;
+        border-right-color: #FCEFB7;
+    }
+    .close {
+        right: auto;
+        left: 15px;
+    }
+}
+
+.badbrowser #site-nonfx {
+    display: block;
 }

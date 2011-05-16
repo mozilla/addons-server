@@ -486,6 +486,7 @@ MINIFY_BUNDLES = {
             'js/lib/jquery.cookie.js',
             'js/zamboni/global.js',
             'js/amo2009/global.js',
+            'js/impala/global.js',
             'js/lib/jquery-ui/jqModal.js',
             'js/amo2009/home.js',
             'js/zamboni/l10n.js',
