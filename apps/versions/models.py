@@ -225,7 +225,7 @@ class Version(amo.models.ModelBase):
 
     @property
     def is_jetpack(self):
-        return all(f.jetpack for f in self.all_files)
+        return all(f.jetpack_version for f in self.all_files)
 
     @classmethod
     def _compat_map(cls, avs):

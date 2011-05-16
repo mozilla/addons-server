@@ -40,6 +40,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     # TODO: delete this column
     codereview = models.BooleanField(default=False)
     jetpack = models.BooleanField(default=False)
+    jetpack_version = models.CharField(max_length=10, null=True)
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES,
                                               default=amo.STATUS_UNREVIEWED)
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
@@ -104,7 +105,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         upload.path = path.path(nfd_str(upload.path))
         f.filename = f.generate_filename(extension=upload.path.ext)
         f.size = int(max(1, round(upload.path.size / 1024, 0)))  # Kilobytes.
-        f.jetpack = cls.is_jetpack(upload.path)
+        f.jetpack_version = cls.get_jetpack_version(upload.path)
         f.hash = upload.hash
         f.no_restart = parse_data.get('no_restart', False)
         if version.addon.status == amo.STATUS_PUBLIC:
@@ -126,12 +127,14 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         return f
 
     @classmethod
-    def is_jetpack(cls, path):
+    def get_jetpack_version(cls, path):
         try:
-            names = zipfile.ZipFile(path).namelist()
-            return 'harness-options.json' in names
-        except zipfile.BadZipfile:
-            return False
+            zip_, name = zipfile.ZipFile(path), 'harness-options.json'
+            if name in zip_.namelist():
+                opts = json.load(zip_.open(name))
+                return opts['sdkVersion']
+        except Exception:
+            return None
 
     def generate_filename(self, extension='.xpi'):
         """

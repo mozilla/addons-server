@@ -1499,17 +1499,16 @@ class TestEdit(amo.tests.RedisTest, test_utils.TestCase):
             else:
                 eq_(getattr(addon, k), True if data[k] == 'on' else False)
 
-
     def test_auto_repackage_not_shown(self):
         f = self.addon.current_version.all_files[0]
-        f.jetpack = False
+        f.jetpack_version = None
         f.save()
         r = self.client.get(self.get_url('technical'))
         self.assertNotContains(r, 'Upgrade SDK?')
 
     def test_auto_repackage_shown(self):
         f = self.addon.current_version.all_files[0]
-        f.jetpack = True
+        f.jetpack_version = '1.0'
         f.save()
         r = self.client.get(self.get_url('technical'))
         self.assertContains(r, 'Upgrade SDK?')

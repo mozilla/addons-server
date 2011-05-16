@@ -17,7 +17,7 @@ class TestTagJetpacks(test_utils.TestCase):
         self.addon = Addon.objects.get(id=3615)
 
     def test_jetpack(self):
-        File.objects.update(jetpack=True)
+        File.objects.update(jetpack_version='1.0')
         cron.tag_jetpacks()
         eq_(['jetpack'], [t.tag_text for t in self.addon.tags.all()])
 
@@ -27,6 +27,6 @@ class TestTagJetpacks(test_utils.TestCase):
         eq_(['restartless'], [t.tag_text for t in self.addon.tags.all()])
 
     def test_no_change(self):
-        File.objects.update(no_restart=False, jetpack=False)
+        File.objects.update(no_restart=False, jetpack_version=None)
         cron.tag_jetpacks()
         eq_([], [t.tag_text for t in self.addon.tags.all()])

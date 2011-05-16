@@ -454,10 +454,10 @@ class TestFileFromUpload(UploadTest):
                  hash='sha256:%s' % name, validation=v)
         return FileUpload.objects.create(**d)
 
-    def test_is_jetpack(self):
+    def test_jetpack_version(self):
         upload = self.upload('jetpack')
         f = File.from_upload(upload, self.version, self.platform)
-        assert File.objects.get(id=f.id).jetpack
+        eq_(File.objects.get(id=f.id).jetpack_version, '1.0b4')
 
     def test_filename(self):
         upload = self.upload('jetpack')

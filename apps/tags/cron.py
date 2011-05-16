@@ -12,7 +12,7 @@ task_log = commonware.log.getLogger('z.task')
 @cronjobs.register
 def tag_jetpacks():
     # A temporary solution for singling out jetpacks on AMO.  See bug 580827
-    tags = (('jetpack', Q(versions__files__jetpack=True)),
+    tags = (('jetpack', Q(versions__files__jetpack_version__isnull=False)),
             ('restartless', Q(versions__files__no_restart=True)))
     qs = Addon.objects.values_list('id', flat=True)
 
