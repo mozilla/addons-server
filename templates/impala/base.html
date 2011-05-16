@@ -100,13 +100,15 @@
             {% endblock %}
           </div>
           <div class="site-balloon" id="site-nonfx">
-            <h3>Aren't you forgetting something?</h3>
+            <h3>{{ _('Aren’t you forgetting something?') }}</h3>
             <p>
-              To use the thousands of add-ons available here, download 
-              <a href="#">Mozilla Firefox</a>
-              &mdash; a fast, free Web browser.
+              {% trans url='http://mozilla.org/firefox/' %}
+                To use the thousands of add-ons available here, download
+                <a href="{{ url }}">Mozilla Firefox</a>
+                &mdash; a fast, free Web browser.
+              {% endtrans %}
             </p>
-            <a href="#" class="close">Close</a>
+            <a href="#" class="close">{{ _('Close') }}</a>
           </div>
         </div>
       {% endblock site_header %}
