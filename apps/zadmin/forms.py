@@ -71,6 +71,8 @@ texts = {
 
 class NotifyForm(happyforms.Form):
     subject = forms.CharField(widget=forms.TextInput, required=True)
+    preview_only = forms.BooleanField(initial=True, required=False,
+                            label=_lazy(u'Log emails instead of sending'))
     text = forms.CharField(widget=forms.Textarea, required=True)
     variables = ['{{ADDON_NAME}}', '{{APPLICATION}}', '{{COMPAT_LINK}}',
                  '{{RESULTS_LINK}}', '{{VERSION}}']

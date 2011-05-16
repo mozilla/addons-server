@@ -1,3 +1,4 @@
+import csv
 from urlparse import urlparse
 
 from django import http
@@ -24,7 +25,7 @@ from addons.models import Addon
 from files.models import Approval, File
 from versions.models import Version
 from zadmin.forms import BulkValidationForm, NotifyForm
-from zadmin.models import ValidationJob, ValidationResult
+from zadmin.models import ValidationJob, ValidationResult, EmailPreviewTopic
 from zadmin import tasks
 
 log = commonware.log.getLogger('z.zadmin')
@@ -257,3 +258,17 @@ def notify_success(request, job):
                                     'notifying authors started.'))
 
     return redirect(reverse('zadmin.validation'))
+
+
+@admin.site.admin_view
+def email_preview_csv(request, topic):
+    resp = http.HttpResponse()
+    resp['Content-Type'] = 'text/csv; charset=utf-8'
+    resp['Content-Disposition'] = "attachment; filename=%s.csv" % (topic)
+    writer = csv.writer(resp)
+    fields = ['from_email', 'recipient_list', 'subject', 'body']
+    writer.writerow(fields)
+    rs = EmailPreviewTopic(topic=topic).filter().values_list(*fields)
+    for row in rs:
+        writer.writerow([r.encode('utf8') for r in row])
+    return resp
