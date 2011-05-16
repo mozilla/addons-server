@@ -348,7 +348,7 @@ class AddonFormTechnical(AddonFormBase):
     class Meta:
         model = Addon
         fields = ('developer_comments', 'view_source', 'site_specific',
-                  'external_software', 'binary')
+                  'external_software', 'binary', 'auto_repackage')
 
 
 class AddonForm(happyforms.ModelForm):

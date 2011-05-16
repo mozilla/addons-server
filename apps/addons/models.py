@@ -176,6 +176,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                             help_text="Does the add-on contain a binary?")
     dev_agreement = models.BooleanField(default=False,
                             help_text="Has the dev agreement been signed?")
+    auto_repackage = models.BooleanField(default=True,
+        help_text='Automatically upgrade jetpack add-on to a new sdk version?')
 
     nomination_message = models.TextField(null=True,
                                           db_column='nominationmessage')

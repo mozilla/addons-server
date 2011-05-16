@@ -1499,6 +1499,21 @@ class TestEdit(amo.tests.RedisTest, test_utils.TestCase):
             else:
                 eq_(getattr(addon, k), True if data[k] == 'on' else False)
 
+
+    def test_auto_repackage_not_shown(self):
+        f = self.addon.current_version.all_files[0]
+        f.jetpack = False
+        f.save()
+        r = self.client.get(self.get_url('technical'))
+        self.assertNotContains(r, 'Upgrade SDK?')
+
+    def test_auto_repackage_shown(self):
+        f = self.addon.current_version.all_files[0]
+        f.jetpack = True
+        f.save()
+        r = self.client.get(self.get_url('technical'))
+        self.assertContains(r, 'Upgrade SDK?')
+
     def test_nav_links(self):
         url = reverse('devhub.addons.edit', args=['a3615'])
         activity_url = reverse('devhub.feed', args=['a3615'])
