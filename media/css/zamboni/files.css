@@ -10,16 +10,15 @@
 
 #files li a {
     display: inline-block;
-    margin-left: 20px;
-    padding: 2px 5px 2px 15px;
+    padding: 2px 20px;
 }
 
 #files ul.root {
     overflow-x: auto;
 }
 
-#files ul {
-    padding-left: 1em;
+#files ul.root ul {
+    padding-left: 20px;
 }
 
 #content-wrapper, #thinking {
@@ -38,6 +37,9 @@ span.number {
 
 pre {
     overflow-x: auto;
+}
+
+pre.diff-bar-height {
     min-height: 200px;
 }
 
@@ -59,20 +61,20 @@ pre div.line:hover {
     background-color: #ffe6e6;
 }
 
-a.diff {
-    background-color: #ffffcc;
-}
-
-a.selected {
-    background-color: #ddf8dd;
-}
-
 a.closed {
     background: url('/media/img/icons/plus.gif') 0 no-repeat;
 }
 
 a.open {
     background: url('/media/img/icons/minus.gif') 0 no-repeat;
+}
+
+a.diff {
+    background-color: #ffffcc;
+}
+
+a.selected {
+    background-color: #ddf8dd;
 }
 
 .waiting {
@@ -95,7 +97,7 @@ a.no-key {
 }
 
 #diff {
-    padding-left: 11px
+    padding-left: 11px;
 }
 
 .diff-bar {

@@ -245,6 +245,11 @@ class TestDiffHelper(test_utils.TestCase):
         self.helper.select('foo.js')
         assert not self.helper.is_diffable()
 
+    def test_diffable_deleted_files(self):
+        self.helper.extract()
+        os.remove(os.path.join(self.helper.left.dest, 'install.js'))
+        eq_('install.js' in self.helper.get_deleted_files(), True)
+
     def test_diffable_one_binary_same(self):
         self.helper.extract()
         self.helper.select('install.js')

@@ -247,7 +247,7 @@ class TestFileViewer(FilesBase, test_utils.TestCase):
         res = self.client.get(self.file_url())
         doc = pq(res.content)
         eq_(len(doc('#content')), 1)
-        eq_(res.context['selected']['short'], 'install.rdf')
+        eq_(res.context['key'], 'install.rdf')
 
     def test_content_xss(self):
         self.file_viewer.extract()
@@ -397,6 +397,14 @@ class TestDiffViewer(FilesBase, test_utils.TestCase):
         doc = pq(res.content)
         eq_(len(doc('pre')), 3)
         eq_(len(doc('#content-wrapper p')), 1)
+
+    def test_different_tree(self):
+        self.file_viewer.extract()
+        os.remove(os.path.join(self.file_viewer.left.dest, not_binary))
+        res = self.client.get(self.file_url(not_binary))
+        doc = pq(res.content)
+        eq_(doc('h4:last').text(), 'Deleted files:')
+        eq_(len(doc('ul.root')), 2)
 
 
 class TestBuilderPingback(test_utils.TestCase):

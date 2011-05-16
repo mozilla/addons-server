@@ -67,7 +67,7 @@ def browse(request, viewer, key=None):
             raise http.Http404
 
         viewer.select(key)
-        data['selected'] = viewer.selected
+        data['key'] = key
         if (not viewer.is_directory() and not viewer.is_binary()):
             data['content'] = viewer.read_file()
 
@@ -109,13 +109,15 @@ def compare(request, diff, key=None):
         extract_file(diff.right)
 
     if diff.is_extracted():
-        data.update({'status': True, 'files': diff.get_files()})
+        data.update({'status': True,
+                     'files': diff.get_files(),
+                     'files_deleted': diff.get_deleted_files()})
         key = diff.left.get_default(key)
-        if key not in data['files']:
+        if key not in data['files'] and key not in data['files_deleted']:
             raise http.Http404
 
         diff.select(key)
-        data['selected'] = diff.left.selected
+        data['key'] = key
         if not diff.is_diffable():
             data['msgs'] = [diff.status]
 

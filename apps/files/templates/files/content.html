@@ -3,27 +3,25 @@
     {% if viewer %}
         {% if viewer.selected %}
             <pre id="content" class="wrapped">{{ content }}</pre>
-        {% endif %}
-        {% if selected and not selected['directory'] %}
-            {% include "files/file.html" %}
+            {% with selected = viewer.selected %}
+                {% include "files/file.html" %}
+            {% endwith %}
         {% endif %}
     {% endif %}
     {% if diff %}
         <div class="diff-bar js-hidden"></div>
-        <pre id="diff" class="wrapped js-hidden"></pre>
+        <pre id="diff" class="diff-bar-height wrapped js-hidden"></pre>
         <pre class="left js-hidden">{{ left }}</pre>
         <pre class="right js-hidden">{{ right }}</pre>
-        {% if selected and not selected['directory'] %}
-            {% if diff.left and diff.left.selected %}
-                {% with selected = diff.left.selected %}
-                    {% include "files/file.html" %}
-                {% endwith %}
-            {% endif %}
-            {% if diff.right and diff.right.selected %}
-                {% with selected = diff.right.selected %}
-                    {% include "files/file.html" %}
-                {% endwith %}
-            {% endif %}
+        {% if diff.left and diff.left.selected %}
+            {% with selected = diff.left.selected %}
+                {% include "files/file.html" %}
+            {% endwith %}
+        {% endif %}
+        {% if diff.right and diff.right.selected %}
+            {% with selected = diff.right.selected %}
+                {% include "files/file.html" %}
+            {% endwith %}
         {% endif %}
     {% endif %}
     </div>

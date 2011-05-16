@@ -27,7 +27,12 @@
         {% endif %}
         <div id="files">
             {% if files %}
-                {{ file_tree(files, selected) }}
+                <h4>{{ _('Files:') }}</h4>
+                {{ file_tree(files, key) }}
+                {% if diff and files_deleted %}
+                    <h4>{{ _('Deleted files:') }}</h4>
+                    {{ file_tree(files_deleted, key) }}
+                {% endif %}
                 <div id="commands">
                     <div><code>j</code> <a href="#" id="files-prev">{{ _('Previous file') }}</a></div>
                     <div><code>k</code> <a href="#" id="files-next">{{ _('Next file') }}</a></div>

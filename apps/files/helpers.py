@@ -24,13 +24,13 @@ task_log = commonware.log.getLogger('z.task')
 
 
 @register.function
-def file_viewer_class(value, selected):
+def file_viewer_class(value, key):
     result = []
     if value['directory']:
         result.append('directory closed')
     else:
         result.append('file')
-    if selected and value['short'] == selected['short']:
+    if value['short'] == key:
         result.append('selected')
     if value.get('diff'):
         result.append('diff')
@@ -240,7 +240,12 @@ class DiffHelper:
     def is_extracted(self):
         return self.left.is_extracted() and self.right.is_extracted()
 
-    @memoize(prefix='file-viewer', time=60 * 60)
+    def get_url(self, short):
+        return reverse('files.compare', args=[self.left.file.id,
+                                              self.right.file.id,
+                                              short])
+
+    @memoize(prefix='file-viewer-get-files', time=60 * 60)
     def get_files(self):
         """
         Get the files from the primary and:
@@ -251,10 +256,7 @@ class DiffHelper:
         right_files = self.right.get_files()
         different = []
         for key, file in left_files.items():
-            file['url'] = reverse('files.compare',
-                                  args=[self.left.file.id,
-                                        self.right.file.id,
-                                        file['short']])
+            file['url'] = self.get_url(file['short'])
             diff = file['md5'] != right_files.get(key, {}).get('md5')
             file['diff'] = diff
             if diff:
@@ -263,11 +265,29 @@ class DiffHelper:
         # Now mark every directory above each different file as different.
         for diff in different:
             for depth in range(diff['depth']):
-                key = '/'.join(diff['short'].split('/')[:depth - 1])
+                key = '/'.join(diff['short'].split('/')[:depth + 1])
                 if key in left_files:
                     left_files[key]['diff'] = True
 
         return left_files
+
+    @memoize(prefix='file-viewer-get-deleted-files', time=60 * 60)
+    def get_deleted_files(self):
+        """
+        Get files that exist in right, but not in left. These
+        are files that have been deleted between the two versions.
+        Every element will be marked as a diff.
+        """
+        left_files = self.left.get_files()
+        right_files = self.right.get_files()
+        different = SortedDict()
+        for key, file in right_files.items():
+            if key not in left_files:
+                copy = right_files[key]
+                copy.update({'url': self.get_url(file['short']), 'diff': True})
+                different[key] = copy
+
+        return different
 
     def read_file(self):
         """Reads both selected files."""

@@ -93,19 +93,23 @@ function bind_viewer(nodes) {
 
                 var $sb = $diff.siblings('.diff-bar').eq(0);
                 var $lines = $diff.find('.line');
-                var state = {'start':0, 'type':$lines.eq(0).attr('class'),
-                             'href':$lines.eq(0).find('a').attr('href')};
-                for (var j = 1; j < $lines.length; j++) {
-                    var $node = $lines.eq(j);
-                    if ($node.attr('class') != state.type) {
-                        this.side_bar_append($sb, state, j, $lines.length);
-                        state = {'start': j, 'type': $node.attr('class'),
-                                 'href': $node.find('a').attr('href')};
+                if ($lines.length) {
+                    var state = {'start':0, 'type':$lines.eq(0).attr('class'),
+                                 'href':$lines.eq(0).find('a').attr('href')};
+                    for (var j = 1; j < $lines.length; j++) {
+                        var $node = $lines.eq(j);
+                        if ($node.attr('class') != state.type) {
+                            this.side_bar_append($sb, state, j, $lines.length);
+                            state = {'start': j, 'type': $node.attr('class'),
+                                     'href': $node.find('a').attr('href')};
+                        }
                     }
+                    this.side_bar_append($sb, state, j, $lines.length);
+                    this.fix_vertically($sb, $diff);
+                    $sb.show();
+                } else {
+                    $diff.removeClass('diff-bar-height');
                 }
-                this.side_bar_append($sb, state, j, $lines.length);
-                this.fix_vertically($sb, $diff);
-                $sb.show();
             }
 
             if (!window.location.hash) {
