@@ -7,10 +7,11 @@ import tempfile
 from django.conf import settings
 from django.core.cache import cache
 
-from mock import Mock, patch_object
+from mock import Mock, patch, patch_object
 from nose.tools import eq_
 import test_utils
 
+import amo
 from amo.urlresolvers import reverse
 from files.helpers import FileViewer, DiffHelper
 from files.models import File
@@ -46,16 +47,16 @@ class TestFileHelper(test_utils.TestCase):
         settings.TMP_PATH = self.old_tmp
 
     def test_files_not_extracted(self):
-        eq_(self.viewer.is_extracted, False)
+        eq_(self.viewer.is_extracted(), False)
 
     def test_files_extracted(self):
         self.viewer.extract()
-        eq_(self.viewer.is_extracted, True)
+        eq_(self.viewer.is_extracted(), True)
 
     def test_recurse_extract(self):
         self.viewer.src = recurse
         self.viewer.extract()
-        eq_(self.viewer.is_extracted, True)
+        eq_(self.viewer.is_extracted(), True)
 
     def test_recurse_contents(self):
         self.viewer.src = recurse
@@ -70,10 +71,10 @@ class TestFileHelper(test_utils.TestCase):
     def test_cleanup(self):
         self.viewer.extract()
         self.viewer.cleanup()
-        eq_(self.viewer.is_extracted, False)
+        eq_(self.viewer.is_extracted(), False)
 
     def test_isbinary(self):
-        binary = self.viewer.is_binary
+        binary = self.viewer._is_binary
         for f in ['foo.rdf', 'foo.xml', 'foo.js', 'foo.py'
                   'foo.html', 'foo.txt', 'foo.dtd', 'foo.xul',
                   'foo.properties', 'foo.json', 'foo.src']:
@@ -129,7 +130,9 @@ class TestFileHelper(test_utils.TestCase):
     def test_bom(self):
         dest = tempfile.mkstemp()[1]
         open(dest, 'w').write('foo'.encode('utf-16'))
-        eq_(self.viewer.read_file({'full': dest, 'size': 1}), (u'foo', ''))
+        self.viewer.select('foo')
+        self.viewer.selected = {'full': dest, 'size': 1}
+        eq_(self.viewer.read_file(), u'foo')
 
     def test_file_order(self):
         self.viewer.extract()
@@ -147,9 +150,10 @@ class TestFileHelper(test_utils.TestCase):
     def test_file_size(self):
         self.viewer.extract()
         files = self.viewer.get_files()
-        res = self.viewer.read_file(files.get('install.js'))
-        eq_(res[0], '')
-        assert res[1].startswith('File size is')
+        self.viewer.select('install.js')
+        res = self.viewer.read_file()
+        eq_(res, '')
+        assert self.viewer.selected['msg'].startswith('File size is')
 
     def test_default(self):
         eq_(self.viewer.get_default(None), 'install.rdf')
@@ -159,8 +163,8 @@ class TestSearchEngineHelper(test_utils.TestCase):
     fixtures = ['base/addon_4594_a9']
 
     def setUp(self):
-        self.file_one = File.objects.get(pk=25753)
-        self.viewer = FileViewer(self.file_one)
+        self.left = File.objects.get(pk=25753)
+        self.viewer = FileViewer(self.left)
 
         if not os.path.exists(os.path.dirname(self.viewer.src)):
             os.makedirs(os.path.dirname(self.viewer.src))
@@ -170,7 +174,7 @@ class TestSearchEngineHelper(test_utils.TestCase):
         self.viewer.cleanup()
 
     def test_is_search_engine(self):
-        assert self.viewer.is_search_engine
+        assert self.viewer.is_search_engine()
 
     def test_extract_search_engine(self):
         self.viewer.extract()
@@ -187,16 +191,16 @@ class TestDiffSearchEngine(test_utils.TestCase):
         src = os.path.join(settings.ROOT, search)
         self.helper = DiffHelper(make_file(1, src, filename='search.xml'),
                                  make_file(2, src, filename='search.xml'))
-        self.helper.file_one.is_search_engine = True
-        self.helper.file_two.is_search_engine = True
 
     def tearDown(self):
         self.helper.cleanup()
 
-    def test_diff_search(self):
+    @patch('files.helpers.FileViewer.is_search_engine')
+    def test_diff_search(self, is_search_engine):
+        is_search_engine.return_value = True
         self.helper.extract()
-        shutil.move(os.path.join(self.helper.file_two.dest, 'search.xml'),
-                    os.path.join(self.helper.file_two.dest, 's-20010101.xml'))
+        shutil.copyfile(os.path.join(self.helper.left.dest, 'search.xml'),
+                        os.path.join(self.helper.right.dest, 's-20010101.xml'))
         assert self.helper.select('search.xml')
 
 
@@ -210,14 +214,14 @@ class TestDiffHelper(test_utils.TestCase):
         self.helper.cleanup()
 
     def test_files_not_extracted(self):
-        eq_(self.helper.is_extracted, False)
+        eq_(self.helper.is_extracted(), False)
 
     def test_files_extracted(self):
         self.helper.extract()
-        eq_(self.helper.is_extracted, True)
+        eq_(self.helper.is_extracted(), True)
 
     def test_get_files(self):
-        eq_(self.helper.file_one.get_files(),
+        eq_(self.helper.left.get_files(),
             self.helper.get_files())
 
     def test_diffable(self):
@@ -227,11 +231,14 @@ class TestDiffHelper(test_utils.TestCase):
 
     def test_diffable_one_missing(self):
         self.helper.extract()
-        os.remove(os.path.join(self.helper.file_two.dest, 'install.js'))
+        os.remove(os.path.join(self.helper.right.dest, 'install.js'))
         self.helper.select('install.js')
-        assert not self.helper.is_diffable()
-        eq_(unicode(self.helper.status),
-            'install.js does not exist in file 2.')
+        assert self.helper.is_diffable()
+
+    def test_diffable_allow_empty(self):
+        self.helper.extract()
+        self.assertRaises(AssertionError, self.helper.right.read_file)
+        eq_(self.helper.right.read_file(allow_empty=True), '')
 
     def test_diffable_both_missing(self):
         self.helper.extract()
@@ -241,41 +248,38 @@ class TestDiffHelper(test_utils.TestCase):
     def test_diffable_one_binary_same(self):
         self.helper.extract()
         self.helper.select('install.js')
-        self.helper.one['binary'] = True
+        self.helper.left.selected['binary'] = True
         assert self.helper.is_binary()
-        assert not self.helper.one['diff']
 
     def test_diffable_one_binary_diff(self):
         self.helper.extract()
-        self.change(self.helper.file_one.dest, 'asd')
+        self.change(self.helper.left.dest, 'asd')
         cache.clear()
         self.helper.select('install.js')
-        self.helper.one['binary'] = True
+        self.helper.left.selected['binary'] = True
         assert self.helper.is_binary()
-        assert self.helper.one['diff']
 
     def test_diffable_two_binary_diff(self):
         self.helper.extract()
-        self.change(self.helper.file_one.dest, 'asd')
-        self.change(self.helper.file_two.dest, 'asd123')
+        self.change(self.helper.left.dest, 'asd')
+        self.change(self.helper.right.dest, 'asd123')
         cache.clear()
         self.helper.select('install.js')
-        self.helper.one['binary'] = True
-        self.helper.two['binary'] = True
+        self.helper.left.selected['binary'] = True
+        self.helper.right.selected['binary'] = True
         assert self.helper.is_binary()
-        assert self.helper.one['diff']
 
     def test_diffable_one_directory(self):
         self.helper.extract()
         self.helper.select('install.js')
-        self.helper.one['directory'] = True
+        self.helper.left.selected['directory'] = True
         assert not self.helper.is_diffable()
         eq_(unicode(self.helper.status),
             'install.js is a directory in file 1.')
 
     def test_diffable_parent(self):
         self.helper.extract()
-        self.change(self.helper.file_one.dest, 'asd',
+        self.change(self.helper.left.dest, 'asd',
                     filename='__MACOSX/._dictionaries')
         cache.clear()
         files = self.helper.get_files()

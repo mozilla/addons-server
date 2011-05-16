@@ -60,7 +60,7 @@ class FileViewer:
         self.src = file_obj.file_path
         self.dest = os.path.join(settings.TMP_PATH, 'file_viewer',
                                  str(file_obj.pk))
-        self._files = None
+        self._files, self.selected = None, None
 
     def __str__(self):
         return str(self.file.id)
@@ -75,7 +75,7 @@ class FileViewer:
         except OSError, err:
             pass
 
-        if self.is_search_engine and self.src.endswith('.xml'):
+        if self.is_search_engine() and self.src.endswith('.xml'):
             os.makedirs(self.dest)
             shutil.copyfile(self.src,
                             os.path.join(self.dest, self.file.filename))
@@ -90,17 +90,15 @@ class FileViewer:
         if os.path.exists(self.dest):
             shutil.rmtree(self.dest)
 
-    @property
     def is_search_engine(self):
         """Is our file for a search engine?"""
         return self.file.version.addon.type == amo.ADDON_SEARCH
 
-    @property
     def is_extracted(self):
         """If the file has been extracted or not."""
         return os.path.exists(self.dest)
 
-    def is_binary(self, mimetype, filename):
+    def _is_binary(self, mimetype, filename):
         """Uses the filename to see if the file can be shown in HTML or not."""
         if mimetype:
             major, minor = mimetype.split('/')
@@ -117,23 +115,46 @@ class FileViewer:
             return False
         return True
 
-    def read_file(self, selected):
-        if selected['size'] > settings.FILE_VIEWER_SIZE_LIMIT:
-            return '', _('File size is over the limit of %s.'
-                     % (filesizeformat(settings.FILE_VIEWER_SIZE_LIMIT)))
+    def read_file(self, allow_empty=False):
+        """
+        Reads the file. Imposes a file limit and tries to cope with
+        UTF-8 and UTF-16 files appropriately. Return file contents and
+        a list of error messages.
+        """
+        if not self.selected and allow_empty:
+            return ''
+        assert self.selected, 'Please select a file'
+        if self.selected['size'] > settings.FILE_VIEWER_SIZE_LIMIT:
+            msg = _('File size is over the limit of %s.'
+                    % (filesizeformat(settings.FILE_VIEWER_SIZE_LIMIT)))
+            self.selected['msg'] = msg
+            return ''
 
-        with open(selected['full'], 'r') as opened:
+        with open(self.selected['full'], 'r') as opened:
             cont = opened.read()
             codec = 'utf-16' if cont.startswith(codecs.BOM_UTF16) else 'utf-8'
             try:
-                return cont.decode(codec), ''
+                return cont.decode(codec)
             except UnicodeDecodeError:
                 cont = cont.decode(codec, 'ignore')
                 #L10n: {0} is the filename.
-                return cont, _('Problems decoding using: %s.' % codec)
+                self.selected['msg'] = _('Problems decoding with: %s.') % codec
+                return cont
 
-    def get_default(self, key):
-        if self.is_search_engine and not key:
+    def select(self, file):
+        self.selected = self.get_files().get(file)
+
+    def is_binary(self):
+        if self.selected:
+            return self.selected['binary']
+
+    def is_directory(self):
+        if self.selected:
+            return self.selected['directory']
+
+    def get_default(self, key=None):
+        """Gets the default file and copes with search engines."""
+        if self.is_search_engine() and not key:
             return self.get_files().keys()[0]
         return key if key else 'install.rdf'
 
@@ -143,7 +164,7 @@ class FileViewer:
         addon-file. Full of all the useful information you'll need to serve
         this file, build templates etc.
         """
-        if not self.is_extracted:
+        if not self.is_extracted():
             return {}
         return self._get_files()
 
@@ -182,7 +203,7 @@ class FileViewer:
             mime, encoding = mimetypes.guess_type(filename)
             directory = os.path.isdir(path)
             args = [self.file.id, short]
-            res[short] = {'binary': self.is_binary(mime, filename),
+            res[short] = {'binary': self._is_binary(mime, filename),
                           'depth': short.count(os.sep),
                           'directory': directory,
                           'filename': filename,
@@ -202,25 +223,22 @@ class FileViewer:
 
 class DiffHelper:
 
-    def __init__(self, file_one_obj, file_two_obj):
-        self.file_one = FileViewer(file_one_obj)
-        self.file_two = FileViewer(file_two_obj)
-        self.status, self.one, self.two = None, None, None
+    def __init__(self, left, right):
+        self.left = FileViewer(left)
+        self.right = FileViewer(right)
+        self.status, self.key = None, None
 
     def __str__(self):
-        return '%s:%s' % (self.file_one, self.file_two)
+        return '%s:%s' % (self.left, self.right)
 
     def extract(self):
-        self.file_one.extract()
-        self.file_two.extract()
+        self.left.extract(), self.right.extract()
 
     def cleanup(self):
-        self.file_one.cleanup()
-        self.file_two.cleanup()
+        self.left.cleanup(), self.right.cleanup()
 
-    @property
     def is_extracted(self):
-        return self.file_one.is_extracted and self.file_two.is_extracted
+        return self.left.is_extracted() and self.right.is_extracted()
 
     @memoize(prefix='file-viewer', time=60 * 60)
     def get_files(self):
@@ -229,15 +247,15 @@ class DiffHelper:
         - remap any diffable ones to the compare url as opposed to the other
         - highlight any diffs
         """
-        file_one_files = self.file_one.get_files()
-        file_two_files = self.file_two.get_files()
+        left_files = self.left.get_files()
+        right_files = self.right.get_files()
         different = []
-        for key, file in file_one_files.items():
+        for key, file in left_files.items():
             file['url'] = reverse('files.compare',
-                                  args=[self.file_one.file.id,
-                                        self.file_two.file.id,
+                                  args=[self.left.file.id,
+                                        self.right.file.id,
                                         file['short']])
-            diff = file['md5'] != file_two_files.get(key, {}).get('md5')
+            diff = file['md5'] != right_files.get(key, {}).get('md5')
             file['diff'] = diff
             if diff:
                 different.append(file)
@@ -246,10 +264,15 @@ class DiffHelper:
         for diff in different:
             for depth in range(diff['depth']):
                 key = '/'.join(diff['short'].split('/')[:depth - 1])
-                if key in file_one_files:
-                    file_one_files[key]['diff'] = True
+                if key in left_files:
+                    left_files[key]['diff'] = True
 
-        return file_one_files
+        return left_files
+
+    def read_file(self):
+        """Reads both selected files."""
+        return [self.left.read_file(allow_empty=True),
+                self.right.read_file(allow_empty=True)]
 
     def select(self, key):
         """
@@ -257,29 +280,27 @@ class DiffHelper:
         for later fetching. Does special work for search engines.
         """
         self.key = key
-        self.one = self.get_files().get(key)
-        if key and self.file_two.is_search_engine:
+        self.left.select(key)
+        if key and self.right.is_search_engine():
             # There's only one file in a search engine.
-            self.two = self.file_two.get_files().values()[0]
-        else:
-            self.two = self.file_two.get_files().get(key)
-        return self.one and self.two
+            key = self.right.get_default()
+
+        self.right.select(key)
+        return self.left.selected and self.right.selected
 
     def is_binary(self):
-        return self.one.get('binary') or self.two.get('binary')
+        """Tells you if both selected files are binary."""
+        return (self.left.is_binary() or
+                self.right.is_binary())
 
     def is_diffable(self):
-        if not self.one and not self.two:
+        """Tells you if the selected files are diffable."""
+        if not self.left.selected and not self.right.selected:
             return False
 
-        for obj, selected in ([self.file_one.file, self.one],
-                              [self.file_two.file, self.two]):
-            if not selected:
-                self.status = _('%s does not exist in file %s.' %
-                                (self.key, obj.id))
-                return False
-            if selected['directory']:
+        for obj in [self.left, self.right]:
+            if obj.is_directory():
                 self.status = _('%s is a directory in file %s.' %
-                                (self.key, obj.id))
+                                (self.key, obj.file.id))
                 return False
         return True

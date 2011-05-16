@@ -8,7 +8,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 
-from mock import patch_object
+from mock import patch, patch_object
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
@@ -168,6 +168,13 @@ class FilesBase:
         eq_(res.status_code, 200)
         assert 'files' not in res.context
 
+    @patch('waffle.switch_is_active')
+    def test_no_files_switch(self, switch_is_active):
+        switch_is_active.return_value = False
+        res = self.client.get(self.file_url())
+        eq_(res.status_code, 200)
+        assert 'files' not in res.context
+
     def test_files(self):
         self.file_viewer.extract()
         res = self.client.get(self.file_url())
@@ -320,7 +327,7 @@ class TestFileViewer(FilesBase, test_utils.TestCase):
         self.file_viewer.extract()
         res = self.client.get(self.file_url(not_binary))
         doc = pq(res.content)
-        assert doc('p.notification-box').text().startswith('File size is')
+        assert doc('.error').text().startswith('File size is')
 
     def test_poll_failed(self):
         msg = Message('file-viewer:%s' % self.file_viewer)

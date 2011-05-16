@@ -32,11 +32,11 @@ def setup_viewer(request, file_obj):
     if acl.action_allowed(request, 'Editors', '%'):
         data['file_link'] = {'text': _('Back to review'),
                              'url': reverse('editors.review',
-                                            args=[file_obj.version.pk])}
+                                            args=[data['version'].pk])}
     else:
         data['file_link'] = {'text': _('Back to addon'),
                              'url': reverse('addons.detail',
-                                            args=[file_obj.version.addon.pk])}
+                                            args=[data['addon'].pk])}
     return data
 
 
@@ -44,7 +44,7 @@ def setup_viewer(request, file_obj):
 @json_view
 @file_view
 def poll(request, viewer):
-    return {'status': viewer.is_extracted,
+    return {'status': viewer.is_extracted(),
             'msg': [Message('file-viewer:%s' % viewer).get(delete=True)]}
 
 
@@ -54,20 +54,20 @@ def browse(request, viewer, key=None):
     data['viewer'] = viewer
     data['poll_url'] = reverse('files.poll', args=[viewer.file.id])
 
-    if (not waffle.switch_is_active('delay-file-viewer')
-        and not viewer.is_extracted):
+    if (not waffle.switch_is_active('delay-file-viewer') and
+        not viewer.is_extracted):
         extract_file(viewer)
 
-    if viewer.is_extracted:
-        files = viewer.get_files()
-        data.update({'status': True, 'files': files})
+    if viewer.is_extracted():
+        data.update({'status': True, 'files': viewer.get_files()})
         key = viewer.get_default(key)
-        if key not in files:
+        if key not in data['files']:
             raise http.Http404
 
-        selected = data['selected'] = files.get(key)
-        if (not selected['directory'] and not selected['binary']):
-            data['content'], data['msg'] = viewer.read_file(selected)
+        viewer.select(key)
+        data['selected'] = viewer.selected
+        if (not viewer.is_directory() and not viewer.is_binary()):
+            data['content'] = viewer.read_file()
 
     else:
         extract_file.delay(viewer)
@@ -86,46 +86,43 @@ def browse(request, viewer, key=None):
 @json_view
 def compare_poll(request, diff):
     msgs = []
-    for f in (diff.file_one, diff.file_two):
+    for f in (diff.left, diff.right):
         m = Message('file-viewer:%s' % f).get(delete=True)
         if m:
             msgs.append(m)
-    return {'status': diff.is_extracted, 'msg': msgs}
+    return {'status': diff.is_extracted(), 'msg': msgs}
 
 
 @compare_file_view
 def compare(request, diff, key=None):
-    data = setup_viewer(request, diff.file_one.file)
+    data = setup_viewer(request, diff.left.file)
     data['diff'] = diff
     data['poll_url'] = reverse('files.compare.poll',
-                               args=[diff.file_one.file.id,
-                                     diff.file_two.file.id])
+                               args=[diff.left.file.id,
+                                     diff.right.file.id])
 
     if (not waffle.switch_is_active('delay-file-viewer')
         and not diff.is_extracted):
-        extract_file(diff.file_one)
-        extract_file(diff.file_two)
+        extract_file(diff.left)
+        extract_file(diff.right)
 
-    if diff.is_extracted:
-        files = diff.get_files()
-        data.update({'status': True, 'files': files})
-        key = diff.file_one.get_default(key)
-        if key not in files:
+    if diff.is_extracted():
+        data.update({'status': True, 'files': diff.get_files()})
+        key = diff.left.get_default(key)
+        if key not in data['files']:
             raise http.Http404
 
         diff.select(key)
-        data['selected'] = diff.one
+        data['selected'] = diff.left.selected
         if not diff.is_diffable():
-            data['msg'] = diff.status
+            data['msgs'] = [diff.status]
 
         elif not diff.is_binary():
-            data['one'], omsg = diff.file_one.read_file(diff.one)
-            data['two'], tmsg = diff.file_two.read_file(diff.two)
-            data['msg'] = omsg or tmsg
+            data['left'], data['right'] = diff.read_file()
 
     else:
-        extract_file.delay(diff.file_one)
-        extract_file.delay(diff.file_two)
+        extract_file.delay(diff.left)
+        extract_file.delay(diff.right)
 
     tmpl = 'files/content.html' if request.is_ajax() else 'files/viewer.html'
     response = jingo.render(request, tmpl, data)
