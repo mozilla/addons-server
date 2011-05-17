@@ -133,4 +133,22 @@
   </ul>
 </div>
 
+{% if settings.USE_ELASTIC %}
+<div class="notification-box {{ status(status_summary.elastic) }}">
+  <h2>[Elastic Search] Health Check</h2>
+  <ul>
+    <li>
+    {{ settings.ES_HOSTS }}/{{ settings.ES_INDEX }}
+    {% if status_summary.elastic %}
+      {% for k, v in elastic_results|dictsort %}
+        <li><code>{{ k }}: {{ v }}</code></li>
+      {% endfor %}
+    {% else %}
+      <strong>Failed</strong><br><pre>{{ elastic_results }}</pre>
+    {% endif %}
+    </li>
+  </ul>
+</div>
+{% endif %}
+
 {% endblock main_content %}
