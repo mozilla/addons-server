@@ -171,6 +171,7 @@ def builder_pingback(request):
         data['id']  # Ensure id is available.
         assert data.get('secret') == settings.BUILDER_SECRET_KEY
     except Exception:
+        log.warning('Problem with builder pingback.', exc_info=True)
         return http.HttpResponseBadRequest()
     repackage_jetpack.delay(data)
     return http.HttpResponse()
