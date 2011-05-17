@@ -1,6 +1,6 @@
 Dear add-on author,
 
-While testing add-ons for compatibility with the upcoming release of {{APPLICATION}} {{VERSION}}, we detected some potential compatibility issues with your add-on {{ADDON_NAME}}. You can view these results here: {{RESULTS_LINK}}
+While testing add-ons for compatibility with the upcoming release of {{APPLICATION}} {{VERSION}}, we detected some potential compatibility issues with your add-on {{ADDON_NAME}}. You can view these results here: {{RESULT_LINKS}}
 
 Because of these issues, we were not able to automatically mark your add-on as compatible with {{APPLICATION}} {{VERSION}}. Please look into these issues and upload a new version if necessary. If you've tested your add-on and no changes are required, you can update your compatibility to {{APPLICATION}} {{VERSION}} here: {{COMPAT_LINK}}
 
