@@ -398,6 +398,21 @@ class TestDiffViewer(FilesBase, test_utils.TestCase):
         eq_(len(doc('pre')), 3)
         eq_(len(doc('#content-wrapper p')), 1)
 
+    def test_view_left_binary(self):
+        self.file_viewer.extract()
+        filename = os.path.join(self.file_viewer.left.dest, 'install.js')
+        open(filename, 'w').write('#!')
+        res = self.client.get(self.file_url(not_binary))
+        assert 'This file is not viewable online' in res.content
+
+    def test_view_right_binary(self):
+        self.file_viewer.extract()
+        filename = os.path.join(self.file_viewer.right.dest, 'install.js')
+        open(filename, 'w').write('#!')
+        assert not self.file_viewer.is_diffable()
+        res = self.client.get(self.file_url(not_binary))
+        assert 'This file is not viewable online' in res.content
+
     def test_different_tree(self):
         self.file_viewer.extract()
         os.remove(os.path.join(self.file_viewer.left.dest, not_binary))

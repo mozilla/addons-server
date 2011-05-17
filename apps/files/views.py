@@ -118,10 +118,7 @@ def compare(request, diff, key=None):
 
         diff.select(key)
         data['key'] = key
-        if not diff.is_diffable():
-            data['msgs'] = [diff.status]
-
-        elif not diff.is_binary():
+        if diff.is_diffable():
             data['left'], data['right'] = diff.read_file()
 
     else:

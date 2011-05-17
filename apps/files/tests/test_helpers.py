@@ -76,7 +76,7 @@ class TestFileHelper(test_utils.TestCase):
         binary = self.viewer._is_binary
         for f in ['foo.rdf', 'foo.xml', 'foo.js', 'foo.py'
                   'foo.html', 'foo.txt', 'foo.dtd', 'foo.xul',
-                  'foo.properties', 'foo.json', 'foo.src']:
+                  'foo.properties', 'foo.json', 'foo.src', 'CHANGELOG']:
             m, encoding = mimetypes.guess_type(f)
             assert not binary(m, f), '%s should not be binary' % f
 
@@ -84,9 +84,20 @@ class TestFileHelper(test_utils.TestCase):
             m, encoding = mimetypes.guess_type(f)
             assert not binary(None, f), '%s should not be binary' % f
 
-        for f in ['foo.png', 'foo.gif', 'foo.xls', 'foo.dic']:
+        for f in ['foo.png', 'foo.gif', 'foo.exe', 'foo.swf']:
             m, encoding = mimetypes.guess_type(f)
             assert binary(m, f), '%s should be binary' % f
+
+        filename = tempfile.mktemp()
+        for txt in ['#python', u'\0x2']:
+            open(filename, 'w').write(txt)
+            m, encoding = mimetypes.guess_type(filename)
+            assert not binary(m, filename), '%s should not be binary' % txt
+
+        for txt in ['#!/usr/bin/python', 'MZ']:
+            open(filename, 'w').write(txt)
+            m, encoding = mimetypes.guess_type(filename)
+            assert binary(m, filename), '%s should be binary' % txt
 
     def test_truncate(self):
         truncate = self.viewer.truncate
@@ -112,7 +123,7 @@ class TestFileHelper(test_utils.TestCase):
         eq_(files['install.js']['directory'], False)
         eq_(files['install.js']['binary'], False)
         eq_(files['__MACOSX']['directory'], True)
-        eq_(files['__MACOSX']['binary'], True)
+        eq_(files['__MACOSX']['binary'], False)
 
     def test_url_file(self):
         self.viewer.extract()
@@ -285,8 +296,7 @@ class TestDiffHelper(test_utils.TestCase):
         self.helper.select('install.js')
         self.helper.left.selected['directory'] = True
         assert not self.helper.is_diffable()
-        eq_(unicode(self.helper.status),
-            'install.js is a directory in file 1.')
+        assert self.helper.left.selected['msg'].startswith('This file')
 
     def test_diffable_parent(self):
         self.helper.extract()

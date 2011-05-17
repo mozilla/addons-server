@@ -18,6 +18,8 @@ import amo
 from amo.utils import memoize
 from amo.urlresolvers import reverse
 from files.utils import extract_xpi, get_md5
+from validator.testcases.packagelayout import (blacklisted_extensions,
+                                               blacklisted_magic_numbers)
 
 
 task_log = commonware.log.getLogger('z.task')
@@ -98,22 +100,24 @@ class FileViewer:
         """If the file has been extracted or not."""
         return os.path.exists(self.dest)
 
-    def _is_binary(self, mimetype, filename):
+    def _is_binary(self, mimetype, path):
         """Uses the filename to see if the file can be shown in HTML or not."""
+        # Re-use the blacklisted data from amo-validator to spot binaries.
+        ext = os.path.splitext(path)[1][1:]
+        if ext in blacklisted_extensions:
+            return True
+
+        if os.path.exists(path) and not os.path.isdir(path):
+            bytes = tuple([ord(x) for x in open(path, 'r').read(4)])
+            if [x for x in blacklisted_magic_numbers if bytes[0:len(x)] == x]:
+                return True
+
         if mimetype:
             major, minor = mimetype.split('/')
-            if major == 'text' and minor in ['plain', 'html', 'css']:
-                return False
-            elif major == 'application' and minor in ['json']:
-                return False
-            elif minor in ['xml', 'rdf+xml', 'javascript', 'x-javascript',
-                           'xml-dtd', 'vnd.mozilla.xul+xml']:
-                return False
-        if os.path.splitext(filename)[1] in ['.dtd', '.xul', '.properties',
-                                             '.src', '.mf', '.sf', '.json',
-                                             '.manifest']:
-            return False
-        return True
+            if major == 'image':
+                return True
+
+        return False
 
     def read_file(self, allow_empty=False):
         """
@@ -146,10 +150,16 @@ class FileViewer:
 
     def is_binary(self):
         if self.selected:
+            if self.selected['binary']:
+                self.selected['msg'] = _('This file is not viewable online. '
+                                         'Please download the file to view '
+                                         'the contents.')
             return self.selected['binary']
 
     def is_directory(self):
         if self.selected:
+            if self.selected['directory']:
+                self.selected['msg'] = _('This file is a directory.')
             return self.selected['directory']
 
     def get_default(self, key=None):
@@ -223,7 +233,7 @@ class FileViewer:
             mime, encoding = mimetypes.guess_type(filename)
             directory = os.path.isdir(path)
             args = [self.file.id, short]
-            res[short] = {'binary': self._is_binary(mime, filename),
+            res[short] = {'binary': self._is_binary(mime, path),
                           'depth': short.count(os.sep),
                           'directory': directory,
                           'filename': filename,
@@ -247,7 +257,7 @@ class DiffHelper:
     def __init__(self, left, right):
         self.left = FileViewer(left)
         self.right = FileViewer(right)
-        self.status, self.key = None, None
+        self.key = None
 
     def __str__(self):
         return '%s:%s' % (self.left, self.right)
@@ -343,8 +353,8 @@ class DiffHelper:
             return False
 
         for obj in [self.left, self.right]:
+            if obj.is_binary():
+                return False
             if obj.is_directory():
-                self.status = _('%s is a directory in file %s.' %
-                                (self.key, obj.file.id))
                 return False
         return True

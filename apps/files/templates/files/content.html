@@ -11,7 +11,7 @@
         {% endif %}
     {% endif %}
     {% if diff %}
-        {% if not diff.left.selected['binary'] %}
+        {% if left or right %}
             <div class="diff-bar js-hidden"></div>
             <pre id="diff" class="diff-bar-height js-hidden brush: diff; toolbar: false"></pre>
             <pre class="left js-hidden">{{ left }}</pre>
