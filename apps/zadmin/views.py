@@ -194,6 +194,8 @@ def start_validation(request):
             transaction.rollback()
             raise
 
+        # This code happens outside of the transaction block so that eager
+        # tasks work correctly in a development environment.
         for result_id in results:
             tasks.bulk_validate_file.delay(result_id)
 
