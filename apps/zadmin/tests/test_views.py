@@ -378,7 +378,7 @@ class TestBulkNotify(BulkValidationTest):
         eq_(r.status_code, 302)
         eq_(len(mail.outbox), 1)
         res = reverse('devhub.validation_result',
-                      args=(self.addon, result.pk))
+                      args=(self.addon.slug, result.pk))
         email = mail.outbox[0].body
         assert res in email, ('Unexpected message: %s' % email)
 
