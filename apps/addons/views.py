@@ -395,8 +395,7 @@ def impala_home(request):
     featured_base = Addon.featured(request.APP, request.LANG)
 
     # Collections.
-    q = Collection.objects.filter(listed=True, application=request.APP.id)
-    collections = q.order_by('-weekly_subscribers')[:3]
+    collections = Collection.objects.filter(listed=True, application=request.APP.id, type=amo.COLLECTION_FEATURED)
     promobox = CollectionPromoBox(request)
 
     featured = Addon.objects.filter(id__in=random.sample(featured_base, 18))

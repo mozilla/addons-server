@@ -1,6 +1,6 @@
 @import 'lib';
 
-.addon-grid {
+.listing-grid {
     li {
         width: 50%;
         overflow: visible;
@@ -12,6 +12,16 @@
     }
     &.three-col li {
         width: 100% / 3;
+    }
+    .more, .desc {
+        color: #666;
+        font-size: .9em;
+        z-index: 29;
+        margin-top: 0;
+    }
+    .desc {
+        max-height: 2.6em;
+        overflow: hidden;
     }
     .item {
         position: relative;
@@ -27,10 +37,7 @@
             max-width: 200px;
         }
         .more {
-            color: #666;
-            font-size: .9em;
             display: none;
-            z-index: 29;
             padding: 0 14px 8px 12px;
         }
         a {
@@ -151,6 +158,18 @@
             }
         }
     }
+    .collection {
+        &:hover {
+            .summary {
+                overflow: visible;
+                height: auto;
+            }
+            .desc {
+                overflow: visible;
+                max-height: none;
+            }
+        }
+    }
     .category, .rating {
         color: #666;
         font-size: 11px;
@@ -170,12 +189,14 @@
         }
     }
 }
-.html-rtl .addon-grid {
+.html-rtl .listing-grid {
     li {
         float: right;
     }
     .item {
-        margin: 5px 61px 5px 5px;
+        &.addon {
+            margin: 5px 61px 5px 5px;
+        }
         .more {
             padding: 0 12px 8px 14px;
         }

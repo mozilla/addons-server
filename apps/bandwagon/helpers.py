@@ -5,6 +5,8 @@ from jingo import register, env
 from tower import ugettext as _
 
 from amo.helpers import login_link
+from amo.utils import chunked
+from addons.helpers import new_context
 from cake.urlresolvers import remora_url
 from amo.urlresolvers import reverse
 
@@ -114,6 +116,15 @@ def collection_add_widget(context, addon, condensed=False):
     c = dict(context.items())
     c.update(locals())
     return c
+
+
+@register.filter
+@jinja2.contextfilter
+@register.inclusion_tag('bandwagon/collection_grid.html')
+def collection_grid(context, collections, src=None, pagesize=4, cols=2):
+    pages = chunked(collections, pagesize)
+    columns = '' if cols != 3 else 'three-col'
+    return new_context(**locals())
 
 
 @register.function
