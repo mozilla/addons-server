@@ -6,7 +6,7 @@
  *
  * With some changes by Andy McKay, most notably removing all
  * the !importants.
- * 
+ *
  * SyntaxHighlighter is donationware. If you are using it, please donate.
  * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
  *
@@ -97,8 +97,6 @@
     padding: 0 1em;
 }
 
-.syntaxhighlighter.printing .line.alt1 .content,
-.syntaxhighlighter.printing .line.alt2 .content,
 .syntaxhighlighter.printing .line.highlighted .number,
 .syntaxhighlighter.printing .line.highlighted.alt1 .content,
 .syntaxhighlighter.printing .line.highlighted.alt2 .content {
@@ -163,18 +161,7 @@
 .syntaxhighlighter {
     background-color: white;
 }
-.syntaxhighlighter .line.alt1 {
-    background-color: white;
-}
-.syntaxhighlighter .line.alt2 {
-    background-color: white;
-}
-.syntaxhighlighter .line.highlighted.alt1, .syntaxhighlighter .line.highlighted.alt2 {
-    background-color: #e0e0e0;
-}
-.syntaxhighlighter .line.highlighted.number {
-    color: black;
-}
+
 .syntaxhighlighter table caption {
     color: black;
 }
@@ -182,7 +169,7 @@
     color: #afafaf;
 }
 .syntaxhighlighter .gutter .line {
-    border-right: 3px solid #6ce26c;
+    border-right: 1px solid gray;
 }
 .syntaxhighlighter .gutter .line.highlighted {
     background-color: #6ce26c;
@@ -261,5 +248,3 @@
 .syntaxhighlighter .keyword {
     font-weight: bold;
 }
-
-

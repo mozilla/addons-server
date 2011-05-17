@@ -3,7 +3,7 @@
     {% if viewer %}
         {% if viewer.selected %}
             {% if not viewer.selected['binary'] %}
-                <pre id="content" class="wrapped brush: {{ viewer.selected['syntax'] }} toolbar: false">{{ content }}</pre>
+                <pre id="content" class="brush: {{ viewer.selected['syntax'] }}; toolbar: false">{{ content }}</pre>
             {% endif %}
             {% with selected = viewer.selected %}
                 {% include "files/file.html" %}
@@ -11,10 +11,12 @@
         {% endif %}
     {% endif %}
     {% if diff %}
-        <div class="diff-bar js-hidden"></div>
-        <pre id="diff" class="diff-bar-height wrapped js-hidden"></pre>
-        <pre class="left js-hidden">{{ left }}</pre>
-        <pre class="right js-hidden">{{ right }}</pre>
+        {% if not diff.left.selected['binary'] %}
+            <div class="diff-bar js-hidden"></div>
+            <pre id="diff" class="diff-bar-height js-hidden brush: diff; toolbar: false"></pre>
+            <pre class="left js-hidden">{{ left }}</pre>
+            <pre class="right js-hidden">{{ right }}</pre>
+        {% endif %}
         {% if diff.left and diff.left.selected %}
             {% with selected = diff.left.selected %}
                 {% include "files/file.html" %}

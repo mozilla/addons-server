@@ -8,29 +8,20 @@ if (typeof diff_match_patch !== 'undefined') {
         for (var x = 0; x < diffs.length; x++) {
             var op = diffs[x][0];    // Operation (insert, delete, equal)
             var data = diffs[x][1];  // Text of change.
-            var text = data.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-            /* As as side effect, add in line numbers */
-            var lines = text.split('\n');
-            if (lines[lines.length-1] === '') {
-                lines.pop();
-            }
-            if (lines[0] === '') {
-                lines.splice(0, 1);
-            }
-            for (var t = 0; t < lines.length; t++) {
+            var lines = data.split('\n');
+
+            for (var t = 0; t < lines.length - 1; t++) {
                 switch (op) {
+                    /* The syntax highlighter needs an extra space
+                       to do it's work. */
                     case DIFF_INSERT:
-                        // TODO (andym): templates might work here as suggested by cvan
-                        html.push(format('<div class="line add"><span class="number"><a href="#L{0}" name="L{0}">{0}</a> +' +
-                                         '</span><span class="code">{1}</span></div>', k++, lines[t]));
+                        html.push('+ ' + lines[t] + '\n');
                         break;
                     case DIFF_DELETE:
-                        html.push(format('<div class="line delete"><span class="number"><a href="#D{0}" name="D{0}"></a> -</span>' +
-                                         '<span class="code">{1}</span></div>', dk++, lines[t]));
+                        html.push('- ' + lines[t] + '\n');
                         break;
                     case DIFF_EQUAL:
-                        html.push(format('<div class="line"><span class="number"><a href="#L{0}" name="L{0}">{0}</a>&nbsp;&nbsp;' +
-                                         '</span><span class="code">{1}</span></div>', k++, lines[t]));
+                        html.push('  ' + lines[t] + '\n');
                         break;
                 }
             }
@@ -63,19 +54,33 @@ function bind_viewer(nodes) {
             $(window).scroll(debounce(update), 200);
             update();
         };
-        this.line_wrap = function($node) {
+        this.line_wrap = function($node, deleted) {
             /* SyntaxHighlighter doesn't produce linked line numbers or cope
                with wrapped text producing bigger line numbers.
                This fixes that. */
+            var line_numbers = 1,
+                deleted_line_numbers = 1;
             $node.each(function(){
                 var $self = $(this),
+                    $gutter = $self.find('td.gutter');
                     $code = $self.find('td.code');
-                $self.find('td.gutter div.line').each(function(i){
-                    var $gutter = $(this),
-                        /* Calculate the height of the corresponding code line */
-                        height = $code.find('.line:nth-child(' + (i+1) +')').height(),
-                        link = $gutter.children('a');
-
+                $gutter.find('div.line').each(function(i){
+                    var $gutter_line = $(this),
+                        $line = $code.find('.line:nth-child(' + (i+1) +')'),
+                        height = $line.height(),
+                        del = !!$line.children('code.comments').length,
+                        link = $gutter_line.children('a');
+                    /* If there's a deleted line, don't show a line number */
+                    if (deleted && del) {
+                        $gutter_line.html($('<a>', {'href': '#D' + deleted_line_numbers,
+                                                    'name': 'D' + deleted_line_numbers,
+                                                    'class': 'delete',
+                                                    'style': 'height: ' + height + 'px',
+                                                    'text': ' '}));
+                        $line.addClass('delete');
+                        deleted_line_numbers++;
+                        return;
+                    }
                     /* If a link already exists and the height is different
                        alter it. */
                     if (link.length) {
@@ -84,10 +89,14 @@ function bind_viewer(nodes) {
                         }
                     } else {
                         /* Otherwise add in a link, occurs on first pass. */
-                        $gutter.html($('<a>', {'href': '#L' + $gutter.text(),
-                                               'name': 'L' + $gutter.text(),
-                                               'style': 'height: ' + height + 'px',
-                                               'text': $gutter.text()}));
+                        var klass = $line.find('code.string').length ? 'add' : '';
+                        $gutter_line.html($('<a>', {'href': '#L' + line_numbers,
+                                                    'name': 'L' + line_numbers,
+                                                    'class': klass,
+                                                    'style': 'height: ' + height + 'px',
+                                                    'text': line_numbers}));
+                        $line.addClass(klass);
+                        line_numbers++;
                     }
                 });
             });
@@ -95,11 +104,11 @@ function bind_viewer(nodes) {
         this.compute = function(node) {
             var $diff = node.find('#diff');
 
-            if (node.find('#content')) {
+            if (node.find('#content') && !$diff.length) {
                 SyntaxHighlighter.highlight();
                 // Fix up the lines to be the way we want.
                 // Note SyntaxHighlighter has nuked the node and replaced it.
-                this.line_wrap(node.find('#content'));
+                this.line_wrap(node.find('#content'), false);
             }
 
             if ($diff.length) {
@@ -108,26 +117,32 @@ function bind_viewer(nodes) {
                 var a = dmp.diff_linesToChars_($diff.siblings('.right').text(), $diff.siblings('.left').text());
                 var diffs = dmp.diff_main(a[0], a[1], false);
                 dmp.diff_charsToLines_(diffs, a[2]);
-                $diff.html(dmp.diff_prettyHtml(diffs)).show();
+                $diff.text(dmp.diff_prettyHtml(diffs)).show();
 
-                var $sb = $diff.siblings('.diff-bar').eq(0);
-                var $lines = $diff.find('.line');
+                SyntaxHighlighter.highlight();
+                // Note SyntaxHighlighter has nuked the node and replaced it.
+                $diff = node.find('#diff');
+                this.line_wrap($diff, true);
+
+                /* Build out the diff bar based on the line numbers. */
+                var $sb = $diff.siblings('.diff-bar').eq(0),
+                    $lines = $diff.find('td.gutter div.line a');
+
                 if ($lines.length) {
                     var state = {'start':0, 'type':$lines.eq(0).attr('class'),
-                                 'href':$lines.eq(0).find('a').attr('href')};
+                                 'href':$lines.eq(0).attr('href')};
                     for (var j = 1; j < $lines.length; j++) {
                         var $node = $lines.eq(j);
-                        if ($node.attr('class') != state.type) {
+                        if (!$node.hasClass(state.type)) {
                             this.side_bar_append($sb, state, j, $lines.length);
                             state = {'start': j, 'type': $node.attr('class'),
-                                     'href': $node.find('a').attr('href')};
+                                     'href': $node.attr('href')};
                         }
                     }
+                    $diff.addClass('diff-bar-height');
                     this.side_bar_append($sb, state, j, $lines.length);
                     this.fix_vertically($sb, $diff);
                     $sb.show();
-                } else {
-                    $diff.removeClass('diff-bar-height');
                 }
             }
 

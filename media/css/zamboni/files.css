@@ -35,20 +35,25 @@ span.number {
     text-align: right;
 }
 
-pre.diff-bar-height {
+.diff-bar-height {
     min-height: 200px;
+    display: block;
 }
 
-pre div.line:hover {
+div.code div.line:hover {
     background-color: #ffffcc;
 }
 
-.add {
+div.diff-bar .add, #diff td.code div.add, #diff td.code div.add .content {
     background-color: #e6ffe6;
 }
 
-.delete {
+div.diff-bar .delete, #diff td.code div.delete, #diff td.code div.add .content {
     background-color: #ffe6e6;
+}
+
+#diff .string, #diff .string a, #diff .comments, #diff .comments a, #diff .color1, #diff .color1 a{
+    color: #444444;
 }
 
 a.closed {
@@ -61,6 +66,10 @@ a.open {
 
 a.diff {
     background-color: #ffffcc;
+}
+
+div.diff-bar {
+    margin-left: -1px;
 }
 
 a.selected {
