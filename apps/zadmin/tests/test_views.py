@@ -126,6 +126,10 @@ class BulkValidationTest(test_utils.TestCase):
 
 class TestBulkValidation(BulkValidationTest):
 
+    def assertNoFormErrors(self, r):
+        if 'form' in r.context:
+            eq_(r.context['form'].errors.as_text(), '')
+
     @mock.patch('zadmin.tasks.bulk_validate_file')
     def test_start(self, bulk_validate_file):
         new_max = self.appversion('3.7a3')
@@ -135,8 +139,7 @@ class TestBulkValidation(BulkValidationTest):
                               'target_version': new_max.id,
                               'finish_email': 'fliggy@mozilla.com'},
                              follow=True)
-        if 'form' in r.context:
-            eq_(r.context['form'].errors.as_text(), '')
+        self.assertNoFormErrors(r)
         self.assertRedirects(r, reverse('zadmin.validation'))
         job = ValidationJob.objects.get()
         eq_(job.application_id, amo.FIREFOX.id)
@@ -147,6 +150,35 @@ class TestBulkValidation(BulkValidationTest):
         eq_(job.result_set.all().count(),
             len(self.version.all_files))
         assert bulk_validate_file.delay.called
+
+    @mock.patch('zadmin.tasks.bulk_validate_file')
+    def test_ignore_user_disabled_addons(self, bulk_validate_file):
+        self.addon.update(disabled_by_user=True)
+        r = self.client.post(reverse('zadmin.start_validation'),
+                             {'application': amo.FIREFOX.id,
+                              'curr_max_version': self.curr_max.id,
+                              'target_version': self.appversion('3.7a3').id,
+                              'finish_email': 'fliggy@mozilla.com'},
+                             follow=True)
+        self.assertNoFormErrors(r)
+        self.assertRedirects(r, reverse('zadmin.validation'))
+        assert not bulk_validate_file.delay.called
+
+    @mock.patch('zadmin.tasks.bulk_validate_file')
+    def test_ignore_non_public_addons(self, bulk_validate_file):
+        target_ver = self.appversion('3.7a3').id
+        for status in (amo.STATUS_BETA, amo.STATUS_DISABLED, amo.STATUS_NULL):
+            self.addon.update(status=status)
+            r = self.client.post(reverse('zadmin.start_validation'),
+                                 {'application': amo.FIREFOX.id,
+                                  'curr_max_version': self.curr_max.id,
+                                  'target_version': target_ver,
+                                  'finish_email': 'fliggy@mozilla.com'},
+                                 follow=True)
+            self.assertNoFormErrors(r)
+            self.assertRedirects(r, reverse('zadmin.validation'))
+            assert not bulk_validate_file.delay.called, (
+                            'Addon with status %s should be ignored' % status)
 
     def test_grid(self):
         job = self.create_job()

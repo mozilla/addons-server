@@ -174,16 +174,19 @@ def start_validation(request):
                 select files.id
                 from files
                 join versions v on v.id=files.version_id
+                join addons a on a.id=v.addon_id
                 join applications_versions av on av.version_id=v.id
                 where
                     av.application_id = %(application_id)s
                     and av.max = %(curr_max_version)s
-                    and files.status in %(file_status)s"""
+                    and not a.inactive
+                    and a.status in %(active_statuses)s
+                    and files.status in %(active_statuses)s"""
             cursor = connection.cursor()
             cursor.execute(sql, {'application_id': job.application.id,
                                  'curr_max_version': job.curr_max_version.id,
-                                 'file_status': [amo.STATUS_LISTED,
-                                                 amo.STATUS_PUBLIC]})
+                                 'active_statuses': [amo.STATUS_LISTED,
+                                                     amo.STATUS_PUBLIC]})
             results = []
             for row in cursor:
                 res = ValidationResult.objects.create(validation_job=job,
