@@ -414,6 +414,7 @@ MINIFY_BUNDLES = {
             'css/zamboni/editors.css',
         ),
         'zamboni/files': (
+            'css/lib/syntaxhighlighter/shCoreDefault.css',
             'css/zamboni/files.css',
         ),
         'zamboni/mobile': (
@@ -554,7 +555,25 @@ MINIFY_BUNDLES = {
             'js/lib/highcharts.src.js'
         ),
         'zamboni/files': (
-            'js/diff/diff_match_patch_uncompressed.js',
+            'js/lib/diff_match_patch_uncompressed.js',
+            'js/lib/syntaxhighlighter/shCore.js',
+            'js/lib/syntaxhighlighter/shLegacy.js',
+            'js/lib/syntaxhighlighter/shBrushAppleScript.js',
+            'js/lib/syntaxhighlighter/shBrushAS3.js',
+            'js/lib/syntaxhighlighter/shBrushBash.js',
+            'js/lib/syntaxhighlighter/shBrushCpp.js',
+            'js/lib/syntaxhighlighter/shBrushCSharp.js',
+            'js/lib/syntaxhighlighter/shBrushCss.js',
+            'js/lib/syntaxhighlighter/shBrushDiff.js',
+            'js/lib/syntaxhighlighter/shBrushJava.js',
+            'js/lib/syntaxhighlighter/shBrushJScript.js',
+            'js/lib/syntaxhighlighter/shBrushPhp.js',
+            'js/lib/syntaxhighlighter/shBrushPlain.js',
+            'js/lib/syntaxhighlighter/shBrushPython.js',
+            'js/lib/syntaxhighlighter/shBrushSass.js',
+            'js/lib/syntaxhighlighter/shBrushSql.js',
+            'js/lib/syntaxhighlighter/shBrushVb.js',
+            'js/lib/syntaxhighlighter/shBrushXml.js',
             'js/zamboni/files.js',
         ),
         'zamboni/mobile': (

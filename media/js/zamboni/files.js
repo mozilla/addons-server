@@ -63,24 +63,43 @@ function bind_viewer(nodes) {
             $(window).scroll(debounce(update), 200);
             update();
         };
-        this.compute = function(node) {
-            var $content = node.find('#content'),
-                $diff = node.find('#diff');
-            if ($content.length) {
-                var splitted = $content.text().split('\n'),
-                    length = splitted.length,
-                    html = [];
-                if (splitted.slice(length-1) == '') {
-                    length = length - 1;
-                }
-                for (var k = 0; k < length; k++) {
-                    if (splitted[k] !== undefined) {
-                        var text = splitted[k].replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                        html.push(format('<div class="line"><span class="number"><a href="#L{0}" name="L{0}">{0}</a></span>' +
-                                         '<span class="code"> {1}</span></div>', k+1, text));
+        this.line_wrap = function($node) {
+            /* SyntaxHighlighter doesn't produce linked line numbers or cope
+               with wrapped text producing bigger line numbers.
+               This fixes that. */
+            $node.each(function(){
+                var $self = $(this),
+                    $code = $self.find('td.code');
+                $self.find('td.gutter div.line').each(function(i){
+                    var $gutter = $(this),
+                        /* Calculate the height of the corresponding code line */
+                        height = $code.find('.line:nth-child(' + (i+1) +')').height(),
+                        link = $gutter.children('a');
+
+                    /* If a link already exists and the height is different
+                       alter it. */
+                    if (link.length) {
+                        if (link.height() != height) {
+                            link.css('height',  height + 'px');
+                        }
+                    } else {
+                        /* Otherwise add in a link, occurs on first pass. */
+                        $gutter.html($('<a>', {'href': '#L' + $gutter.text(),
+                                               'name': 'L' + $gutter.text(),
+                                               'style': 'height: ' + height + 'px',
+                                               'text': $gutter.text()}));
                     }
-                }
-                $content.html(html.join('')).show();
+                });
+            });
+        };
+        this.compute = function(node) {
+            var $diff = node.find('#diff');
+
+            if (node.find('#content')) {
+                SyntaxHighlighter.highlight();
+                // Fix up the lines to be the way we want.
+                // Note SyntaxHighlighter has nuked the node and replaced it.
+                this.line_wrap(node.find('#content'));
             }
 
             if ($diff.length) {
@@ -191,8 +210,10 @@ function bind_viewer(nodes) {
             return k;
         };
         this.toggle_wrap = function(state) {
+            /* Toggles the content wrap in the page, starts off wrapped */
             this.wrapped = (state == 'wrap' || !this.wrapped);
-            $('pre').toggleClass('wrapped', this.wrapped);
+            $('code').toggleClass('unwrapped');
+            this.line_wrap($('#content-wrapper'));
         };
         this.toggle_files = function(state) {
             this.hidden = (state == 'hide' || !this.hidden);

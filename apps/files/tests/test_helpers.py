@@ -11,7 +11,6 @@ from mock import Mock, patch, patch_object
 from nose.tools import eq_
 import test_utils
 
-import amo
 from amo.urlresolvers import reverse
 from files.helpers import FileViewer, DiffHelper
 from files.models import File
@@ -134,6 +133,12 @@ class TestFileHelper(test_utils.TestCase):
         self.viewer.selected = {'full': dest, 'size': 1}
         eq_(self.viewer.read_file(), u'foo')
 
+    def test_syntax(self):
+        for filename, syntax in [('foo.rdf', 'xml'),
+                                 ('foo.xul', 'xml'),
+                                 ('foo.bar', 'plain')]:
+            eq_(self.viewer.get_syntax(filename), syntax)
+
     def test_file_order(self):
         self.viewer.extract()
         dest = self.viewer.dest
@@ -149,7 +154,7 @@ class TestFileHelper(test_utils.TestCase):
     @patch_object(settings._wrapped, 'FILE_VIEWER_SIZE_LIMIT', 5)
     def test_file_size(self):
         self.viewer.extract()
-        files = self.viewer.get_files()
+        self.viewer.get_files()
         self.viewer.select('install.js')
         res = self.viewer.read_file()
         eq_(res, '')

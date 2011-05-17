@@ -35,18 +35,8 @@ span.number {
     text-align: right;
 }
 
-pre {
-    overflow-x: auto;
-}
-
 pre.diff-bar-height {
     min-height: 200px;
-}
-
-pre.wrapped {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    overflow-x: hidden;
 }
 
 pre div.line:hover {

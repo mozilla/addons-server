@@ -2,7 +2,9 @@
     <div>
     {% if viewer %}
         {% if viewer.selected %}
-            <pre id="content" class="wrapped">{{ content }}</pre>
+            {% if not viewer.selected['binary'] %}
+                <pre id="content" class="wrapped brush: {{ viewer.selected['syntax'] }} toolbar: false">{{ content }}</pre>
+            {% endif %}
             {% with selected = viewer.selected %}
                 {% include "files/file.html" %}
             {% endwith %}

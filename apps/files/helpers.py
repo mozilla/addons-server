@@ -184,6 +184,26 @@ class FileViewer:
             ext = ext[:post_length] + ellipsis
         return root + ext
 
+    def get_syntax(self, filename):
+        """
+        Converts a filename into a syntax for the syntax highlighter, with
+        some modifications for specific common mozilla files.
+        The list of syntaxes is from:
+        http://alexgorbatchev.com/SyntaxHighlighter/manual/brushes/
+        """
+        if filename:
+            short = os.path.splitext(filename)[1][1:]
+            syntax_map = {'xul': 'xml', 'rdf': 'xml'}
+            short = syntax_map.get(short, short)
+            if short in ['actionscript3', 'as3', 'bash', 'shell', 'cpp', 'c',
+                         'c#', 'c-sharp', 'csharp', 'css', 'diff', 'html',
+                         'java', 'javascript', 'js', 'jscript', 'patch',
+                         'pas', 'php', 'plain', 'py', 'python', 'sass',
+                         'scss', 'text', 'sql', 'vb', 'vbnet', 'xml', 'xhtml',
+                         'xslt']:
+                return short
+        return 'plain'
+
     @memoize(prefix='file-viewer', time=60 * 60)
     def _get_files(self):
         all_files, res = [], SortedDict()
@@ -210,6 +230,7 @@ class FileViewer:
                           'full': path,
                           'md5': get_md5(path) if not directory else '',
                           'mimetype': mime or 'application/octet-stream',
+                          'syntax': self.get_syntax(filename),
                           'modified': os.stat(path)[stat.ST_MTIME],
                           'short': short,
                           'size': os.stat(path)[stat.ST_SIZE],
