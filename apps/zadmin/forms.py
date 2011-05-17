@@ -75,7 +75,7 @@ class NotifyForm(happyforms.Form):
                             label=_lazy(u'Log emails instead of sending'))
     text = forms.CharField(widget=forms.Textarea, required=True)
     variables = ['{{ADDON_NAME}}', '{{APPLICATION}}', '{{COMPAT_LINK}}',
-                 '{{RESULTS_LINK}}', '{{VERSION}}']
+                 '{{RESULT_LINKS}}', '{{VERSION}}']
 
     def __init__(self, *args, **kw):
         kw.setdefault('initial', {})

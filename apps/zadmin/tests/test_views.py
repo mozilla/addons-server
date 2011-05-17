@@ -290,6 +290,19 @@ class TestBulkUpdate(BulkValidationTest):
         self.client.post(self.update_url, self.data)
         eq_(mail.outbox[0].body, 'Firefox 3.7a3')
 
+    def test_multiple_result_links(self):
+        # Creates validation results for two files of the same addon:
+        results = [
+            self.create_result(self.job, self.create_file(self.version)),
+            self.create_result(self.job, self.create_file(self.version))]
+        self.client.post(self.update_url, {'text': '{{ RESULT_LINKS }}',
+                                           'subject': '..'})
+        links = mail.outbox[0].body.split(' ')
+        for result in results:
+            assert any(ln.endswith(reverse('devhub.validation_result',
+                                           args=(self.addon.slug, result.pk)))
+                       for ln in links), ('Unexpected links: %s' % links)
+
     def test_notify_mail_preview(self):
         self.create_result(self.job, self.create_file(self.version))
         self.client.post(self.update_url,
@@ -356,6 +369,18 @@ class TestBulkNotify(BulkValidationTest):
         eq_(mail.outbox[0].body, '..')
         eq_(mail.outbox[0].subject, self.addon.name)
         eq_(mail.outbox[0].to, [u'del@icio.us'])
+
+    def test_result_links(self):
+        result = self.create_result(self.job, self.create_file(self.version),
+                                    **{'errors': 1})
+        r = self.client.post(self.update_url, {'text': '{{ RESULT_LINKS }}',
+                                               'subject': '...'})
+        eq_(r.status_code, 302)
+        eq_(len(mail.outbox), 1)
+        res = reverse('devhub.validation_result',
+                      args=(self.addon, result.pk))
+        email = mail.outbox[0].body
+        assert res in email, ('Unexpected message: %s' % email)
 
     def test_notify_mail_partial(self):
         self.create_result(self.job, self.create_file(self.version),
