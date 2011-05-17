@@ -17,7 +17,6 @@ compare_patterns = patterns('',
     url(r'status$', views.compare_poll, name='files.compare.poll'),
 )
 
-# All URLs under /editors/
 urlpatterns = patterns('',
     ('^browse/(?P<file_id>\d+)/', include(file_patterns)),
     ('^compare/(?P<one_id>\d+)\.{3}(?P<two_id>\d+)/',
