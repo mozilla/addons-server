@@ -932,3 +932,5 @@ VALID_LOGIN_REDIRECTS = {
     'builderstage': 'https://builder-addons-next.allizom.org',
     'buildertrunk': 'https://builder-addons.allizom.org',
 }
+
+BUILDER_SECRET_KEY = 'love will tear us apart'

@@ -1,20 +1,22 @@
 import hashlib
+import json
 
 from django import http
 from django.conf import settings
 from django.utils.http import http_date
 from django.views.decorators.cache import never_cache
+from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
 import jingo
 import waffle
 
 from access import acl
-from amo.decorators import json_view
+from amo.decorators import json_view, post_required
 from amo.urlresolvers import reverse
 from amo.utils import HttpResponseSendFile, Message, Token
 from files.decorators import file_view, compare_file_view, file_view_token
-from files.tasks import extract_file
+from files.tasks import extract_file, repackage_jetpack
 
 from tower import ugettext as _
 
@@ -157,3 +159,16 @@ def serve(request, viewer, key):
         raise http.Http404()
     return HttpResponseSendFile(request, obj['full'],
                                 content_type=obj['mimetype'])
+
+
+@csrf_exempt
+@post_required
+def builder_pingback(request):
+    try:
+        data = json.loads(request.raw_post_data)
+        data['id']  # Ensure id is available.
+        assert data.get('secret') == settings.BUILDER_SECRET_KEY
+    except Exception:
+        return http.HttpResponseBadRequest()
+    repackage_jetpack(data)
+    return http.HttpResponse()

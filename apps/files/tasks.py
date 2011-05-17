@@ -37,3 +37,8 @@ def migrate_jetpack_versions(ids, **kw):
         task_log.info('Setting jetpack version to %s for File %s.' %
                       (file_.jetpack_version, file_.id))
         file_.save()
+
+
+@task
+def repackage_jetpack(builder_data, **kw):
+    task_log.info('[1@None] Repackaging jetpack for %s.' % builder_data['id'])

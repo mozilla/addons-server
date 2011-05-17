@@ -382,3 +382,27 @@ class TestDiffViewer(FilesBase, test_utils.TestCase):
         node = doc('#content-wrapper a')
         eq_(len(node), 2)
         assert node[0].text.startswith('Download ar.dic')
+
+
+class TestBuilderPingback(test_utils.TestCase):
+
+    def post(self, data):
+        return self.client.post(reverse('files.builder-pingback'), data,
+                                content_type='application/json')
+
+    def test_success(self):
+        r = self.post(json.dumps({'id': 1,
+                                  'secret': settings.BUILDER_SECRET_KEY}))
+        eq_(r.status_code, 200)
+
+    def test_no_secret(self):
+        r = self.post(json.dumps({'id': 1}))
+        eq_(r.status_code, 400)
+
+    def test_bad_json(self):
+        r = self.post('wut')
+        eq_(r.status_code, 400)
+
+    def test_no_id(self):
+        r = self.post({'wut': 1})
+        eq_(r.status_code, 400)
