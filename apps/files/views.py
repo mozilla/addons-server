@@ -170,5 +170,5 @@ def builder_pingback(request):
         assert data.get('secret') == settings.BUILDER_SECRET_KEY
     except Exception:
         return http.HttpResponseBadRequest()
-    repackage_jetpack(data)
+    repackage_jetpack.delay(data)
     return http.HttpResponse()
