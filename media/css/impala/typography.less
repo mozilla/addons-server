@@ -56,9 +56,18 @@ pre, code, kbd, tt, samp, tt {
     }
 }
 
+.defaultlink {
+    font: normal 12px @sans-stack;
+    text-transform: none;
+    margin-left: .5em;
+}
+
 .island h2 {
     font-size: 18px;
     margin-bottom: .5em;
+    .seeall {
+        .defaultlink
+    }
 }
 
 .secondary h2 {
@@ -67,4 +76,7 @@ pre, code, kbd, tt, samp, tt {
     font-weight: bold;
     text-transform: uppercase;
     color: #484848;
+    .seeall {
+        .defaultlink
+    }
 }

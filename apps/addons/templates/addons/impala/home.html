@@ -33,12 +33,16 @@
     Curabitur lobortis blandit consectetur. Phasellus ac eros quam. Mauris interdum molestie magna, in vehicula nisi laoreet in. Aenean et convallis mi. Phasellus lobortis tempus felis, vel tincidunt ante aliquam id. Ut lectus eros, tincidunt vitae porta eget, vestibulum non mauris. Curabitur venenatis fringilla tortor sed pulvinar. Vivamus turpis nibh, facilisis auctor aliquet id, iaculis eu arcu. Maecenas vestibulum volutpat elit eget euismod.
   </div>
   <section class="secondary">
-    <h2>{{ _('Most Popular') }}</h2>
+    <h2>{{ _('Most Popular') }}
+      <a class="seeall" href="{{ url('browse.extensions')|urlparams(sort='popular') }}">{{ _('All »') }}</a>
+    </h2>
     {{ popular|addon_toplist }}
   </section>
   <section class="primary">
     <div class="island">
-      <h2>{{ _('Featured Extensions') }}</h2>
+      <h2>{{ _('Featured Extensions') }}
+        <a class="seeall" href="{{ url('browse.extensions')|urlparams(sort='featured') }}">{{ _('See all »') }}</a>
+      </h2>
       {{ featured|addon_grid }}
     </div>
     <div class="island">
@@ -46,11 +50,15 @@
       {{ hotness|addon_grid }}
     </div>
     <div class="island">
-      <h2>{{ _('Featured Personas') }}</h2>
+      <h2>{{ _('Featured Personas') }}
+        <a class="seeall" href="{{ url('browse.personas')|urlparams(sort='featured') }}">{{ _('See all »') }}</a>
+      </h2>
       {{ personas|impala_persona_grid }}
     </div>
     <div class="island">
-      <h2>{{ _('Featured Collections') }}</h2>
+      <h2>{{ _('Featured Collections') }}
+        <a class="seeall" href="{{ url('collections.list')|urlparams(sort='featured') }}">{{ _('See all »') }}</a>
+      </h2>
       {{ collections|collection_grid }}
     </div>
   </section>
