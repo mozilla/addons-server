@@ -19,7 +19,7 @@
 
 <aside class="secondary addon-vitals">
   {{ addon.average_rating|stars(large=True) }}
-  <div><a href="#reviews">{{ _('{0} user reviews')|f(addon.total_reviews|numberfmt) }}</a></div>
+  <div><a class="scrollto" href="#reviews">{{ _('{0} user reviews')|f(addon.total_reviews|numberfmt) }}</a></div>
   <div id="daily-users">{{ _('<b>{0}</b> active users')|f(addon.average_daily_users|numberfmt)|safe }}</div>
   <div class="widgets">
     {{ favorites_widget(addon) }}
@@ -72,7 +72,7 @@
   {% endif %}
 {% endif %}
 
-<aside class="secondary addon-reviews">
+<aside class="secondary">
   {% include "reviews/grouped_ratings.html" %}
 </aside>
 
@@ -82,6 +82,17 @@
     <p id="addon-description" {{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
   </section>
 {% endif %}
+
+<aside class="secondary addon-reviews">
+  {% include "reviews/grouped_ratings.html" %}
+</aside>
+
+<section id="reviews" class="primary island">
+  <h2>Reviews</h2>
+  {% if reviews is defined %}
+    {{ impala_review_list_box(addon=addon, reviews=reviews) }}
+  {% endif %}
+</section>
 
 <aside class="secondary metadata">
   <h3>{{ _('Related Categories') }}</h3>

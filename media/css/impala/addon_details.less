@@ -175,6 +175,35 @@
     }
 }
 
+#reviews .review {
+    border-bottom: 1px dotted #C9DDF2;
+    padding: 1em 0;
+    h3 {
+        color: #333333;
+        font-size: 16px;
+        line-height: 16px;
+        font-style: italic;
+        .stars {
+            padding: 2px;
+        }
+        .stars:not(:first-child) {
+            margin-left: .5em;
+        }
+    }
+    .byline {
+        font-style: italic;
+        margin: 2px 0;
+        color: #999;
+        font-size: 12px;
+        a {
+            color: #666;
+        }
+    }
+    .description {
+        margin: 0;
+    }
+}
+
 .metadata {
     li {
         border: none;

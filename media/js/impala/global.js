@@ -69,4 +69,15 @@ $(function() {
         e.preventDefault();
         $(this).closest('.site-balloon').fadeOut();
     });
+
+    $('.scrollto').click(function(e) {
+        e.preventDefault();
+        var href = $(this).attr('href'),
+            $target = $(href.match(/#.*$/)[0]);
+        if ($target.hasClass('expando')) {
+            $target.addClass('expanded');
+        }
+        var top = $target.offset().top - 15;
+        $(document.documentElement).animate({ scrollTop: top }, 500);
+    });
 });
