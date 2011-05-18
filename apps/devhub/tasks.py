@@ -50,7 +50,8 @@ def file_validator(file_id, **kw):
     return FileValidation.from_json(file, result)
 
 
-def run_validator(file_path, for_appversions=None, test_all_tiers=False):
+def run_validator(file_path, for_appversions=None, test_all_tiers=False,
+                  overrides=None):
     """A pre-configured wrapper around the addon validator.
 
     *file_path*
@@ -65,6 +66,11 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False):
         When False (default) the validator will not continue if it
         encounters fatal errors.  When True, all tests in all tiers are run.
         See bug 615426 for discussion on this default.
+
+    *overrides=None*
+        Normally the validator gets info from install.rdf but there are a
+        few things we need to override. See validator for supported overrides.
+        Example: {'targetapp_maxVersion': {'<app guid>': '<version>'}}
 
     To validate the addon for compatibility with Firefox 5 and 6,
     you'd pass in::
@@ -94,7 +100,8 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False):
                     # tier fails.
                     determined=test_all_tiers,
                     approved_applications=apps,
-                    spidermonkey=settings.SPIDERMONKEY)
+                    spidermonkey=settings.SPIDERMONKEY,
+                    overrides=overrides)
 
 
 @task(rate_limit='1/m')

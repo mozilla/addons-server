@@ -27,6 +27,11 @@ from zadmin.views import completed_versions_dirty
 from zadmin import tasks
 
 
+no_op_validation = dict(errors=0, warnings=0, notices=0,
+                        compatibility_summary=dict(errors=0, warnings=0,
+                                                   notices=0))
+
+
 class TestFlagged(test_utils.TestCase):
     fixtures = ['zadmin/tests/flagged']
 
@@ -206,72 +211,6 @@ class TestBulkValidation(BulkValidationTest):
             empty = False
             eq_(AppVersion.objects.get(pk=id).version, ver)
         assert not empty, "Unexpected: %r" % data
-
-    @mock.patch('zadmin.tasks.run_validator')
-    def test_validate_all_tiers(self, run_validator):
-        v = dict(errors=0, warnings=0, notices=0,
-                 compatibility_summary=dict(errors=0, warnings=0, notices=0))
-        run_validator.return_value = json.dumps(v)
-        res = self.create_result(self.create_job(), self.create_file(), **{})
-        tasks.bulk_validate_file(res.id)
-        assert run_validator.called
-        eq_(run_validator.call_args[1]['test_all_tiers'], True)
-
-    @mock.patch('zadmin.tasks.run_validator')
-    def test_merge_with_compat_summary(self, run_validator):
-        data = {
-            "errors": 1,
-            "detected_type": "extension",
-            "success": False,
-            "warnings": 50,
-            "notices": 1,
-            "ending_tier": 5,
-            "messages": [
-            {
-                "description": "A global function was called ...",
-                "tier": 3,
-                "message": "Global called in dangerous manner",
-                "uid": "de93a48831454e0b9d965642f6d6bf8f",
-                "compatibility_type": None,
-                "for_appversions": None,
-                "type": "warning"
-            },
-            {
-                "description": ("...no longer indicate the language "
-                                "of Firefox's UI..."),
-                "tier": 5,
-                "message": "navigator.language may not behave as expected",
-                "uid": "f44c1930887c4d9e8bd2403d4fe0253a",
-                "compatibility_type": "error",
-                "for_appversions": {
-                    "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.2a1pre",
-                                                               "5.0a2",
-                                                               "6.0a1"]
-                },
-                "type": "warning"
-            }],
-            "compatibility_summary": {
-                "notices": 1,
-                "errors": 6,
-                "warnings": 0
-            },
-            "metadata": {
-                "version": "1.0",
-                "name": "FastestFox",
-                "id": "<id>"
-            }
-        }
-        run_validator.return_value = json.dumps(data)
-        res = self.create_result(self.create_job(), self.create_file(), **{})
-        tasks.bulk_validate_file(res.id)
-        assert run_validator.called
-        res = ValidationResult.objects.get(pk=res.pk)
-        eq_(res.errors,
-            data['errors'] + data['compatibility_summary']['errors'])
-        eq_(res.warnings,
-            data['warnings'] + data['compatibility_summary']['warnings'])
-        eq_(res.notices,
-            data['notices'] + data['compatibility_summary']['notices'])
 
 
 class TestBulkUpdate(BulkValidationTest):
@@ -552,8 +491,8 @@ class TestBulkNotify(BulkValidationTest):
 
 class TestBulkValidationTask(BulkValidationTest):
 
-    def start_validation(self):
-        self.new_max = self.appversion('3.7a3')
+    def start_validation(self, new_max='3.7a3'):
+        self.new_max = self.appversion(new_max)
         r = self.client.post(reverse('zadmin.start_validation'),
                              {'application': amo.FIREFOX.id,
                               'curr_max_version': self.curr_max.id,
@@ -604,6 +543,78 @@ class TestBulkValidationTask(BulkValidationTest):
         assert run_validator.called
         eq_(run_validator.call_args[1]['for_appversions'],
             {amo.FIREFOX.guid: [self.new_max.version]})
+
+    @mock.patch('zadmin.tasks.run_validator')
+    def test_validate_all_tiers(self, run_validator):
+        run_validator.return_value = json.dumps(no_op_validation)
+        res = self.create_result(self.create_job(), self.create_file(), **{})
+        tasks.bulk_validate_file(res.id)
+        assert run_validator.called
+        eq_(run_validator.call_args[1]['test_all_tiers'], True)
+
+    @mock.patch('zadmin.tasks.run_validator')
+    def test_merge_with_compat_summary(self, run_validator):
+        data = {
+            "errors": 1,
+            "detected_type": "extension",
+            "success": False,
+            "warnings": 50,
+            "notices": 1,
+            "ending_tier": 5,
+            "messages": [
+            {
+                "description": "A global function was called ...",
+                "tier": 3,
+                "message": "Global called in dangerous manner",
+                "uid": "de93a48831454e0b9d965642f6d6bf8f",
+                "compatibility_type": None,
+                "for_appversions": None,
+                "type": "warning"
+            },
+            {
+                "description": ("...no longer indicate the language "
+                                "of Firefox's UI..."),
+                "tier": 5,
+                "message": "navigator.language may not behave as expected",
+                "uid": "f44c1930887c4d9e8bd2403d4fe0253a",
+                "compatibility_type": "error",
+                "for_appversions": {
+                    "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.2a1pre",
+                                                               "5.0a2",
+                                                               "6.0a1"]
+                },
+                "type": "warning"
+            }],
+            "compatibility_summary": {
+                "notices": 1,
+                "errors": 6,
+                "warnings": 0
+            },
+            "metadata": {
+                "version": "1.0",
+                "name": "FastestFox",
+                "id": "<id>"
+            }
+        }
+        run_validator.return_value = json.dumps(data)
+        res = self.create_result(self.create_job(), self.create_file(), **{})
+        tasks.bulk_validate_file(res.id)
+        assert run_validator.called
+        res = ValidationResult.objects.get(pk=res.pk)
+        eq_(res.errors,
+            data['errors'] + data['compatibility_summary']['errors'])
+        eq_(res.warnings,
+            data['warnings'] + data['compatibility_summary']['warnings'])
+        eq_(res.notices,
+            data['notices'] + data['compatibility_summary']['notices'])
+
+    @mock.patch('validator.validate.validate')
+    def test_max_version_override(self, validate):
+        validate.return_value = json.dumps(no_op_validation)
+        self.start_validation(new_max='3.7a4')
+        assert validate.called
+        eq_(validate.call_args[1]['overrides'],
+            {"targetapp_maxVersion": {amo.FIREFOX.guid: '3.7a4'}})
 
 
 def test_settings():
