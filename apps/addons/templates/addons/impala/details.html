@@ -20,7 +20,7 @@
 <aside class="secondary addon-vitals">
   {{ addon.average_rating|stars(large=True) }}
   <div><a href="#reviews">{{ _('{0} user reviews')|f(addon.total_reviews|numberfmt) }}</a></div>
-  <div>{{ _('<b>{0}</b> active users')|f(addon.average_daily_users|numberfmt)|safe }}</div>
+  <div id="#daily-users b">{{ _('<b>{0}</b> active users')|f(addon.average_daily_users|numberfmt)|safe }}</div>
   <div class="widgets">
     {{ favorites_widget(addon) }}
     {% include 'addons/includes/collection_add_widget.html' %}
@@ -32,14 +32,14 @@
 <section class="primary">
   <div id="addon" class="island c" role="main" data-id="{{ addon.id }}">
     <hgroup>
-      <img src="{{ addon.get_icon_url(64) }}" class="icon">
+      <img id="addon-icon" src="{{ addon.get_icon_url(64) }}" class="icon">
       <h2 class="addon"{{ addon.name|locale_html }}>
         {{ addon.name }}
         <span class="version">{{ version.version }}</span>
       </h2>
       <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
     </hgroup>
-    <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
+    <p id="addon-summary" {{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
     {{ big_install_button(addon, show_warning=False) }}
   </div>
 
@@ -58,7 +58,7 @@
     <section class="previews carousel">
       <a href="#" class="control prev">&laquo;</a>
       <a href="#" class="control next">&raquo;</a>
-      <ul class="slider">
+      <ul id="preview" class="slider">
         {%- for preview in addon.all_previews -%}
           <li class="panel">
             <a class="screenshot thumbnail" rel="jquery-lightbox"
@@ -79,7 +79,7 @@
 {% if addon.description %}
   <section class="primary island">
     <h2>{{ _('About this Add-on') }}'</h2>
-    <p{{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
+    <p id="addon-description" {{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
   </section>
 {% endif %}
 
