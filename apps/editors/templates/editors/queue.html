@@ -107,7 +107,13 @@
             <ul class="reviews-flagged-reasons">
               {% for reason in review.instance.reviewflag_set.all() %}
               <li>
-              <strong>{{ flags[reason.flag] }}</strong>
+              <div>
+                {% trans user=reason.user|user_link, date=reason.modified|datetime,
+                         reason=flags[reason.flag] %}
+                <strong>{{ reason }}</strong>
+                <span class="light">Flagged by {{ user }} on {{ date }}</span>
+                {% endtrans %}
+              </div>
               {{ reason.note }}
               </li>
               {% endfor %}

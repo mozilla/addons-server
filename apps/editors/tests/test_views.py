@@ -7,6 +7,7 @@ import time
 from django.conf import settings
 from django.core import mail
 
+import jingo
 from mock import patch, patch_object
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -650,6 +651,10 @@ class TestModeratedQueue(QueueTest):
 
         # Default is "Skip"
         assert doc('#id_form-0-action_1:checked')
+
+        current_date = jingo.helpers.datetime(datetime.now())
+        eq_(doc('.reviews-flagged-reasons span.light').text(),
+            'Flagged by editor on %s' % current_date)
 
     def setup_actions(self, action):
         ctx = self.client.get(self.url).context
