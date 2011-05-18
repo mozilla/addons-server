@@ -466,7 +466,8 @@ class Message:
 
     def get(self, delete=False):
         res = cache.get(self.key)
-        cache.delete(self.key)
+        if delete:
+            cache.delete(self.key)
         return res
 
 

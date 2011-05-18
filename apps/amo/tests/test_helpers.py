@@ -430,8 +430,9 @@ class TestMessage(test_utils.TestCase):
         new.save('123')
 
         new = Message('abc')
+        eq_(new.get(delete=False), '123')
         eq_(new.get(delete=True), '123')
-        eq_(new.get(delete=True), None)
+        eq_(new.get(), None)
 
 
 def test_site_nav():
