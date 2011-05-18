@@ -1,1 +1,1 @@
-{% for module in modules %}{{ module.render() }}{% endfor %}
+{% for module in modules %}{{ module.render(module_context='home') }}{% endfor %}

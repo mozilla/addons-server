@@ -50,7 +50,7 @@ class TemplatePromo(PromoModule):
     def context(self):
         return {}
 
-    def render(self):
+    def render(self, **kw):
         r = jingo.render_to_string(self.request, self.template, self.context())
         return jinja2.Markup(r)
 
@@ -103,8 +103,9 @@ class CollectionPromo(PromoModule):
         f = lambda: addon_filter(addons, **kw)
         return caching.cached_with(addons, f, repr(kw))
 
-    def render(self):
+    def render(self, module_context='discovery'):
         c = dict(promo=self, addons=self.get_addons(),
+                 module_context=module_context,
                  descriptions=self.get_descriptions())
         return jinja2.Markup(
             jingo.render_to_string(self.request, self.template, c))
