@@ -20,6 +20,12 @@
           </div>
         </a>
         <div class="more">
+          {% trans num=collection.addon_count|numberfmt %}
+            <span>{{ num }}</span> addon
+          {% pluralize %}
+            <span>{{ num }}</span> addons
+          {% endtrans %}
+          &middot;
           {% trans num=collection.subscribers|numberfmt %}
             <span>{{ num }}</span> follower
           {% pluralize %}
