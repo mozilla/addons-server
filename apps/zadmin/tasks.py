@@ -60,7 +60,8 @@ def bulk_validate_file(result_id, **kw):
                  % (res.file, file_base, res.id))
         target = res.validation_job.target_version
         ver = {target.application.guid: [target.version]}
-        validation = run_validator(res.file.file_path, for_appversions=ver)
+        validation = run_validator(res.file.file_path, for_appversions=ver,
+                                   test_all_tiers=True)
     except:
         task_error = sys.exc_info()
         log.error(task_error[1])

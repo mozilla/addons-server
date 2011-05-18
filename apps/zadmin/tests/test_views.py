@@ -24,6 +24,7 @@ from versions.models import Version
 from zadmin.forms import NotifyForm
 from zadmin.models import ValidationJob, ValidationResult, EmailPreviewTopic
 from zadmin.views import completed_versions_dirty
+from zadmin import tasks
 
 
 class TestFlagged(test_utils.TestCase):
@@ -205,6 +206,16 @@ class TestBulkValidation(BulkValidationTest):
             empty = False
             eq_(AppVersion.objects.get(pk=id).version, ver)
         assert not empty, "Unexpected: %r" % data
+
+    @mock.patch('zadmin.tasks.run_validator')
+    def test_validate_all_tiers(self, run_validator):
+        run_validator.return_value = json.dumps(dict(errors=0, warnings=0,
+                                                     notices=0))
+        self.job = self.create_job(completed=datetime.now())
+        res = self.create_result(self.job, self.create_file(), **{})
+        tasks.bulk_validate_file(res.id)
+        assert run_validator.called
+        eq_(run_validator.call_args[1]['test_all_tiers'], True)
 
 
 class TestBulkUpdate(BulkValidationTest):
