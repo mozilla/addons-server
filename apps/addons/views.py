@@ -398,8 +398,6 @@ def impala_home(request):
     collections = Collection.objects.filter(listed=True,
                                             application=request.APP.id,
                                             type=amo.COLLECTION_FEATURED)
-    promobox = CollectionPromoBox(request)
-
     featured = base.filter(id__in=featured_ids)[:18]
     popular = base.order_by('-weekly_downloads')[:10]
     hotness = base.order_by('-hotness')[:18]
@@ -409,7 +407,7 @@ def impala_home(request):
     return jingo.render(request, 'addons/impala/home.html',
                         {'popular': popular, 'featured': featured,
                          'hotness': hotness, 'personas': personas,
-                         'collections': collections, 'promobox': promobox})
+                         'collections': collections})
 
 
 @mobilized(home)
@@ -430,6 +428,13 @@ def home(request):
                      key=attrgetter('weekly_downloads'), reverse=True)
     return jingo.render(request, 'addons/mobile/home.html',
                         {'featured': featured, 'popular': popular})
+
+
+def homepage_promos(request, version, platform):
+    from discovery.views import get_modules
+    modules = get_modules(request, platform, version)
+    return jingo.render(request, 'addons/impala/homepage_promos.html',
+                        {'modules': modules})
 
 
 class CollectionPromoBox(object):

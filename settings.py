@@ -402,6 +402,7 @@ MINIFY_BUNDLES = {
             'css/impala/carousel.less',
             'css/impala/reviews.less',
             'css/impala/buttons.less',
+            'css/impala/promos.less',
             'css/impala/addon_details.less',
         ),
         'zamboni/discovery-pane': (
@@ -487,6 +488,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/tabs.js',
 
             'js/lib/jquery.cookie.js',
+            'js/zamboni/truncation.js',
             'js/zamboni/global.js',
             'js/amo2009/global.js',
             'js/impala/global.js',
