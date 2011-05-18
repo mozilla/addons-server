@@ -179,14 +179,14 @@ def start_validation(request):
                 where
                     av.application_id = %(application_id)s
                     and av.max = %(curr_max_version)s
-                    and not a.inactive
-                    and a.status in %(active_statuses)s
-                    and files.status in %(active_statuses)s"""
+                    and NOT a.inactive
+                    and a.status NOT IN %(inactive_statuses)s
+                    and files.status NOT IN %(inactive_statuses)s"""
             cursor = connection.cursor()
             cursor.execute(sql, {'application_id': job.application.id,
                                  'curr_max_version': job.curr_max_version.id,
-                                 'active_statuses': [amo.STATUS_LISTED,
-                                                     amo.STATUS_PUBLIC]})
+                                 'inactive_statuses': [amo.STATUS_DISABLED,
+                                                       amo.STATUS_NULL]})
             results = []
             for row in cursor:
                 res = ValidationResult.objects.create(validation_job=job,

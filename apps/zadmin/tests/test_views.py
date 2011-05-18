@@ -186,6 +186,24 @@ class TestBulkValidation(BulkValidationTest):
             assert not bulk_validate_file.delay.called, (
                             'Addon with status %s should be ignored' % status)
 
+    @mock.patch('zadmin.tasks.bulk_validate_file')
+    def test_validate_all_non_disabled_addons(self, bulk_validate_file):
+        target_ver = self.appversion('3.7a3').id
+        for status in (amo.STATUS_PUBLIC, amo.STATUS_LISTED,
+                       amo.STATUS_UNREVIEWED, amo.STATUS_NOMINATED):
+            bulk_validate_file.delay.called = False
+            self.addon.update(status=status)
+            r = self.client.post(reverse('zadmin.start_validation'),
+                                 {'application': amo.FIREFOX.id,
+                                  'curr_max_version': self.curr_max.id,
+                                  'target_version': target_ver,
+                                  'finish_email': 'fliggy@mozilla.com'},
+                                 follow=True)
+            self.assertNoFormErrors(r)
+            self.assertRedirects(r, reverse('zadmin.validation'))
+            assert bulk_validate_file.delay.called, (
+                        'Addon with status %s should be validated' % status)
+
     def test_grid(self):
         job = self.create_job()
         for res in (dict(errors=0), dict(errors=1)):
