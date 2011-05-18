@@ -449,8 +449,6 @@ asyncTest('Test task error', function() {
     });
 });
 
-module('Validator: Compatibility Only', compatibilityFixtures);
-
 asyncTest('Test no tests section', function() {
     var $suite = $('.addon-validator-suite', this.sandbox),
         tiers=[], results=[];
@@ -498,6 +496,112 @@ asyncTest('Test no tests section', function() {
     }).thenDo(function() {
         equals($('#suite-results-tier-non_compat:visible', $suite).length, 0);
         equals($('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .msg', $suite).length, 1);
+        start();
+    });
+});
+
+asyncTest('Test compat error override', function() {
+    var $suite = $('.addon-validator-suite', this.sandbox),
+        tiers=[], results=[];
+
+    $.mockjax({
+        url: '/validate',
+        responseText: {
+            "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
+            "full_report_url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "upload": "d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "error": null,
+            "validation": {
+                "errors": 0,
+                "compatibility_summary": {"errors": 1},
+                "success": false,
+                "warnings": 1,
+                "ending_tier": 5,
+                "messages": [{
+                    "context": ["<code>"],
+                    "description": ["A dangerous or banned global..."],
+                    "column": 23,
+                    "id": [],
+                    "file": "chrome/content/youtune.js",
+                    "tier": 3,
+                    "for_appversions": {
+                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.0b3"]
+                    },
+                    "message": "Dangerous Global Object",
+                    "type": "warning",
+                    "compatibility_type": "error",
+                    "line": 533,
+                    "uid": "2a96f7faee7a41cca4d6ead26dddc6b3"
+                }],
+                "detected_type": "extension",
+                "notices": 0,
+                "message_tree": {},
+                "metadata": {}
+            }
+        }
+    });
+
+    $suite.trigger('validate');
+
+    tests.waitFor(function() {
+        // Wait until last app/version section was created.
+        return $('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3', $suite).length;
+    }).thenDo(function() {
+        var $msg = $('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .msg', $suite);
+        ok($msg.hasClass('msg-error'),
+           'Expected msg-error, got: ' + $msg.attr('class'));
+        start();
+    });
+});
+
+asyncTest('Test basic error override', function() {
+    var $suite = $('.addon-validator-suite', this.sandbox),
+        tiers=[], results=[];
+
+    $.mockjax({
+        url: '/validate',
+        responseText: {
+            "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
+            "full_report_url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "upload": "d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "error": null,
+            "validation": {
+                "errors": 0,
+                "compatibility_summary": {"errors": 1},
+                "success": false,
+                "warnings": 1,
+                "ending_tier": 5,
+                "messages": [{
+                    "context": ["<code>"],
+                    "description": ["Contains binary components..."],
+                    "column": 23,
+                    "id": [],
+                    "file": "chrome/content/youtune.dll",
+                    "tier": 3,
+                    "for_appversions": null,
+                    "message": "Contains Binary Components",
+                    "type": "warning",
+                    "compatibility_type": "error",
+                    "line": 533,
+                    "uid": "2a96f7faee7a41cca4d6ead26dddc6b3"
+                }],
+                "detected_type": "extension",
+                "notices": 0,
+                "message_tree": {},
+                "metadata": {}
+            }
+        }
+    });
+
+    $suite.trigger('validate');
+
+    tests.waitFor(function() {
+        // Wait until last app/version section was created.
+        return $('#suite-results-tier-non_compat .msg', $suite).length;
+    }).thenDo(function() {
+        var $msg = $('#suite-results-tier-non_compat .msg', $suite);
+        ok($msg.hasClass('msg-error'),
+           'Expected msg-error, got: ' + $msg.attr('class'));
         start();
     });
 });

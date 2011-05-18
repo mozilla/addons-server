@@ -1140,9 +1140,9 @@ $(document).ready(function() {
 
     function buildResults(suite, data) {
         var validation = data.validation,
-            msgMap = buildMsgMap(validation.messages),
-            summaryTxt,
             isCompat = $('.results', suite).hasClass('compatibility-results'),
+            msgMap = buildMsgMap(validation.messages, isCompat),
+            summaryTxt,
             compatResults = {},
             appTrans,
             versionChangeLinks,
@@ -1163,12 +1163,13 @@ $(document).ready(function() {
             versionChangeLinks = JSON.parse(
                     $resultsHolder.attr('data-version-change-links'));
         }
+        if (isCompat && msgMap.non_compat.messages.length == 0) {
+            // The non-compat tier also displays the ajax loader while
+            // fetching results
+            $('#suite-results-tier-non_compat', suite).hide();
+        }
 
         for (var tierNum in msgMap) {
-            if (tierNum == 'non_compat' && msgMap[tierNum].messages.length) {
-                // This is hidden by default.
-                $('#suite-results-tier-non_compat', suite).css('display', 'block').removeClass('hidden');
-            }
             var tierData = msgMap[tierNum],
                 tier = $('[class~="test-tier"]' +
                          '[data-tier="' + tierNum + '"]', suite),
@@ -1211,8 +1212,10 @@ $(document).ready(function() {
 
             $.each(tierData.messages, function(i, msg) {
                 var msgDiv = $('<div class="msg"><h5></h5></div>'),
-                    prefix = msg['type']=='warning' ? gettext('Warning')
-                                                    : gettext('Error'),
+                    effectiveType = (isCompat && msg.compatibility_type)
+                                     ? msg.compatibility_type: msg['type'],
+                    prefix = effectiveType=='warning' ? gettext('Warning')
+                                                      : gettext('Error'),
                     ctxDiv, lines, code, innerCode, ctxFile,
                     $compatSections = null,
                     $compatTier = null,
@@ -1256,7 +1259,7 @@ $(document).ready(function() {
                     $compatSections = $('.tier-results', $compatTier);
                 }
                 msgDiv.attr('id', msgId(msg.uid));
-                msgDiv.addClass('msg-' + msg['type']);
+                msgDiv.addClass('msg-' + effectiveType);
                 $('h5', msgDiv).html(msg.message);
                 if (typeof(msg.description) === 'undefined'
                     || msg.description === '') {
@@ -1337,7 +1340,7 @@ $(document).ready(function() {
         return format('{0}, {1}', errors, warnings);
     }
 
-    function buildMsgMap(messages) {
+    function buildMsgMap(messages, isCompat) {
         // The tiers will not apper in the JSON
         // if there are no errors.  FIXME?
         var msgMap = {
@@ -1352,18 +1355,25 @@ $(document).ready(function() {
                          message_uids: {}}
         };
         $.each(messages, function(i, msg) {
-            var isCompat = false,
-                isUniqueNonCompat = false;
+            var msgIsCompat = false,
+                isUniqueNonCompat = false,
+                effectiveType;
             eachAppVer(msg.for_appversions, function(app, ver, k) {
-                isCompat = true;
+                msgIsCompat = true;
                 if (typeof msgMap.appVersions[k] === 'undefined') {
                     msgMap.appVersions[k] = {errors: 0, warnings: 0, messages: []};
                 }
                 msgMap.appVersions[k].messages.push(msg);
             });
 
+            if (isCompat && msg.compatibility_type) {
+                effectiveType = msg.compatibility_type;
+            } else {
+                effectiveType = msg['type'];
+            }
+
             msgMap[msg.tier].messages.push(msg);
-            if (!isCompat) {
+            if (!msgIsCompat) {
                 if (typeof msgMap.non_compat.message_uids[msg.uid] === 'undefined') {
                     msgMap.non_compat.messages.push(msg);
                     msgMap.non_compat.message_uids[msg.uid] = true;
@@ -1371,21 +1381,21 @@ $(document).ready(function() {
                 }
             }
 
-            if (msg['type'] == 'error') {
+            if (effectiveType == 'error') {
                 msgMap[msg.tier].errors += 1;
                 eachAppVer(msg.for_appversions, function(app, ver, k) {
                     msgMap.appVersions[k].errors += 1;
                 });
-                if (!isCompat && isUniqueNonCompat) {
+                if (!msgIsCompat && isUniqueNonCompat) {
                     msgMap.non_compat.errors += 1;
                 }
             }
-            else if (msg['type'] == 'warning' || msg['type'] == 'notice') {
+            else if (effectiveType == 'warning' || effectiveType == 'notice') {
                 msgMap[msg.tier].warnings += 1;
                 eachAppVer(msg.for_appversions, function(app, ver, k) {
                     msgMap.appVersions[k].warnings += 1;
                 });
-                if (!isCompat && isUniqueNonCompat) {
+                if (!msgIsCompat && isUniqueNonCompat) {
                     msgMap.non_compat.warnings += 1;
                 }
             }
