@@ -606,6 +606,63 @@ asyncTest('Test basic error override', function() {
     });
 });
 
+asyncTest('Test single tier', function() {
+    var $suite = $('.addon-validator-suite', this.sandbox),
+        tiers=[], results=[];
+
+    $.mockjax({
+        url: '/validate',
+        responseText: {
+            "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
+            "full_report_url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "upload": "d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "error": null,
+            "validation": {
+                "errors": 0,
+                "success": false,
+                "warnings": 5,
+                "compatibility_summary": {
+                    "notices": 1,
+                    "errors": 2,
+                    "warnings": 0
+                },
+                "ending_tier": 5,
+                "messages": [{
+                    "context": null,
+                    "compatibility_type": "notice",
+                    "uid": "bc73cbff60534798b46ed5840d1544c6",
+                    "column": null,
+                    "line": null,
+                    "file": "",
+                    "tier": 5,
+                    "for_appversions": {
+                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.2a1pre", "5.0a2", "6.0a1", "4.0.*"]
+                    },
+                    "message": "Firefox 5 Compatibility Detected",
+                    "type": "notice",
+                    "id": ["testcases_compatibility", "firefox_5_test", "fx5_notice"],
+                    "description": "Potential compatibility for FX5 was detected."
+                }],
+                "detected_type": "extension",
+                "notices": 2,
+                "message_tree": {},
+                "metadata": {}
+            }
+        }
+    });
+
+    $suite.trigger('validate');
+
+    tests.waitFor(function() {
+        // Wait until last app/version section was created.
+        return $('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-42a1pre', $suite).length;
+    }).thenDo(function() {
+        // This was failing with tier not found
+        equals($('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-42a1pre .msg', $suite).length, 1);
+        start();
+    });
+});
+
 
 module('Validator: Incomplete', validatorFixtures);
 
