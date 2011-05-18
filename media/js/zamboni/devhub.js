@@ -1348,6 +1348,7 @@ $(document).ready(function() {
             2: {errors: 0, warnings: 0, messages: []},
             3: {errors: 0, warnings: 0, messages: []},
             4: {errors: 0, warnings: 0, messages: []},
+            5: {errors: 0, warnings: 0, messages: []},  // compatibility tier
             errors: {errors: 0, warnings: 0, messages: []},
             appVersions: {},
             // catch-all tier for messages not related to compatibility:
