@@ -1,11 +1,10 @@
-import hashlib
 import json
 
 from django import http
 from django.conf import settings
-from django.utils.http import http_date
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import condition
 
 import commonware.log
 import jingo
@@ -15,7 +14,8 @@ from access import acl
 from amo.decorators import json_view, post_required
 from amo.urlresolvers import reverse
 from amo.utils import HttpResponseSendFile, Message, Token
-from files.decorators import file_view, compare_file_view, file_view_token
+from files.decorators import (etag, file_view, compare_file_view,
+                              file_view_token, last_modified)
 from files.tasks import extract_file, repackage_jetpack
 
 from tower import ugettext as _
@@ -51,6 +51,7 @@ def poll(request, viewer):
 
 
 @file_view
+@condition(etag_func=etag, last_modified_func=last_modified)
 def browse(request, viewer, key=None):
     data = setup_viewer(request, viewer.file)
     data['viewer'] = viewer
@@ -77,12 +78,7 @@ def browse(request, viewer, key=None):
     tmpl = ('files/content.html' if not request.GET.get('full')
                                     and request.is_ajax()
                                     else 'files/viewer.html')
-    response = jingo.render(request, tmpl, data)
-    if not settings.DEBUG:
-        response['ETag'] = '"%s"' % hashlib.md5(response.content).hexdigest()
-        response['Last-Modified'] = http_date(data['selected']['modified'] if
-                                              data['selected'] else None)
-    return response
+    return jingo.render(request, tmpl, data)
 
 
 @never_cache
@@ -98,6 +94,7 @@ def compare_poll(request, diff):
 
 
 @compare_file_view
+@condition(etag_func=etag, last_modified_func=last_modified)
 def compare(request, diff, key=None):
     data = setup_viewer(request, diff.left.file)
     data['diff'] = diff
@@ -130,12 +127,7 @@ def compare(request, diff, key=None):
     tmpl = ('files/content.html' if not request.GET.get('full')
                                     and request.is_ajax()
                                     else 'files/viewer.html')
-    response = jingo.render(request, tmpl, data)
-    if not settings.DEBUG:
-        response['ETag'] = '"%s"' % hashlib.md5(response.content).hexdigest()
-        response['Last-Modified'] = http_date(data['selected']['modified'] if
-                                              data['selected'] else None)
-    return response
+    return jingo.render(request, tmpl, data)
 
 
 @file_view

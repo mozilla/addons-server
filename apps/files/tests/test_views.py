@@ -7,6 +7,7 @@ import urlparse
 from django.conf import settings
 from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
+from django.utils.http import http_date
 
 from mock import patch, patch_object
 from nose.tools import eq_
@@ -145,6 +146,24 @@ class FilesBase:
         res = self.client.get(self.file_url('install.js'))
         assert 'etag' in res._headers
         assert 'last-modified' in res._headers
+
+    def test_content_headers_etag(self):
+        self.file_viewer.extract()
+        self.file_viewer.select('install.js')
+        obj = getattr(self.file_viewer, 'left', self.file_viewer)
+        etag = obj.selected.get('md5')
+        res = self.client.get(self.file_url('install.js'),
+                              HTTP_IF_NONE_MATCH=etag)
+        eq_(res.status_code, 304)
+
+    def test_content_headers_if_modified(self):
+        self.file_viewer.extract()
+        self.file_viewer.select('install.js')
+        obj = getattr(self.file_viewer, 'left', self.file_viewer)
+        date = http_date(obj.selected.get('modified'))
+        res = self.client.get(self.file_url('install.js'),
+                              HTTP_IF_MODIFIED_SINCE=date)
+        eq_(res.status_code, 304)
 
     def test_file_header(self):
         self.file_viewer.extract()

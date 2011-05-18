@@ -1,8 +1,10 @@
+from datetime import datetime
 import functools
 
 from django import http
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404
+from django.utils.http import http_date
 
 from amo.utils import Token
 from access.acl import check_addon_ownership, action_allowed
@@ -29,6 +31,23 @@ def allowed(request, file):
     return True
 
 
+def _get_value(obj, key, value, cast=None):
+    obj = getattr(obj, 'left', obj)
+    key = obj.get_default(key)
+    obj.select(key)
+    if obj.selected:
+        value = obj.selected.get(value)
+        return cast(value) if cast else value
+
+
+def last_modified(request, obj, key=None):
+    return _get_value(obj, key, 'modified', datetime.fromtimestamp)
+
+
+def etag(request, obj, key=None):
+    return _get_value(obj, key, 'md5')
+
+
 def file_view(func, **kwargs):
     @functools.wraps(func)
     def wrapper(request, file_id, *args, **kw):
@@ -36,7 +55,12 @@ def file_view(func, **kwargs):
         result = allowed(request, file)
         if result is not True:
             return result
-        return func(request, FileViewer(file), *args, **kw)
+        obj = FileViewer(file)
+        response = func(request, obj, *args, **kw)
+        if obj.selected:
+            response['ETag'] = '"%s"' % obj.selected.get('md5')
+            response['Last-Modified'] = http_date(obj.selected.get('modified'))
+        return response
     return wrapper
 
 
@@ -49,8 +73,13 @@ def compare_file_view(func, **kwargs):
             result = allowed(request, obj)
             if result is not True:
                 return result
-
-        return func(request, DiffHelper(one, two), *args, **kw)
+        obj = DiffHelper(one, two)
+        response = func(request, obj, *args, **kw)
+        if obj.left.selected:
+            response['ETag'] = '"%s"' % obj.left.selected.get('md5')
+            response['Last-Modified'] = http_date(obj.left.selected
+                                                          .get('modified'))
+        return response
     return wrapper
 
 
