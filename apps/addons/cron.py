@@ -95,7 +95,8 @@ def _update_addons_current_version(data, **kw):
             addon = Addon.objects.get(pk=pk[0])
             addon.update_version()
         except Addon.DoesNotExist:
-            task_log.debug("Missing addon: %d" % pk)
+            m = "Failed to update current_version. Missing add-on: %d" % (pk)
+            task_log.debug(m)
     transaction.commit_unless_managed()
 
 
