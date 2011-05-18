@@ -20,7 +20,7 @@
 <aside class="secondary addon-vitals">
   {{ addon.average_rating|stars(large=True) }}
   <div><a href="#reviews">{{ _('{0} user reviews')|f(addon.total_reviews|numberfmt) }}</a></div>
-  <div>{{ _('<b id="daily-users">{0}</b> active users')|f(addon.average_daily_users|numberfmt)|safe }}</div>
+  <div id="#daily-users b">{{ _('<b>{0}</b> active users')|f(addon.average_daily_users|numberfmt)|safe }}</div>
   <div class="widgets">
     {{ favorites_widget(addon) }}
     {% include 'addons/includes/collection_add_widget.html' %}
