@@ -132,11 +132,13 @@ class ValidationResult(amo.models.ModelBase):
         db_table = 'validation_result'
 
     def apply_validation(self, validation):
-        js = json.loads(validation)
         self.validation = validation
-        self.errors = js['errors']
-        self.warnings = js['warnings']
-        self.notices = js['notices']
+        results = json.loads(validation)
+        compat = results['compatibility_summary']
+        # TODO(Kumar) these numbers should not be combined. See bug 657936.
+        self.errors = results['errors'] + compat['errors']
+        self.warnings = results['warnings'] + compat['warnings']
+        self.notices = results['notices'] + compat['notices']
         self.valid = self.errors == 0
 
 
