@@ -200,6 +200,11 @@ class TestSearchEngineHelper(test_utils.TestCase):
         self.viewer.extract()
         eq_(self.viewer.get_default(None), 'a9.xml')
 
+    def test_default_no_files(self):
+        self.viewer.extract()
+        os.remove(os.path.join(self.viewer.dest, 'a9.xml'))
+        eq_(self.viewer.get_default(None), None)
+
 
 class TestDiffSearchEngine(test_utils.TestCase):
 

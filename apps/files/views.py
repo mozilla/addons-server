@@ -57,7 +57,7 @@ def browse(request, viewer, key=None):
     data['poll_url'] = reverse('files.poll', args=[viewer.file.id])
 
     if (not waffle.switch_is_active('delay-file-viewer') and
-        not viewer.is_extracted):
+        not viewer.is_extracted()):
         extract_file(viewer)
 
     if viewer.is_extracted():
@@ -106,7 +106,7 @@ def compare(request, diff, key=None):
                                      diff.right.file.id])
 
     if (not waffle.switch_is_active('delay-file-viewer')
-        and not diff.is_extracted):
+        and not diff.is_extracted()):
         extract_file(diff.left)
         extract_file(diff.right)
 

@@ -78,7 +78,10 @@ class FileViewer:
             pass
 
         if self.is_search_engine() and self.src.endswith('.xml'):
-            os.makedirs(self.dest)
+            try:
+                os.makedirs(self.dest)
+            except OSError, err:
+                pass
             shutil.copyfile(self.src,
                             os.path.join(self.dest, self.file.filename))
         else:
@@ -165,7 +168,8 @@ class FileViewer:
     def get_default(self, key=None):
         """Gets the default file and copes with search engines."""
         if self.is_search_engine() and not key:
-            return self.get_files().keys()[0]
+            files = self.get_files()
+            return files.keys()[0] if files else None
         return key if key else 'install.rdf'
 
     def get_files(self):
