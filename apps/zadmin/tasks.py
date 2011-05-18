@@ -64,7 +64,8 @@ def bulk_validate_file(result_id, **kw):
                                    test_all_tiers=True)
     except:
         task_error = sys.exc_info()
-        log.error(task_error[1])
+        log.error(u"bulk_validate_file exception: %s: %s"
+                  % (task_error[0], task_error[1]), exc_info=False)
 
     res.completed = datetime.now()
     if task_error:
