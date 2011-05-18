@@ -1,144 +1,265 @@
 {% extends "devhub/base.html" %}
 
-{% block title %}{{ docs_page_title("API & Language References") }}{% endblock %}
+{% block title %}{{ docs_page_title(_('API & Language References')) }}{% endblock %}
 
 {% block bodyclass %}developer-hub inverse dev-docs{% endblock %}
 
 {% block content %}
 {{ docs_breadcrumbs(items=[(None, _("API & Language References"))]) }}
-{% trans %}
+
 <div class="primary" role="main">
-<h2>API &amp; Language References</h2>
+  <h2>{{ _('API &amp; Language References') }}</h2>
 
-<p class="summary">
-The official documentation on APIs and languages. What you need, when you need it, to create your masterpiece.    </p>
+  <p class="summary">
+  {% trans %}
+  The official documentation on APIs and languages. What you need, when you need it, to create your masterpiece.
+  {% endtrans %}
+  </p>
 
-<h3 id="ref-xul">XUL: Defining User Interfaces</h3>
-<ul class="reflist rounded graybox">
-  <li><a class="refname" href="https://developer.mozilla.org/en/XUL">XUL Overview</a>
-  <span>via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a></span>
+  <h3 id="ref-xul">{{ _('XUL: Defining User Interfaces') }}</h3>
+  <ul class="reflist rounded graybox">
+    <li><a class="refname" href="https://developer.mozilla.org/en/XUL">{{ _('XUL Overview') }}</a>
+    <span>
+      {% trans %}
+      via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a>
+      {% endtrans %}
+    </span>
+    <p>
+    {% trans %}
+    XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications that can run connected or disconnected from the Internet.
+    {% endtrans %}
+    </p>
+    </li>
+    <li><a class="refname" href="https://developer.mozilla.org/en/XUL_Reference">{{ _('XUL Reference') }}</a>
+    <span>
+      {% trans %}
+      via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a></span>
+    {% endtrans %}
+    <p>
+    {% trans %}
+    A list of all available XUL elements.
+    {% endtrans %}
+    </p>
+    </li>
 
-  <p>XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications that can run connected or disconnected from the Internet.</p>
-  </li>
-  <li><a class="refname" href="https://developer.mozilla.org/en/XUL_Reference">XUL Reference</a>
-  <span>via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a></span>
-  <p>A list of all available XUL elements.</p>
-  </li>
+    <li><a class="refname" href="https://developer.mozilla.org/en/XUL_controls">{{ _('XUL Controls List') }}</a>
+    <span>
+      {% trans %}
+      via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a></span>
+    {% endtrans %}
+    <p>
+    {% trans %}
+    A description of many available XUL controls, including screenshots.
+    {% endtrans %}
+    </p>
+    </li>
+  </ul>
 
-  <li><a class="refname" href="https://developer.mozilla.org/en/XUL_controls">XUL Controls List</a>
-  <span>via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a></span>
-  <p>A description of many available XUL controls, including screenshots.</p>
-  </li>
-</ul>
+  <h3 id="ref-js">{{ _('JavaScript: Specifying Behavior') }}</h3>
 
-<h3 id="ref-js">JavaScript: Specifying Behavior</h3>
+  <ul class="reflist rounded graybox">
+    <li><a class="refname" href="https://developer.mozilla.org/en/JavaScript">{{ _('JavaScript Overview') }}</a>
+    <span>
+      {% trans %}
+      via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a>
+      {% endtrans %}
+    </span>
+    <p>
+    {% trans %}
+    JavaScript is a small, lightweight, object-oriented, cross-platform scripting language.
+    {% endtrans %}
+    </p>
+    </li>
 
-<ul class="reflist rounded graybox">
-  <li><a class="refname" href="https://developer.mozilla.org/en/JavaScript">JavaScript Overview</a>
-  <span>via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a></span>
-  <p>JavaScript is a small, lightweight, object-oriented, cross-platform scripting language.</p>
-  </li>
-  <li><a class="refname" href="https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference">Gecko JavaScript Language Reference</a>
+    <li><a class="refname" href="https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference">{{ _('Gecko JavaScript Language Reference') }}</a>
+    <span>
+      {% trans %}
+      via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a>
+      {% endtrans %}
+    </span>
+    <p>
+    {% trans %}
+    Mozilla Developer Center's JavaScript documentation, including functions, statements, properties, and more.
+    {% endtrans %}
+    </p>
+    </li>
 
-  <span>via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a></span>
-  <p>Mozilla Developer Center's JavaScript documentation, including functions, statements, properties, and more.</p>
-  </li>
-  <li><a class="refname" href="https://developer.mozilla.org/en/JavaScript_style_guide">JavaScript Style Guide</a>
-  <span>via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a></span>
-  <p>Mozilla's JavaScript coding standards.</p>
+    <li><a class="refname" href="https://developer.mozilla.org/en/JavaScript_style_guide">{{ _('JavaScript Style Guide') }}</a>
+    <span>
+      {% trans %}
+      via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a>
+      {% endtrans %}
+    </span>
+    <p>
+    {% trans %}
+    Mozilla's JavaScript coding standards.
+    {% endtrans %}
+    </p>
 
-  </li>
-</ul>
+    </li>
+  </ul>
 
-<h3 id="ref-css">CSS: Adding Visual Effects</h3>
-<ul class="reflist rounded graybox">
-  <li><a class="refname" href="https://developer.mozilla.org/en/CSS">CSS Overview</a>
-  <span>via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a></span>
+  <h3 id="ref-css">{{ _('CSS: Adding Visual Effects') }}</h3>
+  <ul class="reflist rounded graybox">
+    <li><a class="refname" href="https://developer.mozilla.org/en/CSS">CSS Overview</a>
+    <span>via <a class="refsource" href="http://developer.mozilla.org">{{ _('Mozilla Developer Center') }}</a></span>
 
-  <p>Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML and is used to style a XUL-based application's user interface.</p>
-  </li>
-  <li><a class="refname" href="https://developer.mozilla.org/en/CSS_Reference">Gecko CSS Reference</a>
-  <span>via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a></span>
-  <p>Mozilla Developer Center's CSS documentation, listing all available properties, values, and selectors.</p>
-  </li>
+    <p>Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML and is used to style a XUL-based application's user interface.</p>
+    </li>
+    <li><a class="refname" href="https://developer.mozilla.org/en/CSS_Reference">Gecko CSS Reference</a>
+    <span>
+      {% trans %}
+      via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a>
+      {% endtrans %}
+    </span>
+    <p>
+    {% trans %}
+    Mozilla Developer Center's CSS documentation, listing all available properties, values, and selectors.
+    {% endtrans %}
+    </p>
+    </li>
 
-  <li><a class="refname" href="http://www.w3.org/Style/CSS/">W3C CSS Homepage</a>
-  <span>via <a class="refsource" href="http://www.w3.org">World Wide Web Consortium</a></span>
-  <p>Find CSS news, specifications, and tools at the W3C's CSS homepage.</p>
-  </li>
-</ul>
+    <li><a class="refname" href="http://www.w3.org/Style/CSS/">W3C CSS Homepage</a>
+    <span>via <a class="refsource" href="http://www.w3.org">{{ _('World Wide Web Consortium') }}</a></span>
+    <p>Find CSS news, specifications, and tools at the W3C's CSS homepage.</p>
+    </li>
+  </ul>
 
-<h3 id="ref-fuel">FUEL: Easier Extension Development</h3>
+  <h3 id="ref-fuel">{{ _('FUEL: Easier Extension Development') }}</h3>
 
-<ul class="reflist rounded graybox">
-  <li><a class="refname" href="https://developer.mozilla.org/en/FUEL">FUEL API</a>
-  <span>via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a></span>
-  <p>FUEL is a JavaScript library designed to help developers build extensions using terminology and interfaces that are familiar to them.</p>
-  </li>
-  <li><a class="refname" href="https://developer.mozilla.org/en/Thunderbird/STEEL">STEEL API</a>
+  <ul class="reflist rounded graybox">
+    <li><a class="refname" href="https://developer.mozilla.org/en/FUEL">FUEL API</a>
+    <span>
+      {% trans %}
+      via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a>
+      {% endtrans %}
+    </span>
+    <p>
+    {% trans %}
+    FUEL is a JavaScript library designed to help developers build extensions using terminology and interfaces that are familiar to them.
+    {% endtrans %}
+    </p>
+    </li>
+    <li><a class="refname" href="https://developer.mozilla.org/en/Thunderbird/STEEL">{{ _('STEEL API') }}</a>
 
-  <span>via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a></span>
-  <p>STEEL is the Scriptable Thunderbird Easy Extension Library. It is a FUEL-like set of interfaces to facilitate Thunderbird extension development.</p>
-  </li>
-  <li><a class="refname" href="https://developer.mozilla.org/en/SeaMonkey/SMILE">SMILE API</a>
-  <span>via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a></span>
-  <p>SMILE is a FUEL-like set of interfaces to facilitate SeaMonkey extension development.</p>
+    <span>
+      {% trans %}
+      via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a>
+      {% endtrans %}
+    </span>
+    <p>
+    {% trans %}
+    STEEL is the Scriptable Thunderbird Easy Extension Library. It is a FUEL-like set of interfaces to facilitate Thunderbird extension development.
+    {% endtrans %}
+    </p>
+    </li>
+    <li><a class="refname" href="https://developer.mozilla.org/en/SeaMonkey/SMILE">{{ _('SMILE API') }}</a>
+    <span>
+      {% trans %}
+      via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a>
+      {% endtrans %}
+    </span>
+    <p>
+    {% trans %}
+    SMILE is a FUEL-like set of interfaces to facilitate SeaMonkey extension development.
+    {% endtrans %}
+    </p>
 
-  </li>
-</ul>
+    </li>
+  </ul>
 
-<h3 id="ref-xpcom">XPCOM: Cross-Platform Components</h3>
-<ul class="reflist rounded graybox">
-  <li><a class="refname" href="https://developer.mozilla.org/en/XPCOM">XPCOM Overview</a>
-  <span>via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a></span>
-  <p>XPCOM is a cross-platform component object model with multiple language bindings, letting the XPCOM components be used and implemented in JavaScript, Java, and Python in addition to C++.</p>
+  <h3 id="ref-xpcom">{{ _('XPCOM: Cross-Platform Components') }}</h3>
+  <ul class="reflist rounded graybox">
+    <li><a class="refname" href="https://developer.mozilla.org/en/XPCOM">{{ _('XPCOM Overview') }}</a>
+    <span>
+      {% trans %}
+      via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a>
+      {% endtrans %}
+    </span>
+    <p>
+    {% trans %}
+    XPCOM is a cross-platform component object model with multiple language bindings, letting the XPCOM components be used and implemented in JavaScript, Java, and Python in addition to C++.
+    {% endtrans %}
+    </p>
+    </li>
+    <li><a class="refname" href="https://developer.mozilla.org/en/XPCOM_API_Reference">{{ _('XPCOM Reference') }}</a>
+    <span>
+      {% trans %}
+      via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a>
+      {% endtrans %}
+    </span>
+    <p>
+    {% trans %}
+    Mozilla Developer Center's XPCOM API documentation, listing frozen interfaces and functions.
+    {% endtrans %}
+    </p>
+    </li>
+  </ul>
 
-  </li>
-  <li><a class="refname" href="https://developer.mozilla.org/en/XPCOM_API_Reference">XPCOM Reference</a>
-  <span>via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a></span>
-  <p>Mozilla Developer Center's XPCOM API documentation, listing frozen interfaces and functions.</p>
-  </li>
-</ul>
+  <h3 id="ref-dom">{{ _('DOM: Interacting with Content') }}</h3>
+  <ul class="reflist rounded graybox">
+    <li><a class="refname" href="https://developer.mozilla.org/en/DOM">{{ _('DOM Overview') }}</a>
+    <span>
+      {% trans %}
+      via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a>
+      {% endtrans %}
+    </span>
+    <p>
+    {% trans %}
+    The Document Object Model (DOM) is an API for HTML and XML documents. It provides a structural representation of the document, enabling you to modify its content and visual presentation.
+    {% endtrans %}
+    </p>
+    </li>
 
-<h3 id="ref-dom">DOM: Interacting with Content</h3>
-<ul class="reflist rounded graybox">
-  <li><a class="refname" href="https://developer.mozilla.org/en/DOM">DOM Overview</a>
-  <span>via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a></span>
-  <p>The Document Object Model (DOM) is an API for HTML and XML documents. It provides a structural representation of the document, enabling you to modify its content and visual presentation.</p>
-  </li>
-
-  <li><a class="refname" href="https://developer.mozilla.org/en/Gecko_DOM_Reference">Gecko DOM Reference</a>
-  <span>via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a></span>
-  <p>Mozilla Developer Center's DOM API documentation</p>
-  </li>
-</ul>
+    <li><a class="refname" href="https://developer.mozilla.org/en/Gecko_DOM_Reference">{{ _('Gecko DOM Reference') }}</a>
+    <span>
+      {% trans %}
+      via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a>
+      {% endtrans %}
+    </span>
+    <p>
+    {% trans %}
+    Mozilla Developer Center's DOM API documentation
+    {% endtrans %}
+    </p>
+    </li>
+  </ul>
 
 </div>
 
 <div class="secondary" role="complementary">
   <div class="highlight">
-    <h3>Jump to Reference</h3>
+    <h3>{{ _('Jump to Reference') }}</h3>
     <ul class="xoxo">
-      <li><a href="#ref-xul">XUL</a></li>
-      <li><a href="#ref-js">JavaScript</a></li>
-      <li><a href="#ref-css">CSS</a></li>
+      <li><a href="#ref-xul">{{ _('XUL') }}</a></li>
+      <li><a href="#ref-js">{{ _('JavaScript') }}</a></li>
+      <li><a href="#ref-css">{{ _('CSS') }}</a></li>
 
-      <li><a href="#ref-fuel">FUEL</a></li>
-      <li><a href="#ref-xpcom">XPCOM</a></li>
-      <li><a href="#ref-dom">DOM</a></li>
+      <li><a href="#ref-fuel">{{ _('FUEL') }}</a></li>
+      <li><a href="#ref-xpcom">{{ _('XPCOM') }}</a></li>
+      <li><a href="#ref-dom">{{ _('DOM') }}</a></li>
     </ul>
   </div>
 
   <div class="highlight">
-    <h3>More Resources</h3>
-
+    <h3>{{ _('More Resources') }}</h3>
     <ul class="xoxo">
-      <li>Already know what you're looking for? <a href="/en-US/developers/search">Search for it!</a></li>
-      <li>Learn how to use these APIs and more in our <a href="/en-US/developers/docs/how-to">How-to Library</a></li>
-      <li>Need help? <a href="https://forums.addons.mozilla.org">Visit our forums</a></li>
+      <li>
+      {% trans link_search=remora_url('developer/search') %}
+      Already know what you're looking for? <a href="{{ link_search }}">Search for it!</a>
+      {% endtrans %}
+      </li>
+      <li>
+      {% trans link_reference=url('devhub.docs', 'reference') %}
+      Browse through <a href="{{ link_reference }}">API & Language References</a> to find that interface you hope exists
+      {% endtrans %}
+      </li>
+      <li>
+      {% trans %}
+      Need help? <a href="https://forums.addons.mozilla.org">Visit our forums</a>
+      {% endtrans %}
+      </li>
     </ul>
   </div>
-
 </div>
-{% endtrans %}
 {% endblock %}

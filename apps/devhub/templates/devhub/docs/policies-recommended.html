@@ -1,46 +1,75 @@
 {% extends "devhub/docs/policies.html" %}
 
-{% block title %}{{ docs_page_title("Featured Add-ons") }}{% endblock %}
+{% block title %}{{ docs_page_title(_("Featured Add-ons")) }}{% endblock %}
 
 {% block content %}
-{{ docs_breadcrumbs(items=[(url('devhub.docs', doc_name='policies'), _("Add-on Policies")), (None, _("Featured Add-ons"))]) }}
-{% trans base_docs=url('devhub.docs'), link_gallery=url('browse.featured') %}
-<h2>Featured Add-ons</h2>
+{{ docs_breadcrumbs(items=[(url('devhub.docs', doc_name='policies'), _("Add-on Policies")),
+                           (None, _("Featured Add-ons"))]) }}
+
+<h2>{{ _('Featured Add-ons') }}</h2>
 <div class="primary" role="main">
-<!-- Be sure to update the Last Updated date at the bottom when making changes -->
 
-<h3 id="section-whatis">What are featured add-ons?</h3>
+  <h3 id="section-whatis">{{ _('What are featured add-ons?') }}</h3>
 
-<p>Featured add-ons are top-quality add-ons highlighted in our <a href="{{ link_gallery }}">gallery</a>, Firefox's Add-ons Manager, <a href="http://www.rockyourfirefox.com">Rock Your Firefox</a>, and across other Mozilla websites. These add-ons showcase the power of Firefox customization and are useful to a wide audience of consumers.</p>
+  <p>
+  {% trans link_gallery=url('browse.featured') %}
+  Featured add-ons are top-quality add-ons highlighted in our <a href="{{ link_gallery }}">gallery</a>, Firefox's Add-ons Manager, <a href="http://www.rockyourfirefox.com">Rock Your Firefox</a>, and across other Mozilla websites. These add-ons showcase the power of Firefox customization and are useful to a wide audience of consumers.
+  {% endtrans %}
+  </p>
 
-<h3 id="section-inclusion">How can my add-on become featured?</h3>
+  <h3 id="section-inclusion">{{ _('How can my add-on become featured?') }}</h3>
 
-<p>Featured add-ons must be high quality, safe, trustworthy, fast, useful, have wide appeal, and provide a great user experience. These factors are all taken into account when reviewing an add-on to be featured. (see <a href="http://blog.fligtar.com/2010/07/02/making-add-ons-people-will-love/">Making Add-ons People Will Love</a> for tips on best practices)</p>
+  <p>
+  {% trans %}
+  Featured add-ons must be high quality, safe, trustworthy, fast, useful, have wide appeal, and provide a great user experience. These factors are all taken into account when reviewing an add-on to be featured. (see <a href="http://blog.fligtar.com/2010/07/02/making-add-ons-people-will-love/">Making Add-ons People Will Love</a> for tips on best practices)
+  {% endtrans %}
+  </p>
 
-<p>Featured add-ons should have excellent user reviews and prompt responses from the developer for any concerns or support issues. Additionally, add-ons should have gained some level of popularity on their own merit, usually with a minimum of 15,000 active daily users.</p>
+  <p>
+  {% trans %}
+  Featured add-ons should have excellent user reviews and prompt responses from the developer for any concerns or support issues. Additionally, add-ons should have gained some level of popularity on their own merit, usually with a minimum of 15,000 active daily users.
+  {% endtrans %}
+  </p>
 
-<p>If your add-on meets the criteria above and is hosted in our gallery, please email <a href="mailto:amo-featured@mozilla.org">amo-featured@mozilla.org</a> with:</p>
-<ul>
-    <li>details on your add-on, including its URL</li>
-    <li>an explanation of why your add-on has wide appeal and should be featured</li>
-    <li>links to any external reviews of your add-on</li>
+  <p>
+  {% trans %}
+  If your add-on meets the criteria above and is hosted in our gallery, please email <a href="mailto:amo-featured@mozilla.org">amo-featured@mozilla.org</a> with:
+  {% endtrans %}
+  </p>
+  <ul>
+    <li>{{ _('details on your add-on, including its URL') }}</li>
+    <li>{{ _('an explanation of why your add-on has wide appeal and should be featured') }}</li>
+    <li>{{ _('links to any external reviews of your add-on') }}</li>
+  </ul>
 
-</ul>
+  <h4 id="section-rotation">{{ _('Featured Add-on Rotation') }}</h4>
 
-<h4 id="section-rotation">Featured Add-on Rotation</h4>
+  <p>
+  {% trans %}
+  Mozilla regularly evaluates and rotates featured add-ons. Some of the most common reasons for add-ons being removed from the featured list are:
+  {% endtrans %}
+  </p>
 
-<p>Mozilla regularly evaluates and rotates featured add-ons. Some of the most common reasons for add-ons being removed from the featured list are:</p>
+  <ul>
+    <li>
+    {% trans %}
+    Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's a good indicator that the add-on may not be that useful to our users.
+    {% endtrans %}
+    </li>
+    <li>
+    {% trans %}
+    Negative reviews &mdash; Featured add-ons should have a great experience and very few bugs, so add-ons with many negative reviews may be reconsidered.
+    {% endtrans %}
+    </li>
+    <li>
+    {% trans %}
+    Incompatibility with upcoming Firefox versions &mdash; Featured add-ons are expected to be compatible with upcoming releases of Firefox by the release candidate stage. Add-ons not yet compatible with the release candidates of a major version of Firefox will lose their featured status.
+    {% endtrans %}
+    </li>
+  </ul>
 
-<ul>
-    <li>Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's a good indicator that the add-on may not be that useful to our users.</li>
-    <li>Negative reviews &mdash; Featured add-ons should have a great experience and very few bugs, so add-ons with many negative reviews may be reconsidered.</li>
-
-    <li>Incompatibility with upcoming Firefox versions &mdash; Featured add-ons are expected to be compatible with upcoming releases of Firefox by the release candidate stage. Add-ons not yet compatible with the release candidates of a major version of Firefox will lose their featured status.</li>
-</ul>
-
-<p><em>Last updated: October 27, 2010</em></p>
+  <p><em>{{ _('Last updated: October 27, 2010') }}</em></p>
 </div>
-{% endtrans %}
 {{ sidebar() }}
 {% endblock %}
 

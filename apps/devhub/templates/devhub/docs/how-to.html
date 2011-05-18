@@ -1,6 +1,6 @@
 {% extends "devhub/base.html" %}
 
-{% block title %}{{ docs_page_title("How-to Library") }}{% endblock %}
+{% block title %}{{ docs_page_title(_('How-to Library')) }}{% endblock %}
 
 {% macro sidebar() %}
 <div role="complementary" class="secondary">
@@ -13,29 +13,43 @@
     {{ _('Getting Started') }}</a>
     </li>
     <li>
-    <a href="{{ url('devhub.docs', 'how-to', 'extension-development') }}">{{ _('Extension Development') }}</a>
+    <a href="{{ url('devhub.docs', 'how-to', 'extension-development') }}">
+      {{ _('Extension Development') }}</a>
     </li>
     <li>
-    <a href="{{ url('devhub.docs', 'how-to', 'thunderbird-mobile') }}">{{ _('Thunderbird & Mobile Add-ons') }}</a>
+    <a href="{{ url('devhub.docs', 'how-to', 'thunderbird-mobile') }}">
+      {{ _('Thunderbird & Mobile Add-ons') }}</a>
     </li>
     <li>
-    <a href="{{ url('devhub.docs', 'how-to', 'theme-development') }}">{{ _('Theme Development') }}</a>
+    <a href="{{ url('devhub.docs', 'how-to', 'theme-development') }}">
+      {{ _('Theme Development') }}</a>
     </li>
     <li>
-    <a href="{{ url('devhub.docs', 'how-to', 'other-addons') }}">{{ _('Other Types of Add-ons') }}</a>
+    <a href="{{ url('devhub.docs', 'how-to', 'other-addons') }}">
+      {{ _('Other Types of Add-ons') }}</a>
     </li>
   </ul>
 </div>
 
 <div class="highlight">
-  {% trans %}
-  <h3>More Resources</h3>
+  <h3>{{ _('More Resources') }}</h3>
   <ul class="xoxo">
-    <li>Already know what you're looking for? <a href="/en-US/developers/search">Search for it!</a></li>
-    <li>Browse through <a href="/en-US/developers/docs/reference">API & Language References</a> to find that interface you hope exists</li>
-    <li>Need help? <a href="https://forums.addons.mozilla.org">Visit our forums</a></li>
+    <li>
+    {% trans link_search=remora_url('developer/search') %}
+    Already know what you're looking for? <a href="{{ link_search }}">Search for it!</a>
+    {% endtrans %}
+    </li>
+    <li>
+    {% trans link_reference=url('devhub.docs', 'reference') %}
+    Browse through <a href="{{ link_reference }}">API & Language References</a> to find that interface you hope exists
+    {% endtrans %}
+    </li>
+    <li>
+    {% trans %}
+    Need help? <a href="https://forums.addons.mozilla.org">Visit our forums</a>
+    {% endtrans %}
+    </li>
   </ul>
-  {% endtrans %}
 </div>
 
 </div>
@@ -45,51 +59,79 @@
 
 {% block content %}
 {{ docs_breadcrumbs(items=[(None, _("How-to Library"))]) }}
+<h2>{{ _('How-to Library') }}</h2>
+<p class="hub-category-description">
 {% trans %}
-<h2>How-to Library</h2>
-<p class="hub-category-description">Get add-on development guidance in a top-notch collection of tutorials, articles, and more.</p>
+Get add-on development guidance in a top-notch collection of tutorials, articles, and more.
+{% endtrans %}
+</p>
 <div role="main" class="primary">
   <div class="blocks">
     <div class="block-row">
       <div class="item">
         <h4>
-          <a href="/en-US/developers/docs/how-to/getting-started">Getting Started</a></h4>
-        <p class="description">Learn the basics of developing an extension on the Mozilla platform with this section full of beginner&#039;s guides.</p>
+          <a href="{{ url('devhub.docs', 'how-to', 'getting-started') }}">
+            {{ _('Getting Started') }}</a>
+        </h4>
+        <p class="description">
+        {% trans %}
+        Learn the basics of developing an extension on the Mozilla platform with this section full of beginner&#039;s guides.
+        {% endtrans %}
+        </p>
       </div>
       <div class="item">
         <h4>
-          <a href="/en-US/developers/docs/how-to/extension-development">Extension Development</a>
+          <a href="{{ url('devhub.docs', 'how-to', 'extension-development') }}">
+            {{ _('Extension Development') }}</a>
         </h4>
-        <p class="description">Once you know the basics, these guides will help you with intermediate to advanced extension development topics.</p>
+        <p class="description">
+        {% trans %}
+        Once you know the basics, these guides will help you with intermediate to advanced extension development topics.
+        {% endtrans %}
+        </p>
       </div>
 
     </div>
     <div class="block-row">
       <div class="item">
         <h4>
-          <a href="/en-US/developers/docs/how-to/thunderbird-mobile">Thunderbird &amp; Mobile Add-ons</a>
+          <a href="{{ url('devhub.docs', 'how-to', 'thunderbird-mobile') }}">
+            {{ _('Thunderbird &amp; Mobile Add-ons') }}</a>
         </h4>
 
-        <p class="description">Add-ons aren&#039;t just for Firefox. Learn how to extend other Mozilla applications, such as the Thunderbird mail client and Firefox for mobile devices.</p>
+        <p class="description">
+        {% trans %}
+        Add-ons aren&#039;t just for Firefox. Learn how to extend other Mozilla applications, such as the Thunderbird mail client and Firefox for mobile devices.
+        {% endtrans %}
+        </p>
       </div>
       <div class="item">
         <h4>
-          <a href="/en-US/developers/docs/how-to/theme-development">Theme Development</a>
+          <a href="{{ url('devhub.docs', 'how-to', 'theme-development') }}">
+            {{ _('Theme Development') }}</a>
         </h4>
 
-        <p class="description">Style Mozilla applications the way you want with pixel-perfect themes.</p>
+        <p class="description">
+        {% trans %}
+        Style Mozilla applications the way you want with pixel-perfect themes.
+        {% endtrans %}
+        </p>
       </div>
     </div>
     <div class="block-row">
       <div class="item">
         <h4>
-          <a href="/en-US/developers/docs/how-to/other-addons">Other Types of Add-ons</a>
+          <a href="{{ url('devhub.docs', 'how-to', 'other-addons') }}">
+            {{ _('Other Types of Add-ons') }}</a>
         </h4>
-        <p class="description">Find information on Search Plug-ins, Jetpack, Personas, and other types of add-ons here.</p>
+        <p class="description">
+        {% trans %}
+        Find information on Search Plug-ins, Jetpack, Personas, and other types of add-ons here.
+        {% endtrans %}
+        </p>
       </div>
     </div>
   </div>
 </div>
-{% endtrans %}
 {{ sidebar() }}
 {% endblock %}

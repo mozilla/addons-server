@@ -1,9 +1,11 @@
 {% extends "devhub/docs/policies.html" %}
 
-{% block title %}{{ docs_page_title("Developer Agreement") }}{% endblock %}
+{% block title %}{{ docs_page_title(_('Developer Agreement')) }}{% endblock %}
 
 {% block content %}
-{{ docs_breadcrumbs(items=[(url('devhub.docs', doc_name='policies'), _("Add-on Policies")), (None, _("Developer Agreement"))]) }}
+{{ docs_breadcrumbs(items=[(url('devhub.docs', doc_name='policies'), _("Add-on Policies")),
+                           (None, _("Developer Agreement"))]) }}
+
 <h2>{{ _('Developer Agreement') }}</h2>
 <div class="primary" role="main">
 
