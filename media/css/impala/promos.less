@@ -1,3 +1,11 @@
+.feature {
+    height: 251px;
+    padding: 10px 10%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: none;
+}
+
 /* @group Rock Your Firefox (RYFF) */
 .ryff {
     position: relative;
@@ -11,7 +19,8 @@
 .promo h2 {
     font-size: 36px;
     font-weight: bold;
-    line-height: 1.1;
+    line-height: 1.1em;
+    white-space: nowrap;
 }
 
 .ryff h2 {
@@ -168,14 +177,17 @@
 /* @group Go Mobile */
 #go-mobile {
     background: url(../../img/zamboni/discovery_pane/promos/go-mobile-bg.png) 50% 0 no-repeat;
-}
-#go-mobile h2 {
-    color: #485c65;
-    width: 300px;
-}
-#go-mobile .wrap {
-    width: 384px;
-    margin: 0;
+    h2 {
+        color: #485c65;
+        width: 300px;
+    }
+    .wrap {
+        width: 384px;
+        margin: 0;
+    }
+    p {
+        margin: 0;
+    }
 }
 /* @end */
 
@@ -221,7 +233,6 @@ ul.addons {
 }
 
 .addons li > a,
-.rec-addons li > a,
 #monthly > div,
 #go-mobile > div {
     background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
@@ -230,17 +241,13 @@ ul.addons {
     box-shadow: inset 0 -2px 0 rgba(58,78,103,0.08), 0 2px 0 rgba(190,210,230,0.5);
 }
 
-.addons li > a,
-.rec-addons li > a {
+.addons li > a {
     display: block;
-    display: -moz-box;
-    -moz-box-orient: vertical;
-    -moz-box-align: center;
     position: relative;
+    text-align: center;
     height: 120px;
-    width: 100%;
-    width: -moz-calc(100% - 22px);
-    padding: 10px;
+    width: 84%;
+    padding: 10px 8%;
     -moz-transition-property: border-color, box-shadow;
     -moz-transition-duration: 0.5s;
     -moz-transition-timing-function: ease-out;
@@ -264,6 +271,7 @@ ul.addons {
 .rec-addons h3 {
     font-size: 14px;
     line-height: 1.1;
+    max-height: 1.1em;
     font-weight: bold;
     font-family: inherit;
     margin: .25em 0;
@@ -282,8 +290,8 @@ ul.addons {
 
 .addons p.desc,
 .rec-addons p.desc {
-    -moz-box-flex: 1;
     overflow: hidden;
+    max-height: 5.6em;
     font-size: 11px;
     text-align: left;
     color: #373d48;
@@ -298,14 +306,8 @@ ul.addons {
 .addons img,
 .rec-addons img {
     display: block;
+    margin: 0 auto;
     max-width: 50px;
-}
-
-.feature {
-    height: 251px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: none;
 }
 
 .promo:after {

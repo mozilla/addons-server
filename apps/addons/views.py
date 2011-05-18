@@ -430,8 +430,10 @@ def home(request):
                         {'featured': featured, 'popular': popular})
 
 
-def homepage_promos(request, version, platform):
+def homepage_promos(request):
     from discovery.views import get_modules
+    platform = request.GET.get('platform')
+    version = request.GET.get('version')
     modules = get_modules(request, platform, version)
     return jingo.render(request, 'addons/impala/homepage_promos.html',
                         {'modules': modules})

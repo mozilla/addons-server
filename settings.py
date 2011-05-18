@@ -485,15 +485,12 @@ MINIFY_BUNDLES = {
             'js/zamboni/init.js',
             'js/zamboni/format.js',
             'js/zamboni/buttons.js',
-            'js/zamboni/tabs.js',
 
             'js/lib/jquery.cookie.js',
             'js/zamboni/truncation.js',
             'js/zamboni/global.js',
-            'js/amo2009/global.js',
             'js/impala/global.js',
             'js/lib/jquery-ui/jqModal.js',
-            'js/amo2009/home.js',
             'js/zamboni/l10n.js',
             'js/zamboni/storage.js',
 
@@ -522,9 +519,6 @@ MINIFY_BUNDLES = {
 
             # Fix-up outgoing links
             'js/zamboni/outgoing_links.js',
-
-            # Hover delay for global header
-            'js/global/menu.js',
         ),
         'zamboni/discovery': (
             'js/lib/jquery-1.4.2.min.js',
