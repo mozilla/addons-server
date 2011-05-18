@@ -74,7 +74,9 @@ def browse(request, viewer, key=None):
     else:
         extract_file.delay(viewer)
 
-    tmpl = 'files/content.html' if request.is_ajax() else 'files/viewer.html'
+    tmpl = ('files/content.html' if not request.GET.get('full')
+                                    and request.is_ajax()
+                                    else 'files/viewer.html')
     response = jingo.render(request, tmpl, data)
     if not settings.DEBUG:
         response['ETag'] = '"%s"' % hashlib.md5(response.content).hexdigest()
@@ -125,7 +127,9 @@ def compare(request, diff, key=None):
         extract_file.delay(diff.left)
         extract_file.delay(diff.right)
 
-    tmpl = 'files/content.html' if request.is_ajax() else 'files/viewer.html'
+    tmpl = ('files/content.html' if not request.GET.get('full')
+                                    and request.is_ajax()
+                                    else 'files/viewer.html')
     response = jingo.render(request, tmpl, data)
     if not settings.DEBUG:
         response['ETag'] = '"%s"' % hashlib.md5(response.content).hexdigest()

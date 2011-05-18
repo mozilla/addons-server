@@ -31,6 +31,9 @@ if (typeof diff_match_patch !== 'undefined') {
 }
 
 function bind_viewer(nodes) {
+    $.each(nodes, function(x) {
+        nodes['$'+x] = $(nodes[x]);
+    });
     function Viewer() {
         this.nodes = nodes;
         this.wrapped = true;
@@ -238,7 +241,7 @@ function bind_viewer(nodes) {
                 this.nodes.$thinking.addClass('full');
             } else {
                 this.nodes.$files.show();
-                this.nodes.$commands.detach().appendTo('#files');
+                this.nodes.$commands.detach().appendTo(this.nodes.$files);
                 this.nodes.$thinking.removeClass('full');
             }
             $('#content-wrapper').toggleClass('full');
@@ -309,16 +312,12 @@ function bind_viewer(nodes) {
 
 $(document).ready(function() {
     var viewer = null;
-    var nodes = {
-        $files: $('#files'),
-        $thinking: $('#thinking'),
-        $commands: $('#commands')
-    };
+    var nodes = { files: '#files', thinking: '#thinking', commands: '#commands' };
     function poll_file_extraction() {
         $.getJSON($('#extracting').attr('data-url'), function(json) {
             if (json && json.status) {
-                $('#file-viewer').load(window.location.pathname + ' #file-viewer', function() {
-                    nodes.$files = $('#files'); // rebind
+                $('#file-viewer').load(window.location.pathname + '?full=yes' + ' #file-viewer', function() {
+                    $(this).children().unwrap();
                     viewer = bind_viewer(nodes);
                     viewer.selected(viewer.nodes.$files.find('a.selected'));
                     viewer.compute($('#content-wrapper'));
