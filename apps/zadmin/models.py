@@ -65,11 +65,11 @@ class ValidationJob(amo.models.ModelBase):
     def result_failing(self):
         return self.result_set.exclude(completed=None).exclude(errors=0)
 
-    @amo.cached_property
+    @property
     def preview_success_mail_link(self):
         return self._preview_link(EmailPreviewTopic(self, 'success'))
 
-    @amo.cached_property
+    @property
     def preview_failure_mail_link(self):
         return self._preview_link(EmailPreviewTopic(self, 'failures'))
 
@@ -90,8 +90,13 @@ class ValidationJob(amo.models.ModelBase):
     def get_failure_preview_emails(self):
         return EmailPreviewTopic(self, 'failures').filter()
 
-    @amo.cached_property
+    @property
     def stats(self):
+        if not hasattr(self, '_stats'):
+            self._stats = self._count_stats()
+        return self._stats
+
+    def _count_stats(self):
         total = self.result_set.count()
         completed = self.result_completed().count()
         passing = self.result_passing().count()
