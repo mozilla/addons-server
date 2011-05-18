@@ -950,4 +950,5 @@ VALID_LOGIN_REDIRECTS = {
     'buildertrunk': 'https://builder-addons.allizom.org',
 }
 
+# Secret key we send to builder so we can trust responses from the builder.
 BUILDER_SECRET_KEY = 'love will tear us apart'
