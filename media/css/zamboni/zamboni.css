@@ -3501,5 +3501,9 @@ input.ui-autocomplete-loading {
 
 #paypal-error {
     background: white url("../../img/zamboni/notification-error.png") no-repeat 5px;
-    padding-left: 50px
+    padding-left: 50px;
+}
+
+#contribute-box .error {
+    padding: 10px 0px 10px 50px;
 }
