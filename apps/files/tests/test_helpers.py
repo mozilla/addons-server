@@ -207,6 +207,7 @@ class TestDiffSearchEngine(test_utils.TestCase):
         shutil.copyfile(os.path.join(self.helper.left.dest, 'search.xml'),
                         os.path.join(self.helper.right.dest, 's-20010101.xml'))
         assert self.helper.select('search.xml')
+        eq_(len(self.helper.get_deleted_files()), 0)
 
 
 class TestDiffHelper(test_utils.TestCase):

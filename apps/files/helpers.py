@@ -299,9 +299,12 @@ class DiffHelper:
         are files that have been deleted between the two versions.
         Every element will be marked as a diff.
         """
+        different = SortedDict()
+        if self.right.is_search_engine():
+            return different
+
         left_files = self.left.get_files()
         right_files = self.right.get_files()
-        different = SortedDict()
         for key, file in right_files.items():
             if key not in left_files:
                 copy = right_files[key]
