@@ -72,32 +72,57 @@
   {% endif %}
 {% endif %}
 
-<aside class="secondary">
+<aside class="secondary metadata c">
+  <ul class="links">
+    <li><a class="home" href="#">Add-on home page</a></li>
+    {% if addon.support_url %}
+      <li><a class="support" href="{{ addon.support_url|external_url }}">Support site</a></li>
+    {% endif %}
+    {% if addon.support_email %}
+      <li>{{ emaillink(addon.support_email.localized_string,
+                       _('Support E-mail')) }}</li>
+    {% endif %}
+    {% if addon.has_satisfaction %}
+      {# get satisfaction only supports en-US so no L10n here #}
+      <li><a href="#" id="feedback_btn" class="support-gs"
+           data-company="{{ addon.get_satisfaction_company }}"
+           data-product="{{ addon.get_satisfaction_product }}">Get Satisfaction</a>
+      </li>
+    {% endif %}
+  </ul>
+  <ul>
+    <li>{{ _('Version {0}')|f(version.version) }} <a class="scrollto" href="#detail-relnotes">Info</a></li>
+    <li>{{ version.created|datetime }}</li>
+    <li>Released under <a href="#">GPLV2</a></li>
+  </ul>
 </aside>
 
 {% if addon.description %}
-  <section class="primary island">
-    <h2>{{ _('About this Add-on') }}'</h2>
+  <section class="primary island c">
+    <h2>{{ _('About this Add-on') }}</h2>
     <p id="addon-description" {{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
   </section>
 {% endif %}
 
-<aside class="secondary addon-reviews">
+<aside class="secondary addon-reviews c">
   <div>
     {{ addon.average_rating|stars }}
     {{ _('Average') }}
   </div>
   {% include "reviews/grouped_ratings.html" %}
+  <p>
+    <a class="button">{{ _('Write a review') }}</a>
+  <p>
 </aside>
 
-<section id="reviews" class="primary island">
+<section id="reviews" class="primary island c">
   <h2>Reviews</h2>
   {% if reviews is defined %}
     {{ impala_review_list_box(addon=addon, reviews=reviews) }}
   {% endif %}
 </section>
 
-<aside class="secondary metadata">
+<aside class="secondary metadata c">
   <h3>{{ _('Related Categories') }}</h3>
   {# categories and other add-ons #}
   {% with categories = addon.categories.filter(application=APP.id) %}
@@ -118,7 +143,7 @@
   {{ tags_box(addon=addon, tags=tags) }}
 </aside>
 
-<section class="primary island">
+<section class="primary island c">
   {# addon recommendations #}
   {% if recommendations %}
     <section>
@@ -127,6 +152,12 @@
     </section>
   {% endif %}
   {# /recommendations #}
+  {% if collections %}
+    <section>
+      <h2>{{ _('Part of these Collections') }}</h2>
+      {{ collections|collection_grid(cols=3) }}
+    </section>
+    {% endif %}
   {% if author_addons %}
     <section>
       <h2>
@@ -170,58 +201,6 @@
     {% endwith %}
   </div>
   {% endif %}{# /meet the devs #}
-
-
-  {# support box #}
-  {% if addon.support_email or addon.support_url or addon.has_satisfaction %}
-  <div id="support" class="highlight">
-    <h3 class="compact-bottom">{{ _('Need help with this add-on?') }}</h3>
-    <ul class="xoxo">
-      {% if addon.has_satisfaction %}
-        {# get satisfaction only supports en-US so no L10n here #}
-        <li>Ask others on
-          <a href="#" id="feedback_btn" class="feedback_btn"
-            data-company="{{ addon.get_satisfaction_company }}"
-            data-product="{{ addon.get_satisfaction_product }}"
-             >Get Satisfaction</a>
-        </li>
-      {% endif %}
-      {% if addon.support_email %}
-        <li>{{ emaillink(addon.support_email.localized_string,
-                         _('E-mail your question')) }}</li>
-      {% endif %}
-      {% if addon.support_url %}
-        <li><a href="{{ addon.support_url|external_url }}">{{
-          _('Visit the support site') }}</a></li>
-      {% endif %}
-    </ul>
-
-    {% if addon.has_satisfaction %}
-    <div id="get_satisfaction_container"></div>
-    {% endif %}
-
-  </div>
-  {% endif %}
-  {# /support #}
-
-  {# related collections #}
-  <div class="collections-add">
-    <h3 class="compact-bottom">{{ _('Related Collections') }}</h3>
-
-    {% if not collections %}
-      <p>{{ _('This add-on is not yet in any collections.') }}</p>
-    {% else %}
-      <ul class="addon-collections">
-        {% for coll in collections %}
-        <li><a href="{{ coll.get_url_path() }}"
-               class="collectionitem">{{ coll.name }}</a></li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-
-  </div>
-  {# /collections #}
-
 </div>{# /secondary #}
 
 {% endblock content %}

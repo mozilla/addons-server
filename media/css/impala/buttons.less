@@ -4,7 +4,7 @@
     display: inline-block;
     position: relative;
     font-size: 13px;
-    padding: 5px 10px 7px;
+    padding: 6px 10px 7px;
     font-family: @head-sans;
     font-weight: bold;
     line-height: 1;
@@ -82,25 +82,25 @@
 .button:active,
 .button.selected {
     text-decoration: none;
-    .box-shadow(0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset, 0 0 100px rgba(255, 255, 255, 0.2) inset);
+    .box-shadow(0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset, 0 0 100px rgba(255, 255, 255, 0.2) inset);
 }
 
 .button:active,
 .button.selected {
     top: 2px;
-    .box-shadow(0 1px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset, 0 0 100px rgba(255, 255, 255, 0.2) inset);
-}
-
-.button.small:hover,
-.button.small:focus,
-.button.small:active,
-.button.small.selected {
-    .box-shadow(0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset, 0 0 100px rgba(255, 255, 255, 0.2) inset);
-}
-
-.button.small:active,
-.button.small.selected {
-    top: 2px;
     .box-shadow(0 0px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset, 0 0 100px rgba(255, 255, 255, 0.2) inset);
+}
+
+.button.prominent:hover,
+.button.prominent:focus,
+.button.prominent:active,
+.button.prominent.selected {
+    .box-shadow(0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset, 0 0 100px rgba(255, 255, 255, 0.2) inset);
+}
+
+.button.prominent:active,
+.button.prominent.selected {
+    top: 2px;
+    .box-shadow(0 1px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset, 0 0 100px rgba(255, 255, 255, 0.2) inset);
 }
 

@@ -215,13 +215,35 @@
 
 .metadata {
     li {
+        line-height: 1.4em;
         border: none;
         a {
             padding: 0;
+            display: inline;
+            line-height: 1;
         }
         a:hover {
             background: transparent;
             text-decoration: underline;
+        }
+    }
+    .links {
+        font-size: 14px;
+        margin-bottom: 1em;
+        li {
+            margin-bottom: 4px;
+        }
+        a {
+            padding-left: 18px;
+        }
+        .support, .home {
+            background: url(../../img/impala/home.png) no-repeat left -18px;
+        }
+        .email {
+            background: url(../../img/impala/email.png) no-repeat left -18px;
+        }
+        .support-gs {
+            background: url(../../img/impala/getsatisfaction.png) no-repeat left -18px;
         }
     }
 }

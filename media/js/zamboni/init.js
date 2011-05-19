@@ -18,7 +18,7 @@ $(document).ready(function(){
     $('span.emaillink').each(function() {
         $(this).find('.i').remove();
         var em = $(this).text().split('').reverse().join('');
-        $(this).prev('a').attr('href', 'mailto:' + em);
+        $(this).prev('a').attr('href', 'mailto:' + em).addClass('email');
     });
 
     // fake placeholders if we need to.
