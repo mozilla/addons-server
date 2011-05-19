@@ -12,6 +12,7 @@ from django.template import Context, Template
 from celeryutils import task
 
 import amo
+from amo import set_user
 from amo.decorators import write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
@@ -104,6 +105,7 @@ def notify_success(version_pks, job_pk, data, **kw):
     log.info('[%s@None] Updating max version for job %s.'
              % (len(version_pks), job_pk))
     job = ValidationJob.objects.get(pk=job_pk)
+    set_user(job.creator)
     for version in Version.objects.filter(pk__in=version_pks):
         addon = version.addon
         file_pks = version.files.values_list('pk', flat=True)
@@ -164,9 +166,10 @@ def notify_success(version_pks, job_pk, data, **kw):
 def notify_failed(file_pks, job_pk, data, **kw):
     log.info('[%s@None] Notifying failed for job %s.'
              % (len(file_pks), job_pk))
-    for result in ValidationResult.objects.filter(validation_job=job_pk,
+    job = ValidationJob.objects.get(pk=job_pk)
+    set_user(job.creator)
+    for result in ValidationResult.objects.filter(validation_job=job,
                                                   file__pk__in=file_pks):
-        job = result.validation_job
         file = result.file
         version = file.version
         addon = version.addon

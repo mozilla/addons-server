@@ -20,6 +20,7 @@ from addons.models import Addon
 from applications.models import AppVersion
 from devhub.models import ActivityLog
 from files.models import Approval, File
+from users.models import UserProfile
 from versions.models import Version
 from zadmin.forms import NotifyForm
 from zadmin.models import ValidationJob, ValidationResult, EmailPreviewTopic
@@ -92,6 +93,7 @@ class BulkValidationTest(test_utils.TestCase):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self.addon = Addon.objects.get(pk=3615)
+        self.creator = UserProfile.objects.get(username='editor')
         self.version = self.addon.get_version()
         self.curr_max = self.appversion('3.7a1pre')
         self.counter = 0
@@ -103,7 +105,8 @@ class BulkValidationTest(test_utils.TestCase):
     def create_job(self, **kwargs):
         kw = dict(application_id=amo.FIREFOX.id,
                   curr_max_version=self.curr_max,
-                  target_version=self.appversion('3.7a3'))
+                  target_version=self.appversion('3.7a3'),
+                  creator=self.creator)
         kw.update(kwargs)
         return ValidationJob.objects.create(**kw)
 
@@ -303,8 +306,9 @@ class TestBulkUpdate(BulkValidationTest):
         eq_(ActivityLog.objects.for_addons(self.addon).count(), 0)
         self.client.post(self.update_url, self.data)
         upd = amo.LOG.BULK_VALIDATION_UPDATED.id
-        eq_((ActivityLog.objects.for_addons(self.addon)
-                                .filter(action=upd).count()), 1)
+        logs = ActivityLog.objects.for_addons(self.addon).filter(action=upd)
+        eq_(logs.count(), 1)
+        eq_(logs[0].user, self.creator)
 
     def test_update_wrong_version(self):
         self.create_result(self.job, self.create_file(self.version))
@@ -411,8 +415,9 @@ class TestBulkNotify(BulkValidationTest):
         eq_(ActivityLog.objects.for_addons(self.addon).count(), 0)
         self.client.post(self.update_url, {'text': '..', 'subject': '..'})
         upd = amo.LOG.BULK_VALIDATION_EMAILED.id
-        eq_((ActivityLog.objects.for_addons(self.addon)
-                                .filter(action=upd).count()), 1)
+        logs = ActivityLog.objects.for_addons(self.addon).filter(action=upd)
+        eq_(logs.count(), 1)
+        eq_(logs[0].user, self.creator)
 
     def test_notify_mail(self):
         self.create_result(self.job, self.create_file(self.version),
