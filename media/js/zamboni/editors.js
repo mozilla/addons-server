@@ -64,6 +64,8 @@ function initReviewActions() {
         $data_toggle.hide();
         $data_toggle.filter('[data-value*="' + value + '"]').show();
 
+        toggle_input();
+
         /* Fade out canned responses */
         var label = $element.text().trim();
         groups.css('color', '#AAA');
@@ -92,8 +94,11 @@ function initReviewActions() {
     }
 
     function toggle_input(){
-        var $files_checked = $files_input.filter(':checked');
-        $('.review-actions-save input').attr('disabled', $files_checked.length < 1);
+        var $files_input = $('#review-actions .review-actions-files').find('input:enabled'),
+            $files_checked = $files_input.filter(':checked'),
+            disable_submit = $files_checked.length < 1 && $('.review-actions-files').is(':visible');
+
+        $('.review-actions-save input').attr('disabled', disable_submit);
 
         // If it's not :visible, we can assume it's been replaced with a dummy :disabled input
         $('#review-actions-files-warning').toggle($files_checked.filter(':enabled:visible').length > 1);
