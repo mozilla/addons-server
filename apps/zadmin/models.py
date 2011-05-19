@@ -55,7 +55,8 @@ class ValidationJob(amo.models.ModelBase):
     creator = models.ForeignKey('users.UserProfile', null=True)
 
     def result_passing(self):
-        return self.result_set.exclude(completed=None).filter(errors=0)
+        return self.result_set.exclude(completed=None).filter(errors=0,
+                                                              task_error=None)
 
     def result_completed(self):
         return self.result_set.exclude(completed=None)
@@ -64,7 +65,7 @@ class ValidationJob(amo.models.ModelBase):
         return self.result_set.exclude(task_error=None)
 
     def result_failing(self):
-        return self.result_set.exclude(completed=None).exclude(errors=0)
+        return self.result_set.exclude(completed=None).filter(errors__gt=0)
 
     @property
     def preview_success_mail_link(self):
@@ -102,11 +103,12 @@ class ValidationJob(amo.models.ModelBase):
         completed = self.result_completed().count()
         passing = self.result_passing().count()
         errors = self.result_errors().count()
+        failing = self.result_failing().count()
         return {
             'total': total,
             'completed': completed,
             'passing': passing,
-            'failing': completed - passing,
+            'failing': failing,
             'errors': errors,
             'percent_complete': (Decimal(completed) / Decimal(total)
                                  * Decimal(100)
