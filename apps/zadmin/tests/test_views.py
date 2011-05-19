@@ -646,10 +646,15 @@ class TestBulkValidationTask(BulkValidationTest):
             file = File.objects.create(status=status, version=version)
         return version
 
+    def find_files(self):
+        job = self.create_job()
+        find_files(job)
+        return list(job.result_set.values_list('file_id', flat=True))
+
     def test_getting_status(self):
         version = self.create_version(self.addon, [amo.STATUS_PUBLIC,
                                                    amo.STATUS_NOMINATED])
-        ids = find_files(amo.FIREFOX, self.curr_max)
+        ids = self.find_files()
         eq_(len(ids), 1)
         eq_(version.files.all()[0].pk, ids[0])
 
@@ -657,28 +662,28 @@ class TestBulkValidationTask(BulkValidationTest):
         version = self.create_version(self.addon,
                                       [amo.STATUS_PUBLIC,
                                        amo.STATUS_LITE_AND_NOMINATED])
-        ids = find_files(amo.FIREFOX, self.curr_max)
+        ids = self.find_files()
         eq_(len(ids), 1)
         eq_(version.files.all()[0].pk, ids[0])
 
     def test_getting_latest_public(self):
         old_version = self.create_version(self.addon, [amo.STATUS_PUBLIC])
         new_version = self.create_version(self.addon, [amo.STATUS_NULL])
-        ids = find_files(amo.FIREFOX, self.curr_max)
+        ids = self.find_files()
         eq_(len(ids), 1)
         eq_(old_version.files.all()[0].pk, ids[0])
 
     def test_getting_latest_public_order(self):
         old_version = self.create_version(self.addon, [amo.STATUS_PURGATORY])
         new_version = self.create_version(self.addon, [amo.STATUS_PUBLIC])
-        ids = find_files(amo.FIREFOX, self.curr_max)
+        ids = self.find_files()
         eq_(len(ids), 1)
         eq_(new_version.files.all()[0].pk, ids[0])
 
     def test_getting_w_pending(self):
         old_version = self.create_version(self.addon, [amo.STATUS_PUBLIC])
         new_version = self.create_version(self.addon, [amo.STATUS_PENDING])
-        ids = find_files(amo.FIREFOX, self.curr_max)
+        ids = self.find_files()
         eq_(len(ids), 2)
         eq_([old_version.files.all()[0].pk, new_version.files.all()[0].pk],
             ids)
@@ -687,22 +692,23 @@ class TestBulkValidationTask(BulkValidationTest):
         version = self.create_version(self.addon, [amo.STATUS_LISTED,
                                                    amo.STATUS_LISTED,
                                                    amo.STATUS_LISTED])
-        ids = find_files(amo.FIREFOX, self.curr_max)
+        ids = self.find_files()
         eq_(len(ids), 3)
 
     def test_multiple_public(self):
         old_version = self.create_version(self.addon, [amo.STATUS_PUBLIC])
         new_version = self.create_version(self.addon, [amo.STATUS_PUBLIC])
-        ids = find_files(amo.FIREFOX, self.curr_max)
+        ids = self.find_files()
         eq_(len(ids), 1)
         eq_(new_version.files.all()[0].pk, ids[0])
 
     def test_multiple_addons(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         version = self.create_version(addon, [amo.STATUS_PURGATORY])
-        ids = find_files(amo.FIREFOX, self.curr_max)
+        ids = self.find_files()
         eq_(len(ids), 1)
         eq_(self.version.files.all()[0].pk, ids[0])
+
 
 def test_settings():
     # Are you there, settings page?
