@@ -5,7 +5,6 @@ from django import http
 # I'm so glad we named a function in here settings...
 from django.conf import settings as site_settings
 from django.contrib import admin
-from django.db import connection, transaction
 from django.shortcuts import redirect, get_object_or_404
 from django.views import debug
 
@@ -26,7 +25,7 @@ from addons.models import Addon
 from files.models import Approval, File
 from versions.models import Version
 from zadmin.forms import BulkValidationForm, NotifyForm
-from zadmin.models import ValidationJob, ValidationResult, EmailPreviewTopic
+from zadmin.models import ValidationJob, EmailPreviewTopic
 from zadmin import tasks
 
 log = commonware.log.getLogger('z.zadmin')
@@ -164,59 +163,28 @@ def validation(request, form=None):
                          'validation_jobs': jobs})
 
 
-def find_files(application, curr_max_version):
-    # TODO(someone): optimise this, this is going to be horribly slow.
-    # Can we just get addons with transforms and use current version?
-    # Or this should be chunked into the task.
+def find_files(job):
     statuses = [amo.STATUS_PUBLIC, amo.STATUS_LISTED]
-    statuses_pending = list(amo.UNREVIEWED_STATUSES) + [amo.STATUS_PENDING]
-    ids = []
     addons = (Addon.objects.filter(status__in=statuses,
-                                   disabled_by_user=False,
-                                   versions__files__status__in=statuses,
-                                   versions__apps__application=application.id,
-                                   versions__apps__max=curr_max_version.id)
-                           .no_transforms())
-    for addon in addons:
-        latest = (addon.versions.filter(files__status__in=statuses)
-                                .order_by('-id')[0])
-        ids.extend([l.pk for l in latest.files.filter(status__in=statuses)])
-        pending = (addon.versions.filter(files__status__in=statuses_pending,
-                                         id__gt=latest.id))
-        for version in pending:
-            ids.extend(version.files.filter(status__in=statuses_pending)
-                                    .values_list('id', flat=True))
-
-    return ids
+                                disabled_by_user=False,
+                                versions__files__status__in=statuses,
+                                versions__apps__application=job.application.id,
+                                versions__apps__max=job.curr_max_version.id)
+                           .no_transforms().values_list("pk", flat=True))
+    for pks in chunked(addons, 100):
+        tasks.add_validation_jobs.delay(pks, job.pk)
 
 
 @admin.site.admin_view
-@transaction.commit_manually
 def start_validation(request):
     form = BulkValidationForm(request.POST)
     if form.is_valid():
-        try:
-            job = form.save(commit=False)
-            job.creator = get_user()
-            job.save()
-            results = []
-            for id in find_files(job.application, job.curr_max_version):
-                res = ValidationResult.objects.create(validation_job=job,
-                                                      file_id=id)
-                results.append(res.id)
-            transaction.commit()
-        except:
-            transaction.rollback()
-            raise
-
-        # This code happens outside of the transaction block so that eager
-        # tasks work correctly in a development environment.
-        for result_id in results:
-            tasks.bulk_validate_file.delay(result_id)
-
+        job = form.save(commit=False)
+        job.creator = get_user()
+        job.save()
+        find_files(job)
         return redirect(reverse('zadmin.validation'))
     else:
-        transaction.rollback()
         return validation(request, form=form)
 
 

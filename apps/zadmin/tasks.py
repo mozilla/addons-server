@@ -11,6 +11,7 @@ from django.template import Context, Template
 
 from celeryutils import task
 
+from addons.models import Addon
 import amo
 from amo import set_user
 from amo.decorators import write
@@ -83,6 +84,36 @@ def bulk_validate_file(result_id, **kw):
     if task_error:
         etype, val, tb = task_error
         raise etype, val, tb
+
+
+@task
+@write
+def add_validation_jobs(pks, job_pk, **kw):
+    statuses = [amo.STATUS_PUBLIC, amo.STATUS_LISTED]
+    statuses_pending = list(amo.UNREVIEWED_STATUSES) + [amo.STATUS_PENDING]
+    log.info('[%s@None] Adding validation jobs for addons starting at: %s '
+             ' for job: %s'
+             % (len(pks), pks[0], job_pk))
+    for addon in Addon.objects.filter(pk__in=pks):
+        ids = []
+        try:
+            latest = (addon.versions.filter(files__status__in=statuses)
+                                    .order_by('-id')[0])
+        except IndexError:
+            log.info('No latest version for addon: %s' % addon.pk)
+            continue
+
+        ids.extend([l.pk for l in latest.files.filter(status__in=statuses)])
+        pending = (addon.versions.filter(files__status__in=statuses_pending,
+                                         id__gt=latest.id))
+        for version in pending:
+            ids.extend(version.files.filter(status__in=statuses_pending)
+                                    .values_list('id', flat=True))
+
+        for id in ids:
+            result = ValidationResult.objects.create(validation_job_id=job_pk,
+                                                     file_id=id)
+            bulk_validate_file.delay(result.pk)
 
 
 def get_context(addon, version, job, results):
