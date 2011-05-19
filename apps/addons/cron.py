@@ -401,3 +401,15 @@ def give_personas_versions():
     with open(path) as f:
         cursor.execute(f.read())
         log.info('Gave versions to %s personas.' % cursor.rowcount)
+
+
+@cronjobs.register
+def reindex_addons():
+    from . import tasks
+    ids = (Addon.objects.values_list('id', flat=True)
+           .filter(_current_version__isnull=False,
+                   status__in=amo.VALID_STATUSES,
+                   disabled_by_user=False))
+    with establish_connection() as conn:
+        for chunk in chunked(sorted(list(ids)), 150):
+            tasks.index_addons.apply_async(args=[chunk], connection=conn)
