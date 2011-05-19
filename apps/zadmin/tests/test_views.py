@@ -192,8 +192,7 @@ class TestBulkValidation(BulkValidationTest):
     @mock.patch('zadmin.tasks.bulk_validate_file')
     def test_validate_all_non_disabled_addons(self, bulk_validate_file):
         target_ver = self.appversion('3.7a3').id
-        for status in (amo.STATUS_PUBLIC, amo.STATUS_LISTED,
-                       amo.STATUS_UNREVIEWED, amo.STATUS_NOMINATED):
+        for status in (amo.STATUS_PUBLIC, amo.STATUS_LISTED):
             bulk_validate_file.delay.called = False
             self.addon.update(status=status)
             r = self.client.post(reverse('zadmin.start_validation'),
