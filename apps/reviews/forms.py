@@ -43,6 +43,8 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
             if form.cleaned_data:
                 action = int(form.cleaned_data['action'])
 
+                is_flagged = (form.instance.reviewflag_set.count() > 0)
+
                 if action != reviews.REVIEW_MODERATE_SKIP:  # Delete flags.
                     for flag in form.instance.reviewflag_set.all():
                         flag.delete()
@@ -52,9 +54,15 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                     review_addon = review.addon
                     review_id = review.id
                     review.delete()
+
+                    addon = review.addon
+
                     amo.log(amo.LOG.DELETE_REVIEW, review_addon, review_id,
                             details=dict(title=unicode(review.title),
-                                         body=unicode(review.body)))
+                                         body=unicode(review.body),
+                                         addon_id=addon.id,
+                                         addon_title=unicode(addon.name),
+                                         is_flagged=is_flagged))
                 elif action == reviews.REVIEW_MODERATE_KEEP:
                     review.editorreview = False
                     review.save()

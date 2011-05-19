@@ -252,11 +252,29 @@ class TestHome(EditorTest):
 
     def test_deleted_review(self):
         review = self.make_review()
-        amo.log(amo.LOG.DELETE_REVIEW, review.id, review.addon)
+        amo.log(amo.LOG.DELETE_REVIEW, review.id, review.addon,
+                details=dict(addon_name='test', addon_id=review.addon.pk,
+                is_flagged=True))
         r = self.client.get(reverse('editors.home'))
         doc = pq(r.content)
+
         eq_(doc('.row').eq(0).text().strip().split('.')[0],
-            'editor deleted review %d' % review.id)
+            'editor deleted %d for yermom ' % review.id)
+
+        al_id = ActivityLog.objects.all()[0].id
+        url = reverse('editors.eventlog.detail', args=[al_id])
+        doc = pq(self.client.get(url).content)
+
+        dts = doc('dt')
+        dds = doc('dd')
+        eq_(dts.eq(0).text(), "is_flagged")
+        eq_(dds.eq(0).text(), "True")
+
+        eq_(dts.eq(1).text(), "addon_id")
+        eq_(dds.eq(1).text(), str(review.addon.pk))
+
+        eq_(dts.eq(2).text(), "addon_name")
+        eq_(dds.eq(2).text(), "test")
 
     def test_stats_total(self):
         self.approve_reviews()
