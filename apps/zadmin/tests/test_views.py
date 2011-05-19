@@ -340,10 +340,12 @@ class TestBulkUpdate(BulkValidationTest):
 
     def test_update_subject(self):
         data = self.data.copy()
-        data['subject'] = '{{ ADDON_NAME }}'
-        self.create_result(self.job, self.create_file(self.version))
+        data['subject'] = '{{ ADDON_NAME }}{{ ADDON_VERSION }}'
+        f = self.create_file(self.version)
+        self.create_result(self.job, f)
         self.client.post(self.update_url, data)
-        eq_(mail.outbox[0].subject, self.addon.name)
+        eq_(mail.outbox[0].subject,
+            '%s%s' % (self.addon.name, f.version.version))
 
     def test_application_version(self):
         self.create_result(self.job, self.create_file(self.version))

@@ -91,6 +91,7 @@ def get_context(addon, version, job, results):
                     for r in results)
     return Context({
             'ADDON_NAME': addon.name,
+            'ADDON_VERSION': version.version,
             'APPLICATION': str(job.application),
             'COMPAT_LINK': absolutify(reverse('devhub.versions.edit',
                                               args=[addon.pk, version.pk])),
