@@ -17,6 +17,7 @@ import jingo
 from tower import ugettext as _
 
 from amo import messages
+from amo import get_user
 from amo.decorators import login_required, json_view, post_required
 import amo.models
 from amo.urlresolvers import reverse
@@ -169,7 +170,10 @@ def start_validation(request):
     form = BulkValidationForm(request.POST)
     if form.is_valid():
         try:
-            job = form.save()
+            job = form.save(commit=False)
+            job.creator = get_user()
+            job.save()
+
             sql = """
                 select files.id
                 from files

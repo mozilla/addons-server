@@ -52,6 +52,7 @@ class ValidationJob(amo.models.ModelBase):
                                        related_name='validation_target_set')
     finish_email = models.EmailField(null=True)
     completed = models.DateTimeField(null=True, db_index=True)
+    creator = models.ForeignKey('users.UserProfile', null=True)
 
     def result_passing(self):
         return self.result_set.exclude(completed=None).filter(errors=0)
