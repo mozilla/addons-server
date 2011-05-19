@@ -74,14 +74,15 @@ class NotifyForm(happyforms.Form):
     preview_only = forms.BooleanField(initial=True, required=False,
                             label=_lazy(u'Log emails instead of sending'))
     text = forms.CharField(widget=forms.Textarea, required=True)
-    variables = ['{{ADDON_NAME}}', '{{APPLICATION}}', '{{COMPAT_LINK}}',
-                 '{{RESULT_LINKS}}', '{{VERSION}}']
+    variables = ['{{ADDON_NAME}}', '{{ADDON_VERSION}}', '{{APPLICATION}}',
+                 '{{COMPAT_LINK}}', '{{RESULT_LINKS}}', '{{VERSION}}']
 
     def __init__(self, *args, **kw):
         kw.setdefault('initial', {})
         if 'text' in kw:
             kw['initial']['text'] = texts[kw.pop('text')]
-        kw['initial']['subject'] = ('{{ADDON_NAME}} compatibility with '
+        kw['initial']['subject'] = ('{{ADDON_NAME}} {{ADDON_VERSION}} '
+                                    'compatibility with '
                                     '{{APPLICATION}} {{VERSION}}')
         super(NotifyForm, self).__init__(*args, **kw)
 
