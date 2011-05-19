@@ -560,6 +560,8 @@ class TestBulkValidationTask(BulkValidationTest):
         assert close_to_now(res.completed)
         eq_(res.validation_job.stats['total'], 1)
         eq_(res.validation_job.stats['errors'], 1)
+        eq_(res.validation_job.stats['passing'], 0)
+        eq_(res.validation_job.stats['failing'], 0)
 
     @mock.patch('zadmin.tasks.run_validator')
     def test_validate_for_appversions(self, run_validator):
@@ -643,7 +645,7 @@ class TestBulkValidationTask(BulkValidationTest):
     def create_version(self, addon, statuses):
         version = Version.objects.create(addon=addon)
         for status in statuses:
-            file = File.objects.create(status=status, version=version)
+            File.objects.create(status=status, version=version)
         return version
 
     def find_files(self):
