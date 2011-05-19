@@ -41,7 +41,7 @@ class UtilsTest(TestCase):
         d = api.utils.addon_to_dict(a)
         assert d['learnmore'].endswith('/addon/a3615/?src=api')
         d = api.utils.addon_to_dict(a, disco=True)
-        u = '%s%s?src=discovery-personalrec' % (settings.SERVICES_URL,
+        u = '%s%s?src=api' % (settings.SERVICES_URL,
             reverse('discovery.addons.detail', args=['a3615']))
         eq_(d['learnmore'], u)
 

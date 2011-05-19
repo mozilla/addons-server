@@ -126,7 +126,7 @@ def extension_detail(request, addon):
             'addons.detail', args=[addon.slug]))
 
     # source tracking
-    src = request.GET.get('src', 'addondetail')
+    src = request.GET.get('src', 'addon-detail')
 
     # get satisfaction only supports en-US
     lang = translation.to_locale(translation.get_language())
@@ -179,7 +179,7 @@ def impala_extension_detail(request, addon):
             'addons.detail', args=[addon.slug]))
 
     # source tracking
-    src = request.GET.get('src', 'addondetail')
+    src = request.GET.get('src', 'addon-detail')
 
     # get satisfaction only supports en-US
     lang = translation.to_locale(translation.get_language())
@@ -516,9 +516,9 @@ def developers(request, addon, page):
     if 'src' in request.GET:
         src = request.GET['src']
     else:
-        src = {'developers': 'developers',
-               'installed': 'meet-the-developer-post-install',
-               'roadblock': 'meetthedeveloper_roadblock'}.get(page, None)
+        src = {'developers': 'meet-developers',
+               'installed': 'post-download',
+               'roadblock': 'roadblock'}.get(page, None)
 
     if addon.is_persona():
         raise http.Http404()

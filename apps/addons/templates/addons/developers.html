@@ -19,6 +19,7 @@
 {% if page == "roadblock" and not addon.charity %}
   {% set msg = _('Before downloading this add-on, please consider supporting the '
                  'development of this add-on by making a small contribution.') %}
+  {% set src = "roadblock" %}
 {% else %}
   {% set msg = None %}
 {% endif %}
