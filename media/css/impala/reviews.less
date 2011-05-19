@@ -29,3 +29,60 @@
     margin-right: 0;
     margin-left: 4px;
 }
+
+
+/* grouped ratings style */
+
+.grouped_ratings {
+    font-family: @sans-stack;
+    color: #666;
+    li {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+    .rating_bar {
+        border-left: 1px solid #999;
+        height: 20px;
+        float: left;
+        width: 0px;
+        overflow: visible;
+        width: 96px;
+        span.bar {
+            display:block;
+            height: 100%;
+            position: relative;
+            background: #ddd;
+            margin: .4em .5em 0 0;
+            height: 10px;
+        }
+    }
+    .num_ratings {
+        width: 1px;
+        position: absolute;
+        right: -5px;
+        top: -2px;
+        line-height: 12px;
+        font-size: 10px;
+    }
+    .stars {
+        float: left;
+        margin: 4px 8px 0 0 ;
+    }
+}
+
+.html-rtl .grouped_ratings {
+    .rating_bar {
+        border-left: 0;
+        border-right: 1px solid black;
+        float: right;
+        span.bar {
+            float: right;
+            margin: .4em 0 0 .5em;
+        }
+        span.num_ratings {
+            right: auto;
+            left: -4px;
+        }
+    }
+}

@@ -73,7 +73,6 @@
 {% endif %}
 
 <aside class="secondary">
-  {% include "reviews/grouped_ratings.html" %}
 </aside>
 
 {% if addon.description %}
@@ -84,6 +83,10 @@
 {% endif %}
 
 <aside class="secondary addon-reviews">
+  <div>
+    {{ addon.average_rating|stars }}
+    {{ _('Average') }}
+  </div>
   {% include "reviews/grouped_ratings.html" %}
 </aside>
 
