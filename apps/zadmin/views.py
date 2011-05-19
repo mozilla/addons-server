@@ -164,6 +164,32 @@ def validation(request, form=None):
                          'validation_jobs': jobs})
 
 
+def find_files(application, curr_max_version):
+    # TODO(someone): optimise this, this is going to be horribly slow.
+    # Can we just get addons with transforms and use current version?
+    # Or this should be chunked into the task.
+    statuses = [amo.STATUS_PUBLIC, amo.STATUS_LISTED]
+    statuses_pending = list(amo.UNREVIEWED_STATUSES) + [amo.STATUS_PENDING]
+    ids = []
+    addons = (Addon.objects.filter(status__in=statuses,
+                                   disabled_by_user=False,
+                                   versions__files__status__in=statuses,
+                                   versions__apps__application=application.id,
+                                   versions__apps__max=curr_max_version.id)
+                           .no_transforms())
+    for addon in addons:
+        latest = (addon.versions.filter(files__status__in=statuses)
+                                .order_by('-id')[0])
+        ids.extend([l.pk for l in latest.files.filter(status__in=statuses)])
+        pending = (addon.versions.filter(files__status__in=statuses_pending,
+                                         id__gt=latest.id))
+        for version in pending:
+            ids.extend(version.files.filter(status__in=statuses_pending)
+                                    .values_list('id', flat=True))
+
+    return ids
+
+
 @admin.site.admin_view
 @transaction.commit_manually
 def start_validation(request):
@@ -173,28 +199,10 @@ def start_validation(request):
             job = form.save(commit=False)
             job.creator = get_user()
             job.save()
-
-            sql = """
-                select files.id
-                from files
-                join versions v on v.id=files.version_id
-                join addons a on a.id=v.addon_id
-                join applications_versions av on av.version_id=v.id
-                where
-                    av.application_id = %(application_id)s
-                    and av.max = %(curr_max_version)s
-                    and NOT a.inactive
-                    and a.status NOT IN %(inactive_statuses)s
-                    and files.status NOT IN %(inactive_statuses)s"""
-            cursor = connection.cursor()
-            cursor.execute(sql, {'application_id': job.application.id,
-                                 'curr_max_version': job.curr_max_version.id,
-                                 'inactive_statuses': [amo.STATUS_DISABLED,
-                                                       amo.STATUS_NULL]})
             results = []
-            for row in cursor:
+            for id in find_files(job.application, job.curr_max_version):
                 res = ValidationResult.objects.create(validation_job=job,
-                                                      file_id=row[0])
+                                                      file_id=id)
                 results.append(res.id)
             transaction.commit()
         except:
