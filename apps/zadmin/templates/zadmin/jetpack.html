@@ -1,0 +1,33 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ page_title('Jetpack') }}{% endblock %}
+
+{% block content %}
+<h2>Jetpack</h2>
+<p>According to our records, the current jetpack version is <b>{{ cfg.value }}</b>.</p>
+<p>Should it be something different?</p>
+<form method="post" action="">
+  {{ csrf() }}
+  <input name="jetpack_version" placeholder="{{ cfg.value }}">
+  <button>Hit it.</button>
+</form>
+<p>Make sure builder.amo knows about your new version! And ask someone to fix <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=658375">bug 658375</a>.</p>
+<h3>And Now Some Stats</h3>
+<p>There are <b>{{ jetpacks|numberfmt }}</b> jetpack files in our db. (This counts files, not add-ons.)</p>
+<table>
+  <thead>
+    <tr>
+      <th>Jetpack Version</th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for version, count in by_version|sort %}
+    <tr>
+      <td>{{ version }}</td>
+      <td>{{ count }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -5,6 +5,7 @@ from django import http
 # I'm so glad we named a function in here settings...
 from django.conf import settings as site_settings
 from django.contrib import admin
+from django.db.models import Count
 from django.shortcuts import redirect, get_object_or_404
 from django.views import debug
 
@@ -24,9 +25,10 @@ from amo.utils import chunked
 from addons.models import Addon
 from files.models import Approval, File
 from versions.models import Version
-from zadmin.forms import BulkValidationForm, NotifyForm
-from zadmin.models import ValidationJob, EmailPreviewTopic
-from zadmin import tasks
+
+from . import tasks
+from .forms import BulkValidationForm, NotifyForm
+from .models import ValidationJob, EmailPreviewTopic, Config
 
 log = commonware.log.getLogger('z.zadmin')
 
@@ -257,3 +259,18 @@ def email_preview_csv(request, topic):
     for row in rs:
         writer.writerow([r.encode('utf8') for r in row])
     return resp
+
+
+@admin.site.admin_view
+def jetpack(request):
+    cfg = Config.objects.get(key='jetpack_version')
+    if request.method == 'POST':
+        cfg.value = request.POST['jetpack_version']
+        cfg.save()
+        return redirect('zadmin.jetpack')
+    q = File.objects.filter(jetpack_version__isnull=False)
+    jetpacks = q.aggregate(num=Count('id'))['num']
+    by_version = q.values_list('jetpack_version').annotate(Count('id'))
+    return jingo.render(request, 'zadmin/jetpack.html',
+                        dict(cfg=cfg, jetpacks=jetpacks,
+                             by_version=by_version))
