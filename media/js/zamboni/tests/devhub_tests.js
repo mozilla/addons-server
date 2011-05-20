@@ -663,6 +663,61 @@ asyncTest('Test single tier', function() {
     });
 });
 
+asyncTest('Test no compat tests', function() {
+    var $suite = $('.addon-validator-suite', this.sandbox),
+        tiers=[], results=[];
+
+    $.mockjax({
+        url: '/validate',
+        responseText: {
+            "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
+            "full_report_url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "upload": "d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "error": null,
+            "validation": {
+                "errors": 1,
+                "success": false,
+                "warnings": 7,
+                "compatibility_summary": {
+                    "notices": 0,
+                    "errors": 0,
+                    "warnings": 0
+                },
+                "ending_tier": 5,
+                "messages": [{
+                    "context": null,
+                    "description": ["Non-compat error."],
+                    "column": null,
+                    "compatibility_type": null,
+                    "file": "components/cooliris.dll",
+                    "tier": 1,
+                    "for_appversions": null,
+                    "message": "Some error",
+                    "type": "error",
+                    "line": null,
+                    "uid": "6fd1f5c74c4445f79a1919c8480e4e72"
+                }],
+                "detected_type": "extension",
+                "notices": 2,
+                "message_tree": {},
+                "metadata": {}
+            }
+        }
+    });
+
+    $suite.trigger('validate');
+
+    tests.waitFor(function() {
+        return $('#suite-results-tier-non_compat .msg', $suite).length;
+    }).thenDo(function() {
+        // template is hidden
+        equals($('.template:visible', $suite).length, 0);
+        // The non-compat error exists
+        equals($('#v-msg-6fd1f5c74c4445f79a1919c8480e4e72', $suite).length, 1);
+        start();
+    });
+});
+
 
 module('Validator: Incomplete', validatorFixtures);
 
