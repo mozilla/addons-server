@@ -33,6 +33,12 @@ $('.island .listing-grid').bind('grid.init', function(e, data) {
 $(function() {
     "use strict";
 
+    var firstvisitcookie = 'amo_impala_user_seen';
+    if (!$.cookie(firstvisitcookie)) {
+        $('body').addClass('firstvisit');
+        $.cookie(firstvisitcookie, '1');
+    }
+
     //paginate listing grids.
     $('.listing-grid').each(function() {
         var $grid = $(this),

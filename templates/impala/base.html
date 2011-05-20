@@ -110,6 +110,17 @@
             </p>
             <a href="#" class="close">{{ _('Close') }}</a>
           </div>
+          <div class="site-balloon" id="site-welcome">
+            <h3>{{ _('Welcome to {0} Add-ons.')|f(APP.pretty) }}</h3>
+            <p>
+              {% trans %}
+                Choose from thousands of extra features and styles for Firefox.
+                {# Fligtar said to remove this until we have something to link to.
+                   <a href="#">Learn more…</a> #}
+              {% endtrans %}
+            </p>
+            <a href="#" class="close">{{ _('Close') }}</a>
+          </div>
         </div>
       {% endblock site_header %}
 
