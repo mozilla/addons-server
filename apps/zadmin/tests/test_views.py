@@ -376,6 +376,11 @@ class TestBulkUpdate(BulkValidationTest):
         eq_(len(mail.outbox), 0)
         rs = self.job.get_success_preview_emails()
         eq_([e.subject for e in rs], ['the subject'])
+        # version should not be bumped since it's in preview mode:
+        eq_(self.version.apps.all()[0].max, self.max)
+        upd = amo.LOG.BULK_VALIDATION_UPDATED.id
+        logs = ActivityLog.objects.for_addons(self.addon).filter(action=upd)
+        eq_(logs.count(), 0)
 
 
 class TestBulkNotify(BulkValidationTest):

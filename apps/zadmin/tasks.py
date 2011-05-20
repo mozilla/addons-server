@@ -174,17 +174,21 @@ def notify_success(version_pks, job_pk, data, **kw):
             continue
 
         app_flag = False
+        dry_run = data['preview_only']
         for app in version.apps.filter(application=
                                        job.curr_max_version.application):
             if (app.max.version == job.curr_max_version.version and
                 job.target_version.version != app.max.version):
-                log.info('Updating version %s for addon %s from version %s '
+                log.info('Updating version %s%s for addon %s from version %s '
                          'to version %s'
-                         % (version.pk, version.addon.pk,
+                         % (version.pk,
+                            ' [DRY RUN]' if dry_run else '',
+                            version.addon.pk,
                             job.curr_max_version.version,
                             job.target_version.version))
                 app.max = job.target_version
-                app.save()
+                if not dry_run:
+                    app.save()
                 app_flag = True
 
             else:
@@ -200,20 +204,20 @@ def notify_success(version_pks, job_pk, data, **kw):
                 log.info(u'Emailing %s%s for addon %s, version %s about '
                          'success from bulk validation job %s'
                          % (author.email,
-                            ' [PREVIEW]' if data['preview_only'] else '',
+                            ' [PREVIEW]' if dry_run else '',
                             addon.pk, version.pk, job_pk))
                 args = (Template(data['subject']).render(context),
                         Template(data['text']).render(context))
                 kwargs = dict(from_email=settings.DEFAULT_FROM_EMAIL,
                               recipient_list=[author.email])
-                if data['preview_only']:
+                if dry_run:
                     job.preview_success_mail(*args, **kwargs)
                 else:
                     send_mail(*args, **kwargs)
-                amo.log(amo.LOG.BULK_VALIDATION_UPDATED,
-                        version.addon, version,
-                        details={'version': version.version,
-                                 'target': job.target_version.version})
+                    amo.log(amo.LOG.BULK_VALIDATION_UPDATED,
+                            version.addon, version,
+                            details={'version': version.version,
+                                     'target': job.target_version.version})
 
 
 @task
