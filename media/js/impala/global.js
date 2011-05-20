@@ -39,6 +39,10 @@ $(function() {
         $.cookie(firstvisitcookie, '1');
     }
 
+    $(".mobile-link").attr("href", window.location).click(function() {
+        $.cookie("mamo", "on", {expires:30});
+    });
+
     //paginate listing grids.
     $('.listing-grid').each(function() {
         var $grid = $(this),
