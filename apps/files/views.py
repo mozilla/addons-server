@@ -161,7 +161,11 @@ def serve(request, viewer, key):
 def builder_pingback(request):
     try:
         data = json.loads(request.raw_post_data)
-        data['id']  # Ensure id is available.
+        # We expect all these attributes to be available.
+        attrs = 'id result msg filename location secret'.split()
+        for attr in attrs:
+            assert attr in data, '%s not in %s' % (attr, data)
+        # Only AMO and the builder should know this secret.
         assert data.get('secret') == settings.BUILDER_SECRET_KEY
     except Exception:
         log.warning('Problem with builder pingback.', exc_info=True)

@@ -125,7 +125,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
             if not dest.exists():
                 dest.makedirs()
             upload.path.copyfile(dest / nfd_str(f.filename))
-        FileValidation.from_json(f, upload.validation)
+        if upload.validation:
+            FileValidation.from_json(f, upload.validation)
         return f
 
     @classmethod
