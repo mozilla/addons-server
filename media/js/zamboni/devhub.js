@@ -1314,6 +1314,10 @@ $(document).ready(function() {
                     results.append(msgDiv);
                 }
             });
+            if (isCompat) {
+                // We are done copying from the template
+                $('.template', suite).hide();
+            }
         }
     }
 
