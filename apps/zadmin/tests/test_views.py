@@ -21,7 +21,7 @@ from applications.models import AppVersion
 from devhub.models import ActivityLog
 from files.models import Approval, File
 from users.models import UserProfile
-from versions.models import Version
+from versions.models import ApplicationsVersions, Version
 from zadmin.forms import NotifyForm
 from zadmin.models import ValidationJob, ValidationResult, EmailPreviewTopic
 from zadmin.views import completed_versions_dirty, find_files
@@ -95,6 +95,10 @@ class BulkValidationTest(test_utils.TestCase):
         self.addon = Addon.objects.get(pk=3615)
         self.creator = UserProfile.objects.get(username='editor')
         self.version = self.addon.get_version()
+        self.application_version = self.version.apps.all()[0]
+        self.application = self.application_version.application
+        self.min = self.application_version.min
+        self.max = self.application_version.max
         self.curr_max = self.appversion('3.7a1pre')
         self.counter = 0
 
@@ -642,8 +646,17 @@ class TestBulkValidationTask(BulkValidationTest):
         eq_(validate.call_args[1]['overrides'],
             {"targetapp_maxVersion": {amo.FIREFOX.guid: '3.7a4'}})
 
-    def create_version(self, addon, statuses):
+    def create_version(self, addon, statuses, version_str=None):
+        max = self.max
+        if version_str:
+            max = AppVersion.objects.get(version=version_str)
         version = Version.objects.create(addon=addon)
+
+        ApplicationsVersions.objects.create(
+            application = self.application,
+            min = self.min, max = max,
+            version = version
+        )
         for status in statuses:
             File.objects.create(status=status, version=version)
         return version
@@ -653,52 +666,109 @@ class TestBulkValidationTask(BulkValidationTest):
         find_files(job)
         return list(job.result_set.values_list('file_id', flat=True))
 
-    def test_getting_status(self):
-        version = self.create_version(self.addon, [amo.STATUS_PUBLIC,
-                                                   amo.STATUS_NOMINATED])
-        ids = self.find_files()
-        eq_(len(ids), 1)
-        eq_(version.files.all()[0].pk, ids[0])
+    def test_getting_disabled(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        eq_(len(self.find_files()), 0)
 
-    def test_getting_status_lite_and_nominated(self):
-        version = self.create_version(self.addon,
-                                      [amo.STATUS_PUBLIC,
-                                       amo.STATUS_LITE_AND_NOMINATED])
+    def test_getting_status(self):
+        self.create_version(self.addon, [amo.STATUS_PUBLIC,
+                                         amo.STATUS_NOMINATED])
         ids = self.find_files()
-        eq_(len(ids), 1)
-        eq_(version.files.all()[0].pk, ids[0])
+        eq_(len(ids), 2)
 
     def test_getting_latest_public(self):
         old_version = self.create_version(self.addon, [amo.STATUS_PUBLIC])
-        new_version = self.create_version(self.addon, [amo.STATUS_NULL])
+        self.create_version(self.addon, [amo.STATUS_NULL])
         ids = self.find_files()
         eq_(len(ids), 1)
         eq_(old_version.files.all()[0].pk, ids[0])
 
     def test_getting_latest_public_order(self):
-        old_version = self.create_version(self.addon, [amo.STATUS_PURGATORY])
+        self.create_version(self.addon, [amo.STATUS_PURGATORY])
         new_version = self.create_version(self.addon, [amo.STATUS_PUBLIC])
         ids = self.find_files()
         eq_(len(ids), 1)
         eq_(new_version.files.all()[0].pk, ids[0])
 
-    def test_getting_w_pending(self):
+    def delete_orig_version(self, fixup=True):
+        # Because deleting versions resets the status...
+        self.version.delete()
+        # Don't really care what status this is, as long
+        # as it gets past the first SQL query.
+        self.addon.update(status=amo.STATUS_PUBLIC)
+
+    def test_no_versions(self):
+        self.delete_orig_version()
+        eq_(len(self.find_files()), 0)
+
+    def test_no_files(self):
+        self.version.files.all().delete()
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        eq_(len(self.find_files()), 0)
+
+    def test_not_public(self):
+        version = self.create_version(self.addon, [amo.STATUS_LITE])
+        self.delete_orig_version()
+        ids = self.find_files()
+        eq_(len(ids), 1)
+        eq_(version.files.all()[0].pk, ids[0])
+
+    def test_not_public_and_newer(self):
+        self.create_version(self.addon, [amo.STATUS_LITE])
+        new_version = self.create_version(self.addon, [amo.STATUS_LITE])
+        self.delete_orig_version()
+        ids = self.find_files()
+        eq_(len(ids), 1)
+        eq_(new_version.files.all()[0].pk, ids[0])
+
+    def test_not_public_w_beta(self):
+        self.create_version(self.addon, [amo.STATUS_LITE])
+        self.create_version(self.addon, [amo.STATUS_BETA])
+        self.delete_orig_version()
+        ids = self.find_files()
+        eq_(len(ids), 2)
+
+    def test_not_public_w_multiple_files(self):
+        self.create_version(self.addon, [amo.STATUS_BETA])
+        new_version = self.create_version(self.addon, [amo.STATUS_LITE,
+                                                       amo.STATUS_BETA])
+        self.delete_orig_version()
+        ids = self.find_files()
+        eq_(len(ids), 2)
+        eq_([v.id for v in new_version.files.all()], ids)
+
+    def test_not_prelim_w_multiple_files(self):
+        self.create_version(self.addon, [amo.STATUS_BETA])
+        self.create_version(self.addon, [amo.STATUS_BETA,
+                                         amo.STATUS_NOMINATED])
+        self.delete_orig_version()
+        ids = self.find_files()
+        eq_(len(ids), 3)
+
+    def test_public_partial(self):
+        self.create_version(self.addon, [amo.STATUS_PUBLIC])
+        new_version = self.create_version(self.addon, [amo.STATUS_BETA,
+                                                       amo.STATUS_DISABLED])
+        ids = self.find_files()
+        eq_(len(ids), 2)
+        assert new_version.files.all()[1].pk not in ids
+
+    def test_getting_w_unreviewed(self):
         old_version = self.create_version(self.addon, [amo.STATUS_PUBLIC])
-        new_version = self.create_version(self.addon, [amo.STATUS_PENDING])
+        new_version = self.create_version(self.addon, [amo.STATUS_UNREVIEWED])
         ids = self.find_files()
         eq_(len(ids), 2)
         eq_([old_version.files.all()[0].pk, new_version.files.all()[0].pk],
             ids)
 
     def test_multiple_files(self):
-        version = self.create_version(self.addon, [amo.STATUS_LISTED,
-                                                   amo.STATUS_LISTED,
-                                                   amo.STATUS_LISTED])
+        self.create_version(self.addon, [amo.STATUS_PUBLIC, amo.STATUS_PUBLIC,
+                                         amo.STATUS_PUBLIC])
         ids = self.find_files()
         eq_(len(ids), 3)
 
     def test_multiple_public(self):
-        old_version = self.create_version(self.addon, [amo.STATUS_PUBLIC])
+        self.create_version(self.addon, [amo.STATUS_PUBLIC])
         new_version = self.create_version(self.addon, [amo.STATUS_PUBLIC])
         ids = self.find_files()
         eq_(len(ids), 1)
@@ -706,10 +776,24 @@ class TestBulkValidationTask(BulkValidationTest):
 
     def test_multiple_addons(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        version = self.create_version(addon, [amo.STATUS_PURGATORY])
+        self.create_version(addon, [amo.STATUS_PURGATORY])
         ids = self.find_files()
         eq_(len(ids), 1)
         eq_(self.version.files.all()[0].pk, ids[0])
+
+    def test_no_app(self):
+        version = self.create_version(self.addon, [amo.STATUS_LITE])
+        self.delete_orig_version()
+        version.apps.all().delete()
+        ids = self.find_files()
+        eq_(len(ids), 0)
+
+    def test_wrong_version(self):
+        version = self.create_version(self.addon, [amo.STATUS_LITE],
+                                      version_str='4.0b2pre')
+        self.delete_orig_version()
+        ids = self.find_files()
+        eq_(len(ids), 0)
 
 
 def test_settings():

@@ -166,13 +166,14 @@ def validation(request, form=None):
 
 
 def find_files(job):
-    statuses = [amo.STATUS_PUBLIC, amo.STATUS_LISTED]
-    addons = (Addon.objects.filter(status__in=statuses,
+    # This is a first pass, we know we don't want any addons in the states
+    # STATUS_NULL and STATUS_DISABLED.
+    addons = (Addon.objects.filter(status__in=amo.VALID_STATUSES,
                                 disabled_by_user=False,
-                                versions__files__status__in=statuses,
                                 versions__apps__application=job.application.id,
                                 versions__apps__max=job.curr_max_version.id)
-                           .no_transforms().values_list("pk", flat=True))
+                           .no_transforms().values_list("pk", flat=True)
+                           .distinct())
     for pks in chunked(addons, 100):
         tasks.add_validation_jobs.delay(pks, job.pk)
 

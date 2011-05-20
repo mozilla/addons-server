@@ -6,6 +6,7 @@ import textwrap
 import traceback
 
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import connection
 from django.template import Context, Template
 
@@ -89,28 +90,50 @@ def bulk_validate_file(result_id, **kw):
 @task
 @write
 def add_validation_jobs(pks, job_pk, **kw):
-    statuses = [amo.STATUS_PUBLIC, amo.STATUS_LISTED]
-    statuses_pending = list(amo.UNREVIEWED_STATUSES) + [amo.STATUS_PENDING]
     log.info('[%s@None] Adding validation jobs for addons starting at: %s '
              ' for job: %s'
              % (len(pks), pks[0], job_pk))
+
+    job = ValidationJob.objects.get(pk=job_pk)
+    prelim_app = list(amo.STATUS_UNDER_REVIEW) + [amo.STATUS_BETA]
     for addon in Addon.objects.filter(pk__in=pks):
         ids = []
+        base = addon.versions.filter(apps__application=job.application.id,
+                                     apps__max=job.curr_max_version.id)
+
         try:
-            latest = (addon.versions.filter(files__status__in=statuses)
-                                    .order_by('-id')[0])
-        except IndexError:
-            log.info('No latest version for addon: %s' % addon.pk)
-            continue
+            public = (base.filter(files__status=amo.STATUS_PUBLIC)
+                          .latest('id'))
+        except ObjectDoesNotExist:
+            public = None
 
-        ids.extend([l.pk for l in latest.files.filter(status__in=statuses)])
-        pending = (addon.versions.filter(files__status__in=statuses_pending,
-                                         id__gt=latest.id))
-        for version in pending:
-            ids.extend(version.files.filter(status__in=statuses_pending)
-                                    .values_list('id', flat=True))
+        if public:
+            ids.extend([f.id for f in public.files.all()])
+            ids.extend(base.filter(files__status__in=prelim_app,
+                                   id__gt=public.id)
+                           .values_list('files__id', flat=True))
 
-        for id in ids:
+        else:
+            try:
+                prelim = (base.filter(files__status__in=amo.LITE_STATUSES)
+                              .latest('id'))
+            except ObjectDoesNotExist:
+                prelim = None
+
+            if prelim:
+                ids.extend([f.id for f in prelim.files.all()])
+                ids.extend(base.filter(files__status__in=prelim_app,
+                                       id__gt=prelim.id)
+                               .values_list('files__id', flat=True))
+
+            else:
+                ids.extend(base.filter(files__status__in=prelim_app)
+                               .values_list('files__id', flat=True))
+
+        ids = set(ids)  # Just in case.
+        log.info('Adding %s files for validation for '
+                 'addon: %s for job: %s' % (len(ids), addon.pk, job_pk))
+        for id in set(ids):
             result = ValidationResult.objects.create(validation_job_id=job_pk,
                                                      file_id=id)
             bulk_validate_file.delay(result.pk)
