@@ -12,7 +12,7 @@
     {% endif %}
   </li>
 {% else %}
-  <li class="account anonymous">
+  <li class="account anonymous nomenu">
     {# TODO(jbalogh): reverse #}
     {% trans reg="/users/register", login=login_link() %}
       <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>
@@ -31,8 +31,8 @@
       </ul>
     </li>
   {% else %}
-    <p class="context tools">
+    <li class="context tools nomenu">
       <a href="{{ tools_links[0].href }}">{{ tools_links[0].text }}</a>
-    </p>
+    </li>
   {% endif %}
 {% endif %}
