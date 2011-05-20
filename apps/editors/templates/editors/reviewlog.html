@@ -5,24 +5,28 @@
 {% endblock %}
 
 {% block content %}
+
+  <div id="log-filter" class="log-filter-outside">
+    <form action="{{ url('editors.reviewlog') }}" method="get">
+      <div class="date_range">
+        {{ form.start.label_tag() }}
+        {{ form.start }}
+        {{ form.end.label_tag() }}
+        {{ form.end }}
+        {{ form.search.label_tag() }}
+        {{ form.search }}
+
+        {# L10n: "Filter" is a button label (verb) #}
+        <button type="submit">
+          {{ _('Filter', 'editorcp_reviewlog_page_heading') }}
+        </button>
+      </div>
+    </form>
+  </div><!-- #log-filter -->
+
   <h2>{{ _('Add-on Review Log', 'editorcp_reviewlog_page_heading') }}</h2>
 
   <div class="listing results"><div class="results-inner controls">
-   	<div id="log-filter">
-     	<form action="{{ url('editors.reviewlog') }}" method="get">
-        <div class="date_range">
-          {{ form.start.label_tag() }}
-          {{ form.start }}
-          {{ form.end.label_tag() }}
-          {{ form.end }}
-
-          {# L10n: "Filter" is a button label (verb) #}
-          <button type="submit">
-            {{ _('Filter', 'editorcp_reviewlog_page_heading') }}
-          </button>
-        </div>
-      </form>
-   	</div><!-- #log-filter -->
     {% if pager.object_list %}
       <table id="log-listing" class="data-grid">
         <thead>

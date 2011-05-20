@@ -6,6 +6,7 @@ import time
 from django import http
 from django.conf import settings
 from django.core.cache import cache
+from django.db.models import Q
 from django.shortcuts import redirect, get_object_or_404
 from django.utils.datastructures import SortedDict
 from django.views.decorators.cache import never_cache
@@ -504,6 +505,13 @@ def reviewlog(request):
             approvals = approvals.filter(created__gte=data['start'])
         if data['end']:
             approvals = approvals.filter(created__lt=data['end'])
+        if data['search']:
+            term = data['search']
+            approvals = approvals.filter(
+                    Q(commentlog__comments__contains=term) |
+                    Q(addonlog__addon__name__localized_string__contains=term) |
+                    Q(user__display_name__contains=term) |
+                    Q(user__username__contains=term)).distinct()
 
     pager = amo.utils.paginate(request, approvals, 50)
     ad = {

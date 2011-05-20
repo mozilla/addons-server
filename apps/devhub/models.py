@@ -84,6 +84,19 @@ class AddonLog(amo.models.ModelBase):
         ordering = ('-created',)
 
 
+class CommentLog(amo.models.ModelBase):
+    """
+    This table is for indexing the activity log by user.
+    Note: This includes activity performed unto the user.
+    """
+    activity_log = models.ForeignKey('ActivityLog')
+    comments = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'log_activity_comment'
+        ordering = ('-created',)
+
+
 class UserLog(amo.models.ModelBase):
     """
     This table is for indexing the activity log by user.

@@ -377,7 +377,7 @@ def log(action, *args, **kw):
     e.g. amo.log(amo.LOG.CREATE_ADDON, []),
          amo.log(amo.LOG.ADD_FILE_TO_VERSION, file, version)
     """
-    from devhub.models import ActivityLog, AddonLog, UserLog
+    from devhub.models import ActivityLog, AddonLog, UserLog, CommentLog
     from addons.models import Addon
     from users.models import UserProfile
     from amo import get_user, logger_log
@@ -394,6 +394,9 @@ def log(action, *args, **kw):
         al.details = kw['details']
     al.save()
 
+    if 'details' in kw and 'comments' in al.details:
+        CommentLog(comments=al.details['comments'], activity_log=al).save()
+
     # TODO(davedash): post-remora this may not be necessary.
     if 'created' in kw:
         al.created = kw['created']
@@ -406,6 +409,7 @@ def log(action, *args, **kw):
                 AddonLog(addon_id=arg[1], activity_log=al).save()
             elif arg[0] == UserProfile:
                 UserLog(user_id=arg[1], activity_log=al).save()
+
         if isinstance(arg, Addon):
             AddonLog(addon=arg, activity_log=al).save()
         elif isinstance(arg, UserProfile):

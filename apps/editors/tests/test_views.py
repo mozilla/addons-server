@@ -124,18 +124,26 @@ class TestReviewLog(EditorTest):
             amo.log(amo.LOG.REJECT_VERSION, a, v, user=u,
                     details={'comments': 'youwin'})
 
-    def make_an_approval(self, action):
-        u = UserProfile.objects.filter()[0]
-        a = Addon.objects.create(type=amo.ADDON_EXTENSION)
+    def make_an_approval(self, action, **kw):
+        comment = kw.pop('comment', 'youwin')
+        username = kw.pop('username', False)
+        addon_name = kw.pop('addon_name', None)
+
+        user_filter = {}
+        if username:
+            user_filter['username'] = username
+
+        u = UserProfile.objects.filter(**user_filter)[0]
+        a = Addon.objects.create(type=amo.ADDON_EXTENSION, name=addon_name)
         v = Version.objects.create(addon=a)
-        amo.log(action, a, v, user=u, details={'comments': 'youwin'})
+        amo.log(action, a, v, user=u, details={'comments': comment})
 
     def test_basic(self):
         self.make_approvals()
         r = self.client.get(reverse('editors.reviewlog'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        assert doc('.listing button'), 'No filters.'
+        assert doc('#log-filter button'), 'No filters.'
         # Should have 6 showing.
         eq_(len(doc('tbody tr').not_('.hide')), 6)
         eq_(doc('tbody tr.hide').eq(0).text(), 'youwin')
@@ -185,6 +193,88 @@ class TestReviewLog(EditorTest):
 
         doc = pq(r.content)
         eq_(doc('#log-listing tr:not(.hide)').length, 7)
+
+    def test_search_comment_exists(self):
+        """
+        Search by comment.
+        """
+        self.make_approvals()
+        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, comment='hello')
+
+        r = self.client.get(reverse('editors.reviewlog') + '?search=hello')
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(len(doc('tbody tr').not_('.hide')), 1)
+        eq_(doc('tbody tr.hide').eq(0).text(), 'hello')
+
+    def test_search_comment_doesnt_exist(self):
+        """
+        Search by comment, with no results.
+        """
+        self.make_approvals()
+        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, comment='hello')
+
+        r = self.client.get(reverse('editors.reviewlog') + '?search=bye')
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(len(doc('tbody tr').not_('.hide')), 0)
+
+    def test_search_author_exists(self):
+        """
+        Search by author.
+        """
+        self.make_approvals()
+        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, username='editor',
+                                                            comment='hi')
+
+        r = self.client.get(reverse('editors.reviewlog') + '?search=editor')
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+
+        eq_(len(doc('tbody tr').not_('.hide')), 1)
+        eq_(doc('tbody tr.hide').eq(0).text(), 'hi')
+
+    def test_search_author_doesnt_exist(self):
+        """
+        Search by author, with no results.
+        """
+        self.make_approvals()
+        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, user_name='editor')
+
+        r = self.client.get(reverse('editors.reviewlog') + '?search=wrong')
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+
+        eq_(len(doc('tbody tr').not_('.hide')), 0)
+
+    def test_search_addon_exists(self):
+        """
+        Search by add-on name.
+        """
+        self.make_approvals()
+        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, addon_name='abcd',
+                                                            comment='ab')
+
+        r = self.client.get(reverse('editors.reviewlog') + '?search=ab')
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+
+        eq_(len(doc('tbody tr').not_('.hide')), 1)
+        eq_(doc('tbody tr.hide').eq(0).text(), 'ab')
+
+    def test_search_addon_doesnt_exist(self):
+        """
+        Search by add-on name, with no results.
+        """
+        self.make_approvals()
+        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, addon_name='abcd',
+                                                            comment='ab')
+
+        r = self.client.get(reverse('editors.reviewlog') + '?search=by')
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+
+        eq_(len(doc('tbody tr').not_('.hide')), 0)
 
     def test_breadcrumbs(self):
         r = self.client.get(reverse('editors.reviewlog'))

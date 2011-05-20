@@ -423,6 +423,24 @@ div.editor-stats-table > div.editor-stats-dark {
 #log-filter form {
     margin: 0;
 }
+.log-filter-outside {
+    float: right;
+}
+.log-filter-outside label {
+    font-weight: normal;
+}
+.log-filter-outside input::-webkit-input-placeholder {
+   color: #BBB;
+}
+
+.log-filter-outside input:-moz-placeholder {
+   color: #BBB;
+}
+
+.log-filter-outside div.date_range {
+    padding: 0.5em 0 0;
+}
+
 .queue-outer #queue-search table {
     margin: 0;
     padding: 0;
@@ -671,4 +689,5 @@ span.currently_viewing_warning {
 .article ul {
     margin-bottom: 0;
 }
+
 
