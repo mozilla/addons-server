@@ -408,7 +408,7 @@ class TestDeveloperPages(test_utils.TestCase):
     def test_meet_the_dev_src(self):
         r = self.client.get(reverse('addons.meet', args=['a11730']))
         button = pq(r.content)('.install-button a.button').attr('href')
-        assert button.endswith('?src=developers'), button
+        assert button.endswith('?src=meet-developers'), button
 
     def test_nl2br_info(self):
         r = self.client.get(reverse('addons.meet', args=['a228106']))
@@ -441,16 +441,17 @@ class TestDeveloperPages(test_utils.TestCase):
             'Future: This is line one.<br/><br/>This is line two')
 
     def test_roadblock_src(self):
+        # If they end up at the roadblock we force roadblock on them
         url = reverse('addons.roadblock', args=['a11730']) + '?src=addondetail'
         r = self.client.get(url)
         button = pq(r.content)('.install-button a.button').attr('href')
-        assert button.endswith('?src=addondetail'), button
+        assert button.endswith('?src=roadblock'), button
 
         # No previous source gets the roadblock page source
         url = reverse('addons.roadblock', args=['a11730'])
         r = self.client.get(url)
         button = pq(r.content)('.install-button a.button').attr('href')
-        assert button.endswith('?src=meetthedeveloper_roadblock'), button
+        assert button.endswith('?src=roadblock'), button
 
     def test_contribute_multiple_devs(self):
         a = Addon.objects.get(pk=592)
