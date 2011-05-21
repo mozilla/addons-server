@@ -740,7 +740,7 @@ class TestBulkValidationTask(BulkValidationTest):
         self.delete_orig_version()
         ids = self.find_files()
         eq_(len(ids), 2)
-        eq_([v.id for v in new_version.files.all()], ids)
+        eq_(sorted([v.id for v in new_version.files.all()]), sorted(ids))
 
     def test_not_prelim_w_multiple_files(self):
         self.create_version(self.addon, [amo.STATUS_BETA])
@@ -763,8 +763,9 @@ class TestBulkValidationTask(BulkValidationTest):
         new_version = self.create_version(self.addon, [amo.STATUS_UNREVIEWED])
         ids = self.find_files()
         eq_(len(ids), 2)
-        eq_([old_version.files.all()[0].pk, new_version.files.all()[0].pk],
-            ids)
+        eq_(sorted([old_version.files.all()[0].pk,
+                    new_version.files.all()[0].pk]),
+            sorted(ids))
 
     def test_multiple_files(self):
         self.create_version(self.addon, [amo.STATUS_PUBLIC, amo.STATUS_PUBLIC,
