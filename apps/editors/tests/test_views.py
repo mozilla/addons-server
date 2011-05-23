@@ -334,7 +334,9 @@ class TestHome(EditorTest):
 
     def test_approved_review(self):
         review = self.make_review()
-        amo.log(amo.LOG.APPROVE_REVIEW, review, review.addon)
+        amo.log(amo.LOG.APPROVE_REVIEW, review, review.addon,
+                details=dict(addon_name='test', addon_id=review.addon.pk,
+                is_flagged=True))
         r = self.client.get(reverse('editors.home'))
         doc = pq(r.content)
         eq_(doc('.row').eq(0).text().strip().split('.')[0],
