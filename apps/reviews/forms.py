@@ -66,7 +66,7 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                 elif action == reviews.REVIEW_MODERATE_KEEP:
                     review.editorreview = False
                     review.save()
-                    amo.log(amo.LOG.APPROVE_REVIEW, review.addon, review
+                    amo.log(amo.LOG.APPROVE_REVIEW, review.addon, review,
                             details=dict(title=unicode(review.title),
                                          body=unicode(review.body),
                                          addon_id=addon.id,
