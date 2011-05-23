@@ -111,7 +111,6 @@ def repackage_jetpack(builder_data, **kw):
         new_file.status = old_file.status
         new_file.save()
     except Exception, e:
-        print e
         jp_log.error(msg('Error creating new version/file.'), exc_info=True)
         raise
 

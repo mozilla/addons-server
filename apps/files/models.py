@@ -9,6 +9,7 @@ import uuid
 import shutil
 import zipfile
 
+import django.dispatch
 from django.conf import settings
 from django.db import models
 from django.template.defaultfilters import slugify
@@ -22,6 +23,8 @@ import amo
 import amo.models
 import amo.utils
 from amo.urlresolvers import reverse
+import devhub.signals
+from versions.compare import version_int
 
 log = commonware.log.getLogger('z.files')
 
@@ -454,3 +457,17 @@ def nfd_str(u):
     if isinstance(u, unicode):
         return unicodedata.normalize('NFD', u).encode('utf-8')
     return u
+
+
+@django.dispatch.receiver(devhub.signals.submission_done)
+def check_jetpack_version(sender, **kw):
+    import files.tasks
+    from zadmin.models import get_config
+
+    jetpack_version = get_config('jetpack_version')
+    qs = File.objects.filter(version__addon=sender,
+                             jetpack_version__isnull=False)
+    ids = [f.id for f in qs
+           if version_int(f.jetpack_version) < version_int(jetpack_version)]
+    if ids:
+        files.tasks.start_upgrade.delay(jetpack_version, ids, priority='high')

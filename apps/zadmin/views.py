@@ -276,8 +276,6 @@ def jetpack(request):
         elif 'upgrade' in request.POST:
             if upgrader.version(cfg.value):
                 start_upgrade(cfg.value)
-            else:
-                print 'no more than one'
         elif 'cancel' in request.POST:
             upgrader.cancel()
         return redirect('zadmin.jetpack')

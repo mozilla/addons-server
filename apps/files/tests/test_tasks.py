@@ -31,7 +31,7 @@ class TestRepackageJetpack(amo.tests.RedisTest, test_utils.TestCase):
         # Match the guid from jetpack.xpi.
         self.addon.update(guid='jid0-ODIKJS9b4IT3H1NYlPKr0NDtLuE@jetpack')
         self.file = self.addon.current_version.all_files[0]
-        assert self.file.status == amo.STATUS_PUBLIC
+        eq_(self.file.status, amo.STATUS_PUBLIC)
 
         # Set up a temp file so urllib.urlretrieve works.
         self.xpi_path = os.path.join(settings.ROOT,

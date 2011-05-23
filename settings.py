@@ -946,7 +946,8 @@ VALID_LOGIN_REDIRECTS = {
 
 # Secret key we send to builder so we can trust responses from the builder.
 BUILDER_SECRET_KEY = 'love will tear us apart'
-BUILDER_UPGRADE_URL = 'http://z/services/fake-builder'
+# The builder URL we hit to upgrade jetpacks.
+BUILDER_UPGRADE_URL = 'https://addons.mozilla.org/services/builder'
 
 
 ## Elastic Search
