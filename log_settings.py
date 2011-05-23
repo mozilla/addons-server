@@ -24,24 +24,24 @@ cfg = {
     'formatters': {
         'debug': {
             '()': commonware.log.Formatter,
-            'datefmt': '%H:%M:%s',
+            'datefmt': '%H:%M:%S',
             'format': '%(asctime)s ' + base_fmt,
         },
         'prod': {
             '()': commonware.log.Formatter,
-            'datefmt': '%H:%M:%s',
+            'datefmt': '%H:%M:%S',
             'format': ('%s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
                        % (settings.SYSLOG_TAG, base_fmt)),
         },
         'prod2': {
             '()': commonware.log.Formatter,
-            'datefmt': '%H:%M:%s',
+            'datefmt': '%H:%M:%S',
             'format': ('%s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
                        % (settings.SYSLOG_TAG2, base_fmt)),
         },
         'csp': {
             '()': cef.SysLogFormatter,
-            'datefmt': '%H:%M:%s',
+            'datefmt': '%H:%M:%S',
             'format': '%s: %s' % (settings.SYSLOG_CSP, base_fmt),
         },
     },

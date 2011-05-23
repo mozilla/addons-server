@@ -803,6 +803,7 @@ LOGGING = {
     'loggers': {
         'amqplib': {'handlers': ['null']},
         'caching': {'handlers': ['null']},
+        'pyes': {'handlers': ['null']},
         'rdflib': {'handlers': ['null']},
         'suds': {'handlers': ['null']},
         'z.sphinx': {'level': logging.INFO},
@@ -952,3 +953,9 @@ VALID_LOGIN_REDIRECTS = {
 
 # Secret key we send to builder so we can trust responses from the builder.
 BUILDER_SECRET_KEY = 'love will tear us apart'
+
+
+## Elastic Search
+ES_HOSTS = ['127.0.0.1:9200']
+ES_INDEX = 'amo'
+USE_ELASTIC = True

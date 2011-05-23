@@ -2,11 +2,12 @@ from collections import defaultdict
 import contextlib
 import threading
 
+from django.conf import settings
 from django.db import models
 from django.utils import translation
 
-
 import caching.base
+import elasticutils
 import multidb.pinning
 import queryset_transform
 
@@ -265,7 +266,17 @@ class OnChangeMixin(object):
         return result
 
 
-class ModelBase(caching.base.CachingMixin, models.Model):
+class SearchMixin(object):
+
+    @classmethod
+    def index(cls, document, id=None, bulk=False, force_insert=False):
+        """Wrapper around pyes.ES.index."""
+        elasticutils.get_es().index(
+            document, index=settings.ES_INDEX, doc_type=cls._meta.app_label,
+            id=id, bulk=bulk, force_insert=force_insert)
+
+
+class ModelBase(SearchMixin, caching.base.CachingMixin, models.Model):
     """
     Base class for AMO models to abstract some common features.
 

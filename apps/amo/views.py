@@ -5,6 +5,7 @@ from PIL import Image
 import socket
 import StringIO
 import time
+import traceback
 import urllib2
 from urlparse import urlparse
 
@@ -19,6 +20,7 @@ from django.views.decorators.http import require_POST
 from django_arecibo.tasks import post
 import caching.invalidation
 import commonware.log
+import elasticutils
 import jingo
 import phpserialize as php
 import waffle
@@ -122,6 +124,16 @@ def monitor(request, format=None):
         msg = "Please set SPIDERMONKEY in your settings file."
         libraries_results.append(("Spidermonkey isn't set up.", False, msg))
 
+    elastic_results = None
+    if settings.USE_ELASTIC:
+        status_summary['elastic'] = False
+        try:
+            health = elasticutils.get_es().cluster_health()
+            status_summary['elastic'] = health['status'] != 'red'
+            elastic_results = health
+        except Exception:
+            elastic_results = traceback.format_exc()
+
     # Check file paths / permissions
     rw = (settings.TMP_PATH,
           settings.NETAPP_STORAGE,
@@ -196,6 +208,7 @@ def monitor(request, format=None):
                          'hera_results': hera_results,
                          'mongo_results': mongo_results,
                          'rabbit_results': rabbit_results,
+                         'elastic_results': elastic_results,
                          'status_summary': status_summary},
                         status=status)
 

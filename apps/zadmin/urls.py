@@ -29,6 +29,7 @@ urlpatterns = patterns('',
     url(r'^email_preview/(?P<topic>.*)\.csv$',
         views.email_preview_csv, name='zadmin.email_preview_csv'),
     url(r'^jetpack$', views.jetpack, name='zadmin.jetpack'),
+    url('^elastic$', views.elastic, name='elastic'),
 
     # The Django admin.
     url('^models/', include(admin.site.urls)),

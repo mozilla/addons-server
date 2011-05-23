@@ -10,6 +10,7 @@ from django.shortcuts import redirect, get_object_or_404
 from django.views import debug
 
 import commonware.log
+import elasticutils
 from hera.contrib.django_forms import FlushForm
 from hera.contrib.django_utils import get_hera, flush_urls
 import jinja2
@@ -275,3 +276,12 @@ def jetpack(request):
     return jingo.render(request, 'zadmin/jetpack.html',
                         dict(cfg=cfg, jetpacks=jetpacks,
                              by_version=by_version))
+
+
+@admin.site.admin_view
+def elastic(request):
+    es = elasticutils.get_es()
+    return jingo.render(request, 'zadmin/elastic.html',
+                        dict(nodes=es.cluster_nodes(),
+                             health=es.cluster_health(),
+                             state=es.cluster_state()))

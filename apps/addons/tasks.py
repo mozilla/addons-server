@@ -4,10 +4,11 @@ import logging
 from django.db import connection, transaction
 
 from celeryutils import task
+import elasticutils
 
 import amo
 from amo.decorators import write
-from . import cron  # Pull in tasks from cron.
+from . import cron, search  # Pull in tasks from cron.
 from .models import Addon, Preview
 
 log = logging.getLogger('z.task')
@@ -77,3 +78,12 @@ def delete_preview_files(id, **kw):
             os.remove(f)
         except Exception, e:
             log.error('Error deleting preview file (%s): %s' % (f, e))
+
+
+@task
+def index_addons(ids, **kw):
+    es = elasticutils.get_es()
+    log.info('Indexing addon %s-%s.' % (ids[0], ids[-1]))
+    for addon in Addon.objects.filter(id__in=ids):
+        Addon.index(search.extract(addon), bulk=True, id=addon.id)
+    es.flush_bulk(forced=True)
