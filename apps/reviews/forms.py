@@ -50,13 +50,11 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                         flag.delete()
 
                 review = form.instance
+                addon = review.addon
                 if action == reviews.REVIEW_MODERATE_DELETE:
                     review_addon = review.addon
                     review_id = review.id
                     review.delete()
-
-                    addon = review.addon
-
                     amo.log(amo.LOG.DELETE_REVIEW, review_addon, review_id,
                             details=dict(title=unicode(review.title),
                                          body=unicode(review.body),
