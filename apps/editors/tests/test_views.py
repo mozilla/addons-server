@@ -761,8 +761,13 @@ class TestModeratedQueue(QueueTest):
         assert doc('#id_form-0-action_1:checked')
 
         current_date = jingo.helpers.datetime(datetime.now())
-        eq_(doc('.reviews-flagged-reasons span.light').text(),
-            'Flagged by editor on %s' % current_date)
+        text = doc('.reviews-flagged-reasons span.light').text()
+        assert 'Flagged by editor on %s' % current_date in text, (
+                ('Unexpected text: %s' % text))
+
+        # Check that a time is included in the text
+        assert re.search("[0-9]+:[0-9]{2}:[0-9]{2} (AM|PM)", text), (
+                ('Unexpected text: %s' % text))
 
     def setup_actions(self, action):
         ctx = self.client.get(self.url).context
