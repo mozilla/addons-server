@@ -1,6 +1,7 @@
 import hashlib
 import os
 import tempfile
+import uuid
 
 from django.conf import settings
 from django.db import models
@@ -10,14 +11,18 @@ import test_utils
 from nose.tools import eq_
 
 import amo
+import amo.tests
 from addons.models import Addon
 from files import tasks
+from files.utils import JetpackUpgrader
 
 
-class TestRepackageJetpack(test_utils.TestCase):
+class TestRepackageJetpack(amo.tests.RedisTest, test_utils.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestRepackageJetpack, self).setUp()
+
         urllib_patch = mock.patch('files.tasks.urllib')
         self.urllib = urllib_patch.start()
         self.addCleanup(urllib_patch.stop)
@@ -36,10 +41,17 @@ class TestRepackageJetpack(test_utils.TestCase):
         tmp_file.flush()
         self.urllib.urlretrieve.return_value = (tmp_file.name, None)
 
+        self.upgrader = JetpackUpgrader()
+
     def builder_data(self, **kw):
-        """Generate a builder_data dictionary with sensible defaults."""
-        data = {'id': self.addon.id, 'result': 'success', 'msg': 'ok',
-                'file_id': self.file.id, 'location': 'http://new.file'}
+        """Generate a builder_data response dictionary with sensible defaults."""
+        guid = uuid.uuid4().hex
+        # Tell Redis we're sending to builder.
+        self.upgrader.file(self.file.id, {'uuid': guid, 'owner': 'bulk'})
+        data = {'addon': self.addon.id, 'result': 'success', 'msg': 'ok',
+                'file_id': self.file.id, 'location': 'http://new.file',
+                # This fakes what we would send to the builder.
+                'request': {'uuid': guid}}
         data.update(kw)
         return data
 
@@ -48,12 +60,14 @@ class TestRepackageJetpack(test_utils.TestCase):
         eq_(tasks.repackage_jetpack(data), None)
 
     def test_bad_addon_id(self):
-        data = self.builder_data(id=22)
+        data = self.builder_data(addon=22)
         with self.assertRaises(models.ObjectDoesNotExist):
             tasks.repackage_jetpack(data)
 
     def test_bad_file_id(self):
         data = self.builder_data(file_id=234234)
+        # Stick the file in the upgrader so it doesn't fail the uuid check.
+        self.upgrader.file(234234, {'uuid': data['request']['uuid']})
         with self.assertRaises(models.ObjectDoesNotExist):
             tasks.repackage_jetpack(data)
 
@@ -90,3 +104,28 @@ class TestRepackageJetpack(test_utils.TestCase):
         new_file = tasks.repackage_jetpack(self.builder_data())
         addon = Addon.objects.get(id=self.addon.id)
         eq_(addon.current_version, new_file.version)
+
+    def test_cancel(self):
+        # Get the data so a row is set in redis.
+        data = self.builder_data()
+        self.upgrader.cancel()
+        eq_(tasks.repackage_jetpack(data), None)
+
+    def test_cancel_only_affects_bulk(self):
+        # Get the data so a row is set in redis.
+        data = self.builder_data()
+        # Clear out everything.
+        self.upgrader.cancel()
+        # Put the file back in redis.
+        self.upgrader.file(self.file.id, {'uuid': data['request']['uuid']})
+        # Try to clear again, this should skip the ownerless task above.
+        self.upgrader.cancel()
+        # The task should still work and return a new file.
+        assert tasks.repackage_jetpack(data)
+
+    def test_clear_redis_after_success(self):
+        # Get the data so a row is set in redis.
+        data = self.builder_data()
+        assert tasks.repackage_jetpack(data)
+        eq_(self.upgrader.file(self.file.id), {})
+        eq_(self.upgrader.version(), None)

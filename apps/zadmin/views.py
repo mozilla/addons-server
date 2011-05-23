@@ -279,7 +279,7 @@ def jetpack(request):
             else:
                 print 'no more than one'
         elif 'cancel' in request.POST:
-            upgrader.stop()
+            upgrader.cancel()
         return redirect('zadmin.jetpack')
 
     jetpacks = files.utils.find_jetpacks()

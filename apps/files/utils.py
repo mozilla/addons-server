@@ -309,30 +309,37 @@ class JetpackUpgrader(object):
 
     def __init__(self):
         self.redis = redisutils.connections['master']
+        self.version_key = self.prefix + 'version'
+        self.file_key = self.prefix + 'files'
 
     def version(self, val=None):
         if val is not None:
-            return self.redis.setnx(self.prefix + 'version', val)
-        return self.redis.get(self.prefix + 'version')
+            return self.redis.setnx(self.version_key, val)
+        return self.redis.get(self.version_key)
 
     def files(self, val=None):
         if val is not None:
             for key, value in val.items():
                 val[key] = pickle.dumps(value)
-            return self.redis.hmset(self.prefix + 'files', val)
-        response = self.redis.hgetall(self.prefix + 'files')
+            return self.redis.hmset(self.file_key, val)
+        response = self.redis.hgetall(self.file_key)
         return dict((key, pickle.loads(value))
                     for key, value in response.items())
 
     def file(self, file_id, val=None):
         if val is not None:
-            return self.redis.hset(self.prefix + 'files', file_id,
+            return self.redis.hset(self.file_key, file_id,
                                    pickle.dumps(val))
-        response = self.redis.hget(self.prefix + 'files', file_id)
+        response = self.redis.hget(self.file_key, file_id)
         return pickle.loads(response) if response else {}
 
-    def stop(self):
-        self.redis.delete(self.prefix + 'version')
+    def cancel(self):
+        self.redis.delete(self.version_key)
         for key, data in self.files().items():
             if data.get('owner') == 'bulk':
-                self.redis.hdel(self.prefix + 'files', key)
+                self.redis.hdel(self.file_key, key)
+
+    def finish(self, file_id):
+        self.redis.hdel(self.file_key, file_id)
+        if not self.redis.hlen(self.file_key):
+            self.redis.delete(self.version_key)

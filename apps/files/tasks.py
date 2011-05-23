@@ -1,10 +1,8 @@
 from datetime import datetime
 import hashlib
-import json
 import urllib
 import urllib2
 import uuid
-
 
 from django.conf import settings
 
@@ -15,6 +13,7 @@ from tower import ugettext as _
 from amo.urlresolvers import reverse
 from amo.utils import Message
 from addons.models import Addon
+from versions.compare import version_int
 from versions.models import Version
 from .models import File
 from .utils import JetpackUpgrader
@@ -66,16 +65,17 @@ def repackage_jetpack(builder_data, **kw):
     jp_log.info('[1@None] Repackaging jetpack for %s.' % builder_data['file_id'])
     jp_log.info('; '.join('%s: "%s"' % i for i in builder_data.items()))
     msg = lambda s: ('[{file_id}]: ' + s).format(**builder_data)
+    upgrader = JetpackUpgrader()
 
-    file_data = JetpackUpgrader().file(builder_data['file_id'])
-    if file_data.get('uuid') != builer_data['request']['uuid']:
+    file_data = upgrader.file(builder_data['file_id'])
+    if file_data.get('uuid') != builder_data['request']['uuid']:
         return jp_log.warning(msg("Aborting repack. UUID does not match."))
 
     if builder_data['result'] != 'success':
         return jp_log.warning(msg('Build not successful. {result}: {msg}'))
 
     try:
-        addon = Addon.objects.get(id=builder_data['id'])
+        addon = Addon.objects.get(id=builder_data['addon'])
         old_file = File.objects.get(id=builder_data['file_id'])
     except Exception:
         jp_log.error(msg('Could not find addon or file.'), exc_info=True)
@@ -110,12 +110,15 @@ def repackage_jetpack(builder_data, **kw):
         new_file = new_version.all_files[0]
         new_file.status = old_file.status
         new_file.save()
-    except Exception:
-        jp_.log.error(msg('Error creating new version/file.'), exc_info=True)
+    except Exception, e:
+        print e
+        jp_log.error(msg('Error creating new version/file.'), exc_info=True)
+        raise
 
     # Sync out the new version.
     addon.update_version()
 
+    upgrader.finish(builder_data['file_id'])
     # TODO: Email author.
     # TODO: don't send editor notifications about the new file.
     # Return the new file to make testing easier.
@@ -128,6 +131,9 @@ def start_upgrade(version, file_ids, priority='low', **kw):
     files = File.objects.filter(id__in=file_ids).select_related('version')
     now = datetime.now()
     for file_ in files:
+        if version_int(version) <= version_int(file_.jetpack_version):
+            continue
+
         jp_log.info('Sending %s to builder for jetpack version %s.'
                     % (file_.id, version))
         # Data stored locally so we can figure out job details and if it should
@@ -140,7 +146,7 @@ def start_upgrade(version, file_ids, priority='low', **kw):
                 'owner': 'bulk'}
         upgrader.file(file_.id, data)
 
-        # Data POSTed to the builder as JSON.
+        # Data POSTed to the builder.
         post = {'addon': file_.version.addon_id,
                 'file_id': file_.id,
                 'priority': priority,
@@ -149,7 +155,7 @@ def start_upgrade(version, file_ids, priority='low', **kw):
                 'uuid': data['uuid'],
                 'pingback': reverse('files.builder-pingback')}
         try:
-            urllib2.urlopen(settings.BUILDER_UPGRADE_URL, json.dumps(post))
+            urllib2.urlopen(settings.BUILDER_UPGRADE_URL, urllib.urlencode(post))
         except Exception:
             jp_log.error('Could not talk to builder for %s.' % file_.id,
                          exc_info=True)
