@@ -378,3 +378,10 @@ def cspreport(request):
         return HttpResponseBadRequest()
 
     return HttpResponse()
+
+
+@csrf_exempt
+def fake_builder(request):
+    print request.method
+    print request.POST
+    return HttpResponse()

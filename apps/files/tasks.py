@@ -1,5 +1,10 @@
+from datetime import datetime
 import hashlib
+import json
 import urllib
+import urllib2
+import uuid
+
 
 from django.conf import settings
 
@@ -7,10 +12,12 @@ from celeryutils import task
 import commonware.log
 from tower import ugettext as _
 
+from amo.urlresolvers import reverse
 from amo.utils import Message
 from addons.models import Addon
 from versions.models import Version
 from .models import File
+from .utils import JetpackUpgrader
 
 task_log = commonware.log.getLogger('z.task')
 jp_log = commonware.log.getLogger('z.jp.repack')
@@ -56,13 +63,16 @@ class FakeUpload(object):
 
 @task
 def repackage_jetpack(builder_data, **kw):
-    jp_log.info('[1@None] Repackaging jetpack for %s.' % builder_data['id'])
+    jp_log.info('[1@None] Repackaging jetpack for %s.' % builder_data['file_id'])
     jp_log.info('; '.join('%s: "%s"' % i for i in builder_data.items()))
-    msg = lambda s: ('[{id}]: ' + s).format(**builder_data)
+    msg = lambda s: ('[{file_id}]: ' + s).format(**builder_data)
+
+    file_data = JetpackUpgrader().file(builder_data['file_id'])
+    if file_data.get('uuid') != builer_data['request']['uuid']:
+        return jp_log.warning(msg("Aborting repack. UUID does not match."))
 
     if builder_data['result'] != 'success':
-        jp_log.warning(msg('Build not successful. {result}: {msg}'))
-        return
+        return jp_log.warning(msg('Build not successful. {result}: {msg}'))
 
     try:
         addon = Addon.objects.get(id=builder_data['id'])
@@ -95,10 +105,13 @@ def repackage_jetpack(builder_data, **kw):
                         validation=None)
     # TODO: multi-file: have we already created the new version for a different
     # file?
-    new_version = Version.from_upload(upload, addon, [old_file.platform])
-    new_file = new_version.all_files[0]
-    new_file.status = old_file.status
-    new_file.save()
+    try:
+        new_version = Version.from_upload(upload, addon, [old_file.platform])
+        new_file = new_version.all_files[0]
+        new_file.status = old_file.status
+        new_file.save()
+    except Exception:
+        jp_.log.error(msg('Error creating new version/file.'), exc_info=True)
 
     # Sync out the new version.
     addon.update_version()
@@ -107,3 +120,36 @@ def repackage_jetpack(builder_data, **kw):
     # TODO: don't send editor notifications about the new file.
     # Return the new file to make testing easier.
     return new_file
+
+
+@task
+def start_upgrade(version, file_ids, priority='low', **kw):
+    upgrader = JetpackUpgrader()
+    files = File.objects.filter(id__in=file_ids).select_related('version')
+    now = datetime.now()
+    for file_ in files:
+        jp_log.info('Sending %s to builder for jetpack version %s.'
+                    % (file_.id, version))
+        # Data stored locally so we can figure out job details and if it should
+        # be cancelled.
+        data = {'file': file_.id,
+                'version': version,
+                'time': now,
+                'uuid': uuid.uuid4().hex,
+                'status': 'Sent to builder',
+                'owner': 'bulk'}
+        upgrader.file(file_.id, data)
+
+        # Data POSTed to the builder as JSON.
+        post = {'addon': file_.version.addon_id,
+                'file_id': file_.id,
+                'priority': priority,
+                'secret': settings.BUILDER_SECRET_KEY,
+                'location': file_.get_url_path(None, 'builder'),
+                'uuid': data['uuid'],
+                'pingback': reverse('files.builder-pingback')}
+        try:
+            urllib2.urlopen(settings.BUILDER_UPGRADE_URL, json.dumps(post))
+        except Exception:
+            jp_log.error('Could not talk to builder for %s.' % file_.id,
+                         exc_info=True)

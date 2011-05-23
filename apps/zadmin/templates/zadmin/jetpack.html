@@ -2,6 +2,16 @@
 
 {% block title %}{{ page_title('Jetpack') }}{% endblock %}
 
+{% block extrahead %}
+<style>
+  .upgrade { color: green; }
+  #jetpacks tbody { font-family: monospace; }
+</style>
+{% endblock %}
+
+{% set upgrading = upgrader.version() %}
+{% set repack_status = upgrader.files() %}
+
 {% block content %}
 <h2>Jetpack</h2>
 <p>According to our records, the current jetpack version is <b>{{ cfg.value }}</b>.</p>
@@ -12,8 +22,23 @@
   <button>Hit it.</button>
 </form>
 <p>Make sure builder.amo knows about your new version! And ask someone to fix <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=658375">bug 658375</a>.</p>
-<h3>And Now Some Stats</h3>
-<p>There are <b>{{ jetpacks|numberfmt }}</b> jetpack files in our db. (This counts files, not add-ons.)</p>
+
+<h3>Jetpack Files ({{ files|length }})</h3>
+<p>These are all the jetpack files we know about. Disabled files and add-ons are excluded.</p>
+{% if upgrading %}
+  <p>We're running an upgrade to Jetpack <b>{{ upgrading }}</b> right now! Patience, my child.</p>
+{% else %}
+  <p>Files in green will be upgraded to <b>{{ cfg.value }}</b> when you press the button.</p>
+{% endif %}
+<form method="post" action="">
+  {{ csrf() }}
+  {% if upgrading %}
+    <input type="submit" name="cancel" value="Cancel the upgrade">
+  {% else %}
+    <input type="submit" name="upgrade" value="Upgrade to Jetpack {{ cfg.value }}">
+  {% endif %}
+</form>
+
 <table>
   <thead>
     <tr>
@@ -22,10 +47,45 @@
     </tr>
   </thead>
   <tbody>
-    {% for version, count in by_version|sort %}
+    {% for version, count in by_version.items()|sort %}
     <tr>
       <td>{{ version }}</td>
       <td>{{ count }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<table id="jetpacks">
+  <thead>
+    <tr>
+      <th>Add-on</th>
+      <th>Version</th>
+      <th>Status</th>
+      <th>Jetpack</th>
+      <th>File</th>
+      {% if upgrading %}
+        <th>Upgrade</th>
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for file in files %}
+    <tr {% if file.needs_upgrade %}class="upgrade"{% endif %}>
+      <td>{{ file.version.addon_id }}</td>
+      <td>{{ file.version.version }}</td>
+      <td>{{ amo.STATUS_CHOICES[file.status] }}</td>
+      <td>{{ file.jetpack_version }}</td>
+      <td>{{ file.id }}</td>
+      {% if upgrading %}
+        {% if file.id|string in repack_status %}
+          {% with repack = repack_status[file.id|string] %}
+            <td>{{ repack['status'] }} {{ repack['time']|timesince }}</td>
+          {% endwith %}
+        {% else %}
+          <td></td>
+        {% endif %}
+      {% endif %}
     </tr>
     {% endfor %}
   </tbody>

@@ -4,6 +4,7 @@ import json
 import os
 import posixpath
 import re
+import unicodedata
 import uuid
 import shutil
 import zipfile
@@ -21,7 +22,6 @@ import amo
 import amo.models
 import amo.utils
 from amo.urlresolvers import reverse
-from files.utils import nfd_str
 
 log = commonware.log.getLogger('z.files')
 
@@ -73,8 +73,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         else:
             published = timedelta(minutes=0)
 
-        # This is based on the logic of what gets copied to the mirror
-        # at: http://bit.ly/h5qm4o
         if attachment:
             host = posixpath.join(settings.LOCAL_MIRROR_URL, '_attachments')
         elif addon.is_disabled or self.status == amo.STATUS_DISABLED:
@@ -449,3 +447,10 @@ class TestResultCache(models.Model):
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'test_results_cache'
+
+
+def nfd_str(u):
+    """Uses NFD to normalize unicode strings."""
+    if isinstance(u, unicode):
+        return unicodedata.normalize('NFD', u).encode('utf-8')
+    return u
