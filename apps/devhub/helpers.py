@@ -84,7 +84,7 @@ def docs_breadcrumbs(context, items=None):
     Wrapper function for `breadcrumbs` for devhub docs.
     """
     crumbs = [(reverse('devhub.index'), _('Developer Hub')),
-              (reverse('devhub.index'), _('Developer Docs'))]
+              (None, _('Developer Docs'))]
 
     if items:
         crumbs.extend(items)
