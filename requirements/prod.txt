@@ -15,7 +15,6 @@ django-celery==2.0.2
 # This is required by celery, but celery's setup.py does bad things and
 # packaging doesn't pick it up.
 importlib==1.0.2
-mongoengine==0.3
 django-uuidfield==0.1
 cef==0.2
 

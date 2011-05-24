@@ -632,13 +632,6 @@ SPHINX_TIMEOUT = 1
 
 JAVA_BIN = '/usr/bin/java'
 
-# Mongo Settings
-MONGO_HOST = 'localhost'
-MONGO_PORT = 27017
-MONGO_DATABASE = 'zamboni'
-MONGO_USERNAME = None
-MONGO_PASSWORD = None
-
 # Add-on download settings.
 MIRROR_DELAY = 30  # Minutes before we serve downloads from mirrors.
 MIRROR_URL = 'http://releases.mozilla.org/pub/mozilla.org/addons'

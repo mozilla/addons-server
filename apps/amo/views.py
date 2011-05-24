@@ -26,7 +26,6 @@ import phpserialize as php
 import waffle
 
 import amo
-import mongoutils
 from hera.contrib.django_utils import get_hera
 from stats.models import Contribution, ContributionError, SubscriptionEvent
 from applications.management.commands import dump_apps
@@ -188,10 +187,6 @@ def monitor(request, format=None):
         if not hera_results[-1]['result']:
             status_summary['hera'] = False
 
-    # Check Mongo
-    mongo_results = []
-    status_summary['mongo'] = bool(mongoutils.connect_mongo())
-
     # If anything broke, send HTTP 500
     if not all(status_summary.values()):
         status = 500
@@ -206,7 +201,6 @@ def monitor(request, format=None):
                          'filepath_results': filepath_results,
                          'redis_results': redis_results,
                          'hera_results': hera_results,
-                         'mongo_results': mongo_results,
                          'rabbit_results': rabbit_results,
                          'elastic_results': elastic_results,
                          'status_summary': status_summary},
