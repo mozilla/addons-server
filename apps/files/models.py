@@ -4,10 +4,12 @@ import json
 import os
 import posixpath
 import re
+import unicodedata
 import uuid
 import shutil
 import zipfile
 
+import django.dispatch
 from django.conf import settings
 from django.db import models
 from django.template.defaultfilters import slugify
@@ -21,7 +23,8 @@ import amo
 import amo.models
 import amo.utils
 from amo.urlresolvers import reverse
-from files.utils import nfd_str
+import devhub.signals
+from versions.compare import version_int
 
 log = commonware.log.getLogger('z.files')
 
@@ -73,8 +76,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         else:
             published = timedelta(minutes=0)
 
-        # This is based on the logic of what gets copied to the mirror
-        # at: http://bit.ly/h5qm4o
         if attachment:
             host = posixpath.join(settings.LOCAL_MIRROR_URL, '_attachments')
         elif addon.is_disabled or self.status == amo.STATUS_DISABLED:
@@ -125,7 +126,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
             if not dest.exists():
                 dest.makedirs()
             upload.path.copyfile(dest / nfd_str(f.filename))
-        FileValidation.from_json(f, upload.validation)
+        if upload.validation:
+            FileValidation.from_json(f, upload.validation)
         return f
 
     @classmethod
@@ -448,3 +450,24 @@ class TestResultCache(models.Model):
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'test_results_cache'
+
+
+def nfd_str(u):
+    """Uses NFD to normalize unicode strings."""
+    if isinstance(u, unicode):
+        return unicodedata.normalize('NFD', u).encode('utf-8')
+    return u
+
+
+@django.dispatch.receiver(devhub.signals.submission_done)
+def check_jetpack_version(sender, **kw):
+    import files.tasks
+    from zadmin.models import get_config
+
+    jetpack_version = get_config('jetpack_version')
+    qs = File.objects.filter(version__addon=sender,
+                             jetpack_version__isnull=False)
+    ids = [f.id for f in qs
+           if version_int(f.jetpack_version) < version_int(jetpack_version)]
+    if ids:
+        files.tasks.start_upgrade.delay(jetpack_version, ids, priority='high')

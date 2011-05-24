@@ -70,7 +70,7 @@ class Version(amo.models.ModelBase):
             license = None
         v = cls.objects.create(addon=addon, version=data['version'],
                                license_id=license)
-        log.debug('New version: %r (%s) from %r' % (v, v.id, upload))
+        log.info('New version: %r (%s) from %r' % (v, v.id, upload))
         # appversions
         AV = ApplicationsVersions
         for app in data.get('apps', []):

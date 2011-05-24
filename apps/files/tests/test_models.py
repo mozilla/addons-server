@@ -16,11 +16,13 @@ import test_utils
 from nose.tools import eq_
 
 import amo.utils
+import devhub.signals
 from addons.models import Addon
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, FileValidation, Platform
 from files.utils import parse_addon, parse_xpi, check_rdf
 from versions.models import Version
+from zadmin.models import set_config
 
 
 class UploadTest(test_utils.TestCase):
@@ -642,3 +644,28 @@ def test_parse_xpi():
                           'apps/files/fixtures/files/firefm.xpi')
     rdf = parse_xpi(firefm)
     eq_(rdf['name'], 'Fire.fm')
+
+
+class TestCheckJetpackVersion(test_utils.TestCase):
+    fixtures = ['base/addon_3615']
+
+    def setUp(self):
+        set_config('jetpack_version', '1.0')
+        self.addon = Addon.objects.get(id=3615)
+
+    @mock.patch('files.tasks.start_upgrade.delay')
+    def test_upgrade(self, upgrade_mock):
+        File.objects.update(jetpack_version='0.5')
+        ids = list(File.objects.values_list('id', flat=True))
+        devhub.signals.submission_done.send(sender=self.addon)
+        upgrade_mock.assert_called_with('1.0', ids, priority='high')
+
+    @mock.patch('files.tasks.start_upgrade.delay')
+    def test_no_upgrade(self, upgrade_mock):
+        File.objects.update(jetpack_version=None)
+        devhub.signals.submission_done.send(sender=self.addon)
+        assert not upgrade_mock.called
+
+        File.objects.update(jetpack_version='1.0')
+        devhub.signals.submission_done.send(sender=self.addon)
+        assert not upgrade_mock.called

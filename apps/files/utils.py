@@ -1,4 +1,5 @@
 import collections
+import cPickle as pickle
 import glob
 import hashlib
 import logging
@@ -6,19 +7,22 @@ import os
 import re
 import shutil
 import tempfile
-import unicodedata
 import zipfile
-from zipfile import BadZipfile
 from datetime import datetime
+from itertools import groupby
 from xml.dom import minidom
+from zipfile import BadZipfile
 
 from django import forms
 
 import rdflib
+import redisutils
 from tower import ugettext as _
 
 import amo
 from applications.models import AppVersion
+
+from .models import File
 
 log = logging.getLogger('files.utils')
 
@@ -256,13 +260,6 @@ def parse_addon(pkg, addon=None):
     return parsed
 
 
-def nfd_str(u):
-    """Uses NFD to normalize unicode strings."""
-    if isinstance(u, unicode):
-        return unicodedata.normalize('NFD', u).encode('utf-8')
-    return u
-
-
 def get_md5(filename, block_size=2 ** 20):
     """Returns an MD5 hash for a filename."""
     f = open(filename, 'rb')
@@ -273,3 +270,76 @@ def get_md5(filename, block_size=2 ** 20):
             break
         md5.update(data)
     return md5.hexdigest()
+
+
+def find_jetpacks():
+    """
+    Find all jetpack files that aren't disabled.
+
+    Files that should be upgraded will have needs_upgrade=True.
+    """
+    statuses = amo.VALID_STATUSES
+    files = (File.objects.filter(jetpack_version__isnull=False,
+                                 version__addon__status__in=statuses,
+                                 version__addon__disabled_by_user=False)
+             .exclude(status=amo.STATUS_DISABLED).no_cache()
+             .select_related('version'))
+    files = sorted(files, key=lambda f: (f.version.addon_id, f.version.id))
+
+    # Figure out what files need to be upgraded.
+    for file_ in files:
+        file_.needs_upgrade = False
+    # If any files for this add-on are reviewed, take the last reviewed file
+    # plus all newer files.  Otherwise, only upgrade the latest file.
+    for _, fs in groupby(files, key=lambda f: f.version.addon_id):
+        fs = list(fs)
+        if any(f.status in amo.REVIEWED_STATUSES for f in fs):
+            for file_ in reversed(fs):
+                file_.needs_upgrade = True
+                if file_.status in amo.REVIEWED_STATUSES:
+                    break
+        else:
+            fs[-1].needs_upgrade = True
+    return files
+
+
+class JetpackUpgrader(object):
+    """A little manager for jetpack upgrade data in redis."""
+    prefix = 'admin:jetpack:upgrade:'
+
+    def __init__(self):
+        self.redis = redisutils.connections['master']
+        self.version_key = self.prefix + 'version'
+        self.file_key = self.prefix + 'files'
+
+    def version(self, val=None):
+        if val is not None:
+            return self.redis.setnx(self.version_key, val)
+        return self.redis.get(self.version_key)
+
+    def files(self, val=None):
+        if val is not None:
+            for key, value in val.items():
+                val[key] = pickle.dumps(value)
+            return self.redis.hmset(self.file_key, val)
+        response = self.redis.hgetall(self.file_key)
+        return dict((key, pickle.loads(value))
+                    for key, value in response.items())
+
+    def file(self, file_id, val=None):
+        if val is not None:
+            return self.redis.hset(self.file_key, file_id,
+                                   pickle.dumps(val))
+        response = self.redis.hget(self.file_key, file_id)
+        return pickle.loads(response) if response else {}
+
+    def cancel(self):
+        self.redis.delete(self.version_key)
+        for key, data in self.files().items():
+            if data.get('owner') == 'bulk':
+                self.redis.hdel(self.file_key, key)
+
+    def finish(self, file_id):
+        self.redis.hdel(self.file_key, file_id)
+        if not self.redis.hlen(self.file_key):
+            self.redis.delete(self.version_key)

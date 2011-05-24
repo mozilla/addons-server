@@ -454,18 +454,15 @@ class TestBuilderPingback(test_utils.TestCase):
                                 content_type='application/json')
 
     def test_success(self):
-        r = self.post(json.dumps({'id': 1,
+        r = self.post(json.dumps({'result': '', 'msg': '', 'filename': '',
+                                  'location': '', 'request': '',
                                   'secret': settings.BUILDER_SECRET_KEY}))
         eq_(r.status_code, 200)
 
-    def test_no_secret(self):
-        r = self.post(json.dumps({'id': 1}))
+    def test_bad_secret(self):
+        r = self.post(json.dumps({'secret': 1}))
         eq_(r.status_code, 400)
 
     def test_bad_json(self):
         r = self.post('wut')
-        eq_(r.status_code, 400)
-
-    def test_no_id(self):
-        r = self.post({'wut': 1})
         eq_(r.status_code, 400)

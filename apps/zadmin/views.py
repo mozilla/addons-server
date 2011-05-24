@@ -1,20 +1,20 @@
 import csv
+from itertools import groupby
 from urlparse import urlparse
 
 from django import http
 # I'm so glad we named a function in here settings...
 from django.conf import settings as site_settings
 from django.contrib import admin
-from django.db.models import Count
 from django.shortcuts import redirect, get_object_or_404
 from django.views import debug
 
 import commonware.log
 import elasticutils
-from hera.contrib.django_forms import FlushForm
-from hera.contrib.django_utils import get_hera, flush_urls
 import jinja2
 import jingo
+from hera.contrib.django_forms import FlushForm
+from hera.contrib.django_utils import get_hera, flush_urls
 from tower import ugettext as _
 
 from amo import messages
@@ -24,6 +24,8 @@ import amo.models
 from amo.urlresolvers import reverse
 from amo.utils import chunked
 from addons.models import Addon
+import files.tasks
+import files.utils
 from files.models import Approval, File
 from versions.models import Version
 
@@ -266,13 +268,21 @@ def email_preview_csv(request, topic):
 @admin.site.admin_view
 def jetpack(request):
     cfg = Config.objects.get(key='jetpack_version')
+    upgrader = files.utils.JetpackUpgrader()
     if request.method == 'POST':
-        cfg.value = request.POST['jetpack_version']
-        cfg.save()
+        if request.POST.get('jetpack_version'):
+            cfg.value = request.POST['jetpack_version']
+            cfg.save()
+        elif 'upgrade' in request.POST:
+            if upgrader.version(cfg.value):
+                start_upgrade(cfg.value)
+        elif 'cancel' in request.POST:
+            upgrader.cancel()
         return redirect('zadmin.jetpack')
-    q = File.objects.filter(jetpack_version__isnull=False)
-    jetpacks = q.aggregate(num=Count('id'))['num']
-    by_version = q.values_list('jetpack_version').annotate(Count('id'))
+
+    jetpacks = files.utils.find_jetpacks()
+    groups = groupby(jetpacks, key=lambda f: f.jetpack_version)
+    by_version = dict((version, len(list(files))) for version, files in groups)
     return jingo.render(request, 'zadmin/jetpack.html',
                         dict(cfg=cfg, jetpacks=jetpacks,
                              by_version=by_version))
@@ -285,3 +295,11 @@ def elastic(request):
                         dict(nodes=es.cluster_nodes(),
                              health=es.cluster_health(),
                              state=es.cluster_state()))
+
+
+def start_upgrade(version):
+    jetpacks = files.utils.find_jetpacks()
+    ids = [f.id for f in jetpacks if f.needs_upgrade]
+    log.info('Starting a jetpack upgrade to %s [%s files].'
+             % (version, len(ids)))
+    files.tasks.start_upgrade.delay(version, ids)

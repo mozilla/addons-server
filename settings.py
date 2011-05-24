@@ -814,7 +814,7 @@ CSP_IMG_SRC = ("'self'", STATIC_URL,
                "https://www.google.com",  # Recaptcha comes from google
                "https://statse.webtrendslive.com",
                "https://www.getpersonas.com",
-               "https://s3.amazonaws.com", # getsatisfaction
+               "https://s3.amazonaws.com",  # getsatisfaction
               )
 CSP_SCRIPT_SRC = ("'self'", STATIC_URL,
                   "https://www.google.com",  # Recaptcha
@@ -823,8 +823,8 @@ CSP_SCRIPT_SRC = ("'self'", STATIC_URL,
 CSP_STYLE_SRC = ("'self'", STATIC_URL,)
 CSP_OBJECT_SRC = ("'none'",)
 CSP_MEDIA_SRC = ("'none'",)
-CSP_FRAME_SRC = ("https://s3.amazonaws.com", # getsatisfaction
-                 "https://getsatisfaction.com", # getsatisfaction
+CSP_FRAME_SRC = ("https://s3.amazonaws.com",  # getsatisfaction
+                 "https://getsatisfaction.com",  # getsatisfaction
                 )
 CSP_FONT_SRC = ("'self'", "fonts.mozilla.com", "www.mozilla.com", )
 # self is needed for paypal which sends x-frame-options:allow when needed.
@@ -946,6 +946,8 @@ VALID_LOGIN_REDIRECTS = {
 
 # Secret key we send to builder so we can trust responses from the builder.
 BUILDER_SECRET_KEY = 'love will tear us apart'
+# The builder URL we hit to upgrade jetpacks.
+BUILDER_UPGRADE_URL = 'https://addons.mozilla.org/services/builder'
 
 
 ## Elastic Search

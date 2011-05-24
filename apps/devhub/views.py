@@ -47,7 +47,7 @@ from versions.models import License, Version
 from product_details import get_regions
 from zadmin.models import ValidationResult
 
-from . import forms, tasks, feeds, responsys
+from . import forms, tasks, feeds, responsys, signals
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -1063,20 +1063,11 @@ def submit_select_review(request, addon_id, addon, step):
         addon.status = review_type_form.cleaned_data['review_type']
         addon.save()
         SubmitStep.objects.filter(addon=addon).delete()
+        signals.submission_done.send(sender=addon)
         return redirect('devhub.submit.7', addon.slug)
     return jingo.render(request, 'devhub/addons/submit/select-review.html',
                         {'addon': addon, 'review_type_form': review_type_form,
                          'step': step})
-
-
-@dev_required
-@post_required
-def remove_locale(request, addon_id, addon):
-    POST = request.POST
-    if 'locale' in POST and POST['locale'] != addon.default_locale:
-        addon.remove_locale(POST['locale'])
-        return http.HttpResponse()
-    return http.HttpResponseBadRequest()
 
 
 @dev_required
@@ -1123,6 +1114,16 @@ def submit_bump(request, addon_id, addon):
         return redirect('devhub.submit.bump', addon.slug)
     return jingo.render(request, 'devhub/addons/submit/bump.html',
                         dict(addon=addon, step=step))
+
+
+@dev_required
+@post_required
+def remove_locale(request, addon_id, addon):
+    POST = request.POST
+    if 'locale' in POST and POST['locale'] != addon.default_locale:
+        addon.remove_locale(POST['locale'])
+        return http.HttpResponse()
+    return http.HttpResponseBadRequest()
 
 
 # You can only request one of the new review tracks.
@@ -1194,7 +1195,7 @@ def docs(request, doc_name=None, doc_page=None):
 
     return jingo.render(request, 'devhub/docs/%s' % filename)
 
-# Newsletter details & signup
+
 @anonymous_csrf
 def newsletter(request):
     regions = get_regions(getattr(request, 'LANG', settings.LANGUAGE_CODE))
