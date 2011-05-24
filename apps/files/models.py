@@ -112,6 +112,9 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                 f.status = amo.STATUS_BETA
             elif version.addon.trusted:
                 f.status = amo.STATUS_PUBLIC
+        elif (version.addon.status in amo.LITE_STATUSES
+              and version.addon.trusted):
+            f.status = version.addon.status
         f.save()
         log.debug('New file: %r from %r' % (f, upload))
         # Move the uploaded file from the temp location.

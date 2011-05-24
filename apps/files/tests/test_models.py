@@ -511,16 +511,65 @@ class TestFileFromUpload(UploadTest):
         # Only public add-ons can get beta versions.
         upload = self.upload('beta-extension')
         data = parse_addon(upload.path)
-        self.addon.status = amo.STATUS_LITE
+        self.addon.update(status=amo.STATUS_LITE)
         f = File.from_upload(upload, self.version, self.platform, data)
         eq_(f.status, amo.STATUS_UNREVIEWED)
 
-    def test_beta_version(self):
+    def test_public_to_beta(self):
         upload = self.upload('beta-extension')
         data = parse_addon(upload.path)
-        self.addon.status = amo.STATUS_PUBLIC
+        self.addon.update(status=amo.STATUS_PUBLIC)
         f = File.from_upload(upload, self.version, self.platform, data)
         eq_(f.status, amo.STATUS_BETA)
+
+    def test_trusted_public_to_beta(self):
+        upload = self.upload('beta-extension')
+        data = parse_addon(upload.path)
+        self.addon.update(status=amo.STATUS_PUBLIC, trusted=True)
+        f = File.from_upload(upload, self.version, self.platform, data)
+        eq_(f.status, amo.STATUS_BETA)
+
+    def test_public_to_unreviewed(self):
+        upload = self.upload('extension')
+        data = parse_addon(upload.path)
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        f = File.from_upload(upload, self.version, self.platform, data)
+        eq_(f.status, amo.STATUS_UNREVIEWED)
+
+    def test_trusted_public_to_public(self):
+        upload = self.upload('extension')
+        data = parse_addon(upload.path)
+        self.addon.update(status=amo.STATUS_PUBLIC, trusted=True)
+        f = File.from_upload(upload, self.version, self.platform, data)
+        eq_(f.status, amo.STATUS_PUBLIC)
+
+    def test_lite_to_unreviewed(self):
+        upload = self.upload('extension')
+        data = parse_addon(upload.path)
+        self.addon.update(status=amo.STATUS_LITE)
+        f = File.from_upload(upload, self.version, self.platform, data)
+        eq_(f.status, amo.STATUS_UNREVIEWED)
+
+    def test_trusted_lite_to_lite(self):
+        upload = self.upload('extension')
+        data = parse_addon(upload.path)
+        self.addon.update(status=amo.STATUS_LITE, trusted=True)
+        f = File.from_upload(upload, self.version, self.platform, data)
+        eq_(f.status, amo.STATUS_LITE)
+
+    def test_litenominated_to_unreviewed(self):
+        upload = self.upload('extension')
+        data = parse_addon(upload.path)
+        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        f = File.from_upload(upload, self.version, self.platform, data)
+        eq_(f.status, amo.STATUS_UNREVIEWED)
+
+    def test_trusted_litenominated_to_litenominated(self):
+        upload = self.upload('extension')
+        data = parse_addon(upload.path)
+        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED, trusted=True)
+        f = File.from_upload(upload, self.version, self.platform, data)
+        eq_(f.status, amo.STATUS_LITE_AND_NOMINATED)
 
 
 class TestZip(test_utils.TestCase):
