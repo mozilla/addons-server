@@ -283,9 +283,13 @@ def unhide_disabled_files():
         if tuple([int(addon), filename]) not in files:
             log.warning('File that should not be guarded: %s.' % filepath)
             try:
-                file_ = File.objects.get(version__addon=addon,
-                                         filename=filename)
+                file_ = (File.objects.get(version__addon=addon,
+                                          filename=filename)
+                         .select_related('version__addon'))
                 file_.unhide_disabled_file()
+                if (file_.version.addon.status in amo.MIRROR_STATUSES
+                    and file_.status in amo.MIRROR_STATUSES):
+                    file_.copy_to_mirror()
             except File.DoesNotExist:
                 log.warning('File does not exist: %s.' % filepath)
             except Exception:
