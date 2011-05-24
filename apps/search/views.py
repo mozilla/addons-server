@@ -40,8 +40,8 @@ def _get_versions(request, versions, version):
     for v in versions:
         # v is a version_int so we can get the major and minor:
         v = dict_from_int(v)
-        v_float = v['major'] + v['minor1'] / 10.0
-        text = "%0.1f" % v_float
+        text = '%s.%s' % (v['major'], v['minor1'])
+        v_float = float(text)
 
         if seen.get(text):
             continue

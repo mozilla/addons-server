@@ -11,6 +11,7 @@ import test_utils
 
 import amo
 from amo.urlresolvers import reverse
+from applications.models import AppVersion
 from addons.tests.test_views import TestMobile
 from search.tests import SphinxTestCase
 from search import views
@@ -124,6 +125,15 @@ class FrontendSearchTest(SphinxTestCase):
         doc = pq(resp.content)
         el = doc('#refine-compatibility li.selected')[0].text_content().strip()
         eq_(el, '3.6')
+
+    def test_version_text(self):
+        """Test that the version text is calculated correctly."""
+        AppVersion.objects.create(application_id=1, version='4.46',
+                                  version_int=4460000000000L)
+        resp = self.get_response(lver='4.46', q='')
+        doc = pq(resp.content)
+        eq_(doc('#refine-compatibility li a')[1].text, '4.46')
+        eq_(doc('#refine-compatibility li a')[2].text, '3.6')
 
     def test_empty_version_selected(self):
         """If a user filters by a version that has no results, that version
