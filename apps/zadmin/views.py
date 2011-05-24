@@ -285,7 +285,7 @@ def jetpack(request):
     by_version = dict((version, len(list(files))) for version, files in groups)
     return jingo.render(request, 'zadmin/jetpack.html',
                         dict(cfg=cfg, jetpacks=jetpacks,
-                             by_version=by_version))
+                             upgrader=upgrader, by_version=by_version))
 
 
 @admin.site.admin_view
