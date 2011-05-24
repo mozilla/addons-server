@@ -66,7 +66,7 @@ def impala_performance_note(context, amount, listing=False):
 @register.inclusion_tag('addons/contribution.html')
 @jinja2.contextfunction
 def contribution(context, addon, text=None, src='', show_install=False,
-                 show_help=True, large=False):
+                 show_help=True, large=False, contribution_src=None):
     """
     Show a contribution box.
 
@@ -76,7 +76,11 @@ def contribution(context, addon, text=None, src='', show_install=False,
         src: The page where the contribution link is coming from.
         show_install: Whether or not to show the install button.
         show_help: Show "What's this?" link?
+        contribution_src: The source for the contribution src,
+                          will use src if not provided.
     """
+    if not contribution_src:
+        contribution_src = src
     has_suggested = bool(addon.suggested_amount)
     return new_context(**locals())
 
@@ -84,7 +88,7 @@ def contribution(context, addon, text=None, src='', show_install=False,
 @register.inclusion_tag('addons/impala/contribution.html')
 @jinja2.contextfunction
 def impala_contribution(context, addon, text=None, src='', show_install=False,
-                 show_help=True, large=False):
+                        show_help=True, large=False, contribution_src=None):
     """
     Show a contribution box.
 
@@ -94,7 +98,11 @@ def impala_contribution(context, addon, text=None, src='', show_install=False,
         src: The page where the contribution link is coming from.
         show_install: Whether or not to show the install button.
         show_help: Show "What's this?" link?
+        contribution_src: The source for the contribution src,
+                          will use src if not provided.
     """
+    if not contribution_src:
+        contribution_src = src
     has_suggested = bool(addon.suggested_amount)
     return new_context(**locals())
 

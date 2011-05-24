@@ -445,13 +445,22 @@ class TestDeveloperPages(test_utils.TestCase):
         url = reverse('addons.roadblock', args=['a11730']) + '?src=addondetail'
         r = self.client.get(url)
         button = pq(r.content)('.install-button a.button').attr('href')
-        assert button.endswith('?src=roadblock'), button
+        assert button.endswith('?src=addondetail'), button
 
         # No previous source gets the roadblock page source
         url = reverse('addons.roadblock', args=['a11730'])
         r = self.client.get(url)
         button = pq(r.content)('.install-button a.button').attr('href')
         assert button.endswith('?src=roadblock'), button
+
+    def test_roadblock_different(self):
+        url = reverse('addons.roadblock', args=['a11730']) + '?src=addondetail'
+        r = self.client.get(url)
+        button = pq(r.content)('.install-button a.button').attr('href')
+        assert button.endswith('?src=addondetail'), button
+
+        contribute = pq(r.content)('#contribute-button').attr('href')
+        assert contribute.endswith('?src=roadblock'), button
 
     def test_contribute_multiple_devs(self):
         a = Addon.objects.get(pk=592)

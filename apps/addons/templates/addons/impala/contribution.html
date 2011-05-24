@@ -12,14 +12,14 @@
   <div class="aux{% if show_install %}-bottom{% endif %}">
     <div class="button-wrapper">
       <a class="button contribute prominent" id="contribute-button"
-        href="{{ url('addons.contribute', addon.slug)|urlparams(src=src) }}">
+        href="{{ url('addons.contribute', addon.slug)|urlparams(src=contribution_src) }}">
         <b></b>{{ _('Contribute') }}
       </a>
       {% if show_install %}
         {# L10n: Click Contribute button OR Install button #}
         <span class="continue">{{ _('or') }}</span>
         {% set ver = version or None %}
-        {{ install_button(addon, version=ver, show_contrib=False) }}
+        {{ install_button(addon, version=ver, show_contrib=False, src=src) }}
     {% endif %}
     </div>{# /button-wrapper #}
 
@@ -54,7 +54,7 @@
 
     <div id="contribute-box" class="jqmWindow">
       <form action="{{ url('addons.contribute', addon.slug) }}" method="get">
-        <input type="hidden" name="source" value="{{ request.GET.get('src', src) }}"/>
+        <input type="hidden" name="source" value="{{ contribution_src }}"/>
         <h2>{{ _('Make a Contribution') }}</h2>
         <p class="support">
           {% with addon_name=addon.name, paypal_url='http://paypal.com' %}
