@@ -69,6 +69,7 @@ HOME = /tmp
 40 * * * * $Z_CRON fetch_ryf_blog
 45 * * * * $Z_CRON update_addon_appsupport
 50 * * * * $Z_CRON cleanup_extracted_file
+55 * * * * $Z_CRON unhide_disabled_files
 
 
 #every 3 hours

@@ -273,7 +273,7 @@ def cleanup_file(sender, instance, **kw):
     if kw.get('raw') or not instance.filename:
         return
     # Use getattr so the paths are accessed inside the try block.
-    for path in ('file_path', 'mirror_file_path'):
+    for path in ('file_path', 'mirror_file_path', 'guarded_file_path'):
         try:
             filename = getattr(instance, path)
         except models.ObjectDoesNotExist:

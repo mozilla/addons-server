@@ -12,6 +12,7 @@ from django.db.models import Q, F, Avg
 
 import commonware.log
 import multidb
+import path
 import recommend
 from celery.messaging import establish_connection
 from celeryutils import task
@@ -265,6 +266,31 @@ def hide_disabled_files():
         qs = File.uncached.filter(id__in=chunk).select_related('version')
         for f in qs:
             f.hide_disabled_file()
+
+
+@cronjobs.register
+def unhide_disabled_files():
+    # Files are getting stuck in /guarded-addons for some reason. This job
+    # makes sure guarded add-ons are supposed to be disabled.
+    log = logging.getLogger('z.files.disabled')
+    q = (Q(version__addon__status=amo.STATUS_DISABLED)
+         | Q(version__addon__disabled_by_user=True))
+    files = set(File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
+                .values_list('version__addon', 'filename'))
+    rescue = []
+    for filepath in path.path(settings.GUARDED_ADDONS_PATH).walkfiles():
+        addon, filename = filepath.split('/')[-2:]
+        if tuple([int(addon), filename]) not in files:
+            log.warning('File that should not be guarded: %s.' % filepath)
+            try:
+                file_ = File.objects.get(version__addon=addon,
+                                         filename=filename)
+                file_.unhide_disabled_file()
+            except File.DoesNotExist:
+                log.warning('File does not exist: %s.' % filepath)
+            except Exception:
+                log.error('Could not unhide file: %s.' % filepath,
+                          exc_info=True)
 
 
 @cronjobs.register
