@@ -191,7 +191,6 @@
             "no_restart": false, 
             "hash": "sha256:bc96230b5a777433089f88b93e09279b90c8eb1821c0e1c930e9e19111bc9803", 
             "created": "2011-05-06 09:30:50", 
-            "jetpack": false, 
             "modified": "2011-05-06 09:30:50", 
             "filename": "desktop_and_mobile_3-3.0-fn+fx.xpi", 
             "platform": 1, 

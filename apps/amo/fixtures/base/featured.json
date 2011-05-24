@@ -604,7 +604,6 @@
         "pk": 75708,
         "model": "files.file",
         "fields": {
-            "jetpack": 0,
             "status": 4,
             "codereview": 0,
             "hash": "sha256:f153612e10edab9f14267909f4aaa179ce368d47c128a1d3090d7bb4ff44c153",
@@ -621,7 +620,6 @@
         "pk": 75488,
         "model": "files.file",
         "fields": {
-            "jetpack": 0,
             "status": 4,
             "codereview": 0,
             "hash": "sha256:63296bbbc92c47c53052459c14a4b60b77bb31e0b85ebab2e0e3e68c5afe3369",
@@ -638,7 +636,6 @@
         "pk": 73703,
         "model": "files.file",
         "fields": {
-            "jetpack": 0,
             "status": 4,
             "codereview": 0,
             "hash": "sha256:a0de832991d6cd499373e6181e62e18989213a22b31e2febe01cd641ba6193cd",
@@ -655,7 +652,6 @@
         "pk": 52775,
         "model": "files.file",
         "fields": {
-            "jetpack": 0,
             "status": 1,
             "codereview": 0,
             "hash": "sha256:daa986b10ca0b72aabd1bfa07dbc2aa445a1bf1c887b74c883719348b074d6a7",
