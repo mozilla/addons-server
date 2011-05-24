@@ -87,8 +87,10 @@ def clear_redis(ctx):
 
 @task
 def update_amo(ctx, tag, vendor_tag):
-    disable_cron()
-    update_code(tag, vendor_tag)
+    # These happen before this script is called so that we can pull the latest
+    # deploy script.
+    # disable_cron()
+    # update_code(tag, vendor_tag)
     update_locales()
     compress_assets()
     schematic()
