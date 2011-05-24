@@ -43,13 +43,14 @@ class TestViewPendingQueueTable(test_utils.TestCase):
         page.start_index = Mock()
         page.start_index.return_value = 1
         row.addon_name = 'フォクすけといっしょ'.decode('utf8')
+        row.addon_slug = 'test'
         row.latest_version = u'0.12'
         row.latest_version_id = 1234
         self.table.set_page(page)
         a = pq(self.table.render_addon_name(row))
+
         eq_(a.attr('href'),
-            reverse('editors.review',
-                    args=[row.latest_version_id]) + '?num=1')
+            reverse('editors.review', args=[str(row.addon_slug)]) + '?num=1')
         eq_(a.text(), "フォクすけといっしょ 0.12".decode('utf8'))
 
     def test_addon_type_id(self):

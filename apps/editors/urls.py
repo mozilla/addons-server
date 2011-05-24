@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import patterns, url
 
+from addons.urls import ADDON_ID
 from . import views
 
 
@@ -21,7 +22,7 @@ urlpatterns = patterns('',
     url(r'^reviewlog$', views.reviewlog, name='editors.reviewlog'),
     url(r'^review_viewing$', views.review_viewing,
         name='editors.review_viewing'),
-    url(r'^review/(?P<version_id>\d+)$', views.review, name='editors.review'),
+    url(r'^review/%s$' % ADDON_ID, views.review, name='editors.review'),
     url(r'^performance/(?P<user_id>\d+)?$', views.performance, name='editors.performance'),
     url(r'^motd$', views.motd, name='editors.motd'),
     url(r'^motd/save$', views.save_motd, name='editors.save_motd'),

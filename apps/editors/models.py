@@ -67,6 +67,7 @@ class EventLog(models.Model):
 class ViewQueue(RawSQLModel):
     id = models.IntegerField()
     addon_name = models.CharField(max_length=255)
+    addon_slug = models.CharField(max_length=30)
     addon_status = models.IntegerField()
     addon_type_id = models.IntegerField()
     admin_review = models.BooleanField()
@@ -89,6 +90,7 @@ class ViewQueue(RawSQLModel):
                 ('addon_name', 'tr.localized_string'),
                 ('addon_status', 'addons.status'),
                 ('addon_type_id', 'addons.addontype_id'),
+                ('addon_slug', 'addons.slug'),
                 ('admin_review', 'addons.adminreview'),
                 ('is_site_specific', 'addons.sitespecific'),
                 ('external_software', 'addons.externalsoftware'),

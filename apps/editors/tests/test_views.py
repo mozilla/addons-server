@@ -459,9 +459,9 @@ class TestQueueBasics(QueueTest):
 
     def test_redirect_to_review(self):
         r = self.client.get(reverse('editors.queue_pending'), data={'num': 2})
-        self.assertRedirects(r,
-                    reverse('editors.review',
-                            args=[self.versions['Pending Two'].id]) + '?num=2')
+        slug = self.versions['Pending Two'].addon.slug
+        url = reverse('editors.review', args=[slug])
+        self.assertRedirects(r, url + '?num=2')
 
     def test_invalid_review_ignored(self):
         r = self.client.get(reverse('editors.queue_pending'), data={'num': 9})
@@ -616,14 +616,14 @@ class TestPendingQueue(QueueTest):
         doc = pq(r.content)
         row = doc('table.data-grid tr:eq(1)')
         eq_(doc('td:eq(0)', row).text(), u'Pending One 0.1')
+        slug_one = self.versions[u'Pending One'].addon.slug
         eq_(doc('td a:eq(0)', row).attr('href'),
-            reverse('editors.review',
-                    args=[self.versions[u'Pending One'].id]) + '?num=1')
+            reverse('editors.review', args=[slug_one]) + '?num=1')
         row = doc('table.data-grid tr:eq(2)')
         eq_(doc('td:eq(0)', row).text(), u'Pending Two 0.1')
+        slug_two = self.versions[u'Pending Two'].addon.slug
         eq_(doc('a:eq(0)', row).attr('href'),
-            reverse('editors.review',
-                    args=[self.versions[u'Pending Two'].id]) + '?num=2')
+            reverse('editors.review', args=[slug_two]) + '?num=2')
 
     def test_queue_count(self):
         r = self.client.get(reverse('editors.queue_pending'))
@@ -651,14 +651,14 @@ class TestNominatedQueue(QueueTest):
         doc = pq(r.content)
         row = doc('table.data-grid tr:eq(1)')
         eq_(doc('td:eq(0)', row).text(), u'Nominated One 0.1')
+        slug_one = self.versions[u'Nominated One'].addon.slug
         eq_(doc('td a:eq(0)', row).attr('href'),
-            reverse('editors.review',
-                    args=[self.versions[u'Nominated One'].id]) + '?num=1')
+            reverse('editors.review', args=[slug_one]) + '?num=1')
         row = doc('table.data-grid tr:eq(2)')
         eq_(doc('td:eq(0)', row).text(), u'Nominated Two 0.1')
+        slug_two = self.versions[u'Nominated Two'].addon.slug
         eq_(doc('a:eq(0)', row).attr('href'),
-            reverse('editors.review',
-                    args=[self.versions[u'Nominated Two'].id]) + '?num=2')
+            reverse('editors.review', args=[slug_two]) + '?num=2')
 
     def test_results_two_versions(self):
         ver = self.versions['Nominated Two'].addon.versions.all()[0]
@@ -706,14 +706,14 @@ class TestPreliminaryQueue(QueueTest):
         doc = pq(r.content)
         row = doc('table.data-grid tr:eq(1)')
         eq_(doc('td:eq(0)', row).text(), u'Prelim One 0.1')
+        slug_one = self.versions[u'Prelim One'].addon.slug
         eq_(doc('td a:eq(0)', row).attr('href'),
-            reverse('editors.review',
-                    args=[self.versions[u'Prelim One'].id]) + '?num=1')
+            reverse('editors.review', args=[slug_one]) + '?num=1')
         row = doc('table.data-grid tr:eq(2)')
         eq_(doc('td:eq(0)', row).text(), u'Prelim Two 0.1')
+        slug_two = self.versions[u'Prelim Two'].addon.slug
         eq_(doc('a:eq(0)', row).attr('href'),
-            reverse('editors.review',
-                    args=[self.versions[u'Prelim Two'].id]) + '?num=2')
+            reverse('editors.review', args=[slug_two]) + '?num=2')
 
     def test_queue_count(self):
         r = self.client.get(reverse('editors.queue_prelim'))
@@ -1243,7 +1243,7 @@ class ReviewBase(QueueTest):
         self.addon = self.version.addon
         self.editor = UserProfile.objects.get(email='editor@mozilla.com')
         self.editor.update(display_name='An editor')
-        self.url = reverse('editors.review', args=[self.version.pk])
+        self.url = reverse('editors.review', args=[self.addon.slug])
 
 
 class TestReview(ReviewBase):
@@ -1469,35 +1469,41 @@ class TestReview(ReviewBase):
         # Add a new version to the add-on.
         self.addon_file(u'something', u'0.2', amo.STATUS_PUBLIC,
                         amo.STATUS_UNREVIEWED)
+
+        eq_(self.addon.versions.count(), 1)
+        url = reverse('editors.review', args=[self.addon.slug])
+
+        self.review_version(self.version, url)
+
         v2 = self.versions['something']
         v2.addon = self.addon
+        v2.created = v2.created + timedelta(days=1)
         v2.save()
-
+        self.review_version(v2, url)
         eq_(self.addon.versions.count(), 2)
 
-        url = lambda v: reverse('editors.review', args=[v.id])
-
-        # Review both.
-        for version in [v2, self.version]:
-            version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
-            d = dict(action='prelim', operating_systems='win',
-                     applications='something', comments='something',
-                     addon_files=[version.files.all()[0].pk])
-            r = self.client.post(url(version), d)
-
-        r = self.client.get(url(self.version))
+        r = self.client.get(url)
         doc = pq(r.content)
+
         # View the history verify two versions:
-        eq_(doc('table#review-files tr td:first-child').eq(0).text(), '0.2')
-        eq_(doc('table#review-files tr td:first-child').eq(1).text(), '0.1')
+        eq_(doc('table#review-files tr td:first-child').eq(0).text(), '0.1')
+        eq_(doc('table#review-files tr td:first-child').eq(1).text(), '0.2')
         # Delete a version:
         v2.delete()
         # Verify two versions, one deleted:
-        r = self.client.get(url(self.version))
+        r = self.client.get(url)
         doc = pq(r.content)
-        eq_(doc('table#review-files tr td:first-child').eq(0).text(),
+
+        eq_(doc('table#review-files tr td:first-child').eq(1).text(),
             'Deleted version')
-        eq_(doc('table#review-files tr td:first-child').eq(1).text(), '0.1')
+        eq_(doc('table#review-files tr td:first-child').eq(0).text(), '0.1')
+
+    def review_version(self, version, url):
+        version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
+        d = dict(action='prelim', operating_systems='win',
+                 applications='something', comments='something',
+                 addon_files=[version.files.all()[0].pk])
+        r = self.client.post(url, d)
 
     def test_eula_displayed(self):
         assert not self.addon.eula
@@ -1572,7 +1578,7 @@ class TestReview(ReviewBase):
         first_file.status = amo.STATUS_PUBLIC
         first_file.save()
 
-        url = reverse('editors.review', args=[version.pk])
+        url = reverse('editors.review', args=[self.addon.slug])
         next_file = File.objects.create(version=version, status=amo.STATUS_PUBLIC)
         self.addon.update(_current_version=version)
         eq_(self.addon.current_version, version)

@@ -234,6 +234,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     # This is for Firefox only.
     _backup_version = models.ForeignKey(Version, related_name='___backup',
             db_column='backup_version', null=True, on_delete=models.SET_NULL)
+    _latest_version = None
 
     # This gets overwritten in the transformer.
     share_counts = collections.defaultdict(int)
@@ -464,6 +465,19 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                           tuple(diff + [self, e]))
 
         return changed
+
+    @property
+    def latest_version(self):
+        """Returns the absolutely newest version; status doesn't matter. """
+        if self.type == amo.ADDON_PERSONA:
+            return
+        if not self._latest_version:
+            try:
+                self._latest_version = self.versions.order_by('-created').latest()
+            except Version.DoesNotExist, e:
+                pass
+
+        return self._latest_version
 
     @property
     def current_version(self):

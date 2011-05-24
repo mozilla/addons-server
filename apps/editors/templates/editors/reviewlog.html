@@ -46,8 +46,7 @@
                   {{ item.arguments.0|link }}
                   {% if item.arguments|count >= 2 %}
                     {{ item.arguments[1] }}
-
-                    <a href="{{ url('editors.review', item.arguments[1].id) }}">
+                    <a href="{{ url('editors.review', item.arguments[0].slug) }}">
                       {{ ACTION_DICT.get(item.action) }}
                     </a>
                   {% else %}

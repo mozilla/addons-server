@@ -16,8 +16,9 @@ from tower import ugettext as _
 
 import amo
 from access import acl
-from amo.decorators import login_required, json_view, post_required
+from addons.decorators import addon_view
 from addons.models import Version
+from amo.decorators import login_required, json_view, post_required
 from amo.utils import paginate
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
@@ -273,7 +274,7 @@ def _queue(request, TableObj, tab):
                 row = qs[start : start + 1][0]
                 return redirect('%s?num=%s' % (
                                 reverse('editors.review',
-                                        args=[row.latest_version_id]),
+                                        args=[row.addon_slug]),
                                 review_num))
             except IndexError:
                 pass
@@ -382,10 +383,9 @@ def application_versions_json(request):
 
 
 @editor_required
-def review(request, version_id):
-    version = get_object_or_404(Version, pk=version_id)
-    addon = version.addon
-    current = addon.current_version
+@addon_view
+def review(request, addon):
+    version = addon.latest_version
 
     if (not settings.DEBUG and
         addon.authors.filter(user=request.user).exists()):

@@ -111,7 +111,7 @@ class EditorQueueTable(SQLTable):
 
     def render_addon_name(self, row):
         url = '%s?num=%s' % (reverse('editors.review',
-                                     args=[row.latest_version_id]),
+                                     args=[row.addon_slug]),
                              self.item_number)
         self.item_number += 1
         return u'<a href="%s">%s %s</a>' % (

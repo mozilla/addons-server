@@ -149,6 +149,19 @@ class TestAddonModels(test_utils.TestCase):
         a = Addon.objects.get(pk=3723)
         eq_(a.current_version, None)
 
+    def test_latest_version(self):
+        """
+        Tests that we get the latest version of an addon.
+        """
+        a = Addon.objects.get(pk=3615)
+        eq_(a.latest_version.id, Version.objects.filter(addon=a).latest().id)
+
+    def test_latest_version_no_version(self):
+        Addon.objects.filter(pk=3723).update(_current_version=None)
+        Version.objects.filter(addon=3723).delete()
+        a = Addon.objects.get(pk=3723)
+        eq_(a.latest_version, None)
+
     def test_current_beta_version(self):
         a = Addon.objects.get(pk=5299)
         eq_(a.current_beta_version.id, 50000)
