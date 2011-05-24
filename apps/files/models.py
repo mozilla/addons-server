@@ -39,7 +39,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     hash = models.CharField(max_length=255, default='')
     # TODO: delete this column
     codereview = models.BooleanField(default=False)
-    jetpack = models.BooleanField(default=False)
     jetpack_version = models.CharField(max_length=10, null=True)
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES,
                                               default=amo.STATUS_UNREVIEWED)
