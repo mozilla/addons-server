@@ -1,5 +1,4 @@
 import csv
-from itertools import groupby
 from urlparse import urlparse
 
 from django import http
@@ -22,7 +21,7 @@ from amo import get_user
 from amo.decorators import login_required, json_view, post_required
 import amo.models
 from amo.urlresolvers import reverse
-from amo.utils import chunked
+from amo.utils import chunked, sorted_groupby
 from addons.models import Addon
 import files.tasks
 import files.utils
@@ -281,7 +280,7 @@ def jetpack(request):
         return redirect('zadmin.jetpack')
 
     jetpacks = files.utils.find_jetpacks()
-    groups = groupby(jetpacks, key=lambda f: f.jetpack_version)
+    groups = sorted_groupby(jetpacks, 'jetpack_version')
     by_version = dict((version, len(list(files))) for version, files in groups)
     return jingo.render(request, 'zadmin/jetpack.html',
                         dict(cfg=cfg, jetpacks=jetpacks,
