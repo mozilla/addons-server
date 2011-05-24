@@ -954,3 +954,6 @@ BUILDER_UPGRADE_URL = 'https://addons.mozilla.org/services/builder'
 ES_HOSTS = ['127.0.0.1:9200']
 ES_INDEX = 'amo'
 USE_ELASTIC = True
+
+# Default AMO user id to use for tasks.
+TASK_USER_ID = 4757633

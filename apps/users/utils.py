@@ -6,6 +6,8 @@ from django.conf import settings
 
 import commonware.log
 
+from users.models import UserProfile
+
 log = commonware.log.getLogger('z.users')
 
 
@@ -51,3 +53,11 @@ class EmailResetCode():
     def make_secret(cls, token):
         key = settings.SECRET_KEY
         return hashlib.sha256("%s%s" % (token, key)).hexdigest()
+
+
+def get_task_user():
+    """
+    Returns a user object. This user is suitable for assigning to
+    cron jobs or long running tasks.
+    """
+    return UserProfile.objects.get(pk=settings.TASK_USER_ID)

@@ -56,3 +56,7 @@ CELERY_ROUTES = {}
 
 # paths for images, not necessary for dev
 STATIC_URL = ''
+
+# The user id to use when logging in tasks. You should set this to a user that
+# exists in your site.
+# TASK_USER_ID = 1

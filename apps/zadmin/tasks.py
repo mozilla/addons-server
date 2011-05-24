@@ -20,6 +20,7 @@ from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import send_mail
 from devhub.tasks import run_validator
+from users.utils import get_task_user
 from versions.models import Version
 from zadmin.models import ValidationResult, ValidationJob
 
@@ -160,7 +161,7 @@ def notify_success(version_pks, job_pk, data, **kw):
     log.info('[%s@None] Updating max version for job %s.'
              % (len(version_pks), job_pk))
     job = ValidationJob.objects.get(pk=job_pk)
-    set_user(job.creator)
+    set_user(get_task_user())
     for version in Version.objects.filter(pk__in=version_pks):
         addon = version.addon
         file_pks = version.files.values_list('pk', flat=True)
@@ -226,7 +227,7 @@ def notify_failed(file_pks, job_pk, data, **kw):
     log.info('[%s@None] Notifying failed for job %s.'
              % (len(file_pks), job_pk))
     job = ValidationJob.objects.get(pk=job_pk)
-    set_user(job.creator)
+    set_user(get_task_user())
     for result in ValidationResult.objects.filter(validation_job=job,
                                                   file__pk__in=file_pks):
         file = result.file

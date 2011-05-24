@@ -5,6 +5,7 @@ from datetime import datetime
 import json
 
 from django import test
+from django.conf import settings
 from django.core import mail
 
 import mock
@@ -21,6 +22,7 @@ from applications.models import AppVersion
 from devhub.models import ActivityLog
 from files.models import Approval, File
 from users.models import UserProfile
+from users.utils import get_task_user
 from versions.models import ApplicationsVersions, Version
 from zadmin.forms import NotifyForm
 from zadmin.models import ValidationJob, ValidationResult, EmailPreviewTopic
@@ -101,6 +103,12 @@ class BulkValidationTest(test_utils.TestCase):
         self.max = self.application_version.max
         self.curr_max = self.appversion('3.7a1pre')
         self.counter = 0
+
+        self.old_task_user = settings.TASK_USER_ID
+        settings.TASK_USER_ID = self.creator.id
+
+    def tearDown(self):
+        settings.TASK_USER_ID = self.old_task_user
 
     def appversion(self, version, application=amo.FIREFOX.id):
         return AppVersion.objects.get(application=application,
@@ -311,7 +319,7 @@ class TestBulkUpdate(BulkValidationTest):
         upd = amo.LOG.BULK_VALIDATION_UPDATED.id
         logs = ActivityLog.objects.for_addons(self.addon).filter(action=upd)
         eq_(logs.count(), 1)
-        eq_(logs[0].user, self.creator)
+        eq_(logs[0].user, get_task_user())
 
     def test_update_wrong_version(self):
         self.create_result(self.job, self.create_file(self.version))
@@ -433,8 +441,7 @@ class TestBulkNotify(BulkValidationTest):
         self.create_result(self.job, self.create_file(self.version),
                            **{'errors': 1})
         r = self.client.post(self.update_url, {'text': '..',
-                                               'subject': '{{ ADDON_NAME }}'
-                                               })
+                                               'subject': '{{ ADDON_NAME }}'})
         eq_(r.status_code, 302)
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].body, '..')
@@ -604,7 +611,7 @@ class TestBulkValidationTask(BulkValidationTest):
                 "uid": "de93a48831454e0b9d965642f6d6bf8f",
                 "compatibility_type": None,
                 "for_appversions": None,
-                "type": "warning"
+                "type": "warning",
             },
             {
                 "description": ("...no longer indicate the language "
@@ -660,8 +667,7 @@ class TestBulkValidationTask(BulkValidationTest):
         ApplicationsVersions.objects.create(
             application = self.application,
             min = self.min, max = max,
-            version = version
-        )
+            version = version)
         for status in statuses:
             File.objects.create(status=status, version=version)
         return version
@@ -795,8 +801,8 @@ class TestBulkValidationTask(BulkValidationTest):
         eq_(len(ids), 0)
 
     def test_wrong_version(self):
-        version = self.create_version(self.addon, [amo.STATUS_LITE],
-                                      version_str='4.0b2pre')
+        self.create_version(self.addon, [amo.STATUS_LITE],
+                            version_str='4.0b2pre')
         self.delete_orig_version()
         ids = self.find_files()
         eq_(len(ids), 0)
