@@ -16,10 +16,14 @@
   {% if page == "installed" %}about{% endif %}
 {%- endblock bodyclass %}
 
+{% set contribution_src = src %}
+{% if page == "roadblock" %}
+  {% set contribution_src = "roadblock" %}
+{% endif %}
+
 {% if page == "roadblock" and not addon.charity %}
   {% set msg = _('Before downloading this add-on, please consider supporting the '
                  'development of this add-on by making a small contribution.') %}
-  {% set src = "roadblock" %}
 {% else %}
   {% set msg = None %}
 {% endif %}
@@ -51,7 +55,8 @@
 {% endif %}
 
 {% set contrib = contribution(addon=addon, src=src, text=msg,
-                              show_install=(page != "installed")) %}
+                              show_install=(page != "installed"),
+                              contribution_src=contribution_src) %}
 
 <div id="developers">
 {% if num_authors == 1 %}
