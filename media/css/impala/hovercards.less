@@ -28,12 +28,14 @@
         border: 1px solid transparent;
         z-index: 20;
         h3 {
-            color: #447BC4;
+            color: @link;
             font-weight: bold;
             margin: 0 0 2px 0;
             font-size: 13px;
             line-height: 16px;
             white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
             max-width: 200px;
         }
         .more {
@@ -44,6 +46,18 @@
         a {
             display: block;
             text-decoration: none;
+        }
+        .adu {
+            color: #390;
+        }
+        .byline {
+            margin: 8px 0;
+            font-size: 11px;
+            font-style: italic;
+            a {
+                display: inline;
+                color: inherit;
+            }
         }
         &:hover {
             z-index: 25;
@@ -57,6 +71,7 @@
             }
             h3 {
                 text-decoration: underline;
+                white-space: normal;
             }
         }
         &.persona {
@@ -112,7 +127,7 @@
                 height: 48px;
                 z-index: 21;
                 overflow: hidden;
-                h3, div {
+                div {
                     white-space: nowrap;
                 }
             }
@@ -127,6 +142,12 @@
                 border-style: solid;
                 z-index: 22;
                 border-color: transparent;
+            }
+            .adu {
+                font-size: 11px;
+                border-top: 1px dotted #CCCCCC;
+                padding: 8px 0 0;
+                margin: 8px 0 4px;
             }
             &:before {
                 content: "";
@@ -147,6 +168,8 @@
                 .summary {
                     background: white;
                     z-index: 26;
+                    height: auto;
+                    min-height: 48px;
                 }
                 .icon {
                     background: #fff;

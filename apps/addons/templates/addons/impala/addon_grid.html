@@ -21,8 +21,16 @@
           </div>
         </a>
         <div class="more">
-          {{ install_button(addon) }}
+          {{ install_button(addon, impala=True) }}
           {{ addon.summary|truncate(250)|nl2br }}
+          <div class="byline">
+            {% trans users=users_list(addon.listed_authors, size=2) %}
+              by {{ users }}
+            {% endtrans %}
+          </div>
+          <div class="adu">
+            {{ _('{0} users')|f(addon.average_daily_users|numberfmt) }}
+          </div>
         </div>
       </div>
     </li>
