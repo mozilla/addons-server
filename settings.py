@@ -99,11 +99,13 @@ RTL_LANGUAGES = ('ar', 'fa', 'fa-IR', 'he')
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
 # Tower / L10n
+LOCALE_PATHS = (path('locale'),)
 TEXT_DOMAIN = 'messages'
 STANDALONE_DOMAINS = [TEXT_DOMAIN, 'javascript']
 TOWER_KEYWORDS = {
     '_lazy': None,
 }
+TOWER_ADD_HEADERS = True
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
