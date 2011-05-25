@@ -10,7 +10,7 @@ $('.island .listing-grid').bind('grid.init', function(e, data) {
             $nav.append('<a href="#" class="' + (i==0 ? 'selected ': '') + 'dot"><b></b></a>');
         }
         $nav.append('<a href="#" class="next">&raquo;</a>');
-        $grid.parents('.island').prepend($nav);
+        $grid.parent().prepend($nav);
         $nav.delegate('a', 'click', function(e) {
             e.preventDefault();
             var $tgt = $(this);
@@ -79,6 +79,10 @@ $(function() {
         e.preventDefault();
         $(this).closest('.site-balloon').fadeOut();
     });
+
+    $('.expando .toggle').click(_pd(function() {
+        $(this).closest('.expando').toggleClass('expanded');
+    }));
 
     $('.scrollto').click(function(e) {
         e.preventDefault();

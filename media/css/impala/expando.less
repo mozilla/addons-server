@@ -1,0 +1,49 @@
+.expando {
+    .content {
+        display: none;
+    }
+    &.expanded {
+        .content {
+            display: block;
+        }
+    }
+}
+.island {
+    .expando {
+        h2 {
+            position: relative;
+            margin-bottom: 0;
+        }
+        .toggle {
+            position: absolute;
+            top: -14px;
+            right: -14px;
+            left: -14px;
+            bottom: -14px;
+            b {
+                position: absolute;
+                top: 14px;
+                right: 14px;
+                width: 20px;
+                height: 20px;
+                background: url(../../img/impala/expando-large.png) no-repeat right 0;
+            }
+            &:hover b {
+                background-position: right -64px;
+            }
+        }
+        &.expanded {
+            .toggle {
+                b {
+                    background-position: right -128px;
+                }
+                &:hover b {
+                    background-position: right -192px;
+                }
+            }
+        }
+        &:last-child {
+            padding-bottom: 0;
+        }
+    }
+}

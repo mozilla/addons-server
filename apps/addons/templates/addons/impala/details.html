@@ -173,6 +173,56 @@
   {% endif %}
 </section>
 
+<section class="primary island c">
+  <section class="expando">
+    <h2>{{ _('Developer’s Comments') }}<a class="toggle" href="#"><b></b></a></h2>
+    <div class="content">
+      <p{{ addon.developer_comments|locale_html }}>
+        {{ addon.developer_comments|nl2br }}</p>
+    </div>
+  </section>
+  <section id="detail-relnotes" class="expando">
+    <h2>{{ _('Version Information') }}<a class="toggle" href="#"><b></b></a></h2>
+    <div class="content">
+      {{ version_detail(addon, version, src="addon-detail-version") }}
+    </div>
+  </section>
+  {# beta channel #}
+  {% if addon.show_beta and show_actions %}
+    <section id="beta-channel" class="expando">
+      <h2>{{ _('Development Channel') }}<a class="toggle" href="#"><b></b></a></h2>
+      <div class="content">
+        <p>
+          {% trans %}
+          The Development Channel lets you test an experimental new version of this
+          add-on before it's released to the general public. Once you install
+          the development version, you will continue to get updates from this channel.
+          {% endtrans %}
+          <a href="#install-beta">{{ _('Install development version') }}</a>
+        </p>
+        <div class="install-beta" id="install-beta">
+          <p>
+            {% trans %}
+            <strong>Caution:</strong> Development versions of this add-on have not
+            been reviewed by Mozilla. Once you install a development version you will
+            continue to receive development updates from this developer. To stop
+            receiving development updates, reinstall the default version from the
+            link above.
+            {% endtrans %}
+          </p>
+          <dl>
+            <dt class="beta-version">{{ _('Version {0}:')|f(
+              addon.current_beta_version.version) }}</dt>
+            <dd>{{ install_button(addon, version=addon.current_beta_version,
+                                  show_warning=False) }}</dd>
+          </dl>
+        </div>{# /install-beta #}
+      </div>
+    </section>
+  {% endif %}
+  {# /beta #}
+</section>
+
 <div class="secondary" role="navigation">
 
   {% if addon.has_profile() and addon.listed_authors %}
