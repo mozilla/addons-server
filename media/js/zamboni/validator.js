@@ -389,6 +389,8 @@ function initValidator() {
         var el = $(this),
             url = el.attr('data-validateurl');
 
+        $('.test-tier,.tier-results', el).addClass('ajax-loading');
+
         $.ajax({type: 'POST',
                 url: url,
                 data: {},
