@@ -1,4 +1,5 @@
 # -*- coding: utf8 -*-
+from datetime import datetime, timedelta
 import json
 import os
 
@@ -14,7 +15,7 @@ from nose.tools import eq_
 import amo
 import api
 import api.utils
-from addons.models import Addon
+from addons.models import Addon, Feature
 from amo import helpers
 from amo.urlresolvers import reverse
 from search.tests import SphinxTestCase
@@ -116,6 +117,10 @@ class StripHTMLTest(TestCase):
 class APITest(TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/addon_4664_twitterbar',
                 'base/addon_5299_gcal']
+
+    def setUp(self):
+        if hasattr(Addon, '_feature'):
+            delattr(Addon, '_feature')
 
     def test_api_caching(self):
         response = self.client.get('/en-US/firefox/api/1.5/addon/3615')
@@ -352,6 +357,23 @@ class APITest(TestCase):
         self.assertContains(response, "Could not connect to Sphinx search.",
                             status_code=503)
     test_sphinx_off.sphinx = True
+
+    def test_is_featured(self):
+        self.assertContains(make_call('addon/5299', version=1.5),
+                            '<featured>0</featured>')
+        Feature.objects.create(addon_id=5299,
+                               start=datetime.now() - timedelta(days=10),
+                               end=datetime.now() + timedelta(days=10),
+                               application_id=amo.FIREFOX.id,
+                               locale='ja')
+        for lang, app, result in [('ja', 'firefox', 1),
+                                  ('en-US', 'firefox', 0),
+                                  ('ja', 'seamonkey', 0)]:
+            # Clean out the special cache for feature.
+            delattr(Addon, '_feature')
+            self.assertContains(make_call('addon/5299', version=1.5,
+                                          lang=lang, app=app),
+                                '<featured>%s</featured>' % result)
 
 
 class ListTest(TestCase):
