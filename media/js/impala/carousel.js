@@ -69,7 +69,7 @@ $.fn.zCarousel = function(o) {
               .append($lis.slice(0,o.itemsPerPage).clone().addClass("cloned"));
         render(o.itemsPerPage);
         //if we're outside the bounds, disable transitions and snap back to the beginning.
-        $strip.bind("transitionend", function() {
+        $strip.bind("transitionend webkitTransitionEnd", function() {
             if (currentPos > maxPos+1 || currentPos < 1) {
                 $strip.addClass("noslide");
                 setTimeout(function() {
