@@ -4,6 +4,7 @@ import tempfile
 import uuid
 
 from django.conf import settings
+from django.core import mail
 from django.db import models
 
 import mock
@@ -42,12 +43,14 @@ class TestRepackageJetpack(amo.tests.RedisTest, test_utils.TestCase):
         self.urllib.urlretrieve.return_value = (tmp_file.name, None)
 
         self.upgrader = JetpackUpgrader()
+        settings.SEND_REAL_EMAIL = True
 
     def builder_data(self, **kw):
-        """Generate a builder_data response dictionary with sensible defaults."""
+        """Generate builder_data response dictionary with sensible defaults."""
         guid = uuid.uuid4().hex
         # Tell Redis we're sending to builder.
-        self.upgrader.file(self.file.id, {'uuid': guid, 'owner': 'bulk'})
+        self.upgrader.file(self.file.id, {'uuid': guid, 'owner': 'bulk',
+                                          'version': '1.0b4'})
         data = {'addon': self.addon.id, 'result': 'success', 'msg': 'ok',
                 'file_id': self.file.id, 'location': 'http://new.file',
                 # This fakes what we would send to the builder.
@@ -117,7 +120,8 @@ class TestRepackageJetpack(amo.tests.RedisTest, test_utils.TestCase):
         # Clear out everything.
         self.upgrader.cancel()
         # Put the file back in redis.
-        self.upgrader.file(self.file.id, {'uuid': data['request']['uuid']})
+        self.upgrader.file(self.file.id, {'uuid': data['request']['uuid'],
+                                          'version': '1.0b4'})
         # Try to clear again, this should skip the ownerless task above.
         self.upgrader.cancel()
         # The task should still work and return a new file.
@@ -129,3 +133,7 @@ class TestRepackageJetpack(amo.tests.RedisTest, test_utils.TestCase):
         assert tasks.repackage_jetpack(data)
         eq_(self.upgrader.file(self.file.id), {})
         eq_(self.upgrader.version(), None)
+
+    def test_email_sent(self):
+        assert tasks.repackage_jetpack(self.builder_data())
+        eq_(len(mail.outbox), 1)

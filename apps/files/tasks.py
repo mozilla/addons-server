@@ -4,14 +4,16 @@ import urllib
 import urllib2
 import uuid
 
+import django.core.mail
 from django.conf import settings
 
-from celeryutils import task
 import commonware.log
+import jingo
+from celeryutils import task
 from tower import ugettext as _
 
 from amo.urlresolvers import reverse
-from amo.utils import Message
+from amo.utils import Message, get_email_backend
 from addons.models import Addon
 from versions.compare import version_int
 from versions.models import Version
@@ -62,7 +64,8 @@ class FakeUpload(object):
 
 @task
 def repackage_jetpack(builder_data, **kw):
-    jp_log.info('[1@None] Repackaging jetpack for %s.' % builder_data['file_id'])
+    jp_log.info('[1@None] Repackaging jetpack for %s.'
+                % builder_data['file_id'])
     jp_log.info('; '.join('%s: "%s"' % i for i in builder_data.items()))
     msg = lambda s: ('[{file_id}]: ' + s).format(**builder_data)
     upgrader = JetpackUpgrader()
@@ -110,18 +113,35 @@ def repackage_jetpack(builder_data, **kw):
         new_file = new_version.all_files[0]
         new_file.status = old_file.status
         new_file.save()
-    except Exception, e:
+    except Exception:
         jp_log.error(msg('Error creating new version/file.'), exc_info=True)
         raise
 
     # Sync out the new version.
     addon.update_version()
-
     upgrader.finish(builder_data['file_id'])
-    # TODO: Email author.
+
+    try:
+        send_upgrade_email(addon, new_version, old_file.version,
+                           file_data['version'])
+    except Exception:
+        jp_log.error(msg('Could not send success email.'), exc_info=True)
+        raise
+
     # TODO: don't send editor notifications about the new file.
     # Return the new file to make testing easier.
     return new_file
+
+
+def send_upgrade_email(addon, new_version, old_version, sdk_version):
+    cxn = get_email_backend()
+    subject = '[addons.mozilla.org] Your Jetpack Add-on has been Updated!'
+    from_ = settings.DEFAULT_FROM_EMAIL
+    to = set(addon.authors.values_list('email', flat=True))
+    t = jingo.env.get_template('files/jetpack_upgraded.txt')
+    msg = t.render(addon=addon, new_version=new_version,
+                   old_version=old_version, sdk_version=sdk_version)
+    django.core.mail.send_mail(subject, msg, from_, to, connection=cxn)
 
 
 @task
@@ -154,7 +174,8 @@ def start_upgrade(version, file_ids, priority='low', **kw):
                 'uuid': data['uuid'],
                 'pingback': reverse('files.builder-pingback')}
         try:
-            urllib2.urlopen(settings.BUILDER_UPGRADE_URL, urllib.urlencode(post))
+            urllib2.urlopen(settings.BUILDER_UPGRADE_URL,
+                            urllib.urlencode(post))
         except Exception:
             jp_log.error('Could not talk to builder for %s.' % file_.id,
                          exc_info=True)

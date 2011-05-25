@@ -1,0 +1,11 @@
+Your Jetpack-based add-on has been updated to SDK version {{ sdk_version }}.
+
+The add-on: {{ addon.name }} {{ url('devhub.addons.edit', addon.slug)|absolutify }}
+New version: {{ new_version.version }} {{ url('devhub.versions.edit', addon.slug, new_version.id)|absolutify }}
+Old version: {{ old_version.version }} {{ url('devhub.versions.edit', addon.slug, old_version.id)|absolutify }}
+
+No action is necessary on your part.
+
+Thank you,
+The Add-ons Team
+

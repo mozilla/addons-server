@@ -29,6 +29,11 @@
   <p>We're running an upgrade to Jetpack <b>{{ upgrading }}</b> right now! Patience, my child.</p>
 {% else %}
   <p>Files in green will be upgraded to <b>{{ cfg.value }}</b> when you press the button.</p>
+  {% if settings.SEND_REAL_EMAIL %}
+    <p>Note: upgrade emails <b>will be sent</b> to developers.</p>
+  {% else %}
+    <p>Upgrade emails <b>will not</b> be sent to developers. You can find the logged emails at <a href="{{ url('zadmin.mail') }}">admin/mail</a>.</p>
+  {% endif %}
 {% endif %}
 <form method="post" action="">
   {{ csrf() }}
