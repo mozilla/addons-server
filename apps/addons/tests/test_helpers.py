@@ -87,14 +87,13 @@ class TestHelpers(test_utils.TestCase):
         settings.MAX_CONTRIBUTION = 5
 
         request = Mock()
-        request.GET = {'src': 'direct'}
 
         c = {'LANG': 'en-us', 'APP': amo.FIREFOX, 'settings': settings,
              'request': request}
 
-        s = contribution(c, a)
+        s = contribution(c, a, contribution_src='browse')
         doc = PyQuery(s)
-        eq_(doc('input[name=source]').attr('value'), 'direct')
+        eq_(doc('input[name=source]').attr('value'), 'browse')
 
 
 class TestPerformanceNote(test_utils.TestCase):
