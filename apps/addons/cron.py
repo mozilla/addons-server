@@ -1,5 +1,6 @@
 import array
 import itertools
+import logging
 import operator
 import os
 import subprocess
@@ -10,7 +11,6 @@ from django.conf import settings
 from django.db import connections, transaction
 from django.db.models import Q, F, Avg
 
-import commonware.log
 import multidb
 import path
 import recommend
@@ -26,9 +26,9 @@ from files.models import File
 from stats.models import UpdateCount
 from translations.models import Translation
 
-log = commonware.log.getLogger('z.cron')
-task_log = commonware.log.getLogger('z.task')
-recs_log = commonware.log.getLogger('z.recs')
+log = logging.getLogger('z.cron')
+task_log = logging.getLogger('z.task')
+recs_log = logging.getLogger('z.recs')
 
 
 @cronjobs.register
@@ -277,15 +277,13 @@ def unhide_disabled_files():
          | Q(version__addon__disabled_by_user=True))
     files = set(File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
                 .values_list('version__addon', 'filename'))
-    rescue = []
     for filepath in path.path(settings.GUARDED_ADDONS_PATH).walkfiles():
         addon, filename = filepath.split('/')[-2:]
         if tuple([int(addon), filename]) not in files:
             log.warning('File that should not be guarded: %s.' % filepath)
             try:
-                file_ = (File.objects.get(version__addon=addon,
-                                          filename=filename)
-                         .select_related('version__addon'))
+                file_ = (File.objects.select_related('version__addon')
+                         .get(version__addon=addon, filename=filename))
                 file_.unhide_disabled_file()
                 if (file_.version.addon.status in amo.MIRROR_STATUSES
                     and file_.status in amo.MIRROR_STATUSES):
