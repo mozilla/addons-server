@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>QUnit Test Suite</title>
-  <link rel="stylesheet" href="{{ url('qunit_css') }}" type="text/css" media="screen">
+  <link rel="stylesheet" href="{{ url('qunit_css') }}?v={{ timestamp }}" type="text/css" media="screen">
 </head>
 <body
         data-app="{{ request.APP.short }}"
@@ -291,16 +291,16 @@
   <script src="{{ static(url('jsi18n')) }}"></script>
   {{ js('common') }}
   <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
-  <script type="text/javascript" src="{{ url('qunit_js') }}"></script>
-  <script type="text/javascript" src="{{ MEDIA_URL }}js/lib/jquery.mockjax.js"></script>
+  <script type="text/javascript" src="{{ url('qunit_js') }}?v={{ timestamp }}"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/lib/jquery.mockjax.js?v={{ timestamp }}"></script>
   {% for url in suite.extra_urls %}
-    <script type="text/javascript" src="{{ url }}"></script>
+    <script type="text/javascript" src="{{ url }}?v={{ timestamp }}"></script>
   {% endfor %}
   {% for url in suite.extra_media_urls %}
-    <script type="text/javascript" src="{{ MEDIA_URL }}{{ url }}"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}{{ url }}?v={{ timestamp }}"></script>
   {% endfor %}
   {% for file in files %}
-    <script type="text/javascript" src="{{ url('qunit_test', file) }}"></script>
+    <script type="text/javascript" src="{{ url('qunit_test', file) }}?v={{ timestamp }}"></script>
   {% endfor %}
 
 </body>

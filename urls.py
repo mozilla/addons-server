@@ -147,9 +147,11 @@ urlpatterns += patterns('piston.authentication',
 if 'django_qunit' in settings.INSTALLED_APPS:
 
     def zamboni_qunit(request, path):
+        from time import time
         import django_qunit.views
         import jingo
         ctx = django_qunit.views.get_suite_context(request, path)
+        ctx.update(timestamp=time())
         response = jingo.render(request, 'qunit.html', ctx)
         # This allows another site to embed the QUnit suite
         # in an iframe (for CI).
