@@ -16,15 +16,15 @@ from hera.contrib.django_forms import FlushForm
 from hera.contrib.django_utils import get_hera, flush_urls
 from tower import ugettext as _
 
-from amo import messages
-from amo import get_user
-from amo.decorators import login_required, json_view, post_required
+import amo.mail
 import amo.models
+import files.tasks
+import files.utils
+from amo import messages, get_user
+from amo.decorators import login_required, json_view, post_required
 from amo.urlresolvers import reverse
 from amo.utils import chunked, sorted_groupby
 from addons.models import Addon
-import files.tasks
-import files.utils
 from files.models import Approval, File
 from versions.models import Version
 
@@ -302,3 +302,13 @@ def start_upgrade(version):
     log.info('Starting a jetpack upgrade to %s [%s files].'
              % (version, len(ids)))
     files.tasks.start_upgrade.delay(version, ids)
+
+
+@admin.site.admin_view
+def mail(request):
+    backend = amo.mail.FakeEmailBackend()
+    if request.method == 'POST':
+        backend.clear()
+        return redirect('zadmin.mail')
+    return jingo.render(request, 'zadmin/mail.html',
+                        dict(mail=backend.view_all()))

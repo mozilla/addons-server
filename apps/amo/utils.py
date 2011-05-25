@@ -10,6 +10,7 @@ import urllib
 import urlparse
 import uuid
 
+import django.core.mail
 from django import http
 from django.conf import settings
 from django.contrib import messages
@@ -519,3 +520,12 @@ class Token:
                 cache.delete(token.cache_key())
                 return True
         return False
+
+
+def get_email_backend():
+    """Get a connection to an email backend.
+
+    If settings.SEND_REAL_EMAIL is False, a debugging backend is returned.
+    """
+    backend = None if settings.SEND_REAL_EMAIL else 'amo.mail.FakeEmailBackend'
+    return django.core.mail.get_connection(backend)

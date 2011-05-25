@@ -961,3 +961,7 @@ USE_ELASTIC = True
 
 # Default AMO user id to use for tasks.
 TASK_USER_ID = 4757633
+
+# If this is False, tasks and other jobs that send non-critical emails should
+# use a fake email backend.
+SEND_REAL_EMAIL = False
