@@ -40,7 +40,7 @@ class SEAMONKEY:
     pretty = _(u'SeaMonkey')
     browser = True
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
-             ADDON_LPAPP, ADDON_PLUGIN]
+             ADDON_LPAPP, ADDON_PLUGIN, ADDON_PERSONA]
     guid = '{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'
     min_display_version = 1.0
     exclude_versions = (1.5,)
