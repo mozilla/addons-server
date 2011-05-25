@@ -215,6 +215,13 @@ class TestUpdateCompatibility(test_utils.TestCase):
     def setUp(self):
         self.url = reverse('devhub.addons')
 
+        # TODO(andym): use Mock appropriately here.
+        self.old_version = amo.FIREFOX.latest_version
+        amo.FIREFOX.latest_version = '3.6.15'
+
+    def tearDown(self):
+        amo.FIREFOX.latest_version = self.old_version
+
     def test_no_compat(self):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
