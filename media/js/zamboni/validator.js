@@ -407,7 +407,7 @@ function initValidator() {
                                             'complete or completed with ' +
                                             'errors')],
                                 tier: 1,
-                                uuid: '__global_error__'
+                                uid: '__global_error__'
                             }]
                         };
                     }
@@ -422,7 +422,7 @@ function initValidator() {
                                 message: gettext('Error'),
                                 description: [gettext('Internal server error')],
                                 tier: 1,
-                                uuid: '__global_error__'
+                                uid: '__global_error__'
                             }]
                         }
                     });
