@@ -43,7 +43,6 @@ function initValidator() {
         }
         this.$tierResults = $('.tier-results', this.$dom);
         this.wakeUp();
-        // this.$results.append($tier);
     }
 
     ResultsTier.prototype.tallyMsgType = function(type_) {
@@ -110,8 +109,6 @@ function initValidator() {
         $('.tier-results', this.$dom).empty();
         this.$dom.removeClass('hidden');
         this.$dom.show();
-        // this.$dom.css('display', 'display');
-        // this.$dom.css('visibility', 'visible');
         if (this.app) {
             // Override the title with a special app/version title
             $title.text(format('{0} {1} {2}',
@@ -223,8 +220,7 @@ function initValidator() {
         if (typeof(ctxFile) === 'string') {
             ctxFile = [ctxFile];
         }
-        // e.g. ["silvermelxt_1.3.5.xpi",
-        //       "chrome/silvermelxt.jar"]
+        // e.g. ["silvermelxt_1.3.5.xpi", "chrome/silvermelxt.jar"]
         ctxFile = joinPaths(ctxFile);
         ctxDiv = $(format('<div class="context">' +
                           '<div class="file">{0}</div></div>', [ctxFile]));
@@ -236,10 +232,8 @@ function initValidator() {
             code.append(innerCode);
             msg.context = formatCodeIndentation(msg.context);
             $.each(msg.context, function(n, c) {
-                lines.append(
-                    $(format('<div>{0}</div>', [msg.line + n])));
-                innerCode.append(
-                    $(format('<div>{0}</div>', [c])));
+                lines.append($(format('<div>{0}</div>', [msg.line + n])));
+                innerCode.append($(format('<div>{0}</div>', [c])));
             });
             ctxDiv.append(code);
         }
@@ -322,11 +316,9 @@ function initValidator() {
 
     function resultSummary(numErrors, numWarnings) {
         // e.g. '1 error, 3 warnings'
-        var errors = format(ngettext('{0} error', '{0} errors',
-                                     numErrors),
+        var errors = format(ngettext('{0} error', '{0} errors', numErrors),
                             [numErrors]),
-            warnings = format(ngettext('{0} warning', '{0} warnings',
-                                       numWarnings),
+            warnings = format(ngettext('{0} warning', '{0} warnings', numWarnings),
                               [numWarnings]);
         return format('{0}, {1}', errors, warnings);
     }
