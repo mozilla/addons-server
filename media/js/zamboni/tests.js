@@ -129,3 +129,23 @@ tests.StubOb = function(Orig, overrides) {
         return ob;
     }
 };
+
+tests.hasClass = function($sel, cls) {
+    /*
+        Asserts that jQuery selector $sel has CSS class cls.
+
+        Otherwise, an instructive error is raised.
+    */
+    equals($sel.hasClass(cls), true,
+           'Expecting ' + cls + ', got: ' + $sel.attr('class'));
+}
+
+tests.lacksClass = function($sel, cls) {
+    /*
+        Asserts that jQuery selector $sel does not have CSS class cls.
+
+        Otherwise, an instructive error is raised.
+    */
+    equals($sel.hasClass(cls), false,
+           'Should not have ' + cls + ', got: ' + $sel.attr('class'));
+};

@@ -551,6 +551,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/truncation.js',
             'js/zamboni/upload.js',
             'js/zamboni/devhub.js',
+            'js/zamboni/validator.js',
         ),
         'zamboni/editors': (
             'js/zamboni/editors.js',
