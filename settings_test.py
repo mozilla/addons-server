@@ -35,6 +35,7 @@ UPLOADS_PATH = _polite_tmpdir()
 MIRROR_STAGE_PATH = _polite_tmpdir()
 TMP_PATH = _polite_tmpdir()
 COLLECTIONS_ICON_PATH = _polite_tmpdir()
+PACKAGER_PATH = _polite_tmpdir()
 
 # Turn off search engine indexing.
 USE_ELASTIC = False

@@ -1890,3 +1890,129 @@ button.search-button {
   -moz-transform: scalex(-1);
   -webkit-transform: scalex(-1);
 }
+/** Add-on Packager **/
+
+#packager fieldset {
+    border: none;
+}
+
+#packager li {
+    border-bottom: 1px dotted #a5c9d5;
+    padding: 0.5em 0;
+    margin: 0;
+}
+
+#packager li:last-child {
+    border-bottom: none;
+}
+
+#packager li:first-child {
+    padding-top: 0;
+}
+
+#packager li label:not(.checkbox-label) {
+    width: 10em;
+}
+#packager .platforms li label {
+    width: auto;
+}
+
+#packager li label,
+#packager li .builder_input {
+    float: left;
+}
+
+#packager textarea {
+    width: inherit;
+}
+
+#packager li .builder_input {
+    padding: 0.2em;
+    padding-bottom: 0.1em;
+    margin-right: 0.5em;
+}
+
+#packager .platforms div {
+    float:left;
+    width:30%;
+    margin-right:2em;
+    margin-bottom:1.5em;
+}
+#packager .platforms ul {
+    margin-top:0.5em;
+}
+
+#packager .supportedapps {
+    clear:both;
+    margin-top:2em;
+}
+
+#packager .compat_form label {
+    display:block;
+    width:10em;
+    float:left;
+    line-height:1.75em;
+}
+
+#packager .compat_form span {
+    font-weight: bold;
+    margin-right: 2em;
+    color:#666;
+}
+
+#packager .compat_form select {
+    width: 10em;
+}
+
+#packager-download {
+    padding: 30px 0;
+}
+
+#packager-download span {
+    background: #fff;
+    border: 1px solid #eee;
+    border-bottom-width: 3px;
+    border-top: 0;
+    border-radius: 5px;
+    color: #888;
+    display: block;
+    margin: 0 auto;
+    padding: 5px;
+    text-align: center;
+    width: 200px;
+}
+
+#packager-download a {
+    background: #64A61C;
+    background: -moz-linear-gradient(center top , #84C63C 0%, #489615 100%) repeat scroll 0 0 transparent;
+    border-radius: 6px;
+    box-shadow: 0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset;
+    color: #fff;
+    display: block;
+    font-size: 1.3em;
+    margin: 2px auto;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    width: 230px;
+}
+
+#packager-download a:hover {
+    box-shadow: 0 3px rgba(0, 0, 0, 0.1), 0 -6px rgba(0, 0, 0, 0.1) inset;
+    margin: 0 auto 2px;
+    padding-bottom: 7px;
+}
+
+#packager-download a:active {
+    box-shadow: 0 3px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset;
+    margin: 4px auto 2px;
+    padding-bottom: 3px;
+}
+
+#packager-download small {
+    font-family: georgia, "Bitstream Charter", serif;
+    font-size: 0.7em;
+    font-style: italic;
+    margin: 0 3px;
+    text-align: left;
+}

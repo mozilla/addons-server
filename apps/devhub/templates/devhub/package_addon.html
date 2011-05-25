@@ -1,0 +1,129 @@
+{% extends "devhub/base.html" %}
+{% from 'includes/forms.html' import required %}
+
+{% set title = _('Add-on Packager') %}
+{% block title %}{{ dev_page_title(title) }}{% endblock %}
+
+{% block content %}
+<header>
+  {{ dev_breadcrumbs(addon, items=[(None, title)]) }}
+  <h2>{{ title }}</h2>
+</header>
+<form method="post" id="packager" class="item" action="">
+  {{ csrf() }}
+  <p class="summary">
+  {% trans %}
+    Enter some basic information about your add-on below and select which
+    interface components to start with, and your custom-built add-on will be
+    ready for download.
+  {% endtrans %}
+  </p>
+  <fieldset>
+    <legend>{{ _('Describe your add-on') }}</legend>
+    <p>
+    {% trans %}
+      First, you need to enter some basic information about your add-on. This
+      will be displayed in the Add-ons Manager when your extension is installed.
+    {% endtrans %}
+    </p>
+    {{ basic_form.non_field_errors() }}
+    <ul>
+      <li class="required packager_input">
+        <label for="name">{{ _('Add-on Name') }} {{ required() }}</label>
+        {{ basic_form.name }}
+        {{ basic_form.name.errors }}
+      </li>
+      <li class="packager_input">
+        <label for="description">{{ _('Description') }}</label>
+        {{ basic_form.description }}
+        {{ basic_form.description.errors }}
+      </li>
+      <li class="required packager_input">
+        <label for="version">{{ _('Add-on Version') }} {{ required() }}</label>
+        {{ basic_form.version }}
+        {{ basic_form.version.errors }}
+      </li>
+      <li class="required packager_input">
+        <label for="id">{{ _('Unique ID') }} {{ required() }}</label>
+        {{ basic_form.id }}
+        {{ basic_form.id.errors }}
+      </li>
+    </ul>
+  </fieldset>
+  <fieldset>
+    <legend>{{ _("Who's working on your add-on?") }}</legend>
+    <p>
+    {% trans %}
+      Tell us about the people or companies behind this add-on. This information
+      appears in the add-on's About dialog.
+    {% endtrans %}
+    </p>
+    <ul>
+      <li class="required packager_input">
+        <label for="author_name">{{ _('Primary Author') }} {{ required() }}</label>
+        {{ basic_form.author_name }}
+        {{ basic_form.author_name.errors }}
+      </li>
+      <li class="packager_input">
+        <label for="contributors">{{ _('Contributors') }}</label>
+        {{ basic_form.contributors }}
+        {{ basic_form.contributors.errors }}
+      </li>
+    </ul>
+  </fieldset>
+  <fieldset>
+    <legend>{{ _('Where will your add-on run?') }}</legend>
+    <p>
+      {% trans %}
+      Select the applications and versions that your add-on will support. The
+      versions that you select will be the only versions that your add-on will
+      be installable on. Make sure you only select applications and versions
+      that you intend to test your add-on with.
+      {% endtrans %}
+    </p>
+    <div class="supportedapps">
+      <label>{{ _('Supported Applications') }}</label>
+      {{ compat_forms.management_form }}
+      {{ compat_forms.non_form_errors() }}
+      <ul>
+      {% for compat in compat_forms %}
+      <li class="compat_form">
+        <label>
+          {{ compat.enabled }}
+          {{ compat.enabled.label }}
+        </label>
+        <span>
+          {{ compat.min_ver.label }}
+          {{ compat.min_ver }}
+        </span>
+        <span>
+          {{ compat.max_ver.label }}
+          {{ compat.max_ver }}
+        </span>
+        {{ compat.non_field_errors() }}
+      </li>
+      {% endfor %}
+      </ul>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>{{ _('Choose pre-built features') }}</legend>
+    <p>
+      {% trans %}
+      Get started quicly by selecting user interface components to include in
+      your add-on package. We'll include documented code for each item you
+      select so your extension will work out of the box.
+      {% endtrans %}
+    </p>
+    <ul>
+      {% for feature in features_form %}
+      <li>
+        {{ feature }}
+        {{ feature.label }}
+      </li>
+      {% endfor %}
+    </ul>
+  </fieldset>
+  <input type="submit" value="{{ _('Submit and Build') }}" />
+</form>
+{% endblock content %}

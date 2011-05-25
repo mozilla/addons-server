@@ -1,10 +1,12 @@
 import path
+import re
 import socket
 
 from django import forms
 from django.conf import settings
 from django.db.models import Q
 from django.forms.models import modelformset_factory
+from django.forms.formsets import formset_factory, BaseFormSet
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_unicode
 
@@ -20,7 +22,7 @@ from amo.forms import AMOModelForm
 from amo.widgets import EmailWidget
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, Platform
-from files.utils import parse_addon
+from files.utils import parse_addon, VERSION_RE
 from translations.widgets import TranslationTextarea, TranslationTextInput
 from translations.fields import TransTextarea, TransField
 from translations.models import delete_translation
@@ -353,11 +355,7 @@ CompatFormSet = modelformset_factory(
     form=CompatForm, can_delete=True, extra=0)
 
 
-class NewAddonForm(happyforms.Form):
-    upload = forms.ModelChoiceField(widget=forms.HiddenInput,
-        queryset=FileUpload.objects.filter(valid=True),
-        error_messages={'invalid_choice': _lazy('There was an error with your '
-                                                'upload. Please try again.')})
+class AddonPlatformForm(happyforms.Form):
     desktop_platforms = forms.ModelMultipleChoiceField(
             queryset=Platform.objects,
             widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
@@ -374,8 +372,6 @@ class NewAddonForm(happyforms.Form):
 
     def clean(self):
         if not self.errors:
-            xpi = parse_addon(self.cleaned_data['upload'].path)
-            addons.forms.clean_name(xpi['name'])
             self._clean_all_platforms()
         return self.cleaned_data
 
@@ -383,6 +379,19 @@ class NewAddonForm(happyforms.Form):
         if (not self.cleaned_data['desktop_platforms']
             and not self.cleaned_data['mobile_platforms']):
             raise forms.ValidationError(_('Need at least one platform.'))
+
+
+class NewAddonForm(AddonPlatformForm):
+    upload = forms.ModelChoiceField(widget=forms.HiddenInput,
+        queryset=FileUpload.objects.filter(valid=True),
+        error_messages={'invalid_choice': _lazy('There was an error with your '
+                                                'upload. Please try again.')})
+
+    def clean(self):
+        if not self.errors:
+            xpi = parse_addon(self.cleaned_data['upload'].path)
+            addons.forms.clean_name(xpi['name'])
+        return self.cleaned_data
 
 
 class NewVersionForm(NewAddonForm):
@@ -601,3 +610,129 @@ class NewsletterForm(forms.Form):
         choices=(('html', _lazy(u'HTML')),
                  ('text', _lazy(u'Text'))))
     policy = forms.BooleanField()
+
+
+class PackagerBasicForm(forms.Form):
+    name = forms.CharField()
+    description = forms.CharField(required=False, widget=forms.Textarea)
+    version = forms.CharField(max_length=32)
+    id = forms.CharField()
+    author_name = forms.CharField()
+    contributors = forms.CharField(required=False, widget=forms.Textarea)
+
+    def clean_name(self):
+        name_regex = re.compile('(mozilla|firefox)', re.I)
+
+        if name_regex.match(self.cleaned_data['name']):
+            raise forms.ValidationError(
+                _('Add-on names should not contain Mozilla trademarks.'))
+        return self.cleaned_data['name']
+
+    def clean_id(self):
+        id_regex = re.compile(
+                """(\{[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}\} |  # GUID
+                   [a-z0-9-\.\+_]*\@[a-z0-9-\._]+)  # Email format""",
+                re.I | re.X)
+
+        if not id_regex.match(self.cleaned_data['id']):
+            raise forms.ValidationError(
+                _('The add-on ID must be a UUID string or an email ' +
+                  'address.'))
+        return self.cleaned_data['id']
+
+    def clean_version(self):
+        if not VERSION_RE.match(self.cleaned_data['version']):
+            raise forms.ValidationError(
+                _('The version string is invalid.'))
+        return self.cleaned_data['version']
+
+
+class PackagerCompatForm(forms.Form):
+    enabled = forms.BooleanField(required=False)
+    min_ver = forms.ModelChoiceField(AppVersion.objects.none(),
+                                     empty_label=None)
+    max_ver = forms.ModelChoiceField(AppVersion.objects.none(),
+                                     empty_label=None)
+
+    def __init__(self, *args, **kwargs):
+        super(PackagerCompatForm, self).__init__(*args, **kwargs)
+        if not self.initial:
+            return
+
+        self.app = self.initial['application']
+        qs = (AppVersion.objects.filter(application=self.app.id)
+                                .order_by('-version_int'))
+
+        self.fields['enabled'].label = self.app.pretty
+
+        # Don't allow version ranges as the minimum version.
+        self.fields['min_ver'].queryset = qs.filter(~Q(version__contains='*'))
+        self.fields['max_ver'].queryset = qs.all()
+
+    def clean(self):
+        if self.errors:
+            return
+
+        data = self.cleaned_data
+        if not data['enabled']:
+            return data
+
+        min_ver = data['min_ver']
+        max_ver = data['max_ver']
+        if not (min_ver and max_ver):
+            raise forms.ValidationError(
+                    _('Invalid version range.'))
+
+        if min_ver.version_int > max_ver.version_int:
+            raise forms.ValidationError(
+                    _('Min version must be less than Max version.'))
+
+        # Pass back the app name and GUID.
+        data['min_ver'] = str(min_ver)
+        data['max_ver'] = str(max_ver)
+        data['name'] = self.app.pretty
+        data['guid'] = self.app.guid
+        return data
+
+
+class PackagerCompatBaseFormSet(BaseFormSet):
+    def __init__(self, *args, **kw):
+        super(PackagerCompatBaseFormSet, self).__init__(*args, **kw)
+        self.initial = [{'application': a} for a in amo.APP_USAGE]
+        self._construct_forms()
+
+    def clean(self):
+        if any(self.errors):
+            return
+
+        if not any(cf.cleaned_data.get('enabled') for cf in self.forms):
+            raise forms.ValidationError(
+                        _('At least one target application must be selected.'))
+
+PackagerCompatFormSet = formset_factory(PackagerCompatForm,
+        formset=PackagerCompatBaseFormSet,
+        extra=0)
+
+
+class PackagerFeaturesForm(forms.Form):
+    about_dialog = forms.BooleanField(
+            required=False,
+            label=_lazy('About dialog'))
+    preferences_dialog = forms.BooleanField(
+            required=False,
+            label=_lazy('Preferences Dialog'))
+    toolbar = forms.BooleanField(
+            required=False,
+            label=_lazy('Toolbar'))
+    toolbar_button = forms.BooleanField(
+            required=False,
+            label=_lazy('Toolbar button'))
+    main_menu_command = forms.BooleanField(
+            required=False,
+            label=_lazy('Main menu command'))
+    context_menu_command = forms.BooleanField(
+            required=False,
+            label=_lazy('Context menu command'))
+    sidebar_support = forms.BooleanField(
+            required=False,
+            label=_lazy('Sidebar support'))

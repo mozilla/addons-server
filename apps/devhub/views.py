@@ -39,6 +39,7 @@ from addons import forms as addon_forms
 from addons.decorators import addon_view
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
+from applications.models import Application, AppVersion
 from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
 from editors.helpers import get_position
 from files.models import File, FileUpload
@@ -501,6 +502,74 @@ def profile(request, addon_id, addon):
 @login_required
 def validate_addon(request):
     return jingo.render(request, 'devhub/validate_addon.html', {})
+
+
+def packager_path(name):
+    return os.path.join(settings.PACKAGER_PATH, '%s.zip' % name)
+
+
+@login_required
+def package_addon(request):
+    basic_form = forms.PackagerBasicForm(request.POST or None)
+    features_form = forms.PackagerFeaturesForm(request.POST or None)
+    compat_forms = forms.PackagerCompatFormSet(request.POST or None)
+
+    # Process requests, but also avoid short circuiting by using all().
+    if (request.method == 'POST' and
+        all([basic_form.is_valid(),
+             features_form.is_valid(),
+             compat_forms.is_valid()])):
+
+        basic_data = basic_form.cleaned_data
+        compat_data = compat_forms.cleaned_data
+
+        # Generate a unique, non-iterable ID for the package we're building.
+        builder_uuid = uuid.uuid4().hex
+
+        data = {'id': basic_data['id'],
+                'version': basic_data['version'],
+                'name': basic_data['name'],
+                'description': basic_data['description'],
+                'author_name': basic_data['author_name'],
+                'contributors': basic_data['contributors'],
+                'targetapplications': [c for c in compat_data if c['enabled']],
+                'uuid': builder_uuid}
+        tasks.packager.delay(data, features_form.cleaned_data)
+        return redirect('devhub.package_addon_success', builder_uuid)
+
+    return jingo.render(request, 'devhub/package_addon.html',
+                        {'basic_form': basic_form,
+                         'compat_forms': compat_forms,
+                         'features_form': features_form})
+
+
+@login_required
+def package_addon_success(request, id):
+    """Return the success page for the add-on packager."""
+    return jingo.render(request, 'devhub/package_addon_success.html',
+                        {'uuid': id})
+
+
+@json_view
+@login_required
+def package_addon_json(request, id):
+    """Return the URL of the packaged add-on."""
+    path = packager_path(id)
+    if os.path.isfile(path):
+        download_url = reverse('devhub.package_addon_download', args=[id])
+        return {'download_url': download_url,
+                'size': round(os.path.getsize(path) / 1024, 1)}
+
+
+@login_required
+def package_addon_download(request, id):
+    """Serve a packaged add-on."""
+    path = packager_path(id)
+    if not os.path.isfile(path):
+        raise http.Http404()
+
+    return amo.utils.HttpResponseSendFile(request, path,
+                                          content_type='application/zip')
 
 
 @login_required

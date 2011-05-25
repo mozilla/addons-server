@@ -578,6 +578,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/upload.js',
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
+            'js/zamboni/packager.js',
         ),
         'zamboni/editors': (
             'js/zamboni/editors.js',
@@ -677,6 +678,7 @@ ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
 COLLECTIONS_ICON_PATH = UPLOADS_PATH + '/collection_icons'
 PREVIEWS_PATH = UPLOADS_PATH + '/previews'
 USERPICS_PATH = UPLOADS_PATH + '/userpics'
+PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 ADDON_ICONS_DEFAULT_PATH = os.path.join(MEDIA_ROOT, 'img/addon-icons')
 
 PREVIEW_THUMBNAIL_PATH = (PREVIEWS_PATH + '/thumbs/%s/%d.png')
@@ -781,6 +783,7 @@ CELERY_IMPORTS = ('django_arecibo.tasks',)
 # We have separate celeryds for processing devhub & images as fast as possible.
 CELERY_ROUTES = {
     'devhub.tasks.validator': {'queue': 'devhub'},
+    'devhub.tasks.packager': {'queue': 'devhub'},
     'bandwagon.tasks.resize_icon': {'queue': 'images'},
     'users.tasks.resize_photo': {'queue': 'images'},
     'users.tasks.delete_photo': {'queue': 'images'},

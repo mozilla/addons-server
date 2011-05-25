@@ -89,6 +89,16 @@ ajax_patterns = patterns('',
     url('^image/status$', views.image_status, name='devhub.ajax.image.status')
 )
 
+packager_patterns = patterns('',
+    url('^$', views.package_addon, name='devhub.package_addon'),
+    url('^download/(?P<id>[\w\d]+)$', views.package_addon_download,
+        name='devhub.package_addon_download'),
+    url('^json/(?P<id>[\w\d]+)$', views.package_addon_json,
+        name='devhub.package_addon_json'),
+    url('^success/(?P<id>[\w\d]+)$', views.package_addon_success,
+        name='devhub.package_addon_success'),
+)
+
 redirect_patterns = patterns('',
     ('^addon/edit/(\d+)',
      lambda r, id: redirect('devhub.addons.edit', id, permanent=True)),
@@ -117,6 +127,9 @@ urlpatterns = decorate(write, patterns('',
     # Standalone validator:
     url('^addon/validate/?$', views.validate_addon,
         name='devhub.validate_addon'),
+
+    # Add-on packager
+    url('^addon/package/', include(packager_patterns)),
 
     # Redirect to /addons/ at the base.
     url('^addon$', lambda r: redirect('devhub.addons', permanent=True)),

@@ -128,11 +128,12 @@ def monitor(request, format=None):
           settings.GUARDED_ADDONS_PATH,
           settings.ADDON_ICONS_PATH,
           settings.COLLECTIONS_ICON_PATH,
+          settings.PACKAGER_PATH,
           settings.PREVIEWS_PATH,
           settings.USERPICS_PATH,
           settings.SPHINX_CATALOG_PATH,
           settings.SPHINX_LOG_PATH,
-          dump_apps.Command.JSON_PATH)
+          dump_apps.Command.JSON_PATH,)
     r = [os.path.join(settings.ROOT, 'locale')]
     filepaths = [(path, os.R_OK | os.W_OK, "We want read + write")
                  for path in rw]
