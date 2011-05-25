@@ -1143,15 +1143,289 @@ function compatModalCallback(obj) {
 
 $(document).ready(function() {
 
+    function inherit(OtherClass, constructor) {
+        var NewClass = function() {
+            OtherClass.apply(this, arguments);
+            if (typeof constructor !== 'undefined') {
+                constructor.apply(this, arguments);
+            }
+        }
+        $.extend(NewClass.prototype, OtherClass.prototype);
+        return NewClass;
+    }
+
+    function emptyFn() {
+        return null;
+    }
+
+    function ResultsTier($suite, tierId, options) {
+        if (typeof options === 'undefined')
+            options = {}
+        if (typeof options.app === 'undefined')
+            options.app = null;
+        if (typeof options.testsWereRun === 'undefined')
+            options.testsWereRun = true;
+        this.$results = $('.results', $suite);
+        this.app = options.app;
+        this.testsWereRun = options.testsWereRun;
+        this.counts = {error: 0, warning: 0};
+        this.tierId = tierId;
+        this.$suite = $suite;
+        this.$dom = $('#suite-results-tier-' + tierId, $suite);
+        if (!this.$dom.length) {
+            this.$dom = this.createDom();
+            this.$results.append(this.$dom);
+        }
+        this.$tierResults = $('.tier-results', this.$dom);
+        this.wakeUp();
+        // this.$results.append($tier);
+    }
+
+    ResultsTier.prototype.tallyMsgType = function(type_) {
+        if (type_ == 'notice') type_ = 'warning';
+        this.counts[type_] += 1;
+    };
+
+    ResultsTier.prototype.createDom = function() {
+        var $tier = $($('.template', this.$suite).html());
+        $tier.attr('id', 'suite-results-tier-' + this.tierId);
+        return $tier;
+    }
+
+    ResultsTier.prototype.summarize = function() {
+        var sm = resultSummary(this.counts.error, this.counts.warning),
+            resultClass, summaryMsg;
+        $('.result-summary', this.$dom).css('visibility', 'visible')
+                                       .empty().text(sm);
+        if (this.counts.error) {
+            resultClass = 'tests-failed';
+        } else if (this.counts.warning) {
+            resultClass = 'tests-passed-warnings';
+        } else {
+            if (this.testsWereRun) {
+                summaryMsg = gettext('All tests passed successfully.');
+                resultClass = 'tests-passed';
+            } else {
+                summaryMsg = gettext('These tests were not run.');
+                resultClass = 'tests-notrun';
+                // No summary since no tests were run:
+                $('.result-summary', this.$dom).html('&nbsp;');
+            }
+            this.$tierResults.append('<span>' + summaryMsg + '</span>');
+        }
+        this.$tierResults.removeClass('ajax-loading', 'tests-failed',
+                                      'tests-passed', 'tests-passed-warnings',
+                                      'tests-notrun')
+                         .addClass(resultClass);
+        if ($('.test-tier', this.$suite).length)
+            this.topSummary();
+    };
+
+    ResultsTier.prototype.topSummary = function() {
+        var $top = $('[class~="test-tier"]' +
+                     '[data-tier="' + this.tierId + '"]', this.$suite),
+            summaryMsg = resultSummary(this.counts.error, this.counts.warning);
+
+        $('.tier-summary', $top).text(summaryMsg);
+        $top.removeClass('ajax-loading', 'tests-failed', 'tests-passed',
+                         'tests-notrun');
+        if (this.counts.error > 0) {
+            $top.addClass('tests-failed');
+        } else {
+            if (this.testsWereRun)
+                $top.addClass('tests-passed');
+            else
+                $top.addClass('tests-notrun');
+        }
+    };
+
+    ResultsTier.prototype.wakeUp = function() {
+        var $title = $('h4', this.$dom),
+            changeLink;
+        $('.tier-results', this.$dom).empty();
+        this.$dom.removeClass('hidden');
+        this.$dom.show();
+        // this.$dom.css('display', 'display');
+        // this.$dom.css('visibility', 'visible');
+        if (this.app) {
+            // Override the title with a special app/version title
+            $title.text(format('{0} {1} {2}',
+                               this.app.trans[this.app.guid],
+                               this.app.version,
+                               gettext('Tests')));
+            changeLink = this.app.versionChangeLinks[this.app.guid + ' ' +
+                                                     this.app.version];
+            if (changeLink) {
+                this.$dom.prepend(
+                    format('<a class="version-change-link" href="{0}">{1}</a>',
+                           changeLink,
+                           // L10n: Example: Changes in Firefox 5
+                           gettext(format('Changes in {0} {1}',
+                                          this.app.trans[this.app.guid],
+                                          this.app.version.substring(0,1)))));
+            }
+        } else if (!$title.text()) {
+            $title.text(gettext('Tests'));
+        }
+        $('.tier-results', this.$dom).removeClass('ajax-loading');
+    };
+
+    function MsgVisitor(suite, data) {
+        this.$suite = suite;
+        this.data = data;
+        this.$results = $('.results', suite);
+        this.msgSet = {};
+        this.tiers = {};
+        this.appTrans = null;
+        this.versionChangeLinks = null;
+    }
+
+    MsgVisitor.prototype.createTier = function(tierId, options) {
+        if (options && options.app) {
+            options.app.trans = this.appTrans;
+            options.app.versionChangeLinks = this.versionChangeLinks;
+        }
+        var tier = new ResultsTier(this.$suite, tierId, options);
+        return tier;
+    };
+
+    MsgVisitor.prototype.finish = function(msg) {
+        var self = this;
+        $('.result', this.$suite).each(function(i, res) {
+            if (!$('.msg', res).length) {
+                // No messages so no tier was created.
+                self.getTier($('.tier-results', res).attr('data-tier'));
+            }
+        });
+        $.each(this.tiers, function(tierId, tier) {
+            tier.summarize();
+        });
+    };
+
+    MsgVisitor.prototype.getMsgType = function(msg) {
+         return msg['type'];
+    };
+
+    MsgVisitor.prototype.getTier = function(tierId, options) {
+        if (typeof options === 'undefined')
+            options = {app: null};
+        if (!options.app
+            && this.data.validation.ending_tier
+            && this.data.validation.ending_tier < tierId) {
+            options.testsWereRun = false;
+        }
+        if (typeof this.tiers[tierId] === 'undefined')
+            this.tiers[tierId] = this.createTier(tierId, options);
+        return this.tiers[tierId];
+    };
+
+    MsgVisitor.prototype.message = function(msg, options) {
+        if (typeof this.msgSet[msg.uid] !== 'undefined')
+            return;
+        this.msgSet[msg.uid] = true;
+        var tier = this.getTier(msg.tier, options),
+            msgDiv = $('<div class="msg"><h5></h5></div>'),
+            effectiveType = this.getMsgType(msg),
+            prefix = effectiveType=='warning' ? gettext('Warning')
+                                              : gettext('Error');
+
+        tier.tallyMsgType(effectiveType);
+        msgDiv.attr('id', 'v-msg-' + msg.uid);
+        msgDiv.addClass('msg-' + effectiveType);
+        $('h5', msgDiv).html(msg.message);
+        if (typeof(msg.description) === 'undefined' || msg.description === '') {
+            msg.description = [];
+        } else if (typeof(msg.description) === 'string') {
+            // Currently it can be either of these:
+            //      descripion: "foo"
+            //      description: ["foo", "bar"]
+            msg.description = [msg.description];
+        }
+        $.each(msg.description, function(i, val) {
+            msgDiv.append(format('<p>{0}: {1}</p>', [prefix, val]));
+        });
+        if (msg.description.length == 0) {
+            msgDiv.append('<p>&nbsp;</p>');
+        }
+        if (msg.file) {
+            msgDiv.append(this.messageContext(msg));
+        }
+        $('.tier-results', tier.$dom).append(msgDiv);
+    };
+
+    MsgVisitor.prototype.messageContext = function(msg) {
+        var ctxFile = msg.file, ctxDiv, code, lines, innerCode;
+        if (typeof(ctxFile) === 'string') {
+            ctxFile = [ctxFile];
+        }
+        // e.g. ["silvermelxt_1.3.5.xpi",
+        //       "chrome/silvermelxt.jar"]
+        ctxFile = joinPaths(ctxFile);
+        ctxDiv = $(format('<div class="context">' +
+                          '<div class="file">{0}</div></div>', [ctxFile]));
+        if (msg.context) {
+            code = $('<div class="code"></div>');
+            lines = $('<div class="lines"></div>');
+            code.append(lines);
+            innerCode = $('<div class="inner-code"></div>');
+            code.append(innerCode);
+            msg.context = formatCodeIndentation(msg.context);
+            $.each(msg.context, function(n, c) {
+                lines.append(
+                    $(format('<div>{0}</div>', [msg.line + n])));
+                innerCode.append(
+                    $(format('<div>{0}</div>', [c])));
+            });
+            ctxDiv.append(code);
+        }
+        return ctxDiv;
+    };
+
+    var CompatMsgVisitor = inherit(MsgVisitor, function(suite, data) {
+        this.appTrans = JSON.parse(this.$results.attr('data-app-trans'));
+        this.versionChangeLinks = JSON.parse(this.$results.attr('data-version-change-links'));
+    });
+
+    CompatMsgVisitor.prototype.finish = function(msg) {
+        MsgVisitor.prototype.finish.apply(this, arguments);
+        // Since results are more dynamic on the compatibility page,
+        // hide tiers without messages.
+        $('.result', this.$suite).each(function(i, res) {
+            if (!$('.msg', res).length)
+                $(res).hide();
+        });
+    };
+
+    CompatMsgVisitor.prototype.getMsgType = function(msg) {
+         return msg.compatibility_type ? msg.compatibility_type: msg['type'];
+    };
+
+    CompatMsgVisitor.prototype.message = function(msg) {
+        var self = this;
+        if (msg.for_appversions) {
+            eachAppVer(msg.for_appversions, function(guid, version, id) {
+                var app = {guid: guid, version: version, id: id};
+                msg.tier = id;  // change the tier to match app/version
+                MsgVisitor.prototype.message.apply(self, [msg, {app: app}]);
+            });
+        } else {
+            MsgVisitor.prototype.message.apply(this, arguments);
+        }
+    };
+
     function buildResults(suite, data) {
-        var validation = data.validation,
-            isCompat = $('.results', suite).hasClass('compatibility-results'),
-            msgMap = buildMsgMap(validation.messages, isCompat),
-            summaryTxt,
-            compatResults = {},
-            appTrans,
-            versionChangeLinks,
-            $resultsHolder = $('.results', suite);
+        var vis,
+            validation = data.validation,
+            summaryTxt;
+
+        if ($('.results', suite).hasClass('compatibility-results'))
+            vis = new CompatMsgVisitor(suite, data);
+        else
+            vis = new MsgVisitor(suite, data);
+        $.each(validation.messages, function(i, msg) {
+            vis.message(msg);
+        });
+        vis.finish();
 
         if (validation.errors > 0) {
             summaryTxt = gettext('Add-on failed validation.');
@@ -1159,180 +1433,23 @@ $(document).ready(function() {
             summaryTxt = gettext('Add-on passed validation.');
         }
         $('.suite-summary span', suite).text(summaryTxt);
-        $('.result-summary', suite).text('').css('visibility', 'visible');
         $('.suite-summary', suite).show();
-        if ($resultsHolder.attr('data-app-trans')) {
-            appTrans = JSON.parse($resultsHolder.attr('data-app-trans'));
-        }
-        if ($resultsHolder.attr('data-version-change-links')) {
-            versionChangeLinks = JSON.parse(
-                    $resultsHolder.attr('data-version-change-links'));
-        }
-        if (isCompat && msgMap.non_compat.messages.length == 0) {
-            // The non-compat tier also displays the ajax loader while
-            // fetching results
-            $('#suite-results-tier-non_compat', suite).hide();
-        }
-
-        for (var tierNum in msgMap) {
-            var tierData = msgMap[tierNum],
-                tier = $('[class~="test-tier"]' +
-                         '[data-tier="' + tierNum + '"]', suite),
-                resContainer = $('#suite-results-tier-' + tierNum, suite),
-                results = $('.tier-results', resContainer),
-                errorsTxt, warningsTxt, summaryMsg;
-
-            results.empty();
-            summaryMsg = resultSummary(tierData.errors, tierData.warnings);
-            $('.tier-summary', tier).text(summaryMsg);
-            $('.result-summary', resContainer).text(summaryMsg);
-
-            tier.removeClass('ajax-loading');
-            results.removeClass('ajax-loading');
-            if (tierData.errors > 0) {
-                tier.addClass('tests-failed');
-                results.addClass('tests-failed');
-            } else if (tierData.warnings > 0) {
-                tier.addClass('tests-passed');
-                results.addClass('tests-passed-warnings');
-            } else if (validation.ending_tier
-                       && validation.ending_tier < tierNum) {
-                tier.addClass('tests-notrun');
-                results.addClass('tests-notrun');
-                $('.tier-summary', tier).text(gettext('Tests not run'));
-                results.append('<span>' +
-                               gettext('These tests were not run.') +
-                               '</span>');
-                $('.result-summary', resContainer).html('&nbsp;');
-            } else {
-                tier.addClass('tests-passed');
-                results.addClass('tests-passed');
-                results.append('<span>' +
-                               gettext('All tests passed successfully.') +
-                               '</span>');
-                // There might still be some messages below
-                // but we don't care about showing them.
-                continue;
-            }
-
-            $.each(tierData.messages, function(i, msg) {
-                var msgDiv = $('<div class="msg"><h5></h5></div>'),
-                    effectiveType = (isCompat && msg.compatibility_type)
-                                     ? msg.compatibility_type: msg['type'],
-                    prefix = effectiveType=='warning' ? gettext('Warning')
-                                                      : gettext('Error'),
-                    ctxDiv, lines, code, innerCode, ctxFile,
-                    $compatSections = null,
-                    $compatTier = null,
-                    compatIds = [];
-
-                if (msg.for_appversions) {
-                    eachAppVer(msg.for_appversions, function(app, version, id) {
-                        // Lazily remove the error tier:
-                        $('#suite-results-tier-errors', suite).remove();
-                        // Lazily build the header section for this app/version.
-                        var selId = '#' + id,
-                            res,
-                            summary = resultSummary(msgMap.appVersions[id].errors,
-                                                    msgMap.appVersions[id].warnings),
-                            changeLink = versionChangeLinks[app + ' ' + version];
-                        compatIds.push(selId);
-                        if (!$(selId, suite).length) {
-                            res = $($('.template', suite).html());
-                            res.attr('id', id);
-                            if (changeLink) {
-                                res.prepend(format('<a class="version-change-link" href="{0}">{1}</a>',
-                                                   changeLink,
-                                                   // L10n: Example: Changes in Firefox 5
-                                                   gettext(format('Changes in {0} {1}',
-                                                                  appTrans[app],
-                                                                  version.substring(0,1)))));
-                            }
-                            $('h4', res).text(format('{0} {1} {2}',
-                                                     appTrans[app],
-                                                     version,
-                                                     gettext('Tests')));
-                            $('.tier-results', res).empty()
-                                .addClass('tests-passed-warnings');
-                            $('.result-summary', res).empty()
-                                .text(summary)
-                                .css('visibility', 'visible');
-                            $('.results', suite).append(res);
-                        }
-                    });
-                    $compatTier = $(compatIds.join(','), suite);
-                    $compatSections = $('.tier-results', $compatTier);
-                }
-                msgDiv.attr('id', msgId(msg.uid));
-                msgDiv.addClass('msg-' + effectiveType);
-                $('h5', msgDiv).html(msg.message);
-                if (typeof(msg.description) === 'undefined'
-                    || msg.description === '') {
-                    msg.description = [];
-                } else if (typeof(msg.description) === 'string') {
-                    // TODO(kumar) ask Matt to make the JSON format
-                    // more consistent.
-                    // Currently it can be either of these:
-                    //      descripion: "foo"
-                    //      description: ["foo", "bar"]
-                    msg.description = [msg.description];
-                }
-                $.each(msg.description, function(i, val) {
-                    msgDiv.append(format('<p>{0}: {1}</p>', [prefix, val]));
-                });
-                if (msg.description.length == 0) {
-                    msgDiv.append('<p>&nbsp;</p>');
-                }
-                ctxFile = msg.file;
-                if (ctxFile) {
-                    if (typeof(ctxFile) === 'string') {
-                        ctxFile = [ctxFile];
-                    }
-                    // e.g. ["silvermelxt_1.3.5.xpi",
-                    //       "chrome/silvermelxt.jar"]
-                    ctxFile = joinPaths(ctxFile);
-                    ctxDiv = $(format(
-                        '<div class="context">' +
-                            '<div class="file">{0}</div></div>',
-                                                        [ctxFile]));
-                    if (msg.context) {
-                        code = $('<div class="code"></div>');
-                        lines = $('<div class="lines"></div>');
-                        code.append(lines);
-                        innerCode = $('<div class="inner-code"></div>');
-                        code.append(innerCode);
-                        msg.context = formatCodeIndentation(msg.context);
-                        $.each(msg.context, function(n, c) {
-                            lines.append(
-                                $(format('<div>{0}</div>', [msg.line + n])));
-                            innerCode.append(
-                                $(format('<div>{0}</div>', [c])));
-                        });
-                        ctxDiv.append(code);
-                    }
-                    msgDiv.append(ctxDiv);
-                }
-                if ($compatSections) {
-                    $compatSections.removeClass('ajax-loading');
-                    $compatSections.append(msgDiv);
-                } else {
-                    results.append(msgDiv);
-                }
-            });
-            if (isCompat) {
-                // We are done copying from the template
-                $('.template', suite).hide();
-            }
-        }
     }
 
     function eachAppVer(appVer, visit) {
+        // Iterates an application/version map and calls
+        // visit(gui, version, key) for each item.
+        //
         // e.g. {'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}':["4.0b1"]}
+        // ->
+        //      visit('{ec8030f7-c20a-464f-9b0e-13a3a9e97384}',
+        //            "4.0b1",
+        //            'ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b1')
         if (appVer) {
-            $.each(appVer, function(app, all_versions) {
+            $.each(appVer, function(guid, all_versions) {
                 $.each(all_versions, function(i, version) {
-                    var key = (app + '-' + version).replace(/[^a-z0-9_-]+/gi, '');
-                    visit(app, version, key);
+                    var key = (guid + '-' + version).replace(/[^a-z0-9_-]+/gi, '');
+                    visit(guid, version, key);
                 });
             });
         }
@@ -1347,70 +1464,6 @@ $(document).ready(function() {
                                        numWarnings),
                               [numWarnings]);
         return format('{0}, {1}', errors, warnings);
-    }
-
-    function buildMsgMap(messages, isCompat) {
-        // The tiers will not apper in the JSON
-        // if there are no errors.  FIXME?
-        var msgMap = {
-            1: {errors: 0, warnings: 0, messages: []},
-            2: {errors: 0, warnings: 0, messages: []},
-            3: {errors: 0, warnings: 0, messages: []},
-            4: {errors: 0, warnings: 0, messages: []},
-            5: {errors: 0, warnings: 0, messages: []},  // compatibility tier
-            errors: {errors: 0, warnings: 0, messages: []},
-            appVersions: {},
-            // catch-all tier for messages not related to compatibility:
-            non_compat: {errors: 0, warnings: 0, messages: [],
-                         message_uids: {}}
-        };
-        $.each(messages, function(i, msg) {
-            var msgIsCompat = false,
-                isUniqueNonCompat = false,
-                effectiveType;
-            eachAppVer(msg.for_appversions, function(app, ver, k) {
-                msgIsCompat = true;
-                if (typeof msgMap.appVersions[k] === 'undefined') {
-                    msgMap.appVersions[k] = {errors: 0, warnings: 0, messages: []};
-                }
-                msgMap.appVersions[k].messages.push(msg);
-            });
-
-            if (isCompat && msg.compatibility_type) {
-                effectiveType = msg.compatibility_type;
-            } else {
-                effectiveType = msg['type'];
-            }
-
-            msgMap[msg.tier].messages.push(msg);
-            if (!msgIsCompat) {
-                if (typeof msgMap.non_compat.message_uids[msg.uid] === 'undefined') {
-                    msgMap.non_compat.messages.push(msg);
-                    msgMap.non_compat.message_uids[msg.uid] = true;
-                    isUniqueNonCompat = true;
-                }
-            }
-
-            if (effectiveType == 'error') {
-                msgMap[msg.tier].errors += 1;
-                eachAppVer(msg.for_appversions, function(app, ver, k) {
-                    msgMap.appVersions[k].errors += 1;
-                });
-                if (!msgIsCompat && isUniqueNonCompat) {
-                    msgMap.non_compat.errors += 1;
-                }
-            }
-            else if (effectiveType == 'warning' || effectiveType == 'notice') {
-                msgMap[msg.tier].warnings += 1;
-                eachAppVer(msg.for_appversions, function(app, ver, k) {
-                    msgMap.appVersions[k].warnings += 1;
-                });
-                if (!msgIsCompat && isUniqueNonCompat) {
-                    msgMap.non_compat.warnings += 1;
-                }
-            }
-        });
-        return msgMap;
     }
 
     function joinPaths(parts) {
@@ -1430,39 +1483,6 @@ $(document).ready(function() {
             p += part;
         });
         return p;
-    }
-
-    function msgId(hash) {
-        return 'v-msg-' + hash;
-    }
-
-    function prepareToGetResults(el) {
-        $('.test-tier, .tier-results', el).removeClass('tests-failed',
-                                                       'tests-passed');
-        $('.test-tier, .tier-results', el).addClass('ajax-loading');
-        $('.tier-results', el).empty();
-        $('.tier-results', el).append('<span>' +
-                                      gettext('Running tests...') +
-                                      '</span>');
-        $('.result-summary', el).text('.').css('visibility', 'hidden');
-        $('.test-tier .tier-summary', el).text(gettext('Running tests...'));
-        $('.suite-summary', el).hide();
-    }
-
-    // Displays a global error on all tiers.
-    // NOTE: this can probably be simplified if the JSON format is updated.
-    function messagesForAllTiers(header, description) {
-        // The UID is identical so the message doesn't get duplicated.
-        return [
-            {'type':'error', message: header,
-             description: [description], tier: 1, uuid: '__global_error__'},
-            {'type':'error', message: header,
-             description: [description], tier: 2, uuid: '__global_error__'},
-            {'type':'error', message: header,
-             description: [description], tier: 3, uuid: '__global_error__'},
-            {'type':'error', message: header,
-             description: [description], tier: 4, uuid: '__global_error__'}
-        ]
     }
 
     function formatCodeIndentation(lines) {
@@ -1504,32 +1524,39 @@ $(document).ready(function() {
         var el = $(this),
             url = el.attr('data-validateurl');
 
-        prepareToGetResults(el);
-
         $.ajax({type: 'POST',
                 url: url,
                 data: {},
                 success: function(data) {
                     if (data.validation == '') {
                         // Note: traceback is in data.error
-                        data.validation = {};
-                        data.validation.messages = messagesForAllTiers(
-                            gettext('Error'),
-                            gettext('Validation task could not complete ' +
-                                    'or completed with errors'));
+                        data.validation = {
+                            ending_tier: 1,
+                            messages: [{
+                                'type':'error',
+                                message: gettext('Error'),
+                                description: [
+                                    gettext('Validation task could not ' +
+                                            'complete or completed with ' +
+                                            'errors')],
+                                tier: 1,
+                                uuid: '__global_error__'
+                            }]
+                        };
                     }
                     buildResults(el, data);
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    $('.test-tier, .tier-results', el).removeClass(
-                                                            'ajax-loading');
-                    $('.test-tier, .tier-results', el).addClass(
-                                                            'tests-failed');
                     buildResults(el, {
                         validation: {
-                            messages: messagesForAllTiers(
-                                            gettext('Error'),
-                                            gettext('Internal server error'))
+                            ending_tier: 1,
+                            messages: [{
+                                'type':'error',
+                                message: gettext('Error'),
+                                description: [gettext('Internal server error')],
+                                tier: 1,
+                                uuid: '__global_error__'
+                            }]
                         }
                     });
                 },

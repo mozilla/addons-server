@@ -395,13 +395,14 @@ asyncTest('Test passing', function() {
 
     tests.waitFor(function() {
         // Wait until last app/version section was created.
-        return $('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b1', $suite).length;
+        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b1', $suite).length;
     }).thenDo(function() {
         equals($('#suite-results-tier-errors', $suite).length, 0);
-        equals($('.result-header h4:eq(1)', $suite).text(), 'Tests');
-        equals($('.result-header h4:eq(2)', $suite).text(),
+        equals($('.result-header h4:visible', $suite).eq(0).text(),
+               'General Tests');
+        equals($('.result-header h4:visible', $suite).eq(1).text(),
                'Firefox 4.0b3 Tests');
-        equals($('.result-header h4:eq(3)', $suite).text(),
+        equals($('.result-header h4:visible', $suite).eq(2).text(),
                'Firefox 4.0b1 Tests');
         equals($('#v-msg-2a96f7faee7a41cca4d6ead26dddc6b3 p:eq(0)', $suite).text(),
                'Warning: A dangerous or banned global...');
@@ -411,12 +412,12 @@ asyncTest('Test passing', function() {
                'Error: The add-on doesn\'t have...');
         ok($('#v-msg-bb0b38812d8f450a85fa90a2e7e6693b', $suite).length == 1,
            'Non-compatibility message should be shown');
-        equals($('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .result-summary', $suite).text(),
+        equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .result-summary', $suite).text(),
                '1 error, 1 warning');
-        equals($('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .version-change-link').attr('href'),
+        equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .version-change-link').attr('href'),
                '/firefox-4-changes');
-        equals($('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b1 .version-change-link').length, 0);
-        equals($('#suite-results-tier-non_compat .result-summary', $suite).text(),
+        equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b1 .version-change-link').length, 0);
+        equals($('#suite-results-tier-1 .result-summary', $suite).text(),
                '0 errors, 1 warning');
         start();
     });
@@ -440,11 +441,12 @@ asyncTest('Test task error', function() {
     $suite.trigger('validate');
 
     tests.waitFor(function() {
-        return $('#suite-results-tier-non_compat .msg', $suite).length > 0;
+        return $('#suite-results-tier-1 .msg', $suite).length > 0;
     }).thenDo(function() {
         equals($('.msg', $suite).text(),
                'ErrorError: Validation task could not complete or ' +
-               'completed with errors')
+               'completed with errors');
+        equals($('.msg:visible', $suite).length, 1);
         start();
     });
 });
@@ -492,10 +494,10 @@ asyncTest('Test no tests section', function() {
 
     tests.waitFor(function() {
         // Wait until last app/version section was created.
-        return $('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3', $suite).length;
+        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3', $suite).length;
     }).thenDo(function() {
         equals($('#suite-results-tier-non_compat:visible', $suite).length, 0);
-        equals($('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .msg', $suite).length, 1);
+        equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .msg', $suite).length, 1);
         start();
     });
 });
@@ -545,9 +547,9 @@ asyncTest('Test compat error override', function() {
 
     tests.waitFor(function() {
         // Wait until last app/version section was created.
-        return $('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3', $suite).length;
+        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3', $suite).length;
     }).thenDo(function() {
-        var $msg = $('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .msg', $suite);
+        var $msg = $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .msg', $suite);
         ok($msg.hasClass('msg-error'),
            'Expected msg-error, got: ' + $msg.attr('class'));
         start();
@@ -577,7 +579,7 @@ asyncTest('Test basic error override', function() {
                     "column": 23,
                     "id": [],
                     "file": "chrome/content/youtune.dll",
-                    "tier": 3,
+                    "tier": 1,
                     "for_appversions": null,
                     "message": "Contains Binary Components",
                     "type": "warning",
@@ -596,10 +598,9 @@ asyncTest('Test basic error override', function() {
     $suite.trigger('validate');
 
     tests.waitFor(function() {
-        // Wait until last app/version section was created.
-        return $('#suite-results-tier-non_compat .msg', $suite).length;
+        return $('#suite-results-tier-1 .msg', $suite).length;
     }).thenDo(function() {
-        var $msg = $('#suite-results-tier-non_compat .msg', $suite);
+        var $msg = $('#suite-results-tier-1 .msg', $suite);
         ok($msg.hasClass('msg-error'),
            'Expected msg-error, got: ' + $msg.attr('class'));
         start();
@@ -655,10 +656,10 @@ asyncTest('Test single tier', function() {
 
     tests.waitFor(function() {
         // Wait until last app/version section was created.
-        return $('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-42a1pre', $suite).length;
+        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-42a1pre', $suite).length;
     }).thenDo(function() {
         // This was failing with tier not found
-        equals($('#ec8030f7-c20a-464f-9b0e-13a3a9e97384-42a1pre .msg', $suite).length, 1);
+        equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-42a1pre .msg', $suite).length, 1);
         start();
     });
 });
@@ -708,10 +709,10 @@ asyncTest('Test no compat tests', function() {
     $suite.trigger('validate');
 
     tests.waitFor(function() {
-        return $('#suite-results-tier-non_compat .msg', $suite).length;
+        return $('#suite-results-tier-1 .msg', $suite).length;
     }).thenDo(function() {
         // template is hidden
-        equals($('.template:visible', $suite).length, 0);
+        equals($('.template .result:visible', $suite).length, 0);
         // The non-compat error exists
         equals($('#v-msg-6fd1f5c74c4445f79a1919c8480e4e72', $suite).length, 1);
         start();
@@ -770,31 +771,25 @@ asyncTest('Test incomplete validation', function() {
         pushTiersAndResults($suite, tiers, results);
         $.each(tiers, function(i, tier) {
             var tierN = i+1;
-            equals(tier.hasClass('ajax-loading'), false,
-                'Checking class: ' + tier.attr('class'));
+            tests.lacksClass(tier, 'ajax-loading');
             switch (tierN) {
                 case 1:
-                    ok(tier.hasClass('tests-failed'),
-                       'Checking class: ' + tier.attr('class'));
+                    tests.hasClass(tier, 'tests-failed');
                     break;
                 default:
-                    ok(tier.hasClass('tests-notrun'),
-                       'Checking class: ' + tier.attr('class'));
+                    tests.hasClass(tier, 'tests-notrun');
                     break;
             }
         });
         $.each(results, function(i, result) {
             var tierN = i+1;
-            equals(result.hasClass('ajax-loading'), false,
-                   'Checking class: ' + result.attr('class'));
+            tests.lacksClass(result, 'ajax-loading');
             switch (tierN) {
                 case 1:
-                    ok(result.hasClass('tests-failed'),
-                       'Checking class: ' + result.attr('class'));
+                    tests.hasClass(result, 'tests-failed');
                     break;
                 default:
-                    ok(result.hasClass('tests-notrun'),
-                       'Checking class: ' + result.attr('class'));
+                    tests.hasClass(result, 'tests-notrun');
                     break;
             }
         });
@@ -826,19 +821,25 @@ asyncTest('Test 500 error', function() {
                                                             'tests-failed');
     }).thenDo(function() {
         pushTiersAndResults($suite, tiers, results);
+        // First tier should have an internal server error,
+        // the other tiers should not have run.
         $.each(tiers, function(i, tier) {
-            ok(tier.hasClass('tests-failed'),
-                'Checking class: ' + tier.attr('class'));
-            equals(tier.hasClass('ajax-loading'), false,
-                'Checking class: ' + tier.attr('class'));
+            tests.lacksClass(tier, 'ajax-loading');
+            tests.lacksClass(tier, 'tests-passed');
+            if (i == 0) {
+                tests.hasClass(tier, 'tests-failed');
+            } else {
+                tests.hasClass(tier, 'tests-notrun');
+            }
         });
         $.each(results, function(i, result) {
-            ok(result.hasClass('tests-failed'),
-                'Checking class: ' + result.attr('class'));
-            ok(!result.hasClass('tests-passed'),
-                'Should not have this class: tests-passed');
-            equals(result.hasClass('ajax-loading'), false,
-                'Checking class: ' + result.attr('class'));
+            tests.lacksClass(result, 'ajax-loading');
+            tests.lacksClass(result, 'tests-passed');
+            if (i == 0) {
+                tests.hasClass(result, 'tests-failed');
+            } else {
+                tests.hasClass(result, 'tests-notrun');
+            }
         });
         start();
     });
@@ -863,17 +864,22 @@ asyncTest('Test timeout', function() {
                                                             'tests-failed');
     }).thenDo(function() {
         pushTiersAndResults($suite, tiers, results);
+        // Firs tier should show the timeout error, other tiers did not run.
         $.each(tiers, function(i, tier) {
-            ok(tier.hasClass('tests-failed'),
-                'Checking class: ' + tier.attr('class'));
-            equals(tier.hasClass('ajax-loading'), false,
-                'Checking class: ' + tier.attr('class'));
+            tests.lacksClass(tier, 'ajax-loading');
+            if (i == 0) {
+                tests.hasClass(tier, 'tests-failed');
+            } else {
+                tests.hasClass(tier, 'tests-notrun');
+            }
         });
         $.each(results, function(i, result) {
-            ok(result.hasClass('tests-failed'),
-                'Checking class: ' + result.attr('class'));
-            equals(result.hasClass('ajax-loading'), false,
-                'Checking class: ' + result.attr('class'));
+            tests.lacksClass(result, 'ajax-loading');
+            if (i == 0) {
+                tests.hasClass(result, 'tests-failed');
+            } else {
+                tests.hasClass(result, 'tests-notrun');
+            }
         });
         start();
     });
@@ -902,19 +908,22 @@ asyncTest('Test task error', function() {
                                                             'tests-failed');
     }).thenDo(function() {
         pushTiersAndResults($suite, tiers, results);
+        // First tier should show internal error, other tiers should not run.
         $.each(tiers, function(i, tier) {
-            ok(tier.hasClass('tests-failed'),
-               'Checking class: ' + tier.attr('class'));
-            equals(tier.hasClass('ajax-loading'), false,
-                   'Checking class: ' + tier.attr('class'));
+            tests.lacksClass(tier, 'ajax-loading');
+            if (i == 0) {
+                tests.hasClass(tier, 'tests-failed');
+            } else {
+                tests.hasClass(tier, 'tests-notrun');
+            }
         });
         $.each(results, function(i, result) {
-            ok(result.hasClass('tests-failed'),
-               'Checking class: ' + result.attr('class'));
-            ok(!result.hasClass('tests-passed'),
-               'Unexpected class: ' + result.attr('class'));
-            equals(result.hasClass('ajax-loading'), false,
-                   'Checking class: ' + result.attr('class'));
+            tests.lacksClass(result, 'ajax-loading');
+            if (i == 0) {
+                tests.hasClass(result, 'tests-failed');
+            } else {
+                tests.hasClass(result, 'tests-notrun');
+            }
         });
         start();
     });
@@ -1234,12 +1243,9 @@ asyncTest('error/warning count', function() {
                     "warnings": 1,
                     "ending_tier": 3,
                     "messages": [
-                        {"tier": 1,
-                         "type": "warning"},
-                        {"tier": 1,
-                         "type": "notice"},
-                        {"tier": 1,
-                         "type": "notice"}
+                        {"tier": 1, "type": "warning", "uid": "a1"},
+                        {"tier": 1, "type": "notice", "uid": "a2"},
+                        {"tier": 1, "type": "notice", "uid": "a3"}
                     ],
                     "notices": 2
                 }
