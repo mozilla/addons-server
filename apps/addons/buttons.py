@@ -16,7 +16,7 @@ from translations.models import Translation
 def _install_button(context, addon, version=None, show_eula=True,
                    show_contrib=True, show_warning=True, src='',
                    collection=None, size='', detailed=False,
-                   mobile=False):
+                   mobile=False, impala=False):
     """If version isn't given, we use the latest version."""
     request = context['request']
     app, lang = context['APP'], context['LANG']
@@ -35,7 +35,12 @@ def _install_button(context, addon, version=None, show_eula=True,
                  addon.id in request.amo_user.mobile_addons)
     c = {'button': button, 'addon': addon, 'version': button.version,
          'installed': installed}
-    template = 'addons/mobile/button.html' if mobile else 'addons/button.html'
+    if impala:
+        template = 'addons/impala/button.html'
+    elif mobile:
+        template = 'addons/mobile/button.html'
+    else: 
+        template = 'addons/button.html'
     t = jingo.render_to_string(request, template, c)
     return jinja2.Markup(t)
 

@@ -76,6 +76,9 @@
             .sprite-pos(6, 64, 3px);
         }
     }
+    &.concealed {
+        display: none !important;
+    }
 }
 .button:hover,
 .button:focus,
@@ -103,4 +106,22 @@
     top: 2px;
     .box-shadow(0 1px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset, 0 0 100px rgba(255, 255, 255, 0.2) inset);
 }
-
+.extra {
+    .notavail {
+        color: #C00000;
+        margin: 0 0 4px;
+    }
+}
+.listing-grid {
+    .item {
+        .install-shell {
+            margin-bottom: 12px;
+        }
+        .install-button {
+            margin: 0;
+        }
+        .button.disabled {
+            display: none !important;
+        }
+    }
+}

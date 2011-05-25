@@ -1,0 +1,89 @@
+{% set b = button %}
+{% set _obj = version if amo.HAS_COMPAT[addon.type] else addon %}
+{% set compat = _obj.compatible_apps[APP] if _obj else None %}
+
+<div class="install-shell">
+<div class="install {{ b.install_class|join(' ') }}"
+     data-addon="{{ addon.id }}"
+     data-icon="{{ addon.icon_url }}"
+     data-developers="{{ addon.meet_the_dev_url() }}"
+     data-name="{{ addon.name }}"
+     {{ b.attrs()|xmlattr }}
+  {% if compat %}
+     data-min="{{ compat.min.version }}"
+     data-max="{{ compat.max.version }}"
+  {% endif %}>
+  <p class="install-button">
+    {% set links = b.links() %}
+    {% if not links %}
+      {{ _('No compatible versions') }}
+    {% endif %}
+    {% if settings.ADD_TO_MOBILE %}
+    {% if APP == amo.MOBILE %}
+      {% if request.user.is_authenticated() %}
+        {% set action = url('collections.alter', request.amo_user.username, 'mobile', 'add') %}
+      {% endif %}
+      {% if installed %}
+        {% set extra, text = 'status ok', _('Added to Mobile') %}
+      {% else %}
+        {% set text = _('Add to Mobile') %}
+      {% endif %}
+      <form method="post" action="{{ action }}">
+        {{ csrf() }}
+        <input type="hidden" name="addon_id" value="{{ addon.id }}">
+        <button class="button mobile {{ extra }} {{ b.button_class|join(' ') }}">
+          <b></b>
+          <span>{{ text }}</span>
+        </button>
+    </form>
+    {% endif %}
+    {% endif %}
+    {% for link in links %}
+      {% set extra = "platform " + link.os.shortname if link.os else "" %}
+      <a class="button {{ b.button_class|join(' ') }} {{ extra }}"
+         data-hash="{{ link.file.hash }}"
+         {% if b.show_warning %}
+           href="{{ b.addon.get_url_path() }}"
+           data-realurl="{{ link.url }}"
+         {% else %}
+           href="{{ link.url }}"
+         {% endif %}>
+        <b></b>
+        <span>
+          {{ link.text }}
+          {% if link.os %}
+            <span class="os" data-os="{{ link.os.name }}">
+              {% if not (b.show_eula or b.show_contrib) %}
+                {# L10n: {0} is a platform name like Windows or Mac OS X. #}
+                {{ _('for {0}')|f(link.os.name) }}
+              {% endif %}
+            </span>
+          {% endif %}
+        </span>
+      </a>
+    {% endfor %}
+  </p>
+</div> {# install #}
+
+{% if b.detailed %}
+  {% if addon.privacy_policy %}
+    <a class="privacy-policy" href="{{ url('addons.privacy', addon.slug) }}">
+      <strong>{{ _('Privacy Policy') }}</strong>
+    </a>
+  {% endif %}
+
+  {% if addon.is_unreviewed() %}
+    <p class="warning">{% trans url=url('pages.faq') + "#unreviewed" %}
+      This add-on has not been reviewed by Mozilla.
+      <a href="{{ url }}">Learn more</a>
+    {% endtrans %} </p>
+  {% elif b.lite %}
+    <p class="warning">{% trans url=url('pages.faq') + "#preliminary" %}
+      This add-on has been preliminarily reviewed by Mozilla.
+      <a href="{{ url }}">Learn more</a>
+    {% endtrans %} </p>
+  {% elif addon.is_selfhosted() %}
+    <p class="warning">{{ _("This add-on is hosted on the developer's own website and has not been reviewed by Mozilla.") }}</p>
+  {% endif %}
+{% endif %}
+</div> {# install-shell #}
