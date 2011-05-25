@@ -2,8 +2,13 @@
   {% set charity_url = addon.charity.outgoing_url %}
   {% set charity_name = addon.charity.name %}
 {% endif %}
-
 <div class="notice c" id="contribution">
+
+  {% with single_dev = addon.listed_authors|random %}
+    <img class="avatar" alt="{{ single_dev.name }}" height="64"
+         width="64" src="{{ single_dev.picture_url }}"/>
+  {% endwith %}
+
   <div class="aux{% if show_install %}-bottom{% endif %}">
     <div class="button-wrapper">
       <a class="button contribute prominent" id="contribute-button"
@@ -16,7 +21,6 @@
         {% set ver = version or None %}
         {{ install_button(addon, version=ver, show_contrib=False) }}
     {% endif %}
-
     </div>{# /button-wrapper #}
 
     <p class="suggestion">
