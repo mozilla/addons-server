@@ -872,25 +872,24 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         qs.update(localized_string=None, localized_string_clean=None)
 
 
+@receiver(dbsignals.post_save, sender=Addon)
 def update_name_table(sender, **kw):
     from . import cron
     addon = kw['instance']
     cron._build_reverse_name_lookup.delay({addon.name_id: addon.id},
                                           clear=True)
-dbsignals.post_save.connect(update_name_table, sender=Addon)
 
 
+@receiver(dbsignals.pre_delete, sender=Addon)
 def clear_name_table(sender, **kw):
     addon = kw['instance']
     ReverseNameLookup.delete(addon.id)
-dbsignals.pre_delete.connect(clear_name_table, sender=Addon)
 
 
+@receiver(signals.version_changed, dispatch_uid='version_changed')
 def version_changed(sender, **kw):
     from . import tasks
     tasks.version_changed.delay(sender.id)
-signals.version_changed.connect(version_changed,
-                                dispatch_uid='version_changed')
 
 
 @Addon.on_change
@@ -1365,9 +1364,8 @@ class FrozenAddon(models.Model):
         return 'Frozen: %s' % self.addon_id
 
 
+@receiver(dbsignals.post_save, sender=FrozenAddon)
 def freezer(sender, instance, **kw):
     # Adjust the hotness of the FrozenAddon.
     if instance.addon_id:
         Addon.objects.get(id=instance.addon_id).update(hotness=0)
-
-dbsignals.post_save.connect(freezer, sender=FrozenAddon)
