@@ -900,6 +900,22 @@ class TestDetailPage(test_utils.TestCase):
         res = self.client.get(url)
         eq_(len(pq(res.content)('.backup-button')), 1)
 
+    def test_disabled_user_message(self):
+        addon = Addon.objects.get(id=3615)
+        addon.update(disabled_by_user=True)
+        url = reverse('addons.detail', args=[addon.slug])
+        res = self.client.get(url)
+        eq_(res.status_code, 404)
+        assert 'removed by its author' in res.content
+
+    def test_disabled_status_message(self):
+        addon = Addon.objects.get(id=3615)
+        addon.update(status=amo.STATUS_DISABLED)
+        url = reverse('addons.detail', args=[addon.slug])
+        res = self.client.get(url)
+        eq_(res.status_code, 404)
+        assert 'disabled by an administrator' in res.content
+
 
 class TestStatus(test_utils.TestCase):
     fixtures = ['base/apps', 'base/addon_3615']

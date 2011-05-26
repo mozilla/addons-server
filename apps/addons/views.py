@@ -43,6 +43,7 @@ from .decorators import addon_view_factory
 log = commonware.log.getLogger('z.addons')
 paypal_log = commonware.log.getLogger('z.paypal')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
+addon_disabled_view = addon_view_factory(qs=Addon.objects.valid_and_disabled)
 
 
 def author_addon_clicked(f):
@@ -61,9 +62,13 @@ def author_addon_clicked(f):
 
 
 @author_addon_clicked
-@addon_view
+@addon_disabled_view
 def addon_detail(request, addon):
     """Add-ons details page dispatcher."""
+    if addon.disabled_by_user or addon.status == amo.STATUS_DISABLED:
+        return jingo.render(request, 'addons/disabled.html',
+                            {'addon': addon}, status=404)
+
     # addon needs to have a version and be valid for this app.
     if addon.type in request.APP.types:
         if addon.type == amo.ADDON_PERSONA:

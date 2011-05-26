@@ -63,6 +63,12 @@ class AddonManager(amo.models.ManagerBase):
         """Get valid, enabled add-ons only"""
         return self.filter(self.valid_q(amo.LISTED_STATUSES))
 
+    def valid_and_disabled(self):
+        """Get valid, enabled and disabled add-ons."""
+        statuses = list(amo.LISTED_STATUSES) + [amo.STATUS_DISABLED]
+        return self.filter(_current_version__isnull=False,
+                           status__in=statuses)
+
     def featured(self, app):
         """
         Filter for all featured add-ons for an application in all locales.

@@ -84,6 +84,25 @@ class TestAddonManager(test_utils.TestCase):
             assert addon.status in amo.UNREVIEWED_STATUSES, (
                     "unreviewed() must return unreviewed addons.")
 
+    def test_valid(self):
+        addon = Addon.objects.get(pk=5299)
+        addon.update(disabled_by_user=True)
+        objs = Addon.objects.valid()
+
+        for addon in objs:
+            assert addon.status in amo.LISTED_STATUSES
+            assert not addon.disabled_by_user
+
+    def test_valid_disabled_by_user(self):
+        addon = Addon.objects.get(pk=5299)
+        addon.update(disabled_by_user=True)
+        eq_(Addon.objects.valid_and_disabled().count(), 3)
+
+    def test_valid_disabled_by_admin(self):
+        addon = Addon.objects.get(pk=5299)
+        addon.update(status=amo.STATUS_DISABLED)
+        eq_(Addon.objects.valid_and_disabled().count(), 3)
+
 
 class TestAddonModels(test_utils.TestCase):
     fixtures = ['base/apps',
