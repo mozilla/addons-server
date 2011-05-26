@@ -21,6 +21,4 @@ urlpatterns = patterns('',
     ('^browse/(?P<file_id>\d+)/', include(file_patterns)),
     ('^compare/(?P<one_id>\d+)\.{3}(?P<two_id>\d+)/',
      include(compare_patterns)),
-    url('^builder-pingback', views.builder_pingback,
-        name='files.builder-pingback'),
 )

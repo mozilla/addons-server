@@ -1,9 +1,6 @@
-import json
-
 from django import http
 from django.conf import settings
 from django.views.decorators.cache import never_cache
-from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import condition
 
 import commonware.log
@@ -11,12 +8,12 @@ import jingo
 import waffle
 
 from access import acl
-from amo.decorators import json_view, post_required
+from amo.decorators import json_view
 from amo.urlresolvers import reverse
 from amo.utils import HttpResponseSendFile, Message, Token
 from files.decorators import (etag, file_view, compare_file_view,
                               file_view_token, last_modified)
-from files.tasks import extract_file, repackage_jetpack
+from files.tasks import extract_file
 
 from tower import ugettext as _
 
@@ -154,21 +151,3 @@ def serve(request, viewer, key):
         raise http.Http404()
     return HttpResponseSendFile(request, obj['full'],
                                 content_type=obj['mimetype'])
-
-
-@csrf_exempt
-@post_required
-def builder_pingback(request):
-    try:
-        data = json.loads(request.raw_post_data)
-        # We expect all these attributes to be available.
-        attrs = 'result msg filename location secret request'.split()
-        for attr in attrs:
-            assert attr in data, '%s not in %s' % (attr, data)
-        # Only AMO and the builder should know this secret.
-        assert data.get('secret') == settings.BUILDER_SECRET_KEY
-    except Exception:
-        log.warning('Problem with builder pingback.', exc_info=True)
-        return http.HttpResponseBadRequest()
-    repackage_jetpack.delay(data)
-    return http.HttpResponse()

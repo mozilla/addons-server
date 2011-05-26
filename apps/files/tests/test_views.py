@@ -450,7 +450,7 @@ class TestDiffViewer(FilesBase, test_utils.TestCase):
 class TestBuilderPingback(test_utils.TestCase):
 
     def post(self, data):
-        return self.client.post(reverse('files.builder-pingback'), data,
+        return self.client.post(reverse('amo.builder-pingback'), data,
                                 content_type='application/json')
 
     def test_success(self):

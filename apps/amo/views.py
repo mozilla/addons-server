@@ -26,6 +26,8 @@ import phpserialize as php
 import waffle
 
 import amo
+import files.tasks
+from amo.decorators import post_required
 from hera.contrib.django_utils import get_hera
 from stats.models import Contribution, ContributionError, SubscriptionEvent
 from applications.management.commands import dump_apps
@@ -34,6 +36,7 @@ from . import cron
 monitor_log = commonware.log.getLogger('z.monitor')
 paypal_log = commonware.log.getLogger('z.paypal')
 csp_log = commonware.log.getLogger('z.csp')
+jp_log = commonware.log.getLogger('z.jp.repack')
 
 
 def check_redis():
@@ -83,8 +86,8 @@ def monitor(request, format=None):
             except Exception, e:
                 result = False
                 status_summary['memcache'] = False
-                monitor_log.critical('Failed to connect to memcached (%s): %s' %
-                                                                    (host, e))
+                monitor_log.critical('Failed to connect to memcached (%s): %s'
+                                     % (host, e))
             else:
                 result = True
             finally:
@@ -93,8 +96,8 @@ def monitor(request, format=None):
             memcache_results.append((ip, port, result))
         if len(memcache_results) < 2:
             status_summary['memcache'] = False
-            monitor_log.warning('You should have 2+ memcache servers.  You have %s.' %
-                                                        len(memcache_results))
+            monitor_log.warning('You should have 2+ memcache servers. '
+                                'You have %s.' % len(memcache_results))
     if not memcache_results:
         status_summary['memcache'] = False
         monitor_log.info('Memcache is not configured.')
@@ -378,3 +381,21 @@ def cspreport(request):
         return HttpResponseBadRequest()
 
     return HttpResponse()
+
+
+@csrf_exempt
+@post_required
+def builder_pingback(request):
+    try:
+        data = json.loads(request.raw_post_data)
+        # We expect all these attributes to be available.
+        attrs = 'result msg filename location secret request'.split()
+        for attr in attrs:
+            assert attr in data, '%s not in %s' % (attr, data)
+        # Only AMO and the builder should know this secret.
+        assert data.get('secret') == settings.BUILDER_SECRET_KEY
+    except Exception:
+        jp_log.warning('Problem with builder pingback.', exc_info=True)
+        return http.HttpResponseBadRequest()
+    files.tasks.repackage_jetpack.delay(data)
+    return http.HttpResponse()

@@ -12,6 +12,7 @@ import jingo
 from celeryutils import task
 from tower import ugettext as _
 
+from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import Message, get_email_backend
 from addons.models import Addon
@@ -171,8 +172,9 @@ def start_upgrade(version, file_ids, priority='low', **kw):
                 'secret': settings.BUILDER_SECRET_KEY,
                 'location': file_.get_url_path(None, 'builder'),
                 'uuid': data['uuid'],
-                'pingback': reverse('files.builder-pingback')}
+                'pingback': absolutify(reverse('amo.builder-pingback'))}
         try:
+            jp_log.info(urllib.urlencode(post))
             response = urllib2.urlopen(settings.BUILDER_UPGRADE_URL,
                                        urllib.urlencode(post))
             jp_log.info('Response from builder for %s: [%s] %s' %

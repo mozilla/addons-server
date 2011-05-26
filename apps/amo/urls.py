@@ -12,6 +12,8 @@ services_patterns = patterns('',
     url('^loaded$', never_cache(views.loaded), name='amo.loaded'),
     url('^csp/policy$', csp.views.policy, name='amo.csp.policy'),
     url('^csp/report$', views.cspreport, name='amo.csp.report'),
+    url('^builder-pingback', views.builder_pingback,
+        name='amo.builder-pingback'),
 )
 
 urlpatterns = patterns('',
