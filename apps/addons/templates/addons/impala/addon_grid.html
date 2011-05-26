@@ -16,7 +16,11 @@
           </div>
           <div class="summary">
             <h3>{{ addon.name }}</h3>
-            <div class="category" class="more-info">{{ addon.get_category(APP.id) }}</div>
+            {% with cat = addon.get_category(APP.id) %}
+              {% if cat %}
+                <div class="category" class="more-info">{{ cat }}</div>
+              {% endif %}
+            {% endwith %}
             <div class="rating">{{ addon.average_rating|stars }} ({{ addon.total_reviews|numberfmt }})</div>
           </div>
         </a>

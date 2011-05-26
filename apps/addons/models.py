@@ -251,6 +251,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # Make sure all add-ons have a slug.  save() runs clean_slug.
         if self.id and not self.slug:
             self.save()
+        self._first_category = {}
 
     def save(self, **kw):
         self.clean_slug()
@@ -387,6 +388,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return Review.objects.filter(addon=self, reply_to=None)
 
     def get_category(self, app):
+        if app in self._first_category:
+            return self._first_category[app]
         categories = list(self.categories.filter(application=app))
         return categories[0] if categories else None
 
@@ -589,6 +592,16 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         qs = sorted(qs, key=lambda x: (x.addon_id, x.position, x.created))
         for addon, previews in itertools.groupby(qs, lambda x: x.addon_id):
             addon_dict[addon].all_previews = list(previews)
+
+        # Attach _first_category for Firefox.
+        for addon in addons:
+            addon._first_category[amo.FIREFOX.id] = None
+        qs = AddonCategory.objects.filter(
+            addon__in=addon_dict, category__application=amo.FIREFOX.id)
+        for cat in qs.select_related('category'):
+            addon = addon_dict[cat.addon_id]
+            addon._first_category[amo.FIREFOX.id] = cat.category
+
 
     @property
     def show_beta(self):
