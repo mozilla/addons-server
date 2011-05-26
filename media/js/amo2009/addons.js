@@ -70,7 +70,7 @@ var contributions = {
                     success: function(json) {
                         if (json.paykey) {
                             $.getScript($('body').attr('data-paypal-url'), function() {
-                                dgFlow = new PAYPAL.apps.DGFlow();
+                                dgFlow = new PAYPAL.apps.DGFlow({clicked: 'contribute-box'});
                                 dgFlow.startFlow(json.url);
                                 $self.find('span.cancel a').click();
                             });

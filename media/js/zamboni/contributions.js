@@ -9,7 +9,7 @@ $(document).ready(function() {
                 function(json) {
                     if (json.paykey) {
                         $.getScript($('body').attr('data-paypal-url'), function() {
-                            dgFlow = new PAYPAL.apps.DGFlow();
+                            dgFlow = new PAYPAL.apps.DGFlow({clicked: el.id});
                             dgFlow.startFlow(json.url);
                         });
                     } else {
