@@ -232,6 +232,14 @@ class REQUEST_SUPER_REVIEW(_LOG):
     review_queue = True
 
 
+class COMMENT_VERSION(_LOG):
+    id = 49
+    action_class = None
+    format = _(u'Comment on {addon} {version}.')
+    keep = True
+    review_queue = True
+
+
 class ADD_TAG(_LOG):
     id = 25
     action_class = 'tag'
@@ -392,9 +400,11 @@ def log(action, *args, **kw):
     e.g. amo.log(amo.LOG.CREATE_ADDON, []),
          amo.log(amo.LOG.ADD_FILE_TO_VERSION, file, version)
     """
-    from devhub.models import ActivityLog, AddonLog, UserLog, CommentLog
+    from devhub.models import (ActivityLog, AddonLog, UserLog,
+                               CommentLog, VersionLog)
     from addons.models import Addon
     from users.models import UserProfile
+    from versions.models import Version
     from amo import get_user, logger_log
 
     user = kw.get('user', get_user())
@@ -422,11 +432,15 @@ def log(action, *args, **kw):
         if isinstance(arg, tuple):
             if arg[0] == Addon:
                 AddonLog(addon_id=arg[1], activity_log=al).save()
+            elif arg[0] == Version:
+                VersionLog(version_id=arg[1], activity_log=al).save()
             elif arg[0] == UserProfile:
                 UserLog(user_id=arg[1], activity_log=al).save()
 
         if isinstance(arg, Addon):
             AddonLog(addon=arg, activity_log=al).save()
+        elif isinstance(arg, Version):
+            VersionLog(version=arg, activity_log=al).save()
         elif isinstance(arg, UserProfile):
             # Index by any user who is mentioned as an argument.
             UserLog(activity_log=al, user=arg).save()

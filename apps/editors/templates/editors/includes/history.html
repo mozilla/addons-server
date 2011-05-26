@@ -1,38 +1,15 @@
-<tr>
-    <td>
-      {% if record.arguments.1 %}
-        {{ record.arguments.1.version }}
-      {% else %}
-        {{ _('Deleted version') }}
-      {% endif %}
-    </td>
-
-    <td>
-      {{ record.user.name }}<br>
-      <span class="light">{{ record.created|datetime }}</span>
-    </td>
-    <td>
-      <strong>{{ record }}</strong>
-      {% if record.details %}
-        <div class="history_comment">
-          {{ record.details.comments|nl2br }}
-        </div>
-        {% if record.details.files %}
-        <ul>
-          {% for file_id in record.details.files %}
-            {% if file_id in files: %}
-              {% set file = files[file_id] %}
-              <li>
-                <strong>{{ file.platform }}</strong>
-                [<a href="{{ file.get_url_path(addon.app, 'editor') }}" class="install"
-                  data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ file.filename }}</a>]
-              </li>
-            {% else %}
-              <li><em>{{ _('File deleted') }}</em></li>
-            {% endif %}
-          {% endfor %}
-        </ul>
-        {% endif %}
-      {% endif %}
-    </td>
-</tr>
+<li>
+  <strong>{{ record }}</strong>
+  {% if record.details %}
+  <div class="history_comment">
+    {{ record.details.comments|nl2br }}
+  </div>
+  {% endif %}
+  <div class="light">
+    <em>
+      {% trans user = record.user|user_link, date = record.created|babel_datetime %}
+      By {{ user }} on {{ date }}
+      {% endtrans %}
+    </em>
+  </div>
+</li>

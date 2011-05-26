@@ -131,6 +131,12 @@ function initReviewActions() {
         });
     }
     check_currently_viewing();
+
+    /* Item History */
+    $('#review-files tr:not(.listing-header, :last-child)').hide();
+    $('#review-files tr.listing-header').click(function() {
+        $(this).next().toggle();
+    });
 }
 
 function insertAtCursor(textarea, text) {

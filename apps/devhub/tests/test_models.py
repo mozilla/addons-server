@@ -117,6 +117,15 @@ class TestActivityLog(test_utils.TestCase):
         entries = ActivityLog.objects.for_user(u)
         eq_(len(entries), 1)
 
+    def test_version_log(self):
+        request = self.request
+        amo.log(amo.LOG['CUSTOM_TEXT'], 'hi there')
+        version = Version.objects.all()[0]
+        amo.log(amo.LOG.REJECT_VERSION, version.addon, version,
+                user=self.request.amo_user)
+        entries = ActivityLog.objects.for_version(version)
+        eq_(len(entries), 1)
+
     def test_xss_arguments(self):
         addon = Addon.objects.get()
         au = AddonUser(addon=addon, user=self.user)

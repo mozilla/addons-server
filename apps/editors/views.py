@@ -121,18 +121,6 @@ def _editor_progress():
     return (progress, percentage)
 
 
-def _get_history(addon):
-    files = []
-    history = (ActivityLog.objects.for_addons(addon).order_by('created')
-                          .filter(action__in=amo.LOG_REVIEW_QUEUE))
-
-    for h in history:
-        if 'files' in h.details:
-            files.extend(h.details['files'])
-
-    return history, File.objects.in_bulk(files)
-
-
 @editor_required
 def performance(request, user_id=False):
     user = request.amo_user
@@ -442,15 +430,21 @@ def review(request, addon):
     # We only allow the user to check/uncheck files for "pending"
     allow_unchecking_files = form.helper.review_type == "pending"
 
-    history, files = _get_history(addon)
+    versions = (Version.objects.filter(addon=addon).order_by('-created')
+                               .transform(Version.transformer_activity)
+                               .transform(Version.transformer))
+    pager = amo.utils.paginate(request, versions, 5)
+
+    num_pages = pager.paginator.num_pages
+    count = pager.paginator.count
 
     ctx = context(version=version, addon=addon,
+                  pager=pager, num_pages=num_pages, count=count,
                   flags=Review.objects.filter(addon=addon, flag=True),
                   form=form, paging=paging, canned=canned, is_admin=is_admin,
                   status_types=amo.STATUS_CHOICES, show_diff=show_diff,
                   allow_unchecking_files=allow_unchecking_files,
-                  actions=actions, actions_minimal=actions_minimal,
-                  history=history, files=files)
+                  actions=actions, actions_minimal=actions_minimal)
 
     return jingo.render(request, 'editors/review.html', ctx)
 

@@ -151,6 +151,13 @@ class Version(amo.models.ModelBase):
         super(Version, self).delete()
 
     @amo.cached_property(writable=True)
+    def all_activity(self):
+        from devhub.models import VersionLog  # yucky
+        al = (VersionLog.objects.filter(version=self.id).order_by('created')
+              .select_related(depth=1).no_cache())
+        return al
+
+    @amo.cached_property(writable=True)
     def compatible_apps(self):
         """Get a mapping of {APP: ApplicationVersion}."""
         avs = self.apps.select_related(depth=1)
@@ -258,6 +265,28 @@ class Version(amo.models.ModelBase):
             v_id = version.id
             version.compatible_apps = cls._compat_map(av_dict.get(v_id, []))
             version.all_files = file_dict.get(v_id, [])
+
+    @classmethod
+    def transformer_activity(cls, versions):
+        """Attach all the activity to the versions."""
+        from devhub.models import VersionLog  # yucky
+
+        ids = set(v.id for v in versions)
+        if not versions:
+            return
+
+        al = (VersionLog.objects.filter(version__in=ids).order_by('created')
+              .select_related(depth=1).no_cache())
+
+        def rollup(xs):
+            groups = amo.utils.sorted_groupby(xs, 'version_id')
+            return dict((k, list(vs)) for k, vs in groups)
+
+        al_dict = rollup(al)
+
+        for version in versions:
+            v_id = version.id
+            version.all_activity = al_dict.get(v_id, [])
 
     def disable_old_files(self):
         if not self.files.filter(status=amo.STATUS_BETA).exists():

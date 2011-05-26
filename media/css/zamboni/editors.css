@@ -507,15 +507,103 @@ div.editor-stats-table > div.editor-stats-dark {
 /* Review Page */
 
 .primary {
-    width: 85%;
+    width: 83.5%;
 }
 
 .secondary {
-    width: 13.49%;
+    width: 15%;
 }
 
 .secondary.scroll_sidebar_parent {
     position: relative;
+}
+
+.scroll_sidebar_parent #scroll_sidebar li a {
+     font-weight: normal;
+}
+
+#review-files {
+    margin: 0;
+    width: 100%;
+}
+#review-files .files {
+    background-color: #FAFAFA;
+    border-right: 1px dotted #DDDDDD;
+    border-top: 0 none;
+    width: 255px;
+    padding: 15px;
+}
+#review-files-header h3 {
+    float: left;
+}
+#review-files-header #review-files-paginate {
+    float: right;
+    margin-top: 2em;
+}
+#review-files-paginate ol {
+    float: right;
+    margin: 0;
+    padding-left: 10px;
+    text-align: right;
+    top: -20px;
+    width: auto;
+}
+#review-files td .activity li {
+    border-top: 1px dotted #DDDDDD;
+    margin: 1em 1em 0;
+    padding-top: 1em;
+}
+
+#review-files td .activity li:first-child {
+    border-top: 0 none;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+#review-files tr.listing-header:first-child {
+    border-top: none;
+}
+#review-files tr.listing-header {
+     border-top: 1px solid #A5BFCE;
+}
+#review-files tr.listing-header:hover {
+    cursor: pointer;
+    background-color: #CCE6FF;
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        from(#FFFFFF),
+        to(#CCE6FF)
+    );
+    background: -moz-linear-gradient(#FFFFFF, #CCE6FF);
+}
+#review-files tr.listing-header:active {
+    cursor: pointer;
+    background-color: #FFF;
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        from(#CCE6FF),
+        to(#FFFFFF)
+    );
+    background: -moz-linear-gradient(#E0EFFD, #FFF);
+}
+#review-files .files div:first-child {
+    padding-top: 0;
+}
+#review-files .files > div {
+    padding-top: 5px;
+    line-height: 1.3em;
+}
+#review-files .no-activity {
+    color: #777777;
+    font-style: italic;
+    text-align: center;
+}
+#review-files .install {
+    padding: 0;
 }
 
 #review-actions-form textarea,
@@ -662,7 +750,6 @@ div.editor-stats-table > div.editor-stats-dark {
 
 .history_comment {
     overflow: auto;
-    width: 613px;
 }
 
 .review-paging {
@@ -702,6 +789,25 @@ span.currently_viewing_warning {
 
 .article ul {
     margin-bottom: 0;
+}
+
+
+.paginator {
+     margin: 0pt;
+     overflow: auto;
+}
+
+.paginator li {
+     float: left;
+     width: 33%;
+}
+
+.paginator .next {
+     text-align: right;
+}
+
+.paginator .page {
+     text-align: center;
 }
 
 

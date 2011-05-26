@@ -1355,15 +1355,51 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         eq_(response.status_code, 200)
 
-        validation = pq(response.content).find('#validation').next()
+        doc = pq(response.content)
+        validation = doc('#review-files .files div').eq(1)
         eq_(validation.children().length, 1)
 
-        eq_(validation.find('a').eq(0).text(), 'Public.xpi')
+        eq_(validation.find('a').eq(0).text(), 'All Platforms')
 
-        eq_(validation.find('a').eq(1).text(), "Validation Results")
-        eq_(validation.find('a').eq(2).text(), "View Contents")
+        eq_(validation.find('a').eq(1).text(), "Validation")
+        eq_(validation.find('a').eq(2).text(), "Contents")
 
         eq_(validation.find('a').length, 3)
+
+    def test_item_history(self):
+        self.addon_file(u'something', u'0.2', amo.STATUS_PUBLIC,
+                        amo.STATUS_UNREVIEWED)
+
+        eq_(self.addon.versions.count(), 1)
+        url = reverse('editors.review', args=[self.addon.slug])
+
+        self.review_version(self.version, url)
+
+        v2 = self.versions['something']
+        v2.addon = self.addon
+        v2.created = v2.created + timedelta(days=1)
+        v2.save()
+        self.review_version(v2, url)
+        eq_(self.addon.versions.count(), 2)
+
+        r = self.client.get(url)
+        doc = pq(r.content)
+
+        # View the history verify two versions:
+        ths = doc('table#review-files tr th:first-child')
+        assert '0.1' in ths.eq(0).text()
+        assert '0.2' in ths.eq(1).text()
+
+        for i in [0, 2]:
+            tds = doc('table#review-files tr td')
+            eq_(tds.eq(i).find('strong').eq(0).text(), "Files in this version:")
+            eq_(tds.eq(i).find('div').length, 3)
+
+
+        eq_(tds.eq(1).find('ul li').length, 1)
+        eq_(tds.eq(1).find('ul li a').length, 3)
+        eq_(tds.eq(1).find('ul li .history_comment').text(), "something")
+        eq_(tds.eq(1).find('ul li em a').text(), "An editor")
 
     def test_files_in_item_history(self):
         data = {'action': 'public', 'operating_systems': 'win',
@@ -1375,20 +1411,21 @@ class TestReview(ReviewBase):
         r = self.client.get(self.url)
         doc = pq(r.content)
 
-        eq_(doc('#review-files tbody tr').length, 1)
-        li = doc('#review-files .history_comment').parent().find('li')
-        eq_(li.length, 1)
-        eq_(li.find('strong').text(), "All Platforms")
+        eq_(doc('#review-files .files > div').length, 2)
+        div = doc('#review-files .files div').eq(1)
+        eq_(div.length, 1)
+        eq_(div.find('a.install').text(), "All Platforms")
 
     def test_no_items(self):
         response = self.client.get(self.url)
-        eq_(pq(response.content).find('#file-history').next().text(),
-            "No previous review entries could be found.")
+        doc = pq(response.content)
+        div = doc('#review-files-header').next().find('td').eq(1).find('div')
+        eq_(div.text(), "This version has no activity yet.")
 
     def test_listing_link(self):
         response = self.client.get(self.url)
         text = pq(response.content).find('#actions-addon li a').eq(0).text()
-        eq_(text, "View Listing")
+        eq_(text, "View Add-on Listing")
 
     def test_admin_links_as_admin(self):
         self.login_as_admin()
@@ -1396,14 +1433,14 @@ class TestReview(ReviewBase):
 
         doc = pq(response.content)
 
-        admin = doc('#actions-admin')
-        assert admin.length > 0
+        admin = doc('#actions-addon li')
+        assert admin.length == 3
 
-        a = admin.find('a').eq(0)
+        a = admin.find('a').eq(1)
         eq_(a.text(), "Edit Add-on")
         assert "developers/addon/%s" % self.addon.slug in a.attr('href')
 
-        a = admin.find('a').eq(1)
+        a = admin.find('a').eq(2)
         eq_(a.text(), "Admin Page")
         assert "admin/addons/status/%s" % self.addon.id in a.attr('href')
 
@@ -1412,8 +1449,8 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
 
         doc = pq(response.content)
-        admin = doc('#actions-admin')
-        eq_(admin.length, 0)
+        admin = doc('#actions-addon li')
+        eq_(admin.length, 1)
 
     def test_no_public(self):
         s = amo.STATUS_PUBLIC
@@ -1430,9 +1467,9 @@ class TestReview(ReviewBase):
 
         response = self.client.get(self.url)
 
-        validation = pq(response.content).find('#validation').next()
-        eq_(validation.find('a').eq(1).text(), "Validation Results")
-        eq_(validation.find('a').eq(2).text(), "View Contents")
+        validation = pq(response.content).find('.files')
+        eq_(validation.find('a').eq(1).text(), "Validation")
+        eq_(validation.find('a').eq(2).text(), "Contents")
 
         eq_(validation.find('a').length, 3)
 
@@ -1456,9 +1493,9 @@ class TestReview(ReviewBase):
 
         response = self.client.get(self.url)
 
-        validation = pq(response.content).find('#validation').next()
-        eq_(validation.find('a').eq(1).text(), "Validation Results")
-        eq_(validation.find('a').eq(2).text(), "View Contents")
+        validation = pq(response.content).find('.files')
+        eq_(validation.find('a').eq(1).text(), "Validation")
+        eq_(validation.find('a').eq(2).text(), "Contents")
 
         eq_(validation.find('a').length, 3)
 
@@ -1486,17 +1523,19 @@ class TestReview(ReviewBase):
         doc = pq(r.content)
 
         # View the history verify two versions:
-        eq_(doc('table#review-files tr td:first-child').eq(0).text(), '0.1')
-        eq_(doc('table#review-files tr td:first-child').eq(1).text(), '0.2')
+        ths = doc('table#review-files tr th:first-child')
+        assert '0.1' in ths.eq(0).text()
+        assert '0.2' in ths.eq(1).text()
+
         # Delete a version:
         v2.delete()
         # Verify two versions, one deleted:
         r = self.client.get(url)
         doc = pq(r.content)
+        ths = doc('table#review-files tr th:first-child')
 
-        eq_(doc('table#review-files tr td:first-child').eq(1).text(),
-            'Deleted version')
-        eq_(doc('table#review-files tr td:first-child').eq(0).text(), '0.1')
+        eq_(doc('table#review-files tr th:first-child').length, 1)
+        assert '0.1' in ths.eq(0).text()
 
     def review_version(self, version, url):
         version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
@@ -1586,8 +1625,9 @@ class TestReview(ReviewBase):
         doc = pq(r.content)
 
         assert r.context['show_diff']
-        eq_(doc('.files a:last-child').text(), 'Compare With Public Version')
-        eq_(doc('.files a:last-child').attr('href'),
+
+        eq_(doc('.files').eq(1).find('a').eq(3).text(), 'Compare')
+        eq_(doc('.files').eq(1).find('a').eq(3).attr('href'),
             reverse('files.compare', args=(next_file.pk,
                                            first_file.pk)))
 
@@ -1769,7 +1809,7 @@ class TestStatusFile(ReviewBase):
         for status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]:
             self.addon.update(status=status)
             res = self.client.get(self.url)
-            node = pq(res.content)('ul.files li:first-child')
+            node = pq(res.content)('td.files div').eq(1)
             assert 'Pending Preliminary Review' in node.text()
 
     def test_status_full(self):
@@ -1777,7 +1817,7 @@ class TestStatusFile(ReviewBase):
                        amo.STATUS_PUBLIC]:
             self.addon.update(status=status)
             res = self.client.get(self.url)
-            node = pq(res.content)('ul.files li:first-child')
+            node = pq(res.content)('td.files div').eq(1)
             assert 'Pending Full Review' in node.text()
 
     def test_status_full_reviewed(self):
@@ -1788,11 +1828,12 @@ class TestStatusFile(ReviewBase):
                        amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED]:
             self.addon.update(status=status)
             res = self.client.get(self.url)
-            node = pq(res.content)('ul.files li:first-child')
+            node = pq(res.content)('td.files div').eq(1)
             assert 'Fully Reviewed' in node.text()
 
     def test_other(self):
         self.addon.update(status=amo.STATUS_BETA)
         res = self.client.get(self.url)
-        node = pq(res.content)('ul.files li:first-child')
+        node = pq(res.content)('td.files div').eq(1)
+
         assert unicode(amo.STATUS_CHOICES[self.file.status]) in node.text()

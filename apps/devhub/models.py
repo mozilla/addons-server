@@ -86,14 +86,25 @@ class AddonLog(amo.models.ModelBase):
 
 class CommentLog(amo.models.ModelBase):
     """
-    This table is for indexing the activity log by user.
-    Note: This includes activity performed unto the user.
+    This table is for indexing the activity log by comment.
     """
     activity_log = models.ForeignKey('ActivityLog')
     comments = models.CharField(max_length=255)
 
     class Meta:
         db_table = 'log_activity_comment'
+        ordering = ('-created',)
+
+
+class VersionLog(amo.models.ModelBase):
+    """
+    This table is for indexing the activity log by version.
+    """
+    activity_log = models.ForeignKey('ActivityLog')
+    version = models.ForeignKey(Version)
+
+    class Meta:
+        db_table = 'log_activity_version'
         ordering = ('-created',)
 
 
@@ -122,6 +133,11 @@ class ActivityLogManager(amo.models.ManagerBase):
             return self.filter(pk__in=list(vals))
         else:
             return self.none()
+
+    def for_version(self, version):
+        vals = (VersionLog.objects.filter(version=version)
+                .values_list('activity_log', flat=True))
+        return self.filter(pk__in=list(vals))
 
     def for_user(self, user):
         vals = (UserLog.objects.filter(user=user)

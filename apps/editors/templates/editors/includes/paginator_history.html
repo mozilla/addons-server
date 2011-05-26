@@ -1,0 +1,30 @@
+{% if num_pages > 1 %}
+  <ol class="pagination">
+    {% if pager.has_next() %}
+      <li>
+        <a rel="prev" href="{{ pager.url|urlparams(page=pager.next_page_number()) }}#history">
+          {{ _('Older') }}
+        </a>
+      </li>
+    {% endif %}
+    <li>
+      {% trans begin=pager.start_index(), end=pager.end_index(),
+               count=count|numberfmt %}
+        Results <strong>{{ begin }}</strong>&ndash;<strong>{{ end }}</strong>
+        of <strong>{{ count }}</strong>
+      {% endtrans %}
+    </li>
+    {% if pager.has_previous() %}
+      <li>
+        <a rel="next" href="{{ pager.url|urlparams(page=pager.previous_page_number()) }}#history">
+          {{ _('Newer') }}
+        </a>
+      </li>
+    {% endif %}
+    {% for x in pager.page_range %}
+    <li {{ x|class_selected(pager.number) }}>
+      <a href="{{ pager.url|urlparams(page=x) }}">{{ x }}</a>
+    </li>
+    {% endfor %}
+  </ol>
+{% endif %}
