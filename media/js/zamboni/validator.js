@@ -30,9 +30,12 @@ function initValidator() {
             options.app = null;
         if (typeof options.testsWereRun === 'undefined')
             options.testsWereRun = true;
+        if (typeof options.showWarnings === 'undefined')
+            options.showWarnings = true;
         this.$results = $('.results', $suite);
         this.app = options.app;
         this.testsWereRun = options.testsWereRun;
+        this.showWarnings = options.showWarnings;
         this.counts = {error: 0, warning: 0};
         this.tierId = tierId;
         this.$suite = $suite;
@@ -57,7 +60,8 @@ function initValidator() {
     }
 
     ResultsTier.prototype.summarize = function() {
-        var sm = resultSummary(this.counts.error, this.counts.warning),
+        var sm = resultSummary(this.counts.error, this.counts.warning,
+                               {showWarnings: this.showWarnings}),
             resultClass, summaryMsg;
         $('.result-summary', this.$dom).css('visibility', 'visible')
                                        .empty().text(sm);
@@ -83,12 +87,14 @@ function initValidator() {
                          .addClass(resultClass);
         if ($('.test-tier', this.$suite).length)
             this.topSummary();
+        return this.counts;
     };
 
     ResultsTier.prototype.topSummary = function() {
         var $top = $('[class~="test-tier"]' +
                      '[data-tier="' + this.tierId + '"]', this.$suite),
-            summaryMsg = resultSummary(this.counts.error, this.counts.warning);
+            summaryMsg = resultSummary(this.counts.error, this.counts.warning,
+                                       {showWarnings: this.showWarnings});
 
         $('.tier-summary', $top).text(summaryMsg);
         $top.removeClass('ajax-loading', 'tests-failed', 'tests-passed',
@@ -140,14 +146,12 @@ function initValidator() {
         this.tiers = {};
         this.appTrans = null;
         this.versionChangeLinks = null;
+        this.allCounts = {error: 0, warning: 0};
     }
 
     MsgVisitor.prototype.createTier = function(tierId, options) {
-        if (options && options.app) {
-            options.app.trans = this.appTrans;
-            options.app.versionChangeLinks = this.versionChangeLinks;
-        }
-        var tier = new ResultsTier(this.$suite, tierId, options);
+        var tier = new ResultsTier(this.$suite, tierId,
+                                   this.tierOptions(options));
         return tier;
     };
 
@@ -160,7 +164,9 @@ function initValidator() {
             }
         });
         $.each(this.tiers, function(tierId, tier) {
-            tier.summarize();
+            var tierSum = tier.summarize();
+            self.allCounts.error += tierSum.error;
+            self.allCounts.warning += tierSum.warning;
         });
     };
 
@@ -240,6 +246,14 @@ function initValidator() {
         return ctxDiv;
     };
 
+    MsgVisitor.prototype.tierOptions = function(options) {
+        if (options && options.app) {
+            options.app.trans = this.appTrans;
+            options.app.versionChangeLinks = this.versionChangeLinks;
+        }
+        return options;
+    };
+
     var CompatMsgVisitor = inherit(MsgVisitor, function(suite, data) {
         this.appTrans = JSON.parse(this.$results.attr('data-app-trans'));
         this.versionChangeLinks = JSON.parse(this.$results.attr('data-version-change-links'));
@@ -253,6 +267,10 @@ function initValidator() {
             if (!$('.msg', res).length)
                 $(res).hide();
         });
+        if (this.allCounts.error == 0) {
+            $('#suite-results-tier-1').show();
+            $('#suite-results-tier-1 h4').text(gettext('Compatibility Tests'));
+        }
     };
 
     CompatMsgVisitor.prototype.getMsgType = function(msg) {
@@ -261,6 +279,9 @@ function initValidator() {
 
     CompatMsgVisitor.prototype.message = function(msg) {
         var self = this;
+        if (this.getMsgType(msg) !== 'error')
+            // Compatibility results only need to display/tally errors.
+            return;
         if (msg.for_appversions) {
             eachAppVer(msg.for_appversions, function(guid, version, id) {
                 var app = {guid: guid, version: version, id: id};
@@ -270,6 +291,12 @@ function initValidator() {
         } else {
             MsgVisitor.prototype.message.apply(this, arguments);
         }
+    };
+
+    CompatMsgVisitor.prototype.tierOptions = function(options) {
+        options = MsgVisitor.prototype.tierOptions.apply(this, arguments);
+        options.showWarnings = false;  // compat results only show errors
+        return options;
     };
 
     function buildResults(suite, data) {
@@ -314,13 +341,23 @@ function initValidator() {
         }
     }
 
-    function resultSummary(numErrors, numWarnings) {
+    function resultSummary(numErrors, numWarnings, options) {
         // e.g. '1 error, 3 warnings'
+        if (typeof options === 'undefined')
+            options = {};
+        if (typeof options.showWarnings === 'undefined')
+            options.showWarnings = true;
         var errors = format(ngettext('{0} error', '{0} errors', numErrors),
                             [numErrors]),
+            warnings;
+
+        if (options.showWarnings) {
             warnings = format(ngettext('{0} warning', '{0} warnings', numWarnings),
                               [numWarnings]);
-        return format('{0}, {1}', errors, warnings);
+            return format('{0}, {1}', errors, warnings);
+        } else {
+            return errors;
+        }
     }
 
     function joinPaths(parts) {

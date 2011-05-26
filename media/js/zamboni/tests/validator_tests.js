@@ -262,7 +262,7 @@ var compatibilityFixtures = {
 
 module('Validator: Compatibility', compatibilityFixtures);
 
-asyncTest('Test passing', function() {
+asyncTest('Test basic', function() {
     var $suite = $('.addon-validator-suite', this.sandbox),
         tiers=[], results=[];
 
@@ -287,7 +287,7 @@ asyncTest('Test passing', function() {
                     "tier": 1,
                     "for_appversions": null,
                     "message": "Flagged file extension found",
-                    "type": "warning",
+                    "type": "error",
                     "line": null,
                     "uid": "bb0b38812d8f450a85fa90a2e7e6693b"
                 },
@@ -363,30 +363,62 @@ asyncTest('Test passing', function() {
 
     tests.waitFor(function() {
         // Wait until last app/version section was created.
-        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b1', $suite).length;
+        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3', $suite).length;
     }).thenDo(function() {
         equals($('#suite-results-tier-errors', $suite).length, 0);
         equals($('.result-header h4:visible', $suite).eq(0).text(),
                'General Tests');
         equals($('.result-header h4:visible', $suite).eq(1).text(),
                'Firefox 4.0b3 Tests');
-        equals($('.result-header h4:visible', $suite).eq(2).text(),
-               'Firefox 4.0b1 Tests');
-        equals($('#v-msg-2a96f7faee7a41cca4d6ead26dddc6b3 p:eq(0)', $suite).text(),
-               'Warning: A dangerous or banned global...');
-        equals($('#v-msg-9a07163bb74e476c96a2bd467a2bbe52 p:eq(0)', $suite).text(),
-               'Error: To prevent vulnerabilities...');
-        equals($('#v-msg-92a0be84024a464e87046b04e26232c4 p:eq(0)', $suite).text(),
-               'Error: The add-on doesn\'t have...');
+        equals($('#v-msg-dd96f7faee7a41cca4d6ead26dddc6c2 p:eq(0)', $suite).text(),
+               'Error: some other error...');
         ok($('#v-msg-bb0b38812d8f450a85fa90a2e7e6693b', $suite).length == 1,
            'Non-compatibility message should be shown');
         equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .result-summary', $suite).text(),
-               '1 error, 1 warning');
+               '1 error');
         equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .version-change-link').attr('href'),
                '/firefox-4-changes');
         equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b1 .version-change-link').length, 0);
         equals($('#suite-results-tier-1 .result-summary', $suite).text(),
-               '0 errors, 1 warning');
+               '1 error');
+        start();
+    });
+});
+
+asyncTest('Test all passing', function() {
+    var $suite = $('.addon-validator-suite', this.sandbox);
+
+    $.mockjax({
+        url: '/validate',
+        responseText: {
+            "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
+            "full_report_url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "upload": "d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "error": null,
+            "validation": {
+                "errors": 0,
+                "success": true,
+                "warnings": 5,
+                "ending_tier": 5,
+                "messages": [],
+                "detected_type": "extension",
+                "notices": 2,
+                "message_tree": {},
+                "metadata": {}
+            }
+        }
+    });
+
+    $suite.trigger('validate');
+
+    tests.waitFor(function() {
+        // Wait until last app/version section was created.
+        return $('#suite-results-tier-1:visible', $suite).length;
+    }).thenDo(function() {
+        equals($('.result-header h4:visible', $suite).eq(0).text(),
+               'Compatibility Tests');
+        tests.hasClass($('#suite-results-tier-1 .tier-results', $suite),
+                       'tests-passed');
         start();
     });
 });
@@ -420,8 +452,7 @@ asyncTest('Test task error', function() {
 });
 
 asyncTest('Test no tests section', function() {
-    var $suite = $('.addon-validator-suite', this.sandbox),
-        tiers=[], results=[];
+    var $suite = $('.addon-validator-suite', this.sandbox);
 
     $.mockjax({
         url: '/validate',
@@ -446,7 +477,7 @@ asyncTest('Test no tests section', function() {
                         "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.0b3"]
                     },
                     "message": "Dangerous Global Object",
-                    "type": "warning",
+                    "type": "error",
                     "line": 533,
                     "uid": "2a96f7faee7a41cca4d6ead26dddc6b3"
                 }],
@@ -464,7 +495,10 @@ asyncTest('Test no tests section', function() {
         // Wait until last app/version section was created.
         return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3', $suite).length;
     }).thenDo(function() {
-        equals($('#suite-results-tier-non_compat:visible', $suite).length, 0);
+        equals($('#suite-results-tier-1:visible', $suite).length, 0);
+        equals($('#suite-results-tier-2:visible', $suite).length, 0);
+        equals($('#suite-results-tier-3:visible', $suite).length, 0);
+        equals($('#suite-results-tier-4:visible', $suite).length, 0);
         equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .msg', $suite).length, 1);
         start();
     });
@@ -598,7 +632,7 @@ asyncTest('Test single tier', function() {
                 "ending_tier": 5,
                 "messages": [{
                     "context": null,
-                    "compatibility_type": "notice",
+                    "compatibility_type": "error",
                     "uid": "bc73cbff60534798b46ed5840d1544c6",
                     "column": null,
                     "line": null,
@@ -608,7 +642,7 @@ asyncTest('Test single tier', function() {
                         "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.2a1pre", "5.0a2", "6.0a1", "4.0.*"]
                     },
                     "message": "Firefox 5 Compatibility Detected",
-                    "type": "notice",
+                    "type": "error",
                     "id": ["testcases_compatibility", "firefox_5_test", "fx5_notice"],
                     "description": "Potential compatibility for FX5 was detected."
                 }],
@@ -683,6 +717,103 @@ asyncTest('Test no compat tests', function() {
         equals($('.template .result:visible', $suite).length, 0);
         // The non-compat error exists
         equals($('#v-msg-6fd1f5c74c4445f79a1919c8480e4e72', $suite).length, 1);
+        start();
+    });
+});
+
+asyncTest('Test compat ignores warnings and notices', function() {
+    var $suite = $('.addon-validator-suite', this.sandbox);
+
+    $.mockjax({
+        url: '/validate',
+        responseText: {
+            "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
+            "full_report_url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "upload": "d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "error": null,
+            "validation": {
+                "errors": 0,
+                "compatibility_summary": {"errors": 1},
+                "success": false,
+                "warnings": 1,
+                "ending_tier": 5,
+                "messages": [{
+                    "context": ["<code>"],
+                    "description": ["A dangerous or banned global..."],
+                    "column": 23,
+                    "id": [],
+                    "file": "chrome/content/youtune.js",
+                    "tier": 3,
+                    "for_appversions": {
+                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.0b3"]
+                    },
+                    "message": "Dangerous Global Object",
+                    "type": "warning",
+                    "compatibility_type": "error",
+                    "line": 533,
+                    "uid": "2a96f7faee7a41cca4d6ead26dddc6b3"
+                }, {
+                    "context": ["<code>"],
+                    "description": ["Some warning..."],
+                    "column": 23,
+                    "id": [],
+                    "file": "chrome/content/youtune.js",
+                    "tier": 3,
+                    "for_appversions": null,
+                    "message": "Some warning",
+                    "type": "warning",
+                    "compatibility_type": null,
+                    "line": 533,
+                    "uid": "1dc6f7faee7a41cca4d6ead26dddceed"
+                }, {
+                    "context": ["<code>"],
+                    "description": ["Some notice..."],
+                    "column": 23,
+                    "id": [],
+                    "file": "chrome/content/youtune.js",
+                    "tier": 3,
+                    "for_appversions": null,
+                    "message": "Some notice",
+                    "type": "notice",
+                    "compatibility_type": null,
+                    "line": 533,
+                    "uid": "dce6f7faee7a41cca4d6ead26dddc2c1"
+                }, {
+                    "context": ["<code>"],
+                    "description": ["Some error..."],
+                    "column": 23,
+                    "id": [],
+                    "file": "chrome/content/youtune.js",
+                    "tier": 3,
+                    "for_appversions": null,
+                    "message": "Some error",
+                    "type": "error",
+                    "compatibility_type": null,
+                    "line": 533,
+                    "uid": "6cd6f7faee7a41cca4d6ead26dddca4c"
+                }],
+                "detected_type": "extension",
+                "notices": 0,
+                "message_tree": {},
+                "metadata": {}
+            }
+        }
+    });
+
+    $suite.trigger('validate');
+
+    tests.waitFor(function() {
+        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3', $suite).length;
+    }).thenDo(function() {
+        // Compat error:
+        equals($('#v-msg-2a96f7faee7a41cca4d6ead26dddc6b3', $suite).length, 1);
+        // Regular notice:
+        equals($('#v-msg-1dc6f7faee7a41cca4d6ead26dddceed', $suite).length, 0);
+        equals($('#v-msg-dce6f7faee7a41cca4d6ead26dddc2c1', $suite).length, 0);
+        // Regular error
+        equals($('#v-msg-6cd6f7faee7a41cca4d6ead26dddca4c', $suite).length, 1);
+        equals($('#suite-results-tier-3 .result-summary', $suite).text(),
+               '1 error');
         start();
     });
 });
