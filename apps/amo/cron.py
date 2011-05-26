@@ -18,7 +18,7 @@ import redisutils
 
 import amo
 from amo.utils import chunked
-from addons.models import Addon, AddonCategory, Category
+from addons.models import Addon, AddonCategory, BlacklistedGuid, Category
 from addons.utils import AdminActivityLogMigrationTracker, MigrationTracker
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
@@ -420,7 +420,7 @@ def ping(**kw):
     QueueCheck().set('pong', queue)
 
 
-# TODO(davedash): run once
+# TODO(andym): remove this once they are all gone.
 @cronjobs.register
 def delete_brand_thunder_addons():
     ids = (102188, 102877, 103381, 103382, 103388, 107864, 109233, 109242,
@@ -438,8 +438,83 @@ def delete_brand_thunder_addons():
            232709, 232708, 232707, 232694, 232688, 94461, 94452, 54288, 50418,
            49362, 49177, 239113, 102186, 102185, 101166, 101165, 101164,
            99010, 99007, 99006, 98429, 98428, 45834, 179542, 103383)
+    guids = (
+'umespersona_at_brandthunder.com', 'vanderbiltupersona_at_brandthunder.com',
+'michiganstupersona_at_brandthunder.com', 'acconfpersona_at_brandthunder.com',
+'uofarizonapersona_at_brandthunder.com', 'uofcincinnatipersona_at_brandthunder.com',
+'texastechupersona_at_brandthunder.com', 'uofkansaspersona_at_brandthunder.com',
+'uofpittsburghpersona_at_brandthunder.com', 'uofgeorgiapersona_at_brandthunder.com',
+'halloween2010persona_at_brandthunder.com', 'halloweenpersona_at_brandthunder.com',
+'uofscarolinapersona_at_brandthunder.com', 'auburnupersona_at_brandthunder.com',
+'georgetownupersona_at_brandthunder.com', 'ncstateupersona_at_brandthunder.com',
+'uofmissouripersona_at_brandthunder.com', 'uoftennesseepersona_at_brandthunder.com',
+'washingtonstupersona_at_brandthunder.com',
+'uofnotredamepersona_at_brandthunder.com',
+'nasapersona_at_brandthunder.com', 'uofmichiganpersona_at_brandthunder.com',
+'villanovaupersona_at_brandthunder.com', 'uofillinoispersona_at_brandthunder.com',
+'oklahomastupersona_at_brandthunder.com', 'uofwisconsinpersona_at_brandthunder.com',
+'uofwashingtonpersona_at_brandthunder.com', 'uclapersona_at_brandthunder.com',
+'arizonastupersona_at_brandthunder.com', 'uofncarolinapersona_at_brandthunder.com',
+'bigtenconfpersona_at_brandthunder.com', 'indianaupersona_at_brandthunder.com',
+'purdueupersona_at_brandthunder.com', 'pennstupersona_at_brandthunder.com',
+'uoflouisvillepersona_at_brandthunder.com', 'marquetteupersona_at_brandthunder.com',
+'uofiowapersona_at_brandthunder.com', 'wakeforestunivpersona_at_brandthunder.com',
+'stanfordupersona_at_brandthunder.com', 'providencecollpersona_at_brandthunder.com',
+'kansasstupersona_at_brandthunder.com', 'uoftexaspersona_at_brandthunder.com',
+'uofcaliforniapersona_at_brandthunder.com', 'oregonstupersona_at_brandthunder.com',
+'gatechpersona_at_brandthunder.com', 'depaulupersona_at_brandthunder.com',
+'uofalabamapersona_at_brandthunder.com', 'stjohnsupersona_at_brandthunder.com',
+'uofmiamipersona_at_brandthunder.com', 'flastatepersona_at_brandthunder.com',
+'uofconnecticutpersona_at_brandthunder.com',
+'uofoklahomapersona_at_brandthunder.com',
+'baylorupersona_at_brandthunder.com', 'stackpersona_at_brandthunder.com',
+'askmenboom_at_askmen.com', 'uscpersona_at_brandthunder.com',
+'redbullspersona_at_brandthunder.com', 'huffpostpersona_at_brandthunder.com',
+'mlsunionpersona_at_brandthunder.com', 'goblinspersona2_at_brandthunder.com',
+'ignboom_at_ign.com', 'fantasyrpgtheme_at_brandthunder.com',
+'dragontheme_at_brandthunder.com', 'animetheme_at_brandthunder.com',
+'sanjeevkapoorboom_at_sanjeevkapoor.com', 'godukeboom_at_goduke.com',
+'nbakingsboom_at_nba.com', 'prowrestlingboom_at_brandthunder.com',
+'plaidthemetheme_at_brandthunder.com', 'fleurdelistheme_at_brandthunder.com',
+'snowthemetheme_at_brandthunder.com', 'transparenttheme_at_brandthunder.com',
+'nauticaltheme_at_brandthunder.com', 'sierrasunsettheme_at_brandthunder.com',
+'hotgirlbodytheme_at_brandthunder.com', 'ctrlaltdelboom_at_cad-comic.com',
+'cricketboom_at_brandthunder.com', 'starrynighttheme_at_brandthunder.com',
+'fantasyflowertheme_at_brandthunder.com', 'militarycamotheme_at_brandthunder.com',
+'paristhemetheme_at_brandthunder.com', 'greatwalltheme_at_brandthunder.com',
+'motorcycle_at_brandthunder.com', 'fullspeedboom_at_fullspeed2acure.com',
+'waterfalls_at_brandthunder.com', 'mothersday2010boom_at_brandthunder.com',
+'pyramids_at_brandthunder.com', 'mountain_at_brandthunder.com',
+'beachsunset_at_brandthunder.com', 'newyorkcity_at_brandthunder.com',
+'shinymetal_at_brandthunder.com', 'moviepremiereboom_at_brandthunder.com',
+'kitttens_at_brandthunder.com', 'tulips_at_brandthunder.com',
+'aquarium_at_brandthunde.com',  # [sic]
+'wood_at_brandthunder.com', 'puppies_at_brandthunder.com', 'ouaboom_at_oua.ca',
+'wibwboom_at_wibw.com', 'nasasettingsun_at_brandthunder.com',
+'bluesky_at_brandthunder.com',
+'cheerleaders_at_brandthunder.com', 'greengrass_at_brandthunder.com',
+'crayonpinktheme_at_brandthunder.com', 'crayonredtheme_at_brandthunder.com',
+'crayonyellow_at_brandthunder.com', 'crayongreen_at_brandthunder.com',
+'crayonblue_at_brandthunder.com', 'weatherboom_at_brandthunder.com',
+'crayonblack_at_brandthunder.com', 'ambientglow_at_brandthunder.com',
+'bubbles_at_brandthunder.com', 'matrixcode_at_brandthunder.com',
+'firetheme_at_brandthunder.com', 'neonlights_at_brandthunder.com',
+'brushedmetal_at_brandthunder.com', 'sugarland2_at_brandthunder.com',
+'suns2_at_brandthunder.com', 'thanksgiving2_at_brandthunder.com',
+'ecoboom2_at_brandthunder.com', 'thanksgivingboom_at_brandthunder.com')
 
-    addons = Addon.objects.filter(pk__in=ids)
+    guids = [guid.replace('_at_', '@') for guid in guids]
+    # This is a bit of an atomic bomb approach, but should ensure
+    # that no matter what the state of the guids or addons on AMO.
+    # We will end up with no addons or guids relating to Brand Thunder.
+    #
+    # Clean out any that may exist prior to deleting addons (was causing
+    # errors on preview).
+    blacklist = BlacklistedGuid.uncached.filter(guid__in=guids)
+    log.info('Found %s guids to delete (bug 636834)'
+             % blacklist.count())
+    blacklist.delete()
+    addons = Addon.uncached.filter(pk__in=ids)
     log.info('Found %s addons to delete (bug 636834)' % addons.count())
     for addon in addons:
         try:
@@ -448,3 +523,8 @@ def delete_brand_thunder_addons():
         except:
             log.error('Could not delete add-on %d (bug 636834)' % addon.id,
                       exc_info=True)
+    # Then clean out any remaining blacklisted guids after being run.
+    blacklist = BlacklistedGuid.uncached.filter(guid__in=guids)
+    log.info('Found %s guids to delete (bug 636834)'
+             % blacklist.count())
+    blacklist.delete()
