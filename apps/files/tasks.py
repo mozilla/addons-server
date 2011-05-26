@@ -163,7 +163,6 @@ def start_upgrade(version, file_ids, priority='low', **kw):
                 'uuid': uuid.uuid4().hex,
                 'status': 'Sent to builder',
                 'owner': 'bulk'}
-        upgrader.file(file_.id, data)
 
         # Data POSTed to the builder.
         post = {'addon': file_.version.addon_id,
@@ -174,8 +173,12 @@ def start_upgrade(version, file_ids, priority='low', **kw):
                 'uuid': data['uuid'],
                 'pingback': reverse('files.builder-pingback')}
         try:
-            urllib2.urlopen(settings.BUILDER_UPGRADE_URL,
-                            urllib.urlencode(post))
+            response = urllib2.urlopen(settings.BUILDER_UPGRADE_URL,
+                                       urllib.urlencode(post))
+            jp_log.info('Response from builder for %s: [%s] %s' %
+                         (file_.id, response.code, response.read()))
         except Exception:
             jp_log.error('Could not talk to builder for %s.' % file_.id,
                          exc_info=True)
+
+        upgrader.file(file_.id, data)
