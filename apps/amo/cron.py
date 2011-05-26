@@ -2,7 +2,6 @@ import calendar
 import json
 import re
 import time
-import traceback
 import urllib2
 from datetime import datetime, timedelta
 from subprocess import Popen, PIPE
@@ -439,8 +438,8 @@ def delete_brand_thunder_addons():
            232709, 232708, 232707, 232694, 232688, 94461, 94452, 54288, 50418,
            49362, 49177, 239113, 102186, 102185, 101166, 101165, 101164,
            99010, 99007, 99006, 98429, 98428, 45834, 179542, 103383)
-    addons = (UserProfile.objects.get(email='patrick@brandthunder.com')
-                                 .addons.filter(pk__in=ids))
+
+    addons = Addon.objects.filter(pk__in=ids)
     log.info('Found %s addons to delete (bug 636834)' % addons.count())
     for addon in addons:
         try:
