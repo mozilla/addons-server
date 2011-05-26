@@ -33,7 +33,7 @@ pre, code, kbd, tt, samp, tt {
     font-family: @mono-stack;
 }
 
-.primary {
+.primary, .modal {
     h2 {
         color: #333;
         font-family: @serif-stack;
@@ -62,11 +62,13 @@ pre, code, kbd, tt, samp, tt {
     margin-left: .5em;
 }
 
-.island h2 {
-    font-size: 18px;
-    margin-bottom: .5em;
-    .seeall {
-        .defaultlink
+.island, .modal {
+    h2{
+        font-size: 18px;
+        margin-bottom: .5em;
+        .seeall {
+            .defaultlink
+        }
     }
 }
 
@@ -79,4 +81,8 @@ pre, code, kbd, tt, samp, tt {
     .seeall {
         .defaultlink
     }
+}
+
+.error {
+    color: @red;
 }

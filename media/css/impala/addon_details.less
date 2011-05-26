@@ -168,6 +168,17 @@
         }
     }
     .control {
+        &.next {
+            background: -moz-linear-gradient(left, fadeOut(#fff, 100%), #fff 50%);
+        }
+        &.prev {
+            background: -moz-linear-gradient(left, #fff 50%, fadeOut(#fff, 100%));
+        }
+    }
+}
+
+.previews, #lightbox {
+    .control {
         display: block;
         position: absolute;
         height: 100%;
@@ -182,11 +193,9 @@
         -moz-transition: .3s color;
         &.next {
             right: 0;
-            background: -moz-linear-gradient(left, fadeOut(#fff, 100%), #fff 50%);
         }
         &.prev {
             left: 0;
-            background: -moz-linear-gradient(left, #fff 50%, fadeOut(#fff, 100%));
         }
         &.disabled {
             color: #ccc;

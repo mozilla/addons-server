@@ -33,17 +33,23 @@ $('.island .listing-grid').bind('grid.init', function(e, data) {
 $(function() {
     "use strict";
 
+    // Show the first visit banner.
     var firstvisitcookie = 'amo_impala_user_seen';
     if (!$.cookie(firstvisitcookie)) {
         $('body').addClass('firstvisit');
         $.cookie(firstvisitcookie, '1');
     }
 
+    //Truncate text in Firefox.
+    $('.htruncate').truncate({dir: 'h'});
+    $('.vtruncate').truncate({dir: 'v'});
+
+    // Bind to the mobile site if a mobile link is clicked.
     $(".mobile-link").attr("href", window.location).click(function() {
         $.cookie("mamo", "on", {expires:30});
     });
 
-    //paginate listing grids.
+    // Paginate listing grids.
     $('.listing-grid').each(function() {
         var $grid = $(this),
             $pages = $grid.find('section'),
@@ -94,4 +100,6 @@ $(function() {
         var top = $target.offset().top - 15;
         $(document.documentElement).animate({ scrollTop: top }, 500);
     });
+
+    contributions.init();
 });

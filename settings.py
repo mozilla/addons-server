@@ -408,6 +408,8 @@ MINIFY_BUNDLES = {
             'css/impala/addon_details.less',
             'css/impala/expando.less',
             'css/impala/popups.less',
+            'css/impala/contributions.less',
+            'css/impala/lightbox.less',
         ),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',

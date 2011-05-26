@@ -1,0 +1,76 @@
+@import 'lib';
+
+#lightbox {
+    background: fadeOut(#000,90%);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 9000;
+    text-align: center;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    -moz-transition: .5s opacity ease;
+    -webkit-transition: .5s opacity ease;
+    .close {
+        display: block;
+        background-color: #fff;
+        position: absolute;
+        margin: 0;
+        z-index: 20;
+        top: 15px;
+        right: 15px;
+    }
+    &.show {
+        pointer-events: auto;
+        opacity: 1;
+    }
+    section {
+        padding: 15px;
+        .border-radius(20px);
+        background: fadeOut(#000, 50%);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -300px 0 0 -350px;
+        width: 700px;
+        height: 600px;
+    }
+    .content, .controls {
+        background: #fff;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+        display: block;
+    }
+    .control {
+        line-height: 1em;
+        width: 64px;
+    }
+    .content {
+        .border-radius(10px 10px 0 0);
+        height: 525px;
+    }
+    .controls {
+        .border-radius(0 0 10px 10px);
+        height: 75px;
+    }
+    .control.disabled {
+        opacity: 0;
+        pointer-events: none;
+    }
+    .caption {
+        font-size: 18px;
+    }
+    img {
+        -moz-transition: .3s opacity ease;
+        -webkit-transition: .3s opacity ease;
+        opacity: 0;
+        margin: 0 auto;
+        display: block;
+        position: absolute;
+    }
+}

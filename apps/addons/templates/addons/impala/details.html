@@ -69,6 +69,18 @@
         {%- endfor -%}
       </ul>
     </section>
+    <div id="lightbox">
+      <section>
+        <div class="content">
+          <a class="close" href="#">Close</a>
+        </div>
+        <div class="controls">
+          <a href="#" class="control next">&raquo;</a>
+          <a href="#" class="control prev">&laquo;</a>
+          <span class="caption"></span>
+        </div>
+      </section>
+    </div>
   {% endif %}
 {% endif %}
 
@@ -111,7 +123,7 @@
   </div>
   {% include "reviews/grouped_ratings.html" %}
   <p>
-    <a class="button">{{ _('Write a review') }}</a>
+    <a class="button" href="{{ url('reviews.add', addon.slug) }}">{{ _('Write a review') }}</a>
   <p>
 </aside>
 
@@ -174,13 +186,15 @@
 </section>
 
 <section class="primary island c">
-  <section class="expando">
-    <h2>{{ _('Developer’s Comments') }}<a class="toggle" href="#"><b></b></a></h2>
-    <div class="content">
-      <p{{ addon.developer_comments|locale_html }}>
-        {{ addon.developer_comments|nl2br }}</p>
-    </div>
-  </section>
+  {% if addon.developer_comments %}
+    <section class="expando">
+      <h2>{{ _('Developer’s Comments') }}<a class="toggle" href="#"><b></b></a></h2>
+      <div class="content">
+        <p{{ addon.developer_comments|locale_html }}>
+          {{ addon.developer_comments|nl2br }}</p>
+      </div>
+    </section>
+  {% endif %}
   <section id="detail-relnotes" class="expando">
     <h2>{{ _('Version Information') }}<a class="toggle" href="#"><b></b></a></h2>
     <div class="content">
@@ -222,35 +236,5 @@
   {% endif %}
   {# /beta #}
 </section>
-
-<div class="secondary" role="navigation">
-
-  {% if addon.has_profile() and addon.listed_authors %}
-  <div class="highlight">
-    {% with single_dev = addon.listed_authors|random %}
-      <h3 class="compact-bottom">
-        {% trans count=addon.listed_authors|length %}
-        Meet the Developer
-        {% pluralize %}
-        Meet the Developers
-        {% endtrans %}
-      </h3>
-      <img class="avatar" alt="{{ single_dev.name }}" height="64"
-           width="64" src="{{ single_dev.picture_url }}"/>
-      <p>{{ _("Learn why {0} was created and find out what's next for this "
-              'add-on.')|f(addon.name) }}</p>
-      <p>
-        <a class="more-info" href="{{ addon.meet_the_dev_url() }}">
-        {% if addon.listed_authors|length > 1 %}
-          {{ _('Meet the Developers') }}
-        {% else %}
-          {{ _('Meet {0}')|f(single_dev.name) }}
-        {% endif %}
-        </a>
-      </p>
-    {% endwith %}
-  </div>
-  {% endif %}{# /meet the devs #}
-</div>{# /secondary #}
 
 {% endblock content %}
