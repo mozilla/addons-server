@@ -21,7 +21,6 @@ def add_commentlog(items, **kw):
 
 
     for al in ActivityLog.objects.filter(pk__in=items):
-        import pdb; pdb.set_trace()
         # Delete existing entries:
         CommentLog.objects.filter(activity_log=al).delete()
 
