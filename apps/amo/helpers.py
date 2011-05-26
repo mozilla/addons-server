@@ -406,7 +406,9 @@ def attrs(ctx, *args, **kw):
 @register.function
 @jinja2.contextfunction
 def side_nav(context, addon_type):
-    return caching.cached(lambda: _side_nav(context, addon_type), 'side-nav')
+    app = context['request'].APP.id
+    return caching.cached(lambda: _side_nav(context, addon_type),
+                          'side-nav-%s' % app)
 
 
 def _side_nav(context, addon_type):
@@ -422,16 +424,20 @@ def _side_nav(context, addon_type):
 @register.function
 @jinja2.contextfunction
 def site_nav(context):
-    return caching.cached(lambda: _site_nav(context), 'site-nav')
+    app = context['request'].APP.id
+    return caching.cached(lambda: _site_nav(context), 'site-nav-%s' % app)
 
 
 def _site_nav(context):
     request = context['request']
-    qs = Category.objects.filter(application=request.APP.id, weight__gte=0)
-    sort_key = attrgetter('weight', 'name')
-    extensions = sorted(qs.filter(type=amo.ADDON_EXTENSION), key=sort_key)
-    personas = sorted(qs.filter(type=amo.ADDON_PERSONA), key=sort_key)
-    themes = sorted(qs.filter(type=amo.ADDON_THEME), key=sort_key)
-    ctx = dict(request=request, extensions=extensions, personas=personas,
-               themes=themes)
+    types = amo.ADDON_EXTENSION, amo.ADDON_PERSONA, amo.ADDON_THEME
+    qs = Category.objects.filter(application=request.APP.id, weight__gte=0,
+                                 type__in=types)
+    groups = utils.sorted_groupby(qs, key=attrgetter('type'))
+    cats = dict((key, sorted(cs, key=attrgetter('weight', 'name')))
+                for key, cs in groups)
+    ctx = dict(request=request,
+               extensions=cats[amo.ADDON_EXTENSION],
+               personas=cats[amo.ADDON_PERSONA],
+               themes=cats[amo.ADDON_THEME])
     return jinja2.Markup(env.get_template('amo/site_nav.html').render(ctx))
