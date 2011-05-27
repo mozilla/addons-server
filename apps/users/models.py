@@ -417,3 +417,15 @@ class PersonaAuthor(unicode):
         return self
 
     display_name = name
+
+
+class BlacklistedPassword(amo.models.ModelBase):
+    """Blacklisted passwords"""
+    password = models.CharField(max_length=255, unique=True, blank=False)
+
+    def __unicode__(self):
+        return self.password
+
+    @classmethod
+    def blocked(cls, password):
+        return cls.objects.filter(password=password)

@@ -14,10 +14,18 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 import amo
 from amo.utils import slug_validator
 from .models import (UserProfile, BlacklistedUsername, BlacklistedEmailDomain,
-                     DjangoUser)
+                     BlacklistedPassword, DjangoUser)
 from . import tasks
 
 log = commonware.log.getLogger('z.users')
+
+
+class PasswordMixin:
+    def clean_password(self, field='password'):
+        data = self.cleaned_data[field]
+        if BlacklistedPassword.blocked(data):
+            raise forms.ValidationError(_('That password is not allowed.'))
+        return data
 
 
 class AuthenticationForm(auth_forms.AuthenticationForm):
@@ -48,7 +56,7 @@ class PasswordResetForm(auth_forms.PasswordResetForm):
             log.error("Failed to send mail for (%s): %s" % (user, e))
 
 
-class SetPasswordForm(auth_forms.SetPasswordForm):
+class SetPasswordForm(auth_forms.SetPasswordForm, PasswordMixin):
 
     def __init__(self, *args, **kwargs):
         super(SetPasswordForm, self).__init__(*args, **kwargs)
@@ -56,6 +64,9 @@ class SetPasswordForm(auth_forms.SetPasswordForm):
         # Django expects.
         if isinstance(self.user, DjangoUser):
             self.user = self.user.get_profile()
+
+    def clean_new_password1(self):
+        return self.clean_password('new_password1')
 
     def save(self, **kw):
         amo.log(amo.LOG.CHANGE_PASSWORD, user=self.user)
@@ -88,7 +99,7 @@ class UserDeleteForm(forms.Form):
             raise forms.ValidationError("")
 
 
-class UserRegisterForm(happyforms.ModelForm):
+class UserRegisterForm(happyforms.ModelForm, PasswordMixin):
     """
     For registering users.  We're not building off
     d.contrib.auth.forms.UserCreationForm because it doesn't do a lot of the
@@ -140,7 +151,8 @@ class UserRegisterForm(happyforms.ModelForm):
         p1 = data.get('password')
         p2 = data.get('password2')
 
-        if p1 != p2:
+        # If p1 is invalid because its blocked, this message is non sensical.
+        if p1 and p1 != p2:
             msg = _('The passwords did not match.')
             self._errors['password2'] = ErrorList([msg])
             if p2:
@@ -149,7 +161,7 @@ class UserRegisterForm(happyforms.ModelForm):
         return data
 
 
-class UserEditForm(UserRegisterForm):
+class UserEditForm(UserRegisterForm, PasswordMixin):
     oldpassword = forms.CharField(max_length=255, required=False,
                             widget=forms.PasswordInput(render_value=False))
     password = forms.CharField(max_length=255, required=False,

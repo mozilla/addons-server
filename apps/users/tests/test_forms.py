@@ -15,7 +15,7 @@ import amo
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from amo.tests.test_helpers import get_uploaded_file
-from users.models import UserProfile
+from users.models import BlacklistedPassword, UserProfile
 from users.forms import UserEditForm
 
 
@@ -54,6 +54,14 @@ class TestSetPasswordForm(UserFormBase):
                                    'new_password2': 'two'})
         self.assertFormError(r, 'form', 'new_password2',
                                    "The two password fields didn't match.")
+
+    def test_set_blacklisted(self):
+        BlacklistedPassword.objects.create(password='password')
+        url = self._get_reset_url()
+        r = self.client.post(url, {'new_password1': 'password',
+                                   'new_password2': 'password'})
+        self.assertFormError(r, 'form', 'new_password1',
+                             'That password is not allowed.')
 
     def test_set_success(self):
         url = self._get_reset_url()
@@ -227,7 +235,6 @@ class TestUserLoginForm(UserFormBase):
                         domain="builder")
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
                                    'password': 'foo'}, follow=True)
-        print r.redirect_chain
         to, code = r.redirect_chain[0]
         self.assertEqual(to, 'https://builder.addons.mozilla.org/addon/new')
         self.assertEqual(code, 302)
@@ -339,6 +346,16 @@ class TestUserRegisterForm(UserFormBase):
         r = self.client.post('/en-US/firefox/users/register', data)
         self.assertFormError(r, 'form', 'username',
                              'This username is invalid.')
+
+    def test_blacklisted_password(self):
+        BlacklistedPassword.objects.create(password='password')
+        data = {'email': 'testo@example.com',
+                'password': 'password',
+                'password2': 'password',
+                'username': 'IE6Fan', }
+        r = self.client.post('/en-US/firefox/users/register', data)
+        self.assertFormError(r, 'form', 'password',
+                             'That password is not allowed.')
 
     def test_invalid_email_domain(self):
         data = {'email': 'fake@mailinator.com',

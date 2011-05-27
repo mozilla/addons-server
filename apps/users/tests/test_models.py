@@ -16,8 +16,9 @@ from amo.signals import _connect, _disconnect
 from addons.models import Addon, AddonUser
 from bandwagon.models import Collection
 from reviews.models import Review
-from users.models import (UserProfile, get_hexdigest, BlacklistedUsername,
-                         BlacklistedEmailDomain, UserEmailField)
+from users.models import (UserProfile, get_hexdigest, BlacklistedEmailDomain,
+                          BlacklistedPassword, BlacklistedUsername,
+                          UserEmailField)
 
 
 class TestUserProfile(test_utils.TestCase):
@@ -213,3 +214,11 @@ class TestUserEmailField(test_utils.TestCase):
         with self.assertRaises(forms.ValidationError) as e:
             UserEmailField().clean('')
         eq_(e.exception.messages[0], 'This field is required.')
+
+
+class TestBlacklistedPassword(test_utils.TestCase):
+
+    def test_blacklisted(self):
+        BlacklistedPassword.objects.create(password='password')
+        assert BlacklistedPassword.blocked('password')
+        assert not BlacklistedPassword.blocked('passw0rd')

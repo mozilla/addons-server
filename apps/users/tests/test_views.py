@@ -17,7 +17,7 @@ from amo.helpers import urlparams
 from amo.pyquery_wrapper import PyQuery
 from amo.urlresolvers import reverse
 from amo.tests.test_helpers import AbuseBase, AbuseDisabledBase
-from users.models import UserProfile
+from users.models import BlacklistedPassword, UserProfile
 from users.utils import EmailResetCode
 
 
@@ -57,15 +57,26 @@ class TestEdit(UserViewBase):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
         self.user = UserProfile.objects.get(username='jbalogh')
         self.url = reverse('users.edit')
+        self.correct = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
+                        'oldpassword': 'foo', 'password': 'bar',
+                        'password2': 'bar'}
 
     def test_password_logs(self):
-        data = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
-                'oldpassword': 'foo', 'password': 'bar', 'password2': 'bar'}
-        res = self.client.post(self.url, data)
+        res = self.client.post(self.url, self.correct)
         eq_(res.status_code, 302)
         eq_(self.user.userlog_set
                 .filter(activity_log__action=amo.LOG.CHANGE_PASSWORD.id)
                 .count(), 1)
+
+    def test_password_blacklisted(self):
+        BlacklistedPassword.objects.create(password='password')
+        bad = self.correct.copy()
+        bad['password'] = 'password'
+        res = self.client.post(self.url, bad)
+        eq_(res.status_code, 200)
+        eq_(res.context['form'].is_valid(), False)
+        eq_(res.context['form'].errors['password'],
+            [u'That password is not allowed.'])
 
     def test_email_change_mail_sent(self):
         data = {'username': 'jbalogh',
