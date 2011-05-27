@@ -517,16 +517,35 @@ class TestBulkNotify(BulkValidationTest):
 
     def test_notify_template(self):
         for text, res in (['some sample text', True],
-                          ['{{ fooo }}{% if %}', False]):
+                          ['{{ ADDON_NAME }}{% if %}', False]):
             eq_(NotifyForm({'text': text, 'subject': '...'}).is_valid(), res)
 
     def test_notify_syntax(self):
         for text, res in (['some sample text', True],
-                          ['{{ fooo }}{% if %}', False]):
+                          ['{{ ADDON_NAME }}{% if %}', False]):
             r = self.client.post(self.syntax_url, {'text': text,
                                                    'subject': '..'})
             eq_(r.status_code, 200)
             eq_(json.loads(r.content)['valid'], res)
+
+    def test_undeclared_variables(self):
+        for text, res in (['{{NOT_DECLARED}}', False],
+                          ['{{ NOT_DECLARED }}', False],
+                          ["""
+                                {{ADDON_NAME}}
+                                {{NOT_DECLARED}}
+                           """, False],
+                          ['{{ADDON_NAME}} {{NOT_DECLARED}}', False],
+                          ['{{ADDON_NAME}}', True]):
+            r = self.client.post(self.syntax_url, {'text': text,
+                                                   'subject': '..'})
+            eq_(r.status_code, 200)
+            assert json.loads(r.content)['valid'] == res, (
+                        'Text %r unexpectedly resulted in %r' % (text, res))
+
+    def test_undeclared_variable_form_submit(self):
+        f = NotifyForm({'text': '{{ UNDECLARED }}', 'subject': '...'})
+        eq_(f.is_valid(), False)
 
 
 class TestBulkValidationTask(BulkValidationTest):
@@ -664,10 +683,9 @@ class TestBulkValidationTask(BulkValidationTest):
             max = AppVersion.objects.get(version=version_str)
         version = Version.objects.create(addon=addon)
 
-        ApplicationsVersions.objects.create(
-            application = self.application,
-            min = self.min, max = max,
-            version = version)
+        ApplicationsVersions.objects.create(application=self.application,
+                                            min=self.min, max=max,
+                                            version=version)
         for status in statuses:
             File.objects.create(status=status, version=version)
         return version

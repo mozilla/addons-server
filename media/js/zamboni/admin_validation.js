@@ -58,6 +58,7 @@ function initAdminValidation(doc) {
                 msg = format(msg, [$ct.attr('data-notify-count')]);
                 form = $('#failure-form').html();
             }
+            $(this).find('p.error').text('');  // clear any existing errors.
             $(this).find('p').eq(0).text(msg);
             $(this).children('form').attr('action', $ct.attr('data-job-url'));
             $(this).find('div').eq(1).html(form); // note eq(0) is the csrf hidden div

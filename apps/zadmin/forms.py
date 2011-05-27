@@ -1,4 +1,5 @@
 import os
+import re
 
 from django import forms
 from django.conf import settings
@@ -69,6 +70,9 @@ texts = {
 }
 
 
+varname = re.compile(r'{{\s*([a-zA-Z0-9_]+)\s*}}')
+
+
 class NotifyForm(happyforms.Form):
     subject = forms.CharField(widget=forms.TextInput, required=True)
     preview_only = forms.BooleanField(initial=True, required=False,
@@ -76,6 +80,7 @@ class NotifyForm(happyforms.Form):
     text = forms.CharField(widget=forms.Textarea, required=True)
     variables = ['{{ADDON_NAME}}', '{{ADDON_VERSION}}', '{{APPLICATION}}',
                  '{{COMPAT_LINK}}', '{{RESULT_LINKS}}', '{{VERSION}}']
+    variable_names = [varname.match(v).group(1) for v in variables]
 
     def __init__(self, *args, **kw):
         kw.setdefault('initial', {})
@@ -91,6 +96,10 @@ class NotifyForm(happyforms.Form):
             Template(data).render(Context({}))
         except TemplateSyntaxError, err:
             raise forms.ValidationError(err)
+        for name in varname.findall(data):
+            if name not in self.variable_names:
+                raise forms.ValidationError(
+                            u'Variable {{%s}} is not a valid variable' % name)
         return data
 
     def clean_text(self):
