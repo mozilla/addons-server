@@ -568,7 +568,6 @@ class BaseSearchToolsTest(test_utils.TestCase):
         readit.type = amo.ADDON_SEARCH
         readit.status = amo.STATUS_PUBLIC
         readit.save()
-        AppSupport(addon=readit, app_id=amo.FIREFOX.id).save()
 
         # Un-feature all others:
         Feature.objects.all().delete()
