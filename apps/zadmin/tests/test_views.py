@@ -672,8 +672,10 @@ class TestBulkValidationTask(BulkValidationTest):
             File.objects.create(status=status, version=version)
         return version
 
-    def find_files(self):
-        job = self.create_job()
+    def find_files(self, job_kwargs=None):
+        if not job_kwargs:
+            job_kwargs = {}
+        job = self.create_job(**job_kwargs)
         find_files(job)
         return list(job.result_set.values_list('file_id', flat=True))
 
@@ -805,6 +807,33 @@ class TestBulkValidationTask(BulkValidationTest):
                             version_str='4.0b2pre')
         self.delete_orig_version()
         ids = self.find_files()
+        eq_(len(ids), 0)
+
+    def test_version_slightly_newer_than_current(self):
+        # addon matching current app/version but with a newer public version
+        # that is within range of the target app/version.
+        # See bug 658739.
+        self.create_version(self.addon, [amo.STATUS_PUBLIC],
+                            version_str='3.7a2')
+        newer = self.create_version(self.addon, [amo.STATUS_PUBLIC],
+                                    version_str='3.7a3')
+        kw = dict(curr_max_version=self.appversion('3.7a2'),
+                  target_version=self.appversion('3.7a4'))
+        ids = self.find_files(job_kwargs=kw)
+        eq_(newer.files.all()[0].pk, ids[0])
+
+    def test_version_compatible_with_newer_app(self):
+        # addon with a newer public version that is already compatible with
+        # an app/version higher than the target.
+        # See bug 658739.
+        self.create_version(self.addon, [amo.STATUS_PUBLIC],
+                            version_str='3.7a2')
+        # A version that supports a newer Firefox than what we're targeting
+        self.create_version(self.addon, [amo.STATUS_PUBLIC],
+                            version_str='3.7a4')
+        kw = dict(curr_max_version=self.appversion('3.7a2'),
+                  target_version=self.appversion('3.7a3'))
+        ids = self.find_files(job_kwargs=kw)
         eq_(len(ids), 0)
 
 

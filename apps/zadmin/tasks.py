@@ -96,11 +96,24 @@ def add_validation_jobs(pks, job_pk, **kw):
              % (len(pks), pks[0], job_pk))
 
     job = ValidationJob.objects.get(pk=job_pk)
+    curr_ver = job.curr_max_version.version_int
+    target_ver = job.target_version.version_int
     prelim_app = list(amo.STATUS_UNDER_REVIEW) + [amo.STATUS_BETA]
     for addon in Addon.objects.filter(pk__in=pks):
         ids = []
         base = addon.versions.filter(apps__application=job.application.id,
-                                     apps__max=job.curr_max_version.id)
+                                     apps__max__version_int__gte=curr_ver,
+                                     apps__max__version_int__lt=target_ver)
+
+        already_compat = addon.versions.filter(
+                                    files__status=amo.STATUS_PUBLIC,
+                                    apps__max__version_int__gt=target_ver)
+        if already_compat.count():
+            log.info('Addon %s already has a public version %r which is '
+                     'compatible with a newer version of app %s'
+                     % (addon.pk, [v.pk for v in already_compat.all()],
+                        job.application.id))
+            continue
 
         try:
             public = (base.filter(files__status=amo.STATUS_PUBLIC)

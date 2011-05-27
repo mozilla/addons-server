@@ -170,10 +170,14 @@ def validation(request, form=None):
 def find_files(job):
     # This is a first pass, we know we don't want any addons in the states
     # STATUS_NULL and STATUS_DISABLED.
-    addons = (Addon.objects.filter(status__in=amo.VALID_STATUSES,
-                                disabled_by_user=False,
-                                versions__apps__application=job.application.id,
-                                versions__apps__max=job.curr_max_version.id)
+    current = job.curr_max_version.version_int
+    target = job.target_version.version_int
+    addons = (Addon.objects.filter(
+                        status__in=amo.VALID_STATUSES,
+                        disabled_by_user=False,
+                        versions__apps__application=job.application.id,
+                        versions__apps__max__version_int__gte=current,
+                        versions__apps__max__version_int__lt=target)
                            .no_transforms().values_list("pk", flat=True)
                            .distinct())
     for pks in chunked(addons, 100):

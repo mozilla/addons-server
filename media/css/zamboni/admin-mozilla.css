@@ -89,6 +89,16 @@ fieldset {
 #admin-validation .errorlist ul ul {
     margin: 0;
 }
+.validation-intro {
+    padding: 0.5em;
+}
+.validation-intro p, .validation-intro ul {
+    margin-bottom: 0;
+}
+.validation-intro ul li {
+    list-style: disc;
+    margin-left: 2em;
+}
 div.popup input[type="text"] {
     width: 588px;
 }
