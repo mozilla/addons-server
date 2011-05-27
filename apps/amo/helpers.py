@@ -437,7 +437,7 @@ def _site_nav(context):
     cats = dict((key, sorted(cs, key=attrgetter('weight', 'name')))
                 for key, cs in groups)
     ctx = dict(request=request,
-               extensions=cats[amo.ADDON_EXTENSION],
-               personas=cats[amo.ADDON_PERSONA],
-               themes=cats[amo.ADDON_THEME])
+               extensions=cats.get(amo.ADDON_EXTENSION, []),
+               personas=cats.get(amo.ADDON_PERSONA, []),
+               themes=cats.get(amo.ADDON_THEME, []))
     return jinja2.Markup(env.get_template('amo/site_nav.html').render(ctx))
