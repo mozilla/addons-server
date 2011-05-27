@@ -104,7 +104,7 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
                     overrides=overrides)
 
 
-@task(rate_limit='1/m')
+@task(rate_limit='4/m')
 @write
 def flag_binary(ids, **kw):
     log.info('[%s@%s] Flagging binary addons starting with id: %s...'

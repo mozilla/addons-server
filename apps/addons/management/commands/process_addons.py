@@ -18,8 +18,6 @@ class Command(BaseCommand):
     A generic command to run a task on *all* addons.
     Add tasks to the reg dictionary.
     """
-    help = 'Corrects the binary status of an addon.'
-
     option_list = BaseCommand.option_list + (
         make_option('--task', action='store', type='string',
                     dest='task', help='Run task on all addons.'),

@@ -52,7 +52,7 @@ def tally_job_results(job_id, **kw):
                       recipient_list=[job.finish_email])
 
 
-@task(rate_limit='1/s')
+@task(rate_limit='6/s')
 @write
 def bulk_validate_file(result_id, **kw):
     res = ValidationResult.objects.get(pk=result_id)
