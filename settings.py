@@ -243,6 +243,7 @@ def JINJA_CONFIG():
 MIDDLEWARE_CLASSES = (
     # AMO URL middleware comes first so everyone else sees nice URLs.
     'amo.middleware.TimingMiddleware',
+    'amo.middleware.GraphiteMiddleware',
     'amo.middleware.LocaleAndAppURLMiddleware',
     # Mobile detection should happen in Zeus.
     'mobility.middleware.DetectMobileMiddleware',
@@ -986,3 +987,7 @@ TASK_USER_ID = 4757633
 # If this is False, tasks and other jobs that send non-critical emails should
 # use a fake email backend.
 SEND_REAL_EMAIL = False
+
+STATSD_HOST = 'localhost'
+STATSD_PORT = 8125
+STATSD_PREFIX = 'amo'
