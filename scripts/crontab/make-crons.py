@@ -74,6 +74,7 @@ HOME = /tmp
 
 #every 3 hours
 20 */3 * * * $Z_CRON compatibility_report
+20 */3 * * * $REMORA; php -f compatibility_report.php
 
 #twice per day
 25 1,13 * * * $REMORA; /usr/bin/python26 import-personas.py
