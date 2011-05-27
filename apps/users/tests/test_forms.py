@@ -11,6 +11,7 @@ from manage import settings
 from mock import Mock, patch
 from nose.tools import eq_
 
+import amo
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from amo.tests.test_helpers import get_uploaded_file
@@ -65,6 +66,9 @@ class TestSetPasswordForm(UserFormBase):
         self.user_profile = User.objects.get(id='4043307').get_profile()
 
         assert self.user_profile.check_password('testo')
+        eq_(self.user_profile.userlog_set
+                .filter(activity_log__action=amo.LOG.CHANGE_PASSWORD.id)
+                .count(), 1)
 
 
 class TestPasswordResetForm(UserFormBase):

@@ -12,6 +12,7 @@ from pyquery import PyQuery as pq
 
 from access.models import Group, GroupUser
 from addons.models import Addon, AddonUser
+import amo
 from amo.helpers import urlparams
 from amo.pyquery_wrapper import PyQuery
 from amo.urlresolvers import reverse
@@ -54,7 +55,17 @@ class TestEdit(UserViewBase):
     def setUp(self):
         super(TestEdit, self).setUp()
         self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.user = UserProfile.objects.get(username='jbalogh')
         self.url = reverse('users.edit')
+
+    def test_password_logs(self):
+        data = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
+                'oldpassword': 'foo', 'password': 'bar', 'password2': 'bar'}
+        res = self.client.post(self.url, data)
+        eq_(res.status_code, 302)
+        eq_(self.user.userlog_set
+                .filter(activity_log__action=amo.LOG.CHANGE_PASSWORD.id)
+                .count(), 1)
 
     def test_email_change_mail_sent(self):
         data = {'username': 'jbalogh',

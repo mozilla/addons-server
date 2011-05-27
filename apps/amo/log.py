@@ -357,6 +357,12 @@ class BULK_VALIDATION_EMAILED(_LOG):
     format = _(u'Authors emailed about compatibility of {version}.')
 
 
+class CHANGE_PASSWORD(_LOG):
+    id = 48
+    action_class = None
+    format = _(u'Password changed.')
+
+
 class CUSTOM_TEXT(_LOG):
     id = 98
     action_class = None

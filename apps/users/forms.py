@@ -11,6 +11,7 @@ import commonware.log
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
+import amo
 from amo.utils import slug_validator
 from .models import (UserProfile, BlacklistedUsername, BlacklistedEmailDomain,
                      DjangoUser)
@@ -57,6 +58,7 @@ class SetPasswordForm(auth_forms.SetPasswordForm):
             self.user = self.user.get_profile()
 
     def save(self, **kw):
+        amo.log(amo.LOG.CHANGE_PASSWORD, user=self.user)
         log.info(u'User (%s) changed password with reset form' % self.user)
         super(SetPasswordForm, self).save(**kw)
 
@@ -226,6 +228,7 @@ class UserEditForm(UserRegisterForm):
 
         if data['password']:
             u.set_password(data['password'])
+            amo.log(amo.LOG.CHANGE_PASSWORD)
             log.info(u'User (%s) changed their password' % u)
 
         log.debug(u'User (%s) updated their profile' % u)
