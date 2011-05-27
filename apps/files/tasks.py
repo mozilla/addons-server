@@ -123,8 +123,7 @@ def repackage_jetpack(builder_data, **kw):
     upgrader.finish(builder_data['file_id'])
 
     try:
-        send_upgrade_email(addon, new_version, old_file.version,
-                           file_data['version'])
+        send_upgrade_email(addon, new_version, file_data['version'])
     except Exception:
         jp_log.error(msg('Could not send success email.'), exc_info=True)
         raise
@@ -134,14 +133,14 @@ def repackage_jetpack(builder_data, **kw):
     return new_file
 
 
-def send_upgrade_email(addon, new_version, old_version, sdk_version):
+def send_upgrade_email(addon, new_version, sdk_version):
     cxn = get_email_backend()
-    subject = '[addons.mozilla.org] Your Jetpack Add-on has been Updated!'
+    subject = u'%s updated to SDK version %s' % (addon.name, sdk_version)
     from_ = settings.DEFAULT_FROM_EMAIL
     to = set(addon.authors.values_list('email', flat=True))
     t = jingo.env.get_template('files/jetpack_upgraded.txt')
     msg = t.render(addon=addon, new_version=new_version,
-                   old_version=old_version, sdk_version=sdk_version)
+                   sdk_version=sdk_version)
     django.core.mail.send_mail(subject, msg, from_, to, connection=cxn)
 
 
