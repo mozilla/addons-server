@@ -18,6 +18,7 @@ import commonware.log
 import MySQLdb as mysql
 import tower
 import jingo
+from statsd import statsd
 
 import amo
 from . import urlresolvers
@@ -174,3 +175,13 @@ class TimingMiddleware(object):
         msg = '{method} "{url}" ({code}) {time:.2f} [{auth}]'.format(**d)
         timing_log.info(msg)
         return response
+
+
+class GraphiteMiddleware(object):
+
+    def process_response(self, request, response):
+        statsd.incr('response.%s' % response.status_code)
+        return response
+
+    def process_exception(self, request, exception):
+        statsd.incr('response.500')
