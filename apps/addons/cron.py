@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.db import connections, transaction
-from django.db.models import Q, F, Avg
+from django.db.models import Q, F, Avg, Count
 
 import multidb
 import path
@@ -441,3 +441,15 @@ def reindex_addons():
     with establish_connection() as conn:
         for chunk in chunked(sorted(list(ids)), 150):
             tasks.index_addons.apply_async(args=[chunk], connection=conn)
+
+
+# TODO(jbalogh): remove after 6.0.12 (bug 659948)
+@cronjobs.register
+def fix_dupe_appsupport():
+    from . import tasks
+    # Find all the appsupport (addon, app) rows with duplicate entries.
+    qs = (AppSupport.objects.values('addon', 'app')
+          .annotate(cnt=Count('id')).filter(cnt__gt=1))
+    addons = set(a['addon'] for a in qs)
+    # Update appsupport again to fix the dupes.
+    tasks.update_appsupport(addons)

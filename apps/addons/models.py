@@ -1322,6 +1322,7 @@ class AppSupport(amo.models.ModelBase):
 
     class Meta:
         db_table = 'appsupport'
+        unique_together = ('addon', 'app')
 
 
 class Charity(amo.models.ModelBase):
