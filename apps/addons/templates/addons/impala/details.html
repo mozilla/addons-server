@@ -123,8 +123,8 @@
   </div>
   {% include "reviews/grouped_ratings.html" %}
   <p>
-    <a class="button" href="{{ url('reviews.add', addon.slug) }}">{{ _('Write a review') }}</a>
-  <p>
+    <a class="button" id="add-review" href="{{ url('reviews.add', addon.slug) }}">{{ _('Write a review') }}</a>
+  </p>
 </aside>
 
 <section id="reviews" class="primary island c">
@@ -238,3 +238,12 @@
 </section>
 
 {% endblock content %}
+
+{% block popups %}
+  {% if review_form: %}
+    {% if request.user.is_authenticated() %}
+      {{ impala_review_add_box(addon=addon) }}
+    {% endif %}
+  {% endif %}
+{% endblock %}
+

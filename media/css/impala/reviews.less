@@ -12,6 +12,7 @@
     &.stars-3 { background-position: -26px 0; }
     &.stars-2 { background-position: -39px 0; }
     &.stars-1 { background-position: -52px 0; }
+    &.stars-0 { background-position: -65px 0; }
     &.large {
         display: block;
         background: url(../../img/impala/stars-16.png) no-repeat left top;
@@ -84,5 +85,52 @@
             right: auto;
             left: -4px;
         }
+    }
+}
+
+#review-add-box {
+    width: 650px;
+}
+#review-box {
+    position: relative;
+    form {
+        width: 50%;
+        height: 212px;
+        float: left;
+        padding: 0 10px 0 0;
+        margin-right: 1em;
+    }
+    textarea {
+        height: 100px;
+    }
+    div {
+        padding-left: 50%;
+        p {
+            padding-left: 1em;
+        }
+    }
+    .ratingwidget {
+        display: inline-block;
+        margin: 0 0 2px 8px;
+    }
+    input[type=submit] {
+        margin-top: 1em;
+    }
+}
+
+.ratingwidget {
+    display: block;
+    float: none;
+    width: 65px;
+    margin-bottom: 1em;
+    input {
+        display: none;
+    }
+    label {
+        text-indent: -5000px;
+        display: block;
+        float: left;
+        width: 13px;
+        cursor: pointer;
     }
 }

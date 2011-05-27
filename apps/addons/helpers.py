@@ -134,6 +134,15 @@ def review_add_box(context, addon):
     return c
 
 
+@register.inclusion_tag('addons/impala/review_add_box.html')
+@jinja2.contextfunction
+def impala_review_add_box(context, addon):
+    """Details page: Show a box for the user to post a review."""
+    c = dict(context.items())
+    c['addon'] = addon
+    return c
+
+
 @register.inclusion_tag('addons/tags_box.html')
 @jinja2.contextfunction
 def tags_box(context, addon, tags=None):

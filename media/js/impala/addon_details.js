@@ -43,7 +43,6 @@ $(function () {
                         'margin-top': (525-$img.height())/2+'px',
                         'margin-left': (700-$img.width())/2+'px'
                     });
-                    console.log("loading other images");
                     for (var i=0; i<$strip.length; i++) {
                         if (i != current) {
                             var $p = $strip.eq(i).find("a");
@@ -83,4 +82,6 @@ $(function () {
         }));
         $document.scroll();
     })();
+
+    $('#review-add-box').modal('#add-review', { width: '650px' });
 });
