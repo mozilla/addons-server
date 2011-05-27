@@ -50,8 +50,8 @@ class TestSetPasswordForm(UserFormBase):
         self.assertFormError(r, 'form', 'new_password2',
                                    "This field is required.")
 
-        r = self.client.post(url, {'new_password1': 'one',
-                                   'new_password2': 'two'})
+        r = self.client.post(url, {'new_password1': 'onelonger',
+                                   'new_password2': 'twolonger'})
         self.assertFormError(r, 'form', 'new_password2',
                                    "The two password fields didn't match.")
 
@@ -63,17 +63,24 @@ class TestSetPasswordForm(UserFormBase):
         self.assertFormError(r, 'form', 'new_password1',
                              'That password is not allowed.')
 
+    def test_set_short(self):
+        url = self._get_reset_url()
+        r = self.client.post(url, {'new_password1': 'short',
+                                   'new_password2': 'short'})
+        self.assertFormError(r, 'form', 'new_password1',
+                             'Must be 8 characters or more.')
+
     def test_set_success(self):
         url = self._get_reset_url()
 
-        assert self.user_profile.check_password('testo') is False
+        assert self.user_profile.check_password('testlonger') is False
 
-        self.client.post(url, {'new_password1': 'testo',
-                               'new_password2': 'testo'})
+        self.client.post(url, {'new_password1': 'testlonger',
+                               'new_password2': 'testlonger'})
 
         self.user_profile = User.objects.get(id='4043307').get_profile()
 
-        assert self.user_profile.check_password('testo')
+        assert self.user_profile.check_password('testlonger')
         eq_(self.user_profile.userlog_set
                 .filter(activity_log__action=amo.LOG.CHANGE_PASSWORD.id)
                 .count(), 1)
@@ -313,8 +320,8 @@ class TestUserRegisterForm(UserFormBase):
 
     def test_register_existing_account(self):
         data = {'email': 'jbalogh@mozilla.com',
-                'password': 'xxx',
-                'password2': 'xxx',
+                'password': 'xxxlonger',
+                'password2': 'xxxlonger',
                 'username': 'xxx', }
         r = self.client.post('/en-US/firefox/users/register', data)
         self.assertFormError(r, 'form', 'email',
@@ -323,8 +330,8 @@ class TestUserRegisterForm(UserFormBase):
 
     def test_set_unmatched_passwords(self):
         data = {'email': 'john.connor@sky.net',
-                'password': 'new1',
-                'password2': 'new2', }
+                'password': 'new1longer',
+                'password2': 'new2longer', }
         r = self.client.post('/en-US/firefox/users/register', data)
         self.assertFormError(r, 'form', 'password2',
                                             'The passwords did not match.')
@@ -332,16 +339,16 @@ class TestUserRegisterForm(UserFormBase):
 
     def test_invalid_username(self):
         data = {'email': 'testo@example.com',
-                'password': 'xxx',
-                'password2': 'xxx',
+                'password': 'xxxlonger',
+                'password2': 'xxxlonger',
                 'username': 'Todd/Rochelle', }
         r = self.client.post('/en-US/firefox/users/register', data)
         self.assertFormError(r, 'form', 'username', validate_slug.message)
 
     def test_blacklisted_username(self):
         data = {'email': 'testo@example.com',
-                'password': 'xxx',
-                'password2': 'xxx',
+                'password': 'xxxlonger',
+                'password2': 'xxxlonger',
                 'username': 'IE6Fan', }
         r = self.client.post('/en-US/firefox/users/register', data)
         self.assertFormError(r, 'form', 'username',
@@ -357,10 +364,20 @@ class TestUserRegisterForm(UserFormBase):
         self.assertFormError(r, 'form', 'password',
                              'That password is not allowed.')
 
+    def test_blacklisted_password(self):
+        BlacklistedPassword.objects.create(password='password')
+        data = {'email': 'testo@example.com',
+                'password': 'short',
+                'password2': 'short',
+                'username': 'IE6Fan', }
+        r = self.client.post('/en-US/firefox/users/register', data)
+        self.assertFormError(r, 'form', 'password',
+                             'Must be 8 characters or more.')
+
     def test_invalid_email_domain(self):
         data = {'email': 'fake@mailinator.com',
-                'password': 'xxx',
-                'password2': 'xxx',
+                'password': 'xxxlonger',
+                'password2': 'xxxlonger',
                 'username': 'trulyfake', }
         r = self.client.post('/en-US/firefox/users/register', data)
         self.assertFormError(r, 'form', 'email',

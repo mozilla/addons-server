@@ -21,9 +21,19 @@ log = commonware.log.getLogger('z.users')
 
 
 class PasswordMixin:
+    min_length = 8
+    error_msg = {'min_length': _('Must be %s characters or more.')
+                               % min_length}
+
+    @classmethod
+    def widget(cls, **kw):
+        return forms.PasswordInput(attrs={'class': 'password-strength',
+                                          'data-min-length': cls.min_length},
+                                   **kw)
+
     def clean_password(self, field='password'):
         data = self.cleaned_data[field]
-        if BlacklistedPassword.blocked(data):
+        if data and BlacklistedPassword.blocked(data):
             raise forms.ValidationError(_('That password is not allowed.'))
         return data
 
@@ -57,6 +67,10 @@ class PasswordResetForm(auth_forms.PasswordResetForm):
 
 
 class SetPasswordForm(auth_forms.SetPasswordForm, PasswordMixin):
+    new_password1 = forms.CharField(label=_("New password"),
+                                    min_length=PasswordMixin.min_length,
+                                    error_messages=PasswordMixin.error_msg,
+                                    widget=PasswordMixin.widget())
 
     def __init__(self, *args, **kwargs):
         super(SetPasswordForm, self).__init__(*args, **kwargs)
@@ -76,7 +90,7 @@ class SetPasswordForm(auth_forms.SetPasswordForm, PasswordMixin):
 
 class UserDeleteForm(forms.Form):
     password = forms.CharField(max_length=255, required=True,
-                            widget=forms.PasswordInput(render_value=False))
+                               widget=forms.PasswordInput(render_value=False))
     confirm = forms.BooleanField(required=True)
 
     def __init__(self, *args, **kwargs):
@@ -107,7 +121,9 @@ class UserRegisterForm(happyforms.ModelForm, PasswordMixin):
     """
 
     password = forms.CharField(max_length=255,
-                               widget=forms.PasswordInput(render_value=False))
+                               min_length=PasswordMixin.min_length,
+                               error_messages=PasswordMixin.error_msg,
+                               widget=PasswordMixin.widget(render_value=False))
 
     password2 = forms.CharField(max_length=255,
                                 widget=forms.PasswordInput(render_value=False))
@@ -165,7 +181,9 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
     oldpassword = forms.CharField(max_length=255, required=False,
                             widget=forms.PasswordInput(render_value=False))
     password = forms.CharField(max_length=255, required=False,
-                               widget=forms.PasswordInput(render_value=False))
+                               min_length=PasswordMixin.min_length,
+                               error_messages=PasswordMixin.error_msg,
+                               widget=PasswordMixin.widget(render_value=False))
 
     password2 = forms.CharField(max_length=255, required=False,
                                 widget=forms.PasswordInput(render_value=False))

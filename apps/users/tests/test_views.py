@@ -58,8 +58,8 @@ class TestEdit(UserViewBase):
         self.user = UserProfile.objects.get(username='jbalogh')
         self.url = reverse('users.edit')
         self.correct = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
-                        'oldpassword': 'foo', 'password': 'bar',
-                        'password2': 'bar'}
+                        'oldpassword': 'foo', 'password': 'longenough',
+                        'password2': 'longenough'}
 
     def test_password_logs(self):
         res = self.client.post(self.url, self.correct)
@@ -77,6 +77,15 @@ class TestEdit(UserViewBase):
         eq_(res.context['form'].is_valid(), False)
         eq_(res.context['form'].errors['password'],
             [u'That password is not allowed.'])
+
+    def test_password_short(self):
+        bad = self.correct.copy()
+        bad['password'] = 'short'
+        res = self.client.post(self.url, bad)
+        eq_(res.status_code, 200)
+        eq_(res.context['form'].is_valid(), False)
+        eq_(res.context['form'].errors['password'],
+            [u'Must be 8 characters or more.'])
 
     def test_email_change_mail_sent(self):
         data = {'username': 'jbalogh',
