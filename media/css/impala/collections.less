@@ -1,0 +1,89 @@
+#ajax_collections_list {
+    margin: 0 0 .5em 0;
+    li {
+        cursor: pointer;
+        padding-left: 30px;
+        background-repeat: no-repeat;
+        background-position: 0 4px;
+        background-image: url(../../img/zamboni/icons/checks.png);
+    }
+    li:hover {
+        background-position: 0 -36px;
+    }
+    li.selected {
+        background-position: 0 -76px;
+    }
+    li.ajax-loading {
+       background-image: url(../../img/zamboni/loading-white.gif);
+       background-position: left bottom;
+    }
+}
+
+#ajax_new_collection {
+    border-top: 1px dashed #aecfda;
+    padding: .5em 0 0 30px;
+    margin: 0;
+}
+
+#add-to-collection form {
+    margin-bottom: 0;
+    #id_description {
+        height: 6em;
+    }
+}
+
+.edit_with_prefix, .edit-with-suffix {
+    span {
+        border: 1px solid #5875A0;
+        background: #eee;
+        color: #888;
+    }
+    input:focus {
+        outline: 0;
+    }
+}
+.edit_with_prefix span {
+    border-right: 0 none;
+    padding: 2px 2px 2px 5px;
+}
+.edit_with_prefix input {
+    border-left: 0 none;
+}
+.edit_with_suffix span {
+    border-left: 0 none;
+    padding: 2px 5px 2px 2px;
+}
+.edit_with_suffix input {
+    border-right: 0 none;
+}
+.edit_initially_hidden {
+    display: none;
+}
+
+#slug_value {
+    font-weight: bold;
+    color: #222;
+}
+
+#collection-form-slug,
+#clear-recents {
+    font-size: .9em;
+}
+
+#collection-favorites-opts li {
+    display: inline-block;
+    margin-right: 1em;
+}
+
+.collections-details #id_name {
+    display: block;
+    -moz-box-sizing: border-box;
+    width: 100%;
+}
+
+#collection_listed {
+    margin-bottom: 1.5em;
+    ul label {
+        font-weight: normal;
+    }
+}
