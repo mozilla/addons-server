@@ -9,7 +9,9 @@ $(function() {
 
 
 function initAdminValidation(doc) {
-    var $elem = $('#id_application', doc);
+    var $elem = $('#id_application', doc),
+        statInterval,
+        incompleteJobs = {};
 
     $elem.change(function(e) {
         var maxVer = $('#id_curr_max_version, #id_target_version', doc),
@@ -85,6 +87,86 @@ function initAdminValidation(doc) {
     $('#notify form span.cancel a').click(_pd(function() {
         $popup.hideMe();
     }));
+
+    function startStats() {
+        var incompleteJobIds = [],
+            checkStatus;
+        $('tr.job-result').each(function(i, el) {
+            var $el = $(el),
+                $td = $el.children('td.tests-finished'),
+                isComplete = parseInt($el.attr('data-is-complete'), 10),
+                jobId = parseInt($el.attr('data-job-id'), 10);
+            if (!isComplete) {
+                incompleteJobIds.push(jobId);
+                incompleteJobs[jobId] = $td;
+                createProgressBar($td);
+            }
+        });
+        if (incompleteJobIds.length) {
+            var checkStatus = function() {
+                $('#admin-validation').trigger('checkstats', [incompleteJobIds]);
+            };
+            checkStatus();
+            statInterval = setInterval(checkStatus, 3000);
+        }
+    }
+
+    startStats();
+
+    $('td').bind('receivestats', function(ev, stats) {
+        var $el = $(this),
+            $tr = $el.parent(),
+            complete = stats.percent_complete;
+        $tr.children('td.tested').text(stats.total);
+        $tr.children('td.failing').text(stats.failing);
+        $tr.children('td.passing').text(stats.passing);
+        $tr.children('td.exceptions').text(stats.errors);
+        $('.job-status-bar div', $el).animate({'width': complete + '%'},
+                                              {duration: 500});
+        if (stats.completed_timestamp != '') {
+            delete incompleteJobs[stats.job_id];
+            $('.job-status-bar', $el).remove();
+            $el.text(stats.completed_timestamp);
+            jobCompleted();
+        }
+    });
+
+    $('#admin-validation').bind('checkstats', function(ev, job_ids) {
+        $.ajax({type: 'POST',
+                url: $(this).attr('data-status-url'),
+                data: {job_ids: JSON.stringify(job_ids)},
+                cache: false,
+                success: function(data) {
+                    $.each(data, function(jobId, stats) {
+                        incompleteJobs[jobId].trigger('receivestats', [stats]);
+                    });
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    if (typeof console !== 'undefined')
+                        console.log('error: ' + textStatus);
+                },
+                dataType: 'json'
+        });
+    });
+
+    function createProgressBar($el) {
+        var bar = {};
+        bar.progress_outside = $('<div>', {'class': 'job-status-bar'});
+        bar.progress_inside = $('<div>').css('width', 0);
+        bar.progress_outside.append(bar.progress_inside);
+        $el.append(bar.progress_outside);
+        bar.progress_outside.show();
+    }
+
+    function jobCompleted() {
+        var allDone = true;
+        $.each(incompleteJobs, function(jobId, el) {
+            allDone = false;
+        });
+        if (allDone) {
+            clearInterval(statInterval);
+        }
+    }
 }
 
 })();

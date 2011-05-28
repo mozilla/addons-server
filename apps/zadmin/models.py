@@ -92,6 +92,13 @@ class ValidationJob(amo.models.ModelBase):
     def get_failure_preview_emails(self):
         return EmailPreviewTopic(self, 'failures').filter()
 
+    def is_complete(self, as_int=False):
+        completed = self.completed is not None
+        if as_int:
+            return 1 if completed else 0
+        else:
+            return completed
+
     @property
     def stats(self):
         if not hasattr(self, '_stats'):
@@ -105,8 +112,10 @@ class ValidationJob(amo.models.ModelBase):
         errors = self.result_errors().count()
         failing = self.result_failing().count()
         return {
+            'job_id': self.pk,
             'total': total,
             'completed': completed,
+            'completed_timestamp': str(self.completed or ''),
             'passing': passing,
             'failing': failing,
             'errors': errors,

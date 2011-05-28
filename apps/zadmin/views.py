@@ -1,4 +1,6 @@
 import csv
+from decimal import Decimal
+import json
 from urlparse import urlparse
 
 from django import http
@@ -195,6 +197,22 @@ def start_validation(request):
         return redirect(reverse('zadmin.validation'))
     else:
         return validation(request, form=form)
+
+
+@login_required
+@post_required
+@json_view
+def job_status(request):
+    ids = json.loads(request.POST['job_ids'])
+    jobs = ValidationJob.objects.filter(pk__in=ids)
+    all_stats = {}
+    for job in jobs:
+        status = job.stats
+        for k, v in status.items():
+            if isinstance(v, Decimal):
+                status[k] = str(v)
+        all_stats[job.pk] = status
+    return all_stats
 
 
 def completed_versions_dirty(job):
