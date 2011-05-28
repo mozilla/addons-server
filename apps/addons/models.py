@@ -388,7 +388,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return Review.objects.filter(addon=self, reply_to=None)
 
     def get_category(self, app):
-        if app in self._first_category:
+        if app in getattr(self, '_first_category', {}):
             return self._first_category[app]
         categories = list(self.categories.filter(application=app))
         return categories[0] if categories else None
