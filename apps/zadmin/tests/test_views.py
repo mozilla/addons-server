@@ -226,12 +226,13 @@ class TestBulkValidation(BulkValidationTest):
         r = self.client.get(reverse('zadmin.validation'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('table tr td').eq(2).text(), self.curr_max.version)
-        eq_(doc('table tr td').eq(3).text(), '3.7a3')
-        eq_(doc('table tr td').eq(4).text(), '2')  # tested
-        eq_(doc('table tr td').eq(5).text(), '1')  # failing
-        eq_(doc('table tr td').eq(6).text()[0], '1')  # passing
-        eq_(doc('table tr td').eq(7).text(), '0')  # exceptions
+        eq_(doc('table tr td').eq(2).text(), 'Firefox')
+        eq_(doc('table tr td').eq(3).text(), self.curr_max.version)
+        eq_(doc('table tr td').eq(4).text(), '3.7a3')
+        eq_(doc('table tr td').eq(5).text(), '2')  # tested
+        eq_(doc('table tr td').eq(6).text(), '1')  # failing
+        eq_(doc('table tr td').eq(7).text()[0], '1')  # passing
+        eq_(doc('table tr td').eq(8).text(), '0')  # exceptions
 
     def test_application_versions_json(self):
         r = self.client.post(reverse('zadmin.application_versions_json'),
