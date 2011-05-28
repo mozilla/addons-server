@@ -11,8 +11,11 @@
       </ul>
     {% endif %}
   </li>
+  <li class="nomenu logout">
+    <a href="{{ url('users.logout') }}">Log out</a>
+  </li>
 {% else %}
-  <li class="account anonymous nomenu">
+  <li class="account anonymous nomenu logout">
     {# TODO(jbalogh): reverse #}
     {% trans reg="/users/register", login=login_link() %}
       <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>
