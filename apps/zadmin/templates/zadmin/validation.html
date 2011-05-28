@@ -1,6 +1,6 @@
 {% extends "admin/base.html" %}
 
-{% set title = _('Bulk Addon Validation') %}
+{% set title = 'Bulk Addon Validation' %}
 {% block title %}{{ page_title(title) }}{% endblock %}
 
 {% block js %}
@@ -25,7 +25,7 @@
     <label for="id_finish_email">{{ form['finish_email'].label }}</label>
     <span id="elem-finish_email">{{ form['finish_email'] }}</span>
     <div class="button">
-      <button type="submit">{{ _('Start validation') }}</button>
+      <button type="submit">Start validation</button>
     </div>
   </div>
   </form>
@@ -48,15 +48,15 @@
   </div>
   <table>
     <tr>
-      <th>{{ _('Tests Started') }}</th>
-      <th>{{ _('Tests Finished') }}</th>
-      <th>{{ _('Current Version') }}</th>
-      <th>{{ _('Target Version') }}</th>
-      <th>{{ _('Tested') }}</th>
-      <th>{{ _('Failing') }}</th>
-      <th>{{ _('Passing') }}</th>
-      <th>{{ _('Exceptions') }}</th>
-      <th>{{ _('Actions') }}</th>
+      <th>Tests Started</th>
+      <th>Tests Finished</th>
+      <th>Current Version</th>
+      <th>Target Version</th>
+      <th>Tested</th>
+      <th>Failing</th>
+      <th>Passing</th>
+      <th>Exceptions</th>
+      <th>Actions</th>
     </tr>
     {% for job in validation_jobs %}
     <tr>
@@ -101,9 +101,7 @@
             <p>Available variables: {{ ', '.join(success_form.variables) }}</p>
             <p class="js-hidden error"></p>
             <div>{# placeholder for the form #}</div>
-            <button type="submit">
-                {{ _('Continue') }}
-            </button>
+            <button type="submit">Continue</button>
             <span class="cancel"><a href="#">{{ _('Cancel') }}</a></span>
         </form>
     </div>
