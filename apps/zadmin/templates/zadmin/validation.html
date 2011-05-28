@@ -9,7 +9,8 @@
 {% endblock %}
 
 {% block content %}
-<section id="admin-validation">
+<section id="admin-validation"
+         data-status-url="{{ url('zadmin.job_status') }}">
   <h2>{{ title }}</h2>
   {% include "messages.html" %}
   {{ form.errors }}
@@ -48,6 +49,7 @@
   </div>
   <table>
     <tr>
+      <th>ID</th>
       <th>Tests Started</th>
       <th>Tests Finished</th>
       <th>Application</th>
@@ -60,14 +62,17 @@
       <th>Actions</th>
     </tr>
     {% for job in validation_jobs %}
-    <tr>
+    <tr class="job-result"
+        data-is-complete="{{ job.is_complete(as_int=True) }}"
+        data-job-id="{{ job.pk }}">
+      <td>{{ job.pk }}</td>
       <td>{{ job.created }}</td>
-      <td>{{ job.completed }}</td>
+      <td class="tests-finished">{{ job.completed }}</td>
       <td>{{ amo.APPS_ALL[job.application.id].pretty }}</td>
       <td>{{ job.curr_max_version.version }}</td>
       <td>{{ job.target_version.version }}</td>
-      <td>{{ job.stats['total'] }}</td>
-      <td>{{ job.stats['failing'] }}
+      <td class="tested">{{ job.stats['total'] }}</td>
+      <td class="failing">{{ job.stats['failing'] }}
         {% if job.completed and job.stats['failing'] > 0 %}
             <a href="" class="notify v-popup"
                        data-job-url="{{ url('zadmin.notify.failure', job.pk) }}"
@@ -77,7 +82,7 @@
           {% endif %}
         {% endif %}
       </td>
-      <td>{{ job.stats['passing'] }}
+      <td class="passing">{{ job.stats['passing'] }}
           {% if job.completed and job.stats['passing'] > 0 %}
               <a href="#" class="set-max-version v-popup"
                           data-job-version="{{ job.target_version.version }}"
@@ -88,7 +93,7 @@
             {% endif %}
           {% endif %}
       </td>
-      <td>{{ job.stats['errors'] }}</td>
+      <td class="exceptions">{{ job.stats['errors'] }}</td>
       <td></td>
     </tr>
     {% endfor %}
