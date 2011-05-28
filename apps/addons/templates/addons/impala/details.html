@@ -240,6 +240,15 @@
 {% endblock content %}
 
 {% block popups %}
+  {% if addon.privacy_policy %}
+    <div class="modal" id="privacy-policy">
+      <a href="#" class="close">{{ _('close') }}</a>
+      <h2>{{ _('Privacy Policy') }}</h2>
+      <div class="copy">
+        {{ addon.privacy_policy|nl2br }}
+      </div>
+    </div>
+  {% endif %}
   {% if review_form: %}
     {% if request.user.is_authenticated() %}
       {{ impala_review_add_box(addon=addon) }}
