@@ -411,6 +411,8 @@ MINIFY_BUNDLES = {
             'css/impala/contributions.less',
             'css/impala/lightbox.less',
             'css/impala/copy.less',
+            'css/impala/sharing.less',
+            'css/impala/collections.less',
         ),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',
