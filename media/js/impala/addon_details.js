@@ -83,7 +83,9 @@ $(function () {
         $document.scroll();
     })();
 
-    $('#review-add-box').modal('#add-review', { width: '650px' });
+    if ($('#review-add-box').exists())
+        $('#review-add-box').modal('#add-review', { width: '650px' });
 
-    $('#privacy-policy').modal('.privacy-policy', { width: '500px' });
+    if ($('#privacy-policy').exists())
+        $('#privacy-policy').modal('.privacy-policy', { width: '500px' });
 });
