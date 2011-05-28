@@ -11,6 +11,7 @@
         "js/zamboni/editors.js",
         "js/zamboni/upload.js",
         "js/zamboni/files.js",
-        "js/zamboni/contributions.js"
+        "js/zamboni/contributions.js",
+        "js/zamboni/password-strength.js"
     ]
 }

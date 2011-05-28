@@ -483,6 +483,9 @@ MINIFY_BUNDLES = {
 
             # Hover delay for global header
             'js/global/menu.js',
+
+            # Password length and strength
+            'js/zamboni/password-strength.js'
         ),
         'impala': (
             'js/lib/jquery-1.6.min.js',
