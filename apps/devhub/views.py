@@ -538,6 +538,7 @@ def file_validation(request, addon_id, addon, file_id):
     v = reverse('devhub.json_file_validation', args=[addon.slug, file.id])
     return jingo.render(request, 'devhub/validation.html',
                         dict(validate_url=v, filename=file.filename,
+                             timestamp=file.created,
                              addon=addon))
 
 
@@ -559,6 +560,8 @@ def validation_result(request, addon_id, addon, result_id):
         change_links['%s %s' % (amo.APP_IDS[app].guid, ver)] = tpl % major
     return jingo.render(request, 'devhub/validation.html',
                         dict(validate_url=v, filename=result.file.filename,
+                             timestamp=result.completed,
+                             job=result.validation_job,
                              addon=result.file.version.addon,
                              result_type='compat',
                              app_trans=app_trans,
