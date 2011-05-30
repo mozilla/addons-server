@@ -358,6 +358,11 @@ class APITest(TestCase):
                             status_code=503)
     test_sphinx_off.sphinx = True
 
+    def test_slug(self):
+        self.assertContains(make_call('addon/5299', version=1.5),
+                            '<slug>%s</slug>' %
+                            Addon.objects.get(pk=5299).slug)
+
     def test_is_featured(self):
         self.assertContains(make_call('addon/5299', version=1.5),
                             '<featured>0</featured>')

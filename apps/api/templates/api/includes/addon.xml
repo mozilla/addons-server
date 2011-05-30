@@ -4,6 +4,7 @@
   <name>{{ addon.name }}</name>
   <type id="{{ addon.type }}">{{ amo.ADDON_TYPE[addon.type] }}</type>
   <guid>{{ addon.guid }}</guid>
+  <slug>{{ addon.slug }}</slug>
   <version>{{ addon.current_version.version }}</version>
   <status id="{{ addon.status }}">{{ amo.STATUS_CHOICES[addon.status] }}</status>
   <authors>
