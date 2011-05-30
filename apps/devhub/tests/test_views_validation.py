@@ -62,7 +62,7 @@ class TestFileValidation(test_utils.TestCase):
     def test_results_page(self):
         r = self.client.get(reverse('devhub.file_validation',
                                     args=[self.addon.slug, self.file.id]),
-                                    follow=True)
+                            follow=True)
         eq_(r.status_code, 200)
         eq_(r.context['addon'], self.addon)
         doc = pq(r.content)
@@ -78,7 +78,7 @@ class TestFileValidation(test_utils.TestCase):
                                  password='password')
         r = self.client.get(reverse('devhub.file_validation',
                                     args=[self.addon.slug, self.file.id]),
-                                    follow=True)
+                            follow=True)
         eq_(r.status_code, 403)
 
     def test_only_dev_can_see_json_results(self):
@@ -87,7 +87,7 @@ class TestFileValidation(test_utils.TestCase):
                                  password='password')
         r = self.client.post(reverse('devhub.json_file_validation',
                                     args=[self.addon.slug, self.file.id]),
-                                    follow=True)
+                             follow=True)
         eq_(r.status_code, 403)
 
     def test_editor_can_see_results(self):
@@ -96,7 +96,7 @@ class TestFileValidation(test_utils.TestCase):
                                  password='password')
         r = self.client.get(reverse('devhub.file_validation',
                                     args=[self.addon.slug, self.file.id]),
-                                    follow=True)
+                            follow=True)
         eq_(r.status_code, 200)
 
     def test_editor_can_see_json_results(self):
@@ -105,13 +105,13 @@ class TestFileValidation(test_utils.TestCase):
                                  password='password')
         r = self.client.post(reverse('devhub.json_file_validation',
                                     args=[self.addon.slug, self.file.id]),
-                                    follow=True)
+                             follow=True)
         eq_(r.status_code, 200)
 
     def test_no_html_in_messages(self):
         r = self.client.post(reverse('devhub.json_file_validation',
                                      args=[self.addon.slug, self.file.id]),
-                                     follow=True)
+                             follow=True)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
         msg = data['validation']['messages'][0]
@@ -160,19 +160,26 @@ class TestValidateFile(BaseUploadTest):
     def test_lazy_validate(self):
         r = self.client.post(reverse('devhub.json_file_validation',
                                      args=[self.addon.slug, self.file.id]),
-                                     follow=True)
+                             follow=True)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
         assert_no_validation_errors(data)
         msg = data['validation']['messages'][0]
         eq_(msg['message'], 'The value of &lt;em:id&gt; is invalid.')
 
+    def test_time(self):
+        r = self.client.post(reverse('devhub.file_validation',
+                                     args=[self.addon.slug, self.file.id]),
+                             follow=True)
+        doc = pq(r.content)
+        assert doc('time').text()
+
     @mock.patch('devhub.tasks.run_validator')
     def test_validator_errors(self, v):
         v.side_effect = ValueError('catastrophic failure in amo-validator')
         r = self.client.post(reverse('devhub.json_file_validation',
                                      args=[self.addon.slug, self.file.id]),
-                                     follow=True)
+                             follow=True)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
         eq_(data['validation'], '')
@@ -199,7 +206,7 @@ class TestValidateFile(BaseUploadTest):
         eq_(self.addon.binary, False)
         r = self.client.post(reverse('devhub.json_file_validation',
                                      args=[self.addon.slug, self.file.id]),
-                                     follow=True)
+                             follow=True)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
         assert_no_validation_errors(data)
@@ -248,11 +255,19 @@ class TestCompatibilityResults(test_utils.TestCase):
     def test_validation_success(self):
         r = self.client.post(reverse('devhub.json_validation_result',
                                      args=[self.addon.slug, self.result.id]),
-                                     follow=True)
+                             follow=True)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
         eq_(data['validation']['messages'][3]['for_appversions'],
             {'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': ['4.0b3']})
+
+    def test_time(self):
+        r = self.client.post(reverse('devhub.validation_result',
+                                     args=[self.addon.slug, self.result.id]),
+                             follow=True)
+        doc = pq(r.content)
+        assert doc('time').text()
+        eq_(doc('table tr td:eq(1)').text(), '4.0.*')
 
     def test_validation_error(self):
         try:
@@ -262,7 +277,7 @@ class TestCompatibilityResults(test_utils.TestCase):
         self.result.update(validation='', task_error=error)
         r = self.client.post(reverse('devhub.json_validation_result',
                                      args=[self.addon.slug, self.result.id]),
-                                     follow=True)
+                             follow=True)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
         eq_(data['validation'], '')

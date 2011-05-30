@@ -9,6 +9,20 @@
   {{ dev_breadcrumbs(addon, items=[(None, title)]) }}
   <h2>{{ title }}</h2>
 </header>
+
+<table>
+    <tr>
+        <th>{{ _('Validated at:') }}</th>
+        <td><time datetime="{{ timestamp|isotime}}">{{ timestamp|datetime}}</time></td>
+    </tr>
+    {% if result_type == 'compat' %}
+    <tr>
+        <th>{{ _('Tested for compatability against:') }}</th>
+        <td>{{ job.target_version }}</td>
+    </tr>
+    {% endif %}
+</table>
+
 <div class="addon-validator-suite" id="addon-validator-suite"
      data-validateurl="{{ validate_url }}">
   {% if result_type == 'compat' %}
