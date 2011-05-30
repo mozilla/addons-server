@@ -314,6 +314,18 @@ class AddonFormDetails(AddonFormBase):
         return data
 
 
+def get_satisfaction(url):
+    """
+    If there's a GetSatisfaction URL entered, we'll extract the product
+    and company name..
+    """
+    gs_regex = "getsatisfaction\.com/(\w*)(?:/products/(\w*))?"
+    match = re.search(gs_regex, url)
+    if match:
+        return match.groups()
+    return None, None
+
+
 class AddonFormSupport(AddonFormBase):
     support_url = TransField.adapt(forms.URLField)(required=False,
                                                    verify_exists=False)
@@ -325,20 +337,9 @@ class AddonFormSupport(AddonFormBase):
 
     def save(self, addon, commit=True):
         instance = self.instance
-
-        # If there's a GetSatisfaction URL entered, we'll extract the product
-        # and company name and save it to the DB.
-        gs_regex = "getsatisfaction\.com/(\w*)(?:/products/(\w*))?"
-        match = re.search(gs_regex, instance.support_url.localized_string)
-
-        company = product = None
-
-        if match:
-            company, product = match.groups()
-
-        instance.get_satisfaction_company = company
-        instance.get_satisfaction_product = product
-
+        url = instance.support_url.localized_string
+        (instance.get_satisfaction_company,
+         instance.get_satisfaction_product) = get_satisfaction(url)
         return super(AddonFormSupport, self).save(commit)
 
 

@@ -9,6 +9,7 @@ import elasticutils
 import amo
 from amo.decorators import write
 from . import cron, search  # Pull in tasks from cron.
+from .forms import get_satisfaction
 from .models import Addon, Preview
 
 log = logging.getLogger('z.task')
@@ -66,6 +67,21 @@ def update_appsupport(ids):
 
     # All our updates were sql, so invalidate manually.
     Addon.objects.invalidate(*addons)
+
+
+@task
+def fix_get_satisfaction(ids, **kw):
+    log.info('[%s@None] Fixing get satisfaction starting with id: %s...' %
+             (len(ids), ids[0]))
+    for addon in Addon.objects.filter(pk__in=ids):
+        url = addon.support_url
+        if url is None:
+            url = ''
+        else:
+            url = url.localized_string
+        (c, p) = get_satisfaction(url)
+        addon.update(get_satisfaction_company=c, get_satisfaction_product=p)
+        log.info('Updated get satisfaction for: %s' % addon.pk)
 
 
 @task

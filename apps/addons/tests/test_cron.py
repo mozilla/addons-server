@@ -7,6 +7,7 @@ import amo.tests
 from addons import cron
 from addons.models import Addon, AppSupport
 from addons.utils import ReverseNameLookup
+from addons.tasks import fix_get_satisfaction
 from files.models import File, Platform
 from versions.models import Version
 
@@ -112,6 +113,32 @@ class TestLastUpdated(test_utils.TestCase):
         cron.update_addon_appsupport()
         eq_(AppSupport.objects.filter(addon=15663,
                                       app=amo.SEAMONKEY.id).count(), 1)
+
+
+class TestGetSatisfactionFix(test_utils.TestCase):
+
+    def setUp(self):
+        self.addon = (Addon.objects.create(type=amo.ADDON_EXTENSION,
+                                           get_satisfaction_company='foo'))
+
+    def test_good_url(self):
+        self.addon.support_url = 'http://getsatisfaction.com/mozilla'
+        self.addon.save()
+        fix_get_satisfaction([self.addon.pk])
+        eq_(Addon.objects.get(pk=self.addon.pk).get_satisfaction_company,
+            'mozilla')
+
+    def test_bad_url(self):
+        self.addon.support_url = 'http://something.else.com/foo'
+        self.addon.save()
+        fix_get_satisfaction([self.addon.pk])
+        eq_(Addon.objects.get(pk=self.addon.pk).get_satisfaction_company, None)
+
+    def test_no_url(self):
+        self.addon.support_url = ''
+        self.addon.save()
+        fix_get_satisfaction([self.addon.pk])
+        eq_(Addon.objects.get(pk=self.addon.pk).get_satisfaction_company, None)
 
 
 class TestHideDisabledFiles(test_utils.TestCase):
