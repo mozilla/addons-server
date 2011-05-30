@@ -78,6 +78,10 @@ class No500ErrorsTest(TestCase):
         response = make_call(u'search/für', version=1.2)
         assert response.status_code != 500, "ZOMG Unicode fails."
 
+    def test_broken_guid(self):
+        response = make_call(u'search/guid:+972"e4c6-}', version=1.5)
+        assert response.status_code != 500, "Failed to cope with guid"
+
 
 class ControlCharacterTest(TestCase):
     """This test is to assure we aren't showing control characters."""

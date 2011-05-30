@@ -205,7 +205,7 @@ class SearchView(APIView):
     def guid_search(self, query, limit):
         _, guids = extract_from_query(query, 'guid', '[\s{}@_\.,\-0-9a-zA-Z]+',
                                       end_of_word_boundary=False)
-        guids = [g.strip() for g in guids.split(',')]
+        guids = [g.strip() for g in guids.split(',')] if guids else []
         results = Addon.objects.filter(guid__in=guids, disabled_by_user=False,
                                        status__in=SEARCHABLE_STATUSES)
         return self.render('api/search.xml',
