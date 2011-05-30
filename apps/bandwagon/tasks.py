@@ -91,9 +91,13 @@ def collection_watchers(*ids, **kw):
              (len(ids), collection_watchers.rate_limit))
     using = kw.get('using')
     for pk in ids:
-        watchers = (CollectionWatcher.objects.filter(collection=pk)
-                    .using(using).count())
-        Collection.objects.filter(pk=pk).update(subscribers=watchers)
+        try:
+            watchers = (CollectionWatcher.objects.filter(collection=pk)
+                                         .using(using).count())
+            Collection.objects.filter(pk=pk).update(subscribers=watchers)
+            log.info('Updated collection watchers: %s' % pk)
+        except Exception, e:
+            log.error('Updating collection watchers failed: %s, %s' % (pk, e))
 
 
 @task(rate_limit='10/m')
