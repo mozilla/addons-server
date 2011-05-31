@@ -490,6 +490,20 @@ div.editor-stats-table > div.editor-stats-dark {
     height: 1.5em;
 }
 
+/* Add-on Review Log */
+#log-listing tr th:nth-child(1) {
+    width: 20%;
+}
+#log-listing tr th:nth-child(2) {
+    width: 40%;
+}
+#log-listing tr th:nth-child(3) {
+    width: 25%;
+}
+#log-listing tr th:nth-child(4) {
+    width: 15%;
+}
+
 /* Review Page */
 
 .primary {
