@@ -19,7 +19,7 @@ def match_rules(rules, app, action):
 
 def action_allowed(request, app, action):
     """
-    Determines if a user has permission to do a certain action
+    Determines if the request user has permission to do a certain action
 
     'Admin:%' is true if the user has any of:
     ('Admin:*', 'Admin:%s'%whatever, '*:*',) as rules.
@@ -27,6 +27,12 @@ def action_allowed(request, app, action):
 
     return any(match_rules(group.rules, app, action)
         for group in getattr(request, 'groups', ()))
+
+
+def action_allowed_user(user, app, action):
+    """Similar to action_allowed, but takes user instead of request."""
+    return any(match_rules(group.rules, app, action)
+        for group in user.groups.all())
 
 
 def check_ownership(request, obj, require_owner=False):

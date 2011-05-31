@@ -124,6 +124,30 @@ class TestEdit(UserViewBase):
         eq_(unicode(self.get_profile().bio), data['bio'])
 
 
+class TestPasswordAdmin(UserViewBase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.client.login(username='editor@mozilla.com', password='password')
+        self.url = reverse('users.edit')
+        self.correct = {'username': 'editor',
+                        'email': 'editor@mozilla.com',
+                        'oldpassword': 'password', 'password': 'longenough',
+                        'password2': 'longenough'}
+
+    def test_password_admin(self):
+        res = self.client.post(self.url, self.correct, follow=False)
+        eq_(res.status_code, 200)
+        eq_(res.context['form'].is_valid(), False)
+        eq_(res.context['form'].errors['password'],
+            [u'Letters and numbers required.'])
+
+    def test_password(self):
+        UserProfile.objects.get(username='editor').groups.all().delete()
+        res = self.client.post(self.url, self.correct, follow=False)
+        eq_(res.status_code, 302)
+
+
 class TestEmailChange(UserViewBase):
 
     def setUp(self):

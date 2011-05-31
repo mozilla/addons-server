@@ -1,4 +1,5 @@
 import os
+import re
 from smtplib import SMTPException
 
 from django import forms
@@ -11,6 +12,7 @@ import commonware.log
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
+from access.acl import action_allowed_user
 import amo
 from amo.utils import slug_validator
 from .models import (UserProfile, BlacklistedUsername, BlacklistedEmailDomain,
@@ -18,6 +20,7 @@ from .models import (UserProfile, BlacklistedUsername, BlacklistedEmailDomain,
 from . import tasks
 
 log = commonware.log.getLogger('z.users')
+admin_re = re.compile('[a-zA-Z][0-9]')
 
 
 class PasswordMixin:
@@ -33,6 +36,12 @@ class PasswordMixin:
 
     def clean_password(self, field='password'):
         data = self.cleaned_data[field]
+        if (hasattr(self, 'instance') and self.instance.pk and
+            (action_allowed_user(self.instance, 'Editors', '%')
+             or action_allowed_user(self.instance, 'Admin', '%'))):
+            if not admin_re.search(data):
+                raise forms.ValidationError(_('Letters and numbers required.'))
+
         if data and BlacklistedPassword.blocked(data):
             raise forms.ValidationError(_('That password is not allowed.'))
         return data
