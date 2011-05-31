@@ -76,6 +76,9 @@ HOME = /tmp
 20 */3 * * * $Z_CRON compatibility_report
 20 */3 * * * $REMORA; php -f compatibility_report.php
 
+#every 4 hours
+40 */4 * * * $DJANGO clean_redis
+
 #twice per day
 25 1,13 * * * $REMORA; /usr/bin/python26 import-personas.py
 # Add slugs after we get all the new personas.
@@ -89,7 +92,6 @@ HOME = /tmp
 30 1 * * * $Z_CRON update_user_ratings
 30 2 * * * $Z_CRON addon_reviews_ratings
 30 3 * * * $DJANGO cleanup
-30 4 * * * $DJANGO clean_redis
 30 4 * * * $Z_CRON cleanup_synced_collections
 30 5 * * * $REMORA; php -f maintenance.php expired_resetcode
 30 6 * * * $REMORA; php -f maintenance.php category_totals
