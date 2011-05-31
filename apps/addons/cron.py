@@ -111,6 +111,7 @@ def update_addon_average_daily_users():
                addon_id, AVG(`count`)
            FROM update_counts
            USE KEY (`addon_and_count`)
+           WHERE `date` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
            GROUP BY addon_id
            ORDER BY addon_id"""
     cursor.execute(q)

@@ -52,6 +52,7 @@ class AddonFilter(BaseFilter):
             ('updated', _lazy(u'Updated')),
             ('created', _lazy(u'Created')),
             ('popular', _lazy(u'Downloads')),
+            ('users', _lazy(u'Users')),
             ('rating', _lazy(u'Rating')))
 
 
@@ -301,6 +302,7 @@ class SearchToolsFilter(AddonFilter):
             ('updated', _lazy(u'Updated')),
             ('created', _lazy(u'Created')),
             ('popular', _lazy(u'Downloads')),
+            ('users', _lazy(u'Users')),
             ('rating', _lazy(u'Rating')))
 
     def filter(self, field):

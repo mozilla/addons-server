@@ -14,11 +14,11 @@ types = (amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
 
 sort_by = (
     ('', _lazy(u'Keyword Match')),
-    ('newest', _lazy(u'Newest', 'advanced_search_form_newest')),
     ('updated', _lazy(u'Updated', 'advanced_search_form_updated')),
+    ('newest', _lazy(u'Created', 'advanced_search_form_newest')),
+    ('weeklydownloads', _lazy(u'Downloads')),
+    ('users', _lazy(u'Users')),
     ('averagerating', _lazy(u'Rating', 'advanced_search_form_rating')),
-    ('weeklydownloads', _lazy(u'Popularity',
-                              'advanced_search_form_popularity')),
 )
 
 collection_sort_by = (

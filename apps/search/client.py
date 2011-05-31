@@ -432,6 +432,7 @@ class Client(object):
                 'averagerating': 'averagerating DESC',
                 'popularity': 'weeklydownloads DESC',
                 'weeklydownloads': 'weeklydownloads DESC',
+                'users': 'average_daily_users DESC',
                 }
 
         if 'sort' in kwargs and kwargs['sort']:

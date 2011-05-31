@@ -334,6 +334,10 @@ class BaseFilter(object):
         return (Addon.objects.order_by('-weekly_downloads')
                 .with_index(addons='downloads_type_idx'))
 
+    def filter_users(self):
+        return (Addon.objects.order_by('-average_daily_users')
+                .with_index(addons='adus_type_idx'))
+
     def filter_created(self):
         return (Addon.objects.order_by('-created')
                 .with_index(addons='created_type_idx'))
@@ -404,7 +408,7 @@ def impala_home(request):
                                             application=request.APP.id,
                                             type=amo.COLLECTION_FEATURED)
     featured = base.filter(id__in=featured_ids)[:18]
-    popular = base.order_by('-weekly_downloads')[:10]
+    popular = base.order_by('-average_daily_users')[:10]
     hotness = base.order_by('-hotness')[:18]
     personas = (Addon.objects.listed(request.APP)
                 .filter(type=amo.ADDON_PERSONA, id__in=featured_ids))[:18]
@@ -423,14 +427,14 @@ def home(request):
     # Get some featured add-ons with randomness.
     featured = rand(Addon.featured(request.APP, request.LANG).keys())
     # Get 10 popular add-ons, then pick 3 at random.
-    qs = list(Addon.objects.listed(request.APP).order_by('-weekly_downloads')
+    qs = list(Addon.objects.listed(request.APP).order_by('-average_daily_users')
               .values_list('id', flat=True)[:10])
     popular = rand(qs)
     # Do one query and split up the add-ons.
     addons = Addon.objects.filter(id__in=featured + popular)
     featured = [a for a in addons if a.id in featured]
     popular = sorted([a for a in addons if a.id in popular],
-                     key=attrgetter('weekly_downloads'), reverse=True)
+                     key=attrgetter('average_daily_users'), reverse=True)
     return jingo.render(request, 'addons/mobile/home.html',
                         {'featured': featured, 'popular': popular})
 

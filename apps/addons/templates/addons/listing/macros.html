@@ -19,21 +19,19 @@
 
 {% macro item_info(addon, amo, show_date) %}
   {{ reviews_link(addon) }}
-  {% if addon.status != amo.STATUS_LISTED %}
-    <p class="downloads">
-      {% with num=addon.weekly_downloads %}
-        {# L10n: {0} is the number of downloads. #}
-        {{ ngettext("<strong>{0}</strong> weekly download",
-                    "<strong>{0}</strong> weekly downloads",
-                    num)|f(num|numberfmt)|safe }}
-      {% endwith %}
-    </p>
-    <p class="updated">
-      {% if show_date in ['created', 'new', 'newest'] %}
-      {{ _('Added {0}')|f(addon.created|datetime) }}
-      {% elif show_date == 'updated' %}
-      {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
-      {% endif %}
-    </p>
-  {% endif %}
+  <p class="downloads">
+    {% with num=addon.average_daily_users %}
+      {# L10n: {0} is the number of users. #}
+      {{ ngettext("<strong>{0}</strong> user",
+                  "<strong>{0}</strong> users",
+                  num)|f(num|numberfmt)|safe }}
+    {% endwith %}
+  </p>
+  <p class="updated">
+    {% if show_date in ['created', 'new', 'newest'] %}
+    {{ _('Added {0}')|f(addon.created|datetime) }}
+    {% elif show_date == 'updated' %}
+    {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
+    {% endif %}
+  </p>
 {% endmacro %}
