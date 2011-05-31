@@ -192,7 +192,7 @@ def impala_extension_detail(request, addon):
                               addon.get_satisfaction_company)
 
     # other add-ons from the same author(s)
-    author_addons = order_by_translation(addon.authors_other_addons, 'name')
+    author_addons = order_by_translation(addon.authors_other_addons, 'name')[:6]
 
     # tags
     tags = addon.tags.not_blacklisted()
