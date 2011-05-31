@@ -57,7 +57,7 @@ div.diff-bar .delete, #diff td.code div.delete, #diff td.code div.add .content {
 }
 
 a.closed {
-    background: url('/media/img/icons/plus.gif') 0 no-repeat;
+    background: url('../../img/icons/plus.gif') 0 no-repeat;
 }
 
 a.open {
