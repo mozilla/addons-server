@@ -14,8 +14,8 @@ log = logging.getLogger('z.redis')
 # We process the keys in chunks of size CHUNK.
 CHUNK = 3000
 # Remove any sets with less than MIN or more than MAX elements.
-MIN = 2
-MAX = 75
+MIN = 10
+MAX = 50
 # Expire keys after EXPIRE seconds.
 EXPIRE = 60 * 5
 

@@ -35,6 +35,9 @@ HOME = /tmp
 20 */3 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron compatibility_report
 20 */3 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; php -f compatibility_report.php
 
+#every 4 hours
+40 */4 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py clean_redis
+
 #twice per day
 25 1,13 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; /usr/bin/python26 import-personas.py
 # Add slugs after we get all the new personas.
@@ -48,7 +51,6 @@ HOME = /tmp
 30 1 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron update_user_ratings
 30 2 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron addon_reviews_ratings
 30 3 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cleanup
-30 4 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py clean_redis
 30 4 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron cleanup_synced_collections
 30 5 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; php -f maintenance.php expired_resetcode
 30 6 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; php -f maintenance.php category_totals
