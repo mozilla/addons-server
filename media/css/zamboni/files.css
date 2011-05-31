@@ -61,7 +61,7 @@ a.closed {
 }
 
 a.open {
-    background: url('/media/img/icons/minus.gif') 0 no-repeat;
+    background: url('../../img/icons/minus.gif') 0 no-repeat;
 }
 
 a.diff {
