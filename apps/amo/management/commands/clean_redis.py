@@ -1,6 +1,8 @@
-import itertools
 import logging
+import os
 import socket
+import subprocess
+import sys
 import tempfile
 import time
 
@@ -24,41 +26,61 @@ RedisError = redislib.RedisError, socket.error
 
 
 def vacuum(master, slave):
-    total = [1, 0]
 
     def keys():
         ks = slave.keys()
-        total[0] = len(ks)
-        log.info('There are %s keys to clean up.' % total[0])
+        log.info('There are %s keys to clean up.' % len(ks))
         ks = iter(ks)
         while 1:
-            yield [ks.next() for _ in xrange(CHUNK)]
+            buffer = []
+            for _ in xrange(CHUNK):
+                try:
+                    buffer.append(ks.next())
+                except StopIteration:
+                    yield buffer
+                    return
+            yield buffer
 
-    tmp = tempfile.TemporaryFile()
+    tmp = tempfile.NamedTemporaryFile(delete=False)
     for ks in keys():
         tmp.write('\n'.join(ks))
-    tmp.seek(0)
+    tmp.close()
+
+    # It's hard to get Python to clean up the memory from slave.keys(), so
+    # we'll let the OS do it. argv[0] is a dummy argument, the rest get passed
+    # like a normal command line.
+    os.execl(sys.executable, 'argv[0]', sys.argv[0], sys.argv[1], tmp.name)
+
+
+def cleanup(master, slave, filename):
+    tmp = open(filename)
+    total = [1, 0]
+    p = subprocess.Popen(['wc', '-l', filename], stdout=subprocess.PIPE)
+    total[0] = int(p.communicate()[0].strip().split()[0])
 
     def file_keys():
         while 1:
-            # Get about 300 keys.
-            x = tmp.readlines(1024 * 30)
-            if x:
-                yield [k.strip() for k in x]
-            else:
-                raise StopIteration
+            buffer = []
+            for _ in xrange(CHUNK):
+                line = tmp.readline()
+                if line:
+                    buffer.append(line.strip())
+                else:
+                    yield buffer
+                    return
+            yield buffer
 
-    count = itertools.count()
+    num = 0
     for ks in file_keys():
         pipe = slave.pipeline()
         for k in ks:
             pipe.scard(k)
         try:
             drop = [k for k, size in zip(ks, pipe.execute())
-                    if size < MIN or size > MAX]
+                    if 0 < size < MIN or size > MAX]
         except RedisError:
             continue
-        num = count.next() * CHUNK
+        num += len(ks)
         percent = round(float(num) / total[0] * 100, 1)
         total[1] += len(drop)
         log.debug('[%s %.1f%%] Dropping %s keys.' % (num, percent, len(drop)))
@@ -86,4 +108,11 @@ class Command(BaseCommand):
         except Exception:
             log.error('Could not connect to redis.', exc_info=True)
             return
-        vacuum(master, slave)
+        if args:
+            filename = args[0]
+            try:
+                cleanup(master, slave, filename)
+            finally:
+                os.unlink(filename)
+        else:
+            vacuum(master, slave)
