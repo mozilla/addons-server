@@ -387,7 +387,7 @@ def cspreport(request):
 @post_required
 def builder_pingback(request):
     try:
-        data = json.loads(request.raw_post_data)
+        data = dict(request.POST.items())
         # We expect all these attributes to be available.
         attrs = 'result msg filename location secret request'.split()
         for attr in attrs:

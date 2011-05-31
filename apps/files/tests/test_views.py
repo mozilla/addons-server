@@ -450,19 +450,18 @@ class TestDiffViewer(FilesBase, test_utils.TestCase):
 class TestBuilderPingback(test_utils.TestCase):
 
     def post(self, data):
-        return self.client.post(reverse('amo.builder-pingback'), data,
-                                content_type='application/json')
+        return self.client.post(reverse('amo.builder-pingback'), data)
 
     def test_success(self):
-        r = self.post(json.dumps({'result': '', 'msg': '', 'filename': '',
-                                  'location': '', 'request': '',
-                                  'secret': settings.BUILDER_SECRET_KEY}))
+        r = self.post({'result': '', 'msg': '', 'filename': '',
+                       'location': '', 'request': '',
+                       'secret': settings.BUILDER_SECRET_KEY})
         eq_(r.status_code, 200)
 
     def test_bad_secret(self):
-        r = self.post(json.dumps({'secret': 1}))
+        r = self.post({'secret': 1})
         eq_(r.status_code, 400)
 
-    def test_bad_json(self):
-        r = self.post('wut')
+    def test_bad_data(self):
+        r = self.post({'wut': 0})
         eq_(r.status_code, 400)
