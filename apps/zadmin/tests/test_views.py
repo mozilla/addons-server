@@ -226,12 +226,14 @@ class TestBulkValidation(BulkValidationTest):
         r = self.client.get(reverse('zadmin.validation'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('table tr td').eq(2).text(), self.curr_max.version)
-        eq_(doc('table tr td').eq(3).text(), '3.7a3')
-        eq_(doc('table tr td').eq(4).text(), '2')  # tested
-        eq_(doc('table tr td').eq(5).text(), '1')  # failing
-        eq_(doc('table tr td').eq(6).text()[0], '1')  # passing
-        eq_(doc('table tr td').eq(7).text(), '0')  # exceptions
+        eq_(doc('table tr td').eq(0).text(), str(job.pk))  # ID
+        eq_(doc('table tr td').eq(3).text(), 'Firefox')  # Application
+        eq_(doc('table tr td').eq(4).text(), self.curr_max.version)
+        eq_(doc('table tr td').eq(5).text(), '3.7a3')
+        eq_(doc('table tr td').eq(6).text(), '2')  # tested
+        eq_(doc('table tr td').eq(7).text(), '1')  # failing
+        eq_(doc('table tr td').eq(8).text()[0], '1')  # passing
+        eq_(doc('table tr td').eq(9).text(), '0')  # exceptions
 
     def test_application_versions_json(self):
         r = self.client.post(reverse('zadmin.application_versions_json'),
@@ -243,6 +245,28 @@ class TestBulkValidation(BulkValidationTest):
             empty = False
             eq_(AppVersion.objects.get(pk=id).version, ver)
         assert not empty, "Unexpected: %r" % data
+
+    def test_job_status(self):
+        job = self.create_job()
+
+        def get_data():
+            self.create_result(job, self.create_file(), **{})
+            r = self.client.post(reverse('zadmin.job_status'),
+                                 {'job_ids': json.dumps([job.pk])})
+            eq_(r.status_code, 200)
+            data = json.loads(r.content)[str(job.pk)]
+            return data
+
+        data = get_data()
+        eq_(data['completed'], 1)
+        eq_(data['total'], 1)
+        eq_(data['percent_complete'], '100')
+        eq_(data['job_id'], job.pk)
+        eq_(data['completed_timestamp'], '')
+        job.update(completed=datetime.now())
+        data = get_data()
+        assert data['completed_timestamp'] != '', (
+                            'Unexpected: %s' % data['completed_timestamp'])
 
 
 class TestBulkUpdate(BulkValidationTest):

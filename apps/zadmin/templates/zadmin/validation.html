@@ -1,6 +1,6 @@
 {% extends "admin/base.html" %}
 
-{% set title = _('Bulk Addon Validation') %}
+{% set title = 'Bulk Addon Validation' %}
 {% block title %}{{ page_title(title) }}{% endblock %}
 
 {% block js %}
@@ -9,7 +9,8 @@
 {% endblock %}
 
 {% block content %}
-<section id="admin-validation">
+<section id="admin-validation"
+         data-status-url="{{ url('zadmin.job_status') }}">
   <h2>{{ title }}</h2>
   {% include "messages.html" %}
   {{ form.errors }}
@@ -25,7 +26,7 @@
     <label for="id_finish_email">{{ form['finish_email'].label }}</label>
     <span id="elem-finish_email">{{ form['finish_email'] }}</span>
     <div class="button">
-      <button type="submit">{{ _('Start validation') }}</button>
+      <button type="submit">Start validation</button>
     </div>
   </div>
   </form>
@@ -48,24 +49,30 @@
   </div>
   <table>
     <tr>
-      <th>{{ _('Tests Started') }}</th>
-      <th>{{ _('Tests Finished') }}</th>
-      <th>{{ _('Current Version') }}</th>
-      <th>{{ _('Target Version') }}</th>
-      <th>{{ _('Tested') }}</th>
-      <th>{{ _('Failing') }}</th>
-      <th>{{ _('Passing') }}</th>
-      <th>{{ _('Exceptions') }}</th>
-      <th>{{ _('Actions') }}</th>
+      <th>ID</th>
+      <th>Tests Started</th>
+      <th>Tests Finished</th>
+      <th>Application</th>
+      <th>Current Version</th>
+      <th>Target Version</th>
+      <th>Tested</th>
+      <th>Failing</th>
+      <th>Passing</th>
+      <th>Exceptions</th>
+      <th>Actions</th>
     </tr>
     {% for job in validation_jobs %}
-    <tr>
+    <tr class="job-result"
+        data-is-complete="{{ job.is_complete(as_int=True) }}"
+        data-job-id="{{ job.pk }}">
+      <td>{{ job.pk }}</td>
       <td>{{ job.created }}</td>
-      <td>{{ job.completed }}</td>
+      <td class="tests-finished">{{ job.completed }}</td>
+      <td>{{ amo.APPS_ALL[job.application.id].pretty }}</td>
       <td>{{ job.curr_max_version.version }}</td>
       <td>{{ job.target_version.version }}</td>
-      <td>{{ job.stats['total'] }}</td>
-      <td>{{ job.stats['failing'] }}
+      <td class="tested">{{ job.stats['total'] }}</td>
+      <td class="failing">{{ job.stats['failing'] }}
         {% if job.completed and job.stats['failing'] > 0 %}
             <a href="" class="notify v-popup"
                        data-job-url="{{ url('zadmin.notify.failure', job.pk) }}"
@@ -75,7 +82,7 @@
           {% endif %}
         {% endif %}
       </td>
-      <td>{{ job.stats['passing'] }}
+      <td class="passing">{{ job.stats['passing'] }}
           {% if job.completed and job.stats['passing'] > 0 %}
               <a href="#" class="set-max-version v-popup"
                           data-job-version="{{ job.target_version.version }}"
@@ -86,7 +93,7 @@
             {% endif %}
           {% endif %}
       </td>
-      <td>{{ job.stats['errors'] }}</td>
+      <td class="exceptions">{{ job.stats['errors'] }}</td>
       <td></td>
     </tr>
     {% endfor %}
@@ -101,9 +108,7 @@
             <p>Available variables: {{ ', '.join(success_form.variables) }}</p>
             <p class="js-hidden error"></p>
             <div>{# placeholder for the form #}</div>
-            <button type="submit">
-                {{ _('Continue') }}
-            </button>
+            <button type="submit">Continue</button>
             <span class="cancel"><a href="#">{{ _('Cancel') }}</a></span>
         </form>
     </div>

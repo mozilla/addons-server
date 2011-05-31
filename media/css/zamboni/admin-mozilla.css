@@ -102,3 +102,27 @@ fieldset {
 div.popup input[type="text"] {
     width: 588px;
 }
+
+.job-status {
+    color: #777777;
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+.job-status-bar {
+    background-color: #F2F2F2;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    height: 13px;
+    border: 1px solid #3D6DB5;
+}
+
+.job-status-bar div {
+    background-color: #8BC5FA;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    width: 0%;
+    height: 13px;
+}
