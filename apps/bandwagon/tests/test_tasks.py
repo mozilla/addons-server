@@ -7,11 +7,12 @@ from django.conf import settings
 from nose.tools import eq_
 from PIL import Image
 
+from amo.tests.test_helpers import get_image_path
 from bandwagon.tasks import resize_icon
 
 
 def test_resize_icon():
-    somepic = "%s/img/tab-mozilla.png" % settings.MEDIA_ROOT
+    somepic = get_image_path('mozilla.png')
 
     src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
                                       delete=False)
@@ -33,7 +34,7 @@ def test_resize_icon():
 
 def test_resize_icon_poorly():
     """If we attempt to set the src/dst, we do nothing."""
-    somepic = "%s/img/tab-mozilla.png" % settings.MEDIA_ROOT
+    somepic = get_image_path('mozilla.png')
     src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
                                       delete=False)
     shutil.copyfile(somepic, src.name)

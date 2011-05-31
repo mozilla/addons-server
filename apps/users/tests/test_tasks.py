@@ -8,6 +8,7 @@ from django.conf import settings
 from nose.tools import eq_
 from PIL import Image
 
+from amo.tests.test_helpers import get_image_path
 from users.tasks import delete_photo, resize_photo
 
 
@@ -22,7 +23,7 @@ def test_delete_photo():
 
 
 def test_resize_photo():
-    somepic = "%s/img/tab-mozilla.png" % settings.MEDIA_ROOT
+    somepic = get_image_path('mozilla.png')
 
     src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
                                       delete=False)
@@ -45,7 +46,7 @@ def test_resize_photo():
 
 def test_resize_photo_poorly():
     """If we attempt to set the src/dst, we do nothing."""
-    somepic = "%s/img/tab-mozilla.png" % settings.MEDIA_ROOT
+    somepic = get_image_path('mozilla.png')
     src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
                                       delete=False)
     shutil.copyfile(somepic, src.name)

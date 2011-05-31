@@ -1198,7 +1198,7 @@ class TestEdit(amo.tests.RedisTest, test_utils.TestCase):
             eq_(unicode(getattr(addon, k)), data[k])
 
     def test_edit_media_uploadedicon(self):
-        img = "%s/img/zamboni/mozilla-tab.png" % settings.MEDIA_ROOT
+        img = get_image_path('mozilla.png')
         src_image = open(img, 'rb')
 
         data = dict(upload_image=src_image)
@@ -1229,7 +1229,7 @@ class TestEdit(amo.tests.RedisTest, test_utils.TestCase):
 
         assert os.path.exists(dest)
 
-        eq_(Image.open(dest).size, (32, 13))
+        eq_(Image.open(dest).size, (32, 12))
 
     def test_edit_media_icon_log(self):
         self.test_edit_media_uploadedicon()
@@ -1354,7 +1354,7 @@ class TestEdit(amo.tests.RedisTest, test_utils.TestCase):
         eq_(response_json['errors'][0], u'Icons cannot be animated.')
 
     def preview_add(self, amount=1):
-        img = "%s/img/zamboni/mozilla-tab.png" % settings.MEDIA_ROOT
+        img = get_image_path('mozilla.png')
         src_image = open(img, 'rb')
 
         data = dict(upload_image=src_image)
@@ -2033,7 +2033,7 @@ class TestSubmitStep4(TestSubmitBase):
             eq_(unicode(getattr(addon, k)), data[k])
 
     def test_edit_media_uploadedicon(self):
-        img = "%s/img/zamboni/mozilla-tab.png" % settings.MEDIA_ROOT
+        img = get_image_path('mozilla.png')
         src_image = open(img, 'rb')
 
         data = dict(upload_image=src_image)
@@ -2063,7 +2063,7 @@ class TestSubmitStep4(TestSubmitBase):
 
         assert os.path.exists(dest)
 
-        eq_(Image.open(dest).size, (32, 13))
+        eq_(Image.open(dest).size, (32, 12))
 
     def test_edit_media_uploadedicon_noresize(self):
         img = "%s/img/notifications/error.png" % settings.MEDIA_ROOT

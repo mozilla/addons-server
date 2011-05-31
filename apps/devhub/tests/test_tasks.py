@@ -11,6 +11,7 @@ from nose.tools import eq_
 from PIL import Image
 
 from addons.models import Addon
+from amo.tests.test_helpers import get_image_path
 from files.models import FileUpload
 from devhub.tasks import flag_binary, resize_icon, validator
 
@@ -52,7 +53,7 @@ def test_resize_icon_list():
 
 
 def _uploader(resize_size, final_size):
-    img = "%s/img/tab-mozilla.png" % settings.MEDIA_ROOT
+    img = get_image_path('mozilla.png')
     original_size = (82, 31)
 
     src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
