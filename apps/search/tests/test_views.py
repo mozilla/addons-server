@@ -135,6 +135,13 @@ class FrontendSearchTest(SphinxTestCase):
         eq_(doc('#refine-compatibility li a')[1].text, '4.46')
         eq_(doc('#refine-compatibility li a')[2].text, '3.6')
 
+    def test_version_text_asterix(self):
+        """Test that the version text is calculated correctly for .*"""
+        request = Mock()
+        request.get_full_path = lambda: ''
+        request.APP.min_display_version = 4.0
+        eq_(views._get_versions(request, [5990000200100L], [])[1].text, '5.*')
+
     def test_empty_version_selected(self):
         """If a user filters by a version that has no results, that version
         should show up on the filter list anyway."""
