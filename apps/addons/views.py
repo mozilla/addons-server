@@ -396,7 +396,7 @@ def home(request):
 
 def impala_home(request):
     # Add-ons.
-    base = Addon.objects.listed(request.APP, type=amo.ADDON_EXTENSION)
+    base = Addon.objects.listed(request.APP).filter(type=amo.ADDON_EXTENSION)
     featured_ids = Addon.featured_random(request.APP, request.LANG)
 
     # Collections.
