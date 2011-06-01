@@ -26,6 +26,9 @@
     {% include 'addons/includes/collection_add_widget.html' %}
     {{ sharing_widget(addon) }}
   </div>
+  {% if request.check_ownership(addon, require_owner=False) %}
+    <a href="{{ url('devhub.addons.edit', addon.slug) }}" class="button developer prominent"><span>{{ _('Manage') }}</span></a>
+  {% endif %}
 </aside>
 
 {% set version = addon.current_version %}
