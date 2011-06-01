@@ -389,7 +389,7 @@ def builder_pingback(request):
     try:
         data = dict(request.POST.items())
         # We expect all these attributes to be available.
-        attrs = 'result msg filename location secret request'.split()
+        attrs = 'result msg location secret request'.split()
         for attr in attrs:
             assert attr in data, '%s not in %s' % (attr, data)
         # Only AMO and the builder should know this secret.

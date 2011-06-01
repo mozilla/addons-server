@@ -1,6 +1,7 @@
 import hashlib
 import os
 import tempfile
+import urllib
 import uuid
 
 from django.conf import settings
@@ -45,16 +46,22 @@ class TestRepackageJetpack(amo.tests.RedisTest, test_utils.TestCase):
         self.upgrader = JetpackUpgrader()
         settings.SEND_REAL_EMAIL = True
 
+        self.uuid = uuid.uuid4().hex
+
     def builder_data(self, **kw):
         """Generate builder_data response dictionary with sensible defaults."""
-        guid = uuid.uuid4().hex
         # Tell Redis we're sending to builder.
-        self.upgrader.file(self.file.id, {'uuid': guid, 'owner': 'bulk',
+        self.upgrader.file(self.file.id, {'uuid': self.uuid,
+                                          'owner': 'bulk',
                                           'version': '1.0b4'})
-        data = {'addon': self.addon.id, 'result': 'success', 'msg': 'ok',
-                'file_id': self.file.id, 'location': 'http://new.file',
+        request = {'uuid': self.uuid, 'addon': self.addon.id,
+                   'file_id': self.file.id}
+        request.update((k, v) for k, v in kw.items() if k in request)
+        data = {'result': 'success',
+                'msg': 'ok',
+                'location': 'http://new.file',
                 # This fakes what we would send to the builder.
-                'request': {'uuid': guid}}
+                'request': urllib.urlencode(request)}
         data.update(kw)
         return data
 
@@ -70,7 +77,7 @@ class TestRepackageJetpack(amo.tests.RedisTest, test_utils.TestCase):
     def test_bad_file_id(self):
         data = self.builder_data(file_id=234234)
         # Stick the file in the upgrader so it doesn't fail the uuid check.
-        self.upgrader.file(234234, {'uuid': data['request']['uuid']})
+        self.upgrader.file(234234, {'uuid': self.uuid})
         with self.assertRaises(models.ObjectDoesNotExist):
             tasks.repackage_jetpack(data)
 
@@ -120,7 +127,7 @@ class TestRepackageJetpack(amo.tests.RedisTest, test_utils.TestCase):
         # Clear out everything.
         self.upgrader.cancel()
         # Put the file back in redis.
-        self.upgrader.file(self.file.id, {'uuid': data['request']['uuid'],
+        self.upgrader.file(self.file.id, {'uuid': self.uuid,
                                           'version': '1.0b4'})
         # Try to clear again, this should skip the ownerless task above.
         self.upgrader.cancel()

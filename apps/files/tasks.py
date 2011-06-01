@@ -2,6 +2,7 @@ from datetime import datetime
 import hashlib
 import urllib
 import urllib2
+import urlparse
 import uuid
 
 import django.core.mail
@@ -65,22 +66,25 @@ class FakeUpload(object):
 
 @task
 def repackage_jetpack(builder_data, **kw):
+    repack_data = dict(urlparse.parse_qsl(builder_data['request']))
     jp_log.info('[1@None] Repackaging jetpack for %s.'
-                % builder_data['file_id'])
+                % repack_data['file_id'])
     jp_log.info('; '.join('%s: "%s"' % i for i in builder_data.items()))
-    msg = lambda s: ('[{file_id}]: ' + s).format(**builder_data)
+    all_keys = builder_data.copy()
+    all_keys.update(repack_data)
+    msg = lambda s: ('[{file_id}]: ' + s).format(**all_keys)
     upgrader = JetpackUpgrader()
 
-    file_data = upgrader.file(builder_data['file_id'])
-    if file_data.get('uuid') != builder_data['request']['uuid']:
+    file_data = upgrader.file(repack_data['file_id'])
+    if file_data.get('uuid') != repack_data['uuid']:
         return jp_log.warning(msg("Aborting repack. UUID does not match."))
 
     if builder_data['result'] != 'success':
         return jp_log.warning(msg('Build not successful. {result}: {msg}'))
 
     try:
-        addon = Addon.objects.get(id=builder_data['addon'])
-        old_file = File.objects.get(id=builder_data['file_id'])
+        addon = Addon.objects.get(id=repack_data['addon'])
+        old_file = File.objects.get(id=repack_data['file_id'])
     except Exception:
         jp_log.error(msg('Could not find addon or file.'), exc_info=True)
         raise
@@ -120,7 +124,7 @@ def repackage_jetpack(builder_data, **kw):
 
     # Sync out the new version.
     addon.update_version()
-    upgrader.finish(builder_data['file_id'])
+    upgrader.finish(repack_data['file_id'])
 
     try:
         send_upgrade_email(addon, new_version, file_data['version'])
