@@ -119,12 +119,30 @@ class TestActivityLog(test_utils.TestCase):
 
     def test_version_log(self):
         request = self.request
-        amo.log(amo.LOG['CUSTOM_TEXT'], 'hi there')
         version = Version.objects.all()[0]
         amo.log(amo.LOG.REJECT_VERSION, version.addon, version,
                 user=self.request.amo_user)
         entries = ActivityLog.objects.for_version(version)
         eq_(len(entries), 1)
+
+    def test_version_log_transformer(self):
+        request = self.request
+        addon = Addon.objects.get()
+        version = addon.latest_version
+        amo.log(amo.LOG.REJECT_VERSION, addon, version,
+                user=self.request.amo_user)
+
+        version_two = Version(addon=addon, license=version.license, version='1.2.3')
+        version_two.save()
+
+        amo.log(amo.LOG.REJECT_VERSION, addon, version_two,
+                user=self.request.amo_user)
+
+        versions = (Version.objects.filter(addon=addon).order_by('-created')
+                                   .transform(Version.transformer_activity))
+
+        eq_(len(versions[0].all_activity), 1)
+        eq_(len(versions[1].all_activity), 1)
 
     def test_xss_arguments(self):
         addon = Addon.objects.get()
