@@ -86,9 +86,11 @@
 
 <aside class="secondary metadata c">
   <ul class="links">
-    <li><a class="home" href="#">Add-on home page</a></li>
+    {% if addon.homepage %}
+      <li><a class="home" href="{{ addon.homepage }}">{{ _('Add-on home page') }}</a></li>
+    {% endif %}
     {% if addon.support_url %}
-      <li><a class="support" href="{{ addon.support_url|external_url }}">Support site</a></li>
+      <li><a class="support" href="{{ addon.support_url|external_url }}">{{ _('Support site') }}</a></li>
     {% endif %}
     {% if addon.support_email %}
       <li>{{ emaillink(addon.support_email.localized_string,
@@ -103,9 +105,13 @@
     {% endif %}
   </ul>
   <ul>
-    <li>{{ _('Version {0}')|f(version.version) }} <a class="scrollto" href="#detail-relnotes">Info</a></li>
+    <li>{{ _('Version {0}')|f(version.version) }} <a class="scrollto" href="#detail-relnotes">{{ _('Info') }}</a></li>
     <li>{{ version.created|datetime }}</li>
-    <li>Released under <a href="#">GPLV2</a></li>
+    <li>
+      {% trans url = version.license_url(), name = version.license %}
+        Released under <a href="{{ url }}">{{ name }}</a>
+      {% endtrans %}
+    </li>
   </ul>
 </aside>
 
