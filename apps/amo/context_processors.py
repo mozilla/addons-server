@@ -37,6 +37,8 @@ def global_settings(request):
     tools_links = []
     context = {}
 
+    tools_title = _('Developer')
+
     if request.user.is_authenticated():
         # TODO(jbalogh): reverse links
         amo_user = request.amo_user
@@ -64,15 +66,26 @@ def global_settings(request):
             'href': remora_url('/users/logout?to=' + urlquote(request.path)),
         })
 
+        if request.amo_user.is_developer:
+            tools_links.append({'text': _('Manage My Add-ons'),
+                                'href': reverse('devhub.addons')})
+
+            tools_links.append({'text': _('Submit a New Add-on'),
+                                'href': reverse('devhub.submit.1')})
+
         tools_links.append({'text': _('Developer Hub'),
-                            'href': '/developers'})
+                            'href': reverse('devhub.index')})
+
         if acl.action_allowed(request, 'Editors', '%'):
+            tools_title = _('Tools')
             tools_links.append({'text': _('Editor Tools'),
-                                'href': '/editors'})
+                                'href': reverse('editors.home')})
         if acl.action_allowed(request, 'Localizers', '%'):
+            tools_title = _('Tools')
             tools_links.append({'text': _('Localizer Tools'),
                                 'href': '/localizers'})
         if acl.action_allowed(request, 'Admin', '%'):
+            tools_title = _('Tools')
             tools_links.append({'text': _('Admin Tools'),
                                 'href': reverse('zadmin.home')})
 
@@ -83,5 +96,6 @@ def global_settings(request):
     context.update({'account_links': account_links,
                     'settings': settings, 'amo': amo,
                     'tools_links': tools_links,
+                    'tools_title': tools_title,
                     'ADMIN_MESSAGE': get_config('site_notice')})
     return context

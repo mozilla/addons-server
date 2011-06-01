@@ -26,7 +26,7 @@
 {% if user.is_authenticated() %}
   {% if tools_links and tools_links|count > 1 %}
     <li class="tools">
-      <a href="#">{{ _('Tools') }}</a>
+      <a href="#">{{ tools_title }}</a>
       <ul>
         {% for link in tools_links %}
           <li><a href="{{ link.href }}">{{ link.text }}</a></li>

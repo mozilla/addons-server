@@ -13,10 +13,12 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
 
-from addons.models import Addon
+from access import acl
+from addons.models import Addon, AddonUser
 from amo.urlresolvers import reverse
 from amo.pyquery_wrapper import PyQuery
 from stats.models import SubscriptionEvent, Contribution
+from users.models import UserProfile
 
 URL_ENCODED = 'application/x-www-form-urlencoded'
 
@@ -64,8 +66,121 @@ def test_404_app_links():
         assert href.startswith('/en-US/thunderbird'), href
 
 
+class TestImpala(test_utils.TestCase):
+    fixtures = ('base/users', 'base/global-stats', 'base/configs',
+                'base/addon_3615')
+
+    def test_tools_loggedout(self):
+        r = self.client.get(reverse('i_home'), follow=True)
+        nav = pq(r.content)('#aux-nav')
+        eq_(nav.find('.tools').length, 0)
+
+    def test_tools_regular_user(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        r = self.client.get(reverse('i_home'), follow=True)
+        nav = pq(r.content)('#aux-nav')
+
+        request = r.context['request']
+
+        eq_(request.amo_user.is_developer, False)
+        eq_(nav.find('.tools a').length, 1)
+        eq_(nav.find('.tools a').eq(0).text(), "Developer Hub")
+        eq_(nav.find('.tools a').eq(0).attr('href'), reverse('devhub.index'))
+
+    def test_tools_developer(self):
+        # Make them a developer
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        addon = Addon.objects.all()[0]
+        AddonUser.objects.create(user=user, addon=addon)
+
+        self.client.login(username='regular@mozilla.com', password='password')
+        r = self.client.get(reverse('i_home'), follow=True)
+        nav = pq(r.content)('#aux-nav')
+
+        request = r.context['request']
+
+        eq_(request.amo_user.is_developer, True)
+
+        eq_(nav.find('.tools').length, 1)
+        eq_(nav.find('.tools li').length, 3)
+        eq_(nav.find('.tools > a').length, 1)
+        eq_(nav.find('.tools > a').text(), "Developer")
+
+        item = nav.find('.tools ul li a').eq(0)
+        eq_(item.text(), "Manage My Add-ons")
+        eq_(item.attr('href'), reverse('devhub.addons'))
+
+        item = nav.find('.tools ul li a').eq(1)
+        eq_(item.text(), "Submit a New Add-on")
+        eq_(item.attr('href'), reverse('devhub.submit.1'))
+
+        item = nav.find('.tools ul li a').eq(2)
+        eq_(item.text(), "Developer Hub")
+        eq_(item.attr('href'), reverse('devhub.index'))
+
+    def test_tools_developer_and_editor(self):
+        # Make them a developer
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+        addon = Addon.objects.all()[0]
+        AddonUser.objects.create(user=user, addon=addon)
+
+        self.client.login(username='editor@mozilla.com', password='password')
+        r = self.client.get(reverse('i_home'), follow=True)
+        nav = pq(r.content)('#aux-nav')
+
+        request = r.context['request']
+
+        eq_(request.amo_user.is_developer, True)
+        eq_(acl.action_allowed(request, 'Editors', '%'), True)
+
+        eq_(nav.find('li.tools').length, 1)
+        eq_(nav.find('li.tools li').length, 4)
+        eq_(nav.find('li.tools > a').length, 1)
+        eq_(nav.find('li.tools > a').text(), "Tools")
+
+        item = nav.find('.tools ul li a').eq(0)
+        eq_(item.text(), "Manage My Add-ons")
+        eq_(item.attr('href'), reverse('devhub.addons'))
+
+        item = nav.find('.tools ul li a').eq(1)
+        eq_(item.text(), "Submit a New Add-on")
+        eq_(item.attr('href'), reverse('devhub.submit.1'))
+
+        item = nav.find('.tools ul li a').eq(2)
+        eq_(item.text(), "Developer Hub")
+        eq_(item.attr('href'), reverse('devhub.index'))
+
+        item = nav.find('.tools ul li a').eq(3)
+        eq_(item.text(), "Editor Tools")
+        eq_(item.attr('href'), reverse('editors.home'))
+
+    def test_tools_editor(self):
+        self.client.login(username='editor@mozilla.com', password='password')
+        r = self.client.get(reverse('i_home'), follow=True)
+        nav = pq(r.content)('#aux-nav')
+
+        request = r.context['request']
+
+        eq_(request.amo_user.is_developer, False)
+        eq_(acl.action_allowed(request, 'Editors', '%'), True)
+
+
+        eq_(nav.find('li.tools').length, 1)
+        eq_(nav.find('li.tools li').length, 2)
+        eq_(nav.find('li.tools > a').length, 1)
+        eq_(nav.find('li.tools > a').text(), "Tools")
+
+        item = nav.find('.tools ul li a').eq(0)
+        eq_(item.text(), "Developer Hub")
+        eq_(item.attr('href'), reverse('devhub.index'))
+
+        item = nav.find('.tools ul li a').eq(1)
+        eq_(item.text(), "Editor Tools")
+        eq_(item.attr('href'), reverse('editors.home'))
+
 class TestStuff(test_utils.TestCase):
-    fixtures = ('base/users', 'base/global-stats', 'base/configs',)
+    fixtures = ('base/users', 'base/global-stats', 'base/configs',
+                'base/addon_3615')
 
     def test_hide_stats_link(self):
         r = self.client.get('/', follow=True)
@@ -117,6 +232,113 @@ class TestStuff(test_utils.TestCase):
         title_eq('/firefox', 'Firefox', 'Add-ons')
         title_eq('/thunderbird', 'Thunderbird', 'Add-ons')
         title_eq('/mobile', 'Firefox', 'Mobile Add-ons')
+
+    def test_tools_loggedout(self):
+        r = self.client.get(reverse('home'), follow=True)
+        nav = pq(r.content)('#aux-nav')
+        eq_(nav.find('.tools').length, 0)
+
+    def test_tools_regular_user(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        r = self.client.get(reverse('home'), follow=True)
+        nav = pq(r.content)('#aux-nav')
+
+        request = r.context['request']
+
+        eq_(request.amo_user.is_developer, False)
+        eq_(nav.find('.tools a').length, 1)
+        eq_(nav.find('.tools a').eq(0).text(), "Developer Hub")
+        eq_(nav.find('.tools a').eq(0).attr('href'), reverse('devhub.index'))
+
+    def test_tools_developer(self):
+        # Make them a developer
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        addon = Addon.objects.all()[0]
+        AddonUser.objects.create(user=user, addon=addon)
+
+        self.client.login(username='regular@mozilla.com', password='password')
+        r = self.client.get(reverse('home'), follow=True)
+        nav = pq(r.content)('#aux-nav')
+
+        request = r.context['request']
+
+        eq_(request.amo_user.is_developer, True)
+
+        eq_(nav.find('ul.tools').length, 1)
+        eq_(nav.find('ul.tools li').length, 4)
+        eq_(nav.find('ul.tools > li > a').length, 1)
+        eq_(nav.find('ul.tools > li > a').text(), "Developer")
+
+        item = nav.find('ul.tools ul li a').eq(0)
+        eq_(item.text(), "Manage My Add-ons")
+        eq_(item.attr('href'), reverse('devhub.addons'))
+
+        item = nav.find('ul.tools ul li a').eq(1)
+        eq_(item.text(), "Submit a New Add-on")
+        eq_(item.attr('href'), reverse('devhub.submit.1'))
+
+        item = nav.find('ul.tools ul li a').eq(2)
+        eq_(item.text(), "Developer Hub")
+        eq_(item.attr('href'), reverse('devhub.index'))
+
+    def test_tools_developer_and_editor(self):
+        # Make them a developer
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+        addon = Addon.objects.all()[0]
+        AddonUser.objects.create(user=user, addon=addon)
+
+        self.client.login(username='editor@mozilla.com', password='password')
+        r = self.client.get(reverse('home'), follow=True)
+        nav = pq(r.content)('#aux-nav')
+
+        request = r.context['request']
+
+        eq_(request.amo_user.is_developer, True)
+        eq_(acl.action_allowed(request, 'Editors', '%'), True)
+
+        eq_(nav.find('ul.tools').length, 1)
+        eq_(nav.find('ul.tools li').length, 5)
+        eq_(nav.find('ul.tools > li > a').length, 1)
+        eq_(nav.find('ul.tools > li > a').text(), "Tools")
+
+        item = nav.find('ul.tools ul li a').eq(0)
+        eq_(item.text(), "Manage My Add-ons")
+        eq_(item.attr('href'), reverse('devhub.addons'))
+
+        item = nav.find('ul.tools ul li a').eq(1)
+        eq_(item.text(), "Submit a New Add-on")
+        eq_(item.attr('href'), reverse('devhub.submit.1'))
+
+        item = nav.find('ul.tools ul li a').eq(2)
+        eq_(item.text(), "Developer Hub")
+        eq_(item.attr('href'), reverse('devhub.index'))
+
+        item = nav.find('ul.tools ul li a').eq(3)
+        eq_(item.text(), "Editor Tools")
+        eq_(item.attr('href'), reverse('editors.home'))
+
+    def test_tools_editor(self):
+        self.client.login(username='editor@mozilla.com', password='password')
+        r = self.client.get(reverse('home'), follow=True)
+        nav = pq(r.content)('#aux-nav')
+
+        request = r.context['request']
+
+        eq_(request.amo_user.is_developer, False)
+        eq_(acl.action_allowed(request, 'Editors', '%'), True)
+
+        eq_(nav.find('ul.tools').length, 1)
+        eq_(nav.find('ul.tools li').length, 3)
+        eq_(nav.find('ul.tools > li > a').length, 1)
+        eq_(nav.find('ul.tools > li > a').text(), "Tools")
+
+        item = nav.find('ul.tools ul li a').eq(0)
+        eq_(item.text(), "Developer Hub")
+        eq_(item.attr('href'), reverse('devhub.index'))
+
+        item = nav.find('ul.tools ul li a').eq(1)
+        eq_(item.text(), "Editor Tools")
+        eq_(item.attr('href'), reverse('editors.home'))
 
     def test_xenophobia(self):
         r = self.client.get(reverse('home'), follow=True)
