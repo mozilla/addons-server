@@ -418,9 +418,11 @@ class TestAddon(amo.tests.RedisTest, BaseOauth):
             'Select a valid choice. fff is not one of the available choices. '
             '(builtin)')
 
-    @patch('zipfile.ZipFile.namelist')
-    def test_bad_zip(self, namelist):
-        namelist.return_value = ('..', )
+    @patch('zipfile.ZipFile.infolist')
+    def test_bad_zip(self, infolist):
+        fake = Mock()
+        fake.filename = '..'
+        infolist.return_value = [fake]
         r = self.make_create_request(self.create_data)
         eq_(r.status_code, 400, r.content)
 
