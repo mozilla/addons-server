@@ -375,12 +375,12 @@ asyncTest('Test basic', function() {
         ok($('#v-msg-bb0b38812d8f450a85fa90a2e7e6693b', $suite).length == 1,
            'Non-compatibility message should be shown');
         equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .result-summary', $suite).text(),
-               '1 error');
+               '1 error, 0 warnings');
         equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .version-change-link').attr('href'),
                '/firefox-4-changes');
         equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b1 .version-change-link').length, 0);
         equals($('#suite-results-tier-1 .result-summary', $suite).text(),
-               '1 error');
+               '1 error, 0 warnings');
         start();
     });
 });
@@ -721,7 +721,7 @@ asyncTest('Test no compat tests', function() {
     });
 });
 
-asyncTest('Test compat ignores warnings and notices', function() {
+asyncTest('Test compat ignores non-compat warnings and notices', function() {
     var $suite = $('.addon-validator-suite', this.sandbox);
 
     $.mockjax({
@@ -752,6 +752,21 @@ asyncTest('Test compat ignores warnings and notices', function() {
                     "compatibility_type": "error",
                     "line": 533,
                     "uid": "2a96f7faee7a41cca4d6ead26dddc6b3"
+                }, {
+                    "context": ["<code>"],
+                    "description": ["Suspicious code..."],
+                    "column": 23,
+                    "id": [],
+                    "file": "chrome/content/youtune.js",
+                    "tier": 3,
+                    "for_appversions": {
+                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.0b3"]
+                    },
+                    "message": "This code may or may not be compatible",
+                    "type": "warning",
+                    "compatibility_type": "warning",
+                    "line": 533,
+                    "uid": "1c96f7faee7a41cca4d6ead26dddc6dd"
                 }, {
                     "context": ["<code>"],
                     "description": ["Some warning..."],
@@ -807,13 +822,17 @@ asyncTest('Test compat ignores warnings and notices', function() {
     }).thenDo(function() {
         // Compat error:
         equals($('#v-msg-2a96f7faee7a41cca4d6ead26dddc6b3', $suite).length, 1);
+        // Compat warning:
+        equals($('#v-msg-1c96f7faee7a41cca4d6ead26dddc6dd', $suite).length, 1);
         // Regular notice:
         equals($('#v-msg-1dc6f7faee7a41cca4d6ead26dddceed', $suite).length, 0);
         equals($('#v-msg-dce6f7faee7a41cca4d6ead26dddc2c1', $suite).length, 0);
         // Regular error
         equals($('#v-msg-6cd6f7faee7a41cca4d6ead26dddca4c', $suite).length, 1);
+        equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .result-summary', $suite).text(),
+               '1 error, 1 warning');
         equals($('#suite-results-tier-3 .result-summary', $suite).text(),
-               '1 error');
+               '1 error, 0 warnings');
         start();
     });
 });

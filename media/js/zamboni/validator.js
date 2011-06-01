@@ -30,12 +30,9 @@ function initValidator() {
             options.app = null;
         if (typeof options.testsWereRun === 'undefined')
             options.testsWereRun = true;
-        if (typeof options.showWarnings === 'undefined')
-            options.showWarnings = true;
         this.$results = $('.results', $suite);
         this.app = options.app;
         this.testsWereRun = options.testsWereRun;
-        this.showWarnings = options.showWarnings;
         this.counts = {error: 0, warning: 0};
         this.tierId = tierId;
         this.$suite = $suite;
@@ -60,8 +57,7 @@ function initValidator() {
     }
 
     ResultsTier.prototype.summarize = function() {
-        var sm = resultSummary(this.counts.error, this.counts.warning,
-                               {showWarnings: this.showWarnings}),
+        var sm = resultSummary(this.counts.error, this.counts.warning),
             resultClass, summaryMsg;
         $('.result-summary', this.$dom).css('visibility', 'visible')
                                        .empty().text(sm);
@@ -93,8 +89,7 @@ function initValidator() {
     ResultsTier.prototype.topSummary = function() {
         var $top = $('[class~="test-tier"]' +
                      '[data-tier="' + this.tierId + '"]', this.$suite),
-            summaryMsg = resultSummary(this.counts.error, this.counts.warning,
-                                       {showWarnings: this.showWarnings});
+            summaryMsg = resultSummary(this.counts.error, this.counts.warning);
 
         $('.tier-summary', $top).text(summaryMsg);
         $top.removeClass('ajax-loading', 'tests-failed', 'tests-passed',
@@ -274,13 +269,20 @@ function initValidator() {
     };
 
     CompatMsgVisitor.prototype.getMsgType = function(msg) {
-         return msg.compatibility_type ? msg.compatibility_type: msg['type'];
+        // A non-null type is only returned if:
+        //      it is a compatiblity error/warning
+        // OR
+        //      it is a non-compatibility error
+        var effectiveType = msg.compatibility_type ? msg.compatibility_type: msg['type'];
+        if (msg.compatibility_type == 'error' || msg.compatibility_type == 'warning')
+            return msg.compatibility_type
+        else
+            return effectiveType=='error' ? effectiveType: null;
     };
 
     CompatMsgVisitor.prototype.message = function(msg) {
         var self = this;
-        if (this.getMsgType(msg) !== 'error')
-            // Compatibility results only need to display/tally errors.
+        if (!this.getMsgType(msg))
             return;
         if (msg.for_appversions) {
             eachAppVer(msg.for_appversions, function(guid, version, id) {
@@ -295,7 +297,6 @@ function initValidator() {
 
     CompatMsgVisitor.prototype.tierOptions = function(options) {
         options = MsgVisitor.prototype.tierOptions.apply(this, arguments);
-        options.showWarnings = false;  // compat results only show errors
         return options;
     };
 
@@ -341,23 +342,13 @@ function initValidator() {
         }
     }
 
-    function resultSummary(numErrors, numWarnings, options) {
+    function resultSummary(numErrors, numWarnings) {
         // e.g. '1 error, 3 warnings'
-        if (typeof options === 'undefined')
-            options = {};
-        if (typeof options.showWarnings === 'undefined')
-            options.showWarnings = true;
         var errors = format(ngettext('{0} error', '{0} errors', numErrors),
                             [numErrors]),
-            warnings;
-
-        if (options.showWarnings) {
             warnings = format(ngettext('{0} warning', '{0} warnings', numWarnings),
                               [numWarnings]);
-            return format('{0}, {1}', errors, warnings);
-        } else {
-            return errors;
-        }
+        return format('{0}, {1}', errors, warnings);
     }
 
     function joinPaths(parts) {
