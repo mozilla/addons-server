@@ -18,7 +18,7 @@ import jinja2
 import commonware.log
 import session_csrf
 from tower import ugettext as _, ugettext_lazy as _lazy
-from mobility.decorators import mobilized
+from mobility.decorators import mobilized, mobile_template
 
 import amo
 from amo import messages
@@ -238,7 +238,8 @@ def _category_personas(qs, limit):
     return caching.cached(f, key)
 
 
-def persona_detail(request, addon):
+@mobile_template('addons/{mobile/}persona_detail.html')
+def persona_detail(request, addon, template=None):
     """Details page for Personas."""
     persona = addon.persona
 
@@ -249,9 +250,6 @@ def persona_detail(request, addon):
         category_personas = _category_personas(qs, limit=6)
     else:
         category_personas = None
-
-    # tags
-    dev_tags, user_tags = addon.tags_partitioned_by_developer
 
     # other personas from the same author(s)
     author_personas = Addon.objects.valid().filter(
@@ -265,25 +263,23 @@ def persona_detail(request, addon):
         'categories': categories,
         'author_personas': author_personas,
         'category_personas': category_personas,
-        'dev_tags': dev_tags,
-        'user_tags': user_tags,
-        'review_form': ReviewForm(),
-        'reviews': Review.objects.latest().filter(addon=addon),
-        'get_replies': Review.get_replies,
-        # Remora users persona.author despite there being a display_username
+        # Remora uses persona.author despite there being a display_username.
         'author_gallery': settings.PERSONAS_USER_ROOT % persona.author,
-        'search_cat': 'personas',
     }
-    if settings.REPORT_ABUSE:
-        data['abuse_form'] = AbuseForm(request=request)
-
-    return jingo.render(request, 'addons/persona_detail.html', data)
-
-
-# @mobilized(persona_detail)
-# def persona_detail(request, addon):
-#     return jingo.render(request, 'addons/mobile/persona_detail.html',
-#                         {'addon': addon})
+    if not request.MOBILE:
+        # tags
+        dev_tags, user_tags = addon.tags_partitioned_by_developer
+        data.update({
+            'dev_tags': dev_tags,
+            'user_tags': user_tags,
+            'review_form': ReviewForm(),
+            'reviews': Review.objects.latest().filter(addon=addon),
+            'get_replies': Review.get_replies,
+            'search_cat': 'personas'
+        })
+        if settings.REPORT_ABUSE:
+            data['abuse_form'] = AbuseForm(request=request)
+    return jingo.render(request, template, data)
 
 
 class BaseFilter(object):

@@ -468,6 +468,7 @@ MINIFY_BUNDLES = {
 
             # Personas
             'js/lib/jquery.hoverIntent.min.js',
+            'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
 
             # Collections
@@ -520,6 +521,7 @@ MINIFY_BUNDLES = {
 
             # Personas
             'js/lib/jquery.hoverIntent.min.js',
+            'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
 
             # Collections
@@ -548,6 +550,7 @@ MINIFY_BUNDLES = {
 
             # Personas
             'js/lib/jquery.hoverIntent.min.js',
+            'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
 
             'js/zamboni/debouncer.js',
@@ -598,7 +601,9 @@ MINIFY_BUNDLES = {
             'js/zamboni/format.js',
             'js/zamboni/mobile_buttons.js',
             'js/zamboni/truncation.js',
-            'js/zamboni/mobile.js',
+            'js/zamboni/personas_core.js',
+            'js/zamboni/mobile/personas.js',
+            'js/zamboni/mobile/general.js',
         ),
         'zamboni/stats': (
             'js/lib/jquery-datepicker.js',

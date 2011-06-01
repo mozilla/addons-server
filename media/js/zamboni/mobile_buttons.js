@@ -47,7 +47,9 @@
         'lite': gettext("Experimental <span>(Learn More)</span>"),
         'badApp': format(gettext("Not Available for {0}"), z.appName),
         'badPlatform': format(gettext("Not Available for {0}"), z.platformName),
-        'experimental': gettext("Experimental")
+        'experimental': gettext("Experimental"),
+        'personasTooOld': format(gettext("Personas Require Newer Version of {0}"), z.appName),
+        'personasLearnMore': format(gettext("Personas Require {0}"), z.appName)
     };
 
     function Button(el) {
@@ -86,6 +88,9 @@
             versionPlatformCheck();
 
             this.actionQueue.push([0, function() {
+                if (self.classes.persona) {
+                    return;
+                }
                 var href = activeInstaller.attr('href'),
                     hash = hashes[href],
                     attr = self.attr,
@@ -187,9 +192,7 @@
                 platformer = !!b.find('.platform').length,
                 platformSupported = !platformer || dom.buttons.filter("." + z.platform).length,
                 appSupported = z.appMatchesUserAgent && attr.min && attr.max,
-                olderBrowser, newerBrowser,
                 canInstall = true;
-
             if (!attr.search) {
                 // min and max only exist if the add-on is compatible with request[APP].
                 if (appSupported && platformSupported) {
@@ -202,12 +205,15 @@
                     if (self.tooOld) errors.push("tooOld");
                     if (self.tooNew) errors.push("tooNew");
                 } else {
-                    if (!appSupported && !z.badBrowser) errors.push("badApp");
+                    if (!z.appMatchesUserAgent && !z.badBrowser) {
+                        errors.push("badApp");
+                        canInstall = false;
+                    }
                     if (!platformSupported) {
                         errors.push("badPlatform");
                         dom.buttons.hide().eq(0).show();
+                        canInstall = false;
                     }
-                    canInstall = false;
                 }
 
                 if (platformer) {
@@ -225,6 +231,25 @@
                 if (classes.eula) {
                     self.actionQueue.push([1,z.eula.show]);
                     z.eula.acceptButton.click(_pd(self.resumeInstall));
+                }
+
+                if (classes.persona) {
+                    dom.buttons.removeClass("download").addClass("add");
+                    var persona = new MobilePersona(b);
+                    if ($.hasPersonas()) {
+                        dom.buttons.text(gettext("Keep it"));
+                        dom.buttons.personasButton("click",
+                            persona.states().installed);
+                    } else {
+                        persona.buttons().disable();
+                        dom.buttons.addClass("disabled");
+                        if (z.appMatchesUserAgent) {
+                            // Need upgrade.
+                            errors.push("personasTooOld");
+                        } else {
+                            errors.push("personasLearnMore");
+                        }
+                    }
                 }
             }
 

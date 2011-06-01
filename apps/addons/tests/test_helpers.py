@@ -5,13 +5,14 @@ from pyquery import PyQuery
 
 import amo
 from addons.helpers import (statusflags, flag, support_addon, contribution,
-                            performance_note)
+                            performance_note, mobile_persona_preview,
+                            mobile_persona_confirm)
 from addons.models import Addon
 
 
 class TestHelpers(test_utils.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/addon_4664_twitterbar',
-                'addons/featured.json']
+                'addons/featured', 'addons/persona']
 
     def setUp(self):
         # Addon._feature keeps an in-process cache we need to clear.
@@ -94,6 +95,48 @@ class TestHelpers(test_utils.TestCase):
         s = contribution(c, a, contribution_src='browse')
         doc = PyQuery(s)
         eq_(doc('input[name=source]').attr('value'), 'browse')
+
+    def test_mobile_persona_preview(self):
+        ctx = {'APP': amo.FIREFOX, 'LANG': 'en-US'}
+        persona = Addon.objects.get(pk=15663).persona
+        s = mobile_persona_preview(ctx, persona)
+        doc = PyQuery(s)
+        bt = doc('.persona-preview div[data-browsertheme]')
+        assert bt
+        assert persona.preview_url in bt.attr('style')
+        eq_(persona.json_data, bt.attr('data-browsertheme'))
+        assert bt.find('p')
+
+    def _test_mobile_persona_ctx(self):
+        request = Mock()
+        request.APP = amo.FIREFOX
+        request.GET = {}
+        request.user.is_authenticated.return_value = False
+        request.amo_user.mobile_addons = []
+        return {'APP': amo.FIREFOX, 'LANG': 'en-US', 'request': request}
+
+    def test_mobile_persona_confirm_large(self):
+        persona = Addon.objects.get(id=15663).persona
+        s = mobile_persona_confirm(self._test_mobile_persona_ctx(), persona)
+        doc = PyQuery(s)
+        assert not doc('.persona-slider')
+        assert doc('.preview')
+        assert doc('.confirm-buttons .add')
+        assert doc('.confirm-buttons .cancel')
+        assert not doc('.more')
+
+    def test_mobile_persona_confirm_small(self):
+        persona = Addon.objects.get(id=15663).persona
+        s = mobile_persona_confirm(self._test_mobile_persona_ctx(), persona,
+                                   size='small')
+        doc = PyQuery(s)
+        assert doc('.persona-slider')
+        assert not doc('.persona-slider .preview')
+        assert doc('.confirm-buttons .add')
+        assert doc('.confirm-buttons .cancel')
+        more = doc('.more')
+        assert more
+        eq_(more.attr('href'), persona.addon.get_url_path())
 
 
 class TestPerformanceNote(test_utils.TestCase):

@@ -56,3 +56,25 @@ def test_reviews_link():
     s = render('{{ reviews_link(myaddon, link_to_list=True) }}',
                {'myaddon': a})
     eq_(PyQuery(s)('a').attr('href'), u)
+
+
+def test_mobile_reviews_link():
+    s = lambda a: PyQuery(render('{{ mobile_reviews_link(myaddon) }}',
+                     {'myaddon': a}))
+
+    a = Addon(total_reviews=0, id=1, type=1, slug='xx')
+    doc = s(a)
+    eq_(doc('a').attr('href'), reverse('reviews.add', args=['xx']))
+
+    u = reverse('reviews.list', args=['xx'])
+
+    a = Addon(average_rating=4, total_reviews=37, id=1, type=1, slug='xx')
+    doc = s(a)
+    eq_(doc('a').attr('href'), u)
+    eq_(doc('a').text(), 'Rated 4 out of 5 stars See All 37 Reviews')
+
+    a = Addon(average_rating=4, total_reviews=1, id=1, type=1, slug='xx')
+    doc = s(a)
+    doc.remove('div')
+    eq_(doc('a').attr('href'), u)
+    eq_(doc('a').text(), 'See All Reviews')

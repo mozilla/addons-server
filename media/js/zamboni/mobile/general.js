@@ -201,6 +201,15 @@ $(function() {
     $("#eula .negative").click(_pd(z.eula.dismiss));
     $("#eula .affirmative").click(_pd(z.eula.dismiss));
 
+    $(".persona-previewer .preview").click(_pd(function() {
+        var persona = new MobilePersona(this);
+        persona.triggers().preview();
+    }));
+    $(".persona-previewer .cancel").click(_pd(function() {
+        var persona = new MobilePersona(this);
+        persona.triggers().cancel();
+    }));
+
     //review truncation
     if ($(".review").length) {
         $(".review p").each(function() {
@@ -258,3 +267,99 @@ z.eula = (function(){
         acceptButton: $("#eula-menu .affirmative")
     };
 })();
+
+
+/**
+ * MobilePersona: controls for mobile-friendly Persona previewer.
+ * Configuration:
+ *     el: .button, .persona-preview, or any element in the .persona-previewer
+ */
+function MobilePersona(el) {
+    this.el = el;
+    this.outer = $(el).closest('.persona-previewer');
+    this.persona = this.outer.find('.persona');
+    this.personaPreview = this.persona.find('[data-browsertheme]');
+}
+MobilePersona.prototype.buttons = function() {
+    var $slider = this.outer.find('.persona-slider'),
+        $preview = this.outer.find('.button.preview'),
+        $confirm = this.outer.find('.confirm-buttons'),
+        $badges = this.outer.closest('#persona').find('.badges'),
+        that = this;
+    return {
+        show: function(force) {
+            if ($slider.length) {
+                $slider.slideDown();
+            } else {
+                $confirm.show();
+            }
+            $preview.hide();
+            $badges.hide();
+        },
+        hide: function(force) {
+            if ($slider.length) {
+                $slider.slideUp();
+            } else {
+                $confirm.hide();
+            }
+            $preview.show();
+            $badges.show();
+        },
+        disable: function() {
+            $preview.addClass('disabled');
+        }
+    };
+};
+MobilePersona.prototype.states = function() {
+    var btns = this.buttons(),
+        that = this;
+    return {
+        loading: function() {
+            that.persona.find('p').show();
+        },
+        previewing: function() {
+            that.persona.addClass('persona-previewing');
+            that.persona.find('p').text(gettext("You're trying it on!"));
+            btns.show();
+        },
+        installed: function() {
+            var $installed = $('.persona-installed');
+            if ($installed.length) {
+                // If a different persona has already been installed, then
+                // that persona should be able to be previewed again.
+                $installed.removeClass('persona-installed').find('p').text('').hide();
+                $('#persona .preview.disabled').removeClass('disabled');
+                $installed.find('[data-browsertheme]').trigger('click');
+            }
+            that.persona.find('p').text(gettext('Added to Firefox'));
+            that.persona.removeClass('persona-previewing').addClass('persona-installed');
+            btns.hide();
+            btns.disable();
+        },
+        cancelled: function() {
+            that.persona.removeClass('persona-previewing');
+            that.persona.find('p').text('').hide();
+            btns.hide();
+        }
+    };
+};
+MobilePersona.prototype.triggers = function() {
+    // Trigger events for Persona previews.
+    var btns = this.buttons(),
+        that = this;
+    return {
+        preview: function() {
+            // Check if "Try it" button is disabled.
+            if (that.outer.find('.button.preview').hasClass('disabled')) {
+                return;
+            }
+            that.personaPreview.trigger('click');
+            btns.show();
+        },
+        cancel: function() {
+            // Clicking again will cancel the Persona preview.
+            that.personaPreview.trigger('click');
+            btns.hide();
+        }
+    };
+};

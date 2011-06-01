@@ -218,6 +218,24 @@ def persona_preview(context, persona, size='large', linked=True, extra=None,
     return c
 
 
+@register.inclusion_tag('addons/mobile/persona_preview.html')
+@jinja2.contextfunction
+def mobile_persona_preview(context, persona):
+    addon = persona.addon
+    c = dict(context.items())
+    c.update({'persona': persona, 'addon': addon})
+    return c
+
+
+@register.inclusion_tag('addons/mobile/persona_confirm.html')
+@jinja2.contextfunction
+def mobile_persona_confirm(context, persona, size='large'):
+    addon = persona.addon
+    c = dict(context.items())
+    c.update({'persona': persona, 'addon': addon, 'size': size})
+    return c
+
+
 @register.inclusion_tag('addons/persona_grid.html')
 @jinja2.contextfunction
 def persona_grid(context, addons):

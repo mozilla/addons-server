@@ -65,7 +65,8 @@ i {
 header:after,
 section:after,
 .menu:after,
-.grouped_ratings:after {
+.grouped_ratings:after,
+.persona-confirm:after {
     content: ".";
     display: block;
     clear: both;
@@ -488,7 +489,7 @@ header #home, header .back-link {
 
 .listview,
 .infobox {
-    margin: 14px 14px 0;
+    margin: 14px 14px 1em;
     border-radius: 6px;
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
@@ -497,7 +498,6 @@ header #home, header .back-link {
 /*    background-image: -moz-linear-gradient(#fff, rgba(255,255,255,0) 12px);
     -moz-box-shadow: 0 -3px rgba(0,0,0,.1) inset;
     -webkit-box-shadow: 0 -3px rgba(0,0,0,.1) inset;*/
-    margin-bottom: 1em;
     display: block;
 }
 .infobox {
@@ -512,7 +512,7 @@ header #home, header .back-link {
 }
 .listview li > a,
 a.listview {
-    padding: 14px 10px;
+    padding: 14px;
     color: #444;
     font-family: Georgia, serif;
     font-size: 1.1em;
@@ -520,6 +520,10 @@ a.listview {
     overflow: hidden;
     text-decoration: none;
     position: relative;
+}
+.html-rtl li > a,
+.html-rtl a.listview {
+    padding-left: 34px;
 }
 .listview .item > a,
 .listview div.item {
@@ -816,7 +820,6 @@ a.listview:before {
     -webkit-transition: .5s opacity ease;
 }
 #lightbox .close {
-    font-family: sans;
     display: block;
     position: absolute;
     z-index: 100;
@@ -907,6 +910,170 @@ td .versions li a {
 }
 
 /************************************/
+/*             PERSONAS             */
+/************************************/
+
+#persona h3,
+#persona .author {
+    display: inline-block;
+    font-size: 14px;
+}
+
+#persona h3 {
+    color: #444;
+    font-family: "Droid Sans", Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+#persona .author,
+#persona .persona-large {
+    margin-bottom: 8px;
+}
+
+#persona .badges {
+    margin-top: 0;
+}
+
+#persona .badges li {
+    margin: 8px 0 0;
+}
+
+ul.license {
+    position: relative;
+    top: 3px;
+}
+ul.license li {
+    display: block;
+    float: left;
+    list-style: none;
+    margin-right: 2px;
+}
+.html-rtl ul.license li {
+    float: right;
+    margin: 0 0 0 2px;
+}
+ul.license li.text {
+    font-size: 90%;
+    line-height: 15px;
+    margin-left: 4px;
+}
+.html-rtl ul.license li.text {
+    margin: 0 4px 0 0;
+}
+ul.license li.icon {
+    background: url(../../img/zamboni/licenses.png) no-repeat top left;
+    height: 15px;
+    width: 15px;
+}
+ul.license li.cc-attrib { background-position: 0 0; }
+ul.license li.cc-noderiv { background-position: 0 -65px; }
+ul.license li.cc-noncom { background-position: 0 -130px; }
+ul.license li.cc-share { background-position: 0 -195px; }
+ul.license li.copyr { background-position: 0 -260px; }
+
+.persona-preview [data-browsertheme] {
+    display: block;
+    position: relative;
+}
+
+.persona-large [data-browsertheme],
+.persona-large p {
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.persona-large {
+    max-width: 680px;
+}
+
+.persona-large [data-browsertheme] {
+    background: transparent no-repeat right top;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    display: table;
+    height: 64px;
+    width: 100%;
+}
+
+.persona-large p {
+    background-image: url(../../img/zamboni/mobile/loading-white.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    -moz-background-size: auto 32px;
+    -wekbkit-background-size: auto 32px;
+    background-size: auto 32px;
+    color: #fff;
+    display: none;
+    font: 18px Georgia, serif;
+    pointer-events: none;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+    vertical-align: middle;
+}
+
+.persona-hover p {
+    background-color: rgba(0, 0, 0, 0.4);
+    display: table-cell;
+}
+
+.persona-previewing p,
+.persona-installed p {
+    background: none;
+}
+
+#persona .confirm-buttons,
+.persona-slider .badges {
+    display: none;
+}
+
+.persona-previewer .confirm-buttons .add {
+    float: left;
+    width: -moz-calc(50% - 63px); /* 63px = 39px + 24px (for plus-sign icon) */
+}
+
+.persona-previewer .confirm-buttons .cancel {
+    float: right;
+    width: -moz-calc(50% - 39px); /* 39px = 32px + 14px / 2 (margin) */
+}
+
+.persona-previewer .persona-installed p:before {
+    background: url(../../img/zamboni/mobile/checkmark.png) no-repeat top left;
+    content: " ";
+    display: inline-block;
+    margin: 0 3px -3px 0;
+    position: relative;
+    top: 3px;
+    height: 25px;
+    width: 25px;
+}
+
+li.persona-previewer {
+    padding: 14px;
+}
+
+.persona-slider {
+    background-color: #ccc;
+    border-top: #999 1px solid;
+    box-shadow: 0 -1px 1px rgba(0,0,0,.5);
+    display: none;
+    padding: 14px;
+    position: relative;
+    left: -14px;
+    bottom: -14px;
+    width: 100%;
+}
+
+.persona-slider .more {
+    clear: both;
+    color: #447bc4;
+    display: block;
+    font-weight: bold;
+    line-height: 1;
+    padding-top: 14px;
+    text-align: center;
+}
+
+/************************************/
 /*             VERSIONS             */
 /************************************/
 
@@ -969,9 +1136,24 @@ td .versions li a {
     font-weight: bold;
 }
 
-.infobox .install-wrapper {
+.infobox .install-wrapper,
+#persona .persona-confirm {
     border-top: 2px solid #fff;
     box-shadow: 0 -1px #ccc;
+}
+
+#persona .persona-confirm {
+    padding-top: 8px;
+}
+
+.persona-confirm .install-wrapper {
+    margin: 0;
+    padding-top: 0;
+}
+
+#persona .persona-confirm .install-wrapper {
+    border-top-width: 0;
+    box-shadow: none;
 }
 
 .button, a.button {
@@ -1039,6 +1221,7 @@ td .versions li a {
                      0 0 100px rgba(255, 255, 255, 0.2) inset;
 }
 
+.button.preview,
 .button.affirmative,
 .button.add {
     background-color: #84C63C;
@@ -1063,6 +1246,9 @@ td .versions li a {
         to(#932b0d)
     );*/
     color: #fff;
+}
+.button.cancel {
+    background-color: #b25951;
 }
 .button.add {
     padding-left: 40px;
@@ -1312,9 +1498,7 @@ td .versions li a {
     width: 120px;
 }
 .num_ratings {
-    font-size: .9em;
     color: #888;
-    line-height: 22px;
     width: 1px;
     position: absolute;
     right: -6px;

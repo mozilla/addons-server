@@ -571,6 +571,12 @@ class TestDetailPage(test_utils.TestCase):
         assert '&lt;script&gt;alert("fff")&lt;/script&gt;' in html
         assert '<script>' not in html
 
+    def test_personas_context(self):
+        response = self.client.get(reverse('addons.detail', args=['a15663']))
+        assert 'review_form' in response.context
+        assert 'reviews' in response.context
+        assert 'get_replies' in response.context
+
     def test_unreviewed_robots(self):
         """Check that unreviewed add-ons do not get indexed."""
         addon = Addon.objects.get(id=3615)
@@ -1266,11 +1272,14 @@ class TestMobileDetails(TestMobile):
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'addons/mobile/details.html')
 
-    def _test_persona(self):
-        addon = Addon.objects.filter(type=amo.ADDON_PERSONA)[0]
+    def test_persona(self):
+        addon = Addon.objects.get(id=15679)
         r = self.client.get(addon.get_url_path())
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'addons/mobile/persona_detail.html')
+        assert 'review_form' not in r.context
+        assert 'reviews' not in r.context
+        assert 'get_replies' not in r.context
 
     def test_release_notes(self):
         a = Addon.objects.get(id=3615)
