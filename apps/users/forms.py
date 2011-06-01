@@ -20,7 +20,7 @@ from .models import (UserProfile, BlacklistedUsername, BlacklistedEmailDomain,
 from . import tasks
 
 log = commonware.log.getLogger('z.users')
-admin_re = re.compile('[a-zA-Z][0-9]')
+admin_re = re.compile('(?=.*\d)(?=.*[a-zA-Z])')
 
 
 class PasswordMixin:
