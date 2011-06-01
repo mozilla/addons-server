@@ -44,28 +44,36 @@
     {{ popular|addon_toplist }}
   </section>
   <section class="primary">
-    <div class="island">
-      <h2>{{ _('Featured Extensions') }}
-        <a class="seeall" href="{{ url('browse.featured') }}">{{ _('See all »') }}</a>
-      </h2>
-      {{ featured|addon_grid }}
-    </div>
-    <div class="island">
-      <h2>{{ _('Up &amp; Coming Extensions') }}</h2>
-      {{ hotness|addon_grid }}
-    </div>
-    <div class="island">
-      <h2>{{ _('Featured Personas') }}
-        <a class="seeall" href="{{ url('browse.personas')|urlparams(sort='featured') }}">{{ _('See all »') }}</a>
-      </h2>
-      {{ personas|impala_persona_grid }}
-    </div>
-    <div class="island">
-      <h2>{{ _('Featured Collections') }}
-        <a class="seeall" href="{{ url('collections.list')|urlparams(sort='featured') }}">{{ _('See all »') }}</a>
-      </h2>
-      {{ collections|collection_grid }}
-    </div>
+    {% if featured %}
+      <div class="island">
+        <h2>{{ _('Featured Extensions') }}
+          <a class="seeall" href="{{ url('browse.featured') }}">{{ _('See all »') }}</a>
+        </h2>
+        {{ featured|addon_grid }}
+      </div>
+    {% endif %}
+    {% if hotness %}
+      <div class="island">
+        <h2>{{ _('Up &amp; Coming Extensions') }}</h2>
+        {{ hotness|addon_grid }}
+      </div>
+    {% endif %}
+    {% if personas %}
+      <div class="island">
+        <h2>{{ _('Featured Personas') }}
+          <a class="seeall" href="{{ url('browse.personas')|urlparams(sort='featured') }}">{{ _('See all »') }}</a>
+        </h2>
+        {{ personas|impala_persona_grid }}
+      </div>
+    {% endif %}
+    {% if featured %}
+      <div class="island">
+        <h2>{{ _('Featured Collections') }}
+          <a class="seeall" href="{{ url('collections.list')|urlparams(sort='featured') }}">{{ _('See all »') }}</a>
+        </h2>
+        {{ collections|collection_grid }}
+      </div>
+    {% endif %}
   </section>
 </section>
 
