@@ -991,3 +991,6 @@ SEND_REAL_EMAIL = False
 STATSD_HOST = 'localhost'
 STATSD_PORT = 8125
 STATSD_PREFIX = 'amo'
+
+# URL to the service that triggers addon performance tests.  See devhub.perf.
+PERF_TEST_URL = 'http://areweperftestingyet.com/trigger.cgi'
