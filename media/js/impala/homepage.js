@@ -11,11 +11,5 @@ $(function () {
             btnNext: $('#promos .next')
         });
         $('.vtruncate').truncate({dir: 'v'});
-        var interval = setInterval($q.gofwd, 7000);
-        $q.hover(function() {
-            clearInterval(interval);
-        }, function() {
-            interval = setInterval($q.gofwd, 7000);
-        });
     });
 });
