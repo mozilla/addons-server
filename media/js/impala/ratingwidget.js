@@ -34,4 +34,4 @@ $.fn.ratingwidget = function() {
         $el.detach();
     });
     return this;
-}
+};
