@@ -104,4 +104,6 @@ $(document).ready(function() {
         });
         target.closest('.review').addClass('deleted');
     });
+
+    $("select[name='rating']").ratingwidget();
 });
