@@ -6,6 +6,7 @@ import logging
 import os
 import re
 import shutil
+import stat
 import tempfile
 import zipfile
 from datetime import datetime
@@ -14,6 +15,7 @@ from xml.dom import minidom
 from zipfile import BadZipfile
 
 from django import forms
+from django.conf import settings
 
 import rdflib
 import redisutils
@@ -152,11 +154,28 @@ def extract_zip(source, remove=False, fatal=True):
             raise
         return None
 
-    for f in zip.namelist():
-        if '..' in f or f.startswith('/'):
+    for info in zip.infolist():
+        if '..' in info.filename or info.filename.startswith('/'):
             log.error('Extraction error, Invalid archive: %s' % source)
             raise forms.ValidationError(_('Invalid archive.'))
-    zip.extractall(tempdir)
+
+        if info.file_size > settings.FILE_UNZIP_SIZE_LIMIT:
+            log.error('Extraction error, file too big: %s, %s'
+                      % (source, info.file_size))
+            raise forms.ValidationError(_('Invalid archive.'))
+
+        zip.extract(info, tempdir)
+
+        # TODO (andym): find a way to test this.
+        dest = os.path.join(tempdir, info.filename)
+        if os.path.isdir(dest):
+            # Directories consistently report their size incorrectly.
+            continue
+        size = os.stat(dest)[stat.ST_SIZE]
+        if size != info.file_size:
+            log.error('Extraction error, uncompressed size: %s, %s not %s'
+                      % (source, size, info.file_size))
+            raise forms.ValidationError(_('Invalid archive.'))
 
     if remove:
         os.remove(source)

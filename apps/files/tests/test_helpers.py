@@ -6,8 +6,9 @@ import tempfile
 
 from django.conf import settings
 from django.core.cache import cache
+from django import forms
 
-from mock import Mock, patch, patch_object
+from mock import Mock, patch
 from nose.tools import eq_
 import test_utils
 
@@ -162,7 +163,7 @@ class TestFileHelper(test_utils.TestCase):
         rt = files.index(u'chrome')
         eq_(files[rt:rt + 3], [u'chrome', u'chrome/foo', u'chrome.manifest'])
 
-    @patch_object(settings._wrapped, 'FILE_VIEWER_SIZE_LIMIT', 5)
+    @patch.object(settings._wrapped, 'FILE_VIEWER_SIZE_LIMIT', 5)
     def test_file_size(self):
         self.viewer.extract()
         self.viewer.get_files()
@@ -170,6 +171,10 @@ class TestFileHelper(test_utils.TestCase):
         res = self.viewer.read_file()
         eq_(res, '')
         assert self.viewer.selected['msg'].startswith('File size is')
+
+    @patch.object(settings._wrapped, 'FILE_UNZIP_SIZE_LIMIT', 5)
+    def test_contents_size(self):
+        self.assertRaises(forms.ValidationError, self.viewer.extract)
 
     def test_default(self):
         eq_(self.viewer.get_default(None), 'install.rdf')

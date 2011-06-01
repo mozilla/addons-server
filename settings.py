@@ -934,7 +934,10 @@ BLOCKLIST_COOKIE = 'BLOCKLIST_v1'
 # Responsys id used for newsletter subscribing
 RESPONSYS_ID = ''
 
+# The maximum file size that is shown inside the file viewer.
 FILE_VIEWER_SIZE_LIMIT = 1048576
+# The maximum file size that you can have inside a zip file.
+FILE_UNZIP_SIZE_LIMIT = 10485760
 
 # How long to delay modify updates to cope with alleged NFS slowness.
 MODIFIED_DELAY = 3
