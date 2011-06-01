@@ -762,9 +762,11 @@ class TestModeratedQueue(QueueTest):
         # Default is "Skip"
         assert doc('#id_form-0-action_1:checked')
 
-        current_date = jingo.helpers.datetime(datetime.now())
+        current_date = datetime.now().strftime('%b')
+
         text = doc('.reviews-flagged-reasons span.light').text()
-        assert 'Flagged by editor on %s' % current_date in text, (
+
+        assert 'Flagged by editor on %s ' % current_date in text, (
                 ('Unexpected text: %s' % text))
 
         # Check that a time is included in the text
@@ -907,9 +909,10 @@ class TestPerformance(QueueTest):
 
         # The ' - 1' is to account for REQUEST_VERSION not being displayed.
         num = len(amo.LOG_REVIEW_QUEUE) - 1
-        data =  {u'2011-05': {u'teamcount': num, u'teamavg': u'%s.0' % num,
-                              u'usercount': num, u'teamamt': 1,
-                              u'label': u'May 2011'}}
+        label = datetime.now().isoformat()[:7]
+        data =  {label: {u'teamcount': num, u'teamavg': u'%s.0' % num,
+                         u'usercount': num, u'teamamt': 1,
+                         u'label': datetime.now().strftime('%b %Y')}}
 
         eq_(json.loads(doc('#monthly').attr('data-chart')), data)
 
@@ -920,10 +923,11 @@ class TestPerformance(QueueTest):
         doc = pq(r.content)
 
         # The ' - 1' is to account for REQUEST_VERSION not being displayed.
+        label = datetime.now().isoformat()[:7]
         num = len(amo.LOG_REVIEW_QUEUE) - 1
-        data =  {u'2011-05': {u'teamcount': num, u'teamavg': u'%s.0' % num,
-                              u'usercount': num, u'teamamt': 1,
-                              u'label': u'May 2011'}}
+        data =  {label: {u'teamcount': num, u'teamavg': u'%s.0' % num,
+                         u'usercount': num, u'teamamt': 1,
+                         u'label': datetime.now().strftime('%b %Y')}}
 
         eq_(json.loads(doc('#monthly').attr('data-chart')), data)
 

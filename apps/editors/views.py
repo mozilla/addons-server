@@ -144,7 +144,7 @@ def performance(request, user_id=False):
         if user_new.exists():
             user = user_new.all()[0]
 
-    monthly_data = _performanceByMonth(user.id)
+    monthly_data = _performance_by_month(user.id)
     performance_total = _performance_total(monthly_data)
 
     data = context(monthly_data=json.dumps(monthly_data),
@@ -186,7 +186,7 @@ def _performance_total(data):
     return dict(month=total_month, year=total_yr)
 
 
-def _performanceByMonth(user_id, months=12, end_month=None, end_year=None):
+def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
     monthly_data = SortedDict()
 
     now = datetime.now()
