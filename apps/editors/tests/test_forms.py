@@ -58,4 +58,4 @@ class TestReviewActions(test_utils.TestCase):
     def test_not_public(self):
         # If the file is unreviewed then there is no option to reject,
         # so the length of the actions is one shorter
-        eq_(len(self.set_status(amo.STATUS_UNREVIEWED)), 4)
+        eq_(len(self.set_status(amo.STATUS_UNREVIEWED)), 5)

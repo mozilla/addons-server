@@ -261,6 +261,9 @@ class ReviewHelper:
         actions['super'] = {'method': self.handler.process_super_review,
                             'label': _lazy('Request super-review'),
                             'minimal': True}
+        actions['comment'] = {'method': self.handler.process_comment,
+                              'label': _lazy('Comment'),
+                              'minimal': True}
         for k, v in actions.items():
             v['details'] = details.get(k)
 
@@ -281,7 +284,9 @@ class ReviewHelper:
                                   'below. They will be sent to '
                                   'administrators, not the author.'),
                    'reject': _lazy('This will reject the add-on and remove '
-                                   'it from the review queue.')}
+                                   'it from the review queue.'),
+                   'comment': _lazy('Make a comment on this version.  The '
+                                    'author won\'t be able to see this.')}
 
         if self.addon.status == amo.STATUS_LITE:
             details['reject'] = _lazy('This will reject the files and remove '
@@ -477,6 +482,9 @@ class ReviewAddon(ReviewBase):
                           u'Mozilla Add-ons: %s %s flagged for Admin Review')
         self.send_super_mail()
 
+    def process_comment(self):
+        self.log_action(amo.LOG.COMMENT_VERSION)
+
 
 class ReviewFiles(ReviewBase):
 
@@ -541,3 +549,6 @@ class ReviewFiles(ReviewBase):
                           u'Mozilla Add-ons: %s %s flagged for Admin Review')
 
         self.send_super_mail()
+
+    def process_comment(self):
+        self.log_action(amo.LOG.COMMENT_VERSION)
