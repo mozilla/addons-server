@@ -6,6 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404
 from django.utils.http import http_date
 
+import amo
 from amo.utils import Token
 from access.acl import check_addon_ownership, action_allowed
 from files.helpers import DiffHelper, FileViewer
@@ -21,7 +22,7 @@ def allowed(request, file):
         except ObjectDoesNotExist:
             return http.Http404()
 
-        if addon.view_source:
+        if addon.view_source and addon.status in amo.REVIEWED_STATUSES:
             allowed = True
         else:
             allowed = check_addon_ownership(request, addon,

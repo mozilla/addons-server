@@ -15,6 +15,7 @@ from pyquery import PyQuery as pq
 import test_utils
 from waffle.models import Switch
 
+import amo
 from amo.utils import Message
 from amo.urlresolvers import reverse
 from addons.models import Addon
@@ -102,6 +103,19 @@ class FilesBase:
         assert self.client.login(username=self.dev.email, password='password')
         self.file_viewer.extract()
         self.check_urls(200)
+
+    def test_view_access_reviewed(self):
+        self.addon.update(view_source=True)
+        self.file_viewer.extract()
+        self.client.logout()
+
+        for status in amo.UNREVIEWED_STATUSES:
+            self.addon.update(status=status)
+            self.check_urls(403)
+
+        for status in amo.REVIEWED_STATUSES:
+            self.addon.update(status=status)
+            self.check_urls(200)
 
     def test_view_access_developer_view_source(self):
         self.client.logout()
