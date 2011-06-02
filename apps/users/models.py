@@ -98,7 +98,7 @@ class UserProfile(amo.models.ModelBase):
     deleted = models.BooleanField(default=False)
     display_collections = models.BooleanField(default=False)
     display_collections_fav = models.BooleanField(default=False)
-    emailhidden = models.BooleanField(default=False)
+    emailhidden = models.BooleanField(default=True)
     homepage = models.URLField(max_length=255, blank=True, default='',
                                verify_exists=False)
     location = models.CharField(max_length=255, blank=True, default='')
