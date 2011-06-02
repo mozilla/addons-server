@@ -155,7 +155,7 @@ class FrontendSearchTest(SphinxTestCase):
         resp = self.get_response(sort='newest')
         doc = pq(resp.content)
         el = doc('.listing-header li.selected')[0].text_content().strip()
-        eq_(el, 'Newest')
+        eq_(el, 'Created')
 
     def test_sort_default(self):
         "Test that by default we're sorting by Keyword Search"

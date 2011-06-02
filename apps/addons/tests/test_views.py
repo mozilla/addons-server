@@ -1254,7 +1254,7 @@ class TestMobileHome(TestMobile):
         assert all(a.is_featured(app, lang) for a in featured)
         eq_(len(popular), 3)
         eq_([a.id for a in popular],
-            [a.id for a in sorted(popular, key=lambda x: x.weekly_downloads,
+            [a.id for a in sorted(popular, key=lambda x: x.average_daily_users,
                                   reverse=True)])
 
 
