@@ -399,3 +399,10 @@ def builder_pingback(request):
         return http.HttpResponseBadRequest()
     files.tasks.repackage_jetpack.delay(data)
     return http.HttpResponse()
+
+
+def graphite(request, site):
+    ctx = {'width': 586, 'height': 308}
+    ctx.update(request.GET.items())
+    ctx['site'] = site
+    return jingo.render(request, 'services/graphite.html', ctx)

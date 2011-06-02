@@ -14,6 +14,7 @@ services_patterns = patterns('',
     url('^csp/report$', views.cspreport, name='amo.csp.report'),
     url('^builder-pingback', views.builder_pingback,
         name='amo.builder-pingback'),
+    url('^graphite/(pamo|namo|amo)$', views.graphite, name='amo.graphite'),
 )
 
 urlpatterns = patterns('',
