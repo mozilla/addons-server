@@ -252,8 +252,8 @@ function bind_viewer(nodes) {
 
     if (viewer.nodes.$files.find('li').length == 1) {
         viewer.toggle_files();
-        $('#files-prev').parent().hide();
-        $('#files-next').parent().hide();
+        $('#files-down').parent().hide();
+        $('#files-up').parent().hide();
         $('#files-expand-all').parent().hide();
     }
 
@@ -261,14 +261,14 @@ function bind_viewer(nodes) {
         viewer.toggle_leaf($(this));
     }));
 
-    $('#files-prev').click(_pd(function() {
+    $('#files-up').click(_pd(function() {
         var prev = viewer.get_selected() - 1;
         if (prev >= 0) {
             viewer.select(viewer.nodes.$files.find('a.file').eq(prev));
         }
     }));
 
-    $('#files-next').click(_pd(function() {
+    $('#files-down').click(_pd(function() {
         var next = viewer.nodes.$files.find('a.file').eq(viewer.get_selected() + 1);
         if (next.length) {
             viewer.select(next);
@@ -298,9 +298,9 @@ function bind_viewer(nodes) {
         if (e.keyCode == 72) {
             $('#files-hide').trigger('click');
         } else if (e.keyCode == 75) {
-            $('#files-next').trigger('click');
+            $('#files-up').trigger('click');
         } else if (e.keyCode == 74) {
-            $('#files-prev').trigger('click');
+            $('#files-down').trigger('click');
         } else if (e.keyCode == 87) {
             $('#files-wrap').trigger('click');
         } else if (e.keyCode == 69) {
