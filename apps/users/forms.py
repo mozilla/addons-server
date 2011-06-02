@@ -36,13 +36,16 @@ class PasswordMixin:
 
     def clean_password(self, field='password'):
         data = self.cleaned_data[field]
+        if not data:
+            return data
+
         if (hasattr(self, 'instance') and self.instance.pk and
             (action_allowed_user(self.instance, 'Editors', '%')
              or action_allowed_user(self.instance, 'Admin', '%'))):
             if not admin_re.search(data):
                 raise forms.ValidationError(_('Letters and numbers required.'))
 
-        if data and BlacklistedPassword.blocked(data):
+        if BlacklistedPassword.blocked(data):
             raise forms.ValidationError(_('That password is not allowed.'))
         return data
 

@@ -36,7 +36,7 @@ function initStrength(nodes) {
             $strength.text(rating[0])
                      .removeClass('password-weak password-medium password-strong')
                      .addClass('password-'+rating[1]);
-        }).trigger('blur');
+        });
     });
 }
 

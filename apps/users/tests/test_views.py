@@ -68,6 +68,15 @@ class TestEdit(UserViewBase):
                 .filter(activity_log__action=amo.LOG.CHANGE_PASSWORD.id)
                 .count(), 1)
 
+    def test_password_empty(self):
+        admingroup = Group(rules='Admin:EditAnyUser')
+        admingroup.save()
+        GroupUser.objects.create(group=admingroup, user=self.user)
+        homepage = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
+                    'homepage':'http://cbc.ca'}
+        res = self.client.post(self.url, homepage)
+        eq_(res.status_code, 302)
+
     def test_password_blacklisted(self):
         BlacklistedPassword.objects.create(password='password')
         bad = self.correct.copy()
