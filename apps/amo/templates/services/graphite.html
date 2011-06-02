@@ -18,6 +18,13 @@
 {% set day = "from=-24hours&title=24 hours" %}
 {% set week = "from=-7days&title=7 days" %}
 
+{% macro grid() %}
+  <img src="{{ base }}&{{ caller() }}&{{ fifteen }}">
+  <img src="{{ base }}&{{ caller() }}&{{ hour }}">
+  <img src="{{ base }}&{{ caller() }}&{{ day }}">
+  <img src="{{ base }}&{{ caller() }}&{{ week }}">
+{% endmacro %}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -32,15 +39,14 @@
     </ul>
 
     <h2 id="responses">All Responses</h2>
-    <img src="{{ base }}&target=sumSeries%28{{ ns }}.response.200%2C{{ ns }}.response.301%2C{{ ns }}.response.302%2C{{ ns }}.response.404%2C{{ ns }}.response.405%2C{{ ns }}.response.500%29&target={{ ns }}.response.200&target={{ ns }}.response.301&target={{ ns }}.response.302&target={{ ns }}.response.403&target={{ ns }}.response.404&target={{ ns }}.response.405&target={{ ns }}.response.500&{{ fifteen }}">
-    <img src="{{ base }}&target=sumSeries%28{{ ns }}.response.200%2C{{ ns }}.response.301%2C{{ ns }}.response.302%2C{{ ns }}.response.404%2C{{ ns }}.response.405%2C{{ ns }}.response.500%29&target={{ ns }}.response.200&target={{ ns }}.response.301&target={{ ns }}.response.302&target={{ ns }}.response.403&target={{ ns }}.response.404&target={{ ns }}.response.405&target={{ ns }}.response.500&{{ hour }}">
-    <img src="{{ base }}&target=sumSeries%28{{ ns }}.response.200%2C{{ ns }}.response.301%2C{{ ns }}.response.302%2C{{ ns }}.response.404%2C{{ ns }}.response.405%2C{{ ns }}.response.500%29&target={{ ns }}.response.200&target={{ ns }}.response.301&target={{ ns }}.response.302&target={{ ns }}.response.403&target={{ ns }}.response.404&target={{ ns }}.response.405&target={{ ns }}.response.500&{{ day }}">
-    <img src="{{ base }}&target=sumSeries%28{{ ns }}.response.200%2C{{ ns }}.response.301%2C{{ ns }}.response.302%2C{{ ns }}.response.404%2C{{ ns }}.response.405%2C{{ ns }}.response.500%29&target={{ ns }}.response.200&target={{ ns }}.response.301&target={{ ns }}.response.302&target={{ ns }}.response.403&target={{ ns }}.response.404&target={{ ns }}.response.405&target={{ ns }}.response.500&{{ week }}">
+    {% call grid() -%}
+      target=sumSeries%28{{ ns }}.response.200%2C{{ ns }}.response.301%2C{{ ns }}.response.302%2C{{ ns }}.response.404%2C{{ ns }}.response.405%2C{{ ns }}.response.500%29&target={{ ns }}.response.200&target={{ ns }}.response.301&target={{ ns }}.response.302&target={{ ns }}.response.403&target={{ ns }}.response.404&target={{ ns }}.response.405&target={{ ns }}.response.500
+    {%- endcall %}
+
 
     <h2 id="errors">Redirects and Errors</h2>
-    <img src="{{ base }}&target={{ ns }}.response.301&target={{ ns }}.response.302&target={{ ns }}.response.304&target={{ ns }}.response.400&target={{ ns }}.response.403&target={{ ns }}.response.404&target={{ ns }}.response.405&target={{ ns }}.response.500&target={{ ns }}.response.503&{{ fifteen }}">
-    <img src="{{ base }}&target={{ ns }}.response.301&target={{ ns }}.response.302&target={{ ns }}.response.304&target={{ ns }}.response.400&target={{ ns }}.response.403&target={{ ns }}.response.404&target={{ ns }}.response.405&target={{ ns }}.response.500&target={{ ns }}.response.503&{{ hour }}">
-    <img src="{{ base }}&target={{ ns }}.response.301&target={{ ns }}.response.302&target={{ ns }}.response.304&target={{ ns }}.response.400&target={{ ns }}.response.403&target={{ ns }}.response.404&target={{ ns }}.response.405&target={{ ns }}.response.500&target={{ ns }}.response.503&{{ day }}">
-    <img src="{{ base }}&target={{ ns }}.response.301&target={{ ns }}.response.302&target={{ ns }}.response.304&target={{ ns }}.response.400&target={{ ns }}.response.403&target={{ ns }}.response.404&target={{ ns }}.response.405&target={{ ns }}.response.500&target={{ ns }}.response.503&{{ week }}">
+    {% call grid() -%}
+      target={{ ns }}.response.301&target={{ ns }}.response.302&target={{ ns }}.response.304&target={{ ns }}.response.400&target={{ ns }}.response.403&target={{ ns }}.response.404&target={{ ns }}.response.405&target={{ ns }}.response.500&target={{ ns }}.response.503
+    {%- endcall %}
   </body>
 </html>
