@@ -61,14 +61,14 @@ class EDIT_CONTRIBUTIONS(_LOG):
 class USER_DISABLE(_LOG):
     id = 8
     action_class = None
-    format = _(u'{addon} set inactive.')
+    format = _(u'{addon} disabled.')
     keep = True
 
 
 class USER_ENABLE(_LOG):
     id = 9
     action_class = None
-    format = _(u'{addon} activated.')
+    format = _(u'{addon} enabled.')
     keep = True
 
 
