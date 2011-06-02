@@ -38,7 +38,7 @@ from addons import forms as addon_forms
 from addons.decorators import addon_view
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
-from devhub.models import ActivityLog, RssKey, SubmitStep
+from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
 from files.models import File, FileUpload
 from files.utils import parse_addon
 from translations.models import delete_translation
@@ -118,10 +118,11 @@ def index(request):
 def dashboard(request):
     addons, filter = addon_listing(request, addon_type=amo.ADDON_ANY)
     addons = amo.utils.paginate(request, addons, per_page=10)
+    blog_posts = BlogPost.objects.order_by('-date_posted')[0:5]
     data = dict(addons=addons, sorting=filter.field,
                 items=_get_items(None, request.amo_user.addons.all())[:4],
                 sort_opts=filter.opts, rss=_get_rss_feed(request),
-                timestamp=int(time.time()))
+                blog_posts=blog_posts, timestamp=int(time.time()))
     return jingo.render(request, 'devhub/addons/dashboard.html', data)
 
 

@@ -805,11 +805,13 @@ a.more-actions:after:hover {
     margin-bottom: 3em;
 }
 
-.secondary .recent-activity>ul>li {
+.secondary .recent-activity>ul>li,
+.secondary .blog-posts>ul>li {
     color: #555;
     line-height: 1.2em;
     margin-bottom: 0.75em;
 }
+.secondary .blog-posts>ul>li a,
 .secondary .recent-activity>ul>li a {
     color: #333;
 }

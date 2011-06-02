@@ -81,6 +81,8 @@
       <p class="older-activity"><a href="{{ url('devhub.feed_all') }}">
         {{ _('Older activity for My Add-ons') }} &#9658;</a></p>
     </div>
+
+    {% include "devhub/includes/blog_posts.html" %}
   </section>
 {% endif %}
 {% endblock %}

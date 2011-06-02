@@ -32,7 +32,7 @@ from addons.models import Addon, AddonUser, Charity, Category, AddonCategory
 from addons.utils import ReverseNameLookup
 from applications.models import Application, AppVersion
 from devhub.forms import ContribForm
-from devhub.models import ActivityLog, SubmitStep
+from devhub.models import ActivityLog, BlogPost, SubmitStep
 from files.models import File, FileUpload, Platform
 from files.tests.test_models import UploadTest as BaseUploadTest
 from reviews.models import Review
@@ -206,6 +206,20 @@ class TestDashboard(HubTest):
         assert not doc('.item[data-addonid=%s] ul.item-details' % a_pk)
         assert not doc('.item[data-addonid=%s] h4 a' % a_pk)
         assert doc('.item[data-addonid=%s] > p' % a_pk)
+
+    def test_dev_news(self):
+        self.clone_addon(1)  # We need one to see this module
+        for i in xrange(7):
+            bp = BlogPost(title='hi %s' % i,
+                          date_posted=datetime.now() - timedelta(days=i))
+            bp.save()
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+
+        eq_(doc('.blog-posts').length, 1)
+        eq_(doc('.blog-posts li').length, 5)
+        eq_(doc('.blog-posts li a').eq(0).text(), "hi 0")
+        eq_(doc('.blog-posts li a').eq(4).text(), "hi 4")
 
 
 class TestUpdateCompatibility(test_utils.TestCase):

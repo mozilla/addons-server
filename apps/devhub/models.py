@@ -34,6 +34,15 @@ class RssKey(models.Model):
         db_table = 'hubrsskeys'
 
 
+class BlogPost(amo.models.ModelBase):
+    title = models.CharField(max_length=255)
+    date_posted = models.DateField(default=datetime.now)
+    permalink = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'blogposts'
+
+
 class HubPromo(amo.models.ModelBase):
     VISIBILITY_CHOICES = (
         (0, 'Nobody'),

@@ -1,0 +1,22 @@
+<div class="blog-posts">
+  <h3>
+    {{ _('Developer News') }}
+    <a title="{{ _('Subscribe to this feed') }}" class="subscribe-feed"
+       href="http://blog.mozilla.com/addons/feed/">
+      {{ _('Subscribe to this feed') }}</a>
+  </h3>
+  <ul>
+    {% for post in blog_posts %}
+    <li class="item">
+      <a href="{{ post.permalink }}" target="_new">
+        {{ post.title }}
+      </a>
+      <span class="activity-timestamp">
+        {{ post.date_posted|timesince }}
+      </span>
+    </li>
+    {% endfor %}
+  </ul>
+  <p class="older-activity"><a href="http://blog.mozilla.com/addons/">
+    {{ _('View the blog &#9658;') }}</a></p>
+</div>

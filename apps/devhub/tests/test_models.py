@@ -9,7 +9,7 @@ from pyquery import PyQuery as pq
 import amo
 from addons.models import Addon, AddonUser
 from bandwagon.models import Collection
-from devhub.models import ActivityLog, AddonLog
+from devhub.models import ActivityLog, AddonLog, BlogPost
 from tags.models import Tag
 from files.models import File
 from reviews.models import Review
@@ -281,3 +281,13 @@ class TestActivityLogCount(test_utils.TestCase):
         eq_(len(result), 1)
         eq_(result[0]['approval_count'], 1)
         eq_(result[0]['user'], self.user.pk)
+
+
+class TestBlogPosts(test_utils.TestCase):
+
+    def test_blog_posts(self):
+        BlogPost.objects.create(title='hi')
+        bp = BlogPost.objects.all()
+        eq_(bp.count(), 1)
+        eq_(bp[0].title, "hi")
+
