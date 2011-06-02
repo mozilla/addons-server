@@ -99,8 +99,6 @@ def start_update(ctx, tag, vendor_tag):
 
 @task
 def update_amo(ctx):
-    manage_cmd(ctx, 'cron fix_dupe_appsupport')
-
     # BEGIN: The normal update/push cycle.
     update_locales()
     compress_assets()
@@ -111,6 +109,3 @@ def update_amo(ctx):
     compress_assets('-u')
     deploy_code()
     # END: The normal update/push cycle.
-
-    manage_cmd(ctx, 'commentlog')
-    manage_cmd(ctx, 'cron delete_brand_thunder_addons')
