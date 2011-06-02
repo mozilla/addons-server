@@ -52,9 +52,9 @@ def manage_cmd(ctx, command):
 
 
 @task
-def compress_assets(ctx):
+def compress_assets(ctx, arg=''):
     with ctx.lcd(AMO_DIR):
-        ctx.local("python2.6 manage.py compress_assets")
+        ctx.local("python2.6 manage.py compress_assets %s" % arg)
 
 
 @task
@@ -108,6 +108,8 @@ def update_amo(ctx):
     deploy_code()
     restart_celery()
     enable_cron()
+    compress_assets('-u')
+    deploy_code()
     # END: The normal update/push cycle.
 
     manage_cmd(ctx, 'commentlog')
