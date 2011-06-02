@@ -129,7 +129,7 @@ def compare(request, diff, key=None):
 
 @file_view
 def redirect(request, viewer, key):
-    new = Token(data=[request.META.get('REMOTE_ADDR'), viewer.file.id, key])
+    new = Token(data=[viewer.file.id, key])
     new.save()
     url = '%s%s?token=%s' % (settings.STATIC_URL,
                              reverse('files.serve', args=[viewer, key]),

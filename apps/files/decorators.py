@@ -1,6 +1,8 @@
 from datetime import datetime
 import functools
 
+import commonware.log
+
 from django import http
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404
@@ -11,6 +13,9 @@ from amo.utils import Token
 from access.acl import check_addon_ownership, action_allowed
 from files.helpers import DiffHelper, FileViewer
 from files.models import File
+
+
+log = commonware.log.getLogger('z.addons')
 
 
 def allowed(request, file):
@@ -90,9 +95,10 @@ def file_view_token(func, **kwargs):
         viewer = FileViewer(get_object_or_404(File, pk=file_id))
         token = request.GET.get('token')
         if not token:
+            log.error('Denying access to %s, no token.' % viewer.file.id)
             return http.HttpResponseForbidden()
-        if not Token.valid(token, [request.META.get('REMOTE_ADDR'),
-                                   viewer.file.id, key]):
+        if not Token.valid(token, [viewer.file.id, key]):
+            log.error('Denying access to %s, token invalid.' % viewer.file.id)
             return http.HttpResponseForbidden()
         return func(request, viewer, key, *args, **kw)
     return wrapper
