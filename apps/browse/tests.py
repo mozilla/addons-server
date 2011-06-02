@@ -18,7 +18,8 @@ import amo
 from amo.urlresolvers import reverse
 from amo.helpers import urlparams
 from addons.tests.test_views import TestMobile
-from addons.models import Addon, AddonCategory, Category, AppSupport, Feature
+from addons.models import (Addon, AddonCategory, Category, AppSupport, Feature,
+                           Persona)
 from browse import views, feeds
 from browse.views import locale_display_name
 from translations.models import Translation
@@ -188,7 +189,7 @@ class TestCategoryPages(test_utils.TestCase):
         self.client.get(category_url)
         assert landing_mock.called
 
-        # Category with less than 5 addons bypasses landing page
+        # Category with fewer than 5 add-ons bypasses landing page.
         category.count = 4
         category.save()
         self.client.get(category_url)
@@ -896,10 +897,63 @@ class TestFeaturedFeed(test_utils.TestCase):
 
 
 class TestPersonas(test_utils.TestCase):
-    fixtures = ('base/apps', 'addons/featured')
+    fixtures = ('base/apps', 'base/featured', 'addons/featured',
+                'addons/persona')
 
-    def test_personas(self):
-        eq_(self.client.get(reverse('browse.personas')).status_code, 200)
+    def test_personas_grid(self):
+        """Show grid page if there are fewer than 5 Personas."""
+        base = (Addon.objects.public().filter(type=amo.ADDON_PERSONA)
+                .extra(select={'_app': amo.FIREFOX.id}))
+        eq_(base.count(), 2)
+        r = self.client.get(reverse('browse.personas'))
+        self.assertTemplateUsed(r, 'browse/personas/grid.html')
+        eq_(r.status_code, 200)
+        assert 'is_homepage' in r.context
+
+    def test_personas_landing(self):
+        """Show landing page if there are greater than 4 Personas."""
+        for i in xrange(3):
+            a = Addon(type=amo.ADDON_PERSONA)
+            a.name = 'persona-%s' % i
+            a.all_categories = []
+            a.save()
+            v = Version.objects.get(addon=Addon.objects.get(id=15679))
+            v.addon = a
+            v.pk = None
+            v.save()
+            p = Persona(addon_id=a.id, persona_id=i)
+            p.save()
+            a.persona = p
+            a._current_version = v
+            a.status = amo.STATUS_PUBLIC
+            a.save()
+        base = (Addon.objects.public().filter(type=amo.ADDON_PERSONA)
+                .extra(select={'_app': amo.FIREFOX.id}))
+        eq_(base.count(), 5)
+        r = self.client.get(reverse('browse.personas'))
+        self.assertTemplateUsed(r, 'browse/personas/category_landing.html')
+
+    def test_personas_category_landing(self):
+        """Ensure we hit a grid page if there's a category and no sorting."""
+        grid = 'browse/personas/grid.html'
+        landing = 'browse/personas/category_landing.html'
+
+        category = Category(type=amo.ADDON_PERSONA, slug='abc',
+            application=Application.objects.get(id=amo.FIREFOX.id))
+        category.save()
+        category_url = reverse('browse.personas', args=[category.slug])
+
+        r = self.client.get(category_url + '?sort=created')
+        self.assertTemplateUsed(r, grid)
+
+        r = self.client.get(category_url)
+        self.assertTemplateUsed(r, grid)
+
+        # Category with 5 add-ons should bring us to a landing page.
+        category.count = 5
+        category.save()
+        r = self.client.get(category_url)
+        self.assertTemplateUsed(r, landing)
 
 
 class TestMobileFeatured(TestMobile):
@@ -924,3 +978,37 @@ class TestMobileExtensions(TestMobile):
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'browse/mobile/extensions.html')
         eq_(r.context['category'], cat)
+
+
+class TestMobilePersonas(TestMobile):
+    fixtures = TestMobile.fixtures + ['addons/persona']
+
+    def test_personas(self):
+        r = self.client.get(reverse('browse.personas'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r,
+            'browse/personas/mobile/category_landing.html')
+        eq_(r.context['category'], None)
+        assert 'is_homepage' not in r.context
+
+    def test_personas_grid(self):
+        """Ensure we always hit a grid page if there's a category."""
+        grid = 'browse/personas/mobile/grid.html'
+
+        category = Category(type=amo.ADDON_PERSONA, slug='xxx',
+                            application_id=amo.FIREFOX.id)
+        category.save()
+        category_url = reverse('browse.personas', args=[category.slug])
+
+        # Show the grid page even with sorting.
+        r = self.client.get('%s?sort=created' % category_url)
+        self.assertTemplateUsed(r, grid)
+
+        r = self.client.get(category_url)
+        self.assertTemplateUsed(r, grid)
+
+        # Even if the category has 5 add-ons.
+        category.count = 5
+        category.save()
+        r = self.client.get(category_url)
+        self.assertTemplateUsed(r, grid)

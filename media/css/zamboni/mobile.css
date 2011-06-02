@@ -220,7 +220,8 @@ table th {
 }
 
 .text-listing h2,
-#eula h2 {
+#eula h2,
+.personas-grid h2 {
     padding-bottom: 4px;
     border-bottom: 1px solid #ccc;
     box-shadow: 0 1px #fff;
@@ -913,6 +914,37 @@ td .versions li a {
 /*             PERSONAS             */
 /************************************/
 
+.personas-grid h2 {
+    border-bottom: #ccc 1px solid;
+}
+
+#persona-lists {
+    padding-bottom: 104px;
+}
+
+#persona-header {
+    margin: 0 14px;
+}
+
+#persona-header hgroup {
+    padding-left: 0;
+}
+
+#persona-header h2 {
+    margin: 0;
+}
+
+#persona-header h3 {
+    color: #444;
+    font-size: 18px;
+    margin-bottom: 14px;
+}
+
+#persona-header h2 {
+    font-style: normal;
+    text-transform: uppercase;
+}
+
 #persona h3,
 #persona .author {
     display: inline-block;
@@ -1011,7 +1043,7 @@ ul.license li.copyr { background-position: 0 -260px; }
     vertical-align: middle;
 }
 
-.persona-hover p {
+.persona-hover [data-browsertheme] p {
     background-color: rgba(0, 0, 0, 0.4);
     display: table-cell;
 }

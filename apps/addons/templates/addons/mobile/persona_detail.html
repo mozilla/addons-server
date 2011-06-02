@@ -1,10 +1,10 @@
 {% extends "mobile/base.html" %}
+{% from "browse/personas/mobile/macros.html" import back_to_personas %}
 
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
 
 {% block back_link %}
-<a href="{{ url('browse.personas') }}" id="home">
-  {{ _('&laquo; All Personas') }}</a>
+  {{ back_to_personas() }}
 {% endblock %}
 
 {% block page %}
@@ -29,7 +29,7 @@
 <div id="more-personas">
   {% cache author_personas %}
     {% if author_personas %}
-    <div id="more-artist" class="listview item">
+    <div id="more-artist" class="listview">
       <ul>
         {% for other in author_personas %}
           <li class="persona-previewer">

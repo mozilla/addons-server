@@ -1,0 +1,29 @@
+{% extends "browse/personas/mobile/base.html" %}
+
+{% block back_link %}
+  {{ back_to_personas() }}
+{% endblock %}
+
+{% block bodyclass %}personas-grid{% endblock %}
+
+{% if category %}
+  {% set base_url = url('browse.personas', category.slug) %}
+{% else %}
+  {% set base_url = url('browse.personas') %}
+{% endif %}
+
+{% block page %}
+  <h2>{{ title }}</h2>
+  {{ mobile_sort_by(base_url, sort_opts, sorting) }}
+  <div class="addon-listing">
+    <ul class="listview">
+      {% for addon in addons.object_list %}
+        <li class="persona-previewer">
+          {{ mobile_persona_preview(addon.persona) }}
+          {{ mobile_persona_confirm(addon.persona, size='small') }}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {{ addons|mobile_paginator }}
+{% endblock %}

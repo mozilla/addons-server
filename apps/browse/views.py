@@ -248,17 +248,19 @@ def personas_listing(request, category=None):
     return categories, filter, base, category
 
 
-def personas(request, category=None):
+@mobile_template('browse/personas/{mobile/}')
+def personas(request, category=None, template=None):
     categories, filter, base, category = personas_listing(request, category)
 
     # Pass the count from base instead of letting it come from
     # filter.qs.count() since that would join against personas.
     count = category.count if category else base.count()
 
-    if 'sort' in request.GET or count < 5:
-        template = 'grid.html'
+    if ('sort' not in request.GET and ((request.MOBILE and not category) or
+                                       (not request.MOBILE and count > 4))):
+        template += 'category_landing.html'
     else:
-        template = 'category_landing.html'
+        template += 'grid.html'
 
     addons = amo.utils.paginate(request, filter.qs, 30, count=count)
     if category:
@@ -268,12 +270,12 @@ def personas(request, category=None):
         ids = Addon.featured_random(request.APP, request.LANG)
         featured = manual_order(base, ids, pk_name="addons.id")
 
-    is_homepage = category is None and 'sort' not in request.GET
-    return jingo.render(request, 'browse/personas/' + template,
-                        {'categories': categories, 'category': category,
-                         'filter': filter, 'addons': addons,
-                         'featured': featured, 'is_homepage': is_homepage,
-                         'search_cat': 'personas'})
+    ctx = {'categories': categories, 'category': category, 'addons': addons,
+           'filter': filter, 'sorting': filter.field, 'sort_opts': filter.opts,
+           'featured': featured, 'search_cat': 'personas'}
+    if not request.MOBILE:
+        ctx['is_homepage'] = category is None and 'sort' not in request.GET
+    return jingo.render(request, template, ctx)
 
 
 @cache_page(60 * 60 * 24 * 365)

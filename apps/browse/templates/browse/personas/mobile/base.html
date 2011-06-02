@@ -1,0 +1,9 @@
+{% extends "mobile/base.html" %}
+{% from "browse/personas/mobile/macros.html" import back_to_personas %}
+
+{% set name = category.name if category else filter.title %}
+
+{# L10n: {0} is a category name, such as Nature. #}
+{% set title = _('Personas') if is_homepage else _('{0} Personas')|f(name) %}
+
+{% block title %}{{ page_title(title) }}{% endblock %}
