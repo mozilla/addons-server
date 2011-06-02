@@ -101,12 +101,21 @@
 
   <h3 id="ref-css">{{ _('CSS: Adding Visual Effects') }}</h3>
   <ul class="reflist rounded graybox">
-    <li><a class="refname" href="https://developer.mozilla.org/en/CSS">CSS Overview</a>
-    <span>via <a class="refsource" href="http://developer.mozilla.org">{{ _('Mozilla Developer Center') }}</a></span>
+    <li>
+      <a class="refname" href="https://developer.mozilla.org/en/CSS">{{ _('CSS Overview') }}</a>
+      <span>
+        {% trans %}
+        via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a>
+        {% endtrans %}
+      </span>
 
-    <p>Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML and is used to style a XUL-based application's user interface.</p>
+      <p>
+        {% trans %}
+        Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML and is used to style a XUL-based application's user interface.
+        {% endtrans %}
+      </p>
     </li>
-    <li><a class="refname" href="https://developer.mozilla.org/en/CSS_Reference">Gecko CSS Reference</a>
+    <li><a class="refname" href="https://developer.mozilla.org/en/CSS_Reference">{{ _('Gecko CSS Reference') }}</a>
     <span>
       {% trans %}
       via <a class="refsource" href="http://developer.mozilla.org">Mozilla Developer Center</a>
@@ -119,9 +128,13 @@
     </p>
     </li>
 
-    <li><a class="refname" href="http://www.w3.org/Style/CSS/">W3C CSS Homepage</a>
-    <span>via <a class="refsource" href="http://www.w3.org">{{ _('World Wide Web Consortium') }}</a></span>
-    <p>Find CSS news, specifications, and tools at the W3C's CSS homepage.</p>
+    <li><a class="refname" href="http://www.w3.org/Style/CSS/">{{ _('W3C CSS Homepage') }}</a>
+    <span>
+      {% trans %}
+      via <a class="refsource" href="http://www.w3.org">World Wide Web Consortium</a>
+      {% endtrans %}
+    </span>
+    <p>{{ _("Find CSS news, specifications, and tools at the W3C's CSS homepage.") }}</p>
     </li>
   </ul>
 
