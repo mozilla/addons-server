@@ -668,16 +668,16 @@ PREVIEW_FULL_PATH = (PREVIEWS_PATH + '/full/%s/%d.png')
 STATIC_URL = SITE_URL
 ADDON_ICONS_DEFAULT_URL = MEDIA_URL + '/img/addon-icons'
 ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
-ADDON_ICON_URL = "%s/%s/%s/images/addon_icon/%%d-%%d.png?modified=%%s" % (
-        STATIC_URL, LANGUAGE_CODE, DEFAULT_APP)
+ADDON_ICON_URL = ('%s/images/addon_icon/%%d-%%d.png?modified=%%s' %
+                  STATIC_URL)
 PREVIEW_THUMBNAIL_URL = (STATIC_URL +
         '/img/uploads/previews/thumbs/%s/%d.png?modified=%d')
 PREVIEW_FULL_URL = (STATIC_URL +
         '/img/uploads/previews/full/%s/%d.png?modified=%d')
 USERPICS_URL = STATIC_URL + '/img/uploads/userpics/%s/%s/%s.png?modified=%d'
 # paths for uploaded extensions
-COLLECTION_ICON_URL = ('%s/%s/%s/images/collection_icon/%%s.png?modified=%%s' %
-                       (STATIC_URL, LANGUAGE_CODE, DEFAULT_APP))
+COLLECTION_ICON_URL = ('%s/images/collection_icon/%%s.png?modified=%%s' %
+                       STATIC_URL)
 PERSONAS_IMAGE_URL = ('http://www.getpersonas.com/static/'
                       '%(tens)d/%(units)d/%(id)d/%(file)s')
 PERSONAS_IMAGE_URL_SSL = ('https://www.getpersonas.com/static/'
