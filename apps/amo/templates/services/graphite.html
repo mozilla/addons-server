@@ -1,14 +1,26 @@
 {% set ns = "stats." + site %}
 {% set base = "https://graphite.mozilla.org/render/" %}
 
+{% set site_name = {
+    'pamo': 'Preview',
+    'namo': 'Next',
+    'amo': 'Production',
+}[site] %}
+
+{% set site_url = {
+    'pamo': 'https://addons.allizom.org',
+    'namo': 'https://addons-next.allizom.org',
+    'amo': 'https://addons.mozilla.org',
+}[site] %}
+
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Graphite for Preview</title>
+    <title>Graphite for {{ site_name }}</title>
     <base href="{{ base }}">
   </head>
   <body>
-    <h1>Grahpite for <a href="https://addons.allizom.org">https://addons.allizom.org</a></h1>
+    <h1>Grahpite for <a href="{{ site_url }}">{{ site_url }}</a></h1>
     <p>Make sure you're on VPN!</p>
     <h2 id="responses">Responses</h2>
     <img src="?width={{ width }}&height={{ height }}&target=sumSeries%28{{ ns }}.response.200%2C{{ ns }}.response.301%2C{{ ns }}.response.302%2C{{ ns }}.response.404%2C{{ ns }}.response.405%2C{{ ns }}.response.500%29&target={{ ns }}.response.200&target={{ ns }}.response.301&target={{ ns }}.response.302&target={{ ns }}.response.403&target={{ ns }}.response.404&target={{ ns }}.response.405&target={{ ns }}.response.500&from=-15minutes">
