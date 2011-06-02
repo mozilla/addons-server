@@ -114,3 +114,4 @@ def update_amo(ctx):
 
     manage_cmd(ctx, 'commentlog')
     manage_cmd(ctx, 'cron delete_brand_thunder_addons')
+    manage_cmd(ctx, 'process_addons --task=flag_binary')
