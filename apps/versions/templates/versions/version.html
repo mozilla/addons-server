@@ -47,8 +47,7 @@
     {% endif %}
   {% endif %}
 
-  {% if addon.view_source and request.user.is_authenticated() and version.has_files %}
-      {# TODO reverse URL #}
+  {% if addon.view_source and version.has_files %}
       <br/><a class="source-code" href="{{ remora_url('/files/browse/{0}'|f(version.all_files[0].pk)) }}">
         {{ _('View the source') }}</a>
   {% endif %}
