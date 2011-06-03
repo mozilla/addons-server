@@ -20,6 +20,7 @@ from celeryutils import task
 import amo
 import cronjobs
 from amo.utils import chunked
+from addons import search
 from addons.models import Addon, FrozenAddon, AppSupport
 from addons.utils import ReverseNameLookup
 from files.models import File
@@ -430,6 +431,8 @@ def give_personas_versions():
 @cronjobs.register
 def reindex_addons():
     from . import tasks
+    # Make sure our mapping is up to date.
+    search.setup_mapping()
     ids = (Addon.objects.values_list('id', flat=True)
            .filter(_current_version__isnull=False,
                    status__in=amo.VALID_STATUSES,

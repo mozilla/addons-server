@@ -1,11 +1,14 @@
+import logging
 import collections
 
 from django import http
+from django.conf import settings
 from django.db.models import Q
 from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import cache_page
 
+import elasticutils
 import jingo
 import product_details
 from mobility.decorators import mobile_template
@@ -17,6 +20,130 @@ from addons.models import Addon, Category, AddonCategory
 from amo.urlresolvers import reverse
 from addons.views import BaseFilter
 from translations.query import order_by_translation
+
+
+search_log = logging.getLogger('z.es')
+
+
+class ES(object):
+
+    def __init__(self, type_):
+        self.type = type_
+        self.filters = {}
+        self.in_ = {}
+        self.query = {}
+        self.fields = ['id']
+        self.ordering = []
+        self.start = 0
+        self.stop = None
+        self._results_cache = None
+
+    def _clone(self):
+        new = self.__class__(self.type)
+        new.filters = dict(self.filters)
+        new.in_ = dict(self.in_)
+        new.query = dict(self.query)
+        new.fields = list(self.fields)
+        new.ordering = list(self.ordering)
+        new.start = self.start
+        new.stop = self.stop
+        return new
+
+    def values(self, *fields):
+        new = self._clone()
+        new.fields.extend(fields)
+        return new
+
+    def order_by(self, *fields):
+        new = self._clone()
+        for field in fields:
+            if field.startswith('-'):
+                new.ordering.append({field[1:]: 'desc'})
+            else:
+                new.ordering.append(field)
+        return new
+
+    def search(self, **kw):
+        new = self._clone()
+        new.query.update(kw)
+        return new
+
+    def filter(self, **kw):
+        new = self._clone()
+        for key, value in kw.items():
+            if key.endswith('__in'):
+                new.in_[key[:-4]] = value
+            else:
+                new.filters[key] = value
+        return new
+
+    def count(self):
+        num = self._do_search().count
+        self._results_cache = None
+        return num
+
+    def __getitem__(self, k):
+        # TODO: validate numbers and ranges
+        if isinstance(k, slice):
+            self.start, self.stop = k.start, k.stop
+            return self
+        else:
+            self.start, self.stop = k, k + 1
+            return list(self)[0]
+
+    def _do_search(self):
+        if not self._results_cache:
+            qs = {}
+            if self.query:
+                qs['query'] = {'term': self.query}
+
+            if len(self.filters) + len(self.in_) > 1:
+                qs['filter'] = {'and': []}
+                and_ = qs['filter']['and']
+                for key, value in self.filters.items():
+                    and_.append({'term': {key: value}})
+                for key, value in self.in_.items():
+                    and_.append({'in': {key: value}})
+            elif self.filters:
+                qs['filter'] = {'term': self.filters}
+            elif self.in_:
+                qs['filter'] = {'in': self.in_}
+
+            if self.fields:
+                qs['fields'] = self.fields
+            if self.start:
+                qs['from'] = self.start
+            if self.stop:
+                qs['size'] = self.stop - self.start
+            if self.order_by:
+                qs['sort'] = self.ordering
+
+            es = elasticutils.get_es()
+            search_log.debug(qs)
+            hits = es.search(qs, settings.ES_INDEX, self.type._meta.app_label)
+            self._results_cache = SearchResults(self.type, hits)
+        return self._results_cache
+
+    def __iter__(self):
+        return iter(self._do_search())
+
+
+class SearchResults(object):
+
+    def __init__(self, type, results):
+        self.type = type
+        self.took = results['took']
+        search_log.debug('Query took %dms.' % self.took)
+        self.count = results['hits']['total']
+        ids = [r['fields']['id'] for r in results['hits']['hits']]
+        self.objects = manual_order(self.type.objects, ids)
+        self.results = results
+
+    def __iter__(self):
+        return iter(self.objects)
+
+    def __len__(self):
+        return len(self.objects)
 
 
 languages = dict((lang.lower(), val)
@@ -162,6 +289,42 @@ def extensions(request, category=None, template=None):
                         {'category': category, 'addons': addons,
                          'sorting': filter.field,
                          'sort_opts': filter.opts,
+                         'search_cat': '%s,0' % TYPE})
+
+
+@mobile_template('browse/{mobile/}extensions.html')
+def es_extensions(request, category=None, template=None):
+    TYPE = amo.ADDON_EXTENSION
+
+    if category is not None:
+        q = Category.objects.filter(application=request.APP.id, type=TYPE)
+        category = get_object_or_404(q, slug=category)
+
+    if ('sort' not in request.GET and not request.MOBILE
+        and category and category.count > 4):
+        return category_landing(request, category)
+
+    opts = AddonFilter.opts
+    sorting = request.GET['sort']
+    sorting = sorting if sorting in dict(opts) else 'popular'
+    # Translate user-facing sorts to the backend fields.
+    sort_field = {'name': 'name',
+                  'created': '-created',
+                  'updated': '-last_updated',
+                  'popular': '-weekly_downloads',
+                  'users': '-average_daily_users',
+                  'rating': '-bayesian_rating'}.get(sorting)
+
+    qs = (ES(Addon).filter(type=TYPE, app=request.APP.id,
+                           status__in=amo.REVIEWED_STATUSES)
+          .order_by(sort_field))
+    if category:
+        qs = qs.filter(category=category.id)
+    addons = amo.utils.paginate(request, qs)
+
+    return jingo.render(request, template,
+                        {'category': category, 'addons': addons,
+                         'sorting': sorting, 'sort_opts': opts,
                          'search_cat': '%s,0' % TYPE})
 
 
