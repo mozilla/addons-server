@@ -40,7 +40,7 @@
 
     <h2 id="responses">All Responses</h2>
     {% call grid() -%}
-      target=sumSeries%28{{ ns }}.response.200%2C{{ ns }}.response.301%2C{{ ns }}.response.302%2C{{ ns }}.response.404%2C{{ ns }}.response.405%2C{{ ns }}.response.500%29&target={{ ns }}.response.200&target={{ ns }}.response.301&target={{ ns }}.response.302&target={{ ns }}.response.403&target={{ ns }}.response.404&target={{ ns }}.response.405&target={{ ns }}.response.500
+      target=sumSeries%28{{ ns }}.response.*%29&target={{ ns }}.response.200&target={{ ns }}.response.301&target={{ ns }}.response.302&target={{ ns }}.response.403&target={{ ns }}.response.404&target={{ ns }}.response.405&target={{ ns }}.response.500
     {%- endcall %}
 
 
