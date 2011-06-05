@@ -256,7 +256,7 @@ class TestFileViewer(FilesBase, test_utils.TestCase):
     def file_url(self, file=None):
         args = [self.file.pk]
         if file:
-            args.append(file)
+            args.extend(['file', file])
         return reverse('files.list', args=args)
 
     def check_urls(self, status):
@@ -396,7 +396,7 @@ class TestDiffViewer(FilesBase, test_utils.TestCase):
     def file_url(self, file=None):
         args = [self.file.pk, self.file_two.pk]
         if file:
-            args.append(file)
+            args.extend(['file', file])
         return reverse('files.compare', args=args)
 
     def check_urls(self, status):

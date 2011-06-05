@@ -49,7 +49,7 @@ def poll(request, viewer):
 
 @file_view
 @condition(etag_func=etag, last_modified_func=last_modified)
-def browse(request, viewer, key=None):
+def browse(request, viewer, key=None, type='file'):
     data = setup_viewer(request, viewer.file)
     data['viewer'] = viewer
     data['poll_url'] = reverse('files.poll', args=[viewer.file.id])
@@ -72,9 +72,8 @@ def browse(request, viewer, key=None):
     else:
         extract_file.delay(viewer)
 
-    tmpl = ('files/content.html' if not request.GET.get('full')
-                                    and request.is_ajax()
-                                    else 'files/viewer.html')
+    tmpl = ('files/content.html' if type == 'fragment'
+                                 else 'files/viewer.html')
     return jingo.render(request, tmpl, data)
 
 
@@ -92,7 +91,7 @@ def compare_poll(request, diff):
 
 @compare_file_view
 @condition(etag_func=etag, last_modified_func=last_modified)
-def compare(request, diff, key=None):
+def compare(request, diff, key=None, type='file'):
     data = setup_viewer(request, diff.left.file)
     data['diff'] = diff
     data['poll_url'] = reverse('files.compare.poll',
@@ -121,9 +120,8 @@ def compare(request, diff, key=None):
         extract_file.delay(diff.left)
         extract_file.delay(diff.right)
 
-    tmpl = ('files/content.html' if not request.GET.get('full')
-                                    and request.is_ajax()
-                                    else 'files/viewer.html')
+    tmpl = ('files/content.html' if type == 'fragment'
+                                 else 'files/viewer.html')
     return jingo.render(request, tmpl, data)
 
 

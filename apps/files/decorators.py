@@ -46,11 +46,11 @@ def _get_value(obj, key, value, cast=None):
         return cast(value) if cast else value
 
 
-def last_modified(request, obj, key=None):
+def last_modified(request, obj, key=None, **kw):
     return _get_value(obj, key, 'modified', datetime.fromtimestamp)
 
 
-def etag(request, obj, key=None):
+def etag(request, obj, key=None, **kw):
     return _get_value(obj, key, 'md5')
 
 

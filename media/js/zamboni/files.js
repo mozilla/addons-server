@@ -199,7 +199,7 @@ function bind_viewer(nodes) {
                     history.pushState({ path: $link.text() }, '', $link.attr('href') + '#top');
                 }
             }
-            $old_wrapper.load($link.attr('href') + ' #content-wrapper', function() {
+            $old_wrapper.load($link.attr('href').replace('/file/', '/fragment/') + ' #content-wrapper', function() {
                 $(this).children().unwrap();
                 var $new_wrapper = $('#content-wrapper');
                 self.compute($new_wrapper);

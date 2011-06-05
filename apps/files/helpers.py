@@ -236,7 +236,6 @@ class FileViewer:
             short = smart_unicode(path[len(self.dest) + 1:])
             mime, encoding = mimetypes.guess_type(filename)
             directory = os.path.isdir(path)
-            args = [self.file.id, short]
             res[short] = {'binary': self._is_binary(mime, path),
                           'depth': short.count(os.sep),
                           'directory': directory,
@@ -249,8 +248,10 @@ class FileViewer:
                           'short': short,
                           'size': os.stat(path)[stat.ST_SIZE],
                           'truncated': self.truncate(filename),
-                          'url': reverse('files.list', args=args),
-                          'url_serve': reverse('files.redirect', args=args),
+                          'url': reverse('files.list',
+                                         args=[self.file.id, 'file', short]),
+                          'url_serve': reverse('files.redirect',
+                                               args=[self.file.id, short]),
                           'version': self.file.version.version}
 
         return res
@@ -278,6 +279,7 @@ class DiffHelper:
     def get_url(self, short):
         return reverse('files.compare', args=[self.left.file.id,
                                               self.right.file.id,
+                                              'file',
                                               short])
 
     @memoize(prefix='file-viewer-get-files', time=60 * 60)

@@ -130,7 +130,7 @@ class TestFileHelper(test_utils.TestCase):
         self.viewer.extract()
         files = self.viewer.get_files()
         url = reverse('files.list', args=[self.viewer.file.id,
-                                           'install.js'])
+                                          'file', 'install.js'])
         assert files['install.js']['url'].endswith(url)
 
     def test_get_files_depth(self):
