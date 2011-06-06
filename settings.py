@@ -88,7 +88,7 @@ AMO_LANGUAGES = (
     'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es-ES',
     'eu', 'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn',
     'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sr', 'sv-SE',
-    'uk', 'vi', 'zh-CN', 'zh-TW',
+    'tr', 'uk', 'vi', 'zh-CN', 'zh-TW',
 )
 
 # Override Django's built-in with our native names
