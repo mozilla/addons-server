@@ -82,6 +82,8 @@ class ES(object):
         self._results_cache = None
         return num
 
+    __len__ = count
+
     def __getitem__(self, k):
         # TODO: validate numbers and ranges
         if isinstance(k, slice):
@@ -91,33 +93,37 @@ class ES(object):
             self.start, self.stop = k, k + 1
             return list(self)[0]
 
+    def _build_query(self):
+        qs = {}
+        if self.query:
+            qs['query'] = {'term': self.query}
+
+        if len(self.filters) + len(self.in_) > 1:
+            qs['filter'] = {'and': []}
+            and_ = qs['filter']['and']
+            for key, value in self.filters.items():
+                and_.append({'term': {key: value}})
+            for key, value in self.in_.items():
+                and_.append({'in': {key: value}})
+        elif self.filters:
+            qs['filter'] = {'term': self.filters}
+        elif self.in_:
+            qs['filter'] = {'in': self.in_}
+
+        if self.fields:
+            qs['fields'] = self.fields
+        if self.start:
+            qs['from'] = self.start
+        if self.stop:
+            qs['size'] = self.stop - self.start
+        if self.ordering:
+            qs['sort'] = self.ordering
+
+        return qs
+
     def _do_search(self):
         if not self._results_cache:
-            qs = {}
-            if self.query:
-                qs['query'] = {'term': self.query}
-
-            if len(self.filters) + len(self.in_) > 1:
-                qs['filter'] = {'and': []}
-                and_ = qs['filter']['and']
-                for key, value in self.filters.items():
-                    and_.append({'term': {key: value}})
-                for key, value in self.in_.items():
-                    and_.append({'in': {key: value}})
-            elif self.filters:
-                qs['filter'] = {'term': self.filters}
-            elif self.in_:
-                qs['filter'] = {'in': self.in_}
-
-            if self.fields:
-                qs['fields'] = self.fields
-            if self.start:
-                qs['from'] = self.start
-            if self.stop:
-                qs['size'] = self.stop - self.start
-            if self.order_by:
-                qs['sort'] = self.ordering
-
+            qs = self._build_query()
             es = elasticutils.get_es()
             search_log.debug(qs)
             hits = es.search(qs, settings.ES_INDEX, self.type._meta.app_label)

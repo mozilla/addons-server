@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-import datetime
-from datetime import timedelta
+from datetime import datetime, timedelta
 import random
 import re
 from urlparse import urlparse
@@ -42,6 +41,8 @@ def addon_factory(version_kw={}, file_kw={}, **kw):
     a.bayesian_rating = random.uniform(1, 5)
     a.average_daily_users = random.randint(200, 2000)
     a.weekly_downloads = random.randint(200, 2000)
+    a.created = a.last_updated = datetime(2011, 6, 6, random.randint(0, 23),
+                                          random.randint(0, 59))
     version_factory(file_kw, addon=a, **version_kw)
     a.update_version()
     a.status = amo.STATUS_PUBLIC
@@ -137,25 +138,29 @@ class TestExtensions(ESTestCase):
         r = self.client.get(urlparams(self.url, sort='updated'))
         addons = r.context['addons'].object_list
         assert list(addons)
-        eq_(list(addons), sorted(addons, key=lambda x: x.last_updated))
+        eq_(list(addons),
+            sorted(addons, key=lambda x: x.last_updated, reverse=True))
 
     def test_created_sort(self):
         r = self.client.get(urlparams(self.url, sort='created'))
         addons = r.context['addons'].object_list
         assert list(addons)
-        eq_(list(addons), sorted(addons, key=lambda x: x.created))
+        eq_(list(addons),
+            sorted(addons, key=lambda x: x.created, reverse=True))
 
     def test_popular_sort(self):
         r = self.client.get(urlparams(self.url, sort='popular'))
         addons = r.context['addons'].object_list
         assert list(addons)
-        eq_(list(addons), sorted(addons, key=lambda x: x.weekly_downloads))
+        eq_(list(addons),
+            sorted(addons, key=lambda x: x.weekly_downloads, reverse=True))
 
     def test_rating_sort(self):
         r = self.client.get(urlparams(self.url, sort='rating'))
         addons = r.context['addons'].object_list
         assert list(addons)
-        eq_(list(addons), sorted(addons, key=lambda x: x.bayesian_rating))
+        eq_(list(addons),
+            sorted(addons, key=lambda x: x.bayesian_rating, reverse=True))
 
     def test_category(self):
         # Stick one add-on in a category, make sure search finds it.
@@ -175,18 +180,81 @@ class TestExtensions(ESTestCase):
         r = self.client.get(urlparams(self.url, sort='wut'))
         addons = r.context['addons'].object_list
         assert list(addons)
-        eq_(list(addons), sorted(addons, key=lambda x: x.weekly_downloads))
+        eq_(list(addons),
+            sorted(addons, key=lambda x: x.weekly_downloads, reverse=True))
 
 
 class TestES(ESTestCase):
     es = True
 
     # This should go in a test for the cron.
-    def test_count(self):
+    def test_indexed_count(self):
         # Did all the right addons get indexed?
         eq_(ES(Addon).filter(type=1).count(),
             Addon.objects.filter(disabled_by_user=False,
                                  status__in=amo.VALID_STATUSES).count())
+
+    def test_clone(self):
+        # Doing a filter creates a new ES object.
+        qs = ES(Addon)
+        qs2 = qs.filter(type=1)
+        eq_(qs._build_query(), {'fields': ['id']})
+        eq_(qs2._build_query(), {'fields': ['id'],
+                                 'filter': {'term': {'type': 1}}})
+
+    def test_filter(self):
+        qs = ES(Addon).filter(type=1)
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'term': {'type': 1}}})
+
+    def test_in_filter(self):
+        qs = ES(Addon).filter(type__in=[1, 2])
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'in': {'type': [1, 2]}}})
+
+    def test_and(self):
+        qs = ES(Addon).filter(type=1, category__in=[1, 2])
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'and': [
+                                    {'term': {'type': 1}},
+                                    {'in': {'category': [1, 2]}},
+                                ]}})
+
+    def test_query(self):
+        qs = ES(Addon).search(type=1)
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'query': {'term': {'type': 1}}})
+
+    def test_values(self):
+        qs = ES(Addon).values('app')
+        eq_(qs._build_query(), {'fields': ['id', 'app']})
+
+    def test_order_by(self):
+        qs = ES(Addon).order_by('-rating')
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'sort': [{'rating': 'desc'}]})
+
+        qs = ES(Addon).order_by('rating')
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'sort': ['rating']})
+
+    def test_slice(self):
+        qs = ES(Addon)[5:12]
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'from': 5,
+                                'size': 7})
+
+    def test_getitem(self):
+        addons = list(ES(Addon))
+        eq_(addons[0], ES(Addon)[0])
+
+    def test_iter(self):
+        qs = ES(Addon).filter(type=1)
+        eq_(len(qs), 4)
+        eq_(len(list(qs)), 4)
+
+    def test_count(self):
+        eq_(ES(Addon).count(), 4)
 
 
 def test_locale_display_name():
@@ -638,8 +706,8 @@ class TestFeaturedLocale(test_utils.TestCase):
         self.change_addon(another, 'en-US')
         another.feature_set.create(application_id=amo.FIREFOX.id,
                                    locale=None,
-                                   start=datetime.datetime.today(),
-                                   end=datetime.datetime.today())
+                                   start=datetime.today(),
+                                   end=datetime.today())
         eq_(Addon.featured_random(amo.FIREFOX, 'en-US').count(1003), 1)
 
 
@@ -738,8 +806,8 @@ class BaseSearchToolsTest(test_utils.TestCase):
         # Feature foxy :
         foxy = Addon.objects.get(name__localized_string='FoxyProxy Standard')
         Feature(addon=foxy, application_id=amo.FIREFOX.id,
-                start=datetime.datetime.now(),
-                end=datetime.datetime.now() + timedelta(days=30)).save()
+                start=datetime.now(),
+                end=datetime.now() + timedelta(days=30)).save()
 
         # Feature Limon Dictionary and Read It Later as a category feature:
         s = Category.objects.get(slug='search-tools')
