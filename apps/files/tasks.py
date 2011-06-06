@@ -77,7 +77,8 @@ def repackage_jetpack(builder_data, **kw):
 
     file_data = upgrader.file(repack_data['file_id'])
     if file_data.get('uuid') != repack_data['uuid']:
-        return jp_log.warning(msg("Aborting repack. UUID does not match."))
+        return jp_log.warning(msg('Aborting repack. AMO<=>Builder tracking '
+                                  'number does not match.'))
 
     if builder_data['result'] != 'success':
         return jp_log.warning(msg('Build not successful. {result}: {msg}'))
