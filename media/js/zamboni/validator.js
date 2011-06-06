@@ -250,8 +250,14 @@ function initValidator() {
     };
 
     var CompatMsgVisitor = inherit(MsgVisitor, function(suite, data) {
+        var self = this;
         this.appTrans = JSON.parse(this.$results.attr('data-app-trans'));
         this.versionChangeLinks = JSON.parse(this.$results.attr('data-version-change-links'));
+        this.majorTargetVer = JSON.parse(this.$results.attr('data-target-version'));
+        $.each(this.majorTargetVer, function(guid, version) {
+            // 4.0b3 -> 4
+            self.majorTargetVer[guid] = version.split('.')[0];
+        });
     });
 
     CompatMsgVisitor.prototype.finish = function(msg) {
@@ -269,28 +275,25 @@ function initValidator() {
     };
 
     CompatMsgVisitor.prototype.getMsgType = function(msg) {
-        // A non-null type is only returned if:
-        //      it is a compatiblity error/warning
-        // OR
-        //      it is a non-compatibility error
-        var effectiveType = msg.compatibility_type ? msg.compatibility_type: msg['type'];
-        if (msg.compatibility_type == 'error' || msg.compatibility_type == 'warning')
-            return msg.compatibility_type
-        else
-            return effectiveType=='error' ? effectiveType: null;
+        return msg.compatibility_type ? msg.compatibility_type: msg['type'];
     };
 
     CompatMsgVisitor.prototype.message = function(msg) {
-        var self = this;
-        if (!this.getMsgType(msg))
-            return;
+        var self = this, effectiveType = this.getMsgType(msg);
         if (msg.for_appversions) {
             eachAppVer(msg.for_appversions, function(guid, version, id) {
                 var app = {guid: guid, version: version, id: id};
+                if (version.split('.')[0] != self.majorTargetVer[guid])
+                    // Since some errors span multiple versions, we only
+                    // care about the first one specific to this target
+                    return true;
                 msg.tier = id;  // change the tier to match app/version
                 MsgVisitor.prototype.message.apply(self, [msg, {app: app}]);
             });
         } else {
+            if (effectiveType !== 'error')
+                // For non-appversion messages, only show errors
+                return;
             MsgVisitor.prototype.message.apply(this, arguments);
         }
     };

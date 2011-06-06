@@ -224,6 +224,7 @@ class TestCompatibilityResults(test_utils.TestCase):
         self.addon = Addon.objects.get(slug='addon-compat-results')
         self.result = ValidationResult.objects.get(
                                         file__version__addon=self.addon)
+        self.job = self.result.validation_job
 
     def test_login_protected(self):
         self.client.logout()
@@ -233,6 +234,15 @@ class TestCompatibilityResults(test_utils.TestCase):
         r = self.client.post(reverse('devhub.json_validation_result',
                                      args=[self.addon.slug, self.result.id]))
         eq_(r.status_code, 302)
+
+    def test_target_version(self):
+        r = self.client.get(reverse('devhub.validation_result',
+                                    args=[self.addon.slug, self.result.id]))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        ver = json.loads(doc('.results').attr('data-target-version'))
+        assert amo.FIREFOX.guid in ver, ('Unexpected: %s' % ver)
+        eq_(ver[amo.FIREFOX.guid], self.job.target_version.version)
 
     def test_app_trans(self):
         r = self.client.get(reverse('devhub.validation_result',
@@ -267,7 +277,7 @@ class TestCompatibilityResults(test_utils.TestCase):
                              follow=True)
         doc = pq(r.content)
         assert doc('time').text()
-        eq_(doc('table tr td:eq(1)').text(), '4.0.*')
+        eq_(doc('table tr td:eq(1)').text(), 'Firefox 4.0.*')
 
     def test_validation_error(self):
         try:

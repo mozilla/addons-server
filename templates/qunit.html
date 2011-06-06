@@ -46,7 +46,8 @@
     <div class="addon-validator-suite" id="addon-validator-suite-test"
          data-validateurl="/validate">
       {% with app_trans={'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': 'Firefox'},
-              version_change_links={'{ec8030f7-c20a-464f-9b0e-13a3a9e97384} 4.0b3': '/firefox-4-changes'} %}
+              version_change_links={'{ec8030f7-c20a-464f-9b0e-13a3a9e97384} 6.*': '/firefox-6-changes'},
+              target_version={'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': '6.*'} %}
         {% include "devhub/addons/includes/validation_compat_test_results.html" %}
       {% endwith %}
     </div>
