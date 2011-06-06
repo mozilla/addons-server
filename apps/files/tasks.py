@@ -115,7 +115,7 @@ def repackage_jetpack(builder_data, **kw):
     # file?
     try:
         new_version = Version.from_upload(upload, addon, [old_file.platform])
-        new_file = new_version.all_files[0]
+        new_file = new_version.files.all()[0]
         new_file.status = old_file.status
         new_file.save()
     except Exception:
