@@ -1,31 +1,192 @@
 # -*- coding: utf-8 -*-
 import datetime
 from datetime import timedelta
+import random
 import re
 from urlparse import urlparse
 
 from django import http
+from django.conf import settings
 from django.core.cache import cache
 from django.utils import http as urllib
 
 import mock
+import nose
 from nose.tools import eq_, assert_raises
 from pyquery import PyQuery as pq
 
+import elasticutils
 import test_utils
 
 import amo
 from amo.urlresolvers import reverse
 from amo.helpers import urlparams
+from addons import cron
 from addons.tests.test_views import TestMobile
 from addons.models import (Addon, AddonCategory, Category, AppSupport, Feature,
                            Persona)
-from applications.models import Application
+from applications.models import Application, AppVersion
 from browse import views, feeds
-from browse.views import locale_display_name
+from browse.views import locale_display_name, ES
+from files.models import File, Platform
 from translations.models import Translation
 from translations.query import order_by_translation
-from versions.models import Version
+from versions.models import Version, ApplicationsVersions
+
+
+def addon_factory(version_kw={}, file_kw={}, **kw):
+    a = Addon.objects.create(type=amo.ADDON_EXTENSION)
+    a.status = amo.STATUS_PUBLIC
+    a.name = name = 'Addon %s' % a.id
+    a.slug = name.replace(' ', '-').lower()
+    a.bayesian_rating = random.uniform(1, 5)
+    a.average_daily_users = random.randint(200, 2000)
+    a.weekly_downloads = random.randint(200, 2000)
+    version_factory(file_kw, addon=a, **version_kw)
+    a.update_version()
+    a.status = amo.STATUS_PUBLIC
+    for key, value in kw.items():
+        setattr(a, key, value)
+    a.save()
+    return a
+
+
+def version_factory(file_kw={}, **kw):
+    v = Version.objects.create(version='%.1f' % random.uniform(0, 2),
+                               **kw)
+    a, _ = Application.objects.get_or_create(id=amo.FIREFOX.id)
+    av_min, _ = AppVersion.objects.get_or_create(application=a, version='4.0')
+    av_max, _ = AppVersion.objects.get_or_create(application=a, version='5.0')
+    ApplicationsVersions.objects.create(application=a, version=v,
+                                        min=av_min, max=av_max)
+    file_factory(version=v, **file_kw)
+    return v
+
+
+def file_factory(**kw):
+    v = kw['version']
+    p, _ = Platform.objects.get_or_create(id=amo.PLATFORM_ALL.id)
+    f = File.objects.create(filename='%s-%s' % (v.addon_id, v.id),
+                            platform=p, status=amo.STATUS_PUBLIC, **kw)
+    return f
+
+
+class ESTestCase(test_utils.TestCase):
+    """Base class for tests that require elasticsearch."""
+    es = True
+    use_es = None
+
+    @classmethod
+    def setUpClass(cls):
+        cls.es = elasticutils.get_es()
+
+        if ESTestCase.use_es is None:
+            settings.ES_INDEX = 'test_%s' % settings.ES_INDEX
+            try:
+                cls.es.cluster_health()
+                ESTestCase.use_es = True
+            except Exception, e:
+                print 'Disabling elasticsearch tests.\n%s' % e
+                ESTestCase.use_es = False
+
+        if not ESTestCase.use_es:
+            raise nose.SkipTest()
+
+        try:
+            cls.es.delete_index(settings.ES_INDEX)
+        except Exception:
+            pass
+
+        super(ESTestCase, cls).setUpClass()
+        cls.add_addons()
+        cls.reindex()
+
+    @classmethod
+    def reindex(cls):
+        cron.reindex_addons()
+        cls.es.refresh(0)
+
+    @classmethod
+    def add_addons(cls):
+        addon_factory(name='user-disabled', disabled_by_user=True)
+        addon_factory(name='admin-disabled', status=amo.STATUS_DISABLED)
+        addon_factory(status=amo.STATUS_UNREVIEWED)
+        addon_factory()
+        addon_factory()
+        addon_factory()
+
+
+class TestExtensions(ESTestCase):
+    es = True
+
+    def setUp(self):
+        super(TestExtensions, self).setUp()
+        self.url = reverse('browse.es.extensions')
+
+    def test_default_sort(self):
+        r = self.client.get(self.url)
+        eq_(r.context['sorting'], 'popular')
+
+    def test_name_sort(self):
+        r = self.client.get(urlparams(self.url, sort='name'))
+        addons = r.context['addons'].object_list
+        assert list(addons)
+        eq_(list(addons), sorted(addons, key=lambda x: x.name))
+
+    def test_updated_sort(self):
+        r = self.client.get(urlparams(self.url, sort='updated'))
+        addons = r.context['addons'].object_list
+        assert list(addons)
+        eq_(list(addons), sorted(addons, key=lambda x: x.last_updated))
+
+    def test_created_sort(self):
+        r = self.client.get(urlparams(self.url, sort='created'))
+        addons = r.context['addons'].object_list
+        assert list(addons)
+        eq_(list(addons), sorted(addons, key=lambda x: x.created))
+
+    def test_popular_sort(self):
+        r = self.client.get(urlparams(self.url, sort='popular'))
+        addons = r.context['addons'].object_list
+        assert list(addons)
+        eq_(list(addons), sorted(addons, key=lambda x: x.weekly_downloads))
+
+    def test_rating_sort(self):
+        r = self.client.get(urlparams(self.url, sort='rating'))
+        addons = r.context['addons'].object_list
+        assert list(addons)
+        eq_(list(addons), sorted(addons, key=lambda x: x.bayesian_rating))
+
+    def test_category(self):
+        # Stick one add-on in a category, make sure search finds it.
+        addon = Addon.objects.filter(status=amo.STATUS_PUBLIC,
+                                     disabled_by_user=False)[0]
+        c = Category.objects.create(application_id=amo.FIREFOX.id,
+                                    slug='alerts', type=addon.type)
+        AddonCategory.objects.create(category=c, addon=addon)
+        self.reindex()
+
+        cat_url = reverse('browse.es.extensions', args=['alerts'])
+        r = self.client.get(urlparams(cat_url))
+        addons = r.context['addons'].object_list
+        eq_(list(addons), [addon])
+
+    def test_invalid_sort(self):
+        r = self.client.get(urlparams(self.url, sort='wut'))
+        addons = r.context['addons'].object_list
+        assert list(addons)
+        eq_(list(addons), sorted(addons, key=lambda x: x.weekly_downloads))
+
+
+class TestES(ESTestCase):
+    es = True
+
+    # This should go in a test for the cron.
+    def test_count(self):
+        # Did all the right addons get indexed?
+        eq_(ES(Addon).filter(type=1).count(),
+            Addon.objects.filter(disabled_by_user=False,
+                                 status__in=amo.VALID_STATUSES).count())
 
 
 def test_locale_display_name():

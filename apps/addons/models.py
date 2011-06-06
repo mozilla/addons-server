@@ -473,8 +473,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             return
         if not self._latest_version:
             try:
-                self._latest_version = self.versions.order_by('-created').latest()
-            except Version.DoesNotExist, e:
+                self._latest_version = self.versions.latest()
+            except Version.DoesNotExist:
                 pass
 
         return self._latest_version
@@ -619,7 +619,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         for addon in addons:
             category = categories[cats[addon.id]] if addon.id in cats else None
             addon._first_category[amo.FIREFOX.id] = category
-
 
     @property
     def show_beta(self):
@@ -938,7 +937,7 @@ def watch_status(old_attr={}, new_attr={}, instance=None,
 
 @Addon.on_change
 def watch_disabled(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
-    attrs = dict((k,v) for k, v in old_attr.items()
+    attrs = dict((k, v) for k, v in old_attr.items()
                  if k in ('disabled_by_user', 'status'))
     if Addon(**attrs).is_disabled and not instance.is_disabled:
         for f in File.objects.filter(version__addon=instance.id):

@@ -4,6 +4,7 @@ from operator import attrgetter
 from django.conf import settings
 
 import elasticutils
+import pyes.exceptions as pyes
 
 from .models import Addon
 
@@ -32,7 +33,9 @@ def setup_mapping():
         'name': {'index': 'not_analyzed', 'type': 'string'},
     }
     es = elasticutils.get_es()
-    if settings.ES_INDEX not in es.get_indices():
+    try:
         es.create_index(settings.ES_INDEX)
         es.put_mapping(Addon._meta.app_label, {'properties': m},
                        settings.ES_INDEX)
+    except pyes.ElasticSearchException:
+        pass

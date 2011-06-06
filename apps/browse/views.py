@@ -305,7 +305,7 @@ def es_extensions(request, category=None, template=None):
         return category_landing(request, category)
 
     opts = AddonFilter.opts
-    sorting = request.GET['sort']
+    sorting = request.GET.get('sort', 'popular')
     sorting = sorting if sorting in dict(opts) else 'popular'
     # Translate user-facing sorts to the backend fields.
     sort_field = {'name': 'name',
