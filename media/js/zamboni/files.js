@@ -149,10 +149,9 @@ function bind_viewer(nodes) {
                 }
             }
 
-            if (!window.location.hash) {
-                window.location.hash = 'top';
+            if (window.location.hash && window.location.hash != 'top') {
+                window.location = window.location;
             }
-            window.location = window.location;
         };
         this.side_bar_append = function($sb, state, k, total) {
             $sb.append($('<a>', {'href': state.href, 'class': state.type,
@@ -195,8 +194,10 @@ function bind_viewer(nodes) {
                 $old_wrapper = $('#content-wrapper');
             $old_wrapper.hide();
             this.nodes.$thinking.show();
-            if (history.pushState !== undefined) {
-                history.pushState({ path: $link.text() }, '', $link.attr('href'));
+            if (location.hash != 'top') {
+                if (history.pushState !== undefined) {
+                    history.pushState({ path: $link.text() }, '', $link.attr('href') + '#top');
+                }
             }
             $old_wrapper.load($link.attr('href') + ' #content-wrapper', function() {
                 $(this).children().unwrap();
@@ -293,6 +294,10 @@ function bind_viewer(nodes) {
         viewer.select($(this));
         viewer.toggle_wrap('wrap');
     }));
+
+    $(window).bind('popstate', function() {
+        window.location = location.pathname;
+    });
 
     $(document).bind('keyup', _pd(function(e) {
         if (e.keyCode == 72) {
