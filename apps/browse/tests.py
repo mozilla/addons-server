@@ -1,123 +1,34 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
-import random
 import re
 from urlparse import urlparse
 
 from django import http
-from django.conf import settings
 from django.core.cache import cache
 from django.utils import http as urllib
 
 import mock
-import nose
 from nose.tools import eq_, assert_raises
 from pyquery import PyQuery as pq
 
-import elasticutils
 import test_utils
 
 import amo
+import amo.tests
 from amo.urlresolvers import reverse
 from amo.helpers import urlparams
-from addons import cron
 from addons.tests.test_views import TestMobile
 from addons.models import (Addon, AddonCategory, Category, AppSupport, Feature,
                            Persona)
 from applications.models import Application, AppVersion
 from browse import views, feeds
-from browse.views import locale_display_name, ES
-from files.models import File, Platform
+from browse.views import locale_display_name
 from translations.models import Translation
 from translations.query import order_by_translation
-from versions.models import Version, ApplicationsVersions
+from versions.models import Version
 
 
-def addon_factory(version_kw={}, file_kw={}, **kw):
-    a = Addon.objects.create(type=amo.ADDON_EXTENSION)
-    a.status = amo.STATUS_PUBLIC
-    a.name = name = 'Addon %s' % a.id
-    a.slug = name.replace(' ', '-').lower()
-    a.bayesian_rating = random.uniform(1, 5)
-    a.average_daily_users = random.randint(200, 2000)
-    a.weekly_downloads = random.randint(200, 2000)
-    a.created = a.last_updated = datetime(2011, 6, 6, random.randint(0, 23),
-                                          random.randint(0, 59))
-    version_factory(file_kw, addon=a, **version_kw)
-    a.update_version()
-    a.status = amo.STATUS_PUBLIC
-    for key, value in kw.items():
-        setattr(a, key, value)
-    a.save()
-    return a
-
-
-def version_factory(file_kw={}, **kw):
-    v = Version.objects.create(version='%.1f' % random.uniform(0, 2),
-                               **kw)
-    a, _ = Application.objects.get_or_create(id=amo.FIREFOX.id)
-    av_min, _ = AppVersion.objects.get_or_create(application=a, version='4.0')
-    av_max, _ = AppVersion.objects.get_or_create(application=a, version='5.0')
-    ApplicationsVersions.objects.create(application=a, version=v,
-                                        min=av_min, max=av_max)
-    file_factory(version=v, **file_kw)
-    return v
-
-
-def file_factory(**kw):
-    v = kw['version']
-    p, _ = Platform.objects.get_or_create(id=amo.PLATFORM_ALL.id)
-    f = File.objects.create(filename='%s-%s' % (v.addon_id, v.id),
-                            platform=p, status=amo.STATUS_PUBLIC, **kw)
-    return f
-
-
-class ESTestCase(test_utils.TestCase):
-    """Base class for tests that require elasticsearch."""
-    es = True
-    use_es = None
-
-    @classmethod
-    def setUpClass(cls):
-        cls.es = elasticutils.get_es()
-
-        if ESTestCase.use_es is None:
-            settings.ES_INDEX = 'test_%s' % settings.ES_INDEX
-            try:
-                cls.es.cluster_health()
-                ESTestCase.use_es = True
-            except Exception, e:
-                print 'Disabling elasticsearch tests.\n%s' % e
-                ESTestCase.use_es = False
-
-        if not ESTestCase.use_es:
-            raise nose.SkipTest()
-
-        try:
-            cls.es.delete_index(settings.ES_INDEX)
-        except Exception:
-            pass
-
-        super(ESTestCase, cls).setUpClass()
-        cls.add_addons()
-        cls.reindex()
-
-    @classmethod
-    def reindex(cls):
-        cron.reindex_addons()
-        cls.es.refresh(0)
-
-    @classmethod
-    def add_addons(cls):
-        addon_factory(name='user-disabled', disabled_by_user=True)
-        addon_factory(name='admin-disabled', status=amo.STATUS_DISABLED)
-        addon_factory(status=amo.STATUS_UNREVIEWED)
-        addon_factory()
-        addon_factory()
-        addon_factory()
-
-
-class TestExtensions(ESTestCase):
+class TestExtensions(amo.tests.ESTestCase):
     es = True
 
     def setUp(self):
@@ -182,79 +93,6 @@ class TestExtensions(ESTestCase):
         assert list(addons)
         eq_(list(addons),
             sorted(addons, key=lambda x: x.weekly_downloads, reverse=True))
-
-
-class TestES(ESTestCase):
-    es = True
-
-    # This should go in a test for the cron.
-    def test_indexed_count(self):
-        # Did all the right addons get indexed?
-        eq_(ES(Addon).filter(type=1).count(),
-            Addon.objects.filter(disabled_by_user=False,
-                                 status__in=amo.VALID_STATUSES).count())
-
-    def test_clone(self):
-        # Doing a filter creates a new ES object.
-        qs = ES(Addon)
-        qs2 = qs.filter(type=1)
-        eq_(qs._build_query(), {'fields': ['id']})
-        eq_(qs2._build_query(), {'fields': ['id'],
-                                 'filter': {'term': {'type': 1}}})
-
-    def test_filter(self):
-        qs = ES(Addon).filter(type=1)
-        eq_(qs._build_query(), {'fields': ['id'],
-                                'filter': {'term': {'type': 1}}})
-
-    def test_in_filter(self):
-        qs = ES(Addon).filter(type__in=[1, 2])
-        eq_(qs._build_query(), {'fields': ['id'],
-                                'filter': {'in': {'type': [1, 2]}}})
-
-    def test_and(self):
-        qs = ES(Addon).filter(type=1, category__in=[1, 2])
-        eq_(qs._build_query(), {'fields': ['id'],
-                                'filter': {'and': [
-                                    {'term': {'type': 1}},
-                                    {'in': {'category': [1, 2]}},
-                                ]}})
-
-    def test_query(self):
-        qs = ES(Addon).search(type=1)
-        eq_(qs._build_query(), {'fields': ['id'],
-                                'query': {'term': {'type': 1}}})
-
-    def test_values(self):
-        qs = ES(Addon).values('app')
-        eq_(qs._build_query(), {'fields': ['id', 'app']})
-
-    def test_order_by(self):
-        qs = ES(Addon).order_by('-rating')
-        eq_(qs._build_query(), {'fields': ['id'],
-                                'sort': [{'rating': 'desc'}]})
-
-        qs = ES(Addon).order_by('rating')
-        eq_(qs._build_query(), {'fields': ['id'],
-                                'sort': ['rating']})
-
-    def test_slice(self):
-        qs = ES(Addon)[5:12]
-        eq_(qs._build_query(), {'fields': ['id'],
-                                'from': 5,
-                                'size': 7})
-
-    def test_getitem(self):
-        addons = list(ES(Addon))
-        eq_(addons[0], ES(Addon)[0])
-
-    def test_iter(self):
-        qs = ES(Addon).filter(type=1)
-        eq_(len(qs), 4)
-        eq_(len(list(qs)), 4)
-
-    def test_count(self):
-        eq_(ES(Addon).count(), 4)
 
 
 def test_locale_display_name():

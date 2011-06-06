@@ -1,10 +1,22 @@
 from datetime import datetime, timedelta
+import random
 import time
 
 from django import forms
+from django.conf import settings
 
+import elasticutils
+import nose
 import test_utils
 from redisutils import mock_redis, reset_redis
+
+import amo
+import addons.cron
+from addons.models import Addon
+from applications.models import Application, AppVersion
+from files.models import File, Platform
+from translations.models import Translation
+from versions.models import Version, ApplicationsVersions
 
 
 def formset(*args, **kw):
@@ -86,3 +98,99 @@ def assert_no_validation_errors(validation):
         print '-' * 70
         raise AssertionError("Unexpected task error: %s" %
                              error.rstrip().split("\n")[-1])
+
+
+def addon_factory(version_kw={}, file_kw={}, **kw):
+    a = Addon.objects.create(type=amo.ADDON_EXTENSION)
+    a.status = amo.STATUS_PUBLIC
+    a.name = name = 'Addon %s' % a.id
+    a.slug = name.replace(' ', '-').lower()
+    a.bayesian_rating = random.uniform(1, 5)
+    a.average_daily_users = random.randint(200, 2000)
+    a.weekly_downloads = random.randint(200, 2000)
+    a.created = a.last_updated = datetime(2011, 6, 6, random.randint(0, 23),
+                                          random.randint(0, 59))
+    version_factory(file_kw, addon=a, **version_kw)
+    a.update_version()
+    a.status = amo.STATUS_PUBLIC
+    for key, value in kw.items():
+        setattr(a, key, value)
+    a.save()
+    return a
+
+
+def version_factory(file_kw={}, **kw):
+    v = Version.objects.create(version='%.1f' % random.uniform(0, 2),
+                               **kw)
+    a, _ = Application.objects.get_or_create(id=amo.FIREFOX.id)
+    av_min, _ = AppVersion.objects.get_or_create(application=a, version='4.0')
+    av_max, _ = AppVersion.objects.get_or_create(application=a, version='5.0')
+    ApplicationsVersions.objects.create(application=a, version=v,
+                                        min=av_min, max=av_max)
+    file_factory(version=v, **file_kw)
+    return v
+
+
+def file_factory(**kw):
+    v = kw['version']
+    p, _ = Platform.objects.get_or_create(id=amo.PLATFORM_ALL.id)
+    f = File.objects.create(filename='%s-%s' % (v.addon_id, v.id),
+                            platform=p, status=amo.STATUS_PUBLIC, **kw)
+    return f
+
+
+class ESTestCase(test_utils.TestCase):
+    """Base class for tests that require elasticsearch."""
+    # ES is slow to set up so this uses class setup/teardown. That happens
+    # outside Django transactions so be careful to clean up afterwards.
+    es = True
+    use_es = None
+
+    @classmethod
+    def setUpClass(cls):
+        cls.es = elasticutils.get_es()
+
+        if ESTestCase.use_es is None:
+            print 'setting up es'
+            settings.ES_INDEX = 'test_%s' % settings.ES_INDEX
+            try:
+                cls.es.cluster_health()
+                ESTestCase.use_es = True
+            except Exception, e:
+                print 'Disabling elasticsearch tests.\n%s' % e
+                ESTestCase.use_es = False
+
+        if not ESTestCase.use_es:
+            raise nose.SkipTest()
+
+        try:
+            cls.es.delete_index(settings.ES_INDEX)
+        except Exception, e:
+            pass
+
+        super(ESTestCase, cls).setUpClass()
+        cls.add_addons()
+        cls.reindex()
+
+    @classmethod
+    def tearDownClass(cls):
+        # Delete everything in reverse-order of the foriegn key dependencies.
+        models = (Platform, File, ApplicationsVersions, Version,
+                  Translation, Addon, AppVersion, Application)
+        for model in models:
+            model.objects.all().delete()
+
+    @classmethod
+    def reindex(cls):
+        addons.cron.reindex_addons()
+        cls.es.refresh(0)
+
+    @classmethod
+    def add_addons(cls):
+        print addon_factory(name='user-disabled', disabled_by_user=True)
+        print addon_factory(name='admin-disabled', status=amo.STATUS_DISABLED)
+        print addon_factory(status=amo.STATUS_UNREVIEWED)
+        print addon_factory()
+        print addon_factory()
+        print addon_factory()
+        print Addon.objects.count()
