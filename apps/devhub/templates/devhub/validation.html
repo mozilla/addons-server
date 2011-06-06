@@ -9,10 +9,28 @@
   {{ dev_breadcrumbs(addon, items=[(None, title)]) }}
   <h2>{{ title }}</h2>
 </header>
+
+<table>
+    <tr>
+        <th>{{ _('Validated at:') }}</th>
+        <td><time datetime="{{ timestamp|isotime}}">{{ timestamp|datetime}}</time></td>
+    </tr>
+    {% if result_type == 'compat' %}
+    <tr>
+        <th>{{ _('Tested for compatibility against:') }}</th>
+        <td>{{ amo.APP_IDS[job.application.pk].pretty }} {{ job.target_version }}</td>
+    </tr>
+    {% endif %}
+</table>
+
 <div class="addon-validator-suite" id="addon-validator-suite"
      data-validateurl="{{ validate_url }}">
   {% if result_type == 'compat' %}
-    {% include "devhub/addons/includes/validation_compat_test_results.html" %}
+    {% with app_trans=app_trans,
+            version_change_links=version_change_links,
+            target_version={job.application.guid: job.target_version.version} %}
+      {% include "devhub/addons/includes/validation_compat_test_results.html" %}
+    {% endwith %}
   {% else %}
     {% include "devhub/addons/includes/validation_test_results.html" %}
   {% endif %}

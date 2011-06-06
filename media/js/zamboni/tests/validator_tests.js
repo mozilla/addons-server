@@ -299,7 +299,7 @@ asyncTest('Test basic', function() {
                     "file": "chrome/content/youtune.js",
                     "tier": 3,
                     "for_appversions": {
-                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.0b3"]
+                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["6.*"]
                     },
                     "message": "Dangerous Global Object",
                     "type": "warning",
@@ -314,7 +314,7 @@ asyncTest('Test basic', function() {
                     "file": "file.js",
                     "tier": 3,
                     "for_appversions": {
-                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.0b3"]
+                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["6.*"]
                     },
                     "message": "Some error",
                     "type": "error",
@@ -329,7 +329,7 @@ asyncTest('Test basic', function() {
                     "file": "chrome/content/youtune.js",
                     "tier": 3,
                     "for_appversions": {
-                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.0b1"]
+                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["6.*"]
                     },
                     "message": "on* attribute being set using setAttribute",
                     "type": "notice",
@@ -344,7 +344,7 @@ asyncTest('Test basic', function() {
                     "file": "chrome.manifest",
                     "tier": 4,
                     "for_appversions": {
-                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.0b1"]
+                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["6.0a2"]
                     },
                     "message": "Add-on cannot be localized",
                     "type": "notice",
@@ -363,22 +363,22 @@ asyncTest('Test basic', function() {
 
     tests.waitFor(function() {
         // Wait until last app/version section was created.
-        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3', $suite).length;
+        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-6', $suite).length;
     }).thenDo(function() {
         equals($('#suite-results-tier-errors', $suite).length, 0);
         equals($('.result-header h4:visible', $suite).eq(0).text(),
                'General Tests');
         equals($('.result-header h4:visible', $suite).eq(1).text(),
-               'Firefox 4.0b3 Tests');
+               'Firefox 6.* Tests');
         equals($('#v-msg-dd96f7faee7a41cca4d6ead26dddc6c2 p:eq(0)', $suite).text(),
                'Error: some other error...');
         ok($('#v-msg-bb0b38812d8f450a85fa90a2e7e6693b', $suite).length == 1,
            'Non-compatibility message should be shown');
-        equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .result-summary', $suite).text(),
-               '1 error, 0 warnings');
-        equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .version-change-link').attr('href'),
-               '/firefox-4-changes');
-        equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b1 .version-change-link').length, 0);
+        equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-6 .result-summary', $suite).text(),
+               '1 error, 2 warnings');
+        equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-6 .version-change-link', $suite).attr('href'),
+               '/firefox-6-changes');
+        equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-60a2 .version-change-link', $suite).length, 0);
         equals($('#suite-results-tier-1 .result-summary', $suite).text(),
                '1 error, 0 warnings');
         start();
@@ -474,7 +474,7 @@ asyncTest('Test no tests section', function() {
                     "file": "chrome/content/youtune.js",
                     "tier": 3,
                     "for_appversions": {
-                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.0b3"]
+                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["6.*"]
                     },
                     "message": "Dangerous Global Object",
                     "type": "error",
@@ -493,13 +493,13 @@ asyncTest('Test no tests section', function() {
 
     tests.waitFor(function() {
         // Wait until last app/version section was created.
-        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3', $suite).length;
+        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-6', $suite).length;
     }).thenDo(function() {
         equals($('#suite-results-tier-1:visible', $suite).length, 0);
         equals($('#suite-results-tier-2:visible', $suite).length, 0);
         equals($('#suite-results-tier-3:visible', $suite).length, 0);
         equals($('#suite-results-tier-4:visible', $suite).length, 0);
-        equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .msg', $suite).length, 1);
+        equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-6 .msg', $suite).length, 1);
         start();
     });
 });
@@ -529,7 +529,7 @@ asyncTest('Test compat error override', function() {
                     "file": "chrome/content/youtune.js",
                     "tier": 3,
                     "for_appversions": {
-                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.0b3"]
+                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["6.*"]
                     },
                     "message": "Dangerous Global Object",
                     "type": "warning",
@@ -549,9 +549,9 @@ asyncTest('Test compat error override', function() {
 
     tests.waitFor(function() {
         // Wait until last app/version section was created.
-        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3', $suite).length;
+        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-6', $suite).length;
     }).thenDo(function() {
-        var $msg = $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .msg', $suite);
+        var $msg = $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-6 .msg', $suite);
         ok($msg.hasClass('msg-error'),
            'Expected msg-error, got: ' + $msg.attr('class'));
         start();
@@ -639,7 +639,7 @@ asyncTest('Test single tier', function() {
                     "file": "",
                     "tier": 5,
                     "for_appversions": {
-                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.2a1pre", "5.0a2", "6.0a1", "4.0.*"]
+                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.2a1pre", "5.0a2", "6.*", "4.0.*"]
                     },
                     "message": "Firefox 5 Compatibility Detected",
                     "type": "error",
@@ -658,10 +658,10 @@ asyncTest('Test single tier', function() {
 
     tests.waitFor(function() {
         // Wait until last app/version section was created.
-        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-42a1pre', $suite).length;
+        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-6', $suite).length;
     }).thenDo(function() {
         // This was failing with tier not found
-        equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-42a1pre .msg', $suite).length, 1);
+        equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-6 .msg', $suite).length, 1);
         start();
     });
 });
@@ -745,7 +745,7 @@ asyncTest('Test compat ignores non-compat warnings and notices', function() {
                     "file": "chrome/content/youtune.js",
                     "tier": 3,
                     "for_appversions": {
-                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.0b3"]
+                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["6.*"]
                     },
                     "message": "Dangerous Global Object",
                     "type": "warning",
@@ -760,7 +760,7 @@ asyncTest('Test compat ignores non-compat warnings and notices', function() {
                     "file": "chrome/content/youtune.js",
                     "tier": 3,
                     "for_appversions": {
-                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.0b3"]
+                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["6.*"]
                     },
                     "message": "This code may or may not be compatible",
                     "type": "warning",
@@ -818,7 +818,7 @@ asyncTest('Test compat ignores non-compat warnings and notices', function() {
     $suite.trigger('validate');
 
     tests.waitFor(function() {
-        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3', $suite).length;
+        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-6', $suite).length;
     }).thenDo(function() {
         // Compat error:
         equals($('#v-msg-2a96f7faee7a41cca4d6ead26dddc6b3', $suite).length, 1);
@@ -829,10 +829,62 @@ asyncTest('Test compat ignores non-compat warnings and notices', function() {
         equals($('#v-msg-dce6f7faee7a41cca4d6ead26dddc2c1', $suite).length, 0);
         // Regular error
         equals($('#v-msg-6cd6f7faee7a41cca4d6ead26dddca4c', $suite).length, 1);
-        equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b3 .result-summary', $suite).text(),
+        equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-6 .result-summary', $suite).text(),
                '1 error, 1 warning');
         equals($('#suite-results-tier-3 .result-summary', $suite).text(),
                '1 error, 0 warnings');
+        start();
+    });
+});
+
+asyncTest('Test only show errors for targeted app/version', function() {
+    var $suite = $('.addon-validator-suite', this.sandbox),
+        tiers=[], results=[];
+
+    $.mockjax({
+        url: '/validate',
+        responseText: {
+            "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
+            "full_report_url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "upload": "d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "error": null,
+            "validation": {
+                "errors": 0,
+                "compatibility_summary": {"errors": 1},
+                "success": false,
+                "warnings": 1,
+                "ending_tier": 5,
+                "messages": [{
+                    "context": ["<code>"],
+                    "description": ["Contains binary components..."],
+                    "column": 23,
+                    "id": [],
+                    "file": "chrome/content/youtune.dll",
+                    "tier": 1,
+                    "for_appversions": {
+                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.2a1pre", "4.49.*", "5.0a2", "5.*", "6.0a1", "6.*"]
+                    },
+                    "message": "Contains Binary Components",
+                    "type": "warning",
+                    "compatibility_type": "error",
+                    "line": 533,
+                    "uid": "2a96f7faee7a41cca4d6ead26dddc6b3"
+                }],
+                "detected_type": "extension",
+                "notices": 0,
+                "message_tree": {},
+                "metadata": {}
+            }
+        }
+    });
+
+    $suite.trigger('validate');
+
+    tests.waitFor(function() {
+        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-60a1', $suite).length;
+    }).thenDo(function() {
+        equals($('.result-header h4:visible', $suite).eq(0).text(),
+               'Firefox 6.0a1 Tests');
         start();
     });
 });
