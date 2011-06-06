@@ -535,23 +535,26 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if self.status == amo.STATUS_NULL or self.is_disabled:
             return
 
+        def logit(reason, old=self.status):
+            log.info('Changing add-on status [%s]: %s => %s (%s).'
+                     % (self.id, old, self.status, reason))
+            amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
+
         versions = self.versions.using(using)
         if not versions.exists():
             self.update(status=amo.STATUS_NULL)
-            amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
-
+            logit('no versions')
         elif not (versions.filter(files__isnull=False).exists()):
             self.update(status=amo.STATUS_NULL)
-            amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
-
+            logit('no versions with files')
         elif (self.status == amo.STATUS_PUBLIC and
              not versions.filter(files__status=amo.STATUS_PUBLIC).exists()):
-
             if versions.filter(files__status=amo.STATUS_LITE).exists():
                 self.update(status=amo.STATUS_LITE)
+                logit('only lite files')
             else:
                 self.update(status=amo.STATUS_UNREVIEWED)
-            amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
+                logit('no reviewed files')
 
     @staticmethod
     def transformer(addons):
