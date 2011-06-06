@@ -7,7 +7,7 @@ if (typeof diff_match_patch !== 'undefined') {
             var op = diffs[x][0];    // Operation (insert, delete, equal)
             var data = diffs[x][1];  // Text of change.
             var lines = data.split('\n');
-            for (var t = 0; t < lines.length - 1; t++) {
+            for (var t = 0; t < lines.length; t++) {
                 switch (op) {
                     /* The syntax highlighter needs an extra space
                        to do it's work. */
