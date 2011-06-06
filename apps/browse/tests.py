@@ -20,6 +20,7 @@ from amo.helpers import urlparams
 from addons.tests.test_views import TestMobile
 from addons.models import (Addon, AddonCategory, Category, AppSupport, Feature,
                            Persona)
+from applications.models import Application
 from browse import views, feeds
 from browse.views import locale_display_name
 from translations.models import Translation
