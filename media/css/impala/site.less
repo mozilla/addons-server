@@ -27,7 +27,7 @@ a {
     position: relative;
 }
 
-.primary, .html-rtl.gutter .primary {
+.primary {
     margin-left: 210px;
     .primary {
         margin-right: 210px;
@@ -37,7 +37,13 @@ a {
         float: right;
     }
 }
-.secondary, .html-rtl.gutter .primary {
+
+.html-rtl.gutter .primary {
+    margin-left: 210px;
+    margin-right: 0;
+}
+
+.secondary {
     float: left;
     width: 180px;
 }
@@ -56,6 +62,12 @@ a {
     }
     .secondary {
         float: right;
+    }
+}
+
+.html-rtl.gutter {
+    .secondary {
+    float: left;
     }
 }
 
@@ -110,6 +122,23 @@ a {
         padding: 0 6px;
         text-decoration: none;
         line-height: 28px;
+    }
+}
+
+.cols {
+    .width-calc(~'100% + 1em');
+    div.col-2 {
+        .border-box;
+        float: left;
+        width: 50%;
+        padding-right: 1em;
+    }
+}
+
+.html-rtl .cols {
+    div.col-2 {
+        padding-right: 0;
+        padding-left: 1em;
     }
 }
 

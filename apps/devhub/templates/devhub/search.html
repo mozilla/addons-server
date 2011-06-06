@@ -4,7 +4,7 @@
     <input type="text" name="q" required
            class="text {% if not search_form.q.data %}placeholder{% endif %}"
            value="{{ search_form.q.data or '' }}"
-           placeholder="{{ _('Search developer documentation') }}">
+           placeholder="{{ _('Search Developer Docs') }}">
   </span>
-  <input type="image" class="submit go-button" src="{{ media('img/zamboni/global/btn-search.png') }}" title="{{ _('Search') }}">
+  <button type="submit" class="search-button" src="{{ media('img/zamboni/global/btn-search.png') }}" title="{{ _('Search') }}"></button>
 </form>

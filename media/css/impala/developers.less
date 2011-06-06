@@ -1,0 +1,114 @@
+@import 'lib';
+
+#devhub-promo {
+    background-color: #FFFFFF;
+    background-image: url("../../img/developers/hub-addon-fox.png");
+    background-position: 420px center;
+    background-repeat: no-repeat;
+    height: 250px;
+    margin-bottom: 2em;
+
+    div.promo-container {
+        width: 400px;
+    }
+    h2 {
+        color: #C63717;
+        font-size: 25px;
+        strong {
+            font-size: 35px;
+            display: block;
+        }
+    }
+}
+
+
+.html-rtl #devhub-promo {
+    div.promo-container {
+        float: left;
+    }
+}
+
+.devhub-icon {
+    background-image: url("../../img/developers/hub-directory-sprite.png");
+    display: block;
+}
+
+.devhub-icon-docs {
+    .icon {
+        .devhub-icon;
+        background-position: -25px 0;
+    }
+    .item-icon(32px, 32px);
+}
+
+.devhub-icon-discuss {
+    .icon {
+        .devhub-icon;
+        background-position: 7px 0;
+        background-repeat: no-repeat;
+    }
+    .item-icon(32px, 32px);
+}
+.devhub-icon-tools {
+    .icon {
+        .devhub-icon;
+        background-position: -57px 0;
+    }
+    .item-icon(32px, 32px);
+}
+
+.devhub-sidebar {
+    border-bottom: 1px solid #ccc;
+    div.item {
+        border-top: 1px solid #ccc;
+        h3 {
+            font-size: 15px;
+            font-weight: bold;
+            padding: 1em 0;
+        }
+        p {
+            color: #555555;
+            font-family: @sans-stack;
+            line-height: 1.3em;
+            margin-bottom: 1em;
+        }
+    }
+}
+
+/* Blog Posts on sidebar */
+.secondary ul.blog_posts {
+    margin-bottom: 0;
+    li {
+        border: medium none;
+        padding-bottom: 1em;
+        font-family: verdana;
+        font-size: 0.9em;
+        a {
+            line-height: 1.2em;
+        }
+    }
+    a {
+        display: inline;
+        padding: 0;
+        margin: 0;
+    }
+    .activity-timestamp {
+        display: block;
+        color: #999;
+        padding: 0;
+    }
+}
+
+.secondary h3 a.subscribe-feed {
+    background: url(../../img/zamboni/icons/subscribe-icons.png) no-repeat;
+    display: inline-block;
+    line-height: 16px;
+    height: 16px;
+    padding: 0;
+    margin-left: 0.2em;
+    text-indent: -9999px;
+    width: 16px;
+    &:hover {
+        background-position: 0 -16px;
+    }
+}
