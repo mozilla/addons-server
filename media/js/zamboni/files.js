@@ -39,6 +39,7 @@ function bind_viewer(nodes) {
         this.wrapped = true;
         this.hidden = false;
         this.top = null;
+        this.last = null;
         this.fix_vertically = function($inner, $outer) {
             var $self = this;
             if (!$self.top) {
@@ -189,13 +190,14 @@ function bind_viewer(nodes) {
         this.load = function($link) {
             /* Accepts a jQuery wrapped node, which is part of the tree.
                Hides content, shows spinner, gets the content and then
-               shows it all. Then alters the title. */
+               shows it all. */
             var self = this,
                 $old_wrapper = $('#content-wrapper');
             $old_wrapper.hide();
             this.nodes.$thinking.show();
             if (location.hash != 'top') {
                 if (history.pushState !== undefined) {
+                    this.last = $link.attr('href');
                     history.pushState({ path: $link.text() }, '', $link.attr('href') + '#top');
                 }
             }
@@ -296,7 +298,13 @@ function bind_viewer(nodes) {
     }));
 
     $(window).bind('popstate', function() {
-        window.location = location.pathname;
+        if (viewer.last != location.pathname) {
+            viewer.nodes.$files.find('.file').each(function() {
+                if ($(this).attr('href') == location.pathname) {
+                    viewer.select($(this));
+                }
+            });
+        }
     });
 
     $(document).bind('keyup', _pd(function(e) {
