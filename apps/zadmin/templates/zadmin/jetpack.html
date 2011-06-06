@@ -77,11 +77,12 @@
   <tbody>
     {% for file in jetpacks %}
     <tr {% if file.needs_upgrade %}class="upgrade"{% endif %}>
-      <td>{{ file.version.addon_id }}</td>
+      <td><a href="{{ url('devhub.versions', file.version.addon_id) }}">{{ file.version.addon_id }}</a></td>
+      <td><a href="{{ url('devhub.versions.edit', file.version.addon_id, file.version.id) }}">{{ file.version.version }}</a></td>
       <td>{{ file.version.version }}</td>
       <td>{{ amo.STATUS_CHOICES[file.status] }}</td>
       <td>{{ file.jetpack_version }}</td>
-      <td>{{ file.id }}</td>
+      <td><a href="{{ file.get_url_path('', '') }}">{{ file.id }}</a></td>
       {% if upgrading %}
         {% if file.id|string in repack_status %}
           {% with repack = repack_status[file.id|string] %}
