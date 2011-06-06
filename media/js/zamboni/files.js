@@ -3,13 +3,10 @@ if (typeof diff_match_patch !== 'undefined') {
         /* An override of prettyHthml from diff_match_patch. This
            one will not put any style attrs in the ins or del. */
         var html = [];
-        var k = 1, // Line numbers of existing or added lines.
-            dk = 1; // Line numbers of deleted lines.
         for (var x = 0; x < diffs.length; x++) {
             var op = diffs[x][0];    // Operation (insert, delete, equal)
             var data = diffs[x][1];  // Text of change.
             var lines = data.split('\n');
-
             for (var t = 0; t < lines.length - 1; t++) {
                 switch (op) {
                     /* The syntax highlighter needs an extra space
