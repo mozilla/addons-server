@@ -301,7 +301,7 @@ def jetpack(request):
             upgrader.cancel()
         return redirect('zadmin.jetpack')
 
-    jetpacks = files.utils.find_jetpacks()
+    jetpacks = files.utils.find_jetpacks(cfg.value)
     groups = sorted_groupby(jetpacks, 'jetpack_version')
     by_version = dict((version, len(list(files))) for version, files in groups)
     return jingo.render(request, 'zadmin/jetpack.html',
@@ -319,7 +319,7 @@ def elastic(request):
 
 
 def start_upgrade(version):
-    jetpacks = files.utils.find_jetpacks()
+    jetpacks = files.utils.find_jetpacks(version)
     ids = [f.id for f in jetpacks if f.needs_upgrade]
     log.info('Starting a jetpack upgrade to %s [%s files].'
              % (version, len(ids)))

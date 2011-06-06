@@ -23,6 +23,7 @@ from tower import ugettext as _
 
 import amo
 from applications.models import AppVersion
+from versions.compare import version_int
 
 from .models import File
 
@@ -291,7 +292,7 @@ def get_md5(filename, block_size=2 ** 20):
     return md5.hexdigest()
 
 
-def find_jetpacks():
+def find_jetpacks(jp_version):
     """
     Find all jetpack files that aren't disabled.
 
@@ -305,7 +306,7 @@ def find_jetpacks():
              .select_related('version'))
     files = sorted(files, key=lambda f: (f.version.addon_id, f.version.id))
 
-    # Figure out what files need to be upgraded.
+    # Figure out which files need to be upgraded.
     for file_ in files:
         file_.needs_upgrade = False
     # If any files for this add-on are reviewed, take the last reviewed file
@@ -319,6 +320,10 @@ def find_jetpacks():
                     break
         else:
             fs[-1].needs_upgrade = True
+    # Make sure only old files are marked.
+    for file_ in [f for f in files if f.needs_upgrade]:
+        if version_int(file_.jetpack_version) >= version_int(jp_version):
+            file_.needs_upgrade = False
     return files
 
 
