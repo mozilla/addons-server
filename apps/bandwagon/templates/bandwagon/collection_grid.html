@@ -20,16 +20,18 @@
           </div>
         </a>
         <div class="more">
-          {% trans num=collection.addon_count|numberfmt %}
-            <span>{{ num }}</span> addon
+          {% set addons = collection.addon_count %}
+          {% trans num=addons, addons=addons|numberfmt %}
+            <span>{{ addons }}</span> addon
           {% pluralize %}
-            <span>{{ num }}</span> addons
+            <span>{{ addons }}</span> addons
           {% endtrans %}
           &middot;
-          {% trans num=collection.subscribers|numberfmt %}
-            <span>{{ num }}</span> follower
+          {% set subscribers = collection.subscribers %}
+          {% trans num=subscribers, followers=subscribers|numberfmt %}
+            <span>{{ followers }}</span> follower
           {% pluralize %}
-            <span>{{ num }}</span> followers
+            <span>{{ followers }}</span> followers
           {% endtrans %}
         </div>
       </div>
