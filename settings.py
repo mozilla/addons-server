@@ -250,8 +250,6 @@ MIDDLEWARE_CLASSES = (
     'mobility.middleware.XMobileMiddleware',
     'amo.middleware.RemoveSlashMiddleware',
 
-    'cake.middleware.CakeCookieMiddleware',
-
     # Munging REMOTE_ADDR must come before ThreadRequest.
     'commonware.middleware.SetRemoteAddrFromForwardedFor',
 
@@ -263,6 +261,7 @@ MIDDLEWARE_CLASSES = (
 
     'amo.middleware.CommonMiddleware',
     'amo.middleware.NoVarySessionMiddleware',
+    'cake.middleware.CakeCookieMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'commonware.log.ThreadRequestMiddleware',
