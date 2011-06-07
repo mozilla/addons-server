@@ -16,8 +16,10 @@ INSTALLED_APPS += (
 # cleared every time you restart the server, and memcached is what we run in
 # production.
 # CACHE_BACKEND = 'caching.backends.memcached://localhost:11211?timeout=500'
-# CACHE_BACKEND = 'caching.backends.locmem://'
-CACHE_BACKEND = 'dummy://'
+CACHE_BACKEND = 'caching.backends.locmem://'
+# Some cache is required for CSRF to work. Dummy will allow some functionality,
+# but won't allow you to login.
+# CACHE_BACKEND = 'dummy://'
 
 DATABASES = {
     'default': {
