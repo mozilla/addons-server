@@ -466,6 +466,13 @@ class TestFileFromUpload(UploadTest):
         f = File.from_upload(upload, self.version, self.platform)
         eq_(f.filename, 'xxx-0.1-mac.xpi')
 
+    def test_filename_no_extension(self):
+        upload = self.upload('jetpack')
+        # Remove the exension.
+        upload.name = upload.name.rsplit('.', 1)[0]
+        f = File.from_upload(upload, self.version, self.platform)
+        eq_(f.filename, 'xxx-0.1-mac.xpi')
+
     def test_file_validation(self):
         upload = self.upload('jetpack')
         file = File.from_upload(upload, self.version, self.platform)

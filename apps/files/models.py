@@ -103,7 +103,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     def from_upload(cls, upload, version, platform, parse_data={}):
         f = cls(version=version, platform=platform)
         upload.path = path.path(nfd_str(upload.path))
-        f.filename = f.generate_filename(extension=upload.path.ext)
+        f.filename = f.generate_filename(extension=upload.path.ext or '.xpi')
         f.size = int(max(1, round(upload.path.size / 1024, 0)))  # Kilobytes.
         f.jetpack_version = cls.get_jetpack_version(upload.path)
         f.hash = upload.hash
