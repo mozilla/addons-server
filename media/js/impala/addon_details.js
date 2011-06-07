@@ -98,4 +98,11 @@ $(function () {
 
     if ($('#privacy-policy').exists())
         $('#privacy-policy').modal('.privacy-policy', { width: '500px' });
+
+    // Show add-on ID when icon is clicked
+    if ($("#addon[data-id], #persona[data-id]").exists()) {
+      $("#addon .icon").click(function() {
+        window.location.hash = "id=" + $("#addon, #persona").attr("data-id");
+      })
+    }
 });
