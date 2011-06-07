@@ -27,7 +27,8 @@ class CakeCookieMiddleware(object):
         Look up the AMOv3 session id in the table and login the user if it's
         valid.
         """
-        if request.user.is_authenticated() or settings.READ_ONLY:
+        if settings.READ_ONLY or (
+            hasattr(request, 'user') and request.user.is_authenticated()):
             return
 
         id = request.COOKIES.get('AMOv3')
