@@ -41,6 +41,15 @@ class TestPerf(test_utils.TestCase):
 
     @raises(BadResponse)
     @patch('devhub.perf.urlopen')
+    def test_sendchange_error(self, urlopen):
+        set_url_content(urlopen, """
+            SENDCHANGE: change(s) NOT sent, something went wrong:
+            [Failure instance: Traceback (failure with no frames)...]
+            """)
+        self.start('win32', 'firefox4.0')
+
+    @raises(BadResponse)
+    @patch('devhub.perf.urlopen')
     def test_error(self, urlopen):
         set_url_content(urlopen, """
             INFO: validating key os win32

@@ -43,7 +43,7 @@ def start_perf_test(file_, os_name, firefox):
             log.debug('PERF TEST line: %s' % line)
             if line.startswith('ERROR'):
                 raise BadResponse(line)
-            if line.startswith('SENDCHANGE'):
+            if line.startswith('SENDCHANGE: change sent successfully'):
                 ok = True
         if not ok:
             raise BadResponse('no SENDCHANGE found in response')
