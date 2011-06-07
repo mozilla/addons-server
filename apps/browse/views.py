@@ -272,9 +272,8 @@ def personas(request, category=None, template=None):
 
     ctx = {'categories': categories, 'category': category, 'addons': addons,
            'filter': filter, 'sorting': filter.field, 'sort_opts': filter.opts,
-           'featured': featured, 'search_cat': 'personas'}
-    if not request.MOBILE:
-        ctx['is_homepage'] = category is None and 'sort' not in request.GET
+           'featured': featured, 'search_cat': 'personas',
+           'is_homepage': category is None and 'sort' not in request.GET}
     return jingo.render(request, template, ctx)
 
 

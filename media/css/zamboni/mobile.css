@@ -1010,9 +1010,11 @@ ul.license li.copyr { background-position: 0 -260px; }
 
 .persona-large [data-browsertheme],
 .persona-large p {
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
     border-radius: 6px;
+}
+
+#listing-featured .persona-previewer:last-child .persona-slider {
+    border-radius: 0 0 6px 6px;
 }
 
 .persona-large {

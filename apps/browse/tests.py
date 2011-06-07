@@ -984,32 +984,51 @@ class TestMobileExtensions(TestMobile):
 class TestMobilePersonas(TestMobile):
     fixtures = TestMobile.fixtures + ['addons/persona']
 
-    def test_personas(self):
+    def test_personas_home(self):
         r = self.client.get(reverse('browse.personas'))
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r,
             'browse/personas/mobile/category_landing.html')
         eq_(r.context['category'], None)
-        assert 'is_homepage' not in r.context
+        assert 'is_homepage' in r.context
 
-    def test_personas_grid(self):
-        """Ensure we always hit a grid page if there's a category."""
-        grid = 'browse/personas/mobile/grid.html'
+    def test_personas_home_title(self):
+        r = self.client.get(reverse('browse.personas'))
+        doc = pq(r.content)
+        eq_(doc('title').text(), 'Personas :: Add-ons for Firefox')
 
+    def _create_persona_cat(self):
         category = Category(type=amo.ADDON_PERSONA, slug='xxx',
                             application_id=amo.FIREFOX.id)
         category.save()
+        return category
+
+    def test_personas_grid(self):
+        """Ensure we always hit grid page if there's a category or sorting."""
+        grid = 'browse/personas/mobile/grid.html'
+
+        category = self._create_persona_cat()
         category_url = reverse('browse.personas', args=[category.slug])
-
-        # Show the grid page even with sorting.
-        r = self.client.get('%s?sort=created' % category_url)
-        self.assertTemplateUsed(r, grid)
-
-        r = self.client.get(category_url)
-        self.assertTemplateUsed(r, grid)
 
         # Even if the category has 5 add-ons.
         category.count = 5
         category.save()
         r = self.client.get(category_url)
         self.assertTemplateUsed(r, grid)
+
+        # Show the grid page even with sorting.
+        r = self.client.get(reverse('browse.personas') + '?sort=created')
+        self.assertTemplateUsed(r, grid)
+        r = self.client.get(category_url + '?sort=created')
+        self.assertTemplateUsed(r, grid)
+
+    def test_personas_category_title(self):
+        r = self.client.get(reverse('browse.personas',
+                                    args=[self._create_persona_cat().slug]))
+        doc = pq(r.content)
+        eq_(doc('title').text(), 'None Personas :: Add-ons for Firefox')
+
+    def test_personas_sorting_title(self):
+        r = self.client.get(reverse('browse.personas') + '?sort=up-and-coming')
+        doc = pq(r.content)
+        eq_(doc('title').text(), 'Up & Coming Personas :: Add-ons for Firefox')
