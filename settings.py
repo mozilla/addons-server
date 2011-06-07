@@ -250,6 +250,8 @@ MIDDLEWARE_CLASSES = (
     'mobility.middleware.XMobileMiddleware',
     'amo.middleware.RemoveSlashMiddleware',
 
+    'cake.middleware.CakeCookieMiddleware',
+
     # Munging REMOTE_ADDR must come before ThreadRequest.
     'commonware.middleware.SetRemoteAddrFromForwardedFor',
 
@@ -266,7 +268,6 @@ MIDDLEWARE_CLASSES = (
     'commonware.log.ThreadRequestMiddleware',
     'session_csrf.CsrfMiddleware',
 
-    'cake.middleware.CakeCookieMiddleware',
     'cake.middleware.CookieCleaningMiddleware',
 
     # This should come after authentication middleware
