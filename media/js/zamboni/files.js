@@ -8,6 +8,14 @@ if (typeof diff_match_patch !== 'undefined') {
             var data = diffs[x][1];  // Text of change.
             var lines = data.split('\n');
             for (var t = 0; t < lines.length; t++) {
+                /* A diff gets an empty element on the end (the last \n).
+                   Unless the diff line question does not have a new line on
+                   the end. We can't just set lines.length - 1, because this
+                   will just chop off lines. But if we don't trim these empty
+                   lines we'll end up with lines between each diff. */
+                if ((t + 1) == lines.length && lines[t] == '') {
+                    continue;
+                }
                 switch (op) {
                     /* The syntax highlighter needs an extra space
                        to do it's work. */
