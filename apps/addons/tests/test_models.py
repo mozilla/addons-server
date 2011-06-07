@@ -29,6 +29,7 @@ from reviews.models import Review
 from translations.models import TranslationSequence, Translation
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
+from versions.compare import version_int
 
 
 class TestAddonManager(test_utils.TestCase):
@@ -242,6 +243,15 @@ class TestAddonModels(test_utils.TestCase):
 
         # Check a search engine addon.
         a = Addon.objects.get(pk=4594)
+        eq_(a.incompatible_latest_apps(), [])
+
+    def test_incompatible_asterix(self):
+        av = ApplicationsVersions.objects.get(pk=47881)
+        av.max = AppVersion.objects.create(application_id=amo.FIREFOX.id,
+                                           version_int=version_int('5.*'),
+                                           version='5.*')
+        av.save()
+        a = Addon.objects.get(pk=3615)
         eq_(a.incompatible_latest_apps(), [])
 
     def test_icon_url(self):
