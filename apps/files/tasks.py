@@ -18,7 +18,7 @@ from amo.urlresolvers import reverse
 from amo.utils import Message, get_email_backend
 from addons.models import Addon
 from versions.compare import version_int
-from versions.models import Version
+from versions.models import Version, ApplicationsVersions
 from .models import File
 from .utils import JetpackUpgrader
 
@@ -86,6 +86,7 @@ def repackage_jetpack(builder_data, **kw):
     try:
         addon = Addon.objects.get(id=repack_data['addon'])
         old_file = File.objects.get(id=repack_data['file_id'])
+        old_version = old_file.version
     except Exception:
         jp_log.error(msg('Could not find addon or file.'), exc_info=True)
         raise
@@ -117,6 +118,11 @@ def repackage_jetpack(builder_data, **kw):
     try:
         new_version = Version.from_upload(upload, addon, [old_file.platform],
                                           send_signal=False)
+        # Sync the compatible apps of the new version.
+        for app in old_version.apps.values():
+            app.update(version_id=new_version.id, id=None)
+            ApplicationsVersions.objects.create(**app)
+        # Sync the status of the new file.
         new_file = new_version.files.using('default')[0]
         new_file.status = old_file.status
         new_file.save()

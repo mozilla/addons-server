@@ -144,3 +144,11 @@ class TestRepackageJetpack(amo.tests.RedisTest, test_utils.TestCase):
     def test_email_sent(self):
         assert tasks.repackage_jetpack(self.builder_data())
         eq_(len(mail.outbox), 1)
+
+    def test_supported_apps(self):
+        version = tasks.repackage_jetpack(self.builder_data()).version
+        old_apps = self.file.version.compatible_apps
+        eq_(version.compatible_apps.keys(), old_apps.keys())
+        for app, appver in version.compatible_apps.items():
+            eq_(old_apps[app].max, appver.max)
+            eq_(old_apps[app].min, appver.min)
