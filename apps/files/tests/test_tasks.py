@@ -2,6 +2,7 @@ import hashlib
 import os
 import tempfile
 import urllib
+import urlparse
 import uuid
 
 from django.conf import settings
@@ -14,9 +15,44 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
+from amo.helpers import absolutify
+from amo.urlresolvers import reverse
 from addons.models import Addon
 from files import tasks
+from files.models import File
 from files.utils import JetpackUpgrader
+
+
+class TestUpgradeJetpacks(amo.tests.RedisTest, test_utils.TestCase):
+    fixtures = ['base/addon_3615']
+    maxDiff = 100000
+
+    def setUp(self):
+        super(TestUpgradeJetpacks, self).setUp()
+
+        urllib2_patch = mock.patch('files.tasks.urllib2')
+        self.urllib2 = urllib2_patch.start()
+        self.addCleanup(urllib2_patch.stop)
+
+    def test_send_request(self):
+        addon = Addon.objects.get(id=3615)
+        File.objects.all().update(jetpack_version='0.9')
+        file_ = addon.current_version.all_files[0]
+        tasks.start_upgrade('1.0', [file_.id])
+        assert self.urllib2.urlopen.called
+        url, args = self.urllib2.urlopen.call_args[0]
+        args = dict(urlparse.parse_qsl(args))
+        self.assertDictEqual(args, {
+            'addon': str(3615),
+            'file_id': str(file_.id),
+            'priority': 'low',
+            'secret': settings.BUILDER_SECRET_KEY,
+            'location': file_.get_url_path('', 'builder'),
+            'uuid': args['uuid'],  # uuid is random so steal from args.
+            'version': '2.1.072.sdk.{sdk_version}',
+            'pingback': absolutify(reverse('amo.builder-pingback')),
+        })
+        eq_(url, settings.BUILDER_UPGRADE_URL)
 
 
 class TestRepackageJetpack(amo.tests.RedisTest, test_utils.TestCase):
@@ -152,3 +188,21 @@ class TestRepackageJetpack(amo.tests.RedisTest, test_utils.TestCase):
         for app, appver in version.compatible_apps.items():
             eq_(old_apps[app].max, appver.max)
             eq_(old_apps[app].min, appver.min)
+
+
+def test_parse_version():
+    def check(v, expected):
+        eq_(tasks.parse_version(v), expected)
+
+    # Start with some normalish version numbers.
+    d = (('1.1', '1.1.sdk.{sdk_version}'),
+         ('0.2.3', '0.2.3.sdk.{sdk_version}'),
+         ('0.2.3-woo', '0.2.3-woo.sdk.{sdk_version}'),
+         ('023ab', '023ab.sdk.{sdk_version}'),
+         ('0.2.3', '0.2.3.sdk.{sdk_version}'),
+    )
+    for version, expected in d:
+        yield check, version, expected
+        # Append .sdk.1.0 to the normal numbers to simulate versions that have
+        # already been upgraded in the past. We still get the same template.
+        yield check, version + '.sdk.1.0', expected

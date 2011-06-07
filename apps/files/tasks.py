@@ -162,7 +162,8 @@ def start_upgrade(version, file_ids, priority='low', **kw):
     files = File.objects.filter(id__in=file_ids).select_related('version')
     now = datetime.now()
     for file_ in files:
-        if version_int(version) <= version_int(file_.jetpack_version):
+        if (not file_.jetpack_version
+            or version_int(version) <= version_int(file_.jetpack_version)):
             continue
 
         jp_log.info('Sending %s to builder for jetpack version %s.'
@@ -183,6 +184,7 @@ def start_upgrade(version, file_ids, priority='low', **kw):
                 'secret': settings.BUILDER_SECRET_KEY,
                 'location': file_.get_url_path(None, 'builder'),
                 'uuid': data['uuid'],
+                'version': parse_version(file_.version.version),
                 'pingback': absolutify(reverse('amo.builder-pingback'))}
         try:
             jp_log.info(urllib.urlencode(post))
@@ -195,3 +197,7 @@ def start_upgrade(version, file_ids, priority='low', **kw):
                          exc_info=True)
 
         upgrader.file(file_.id, data)
+
+
+def parse_version(v):
+    return v.split('.sdk.')[0] + '.sdk.{sdk_version}'
