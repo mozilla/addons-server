@@ -15,10 +15,23 @@ $(function () {
         function showLightbox() {
             $lightbox.show();
             showImage(this);
+            $(window).bind('keydown.lightboxDismiss', function(e) {
+                if (e.which == 27) {
+                    hideLightbox();
+                }
+            });
             //I want to ensure the lightbox is painted before fading it in.
             setTimeout(function () {
                 $lightbox.addClass("show");
             },0);
+        }
+        function hideLightbox() {
+            $lightbox.removeClass("show");
+            // We can't trust transitionend to fire in all cases.
+            setTimeout(function() {
+                $lightbox.hide();
+            }, 500);
+            $(window).unbind('keydown.lightboxDismiss');
         }
         function showImage(a) {
             var $a = $(a),
@@ -73,14 +86,11 @@ $(function () {
             }
         }));
         $(".previews ul a").click(_pd(showLightbox));
-        $("#lightbox .close, #lightbox .content").click(_pd(function() {
-            $lightbox.removeClass("show");
-            // We can't trust transitionend to fire in all cases.
-            setTimeout(function() {
-                $lightbox.hide();
-            }, 500);
+        $('#lightbox').click(_pd(function(e) {
+            if ($(e.target).is('.close, #lightbox')) {
+                hideLightbox();
+            }
         }));
-        $document.scroll();
     })();
 
     if ($('#review-add-box').exists())
