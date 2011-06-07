@@ -115,7 +115,8 @@ def repackage_jetpack(builder_data, **kw):
     # TODO: multi-file: have we already created the new version for a different
     # file?
     try:
-        new_version = Version.from_upload(upload, addon, [old_file.platform])
+        new_version = Version.from_upload(upload, addon, [old_file.platform],
+                                          send_signal=False)
         new_file = new_version.files.using('default')[0]
         new_file.status = old_file.status
         new_file.save()

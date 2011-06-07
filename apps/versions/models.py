@@ -62,7 +62,7 @@ class Version(amo.models.ModelBase):
         return super(Version, self).save(*args, **kw)
 
     @classmethod
-    def from_upload(cls, upload, addon, platforms):
+    def from_upload(cls, upload, addon, platforms, send_signal=True):
         data = utils.parse_addon(upload.path, addon)
         try:
             license = addon.versions.latest().license_id
@@ -89,7 +89,8 @@ class Version(amo.models.ModelBase):
         # After the upload has been copied to all
         # platforms, remove the upload.
         upload.path.unlink()
-        version_uploaded.send(sender=v)
+        if send_signal:
+            version_uploaded.send(sender=v)
         return v
 
     @classmethod
