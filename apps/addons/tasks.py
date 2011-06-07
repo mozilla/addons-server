@@ -103,3 +103,10 @@ def index_addons(ids, **kw):
     for addon in Addon.objects.filter(id__in=ids):
         Addon.index(search.extract(addon), bulk=True, id=addon.id)
     es.flush_bulk(forced=True)
+
+
+@task
+def unindex_addons(ids, **kw):
+    for addon in ids:
+        log.info('Removing addon [%s] from search index.' % addon)
+        Addon.unindex(addon)

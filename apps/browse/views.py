@@ -189,6 +189,7 @@ def es_extensions(request, category=None, template=None):
                   'rating': '-bayesian_rating'}.get(sorting)
 
     qs = (Addon.search().filter(type=TYPE, app=request.APP.id,
+                                is_disabled=False,
                                 status__in=amo.REVIEWED_STATUSES)
           .order_by(sort_field))
     if category:

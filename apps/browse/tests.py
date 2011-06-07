@@ -80,7 +80,8 @@ class TestExtensions(amo.tests.ESTestCase):
         c = Category.objects.create(application_id=amo.FIREFOX.id,
                                     slug='alerts', type=addon.type)
         AddonCategory.objects.create(category=c, addon=addon)
-        self.reindex()
+        addon.save()
+        self.refresh()
 
         cat_url = reverse('browse.es.extensions', args=['alerts'])
         r = self.client.get(urlparams(cat_url))

@@ -276,6 +276,11 @@ class SearchMixin(object):
             id=id, bulk=bulk, force_insert=force_insert)
 
     @classmethod
+    def unindex(cls, id):
+        elasticutils.get_es().delete(settings.ES_INDEX,
+                                     cls._meta.app_label, id)
+
+    @classmethod
     def search(cls):
         return search.ES(cls)
 

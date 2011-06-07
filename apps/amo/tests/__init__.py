@@ -11,7 +11,7 @@ import test_utils
 from redisutils import mock_redis, reset_redis
 
 import amo
-import addons.cron
+import addons.search
 from addons.models import Addon
 from applications.models import Application, AppVersion
 from files.models import File, Platform
@@ -169,8 +169,9 @@ class ESTestCase(test_utils.TestCase):
             pass
 
         super(ESTestCase, cls).setUpClass()
+        addons.search.setup_mapping()
         cls.add_addons()
-        cls.reindex()
+        cls.refresh()
 
     @classmethod
     def tearDownClass(cls):
@@ -181,9 +182,8 @@ class ESTestCase(test_utils.TestCase):
             model.objects.all().delete()
 
     @classmethod
-    def reindex(cls):
-        addons.cron.reindex_addons()
-        cls.es.refresh(0)
+    def refresh(cls):
+        cls.es.refresh(settings.ES_INDEX)
 
     @classmethod
     def add_addons(cls):

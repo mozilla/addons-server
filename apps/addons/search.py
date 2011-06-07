@@ -14,7 +14,8 @@ log = logging.getLogger('z.addons.search')
 def extract(addon):
     """Extract indexable attributes from an add-on."""
     attrs = ('id', 'name', 'created', 'last_updated', 'weekly_downloads',
-             'bayesian_rating', 'average_daily_users', 'status', 'type')
+             'bayesian_rating', 'average_daily_users', 'status', 'type',
+             'is_disabled')
     d = dict(zip(attrs, attrgetter(*attrs)(addon)))
     # Coerce the Translation into a string.
     d['name'] = unicode(d['name'])

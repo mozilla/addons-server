@@ -10,7 +10,7 @@ class TestES(amo.tests.ESTestCase):
     # This should go in a test for the cron.
     def test_indexed_count(self):
         # Did all the right addons get indexed?
-        eq_(Addon.search().filter(type=1).count(),
+        eq_(Addon.search().filter(type=1, is_disabled=False).count(),
             Addon.objects.filter(disabled_by_user=False,
                                  status__in=amo.VALID_STATUSES).count())
 
@@ -69,9 +69,9 @@ class TestES(amo.tests.ESTestCase):
         eq_(addons[0], Addon.search()[0])
 
     def test_iter(self):
-        qs = Addon.search().filter(type=1)
+        qs = Addon.search().filter(type=1, is_disabled=False)
         eq_(len(qs), 4)
         eq_(len(list(qs)), 4)
 
     def test_count(self):
-        eq_(Addon.search().count(), 4)
+        eq_(Addon.search().count(), 6)
