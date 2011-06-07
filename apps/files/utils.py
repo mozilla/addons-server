@@ -263,6 +263,11 @@ def check_rdf(rdf, addon=None):
         raise forms.ValidationError(
             _('Version numbers should only contain letters, numbers, '
               'and these punctuation characters: +*.-_.'))
+    if addon:
+        versions = addon.versions.values_list('version', flat=True)
+        if rdf['version'] in versions:
+            raise forms.ValidationError(
+                _('Version %s is already in use.') % rdf['version'])
     return rdf
 
 

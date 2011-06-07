@@ -1,7 +1,8 @@
 import hashlib
 import os
-
 from datetime import datetime, timedelta
+
+from django import forms
 from django.conf import settings
 
 import mock
@@ -653,6 +654,13 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                     hashlib.md5(f.read()).hexdigest(),
                     "md5 hash of %r does not match uploaded file" %
                                                         file.file_path)
+
+    def test_duplicate_version(self):
+        # The file creates version 0.1.
+        self.addon.versions.update(version='0.1')
+        with self.assertRaises(forms.ValidationError) as e:
+            Version.from_upload(self.upload, self.addon, [self.platform])
+        eq_(e.exception.messages[0], 'Version 0.1 is already in use.')
 
 
 class TestSearchVersionFromUpload(TestVersionFromUpload):
