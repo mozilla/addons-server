@@ -771,6 +771,13 @@ div.editor-stats-table > div.editor-stats-dark {
     display: none;
 }
 
+.scroll_sidebar_parent .currently_viewing_warning {
+    margin-top: 0;
+    border: medium none;
+    border-radius: 8px;
+    margin-top: 0;
+}
+
 div.currently_viewing_warning {
     background-color: #FFE4E4;
     margin: 1em 0;
