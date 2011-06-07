@@ -9,7 +9,7 @@ if (typeof diff_match_patch !== 'undefined') {
             var lines = data.split('\n');
             for (var t = 0; t < lines.length; t++) {
                 /* A diff gets an empty element on the end (the last \n).
-                   Unless the diff line question does not have a new line on
+                   Unless the diff line in question does not have a new line on
                    the end. We can't just set lines.length - 1, because this
                    will just chop off lines. But if we don't trim these empty
                    lines we'll end up with lines between each diff. */
@@ -111,10 +111,11 @@ function bind_viewer(nodes) {
             });
         };
         this.compute = function(node) {
-            var $diff = node.find('#diff');
+            var $diff = node.find('#diff'),
+                $content = node.find('#content');
 
-            if (node.find('#content') && !$diff.length) {
-                SyntaxHighlighter.highlight();
+            if ($content && !$diff.length) {
+                SyntaxHighlighter.highlight($content);
                 // Fix up the lines to be the way we want.
                 // Note SyntaxHighlighter has nuked the node and replaced it.
                 this.line_wrap(node.find('#content'), false);
@@ -128,7 +129,7 @@ function bind_viewer(nodes) {
                 dmp.diff_charsToLines_(diffs, a[2]);
                 $diff.text(dmp.diff_prettyHtml(diffs)).show();
 
-                SyntaxHighlighter.highlight();
+                SyntaxHighlighter.highlight($diff);
                 // Note SyntaxHighlighter has nuked the node and replaced it.
                 $diff = node.find('#diff');
                 this.line_wrap($diff, true);
