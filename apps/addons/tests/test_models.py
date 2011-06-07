@@ -1019,6 +1019,12 @@ class TestAddonModels(test_utils.TestCase):
         addon.update(status=amo.STATUS_NOMINATED)
         eq_(addon.versions.latest().nomination.date(), earlier.date())
 
+    def test_category_transform(self):
+        addon = Addon.objects.get(id=3615)
+        cats = addon.categories.filter(application=amo.FIREFOX.id)
+        names = [c.name for c in cats]
+        assert addon.get_category(amo.FIREFOX.id).name in names
+
 
 class TestBackupVersion(test_utils.TestCase):
     fixtures = ['addons/update']

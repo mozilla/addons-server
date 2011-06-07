@@ -608,13 +608,14 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             addon_dict[addon].all_previews = list(previews)
 
         # Attach _first_category for Firefox.
+        cats = dict(AddonCategory.objects.values_list('addon', 'category')
+                    .filter(addon__in=addon_dict,
+                            category__application=amo.FIREFOX.id))
+        qs = Category.objects.filter(id__in=set(cats.values()))
+        categories = dict((c.id, c) for c in qs)
         for addon in addons:
-            addon._first_category[amo.FIREFOX.id] = None
-        qs = AddonCategory.objects.filter(
-            addon__in=addon_dict, category__application=amo.FIREFOX.id)
-        for cat in qs.select_related('category'):
-            addon = addon_dict[cat.addon_id]
-            addon._first_category[amo.FIREFOX.id] = cat.category
+            category = categories[cats[addon.id]] if addon.id in cats else None
+            addon._first_category[amo.FIREFOX.id] = category
 
 
     @property
