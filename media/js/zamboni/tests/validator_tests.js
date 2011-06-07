@@ -423,6 +423,61 @@ asyncTest('Test all passing', function() {
     });
 });
 
+asyncTest('Test all passing with warnings', function() {
+    var $suite = $('.addon-validator-suite', this.sandbox);
+
+    $.mockjax({
+        url: '/validate',
+        responseText: {
+            "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
+            "full_report_url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "upload": "d5d993a5a2fa4b759ae2fa3b2eda2a38",
+            "error": null,
+            "validation": {
+                "errors": 0,
+                "success": true,
+                "warnings": 0,
+                "ending_tier": 5,
+                "compatibility_summary": {
+                    "notices": 0,
+                    "errors": 0,
+                    "warnings": 1
+                },
+                "messages": [{
+                    "context": [null, "(function(){javascript:timelineCreateVideoFrame();", "})()"],
+                    "description": "Description...",
+                    "column": null,
+                    "id": ["testcases_scripting", "_regex_tests", "javascript_data_urls"],
+                    "compatibility_type": "warning",
+                    "file": "chrome/content/timeline2.html",
+                    "tier": 3,
+                    "for_appversions": {
+                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["6.0a1", "6.*", "4.0.*"]
+                    },
+                    "message": "javascript:/data: URIs may be incompatible with Firefox 6",
+                    "type": "notice",
+                    "line": 1,
+                    "uid": "fcb993744c45416b80bd20a2479f5c86"
+                }],
+                "detected_type": "extension",
+                "notices": 2,
+                "message_tree": {},
+                "metadata": {}
+            }
+        }
+    });
+
+    $suite.trigger('validate');
+
+    tests.waitFor(function() {
+        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-60a1:visible', $suite).length;
+    }).thenDo(function() {
+        // 'Compatibility Tests' should be hidden:
+        equals($('#suite-results-tier-1:visible', $suite).length, 0);
+        start();
+    });
+});
+
 asyncTest('Test task error', function() {
     var $suite = $('.addon-validator-suite', this.sandbox),
         tiers=[], results=[];

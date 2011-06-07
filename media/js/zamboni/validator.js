@@ -268,7 +268,7 @@ function initValidator() {
             if (!$('.msg', res).length)
                 $(res).hide();
         });
-        if (this.allCounts.error == 0) {
+        if (this.allCounts.error == 0 && this.allCounts.warning == 0) {
             $('#suite-results-tier-1').show();
             $('#suite-results-tier-1 h4').text(gettext('Compatibility Tests'));
         }
