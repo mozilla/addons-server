@@ -662,6 +662,7 @@ def upload_detail(request, uuid, format='html'):
     v = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
     return jingo.render(request, 'devhub/validation.html',
                         dict(validate_url=v, filename=upload.name,
+                             timestamp=upload.created,
                              addon=None))
 
 

@@ -37,6 +37,15 @@ class TestUploadValidation(BaseUploadTest):
             [[u'&lt;foo/&gt;'], u'&lt;em:description&gt;...'])
 
 
+    def test_date_on_upload(self):
+        upload = FileUpload.objects.get(name='invalid-id-20101206.xpi')
+        r = self.client.get(reverse('devhub.upload_detail',
+                                    args=[upload.uuid]))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('td').text(), 'December  6, 2010')
+
+
 class TestFileValidation(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users',
                 'devhub/addon-validation-1', 'base/platforms']
