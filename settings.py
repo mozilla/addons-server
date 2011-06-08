@@ -448,6 +448,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/tabs.js',
 
             'js/lib/jquery.cookie.js',
+            'js/zamboni/storage.js',
             'js/zamboni/global.js',
             'js/amo2009/global.js',
             'js/impala/ratingwidget.js',
@@ -455,7 +456,6 @@ MINIFY_BUNDLES = {
             'js/amo2009/home.js',
             'js/zamboni/l10n.js',
             'js/zamboni/debouncer.js',
-            'js/zamboni/storage.js',
 
             # Homepage
             'js/zamboni/homepage.js',

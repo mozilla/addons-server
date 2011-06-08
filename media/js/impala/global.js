@@ -29,9 +29,10 @@ $('.island .listing-grid').bind('grid.init', function(e, data) {
     }
 });
 
+z.visitor = z.Storage('visitor');
 (function() {
     // Show the bad-browser message if it has not been dismissed
-    if (!$.cookie('amo_impala_bad_browser') && $('body').hasClass('badbrowser')) {
+    if (!z.visitor.get('seen_badbrowser_warning') && $('body').hasClass('badbrowser')) {
         $('#site-nonfx').show();
     }
 })();
@@ -40,14 +41,13 @@ $(function() {
     "use strict";
 
     // Show the first visit banner.
-    var firstvisitcookie = 'amo_impala_user_seen';
-    if (!$.cookie(firstvisitcookie)) {
+    if (!z.visitor.get('seen_impala_first_visit')) {
         $('body').addClass('firstvisit');
-        $.cookie(firstvisitcookie, '1');
+        z.visitor.set('seen_impala_first_visit', 1)
     }
 
     $("#site-nonfx .close").click(function() {
-        $.cookie('amo_impala_bad_browser', '1');
+        z.visitor.set('seen_badbrowser_warning', 1);
     });
 
     //Truncate text in Firefox.
