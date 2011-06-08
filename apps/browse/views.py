@@ -15,7 +15,7 @@ import amo.models
 from amo.models import manual_order
 from addons.models import Addon, Category, AddonCategory
 from amo.urlresolvers import reverse
-from addons.views import BaseFilter
+from addons.views import BaseFilter, ESBaseFilter
 from translations.query import order_by_translation
 
 
@@ -54,6 +54,10 @@ class AddonFilter(BaseFilter):
             ('popular', _lazy(u'Downloads')),
             ('users', _lazy(u'Users')),
             ('rating', _lazy(u'Rating')))
+
+
+class ESAddonFilter(ESBaseFilter):
+    opts = AddonFilter.opts
 
 
 def addon_listing(request, addon_types, Filter=AddonFilter, default='popular'):
@@ -177,28 +181,20 @@ def es_extensions(request, category=None, template=None):
         and category and category.count > 4):
         return category_landing(request, category)
 
-    opts = AddonFilter.opts
-    sorting = request.GET.get('sort', 'popular')
-    sorting = sorting if sorting in dict(opts) else 'popular'
-    # Translate user-facing sorts to the backend fields.
-    sort_field = {'name': 'name',
-                  'created': '-created',
-                  'updated': '-last_updated',
-                  'popular': '-weekly_downloads',
-                  'users': '-average_daily_users',
-                  'rating': '-bayesian_rating'}.get(sorting)
 
     qs = (Addon.search().filter(type=TYPE, app=request.APP.id,
                                 is_disabled=False,
-                                status__in=amo.REVIEWED_STATUSES)
-          .order_by(sort_field))
+                                status__in=amo.REVIEWED_STATUSES))
+    filter = ESAddonFilter(request, qs, key='sort', default='popular')
+    qs = filter.qs
+
     if category:
         qs = qs.filter(category=category.id)
     addons = amo.utils.paginate(request, qs)
 
     return jingo.render(request, template,
                         {'category': category, 'addons': addons,
-                         'sorting': sorting, 'sort_opts': opts,
+                         'sorting': filter.field, 'sort_opts': filter.opts,
                          'search_cat': '%s,0' % TYPE})
 
 

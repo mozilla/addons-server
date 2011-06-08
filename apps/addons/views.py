@@ -350,6 +350,22 @@ class BaseFilter(object):
         return order_by_translation(Addon.objects.all(), 'name')
 
 
+class ESBaseFilter(BaseFilter):
+    """BaseFilter that uses elasticsearch."""
+
+    def __init__(self, request, base, key, default):
+        super(ESBaseFilter, self).__init__(request, base, key, default)
+
+    def filter(self, field):
+        sorts = {'name': 'name',
+                 'created': '-created',
+                 'updated': '-last_updated',
+                 'popular': '-weekly_downloads',
+                 'users': '-average_daily_users',
+                 'rating': '-bayesian_rating'}
+        return self.base_queryset.order_by(sorts[field])
+
+
 class HomepageFilter(BaseFilter):
     opts = (('featured', _lazy(u'Featured')),
             ('popular', _lazy(u'Popular')),
