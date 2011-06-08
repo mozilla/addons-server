@@ -11,5 +11,6 @@ $(function () {
             btnNext: $('#promos .next')
         });
         $('.vtruncate').truncate({dir: 'v'});
+        $('.toplist .name').truncate({showTitle: true});
     });
 });

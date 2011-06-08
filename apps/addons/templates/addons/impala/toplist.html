@@ -2,7 +2,7 @@
   {% for addon in addons %}
     <li><a href="{{ addon.get_url_path(impala=True) }}">
       <b>{{ loop.index }}.</b>
-      {{ addon.name }}
+      <span class="name">{{ addon.name }}</span>
       <small>{{ _('{0} users')|f(addon.average_daily_users|numberfmt) }}</small>
     </a></li>
   {% endfor %}

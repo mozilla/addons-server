@@ -2,7 +2,6 @@
 
 .toplist {
     li {
-        white-space: nowrap;
         a {
             line-height: 1.1em;
             padding: .5em 0;
@@ -25,6 +24,12 @@
         color: @note-gray;
         font-size: .9em;
         display: block;
+    }
+    .name {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 .html-rtl {
