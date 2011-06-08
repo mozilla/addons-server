@@ -1,4 +1,5 @@
 $.fn.truncate = function(opts) {
+    if (z.hasTruncation) return this;
     opts = opts || {};
     var showTitle = opts.showTitle || false,
         dir = (opts.dir && opts.dir[0]) || 'h',
@@ -53,3 +54,13 @@ $.fn.truncate = function(opts) {
     });
     return this;
 };
+$.fn.untruncate = function() {
+    this.each(function() {
+        var $el = $(this),
+            oTxt = $el.attr("oldtext")
+        if (oTxt) {
+            $el.html(oTxt);
+        }
+    });
+    return this;
+}

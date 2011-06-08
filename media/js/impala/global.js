@@ -72,7 +72,7 @@ $(function() {
             if (n != current) {
                 n = n < 0 ? 0 : (n > maxPage ? maxPage : n);
                 current = n;
-                $pages.hide().eq(n).show();
+                $pages.hide().eq(n).show().find('.item h3').truncate();
                 $grid.trigger("grid.update", {self: $grid, current: current, maxPage: maxPage});
             }
         };
@@ -82,6 +82,18 @@ $(function() {
         $grid.next = function() {
             $grid.go(current+1);
         };
+        $grid.find('.item h3').truncate();
+        $grid.delegate('.item', 'mouseover', function() {
+            var $el = $(this);
+            setTimeout(function() {
+                $el.find('h3').untruncate();
+            }, 100);
+        }).delegate('.item', 'mouseout', function() {
+            var $el = $(this);
+            setTimeout(function() {
+                $el.find('h3').truncate();
+            }, 100);
+        });
     });
 
     // load deferred images.

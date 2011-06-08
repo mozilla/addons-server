@@ -502,13 +502,13 @@ MINIFY_BUNDLES = {
             'js/zamboni/buttons.js',
 
             'js/lib/jquery.cookie.js',
+            'js/zamboni/storage.js',
             'js/zamboni/truncation.js',
             'js/zamboni/global.js',
             'js/impala/global.js',
             'js/impala/ratingwidget.js',
             'js/lib/jquery-ui/jqModal.js',
             'js/zamboni/l10n.js',
-            'js/zamboni/storage.js',
 
             # Homepage
             'js/impala/homepage.js',
