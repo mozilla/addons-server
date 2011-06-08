@@ -80,6 +80,9 @@ cfg = {
             'level': 'ERROR',
             'propagate': False,
         },
+        'signals': {
+            'handlers': ['syslog', 'mail_admins'],
+        },
     },
     'root': {},
 }
