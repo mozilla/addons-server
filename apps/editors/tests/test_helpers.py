@@ -21,6 +21,7 @@ from files.models import File
 from translations.models import Translation
 from users.models import UserProfile
 from versions.models import Version
+from .test_models import create_addon_file
 
 
 REVIEW_ADDON_STATUSES = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
@@ -103,10 +104,36 @@ class TestViewPendingQueueTable(test_utils.TestCase):
         row = Mock()
         row.admin_review = True
         doc = pq(self.table.render_flags(row))
-        eq_(doc('div').attr('class'), 'app-icon ed-sprite-admin-review')
+        eq_(doc('div.app-icon').attr('class'),
+           'app-icon ed-sprite-admin-review')
+
+    def test_flags_jetpack_and_restartless(self):
+        row = Mock()
+        row.is_jetpack = True
+        row.is_restartless = True
+        doc = pq(self.table.render_flags(row))
+        eq_(doc('div.ed-sprite-jetpack').length, 1)
+        eq_(doc('div.ed-sprite-restartless').length, 0)
+
+    def test_flags_restartless(self):
+        row = Mock()
+        row.is_restartless = True
+        row.is_jetpack = False
+        doc = pq(self.table.render_flags(row))
+        eq_(doc('div.ed-sprite-jetpack').length, 0)
+        eq_(doc('div.ed-sprite-restartless').length, 1)
+
+    def test_flags_jetpack(self):
+        row = Mock()
+        row.is_jetpack = True
+        doc = pq(self.table.render_flags(row))
+        eq_(doc('div.ed-sprite-restartless').length, 0)
+        eq_(doc('div.ed-sprite-jetpack').length, 1)
 
     def test_no_flags(self):
         row = Mock()
+        row.is_restartless = False
+        row.is_jetpack = False
         row.admin_review = False
         eq_(self.table.render_flags(row), '')
 

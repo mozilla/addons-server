@@ -143,10 +143,21 @@ class EditorQueueTable(SQLTable):
                          for i in row.application_ids])
 
     def render_flags(self, row):
-        if not row.admin_review:
-            return ''
-        return (u'<div class="app-icon ed-sprite-admin-review" title="%s">'
-                u'</div>' % _lazy('Admin Review'))
+        o = []
+
+        if row.admin_review:
+            o.append(u'<div class="app-icon ed-sprite-admin-review" '
+                     u'title="%s"></div>' % _('Admin Review'))
+
+        if row.is_jetpack:
+            o.append(u'<div class="app-icon ed-sprite-jetpack" title="%s">'
+                     u'</div>' % _('Jetpack Add-on'))
+        elif row.is_restartless:
+            # Only show restartless if it's not also a jetpack
+            o.append(u'<div class="app-icon ed-sprite-restartless" title="%s">'
+                     u'</div>' % _('Bootstrapped Restartless Add-on'))
+
+        return ''.join(o)
 
     def render_waiting_time_min(self, row):
         if row.waiting_time_min == 0:

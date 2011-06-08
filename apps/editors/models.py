@@ -74,6 +74,8 @@ class ViewQueue(RawSQLModel):
     is_site_specific = models.BooleanField()
     external_software = models.BooleanField()
     binary = models.BooleanField()
+    _no_restart = models.CharField(max_length=255)
+    _jetpack_versions = models.CharField(max_length=255)
     _latest_versions = models.CharField(max_length=255)
     _latest_version_ids = models.CharField(max_length=255)
     _file_platform_ids = models.CharField(max_length=255)
@@ -99,11 +101,14 @@ class ViewQueue(RawSQLModel):
                                            ORDER BY versions.created DESC)"""),
                 ('_latest_versions', """GROUP_CONCAT(versions.version
                                         ORDER BY versions.created
-                                                 DESC SEPARATOR '&&&&')"""),
+                                        DESC SEPARATOR '&&&&')"""),
                 ('_file_platform_ids', """GROUP_CONCAT(DISTINCT
-                                                       files.platform_id)"""),
+                                          files.platform_id)"""),
+                ('_jetpack_versions', """GROUP_CONCAT(DISTINCT
+                                         files.jetpack_version)"""),
+                ('_no_restart', """GROUP_CONCAT(DISTINCT files.no_restart)"""),
                 ('_application_ids', """GROUP_CONCAT(DISTINCT
-                                                     apps.application_id)"""),
+                                        apps.application_id)"""),
             ]),
             'from': [
                 'files',
@@ -126,6 +131,14 @@ class ViewQueue(RawSQLModel):
     @property
     def latest_version_id(self):
         return self._explode_concat(self._latest_version_ids)[0]
+
+    @property
+    def is_restartless(self):
+        return any(self._explode_concat(self._no_restart))
+
+    @property
+    def is_jetpack(self):
+        return bool(self._jetpack_versions)
 
     @property
     def file_platform_ids(self):

@@ -607,6 +607,57 @@ class TestQueueBasics(QueueTest):
 
         assert "%s submi" % under_7 in doc('div>div:eq(0)', div).text()
 
+    def test_flags_jetpack(self):
+        ad = create_addon_file('Jetpack', '0.1', amo.STATUS_NOMINATED,
+                               amo.STATUS_UNREVIEWED)
+        ad_file = ad['version'].files.all()[0]
+        ad_file.jetpack_version = 1.2
+        ad_file.save()
+
+        url = reverse('editors.queue_nominated')
+        r = self.client.get(url)
+        doc = pq(r.content)
+
+        tds = doc('.data-grid tr').eq(3).find('td')
+        eq_(tds.eq(0).text(), "Jetpack 0.1")
+        assert "ed-sprite-jetpack" in tds.eq(3).html()
+        assert "ed-sprite-restartless" not in tds.eq(3).html()
+
+    def test_flags_restartless(self):
+        ad = create_addon_file('Restartless', '0.1', amo.STATUS_NOMINATED,
+                               amo.STATUS_UNREVIEWED)
+        ad_file = ad['version'].files.all()[0]
+        ad_file.no_restart = True
+        ad_file.save()
+
+        url = reverse('editors.queue_nominated')
+        r = self.client.get(url)
+        doc = pq(r.content)
+
+        tds = doc('.data-grid tr').eq(3).find('td')
+        eq_(tds.eq(0).text(), "Restartless 0.1")
+        assert "ed-sprite-jetpack" not in tds.eq(3).html()
+        assert "ed-sprite-restartless" in tds.eq(3).html()
+
+    def test_flags_restartless_and_jetpack(self):
+        ad = create_addon_file('Restartless Jetpack', '0.1',
+                               amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED)
+        ad_file = ad['version'].files.all()[0]
+        ad_file.jetpack_version = 1.2
+        ad_file.no_restart = True
+        ad_file.save()
+
+        url = reverse('editors.queue_nominated')
+        r = self.client.get(url)
+        doc = pq(r.content)
+
+        tds = doc('.data-grid tr').eq(3).find('td')
+        eq_(tds.eq(0).text(), "Restartless Jetpack 0.1")
+
+        # Only show jetpack if it's both.
+        assert "ed-sprite-jetpack" in tds.eq(3).html()
+        assert "ed-sprite-restartless" not in tds.eq(3).html()
+
 
 class TestPendingQueue(QueueTest):
 

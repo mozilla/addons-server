@@ -24,6 +24,8 @@
 .ed-sprite-seamonkey { background-position: 0 -264px; }
 .ed-sprite-sunbird { background-position: 0 -497px; }
 .ed-sprite-thunderbird { background-position: 0 -563px; }
+.ed-sprite-jetpack { background-position: 0 -629px; }
+.ed-sprite-restartless { background-position: 0 -695px; }
 .sort-icon {
     background: url(../../img/developers/editors-sprite.png) no-repeat top left;
 }
