@@ -151,7 +151,6 @@ class ESTestCase(test_utils.TestCase):
         cls.es = elasticutils.get_es()
 
         if ESTestCase.use_es is None:
-            print 'setting up es'
             settings.ES_INDEX = 'test_%s' % settings.ES_INDEX
             try:
                 cls.es.cluster_health()
@@ -187,10 +186,9 @@ class ESTestCase(test_utils.TestCase):
 
     @classmethod
     def add_addons(cls):
-        print addon_factory(name='user-disabled', disabled_by_user=True)
-        print addon_factory(name='admin-disabled', status=amo.STATUS_DISABLED)
-        print addon_factory(status=amo.STATUS_UNREVIEWED)
-        print addon_factory()
-        print addon_factory()
-        print addon_factory()
-        print Addon.objects.count()
+        addon_factory(name='user-disabled', disabled_by_user=True)
+        addon_factory(name='admin-disabled', status=amo.STATUS_DISABLED)
+        addon_factory(status=amo.STATUS_UNREVIEWED)
+        addon_factory()
+        addon_factory()
+        addon_factory()
