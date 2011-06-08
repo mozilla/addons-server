@@ -1,7 +1,7 @@
 {% if user.is_authenticated() %}
   <li class="account">
     <a href="#" class="user" title="{{ user.email }}">
-      {{ user.get_profile().welcome_name }}
+      {{- user.get_profile().welcome_name -}}
     </a>
     {% if account_links %}
       <ul>
