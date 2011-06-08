@@ -1,0 +1,69 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ page_title('Celery Stats') }}{% endblock %}
+
+{% block content %}
+<h2>Celery Stats</h2>
+<p>The time is {{ now|babel_datetime }}.</p>
+<form method="post" action="">
+  {{ csrf() }}
+  <input name="reset" type="submit" value="Reset">
+</form>
+
+<h3>Pending Tasks</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Task Name</th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for task, count in pending|dictsort %}
+      {% if count|int %}
+      <tr>
+        <td>{{ task }}</td>
+        <td>{{ count }}</td>
+      </tr>
+      {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+
+<h3>Total Failures</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Task Name</th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for task, count in failures|dictsort %}
+      <tr>
+        <td>{{ task }}</td>
+        <td>{{ count }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h3>Total Tasks Run</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Task Name</th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for task, count in totals|dictsort %}
+      <tr>
+        <td>{{ task }}</td>
+        <td>{{ count }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

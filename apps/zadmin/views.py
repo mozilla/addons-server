@@ -1,6 +1,7 @@
 import csv
-from decimal import Decimal
 import json
+from datetime import datetime
+from decimal import Decimal
 from urlparse import urlparse
 
 from django import http
@@ -20,6 +21,7 @@ from tower import ugettext as _
 
 import amo.mail
 import amo.models
+import amo.tasks
 import files.tasks
 import files.utils
 from amo import messages, get_user
@@ -334,3 +336,15 @@ def mail(request):
         return redirect('zadmin.mail')
     return jingo.render(request, 'zadmin/mail.html',
                         dict(mail=backend.view_all()))
+
+
+@admin.site.admin_view
+def celery(request):
+    if request.method == 'POST' and 'reset' in request.POST:
+        amo.tasks.task_stats.clear()
+        return redirect('zadmin.celery')
+
+    pending, failures, totals = amo.tasks.task_stats.stats()
+    ctx = dict(pending=pending, failures=failures, totals=totals,
+               now=datetime.now())
+    return jingo.render(request, 'zadmin/celery.html', ctx)

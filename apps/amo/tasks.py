@@ -1,10 +1,15 @@
 import datetime
+import time
+
 from django.conf import settings
 
 import commonware.log
+import celery.signals
 import celery.task
+import redisutils
 from celeryutils import task
 from hera.contrib.django_utils import flush_urls
+from statsd import statsd
 
 
 log = commonware.log.getLogger('z.task')
@@ -48,3 +53,51 @@ def set_modified_on_object(obj, **kw):
     except Exception, e:
         log.error('Failed to set modified on: %s, %s - %s' %
                   (obj.__class__.__name__, obj.pk, e))
+
+
+class TaskStats(object):
+    prefix = 'celery:tasks:stats'
+    pending = prefix + ':pending'
+    failed = prefix + ':failed'
+    run = prefix + ':run'
+    timer = prefix + ':timer'
+
+    @property
+    def redis(self):
+        # Keep this in a property so it's evaluated at runtime.
+        return redisutils.connections['master']
+
+    def on_sent(self, sender, **kw):
+        # sender is the name of the task (like "amo.tasks.ok").
+        # id in here.
+        self.redis.hincrby(self.pending, sender, 1)
+        self.redis.hset(self.timer, kw['id'], time.time())
+
+    def on_postrun(self, sender, **kw):
+        # sender is the task object. task_id in here.
+        self.redis.hincrby(self.pending, sender.name, -1)
+        self.redis.hincrby(self.run, sender.name, 1)
+        # TODO: send to graphite.
+
+        start = self.redis.hget(self.timer, kw['task_id'])
+        if start:
+            t = (time.time() - float(start)) * 1000
+            statsd.timing('tasks.%s' % sender.name, int(t))
+
+    def on_failure(self, sender, **kw):
+        # sender is the task object.
+        self.redis.hincrby(self.failed, sender.name, 1)
+
+    def stats(self):
+        get = self.redis.hgetall
+        return get(self.pending), get(self.failed), get(self.run)
+
+    def clear(self):
+        for name in self.pending, self.failed, self.run, self.timer:
+            self.redis.delete(name)
+
+
+task_stats = TaskStats()
+celery.signals.task_sent.connect(task_stats.on_sent)
+celery.signals.task_postrun.connect(task_stats.on_postrun)
+celery.signals.task_failure.connect(task_stats.on_failure)

@@ -33,6 +33,7 @@ urlpatterns = patterns('',
     url(r'^jetpack$', views.jetpack, name='zadmin.jetpack'),
     url('^elastic$', views.elastic, name='zadmin.elastic'),
     url('^mail$', views.mail, name='zadmin.mail'),
+    url('^celery$', views.celery, name='zadmin.celery'),
 
     # The Django admin.
     url('^models/', include(admin.site.urls)),
