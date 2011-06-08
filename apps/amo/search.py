@@ -3,6 +3,7 @@ import logging
 from django.conf import settings
 
 import elasticutils
+from statsd import statsd
 
 log = logging.getLogger('z.es')
 
@@ -121,6 +122,7 @@ class SearchResults(object):
     def __init__(self, type, results):
         self.type = type
         self.took = results['took']
+        statsd.timing('search', self.took)
         log.debug('Query took %dms.' % self.took)
         self.count = results['hits']['total']
         self.ids = [r['fields']['id'] for r in results['hits']['hits']]
