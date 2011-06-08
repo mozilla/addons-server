@@ -10,7 +10,8 @@
 $.fn.zCarousel = function(o) {
     o = $.extend({
         itemsPerPage: 1,
-        circular: false
+        circular: false,
+        useTransitions: z.cssTransitions
     }, o);
 
     var $self = $(this).eq(0),
@@ -20,26 +21,33 @@ $.fn.zCarousel = function(o) {
         $next = $(o.btnNext),
         prop = $("body").hasClass("html-rtl") ? "right" : "left",
         currentPos = 0,
-        maxPos = Math.ceil($lis.length / o.itemsPerPage) - 1;
+        maxPos = Math.ceil($lis.length / o.itemsPerPage);
 
     if (!$strip.length) return $self;
 
     function render(pos) {
-        if (o.circular) {
-            currentPos = pos;
-            if ($strip.hasClass("noslide")) {
-                currentPos = (pos > maxPos+1) ? 1 : (pos < 1 ? maxPos+1 : pos);
+        if (o.useTransitions) {
+            if (o.circular) {
+                currentPos = pos > maxPos+1 ? pos-maxPos : (pos < 0 ? pos+maxPos : pos);
+                if ($strip.hasClass("noslide")) {
+                    currentPos = (pos > maxPos) ? 1 : (pos < 1 ? maxPos : pos);
+                }
+            } else {
+                currentPos = Math.min(Math.max(0, pos), maxPos-1);
             }
         } else {
-            currentPos = Math.min(Math.max(0, pos), maxPos);
+            if (o.circular) {
+                currentPos = (pos > maxPos) ? 1 : (pos < 1 ? maxPos : pos);
+            } else {
+                currentPos = Math.min(Math.max(0, pos), maxPos-1);
+            }
         }
         $strip.css(prop, currentPos * -100 + "%");
         $prev.toggleClass("disabled", currentPos == 0 && !o.circular);
-        $next.toggleClass("disabled", currentPos == maxPos && !o.circular);
-
+        $next.toggleClass("disabled", currentPos == maxPos-1 && !o.circular);
         //wait for paint to clear the class. lame.
         setTimeout(function() {
-            $strip.removeClass("noslide");
+            $strip.removeClass('noslide');
         }, 0);
     }
 
@@ -67,16 +75,18 @@ $.fn.zCarousel = function(o) {
         //pad the beginning with a page from the end vice-versa.
         $strip.prepend($lis.slice(-o.itemsPerPage).clone().addClass("cloned"))
               .append($lis.slice(0,o.itemsPerPage).clone().addClass("cloned"));
+        if (o.useTransitions) {
+            $strip.addClass('noslide');
+            $strip.bind("transitionend webkitTransitionEnd", function() {
+                if (currentPos > maxPos || currentPos < 1) {
+                    $strip.addClass("noslide");
+                    setTimeout(function() {
+                        render(currentPos);
+                    }, 0);
+                }
+            });
+        }
         render(o.itemsPerPage);
-        //if we're outside the bounds, disable transitions and snap back to the beginning.
-        $strip.bind("transitionend webkitTransitionEnd", function() {
-            if (currentPos > maxPos+1 || currentPos < 1) {
-                $strip.addClass("noslide");
-                setTimeout(function() {
-                    render(currentPos);
-                }, 0);
-            }
-        });
     } else {
         render(0);
     }
