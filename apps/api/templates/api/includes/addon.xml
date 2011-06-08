@@ -116,7 +116,7 @@
     </last_updated>
     <homepage>{{ addon.homepage }}</homepage>
     <support>{{ addon.support_url }}</support>
-    <featured>{{ addon.is_featured(request.APP, request.LANG)|int }}</featured>
+    <featured>{{ (addon.is_featured(request.APP, request.LANG) or addon.is_category_featured(request.APP, request.LANG))|int }}</featured>
   {%- endif -%}
 </addon>
 {% endcache %}

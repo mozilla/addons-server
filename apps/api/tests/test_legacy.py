@@ -15,7 +15,7 @@ from nose.tools import eq_
 import amo
 import api
 import api.utils
-from addons.models import Addon, Feature
+from addons.models import Addon, AddonCategory, Category, Feature
 from amo import helpers
 from amo.urlresolvers import reverse
 from search.tests import SphinxTestCase
@@ -384,6 +384,21 @@ class APITest(TestCase):
                                           lang=lang, app=app),
                                 '<featured>%s</featured>' % result)
 
+    def test_is_category_featured(self):
+        self.assertContains(make_call('addon/5299', version=1.5),
+                            '<featured>0</featured>')
+        AddonCategory.objects.create(addon_id=5299,
+                                     category=Category.objects.all()[0],
+                                     feature=True,
+                                     feature_locales='ja')
+        for lang, app, result in [('ja', 'firefox', 1),
+                                  ('en-US', 'firefox', 0),
+                                  ('ja', 'seamonkey', 0)]:
+            # Clean out the special cache for feature.
+            delattr(Addon, '_feature')
+            self.assertContains(make_call('addon/5299', version=1.5,
+                                          lang=lang, app=app),
+                                '<featured>%s</featured>' % result)
 
 class ListTest(TestCase):
     """Tests the list view with various urls."""
