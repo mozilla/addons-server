@@ -11,14 +11,13 @@ import path
 from django.conf import settings
 
 import amo
-import amo.tests
 from amo.tests.test_helpers import get_image_path
 from addons import forms, cron
 from addons.models import Addon, Category
 from tags.models import Tag, AddonTag
 
 
-class FormsTest(amo.tests.RedisTest, test_utils.TestCase):
+class FormsTest(test_utils.TestCase):
     fixtures = ('base/addon_3615', 'base/addon_3615_categories',
                 'addons/blacklisted')
 

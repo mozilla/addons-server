@@ -38,7 +38,6 @@ from test_utils import TestCase
 from piston.models import Consumer, Token
 
 import amo
-import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon, BlacklistedGuid
 from devhub.models import ActivityLog
@@ -268,7 +267,7 @@ def activitylog_count(type=None):
     return qs.count()
 
 
-class TestAddon(amo.tests.RedisTest, BaseOauth):
+class TestAddon(BaseOauth):
 
     def setUp(self):
         super(TestAddon, self).setUp()

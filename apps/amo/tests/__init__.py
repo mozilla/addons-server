@@ -3,6 +3,7 @@ import time
 
 from django import forms
 
+import test_utils
 from redisutils import mock_redis, reset_redis
 
 
@@ -44,13 +45,16 @@ def initial(form):
 class RedisTest(object):
     """Mixin for when you need to mock redis for testing."""
 
-    def setUp(self):
-        super(RedisTest, self).setUp()
+    def _pre_setup(self):
+        super(RedisTest, self)._pre_setup()
         self._redis = mock_redis()
 
-    def tearDown(self):
-        super(RedisTest, self).tearDown()
+    def _post_teardown(self):
+        super(RedisTest, self)._post_teardown()
         reset_redis(self._redis)
+
+
+test_utils.TestCase.__bases__ = (RedisTest,) + test_utils.TestCase.__bases__
 
 
 def close_to_now(dt):

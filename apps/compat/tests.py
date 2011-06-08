@@ -7,7 +7,6 @@ import test_utils
 from nose.tools import eq_
 
 import amo
-import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from compat.models import CompatReport
@@ -65,7 +64,7 @@ class TestIncoming(test_utils.TestCase):
         eq_(r.status_code, 400)
 
 
-class TestCompat(amo.tests.RedisTest, test_utils.TestCase):
+class TestCompat(test_utils.TestCase):
 
     def setUp(self):
         super(TestCompat, self).setUp()

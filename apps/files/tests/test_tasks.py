@@ -14,7 +14,6 @@ import test_utils
 from nose.tools import eq_
 
 import amo
-import amo.tests
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from addons.models import Addon
@@ -23,9 +22,8 @@ from files.models import File
 from files.utils import JetpackUpgrader
 
 
-class TestUpgradeJetpacks(amo.tests.RedisTest, test_utils.TestCase):
+class TestUpgradeJetpacks(test_utils.TestCase):
     fixtures = ['base/addon_3615']
-    maxDiff = 100000
 
     def setUp(self):
         super(TestUpgradeJetpacks, self).setUp()
@@ -55,7 +53,7 @@ class TestUpgradeJetpacks(amo.tests.RedisTest, test_utils.TestCase):
         eq_(url, settings.BUILDER_UPGRADE_URL)
 
 
-class TestRepackageJetpack(amo.tests.RedisTest, test_utils.TestCase):
+class TestRepackageJetpack(test_utils.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):

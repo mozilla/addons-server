@@ -8,7 +8,6 @@ import test_utils
 from nose.tools import eq_
 
 import amo
-import amo.tests
 from amo.urlresolvers import reverse
 from .models import (BlocklistApp, BlocklistDetail, BlocklistItem,
                      BlocklistGfx, BlocklistPlugin)
@@ -21,7 +20,7 @@ base_xml = """
 """
 
 
-class BlocklistTest(amo.tests.RedisTest, test_utils.TestCase):
+class BlocklistTest(test_utils.TestCase):
 
     def setUp(self):
         super(BlocklistTest, self).setUp()

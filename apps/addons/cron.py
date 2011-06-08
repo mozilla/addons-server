@@ -34,6 +34,7 @@ recs_log = logging.getLogger('z.recs')
 @cronjobs.register
 def build_reverse_name_lookup():
     """Builds a Reverse Name lookup table in REDIS."""
+    ReverseNameLookup().clear()
 
     # Get all add-on name ids
     names = (Addon.objects.filter(
@@ -52,11 +53,11 @@ def _build_reverse_name_lookup(names, **kw):
 
     if clear:
         for addon_id in names.values():
-            ReverseNameLookup.delete(addon_id)
+            ReverseNameLookup().delete(addon_id)
 
     for t_id, string in translations:
         if string:
-            ReverseNameLookup.add(string, names[t_id])
+            ReverseNameLookup().add(string, names[t_id])
 
 
 @cronjobs.register

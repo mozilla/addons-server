@@ -20,7 +20,6 @@ from pyquery import PyQuery as pq
 import test_utils
 
 import amo
-import amo.tests
 import paypal
 from amo.urlresolvers import reverse
 from amo.tests import (formset, initial, close_to_now,
@@ -664,7 +663,7 @@ class TestDelete(test_utils.TestCase):
         self.assertRaises(Addon.DoesNotExist, self.get_addon)
 
 
-class TestEdit(amo.tests.RedisTest, test_utils.TestCase):
+class TestEdit(test_utils.TestCase):
     fixtures = ('base/apps', 'base/users', 'base/addon_3615',
                 'base/addon_5579', 'base/addon_3615_categories')
 
@@ -1813,7 +1812,7 @@ class TestSubmitStep2(test_utils.TestCase):
         self.assertRedirects(r, reverse('devhub.submit.1'))
 
 
-class TestSubmitStep3(amo.tests.RedisTest, test_utils.TestCase):
+class TestSubmitStep3(test_utils.TestCase):
     fixtures = ['base/addon_3615', 'base/addon_3615_categories',
                 'base/addon_5579', 'base/users']
 
@@ -2985,7 +2984,7 @@ class TestVersionXSS(UploadTest):
         assert '&lt;script&gt;alert' in r.content
 
 
-class TestCreateAddon(amo.tests.RedisTest, BaseUploadTest,
+class TestCreateAddon(BaseUploadTest,
                       test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/platforms']
 
@@ -3014,7 +3013,7 @@ class TestCreateAddon(amo.tests.RedisTest, BaseUploadTest,
         UploadTest().assert_json_error(self, *args)
 
     def test_unique_name(self):
-        ReverseNameLookup.add('xpi name', 34)
+        ReverseNameLookup().add('xpi name', 34)
         r = self.post(expect_errors=True)
         eq_(r.context['new_addon_form'].non_field_errors(),
             ['This add-on name is already in use. '

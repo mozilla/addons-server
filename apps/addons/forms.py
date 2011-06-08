@@ -27,7 +27,7 @@ from translations.widgets import TranslationTextInput
 
 
 def clean_name(name, instance=None):
-    id = ReverseNameLookup.get(name)
+    id = ReverseNameLookup().get(name)
 
     # If we get an id and either there's no instance or the instance.id != id.
     if id and (not instance or id != instance.id):

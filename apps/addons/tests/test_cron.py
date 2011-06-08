@@ -3,7 +3,6 @@ import mock
 import test_utils
 
 import amo
-import amo.tests
 from addons import cron
 from addons.models import Addon, AppSupport
 from addons.utils import ReverseNameLookup
@@ -12,12 +11,12 @@ from files.models import File, Platform
 from versions.models import Version
 
 
-class TestBuildReverseNameLookup(amo.tests.RedisTest, test_utils.TestCase):
+class TestBuildReverseNameLookup(test_utils.TestCase):
     fixtures = ('base/addon_3615',)
 
     def test_lookup(self):
         cron.build_reverse_name_lookup()
-        eq_(ReverseNameLookup.get('Delicious Bookmarks'), 3615)
+        eq_(ReverseNameLookup().get('Delicious Bookmarks'), 3615)
 
 
 class CurrentVersionTestCase(test_utils.TestCase):

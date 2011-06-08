@@ -1,84 +1,62 @@
 import functools
 import hashlib
+import logging
 
 from django.utils.encoding import smart_str
 
 import commonware.log
+import redisutils
 from redis.exceptions import ConnectionError
 
 from translations.models import Translation
 
-safe_key = lambda x: hashlib.md5(smart_str(x)).hexdigest()
+safe_key = lambda x: hashlib.md5(smart_str(x).lower().strip()).hexdigest()
 
 log = commonware.log.getLogger('z.redis')
-
-
-def add_redis(f):
-    """
-    Adds redis, if available, to a method call otherwise log's an error and
-    returns None.
-    """
-    @functools.wraps(f)
-    def wrapper(cls, *args, **kw):
-        return_pipe = False
-        if 'pipe' in kw and kw['pipe']:
-            return_pipe = True
-
-        try:
-            import redisutils
-            # TODO(davedash): This should be our persistence layer when that's
-            # set in production.
-            redis = redisutils.connections['master']
-            pipe = redis.pipeline(transaction=True)
-            ret = f(cls, redis, pipe, *args, **kw)
-        except (AttributeError, ConnectionError):
-            log.warning('Redis not available for %s' % f)
-            return
-
-        if return_pipe:
-            return pipe
-        else:
-            pipe.execute()
-            return ret
-    return wrapper
+rnlog = logging.getLogger('z.rn')
 
 
 class ReverseNameLookup(object):
     prefix = 'amo:addon:name'
+    names = prefix + ':names'
+    addons = prefix + ':addons'
+    keys = prefix + ':keys'
 
-    @classmethod
-    @add_redis
-    def add(cls, redis, pipe, name, addon_id):
-        name = name.lower().strip()
+    def __init__(self):
+        self.redis = redisutils.connections['master']
+
+    def add(self, name, addon_id):
         hash = safe_key(name)
-        pipe.set('%s:%s' % (cls.prefix, hash), addon_id)
-        pipe.sadd('%s:%d' % (cls.prefix, addon_id), hash)
+        rnlog.info('[%s] has a lock on "%s"' % (addon_id, name))
+        self.redis.hset(self.names, hash, addon_id)
+        self.redis.sadd('%s:%s' % (self.addons, addon_id), hash)
+        self.redis.sadd(self.keys, addon_id)
 
-    @classmethod
-    @add_redis
-    def get(cls, redis, pipe, key):
-        key = key.lower().strip()
-        val = redis.get('%s:%s' % (cls.prefix, safe_key(key)))
-        if val:
-            return int(val)
+    def get(self, key):
+        val = self.redis.hget(self.names, safe_key(key))
+        return int(val) if val else None
 
-    @classmethod
-    @add_redis
-    def update(cls, redis, pipe, addon):
-        cls.delete(addon.id, pipe=True)
+    def update(self, addon):
+        self.delete(addon.id)
         translations = (Translation.objects.filter(id=addon.name_id)
                         .values('localized_string', flat=True))
         for translation in translations:
             if translation:
-                cls.add(translation.localized_string, addon.id, pipe=True)
+                self.add(unicode(translation.localized_string), addon.id)
 
-    @classmethod
-    @add_redis
-    def delete(cls, redis, pipe, addon_id):
-        hashes = redis.smembers('%s:%d' % (cls.prefix, addon_id))
+    def delete(self, addon_id):
+        rnlog.info('[%s] Releasing locked names.' % addon_id)
+        hashes = self.redis.smembers('%s:%s' % (self.addons, addon_id))
         for hash in hashes:
-            pipe.delete('%s:%s' % (cls.prefix, hash))
-        pipe.delete('%s:%d' % (cls.prefix, addon_id))
+            self.redis.hdel(self.names, hash)
+        self.redis.delete('%s:%s' % (self.addons, addon_id))
+        self.redis.srem(self.keys, addon_id)
+
+    def clear(self):
+        rnlog.info('Clearing the ReverseName table.')
+        self.redis.delete(self.names)
+        for key in self.redis.smembers(self.keys):
+            self.redis.delete(key)
 
 
 #TODO(davedash): remove after remora
@@ -86,9 +64,8 @@ class ActivityLogMigrationTracker(object):
     """This tracks what id of the addonlog we're on."""
     key = 'amo:activitylog:migration'
 
-    @add_redis
-    def __init__(self, redis, pipe):
-        self.redis = redis
+    def __init__(self):
+        self.redis = redisutils.connections['master']
 
     def get(self):
         return self.redis.get(self.key)
@@ -107,9 +84,9 @@ class AdminActivityLogMigrationTracker(ActivityLogMigrationTracker):
 
 
 class MigrationTracker(object):
-    @add_redis
-    def __init__(self, redis, pipe, key):
-        self.redis = redis
+
+    def __init__(self, key):
+        self.redis = redisutils.connections['master']
         self.key = 'amo:activitylog:%s' % key
 
     def get(self):
