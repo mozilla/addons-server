@@ -126,3 +126,21 @@ div.popup input[type="text"] {
     width: 0%;
     height: 13px;
 }
+
+a.headerlink {
+    color: #ccc;
+    font-size: 1.1em;
+    margin-left: 6px;
+    padding: 0 4px 0 4px;
+    text-decoration: none;
+    border: none;
+    visibility: hidden;
+    font-style: none;
+}
+a.headerlink:hover {
+    color: #c60f0f;
+    border: none;
+}
+:-moz-any(h1,h2,h3,h4,h5,h6):hover a.headerlink {
+  visibility: visible;
+}
