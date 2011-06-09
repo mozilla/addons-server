@@ -94,6 +94,10 @@ $(function() {
                 $el.find('h3').truncate();
             }, 100);
         });
+        $grid.css({
+            'width': $grid.width() + 'px',
+            'height': $grid.height() + 'px'
+        });
     });
 
     // load deferred images.
