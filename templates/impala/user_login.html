@@ -6,7 +6,9 @@
     {% if account_links %}
       <ul>
         {% for link in account_links %}
-          <li><a href="{{ link.href }}">{{ link.text }}</a></li>
+          {% if not loop.last %}
+            <li><a href="{{ link.href }}">{{ link.text }}</a></li>
+          {% endif %}
         {% endfor %}
       </ul>
     {% endif %}
