@@ -233,7 +233,11 @@ function initValidator() {
             code.append(innerCode);
             msg.context = formatCodeIndentation(msg.context);
             $.each(msg.context, function(n, c) {
-                lines.append($(format('<div>{0}</div>', [msg.line + n])));
+                if (c == "") { return }
+                // The line number refers to the middle element of the context,
+                // not the first. Subtract one from the index to get the
+                // right line number.
+                lines.append($(format('<div>{0}</div>', [msg.line + n - 1])));
                 innerCode.append($(format('<div>{0}</div>', [c])));
             });
             ctxDiv.append(code);
