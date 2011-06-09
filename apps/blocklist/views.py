@@ -1,4 +1,5 @@
 import collections
+import hashlib
 from datetime import datetime, timedelta
 from operator import attrgetter
 import time
@@ -24,6 +25,8 @@ BlItem = collections.namedtuple('BlItem', 'rows os modified block_id')
 
 def blocklist(request, apiver, app, appver):
     key = 'blocklist:%s:%s:%s' % (apiver, app, appver)
+    # Use md5 to make sure the memcached key is clean.
+    key = hashlib.md5(key).hexdigest()
     response = cache.get(key)
     if response is None:
         response = _blocklist(request, apiver, app, appver)
