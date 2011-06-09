@@ -1444,7 +1444,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         doc = pq(response.content)
         div = doc('#review-files-header').next().find('td').eq(1).find('div')
-        eq_(div.text(), "This version has no activity yet.")
+        eq_(div.text(), "This version has not been reviewed.")
 
     def test_listing_link(self):
         response = self.client.get(self.url)
