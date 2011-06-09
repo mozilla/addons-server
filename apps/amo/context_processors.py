@@ -48,9 +48,6 @@ def global_settings(request):
         })
         account_links.append({'text': _('Edit Profile'),
                               'href': reverse('users.edit')})
-        if request.amo_user.is_developer:
-            account_links.append({'text': _('My Add-ons'),
-                                  'href': '/developers/addons'})
 
         account_links.append({
             'text': _('My Collections'),
