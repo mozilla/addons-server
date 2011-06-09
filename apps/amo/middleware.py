@@ -11,7 +11,7 @@ from django.conf import settings
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.http import HttpResponsePermanentRedirect
 from django.middleware import common
-from django.utils.cache import patch_vary_headers
+from django.utils.cache import patch_vary_headers, patch_cache_control
 from django.utils.encoding import iri_to_uri, smart_str
 
 import commonware.log
@@ -56,6 +56,8 @@ class LocaleAndAppURLMiddleware(object):
                 full_path = "%s?%s" % (full_path, query_string)
 
             response = HttpResponsePermanentRedirect(full_path)
+            # Cache the redirect for a year.
+            patch_cache_control(response, max_age=60 * 60 * 24 * 365)
 
             # Vary on Accept-Language or User-Agent if we changed the locale or
             # app.
