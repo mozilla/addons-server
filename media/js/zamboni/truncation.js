@@ -8,8 +8,7 @@ $.fn.truncate = function(opts) {
         truncText = opts.truncText || "&hellip;",
         textEl = opts.textEl || false,
         split = [" ",""], counter, success;
-    var that = this;
-    that.each(function() {
+    this.each(function() {
         var $el = $(this),
             $tel = textEl ? $(textEl, $el) : $el,
             txt, cutoff,
@@ -56,8 +55,7 @@ $.fn.truncate = function(opts) {
     return this;
 };
 $.fn.untruncate = function() {
-    var self_ = this
-    self_.each(function() {
+    this.each(function() {
         var $el = $(this),
             oTxt = $el.attr("oldtext");
         if (oTxt) {
