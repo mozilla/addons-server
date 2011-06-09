@@ -41,7 +41,8 @@ def add_versionlog(items, **kw):
 
         for a in al.arguments:
             if isinstance(a, Version):
-                vl = VersionLog(version=a, activity_log=al).save()
+                vl = VersionLog(version=a, activity_log=al)
+                vl.save()
                 # We need to save it twice to backdate the created date.
                 vl.created = al.created
                 vl.save()
