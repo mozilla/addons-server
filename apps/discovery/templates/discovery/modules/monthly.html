@@ -22,7 +22,11 @@
             Include results from your social networks and favorite websites whenever
             you search the web.
             {% endtrans %}</p>
-            {{ install_button(addon, src='discovery-promo') }}
+            {% if module_context == 'discovery' %}
+              {{ install_button(addon, src='discovery-promo') }}
+            {% else %}
+              {{ install_button(addon, src='homepage', impala=True) }}
+            {% endif %}
           </div>
         {% endif %}
       </div>

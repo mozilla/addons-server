@@ -12,5 +12,6 @@ $(function () {
         });
         $('.vtruncate').truncate({dir: 'v'});
         $('.toplist .name').truncate({showTitle: true});
+        $('#promos .install').installButton();
     });
 });
