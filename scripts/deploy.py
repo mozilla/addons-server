@@ -109,6 +109,3 @@ def update_amo(ctx):
     compress_assets('-u')
     deploy_code()
     # END: The normal update/push cycle.
-
-    manage_cmd('process_addons --task=fix_get_satisfaction')
-    manage_cmd('versionlog')
