@@ -169,7 +169,7 @@ class CategoryLandingFilter(BaseFilter):
 
     opts = (('featured', _lazy(u'Featured')),
             ('created', _lazy(u'Recently Added')),
-            ('popular', _lazy(u'Top Downloads')),
+            ('users', _lazy(u'Most Popular')),
             ('rating', _lazy(u'Top Rated')))
 
     def __init__(self, request, base, category, key, default):
