@@ -233,15 +233,31 @@ class TestPane(test_utils.TestCase):
     def setUp(self):
         self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
 
-    def test_header_logged_in(self):
+    def test_my_account(self):
         self.client.login(username='regular@mozilla.com', password='password')
         r = self.client.get(reverse('discovery.pane.account'))
         eq_(r.status_code, 200)
-
-    def test_header_logged_out(self):
-        r = self.client.get(self.url)
         doc = pq(r.content)
-        assert not doc('header.auth')
+
+        s = doc('#my-account')
+        assert s
+        a = s.find('a').eq(0)
+        eq_(a.attr('href'), reverse('users.profile', args=[999]))
+        eq_(a.text(), 'My Profile')
+
+        a = s.find('a').eq(1)
+        eq_(a.attr('href'), reverse('collections.detail',
+                                    args=['regularuser', 'favorites']))
+        eq_(a.text(), 'My Favorites')
+
+        a = s.find('a').eq(2)
+        eq_(a.attr('href'), reverse('collections.user', args=['regularuser']))
+        eq_(a.text(), 'My Collections')
+
+    def test_mission(self):
+        r = self.client.get(reverse('discovery.pane.account'))
+        doc = pq(r.content)
+        assert doc('#mission')
 
 
 class TestDetails(test_utils.TestCase):
