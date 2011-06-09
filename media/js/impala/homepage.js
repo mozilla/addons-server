@@ -4,8 +4,8 @@ $(function () {
     $.get(promos_url, function(resp) {
         $('#promos ul').append($(resp));
         $('#promos').append('<a href="#" class="control prev">&laquo;</a>\
-                             <a href="#" class="control next">&raquo;</a>');
-        var $q = $('#promos').zCarousel({
+                                      <a href="#" class="control next">&raquo;</a>');
+        var $q = $('#promos div').zCarousel({
             circular: true,
             btnPrev: $('#promos .prev'),
             btnNext: $('#promos .next')

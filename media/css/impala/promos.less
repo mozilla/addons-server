@@ -7,7 +7,9 @@
     padding: 0;
     width: 100%;
     position: relative;
-    overflow: hidden;
+    div {
+        overflow: hidden;
+    }
 
     .control {
         position: absolute;
@@ -24,8 +26,8 @@
     &:hover .control {
         opacity: 1;
     }
-    .prev { left: 10px; }
-    .next { right: 10px; }
+    .prev { left: -30px; }
+    .next { right: -30px; }
     .control:after {
         background: #fff;
         position: absolute;
@@ -51,11 +53,11 @@
     }
     .prev:after {
         content: '\00ab';
-        left: 0;
+        left: 10px;
     }
     .next:after {
         content: '\00bb';
-        right: 0;
+        right: 10px;
     }
 
     .feature {
