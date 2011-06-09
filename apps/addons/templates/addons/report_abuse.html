@@ -1,32 +1,30 @@
-<div id="addon" class="primary">
-  <form method="post" action="{{ url('addons.abuse', addon.slug) }}">
-    <fieldset class="abuse">
-      {% if hide %}
-      <legend><a href="{{ remora_url('developers/docs/policies/contact') }}"
-                 class="abuse-image">{{ _('Report Abuse') }}</a></legend>
-      {% endif %}
-      <ol {% if hide %}style="display: none"{% endif %}>
-        <li>
-          <p>{% trans url=remora_url('developers/docs/policies') %}
-            If you suspect this add-on violates <a href="{{ url }}">our policies</a> or
-            has security or privacy issues, please use the form below to describe your
-            concerns. Please do not use this form for any other reason.{% endtrans %}</p>
-        </li>
-        <li>
-          {{ csrf() }}
-          {% if abuse_form.has_recaptcha %}
-            {{ recaptcha(abuse_form) }}
-          {% endif %}
-          {{ abuse_form.text }}
-          {{ abuse_form.text.errors }}
-        </li>
-        <li>
-          <button type="submit">{{ _('Send Report') }}</button>
-          {% if hide %}
-          {{ _('or') }}<button type="reset" class="link">{{ _('Cancel') }}</button>
-          {% endif %}
-        </li>
-      </ol>
-    </fieldset>
-  </form>
-</div>
+<form method="post" action="{{ url('addons.abuse', addon.slug) }}">
+  <fieldset class="abuse">
+    {% if hide %}
+    <legend><a href="{{ remora_url('developers/docs/policies/contact') }}"
+               class="abuse-image">{{ _('Report Abuse') }}</a></legend>
+    {% endif %}
+    <ol {% if hide %}style="display: none"{% endif %}>
+      <li>
+        <p>{% trans url=remora_url('developers/docs/policies') %}
+          If you suspect this add-on violates <a href="{{ url }}">our policies</a> or
+          has security or privacy issues, please use the form below to describe your
+          concerns. Please do not use this form for any other reason.{% endtrans %}</p>
+      </li>
+      <li>
+        {{ csrf() }}
+        {% if abuse_form.has_recaptcha %}
+          {{ recaptcha(abuse_form) }}
+        {% endif %}
+        {{ abuse_form.text }}
+        {{ abuse_form.text.errors }}
+      </li>
+      <li>
+        <button type="submit">{{ _('Send Report') }}</button>
+        {% if hide %}
+        {{ _('or') }} <button type="reset" class="link">{{ _('Cancel') }}</button>
+        {% endif %}
+      </li>
+    </ol>
+  </fieldset>
+</form>

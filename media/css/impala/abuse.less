@@ -1,0 +1,58 @@
+/** =Report abuse form *********/
+.abuse {
+    border: 0;
+    padding: 1em 0 0;
+    width: 600px;
+    position: relative;
+    ol {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    label {
+        font-weight: normal;
+    }
+    legend {
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: bold;
+    }
+    ol.hidden {
+        display: none;
+    }
+    legend a.abuse-image {
+        padding-left: 25px;
+        color: #3d6db5;
+        background: transparent url("../../img/zamboni/notifications.png") 0 -305px no-repeat;
+    }
+    textarea {
+        border: 1px solid #5875A0;
+        width: 100%;
+        margin: 1em 0;
+    }
+}
+
+.abuse-wrapper {
+    legend {
+        float: right;
+    }
+    ol {
+        padding-top: 3em;
+    }
+}
+
+.html-rtl .abuse legend span {
+    padding-left: 0;
+    padding-right: 25px;
+    background-position: 100% -1700px;
+}
+
+/* TODO(jbalogh): remove hasJS when we add the abuse pane. */
+.hasJS .abuse {
+    legend span {
+        cursor: pointer;
+    }
+    legend span:hover {
+        text-decoration: underline;
+    }
+}

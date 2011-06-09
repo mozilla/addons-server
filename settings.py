@@ -414,6 +414,7 @@ MINIFY_BUNDLES = {
             'css/impala/copy.less',
             'css/impala/sharing.less',
             'css/impala/collections.less',
+            'css/impala/abuse.less',
         ),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',
@@ -465,6 +466,7 @@ MINIFY_BUNDLES = {
             'js/get-satisfaction-v2.js',
             'js/zamboni/contributions.js',
             'js/zamboni/addon_details.js',
+            'js/impala/abuse.js',
             'js/zamboni/reviews.js',
 
             # Personas
@@ -518,6 +520,7 @@ MINIFY_BUNDLES = {
             'js/get-satisfaction-v2.js',
             'js/zamboni/contributions.js',
             'js/impala/addon_details.js',
+            'js/impala/abuse.js',
             'js/zamboni/reviews.js',
 
             # Personas

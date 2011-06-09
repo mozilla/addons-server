@@ -255,6 +255,10 @@
   {# /beta #}
 </section>
 
+{% if abuse_form %}
+  {{ addon_report_abuse(hide=True, addon=addon) }}
+{% endif %}
+
 {% endblock content %}
 
 {% block popups %}
