@@ -12,9 +12,17 @@
 
 // Mixins
 .border-radius(@radius) {
-    border-radius: @radius;
-    -moz-border-radius: @radius;
     -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.transform(@tform) {
+    -webkit-transform: @tform;
+    -moz-transform: @tform;
+    -ms-transform: @tform;
+    -o-transform: @tform;
+    transform: @tform;
 }
 
 .box-shadow(@shadow) {

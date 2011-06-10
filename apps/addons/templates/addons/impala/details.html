@@ -44,6 +44,9 @@
     </hgroup>
     <p id="addon-summary" {{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
     {{ big_install_button(addon, show_warning=False, impala=True) }}
+    {% if addon.is_featured(APP, LANG) %}
+      <div class="banner featured">{{ _('Featured') }}</div>
+    {% endif %}
   </div>
 
   {% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}
