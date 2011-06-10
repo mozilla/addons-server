@@ -5,13 +5,14 @@ import os
 from django.conf import settings
 from django.db.models import Count
 
+import elasticutils
 from celeryutils import task
 
 import amo
 from amo.decorators import set_modified_on
 from amo.utils import resize_image
 from tags.models import Tag
-from . import cron  # Pull in tasks run through cron.
+from . import cron, search  # Pull in tasks run through cron.
 from .models import (Collection, CollectionAddon, CollectionVote,
                      CollectionWatcher)
 
@@ -103,3 +104,19 @@ def collection_watchers(*ids, **kw):
 @task(rate_limit='10/m')
 def cron_collection_meta(*addons, **kw):
     collection_meta(*addons)
+
+
+@task
+def index_collections(ids, **kw):
+    es = elasticutils.get_es()
+    log.info('Indexing collections %s-%s [%s].' % (ids[0], ids[-1], len(ids)))
+    for c in Collection.objects.filter(id__in=ids):
+        Collection.index(search.extract(c), bulk=True, id=c.id)
+    es.flush_bulk(forced=True)
+
+
+@task
+def unindex_collections(ids, **kw):
+    for id in ids:
+        log.info('Removing collection [%s] from search index.' % id)
+        Collection.unindex(id)
