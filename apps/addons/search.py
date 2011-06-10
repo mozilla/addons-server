@@ -6,7 +6,7 @@ from django.conf import settings
 import elasticutils
 import pyes.exceptions as pyes
 
-from .models import Addon
+from .models import Addon, Feature
 
 log = logging.getLogger('z.addons.search')
 
@@ -15,13 +15,21 @@ def extract(addon):
     """Extract indexable attributes from an add-on."""
     attrs = ('id', 'name', 'created', 'last_updated', 'weekly_downloads',
              'bayesian_rating', 'average_daily_users', 'status', 'type',
-             'is_disabled')
+             'is_disabled', 'hotness')
     d = dict(zip(attrs, attrgetter(*attrs)(addon)))
     # Coerce the Translation into a string.
     d['name'] = unicode(d['name'])
     d['app'] = [a.id for a in addon.compatible_apps]
     # This is an extra query, not good for perf.
     d['category'] = list(addon.categories.values_list('id', flat=True))
+    # Another extra query.
+    features = (Feature.objects.filter(addon=addon)
+                .values_list('locale', 'application'))
+    d['featured'] = [app for locale, app in features if locale is None]
+    # Guard `app not in featured` so we don't get dupes. Global featured takes
+    # precedent over locale-featured.
+    d['featured_locale'] = [{locale: app} for locale, app in features
+                            if locale is not None and app not in d['featured']]
     return d
 
 
