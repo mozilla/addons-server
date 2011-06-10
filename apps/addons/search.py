@@ -1,4 +1,3 @@
-import logging
 from operator import attrgetter
 
 from django.conf import settings
@@ -7,8 +6,6 @@ import elasticutils
 import pyes.exceptions as pyes
 
 from .models import Addon, Feature
-
-log = logging.getLogger('z.addons.search')
 
 
 def extract(addon):

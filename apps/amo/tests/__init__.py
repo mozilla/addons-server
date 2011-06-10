@@ -182,7 +182,7 @@ class ESTestCase(test_utils.TestCase):
 
     @classmethod
     def refresh(cls):
-        cls.es.refresh(settings.ES_INDEX)
+        cls.es.refresh(settings.ES_INDEX, timesleep=0)
 
     @classmethod
     def add_addons(cls):
