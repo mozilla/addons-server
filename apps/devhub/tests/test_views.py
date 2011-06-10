@@ -82,7 +82,7 @@ class TestNav(HubTest):
     def test_navbar(self):
         r = self.client.get(self.url)
         doc = pq(r.content)
-        eq_(doc('#navbar').length, 1)
+        eq_(doc('#site-nav').length, 1)
 
     def test_no_addons(self):
         """Check that no add-ons are displayed for this user."""
@@ -102,11 +102,11 @@ class TestNav(HubTest):
         doc = pq(r.content)
 
         # Check the anchor for the 'My Add-ons' menu item.
-        eq_(doc('#navbar ul li.top a').eq(0).text(), 'My Add-ons')
+        eq_(doc('#site-nav ul li.top a').eq(0).text(), 'My Add-ons')
 
         # Check the anchor for the single add-on.
         edit_url = reverse('devhub.addons.edit', args=[addon.slug])
-        eq_(doc('#navbar ul li.top li a').eq(0).attr('href'), edit_url)
+        eq_(doc('#site-nav ul li.top li a').eq(0).attr('href'), edit_url)
 
         # Create 6 add-ons.
         self.clone_addon(6)
@@ -115,17 +115,17 @@ class TestNav(HubTest):
         doc = pq(r.content)
 
         # There should be 8 items in this menu.
-        eq_(doc('#navbar ul li.top').eq(0).find('ul li').length, 8)
+        eq_(doc('#site-nav ul li.top').eq(0).find('ul li').length, 8)
 
         # This should be the 8th anchor, after the 7 addons.
-        eq_(doc('#navbar ul li.top').eq(0).find('li a').eq(7).text(),
+        eq_(doc('#site-nav ul li.top').eq(0).find('li a').eq(7).text(),
             'Submit a New Add-on')
 
         self.clone_addon(1)
 
         r = self.client.get(self.url)
         doc = pq(r.content)
-        eq_(doc('#navbar ul li.top').eq(0).find('li a').eq(7).text(),
+        eq_(doc('#site-nav ul li.top').eq(0).find('li a').eq(7).text(),
             'more add-ons...')
 
 
@@ -2926,9 +2926,6 @@ class TestVersionAddFile(UploadTest):
         comments = doc('#approval_status').find('.version-comments')
 
         eq_(comments.length, 2)
-
-        assert "approved" in comments.eq(0).find('strong').text()
-        assert "super review" in comments.eq(1).find('strong').text()
 
 
 class TestAddVersion(UploadTest):
