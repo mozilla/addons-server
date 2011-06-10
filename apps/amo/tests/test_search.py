@@ -64,6 +64,20 @@ class TestES(amo.tests.ESTestCase):
                                 'from': 5,
                                 'size': 7})
 
+    def test_or(self):
+        qs = Addon.search().filter(type=1).filter_or(status=1, app=2)
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'and': [
+                                    {'term': {'type': 1}},
+                                    {'or': [{'term': {'status': 1}},
+                                            {'term': {'app': 2}}]},
+                                ]}})
+
+    def test_slice_stop(self):
+        qs = Addon.search()[:6]
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'size': 6})
+
     def test_getitem(self):
         addons = list(Addon.search())
         eq_(addons[0], Addon.search()[0])
@@ -75,3 +89,8 @@ class TestES(amo.tests.ESTestCase):
 
     def test_count(self):
         eq_(Addon.search().count(), 6)
+
+    def test_len(self):
+        qs = Addon.search()
+        qs._results_cache = [1]
+        eq_(len(qs), 1)
