@@ -1,0 +1,92 @@
+{% extends 'devhub/base_impala.html' %}
+
+{% block content %}
+<div id="jetpack">
+<div class='island jetpack' id='devhub-promo'>
+  <div class='promo-container'>
+    <h2>
+      {# L10n: Section in strong tag is bigger and on it's own line #}
+      {% trans %}
+      <strong>Builder and SDK:</strong> Create Add-ons Quickly and Easily
+      {% endtrans %}
+    </h2>
+    <p>
+    {% trans %}
+      Add-ons empower millions of Firefox users to personalize their browser's form and function.
+      Why not show off your Web smarts by creating an add-on of your own?
+      We've developed a wide range of tools to get you going and help you with everything from
+      building right through publishing your add-on and sharing it with the world.
+    {% endtrans %}
+    </p>
+  </div>
+</div>
+
+<h2 class="section">{{ _('Choose Your Build Environment') }}</h2>
+<div class='cols'>
+  <div class='col-2'>
+    <div class='island jetpack-builder'>
+      <img src="{{ media('img/illustrations/logo-collections-100x125.png') }}">
+      <h2><a href='http://builder.addons.mozilla.org'>{{ _('Add-on Builder (Beta)') }}</a></h2>
+      <p>
+      {% trans %}
+      The Add-on Builder is an online build environment that gives you access to the Add-on SDK.
+      It offers a robust code editor with a toolset of built-in revisioning, module selection,
+      testing and build tools.  It also lets you share your add-on selectively or upload it to
+      addons.mozilla.org.
+      {% endtrans %}
+      </p>
+      <a href='http://builder.addons.mozilla.org' class='button add'>{{ _('Try the Builder Now') }}</a>
+    </div>
+  </div>
+  <div class='col-2'>
+    <div class='island jetpack-sdk'>
+      <img src="{{ media('img/developers/command.png') }}">
+      <h2><a href='https://ftp.mozilla.org/pub/mozilla.org/labs/jetpack/jetpack-sdk-latest.zip'>
+        {{ _('Add-on SDK') }}</a></h2>
+      <p>
+      {% trans %}
+      The Add-on SDK is downloadable and lets you create add-ons using open Web technologies
+      in your own development environment through a command line interface.
+      If you're a code junkie who prefers to work with your computer rather than online,
+      this is for you.
+      {% endtrans %}
+      </p>
+      <a href='https://ftp.mozilla.org/pub/mozilla.org/labs/jetpack/jetpack-sdk-latest.zip' class='button add'>
+        {{ _('Download the Add-on SDK') }}</a>
+    </div>
+  </div>
+</div>
+
+<div class='cols cols-light'>
+  <div class='col-3'>
+    <h3>{{ _("There's Nothing to It") }}</h3>
+    <p>
+    {% trans %}
+    If you know HTML, CSS and JavaScript, you can make add-ons.
+    With Builder, you don't even need to set up a build environment.
+    Just log in and go.
+    {% endtrans %}
+    </p>
+  </div>
+  <div class='col-3'>
+    <h3>{{ _('Great Developer Features') }}</h3>
+    <p>
+    {% trans %}
+    All add-ons built with either tool are restartless by default.
+    You also get access to a library of easy-to-implement APIs built
+    by the Mozilla community.
+    {% endtrans %}
+    </p>
+  </div>
+  <div class='col-3'>
+    <h3>{{ _('Help is at Hand!') }}</h3>
+    <p>
+    {% trans %}
+    Need some support building your add-on?  We have extensive documentation and
+    a massive developer community to make sure you're never on your own.
+    {% endtrans %}
+    </p>
+  </div>
+</div>
+</div>
+{% endblock %}

@@ -137,6 +137,9 @@ urlpatterns = decorate(write, patterns('',
     url('community/newsletter', views.newsletter,
         name='devhub.community.newsletter'),
 
+    # Add-on SDK page
+    url('builder$', views.builder, name='devhub.builder'),
+
     # Developer docs
     url('docs/(?P<doc_name>[-_\w]+)?$',
         views.docs, name='devhub.docs'),

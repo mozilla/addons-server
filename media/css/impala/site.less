@@ -127,11 +127,16 @@ a {
 
 .cols {
     .width-calc(~'100% + 1em');
-    div.col-2 {
+    div.col-2, div.col-3 {
         .border-box;
         float: left;
-        width: 50%;
         padding-right: 1em;
+    }
+    div.col-2 {
+        width: 50%;
+    }
+    div.col-3 {
+        width: 33.33%;
     }
 }
 

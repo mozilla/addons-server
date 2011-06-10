@@ -1206,6 +1206,10 @@ def docs(request, doc_name=None, doc_page=None):
     return jingo.render(request, 'devhub/docs/%s' % filename)
 
 
+def builder(request):
+    return jingo.render(request, 'devhub/builder.html')
+
+
 @anonymous_csrf
 def newsletter(request):
     regions = get_regions(getattr(request, 'LANG', settings.LANGUAGE_CODE))
