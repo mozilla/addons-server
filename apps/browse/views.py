@@ -229,6 +229,17 @@ def category_landing(request, category):
                          'search_cat': '%s,0' % category.type})
 
 
+def es_category_landing(request, category):
+    # TODO: Match CategoryLandingFilter.
+    qs = (Addon.search().filter(type=TYPE, app=request.APP.id,
+                                is_disabled=False,
+                                status__in=amo.REVIEWED_STATUSES))
+    filter = ESAddonFilter(request, qs, key='sort', default='popular')
+    return jingo.render(request, 'browse/category_landing.html',
+                        {'category': category, 'filter': filter,
+                         'search_cat': '%s,0' % category.type})
+
+
 def creatured(request, category):
     TYPE = amo.ADDON_EXTENSION
     q = Category.objects.filter(application=request.APP.id, type=TYPE)
