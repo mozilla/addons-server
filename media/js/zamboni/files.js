@@ -1,3 +1,5 @@
+"use strict";
+
 if (typeof diff_match_patch !== 'undefined') {
     diff_match_patch.prototype.diff_prettyHtml = function(diffs) {
         /* An override of prettyHthml from diff_match_patch. This
@@ -71,7 +73,7 @@ function bind_viewer(nodes) {
                 deleted_line_numbers = 1;
             $node.each(function(){
                 var $self = $(this),
-                    $gutter = $self.find('td.gutter');
+                    $gutter = $self.find('td.gutter'),
                     $code = $self.find('td.code');
                 $gutter.find('div.line').each(function(i){
                     var $gutter_line = $(this),
@@ -109,6 +111,7 @@ function bind_viewer(nodes) {
                     }
                 });
             });
+            this.updateViewport(true);
         };
         this.compute = function(node) {
             var $diff = node.find('#diff'),
@@ -136,23 +139,50 @@ function bind_viewer(nodes) {
 
                 /* Build out the diff bar based on the line numbers. */
                 var $sb = $diff.siblings('.diff-bar').eq(0),
-                    $lines = $diff.find('td.gutter div.line a');
+                    $gutter = $diff.find('td.gutter');
+                var $lines = $gutter.find('div.line a');
 
                 if ($lines.length) {
-                    var state = {'start':0, 'type':$lines.eq(0).attr('class'),
-                                 'href':$lines.eq(0).attr('href')};
-                    for (var j = 1; j < $lines.length; j++) {
-                        var $node = $lines.eq(j);
-                        if (!$node.hasClass(state.type)) {
-                            this.side_bar_append($sb, state, j, $lines.length);
-                            state = {'start': j, 'type': $node.attr('class'),
-                                     'href': $node.attr('href')};
+                    var flush = function($line, bottom) {
+                        var height = (bottom - $start.offset().top) * 100 / $gutter.height();
+                        var style = { 'height': height + "%" };
+
+                        if ($prev && !$prev.attr('class')) {
+                            style['border-top-width'] = '1px';
+                            style['margin-top'] = '-1px';
                         }
+                        if ($line && !$line.attr('class')) {
+                            style['border-bottom-width'] = '1px';
+                            style['margin-bottom'] = '-1px';
+                        }
+
+                        $sb.append($('<a>', { 'href': $start.attr('href'), 'class': $start.attr('class'),
+                                              'css': style }));
+
+                        $prev = $start;
+                        $start = $line;
                     }
+
+                    var $prev, $start = null;
+                    $lines.each(function () {
+                        var $line = $(this);
+                        if (!$start) {
+                            $start = $line;
+                        } else if ($line.attr('class') != $start.attr('class')) {
+                            flush($line, $line.offset().top);
+                        }
+                    });
+                    flush(null, $gutter.offset().bottom);
+
+                    this.$diffbar = $sb;
+                    this.$viewport = $('<div>', { 'class': 'diff-bar-viewport' });
+                    this.$gutter = $gutter;
+                    $sb.append(this.$viewport);
+
                     $diff.addClass('diff-bar-height');
-                    this.side_bar_append($sb, state, j, $lines.length);
-                    this.fix_vertically($sb, $diff);
                     $sb.show();
+
+                    this.updateViewport(true);
                 }
             }
 
@@ -160,9 +190,36 @@ function bind_viewer(nodes) {
                 window.location = window.location;
             }
         };
-        this.side_bar_append = function($sb, state, k, total) {
-            $sb.append($('<a>', {'href': state.href, 'class': state.type,
-                                 'css': {'height': (((k-state.start)/total) * 100) + '%' }}));
+        this.updateViewport = function(resize) {
+            var $viewport = this.$viewport,
+                $gutter = this.$gutter,
+                $diffbar = this.$diffbar;
+
+            if (!this.$viewport) {
+                return;
+            }
+
+            var gutter = $gutter[0].getBoundingClientRect();
+            var gutter_height = gutter.bottom - gutter.top;
+            var diffbar_top = -Math.min(0, gutter.top) * 100 / gutter_height + "%"
+
+            if (resize) {
+                var height = gutter_height + Math.min(0, gutter.top) - gutter.bottom + window.innerHeight;
+
+                $viewport.css({ 'height': height * 100 / gutter_height + "%", 'top': diffbar_top });
+
+                $diffbar.css({ 'height': Math.min($("#diff-wrapper").height(), window.innerHeight) + "px" });
+            } else {
+                $viewport.css({ 'top': diffbar_top });
+            }
+
+            if (gutter.bottom <= window.innerHeight) {
+                $diffbar.css({ 'position': 'absolute', 'top': '', 'bottom': '0' });
+            } else if (gutter.top > 0) {
+                $diffbar.css({ 'position': 'absolute', 'top': '0', 'bottom': '' });
+            } else {
+                $diffbar.css({ 'position': 'fixed', 'top': '0px', 'bottom': '' });
+            }
         };
         this.toggle_leaf = function($leaf) {
             if ($leaf.hasClass('open')) {
@@ -269,6 +326,11 @@ function bind_viewer(nodes) {
     viewer.nodes.$files.find('.directory').click(_pd(function() {
         viewer.toggle_leaf($(this));
     }));
+
+    if ($("#diff").length) {
+        $(window).resize(debounce(function () { viewer.updateViewport(true); }));
+        $(window).scroll(debounce(function () { viewer.updateViewport(false); }));
+    }
 
     $('#files-up').click(_pd(function() {
         var prev = viewer.get_selected() - 1;

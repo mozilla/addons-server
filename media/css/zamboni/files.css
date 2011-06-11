@@ -45,15 +45,19 @@ div.code div.line:hover {
 }
 
 div.diff-bar .add, #diff td.code div.add, #diff td.code div.add .content {
-    background-color: #e6ffe6;
+    background-color: #99ff99;
 }
 
 div.diff-bar .delete, #diff td.code div.delete, #diff td.code div.add .content {
-    background-color: #ffe6e6;
+    background-color: #ffd8d8;
 }
 
 #diff .string, #diff .string a, #diff .comments, #diff .comments a, #diff .color1, #diff .color1 a{
     color: #444444;
+}
+
+#diff .syntaxhighlighter, #diff table {
+    margin: 0;
 }
 
 a.closed {
@@ -86,7 +90,7 @@ a.selected {
 code {
     font-weight: bold;
     color: white;
-    background-color: darkgrey;
+    background-color: darkgray;
     padding: 2px 6px 2px 6px;
     margin: 2px;
 }
@@ -99,10 +103,19 @@ a.no-key {
     padding-left: 11px;
 }
 
+#diff-wrapper {
+    position: relative;
+}
+
+td.gutter, td.code {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
 .diff-bar {
-    border: 1px solid grey;
+    border: 1px solid gray;
     width: 10px;
-    position: fixed;
+    position: absolute;
     overflow: hidden;
     height: 200px;
 }
@@ -110,8 +123,26 @@ a.no-key {
 .diff-bar a {
     display: block;
     width: 100%;
+    border: 0px solid gray;
 }
 
 .diff-bar a:hover {
     text-decoration: none;
 }
+
+.diff-bar .add {
+    border-color: #33aa33;
+}
+
+.diff-bar .delete {
+    border-color: #aa3434;
+}
+
+.diff-bar-viewport {
+    position: absolute;
+    left: 0;
+    right: 0;
+    min-height: 2px;
+    border: 1px solid rgba(0, 0, 0, .4) !important;
+}
+

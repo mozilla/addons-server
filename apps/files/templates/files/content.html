@@ -1,32 +1,37 @@
 <div id="content-wrapper">
     <div>
-    {% if viewer %}
-        {% if viewer.selected %}
-            {% if not viewer.selected['binary'] %}
-                <pre id="content" class="brush: {{ viewer.selected['syntax'] }}; toolbar: false">{{ content }}</pre>
+        <div id="diff-wrapper">
+        {% if viewer %}
+            {% if viewer.selected %}
+                {% if not viewer.selected['binary'] %}
+                    <pre id="content" class="brush: {{ viewer.selected['syntax'] }}; toolbar: false">{{ content }}</pre>
+                {% endif %}
+        </div>
+                {% with selected = viewer.selected %}
+                    {% include "files/file.html" %}
+                {% endwith %}
+            {% else %}
+        </div>
             {% endif %}
-            {% with selected = viewer.selected %}
-                {% include "files/file.html" %}
-            {% endwith %}
         {% endif %}
-    {% endif %}
-    {% if diff %}
-        {% if left or right %}
-            <div class="diff-bar js-hidden"></div>
-            <pre id="diff" class="diff-bar-height js-hidden brush: diff; toolbar: false"></pre>
-            <pre class="left js-hidden">{{ left }}</pre>
-            <pre class="right js-hidden">{{ right }}</pre>
+        {% if diff %}
+            {% if left or right %}
+                <div class="diff-bar js-hidden"></div>
+                <pre id="diff" class="diff-bar-height js-hidden brush: diff; toolbar: false"></pre>
+                <pre class="left js-hidden">{{ left }}</pre>
+                <pre class="right js-hidden">{{ right }}</pre>
+            {% endif %}
+        </div>
+            {% if diff.left and diff.left.selected %}
+                {% with selected = diff.left.selected %}
+                    {% include "files/file.html" %}
+                {% endwith %}
+            {% endif %}
+            {% if diff.right and diff.right.selected %}
+                {% with selected = diff.right.selected %}
+                    {% include "files/file.html" %}
+                {% endwith %}
+            {% endif %}
         {% endif %}
-        {% if diff.left and diff.left.selected %}
-            {% with selected = diff.left.selected %}
-                {% include "files/file.html" %}
-            {% endwith %}
-        {% endif %}
-        {% if diff.right and diff.right.selected %}
-            {% with selected = diff.right.selected %}
-                {% include "files/file.html" %}
-            {% endwith %}
-        {% endif %}
-    {% endif %}
     </div>
 </div>
