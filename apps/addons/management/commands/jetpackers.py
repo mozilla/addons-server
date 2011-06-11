@@ -34,7 +34,7 @@ def sendmail(cxn):
             log.info('%s. FAIL: %s (%s)' % (count, addr, e))
 
 
-SUBJECT = 'Automatic Jetpack Upgrades'
+SUBJECT = 'Instructions for Automatic Upgrade to Add-on SDK 1.0'
 MSG = """\
 Hello Mozilla Add-ons Developer!
 
