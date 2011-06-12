@@ -87,16 +87,24 @@ a.selected {
     padding-left: 2em;
 }
 
-code {
+#commands th {
+    padding: 0 0 1px;
+}
+
+#commands code {
+    display: block;
     font-weight: bold;
     color: white;
     background-color: darkgray;
-    padding: 2px 6px 2px 6px;
-    margin: 2px;
+    text-align: center;
+    min-width: 1.1em;
+    padding: 0px 2px;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
 }
 
-a.no-key {
-    margin-left: 29px;
+#commands td {
+    padding: 0 0 0 1ex;
 }
 
 #diff {

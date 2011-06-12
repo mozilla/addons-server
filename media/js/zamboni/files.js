@@ -37,6 +37,11 @@ if (typeof diff_match_patch !== 'undefined') {
     };
 }
 
+var config = {
+    diff_context: 2,
+    needreview_pattern: /\.(js|jsm|xul|xml|x?html?|manifest|sh|py)$/i
+};
+
 function bind_viewer(nodes) {
     $.each(nodes, function(x) {
         nodes['$'+x] = $(nodes[x]);
@@ -312,6 +317,62 @@ function bind_viewer(nodes) {
             }
             $('#content-wrapper').toggleClass('full');
         };
+        this.next_changed = function(offset) {
+            var $files = this.nodes.$files.find('a.file');
+            var selected = $files[this.get_selected()],
+                isDiff = $('#diff').length;
+
+            var a = [];
+            var list = a;
+            $files.each(function () {
+                if (this == selected) {
+                    list = [selected];
+                } else if (config.needreview_pattern.test($(this).attr('data-short'))
+                            && (!isDiff || $(this).hasClass('diff'))) {
+                    list.push(this);
+                }
+            });
+
+            list = list.concat(a).slice(offset);
+            if (list.length) {
+                this.select($(list[0]));
+                $("#top")[0].scrollIntoView(true);
+            }
+        };
+        this.next_delta = function(forward) {
+            var $deltas = $('td.code .line.add, td.code .line.delete'),
+                $lines = $('td.code .line');
+            $lines.indexOf = Array.prototype.indexOf;
+
+            if (forward) {
+                var height = window.innerHeight;
+                for (var i = 0; i < $deltas.length; i++) {
+                    var span = $deltas[i];
+                    if (span.getBoundingClientRect().bottom > height) {
+                        span = $lines[Math.max(0, $lines.indexOf(span) - config.diff_context)];
+                        span.scrollIntoView(true);
+                        return;
+                    }
+                };
+
+                this.next_changed(1);
+            } else {
+                var res;
+                for (var i = 0; i < $deltas.length; i++) {
+                    var span = $deltas[i];
+                    if (span.getBoundingClientRect().top >= 0)
+                        break;
+                    res = span;
+                }
+
+                if (!res) {
+                    this.next_changed(-1);
+                } else {
+                    res = $lines[Math.min($lines.length - 1, $lines.indexOf(res) + config.diff_context)];
+                    res.scrollIntoView(false);
+                }
+            }
+        };
     }
 
     var viewer = new Viewer();
@@ -327,23 +388,25 @@ function bind_viewer(nodes) {
         viewer.toggle_leaf($(this));
     }));
 
-    if ($("#diff").length) {
+    if ($('#diff').length) {
         $(window).resize(debounce(function () { viewer.updateViewport(true); }));
         $(window).scroll(debounce(function () { viewer.updateViewport(false); }));
     }
 
     $('#files-up').click(_pd(function() {
-        var prev = viewer.get_selected() - 1;
-        if (prev >= 0) {
-            viewer.select(viewer.nodes.$files.find('a.file').eq(prev));
-        }
+        viewer.next_changed(-1);
     }));
 
     $('#files-down').click(_pd(function() {
-        var next = viewer.nodes.$files.find('a.file').eq(viewer.get_selected() + 1);
-        if (next.length) {
-            viewer.select(next);
-        }
+        viewer.next_changed(1);
+    }));
+
+    $('#files-change-prev').click(_pd(function() {
+        viewer.next_delta(false);
+    }));
+
+    $('#files-change-next').click(_pd(function() {
+        viewer.next_delta(true);
     }));
 
     $('#files-wrap').click(_pd(function() {
@@ -375,18 +438,31 @@ function bind_viewer(nodes) {
         }
     });
 
-    $(document).bind('keyup', _pd(function(e) {
-        if (e.keyCode == 72) {
-            $('#files-hide').trigger('click');
-        } else if (e.keyCode == 75) {
-            $('#files-up').trigger('click');
-        } else if (e.keyCode == 74) {
-            $('#files-down').trigger('click');
-        } else if (e.keyCode == 87) {
-            $('#files-wrap').trigger('click');
-        } else if (e.keyCode == 69) {
-            $('#files-expand-all').trigger('click');
+    var prefixes = {};
+    var keys = {};
+    $('#commands code').each(function () {
+        var $code = $(this);
+        var $link = $code.parents('tr').find('a'),
+            key = $code.text();
+
+        keys[key] = $link;
+        for (var i = 1; i < key.length; i++) {
+            prefixes[key.substr(0, i)] = true;
         }
+    });
+
+    var buffer = '';
+    $(document).bind('keypress', _pd(function(e) {
+        if (e.charCode) {
+            buffer += String.fromCharCode(e.charCode);
+            if (keys.hasOwnProperty(buffer)) {
+                keys[buffer].click();
+            } else if (prefixes.hasOwnProperty(buffer)) {
+                return;
+            }
+        }
+
+        buffer = '';
     }));
     return viewer;
 }
