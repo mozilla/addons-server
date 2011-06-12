@@ -206,19 +206,20 @@ function bind_viewer(nodes) {
 
             var gutter = $gutter[0].getBoundingClientRect();
             var gutter_height = gutter.bottom - gutter.top;
+            var window_height = $(window).height();
             var diffbar_top = -Math.min(0, gutter.top) * 100 / gutter_height + "%"
 
             if (resize) {
-                var height = gutter_height + Math.min(0, gutter.top) - gutter.bottom + window.innerHeight;
+                var height = gutter_height + Math.min(0, gutter.top) - gutter.bottom + window_height;
 
                 $viewport.css({ 'height': height * 100 / gutter_height + "%", 'top': diffbar_top });
 
-                $diffbar.css({ 'height': Math.min($("#diff-wrapper").height(), window.innerHeight) + "px" });
+                $diffbar.css({ 'height': Math.min($("#diff-wrapper").height(), window_height) + "px" });
             } else {
                 $viewport.css({ 'top': diffbar_top });
             }
 
-            if (gutter.bottom <= window.innerHeight) {
+            if (gutter.bottom <= window_height) {
                 $diffbar.css({ 'position': 'absolute', 'top': '', 'bottom': '0' });
             } else if (gutter.top > 0) {
                 $diffbar.css({ 'position': 'absolute', 'top': '0', 'bottom': '' });
@@ -345,7 +346,7 @@ function bind_viewer(nodes) {
             $lines.indexOf = Array.prototype.indexOf;
 
             if (forward) {
-                var height = window.innerHeight;
+                var height = $(window).height();
                 for (var i = 0; i < $deltas.length; i++) {
                     var span = $deltas[i];
                     if (span.getBoundingClientRect().bottom > height) {
