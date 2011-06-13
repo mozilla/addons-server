@@ -1,6 +1,7 @@
-from django.core.management.base import BaseCommand, CommandError
 from optparse import make_option
-from celery.messaging import establish_connection
+
+from django.core.management.base import BaseCommand, CommandError
+
 import commonware.log
 
 ## FIXME: reasonable name?
@@ -33,11 +34,7 @@ class Command(BaseCommand):
         if options.get('simulate') and options.get('queue'):
             raise CommandError('Cannot use --simulate and --queue together')
         if options.get('queue'):
-            with establish_connection() as conn:
-                update_to_json.apply_async(max_objs=max_objs,
-                                           connection=conn,
-                                           classes=classes,
-                                           ids=ids)
+            update_to_json.delay(max_objs=max_objs, classes=classes, ids=ids)
         else:
             updater = _JSONUpdater(max_objs, log, self.after_exit,
                                    classes=classes, ids=ids,

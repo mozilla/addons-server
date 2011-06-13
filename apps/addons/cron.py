@@ -9,12 +9,12 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.db import connections, transaction
-from django.db.models import Q, F, Avg, Count
+from django.db.models import Q, F, Avg
 
 import multidb
 import path
 import recommend
-from celery.messaging import establish_connection
+from celery.task.sets import TaskSet
 from celeryutils import task
 
 import amo
@@ -82,10 +82,9 @@ def update_addons_current_version():
                               status__in=amo.VALID_STATUSES)
          .exclude(type=amo.ADDON_PERSONA).values_list('id'))
 
-    with establish_connection() as conn:
-        for chunk in chunked(d, 100):
-            _update_addons_current_version.apply_async(args=[chunk],
-                                                       connection=conn)
+    ts = [_update_addons_current_version.subtask(args=[chunk])
+          for chunk in chunked(d, 100)]
+    TaskSet(ts).apply_async()
 
 
 @task(rate_limit='20/m')
@@ -116,10 +115,9 @@ def update_addon_average_daily_users():
     d = cursor.fetchall()
     cursor.close()
 
-    with establish_connection() as conn:
-        for chunk in chunked(d, 1000):
-            _update_addon_average_daily_users.apply_async(args=[chunk],
-                                                          connection=conn)
+    ts = [_update_addon_average_daily_users.subtask(args=[chunk])
+          for chunk in chunked(d, 1000)]
+    TaskSet(ts).apply_async()
 
 
 @task(rate_limit='15/m')
@@ -147,10 +145,9 @@ def update_addon_download_totals():
     d = cursor.fetchall()
     cursor.close()
 
-    with establish_connection() as conn:
-        for chunk in chunked(d, 1000):
-            _update_addon_download_totals.apply_async(args=[chunk],
-                                                      connection=conn)
+    ts = [_update_addon_download_totals.subtask(args=[chunk])
+          for chunk in chunked(d, 1000)]
+    TaskSet(ts).apply_async()
 
 
 @task(rate_limit='15/m')
@@ -211,9 +208,9 @@ def update_addon_appsupport():
     ids = (Addon.objects.valid().no_cache().distinct()
            .filter(newish, good).values_list('id', flat=True))
 
-    with establish_connection() as conn:
-        for chunk in chunked(ids, 20):
-            _update_appsupport.apply_async(args=[chunk], connection=conn)
+    ts = [_update_appsupport.subtask(args=[chunk])
+          for chunk in chunked(ids, 20)]
+    TaskSet(ts).apply_async()
 
 
 @cronjobs.register
@@ -437,18 +434,6 @@ def reindex_addons():
            .filter(_current_version__isnull=False,
                    status__in=amo.VALID_STATUSES,
                    disabled_by_user=False))
-    with establish_connection() as conn:
-        for chunk in chunked(sorted(list(ids)), 150):
-            tasks.index_addons.apply_async(args=[chunk], connection=conn)
-
-
-# TODO(jbalogh): remove after 6.0.12 (bug 659948)
-@cronjobs.register
-def fix_dupe_appsupport():
-    from . import tasks
-    # Find all the appsupport (addon, app) rows with duplicate entries.
-    qs = (AppSupport.objects.values('addon', 'app')
-          .annotate(cnt=Count('id')).filter(cnt__gt=1))
-    addons = set(a['addon'] for a in qs)
-    # Update appsupport again to fix the dupes.
-    tasks.update_appsupport(addons)
+    ts = [tasks.index_addons.subtask(args=[chunk])
+          for chunk in chunked(sorted(list(ids)), 150)]
+    TaskSet(ts).apply_async()

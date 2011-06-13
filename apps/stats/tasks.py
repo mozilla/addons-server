@@ -5,7 +5,6 @@ from django.db.models import Sum, Max
 
 import commonware.log
 from celery.decorators import task
-from celery.messaging import establish_connection
 
 import amo
 from addons.models import Addon
@@ -192,9 +191,7 @@ def update_to_json(max_objs=None, classes=(), ids=(), **kw):
 
     def after_max_redo(msg):
         log.info('Completed run: %s' % msg)
-        with establish_connection() as conn:
-            update_to_json.apply_async(max_objs=max_objs,
-                                       connection=conn)
+        update_to_json.delay(max_objs=max_objs)
 
     updater = _JSONUpdater(max_objs, log, after_max_redo,
                            classes=classes, ids=ids)
