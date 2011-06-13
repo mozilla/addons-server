@@ -998,5 +998,10 @@ STATSD_HOST = 'localhost'
 STATSD_PORT = 8125
 STATSD_PREFIX = 'amo'
 
+GRAPHITE_HOST = 'localhost'
+GRAPHITE_PORT = 2003
+GRAPHITE_PREFIX = 'amo'
+GRAPHITE_TIMEOUT = 1
+
 # URL to the service that triggers addon performance tests.  See devhub.perf.
 PERF_TEST_URL = 'http://areweperftestingyet.com/trigger.cgi'
