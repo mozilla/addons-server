@@ -15,6 +15,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kw):
         redis = redisutils.connections['master']
+        # We don't want this socket to timeout.
+        redis.connection.socket_timeout = None
+        redis.connection.disconnect()
         while 1:
             stats = []
             d = zip(['pending', 'failed', 'total'], task_stats.stats())
