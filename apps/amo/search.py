@@ -1,5 +1,4 @@
 import logging
-import pprint
 
 from django.conf import settings
 
@@ -123,9 +122,10 @@ class ES(object):
         if not self._results_cache:
             qs = self._build_query()
             es = elasticutils.get_es()
-            log.debug(pprint.pformat(qs))
             hits = es.search(qs, settings.ES_INDEX, self.type._meta.app_label)
-            self._results_cache = SearchResults(self.type, hits)
+            self._results_cache = results = SearchResults(self.type, hits)
+            statsd.timing('search', results.took)
+            log.debug('[%s] %s' % (results.took, qs))
         return self._results_cache
 
     def __iter__(self):
@@ -137,8 +137,6 @@ class SearchResults(object):
     def __init__(self, type, results):
         self.type = type
         self.took = results['took']
-        statsd.timing('search', self.took)
-        log.debug('Query took %dms.' % self.took)
         self.count = results['hits']['total']
         self.ids = [int(r['_id']) for r in results['hits']['hits']]
         self.objects = self.type.objects.filter(id__in=self.ids)
