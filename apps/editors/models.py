@@ -13,9 +13,8 @@ from amo.utils import send_mail
 from addons.models import Addon
 from editors.sql_model import RawSQLModel
 from translations.fields import TranslatedField
-from tower import ugettext as _
 from users.models import UserProfile
-from versions.models import Version, version_uploaded
+from versions.models import version_uploaded
 
 import commonware.log
 
@@ -225,7 +224,7 @@ class PerformanceGraph(ViewQueue):
             'from': [
                 'log_activity',
                 'LEFT JOIN `users` ON (`users`.`id`=`log_activity`.`user_id`)'],
-            'where': ['log_activity.action in (%s)' % ', '.join(review_ids)],
+            'where': ['log_activity.action in (%s)' % ','.join(review_ids)],
             'group_by': 'yearmonth, user_id'
             }
 
@@ -244,7 +243,8 @@ class EditorSubscription(amo.models.ModelBase):
             'name': self.addon.name,
             'url': absolutify(reverse('addons.detail', args=[self.addon.pk])),
             'number': version.version,
-            'review': absolutify(reverse('editors.review', args=[version.pk])),
+            'review': absolutify(reverse('editors.review',
+                                         args=[self.addon.pk])),
             'SITE_URL': settings.SITE_URL,
         })
         # Not being localised because we don't know the editors locale.
