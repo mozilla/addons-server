@@ -144,13 +144,13 @@ function bind_viewer(nodes) {
 
                 /* Build out the diff bar based on the line numbers. */
                 var $sb = $diff.siblings('.diff-bar').eq(0),
-                    $gutter = $diff.find('td.gutter');
-                var $lines = $gutter.find('div.line a');
+                    $gutter = $diff.find('td.gutter'),
+                    $lines = $gutter.find('div.line a');
 
                 if ($lines.length) {
                     var flush = function($line, bottom) {
-                        var height = (bottom - $start.offset().top) * 100 / $gutter.height();
-                        var style = { 'height': height + "%" };
+                        var height = (bottom - $start.offset().top) * 100 / $gutter.height(),
+                            style = { 'height': height + "%" };
 
                         if ($prev && !$prev.attr('class')) {
                             style['border-top-width'] = '1px';
@@ -200,17 +200,17 @@ function bind_viewer(nodes) {
                 $gutter = this.$gutter,
                 $diffbar = this.$diffbar;
 
-            if (!this.$viewport) {
+            if (!$viewport) {
                 return;
             }
 
-            var gutter = $gutter[0].getBoundingClientRect();
-            var gutter_height = gutter.bottom - gutter.top;
-            var window_height = $(window).height();
-            var diffbar_top = -Math.min(0, gutter.top) * 100 / gutter_height + "%"
+            var gutter = $gutter[0].getBoundingClientRect(),
+                gutter_height = gutter.bottom - gutter.top,
+                window_height = $(window).height(),
+                diffbar_top = -Math.min(0, gutter.top) * 100 / gutter_height + "%";
 
             if (resize) {
-                var height = gutter_height + Math.min(0, gutter.top) - gutter.bottom + window_height;
+                var height = gutter_height + Math.min(0, gutter.top) - Math.max(gutter.bottom - window_height, 0);
 
                 $viewport.css({ 'height': height * 100 / gutter_height + "%", 'top': diffbar_top });
 
@@ -319,12 +319,11 @@ function bind_viewer(nodes) {
             $('#content-wrapper').toggleClass('full');
         };
         this.next_changed = function(offset) {
-            var $files = this.nodes.$files.find('a.file');
-            var selected = $files[this.get_selected()],
+            var $files = this.nodes.$files.find('a.file'),
+                selected = $files[this.get_selected()],
                 isDiff = $('#diff').length;
 
-            var a = [];
-            var list = a;
+            var a = [], list = a;
             $files.each(function () {
                 if (this == selected) {
                     list = [selected];
@@ -439,11 +438,11 @@ function bind_viewer(nodes) {
         }
     });
 
-    var prefixes = {};
-    var keys = {};
+    var prefixes = {},
+        keys = {};
     $('#commands code').each(function () {
-        var $code = $(this);
-        var $link = $code.parents('tr').find('a'),
+        var $code = $(this),
+            $link = $code.parents('tr').find('a'),
             key = $code.text();
 
         keys[key] = $link;

@@ -1,20 +1,17 @@
 <div id="content-wrapper">
     <div>
-        <div id="diff-wrapper">
         {% if viewer %}
             {% if viewer.selected %}
                 {% if not viewer.selected['binary'] %}
                     <pre id="content" class="brush: {{ viewer.selected['syntax'] }}; toolbar: false">{{ content }}</pre>
                 {% endif %}
-        </div>
                 {% with selected = viewer.selected %}
                     {% include "files/file.html" %}
                 {% endwith %}
-            {% else %}
-        </div>
             {% endif %}
         {% endif %}
         {% if diff %}
+        <div id="diff-wrapper">
             {% if left or right %}
                 <div class="diff-bar js-hidden"></div>
                 <pre id="diff" class="diff-bar-height js-hidden brush: diff; toolbar: false"></pre>
