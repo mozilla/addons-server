@@ -202,6 +202,9 @@ $(function() {
     $("#eula .affirmative").click(_pd(z.eula.dismiss));
 
     $(".persona-previewer .preview").click(_pd(function() {
+        if (!$.hasPersonas()) {
+            return;
+        }
         var persona = new MobilePersona(this);
         persona.triggers().preview();
     }));
@@ -286,10 +289,17 @@ MobilePersona.prototype.buttons = function() {
         $confirm = this.outer.find('.confirm-buttons'),
         $badges = this.outer.closest('#persona').find('.badges'),
         that = this;
+    function slide(action) {
+        if (action == 'down') {
+            $slider.addClass('expand').css('height', $slider[0].scrollHeight);
+        } else if (action == 'up') {
+            $slider.removeClass('expand').css('height', 0);
+        }
+    }
     return {
         show: function(force) {
             if ($slider.length) {
-                $slider.slideDown();
+                slide('down');
             } else {
                 $confirm.show();
             }
@@ -298,7 +308,7 @@ MobilePersona.prototype.buttons = function() {
         },
         hide: function(force) {
             if ($slider.length) {
-                $slider.slideUp();
+                slide('up');
             } else {
                 $confirm.hide();
             }

@@ -66,7 +66,8 @@ header:after,
 section:after,
 .menu:after,
 .grouped_ratings:after,
-.persona-confirm:after {
+.persona-confirm:after,
+.persona-slider .confirm-buttons:after {
     content: ".";
     display: block;
     clear: both;
@@ -502,7 +503,7 @@ header #home, header .back-link {
     display: block;
 }
 .infobox {
-    padding: 14px;
+    padding: 10px;
 }
 .listview li {
     border-top: 1px solid #ccc;
@@ -513,7 +514,7 @@ header #home, header .back-link {
 }
 .listview li > a,
 a.listview {
-    padding: 14px;
+    padding: 14px 7px;
     color: #444;
     font-family: Georgia, serif;
     font-size: 1.1em;
@@ -1082,19 +1083,24 @@ ul.license li.copyr { background-position: 0 -260px; }
 }
 
 li.persona-previewer {
-    padding: 14px;
+    padding: 10px;
 }
 
 .persona-slider {
     background-color: #ccc;
-    border-top: #999 1px solid;
-    box-shadow: 0 -1px 1px rgba(0,0,0,.5);
-    display: none;
-    padding: 14px;
+    height: 0;
+    overflow: hidden;
+    padding: 0 10px;
     position: relative;
-    left: -14px;
-    bottom: -14px;
+    top: 11px;
+    left: -10px;
     width: 100%;
+    -moz-transition: .5s height ease;
+    -webkit-transition: .5s height ease;
+}
+
+.persona-slider.expand {
+    border-top: 1px solid #999;
 }
 
 .persona-slider .more {
@@ -1103,8 +1109,12 @@ li.persona-previewer {
     display: block;
     font-weight: bold;
     line-height: 1;
-    padding-top: 14px;
+    padding-top: 10px;
     text-align: center;
+}
+
+.persona-slider .confirm-buttons {
+    margin-top: 10px;
 }
 
 /************************************/

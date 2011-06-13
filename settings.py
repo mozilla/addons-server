@@ -607,7 +607,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
             'js/zamboni/format.js',
-            'js/zamboni/mobile_buttons.js',
+            'js/zamboni/mobile/buttons.js',
             'js/zamboni/truncation.js',
             'js/zamboni/personas_core.js',
             'js/zamboni/mobile/personas.js',
