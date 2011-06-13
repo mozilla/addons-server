@@ -88,8 +88,8 @@ class TestFlagged(test_utils.TestCase):
 
 
 class BulkValidationTest(test_utils.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/appversion',
-                'base/users']
+    fixtures = ['base/apps', 'base/platforms', 'base/addon_3615',
+                'base/appversion', 'base/users']
 
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',
@@ -122,12 +122,12 @@ class BulkValidationTest(test_utils.TestCase):
         kw.update(kwargs)
         return ValidationJob.objects.create(**kw)
 
-    def create_file(self, version=None):
+    def create_file(self, version=None, platform_id=amo.PLATFORM_ALL.id):
         if not version:
             version = self.version
         return File.objects.create(version=version,
                                    filename='file-%s' % self.counter,
-                                   platform_id=amo.PLATFORM_ALL.id,
+                                   platform_id=platform_id,
                                    status=amo.STATUS_PUBLIC)
 
     def create_result(self, job, f, **kwargs):
@@ -570,6 +570,24 @@ class TestBulkNotify(BulkValidationTest):
     def test_undeclared_variable_form_submit(self):
         f = NotifyForm({'text': '{{ UNDECLARED }}', 'subject': '...'})
         eq_(f.is_valid(), False)
+
+    def test_addon_name_contains_platform(self):
+        for pl in (amo.PLATFORM_MAC.id, amo.PLATFORM_LINUX.id):
+            f = self.create_file(self.version, platform_id=pl)
+            self.create_result(self.job, f, errors=1)
+        self.client.post(self.update_url, {'text': '...',
+                                           'subject': '{{ ADDON_NAME }}'})
+        subjects = sorted(m.subject for m in mail.outbox)
+        eq_(subjects,
+            ['Delicious Bookmarks (Linux)',
+             'Delicious Bookmarks (Mac OS X)'])
+
+    def test_addon_name_for_platform_all(self):
+        f = self.create_file(self.version, platform_id=amo.PLATFORM_ALL.id)
+        self.create_result(self.job, f, errors=1)
+        self.client.post(self.update_url, {'text': '...',
+                                           'subject': '{{ ADDON_NAME }}'})
+        eq_(mail.outbox[0].subject, unicode(self.addon.name))
 
 
 class TestBulkValidationTask(BulkValidationTest):

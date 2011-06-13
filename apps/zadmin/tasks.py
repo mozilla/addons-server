@@ -153,12 +153,15 @@ def add_validation_jobs(pks, job_pk, **kw):
             bulk_validate_file.delay(result.pk)
 
 
-def get_context(addon, version, job, results):
+def get_context(addon, version, job, results, fileob=None):
     result_links = (absolutify(reverse('devhub.validation_result',
                                        args=[addon.slug, r.pk]))
                     for r in results)
+    addon_name = addon.name
+    if fileob and fileob.platform.id != amo.PLATFORM_ALL.id:
+        addon_name = u'%s (%s)' % (addon_name, fileob.platform)
     return Context({
-            'ADDON_NAME': addon.name,
+            'ADDON_NAME': addon_name,
             'ADDON_VERSION': version.version,
             'APPLICATION': str(job.application),
             'COMPAT_LINK': absolutify(reverse('devhub.versions.edit',
@@ -189,8 +192,8 @@ def notify_success(version_pks, job_pk, data, **kw):
 
         app_flag = False
         dry_run = data['preview_only']
-        for app in version.apps.filter(application=
-                                       job.curr_max_version.application):
+        for app in version.apps.filter(
+                                application=job.curr_max_version.application):
             if (app.max.version == job.curr_max_version.version and
                 job.target_version.version != app.max.version):
                 log.info('Updating version %s%s for addon %s from version %s '
@@ -246,7 +249,7 @@ def notify_failed(file_pks, job_pk, data, **kw):
         file = result.file
         version = file.version
         addon = version.addon
-        context = get_context(addon, version, job, [result])
+        context = get_context(addon, version, job, [result], fileob=file)
         for author in addon.authors.all():
             log.info(u'Emailing %s%s for addon %s, file %s about '
                      'error from bulk validation job %s'
