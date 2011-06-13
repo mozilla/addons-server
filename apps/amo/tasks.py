@@ -72,6 +72,7 @@ class TaskStats(object):
         # id in here.
         self.redis.hincrby(self.pending, sender, 1)
         self.redis.hset(self.timer, kw['id'], time.time())
+        self.redis.publish('celery.tasks.stats', 'sent')
 
     def on_postrun(self, sender, **kw):
         # sender is the task object. task_id in here.
@@ -83,10 +84,12 @@ class TaskStats(object):
         if start:
             t = (time.time() - float(start)) * 1000
             statsd.timing('tasks.%s' % sender.name, int(t))
+        self.redis.publish('celery.tasks.stats', 'postrun')
 
     def on_failure(self, sender, **kw):
         # sender is the task object.
         self.redis.hincrby(self.failed, sender.name, 1)
+        self.redis.publish('celery.tasks.stats', 'failure')
 
     def stats(self):
         get = self.redis.hgetall
