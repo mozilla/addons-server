@@ -3504,6 +3504,11 @@ input.ui-autocomplete-loading {
     padding-left: 50px;
 }
 
+#contribute-box {
+    position: fixed;
+    left: 50%;
+}
+
 #contribute-box .error {
     padding: 10px 0px 10px 50px;
 }
