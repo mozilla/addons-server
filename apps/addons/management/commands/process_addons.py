@@ -8,8 +8,6 @@ from addons.tasks import fix_get_satisfaction
 from amo.utils import chunked
 from devhub.tasks import flag_binary
 
-from celery.messaging import establish_connection
-
 tasks = {
     'flag_binary': {'method': flag_binary, 'qs': []},
     'fix_get_satisfaction': {
@@ -37,6 +35,5 @@ class Command(BaseCommand):
         pks = (Addon.objects.filter(*task['qs'])
                             .values_list('pk', flat=True)
                             .order_by('id'))
-        with establish_connection():
-            for chunk in chunked(pks, 100):
-                task['method'].delay(chunk)
+        for chunk in chunked(pks, 100):
+            task['method'].delay(chunk)

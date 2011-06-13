@@ -7,11 +7,6 @@ from django.conf import settings
 
 import cronjobs
 import commonware.log
-from celery.messaging import establish_connection
-
-import amo.utils
-from . import tasks
-from .models import File
 
 
 log = commonware.log.getLogger('z.cron')

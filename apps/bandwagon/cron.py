@@ -5,7 +5,7 @@ from django.db import connection, transaction
 from django.db.models import Count
 
 import commonware.log
-from celery.messaging import establish_connection
+from celery.task.sets import TaskSet
 from celeryutils import task
 
 import amo
@@ -59,10 +59,9 @@ def update_collections_subscribers():
          .annotate(count=Count('collection'))
          .extra(where=['DATE(created)=%s'], params=[date.today()]))
 
-    with establish_connection() as conn:
-        for chunk in chunked(d, 1000):
-            _update_collections_subscribers.apply_async(args=[chunk],
-                                                        connection=conn)
+    ts = [_update_collections_subscribers.subtask(args=[chunk])
+          for chunk in chunked(d, 1000)]
+    TaskSet(ts).apply_async()
 
 
 @task(rate_limit='15/m')
@@ -85,9 +84,9 @@ def _update_collections_subscribers(data, **kw):
 def collection_meta():
     from . import tasks
     collections = Collection.objects.values_list('id', flat=True)
-    with establish_connection() as conn:
-        for chunk in chunked(collections, 1000):
-            tasks.cron_collection_meta.apply_async(args=chunk, connection=conn)
+    ts = [tasks.cron_collection_meta.subtask(args=chunk)
+          for chunk in chunked(collections, 1000)]
+    TaskSet(ts).apply_async()
 
 
 @cronjobs.register
@@ -104,14 +103,13 @@ def update_collections_votes():
             .filter(vote=-1)
             .extra(where=['DATE(created)=%s'], params=[date.today()]))
 
-    with establish_connection() as conn:
-        for chunk in chunked(up, 1000):
-            _update_collections_votes.apply_async(args=[chunk, "new_votes_up"],
-                                                  connection=conn)
-        for chunk in chunked(down, 1000):
-            _update_collections_votes.apply_async(args=[chunk,
-                                                        "new_votes_down"],
-                                                  connection=conn)
+    ts = [_update_collections_votes.subtask(args=[chunk, 'new_votes_up'])
+          for chunk in chunked(up, 1000)]
+    TaskSet(ts).apply_async()
+
+    ts = [_update_collections_votes.subtask(args=[chunk, 'new_votes_down'])
+          for chunk in chunked(down, 1000)]
+    TaskSet(ts).apply_async()
 
 
 @task(rate_limit='15/m')

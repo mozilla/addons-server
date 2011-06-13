@@ -3,7 +3,7 @@ import datetime
 from django.db.models import Sum, Max
 
 import commonware.log
-from celery.messaging import establish_connection
+from celery.task.sets import TaskSet
 
 import cronjobs
 from amo.utils import chunked
@@ -22,10 +22,9 @@ def update_addons_collections_downloads():
     d = (AddonCollectionCount.objects.values('addon', 'collection')
          .annotate(sum=Sum('count')))
 
-    with establish_connection() as conn:
-        for chunk in chunked(d, 600):
-            tasks.update_addons_collections_downloads.apply_async(
-                    args=[chunk], connection=conn)
+    ts = [tasks.update_addons_collections_downloads.subtask(args=[chunk])
+          for chunk in chunked(d, 600)]
+    TaskSet(ts).apply_async()
 
 
 @cronjobs.register
@@ -35,10 +34,9 @@ def update_collections_total():
     d = (CollectionCount.objects.values('collection_id')
                                 .annotate(sum=Sum('count')))
 
-    with establish_connection() as conn:
-        for chunk in chunked(d, 1000):
-            tasks.update_collections_total.apply_async(args=[chunk],
-                                                       connection=conn)
+    ts = [tasks.update_collections_total.subtask(args=[chunk])
+          for chunk in chunked(d, 1000)]
+    TaskSet(ts).apply_async()
 
 
 @cronjobs.register
@@ -53,15 +51,14 @@ def update_global_totals(date=None):
     metrics_jobs = [dict(job=job, date=max_update) for job in
                     tasks._get_metrics_jobs(date)]
 
-    with establish_connection() as conn:
-        for kw in today_jobs + metrics_jobs:
-            tasks.update_global_totals.apply_async(kwargs=kw, connection=conn)
+    ts = [tasks.update_global_totals.subtask(kwargs=kw)
+          for kw in today_jobs + metrics_jobs]
+    TaskSet(ts).apply_async()
 
 
 @cronjobs.register
 def addon_total_contributions():
     addons = Addon.objects.values_list('id', flat=True)
-    with establish_connection() as conn:
-        for chunk in chunked(addons, 100):
-            tasks.cron_total_contributions.apply_async(args=chunk,
-                                                       connection=conn)
+    ts = [tasks.cron_total_contributions.subtask(args=chunk)
+          for chunk in chunked(addons, 100)]
+    TaskSet(ts).apply_async()

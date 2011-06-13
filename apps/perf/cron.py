@@ -4,7 +4,7 @@ from itertools import groupby
 from django.db.models import Max
 
 import cronjobs
-from celery.messaging import establish_connection
+from celery.task.sets import TaskSet
 
 from amo.utils import chunked
 from .models import Performance
@@ -26,7 +26,6 @@ def update_perf():
 
     baseline = dict((os, avg) for _, os, avg in qs.filter(addon=None))
 
-    with establish_connection() as conn:
-        for chunk in chunked(results, 25):
-            tasks.update_perf.apply_async(args=[baseline, chunk],
-                                          connection=conn)
+    ts = [tasks.update_perf.subtask(args=[baseline, chunk])
+          for chunk in chunked(results, 25)]
+    TaskSet(ts).apply_async()

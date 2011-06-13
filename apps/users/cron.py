@@ -2,7 +2,7 @@ from django.db import connections
 
 import commonware.log
 import multidb
-from celery.messaging import establish_connection
+from celery.task.sets import TaskSet
 from celeryutils import task
 
 import cronjobs
@@ -41,10 +41,9 @@ def update_user_ratings():
     d = cursor.fetchall()
     cursor.close()
 
-    with establish_connection() as conn:
-        for chunk in chunked(d, 1000):
-            _update_user_ratings.apply_async(args=[chunk],
-                                                  connection=conn)
+    ts = [_update_user_ratings.subtask(args=[chunk])
+          for chunk in chunked(d, 1000)]
+    TaskSet(ts).apply_async()
 
 
 @task(rate_limit='15/m')
