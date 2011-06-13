@@ -219,6 +219,26 @@ def send_mail(template, subject, emails, context):
                   use_blacklist=False)
 
 
+def get_position(addon):
+    version = addon.latest_version
+
+    if not version:
+        return False
+
+    q = version.current_queue
+    if not q:
+        return False
+
+    mins_query = q.objects.filter(id=addon.id)
+    if mins_query.count() > 0:
+        mins = mins_query[0].waiting_time_min
+        pos = q.objects.having('waiting_time_min >=', mins).count()
+        total = q.objects.count()
+        return dict(mins=mins, pos=pos, total=total)
+
+    return False
+
+
 class ReviewHelper:
     """
     A class that builds enough to render the form back to the user and

@@ -40,6 +40,7 @@ from addons.decorators import addon_view
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
+from editors.helpers import get_position
 from files.models import File, FileUpload
 from files.utils import parse_addon
 from translations.models import delete_translation
@@ -913,9 +914,11 @@ def version_list(request, addon_id, addon):
     qs = addon.versions.order_by('-created').transform(Version.transformer)
     versions = amo.utils.paginate(request, qs)
     new_file_form = forms.NewVersionForm(None, addon=addon)
+
     data = {'addon': addon,
             'versions': versions,
             'new_file_form': new_file_form,
+            'position': get_position(addon),
             'timestamp': int(time.time())}
     return jingo.render(request, 'devhub/versions/list.html', data)
 

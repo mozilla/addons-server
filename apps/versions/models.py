@@ -151,6 +151,22 @@ class Version(amo.models.ModelBase):
         amo.log(amo.LOG.DELETE_VERSION, self.addon, str(self.version))
         super(Version, self).delete()
 
+    @property
+    def current_queue(self):
+        """Return the current queue, or None if not in a queue."""
+        from editors.models import (ViewPendingQueue, ViewFullReviewQueue,
+                                    ViewPreliminaryQueue)
+
+        if self.addon.status in [amo.STATUS_NOMINATED,
+                                 amo.STATUS_LITE_AND_NOMINATED]:
+            return ViewFullReviewQueue
+        elif self.addon.status == amo.STATUS_PUBLIC:
+            return ViewPendingQueue
+        elif self.addon.status in [amo.STATUS_LITE, amo.STATUS_UNREVIEWED]:
+            return ViewPreliminaryQueue
+
+        return None
+
     @amo.cached_property(writable=True)
     def all_activity(self):
         from devhub.models import VersionLog  # yucky

@@ -2702,6 +2702,50 @@ class UploadTest(BaseUploadTest, test_utils.TestCase):
         assert self.client.login(username='del@icio.us', password='password')
 
 
+class TestQueuePosition(UploadTest):
+    fixtures = ['base/apps', 'base/users',
+                'base/addon_3615', 'base/platforms']
+
+    def setUp(self):
+        super(TestQueuePosition, self).setUp()
+
+        self.url = reverse('devhub.versions.add_file',
+                           args=[self.addon.slug, self.version.id])
+        self.edit_url = reverse('devhub.versions.edit',
+                                args=[self.addon.slug, self.version.id])
+        files = self.version.files.all()[0]
+        files.platform_id = amo.PLATFORM_LINUX.id
+        files.save()
+
+    def test_not_in_queue(self):
+        r = self.client.get(reverse('devhub.versions', args=[self.addon.slug]))
+
+        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        eq_(pq(r.content)('.version-status-actions .dark').length, 0)
+
+    def test_in_queue(self):
+        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_NOMINATED),
+                    (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED),
+                    (amo.STATUS_LITE, amo.STATUS_UNREVIEWED)]
+
+        for addon_status in statuses:
+            self.addon.status = addon_status[0]
+            self.addon.save()
+
+            file = self.addon.latest_version.files.all()[0]
+            file.status = addon_status[1]
+            file.save()
+
+            r = self.client.get(reverse('devhub.versions',
+                                        args=[self.addon.slug]))
+            doc = pq(r.content)
+
+            span = doc('.version-status-actions .dark')
+
+            eq_(span.length, 1)
+            assert "Queue Position: 1 of 1" in span.text()
+
+
 class TestVersionAddFile(UploadTest):
     fixtures = ['base/apps', 'base/users',
                 'base/addon_3615', 'base/platforms']

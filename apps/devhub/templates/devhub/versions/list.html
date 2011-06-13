@@ -50,6 +50,14 @@
       {% endif %}
 
       <div class="version-status-actions item-actions">
+        {% if position %}
+          <span class="dark" title="{{ _('Queues are not reviewed strictly in order.') }}">
+            {% trans pos=position['pos'], total=position['total'] %}
+            Queue Position: {{ pos }} of {{ total }}
+            {% endtrans %}
+            &middot;
+          </span>
+        {% endif %}
         {% if check_addon_ownership(request, addon, dev=True) %}
           {% set req = {amo.STATUS_PUBLIC: _('Request Full Review'),
                         amo.STATUS_LITE: _('Request Preliminary Review')} %}

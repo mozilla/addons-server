@@ -705,6 +705,9 @@ form .char-count b {
 .item-actions a {
     color: #aaa;
 }
+.item-actions .dark {
+    color: #444;
+}
 #dashboard .item:hover .item-actions {
     color: #555;
 }

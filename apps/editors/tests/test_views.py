@@ -20,6 +20,7 @@ from addons.models import Addon, AddonUser
 from applications.models import Application
 from devhub.models import ActivityLog
 from editors.models import EditorSubscription, EventLog
+from editors.helpers import get_position
 from files.models import Platform, File
 import reviews
 from reviews.models import Review, ReviewFlag
@@ -430,6 +431,11 @@ class QueueTest(EditorTest):
         a = create_addon_file(*args, **kw)
         self.versions[unicode(a['addon'].name)] = a['version']
 
+    def get_queue(self, version_name):
+        addon_id = self.versions[version_name].addon.id
+        version = Addon.objects.get(pk=addon_id).latest_version
+        eq_(version.current_queue.objects.filter(id=addon_id).count(), 1)
+
 
 class TestQueueBasics(QueueTest):
 
@@ -688,6 +694,10 @@ class TestPendingQueue(QueueTest):
         eq_(list_items.eq(0).find('a').text(), "Editor Tools")
         eq_(list_items.eq(1).text(), "Pending Updates")
 
+    def test_get_queue(self):
+        self.get_queue(u'Pending One')
+        self.get_queue(u'Pending Two')
+
 
 class TestNominatedQueue(QueueTest):
 
@@ -743,6 +753,10 @@ class TestNominatedQueue(QueueTest):
         eq_(doc('.tabnav li a:eq(0)').attr('href'),
             reverse('editors.queue_nominated'))
 
+    def test_get_queue(self):
+        self.get_queue(u'Nominated One')
+        self.get_queue(u'Nominated Two')
+
 
 class TestPreliminaryQueue(QueueTest):
 
@@ -777,6 +791,10 @@ class TestPreliminaryQueue(QueueTest):
 
         eq_(list_items.eq(0).find('a').text(), "Editor Tools")
         eq_(list_items.eq(1).text(), "Preliminary Reviews")
+
+    def test_get_queue(self):
+        self.get_queue(u'Prelim One')
+        self.get_queue(u'Prelim Two')
 
 
 class TestModeratedQueue(QueueTest):
