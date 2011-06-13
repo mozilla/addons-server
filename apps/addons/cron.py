@@ -106,12 +106,9 @@ def _update_addons_current_version(data, **kw):
 def update_addon_average_daily_users():
     """Update add-ons ADU totals."""
     cursor = connections[multidb.get_slave()].cursor()
-    # We need to use SQL for this until
-    # http://code.djangoproject.com/ticket/11003 is resolved
     q = """SELECT
                addon_id, AVG(`count`)
            FROM update_counts
-           USE KEY (`addon_and_count`)
            WHERE `date` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
            GROUP BY addon_id
            ORDER BY addon_id"""
