@@ -29,6 +29,7 @@ from amo.decorators import login_required, json_view, post_required
 from amo.urlresolvers import reverse
 from amo.utils import chunked, sorted_groupby
 from addons.models import Addon
+from addons.utils import ReverseNameLookup
 from files.models import Approval, File
 from versions.models import Version
 
@@ -348,3 +349,18 @@ def celery(request):
     ctx = dict(pending=pending, failures=failures, totals=totals,
                now=datetime.now())
     return jingo.render(request, 'zadmin/celery.html', ctx)
+
+
+@admin.site.admin_view
+def addon_name_blocklist(request):
+    rn = ReverseNameLookup()
+    addon = None
+    if request.method == 'POST':
+        rn.delete(rn.get(request.GET['addon']))
+    if request.GET.get('addon'):
+        id = rn.get(request.GET.get('addon'))
+        if id:
+            qs = Addon.objects.filter(id=id)
+            addon = qs[0] if qs else None
+    return jingo.render(request, 'zadmin/addon-name-blocklist.html',
+                        dict(rn=rn, addon=addon))

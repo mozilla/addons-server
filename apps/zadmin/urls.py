@@ -34,6 +34,8 @@ urlpatterns = patterns('',
     url('^elastic$', views.elastic, name='zadmin.elastic'),
     url('^mail$', views.mail, name='zadmin.mail'),
     url('^celery$', views.celery, name='zadmin.celery'),
+    url('^addon-name-blocklist$', views.addon_name_blocklist,
+        name='zadmin.addon-name-blocklist'),
 
     # The Django admin.
     url('^models/', include(admin.site.urls)),
