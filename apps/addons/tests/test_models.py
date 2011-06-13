@@ -14,6 +14,8 @@ from nose.tools import eq_, assert_not_equal
 import test_utils
 
 import amo
+import amo.tests
+import addons.search
 from amo import set_user
 from amo.helpers import absolutify
 from amo.signals import _connect, _disconnect
@@ -1358,3 +1360,54 @@ class TestAddonWatchDisabled(test_utils.TestCase):
         self.addon.update(status=amo.STATUS_PUBLIC)
         assert mock.unhide_disabled_file.called
         assert not mock.hide_disabled_file.called
+
+
+class TestSearchSignals(amo.tests.ESTestCase):
+    es = True
+
+    @classmethod
+    def add_addons(cls):
+        pass
+
+    @classmethod
+    def reindex(cls):
+        pass
+
+    def setUp(self):
+        super(TestSearchSignals, self).setUp()
+        addons.search.setup_mapping()
+        self.addCleanup(self.cleanup)
+
+    def cleanup(self):
+        self.es.delete_index(settings.ES_INDEX)
+
+    def test_no_addons(self):
+        eq_(Addon.search().count(), 0)
+
+    def test_create(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo')
+        self.refresh()
+        eq_(Addon.search().count(), 1)
+        eq_(Addon.search().query(name='woo')[0].id, addon.id)
+
+    def test_update(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo')
+        self.refresh()
+        eq_(Addon.search().count(), 1)
+
+        addon.name = 'yeah'
+        addon.save()
+        self.refresh()
+
+        eq_(Addon.search().count(), 1)
+        eq_(Addon.search().query(name='woo').count(), 0)
+        eq_(Addon.search().query(name='yeah')[0].id, addon.id)
+
+    def test_delete(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo')
+        self.refresh()
+        eq_(Addon.search().count(), 1)
+
+        addon.delete('woo')
+        self.refresh()
+        eq_(Addon.search().count(), 0)

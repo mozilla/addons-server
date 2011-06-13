@@ -15,12 +15,14 @@ urlpatterns = patterns('',
 
     url('^extensions/(?:(?P<category>[^/]+)/)?$', views.extensions,
         name='browse.extensions'),
+    url('^es/extensions/(?:(?P<category>[^/]+)/)?$', views.es_extensions,
+        name='browse.es.extensions'),
 
     url('^extensions/(?P<category>[^/]+)/featured$',
         views.creatured, name='browse.creatured'),
 
-    url('^extensions/(?:(?P<category_name>[^/]+)/)?format:rss$', CategoriesRss(),
-        name='browse.extensions.rss'),
+    url('^extensions/(?:(?P<category_name>[^/]+)/)?format:rss$',
+        CategoriesRss(), name='browse.extensions.rss'),
 
     url('^personas/(?P<category>[^ /]+)?$', views.personas,
         name='browse.personas'),

@@ -342,9 +342,18 @@ class Collection(CollectionBase, amo.models.ModelBase):
     def post_save(sender, instance, **kwargs):
         from . import tasks
         tasks.collection_meta.delay(instance.id, using='default')
+        tasks.index_collections.delay([instance.id])
+
+    @staticmethod
+    def post_delete(sender, instance, **kwargs):
+        from . import tasks
+        tasks.unindex_collections.delay([instance.id])
 
 
-models.signals.post_save.connect(Collection.post_save, sender=Collection)
+models.signals.post_save.connect(Collection.post_save, sender=Collection,
+                                 dispatch_uid='coll.post_save')
+models.signals.post_delete.connect(Collection.post_delete, sender=Collection,
+                                   dispatch_uid='coll.post_delete')
 
 
 class CollectionAddon(amo.models.ModelBase):

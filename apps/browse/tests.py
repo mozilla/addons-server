@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-import datetime
-from datetime import timedelta
+from datetime import datetime, timedelta
 import re
 from urlparse import urlparse
 
@@ -15,17 +14,86 @@ from pyquery import PyQuery as pq
 import test_utils
 
 import amo
+import amo.tests
 from amo.urlresolvers import reverse
 from amo.helpers import urlparams
 from addons.tests.test_views import TestMobile
 from addons.models import (Addon, AddonCategory, Category, AppSupport, Feature,
                            Persona)
-from applications.models import Application
+from applications.models import Application, AppVersion
 from browse import views, feeds
 from browse.views import locale_display_name
 from translations.models import Translation
 from translations.query import order_by_translation
 from versions.models import Version
+
+
+class TestExtensions(amo.tests.ESTestCase):
+    es = True
+
+    def setUp(self):
+        super(TestExtensions, self).setUp()
+        self.url = reverse('browse.es.extensions')
+
+    def test_default_sort(self):
+        r = self.client.get(self.url)
+        eq_(r.context['sorting'], 'popular')
+
+    def test_name_sort(self):
+        r = self.client.get(urlparams(self.url, sort='name'))
+        addons = r.context['addons'].object_list
+        assert list(addons)
+        eq_(list(addons), sorted(addons, key=lambda x: x.name))
+
+    def test_updated_sort(self):
+        r = self.client.get(urlparams(self.url, sort='updated'))
+        addons = r.context['addons'].object_list
+        assert list(addons)
+        eq_(list(addons),
+            sorted(addons, key=lambda x: x.last_updated, reverse=True))
+
+    def test_created_sort(self):
+        r = self.client.get(urlparams(self.url, sort='created'))
+        addons = r.context['addons'].object_list
+        assert list(addons)
+        eq_(list(addons),
+            sorted(addons, key=lambda x: x.created, reverse=True))
+
+    def test_popular_sort(self):
+        r = self.client.get(urlparams(self.url, sort='popular'))
+        addons = r.context['addons'].object_list
+        assert list(addons)
+        eq_(list(addons),
+            sorted(addons, key=lambda x: x.weekly_downloads, reverse=True))
+
+    def test_rating_sort(self):
+        r = self.client.get(urlparams(self.url, sort='rating'))
+        addons = r.context['addons'].object_list
+        assert list(addons)
+        eq_(list(addons),
+            sorted(addons, key=lambda x: x.bayesian_rating, reverse=True))
+
+    def test_category(self):
+        # Stick one add-on in a category, make sure search finds it.
+        addon = Addon.objects.filter(status=amo.STATUS_PUBLIC,
+                                     disabled_by_user=False)[0]
+        c = Category.objects.create(application_id=amo.FIREFOX.id,
+                                    slug='alerts', type=addon.type)
+        AddonCategory.objects.create(category=c, addon=addon)
+        addon.save()
+        self.refresh()
+
+        cat_url = reverse('browse.es.extensions', args=['alerts'])
+        r = self.client.get(urlparams(cat_url))
+        addons = r.context['addons'].object_list
+        eq_(list(addons), [addon])
+
+    def test_invalid_sort(self):
+        r = self.client.get(urlparams(self.url, sort='wut'))
+        addons = r.context['addons'].object_list
+        assert list(addons)
+        eq_(list(addons),
+            sorted(addons, key=lambda x: x.weekly_downloads, reverse=True))
 
 
 def test_locale_display_name():
@@ -477,8 +545,8 @@ class TestFeaturedLocale(test_utils.TestCase):
         self.change_addon(another, 'en-US')
         another.feature_set.create(application_id=amo.FIREFOX.id,
                                    locale=None,
-                                   start=datetime.datetime.today(),
-                                   end=datetime.datetime.today())
+                                   start=datetime.today(),
+                                   end=datetime.today())
         eq_(Addon.featured_random(amo.FIREFOX, 'en-US').count(1003), 1)
 
 
@@ -577,8 +645,8 @@ class BaseSearchToolsTest(test_utils.TestCase):
         # Feature foxy :
         foxy = Addon.objects.get(name__localized_string='FoxyProxy Standard')
         Feature(addon=foxy, application_id=amo.FIREFOX.id,
-                start=datetime.datetime.now(),
-                end=datetime.datetime.now() + timedelta(days=30)).save()
+                start=datetime.now(),
+                end=datetime.now() + timedelta(days=30)).save()
 
         # Feature Limon Dictionary and Read It Later as a category feature:
         s = Category.objects.get(slug='search-tools')

@@ -11,11 +11,11 @@ import product_details
 from mobility.decorators import mobile_template
 from tower import ugettext_lazy as _lazy
 
-import amo.utils
+import amo.models
 from amo.models import manual_order
 from addons.models import Addon, Category, AddonCategory
 from amo.urlresolvers import reverse
-from addons.views import BaseFilter
+from addons.views import BaseFilter, ESBaseFilter
 from translations.query import order_by_translation
 
 
@@ -54,6 +54,10 @@ class AddonFilter(BaseFilter):
             ('popular', _lazy(u'Downloads')),
             ('users', _lazy(u'Users')),
             ('rating', _lazy(u'Rating')))
+
+
+class ESAddonFilter(ESBaseFilter):
+    opts = AddonFilter.opts
 
 
 def addon_listing(request, addon_types, Filter=AddonFilter, default='popular'):
@@ -165,6 +169,35 @@ def extensions(request, category=None, template=None):
                          'search_cat': '%s,0' % TYPE})
 
 
+@mobile_template('browse/{mobile/}extensions.html')
+def es_extensions(request, category=None, template=None):
+    TYPE = amo.ADDON_EXTENSION
+
+    if category is not None:
+        q = Category.objects.filter(application=request.APP.id, type=TYPE)
+        category = get_object_or_404(q, slug=category)
+
+    if ('sort' not in request.GET and not request.MOBILE
+        and category and category.count > 4):
+        return category_landing(request, category)
+
+
+    qs = (Addon.search().filter(type=TYPE, app=request.APP.id,
+                                is_disabled=False,
+                                status__in=amo.REVIEWED_STATUSES))
+    filter = ESAddonFilter(request, qs, key='sort', default='popular')
+    qs = filter.qs
+
+    if category:
+        qs = qs.filter(category=category.id)
+    addons = amo.utils.paginate(request, qs)
+
+    return jingo.render(request, template,
+                        {'category': category, 'addons': addons,
+                         'sorting': filter.field, 'sort_opts': filter.opts,
+                         'search_cat': '%s,0' % TYPE})
+
+
 class CategoryLandingFilter(BaseFilter):
 
     opts = (('featured', _lazy(u'Featured')),
@@ -191,6 +224,17 @@ def category_landing(request, category):
             .filter(categories__id=category.id))
     filter = CategoryLandingFilter(request, base, category,
                                    key='browse', default='featured')
+    return jingo.render(request, 'browse/category_landing.html',
+                        {'category': category, 'filter': filter,
+                         'search_cat': '%s,0' % category.type})
+
+
+def es_category_landing(request, category):
+    # TODO: Match CategoryLandingFilter.
+    qs = (Addon.search().filter(type=TYPE, app=request.APP.id,
+                                is_disabled=False,
+                                status__in=amo.REVIEWED_STATUSES))
+    filter = ESAddonFilter(request, qs, key='sort', default='popular')
     return jingo.render(request, 'browse/category_landing.html',
                         {'category': category, 'filter': filter,
                          'search_cat': '%s,0' % category.type})

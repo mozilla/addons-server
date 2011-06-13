@@ -99,7 +99,14 @@ def delete_preview_files(id, **kw):
 @task
 def index_addons(ids, **kw):
     es = elasticutils.get_es()
-    log.info('Indexing addon %s-%s.' % (ids[0], ids[-1]))
+    log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
     for addon in Addon.objects.filter(id__in=ids):
         Addon.index(search.extract(addon), bulk=True, id=addon.id)
     es.flush_bulk(forced=True)
+
+
+@task
+def unindex_addons(ids, **kw):
+    for addon in ids:
+        log.info('Removing addon [%s] from search index.' % addon)
+        Addon.unindex(addon)

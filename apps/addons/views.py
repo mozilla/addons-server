@@ -350,6 +350,22 @@ class BaseFilter(object):
         return order_by_translation(Addon.objects.all(), 'name')
 
 
+class ESBaseFilter(BaseFilter):
+    """BaseFilter that uses elasticsearch."""
+
+    def __init__(self, request, base, key, default):
+        super(ESBaseFilter, self).__init__(request, base, key, default)
+
+    def filter(self, field):
+        sorts = {'name': 'name',
+                 'created': '-created',
+                 'updated': '-last_updated',
+                 'popular': '-weekly_downloads',
+                 'users': '-average_daily_users',
+                 'rating': '-bayesian_rating'}
+        return self.base_queryset.order_by(sorts[field])
+
+
 class HomepageFilter(BaseFilter):
     opts = (('featured', _lazy(u'Featured')),
             ('popular', _lazy(u'Popular')),
@@ -396,18 +412,20 @@ def home(request):
 
 def impala_home(request):
     # Add-ons.
-    base = Addon.objects.listed(request.APP).filter(type=amo.ADDON_EXTENSION)
-    featured_ids = Addon.featured_random(request.APP, request.LANG)
+    APP = request.APP
+    base = Addon.search().filter(app=APP.id, is_disabled=False,
+                                 status=amo.STATUS_PUBLIC)
+    ext = base.filter(type=amo.ADDON_EXTENSION)
+    feature = dict(featured=APP.id, featured_locale={request.LANG: APP.id})
 
     # Collections.
-    collections = Collection.objects.filter(listed=True,
-                                            application=request.APP.id,
+    collections = Collection.objects.filter(listed=True, application=APP.id,
                                             type=amo.COLLECTION_FEATURED)
-    featured = base.filter(id__in=featured_ids)[:18]
-    popular = base.order_by('-average_daily_users')[:10]
-    hotness = base.order_by('-hotness')[:18]
-    personas = (Addon.objects.listed(request.APP)
-                .filter(type=amo.ADDON_PERSONA, id__in=featured_ids))[:18]
+    # TODO: float locale-specific to the top.
+    featured = ext.filter_or(**feature)[:18]
+    popular = ext.order_by('-average_daily_users')[:10]
+    hotness = ext.order_by('-hotness')[:18]
+    personas = base.filter(type=amo.ADDON_PERSONA).filter_or(**feature)[:18]
 
     return jingo.render(request, 'addons/impala/home.html',
                         {'popular': popular, 'featured': featured,
