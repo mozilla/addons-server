@@ -545,3 +545,16 @@ class RecommendedCollection(Collection):
                 d[addon] += score
         addons = sorted(d.items(), key=lambda x: x[1], reverse=True)
         return [addon for addon, score in addons if addon not in addon_ids]
+
+
+class FeaturedCollection(amo.models.ModelBase):
+    application = models.ForeignKey(Application)
+    collection = models.ForeignKey(Collection)
+    locale = models.CharField(max_length=10, default='', blank=True, null=True)
+
+    class Meta:
+        db_table = 'featured_collections'
+
+    def __unicode__(self):
+        return u'%s (%s: %s)' % (self.collection, self.application,
+                                 self.locale)

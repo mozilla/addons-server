@@ -33,11 +33,12 @@ from amo.urlresolvers import reverse
 from amo.utils import chunked, sorted_groupby
 from addons.models import Addon
 from addons.utils import ReverseNameLookup
+from bandwagon.models import Collection
 from files.models import Approval, File
 from versions.models import Version
 
 from . import tasks
-from .forms import BulkValidationForm, NotifyForm
+from .forms import BulkValidationForm, NotifyForm, FeaturedCollectionFormSet
 from .models import ValidationJob, EmailPreviewTopic, Config
 
 log = commonware.log.getLogger('z.zadmin')
@@ -313,6 +314,51 @@ def jetpack(request):
     return jingo.render(request, 'zadmin/jetpack.html',
                         dict(cfg=cfg, jetpacks=jetpacks,
                              upgrader=upgrader, by_version=by_version))
+
+
+@login_required
+@json_view
+def es_collections_json(request):
+    app = request.GET.get('app', '')
+    q = request.GET.get('q', '')
+    qs = Collection.search()
+    try:
+        qs = qs.query(id__startswith=int(q))
+    except ValueError:
+        qs = qs.query(name__startswith=q)
+    try:
+        qs = qs.filter(app=int(app))
+    except ValueError:
+        pass
+    data = []
+    for c in qs[:7]:
+        data.append({'id': c.id,
+                     'name': unicode(c.name),
+                     'all_personas': c.all_personas,
+                     'url': c.get_url_path()})
+    return data
+
+
+@post_required
+@admin.site.admin_view
+def featured_collection(request):
+    try:
+        pk = int(request.POST.get('collection', 0))
+    except ValueError:
+        pk = 0
+    c = get_object_or_404(Collection, pk=pk)
+    return jingo.render(request, 'zadmin/featured_collection.html',
+                        dict(collection=c))
+
+
+@admin.site.admin_view
+def features(request):
+    form = FeaturedCollectionFormSet(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        form.save(commit=False)
+        messages.success(request, 'Changes successfully saved.')
+        return redirect('zadmin.features')
+    return jingo.render(request, 'zadmin/features.html', dict(form=form))
 
 
 @admin.site.admin_view

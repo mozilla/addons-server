@@ -3,14 +3,18 @@ import re
 
 from django import forms
 from django.conf import settings
+from django.forms.models import modelformset_factory
 from django.template import Context, Template, TemplateSyntaxError
 
 import happyforms
 from tower import ugettext_lazy as _lazy
+from quieter_formset.formset import BaseModelFormSet
 
 import amo
+import product_details
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
+from bandwagon.models import Collection, FeaturedCollection
 from zadmin.models import ValidationJob
 
 
@@ -107,3 +111,50 @@ class NotifyForm(happyforms.Form):
 
     def clean_subject(self):
         return self.check_template(self.cleaned_data['subject'])
+
+
+class FeaturedCollectionForm(happyforms.ModelForm):
+    LOCALES = (('', u'(Default Locale)'),) + tuple(
+        (i, product_details.languages[i]['native'])
+        for i in settings.AMO_LANGUAGES)
+
+    application = forms.ModelChoiceField(Application.objects.all())
+    collection = forms.CharField(widget=forms.HiddenInput)
+    locale = forms.ChoiceField(choices=LOCALES, required=False)
+
+    class Meta:
+        model = FeaturedCollection
+        fields = ('application', 'locale')
+
+    def clean_collection(self):
+        application = self.cleaned_data.get('application', None)
+        collection = self.cleaned_data.get('collection', None)
+        if not Collection.objects.filter(id=collection,
+                                         application=application).exists():
+            raise forms.ValidationError(
+                u'Invalid collection for this application.')
+        return collection
+
+    def save(self, commit=False):
+        collection = self.cleaned_data['collection']
+        f = super(FeaturedCollectionForm, self).save(commit=commit)
+        f.collection = Collection.objects.get(id=collection)
+        f.save()
+        return f
+
+
+class BaseFeaturedCollectionFormSet(BaseModelFormSet):
+
+    def __init__(self, *args, **kw):
+        super(BaseFeaturedCollectionFormSet, self).__init__(*args, **kw)
+        for form in self.initial_forms:
+            try:
+                form.initial['collection'] = (FeaturedCollection.objects
+                    .get(id=form.instance.id).collection.id)
+            except (FeaturedCollection.DoesNotExist, Collection.DoesNotExist):
+                form.initial['collection'] = None
+
+
+FeaturedCollectionFormSet = modelformset_factory(FeaturedCollection,
+    form=FeaturedCollectionForm, formset=BaseFeaturedCollectionFormSet,
+    can_delete=True, extra=0)

@@ -16,6 +16,7 @@ class ES(object):
         self.in_ = {}
         self.or_ = {}
         self.queries = {}
+        self.prefixes = {}
         self.fields = ['id']
         self.ordering = []
         self.start = 0
@@ -28,6 +29,7 @@ class ES(object):
         new.in_ = dict(self.in_)
         new.or_ = list(self.or_)
         new.queries = dict(self.queries)
+        new.prefixes = dict(self.prefixes)
         new.fields = list(self.fields)
         new.ordering = list(self.ordering)
         new.start = self.start
@@ -50,7 +52,11 @@ class ES(object):
 
     def query(self, **kw):
         new = self._clone()
-        new.queries.update(kw)
+        for key, value in kw.items():
+            if key.endswith('__startswith'):
+                new.prefixes[key.rstrip('__startswith')] = value
+            else:
+                new.queries[key] = value
         return new
 
     def filter(self, **kw):
@@ -89,6 +95,8 @@ class ES(object):
         qs = {}
         if self.queries:
             qs['query'] = {'term': self.queries}
+        if self.prefixes:
+            qs.setdefault('query', {}).update({'prefix': self.prefixes})
 
         if len(self.filters) + len(self.in_) + len(self.or_) > 1:
             qs['filter'] = {'and': []}
