@@ -10,6 +10,12 @@
       <strong>Builder and SDK:</strong> Create Add-ons Quickly and Easily
       {% endtrans %}
     </h2>
+    <div class="builder-videos">
+      <a href="http://people.mozilla.org/~clouserw/public/blog/amo-2011-development.ogv" rel="video-lightbox">
+        <img src="{{ media('img/developers/jetpack_video_1.jpg') }}" alt="{{ _('Video 1') }}"></a>
+      <a href="http://people.mozilla.org/~clouserw/public/blog/amo-2011-development.ogv" rel="video-lightbox">
+        <img src="{{ media('img/developers/jetpack_video_2.jpg') }}" alt="{{ _('Video 2') }}"></a>
+    </div>
     <p>
     {% trans %}
       Add-ons empower millions of Firefox users to personalize their browser's form and function.
@@ -22,37 +28,40 @@
 </div>
 
 <h2 class="section">{{ _('Choose Your Build Environment') }}</h2>
-<div class='cols'>
-  <div class='col-2'>
-    <div class='island jetpack-builder'>
-      <img src="{{ media('img/illustrations/logo-collections-100x125.png') }}">
-      <h2><a href='https://builder.addons.mozilla.org'>{{ _('Add-on Builder (Beta)') }}</a></h2>
-      <p>
-      {% trans %}
-      The Add-on Builder is an online build environment that gives you access to the Add-on SDK.
-      It offers a robust code editor with a toolset of built-in revisioning, module selection,
-      testing and build tools.  It also lets you share your add-on selectively or upload it to
-      addons.mozilla.org.
-      {% endtrans %}
-      </p>
-      <a href='https://builder.addons.mozilla.org' class='button add'>{{ _('Try the Builder Now') }}</a>
+<div class='equal'>
+  <div class='cols'>
+    <div class='col-2 island'>
+      <div class='jetpack-builder'>
+        <img src="{{ media('img/illustrations/logo-collections-100x125.png') }}">
+        <h2><a href='https://builder.addons.mozilla.org'>{{ _('Add-on Builder (Beta)') }}</a></h2>
+        <p>
+        {% trans %}
+        The Add-on Builder is an online build environment that gives you access to the Add-on SDK.
+        It offers a robust code editor with a toolset of built-in revisioning, module selection,
+        testing and build tools.  It also lets you share your add-on selectively or upload it to
+        addons.mozilla.org.
+        {% endtrans %}
+        </p>
+        <a href='https://builder.addons.mozilla.org' class='button add'>{{ _('Try the Builder Now') }}</a>
+      </div>
     </div>
-  </div>
-  <div class='col-2'>
-    <div class='island jetpack-sdk'>
-      <img src="{{ media('img/developers/command.png') }}">
-      <h2><a href='https://ftp.mozilla.org/pub/mozilla.org/labs/jetpack/jetpack-sdk-latest.zip'>
-        {{ _('Add-on SDK') }}</a></h2>
-      <p>
-      {% trans %}
-      The Add-on SDK is downloadable and lets you create add-ons using open Web technologies
-      in your own development environment through a command line interface.
-      If you're a code junkie who prefers to work with your computer rather than online,
-      this is for you.
-      {% endtrans %}
-      </p>
-      <a href='https://ftp.mozilla.org/pub/mozilla.org/labs/jetpack/jetpack-sdk-latest.zip' class='button add'>
-        {{ _('Download the Add-on SDK') }}</a>
+    <div class="col"></div>
+    <div class='col-2 island'>
+      <div class='jetpack-sdk'>
+        <img src="{{ media('img/developers/command.png') }}">
+        <h2><a href='https://ftp.mozilla.org/pub/mozilla.org/labs/jetpack/jetpack-sdk-latest.zip'>
+          {{ _('Add-on SDK') }}</a></h2>
+        <p>
+        {% trans %}
+        The Add-on SDK is downloadable and lets you create add-ons using open Web technologies
+        in your own development environment through a command line interface.
+        If you're a code junkie who prefers to work with your computer rather than online,
+        this is for you.
+        {% endtrans %}
+        </p>
+        <a href='https://ftp.mozilla.org/pub/mozilla.org/labs/jetpack/jetpack-sdk-latest.zip' class='button add'>
+          {{ _('Download the Add-on SDK') }}</a>
+      </div>
     </div>
   </div>
 </div>

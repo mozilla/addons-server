@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     // Edit Add-on
     if($("#edit-addon").length){
         initEditAddon();
@@ -86,6 +85,22 @@ $(document).ready(function() {
         if (window.location.hash === '#version-upload') {
             $modal.render();
         }
+    }
+
+    // Jetpack
+    if($('#jetpack').exists()) {
+        $('a[rel=video-lightbox]').click(_pd(function() {
+            var overlay = $('<div>', {id:'jetpack-overlay'}),
+                video = $('<video>', {'src': $(this).attr('href'), controls: 'controls',
+                                      'text': gettext('Your browser does not support the video tag')});
+            $(overlay).append(video);
+            $('body').append(overlay);
+            video[0].play();
+            $(video).click(function(e){ e.stopPropagation(); });
+            $(overlay).click(function() {
+                $(overlay).remove();
+            });
+        }));
     }
 
     $(".invisible-upload a").click(_pd(function() {}));

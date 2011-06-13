@@ -20,8 +20,23 @@
         }
     }
     &.jetpack {
-        div.promo-container {
-            width: 600px;
+        div.builder-videos {
+            float: right;
+            margin-bottom: 2em;
+            margin-left: 1em;
+            a {
+                background-color: #FFFFFF;
+                display: inline-block;
+                border: 1px solid #BCDCF2;
+                .border-radius(4px);
+                .box-shadow(0 2px 3px #D1E5F4);
+                margin-left: 1em;
+                opacity: 0.8;
+                padding: 6px;
+                &:hover {
+                    opacity: 1;
+                }
+            }
         }
         p {
             .p-light;
@@ -36,6 +51,26 @@
             font-size: 35px;
             display: block;
         }
+    }
+}
+
+#jetpack-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+
+    video {
+        height: 400px;
+        left: 50%;
+        margin-left: -300px;
+        margin-top: -200px;
+        position: absolute;
+        top: 50%;
+        width: 600px;
     }
 }
 
