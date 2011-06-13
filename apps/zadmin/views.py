@@ -22,6 +22,9 @@ from tower import ugettext as _
 import amo.mail
 import amo.models
 import amo.tasks
+import addons.search
+import addons.cron
+import bandwagon.cron
 import files.tasks
 import files.utils
 from amo import messages, get_user
@@ -315,10 +318,30 @@ def jetpack(request):
 @admin.site.admin_view
 def elastic(request):
     es = elasticutils.get_es()
-    return jingo.render(request, 'zadmin/elastic.html',
-                        dict(nodes=es.cluster_nodes(),
-                             health=es.cluster_health(),
-                             state=es.cluster_state()))
+    mappings = {'addons': (addons.search.setup_mapping,
+                           addons.cron.reindex_addons),
+                'collections': (None,
+                                bandwagon.cron.reindex_collections)}
+    if request.method == 'POST':
+        if request.POST.get('reset') in mappings:
+            name = request.POST['reset']
+            es.delete_mapping(site_settings.ES_INDEX, name)
+            if mappings[name][0]:
+                mappings[name][0]()
+            messages.info(request, 'Resetting %s.' % name)
+        if request.POST.get('reindex') in mappings:
+            name = request.POST['reindex']
+            mappings[name][1]()
+            messages.info(request, 'Reindexing %s.' % name)
+        return redirect('zadmin.elastic')
+
+    ctx = {
+        'nodes': es.cluster_nodes(),
+        'health': es.cluster_health(),
+        'state': es.cluster_state(),
+        'mapping': es.get_mapping(None, site_settings.ES_INDEX)
+    }
+    return jingo.render(request, 'zadmin/elastic.html', ctx)
 
 
 def start_upgrade(version):
