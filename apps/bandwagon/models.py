@@ -341,12 +341,16 @@ class Collection(CollectionBase, amo.models.ModelBase):
     @staticmethod
     def post_save(sender, instance, **kwargs):
         from . import tasks
+        if kwargs.get('raw'):
+            return
         tasks.collection_meta.delay(instance.id, using='default')
         tasks.index_collections.delay([instance.id])
 
     @staticmethod
     def post_delete(sender, instance, **kwargs):
         from . import tasks
+        if kwargs.get('raw'):
+            return
         tasks.unindex_collections.delay([instance.id])
 
 
