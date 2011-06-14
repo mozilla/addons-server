@@ -35,8 +35,10 @@ if (typeof diff_match_patch !== 'undefined') {
     };
 }
 
-/* Turn off double click on the syntax highlighter. */
-SyntaxHighlighter.defaults['quick-code'] = false;
+if (typeof SyntaxHighlighter !== 'undefined') {
+    /* Turn off double click on the syntax highlighter. */
+    SyntaxHighlighter.defaults['quick-code'] = false;
+}
 
 function bind_viewer(nodes) {
     $.each(nodes, function(x) {
