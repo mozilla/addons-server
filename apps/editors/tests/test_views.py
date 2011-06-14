@@ -1458,8 +1458,9 @@ class TestReview(ReviewBase):
 
         eq_(tds.eq(1).find('ul li').length, 1)
         eq_(tds.eq(1).find('ul li a').length, 3)
-        eq_(tds.eq(1).find('ul li .history_comment').text(), "something")
-        eq_(tds.eq(1).find('ul li em a').text(), "An editor")
+
+        eq_(tds.eq(1).find('ul li .history-comment').text(), "something")
+        eq_(tds.eq(1).find('ul li div a').text(), "An editor")
 
     def test_item_history_comment(self):
         # Add Comment
@@ -1474,7 +1475,7 @@ class TestReview(ReviewBase):
         td = doc('#review-files td').eq(1)
 
         assert td.find('strong').eq(0).text().startswith('Comment on')
-        eq_(td.find('.history_comment').text(), "hello sailor")
+        eq_(td.find('.history-comment').text(), "hello sailor")
 
     def test_files_in_item_history(self):
         data = {'action': 'public', 'operating_systems': 'win',
