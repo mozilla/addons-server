@@ -3513,14 +3513,10 @@ input.ui-autocomplete-loading {
     padding: 10px 0px 10px 50px;
 }
 
-ul.errorlist li.password-strong {
-    color: green;
+ul.errorlist li progress {
+    margin-left: 1em;
 }
 
-ul.errorlist li.password-medium {
-    color: orange;
-}
-
-ul.errorlist li.password-weak {
-    color: #c00;
+ul.errorlist li.strength {
+    color: #444444;
 }

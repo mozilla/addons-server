@@ -124,6 +124,7 @@ form .char-count:after {
 
 .devhub-form .tip,
 .addon-submission-process .tip,
+ul.errorlist li span.tip,
 a.remove,
 span.remove {
     -moz-border-radius: 20px;
