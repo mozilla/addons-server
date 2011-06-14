@@ -28,7 +28,7 @@ $.fn.truncate = function(opts) {
             }
             var chunk = Math.ceil(txt.length/2), oc=0, wid, delim;
             for (counter = 0; counter < 15; counter++) {
-                $tel.html(txt.slice(0,cutoff).join(delim)+truncText);
+                $tel.html(escape_(txt.slice(0,cutoff).join(delim)) + truncText);
                 wid = (this[scrollProp] - this[offsetProp]);
                 if (cutoff < 1) {
                     break;
