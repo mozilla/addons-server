@@ -31,18 +31,20 @@
 <div id="devhub-promo" class="fox island">
   <div class="promo-container">
     <h2>
-      {# L10n: text in the strong tag is bigger and on it's own line #}
-      {% trans %}
-      Are You Ready to <strong>Make Browsing Better?</strong>
-      {% endtrans %}
+      {{ _('Add-on Builder and SDK:') }}
+      <strong>{{ _('Firefox Add-ons Made Easy') }}</strong>
     </h2>
   <p>
   {% trans %}
-  Add-ons empower millions of Firefox users to personalize their browser's form and function. Why not show off your smarts by creating an add-on the whole world can use? Tools and tutorials you find here make it simple. So take a look and put your ingenuity in motion.
+    Add-ons let millions of Firefox users enhance and customize their browsing
+    experience. If you're a Web developer and know HTML, JavaScript and CSS, you
+    already have what it takes to make great add-ons with Add-on Builder (Beta)
+    and the Add-on SDK. What's more, add-ons built with these tools are
+    restartless by default.
   {% endtrans %}
   </p>
   <p>
-    <a href="{{ url('devhub.submit.1') }}" class="button prominent add">{{ _('Start Making Add-ons') }}</a>
+    <a href="{{ url('devhub.builder') }}" class="button prominent add">{{ _('Start Making Add-ons') }}</a>
   </p>
   </div>
 </div>
