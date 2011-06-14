@@ -317,6 +317,7 @@ def jetpack(request):
 
 @admin.site.admin_view
 def elastic(request):
+    INDEX = site_settings.ES_INDEX
     es = elasticutils.get_es()
     mappings = {'addons': (addons.search.setup_mapping,
                            addons.cron.reindex_addons),
@@ -325,7 +326,7 @@ def elastic(request):
     if request.method == 'POST':
         if request.POST.get('reset') in mappings:
             name = request.POST['reset']
-            es.delete_mapping(site_settings.ES_INDEX, name)
+            es.delete_mapping(INDEX, name)
             if mappings[name][0]:
                 mappings[name][0]()
             messages.info(request, 'Resetting %s.' % name)
@@ -339,7 +340,7 @@ def elastic(request):
         'nodes': es.cluster_nodes(),
         'health': es.cluster_health(),
         'state': es.cluster_state(),
-        'mapping': es.get_mapping(None, site_settings.ES_INDEX)
+        'mapping': es.get_mapping(None, INDEX)[INDEX],
     }
     return jingo.render(request, 'zadmin/elastic.html', ctx)
 
