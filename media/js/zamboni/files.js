@@ -207,16 +207,21 @@ function bind_viewer(nodes) {
                     history.pushState({ path: $link.text() }, '', $link.attr('href') + '#top');
                 }
             }
-            $old_wrapper.load($link.attr('href').replace('/file/', '/fragment/') + ' #content-wrapper', function() {
-                $(this).children().unwrap();
-                var $new_wrapper = $('#content-wrapper');
-                self.compute($new_wrapper);
-                self.nodes.$thinking.hide();
-                $new_wrapper.slideDown();
-                if (self.hidden) {
-                    self.toggle_files('hide');
+            $old_wrapper.load($link.attr('href').replace('/file/', '/fragment/') + ' #content-wrapper',
+                function(response, status, xhr) {
+                    self.nodes.$thinking.hide();
+                    /* Cope with an error a little more nicely. */
+                    if (status != 'error') {
+                        $(this).children().unwrap();
+                        var $new_wrapper = $('#content-wrapper');
+                        self.compute($new_wrapper);
+                        $new_wrapper.slideDown();
+                        if (self.hidden) {
+                            self.toggle_files('hide');
+                        }
+                    }
                 }
-            });
+            );
         };
         this.select = function($link) {
             /* Given a node, alters the tree and then loads the content. */
