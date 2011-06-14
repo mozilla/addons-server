@@ -100,8 +100,9 @@
   <div class='col-3'>
     <h3>{{ _('Help is at Hand!') }}</h3>
     <p>
-    {% trans %}
-    Need some support building your add-on?  We have extensive documentation and
+    {% trans url_docs="https://addons.mozilla.org/en-US/developers/docs/sdk/latest/" %}
+    Need some support building your add-on?  We have
+    <a href="{{ url_docs }}">extensive documentation</a> and
     a massive developer community to make sure you're never on your own.
     {% endtrans %}
     </p>
