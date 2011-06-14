@@ -12,9 +12,11 @@
     </h2>
     <div class="builder-videos">
       <a href="http://people.mozilla.org/~clouserw/public/blog/amo-2011-development.ogv" rel="video-lightbox">
-        <img src="{{ media('img/developers/jetpack_video_1.jpg') }}" alt="{{ _('Video 1') }}"></a>
+        <img src="{{ media('img/developers/jetpack_video_1.jpg') }}" alt="{{ _('Video 1') }}">
+        <div>{{ _('Video 1') }}</div></a>
       <a href="http://people.mozilla.org/~clouserw/public/blog/amo-2011-development.ogv" rel="video-lightbox">
-        <img src="{{ media('img/developers/jetpack_video_2.jpg') }}" alt="{{ _('Video 2') }}"></a>
+        <img src="{{ media('img/developers/jetpack_video_2.jpg') }}" alt="{{ _('Video 2') }}">
+        <div>{{ _('Video 2') }}</div></a>
     </div>
     <p>
     {% trans %}
@@ -32,33 +34,39 @@
   <div class='cols'>
     <div class='col-2 island'>
       <div class='jetpack-builder'>
-        <img src="{{ media('img/illustrations/logo-collections-100x125.png') }}">
+        <img src="{{ media('img/developers/jetpack_icon_box.png') }}">
         <h2><a href='https://builder.addons.mozilla.org'>{{ _('Add-on Builder (Beta)') }}</a></h2>
         <p>
         {% trans %}
-        The Add-on Builder is an online build environment that gives you access to the Add-on SDK.
-        It offers a robust code editor with a toolset of built-in revisioning, module selection,
-        testing and build tools.  It also lets you share your add-on selectively or upload it to
-        addons.mozilla.org.
+        The Add-on Builder is a web-based development environment that provides additional functionality for
+        working with the Add-on SDK.
         {% endtrans %}
         </p>
+        <ul>
+          <li>{{ _('Feature-rich code editor') }}</li>
+          <li>{{ _('Instant testing for your add-ons') }}</li>
+          <li>{{ _('Built-in code revisioning &amp; sharing') }}</li>
+        </ul>
         <a href='https://builder.addons.mozilla.org' class='button add'>{{ _('Try the Builder Now') }}</a>
       </div>
     </div>
     <div class="col"></div>
     <div class='col-2 island'>
       <div class='jetpack-sdk'>
-        <img src="{{ media('img/developers/command.png') }}">
+        <img src="{{ media('img/developers/jetpack_icon_command.png') }}">
         <h2><a href='https://ftp.mozilla.org/pub/mozilla.org/labs/jetpack/jetpack-sdk-latest.zip'>
           {{ _('Add-on SDK') }}</a></h2>
         <p>
         {% trans %}
-        The Add-on SDK is downloadable and lets you create add-ons using open Web technologies
-        in your own development environment through a command line interface.
-        If you're a code junkie who prefers to work with your computer rather than online,
-        this is for you.
+        The Add-on SDK is set of APIs bundled with a command line utility that allows you to
+        develop add-ons with your own tool chain.
         {% endtrans %}
         </p>
+        <ul>
+          <li>{{ _('Ability to choose your own code editor') }}</li>
+          <li>{{ _('Local access to your development files') }}</li>
+          <li>{{ _('Greater control over SDK build steps') }}</li>
+        </ul>
         <a href='https://ftp.mozilla.org/pub/mozilla.org/labs/jetpack/jetpack-sdk-latest.zip' class='button add'>
           {{ _('Download the Add-on SDK') }}</a>
       </div>

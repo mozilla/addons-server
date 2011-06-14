@@ -20,23 +20,37 @@
         }
     }
     &.jetpack {
+        h2 {
+            font-style: italic;
+            strong {
+                font-weight: bold;
+            }
+        }
         div.builder-videos {
             float: right;
             margin-bottom: 2em;
             margin-left: 1em;
             a {
-                background-color: #FFFFFF;
+                text-decoration: none;
                 display: inline-block;
-                border: 1px solid #BCDCF2;
-                .border-radius(4px);
-                .box-shadow(0 2px 3px #D1E5F4);
-                margin-left: 1em;
-                opacity: 0.8;
-                padding: 6px;
-                &:hover {
-                    opacity: 1;
+                img {
+                  background-color: #FFFFFF;
+                  display: inline-block;
+                  border: 1px solid #BCDCF2;
+                  .border-radius(4px);
+                  .box-shadow(0 2px 3px #D1E5F4);
+                  margin-left: 1em;
+                  opacity: 0.8;
+                  padding: 6px;
+                }
+                &:hover img {
+                      opacity: 1;
                 }
             }
+
+          div {
+              padding: 5px 0 0 15px;
+          }
         }
         p {
             .p-light;
@@ -75,6 +89,17 @@
 }
 
 #jetpack {
+    ul {
+        color: #777;
+        font-size: 14px;
+        list-style: disc;
+        padding-bottom: 1em;
+        list-style-position: inside;
+        li {
+            padding-bottom: 5px;
+        }
+    }
+
     h2.section {
         font-family: Georgia;
         font-size: 25px;
@@ -86,7 +111,7 @@
         margin-bottom: 1em;
     }
     .island p {
-        font-size: 15px;
+        font-size: 14px;
     }
     h2 a {
         font-weight: bold;
@@ -111,12 +136,12 @@
         }
     }
     .jetpack-builder, .jetpack-sdk {
-        padding-left: 130px;
+        padding: 1em 0em 1em 100px;
         position: relative;
         img {
             position: absolute;
             top: 10px;
-            left: 10px;
+            left: 5px;
         }
     }
 }
