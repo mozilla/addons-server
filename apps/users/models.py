@@ -166,6 +166,12 @@ class UserProfile(amo.models.ModelBase):
     def is_developer(self):
         return self.addonuser_set.exists()
 
+    @amo.cached_property
+    def needs_tougher_password(user):
+        from access.acl import action_allowed_user
+        return (action_allowed_user(user, 'Editors', '%')
+                or action_allowed_user(user, 'Admin', '%'))
+
     @property
     def name(self):
         return self.display_name or self.username

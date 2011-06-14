@@ -12,7 +12,6 @@ import commonware.log
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
-from access.acl import action_allowed_user
 import amo
 from amo.utils import slug_validator
 from .models import (UserProfile, BlacklistedUsername, BlacklistedEmailDomain,
@@ -40,9 +39,7 @@ class PasswordMixin:
             return data
 
         user = getattr(self, instance, None)
-        if (user and user.pk and
-            (action_allowed_user(user, 'Editors', '%')
-             or action_allowed_user(user, 'Admin', '%'))):
+        if user and user.pk and user.needs_tougher_password:
             if not admin_re.search(data):
                 raise forms.ValidationError(_('Letters and numbers required.'))
 

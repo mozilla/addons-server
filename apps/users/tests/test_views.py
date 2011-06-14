@@ -206,11 +206,19 @@ class TestLogin(UserViewBase):
 class TestReset(UserViewBase):
     fixtures = ['base/users']
 
-    def test_reset(self):
-        user = User.objects.get(email='editor@mozilla.com').get_profile()
-        token = [int_to_base36(user.id),
-                 default_token_generator.make_token(user)]
-        res = self.client.post(reverse('users.pwreset_confirm', args=token),
+    def setUp(self):
+        user = User.objects.get(email='editor@mozilla.com')
+        self.token = [int_to_base36(user.id),
+                      default_token_generator.make_token(user)]
+
+    def test_reset_msg(self):
+        res = self.client.get(reverse('users.pwreset_confirm',
+                                       args=self.token))
+        assert 'For your account' in res.content
+
+    def test_reset_fails(self):
+        res = self.client.post(reverse('users.pwreset_confirm',
+                                       args=self.token),
                                data={'new_password1': 'spassword',
                                      'new_password2': 'spassword'})
         eq_(res.context['form'].errors['new_password1'][0],
