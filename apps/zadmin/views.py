@@ -388,3 +388,8 @@ def addon_name_blocklist(request):
             addon = qs[0] if qs else None
     return jingo.render(request, 'zadmin/addon-name-blocklist.html',
                         dict(rn=rn, addon=addon))
+
+
+@admin.site.admin_view
+def index(request):
+    return jingo.render(request, 'zadmin/index.html')
