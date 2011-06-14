@@ -90,12 +90,12 @@ class TestFileHelper(test_utils.TestCase):
             assert binary(m, f), '%s should be binary' % f
 
         filename = tempfile.mktemp()
-        for txt in ['#python', u'\0x2']:
+        for txt in ['#!/usr/bin/python', '#python', u'\0x2']:
             open(filename, 'w').write(txt)
             m, encoding = mimetypes.guess_type(filename)
             assert not binary(m, filename), '%s should not be binary' % txt
 
-        for txt in ['#!/usr/bin/python', 'MZ']:
+        for txt in ['MZ']:
             open(filename, 'w').write(txt)
             m, encoding = mimetypes.guess_type(filename)
             assert binary(m, filename), '%s should be binary' % txt

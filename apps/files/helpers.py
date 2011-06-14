@@ -21,7 +21,9 @@ from files.utils import extract_xpi, get_md5
 from validator.testcases.packagelayout import (blacklisted_extensions,
                                                blacklisted_magic_numbers)
 
-
+# Allow files with a shebang through.
+blacklisted_magic_numbers = [b for b in list(blacklisted_magic_numbers)
+                               if b != (0x23, 0x21)]
 task_log = commonware.log.getLogger('z.task')
 
 
