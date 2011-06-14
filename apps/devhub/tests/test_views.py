@@ -21,10 +21,11 @@ import test_utils
 
 import amo
 import paypal
-from amo.urlresolvers import reverse
+from amo.helpers import url as url_reverse
 from amo.tests import (formset, initial, close_to_now,
                        assert_no_validation_errors)
 from amo.tests.test_helpers import get_image_path
+from amo.urlresolvers import reverse
 from addons import cron
 from addons.forms import AddonFormBasic
 from addons.models import Addon, AddonUser, Charity, Category, AddonCategory
@@ -510,6 +511,22 @@ class TestEditPayments(test_utils.TestCase):
         addon = self.get_addon()
         eq_(addon.enable_thankyou, False)
         eq_(addon.thankyou_note, None)
+
+    def test_contribution_link(self):
+        self.test_success_foundation()
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+
+        span = doc('#status-bar').find('span')
+        eq_(span.length, 1)
+        assert span.text().startswith('Your contribution page: ')
+
+        a = span.find('a')
+        eq_(a.length, 1)
+        eq_(a.attr('href'), reverse('addons.about',
+                                    args=[self.get_addon().slug]))
+        eq_(a.text(), url_reverse('addons.about', self.get_addon().slug,
+                                  host=settings.SITE_URL))
 
     def test_enable_thankyou_no_text(self):
         d = dict(enable_thankyou='on', thankyou_note='',

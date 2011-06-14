@@ -29,8 +29,9 @@ detail_patterns = patterns('',
         name='addons.paypal'),
 
 
-    ('^about$', lambda r, addon_id: redirect('addons.installed',
-                                             addon_id, permanent=True)),
+    url('^about$', lambda r, addon_id: redirect('addons.installed',
+                                                 addon_id, permanent=True),
+                   name='addons.about'),
 
     ('^reviews/', include('reviews.urls')),
     ('^statistics/', include('stats.urls')),

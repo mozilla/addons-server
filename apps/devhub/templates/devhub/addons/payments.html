@@ -26,7 +26,16 @@
   {% set contrib = addon.takes_contributions and addon.has_full_profile() or errors %}
   {% if contrib and not errors %}
     <div id="status-bar">
-      <p>{{ _('You are currently requesting <b>contributions</b> from users')|safe }}</p>
+      <p>
+        {{ _('You are currently requesting <b>contributions</b> from users')|safe }}
+        <br>
+        <span class="light">
+          {% trans url=url('addons.about', addon.slug),
+                   url_full=url('addons.about', addon.slug, host=settings.SITE_URL) %}
+          Your contribution page: <a href="{{ url }}">{{ url_full }}</a>
+          {% endtrans %}
+        </span>
+      </p>
       <form method="post" action="{{ url('devhub.addons.payments.disable', addon.slug) }}">
         {{ csrf() }}
         <button type="submit">{{ _('Disable Contributions') }}</button>

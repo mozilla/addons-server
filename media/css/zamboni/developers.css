@@ -1011,7 +1011,9 @@ a.extra {
     float: left;
     margin: 0;
     padding: 0;
-    line-height: 22px;
+}
+#status-bar p span {
+    font-size: 0.9em;
 }
 #status-bar {
     padding: .5em 1em;
