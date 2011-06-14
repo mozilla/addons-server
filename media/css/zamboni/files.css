@@ -115,3 +115,7 @@ a.no-key {
 .diff-bar a:hover {
     text-decoration: none;
 }
+
+#tooltip {
+    max-width: 100%;
+}
