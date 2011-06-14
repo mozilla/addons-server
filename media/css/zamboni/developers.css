@@ -1860,3 +1860,22 @@ form.select-review .errorlist {
     margin: 0;
     margin-bottom: 10px;
 }
+
+.search-button {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #84C63C;
+    background-image: url("../../img/icons/go-arrow.png"), -moz-linear-gradient(#84C63C, #489615);
+    background-origin: padding-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    border: 0 none;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset;
+    cursor: pointer;
+    float: right;
+    height: 30px;
+    vertical-align: bottom;
+    width: 36px;
+}
