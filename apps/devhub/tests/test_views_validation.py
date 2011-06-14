@@ -36,7 +36,6 @@ class TestUploadValidation(BaseUploadTest):
         eq_(sorted(msg['context']),
             [[u'&lt;foo/&gt;'], u'&lt;em:description&gt;...'])
 
-
     def test_date_on_upload(self):
         upload = FileUpload.objects.get(name='invalid-id-20101206.xpi')
         r = self.client.get(reverse('devhub.upload_detail',
@@ -221,6 +220,38 @@ class TestValidateFile(BaseUploadTest):
         assert_no_validation_errors(data)
         addon = Addon.objects.get(pk=self.addon.id)
         eq_(addon.binary, True)
+
+    @mock.patch('devhub.tasks.run_validator')
+    def test_linkify_validation_messages(self, v):
+        v.return_value = json.dumps({
+            "errors": 0,
+            "success": True,
+            "warnings": 1,
+            "notices": 0,
+            "message_tree": {},
+            "messages": [{
+                "context": ["<code>", None],
+                "description": [
+                    "Something something, see https://bugzilla.mozilla.org/"],
+                "column": 0,
+                "line": 1,
+                "file": "chrome/content/down.html",
+                "tier": 2,
+                "message": "Some warning",
+                "type": "warning",
+                "id": [],
+                "uid": "bb9948b604b111e09dfdc42c0301fe38"
+            }],
+            "metadata": {}
+        })
+        r = self.client.post(reverse('devhub.json_file_validation',
+                                     args=[self.addon.slug, self.file.id]),
+                             follow=True)
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        assert_no_validation_errors(data)
+        doc = pq(data['validation']['messages'][0]['description'][0])
+        eq_(doc('a').text(), 'https://bugzilla.mozilla.org/')
 
 
 class TestCompatibilityResults(test_utils.TestCase):
