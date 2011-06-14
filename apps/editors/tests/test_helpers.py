@@ -371,6 +371,13 @@ class TestReviewHelper(test_utils.TestCase):
 
         eq_(self.check_log_count(amo.LOG.REQUEST_INFORMATION.id), 1)
 
+    def test_email_no_locale(self):
+        self.setup_data(amo.STATUS_NOMINATED, ['addon_files'])
+        self.helper.handler.process_public()
+
+        eq_(len(mail.outbox), 1)
+        assert '/en-US/firefox/addon/a3615' not in mail.outbox[0].body
+
     def test_nomination_to_public_no_files(self):
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status, ['addon_files'])
