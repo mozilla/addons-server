@@ -42,6 +42,7 @@
         "pk": 6076,
         "model": "addons.addon",
         "fields": {
+            "current_version": 98485,
             "slug": "better-gmail-6076",
             "dev_agreement": 1,
             "eula": null,

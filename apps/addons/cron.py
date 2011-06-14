@@ -206,7 +206,7 @@ def update_addon_appsupport():
     has_file = (Q(status=amo.STATUS_LISTED) |
                 Q(versions__files__status__in=amo.VALID_STATUSES))
     good = Q(has_app, has_file) | Q(type=amo.ADDON_PERSONA)
-    ids = (Addon.objects.valid().no_cache().distinct()
+    ids = (Addon.objects.valid().distinct()
            .filter(newish, good).values_list('id', flat=True))
 
     ts = [_update_appsupport.subtask(args=[chunk])
