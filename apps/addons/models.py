@@ -889,7 +889,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         qs.update(localized_string=None, localized_string_clean=None)
 
 
-@receiver(dbsignals.post_save, sender=Addon)
+@receiver(dbsignals.post_save, sender=Addon,
+          dispatch_uid='addons.update.name.table')
 def update_name_table(sender, **kw):
     from . import cron
     addon = kw['instance']
@@ -897,7 +898,8 @@ def update_name_table(sender, **kw):
                                           clear=True)
 
 
-@receiver(dbsignals.pre_delete, sender=Addon)
+@receiver(dbsignals.pre_delete, sender=Addon,
+          dispatch_uid='addons.clear.name.table')
 def clear_name_table(sender, **kw):
     addon = kw['instance']
     ReverseNameLookup().delete(addon.id)
@@ -909,7 +911,8 @@ def version_changed(sender, **kw):
     tasks.version_changed.delay(sender.id)
 
 
-@receiver(dbsignals.post_save, sender=Addon, dispatch_uid='addon.search.index')
+@receiver(dbsignals.post_save, sender=Addon,
+          dispatch_uid='addons.search.index')
 def update_search_index(sender, instance, **kw):
     from . import tasks
     if not kw.get('raw'):
@@ -917,7 +920,7 @@ def update_search_index(sender, instance, **kw):
 
 
 @receiver(dbsignals.post_delete, sender=Addon,
-          dispatch_uid='addon.search.unindex')
+          dispatch_uid='addons.search.unindex')
 def delete_search_index(sender, instance, **kw):
     from . import tasks
     if not kw.get('raw'):
