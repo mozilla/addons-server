@@ -157,11 +157,9 @@
 
 <aside class="secondary metadata c">
   <h3>{{ _('Related Categories') }}</h3>
-  {# categories and other add-ons #}
   {% with categories = addon.categories.filter(application=APP.id) %}
     {% if categories %}
       <ul>
-        {# TODO reverse URL #}
         {% for category in categories %}
         <li>
           <a href="{{ category.get_url_path() }}">
@@ -172,19 +170,16 @@
       </ul>
     {% endif %}
   {% endwith %}
-  {# /categories #}
   {{ tags_box(addon=addon, tags=tags) }}
 </aside>
 
 <section class="primary island c">
-  {# addon recommendations #}
   {% if recommendations %}
     <section>
       <h2 class="compact-bottom">{{ _('Often used with&hellip;')|safe }}</h2>
       {{ recommendations|addon_grid(cols=3) }}
     </section>
   {% endif %}
-  {# /recommendations #}
   {% if collections %}
     <section>
       <h2>{{ _('Part of these Collections') }}</h2>
@@ -222,7 +217,7 @@
       {{ version_detail(addon, version, src="addon-detail-version") }}
     </div>
   </section>
-  {# beta channel #}
+
   {% if addon.show_beta and show_actions %}
     <section id="beta-channel" class="expando">
       <h2>{{ _('Development Channel') }}<a class="toggle" href="#"><b></b></a></h2>
@@ -251,11 +246,10 @@
             <dd>{{ install_button(addon, version=addon.current_beta_version,
                                   show_warning=False) }}</dd>
           </dl>
-        </div>{# /install-beta #}
+        </div>
       </div>
     </section>
   {% endif %}
-  {# /beta #}
 </section>
 
 {% if abuse_form %}
