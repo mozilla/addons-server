@@ -137,6 +137,12 @@ class FileViewer:
             self.selected['msg'] = msg
             return ''
 
+        # Between the file data going into the cache and the file being
+        # accessed, the individual file has been removed.
+        if not os.path.exists(self.selected['full']):
+            self.selected['msg'] = _('That file no longer exists.')
+            return ''
+
         with open(self.selected['full'], 'r') as opened:
             cont = opened.read()
             codec = 'utf-16' if cont.startswith(codecs.BOM_UTF16) else 'utf-8'
@@ -180,7 +186,12 @@ class FileViewer:
         """
         if not self.is_extracted():
             return {}
-        return self._get_files()
+        # In case a cron job comes along and deletes the files
+        # mid tree building.
+        try:
+            return self._get_files()
+        except IOError:
+            return {}
 
     def truncate(self, filename, pre_length=15,
                  post_length=10, ellipsis=u'..'):

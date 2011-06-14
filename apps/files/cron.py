@@ -18,7 +18,7 @@ def cleanup_extracted_file():
     root = os.path.join(settings.TMP_PATH, 'file_viewer')
     for path in os.listdir(root):
         path = os.path.join(root, path)
-        age = time.time() - os.stat(path)[stat.ST_CTIME]
+        age = time.time() - os.stat(path)[stat.ST_ATIME]
         if (age) > (60 * 60):
             log.info('Removing extracted files: %s, %dsecs old.' % (path, age))
             shutil.rmtree(path)

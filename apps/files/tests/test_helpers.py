@@ -179,6 +179,20 @@ class TestFileHelper(test_utils.TestCase):
     def test_default(self):
         eq_(self.viewer.get_default(None), 'install.rdf')
 
+    def test_delete_mid_read(self):
+        self.viewer.extract()
+        self.viewer.select('install.js')
+        os.remove(os.path.join(self.viewer.dest, 'install.js'))
+        res = self.viewer.read_file()
+        eq_(res, '')
+        assert self.viewer.selected['msg'].startswith('That file no')
+
+    @patch('files.helpers.get_md5')
+    def test_delete_mid_tree(self, get_md5):
+        get_md5.side_effect = IOError('ow')
+        self.viewer.extract()
+        eq_({}, self.viewer.get_files())
+
 
 class TestSearchEngineHelper(test_utils.TestCase):
     fixtures = ['base/addon_4594_a9']
