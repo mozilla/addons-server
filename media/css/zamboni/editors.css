@@ -750,8 +750,15 @@ div.editor-stats-table > div.editor-stats-dark {
     font-weight: normal;
 }
 
-.history_comment {
+.history-comment {
+    white-space: pre-wrap;
+    padding: 10px;
     overflow: auto;
+}
+
+.history-comment-byline {
+    padding: 0 10px;
+    font-style: italic;
 }
 
 .review-paging {

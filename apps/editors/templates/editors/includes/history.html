@@ -1,15 +1,11 @@
 <li>
   <strong>{{ record }}</strong>
   {% if record.details %}
-  <div class="history_comment">
-    {{ record.details.comments|nl2br }}
-  </div>
+  <div class="history-comment">{{ record.details.comments }}</div>
   {% endif %}
-  <div class="light">
-    <em>
-      {% trans user = record.user|user_link, date = record.created|babel_datetime %}
-      By {{ user }} on {{ date }}
-      {% endtrans %}
-    </em>
+  <div class="history-comment-byline light">
+    {% trans user = record.user|user_link, date = record.created|babel_datetime %}
+    By {{ user }} on {{ date }}
+    {% endtrans %}
   </div>
 </li>
