@@ -513,7 +513,15 @@
             }
 
             // Convert it to binary.
-            file.dataURL = f.getAsDataURL();
+            if (typeof window.URL == 'object') {
+                file.dataURL = window.URL.createObjectURL(f);
+            } else if (typeof window.webkitURL == 'object') {
+                file.dataURL = window.webkitURL.createObjectURL(f);
+            } else if(typeof f.getAsDataURL == 'function') {
+                file.dataURL = f.getAsDataURL();
+            } else {
+                file.dataURL = "";
+            }
 
             // And we're off!
             $upload_field.trigger("upload_start", [file]);
