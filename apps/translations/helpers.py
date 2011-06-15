@@ -30,10 +30,14 @@ def locale_html(translatedfield):
 
 
 @jingo.register.filter
-def truncate(s, length=255, killwords=False, end='...'):
+def truncate(s, length=255, killwords=True, end='...'):
     """
     Wrapper for jinja's truncate that checks if the object has a
     __truncate__ attribute first.
+
+    Altering the jinja2 default of killwords=False because of
+    https://bugzilla.mozilla.org/show_bug.cgi?id=624642, which could occur
+    elsewhere.
     """
     if s is None:
         return ''
