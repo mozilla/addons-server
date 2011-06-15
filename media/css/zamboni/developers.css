@@ -1864,21 +1864,26 @@ form.select-review .errorlist {
     margin-bottom: 10px;
 }
 
-.search-button {
-    background-attachment: scroll;
-    background-clip: border-box;
-    background-color: #84C63C;
-    background-image: url("../../img/icons/go-arrow.png"), -moz-linear-gradient(#84C63C, #489615);
-    background-origin: padding-box;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: auto auto;
-    border: 0 none;
-    border-radius: 6px 6px 6px 6px;
-    box-shadow: 0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset;
-    cursor: pointer;
-    float: right;
-    height: 30px;
-    vertical-align: bottom;
-    width: 36px;
+button.search-button {
+  background: #84c63c url("../../img/icons/go-arrow.png") center no-repeat;
+  background-image: url("../../img/icons/go-arrow.png"), -moz-linear-gradient(#84c63c, #489615);
+  background-image: url("../../img/icons/go-arrow.png"), -webkit-linear-gradient(#84c63c, #489615);
+  border: 0;
+  float: right;
+  vertical-align: bottom;
+  cursor: pointer;
+  height: 30px;
+  width: 36px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  box-shadow: 0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset;
+  -webkit-box-shadow: 0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset;
+}
+
+.html-rtl button.search-button {
+  float: left;
+  -moz-transform: scalex(-1);
+  -webkit-transform: scalex(-1);
 }
