@@ -416,6 +416,7 @@ def edit_addons(request, collection, username, slug):
         form = forms.AddonsForm(request.POST)
         if form.is_valid():
             form.save(collection)
+            messages.success(request, _('Your collection has been updated.'))
             log.info(u'%s added add-ons to %s' %
                      (request.amo_user, collection.id))
 

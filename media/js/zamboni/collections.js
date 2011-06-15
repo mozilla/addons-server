@@ -748,4 +748,7 @@ $(document).ready(function () {
         }
     });
 
+    if ($('#details-edit').length && $('div.notification-box').length) {
+        $(document).scrollTop($("div.primary").position().top);
+    }
 });
