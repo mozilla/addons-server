@@ -35,7 +35,7 @@
             {% include "addons/persona_detail_table.html" %}
           </table>
 
-          <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
+          <p{{ addon.summary|locale_html }}>{{ addon.description|nl2br }}</p>
 
           {{ big_install_button(addon, show_warning=False) }}
 
