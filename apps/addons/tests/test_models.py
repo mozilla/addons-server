@@ -9,7 +9,7 @@ from django.core import mail
 from django.core.cache import cache
 from django.utils import translation
 
-from mock import patch, patch_object, Mock
+from mock import patch, Mock
 from nose.tools import eq_, assert_not_equal
 import test_utils
 
@@ -1294,13 +1294,13 @@ REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
 class TestCharity(test_utils.TestCase):
     fixtures = ['base/charity.json']
 
-    @patch_object(settings._wrapped, 'REDIRECT_URL', REDIRECT_URL)
+    @patch.object(settings._wrapped, 'REDIRECT_URL', REDIRECT_URL)
     def test_url(self):
         charity = Charity(name="a", paypal="b", url="http://foo.com")
         charity.save()
         assert charity.outgoing_url.startswith(REDIRECT_URL)
 
-    @patch_object(settings._wrapped, 'REDIRECT_URL', REDIRECT_URL)
+    @patch.object(settings._wrapped, 'REDIRECT_URL', REDIRECT_URL)
     def test_url_foundation(self):
         foundation = Charity.objects.get(pk=amo.FOUNDATION_ORG)
         assert not foundation.outgoing_url.startswith(REDIRECT_URL)

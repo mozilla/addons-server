@@ -8,7 +8,7 @@ from django.conf import settings
 from django.core import mail
 
 import jingo
-from mock import patch, patch_object
+from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
@@ -1312,7 +1312,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         eq_(response.status_code, 302)
 
-    @patch_object(settings, 'DEBUG', False)
+    @patch.object(settings, 'DEBUG', False)
     def test_not_author(self):
         AddonUser.objects.create(addon=self.addon, user=self.editor)
         response = self.client.get(self.url)
