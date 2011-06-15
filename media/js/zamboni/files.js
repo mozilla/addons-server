@@ -247,9 +247,9 @@ function bind_viewer(nodes) {
             return k;
         };
         this.toggle_wrap = function(state) {
-            /* Toggles the content wrap in the page, starts off unwrapped */
+            /* Toggles the content wrap in the page, starts off wrapped */
             this.wrapped = (state == 'wrap' || !this.wrapped);
-            $('code').toggleClass('wrap-toggle');
+            $('code').toggleClass('unwrapped');
             this.line_wrap($('#content-wrapper'));
         };
         this.toggle_files = function(state) {

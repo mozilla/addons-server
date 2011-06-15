@@ -28,14 +28,14 @@
     font-weight: normal;
     font-style: normal;
     font-size: 1em;
+    white-space: pre-wrap;
     word-wrap: break-word;
-    white-space: pre;
-    overflow-x: scroll;
+    overflow-x: hidden;
 }
 
-.syntaxhighlighter code.wrap-toggle {
-    white-space: pre-wrap;
-    overflow-x: hidden;
+.syntaxhighlighter code.unwrapped {
+    white-space: pre;
+    overflow-x: scroll;
 }
 
 .syntaxhighlighter {
