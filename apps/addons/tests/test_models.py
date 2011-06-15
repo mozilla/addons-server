@@ -275,6 +275,15 @@ class TestAddonModels(test_utils.TestCase):
 
         assert a.icon_url.endswith('icons/default-32.png')
 
+    def test_icon_url_default(self):
+        a = Addon.objects.get(pk=3615)
+        a.update(icon_type='')
+        default = 'icons/default-32.png'
+        eq_(a.icon_url.endswith(default), True)
+        eq_(a.get_icon_url(32).endswith(default), True)
+        eq_(a.get_icon_url(32, use_default=True).endswith(default), True)
+        eq_(a.get_icon_url(32, use_default=False), None)
+
     def test_thumbnail_url(self):
         """
         Test for the actual thumbnail URL if it should exist, or the no-preview

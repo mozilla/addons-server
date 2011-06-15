@@ -499,9 +499,13 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return os.path.join(settings.ADDON_ICONS_PATH,
                             '%s' % (self.id / 1000))
 
-    def get_icon_url(self, size):
+    def get_icon_url(self, size, use_default=True):
         """
-        Returns either the addon's icon url, or a default.
+        Returns either the addon's icon url.
+        If this is not a theme or persona and there is no
+        icon for the addon then if:
+            use_default is True, will return a default icon
+            use_default is False, will return None
         """
         icon_type_split = []
         if self.icon_type:
@@ -522,6 +526,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 icon = amo.ADDON_ICONS[amo.ADDON_THEME]
                 return settings.ADDON_ICON_BASE_URL + icon
             else:
+                if not use_default:
+                    return None
                 return '%s/%s-%s.png' % (settings.ADDON_ICONS_DEFAULT_URL,
                                          'default', size)
         elif icon_type_split[0] == 'icon':

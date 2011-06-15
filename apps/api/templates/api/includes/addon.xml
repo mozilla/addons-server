@@ -25,7 +25,7 @@
 
   <description>{{ addon.description|strip_html(new_api) }}</description>
 
-  <icon>{{ addon.icon_url }}</icon>
+  <icon>{{ addon.get_icon_url(32, use_default=False) }}</icon>
   <compatible_applications>
     {%- if addon.current_version -%}
     {%- for app in addon.current_version.compatible_apps.values() %}

@@ -400,6 +400,12 @@ class APITest(TestCase):
                                           lang=lang, app=app),
                                 '<featured>%s</featured>' % result)
 
+    def test_default_icon(self):
+        addon = Addon.objects.get(pk=5299)
+        addon.update(icon_type='')
+        self.assertContains(make_call('addon/5299'), '<icon></icon>')
+
+
 class ListTest(TestCase):
     """Tests the list view with various urls."""
     fixtures = ['base/apps', 'base/addon_3615', 'base/featured']
@@ -555,7 +561,6 @@ class TestGuidSearch(TestCase):
         # No addons should exist with guid koberger and the , should not
         # indicate that we are searching for null guid.
         eq_(len(doc('addon')), 0)
-
 
 
 class SearchTest(SphinxTestCase):
