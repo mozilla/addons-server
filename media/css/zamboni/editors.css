@@ -13,7 +13,7 @@
 .app-icon {
     float: left;
     margin-right: 4px;
-    background: url(../../img/developers/editors-sprite.png) no-repeat top left;
+    background: url(../../img/developers/editor-sprite.png) no-repeat top left;
     width: 16px; height: 16px;
 }
 .ed-sprite-admin-review { background-position: 0 0; }
@@ -27,7 +27,7 @@
 .ed-sprite-jetpack { background-position: 0 -629px; }
 .ed-sprite-restartless { background-position: 0 -695px; }
 .sort-icon {
-    background: url(../../img/developers/editors-sprite.png) no-repeat top left;
+    background: url(../../img/developers/editor-sprite.png) no-repeat top left;
 }
 .ed-sprite-sort-asc {
     background-position: right -321px;
