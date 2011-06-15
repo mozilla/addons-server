@@ -65,7 +65,7 @@ def test_truncate_purified_field_xss():
     t = PurifiedTranslation(localized_string=s)
     actual = jingo.env.from_string('{{ s|truncate(100) }}').render(s=t)
     eq_(actual, 'safe &lt;script&gt;alert("omg")&lt;/script&gt;')
-    actual = jingo.env.from_string('{{ s|truncate(6) }}').render(s=t)
+    actual = jingo.env.from_string('{{ s|truncate(5) }}').render(s=t)
     eq_(actual, 'safe ...')
 
 
