@@ -90,7 +90,7 @@ def get_modules(request, platform, version):
 
 def get_featured_personas(request):
     categories, filter, base, category = personas_listing(request)
-    featured = base & Addon.objects.featured(request.APP)
+    featured = base & Addon.objects.new_featured(request.APP)
     return featured[:6]
 
 

@@ -228,7 +228,9 @@ class TestUrls(test_utils.TestCase):
 
 
 class TestPane(test_utils.TestCase):
-    fixtures = ['base/apps', 'base/users']
+    fixtures = ['addons/featured', 'base/addon_3615', 'base/apps',
+                'base/collections', 'base/featured', 'base/users',
+                'bandwagon/featured_collections']
 
     def setUp(self):
         self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
@@ -256,8 +258,34 @@ class TestPane(test_utils.TestCase):
 
     def test_mission(self):
         r = self.client.get(reverse('discovery.pane.account'))
+        assert pq(r.content)('#mission')
+
+    def test_featured_addons(self):
+        addon = Addon.objects.get(id=3615)
+        r = self.client.get(self.url)
         doc = pq(r.content)
-        assert doc('#mission')
+        p = doc('#featured-addons')
+        eq_(p.find('h2').text(), 'Featured Add-ons')
+        eq_(p.find('li').attr('data-guid'), addon.guid)
+        a = p.find('a.addon-title')
+        url = reverse('discovery.addons.detail', args=[3615])
+        assert a.attr('href').endswith(url + '?discovery-featured')
+        eq_(a.attr('target'), '_self')
+        eq_(p.find('h3.vtruncate'), addon.name)
+        eq_(p.find('p.desc.vtruncate'), addon.summary)
+        eq_(p.find('img').attr('src'), addon.icon_url)
+
+    def test_featured_personas(self):
+        addon = Addon.objects.get(id=15679)
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        p = doc('#featured-personas')
+        eq_(p.find('h2').text(), 'See all Featured Personas')
+        a = p.find('a.addon-title[data-browsertheme]')
+        url = reverse('discovery.addons.detail', args=[15679])
+        assert a.attr('href').endswith(url + '?discovery-featured')
+        eq_(a.attr('target'), '_self')
+        eq_(p.find('.addon-title').text(), addon.name)
 
 
 class TestDetails(test_utils.TestCase):
@@ -272,8 +300,8 @@ class TestDetails(test_utils.TestCase):
         self._perf_threshold = settings.PERF_THRESHOLD
         settings.PERF_THRESHOLD = 25
 
-        def tearDown(self):
-            settings.PERF_THRESHOLD = self._perf_threshold
+    def tearDown(self):
+        settings.PERF_THRESHOLD = self._perf_threshold
 
     def get_addon(self):
         return Addon.objects.get(id=3615)
@@ -313,9 +341,9 @@ class TestDetails(test_utils.TestCase):
 
 
 class TestDownloadSources(test_utils.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/collections',
-                'base/featured', 'addons/featured',
-                'discovery/discoverymodules']
+    fixtures = ['addons/featured', 'bandwagon/featured_collections',
+                'base/apps', 'base/addon_3615', 'base/collections',
+                'base/featured', 'base/users', 'discovery/discoverymodules']
 
     def setUp(self):
         self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
@@ -325,18 +353,6 @@ class TestDownloadSources(test_utils.TestCase):
         doc = pq(r.content)
         urls = doc('#main-feature .collection a[href$="?src=discovery-promo"]')
         eq_(urls.length, 2)
-
-    def test_featured_addons(self):
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        urls = doc('#featured-addons li a[href$="?src=discovery-featured"]')
-        eq_(urls.length, 2)
-
-    def test_featured_personas(self):
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        assert doc('#featured-personas li a').attr('href').endswith(
-            '?src=discovery-featured')
 
     def test_detail(self):
         url = reverse('discovery.addons.detail', args=['a3615'])

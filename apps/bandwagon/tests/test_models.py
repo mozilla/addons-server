@@ -8,7 +8,8 @@ from nose.tools import eq_
 import amo
 from addons.models import Addon, AddonRecommendation
 from bandwagon.models import (Collection, CollectionUser, CollectionWatcher,
-                              SyncedCollection, RecommendedCollection)
+                              SyncedCollection, RecommendedCollection,
+                              FeaturedCollection)
 from devhub.models import ActivityLog
 from bandwagon import tasks
 from users.models import UserProfile
@@ -182,3 +183,48 @@ class TestRecommendations(test_utils.TestCase):
         recs = RecommendedCollection.build_recs([7, 3, 8])
         # 3 should not be in the list since we already have it.
         eq_(recs, [1, 2])
+
+
+class TestFeaturedCollectionManager(test_utils.TestCase):
+    fixtures = ['addons/featured', 'bandwagon/featured_collections',
+                'base/addon_3615', 'base/collections', 'base/featured']
+
+    def setUp(self):
+        self.f = (lambda **kw: sorted(FeaturedCollection.objects
+                                                        .addon_ids(**kw)))
+        self.ids = [3615, 15679]
+
+    def test_addon_ids_apps(self):
+        eq_(self.f(), self.ids)
+        eq_(self.f(app=amo.SUNBIRD), [])
+        eq_(self.f(app=amo.FIREFOX), self.ids)
+
+    def test_addon_ids_empty_locales(self):
+        """
+        Ensure that add-ons from featured collections without a locale are
+        returned when filtering by a locale that contains no featured add-ons.
+        """
+        eq_(self.f(app=amo.FIREFOX, lang='en-US'), self.ids)
+        eq_(self.f(app=amo.FIREFOX, lang='fr'), self.ids)
+
+    def test_addon_ids_default_locale(self):
+        """
+        Ensure that add-ons from featured collections are filtered correctly
+        by locale.
+        """
+        fc = FeaturedCollection.objects.get(id=1)
+        fc.update(locale='fr')  # 3615 is only in the 'fr' locale now.
+        eq_(self.f(app=amo.FIREFOX), self.ids)  # Always contains all locales.
+        eq_(self.f(app=amo.FIREFOX, lang='en-US'), [15679])
+        # This should remain unchanged, since we include add-ons (15679) from
+        # the default locale.
+        eq_(self.f(app=amo.FIREFOX, lang='fr'), self.ids)
+
+    def test_addons(self):
+        ids = (lambda **kw:
+            sorted(list(FeaturedCollection.objects.addons(**kw)
+                                          .values_list('id', flat=True))))
+        eq_(ids(), self.ids)
+        eq_(ids(app=amo.FIREFOX), self.ids)
+        eq_(ids(app=amo.FIREFOX, lang='en-US'), self.ids)
+        eq_(ids(app=amo.FIREFOX, lang='fr'), self.ids)

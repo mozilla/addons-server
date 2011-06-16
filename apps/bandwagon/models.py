@@ -547,10 +547,31 @@ class RecommendedCollection(Collection):
         return [addon for addon, score in addons if addon not in addon_ids]
 
 
+class FeaturedCollectionManager(amo.models.ManagerBase):
+
+    def addon_ids(self, app=None, lang=None):
+        """
+        Returns ids for all add-ons from all collections, optionally filtered
+        by application or language.
+        """
+        qs = self
+        if app:
+            qs = qs.filter(application__id=app.id)
+        if lang:
+            qs = qs.filter(Q(locale=lang) | Q(locale__isnull=True))
+        return list(qs.values_list('collection__addons', flat=True).distinct())
+
+    def addons(self, app=None, lang=None):
+        """Returns add-ons from filtered collections."""
+        return Addon.objects.filter(id__in=self.addon_ids(app, lang))
+
+
 class FeaturedCollection(amo.models.ModelBase):
     application = models.ForeignKey(Application)
     collection = models.ForeignKey(Collection)
-    locale = models.CharField(max_length=10, default='', blank=True, null=True)
+    locale = models.CharField(max_length=10, null=True)
+
+    objects = FeaturedCollectionManager()
 
     class Meta:
         db_table = 'featured_collections'

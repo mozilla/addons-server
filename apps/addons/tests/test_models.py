@@ -107,6 +107,20 @@ class TestAddonManager(test_utils.TestCase):
         eq_(Addon.objects.valid_and_disabled().count(), 3)
 
 
+class TestAddonManagerFeatured(test_utils.TestCase):
+    # TODO(cvan): Once we migrate the featured add-ons to featured collections
+    # we'll need to merge this with the above tests.
+    fixtures = ['addons/featured', 'bandwagon/featured_collections',
+                'base/addon_3615', 'base/collections', 'base/featured']
+
+    def test_new_featured(self):
+        f = Addon.objects.new_featured(amo.FIREFOX)
+        eq_(f.count(), 2)
+        eq_(sorted(f.values_list('id', flat=True)), [3615, 15679])
+        f = Addon.objects.new_featured(amo.SUNBIRD)
+        assert not f.exists()
+
+
 class TestAddonModels(test_utils.TestCase):
     fixtures = ['base/apps',
                 'base/featured',
@@ -1046,6 +1060,25 @@ class TestAddonModels(test_utils.TestCase):
         cats = addon.categories.filter(application=amo.FIREFOX.id)
         names = [c.name for c in cats]
         assert addon.get_category(amo.FIREFOX.id).name in names
+
+
+class TestAddonModelsFeatured(test_utils.TestCase):
+    fixtures = ['addons/featured', 'bandwagon/featured_collections',
+                'base/addon_3615', 'base/collections', 'base/featured']
+
+    def setUp(self):
+        # Addon._featuredcollection keeps an in-process cache we need to clear.
+        if hasattr(Addon, '_featuredcollection'):
+            del Addon._featuredcollection
+
+    def test_new_featured_random(self):
+        ids = [3615, 15679]
+        f = Addon.new_featured_random(amo.FIREFOX, 'en-US')
+        eq_(sorted(f), ids)
+        f = Addon.new_featured_random(amo.FIREFOX, 'fr')
+        eq_(sorted(f), ids)
+        f = Addon.new_featured_random(amo.SUNBIRD, 'en-US')
+        eq_(f, [])
 
 
 class TestBackupVersion(test_utils.TestCase):

@@ -75,6 +75,14 @@ class AddonManager(amo.models.ManagerBase):
         """
         return self.valid().filter(feature__application=app.id)
 
+    def new_featured(self, app):
+        """
+        Filter for all featured add-ons for an application in all locales.
+        """
+        from bandwagon.models import FeaturedCollection
+        ids = FeaturedCollection.objects.addon_ids(app=app)
+        return self.valid().filter(id__in=ids)
+
     def category_featured(self):
         """Get all category-featured add-ons for ``app`` in all locales."""
         return self.filter(addoncategory__feature=True)
@@ -759,6 +767,15 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         random.shuffle(no_locale)
         random.shuffle(specific_locale)
         return specific_locale + no_locale
+
+    @classmethod
+    def new_featured_random(cls, app, lang):
+        from bandwagon.models import FeaturedCollection
+        if not hasattr(cls, '_featuredcollection'):
+            cls._featuredcollection = FeaturedCollection.objects
+        ids = cls._featuredcollection.addon_ids(app=app, lang=lang)
+        random.shuffle(ids)
+        return ids
 
     def is_featured(self, app, lang):
         """is add-on globally featured for this app and language?"""
