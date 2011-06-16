@@ -1498,6 +1498,24 @@ class TestReview(ReviewBase):
         div = doc('#review-files-header').next().find('td').eq(1).find('div')
         eq_(div.text(), "This version has not been reviewed.")
 
+    def test_hide_beta(self):
+        version = self.addon.latest_version
+        file = version.files.all()[0]
+        version.pk = None
+        version.version = '0.3beta'
+        version.save()
+
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('#review-files tr.listing-header').length, 2)
+
+        file.pk = None
+        file.status = amo.STATUS_BETA
+        file.version = version
+        file.save()
+
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('#review-files tr.listing-header').length, 1)
+
     def test_listing_link(self):
         response = self.client.get(self.url)
         text = pq(response.content).find('#actions-addon li a').eq(0).text()

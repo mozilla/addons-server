@@ -165,6 +165,17 @@ class TestAddonModels(test_utils.TestCase):
         a = Addon.objects.get(pk=3723)
         eq_(a.latest_version, None)
 
+    def test_latest_version_ignore_beta(self):
+        a = Addon.objects.get(pk=3615)
+
+        v1 = Version.objects.create(addon=a, version='1.0')
+        f1 = File.objects.create(version=v1)
+        eq_(a.latest_version.id, v1.id)
+
+        v2 = Version.objects.create(addon=a, version='2.0beta')
+        f2 = File.objects.create(version=v2, status=amo.STATUS_BETA)
+        eq_(a.latest_version.id, v1.id)  # Still should be f1
+
     def test_current_beta_version(self):
         a = Addon.objects.get(pk=5299)
         eq_(a.current_beta_version.id, 50000)

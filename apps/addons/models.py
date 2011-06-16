@@ -468,14 +468,16 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def latest_version(self):
-        """Returns the absolutely newest version; status doesn't matter. """
+        """Returns the absolutely newest non-beta version. """
         if self.type == amo.ADDON_PERSONA:
             return
         if not self._latest_version:
             try:
-                self._latest_version = self.versions.latest()
+                v = (self.versions.exclude(files__status=amo.STATUS_BETA)
+                                  .latest())
+                self._latest_version = v
             except Version.DoesNotExist:
-                pass
+                self._latest_version = None
 
         return self._latest_version
 
