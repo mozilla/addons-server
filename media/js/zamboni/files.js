@@ -38,7 +38,76 @@ if (typeof diff_match_patch !== 'undefined') {
 if (typeof SyntaxHighlighter !== 'undefined') {
     /* Turn off double click on the syntax highlighter. */
     SyntaxHighlighter.defaults['quick-code'] = false;
+    SyntaxHighlighter.amo_vars = {'deletions': {}, 'additions': {}, 'is_diff': false};
+
+    SyntaxHighlighter.Highlighter.prototype.getLineNumbersHtml = function(code, lineNumbers) {
+        /* Make syntax highlighter produce line numbers with links and
+         * classes in  them. */
+        var html = '',
+            count = code.split('\n').length,
+            normal_count = 1,
+            deleted_count = 1;
+        /* The line numbers get tricky, but we set to add or delete and track
+         * those so that the diff bar will work */
+        for (var i = 0; i < count; i++) {
+            var classes = '';
+            if (SyntaxHighlighter.amo_vars.deletions['index'+i] !== undefined) {
+                classes = 'delete';
+                html += this.getLineHtml(i, i+1, format('<a id="D{0}" class="{1}" href="#D{0}"> </a>', deleted_count++, classes));
+            } else {
+                if (SyntaxHighlighter.amo_vars.additions['index'+i] !== undefined) {
+                    classes = 'add';
+                }
+                html += this.getLineHtml(i, i+1, format('<a id="L{0}" class="{1}" href="#L{0}">{0}</a>', normal_count++, classes));
+            }
+        }
+        return html;
+    };
+
+    SyntaxHighlighter.Highlighter.prototype.getLineHtml = function(lineIndex, lineNumber, code)	{
+        var classes = [
+            'original',
+            'line',
+            'number' + lineNumber,
+            'index' + lineIndex,
+            'alt' + (lineNumber % 2 === 0 ? 1 : 2).toString()
+        ];
+
+        if (this.isLineHighlighted(lineNumber)) {
+            classes.push('highlighted');
+        }
+
+        if (lineNumber === 0) {
+            classes.push('break');
+        }
+
+        /* HTML parsing with regex warning disclaimer. This lib writes out
+         * well formed lines with <code> and <a>. We want a hint
+         * of the line length without all the syntax highlighting in it. */
+        var raw = code.replace(/<.*?>/g, '').replace(/&.*?;/g, ' ');
+        if (raw.length > 80) {
+            classes.push('longline');
+        }
+
+        /* For diffs we have to do more work to make the line numbers
+         * do what we'd like. */
+        if (SyntaxHighlighter.amo_vars.is_diff) {
+            /* Spot delete alter class and add to object */
+            if (code.match(/<code class=".*?comments.*?">/)) {
+                SyntaxHighlighter.amo_vars.deletions['index'+lineIndex] = true;
+                classes.push('delete');
+            }
+
+            /* Spot add, alter class and add to object */
+            if (code.match(/<code class=".*?string.*?">/)) {
+                SyntaxHighlighter.amo_vars.additions['index'+lineIndex] = true;
+                classes.push('add');
+            }
+        }
+        return '<div class="' + classes.join(' ') + '">' + code + '</div>';
+    };
 }
+
 
 function bind_viewer(nodes) {
     $.each(nodes, function(x) {
@@ -48,6 +117,9 @@ function bind_viewer(nodes) {
         this.nodes = nodes;
         this.wrapped = true;
         this.hidden = false;
+        /* An optimisation, store line_heights here so we don't have to
+         * keep looking them up in the DOM. */
+        this.line_heights = {};
         this.top = null;
         this.last = null;
         this.fix_vertically = function($inner, $outer) {
@@ -68,49 +140,26 @@ function bind_viewer(nodes) {
             $(window).scroll(debounce(update), 200);
             update();
         };
-        this.line_wrap = function($node, deleted) {
-            /* SyntaxHighlighter doesn't produce linked line numbers or cope
-               with wrapped text producing bigger line numbers.
-               This fixes that. */
-            var line_numbers = 1,
-                deleted_line_numbers = 1;
+        this.size_line_numbers = function($node, deleted) {
+            /* We need to re-size the line numbers correctly depending upon
+               the wrapping. */
+            var self = this;
             $node.each(function(){
                 var $self = $(this),
-                    $gutter = $self.find('td.gutter');
-                    $code = $self.find('td.code');
-                $gutter.find('div.line').each(function(i){
-                    var $gutter_line = $(this),
-                        $line = $code.find('.line:nth-child(' + (i+1) +')'),
-                        height = $line.height(),
-                        del = !!$line.children('code.comments').length,
-                        link = $gutter_line.children('a');
-                    /* If there's a deleted line, don't show a line number */
-                    if (deleted && del) {
-                        $gutter_line.html($('<a>', {'href': '#D' + deleted_line_numbers,
-                                                    'name': 'D' + deleted_line_numbers,
-                                                    'class': 'delete',
-                                                    'style': 'height: ' + height + 'px',
-                                                    'text': ' '}));
-                        $line.addClass('delete');
-                        deleted_line_numbers++;
-                        return;
-                    }
-                    /* If a link already exists and the height is different
-                       alter it. */
-                    if (link.length) {
-                        if (link.height() != height) {
-                            link.css('height',  height + 'px');
-                        }
-                    } else {
-                        /* Otherwise add in a link, occurs on first pass. */
-                        var klass = $line.find('code.string').length ? 'add' : '';
-                        $gutter_line.html($('<a>', {'href': '#L' + line_numbers,
-                                                    'name': 'L' + line_numbers,
-                                                    'class': klass,
-                                                    'style': 'height: ' + height + 'px',
-                                                    'text': line_numbers}));
-                        $line.addClass(klass);
-                        line_numbers++;
+                    long_lines = $(this).find('td.code div.longline');
+                /* Use the longline hint to guess at long lines and
+                 * see what needs resizing. Then do a lookup in line_heights
+                 * to see if its different, only then do we bother looking
+                 * up the line in the DOM to alter it. */
+                $.each(long_lines, function() {
+                    var $this = $(this),
+                        link = null,
+                        height = $this.height(),
+                        k = parseInt($this.attr('class').match(/index(\d+)/)[1], 10);
+                    if (height != self.line_heights[k-1]) {
+                        link = $self.find('td.gutter div.index' + k);
+                        link.css('height',  height + 'px');
+                        self.line_heights[k-1] = height;
                     }
                 });
             });
@@ -121,9 +170,8 @@ function bind_viewer(nodes) {
 
             if ($content && !$diff.length) {
                 SyntaxHighlighter.highlight($content);
-                // Fix up the lines to be the way we want.
                 // Note SyntaxHighlighter has nuked the node and replaced it.
-                this.line_wrap(node.find('#content'), false);
+                this.size_line_numbers(node.find('#content'), false);
             }
 
             if ($diff.length) {
@@ -134,10 +182,12 @@ function bind_viewer(nodes) {
                 dmp.diff_charsToLines_(diffs, a[2]);
                 $diff.text(dmp.diff_prettyHtml(diffs)).show();
 
+                /* Reset the syntax highlighter variables. */
+                SyntaxHighlighter.amo_vars = {'deletions': {}, 'additions': {}, 'is_diff': true};
                 SyntaxHighlighter.highlight($diff);
                 // Note SyntaxHighlighter has nuked the node and replaced it.
                 $diff = node.find('#diff');
-                this.line_wrap($diff, true);
+                this.size_line_numbers($diff, true);
 
                 /* Build out the diff bar based on the line numbers. */
                 var $sb = $diff.siblings('.diff-bar').eq(0),
@@ -250,7 +300,7 @@ function bind_viewer(nodes) {
             /* Toggles the content wrap in the page, starts off wrapped */
             this.wrapped = (state == 'wrap' || !this.wrapped);
             $('code').toggleClass('unwrapped');
-            this.line_wrap($('#content-wrapper'));
+            this.size_line_numbers($('#content-wrapper'), false);
         };
         this.toggle_files = function(state) {
             this.hidden = (state == 'hide' || !this.hidden);
@@ -264,6 +314,7 @@ function bind_viewer(nodes) {
                 this.nodes.$thinking.removeClass('full');
             }
             $('#content-wrapper').toggleClass('full');
+            this.size_line_numbers($('#content-wrapper'), false);
         };
     }
 
