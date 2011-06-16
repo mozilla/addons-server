@@ -32,13 +32,13 @@ def addon_total_contributions(*addons, **kw):
         Addon.objects.filter(id=addon).update(total_contributions=total)
 
 
-@task(rate_limit='10/m')
+@task(rate_limit='2/s')
 def cron_total_contributions(*addons, **kw):
     "Rate limited version of `addon_total_contributions` suitable for cron."
     addon_total_contributions(*addons)
 
 
-@task(rate_limit='10/m')
+@task(rate_limit='2/s')
 def update_addons_collections_downloads(data, **kw):
     log.info("[%s@%s] Updating addons+collections download totals." %
                   (len(data), update_addons_collections_downloads.rate_limit))
@@ -48,7 +48,7 @@ def update_addons_collections_downloads(data, **kw):
                                 .update(downloads=var['sum']))
 
 
-@task(rate_limit='15/m')
+@task(rate_limit='2/s')
 def update_collections_total(data, **kw):
     log.info("[%s@%s] Updating collections' download totals." %
                    (len(data), update_collections_total.rate_limit))
