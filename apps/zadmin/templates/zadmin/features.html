@@ -22,7 +22,7 @@ data-featured-collection-url="{{ url('zadmin.featured_collection') }}"
   {% set app = amo.APPS_ALL.get(app_id, '') %}
   {% set collection_id = form.collection.value() %}
   {% set collection_disabled = 'disabled' if not (app_id or collection_id) and
-                                             not form.collection.errors %}
+                                             not form.collection.errors else '' %}
   <tr data-app="{{ app.id }}">
     <td class="app {{ app.short }}">
       {{ form.id }}
