@@ -161,6 +161,7 @@ class APPROVE_VERSION(_LOG):
     id = 21
     action_class = 'approve'
     format = _(u'{addon} {version} approved.')
+    short = _(u'Approved')
     keep = True
     review_email_user = True
     review_queue = True
@@ -170,6 +171,7 @@ class PRELIMINARY_VERSION(_LOG):
     id = 42
     action_class = 'approve'
     format = _(u'{addon} {version} given preliminary review.')
+    short = _(u'Preliminarily approved')
     keep = True
     review_email_user = True
     review_queue = True
@@ -180,6 +182,7 @@ class REJECT_VERSION(_LOG):
     id = 43
     action_class = 'reject'
     format = _(u'{addon} {version} rejected.')
+    short = _(u'Rejected')
     keep = True
     review_email_user = True
     review_queue = True
@@ -190,6 +193,7 @@ class RETAIN_VERSION(_LOG):
     id = 22
     action_class = None
     format = _(u'{addon} {version} retained.')
+    short = _(u'Retained')
     keep = True
     review_email_user = True
     review_queue = True
@@ -200,6 +204,7 @@ class ESCALATE_VERSION(_LOG):
     id = 23
     action_class = None
     format = _(u'{addon} {version} escalated.')
+    short = _(u'Escalated')
     keep = True
     review_email_user = True
     review_queue = True
@@ -210,6 +215,7 @@ class REQUEST_VERSION(_LOG):
     id = 24
     action_class = None
     format = _(u'{addon} {version} review requested.')
+    short = _(u'Review requested')
     keep = True
     review_email_user = True
     review_queue = True
@@ -219,6 +225,7 @@ class REQUEST_INFORMATION(_LOG):
     id = 44
     action_class = None
     format = _(u'{addon} {version} more information requested.')
+    short = _(u'More information requested')
     keep = True
     review_email_user = True
     review_queue = True
@@ -228,6 +235,7 @@ class REQUEST_SUPER_REVIEW(_LOG):
     id = 45
     action_class = None
     format = _(u'{addon} {version} super review requested.')
+    short = _(u'Super review requested')
     keep = True
     review_queue = True
 
@@ -236,6 +244,7 @@ class COMMENT_VERSION(_LOG):
     id = 49
     action_class = None
     format = _(u'Comment on {addon} {version}.')
+    short = _(u'Comment')
     keep = True
     review_queue = True
 

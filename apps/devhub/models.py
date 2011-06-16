@@ -262,6 +262,10 @@ class ActivityLog(amo.models.ModelBase):
     def details(self, data):
         self._details = json.dumps(data)
 
+    @property
+    def log(self):
+        return amo.LOG_BY_ID[self.action]
+
     # TODO(davedash): Support other types.
     def to_string(self, type=None):
         log_type = amo.LOG_BY_ID[self.action]

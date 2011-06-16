@@ -64,7 +64,7 @@
           {% endtrans %}
         </th>
       </tr>
-      <tr>
+      <tr class="listing-body">
         <td class="files">
           <div><strong>{{ _('Files in this version:') }}</strong></div>
           {% for file in version.all_files %}
@@ -95,19 +95,26 @@
           {% endfor %}
         </td>
         <td>
-          {% set records = version.all_activity %}
-          {% if records %}
-          <ul class="activity">
-          {% for record_version in records %}
-            {% set record = record_version.activity_log %}
-            {% include 'editors/includes/history.html' %}
-          {% endfor %}
-          </ul>
-          {% else %}
-          <div class="no-activity">
-            {{ _('This version has not been reviewed.') }}
-          </div>
-          {% endif %}
+          <table class="activity">
+            {% if version.releasenotes %}
+            <tr>
+              <th>{{ _('Version Notes') }}</th>
+              <td class="activity_version">{{ version.releasenotes|nl2br }}</td>
+            </tr>
+            {% endif %}
+            {% set records = version.all_activity %}
+            {% for record_version in records %}
+              {% set record = record_version.activity_log %}
+              {% include 'editors/includes/history.html' %}
+            {% endfor %}
+            {% if not version.releasenotes and not records %}
+            <tr>
+              <td class="no-activity">
+                {{ _('This version has not been reviewed.') }}
+              </td>
+            </tr>
+            {% endif %}
+          </table>
         </td>
       </tr>
       {% endfor %}

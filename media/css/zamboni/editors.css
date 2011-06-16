@@ -553,18 +553,20 @@ div.editor-stats-table > div.editor-stats-dark {
     top: -20px;
     width: auto;
 }
-#review-files td .activity li {
-    border-top: 1px dotted #DDDDDD;
-    margin: 1em 1em 0;
-    padding-top: 1em;
+#review-files table.activity {
+    margin: 0 10px;
+    width: 100%;
 }
-
-#review-files td .activity li:first-child {
+#review-files table.activity th {
+  width: 25%;
+  padding-right: 1em;
+}
+#review-files table.activity tr {
+    border-top: 1px dotted #ccc;
+}
+#review-files table.activity tr:first-child {
     border-top: 0 none;
-    margin-top: 0;
-    padding-top: 0;
 }
-
 #review-files tr.listing-header:first-child {
     border-top: none;
 }
@@ -755,6 +757,9 @@ div.editor-stats-table > div.editor-stats-dark {
 
 .history-comment {
     white-space: pre-wrap;
+}
+
+.history-comment, .history-comment-version {
     padding: 10px;
     overflow: auto;
 }

@@ -140,9 +140,13 @@ function initReviewActions() {
     check_currently_viewing();
 
     /* Item History */
+    $('#review-files tr.listing-header').click(function() {
+        $(this).next('tr.listing-body').toggle();
+    });
+
     var storage = z.Storage(),
         eh_setting = storage.get('editors_history'),
-        eh_els = $('#review-files tr:not(.listing-header)'),
+        eh_els = $('#review-files tr.listing-body'),
         eh_size = eh_els.length;
     if(!eh_setting) eh_setting = 1;
 
@@ -151,9 +155,6 @@ function initReviewActions() {
     function toggleHistory() {
         eh_els.slice(eh_size - eh_setting, eh_setting).show();
         eh_els.slice(0, eh_size - eh_setting).hide();
-        $('#review-files tr.listing-header').click(function() {
-            $(this).next().toggle();
-        });
     }
 
     $('#editors_history').click(_pd(function() {

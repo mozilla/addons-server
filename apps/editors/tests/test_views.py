@@ -1446,21 +1446,35 @@ class TestReview(ReviewBase):
         doc = pq(r.content)
 
         # View the history verify two versions:
-        ths = doc('table#review-files tr th:first-child')
+        ths = doc('table#review-files > tr > th:first-child')
+
         assert '0.1' in ths.eq(0).text()
         assert '0.2' in ths.eq(1).text()
 
         for i in [0, 2]:
-            tds = doc('table#review-files tr td')
-            eq_(tds.eq(i).find('strong').eq(0).text(), "Files in this version:")
+            tds = doc('table#review-files > tr > td')
+            eq_(tds.eq(i).find('strong').eq(0).text(),
+                "Files in this version:")
             eq_(tds.eq(i).find('div').length, 3)
 
+        eq_(tds.eq(1).find('table td').length, 1)
 
-        eq_(tds.eq(1).find('ul li').length, 1)
-        eq_(tds.eq(1).find('ul li a').length, 3)
+        eq_(tds.eq(1).find('.history-comment').text(), "something")
+        eq_(tds.eq(1).find('th').text(), "Preliminarily approved")
+        eq_(tds.eq(1).find('td a').text(), "An editor")
 
-        eq_(tds.eq(1).find('ul li .history-comment').text(), "something")
-        eq_(tds.eq(1).find('ul li div a').text(), "An editor")
+    def test_item_history_version(self):
+        v = self.addon.versions.all()[0]
+        v.releasenotes = 'hi'
+        v.save()
+
+        url = reverse('editors.review', args=[self.addon.slug])
+
+        r = self.client.get(url)
+        doc = pq(r.content)
+
+        eq_(doc('#review-files .activity_version').length, 1)
+        eq_(doc('#review-files .activity_version').text(), 'hi')
 
     def test_item_history_comment(self):
         # Add Comment
@@ -1472,10 +1486,9 @@ class TestReview(ReviewBase):
         r = self.client.get(self.url)
         doc = pq(r.content)
 
-        td = doc('#review-files td').eq(1)
 
-        assert td.find('strong').eq(0).text().startswith('Comment on')
-        eq_(td.find('.history-comment').text(), "hello sailor")
+        eq_(doc('#review-files th').eq(1).text(), 'Comment')
+        eq_(doc('#review-files .history-comment').eq(0).text(), "hello sailor")
 
     def test_files_in_item_history(self):
         data = {'action': 'public', 'operating_systems': 'win',
@@ -1495,8 +1508,10 @@ class TestReview(ReviewBase):
     def test_no_items(self):
         response = self.client.get(self.url)
         doc = pq(response.content)
-        div = doc('#review-files-header').next().find('td').eq(1).find('div')
-        eq_(div.text(), "This version has not been reviewed.")
+
+        eq_(doc('#review-files .no-activity').length, 1)
+        eq_(doc('#review-files .no-activity').text(),
+            "This version has not been reviewed.")
 
     def test_hide_beta(self):
         version = self.addon.latest_version
@@ -1617,7 +1632,7 @@ class TestReview(ReviewBase):
         doc = pq(r.content)
 
         # View the history verify two versions:
-        ths = doc('table#review-files tr th:first-child')
+        ths = doc('table#review-files > tr > th:first-child')
         assert '0.1' in ths.eq(0).text()
         assert '0.2' in ths.eq(1).text()
 
@@ -1626,9 +1641,9 @@ class TestReview(ReviewBase):
         # Verify two versions, one deleted:
         r = self.client.get(url)
         doc = pq(r.content)
-        ths = doc('table#review-files tr th:first-child')
+        ths = doc('table#review-files > tr > th:first-child')
 
-        eq_(doc('table#review-files tr th:first-child').length, 1)
+        eq_(doc('table#review-files > tr > th:first-child').length, 1)
         assert '0.1' in ths.eq(0).text()
 
     def review_version(self, version, url):
