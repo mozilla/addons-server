@@ -955,13 +955,6 @@ class TestFeatures(test_utils.TestCase):
         assert doc('#features .collection-ac.js-hidden')
         assert not doc('#features .collection-ac[disabled]')
 
-    def test_no_app_disabled_autocomplete(self):
-        """If no application, autocomplete field should be disabled."""
-        data = formset(self.initial, {}, initial_count=1)
-        r = self.client.post(self.url, data)
-        doc = pq(r.content)
-        assert doc('#features .collection-ac[disabled]')
-
     def test_disabled_autocomplete_errors(self):
         """If any collection errors, autocomplete field should be enabled."""
         d = dict(application=amo.FIREFOX.id, collection=999)
