@@ -299,8 +299,8 @@ def jetpack(request):
     minver, maxver = upgrader.jetpack_versions()
     if request.method == 'POST':
         if 'minver' in request.POST:
-            d = request.POST['minver'], request.POST['maxver']
-            upgrader.jetpack_versions(d)
+            upgrader.jetpack_versions(request.POST['minver'],
+                                      request.POST['maxver'])
         elif 'upgrade' in request.POST:
             if upgrader.version(maxver):
                 start_upgrade(minver, maxver)
