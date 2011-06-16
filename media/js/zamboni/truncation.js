@@ -59,7 +59,7 @@ $.fn.untruncate = function() {
         var $el = $(this),
             oTxt = $el.attr("oldtext");
         if (oTxt) {
-            $el.html(oTxt);
+            $el.text(oTxt);
         }
     });
     return this;
