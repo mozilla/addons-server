@@ -50,7 +50,7 @@
       target={{ ns }}.response.301&target={{ ns }}.response.302&target={{ ns }}.response.304&target={{ ns }}.response.400&target={{ ns }}.response.403&target={{ ns }}.response.404&target={{ ns }}.response.405&target={{ ns }}.response.500&target={{ ns }}.response.503
     {% endcall %}
 
-    <h2 id="celery">Celery</h2>
+    <h2 id="celery">Celery (<a href="{{ url('zadmin.celery') }}">details</a>)</h2>
     {% call grid() %}
       target=sumSeries({{ site }}.celery.tasks.pending.*.*.*)&target=sumSeries({{ site }}.celery.tasks.failed.*.*.*)&target=derivative(sumSeries({{ site }}.celery.tasks.total.*.*.*))
     {% endcall %}
