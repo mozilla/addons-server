@@ -178,3 +178,12 @@ class FxSummerCollection(CollectionPromo):
     cls = 'promo'
     title = _(u'Firefox Summer Collection')
     subtitle = _(u'Here are some great add-ons for Firefox.')
+
+    
+class ThunderbirdCollection(CollectionPromo):
+    slug = 'Thunderbird Collection'
+    pk = 2128303
+    id = 'tb-collection'
+    cls = 'promo'
+    title = _(u'Thunderbird Collection')
+    subtitle = _(u'Here are some great add-ons for Thunderbird.')
