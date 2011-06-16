@@ -1779,8 +1779,12 @@ class TestReviewPreliminary(ReviewBase):
     def test_prelim_from_lite_wrong_two(self):
         self.addon.update(status=amo.STATUS_LITE)
         data = self.prelim_dict()
+
         file = self.version.files.all()[0]
-        for status in amo.STATUS_CHOICES:
+
+        status_choices = amo.STATUS_CHOICES
+        del status_choices[7]
+        for status in status_choices:
             if status != amo.STATUS_UNREVIEWED:
                 file.update(status=status)
                 response = self.client.post(self.url, data)

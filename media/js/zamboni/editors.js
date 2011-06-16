@@ -140,10 +140,27 @@ function initReviewActions() {
     check_currently_viewing();
 
     /* Item History */
-    $('#review-files tr:not(.listing-header, :last-child)').hide();
-    $('#review-files tr.listing-header').click(function() {
-        $(this).next().toggle();
-    });
+    var storage = z.Storage(),
+        eh_setting = storage.get('editors_history'),
+        eh_els = $('#review-files tr:not(.listing-header)'),
+        eh_size = eh_els.length;
+    if(!eh_setting) eh_setting = 1;
+
+    toggleHistory();
+
+    function toggleHistory() {
+        eh_els.slice(eh_size - eh_setting, eh_setting).show();
+        eh_els.slice(0, eh_size - eh_setting).hide();
+        $('#review-files tr.listing-header').click(function() {
+            $(this).next().toggle();
+        });
+    }
+
+    $('#editors_history').click(_pd(function() {
+        eh_setting = eh_setting <= 1 ? 100 : 1;
+        storage.set('editors_history', eh_setting);
+        toggleHistory();
+    }));
 }
 
 function insertAtCursor(textarea, text) {
