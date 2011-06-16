@@ -17,7 +17,7 @@ from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import Message, get_email_backend
 from addons.models import Addon
-from versions.compare import version_int
+from versions.compare import version_int as vint
 from versions.models import Version, ApplicationsVersions
 from .models import File
 from .utils import JetpackUpgrader
@@ -157,21 +157,22 @@ def send_upgrade_email(addon, new_version, sdk_version):
 
 
 @task
-def start_upgrade(version, file_ids, priority='low', **kw):
+def start_upgrade(file_ids, priority='low', **kw):
     upgrader = JetpackUpgrader()
+    minver, maxver = upgrader.jetpack_versions()
     files = File.objects.filter(id__in=file_ids).select_related('version')
     now = datetime.now()
     for file_ in files:
-        if (not file_.jetpack_version
-            or version_int(version) <= version_int(file_.jetpack_version)):
+        if not (file_.jetpack_version and
+                vint(minver) <= vint(file_.jetpack_version) < vint(maxver)):
             continue
 
         jp_log.info('Sending %s to builder for jetpack version %s.'
-                    % (file_.id, version))
+                    % (file_.id, maxver))
         # Data stored locally so we can figure out job details and if it should
         # be cancelled.
         data = {'file': file_.id,
-                'version': version,
+                'version': maxver,
                 'time': now,
                 'uuid': uuid.uuid4().hex,
                 'status': 'Sent to builder',

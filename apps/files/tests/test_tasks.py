@@ -31,12 +31,13 @@ class TestUpgradeJetpacks(test_utils.TestCase):
         urllib2_patch = mock.patch('files.tasks.urllib2')
         self.urllib2 = urllib2_patch.start()
         self.addCleanup(urllib2_patch.stop)
+        JetpackUpgrader().jetpack_versions('0.9', '1.0')
 
     def test_send_request(self):
         addon = Addon.objects.get(id=3615)
         File.objects.all().update(jetpack_version='0.9')
         file_ = addon.current_version.all_files[0]
-        tasks.start_upgrade('1.0', [file_.id])
+        tasks.start_upgrade([file_.id])
         assert self.urllib2.urlopen.called
         url, args = self.urllib2.urlopen.call_args[0]
         args = dict(urlparse.parse_qsl(args))

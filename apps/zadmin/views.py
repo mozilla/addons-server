@@ -39,7 +39,7 @@ from versions.models import Version
 
 from . import tasks
 from .forms import BulkValidationForm, NotifyForm, FeaturedCollectionFormSet
-from .models import ValidationJob, EmailPreviewTopic, Config
+from .models import ValidationJob, EmailPreviewTopic
 
 log = commonware.log.getLogger('z.zadmin')
 
@@ -295,25 +295,33 @@ def email_preview_csv(request, topic):
 
 @admin.site.admin_view
 def jetpack(request):
-    cfg = Config.objects.get(key='jetpack_version')
     upgrader = files.utils.JetpackUpgrader()
+    minver, maxver = upgrader.jetpack_versions()
     if request.method == 'POST':
-        if request.POST.get('jetpack_version'):
-            cfg.value = request.POST['jetpack_version']
-            cfg.save()
+        if 'minver' in request.POST:
+            d = request.POST['minver'], request.POST['maxver']
+            upgrader.jetpack_versions(d)
         elif 'upgrade' in request.POST:
-            if upgrader.version(cfg.value):
-                start_upgrade(cfg.value)
+            if upgrader.version(maxver):
+                start_upgrade(minver, maxver)
         elif 'cancel' in request.POST:
             upgrader.cancel()
         return redirect('zadmin.jetpack')
 
-    jetpacks = files.utils.find_jetpacks(cfg.value)
+    jetpacks = files.utils.find_jetpacks(minver, maxver)
     groups = sorted_groupby(jetpacks, 'jetpack_version')
     by_version = dict((version, len(list(files))) for version, files in groups)
     return jingo.render(request, 'zadmin/jetpack.html',
-                        dict(cfg=cfg, jetpacks=jetpacks,
-                             upgrader=upgrader, by_version=by_version))
+                        dict(jetpacks=jetpacks, upgrader=upgrader,
+                             by_version=by_version))
+
+
+def start_upgrade(minver, maxver):
+    jetpacks = files.utils.find_jetpacks(minver, maxver)
+    ids = [f.id for f in jetpacks if f.needs_upgrade]
+    log.info('Starting a jetpack upgrade to %s [%s files].'
+             % (maxver, len(ids)))
+    files.tasks.start_upgrade.delay(ids)
 
 
 @login_required
@@ -389,14 +397,6 @@ def elastic(request):
         'mapping': es.get_mapping(None, INDEX)[INDEX],
     }
     return jingo.render(request, 'zadmin/elastic.html', ctx)
-
-
-def start_upgrade(version):
-    jetpacks = files.utils.find_jetpacks(version)
-    ids = [f.id for f in jetpacks if f.needs_upgrade]
-    log.info('Starting a jetpack upgrade to %s [%s files].'
-             % (version, len(ids)))
-    files.tasks.start_upgrade.delay(version, ids)
 
 
 @admin.site.admin_view

@@ -9,26 +9,29 @@
 </style>
 {% endblock %}
 
+{% set minver, maxver = upgrader.jetpack_versions() %}
 {% set upgrading = upgrader.version() %}
 {% set repack_status = upgrader.files() %}
 
 {% block content %}
 <h2>Jetpack</h2>
-<p>According to our records, the current jetpack version is <b>{{ cfg.value }}</b>.</p>
+<p>Jetpacks built with SDK versions <b>{{ minver }} &ndash; {{ maxver }}</b> will be upgraded.</p>
 <p>Should it be something different?</p>
 <form method="post" action="">
   {{ csrf() }}
-  <input name="jetpack_version" placeholder="{{ cfg.value }}">
+  <input name="minver" value="{{ minver }}">
+  to
+  <input name="maxver" value="{{ maxver }}">
   <button>Hit it.</button>
 </form>
-<p>Make sure builder.amo knows about your new version! And ask someone to fix <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=658375">bug 658375</a>.</p>
+<p>Make sure builder.amo knows about the max version! And ask someone to fix <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=658375">bug 658375</a>.</p>
 
 <h3>Jetpack Files ({{ jetpacks|length }})</h3>
 <p>These are all the jetpack files we know about. Disabled files and add-ons are excluded.</p>
 {% if upgrading %}
   <p>We're running an upgrade to Jetpack <b>{{ upgrading }}</b> right now! Patience, my child.</p>
 {% else %}
-  <p>Files in green will be upgraded to <b>{{ cfg.value }}</b> when you press the button.</p>
+  <p>Files in green will be upgraded to <b>{{ maxver }}</b> when you press the button.</p>
   {% if settings.SEND_REAL_EMAIL %}
     <p>Note: upgrade emails <b>will be sent</b> to developers.</p>
   {% else %}
@@ -40,7 +43,7 @@
   {% if upgrading %}
     <input type="submit" name="cancel" value="Cancel the upgrade">
   {% else %}
-    <input type="submit" name="upgrade" value="Upgrade to Jetpack {{ cfg.value }}">
+    <input type="submit" name="upgrade" value="Upgrade to Jetpack {{ maxver }}">
   {% endif %}
 </form>
 

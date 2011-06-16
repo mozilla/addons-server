@@ -23,7 +23,7 @@ from tower import ugettext as _
 
 import amo
 from applications.models import AppVersion
-from versions.compare import version_int
+from versions.compare import version_int as vint
 
 from .models import File
 
@@ -292,7 +292,7 @@ def get_md5(filename, block_size=2 ** 20):
     return md5.hexdigest()
 
 
-def find_jetpacks(jp_version):
+def find_jetpacks(minver, maxver):
     """
     Find all jetpack files that aren't disabled.
 
@@ -322,7 +322,7 @@ def find_jetpacks(jp_version):
             fs[-1].needs_upgrade = True
     # Make sure only old files are marked.
     for file_ in [f for f in files if f.needs_upgrade]:
-        if version_int(file_.jetpack_version) >= version_int(jp_version):
+        if not (vint(minver) <= vint(file_.jetpack_version) < vint(maxver)):
             file_.needs_upgrade = False
     return files
 
@@ -335,6 +335,14 @@ class JetpackUpgrader(object):
         self.redis = redisutils.connections['master']
         self.version_key = self.prefix + 'version'
         self.file_key = self.prefix + 'files'
+        self.jetpack_key = self.prefix + 'jetpack'
+
+    def jetpack_versions(self, min_=None, max_=None):
+        if None not in (min_, max_):
+            d = {'min': min_, 'max': max_}
+            return self.redis.hmset(self.jetpack_key, d)
+        d = self.redis.hgetall(self.jetpack_key) or {}
+        return d.get('min'), d.get('max')
 
     def version(self, val=None):
         if val is not None:
