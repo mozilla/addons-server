@@ -52,7 +52,7 @@
 
     <h2 id="celery">Celery (<a href="{{ url('zadmin.celery') }}">details</a>)</h2>
     {% call grid() %}
-      target=sumSeries({{ site }}.celery.tasks.pending.*.*.*)&target=sumSeries({{ site }}.celery.tasks.failed.*.*.*)&target=derivative(sumSeries({{ site }}.celery.tasks.total.*.*.*))
+      target=sumSeries({{ site }}.celery.tasks.pending.*.*.*)&target=derivative(sumSeries({{ site }}.celery.tasks.total.*.*.*))&target=derivative(sumSeries({{ site }}.celery.tasks.failed.*.*.*))
     {% endcall %}
   </body>
 </html>
