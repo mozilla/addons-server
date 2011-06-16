@@ -29,20 +29,6 @@
 <div id="addon" class="primary" role="main" data-id="{{ addon.id }}">
 {% include "addons/details_box.html" %}
 
-<h3 id="Version Notes">
-  {{ _('Version Notes') }}
-</h3>
-<div class="article">
-  {{ version.releasenotes|nl2br }}
-</div>
-
-{% if version.approvalnotes %}
-  <h3 id="approval-notes">
-    {{ _('Notes to reviewer') }}
-  </h3>
-  <p>{{ version.approvalnotes|nl2br }}</p>
-{% endif %}
-
 <div id="review-files-header">
   <h3 id="history">
     {{ _('Add-on History') }}
@@ -102,12 +88,18 @@
               <td class="activity_version">{{ version.releasenotes|nl2br }}</td>
             </tr>
             {% endif %}
+            {% if version.approvalnotes %}
+            <tr>
+              <th>{{ _('Approval Notes') }}</th>
+              <td class="activity_approval">{{ version.approvalnotes|nl2br }}</td>
+            </tr>
+            {% endif %}
             {% set records = version.all_activity %}
             {% for record_version in records %}
               {% set record = record_version.activity_log %}
               {% include 'editors/includes/history.html' %}
             {% endfor %}
-            {% if not version.releasenotes and not records %}
+            {% if not version.releasenotes and not version.approvalnotes and not records %}
             <tr>
               <td class="no-activity">
                 {{ _('This version has not been reviewed.') }}

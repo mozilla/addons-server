@@ -1388,14 +1388,6 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         eq_(response.context['paging'], {})
 
-    def test_approvalnotes(self):
-        self.version.update(approvalnotes='Testing 123')
-        response = self.client.get(self.url)
-        eq_(response.status_code, 200)
-        doc = pq(response.content)
-        eq_(len(doc('#approval-notes')), 1)
-        eq_(doc('#approval-notes').next().text(), 'Testing 123')
-
     def test_page_title(self):
         response = self.client.get(self.url)
         eq_(response.status_code, 200)
@@ -1469,9 +1461,10 @@ class TestReview(ReviewBase):
         eq_(tds.eq(1).find('th').text(), "Preliminarily approved")
         eq_(tds.eq(1).find('td a').text(), "An editor")
 
-    def test_item_history_version(self):
+    def test_item_history_notes(self):
         v = self.addon.versions.all()[0]
         v.releasenotes = 'hi'
+        v.approvalnotes = 'secret hi'
         v.save()
 
         url = reverse('editors.review', args=[self.addon.slug])
@@ -1481,6 +1474,9 @@ class TestReview(ReviewBase):
 
         eq_(doc('#review-files .activity_version').length, 1)
         eq_(doc('#review-files .activity_version').text(), 'hi')
+
+        eq_(doc('#review-files .activity_approval').length, 1)
+        eq_(doc('#review-files .activity_approval').text(), 'secret hi')
 
     def test_item_history_comment(self):
         # Add Comment
