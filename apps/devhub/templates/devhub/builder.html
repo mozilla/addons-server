@@ -81,7 +81,7 @@
     <h3>{{ _("There's Nothing to It") }}</h3>
     <p>
     {% trans %}
-    If you know HTML, CSS and JavaScript, you can make add-ons.
+    If you kno
     With Builder, you don't even need to set up a build environment.
     Just log in and go.
     {% endtrans %}
@@ -107,6 +107,12 @@
     {% endtrans %}
     </p>
   </div>
+</div>
+<div class="jetpack_footer">
+  {% trans url_wiki='https://wiki.mozilla.org/Jetpack' %}
+  Interested in making the Add-on SDK even better? Grab the source code, and find
+  out how to help <a href='{{ url_wiki }}'>here</a>.
+  {% endtrans %}
 </div>
 </div>
 {% endblock %}
