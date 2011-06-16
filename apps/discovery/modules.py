@@ -174,7 +174,7 @@ class StPatricksPersonas(CollectionPromo):
 class FxSummerCollection(CollectionPromo):
     slug = 'Fx Summer Collection'
     pk = 2128026
-    id = 'fx-summer'
+    id = 'fx4-collection'
     cls = 'promo'
     title = _(u'Firefox Summer Collection')
     subtitle = _(u'Here are some great add-ons for Firefox.')
