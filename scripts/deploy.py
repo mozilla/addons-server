@@ -109,7 +109,3 @@ def update_amo(ctx):
     compress_assets('-u')
     deploy_code()
     # END: The normal update/push cycle.
-
-    # Run management commands like this:
-    # manage_cmd(ctx, 'cmd')
-    manage_cmd(ctx, 'jetpackers')
