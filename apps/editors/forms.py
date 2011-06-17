@@ -84,6 +84,8 @@ class QueueSearchForm(happyforms.Form):
     text_query = forms.CharField(
                     required=False,
                     label=_lazy(u'Search by add-on name / author email'))
+    searching = forms.BooleanField(widget=forms.HiddenInput, required=False,
+                                   initial=True)
     admin_review = forms.ChoiceField(required=False,
                                      choices=[('', ''),
                                               ('1', _lazy(u'yes')),

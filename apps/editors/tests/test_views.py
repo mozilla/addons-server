@@ -1238,6 +1238,16 @@ class TestQueueSearch(SearchTest):
              ['2.0a1pre', '2.0a1pre'],
              ['1.0', '1.0']])
 
+    def test_clear_search_visible(self):
+        r = self.search({'text_query': 'admin', 'searching': True})
+        doc = pq(r.content)
+        eq_(doc('#clear-queue-search').text(), 'clear search')
+
+    def test_clear_search_hidden(self):
+        r = self.search({'text_query': 'admin'})
+        doc = pq(r.content)
+        eq_(doc('#clear-queue-search').text(), None)
+
 
 class TestQueueSearchVersionSpecific(SearchTest):
 
