@@ -514,13 +514,13 @@ header #home, header .back-link {
 }
 .listview li > a,
 a.listview {
-    padding: 14px 7px;
     color: #444;
     font-family: Georgia, serif;
     font-size: 1.1em;
     display: block;
     overflow: hidden;
     text-decoration: none;
+    padding: 10px;
     position: relative;
 }
 .html-rtl li > a,
