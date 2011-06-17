@@ -1065,6 +1065,14 @@ class TestMobilePersonas(TestMobile):
         doc = pq(r.content)
         eq_(doc('title').text(), 'Personas :: Add-ons for Firefox')
 
+    def test_personas_search(self):
+        r = self.client.get(reverse('browse.personas'))
+        eq_(r.context['search_cat'], 'personas')
+        s = pq(r.content)('#search')
+        eq_(s.attr('action'), reverse('search.search'))
+        eq_(s.find('input[name=q]').attr('placeholder'), 'search for personas')
+        eq_(s.find('input[name=cat]').val(), 'personas')
+
     def _create_persona_cat(self):
         category = Category(type=amo.ADDON_PERSONA, slug='xxx',
                             application_id=amo.FIREFOX.id)
