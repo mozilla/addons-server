@@ -33,6 +33,8 @@ DATABASES = {
     },
 }
 
+# Skip indexing ES to speed things up?
+SKIP_SEARCH_INDEX = False
 
 LOG_LEVEL = logging.DEBUG
 HAS_SYSLOG = False

@@ -29,6 +29,9 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
+# Skip indexing ES to speed things up?
+SKIP_SEARCH_INDEX = False
+
 # LESS CSS OPTIONS (Debug only)
 LESS_PREPROCESS = False  # Compile LESS with Node, rather than client-side JS?
 LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
