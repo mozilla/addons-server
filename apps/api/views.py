@@ -7,6 +7,7 @@ import json
 import random
 import urllib
 
+from django.conf import settings
 from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.template.context import get_standard_processors
 from django.utils import translation, encoding
@@ -287,7 +288,10 @@ class ListView(APIView):
                       .order_by('-hotness'))[:limit + BUFFER]
             shuffle = False
         else:
-            ids = Addon.new_featured_random(APP, self.request.LANG)
+            if settings.NEW_FEATURES:
+                ids = Addon.new_featured_random(APP, self.request.LANG)
+            else:
+                ids = Addon.featured_random(APP, self.request.LANG)
             addons = manual_order(qs, ids[:limit + BUFFER], 'addons.id')
             shuffle = False
 
