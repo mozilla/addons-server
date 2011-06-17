@@ -189,8 +189,8 @@ function initValidator() {
         var tier = this.getTier(msg.tier, options),
             msgDiv = $('<div class="msg"><h5></h5></div>'),
             effectiveType = this.getMsgType(msg),
-            prefix = effectiveType=='warning' ? gettext('Warning')
-                                              : gettext('Error');
+            prefix = effectiveType=='error' ? gettext('Error')
+                                            : gettext('Warning');
 
         tier.tallyMsgType(effectiveType);
         msgDiv.attr('id', 'v-msg-' + msg.uid);

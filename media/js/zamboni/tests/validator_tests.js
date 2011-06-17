@@ -243,6 +243,81 @@ asyncTest('Test failing', function() {
     });
 });
 
+asyncTest('Test error/warning prefix', function() {
+    var $suite = $('.addon-validator-suite', this.sandbox);
+
+    $.mockjax({
+        url: '/validate',
+        response: function(settings) {
+            this.responseText = {
+                "validation": {
+                    "errors": 1,
+                    "detected_type": "extension",
+                    "success": false,
+                    "warnings": 1,
+                    "notices": 0,
+                    "message_tree": {},
+                    "messages": [
+                        {
+                            "context": null,
+                            "description": ["warning"],
+                            "column": 0,
+                            "id": [],
+                            "file": "file.js",
+                            "tier": 1,
+                            "message": "some warning",
+                            "type": "warning",
+                            "line": 0,
+                            "uid": "afdc9924ec4c11df991a001cc4d80ee4"
+                        },
+                        {
+                            "context": null,
+                            "description": ["error"],
+                            "column": 0,
+                            "id": [],
+                            "file": "file.js",
+                            "tier": 1,
+                            "message": "some error",
+                            "type": "error",
+                            "line": 0,
+                            "uid": "96dca428ec4c11df991a001cc4d80ee4"
+                        },
+                        {
+                            "context": null,
+                            "description": ["notice"],
+                            "column": 0,
+                            "id": [],
+                            "file": "file.js",
+                            "tier": 1,
+                            "message": "some notice",
+                            "type": "notice",
+                            "line": 0,
+                            "uid": "dddca428ec4c11df991a001cc4d80eb1"
+                        }
+                    ],
+                    "rejected": false,
+                    "metadata": {}
+                }
+            };
+        }
+    });
+
+    $suite.trigger('validate');
+
+    tests.waitFor(function() {
+        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
+                                                            'tests-failed');
+    }).thenDo(function() {
+        equals( $('#v-msg-afdc9924ec4c11df991a001cc4d80ee4 p', $suite).text(),
+               'Warning: warning');
+        equals( $('#v-msg-96dca428ec4c11df991a001cc4d80ee4 p', $suite).text(),
+               'Error: error');
+        equals( $('#v-msg-dddca428ec4c11df991a001cc4d80eb1 p', $suite).text(),
+               'Warning: notice');
+        start();
+    });
+});
+
 
 var compatibilityFixtures = {
     setup: function() {
