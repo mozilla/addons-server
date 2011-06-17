@@ -567,6 +567,10 @@ div.editor-stats-table > div.editor-stats-dark {
 #review-files table.activity tr:first-child {
     border-top: 0 none;
 }
+#review-files .listing-header span.light {
+    font-weight: normal;
+    color: #999;
+}
 #review-files tr.listing-header:first-child {
     border-top: none;
 }

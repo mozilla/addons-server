@@ -1478,6 +1478,11 @@ class TestReview(ReviewBase):
         eq_(doc('#review-files .activity_approval').length, 1)
         eq_(doc('#review-files .activity_approval').text(), 'secret hi')
 
+    def test_item_history_header(self):
+        url = reverse('editors.review', args=[self.addon.slug])
+        doc = pq(self.client.get(url).content)
+        assert "Listed" in doc('#review-files .listing-header .light').text()
+
     def test_item_history_comment(self):
         # Add Comment
         self.addon_file(u'something', u'0.1', amo.STATUS_PUBLIC,
