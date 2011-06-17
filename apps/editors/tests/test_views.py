@@ -7,7 +7,6 @@ import time
 from django.conf import settings
 from django.core import mail
 
-import jingo
 from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -19,10 +18,9 @@ from amo.urlresolvers import reverse
 from amo.tests import formset, initial
 from addons.models import Addon, AddonUser
 from applications.models import Application
-from cake.urlresolvers import remora_url
 from devhub.models import ActivityLog
 from editors.models import EditorSubscription, EventLog
-from files.models import Approval, Platform, File
+from files.models import Platform, File
 import reviews
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
@@ -321,9 +319,6 @@ class TestHome(EditorTest):
     def approve_reviews(self):
         Platform.objects.create(id=amo.PLATFORM_ALL.id)
         u = self.user
-
-        now = datetime.now()
-        created = datetime(now.year - 1, now.month, 1)
 
         for i in xrange(4):
             a = Addon.objects.create(type=amo.ADDON_EXTENSION)
@@ -1364,7 +1359,8 @@ class TestReview(ReviewBase):
                                                'comments': 'hello sailor'})
         eq_(response.status_code, 302)
         eq_(len(mail.outbox), 2)
-        self.assertTemplateUsed(response, 'editors/emails/author_super_review.ltxt')
+        self.assertTemplateUsed(response,
+                                'editors/emails/author_super_review.ltxt')
         self.assertTemplateUsed(response, 'editors/emails/super_review.ltxt')
 
     def test_info_requested_canned_response(self):
@@ -1490,12 +1486,11 @@ class TestReview(ReviewBase):
         # Add Comment
         self.addon_file(u'something', u'0.1', amo.STATUS_PUBLIC,
                         amo.STATUS_UNREVIEWED)
-        response = self.client.post(self.url, {'action': 'comment',
-                                               'comments': 'hello sailor'})
+        self.client.post(self.url, {'action': 'comment',
+                                    'comments': 'hello sailor'})
 
         r = self.client.get(self.url)
         doc = pq(r.content)
-
 
         eq_(doc('#review-files th').eq(1).text(), 'Comment')
         eq_(doc('#review-files .history-comment').eq(0).text(), "hello sailor")
@@ -1661,7 +1656,7 @@ class TestReview(ReviewBase):
         d = dict(action='prelim', operating_systems='win',
                  applications='something', comments='something',
                  addon_files=[version.files.all()[0].pk])
-        r = self.client.post(url, d)
+        self.client.post(url, d)
 
     def test_eula_displayed(self):
         assert not self.addon.eula
@@ -1705,7 +1700,7 @@ class TestReview(ReviewBase):
 
     def test_viewing(self):
         r = self.client.post(reverse('editors.review_viewing'),
-                             {'addon_id': self.addon.id })
+                             {'addon_id': self.addon.id})
         data = json.loads(r.content)
         eq_(data['current'], self.editor.id)
         eq_(data['current_name'], self.editor.name)
@@ -1714,7 +1709,7 @@ class TestReview(ReviewBase):
         # Now, login as someone else and test.
         self.login_as_admin()
         r = self.client.post(reverse('editors.review_viewing'),
-                             {'addon_id': self.addon.id })
+                             {'addon_id': self.addon.id})
         data = json.loads(r.content)
         eq_(data['current'], self.editor.id)
         eq_(data['current_name'], self.editor.name)
@@ -1737,7 +1732,8 @@ class TestReview(ReviewBase):
         first_file.save()
 
         url = reverse('editors.review', args=[self.addon.slug])
-        next_file = File.objects.create(version=version, status=amo.STATUS_PUBLIC)
+        next_file = File.objects.create(version=version,
+                                        status=amo.STATUS_PUBLIC)
         self.addon.update(_current_version=version)
         eq_(self.addon.current_version, version)
         r = self.client.get(url)
