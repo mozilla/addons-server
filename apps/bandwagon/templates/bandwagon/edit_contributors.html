@@ -11,7 +11,7 @@
 
     {% if role != _('Owner') %}
     <input type="hidden" name="contributor" value="{{ user.id }}">
-    <span><a class="make-owner" href="#">Make Owner</a></span>
+    <span><a class="make-owner" href="#">{{ _('Make Owner') }}</a></span>
     {% endif %}
   </td>
   {% if role != _('Owner') %}
