@@ -15,12 +15,14 @@ class ES(object):
         self.filters = {}
         self.in_ = {}
         self.or_ = {}
+        self.ranges = {}
         self.queries = {}
         self.prefixes = {}
         self.fields = ['id']
         self.ordering = []
         self.start = 0
         self.stop = None
+        self.as_dict = False
         self._results_cache = None
 
     def _clone(self):
@@ -28,17 +30,28 @@ class ES(object):
         new.filters = dict(self.filters)
         new.in_ = dict(self.in_)
         new.or_ = list(self.or_)
+        new.ranges = dict(self.ranges)
         new.queries = dict(self.queries)
         new.prefixes = dict(self.prefixes)
         new.fields = list(self.fields)
         new.ordering = list(self.ordering)
         new.start = self.start
         new.stop = self.stop
+        new.as_dict = self.as_dict
         return new
 
     def values(self, *fields):
         new = self._clone()
         new.fields.extend(fields)
+        return new
+
+    def values_dict(self, *fields):
+        new = self._clone()
+        if not fields:
+            new.fields = []
+        else:
+            new.fields.extend(fields)
+        new.as_dict = True
         return new
 
     def order_by(self, *fields):
@@ -65,7 +78,13 @@ class ES(object):
             if key.endswith('__in'):
                 new.in_[key[:-4]] = value
             else:
-                new.filters[key] = value
+                for end in 'gt', 'gte', 'lt', 'lte':
+                    if key.endswith('__' + end):
+                        key = key[:-len('__' + end)]
+                        new.ranges[key] = {end: value}
+                        break
+                else:
+                    new.filters[key] = value
         return new
 
     # This is a lame hack.
@@ -98,7 +117,7 @@ class ES(object):
         if self.prefixes:
             qs.setdefault('query', {}).update({'prefix': self.prefixes})
 
-        if len(self.filters) + len(self.in_) + len(self.or_) > 1:
+        if len(self.filters) + len(self.in_) + len(self.or_) + len(self.ranges) > 1:
             qs['filter'] = {'and': []}
             and_ = qs['filter']['and']
             for key, value in self.filters.items():
@@ -110,10 +129,13 @@ class ES(object):
                 for key, value in dict_.items():
                     or_.append({'term': {key: value}})
                 and_.append({'or': or_})
+            for key, value in self.ranges.items():
+                and_.append({'range': {key: value}})
         elif self.filters:
             qs['filter'] = {'term': self.filters}
         elif self.in_:
             qs['filter'] = {'in': self.in_}
+        # TODO: handle or_(should this happen?) and ranges on their own
 
         if self.fields:
             qs['fields'] = self.fields
@@ -131,7 +153,8 @@ class ES(object):
             qs = self._build_query()
             es = elasticutils.get_es()
             hits = es.search(qs, settings.ES_INDEX, self.type._meta.app_label)
-            self._results_cache = results = SearchResults(self.type, hits)
+            cls = SearchResults if self.as_dict else ObjectSearchResults
+            self._results_cache = results = cls(self.type, hits)
             statsd.timing('search', results.took)
             log.debug('[%s] %s' % (results.took, qs))
         return self._results_cache
@@ -146,13 +169,25 @@ class SearchResults(object):
         self.type = type
         self.took = results['took']
         self.count = results['hits']['total']
+        self.results = results
+        self.set_objects(results)
+
+    def set_objects(self, results):
+        self.objects = [r['_source'] for r in results['hits']['hits']]
+
+    def __iter__(self):
+        return iter(self.objects)
+
+    def __len__(self):
+        return len(self.objects)
+
+
+class ObjectSearchResults(SearchResults):
+
+    def set_objects(self, results):
         self.ids = [int(r['_id']) for r in results['hits']['hits']]
         self.objects = self.type.objects.filter(id__in=self.ids)
-        self.results = results
 
     def __iter__(self):
         objs = dict((obj.id, obj) for obj in self.objects)
         return (objs[id] for id in self.ids if id in objs)
-
-    def __len__(self):
-        return len(self.objects)
