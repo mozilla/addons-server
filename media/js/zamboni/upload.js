@@ -115,7 +115,9 @@
                         $upload_field.trigger("upload_finished", [file]);
 
                     } else if(formData.xhr.readyState == 4 && !aborted) {
-                        errors = [gettext("There was a problem contacting the server.")];
+                        // L10n: first argument is an HTTP status code
+                        errors = [format(gettext("Received an empty response from the server; status: {0}"),
+                                         [formData.xhr.status])];
                         $upload_field.trigger("upload_errors", [file, errors]);
                     }
                 };
