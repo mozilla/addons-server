@@ -820,8 +820,10 @@ def version_edit(request, addon_id, addon, version_id):
     data = {'version_form': version_form, 'file_form': file_form}
 
     if addon.accepts_compatible_apps():
-        compat_form = forms.CompatFormSet(request.POST or None,
-                                          queryset=version.apps.all())
+        # We should be in no-caching land but this one stays cached for some
+        # reason.
+        qs = version.apps.all().no_cache()
+        compat_form = forms.CompatFormSet(request.POST or None, queryset=qs)
         data['compat_form'] = compat_form
 
     if (request.method == 'POST' and
