@@ -123,7 +123,7 @@ function initReviewActions() {
 
 
     /* Who's currently on this page? */
-    var addon_id = location.href.match(/review\/([0-9]*)/)[1];
+    var addon_id = $('#addon').attr('data-id');
     function check_currently_viewing() {
         $.post('/en-US/editors/review_viewing', {'addon_id': addon_id}, function(d){
             $current = $('.currently_viewing_warning');
