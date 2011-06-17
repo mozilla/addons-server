@@ -94,9 +94,8 @@ class ES(object):
         return new
 
     def count(self):
-        num = self._do_search().count
-        self._results_cache = None
-        return num
+        hits = self._get_results()
+        return hits['hits']['total']
 
     def __len__(self):
         return len(self._do_search())
@@ -150,14 +149,18 @@ class ES(object):
 
     def _do_search(self):
         if not self._results_cache:
-            qs = self._build_query()
-            es = elasticutils.get_es()
-            hits = es.search(qs, settings.ES_INDEX, self.type._meta.app_label)
+            hits = self._get_results()
             cls = SearchResults if self.as_dict else ObjectSearchResults
             self._results_cache = results = cls(self.type, hits)
-            statsd.timing('search', results.took)
-            log.debug('[%s] %s' % (results.took, qs))
         return self._results_cache
+
+    def _get_results(self):
+        qs = self._build_query()
+        es = elasticutils.get_es()
+        hits = es.search(qs, settings.ES_INDEX, self.type._meta.app_label)
+        statsd.timing('search', hits['took'])
+        log.debug('[%s] %s' % (hits['took'], qs))
+        return hits
 
     def __iter__(self):
         return iter(self._do_search())
