@@ -11,8 +11,8 @@ from addons.models import Addon
 
 
 class TestHelpers(test_utils.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/addon_4664_twitterbar',
-                'addons/featured', 'addons/persona']
+    fixtures = ['addons/featured', 'base/collections', 'base/featured',
+                'bandwagon/featured_collections']
 
     def setUp(self):
         # Addon._feature keeps an in-process cache we need to clear.
@@ -63,7 +63,7 @@ class TestHelpers(test_utils.TestCase):
             'Support this add-on: Contribute $12.00')
 
     def test_contribution_box(self):
-        a = Addon.objects.get(pk=4664)
+        a = Addon.objects.get(pk=7661)
         a.suggested_amount = '12'
 
         settings = Mock()
@@ -81,7 +81,7 @@ class TestHelpers(test_utils.TestCase):
         assert doc('input[name=onetime-amount]').length == 1
 
     def test_src_retained(self):
-        a = Addon.objects.get(pk=4664)
+        a = Addon.objects.get(pk=7661)
         a.suggested_amount = '12'
 
         settings = Mock()
@@ -98,7 +98,7 @@ class TestHelpers(test_utils.TestCase):
 
     def test_mobile_persona_preview(self):
         ctx = {'APP': amo.FIREFOX, 'LANG': 'en-US'}
-        persona = Addon.objects.get(pk=15663).persona
+        persona = Addon.objects.get(pk=15679).persona
         s = mobile_persona_preview(ctx, persona)
         doc = PyQuery(s)
         bt = doc('.persona-preview div[data-browsertheme]')
@@ -116,7 +116,7 @@ class TestHelpers(test_utils.TestCase):
         return {'APP': amo.FIREFOX, 'LANG': 'en-US', 'request': request}
 
     def test_mobile_persona_confirm_large(self):
-        persona = Addon.objects.get(id=15663).persona
+        persona = Addon.objects.get(id=15679).persona
         s = mobile_persona_confirm(self._test_mobile_persona_ctx(), persona)
         doc = PyQuery(s)
         assert not doc('.persona-slider')
@@ -126,7 +126,7 @@ class TestHelpers(test_utils.TestCase):
         assert not doc('.more')
 
     def test_mobile_persona_confirm_small(self):
-        persona = Addon.objects.get(id=15663).persona
+        persona = Addon.objects.get(id=15679).persona
         s = mobile_persona_confirm(self._test_mobile_persona_ctx(), persona,
                                    size='small')
         doc = PyQuery(s)

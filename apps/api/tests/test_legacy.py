@@ -47,13 +47,14 @@ class UtilsTest(TestCase):
             'Add-on details URL does not end with "?src=api"')
 
     def test_dict_disco(self):
-        """Ensure that the """
+        """Check for correct add-on detail URL for discovery pane."""
         d = api.utils.addon_to_dict(self.a, disco=True)
         u = '%s%s?src=api' % (settings.SERVICES_URL,
             reverse('discovery.addons.detail', args=['a3615']))
         eq_(d['learnmore'], u)
 
     def test_sanitize(self):
+        """Check that tags are stripped for summary and description."""
         self.a.summary = self.a.description = 'i <3 <a href="">amo</a>!'
         self.a.save()
         d = api.utils.addon_to_dict(self.a)
@@ -435,15 +436,6 @@ class ListTest(TestCase):
     """Tests the list view with various urls."""
     fixtures = ['base/apps', 'base/addon_3615', 'base/featured']
 
-    def setUp(self):
-        # TODO(cvan): These tests will need to be rewritten for featured
-        # collections.
-        self._new_features = settings.NEW_FEATURES
-        settings.NEW_FEATURES = False
-
-    def tearDown(self):
-        settings.NEW_FEATURES = self._new_features
-
     def test_defaults(self):
         """
         This tests the default settings for /list.
@@ -548,6 +540,21 @@ class ListTest(TestCase):
 
     def test_unicode(self):
         make_call(u'list/featured/all/10/Linux/3.7a2prexec\xb6\u0153\xec\xb2')
+
+
+class NewListTest(ListTest):
+    """Tests the list view with various urls."""
+    fixtures = ListTest.fixtures + ['addons/featured',
+                                    'bandwagon/featured_collections',
+                                    'base/collections']
+
+    def setUp(self):
+        # TODO(cvan): Remove this once featured collections are enabled.
+        self._new_features = settings.NEW_FEATURES
+        settings.NEW_FEATURES = True
+
+    def tearDown(self):
+        settings.NEW_FEATURES = self._new_features
 
 
 class SeamonkeyFeaturedTest(TestCase):

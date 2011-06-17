@@ -74,15 +74,12 @@ class AddonManager(amo.models.ManagerBase):
         """
         Filter for all featured add-ons for an application in all locales.
         """
-        return self.valid().filter(feature__application=app.id)
-
-    def new_featured(self, app):
-        """
-        Filter for all featured add-ons for an application in all locales.
-        """
-        from bandwagon.models import FeaturedCollection
-        ids = FeaturedCollection.objects.addon_ids(app=app)
-        return self.valid().filter(id__in=ids)
+        if settings.NEW_FEATURES:
+            from bandwagon.models import FeaturedCollection
+            ids = FeaturedCollection.objects.addon_ids(app=app)
+            return self.valid().filter(id__in=ids)
+        else:
+            return self.valid().filter(feature__application=app.id)
 
     def category_featured(self):
         """Get all category-featured add-ons for ``app`` in all locales."""
@@ -742,13 +739,19 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @classmethod
     def featured(cls, app, lang):
-        # Attach an instance of Feature to Addon so we get persistent
-        # @cached_method caching through the request.
-        if not hasattr(cls, '_feature'):
-            cls._feature = Feature()
-        features = cls._feature.by_app(app)
-        return dict((id, locales) for id, locales in features.items()
-                     if None in locales or lang in locales)
+        # TODO(cvan): Remove this once featured collections are enabled.
+        if settings.NEW_FEATURES:
+            from bandwagon.models import FeaturedCollection
+            ids = FeaturedCollection.objects.addon_ids(app=app, lang=lang)
+            return ids
+        else:
+            # Attach an instance of Feature to Addon so we get persistent
+            # @cached_method caching through the request.
+            if not hasattr(cls, '_feature'):
+                cls._feature = Feature()
+            features = cls._feature.by_app(app)
+            return dict((id, locales) for id, locales in features.items()
+                         if None in locales or lang in locales)
 
     @classmethod
     def featured_random(cls, app, lang):
@@ -756,27 +759,34 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         Sort featured ids for app into those that support lang and
         those with no locale, then shuffle both groups.
         """
-        if not hasattr(cls, '_feature'):
-            cls._feature = Feature()
-        features = cls._feature.by_app(app)
-        no_locale, specific_locale = [], []
-        for id, locales in features.items():
-            if lang in locales:
-                specific_locale.append(id)
-            elif None in locales:
-                no_locale.append(id)
-        random.shuffle(no_locale)
-        random.shuffle(specific_locale)
-        return specific_locale + no_locale
-
-    @classmethod
-    def new_featured_random(cls, app, lang):
-        from bandwagon.models import FeaturedCollection
-        if not hasattr(cls, '_featuredcollection'):
-            cls._featuredcollection = FeaturedCollection.objects
-        ids = cls._featuredcollection.addon_ids(app=app, lang=lang)
-        random.shuffle(ids)
-        return ids
+        if settings.NEW_FEATURES:
+            from bandwagon.models import FeaturedCollection
+            features = FeaturedCollection.objects.by_locale(app=app, lang=lang)
+            no_locale, specific_locale = [], []
+            for f in features:
+                pk = f['collection__addons']
+                if not pk:
+                    continue
+                if f['locale'] == lang:
+                    specific_locale.append(pk)
+                elif f['locale'] is None:
+                    no_locale.append(pk)
+            random.shuffle(specific_locale)
+            random.shuffle(no_locale)
+            return specific_locale + no_locale
+        else:
+            if not hasattr(cls, '_feature'):
+                cls._feature = Feature()
+            features = cls._feature.by_app(app)
+            no_locale, specific_locale = [], []
+            for id, locales in features.items():
+                if lang in locales:
+                    specific_locale.append(id)
+                elif None in locales:
+                    no_locale.append(id)
+            random.shuffle(no_locale)
+            random.shuffle(specific_locale)
+            return specific_locale + no_locale
 
     def is_featured(self, app, lang):
         """is add-on globally featured for this app and language?"""

@@ -375,8 +375,7 @@ class HomepageFilter(BaseFilter):
     filter_new = BaseFilter.filter_created
 
     def __init__(self, *args, **kw):
-        self.featured_ids = Addon.featured_random(args[0].APP,
-                                                  args[0].LANG)
+        self.featured_ids = Addon.featured_random(args[0].APP, args[0].LANG)
         super(HomepageFilter, self).__init__(*args, **kw)
 
     def filter_featured(self):
@@ -437,7 +436,7 @@ def home(request):
     # Shuffle the list and get 3 items.
     rand = lambda xs: random.shuffle(xs) or xs[:3]
     # Get some featured add-ons with randomness.
-    featured = rand(Addon.featured(request.APP, request.LANG).keys())
+    featured = Addon.featured_random(request.APP, request.LANG)
     # Get 10 popular add-ons, then pick 3 at random.
     qs = list(Addon.objects.listed(request.APP).order_by('-average_daily_users')
               .values_list('id', flat=True)[:10])

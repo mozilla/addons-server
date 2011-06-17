@@ -35,41 +35,51 @@ from versions.compare import version_int
 
 
 class TestAddonManager(test_utils.TestCase):
-    fixtures = ['base/addon_5299_gcal', 'addons/test_manager']
+    fixtures = ['addons/featured', 'addons/test_manager', 'base/collections',
+                'base/featured', 'bandwagon/featured_collections',
+                'base/addon_5299_gcal']
 
     def setUp(self):
         set_user(None)
 
+    @patch.object(settings, 'NEW_FEATURES', False)
     def test_featured(self):
         featured = Addon.objects.featured(amo.FIREFOX)[0]
         eq_(featured.id, 1)
-        eq_(Addon.objects.featured(amo.FIREFOX).count(), 1)
+        eq_(Addon.objects.featured(amo.FIREFOX).count(), 5)
+
+    @patch.object(settings, 'NEW_FEATURES', True)
+    def test_featured(self):
+        featured = Addon.objects.featured(amo.FIREFOX)[0]
+        eq_(featured.id, 1001)
+        eq_(Addon.objects.featured(amo.FIREFOX).count(), 6)
 
     def test_listed(self):
         Addon.objects.filter(id=5299).update(disabled_by_user=True)
-        # Should find one addon.
         q = Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC)
-        eq_(len(q.all()), 1)
+        eq_(len(q.all()), 4)
 
         addon = q[0]
-        eq_(addon.id, 1)
+        eq_(addon.id, 2464)
 
         # Disabling hides it.
         addon.disabled_by_user = True
         addon.save()
-        eq_(q.count(), 0)
+
+        # Should be 3 now, since the one is now disabled.
+        eq_(q.count(), 3)
 
         # If we search for public or unreviewed we find it.
         addon.disabled_by_user = False
         addon.status = amo.STATUS_UNREVIEWED
         addon.save()
-        eq_(q.count(), 0)
+        eq_(q.count(), 3)
         eq_(Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC,
-                                 amo.STATUS_UNREVIEWED).count(), 1)
+                                 amo.STATUS_UNREVIEWED).count(), 4)
 
         # Can't find it without a file.
         addon.versions.get().files.get().delete()
-        eq_(q.count(), 0)
+        eq_(q.count(), 3)
 
     def test_public(self):
         public = Addon.objects.public()
@@ -99,25 +109,26 @@ class TestAddonManager(test_utils.TestCase):
     def test_valid_disabled_by_user(self):
         addon = Addon.objects.get(pk=5299)
         addon.update(disabled_by_user=True)
-        eq_(Addon.objects.valid_and_disabled().count(), 3)
+        eq_(Addon.objects.valid_and_disabled().count(), 10)
 
     def test_valid_disabled_by_admin(self):
         addon = Addon.objects.get(pk=5299)
         addon.update(status=amo.STATUS_DISABLED)
-        eq_(Addon.objects.valid_and_disabled().count(), 3)
+        eq_(Addon.objects.valid_and_disabled().count(), 10)
 
 
 class TestAddonManagerFeatured(test_utils.TestCase):
-    # TODO(cvan): Once we migrate the featured add-ons to featured collections
-    # we'll need to merge this with the above tests.
+    # TODO(cvan): Merge with above once new featured add-ons are enabled.
     fixtures = ['addons/featured', 'bandwagon/featured_collections',
-                'base/addon_3615', 'base/collections', 'base/featured']
+                'base/collections', 'base/featured']
 
+    @patch.object(settings, 'NEW_FEATURES', True)
     def test_new_featured(self):
-        f = Addon.objects.new_featured(amo.FIREFOX)
-        eq_(f.count(), 2)
-        eq_(sorted(f.values_list('id', flat=True)), [3615, 15679])
-        f = Addon.objects.new_featured(amo.SUNBIRD)
+        f = Addon.objects.featured(amo.FIREFOX)
+        eq_(f.count(), 6)
+        eq_(sorted(f.values_list('id', flat=True)),
+            [1001, 1003, 2464, 3481, 7661, 15679])
+        f = Addon.objects.featured(amo.SUNBIRD)
         assert not f.exists()
 
 
@@ -194,6 +205,7 @@ class TestAddonModels(test_utils.TestCase):
         a = Addon.objects.get(pk=5299)
         eq_(a.current_beta_version.id, 50000)
 
+    @patch.object(settings, 'NEW_FEATURES', False)
     def test_current_version_mixed_statuses(self):
         """Mixed file statuses are evil (bug 558237)."""
         a = Addon.objects.get(pk=3895)
@@ -343,12 +355,14 @@ class TestAddonModels(test_utils.TestCase):
         a.status = amo.STATUS_LISTED
         assert a.is_selfhosted(), 'listed add-on => is_selfhosted()'
 
+    @patch.object(settings, 'NEW_FEATURES', False)
     def test_is_featured(self):
         """Test if an add-on is globally featured"""
         a = Addon.objects.get(pk=1003)
         assert a.is_featured(amo.FIREFOX, 'en-US'), (
             'globally featured add-on not recognized')
 
+    @patch.object(settings, 'NEW_FEATURES', False)
     def test_is_category_featured(self):
         """Test if an add-on is category featured"""
         Feature.objects.filter(addon=1001).delete()
@@ -1067,18 +1081,25 @@ class TestAddonModelsFeatured(test_utils.TestCase):
                 'base/addon_3615', 'base/collections', 'base/featured']
 
     def setUp(self):
-        # Addon._featuredcollection keeps an in-process cache we need to clear.
-        if hasattr(Addon, '_featuredcollection'):
-            del Addon._featuredcollection
+        # Addon._featured keeps an in-process cache we need to clear.
+        if hasattr(Addon, '_featured'):
+            del Addon._featured
 
-    def test_new_featured_random(self):
-        ids = [3615, 15679]
-        f = Addon.new_featured_random(amo.FIREFOX, 'en-US')
-        eq_(sorted(f), ids)
-        f = Addon.new_featured_random(amo.FIREFOX, 'fr')
-        eq_(sorted(f), ids)
-        f = Addon.new_featured_random(amo.SUNBIRD, 'en-US')
+    def _test_featured_random(self):
+        f = Addon.featured_random(amo.FIREFOX, 'en-US')
+        eq_(sorted(f), [1001, 1003, 2464, 3481, 7661, 15679])
+        f = Addon.featured_random(amo.FIREFOX, 'fr')
+        eq_(sorted(f), [1001, 1003, 2464, 7661, 15679])
+        f = Addon.featured_random(amo.SUNBIRD, 'en-US')
         eq_(f, [])
+
+    @patch.object(settings, 'NEW_FEATURES', False)
+    def test_featured_random(self):
+        self._test_featured_random()
+
+    @patch.object(settings, 'NEW_FEATURES', True)
+    def test_new_featured_random(self):
+        self._test_featured_random()
 
 
 class TestBackupVersion(test_utils.TestCase):

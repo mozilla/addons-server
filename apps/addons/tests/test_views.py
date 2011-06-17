@@ -43,7 +43,10 @@ class TestHomepage(test_utils.TestCase):
                 'base/addon_3615',
                 'base/collections',
                 'base/global-stats',
-                'base/featured']
+                'base/featured',
+                'base/collections',
+                'addons/featured',
+                'bandwagon/featured_collections']
 
     def setUp(self):
         super(TestHomepage, self).setUp()
@@ -1243,7 +1246,8 @@ class TestReportAbuseDisabled(AbuseDisabledBase, test_utils.TestCase):
 
 
 class TestMobile(test_utils.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/featured']
+    fixtures = ['addons/featured', 'base/apps', 'base/addon_3615',
+                'base/featured', 'bandwagon/featured_collections']
 
     def setUp(self):
         self.client.cookies['mamo'] = 'on'
@@ -1252,17 +1256,25 @@ class TestMobile(test_utils.TestCase):
 
 class TestMobileHome(TestMobile):
 
-    def test_addons(self):
+    def _test_addons(self):
         r = self.client.get('/', follow=True)
         eq_(r.status_code, 200)
         app, lang = r.context['APP'], r.context['LANG']
         featured, popular = r.context['featured'], r.context['popular']
-        eq_(len(featured), 3)
+        eq_(len(featured), 6)
         assert all(a.is_featured(app, lang) for a in featured)
         eq_(len(popular), 3)
         eq_([a.id for a in popular],
             [a.id for a in sorted(popular, key=lambda x: x.average_daily_users,
                                   reverse=True)])
+
+    @patch.object(settings, 'NEW_FEATURES', False)
+    def test_addons(self):
+        self._test_addons()
+
+    @patch.object(settings, 'NEW_FEATURES', True)
+    def test_new_addons(self):
+        self._test_addons()
 
 
 class TestMobileDetails(TestMobile):

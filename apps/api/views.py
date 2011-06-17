@@ -288,10 +288,7 @@ class ListView(APIView):
                       .order_by('-hotness'))[:limit + BUFFER]
             shuffle = False
         else:
-            if settings.NEW_FEATURES:
-                ids = Addon.new_featured_random(APP, self.request.LANG)
-            else:
-                ids = Addon.featured_random(APP, self.request.LANG)
+            ids = Addon.featured_random(APP, self.request.LANG)
             addons = manual_order(qs, ids[:limit + BUFFER], 'addons.id')
             shuffle = False
 
