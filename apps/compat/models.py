@@ -19,3 +19,20 @@ class CompatReport(amo.models.ModelBase):
 
     class Meta:
         db_table = 'compatibility_reports'
+
+
+class AppCompat(amo.models.ModelBase):
+    """
+    Stub model for use with search. The schema:
+
+        {id: addon.id,
+         name: addon.name,
+         slug: addon.slug,
+         max_version: {APP.id: version string},
+         usage: {APP.id: addon.daily_usage},
+         support: {APP.id: {max: version int, min: version int},
+        }
+    """
+
+    class Meta:
+        abstract = True
