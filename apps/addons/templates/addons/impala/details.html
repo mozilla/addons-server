@@ -93,7 +93,7 @@
 <aside class="secondary metadata c">
   <ul class="links">
     {% if addon.homepage %}
-      <li><a class="home" href="{{ addon.homepage }}">{{ _('Add-on home page') }}</a></li>
+      <li><a class="home" href="{{ addon.homepage|external_url }}">{{ _('Add-on home page') }}</a></li>
     {% endif %}
     {% if addon.support_url %}
       <li><a class="support" href="{{ addon.support_url|external_url }}">{{ _('Support site') }}</a></li>
