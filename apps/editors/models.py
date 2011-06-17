@@ -119,7 +119,9 @@ class ViewQueue(RawSQLModel):
                             tr.id = addons.name
                             AND tr.locale = addons.defaultlocale)"""
             ],
-            'where': [],
+            'where': [
+                'NOT addons.inactive',  # disabled_by_user
+            ],
             'group_by': 'id'}
 
     @property
