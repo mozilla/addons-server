@@ -269,10 +269,10 @@ class TestPane(test_utils.TestCase):
         eq_(p.find('li').attr('data-guid'), addon.guid)
         a = p.find('a.addon-title')
         url = reverse('discovery.addons.detail', args=[3615])
-        assert a.attr('href').endswith(url + '?discovery-featured')
+        assert a.attr('href').endswith(url + '?src=discovery-featured')
         eq_(a.attr('target'), '_self')
-        eq_(p.find('h3.vtruncate'), addon.name)
-        eq_(p.find('p.desc.vtruncate'), addon.summary)
+        eq_(p.find('h3.vtruncate').text(), unicode(addon.name))
+        eq_(p.find('p.desc.vtruncate').text(), addon.summary)
         eq_(p.find('img').attr('src'), addon.icon_url)
 
     def test_featured_personas(self):
@@ -281,11 +281,12 @@ class TestPane(test_utils.TestCase):
         doc = pq(r.content)
         p = doc('#featured-personas')
         eq_(p.find('h2').text(), 'See all Featured Personas')
-        a = p.find('a.addon-title[data-browsertheme]')
+        eq_(p.find('a.all').attr('href'), reverse('browse.personas'))
+        a = p.find('a[data-browsertheme]')
         url = reverse('discovery.addons.detail', args=[15679])
-        assert a.attr('href').endswith(url + '?discovery-featured')
+        assert a.attr('href').endswith(url + '?src=discovery-featured')
         eq_(a.attr('target'), '_self')
-        eq_(p.find('.addon-title').text(), addon.name)
+        eq_(p.find('.addon-title').text(), unicode(addon.name))
 
 
 class TestDetails(test_utils.TestCase):
