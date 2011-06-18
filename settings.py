@@ -930,10 +930,7 @@ VALIDATE_ADDONS = True
 # Feature flags
 SEARCH_EXCLUDE_PERSONAS = True
 UNLINK_SITE_STATS = True
-
-# Use featured collections.
-NEW_FEATURES = True
-
+NEW_FEATURES = False
 
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = True

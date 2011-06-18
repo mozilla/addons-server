@@ -4,6 +4,7 @@ import json
 import urlparse
 
 from django import http
+from django.conf import settings
 from django.contrib import admin
 from django.db import IntegrityError
 from django.db.models import F
@@ -90,7 +91,11 @@ def get_modules(request, platform, version):
 
 def get_featured_personas(request):
     categories, filter, base, category = personas_listing(request)
-    featured = base & Addon.objects.new_featured(request.APP)
+    if settings.NEW_FEATURES:
+        featured_addons = Addon.objects.new_featured(request.APP)
+    else:
+        featured_addons = Addon.objects.featured(request.APP)
+    featured = base & featured_addons
     return featured[:6]
 
 
