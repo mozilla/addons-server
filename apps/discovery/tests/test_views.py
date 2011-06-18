@@ -234,6 +234,12 @@ class TestPane(test_utils.TestCase):
 
     def setUp(self):
         self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
+        # TODO(cvan): Remove this once featured collections are enabled.
+        self._new_features = settings.NEW_FEATURES
+        settings.NEW_FEATURES = True
+
+    def tearDown(self):
+        settings.NEW_FEATURES = self._new_features
 
     def test_my_account(self):
         self.client.login(username='regular@mozilla.com', password='password')
@@ -342,9 +348,9 @@ class TestDetails(test_utils.TestCase):
 
 
 class TestDownloadSources(test_utils.TestCase):
-    fixtures = ['addons/featured', 'bandwagon/featured_collections',
-                'base/apps', 'base/addon_3615', 'base/collections',
-                'base/featured', 'base/users', 'discovery/discoverymodules']
+    fixtures = ['base/apps', 'base/addon_3615', 'base/collections',
+                'base/featured', 'addons/featured',
+                'discovery/discoverymodules']
 
     def setUp(self):
         self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
