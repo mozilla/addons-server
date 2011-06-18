@@ -1013,3 +1013,6 @@ PERF_TEST_URL = 'http://areweperftestingyet.com/trigger.cgi'
 
 # IP addresses of servers we use as proxies.
 KNOWN_PROXIES = []
+
+# Blog URL
+DEVELOPER_BLOG_URL = "http://blog.mozilla.com/addons/feed/"
