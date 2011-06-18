@@ -153,11 +153,21 @@ class TestES(amo.tests.ESTestCase):
         qs = Addon.search().values_dict('name')
         eq_(qs._build_query(), {'fields': ['id', 'name']})
 
+    def test_empty_values_dict(self):
+        qs = Addon.search().values_dict()
+        eq_(qs._build_query(), {})
+
     def test_values_dict_result(self):
         qs = Addon.objects.order_by('id')
         addons = [{'id': a.id, 'name': unicode(a.name)} for a in qs]
         qs = Addon.search().values_dict('name').order_by('id')
         eq_(list(qs), list(addons))
+
+    def test_empty_values_dict_result(self):
+        qs = Addon.search().values_dict()
+        # Look for some of the keys we expect.
+        for key in ('id', 'name', 'status', 'app'):
+            assert key in qs[0].keys(), qs[0].keys()
 
     def test_object_result(self):
         addons = Addon.objects.all()[:1]

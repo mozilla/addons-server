@@ -93,7 +93,10 @@ class ES(object):
                 fields.extend(value)
                 as_list, as_dict = True, False
             elif action == 'values_dict':
-                fields.extend(value)
+                if not value:
+                    fields = []
+                else:
+                    fields.extend(value)
                 as_list, as_dict = False, True
             elif action == 'query':
                 queries.extend(self._process_queries(value))
