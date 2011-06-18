@@ -47,6 +47,17 @@ class ES(object):
     def filter_or(self, **kw):
         return self._clone(next_step=('filter_or', kw.items()))
 
+    def extra(self, **kw):
+        new = self._clone()
+        actions = 'values values_dict order_by query filter filter_or'.split()
+        for key, vals in kw.items():
+            assert key in actions
+            if hasattr(vals, 'items'):
+                new.steps.append((key, vals.items()))
+            else:
+                new.steps.append((key, vals))
+        return new
+
     def count(self):
         hits = self._get_results()
         return hits['hits']['total']

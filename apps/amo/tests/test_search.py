@@ -168,3 +168,70 @@ class TestES(amo.tests.ESTestCase):
         addon = Addon.objects.all()[0]
         qs = Addon.search().filter(id=addon.id)
         eq_(addon, qs[0])
+
+    def test_extra_bad_key(self):
+        with self.assertRaises(AssertionError):
+            Addon.search().extra(x=1)
+
+    def test_extra_values(self):
+        qs = Addon.search().extra(values=['name'])
+        eq_(qs._build_query(), {'fields': ['id', 'name']})
+
+        qs = Addon.search().values('status').extra(values=['name'])
+        eq_(qs._build_query(), {'fields': ['id', 'status', 'name']})
+
+    def test_extra_values_dict(self):
+        qs = Addon.search().extra(values_dict=['name'])
+        eq_(qs._build_query(), {'fields': ['id', 'name']})
+
+        qs = Addon.search().values_dict('status').extra(values_dict=['name'])
+        eq_(qs._build_query(), {'fields': ['id', 'status', 'name']})
+
+    def test_extra_order_by(self):
+        qs = Addon.search().extra(order_by=['-rating'])
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'sort': [{'rating': 'desc'}]})
+
+        qs = Addon.search().order_by('-id').extra(order_by=['-rating'])
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'sort': [{'id': 'desc'},
+                                         {'rating': 'desc'}]})
+
+    def test_extra_query(self):
+        qs = Addon.search().extra(query={'type': 1})
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'query': {'term': {'type': 1}}})
+
+        qs = Addon.search().filter(status=1).extra(query={'type': 1})
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'query': {'term': {'type': 1}},
+                                'filter': {'term': {'status': 1}}})
+
+    def test_extra_filter(self):
+        qs = Addon.search().extra(filter={'category__in': [1, 2]})
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'in': {'category': [1, 2]}}})
+
+        qs = (Addon.search().filter(type=1)
+              .extra(filter={'category__in': [1, 2]}))
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'and': [
+                                    {'term': {'type': 1}},
+                                    {'in': {'category': [1, 2]}},
+                                ]}})
+
+    def test_extra_filter_or(self):
+        qs = Addon.search().extra(filter_or={'status': 1, 'app': 2})
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'or': [
+                                    {'term': {'status': 1}},
+                                    {'term': {'app': 2}}]}})
+
+        qs = (Addon.search().filter(type=1)
+              .extra(filter_or={'status': 1, 'app': 2}))
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'and': [
+                                    {'term': {'type': 1}},
+                                    {'or': [{'term': {'status': 1}},
+                                            {'term': {'app': 2}}]},
+                                ]}})
