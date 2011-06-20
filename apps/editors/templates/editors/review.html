@@ -29,22 +29,11 @@
 <div id="addon" class="primary" role="main" data-id="{{ addon.id }}">
 {% include "addons/details_box.html" %}
 
-<h3 id="Version Notes">
-  {{ _('Version Notes') }}
-</h3>
-<div class="article">
-  {{ version.releasenotes|nl2br }}
-</div>
-
-{% if version.approvalnotes %}
-  <h3 id="approval-notes">
-    {{ _('Notes to reviewer') }}
-  </h3>
-  <p>{{ version.approvalnotes|nl2br }}</p>
-{% endif %}
-
 <div id="review-files-header">
-  <h3 id="history">{{ _('Add-on History') }}</h3>
+  <h3 id="history">
+    {{ _('Add-on History') }}
+    <span>[<a href="#" id="editors_history">{{ _('toggle') }}</a>]</span>
+  </h3>
   <div id="review-files-paginate">
     {% include "editors/includes/paginator_history.html"  %}
   </div>
@@ -56,12 +45,12 @@
       {% set version = pager.object_list[i-1] %}
       <tr class="listing-header">
         <th colspan="2">
-          {% trans version = version.version, created = version.created|datetime %}
-          Version {{ version }} &middot; {{ created }}
+          {% trans version = version.version, created = version.created|datetime, version_status = version.status|join(',') %}
+          Version {{ version }} &middot; {{ created }} <span class="light">&middot; {{ version_status }}</span>
           {% endtrans %}
         </th>
       </tr>
-      <tr>
+      <tr class="listing-body">
         <td class="files">
           <div><strong>{{ _('Files in this version:') }}</strong></div>
           {% for file in version.all_files %}
@@ -92,19 +81,32 @@
           {% endfor %}
         </td>
         <td>
-          {% set records = version.all_activity %}
-          {% if records %}
-          <ul class="activity">
-          {% for record_version in records %}
-            {% set record = record_version.activity_log %}
-            {% include 'editors/includes/history.html' %}
-          {% endfor %}
-          </ul>
-          {% else %}
-          <div class="no-activity">
-            {{ _('This version has not been reviewed.') }}
-          </div>
-          {% endif %}
+          <table class="activity">
+            {% if version.releasenotes %}
+            <tr>
+              <th>{{ _('Version Notes') }}</th>
+              <td class="activity_version">{{ version.releasenotes|nl2br }}</td>
+            </tr>
+            {% endif %}
+            {% if version.approvalnotes %}
+            <tr>
+              <th>{{ _('Approval Notes') }}</th>
+              <td class="activity_approval">{{ version.approvalnotes|nl2br }}</td>
+            </tr>
+            {% endif %}
+            {% set records = version.all_activity %}
+            {% for record_version in records %}
+              {% set record = record_version.activity_log %}
+              {% include 'editors/includes/history.html' %}
+            {% endfor %}
+            {% if not version.releasenotes and not version.approvalnotes and not records %}
+            <tr>
+              <td class="no-activity">
+                {{ _('This version has not been reviewed.') }}
+              </td>
+            </tr>
+            {% endif %}
+          </table>
         </td>
       </tr>
       {% endfor %}

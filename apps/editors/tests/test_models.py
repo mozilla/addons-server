@@ -85,6 +85,16 @@ class TestQueue(test_utils.TestCase):
         eq_(sorted(row.application_ids),
             [amo.FIREFOX.id, amo.THUNDERBIRD.id])
 
+    def test_addons_disabled_by_user_are_hidden(self):
+        f = self.new_file(version=u'0.1')
+        f['addon'].update(disabled_by_user=True)
+        eq_(list(self.Queue.objects.all()), [])
+
+    def test_addons_disabled_by_admin_are_hidden(self):
+        f = self.new_file(version=u'0.1')
+        f['addon'].update(status=amo.STATUS_DISABLED)
+        eq_(list(self.Queue.objects.all()), [])
+
     def test_reviewed_files_are_hidden(self):
         self.new_file(name='Unreviewed', version=u'0.1')
         create_addon_file('Already Reviewed', '0.1',
@@ -154,12 +164,9 @@ class TestFullReviewQueue(TestQueue):
             ['Full', 'Lite'])
 
     def test_any_nominated_file_shows_up(self):
-        create_addon_file('Disabled', '0.1',
-                          amo.STATUS_NOMINATED, amo.STATUS_DISABLED)
         create_addon_file('Null', '0.1',
                           amo.STATUS_NOMINATED, amo.STATUS_NULL)
-        eq_(sorted(q.addon_name for q in self.Queue.objects.all()),
-            ['Disabled', 'Null'])
+        eq_(sorted(q.addon_name for q in self.Queue.objects.all()), ['Null'])
 
     def test_waiting_time(self):
         self.new_file(name='Addon 1', version=u'0.1')

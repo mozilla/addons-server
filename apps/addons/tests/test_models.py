@@ -9,11 +9,13 @@ from django.core import mail
 from django.core.cache import cache
 from django.utils import translation
 
-from mock import patch, patch_object, Mock
+from mock import patch, Mock
 from nose.tools import eq_, assert_not_equal
 import test_utils
 
 import amo
+import amo.tests
+import addons.search
 from amo import set_user
 from amo.helpers import absolutify
 from amo.signals import _connect, _disconnect
@@ -105,6 +107,20 @@ class TestAddonManager(test_utils.TestCase):
         eq_(Addon.objects.valid_and_disabled().count(), 3)
 
 
+class TestAddonManagerFeatured(test_utils.TestCase):
+    # TODO(cvan): Once we migrate the featured add-ons to featured collections
+    # we'll need to merge this with the above tests.
+    fixtures = ['addons/featured', 'bandwagon/featured_collections',
+                'base/addon_3615', 'base/collections', 'base/featured']
+
+    def test_new_featured(self):
+        f = Addon.objects.new_featured(amo.FIREFOX)
+        eq_(f.count(), 2)
+        eq_(sorted(f.values_list('id', flat=True)), [3615, 15679])
+        f = Addon.objects.new_featured(amo.SUNBIRD)
+        assert not f.exists()
+
+
 class TestAddonModels(test_utils.TestCase):
     fixtures = ['base/apps',
                 'base/featured',
@@ -162,6 +178,17 @@ class TestAddonModels(test_utils.TestCase):
         Version.objects.filter(addon=3723).delete()
         a = Addon.objects.get(pk=3723)
         eq_(a.latest_version, None)
+
+    def test_latest_version_ignore_beta(self):
+        a = Addon.objects.get(pk=3615)
+
+        v1 = Version.objects.create(addon=a, version='1.0')
+        f1 = File.objects.create(version=v1)
+        eq_(a.latest_version.id, v1.id)
+
+        v2 = Version.objects.create(addon=a, version='2.0beta')
+        f2 = File.objects.create(version=v2, status=amo.STATUS_BETA)
+        eq_(a.latest_version.id, v1.id)  # Still should be f1
 
     def test_current_beta_version(self):
         a = Addon.objects.get(pk=5299)
@@ -272,6 +299,15 @@ class TestAddonModels(test_utils.TestCase):
         a.icon_type = None
 
         assert a.icon_url.endswith('icons/default-32.png')
+
+    def test_icon_url_default(self):
+        a = Addon.objects.get(pk=3615)
+        a.update(icon_type='')
+        default = 'icons/default-32.png'
+        eq_(a.icon_url.endswith(default), True)
+        eq_(a.get_icon_url(32).endswith(default), True)
+        eq_(a.get_icon_url(32, use_default=True).endswith(default), True)
+        eq_(a.get_icon_url(32, use_default=False), None)
 
     def test_thumbnail_url(self):
         """
@@ -1026,6 +1062,25 @@ class TestAddonModels(test_utils.TestCase):
         assert addon.get_category(amo.FIREFOX.id).name in names
 
 
+class TestAddonModelsFeatured(test_utils.TestCase):
+    fixtures = ['addons/featured', 'bandwagon/featured_collections',
+                'base/addon_3615', 'base/collections', 'base/featured']
+
+    def setUp(self):
+        # Addon._featuredcollection keeps an in-process cache we need to clear.
+        if hasattr(Addon, '_featuredcollection'):
+            del Addon._featuredcollection
+
+    def test_new_featured_random(self):
+        ids = [3615, 15679]
+        f = Addon.new_featured_random(amo.FIREFOX, 'en-US')
+        eq_(sorted(f), ids)
+        f = Addon.new_featured_random(amo.FIREFOX, 'fr')
+        eq_(sorted(f), ids)
+        f = Addon.new_featured_random(amo.SUNBIRD, 'en-US')
+        eq_(f, [])
+
+
 class TestBackupVersion(test_utils.TestCase):
     fixtures = ['addons/update']
 
@@ -1283,13 +1338,13 @@ REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
 class TestCharity(test_utils.TestCase):
     fixtures = ['base/charity.json']
 
-    @patch_object(settings._wrapped, 'REDIRECT_URL', REDIRECT_URL)
+    @patch.object(settings._wrapped, 'REDIRECT_URL', REDIRECT_URL)
     def test_url(self):
         charity = Charity(name="a", paypal="b", url="http://foo.com")
         charity.save()
         assert charity.outgoing_url.startswith(REDIRECT_URL)
 
-    @patch_object(settings._wrapped, 'REDIRECT_URL', REDIRECT_URL)
+    @patch.object(settings._wrapped, 'REDIRECT_URL', REDIRECT_URL)
     def test_url_foundation(self):
         foundation = Charity.objects.get(pk=amo.FOUNDATION_ORG)
         assert not foundation.outgoing_url.startswith(REDIRECT_URL)
@@ -1358,3 +1413,54 @@ class TestAddonWatchDisabled(test_utils.TestCase):
         self.addon.update(status=amo.STATUS_PUBLIC)
         assert mock.unhide_disabled_file.called
         assert not mock.hide_disabled_file.called
+
+
+class TestSearchSignals(amo.tests.ESTestCase):
+    es = True
+
+    @classmethod
+    def add_addons(cls):
+        pass
+
+    @classmethod
+    def reindex(cls):
+        pass
+
+    def setUp(self):
+        super(TestSearchSignals, self).setUp()
+        addons.search.setup_mapping()
+        self.addCleanup(self.cleanup)
+
+    def cleanup(self):
+        self.es.delete_index(settings.ES_INDEX)
+
+    def test_no_addons(self):
+        eq_(Addon.search().count(), 0)
+
+    def test_create(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo')
+        self.refresh()
+        eq_(Addon.search().count(), 1)
+        eq_(Addon.search().query(name='woo')[0].id, addon.id)
+
+    def test_update(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo')
+        self.refresh()
+        eq_(Addon.search().count(), 1)
+
+        addon.name = 'yeah'
+        addon.save()
+        self.refresh()
+
+        eq_(Addon.search().count(), 1)
+        eq_(Addon.search().query(name='woo').count(), 0)
+        eq_(Addon.search().query(name='yeah')[0].id, addon.id)
+
+    def test_delete(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo')
+        self.refresh()
+        eq_(Addon.search().count(), 1)
+
+        addon.delete('woo')
+        self.refresh()
+        eq_(Addon.search().count(), 0)

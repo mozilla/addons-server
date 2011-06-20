@@ -4,7 +4,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 
 import path
-from celery.messaging import establish_connection
+from celery.task.sets import TaskSet
 
 import bandwagon.tasks
 import users.tasks
@@ -25,11 +25,12 @@ class Command(BaseCommand):
             self.fix(base, task)
 
     def fix(self, base, task):
-        with establish_connection() as cxn:
-            print 'Searching the nfs...'
-            files = list(path.path(base).walkfiles('*%s' % suffix))
-            print '%s busted files under %s.' % (len(files), base)
-            for src in files:
-                dst = src.replace(suffix, '')
-                log.info('Resizing %s to %s' % (src, dst))
-                task.apply_async(args=[src, dst], connection=cxn)
+        print 'Searching the nfs...'
+        files = list(path.path(base).walkfiles('*%s' % suffix))
+        print '%s busted files under %s.' % (len(files), base)
+        ts = []
+        for src in files:
+            dst = src.replace(suffix, '')
+            log.info('Resizing %s to %s' % (src, dst))
+            ts.append(task.subtask(args=[src, dst]))
+        TaskSet(ts).apply_async()

@@ -22,9 +22,9 @@
         <div class="more">
           {% set addons = collection.addon_count %}
           {% trans num=addons, addons=addons|numberfmt %}
-            <span>{{ addons }}</span> addon
+            <span>{{ addons }}</span> add-on
           {% pluralize %}
-            <span>{{ addons }}</span> addons
+            <span>{{ addons }}</span> add-ons
           {% endtrans %}
           &middot;
           {% set subscribers = collection.subscribers %}

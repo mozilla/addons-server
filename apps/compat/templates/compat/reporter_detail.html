@@ -16,6 +16,7 @@
   need help supporting an upcoming Firefox version.
   </p>{% endtrans %}
 
+  {% if reports.object_list %}
   <table class="compat-info">
     <thead>
       <th>{{ _('Report Type') }}</th>
@@ -45,6 +46,9 @@
     </tbody>
   </table>
   {{ reports|paginator }}
+  {% else %}
+  <b>{{ _('No reports found.') }}</b>
+  {% endif %}
 </div>
 
 <div class="secondary">

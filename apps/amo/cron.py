@@ -7,9 +7,7 @@ from datetime import datetime, timedelta
 from subprocess import Popen, PIPE
 
 from django.conf import settings
-from django.db.models import Count
 
-from celery.messaging import establish_connection
 from celeryutils import task
 import cronjobs
 import commonware.log
@@ -18,7 +16,7 @@ import redisutils
 
 import amo
 from amo.utils import chunked
-from addons.models import Addon, AddonCategory, BlacklistedGuid, Category
+from addons.models import Addon, AddonCategory
 from addons.utils import AdminActivityLogMigrationTracker, MigrationTracker
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
@@ -32,55 +30,6 @@ from stats.models import AddonShareCount, Contribution
 from users.models import UserProfile
 
 log = commonware.log.getLogger('z.cron')
-
-
-# TODO(davedash): Delete me after this has been run.
-@cronjobs.register
-def remove_extra_cats():
-    """
-    Remove 'misc' category if other categories are present.
-    Remove categories in excess of two categories.
-    """
-    # Remove misc categories from addons if they are also in other categories
-    # for that app.
-    for cat in Category.objects.filter(misc=True):
-        # Find all the add-ons in this category.
-        addons_in_misc = cat.addon_set.values_list('id', flat=True)
-        delete_me = []
-
-        # Count the categories they have per app.
-        cat_count = (AddonCategory.objects.values('addon')
-                     .annotate(num_cats=Count('category'))
-                     .filter(num_cats__gt=1, addon__in=addons_in_misc,
-                             category__application=cat.application_id))
-
-        delete_me = [item['addon'] for item in cat_count]
-        log.info('Removing %s from %d add-ons' % (cat, len(delete_me)))
-        (AddonCategory.objects.filter(category=cat, addon__in=delete_me)
-         .delete())
-
-    with establish_connection() as conn:
-        # Remove all but 2 categories from everything else, per app
-        for app in amo.APP_USAGE:
-            # SELECT
-            #   `addons_categories`.`addon_id`,
-            #   COUNT(`addons_categories`.`category_id`) AS `num_cats`
-            # FROM
-            #   `addons_categories` INNER JOIN `categories` ON
-            #   (`addons_categories`.`category_id` = `categories`.`id`)
-            # WHERE
-            #   (`categories`.`application_id` = 1 )
-            # GROUP BY
-            #   `addons_categories`.`addon_id`
-            # HAVING COUNT(`addons_categories`.`category_id`) > 2
-            log.info('Examining %s add-ons' % unicode(app.pretty))
-            results = (AddonCategory.objects
-                       .filter(category__application=app.id)
-                       .values('addon_id').annotate(num_cats=Count('category'))
-                       .filter(num_cats__gt=2))
-            for chunk in chunked(results, 100):
-                _trim_categories.apply_async(args=[chunk, app.id],
-                                             connection=conn)
 
 
 @task
@@ -133,18 +82,14 @@ def gc(test_result=True):
                         created__lt=days_ago(4))
                         .values_list('id', flat=True))
 
-    with establish_connection() as conn:
-        for chunk in chunked(logs, 100):
-            _delete_logs.apply_async(args=[chunk], connection=conn)
-        for chunk in chunked(contributions_to_delete, 100):
-            _delete_stale_contributions.apply_async(
-                    args=[chunk], connection=conn)
-        for chunk in chunked(collections_to_delete, 100):
-            _delete_anonymous_collections.apply_async(
-                    args=[chunk], connection=conn)
-        for chunk in chunked(addons_to_delete, 100):
-            _delete_incomplete_addons.apply_async(
-                    args=[chunk], connection=conn)
+    for chunk in chunked(logs, 100):
+        _delete_logs.delay(chunk)
+    for chunk in chunked(contributions_to_delete, 100):
+        _delete_stale_contributions.delay(chunk)
+    for chunk in chunked(collections_to_delete, 100):
+        _delete_anonymous_collections.delay(chunk)
+    for chunk in chunked(addons_to_delete, 100):
+        _delete_incomplete_addons.delay(chunk)
 
     log.debug('Cleaning up sharing services.')
     AddonShareCount.objects.exclude(
@@ -418,113 +363,3 @@ def ping(**kw):
     queue = kw['delivery_info']['routing_key']
     log.info('[1@None] Checking the %s queue' % queue)
     QueueCheck().set('pong', queue)
-
-
-# TODO(andym): remove this once they are all gone.
-@cronjobs.register
-def delete_brand_thunder_addons():
-    ids = (102188, 102877, 103381, 103382, 103388, 107864, 109233, 109242,
-           111144, 111145, 115970, 150367, 146373, 143547, 142886, 140931,
-           113511, 100304, 130876, 126516, 124495, 123900, 120683, 159626,
-           159625, 157780, 157776, 155494, 155489, 155488, 152740, 152739,
-           151187, 193275, 184048, 182866, 179429, 179426, 161783, 161781,
-           161727, 160426, 160425, 220155, 219726, 219724, 219723, 219722,
-           218413, 200756, 200755, 199904, 221522, 221521, 221520, 221513,
-           221509, 221508, 221505, 220882, 220880, 220879, 223384, 223383,
-           223382, 223381, 223380, 223379, 223378, 223376, 222194, 221524,
-           223403, 223402, 223400, 223399, 223398, 223388, 223387, 223386,
-           223385, 232687, 232681, 228394, 228393, 228392, 228391, 228390,
-           226428, 226427, 226388, 235892, 235836, 235277, 235276, 235274,
-           232709, 232708, 232707, 232694, 232688, 94461, 94452, 54288, 50418,
-           49362, 49177, 239113, 102186, 102185, 101166, 101165, 101164,
-           99010, 99007, 99006, 98429, 98428, 45834, 179542, 103383)
-    guids = (
-'umespersona_at_brandthunder.com', 'vanderbiltupersona_at_brandthunder.com',
-'michiganstupersona_at_brandthunder.com', 'acconfpersona_at_brandthunder.com',
-'uofarizonapersona_at_brandthunder.com', 'uofcincinnatipersona_at_brandthunder.com',
-'texastechupersona_at_brandthunder.com', 'uofkansaspersona_at_brandthunder.com',
-'uofpittsburghpersona_at_brandthunder.com', 'uofgeorgiapersona_at_brandthunder.com',
-'halloween2010persona_at_brandthunder.com', 'halloweenpersona_at_brandthunder.com',
-'uofscarolinapersona_at_brandthunder.com', 'auburnupersona_at_brandthunder.com',
-'georgetownupersona_at_brandthunder.com', 'ncstateupersona_at_brandthunder.com',
-'uofmissouripersona_at_brandthunder.com', 'uoftennesseepersona_at_brandthunder.com',
-'washingtonstupersona_at_brandthunder.com',
-'uofnotredamepersona_at_brandthunder.com',
-'nasapersona_at_brandthunder.com', 'uofmichiganpersona_at_brandthunder.com',
-'villanovaupersona_at_brandthunder.com', 'uofillinoispersona_at_brandthunder.com',
-'oklahomastupersona_at_brandthunder.com', 'uofwisconsinpersona_at_brandthunder.com',
-'uofwashingtonpersona_at_brandthunder.com', 'uclapersona_at_brandthunder.com',
-'arizonastupersona_at_brandthunder.com', 'uofncarolinapersona_at_brandthunder.com',
-'bigtenconfpersona_at_brandthunder.com', 'indianaupersona_at_brandthunder.com',
-'purdueupersona_at_brandthunder.com', 'pennstupersona_at_brandthunder.com',
-'uoflouisvillepersona_at_brandthunder.com', 'marquetteupersona_at_brandthunder.com',
-'uofiowapersona_at_brandthunder.com', 'wakeforestunivpersona_at_brandthunder.com',
-'stanfordupersona_at_brandthunder.com', 'providencecollpersona_at_brandthunder.com',
-'kansasstupersona_at_brandthunder.com', 'uoftexaspersona_at_brandthunder.com',
-'uofcaliforniapersona_at_brandthunder.com', 'oregonstupersona_at_brandthunder.com',
-'gatechpersona_at_brandthunder.com', 'depaulupersona_at_brandthunder.com',
-'uofalabamapersona_at_brandthunder.com', 'stjohnsupersona_at_brandthunder.com',
-'uofmiamipersona_at_brandthunder.com', 'flastatepersona_at_brandthunder.com',
-'uofconnecticutpersona_at_brandthunder.com',
-'uofoklahomapersona_at_brandthunder.com',
-'baylorupersona_at_brandthunder.com', 'stackpersona_at_brandthunder.com',
-'askmenboom_at_askmen.com', 'uscpersona_at_brandthunder.com',
-'redbullspersona_at_brandthunder.com', 'huffpostpersona_at_brandthunder.com',
-'mlsunionpersona_at_brandthunder.com', 'goblinspersona2_at_brandthunder.com',
-'ignboom_at_ign.com', 'fantasyrpgtheme_at_brandthunder.com',
-'dragontheme_at_brandthunder.com', 'animetheme_at_brandthunder.com',
-'sanjeevkapoorboom_at_sanjeevkapoor.com', 'godukeboom_at_goduke.com',
-'nbakingsboom_at_nba.com', 'prowrestlingboom_at_brandthunder.com',
-'plaidthemetheme_at_brandthunder.com', 'fleurdelistheme_at_brandthunder.com',
-'snowthemetheme_at_brandthunder.com', 'transparenttheme_at_brandthunder.com',
-'nauticaltheme_at_brandthunder.com', 'sierrasunsettheme_at_brandthunder.com',
-'hotgirlbodytheme_at_brandthunder.com', 'ctrlaltdelboom_at_cad-comic.com',
-'cricketboom_at_brandthunder.com', 'starrynighttheme_at_brandthunder.com',
-'fantasyflowertheme_at_brandthunder.com', 'militarycamotheme_at_brandthunder.com',
-'paristhemetheme_at_brandthunder.com', 'greatwalltheme_at_brandthunder.com',
-'motorcycle_at_brandthunder.com', 'fullspeedboom_at_fullspeed2acure.com',
-'waterfalls_at_brandthunder.com', 'mothersday2010boom_at_brandthunder.com',
-'pyramids_at_brandthunder.com', 'mountain_at_brandthunder.com',
-'beachsunset_at_brandthunder.com', 'newyorkcity_at_brandthunder.com',
-'shinymetal_at_brandthunder.com', 'moviepremiereboom_at_brandthunder.com',
-'kitttens_at_brandthunder.com', 'tulips_at_brandthunder.com',
-'aquarium_at_brandthunde.com',  # [sic]
-'wood_at_brandthunder.com', 'puppies_at_brandthunder.com', 'ouaboom_at_oua.ca',
-'wibwboom_at_wibw.com', 'nasasettingsun_at_brandthunder.com',
-'bluesky_at_brandthunder.com',
-'cheerleaders_at_brandthunder.com', 'greengrass_at_brandthunder.com',
-'crayonpinktheme_at_brandthunder.com', 'crayonredtheme_at_brandthunder.com',
-'crayonyellow_at_brandthunder.com', 'crayongreen_at_brandthunder.com',
-'crayonblue_at_brandthunder.com', 'weatherboom_at_brandthunder.com',
-'crayonblack_at_brandthunder.com', 'ambientglow_at_brandthunder.com',
-'bubbles_at_brandthunder.com', 'matrixcode_at_brandthunder.com',
-'firetheme_at_brandthunder.com', 'neonlights_at_brandthunder.com',
-'brushedmetal_at_brandthunder.com', 'sugarland2_at_brandthunder.com',
-'suns2_at_brandthunder.com', 'thanksgiving2_at_brandthunder.com',
-'ecoboom2_at_brandthunder.com', 'thanksgivingboom_at_brandthunder.com')
-
-    guids = [guid.replace('_at_', '@') for guid in guids]
-    # This is a bit of an atomic bomb approach, but should ensure
-    # that no matter what the state of the guids or addons on AMO.
-    # We will end up with no addons or guids relating to Brand Thunder.
-    #
-    # Clean out any that may exist prior to deleting addons (was causing
-    # errors on preview).
-    blacklist = BlacklistedGuid.uncached.filter(guid__in=guids)
-    log.info('Found %s guids to delete (bug 636834)'
-             % blacklist.count())
-    blacklist.delete()
-    addons = Addon.uncached.filter(pk__in=ids)
-    log.info('Found %s addons to delete (bug 636834)' % addons.count())
-    for addon in addons:
-        try:
-            log.info('About to delete addon %s (bug 636834)' % addon.id)
-            addon.delete('Deleting per Brand Thunder request (bug 636834).')
-        except:
-            log.error('Could not delete add-on %d (bug 636834)' % addon.id,
-                      exc_info=True)
-    # Then clean out any remaining blacklisted guids after being run.
-    blacklist = BlacklistedGuid.uncached.filter(guid__in=guids)
-    log.info('Found %s guids to delete (bug 636834)'
-             % blacklist.count())
-    blacklist.delete()

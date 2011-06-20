@@ -401,7 +401,8 @@ class ReviewBase:
                 'number': self.version.version,
                 'reviewer': (self.request.user.get_profile().display_name),
                 'addon_url': absolutify(reverse('addons.detail',
-                                                args=[self.addon.slug])),
+                                                args=[self.addon.slug],
+                                                add_prefix=False)),
                 'comments': self.data['comments'],
                 'SITE_URL': settings.SITE_URL}
 

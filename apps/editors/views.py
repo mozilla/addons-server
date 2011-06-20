@@ -430,9 +430,12 @@ def review(request, addon):
     # We only allow the user to check/uncheck files for "pending"
     allow_unchecking_files = form.helper.review_type == "pending"
 
-    versions = (Version.objects.filter(addon=addon).order_by('-created')
+    versions = (Version.objects.filter(addon=addon)
+                               .exclude(files__status=amo.STATUS_BETA)
+                               .order_by('-created')
                                .transform(Version.transformer_activity)
                                .transform(Version.transformer))
+
     pager = amo.utils.paginate(request, versions, 5)
 
     num_pages = pager.paginator.num_pages

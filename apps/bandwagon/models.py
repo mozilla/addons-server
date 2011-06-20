@@ -341,10 +341,23 @@ class Collection(CollectionBase, amo.models.ModelBase):
     @staticmethod
     def post_save(sender, instance, **kwargs):
         from . import tasks
+        if kwargs.get('raw'):
+            return
         tasks.collection_meta.delay(instance.id, using='default')
+        tasks.index_collections.delay([instance.id])
+
+    @staticmethod
+    def post_delete(sender, instance, **kwargs):
+        from . import tasks
+        if kwargs.get('raw'):
+            return
+        tasks.unindex_collections.delay([instance.id])
 
 
-models.signals.post_save.connect(Collection.post_save, sender=Collection)
+models.signals.post_save.connect(Collection.post_save, sender=Collection,
+                                 dispatch_uid='coll.post_save')
+models.signals.post_delete.connect(Collection.post_delete, sender=Collection,
+                                   dispatch_uid='coll.post_delete')
 
 
 class CollectionAddon(amo.models.ModelBase):
@@ -532,3 +545,37 @@ class RecommendedCollection(Collection):
                 d[addon] += score
         addons = sorted(d.items(), key=lambda x: x[1], reverse=True)
         return [addon for addon, score in addons if addon not in addon_ids]
+
+
+class FeaturedCollectionManager(amo.models.ManagerBase):
+
+    def addon_ids(self, app=None, lang=None):
+        """
+        Returns ids for all add-ons from all collections, optionally filtered
+        by application or language.
+        """
+        qs = self
+        if app:
+            qs = qs.filter(application__id=app.id)
+        if lang:
+            qs = qs.filter(Q(locale=lang) | Q(locale__isnull=True))
+        return list(qs.values_list('collection__addons', flat=True).distinct())
+
+    def addons(self, app=None, lang=None):
+        """Returns add-ons from filtered collections."""
+        return Addon.objects.filter(id__in=self.addon_ids(app, lang))
+
+
+class FeaturedCollection(amo.models.ModelBase):
+    application = models.ForeignKey(Application)
+    collection = models.ForeignKey(Collection)
+    locale = models.CharField(max_length=10, null=True)
+
+    objects = FeaturedCollectionManager()
+
+    class Meta:
+        db_table = 'featured_collections'
+
+    def __unicode__(self):
+        return u'%s (%s: %s)' % (self.collection, self.application,
+                                 self.locale)

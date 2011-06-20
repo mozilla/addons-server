@@ -9,6 +9,7 @@ from . import views
 urlpatterns = patterns('',
     # AMO stuff.
     url('^$', lambda r: redirect('admin:index'), name='zadmin.home'),
+    url('^index.html$', views.index, name='zadmin.index'),
     url('^env$', views.env, name='amo.env'),
     url('^flagged', views.flagged, name='zadmin.flagged'),
     url('^hera', views.hera, name='zadmin.hera'),
@@ -31,9 +32,18 @@ urlpatterns = patterns('',
     url(r'^email_preview/(?P<topic>.*)\.csv$',
         views.email_preview_csv, name='zadmin.email_preview_csv'),
     url(r'^jetpack$', views.jetpack, name='zadmin.jetpack'),
+
+    url('^features$', views.features, name='zadmin.features'),
+    url('^features/collections\.json$', views.es_collections_json,
+        name='zadmin.collections_json'),
+    url('^features/featured-collection$', views.featured_collection,
+        name='zadmin.featured_collection'),
+
     url('^elastic$', views.elastic, name='zadmin.elastic'),
     url('^mail$', views.mail, name='zadmin.mail'),
     url('^celery$', views.celery, name='zadmin.celery'),
+    url('^addon-name-blocklist$', views.addon_name_blocklist,
+        name='zadmin.addon-name-blocklist'),
 
     # The Django admin.
     url('^models/', include(admin.site.urls)),

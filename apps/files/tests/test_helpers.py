@@ -90,12 +90,12 @@ class TestFileHelper(test_utils.TestCase):
             assert binary(m, f), '%s should be binary' % f
 
         filename = tempfile.mktemp()
-        for txt in ['#python', u'\0x2']:
+        for txt in ['#!/usr/bin/python', '#python', u'\0x2']:
             open(filename, 'w').write(txt)
             m, encoding = mimetypes.guess_type(filename)
             assert not binary(m, filename), '%s should not be binary' % txt
 
-        for txt in ['#!/usr/bin/python', 'MZ']:
+        for txt in ['MZ']:
             open(filename, 'w').write(txt)
             m, encoding = mimetypes.guess_type(filename)
             assert binary(m, filename), '%s should be binary' % txt
@@ -178,6 +178,20 @@ class TestFileHelper(test_utils.TestCase):
 
     def test_default(self):
         eq_(self.viewer.get_default(None), 'install.rdf')
+
+    def test_delete_mid_read(self):
+        self.viewer.extract()
+        self.viewer.select('install.js')
+        os.remove(os.path.join(self.viewer.dest, 'install.js'))
+        res = self.viewer.read_file()
+        eq_(res, '')
+        assert self.viewer.selected['msg'].startswith('That file no')
+
+    @patch('files.helpers.get_md5')
+    def test_delete_mid_tree(self, get_md5):
+        get_md5.side_effect = IOError('ow')
+        self.viewer.extract()
+        eq_({}, self.viewer.get_files())
 
 
 class TestSearchEngineHelper(test_utils.TestCase):

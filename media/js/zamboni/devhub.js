@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     // Edit Add-on
     if($("#edit-addon").length){
         initEditAddon();
@@ -86,6 +85,34 @@ $(document).ready(function() {
         if (window.location.hash === '#version-upload') {
             $modal.render();
         }
+    }
+
+    // Jetpack
+    if($('#jetpack').exists()) {
+        $('a[rel=video-lightbox]').click(_pd(function() {
+            var $this = $(this),
+                text = gettext('Your browser does not support the video tag'),
+                $overlay = $('<div>', {id: 'jetpack-overlay'}),
+                $video = $('<video>', {'controls': 'controls', 'text': text,
+                                       'css': {'max-width': $this.attr('data-width') + 'px'}}),
+                $src_mp3 = $('<source>', {'type': 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"',
+                                          'src': $this.attr('data-mp4') }),
+                $src_webm = $('<source>', {'type': 'video/webm; codecs="vp8, vorbis"',
+                                           'src': $this.attr('data-webm') }),
+                $src_ogv = $('<source>', {'type': 'video/ogv; codecs="theora, vorbis"',
+                                          'src': $this.attr('data-ogv') });
+
+            $overlay.append($video);
+            $video.append($src_mp3);
+            $video.append($src_webm);
+            $video.append($src_ogv);
+            $('body').append($overlay);
+            $video[0].play();
+            $video.click(function(e){ e.stopPropagation(); });
+            $overlay.click(function() {
+                $(this).remove();
+            });
+        }));
     }
 
     $(".invisible-upload a").click(_pd(function() {}));

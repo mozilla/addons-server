@@ -11,7 +11,7 @@ import elasticutils
 import multidb.pinning
 import queryset_transform
 
-from . import signals
+from . import signals, search
 
 
 _locals = threading.local()
@@ -244,7 +244,7 @@ class OnChangeMixin(object):
         """
         Save changes to the model instance.
 
-        If _signal=False is in ``kw`` the on_change() callbacks won't be called.
+        If _signal=False is in `kw` the on_change() callbacks won't be called.
         """
         signal = kw.pop('_signal', True)
         result = super(OnChangeMixin, self).save(*args, **kw)
@@ -274,6 +274,15 @@ class SearchMixin(object):
         elasticutils.get_es().index(
             document, index=settings.ES_INDEX, doc_type=cls._meta.app_label,
             id=id, bulk=bulk, force_insert=force_insert)
+
+    @classmethod
+    def unindex(cls, id):
+        elasticutils.get_es().delete(settings.ES_INDEX,
+                                     cls._meta.app_label, id)
+
+    @classmethod
+    def search(cls):
+        return search.ES(cls)
 
 
 class ModelBase(SearchMixin, caching.base.CachingMixin, models.Model):

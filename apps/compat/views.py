@@ -93,8 +93,6 @@ def reporter(request):
 
 def reporter_detail(request, guid):
     qs = CompatReport.objects.filter(guid=guid)
-    if not qs.exists():
-        raise http.Http404()
 
     works_ = dict(qs.values_list('works_properly').annotate(Count('id')))
     works = {'success': works_.get(True, 0), 'failure': works_.get(False, 0)}

@@ -75,6 +75,14 @@ class AddonManager(amo.models.ManagerBase):
         """
         return self.valid().filter(feature__application=app.id)
 
+    def new_featured(self, app):
+        """
+        Filter for all featured add-ons for an application in all locales.
+        """
+        from bandwagon.models import FeaturedCollection
+        ids = FeaturedCollection.objects.addon_ids(app=app)
+        return self.valid().filter(id__in=ids)
+
     def category_featured(self):
         """Get all category-featured add-ons for ``app`` in all locales."""
         return self.filter(addoncategory__feature=True)
@@ -456,7 +464,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             try:
                 self.save()
                 signals.version_changed.send(sender=self)
-                log.debug(u'Version changed from backup: %s to %s, '
+                log.info(u'Version changed from backup: %s to %s, '
                           'current: %s to %s for addon %s'
                           % tuple(diff + [self]))
             except Exception, e:
@@ -468,14 +476,16 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def latest_version(self):
-        """Returns the absolutely newest version; status doesn't matter. """
+        """Returns the absolutely newest non-beta version. """
         if self.type == amo.ADDON_PERSONA:
             return
         if not self._latest_version:
             try:
-                self._latest_version = self.versions.order_by('-created').latest()
-            except Version.DoesNotExist, e:
-                pass
+                v = (self.versions.exclude(files__status=amo.STATUS_BETA)
+                                  .latest())
+                self._latest_version = v
+            except Version.DoesNotExist:
+                self._latest_version = None
 
         return self._latest_version
 
@@ -499,9 +509,13 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return os.path.join(settings.ADDON_ICONS_PATH,
                             '%s' % (self.id / 1000))
 
-    def get_icon_url(self, size):
+    def get_icon_url(self, size, use_default=True):
         """
-        Returns either the addon's icon url, or a default.
+        Returns either the addon's icon url.
+        If this is not a theme or persona and there is no
+        icon for the addon then if:
+            use_default is True, will return a default icon
+            use_default is False, will return None
         """
         icon_type_split = []
         if self.icon_type:
@@ -522,6 +536,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 icon = amo.ADDON_ICONS[amo.ADDON_THEME]
                 return settings.ADDON_ICON_BASE_URL + icon
             else:
+                if not use_default:
+                    return None
                 return '%s/%s-%s.png' % (settings.ADDON_ICONS_DEFAULT_URL,
                                          'default', size)
         elif icon_type_split[0] == 'icon':
@@ -535,23 +551,26 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if self.status == amo.STATUS_NULL or self.is_disabled:
             return
 
+        def logit(reason, old=self.status):
+            log.info('Changing add-on status [%s]: %s => %s (%s).'
+                     % (self.id, old, self.status, reason))
+            amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
+
         versions = self.versions.using(using)
         if not versions.exists():
             self.update(status=amo.STATUS_NULL)
-            amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
-
+            logit('no versions')
         elif not (versions.filter(files__isnull=False).exists()):
             self.update(status=amo.STATUS_NULL)
-            amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
-
+            logit('no versions with files')
         elif (self.status == amo.STATUS_PUBLIC and
              not versions.filter(files__status=amo.STATUS_PUBLIC).exists()):
-
             if versions.filter(files__status=amo.STATUS_LITE).exists():
                 self.update(status=amo.STATUS_LITE)
+                logit('only lite files')
             else:
                 self.update(status=amo.STATUS_UNREVIEWED)
-            amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
+                logit('no reviewed files')
 
     @staticmethod
     def transformer(addons):
@@ -616,7 +635,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         for addon in addons:
             category = categories[cats[addon.id]] if addon.id in cats else None
             addon._first_category[amo.FIREFOX.id] = category
-
 
     @property
     def show_beta(self):
@@ -749,6 +767,15 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         random.shuffle(no_locale)
         random.shuffle(specific_locale)
         return specific_locale + no_locale
+
+    @classmethod
+    def new_featured_random(cls, app, lang):
+        from bandwagon.models import FeaturedCollection
+        if not hasattr(cls, '_featuredcollection'):
+            cls._featuredcollection = FeaturedCollection.objects
+        ids = cls._featuredcollection.addon_ids(app=app, lang=lang)
+        random.shuffle(ids)
+        return ids
 
     def is_featured(self, app, lang):
         """is add-on globally featured for this app and language?"""
@@ -887,7 +914,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         qs.update(localized_string=None, localized_string_clean=None)
 
 
-@receiver(dbsignals.post_save, sender=Addon)
+@receiver(dbsignals.post_save, sender=Addon,
+          dispatch_uid='addons.update.name.table')
 def update_name_table(sender, **kw):
     from . import cron
     addon = kw['instance']
@@ -895,7 +923,8 @@ def update_name_table(sender, **kw):
                                           clear=True)
 
 
-@receiver(dbsignals.pre_delete, sender=Addon)
+@receiver(dbsignals.pre_delete, sender=Addon,
+          dispatch_uid='addons.clear.name.table')
 def clear_name_table(sender, **kw):
     addon = kw['instance']
     ReverseNameLookup().delete(addon.id)
@@ -905,6 +934,28 @@ def clear_name_table(sender, **kw):
 def version_changed(sender, **kw):
     from . import tasks
     tasks.version_changed.delay(sender.id)
+
+
+@receiver(dbsignals.post_save, sender=Addon,
+          dispatch_uid='addons.search.index')
+def update_search_index(sender, instance, **kw):
+    from . import tasks
+    if settings.SKIP_SEARCH_INDEX:
+        return
+
+    if not kw.get('raw'):
+        tasks.index_addons.delay([instance.id])
+
+
+@receiver(dbsignals.post_delete, sender=Addon,
+          dispatch_uid='addons.search.unindex')
+def delete_search_index(sender, instance, **kw):
+    from . import tasks
+    if settings.SKIP_SEARCH_INDEX:
+        return
+
+    if not kw.get('raw'):
+        tasks.unindex_addons.delay([instance.id])
 
 
 @Addon.on_change
@@ -935,7 +986,7 @@ def watch_status(old_attr={}, new_attr={}, instance=None,
 
 @Addon.on_change
 def watch_disabled(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
-    attrs = dict((k,v) for k, v in old_attr.items()
+    attrs = dict((k, v) for k, v in old_attr.items()
                  if k in ('disabled_by_user', 'status'))
     if Addon(**attrs).is_disabled and not instance.is_disabled:
         for f in File.objects.filter(version__addon=instance.id):

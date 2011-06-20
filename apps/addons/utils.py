@@ -27,8 +27,10 @@ class ReverseNameLookup(object):
 
     def add(self, name, addon_id):
         hash = safe_key(name)
+        if not self.redis.hsetnx(self.names, hash, addon_id):
+            rnlog.warning('Duplicate name: %s (%s).' % (name, addon_id))
+            return
         rnlog.info('[%s] has a lock on "%s"' % (addon_id, name))
-        self.redis.hset(self.names, hash, addon_id)
         self.redis.sadd('%s:%s' % (self.addons, addon_id), hash)
         self.redis.sadd(self.keys, addon_id)
 

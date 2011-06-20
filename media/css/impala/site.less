@@ -133,11 +133,28 @@ a {
         float: left;
         padding-right: 1em;
     }
+    div.col {
+        width: 1em;
+    }
     div.col-2 {
         width: 50%;
     }
     div.col-3 {
         width: 33.33%;
+    }
+}
+
+.equal {
+    display: table;
+    width: 100%;
+    border-spacing: 0.5em;
+    border-collapse: separate;
+    .cols {
+        display: table-row;
+        div.col, div.col-2, div.col-3 {
+            float: none;
+            display: table-cell;
+        }
     }
 }
 

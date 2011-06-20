@@ -24,7 +24,7 @@ import amo.models
 import amo.utils
 from amo.urlresolvers import reverse
 import devhub.signals
-from versions.compare import version_int
+from versions.compare import version_int as vint
 
 log = commonware.log.getLogger('z.files')
 
@@ -462,12 +462,12 @@ def nfd_str(u):
 @django.dispatch.receiver(devhub.signals.submission_done)
 def check_jetpack_version(sender, **kw):
     import files.tasks
-    from zadmin.models import get_config
+    from files.utils import JetpackUpgrader
 
-    jetpack_version = get_config('jetpack_version')
+    minver, maxver = JetpackUpgrader().jetpack_versions()
     qs = File.objects.filter(version__addon=sender,
                              jetpack_version__isnull=False)
     ids = [f.id for f in qs
-           if version_int(f.jetpack_version) < version_int(jetpack_version)]
+           if vint(minver) <= vint(f.jetpack_version) < vint(maxver)]
     if ids:
-        files.tasks.start_upgrade.delay(jetpack_version, ids, priority='high')
+        files.tasks.start_upgrade.delay(ids, priority='high')

@@ -84,11 +84,11 @@ database.
 
 If we run this command like so: ::
 
-    from celery.messaging import establish_connection
+    from celery.task.sets import TaskSet
 
-    with establish_connection() as conn:
-        _update_addon_average_daily_users.apply_async(args=[pks],
-                                                          connection=conn)
+    ts = [_update_addon_average_daily_users.subtask(args=[pks])
+          for pks in amo.utils.chunked(all_pks, 300)]
+    TaskSet(ts).apply_async()
 
 All the Addons with ids in ``pks`` will (eventually) have their
 ``current_versions`` updated.

@@ -515,7 +515,7 @@ class ReviewTypeForm(forms.Form):
     review_type = forms.TypedChoiceField(
         choices=_choices, widget=forms.HiddenInput,
         coerce=int, empty_value=None,
-        error_messages={'required': 'A review type must be selected.'})
+        error_messages={'required': _lazy(u'A review type must be selected.')})
 
 
 class Step3Form(addons.forms.AddonFormBasic):

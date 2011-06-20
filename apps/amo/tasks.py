@@ -75,9 +75,12 @@ class TaskStats(object):
 
     def on_postrun(self, sender, **kw):
         # sender is the task object. task_id in here.
-        self.redis.hincrby(self.pending, sender.name, -1)
+        pending = self.redis.hincrby(self.pending, sender.name, -1)
+        # Clamp pending at 0. Tasks could be coming in before we started
+        # tracking.
+        if pending < 0:
+            self.redis.hset(self.pending, sender.name, 0)
         self.redis.hincrby(self.run, sender.name, 1)
-        # TODO: send to graphite.
 
         start = self.redis.hget(self.timer, kw['task_id'])
         if start:

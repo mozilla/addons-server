@@ -228,10 +228,18 @@ class TestUrls(test_utils.TestCase):
 
 
 class TestPane(test_utils.TestCase):
-    fixtures = ['base/apps', 'base/users']
+    fixtures = ['addons/featured', 'base/addon_3615', 'base/apps',
+                'base/collections', 'base/featured', 'base/users',
+                'bandwagon/featured_collections']
 
     def setUp(self):
         self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
+        # TODO(cvan): Remove this once featured collections are enabled.
+        self._new_features = settings.NEW_FEATURES
+        settings.NEW_FEATURES = True
+
+    def tearDown(self):
+        settings.NEW_FEATURES = self._new_features
 
     def test_my_account(self):
         self.client.login(username='regular@mozilla.com', password='password')
@@ -256,8 +264,35 @@ class TestPane(test_utils.TestCase):
 
     def test_mission(self):
         r = self.client.get(reverse('discovery.pane.account'))
+        assert pq(r.content)('#mission')
+
+    def test_featured_addons(self):
+        addon = Addon.objects.get(id=3615)
+        r = self.client.get(self.url)
         doc = pq(r.content)
-        assert doc('#mission')
+        p = doc('#featured-addons')
+        eq_(p.find('h2').text(), 'Featured Add-ons')
+        eq_(p.find('li').attr('data-guid'), addon.guid)
+        a = p.find('a.addon-title')
+        url = reverse('discovery.addons.detail', args=[3615])
+        assert a.attr('href').endswith(url + '?src=discovery-featured')
+        eq_(a.attr('target'), '_self')
+        eq_(p.find('h3.vtruncate').text(), unicode(addon.name))
+        eq_(p.find('p.desc.vtruncate').text(), addon.summary)
+        eq_(p.find('img').attr('src'), addon.icon_url)
+
+    def test_featured_personas(self):
+        addon = Addon.objects.get(id=15679)
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        p = doc('#featured-personas')
+        eq_(p.find('h2').text(), 'See all Featured Personas')
+        eq_(p.find('a.all').attr('href'), reverse('browse.personas'))
+        a = p.find('a[data-browsertheme]')
+        url = reverse('discovery.addons.detail', args=[15679])
+        assert a.attr('href').endswith(url + '?src=discovery-featured')
+        eq_(a.attr('target'), '_self')
+        eq_(p.find('.addon-title').text(), unicode(addon.name))
 
 
 class TestDetails(test_utils.TestCase):
@@ -272,8 +307,8 @@ class TestDetails(test_utils.TestCase):
         self._perf_threshold = settings.PERF_THRESHOLD
         settings.PERF_THRESHOLD = 25
 
-        def tearDown(self):
-            settings.PERF_THRESHOLD = self._perf_threshold
+    def tearDown(self):
+        settings.PERF_THRESHOLD = self._perf_threshold
 
     def get_addon(self):
         return Addon.objects.get(id=3615)
@@ -325,18 +360,6 @@ class TestDownloadSources(test_utils.TestCase):
         doc = pq(r.content)
         urls = doc('#main-feature .collection a[href$="?src=discovery-promo"]')
         eq_(urls.length, 2)
-
-    def test_featured_addons(self):
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        urls = doc('#featured-addons li a[href$="?src=discovery-featured"]')
-        eq_(urls.length, 2)
-
-    def test_featured_personas(self):
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        assert doc('#featured-personas li a').attr('href').endswith(
-            '?src=discovery-featured')
 
     def test_detail(self):
         url = reverse('discovery.addons.detail', args=['a3615'])

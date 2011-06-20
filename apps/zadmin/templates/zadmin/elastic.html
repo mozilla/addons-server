@@ -4,14 +4,27 @@
 
 {% block content %}
 <ul>
+  <li><a href="#mapping">Mappings</a></li>
   <li><a href="#health">Health</a></li>
   <li><a href="#state">State</a></li>
   <li><a href="#nodes">Nodes</a></li>
 </ul>
-<h3 id="health"><a href="#health">Health</a></h3>
+<h3 id="mapping">Mappings</h3>
+<form method="post" action="">
+  {{ csrf() }}
+  <input name="reset" placeholder="mapping name">
+  <button>Reset</button>
+</form>
+<form method="post" action="">
+  {{ csrf() }}
+  <input name="reindex" placeholder="mapping name">
+  <button>Reindex</button>
+</form>
+<pre>{{ mapping|dictsort|pprint }}</pre>
+<h3 id="health">Health</h3>
 <pre>{{ health|pprint }}</pre>
-<h3 id="state"><a href="#state">State</a></h3>
+<h3 id="state">State</h3>
 <pre>{{ state|pprint }}</pre>
-<h3 id="nodes"><a href="#nodes">Nodes</a></h3>
+<h3 id="nodes">Nodes</h3>
 <pre>{{ nodes|pprint }}</pre>
 {% endblock %}

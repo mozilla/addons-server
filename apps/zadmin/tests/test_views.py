@@ -15,16 +15,18 @@ from pyquery import PyQuery as pq
 import test_utils
 
 import amo
-from amo.tests import close_to_now, assert_no_validation_errors
+from amo.tests import (formset, initial, close_to_now,
+                       assert_no_validation_errors)
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from applications.models import AppVersion
+from bandwagon.models import Collection, FeaturedCollection
 from devhub.models import ActivityLog
 from files.models import Approval, File
 from users.models import UserProfile
 from users.utils import get_task_user
 from versions.models import ApplicationsVersions, Version
-from zadmin.forms import NotifyForm
+from zadmin.forms import NotifyForm, FeaturedCollectionForm
 from zadmin.models import ValidationJob, ValidationResult, EmailPreviewTopic
 from zadmin.views import completed_versions_dirty, find_files
 from zadmin import tasks
@@ -88,8 +90,8 @@ class TestFlagged(test_utils.TestCase):
 
 
 class BulkValidationTest(test_utils.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/appversion',
-                'base/users']
+    fixtures = ['base/apps', 'base/platforms', 'base/addon_3615',
+                'base/appversion', 'base/users']
 
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',
@@ -122,12 +124,12 @@ class BulkValidationTest(test_utils.TestCase):
         kw.update(kwargs)
         return ValidationJob.objects.create(**kw)
 
-    def create_file(self, version=None):
+    def create_file(self, version=None, platform_id=amo.PLATFORM_ALL.id):
         if not version:
             version = self.version
         return File.objects.create(version=version,
                                    filename='file-%s' % self.counter,
-                                   platform_id=amo.PLATFORM_ALL.id,
+                                   platform_id=platform_id,
                                    status=amo.STATUS_PUBLIC)
 
     def create_result(self, job, f, **kwargs):
@@ -571,6 +573,24 @@ class TestBulkNotify(BulkValidationTest):
         f = NotifyForm({'text': '{{ UNDECLARED }}', 'subject': '...'})
         eq_(f.is_valid(), False)
 
+    def test_addon_name_contains_platform(self):
+        for pl in (amo.PLATFORM_MAC.id, amo.PLATFORM_LINUX.id):
+            f = self.create_file(self.version, platform_id=pl)
+            self.create_result(self.job, f, errors=1)
+        self.client.post(self.update_url, {'text': '...',
+                                           'subject': '{{ ADDON_NAME }}'})
+        subjects = sorted(m.subject for m in mail.outbox)
+        eq_(subjects,
+            ['Delicious Bookmarks (Linux)',
+             'Delicious Bookmarks (Mac OS X)'])
+
+    def test_addon_name_for_platform_all(self):
+        f = self.create_file(self.version, platform_id=amo.PLATFORM_ALL.id)
+        self.create_result(self.job, f, errors=1)
+        self.client.post(self.update_url, {'text': '...',
+                                           'subject': '{{ ADDON_NAME }}'})
+        eq_(mail.outbox[0].subject, unicode(self.addon.name))
+
 
 class TestBulkValidationTask(BulkValidationTest):
 
@@ -905,3 +925,115 @@ class TestEmailPreview(test_utils.TestCase):
         eq_(rdr.next(), ['from_email', 'recipient_list', 'subject', 'body'])
         eq_(rdr.next(), ['admin@mozilla.org', 'funnyguy@mozilla.org',
                          'the subject', 'Hello Ivan Krsti\xc4\x87'])
+
+
+class TestFeatures(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/collections']
+
+    def setUp(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        self.url = reverse('zadmin.features')
+        FeaturedCollection.objects.create(application_id=amo.FIREFOX.id,
+                                          locale='zh-CN', collection_id=80)
+        self.f = self.client.get(self.url).context['form'].initial_forms[0]
+        self.initial = self.f.initial
+
+    def test_form_initial(self):
+        eq_(self.initial['application'], amo.FIREFOX.id)
+        eq_(self.initial['locale'], 'zh-CN')
+        eq_(self.initial['collection'], 80)
+
+    def test_form_attrs(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('#features tr').attr('data-app'), str(amo.FIREFOX.id))
+        assert doc('#features td.app').hasClass(amo.FIREFOX.short)
+        eq_(doc('#features td.collection.loading').attr('data-collection'),
+            '80')
+        assert doc('#features .collection-ac.js-hidden')
+        assert not doc('#features .collection-ac[disabled]')
+
+    def test_disabled_autocomplete_errors(self):
+        """If any collection errors, autocomplete field should be enabled."""
+        d = dict(application=amo.FIREFOX.id, collection=999)
+        data = formset(self.initial, d, initial_count=1)
+        r = self.client.post(self.url, data)
+        doc = pq(r.content)
+        assert not doc('#features .collection-ac[disabled]')
+
+    def test_required_app(self):
+        d = dict(locale='zh-CN', collection=80)
+        data = formset(self.initial, d, initial_count=1)
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 200)
+        eq_(r.context['form'].errors[0]['application'],
+            ['This field is required.'])
+        eq_(r.context['form'].errors[0]['collection'],
+            ['Invalid collection for this application.'])
+
+    def test_bad_app(self):
+        d = dict(application=999, collection=80)
+        data = formset(self.initial, d, initial_count=1)
+        r = self.client.post(self.url, data)
+        eq_(r.context['form'].errors[0]['application'],
+            ['Select a valid choice. That choice is not one of the available '
+             'choices.'])
+
+    def test_bad_collection_for_app(self):
+        d = dict(application=amo.THUNDERBIRD.id, collection=80)
+        data = formset(self.initial, d, initial_count=1)
+        r = self.client.post(self.url, data)
+        eq_(r.context['form'].errors[0]['collection'],
+            ['Invalid collection for this application.'])
+
+    def test_optional_locale(self):
+        d = dict(application=amo.FIREFOX.id, collection=80)
+        data = formset(self.initial, d, initial_count=1)
+        r = self.client.post(self.url, data)
+        eq_(r.context['form'].errors, [{}])
+
+    def test_bad_locale(self):
+        d = dict(application=amo.FIREFOX.id, locale='klingon', collection=80)
+        data = formset(self.initial, d, initial_count=1)
+        r = self.client.post(self.url, data)
+        eq_(r.context['form'].errors[0]['locale'],
+            ['Select a valid choice. klingon is not one of the available '
+             'choices.'])
+
+    def test_required_collection(self):
+        d = dict(application=amo.FIREFOX.id)
+        data = formset(self.initial, d, initial_count=1)
+        r = self.client.post(self.url, data)
+        eq_(r.context['form'].errors[0]['collection'],
+            ['This field is required.'])
+
+    def test_bad_collection(self):
+        d = dict(application=amo.FIREFOX.id, collection=999)
+        data = formset(self.initial, d, initial_count=1)
+        r = self.client.post(self.url, data)
+        eq_(r.context['form'].errors[0]['collection'],
+            ['Invalid collection for this application.'])
+
+    def test_success_insert(self):
+        dupe = initial(self.f)
+        del dupe['id']
+        dupe.update(locale='fr')
+        data = formset(initial(self.f), dupe, initial_count=1)
+        r = self.client.post(self.url, data)
+        eq_(FeaturedCollection.objects.count(), 2)
+        eq_(FeaturedCollection.objects.all()[1].locale, 'fr')
+
+    def test_success_update(self):
+        d = initial(self.f)
+        d.update(locale='fr')
+        r = self.client.post(self.url, formset(d, initial_count=1))
+        eq_(r.status_code, 302)
+        eq_(FeaturedCollection.objects.all()[0].locale, 'fr')
+
+    def test_success_delete(self):
+        d = initial(self.f)
+        d.update(DELETE=True)
+        r = self.client.post(self.url, formset(d, initial_count=1))
+        eq_(FeaturedCollection.objects.count(), 0)

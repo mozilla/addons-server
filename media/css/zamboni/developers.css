@@ -124,6 +124,7 @@ form .char-count:after {
 
 .devhub-form .tip,
 .addon-submission-process .tip,
+ul.errorlist li span.tip,
 a.remove,
 span.remove {
     -moz-border-radius: 20px;
@@ -1011,7 +1012,9 @@ a.extra {
     float: left;
     margin: 0;
     padding: 0;
-    line-height: 22px;
+}
+#status-bar p span {
+    font-size: 0.9em;
 }
 #status-bar {
     padding: .5em 1em;
@@ -1859,4 +1862,28 @@ form.select-review .errorlist {
     font-style: normal;
     margin: 0;
     margin-bottom: 10px;
+}
+
+button.search-button {
+  background: #84c63c url("../../img/icons/go-arrow.png") center no-repeat;
+  background-image: url("../../img/icons/go-arrow.png"), -moz-linear-gradient(#84c63c, #489615);
+  background-image: url("../../img/icons/go-arrow.png"), -webkit-linear-gradient(#84c63c, #489615);
+  border: 0;
+  float: right;
+  vertical-align: bottom;
+  cursor: pointer;
+  height: 30px;
+  width: 36px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  box-shadow: 0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset;
+  -webkit-box-shadow: 0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset;
+}
+
+.html-rtl button.search-button {
+  float: left;
+  -moz-transform: scalex(-1);
+  -webkit-transform: scalex(-1);
 }

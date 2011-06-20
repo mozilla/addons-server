@@ -22,6 +22,9 @@ from tower import ugettext as _
 import amo.mail
 import amo.models
 import amo.tasks
+import addons.search
+import addons.cron
+import bandwagon.cron
 import files.tasks
 import files.utils
 from amo import messages, get_user
@@ -29,12 +32,14 @@ from amo.decorators import login_required, json_view, post_required
 from amo.urlresolvers import reverse
 from amo.utils import chunked, sorted_groupby
 from addons.models import Addon
+from addons.utils import ReverseNameLookup
+from bandwagon.models import Collection
 from files.models import Approval, File
 from versions.models import Version
 
 from . import tasks
-from .forms import BulkValidationForm, NotifyForm
-from .models import ValidationJob, EmailPreviewTopic, Config
+from .forms import BulkValidationForm, NotifyForm, FeaturedCollectionFormSet
+from .models import ValidationJob, EmailPreviewTopic
 
 log = commonware.log.getLogger('z.zadmin')
 
@@ -290,42 +295,108 @@ def email_preview_csv(request, topic):
 
 @admin.site.admin_view
 def jetpack(request):
-    cfg = Config.objects.get(key='jetpack_version')
     upgrader = files.utils.JetpackUpgrader()
+    minver, maxver = upgrader.jetpack_versions()
     if request.method == 'POST':
-        if request.POST.get('jetpack_version'):
-            cfg.value = request.POST['jetpack_version']
-            cfg.save()
+        if 'minver' in request.POST:
+            upgrader.jetpack_versions(request.POST['minver'],
+                                      request.POST['maxver'])
         elif 'upgrade' in request.POST:
-            if upgrader.version(cfg.value):
-                start_upgrade(cfg.value)
+            if upgrader.version(maxver):
+                start_upgrade(minver, maxver)
         elif 'cancel' in request.POST:
             upgrader.cancel()
         return redirect('zadmin.jetpack')
 
-    jetpacks = files.utils.find_jetpacks(cfg.value)
+    jetpacks = files.utils.find_jetpacks(minver, maxver)
     groups = sorted_groupby(jetpacks, 'jetpack_version')
     by_version = dict((version, len(list(files))) for version, files in groups)
     return jingo.render(request, 'zadmin/jetpack.html',
-                        dict(cfg=cfg, jetpacks=jetpacks,
-                             upgrader=upgrader, by_version=by_version))
+                        dict(jetpacks=jetpacks, upgrader=upgrader,
+                             by_version=by_version))
+
+
+def start_upgrade(minver, maxver):
+    jetpacks = files.utils.find_jetpacks(minver, maxver)
+    ids = [f.id for f in jetpacks if f.needs_upgrade]
+    log.info('Starting a jetpack upgrade to %s [%s files].'
+             % (maxver, len(ids)))
+    files.tasks.start_upgrade.delay(ids)
+
+
+@login_required
+@json_view
+def es_collections_json(request):
+    app = request.GET.get('app', '')
+    q = request.GET.get('q', '')
+    qs = Collection.search()
+    try:
+        qs = qs.query(id__startswith=int(q))
+    except ValueError:
+        qs = qs.query(name__startswith=q)
+    try:
+        qs = qs.filter(app=int(app))
+    except ValueError:
+        pass
+    data = []
+    for c in qs[:7]:
+        data.append({'id': c.id,
+                     'name': unicode(c.name),
+                     'all_personas': c.all_personas,
+                     'url': c.get_url_path()})
+    return data
+
+
+@post_required
+@admin.site.admin_view
+def featured_collection(request):
+    try:
+        pk = int(request.POST.get('collection', 0))
+    except ValueError:
+        pk = 0
+    c = get_object_or_404(Collection, pk=pk)
+    return jingo.render(request, 'zadmin/featured_collection.html',
+                        dict(collection=c))
+
+
+@admin.site.admin_view
+def features(request):
+    form = FeaturedCollectionFormSet(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        form.save(commit=False)
+        messages.success(request, 'Changes successfully saved.')
+        return redirect('zadmin.features')
+    return jingo.render(request, 'zadmin/features.html', dict(form=form))
 
 
 @admin.site.admin_view
 def elastic(request):
+    INDEX = site_settings.ES_INDEX
     es = elasticutils.get_es()
-    return jingo.render(request, 'zadmin/elastic.html',
-                        dict(nodes=es.cluster_nodes(),
-                             health=es.cluster_health(),
-                             state=es.cluster_state()))
+    mappings = {'addons': (addons.search.setup_mapping,
+                           addons.cron.reindex_addons),
+                'collections': (None,
+                                bandwagon.cron.reindex_collections)}
+    if request.method == 'POST':
+        if request.POST.get('reset') in mappings:
+            name = request.POST['reset']
+            es.delete_mapping(INDEX, name)
+            if mappings[name][0]:
+                mappings[name][0]()
+            messages.info(request, 'Resetting %s.' % name)
+        if request.POST.get('reindex') in mappings:
+            name = request.POST['reindex']
+            mappings[name][1]()
+            messages.info(request, 'Reindexing %s.' % name)
+        return redirect('zadmin.elastic')
 
-
-def start_upgrade(version):
-    jetpacks = files.utils.find_jetpacks(version)
-    ids = [f.id for f in jetpacks if f.needs_upgrade]
-    log.info('Starting a jetpack upgrade to %s [%s files].'
-             % (version, len(ids)))
-    files.tasks.start_upgrade.delay(version, ids)
+    ctx = {
+        'nodes': es.cluster_nodes(),
+        'health': es.cluster_health(),
+        'state': es.cluster_state(),
+        'mapping': es.get_mapping(None, INDEX)[INDEX],
+    }
+    return jingo.render(request, 'zadmin/elastic.html', ctx)
 
 
 @admin.site.admin_view
@@ -348,3 +419,23 @@ def celery(request):
     ctx = dict(pending=pending, failures=failures, totals=totals,
                now=datetime.now())
     return jingo.render(request, 'zadmin/celery.html', ctx)
+
+
+@admin.site.admin_view
+def addon_name_blocklist(request):
+    rn = ReverseNameLookup()
+    addon = None
+    if request.method == 'POST':
+        rn.delete(rn.get(request.GET['addon']))
+    if request.GET.get('addon'):
+        id = rn.get(request.GET.get('addon'))
+        if id:
+            qs = Addon.objects.filter(id=id)
+            addon = qs[0] if qs else None
+    return jingo.render(request, 'zadmin/addon-name-blocklist.html',
+                        dict(rn=rn, addon=addon))
+
+
+@admin.site.admin_view
+def index(request):
+    return jingo.render(request, 'zadmin/index.html')

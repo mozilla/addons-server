@@ -115,7 +115,9 @@
                         $upload_field.trigger("upload_finished", [file]);
 
                     } else if(formData.xhr.readyState == 4 && !aborted) {
-                        errors = [gettext("There was a problem contacting the server.")];
+                        // L10n: first argument is an HTTP status code
+                        errors = [format(gettext("Received an empty response from the server; status: {0}"),
+                                         [formData.xhr.status])];
                         $upload_field.trigger("upload_errors", [file, errors]);
                     }
                 };
@@ -513,7 +515,15 @@
             }
 
             // Convert it to binary.
-            file.dataURL = f.getAsDataURL();
+            if (typeof window.URL == 'object') {
+                file.dataURL = window.URL.createObjectURL(f);
+            } else if (typeof window.webkitURL == 'object') {
+                file.dataURL = window.webkitURL.createObjectURL(f);
+            } else if(typeof f.getAsDataURL == 'function') {
+                file.dataURL = f.getAsDataURL();
+            } else {
+                file.dataURL = "";
+            }
 
             // And we're off!
             $upload_field.trigger("upload_start", [file]);

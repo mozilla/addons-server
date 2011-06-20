@@ -1,5 +1,5 @@
 {% set ns = "stats." + site %}
-{% set base = "https://graphite.mozilla.org/render/?width={0}&height={1}"|f(width, height) %}
+{% set base = "https://graphite-sjc.mozilla.org/render/?width={0}&height={1}"|f(width, height) %}
 
 {% set site_name = {
     'pamo': 'Preview',
@@ -19,10 +19,10 @@
 {% set week = "from=-7days&title=7 days" %}
 
 {% macro grid() %}
-  <img src="{{ base }}&{{ caller() }}&{{ fifteen }}">
-  <img src="{{ base }}&{{ caller() }}&{{ hour }}">
-  <img src="{{ base }}&{{ caller() }}&{{ day }}">
-  <img src="{{ base }}&{{ caller() }}&{{ week }}">
+  <img src="{{ base }}&{{ caller()|trim }}&{{ fifteen }}">
+  <img src="{{ base }}&{{ caller()|trim }}&{{ hour }}">
+  <img src="{{ base }}&{{ caller()|trim }}&{{ day }}">
+  <img src="{{ base }}&{{ caller()|trim }}&{{ week }}">
 {% endmacro %}
 
 <!DOCTYPE html>
@@ -36,17 +36,23 @@
     <ul>
       <li><a href="#responses">All Responses</a></li>
       <li><a href="#errors">Redirects and Errors</a></li>
+      <li><a href="#celery">Celery</a></li>
     </ul>
 
     <h2 id="responses">All Responses</h2>
-    {% call grid() -%}
+    {% call grid() %}
       target=sumSeries%28{{ ns }}.response.*%29&target={{ ns }}.response.200&target={{ ns }}.response.301&target={{ ns }}.response.302&target={{ ns }}.response.403&target={{ ns }}.response.404&target={{ ns }}.response.405&target={{ ns }}.response.500
-    {%- endcall %}
+    {% endcall %}
 
 
     <h2 id="errors">Redirects and Errors</h2>
-    {% call grid() -%}
+    {% call grid() %}
       target={{ ns }}.response.301&target={{ ns }}.response.302&target={{ ns }}.response.304&target={{ ns }}.response.400&target={{ ns }}.response.403&target={{ ns }}.response.404&target={{ ns }}.response.405&target={{ ns }}.response.500&target={{ ns }}.response.503
-    {%- endcall %}
+    {% endcall %}
+
+    <h2 id="celery">Celery (<a href="{{ url('zadmin.celery') }}">details</a>)</h2>
+    {% call grid() %}
+      target=sumSeries({{ site }}.celery.tasks.pending.*.*.*)&target=derivative(sumSeries({{ site }}.celery.tasks.total.*.*.*))&target=derivative(sumSeries({{ site }}.celery.tasks.failed.*.*.*))
+    {% endcall %}
   </body>
 </html>

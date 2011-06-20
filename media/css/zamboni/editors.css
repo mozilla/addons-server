@@ -13,7 +13,7 @@
 .app-icon {
     float: left;
     margin-right: 4px;
-    background: url(../../img/developers/editors-sprite.png) no-repeat top left;
+    background: url(../../img/developers/editor-sprite.png) no-repeat top left;
     width: 16px; height: 16px;
 }
 .ed-sprite-admin-review { background-position: 0 0; }
@@ -27,7 +27,7 @@
 .ed-sprite-jetpack { background-position: 0 -629px; }
 .ed-sprite-restartless { background-position: 0 -695px; }
 .sort-icon {
-    background: url(../../img/developers/editors-sprite.png) no-repeat top left;
+    background: url(../../img/developers/editor-sprite.png) no-repeat top left;
 }
 .ed-sprite-sort-asc {
     background-position: right -321px;
@@ -538,6 +538,9 @@ div.editor-stats-table > div.editor-stats-dark {
 #review-files-header h3 {
     float: left;
 }
+#review-files-header h3 span {
+    font-size: 0.7em;
+}
 #review-files-header #review-files-paginate {
     float: right;
     margin-top: 2em;
@@ -550,18 +553,24 @@ div.editor-stats-table > div.editor-stats-dark {
     top: -20px;
     width: auto;
 }
-#review-files td .activity li {
-    border-top: 1px dotted #DDDDDD;
-    margin: 1em 1em 0;
-    padding-top: 1em;
+#review-files table.activity {
+    margin: 0 10px;
+    width: 100%;
 }
-
-#review-files td .activity li:first-child {
+#review-files table.activity th {
+  width: 25%;
+  padding-right: 1em;
+}
+#review-files table.activity tr {
+    border-top: 1px dotted #ccc;
+}
+#review-files table.activity tr:first-child {
     border-top: 0 none;
-    margin-top: 0;
-    padding-top: 0;
 }
-
+#review-files .listing-header span.light {
+    font-weight: normal;
+    color: #999;
+}
 #review-files tr.listing-header:first-child {
     border-top: none;
 }
@@ -750,8 +759,18 @@ div.editor-stats-table > div.editor-stats-dark {
     font-weight: normal;
 }
 
-.history_comment {
+.history-comment {
+    white-space: pre-wrap;
+}
+
+.history-comment, .history-comment-version {
+    padding: 10px;
     overflow: auto;
+}
+
+.history-comment-byline {
+    padding: 0 10px;
+    font-style: italic;
 }
 
 .review-paging {

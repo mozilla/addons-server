@@ -4,11 +4,12 @@ from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
 from django.contrib.auth.models import User
+from django.contrib.auth.tokens import default_token_generator
 from django.test.client import Client
+from django.utils.http import int_to_base36
 
 import test_utils
 from nose.tools import eq_
-from pyquery import PyQuery as pq
 
 from access.models import Group, GroupUser
 from addons.models import Addon, AddonUser
@@ -73,7 +74,7 @@ class TestEdit(UserViewBase):
         admingroup.save()
         GroupUser.objects.create(group=admingroup, user=self.user)
         homepage = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
-                    'homepage':'http://cbc.ca'}
+                    'homepage': 'http://cbc.ca'}
         res = self.client.post(self.url, homepage)
         eq_(res.status_code, 302)
 
@@ -200,6 +201,28 @@ class TestLogin(UserViewBase):
                                      password='wrong')
         assert self.client.login(username='jbalogh@mozilla.com',
                                  password='foo')
+
+
+class TestReset(UserViewBase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        user = User.objects.get(email='editor@mozilla.com')
+        self.token = [int_to_base36(user.id),
+                      default_token_generator.make_token(user)]
+
+    def test_reset_msg(self):
+        res = self.client.get(reverse('users.pwreset_confirm',
+                                       args=self.token))
+        assert 'For your account' in res.content
+
+    def test_reset_fails(self):
+        res = self.client.post(reverse('users.pwreset_confirm',
+                                       args=self.token),
+                               data={'new_password1': 'spassword',
+                                     'new_password2': 'spassword'})
+        eq_(res.context['form'].errors['new_password1'][0],
+            'Letters and numbers required.')
 
 
 class TestLogout(UserViewBase):
@@ -343,8 +366,8 @@ class TestProfile(UserViewBase):
 
         r = self.client.get(reverse('users.profile', args=[9945]))
         addons = r.context['addons'].object_list
-        assert all(addons[i].weekly_downloads >= addons[i+1].weekly_downloads
-                   for i in xrange(len(addons)-1))
+        assert all(addons[i].weekly_downloads >= addons[i + 1].weekly_downloads
+                   for i in xrange(len(addons) - 1))
 
 
 class TestReportAbuse(AbuseBase, test_utils.TestCase):

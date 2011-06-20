@@ -18,6 +18,7 @@
               </label>
               {{ form.new_password1 }}
               {{ form.new_password1.errors }}
+              {% with form_user=form.user %}{% include "users/tougher_password.html" %}{% endwith %}
             </li>
             <li>
               <label for="id_new_password2">{{ _('Confirm password') }} {{ required() }}</label>

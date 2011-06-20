@@ -16,12 +16,41 @@
         background-repeat: no-repeat;
 
         div.promo-container {
-            width: 400px;
+            width: 425px;
         }
     }
     &.jetpack {
-        div.promo-container {
-            width: 600px;
+        h2 {
+            font-style: italic;
+            strong {
+                font-weight: bold;
+            }
+        }
+        div.builder-videos {
+            float: right;
+            margin-bottom: 2em;
+            margin-left: 1em;
+            a {
+                text-decoration: none;
+                display: inline-block;
+                img {
+                  background-color: #FFFFFF;
+                  display: inline-block;
+                  border: 1px solid #BCDCF2;
+                  .border-radius(4px);
+                  .box-shadow(0 2px 3px #D1E5F4);
+                  margin-left: 1em;
+                  opacity: 0.8;
+                  padding: 6px;
+                }
+                &:hover img {
+                      opacity: 1;
+                }
+            }
+
+          div {
+              padding: 5px 0 0 15px;
+          }
         }
         p {
             .p-light;
@@ -33,13 +62,43 @@
         font-size: 25px;
         margin-bottom: 0.5em;
         strong {
-            font-size: 35px;
+            font-size: 34px;
             display: block;
         }
     }
 }
 
+#jetpack-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    text-align: center;
+    video {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        max-height: 100%;
+        padding: 1em;
+        width: 100%;
+    }
+}
+
 #jetpack {
+    ul {
+        color: #777;
+        font-size: 14px;
+        list-style: disc;
+        padding-bottom: 1em;
+        list-style-position: inside;
+        li {
+            padding-bottom: 5px;
+        }
+    }
+
     h2.section {
         font-family: Georgia;
         font-size: 25px;
@@ -51,7 +110,7 @@
         margin-bottom: 1em;
     }
     .island p {
-        font-size: 15px;
+        font-size: 14px;
     }
     h2 a {
         font-weight: bold;
@@ -76,13 +135,18 @@
         }
     }
     .jetpack-builder, .jetpack-sdk {
-        padding-left: 130px;
+        padding: 1em 0em 1em 100px;
         position: relative;
         img {
             position: absolute;
             top: 10px;
-            left: 10px;
+            left: 5px;
         }
+    }
+    .jetpack_footer {
+        color: #555555;
+        margin-top: 1em;
+        text-align: center;
     }
 }
 

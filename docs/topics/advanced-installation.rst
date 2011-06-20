@@ -39,6 +39,13 @@ There will probably be warnings and lots of verbose output because Sphinx sucks
 like that, but it usually works.
 
 
+-------------
+elasticsearch
+-------------
+
+See :doc:`./elasticsearch` for more instructions.
+
+
 -----
 Redis
 -----

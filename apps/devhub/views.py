@@ -19,6 +19,7 @@ from django.utils.http import urlquote
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_view_exempt
 
+import bleach
 import commonware.log
 import jingo
 import jinja2
@@ -28,7 +29,7 @@ from session_csrf import anonymous_csrf
 from applications.models import AppVersion
 import amo
 import amo.utils
-from amo import messages
+from amo import messages, urlresolvers
 from amo.helpers import urlparams
 from amo.utils import MenuItem
 from amo.urlresolvers import reverse
@@ -519,7 +520,10 @@ def upload(request):
 def escape_all(v):
     """Escape html in JSON value, including nested list items."""
     if isinstance(v, basestring):
-        return jinja2.escape(v)
+        v = jinja2.escape(v)
+        v = bleach.linkify(v, nofollow=True,
+                           filter_url=urlresolvers.get_outgoing_url)
+        return v
     elif isinstance(v, list):
         for i, lv in enumerate(v):
             v[i] = escape_all(lv)
@@ -816,8 +820,10 @@ def version_edit(request, addon_id, addon, version_id):
     data = {'version_form': version_form, 'file_form': file_form}
 
     if addon.accepts_compatible_apps():
-        compat_form = forms.CompatFormSet(request.POST or None,
-                                          queryset=version.apps.all())
+        # We should be in no-caching land but this one stays cached for some
+        # reason.
+        qs = version.apps.all().no_cache()
+        compat_form = forms.CompatFormSet(request.POST or None, queryset=qs)
         data['compat_form'] = compat_form
 
     if (request.method == 'POST' and

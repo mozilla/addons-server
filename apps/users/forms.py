@@ -12,7 +12,6 @@ import commonware.log
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
-from access.acl import action_allowed_user
 import amo
 from amo.utils import slug_validator
 from .models import (UserProfile, BlacklistedUsername, BlacklistedEmailDomain,
@@ -34,14 +33,13 @@ class PasswordMixin:
                                           'data-min-length': cls.min_length},
                                    **kw)
 
-    def clean_password(self, field='password'):
+    def clean_password(self, field='password', instance='instance'):
         data = self.cleaned_data[field]
         if not data:
             return data
 
-        if (hasattr(self, 'instance') and self.instance.pk and
-            (action_allowed_user(self.instance, 'Editors', '%')
-             or action_allowed_user(self.instance, 'Admin', '%'))):
+        user = getattr(self, instance, None)
+        if user and user.pk and user.needs_tougher_password:
             if not admin_re.search(data):
                 raise forms.ValidationError(_('Letters and numbers required.'))
 
@@ -92,7 +90,7 @@ class SetPasswordForm(auth_forms.SetPasswordForm, PasswordMixin):
             self.user = self.user.get_profile()
 
     def clean_new_password1(self):
-        return self.clean_password('new_password1')
+        return self.clean_password(field='new_password1', instance='user')
 
     def save(self, **kw):
         amo.log(amo.LOG.CHANGE_PASSWORD, user=self.user)

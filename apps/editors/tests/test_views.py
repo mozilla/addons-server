@@ -7,8 +7,7 @@ import time
 from django.conf import settings
 from django.core import mail
 
-import jingo
-from mock import patch, patch_object
+from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
@@ -19,10 +18,9 @@ from amo.urlresolvers import reverse
 from amo.tests import formset, initial
 from addons.models import Addon, AddonUser
 from applications.models import Application
-from cake.urlresolvers import remora_url
 from devhub.models import ActivityLog
 from editors.models import EditorSubscription, EventLog
-from files.models import Approval, Platform, File
+from files.models import Platform, File
 import reviews
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
@@ -321,9 +319,6 @@ class TestHome(EditorTest):
     def approve_reviews(self):
         Platform.objects.create(id=amo.PLATFORM_ALL.id)
         u = self.user
-
-        now = datetime.now()
-        created = datetime(now.year - 1, now.month, 1)
 
         for i in xrange(4):
             a = Addon.objects.create(type=amo.ADDON_EXTENSION)
@@ -1238,6 +1233,16 @@ class TestQueueSearch(SearchTest):
              ['2.0a1pre', '2.0a1pre'],
              ['1.0', '1.0']])
 
+    def test_clear_search_visible(self):
+        r = self.search({'text_query': 'admin', 'searching': True})
+        doc = pq(r.content)
+        eq_(doc('#clear-queue-search').text(), 'clear search')
+
+    def test_clear_search_hidden(self):
+        r = self.search({'text_query': 'admin'})
+        doc = pq(r.content)
+        eq_(doc('#clear-queue-search').text(), None)
+
 
 class TestQueueSearchVersionSpecific(SearchTest):
 
@@ -1312,7 +1317,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         eq_(response.status_code, 302)
 
-    @patch_object(settings, 'DEBUG', False)
+    @patch.object(settings, 'DEBUG', False)
     def test_not_author(self):
         AddonUser.objects.create(addon=self.addon, user=self.editor)
         response = self.client.get(self.url)
@@ -1354,7 +1359,8 @@ class TestReview(ReviewBase):
                                                'comments': 'hello sailor'})
         eq_(response.status_code, 302)
         eq_(len(mail.outbox), 2)
-        self.assertTemplateUsed(response, 'editors/emails/author_super_review.ltxt')
+        self.assertTemplateUsed(response,
+                                'editors/emails/author_super_review.ltxt')
         self.assertTemplateUsed(response, 'editors/emails/super_review.ltxt')
 
     def test_info_requested_canned_response(self):
@@ -1381,14 +1387,6 @@ class TestReview(ReviewBase):
     def test_paging_none(self):
         response = self.client.get(self.url)
         eq_(response.context['paging'], {})
-
-    def test_approvalnotes(self):
-        self.version.update(approvalnotes='Testing 123')
-        response = self.client.get(self.url)
-        eq_(response.status_code, 200)
-        doc = pq(response.content)
-        eq_(len(doc('#approval-notes')), 1)
-        eq_(doc('#approval-notes').next().text(), 'Testing 123')
 
     def test_page_title(self):
         response = self.client.get(self.url)
@@ -1446,35 +1444,57 @@ class TestReview(ReviewBase):
         doc = pq(r.content)
 
         # View the history verify two versions:
-        ths = doc('table#review-files tr th:first-child')
+        ths = doc('table#review-files > tr > th:first-child')
+
         assert '0.1' in ths.eq(0).text()
         assert '0.2' in ths.eq(1).text()
 
         for i in [0, 2]:
-            tds = doc('table#review-files tr td')
-            eq_(tds.eq(i).find('strong').eq(0).text(), "Files in this version:")
+            tds = doc('table#review-files > tr > td')
+            eq_(tds.eq(i).find('strong').eq(0).text(),
+                "Files in this version:")
             eq_(tds.eq(i).find('div').length, 3)
 
+        eq_(tds.eq(1).find('table td').length, 1)
 
-        eq_(tds.eq(1).find('ul li').length, 1)
-        eq_(tds.eq(1).find('ul li a').length, 3)
-        eq_(tds.eq(1).find('ul li .history_comment').text(), "something")
-        eq_(tds.eq(1).find('ul li em a').text(), "An editor")
+        eq_(tds.eq(1).find('.history-comment').text(), "something")
+        eq_(tds.eq(1).find('th').text(), "Preliminarily approved")
+        eq_(tds.eq(1).find('td a').text(), "An editor")
+
+    def test_item_history_notes(self):
+        v = self.addon.versions.all()[0]
+        v.releasenotes = 'hi'
+        v.approvalnotes = 'secret hi'
+        v.save()
+
+        url = reverse('editors.review', args=[self.addon.slug])
+
+        r = self.client.get(url)
+        doc = pq(r.content)
+
+        eq_(doc('#review-files .activity_version').length, 1)
+        eq_(doc('#review-files .activity_version').text(), 'hi')
+
+        eq_(doc('#review-files .activity_approval').length, 1)
+        eq_(doc('#review-files .activity_approval').text(), 'secret hi')
+
+    def test_item_history_header(self):
+        url = reverse('editors.review', args=[self.addon.slug])
+        doc = pq(self.client.get(url).content)
+        assert "Listed" in doc('#review-files .listing-header .light').text()
 
     def test_item_history_comment(self):
         # Add Comment
         self.addon_file(u'something', u'0.1', amo.STATUS_PUBLIC,
                         amo.STATUS_UNREVIEWED)
-        response = self.client.post(self.url, {'action': 'comment',
-                                               'comments': 'hello sailor'})
+        self.client.post(self.url, {'action': 'comment',
+                                    'comments': 'hello sailor'})
 
         r = self.client.get(self.url)
         doc = pq(r.content)
 
-        td = doc('#review-files td').eq(1)
-
-        assert td.find('strong').eq(0).text().startswith('Comment on')
-        eq_(td.find('.history_comment').text(), "hello sailor")
+        eq_(doc('#review-files th').eq(1).text(), 'Comment')
+        eq_(doc('#review-files .history-comment').eq(0).text(), "hello sailor")
 
     def test_files_in_item_history(self):
         data = {'action': 'public', 'operating_systems': 'win',
@@ -1494,8 +1514,28 @@ class TestReview(ReviewBase):
     def test_no_items(self):
         response = self.client.get(self.url)
         doc = pq(response.content)
-        div = doc('#review-files-header').next().find('td').eq(1).find('div')
-        eq_(div.text(), "This version has not been reviewed.")
+
+        eq_(doc('#review-files .no-activity').length, 1)
+        eq_(doc('#review-files .no-activity').text(),
+            "This version has not been reviewed.")
+
+    def test_hide_beta(self):
+        version = self.addon.latest_version
+        file = version.files.all()[0]
+        version.pk = None
+        version.version = '0.3beta'
+        version.save()
+
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('#review-files tr.listing-header').length, 2)
+
+        file.pk = None
+        file.status = amo.STATUS_BETA
+        file.version = version
+        file.save()
+
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('#review-files tr.listing-header').length, 1)
 
     def test_listing_link(self):
         response = self.client.get(self.url)
@@ -1598,7 +1638,7 @@ class TestReview(ReviewBase):
         doc = pq(r.content)
 
         # View the history verify two versions:
-        ths = doc('table#review-files tr th:first-child')
+        ths = doc('table#review-files > tr > th:first-child')
         assert '0.1' in ths.eq(0).text()
         assert '0.2' in ths.eq(1).text()
 
@@ -1607,9 +1647,9 @@ class TestReview(ReviewBase):
         # Verify two versions, one deleted:
         r = self.client.get(url)
         doc = pq(r.content)
-        ths = doc('table#review-files tr th:first-child')
+        ths = doc('table#review-files > tr > th:first-child')
 
-        eq_(doc('table#review-files tr th:first-child').length, 1)
+        eq_(doc('table#review-files > tr > th:first-child').length, 1)
         assert '0.1' in ths.eq(0).text()
 
     def review_version(self, version, url):
@@ -1617,7 +1657,7 @@ class TestReview(ReviewBase):
         d = dict(action='prelim', operating_systems='win',
                  applications='something', comments='something',
                  addon_files=[version.files.all()[0].pk])
-        r = self.client.post(url, d)
+        self.client.post(url, d)
 
     def test_eula_displayed(self):
         assert not self.addon.eula
@@ -1661,7 +1701,7 @@ class TestReview(ReviewBase):
 
     def test_viewing(self):
         r = self.client.post(reverse('editors.review_viewing'),
-                             {'addon_id': self.addon.id })
+                             {'addon_id': self.addon.id})
         data = json.loads(r.content)
         eq_(data['current'], self.editor.id)
         eq_(data['current_name'], self.editor.name)
@@ -1670,7 +1710,7 @@ class TestReview(ReviewBase):
         # Now, login as someone else and test.
         self.login_as_admin()
         r = self.client.post(reverse('editors.review_viewing'),
-                             {'addon_id': self.addon.id })
+                             {'addon_id': self.addon.id})
         data = json.loads(r.content)
         eq_(data['current'], self.editor.id)
         eq_(data['current_name'], self.editor.name)
@@ -1693,7 +1733,8 @@ class TestReview(ReviewBase):
         first_file.save()
 
         url = reverse('editors.review', args=[self.addon.slug])
-        next_file = File.objects.create(version=version, status=amo.STATUS_PUBLIC)
+        next_file = File.objects.create(version=version,
+                                        status=amo.STATUS_PUBLIC)
         self.addon.update(_current_version=version)
         eq_(self.addon.current_version, version)
         r = self.client.get(url)
@@ -1760,8 +1801,12 @@ class TestReviewPreliminary(ReviewBase):
     def test_prelim_from_lite_wrong_two(self):
         self.addon.update(status=amo.STATUS_LITE)
         data = self.prelim_dict()
+
         file = self.version.files.all()[0]
-        for status in amo.STATUS_CHOICES:
+
+        status_choices = amo.STATUS_CHOICES
+        del status_choices[7]
+        for status in status_choices:
             if status != amo.STATUS_UNREVIEWED:
                 file.update(status=status)
                 response = self.client.post(self.url, data)

@@ -1,6 +1,7 @@
 <li>
-    <a class="{{ file_viewer_class(value, selected) }}"
+    <a class="{% if value['filename'] != value['truncated'] %}tooltip{% endif %} {{ file_viewer_class(value, selected) }}"
+        {% if value['filename'] != value['truncated'] %}title="{{ value['filename'] }}"{% endif %}
+        data-delay="0"
         href="{{ value['url'] }}"
-        data-short="{{ value['short'] }}"
-        title="{{ value['filename'] }}">{{ value['truncated'] }}</a>
+        data-short="{{ value['short'] }}">{{ value['truncated'] }}</a>
 </li>

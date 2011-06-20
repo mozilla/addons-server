@@ -191,6 +191,11 @@ class Version(amo.models.ModelBase):
         return list(set(amo.PLATFORMS[f.platform_id]
                         for f in self.all_files))
 
+    @property
+    def status(self):
+        status = dict([(f.status, amo.STATUS_CHOICES[f.status]) for f in self.all_files])
+        return status.values()
+
     def is_allowed_upload(self):
         """Check that a file can be uploaded based on the files
         per platform for that type of addon."""

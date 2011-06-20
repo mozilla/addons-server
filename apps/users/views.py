@@ -4,6 +4,10 @@ from django.db import IntegrityError
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib import auth
 from django.template import Context, loader
+from django.views.decorators.cache import never_cache
+from django.utils.http import base36_to_int
+from django.contrib.auth.models import User
+from django.contrib.auth.tokens import default_token_generator
 
 import commonware.log
 import jingo
@@ -433,3 +437,35 @@ def report_abuse(request, user_id):
         return jingo.render(request, 'users/report_abuse_full.html',
                             {'profile': user, 'abuse_form': form, })
     return redirect(reverse('users.profile', args=[user.pk]))
+
+
+@never_cache
+def password_reset_confirm(request, uidb36=None, token=None):
+    """
+    Pulled from django contrib so that we can add user into the form
+    so then we can show relevant messages about the user.
+    """
+    assert uidb36 is not None and token is not None
+    user = None
+    try:
+        uid_int = base36_to_int(uidb36)
+        user = User.objects.get(id=uid_int)
+    except (ValueError, User.DoesNotExist):
+        pass
+
+    if user is not None and default_token_generator.check_token(user, token):
+        validlink = True
+        if request.method == 'POST':
+            form = forms.SetPasswordForm(user, request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect(reverse('django.contrib.auth.'
+                                        'views.password_reset_complete'))
+        else:
+            form = forms.SetPasswordForm(user)
+    else:
+        validlink = False
+        form = None
+
+    return jingo.render(request, 'users/pwreset_confirm.html',
+                        {'form': form, 'validlink': validlink})

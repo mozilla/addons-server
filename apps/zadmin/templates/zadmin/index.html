@@ -1,0 +1,32 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ page_title('Admin Pages') }}{% endblock %}
+
+{% set links = (
+  ('Add-on Name Blocklist', url('zadmin.addon-name-blocklist'),
+   'Manage name blocklist'),
+  ('Celery', url('zadmin.celery'), 'See celery stats'),
+  ('Elasticseach', url('zadmin.elastic'), 'Manage elasticsearch'),
+  ('Env', url('amo.env'), 'See the request environment'),
+  ('Features', url('zadmin.features'), 'Manage featured add-ons'),
+  ('Flagged', url('zadmin.flagged'), 'See flagged reviews'),
+  ('Graphite', url('amo.graphite', 'amo'), 'See trends and statistics'),
+  ('Hera', url('zadmin.hera'), 'Purge pages from zeus'),
+  ('Jetpack', url('zadmin.jetpack'), 'Upgrade jetpack add-ons'),
+  ('Mail', url('zadmin.mail'), 'View fake mail'),
+  ('Models', url('zadmin.home'), 'Django Admin Pages'),
+  ('Settings', url('zadmin.settings'), 'See the site settings'),
+  ('Validation', url('zadmin.start_validation'), 'Bulk add-on validation'),
+) %}
+
+
+{% block content %}
+<h2>Admin Pages</h2>
+<dl>
+  {% for title, link, desc in links|sort %}
+    <dt><a href="{{ link }}">{{ title }}</a></dt>
+    <dd>{{ desc }}</dd>
+  {% endfor %}
+</dl>
+
+{% endblock %}

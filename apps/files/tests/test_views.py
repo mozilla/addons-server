@@ -361,7 +361,7 @@ class TestFileViewer(FilesBase, test_utils.TestCase):
         eq_(res['X-SENDFILE'],
             self.file_viewer.get_files().get(binary)['full'])
 
-    @patch_object(settings._wrapped, 'FILE_VIEWER_SIZE_LIMIT', 5)
+    @patch.object(settings._wrapped, 'FILE_VIEWER_SIZE_LIMIT', 5)
     def test_file_size(self):
         self.file_viewer.extract()
         res = self.client.get(self.file_url(not_binary))
@@ -440,14 +440,14 @@ class TestDiffViewer(FilesBase, test_utils.TestCase):
     def test_view_left_binary(self):
         self.file_viewer.extract()
         filename = os.path.join(self.file_viewer.left.dest, 'install.js')
-        open(filename, 'w').write('#!')
+        open(filename, 'w').write('MZ')
         res = self.client.get(self.file_url(not_binary))
         assert 'This file is not viewable online' in res.content
 
     def test_view_right_binary(self):
         self.file_viewer.extract()
         filename = os.path.join(self.file_viewer.right.dest, 'install.js')
-        open(filename, 'w').write('#!')
+        open(filename, 'w').write('MZ')
         assert not self.file_viewer.is_diffable()
         res = self.client.get(self.file_url(not_binary))
         assert 'This file is not viewable online' in res.content

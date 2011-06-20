@@ -480,12 +480,13 @@ def test_dictionaries_link():
     eq_(link.text(), 'Dictionaries & Language Packs')
 
 
+@patch.object(settings._wrapped, 'KNOWN_PROXIES', ['127.0.0.1'])
 def test_remote_addr():
     """Make sure we're setting REMOTE_ADDR from X_FORWARDED_FOR."""
     client = test.Client()
     # Send X-Forwarded-For as it shows up in a wsgi request.
-    client.get('/en-US/firefox/', follow=True, HTTP_X_FORWARDED_FOR='oh yeah')
-    eq_(commonware.log.get_remote_addr(), 'oh yeah')
+    client.get('/en-US/firefox/', follow=True, HTTP_X_FORWARDED_FOR='1.1.1.1')
+    eq_(commonware.log.get_remote_addr(), '1.1.1.1')
 
 
 def test_opensearch():

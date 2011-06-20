@@ -243,6 +243,81 @@ asyncTest('Test failing', function() {
     });
 });
 
+asyncTest('Test error/warning prefix', function() {
+    var $suite = $('.addon-validator-suite', this.sandbox);
+
+    $.mockjax({
+        url: '/validate',
+        response: function(settings) {
+            this.responseText = {
+                "validation": {
+                    "errors": 1,
+                    "detected_type": "extension",
+                    "success": false,
+                    "warnings": 1,
+                    "notices": 0,
+                    "message_tree": {},
+                    "messages": [
+                        {
+                            "context": null,
+                            "description": ["warning"],
+                            "column": 0,
+                            "id": [],
+                            "file": "file.js",
+                            "tier": 1,
+                            "message": "some warning",
+                            "type": "warning",
+                            "line": 0,
+                            "uid": "afdc9924ec4c11df991a001cc4d80ee4"
+                        },
+                        {
+                            "context": null,
+                            "description": ["error"],
+                            "column": 0,
+                            "id": [],
+                            "file": "file.js",
+                            "tier": 1,
+                            "message": "some error",
+                            "type": "error",
+                            "line": 0,
+                            "uid": "96dca428ec4c11df991a001cc4d80ee4"
+                        },
+                        {
+                            "context": null,
+                            "description": ["notice"],
+                            "column": 0,
+                            "id": [],
+                            "file": "file.js",
+                            "tier": 1,
+                            "message": "some notice",
+                            "type": "notice",
+                            "line": 0,
+                            "uid": "dddca428ec4c11df991a001cc4d80eb1"
+                        }
+                    ],
+                    "rejected": false,
+                    "metadata": {}
+                }
+            };
+        }
+    });
+
+    $suite.trigger('validate');
+
+    tests.waitFor(function() {
+        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
+                                                            'tests-failed');
+    }).thenDo(function() {
+        equals( $('#v-msg-afdc9924ec4c11df991a001cc4d80ee4 p', $suite).text(),
+               'Warning: warning');
+        equals( $('#v-msg-96dca428ec4c11df991a001cc4d80ee4 p', $suite).text(),
+               'Error: error');
+        equals( $('#v-msg-dddca428ec4c11df991a001cc4d80eb1 p', $suite).text(),
+               'Warning: notice');
+        start();
+    });
+});
+
 
 var compatibilityFixtures = {
     setup: function() {
@@ -1283,7 +1358,7 @@ asyncTest('Test code context', function() {
                             "There was an error parsing the markup document.",
                             "malformed start tag, at line 1, column 26"],
                         "column": 0,
-                        "line": 1,
+                        "line": 2,
                         "file": "chrome/content/down.html",
                         "tier": 2,
                         "message": "Markup parsing error",
@@ -1312,12 +1387,66 @@ asyncTest('Test code context', function() {
                'chrome/content/down.html');
         equals($('.context .lines div:eq(0)', $suite).text(), '1');
         equals($('.context .lines div:eq(1)', $suite).text(), '2');
+        equals($('.context .lines div:eq(2)', $suite).text(), "");
         equals($('.context .inner-code div:eq(0)', $suite).html(),
                '&lt;baddddddd html garbage=#""');
         equals($('.context .inner-code div:eq(1)', $suite).html(),
                '&lt;foozer&gt;');
-        equals($('.context .inner-code div:eq(2)', $suite).html(),
-               '');
+        equals($('.context .inner-code div:eq(2)', $suite).html(), null);
+        start();
+    });
+});
+
+asyncTest('Test code context (single line)', function() {
+    var $suite = $('.addon-validator-suite', this.sandbox);
+
+    $.mockjax({
+        url: '/validate',
+        status: 200,
+        response: function(settings) {
+            this.responseText = {
+                "url": "/upload/",
+                "full_report_url": "/upload/14bd1cb1ae0d4b11b86395b1a0da7058",
+                "validation": {
+                    "errors": 0,
+                    "success": false,
+                    "warnings": 1,
+                    "ending_tier": 3,
+                    "messages": [{
+                        "context": [null, "foo", null],
+                        "description": ["test error"],
+                        "column": 0,
+                        "line": 1,
+                        "file": "chrome/content/down.html",
+                        "tier": 2,
+                        "message": "Markup parsing error",
+                        "type": "warning",
+                        "id": ["testcases_markup_markuptester",
+                               "_feed", "parse_error"],
+                        "uid": "bb9948b604b111e09dfdc42c0301fe38"
+                    }],
+                    "rejected": false,
+                    "detected_type": "extension",
+                    "notices": 0
+                },
+                "upload": "14bd1cb1ae0d4b11b86395b1a0da7058",
+                "error": null
+            };
+        }
+    });
+
+    $suite.trigger('validate');
+
+    tests.waitFor(function() {
+        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
+                                                            'tests-passed');
+    }).thenDo(function() {
+        equals($('.context .file', $suite).text(),
+               'chrome/content/down.html');
+        equals($('.context .lines div:eq(0)', $suite).text(), '1');
+        equals($('.context .lines div:eq(1)', $suite).text(), '');
+        equals($('.context .inner-code div:eq(0)', $suite).html(), 'foo');
+        equals($('.context .inner-code div:eq(1)', $suite).html(), null);
         start();
     });
 });

@@ -5,7 +5,6 @@ from django.db.models import Sum, Max
 
 import commonware.log
 from celery.decorators import task
-from celery.messaging import establish_connection
 
 import amo
 from addons.models import Addon
@@ -33,13 +32,13 @@ def addon_total_contributions(*addons, **kw):
         Addon.objects.filter(id=addon).update(total_contributions=total)
 
 
-@task(rate_limit='10/m')
+@task(rate_limit='2/s')
 def cron_total_contributions(*addons, **kw):
     "Rate limited version of `addon_total_contributions` suitable for cron."
     addon_total_contributions(*addons)
 
 
-@task(rate_limit='10/m')
+@task(rate_limit='2/s')
 def update_addons_collections_downloads(data, **kw):
     log.info("[%s@%s] Updating addons+collections download totals." %
                   (len(data), update_addons_collections_downloads.rate_limit))
@@ -49,7 +48,7 @@ def update_addons_collections_downloads(data, **kw):
                                 .update(downloads=var['sum']))
 
 
-@task(rate_limit='15/m')
+@task(rate_limit='2/s')
 def update_collections_total(data, **kw):
     log.info("[%s@%s] Updating collections' download totals." %
                    (len(data), update_collections_total.rate_limit))
@@ -192,9 +191,7 @@ def update_to_json(max_objs=None, classes=(), ids=(), **kw):
 
     def after_max_redo(msg):
         log.info('Completed run: %s' % msg)
-        with establish_connection() as conn:
-            update_to_json.apply_async(max_objs=max_objs,
-                                       connection=conn)
+        update_to_json.delay(max_objs=max_objs)
 
     updater = _JSONUpdater(max_objs, log, after_max_redo,
                            classes=classes, ids=ids)

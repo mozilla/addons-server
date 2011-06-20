@@ -21,15 +21,15 @@ $(document).ready(function(){
     });
 
     test('Complexity', function() {
-        var $strength = this.$node.parent().find('ul.errorlist li.strength');
+        var $strength = this.$node.parent().find('ul.errorlist li.strength progress');
 
         this.$node.val('123').trigger('blur');
-        equal($strength.hasClass('password-weak'), true);
+        equal($strength.attr('value'), 20);
 
         this.$node.val('123abcDEF').trigger('blur');
-        equal($strength.hasClass('password-medium'), true);
+        equal($strength.attr('value'), 60);
 
         this.$node.val('АзәрбајҹанA13').trigger('blur');
-        equal($strength.hasClass('password-strong'), true);
+        equal($strength.attr('value'), 80);
     });
 });

@@ -1,0 +1,91 @@
+[
+    {
+        "pk": 889383,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "These are the coolest personas for firefox on the planet...According to me!",
+            "created": "2010-02-12 13:52:05",
+            "locale": "en-US",
+            "modified": null,
+            "id": 831402,
+            "localized_string": "These are the coolest personas for firefox on the planet...According to me!"
+        }
+    },
+    {
+        "pk": 889382,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2010-02-12 13:52:05",
+            "locale": "en-US",
+            "modified": null,
+            "id": 831401,
+            "localized_string": "Personification Proclamation"
+        }
+    },
+    {
+        "pk": 56445,
+        "model": "bandwagon.collection",
+        "fields": {
+            "rating": 0.0,
+            "downvotes": 0,
+            "uuid": "78c35f98-a376-b2bf-cd66-3512b2078511",
+            "author": 10482,
+            "application": 1,
+            "listed": true,
+            "upvotes": 0,
+            "icontype": "",
+            "type": 0,
+            "description": 831402,
+            "default_locale": "en-US",
+            "monthly_subscribers": 0,
+            "downloads": 0,
+            "addon_index": null,
+            "subscribers": 0,
+            "nickname": null,
+            "slug": "78c35f98-a376-b2bf-cd66-3512b2",
+            "name": 831401,
+            "created": "2010-02-12 13:52:05",
+            "weekly_subscribers": 0,
+            "modified": "2010-09-13 00:39:36",
+            "addon_count": 24,
+            "all_personas": true
+        }
+    },
+    {
+        "pk": 1004513,
+        "model": "bandwagon.collectionaddon",
+        "fields": {
+            "user": null,
+            "created": "2010-09-13 00:00:28",
+            "ordering": 0,
+            "downloads": 0,
+            "modified": "2010-09-13 00:00:28",
+            "comments": null,
+            "collection": 56445,
+            "addon": 15679
+        }
+    },
+    {
+        "pk": 1,
+        "model": "bandwagon.featuredcollection",
+        "fields": {
+            "locale": null,
+            "application": 1,
+            "modified": "2011-06-15 13:16:08",
+            "collection": 80,
+            "created": "2011-06-15 13:16:08"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "bandwagon.featuredcollection",
+        "fields": {
+            "locale": null,
+            "application": 1,
+            "modified": "2011-06-15 13:13:59",
+            "collection": 56445,
+            "created": "2011-06-15 13:13:59"
+        }
+    }
+]

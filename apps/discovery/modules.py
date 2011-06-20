@@ -169,3 +169,21 @@ class StPatricksPersonas(CollectionPromo):
     title = _(u'St. Patrick&rsquo;s Day Personas')
     subtitle = _(u'Decorate your browser to celebrate '
                  'St. Patrick&rsquo;s Day.')
+
+
+class FxSummerCollection(CollectionPromo):
+    slug = 'Fx Summer Collection'
+    pk = 2128026
+    id = 'fx4-collection'
+    cls = 'promo'
+    title = _(u'Firefox Summer Collection')
+    subtitle = _(u'Here are some great add-ons for Firefox.')
+
+    
+class ThunderbirdCollection(CollectionPromo):
+    slug = 'Thunderbird Collection'
+    pk = 2128303
+    id = 'tb-collection'
+    cls = 'promo'
+    title = _(u'Thunderbird Collection')
+    subtitle = _(u'Here are some great add-ons for Thunderbird.')

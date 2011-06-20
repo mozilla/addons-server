@@ -29,6 +29,9 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
+# Skip indexing ES to speed things up?
+SKIP_SEARCH_INDEX = False
+
 # LESS CSS OPTIONS (Debug only)
 LESS_PREPROCESS = False  # Compile LESS with Node, rather than client-side JS?
 LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
@@ -87,7 +90,7 @@ LANGUAGE_CODE = 'en-US'
 AMO_LANGUAGES = (
     'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es-ES',
     'eu', 'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn',
-    'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sr', 'sv-SE',
+    'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE',
     'tr', 'uk', 'vi', 'zh-CN', 'zh-TW',
 )
 
@@ -243,6 +246,7 @@ def JINJA_CONFIG():
 MIDDLEWARE_CLASSES = (
     # AMO URL middleware comes first so everyone else sees nice URLs.
     'amo.middleware.TimingMiddleware',
+    'commonware.response.middleware.GraphiteRequestTimingMiddleware',
     'amo.middleware.GraphiteMiddleware',
     'amo.middleware.LocaleAndAppURLMiddleware',
     # Mobile detection should happen in Zeus.
@@ -606,7 +610,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
             'js/zamboni/format.js',
-            'js/zamboni/mobile_buttons.js',
+            'js/zamboni/mobile/buttons.js',
             'js/zamboni/truncation.js',
             'js/zamboni/personas_core.js',
             'js/zamboni/mobile/personas.js',
@@ -926,6 +930,7 @@ VALIDATE_ADDONS = True
 # Feature flags
 SEARCH_EXCLUDE_PERSONAS = True
 UNLINK_SITE_STATS = True
+NEW_FEATURES = False
 
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = True
@@ -998,5 +1003,16 @@ STATSD_HOST = 'localhost'
 STATSD_PORT = 8125
 STATSD_PREFIX = 'amo'
 
+GRAPHITE_HOST = 'localhost'
+GRAPHITE_PORT = 2003
+GRAPHITE_PREFIX = 'amo'
+GRAPHITE_TIMEOUT = 1
+
 # URL to the service that triggers addon performance tests.  See devhub.perf.
 PERF_TEST_URL = 'http://areweperftestingyet.com/trigger.cgi'
+
+# IP addresses of servers we use as proxies.
+KNOWN_PROXIES = []
+
+# Blog URL
+DEVELOPER_BLOG_URL = "http://blog.mozilla.com/addons/feed/"

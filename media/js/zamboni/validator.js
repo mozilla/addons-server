@@ -189,8 +189,8 @@ function initValidator() {
         var tier = this.getTier(msg.tier, options),
             msgDiv = $('<div class="msg"><h5></h5></div>'),
             effectiveType = this.getMsgType(msg),
-            prefix = effectiveType=='warning' ? gettext('Warning')
-                                              : gettext('Error');
+            prefix = effectiveType=='error' ? gettext('Error')
+                                            : gettext('Warning');
 
         tier.tallyMsgType(effectiveType);
         msgDiv.attr('id', 'v-msg-' + msg.uid);
@@ -233,7 +233,11 @@ function initValidator() {
             code.append(innerCode);
             msg.context = formatCodeIndentation(msg.context);
             $.each(msg.context, function(n, c) {
-                lines.append($(format('<div>{0}</div>', [msg.line + n])));
+                if (c == "") { return }
+                // The line number refers to the middle element of the context,
+                // not the first. Subtract one from the index to get the
+                // right line number.
+                lines.append($(format('<div>{0}</div>', [msg.line + n - 1])));
                 innerCode.append($(format('<div>{0}</div>', [c])));
             });
             ctxDiv.append(code);
