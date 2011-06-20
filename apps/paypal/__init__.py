@@ -9,6 +9,7 @@ from django.conf import settings
 from django.utils.http import urlencode
 
 import commonware.log
+from statsd import statsd
 
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
@@ -79,8 +80,9 @@ def get_paykey(data):
         paypal_log.error('Paypal Error: %s' % response['error(0).message'])
         raise error(response['error(0).message'])
 
-    paypal_log.info('Paypal got key: %s (%.2fs)' %
-                    (response['payKey'], time.time() - start))
+    end = time.time() - start
+    paypal_log.info('Paypal got key: %s (%.2fs)' % (response['payKey'], end))
+    statsd.timing('paypal.paykey.retrieval', (end * 1000))
     return response['payKey']
 
 
