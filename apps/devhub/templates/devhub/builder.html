@@ -11,12 +11,20 @@
       {% endtrans %}
     </h2>
     <div class="builder-videos">
-      <a href="http://people.mozilla.org/~clouserw/public/blog/amo-2011-development.ogv" rel="video-lightbox">
-        <img src="{{ media('img/developers/jetpack_video_1.jpg') }}" alt="{{ _('Video 1') }}">
-        <div>{{ _('Video 1') }}</div></a>
-      <a href="http://people.mozilla.org/~clouserw/public/blog/amo-2011-development.ogv" rel="video-lightbox">
-        <img src="{{ media('img/developers/jetpack_video_2.jpg') }}" alt="{{ _('Video 2') }}">
-        <div>{{ _('Video 2') }}</div></a>
+      <a href="http://videos-cdn.mozilla.net/serv/marketing/Firefox5/AddOnsBuilderOverview.mp4"
+        rel="video-lightbox" data-width="640" alt="{{ _('Builder Overview') }}"
+        data-mp4="http://videos-cdn.mozilla.net/serv/marketing/Firefox5/AddOnsBuilderOverview.mp4"
+        data-webm="http://videos-cdn.mozilla.net/serv/marketing/Firefox5/AddOnsBuilderOverview.webm"
+        data-ogv="http://videos-cdn.mozilla.net/serv/marketing/Firefox5/AddOnsBuilderOverview.theora.ogv">
+        <img src="{{ media('img/developers/jetpack_video_1.jpg') }}" alt="{{ _('Builder Overview') }}">
+        <div>{{ _('Builder Overview') }}</div></a>
+      <a href="http://videos-cdn.mozilla.net/serv/marketing/Firefox5/AddOnsBuilderTutorial.mp4"
+        rel="video-lightbox" data-width="1024" alt="{{ _('Builder Tutorial') }}"
+        data-mp4="http://videos-cdn.mozilla.net/serv/marketing/Firefox5/AddOnsBuilderTutorial.mp4"
+        data-webm="http://videos-cdn.mozilla.net/serv/marketing/Firefox5/AddOnsBuilderTutorial.webm"
+        data-ogv="http://videos-cdn.mozilla.net/serv/marketing/Firefox5/AddOnsBuilderTutorial.theora.ogv">
+        <img src="{{ media('img/developers/jetpack_video_2.jpg') }}" alt="{{ _('Builder Tutorial') }}">
+        <div>{{ _('Builder Tutorial') }}</div></a>
     </div>
     <p>
     {% trans %}
