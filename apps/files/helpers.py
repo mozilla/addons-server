@@ -190,7 +190,7 @@ class FileViewer:
         # mid tree building.
         try:
             return self._get_files()
-        except IOError:
+        except (OSError, IOError):
             return {}
 
     def truncate(self, filename, pre_length=15,
