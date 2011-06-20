@@ -135,3 +135,30 @@ a.no-key {
 #tooltip {
     max-width: 100%;
 }
+
+.number-combo {
+    display: inline-block;
+}
+
+.number-combo-button-up,
+.number-combo-button-down {
+    padding-left: .2em;
+}
+
+.number-combo-button-up:hover,
+.number-combo-button-down:hover,
+.number-combo-button-up:focus,
+.number-combo-button-down:focus,
+.number-combo-button-up:active,
+.number-combo-button-down:active {
+    text-decoration: none;
+}
+
+.number-combo-button-up:hover,
+.number-combo-button-down:hover {
+    text-shadow: black 0 0 .01em;
+}
+
+#tab-stops-container {
+    display: none;
+}
