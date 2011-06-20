@@ -174,12 +174,7 @@ you want it.
 Database
 --------
 
-If you have access, ask us how to get a copy of the production database.  We're
-still working out how to get useful data for outside contributors.
-
-Let Django sync up the database schema for you::
-
-    ./manage.py syncdb --noinput
+You can get a testing database from https://landfill.addons.allizom.org/db/.
 
 
 Run the Server
