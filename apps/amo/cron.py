@@ -1,7 +1,6 @@
 import calendar
 import json
 import re
-import time
 import urllib2
 from datetime import datetime, timedelta
 from subprocess import Popen, PIPE
@@ -12,7 +11,6 @@ from celeryutils import task
 import cronjobs
 import commonware.log
 import phpserialize
-import redisutils
 
 import amo
 from amo.utils import chunked
@@ -326,40 +324,3 @@ def _activity_log_scrubber(items, **kw):
              (len(items), _activity_log_scrubber.rate_limit))
 
     ActivityLog.objects.filter(id__in=items).delete()
-
-
-class QueueCheck(object):
-    key = 'cron:queuecheck:%s:%s'
-
-    def __init__(self):
-        self.redis = redisutils.connections['master']
-
-    def queues(self):
-        # Figure out all the queues we're using. celery is the default, with a
-        # warning threshold of 10 minutes.
-        queues = {'celery': 60 * 60}
-        others = set(r['queue'] for r in settings.CELERY_ROUTES.values())
-        # 30 second threshold for the fast queues.
-        queues.update((q, 30) for q in others)
-        return queues
-
-    def set(self, action, queue):
-        self.redis.set(self.key % (action, queue), time.time())
-
-    def get(self, action, queue):
-        return self.redis.get(self.key % (action, queue))
-
-
-@cronjobs.register
-def check_queues():
-    checker = QueueCheck()
-    for queue in checker.queues():
-        checker.set('ping', queue)
-        ping.apply_async(queue=queue, routing_key=queue, exchange=queue)
-
-
-@task
-def ping(**kw):
-    queue = kw['delivery_info']['routing_key']
-    log.info('[1@None] Checking the %s queue' % queue)
-    QueueCheck().set('pong', queue)
