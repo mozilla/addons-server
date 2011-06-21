@@ -1003,7 +1003,7 @@ var imageStatus = {
                 if ($this.hasClass('preview-successful')) {
                     return;
                 }
-                var img = Image();
+                var img = new Image();
                 img.onload = function() {
                     $this.removeClass('preview-error preview-unknown').addClass('preview-successful');
                     $this.attr('style', 'background-image:url(' + self.newurl($this.attr('data-url')) + ')');
