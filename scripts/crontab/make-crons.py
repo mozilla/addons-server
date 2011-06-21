@@ -57,7 +57,7 @@ HOME = /tmp
 
 #once per hour
 5 * * * * $Z_CRON update_collections_subscribers
-10 * * * * $REMORA; php -f maintenance.php blog
+10 * * * * $Z_CRON update_blog_posts
 15 * * * * $REMORA; php -f update-search-views.php
 20 * * * * $Z_CRON addon_last_updated
 25 * * * * $Z_CRON update_collections_votes
