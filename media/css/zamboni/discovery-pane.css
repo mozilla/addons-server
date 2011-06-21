@@ -1207,16 +1207,16 @@ p#back:hover:before {
     margin-right: 0;
 }
 
+#install #learn-more {
+    display: inline-block;
+}
+
 #install .privacy {
     padding-top: 5px;
 }
 
 #install .privacy-policy {
     display: none;
-}
-
-#install .button {
-    display: inline-block;
 }
 
 .install-shell p {
@@ -1615,7 +1615,7 @@ a.button {
     margin: 0;
     border: 0;
     font-weight: normal;
-    display: inline;
+    display: inline-block;
     white-space: nowrap;
 }
 
@@ -1628,7 +1628,7 @@ a.button {
 .other .button.bsd,
 .other .button.solaris,
 .windows .button.windows {
-    display: inline;
+    display: inline-block;
 }
 
 /* @Images *********/
