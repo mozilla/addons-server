@@ -75,10 +75,22 @@ def restart_celery(ctx):
     ctx.remote("service celeryd-prod-devhub restart")
 
 
+@hostgroups(['amo'])
+def stop_appserver_cron(ctx):
+    ctx.remote("service crond stop")
+
+
+@hostgroups(['amo'])
+def start_appserver_cron(ctx):
+    ctx.remote("service crond start")
+
+
 @task
 def deploy_code(ctx):
+    stop_appserver_cron()
     ctx.local("/data/bin/omg_push_zamboni_live.sh")
     pull_code()
+    start_appserver_cron()
 
 
 @hostgroups(['amo_memcache'])
