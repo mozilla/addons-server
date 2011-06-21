@@ -154,6 +154,15 @@ class BlocklistItemTest(BlocklistTest):
         vrange = item.getElementsByTagName('versionRange')
         eq_(vrange[0].getAttribute('severity'), '2')
 
+    def test_item_severity_zero(self):
+        # Don't show severity if severity==0.
+        self.item.update(severity=0, min='0.1')
+        eq_(len(self.vr()), 1)
+        item = self.dom(self.fx4_url).getElementsByTagName('emItem')[0]
+        vrange = item.getElementsByTagName('versionRange')
+        eq_(vrange[0].getAttribute('minVersion'), '0.1')
+        assert not vrange[0].hasAttribute('severity')
+
     def vr(self):
         item = self.dom(self.fx4_url).getElementsByTagName('emItem')[0]
         return item.getElementsByTagName('versionRange')

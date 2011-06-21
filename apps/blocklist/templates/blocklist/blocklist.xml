@@ -7,7 +7,7 @@
       {% for row in rows.rows %}
         {% if row.min or row.max or row.severity or row.apps %}
           <versionRange {{ attrs(minVersion=row.min, maxVersion=row.max,
-                                 severity=row.severity) }}>
+                                 severity=row.severity or None) }}>
           {% for app in row.apps %}
             <targetApplication {{ attrs(id=app.guid) }}>
               {% if app.min and app.max %}
