@@ -102,6 +102,12 @@ $(document).ready(function() {
                 $src_ogv = $('<source>', {'type': 'video/ogv; codecs="theora, vorbis"',
                                           'src': $this.attr('data-ogv') });
 
+            $(window).bind('keydown.lightboxDismiss', function(e) {
+                if (e.which == 27) {
+                    $overlay.remove();
+                    $(window).unbind('keydown.lightboxDismiss');
+                }
+            });
             $overlay.append($video);
             $video.append($src_mp3);
             $video.append($src_webm);
@@ -111,6 +117,7 @@ $(document).ready(function() {
             $video.click(function(e){ e.stopPropagation(); });
             $overlay.click(function() {
                 $(this).remove();
+                $(window).unbind('keydown.lightboxDismiss');
             });
         }));
     }
