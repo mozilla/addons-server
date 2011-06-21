@@ -88,9 +88,11 @@ def start_appserver_cron(ctx):
 @task
 def deploy_code(ctx):
     stop_appserver_cron()
-    ctx.local("/data/bin/omg_push_zamboni_live.sh")
-    pull_code()
-    start_appserver_cron()
+    try:
+        ctx.local("/data/bin/omg_push_zamboni_live.sh")
+        pull_code()
+    finally:
+        start_appserver_cron()
 
 
 @hostgroups(['amo_memcache'])
