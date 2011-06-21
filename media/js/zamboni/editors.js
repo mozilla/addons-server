@@ -148,7 +148,7 @@ function initReviewActions() {
         eh_setting = storage.get('editors_history'),
         eh_els = $('#review-files tr.listing-body'),
         eh_size = eh_els.length;
-    if(!eh_setting) eh_setting = 1;
+    if(!eh_setting) eh_setting = 3;
 
     toggleHistory();
 
@@ -157,8 +157,8 @@ function initReviewActions() {
         eh_els.slice(0, eh_size - eh_setting).hide();
     }
 
-    $('#editors_history').click(_pd(function() {
-        eh_setting = eh_setting <= 1 ? 100 : 1;
+    $('.eh_open').click(_pd(function() {
+        eh_setting = $(this).attr('data-num');
         storage.set('editors_history', eh_setting);
         toggleHistory();
     }));
