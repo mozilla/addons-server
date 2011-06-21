@@ -5,6 +5,8 @@ import shutil
 import sys
 import traceback
 
+from django.conf import settings
+
 import mock
 from nose.plugins.attrib import attr
 from nose.tools import eq_
@@ -182,6 +184,7 @@ class TestValidateFile(BaseUploadTest):
         doc = pq(r.content)
         assert doc('time').text()
 
+    @mock.patch.object(settings, 'EXPOSE_VALIDATOR_TRACEBACKS', False)
     @mock.patch('devhub.tasks.run_validator')
     def test_validator_errors(self, v):
         v.side_effect = ValueError('catastrophic failure in amo-validator')
@@ -191,9 +194,8 @@ class TestValidateFile(BaseUploadTest):
         eq_(r.status_code, 200)
         data = json.loads(r.content)
         eq_(data['validation'], '')
-        assert data['error'].endswith(
-                    "ValueError: catastrophic failure in amo-validator\n"), (
-                        'Unexpected error: ...%s' % data['error'][-50:-1])
+        eq_(data['error'].strip(),
+            'ValueError: catastrophic failure in amo-validator')
 
     @mock.patch('devhub.tasks.run_validator')
     def test_validator_sets_binary_flag(self, v):
@@ -253,6 +255,18 @@ class TestValidateFile(BaseUploadTest):
         doc = pq(data['validation']['messages'][0]['description'][0])
         eq_(doc('a').text(), 'https://bugzilla.mozilla.org/')
 
+    @mock.patch.object(settings, 'EXPOSE_VALIDATOR_TRACEBACKS', False)
+    @mock.patch('devhub.tasks.run_validator')
+    def test_hide_validation_traceback(self, run_validator):
+        run_validator.side_effect = RuntimeError('simulated task error')
+        r = self.client.post(reverse('devhub.json_file_validation',
+                                     args=[self.addon.slug, self.file.id]),
+                             follow=True)
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        eq_(data['validation'], '')
+        eq_(data['error'], 'RuntimeError: simulated task error')
+
 
 class TestCompatibilityResults(test_utils.TestCase):
     fixtures = ['base/users', 'devhub/addon-compat-results']
@@ -265,6 +279,13 @@ class TestCompatibilityResults(test_utils.TestCase):
         self.result = ValidationResult.objects.get(
                                         file__version__addon=self.addon)
         self.job = self.result.validation_job
+
+    def validate(self, expected_status=200):
+        r = self.client.post(reverse('devhub.json_validation_result',
+                                     args=[self.addon.slug, self.result.id]),
+                             follow=True)
+        eq_(r.status_code, expected_status)
+        return json.loads(r.content)
 
     def test_login_protected(self):
         self.client.logout()
@@ -303,11 +324,7 @@ class TestCompatibilityResults(test_utils.TestCase):
             'https://developer.mozilla.org/en/Firefox_4_for_developers')
 
     def test_validation_success(self):
-        r = self.client.post(reverse('devhub.json_validation_result',
-                                     args=[self.addon.slug, self.result.id]),
-                             follow=True)
-        eq_(r.status_code, 200)
-        data = json.loads(r.content)
+        data = self.validate()
         eq_(data['validation']['messages'][3]['for_appversions'],
             {'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': ['4.0b3']})
 
@@ -319,16 +336,24 @@ class TestCompatibilityResults(test_utils.TestCase):
         assert doc('time').text()
         eq_(doc('table tr td:eq(1)').text(), 'Firefox 4.0.*')
 
+    @mock.patch.object(settings, 'EXPOSE_VALIDATOR_TRACEBACKS', True)
     def test_validation_error(self):
         try:
             raise RuntimeError('simulated task error')
         except:
             error = ''.join(traceback.format_exception(*sys.exc_info()))
         self.result.update(validation='', task_error=error)
-        r = self.client.post(reverse('devhub.json_validation_result',
-                                     args=[self.addon.slug, self.result.id]),
-                             follow=True)
-        eq_(r.status_code, 200)
-        data = json.loads(r.content)
+        data = self.validate()
         eq_(data['validation'], '')
         eq_(data['error'], error)
+
+    @mock.patch.object(settings, 'EXPOSE_VALIDATOR_TRACEBACKS', False)
+    def test_hide_validation_traceback(self):
+        try:
+            raise RuntimeError('simulated task error')
+        except:
+            error = ''.join(traceback.format_exception(*sys.exc_info()))
+        self.result.update(validation='', task_error=error)
+        data = self.validate()
+        eq_(data['validation'], '')
+        eq_(data['error'], 'RuntimeError: simulated task error')

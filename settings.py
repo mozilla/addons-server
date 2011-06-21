@@ -928,6 +928,9 @@ QUNIT_TEST_DIRECTORY = os.path.join(MEDIA_ROOT, 'js', 'zamboni', 'tests')
 SPIDERMONKEY = None
 VALIDATE_ADDONS = True
 
+# When True include full tracebacks in JSON. This is useful for QA on preview.
+EXPOSE_VALIDATOR_TRACEBACKS = False
+
 # Feature flags
 SEARCH_EXCLUDE_PERSONAS = True
 UNLINK_SITE_STATS = True

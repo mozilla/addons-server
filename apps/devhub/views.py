@@ -531,14 +531,21 @@ def escape_all(v):
     return v
 
 
-def prepare_validation_results(validation):
-    for msg in validation['messages']:
-        if msg['tier'] == 0:
-            # We can't display a message if it's on tier 0.
-            # Should get fixed soon in bug 617481
-            msg['tier'] = 1
-        for k, v in msg.items():
-            msg[k] = escape_all(v)
+def make_validation_result(data):
+    """Safe wrapper around JSON dict containing a validation result."""
+    if not settings.EXPOSE_VALIDATOR_TRACEBACKS:
+        if data['error']:
+            # Just expose the message, not the traceback
+            data['error'] = data['error'].strip().split('\n')[-1].strip()
+    if data['validation']:
+        for msg in data['validation']['messages']:
+            if msg['tier'] == 0:
+                # We can't display a message if it's on tier 0.
+                # Should get fixed soon in bug 617481
+                msg['tier'] = 1
+            for k, v in msg.items():
+                msg[k] = escape_all(v)
+    return data
 
 
 @dev_required(allow_editors=True)
@@ -589,19 +596,15 @@ def json_file_validation(request, addon_id, addon, file_id):
             v_result = tasks.file_validator(file.id)
         except Exception, exc:
             log.error('file_validator(%s): %s' % (file.id, exc))
-            return {
-                'validation': '',
-                'error': "\n".join(
-                                traceback.format_exception(*sys.exc_info())),
-                }
+            error = "\n".join(traceback.format_exception(*sys.exc_info()))
+            return make_validation_result({'validation': '',
+                                           'error': error})
     else:
         v_result = file.validation
     validation = json.loads(v_result.validation)
-    prepare_validation_results(validation)
 
-    r = dict(validation=validation,
-             error=None)
-    return r
+    return make_validation_result(dict(validation=validation,
+                                       error=None))
 
 
 @json_view
@@ -612,11 +615,11 @@ def json_validation_result(request, addon_id, addon, result_id):
     qs = ValidationResult.objects.exclude(completed=None)
     result = get_object_or_404(qs, pk=result_id)
     if result.task_error:
-        return {'validation': '', 'error': result.task_error}
+        return make_validation_result({'validation': '',
+                                       'error': result.task_error})
     else:
         validation = json.loads(result.validation)
-        prepare_validation_results(validation)
-        return dict(validation=validation, error=None)
+        return make_validation_result(dict(validation=validation, error=None))
 
 
 @json_view
@@ -633,7 +636,6 @@ def json_upload_detail(upload):
     plat_exclude = []
 
     if validation:
-        prepare_validation_results(validation)
         if validation['errors'] == 0:
             try:
                 apps = parse_addon(upload.path).get('apps', [])
@@ -655,11 +657,11 @@ def json_upload_detail(upload):
                 # right here to avoid confusion about platform selection.
                 log.error("XPI parsing error, ignored: %s" % exc)
 
-    r = dict(upload=upload.uuid, validation=validation,
-             error=upload.task_error, url=url,
-             full_report_url=full_report_url,
-             platforms_to_exclude=plat_exclude)
-    return r
+    return make_validation_result(dict(upload=upload.uuid,
+                                       validation=validation,
+                                       error=upload.task_error, url=url,
+                                       full_report_url=full_report_url,
+                                       platforms_to_exclude=plat_exclude))
 
 
 def upload_detail(request, uuid, format='html'):
