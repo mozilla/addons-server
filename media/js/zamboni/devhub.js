@@ -404,7 +404,7 @@ function initUploadPreview() {
         form = create_new_preview_field();
         forms['form_' + file.instance] = form;
 
-        $(form).find('.preview-thumb').addClass('loading')
+        $(form).show().find('.preview-thumb').addClass('loading')
                .css('background-image', 'url(' + file.dataURL + ')');
         renumberPreviews();
     }
