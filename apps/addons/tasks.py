@@ -34,7 +34,8 @@ def update_last_updated(addon_id):
         q = 'listed'
     else:
         q = 'exp'
-    pk, t = queries[q].filter(pk=addon_id).values_list('id', 'last_updated')[0]
+    qs = queries[q].filter(pk=addon_id).using('default')
+    pk, t = qs.values_list('id', 'last_updated')[0]
     Addon.objects.filter(pk=pk).update(last_updated=t)
 
 
