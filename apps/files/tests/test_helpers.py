@@ -76,14 +76,10 @@ class TestFileHelper(test_utils.TestCase):
     def test_isbinary(self):
         binary = self.viewer._is_binary
         for f in ['foo.rdf', 'foo.xml', 'foo.js', 'foo.py'
-                  'foo.html', 'foo.txt', 'foo.dtd', 'foo.xul',
+                  'foo.html', 'foo.txt', 'foo.dtd', 'foo.xul', 'foo.sh',
                   'foo.properties', 'foo.json', 'foo.src', 'CHANGELOG']:
             m, encoding = mimetypes.guess_type(f)
             assert not binary(m, f), '%s should not be binary' % f
-
-        for f in ['foo.dtd', 'foo.xul', 'foo.properties']:
-            m, encoding = mimetypes.guess_type(f)
-            assert not binary(None, f), '%s should not be binary' % f
 
         for f in ['foo.png', 'foo.gif', 'foo.exe', 'foo.swf']:
             m, encoding = mimetypes.guess_type(f)

@@ -24,6 +24,8 @@ from validator.testcases.packagelayout import (blacklisted_extensions,
 # Allow files with a shebang through.
 blacklisted_magic_numbers = [b for b in list(blacklisted_magic_numbers)
                                if b != (0x23, 0x21)]
+blacklisted_extensions = [b for b in list(blacklisted_extensions)
+                            if b != 'sh']
 task_log = commonware.log.getLogger('z.task')
 
 
