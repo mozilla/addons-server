@@ -105,4 +105,6 @@ $(function () {
         window.location.hash = "id=" + $("#addon, #persona").attr("data-id");
       })
     }
+
+    $("#abuse-modal").modal('#report-abuse');
 });

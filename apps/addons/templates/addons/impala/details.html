@@ -134,13 +134,15 @@
     {{ _('Average') }}
   </div>
   {% include "reviews/grouped_ratings.html" %}
-  <p>
+  <div>
     <a class="button" id="add-review" href="{{ url('reviews.add', addon.slug) }}">{{ _('Write a review') }}</a>
-  </p>
+  </div>
+  <a id="report-abuse" href="{{ remora_url('developers/docs/policies/contact') }}"
+     class="abuse-image">{{ _('Report Abuse') }}</a>
 </aside>
 
 <section id="reviews" class="primary island c">
-  <h2>Reviews</h2>
+  <h2>{{ _('Reviews') }}</h2>
   {% if reviews %}
     {{ impala_review_list_box(addon=addon, reviews=reviews) }}
   {% else %}
@@ -252,10 +254,6 @@
   {% endif %}
 </section>
 
-{% if abuse_form %}
-  {{ addon_report_abuse(hide=True, addon=addon) }}
-{% endif %}
-
 {% endblock content %}
 
 {% block popups %}
@@ -272,6 +270,13 @@
     {% if request.user.is_authenticated() %}
       {{ impala_review_add_box(addon=addon) }}
     {% endif %}
+  {% endif %}
+  {% if abuse_form %}
+    <div id="abuse-modal" class="modal">
+      <a href="#" class="close">{{ _('close') }}</a>
+      <h2>{{ _('Report Abuse') }}</h2>
+      {{ addon_report_abuse(hide=False, addon=addon) }}
+    </div>
   {% endif %}
 {% endblock %}
 
