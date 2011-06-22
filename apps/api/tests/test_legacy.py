@@ -36,15 +36,29 @@ def test_json_not_implemented():
 class UtilsTest(TestCase):
     fixtures = ['base/addon_3615']
 
+    def setUp(self):
+        self.a = Addon.objects.get(pk=3615)
+
     def test_dict(self):
-        "Verify that we're getting dict."
-        a = Addon.objects.get(pk=3615)
-        d = api.utils.addon_to_dict(a)
-        assert d['learnmore'].endswith('/addon/a3615/?src=api')
-        d = api.utils.addon_to_dict(a, disco=True)
+        """Verify that we're getting dict."""
+        d = api.utils.addon_to_dict(self.a)
+        assert d, 'Add-on dictionary not found'
+        assert d['learnmore'].endswith('/addon/a3615/?src=api'), (
+            'Add-on details URL does not end with "?src=api"')
+
+    def test_dict_disco(self):
+        """Ensure that the """
+        d = api.utils.addon_to_dict(self.a, disco=True)
         u = '%s%s?src=api' % (settings.SERVICES_URL,
             reverse('discovery.addons.detail', args=['a3615']))
         eq_(d['learnmore'], u)
+
+    def test_sanitize(self):
+        self.a.summary = self.a.description = 'i <3 <a href="">amo</a>!'
+        self.a.save()
+        d = api.utils.addon_to_dict(self.a)
+        eq_(d['summary'], 'i &lt;3 amo!')
+        eq_(d['description'], 'i &lt;3 amo!')
 
 
 class No500ErrorsTest(TestCase):
