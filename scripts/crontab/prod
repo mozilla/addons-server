@@ -10,16 +10,13 @@ HOME = /tmp
 * * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron fast_current_version
 * * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron migrate_collection_users
 
-# Every 20 minutes.
-*/20 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron check_queues
-
 # Every 30 minutes.
 */30 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron tag_jetpacks
 */30 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron update_addons_current_version
 
 #once per hour
 5 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron update_collections_subscribers
-10 * * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; php -f maintenance.php blog
+10 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron update_blog_posts
 15 * * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; php -f update-search-views.php
 20 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron addon_last_updated
 25 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron update_collections_votes
