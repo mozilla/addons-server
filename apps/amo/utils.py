@@ -297,7 +297,7 @@ Image.Image.load = patched_load
 
 
 def resize_image(src, dst, size, remove_src=True):
-    """Resizes and image from src, to dst."""
+    """Resizes and image from src, to dst. Returns width and height."""
     if src == dst:
         raise Exception("src and dst can't be the same: %s" % src)
 
@@ -312,6 +312,8 @@ def resize_image(src, dst, size, remove_src=True):
 
     if remove_src:
         os.remove(src)
+
+    return im.size
 
 
 def remove_icons(destination):

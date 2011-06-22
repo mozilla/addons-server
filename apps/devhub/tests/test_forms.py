@@ -10,7 +10,7 @@ import amo
 from amo.tests.test_helpers import get_image_path
 import paypal
 import test_utils
-from applications.models import Application, AppVersion
+from applications.models import AppVersion
 from addons.models import Addon, Charity
 from devhub import forms
 from files.models import FileUpload
@@ -95,7 +95,7 @@ class TestPreviewForm(test_utils.TestCase):
     def test_preview_modified(self, update_mock):
         addon = Addon.objects.get(pk=3615)
         name = 'transparent.png'
-        form = forms.PreviewForm({'caption': 'test','upload_hash': name,
+        form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
                                   'position': 1})
         dest = path.path(settings.TMP_PATH) / 'preview'
         if not os.path.exists(dest):
@@ -104,3 +104,17 @@ class TestPreviewForm(test_utils.TestCase):
         assert form.is_valid()
         form.save(addon)
         assert update_mock.called
+
+    def test_preview_size(self):
+        addon = Addon.objects.get(pk=3615)
+        name = 'non-animated.gif'
+        form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
+                                  'position': 1})
+        dest = path.path(settings.TMP_PATH) / 'preview'
+        if not os.path.exists(dest):
+            os.makedirs(dest)
+        shutil.copyfile(get_image_path(name), dest / name)
+        assert form.is_valid()
+        form.save(addon)
+        eq_(addon.previews.all()[0].sizes,
+            {u'image': [250, 297], u'thumbnail': [126, 150]})

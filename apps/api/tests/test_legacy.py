@@ -7,15 +7,15 @@ from django.core.cache import cache
 from django.conf import settings
 from django.test.client import Client
 
-from pyquery import PyQuery as pq
 import jingo
-from test_utils import TestCase
 from nose.tools import eq_
+from pyquery import PyQuery as pq
+from test_utils import TestCase
 
 import amo
 import api
 import api.utils
-from addons.models import Addon, AddonCategory, Category, Feature
+from addons.models import Addon, AddonCategory, Category, Feature, Preview
 from amo import helpers
 from amo.urlresolvers import reverse
 from search.tests import SphinxTestCase
@@ -404,6 +404,17 @@ class APITest(TestCase):
         addon = Addon.objects.get(pk=5299)
         addon.update(icon_type='')
         self.assertContains(make_call('addon/5299'), '<icon></icon>')
+
+
+    def test_thumbnail_size(self):
+        addon = Addon.objects.get(pk=5299)
+        preview = Preview.objects.create(addon=addon)
+        preview.sizes = {'thumbnail': [200, 150]}
+        preview.save()
+        result = make_call('addon/5299', version=1.5)
+        self.assertContains(result, '<full type="">')
+        self.assertContains(result,
+                            '<thumbnail type="" width="200" height="150">')
 
 
 class ListTest(TestCase):

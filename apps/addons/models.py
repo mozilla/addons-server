@@ -14,6 +14,7 @@ from django.utils.translation import trans_real as translation
 
 import caching.base as caching
 import commonware.log
+import json_field
 from tower import ugettext_lazy as _
 
 import amo.models
@@ -1328,6 +1329,7 @@ class Preview(amo.models.ModelBase):
     caption = TranslatedField()
 
     position = models.IntegerField(default=0)
+    sizes = json_field.JSONField(max_length=25)
 
     class Meta:
         db_table = 'previews'
@@ -1370,6 +1372,14 @@ class Preview(amo.models.ModelBase):
     @property
     def image_path(self):
         return self._image_path(settings.PREVIEW_FULL_PATH)
+
+    @property
+    def thumbnail_size(self):
+        return self.sizes.get('thumbnail', []) if self.sizes else []
+
+    @property
+    def image_size(self):
+        return self.sizes.get('image', []) if self.sizes else []
 
 
 # Use pre_delete since we need to know what we want to delete in the fs.

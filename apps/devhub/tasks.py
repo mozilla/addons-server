@@ -15,6 +15,8 @@ from amo.utils import resize_image
 from files.models import FileUpload, File, FileValidation
 from applications.management.commands import dump_apps
 
+from PIL import Image
+
 log = logging.getLogger('z.devhub.task')
 
 
@@ -146,17 +148,43 @@ def resize_icon(src, dst, size, **kw):
 
 @task
 @set_modified_on
-def resize_preview(src, thumb_dst, full_dst, **kw):
+def resize_preview(src, instance, **kw):
     """Resizes preview images."""
+    thumb_dst, full_dst = instance.thumbnail_path, instance.image_path
+    sizes = {}
     log.info('[1@None] Resizing preview: %s' % thumb_dst)
     try:
-        # Generate the thumb.
-        size = amo.ADDON_PREVIEW_SIZES[0]
-        resize_image(src, thumb_dst, size, remove_src=False)
-
-        # Resize the original.
-        size = amo.ADDON_PREVIEW_SIZES[1]
-        resize_image(src, full_dst, size, remove_src=True)
+        sizes['thumbnail'] = resize_image(src, thumb_dst,
+                                          amo.ADDON_PREVIEW_SIZES[0],
+                                          remove_src=False)
+        sizes['image'] = resize_image(src, thumb_dst,
+                                      amo.ADDON_PREVIEW_SIZES[1],
+                                      remove_src=False)
+        instance.sizes = sizes
+        instance.save()
         return True
     except Exception, e:
         log.error("Error saving preview: %s" % e)
+
+
+@task
+@write
+def get_preview_sizes(ids, **kw):
+    log.info('[%s@%s] Getting preview sizes for addons starting at id: %s...'
+             % (len(ids), get_preview_sizes.rate_limit, ids[0]))
+    addons = Addon.objects.filter(pk__in=ids).no_transforms()
+
+    for addon in addons:
+        previews = addon.previews.all()
+        log.info('Found %s previews for: %s' % (previews.count(), addon.pk))
+        for preview in previews:
+            try:
+                log.info('Getting size for preview: %s' % preview.pk)
+                sizes = {
+                    'thumbnail':  Image.open(preview.thumbnail_path).size,
+                    'image':  Image.open(preview.image_path).size,
+                }
+                preview.update(sizes=sizes)
+            except Exception, err:
+                log.error('Failed to find size of preview: %s, error: %s'
+                          % (addon.pk, err))
