@@ -304,6 +304,7 @@ $.fn.modal = function(click_target, o) {
         $modal.unbind();
         $modal.undelegate();
         $(document.body).unbind('click newmodal', $modal.hider);
+        $(window).unbind('keydown.lightboxDismiss');
         $(window).bind('resize', p.onresize);
         $('.modal-overlay').remove();
         return $modal;
@@ -343,7 +344,12 @@ $.fn.modal = function(click_target, o) {
             $modal.show();
         }, 0);
 
-        $(window).bind('resize', p.onresize);
+        $(window).bind('resize', p.onresize)
+        .bind('keydown.lightboxDismiss', function(e) {
+            if (e.which == 27) {
+                $modal.hideMe();
+            }
+        });
         return $modal;
     };
 
