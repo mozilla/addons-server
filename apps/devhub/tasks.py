@@ -157,7 +157,7 @@ def resize_preview(src, instance, **kw):
         sizes['thumbnail'] = resize_image(src, thumb_dst,
                                           amo.ADDON_PREVIEW_SIZES[0],
                                           remove_src=False)
-        sizes['image'] = resize_image(src, thumb_dst,
+        sizes['image'] = resize_image(src, full_dst,
                                       amo.ADDON_PREVIEW_SIZES[1],
                                       remove_src=False)
         instance.sizes = sizes

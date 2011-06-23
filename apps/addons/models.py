@@ -1329,7 +1329,7 @@ class Preview(amo.models.ModelBase):
     caption = TranslatedField()
 
     position = models.IntegerField(default=0)
-    sizes = json_field.JSONField(max_length=25)
+    sizes = json_field.JSONField(max_length=25, default={})
 
     class Meta:
         db_table = 'previews'
