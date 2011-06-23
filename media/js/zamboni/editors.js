@@ -126,13 +126,18 @@ function initReviewActions() {
     var addon_id = $('#addon').attr('data-id');
     function check_currently_viewing() {
         $.post('/en-US/editors/review_viewing', {'addon_id': addon_id}, function(d){
-            $current = $('.currently_viewing_warning');
-            $current.toggle(d.is_user != 1);
+            var show = d.is_user != 1 && typeof d.current_name != "undefined",
+                       $current = $('.currently_viewing_warning');
 
-            var title = format(gettext('{name} was viewing this page first.'), {name: d.current_name});
-            $current_div = $current.filter('div');
-            $current_div.find('strong').remove();
-            $current_div.prepend($('<strong>', {'text': title}));
+            $current.toggle(show);
+
+            if(show) {
+              var title = format(gettext('{name} was viewing this page first.'),
+                                         {name: d.current_name});
+              $current_div = $current.filter('div');
+              $current_div.find('strong').remove();
+              $current_div.prepend($('<strong>', {'text': title}));
+            }
 
             setTimeout(check_currently_viewing, d.interval_seconds * 1000);
         });
