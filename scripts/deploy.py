@@ -133,10 +133,10 @@ def update_amo(ctx):
     update_locales()
     compress_assets()
     schematic()
+    # Sync out media to all the servers first.
     deploy_media()
     restart_celery()
     enable_cron()
-    compress_assets('-u')
     deploy_code()
     # END: The normal update/push cycle.
 
