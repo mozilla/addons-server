@@ -94,7 +94,7 @@ def deploy_code(ctx, subdir='', reload_apache=True):
             with ctx.lcd("www"):
                 ctx.local("/usr/bin/git add .")
                 ctx.local("/usr/bin/git commit -q -a -m 'AMO PUSH'")
-        pull_code(restart_apache)
+        pull_code(reload_apache)
     finally:
         start_appserver_cron()
 
