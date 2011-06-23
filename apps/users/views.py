@@ -6,7 +6,6 @@ from django.contrib import auth
 from django.template import Context, loader
 from django.views.decorators.cache import never_cache
 from django.utils.http import base36_to_int
-from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 
 import commonware.log
@@ -449,8 +448,8 @@ def password_reset_confirm(request, uidb36=None, token=None):
     user = None
     try:
         uid_int = base36_to_int(uidb36)
-        user = User.objects.get(id=uid_int)
-    except (ValueError, User.DoesNotExist):
+        user = UserProfile.objects.get(id=uid_int)
+    except (ValueError, UserProfile.DoesNotExist):
         pass
 
     if user is not None and default_token_generator.check_token(user, token):
