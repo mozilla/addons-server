@@ -89,7 +89,7 @@ def deploy_code(ctx, subdir='', reload_apache=True):
         with ctx.lcd(AMO_PYTHON_ROOT):
             src = os.path.join("src/prod/zamboni/", subdir, '')
             www = os.path.join("www/prod/zamboni/", subdir, '')
-            
+
             ctx.local("/usr/bin/rsync -aq --exclude '.git*' --delete %s %s" % (src, www))
             with ctx.lcd("www"):
                 ctx.local("/usr/bin/git add .")
@@ -133,14 +133,13 @@ def update_amo(ctx):
     update_locales()
     compress_assets()
     schematic()
+    # Sync out media to all the servers first.
     deploy_media()
     restart_celery()
     enable_cron()
-    compress_assets('-u')
     deploy_code()
     # END: The normal update/push cycle.
 
     # Run management commands like this:
     # manage_cmd(ctx, 'cmd')
-    manage_cmd(ctx, 'jetpackers')
     manage_cmd(ctx, 'process_addons --task=get_preview_sizes')
