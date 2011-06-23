@@ -58,12 +58,24 @@
     a {
         color: #333;
         text-decoration: none;
+        small {
+            color: #333;
+            display: block;
+            font-size: 0.6em;
+            line-height: 0.5em;
+        }
     }
     a:hover, a:focus {
         color: #043b84;
         text-shadow: 0 0 40px #fff,
                      0 0 20px #fff,
                      0 0 10px #fff;
+    }
+    &.prominent a, strong {
+        color: #D64203;
+        &:hover {
+            text-shadow: 0 0 #fff; // Color = stupid minifier hack
+        }
     }
 }
 
@@ -73,6 +85,10 @@
     font-size: 12px;
     margin-left: 64px;
     z-index: 50;
+
+    &.no-img {
+        margin-left: 0;
+    }
 
     > ul {
         > li {

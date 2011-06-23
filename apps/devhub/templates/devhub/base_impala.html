@@ -21,13 +21,15 @@
 {% endblock %}
 
 {% block site_header_title %}
-<h1 class="site-title">
+<h1 class="site-title prominent">
   <a href="{{ url('devhub.index') }}" title="{{ _('Return to the DevHub homepage')|f(request.APP.pretty) }}">
-    <img alt="{{ _('Developer Hub') }}" src="{{ media('img/addon-icons/default-64.png') }}">
-    {{ _('Developer Hub') }}
+    {# L10n: Text in small tag is smaller and on it's own line #}
+    {% trans %}
+    <small>Add-on</small> Developer Hub
+    {% endtrans %}
   </a>
 </h1>
-<nav id="site-nav" class="menu-nav c">
+<nav id="site-nav" class="menu-nav no-img c">
   <ul>
     {% if request.user.is_authenticated() and request.amo_user.is_developer %}
       <li class="top">
