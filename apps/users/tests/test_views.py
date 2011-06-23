@@ -207,7 +207,7 @@ class TestReset(UserViewBase):
     fixtures = ['base/users']
 
     def setUp(self):
-        user = User.objects.get(email='editor@mozilla.com')
+        user = User.objects.get(email='editor@mozilla.com').get_profile()
         self.token = [int_to_base36(user.id),
                       default_token_generator.make_token(user)]
 
