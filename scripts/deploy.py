@@ -8,7 +8,8 @@ import os
 from commander.deploy import hostgroups, task
 
 
-AMO_DIR = "/data/amo_python/src/prod/zamboni"
+AMO_PYTHON_ROOT = '/data/amo_python'
+AMO_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 _amo_dir = lambda *p: os.path.join(AMO_DIR, *p)
 
 _git_lcmd = lambda ctx, c: ctx.local("/usr/bin/git %s" % c)
@@ -63,10 +64,6 @@ def schematic(ctx):
         ctx.local("python2.6 ./vendor/src/schematic/schematic migrations")
 
 
-@hostgroups(['amo', 'amo_gearman'], remote_limit=5)
-def pull_code(ctx):
-    ctx.remote("/data/bin/libget/get-php5-www-git.sh")
-    ctx.remote("apachectl graceful")
 
 
 @hostgroups(['amo_gearman'])
@@ -86,13 +83,32 @@ def start_appserver_cron(ctx):
 
 
 @task
-def deploy_code(ctx):
+def deploy_code(ctx, subdir='', reload_apache=True):
     stop_appserver_cron()
     try:
-        ctx.local("/data/bin/omg_push_zamboni_live.sh")
-        pull_code()
+        with ctx.lcd(AMO_PYTHON_ROOT):
+            src = os.path.join("src/prod/zamboni/", subdir, '')
+            www = os.path.join("www/prod/zamboni/", subdir, '')
+
+            ctx.local("/usr/bin/rsync -aq --exclude '.git*' --delete %s %s" % (src, www))
+            with ctx.lcd("www"):
+                ctx.local("/usr/bin/git add .")
+                ctx.local("/usr/bin/git commit -q -a -m 'AMO PUSH'")
+        pull_code(restart_apache)
     finally:
         start_appserver_cron()
+
+
+@task
+def deploy_media(ctx):
+    deploy_code('media', False)
+
+
+@hostgroups(['amo', 'amo_gearman'], remote_limit=5)
+def pull_code(ctx, reload_apache=True):
+    ctx.remote("/data/bin/libget/get-php5-www-git.sh")
+    if reload_apache:
+        ctx.remote("apachectl graceful")
 
 
 @hostgroups(['amo_memcache'])
@@ -117,7 +133,7 @@ def update_amo(ctx):
     update_locales()
     compress_assets()
     schematic()
-    deploy_code()
+    deploy_media()
     restart_celery()
     enable_cron()
     compress_assets('-u')
@@ -126,4 +142,3 @@ def update_amo(ctx):
 
     # Run management commands like this:
     # manage_cmd(ctx, 'cmd')
-    manage_cmd(ctx, 'jetpackers')
