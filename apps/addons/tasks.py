@@ -1,6 +1,7 @@
 import os
 import logging
 
+from django.conf import settings
 from django.db import connection, transaction
 
 from celeryutils import task
@@ -98,6 +99,8 @@ def delete_preview_files(id, **kw):
 
 @task
 def index_addons(ids, **kw):
+    if not settings.USE_ELASTIC:
+        return
     es = elasticutils.get_es()
     log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
     for addon in Addon.objects.filter(id__in=ids):
@@ -107,6 +110,8 @@ def index_addons(ids, **kw):
 
 @task
 def unindex_addons(ids, **kw):
+    if not settings.USE_ELASTIC:
+        return
     for addon in ids:
         log.info('Removing addon [%s] from search index.' % addon)
         Addon.unindex(addon)
