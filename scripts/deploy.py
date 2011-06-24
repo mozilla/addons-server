@@ -135,9 +135,9 @@ def update_amo(ctx):
     schematic()
     # Sync out media to all the servers first.
     deploy_media()
-    restart_celery()
     enable_cron()
     deploy_code()
+    restart_celery()
     # END: The normal update/push cycle.
 
     # Run management commands like this:
