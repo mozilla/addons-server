@@ -7,12 +7,10 @@ MAILTO=amo-developers@mozilla.org
 HOME = /tmp
 
 # Every minute!
-* * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron fast_current_version
 * * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron migrate_collection_users
 
 # Every 30 minutes.
 */30 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron tag_jetpacks
-*/30 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron update_addons_current_version
 
 #once per hour
 5 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron update_collections_subscribers
@@ -46,7 +44,6 @@ HOME = /tmp
 
 #once per day
 30 1 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron update_user_ratings
-30 2 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron addon_reviews_ratings
 30 3 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cleanup
 30 3 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron reindex_addons
 30 4 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron cleanup_synced_collections
@@ -58,7 +55,6 @@ HOME = /tmp
 30 10 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron recs
 30 20 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron update_perf
 30 22 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron deliver_hotness
-30 23 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron collection_meta
 40 23 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron update_compat_info_for_fx4
 45 23 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py dump_apps
 50 23 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron migrate_admin_logs
