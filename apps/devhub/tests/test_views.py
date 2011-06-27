@@ -3357,6 +3357,7 @@ class TestRemoveLocale(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
+        self.addon = Addon.objects.get(id=3615)
         self.url = reverse('devhub.remove-locale', args=['a3615'])
         assert self.client.login(username='del@icio.us', password='password')
 
@@ -3365,17 +3366,27 @@ class TestRemoveLocale(test_utils.TestCase):
         eq_(r.status_code, 400)
 
     def test_success(self):
-        a = Addon.objects.get(id=3615)
-        a.name = {'en-US': 'woo', 'el': 'yeah'}
-        a.save()
-        a.remove_locale('el')
+        self.addon.name = {'en-US': 'woo', 'el': 'yeah'}
+        self.addon.save()
+        self.addon.remove_locale('el')
         qs = (Translation.objects.filter(localized_string__isnull=False)
               .values_list('locale', flat=True))
         r = self.client.post(self.url, {'locale': 'el'})
         eq_(r.status_code, 200)
-        eq_(sorted(qs.filter(id=a.name_id)), ['en-US'])
+        eq_(sorted(qs.filter(id=self.addon.name_id)), ['en-US'])
 
     def test_delete_default_locale(self):
-        a = Addon.objects.get(id=3615)
-        r = self.client.post(self.url, {'locale': a.default_locale})
+        r = self.client.post(self.url, {'locale': self.addon.default_locale})
         eq_(r.status_code, 400)
+
+    def test_remove_version_locale(self):
+        version = self.addon.versions.all()[0]
+        version.releasenotes = {'fr': 'oui'}
+        version.save()
+
+        self.client.post(self.url, {'locale': 'fr'})
+        res = self.client.get(reverse('devhub.versions.edit',
+                                      args=[self.addon.slug, version.pk]))
+        doc = pq(res.content)
+        # There's 2 fields, one for en-us, one for init.
+        eq_(len(doc('div.trans textarea')), 2)

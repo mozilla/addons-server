@@ -908,11 +908,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return app_cats
 
     def remove_locale(self, locale):
-        """NULLify the add-on's strings in this locale."""
-        ids = [getattr(self, f.attname) for f in self._meta.translated_fields]
-        qs = Translation.objects.filter(id__in=filter(None, ids),
-                                        locale=locale)
-        qs.update(localized_string=None, localized_string_clean=None)
+        """NULLify strings in this locale for the add-on and versions."""
+        for o in itertools.chain([self], self.versions.all()):
+            ids = [getattr(o, f.attname) for f in o._meta.translated_fields]
+            qs = Translation.objects.filter(id__in=filter(None, ids),
+                                            locale=locale)
+            qs.update(localized_string=None, localized_string_clean=None)
 
 
 @receiver(dbsignals.post_save, sender=Addon,

@@ -1372,6 +1372,15 @@ class TestRemoveLocale(test_utils.TestCase):
         eq_(sorted(qs.filter(id=a.name_id)), ['en-US'])
         eq_(sorted(qs.filter(id=a.description_id)), ['en-US', 'he'])
 
+    def test_remove_version_locale(self):
+        addon = Addon.objects.create(type=amo.ADDON_THEME)
+        version = Version.objects.create(addon=addon)
+        version.releasenotes = {'fr': 'oui'}
+        version.save()
+        addon.remove_locale('fr')
+        assert not (Translation.objects.filter(localized_string__isnull=False)
+                               .values_list('locale', flat=True))
+
 
 class TestAddonWatchDisabled(test_utils.TestCase):
 
