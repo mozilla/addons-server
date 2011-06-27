@@ -482,6 +482,12 @@ class TestReviewHelper(test_utils.TestCase):
         self.helper.handler.process_sandbox()
         assert u'TaobaoShopping淘宝网导航按钮' in mail.outbox[0].subject
 
+    def test_super_review_email(self):
+        self.setup_data(amo.STATUS_NULL)
+        self.helper.handler.process_super_review()
+        url = reverse('editors.review', args=[self.addon.pk], add_prefix=False)
+        assert url in mail.outbox[1].body
+
     def test_nomination_to_super_review(self):
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)

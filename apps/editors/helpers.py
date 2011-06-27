@@ -423,6 +423,9 @@ class ReviewBase:
                 'addon_url': absolutify(reverse('addons.detail',
                                                 args=[self.addon.slug],
                                                 add_prefix=False)),
+                'review_url': absolutify(reverse('editors.review',
+                                                 args=[self.addon.pk],
+                                                 add_prefix=False)),
                 'comments': self.data['comments'],
                 'SITE_URL': settings.SITE_URL}
 
