@@ -84,6 +84,9 @@
             .sprite-pos(6, 64, 3px);
         }
     }
+    &.platform {
+        display: none;
+    }
 }
 .button:hover,
 .button:focus,
@@ -116,6 +119,13 @@
         color: #C00000;
         margin: 0 0 4px;
     }
+}
+.mac .button.mac,
+.linux .button.linux,
+.other .button.bsd,
+.other .button.solaris,
+.windows .button.windows {
+    display: inherit;
 }
 
 .listing-grid {
