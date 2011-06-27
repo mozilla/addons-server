@@ -120,13 +120,6 @@
         margin: 0 0 4px;
     }
 }
-.mac .button.mac,
-.linux .button.linux,
-.other .button.bsd,
-.other .button.solaris,
-.windows .button.windows {
-    display: inherit;
-}
 
 .listing-grid {
     .item {
@@ -136,8 +129,16 @@
         .install-button {
             margin: 0;
         }
-        .button.disabled, .button.concealed {
-            display: none !important;
+        .button.disabled {
+            display: none;
         }
     }
+}
+
+.mac .button.mac,
+.linux .button.linux,
+.other .button.bsd,
+.other .button.solaris,
+.windows .button.windows {
+    display: inherit;
 }
