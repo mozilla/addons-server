@@ -686,7 +686,7 @@ def test_page_title_unicode():
 def test_send_email_autoescape():
     # Make sure HTML is not auto-escaped.
     s = 'woo&&<>\'""'
-    ctx = dict(name=s, addon_url=s, reviewer=s, comments=s, SITE_URL=s)
+    ctx = dict(name=s, review_url=s, reviewer=s, comments=s, SITE_URL=s)
     helpers.send_mail('editors/emails/super_review.ltxt',
                       'aww yeah', ['xx'], ctx)
     eq_(len(mail.outbox), 1)
