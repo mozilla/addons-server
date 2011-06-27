@@ -145,8 +145,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     developer_comments = PurifiedField(db_column='developercomments')
     eula = PurifiedField()
     privacy_policy = PurifiedField(db_column='privacypolicy')
-    the_reason = TranslatedField()
-    the_future = TranslatedField()
+    the_reason = PurifiedField()
+    the_future = PurifiedField()
 
     average_rating = models.FloatField(max_length=255, default=0, null=True,
                                        db_column='averagerating')

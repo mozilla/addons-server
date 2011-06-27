@@ -491,6 +491,14 @@ class TestDeveloperPages(test_utils.TestCase):
         r = self.client.get(url)
         eq_(r.context['version'].version, '1.x')
 
+    def test_purified(self):
+        addon = Addon.objects.get(pk=592)
+        addon.the_reason = addon.the_future = '<b>foo</b>'
+        addon.save()
+        url = reverse('addons.meet', args=['592'])
+        res = self.client.get(url, follow=True)
+        eq_(len(pq(res.content)('div.addon-info b')), 2)
+
 
 class TestLicensePage(test_utils.TestCase):
     fixtures = ['base/apps', 'base/addon_3615']
