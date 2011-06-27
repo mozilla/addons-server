@@ -245,6 +245,7 @@ class TestContributeEmbedded(test_utils.TestCase):
                         'result_type=json'))
         assert not json.loads(res.content)['paykey']
 
+
 class TestContribute(test_utils.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592']
 
@@ -1280,6 +1281,10 @@ class TestMobileDetails(TestMobile):
         assert 'review_form' not in r.context
         assert 'reviews' not in r.context
         assert 'get_replies' not in r.context
+
+    def test_persona_mobile_url(self):
+        r = self.client.get('/en-US/mobile/addon/15679/')
+        eq_(r.status_code, 200)
 
     def test_release_notes(self):
         a = Addon.objects.get(id=3615)
