@@ -79,7 +79,6 @@ HOME = /tmp
 # Add slugs after we get all the new personas.
 25 2,14 * * * $Z_CRON addons_add_slugs
 45 2,14 * * * $Z_CRON give_personas_versions
-25 3,15 * * * $Z_CRON update_addons_collections_downloads
 25 8,20 * * * $Z_CRON update_collections_total
 25 9,21 * * * $Z_CRON hide_disabled_files
 
@@ -105,6 +104,7 @@ HOME = /tmp
 40 21 * * * $REMORA; /usr/bin/python26 maintenance.py weekly
 35 22 * * * $Z_CRON update_global_totals
 40 22 * * * $Z_CRON update_addon_average_daily_users
+45 23 * * * $Z_CRON update_addons_collections_downloads
 
 # Once per week
 45 23 * * 4 $REMORA; php -f maintenance.php unconfirmed
