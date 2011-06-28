@@ -245,3 +245,10 @@ class TestES(amo.tests.ESTestCase):
                                     {'or': [{'term': {'status': 1}},
                                             {'term': {'app': 2}}]},
                                 ]}})
+
+    def test_facet_range(self):
+        facet = {'range': {'status': [{'lte': 3}, {'gte': 5}]}}
+        qs = Addon.search().filter(app=1).facet(by_status=facet)
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'term': {'app': 1}},
+                                'facets': {'by_status': facet}})

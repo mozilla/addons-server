@@ -47,6 +47,9 @@ class ES(object):
     def filter_or(self, **kw):
         return self._clone(next_step=('filter_or', kw.items()))
 
+    def facet(self, **kw):
+        return self._clone(next_step=('facet', kw.items()))
+
     def extra(self, **kw):
         new = self._clone()
         actions = 'values values_dict order_by query filter filter_or'.split()
@@ -76,11 +79,11 @@ class ES(object):
             return list(new)[0]
 
     def _build_query(self):
-        # start, stop
         filters = []
         queries = []
         sort = []
         fields = ['id']
+        facets = {}
         as_list = as_dict = False
         for action, value in self.steps:
             if action == 'order_by':
@@ -104,6 +107,8 @@ class ES(object):
                 filters.extend(self._process_filters(value))
             elif action == 'filter_or':
                 filters.append({'or': self._process_filters(value)})
+            elif action == 'facet':
+                facets.update(value)
             else:
                 raise NotImplementedError(action)
 
@@ -120,6 +125,8 @@ class ES(object):
 
         if fields:
             qs['fields'] = fields
+        if facets:
+            qs['facets'] = facets
         if sort:
             qs['sort'] = sort
         if self.start:
