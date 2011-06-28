@@ -80,6 +80,11 @@ class TestES(amo.tests.ESTestCase):
         eq_(qs._build_query(), {'fields': ['id'],
                                 'size': 6})
 
+    def test_slice_stop_zero(self):
+        qs = Addon.search()[:0]
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'size': 0})
+
     def test_getitem(self):
         addons = list(Addon.search())
         eq_(addons[0], Addon.search()[0])

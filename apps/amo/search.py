@@ -131,7 +131,7 @@ class ES(object):
             qs['sort'] = sort
         if self.start:
             qs['from'] = self.start
-        if self.stop:
+        if self.stop is not None:
             qs['size'] = self.stop - self.start
 
         self.fields, self.as_list, self.as_dict = fields, as_list, as_dict
