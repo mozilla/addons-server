@@ -52,7 +52,9 @@ list_regexps = build_urls(base_list_regexp, appendages)
 api_patterns = patterns('',
     # Addon_details
     url('addon/%s$' % ADDON_ID, class_view(views.AddonDetailView),
-        name='api.addon_detail'),)
+        name='api.addon_detail'),
+    url(r'^get_language_packs$', class_view(views.LanguageView),
+        name='api.language'),)
 
 for regexp in search_regexps:
     api_patterns += patterns('',

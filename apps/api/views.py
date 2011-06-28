@@ -305,6 +305,15 @@ class ListView(APIView):
                           cls=JSONEncoder)
 
 
+class LanguageView(APIView):
+
+    def process_request(self):
+        addons = Addon.objects.filter(status=amo.STATUS_PUBLIC,
+                                      type=amo.ADDON_LPAPP,
+                                      disabled_by_user=False).order_by('pk')
+        return self.render('api/list.xml', {'addons': addons})
+
+
 # pylint: disable-msg=W0613
 def redirect_view(request, url):
     """

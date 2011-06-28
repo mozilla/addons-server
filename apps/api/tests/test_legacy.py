@@ -682,3 +682,20 @@ class SearchTest(SphinxTestCase):
                 "/en-US/firefox/api/1.2/search/firefox/all/1")
         self.assertContains(response, """<searchresults total_results="2">""")
         self.assertContains(response, "</addon>", 1)
+
+
+class LanguagePacks(TestCase):
+    fixtures = ['addons/listed']
+
+    def setUp(self):
+        self.url = reverse('api.language', args=['1.5'])
+        self.addon = Addon.objects.get(pk=3723)
+
+    def test_search_language_pack(self):
+        self.addon.update(type=amo.ADDON_LPAPP, status=amo.STATUS_PUBLIC)
+        res = self.client.get(self.url)
+        self.assertContains(res, "<guid>{835A3F80-DF39")
+
+    def test_search_no_language_pack(self):
+        res = self.client.get(self.url)
+        self.assertNotContains(res, "<guid>{835A3F80-DF39")
