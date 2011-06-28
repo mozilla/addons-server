@@ -45,7 +45,9 @@
     <p id="addon-summary" {{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
     {{ big_install_button(addon, show_warning=False, impala=True) }}
     {% if addon.is_featured(APP, LANG) %}
-      <div class="banner featured">{{ _('Featured') }}</div>
+      <div class="banner-box">
+        <div class="banner featured">{{ _('Featured') }}</div>
+      </div>
     {% endif %}
   </div>
 

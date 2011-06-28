@@ -2,7 +2,6 @@
 
 #addon {
     font-size: 1.2em;
-    overflow: hidden;
     position: relative;
     padding: 20px 20px 20px 104px;
     .icon {
@@ -294,8 +293,17 @@
         overflow: auto;
     }
 }
+.banner-box {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+    pointer-events: none;
+}
 .banner {
-    padding: 4px 60px;
+    padding: 6px 60px;
     background: #489615;
     text-transform: uppercase;
     font: bold 13px serif;
@@ -307,7 +315,4 @@
     top: 0px;
     right: 0px;
     .transform(translate(50%, -50%) rotate(45deg) translateY(55px));
-}
-.html-rtl .banner {
-    
 }
