@@ -119,7 +119,7 @@ class ES(object):
             qs['filter'] = filters[0]
 
         if len(queries) > 1:
-            raise NotImplementedError()
+            qs['query'] = {'bool': {'must': queries}}
         elif queries:
             qs['query'] = queries[0]
 
@@ -163,6 +163,8 @@ class ES(object):
                 rv.append({'term': {key: val}})
             elif field_action == 'startswith':
                 rv.append({'prefix': {key: val}})
+            elif field_action in ('gt', 'gte', 'lt', 'lte'):
+                rv.append({'range': {key: {field_action: val}}})
         return rv
 
     def _do_search(self):
