@@ -66,8 +66,14 @@
 </div> {# install #}
 
 {% if b.detailed %}
+  {% with files = addon.current_version.all_files %}
+    {% if files and files[0].no_restart %}
+      <span class="no-restart badge">{{ _('No Restart Required') }}</span>
+    {% endif %}
+  {% endwith %}
+
   {% if addon.privacy_policy %}
-    <a class="privacy-policy" href="{{ url('addons.privacy', addon.slug) }}">
+    <a class="privacy-policy badge" href="{{ url('addons.privacy', addon.slug) }}">
       <strong>{{ _('Privacy Policy') }}</strong>
     </a>
   {% endif %}
