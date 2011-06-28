@@ -136,9 +136,12 @@
     {{ _('Average') }}
   </div>
   {% include "reviews/grouped_ratings.html" %}
-  <div>
-    <a class="button" id="add-review" href="{{ url('reviews.add', addon.slug) }}">{{ _('Write a review') }}</a>
-  </div>
+  {% set amo_user = user.get_profile() if user.is_authenticated() else None %}
+  {% if not addon.has_author(amo_user) %}
+    <div>
+      <a class="button" id="add-review" href="{{ url('reviews.add', addon.slug) }}">{{ _('Write a review') }}</a>
+    </div>
+  {% endif %}
   <a id="report-abuse" href="{{ remora_url('developers/docs/policies/contact') }}"
      class="abuse-image">{{ _('Report Abuse') }}</a>
 </aside>
