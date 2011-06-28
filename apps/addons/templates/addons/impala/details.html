@@ -139,7 +139,7 @@
     {{ _('Average') }}
   </div>
   {% include "reviews/grouped_ratings.html" %}
-  {% set amo_user = user.get_profile() if user.is_authenticated() else None %}
+  {% set amo_user = request.amo_user if user.is_authenticated() else None %}
   {% if not addon.has_author(amo_user) %}
     <div>
       <a class="button" id="add-review" href="{{ url('reviews.add', addon.slug) }}">{{ _('Write a review') }}</a>
@@ -183,33 +183,35 @@
   {{ tags_box(addon=addon, tags=tags) }}
 </aside>
 
-<section class="primary island c">
-  {% if recommendations %}
-    <section>
-      <h2 class="compact-bottom">{{ _('Often used with&hellip;')|safe }}</h2>
-      {{ recommendations|addon_grid(cols=3) }}
-    </section>
-  {% endif %}
-  {% if collections %}
-    <section>
-      <h2>{{ _('Part of these Collections') }}</h2>
-      {{ collections|collection_grid(cols=3) }}
-    </section>
+{% if recommendations or collections or author_addons %}
+  <section class="primary island c">
+    {% if recommendations %}
+      <section>
+        <h2 class="compact-bottom">{{ _('Often used with&hellip;')|safe }}</h2>
+        {{ recommendations|addon_grid(cols=3) }}
+      </section>
     {% endif %}
-  {% if author_addons %}
-    <section>
-      <h2>
-        {% trans count = addon.listed_authors|length,
-                 author = users_list(addon.listed_authors) %}
-          Other add-ons by {{ author }}
-        {% pluralize %}
-          Other add-ons by these authors
-        {% endtrans %}
-      </h2>
-      {{ author_addons|addon_grid(cols=3) }}
-    </section>
-  {% endif %}
-</section>
+    {% if collections %}
+      <section>
+        <h2>{{ _('Part of these Collections') }}</h2>
+        {{ collections|collection_grid(cols=3) }}
+      </section>
+      {% endif %}
+    {% if author_addons %}
+      <section>
+        <h2>
+          {% trans count = addon.listed_authors|length,
+                   author = users_list(addon.listed_authors) %}
+            Other add-ons by {{ author }}
+          {% pluralize %}
+            Other add-ons by these authors
+          {% endtrans %}
+        </h2>
+        {{ author_addons|addon_grid(cols=3) }}
+      </section>
+    {% endif %}
+  </section>
+{% endif %}
 
 <section class="primary island c">
   {% if addon.developer_comments %}

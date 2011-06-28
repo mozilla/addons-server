@@ -1,4 +1,4 @@
-$(function () {
+(function () {
     if (!$("#promos").length) return;
     var promos_base = $('#promos').attr('data-promo-url'),
         promos_url = format('{0}?version={1}&platform={2}', promos_base, z.browserVersion, z.platform);
@@ -15,4 +15,4 @@ $(function () {
         $('.toplist .name').truncate({showTitle: true});
         $('#promos .install').installButton();
     });
-});
+})();
