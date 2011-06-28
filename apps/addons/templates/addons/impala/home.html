@@ -36,7 +36,7 @@
     </section>
   {% endif %}
 
-  {# Cache everything in one block because we changes in each block are rare. #}
+  {# Cache everything in one block since changes in each block are rare. #}
   {% cache popular %}
     <section class="secondary">
       <h2>{{ _('Most Popular') }}
