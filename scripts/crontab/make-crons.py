@@ -84,6 +84,7 @@ HOME = /tmp
 
 #once per day
 30 1 * * * $Z_CRON update_user_ratings
+50 1 * * * $Z_CRON gc
 30 3 * * * $DJANGO cleanup
 30 3 * * * $Z_CRON reindex_addons
 30 4 * * * $Z_CRON cleanup_synced_collections
