@@ -27,18 +27,14 @@
 </section>
 
 <section class="primary" id="homepage">
-  <section class="island" id="promos" data-promo-url="{{ url('addons.homepage_promos') }}">
-    <div>
-      <ul class="slider">
-        <li class="panel">
-          <div id="starter" class="promo feature collection">
-            <h2>What are Add-ons?</h2>
-            <p>lorem ipsum foo bar baz educational content goes here</p>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </section>
+  {% if request.APP == amo.FIREFOX %}
+    <section class="island" id="promos" data-promo-url="{{ url('addons.homepage_promos') }}">
+      <div>
+        <ul class="slider">
+        </ul>
+      </div>
+    </section>
+  {% endif %}
   <section class="secondary">
     <h2>{{ _('Most Popular') }}
       <a class="seeall" href="{{ url('browse.extensions')|urlparams(sort='popular') }}">{{ _('All »') }}</a>

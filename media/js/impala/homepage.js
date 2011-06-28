@@ -1,6 +1,7 @@
 $(function () {
+    if (!$("#promos").length) return;
     var promos_base = $('#promos').attr('data-promo-url'),
-        promos_url = format('{0}?version={1}&platform={2}', promos_base, z.browserVersion, 'Darwin');
+        promos_url = format('{0}?version={1}&platform={2}', promos_base, z.browserVersion, z.platform);
     $.get(promos_url, function(resp) {
         $('#promos ul').append($(resp));
         $('#promos').append('<a href="#" class="control prev">&laquo;</a>\
