@@ -965,13 +965,13 @@ MODIFIED_DELAY = 3
 
 # This is a list of dictionaries that we should generate compat info for.
 # app: should match amo.FIREFOX.id.
-# version: the app version we're generating compat info for.
-# alpha: the first version that should be considered alpha for :version.
-# previous: the major version before :version.
+# main: the app version we're generating compat info for.
+# versions: version numbers to show in comparisons.
+# previous: the major version before :main.
 COMPAT = (
-    dict(app=1, version='4.0', alpha='3.7a', previous='3.6'),
-    dict(app=1, version='5.0', alpha='5.0a', previous='4.0'),
-    dict(app=1, version='6.0', alpha='6.0a', previous='5.0'),
+    dict(app=1, main='6.0', versions=('6.0', '6.0a2', '6.0a1'), previous='5.0'),
+    dict(app=1, main='5.0', versions=('5.0', '5.0a2', '5.0a1'), previous='4.0'),
+    dict(app=1, main='4.0', versions=('4.0', '4.0a1', '3.7a'), previous='3.6'),
 )
 
 # URL for reporting arecibo errors too. If not set, won't be sent.

@@ -10,5 +10,4 @@ urlpatterns = (
         views.reporter_detail, name='compat.reporter_detail'),
 
     url('^(?P<version>[.\w]+)?$', views.index, name='compat.index'),
-    url('^(?P<version>[.\w]+)/details$', views.details, name='compat.details'),
 )
