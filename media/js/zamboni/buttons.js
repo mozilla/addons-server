@@ -79,6 +79,7 @@ var installButton = function() {
         }
     };
 
+    $this.parent().append('<br>');
     var addWarning = function(msg) { $this.parent().append(format(notavail, [msg])); };
 
     // Change the button text to "Add to Firefox".
