@@ -62,7 +62,7 @@ class ES(object):
         return new
 
     def count(self):
-        hits = self._get_results()
+        hits = self[:0].raw()
         return hits['hits']['total']
 
     def __len__(self):
@@ -167,7 +167,7 @@ class ES(object):
 
     def _do_search(self):
         if not self._results_cache:
-            hits = self._get_results()
+            hits = self.raw()
             if self.as_dict:
                 ResultClass = DictSearchResults
             elif self.as_list:
@@ -177,10 +177,14 @@ class ES(object):
             self._results_cache = ResultClass(self.type, hits, self.fields)
         return self._results_cache
 
-    def _get_results(self):
+    def raw(self):
         qs = self._build_query()
         es = elasticutils.get_es()
-        hits = es.search(qs, settings.ES_INDEX, self.type._meta.app_label)
+        try:
+            hits = es.search(qs, settings.ES_INDEX, self.type._meta.app_label)
+        except Exception:
+            log.error(qs)
+            raise
         statsd.timing('search', hits['took'])
         log.debug('[%s] %s' % (hits['took'], qs))
         return hits
