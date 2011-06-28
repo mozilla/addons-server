@@ -149,6 +149,7 @@ class ESTestCase(test_utils.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.es = elasticutils.get_es()
+        settings.USE_ELASTIC = True
 
         if ESTestCase.use_es is None:
             settings.ES_INDEX = 'test_%s' % settings.ES_INDEX
@@ -174,6 +175,7 @@ class ESTestCase(test_utils.TestCase):
 
     @classmethod
     def tearDownClass(cls):
+        settings.USE_ELASTIC = False
         # Delete everything in reverse-order of the foriegn key dependencies.
         models = (Platform, File, ApplicationsVersions, Version,
                   Translation, Addon, AppVersion, Application)
