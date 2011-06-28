@@ -116,9 +116,12 @@
     <li>{{ _('Version {0}')|f(version.version) }} <a class="scrollto" href="#detail-relnotes">{{ _('Info') }}</a></li>
     <li>{{ version.created|datetime }}</li>
     <li>
-      {% trans url = version.license_url(), name = version.license %}
-        Released under <a href="{{ url }}">{{ name }}</a>
-      {% endtrans %}
+      {% if version.license %}
+        {% trans url = version.license_url(),
+           name = version.license if version.license.builtin else _('Custom License') %}
+          Released under <a href="{{ url }}">{{ name }}</a>
+        {% endtrans %}
+      {% endif %}
     </li>
   </ul>
 </aside>
