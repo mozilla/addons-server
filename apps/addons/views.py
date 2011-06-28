@@ -412,20 +412,18 @@ def home(request):
 
 def impala_home(request):
     # Add-ons.
-    APP = request.APP
-    base = Addon.search().filter(app=APP.id, is_disabled=False,
-                                 status=amo.STATUS_PUBLIC)
-    ext = base.filter(type=amo.ADDON_EXTENSION)
-    feature = dict(featured=APP.id, featured_locale={request.LANG: APP.id})
+    base = Addon.objects.listed(request.APP).filter(type=amo.ADDON_EXTENSION)
+    featured_ids = Addon.featured_random(request.APP, request.LANG)
 
     # Collections.
-    collections = Collection.objects.filter(listed=True, application=APP.id,
+    collections = Collection.objects.filter(listed=True,
+                                            application=request.APP.id,
                                             type=amo.COLLECTION_FEATURED)
-    # TODO: float locale-specific to the top.
-    featured = ext.filter_or(**feature)[:18]
-    popular = ext.order_by('-average_daily_users')[:10]
-    hotness = ext.order_by('-hotness')[:18]
-    personas = base.filter(type=amo.ADDON_PERSONA).filter_or(**feature)[:18]
+    featured = base.filter(id__in=featured_ids)[:18]
+    popular = base.order_by('-average_daily_users')[:10]
+    hotness = base.order_by('-hotness')[:18]
+    personas = (Addon.objects.listed(request.APP)
+                .filter(type=amo.ADDON_PERSONA, id__in=featured_ids))[:18]
 
     return jingo.render(request, 'addons/impala/home.html',
                         {'popular': popular, 'featured': featured,
