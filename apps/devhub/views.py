@@ -509,6 +509,7 @@ def upload(request):
         filedata = request.FILES['upload']
 
         fu = FileUpload.from_post(filedata, filedata.name, filedata.size)
+        log.info('FileUpload created: %s' % fu.pk)
         if request.user.is_authenticated():
             fu.user = request.amo_user
             fu.save()
@@ -886,6 +887,8 @@ def version_add(request, addon_id, addon):
         pl = (list(form.cleaned_data['desktop_platforms']) +
               list(form.cleaned_data['mobile_platforms']))
         v = Version.from_upload(form.cleaned_data['upload'], addon, pl)
+        log.info('Version created: %s for: %s' %
+                 (v.pk, form.cleaned_data['upload']))
         url = reverse('devhub.versions.edit', args=[addon.slug, str(v.id)])
         return dict(url=url)
     else:
