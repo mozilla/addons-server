@@ -641,9 +641,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     @amo.cached_property
     def current_beta_version(self):
         """Retrieves the latest version of an addon, in the beta channel."""
-        versions = self.versions.filter(files__status=amo.STATUS_BETA)
+        versions = self.versions.filter(files__status=amo.STATUS_BETA)[:1]
 
-        if len(versions):
+        if versions:
             return versions[0]
 
     @property
