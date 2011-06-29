@@ -185,3 +185,16 @@ a {
 .js-hidden, #popup-staging, .hidden {
     display: none;
 }
+
+nav.further-navigation {
+    clear: right;
+    display: block;
+    margin-top: 1em;
+    padding-top: 0.5em;
+    a {
+        float: right;
+        &:after {
+            content: '\00bb';
+        }
+    }
+}
