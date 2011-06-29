@@ -140,8 +140,14 @@ class APITest(TestCase):
                 'base/addon_5299_gcal']
 
     def setUp(self):
+        self._new_features = settings.NEW_FEATURES
+        settings.NEW_FEATURES = False
+
         if hasattr(Addon, '_feature'):
             delattr(Addon, '_feature')
+
+    def tearDown(self):
+        settings.NEW_FEATURES = self._new_features
 
     def test_api_caching(self):
         response = self.client.get('/en-US/firefox/api/1.5/addon/3615')
@@ -412,7 +418,8 @@ class APITest(TestCase):
                                   ('en-US', 'firefox', 0),
                                   ('ja', 'seamonkey', 0)]:
             # Clean out the special cache for feature.
-            delattr(Addon, '_feature')
+            if hasattr(Addon, '_feature'):
+                delattr(Addon, '_feature')
             self.assertContains(make_call('addon/5299', version=1.5,
                                           lang=lang, app=app),
                                 '<featured>%s</featured>' % result)
@@ -438,7 +445,16 @@ class ListTest(TestCase):
     """Tests the list view with various urls."""
     fixtures = ['base/apps', 'base/addon_3615', 'base/featured']
 
-    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
+    def setUp(self):
+        # TODO(cvan): Remove this once featured collections are enabled.
+        self._new_features = settings.NEW_FEATURES
+        settings.NEW_FEATURES = False
+        if hasattr(Addon, '_feature'):
+            delattr(Addon, '_feature')
+
+    def tearDown(self):
+        settings.NEW_FEATURES = self._new_features
+
     def test_defaults(self):
         """
         This tests the default settings for /list.
@@ -447,7 +463,6 @@ class ListTest(TestCase):
         response = make_call('list')
         self.assertContains(response, '<addon id', 3)
 
-    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_randomness(self):
         """
         This tests that we're sufficiently random when recommending addons.
@@ -468,7 +483,6 @@ class ListTest(TestCase):
         assert not all_identical, (
                 "All 100 requests returned the exact same response.")
 
-    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_type_filter(self):
         """
         This tests that list filtering works.
@@ -477,12 +491,10 @@ class ListTest(TestCase):
         response = make_call('list/recommended/9/1')
         self.assertContains(response, """<type id="9">Persona</type>""", 1)
 
-    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_persona_search_15(self):
         response = make_call('list/recommended/9/1', version=1.5)
         self.assertContains(response, """<type id="9">Persona</type>""", 1)
 
-    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_limits(self):
         """
         Assert /list/recommended/all/1 gets one item only.
@@ -500,7 +512,6 @@ class ListTest(TestCase):
         response = make_call('list/new/1/1/all/4.0')
         self.assertNotContains(response, "<addon id")
 
-    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_backfill(self):
         """
         The /list/recommended should first populate itself with addons in its
