@@ -17,13 +17,10 @@ from versions.models import Version
 
 class ReviewManager(amo.models.ManagerBase):
 
-    def get_query_set(self):
-        qs = super(ReviewManager, self).get_query_set()
-        return qs.select_related('user', 'version')
-
     def valid(self):
-        """Get all reviews with rating > 0 that aren't replies."""
-        return self.filter(reply_to=None, rating__gt=0)
+        """Get all reviews that aren't replies."""
+        # Use extra because Django wants to do a LEFT OUTER JOIN.
+        return self.extra(where=['reply_to IS NULL'])
 
     def latest(self):
         """Get all the latest valid reviews."""
