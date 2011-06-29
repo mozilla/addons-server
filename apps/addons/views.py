@@ -189,11 +189,13 @@ def impala_extension_detail(request, addon):
                               addon.get_satisfaction_company)
 
     # other add-ons from the same author(s)
-    author_addons = order_by_translation(addon.authors_other_addons, 'name')[:6]
+    author_addons = (Addon.objects.valid().exclude(id=addon.id)
+                     .filter(addonuser__listed=True,
+                             authors__in=addon.listed_authors))[:6]
 
     # addon recommendations
-    recommended = MiniAddon.objects.valid().filter(
-        recommended_for__addon=addon)[:5]
+    recommended = Addon.objects.valid().filter(
+        recommended_for__addon=addon)[:6]
 
     # popular collections this addon is part of
     collections = Collection.objects.listed().filter(
