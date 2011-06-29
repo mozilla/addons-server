@@ -126,12 +126,14 @@
   </ul>
 </aside>
 
-{% if addon.description %}
-  <section class="primary island c">
-    <h2>{{ _('About this Add-on') }}</h2>
+<section class="primary island c">
+  <h2>{{ _('About this Add-on') }}</h2>
+  {% if addon.description %}
     <p id="addon-description" {{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
-  </section>
-{% endif %}
+  {% else %}
+    <p id="addon-description" {{ addon.description|locale_html }}>{{ addon.summary|nl2br }}</p>
+  {% endif %}
+</section>
 
 <aside class="secondary addon-reviews c">
   <div>
