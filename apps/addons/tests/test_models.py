@@ -42,13 +42,13 @@ class TestAddonManager(test_utils.TestCase):
     def setUp(self):
         set_user(None)
 
-    @patch.object(settings, 'NEW_FEATURES', False)
+    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_featured(self):
         featured = Addon.objects.featured(amo.FIREFOX)[0]
         eq_(featured.id, 1)
         eq_(Addon.objects.featured(amo.FIREFOX).count(), 5)
 
-    @patch.object(settings, 'NEW_FEATURES', True)
+    @patch.object(settings._wrapped, 'NEW_FEATURES', True)
     def test_featured(self):
         featured = Addon.objects.featured(amo.FIREFOX)[0]
         eq_(featured.id, 1001)
@@ -122,7 +122,7 @@ class TestAddonManagerFeatured(test_utils.TestCase):
     fixtures = ['addons/featured', 'bandwagon/featured_collections',
                 'base/collections', 'base/featured']
 
-    @patch.object(settings, 'NEW_FEATURES', True)
+    @patch.object(settings._wrapped, 'NEW_FEATURES', True)
     def test_new_featured(self):
         f = Addon.objects.featured(amo.FIREFOX)
         eq_(f.count(), 6)
@@ -205,7 +205,7 @@ class TestAddonModels(test_utils.TestCase):
         a = Addon.objects.get(pk=5299)
         eq_(a.current_beta_version.id, 50000)
 
-    @patch.object(settings, 'NEW_FEATURES', False)
+    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_current_version_mixed_statuses(self):
         """Mixed file statuses are evil (bug 558237)."""
         a = Addon.objects.get(pk=3895)
@@ -355,14 +355,14 @@ class TestAddonModels(test_utils.TestCase):
         a.status = amo.STATUS_LISTED
         assert a.is_selfhosted(), 'listed add-on => is_selfhosted()'
 
-    @patch.object(settings, 'NEW_FEATURES', False)
+    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_is_featured(self):
         """Test if an add-on is globally featured"""
         a = Addon.objects.get(pk=1003)
         assert a.is_featured(amo.FIREFOX, 'en-US'), (
             'globally featured add-on not recognized')
 
-    @patch.object(settings, 'NEW_FEATURES', False)
+    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_is_category_featured(self):
         """Test if an add-on is category featured"""
         Feature.objects.filter(addon=1001).delete()
@@ -1093,11 +1093,11 @@ class TestAddonModelsFeatured(test_utils.TestCase):
         f = Addon.featured_random(amo.SUNBIRD, 'en-US')
         eq_(f, [])
 
-    @patch.object(settings, 'NEW_FEATURES', False)
+    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_featured_random(self):
         self._test_featured_random()
 
-    @patch.object(settings, 'NEW_FEATURES', True)
+    @patch.object(settings._wrapped, 'NEW_FEATURES', True)
     def test_new_featured_random(self):
         self._test_featured_random()
 
