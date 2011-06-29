@@ -8,6 +8,7 @@ from django.conf import settings
 from django.test.client import Client
 
 import jingo
+from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 from test_utils import TestCase
@@ -436,6 +437,7 @@ class ListTest(TestCase):
     """Tests the list view with various urls."""
     fixtures = ['base/apps', 'base/addon_3615', 'base/featured']
 
+    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_defaults(self):
         """
         This tests the default settings for /list.
@@ -444,6 +446,7 @@ class ListTest(TestCase):
         response = make_call('list')
         self.assertContains(response, '<addon id', 3)
 
+    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_randomness(self):
         """
         This tests that we're sufficiently random when recommending addons.
@@ -464,6 +467,7 @@ class ListTest(TestCase):
         assert not all_identical, (
                 "All 100 requests returned the exact same response.")
 
+    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_type_filter(self):
         """
         This tests that list filtering works.
@@ -472,10 +476,12 @@ class ListTest(TestCase):
         response = make_call('list/recommended/9/1')
         self.assertContains(response, """<type id="9">Persona</type>""", 1)
 
+    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_persona_search_15(self):
         response = make_call('list/recommended/9/1', version=1.5)
         self.assertContains(response, """<type id="9">Persona</type>""", 1)
 
+    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_limits(self):
         """
         Assert /list/recommended/all/1 gets one item only.
@@ -493,6 +499,7 @@ class ListTest(TestCase):
         response = make_call('list/new/1/1/all/4.0')
         self.assertNotContains(response, "<addon id")
 
+    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_backfill(self):
         """
         The /list/recommended should first populate itself with addons in its
