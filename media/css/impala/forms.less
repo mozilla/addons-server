@@ -1,0 +1,56 @@
+@import 'lib';
+
+input[type="text"], input[type="password"], select, textarea {
+    border: 1px solid #5875A0;
+    color: #666666;
+    padding: 2px 5px;
+}
+
+label {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+textarea {
+    .border-box();
+    display: block;
+    width: 100%;
+}
+
+form p {
+    margin-bottom: 1em;
+}
+
+.note {
+    color: #666666;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.edit_with_prefix, .edit-with-suffix {
+    span {
+        border: 1px solid #5875A0;
+        background: #eee;
+        color: #888;
+    }
+    input:focus {
+        outline: 0;
+    }
+}
+.edit_with_prefix span {
+    border-right: 0 none;
+    padding: 2px 2px 2px 5px;
+}
+.edit_with_prefix input {
+    border-left: 0 none;
+}
+.edit_with_suffix span {
+    border-left: 0 none;
+    padding: 2px 5px 2px 2px;
+}
+.edit_with_suffix input {
+    border-right: 0 none;
+}
+.edit_initially_hidden {
+    display: none;
+}

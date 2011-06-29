@@ -68,7 +68,7 @@ div.popup-shim {
     box-shadow: 0 1px 3px rgba(0,0,0,0.35);
     z-index: 2001; /* because of devhub title */
 }
-.modal {
+.modal, .popup {
     padding: 1em;
     form {
         margin: 0;
@@ -76,6 +76,18 @@ div.popup-shim {
     h2, h3 {
         margin-top: 0;
         color: #2e5186;
+    }
+}
+
+.popup {
+    h3 {
+        font-size: 18px;
+        margin-bottom: 1em;
+    }
+    fieldset {
+        border-bottom: 1px solid #A4CFDE;
+        margin-bottom: 1.5em;
+        padding-bottom: 1em;
     }
 }
 .modal-delete h3 {

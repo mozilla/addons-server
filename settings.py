@@ -401,6 +401,7 @@ MINIFY_BUNDLES = {
             'css/impala/site.less',
             'css/impala/typography.less',
             'css/global/headerfooter.css',
+            'css/impala/forms.less',
             'css/impala/header.less',
             'css/impala/footer.less',
             'css/impala/moz-tab.css',
