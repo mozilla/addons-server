@@ -427,7 +427,7 @@ def impala_home(request):
     return jingo.render(request, 'addons/impala/home.html',
                         {'popular': popular, 'featured': featured,
                          'hotness': hotness, 'personas': personas,
-                         'collections': collections})
+                         'src': 'homepage', 'collections': collections})
 
 
 @mobilized(home)

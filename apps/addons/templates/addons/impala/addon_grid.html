@@ -30,7 +30,7 @@
           </div>
         </a>
         <div class="more">
-          {{ install_button(addon, impala=True) }}
+          {{ install_button(addon, impala=True, src=src) }}
           {{ addon.summary|truncate(250)|nl2br }}
           <div class="byline">
             {% trans users=users_list(addon.listed_authors, size=2) %}
