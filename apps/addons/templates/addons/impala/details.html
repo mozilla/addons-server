@@ -151,18 +151,7 @@
 
 <section id="reviews" class="primary island c">
   <h2>{{ _('Reviews') }}</h2>
-  {% if reviews %}
-    {{ impala_review_list_box(addon=addon, reviews=reviews) }}
-  {% else %}
-    <div class="review">
-      <h3>{{ _('This add-on has not yet been reviewed.') }}</h3>
-      <p>
-        <a href="{{ url('reviews.add', addon.slug) }}">
-          {{ _('Be the first to write a review!') }}
-        </a>
-      </p>
-    </div>
-  {% endif %}
+  {{ impala_review_list_box(addon=addon, reviews=reviews) }}
 </section>
 
 <aside class="secondary metadata c">

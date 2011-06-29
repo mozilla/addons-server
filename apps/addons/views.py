@@ -183,9 +183,6 @@ def impala_extension_detail(request, addon):
         return http.HttpResponsePermanentRedirect(reverse(
             'addons.detail', args=[addon.slug]))
 
-    # source tracking
-    src = request.GET.get('src', 'addon-detail')
-
     # get satisfaction only supports en-US
     lang = translation.to_locale(translation.get_language())
     addon.has_satisfaction = (lang == 'en_US' and
@@ -193,9 +190,6 @@ def impala_extension_detail(request, addon):
 
     # other add-ons from the same author(s)
     author_addons = order_by_translation(addon.authors_other_addons, 'name')[:6]
-
-    # tags
-    tags = addon.tags.not_blacklisted()
 
     # addon recommendations
     recommended = MiniAddon.objects.valid().filter(
@@ -205,25 +199,22 @@ def impala_extension_detail(request, addon):
     collections = Collection.objects.listed().filter(
         addons=addon, application__id=request.APP.id)
 
-    data = {
+    ctx = {
         'addon': addon,
         'author_addons': author_addons,
-
-        'src': src,
-        'tags': tags,
-
+        'src': request.GET.get('src', 'addon-detail'),
+        'tags': addon.tags.not_blacklisted(),
         'grouped_ratings': GroupedRating.get(addon.id),
         'recommendations': recommended,
         'review_form': ReviewForm(),
         'reviews': Review.objects.latest().filter(addon=addon),
         'get_replies': Review.get_replies,
-
         'collections': collections.order_by('-subscribers')[:3],
     }
     if settings.REPORT_ABUSE:
-        data['abuse_form'] = AbuseForm(request=request)
+        ctx['abuse_form'] = AbuseForm(request=request)
 
-    return jingo.render(request, 'addons/impala/details.html', data)
+    return jingo.render(request, 'addons/impala/details.html', ctx)
 
 
 @mobilized(extension_detail)
