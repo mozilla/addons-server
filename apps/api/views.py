@@ -310,6 +310,7 @@ class LanguageView(APIView):
     def process_request(self):
         addons = Addon.objects.filter(status=amo.STATUS_PUBLIC,
                                       type=amo.ADDON_LPAPP,
+                                      appsupport__app=self.request.APP.id,
                                       disabled_by_user=False).order_by('pk')
         return self.render('api/list.xml', {'addons': addons})
 

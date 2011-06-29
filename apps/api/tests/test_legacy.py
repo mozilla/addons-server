@@ -16,7 +16,8 @@ from test_utils import TestCase
 import amo
 import api
 import api.utils
-from addons.models import Addon, AddonCategory, Category, Feature, Preview
+from addons.models import (Addon, AddonCategory, AppSupport, Category,
+                           Feature, Preview)
 from amo import helpers
 from amo.urlresolvers import reverse
 from search.tests import SphinxTestCase
@@ -692,10 +693,11 @@ class SearchTest(SphinxTestCase):
 
 
 class LanguagePacks(TestCase):
-    fixtures = ['addons/listed']
+    fixtures = ['addons/listed', 'base/apps']
 
     def setUp(self):
         self.url = reverse('api.language', args=['1.5'])
+        self.tb_url = self.url.replace('firefox', 'thunderbird')
         self.addon = Addon.objects.get(pk=3723)
 
     def test_search_language_pack(self):
@@ -705,4 +707,15 @@ class LanguagePacks(TestCase):
 
     def test_search_no_language_pack(self):
         res = self.client.get(self.url)
+        self.assertNotContains(res, "<guid>{835A3F80-DF39")
+
+    def test_search_app(self):
+        self.addon.update(type=amo.ADDON_LPAPP, status=amo.STATUS_PUBLIC)
+        AppSupport.objects.create(addon=self.addon, app_id=amo.THUNDERBIRD.id)
+        res = self.client.get(self.tb_url)
+        self.assertContains(res, "<guid>{835A3F80-DF39")
+
+    def test_search_no_app(self):
+        self.addon.update(type=amo.ADDON_LPAPP, status=amo.STATUS_PUBLIC)
+        res = self.client.get(self.tb_url)
         self.assertNotContains(res, "<guid>{835A3F80-DF39")
