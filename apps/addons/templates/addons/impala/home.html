@@ -63,7 +63,7 @@
       {% if personas %}
         <div class="island">
           <h2>{{ _('Featured Personas') }}
-            <a class="seeall" href="{{ url('browse.personas')|urlparams(sort='featured') }}">{{ _('See all »') }}</a>
+            <a class="seeall" href="{{ url('browse.personas') }}">{{ _('See all »') }}</a>
           </h2>
           {{ personas|impala_persona_grid }}
         </div>

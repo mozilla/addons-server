@@ -1,6 +1,6 @@
 {% set search_form = SimpleSearchForm(request, search_cat) %}
 <form action="{{ url('search.search') }}">
-  <input id="search-q" type="text" name="q" required
+  <input id="search-q" type="text" name="q" required title=""
          class="text {% if not search_form.q.data %}placeholder{% endif %}"
          placeholder="{{ search_form.placeholder() }}"
          value="{{ search_form.q.data or '' }}">
