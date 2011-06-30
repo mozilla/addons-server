@@ -9,6 +9,7 @@ from django import http
 from django.conf import settings as site_settings
 from django.contrib import admin
 from django.shortcuts import redirect, get_object_or_404
+from django.utils.encoding import smart_str
 from django.views import debug
 
 import commonware.log
@@ -39,7 +40,7 @@ from versions.models import Version
 
 from . import tasks
 from .forms import BulkValidationForm, NotifyForm, FeaturedCollectionFormSet
-from .models import ValidationJob, EmailPreviewTopic
+from .models import ValidationJob, EmailPreviewTopic, ValidationJobTally
 
 log = commonware.log.getLogger('z.zadmin')
 
@@ -290,6 +291,26 @@ def email_preview_csv(request, topic):
     rs = EmailPreviewTopic(topic=topic).filter().values_list(*fields)
     for row in rs:
         writer.writerow([r.encode('utf8') for r in row])
+    return resp
+
+
+@admin.site.admin_view
+def validation_tally_csv(request, job_id):
+    resp = http.HttpResponse()
+    resp['Content-Type'] = 'text/csv; charset=utf-8'
+    resp['Content-Disposition'] = ('attachment; '
+                                   'filename=validation_tally_%s.csv'
+                                   % job_id)
+    writer = csv.writer(resp)
+    fields = ['message_id', 'message', 'long_message',
+              'type', 'addons_affected']
+    writer.writerow(fields)
+    job = ValidationJobTally(job_id)
+    for msg in job.get_messages():
+        row = [msg.key, msg.message, msg.long_message, msg.type,
+               msg.addons_affected]
+        writer.writerow([smart_str(r, encoding='utf8', strings_only=True)
+                         for r in row])
     return resp
 
 

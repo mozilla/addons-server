@@ -94,7 +94,13 @@
           {% endif %}
       </td>
       <td class="exceptions">{{ job.stats['errors'] }}</td>
-      <td></td>
+      <td>
+        {% if job.completed %}
+          [<a href="{{ url('zadmin.validation_tally_csv', job.pk) }}">
+              Download Errors/Warnings
+          </a>]
+        {% endif %}
+      </td>
     </tr>
     {% endfor %}
   </table>
