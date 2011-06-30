@@ -631,7 +631,11 @@ class TestBulkValidationTask(BulkValidationTest):
     @mock.patch('zadmin.tasks.run_validator')
     def test_task_error(self, run_validator):
         run_validator.side_effect = RuntimeError('validation error')
-        self.start_validation()
+        try:
+            self.start_validation()
+        except:
+            # the real test is how it's handled, below...
+            pass
         res = ValidationResult.objects.get()
         err = res.task_error.strip()
         assert err.endswith('RuntimeError: validation error'), (
@@ -644,6 +648,19 @@ class TestBulkValidationTask(BulkValidationTest):
 
     @mock.patch('zadmin.tasks.run_validator')
     def test_validate_for_appversions(self, run_validator):
+        data = {
+            "errors": 1,
+            "warnings": 50,
+            "notices": 1,
+            "messages": [],
+            "compatibility_summary": {
+                "errors": 0,
+                "warnings": 0,
+                "notices": 0
+            },
+            "metadata": {}
+        }
+        run_validator.return_value = json.dumps(data)
         self.start_validation()
         assert run_validator.called
         eq_(run_validator.call_args[1]['for_appversions'],
