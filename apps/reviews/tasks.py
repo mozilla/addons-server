@@ -22,8 +22,7 @@ def update_denorm(*pairs, **kw):
     using = kw.get('using')
     for addon, user in pairs:
         reviews = list(Review.objects.valid().no_cache().using(using)
-                       .filter(addon=addon, user=user)
-                       .filter(reply_to=None).order_by('created'))
+                       .filter(addon=addon, user=user).order_by('created'))
         if not reviews:
             continue
 

@@ -1,6 +1,7 @@
 from django.core.cache import cache
 from django.utils import translation
 
+import redisutils
 import test_utils
 from nose.tools import eq_
 
@@ -36,18 +37,15 @@ class TestReviewModel(test_utils.TestCase):
 class TestGroupedRating(test_utils.TestCase):
     fixtures = ['base/apps', 'reviews/dev-reply.json']
 
-    def setUp(self):
-        cache.set(GroupedRating.key(1865), None)
-
     def test_get_none(self):
         eq_(GroupedRating.get(3), None)
 
     def test_set(self):
         eq_(GroupedRating.get(1865), None)
         GroupedRating.set(1865)
-        eq_(GroupedRating.get(1865), [(1, 0), (2, 0), (3, 0), (4, 1), (5, 0)])
+        eq_(GroupedRating.get(1865), [[1, 0], [2, 0], [3, 0], [4, 1], [5, 0]])
 
     def test_cron(self):
         eq_(GroupedRating.get(1865), None)
         tasks.addon_grouped_rating(1865)
-        eq_(GroupedRating.get(1865), [(1, 0), (2, 0), (3, 0), (4, 1), (5, 0)])
+        eq_(GroupedRating.get(1865), [[1, 0], [2, 0], [3, 0], [4, 1], [5, 0]])

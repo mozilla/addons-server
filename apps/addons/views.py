@@ -173,30 +173,28 @@ def extension_detail(request, addon):
 
 def impala_extension_detail(request, addon):
     """Extensions details page."""
-
-    # if current version is incompatible with this app, redirect
+    # If current version is incompatible with this app, redirect.
     comp_apps = addon.compatible_apps
     if comp_apps and request.APP not in comp_apps:
         prefixer = urlresolvers.get_url_prefix()
         prefixer.app = comp_apps.keys()[0].short
-        return http.HttpResponsePermanentRedirect(reverse(
-            'addons.detail', args=[addon.slug]))
+        return redirect('addons.detail', addons.slug, permanent=True)
 
-    # get satisfaction only supports en-US
+    # get satisfaction only supports en-US.
     lang = translation.to_locale(translation.get_language())
     addon.has_satisfaction = (lang == 'en_US' and
                               addon.get_satisfaction_company)
 
-    # other add-ons from the same author(s)
+    # Other add-ons from the same author(s).
     author_addons = (Addon.objects.valid().exclude(id=addon.id)
                      .filter(addonuser__listed=True,
                              authors__in=addon.listed_authors))[:6]
 
-    # addon recommendations
+    # Addon recommendations.
     recommended = Addon.objects.valid().filter(
         recommended_for__addon=addon)[:6]
 
-    # popular collections this addon is part of
+    # Popular collections this addon is part of.
     collections = Collection.objects.listed().filter(
         addons=addon, application__id=request.APP.id)
 

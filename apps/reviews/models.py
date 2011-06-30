@@ -1,3 +1,4 @@
+import json
 from datetime import datetime, timedelta
 
 from django.conf import settings
@@ -5,6 +6,7 @@ from django.core.cache import cache
 from django.db import models
 
 import bleach
+import redisutils
 from celeryutils import task
 from tower import ugettext_lazy as _
 
@@ -128,16 +130,22 @@ class GroupedRating(object):
 
     SELECT rating, COUNT(rating) FROM reviews where addon=:id
     """
-    # Non-critical data, so we always leave it in memcached.  Updated through
-    # cron daily, so we cache for two days.
+    # Non-critical data, so we always leave it in redis. Numbers are updated
+    # when a new review comes in.
+    prefix = 'addons:grouped:rating'
+
+    @classmethod
+    def redis(cls):
+        return redisutils.connections['master']
 
     @classmethod
     def key(cls, addon):
-        return '%s:%s:%s' % (settings.CACHE_PREFIX, cls.__name__, addon)
+        return '%s:%s' % (cls.prefix, addon)
 
     @classmethod
     def get(cls, addon):
-        return cache.get(cls.key(addon))
+        d = cls.redis().get(cls.key(addon))
+        return json.loads(d) if d else None
 
     @classmethod
     def set(cls, addon, using=None):
@@ -145,8 +153,7 @@ class GroupedRating(object):
              .values_list('rating').annotate(models.Count('rating')))
         counts = dict(q)
         ratings = [(rating, counts.get(rating, 0)) for rating in range(1, 6)]
-        two_days = 60 * 60 * 24 * 2
-        cache.set(cls.key(addon), ratings, two_days)
+        cls.redis().set(cls.key(addon), json.dumps(ratings))
 
 
 class Spam(object):
