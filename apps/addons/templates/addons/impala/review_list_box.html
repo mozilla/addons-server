@@ -14,21 +14,21 @@
           {% trans user=review.user|user_link, date=review.created|datetime %}
             by {{ user }} on {{ date }}
           {% endtrans %}
-          {% if replies[review.id] %}
-            <a class="show-more" href="{{ replies[review.id].get_url_path() }}">
-              {{ _("Show the developer's reply to this review") }}</a>
-          {% endif %}
         </p>
         <p class="description">{{ review.body|nl2br }}</p>
+        {% if replies[review.id] %}
+          <a class="more-info" href="{{ replies[review.id].get_url_path() }}">
+            {{ _("Show the developer's reply to this review") }}</a>
+        {% endif %}
       </div>
     {% endfor %}
     {% if addon %}
       <p>
         <a class="more-info" href="{{ url('reviews.list', addon.slug) }}">
           {% trans num=addon.total_reviews, cnt=addon.total_reviews|numberfmt %}
-            See all user reviews &raquo;
+            See all user reviews
           {% pluralize %}
-            See all {{ cnt }} user reviews &raquo;
+            See all {{ cnt }} user reviews
           {% endtrans %}
         </a>
       </p>
