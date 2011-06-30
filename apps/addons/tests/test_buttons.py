@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import jinja2
 
 import jingo
@@ -512,6 +514,7 @@ class TestButtonHtml(ButtonTest):
         compat.min.version = 'min version'
         compat.max.version = 'max version'
         self.version.compatible_apps = {amo.FIREFOX: compat}
+        self.version.created = datetime.now()
         install = self.render()('.install')
         eq_('min version', install.attr('data-min'))
         eq_('max version', install.attr('data-max'))
