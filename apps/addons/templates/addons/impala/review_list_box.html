@@ -34,13 +34,13 @@
       </p>
     {% endif %}
   {% else %}
-    <div class="review">
-      <h3>{{ _('This add-on has not yet been reviewed.') }}</h3>
-      <p>
-        <a href="{{ url('reviews.add', addon.slug) }}">
-          {{ _('Be the first to write a review!') }}
-        </a>
-      </p>
+    <div class="review no-reviews">
+      <h3>
+        {% trans url = url('reviews.add', addon.slug) %}
+          This add-on has not yet been reviewed.
+          <a href="{{ url }}">Be the first!</a>
+        {% endtrans %}
+      </h3>
     </div>
   {% endif %}
 {% endcache %}
