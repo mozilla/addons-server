@@ -152,7 +152,7 @@ def test_url(mock_reverse):
     mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2},
                                     add_prefix=True)
 
-    s = render('{{ url("viewname", 1, z=2, host="myhost") }}')
+    render('{{ url("viewname", 1, z=2, host="myhost") }}')
     mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2},
                                     add_prefix=True)
 
@@ -321,25 +321,6 @@ class AbuseBase:
         self.client.post(self.full_page, {'text': 'spammy'})
         eq_(len(mail.outbox), 1)
         assert 'spammy' in mail.outbox[0].body
-
-
-class AbuseDisabledBase:
-    def test_abuse_fails_anonymous(self):
-        r = self.client.get(self.inline_page)
-        doc = PyQuery(r.content)
-        assert not doc("fieldset.abuse")
-
-        res = self.client.post(self.full_page, {'text': 'spammy'})
-        eq_(res.status_code, 404)
-
-    def test_abuse_fails_logged_in(self):
-        self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.get(self.inline_page)
-        doc = PyQuery(r.content)
-        assert not doc("fieldset.abuse")
-
-        res = self.client.post(self.full_page)
-        eq_(res.status_code, 404)
 
 
 def get_image_path(name):

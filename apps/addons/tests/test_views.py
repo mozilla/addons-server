@@ -20,7 +20,7 @@ from pyquery import PyQuery as pq
 import amo
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from amo.tests.test_helpers import AbuseBase, AbuseDisabledBase
+from amo.tests.test_helpers import AbuseBase
 from addons.models import Addon, AddonUser, Charity
 from files.models import File
 from paypal.tests import other_error
@@ -1205,7 +1205,6 @@ class TestReportAbuse(AbuseBase, test_utils.TestCase):
                 'base/users']
 
     def setUp(self):
-        settings.REPORT_ABUSE = True
         settings.RECAPTCHA_PRIVATE_KEY = 'something'
         self.full_page = reverse('addons.abuse', args=['a3615'])
 
@@ -1231,26 +1230,6 @@ class TestReportAbuse(AbuseBase, test_utils.TestCase):
         self.assertRedirects(r, addon_url)
         eq_(len(mail.outbox), 1)
         assert 'spammy' in mail.outbox[0].body
-
-
-class TestReportAbuseDisabled(AbuseDisabledBase, test_utils.TestCase):
-    fixtures = ['addons/persona',
-                'base/apps',
-                'base/addon_3615',
-                'base/users']
-
-    def setUp(self):
-        settings.REPORT_ABUSE = False
-        self.full_page = reverse('addons.abuse', args=['a3615'])
-        self.inline_page = reverse('addons.detail', args=['a3615'])
-
-    def tearDown(self):
-        settings.REPORT_ABUSE = True
-
-    def test_abuse_persona(self):
-        r = self.client.get(reverse('addons.detail', args=['a15663']))
-        doc = pq(r.content)
-        assert not doc("fieldset.abuse")
 
 
 class TestMobile(test_utils.TestCase):

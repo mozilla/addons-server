@@ -919,9 +919,6 @@ PERFORMANCE_NOTES = False
 
 PERF_THRESHOLD = 25
 
-# flag to turn on or off Abuse reports
-REPORT_ABUSE = True
-
 REDIS_BACKENDS = {'master': 'redis://localhost:6379?socket_timeout=0.5'}
 
 # Directory of JavaScript test files for django_qunit to run

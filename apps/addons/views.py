@@ -165,9 +165,8 @@ def extension_detail(request, addon):
         'get_replies': Review.get_replies,
 
         'collections': collections.order_by('-subscribers')[:3],
+        'abuse_form': AbuseForm(request=request),
     }
-    if settings.REPORT_ABUSE:
-        data['abuse_form'] = AbuseForm(request=request)
 
     return jingo.render(request, 'addons/details.html', data)
 
@@ -212,9 +211,8 @@ def impala_extension_detail(request, addon):
         'reviews': Review.objects.latest().filter(addon=addon),
         'get_replies': Review.get_replies,
         'collections': collections.order_by('-subscribers')[:3],
+        'abuse_form': AbuseForm(request=request),
     }
-    if settings.REPORT_ABUSE:
-        ctx['abuse_form'] = AbuseForm(request=request)
 
     return jingo.render(request, 'addons/impala/details.html', ctx)
 
@@ -268,10 +266,10 @@ def persona_detail(request, addon, template=None):
             'review_form': ReviewForm(),
             'reviews': Review.objects.latest().filter(addon=addon),
             'get_replies': Review.get_replies,
-            'search_cat': 'personas'
+            'search_cat': 'personas',
+            'abuse_form': AbuseForm(request=request),
         })
-        if settings.REPORT_ABUSE:
-            data['abuse_form'] = AbuseForm(request=request)
+
     return jingo.render(request, template, data)
 
 
@@ -431,8 +429,9 @@ def home(request):
     # Get some featured add-ons with randomness.
     featured = Addon.featured_random(request.APP, request.LANG)
     # Get 10 popular add-ons, then pick 3 at random.
-    qs = list(Addon.objects.listed(request.APP).order_by('-average_daily_users')
-              .values_list('id', flat=True)[:10])
+    qs = list(Addon.objects.listed(request.APP)
+                   .order_by('-average_daily_users')
+                   .values_list('id', flat=True)[:10])
     popular = rand(qs)
     # Do one query and split up the add-ons.
     addons = Addon.objects.filter(id__in=featured + popular)
@@ -752,9 +751,6 @@ def license_redirect(request, version):
 @session_csrf.anonymous_csrf_exempt
 @addon_view
 def report_abuse(request, addon):
-    if not settings.REPORT_ABUSE:
-        raise http.Http404()
-
     form = AbuseForm(request.POST or None, request=request)
     if request.method == "POST" and form.is_valid():
         url = reverse('addons.detail', args=[addon.slug])
