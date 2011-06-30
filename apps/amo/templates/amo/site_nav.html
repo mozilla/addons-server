@@ -22,7 +22,9 @@
   <ul>
     {{ section(_('Extensions'), url('browse.extensions'), extras, extensions) }}
     {{ section(_('Personas'), url('browse.personas'), extras, personas) }}
-    {{ section(_('Themes'), url('browse.themes'), extras, themes) }}
+    {% if themes %}
+      {{ section(_('Themes'), url('browse.themes'), extras, themes) }}
+    {% endif %}
     <li>
       <a href="#">{{ _('Collections') }}</a>
       <ul>
