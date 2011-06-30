@@ -1,11 +1,20 @@
-test('Buttons: Test backup button', function() {
-    $('.backup-button').showBackupButton();
+var buttonFixtures = {
+    setup: function() {
+        this.sandbox = tests.createSandbox('#buttons');
+    },
+    teardown: function() {
+        this.sandbox.remove();
+    }
+};
 
+module('Buttons', buttonFixtures);
+
+test('Test backup button', function() {
     var attr = 'data-version-supported',
-        current = $('#buttons .install').first();
-        current_wrapper = $('#buttons .install-shell').first();
-        backup = $('#buttons .backup-button .install').first();
-        backup_wrapper = $('#buttons .backup-button').first();
+        current = this.sandbox.find('.install').first();
+        current_wrapper = this.sandbox.find('.install-shell').first();
+        backup = this.sandbox.find('.backup-button .install').first();
+        backup_wrapper = this.sandbox.find('.backup-button').first();
 
     equals(backup_wrapper.hasClass('hidden'), false);
     equals(current_wrapper.hasClass('hidden'), true);
@@ -15,9 +24,15 @@ test('Buttons: Test backup button', function() {
     backup.attr(attr, 'false');
     current.attr(attr, 'true');
 
-    $('.backup-button').showBackupButton();
+    this.sandbox.find('.backup-button').showBackupButton();
     equals(backup_wrapper.hasClass('hidden'), true);
     equals(current_wrapper.hasClass('hidden'), false);
+});
+
+test('Test change elements on backup', function() {
+    this.sandbox.find('.backup-button').showBackupButton();
+    equals(this.sandbox.find('.addon-compatible td').text(), 'Fx 1.0');
+    equals(this.sandbox.find('.addon-updated time').text(), 'today');
 });
 
 var paypalFixtures = {
