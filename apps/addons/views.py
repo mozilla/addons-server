@@ -214,7 +214,12 @@ def impala_extension_detail(request, addon):
     if settings.REPORT_ABUSE:
         ctx['abuse_form'] = AbuseForm(request=request)
 
-    return jingo.render(request, 'addons/impala/details.html', ctx)
+    # details.html just returns the top half of the page for speed. The bottom
+    # does a lot more queries we don't want on the initial page load.
+    if request.is_ajax():
+        return jingo.render(request, 'addons/impala/details-more.html', ctx)
+    else:
+        return jingo.render(request, 'addons/impala/details.html', ctx)
 
 
 @mobilized(extension_detail)
