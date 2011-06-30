@@ -142,5 +142,4 @@ def update_amo(ctx):
 
     # Run management commands like this:
     # manage_cmd(ctx, 'cmd')
-    manage_cmd(ctx, 'process_addons --task=get_preview_sizes')
     manage_cmd(ctx, 'process_addons --task=convert_purified')
