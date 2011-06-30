@@ -119,7 +119,6 @@ $(function() {
     }));
 
     $('#page').delegate('.scrollto', 'click', function(e) {
-        console.log('foo');
         e.preventDefault();
         var href = $(this).attr('href'),
             $target = $(href.match(/#.*$/)[0]);
