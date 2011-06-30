@@ -11,6 +11,7 @@ from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.translation import trans_real as translation
 from django.utils import http as urllib
 from django.views.decorators.cache import cache_page, cache_control
+from django.views.decorators.vary import vary_on_headers
 
 import caching.base as caching
 import jingo
@@ -171,6 +172,7 @@ def extension_detail(request, addon):
     return jingo.render(request, 'addons/details.html', data)
 
 
+vary_on_headers('X-Requested-With')
 def impala_extension_detail(request, addon):
     """Extensions details page."""
     # If current version is incompatible with this app, redirect.
