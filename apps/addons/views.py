@@ -173,7 +173,7 @@ def extension_detail(request, addon):
     return jingo.render(request, 'addons/details.html', data)
 
 
-vary_on_headers('X-Requested-With')
+@vary_on_headers('X-Requested-With')
 def impala_extension_detail(request, addon):
     """Extensions details page."""
     # If current version is incompatible with this app, redirect.
