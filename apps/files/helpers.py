@@ -247,8 +247,8 @@ class FileViewer:
         iterate(self.dest)
 
         for path in all_files:
-            filename = smart_unicode(os.path.basename(path))
-            short = smart_unicode(path[len(self.dest) + 1:])
+            filename = smart_unicode(os.path.basename(path), errors='replace')
+            short = smart_unicode(path[len(self.dest) + 1:], errors='replace')
             mime, encoding = mimetypes.guess_type(filename)
             directory = os.path.isdir(path)
             res[short] = {'binary': self._is_binary(mime, path),
