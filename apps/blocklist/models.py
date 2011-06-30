@@ -57,7 +57,7 @@ class BlocklistItem(BlocklistBase, amo.models.ModelBase):
     min = models.CharField(max_length=255, blank=True, null=True)
     max = models.CharField(max_length=255, blank=True, null=True)
     os = models.CharField(max_length=255, blank=True, null=True)
-    severity = models.SmallIntegerField(null=True)
+    severity = models.SmallIntegerField(blank=True, null=True)
     details = models.OneToOneField(BlocklistDetail, null=True)
 
     class Meta(amo.models.ModelBase.Meta):
@@ -80,7 +80,7 @@ class BlocklistPlugin(BlocklistBase, amo.models.ModelBase):
     xpcomabi = models.CharField(max_length=255, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     filename = models.CharField(max_length=255, blank=True, null=True)
-    severity = models.SmallIntegerField(null=True)
+    severity = models.SmallIntegerField(blank=True, null=True)
     details = models.OneToOneField(BlocklistDetail, null=True)
 
     class Meta(amo.models.ModelBase.Meta):
