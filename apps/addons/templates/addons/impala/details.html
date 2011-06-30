@@ -32,6 +32,10 @@
 </aside>
 
 {% set version = addon.current_version %}
+
+{# All this depends on the addon or version, and nothing needs the user,
+   so we can cache it all against the addon. #}
+{% cache addon %}
 <section class="primary">
   <div id="addon" class="island c" role="main" data-id="{{ addon.id }}">
     <hgroup>
@@ -58,7 +62,6 @@
   {% if addon.takes_contributions %}
     {{ impala_contribution(addon=addon, src='addon-detail') }}
   {% endif %}
-
 </section>
 
 {% if addon.type != amo.ADDON_PERSONA %}
@@ -134,6 +137,7 @@
     <p id="addon-description" {{ addon.description|locale_html }}>{{ addon.summary|nl2br }}</p>
   {% endif %}
 </section>
+{% endcache %} {# cache addon #}
 
 <aside class="secondary addon-reviews c">
   <div>
@@ -156,6 +160,9 @@
   {{ impala_review_list_box(addon=addon, reviews=reviews) }}
 </section>
 
+{# Cache all of this against the addon because the data doesn't change much
+   and it all depends on the addon in some way. #}
+{% cache addon %}
 <aside class="secondary metadata c">
   <h3>{{ _('Related Categories') }}</h3>
   {% with categories = addon.categories.filter(application=APP.id) %}
@@ -254,6 +261,7 @@
     </section>
   {% endif %}
 </section>
+{% endcache %} {# cache addon #}
 
 {% endblock content %}
 
@@ -267,10 +275,8 @@
       </div>
     </div>
   {% endif %}
-  {% if review_form: %}
-    {% if request.user.is_authenticated() %}
+  {% if review_form and request.user.is_authenticated() %}
       {{ impala_review_add_box(addon=addon) }}
-    {% endif %}
   {% endif %}
   {% if abuse_form %}
     <div id="abuse-modal" class="modal">
