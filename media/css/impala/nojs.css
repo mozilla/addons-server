@@ -1,0 +1,6 @@
+#more-webpage {
+    display: none;
+}
+.island .expando:target .content {
+    display: block;
+}

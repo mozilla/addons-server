@@ -2,7 +2,7 @@
 
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
 {% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}
-{% block bodyclass %}gutter{% endblock %}
+{% block bodyclass %}gutter addon-details{% endblock %}
 
 {% block extrahead %}
   {% if settings.ENGAGE_ROBOTS and addon.status == amo.STATUS_UNREVIEWED %}
@@ -19,7 +19,7 @@
 
 <aside class="secondary addon-vitals">
   {{ addon.average_rating|stars(large=True) }}
-  <div><a class="scrollto" href="#reviews">{{ _('{0} user reviews')|f(addon.total_reviews|numberfmt) }}</a></div>
+  <div><a id="reviews-link" href="{{ url('reviews.list', addon.slug) }}">{{ _('{0} user reviews')|f(addon.total_reviews|numberfmt) }}</a></div>
   <div id="daily-users">
     {% if addon.public_stats %}
       {# TODO real reverse URL #}
@@ -146,6 +146,60 @@
     <p id="addon-description" {{ addon.description|locale_html }}>{{ addon.summary|nl2br }}</p>
   {% endif %}
 </section>
+
+<div id="more-webpage" class="primary c" data-more-url="{{ addon.get_url_path(impala=True) }}"></div>
+
+<section class="primary island c">
+  {% if addon.developer_comments %}
+    <section class="expando" id="developer-comments">
+      <h2>{{ _('Developer’s Comments') }}<a class="toggle" href="#developer-comments"><b></b></a></h2>
+      <div class="content">
+        <p{{ addon.developer_comments|locale_html }}>
+          {{ addon.developer_comments|nl2br }}</p>
+      </div>
+    </section>
+  {% endif %}
+  <section id="detail-relnotes" class="expando">
+    <h2>{{ _('Version Information') }}<a class="toggle" href="#detail-relnotes"><b></b></a></h2>
+    <div class="content">
+      {{ version_detail(addon, version, src="addon-detail-version", impala=True) }}
+    </div>
+  </section>
+
+  {% if addon.show_beta %}
+    <section id="beta-channel" class="expando">
+      <h2>{{ _('Development Channel') }}<a class="toggle" href="#beta-channel"><b></b></a></h2>
+      <div class="content">
+        <p>
+          {% trans %}
+          The Development Channel lets you test an experimental new version of this
+          add-on before it's released to the general public. Once you install
+          the development version, you will continue to get updates from this channel.
+          {% endtrans %}
+          <a href="#install-beta">{{ _('Install development version') }}</a>
+        </p>
+        <div class="install-beta" id="install-beta">
+          <p>
+            {% trans %}
+            <strong>Caution:</strong> Development versions of this add-on have not
+            been reviewed by Mozilla. Once you install a development version you will
+            continue to receive development updates from this developer. To stop
+            receiving development updates, reinstall the default version from the
+            link above.
+            {% endtrans %}
+          </p>
+          <dl>
+            <dt class="beta-version">{{ _('Version {0}:')|f(
+              addon.current_beta_version.version) }}</dt>
+            <dd>{{ install_button(addon, version=addon.current_beta_version,
+                                  show_warning=False) }}</dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+</section>
+
 {% endcache %} {# cache addon #}
 
 {# The rest of the detail page content is in details-more.html.
