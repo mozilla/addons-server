@@ -789,6 +789,9 @@ CELERY_ROUTES = {
     'devhub.tasks.flag_binary': {'queue': 'bulk'},
 }
 
+# When testing, we always want tasks to raise exceptions. Good for sanity.
+CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
+
 
 ## Fixture Magic
 CUSTOM_DUMPS = {
