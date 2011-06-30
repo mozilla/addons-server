@@ -9,7 +9,7 @@ from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 from django.utils.http import http_date
 
-from mock import patch, patch_object
+from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
@@ -466,10 +466,13 @@ class TestBuilderPingback(test_utils.TestCase):
     def post(self, data):
         return self.client.post(reverse('amo.builder-pingback'), data)
 
-    def test_success(self):
+    @patch('files.tasks.repackage_jetpack')
+    def test_success(self, repackage_jetpack):
+        repackage_jetpack.delay = Mock()
         r = self.post({'result': '', 'msg': '', 'filename': '',
                        'location': '', 'request': '',
                        'secret': settings.BUILDER_SECRET_KEY})
+        assert repackage_jetpack.delay.called
         eq_(r.status_code, 200)
 
     def test_bad_secret(self):
