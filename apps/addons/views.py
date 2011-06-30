@@ -180,7 +180,7 @@ def impala_extension_detail(request, addon):
     if comp_apps and request.APP not in comp_apps:
         prefixer = urlresolvers.get_url_prefix()
         prefixer.app = comp_apps.keys()[0].short
-        return redirect('addons.detail', addons.slug, permanent=True)
+        return redirect('addons.detail', addon.slug, permanent=True)
 
     # get satisfaction only supports en-US.
     lang = translation.to_locale(translation.get_language())
