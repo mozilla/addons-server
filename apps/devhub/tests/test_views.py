@@ -1535,6 +1535,21 @@ class TestEdit(test_utils.TestCase):
                 eq_(unicode(getattr(addon, k)), unicode(data[k]))
             else:
                 eq_(getattr(addon, k), True if data[k] == 'on' else False)
+    
+    def test_text_not_none_when_has_flags(self):
+        addon = self.get_addon()
+        r = self.client.get(reverse('devhub.addons.edit',
+                            kwargs=dict(addon_id=addon.slug)))
+        doc = pq(r.content)
+        eq_(doc('#addon_flags').text(), 'This is a site-specific add-on.')
+    
+    def test_text_none_when_no_flags(self):
+        addon = self.get_addon()
+        addon.update(external_software=False, site_specific=False, binary=False)
+        r = self.client.get(reverse('devhub.addons.edit',
+                kwargs=dict(addon_id=addon.slug)))
+        doc = pq(r.content)
+        eq_(doc('#addon_flags').text(), 'None')
 
     def test_auto_repackage_not_shown(self):
         f = self.addon.current_version.all_files[0]
