@@ -2,7 +2,7 @@
 
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
 {% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}
-{% block bodyclass %}gutter{% endblock %}
+{% block bodyclass %}gutter addon-details{% endblock %}
 
 {% block extrahead %}
   {% if settings.ENGAGE_ROBOTS and addon.status == amo.STATUS_UNREVIEWED %}
@@ -19,7 +19,7 @@
 
 <aside class="secondary addon-vitals">
   {{ addon.average_rating|stars(large=True) }}
-  <div><a class="scrollto" href="#reviews">{{ _('{0} user reviews')|f(addon.total_reviews|numberfmt) }}</a></div>
+  <div><a id="reviews-link" href="{{ url('reviews.list', addon.slug) }}">{{ _('{0} user reviews')|f(addon.total_reviews|numberfmt) }}</a></div>
   <div id="daily-users">
     {% if addon.public_stats %}
       {# TODO real reverse URL #}
@@ -146,86 +146,13 @@
     <p id="addon-description" {{ addon.description|locale_html }}>{{ addon.summary|nl2br }}</p>
   {% endif %}
 </section>
-{% endcache %} {# cache addon #}
 
-<aside class="secondary addon-reviews c">
-  {% if reviews %}
-    <div>
-      {{ addon.average_rating|stars }}
-      {{ _('Average') }}
-    </div>
-  {% endif %}
-  {% include "reviews/grouped_ratings.html" %}
-  {% set amo_user = request.amo_user if user.is_authenticated() else None %}
-  {% if not addon.has_author(amo_user) %}
-    <div>
-      <a class="button" id="add-review" href="{{ url('reviews.add', addon.slug) }}">{{ _('Write a review') }}</a>
-    </div>
-  {% endif %}
-  <a id="report-abuse" href="{{ remora_url('developers/docs/policies/contact') }}"
-     class="abuse-image">{{ _('Report Abuse') }}</a>
-</aside>
-
-<section id="reviews" class="primary island c">
-  <h2>{{ _('Reviews') }}</h2>
-  {{ impala_review_list_box(addon=addon, reviews=reviews) }}
-</section>
-
-{# Cache all of this against the addon because the data doesn't change much
-   and it all depends on the addon in some way. #}
-{% cache addon %}
-<aside class="secondary metadata c">
-  <h3>{{ _('Related Categories') }}</h3>
-  {% with categories = addon.categories.filter(application=APP.id) %}
-    {% if categories %}
-      <ul>
-        {% for category in categories %}
-        <li>
-          <a href="{{ category.get_url_path() }}">
-            {{ category }}
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %}
-  {{ tags_box(addon=addon, tags=tags) }}
-</aside>
-
-{% if recommendations or collections or author_addons %}
-  <section class="primary island c">
-    {% if recommendations %}
-      <section>
-        <h2 class="compact-bottom">{{ _('Often used with&hellip;')|safe }}</h2>
-        {{ recommendations|addon_grid(cols=3) }}
-      </section>
-    {% endif %}
-    {% if collections %}
-      <section>
-        <h2>{{ _('Part of these Collections') }}</h2>
-        {{ collections|collection_grid(cols=3) }}
-      </section>
-      {% endif %}
-    {% if author_addons %}
-      <section>
-        <h2>
-          {% trans count = addon.listed_authors|length,
-                   author = users_list(addon.listed_authors) %}
-            Other add-ons by {{ author }}
-          {% pluralize %}
-            Other add-ons by these authors
-          {% endtrans %}
-        </h2>
-        {{ author_addons|addon_grid(cols=3) }}
-      </section>
-    {% endif %}
-  </section>
-{% endif %}
+<div id="more-webpage" class="primary c" data-more-url="{{ addon.get_url_path(impala=True) }}"></div>
 
 <section class="primary island c">
   {% if addon.developer_comments %}
-    <section class="expando">
-      <h2>{{ _('Developer’s Comments') }}<a class="toggle" href="#"><b></b></a></h2>
+    <section class="expando" id="developer-comments">
+      <h2>{{ _('Developer’s Comments') }}<a class="toggle" href="#developer-comments"><b></b></a></h2>
       <div class="content">
         <p{{ addon.developer_comments|locale_html }}>
           {{ addon.developer_comments|nl2br }}</p>
@@ -233,15 +160,15 @@
     </section>
   {% endif %}
   <section id="detail-relnotes" class="expando">
-    <h2>{{ _('Version Information') }}<a class="toggle" href="#"><b></b></a></h2>
+    <h2>{{ _('Version Information') }}<a class="toggle" href="#detail-relnotes"><b></b></a></h2>
     <div class="content">
       {{ version_detail(addon, version, src="addon-detail-version", impala=True) }}
     </div>
   </section>
 
-  {% if addon.show_beta and show_actions %}
+  {% if addon.show_beta %}
     <section id="beta-channel" class="expando">
-      <h2>{{ _('Development Channel') }}<a class="toggle" href="#"><b></b></a></h2>
+      <h2>{{ _('Development Channel') }}<a class="toggle" href="#beta-channel"><b></b></a></h2>
       <div class="content">
         <p>
           {% trans %}
@@ -272,8 +199,12 @@
     </section>
   {% endif %}
 </section>
+
 {% endcache %} {# cache addon #}
 
+{# The rest of the detail page content is in details-more.html.
+   We want above-the-fold to return and render really fast so we pull
+   in reviews and links to other add-ons with js. #}
 {% endblock content %}
 
 {% block popups %}

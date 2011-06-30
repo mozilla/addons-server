@@ -1,4 +1,5 @@
 $(function () {
+    if (!$("body").hasClass('addon-details')) return;
     $(".previews").zCarousel({
         btnNext: ".previews .next",
         btnPrev: ".previews .prev",
@@ -93,8 +94,21 @@ $(function () {
         }));
     })();
 
+    if ($('#more-webpage').exists()) {
+        var $moreEl = $('#more-webpage');
+            url = $moreEl.attr('data-more-url');
+        $.get(url, function(resp) {
+            var $newContent = $(resp);
+            $moreEl.replaceWith($newContent);
+            $newContent.find('.listing-grid h3').truncate( {dir: 'h'} );
+            $newContent.find('.install').installButton();
+            $newContent.find('.listing-grid').each(listing_grid);
+            $('#reviews-link').addClass('scrollto').attr('href', '#reviews');
+        });
+    }
+
     if ($('#review-add-box').exists())
-        $('#review-add-box').modal('#add-review', { width: '650px' });
+        $('#review-add-box').modal('#add-review', { delegate: '#page', width: '650px' });
 
     if ($('#privacy-policy').exists())
         $('#privacy-policy').modal('.privacy-policy', { width: '500px' });
@@ -106,5 +120,5 @@ $(function () {
       })
     }
 
-    $("#abuse-modal").modal('#report-abuse');
+    $("#abuse-modal").modal('#report-abuse', { delegate: '#page' });
 });
