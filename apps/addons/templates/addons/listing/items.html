@@ -7,7 +7,7 @@
     {{ heading(addon, collection=collection) }}
     <div class="item-info">
       {{ install_button(addon, collection=collection) }}
-      {{ item_info(addon, amo, show_date) }}
+      {{ item_info(addon, amo, show_date, show_downloads) }}
       {% if request.user.is_authenticated() %}
         <div class="collection_widgets widgets condensed">
           {{ favorites_widget(addon, condensed=True) }}

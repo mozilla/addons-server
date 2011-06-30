@@ -158,8 +158,8 @@ def tags_box(context, addon, tags=None):
 
 @register.inclusion_tag('addons/listing/items.html')
 @jinja2.contextfunction
-def addon_listing_items(context, addons, show_date=False, src=None,
-                       notes={}):
+def addon_listing_items(context, addons, show_date=False,
+                        show_downloads=False, src=None, notes={}):
     return new_context(**locals())
 
 

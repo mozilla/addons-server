@@ -36,7 +36,8 @@
           {% endfor %}
         </ul>
       </div>
-      {{ addon_listing_items(pager.object_list, show_date=sort, src='browse') }}
+      {{ addon_listing_items(pager.object_list, show_date=sort, src='browse',
+                             show_downloads=sort=='weeklydownloads') }}
     </div>
 
     <div class="listing-footer">
