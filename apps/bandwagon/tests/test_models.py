@@ -6,10 +6,10 @@ import test_utils
 from nose.tools import eq_
 
 import amo
-from addons.models import Addon, AddonRecommendation
-from bandwagon.models import (Collection, CollectionUser, CollectionWatcher,
-                              SyncedCollection, RecommendedCollection,
-                              FeaturedCollection)
+from addons.models import Addon, AddonCategory, AddonRecommendation, Category
+from bandwagon.models import (Collection, CollectionAddon, CollectionUser,
+                              CollectionWatcher, SyncedCollection,
+                              RecommendedCollection, FeaturedCollection)
 from devhub.models import ActivityLog
 from bandwagon import tasks
 from users.models import UserProfile
@@ -194,6 +194,8 @@ class TestFeaturedCollectionManager(test_utils.TestCase):
                                                         .addon_ids(**kw)))
         self.ids = [1001, 1003, 2464, 3481, 7661, 15679]
         self.default_ids = [1001, 1003, 2464, 7661, 15679]
+        self.c = (lambda **kw: sorted(FeaturedCollection.objects
+                                                        .creatured_ids(**kw)))
 
     def test_addon_ids_apps(self):
         eq_(self.f(), self.ids)
@@ -230,3 +232,46 @@ class TestFeaturedCollectionManager(test_utils.TestCase):
         eq_(ids(app=amo.FIREFOX), self.ids)
         eq_(ids(app=amo.FIREFOX, lang='en-US'), self.ids)
         eq_(ids(app=amo.FIREFOX, lang='fr'), self.default_ids)
+
+    def test_creatured_ids(self):
+        cat = Addon.objects.get(id=1001).categories.all()[0]
+        expected = [(1001, cat.id, amo.FIREFOX.id, None)]
+        eq_(self.c(), expected)
+        eq_(self.c(category=999), [])
+        eq_(self.c(category=cat.id, lang=None), expected)
+
+        # This should contain creatured add-ons from the default locale.
+        eq_(self.c(category=cat.id, lang='fr'), expected)
+
+    def test_creatured_ids_new_addon_category(self):
+        """Creatured add-ons should contain those add-ons in a category."""
+        cat = Category.objects.all()[0]
+        AddonCategory.objects.create(addon_id=1003, category=cat)
+        eq_(self.c(), [(1001, cat.id, amo.FIREFOX.id, None),
+                       (1003, cat.id, amo.FIREFOX.id, None)])
+
+    def test_creatured_ids_remove_addon_category(self):
+        """Creatured add-ons should disappear if no longer in a category."""
+        AddonCategory.objects.filter(addon__id=1001)[0].delete()
+        eq_(self.c(), [])
+
+    def test_creatured_ids_new_locale_category(self):
+        """Creatured add-ons should change if we change featured locale."""
+        c = CollectionAddon.objects.create(addon_id=1003,
+            collection=Collection.objects.create())
+        FeaturedCollection.objects.create(locale='ja',
+                                          application_id=amo.FIREFOX.id,
+                                          collection=c.collection)
+        cat = Category.objects.create(pk=12, slug='burr',
+                                      type=amo.ADDON_EXTENSION,
+                                      application_id=amo.FIREFOX.id)
+        AddonCategory.objects.create(addon_id=1003, category=new_cat)
+
+        # The 1003 is already featured for the default locale, so adding a
+        # category for this add-on will give us two creatures.
+        ja_creature = (1003, cat.id, amo.FIREFOX.id, 'ja')
+        eq_(self.c(), [(1001, 22, amo.FIREFOX.id, None),
+                       (1003, cat.id, amo.FIREFOX.id, None),
+                       ja_creature])
+        eq_(self.c(lang='ja'), [ja_creature])
+        eq_(self.c(category=new_cat.id, lang='ja'), [ja_creature])

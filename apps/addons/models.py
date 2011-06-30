@@ -794,7 +794,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def is_category_featured(self, app, lang):
         """Is add-on featured in any category for this app?"""
-        return app.id in self._creatured_apps
+        return (app.id, lang) in self._creatured_apps
 
     def has_full_profile(self):
         """Is developer profile public (completed)?"""
@@ -1145,19 +1145,24 @@ class AddonCategory(caching.CachingMixin, models.Model):
 
     @classmethod
     def creatured_ids(cls):
-        """ Returns a list of creatured ids """
-        qs = cls.objects.filter(feature=True)
-        f = lambda: list(qs.values_list('addon', 'category',
-                                        'category__application',
-                                        'feature_locales'))
-        return caching.cached_with(qs, f, 'creatured')
+        """Returns a list of creatured ids."""
+        if settings.NEW_FEATURES:
+            from bandwagon.models import FeaturedCollection
+            return FeaturedCollection.objects.creatured_ids()
+        else:
+            # TODO(cvan): Remove this once new features are enabled.
+            qs = cls.objects.filter(feature=True)
+            f = lambda: list(qs.values_list('addon', 'category',
+                                            'category__application',
+                                            'feature_locales'))
+            return caching.cached_with(qs, f, 'creatured')
 
     @classmethod
     def creatured(cls):
         """Get a dict of {addon: [app,..]} for all creatured add-ons."""
         rv = {}
         for addon, cat, catapp, locale in cls.creatured_ids():
-            rv.setdefault(addon, []).append(catapp)
+            rv.setdefault(addon, []).append((catapp, locale))
         return rv
 
     @classmethod

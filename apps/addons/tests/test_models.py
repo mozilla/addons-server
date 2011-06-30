@@ -24,6 +24,7 @@ from addons.models import (Addon, AddonCategory, AddonDependency,
                            Category, Charity, Feature, FrozenAddon, Persona,
                            Preview)
 from applications.models import Application, AppVersion
+from bandwagon.models import CollectionAddon, FeaturedCollection
 from devhub.models import ActivityLog
 from files.models import File, Platform
 from files.tests.test_models import UploadTest
@@ -42,13 +43,13 @@ class TestAddonManager(test_utils.TestCase):
     def setUp(self):
         set_user(None)
 
-    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
+    @patch.object(settings, 'NEW_FEATURES', False)
     def test_featured(self):
         featured = Addon.objects.featured(amo.FIREFOX)[0]
         eq_(featured.id, 1)
         eq_(Addon.objects.featured(amo.FIREFOX).count(), 5)
 
-    @patch.object(settings._wrapped, 'NEW_FEATURES', True)
+    @patch.object(settings, 'NEW_FEATURES', True)
     def test_featured(self):
         featured = Addon.objects.featured(amo.FIREFOX)[0]
         eq_(featured.id, 1001)
@@ -122,7 +123,7 @@ class TestAddonManagerFeatured(test_utils.TestCase):
     fixtures = ['addons/featured', 'bandwagon/featured_collections',
                 'base/collections', 'base/featured']
 
-    @patch.object(settings._wrapped, 'NEW_FEATURES', True)
+    @patch.object(settings, 'NEW_FEATURES', True)
     def test_new_featured(self):
         f = Addon.objects.featured(amo.FIREFOX)
         eq_(f.count(), 6)
@@ -134,6 +135,7 @@ class TestAddonManagerFeatured(test_utils.TestCase):
 
 class TestAddonModels(test_utils.TestCase):
     fixtures = ['base/apps',
+                'base/collections',
                 'base/featured',
                 'base/users',
                 'base/addon_5299_gcal',
@@ -145,7 +147,8 @@ class TestAddonModels(test_utils.TestCase):
                 'base/thunderbird',
                 'addons/featured',
                 'addons/invalid_latest_version',
-                'addons/blacklisted']
+                'addons/blacklisted',
+                'bandwagon/featured_collections']
 
     def setUp(self):
         TranslationSequence.objects.create(id=99243)
@@ -205,7 +208,7 @@ class TestAddonModels(test_utils.TestCase):
         a = Addon.objects.get(pk=5299)
         eq_(a.current_beta_version.id, 50000)
 
-    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
+    @patch.object(settings, 'NEW_FEATURES', False)
     def test_current_version_mixed_statuses(self):
         """Mixed file statuses are evil (bug 558237)."""
         a = Addon.objects.get(pk=3895)
@@ -355,21 +358,43 @@ class TestAddonModels(test_utils.TestCase):
         a.status = amo.STATUS_LISTED
         assert a.is_selfhosted(), 'listed add-on => is_selfhosted()'
 
-    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_is_featured(self):
         """Test if an add-on is globally featured"""
         a = Addon.objects.get(pk=1003)
         assert a.is_featured(amo.FIREFOX, 'en-US'), (
             'globally featured add-on not recognized')
 
-    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
+    @patch.object(settings, 'NEW_FEATURES', False)
     def test_is_category_featured(self):
-        """Test if an add-on is category featured"""
+        """Test if an add-on is category featured."""
         Feature.objects.filter(addon=1001).delete()
         a = Addon.objects.get(pk=1001)
-        assert not a.is_featured(amo.FIREFOX, 'en-US')
+        assert not a.is_featured(amo.FIREFOX, 'en-US'), (
+            "Expected add-on should not be in 'en-US' locale")
 
-        assert a.is_category_featured(amo.FIREFOX, 'en-US')
+        assert a.is_category_featured(amo.FIREFOX, None), (
+            'Expected add-on to have no locale')
+        assert not a.is_category_featured(amo.FIREFOX, 'fr'), (
+            "Expected add-on to not be in 'fr' locale")
+
+    @patch.object(settings, 'NEW_FEATURES', True)
+    def test_new_is_category_featured(self):
+        """Test if an add-on is category featured."""
+        a = Addon.objects.get(pk=1001)
+        assert a.is_category_featured(amo.FIREFOX, None), (
+            'Expected add-on to have no locale')
+        assert not a.is_category_featured(amo.FIREFOX, 'fr'), (
+            "Expected add-on to not be in 'fr' locale")
+
+        fc = FeaturedCollection.objects.filter(collection__addons=1001)[0]
+        c = CollectionAddon.objects.filter(addon=a,
+                                           collection=fc.collection)[0]
+        c.delete()
+        assert not a.is_featured(amo.FIREFOX, 'en-US'), (
+            "Expected add-on to be in 'en-US' locale")
+
+        assert a.is_category_featured(amo.FIREFOX, None), (
+            'Expected add-on to have no locale')
 
     def test_has_full_profile(self):
         """Test if an add-on's developer profile is complete (public)."""
@@ -1093,11 +1118,11 @@ class TestAddonModelsFeatured(test_utils.TestCase):
         f = Addon.featured_random(amo.SUNBIRD, 'en-US')
         eq_(f, [])
 
-    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
+    @patch.object(settings, 'NEW_FEATURES', False)
     def test_featured_random(self):
         self._test_featured_random()
 
-    @patch.object(settings._wrapped, 'NEW_FEATURES', True)
+    @patch.object(settings, 'NEW_FEATURES', True)
     def test_new_featured_random(self):
         self._test_featured_random()
 
@@ -1359,13 +1384,13 @@ REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
 class TestCharity(test_utils.TestCase):
     fixtures = ['base/charity.json']
 
-    @patch.object(settings._wrapped, 'REDIRECT_URL', REDIRECT_URL)
+    @patch.object(settings, 'REDIRECT_URL', REDIRECT_URL)
     def test_url(self):
         charity = Charity(name="a", paypal="b", url="http://foo.com")
         charity.save()
         assert charity.outgoing_url.startswith(REDIRECT_URL)
 
-    @patch.object(settings._wrapped, 'REDIRECT_URL', REDIRECT_URL)
+    @patch.object(settings, 'REDIRECT_URL', REDIRECT_URL)
     def test_url_foundation(self):
         foundation = Charity.objects.get(pk=amo.FOUNDATION_ORG)
         assert not foundation.outgoing_url.startswith(REDIRECT_URL)

@@ -20,6 +20,8 @@ from addons.models import (Addon, AddonCategory, AppSupport, Category,
                            Feature, Preview)
 from amo import helpers
 from amo.urlresolvers import reverse
+from applications.models import Application
+from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from search.tests import SphinxTestCase
 from search.utils import stop_sphinx
 
@@ -390,6 +392,7 @@ class APITest(TestCase):
                             '<slug>%s</slug>' %
                             Addon.objects.get(pk=5299).slug)
 
+    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_is_featured(self):
         self.assertContains(make_call('addon/5299', version=1.5),
                             '<featured>0</featured>')
@@ -402,11 +405,29 @@ class APITest(TestCase):
                                   ('en-US', 'firefox', 0),
                                   ('ja', 'seamonkey', 0)]:
             # Clean out the special cache for feature.
-            delattr(Addon, '_feature')
+            if hasattr(Addon, '_feature'):
+                del Addon._feature
             self.assertContains(make_call('addon/5299', version=1.5,
                                           lang=lang, app=app),
                                 '<featured>%s</featured>' % result)
 
+    @patch.object(settings._wrapped, 'NEW_FEATURES', True)
+    def test_new_is_featured(self):
+        self.assertContains(make_call('addon/5299', version=1.5),
+                            '<featured>0</featured>')
+        c = CollectionAddon.objects.create(addon=Addon.objects.get(id=5299),
+            collection=Collection.objects.create())
+        FeaturedCollection.objects.create(locale='ja',
+            application=Application.objects.get(id=amo.FIREFOX.id),
+            collection=c.collection)
+        for lang, app, result in [('ja', 'firefox', 1),
+                                  ('en-US', 'firefox', 0),
+                                  ('ja', 'seamonkey', 0)]:
+            self.assertContains(make_call('addon/5299', version=1.5,
+                                          lang=lang, app=app),
+                                '<featured>%s</featured>' % result)
+
+    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_is_category_featured(self):
         self.assertContains(make_call('addon/5299', version=1.5),
                             '<featured>0</featured>')
@@ -424,11 +445,28 @@ class APITest(TestCase):
                                           lang=lang, app=app),
                                 '<featured>%s</featured>' % result)
 
+    @patch.object(settings._wrapped, 'NEW_FEATURES', True)
+    def test_new_is_category_featured(self):
+        self.assertContains(make_call('addon/5299', version=1.5),
+                            '<featured>0</featured>')
+        AddonCategory.objects.create(addon_id=5299,
+                                     category=Category.objects.all()[0])
+        c = CollectionAddon.objects.create(addon=Addon.objects.get(id=5299),
+            collection=Collection.objects.create())
+        FeaturedCollection.objects.create(locale='ja',
+            application=Application.objects.get(id=amo.FIREFOX.id),
+            collection=c.collection)
+        for lang, app, result in [('ja', 'firefox', 1),
+                                  ('en-US', 'firefox', 0),
+                                  ('ja', 'seamonkey', 0)]:
+            self.assertContains(make_call('addon/5299', version=1.5,
+                                          lang=lang, app=app),
+                                '<featured>%s</featured>' % result)
+
     def test_default_icon(self):
         addon = Addon.objects.get(pk=5299)
         addon.update(icon_type='')
         self.assertContains(make_call('addon/5299'), '<icon></icon>')
-
 
     def test_thumbnail_size(self):
         addon = Addon.objects.get(pk=5299)

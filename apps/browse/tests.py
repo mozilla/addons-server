@@ -230,8 +230,15 @@ class TestThemes(test_utils.TestCase):
 
 
 class TestCategoryPages(test_utils.TestCase):
-    fixtures = ('base/apps', 'base/category', 'base/addon_3615',
-                'base/featured', 'addons/featured', 'browse/nameless-addon')
+    fixtures = ['base/apps', 'base/category', 'base/addon_3615',
+                'base/featured', 'addons/featured', 'browse/nameless-addon']
+
+    def setUp(self):
+        self._new_features = settings.NEW_FEATURES
+        settings.NEW_FEATURES = False
+
+    def tearDown(self):
+        settings.NEW_FEATURES = self._new_features
 
     def test_browsing_urls(self):
         """Every browse page URL exists."""
@@ -315,6 +322,18 @@ class TestCategoryPages(test_utils.TestCase):
         ids = order_by_translation(qs, 'name')
         assert 57132 in [a.id for a in qs]
         assert 57132 not in [a.id for a in ids]
+
+
+class NewTestCategoryPages(TestCategoryPages):
+    fixtures = (TestCategoryPages.fixtures +
+                ['base/addon_3615_featuredcollection'])
+
+    def setUp(self):
+        self._new_features = settings.NEW_FEATURES
+        settings.NEW_FEATURES = True
+
+    def tearDown(self):
+        settings.NEW_FEATURES = self._new_features
 
 
 class TestFeaturedLocale(test_utils.TestCase):
@@ -560,7 +579,10 @@ class TestFeaturedLocale(test_utils.TestCase):
 
 
 class TestNewFeaturedLocale(TestFeaturedLocale):
-    fixtures = TestFeaturedLocale.fixtures + ['bandwagon/featured_collections']
+    fixtures = (TestFeaturedLocale.fixtures +
+                ['base/collections', 'addons/featured', 'base/featured',
+                 'bandwagon/featured_collections',
+                 'base/addon_3615_featuredcollection'])
 
     # TODO(cvan): Merge with above once new featured add-ons are enabled.
     def setUp(self):
@@ -574,6 +596,9 @@ class TestNewFeaturedLocale(TestFeaturedLocale):
     def test_featured_random_caching(self):
         raise SkipTest()  # We're no longer caching `featured_random`.
 
+    def test_creatured_random_caching(self):
+        raise SkipTest()  # We're no longer caching `creatured_random`.
+
     def change_addon(self, addon, locale='es-ES'):
         fc = FeaturedCollection.objects.filter(collection__addons=addon.id)[0]
         feature = FeaturedCollection.objects.create(locale=locale,
@@ -583,6 +608,33 @@ class TestNewFeaturedLocale(TestFeaturedLocale):
                                            collection=fc.collection)[0]
         c.collection = feature.collection
         c.save()
+
+    def change_addoncategory(self, addon, locale='es-ES'):
+        CollectionAddon.objects.filter(addon=addon).delete()
+        locales = (locale or '').split(',')
+        for locale in locales:
+            c = CollectionAddon.objects.create(addon=addon,
+                collection=Collection.objects.create())
+            FeaturedCollection.objects.create(locale=locale,
+                application=Application.objects.get(id=amo.FIREFOX.id),
+                collection=c.collection)
+
+    def test_featured_ids(self):
+        # TODO(cvan): Change the TestFeaturedLocale test
+        # accordingly after we switch over to the new features.
+        FeaturedCollection.objects.filter(collection__addons=3615)[0].delete()
+        super(TestNewFeaturedLocale, self).test_featured_ids()
+
+    def test_homepage_order(self):
+        # TODO(cvan): Change the TestFeaturedLocale test
+        # accordingly after we switch over to the new features.
+        FeaturedCollection.objects.filter(collection__addons=3615)[0].delete()
+        super(TestNewFeaturedLocale, self).test_featured_ids()
+
+    def test_creatured_locale_es_ES(self):
+        """Ensure 'en-US'-creatured add-ons do not exist for other locales."""
+        res = self.client.get(self.url.replace('en-US', 'es-ES'))
+        assert self.addon not in res.context['addons']
 
 
 class TestListingByStatus(test_utils.TestCase):
