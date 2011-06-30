@@ -20,7 +20,16 @@
 <aside class="secondary addon-vitals">
   {{ addon.average_rating|stars(large=True) }}
   <div><a class="scrollto" href="#reviews">{{ _('{0} user reviews')|f(addon.total_reviews|numberfmt) }}</a></div>
-  <div id="daily-users">{{ _('<b>{0}</b> active users')|f(addon.average_daily_users|numberfmt)|safe }}</div>
+  <div id="daily-users">
+    {% if addon.public_stats %}
+      {# TODO real reverse URL #}
+      <a class='stats' title='View statistics' href="{{ locale_url('/statistics/addon/{0}'|f(addon.id)) }}">
+        {{ _('<b>{0}</b> users')|f(addon.average_daily_users|numberfmt)|safe }}
+      </a>
+    {% else %}
+      {{ _('<b>{0}</b> users')|f(addon.average_daily_users|numberfmt)|safe }}
+    {% endif %}
+  </div>
   <div class="widgets">
     {{ favorites_widget(addon) }}
     {% include 'addons/includes/collection_add_widget.html' %}
@@ -42,7 +51,7 @@
       <img id="addon-icon" src="{{ addon.get_icon_url(64) }}" class="icon">
       <h2 class="addon"{{ addon.name|locale_html }}>
         {{ addon.name }}
-        <span class="version">{{ version.version }}</span>
+        <span class="version-number">{{ version.version }}</span>
       </h2>
       <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
     </hgroup>

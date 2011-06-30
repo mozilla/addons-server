@@ -45,8 +45,9 @@
     }
 }
 
-.version {
+.version-number {
     color: #999;
+    font-size: .8em;
 }
 
 .notice {
@@ -82,6 +83,18 @@
         .widget {
             color: #999;
             display: block;
+        }
+    }
+    .stats {
+        padding-right: 20px;
+        b {
+            color: #333;
+        }
+        color: #666;
+        background: url("../../img/impala/stats.png") no-repeat right top;
+        &:hover {
+            color: @link;
+            background-position: right -20px;
         }
     }
 }
