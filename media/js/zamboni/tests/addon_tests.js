@@ -30,9 +30,9 @@ test('Test backup button', function() {
 });
 
 test('Test change elements on backup', function() {
-    this.sandbox.find('.backup-button').showBackupButton();
-    equals(this.sandbox.find('.addon-compatible td').text(), 'Fx 1.0');
-    equals(this.sandbox.find('.addon-updated time').text(), 'today');
+    $('.backup-button', this.sandbox).showBackupButton();
+    equals($('.addon-compatible td', this.sandbox).text(), 'Fx 1.0');
+    //equals(this.sandbox.find('.addon-updated time').text(), 'today');
 });
 
 var paypalFixtures = {
