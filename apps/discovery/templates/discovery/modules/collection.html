@@ -35,8 +35,9 @@
       {% endfor %}
     </ul>
     <p class="more">
+    {% set src = 'discovery-promo' if module_context == 'discovery' else 'homepage' %}
     {% trans name=collection.name,
-             url=collection.get_url_path()|urlparams(src='discovery-promo') %}
+             url=collection.get_url_path()|urlparams(src=src) %}
     Find more add-ons in the <a href="{{ url }}">{{ name }}</a> collection.
     {% endtrans %}</p>
   </div>
