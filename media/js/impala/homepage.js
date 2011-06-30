@@ -15,8 +15,9 @@
             btnPrev: $('#promos .prev'),
             btnNext: $('#promos .next')
         });
-        $('.vtruncate').truncate({dir: 'v'});
-        $('.toplist .name').truncate({showTitle: true});
+        $('#promos .addons h3').truncate({dir: 'h'});
+        $('#promos .addons .desc').truncate({dir: 'v'});
         $('#promos .install').installButton();
     });
+    $('.toplist .name').truncate({showTitle: true});
 })();
