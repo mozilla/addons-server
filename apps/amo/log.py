@@ -247,6 +247,7 @@ class COMMENT_VERSION(_LOG):
     short = _(u'Comment')
     keep = True
     review_queue = True
+    hide_developer = True
 
 
 class ADD_TAG(_LOG):
@@ -403,6 +404,10 @@ LOG_REVIEW_QUEUE = [l.id for l in LOGS if hasattr(l, 'review_queue')]
 
 # Is the user emailed the message?
 LOG_REVIEW_EMAIL_USER = [l.id for l in LOGS if hasattr(l, 'review_email_user')]
+# Logs *not* to show to the developer.
+LOG_HIDE_DEVELOPER = [l.id for l in LOGS
+                           if getattr(l, 'hide_developer', False)]
+
 
 def log(action, *args, **kw):
     """

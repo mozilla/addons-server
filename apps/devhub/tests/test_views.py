@@ -1662,6 +1662,24 @@ class TestActivityFeed(test_utils.TestCase):
         r = self.client.get(reverse('devhub.feed', args=[addon.slug]))
         eq_(r.status_code, 302)
 
+    def add_comment(self):
+        addon = Addon.objects.get(id=3615)
+        amo.set_user(UserProfile.objects.get(email='del@icio.us'))
+        amo.log(amo.LOG.COMMENT_VERSION, addon, addon.versions.all()[0])
+        return addon
+
+    def test_feed_hidden(self):
+        addon = self.add_comment()
+        res = self.client.get(reverse('devhub.feed', args=[addon.slug]))
+        doc = pq(res.content)
+        eq_(len(doc('#recent-activity p')), 1)
+
+    def test_addons_hidden(self):
+        self.add_comment()
+        res = self.client.get(reverse('devhub.addons'))
+        doc = pq(res.content)
+        eq_(len(doc('#dashboard-sidebar div.recent-activity li.item')), 0)
+
 
 class TestProfileBase(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']

@@ -220,7 +220,8 @@ def _get_items(action, addons):
                    reviews=(amo.LOG.ADD_REVIEW,))
 
     filter = filters.get(action)
-    items = ActivityLog.objects.for_addons(addons)
+    items = (ActivityLog.objects.for_addons(addons).filter()
+                        .exclude(action__in=amo.LOG_HIDE_DEVELOPER))
     if filter:
         items = items.filter(action__in=[i.id for i in filter])
 
