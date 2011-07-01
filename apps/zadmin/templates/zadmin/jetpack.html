@@ -6,6 +6,7 @@
 <style>
   .upgrade { color: green; }
   #jetpacks tbody { font-family: monospace; }
+  .fail { color: red }
 </style>
 {% endblock %}
 
@@ -88,7 +89,11 @@
       {% if upgrading %}
         {% if file.id|string in repack_status %}
           {% with repack = repack_status[file.id|string] %}
-            <td>{{ repack['status'] }} {{ repack['time']|timesince }}</td>
+            {% if repack.status == 'failed' %}
+              <td class="fail"><pre>{{ repack.msg }}</pre></td>
+            {% else %}
+              <td>{{ repack.status }} {{ repack.time|timesince }}</td>
+            {% endif %}
           {% endwith %}
         {% else %}
           <td></td>
