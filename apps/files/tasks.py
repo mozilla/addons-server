@@ -1,5 +1,6 @@
 from datetime import datetime
 import hashlib
+import logging
 import urllib
 import urllib2
 import urlparse
@@ -8,7 +9,6 @@ import uuid
 import django.core.mail
 from django.conf import settings
 
-import commonware.log
 import jingo
 from celeryutils import task
 from tower import ugettext as _
@@ -22,8 +22,8 @@ from versions.models import Version, ApplicationsVersions
 from .models import File
 from .utils import JetpackUpgrader
 
-task_log = commonware.log.getLogger('z.task')
-jp_log = commonware.log.getLogger('z.jp.repack')
+task_log = logging.getLogger('z.task')
+jp_log = logging.getLogger('z.jp.repack')
 
 
 @task
