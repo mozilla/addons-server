@@ -435,7 +435,9 @@ button.search-button {
     }
 }
 
-.firstvisit:not(.home):not(.developer-hub) #site-welcome {
+
+/* All Manner of Banner */
+.firstvisit #site-welcome {
     display: block;
 }
 #mobile-banner {
@@ -448,6 +450,14 @@ button.search-button {
 }
 .badbrowser {
     #site-welcome, #mobile-banner {
-        display: none;
+        display: none !important;
     }
 }
+.home #site-welcome {
+    display: none !important;
+}
+.developer-hub .site-balloon {
+    display: none !important;
+}
+
+

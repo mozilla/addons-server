@@ -1,6 +1,9 @@
 #more-webpage {
     display: none;
 }
-.island .expando:target .content {
+.island .expando .content {
     display: block;
+}
+.island .expando .toggle {
+    display: none;
 }
