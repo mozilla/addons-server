@@ -71,7 +71,7 @@ class RedisLogHandler(logging.Handler):
         self.logger = logger
         self.upgrader = upgrader
         self.file_data = file_data
-        super(RedisLogHandler, self).__init__(level)
+        logging.Handler.__init__(self, level)
 
     def emit(self, record):
         self.file_data['status'] = 'failed'
