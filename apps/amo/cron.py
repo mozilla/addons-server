@@ -147,7 +147,7 @@ def _delete_logs(items, **kw):
 
 @task
 def _delete_stale_contributions(items, **kw):
-    log.info('[%s@%s] Deleting stale collections' %
+    log.info('[%s@%s] Deleting stale contributions' %
              (len(items), _delete_stale_contributions.rate_limit))
     Contribution.objects.filter(
             transaction_id__isnull=True, pk__in=items).delete()
