@@ -78,6 +78,9 @@
 .sprite-pos(@pos, @spacing, @offset:0) {
     background-position: 0 (@spacing * @pos * -1 + @offset) + 0px;
 }
+.sprite-pos-right(@pos, @spacing, @offset:0) {
+    background-position: right (@spacing * @pos * -1 + @offset) + 0px;
+}
 
 // Horizontal sprite
 .hsprite(@url, @pos, @spacing, @offset:0) {

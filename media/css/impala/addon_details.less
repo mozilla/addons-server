@@ -44,6 +44,23 @@
         padding: 3px 9px;
     }
 }
+.html-rtl #addon {
+    padding: 20px 104px 20px 20px;
+    .icon {
+        left: auto;
+        right: 20px;
+        margin: 0 0 1em 12px;
+    }
+    h2 {
+        padding-right: 0;
+        padding-left: 54px;
+    }
+    .notavail {
+        padding: 1px 18px 1 0;
+        margin-right: 0;
+        margin-left: 14px;
+    }
+}
 
 .version-number {
     color: #999;
@@ -137,6 +154,36 @@
     }
     &.ajax-loading {
         background: url(../../img/zamboni/loading-white.gif) no-repeat 0 2px !important;
+    }
+}
+.html-rtl {
+    .widget {
+        padding-right: 21px;
+        padding-left: 0;
+        background-position: right 4px;
+        &.favorite {
+            &.faved {
+                .sprite-pos-right(2, 20, 4px);
+            }
+            &:hover {
+                .sprite-pos-right(1, 20, 4px);
+            }
+        }
+        &.collection-add {
+            .sprite-pos-right(3, 20, 4px);
+            &:hover {
+                .sprite-pos-right(4, 20, 4px);
+            }
+        }
+        &.share {
+            .sprite-pos-right(5, 20, 4px);
+            &:hover {
+                .sprite-pos-right(6, 20, 4px);
+            }
+        }
+        &.ajax-loading {
+            background-position: right 2px;
+        }
     }
 }
 

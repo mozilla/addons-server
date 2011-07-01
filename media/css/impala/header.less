@@ -166,6 +166,10 @@
 }
 
 .html-rtl {
+    .menu-nav {
+        margin-left: 0;
+        margin-right: 64px;
+    }
     .menu-nav > ul > li {
         border-left: 0;
         border-right: 1px solid #9FA7AF;
@@ -274,6 +278,13 @@
                 }
             }
         }
+    }
+}
+.html-rtl {
+    #aux-nav > ul > li > a:after {
+        margin: 0 4px 0 0;
+        right: 4px;
+        left: auto;
     }
 }
 /** search box */
