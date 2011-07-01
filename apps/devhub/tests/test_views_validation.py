@@ -19,6 +19,7 @@ from amo.tests import assert_no_validation_errors
 from amo.urlresolvers import reverse
 from files.models import File, FileUpload, FileValidation
 from files.tests.test_models import UploadTest as BaseUploadTest
+from files.utils import parse_addon
 from users.models import UserProfile
 from zadmin.models import ValidationResult
 
@@ -45,6 +46,24 @@ class TestUploadValidation(BaseUploadTest):
         eq_(r.status_code, 200)
         doc = pq(r.content)
         eq_(doc('td').text(), 'December  6, 2010')
+
+
+class TestUploadErrors(BaseUploadTest):
+    fixtures = ('base/apps', 'base/addon_3615')
+
+    def test_dupe_uuid(self):
+        addon = Addon.objects.get(pk=3615)
+        d = parse_addon(self.get_upload('extension.xpi').path)
+        addon.update(guid=d['guid'])
+
+        dupe_xpi = self.get_upload('extension.xpi')
+        res = self.client.get(reverse('devhub.upload_detail',
+                                      args=[dupe_xpi.uuid, 'json']))
+        eq_(res.status_code, 400)
+        data = json.loads(res.content)
+        eq_(data['validation']['messages'],
+            [{'tier': 1, 'message': 'Duplicate UUID found.',
+              'type': 'error'}])
 
 
 class TestFileValidation(test_utils.TestCase):

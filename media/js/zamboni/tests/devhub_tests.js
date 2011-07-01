@@ -41,13 +41,14 @@ module('addonUploaded', {
         this.sandbox = tests.createSandbox('#file-upload-template');
         $.fx.off = true;
 
-        $('#upload-file-input', this.sandbox).addonUploader();
+        this.uploader = $('#upload-file-input', this.sandbox).addonUploader();
 
         this.el = $('#upload-file-input', this.sandbox)[0];
-        this.el.files = [{
+        this.file = {
             size: 200,
             name: 'some-addon.xpi'
-        }];
+        };
+        this.el.files = [this.file];
 
         $(this.el).trigger('change');
         // sets all animation durations to 0
@@ -205,6 +206,20 @@ test('HTML in filename (on success)', function() {
                        [{name: "tester's add-on2.xpi"}, results]);
     equals($('#upload-status-text', this.sandbox).text(),
            "Validating tester's add-on2.xpi");
+});
+
+test('400 JSON error', function() {
+    var xhr = {
+        readyState: 4,
+        status: 400,
+        responseText: JSON.stringify({
+            "validation": {
+                "messages": [{"type": "error", "message": "Some form error"}]
+            }
+        })
+    };
+    this.uploader.trigger('upload_onreadystatechange', [this.file, xhr]);
+    equals(this.sandbox.find('#upload_errors').text().trim(), 'Some form error');
 });
 
 

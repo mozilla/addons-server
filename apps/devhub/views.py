@@ -723,11 +723,14 @@ def json_upload_detail(upload):
                 plat_exclude = set(s) - set(supported_platforms)
                 plat_exclude = [str(p) for p in plat_exclude]
             except django_forms.ValidationError, exc:
-                # XPI parsing errors will be reported in the form submission
-                # (next request).
-                # TODO(Kumar) It would be nicer to present errors to the user
-                # right here to avoid confusion about platform selection.
-                log.error("XPI parsing error, ignored: %s" % exc)
+                m = []
+                for msg in exc.messages:
+                    # Simulate a validation error so the UI displays
+                    # it as such
+                    m.append({'type': 'error', 'message': msg, 'tier': 1})
+                v = make_validation_result(dict(error='',
+                                                validation=dict(messages=m)))
+                return json_view.error(v)
 
     return make_validation_result(dict(upload=upload.uuid,
                                        validation=validation,
