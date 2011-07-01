@@ -6,6 +6,7 @@ import elasticutils
 import pyes.exceptions as pyes
 
 from .models import Addon
+from compat.models import AppCompat
 
 
 def extract(addon):
@@ -15,7 +16,7 @@ def extract(addon):
              'is_disabled')
     d = dict(zip(attrs, attrgetter(*attrs)(addon)))
     # Coerce the Translation into a string.
-    d['name'] = unicode(d['name'])
+    d['name'] = unicode(d['name']).lower()
     d['app'] = [a.id for a in addon.compatible_apps]
     # This is an extra query, not good for perf.
     d['category'] = getattr(addon, 'category_ids', [])
@@ -31,9 +32,14 @@ def setup_mapping():
         'name': {'index': 'not_analyzed', 'type': 'string'},
     }
     es = elasticutils.get_es()
+    es.create_index_if_missing(settings.ES_INDEX)
     try:
-        es.create_index_if_missing(settings.ES_INDEX)
         es.put_mapping(Addon._meta.app_label, {'properties': m},
+                       settings.ES_INDEX)
+    except pyes.ElasticSearchException:
+        pass
+    try:
+        es.put_mapping(AppCompat._meta.app_label, {'properties': m},
                        settings.ES_INDEX)
     except pyes.ElasticSearchException:
         pass

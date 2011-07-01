@@ -35,6 +35,7 @@ from amo.utils import chunked, sorted_groupby
 from addons.models import Addon
 from addons.utils import ReverseNameLookup
 from bandwagon.models import Collection
+from cake.helpers import remora_url
 from files.models import Approval, File
 from versions.models import Version
 
@@ -397,7 +398,9 @@ def elastic(request):
     mappings = {'addons': (addons.search.setup_mapping,
                            addons.cron.reindex_addons),
                 'collections': (None,
-                                bandwagon.cron.reindex_collections)}
+                                bandwagon.cron.reindex_collections),
+                'compat': (addons.search.setup_mapping, None),
+               }
     if request.method == 'POST':
         if request.POST.get('reset') in mappings:
             name = request.POST['reset']
@@ -460,3 +463,19 @@ def addon_name_blocklist(request):
 @admin.site.admin_view
 def index(request):
     return jingo.render(request, 'zadmin/index.html')
+
+
+@admin.site.admin_view
+def addon_search(request):
+    ctx = {}
+    if 'q' in request.GET:
+        q = ctx['q'] = request.GET['q']
+        if q.isdigit():
+            qs = Addon.objects.filter(id=int(q))
+        else:
+            qs = (Addon.search().query(name__startswith=q.lower())
+                  .order_by('name')[:25])
+        if len(qs) == 1:
+            return redirect('/admin/addons?q=[%s]' % qs[0].id)
+        ctx['addons'] = qs
+    return jingo.render(request, 'zadmin/addon-search.html', ctx)

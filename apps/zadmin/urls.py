@@ -46,6 +46,7 @@ urlpatterns = patterns('',
     url('^celery$', views.celery, name='zadmin.celery'),
     url('^addon-name-blocklist$', views.addon_name_blocklist,
         name='zadmin.addon-name-blocklist'),
+    url('^addon-search$', views.addon_search, name='zadmin.addon-search'),
 
     # The Django admin.
     url('^models/', include(admin.site.urls)),
