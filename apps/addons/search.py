@@ -18,7 +18,7 @@ def extract(addon):
     d['name'] = unicode(d['name'])
     d['app'] = [a.id for a in addon.compatible_apps]
     # This is an extra query, not good for perf.
-    d['category'] = list(addon.categories.values_list('id', flat=True))
+    d['category'] = getattr(addon, 'category_ids', [])
     return d
 
 
