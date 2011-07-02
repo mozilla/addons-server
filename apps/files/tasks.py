@@ -76,7 +76,8 @@ class RedisLogHandler(logging.Handler):
     def emit(self, record):
         self.file_data['status'] = 'failed'
         self.file_data['msg'] = record.msg
-        self.upgrader.file(self.file_data['file'], self.file_data)
+        if 'file' in self.file_data:
+            self.upgrader.file(self.file_data['file'], self.file_data)
         self.logger.removeHandler(self)
 
 

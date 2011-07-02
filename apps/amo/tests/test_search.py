@@ -158,7 +158,8 @@ class TestES(amo.tests.ESTestCase):
 
     def test_values_result(self):
         qs = Addon.objects.order_by('id')
-        addons = [(a.id, unicode(a.name)) for a in qs]
+        # The add-on indexer lowercases the name.
+        addons = [(a.id, unicode(a.name).lower()) for a in qs]
         qs = Addon.search().values('name').order_by('id')
         eq_(list(qs), addons)
 
@@ -172,7 +173,8 @@ class TestES(amo.tests.ESTestCase):
 
     def test_values_dict_result(self):
         qs = Addon.objects.order_by('id')
-        addons = [{'id': a.id, 'name': unicode(a.name)} for a in qs]
+        # The add-on indexer lowercases the name.
+        addons = [{'id': a.id, 'name': unicode(a.name).lower()} for a in qs]
         qs = Addon.search().values_dict('name').order_by('id')
         eq_(list(qs), list(addons))
 

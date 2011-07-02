@@ -14,6 +14,7 @@ class TestAddonView(test_utils.TestCase):
         self.addon = Addon.objects.create(slug='x', type=1)
         self.func = mock.Mock()
         self.func.return_value = mock.sentinel.OK
+        self.func.__name__ = 'mock_function'
         self.view = dec.addon_view(self.func)
         self.request = mock.Mock()
         self.slug_path = '/addon/%s/reviews' % self.addon.slug
