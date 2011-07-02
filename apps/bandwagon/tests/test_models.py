@@ -259,19 +259,26 @@ class TestFeaturedCollectionManager(test_utils.TestCase):
         """Creatured add-ons should change if we change featured locale."""
         c = CollectionAddon.objects.create(addon_id=1003,
             collection=Collection.objects.create())
+        FeaturedCollection.objects.create(locale='fr',
+                                          application_id=amo.FIREFOX.id,
+                                          collection=c.collection)
         FeaturedCollection.objects.create(locale='ja',
                                           application_id=amo.FIREFOX.id,
                                           collection=c.collection)
         cat = Category.objects.create(pk=12, slug='burr',
                                       type=amo.ADDON_EXTENSION,
                                       application_id=amo.FIREFOX.id)
-        AddonCategory.objects.create(addon_id=1003, category=new_cat)
+        AddonCategory.objects.create(addon_id=1003, category=cat)
 
         # The 1003 is already featured for the default locale, so adding a
         # category for this add-on will give us two creatures.
         ja_creature = (1003, cat.id, amo.FIREFOX.id, 'ja')
-        eq_(self.c(), [(1001, 22, amo.FIREFOX.id, None),
-                       (1003, cat.id, amo.FIREFOX.id, None),
-                       ja_creature])
-        eq_(self.c(lang='ja'), [ja_creature])
-        eq_(self.c(category=new_cat.id, lang='ja'), [ja_creature])
+        expected = [(1001, 22, amo.FIREFOX.id, None),
+                    (1003, cat.id, amo.FIREFOX.id, None),
+                    (1003, cat.id, amo.FIREFOX.id, 'fr'),
+                    ja_creature]
+        eq_(self.c(), expected)
+        del expected[2]
+        eq_(self.c(lang='ja'), expected)
+        del expected[0]
+        eq_(self.c(category=cat.id, lang='ja'), expected)
