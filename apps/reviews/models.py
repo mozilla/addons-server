@@ -144,8 +144,12 @@ class GroupedRating(object):
 
     @classmethod
     def get(cls, addon):
-        d = cls.redis().get(cls.key(addon))
-        return json.loads(d) if d else None
+        try:
+            d = cls.redis().get(cls.key(addon))
+            return json.loads(d) if d else None
+        except Exception:
+            # Don't worry about failures, especially timeouts.
+            return
 
     @classmethod
     def set(cls, addon, using=None):
