@@ -7,6 +7,7 @@ from addons.models import Addon
 
 
 def addon_view(f, qs=Addon.objects.all):
+    @functools.wraps(f)
     def wrapper(request, addon_id, *args, **kw):
         get = lambda **kw: get_object_or_404(qs(), **kw)
         if addon_id.isdigit():
