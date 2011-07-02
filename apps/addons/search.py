@@ -32,7 +32,10 @@ def setup_mapping():
         'name': {'index': 'not_analyzed', 'type': 'string'},
     }
     es = elasticutils.get_es()
-    es.create_index_if_missing(settings.ES_INDEX)
+    try:
+        es.create_index_if_missing(settings.ES_INDEX)
+    except pyes.ElasticSearchException:
+        pass
     try:
         es.put_mapping(Addon._meta.app_label, {'properties': m},
                        settings.ES_INDEX)
