@@ -172,27 +172,25 @@
       <div class="content">
         <p>
           {% trans %}
-          The Development Channel lets you test an experimental new version of this
-          add-on before it's released to the general public. Once you install
-          the development version, you will continue to get updates from this channel.
+            The Development Channel lets you test an experimental new version of this
+            add-on before it's released to the general public. Once you install the
+            development version, you will continue to get updates from this channel. To
+            stop receiving development updates, reinstall the default version from the link
+            above.
           {% endtrans %}
           <a href="#install-beta">{{ _('Install development version') }}</a>
         </p>
         <div class="install-beta" id="install-beta">
           <p>
             {% trans %}
-            <strong>Caution:</strong> Development versions of this add-on have not
-            been reviewed by Mozilla. Once you install a development version you will
-            continue to receive development updates from this developer. To stop
-            receiving development updates, reinstall the default version from the
-            link above.
+              <strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla.
             {% endtrans %}
           </p>
           <dl>
             <dt class="beta-version">{{ _('Version {0}:')|f(
               addon.current_beta_version.version) }}</dt>
             <dd>{{ install_button(addon, version=addon.current_beta_version,
-                                  show_warning=False) }}</dd>
+                                  show_warning=False, impala=True) }}</dd>
           </dl>
         </div>
       </div>
