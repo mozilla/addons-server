@@ -118,7 +118,8 @@ section > section {
 /* @Clear floats *********/
 body:after,
 header:after,
-.addons:after {
+.addons:after,
+#install:after {
     content: ".";
     display: block;
     clear: both;
@@ -1122,7 +1123,7 @@ body.detail {
 
 .detail h1.addon,
 .detail h2.author {
-    width: 90%;
+    width: 88%;
 }
 
 .detail h1.addon {
@@ -1159,6 +1160,8 @@ body.detail {
 }
 
 .detail p#back {
+    background: #fff;
+    height: 26px;
     position: absolute;
     top: 4px;
     right: 0;
@@ -1191,14 +1194,11 @@ p#back:hover:before {
 /* @end */
 
 /* @group Add-on detail install button/links */
-#install {
-    overflow: hidden;
-}
-
 #install li {
     float: left;
     font-weight: bold;
     margin-right: 10px;
+    padding-top: 4px;
 }
 .html-rtl #install li {
     float: right;
@@ -1207,11 +1207,10 @@ p#back:hover:before {
     margin-right: 0;
 }
 
-#install #learn-more {
-    display: inline-block;
+#install li > a {
 }
 
-#install .privacy {
+#install .privacy a {
     padding-top: 5px;
 }
 
@@ -1256,7 +1255,7 @@ p#back:hover:before {
 }
 
 #install #no-restart-msg {
-    background-color: #fff;
+    background: #fff;
     border: 1px solid #B6D9E5;
     border-radius: 3px;
     color: #294473;
@@ -1629,6 +1628,7 @@ a.button {
 .other .button.solaris,
 .windows .button.windows {
     display: inline-block;
+    margin: -4px 0 0;
 }
 
 /* @Images *********/
