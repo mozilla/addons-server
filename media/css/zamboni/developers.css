@@ -333,7 +333,7 @@ form .char-count b {
     margin-bottom: 0.5em;
 }
 
-#addon_categories_edit .addon-categories {
+#addon-categories-edit .addon-categories {
     -moz-column-count: 2;
     -webkit-column-count: 2;
     column-count: 2;

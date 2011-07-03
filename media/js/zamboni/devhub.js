@@ -328,7 +328,7 @@ function initEditAddon() {
         (function(parent_div, a){
             parent_div.find(".item").addClass("loading");
             parent_div.load($(a).attr('data-editurl'), function(){
-                if($('#addon_categories_edit').length) {
+                if($('#addon-categories-edit').length) {
                     initCatFields();
                 }
                 $(this).each(addonFormSubmit);

@@ -9,6 +9,7 @@ from decimal import Decimal
 from collections import namedtuple
 
 from django.conf import settings
+from django.core.cache import cache
 from django.utils import translation
 from django.utils.http import urlencode
 
@@ -31,6 +32,7 @@ from addons.forms import AddonFormBasic
 from addons.models import Addon, AddonUser, Charity, Category, AddonCategory
 from addons.utils import ReverseNameLookup
 from applications.models import Application, AppVersion
+from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from devhub.forms import ContribForm
 from devhub.models import ActivityLog, BlogPost, SubmitStep
 from files.models import File, FileUpload, Platform
@@ -688,13 +690,16 @@ class TestEdit(test_utils.TestCase):
         super(TestEdit, self).setUp()
         addon = self.get_addon()
         assert self.client.login(username='del@icio.us', password='password')
+
+        a = AddonCategory.objects.filter(addon=addon, category__id=22)[0]
+        a.feature = False
+        a.save()
+        AddonCategory.objects.filter(addon=addon, category__id=23).delete()
+        AddonCategory.objects.filter(addon=addon, category__id=24).delete()
+        cache.clear()
+
         self.url = reverse('devhub.addons.edit', args=[addon.slug])
         self.user = UserProfile.objects.get(pk=55021)
-
-        AddonCategory.objects.filter(addon=addon,
-                category=Category.objects.get(id=23)).delete()
-        AddonCategory.objects.filter(addon=addon,
-                category=Category.objects.get(id=24)).delete()
 
         self.tags = ['tag3', 'tag2', 'tag1']
         for t in self.tags:
@@ -964,6 +969,42 @@ class TestEdit(test_utils.TestCase):
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
         eq_(sorted(addon_cats), [22, 23])
+
+    def _feature_addon(self, addon_id=3615):
+        c = CollectionAddon.objects.create(addon_id=addon_id,
+            collection=Collection.objects.create())
+        FeaturedCollection.objects.create(collection=c.collection,
+                                          application_id=amo.FIREFOX.id)
+
+    @mock.patch.object(settings, 'NEW_FEATURES', True)
+    def test_edit_basic_categories_add_creatured(self):
+        """Ensure that categories cannot be changed for creatured add-ons."""
+        self._feature_addon()
+        self.cat_initial['categories'] = [22, 23]
+        self.client.post(self.basic_url, self.get_dict())
+        addon_cats = self.get_addon().categories.values_list('id', flat=True)
+
+        # This add-on's categories should not change.
+        eq_(sorted(addon_cats), [22])
+
+    @mock.patch.object(settings, 'NEW_FEATURES', True)
+    def test_edit_basic_categories_no_disclaimer(self):
+        """Ensure that there is a not disclaimer for non-creatured add-ons."""
+        r = self.client.get(self.basic_url)
+        doc = pq(r.content)
+        eq_(doc('#addon-categories-edit .select-addon-cats').length, 1)
+        eq_(doc('#addon-categories-edit > p').length, 0)
+        eq_(doc('#addon-categories-edit > ul').length, 0)
+
+    @mock.patch.object(settings, 'NEW_FEATURES', True)
+    def test_edit_basic_categories_disclaimer(self):
+        """Ensure that there is a disclaimer for creatured add-ons."""
+        self._feature_addon()
+        r = self.client.get(self.basic_url)
+        doc = pq(r.content)
+        eq_(doc('#addon-categories-edit .select-addon-cats').length, 0)
+        eq_(doc('#addon-categories-edit > p').length, 1)
+        eq_(doc('#addon-categories-edit > ul').length, 1)
 
     def test_edit_basic_categories_addandremove(self):
         AddonCategory(addon=self.addon, category_id=23).save()
