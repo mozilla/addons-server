@@ -165,7 +165,8 @@ class TestRecs(test_utils.TestCase):
                                     content_type='application/json')
         one = json.loads(response.content)
 
-        post_data = json.dumps(dict(guids=self.guids[:1], token2=one['token2']))
+        post_data = json.dumps(dict(guids=self.guids[:1],
+                                    token2=one['token2']))
         response = self.client.post(self.url, post_data,
                                     content_type='application/json')
         eq_(response.status_code, 200)
@@ -266,7 +267,6 @@ class TestPane(test_utils.TestCase):
 
     def _test_featured_addons(self):
         r = self.client.get(self.url)
-        doc = pq(r.content)
         p = pq(r.content)('#featured-addons')
 
         addon = Addon.objects.get(id=7661)
@@ -318,7 +318,7 @@ class TestPane(test_utils.TestCase):
         self._test_featured_personas()
 
     @mock.patch.object(settings._wrapped, 'NEW_FEATURES', True)
-    def test_featured_personas(self):
+    def test_new_featured_personas(self):
         self._test_featured_personas()
 
 

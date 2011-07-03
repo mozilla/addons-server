@@ -364,7 +364,7 @@ class TestUserRegisterForm(UserFormBase):
         self.assertFormError(r, 'form', 'password',
                              'That password is not allowed.')
 
-    def test_blacklisted_password(self):
+    def test_password_length(self):
         BlacklistedPassword.objects.create(password='password')
         data = {'email': 'testo@example.com',
                 'password': 'short',

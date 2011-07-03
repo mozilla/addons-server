@@ -50,7 +50,7 @@ class TestAddonManager(test_utils.TestCase):
         eq_(Addon.objects.featured(amo.FIREFOX).count(), 5)
 
     @patch.object(settings, 'NEW_FEATURES', True)
-    def test_featured(self):
+    def test_new_featured(self):
         featured = Addon.objects.featured(amo.FIREFOX)[0]
         eq_(featured.id, 1001)
         eq_(Addon.objects.featured(amo.FIREFOX).count(), 6)
@@ -197,11 +197,11 @@ class TestAddonModels(test_utils.TestCase):
         a = Addon.objects.get(pk=3615)
 
         v1 = Version.objects.create(addon=a, version='1.0')
-        f1 = File.objects.create(version=v1)
+        File.objects.create(version=v1)
         eq_(a.latest_version.id, v1.id)
 
         v2 = Version.objects.create(addon=a, version='2.0beta')
-        f2 = File.objects.create(version=v2, status=amo.STATUS_BETA)
+        File.objects.create(version=v2, status=amo.STATUS_BETA)
         eq_(a.latest_version.id, v1.id)  # Still should be f1
 
     def test_current_beta_version(self):
@@ -595,10 +595,10 @@ class TestAddonModels(test_utils.TestCase):
         eq_(self.newlines_helper(before), after)
 
     def test_newlines_empty_tag_block_nested(self):
-        before = ("Test.\n\n<blockquote><ul><li></li></ul></blockquote>\ntest.")
-        after = ("Test.\n\n<blockquote><ul><li></li></ul></blockquote>test.")
+        b = ("Test.\n\n<blockquote><ul><li></li></ul></blockquote>\ntest.")
+        a = ("Test.\n\n<blockquote><ul><li></li></ul></blockquote>test.")
 
-        eq_(self.newlines_helper(before), after)
+        eq_(self.newlines_helper(b), a)
 
     def test_newlines_empty_tag_block_nested_spaced(self):
         before = ("Test.\n\n<blockquote>\n\n<ul>\n\n<li>"
