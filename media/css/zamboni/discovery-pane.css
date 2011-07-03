@@ -1125,11 +1125,6 @@ body.detail {
     text-shadow: 0 1px 0 rgba(255,255,255,0.8);
 }
 
-.detail h1.addon,
-.detail h2.author {
-    width: 88%;
-}
-
 .detail h1.addon {
     color: #000;
     font-weight: bold;
@@ -1165,14 +1160,11 @@ body.detail {
 
 .detail p#back {
     background: #fff;
-    height: 26px;
-    position: absolute;
-    top: 4px;
-    right: 0;
+    float: right;
+    margin-left: 1em;
 }
 .html-rtl.detail p#back {
-    left: 0;
-    right: auto;
+    float: left;
     margin: 0 1em 1em 0;
 }
 
