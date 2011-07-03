@@ -240,7 +240,7 @@ header:after,
 
 .recs #mission,
 .recs #my-account {
-    margin-bottom: 10px;
+    margin-bottom: 3px;
 }
 
 .recs #mission {
@@ -1059,6 +1059,10 @@ ul.addons {
         display: none;
     }
 
+    .no-recs header.auth {
+        background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
+    }
+
     #main,
     #sub,
     #mission,
@@ -1205,9 +1209,6 @@ p#back:hover:before {
 }
 .html-rtl #install li:first-child {
     margin-right: 0;
-}
-
-#install li > a {
 }
 
 #install .privacy a {
