@@ -1432,13 +1432,12 @@ class TestReview(ReviewBase):
         eq_(response.status_code, 200)
 
         doc = pq(response.content)
-        validation = doc('#review-files .files div').eq(1)
+        validation = doc('#review-files .files ul').eq(0)
         eq_(validation.children().length, 1)
 
         eq_(validation.find('a').eq(0).text(), 'All Platforms')
-
-        eq_(validation.find('a').eq(1).text(), "Validation")
-        eq_(validation.find('a').eq(2).text(), "Contents")
+        eq_(validation.find('a').eq(1).text(), 'Validation')
+        eq_(validation.find('a').eq(2).text(), 'Contents')
 
         eq_(validation.find('a').length, 3)
 
@@ -1471,7 +1470,7 @@ class TestReview(ReviewBase):
             tds = doc('table#review-files > tr > td')
             eq_(tds.eq(i).find('strong').eq(0).text(),
                 "Files in this version:")
-            eq_(tds.eq(i).find('div').length, 3)
+            eq_(tds.eq(i).find('div').length, 4)
 
         eq_(tds.eq(1).find('table td').length, 1)
 
@@ -1524,8 +1523,8 @@ class TestReview(ReviewBase):
         r = self.client.get(self.url)
         doc = pq(r.content)
 
-        eq_(doc('#review-files .files > div').length, 2)
-        div = doc('#review-files .files div').eq(1)
+        eq_(doc('#review-files .files > ul').length, 2)
+        div = doc('#review-files .files > ul').eq()
         eq_(div.length, 1)
         eq_(div.find('a.install').text(), "All Platforms")
 

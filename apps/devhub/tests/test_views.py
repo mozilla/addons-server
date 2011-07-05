@@ -1859,7 +1859,6 @@ class TestSubmitStep1(TestSubmitBase):
         response = self.client.get(reverse('devhub.submit.1'))
         eq_(response.status_code, 200)
         doc = pq(response.content)
-        assert len(response.context['agreement_text'])
         links = doc('#agreement-container a')
         assert len(links)
         for ln in links:
