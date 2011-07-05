@@ -976,7 +976,7 @@ class TestEdit(test_utils.TestCase):
         FeaturedCollection.objects.create(collection=c.collection,
                                           application_id=amo.FIREFOX.id)
 
-    @mock.patch.object(settings, 'NEW_FEATURES', True)
+    @mock.patch.object(settings._wrapped, 'NEW_FEATURES', True)
     def test_edit_basic_categories_add_creatured(self):
         """Ensure that categories cannot be changed for creatured add-ons."""
         self._feature_addon()
@@ -987,7 +987,7 @@ class TestEdit(test_utils.TestCase):
         # This add-on's categories should not change.
         eq_(sorted(addon_cats), [22])
 
-    @mock.patch.object(settings, 'NEW_FEATURES', True)
+    @mock.patch.object(settings._wrapped, 'NEW_FEATURES', True)
     def test_edit_basic_categories_no_disclaimer(self):
         """Ensure that there is a not disclaimer for non-creatured add-ons."""
         r = self.client.get(self.basic_url)
@@ -996,7 +996,7 @@ class TestEdit(test_utils.TestCase):
         eq_(doc('#addon-categories-edit > p').length, 0)
         eq_(doc('#addon-categories-edit > ul').length, 0)
 
-    @mock.patch.object(settings, 'NEW_FEATURES', True)
+    @mock.patch.object(settings._wrapped, 'NEW_FEATURES', True)
     def test_edit_basic_categories_disclaimer(self):
         """Ensure that there is a disclaimer for creatured add-ons."""
         self._feature_addon()

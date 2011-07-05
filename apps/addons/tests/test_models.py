@@ -43,13 +43,13 @@ class TestAddonManager(test_utils.TestCase):
     def setUp(self):
         set_user(None)
 
-    @patch.object(settings, 'NEW_FEATURES', False)
+    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_featured(self):
         featured = Addon.objects.featured(amo.FIREFOX)[0]
         eq_(featured.id, 1)
         eq_(Addon.objects.featured(amo.FIREFOX).count(), 5)
 
-    @patch.object(settings, 'NEW_FEATURES', True)
+    @patch.object(settings._wrapped, 'NEW_FEATURES', True)
     def test_new_featured(self):
         featured = Addon.objects.featured(amo.FIREFOX)[0]
         eq_(featured.id, 1001)
@@ -123,7 +123,7 @@ class TestAddonManagerFeatured(test_utils.TestCase):
     fixtures = ['addons/featured', 'bandwagon/featured_collections',
                 'base/collections', 'base/featured']
 
-    @patch.object(settings, 'NEW_FEATURES', True)
+    @patch.object(settings._wrapped, 'NEW_FEATURES', True)
     def test_new_featured(self):
         f = Addon.objects.featured(amo.FIREFOX)
         eq_(f.count(), 6)
@@ -208,7 +208,7 @@ class TestAddonModels(test_utils.TestCase):
         a = Addon.objects.get(pk=5299)
         eq_(a.current_beta_version.id, 50000)
 
-    @patch.object(settings, 'NEW_FEATURES', False)
+    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_current_version_mixed_statuses(self):
         """Mixed file statuses are evil (bug 558237)."""
         a = Addon.objects.get(pk=3895)
@@ -364,7 +364,7 @@ class TestAddonModels(test_utils.TestCase):
         assert a.is_featured(amo.FIREFOX, 'en-US'), (
             'globally featured add-on not recognized')
 
-    @patch.object(settings, 'NEW_FEATURES', False)
+    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_is_category_featured(self):
         """Test if an add-on is category featured."""
         Feature.objects.filter(addon=1001).delete()
@@ -384,7 +384,7 @@ class TestAddonModels(test_utils.TestCase):
         assert not Addon.objects.get(pk=1001).is_category_featured(), (
             'Expected add-on to not be category-featured')
 
-    @patch.object(settings, 'NEW_FEATURES', True)
+    @patch.object(settings._wrapped, 'NEW_FEATURES', True)
     def test_new_is_category_featured(self):
         """Test if an add-on is category featured."""
         a = Addon.objects.get(pk=1001)
@@ -1131,11 +1131,11 @@ class TestAddonModelsFeatured(test_utils.TestCase):
         f = Addon.featured_random(amo.SUNBIRD, 'en-US')
         eq_(f, [])
 
-    @patch.object(settings, 'NEW_FEATURES', False)
+    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
     def test_featured_random(self):
         self._test_featured_random()
 
-    @patch.object(settings, 'NEW_FEATURES', True)
+    @patch.object(settings._wrapped, 'NEW_FEATURES', True)
     def test_new_featured_random(self):
         self._test_featured_random()
 
@@ -1397,13 +1397,13 @@ REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
 class TestCharity(test_utils.TestCase):
     fixtures = ['base/charity.json']
 
-    @patch.object(settings, 'REDIRECT_URL', REDIRECT_URL)
+    @patch.object(settings._wrapped, 'REDIRECT_URL', REDIRECT_URL)
     def test_url(self):
         charity = Charity(name="a", paypal="b", url="http://foo.com")
         charity.save()
         assert charity.outgoing_url.startswith(REDIRECT_URL)
 
-    @patch.object(settings, 'REDIRECT_URL', REDIRECT_URL)
+    @patch.object(settings._wrapped, 'REDIRECT_URL', REDIRECT_URL)
     def test_url_foundation(self):
         foundation = Charity.objects.get(pk=amo.FOUNDATION_ORG)
         assert not foundation.outgoing_url.startswith(REDIRECT_URL)
