@@ -60,8 +60,9 @@
       <tr class="listing-body">
         <td class="files">
           <div><strong>{{ _('Files in this version:') }}</strong></div>
+          <ul>
           {% for file in version.all_files %}
-          <div>
+          <li>
             <span class="light">
               <strong><a href="{{ file.get_url_path(addon.app, 'editor') }}" class="install"
                   data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ file.platform }}</a></strong>
@@ -84,8 +85,21 @@
               {% endif %}
               {% endif %}
             </span>
-          </div>
+          </li>
           {% endfor %}
+          </ul>
+          <div><strong>{{ _('Compatibility:') }}</strong></div>
+          <ul>
+            {% for compat in version.compatible_apps.values() %}
+            <li>
+              {% if compat.application_id in amo.APPS_ALL %}
+                <div class="app-icon ed-sprite-{{ amo.APPS_ALL[compat.application_id].short }}"
+                  title="{{ amo.APPS_ALL[compat.application_id].pretty}}"></div>
+              {% endif %}
+              {{ compat }}
+            </li>
+            {% endfor %}
+          </ul>
         </td>
         <td>
           <table class="activity">
@@ -248,19 +262,6 @@
   <ul>
     {% for category in addon.categories.all() %}
     <li>{{ category.name }}</a></li>
-    {% endfor %}
-  </ul>
-
-  <strong>{{ _('Compatibility') }}</strong>
-  <ul>
-    {% for compat in version.compatible_apps.values() %}
-    <li>
-      {% if compat.application_id in amo.APPS_ALL %}
-        <div class="app-icon ed-sprite-{{ amo.APPS_ALL[compat.application_id].short }}"
-          title="{{ amo.APPS_ALL[compat.application_id].pretty}}"></div>
-      {% endif %}
-      {{ compat }}
-    </li>
     {% endfor %}
   </ul>
 

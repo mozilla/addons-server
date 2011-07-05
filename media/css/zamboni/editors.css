@@ -604,9 +604,13 @@ div.editor-stats-table > div.editor-stats-dark {
 #review-files .files div:first-child {
     padding-top: 0;
 }
+#review-files .files li,
 #review-files .files > div {
     padding-top: 5px;
     line-height: 1.3em;
+}
+#review-files .files ul {
+    margin: 0 0 5px 15px;
 }
 #review-files .no-activity {
     color: #777777;
