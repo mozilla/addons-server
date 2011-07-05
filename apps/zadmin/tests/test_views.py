@@ -743,7 +743,7 @@ class TestBulkValidationTask(BulkValidationTest):
     def create_version(self, addon, statuses, version_str=None):
         max = self.max
         if version_str:
-            max = AppVersion.objects.get(version=version_str)
+            max = AppVersion.objects.filter(version=version_str)[0]
         version = Version.objects.create(addon=addon)
 
         ApplicationsVersions.objects.create(application=self.application,
