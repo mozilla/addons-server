@@ -64,6 +64,10 @@ def schematic(ctx):
         ctx.local("python2.6 ./vendor/src/schematic/schematic migrations")
 
 
+@task
+def make_crons(ctx):
+    with ctx.lcd(AMO_DIR):
+        ctx.local("python2.6 ./scripts/crontab/make-crons.py")
 
 
 @hostgroups(['amo_gearman'])
@@ -133,6 +137,7 @@ def update_amo(ctx):
     update_locales()
     compress_assets()
     schematic()
+    make_crons()
     # Sync out media to all the servers first.
     deploy_media()
     enable_cron()
