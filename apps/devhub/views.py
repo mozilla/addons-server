@@ -1063,17 +1063,8 @@ def submit(request, step):
         response.set_cookie(DEV_AGREEMENT_COOKIE)
         return response
 
-    base = os.path.join(os.path.dirname(amo.__file__), '..', '..', 'locale')
-    # Note that the agreement is not localized (for legal reasons)
-    # but the official version is stored in en_US.
-    agrmt = os.path.join(base,
-                'en_US', 'pages', 'docs', 'policies', 'agreement.thtml')
-    f = codecs.open(agrmt, encoding='utf8')
-    agreement_text = f.read()
-    f.close()
-
     return jingo.render(request, 'devhub/addons/submit/start.html',
-                        {'agreement_text': agreement_text, 'step': step})
+                        {'step': step})
 
 
 @login_required
