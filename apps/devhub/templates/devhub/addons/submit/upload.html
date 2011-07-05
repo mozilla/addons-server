@@ -1,5 +1,7 @@
 {% extends "devhub/addons/submit/base.html" %}
 
+{% block title %}{{ dev_page_title(_('Step 2'), addon) }}{% endblock %}
+
 {% block primary %}
 <form method="post" id="create-addon" class="item" action="">
   {{ csrf() }}
