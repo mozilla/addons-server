@@ -10,7 +10,7 @@
 }
 /* sprites for data grid icons */
 
-.app-icon {
+.app-icon, .platform-icon {
     float: left;
     margin-right: 4px;
     background: url(../../img/developers/editor-sprite.png) no-repeat top left;
@@ -26,6 +26,21 @@
 .ed-sprite-thunderbird { background-position: 0 -563px; }
 .ed-sprite-jetpack { background-position: 0 -629px; }
 .ed-sprite-restartless { background-position: 0 -695px; }
+
+.platform-icon {
+    background: url(../../img/developers/platforms.png) no-repeat top left;
+}
+.plat-sprite-all { background-position: 0 0; }
+.plat-sprite-any { background-position: 0 0; }
+.plat-sprite-allmobile { background-position: 0 -16px; }
+.plat-sprite-linux { background-position: 0 -32px; }
+.plat-sprite-mac { background-position: 0 -48px; }
+.plat-sprite-bsd { background-position: 0 -64px; }
+.plat-sprite-windows { background-position: 0 -80px; }
+.plat-sprite-solaris { background-position: 0 -96px; }
+.plat-sprite-android { background-position: 0 -112px; }
+.plat-sprite-maemo { background-position: 0 -128px; }
+
 .sort-icon {
     background: url(../../img/developers/editor-sprite.png) no-repeat top left;
 }
