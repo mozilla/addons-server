@@ -95,13 +95,6 @@ class BlocklistItemTest(BlocklistTest):
         # There are only text nodes.
         assert all(e.nodeType == 3 for e in children)
 
-    def test_new_cookie_per_user(self):
-        self.client.get(self.fx4_url)
-        assert settings.BLOCKLIST_COOKIE in self.client.cookies
-        c = self.client.cookies[settings.BLOCKLIST_COOKIE]
-        eq_(c['path'], '/blocklist/')
-        eq_(c['secure'], True)
-
     def test_existing_user_cookie(self):
         self.client.cookies[settings.BLOCKLIST_COOKIE] = 'adfadf'
         self.client.get(self.fx4_url)
