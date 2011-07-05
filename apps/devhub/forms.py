@@ -355,7 +355,11 @@ CompatFormSet = modelformset_factory(
     form=CompatForm, can_delete=True, extra=0)
 
 
-class AddonPlatformForm(happyforms.Form):
+class NewAddonForm(happyforms.Form):
+    upload = forms.ModelChoiceField(widget=forms.HiddenInput,
+        queryset=FileUpload.objects.filter(valid=True),
+        error_messages={'invalid_choice': _lazy('There was an error with your '
+                                                'upload. Please try again.')})
     desktop_platforms = forms.ModelMultipleChoiceField(
             queryset=Platform.objects,
             widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
@@ -372,6 +376,8 @@ class AddonPlatformForm(happyforms.Form):
 
     def clean(self):
         if not self.errors:
+            xpi = parse_addon(self.cleaned_data['upload'].path)
+            addons.forms.clean_name(xpi['name'])
             self._clean_all_platforms()
         return self.cleaned_data
 
@@ -379,19 +385,6 @@ class AddonPlatformForm(happyforms.Form):
         if (not self.cleaned_data['desktop_platforms']
             and not self.cleaned_data['mobile_platforms']):
             raise forms.ValidationError(_('Need at least one platform.'))
-
-
-class NewAddonForm(AddonPlatformForm):
-    upload = forms.ModelChoiceField(widget=forms.HiddenInput,
-        queryset=FileUpload.objects.filter(valid=True),
-        error_messages={'invalid_choice': _lazy('There was an error with your '
-                                                'upload. Please try again.')})
-
-    def clean(self):
-        if not self.errors:
-            xpi = parse_addon(self.cleaned_data['upload'].path)
-            addons.forms.clean_name(xpi['name'])
-        return self.cleaned_data
 
 
 class NewVersionForm(NewAddonForm):
