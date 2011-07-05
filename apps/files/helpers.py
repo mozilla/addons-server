@@ -132,6 +132,13 @@ class FileViewer:
         UTF-8 and UTF-16 files appropriately. Return file contents and
         a list of error messages.
         """
+        try:
+            return self._read_file(allow_empty)
+        except (IOError, OSError):
+            self.selected['msg'] = _('That file no longer exists.')
+            return ''
+
+    def _read_file(self, allow_empty=False):
         if not self.selected and allow_empty:
             return ''
         assert self.selected, 'Please select a file'
@@ -139,12 +146,6 @@ class FileViewer:
             msg = _('File size is over the limit of %s.'
                     % (filesizeformat(settings.FILE_VIEWER_SIZE_LIMIT)))
             self.selected['msg'] = msg
-            return ''
-
-        # Between the file data going into the cache and the file being
-        # accessed, the individual file has been removed.
-        if not os.path.exists(self.selected['full']):
-            self.selected['msg'] = _('That file no longer exists.')
             return ''
 
         with open(self.selected['full'], 'r') as opened:

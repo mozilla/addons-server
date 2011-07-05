@@ -66,7 +66,7 @@ class FilesBase:
         # Setting this to True, so we are delaying the extraction of files,
         # in the tests, the files won't be extracted.
         # Most of these tests extract as needed to.
-        Switch.objects.create(name='delay-file-viewer', active=True)
+        Switch.objects.get_or_create(name='delay-file-viewer', active=True)
 
     def tearDown(self):
         self.file_viewer.cleanup()
