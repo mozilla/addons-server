@@ -29,7 +29,13 @@ def setup_mapping():
     # Most fields are detected and mapped automatically.
     m = {
         # Turn off analysis on name so we can sort by it.
-        'name': {'index': 'not_analyzed', 'type': 'string'},
+        'name': {
+            'type': 'multi_field',
+            'fields': {
+                'name': {'type': 'string', 'index': 'not_analyzed'},
+                'fulltext': {'type': 'string', 'index': 'analyzed'},
+            },
+        },
     }
     es = elasticutils.get_es()
     try:
