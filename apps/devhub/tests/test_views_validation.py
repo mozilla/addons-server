@@ -51,6 +51,7 @@ class TestUploadValidation(BaseUploadTest):
 class TestUploadErrors(BaseUploadTest):
     fixtures = ('base/apps', 'base/addon_3615')
 
+    @mock.patch.object(settings, 'SHOW_UUID_ERRORS_IN_VALIDATION', True)
     def test_dupe_uuid(self):
         addon = Addon.objects.get(pk=3615)
         d = parse_addon(self.get_upload('extension.xpi').path)

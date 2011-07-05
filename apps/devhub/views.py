@@ -723,14 +723,18 @@ def json_upload_detail(upload):
                 plat_exclude = set(s) - set(supported_platforms)
                 plat_exclude = [str(p) for p in plat_exclude]
             except django_forms.ValidationError, exc:
-                m = []
-                for msg in exc.messages:
-                    # Simulate a validation error so the UI displays
-                    # it as such
-                    m.append({'type': 'error', 'message': msg, 'tier': 1})
-                v = make_validation_result(dict(error='',
-                                                validation=dict(messages=m)))
-                return json_view.error(v)
+                if settings.SHOW_UUID_ERRORS_IN_VALIDATION:
+                    m = []
+                    for msg in exc.messages:
+                        # Simulate a validation error so the UI displays
+                        # it as such
+                        m.append({'type': 'error',
+                                  'message': msg, 'tier': 1})
+                    v = make_validation_result(dict(error='',
+                                                    validation=dict(messages=m)))
+                    return json_view.error(v)
+                else:
+                    log.error("XPI parsing error, ignored: %s" % exc)
 
     return make_validation_result(dict(upload=upload.uuid,
                                        validation=validation,

@@ -1027,3 +1027,6 @@ KNOWN_PROXIES = []
 
 # Blog URL
 DEVELOPER_BLOG_URL = "http://blog.mozilla.com/addons/feed/"
+
+# TODO(Kumar) Remove this (or set to True) when it works. See bug 636494
+SHOW_UUID_ERRORS_IN_VALIDATION = False
