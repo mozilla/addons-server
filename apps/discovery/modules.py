@@ -51,7 +51,9 @@ class TemplatePromo(PromoModule):
         return {}
 
     def render(self, **kw):
-        r = jingo.render_to_string(self.request, self.template, self.context())
+        c = dict(self.context())
+        c.update(kw)
+        r = jingo.render_to_string(self.request, self.template, c)
         return jinja2.Markup(r)
 
 
