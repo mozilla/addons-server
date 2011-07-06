@@ -159,7 +159,7 @@ class TestFileHelper(test_utils.TestCase):
         rt = files.index(u'chrome')
         eq_(files[rt:rt + 3], [u'chrome', u'chrome/foo', u'chrome.manifest'])
 
-    @patch.object(settings._wrapped, 'FILE_VIEWER_SIZE_LIMIT', 5)
+    @patch.object(settings, 'FILE_VIEWER_SIZE_LIMIT', 5)
     def test_file_size(self):
         self.viewer.extract()
         self.viewer.get_files()
@@ -168,7 +168,7 @@ class TestFileHelper(test_utils.TestCase):
         eq_(res, '')
         assert self.viewer.selected['msg'].startswith('File size is')
 
-    @patch.object(settings._wrapped, 'FILE_UNZIP_SIZE_LIMIT', 5)
+    @patch.object(settings, 'FILE_UNZIP_SIZE_LIMIT', 5)
     def test_contents_size(self):
         self.assertRaises(forms.ValidationError, self.viewer.extract)
 

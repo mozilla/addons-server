@@ -204,7 +204,7 @@ class TestValidateFile(BaseUploadTest):
         doc = pq(r.content)
         assert doc('time').text()
 
-    @mock.patch.object(settings._wrapped, 'EXPOSE_VALIDATOR_TRACEBACKS', False)
+    @mock.patch.object(settings, 'EXPOSE_VALIDATOR_TRACEBACKS', False)
     @mock.patch('devhub.tasks.run_validator')
     def test_validator_errors(self, v):
         v.side_effect = ValueError('catastrophic failure in amo-validator')
@@ -275,7 +275,7 @@ class TestValidateFile(BaseUploadTest):
         doc = pq(data['validation']['messages'][0]['description'][0])
         eq_(doc('a').text(), 'https://bugzilla.mozilla.org/')
 
-    @mock.patch.object(settings._wrapped, 'EXPOSE_VALIDATOR_TRACEBACKS', False)
+    @mock.patch.object(settings, 'EXPOSE_VALIDATOR_TRACEBACKS', False)
     @mock.patch('devhub.tasks.run_validator')
     def test_hide_validation_traceback(self, run_validator):
         run_validator.side_effect = RuntimeError('simulated task error')
@@ -356,7 +356,7 @@ class TestCompatibilityResults(test_utils.TestCase):
         assert doc('time').text()
         eq_(doc('table tr td:eq(1)').text(), 'Firefox 4.0.*')
 
-    @mock.patch.object(settings._wrapped, 'EXPOSE_VALIDATOR_TRACEBACKS', True)
+    @mock.patch.object(settings, 'EXPOSE_VALIDATOR_TRACEBACKS', True)
     def test_validation_error(self):
         try:
             raise RuntimeError('simulated task error')
@@ -367,7 +367,7 @@ class TestCompatibilityResults(test_utils.TestCase):
         eq_(data['validation'], '')
         eq_(data['error'], error)
 
-    @mock.patch.object(settings._wrapped, 'EXPOSE_VALIDATOR_TRACEBACKS', False)
+    @mock.patch.object(settings, 'EXPOSE_VALIDATOR_TRACEBACKS', False)
     def test_hide_validation_traceback(self):
         try:
             raise RuntimeError('simulated task error')

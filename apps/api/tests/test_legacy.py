@@ -392,7 +392,7 @@ class APITest(TestCase):
                             '<slug>%s</slug>' %
                             Addon.objects.get(pk=5299).slug)
 
-    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
+    @patch.object(settings, 'NEW_FEATURES', False)
     def test_is_featured(self):
         self.assertContains(make_call('addon/5299', version=1.5),
                             '<featured>0</featured>')
@@ -411,7 +411,7 @@ class APITest(TestCase):
                                           lang=lang, app=app),
                                 '<featured>%s</featured>' % result)
 
-    @patch.object(settings._wrapped, 'NEW_FEATURES', True)
+    @patch.object(settings, 'NEW_FEATURES', True)
     def test_new_is_featured(self):
         self.assertContains(make_call('addon/5299', version=1.5),
                             '<featured>0</featured>')
@@ -427,7 +427,7 @@ class APITest(TestCase):
                                           lang=lang, app=app),
                                 '<featured>%s</featured>' % result)
 
-    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
+    @patch.object(settings, 'NEW_FEATURES', False)
     def test_is_category_featured(self):
         self.assertContains(make_call('addon/5299', version=1.5),
                             '<featured>0</featured>')
@@ -445,7 +445,7 @@ class APITest(TestCase):
                                           lang=lang, app=app),
                                 '<featured>%s</featured>' % result)
 
-    @patch.object(settings._wrapped, 'NEW_FEATURES', True)
+    @patch.object(settings, 'NEW_FEATURES', True)
     def test_new_is_category_featured(self):
         self.assertContains(make_call('addon/5299', version=1.5),
                             '<featured>0</featured>')

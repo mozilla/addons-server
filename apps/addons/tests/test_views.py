@@ -1255,11 +1255,11 @@ class TestMobileHome(TestMobile):
             [a.id for a in sorted(popular, key=lambda x: x.average_daily_users,
                                   reverse=True)])
 
-    @patch.object(settings._wrapped, 'NEW_FEATURES', False)
+    @patch.object(settings, 'NEW_FEATURES', False)
     def test_addons(self):
         self._test_addons()
 
-    @patch.object(settings._wrapped, 'NEW_FEATURES', True)
+    @patch.object(settings, 'NEW_FEATURES', True)
     def test_new_addons(self):
         self._test_addons()
 

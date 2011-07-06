@@ -995,7 +995,7 @@ class TestFeaturedPage(test_utils.TestCase):
         if hasattr(Addon, '_feature'):
             del Addon._feature
 
-    @mock.patch.object(settings._wrapped, 'NEW_FEATURES', False)
+    @mock.patch.object(settings, 'NEW_FEATURES', False)
     def test_featured_addons(self):
         """Make sure that only featured add-ons are shown."""
         # Persona returned by featured.

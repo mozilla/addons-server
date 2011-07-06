@@ -361,7 +361,7 @@ class TestFileViewer(FilesBase, test_utils.TestCase):
         eq_(res['X-SENDFILE'],
             self.file_viewer.get_files().get(binary)['full'])
 
-    @patch.object(settings._wrapped, 'FILE_VIEWER_SIZE_LIMIT', 5)
+    @patch.object(settings, 'FILE_VIEWER_SIZE_LIMIT', 5)
     def test_file_size(self):
         self.file_viewer.extract()
         res = self.client.get(self.file_url(not_binary))

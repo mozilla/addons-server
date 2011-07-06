@@ -288,11 +288,11 @@ class TestPane(test_utils.TestCase):
         eq_(li.find('h3.vtruncate').text(), unicode(addon.name))
         eq_(li.find('img').attr('src'), addon.icon_url)
 
-    @mock.patch.object(settings._wrapped, 'NEW_FEATURES', False)
+    @mock.patch.object(settings, 'NEW_FEATURES', False)
     def test_featured_addons(self):
         self._test_featured_addons()
 
-    @mock.patch.object(settings._wrapped, 'NEW_FEATURES', True)
+    @mock.patch.object(settings, 'NEW_FEATURES', True)
     def test_new_featured_addons(self):
         self._test_featured_addons()
 
@@ -313,11 +313,11 @@ class TestPane(test_utils.TestCase):
         eq_(a.attr('target'), '_self')
         eq_(p.find('.addon-title').text(), unicode(addon.name))
 
-    @mock.patch.object(settings._wrapped, 'NEW_FEATURES', False)
+    @mock.patch.object(settings, 'NEW_FEATURES', False)
     def test_featured_personas(self):
         self._test_featured_personas()
 
-    @mock.patch.object(settings._wrapped, 'NEW_FEATURES', True)
+    @mock.patch.object(settings, 'NEW_FEATURES', True)
     def test_new_featured_personas(self):
         self._test_featured_personas()
 
