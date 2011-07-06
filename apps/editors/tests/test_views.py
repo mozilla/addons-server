@@ -482,8 +482,8 @@ class TestQueueBasics(QueueTest):
         eq_(doc('table.data-grid tr th:eq(2)').text(), u'Waiting Time')
         eq_(doc('table.data-grid tr th:eq(3)').text(), u'Flags')
         eq_(doc('table.data-grid tr th:eq(4)').text(), u'Applications')
-        eq_(doc('table.data-grid tr th:eq(5)').text(),
-            u'Additional Information')
+        eq_(doc('table.data-grid tr th:eq(5)').text(), u'Platforms')
+        eq_(doc('table.data-grid tr th:eq(6)').text(), u'Additional')
 
     def test_no_results(self):
         File.objects.all().delete()
@@ -1162,8 +1162,9 @@ class TestQueueSearch(SearchTest):
                           platform=amo.PLATFORM_WIN)
         r = self.search({'platform_ids': [amo.PLATFORM_WIN.id]})
         doc = pq(r.content)
-        eq_(doc('table.data-grid tr').eq(1).children('td').eq(5).text(),
-            'Windows only')
+        title = (doc('table.data-grid tr').eq(1).children('td')
+                                          .eq(5).find('div').attr('title'))
+        eq_(title, 'Windows')
 
     def test_search_by_app(self):
         r = self.search({'application_id': [amo.MOBILE.id]})
@@ -1524,7 +1525,7 @@ class TestReview(ReviewBase):
         doc = pq(r.content)
 
         eq_(doc('#review-files .files > ul').length, 2)
-        div = doc('#review-files .files > ul').eq()
+        div = doc('#review-files .files > ul').eq(0)
         eq_(div.length, 1)
         eq_(div.find('a.install').text(), "All Platforms")
 

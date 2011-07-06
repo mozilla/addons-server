@@ -159,13 +159,13 @@ class TestAdditionalInfoInQueue(test_utils.TestCase):
 
     def test_platform(self):
         self.row.file_platform_ids = [amo.PLATFORM_LINUX.id]
-        eq_(self.table.render_additional_info(self.row), u'Linux only')
+        assert "plat-sprite-linux" in self.table.render_platforms(self.row)
 
     def test_combo(self):
         self.row.is_site_specific = True
-        self.row.file_platform_ids = [amo.PLATFORM_MAC.id]
+        self.row.external_software = True
         eq_(self.table.render_additional_info(self.row),
-            u'Site Specific, Mac OS X only')
+            u'Site Specific, Requires External Software')
 
     def test_all_platforms(self):
         self.row.file_platform_ids = [amo.PLATFORM_ALL.id]
