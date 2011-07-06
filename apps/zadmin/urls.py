@@ -47,6 +47,8 @@ urlpatterns = patterns('',
     url('^addon-name-blocklist$', views.addon_name_blocklist,
         name='zadmin.addon-name-blocklist'),
     url('^addon-search$', views.addon_search, name='zadmin.addon-search'),
+    url('^oauth-consumer-create$', views.oauth_consumer_create,
+        name='zadmin.oauth-consumer-create'),
 
     # The Django admin.
     url('^models/', include(admin.site.urls)),

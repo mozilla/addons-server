@@ -40,7 +40,8 @@ from files.models import Approval, File
 from versions.models import Version
 
 from . import tasks
-from .forms import BulkValidationForm, NotifyForm, FeaturedCollectionFormSet
+from .forms import (BulkValidationForm, FeaturedCollectionFormSet, NotifyForm,
+                    OAuthConsumerForm)
 from .models import ValidationJob, EmailPreviewTopic, ValidationJobTally
 
 log = commonware.log.getLogger('z.zadmin')
@@ -479,3 +480,16 @@ def addon_search(request):
             return redirect('/admin/addons?q=[%s]' % qs[0].id)
         ctx['addons'] = qs
     return jingo.render(request, 'zadmin/addon-search.html', ctx)
+
+
+@admin.site.admin_view
+def oauth_consumer_create(request):
+    form = OAuthConsumerForm(request.POST or None)
+    if form.is_valid():
+        # Generate random codes and save.
+        form.instance.user = request.user
+        form.instance.generate_random_codes()
+        return redirect('admin:piston_consumer_changelist')
+
+    return jingo.render(request, 'zadmin/oauth-consumer-create.html',
+                        {'form':form})

@@ -7,6 +7,7 @@ from django.forms.models import modelformset_factory
 from django.template import Context, Template, TemplateSyntaxError
 
 import happyforms
+from piston.models import Consumer
 from tower import ugettext_lazy as _lazy
 from quieter_formset.formset import BaseModelFormSet
 
@@ -158,3 +159,9 @@ class BaseFeaturedCollectionFormSet(BaseModelFormSet):
 FeaturedCollectionFormSet = modelformset_factory(FeaturedCollection,
     form=FeaturedCollectionForm, formset=BaseFeaturedCollectionFormSet,
     can_delete=True, extra=0)
+
+
+class OAuthConsumerForm(happyforms.ModelForm):
+    class Meta:
+        model = Consumer
+        fields = ['name', 'description', 'status']

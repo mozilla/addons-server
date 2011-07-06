@@ -11,6 +11,7 @@ from django.core import mail
 import mock
 from nose.plugins.attrib import attr
 from nose.tools import eq_
+from piston.models import Consumer
 from pyquery import PyQuery as pq
 import test_utils
 
@@ -1123,3 +1124,18 @@ class TestFeatures(test_utils.TestCase):
         d.update(DELETE=True)
         r = self.client.post(self.url, formset(d, initial_count=1))
         eq_(FeaturedCollection.objects.count(), 0)
+
+
+class TestOAuth(test_utils.TestCase):
+    fixtures = ['base/users',]
+
+    def setUp(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+
+    def test_create_consumer(self):
+        self.client.post(reverse('zadmin.oauth-consumer-create'),
+                         data={'name': 'Test',
+                               'description': 'Test description',
+                               'status': 'accepted'})
+        eq_(Consumer.objects.count(), 1)
