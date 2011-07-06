@@ -52,7 +52,6 @@
                      _("These flags are used to classify add-ons.")) }}
             </th>
             <td>
-              <div id="addon-flags">
               {{ flags(_("This is a site-specific add-on."),
                        form.site_specific if editable else addon.site_specific, editable) }}
 
@@ -62,10 +61,6 @@
 
               {{ flags(_("This add-on contains binary components."),
                        form.binary if editable else addon.binary, editable) }}
-              {% if not editable %}
-                {% call empty_unless(addon.site_specific or addon.external_software or addon.binary) %}{% endcall %}
-              {% endif %}
-              </div>
             </td>
           </tr>
 
