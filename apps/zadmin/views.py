@@ -474,8 +474,8 @@ def addon_search(request):
         if q.isdigit():
             qs = Addon.objects.filter(id=int(q))
         else:
-            qs = (Addon.search().query(**{'name.fulltext': q.lower()})
-                  .order_by('name')[:100])
+            qs = (Addon.search().query(name=q.lower())
+                  .order_by('name_sort')[:100])
         if len(qs) == 1:
             return redirect('/admin/addons?q=[%s]' % qs[0].id)
         ctx['addons'] = qs

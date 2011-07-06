@@ -10,6 +10,7 @@ import elasticutils
 import amo
 from amo.decorators import write
 from amo.utils import sorted_groupby
+from translations.models import Translation
 from . import cron, search  # Pull in tasks from cron.
 from .forms import get_satisfaction
 from .models import Addon, Category, Preview
@@ -105,17 +106,36 @@ def index_addons(ids, **kw):
         return
     es = elasticutils.get_es()
     log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
-    for addon in Addon.objects.filter(id__in=ids).transform(attach_categories):
+    qs = (Addon.uncached.filter(id__in=ids).transform(attach_categories)
+          .transform(attach_translations))
+    for addon in qs:
         Addon.index(search.extract(addon), bulk=True, id=addon.id)
     es.flush_bulk(forced=True)
 
 
 def attach_categories(addons):
+    """Put all of the add-on's categories into a category_ids list."""
     addon_dict = dict((a.id, a) for a in addons)
     categories = (Category.objects.filter(addon__in=addon_dict)
                   .values_list('id', 'addoncategory__addon'))
     for addon, cats in sorted_groupby(categories, lambda x: x[1]):
         addon_dict[addon].category_ids = [c[0] for c in cats]
+
+
+def attach_translations(addons):
+    """Put all translations into a translations dict."""
+    fields = Addon._meta.translated_fields
+    ids = {}
+    for addon in addons:
+        addon.translations = {}
+        ids.update((getattr(addon, field.attname, None), addon)
+                   for field in fields)
+    ids.pop(None, None)
+    qs = (Translation.objects.filter(id__in=ids, localized_string__isnull=False)
+          .values_list('id', 'locale', 'localized_string'))
+    for id, translations in sorted_groupby(qs, lambda x: x[0]):
+        ids[id].translations[id] = [(locale, string)
+                                    for id, locale, string in translations]
 
 
 @task

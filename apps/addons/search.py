@@ -6,17 +6,20 @@ import elasticutils
 import pyes.exceptions as pyes
 
 from .models import Addon
+from bandwagon.models import Collection
 from compat.models import AppCompat
 
 
 def extract(addon):
     """Extract indexable attributes from an add-on."""
-    attrs = ('id', 'name', 'created', 'last_updated', 'weekly_downloads',
+    attrs = ('id', 'created', 'last_updated', 'weekly_downloads',
              'bayesian_rating', 'average_daily_users', 'status', 'type',
              'is_disabled')
     d = dict(zip(attrs, attrgetter(*attrs)(addon)))
     # Coerce the Translation into a string.
-    d['name'] = unicode(d['name']).lower()
+    d['name_sort'] = unicode(addon.name).lower()
+    d['name'] = [string.lower()
+                 for locale, string in addon.translations.get(addon.name_id, [])]
     d['app'] = [a.id for a in addon.compatible_apps]
     # This is an extra query, not good for perf.
     d['category'] = getattr(addon, 'category_ids', [])
@@ -29,13 +32,7 @@ def setup_mapping():
     # Most fields are detected and mapped automatically.
     m = {
         # Turn off analysis on name so we can sort by it.
-        'name': {
-            'type': 'multi_field',
-            'fields': {
-                'name': {'type': 'string', 'index': 'not_analyzed'},
-                'fulltext': {'type': 'string', 'index': 'analyzed'},
-            },
-        },
+        'name_sort': {'type': 'string', 'index': 'not_analyzed'},
     }
     es = elasticutils.get_es()
     try:

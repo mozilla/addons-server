@@ -353,7 +353,7 @@ class ESBaseFilter(BaseFilter):
         super(ESBaseFilter, self).__init__(request, base, key, default)
 
     def filter(self, field):
-        sorts = {'name': 'name',
+        sorts = {'name': 'name_sort',
                  'created': '-created',
                  'updated': '-last_updated',
                  'popular': '-weekly_downloads',
