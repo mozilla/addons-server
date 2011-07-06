@@ -1,5 +1,7 @@
 {% extends "devhub/addons/submit/base.html" %}
 
+{% block title %}{{ dev_page_title(_('Step 1'), addon) }}{% endblock %}
+
 {% block primary %}
 <h3>{{ _('Step 1. Getting Started') }}</h3>
 <p>
@@ -23,13 +25,13 @@
 {% endtrans %}
 </p>
 <div id="agreement-container">
-  {{ agreement_text|safe }}
+  {% include 'amo/developer_agreement.html' %}
 </div>
 <div id="agreement-extra-links">
-  <a href="{{ remora_url('/developers/docs/policies/agreement') }}">
+  <a href="{{ url('devhub.docs', 'policies', 'agreement') }}">
     {{ _('Printable Version') }}</a>
   <span>&bull;</span>
-  <a href="{{ remora_url('/developers/docs/policies') }}">
+  <a href="{{ url('devhub.docs', 'policies') }}">
     {{ _('Additional Add-on Policies') }}</a>
 </div>
 <div class="submit-buttons">

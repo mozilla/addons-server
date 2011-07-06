@@ -5,6 +5,8 @@ from django.conf import settings
 from django.db import models
 from django.utils.functional import memoize
 
+import redisutils
+
 import amo
 import amo.models
 from amo.urlresolvers import reverse
@@ -205,3 +207,81 @@ class EmailPreview(amo.models.ModelBase):
 
     class Meta:
         db_table = 'email_preview'
+
+
+class ValidationJobTally(object):
+    """Redis key/vals for a tally of validation job results.
+
+    The key/val pairs look like this::
+
+        # message keys that were found by this validation job:
+        validation.job_id:1234:msg_keys = set([
+            'path.to.javascript_data_urls',
+            'path.to.navigator_language'
+            ])
+
+        # translation of message keys to actual messages:
+        validation.msg_key:<msg_key>:message =
+            'javascript:/data: URIs may be incompatible with Firefox 6'
+        validation.msg_key:<msg_key>:long_message =
+            'A more detailed message....'
+
+        # type of message (error, warning, or notice)
+        validation.msg_key:<msg_key>:type = 'error'
+
+        # count of addons affected per message key, per job
+        validation.job_id:1234.msg_key:<msg_key>:addons_affected = 120
+
+    """
+
+    def __init__(self, job_id):
+        self.job_id = job_id
+        self.kv = redisutils.connections['master']
+
+    def get_messages(self):
+        for msg_key in self.kv.smembers('validation.job_id:%s' % self.job_id):
+            yield ValidationMsgTally(self.job_id, msg_key)
+
+    def save_message(self, msg):
+        msg_key = '.'.join(msg['id'])
+        self.kv.sadd('validation.job_id:%s' % self.job_id,
+                     msg_key)
+        self.kv.set('validation.msg_key:%s:message' % msg_key,
+                    msg['message'])
+        if type(msg['description']) == list:
+            des = '; '.join(msg['description'])
+        else:
+            des = msg['description']
+        self.kv.set('validation.msg_key:%s:long_message' % msg_key,
+                    des)
+        if msg.get('compatibility_type'):
+            effective_type = msg['compatibility_type']
+        else:
+            effective_type = msg['type']
+        self.kv.set('validation.msg_key:%s:type' % msg_key,
+                    effective_type)
+        self.kv.incr('validation.job_id:%s.msg_key:%s:addons_affected'
+                     % (self.job_id, msg_key))
+
+
+class ValidationMsgTally(object):
+    """Redis key/vals for a tally of validation messages.
+    """
+
+    def __init__(self, job_id, msg_key):
+        self.job_id = job_id
+        self.msg_key = msg_key
+        self.kv = redisutils.connections['master']
+
+    def __getattr__(self, key):
+        if key in ('message', 'long_message', 'type'):
+            val = self.kv.get('validation.msg_key:%s:%s'
+                              % (self.msg_key, key))
+        elif key in ('addons_affected',):
+            val = self.kv.get('validation.job_id:%s.msg_key:%s:%s'
+                              % (self.job_id, self.msg_key, key))
+        elif key in ('key',):
+            val = self.msg_key
+        else:
+            raise ValueError('Unknown field: %s' % key)
+        return val or ''

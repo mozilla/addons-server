@@ -5,7 +5,7 @@ An editor has requested super-review of the following add-on due to security, co
 
 Please open your plethora of knowledge and wield your mighty administrative sword of decision making in the general vicinity of:
 
-{{ name }} - {{ addon_url }}
+{{ name }} - {{ review_url }}
 
 Reviewer:
 {{ reviewer }}

@@ -45,18 +45,28 @@ class TestES(amo.tests.ESTestCase):
         eq_(qs._build_query(), {'fields': ['id'],
                                 'query': {'term': {'type': 1}}})
 
-    def test_values(self):
-        qs = Addon.search().values('app')
-        eq_(qs._build_query(), {'fields': ['id', 'app']})
+    def test_query_multiple_and_range(self):
+        qs = Addon.search().query(type=1, status__gte=1)
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'query': {'bool': {'must': [
+                                    {'term': {'type': 1}},
+                                    {'range': {'status': {'gte': 1}}},
+                                ]}}})
 
-    def test_order_by(self):
+    def test_order_by_desc(self):
         qs = Addon.search().order_by('-rating')
         eq_(qs._build_query(), {'fields': ['id'],
                                 'sort': [{'rating': 'desc'}]})
 
+    def test_order_by_asc(self):
         qs = Addon.search().order_by('rating')
         eq_(qs._build_query(), {'fields': ['id'],
                                 'sort': ['rating']})
+
+    def test_order_by_multiple(self):
+        qs = Addon.search().order_by('-rating', 'id')
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'sort': [{'rating': 'desc'}, 'id']})
 
     def test_slice(self):
         qs = Addon.search()[5:12]
@@ -78,6 +88,11 @@ class TestES(amo.tests.ESTestCase):
         eq_(qs._build_query(), {'fields': ['id'],
                                 'size': 6})
 
+    def test_slice_stop_zero(self):
+        qs = Addon.search()[:0]
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'size': 0})
+
     def test_getitem(self):
         addons = list(Addon.search())
         eq_(addons[0], Addon.search()[0])
@@ -94,3 +109,161 @@ class TestES(amo.tests.ESTestCase):
         qs = Addon.search()
         qs._results_cache = [1]
         eq_(len(qs), 1)
+
+    def test_gte(self):
+        qs = Addon.search().filter(type__in=[1, 2], status__gte=4)
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'and': [
+                                    {'in': {'type': [1, 2]}},
+                                    {'range': {'status': {'gte': 4}}},
+                                ]}})
+
+    def test_lte(self):
+        qs = Addon.search().filter(type__in=[1, 2], status__lte=4)
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'and': [
+                                    {'in': {'type': [1, 2]}},
+                                    {'range': {'status': {'lte': 4}}},
+                                ]}})
+
+    def test_gt(self):
+        qs = Addon.search().filter(type__in=[1, 2], status__gt=4)
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'and': [
+                                    {'in': {'type': [1, 2]}},
+                                    {'range': {'status': {'gt': 4}}},
+                                ]}})
+
+    def test_lt(self):
+        qs = Addon.search().filter(type__in=[1, 2], status__lt=4)
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'and': [
+                                    {'range': {'status': {'lt': 4}}},
+                                    {'in': {'type': [1, 2]}},
+                                ]}})
+
+    def test_lt2(self):
+        qs = Addon.search().filter(status__lt=4)
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'range': {'status': {'lt': 4}}}})
+
+    def test_prefix(self):
+        qs = Addon.search().query(name__startswith='woo')
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'query': {'prefix': {'name': 'woo'}}})
+
+    def test_values(self):
+        qs = Addon.search().values('name')
+        eq_(qs._build_query(), {'fields': ['id', 'name']})
+
+    def test_values_result(self):
+        qs = Addon.objects.order_by('id')
+        # The add-on indexer lowercases the name.
+        addons = [(a.id, unicode(a.name).lower()) for a in qs]
+        qs = Addon.search().values('name').order_by('id')
+        eq_(list(qs), addons)
+
+    def test_values_dict(self):
+        qs = Addon.search().values_dict('name')
+        eq_(qs._build_query(), {'fields': ['id', 'name']})
+
+    def test_empty_values_dict(self):
+        qs = Addon.search().values_dict()
+        eq_(qs._build_query(), {})
+
+    def test_values_dict_result(self):
+        qs = Addon.objects.order_by('id')
+        # The add-on indexer lowercases the name.
+        addons = [{'id': a.id, 'name': unicode(a.name).lower()} for a in qs]
+        qs = Addon.search().values_dict('name').order_by('id')
+        eq_(list(qs), list(addons))
+
+    def test_empty_values_dict_result(self):
+        qs = Addon.search().values_dict()
+        # Look for some of the keys we expect.
+        for key in ('id', 'name', 'status', 'app'):
+            assert key in qs[0].keys(), qs[0].keys()
+
+    def test_object_result(self):
+        addons = Addon.objects.all()[:1]
+        qs = Addon.search().filter(id=addons[0].id)[:1]
+        eq_(list(addons), list(qs))
+
+    def test_object_result_slice(self):
+        addon = Addon.objects.all()[0]
+        qs = Addon.search().filter(id=addon.id)
+        eq_(addon, qs[0])
+
+    def test_extra_bad_key(self):
+        with self.assertRaises(AssertionError):
+            Addon.search().extra(x=1)
+
+    def test_extra_values(self):
+        qs = Addon.search().extra(values=['name'])
+        eq_(qs._build_query(), {'fields': ['id', 'name']})
+
+        qs = Addon.search().values('status').extra(values=['name'])
+        eq_(qs._build_query(), {'fields': ['id', 'status', 'name']})
+
+    def test_extra_values_dict(self):
+        qs = Addon.search().extra(values_dict=['name'])
+        eq_(qs._build_query(), {'fields': ['id', 'name']})
+
+        qs = Addon.search().values_dict('status').extra(values_dict=['name'])
+        eq_(qs._build_query(), {'fields': ['id', 'status', 'name']})
+
+    def test_extra_order_by(self):
+        qs = Addon.search().extra(order_by=['-rating'])
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'sort': [{'rating': 'desc'}]})
+
+        qs = Addon.search().order_by('-id').extra(order_by=['-rating'])
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'sort': [{'id': 'desc'},
+                                         {'rating': 'desc'}]})
+
+    def test_extra_query(self):
+        qs = Addon.search().extra(query={'type': 1})
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'query': {'term': {'type': 1}}})
+
+        qs = Addon.search().filter(status=1).extra(query={'type': 1})
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'query': {'term': {'type': 1}},
+                                'filter': {'term': {'status': 1}}})
+
+    def test_extra_filter(self):
+        qs = Addon.search().extra(filter={'category__in': [1, 2]})
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'in': {'category': [1, 2]}}})
+
+        qs = (Addon.search().filter(type=1)
+              .extra(filter={'category__in': [1, 2]}))
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'and': [
+                                    {'term': {'type': 1}},
+                                    {'in': {'category': [1, 2]}},
+                                ]}})
+
+    def test_extra_filter_or(self):
+        qs = Addon.search().extra(filter_or={'status': 1, 'app': 2})
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'or': [
+                                    {'term': {'status': 1}},
+                                    {'term': {'app': 2}}]}})
+
+        qs = (Addon.search().filter(type=1)
+              .extra(filter_or={'status': 1, 'app': 2}))
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'and': [
+                                    {'term': {'type': 1}},
+                                    {'or': [{'term': {'status': 1}},
+                                            {'term': {'app': 2}}]},
+                                ]}})
+
+    def test_facet_range(self):
+        facet = {'range': {'status': [{'lte': 3}, {'gte': 5}]}}
+        qs = Addon.search().filter(app=1).facet(by_status=facet)
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'term': {'app': 1}},
+                                'facets': {'by_status': facet}})

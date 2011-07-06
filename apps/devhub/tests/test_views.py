@@ -9,6 +9,7 @@ from decimal import Decimal
 from collections import namedtuple
 
 from django.conf import settings
+from django.core.cache import cache
 from django.utils import translation
 from django.utils.http import urlencode
 
@@ -31,6 +32,7 @@ from addons.forms import AddonFormBasic
 from addons.models import Addon, AddonUser, Charity, Category, AddonCategory
 from addons.utils import ReverseNameLookup
 from applications.models import Application, AppVersion
+from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from devhub.forms import ContribForm
 from devhub.models import ActivityLog, BlogPost, SubmitStep
 from files.models import File, FileUpload, Platform
@@ -688,13 +690,16 @@ class TestEdit(test_utils.TestCase):
         super(TestEdit, self).setUp()
         addon = self.get_addon()
         assert self.client.login(username='del@icio.us', password='password')
+
+        a = AddonCategory.objects.filter(addon=addon, category__id=22)[0]
+        a.feature = False
+        a.save()
+        AddonCategory.objects.filter(addon=addon, category__id=23).delete()
+        AddonCategory.objects.filter(addon=addon, category__id=24).delete()
+        cache.clear()
+
         self.url = reverse('devhub.addons.edit', args=[addon.slug])
         self.user = UserProfile.objects.get(pk=55021)
-
-        AddonCategory.objects.filter(addon=addon,
-                category=Category.objects.get(id=23)).delete()
-        AddonCategory.objects.filter(addon=addon,
-                category=Category.objects.get(id=24)).delete()
 
         self.tags = ['tag3', 'tag2', 'tag1']
         for t in self.tags:
@@ -964,6 +969,42 @@ class TestEdit(test_utils.TestCase):
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
         eq_(sorted(addon_cats), [22, 23])
+
+    def _feature_addon(self, addon_id=3615):
+        c = CollectionAddon.objects.create(addon_id=addon_id,
+            collection=Collection.objects.create())
+        FeaturedCollection.objects.create(collection=c.collection,
+                                          application_id=amo.FIREFOX.id)
+
+    @mock.patch.object(settings, 'NEW_FEATURES', True)
+    def test_edit_basic_categories_add_creatured(self):
+        """Ensure that categories cannot be changed for creatured add-ons."""
+        self._feature_addon()
+        self.cat_initial['categories'] = [22, 23]
+        self.client.post(self.basic_url, self.get_dict())
+        addon_cats = self.get_addon().categories.values_list('id', flat=True)
+
+        # This add-on's categories should not change.
+        eq_(sorted(addon_cats), [22])
+
+    @mock.patch.object(settings, 'NEW_FEATURES', True)
+    def test_edit_basic_categories_no_disclaimer(self):
+        """Ensure that there is a not disclaimer for non-creatured add-ons."""
+        r = self.client.get(self.basic_url)
+        doc = pq(r.content)
+        eq_(doc('#addon-categories-edit .select-addon-cats').length, 1)
+        eq_(doc('#addon-categories-edit > p').length, 0)
+        eq_(doc('#addon-categories-edit > ul').length, 0)
+
+    @mock.patch.object(settings, 'NEW_FEATURES', True)
+    def test_edit_basic_categories_disclaimer(self):
+        """Ensure that there is a disclaimer for creatured add-ons."""
+        self._feature_addon()
+        r = self.client.get(self.basic_url)
+        doc = pq(r.content)
+        eq_(doc('#addon-categories-edit .select-addon-cats').length, 0)
+        eq_(doc('#addon-categories-edit > p').length, 1)
+        eq_(doc('#addon-categories-edit > ul').length, 1)
 
     def test_edit_basic_categories_addandremove(self):
         AddonCategory(addon=self.addon, category_id=23).save()
@@ -1621,6 +1662,24 @@ class TestActivityFeed(test_utils.TestCase):
         r = self.client.get(reverse('devhub.feed', args=[addon.slug]))
         eq_(r.status_code, 302)
 
+    def add_comment(self):
+        addon = Addon.objects.get(id=3615)
+        amo.set_user(UserProfile.objects.get(email='del@icio.us'))
+        amo.log(amo.LOG.COMMENT_VERSION, addon, addon.versions.all()[0])
+        return addon
+
+    def test_feed_hidden(self):
+        addon = self.add_comment()
+        res = self.client.get(reverse('devhub.feed', args=[addon.slug]))
+        doc = pq(res.content)
+        eq_(len(doc('#recent-activity p')), 1)
+
+    def test_addons_hidden(self):
+        self.add_comment()
+        res = self.client.get(reverse('devhub.addons'))
+        doc = pq(res.content)
+        eq_(len(doc('#dashboard-sidebar div.recent-activity li.item')), 0)
+
 
 class TestProfileBase(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
@@ -1800,7 +1859,6 @@ class TestSubmitStep1(TestSubmitBase):
         response = self.client.get(reverse('devhub.submit.1'))
         eq_(response.status_code, 200)
         doc = pq(response.content)
-        assert len(response.context['agreement_text'])
         links = doc('#agreement-container a')
         assert len(links)
         for ln in links:
@@ -2702,6 +2760,50 @@ class UploadTest(BaseUploadTest, test_utils.TestCase):
         assert self.client.login(username='del@icio.us', password='password')
 
 
+class TestQueuePosition(UploadTest):
+    fixtures = ['base/apps', 'base/users',
+                'base/addon_3615', 'base/platforms']
+
+    def setUp(self):
+        super(TestQueuePosition, self).setUp()
+
+        self.url = reverse('devhub.versions.add_file',
+                           args=[self.addon.slug, self.version.id])
+        self.edit_url = reverse('devhub.versions.edit',
+                                args=[self.addon.slug, self.version.id])
+        files = self.version.files.all()[0]
+        files.platform_id = amo.PLATFORM_LINUX.id
+        files.save()
+
+    def test_not_in_queue(self):
+        r = self.client.get(reverse('devhub.versions', args=[self.addon.slug]))
+
+        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        eq_(pq(r.content)('.version-status-actions .dark').length, 0)
+
+    def test_in_queue(self):
+        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_NOMINATED),
+                    (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED),
+                    (amo.STATUS_LITE, amo.STATUS_UNREVIEWED)]
+
+        for addon_status in statuses:
+            self.addon.status = addon_status[0]
+            self.addon.save()
+
+            file = self.addon.latest_version.files.all()[0]
+            file.status = addon_status[1]
+            file.save()
+
+            r = self.client.get(reverse('devhub.versions',
+                                        args=[self.addon.slug]))
+            doc = pq(r.content)
+
+            span = doc('.version-status-actions .dark')
+
+            eq_(span.length, 1)
+            assert "Queue Position: 1 of 1" in span.text()
+
+
 class TestVersionAddFile(UploadTest):
     fixtures = ['base/apps', 'base/users',
                 'base/addon_3615', 'base/platforms']
@@ -3313,6 +3415,7 @@ class TestRemoveLocale(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
+        self.addon = Addon.objects.get(id=3615)
         self.url = reverse('devhub.remove-locale', args=['a3615'])
         assert self.client.login(username='del@icio.us', password='password')
 
@@ -3321,17 +3424,27 @@ class TestRemoveLocale(test_utils.TestCase):
         eq_(r.status_code, 400)
 
     def test_success(self):
-        a = Addon.objects.get(id=3615)
-        a.name = {'en-US': 'woo', 'el': 'yeah'}
-        a.save()
-        a.remove_locale('el')
+        self.addon.name = {'en-US': 'woo', 'el': 'yeah'}
+        self.addon.save()
+        self.addon.remove_locale('el')
         qs = (Translation.objects.filter(localized_string__isnull=False)
               .values_list('locale', flat=True))
         r = self.client.post(self.url, {'locale': 'el'})
         eq_(r.status_code, 200)
-        eq_(sorted(qs.filter(id=a.name_id)), ['en-US'])
+        eq_(sorted(qs.filter(id=self.addon.name_id)), ['en-US'])
 
     def test_delete_default_locale(self):
-        a = Addon.objects.get(id=3615)
-        r = self.client.post(self.url, {'locale': a.default_locale})
+        r = self.client.post(self.url, {'locale': self.addon.default_locale})
         eq_(r.status_code, 400)
+
+    def test_remove_version_locale(self):
+        version = self.addon.versions.all()[0]
+        version.releasenotes = {'fr': 'oui'}
+        version.save()
+
+        self.client.post(self.url, {'locale': 'fr'})
+        res = self.client.get(reverse('devhub.versions.edit',
+                                      args=[self.addon.slug, version.pk]))
+        doc = pq(res.content)
+        # There's 2 fields, one for en-us, one for init.
+        eq_(len(doc('div.trans textarea')), 2)

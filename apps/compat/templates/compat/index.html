@@ -1,44 +1,62 @@
 {% extends "base.html" %}
 
-{% block title %}{{ page_title(_('Compatibility Center')) }}{% endblock %}
+{% set app = request.APP.pretty %}
+{% set title = _('Add-on Compatibility Report for {app} {version}')|f(app=app, version=version) %}
+{% block title %}{{ page_title(title) }}{% endblock %}
 {% block bodyclass %}inverse{% endblock %}
 
-{% macro percent(x, y) %}{{ (x / y|float * 100)|int }}{% endmacro %}
-
-{% set app = request.APP.pretty %}
-{% set num = percent(versions['latest'], total) %}
-
 {% block content %}
+<header>
+  <h2>{{ title }}</h2>
+  {{ breadcrumbs([(None, _('{app} {version} Compatibility')|f(app=app, version=version))]) }}
+</header>
 
-<h1>{{ _('{app} {version} Add-on Compatibility Report')|f(app=app, version=version) }}</h1>
-<p>{% trans %}
-<b>{{ num }}%</b> of add-ons on addons.mozilla.org are compatible with {{ app }} {{ version }}.
-{% endtrans %}</p>
+{% set titles = {
+  'prev': _('Top 95% compatible with previous version'),
+  'top_95': _('Top 95% of all add-ons'),
+  'all': _('All active add-ons'),
+} %}
 
-<div id="chart" class="primary"
-  data-keys="{{ dict(keys)|json }}"
-  data-data="{{ versions|json }}"
-  data-total="{{ total }}"></div>
-<div class="secondary">
-  <table id="compat">
+<table>
+  <thead>
     <tr>
-      <th>{{ _('Version') }}</th>
-      {# L10n: "#" means "number" #}
-      <th>{{ _('# of Add-ons') }}</th>
+      <th></th>
+      {% with key, (total, facets) = compat_levels[0] %}
+        {% for version, _ in facets %}
+          <th>{{ version }}</th>
+        {% endfor %}
+      {% endwith %}
     </tr>
-    {% for key, title in keys %}
+  </thead>
+  <tbody>
+    {% for key, (total, facets) in compat_levels %}
+      {% if total %}
       <tr>
-        <td>{{ title }}</td>
-        <td>{{ versions[key]|numberfmt }}</td>
+        <th>{{ titles[key] }}</th>
+        {% for version, count in facets %}
+          <td>{{ (100 * count / total)|round(2) }}% ({{ count }})</td>
+        {% endfor %}
       </tr>
+      {% endif %}
     {% endfor %}
-  </table>
-  <p><a href="{{ url('compat.details', version) }}">{{ _('Detailed Report') }}</a></p>
-</div>
+  </tbody>
+</table>
+<ul>
+</ul>
 
-{% endblock %}
+<h3>{{ _('Details for add-ons compatible with previous version:') }}</h3>
+<table>
+  <tbody>
+    {% for addon in usage_addons.object_list %}
+    <tr>
+      <td><a href="{{ url('addons.detail', addon.slug) }}">{{ addon.name }}</a></td>
+      <td>{{ addon.max_version }}</td>
+      <td>{{ addon.usage|numberfmt }} users </td>
+      <td>({{ (100 * addon.usage / usage_total)|round(2) }}%)</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{{ usage_addons|paginator }}
 
-{% block js %}
-<script src="{{ media('js/lib/highcharts.src.js') }}"></script>
-<script src="{{ media('js/zamboni/compat.js') }}"></script>
 {% endblock %}

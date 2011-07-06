@@ -1,4 +1,5 @@
 from datetime import datetime
+import json
 import logging
 import os
 import sys
@@ -22,7 +23,7 @@ from amo.utils import send_mail
 from devhub.tasks import run_validator
 from users.utils import get_task_user
 from versions.models import Version
-from zadmin.models import ValidationResult, ValidationJob
+from zadmin.models import ValidationResult, ValidationJob, ValidationJobTally
 
 log = logging.getLogger('z.task')
 
@@ -80,12 +81,26 @@ def bulk_validate_file(result_id, **kw):
         res.apply_validation(validation)
         log.info('[1@None] File %s (%s) errors=%s'
                  % (res.file, file_base, res.errors))
+        tally_validation_results.delay(res.validation_job.id, validation)
     res.save()
     tally_job_results(res.validation_job.id)
 
     if task_error:
         etype, val, tb = task_error
         raise etype, val, tb
+
+
+@task
+def tally_validation_results(job_id, validation_str, **kw):
+    """Saves a tally of how many addons received each validation message.
+    """
+    validation = json.loads(validation_str)
+    log.info('[@%s] tally_validation_results (job %s, %s messages)'
+             % (tally_validation_results.rate_limit, job_id,
+                len(validation['messages'])))
+    v = ValidationJobTally(job_id)
+    for msg in validation['messages']:
+        v.save_message(msg)
 
 
 @task

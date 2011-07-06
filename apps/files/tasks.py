@@ -1,5 +1,6 @@
 from datetime import datetime
 import hashlib
+import logging
 import urllib
 import urllib2
 import urlparse
@@ -8,7 +9,6 @@ import uuid
 import django.core.mail
 from django.conf import settings
 
-import commonware.log
 import jingo
 from celeryutils import task
 from tower import ugettext as _
@@ -22,8 +22,8 @@ from versions.models import Version, ApplicationsVersions
 from .models import File
 from .utils import JetpackUpgrader
 
-task_log = commonware.log.getLogger('z.task')
-jp_log = commonware.log.getLogger('z.jp.repack')
+task_log = logging.getLogger('z.task')
+jp_log = logging.getLogger('z.jp.repack')
 
 
 @task
@@ -64,6 +64,23 @@ class FakeUpload(object):
         self.validation = validation
 
 
+class RedisLogHandler(logging.Handler):
+    """Logging handler that sends jetpack messages to redis."""
+
+    def __init__(self, logger, upgrader, file_data, level=logging.WARNING):
+        self.logger = logger
+        self.upgrader = upgrader
+        self.file_data = file_data
+        logging.Handler.__init__(self, level)
+
+    def emit(self, record):
+        self.file_data['status'] = 'failed'
+        self.file_data['msg'] = record.msg
+        if 'file' in self.file_data:
+            self.upgrader.file(self.file_data['file'], self.file_data)
+        self.logger.removeHandler(self)
+
+
 @task
 def repackage_jetpack(builder_data, **kw):
     repack_data = dict(urlparse.parse_qsl(builder_data['request']))
@@ -74,8 +91,10 @@ def repackage_jetpack(builder_data, **kw):
     all_keys.update(repack_data)
     msg = lambda s: ('[{file_id}]: ' + s).format(**all_keys)
     upgrader = JetpackUpgrader()
-
     file_data = upgrader.file(repack_data['file_id'])
+
+    redis_logger = RedisLogHandler(jp_log, upgrader, file_data)
+    jp_log.addHandler(redis_logger)
     if file_data.get('uuid') != repack_data['uuid']:
         return jp_log.warning(msg('Aborting repack. AMO<=>Builder tracking '
                                   'number does not match.'))
@@ -133,6 +152,7 @@ def repackage_jetpack(builder_data, **kw):
     # Sync out the new version.
     addon.update_version()
     upgrader.finish(repack_data['file_id'])
+    jp_log.removeHandler(redis_logger)
 
     try:
         send_upgrade_email(addon, new_version, file_data['version'])

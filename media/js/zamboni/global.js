@@ -33,6 +33,8 @@ $('html').ajaxSend(function(event, xhr, ajaxSettings) {
 // You can set a custom timeout (milliseconds) by using data-delay:
 //      <div data-delay="100" title="hi"></div>
 
+z.uid = 0;
+
 jQuery.fn.tooltip = function(tip_el) {
     var $tip = $(tip_el),
         $msg = $('span', $tip),
@@ -143,7 +145,8 @@ $.fn.popup = function(click_target, o) {
     o = o || {};
 
     var $ct         = $(click_target),
-        $popup      = this;
+        $popup      = this,
+        uid         = (z.uid++);
 
     $popup.o = $.extend({
         delegate:   false,
@@ -191,7 +194,7 @@ $.fn.popup = function(click_target, o) {
         $popup.hide();
         $popup.unbind();
         $popup.undelegate();
-        $(document.body).unbind('click newPopup', $popup.hider);
+        $(document.body).unbind('click.'+uid, $popup.hider);
 
         return $popup;
     };
@@ -213,7 +216,7 @@ $.fn.popup = function(click_target, o) {
         $popup.hider = makeBlurHideCallback($popup);
         if (p.hideme) {
             setTimeout(function(){
-                $(document.body).bind('click popup', $popup.hider);
+                $(document.body).bind('click.'+uid, $popup.hider);
             }, 0);
         }
         $popup.delegate('.close', 'click', function(e) {
@@ -304,6 +307,7 @@ $.fn.modal = function(click_target, o) {
         $modal.unbind();
         $modal.undelegate();
         $(document.body).unbind('click newmodal', $modal.hider);
+        $(window).unbind('keydown.lightboxDismiss');
         $(window).bind('resize', p.onresize);
         $('.modal-overlay').remove();
         return $modal;
@@ -343,7 +347,12 @@ $.fn.modal = function(click_target, o) {
             $modal.show();
         }, 0);
 
-        $(window).bind('resize', p.onresize);
+        $(window).bind('resize', p.onresize)
+        .bind('keydown.lightboxDismiss', function(e) {
+            if (e.which == 27) {
+                $modal.hideMe();
+            }
+        });
         return $modal;
     };
 

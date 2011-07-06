@@ -1,15 +1,20 @@
+import collections
 import logging
 
 from django.conf import settings
 from django.db.models import Sum, Max
 
 import cronjobs
+import elasticutils
 import redisutils
 
 import amo
+import amo.utils
 import versions.compare as vc
 from addons.models import Addon
 from stats.models import UpdateCount
+
+from .models import AppCompat
 
 log = logging.getLogger('z.compat')
 
@@ -17,46 +22,42 @@ log = logging.getLogger('z.compat')
 @cronjobs.register
 def compatibility_report():
     redis = redisutils.connections['master']
+    docs = collections.defaultdict(dict)
 
-    # for app in amo.APP_USAGE:
-    for compat in settings.COMPAT:
-        app = amo.APPS_ALL[compat['app']]
-        version = compat['version']
-        log.info(u'Making compat report for %s %s.' % (app.pretty, version))
-        versions = (('latest', version), ('beta', version + 'b'),
-                    ('alpha', compat['alpha']))
-
-        rv = dict((k, 0) for k in dict(versions))
-        rv['other'] = 0
-
-        ignore = (amo.STATUS_NULL, amo.STATUS_DISABLED)
-        qs = (Addon.objects.exclude(type=amo.ADDON_PERSONA, status__in=ignore)
-              .filter(appsupport__app=app.id, name__locale='en-us'))
-
+    # Gather all the data for the index.
+    for app in amo.APP_USAGE:
+        log.info(u'Making compat report for %s.' % app.pretty)
         latest = UpdateCount.objects.aggregate(d=Max('date'))['d']
         qs = UpdateCount.objects.filter(addon__appsupport__app=app.id,
+                                        addon__status__in=amo.VALID_STATUSES,
+                                        addon___current_version__isnull=False,
                                         date=latest)
         total = qs.aggregate(Sum('count'))['count__sum']
-        addons = list(qs.values_list('addon', 'count', 'addon__appsupport__min',
-                                     'addon__appsupport__max'))
-
-        # Count up the top 95% of addons by ADU.
+        redis.hset('compat:%s' % app.id, 'total', total)
         adus = 0
-        for addon, count, minver, maxver in addons:
-            # Don't count add-ons that weren't compatible with the previous
-            # release
-            if maxver < vc.version_int(compat['previous']):
-                continue
-            if adus < .95 * total:
-                adus += count
-            else:
-                break
-            for key, version in versions:
-                if minver <= vc.version_int(version) <= maxver:
-                    rv[key] += 1
-                    break
-            else:
-                rv['other'] += 1
-        log.info(u'Compat for %s %s: %s' % (app.pretty, version, rv))
-        key = '%s:%s' % (app.id, version)
-        redis.hmset('compat:' + key, rv)
+
+        updates = dict(qs.values_list('addon', 'count'))
+        for chunk in amo.utils.chunked(updates.items(), 50):
+            chunk = dict(chunk)
+            for addon in Addon.objects.filter(id__in=chunk):
+                doc = docs[addon.id]
+                doc.update(id=addon.id, slug=addon.slug,
+                           name=unicode(addon.name))
+                doc.setdefault('usage', {})[app.id] = updates[addon.id]
+
+                if app not in addon.compatible_apps:
+                    continue
+                compat = addon.compatible_apps[app]
+                d = {'min': compat.min.version_int,
+                     'max': compat.max.version_int}
+                doc.setdefault('support', {})[app.id] = d
+                doc.setdefault('max_version', {})[app.id] = compat.max.version
+                doc['top_95'] = adus > .95 * total
+
+            adus += sum(chunk.values())
+
+    # Send it all to the index.
+    for chunk in amo.utils.chunked(docs.values(), 150):
+        for doc in chunk:
+            AppCompat.index(doc, id=doc['id'], bulk=True)
+        elasticutils.get_es().flush_bulk(forced=True)

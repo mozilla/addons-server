@@ -1580,13 +1580,15 @@ sh.Highlighter.prototype = {
 			.replace(/\r/g, ' ') // IE lets these buggers through
 			;
 
-		tabSize = this.getParam('tab-size');
+		if (this.getParam('expand-tabs')) {
+			tabSize = this.getParam('tab-size');
 
-		// replace tabs with spaces
-		code = this.getParam('smart-tabs') == true
-			? processSmartTabs(code, tabSize)
-			: processTabs(code, tabSize)
-			;
+			// replace tabs with spaces
+			code = this.getParam('smart-tabs') == true
+				? processSmartTabs(code, tabSize)
+				: processTabs(code, tabSize)
+				;
+		}
 
 		// unindent code by the common indentation
 		code = unindent(code);

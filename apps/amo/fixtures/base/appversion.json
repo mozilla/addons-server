@@ -403,5 +403,38 @@
             "modified": null,
             "created": null
         }
+    },
+    {
+        "pk": 400,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 4000000102000,
+            "application": 59,
+            "version": "4.0",
+            "modified": null,
+            "created": null
+        }
+    },
+    {
+        "pk": 401,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 4000000102000,
+            "application": 18,
+            "version": "4.1",
+            "modified": null,
+            "created": null
+        }
+    },
+    {
+        "pk": 402,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 4000000102000,
+            "application": 2,
+            "version": "4.0b2pre",
+            "modified": null,
+            "created": null
+        }
     }
 ]

@@ -11,6 +11,7 @@
     text-decoration: none;
     color: #fff;
     cursor: pointer;
+    background: #5784BF;
     .gradient-two-color(#669BE1, #5784BF);
     text-shadow: 0 1px 0 rgba(0,0,0,.5);
     .border-radius(6px);
@@ -25,6 +26,7 @@
         .box-shadow(0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset);
     }
     &.add { // Green
+        background: #489615;
         .gradient-two-color(#84C63C, #489615);
         color: #fff;
         span {
@@ -36,8 +38,10 @@
                 padding-left: 24px;
                 .sprite-pos(3, 64, 3px);
             }
-            &.disabled span {
-                .sprite-pos(4, 64, 3px);
+            &.disabled, &.concealed {
+                span {
+                    .sprite-pos(4, 64, 3px);
+                }
             }
             &.warning, &.caution {
                 span {
@@ -55,7 +59,9 @@
                 .sprite-pos(2, 64, 3px);
             }
         }
-        &.disabled {
+        &.disabled,
+        &.concealed {
+            background: #c1c5ca;
             .gradient-two-color(#d1d4d7, #c1c5ca);
             color: #919497;
             .box-shadow(0 3px rgba(0, 0, 0, 0.05), 0 -4px rgba(0, 0, 0, 0.05) inset);
@@ -75,13 +81,25 @@
         }
     }
     &.developer { // Red
-        background: -moz-linear-gradient(#f84b4e, #bc2b1a);
+        background: #bc2b1a;
+        .gradient-two-color(#f84b4e, #bc2b1a);
         color: #fff;
         span {
             margin-left: -4px;
             padding-left: 24px;
             background: url(../../img/impala/button-icons.png) no-repeat;
             .sprite-pos(6, 64, 3px);
+        }
+    }
+    &.platform {
+        display: none;
+    }
+}
+.html-rtl {
+    .button {
+        .add span {
+            padding-left: 0;
+            padding-right: 16px;
         }
     }
 }
@@ -117,7 +135,18 @@
         margin: 0 0 4px;
     }
 }
+.install-shell {
+    .warning {
+        font-size: 12px;
+    }
+}
 
+#promos {
+    .button.disabled,
+    .button.concealed {
+        display: none !important;
+    }
+}
 .listing-grid {
     .item {
         .install-shell {
@@ -126,8 +155,21 @@
         .install-button {
             margin: 0;
         }
-        .button.disabled, .button.concealed {
+        .button.disabled,
+        .button.concealed {
             display: none !important;
         }
     }
 }
+
+.mac .button.mac,
+.linux .button.linux,
+.other .button.bsd,
+.other .button.solaris,
+.windows .button.windows {
+    display: inherit;
+}
+.thunderbird .listing-grid .install-shell {
+    display: none;
+}
+

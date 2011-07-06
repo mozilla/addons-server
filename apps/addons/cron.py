@@ -61,6 +61,8 @@ def _build_reverse_name_lookup(names, **kw):
             ReverseNameLookup().add(string, names[t_id])
 
 
+# TODO(jbalogh): removed from cron on 6/27/11. If the site doesn't break,
+# delete it.
 @cronjobs.register
 def fast_current_version():
     # Only find the really recent versions; this is called a lot.
@@ -75,7 +77,8 @@ def fast_current_version():
         _update_addons_current_version(addons)
 
 
-#TODO(davedash): This will not be needed as a cron task after remora.
+# TODO(jbalogh): removed from cron on 6/27/11. If the site doesn't break,
+# delete it.
 @cronjobs.register
 def update_addons_current_version():
     """Update the current_version field of the addons."""
@@ -88,6 +91,8 @@ def update_addons_current_version():
     TaskSet(ts).apply_async()
 
 
+# TODO(jbalogh): removed from cron on 6/27/11. If the site doesn't break,
+# delete it.
 @task(rate_limit='20/m')
 def _update_addons_current_version(data, **kw):
     task_log.info("[%s@%s] Updating addons current_versions." %

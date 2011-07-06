@@ -14,6 +14,7 @@ from django.utils.translation import trans_real as translation
 
 import caching.base as caching
 import commonware.log
+import json_field
 from tower import ugettext_lazy as _
 
 import amo.models
@@ -73,15 +74,12 @@ class AddonManager(amo.models.ManagerBase):
         """
         Filter for all featured add-ons for an application in all locales.
         """
-        return self.valid().filter(feature__application=app.id)
-
-    def new_featured(self, app):
-        """
-        Filter for all featured add-ons for an application in all locales.
-        """
-        from bandwagon.models import FeaturedCollection
-        ids = FeaturedCollection.objects.addon_ids(app=app)
-        return self.valid().filter(id__in=ids)
+        if settings.NEW_FEATURES:
+            from bandwagon.models import FeaturedCollection
+            ids = FeaturedCollection.objects.addon_ids(app=app)
+            return self.valid().filter(id__in=ids)
+        else:
+            return self.valid().filter(feature__application=app.id)
 
     def category_featured(self):
         """Get all category-featured add-ons for ``app`` in all locales."""
@@ -147,8 +145,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     developer_comments = PurifiedField(db_column='developercomments')
     eula = PurifiedField()
     privacy_policy = PurifiedField(db_column='privacypolicy')
-    the_reason = TranslatedField()
-    the_future = TranslatedField()
+    the_reason = PurifiedField()
+    the_future = PurifiedField()
 
     average_rating = models.FloatField(max_length=255, default=0, null=True,
                                        db_column='averagerating')
@@ -643,9 +641,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     @amo.cached_property
     def current_beta_version(self):
         """Retrieves the latest version of an addon, in the beta channel."""
-        versions = self.versions.filter(files__status=amo.STATUS_BETA)
+        versions = self.versions.filter(files__status=amo.STATUS_BETA)[:1]
 
-        if len(versions):
+        if versions:
             return versions[0]
 
     @property
@@ -741,13 +739,19 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @classmethod
     def featured(cls, app, lang):
-        # Attach an instance of Feature to Addon so we get persistent
-        # @cached_method caching through the request.
-        if not hasattr(cls, '_feature'):
-            cls._feature = Feature()
-        features = cls._feature.by_app(app)
-        return dict((id, locales) for id, locales in features.items()
-                     if None in locales or lang in locales)
+        # TODO(cvan): Remove this once featured collections are enabled.
+        if settings.NEW_FEATURES:
+            from bandwagon.models import FeaturedCollection
+            ids = FeaturedCollection.objects.addon_ids(app=app, lang=lang)
+            return ids
+        else:
+            # Attach an instance of Feature to Addon so we get persistent
+            # @cached_method caching through the request.
+            if not hasattr(cls, '_feature'):
+                cls._feature = Feature()
+            features = cls._feature.by_app(app)
+            return dict((id, locales) for id, locales in features.items()
+                         if None in locales or lang in locales)
 
     @classmethod
     def featured_random(cls, app, lang):
@@ -755,35 +759,44 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         Sort featured ids for app into those that support lang and
         those with no locale, then shuffle both groups.
         """
-        if not hasattr(cls, '_feature'):
-            cls._feature = Feature()
-        features = cls._feature.by_app(app)
-        no_locale, specific_locale = [], []
-        for id, locales in features.items():
-            if lang in locales:
-                specific_locale.append(id)
-            elif None in locales:
-                no_locale.append(id)
-        random.shuffle(no_locale)
-        random.shuffle(specific_locale)
-        return specific_locale + no_locale
-
-    @classmethod
-    def new_featured_random(cls, app, lang):
-        from bandwagon.models import FeaturedCollection
-        if not hasattr(cls, '_featuredcollection'):
-            cls._featuredcollection = FeaturedCollection.objects
-        ids = cls._featuredcollection.addon_ids(app=app, lang=lang)
-        random.shuffle(ids)
-        return ids
+        if settings.NEW_FEATURES:
+            from bandwagon.models import FeaturedCollection
+            features = FeaturedCollection.objects.by_locale(app=app, lang=lang)
+            no_locale, specific_locale = [], []
+            for f in features:
+                pk = f['collection__addons']
+                if not pk:
+                    continue
+                if f['locale'] == lang:
+                    specific_locale.append(pk)
+                elif f['locale'] is None:
+                    no_locale.append(pk)
+            random.shuffle(specific_locale)
+            random.shuffle(no_locale)
+            return specific_locale + no_locale
+        else:
+            if not hasattr(cls, '_feature'):
+                cls._feature = Feature()
+            features = cls._feature.by_app(app)
+            no_locale, specific_locale = [], []
+            for id, locales in features.items():
+                if lang in locales:
+                    specific_locale.append(id)
+                elif None in locales:
+                    no_locale.append(id)
+            random.shuffle(no_locale)
+            random.shuffle(specific_locale)
+            return specific_locale + no_locale
 
     def is_featured(self, app, lang):
         """is add-on globally featured for this app and language?"""
         return self.id in Addon.featured(app, lang)
 
-    def is_category_featured(self, app, lang):
+    def is_category_featured(self, app=None, lang=None):
         """Is add-on featured in any category for this app?"""
-        return app.id in self._creatured_apps
+        if not app:
+            return bool(self._creatured_apps)
+        return (app.id, lang) in self._creatured_apps
 
     def has_full_profile(self):
         """Is developer profile public (completed)?"""
@@ -907,11 +920,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return app_cats
 
     def remove_locale(self, locale):
-        """NULLify the add-on's strings in this locale."""
-        ids = [getattr(self, f.attname) for f in self._meta.translated_fields]
-        qs = Translation.objects.filter(id__in=filter(None, ids),
-                                        locale=locale)
-        qs.update(localized_string=None, localized_string_clean=None)
+        """NULLify strings in this locale for the add-on and versions."""
+        for o in itertools.chain([self], self.versions.all()):
+            ids = [getattr(o, f.attname) for f in o._meta.translated_fields]
+            qs = Translation.objects.filter(id__in=filter(None, ids),
+                                            locale=locale)
+            qs.update(localized_string=None, localized_string_clean=None)
 
 
 @receiver(dbsignals.post_save, sender=Addon,
@@ -1133,19 +1147,24 @@ class AddonCategory(caching.CachingMixin, models.Model):
 
     @classmethod
     def creatured_ids(cls):
-        """ Returns a list of creatured ids """
-        qs = cls.objects.filter(feature=True)
-        f = lambda: list(qs.values_list('addon', 'category',
-                                        'category__application',
-                                        'feature_locales'))
-        return caching.cached_with(qs, f, 'creatured')
+        """Returns a list of creatured ids."""
+        if settings.NEW_FEATURES:
+            from bandwagon.models import FeaturedCollection
+            return FeaturedCollection.objects.creatured_ids()
+        else:
+            # TODO(cvan): Remove this once new features are enabled.
+            qs = cls.objects.filter(feature=True)
+            f = lambda: list(qs.values_list('addon', 'category',
+                                            'category__application',
+                                            'feature_locales'))
+            return caching.cached_with(qs, f, 'creatured')
 
     @classmethod
     def creatured(cls):
         """Get a dict of {addon: [app,..]} for all creatured add-ons."""
         rv = {}
         for addon, cat, catapp, locale in cls.creatured_ids():
-            rv.setdefault(addon, []).append(catapp)
+            rv.setdefault(addon, []).append((catapp, locale))
         return rv
 
     @classmethod
@@ -1328,6 +1347,7 @@ class Preview(amo.models.ModelBase):
     caption = TranslatedField()
 
     position = models.IntegerField(default=0)
+    sizes = json_field.JSONField(max_length=25, default={})
 
     class Meta:
         db_table = 'previews'
@@ -1370,6 +1390,14 @@ class Preview(amo.models.ModelBase):
     @property
     def image_path(self):
         return self._image_path(settings.PREVIEW_FULL_PATH)
+
+    @property
+    def thumbnail_size(self):
+        return self.sizes.get('thumbnail', []) if self.sizes else []
+
+    @property
+    def image_size(self):
+        return self.sizes.get('image', []) if self.sizes else []
 
 
 # Use pre_delete since we need to know what we want to delete in the fs.

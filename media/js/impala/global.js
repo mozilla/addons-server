@@ -37,6 +37,46 @@ z.visitor = z.Storage('visitor');
     }
 })();
 
+function listing_grid() {
+    var $grid = $(this),
+        $pages = $grid.find('section'),
+        current = 0,
+        maxPage = $pages.length-1;
+
+    $grid.trigger("grid.init", {self: $grid, current: current, maxPage: maxPage});
+
+    $grid.go = function(n) {
+        if (n != current) {
+            n = n < 0 ? 0 : (n > maxPage ? maxPage : n);
+            current = n;
+            $pages.hide().eq(n).show().find('.item h3').truncate();
+            $grid.trigger("grid.update", {self: $grid, current: current, maxPage: maxPage});
+        }
+    };
+    $grid.prev = function() {
+        $grid.go(current-1);
+    };
+    $grid.next = function() {
+        $grid.go(current+1);
+    };
+    $grid.find('.item h3').truncate();
+    $grid.delegate('.item', 'mouseover', function() {
+        var $el = $(this);
+        setTimeout(function() {
+            $el.find('h3').untruncate();
+        }, 100);
+    }).delegate('.item', 'mouseout', function() {
+        var $el = $(this);
+        setTimeout(function() {
+            $el.find('h3').truncate();
+        }, 100);
+    });
+    $grid.css({
+        'width': $grid.width() + 'px',
+        'height': $grid.height() + 'px'
+    });
+}
+
 $(function() {
     "use strict";
 
@@ -50,9 +90,9 @@ $(function() {
         z.visitor.set('seen_badbrowser_warning', 1);
     });
 
-    //Truncate text in Firefox.
-    $('.htruncate').truncate({dir: 'h'});
-    $('.vtruncate').truncate({dir: 'v'});
+    // //Truncate text in Firefox.
+    // $('.htruncate').truncate({dir: 'h'});
+    // $('.vtruncate').truncate({dir: 'v'});
 
     // Bind to the mobile site if a mobile link is clicked.
     $(".mobile-link").attr("href", window.location).click(function() {
@@ -60,45 +100,7 @@ $(function() {
     });
 
     // Paginate listing grids.
-    $('.listing-grid').each(function() {
-        var $grid = $(this),
-            $pages = $grid.find('section'),
-            current = 0,
-            maxPage = $pages.length-1;
-
-        $grid.trigger("grid.init", {self: $grid, current: current, maxPage: maxPage});
-
-        $grid.go = function(n) {
-            if (n != current) {
-                n = n < 0 ? 0 : (n > maxPage ? maxPage : n);
-                current = n;
-                $pages.hide().eq(n).show().find('.item h3').truncate();
-                $grid.trigger("grid.update", {self: $grid, current: current, maxPage: maxPage});
-            }
-        };
-        $grid.prev = function() {
-            $grid.go(current-1);
-        };
-        $grid.next = function() {
-            $grid.go(current+1);
-        };
-        $grid.find('.item h3').truncate();
-        $grid.delegate('.item', 'mouseover', function() {
-            var $el = $(this);
-            setTimeout(function() {
-                $el.find('h3').untruncate();
-            }, 100);
-        }).delegate('.item', 'mouseout', function() {
-            var $el = $(this);
-            setTimeout(function() {
-                $el.find('h3').truncate();
-            }, 100);
-        });
-        $grid.css({
-            'width': $grid.width() + 'px',
-            'height': $grid.height() + 'px'
-        });
-    });
+    $('.listing-grid').each(listing_grid);
 
     // load deferred images.
     $('img[data-defer-src]').each(function() {
@@ -112,11 +114,11 @@ $(function() {
         $(this).closest('.site-balloon').fadeOut();
     });
 
-    $('.expando .toggle').click(_pd(function() {
+    $('#page').delegate('.expando .toggle', 'click', _pd(function() {
         $(this).closest('.expando').toggleClass('expanded');
     }));
 
-    $('.scrollto').click(function(e) {
+    $('#page').delegate('.scrollto', 'click', function(e) {
         e.preventDefault();
         var href = $(this).attr('href'),
             $target = $(href.match(/#.*$/)[0]);

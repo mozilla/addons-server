@@ -102,6 +102,12 @@ $(document).ready(function() {
                 $src_ogv = $('<source>', {'type': 'video/ogv; codecs="theora, vorbis"',
                                           'src': $this.attr('data-ogv') });
 
+            $(window).bind('keydown.lightboxDismiss', function(e) {
+                if (e.which == 27) {
+                    $overlay.remove();
+                    $(window).unbind('keydown.lightboxDismiss');
+                }
+            });
             $overlay.append($video);
             $video.append($src_mp3);
             $video.append($src_webm);
@@ -111,6 +117,7 @@ $(document).ready(function() {
             $video.click(function(e){ e.stopPropagation(); });
             $overlay.click(function() {
                 $(this).remove();
+                $(window).unbind('keydown.lightboxDismiss');
             });
         }));
     }
@@ -321,7 +328,7 @@ function initEditAddon() {
         (function(parent_div, a){
             parent_div.find(".item").addClass("loading");
             parent_div.load($(a).attr('data-editurl'), function(){
-                if($('#addon_categories_edit').length) {
+                if($('#addon-categories-edit').length) {
                     initCatFields();
                 }
                 $(this).each(addonFormSubmit);
@@ -404,7 +411,7 @@ function initUploadPreview() {
         form = create_new_preview_field();
         forms['form_' + file.instance] = form;
 
-        $(form).find('.preview-thumb').addClass('loading')
+        $(form).show().find('.preview-thumb').addClass('loading')
                .css('background-image', 'url(' + file.dataURL + ')');
         renumberPreviews();
     }
@@ -1003,7 +1010,7 @@ var imageStatus = {
                 if ($this.hasClass('preview-successful')) {
                     return;
                 }
-                var img = Image();
+                var img = new Image();
                 img.onload = function() {
                     $this.removeClass('preview-error preview-unknown').addClass('preview-successful');
                     $this.attr('style', 'background-image:url(' + self.newurl($this.attr('data-url')) + ')');

@@ -288,10 +288,7 @@ class ListView(APIView):
                       .order_by('-hotness'))[:limit + BUFFER]
             shuffle = False
         else:
-            if settings.NEW_FEATURES:
-                ids = Addon.new_featured_random(APP, self.request.LANG)
-            else:
-                ids = Addon.featured_random(APP, self.request.LANG)
+            ids = Addon.featured_random(APP, self.request.LANG)
             addons = manual_order(qs, ids[:limit + BUFFER], 'addons.id')
             shuffle = False
 
@@ -306,6 +303,16 @@ class ListView(APIView):
     def render_json(self, context):
         return json.dumps([addon_to_dict(a) for a in context['addons']],
                           cls=JSONEncoder)
+
+
+class LanguageView(APIView):
+
+    def process_request(self):
+        addons = Addon.objects.filter(status=amo.STATUS_PUBLIC,
+                                      type=amo.ADDON_LPAPP,
+                                      appsupport__app=self.request.APP.id,
+                                      disabled_by_user=False).order_by('pk')
+        return self.render('api/list.xml', {'addons': addons})
 
 
 # pylint: disable-msg=W0613

@@ -165,7 +165,8 @@ class TestRecs(test_utils.TestCase):
                                     content_type='application/json')
         one = json.loads(response.content)
 
-        post_data = json.dumps(dict(guids=self.guids[:1], token2=one['token2']))
+        post_data = json.dumps(dict(guids=self.guids[:1],
+                                    token2=one['token2']))
         response = self.client.post(self.url, post_data,
                                     content_type='application/json')
         eq_(response.status_code, 200)
@@ -234,12 +235,6 @@ class TestPane(test_utils.TestCase):
 
     def setUp(self):
         self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
-        # TODO(cvan): Remove this once featured collections are enabled.
-        self._new_features = settings.NEW_FEATURES
-        settings.NEW_FEATURES = True
-
-    def tearDown(self):
-        settings.NEW_FEATURES = self._new_features
 
     def test_my_account(self):
         self.client.login(username='regular@mozilla.com', password='password')
@@ -266,33 +261,65 @@ class TestPane(test_utils.TestCase):
         r = self.client.get(reverse('discovery.pane.account'))
         assert pq(r.content)('#mission')
 
-    def test_featured_addons(self):
-        addon = Addon.objects.get(id=3615)
+    def test_featured_addons_section(self):
         r = self.client.get(self.url)
-        doc = pq(r.content)
-        p = doc('#featured-addons')
-        eq_(p.find('h2').text(), 'Featured Add-ons')
-        eq_(p.find('li').attr('data-guid'), addon.guid)
-        a = p.find('a.addon-title')
-        url = reverse('discovery.addons.detail', args=[3615])
-        assert a.attr('href').endswith(url + '?src=discovery-featured')
-        eq_(a.attr('target'), '_self')
-        eq_(p.find('h3.vtruncate').text(), unicode(addon.name))
-        eq_(p.find('p.desc.vtruncate').text(), addon.summary)
-        eq_(p.find('img').attr('src'), addon.icon_url)
+        eq_(pq(r.content)('#featured-addons h2').text(), 'Featured Add-ons')
 
-    def test_featured_personas(self):
+    def _test_featured_addons(self):
+        r = self.client.get(self.url)
+        p = pq(r.content)('#featured-addons')
+
+        addon = Addon.objects.get(id=7661)
+        li = p.find('li[data-guid="%s"]' % addon.guid)
+        a = li.find('a.addon-title')
+        url = reverse('discovery.addons.detail', args=[7661])
+        assert a.attr('href').endswith(url + '?src=discovery-featured'), (
+            'Unexpected add-on details URL')
+        eq_(li.find('h3.vtruncate').text(), unicode(addon.name))
+        eq_(li.find('img').attr('src'), addon.icon_url)
+
+        addon = Addon.objects.get(id=2464)
+        li = p.find('li[data-guid="%s"]' % addon.guid)
+        eq_(li.attr('data-guid'), addon.guid)
+        a = li.find('a.addon-title')
+        url = reverse('discovery.addons.detail', args=[2464])
+        assert a.attr('href').endswith(url + '?src=discovery-featured'), (
+            'Unexpected add-on details URL')
+        eq_(li.find('h3.vtruncate').text(), unicode(addon.name))
+        eq_(li.find('img').attr('src'), addon.icon_url)
+
+    @mock.patch.object(settings, 'NEW_FEATURES', False)
+    def test_featured_addons(self):
+        self._test_featured_addons()
+
+    @mock.patch.object(settings, 'NEW_FEATURES', True)
+    def test_new_featured_addons(self):
+        self._test_featured_addons()
+
+    def test_featured_personas_section(self):
+        r = self.client.get(self.url)
+        h2 = pq(r.content)('#featured-personas h2')
+        eq_(h2.text(), 'See all Featured Personas')
+        eq_(h2.find('a.all').attr('href'), reverse('browse.personas'))
+
+    def _test_featured_personas(self):
         addon = Addon.objects.get(id=15679)
         r = self.client.get(self.url)
-        doc = pq(r.content)
-        p = doc('#featured-personas')
-        eq_(p.find('h2').text(), 'See all Featured Personas')
-        eq_(p.find('a.all').attr('href'), reverse('browse.personas'))
+        p = pq(r.content)('#featured-personas')
         a = p.find('a[data-browsertheme]')
         url = reverse('discovery.addons.detail', args=[15679])
-        assert a.attr('href').endswith(url + '?src=discovery-featured')
+        assert a.attr('href').endswith(url + '?src=discovery-featured'), (
+            'Unexpected add-on details URL')
         eq_(a.attr('target'), '_self')
         eq_(p.find('.addon-title').text(), unicode(addon.name))
+
+    @mock.patch.object(settings, 'NEW_FEATURES', False)
+    def test_featured_personas(self):
+        self._test_featured_personas()
+
+    @mock.patch.object(settings, 'NEW_FEATURES', True)
+    def test_new_featured_personas(self):
+        self._test_featured_personas()
 
 
 class TestDetails(test_utils.TestCase):

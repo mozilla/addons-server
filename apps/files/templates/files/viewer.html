@@ -8,6 +8,11 @@
 {% endblock %}
 
 {% block content %}
+<div id="metadata" class="js-hidden"
+     data-name="{{ addon.name }}"
+     data-slug="{{ addon.slug }}"
+     data-version="{{ version }}"></div>
+
 <h3>
     <a href="{{ file_link['url'] }}">{{ addon.name }} {{ version }}</a>
     {% if file.platform.id != amo.PLATFORM_ALL.id %}({{ file.platform }}){% endif %}
@@ -32,6 +37,12 @@
                     <h4>{{ _('Deleted files:') }}</h4>
                     {{ file_tree(files_deleted, key) }}
                 {% endif %}
+                <p id="controls">
+                    <div id="tab-stops-container">
+                        <label class="control" for="tab-stops">{{ _('Tab stops:') }}</label>
+                        <input id="tab-stops" type="range" size="1" />
+                    </div>
+                </p>
                 <table id="commands">
                     <tr><th><code>k</code></th> <td><a href="#" id="files-up">{{ _('Up file') }}</a></td></tr>
                     <tr><th><code>j</code></th> <td><a href="#" id="files-down">{{ _('Down file') }}</a></td></tr>

@@ -7,7 +7,6 @@ from django import http
 from django.conf import settings
 from django.utils.http import urlquote
 
-from amo.tasks import set_modified_on_object
 from . import models as context
 from .urlresolvers import reverse
 
@@ -93,6 +92,7 @@ def set_modified_on(f):
     when the wrapped function exits sucessfully (returns True).
     Looks up objects defined in the set_modified_on kwarg.
     """
+    from amo.tasks import set_modified_on_object
     @functools.wraps(f)
     def wrapper(*args, **kw):
         objs = kw.pop('set_modified_on', None)

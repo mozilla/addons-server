@@ -1,11 +1,13 @@
 import json
 import logging
 import os
+import shutil
 import sys
 import traceback
 
 from django.conf import settings
 from django.core.management import call_command
+from amo.utils import slugify
 from celeryutils import task
 
 from addons.models import Addon
@@ -14,6 +16,8 @@ from amo.decorators import write, set_modified_on
 from amo.utils import resize_image
 from files.models import FileUpload, File, FileValidation
 from applications.management.commands import dump_apps
+
+from PIL import Image
 
 log = logging.getLogger('z.devhub.task')
 
@@ -160,3 +164,91 @@ def resize_preview(src, thumb_dst, full_dst, **kw):
         return True
     except Exception, e:
         log.error("Error saving preview: %s" % e)
+
+
+@task
+@set_modified_on
+def resize_preview_store_size(src, instance, **kw):
+    """Resizes preview images and stores the sizes on the preview."""
+    thumb_dst, full_dst = instance.thumbnail_path, instance.image_path
+    sizes = {}
+    log.info('[1@None] Resizing preview and storing size: %s' % thumb_dst)
+    try:
+        sizes['thumbnail'] = resize_image(src, thumb_dst,
+                                          amo.ADDON_PREVIEW_SIZES[0],
+                                          remove_src=False)
+        sizes['image'] = resize_image(src, full_dst,
+                                      amo.ADDON_PREVIEW_SIZES[1],
+                                      remove_src=False)
+        instance.sizes = sizes
+        instance.save()
+        return True
+    except Exception, e:
+        log.error("Error saving preview: %s" % e)
+
+
+@task
+@write
+def get_preview_sizes(ids, **kw):
+    log.info('[%s@%s] Getting preview sizes for addons starting at id: %s...'
+             % (len(ids), get_preview_sizes.rate_limit, ids[0]))
+    addons = Addon.objects.filter(pk__in=ids).no_transforms()
+
+    for addon in addons:
+        previews = addon.previews.all()
+        log.info('Found %s previews for: %s' % (previews.count(), addon.pk))
+        for preview in previews:
+            try:
+                log.info('Getting size for preview: %s' % preview.pk)
+                sizes = {
+                    'thumbnail':  Image.open(preview.thumbnail_path).size,
+                    'image':  Image.open(preview.image_path).size,
+                }
+                preview.update(sizes=sizes)
+            except Exception, err:
+                log.error('Failed to find size of preview: %s, error: %s'
+                          % (addon.pk, err))
+
+
+@task
+@write
+def convert_purified(ids, **kw):
+    log.info('[%s@%s] Converting fields to purified starting at id: %s...'
+             % (len(ids), convert_purified.rate_limit, ids[0]))
+    fields = ['the_reason', 'the_future']
+    for addon in Addon.objects.filter(pk__in=ids):
+        flag = False
+        for field in fields:
+            value = getattr(addon, field)
+            if value:
+                value.clean()
+                if (value.localized_string_clean != value.localized_string):
+                    flag = True
+        if flag:
+            log.info('Saving addon: %s to purify fields' % addon.pk)
+            addon.save()
+
+
+@task
+def packager(data, feature_set, **kw):
+    """Build an add-on based on input data."""
+    log.info('[1@None] Packaging add-on')
+
+    # "Lock" the file by putting .lock in its name.
+    from devhub.views import packager_path
+    xpi_path = packager_path('%s.lock' % data['uuid'])
+    log.info('Saving package to: %s' % xpi_path)
+
+    from packager.main import packager
+
+    data['slug'] = slugify(data['name']).replace('-', '_')
+    features = set([k for k, v in feature_set.items() if v])
+
+    packager(data, xpi_path, features)
+
+    # Unlock the file and make it available.
+    try:
+        shutil.move(xpi_path, packager_path(data['uuid']))
+    except IOError:
+        log.error('Error unlocking add-on: %s' % xpi_path)
+

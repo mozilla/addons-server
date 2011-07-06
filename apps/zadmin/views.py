@@ -9,6 +9,7 @@ from django import http
 from django.conf import settings as site_settings
 from django.contrib import admin
 from django.shortcuts import redirect, get_object_or_404
+from django.utils.encoding import smart_str
 from django.views import debug
 
 import commonware.log
@@ -34,12 +35,14 @@ from amo.utils import chunked, sorted_groupby
 from addons.models import Addon
 from addons.utils import ReverseNameLookup
 from bandwagon.models import Collection
+from cake.helpers import remora_url
 from files.models import Approval, File
 from versions.models import Version
 
 from . import tasks
-from .forms import BulkValidationForm, NotifyForm, FeaturedCollectionFormSet
-from .models import ValidationJob, EmailPreviewTopic
+from .forms import (BulkValidationForm, FeaturedCollectionFormSet, NotifyForm,
+                    OAuthConsumerForm)
+from .models import ValidationJob, EmailPreviewTopic, ValidationJobTally
 
 log = commonware.log.getLogger('z.zadmin')
 
@@ -294,6 +297,26 @@ def email_preview_csv(request, topic):
 
 
 @admin.site.admin_view
+def validation_tally_csv(request, job_id):
+    resp = http.HttpResponse()
+    resp['Content-Type'] = 'text/csv; charset=utf-8'
+    resp['Content-Disposition'] = ('attachment; '
+                                   'filename=validation_tally_%s.csv'
+                                   % job_id)
+    writer = csv.writer(resp)
+    fields = ['message_id', 'message', 'long_message',
+              'type', 'addons_affected']
+    writer.writerow(fields)
+    job = ValidationJobTally(job_id)
+    for msg in job.get_messages():
+        row = [msg.key, msg.message, msg.long_message, msg.type,
+               msg.addons_affected]
+        writer.writerow([smart_str(r, encoding='utf8', strings_only=True)
+                         for r in row])
+    return resp
+
+
+@admin.site.admin_view
 def jetpack(request):
     upgrader = files.utils.JetpackUpgrader()
     minver, maxver = upgrader.jetpack_versions()
@@ -376,7 +399,9 @@ def elastic(request):
     mappings = {'addons': (addons.search.setup_mapping,
                            addons.cron.reindex_addons),
                 'collections': (None,
-                                bandwagon.cron.reindex_collections)}
+                                bandwagon.cron.reindex_collections),
+                'compat': (addons.search.setup_mapping, None),
+               }
     if request.method == 'POST':
         if request.POST.get('reset') in mappings:
             name = request.POST['reset']
@@ -439,3 +464,32 @@ def addon_name_blocklist(request):
 @admin.site.admin_view
 def index(request):
     return jingo.render(request, 'zadmin/index.html')
+
+
+@admin.site.admin_view
+def addon_search(request):
+    ctx = {}
+    if 'q' in request.GET:
+        q = ctx['q'] = request.GET['q']
+        if q.isdigit():
+            qs = Addon.objects.filter(id=int(q))
+        else:
+            qs = (Addon.search().query(**{'name.fulltext': q.lower()})
+                  .order_by('name')[:100])
+        if len(qs) == 1:
+            return redirect('/admin/addons?q=[%s]' % qs[0].id)
+        ctx['addons'] = qs
+    return jingo.render(request, 'zadmin/addon-search.html', ctx)
+
+
+@admin.site.admin_view
+def oauth_consumer_create(request):
+    form = OAuthConsumerForm(request.POST or None)
+    if form.is_valid():
+        # Generate random codes and save.
+        form.instance.user = request.user
+        form.instance.generate_random_codes()
+        return redirect('admin:piston_consumer_changelist')
+
+    return jingo.render(request, 'zadmin/oauth-consumer-create.html',
+                        {'form':form})

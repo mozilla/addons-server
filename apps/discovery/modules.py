@@ -51,7 +51,9 @@ class TemplatePromo(PromoModule):
         return {}
 
     def render(self, **kw):
-        r = jingo.render_to_string(self.request, self.template, self.context())
+        c = dict(self.context())
+        c.update(kw)
+        r = jingo.render_to_string(self.request, self.template, c)
         return jinja2.Markup(r)
 
 
@@ -72,7 +74,8 @@ class MonthlyPick(TemplatePromo):
     def context(self):
         return {
                 'addon': Addon.objects.get(id=6416),
-                'addon_de': Addon.objects.get(id=146384)
+                'addon_de': Addon.objects.get(id=146384),
+                'module_context': 'discovery'
                }
 
 
@@ -179,7 +182,7 @@ class FxSummerCollection(CollectionPromo):
     title = _(u'Firefox Summer Collection')
     subtitle = _(u'Here are some great add-ons for Firefox.')
 
-    
+
 class ThunderbirdCollection(CollectionPromo):
     slug = 'Thunderbird Collection'
     pk = 2128303

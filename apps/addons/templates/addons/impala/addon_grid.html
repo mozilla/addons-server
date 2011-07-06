@@ -21,11 +21,16 @@
                 <div class="category" class="more-info">{{ cat }}</div>
               {% endif %}
             {% endwith %}
-            <div class="rating">{{ addon.average_rating|stars }} ({{ addon.total_reviews|numberfmt }})</div>
+            <div class="rating">
+              {{ addon.average_rating|stars }}
+              {% if addon.total_reviews %}
+                ({{ addon.total_reviews|numberfmt }})
+              {% endif %}
+            </div>
           </div>
         </a>
         <div class="more">
-          {{ install_button(addon, impala=True) }}
+          {{ install_button(addon, impala=True, src=src) }}
           {{ addon.summary|truncate(250)|nl2br }}
           <div class="byline">
             {% trans users=users_list(addon.listed_authors, size=2) %}

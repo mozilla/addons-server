@@ -126,13 +126,18 @@ function initReviewActions() {
     var addon_id = $('#addon').attr('data-id');
     function check_currently_viewing() {
         $.post('/en-US/editors/review_viewing', {'addon_id': addon_id}, function(d){
-            $current = $('.currently_viewing_warning');
-            $current.toggle(d.is_user != 1);
+            var show = d.is_user != 1 && typeof d.current_name != "undefined",
+                       $current = $('.currently_viewing_warning');
 
-            var title = format(gettext('{name} was viewing this page first.'), {name: d.current_name});
-            $current_div = $current.filter('div');
-            $current_div.find('strong').remove();
-            $current_div.prepend($('<strong>', {'text': title}));
+            $current.toggle(show);
+
+            if(show) {
+              var title = format(gettext('{name} was viewing this page first.'),
+                                         {name: d.current_name});
+              $current_div = $current.filter('div');
+              $current_div.find('strong').remove();
+              $current_div.prepend($('<strong>', {'text': title}));
+            }
 
             setTimeout(check_currently_viewing, d.interval_seconds * 1000);
         });
@@ -148,7 +153,7 @@ function initReviewActions() {
         eh_setting = storage.get('editors_history'),
         eh_els = $('#review-files tr.listing-body'),
         eh_size = eh_els.length;
-    if(!eh_setting) eh_setting = 1;
+    if(!eh_setting) eh_setting = 3;
 
     toggleHistory();
 
@@ -157,8 +162,8 @@ function initReviewActions() {
         eh_els.slice(0, eh_size - eh_setting).hide();
     }
 
-    $('#editors_history').click(_pd(function() {
-        eh_setting = eh_setting <= 1 ? 100 : 1;
+    $('.eh_open').click(_pd(function() {
+        eh_setting = $(this).attr('data-num');
         storage.set('editors_history', eh_setting);
         toggleHistory();
     }));

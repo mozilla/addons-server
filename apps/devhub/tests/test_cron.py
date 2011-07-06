@@ -6,7 +6,9 @@ from django.conf import settings
 from nose.tools import eq_
 import test_utils
 
+from addons.models import Addon
 from devhub.cron import update_blog_posts
+from devhub.tasks import convert_purified
 from devhub.models import BlogPost
 
 
@@ -29,3 +31,24 @@ class TestRSS(test_utils.TestCase):
         eq_(bp.date_posted, datetime.date(2011, 6, 10))
         eq_(bp.permalink, url)
 
+
+class TestPurify(test_utils.TestCase):
+    fixtures = ['base/addon_3615']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(pk=3615)
+
+    def test_no_html(self):
+        self.addon.the_reason = 'foo'
+        self.addon.save()
+        last = Addon.objects.get(pk=3615).modified
+        convert_purified([self.addon.pk])
+        addon = Addon.objects.get(pk=3615)
+        eq_(addon.modified, last)
+
+    def test_has_html(self):
+        self.addon.the_reason = 'foo <script>foo</script>'
+        self.addon.save()
+        convert_purified([self.addon.pk])
+        addon = Addon.objects.get(pk=3615)
+        assert addon.the_reason.localized_string_clean

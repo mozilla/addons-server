@@ -27,56 +27,57 @@
 </section>
 
 <section class="primary" id="homepage">
-  <section class="island" id="promos" data-promo-url="{{ url('addons.homepage_promos') }}">
-    <div>
-      <ul class="slider">
-        <li class="panel">
-          <div id="starter" class="promo feature collection">
-            <h2>What are Add-ons?</h2>
-            <p>lorem ipsum foo bar baz educational content goes here</p>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </section>
-  <section class="secondary">
-    <h2>{{ _('Most Popular') }}
-      <a class="seeall" href="{{ url('browse.extensions')|urlparams(sort='popular') }}">{{ _('All »') }}</a>
-    </h2>
-    {{ popular|addon_toplist }}
-  </section>
-  <section class="primary">
-    {% if featured %}
-      <div class="island">
-        <h2>{{ _('Featured Extensions') }}
-          <a class="seeall" href="{{ url('browse.featured') }}">{{ _('See all »') }}</a>
-        </h2>
-        {{ featured|addon_grid }}
+  {% if request.APP == amo.FIREFOX %}
+    <section class="island" id="promos" data-promo-url="{{ url('addons.homepage_promos') }}">
+      <div>
+        <ul class="slider">
+        </ul>
       </div>
-    {% endif %}
-    {% if hotness %}
-      <div class="island">
-        <h2>{{ _('Up &amp; Coming Extensions') }}</h2>
-        {{ hotness|addon_grid }}
-      </div>
-    {% endif %}
-    {% if personas %}
-      <div class="island">
-        <h2>{{ _('Featured Personas') }}
-          <a class="seeall" href="{{ url('browse.personas')|urlparams(sort='featured') }}">{{ _('See all »') }}</a>
-        </h2>
-        {{ personas|impala_persona_grid }}
-      </div>
-    {% endif %}
-    {% if featured %}
-      <div class="island">
-        <h2>{{ _('Featured Collections') }}
-          <a class="seeall" href="{{ url('collections.list')|urlparams(sort='featured') }}">{{ _('See all »') }}</a>
-        </h2>
-        {{ collections|collection_grid }}
-      </div>
-    {% endif %}
-  </section>
+    </section>
+  {% endif %}
+
+  {# Cache everything in one block since changes in each block are rare. #}
+  {% cache popular %}
+    <section class="secondary">
+      <h2>{{ _('Most Popular') }}
+        <a class="seeall" href="{{ url('browse.extensions')|urlparams(sort='popular') }}">{{ _('All »') }}</a>
+      </h2>
+      {{ popular|addon_toplist }}
+    </section>
+
+    <section class="primary">
+      {% if featured %}
+        <div class="island">
+          <h2>{{ _('Featured Extensions') }}
+            <a class="seeall" href="{{ url('browse.featured') }}">{{ _('See all »') }}</a>
+          </h2>
+          {{ featured|addon_grid }}
+        </div>
+      {% endif %}
+      {% if hotness %}
+        <div class="island">
+          <h2>{{ _('Up &amp; Coming Extensions') }}</h2>
+          {{ hotness|addon_grid }}
+        </div>
+      {% endif %}
+      {% if personas %}
+        <div class="island">
+          <h2>{{ _('Featured Personas') }}
+            <a class="seeall" href="{{ url('browse.personas') }}">{{ _('See all »') }}</a>
+          </h2>
+          {{ personas|impala_persona_grid }}
+        </div>
+      {% endif %}
+      {% if featured %}
+        <div class="island">
+          <h2>{{ _('Featured Collections') }}
+            <a class="seeall" href="{{ url('collections.list')|urlparams(sort='featured') }}">{{ _('See all »') }}</a>
+          </h2>
+          {{ collections|collection_grid }}
+        </div>
+      {% endif %}
+    </section>
+  {% endcache %}
 </section>
 
 {% endblock content %}

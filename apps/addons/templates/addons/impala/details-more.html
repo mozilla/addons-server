@@ -1,0 +1,80 @@
+{# The front of the detail page content is in details.html.
+   We want the above-the-fold portion to return and render really fast
+   so we pull in reviews and links to other add-ons with js.
+   This view returns a chunk of HTML that's injected into the DOM. #}
+{% set version = addon.current_version %}
+<aside class="secondary addon-reviews c">
+  {% if reviews %}
+    <div>
+      {{ addon.average_rating|stars }}
+      {{ _('Average') }}
+    </div>
+  {% endif %}
+  {% include "reviews/grouped_ratings.html" %}
+  {% set amo_user = request.amo_user if user.is_authenticated() else None %}
+  {% if not addon.has_author(amo_user) %}
+    <div>
+      <a class="button" id="add-review" href="{{ url('reviews.add', addon.slug) }}">{{ _('Write a review') }}</a>
+    </div>
+  {% endif %}
+  <a id="report-abuse" href="{{ remora_url('developers/docs/policies/contact') }}"
+     class="abuse-image">{{ _('Report Abuse') }}</a>
+</aside>
+
+<section id="reviews" class="primary island c">
+  <h2>{{ _('Reviews') }}</h2>
+  {{ impala_review_list_box(addon=addon, reviews=reviews) }}
+</section>
+
+{# Cache all of this against the addon because the data doesn't change much
+   and it all depends on the addon in some way. #}
+{% cache addon %}
+<aside class="secondary metadata c">
+  <h3>{{ _('Related Categories') }}</h3>
+  {% with categories = addon.categories.filter(application=APP.id) %}
+    {% if categories %}
+      <ul>
+        {% for category in categories %}
+        <li>
+          <a href="{{ category.get_url_path() }}">
+            {{ category }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  {{ tags_box(addon=addon, tags=tags) }}
+</aside>
+
+{% if recommendations or collections or author_addons %}
+  <section class="primary island c">
+    {% if recommendations %}
+      <section>
+        <h2 class="compact-bottom">{{ _('Often used with&hellip;')|safe }}</h2>
+        {{ recommendations|addon_grid(cols=3) }}
+      </section>
+    {% endif %}
+    {% if collections %}
+      <section>
+        <h2>{{ _('Part of these Collections') }}</h2>
+        {{ collections|collection_grid(cols=3) }}
+      </section>
+      {% endif %}
+    {% if author_addons %}
+      <section>
+        <h2>
+          {% trans count = addon.listed_authors|length,
+                   author = users_list(addon.listed_authors) %}
+            Other add-ons by {{ author }}
+          {% pluralize %}
+            Other add-ons by these authors
+          {% endtrans %}
+        </h2>
+        {{ author_addons|addon_grid(cols=3) }}
+      </section>
+    {% endif %}
+  </section>
+{% endif %}
+
+{% endcache %} {# cache addon #}

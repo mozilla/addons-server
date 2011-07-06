@@ -2,14 +2,14 @@ Dear add-on author,
 
 Good news! Our automated tests did not detect any compatibility issues with your add-on {{ADDON_NAME}} and {{APPLICATION}} {{VERSION}}. We've updated your add-on's compatibility to work with {{APPLICATION}} {{VERSION}} so that our Aurora users can begin using your add-on.
 
-You can view the results of our compatibility check here: {{RESULT_LINKS}}
+We encourage you to view the results of the compatibility test, as some compatibility issues may have been detected but without enough certainty to declare the add-on incompatible: {{RESULT_LINKS}}
 
 This compatibility bump is server-side and we did not modify your add-on package in any way.
 
-Though we did not detect any issues, we strongly encourage you to test your add-on in {{APPLICATION}} {{VERSION}} and review the list of changes here: https://developer.mozilla.org/firefox_for_developers
+For more information on our new compatibility process with rapid {{APPLICATION}} releases, please read this post: http://blog.mozilla.com/addons/2011/04/19/add-on-compatibility-rapid-releases/
 
 Thank you,
-{{APPLICATION}} Add-ons team
+Firefox Add-ons team
 
 --
 

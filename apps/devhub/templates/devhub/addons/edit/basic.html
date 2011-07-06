@@ -73,15 +73,25 @@
                         Choose any that fit your add-on's functionality for the most
                         exposure.")) }}
             </th>
-            <td id="addon_categories_edit"
+            <td id="addon-categories-edit"
                 data-max-categories="{{ amo.MAX_CATEGORIES }}">
-              {% if editable %}
+              {% if editable and cat_form %}
                 {{ cat_form.non_form_errors() }}
                 {{ cat_form.management_form }}
                 {% for form in cat_form.initial_forms %}
                   {{ select_cats(amo.MAX_CATEGORIES, form) }}
                 {% endfor %}
               {% else %}
+                {% if editable and addon.is_category_featured() %}
+                  <p>
+                  {% trans email='amo-editors@mozilla.org' %}
+                    Categories cannot be changed while your add-on is featured
+                    for this application. Please email
+                    <a href="mailto:{{ email }}">{{ email }}</a> if there is a
+                    reason you need to modify your categories.
+                  {% endtrans %}
+                  </p>
+                {% endif %}
                 {% set categories = addon.app_categories %}
                 {% if categories %}
                   <ul class="addon-app-categories">

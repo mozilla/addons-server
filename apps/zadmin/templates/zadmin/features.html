@@ -50,6 +50,11 @@ data-featured-collection-url="{{ url('zadmin.featured_collection') }}"
 
 {% block content %}
 <h2>{{ title }}</h2>
+{% if not settings.NEW_FEATURES %}
+  <div class="notification-box warning">
+    <p>Featured collections are disabled. Enable the <code>NEW_FEATURES</code> setting to use the new features.</p>
+  </div>
+{% endif %}
 <form action="" method="post">
   {{ csrf() }}
   {% include "messages.html" %}

@@ -5,6 +5,8 @@
 {% set links = (
   ('Add-on Name Blocklist', url('zadmin.addon-name-blocklist'),
    'Manage name blocklist'),
+   ('Add-on Search', url('zadmin.addon-search'),
+   'Search for add-ons by name or id'),
   ('Celery', url('zadmin.celery'), 'See celery stats'),
   ('Elasticseach', url('zadmin.elastic'), 'Manage elasticsearch'),
   ('Env', url('amo.env'), 'See the request environment'),
@@ -15,6 +17,7 @@
   ('Jetpack', url('zadmin.jetpack'), 'Upgrade jetpack add-ons'),
   ('Mail', url('zadmin.mail'), 'View fake mail'),
   ('Models', url('zadmin.home'), 'Django Admin Pages'),
+  ('OAuth Consumer', url('zadmin.oauth-consumer-create'), 'Create a new OAuth Consumer'),
   ('Settings', url('zadmin.settings'), 'See the site settings'),
   ('Validation', url('zadmin.start_validation'), 'Bulk add-on validation'),
 ) %}

@@ -1,6 +1,7 @@
 import os
 import logging
 
+from django.conf import settings
 from django.db import connection, transaction
 
 from celeryutils import task
@@ -8,9 +9,10 @@ import elasticutils
 
 import amo
 from amo.decorators import write
+from amo.utils import sorted_groupby
 from . import cron, search  # Pull in tasks from cron.
 from .forms import get_satisfaction
-from .models import Addon, Preview
+from .models import Addon, Category, Preview
 
 log = logging.getLogger('z.task')
 
@@ -34,7 +36,8 @@ def update_last_updated(addon_id):
         q = 'listed'
     else:
         q = 'exp'
-    pk, t = queries[q].filter(pk=addon_id).values_list('id', 'last_updated')[0]
+    qs = queries[q].filter(pk=addon_id).using('default')
+    pk, t = qs.values_list('id', 'last_updated')[0]
     Addon.objects.filter(pk=pk).update(last_updated=t)
 
 
@@ -98,15 +101,27 @@ def delete_preview_files(id, **kw):
 
 @task
 def index_addons(ids, **kw):
+    if not settings.USE_ELASTIC:
+        return
     es = elasticutils.get_es()
     log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
-    for addon in Addon.objects.filter(id__in=ids):
+    for addon in Addon.objects.filter(id__in=ids).transform(attach_categories):
         Addon.index(search.extract(addon), bulk=True, id=addon.id)
     es.flush_bulk(forced=True)
 
 
+def attach_categories(addons):
+    addon_dict = dict((a.id, a) for a in addons)
+    categories = (Category.objects.filter(addon__in=addon_dict)
+                  .values_list('id', 'addoncategory__addon'))
+    for addon, cats in sorted_groupby(categories, lambda x: x[1]):
+        addon_dict[addon].category_ids = [c[0] for c in cats]
+
+
 @task
 def unindex_addons(ids, **kw):
+    if not settings.USE_ELASTIC:
+        return
     for addon in ids:
         log.info('Removing addon [%s] from search index.' % addon)
         Addon.unindex(addon)

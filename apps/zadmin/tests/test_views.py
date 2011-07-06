@@ -11,6 +11,7 @@ from django.core import mail
 import mock
 from nose.plugins.attrib import attr
 from nose.tools import eq_
+from piston.models import Consumer
 from pyquery import PyQuery as pq
 import test_utils
 
@@ -32,7 +33,7 @@ from zadmin.views import completed_versions_dirty, find_files
 from zadmin import tasks
 
 
-no_op_validation = dict(errors=0, warnings=0, notices=0,
+no_op_validation = dict(errors=0, warnings=0, notices=0, messages=[],
                         compatibility_summary=dict(errors=0, warnings=0,
                                                    notices=0))
 
@@ -145,6 +146,16 @@ class BulkValidationTest(test_utils.TestCase):
                   completed=datetime.now())
         kw.update(kwargs)
         return ValidationResult.objects.create(**kw)
+
+    def start_validation(self, new_max='3.7a3'):
+        self.new_max = self.appversion(new_max)
+        r = self.client.post(reverse('zadmin.start_validation'),
+                             {'application': amo.FIREFOX.id,
+                              'curr_max_version': self.curr_max.id,
+                              'target_version': self.new_max.id,
+                              'finish_email': 'fliggy@mozilla.com'},
+                             follow=True)
+        eq_(r.status_code, 200)
 
 
 class TestBulkValidation(BulkValidationTest):
@@ -594,16 +605,6 @@ class TestBulkNotify(BulkValidationTest):
 
 class TestBulkValidationTask(BulkValidationTest):
 
-    def start_validation(self, new_max='3.7a3'):
-        self.new_max = self.appversion(new_max)
-        r = self.client.post(reverse('zadmin.start_validation'),
-                             {'application': amo.FIREFOX.id,
-                              'curr_max_version': self.curr_max.id,
-                              'target_version': self.new_max.id,
-                              'finish_email': 'fliggy@mozilla.com'},
-                             follow=True)
-        eq_(r.status_code, 200)
-
     @attr('validator')
     def test_validate(self):
         self.start_validation()
@@ -631,7 +632,11 @@ class TestBulkValidationTask(BulkValidationTest):
     @mock.patch('zadmin.tasks.run_validator')
     def test_task_error(self, run_validator):
         run_validator.side_effect = RuntimeError('validation error')
-        self.start_validation()
+        try:
+            self.start_validation()
+        except:
+            # the real test is how it's handled, below...
+            pass
         res = ValidationResult.objects.get()
         err = res.task_error.strip()
         assert err.endswith('RuntimeError: validation error'), (
@@ -644,6 +649,19 @@ class TestBulkValidationTask(BulkValidationTest):
 
     @mock.patch('zadmin.tasks.run_validator')
     def test_validate_for_appversions(self, run_validator):
+        data = {
+            "errors": 1,
+            "warnings": 50,
+            "notices": 1,
+            "messages": [],
+            "compatibility_summary": {
+                "errors": 0,
+                "warnings": 0,
+                "notices": 0
+            },
+            "metadata": {}
+        }
+        run_validator.return_value = json.dumps(data)
         self.start_validation()
         assert run_validator.called
         eq_(run_validator.call_args[1]['for_appversions'],
@@ -672,6 +690,7 @@ class TestBulkValidationTask(BulkValidationTest):
                 "tier": 3,
                 "message": "Global called in dangerous manner",
                 "uid": "de93a48831454e0b9d965642f6d6bf8f",
+                "id": [],
                 "compatibility_type": None,
                 "for_appversions": None,
                 "type": "warning",
@@ -682,6 +701,7 @@ class TestBulkValidationTask(BulkValidationTest):
                 "tier": 5,
                 "message": "navigator.language may not behave as expected",
                 "uid": "f44c1930887c4d9e8bd2403d4fe0253a",
+                "id": [],
                 "compatibility_type": "error",
                 "for_appversions": {
                     "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.2a1pre",
@@ -724,7 +744,7 @@ class TestBulkValidationTask(BulkValidationTest):
     def create_version(self, addon, statuses, version_str=None):
         max = self.max
         if version_str:
-            max = AppVersion.objects.get(version=version_str)
+            max = AppVersion.objects.filter(version=version_str)[0]
         version = Version.objects.create(addon=addon)
 
         ApplicationsVersions.objects.create(application=self.application,
@@ -899,6 +919,73 @@ class TestBulkValidationTask(BulkValidationTest):
         eq_(len(ids), 0)
 
 
+class TestTallyValidationErrors(BulkValidationTest):
+
+    def setUp(self):
+        super(TestTallyValidationErrors, self).setUp()
+        self.data = {
+            "errors": 1,
+            "warnings": 1,
+            "notices": 0,
+            "messages": [
+            {
+                "message": "message one",
+                "description": ["message one long"],
+                "id": ["path", "to", "test_one"],
+                "uid": "de93a48831454e0b9d965642f6d6bf8f",
+                "type": "error",
+            },
+            {
+                "message": "message two",
+                "description": "message two long",
+                "id": ["path", "to", "test_two"],
+                "uid": "f44c1930887c4d9e8bd2403d4fe0253a",
+                "compatibility_type": "error",
+                "type": "warning"
+            }],
+            "metadata": {},
+            "compatibility_summary": {
+                "errors": 1,
+                "warnings": 1,
+                "notices": 0
+            }
+        }
+
+    def csv(self, job_id):
+        r = self.client.get(reverse('zadmin.validation_tally_csv',
+                            args=[job_id]))
+        eq_(r.status_code, 200)
+        rdr = csv.reader(StringIO(r.content))
+        header = rdr.next()
+        rows = sorted((r for r in rdr), key=lambda r: r[0])
+        return header, rows
+
+    @mock.patch('zadmin.tasks.run_validator')
+    def test_csv(self, run_validator):
+        run_validator.return_value = json.dumps(self.data)
+        self.start_validation()
+        res = ValidationResult.objects.get()
+        eq_(res.task_error, None)
+        header, rows = self.csv(res.validation_job.pk)
+        eq_(header, ['message_id', 'message', 'long_message',
+                     'type', 'addons_affected'])
+        eq_(rows.pop(0), ['path.to.test_one',
+                          'message one', 'message one long', 'error', '1'])
+        eq_(rows.pop(0), ['path.to.test_two',
+                          'message two', 'message two long', 'error', '1'])
+
+    def test_count_per_addon(self):
+        job = self.create_job()
+        data_str = json.dumps(self.data)
+        for i in range(3):
+            tasks.tally_validation_results(job.pk, data_str)
+        header, rows = self.csv(job.pk)
+        eq_(rows.pop(0), ['path.to.test_one',
+                          'message one', 'message one long', 'error', '3'])
+        eq_(rows.pop(0), ['path.to.test_two',
+                          'message two', 'message two long', 'error', '3'])
+
+
 def test_settings():
     # Are you there, settings page?
     response = test.Client().get(reverse('zadmin.settings'), follow=True)
@@ -1037,3 +1124,18 @@ class TestFeatures(test_utils.TestCase):
         d.update(DELETE=True)
         r = self.client.post(self.url, formset(d, initial_count=1))
         eq_(FeaturedCollection.objects.count(), 0)
+
+
+class TestOAuth(test_utils.TestCase):
+    fixtures = ['base/users',]
+
+    def setUp(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+
+    def test_create_consumer(self):
+        self.client.post(reverse('zadmin.oauth-consumer-create'),
+                         data={'name': 'Test',
+                               'description': 'Test description',
+                               'status': 'accepted'})
+        eq_(Consumer.objects.count(), 1)

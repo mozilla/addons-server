@@ -12,6 +12,10 @@
   {% if compat %}
      data-min="{{ compat.min.version }}"
      data-max="{{ compat.max.version }}"
+     data-version="{{ version.version }}"
+     data-compatible-apps="{{ version.compatible_apps[request.APP] }}"
+     data-lastupdated-isotime="{{ version.created|isotime }}"
+     data-lastupdated-datetime="{{ version.created|datetime }}"
   {% endif %}>
   <p class="install-button">
     {% set links = b.links() %}

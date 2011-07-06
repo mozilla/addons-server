@@ -9,7 +9,7 @@ from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 from django.utils.http import http_date
 
-from mock import patch, patch_object
+from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
@@ -66,7 +66,7 @@ class FilesBase:
         # Setting this to True, so we are delaying the extraction of files,
         # in the tests, the files won't be extracted.
         # Most of these tests extract as needed to.
-        Switch.objects.create(name='delay-file-viewer', active=True)
+        Switch.objects.get_or_create(name='delay-file-viewer', active=True)
 
     def tearDown(self):
         self.file_viewer.cleanup()
@@ -361,7 +361,7 @@ class TestFileViewer(FilesBase, test_utils.TestCase):
         eq_(res['X-SENDFILE'],
             self.file_viewer.get_files().get(binary)['full'])
 
-    @patch.object(settings._wrapped, 'FILE_VIEWER_SIZE_LIMIT', 5)
+    @patch.object(settings, 'FILE_VIEWER_SIZE_LIMIT', 5)
     def test_file_size(self):
         self.file_viewer.extract()
         res = self.client.get(self.file_url(not_binary))
@@ -466,10 +466,13 @@ class TestBuilderPingback(test_utils.TestCase):
     def post(self, data):
         return self.client.post(reverse('amo.builder-pingback'), data)
 
-    def test_success(self):
+    @patch('files.tasks.repackage_jetpack')
+    def test_success(self, repackage_jetpack):
+        repackage_jetpack.delay = Mock()
         r = self.post({'result': '', 'msg': '', 'filename': '',
                        'location': '', 'request': '',
                        'secret': settings.BUILDER_SECRET_KEY})
+        assert repackage_jetpack.delay.called
         eq_(r.status_code, 200)
 
     def test_bad_secret(self):

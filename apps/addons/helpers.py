@@ -158,8 +158,8 @@ def tags_box(context, addon, tags=None):
 
 @register.inclusion_tag('addons/listing/items.html')
 @jinja2.contextfunction
-def addon_listing_items(context, addons, show_date=False, src=None,
-                       notes={}):
+def addon_listing_items(context, addons, show_date=False,
+                        show_downloads=False, src=None, notes={}):
     return new_context(**locals())
 
 
@@ -185,6 +185,8 @@ def addon_listing_header(context, url_base, sort_opts, selected):
 @jinja2.contextfilter
 @register.inclusion_tag('addons/impala/addon_grid.html')
 def addon_grid(context, addons, src=None, pagesize=6, cols=2):
+    if not src:
+        src = context.get('src')
     pages = chunked(addons, pagesize)
     columns = '' if cols != 3 else 'three-col'
     return new_context(**locals())

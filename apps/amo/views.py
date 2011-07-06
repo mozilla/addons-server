@@ -48,23 +48,6 @@ def check_redis():
         return None, e
 
 
-def check_rabbit():
-    # Figure out all the queues we're using. celery is the default.
-    # We're skipping the celery queue for now since it could be backed up and
-    # we don't depend on it as much as the devhub and images queues.
-    checker = cron.QueueCheck()
-    rv = {}
-    for queue, threshold in checker.queues().items():
-        ping, pong = checker.get('ping', queue), checker.get('pong', queue)
-        if not (ping and pong) or time.time() - float(ping) > 60 * 60:
-            monitor_log.error('Celery[%s]: Could not find ping/pong (%s, %s)'
-                              % (queue, ping, pong))
-            rv[queue] = (threshold, None)
-        else:
-            rv[queue] = (threshold, float(pong) - float(ping))
-    return rv
-
-
 @never_cache
 def monitor(request, format=None):
 
@@ -145,11 +128,12 @@ def monitor(request, format=None):
           settings.GUARDED_ADDONS_PATH,
           settings.ADDON_ICONS_PATH,
           settings.COLLECTIONS_ICON_PATH,
+          settings.PACKAGER_PATH,
           settings.PREVIEWS_PATH,
           settings.USERPICS_PATH,
           settings.SPHINX_CATALOG_PATH,
           settings.SPHINX_LOG_PATH,
-          dump_apps.Command.JSON_PATH)
+          dump_apps.Command.JSON_PATH,)
     r = [os.path.join(settings.ROOT, 'locale')]
     filepaths = [(path, os.R_OK | os.W_OK, "We want read + write")
                  for path in rw]
@@ -170,15 +154,6 @@ def monitor(request, format=None):
     if getattr(settings, 'REDIS_BACKEND', False):
         redis_results = check_redis()
     status_summary['redis'] = bool(redis_results[0])
-
-    rabbit_results = check_rabbit()
-    status_summary['rabbit'] = True
-    for queue, (threshold, actual) in rabbit_results.items():
-        if actual > threshold or actual < 0 or actual is None:
-            # status_summary['rabbit'] = False  # Disabled, see template.
-            monitor_log.critical(
-                'Celery[%s] did not respond within %s seconds. (actual: %s)'
-                % (queue, threshold, actual))
 
     # Check Hera
     hera_results = []
@@ -204,7 +179,6 @@ def monitor(request, format=None):
                          'filepath_results': filepath_results,
                          'redis_results': redis_results,
                          'hera_results': hera_results,
-                         'rabbit_results': rabbit_results,
                          'elastic_results': elastic_results,
                          'status_summary': status_summary},
                         status=status)

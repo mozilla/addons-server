@@ -2,7 +2,7 @@
     margin: 0 0 .5em 0;
     li {
         cursor: pointer;
-        padding-left: 30px;
+        padding: 5px 0 3px 30px;
         background-repeat: no-repeat;
         background-position: 0 4px;
         background-image: url(../../img/zamboni/icons/checks.png);
@@ -25,39 +25,17 @@
     margin: 0;
 }
 
-#add-to-collection form {
-    margin-bottom: 0;
-    #id_description {
-        height: 6em;
+#add-to-collection {
+    padding: 1em;
+    form {
+        margin-bottom: 0;
+        #id_description {
+            height: 6em;
+        }
     }
-}
-
-.edit_with_prefix, .edit-with-suffix {
-    span {
-        border: 1px solid #5875A0;
-        background: #eee;
-        color: #888;
+    .register-button {
+        margin: 1em 0;
     }
-    input:focus {
-        outline: 0;
-    }
-}
-.edit_with_prefix span {
-    border-right: 0 none;
-    padding: 2px 2px 2px 5px;
-}
-.edit_with_prefix input {
-    border-left: 0 none;
-}
-.edit_with_suffix span {
-    border-left: 0 none;
-    padding: 2px 5px 2px 2px;
-}
-.edit_with_suffix input {
-    border-right: 0 none;
-}
-.edit_initially_hidden {
-    display: none;
 }
 
 #slug_value {
@@ -86,4 +64,33 @@
     ul label {
         font-weight: normal;
     }
+}
+
+#slug_value {
+    font-weight: bold;
+    color: #222;
+}
+
+#collection-form-slug,
+#clear-recents {
+    font-size: .9em;
+}
+
+#collection-favorites-opts li {
+    display: inline-block;
+    margin-right: 1em;
+}
+
+.collections-details #id_name {
+    display: block;
+    -moz-box-sizing: border-box;
+    width: 100%;
+}
+
+#collection_listed {
+    margin-bottom: 1.5em;
+}
+
+#collection_listed ul label {
+    font-weight: normal;
 }

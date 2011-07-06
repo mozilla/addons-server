@@ -224,3 +224,11 @@ class TestActivity(HubTest):
         eq_(len(doc('.item')), 2)
         assert '<script' not in unicode(doc('.item')), 'XSS FTL'
         assert '&lt;script' in unicode(doc('.item')), 'XSS FTL'
+
+    def test_hidden(self):
+        version = Version.objects.create(addon=self.addon)
+        amo.log(amo.LOG.COMMENT_VERSION, self.addon, version)
+        res = self.get_response(addon=self.addon.id)
+        key = RssKey.objects.get()
+        res = self.get_response(privaterss=key.key)
+        assert "<title>Comment on" not in res.content

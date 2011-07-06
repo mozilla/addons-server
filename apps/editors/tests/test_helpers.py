@@ -159,13 +159,13 @@ class TestAdditionalInfoInQueue(test_utils.TestCase):
 
     def test_platform(self):
         self.row.file_platform_ids = [amo.PLATFORM_LINUX.id]
-        eq_(self.table.render_additional_info(self.row), u'Linux only')
+        assert "plat-sprite-linux" in self.table.render_platforms(self.row)
 
     def test_combo(self):
         self.row.is_site_specific = True
-        self.row.file_platform_ids = [amo.PLATFORM_MAC.id]
+        self.row.external_software = True
         eq_(self.table.render_additional_info(self.row),
-            u'Site Specific, Mac OS X only')
+            u'Site Specific, Requires External Software')
 
     def test_all_platforms(self):
         self.row.file_platform_ids = [amo.PLATFORM_ALL.id]
@@ -482,6 +482,12 @@ class TestReviewHelper(test_utils.TestCase):
         self.helper.handler.process_sandbox()
         assert u'TaobaoShopping淘宝网导航按钮' in mail.outbox[0].subject
 
+    def test_super_review_email(self):
+        self.setup_data(amo.STATUS_NULL)
+        self.helper.handler.process_super_review()
+        url = reverse('editors.review', args=[self.addon.pk], add_prefix=False)
+        assert url in mail.outbox[1].body
+
     def test_nomination_to_super_review(self):
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
@@ -680,7 +686,7 @@ def test_page_title_unicode():
 def test_send_email_autoescape():
     # Make sure HTML is not auto-escaped.
     s = 'woo&&<>\'""'
-    ctx = dict(name=s, addon_url=s, reviewer=s, comments=s, SITE_URL=s)
+    ctx = dict(name=s, review_url=s, reviewer=s, comments=s, SITE_URL=s)
     helpers.send_mail('editors/emails/super_review.ltxt',
                       'aww yeah', ['xx'], ctx)
     eq_(len(mail.outbox), 1)

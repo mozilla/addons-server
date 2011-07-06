@@ -9,11 +9,13 @@ from django.core.cache import cache
 from django.conf import settings
 from django.db.models import Q, signals as db_signals
 from django.shortcuts import get_object_or_404
+from django.utils.cache import patch_cache_control
 
 import jingo
 import redisutils
 
 from amo.utils import sorted_groupby
+from amo.tasks import flush_front_end_cache_urls
 from versions.compare import version_int
 from .models import (BlocklistItem, BlocklistPlugin, BlocklistGfx,
                      BlocklistApp, BlocklistDetail)
@@ -33,10 +35,7 @@ def blocklist(request, apiver, app, appver):
         cache.set(key, response, 60 * 60)
         # This gets cleared with the clear_blocklist signal handler.
         redisutils.connections['master'].sadd('blocklist:keys', key)
-    if settings.BLOCKLIST_COOKIE not in request.COOKIES:
-        response.set_cookie(settings.BLOCKLIST_COOKIE, uuid.uuid4(),
-                            expires=datetime.now() + timedelta(days=5 * 365),
-                            path='/blocklist/', secure=True)
+    patch_cache_control(response, max_age=60 * 60)
     return response
 
 
@@ -59,8 +58,11 @@ def _blocklist(request, apiver, app, appver):
 
 def clear_blocklist(*args, **kw):
     # Something in the blocklist changed; invalidate all responses.
-    keys = redisutils.connections['master'].smembers('blocklist:keys')
+    redis = redisutils.connections['master']
+    keys = redis.smembers('blocklist:keys')
     cache.delete_many(keys)
+    redis.delete('blocklist:keys')
+    flush_front_end_cache_urls.delay(['/blocklist/*'])
 
 
 for m in BlocklistItem, BlocklistPlugin, BlocklistGfx, BlocklistApp:

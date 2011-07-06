@@ -67,8 +67,8 @@ class MOBILE:
     shortername = 'fn'
     pretty = _(u'Mobile')
     browser = True
-    types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
-             ADDON_LPAPP]
+    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH,
+             ADDON_LPAPP, ADDON_PERSONA]
     guid = '{a23983c0-fd0e-11dc-95ff-0800200c9a66}'
     min_display_version = 0.1
     latest_version = None

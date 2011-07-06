@@ -11,6 +11,7 @@ from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.translation import trans_real as translation
 from django.utils import http as urllib
 from django.views.decorators.cache import cache_page, cache_control
+from django.views.decorators.vary import vary_on_headers
 
 import caching.base as caching
 import jingo
@@ -165,65 +166,60 @@ def extension_detail(request, addon):
         'get_replies': Review.get_replies,
 
         'collections': collections.order_by('-subscribers')[:3],
+        'abuse_form': AbuseForm(request=request),
     }
-    if settings.REPORT_ABUSE:
-        data['abuse_form'] = AbuseForm(request=request)
 
     return jingo.render(request, 'addons/details.html', data)
 
 
+@vary_on_headers('X-Requested-With')
 def impala_extension_detail(request, addon):
     """Extensions details page."""
-
-    # if current version is incompatible with this app, redirect
+    # If current version is incompatible with this app, redirect.
     comp_apps = addon.compatible_apps
     if comp_apps and request.APP not in comp_apps:
         prefixer = urlresolvers.get_url_prefix()
         prefixer.app = comp_apps.keys()[0].short
-        return http.HttpResponsePermanentRedirect(reverse(
-            'addons.detail', args=[addon.slug]))
+        return redirect('addons.detail', addon.slug, permanent=True)
 
-    # source tracking
-    src = request.GET.get('src', 'addon-detail')
-
-    # get satisfaction only supports en-US
+    # get satisfaction only supports en-US.
     lang = translation.to_locale(translation.get_language())
     addon.has_satisfaction = (lang == 'en_US' and
                               addon.get_satisfaction_company)
 
-    # other add-ons from the same author(s)
-    author_addons = order_by_translation(addon.authors_other_addons, 'name')[:6]
+    # Other add-ons from the same author(s).
+    author_addons = (Addon.objects.valid().exclude(id=addon.id)
+                     .filter(addonuser__listed=True,
+                             authors__in=addon.listed_authors))[:6]
 
-    # tags
-    tags = addon.tags.not_blacklisted()
+    # Addon recommendations.
+    recommended = Addon.objects.valid().filter(
+        recommended_for__addon=addon)[:6]
 
-    # addon recommendations
-    recommended = MiniAddon.objects.valid().filter(
-        recommended_for__addon=addon)[:5]
-
-    # popular collections this addon is part of
+    # Popular collections this addon is part of.
     collections = Collection.objects.listed().filter(
         addons=addon, application__id=request.APP.id)
 
-    data = {
+    ctx = {
         'addon': addon,
         'author_addons': author_addons,
-
-        'src': src,
-        'tags': tags,
-
+        'src': request.GET.get('src', 'addon-detail'),
+        'tags': addon.tags.not_blacklisted(),
         'grouped_ratings': GroupedRating.get(addon.id),
         'recommendations': recommended,
         'review_form': ReviewForm(),
         'reviews': Review.objects.latest().filter(addon=addon),
         'get_replies': Review.get_replies,
-
         'collections': collections.order_by('-subscribers')[:3],
+        'abuse_form': AbuseForm(request=request),
     }
-    if settings.REPORT_ABUSE:
-        data['abuse_form'] = AbuseForm(request=request)
 
-    return jingo.render(request, 'addons/impala/details.html', data)
+    # details.html just returns the top half of the page for speed. The bottom
+    # does a lot more queries we don't want on the initial page load.
+    if request.is_ajax():
+        return jingo.render(request, 'addons/impala/details-more.html', ctx)
+    else:
+        return jingo.render(request, 'addons/impala/details.html', ctx)
 
 
 @mobilized(extension_detail)
@@ -275,10 +271,10 @@ def persona_detail(request, addon, template=None):
             'review_form': ReviewForm(),
             'reviews': Review.objects.latest().filter(addon=addon),
             'get_replies': Review.get_replies,
-            'search_cat': 'personas'
+            'search_cat': 'personas',
+            'abuse_form': AbuseForm(request=request),
         })
-        if settings.REPORT_ABUSE:
-            data['abuse_form'] = AbuseForm(request=request)
+
     return jingo.render(request, template, data)
 
 
@@ -375,8 +371,7 @@ class HomepageFilter(BaseFilter):
     filter_new = BaseFilter.filter_created
 
     def __init__(self, *args, **kw):
-        self.featured_ids = Addon.featured_random(args[0].APP,
-                                                  args[0].LANG)
+        self.featured_ids = Addon.featured_random(args[0].APP, args[0].LANG)
         super(HomepageFilter, self).__init__(*args, **kw)
 
     def filter_featured(self):
@@ -412,25 +407,23 @@ def home(request):
 
 def impala_home(request):
     # Add-ons.
-    APP = request.APP
-    base = Addon.search().filter(app=APP.id, is_disabled=False,
-                                 status=amo.STATUS_PUBLIC)
-    ext = base.filter(type=amo.ADDON_EXTENSION)
-    feature = dict(featured=APP.id, featured_locale={request.LANG: APP.id})
+    base = Addon.objects.listed(request.APP).filter(type=amo.ADDON_EXTENSION)
+    featured_ids = Addon.featured_random(request.APP, request.LANG)
 
     # Collections.
-    collections = Collection.objects.filter(listed=True, application=APP.id,
+    collections = Collection.objects.filter(listed=True,
+                                            application=request.APP.id,
                                             type=amo.COLLECTION_FEATURED)
-    # TODO: float locale-specific to the top.
-    featured = ext.filter_or(**feature)[:18]
-    popular = ext.order_by('-average_daily_users')[:10]
-    hotness = ext.order_by('-hotness')[:18]
-    personas = base.filter(type=amo.ADDON_PERSONA).filter_or(**feature)[:18]
+    featured = base.filter(id__in=featured_ids)[:18]
+    popular = base.order_by('-average_daily_users')[:10]
+    hotness = base.order_by('-hotness')[:18]
+    personas = (Addon.objects.listed(request.APP)
+                .filter(type=amo.ADDON_PERSONA, id__in=featured_ids))[:18]
 
     return jingo.render(request, 'addons/impala/home.html',
                         {'popular': popular, 'featured': featured,
                          'hotness': hotness, 'personas': personas,
-                         'collections': collections})
+                         'src': 'homepage', 'collections': collections})
 
 
 @mobilized(home)
@@ -439,10 +432,11 @@ def home(request):
     # Shuffle the list and get 3 items.
     rand = lambda xs: random.shuffle(xs) or xs[:3]
     # Get some featured add-ons with randomness.
-    featured = rand(Addon.featured(request.APP, request.LANG).keys())
+    featured = Addon.featured_random(request.APP, request.LANG)
     # Get 10 popular add-ons, then pick 3 at random.
-    qs = list(Addon.objects.listed(request.APP).order_by('-average_daily_users')
-              .values_list('id', flat=True)[:10])
+    qs = list(Addon.objects.listed(request.APP)
+                   .order_by('-average_daily_users')
+                   .values_list('id', flat=True)[:10])
     popular = rand(qs)
     # Do one query and split up the add-ons.
     addons = Addon.objects.filter(id__in=featured + popular)
@@ -455,7 +449,8 @@ def home(request):
 
 def homepage_promos(request):
     from discovery.views import get_modules
-    platform = request.GET.get('platform')
+    from constants.platforms import PLATFORM_DICT
+    platform = PLATFORM_DICT.get(request.GET.get('platform'), 'All').api_name
     version = request.GET.get('version')
     modules = get_modules(request, platform, version)
     return jingo.render(request, 'addons/impala/homepage_promos.html',
@@ -761,9 +756,6 @@ def license_redirect(request, version):
 @session_csrf.anonymous_csrf_exempt
 @addon_view
 def report_abuse(request, addon):
-    if not settings.REPORT_ABUSE:
-        raise http.Http404()
-
     form = AbuseForm(request.POST or None, request=request)
     if request.method == "POST" and form.is_valid():
         url = reverse('addons.detail', args=[addon.slug])

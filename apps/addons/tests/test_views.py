@@ -20,7 +20,7 @@ from pyquery import PyQuery as pq
 import amo
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from amo.tests.test_helpers import AbuseBase, AbuseDisabledBase
+from amo.tests.test_helpers import AbuseBase
 from addons.models import Addon, AddonUser, Charity
 from files.models import File
 from paypal.tests import other_error
@@ -43,7 +43,10 @@ class TestHomepage(test_utils.TestCase):
                 'base/addon_3615',
                 'base/collections',
                 'base/global-stats',
-                'base/featured']
+                'base/featured',
+                'base/collections',
+                'addons/featured',
+                'bandwagon/featured_collections']
 
     def setUp(self):
         super(TestHomepage, self).setUp()
@@ -244,6 +247,7 @@ class TestContributeEmbedded(test_utils.TestCase):
                         reverse('addons.contribute', args=[self.addon.slug]),
                         'result_type=json'))
         assert not json.loads(res.content)['paykey']
+
 
 class TestContribute(test_utils.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592']
@@ -486,6 +490,14 @@ class TestDeveloperPages(test_utils.TestCase):
         url = reverse('addons.meet', args=['a11730']) + '?version=1.x'
         r = self.client.get(url)
         eq_(r.context['version'].version, '1.x')
+
+    def test_purified(self):
+        addon = Addon.objects.get(pk=592)
+        addon.the_reason = addon.the_future = '<b>foo</b>'
+        addon.save()
+        url = reverse('addons.meet', args=['592'])
+        res = self.client.get(url, follow=True)
+        eq_(len(pq(res.content)('div.addon-info b')), 2)
 
 
 class TestLicensePage(test_utils.TestCase):
@@ -1193,7 +1205,6 @@ class TestReportAbuse(AbuseBase, test_utils.TestCase):
                 'base/users']
 
     def setUp(self):
-        settings.REPORT_ABUSE = True
         settings.RECAPTCHA_PRIVATE_KEY = 'something'
         self.full_page = reverse('addons.abuse', args=['a3615'])
 
@@ -1221,28 +1232,9 @@ class TestReportAbuse(AbuseBase, test_utils.TestCase):
         assert 'spammy' in mail.outbox[0].body
 
 
-class TestReportAbuseDisabled(AbuseDisabledBase, test_utils.TestCase):
-    fixtures = ['addons/persona',
-                'base/apps',
-                'base/addon_3615',
-                'base/users']
-
-    def setUp(self):
-        settings.REPORT_ABUSE = False
-        self.full_page = reverse('addons.abuse', args=['a3615'])
-        self.inline_page = reverse('addons.detail', args=['a3615'])
-
-    def tearDown(self):
-        settings.REPORT_ABUSE = True
-
-    def test_abuse_persona(self):
-        r = self.client.get(reverse('addons.detail', args=['a15663']))
-        doc = pq(r.content)
-        assert not doc("fieldset.abuse")
-
-
 class TestMobile(test_utils.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/featured']
+    fixtures = ['addons/featured', 'base/apps', 'base/addon_3615',
+                'base/featured', 'bandwagon/featured_collections']
 
     def setUp(self):
         self.client.cookies['mamo'] = 'on'
@@ -1251,17 +1243,25 @@ class TestMobile(test_utils.TestCase):
 
 class TestMobileHome(TestMobile):
 
-    def test_addons(self):
+    def _test_addons(self):
         r = self.client.get('/', follow=True)
         eq_(r.status_code, 200)
         app, lang = r.context['APP'], r.context['LANG']
         featured, popular = r.context['featured'], r.context['popular']
-        eq_(len(featured), 3)
+        eq_(len(featured), 6)
         assert all(a.is_featured(app, lang) for a in featured)
         eq_(len(popular), 3)
         eq_([a.id for a in popular],
             [a.id for a in sorted(popular, key=lambda x: x.average_daily_users,
                                   reverse=True)])
+
+    @patch.object(settings, 'NEW_FEATURES', False)
+    def test_addons(self):
+        self._test_addons()
+
+    @patch.object(settings, 'NEW_FEATURES', True)
+    def test_new_addons(self):
+        self._test_addons()
 
 
 class TestMobileDetails(TestMobile):
@@ -1280,6 +1280,10 @@ class TestMobileDetails(TestMobile):
         assert 'review_form' not in r.context
         assert 'reviews' not in r.context
         assert 'get_replies' not in r.context
+
+    def test_persona_mobile_url(self):
+        r = self.client.get('/en-US/mobile/addon/15679/')
+        eq_(r.status_code, 200)
 
     def test_release_notes(self):
         a = Addon.objects.get(id=3615)

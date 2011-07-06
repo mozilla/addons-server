@@ -36,7 +36,7 @@ class CurrentVersionTestCase(test_utils.TestCase):
 
 
 class TestLastUpdated(test_utils.TestCase):
-    fixtures = ['base/addon_3615', 'addons/listed',
+    fixtures = ['base/addon_3615', 'addons/listed', 'base/apps',
                 'addons/persona', 'base/seamonkey', 'base/thunderbird']
 
     def test_personas(self):

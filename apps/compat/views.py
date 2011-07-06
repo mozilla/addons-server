@@ -4,47 +4,73 @@ import re
 from django import http
 from django.conf import settings
 from django.db.models import Count
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 
 import jingo
 import redisutils
-from tower import ugettext_lazy as _lazy
+from tower import ugettext as _
 
 import amo.utils
 from amo.decorators import post_required
 from addons.models import Addon
-from .models import CompatReport
-
-KEYS = (
-    ('latest', _lazy('Latest')),
-    ('beta', _lazy('Beta')),
-    ('alpha', _lazy('Alpha')),
-    ('other', _lazy('Other')),
-)
+from versions.compare import version_int as vint
+from .models import CompatReport, AppCompat
 
 
 def index(request, version=None):
     COMPAT = [v for v in settings.COMPAT if v['app'] == request.APP.id]
-    if version is None and COMPAT:
-        version = COMPAT[0]['version']
-
-    redis = redisutils.connections['master']
-    compat = redis.hgetall('compat:%s:%s' % (request.APP.id, version))
-    versions = dict((k, int(v)) for k, v in compat.items())
-
-    if version not in [v['version'] for v in COMPAT] or not versions:
+    compat_dict = dict((v['main'], v) for v in COMPAT)
+    if not COMPAT:
         raise http.Http404()
+    if version not in compat_dict:
+        return redirect('compat.index', COMPAT[0]['main'])
 
-    total = sum(versions.values())
-    keys = [(k, unicode(v)) for k, v in KEYS]
+    compat, app = compat_dict[version], str(request.APP.id)
+    qs = AppCompat.search()
+    compat_queries = (
+        ('prev', qs.query(top_95=True, **{
+            'support.%s.max__gte' % app: vint(compat['previous'])})),
+        ('top_95', qs.query(top_95=True)),
+        ('all', qs),
+    )
+    compat_levels = [(key, version_compat(qs, compat, app))
+                     for key, qs in compat_queries]
+    usage_addons, usage_total = usage_stats(request, compat, app)
     return jingo.render(request, 'compat/index.html',
-                        {'versions': versions, 'total': total,
-                         'version': version, 'keys': keys})
+                        {'version': version,
+                         'usage_addons': usage_addons,
+                         'usage_total': usage_total,
+                         'compat_levels': compat_levels})
 
 
-def details(request, version):
-    return http.HttpResponse('go away')
+def version_compat(qs, compat, app):
+    facets = []
+    for v, prev in zip(compat['versions'], (None,) + compat['versions']):
+        d = {'from': vint(v)}
+        if prev:
+            d['to'] = vint(prev)
+        facets.append(d)
+    qs = qs.facet(by_status={'range': {'support.%s.max' % app: facets}})
+    result = qs[:0].raw()
+    total_addons = result['hits']['total']
+    ranges = result['facets']['by_status']['ranges']
+    faceted = [(v, r['count']) for v, r in zip(compat['versions'], ranges)]
+    other = total_addons - sum(r[1] for r in faceted)
+    return total_addons, faceted + [(_('Other'), other)]
+
+
+def usage_stats(request, compat, app):
+    # Get the list of add-ons for usage stats.
+    redis = redisutils.connections['master']
+    qs = (AppCompat.search().order_by('-usage.%s' % app).values_dict()
+          .filter(**{'support.%s.max__gte' % app: vint(compat['previous'])}))
+    addons = amo.utils.paginate(request, qs)
+    for obj in addons.object_list:
+        obj['usage'] = obj['usage'][app]
+        obj['max_version'] = obj['max_version'][app]
+    total = int(redis.hget('compat:%s' % app, 'total'))
+    return addons, total
 
 
 @csrf_exempt
@@ -107,4 +133,3 @@ def reporter_detail(request, guid):
     return jingo.render(request, 'compat/reporter_detail.html',
                         dict(reports=reports, works=works,
                              name=name, guid=guid))
-

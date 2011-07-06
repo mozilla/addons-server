@@ -38,7 +38,7 @@
         "pk": 2,
         "model": "applications.application",
         "fields": {
-            "guid": "{a23983c0-fd0e-11dc-95ff-0800200c9a66}",
+            "guid": "{86c18b42-e466-45a9-ae7a-9b95ba6f5640}",
             "created": "2006-08-21 23:53:19"
         }
     },

@@ -26,7 +26,7 @@
     {% endif %}
     {{ addon_listing_header(url_base, sort_opts, sorting) }}
     {{ addon_listing_items(addons.object_list, src='category',
-                           show_date=sorting) }}
+                           show_date=sorting, show_downloads=sorting=='popular') }}
     <div class="listing-footer">
       {{ addons|paginator }}
     </div>

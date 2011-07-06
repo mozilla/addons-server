@@ -90,36 +90,8 @@
                 }, false);
 
                 formData.xhr.onreadystatechange = function(e){
-                    if (formData.xhr.readyState == 4 && formData.xhr.responseText &&
-                            (formData.xhr.status == 200 || formData.xhr.status == 304)) {
-                        var json = {};
-                        try {
-                            json = JSON.parse(formData.xhr.responseText);
-                        } catch(err) {
-                            errors = [gettext("There was a problem contacting the server.")];
-
-                            $upload_field.trigger("upload_errors", [file, errors]);
-                            $upload_field.trigger("upload_finished", [file]);
-                            return false;
-                        }
-
-                        errors = settings['getErrors'](json);
-
-                        if(errors.length > 0) {
-                            $upload_field.trigger("upload_errors", [file, errors, json]);
-                        } else {
-                            $form.find('input#id_upload').val(json.upload);
-                            $upload_field.trigger("upload_success", [file, json]);
-                            $upload_field.trigger("upload_progress", [file, 100]);
-                        }
-                        $upload_field.trigger("upload_finished", [file]);
-
-                    } else if(formData.xhr.readyState == 4 && !aborted) {
-                        // L10n: first argument is an HTTP status code
-                        errors = [format(gettext("Received an empty response from the server; status: {0}"),
-                                         [formData.xhr.status])];
-                        $upload_field.trigger("upload_errors", [file, errors]);
-                    }
+                    $upload_field.trigger("upload_onreadystatechange",
+                                          [file, formData.xhr]);
                 };
 
                 formData.send();
@@ -320,6 +292,44 @@
                 }};
 
                 upload_progress_inside.animate({'width': '100%'}, animateArgs);
+            });
+
+            $upload_field.bind("upload_onreadystatechange", function(e, file, xhr) {
+                var errors = [],
+                    $form = $upload_field.closest('form'),
+                    json = {};
+                if (xhr.readyState == 4 && xhr.responseText &&
+                        (xhr.status == 200 ||
+                         xhr.status == 304 ||
+                         xhr.status == 400)) {
+                    try {
+                        json = JSON.parse(xhr.responseText);
+                    } catch(err) {
+                        errors = [gettext("There was a problem contacting the server.")];
+
+                        $upload_field.trigger("upload_errors", [file, errors]);
+                        $upload_field.trigger("upload_finished", [file]);
+                        return false;
+                    }
+
+                    errors = settings['getErrors'](json);
+
+                    if(errors.length > 0) {
+                        $upload_field.trigger("upload_errors", [file, errors, json]);
+                    } else {
+                        $form.find('input#id_upload').val(json.upload);
+                        $upload_field.trigger("upload_success", [file, json]);
+                        $upload_field.trigger("upload_progress", [file, 100]);
+                    }
+                    $upload_field.trigger("upload_finished", [file]);
+
+                } else if(xhr.readyState == 4 && !aborted) {
+                    // L10n: first argument is an HTTP status code
+                    errors = [format(gettext("Received an empty response from the server; status: {0}"),
+                                     [xhr.status])];
+
+                    $upload_field.trigger("upload_errors", [file, errors]);
+                }
             });
 
 

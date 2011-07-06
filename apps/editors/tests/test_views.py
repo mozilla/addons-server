@@ -20,6 +20,7 @@ from addons.models import Addon, AddonUser
 from applications.models import Application
 from devhub.models import ActivityLog
 from editors.models import EditorSubscription, EventLog
+from editors.helpers import get_position
 from files.models import Platform, File
 import reviews
 from reviews.models import Review, ReviewFlag
@@ -430,6 +431,11 @@ class QueueTest(EditorTest):
         a = create_addon_file(*args, **kw)
         self.versions[unicode(a['addon'].name)] = a['version']
 
+    def get_queue(self, version_name):
+        addon_id = self.versions[version_name].addon.id
+        version = Addon.objects.get(pk=addon_id).latest_version
+        eq_(version.current_queue.objects.filter(id=addon_id).count(), 1)
+
 
 class TestQueueBasics(QueueTest):
 
@@ -476,8 +482,8 @@ class TestQueueBasics(QueueTest):
         eq_(doc('table.data-grid tr th:eq(2)').text(), u'Waiting Time')
         eq_(doc('table.data-grid tr th:eq(3)').text(), u'Flags')
         eq_(doc('table.data-grid tr th:eq(4)').text(), u'Applications')
-        eq_(doc('table.data-grid tr th:eq(5)').text(),
-            u'Additional Information')
+        eq_(doc('table.data-grid tr th:eq(5)').text(), u'Platforms')
+        eq_(doc('table.data-grid tr th:eq(6)').text(), u'Additional')
 
     def test_no_results(self):
         File.objects.all().delete()
@@ -688,6 +694,10 @@ class TestPendingQueue(QueueTest):
         eq_(list_items.eq(0).find('a').text(), "Editor Tools")
         eq_(list_items.eq(1).text(), "Pending Updates")
 
+    def test_get_queue(self):
+        self.get_queue(u'Pending One')
+        self.get_queue(u'Pending Two')
+
 
 class TestNominatedQueue(QueueTest):
 
@@ -743,6 +753,10 @@ class TestNominatedQueue(QueueTest):
         eq_(doc('.tabnav li a:eq(0)').attr('href'),
             reverse('editors.queue_nominated'))
 
+    def test_get_queue(self):
+        self.get_queue(u'Nominated One')
+        self.get_queue(u'Nominated Two')
+
 
 class TestPreliminaryQueue(QueueTest):
 
@@ -777,6 +791,10 @@ class TestPreliminaryQueue(QueueTest):
 
         eq_(list_items.eq(0).find('a').text(), "Editor Tools")
         eq_(list_items.eq(1).text(), "Preliminary Reviews")
+
+    def test_get_queue(self):
+        self.get_queue(u'Prelim One')
+        self.get_queue(u'Prelim Two')
 
 
 class TestModeratedQueue(QueueTest):
@@ -1144,8 +1162,9 @@ class TestQueueSearch(SearchTest):
                           platform=amo.PLATFORM_WIN)
         r = self.search({'platform_ids': [amo.PLATFORM_WIN.id]})
         doc = pq(r.content)
-        eq_(doc('table.data-grid tr').eq(1).children('td').eq(5).text(),
-            'Windows only')
+        title = (doc('table.data-grid tr').eq(1).children('td')
+                                          .eq(5).find('div').attr('title'))
+        eq_(title, 'Windows')
 
     def test_search_by_app(self):
         r = self.search({'application_id': [amo.MOBILE.id]})
@@ -1414,13 +1433,12 @@ class TestReview(ReviewBase):
         eq_(response.status_code, 200)
 
         doc = pq(response.content)
-        validation = doc('#review-files .files div').eq(1)
+        validation = doc('#review-files .files ul').eq(0)
         eq_(validation.children().length, 1)
 
         eq_(validation.find('a').eq(0).text(), 'All Platforms')
-
-        eq_(validation.find('a').eq(1).text(), "Validation")
-        eq_(validation.find('a').eq(2).text(), "Contents")
+        eq_(validation.find('a').eq(1).text(), 'Validation')
+        eq_(validation.find('a').eq(2).text(), 'Contents')
 
         eq_(validation.find('a').length, 3)
 
@@ -1453,7 +1471,7 @@ class TestReview(ReviewBase):
             tds = doc('table#review-files > tr > td')
             eq_(tds.eq(i).find('strong').eq(0).text(),
                 "Files in this version:")
-            eq_(tds.eq(i).find('div').length, 3)
+            eq_(tds.eq(i).find('div').length, 4)
 
         eq_(tds.eq(1).find('table td').length, 1)
 
@@ -1506,8 +1524,8 @@ class TestReview(ReviewBase):
         r = self.client.get(self.url)
         doc = pq(r.content)
 
-        eq_(doc('#review-files .files > div').length, 2)
-        div = doc('#review-files .files div').eq(1)
+        eq_(doc('#review-files .files > ul').length, 2)
+        div = doc('#review-files .files > ul').eq(0)
         eq_(div.length, 1)
         eq_(div.find('a.install').text(), "All Platforms")
 

@@ -325,7 +325,7 @@ MobilePersona.prototype.states = function() {
         that = this;
     return {
         loading: function() {
-            that.persona.find('p').show();
+            that.persona.find('p').css('display', 'table-cell');
         },
         previewing: function() {
             that.persona.addClass('persona-previewing');

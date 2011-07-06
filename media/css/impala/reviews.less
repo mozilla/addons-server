@@ -26,7 +26,6 @@
 }
 
 .html-rtl .stars {
-    text-indent: 9999px;
     margin-right: 0;
     margin-left: 4px;
 }
@@ -113,9 +112,6 @@
         display: inline-block;
         margin: 0 0 2px 8px;
     }
-    input[type=submit] {
-        margin-top: 1em;
-    }
 }
 
 .ratingwidget {
@@ -132,5 +128,11 @@
         float: left;
         width: 13px;
         cursor: pointer;
+    }
+}
+.html-rtl {
+    .ratingwidget label {
+        text-indent: 5000px;
+        float: right;
     }
 }

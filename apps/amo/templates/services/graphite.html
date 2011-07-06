@@ -19,10 +19,10 @@
 {% set week = "from=-7days&title=7 days" %}
 
 {% macro grid() %}
-  <img src="{{ base }}&{{ caller()|trim }}&{{ fifteen }}">
-  <img src="{{ base }}&{{ caller()|trim }}&{{ hour }}">
-  <img src="{{ base }}&{{ caller()|trim }}&{{ day }}">
-  <img src="{{ base }}&{{ caller()|trim }}&{{ week }}">
+  <img class="fifteen" src="{{ base }}&{{ caller()|trim }}&{{ fifteen }}">
+  <img class="hour" src="{{ base }}&{{ caller()|trim }}&{{ hour }}">
+  <img class="day" src="{{ base }}&{{ caller()|trim }}&{{ day }}">
+  <img class="week" src="{{ base }}&{{ caller()|trim }}&{{ week }}">
 {% endmacro %}
 
 <!DOCTYPE html>
@@ -31,7 +31,7 @@
     <title>Graphite for {{ site_name }}</title>
   </head>
   <body>
-    <h1>Grahpite for <a href="{{ site_url }}">{{ site_url }}</a></h1>
+    <h1>Graphite for <a href="{{ site_url }}">{{ site_url }}</a></h1>
     <p>If you don't see pictures, you don't have LDAP authentication.</p>
     <ul>
       <li><a href="#responses">All Responses</a></li>
@@ -52,7 +52,44 @@
 
     <h2 id="celery">Celery (<a href="{{ url('zadmin.celery') }}">details</a>)</h2>
     {% call grid() %}
-      target=sumSeries({{ site }}.celery.tasks.pending.*.*.*)&target=derivative(sumSeries({{ site }}.celery.tasks.total.*.*.*))&target=derivative(sumSeries({{ site }}.celery.tasks.failed.*.*.*))
+      target=sumSeries({{ site }}.celery.tasks.pending.*.*.*)&target=nonNegativeDerivative(sumSeries({{ site }}.celery.tasks.total.*.*.*))&target=nonNegativeDerivative(sumSeries({{ site }}.celery.tasks.failed.*.*.*))
     {% endcall %}
+    <script>
+      /* Press `r` to only update the pictures that really need it. */
+      var classes = {
+        /* Map CSS class to [last updated, update threshold]. */
+        fifteen: [new Date, 0],
+        hour: [new Date, 30],
+        day: [new Date, 60],
+        week: [new Date, 600],
+      }
+
+      /* Remember the original src. */
+      var imgs = document.querySelectorAll('img');
+      for (var i = 0; i < imgs.length; i++) {
+        imgs[i].setAttribute('data-src', imgs[i].getAttribute('src'));
+      }
+
+      document.addEventListener('keypress', function(e) {
+        /* Figure out what needs to be updated and fix lastUpdated slot. */
+        var now = (new Date), update = [];
+        Object.keys(classes).map(function(k) {
+          var [lastLoad, limit] = classes[k];
+          if (now - lastLoad > limit * 1000) {
+            classes[k][0] = now;
+            update.push(k);
+          }
+        });
+        var selector = ['img.' + c for each (c in update)].join(',');
+
+        /* Replace img src if we got the right keypress. */
+        if (e.charCode == 'r'.charCodeAt()) {
+          var imgs = document.querySelectorAll(selector);
+          for (var i = 0; i < imgs.length; i++) {
+            imgs[i].setAttribute('src', imgs[i].getAttribute('data-src') + '&' + new Date);
+          }
+        }
+      }, false);
+    </script>
   </body>
 </html>

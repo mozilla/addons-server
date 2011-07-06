@@ -22,8 +22,7 @@ def update_denorm(*pairs, **kw):
     using = kw.get('using')
     for addon, user in pairs:
         reviews = list(Review.objects.valid().no_cache().using(using)
-                       .filter(addon=addon, user=user)
-                       .filter(reply_to=None).order_by('created'))
+                       .filter(addon=addon, user=user).order_by('created'))
         if not reviews:
             continue
 
@@ -87,11 +86,3 @@ def addon_grouped_rating(*addons, **kw):
     using = kw.get('using')
     for addon in addons:
         GroupedRating.set(addon, using=using)
-
-
-@task(rate_limit='10/m')
-def cron_review_aggregate(*addons, **kw):
-    log.info('[%s@%s] Updating addon review aggregates.' %
-             (len(addons), cron_review_aggregate.rate_limit))
-    # We have this redundant task to get rate limiting for big chunks.
-    addon_review_aggregates(*addons)

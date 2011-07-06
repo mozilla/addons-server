@@ -1,8 +1,8 @@
+{% set amo_user = request.amo_user %}
 {% if user.is_authenticated() %}
   <li class="account">
-    <a href="#" class="user" title="{{ user.email }}">
-      {{- user.get_profile().welcome_name -}}
-    </a>
+    <a href="#" class="user" title="{{ amo_user.email }}">
+      {{ amo_user.welcome_name }}</a>
     {% if account_links %}
       <ul>
         {% for link in account_links %}
@@ -14,12 +14,11 @@
     {% endif %}
   </li>
   <li class="nomenu logout">
-    <a href="{{ url('users.logout') }}">Log out</a>
+    <a href="{{ url('users.logout') }}">{{ _('Log out') }}</a>
   </li>
 {% else %}
   <li class="account anonymous nomenu logout">
-    {# TODO(jbalogh): reverse #}
-    {% trans reg="/users/register", login=login_link() %}
+    {% trans reg=url('users.register'), login=login_link() %}
       <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>
     {% endtrans %}
   </li>

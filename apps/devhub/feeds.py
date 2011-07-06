@@ -2,6 +2,7 @@ from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
 from django.utils.feedgenerator import Rss201rev2Feed as RSS
 
+import amo
 from amo.helpers import absolutify, url, strip_html
 from devhub.models import ActivityLog, RssKey
 
@@ -20,7 +21,8 @@ class ActivityFeedRSS(Feed):
         else:  # We are showing all the add-ons.
             addons = key.user.addons.all()
 
-        return ActivityLog.objects.for_addons(addons)[:20]
+        return (ActivityLog.objects.for_addons(addons)
+                           .exclude(action__in=amo.LOG_HIDE_DEVELOPER))[:20]
 
     def item_title(self, item):
         return strip_html(item.to_string())

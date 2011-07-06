@@ -30,7 +30,7 @@
               <caption>{{ _('Add-on Information for {0}')|f(addon_name)|xssafe }}</caption>
             {% endwith %}
             <tbody>
-              <tr>
+              <tr class="addon-updated">
                 <th>{{ _('Updated') }}</th>
                 <td>
                   <time datetime="{{ addon.last_updated|isotime }}">{{
@@ -47,7 +47,7 @@
                 </tr>
               {% endif %}
               {% if addon.compatible_apps[APP] %}
-                <tr>
+                <tr class="addon-compatible">
                   <th>{{ _('Works with') }}</th>
                   <td>{{ addon.compatible_apps[APP] }}</td>
                 </tr>
@@ -214,4 +214,3 @@
   {% if abuse_form %}
   {{ addon_report_abuse(hide=True, addon=addon) }}
   {% endif %}
-

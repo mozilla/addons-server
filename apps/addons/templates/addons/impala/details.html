@@ -2,7 +2,7 @@
 
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
 {% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}
-{% block bodyclass %}gutter{% endblock %}
+{% block bodyclass %}gutter addon-details{% endblock %}
 
 {% block extrahead %}
   {% if settings.ENGAGE_ROBOTS and addon.status == amo.STATUS_UNREVIEWED %}
@@ -19,8 +19,17 @@
 
 <aside class="secondary addon-vitals">
   {{ addon.average_rating|stars(large=True) }}
-  <div><a class="scrollto" href="#reviews">{{ _('{0} user reviews')|f(addon.total_reviews|numberfmt) }}</a></div>
-  <div id="daily-users">{{ _('<b>{0}</b> active users')|f(addon.average_daily_users|numberfmt)|safe }}</div>
+  <div><a id="reviews-link" href="{{ url('reviews.list', addon.slug) }}">{{ _('{0} user reviews')|f(addon.total_reviews|numberfmt) }}</a></div>
+  <div id="daily-users">
+    {% if addon.public_stats %}
+      {# TODO real reverse URL #}
+      <a class='stats' title='View statistics' href="{{ locale_url('/statistics/addon/{0}'|f(addon.id)) }}">
+        {{ _('<b>{0}</b> users')|f(addon.average_daily_users|numberfmt)|safe }}
+      </a>
+    {% else %}
+      {{ _('<b>{0}</b> users')|f(addon.average_daily_users|numberfmt)|safe }}
+    {% endif %}
+  </div>
   <div class="widgets">
     {{ favorites_widget(addon) }}
     {% include 'addons/includes/collection_add_widget.html' %}
@@ -32,20 +41,31 @@
 </aside>
 
 {% set version = addon.current_version %}
+
+{# All this depends on the addon or version, and nothing needs the user,
+   so we can cache it all against the addon. #}
+{% cache addon %}
 <section class="primary">
   <div id="addon" class="island c" role="main" data-id="{{ addon.id }}">
     <hgroup>
       <img id="addon-icon" src="{{ addon.get_icon_url(64) }}" class="icon">
       <h2 class="addon"{{ addon.name|locale_html }}>
         {{ addon.name }}
-        <span class="version">{{ version.version }}</span>
+        <span class="version-number">{{ version.version }}</span>
+        {%- with files = addon.current_version.all_files %}
+          {%- if files and files[0].no_restart -%}
+            &nbsp;<span class="no-restart">{{ _('No Restart') }}</span>
+          {% endif %}
+        {% endwith %}
       </h2>
       <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
     </hgroup>
     <p id="addon-summary" {{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
     {{ big_install_button(addon, show_warning=False, impala=True) }}
     {% if addon.is_featured(APP, LANG) %}
-      <div class="banner featured">{{ _('Featured') }}</div>
+      <div class="banner-box">
+        <div class="banner featured">{{ _('Featured') }}</div>
+      </div>
     {% endif %}
   </div>
 
@@ -56,7 +76,6 @@
   {% if addon.takes_contributions %}
     {{ impala_contribution(addon=addon, src='addon-detail') }}
   {% endif %}
-
 </section>
 
 {% if addon.type != amo.ADDON_PERSONA %}
@@ -114,137 +133,69 @@
     <li>{{ _('Version {0}')|f(version.version) }} <a class="scrollto" href="#detail-relnotes">{{ _('Info') }}</a></li>
     <li>{{ version.created|datetime }}</li>
     <li>
-      {% trans url = version.license_url(), name = version.license %}
-        Released under <a href="{{ url }}">{{ name }}</a>
-      {% endtrans %}
+      {% if version.license %}
+        {% trans url = version.license_url(),
+           name = version.license if version.license.builtin else _('Custom License') %}
+          Released under <a href="{{ url }}">{{ name }}</a>
+        {% endtrans %}
+      {% endif %}
     </li>
   </ul>
 </aside>
 
-{% if addon.description %}
-  <section class="primary island c">
-    <h2>{{ _('About this Add-on') }}</h2>
-    <p id="addon-description" {{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
-  </section>
-{% endif %}
-
-<aside class="secondary addon-reviews c">
-  <div>
-    {{ addon.average_rating|stars }}
-    {{ _('Average') }}
-  </div>
-  {% include "reviews/grouped_ratings.html" %}
-  <p>
-    <a class="button" id="add-review" href="{{ url('reviews.add', addon.slug) }}">{{ _('Write a review') }}</a>
-  </p>
-</aside>
-
-<section id="reviews" class="primary island c">
-  <h2>Reviews</h2>
-  {% if reviews %}
-    {{ impala_review_list_box(addon=addon, reviews=reviews) }}
-  {% else %}
-    <div class="review">
-      <h3>{{ _('This add-on has not yet been reviewed.') }}</h3>
-      <p>
-        <a href="{{ url('reviews.add', addon.slug) }}">
-          {{ _('Be the first to write a review!') }}
-        </a>
-      </p>
-    </div>
-  {% endif %}
-</section>
-
-<aside class="secondary metadata c">
-  <h3>{{ _('Related Categories') }}</h3>
-  {% with categories = addon.categories.filter(application=APP.id) %}
-    {% if categories %}
-      <ul>
-        {% for category in categories %}
-        <li>
-          <a href="{{ category.get_url_path() }}">
-            {{ category }}
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %}
-  {{ tags_box(addon=addon, tags=tags) }}
-</aside>
-
 <section class="primary island c">
-  {% if recommendations %}
-    <section>
-      <h2 class="compact-bottom">{{ _('Often used with&hellip;')|safe }}</h2>
-      {{ recommendations|addon_grid(cols=3) }}
-    </section>
-  {% endif %}
-  {% if collections %}
-    <section>
-      <h2>{{ _('Part of these Collections') }}</h2>
-      {{ collections|collection_grid(cols=3) }}
-    </section>
-    {% endif %}
-  {% if author_addons %}
-    <section>
-      <h2>
-        {% trans count = addon.listed_authors|length,
-                 author = users_list(addon.listed_authors) %}
-          Other add-ons by {{ author }}
-        {% pluralize %}
-          Other add-ons by these authors
-        {% endtrans %}
-      </h2>
-      {{ author_addons|addon_grid(cols=3) }}
-    </section>
+  <h2>{{ _('About this Add-on') }}</h2>
+  {% if addon.description %}
+    <p id="addon-description" {{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
+  {% else %}
+    <p id="addon-description" {{ addon.description|locale_html }}>{{ addon.summary|nl2br }}</p>
   {% endif %}
 </section>
+
+<div id="more-webpage" class="primary c" data-more-url="{{ addon.get_url_path(impala=True) }}"></div>
 
 <section class="primary island c">
   {% if addon.developer_comments %}
-    <section class="expando">
-      <h2>{{ _('Developer’s Comments') }}<a class="toggle" href="#"><b></b></a></h2>
-      <div class="content">
+    <section class="expando" id="developer-comments">
+      <h2>{{ _('Developer’s Comments') }}<a class="toggle" href="#developer-comments"><b></b></a></h2>
+      <div class="content prose">
         <p{{ addon.developer_comments|locale_html }}>
           {{ addon.developer_comments|nl2br }}</p>
       </div>
     </section>
   {% endif %}
   <section id="detail-relnotes" class="expando">
-    <h2>{{ _('Version Information') }}<a class="toggle" href="#"><b></b></a></h2>
+    <h2>{{ _('Version Information') }}<a class="toggle" href="#detail-relnotes"><b></b></a></h2>
     <div class="content">
-      {{ version_detail(addon, version, src="addon-detail-version") }}
+      {{ version_detail(addon, version, src="addon-detail-version", impala=True) }}
     </div>
   </section>
 
-  {% if addon.show_beta and show_actions %}
+  {% if addon.show_beta %}
     <section id="beta-channel" class="expando">
-      <h2>{{ _('Development Channel') }}<a class="toggle" href="#"><b></b></a></h2>
+      <h2>{{ _('Development Channel') }}<a class="toggle" href="#beta-channel"><b></b></a></h2>
       <div class="content">
         <p>
           {% trans %}
-          The Development Channel lets you test an experimental new version of this
-          add-on before it's released to the general public. Once you install
-          the development version, you will continue to get updates from this channel.
+            The Development Channel lets you test an experimental new version of this
+            add-on before it's released to the general public. Once you install the
+            development version, you will continue to get updates from this channel. To
+            stop receiving development updates, reinstall the default version from the link
+            above.
           {% endtrans %}
           <a href="#install-beta">{{ _('Install development version') }}</a>
         </p>
         <div class="install-beta" id="install-beta">
           <p>
             {% trans %}
-            <strong>Caution:</strong> Development versions of this add-on have not
-            been reviewed by Mozilla. Once you install a development version you will
-            continue to receive development updates from this developer. To stop
-            receiving development updates, reinstall the default version from the
-            link above.
+              <strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla.
             {% endtrans %}
           </p>
           <dl>
             <dt class="beta-version">{{ _('Version {0}:')|f(
               addon.current_beta_version.version) }}</dt>
             <dd>{{ install_button(addon, version=addon.current_beta_version,
-                                  show_warning=False) }}</dd>
+                                  show_warning=False, impala=True) }}</dd>
           </dl>
         </div>
       </div>
@@ -252,10 +203,11 @@
   {% endif %}
 </section>
 
-{% if abuse_form %}
-  {{ addon_report_abuse(hide=True, addon=addon) }}
-{% endif %}
+{% endcache %} {# cache addon #}
 
+{# The rest of the detail page content is in details-more.html.
+   We want above-the-fold to return and render really fast so we pull
+   in reviews and links to other add-ons with js. #}
 {% endblock content %}
 
 {% block popups %}
@@ -268,10 +220,15 @@
       </div>
     </div>
   {% endif %}
-  {% if review_form: %}
-    {% if request.user.is_authenticated() %}
+  {% if review_form and request.user.is_authenticated() %}
       {{ impala_review_add_box(addon=addon) }}
-    {% endif %}
+  {% endif %}
+  {% if abuse_form %}
+    <div id="abuse-modal" class="modal">
+      <a href="#" class="close">{{ _('close') }}</a>
+      <h2>{{ _('Report Abuse') }}</h2>
+      {{ addon_report_abuse(hide=False, addon=addon) }}
+    </div>
   {% endif %}
 {% endblock %}
 

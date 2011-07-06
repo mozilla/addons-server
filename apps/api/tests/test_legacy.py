@@ -7,17 +7,21 @@ from django.core.cache import cache
 from django.conf import settings
 from django.test.client import Client
 
-from pyquery import PyQuery as pq
 import jingo
-from test_utils import TestCase
+from mock import patch
 from nose.tools import eq_
+from pyquery import PyQuery as pq
+from test_utils import TestCase
 
 import amo
 import api
 import api.utils
-from addons.models import Addon, AddonCategory, Category, Feature
+from addons.models import (Addon, AddonCategory, AppSupport, Category,
+                           Feature, Preview)
 from amo import helpers
 from amo.urlresolvers import reverse
+from applications.models import Application
+from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from search.tests import SphinxTestCase
 from search.utils import stop_sphinx
 
@@ -36,15 +40,30 @@ def test_json_not_implemented():
 class UtilsTest(TestCase):
     fixtures = ['base/addon_3615']
 
+    def setUp(self):
+        self.a = Addon.objects.get(pk=3615)
+
     def test_dict(self):
-        "Verify that we're getting dict."
-        a = Addon.objects.get(pk=3615)
-        d = api.utils.addon_to_dict(a)
-        assert d['learnmore'].endswith('/addon/a3615/?src=api')
-        d = api.utils.addon_to_dict(a, disco=True)
+        """Verify that we're getting dict."""
+        d = api.utils.addon_to_dict(self.a)
+        assert d, 'Add-on dictionary not found'
+        assert d['learnmore'].endswith('/addon/a3615/?src=api'), (
+            'Add-on details URL does not end with "?src=api"')
+
+    def test_dict_disco(self):
+        """Check for correct add-on detail URL for discovery pane."""
+        d = api.utils.addon_to_dict(self.a, disco=True)
         u = '%s%s?src=api' % (settings.SERVICES_URL,
             reverse('discovery.addons.detail', args=['a3615']))
         eq_(d['learnmore'], u)
+
+    def test_sanitize(self):
+        """Check that tags are stripped for summary and description."""
+        self.a.summary = self.a.description = 'i <3 <a href="">amo</a>!'
+        self.a.save()
+        d = api.utils.addon_to_dict(self.a)
+        eq_(d['summary'], 'i &lt;3 amo!')
+        eq_(d['description'], 'i &lt;3 amo!')
 
 
 class No500ErrorsTest(TestCase):
@@ -123,8 +142,14 @@ class APITest(TestCase):
                 'base/addon_5299_gcal']
 
     def setUp(self):
+        self._new_features = settings.NEW_FEATURES
+        settings.NEW_FEATURES = False
+
         if hasattr(Addon, '_feature'):
             delattr(Addon, '_feature')
+
+    def tearDown(self):
+        settings.NEW_FEATURES = self._new_features
 
     def test_api_caching(self):
         response = self.client.get('/en-US/firefox/api/1.5/addon/3615')
@@ -367,6 +392,7 @@ class APITest(TestCase):
                             '<slug>%s</slug>' %
                             Addon.objects.get(pk=5299).slug)
 
+    @patch.object(settings, 'NEW_FEATURES', False)
     def test_is_featured(self):
         self.assertContains(make_call('addon/5299', version=1.5),
                             '<featured>0</featured>')
@@ -379,11 +405,29 @@ class APITest(TestCase):
                                   ('en-US', 'firefox', 0),
                                   ('ja', 'seamonkey', 0)]:
             # Clean out the special cache for feature.
-            delattr(Addon, '_feature')
+            if hasattr(Addon, '_feature'):
+                del Addon._feature
             self.assertContains(make_call('addon/5299', version=1.5,
                                           lang=lang, app=app),
                                 '<featured>%s</featured>' % result)
 
+    @patch.object(settings, 'NEW_FEATURES', True)
+    def test_new_is_featured(self):
+        self.assertContains(make_call('addon/5299', version=1.5),
+                            '<featured>0</featured>')
+        c = CollectionAddon.objects.create(addon=Addon.objects.get(id=5299),
+            collection=Collection.objects.create())
+        FeaturedCollection.objects.create(locale='ja',
+            application=Application.objects.get(id=amo.FIREFOX.id),
+            collection=c.collection)
+        for lang, app, result in [('ja', 'firefox', 1),
+                                  ('en-US', 'firefox', 0),
+                                  ('ja', 'seamonkey', 0)]:
+            self.assertContains(make_call('addon/5299', version=1.5,
+                                          lang=lang, app=app),
+                                '<featured>%s</featured>' % result)
+
+    @patch.object(settings, 'NEW_FEATURES', False)
     def test_is_category_featured(self):
         self.assertContains(make_call('addon/5299', version=1.5),
                             '<featured>0</featured>')
@@ -395,7 +439,26 @@ class APITest(TestCase):
                                   ('en-US', 'firefox', 0),
                                   ('ja', 'seamonkey', 0)]:
             # Clean out the special cache for feature.
-            delattr(Addon, '_feature')
+            if hasattr(Addon, '_feature'):
+                delattr(Addon, '_feature')
+            self.assertContains(make_call('addon/5299', version=1.5,
+                                          lang=lang, app=app),
+                                '<featured>%s</featured>' % result)
+
+    @patch.object(settings, 'NEW_FEATURES', True)
+    def test_new_is_category_featured(self):
+        self.assertContains(make_call('addon/5299', version=1.5),
+                            '<featured>0</featured>')
+        AddonCategory.objects.create(addon_id=5299,
+                                     category=Category.objects.all()[0])
+        c = CollectionAddon.objects.create(addon=Addon.objects.get(id=5299),
+            collection=Collection.objects.create())
+        FeaturedCollection.objects.create(locale='ja',
+            application=Application.objects.get(id=amo.FIREFOX.id),
+            collection=c.collection)
+        for lang, app, result in [('ja', 'firefox', 1),
+                                  ('en-US', 'firefox', 0),
+                                  ('ja', 'seamonkey', 0)]:
             self.assertContains(make_call('addon/5299', version=1.5,
                                           lang=lang, app=app),
                                 '<featured>%s</featured>' % result)
@@ -405,16 +468,27 @@ class APITest(TestCase):
         addon.update(icon_type='')
         self.assertContains(make_call('addon/5299'), '<icon></icon>')
 
+    def test_thumbnail_size(self):
+        addon = Addon.objects.get(pk=5299)
+        preview = Preview.objects.create(addon=addon)
+        preview.sizes = {'thumbnail': [200, 150]}
+        preview.save()
+        result = make_call('addon/5299', version=1.5)
+        self.assertContains(result, '<full type="">')
+        self.assertContains(result,
+                            '<thumbnail type="" width="200" height="150">')
+
 
 class ListTest(TestCase):
     """Tests the list view with various urls."""
     fixtures = ['base/apps', 'base/addon_3615', 'base/featured']
 
     def setUp(self):
-        # TODO(cvan): These tests will need to be rewritten for featured
-        # collections.
+        # TODO(cvan): Remove this once featured collections are enabled.
         self._new_features = settings.NEW_FEATURES
         settings.NEW_FEATURES = False
+        if hasattr(Addon, '_feature'):
+            delattr(Addon, '_feature')
 
     def tearDown(self):
         settings.NEW_FEATURES = self._new_features
@@ -523,6 +597,21 @@ class ListTest(TestCase):
 
     def test_unicode(self):
         make_call(u'list/featured/all/10/Linux/3.7a2prexec\xb6\u0153\xec\xb2')
+
+
+class NewListTest(ListTest):
+    """Tests the list view with various urls."""
+    fixtures = ListTest.fixtures + ['addons/featured',
+                                    'bandwagon/featured_collections',
+                                    'base/collections']
+
+    def setUp(self):
+        # TODO(cvan): Remove this once featured collections are enabled.
+        self._new_features = settings.NEW_FEATURES
+        settings.NEW_FEATURES = True
+
+    def tearDown(self):
+        settings.NEW_FEATURES = self._new_features
 
 
 class SeamonkeyFeaturedTest(TestCase):
@@ -650,3 +739,32 @@ class SearchTest(SphinxTestCase):
                 "/en-US/firefox/api/1.2/search/firefox/all/1")
         self.assertContains(response, """<searchresults total_results="2">""")
         self.assertContains(response, "</addon>", 1)
+
+
+class LanguagePacks(TestCase):
+    fixtures = ['addons/listed', 'base/apps']
+
+    def setUp(self):
+        self.url = reverse('api.language', args=['1.5'])
+        self.tb_url = self.url.replace('firefox', 'thunderbird')
+        self.addon = Addon.objects.get(pk=3723)
+
+    def test_search_language_pack(self):
+        self.addon.update(type=amo.ADDON_LPAPP, status=amo.STATUS_PUBLIC)
+        res = self.client.get(self.url)
+        self.assertContains(res, "<guid>{835A3F80-DF39")
+
+    def test_search_no_language_pack(self):
+        res = self.client.get(self.url)
+        self.assertNotContains(res, "<guid>{835A3F80-DF39")
+
+    def test_search_app(self):
+        self.addon.update(type=amo.ADDON_LPAPP, status=amo.STATUS_PUBLIC)
+        AppSupport.objects.create(addon=self.addon, app_id=amo.THUNDERBIRD.id)
+        res = self.client.get(self.tb_url)
+        self.assertContains(res, "<guid>{835A3F80-DF39")
+
+    def test_search_no_app(self):
+        self.addon.update(type=amo.ADDON_LPAPP, status=amo.STATUS_PUBLIC)
+        res = self.client.get(self.tb_url)
+        self.assertNotContains(res, "<guid>{835A3F80-DF39")

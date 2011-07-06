@@ -247,7 +247,7 @@ MIDDLEWARE_CLASSES = (
     # AMO URL middleware comes first so everyone else sees nice URLs.
     'amo.middleware.TimingMiddleware',
     'commonware.response.middleware.GraphiteRequestTimingMiddleware',
-    'amo.middleware.GraphiteMiddleware',
+    'commonware.response.middleware.GraphiteMiddleware',
     'amo.middleware.LocaleAndAppURLMiddleware',
     # Mobile detection should happen in Zeus.
     'mobility.middleware.DetectMobileMiddleware',
@@ -401,6 +401,7 @@ MINIFY_BUNDLES = {
             'css/impala/site.less',
             'css/impala/typography.less',
             'css/global/headerfooter.css',
+            'css/impala/forms.less',
             'css/impala/header.less',
             'css/impala/footer.less',
             'css/impala/moz-tab.css',
@@ -419,6 +420,7 @@ MINIFY_BUNDLES = {
             'css/impala/sharing.less',
             'css/impala/collections.less',
             'css/impala/abuse.less',
+            'css/impala/prose.less',
         ),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',
@@ -576,6 +578,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/upload.js',
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
+            'js/zamboni/packager.js',
         ),
         'zamboni/editors': (
             'js/zamboni/editors.js',
@@ -583,6 +586,7 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/files': (
             'js/lib/diff_match_patch_uncompressed.js',
+            'js/lib/syntaxhighlighter/xregexp-min.js',
             'js/lib/syntaxhighlighter/shCore.js',
             'js/lib/syntaxhighlighter/shLegacy.js',
             'js/lib/syntaxhighlighter/shBrushAppleScript.js',
@@ -674,6 +678,7 @@ ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
 COLLECTIONS_ICON_PATH = UPLOADS_PATH + '/collection_icons'
 PREVIEWS_PATH = UPLOADS_PATH + '/previews'
 USERPICS_PATH = UPLOADS_PATH + '/userpics'
+PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 ADDON_ICONS_DEFAULT_PATH = os.path.join(MEDIA_ROOT, 'img/addon-icons')
 
 PREVIEW_THUMBNAIL_PATH = (PREVIEWS_PATH + '/thumbs/%s/%d.png')
@@ -778,6 +783,7 @@ CELERY_IMPORTS = ('django_arecibo.tasks',)
 # We have separate celeryds for processing devhub & images as fast as possible.
 CELERY_ROUTES = {
     'devhub.tasks.validator': {'queue': 'devhub'},
+    'devhub.tasks.packager': {'queue': 'devhub'},
     'bandwagon.tasks.resize_icon': {'queue': 'images'},
     'users.tasks.resize_photo': {'queue': 'images'},
     'users.tasks.delete_photo': {'queue': 'images'},
@@ -786,6 +792,9 @@ CELERY_ROUTES = {
     'zadmin.tasks.bulk_validate_file': {'queue': 'bulk'},
     'devhub.tasks.flag_binary': {'queue': 'bulk'},
 }
+
+# When testing, we always want tasks to raise exceptions. Good for sanity.
+CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
 
 
 ## Fixture Magic
@@ -914,9 +923,6 @@ PERFORMANCE_NOTES = False
 
 PERF_THRESHOLD = 25
 
-# flag to turn on or off Abuse reports
-REPORT_ABUSE = True
-
 REDIS_BACKENDS = {'master': 'redis://localhost:6379?socket_timeout=0.5'}
 
 # Directory of JavaScript test files for django_qunit to run
@@ -927,9 +933,14 @@ QUNIT_TEST_DIRECTORY = os.path.join(MEDIA_ROOT, 'js', 'zamboni', 'tests')
 SPIDERMONKEY = None
 VALIDATE_ADDONS = True
 
+# When True include full tracebacks in JSON. This is useful for QA on preview.
+EXPOSE_VALIDATOR_TRACEBACKS = False
+
 # Feature flags
 SEARCH_EXCLUDE_PERSONAS = True
 UNLINK_SITE_STATS = True
+
+# Use the new featured add-ons system which makes use of featured collections.
 NEW_FEATURES = False
 
 # Set to True if we're allowed to use X-SENDFILE.
@@ -961,13 +972,13 @@ MODIFIED_DELAY = 3
 
 # This is a list of dictionaries that we should generate compat info for.
 # app: should match amo.FIREFOX.id.
-# version: the app version we're generating compat info for.
-# alpha: the first version that should be considered alpha for :version.
-# previous: the major version before :version.
+# main: the app version we're generating compat info for.
+# versions: version numbers to show in comparisons.
+# previous: the major version before :main.
 COMPAT = (
-    dict(app=1, version='4.0', alpha='3.7a', previous='3.6'),
-    dict(app=1, version='5.0', alpha='5.0a', previous='4.0'),
-    dict(app=1, version='6.0', alpha='6.0a', previous='5.0'),
+    dict(app=1, main='6.0', versions=('6.0', '6.0a2', '6.0a1'), previous='5.0'),
+    dict(app=1, main='5.0', versions=('5.0', '5.0a2', '5.0a1'), previous='4.0'),
+    dict(app=1, main='4.0', versions=('4.0', '4.0a1', '3.7a'), previous='3.6'),
 )
 
 # URL for reporting arecibo errors too. If not set, won't be sent.
@@ -1016,3 +1027,6 @@ KNOWN_PROXIES = []
 
 # Blog URL
 DEVELOPER_BLOG_URL = "http://blog.mozilla.com/addons/feed/"
+
+# TODO(Kumar) Remove this (or set to True) when it works. See bug 636494
+SHOW_UUID_ERRORS_IN_VALIDATION = False

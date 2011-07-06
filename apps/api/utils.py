@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.utils.html import strip_tags
 
 import amo
 from amo.urlresolvers import reverse
@@ -28,8 +29,8 @@ def addon_to_dict(addon, disco=False):
          'type': amo.ADDON_SLUGS_UPDATE[addon.type],
          'author': (addon.listed_authors[0].name if
                     addon.listed_authors else ''),
-         'summary': addon.summary,
-         'description': addon.description,
+         'summary': strip_tags(addon.summary),
+         'description': strip_tags(addon.description),
          'icon': addon.icon_url,
          'learnmore': learnmore,
          'reviews': url(addon.reviews_url),

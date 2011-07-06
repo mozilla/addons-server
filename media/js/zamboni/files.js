@@ -115,6 +115,55 @@ if (typeof SyntaxHighlighter !== 'undefined') {
     };
 }
 
+jQuery.fn.numberInput = function(increment) {
+    this.each(function() {
+        var $self = $(this);
+        $self.addClass("number-combo-input");
+
+        var height = $self.outerHeight() / 2;
+
+        var $dom = $('<span>').attr({ 'class': 'number-combo' })
+                     .append($('<a>').attr({ 'class': 'number-combo-button-down',
+                                             'href': '#' })
+                                     .text('↓'))
+                     .append($('<a>').attr({ 'class': 'number-combo-button-up',
+                                             'href': '#' })
+                                     .text('↑'));
+
+        var $up = $dom.find('.number-combo-button-up').click(_pd(function(event, count) {
+            count = count || (event.ctrlKey ? increment : 1) || 1;
+            $self.val(Number($self.val()) + count);
+            $self.change();
+        }));
+        var $down = $dom.find('.number-combo-button-down').click(_pd(function(event, count) {
+            count = count || (event.ctrlKey ? increment : 1) || 1;
+            $self.val(Math.max(Number($self.val()) - count, 0));
+            $self.change();
+        }));
+
+        $.each(['change', 'keypress', 'input'], function(i, event) {
+            $self.bind(event, function() {
+                $self.val($self.val().replace(/\D+/, ""));
+            });
+        });
+        $self.keypress(function(event) {
+            if (event.keyCode == KeyEvent.DOM_VK_UP) {
+                $up.click();
+            } else if (event.keyCode == KeyEvent.DOM_VK_DOWN) {
+                $down.click();
+            } else if (event.keyCode == KeyEvent.DOM_VK_PAGE_UP) {
+                $up.trigger('click', increment);
+            } else if (event.keyCode == KeyEvent.DOM_VK_PAGE_DOWN) {
+                $down.trigger('click', increment);
+            }
+        });
+
+        $self.after($dom);
+        $dom.prepend(this);
+    });
+    return this;
+};
+
 function bind_viewer(nodes) {
     $.each(nodes, function(x) {
         nodes['$'+x] = $(nodes[x]);
@@ -524,6 +573,29 @@ function bind_viewer(nodes) {
 
         buffer = '';
     }));
+
+    var stylesheet = $('<style>').attr('type', 'text/css').appendTo($('head'))[0].sheet;
+    if (stylesheet && stylesheet.insertRule) {
+        stylesheet.insertRule('td.code, #diff, #content {}', 0);
+
+        var rule = stylesheet.cssRules[0],
+            tabstopsKey = 'apps/files/tabstops',
+            localTabstopsKey = tabstopsKey + ':' + $('#metadata').attr('data-slug'),
+            storage = z.Storage();
+
+        $("#tab-stops-container").show();
+
+        var $tabstops = $('#tab-stops')
+            .numberInput(4)
+            .val(Number(storage.get(localTabstopsKey) || storage.get(tabstopsKey)) || 4)
+            .change(function() {
+                rule.style.tabSize = rule.style.MozTabSize = $(this).val();
+                storage.set(localTabstopsKey, $(this).val());
+                storage.set(tabstopsKey, $(this).val());
+            })
+            .change();
+    }
+
     return viewer;
 }
 

@@ -24,6 +24,7 @@ from addons.models import (Addon, AddonCategory, AddonDependency,
                            Category, Charity, Feature, FrozenAddon, Persona,
                            Preview)
 from applications.models import Application, AppVersion
+from bandwagon.models import CollectionAddon, FeaturedCollection
 from devhub.models import ActivityLog
 from files.models import File, Platform
 from files.tests.test_models import UploadTest
@@ -35,41 +36,51 @@ from versions.compare import version_int
 
 
 class TestAddonManager(test_utils.TestCase):
-    fixtures = ['base/addon_5299_gcal', 'addons/test_manager']
+    fixtures = ['addons/featured', 'addons/test_manager', 'base/collections',
+                'base/featured', 'bandwagon/featured_collections',
+                'base/addon_5299_gcal']
 
     def setUp(self):
         set_user(None)
 
+    @patch.object(settings, 'NEW_FEATURES', False)
     def test_featured(self):
         featured = Addon.objects.featured(amo.FIREFOX)[0]
         eq_(featured.id, 1)
-        eq_(Addon.objects.featured(amo.FIREFOX).count(), 1)
+        eq_(Addon.objects.featured(amo.FIREFOX).count(), 5)
+
+    @patch.object(settings, 'NEW_FEATURES', True)
+    def test_new_featured(self):
+        featured = Addon.objects.featured(amo.FIREFOX)[0]
+        eq_(featured.id, 1001)
+        eq_(Addon.objects.featured(amo.FIREFOX).count(), 6)
 
     def test_listed(self):
         Addon.objects.filter(id=5299).update(disabled_by_user=True)
-        # Should find one addon.
         q = Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC)
-        eq_(len(q.all()), 1)
+        eq_(len(q.all()), 4)
 
         addon = q[0]
-        eq_(addon.id, 1)
+        eq_(addon.id, 2464)
 
         # Disabling hides it.
         addon.disabled_by_user = True
         addon.save()
-        eq_(q.count(), 0)
+
+        # Should be 3 now, since the one is now disabled.
+        eq_(q.count(), 3)
 
         # If we search for public or unreviewed we find it.
         addon.disabled_by_user = False
         addon.status = amo.STATUS_UNREVIEWED
         addon.save()
-        eq_(q.count(), 0)
+        eq_(q.count(), 3)
         eq_(Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC,
-                                 amo.STATUS_UNREVIEWED).count(), 1)
+                                 amo.STATUS_UNREVIEWED).count(), 4)
 
         # Can't find it without a file.
         addon.versions.get().files.get().delete()
-        eq_(q.count(), 0)
+        eq_(q.count(), 3)
 
     def test_public(self):
         public = Addon.objects.public()
@@ -99,30 +110,32 @@ class TestAddonManager(test_utils.TestCase):
     def test_valid_disabled_by_user(self):
         addon = Addon.objects.get(pk=5299)
         addon.update(disabled_by_user=True)
-        eq_(Addon.objects.valid_and_disabled().count(), 3)
+        eq_(Addon.objects.valid_and_disabled().count(), 10)
 
     def test_valid_disabled_by_admin(self):
         addon = Addon.objects.get(pk=5299)
         addon.update(status=amo.STATUS_DISABLED)
-        eq_(Addon.objects.valid_and_disabled().count(), 3)
+        eq_(Addon.objects.valid_and_disabled().count(), 10)
 
 
 class TestAddonManagerFeatured(test_utils.TestCase):
-    # TODO(cvan): Once we migrate the featured add-ons to featured collections
-    # we'll need to merge this with the above tests.
+    # TODO(cvan): Merge with above once new featured add-ons are enabled.
     fixtures = ['addons/featured', 'bandwagon/featured_collections',
-                'base/addon_3615', 'base/collections', 'base/featured']
+                'base/collections', 'base/featured']
 
+    @patch.object(settings, 'NEW_FEATURES', True)
     def test_new_featured(self):
-        f = Addon.objects.new_featured(amo.FIREFOX)
-        eq_(f.count(), 2)
-        eq_(sorted(f.values_list('id', flat=True)), [3615, 15679])
-        f = Addon.objects.new_featured(amo.SUNBIRD)
+        f = Addon.objects.featured(amo.FIREFOX)
+        eq_(f.count(), 6)
+        eq_(sorted(f.values_list('id', flat=True)),
+            [1001, 1003, 2464, 3481, 7661, 15679])
+        f = Addon.objects.featured(amo.SUNBIRD)
         assert not f.exists()
 
 
 class TestAddonModels(test_utils.TestCase):
     fixtures = ['base/apps',
+                'base/collections',
                 'base/featured',
                 'base/users',
                 'base/addon_5299_gcal',
@@ -134,7 +147,8 @@ class TestAddonModels(test_utils.TestCase):
                 'base/thunderbird',
                 'addons/featured',
                 'addons/invalid_latest_version',
-                'addons/blacklisted']
+                'addons/blacklisted',
+                'bandwagon/featured_collections']
 
     def setUp(self):
         TranslationSequence.objects.create(id=99243)
@@ -183,17 +197,18 @@ class TestAddonModels(test_utils.TestCase):
         a = Addon.objects.get(pk=3615)
 
         v1 = Version.objects.create(addon=a, version='1.0')
-        f1 = File.objects.create(version=v1)
+        File.objects.create(version=v1)
         eq_(a.latest_version.id, v1.id)
 
         v2 = Version.objects.create(addon=a, version='2.0beta')
-        f2 = File.objects.create(version=v2, status=amo.STATUS_BETA)
+        File.objects.create(version=v2, status=amo.STATUS_BETA)
         eq_(a.latest_version.id, v1.id)  # Still should be f1
 
     def test_current_beta_version(self):
         a = Addon.objects.get(pk=5299)
         eq_(a.current_beta_version.id, 50000)
 
+    @patch.object(settings, 'NEW_FEATURES', False)
     def test_current_version_mixed_statuses(self):
         """Mixed file statuses are evil (bug 558237)."""
         a = Addon.objects.get(pk=3895)
@@ -349,13 +364,50 @@ class TestAddonModels(test_utils.TestCase):
         assert a.is_featured(amo.FIREFOX, 'en-US'), (
             'globally featured add-on not recognized')
 
+    @patch.object(settings, 'NEW_FEATURES', False)
     def test_is_category_featured(self):
-        """Test if an add-on is category featured"""
+        """Test if an add-on is category featured."""
         Feature.objects.filter(addon=1001).delete()
         a = Addon.objects.get(pk=1001)
-        assert not a.is_featured(amo.FIREFOX, 'en-US')
+        assert not a.is_featured(amo.FIREFOX, 'en-US'), (
+            "Expected add-on should not be in 'en-US' locale")
 
-        assert a.is_category_featured(amo.FIREFOX, 'en-US')
+        assert a.is_category_featured(), (
+            'Expected add-on to be category-featured')
+        assert a.is_category_featured(amo.FIREFOX, None), (
+            'Expected add-on to have no locale')
+        assert not a.is_category_featured(amo.FIREFOX, 'fr'), (
+            "Expected add-on to not be in 'fr' locale")
+
+        AddonCategory.objects.filter(addon=a).delete()
+        cache.clear()
+        assert not Addon.objects.get(pk=1001).is_category_featured(), (
+            'Expected add-on to not be category-featured')
+
+    @patch.object(settings, 'NEW_FEATURES', True)
+    def test_new_is_category_featured(self):
+        """Test if an add-on is category featured."""
+        a = Addon.objects.get(pk=1001)
+        assert a.is_category_featured(), (
+            'Expected add-on to be category-featured')
+        assert a.is_category_featured(amo.FIREFOX, None), (
+            'Expected add-on to have no locale')
+        assert not a.is_category_featured(amo.FIREFOX, 'fr'), (
+            "Expected add-on to not be in 'fr' locale")
+
+        fc = FeaturedCollection.objects.filter(collection__addons=1001)[0]
+        c = CollectionAddon.objects.filter(addon=a,
+                                           collection=fc.collection)[0]
+        c.delete()
+        assert not a.is_featured(amo.FIREFOX, 'en-US'), (
+            "Expected add-on to be in 'en-US' locale")
+        assert a.is_category_featured(amo.FIREFOX, None), (
+            'Expected add-on to have no locale')
+
+        AddonCategory.objects.filter(addon=a).delete()
+        cache.clear()
+        assert not Addon.objects.get(pk=1001).is_category_featured(), (
+            'Expected add-on to not be category-featured')
 
     def test_has_full_profile(self):
         """Test if an add-on's developer profile is complete (public)."""
@@ -543,10 +595,10 @@ class TestAddonModels(test_utils.TestCase):
         eq_(self.newlines_helper(before), after)
 
     def test_newlines_empty_tag_block_nested(self):
-        before = ("Test.\n\n<blockquote><ul><li></li></ul></blockquote>\ntest.")
-        after = ("Test.\n\n<blockquote><ul><li></li></ul></blockquote>test.")
+        b = ("Test.\n\n<blockquote><ul><li></li></ul></blockquote>\ntest.")
+        a = ("Test.\n\n<blockquote><ul><li></li></ul></blockquote>test.")
 
-        eq_(self.newlines_helper(before), after)
+        eq_(self.newlines_helper(b), a)
 
     def test_newlines_empty_tag_block_nested_spaced(self):
         before = ("Test.\n\n<blockquote>\n\n<ul>\n\n<li>"
@@ -1067,18 +1119,25 @@ class TestAddonModelsFeatured(test_utils.TestCase):
                 'base/addon_3615', 'base/collections', 'base/featured']
 
     def setUp(self):
-        # Addon._featuredcollection keeps an in-process cache we need to clear.
-        if hasattr(Addon, '_featuredcollection'):
-            del Addon._featuredcollection
+        # Addon._featured keeps an in-process cache we need to clear.
+        if hasattr(Addon, '_featured'):
+            del Addon._featured
 
-    def test_new_featured_random(self):
-        ids = [3615, 15679]
-        f = Addon.new_featured_random(amo.FIREFOX, 'en-US')
-        eq_(sorted(f), ids)
-        f = Addon.new_featured_random(amo.FIREFOX, 'fr')
-        eq_(sorted(f), ids)
-        f = Addon.new_featured_random(amo.SUNBIRD, 'en-US')
+    def _test_featured_random(self):
+        f = Addon.featured_random(amo.FIREFOX, 'en-US')
+        eq_(sorted(f), [1001, 1003, 2464, 3481, 7661, 15679])
+        f = Addon.featured_random(amo.FIREFOX, 'fr')
+        eq_(sorted(f), [1001, 1003, 2464, 7661, 15679])
+        f = Addon.featured_random(amo.SUNBIRD, 'en-US')
         eq_(f, [])
+
+    @patch.object(settings, 'NEW_FEATURES', False)
+    def test_featured_random(self):
+        self._test_featured_random()
+
+    @patch.object(settings, 'NEW_FEATURES', True)
+    def test_new_featured_random(self):
+        self._test_featured_random()
 
 
 class TestBackupVersion(test_utils.TestCase):
@@ -1338,13 +1397,13 @@ REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
 class TestCharity(test_utils.TestCase):
     fixtures = ['base/charity.json']
 
-    @patch.object(settings._wrapped, 'REDIRECT_URL', REDIRECT_URL)
+    @patch.object(settings, 'REDIRECT_URL', REDIRECT_URL)
     def test_url(self):
         charity = Charity(name="a", paypal="b", url="http://foo.com")
         charity.save()
         assert charity.outgoing_url.startswith(REDIRECT_URL)
 
-    @patch.object(settings._wrapped, 'REDIRECT_URL', REDIRECT_URL)
+    @patch.object(settings, 'REDIRECT_URL', REDIRECT_URL)
     def test_url_foundation(self):
         foundation = Charity.objects.get(pk=amo.FOUNDATION_ORG)
         assert not foundation.outgoing_url.startswith(REDIRECT_URL)
@@ -1371,6 +1430,15 @@ class TestRemoveLocale(test_utils.TestCase):
               .values_list('locale', flat=True))
         eq_(sorted(qs.filter(id=a.name_id)), ['en-US'])
         eq_(sorted(qs.filter(id=a.description_id)), ['en-US', 'he'])
+
+    def test_remove_version_locale(self):
+        addon = Addon.objects.create(type=amo.ADDON_THEME)
+        version = Version.objects.create(addon=addon)
+        version.releasenotes = {'fr': 'oui'}
+        version.save()
+        addon.remove_locale('fr')
+        assert not (Translation.objects.filter(localized_string__isnull=False)
+                               .values_list('locale', flat=True))
 
 
 class TestAddonWatchDisabled(test_utils.TestCase):

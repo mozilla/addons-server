@@ -58,12 +58,24 @@
     a {
         color: #333;
         text-decoration: none;
+        small {
+            color: #333;
+            display: block;
+            font-size: 0.6em;
+            line-height: 0.5em;
+        }
     }
     a:hover, a:focus {
         color: #043b84;
         text-shadow: 0 0 40px #fff,
                      0 0 20px #fff,
                      0 0 10px #fff;
+    }
+    &.prominent a, strong {
+        color: #D64203;
+        &:hover {
+            text-shadow: 0 0 #fff; // Color = stupid minifier hack
+        }
     }
 }
 
@@ -73,6 +85,10 @@
     font-size: 12px;
     margin-left: 64px;
     z-index: 50;
+
+    &.no-img {
+        margin-left: 0;
+    }
 
     > ul {
         > li {
@@ -150,6 +166,10 @@
 }
 
 .html-rtl {
+    .menu-nav {
+        margin-left: 0;
+        margin-right: 64px;
+    }
     .menu-nav > ul > li {
         border-left: 0;
         border-right: 1px solid #9FA7AF;
@@ -216,6 +236,9 @@
                     border-top-color: #666;
                 }
             }
+            &:hover {
+                z-index: 63;
+            }
             &:after {
                 top: 32px;
             }
@@ -232,7 +255,7 @@
                 &:hover {
                     a {
                         background: transparent;
-                        .box-shadow(0 0);
+                        .box-shadow(0 0 inset);
                         border-color: transparent;
                     }
                     &:after {
@@ -241,6 +264,11 @@
                 }
             }
             &.logout {
+                &.anonymous {
+                    a:first-child {
+                        padding-right: 4px;
+                    }
+                }
                 &:before {
                     background: 0;
                 }
@@ -250,6 +278,13 @@
                 }
             }
         }
+    }
+}
+.html-rtl {
+    #aux-nav > ul > li > a:after {
+        margin: 0 4px 0 0;
+        right: 4px;
+        left: auto;
     }
 }
 /** search box */
@@ -400,7 +435,9 @@ button.search-button {
     }
 }
 
-.firstvisit:not(.home):not(.developer-hub) #site-welcome {
+
+/* All Manner of Banner */
+.firstvisit #site-welcome {
     display: block;
 }
 #mobile-banner {
@@ -413,6 +450,14 @@ button.search-button {
 }
 .badbrowser {
     #site-welcome, #mobile-banner {
-        display: none;
+        display: none !important;
     }
 }
+.home #site-welcome {
+    display: none !important;
+}
+.developer-hub .site-balloon {
+    display: none !important;
+}
+
+

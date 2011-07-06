@@ -1,6 +1,7 @@
 @import 'lib';
 
 #promos {
+    display: none;
     height: 268px;
     max-height: 268px;
     margin-bottom: 30px;
@@ -9,6 +10,16 @@
     position: relative;
     div {
         overflow: hidden;
+    }
+
+    p {
+        margin: 0 0 15px;
+        font-size: 13px;
+    }
+    
+    h2, h3 {
+        font-style: normal;
+        font-family: "Lucida Grande","Lucida Sans",Helvetica,Arial,sans-serif;
     }
 
     .control {
@@ -69,6 +80,13 @@
     }
 
     /* @group Rock Your Firefox (RYFF) */
+    .ryff h3,
+    .promo h2 {
+        font-size: 36px;
+        font-weight: bold;
+        line-height: 1.1em;
+    }
+    
     .ryff {
         position: relative;
         overflow: hidden;
@@ -84,20 +102,13 @@
                 color: #7e100a;
                 text-decoration: none;
             }
+            white-space: wrap;
         }
         img {
             width: 40%;
             float: right;
             margin: 0 0 .5em 10px;
         }
-    }
-
-    .ryff h3,
-    .promo h2 {
-        font-size: 36px;
-        font-weight: bold;
-        line-height: 1.1em;
-        white-space: nowrap;
     }
     /* @end */
 
@@ -135,6 +146,7 @@
         }
         h2 {
             text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+            white-space: nowrap;
         }
         hgroup {
                margin: 10px auto 20px;
@@ -206,6 +218,7 @@
         }
         h3 {
             margin-bottom: 10px;
+            font-size: 14px;
         }
         p.install-button {
             margin-bottom: 0;
@@ -322,8 +335,10 @@
         font-weight: bold;
         font-family: inherit;
         margin: .25em 0;
+        white-space: nowrap;
         text-align: center;
         overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .addons li > a:hover h3,
@@ -334,11 +349,18 @@
 
     .addons p.desc {
         overflow: hidden;
-        max-height: 5.6em;
+        max-height: 5.4em;
         font-size: 11px;
         text-align: left;
         color: #373d48;
+        text-overflow: ellipsis;
         margin: 0;
+        a {
+            color: #373d48;
+            &:hover {
+                text-decoration: none;
+            }
+        }
     }
 
     .html-rtl .addons p.desc {

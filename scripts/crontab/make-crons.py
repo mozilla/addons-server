@@ -51,16 +51,13 @@ HOME = /tmp
 * * * * * $Z_CRON fast_current_version
 * * * * * $Z_CRON migrate_collection_users
 
-# Every 20 minutes.
-*/20 * * * * $Z_CRON check_queues
-
 # Every 30 minutes.
 */30 * * * * $Z_CRON tag_jetpacks
 */30 * * * * $Z_CRON update_addons_current_version
 
 #once per hour
 5 * * * * $Z_CRON update_collections_subscribers
-10 * * * * $REMORA; php -f maintenance.php blog
+10 * * * * $Z_CRON update_blog_posts
 15 * * * * $REMORA; php -f update-search-views.php
 20 * * * * $Z_CRON addon_last_updated
 25 * * * * $Z_CRON update_collections_votes
@@ -84,13 +81,12 @@ HOME = /tmp
 # Add slugs after we get all the new personas.
 25 2,14 * * * $Z_CRON addons_add_slugs
 45 2,14 * * * $Z_CRON give_personas_versions
-25 3,15 * * * $Z_CRON update_addons_collections_downloads
 25 8,20 * * * $Z_CRON update_collections_total
 25 9,21 * * * $Z_CRON hide_disabled_files
 
 #once per day
 30 1 * * * $Z_CRON update_user_ratings
-30 2 * * * $Z_CRON addon_reviews_ratings
+50 1 * * * $Z_CRON gc
 30 3 * * * $DJANGO cleanup
 30 3 * * * $Z_CRON reindex_addons
 30 4 * * * $Z_CRON cleanup_synced_collections
@@ -102,7 +98,6 @@ HOME = /tmp
 30 10 * * * $Z_CRON recs
 30 20 * * * $Z_CRON update_perf
 30 22 * * * $Z_CRON deliver_hotness
-30 23 * * * $Z_CRON collection_meta
 40 23 * * * $Z_CRON update_compat_info_for_fx4
 45 23 * * * $DJANGO dump_apps
 50 23 * * * $Z_CRON migrate_admin_logs
@@ -112,6 +107,7 @@ HOME = /tmp
 40 21 * * * $REMORA; /usr/bin/python26 maintenance.py weekly
 35 22 * * * $Z_CRON update_global_totals
 40 22 * * * $Z_CRON update_addon_average_daily_users
+45 23 * * * $Z_CRON update_addons_collections_downloads
 
 # Once per week
 45 23 * * 4 $REMORA; php -f maintenance.php unconfirmed

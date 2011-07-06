@@ -480,7 +480,7 @@ def test_dictionaries_link():
     eq_(link.text(), 'Dictionaries & Language Packs')
 
 
-@patch.object(settings._wrapped, 'KNOWN_PROXIES', ['127.0.0.1'])
+@patch.object(settings, 'KNOWN_PROXIES', ['127.0.0.1'])
 def test_remote_addr():
     """Make sure we're setting REMOTE_ADDR from X_FORWARDED_FOR."""
     client = test.Client()

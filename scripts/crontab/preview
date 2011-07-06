@@ -10,16 +10,13 @@ HOME = /tmp
 * * * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron fast_current_version
 * * * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron migrate_collection_users
 
-# Every 20 minutes.
-*/20 * * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron check_queues
-
 # Every 30 minutes.
 */30 * * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron tag_jetpacks
 */30 * * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron update_addons_current_version
 
 #once per hour
 5 * * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron update_collections_subscribers
-10 * * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php blog
+10 * * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron update_blog_posts
 15 * * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f update-search-views.php
 20 * * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron addon_last_updated
 25 * * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron update_collections_votes
@@ -43,13 +40,12 @@ HOME = /tmp
 # Add slugs after we get all the new personas.
 25 2,14 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron addons_add_slugs
 45 2,14 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron give_personas_versions
-25 3,15 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron update_addons_collections_downloads
 25 8,20 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron update_collections_total
 25 9,21 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron hide_disabled_files
 
 #once per day
 30 1 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron update_user_ratings
-30 2 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron addon_reviews_ratings
+50 1 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron gc
 30 3 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cleanup
 30 3 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron reindex_addons
 30 4 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron cleanup_synced_collections
@@ -61,7 +57,6 @@ HOME = /tmp
 30 10 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron recs
 30 20 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron update_perf
 30 22 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron deliver_hotness
-30 23 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron collection_meta
 40 23 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron update_compat_info_for_fx4
 45 23 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py dump_apps
 50 23 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron migrate_admin_logs
@@ -71,6 +66,7 @@ HOME = /tmp
 40 21 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py weekly
 35 22 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron update_global_totals
 40 22 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron update_addon_average_daily_users
+45 23 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron update_addons_collections_downloads
 
 # Once per week
 45 23 * * 4 cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php unconfirmed

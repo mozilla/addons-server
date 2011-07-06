@@ -5,7 +5,7 @@
 
 
 // Font Stacks
-@sans-stack: Helvetica, Arial, sans-serif;
+@sans-stack: "trebuchet ms", Helvetica, Arial, sans-serif;
 @head-sans: "trebuchet ms", sans-serif;
 @serif-stack: Georgia, serif;
 @mono-stack: "andale mono", monospace;
@@ -57,7 +57,7 @@
 	width: calc(@calc);
 }
 
-.border-box {
+.border-box() {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -77,6 +77,9 @@
 }
 .sprite-pos(@pos, @spacing, @offset:0) {
     background-position: 0 (@spacing * @pos * -1 + @offset) + 0px;
+}
+.sprite-pos-right(@pos, @spacing, @offset:0) {
+    background-position: right (@spacing * @pos * -1 + @offset) + 0px;
 }
 
 // Horizontal sprite

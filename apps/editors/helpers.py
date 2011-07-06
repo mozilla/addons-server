@@ -106,8 +106,10 @@ class EditorQueueTable(SQLTable):
     flags = tables.Column(verbose_name=_lazy(u'Flags'), sortable=False)
     applications = tables.Column(verbose_name=_lazy(u'Applications'),
                                  sortable=False)
+    platforms = tables.Column(verbose_name=_lazy(u'Platforms'),
+                              sortable=False)
     additional_info = tables.Column(
-            verbose_name=_lazy(u'Additional Information'), sortable=False)
+            verbose_name=_lazy(u'Additional'), sortable=False)
 
     def render_addon_name(self, row):
         url = '%s?num=%s' % (reverse('editors.review',
@@ -125,11 +127,6 @@ class EditorQueueTable(SQLTable):
         info = []
         if row.is_site_specific:
             info.append(_lazy(u'Site Specific'))
-        if (len(row.file_platform_ids) == 1
-            and row.file_platform_ids != [amo.PLATFORM_ALL.id]):
-            k = row.file_platform_ids[0]
-            # L10n: first argument is the platform such as Linux, Mac OS X
-            info.append(_lazy(u'{0} only').format(amo.PLATFORMS[k].name))
         if row.external_software:
             info.append(_lazy(u'Requires External Software'))
         if row.binary:
@@ -141,6 +138,11 @@ class EditorQueueTable(SQLTable):
         icon = u'<div class="app-icon ed-sprite-%s" title="%s"></div>'
         return u''.join([icon % (amo.APPS_ALL[i].short, amo.APPS_ALL[i].pretty)
                          for i in row.application_ids])
+
+    def render_platforms(self, row):
+        icon = u'<div class="platform-icon plat-sprite-%s" title="%s"></div>'
+        return u''.join([icon % (amo.PLATFORMS[i].shortname, amo.PLATFORMS[i].name)
+                         for i in row.file_platform_ids])
 
     def render_flags(self, row):
         o = []
@@ -217,6 +219,26 @@ def send_mail(template, subject, emails, context):
     amo_send_mail(subject, template.render(Context(context, autoescape=False)),
                   recipient_list=emails, from_email=settings.EDITORS_EMAIL,
                   use_blacklist=False)
+
+
+def get_position(addon):
+    version = addon.latest_version
+
+    if not version:
+        return False
+
+    q = version.current_queue
+    if not q:
+        return False
+
+    mins_query = q.objects.filter(id=addon.id)
+    if mins_query.count() > 0:
+        mins = mins_query[0].waiting_time_min
+        pos = q.objects.having('waiting_time_min >=', mins).count()
+        total = q.objects.count()
+        return dict(mins=mins, pos=pos, total=total)
+
+    return False
 
 
 class ReviewHelper:
@@ -403,6 +425,9 @@ class ReviewBase:
                 'addon_url': absolutify(reverse('addons.detail',
                                                 args=[self.addon.slug],
                                                 add_prefix=False)),
+                'review_url': absolutify(reverse('editors.review',
+                                                 args=[self.addon.pk],
+                                                 add_prefix=False)),
                 'comments': self.data['comments'],
                 'SITE_URL': settings.SITE_URL}
 

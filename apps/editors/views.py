@@ -436,7 +436,7 @@ def review(request, addon):
                                .transform(Version.transformer_activity)
                                .transform(Version.transformer))
 
-    pager = amo.utils.paginate(request, versions, 5)
+    pager = amo.utils.paginate(request, versions, 10)
 
     num_pages = pager.paginator.num_pages
     count = pager.paginator.count

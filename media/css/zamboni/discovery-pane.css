@@ -118,7 +118,8 @@ section > section {
 /* @Clear floats *********/
 body:after,
 header:after,
-.addons:after {
+.addons:after,
+#install:after {
     content: ".";
     display: block;
     clear: both;
@@ -239,7 +240,7 @@ header:after,
 
 .recs #mission,
 .recs #my-account {
-    margin-bottom: 10px;
+    margin-bottom: 3px;
 }
 
 .recs #mission {
@@ -1058,6 +1059,10 @@ ul.addons {
         display: none;
     }
 
+    .no-recs header.auth {
+        background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
+    }
+
     #main,
     #sub,
     #mission,
@@ -1120,11 +1125,6 @@ body.detail {
     text-shadow: 0 1px 0 rgba(255,255,255,0.8);
 }
 
-.detail h1.addon,
-.detail h2.author {
-    width: 90%;
-}
-
 .detail h1.addon {
     color: #000;
     font-weight: bold;
@@ -1159,13 +1159,12 @@ body.detail {
 }
 
 .detail p#back {
-    position: absolute;
-    top: 4px;
-    right: 0;
+    background: #fff;
+    float: right;
+    margin-left: 1em;
 }
 .html-rtl.detail p#back {
-    left: 0;
-    right: auto;
+    float: left;
     margin: 0 1em 1em 0;
 }
 
@@ -1191,14 +1190,11 @@ p#back:hover:before {
 /* @end */
 
 /* @group Add-on detail install button/links */
-#install {
-    overflow: hidden;
-}
-
 #install li {
     float: left;
     font-weight: bold;
     margin-right: 10px;
+    padding-top: 4px;
 }
 .html-rtl #install li {
     float: right;
@@ -1207,16 +1203,12 @@ p#back:hover:before {
     margin-right: 0;
 }
 
-#install .privacy {
+#install .privacy a {
     padding-top: 5px;
 }
 
 #install .privacy-policy {
     display: none;
-}
-
-#install .button {
-    display: inline-block;
 }
 
 .install-shell p {
@@ -1256,7 +1248,7 @@ p#back:hover:before {
 }
 
 #install #no-restart-msg {
-    background-color: #fff;
+    background: #fff;
     border: 1px solid #B6D9E5;
     border-radius: 3px;
     color: #294473;
@@ -1615,7 +1607,7 @@ a.button {
     margin: 0;
     border: 0;
     font-weight: normal;
-    display: inline;
+    display: inline-block;
     white-space: nowrap;
 }
 
@@ -1628,7 +1620,8 @@ a.button {
 .other .button.bsd,
 .other .button.solaris,
 .windows .button.windows {
-    display: inline;
+    display: inline-block;
+    margin: -4px 0 0;
 }
 
 /* @Images *********/

@@ -22,10 +22,13 @@
       {{ css('zamboni/impala') }}
       <!--[if IE]><link rel="stylesheet" href="{{ media('css/impala/ie.css') }}"><![endif]-->
       <!--[if IE 7]><link rel="stylesheet" href="{{ media('css/impala/ie7.css') }}"><![endif]-->
+      <!--[if lt IE 9]>
+        <script src="{{ media('js/lib/iepp.min.js') }}"></script>
+      <![endif]-->
     {% endblock %}
 
     {% block extrahead %}{% endblock %}
-    <noscript><link rel="stylesheet" href="{{ media('css/legacy/nojs.css') }}"></noscript>
+    <noscript><link rel="stylesheet" href="{{ media('css/impala/nojs.css') }}"></noscript>
 
     {% if settings.DEBUG %}
       {% if settings.LESS_LIVE_REFRESH %}
@@ -100,12 +103,11 @@
             {% endblock %}
           </div>
           <div class="site-balloon" id="site-nonfx">
-            <h3>{{ _('Aren’t you forgetting something?') }}</h3>
             <p>
               {% trans url='http://mozilla.org/firefox/?src=amo' %}
-                To use the thousands of add-ons available here, download
-                <a href="{{ url }}">Mozilla Firefox</a>
-                &mdash; a fast, free Web browser.
+                To try the thousands of add-ons available here, download
+                <a href="{{ url }}">Mozilla Firefox</a>,
+                a fast, free way to surf the Web!
               {% endtrans %}
             </p>
             <a href="#" class="close">{{ _('Close') }}</a>

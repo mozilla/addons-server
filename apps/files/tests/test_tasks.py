@@ -87,6 +87,7 @@ class TestRepackageJetpack(test_utils.TestCase):
         """Generate builder_data response dictionary with sensible defaults."""
         # Tell Redis we're sending to builder.
         self.upgrader.file(self.file.id, {'uuid': self.uuid,
+                                          'file': self.file.id,
                                           'owner': 'bulk',
                                           'version': '1.0b4'})
         request = {'uuid': self.uuid, 'addon': self.addon.id,
@@ -112,7 +113,7 @@ class TestRepackageJetpack(test_utils.TestCase):
     def test_bad_file_id(self):
         data = self.builder_data(file_id=234234)
         # Stick the file in the upgrader so it doesn't fail the uuid check.
-        self.upgrader.file(234234, {'uuid': self.uuid})
+        self.upgrader.file(234234, {'file': 234234, 'uuid': self.uuid})
         with self.assertRaises(models.ObjectDoesNotExist):
             tasks.repackage_jetpack(data)
 
@@ -163,6 +164,7 @@ class TestRepackageJetpack(test_utils.TestCase):
         self.upgrader.cancel()
         # Put the file back in redis.
         self.upgrader.file(self.file.id, {'uuid': self.uuid,
+                                          'file': self.file.id,
                                           'version': '1.0b4'})
         # Try to clear again, this should skip the ownerless task above.
         self.upgrader.cancel()

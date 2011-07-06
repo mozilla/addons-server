@@ -39,7 +39,9 @@ from addons import forms as addon_forms
 from addons.decorators import addon_view
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
+from applications.models import Application, AppVersion
 from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
+from editors.helpers import get_position
 from files.models import File, FileUpload
 from files.utils import parse_addon
 from translations.models import delete_translation
@@ -219,7 +221,8 @@ def _get_items(action, addons):
                    reviews=(amo.LOG.ADD_REVIEW,))
 
     filter = filters.get(action)
-    items = ActivityLog.objects.for_addons(addons)
+    items = (ActivityLog.objects.for_addons(addons).filter()
+                        .exclude(action__in=amo.LOG_HIDE_DEVELOPER))
     if filter:
         items = items.filter(action__in=[i.id for i in filter])
 
@@ -501,20 +504,86 @@ def validate_addon(request):
     return jingo.render(request, 'devhub/validate_addon.html', {})
 
 
+def packager_path(name):
+    return os.path.join(settings.PACKAGER_PATH, '%s.zip' % name)
+
+
+@login_required
+def package_addon(request):
+    basic_form = forms.PackagerBasicForm(request.POST or None)
+    features_form = forms.PackagerFeaturesForm(request.POST or None)
+    compat_forms = forms.PackagerCompatFormSet(request.POST or None)
+
+    # Process requests, but also avoid short circuiting by using all().
+    if (request.method == 'POST' and
+        all([basic_form.is_valid(),
+             features_form.is_valid(),
+             compat_forms.is_valid()])):
+
+        basic_data = basic_form.cleaned_data
+        compat_data = compat_forms.cleaned_data
+
+        # Generate a unique, non-iterable ID for the package we're building.
+        builder_uuid = uuid.uuid4().hex
+
+        data = {'id': basic_data['id'],
+                'version': basic_data['version'],
+                'name': basic_data['name'],
+                'description': basic_data['description'],
+                'author_name': basic_data['author_name'],
+                'contributors': basic_data['contributors'],
+                'targetapplications': [c for c in compat_data if c['enabled']],
+                'uuid': builder_uuid}
+        tasks.packager.delay(data, features_form.cleaned_data)
+        return redirect('devhub.package_addon_success', builder_uuid)
+
+    return jingo.render(request, 'devhub/package_addon.html',
+                        {'basic_form': basic_form,
+                         'compat_forms': compat_forms,
+                         'features_form': features_form})
+
+
+@login_required
+def package_addon_success(request, id):
+    """Return the success page for the add-on packager."""
+    return jingo.render(request, 'devhub/package_addon_success.html',
+                        {'uuid': id})
+
+
+@json_view
+@login_required
+def package_addon_json(request, id):
+    """Return the URL of the packaged add-on."""
+    path = packager_path(id)
+    if os.path.isfile(path):
+        download_url = reverse('devhub.package_addon_download', args=[id])
+        return {'download_url': download_url,
+                'size': round(os.path.getsize(path) / 1024, 1)}
+
+
+@login_required
+def package_addon_download(request, id):
+    """Serve a packaged add-on."""
+    path = packager_path(id)
+    if not os.path.isfile(path):
+        raise http.Http404()
+
+    return amo.utils.HttpResponseSendFile(request, path,
+                                          content_type='application/zip')
+
+
 @login_required
 @post_required
 def upload(request):
-    if request.method == 'POST':
-        filedata = request.FILES['upload']
+    filedata = request.FILES['upload']
 
-        fu = FileUpload.from_post(filedata, filedata.name, filedata.size)
-        if request.user.is_authenticated():
-            fu.user = request.amo_user
-            fu.save()
-        tasks.validator.delay(fu.pk)
-        return redirect('devhub.upload_detail', fu.pk, 'json')
-
-    return jingo.render(request, 'devhub/upload.html')
+    fu = FileUpload.from_post(filedata, filedata.name, filedata.size)
+    log.info('FileUpload created: %s' % fu.pk)
+    if request.user.is_authenticated():
+        fu.user = request.amo_user
+        fu.save()
+    tasks.validator.delay(fu.pk)
+    return redirect('devhub.upload_detail', fu.pk, 'json')
 
 
 def escape_all(v):
@@ -531,14 +600,21 @@ def escape_all(v):
     return v
 
 
-def prepare_validation_results(validation):
-    for msg in validation['messages']:
-        if msg['tier'] == 0:
-            # We can't display a message if it's on tier 0.
-            # Should get fixed soon in bug 617481
-            msg['tier'] = 1
-        for k, v in msg.items():
-            msg[k] = escape_all(v)
+def make_validation_result(data):
+    """Safe wrapper around JSON dict containing a validation result."""
+    if not settings.EXPOSE_VALIDATOR_TRACEBACKS:
+        if data['error']:
+            # Just expose the message, not the traceback
+            data['error'] = data['error'].strip().split('\n')[-1].strip()
+    if data['validation']:
+        for msg in data['validation']['messages']:
+            if msg['tier'] == 0:
+                # We can't display a message if it's on tier 0.
+                # Should get fixed soon in bug 617481
+                msg['tier'] = 1
+            for k, v in msg.items():
+                msg[k] = escape_all(v)
+    return data
 
 
 @dev_required(allow_editors=True)
@@ -589,19 +665,15 @@ def json_file_validation(request, addon_id, addon, file_id):
             v_result = tasks.file_validator(file.id)
         except Exception, exc:
             log.error('file_validator(%s): %s' % (file.id, exc))
-            return {
-                'validation': '',
-                'error': "\n".join(
-                                traceback.format_exception(*sys.exc_info())),
-                }
+            error = "\n".join(traceback.format_exception(*sys.exc_info()))
+            return make_validation_result({'validation': '',
+                                           'error': error})
     else:
         v_result = file.validation
     validation = json.loads(v_result.validation)
-    prepare_validation_results(validation)
 
-    r = dict(validation=validation,
-             error=None)
-    return r
+    return make_validation_result(dict(validation=validation,
+                                       error=None))
 
 
 @json_view
@@ -612,11 +684,11 @@ def json_validation_result(request, addon_id, addon, result_id):
     qs = ValidationResult.objects.exclude(completed=None)
     result = get_object_or_404(qs, pk=result_id)
     if result.task_error:
-        return {'validation': '', 'error': result.task_error}
+        return make_validation_result({'validation': '',
+                                       'error': result.task_error})
     else:
         validation = json.loads(result.validation)
-        prepare_validation_results(validation)
-        return dict(validation=validation, error=None)
+        return make_validation_result(dict(validation=validation, error=None))
 
 
 @json_view
@@ -633,7 +705,6 @@ def json_upload_detail(upload):
     plat_exclude = []
 
     if validation:
-        prepare_validation_results(validation)
         if validation['errors'] == 0:
             try:
                 apps = parse_addon(upload.path).get('apps', [])
@@ -649,17 +720,24 @@ def json_upload_detail(upload):
                 plat_exclude = set(s) - set(supported_platforms)
                 plat_exclude = [str(p) for p in plat_exclude]
             except django_forms.ValidationError, exc:
-                # XPI parsing errors will be reported in the form submission
-                # (next request).
-                # TODO(Kumar) It would be nicer to present errors to the user
-                # right here to avoid confusion about platform selection.
-                log.error("XPI parsing error, ignored: %s" % exc)
+                if settings.SHOW_UUID_ERRORS_IN_VALIDATION:
+                    m = []
+                    for msg in exc.messages:
+                        # Simulate a validation error so the UI displays
+                        # it as such
+                        m.append({'type': 'error',
+                                  'message': msg, 'tier': 1})
+                    v = make_validation_result(dict(error='',
+                                                    validation=dict(messages=m)))
+                    return json_view.error(v)
+                else:
+                    log.error("XPI parsing error, ignored: %s" % exc)
 
-    r = dict(upload=upload.uuid, validation=validation,
-             error=upload.task_error, url=url,
-             full_report_url=full_report_url,
-             platforms_to_exclude=plat_exclude)
-    return r
+    return make_validation_result(dict(upload=upload.uuid,
+                                       validation=validation,
+                                       error=upload.task_error, url=url,
+                                       full_report_url=full_report_url,
+                                       platforms_to_exclude=plat_exclude))
 
 
 def upload_detail(request, uuid, format='html'):
@@ -693,8 +771,9 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
     if section == 'basic':
         tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
-        cat_form = addon_forms.CategoryFormSet(request.POST or None,
-                                               addon=addon)
+        if not addon.is_category_featured():
+            cat_form = addon_forms.CategoryFormSet(request.POST or None,
+                                                   addon=addon)
         restricted_tags = addon.tags.filter(restricted=True)
 
     elif section == 'media':
@@ -883,6 +962,8 @@ def version_add(request, addon_id, addon):
         pl = (list(form.cleaned_data['desktop_platforms']) +
               list(form.cleaned_data['mobile_platforms']))
         v = Version.from_upload(form.cleaned_data['upload'], addon, pl)
+        log.info('Version created: %s for: %s' %
+                 (v.pk, form.cleaned_data['upload']))
         url = reverse('devhub.versions.edit', args=[addon.slug, str(v.id)])
         return dict(url=url)
     else:
@@ -911,9 +992,11 @@ def version_list(request, addon_id, addon):
     qs = addon.versions.order_by('-created').transform(Version.transformer)
     versions = amo.utils.paginate(request, qs)
     new_file_form = forms.NewVersionForm(None, addon=addon)
+
     data = {'addon': addon,
             'versions': versions,
             'new_file_form': new_file_form,
+            'position': get_position(addon),
             'timestamp': int(time.time())}
     return jingo.render(request, 'devhub/versions/list.html', data)
 
@@ -981,17 +1064,8 @@ def submit(request, step):
         response.set_cookie(DEV_AGREEMENT_COOKIE)
         return response
 
-    base = os.path.join(os.path.dirname(amo.__file__), '..', '..', 'locale')
-    # Note that the agreement is not localized (for legal reasons)
-    # but the official version is stored in en_US.
-    agrmt = os.path.join(base,
-                'en_US', 'pages', 'docs', 'policies', 'agreement.thtml')
-    f = codecs.open(agrmt, encoding='utf8')
-    agreement_text = f.read()
-    f.close()
-
     return jingo.render(request, 'devhub/addons/submit/start.html',
-                        {'agreement_text': agreement_text, 'step': step})
+                        {'step': step})
 
 
 @login_required

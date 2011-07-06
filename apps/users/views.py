@@ -6,7 +6,6 @@ from django.contrib import auth
 from django.template import Context, loader
 from django.views.decorators.cache import never_cache
 from django.utils.http import base36_to_int
-from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 
 import commonware.log
@@ -228,7 +227,7 @@ def _clean_next_url(request):
 
     gets['to'] = url
 
-    domain = gets.get('domain',None)
+    domain = gets.get('domain', None)
     if domain in settings.VALID_LOGIN_REDIRECTS.keys():
         gets['to'] = "%s%s" % (settings.VALID_LOGIN_REDIRECTS[domain], url)
 
@@ -252,8 +251,9 @@ def login(request):
 
     if isinstance(r, http.HttpResponseRedirect):
         # Django's auth.views.login has security checks to prevent someone from
-        # redirecting to another domain.  Since we want to allow this in certain
-        # cases, we have to make a new response object here to replace the above
+        # redirecting to another domain.  Since we want to allow this in
+        # certain cases, we have to make a new response object here to replace
+        # the above.
         if 'domain' in request.GET:
             request.GET = get_copy
             request = _clean_next_url(request)
@@ -261,7 +261,7 @@ def login(request):
 
         # Succsesful log in according to django.  Now we do our checks.  I do
         # the checks here instead of the form's clean() because I want to use
-        # the messages framework and it's not available in the request there
+        # the messages framework and it's not available in the request there.
         user = request.user.get_profile()
 
         if user.deleted:
@@ -363,10 +363,8 @@ def profile(request, user_id):
 
     data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
             'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
-            'addons': addons, 'own_profile': own_profile}
-
-    if settings.REPORT_ABUSE:
-        data['abuse_form'] = AbuseForm(request=request)
+            'addons': addons, 'own_profile': own_profile,
+            'abuse_form': AbuseForm(request=request)}
 
     return jingo.render(request, 'users/profile.html', data)
 
@@ -424,9 +422,6 @@ def register(request):
 
 @anonymous_csrf_exempt
 def report_abuse(request, user_id):
-    if not settings.REPORT_ABUSE:
-        raise http.Http404()
-
     user = get_object_or_404(UserProfile, pk=user_id)
     form = AbuseForm(request.POST or None, request=request)
     if request.method == "POST" and form.is_valid():
@@ -449,8 +444,8 @@ def password_reset_confirm(request, uidb36=None, token=None):
     user = None
     try:
         uid_int = base36_to_int(uidb36)
-        user = User.objects.get(id=uid_int)
-    except (ValueError, User.DoesNotExist):
+        user = UserProfile.objects.get(id=uid_int)
+    except (ValueError, UserProfile.DoesNotExist):
         pass
 
     if user is not None and default_token_generator.check_token(user, token):

@@ -8,7 +8,8 @@ import os
 from commander.deploy import hostgroups, task
 
 
-AMO_DIR = "/data/amo_python/src/prod/zamboni"
+AMO_PYTHON_ROOT = '/data/amo_python'
+AMO_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 _amo_dir = lambda *p: os.path.join(AMO_DIR, *p)
 
 _git_lcmd = lambda ctx, c: ctx.local("/usr/bin/git %s" % c)
@@ -63,10 +64,10 @@ def schematic(ctx):
         ctx.local("python2.6 ./vendor/src/schematic/schematic migrations")
 
 
-@hostgroups(['amo', 'amo_gearman'], remote_limit=5)
-def pull_code(ctx):
-    ctx.remote("/data/bin/libget/get-php5-www-git.sh")
-    ctx.remote("apachectl graceful")
+@task
+def make_crons(ctx):
+    with ctx.lcd(AMO_DIR):
+        ctx.local("python2.6 ./scripts/crontab/make-crons.py")
 
 
 @hostgroups(['amo_gearman'])
@@ -75,10 +76,43 @@ def restart_celery(ctx):
     ctx.remote("service celeryd-prod-devhub restart")
 
 
+@hostgroups(['amo'])
+def stop_appserver_cron(ctx):
+    ctx.remote("service crond stop")
+
+
+@hostgroups(['amo'])
+def start_appserver_cron(ctx):
+    ctx.remote("service crond start")
+
+
 @task
-def deploy_code(ctx):
-    ctx.local("/data/bin/omg_push_zamboni_live.sh")
-    pull_code()
+def deploy_code(ctx, subdir='', reload_apache=True):
+    stop_appserver_cron()
+    try:
+        with ctx.lcd(AMO_PYTHON_ROOT):
+            src = os.path.join("src/prod/zamboni/", subdir, '')
+            www = os.path.join("www/prod/zamboni/", subdir, '')
+
+            ctx.local("/usr/bin/rsync -aq --exclude '.git*' --delete %s %s" % (src, www))
+            with ctx.lcd("www"):
+                ctx.local("/usr/bin/git add .")
+                ctx.local("/usr/bin/git commit -q -a -m 'AMO PUSH'")
+        pull_code(reload_apache)
+    finally:
+        start_appserver_cron()
+
+
+@task
+def deploy_media(ctx):
+    deploy_code('media', False)
+
+
+@hostgroups(['amo', 'amo_gearman'], remote_limit=5)
+def pull_code(ctx, reload_apache=True):
+    ctx.remote("/data/bin/libget/get-php5-www-git.sh")
+    if reload_apache:
+        ctx.remote("apachectl graceful")
 
 
 @hostgroups(['amo_memcache'])
@@ -103,13 +137,14 @@ def update_amo(ctx):
     update_locales()
     compress_assets()
     schematic()
+    make_crons()
+    # Sync out media to all the servers first.
+    deploy_media()
+    enable_cron()
     deploy_code()
     restart_celery()
-    enable_cron()
-    compress_assets('-u')
-    deploy_code()
     # END: The normal update/push cycle.
 
     # Run management commands like this:
     # manage_cmd(ctx, 'cmd')
-    manage_cmd(ctx, 'jetpackers')
+    manage_cmd(ctx, 'process_addons --task=convert_purified')
