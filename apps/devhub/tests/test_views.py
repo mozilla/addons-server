@@ -694,8 +694,8 @@ class TestEdit(test_utils.TestCase):
         a = AddonCategory.objects.filter(addon=addon, category__id=22)[0]
         a.feature = False
         a.save()
-        AddonCategory.objects.filter(addon=addon, category__id=23).delete()
-        AddonCategory.objects.filter(addon=addon, category__id=24).delete()
+        AddonCategory.objects.filter(addon=addon,
+            category__id__in=[23, 24]).delete()
         cache.clear()
 
         self.url = reverse('devhub.addons.edit', args=[addon.slug])
@@ -976,8 +976,19 @@ class TestEdit(test_utils.TestCase):
         FeaturedCollection.objects.create(collection=c.collection,
                                           application_id=amo.FIREFOX.id)
 
+    @mock.patch.object(settings, 'NEW_FEATURES', False)
+    def test_edit_basic_categories_add_old_creatured(self):
+        """Using the old features, categories should be able to be changed."""
+        self._feature_addon()
+        self.cat_initial['categories'] = [22, 23]
+        self.client.post(self.basic_url, self.get_dict())
+        addon_cats = self.get_addon().categories.values_list('id', flat=True)
+
+        # This add-on's categories should change.
+        eq_(sorted(addon_cats), [22, 23])
+
     @mock.patch.object(settings, 'NEW_FEATURES', True)
-    def test_edit_basic_categories_add_creatured(self):
+    def test_edit_basic_categories_add_new_creatured(self):
         """Ensure that categories cannot be changed for creatured add-ons."""
         self._feature_addon()
         self.cat_initial['categories'] = [22, 23]
@@ -987,8 +998,18 @@ class TestEdit(test_utils.TestCase):
         # This add-on's categories should not change.
         eq_(sorted(addon_cats), [22])
 
+    @mock.patch.object(settings, 'NEW_FEATURES', False)
+    def test_edit_basic_categories_no_disclaimer_old(self):
+        """With old features enabled, there should never be a disclaimer."""
+        self._feature_addon()
+        r = self.client.get(self.basic_url)
+        doc = pq(r.content)
+        eq_(doc('#addon-categories-edit .select-addon-cats').length, 1)
+        eq_(doc('#addon-categories-edit > p').length, 0)
+        eq_(doc('#addon-categories-edit > ul').length, 0)
+
     @mock.patch.object(settings, 'NEW_FEATURES', True)
-    def test_edit_basic_categories_no_disclaimer(self):
+    def test_edit_basic_categories_no_disclaimer_new(self):
         """Ensure that there is a not disclaimer for non-creatured add-ons."""
         r = self.client.get(self.basic_url)
         doc = pq(r.content)
@@ -1012,7 +1033,6 @@ class TestEdit(test_utils.TestCase):
 
         self.cat_initial['categories'] = [22, 24]
         self.client.post(self.basic_url, self.get_dict())
-
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
         eq_(sorted(addon_cats), [22, 24])
 

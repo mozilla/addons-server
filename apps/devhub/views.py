@@ -771,7 +771,8 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
     if section == 'basic':
         tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
-        if not addon.is_category_featured():
+        if (not settings.NEW_FEATURES or
+            (settings.NEW_FEATURES and not addon.is_category_featured())):
             cat_form = addon_forms.CategoryFormSet(request.POST or None,
                                                    addon=addon)
         restricted_tags = addon.tags.filter(restricted=True)
