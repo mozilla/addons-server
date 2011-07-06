@@ -18,8 +18,9 @@ def extract(addon):
     d = dict(zip(attrs, attrgetter(*attrs)(addon)))
     # Coerce the Translation into a string.
     d['name_sort'] = unicode(addon.name).lower()
-    d['name'] = [string.lower()
-                 for locale, string in addon.translations.get(addon.name_id, [])]
+    d['name'] = [string for _, string in addon.translations[addon.name_id]]
+    d['description'] = [string for
+                        _, string in addon.translations[addon.description_id]]
     d['app'] = [a.id for a in addon.compatible_apps]
     # This is an extra query, not good for perf.
     d['category'] = getattr(addon, 'category_ids', [])

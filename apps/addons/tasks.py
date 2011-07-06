@@ -1,3 +1,4 @@
+import collections
 import os
 import logging
 
@@ -127,7 +128,7 @@ def attach_translations(addons):
     fields = Addon._meta.translated_fields
     ids = {}
     for addon in addons:
-        addon.translations = {}
+        addon.translations = collections.defaultdict(list)
         ids.update((getattr(addon, field.attname, None), addon)
                    for field in fields)
     ids.pop(None, None)
