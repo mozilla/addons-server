@@ -52,8 +52,9 @@ class UtilsTest(TestCase):
 
     def test_dict_disco(self):
         """Check for correct add-on detail URL for discovery pane."""
-        d = api.utils.addon_to_dict(self.a, disco=True)
-        u = '%s%s?src=api' % (settings.SERVICES_URL,
+        d = api.utils.addon_to_dict(self.a, disco=True,
+                                    src='discovery-personalrec')
+        u = '%s%s?src=discovery-personalrec' % (settings.SERVICES_URL,
             reverse('discovery.addons.detail', args=['a3615']))
         eq_(d['learnmore'], u)
 

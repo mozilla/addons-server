@@ -6,13 +6,12 @@ from amo.urlresolvers import reverse
 from amo.utils import urlparams, epoch
 
 
-def addon_to_dict(addon, disco=False):
+def addon_to_dict(addon, disco=False, src='api'):
     """
     Renders an addon in JSON for the API.
     """
     v = addon.current_version
     url = lambda u, **kwargs: settings.SITE_URL + urlparams(u, **kwargs)
-    src = 'api'
 
     if disco:
         learnmore = settings.SERVICES_URL + reverse('discovery.addons.detail',

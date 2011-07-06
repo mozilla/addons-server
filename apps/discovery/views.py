@@ -203,7 +203,8 @@ def _recommendations(request, version, platform, limit, token, ids, qs):
                                     platform, version, shuffle=False)
     addons = dict((a.id, a) for a in addons)
     data = {'token2': token,
-            'addons': [api.utils.addon_to_dict(addons[i], disco=True)
+            'addons': [api.utils.addon_to_dict(addons[i], disco=True,
+                                               src='discovery-personalrec')
                        for i in ids if i in addons]}
     content = json.dumps(data, cls=amo.utils.JSONEncoder)
     return http.HttpResponse(content, content_type='application/json')
