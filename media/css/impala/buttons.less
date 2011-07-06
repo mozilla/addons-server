@@ -11,6 +11,7 @@
     text-decoration: none;
     color: #fff;
     cursor: pointer;
+    background: #5784BF;
     .gradient-two-color(#669BE1, #5784BF);
     text-shadow: 0 1px 0 rgba(0,0,0,.5);
     .border-radius(6px);
@@ -25,6 +26,7 @@
         .box-shadow(0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset);
     }
     &.add { // Green
+        background: #489615;
         .gradient-two-color(#84C63C, #489615);
         color: #fff;
         span {
@@ -59,6 +61,7 @@
         }
         &.disabled,
         &.concealed {
+            background: #c1c5ca;
             .gradient-two-color(#d1d4d7, #c1c5ca);
             color: #919497;
             .box-shadow(0 3px rgba(0, 0, 0, 0.05), 0 -4px rgba(0, 0, 0, 0.05) inset);
@@ -78,7 +81,8 @@
         }
     }
     &.developer { // Red
-        background: -moz-linear-gradient(#f84b4e, #bc2b1a);
+        background: #bc2b1a;
+        .gradient-two-color(#f84b4e, #bc2b1a);
         color: #fff;
         span {
             margin-left: -4px;
