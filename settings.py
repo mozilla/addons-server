@@ -247,7 +247,7 @@ MIDDLEWARE_CLASSES = (
     # AMO URL middleware comes first so everyone else sees nice URLs.
     'amo.middleware.TimingMiddleware',
     'commonware.response.middleware.GraphiteRequestTimingMiddleware',
-    'amo.middleware.GraphiteMiddleware',
+    'commonware.response.middleware.GraphiteMiddleware',
     'amo.middleware.LocaleAndAppURLMiddleware',
     # Mobile detection should happen in Zeus.
     'mobility.middleware.DetectMobileMiddleware',
