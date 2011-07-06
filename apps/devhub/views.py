@@ -575,18 +575,15 @@ def package_addon_download(request, id):
 @login_required
 @post_required
 def upload(request):
-    if request.method == 'POST':
-        filedata = request.FILES['upload']
+    filedata = request.FILES['upload']
 
-        fu = FileUpload.from_post(filedata, filedata.name, filedata.size)
-        log.info('FileUpload created: %s' % fu.pk)
-        if request.user.is_authenticated():
-            fu.user = request.amo_user
-            fu.save()
-        tasks.validator.delay(fu.pk)
-        return redirect('devhub.upload_detail', fu.pk, 'json')
-
-    return jingo.render(request, 'devhub/upload.html')
+    fu = FileUpload.from_post(filedata, filedata.name, filedata.size)
+    log.info('FileUpload created: %s' % fu.pk)
+    if request.user.is_authenticated():
+        fu.user = request.amo_user
+        fu.save()
+    tasks.validator.delay(fu.pk)
+    return redirect('devhub.upload_detail', fu.pk, 'json')
 
 
 def escape_all(v):
