@@ -9,7 +9,7 @@ $(function () {
         var $document = $(document),
             $lightbox = $("#lightbox"),
             $content = $("#lightbox .content"),
-            $caption = $("#lightbox .caption"),
+            $caption = $("#lightbox .caption span"),
             current, $strip,
             lbImage = template('<img id="preview{0}" src="{1}">');
         if (!$lightbox.length) return;
