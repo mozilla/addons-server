@@ -52,7 +52,8 @@
     {% if recommendations %}
       <section>
         <h2 class="compact-bottom">{{ _('Often used with&hellip;')|safe }}</h2>
-        {{ recommendations|addon_grid(cols=3) }}
+        {{ recommendations|addon_grid(cols=3, src='dp-hc-oftenusedwith',
+                                      dl_src='dp-dl-oftenusedwith') }}
       </section>
     {% endif %}
     {% if collections %}
@@ -71,7 +72,8 @@
             Other add-ons by these authors
           {% endtrans %}
         </h2>
-        {{ author_addons|addon_grid(cols=3) }}
+        {{ author_addons|addon_grid(cols=3, src='dp-hc-othersby',
+                                    dl_src='dp-dl-othersby') }}
       </section>
     {% endif %}
   </section>

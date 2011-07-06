@@ -42,7 +42,7 @@
       <h2>{{ _('Most Popular') }}
         <a class="seeall" href="{{ url('browse.extensions')|urlparams(sort='popular') }}">{{ _('All »') }}</a>
       </h2>
-      {{ popular|addon_toplist }}
+      {{ popular|addon_toplist(src='hp-dl-mostpopular') }}
     </section>
 
     <section class="primary">
@@ -51,13 +51,15 @@
           <h2>{{ _('Featured Extensions') }}
             <a class="seeall" href="{{ url('browse.featured') }}">{{ _('See all »') }}</a>
           </h2>
-          {{ featured|addon_grid }}
+          {{ featured|addon_grid(src='hp-hc-featured',
+                                 dl_src='hp-dl-featured') }}
         </div>
       {% endif %}
       {% if hotness %}
         <div class="island">
           <h2>{{ _('Up &amp; Coming Extensions') }}</h2>
-          {{ hotness|addon_grid }}
+          {{ hotness|addon_grid(src='hp-hc-upandcoming',
+                                dl_src='hp-dl-upandcoming') }}
         </div>
       {% endif %}
       {% if personas %}

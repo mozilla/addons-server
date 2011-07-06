@@ -6,7 +6,7 @@
   {% for addon in page %}
     <li>
       <div class="item addon">
-        <a href="{{ addon.get_url_path(impala=True) }}">
+        <a href="{{ addon.get_url_path(impala=True)|urlparams(src=dl_src) }}">
           <div class="icon">
             {% if first_page %}
               <img src="{{ addon.icon_url }}">

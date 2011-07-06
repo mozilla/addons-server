@@ -184,9 +184,12 @@ def addon_listing_header(context, url_base, sort_opts, selected):
 @register.filter
 @jinja2.contextfilter
 @register.inclusion_tag('addons/impala/addon_grid.html')
-def addon_grid(context, addons, src=None, pagesize=6, cols=2):
+def addon_grid(context, addons, src=None, dl_src=None, pagesize=6, cols=2):
     if not src:
         src = context.get('src')
+    # dl_src is an optional src paramater just for the download links
+    if not dl_src:
+        dl_src = src
     pages = chunked(addons, pagesize)
     columns = '' if cols != 3 else 'three-col'
     return new_context(**locals())

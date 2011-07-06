@@ -3,7 +3,13 @@
   <div id="{{ promo.id }}" class="feature collection {{ promo.cls }}">
     <hgroup>
       {% if promo.linkify_title %}
-        <h2><a href="{{ collection.get_url_path()|urlparams(src='discovery-promo') }}">{{ promo.title|safe }}</a></h2>
+        <h2>
+          {% if module_context == 'discovery' %}
+            <a href="{{ collection.get_url_path()|urlparams(src='discovery-promo') }}">{{ promo.title|safe }}</a>
+          {% else %}
+            <a href="{{ collection.get_url_path()|urlparams(src='hp-dl-promo') }}">{{ promo.title|safe }}</a>
+          {% endif %}
+        </h2>
       {% else %}
         <h2>{{ promo.title|safe }}</h2>
       {% endif %}
@@ -20,7 +26,7 @@
                                    src='discovery-promo') }}" target="_self">
           {% else %}
           <a href="{{ url('addons.i_detail', addon.slug,
-                          src='homepage') }}" target="_self">
+                          src='hp-dl-promo') }}" target="_self">
           {% endif %}
             {% if addon.type == amo.ADDON_PERSONA %}
               <h3 class="vtruncate">{{ addon.name }}</h3>
