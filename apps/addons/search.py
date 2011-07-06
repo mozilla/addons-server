@@ -42,13 +42,12 @@ def setup_mapping():
         es.create_index_if_missing(settings.ES_INDEX)
     except pyes.ElasticSearchException:
         pass
-    try:
-        es.put_mapping(Addon._meta.app_label, {'properties': m},
-                       settings.ES_INDEX)
-    except pyes.ElasticSearchException:
-        pass
-    try:
-        es.put_mapping(AppCompat._meta.app_label, {'properties': m},
-                       settings.ES_INDEX)
-    except pyes.ElasticSearchException:
-        pass
+    # Adjust the mapping for all models at once because fields are shared
+    # across all doc types in an index. If we forget to adjust one of them
+    # we'll get burned later on.
+    for model in Addon, AppCompat, Collection:
+        try:
+            es.put_mapping(model._meta.app_label, {'properties': m},
+                           settings.ES_INDEX)
+        except pyes.ElasticSearchException:
+            pass
