@@ -323,7 +323,7 @@ class BaseFilter(object):
         return getattr(self, 'filter_%s' % field)()
 
     def filter_popular(self):
-        return (Addon.objects.order_by('-average_daily_users')
+        return (Addon.objects.order_by('-weekly_downloads')
                 .with_index(addons='downloads_type_idx'))
 
     def filter_users(self):
