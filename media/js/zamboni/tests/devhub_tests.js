@@ -222,6 +222,30 @@ test('400 JSON error', function() {
     equals(this.sandbox.find('#upload_errors').text().trim(), 'Some form error');
 });
 
+asyncTest('400 JSON error after polling', function() {
+    var sb = this.sandbox;
+    $.mockjax({
+        url: '/poll-for-results',
+        responseText: {
+            validation: {
+                messages: [{tier: 1,
+                            message: "UUID doesn't match add-on.",
+                            "type": "error"}]},
+            error: ""
+        },
+        status: 400
+    });
+    this.uploader.trigger('upload_success_results',
+                          [this.file, {validation: '', url: '/poll-for-results'}]);
+    // It would be nice to stub out setTimeout but that throws permission errors.
+    tests.waitFor(function() {
+        return $('#upload_errors', sb).length;
+    }, {timeout: 2000} ).thenDo(function() {
+        equals(sb.find('#upload_errors').text().trim(), "UUID doesn't match add-on.");
+        start();
+    });
+});
+
 
 module('fileUpload', {
     setup: function() {

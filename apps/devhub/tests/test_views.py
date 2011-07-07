@@ -19,6 +19,7 @@ from nose.plugins.attrib import attr
 from PIL import Image
 from pyquery import PyQuery as pq
 import test_utils
+import waffle
 
 import amo
 import paypal
@@ -35,6 +36,8 @@ from applications.models import Application, AppVersion
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from devhub.forms import ContribForm
 from devhub.models import ActivityLog, BlogPost, SubmitStep
+from devhub import tasks
+import files
 from files.models import File, FileUpload, Platform
 from files.tests.test_models import UploadTest as BaseUploadTest
 from reviews.models import Review
@@ -2763,15 +2766,17 @@ class TestUploadDetail(BaseUploadTest):
             sorted([str(p) for p in amo.MOBILE_PLATFORMS]))
 
     @mock.patch('devhub.tasks.run_validator')
-    def test_unparsable_xpi(self, v):
+    @mock.patch.object(waffle, 'flag_is_active')
+    def test_unparsable_xpi(self, flag_is_active, v):
+        flag_is_active.return_value = True
         v.return_value = json.dumps(self.validation_ok())
         self.upload_file('unopenable.xpi')
         upload = FileUpload.objects.get()
         r = self.client.get(reverse('devhub.upload_detail',
                                     args=[upload.uuid, 'json']))
-        eq_(r.status_code, 200)
         data = json.loads(r.content)
-        eq_(data['platforms_to_exclude'], [])
+        eq_(list(m['message'] for m in data['validation']['messages']),
+            [u'Could not parse install.rdf.'])
 
 
 def assert_json_error(request, field, msg):
@@ -3092,13 +3097,93 @@ class TestVersionAddFile(UploadTest):
         eq_(comments.length, 2)
 
 
+class TestUploadErrors(UploadTest):
+    fixtures = ['base/apps', 'base/users',
+                'base/addon_3615', 'base/platforms']
+    validator_success = json.dumps({
+        "errors": 0,
+        "success": True,
+        "warnings": 0,
+        "notices": 0,
+        "message_tree": {},
+        "messages": [],
+        "metadata": {}
+    })
+
+    def xpi(self):
+        return open(os.path.join(os.path.dirname(files.__file__),
+                                 'fixtures', 'files',
+                                 'delicious_bookmarks-2.1.106-fx.xpi'),
+                    'rb')
+
+    @mock.patch.object(waffle, 'flag_is_active')
+    @mock.patch('devhub.tasks.run_validator')
+    def test_version_upload(self, run_validator, flag_is_active):
+        run_validator.return_value = ''
+        flag_is_active.return_value = True
+
+        # Load the versions page:
+        res = self.client.get(reverse('devhub.versions',
+                                      args=[self.addon.slug]))
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+
+        # javascript: upload file:
+        upload_url = doc('#upload-addon').attr('data-upload-url')
+        with self.xpi() as f:
+            res = self.client.post(upload_url, {'upload': f}, follow=True)
+        data = json.loads(res.content)
+
+        # Simulate the validation task finishing after a delay:
+        run_validator.return_value = self.validator_success
+        tasks.validator.delay(data['upload'])
+
+        # javascript: poll for status:
+        res = self.client.get(data['url'])
+        data = json.loads(res.content)
+        if data['validation'] and data['validation']['messages']:
+            raise AssertionError('Unexpected validation errors: %s'
+                                 % data['validation']['messages'])
+
+    @mock.patch.object(waffle, 'flag_is_active')
+    @mock.patch('devhub.tasks.run_validator')
+    def test_dupe_xpi(self, run_validator, flag_is_active):
+        run_validator.return_value = ''
+        flag_is_active.return_value = True
+
+        # Submit a new addon:
+        self.client.post(reverse('devhub.submit.1'))  # set cookie
+        res = self.client.get(reverse('devhub.submit.2'))
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+
+        # javascript: upoad file:
+        upload_url = doc('#upload-addon').attr('data-upload-url')
+        with self.xpi() as f:
+            res = self.client.post(upload_url, {'upload': f}, follow=True)
+        data = json.loads(res.content)
+
+        # Simulate the validation task finishing after a delay:
+        run_validator.return_value = self.validator_success
+        tasks.validator.delay(data['upload'])
+
+        # javascript: poll for results:
+        res = self.client.get(data['url'])
+        data = json.loads(res.content)
+        eq_(list(m['message'] for m in data['validation']['messages']),
+            [u'Duplicate UUID found.'])
+
+
 class TestAddVersion(UploadTest):
 
-    def post(self, desktop_platforms=[amo.PLATFORM_MAC], mobile_platforms=[]):
+    def post(self, desktop_platforms=[amo.PLATFORM_MAC], mobile_platforms=[],
+                   expected_status=200):
         d = dict(upload=self.upload.pk,
                  desktop_platforms=[p.id for p in desktop_platforms],
                  mobile_platforms=[p.id for p in mobile_platforms])
-        return self.client.post(self.url, d)
+        r = self.client.post(self.url, d)
+        eq_(r.status_code, expected_status)
+        return r
 
     def setUp(self):
         super(TestAddVersion, self).setUp()
@@ -3106,7 +3191,7 @@ class TestAddVersion(UploadTest):
 
     def test_unique_version_num(self):
         self.version.update(version='0.1')
-        r = self.post()
+        r = self.post(expected_status=400)
         assert_json_error(r, None, 'Version 0.1 already exists')
 
     def test_success(self):

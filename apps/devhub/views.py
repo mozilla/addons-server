@@ -25,6 +25,7 @@ import jingo
 import jinja2
 from tower import ugettext_lazy as _lazy, ugettext as _
 from session_csrf import anonymous_csrf
+import waffle
 
 from applications.models import AppVersion
 import amo
@@ -574,7 +575,7 @@ def package_addon_download(request, id):
 
 @login_required
 @post_required
-def upload(request):
+def upload(request, addon_slug=None):
     filedata = request.FILES['upload']
 
     fu = FileUpload.from_post(filedata, filedata.name, filedata.size)
@@ -583,7 +584,25 @@ def upload(request):
         fu.user = request.amo_user
         fu.save()
     tasks.validator.delay(fu.pk)
-    return redirect('devhub.upload_detail', fu.pk, 'json')
+    if (waffle.flag_is_active(request, 'form-errors-in-validation')
+        and addon_slug):
+        return redirect('devhub.upload_detail_for_addon',
+                        addon_slug, fu.pk)
+    else:
+        return redirect('devhub.upload_detail', fu.pk, 'json')
+
+
+@post_required
+@dev_required
+def upload_for_addon(request, addon_id, addon):
+    return upload(request, addon_slug=addon.slug)
+
+
+@dev_required
+@json_view
+def upload_detail_for_addon(request, addon_id, addon, uuid):
+    upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
+    return json_upload_detail(request, upload, addon_slug=addon.slug)
 
 
 def escape_all(v):
@@ -692,7 +711,10 @@ def json_validation_result(request, addon_id, addon, result_id):
 
 
 @json_view
-def json_upload_detail(upload):
+def json_upload_detail(request, upload, addon_slug=None):
+    addon = None
+    if addon_slug:
+        addon = get_object_or_404(Addon, slug=addon_slug)
     if not settings.VALIDATE_ADDONS:
         upload.task_error = ''
         upload.validation = json.dumps({'errors': 0, 'messages': [],
@@ -700,14 +722,18 @@ def json_upload_detail(upload):
         upload.save()
 
     validation = json.loads(upload.validation) if upload.validation else ""
-    url = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
+    if waffle.flag_is_active(request, 'form-errors-in-validation') and addon:
+        url = reverse('devhub.upload_detail_for_addon',
+                      args=[addon.slug, upload.uuid])
+    else:
+        url = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
     full_report_url = reverse('devhub.upload_detail', args=[upload.uuid])
     plat_exclude = []
 
     if validation:
         if validation['errors'] == 0:
             try:
-                apps = parse_addon(upload.path).get('apps', [])
+                apps = parse_addon(upload.path, addon=addon).get('apps', [])
                 app_ids = set([a.id for a in apps])
                 supported_platforms = []
                 if amo.MOBILE.id in app_ids:
@@ -720,15 +746,16 @@ def json_upload_detail(upload):
                 plat_exclude = set(s) - set(supported_platforms)
                 plat_exclude = [str(p) for p in plat_exclude]
             except django_forms.ValidationError, exc:
-                if settings.SHOW_UUID_ERRORS_IN_VALIDATION:
+                if waffle.flag_is_active(request,
+                                         'form-errors-in-validation'):
                     m = []
                     for msg in exc.messages:
                         # Simulate a validation error so the UI displays
                         # it as such
                         m.append({'type': 'error',
                                   'message': msg, 'tier': 1})
-                    v = make_validation_result(dict(error='',
-                                                    validation=dict(messages=m)))
+                    v = make_validation_result(
+                            dict(error='', validation=dict(messages=m)))
                     return json_view.error(v)
                 else:
                     log.error("XPI parsing error, ignored: %s" % exc)
@@ -744,7 +771,7 @@ def upload_detail(request, uuid, format='html'):
     upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
 
     if format == 'json' or request.is_ajax():
-        return json_upload_detail(upload)
+        return json_upload_detail(request, upload)
 
     v = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
     return jingo.render(request, 'devhub/validation.html',

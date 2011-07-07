@@ -91,7 +91,7 @@
 
                 formData.xhr.onreadystatechange = function(e){
                     $upload_field.trigger("upload_onreadystatechange",
-                                          [file, formData.xhr]);
+                                          [file, formData.xhr, aborted]);
                 };
 
                 formData.send();
@@ -127,6 +127,22 @@
 
         if (options) {
             $.extend( settings, options );
+        }
+
+        function parseErrorsFromJson(response) {
+            var json, errors = [];
+            try {
+                json = JSON.parse(response);
+            } catch(err) {
+                errors = [gettext("There was a problem contacting the server.")];
+            }
+            if (!errors.length) {
+                errors = settings['getErrors'](json);
+            }
+            return {
+                errors: errors,
+                json: json
+            }
         }
 
         return $(this).each(function(){
@@ -294,25 +310,19 @@
                 upload_progress_inside.animate({'width': '100%'}, animateArgs);
             });
 
-            $upload_field.bind("upload_onreadystatechange", function(e, file, xhr) {
+            $upload_field.bind("upload_onreadystatechange", function(e, file, xhr, aborted) {
                 var errors = [],
                     $form = $upload_field.closest('form'),
-                    json = {};
+                    json = {},
+                    errOb;
                 if (xhr.readyState == 4 && xhr.responseText &&
                         (xhr.status == 200 ||
                          xhr.status == 304 ||
                          xhr.status == 400)) {
-                    try {
-                        json = JSON.parse(xhr.responseText);
-                    } catch(err) {
-                        errors = [gettext("There was a problem contacting the server.")];
 
-                        $upload_field.trigger("upload_errors", [file, errors]);
-                        $upload_field.trigger("upload_finished", [file]);
-                        return false;
-                    }
-
-                    errors = settings['getErrors'](json);
+                    errOb = parseErrorsFromJson(xhr.responseText);
+                    errors = errOb.errors;
+                    json = errOb.json;
 
                     if(errors.length > 0) {
                         $upload_field.trigger("upload_errors", [file, errors, json]);
@@ -346,8 +356,17 @@
                     upload_progress_outside.attr('class', 'progress-idle');
                     // Not loaded yet. Try again!
                     setTimeout(function(){
-                        $.getJSON(results.url, function(r) {
-                            $upload_field.trigger("upload_success_results", [file, r]);
+                        $.ajax({
+                            url: results.url,
+                            dataType: 'json',
+                            success: function(r) {
+                                $upload_field.trigger("upload_success_results", [file, r]);
+                            },
+                            error: function(xhr, textStatus, errorThrown) {
+                                var errOb = parseErrorsFromJson(xhr.responseText);
+                                $upload_field.trigger("upload_errors", [file, errOb.errors, errOb.json]);
+                                $upload_field.trigger("upload_finished", [file]);
+                            }
                         });
                     }, 1000);
                 } else {

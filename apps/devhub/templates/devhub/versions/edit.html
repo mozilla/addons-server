@@ -132,7 +132,7 @@
 
   {{ add_file_modal(_("Upload a new file"),
                     url('devhub.versions.add_file', addon.slug, version.id),
-                    url('devhub.upload'), _('Add File') )}}
+                    url('devhub.upload_for_addon', addon.slug), _('Add File') )}}
 </section>
 {% include "devhub/includes/addons_edit_nav.html" %}
 {% endblock %}
