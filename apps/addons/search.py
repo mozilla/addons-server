@@ -22,9 +22,10 @@ def extract(addon):
     d = dict(zip(attrs, attrgetter(*attrs)(addon)))
     # Coerce the Translation into a string.
     d['name_sort'] = unicode(addon.name).lower()
-    d['name'] = [string for _, string in addon.translations[addon.name_id]]
-    d['description'] = [string for
-                        _, string in addon.translations[addon.description_id]]
+    translations = addon.translations
+    d['name'] = list(set(string for _, string in translations[addon.name_id]))
+    d['description'] = list(set(string for
+                                _, string in translations[addon.description_id]))
     d['app'] = [a.id for a in addon.compatible_apps]
     # This is an extra query, not good for perf.
     d['category'] = getattr(addon, 'category_ids', [])
@@ -38,6 +39,7 @@ def setup_mapping():
     m = {
         # Turn off analysis on name so we can sort by it.
         'name_sort': {'type': 'string', 'index': 'not_analyzed'},
+        'name': {'type': 'string', 'analyzer': 'standardPlusWordDelimiter'},
     }
     es = elasticutils.get_es()
     try:
