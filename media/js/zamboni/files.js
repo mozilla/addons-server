@@ -269,7 +269,7 @@ function bind_viewer(nodes) {
 
                         $prev = $start;
                         $start = $line;
-                    }
+                    };
 
                     var $prev, $start = null;
                     $lines.each(function () {
@@ -436,8 +436,7 @@ function bind_viewer(nodes) {
             $files.each(function () {
                 if (this == selected) {
                     list = [selected];
-                } else if (config.needreview_pattern.test($(this).attr('data-short'))
-                            && (!isDiff || $(this).hasClass('diff'))) {
+                } else if (config.needreview_pattern.test($(this).attr('data-short')) && (!isDiff || $(this).hasClass('diff'))) {
                     list.push(this);
                 }
             });
@@ -462,16 +461,17 @@ function bind_viewer(nodes) {
                         span.scrollIntoView(true);
                         return;
                     }
-                };
+                }
 
                 this.next_changed(1);
             } else {
                 var res;
-                for (var i = 0; i < $deltas.length; i++) {
-                    var span = $deltas[i];
-                    if (span.getBoundingClientRect().top >= 0)
+                for (var k = 0; k < $deltas.length; k++) {
+                    var span_two = $deltas[k];
+                    if (span_two.getBoundingClientRect().top >= 0) {
                         break;
-                    res = span;
+                    }
+                    res = span_two;
                 }
 
                 if (!res) {
