@@ -477,13 +477,13 @@ class TestQueueBasics(QueueTest):
         r = self.client.get(reverse('editors.queue_pending'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('table.data-grid tr th:eq(0)').text(), u'Addon')
-        eq_(doc('table.data-grid tr th:eq(1)').text(), u'Type')
-        eq_(doc('table.data-grid tr th:eq(2)').text(), u'Waiting Time')
-        eq_(doc('table.data-grid tr th:eq(3)').text(), u'Flags')
-        eq_(doc('table.data-grid tr th:eq(4)').text(), u'Applications')
-        eq_(doc('table.data-grid tr th:eq(5)').text(), u'Platforms')
-        eq_(doc('table.data-grid tr th:eq(6)').text(), u'Additional')
+        eq_(doc('table.data-grid tr th:eq(1)').text(), u'Addon')
+        eq_(doc('table.data-grid tr th:eq(2)').text(), u'Type')
+        eq_(doc('table.data-grid tr th:eq(3)').text(), u'Waiting Time')
+        eq_(doc('table.data-grid tr th:eq(4)').text(), u'Flags')
+        eq_(doc('table.data-grid tr th:eq(5)').text(), u'Applications')
+        eq_(doc('table.data-grid tr th:eq(6)').text(), u'Platforms')
+        eq_(doc('table.data-grid tr th:eq(7)').text(), u'Additional')
 
     def test_no_results(self):
         File.objects.all().delete()
@@ -620,9 +620,9 @@ class TestQueueBasics(QueueTest):
         doc = pq(r.content)
 
         tds = doc('.data-grid tr').eq(3).find('td')
-        eq_(tds.eq(0).text(), "Jetpack 0.1")
-        assert "ed-sprite-jetpack" in tds.eq(3).html()
-        assert "ed-sprite-restartless" not in tds.eq(3).html()
+        eq_(tds.eq(1).text(), "Jetpack 0.1")
+        assert "ed-sprite-jetpack" in tds.eq(4).html()
+        assert "ed-sprite-restartless" not in tds.eq(4).html()
 
     def test_flags_restartless(self):
         ad = create_addon_file('Restartless', '0.1', amo.STATUS_NOMINATED,
@@ -636,9 +636,9 @@ class TestQueueBasics(QueueTest):
         doc = pq(r.content)
 
         tds = doc('.data-grid tr').eq(3).find('td')
-        eq_(tds.eq(0).text(), "Restartless 0.1")
-        assert "ed-sprite-jetpack" not in tds.eq(3).html()
-        assert "ed-sprite-restartless" in tds.eq(3).html()
+        eq_(tds.eq(1).text(), "Restartless 0.1")
+        assert "ed-sprite-jetpack" not in tds.eq(4).html()
+        assert "ed-sprite-restartless" in tds.eq(4).html()
 
     def test_flags_restartless_and_jetpack(self):
         ad = create_addon_file('Restartless Jetpack', '0.1',
@@ -653,11 +653,11 @@ class TestQueueBasics(QueueTest):
         doc = pq(r.content)
 
         tds = doc('.data-grid tr').eq(3).find('td')
-        eq_(tds.eq(0).text(), "Restartless Jetpack 0.1")
+        eq_(tds.eq(1).text(), "Restartless Jetpack 0.1")
 
         # Only show jetpack if it's both.
-        assert "ed-sprite-jetpack" in tds.eq(3).html()
-        assert "ed-sprite-restartless" not in tds.eq(3).html()
+        assert "ed-sprite-jetpack" in tds.eq(4).html()
+        assert "ed-sprite-restartless" not in tds.eq(4).html()
 
 
 class TestPendingQueue(QueueTest):
@@ -667,12 +667,12 @@ class TestPendingQueue(QueueTest):
         eq_(r.status_code, 200)
         doc = pq(r.content)
         row = doc('table.data-grid tr:eq(1)')
-        eq_(doc('td:eq(0)', row).text(), u'Pending One 0.1')
+        eq_(doc('td:eq(1)', row).text(), u'Pending One 0.1')
         slug_one = self.versions[u'Pending One'].addon.slug
         eq_(doc('td a:eq(0)', row).attr('href'),
             reverse('editors.review', args=[slug_one]) + '?num=1')
         row = doc('table.data-grid tr:eq(2)')
-        eq_(doc('td:eq(0)', row).text(), u'Pending Two 0.1')
+        eq_(doc('td:eq(1)', row).text(), u'Pending Two 0.1')
         slug_two = self.versions[u'Pending Two'].addon.slug
         eq_(doc('a:eq(0)', row).attr('href'),
             reverse('editors.review', args=[slug_two]) + '?num=2')
@@ -706,12 +706,12 @@ class TestNominatedQueue(QueueTest):
         eq_(r.status_code, 200)
         doc = pq(r.content)
         row = doc('table.data-grid tr:eq(1)')
-        eq_(doc('td:eq(0)', row).text(), u'Nominated One 0.1')
+        eq_(doc('td:eq(1)', row).text(), u'Nominated One 0.1')
         slug_one = self.versions[u'Nominated One'].addon.slug
         eq_(doc('td a:eq(0)', row).attr('href'),
             reverse('editors.review', args=[slug_one]) + '?num=1')
         row = doc('table.data-grid tr:eq(2)')
-        eq_(doc('td:eq(0)', row).text(), u'Nominated Two 0.1')
+        eq_(doc('td:eq(1)', row).text(), u'Nominated Two 0.1')
         slug_two = self.versions[u'Nominated Two'].addon.slug
         eq_(doc('a:eq(0)', row).attr('href'),
             reverse('editors.review', args=[slug_two]) + '?num=2')
@@ -738,7 +738,7 @@ class TestNominatedQueue(QueueTest):
         doc = pq(r.content)
 
         row = doc('table.data-grid tr:eq(2)')
-        eq_(doc('td:eq(0)', row).text(), u'Nominated Two 0.2')
+        eq_(doc('td:eq(1)', row).text(), u'Nominated Two 0.2')
 
         # Make sure the time isn't the same as the original time.
         # (We're using the other row as a constant for comparison.)
@@ -765,12 +765,12 @@ class TestPreliminaryQueue(QueueTest):
         eq_(r.status_code, 200)
         doc = pq(r.content)
         row = doc('table.data-grid tr:eq(1)')
-        eq_(doc('td:eq(0)', row).text(), u'Prelim One 0.1')
+        eq_(doc('td:eq(1)', row).text(), u'Prelim One 0.1')
         slug_one = self.versions[u'Prelim One'].addon.slug
         eq_(doc('td a:eq(0)', row).attr('href'),
             reverse('editors.review', args=[slug_one]) + '?num=1')
         row = doc('table.data-grid tr:eq(2)')
-        eq_(doc('td:eq(0)', row).text(), u'Prelim Two 0.1')
+        eq_(doc('td:eq(1)', row).text(), u'Prelim Two 0.1')
         slug_two = self.versions[u'Prelim Two'].addon.slug
         eq_(doc('a:eq(0)', row).attr('href'),
             reverse('editors.review', args=[slug_two]) + '?num=2')
@@ -1163,7 +1163,7 @@ class TestQueueSearch(SearchTest):
         r = self.search({'platform_ids': [amo.PLATFORM_WIN.id]})
         doc = pq(r.content)
         title = (doc('table.data-grid tr').eq(1).children('td')
-                                          .eq(5).find('div').attr('title'))
+                                          .eq(6).find('div').attr('title'))
         eq_(title, 'Windows')
 
     def test_search_by_app(self):
@@ -1179,7 +1179,7 @@ class TestQueueSearch(SearchTest):
 
         r = self.search({'application_id': [amo.MOBILE.id]})
         doc = pq(r.content)
-        td = doc('table.data-grid tr').eq(2).children('td').eq(4)
+        td = doc('table.data-grid tr').eq(2).children('td').eq(5)
         eq_(td.children().length, 2)
         eq_(td.children('.ed-sprite-firefox').length, 1)
         eq_(td.children('.ed-sprite-mobile').length, 1)
@@ -1733,6 +1733,22 @@ class TestReview(ReviewBase):
         eq_(data['current'], self.editor.id)
         eq_(data['current_name'], self.editor.name)
         eq_(data['is_user'], 0)
+
+    def test_viewing_queue(self):
+        r = self.client.post(reverse('editors.review_viewing'),
+                             {'addon_id': self.addon.id})
+        data = json.loads(r.content)
+        eq_(data['current'], self.editor.id)
+        eq_(data['current_name'], self.editor.name)
+        eq_(data['is_user'], 1)
+
+        # Now, login as someone else and test.
+        self.login_as_admin()
+        r = self.client.post(reverse('editors.queue_viewing'),
+                             {'addon_ids': self.addon.id})
+        data = json.loads(r.content)
+
+        eq_(data[u'%s' % self.addon.id], self.editor.id)
 
     def test_no_compare_link(self):
         r = self.client.get(self.url)

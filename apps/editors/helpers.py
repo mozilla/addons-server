@@ -116,7 +116,7 @@ class EditorQueueTable(SQLTable):
                                      args=[row.addon_slug]),
                              self.item_number)
         self.item_number += 1
-        return u'<a href="%s">%s %s</a>' % (
+        return u'<a href="%s">%s <em>%s</em></a>' % (
                     url, jinja2.escape(row.addon_name),
                     jinja2.escape(row.latest_version))
 
@@ -141,7 +141,8 @@ class EditorQueueTable(SQLTable):
 
     def render_platforms(self, row):
         icon = u'<div class="platform-icon plat-sprite-%s" title="%s"></div>'
-        return u''.join([icon % (amo.PLATFORMS[i].shortname, amo.PLATFORMS[i].name)
+        return u''.join([icon % (amo.PLATFORMS[i].shortname,
+                                 amo.PLATFORMS[i].name)
                          for i in row.file_platform_ids])
 
     def render_flags(self, row):

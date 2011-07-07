@@ -39,6 +39,10 @@ $(function() {
         initScrollingSidebar();
     }
 
+    if($('#addon-queue').exists()) {
+        initQueue();
+    }
+
     // Show add-on ID when icon is clicked
     if ($("#addon[data-id], #persona[data-id]").exists()) {
       $("#addon .icon").click(function() {
@@ -210,6 +214,24 @@ function initDailyMessage(doc) {
         $motd.slideUp();
     });
 }
+
+
+function initQueue() {
+    var url = $('#addon-queue').attr('data-url'),
+        addon_ids = $.map($('.addon-row'), function(el) {
+        return $(el).attr('data-addon');
+    });
+    (function checkCurrentlyViewing() {
+        $.post(url, {'addon_ids': addon_ids.join(',')}, function(data) {
+            $('#addon-queue .locked').removeClass('locked');
+            $.each(data, function(k, v) {
+                $('#addon-' + k).addClass('locked');
+            });
+            setTimeout(checkCurrentlyViewing, 2000);
+        });
+    })();
+}
+
 
 function initQueueSearch(doc) {
     $('#toggle-queue-search', doc).click(function(e) {

@@ -15,6 +15,8 @@
     margin-right: 4px;
     background: url(../../img/developers/editor-sprite.png) no-repeat top left;
     width: 16px; height: 16px;
+    position: relative;
+    top: 4px;
 }
 .ed-sprite-admin-review { background-position: 0 0; }
 .ed-sprite-firefox { background-position: 0 -66px; }
@@ -87,6 +89,10 @@
     background-color: #FFFFFF;
     border: 1px solid #2E5186;
 }
+.queue-inner a em {
+    font-size: 0.8em;
+    opacity: 0.6;
+}
 .queue-outer .no-results {
     margin: 0;
     padding: 6em 1em;
@@ -96,20 +102,23 @@ table.data-grid {
     width: 100%;
     margin-bottom: 0;
 }
-table.data-grid thead tr th:nth-child(2) {
+table.data-grid thead tr th:nth-child(3) {
     min-width: 7em;
 }
-table.data-grid thead tr th:nth-child(3) {
-    min-width: 8em;
-}
 table.data-grid thead tr th:nth-child(4) {
-    min-width: 5em;
+    min-width: 8em;
 }
 table.data-grid thead tr th:nth-child(5) {
-    min-width: 8em;
+    min-width: 5em;
 }
 table.data-grid thead tr th:nth-child(6) {
-    min-width: 13em;
+    min-width: 7em;
+}
+table.data-grid thead tr th:nth-child(7) {
+    min-width: 7em;
+}
+table.data-grid thead tr th:nth-child(8) {
+    min-width: 10em;
 }
 table.data-grid tr th a:active,
 table.data-grid tr th a:hover,
@@ -148,6 +157,16 @@ table.data-grid tbody tr:nth-child(odd) {
 }
 table.data-grid tbody tr:nth-child(even) {
     background-color: #FFFFFF;
+}
+table.data-grid .addon-locked {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: 4px;
+}
+table.data-grid .locked .addon-locked {
+    background: url(../../img/developers/editor-sprite.png) no-repeat top left;
+    background-position: 0 -761px;
 }
 
 /* editors/queue tabs */

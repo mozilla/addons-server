@@ -484,6 +484,25 @@ def review_viewing(request):
             'is_user': is_user, 'interval_seconds': interval}
 
 
+@never_cache
+@json_view
+@editor_required
+def queue_viewing(request):
+    if 'addon_ids' not in request.POST:
+        return {}
+
+    viewing = {}
+    user_id = request.amo_user.id
+
+    for addon_id in request.POST['addon_ids'].split(','):
+        addon_id = addon_id.strip()
+        key = '%s:review_viewing:%s' % (settings.CACHE_PREFIX, addon_id)
+        currently_viewing = cache.get(key)
+        if currently_viewing and currently_viewing != user_id:
+            viewing[addon_id] = currently_viewing
+
+    return viewing
+
 @editor_required
 def reviewlog(request):
     data = request.GET.copy()

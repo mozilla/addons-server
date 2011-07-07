@@ -131,9 +131,10 @@
         </form>
       </div>
     {% else %}
-      <table class="data-grid">
+      <table id="addon-queue" class="data-grid" data-url="{{ url('editors.queue_viewing') }}">
         <thead>
           <tr class="listing-header">
+              <th>&nbsp;</th>
               {% for column in table.columns %}
                 {% if column.is_ordered_reverse %}
                   {% set cls, sprite = 'ordered', 'desc' %}
@@ -156,7 +157,8 @@
         </thead>
         <tbody>
           {% for row in page.object_list %}
-            <tr>
+          <tr data-addon="{{ row.data.id }}" class="addon-row" id="addon-{{ row.data.id }}">
+            <td><div class="addon-locked"></div></td>
             {% for value in row %}
               <td>{{ value|xssafe }}</td>
             {% endfor %}
