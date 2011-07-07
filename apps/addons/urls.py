@@ -45,8 +45,7 @@ urlpatterns = patterns('',
     # The impala homepage.
     url('^i/$', views.impala_home, name='i_home'),
     # Promo modules for the homepage
-    url('^promos$', views.homepage_promos,
-         name='addons.homepage_promos'),
+    url('^i/promos$', views.homepage_promos, name='addons.homepage_promos'),
 
     # URLs for a single add-on.
     ('^addon/%s/' % ADDON_ID, include(detail_patterns)),
