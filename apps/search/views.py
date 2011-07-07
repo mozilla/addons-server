@@ -8,6 +8,7 @@ from mobility.decorators import mobile_template
 import amo
 import bandwagon.views
 import browse.views
+from addons.models import Addon
 from amo.decorators import json_view
 from amo.helpers import urlparams
 from amo.utils import MenuItem
@@ -263,6 +264,38 @@ def ajax_search(request):
                 for result in results]
     except SearchError:
         return []
+
+
+@mobile_template('search/{mobile/}results.html')
+def es_search(request, tag_name=None, template=None):
+    # If the form is invalid we still want to have a query.
+    query = request.REQUEST.get('q', '')
+
+    form = SearchForm(request)
+    form.is_valid()  # Let the form try to clean data.
+
+    category = form.cleaned_data.get('cat')
+
+    if category == 'collections':
+        return _collections(request)
+    elif category == 'personas':
+        return _personas(request)
+
+    query = form.cleaned_data['q']
+
+    # 1. Prefer exact name matches first (boost=3).
+    # 2. Then try fuzzy matches ("fire bug" => firebug) (boost=2).
+    # 3. Then look for the query as a prefix of a name (boost=1.5).
+    # 4. Look for text matches inside the description (boost=1).
+    search = dict(name={'value': query, 'boost': 3},
+                  name__fuzzy={'value': query, 'boost': 2, 'prefix_length': 4},
+                  name__startswith={'value': query, 'boost': 1.5},
+                  description=query)
+    results = Addon.search().filter(type=amo.ADDON_EXTENSION).query(or_=search)
+    ctx = {
+        'pager': amo.utils.paginate(request, results),
+    }
+    return jingo.render(request, template, ctx)
 
 
 @mobile_template('search/{mobile/}results.html')
