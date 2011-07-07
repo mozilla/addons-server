@@ -398,7 +398,7 @@ def elastic(request):
     es = elasticutils.get_es()
     mappings = {'addons': (addons.search.setup_mapping,
                            addons.cron.reindex_addons),
-                'collections': (None,
+                'collections': (addons.search.setup_mapping,
                                 bandwagon.cron.reindex_collections),
                 'compat': (addons.search.setup_mapping, None),
                }
