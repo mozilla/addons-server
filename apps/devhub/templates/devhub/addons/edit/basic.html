@@ -75,26 +75,32 @@
             </th>
             <td id="addon-categories-edit"
                 data-max-categories="{{ amo.MAX_CATEGORIES }}">
-              {% if editable and cat_form %}
+              {% if editable %}
                 {{ cat_form.non_form_errors() }}
                 {{ cat_form.management_form }}
                 {% for form in cat_form.initial_forms %}
-                  {{ select_cats(amo.MAX_CATEGORIES, form) }}
+                  {% if form.disabled %}
+                    <p class="addon-app-cats addon-app-cats-inline">
+                      <b>{{ form.app.pretty }}:</b>
+                      {% set cats = dict(addon.app_categories).get(form.app) %}
+                      {{ cats|join(' &middot; ')|safe }}
+                    </p>
+                    <p>
+                    {% trans email='amo-editors@mozilla.org' %}
+                      Categories cannot be changed while your add-on is
+                      featured for this application. Please email
+                      <a href="mailto:{{ email }}">{{ email }}</a> if there is
+                      a reason you need to modify your categories.
+                    {% endtrans %}
+                    </p>
+                  {% else %}
+                    {{ select_cats(amo.MAX_CATEGORIES, form) }}
+                  {% endif %}
                 {% endfor %}
               {% else %}
-                {% if editable and addon.is_category_featured() %}
-                  <p>
-                  {% trans email='amo-editors@mozilla.org' %}
-                    Categories cannot be changed while your add-on is featured
-                    for this application. Please email
-                    <a href="mailto:{{ email }}">{{ email }}</a> if there is a
-                    reason you need to modify your categories.
-                  {% endtrans %}
-                  </p>
-                {% endif %}
                 {% set categories = addon.app_categories %}
                 {% if categories %}
-                  <ul class="addon-app-categories">
+                  <ul class="addon-app-cats-inline">
                     {% for app, cats in categories %}
                       <li>
                         <b>{{ app.pretty }}:</b> {{ cats|join(' &middot; ')|safe }}

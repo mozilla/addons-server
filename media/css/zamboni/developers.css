@@ -308,16 +308,21 @@ form .char-count b {
 
 /* @group Add-on category selection */
 
-.select-addon-cats {
-    margin-bottom: 1.5em;
+.addon-app-cats {
+    margin: 0 0 1.5em;
 }
 
-#edit-addon-basic .select-addon-cats {
+#edit-addon-basic p {
+    margin: 0;
+}
+
+#edit-addon-basic .addon-app-cats {
     border-top: 1px dotted #add0dc;
     margin: 8px 0 0;
     padding-top: 8px;
 }
-#edit-addon-basic input + .select-addon-cats {
+#edit-addon-basic input + .addon-app-cats,
+#edit-addon-basic p.addon-app-cats:first-child {
     border-top-width: 0;
     margin-top: 0;
     padding-top: 0;
@@ -340,8 +345,8 @@ form .char-count b {
 }
 
 .addon-misc-category,
-.addon-app-categories {
-    margin-bottom: 0;
+.addon-app-cats-inline {
+    margin: 0;
 }
 
 .addon-categories label,
@@ -349,7 +354,7 @@ form .char-count b {
     font-weight: normal;
 }
 
-.addon-app-categories li b {
+.addon-app-cats-inline li b {
     margin-right: 0.25em;
 }
 
@@ -853,7 +858,7 @@ h3 a.subscribe-feed:hover {
 }
 
 .addon-submission-process form label,
-#edit-addon-basic .select-addon-cats label {
+#edit-addon-basic .addon-app-cats label {
     display: block;
     padding-bottom: 3px;
 }

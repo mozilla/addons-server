@@ -180,10 +180,14 @@ class CategoryForm(forms.Form):
             AddonCategory.objects.filter(addon=addon, category=c).delete()
 
     def clean_categories(self):
+        if self.disabled:
+            raise forms.ValidationError(_('Categories cannot be changed while '
+                'your add-on is featured for this application.'))
         categories = self.cleaned_data['categories']
         total = categories.count()
         max_cat = amo.MAX_CATEGORIES
         if total > max_cat:
+            # L10n: {0} is the number of categories.
             raise forms.ValidationError(ngettext(
                 'You can have only {0} category.',
                 'You can have only {0} categories.',
@@ -192,8 +196,8 @@ class CategoryForm(forms.Form):
         has_misc = filter(lambda x: x.misc, categories)
         if has_misc and total > 1:
             raise forms.ValidationError(
-                _("The miscellaneous category cannot be combined with "
-                  "additional categories."))
+                _('The miscellaneous category cannot be combined with '
+                  'additional categories.'))
 
         return categories
 
@@ -227,6 +231,11 @@ class BaseCategoryFormSet(BaseFormSet):
             form.app = app
             cats = sorted(app_cats[app.id], key=lambda x: x.name)
             form.fields['categories'].choices = [(c.id, c.name) for c in cats]
+
+            # If this add-on is featured for this application, category
+            # categories are forbidden.
+            form.disabled = (settings.NEW_FEATURES and
+                             self.addon.is_category_featured(app))
 
     def save(self):
         for f in self.forms:

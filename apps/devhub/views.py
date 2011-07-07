@@ -771,10 +771,8 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
     if section == 'basic':
         tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
-        if (not settings.NEW_FEATURES or
-            (settings.NEW_FEATURES and not addon.is_category_featured())):
-            cat_form = addon_forms.CategoryFormSet(request.POST or None,
-                                                   addon=addon)
+        cat_form = addon_forms.CategoryFormSet(request.POST or None,
+                                               addon=addon)
         restricted_tags = addon.tags.filter(restricted=True)
 
     elif section == 'media':
@@ -787,8 +785,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
         if request.method == 'POST':
             form = models[section](request.POST, request.FILES,
                                   instance=addon, request=request)
-            if (form.is_valid() and (not previews or previews.is_valid()) and
-                (section != 'basic' or (cat_form and cat_form.is_valid()))):
+            if form.is_valid() and (not previews or previews.is_valid()):
                 addon = form.save(addon)
 
                 if previews:
@@ -801,10 +798,9 @@ def addons_section(request, addon_id, addon, section, editable=False):
                 else:
                     amo.log(amo.LOG.EDIT_PROPERTIES, addon)
 
-                if cat_form:
-                    cat_form.save()
-
                 valid_slug = addon.slug
+            if cat_form and cat_form.is_valid():
+                cat_form.save()
         else:
             form = models[section](instance=addon, request=request)
     else:

@@ -992,11 +992,22 @@ class TestEdit(test_utils.TestCase):
         """Ensure that categories cannot be changed for creatured add-ons."""
         self._feature_addon()
         self.cat_initial['categories'] = [22, 23]
-        self.client.post(self.basic_url, self.get_dict())
+        r = self.client.post(self.basic_url, self.get_dict())
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
-
+        eq_(r.context['cat_form'].errors[0]['categories'],
+            ['Categories cannot be changed while your add-on is featured for '
+             'this application.'])
         # This add-on's categories should not change.
         eq_(sorted(addon_cats), [22])
+
+    @mock.patch.object(settings, 'NEW_FEATURES', True)
+    def test_edit_basic_categories_add_new_creatured(self):
+        """Ensure that other forms are okay when disabling category changes."""
+        self._feature_addon()
+        self.cat_initial['categories'] = [22, 23]
+        data = self.get_dict()
+        r = self.client.post(self.basic_url, data)
+        eq_(unicode(self.get_addon().name), data['name'])
 
     @mock.patch.object(settings, 'NEW_FEATURES', False)
     def test_edit_basic_categories_no_disclaimer_old(self):
@@ -1004,18 +1015,16 @@ class TestEdit(test_utils.TestCase):
         self._feature_addon()
         r = self.client.get(self.basic_url)
         doc = pq(r.content)
-        eq_(doc('#addon-categories-edit .select-addon-cats').length, 1)
+        eq_(doc('#addon-categories-edit div.addon-app-cats').length, 1)
         eq_(doc('#addon-categories-edit > p').length, 0)
-        eq_(doc('#addon-categories-edit > ul').length, 0)
 
     @mock.patch.object(settings, 'NEW_FEATURES', True)
     def test_edit_basic_categories_no_disclaimer_new(self):
         """Ensure that there is a not disclaimer for non-creatured add-ons."""
         r = self.client.get(self.basic_url)
         doc = pq(r.content)
-        eq_(doc('#addon-categories-edit .select-addon-cats').length, 1)
+        eq_(doc('#addon-categories-edit div.addon-app-cats').length, 1)
         eq_(doc('#addon-categories-edit > p').length, 0)
-        eq_(doc('#addon-categories-edit > ul').length, 0)
 
     @mock.patch.object(settings, 'NEW_FEATURES', True)
     def test_edit_basic_categories_disclaimer(self):
@@ -1023,9 +1032,10 @@ class TestEdit(test_utils.TestCase):
         self._feature_addon()
         r = self.client.get(self.basic_url)
         doc = pq(r.content)
-        eq_(doc('#addon-categories-edit .select-addon-cats').length, 0)
-        eq_(doc('#addon-categories-edit > p').length, 1)
-        eq_(doc('#addon-categories-edit > ul').length, 1)
+        eq_(doc('#addon-categories-edit div.addon-app-cats').length, 0)
+        eq_(doc('#addon-categories-edit > p').length, 2)
+        eq_(doc('#addon-categories-edit p.addon-app-cats').text(),
+            'Firefox: %s' % unicode(Category.objects.get(id=22).name))
 
     def test_edit_basic_categories_addandremove(self):
         AddonCategory(addon=self.addon, category_id=23).save()
@@ -1596,14 +1606,14 @@ class TestEdit(test_utils.TestCase):
                 eq_(unicode(getattr(addon, k)), unicode(data[k]))
             else:
                 eq_(getattr(addon, k), True if data[k] == 'on' else False)
-    
+
     def test_text_not_none_when_has_flags(self):
         addon = self.get_addon()
         r = self.client.get(reverse('devhub.addons.edit',
                             kwargs=dict(addon_id=addon.slug)))
         doc = pq(r.content)
         eq_(doc('#addon-flags').text(), 'This is a site-specific add-on.')
-    
+
     def test_text_none_when_no_flags(self):
         addon = self.get_addon()
         addon.update(external_software=False, site_specific=False, binary=False)

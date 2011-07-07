@@ -372,25 +372,22 @@ class TestAddonModels(test_utils.TestCase):
         assert not a.is_featured(amo.FIREFOX, 'en-US'), (
             "Expected add-on should not be in 'en-US' locale")
 
-        assert a.is_category_featured(), (
-            'Expected add-on to be category-featured')
-        assert a.is_category_featured(amo.FIREFOX, None), (
-            'Expected add-on to have no locale')
+        assert a.is_category_featured(amo.FIREFOX), (
+            'Expected add-on to be category-featured for the default locale')
         assert not a.is_category_featured(amo.FIREFOX, 'fr'), (
             "Expected add-on to not be in 'fr' locale")
 
         AddonCategory.objects.filter(addon=a).delete()
         cache.clear()
-        assert not Addon.objects.get(pk=1001).is_category_featured(), (
+        a = Addon.objects.get(pk=1001)
+        assert not a.is_category_featured(amo.FIREFOX), (
             'Expected add-on to not be category-featured')
 
     @patch.object(settings, 'NEW_FEATURES', True)
     def test_new_is_category_featured(self):
         """Test if an add-on is category featured."""
         a = Addon.objects.get(pk=1001)
-        assert a.is_category_featured(), (
-            'Expected add-on to be category-featured')
-        assert a.is_category_featured(amo.FIREFOX, None), (
+        assert a.is_category_featured(amo.FIREFOX), (
             'Expected add-on to have no locale')
         assert not a.is_category_featured(amo.FIREFOX, 'fr'), (
             "Expected add-on to not be in 'fr' locale")
@@ -401,12 +398,13 @@ class TestAddonModels(test_utils.TestCase):
         c.delete()
         assert not a.is_featured(amo.FIREFOX, 'en-US'), (
             "Expected add-on to be in 'en-US' locale")
-        assert a.is_category_featured(amo.FIREFOX, None), (
-            'Expected add-on to have no locale')
+        assert a.is_category_featured(amo.FIREFOX), (
+            'Expected add-on to be category-featured for the default locale')
 
         AddonCategory.objects.filter(addon=a).delete()
         cache.clear()
-        assert not Addon.objects.get(pk=1001).is_category_featured(), (
+        a = Addon.objects.get(pk=1001)
+        assert not a.is_category_featured(amo.FIREFOX), (
             'Expected add-on to not be category-featured')
 
     def test_has_full_profile(self):
