@@ -8,13 +8,11 @@
 {% set view_all = {
   'featured': {
     'text': _('Featured Extensions'),
-    'link': url('browse.featured'),
     'feed': url('browse.featured.rss'),
   },
   'popular': {
     'text': _('Popular Extensions'),
-    'link': ext|urlparams(sort='popular'),
-    'feed': extrss|urlparams(sort='popular'),
+    'feed': extrss|urlparams(sort='users'),
   }
 }
 %}
@@ -40,7 +38,7 @@
   {% cache popular %}
     <section class="secondary">
       <h2>{{ _('Most Popular') }}
-        <a class="seeall" href="{{ url('browse.extensions')|urlparams(sort='popular') }}">{{ _('All »') }}</a>
+        <a class="seeall" href="{{ url('browse.extensions')|urlparams(sort='users') }}">{{ _('All »') }}</a>
       </h2>
       {{ popular|addon_toplist(src='hp-dl-mostpopular') }}
     </section>
