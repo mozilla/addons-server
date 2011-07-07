@@ -85,15 +85,32 @@ class TestHomepage(test_utils.TestCase):
         eq_(response.context['filter'].field, 'featured')
 
     def test_featured(self):
-        response = self.client.get(self.base_url + '?browse=featured',
-                                   follow=True)
-        eq_(response.status_code, 200)
-        eq_(response.context['filter'].field, 'featured')
-        featured = response.context['addon_sets']['featured']
+        r = self.client.get(self.base_url + '?browse=featured', follow=True)
+        eq_(r.status_code, 200)
+        eq_(r.context['filter'].field, 'featured')
+        featured = r.context['addon_sets']['featured']
         ids = [a.id for a in featured]
         eq_(set(ids), set([2464, 7661]))
+        dls = pq(r.content)('#list-featured p.downloads')
+        eq_(dls.length, 2)
+        for i in xrange(2):
+            assert dls.eq(i).text().endswith('users'), (
+                'Expected users to be listed')
         for addon in featured:
             assert addon.is_featured(amo.FIREFOX, settings.LANGUAGE_CODE)
+
+    def test_popular(self):
+        r = self.client.get(self.base_url + '?browse=popular', follow=True)
+        eq_(r.status_code, 200)
+        eq_(r.context['filter'].field, 'popular')
+        popular = r.context['addon_sets']['popular']
+        ids = [a.id for a in popular]
+        eq_(sorted(ids), [2464, 3615, 7661])
+        dls = pq(r.content)('#list-popular p.downloads')
+        eq_(dls.length, 3)
+        for i in xrange(3):
+            assert dls.eq(i).text().endswith('downloads'), (
+                'Expected downloads to be listed')
 
     def _test_invalid_feature(self):
         response = self.client.get(self.base_url + '?browse=xxx')
