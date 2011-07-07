@@ -1,3 +1,4 @@
+import logging
 from operator import attrgetter
 
 from django.conf import settings
@@ -8,6 +9,9 @@ import pyes.exceptions as pyes
 from .models import Addon
 from bandwagon.models import Collection
 from compat.models import AppCompat
+
+
+log = logging.getLogger('z.es')
 
 
 def extract(addon):
@@ -47,5 +51,5 @@ def setup_mapping():
         try:
             es.put_mapping(model._meta.app_label, {'properties': m},
                            settings.ES_INDEX)
-        except pyes.ElasticSearchException:
-            pass
+        except pyes.ElasticSearchException, e:
+            log.error(e)
