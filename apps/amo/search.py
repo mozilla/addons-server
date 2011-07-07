@@ -157,7 +157,9 @@ class ES(object):
 
     def _process_queries(self, value):
         rv = []
-        for key, val in value:
+        value = dict(value)
+        or_ = value.pop('or_', [])
+        for key, val in value.items():
             key, field_action = self._split(key)
             if field_action is None:
                 rv.append({'term': {key: val}})
@@ -165,6 +167,8 @@ class ES(object):
                 rv.append({'prefix': {key: val}})
             elif field_action in ('gt', 'gte', 'lt', 'lte'):
                 rv.append({'range': {key: {field_action: val}}})
+        if or_:
+            rv.append({'bool': {'should': self._process_queries(or_.items())}})
         return rv
 
     def _do_search(self):

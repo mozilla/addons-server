@@ -53,6 +53,25 @@ class TestES(amo.tests.ESTestCase):
                                     {'range': {'status': {'gte': 1}}},
                                 ]}}})
 
+    def test_query_or(self):
+        qs = Addon.search().query(or_=dict(type=1, status__gte=2))
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'query': {'bool': {'should': [
+                                    {'term': {'type': 1}},
+                                    {'range': {'status': {'gte': 2}}},
+                                ]}}})
+
+    def test_query_or_and(self):
+        qs = Addon.search().query(or_=dict(type=1, status__gte=2), category=2)
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'query': {'bool': {'must': [
+                                    {'term': {'category': 2}},
+                                    {'bool': {'should': [
+                                        {'term': {'type': 1}},
+                                        {'range': {'status': {'gte': 2}}},
+                                    ]}}
+                                ]}}})
+
     def test_order_by_desc(self):
         qs = Addon.search().order_by('-rating')
         eq_(qs._build_query(), {'fields': ['id'],
@@ -159,7 +178,8 @@ class TestES(amo.tests.ESTestCase):
     def test_values_result(self):
         qs = Addon.objects.order_by('id')
         # The add-on indexer lowercases the name.
-        addons = [(a.id, unicode(a.name).lower()) for a in qs]
+        # The add-on indexer makes a list of names.
+        addons = [(a.id, [a.name]) for a in qs]
         qs = Addon.search().values('name').order_by('id')
         eq_(list(qs), addons)
 
@@ -173,8 +193,8 @@ class TestES(amo.tests.ESTestCase):
 
     def test_values_dict_result(self):
         qs = Addon.objects.order_by('id')
-        # The add-on indexer lowercases the name.
-        addons = [{'id': a.id, 'name': unicode(a.name).lower()} for a in qs]
+        # The add-on indexer makes a list of names.
+        addons = [{'id': a.id, 'name': [a.name]} for a in qs]
         qs = Addon.search().values_dict('name').order_by('id')
         eq_(list(qs), list(addons))
 
