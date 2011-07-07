@@ -1,3 +1,5 @@
+"use strict";
+
 if (typeof diff_match_patch !== 'undefined') {
     diff_match_patch.prototype.diff_prettyHtml = function(diffs) {
         /* An override of prettyHthml from diff_match_patch. This
@@ -34,6 +36,11 @@ if (typeof diff_match_patch !== 'undefined') {
         return html.join('');
     };
 }
+
+var config = {
+    diff_context: 2,
+    needreview_pattern: /\.(js|jsm|xul|xml|x?html?|manifest|sh|py)$/i
+};
 
 if (typeof SyntaxHighlighter !== 'undefined') {
     /* Turn off double click on the syntax highlighter. */
@@ -107,7 +114,6 @@ if (typeof SyntaxHighlighter !== 'undefined') {
         return '<div class="' + classes.join(' ') + '">' + code + '</div>';
     };
 }
-
 
 jQuery.fn.numberInput = function(increment) {
     this.each(function() {
@@ -212,6 +218,7 @@ function bind_viewer(nodes) {
                     }
                 });
             });
+            this.updateViewport(true);
         };
         this.compute = function(node) {
             var $diff = node.find('#diff'),
@@ -240,23 +247,50 @@ function bind_viewer(nodes) {
 
                 /* Build out the diff bar based on the line numbers. */
                 var $sb = $diff.siblings('.diff-bar').eq(0),
-                    $lines = $diff.find('td.gutter div.line a');
+                    $gutter = $diff.find('td.gutter'),
+                    $lines = $gutter.find('div.line a');
 
                 if ($lines.length) {
-                    var state = {'start':0, 'type':$lines.eq(0).attr('class'),
-                                 'href':$lines.eq(0).attr('href')};
-                    for (var j = 1; j < $lines.length; j++) {
-                        var $node = $lines.eq(j);
-                        if (!$node.hasClass(state.type)) {
-                            this.side_bar_append($sb, state, j, $lines.length);
-                            state = {'start': j, 'type': $node.attr('class'),
-                                     'href': $node.attr('href')};
+                    var flush = function($line, bottom) {
+                        var height = (bottom - $start.offset().top) * 100 / $gutter.height(),
+                            style = { 'height': height + "%" };
+
+                        if ($prev && !$prev.attr('class')) {
+                            style['border-top-width'] = '1px';
+                            style['margin-top'] = '-1px';
                         }
+                        if ($line && !$line.attr('class')) {
+                            style['border-bottom-width'] = '1px';
+                            style['margin-bottom'] = '-1px';
+                        }
+
+                        $sb.append($('<a>', { 'href': $start.attr('href'), 'class': $start.attr('class'),
+                                              'css': style }));
+
+                        $prev = $start;
+                        $start = $line;
                     }
+
+                    var $prev, $start = null;
+                    $lines.each(function () {
+                        var $line = $(this);
+                        if (!$start) {
+                            $start = $line;
+                        } else if ($line.attr('class') != $start.attr('class')) {
+                            flush($line, $line.offset().top);
+                        }
+                    });
+                    flush(null, $gutter.offset().bottom);
+
+                    this.$diffbar = $sb;
+                    this.$viewport = $('<div>', { 'class': 'diff-bar-viewport' });
+                    this.$gutter = $gutter;
+                    $sb.append(this.$viewport);
+
                     $diff.addClass('diff-bar-height');
-                    this.side_bar_append($sb, state, j, $lines.length);
-                    this.fix_vertically($sb, $diff);
                     $sb.show();
+
+                    this.updateViewport(true);
                 }
             }
 
@@ -264,9 +298,37 @@ function bind_viewer(nodes) {
                 window.location = window.location;
             }
         };
-        this.side_bar_append = function($sb, state, k, total) {
-            $sb.append($('<a>', {'href': state.href, 'class': state.type,
-                                 'css': {'height': (((k-state.start)/total) * 100) + '%' }}));
+        this.updateViewport = function(resize) {
+            var $viewport = this.$viewport,
+                $gutter = this.$gutter,
+                $diffbar = this.$diffbar;
+
+            if (!$viewport) {
+                return;
+            }
+
+            var gutter = $gutter[0].getBoundingClientRect(),
+                gutter_height = gutter.bottom - gutter.top,
+                window_height = $(window).height(),
+                diffbar_top = -Math.min(0, gutter.top) * 100 / gutter_height + "%";
+
+            if (resize) {
+                var height = gutter_height + Math.min(0, gutter.top) - Math.max(gutter.bottom - window_height, 0);
+
+                $viewport.css({ 'height': height * 100 / gutter_height + "%", 'top': diffbar_top });
+
+                $diffbar.css({ 'height': Math.min($("#diff-wrapper").height(), window_height) + "px" });
+            } else {
+                $viewport.css({ 'top': diffbar_top });
+            }
+
+            if (gutter.bottom <= window_height) {
+                $diffbar.css({ 'position': 'absolute', 'top': '', 'bottom': '0' });
+            } else if (gutter.top > 0) {
+                $diffbar.css({ 'position': 'absolute', 'top': '0', 'bottom': '' });
+            } else {
+                $diffbar.css({ 'position': 'fixed', 'top': '0px', 'bottom': '' });
+            }
         };
         this.toggle_leaf = function($leaf) {
             if ($leaf.hasClass('open')) {
@@ -365,6 +427,61 @@ function bind_viewer(nodes) {
             $('#content-wrapper').toggleClass('full');
             this.size_line_numbers($('#content-wrapper'), false);
         };
+        this.next_changed = function(offset) {
+            var $files = this.nodes.$files.find('a.file'),
+                selected = $files[this.get_selected()],
+                isDiff = $('#diff').length;
+
+            var a = [], list = a;
+            $files.each(function () {
+                if (this == selected) {
+                    list = [selected];
+                } else if (config.needreview_pattern.test($(this).attr('data-short'))
+                            && (!isDiff || $(this).hasClass('diff'))) {
+                    list.push(this);
+                }
+            });
+
+            list = list.concat(a).slice(offset);
+            if (list.length) {
+                this.select($(list[0]));
+                $("#top")[0].scrollIntoView(true);
+            }
+        };
+        this.next_delta = function(forward) {
+            var $deltas = $('td.code .line.add, td.code .line.delete'),
+                $lines = $('td.code .line');
+            $lines.indexOf = Array.prototype.indexOf;
+
+            if (forward) {
+                var height = $(window).height();
+                for (var i = 0; i < $deltas.length; i++) {
+                    var span = $deltas[i];
+                    if (span.getBoundingClientRect().bottom > height) {
+                        span = $lines[Math.max(0, $lines.indexOf(span) - config.diff_context)];
+                        span.scrollIntoView(true);
+                        return;
+                    }
+                };
+
+                this.next_changed(1);
+            } else {
+                var res;
+                for (var i = 0; i < $deltas.length; i++) {
+                    var span = $deltas[i];
+                    if (span.getBoundingClientRect().top >= 0)
+                        break;
+                    res = span;
+                }
+
+                if (!res) {
+                    this.next_changed(-1);
+                } else {
+                    res = $lines[Math.min($lines.length - 1, $lines.indexOf(res) + config.diff_context)];
+                    res.scrollIntoView(false);
+                }
+            }
+        };
     }
 
     var viewer = new Viewer();
@@ -380,18 +497,25 @@ function bind_viewer(nodes) {
         viewer.toggle_leaf($(this));
     }));
 
+    if ($('#diff').length) {
+        $(window).resize(debounce(function () { viewer.updateViewport(true); }));
+        $(window).scroll(debounce(function () { viewer.updateViewport(false); }));
+    }
+
     $('#files-up').click(_pd(function() {
-        var prev = viewer.get_selected() - 1;
-        if (prev >= 0) {
-            viewer.select(viewer.nodes.$files.find('a.file').eq(prev));
-        }
+        viewer.next_changed(-1);
     }));
 
     $('#files-down').click(_pd(function() {
-        var next = viewer.nodes.$files.find('a.file').eq(viewer.get_selected() + 1);
-        if (next.length) {
-            viewer.select(next);
-        }
+        viewer.next_changed(1);
+    }));
+
+    $('#files-change-prev').click(_pd(function() {
+        viewer.next_delta(false);
+    }));
+
+    $('#files-change-next').click(_pd(function() {
+        viewer.next_delta(true);
     }));
 
     $('#files-wrap').click(_pd(function() {
@@ -423,18 +547,31 @@ function bind_viewer(nodes) {
         }
     });
 
-    $(document).bind('keyup', _pd(function(e) {
-        if (e.keyCode == 72) {
-            $('#files-hide').trigger('click');
-        } else if (e.keyCode == 75) {
-            $('#files-up').trigger('click');
-        } else if (e.keyCode == 74) {
-            $('#files-down').trigger('click');
-        } else if (e.keyCode == 87) {
-            $('#files-wrap').trigger('click');
-        } else if (e.keyCode == 69) {
-            $('#files-expand-all').trigger('click');
+    var prefixes = {},
+        keys = {};
+    $('#commands code').each(function () {
+        var $code = $(this),
+            $link = $code.parents('tr').find('a'),
+            key = $code.text();
+
+        keys[key] = $link;
+        for (var i = 1; i < key.length; i++) {
+            prefixes[key.substr(0, i)] = true;
         }
+    });
+
+    var buffer = '';
+    $(document).bind('keypress', _pd(function(e) {
+        if (e.charCode) {
+            buffer += String.fromCharCode(e.charCode);
+            if (keys.hasOwnProperty(buffer)) {
+                keys[buffer].click();
+            } else if (prefixes.hasOwnProperty(buffer)) {
+                return;
+            }
+        }
+
+        buffer = '';
     }));
 
     var stylesheet = $('<style>').attr('type', 'text/css').appendTo($('head'))[0].sheet;

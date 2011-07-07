@@ -43,14 +43,18 @@
                         <input id="tab-stops" type="range" size="1" />
                     </div>
                 </p>
-                <div id="commands">
-                    <div><code>j</code> <a href="#" id="files-down">{{ _('Down file') }}</a></div>
-                    <div><code>k</code> <a href="#" id="files-up">{{ _('Up file') }}</a></div>
-                    <div><code>e</code> <a href="#" id="files-expand-all">{{ _('Expand all') }}</a></div>
-                    <div><code>h</code> <a href="#" id="files-hide">{{ _('Hide or unhide tree') }}</a></div>
-                    <div><code>w</code> <a href="#" id="files-wrap">{{ _('Wrap or unwrap text') }}</a></div>
-                    <div><a class="no-key" href="{{ file_link['url'] }}">{{ file_link['text'] }}</a></div>
-                </div>
+                <table id="commands">
+                    <tr><th><code>k</code></th> <td><a href="#" id="files-up">{{ _('Up file') }}</a></td></tr>
+                    <tr><th><code>j</code></th> <td><a href="#" id="files-down">{{ _('Down file') }}</a></td></tr>
+		{% if diff %}
+                    <tr><th><code>[c</code></th> <td><a href="#" id="files-change-prev">{{ _('Previous change') }}</a></td></tr>
+                    <tr><th><code>]c</code></th> <td><a href="#" id="files-change-next">{{ _('Next change') }}</a></td></tr>
+		{% endif %}
+                    <tr><th><code>e</code></th> <td><a href="#" id="files-expand-all">{{ _('Expand all') }}</a></td></tr>
+                    <tr><th><code>h</code></th> <td><a href="#" id="files-hide">{{ _('Hide or unhide tree') }}</a></td></tr>
+                    <tr><th><code>w</code></th> <td><a href="#" id="files-wrap">{{ _('Wrap or unwrap text') }}</a></td></tr>
+                    <tr><th></th> <td><a href="{{ file_link['url'] }}">{{ file_link['text'] }}</a></td></tr>
+                </table>
             {% elif not files and status %}
                 <div>{{ _('No files in the uploaded file.') }}</div>
             {% endif %}
