@@ -11,7 +11,8 @@
             {% if first_page %}
               <img src="{{ addon.icon_url }}">
             {% else %}
-              <img data-defer-src="{{ addon.icon_url }}" src="{{ media('img/addon-icons/default-32.png') }}">
+              <img data-defer-src="{{ addon.icon_url }}"
+                   src="{{ media('img/addon-icons/default-32.png') }}">
             {% endif %}
           </div>
           <div class="summary">
