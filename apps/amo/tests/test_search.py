@@ -93,8 +93,16 @@ class TestES(amo.tests.ESTestCase):
                                 'from': 5,
                                 'size': 7})
 
-    def test_or(self):
-        qs = Addon.search().filter(type=1).filter_or(status=1, app=2)
+    def test_filter_or(self):
+        qs = Addon.search().filter(type=1).filter(or_=dict(status=1, app=2))
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'and': [
+                                    {'term': {'type': 1}},
+                                    {'or': [{'term': {'status': 1}},
+                                            {'term': {'app': 2}}]},
+                                ]}})
+
+        qs = Addon.search().filter(type=1, or_=dict(status=1, app=2))
         eq_(qs._build_query(), {'fields': ['id'],
                                 'filter': {'and': [
                                     {'term': {'type': 1}},
@@ -266,14 +274,14 @@ class TestES(amo.tests.ESTestCase):
                                 ]}})
 
     def test_extra_filter_or(self):
-        qs = Addon.search().extra(filter_or={'status': 1, 'app': 2})
+        qs = Addon.search().extra(filter={'or_': {'status': 1, 'app': 2}})
         eq_(qs._build_query(), {'fields': ['id'],
                                 'filter': {'or': [
                                     {'term': {'status': 1}},
                                     {'term': {'app': 2}}]}})
 
         qs = (Addon.search().filter(type=1)
-              .extra(filter_or={'status': 1, 'app': 2}))
+              .extra(filter={'or_': {'status': 1, 'app': 2}}))
         eq_(qs._build_query(), {'fields': ['id'],
                                 'filter': {'and': [
                                     {'term': {'type': 1}},

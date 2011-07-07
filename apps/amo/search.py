@@ -43,16 +43,12 @@ class ES(object):
     def filter(self, **kw):
         return self._clone(next_step=('filter', kw.items()))
 
-    # This is a lame hack.
-    def filter_or(self, **kw):
-        return self._clone(next_step=('filter_or', kw.items()))
-
     def facet(self, **kw):
         return self._clone(next_step=('facet', kw.items()))
 
     def extra(self, **kw):
         new = self._clone()
-        actions = 'values values_dict order_by query filter filter_or'.split()
+        actions = 'values values_dict order_by query filter'.split()
         for key, vals in kw.items():
             assert key in actions
             if hasattr(vals, 'items'):
@@ -105,8 +101,6 @@ class ES(object):
                 queries.extend(self._process_queries(value))
             elif action == 'filter':
                 filters.extend(self._process_filters(value))
-            elif action == 'filter_or':
-                filters.append({'or': self._process_filters(value)})
             elif action == 'facet':
                 facets.update(value)
             else:
@@ -145,7 +139,9 @@ class ES(object):
 
     def _process_filters(self, value):
         rv = []
-        for key, val in value:
+        value = dict(value)
+        or_ = value.pop('or_', [])
+        for key, val in value.items():
             key, field_action = self._split(key)
             if field_action is None:
                 rv.append({'term': {key: val}})
@@ -153,6 +149,8 @@ class ES(object):
                 rv.append({'in': {key: val}})
             elif field_action in ('gt', 'gte', 'lt', 'lte'):
                 rv.append({'range': {key: {field_action: val}}})
+        if or_:
+            rv.append({'or': self._process_filters(or_.items())})
         return rv
 
     def _process_queries(self, value):
