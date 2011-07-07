@@ -235,7 +235,7 @@ class FilesBase:
         self.file_viewer.extract()
         res = self.client.get(self.file_url(not_binary))
         doc = pq(res.content)
-        eq_(doc('#files a.no-key').text(), 'Back to review')
+        eq_(doc('#commands td:last').text(), 'Back to review')
 
     def test_files_back_link_anon(self):
         self.file_viewer.extract()
@@ -244,7 +244,7 @@ class FilesBase:
         res = self.client.get(self.file_url(not_binary))
         eq_(res.status_code, 200)
         doc = pq(res.content)
-        eq_(doc('#files a.no-key').text(), 'Back to addon')
+        eq_(doc('#commands td:last').text(), 'Back to addon')
 
 
 class TestFileViewer(FilesBase, test_utils.TestCase):
