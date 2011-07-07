@@ -78,6 +78,7 @@ class ViewQueue(RawSQLModel):
     _latest_versions = models.CharField(max_length=255)
     _latest_version_ids = models.CharField(max_length=255)
     _file_platform_ids = models.CharField(max_length=255)
+    _file_platform_vers = models.CharField(max_length=255)
     _application_ids = models.CharField(max_length=255)
     waiting_time_days = models.IntegerField()
     waiting_time_hours = models.IntegerField()
@@ -101,6 +102,9 @@ class ViewQueue(RawSQLModel):
                 ('_latest_versions', """GROUP_CONCAT(versions.version
                                         ORDER BY versions.created
                                         DESC SEPARATOR '&&&&')"""),
+                ('_file_platform_vers', """GROUP_CONCAT(DISTINCT CONCAT(CONCAT(
+                                           files.platform_id, '-'),
+                                           files.version_id))"""),
                 ('_file_platform_ids', """GROUP_CONCAT(DISTINCT
                                           files.platform_id)"""),
                 ('_jetpack_versions', """GROUP_CONCAT(DISTINCT
@@ -113,6 +117,8 @@ class ViewQueue(RawSQLModel):
                 'files',
                 'JOIN versions ON (files.version_id = versions.id)',
                 'JOIN addons ON (versions.addon_id = addons.id)',
+                """JOIN files AS version_files ON (
+                            version_files.version_id = versions.id)""",
                 """LEFT JOIN applications_versions as apps
                             ON versions.id = apps.version_id""",
                 """JOIN translations AS tr ON (
@@ -140,6 +146,10 @@ class ViewQueue(RawSQLModel):
     @property
     def is_jetpack(self):
         return bool(self._jetpack_versions)
+
+    @property
+    def file_platform_vers(self):
+        return self._explode_concat(self._file_platform_vers, cast=str)
 
     @property
     def file_platform_ids(self):
