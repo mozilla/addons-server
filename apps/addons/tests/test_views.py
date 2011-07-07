@@ -84,7 +84,7 @@ class TestHomepage(test_utils.TestCase):
         eq_(response.status_code, 200)
         eq_(response.context['filter'].field, 'featured')
 
-    def test_featured(self):
+    def test_featured_addons(self):
         r = self.client.get(self.base_url + '?browse=featured', follow=True)
         eq_(r.status_code, 200)
         eq_(r.context['filter'].field, 'featured')
@@ -99,13 +99,19 @@ class TestHomepage(test_utils.TestCase):
         for addon in featured:
             assert addon.is_featured(amo.FIREFOX, settings.LANGUAGE_CODE)
 
-    def test_popular(self):
+    def test_popular_sort(self):
+        """Ensure that popular add-ons are sorted by average daily users."""
         r = self.client.get(self.base_url + '?browse=popular', follow=True)
         eq_(r.status_code, 200)
         eq_(r.context['filter'].field, 'popular')
         popular = r.context['addon_sets']['popular']
         ids = [a.id for a in popular]
-        eq_(sorted(ids), [2464, 3615, 7661])
+        expected_ids = (Addon.objects.order_by('-average_daily_users')
+                        .values_list('id', flat=True)[:3])
+        eq_(ids, list(expected_ids))
+
+    def test_popular_downloads(self):
+        r = self.client.get(self.base_url + '?browse=popular', follow=True)
         dls = pq(r.content)('#list-popular p.downloads')
         eq_(dls.length, 3)
         for i in xrange(3):
