@@ -20,7 +20,7 @@
 {% macro item_info(addon, amo, show_date, show_downloads=False) %}
   {{ reviews_link(addon) }}
   <p class="downloads">
-    {% if show_date == 'popular' or show_downloads or addon.type == amo.ADDON_SEARCH %}
+    {% if show_downloads or addon.type == amo.ADDON_SEARCH %}
       {% with num=addon.weekly_downloads %}
         {# L10n: {0} is the number of downloads. #}
         {{ ngettext("<strong>{0}</strong> weekly download",
