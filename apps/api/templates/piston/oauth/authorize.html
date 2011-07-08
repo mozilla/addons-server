@@ -3,7 +3,7 @@
 {% block title %}{{ _('Authorize access to your data') }}{% endblock %}
 
 {% block content %}
-{% set consumer = token.consumer.name or _('Anonymous Party') %}
+{% set consumer = consumer.name or _('Anonymous Party') %}
   <h2>
     {# L10n: consumer is the Oauth Consumer, e.g. FlightDeck #}
     {{ _('Authorize Token for {0}')|f(consumer) }}

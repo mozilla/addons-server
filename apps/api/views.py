@@ -26,6 +26,8 @@ from addons.models import Addon
 from search.client import (Client as SearchClient, SearchError,
                            extract_from_query, SEARCHABLE_STATUSES)
 from search import utils as search_utils
+from piston.authentication.oauth.utils import verify_oauth_request, get_oauth_request, require_params
+from piston.authentication.oauth.store import store, InvalidConsumerError, InvalidTokenError
 
 ERROR = 'error'
 OUT_OF_DATE = ugettext_lazy(

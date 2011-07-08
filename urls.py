@@ -136,11 +136,12 @@ urlpatterns = patterns('',
 
 )
 
-urlpatterns += patterns('piston.authentication',
-    url(r'^oauth/request_token/$', 'oauth_request_token',
+urlpatterns += patterns('piston.authentication.oauth.views',
+    url(r'^oauth/request_token/$', 'get_request_token',
         name='oauth.request_token'),
-    url(r'^oauth/authorize/$', 'oauth_user_auth', name='oauth.authorize'),
-    url(r'^oauth/access_token/$', 'oauth_access_token',
+    url(r'^oauth/authorize/$', 'authorize_request_token',
+        name='oauth.authorize'),
+    url(r'^oauth/access_token/$', 'get_access_token',
         name='oauth.access_token'),
 )
 

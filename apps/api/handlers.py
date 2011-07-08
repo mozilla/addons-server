@@ -76,6 +76,7 @@ class UserHandler(BaseHandler):
 class AddonsHandler(BaseHandler):
     allowed_methods = ('POST', 'PUT', 'DELETE')
     model = Addon
+
     fields = ('id', 'name', 'eula', 'guid')
     exclude = ('highest_status', 'icon_type')
 
@@ -86,7 +87,6 @@ class AddonsHandler(BaseHandler):
 
     # We need multiple validation, so don't use @validate decorators.
     @transaction.commit_on_success
-    @throttle(10, 60 * 60)  # allow 10 addons an hour
     def create(self, request):
         license_form = LicenseForm(request.POST)
 
@@ -104,7 +104,6 @@ class AddonsHandler(BaseHandler):
         return a
 
     @check_addon_and_version
-    @throttle(10, 60 * 60)  # allow 10 updates an hour
     def update(self, request, addon):
         form = AddonForm(request.PUT, instance=addon)
         if not form.is_valid():
@@ -113,7 +112,6 @@ class AddonsHandler(BaseHandler):
         return a
 
     @check_addon_and_version
-    @throttle(5, 60 * 60)  # Allow 5 delete per hour
     def delete(self, request, addon):
         addon.delete(msg='Deleted via API')
         return rc.DELETED

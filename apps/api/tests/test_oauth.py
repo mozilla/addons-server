@@ -27,6 +27,7 @@ import urlparse
 
 from django import forms
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.core import mail
 from django.test.client import (encode_multipart, Client, FakePayload,
                                 BOUNDARY, MULTIPART_CONTENT)
@@ -72,16 +73,24 @@ def get_absolute_url(url):
     return 'http://%s%s' % ('api', url)
 
 
+def data_keys(d):
+    # Form keys and values MUST be part of the signature.
+    # File keys MUST be part of the signature.
+    # But file values MUST NOT be included as part of the signature.
+    return dict([k, '' if isinstance(v, file) else v] for k, v in d.items())
+
+
 class OAuthClient(Client):
     """OauthClient can make magically signed requests."""
+    signature_method = oauth.SignatureMethod_HMAC_SHA1()
+
     def get(self, url, consumer=None, token=None, callback=False,
             verifier=None):
         url = get_absolute_url(url)
         req = oauth.Request(method='GET', url=url,
                             parameters=_get_args(consumer, callback=callback,
                                                  verifier=verifier))
-        signature_method = oauth.SignatureMethod_HMAC_SHA1()
-        req.sign_request(signature_method, consumer, token)
+        req.sign_request(self.signature_method, consumer, token)
         return super(OAuthClient, self).get(req.to_url(), HTTP_HOST='api',
                                             **req)
 
@@ -91,8 +100,8 @@ class OAuthClient(Client):
         req = oauth.Request(method='DELETE', url=url,
                             parameters=_get_args(consumer, callback=callback,
                                                  verifier=verifier))
-        signature_method = oauth.SignatureMethod_HMAC_SHA1()
-        req.sign_request(signature_method, consumer, token)
+
+        req.sign_request(self.signature_method, consumer, token)
         return super(OAuthClient, self).delete(req.to_url(), HTTP_HOST='api',
                                                **req)
 
@@ -100,11 +109,12 @@ class OAuthClient(Client):
              verifier=None, data={}):
         url = get_absolute_url(url)
         params = _get_args(consumer, callback=callback, verifier=verifier)
+        params.update(data_keys(data))
         req = oauth.Request(method='POST', url=url, parameters=params)
-        signature_method = oauth.SignatureMethod_HMAC_SHA1()
-        req.sign_request(signature_method, consumer, token)
+        req.sign_request(self.signature_method, consumer, token)
         return super(OAuthClient, self).post(req.to_url(), HTTP_HOST='api',
-                                             data=data, **req)
+                                             data=data,
+                                             headers=req.to_header())
 
     def put(self, url, consumer=None, token=None, callback=False,
             verifier=None, data={}, content_type=MULTIPART_CONTENT, **kwargs):
@@ -113,11 +123,10 @@ class OAuthClient(Client):
         """
         url = get_absolute_url(url)
         params = _get_args(consumer, callback=callback, verifier=verifier)
+        params.update(data_keys(data))
+
         req = oauth.Request(method='PUT', url=url, parameters=params)
-
-        signature_method = oauth.SignatureMethod_HMAC_SHA1()
-        req.sign_request(signature_method, consumer, token)
-
+        req.sign_request(self.signature_method, consumer, token)
         post_data = encode_multipart(BOUNDARY, data)
 
         parsed = urlparse.urlparse(url)
@@ -142,7 +151,6 @@ token_keys = ('oauth_token_secret', 'oauth_token',)
 
 def get_token_from_response(response):
     data = urlparse.parse_qs(response.content)
-
     for key in token_keys:
         assert key in data.keys(), '%s not in %s' % (key, data.keys())
 
@@ -164,14 +172,15 @@ def get_access_token(consumer, token, authorize=True, verifier=None):
         eq_(r.status_code, 401)
 
 
-class BaseOauth(TestCase):
+class BaseOAuth(TestCase):
     fixtures = ('base/users', 'base/appversion', 'base/platforms',
                 'base/licenses')
 
     def setUp(self):
+        self.editor = User.objects.get(email='editor@mozilla.com')
         consumers = []
         for status in ('accepted', 'pending', 'canceled', ):
-            c = Consumer(name='a', status=status)
+            c = Consumer(name='a', status=status, user=self.editor)
             c.generate_random_codes()
             c.save()
             consumers.append(c)
@@ -182,82 +191,26 @@ class BaseOauth(TestCase):
     def _login(self):
         self.client.login(username='admin@mozilla.com', password='password')
 
-    def _oauth_flow(self, consumer, authorize=True, callback=False):
-        """
-        1. Get Request Token.
-        2. Request Authorization.
-        3. Get Access Token.
-        4. Get to protected resource.
-        """
-        token = get_request_token(consumer, callback)
-
-        self._login()
-        url = (reverse('oauth.authorize') + '?oauth_token=' + token.key)
-        r = self.client.get(url)
-        eq_(r.status_code, 200)
-
-        d = dict(authorize_access='on', oauth_token=token.key)
-
-        if callback:
-            d['oauth_callback'] = 'http://testserver/foo'
-
-        verifier = None
-
-        if authorize:
-            r = self.client.post(url, d,)
-
-            if callback:
-                redir = r.get('location', None)
-                qs = urlparse.urlsplit(redir).query
-                data = urlparse.parse_qs(qs)
-                verifier = data['oauth_verifier'][0]
-            else:
-                eq_(r.status_code, 200)
-
-            piston_token = Token.objects.get(key=token.key)
-            assert piston_token.is_approved, "Token not saved."
-        else:
-            del d['authorize_access']
-            r = self.client.post(url, d)
-            piston_token = Token.objects.get()
-            assert not piston_token.is_approved, "Token saved."
-
-        self.token = get_access_token(consumer, token, authorize, verifier)
-
-        r = client.get('api.user', consumer, self.token)
-
-        if authorize:
-            data = json.loads(r.content)
-            eq_(data['email'], 'admin@mozilla.com')
-        else:
-            eq_(r.status_code, 401)
-
-
-class TestBasicOauth(BaseOauth):
-
     def test_accepted(self):
-        self._oauth_flow(self.accepted_consumer)
+        self.assertRaises(AssertionError, get_request_token,
+                          self.accepted_consumer)
 
     def test_accepted_callback(self):
-        """Same as above, just uses a callback."""
-        self._oauth_flow(self.accepted_consumer, callback=True)
-
-    def test_unauthorized(self):
-        self._oauth_flow(self.accepted_consumer, authorize=False)
+        get_request_token(self.accepted_consumer, callback=True)
 
     def test_request_token_pending(self):
-        get_request_token(self.pending_consumer)
+        get_request_token(self.pending_consumer, callback=True)
 
     def test_request_token_cancelled(self):
-        get_request_token(self.canceled_consumer)
+        get_request_token(self.canceled_consumer, callback=True)
 
     def test_request_token_fake(self):
         """Try with a phony consumer key"""
         c = Mock()
         c.key = 'yer'
         c.secret = 'mom'
-        r = client.get('oauth.request_token', c)
-        eq_(r.content, 'Invalid consumer.')
+        r = client.get('oauth.request_token', c, callback=True)
+        eq_(r.content, 'Invalid Consumer.')
 
 
 def activitylog_count(type=None):
@@ -267,12 +220,11 @@ def activitylog_count(type=None):
     return qs.count()
 
 
-class TestAddon(BaseOauth):
+class TestAddon(BaseOAuth):
 
     def setUp(self):
         super(TestAddon, self).setUp()
-        consumer = self.accepted_consumer
-        self._oauth_flow(consumer)
+        self.token = None
         path = 'apps/files/fixtures/files/extension.xpi'
         xpi = os.path.join(settings.ROOT, path)
         f = open(xpi)
@@ -303,6 +255,14 @@ class TestAddon(BaseOauth):
         # 1 new add-on
         eq_(activitylog_count(amo.LOG.CREATE_ADDON), current_count + 1)
         return json.loads(r.content)
+
+    def test_create_no_user(self):
+        # The user in TwoLeggedAuth is set to the consumer user.
+        # If there isn't one, we should get a challenge back.
+        self.accepted_consumer.user = None
+        self.accepted_consumer.save()
+        r = self.make_create_request(self.create_data)
+        eq_(r.status_code, 401)
 
     def test_create(self):
         # License (req'd): MIT, GPLv2, GPLv3, LGPLv2.1, LGPLv3, MIT, BSD, Other

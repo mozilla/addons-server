@@ -64,7 +64,7 @@ for regexp in list_regexps:
     api_patterns += patterns('',
             url(regexp + '/?$', class_view(views.ListView), name='api.list'))
 
-ad = dict(authentication=authentication.AMOOAuthAuthentication())
+ad = dict(authentication=authentication.AMOOAuthAuthentication(two_legged=True))
 user_resource = Resource(handler=handlers.UserHandler, **ad)
 addons_resource = Resource(handler=handlers.AddonsHandler, **ad)
 version_resource = Resource(handler=handlers.VersionsHandler, **ad)
