@@ -11,6 +11,7 @@ import elasticutils
 import amo
 from amo.decorators import write
 from amo.utils import sorted_groupby
+from tags.models import Tag
 from translations.models import Translation
 from . import cron, search  # Pull in tasks from cron.
 from .forms import get_satisfaction
@@ -107,8 +108,10 @@ def index_addons(ids, **kw):
         return
     es = elasticutils.get_es()
     log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
-    qs = (Addon.uncached.filter(id__in=ids).transform(attach_categories)
-          .transform(attach_translations))
+    qs = Addon.uncached.filter(id__in=ids)
+    transforms = attach_categories, attach_tags, attach_translations
+    for t in transforms:
+        qs = qs.transform(t)
     for addon in qs:
         Addon.index(search.extract(addon), bulk=True, id=addon.id)
     es.flush_bulk(forced=True)
@@ -118,9 +121,9 @@ def attach_categories(addons):
     """Put all of the add-on's categories into a category_ids list."""
     addon_dict = dict((a.id, a) for a in addons)
     categories = (Category.objects.filter(addon__in=addon_dict)
-                  .values_list('id', 'addoncategory__addon'))
-    for addon, cats in sorted_groupby(categories, lambda x: x[1]):
-        addon_dict[addon].category_ids = [c[0] for c in cats]
+                  .values_list('addoncategory__addon', 'id'))
+    for addon, cats in sorted_groupby(categories, lambda x: x[0]):
+        addon_dict[addon].category_ids = [c[1] for c in cats]
 
 
 def attach_translations(addons):
@@ -137,6 +140,14 @@ def attach_translations(addons):
     for id, translations in sorted_groupby(qs, lambda x: x[0]):
         ids[id].translations[id] = [(locale, string)
                                     for id, locale, string in translations]
+
+
+def attach_tags(addons):
+    addon_dict = dict((a.id, a) for a in addons)
+    qs = (Tag.objects.not_blacklisted().filter(addons__in=addon_dict)
+          .values_list('addons__id', 'tag_text'))
+    for addon, tags in sorted_groupby(qs, lambda x: x[0]):
+        addon_dict[addon].tag_list = [t[1] for t in tags]
 
 
 @task

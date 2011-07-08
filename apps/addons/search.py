@@ -29,6 +29,7 @@ def extract(addon):
     d['app'] = [a.id for a in addon.compatible_apps]
     # This is an extra query, not good for perf.
     d['category'] = getattr(addon, 'category_ids', [])
+    d['tags'] = getattr(addon, 'tag_list', [])
     return d
 
 
@@ -39,7 +40,9 @@ def setup_mapping():
     m = {
         # Turn off analysis on name so we can sort by it.
         'name_sort': {'type': 'string', 'index': 'not_analyzed'},
+        # Adding word-delimiter to split on camelcase and punctuation.
         'name': {'type': 'string', 'analyzer': 'standardPlusWordDelimiter'},
+        'tags': {'type': 'string', 'index': 'not_analyzed'},
     }
     es = elasticutils.get_es()
     try:
