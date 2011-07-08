@@ -1,3 +1,4 @@
+import functools
 import hashlib
 import json
 import random
@@ -49,6 +50,7 @@ addon_disabled_view = addon_view_factory(qs=Addon.objects.valid_and_disabled)
 
 def author_addon_clicked(f):
     """Decorator redirecting clicks on "Other add-ons by author"."""
+    @functools.wraps(f)
     def decorated(request, *args, **kwargs):
         redirect_id = request.GET.get('addons-author-addons-select', None)
         if not redirect_id:
