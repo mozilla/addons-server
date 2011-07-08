@@ -48,7 +48,7 @@ class ES(object):
 
     def extra(self, **kw):
         new = self._clone()
-        actions = 'values values_dict order_by query filter'.split()
+        actions = 'values values_dict order_by query filter facet'.split()
         for key, vals in kw.items():
             assert key in actions
             if hasattr(vals, 'items'):
@@ -165,6 +165,8 @@ class ES(object):
                 rv.append({'prefix': {key: val}})
             elif field_action in ('gt', 'gte', 'lt', 'lte'):
                 rv.append({'range': {key: {field_action: val}}})
+            elif field_action == 'fuzzy':
+                rv.append({'fuzzy': {key: val}})
         if or_:
             rv.append({'bool': {'should': self._process_queries(or_.items())}})
         return rv

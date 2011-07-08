@@ -72,6 +72,15 @@ class TestES(amo.tests.ESTestCase):
                                     ]}}
                                 ]}}})
 
+    def test_query_fuzzy(self):
+        fuzz = {'boost': 2, 'value': 'woo'}
+        qs = Addon.search().query(or_=dict(type=1, status__fuzzy=fuzz))
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'query': {'bool': {'should': [
+                                    {'fuzzy': {'status': fuzz}},
+                                    {'term': {'type': 1}},
+                                ]}}})
+
     def test_order_by_desc(self):
         qs = Addon.search().order_by('-rating')
         eq_(qs._build_query(), {'fields': ['id'],
