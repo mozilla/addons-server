@@ -204,11 +204,8 @@ function bind_viewer(nodes) {
                  * see what needs resizing. */
                 $.each(long_lines, function() {
                     var $this = $(this),
-                        link = null,
-                        height = $this.height(),
                         k = parseInt($this.attr('class').match(/index(\d+)/)[1], 10);
-                        link = $self.find('td.gutter div.index' + k);
-                    link.css('height',  height + 'px');
+                    $self.find('td.gutter div.index' + k).css('height',  $this.height() + 'px');
                 });
             });
             this.updateViewport(true);
