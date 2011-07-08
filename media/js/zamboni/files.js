@@ -551,18 +551,20 @@ function bind_viewer(nodes) {
     });
 
     var buffer = '';
-    $(document).bind('keypress', _pd(function(e) {
-        if (e.charCode) {
+    $(document).bind('keypress', function(e) {
+        if (e.charCode && !(e.altKey || e.ctrlKey || e.metaKey)) {
             buffer += String.fromCharCode(e.charCode);
             if (keys.hasOwnProperty(buffer)) {
+                e.preventDefault();
                 keys[buffer].click();
             } else if (prefixes.hasOwnProperty(buffer)) {
+                e.preventDefault();
                 return;
             }
         }
 
         buffer = '';
-    }));
+    });
 
     var stylesheet = $('<style>').attr('type', 'text/css').appendTo($('head'))[0].sheet;
     if (stylesheet && stylesheet.insertRule) {
