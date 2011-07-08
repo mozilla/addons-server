@@ -172,9 +172,6 @@ function bind_viewer(nodes) {
         this.nodes = nodes;
         this.wrapped = true;
         this.hidden = false;
-        /* An optimisation, store line_heights here so we don't have to
-         * keep looking them up in the DOM. */
-        this.line_heights = {};
         this.top = null;
         this.last = null;
         this.fix_vertically = function($inner, $outer) {
@@ -198,24 +195,20 @@ function bind_viewer(nodes) {
         this.size_line_numbers = function($node, deleted) {
             /* We need to re-size the line numbers correctly depending upon
                the wrapping. */
+
             var self = this;
             $node.each(function(){
                 var $self = $(this),
                     long_lines = $(this).find('td.code div.longline');
                 /* Use the longline hint to guess at long lines and
-                 * see what needs resizing. Then do a lookup in line_heights
-                 * to see if its different, only then do we bother looking
-                 * up the line in the DOM to alter it. */
+                 * see what needs resizing. */
                 $.each(long_lines, function() {
                     var $this = $(this),
                         link = null,
                         height = $this.height(),
                         k = parseInt($this.attr('class').match(/index(\d+)/)[1], 10);
-                    if (height != self.line_heights[k-1]) {
                         link = $self.find('td.gutter div.index' + k);
-                        link.css('height',  height + 'px');
-                        self.line_heights[k-1] = height;
-                    }
+                    link.css('height',  height + 'px');
                 });
             });
             this.updateViewport(true);
