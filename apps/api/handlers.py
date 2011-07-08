@@ -11,6 +11,8 @@ from access import acl
 from addons.forms import AddonForm
 from addons.models import Addon
 from devhub.forms import LicenseForm
+from perf.forms import PerformanceForm
+from perf.models import Performance
 from users.models import UserProfile
 from versions.forms import XPIForm
 from versions.models import Version, ApplicationsVersions
@@ -227,3 +229,16 @@ class VersionsHandler(BaseHandler, BaseVersionHandler):
     @check_addon_and_version
     def read(self, request, addon):
         return addon.versions.all()
+
+
+class PerformanceHandler(BaseHandler):
+    allowed_methods = ('POST',)
+    model = Performance
+    fields = ('addon', 'average', 'appversion', 'osversion', 'test')
+
+    def create(self, request):
+        form = PerformanceForm(request.POST)
+        if form.is_valid():
+            perf = form.save()
+            return rc.ALL_OK
+        return _form_error(form)

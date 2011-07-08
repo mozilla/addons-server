@@ -42,6 +42,8 @@ import amo
 from amo.urlresolvers import reverse
 from addons.models import Addon, BlacklistedGuid
 from devhub.models import ActivityLog
+from perf.models import (Performance, PerformanceAppVersions,
+                         PerformanceOSVersion)
 from translations.models import Translation
 from versions.models import AppVersion, Version
 
@@ -173,8 +175,8 @@ def get_access_token(consumer, token, authorize=True, verifier=None):
 
 
 class BaseOAuth(TestCase):
-    fixtures = ('base/users', 'base/appversion', 'base/platforms',
-                'base/licenses')
+    fixtures = ['base/users', 'base/appversion', 'base/platforms',
+                'base/licenses']
 
     def setUp(self):
         self.editor = User.objects.get(email='editor@mozilla.com')
@@ -187,6 +189,7 @@ class BaseOAuth(TestCase):
         self.accepted_consumer = consumers[0]
         self.pending_consumer = consumers[1]
         self.canceled_consumer = consumers[2]
+        self.token = None
 
     def _login(self):
         self.client.login(username='admin@mozilla.com', password='password')
@@ -224,7 +227,6 @@ class TestAddon(BaseOAuth):
 
     def setUp(self):
         super(TestAddon, self).setUp()
-        self.token = None
         path = 'apps/files/fixtures/files/extension.xpi'
         xpi = os.path.join(settings.ROOT, path)
         f = open(xpi)
@@ -575,3 +577,31 @@ class TestAddon(BaseOAuth):
             val = data[0].get(attr)
             eq_(expect, val,
                 'Got "%s" was expecting "%s" for "%s".' % (val, expect, attr,))
+
+
+class TestPerformance(BaseOAuth):
+    fixtures = BaseOAuth.fixtures + ['base/addon_3615']
+
+    def setUp(self):
+        super(TestPerformance, self).setUp()
+        self.app = PerformanceAppVersions.objects.create(app='1', version='1')
+        self.os = PerformanceOSVersion.objects.create(os='l', version='1',
+                                                      name='l')
+        self.data = {'addon': '3615', 'average': 0.1,
+                'appversion': self.app.pk, 'osversion': self.os.pk,
+                'test': 'ts'}
+
+    def test_create_perf(self):
+        res = client.post('api.performance', self.accepted_consumer,
+                          self.token, data=self.data)
+        assert res.status_code == 200
+        eq_(Performance.objects.count(), 1)
+
+    def test_create_perf_wrong(self):
+        data = self.data.copy()
+        data['addon'] = '3616'
+        res = client.post('api.performance', self.accepted_consumer,
+                          self.token, data=data)
+        assert res.status_code == 400, res.status_code
+        assert 'addon' in res.content
+        eq_(Performance.objects.count(), 0)
