@@ -266,7 +266,7 @@ def ajax_search(request):
         return []
 
 
-@mobile_template('search/{mobile/}results.html')
+@mobile_template('search/es_results.html')
 def es_search(request, tag_name=None, template=None):
     # If the form is invalid we still want to have a query.
     query = request.REQUEST.get('q', '')
