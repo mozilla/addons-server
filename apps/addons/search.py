@@ -42,7 +42,9 @@ def setup_mapping():
         'name_sort': {'type': 'string', 'index': 'not_analyzed'},
         # Adding word-delimiter to split on camelcase and punctuation.
         'name': {'type': 'string', 'analyzer': 'standardPlusWordDelimiter'},
-        'tags': {'type': 'string', 'index': 'not_analyzed'},
+        'tags': {'type': 'string',
+                 'index': 'not_analyzed',
+                 'index_name': 'tag'},
     }
     es = elasticutils.get_es()
     try:

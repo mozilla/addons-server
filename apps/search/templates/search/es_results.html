@@ -59,7 +59,17 @@
     {{ refinements(categories, _('Categories'), 'category') }}
     {{ refinements(versions, _('Compatible with'), 'compatibility') }}
     {{ refinements(platforms, _('Platforms'), 'platform') }}
-    {{ refinements(tags, _('Tags'), 'tags') }}
+    <div id="refine-tags">
+      <h5>{{ _('Tags') }}</h5>
+      <ul class="refinements">
+        {% for tag in qs.facets.tags %}
+        <li {% if tag.term == query.tag %}class="selected"{% endif %}>
+          <a href="{{ request.get_full_path()|urlparams(tag=tag.term, page=None) }}">
+            {{ tag.term }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
 
   </div>
 </section>

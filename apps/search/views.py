@@ -291,9 +291,14 @@ def es_search(request, tag_name=None, template=None):
                   name__fuzzy={'value': query, 'boost': 2, 'prefix_length': 4},
                   name__startswith={'value': query, 'boost': 1.5},
                   description=query)
-    results = Addon.search().filter(type=amo.ADDON_EXTENSION).query(or_=search)
+    qs = (Addon.search().filter(type=amo.ADDON_EXTENSION).query(or_=search)
+          .facet(tags={'terms': {'field': 'tags'}}))
+    if form.cleaned_data['tag']:
+        qs = qs.filter(tags=form.cleaned_data['tag'])
     ctx = {
-        'pager': amo.utils.paginate(request, results),
+        'qs': qs,
+        'pager': amo.utils.paginate(request, qs),
+        'query': form.cleaned_data
     }
     return jingo.render(request, template, ctx)
 
