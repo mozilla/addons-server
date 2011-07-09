@@ -34,7 +34,10 @@ def blocklist(request, apiver, app, appver):
         response = _blocklist(request, apiver, app, appver)
         cache.set(key, response, 60 * 60)
         # This gets cleared with the clear_blocklist signal handler.
-        redisutils.connections['master'].sadd('blocklist:keys', key)
+        try:
+            redisutils.connections['master'].sadd('blocklist:keys', key)
+        except Exception:
+            pass  # Don't crash me bro.
     patch_cache_control(response, max_age=60 * 60)
     return response
 
