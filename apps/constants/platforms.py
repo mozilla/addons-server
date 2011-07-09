@@ -2,6 +2,8 @@ from django.utils.datastructures import SortedDict
 
 from tower import ugettext_lazy as _
 
+from . import applications
+
 
 # Platforms
 class PLATFORM_ANY:
@@ -111,3 +113,7 @@ PLATFORM_DICT = {
     'sunos': PLATFORM_SUN,
     'solaris': PLATFORM_SUN,
 }
+
+_platforms = {'desktop': DESKTOP_PLATFORMS, 'mobile': MOBILE_PLATFORMS}
+for app in applications.APPS_ALL.values():
+    app.platforms = _platforms[app.platforms]

@@ -123,6 +123,8 @@ def SearchForm(request):
                 choices=[(p[0], p[1].name) for p in amo.PLATFORMS.iteritems()
                          if p[1] != amo.PLATFORM_ANY], required=False,
                 coerce=int, empty_value=amo.PLATFORM_ANY.id)
+        platform = forms.ChoiceField(required=False,
+            choices=[[p.shortname, p.id] for p in amo.PLATFORMS.values()])
 
         sort = forms.ChoiceField(label=_('Sort By'), choices=sort_by,
                                  required=False)
@@ -137,6 +139,11 @@ def SearchForm(request):
 
         # Attach these to the form for usage in the template.
         top_level_cat = dict(top_level)
+
+        def clean_platform(self):
+            p = self.cleaned_data.get('platform')
+            choices = dict(self.fields['platform'].choices)
+            return choices.get(p)
 
         # TODO(jbalogh): when we start using this form for zamboni search, it
         # should check that the appid and lver match up using app_versions.

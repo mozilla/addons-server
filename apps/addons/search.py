@@ -30,6 +30,7 @@ def extract(addon):
     # This is an extra query, not good for perf.
     d['category'] = getattr(addon, 'category_ids', [])
     d['tags'] = getattr(addon, 'tag_list', [])
+    d['platforms'] = [p.id for p in addon.current_version.supported_platforms]
     return d
 
 
@@ -45,6 +46,7 @@ def setup_mapping():
         'tags': {'type': 'string',
                  'index': 'not_analyzed',
                  'index_name': 'tag'},
+        'platforms': {'type': 'integer', 'index_name': 'platform'},
     }
     es = elasticutils.get_es()
     try:

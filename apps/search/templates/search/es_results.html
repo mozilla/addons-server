@@ -58,7 +58,20 @@
 
     {{ refinements(categories, _('Categories'), 'category') }}
     {{ refinements(versions, _('Compatible with'), 'compatibility') }}
-    {{ refinements(platforms, _('Platforms'), 'platform') }}
+    <div id="refine-platforms">
+      <h5>{{ _('Platforms') }}</h5>
+      <ul class="refinements">
+        {% for platform in APP.platforms.values() %}
+          {% if platform in (amo.PLATFORM_ALL, amo.PLATFORM_ALL_MOBILE)
+             or platform.id in platforms %}
+            <li {% if platform.id == query.platform %}class="selected"{% endif %}>
+              <a href="{{ request.get_full_path()|urlparams(platform=platform.shortname, page=None) }}">
+                {{ platform.name }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
     <div id="refine-tags">
       <h5>{{ _('Tags') }}</h5>
       <ul class="refinements">

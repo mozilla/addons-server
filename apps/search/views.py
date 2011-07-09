@@ -266,6 +266,7 @@ def ajax_search(request):
         return []
 
 
+# pid => platform
 @mobile_template('search/es_results.html')
 def es_search(request, tag_name=None, template=None):
     # If the form is invalid we still want to have a query.
@@ -292,13 +293,17 @@ def es_search(request, tag_name=None, template=None):
                   name__startswith={'value': query, 'boost': 1.5},
                   description=query)
     qs = (Addon.search().filter(type=amo.ADDON_EXTENSION).query(or_=search)
-          .facet(tags={'terms': {'field': 'tags'}}))
-    if form.cleaned_data['tag']:
-        qs = qs.filter(tags=form.cleaned_data['tag'])
+          .facet(tags={'terms': {'field': 'tag'}},
+                 platforms={'terms': {'field': 'platform'}}))
+    if form.cleaned_data.get('tag'):
+        qs = qs.filter(tag=form.cleaned_data['tag'])
+    if form.cleaned_data.get('platform'):
+        qs = qs.filter(platform=form.cleaned_data['platform'])
     ctx = {
         'qs': qs,
         'pager': amo.utils.paginate(request, qs),
-        'query': form.cleaned_data
+        'query': form.cleaned_data,
+        'platforms': [facet['term'] for facet in qs.facets['platforms']],
     }
     return jingo.render(request, template, ctx)
 
