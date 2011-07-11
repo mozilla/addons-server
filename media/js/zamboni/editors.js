@@ -239,17 +239,17 @@ function initQueue() {
                 pop.html('');
                 var empty = true;
                 if(data.releasenotes) {
-                    pop.append($('<strong>', {text: gettext('Release Notes')}));
-                    pop.append($('<div>', {class:'version_notes', text: data.releasenotes}));
+                    pop.append($('<strong>', {'text': gettext('Release Notes')}));
+                    pop.append($('<div>', {'class': 'version_notes', 'text': data.releasenotes}));
                     empty = false;
                 }
                 if(data.approvalnotes) {
-                    pop.append($('<strong>', {text: gettext('Approval Notes')}));
-                    pop.append($('<div>', {class:'version_notes', text: data.approvalnotes}));
+                    pop.append($('<strong>', {'text': gettext('Approval Notes')}));
+                    pop.append($('<div>', {'class': 'version_notes', 'text': data.approvalnotes}));
                     empty = false;
                 }
                 if(empty) {
-                    pop.append($('<em>', {text: gettext('No version notes found')}));
+                    pop.append($('<em>', {'text': gettext('No version notes found')}));
                 }
             });
             return true;
