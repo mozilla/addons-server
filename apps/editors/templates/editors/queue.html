@@ -162,6 +162,11 @@
             {% for value in row %}
               <td>{{ value|xssafe }}</td>
             {% endfor %}
+            <td>
+              <div class="addon-version-notes">
+                <a href="#" class="ed-sprite-notes app-icon" title="{{ _('Version Notes') }}">&nbsp;</a>
+              </div>
+            </td>
             </tr>
           {% endfor %}
         </tbody>
@@ -184,5 +189,7 @@
 |
 <a href="http://wiki.mozilla.org/Update:Editors">{{ _("Editors' Guide") }}</a>
 </div>
+
+<div class="popup" id="popup-notes" data-url="{{ url('editors.queue_version_notes') }}"></div>
 
 {% endblock %}

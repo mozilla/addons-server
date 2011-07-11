@@ -17,7 +17,7 @@ from tower import ugettext as _
 import amo
 from access import acl
 from addons.decorators import addon_view
-from addons.models import Version
+from addons.models import Addon, Version
 from amo.decorators import login_required, json_view, post_required
 from amo.utils import paginate
 from amo.urlresolvers import reverse
@@ -502,6 +502,16 @@ def queue_viewing(request):
             viewing[addon_id] = currently_viewing
 
     return viewing
+
+
+@json_view
+@editor_required
+def queue_version_notes(request, addon_id):
+    addon = get_object_or_404(Addon, pk=addon_id)
+    version = addon.latest_version
+    return {'releasenotes': unicode(version.releasenotes),
+            'approvalnotes': version.approvalnotes}
+
 
 @editor_required
 def reviewlog(request):

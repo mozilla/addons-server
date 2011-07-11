@@ -230,6 +230,35 @@ function initQueue() {
             setTimeout(checkCurrentlyViewing, 2000);
         });
     })();
+
+    var pop = $('#popup-notes').hide(),
+        loadNotes = function(e) {
+            var addon_id = $(e.click_target).closest('tr').attr('data-addon');
+            pop.html(gettext('Loading&hellip;'));
+            $.get(pop.attr('data-url') + addon_id, function(data) {
+                pop.html('');
+                var empty = true;
+                if(data.releasenotes) {
+                    pop.append($('<strong>', {text: gettext('Release Notes')}));
+                    pop.append($('<div>', {class:'version_notes', text: data.releasenotes}));
+                    empty = false;
+                }
+                if(data.approvalnotes) {
+                    pop.append($('<strong>', {text: gettext('Approval Notes')}));
+                    pop.append($('<div>', {class:'version_notes', text: data.approvalnotes}));
+                    empty = false;
+                }
+                if(empty) {
+                    pop.append($('<em>', {text: gettext('No version notes found')}));
+                }
+            });
+            return true;
+        }
+
+    $('.addon-version-notes a').each(function(i, el) {
+        $(pop).popup(el, { pointTo: el, callback: loadNotes, width: 500});
+    });
+
 }
 
 
