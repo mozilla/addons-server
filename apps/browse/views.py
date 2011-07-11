@@ -144,8 +144,7 @@ def themes(request, category=None):
                          'search_cat': '%s,0' % amo.ADDON_THEME})
 
 
-@mobile_template('browse/{mobile/}extensions.html')
-def extensions(request, category=None, template=None):
+def _extensions(request, category=None, template=None):
     TYPE = amo.ADDON_EXTENSION
 
     if category is not None:
@@ -167,6 +166,15 @@ def extensions(request, category=None, template=None):
                          'sorting': filter.field,
                          'sort_opts': filter.opts,
                          'search_cat': '%s,0' % TYPE})
+
+
+@mobile_template('browse/{mobile/}extensions.html')
+def extensions(request, category=None, template=None):
+    return _extensions(request, category, template)
+
+
+def impala_extensions(request, category=None, template=None):
+    return _extensions(request, category, 'browse/impala/extensions.html')
 
 
 @mobile_template('browse/{mobile/}extensions.html')

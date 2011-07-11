@@ -17,6 +17,8 @@ urlpatterns = patterns('',
         name='browse.extensions'),
     url('^es/extensions/(?:(?P<category>[^/]+)/)?$', views.es_extensions,
         name='browse.es.extensions'),
+    url('^i/extensions/(?:(?P<category>[^/]+)/)?$', views.impala_extensions,
+        name='browse.i_extensions'),
 
     url('^extensions/(?P<category>[^/]+)/featured$',
         views.creatured, name='browse.creatured'),
