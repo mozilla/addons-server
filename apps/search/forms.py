@@ -114,6 +114,7 @@ def SearchForm(request):
         lver = forms.ChoiceField(
                 label=_(u'{0} Version').format(unicode(current_app.pretty)),
                 choices=get_app_versions(current_app), required=False)
+        appver = forms.CharField(required=False)
 
         atype = forms.TypedChoiceField(label=_('Type'),
             choices=[(t, amo.ADDON_TYPE[t]) for t in types], required=False,

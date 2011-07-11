@@ -31,6 +31,9 @@ def extract(addon):
     d['category'] = getattr(addon, 'category_ids', [])
     d['tags'] = getattr(addon, 'tag_list', [])
     d['platforms'] = [p.id for p in addon.current_version.supported_platforms]
+    d['appversion'] = dict((app.id, {'min': appver.min.version_int,
+                                     'max': appver.max.version_int})
+                           for app, appver in addon.compatible_apps.items())
     return d
 
 

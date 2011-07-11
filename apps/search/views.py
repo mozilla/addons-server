@@ -267,8 +267,10 @@ def ajax_search(request):
 
 
 # pid => platform
+# lver => appver
 @mobile_template('search/es_results.html')
 def es_search(request, tag_name=None, template=None):
+    APP = request.APP
     # If the form is invalid we still want to have a query.
     query = request.REQUEST.get('q', '')
 
@@ -294,16 +296,25 @@ def es_search(request, tag_name=None, template=None):
                   description=query)
     qs = (Addon.search().filter(type=amo.ADDON_EXTENSION).query(or_=search)
           .facet(tags={'terms': {'field': 'tag'}},
-                 platforms={'terms': {'field': 'platform'}}))
+                 platforms={'terms': {'field': 'platform'}},
+                 appversions={'terms': {'field': 'appversion.%s.max' % APP.id}}))
     if form.cleaned_data.get('tag'):
         qs = qs.filter(tag=form.cleaned_data['tag'])
     if form.cleaned_data.get('platform'):
         qs = qs.filter(platform=form.cleaned_data['platform'])
+    if form.cleaned_data.get('appver'):
+        appver = version_int(form.cleaned_data['appver'])
+        qs = qs.filter(**{'appversion.%s.max__gte' % APP.id: appver,
+                          'appversion.%s.min__lte' % APP.id: appver})
+
+    vs = map(dict_from_int, [f['term'] for f in qs.facets['appversions']])
+    versions = set((v['major'], v['minor1']) for v in vs if v['minor1'] != 99)
     ctx = {
         'qs': qs,
         'pager': amo.utils.paginate(request, qs),
         'query': form.cleaned_data,
         'platforms': [facet['term'] for facet in qs.facets['platforms']],
+        'versions': ['%s.%s' % v for v in sorted(versions, reverse=True)],
     }
     return jingo.render(request, template, ctx)
 

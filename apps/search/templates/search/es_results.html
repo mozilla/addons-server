@@ -57,7 +57,17 @@
     <h3>{{ _('Refine Results') }}</h3>
 
     {{ refinements(categories, _('Categories'), 'category') }}
-    {{ refinements(versions, _('Compatible with'), 'compatibility') }}
+    <div id="refine-compatibility">
+      <h5>{{ _('Compatible with') }}</h5>
+      <ul class="refinements">
+        {% for version in versions if version|float not in APP.exclude_versions and version|float > APP.min_display_version %}
+        <li {% if version == query.appver %}class="selected"{% endif %}>
+          <a href="{{ request.get_full_path()|urlparams(appver=version, page=None) }}">
+            {{ version }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
     <div id="refine-platforms">
       <h5>{{ _('Platforms') }}</h5>
       <ul class="refinements">
