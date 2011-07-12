@@ -112,6 +112,9 @@ PLATFORM_DICT = {
     'sun': PLATFORM_SUN,
     'sunos': PLATFORM_SUN,
     'solaris': PLATFORM_SUN,
+    'mobile': PLATFORM_ALL_MOBILE,
+    'android': PLATFORM_ANDROID,
+    'maemo': PLATFORM_MAEMO,
 }
 
 _platforms = {'desktop': DESKTOP_PLATFORMS, 'mobile': MOBILE_PLATFORMS}
