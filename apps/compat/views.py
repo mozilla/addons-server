@@ -13,9 +13,12 @@ from tower import ugettext as _
 
 import amo.utils
 from amo.decorators import post_required
+from amo.utils import urlparams
+from amo.urlresolvers import reverse
 from addons.models import Addon
 from versions.compare import version_int as vint
 from .models import CompatReport, AppCompat
+from .forms import CompatForm
 
 
 def index(request, version=None):
@@ -25,9 +28,24 @@ def index(request, version=None):
         raise http.Http404()
     if version not in compat_dict:
         return redirect('compat.index', COMPAT[0]['main'])
+    qs = AppCompat.search()
+
+    initial= {'appver': '%s-%s' % (request.APP.id, version), 'type': 'all'}
+    initial.update(request.GET.items())
+    form = CompatForm(initial)
+    if request.GET and form.is_valid():
+        if form.cleaned_data['appver']:
+            app, ver = form.cleaned_data['appver'].split('-')
+            if int(app) != request.APP.id or ver != version:
+                new = reverse('compat.index', args=[ver], add_prefix=False)
+                url = '/%s%s' % (amo.APP_IDS[int(app)].short, new)
+                type_ = form.cleaned_data['type'] or None
+                return redirect(urlparams(url, type=type_))
+
+        if form.cleaned_data['type'] != 'all':
+            qs = qs.filter(binary=form.cleaned_data['type'] == 'binary')
 
     compat, app = compat_dict[version], str(request.APP.id)
-    qs = AppCompat.search()
     compat_queries = (
         ('prev', qs.query(top_95=True, **{
             'support.%s.max__gte' % app: vint(compat['previous'])})),
@@ -41,7 +59,8 @@ def index(request, version=None):
                         {'version': version,
                          'usage_addons': usage_addons,
                          'usage_total': usage_total,
-                         'compat_levels': compat_levels})
+                         'compat_levels': compat_levels,
+                         'form': form})
 
 
 def version_compat(qs, compat, app):

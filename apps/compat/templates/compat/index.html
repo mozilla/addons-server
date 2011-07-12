@@ -5,6 +5,17 @@
 {% block title %}{{ page_title(title) }}{% endblock %}
 {% block bodyclass %}inverse{% endblock %}
 
+{% block extrahead %}
+<style>
+  #compat-form ul {
+    margin-left: 2em;
+  }
+  #compat-form :-moz-any(ul, li) {
+    display: inline;
+  }
+</style>
+{% endblock %}
+
 {% block content %}
 <header>
   <h2>{{ title }}</h2>
@@ -16,6 +27,12 @@
   'top_95': _('Top 95% of all add-ons'),
   'all': _('All active add-ons'),
 } %}
+
+<form class="go" action="" id="compat-form">
+  <label>{{ _('App') }}: {{ form.appver }}</label>
+  {{ form.type }}
+  <button type="submit">Go</button>
+</form>
 
 <table>
   <thead>

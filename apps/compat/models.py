@@ -28,6 +28,7 @@ class AppCompat(amo.models.ModelBase):
         {id: addon.id,
          name: addon.name,
          slug: addon.slug,
+         binary: addon.binary,
          max_version: {APP.id: version string},
          usage: {APP.id: addon.daily_usage},
          support: {APP.id: {max: version int, min: version int},

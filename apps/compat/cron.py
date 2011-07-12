@@ -41,7 +41,7 @@ def compatibility_report():
             chunk = dict(chunk)
             for addon in Addon.objects.filter(id__in=chunk):
                 doc = docs[addon.id]
-                doc.update(id=addon.id, slug=addon.slug,
+                doc.update(id=addon.id, slug=addon.slug, binary=addon.binary,
                            name=unicode(addon.name))
                 doc.setdefault('usage', {})[app.id] = updates[addon.id]
 
