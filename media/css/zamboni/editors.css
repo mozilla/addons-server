@@ -826,6 +826,11 @@ div.editor-stats-table > div.editor-stats-dark {
     font-style: italic;
 }
 
+.history-notes {
+    max-width: 370px;
+    overflow: auto;
+}
+
 .review-paging {
     border-bottom: 1px dotted #ccc;
     margin-bottom: 2em;
