@@ -767,6 +767,7 @@ def json_upload_detail(request, upload, addon_slug=None):
                                        platforms_to_exclude=plat_exclude))
 
 
+@login_required
 def upload_detail(request, uuid, format='html'):
     upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
 
