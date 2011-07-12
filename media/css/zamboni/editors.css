@@ -590,6 +590,10 @@ div.editor-stats-table > div.editor-stats-dark {
 #review-files-header h3 span {
     font-size: 0.7em;
 }
+#review-files-header h3 a.on {
+    color: #333;
+    font-weight: bold;
+}
 #review-files-header #review-files-paginate {
     float: right;
     margin-top: 2em;

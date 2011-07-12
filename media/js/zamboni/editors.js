@@ -170,7 +170,14 @@ function initReviewActions() {
         eh_setting = $(this).attr('data-num');
         storage.set('editors_history', eh_setting);
         toggleHistory();
+        highlightHistory();
     }));
+
+    function highlightHistory() {
+        $('#history a').removeClass('on');
+        $(format('#history a[data-num={0}]', eh_setting)).addClass('on');
+    }
+    highlightHistory();
 }
 
 function insertAtCursor(textarea, text) {
