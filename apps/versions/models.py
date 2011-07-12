@@ -200,16 +200,15 @@ class Version(amo.models.ModelBase):
         """Shortcut for list(self.files.all()).  Heavily cached."""
         return list(self.files.all())
 
-    # TODO(jbalogh): Do we want names or Platforms?
     @amo.cached_property
     def supported_platforms(self):
         """Get a list of supported platform names."""
-        return list(set(amo.PLATFORMS[f.platform_id]
-                        for f in self.all_files))
+        return list(set(amo.PLATFORMS[f.platform_id] for f in self.all_files))
 
     @property
     def status(self):
-        status = dict([(f.status, amo.STATUS_CHOICES[f.status]) for f in self.all_files])
+        status = dict([(f.status, amo.STATUS_CHOICES[f.status])
+                       for f in self.all_files])
         return status.values()
 
     def is_allowed_upload(self):

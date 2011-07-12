@@ -15,9 +15,10 @@ class FIREFOX:
     guid = '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}'
     min_display_version = 3.0
     # These versions were relabeled and should not be displayed.
-    exclude_versions = (3.1, 3.7)
+    exclude_versions = (3.1, 3.7, 4.2)
     backup_version = version_int('3.7.*')
     user_agent_string = 'Firefox'
+    platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
 
 class THUNDERBIRD:
@@ -31,6 +32,7 @@ class THUNDERBIRD:
     guid = '{3550f703-e582-4d05-9a08-453d09bdfdc6}'
     min_display_version = 1.0
     user_agent_string = 'Thunderbird'
+    platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
 
 class SEAMONKEY:
@@ -46,6 +48,7 @@ class SEAMONKEY:
     exclude_versions = (1.5,)
     latest_version = None
     user_agent_string = 'SeaMonkey'
+    platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
 
 class SUNBIRD:
@@ -59,6 +62,7 @@ class SUNBIRD:
     min_display_version = 0.2
     latest_version = None
     user_agent_string = 'Sunbird'
+    platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
 
 class MOBILE:
@@ -73,6 +77,7 @@ class MOBILE:
     min_display_version = 0.1
     latest_version = None
     user_agent_string = 'Fennec'
+    platforms = 'mobile'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
 
 class MOZILLA:
@@ -89,6 +94,7 @@ class MOZILLA:
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
              ADDON_LPAPP, ADDON_PLUGIN]
     guid = '{86c18b42-e466-45a9-ae7a-9b95ba6f5640}'
+    platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
 # UAs will attempt to match in this order
 APP_DETECT = (MOBILE, THUNDERBIRD, SEAMONKEY, SUNBIRD, FIREFOX)

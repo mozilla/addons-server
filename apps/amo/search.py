@@ -48,7 +48,7 @@ class ES(object):
 
     def extra(self, **kw):
         new = self._clone()
-        actions = 'values values_dict order_by query filter'.split()
+        actions = 'values values_dict order_by query filter facet'.split()
         for key, vals in kw.items():
             assert key in actions
             if hasattr(vals, 'items'):
@@ -121,6 +121,10 @@ class ES(object):
             qs['fields'] = fields
         if facets:
             qs['facets'] = facets
+            # Copy filters into facets. You probably wanted this.
+            for facet in facets.values():
+                if 'facet_filter' not in facet and filters:
+                    facet['facet_filter'] = qs['filter']
         if sort:
             qs['sort'] = sort
         if self.start:
@@ -165,6 +169,8 @@ class ES(object):
                 rv.append({'prefix': {key: val}})
             elif field_action in ('gt', 'gte', 'lt', 'lte'):
                 rv.append({'range': {key: {field_action: val}}})
+            elif field_action == 'fuzzy':
+                rv.append({'fuzzy': {key: val}})
         if or_:
             rv.append({'bool': {'should': self._process_queries(or_.items())}})
         return rv
@@ -195,6 +201,19 @@ class ES(object):
 
     def __iter__(self):
         return iter(self._do_search())
+
+    def raw_facets(self):
+        return self._do_search().results.get('facets', {})
+
+    @property
+    def facets(self):
+        facets = {}
+        for key, val in self.raw_facets().items():
+            if val['_type'] == 'terms':
+                facets[key] = [v for v in val['terms']]
+            elif val['_type'] == 'range':
+                facets[key] = [v for v in val['ranges']]
+        return facets
 
 
 class SearchResults(object):

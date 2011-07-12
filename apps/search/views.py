@@ -1,5 +1,7 @@
 from collections import defaultdict
 
+from django.db.models import Q
+
 import commonware.log
 import jingo
 from tower import ugettext as _
@@ -8,9 +10,10 @@ from mobility.decorators import mobile_template
 import amo
 import bandwagon.views
 import browse.views
+from addons.models import Addon, Category
 from amo.decorators import json_view
 from amo.helpers import urlparams
-from amo.utils import MenuItem
+from amo.utils import MenuItem, sorted_groupby
 from versions.compare import dict_from_int, version_int
 from search import forms
 from search.client import (Client as SearchClient, SearchError,
@@ -263,6 +266,81 @@ def ajax_search(request):
                 for result in results]
     except SearchError:
         return []
+
+
+# pid => platform
+# lver => appver
+@mobile_template('search/es_results.html')
+def es_search(request, tag_name=None, template=None):
+    APP = request.APP
+    types = (amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
+             amo.ADDON_SEARCH, amo.ADDON_LPAPP)
+    # If the form is invalid we still want to have a query.
+    query = request.REQUEST.get('q', '')
+
+    form = SearchForm(request)
+    form.is_valid()  # Let the form try to clean data.
+
+    category = form.cleaned_data.get('cat')
+
+    if category == 'collections':
+        return _collections(request)
+    elif category == 'personas':
+        return _personas(request)
+
+    query = form.cleaned_data
+
+    # 1. Prefer exact name matches first (boost=3).
+    # 2. Then try fuzzy matches ("fire bug" => firebug) (boost=2).
+    # 3. Then look for the query as a prefix of a name (boost=1.5).
+    # 4. Look for text matches inside the description (boost=1).
+    q = query['q']
+    search = dict(name={'value': q, 'boost': 3},
+                  name__fuzzy={'value': q, 'boost': 2, 'prefix_length': 4},
+                  name__startswith={'value': q, 'boost': 1.5},
+                  description=q)
+    qs = (Addon.search().query(or_=search)
+          .facet(tags={'terms': {'field': 'tag'}},
+                 platforms={'terms': {'field': 'platform'}},
+                 categories={'terms': {'field': 'category', 'size': 100}},
+                 appversions={'terms': {'field': 'appversion.%s.max' % APP.id}}))
+    if query.get('tag'):
+        qs = qs.filter(tag=query['tag'])
+    if query.get('platform'):
+        qs = qs.filter(platform=query['platform'])
+    if query.get('appver'):
+        appver = version_int(query['appver'])
+        qs = qs.filter(**{'appversion.%s.max__gte' % APP.id: appver,
+                          'appversion.%s.min__lte' % APP.id: appver})
+    if query.get('atype') and query['atype']in amo.ADDON_TYPES:
+        qs = qs.filter(type=query['atype'])
+    else:
+        qs = qs.filter(type__in=types)
+    if query.get('cat'):
+        qs = qs.filter(category=query['cat'])
+
+
+    vs = map(dict_from_int, [f['term'] for f in qs.facets['appversions']])
+    versions = set((v['major'], v['minor1']) for v in vs if v['minor1'] != 99)
+
+    cats = [f['term'] for f in qs.facets['categories']]
+    categories = (Category.objects
+                  # Search categories don't have an application.
+                  .filter(Q(application=APP.id) | Q(type=amo.ADDON_SEARCH),
+                          id__in=cats))
+    if query.get('atype') and query['atype']in amo.ADDON_TYPES:
+        categories = categories.filter(type=query['atype'])
+    categories = [(atype, sorted(cats, key=lambda x: x.name))
+                  for atype, cats in sorted_groupby(categories, 'type')]
+    ctx = {
+        'qs': qs,
+        'pager': amo.utils.paginate(request, qs),
+        'query': query,
+        'platforms': [facet['term'] for facet in qs.facets['platforms']],
+        'versions': ['%s.%s' % v for v in sorted(versions, reverse=True)],
+        'categories': categories,
+    }
+    return jingo.render(request, template, ctx)
 
 
 @mobile_template('search/{mobile/}results.html')
