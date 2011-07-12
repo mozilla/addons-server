@@ -11,7 +11,9 @@
   <div id="locale-popup" class="popup hidden">
     <section>
       <div><a class="default-locale" href="#{{ default_locale }}">
-        {{ dl }}
+        {% trans title=dl, lang=default_locale %}
+        {{ title }} <em>&middot; {{ lang }}</em>
+        {% endtrans %}
       </a></div>
       <ul id="existing_locales">
       </ul>
@@ -19,7 +21,11 @@
         {% for lang, title in languages|dictsort %}
           {% if lang != default_locale %}
             <li>
-              <a href="#{{ lang }}">{{ title }}</a>
+            <a href="#{{ lang }}">
+              {% trans title=title, lang=lang %}
+              {{ title }} <em>&middot; {{ lang }}</em>
+              {% endtrans %}
+            </a>
             </li>
           {% endif %}
         {% endfor %}

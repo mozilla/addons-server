@@ -215,7 +215,9 @@ $(document).ready(function () {
         if (!_.include(locales,lang)) {
             locales.push(lang);
         }
-        $("#change-locale").text($(format("#locale-popup [href$={0}]", [lang])).first().text());
+        var current = $(format("#locale-popup [href$={0}]", [lang])).first().clone();
+        current.find('em').remove();
+        $("#change-locale").text(current.text());
         $(".trans").each(function () {
             var $el = $(this),
                 field = $el.attr('data-name'),

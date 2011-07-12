@@ -3422,6 +3422,13 @@ input.ui-autocomplete-loading {
 #locale-popup section a {
     display: block;
 }
+#locale-popup section a:hover {
+    background-color: #EEFAFE;
+    text-decoration: none;
+}
+#locale-popup section a em {
+    color: #98BFEF;
+}
 
 #locale-popup section > div,
 #locale-popup section > ul {
