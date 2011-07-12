@@ -195,7 +195,7 @@ def impala_extension_detail(request, addon):
                              authors__in=addon.listed_authors))[:6]
 
     # Addon recommendations.
-    recommended = Addon.objects.valid().filter(
+    recommended = Addon.objects.listed(request.APP).filter(
         recommended_for__addon=addon)[:6]
 
     # Popular collections this addon is part of.
