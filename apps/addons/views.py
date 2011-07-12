@@ -452,7 +452,7 @@ def home(request):
 def homepage_promos(request):
     from discovery.views import get_modules
     platform = amo.PLATFORM_DICT.get(request.GET.get('platform'),
-                                     amo.PLATFORM_DICT['All'])
+                                     amo.PLATFORM_ALL)
     version = request.GET.get('version')
     modules = get_modules(request, platform.api_name, version)
     return jingo.render(request, 'addons/impala/homepage_promos.html',
