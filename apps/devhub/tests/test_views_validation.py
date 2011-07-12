@@ -29,6 +29,11 @@ class TestUploadValidation(BaseUploadTest):
     fixtures = ['base/apps', 'base/users',
                 'devhub/invalid-id-uploaded-xpi.json']
 
+    def setUp(self):
+        super(TestUploadValidation, self).setUp()
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+
     def test_no_html_in_messages(self):
         upload = FileUpload.objects.get(name='invalid-id-20101206.xpi')
         r = self.client.get(reverse('devhub.upload_detail',
@@ -50,7 +55,12 @@ class TestUploadValidation(BaseUploadTest):
 
 
 class TestUploadErrors(BaseUploadTest):
-    fixtures = ('base/apps', 'base/addon_3615')
+    fixtures = ('base/apps', 'base/addon_3615', 'base/users')
+
+    def setUp(self):
+        super(TestUploadErrors, self).setUp()
+        self.client.login(username='regular@mozilla.com',
+                          password='password')
 
     @mock.patch.object(waffle, 'flag_is_active')
     def test_dupe_uuid(self, flag_is_active):
