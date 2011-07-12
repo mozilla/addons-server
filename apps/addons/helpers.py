@@ -197,6 +197,20 @@ def addon_grid(context, addons, src=None, dl_src=None, pagesize=6, cols=2):
 
 @register.filter
 @jinja2.contextfilter
+@register.inclusion_tag('addons/impala/featured_grid.html')
+def featured_grid(context, addons, src=None, dl_src=None, pagesize=3, cols=3):
+    if not src:
+        src = context.get('src')
+    # dl_src is an optional src paramater just for the download links
+    if not dl_src:
+        dl_src = src
+    pages = chunked(addons, pagesize)
+    columns = '' if cols != 3 else 'three-col'
+    return new_context(**locals())
+
+
+@register.filter
+@jinja2.contextfilter
 @register.inclusion_tag('addons/impala/toplist.html')
 def addon_toplist(context, addons, vital='users', src=None):
     return new_context(**locals())

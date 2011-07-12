@@ -23,6 +23,36 @@ a {
     }
 }
 
+.island {
+    background: repeat scroll 0 0 transparent;
+    .gradient-two-color(#FCFDFE, #F4F8FC);
+    border: 1px solid #C9DDF2;
+    .border-radius(5px);
+    .box-shadow(0 -2px 0 rgba(204, 223, 243, 0.3) inset, 0 0 1px rgba(0, 0, 0, 0.1));
+    display: block;
+    float: left;
+    margin-bottom: 15px;
+    padding: 14px 14px 16px;
+    > section {
+        border-bottom: 1px solid #C9DDF2;
+        border-top: 1px solid #fff;
+        margin: 0 -14px;
+        padding: 14px;
+        float: left;
+        width: 100%;
+        &:first-child {
+            border-top: 0;
+            padding-top: 0;
+        }
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+    &.hero {
+        width: 720px;
+    }
+}
+
 .primary {
     position: relative;
 }

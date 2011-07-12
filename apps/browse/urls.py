@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     url('^featured$', views.featured, name='browse.featured'),
     # TODO: When we launch the impala pages, add a redirect for this.
     url('^i/featured$',
-        lambda r: redirect(reverse('browse.i_extensions') + '?sort=featured',
+        lambda r: redirect(reverse('i_browse.extensions') + '?sort=featured',
                            permanent=True)),
 
     url('^themes/(?P<category>[^/]+)?$', views.themes,
@@ -25,7 +25,7 @@ urlpatterns = patterns('',
     url('^es/extensions/(?:(?P<category>[^/]+)/)?$', views.es_extensions,
         name='browse.es.extensions'),
     url('^i/extensions/(?:(?P<category>[^/]+)/)?$', views.impala_extensions,
-        name='browse.i_extensions'),
+        name='i_browse.extensions'),
 
     url('^extensions/(?P<category>[^/]+)/featured$',
         views.creatured, name='browse.creatured'),

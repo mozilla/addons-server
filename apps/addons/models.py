@@ -1294,11 +1294,13 @@ class Category(amo.models.ModelBase):
         urls = ['*%s' % self.get_url_path(), ]
         return urls
 
-    def get_url_path(self):
+    def get_url_path(self, impala=False):
         try:
             type = amo.ADDON_SLUGS[self.type]
         except KeyError:
             type = amo.ADDON_SLUGS[amo.ADDON_EXTENSION]
+        if impala:
+            return reverse('i_browse.%s' % type, args=[self.slug])
         return reverse('browse.%s' % type, args=[self.slug])
 
     @staticmethod

@@ -405,19 +405,20 @@ def attrs(ctx, *args, **kw):
 
 @register.function
 @jinja2.contextfunction
-def side_nav(context, addon_type):
+def side_nav(context, addon_type, impala=False):
     app = context['request'].APP.id
-    return caching.cached(lambda: _side_nav(context, addon_type),
-                          'side-nav-%s-%s' % (app, addon_type))
+    imp = 'impala' if impala else 'old'
+    return caching.cached(lambda: _side_nav(context, addon_type, impala),
+                          'side-nav-%s-%s-%s' % (app, addon_type, impala))
 
 
-def _side_nav(context, addon_type):
+def _side_nav(context, addon_type, impala):
     request = context['request']
     qs = Category.objects.filter(application=request.APP.id, weight__gte=0)
     sort_key = attrgetter('weight', 'name')
     categories = sorted(qs.filter(type=addon_type), key=sort_key)
     ctx = dict(request=request, base_url=AddonType(addon_type).get_url_path(),
-               categories=categories, addon_type=addon_type)
+               categories=categories, addon_type=addon_type, impala=impala)
     return jinja2.Markup(env.get_template('amo/side_nav.html').render(ctx))
 
 

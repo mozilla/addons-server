@@ -1,5 +1,5 @@
 {% cache addons %}
-<ul class="listing-grid c {{ columns }}">
+<ul class="listing-grid c featured {{ columns }}">
 {% for page in pages %}
   {% set first_page = loop.first %}
   <section>
@@ -7,25 +7,14 @@
     <li>
       <div class="item addon">
         <a href="{{ addon.get_url_path(impala=True)|urlparams(src=dl_src) }}">
-          <div class="icon">
-            {% if first_page %}
-              <img src="{{ addon.icon_url }}">
-            {% else %}
-              <img data-defer-src="{{ addon.icon_url }}"
-                   src="{{ media('img/addon-icons/default-32.png') }}">
-            {% endif %}
-          </div>
           <div class="summary">
             <h3>{{ addon.name }}</h3>
-            {% with cat = addon.get_category(APP.id) %}
-              {% if cat %}
-                <div class="category" class="more-info">{{ cat }}</div>
-              {% endif %}
-            {% endwith %}
-            <div class="rating">
-              {{ addon.average_rating|stars }}
-              {% if addon.total_reviews %}
-                ({{ addon.total_reviews|numberfmt }})
+            <div>
+              {% if first_page %}
+                <img src="{{ addon.thumbnail_url }}">
+              {% else %}
+                <img data-defer-src="{{ addon.thumbnail_url }}"
+                     src="{{ media('img/icons/no-preview.png') }}">
               {% endif %}
             </div>
           </div>

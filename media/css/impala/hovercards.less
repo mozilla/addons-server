@@ -114,13 +114,6 @@
                 position: relative;
                 padding: 8px;
             }
-            img {
-                margin: 8px;
-                width: 32px;
-                height: 32px;
-                border: 0;
-                padding: 0;
-            }
             .summary {
                 height: 48px;
                 z-index: 21;
@@ -140,6 +133,13 @@
                 border-style: solid;
                 z-index: 22;
                 border-color: transparent;
+                img {
+                    margin: 8px;
+                    width: 32px;
+                    height: 32px;
+                    border: 0;
+                    padding: 0;
+                }
             }
             .adu {
                 font-size: 11px;
@@ -216,6 +216,51 @@
             display: block;
         }
     }
+    &.featured {
+        h3 {
+            font-size: 16px;
+            line-height: 18px;
+        }
+        li {
+            height: 212px;
+            width: 240px;
+        }
+        .item {
+            padding: 9px;
+            margin: 0;
+            &.addon .summary {
+                height: 192px;
+                padding: 0;
+                div {
+                    width: 220px;
+                    height: 170px;
+                    position: relative;
+                    img {
+                        padding: 8px;
+                        top: 0;
+                        left: 0;
+                        bottom: 0;
+                        right: 0;
+                        margin: auto;
+                        border: 1px solid #ccc;
+                        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+                        position: absolute;
+                    }
+                }
+            }
+            &:hover {
+                &:before {
+                    display: none;
+                }
+                .more {
+                    padding: 0;
+                }
+                &.addon .summary {
+                    height: auto;
+                }
+            }
+        }
+    }
 }
 .html-rtl .listing-grid {
     li {
@@ -242,5 +287,10 @@
     }
     .addon:hover {
         float: right;
+    }
+    &.featured {
+        .item.addon {
+            margin: 0;
+        }
     }
 }
