@@ -58,8 +58,8 @@ def gc(test_result=True):
         tasks.delete_stale_contributions.delay(chunk)
     for chunk in chunked(collections_to_delete, 100):
         tasks.delete_anonymous_collections.delay(chunk)
-    for chunk in chunked(addons_to_delete, 100):
-        tasks.delete_incomplete_addons.delay(chunk)
+    # for chunk in chunked(addons_to_delete, 100):
+    #     tasks.delete_incomplete_addons.delay(chunk)
 
     log.debug('Cleaning up sharing services.')
     AddonShareCount.objects.exclude(
