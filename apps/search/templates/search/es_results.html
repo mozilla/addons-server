@@ -56,7 +56,23 @@
 
     <h3>{{ _('Refine Results') }}</h3>
 
-    {{ refinements(categories, _('Categories'), 'category') }}
+    <div id="refine-category">
+      <h5>{{ _('Categories') }}</h5>
+      <ul class="refinements">
+        {% for addon_type, cats in categories %}
+        <li><a href="{{ request.get_full_path()|urlparams(atype=addon_type, page=None) }}">{{ amo.ADDON_TYPES[addon_type] }}</a></li>
+        <li>
+        <ul>
+          {% for cat in cats %}
+          <li>
+          <a href="{{ request.get_full_path()|urlparams(atype=addon_type, cat=cat.id, page=None) }}">{{ cat.name }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
     <div id="refine-compatibility">
       <h5>{{ _('Compatible with') }}</h5>
       <ul class="refinements">
