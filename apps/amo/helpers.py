@@ -408,7 +408,7 @@ def attrs(ctx, *args, **kw):
 def side_nav(context, addon_type):
     app = context['request'].APP.id
     return caching.cached(lambda: _side_nav(context, addon_type),
-                          'side-nav-%s' % app)
+                          'side-nav-%s-%s' % (app, addon_type))
 
 
 def _side_nav(context, addon_type):

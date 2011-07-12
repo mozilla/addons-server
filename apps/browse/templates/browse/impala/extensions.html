@@ -1,13 +1,9 @@
-{% extends "impala/base.html" %}
-
-{% block content %}
-<section class="secondary">
-  {{ side_nav(amo.ADDON_EXTENSION) }}
-</section>
-
+{% extends "browse/impala/base_listing.html" %}
+
+{% block primary %}
 <section class="primary">
   <div class="island c">
-    <h2>{{ _('Extensions') }}</h2>
+    <h2>{{ category.name if category else _('Extensions') }}</h2>
   </div>
 </section>
 {% endblock %}

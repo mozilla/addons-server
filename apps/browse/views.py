@@ -144,7 +144,7 @@ def themes(request, category=None):
                          'search_cat': '%s,0' % amo.ADDON_THEME})
 
 
-def _extensions(request, category=None, template=None):
+def _extensions(request, category=None, is_impala=False, template=None):
     TYPE = amo.ADDON_EXTENSION
 
     if category is not None:
@@ -153,7 +153,10 @@ def _extensions(request, category=None, template=None):
 
     if ('sort' not in request.GET and not request.MOBILE
         and category and category.count > 4):
-        return category_landing(request, category)
+        if is_impala:
+            return impala_category_landing(request, category)
+        else:
+            return category_landing(request, category)
 
     addons, filter = addon_listing(request, [TYPE])
 
@@ -169,12 +172,13 @@ def _extensions(request, category=None, template=None):
 
 
 @mobile_template('browse/{mobile/}extensions.html')
-def extensions(request, category=None, template=None):
-    return _extensions(request, category, template)
+def extensions(request, category=None, is_impala=False, template=None):
+    return _extensions(request, category, is_impala, template)
 
 
-def impala_extensions(request, category=None, template=None):
-    return _extensions(request, category, 'browse/impala/extensions.html')
+def impala_extensions(request, category=None, is_impala=True, template=None):
+    return _extensions(request, category, is_impala,
+                       'browse/impala/extensions.html')
 
 
 @mobile_template('browse/{mobile/}extensions.html')
@@ -227,14 +231,24 @@ class CategoryLandingFilter(BaseFilter):
         return manual_order(filter, self.ids, pk_name='addons.id')
 
 
-def category_landing(request, category):
+def _category_landing(request, category,
+                      template='browse/category_landing.html'):
     base = (Addon.objects.listed(request.APP).exclude(type=amo.ADDON_PERSONA)
             .filter(categories__id=category.id))
     filter = CategoryLandingFilter(request, base, category,
                                    key='browse', default='featured')
-    return jingo.render(request, 'browse/category_landing.html',
+    return jingo.render(request, template,
                         {'category': category, 'filter': filter,
                          'search_cat': '%s,0' % category.type})
+
+
+def category_landing(request, category):
+    return _category_landing(request, category)
+
+
+def impala_category_landing(request, category):
+    return _category_landing(request, category,
+                             'browse/impala/category_landing.html')
 
 
 def es_category_landing(request, category):

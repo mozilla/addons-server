@@ -1,7 +1,10 @@
 from django.conf.urls.defaults import patterns, url
-from browse.feeds import CategoriesRss, SearchToolsRss
+from django.shortcuts import redirect
+
+from amo.urlresolvers import reverse
+from amo.utils import urlparams
+from browse.feeds import CategoriesRss, FeaturedRss, SearchToolsRss
 from . import views
-from browse.feeds import FeaturedRss
 
 
 urlpatterns = patterns('',
@@ -9,6 +12,10 @@ urlpatterns = patterns('',
         name='browse.language-tools'),
 
     url('^featured$', views.featured, name='browse.featured'),
+    # TODO: When we launch the impala pages, add a redirect for this.
+    url('^i/featured$',
+        lambda r: redirect(reverse('browse.i_extensions') + '?sort=featured',
+                           permanent=True)),
 
     url('^themes/(?P<category>[^/]+)?$', views.themes,
         name='browse.themes'),

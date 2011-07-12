@@ -1,0 +1,47 @@
+{% extends "impala/base.html" %}
+
+{% block title %}
+  {{ page_title(category.name if category else _('Extensions')) }}
+{% endblock %}
+
+{% block extrahead %}
+  {% if category %}
+    <style>
+      #c-{{ category.id }} a {
+          background: #ecf5fe;
+          color: #333;
+          font-weight: bold;
+      }
+      #c-{{ category.id }} a:after {
+          color: inherit;
+      }
+    </style>
+    <link rel="canonical" href="{{ category.get_url_path() }}">
+  {% endif %}
+{% endblock %}
+
+{% block rss_feed %}
+  {% with sort = {'featured': 'featured',
+                  'created': 'newest',
+                  'popular': 'popular',
+                  'rating': 'averagerating'}[sorting] %}
+    {% if not sort %}
+      {% set sort = 'updated' %}
+    {% endif %}
+
+    {% if category %}
+      {% set feed = url('browse.extensions.rss', category.slug) %}
+    {% else %}
+      {% set feed = url('browse.extensions.rss') %}
+    {% endif %}
+    <link rel="alternate" type="application/rss+xml" title="RSS"
+          href="{{ feed }}?sort={{ sort }}">
+  {% endwith %}
+{% endblock %}
+
+{% block content %}
+  <section class="secondary">
+    {{ side_nav(amo.ADDON_EXTENSION) }}
+  </section>
+  {% block primary %}{% endblock %}
+{% endblock %}
