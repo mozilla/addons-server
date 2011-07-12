@@ -283,7 +283,7 @@ input[type=button]:focus {
     box-shadow: inset 0 0 2px rgba(255,255,255,1);
 }
 
-a.button:active {
+a.button:active, button.button:active {
     border-color: #03c;
     background-image: url("../../img/zamboni/button-blue-on.png");
     background: -moz-linear-gradient(top, #39f 40%, #6fb7ff 60%);
@@ -350,7 +350,7 @@ button.link {
 
 .cta a.button.disabled,
 a.button[disabled],
-button:disabled,
+button.button:disabled,
 input[type=submit]:disabled,
 input[type=button]:disabled {
     background: #a6a6a6;

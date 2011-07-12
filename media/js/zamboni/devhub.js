@@ -579,6 +579,10 @@ function initVersions() {
                 return true;
          }});
 
+    $('#upload-file-finish').click(function() {
+        $(this).attr('disabled', true);
+    });
+
 }
 
 function initSubmit() {
