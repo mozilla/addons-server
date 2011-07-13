@@ -228,30 +228,33 @@
         .item {
             padding: 9px;
             margin: 0;
-            &.addon .summary {
-                height: 192px;
-                padding: 0;
-                div {
-                    width: 220px;
-                    height: 170px;
-                    position: relative;
-                    img {
-                        padding: 8px;
-                        top: 0;
-                        left: 0;
-                        bottom: 0;
-                        right: 0;
-                        margin: auto;
-                        border: 1px solid #ccc;
-                        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-                        position: absolute;
+            &.addon {
+                &:before {
+                    display: none;
+                    content: none;
+                }
+                .summary {
+                    height: 192px;
+                    padding: 0;
+                    div {
+                        width: 220px;
+                        height: 170px;
+                        position: relative;
+                        img {
+                            padding: 8px;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            right: 0;
+                            margin: auto;
+                            border: 1px solid #ccc;
+                            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+                            position: absolute;
+                        }
                     }
                 }
             }
             &:hover {
-                &:before {
-                    display: none;
-                }
                 &.addon .summary {
                     height: auto;
                 }
