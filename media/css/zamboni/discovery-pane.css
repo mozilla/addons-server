@@ -739,6 +739,7 @@ ul.addons {
     font-family: inherit;
     margin: .25em 0;
     text-align: center;
+    text-overflow: ellipsis;
     overflow: hidden;
 }
 

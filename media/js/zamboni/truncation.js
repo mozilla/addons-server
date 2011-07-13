@@ -1,5 +1,5 @@
 $.fn.truncate = function(opts) {
-    if (z.hasTruncation) return this;
+    if (z.hasTruncation && opts.dir != 'v') return this;
     opts = opts || {};
     var showTitle = opts.showTitle || false,
         dir = (opts.dir && opts.dir[0]) || 'h',
