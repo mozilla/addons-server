@@ -49,7 +49,17 @@ class PasswordMixin:
 
 
 class AuthenticationForm(auth_forms.AuthenticationForm):
+    username = forms.CharField(max_length=50,
+                               widget=forms.TextInput(attrs={'autofocus': ''}))
     rememberme = forms.BooleanField(required=False)
+    recaptcha = captcha.fields.ReCaptchaField()
+    recaptcha_shown = forms.BooleanField(widget=forms.HiddenInput,
+                                         required=False)
+
+    def __init__(self, request=None, use_recaptcha=False, *args, **kw):
+        super(AuthenticationForm, self).__init__(*args, **kw)
+        if not use_recaptcha or not settings.RECAPTCHA_PRIVATE_KEY:
+            del self.fields['recaptcha']
 
 
 class PasswordResetForm(auth_forms.PasswordResetForm):

@@ -1,3 +1,5 @@
+from functools import partial
+
 from django import http
 from django.conf import settings
 from django.db import IntegrityError
@@ -10,6 +12,7 @@ from django.contrib.auth.tokens import default_token_generator
 
 import commonware.log
 import jingo
+from ratelimit.decorators import ratelimit
 from tower import ugettext as _
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 
@@ -236,6 +239,7 @@ def _clean_next_url(request):
 
 
 @anonymous_csrf
+@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def login(request):
     # In case we need it later.  See below.
     get_copy = request.GET.copy()
@@ -245,9 +249,11 @@ def login(request):
     if 'to' in request.GET:
         request = _clean_next_url(request)
 
+    limited = getattr(request, 'limited', 'recaptcha_shown' in request.POST)
+    partial_form = partial(forms.AuthenticationForm, use_recaptcha=limited)
     r = auth.views.login(request, template_name='users/login.html',
                          redirect_field_name='to',
-                         authentication_form=forms.AuthenticationForm)
+                         authentication_form=partial_form)
 
     if isinstance(r, http.HttpResponseRedirect):
         # Django's auth.views.login has security checks to prevent someone from
@@ -269,7 +275,7 @@ def login(request):
             log.warning(u'Attempt to log in with deleted account (%s)' % user)
             messages.error(request, _('Wrong email address or password!'))
             return jingo.render(request, 'users/login.html',
-                                {'form': forms.AuthenticationForm()})
+                                {'form': partial_form()})
 
         if user.confirmationcode:
             logout(request)
@@ -288,7 +294,17 @@ def login(request):
             messages.info(request, _('Having Trouble?'), msg2,
                           title_safe=True)
             return jingo.render(request, 'users/login.html',
-                                {'form': forms.AuthenticationForm()})
+                                {'form': partial_form()})
+
+        if (user.failed_login_attempts > settings.LOGIN_RATELIMIT_USER
+            and not limited):
+            # This reshows the form with the recaptcha. Until they are logged
+            # in we don't know if the user needs to have recaptcha shown.
+            # The UX for this isn't good, we should fix this.
+            logout(request)
+            log.info(u'Attempt to log in with too many failures (%s)' % user)
+            form = forms.AuthenticationForm(request.POST, use_recaptcha=True)
+            return jingo.render(request, 'users/login.html', {'form': form})
 
         rememberme = request.POST.get('rememberme', None)
         if rememberme:

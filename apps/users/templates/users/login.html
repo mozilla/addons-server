@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}{{ page_title(_('User Login')) }}{% endblock %}
+{% block js %}{% if form.recaptcha %}{% include("amo/recaptcha_js.html") %}{% endif %}{% endblock %}
 
 {% block content %}
 
@@ -23,8 +24,7 @@
         <ul>
           <li>
             <label for="id_username">{{ _('Email address') }}</label>
-            <input id="id_username" type="text" name="username"
-                                                          autofocus />
+            {{ form.username }}
             {{ form.username.errors }}
           </li>
           <li>
@@ -39,6 +39,11 @@
             </label>
             {{ form.rememberme.errors }}
           </li>
+          {% if form.recaptcha %}
+            {{ form.recaptcha_shown }}
+            {{ recaptcha(form) }}
+          {% endif %}
+
         </ul>
       </fieldset>
       <div class="fm-control">

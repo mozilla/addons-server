@@ -9,6 +9,7 @@ from django.test.client import Client
 from django.utils.http import int_to_base36
 
 import test_utils
+from mock import patch
 from nose.tools import eq_
 
 from access.models import Group, GroupUser
@@ -194,13 +195,55 @@ class TestEmailChange(UserViewBase):
 
 class TestLogin(UserViewBase):
 
+    def setUp(self):
+        super(TestLogin, self).setUp()
+        self.url = reverse('users.login')
+        self.data = {'username': 'jbalogh@mozilla.com', 'password': 'foo'}
+
     def test_client_login(self):
-        """This is just here to make sure Test Client's login() works with
-            our custom code."""
+        """
+        This is just here to make sure Test Client's login() works with
+        our custom code.
+        """
         assert not self.client.login(username='jbalogh@mozilla.com',
                                      password='wrong')
-        assert self.client.login(username='jbalogh@mozilla.com',
-                                 password='foo')
+        assert self.client.login(**self.data)
+
+    def test_login_no_recaptcha(self):
+        res = self.client.post(self.url, data=self.data)
+        eq_(res.status_code, 302)
+
+    @patch('ratelimit.backends.cachebe.CacheBackend.limit')
+    def test_login_recaptcha(self, limit):
+        limit.return_value = True
+        res = self.client.post(self.url, data=self.data)
+        eq_(res.status_code, 403)
+
+    @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
+    @patch.object(settings, 'LOGIN_RATELIMIT_USER', 2)
+    def test_login_attempts_recaptcha(self):
+        res = self.client.post(self.url, data=self.data)
+        eq_(res.status_code, 200)
+        assert res.context['form'].fields.get('recaptcha')
+
+    @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
+    def test_login_shown_recaptcha(self):
+        data = self.data.copy()
+        data['recaptcha_shown'] = ''
+        res = self.client.post(self.url, data=data)
+        eq_(res.status_code, 200)
+        assert res.context['form'].fields.get('recaptcha')
+
+    @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
+    @patch.object(settings, 'LOGIN_RATELIMIT_USER', 2)
+    @patch('captcha.fields.ReCaptchaField.clean')
+    def test_login_with_recaptcha(self, clean):
+        clean.return_value = ''
+        data = self.data.copy()
+        data.update({'recaptcha': '', 'recaptcha_shown': ''})
+        res = self.client.post(self.url, data=data)
+        eq_(res.status_code, 302)
+
 
 
 class TestReset(UserViewBase):

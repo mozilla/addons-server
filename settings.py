@@ -1030,4 +1030,7 @@ PERF_TEST_URL = 'http://areweperftestingyet.com/trigger.cgi'
 KNOWN_PROXIES = []
 
 # Blog URL
-DEVELOPER_BLOG_URL = "http://blog.mozilla.com/addons/feed/"
+DEVELOPER_BLOG_URL = 'http://blog.mozilla.com/addons/feed/'
+
+LOGIN_RATELIMIT_USER = 5
+LOGIN_RATELIMIT_ALL_USERS = '15/m'
