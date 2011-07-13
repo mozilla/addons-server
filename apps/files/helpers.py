@@ -189,12 +189,16 @@ class FileViewer:
         addon-file. Full of all the useful information you'll need to serve
         this file, build templates etc.
         """
+        if self._files:
+            return self._files
+
         if not self.is_extracted():
             return {}
         # In case a cron job comes along and deletes the files
         # mid tree building.
         try:
-            return self._get_files()
+            self._files = self._get_files()
+            return self._files
         except (OSError, IOError):
             return {}
 
@@ -281,7 +285,7 @@ class DiffHelper:
         self.key = None
 
     def __str__(self):
-        return '%s:%s' % (self.left, self.right)
+        return str(self.left)
 
     def extract(self):
         self.left.extract(), self.right.extract()
