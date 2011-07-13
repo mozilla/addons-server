@@ -163,6 +163,13 @@ def addon_listing_items(context, addons, show_date=False,
     return new_context(**locals())
 
 
+@register.inclusion_tag('addons/impala/listing/items.html')
+@jinja2.contextfunction
+def impala_addon_listing_items(context, addons, show_date=False,
+                               show_downloads=False, src=None, notes={}):
+    return new_context(**locals())
+
+
 @register.inclusion_tag('addons/listing/items_compact.html')
 @jinja2.contextfunction
 def addon_listing_items_compact(context, addons, show_date=False, src=None):
@@ -178,6 +185,12 @@ def addon_listing_items_mobile(context, addons, sort=None, src=None):
 @register.inclusion_tag('addons/listing_header.html')
 @jinja2.contextfunction
 def addon_listing_header(context, url_base, sort_opts, selected):
+    return new_context(**locals())
+
+
+@register.inclusion_tag('addons/impala/listing/sorter.html')
+@jinja2.contextfunction
+def impala_addon_listing_header(context, url_base, sort_opts, selected):
     return new_context(**locals())
 
 

@@ -788,8 +788,13 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             random.shuffle(specific_locale)
             return specific_locale + no_locale
 
+    def is_no_restart(self):
+        """Is this a no-restart add-on?"""
+        files = self.current_version.all_files
+        return files and files[0].no_restart
+
     def is_featured(self, app, lang):
-        """is add-on globally featured for this app and language?"""
+        """Is add-on globally featured for this app and language?"""
         return self.id in Addon.featured(app, lang)
 
     def is_category_featured(self, app, lang=None):
@@ -815,7 +820,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @amo.cached_property
     def tags_partitioned_by_developer(self):
-        "Returns a tuple of developer tags and user tags for this addon."
+        """Returns a tuple of developer tags and user tags for this addon."""
         tags = self.tags.not_blacklisted()
         if self.is_persona:
             return models.query.EmptyQuerySet(), tags

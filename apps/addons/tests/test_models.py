@@ -358,6 +358,15 @@ class TestAddonModels(test_utils.TestCase):
         a.status = amo.STATUS_LISTED
         assert a.is_selfhosted(), 'listed add-on => is_selfhosted()'
 
+    def test_is_no_restart(self):
+        a = Addon.objects.get(pk=3615)
+        f = a.current_version.all_files[0]
+        eq_(f.no_restart, False)
+        eq_(a.is_no_restart(), False)
+
+        f.update(no_restart=True)
+        eq_(Addon.objects.get(pk=3615).is_no_restart(), True)
+
     def test_is_featured(self):
         """Test if an add-on is globally featured"""
         a = Addon.objects.get(pk=1003)

@@ -29,6 +29,13 @@ def reviews_link(addon, collection_uuid=None, link_to_list=False):
 
 
 @jingo.register.function
+def impala_reviews_link(addon, collection_uuid=None):
+    t = jingo.env.get_template('reviews/impala/reviews_link.html')
+    return jinja2.Markup(t.render(addon=addon,
+                                  collection_uuid=collection_uuid))
+
+
+@jingo.register.function
 def mobile_reviews_link(addon):
     t = jingo.env.get_template('reviews/mobile/reviews_link.html')
     return jinja2.Markup(t.render(addon=addon))

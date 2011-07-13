@@ -1,0 +1,31 @@
+{% from "addons/impala/listing/macros.html" import heading, item_info %}
+{% set collection = collection or None %}
+{% set username = request.amo_user.username if request.user.is_authenticated() else '' %}
+
+{% cache addons, extra=[collection, username] %}
+  {% for addon in addons %}
+    <div class="item addon">
+      <div class="info">
+        {{ heading(request, addon, collection=collection) }}
+        {% if addon.is_persona() %}
+          {{ persona_preview(addon.persona, linked=False) }}
+        {% else %}
+          <p class="desc">{{ addon.summary|truncate(250)|nl2br }}</p>
+        {% endif %}
+        {% if notes and notes[addon.id] %}
+          <div class="collector-note">
+            <b>{{ _("Collector's Note") }}</b>
+            {{ notes[addon.id] }}
+          </div>
+        {% endif %}
+        <div class="more c">
+          {{ item_info(addon, amo, show_date) }}
+        </div>
+        {% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}
+          {{ impala_performance_note(amount=addon.ts_slowness, listing=True) }}
+        {% endif %}
+      </div>
+      {{ install_button(addon, impala=True, collection=collection) }}
+    </div>
+  {% endfor %}
+{% endcache %}

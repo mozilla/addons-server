@@ -52,11 +52,9 @@
       <h2 class="addon"{{ addon.name|locale_html }}>
         {{ addon.name }}
         <span class="version-number">{{ version.version }}</span>
-        {%- with files = addon.current_version.all_files %}
-          {%- if files and files[0].no_restart -%}
-            &nbsp;<span class="no-restart">{{ _('No Restart') }}</span>
-          {% endif %}
-        {% endwith %}
+        {% if addon.is_no_restart() %}
+          &nbsp;<span class="no-restart">{{ _('No Restart') }}</span>
+        {% endif %}
       </h2>
       <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
     </hgroup>

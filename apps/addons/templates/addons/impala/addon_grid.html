@@ -22,12 +22,7 @@
                 <div class="category" class="more-info">{{ cat }}</div>
               {% endif %}
             {% endwith %}
-            <div class="rating">
-              {{ addon.average_rating|stars }}
-              {% if addon.total_reviews %}
-                ({{ addon.total_reviews|numberfmt }})
-              {% endif %}
-            </div>
+            {{ impala_reviews_link(addon) }}
           </div>
         </a>
         <div class="more">

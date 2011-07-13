@@ -26,7 +26,7 @@
     .notavail {
         font-family: @sans-stack;
         font-size: 12px;
-        line-height: 14px;
+        line-height: 12px;
         padding: 1px 0 1px 18px;
         margin-right: 14px;  /* Match the padding of .install. */
         background: url(../../img/impala/no.png) 0 30% no-repeat;
@@ -285,7 +285,7 @@
 }
 
 #reviews .review {
-    border-bottom: 1px dotted #C9DDF2;
+    border-bottom: 1px dotted @border-blue;
     overflow: hidden;
     &.no-reviews {
         border-bottom: 0;
@@ -295,7 +295,7 @@
     }
     padding: 1em 0;
     h3 {
-        color: #333333;
+        color: #333;
         font-size: 16px;
         line-height: 16px;
         font-style: italic;
@@ -414,18 +414,18 @@
     }
 }
 
-.no-restart {
-    background: none repeat scroll 0 0 #E8933A;
-    border-radius: 2px 2px 2px 2px;
-    color: #FFFFFF;
+.no-restart,
+.featured {
+    background-color: #e8933a;
+    border-radius: 2px;
+    color: #fff;
     display: inline-block;
-    font-family: Arial;
-    font-size: 9px;
-    font-style: normal;
-    font-weight: bold;
-    line-height: 1;
-    margin-left: 6px;
+    font: bold 9px/11px Arial;
+    margin-left: 4px;
     padding: 3px 6px;
     text-transform: uppercase;
     vertical-align: 3px;
+}
+.featured {
+    background-color: #093;
 }

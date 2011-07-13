@@ -1,0 +1,166 @@
+@import 'lib';
+
+header .feed {
+    /* TODO(cvan): sprite-ify */
+    background: url(../../img/impala/feed.png) no-repeat 0 50%;
+    float: right;
+    padding-left: 16px;
+}
+
+.html-rtl header .feed {
+    float: left;
+}
+
+#sorter {
+    color: @note-gray;
+    font-family: @sans-stack;
+    font-size: 11px;
+    margin: 10px 0 15px;
+    li {
+        float: left;
+        margin: 0;
+        &:first-child + li a {
+            border-left-width: 0;
+        }
+        &.selected a {
+            color: @orange;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    }
+    a {
+        border-left: 1px solid #ccc;
+        padding: 0 6px;
+    }
+}
+
+.html-rtl #sorter {
+    float: right;
+    li {
+        float: right;
+        &:first-child + li a {
+            border-left-width: 1px;
+        }
+        &:last-child a {
+            border-left: 0 none;
+        }
+    }
+}
+
+.item {
+    border-top: 1px dotted @border-blue;
+    color: @note-gray;
+    display: table;
+    padding: 20px 0;
+    width: 100%;
+    &:hover {
+        background-color: fadeOut(@border-blue, 90%);
+        .install-shell {
+            visibility: visible;
+        }
+    }
+    &.incompatible {
+        &:hover {
+            .extra .notavail {
+                color: @error-red;
+            }
+        }
+        .info {
+            opacity: 0.4;
+        }
+        .install-shell {
+            font: 10px/12px Arial;
+            visibility: visible;
+            .install,
+            br {
+                display: none;
+            }
+        }
+    }
+    h3 {
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 18px;
+        img {
+            display: block;
+            position: absolute;
+            left: 25px;
+            height: 32px;
+            width: 32px;
+        }
+    }
+    h3, .desc {
+        margin-bottom: 5px;
+    }
+    p {
+        font-size: 12px;
+        margin: 0;
+    }
+    .rating a {
+        color: @note-gray;
+    }
+    .rating,
+    .adu,
+    .updated {
+        display: inline-block;
+    }
+    .adu {
+        color: #093;
+    }
+    .adu:before,
+    .updated:before {
+        color: @note-gray;
+        content: '\00B7';
+    }
+    .info,
+    .install-shell {
+        display: table-cell;
+    }
+    .info {
+        padding-left: 58px;
+    }
+    .install-shell {
+        text-align: right;
+        padding: 0 10px;
+        min-width: 190px;
+        visibility: hidden;
+        white-space: nowrap;
+        .install-note {
+            text-align: left;
+        }
+        .extra .notavail {
+            color: @note-gray;
+        }
+    }
+    .collector-note,
+    .performance-note {
+        background-color: #e0effd;
+        float: left;
+        line-height: 18px;
+        margin-top: 0.5em;
+        padding: 2px 4px;
+    }
+    .performance-note {
+        background-color: #fff3cc;
+        color: #666;
+    }
+}
+
+.html-rtl .item {
+    .collector-note,
+    .performance-note {
+        float: right;
+    }
+    h3 img {
+        right: 25px;
+    }
+    .info {
+        padding: 0 58px 0 0;
+    }
+    .install-shell {
+        text-align: left;
+        .install-note {
+            text-align: right;
+        }
+    }
+}

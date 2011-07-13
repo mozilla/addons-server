@@ -324,6 +324,11 @@ class BaseFilter(object):
     def _filter(self, field):
         return getattr(self, 'filter_%s' % field)()
 
+    def filter_featured(self):
+        ids = Addon.featured_random(self.request.APP, self.request.LANG)
+        qs = Addon.objects
+        return qs.filter(id__in=ids) if ids else qs.none()
+
     def filter_popular(self):
         return (Addon.objects.order_by('-weekly_downloads')
                 .with_index(addons='downloads_type_idx'))

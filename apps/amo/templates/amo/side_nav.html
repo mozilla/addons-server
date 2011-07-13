@@ -7,7 +7,7 @@
   <h2>{{ _('Explore') }}</h2>
   <ul>
     {% for sort, title in extras %}
-      <li><em><a href="{{ base_url|urlparams(sort=sort) }}">{{ title }}</a></em></li>
+      <li class="s-{{ sort }}"><em><a href="{{ base_url|urlparams(sort=sort) }}">{{ title }}</a></em></li>
     {% endfor %}
   </ul>
 

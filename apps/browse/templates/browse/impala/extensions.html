@@ -1,9 +1,39 @@
 {% extends "browse/impala/base_listing.html" %}
+
+{% if category %}
+  {% set url_base = url('i_browse.extensions', category.slug) %}
+{% else %}
+  {% set url_base = url('i_browse.extensions') %}
+{% endif %}
+
+{% set extras = (
+    ('featured', _('Featured')),
+    ('popular', _('Most Popular')),
+    ('rating', _('Top Rated')),
+    ('updated', _('Last Updated')),
+) %}
 
 {% block primary %}
 <section class="primary">
-  <div class="island c">
-    <h2>{{ category.name if category else _('Extensions') }}</h2>
+  <div class="island hero c">
+    <header>
+      {% with heading = {'featured': _('Featured Extensions'),
+                         'created': _('Newest Extensions'),
+                         'popular': _('Most Popular Extensions'),
+                         'rating': _('Top Rated Extensions'),
+                         'updated': _('Last Updated Extensions')}[sorting] %}
+        <h2>{{ category.name if category else heading }}</h2>
+      {% endwith %}
+      <a href="{{ feed_url }}" class="feed">{{ _('Subscribe') }}</a>
+      {{ impala_addon_listing_header(url_base, extras, sorting) }}
+    </header>
+
+    {{ impala_addon_listing_items(addons.object_list, src='category',
+                                  show_date=sorting, show_downloads=sorting=='popular') }}
+
+    {% if sorting != 'featured' %}
+      {{ addons|impala_paginator }}
+    {% endif %}
   </div>
 </section>
 {% endblock %}

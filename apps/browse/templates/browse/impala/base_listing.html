@@ -4,8 +4,10 @@
   {{ page_title(category.name if category else _('Extensions')) }}
 {% endblock %}
 
-{% block extrahead %}
-  {% if category %}
+{% block bodyclass %}s-{{ sorting }}{% endblock %}
+
+{% if category %}
+  {% block extrahead %}
     <style>
       #c-{{ category.id }} a {
           background: #ecf5fe;
@@ -16,27 +18,28 @@
           color: inherit;
       }
     </style>
-    <link rel="canonical" href="{{ category.get_url_path() }}">
-  {% endif %}
-{% endblock %}
+  {% endblock %}
+{% endif %}
+
+{% set sort = {'featured': 'featured',
+               'created': 'newest',
+               'popular': 'popular',
+               'rating': 'averagerating'}[sorting] %}
+{% if not sort %}
+  {% set sort = 'updated' %}
+{% endif %}
+
+{% if category %}
+  {% set feed = url('browse.extensions.rss', category.slug) %}
+{% else %}
+  {% set feed = url('browse.extensions.rss') %}
+{% endif %}
+
+{% set feed_url = feed|urlparams(sort=sort) %}
 
 {% block rss_feed %}
-  {% with sort = {'featured': 'featured',
-                  'created': 'newest',
-                  'popular': 'popular',
-                  'rating': 'averagerating'}[sorting] %}
-    {% if not sort %}
-      {% set sort = 'updated' %}
-    {% endif %}
-
-    {% if category %}
-      {% set feed = url('browse.extensions.rss', category.slug) %}
-    {% else %}
-      {% set feed = url('browse.extensions.rss') %}
-    {% endif %}
-    <link rel="alternate" type="application/rss+xml" title="RSS"
-          href="{{ feed }}?sort={{ sort }}">
-  {% endwith %}
+  <link rel="alternate" type="application/rss+xml" title="RSS"
+        href="{{ feed_url }}">
 {% endblock %}
 
 {% block content %}

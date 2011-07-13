@@ -1,4 +1,17 @@
 $(function () {
+    $('.performance-note .popup').each(function(i,p) {
+        var $p = $(this),
+            $a = $p.siblings('a').first();
+        $p.popup($a, {width: 300, pointTo: $a});
+    });
+
+    $('.item.addon').each(function(i,p){
+        var $this = $(this);
+        if ($this.find('.concealed').length) {
+            $this.addClass('incompatible');
+        }
+    });
+
     if (!$("body").hasClass('addon-details')) return;
     $(".previews").zCarousel({
         btnNext: ".previews .next",
@@ -115,10 +128,10 @@ $(function () {
 
     // Show add-on ID when icon is clicked
     if ($("#addon[data-id], #persona[data-id]").exists()) {
-      $("#addon .icon").click(function() {
-        window.location.hash = "id=" + $("#addon, #persona").attr("data-id");
-      })
+        $("#addon .icon").click(function() {
+            window.location.hash = "id=" + $("#addon, #persona").attr("data-id");
+        });
     }
 
-    $("#abuse-modal").modal('#report-abuse', { delegate: '#page' });
+    $('#abuse-modal').modal('#report-abuse', {delegate: '#page'});
 });

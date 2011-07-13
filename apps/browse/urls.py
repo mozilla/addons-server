@@ -2,7 +2,6 @@ from django.conf.urls.defaults import patterns, url
 from django.shortcuts import redirect
 
 from amo.urlresolvers import reverse
-from amo.utils import urlparams
 from browse.feeds import CategoriesRss, FeaturedRss, SearchToolsRss
 from . import views
 

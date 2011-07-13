@@ -421,6 +421,8 @@ MINIFY_BUNDLES = {
             'css/impala/collections.less',
             'css/impala/abuse.less',
             'css/impala/prose.less',
+            'css/impala/paginator.less',
+            'css/impala/listing.less',
         ),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',
