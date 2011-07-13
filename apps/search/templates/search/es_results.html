@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
 {% block title %}
-{% if query %}
-  {{ page_title(_('Add-on Search Results for {0}')|f(query)) }}
+{% if query.q %}
+  {{ page_title(_('Add-on Search Results for {0}')|f(query.q)) }}
 {% else %}
   {{ page_title(_('Add-on Search Results')) }}
 {% endif %}
 {% endblock %}
 
 {% block extrahead %}
-<meta name="WT.oss" content="{{ query }}">
+<meta name="WT.oss" content="{{ query.q }}">
 <meta name="WT.oss_r" content="{{ pager.paginator.count }}">
 {% endblock %}
 
