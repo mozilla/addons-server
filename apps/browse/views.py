@@ -215,9 +215,9 @@ def es_extensions(request, category=None, template=None):
 class CategoryLandingFilter(BaseFilter):
 
     opts = (('featured', _lazy(u'Featured')),
-            ('created', _lazy(u'Recently Added')),
             ('users', _lazy(u'Most Popular')),
-            ('rating', _lazy(u'Top Rated')))
+            ('rating', _lazy(u'Top Rated')),
+            ('created', _lazy(u'Recently Added')))
 
     def __init__(self, request, base, category, key, default):
         self.category = category
