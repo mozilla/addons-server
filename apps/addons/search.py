@@ -6,6 +6,7 @@ from django.conf import settings
 import elasticutils
 import pyes.exceptions as pyes
 
+import amo
 from .models import Addon
 from bandwagon.models import Collection
 from compat.models import AppCompat
@@ -43,6 +44,8 @@ def setup_mapping():
     """Set up the addons index mapping."""
     # Mapping describes how elasticsearch handles a document during indexing.
     # Most fields are detected and mapped automatically.
+    appver = {'dynamic': False, 'properties': {'max': {'type': 'long'},
+                                               'min': {'type': 'long'}}}
     m = {
         # Turn off analysis on name so we can sort by it.
         'name_sort': {'type': 'string', 'index': 'not_analyzed'},
@@ -52,6 +55,8 @@ def setup_mapping():
                  'index': 'not_analyzed',
                  'index_name': 'tag'},
         'platforms': {'type': 'integer', 'index_name': 'platform'},
+        'appversion': {'properties': dict((app.id, appver)
+                                          for app in amo.APP_USAGE)}
     }
     es = elasticutils.get_es()
     try:
