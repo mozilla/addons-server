@@ -16,7 +16,7 @@ def addon_to_dict(addon, disco=False, src='api'):
     if disco:
         learnmore = settings.SERVICES_URL + reverse('discovery.addons.detail',
                                                     args=[addon.slug])
-        learnmore = urlparams(learnmore, src=src)
+        learnmore = urlparams(learnmore, src='discovery-personalrec')
     else:
         learnmore = url(addon.get_url_path(), src=src)
 

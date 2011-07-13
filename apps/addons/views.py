@@ -134,7 +134,7 @@ def extension_detail(request, addon):
             'addons.detail', args=[addon.slug]))
 
     # source tracking
-    src = request.GET.get('src', 'addon-detail')
+    src = request.GET.get('src', 'addondetail')
 
     # get satisfaction only supports en-US
     lang = translation.to_locale(translation.get_language())
@@ -205,7 +205,7 @@ def impala_extension_detail(request, addon):
     ctx = {
         'addon': addon,
         'author_addons': author_addons,
-        'src': request.GET.get('src', 'addon-detail'),
+        'src': request.GET.get('src', 'addondetail'),
         'tags': addon.tags.not_blacklisted(),
         'grouped_ratings': GroupedRating.get(addon.id),
         'recommendations': recommended,
@@ -533,19 +533,27 @@ def developers(request, addon, page):
     else:
         version = addon.current_version
 
+
+
     if 'src' in request.GET:
-        src = request.GET['src']
+        contribution_src = src = request.GET['src']
     else:
-        src = {'developers': 'meet-developers',
-               'installed': 'post-download',
-               'roadblock': 'roadblock'}.get(page, None)
+        # Download src and contribution_src are be different.
+        src = {'developers': 'developers',
+               'installed': 'meet-the-developer-post-install',
+               'roadblock': 'meetthedeveloper_roadblock'}.get(page, None)
+        contribution_src = {'developers': 'meet-developers',
+                            'installed': 'post-download',
+                            'roadblock': 'roadblock'}.get(page, None)
 
     if addon.is_persona():
         raise http.Http404()
     author_addons = order_by_translation(addon.authors_other_addons, 'name')
     return jingo.render(request, 'addons/developers.html',
                         {'addon': addon, 'author_addons': author_addons,
-                         'page': page, 'src': src, 'version': version})
+                         'page': page, 'src': src,
+                         'contribution_src': contribution_src,
+                         'version': version})
 
 
 def old_contribute(request, addon):
