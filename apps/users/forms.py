@@ -129,7 +129,10 @@ class UserRegisterForm(happyforms.ModelForm, PasswordMixin):
     d.contrib.auth.forms.UserCreationForm because it doesn't do a lot of the
     details here, so we'd have to rewrite most of it anyway.
     """
-
+    username = forms.CharField(max_length=50)
+    display_name = forms.CharField(max_length=50, required=False)
+    location = forms.CharField(max_length=100, required=False)
+    occupation = forms.CharField(max_length=100, required=False)
     password = forms.CharField(max_length=255,
                                min_length=PasswordMixin.min_length,
                                error_messages=PasswordMixin.error_msg,

@@ -152,50 +152,76 @@ class TestUserDeleteForm(UserFormBase):
 
 class TestUserEditForm(UserFormBase):
 
-    def test_no_names(self):
+    def setUp(self):
+        super(TestUserEditForm, self).setUp()
         self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.url = reverse('users.edit')
+
+    def test_no_names(self):
         data = {'username': '',
                 'email': 'jbalogh@mozilla.com', }
-        r = self.client.post('/en-US/firefox/users/edit', data)
-        msg = "This field is required."
-        self.assertFormError(r, 'form', 'username', msg)
+        r = self.client.post(self.url, data)
+        self.assertFormError(r, 'form', 'username', 'This field is required.')
 
     def test_no_real_name(self):
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
         data = {'username': 'blah',
                 'email': 'jbalogh@mozilla.com', }
-        r = self.client.post('/en-US/firefox/users/edit', data, follow=True)
-        self.assertContains(r, "Profile Updated")
+        r = self.client.post(self.url, data, follow=True)
+        self.assertContains(r, 'Profile Updated')
 
     def test_set_wrong_password(self):
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
         data = {'email': 'jbalogh@mozilla.com',
                 'oldpassword': 'wrong',
                 'password': 'new',
                 'password2': 'new', }
-        r = self.client.post('/en-US/firefox/users/edit', data)
+        r = self.client.post(self.url, data)
         self.assertFormError(r, 'form', 'oldpassword',
-                                                'Wrong password entered!')
+                             'Wrong password entered!')
 
     def test_set_unmatched_passwords(self):
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
         data = {'email': 'jbalogh@mozilla.com',
                 'oldpassword': 'foo',
-                'password': 'new1',
-                'password2': 'new2', }
-        r = self.client.post('/en-US/firefox/users/edit', data)
+                'password': 'longer123',
+                'password2': 'longer1234', }
+        r = self.client.post(self.url, data)
         self.assertFormError(r, 'form', 'password2',
-                                            'The passwords did not match.')
+                             'The passwords did not match.')
 
     def test_set_new_passwords(self):
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        data = {'username': 'jbalogh',
+                'email': 'jbalogh@mozilla.com',
+                'oldpassword': 'foo',
+                'password': 'longer123',
+                'password2': 'longer123', }
+        r = self.client.post(self.url, data, follow=True)
+        self.assertContains(r, 'Profile Updated')
+
+    def test_long_data(self):
         data = {'username': 'jbalogh',
                 'email': 'jbalogh@mozilla.com',
                 'oldpassword': 'foo',
                 'password': 'new',
                 'password2': 'new', }
-        r = self.client.post('/en-US/firefox/users/edit', data, follow=True)
-        self.assertContains(r, "Profile Updated")
+        for field, length in (('username', 50), ('display_name', 50),
+                              ('location', 100), ('occupation', 100)):
+            data[field] = 'x' * (length + 1)
+            r = self.client.post(self.url, data, follow=True)
+            err = u'Ensure this value has at most %s characters (it has %s).'
+            self.assertFormError(r, 'form', field, err % (length, length + 1))
+
+    @patch('amo.models.ModelBase.update')
+    def test_photo_modified(self, update_mock):
+        dummy = Mock()
+        dummy.user = self.user
+
+        data = {'username': self.user_profile.username,
+                'email': self.user_profile.email}
+        files = {'photo': get_uploaded_file('transparent.png')}
+        form = UserEditForm(data, files=files, instance=self.user_profile,
+                            request=dummy)
+        assert form.is_valid()
+        form.save()
+        assert update_mock.called
 
 
 class TestUserLoginForm(UserFormBase):
@@ -419,6 +445,18 @@ class TestUserRegisterForm(UserFormBase):
         assert mail.outbox[0].body.find('%s/confirm/%s' %
                                         (u.id, u.confirmationcode)) > 0
 
+    def test_long_data(self):
+        data = {'username': 'jbalogh',
+                'email': 'jbalogh@mozilla.com',
+                'oldpassword': 'foo',
+                'password': 'new',
+                'password2': 'new', }
+        for field, length in (('username', 50), ('display_name', 50)):
+            data[field] = 'x' * (length + 1)
+            r = self.client.post(reverse('users.register'), data, follow=True)
+            err = u'Ensure this value has at most %s characters (it has %s).'
+            self.assertFormError(r, 'form', field, err % (length, length + 1))
+
 
 class TestBlacklistedUsernameAdminAddForm(UserFormBase):
 
@@ -460,20 +498,3 @@ class TestBlacklistedEmailDomainAdminAddForm(UserFormBase):
         msg += '1 duplicates were ignored.'
         self.assertContains(r, msg)
         self.assertNotContains(r, 'fubar')
-
-
-class TestUserEditForm(UserFormBase):
-
-    @patch('amo.models.ModelBase.update')
-    def test_photo_modified(self, update_mock):
-        dummy = Mock()
-        dummy.user = self.user
-
-        data = {'username': self.user_profile.username,
-                'email': self.user_profile.email}
-        files = {'photo': get_uploaded_file('transparent.png')}
-        form = UserEditForm(data, files=files, instance=self.user_profile,
-                            request=dummy)
-        assert form.is_valid()
-        form.save()
-        assert update_mock.called
