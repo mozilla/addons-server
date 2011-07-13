@@ -412,7 +412,7 @@ class TestDeveloperPages(test_utils.TestCase):
     def test_meet_the_dev_src(self):
         r = self.client.get(reverse('addons.meet', args=['a11730']))
         button = pq(r.content)('.install-button a.button').attr('href')
-        assert button.endswith('?src=meet-developers'), button
+        assert button.endswith('?src=developers'), button
 
     def test_nl2br_info(self):
         r = self.client.get(reverse('addons.meet', args=['a228106']))
@@ -455,7 +455,7 @@ class TestDeveloperPages(test_utils.TestCase):
         url = reverse('addons.roadblock', args=['a11730'])
         r = self.client.get(url)
         button = pq(r.content)('.install-button a.button').attr('href')
-        assert button.endswith('?src=roadblock'), button
+        assert button.endswith('?src=meetthedeveloper_roadblock'), button
 
     def test_roadblock_different(self):
         url = reverse('addons.roadblock', args=['a11730']) + '?src=addondetail'
