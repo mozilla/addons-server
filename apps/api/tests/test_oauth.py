@@ -123,6 +123,8 @@ class OAuthClient(Client):
         """
         Send a resource to the server using PUT.
         """
+        # If data has come from JSON remove unicode keys.
+        data = dict([(str(k), v) for k, v in data.items()])
         url = get_absolute_url(url)
         params = _get_args(consumer, callback=callback, verifier=verifier)
         params.update(data_keys(data))
