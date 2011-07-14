@@ -6,7 +6,7 @@ import threading
 
 import commonware.log
 
-from product_details import firefox_versions, thunderbird_versions
+from product_details import product_details
 
 from constants.applications import *
 from constants.base import *
@@ -78,5 +78,5 @@ class CachedProperty(object):
 
 # For unproven performance gains put firefox and thunderbird parsing
 # here instead of constants
-FIREFOX.latest_version = firefox_versions['LATEST_FIREFOX_VERSION']
-THUNDERBIRD.latest_version = thunderbird_versions['LATEST_THUNDERBIRD_VERSION']
+FIREFOX.latest_version = product_details.firefox_versions['LATEST_FIREFOX_VERSION']
+THUNDERBIRD.latest_version = product_details.thunderbird_versions['LATEST_THUNDERBIRD_VERSION']
