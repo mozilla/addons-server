@@ -31,8 +31,16 @@ $(function () {
             $lightbox.show();
             showImage(this);
             $(window).bind('keydown.lightboxDismiss', function(e) {
-                if (e.which == 27) {
-                    hideLightbox();
+                switch(e.which) {
+                    case 27:
+                        hideLightbox();
+                        break;
+                    case 37:
+                        showPrev();
+                        break;
+                    case 39:
+                        showNext();
+                        break;
                 }
             });
             //I want to ensure the lightbox is painted before fading it in.
@@ -88,18 +96,20 @@ $(function () {
                 $lightbox.find(".control.next").addClass("disabled");
             }
         }
-        $("#lightbox .next").click(_pd(function() {
+        function showNext() {
             if (current < $strip.length-1) {
                 showImage($strip.eq(current+1).find("a"));
                 $(this).blur();
             }
-        }));
-        $("#lightbox .prev").click(_pd(function() {
+        }
+        function showPrev() {
             if (current > 0) {
                 showImage($strip.eq(current-1).find("a"));
                 $(this).blur();
             }
-        }));
+        }
+        $("#lightbox .next").click(_pd(showNext));
+        $("#lightbox .prev").click(_pd(showPrev));
         $(".previews ul a").click(_pd(showLightbox));
         $('#lightbox').click(_pd(function(e) {
             if ($(e.target).is('.close, #lightbox')) {
