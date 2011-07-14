@@ -1,7 +1,11 @@
 {% extends "devhub/base.html" %}
 
-{# L10n: first parameter is a filename like lorem-ipsum-1.0.2.xpi #}
-{% set title = _('Validation Results for {0}')|f(filename) %}
+{% if filename %}
+  {# L10n: first parameter is a filename like lorem-ipsum-1.0.2.xpi #}
+  {% set title = _('Validation Results for {0}')|f(filename) %}
+{% else %}
+  {% set title = _('Validation Results') %}
+{% endif %}
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
 
 {% block content %}
@@ -11,14 +15,16 @@
 </header>
 
 <table>
+    {% if timestamp %}
     <tr>
         <th>{{ _('Validated at:') }}</th>
         <td><time datetime="{{ timestamp|isotime}}">{{ timestamp|datetime}}</time></td>
     </tr>
+    {% endif %}
     {% if result_type == 'compat' %}
     <tr>
         <th>{{ _('Tested for compatibility against:') }}</th>
-        <td>{{ amo.APP_IDS[job.application.pk].pretty }} {{ job.target_version }}</td>
+        <td>{{ amo.APP_IDS[target_app.pk].pretty }} {{ target_version }}</td>
     </tr>
     {% endif %}
 </table>
@@ -28,7 +34,7 @@
   {% if result_type == 'compat' %}
     {% with app_trans=app_trans,
             version_change_links=version_change_links,
-            target_version={job.application.guid: job.target_version.version} %}
+            target_version={target_app.guid: target_version.version} %}
       {% include "devhub/addons/includes/validation_compat_test_results.html" %}
     {% endwith %}
   {% else %}

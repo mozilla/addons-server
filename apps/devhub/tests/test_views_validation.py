@@ -17,7 +17,9 @@ import waffle
 from addons.models import Addon
 import amo
 from amo.tests import assert_no_validation_errors
+from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
+from applications.models import AppVersion, Application
 from files.models import File, FileUpload, FileValidation
 from files.tests.test_models import UploadTest as BaseUploadTest
 from files.utils import parse_addon
@@ -313,7 +315,7 @@ class TestCompatibilityResults(test_utils.TestCase):
         self.job = self.result.validation_job
 
     def validate(self, expected_status=200):
-        r = self.client.post(reverse('devhub.json_validation_result',
+        r = self.client.post(reverse('devhub.json_bulk_compat_result',
                                      args=[self.addon.slug, self.result.id]),
                              follow=True)
         eq_(r.status_code, expected_status)
@@ -321,15 +323,15 @@ class TestCompatibilityResults(test_utils.TestCase):
 
     def test_login_protected(self):
         self.client.logout()
-        r = self.client.get(reverse('devhub.validation_result',
+        r = self.client.get(reverse('devhub.bulk_compat_result',
                                      args=[self.addon.slug, self.result.id]))
         eq_(r.status_code, 302)
-        r = self.client.post(reverse('devhub.json_validation_result',
+        r = self.client.post(reverse('devhub.json_bulk_compat_result',
                                      args=[self.addon.slug, self.result.id]))
         eq_(r.status_code, 302)
 
     def test_target_version(self):
-        r = self.client.get(reverse('devhub.validation_result',
+        r = self.client.get(reverse('devhub.bulk_compat_result',
                                     args=[self.addon.slug, self.result.id]))
         eq_(r.status_code, 200)
         doc = pq(r.content)
@@ -338,7 +340,7 @@ class TestCompatibilityResults(test_utils.TestCase):
         eq_(ver[amo.FIREFOX.guid], self.job.target_version.version)
 
     def test_app_trans(self):
-        r = self.client.get(reverse('devhub.validation_result',
+        r = self.client.get(reverse('devhub.bulk_compat_result',
                                      args=[self.addon.slug, self.result.id]))
         eq_(r.status_code, 200)
         doc = pq(r.content)
@@ -347,7 +349,7 @@ class TestCompatibilityResults(test_utils.TestCase):
             eq_(trans[app.guid], app.pretty)
 
     def test_app_version_change_links(self):
-        r = self.client.get(reverse('devhub.validation_result',
+        r = self.client.get(reverse('devhub.bulk_compat_result',
                                      args=[self.addon.slug, self.result.id]))
         eq_(r.status_code, 200)
         doc = pq(r.content)
@@ -361,7 +363,7 @@ class TestCompatibilityResults(test_utils.TestCase):
             {'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': ['4.0b3']})
 
     def test_time(self):
-        r = self.client.post(reverse('devhub.validation_result',
+        r = self.client.post(reverse('devhub.bulk_compat_result',
                                      args=[self.addon.slug, self.result.id]),
                              follow=True)
         doc = pq(r.content)
@@ -389,3 +391,86 @@ class TestCompatibilityResults(test_utils.TestCase):
         data = self.validate()
         eq_(data['validation'], '')
         eq_(data['error'], 'RuntimeError: simulated task error')
+
+
+class TestUploadCompatCheck(BaseUploadTest):
+    fixtures = ['base/apps', 'base/appversions', 'base/addon_3615']
+    compatibility_result = json.dumps({
+        "errors": 0,
+        "success": True,
+        "warnings": 0,
+        "notices": 0,
+        "compatibility_summary": {"notices": 0,
+                                  "errors": 0,
+                                  "warnings": 1},
+        "message_tree": {},
+        "messages": [],
+        "metadata": {}
+    })
+
+    def setUp(self):
+        super(TestUploadCompatCheck, self).setUp()
+        assert self.client.login(username='del@icio.us', password='password')
+        self.app = Application.objects.get(pk=amo.FIREFOX.id)
+        self.appver = AppVersion.objects.get(application=self.app,
+                                             version='3.7a1pre')
+        self.upload_url = reverse('devhub.upload')
+
+    def poll_upload_status_url(self, upload_uuid):
+        return reverse('devhub.upload_detail', args=[upload_uuid, 'json'])
+
+    def fake_xpi(self):
+        """Any useless file that has a name property (for Django)."""
+        return open(get_image_path('non-animated.gif'), 'rb')
+
+    def upload(self):
+        with self.fake_xpi() as f:
+            # Simulate how JS posts data w/ app/version from the form.
+            res = self.client.post(self.upload_url,
+                                   {'upload': f,
+                                    'app_id': self.app.pk,
+                                    'version_id': self.appver.pk},
+                                   follow=True)
+        return json.loads(res.content)
+
+    def test_compat_form(self):
+        res = self.client.get(reverse('devhub.check_addon_compatibility'))
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(doc('#upload-addon').attr('data-upload-url'), self.upload_url)
+        # TODO(Kumar) actually check the form here after bug 671587
+
+    @mock.patch('devhub.tasks.run_validator')
+    def test_js_upload_validates_compatibility(self, run_validator):
+        run_validator.return_value = ''  # Empty to simulate unfinished task.
+        data = self.upload()
+        kw = run_validator.call_args[1]
+        eq_(kw['for_appversions'], {self.app.guid: [self.appver.version]})
+        eq_(kw['overrides'],
+            {'targetapp_maxVersion': {self.app.guid: self.appver.version}})
+        eq_(data['url'], self.poll_upload_status_url(data['upload']))
+
+    @mock.patch('devhub.tasks.run_validator')
+    def test_js_poll_upload_status(self, run_validator):
+        run_validator.return_value = self.compatibility_result
+        data = self.upload()
+        url = self.poll_upload_status_url(data['upload'])
+        res = self.client.get(url)
+        data = json.loads(res.content)
+        if data['validation'] and data['validation']['messages']:
+            raise AssertionError('Unexpected validation errors: %s'
+                                 % data['validation']['messages'])
+
+    @mock.patch('devhub.tasks.run_validator')
+    def test_compat_result_report(self, run_validator):
+        run_validator.return_value = self.compatibility_result
+        data = self.upload()
+        url = self.poll_upload_status_url(data['upload'])
+        res = self.client.get(url)
+        data = json.loads(res.content)
+        res = self.client.get(data['full_report_url'])
+        eq_(res.status_code, 200)
+        eq_(res.context['result_type'], 'compat')
+        doc = pq(res.content)
+        # Shows app/version on the results page.
+        eq_(doc('table tr td:eq(0)').text(), 'Firefox 3.7a1pre')

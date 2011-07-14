@@ -1,6 +1,5 @@
 {% extends "devhub/base.html" %}
 
-{% set title = _('Validate Add-on') %}
 {% block title %}{{ dev_page_title(title) }}{% endblock %}
 
 {% block content %}
@@ -12,13 +11,35 @@
   {{ csrf() }}
   <p>
   {% trans %}
-    Use the field below to upload your add-on package.  After upload,
-    a series of automated validation tests will be run on your file.
+    Use the field below to upload your add-on package.
   {% endtrans %}
   </p>
+  {% if appversion_form %}
+    <p>
+    {% trans %}
+      After upload, a series of automated validation tests will
+      run to check compatibility with the following
+      application version:
+    {% endtrans %}
+    </p>
+    <section id="addon-compat-upload">
+      {% for elem in ('application', 'app_version') %}
+        <label id="label-{{ elem }}" for="id_{{ elem }}">
+          {{ appversion_form[elem].label }}</label>
+        <span id="elem-{{ elem }}">{{ appversion_form[elem] }}</span>
+      {% endfor %}
+    </section>
+  {% else %}
+    <p>
+    {% trans %}
+      After upload, a series of automated validation tests will be
+      run on your file.
+    {% endtrans %}
+    </p>
+  {% endif %}
   <section id="upload-file" class="validate-addon">
 
-    <input type="file" id="upload-addon" data-upload-url="{{ url('devhub.upload') }}">
+    <input type="file" id="upload-addon" data-upload-url="{{ upload_url }}">
 
   </section>
 </form>

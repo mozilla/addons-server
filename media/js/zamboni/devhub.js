@@ -36,6 +36,10 @@ $(document).ready(function() {
     if($('.validate-addon').length) {
         initSubmit();
     }
+    // Add-on Compatibility Check
+    if ($('#addon-compat-upload').length) {
+        initAddonCompatCheck($('#addon-compat-upload'));
+    }
 
     // Submission > Describe
     if ($("#submit-describe").length) {
@@ -50,7 +54,16 @@ $(document).ready(function() {
 
     // Add-on uploader
     if($('#upload-addon').length) {
-        $('#upload-addon').addonUploader({'cancel': $('.upload-file-cancel') });
+        var opt = {'cancel': $('.upload-file-cancel') };
+        if($('#addon-compat-upload').length) {
+            opt.appendFormData = function(formData) {
+                formData.append('app_id',
+                                $('#id_application option:selected').val());
+                formData.append('version_id',
+                                $('#id_app_version option:selected').val());
+            };
+        }
+        $('#upload-addon').addonUploader(opt);
     }
 
     if ($(".version-upload").length) {
@@ -1176,4 +1189,34 @@ function compatModalCallback(obj) {
     });
 
     return {pointTo: ct};
+}
+
+function initAddonCompatCheck($doc) {
+    var $elem = $('#id_application', $doc);
+
+    $elem.change(function(e) {
+        var $appVer = $('#id_app_version', $doc),
+            $sel = $(e.target),
+            appId = $('option:selected', $sel).val();
+
+        if (!appId) {
+            $('option', $appVer).remove();
+            $appVer.append(format('<option value="{0}">{1}</option>',
+                                  ['', gettext('Select an application first')]));
+            return;
+        }
+        $.post($sel.attr('data-url'), {'application_id': appId}, function(d) {
+            $('option', $appVer).remove();
+            $.each(d.choices, function(i, ch) {
+                $appVer.append(format('<option value="{0}">{1}</option>',
+                                      [ch[0], ch[1]]));
+            });
+        });
+    });
+
+    if ($elem.children('option:selected').val() &&
+        !$('#id_app_version option:selected', $doc).val()) {
+        // If an app is selected when page loads and it's not a form post.
+        $elem.trigger('change');
+    }
 }

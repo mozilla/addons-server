@@ -409,7 +409,7 @@ class TestBulkUpdate(BulkValidationTest):
                                            'subject': '..'})
         links = mail.outbox[0].body.split(' ')
         for result in results:
-            assert any(ln.endswith(reverse('devhub.validation_result',
+            assert any(ln.endswith(reverse('devhub.bulk_compat_result',
                                            args=(self.addon.slug, result.pk)))
                        for ln in links), ('Unexpected links: %s' % links)
 
@@ -492,7 +492,7 @@ class TestBulkNotify(BulkValidationTest):
                                                'subject': '...'})
         eq_(r.status_code, 302)
         eq_(len(mail.outbox), 1)
-        res = reverse('devhub.validation_result',
+        res = reverse('devhub.bulk_compat_result',
                       args=(self.addon.slug, result.pk))
         email = mail.outbox[0].body
         assert res in email, ('Unexpected message: %s' % email)

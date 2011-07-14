@@ -1,4 +1,3 @@
-import codecs
 import collections
 import functools
 import json
@@ -27,7 +26,7 @@ from tower import ugettext_lazy as _lazy, ugettext as _
 from session_csrf import anonymous_csrf
 import waffle
 
-from applications.models import AppVersion
+from applications.models import Application, AppVersion
 import amo
 import amo.utils
 from amo import messages, urlresolvers
@@ -40,7 +39,7 @@ from addons import forms as addon_forms
 from addons.decorators import addon_view
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
-from applications.models import Application, AppVersion
+from devhub.forms import CheckCompatibilityForm
 from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
 from editors.helpers import get_position
 from files.models import File, FileUpload
@@ -502,7 +501,18 @@ def profile(request, addon_id, addon):
 
 @login_required
 def validate_addon(request):
-    return jingo.render(request, 'devhub/validate_addon.html', {})
+    return jingo.render(request, 'devhub/validate_addon.html',
+                        {'title': _('Validate Add-on'),
+                         'upload_url': reverse('devhub.upload')})
+
+
+@login_required
+def check_addon_compatibility(request):
+    form = CheckCompatibilityForm()
+    return jingo.render(request, 'devhub/validate_addon.html',
+                        {'appversion_form': form,
+                         'title': _('Check Add-on Compatibility'),
+                         'upload_url': reverse('devhub.upload')})
 
 
 def packager_path(name):
@@ -583,7 +593,12 @@ def upload(request, addon_slug=None):
     if request.user.is_authenticated():
         fu.user = request.amo_user
         fu.save()
-    tasks.validator.delay(fu.pk)
+    if (request.POST.get('app_id') and request.POST.get('version_id')):
+        app = get_object_or_404(Application, pk=request.POST['app_id'])
+        ver = get_object_or_404(AppVersion, pk=request.POST['version_id'])
+        tasks.compatibility_check.delay(fu.pk, app.guid, ver.version)
+    else:
+        tasks.validator.delay(fu.pk)
     if (waffle.flag_is_active(request, 'form-errors-in-validation')
         and addon_slug):
         return redirect('devhub.upload_detail_for_addon',
@@ -648,11 +663,22 @@ def file_validation(request, addon_id, addon, file_id):
 
 
 @dev_required(allow_editors=True)
-def validation_result(request, addon_id, addon, result_id):
+def bulk_compat_result(request, addon_id, addon, result_id):
     qs = ValidationResult.objects.exclude(completed=None)
     result = get_object_or_404(qs, pk=result_id)
+    job = result.validation_job
+    revalidate_url = reverse('devhub.json_bulk_compat_result',
+                             args=[addon.slug, result.id])
+    return _compat_result(request, revalidate_url,
+                          job.application, job.target_version,
+                          for_addon=result.file.version.addon,
+                          validated_filename=result.file.filename,
+                          validated_ts=result.completed)
 
-    v = reverse('devhub.json_validation_result', args=[addon.slug, result.id])
+
+def _compat_result(request, revalidate_url, target_app, target_version,
+                   validated_filename=None, validated_ts=None,
+                   for_addon=None):
     app_trans = dict((g, unicode(a.pretty)) for g, a in amo.APP_GUIDS.items())
     ff_versions = (AppVersion.objects.filter(application=amo.FIREFOX.id,
                                              version_int__gte=4000000000000)
@@ -664,10 +690,12 @@ def validation_result(request, addon_id, addon, result_id):
         major = ver[0]  # 4.0b3 -> 4
         change_links['%s %s' % (amo.APP_IDS[app].guid, ver)] = tpl % major
     return jingo.render(request, 'devhub/validation.html',
-                        dict(validate_url=v, filename=result.file.filename,
-                             timestamp=result.completed,
-                             job=result.validation_job,
-                             addon=result.file.version.addon,
+                        dict(validate_url=revalidate_url,
+                             filename=validated_filename,
+                             timestamp=validated_ts,
+                             target_app=target_app,
+                             target_version=target_version,
+                             addon=for_addon,
                              result_type='compat',
                              app_trans=app_trans,
                              version_change_links=change_links))
@@ -699,7 +727,7 @@ def json_file_validation(request, addon_id, addon, file_id):
 @csrf_view_exempt
 @post_required
 @dev_required(allow_editors=True)
-def json_validation_result(request, addon_id, addon, result_id):
+def json_bulk_compat_result(request, addon_id, addon, result_id):
     qs = ValidationResult.objects.exclude(completed=None)
     result = get_object_or_404(qs, pk=result_id)
     if result.task_error:
@@ -774,9 +802,13 @@ def upload_detail(request, uuid, format='html'):
     if format == 'json' or request.is_ajax():
         return json_upload_detail(request, upload)
 
-    v = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
+    validate_url = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
+    if upload.compat_with_app:
+        return _compat_result(request, validate_url,
+                              upload.compat_with_app,
+                              upload.compat_with_appver)
     return jingo.render(request, 'devhub/validation.html',
-                        dict(validate_url=v, filename=upload.name,
+                        dict(validate_url=validate_url, filename=upload.name,
                              timestamp=upload.created,
                              addon=None))
 

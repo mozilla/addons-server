@@ -169,7 +169,7 @@ def add_validation_jobs(pks, job_pk, **kw):
 
 
 def get_context(addon, version, job, results, fileob=None):
-    result_links = (absolutify(reverse('devhub.validation_result',
+    result_links = (absolutify(reverse('devhub.bulk_compat_result',
                                        args=[addon.slug, r.pk]))
                     for r in results)
     addon_name = addon.name

@@ -16,6 +16,7 @@ from amo.decorators import write, set_modified_on
 from amo.utils import resize_image
 from files.models import FileUpload, File, FileValidation
 from applications.management.commands import dump_apps
+from applications.models import Application, AppVersion
 
 from PIL import Image
 
@@ -32,6 +33,34 @@ def validator(upload_id, **kw):
     try:
         result = run_validator(upload.path)
         upload.validation = result
+        upload.save()  # We want to hit the custom save().
+    except:
+        # Store the error with the FileUpload job, then raise
+        # it for normal logging.
+        tb = traceback.format_exception(*sys.exc_info())
+        upload.update(task_error=''.join(tb))
+        raise
+
+
+@task(queue='devhub')
+@write
+def compatibility_check(upload_id, app_guid, appversion_str, **kw):
+    if not settings.VALIDATE_ADDONS:
+        return None
+    log.info('COMPAT CHECK for upload %s / app %s version %s'
+             % (upload_id, app_guid, appversion_str))
+    upload = FileUpload.objects.get(pk=upload_id)
+    app = Application.objects.get(guid=app_guid)
+    appver = AppVersion.objects.get(application=app, version=appversion_str)
+    try:
+        result = run_validator(upload.path,
+                               for_appversions={app_guid: [appversion_str]},
+                               test_all_tiers=True,
+                               overrides={'targetapp_maxVersion':
+                                                {app_guid: appversion_str}})
+        upload.validation = result
+        upload.compat_with_app = app
+        upload.compat_with_appver = appver
         upload.save()  # We want to hit the custom save().
     except:
         # Store the error with the FileUpload job, then raise
@@ -251,4 +280,3 @@ def packager(data, feature_set, **kw):
         shutil.move(xpi_path, packager_path(data['uuid']))
     except IOError:
         log.error('Error unlocking add-on: %s' % xpi_path)
-

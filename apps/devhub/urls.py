@@ -68,11 +68,11 @@ detail_patterns = patterns('',
         name='devhub.json_file_validation'),
 
     url('^validation-result/(?P<result_id>\d+)$',
-        views.validation_result,
-        name='devhub.validation_result'),
+        views.bulk_compat_result,
+        name='devhub.bulk_compat_result'),
     url('^validation-result/(?P<result_id>\d+).json$',
-        views.json_validation_result,
-        name='devhub.json_validation_result'),
+        views.json_bulk_compat_result,
+        name='devhub.json_bulk_compat_result'),
 
     url('^submit/', include(submit_patterns)),
     url('^submit/resume$', views.submit_resume, name='devhub.submit.resume'),
@@ -131,6 +131,10 @@ urlpatterns = decorate(write, patterns('',
     # Standalone validator:
     url('^addon/validate/?$', views.validate_addon,
         name='devhub.validate_addon'),
+
+    # Standalone compatibility checker:
+    url('^addon/check-compatibility$', views.check_addon_compatibility,
+        name='devhub.check_addon_compatibility'),
 
     # Add-on packager
     url('^addon/package/', include(packager_patterns)),

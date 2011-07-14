@@ -23,6 +23,7 @@ import amo
 import amo.models
 import amo.utils
 from amo.urlresolvers import reverse
+from applications.models import Application, AppVersion
 import devhub.signals
 from versions.compare import version_int as vint
 
@@ -343,6 +344,10 @@ class FileUpload(amo.models.ModelBase):
     user = models.ForeignKey('users.UserProfile', null=True)
     valid = models.BooleanField(default=False)
     validation = models.TextField(null=True)
+    compat_with_app = models.ForeignKey(Application, null=True,
+                                    related_name='uploads_compat_for_app')
+    compat_with_appver = models.ForeignKey(AppVersion, null=True,
+                                    related_name='uploads_compat_for_appver')
     task_error = models.TextField(null=True)
 
     objects = amo.models.UncachedManagerBase()

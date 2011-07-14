@@ -35,9 +35,10 @@ test('Default without initial categories', function() {
 module('addonUploaded', {
     setup: function() {
         this._FormData = z.FormData;
-        z.FormData = tests.StubOb(z.FormData, {
+        this.FormDataStub = tests.StubOb(z.FormData, {
             send: function() {}
         });
+        z.FormData = this.FormDataStub;
         this.sandbox = tests.createSandbox('#file-upload-template');
         $.fx.off = true;
 
@@ -244,6 +245,19 @@ asyncTest('400 JSON error after polling', function() {
         equals(sb.find('#upload_errors').text().trim(), "UUID doesn't match add-on.");
         start();
     });
+});
+
+test('append form data callback', function() {
+    var called = false,
+        self = this;
+    $('#upload-file-input', this.sandbox).addonUploader({
+        appendFormData: function(formData) {
+            called = true;
+            ok(formData.append);
+        }
+    });
+    $(this.el).trigger('change');
+    ok(called);
 });
 
 

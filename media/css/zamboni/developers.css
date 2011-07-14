@@ -3,7 +3,8 @@
 #status-bar:after,
 #addon-validator-suite .tiers:after,
 form.select-review:after,
-form .char-count:after {
+form .char-count:after,
+#addon-compat-upload:after {
     content: ".";
     display: block;
     clear: both;
@@ -2020,4 +2021,18 @@ button.search-button {
     font-style: italic;
     margin: 0 3px;
     text-align: left;
+}
+
+#addon-compat-upload {
+    margin: 1em 0;
+}
+#addon-compat-upload label, #addon-compat-upload span {
+    display: block;
+    float: left;
+}
+#addon-compat-upload label {
+    margin-right: 0.3em;
+}
+#addon-compat-upload span {
+    margin-right: 3em;
 }

@@ -69,6 +69,9 @@
                 // We should be good to go!
                 formData.open("POST", url, true);
                 formData.append("csrfmiddlewaretoken", csrf);
+                if(options.appendFormData) {
+                    options.appendFormData(formData);
+                }
 
                 if(domfile instanceof File) { // Needed b/c of tests.
                   formData.append("upload", domfile);
