@@ -1,7 +1,7 @@
 <div class="barometer">
   <form method="post" class="upvote" action="{{ up_action }}">
     <input class="{{ up_class }}" value="{{ c.upvotes }}" type="submit"
-           title="{{ up_title }}"/>
+           title="{{ up_title }}">
   </form>
   <form method="post" class="downvote" action="{{ down_action }}">
     <input class="{{ down_class }}" value="{{ c.downvotes }}" type="submit"
@@ -12,13 +12,10 @@
     <div class="collection-rate-dropdown install-note">
       <div class="collection-rate-login">
         <p>
-          {% trans %}
-          To rate collections, you must have an add-ons
-          account.
-          {% endtrans %}
+          {{ _('To rate collections, you must have an add-ons account.') }}
         </p>
         <p class="register-button">
-          <a class="button" href="{{ remora_url('users/register') }}">{{ _('Create an Add-ons Account') }}</a>
+          <a class="button" href="{{ url('users.register') }}">{{ _('Create an Add-ons Account') }}</a>
         </p>
         <p>
           {% trans login=login_link() %}

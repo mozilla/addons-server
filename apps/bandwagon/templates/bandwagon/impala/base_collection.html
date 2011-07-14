@@ -1,0 +1,19 @@
+{% extends "impala/base.html" %}
+
+{% block title %}
+  {{ page_title(category.name if category else _('Extensions')) }}
+{% endblock %}
+
+{% block bodyclass %}collections listing s-{{ sorting }}{% endblock %}
+
+{% set sort = {'featured': 'featured',
+               'created': 'newest',
+               'popular': 'popular',
+               'rating': 'averagerating'}.get(sorting, 'updated') %}
+
+{% block content %}
+  <section class="secondary">
+    {% include "bandwagon/impala/collection_sidebar.html" %}
+  </section>
+  {% block primary %}{% endblock %}
+{% endblock %}

@@ -1,31 +1,47 @@
-{% from "addons/impala/listing/macros.html" import heading, item_info %}
-{% set collection = collection or None %}
-{% set username = request.amo_user.username if request.user.is_authenticated() else '' %}
-
-{% cache addons, extra=[collection, username] %}
+{% cache addons %}
   {% for addon in addons %}
     <div class="item addon">
       <div class="info">
-        {{ heading(request, addon, collection=collection) }}
+        <h3>
+          <a href="{{ addon.get_url_path(impala=True) }}">
+            <img src="{{ addon.icon_url }}">{{ addon.name }}</a>
+          {% if addon.is_no_restart() %}
+            <span class="no-restart">{{ _('No Restart') }}</span>
+          {% endif %}
+          {% if addon.is_featured(request.APP, request.LANG) %}
+            <span class="featured">{{ _('Featured') }}</span>
+          {% endif %}
+        </h3>
         {% if addon.is_persona() %}
           {{ persona_preview(addon.persona, linked=False) }}
         {% else %}
           <p class="desc">{{ addon.summary|truncate(250)|nl2br }}</p>
         {% endif %}
-        {% if notes and notes[addon.id] %}
-          <div class="collector-note">
-            <b>{{ _("Collector's Note") }}</b>
-            {{ notes[addon.id] }}
+        <div class="vitals c">
+          {{ impala_reviews_link(addon) }}
+          <div class="adu">
+            {% with num=addon.average_daily_users %}
+              {# L10n: {0} is the number of users. #}
+              {{ ngettext('{0} user', '{0} users', num)|f(num|numberfmt) }}
+            {% endwith %}
           </div>
-        {% endif %}
-        <div class="more c">
-          {{ item_info(addon, amo, show_date) }}
+          {% if show_date in ('created', 'new', 'newest', 'updated') %}
+            <div class="updated">
+              {% if show_date in ('created', 'new', 'newest') %}
+                {# L10n: {0} is a date. #}
+                {{ _('Added {0}')|f(addon.created|datetime) }}
+              {% elif show_date == 'updated' %}
+                {# L10n: {0} is a date. #}
+                {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
+              {% endif %}
+            </div>
+          {% endif %}
         </div>
         {% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}
           {{ impala_performance_note(amount=addon.ts_slowness, listing=True) }}
         {% endif %}
       </div>
-      {{ install_button(addon, impala=True, collection=collection) }}
+      {{ install_button(addon, impala=True) }}
     </div>
   {% endfor %}
 {% endcache %}

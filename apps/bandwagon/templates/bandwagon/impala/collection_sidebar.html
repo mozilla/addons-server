@@ -1,0 +1,43 @@
+{% set base_url = url('i_collections.list') %}
+<nav id="side-nav" class="c">
+  <h2><a href="{{ base_url }}">{{ _('Collections') }}</a></h2>
+  <ul>
+    {% for sort, title in filter.opts %}
+      <li class="s-{{ sort }}"><em><a href="{{ base_url|urlparams(sort=sort) }}">{{ title }}</a></em></li>
+    {% endfor %}
+  </ul>
+  {% if request.user.is_authenticated() %}
+    <ul>
+      <li id="p-following">
+        <a href="{{ url('collections.following') }}">
+          {{ _("Collections I'm Following") }}</a></li>
+      <li id="p-mine">
+        <a href="{{ url('collections.user', amo_user.username) }}">
+          {{ _("Collections I've Made") }}</a></li>
+      <li><a href="{{ url('collections.detail', amo_user.username, 'favorites') }}">
+        {{ _('My Favorite Add-ons') }}</a></li>
+    </ul>
+  {% endif %}
+  <section>
+    <h3>{{ _('Create a New Collection') }}</h3>
+    <p>{% trans %}
+      Collections make it easy to keep track of favorite add-ons and share your
+      perfectly customized browser with others.
+    {% endtrans %}</p>
+    <p><a href="{{ url('collections.add') }}" class="button">
+      {{ _('Create a Collection') }}</a></p>
+  </section>
+  <section id="recently-viewed">
+    <h3>{{ _('Recently Viewed') }}</h3>
+  </section>
+  <section>
+    <h3>{{ _('Add-on Collector') }}</h3>
+    <p>
+      {% trans app=request.APP.pretty %}
+        Get updates on followed collections or manage your own collections
+        directly from {{ app }} with this add-on.
+      {% endtrans %}
+    </p>
+    {{ addon_collector|addon_hovercard }}
+  </section>
+</nav>

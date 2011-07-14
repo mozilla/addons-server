@@ -24,10 +24,7 @@
 {% set sort = {'featured': 'featured',
                'created': 'newest',
                'popular': 'popular',
-               'rating': 'averagerating'}[sorting] %}
-{% if not sort %}
-  {% set sort = 'updated' %}
-{% endif %}
+               'rating': 'averagerating'}.get(sorting, 'updated') %}
 
 {% if category %}
   {% set feed = url('browse.extensions.rss', category.slug) %}

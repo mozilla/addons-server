@@ -42,6 +42,9 @@ urlpatterns = patterns('',
         {'edit': True}),
 
     url('^collections/$', views.collection_listing, name='collections.list'),
+    url('^i/collections/$', views.impala_collection_listing,
+        name='i_collections.list'),
+
     url('^collections/(editors_picks|popular|favorites)/?$',
         views.legacy_directory_redirects),
     url('^collections/mine/(?P<slug>[^/]+)?$', views.mine,

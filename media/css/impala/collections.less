@@ -1,11 +1,11 @@
+@import 'lib';
+
 #ajax_collections_list {
     margin: 0 0 .5em 0;
     li {
         cursor: pointer;
         padding: 5px 0 3px 30px;
-        background-repeat: no-repeat;
-        background-position: 0 4px;
-        background-image: url(../../img/zamboni/icons/checks.png);
+        background: url(../../img/zamboni/icons/checks.png) no-repeat 0 4px;
     }
     li:hover {
         background-position: 0 -36px;
@@ -99,9 +99,65 @@
 }
 
 #collection_listed {
-    margin-bottom: 1.5em;
+    margin: 0 0 1.5em;
 }
 
 #collection_listed ul label {
     font-weight: normal;
+}
+
+#recently-viewed {
+    ul {
+        margin: 0 0 4px;
+    }
+    h3 {
+        border: none;
+        margin: 0;
+    }
+    #clear-recents {
+        color: #666;
+        padding: 0 6px;
+    }
+}
+
+.listing .item {
+    &.watching {
+        .install-shell {
+            visibility: visible;
+            .is-watching {
+                display: block;
+                font-weight: bold;
+                float: right;
+                padding: 7px 10px;
+                position: absolute;
+                right: 25px;
+                text-align: right;
+            }
+            a {
+                visibility: hidden;
+            }
+        }
+        &:hover {
+            .install-shell {
+                .is-watching {
+                    display: none;
+                }
+                a {
+                    visibility: visible;
+                }
+            }
+        }
+    }
+}
+
+.secondary {
+    .listing-grid {
+        border: none;
+        li {
+            border: none;
+        }
+        .item.addon {
+            margin-left: 0;
+        }
+    }
 }

@@ -47,7 +47,7 @@ header .feed {
     }
 }
 
-.listing .item {
+.listing .primary .item {
     border-top: 1px dotted @border-blue;
     color: @note-gray;
     display: table;
@@ -88,29 +88,40 @@ header .feed {
             height: 32px;
             width: 32px;
         }
+        .author {
+            color: #666;
+            font-size: 12px;
+            a {
+                color: #333;
+            }
+        }
     }
-    h3, .desc {
-        margin-bottom: 5px;
+    h3,
+    .desc {
+        margin: 0 0 5px;
     }
     p {
         font-size: 12px;
-        margin: 0;
     }
-    .rating a {
-        color: @note-gray;
-    }
-    .rating,
-    .adu,
-    .updated {
-        display: inline-block;
-    }
-    .adu {
-        color: #093;
-    }
-    .adu:before,
-    .updated:before {
-        color: @note-gray;
-        content: '\00B7';
+    .vitals {
+        margin-top: 2px;
+        div {
+            display: inline-block;
+            font-size: 11px;
+            margin: 0;
+            &.rating a {
+                color: @note-gray;
+            }
+            &.adu,
+            &.followers {
+                color: @green;
+            }
+            &.adu:before,
+            &.updated:before {
+                color: @note-gray;
+                content: '\00B7';
+            }
+        }
     }
     .info,
     .install-shell {
@@ -121,8 +132,8 @@ header .feed {
     }
     .install-shell {
         text-align: right;
-        padding: 0 10px;
         min-width: 190px;
+        padding: 0 10px;
         visibility: hidden;
         white-space: nowrap;
         .install-note {
@@ -146,7 +157,7 @@ header .feed {
     }
 }
 
-.html-rtl .listing .item {
+.html-rtl .listing .primary .item {
     .collector-note,
     .performance-note {
         float: right;

@@ -115,6 +115,17 @@ def collection_listing(request, base=None, extra={}):
                        collection_votes=votes, **extra))
 
 
+def impala_collection_listing(request, base=None):
+    filter = get_filter(request, base)
+    collections = amo.utils.paginate(request, filter.qs)
+    votes = get_votes(request, collections.object_list)
+    addon_collector = Addon.objects.get(id=11950)
+    return render(request, 'bandwagon/impala/collection_listing.html',
+                  dict(collections=collections, filter=filter,
+                       sorting=filter.field, collection_votes=votes,
+                       addon_collector=addon_collector))
+
+
 def get_votes(request, collections):
     if not request.user.is_authenticated():
         return {}

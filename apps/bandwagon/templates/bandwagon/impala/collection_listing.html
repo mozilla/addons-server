@@ -1,0 +1,39 @@
+{% extends "bandwagon/impala/base_collection.html" %}
+
+{% set url_base = url('i_collections.list') %}
+
+{% set title = {'featured': _('Featured Collections'),
+                'popular': _('Popular Collections'),
+                'created': _('Recently Added Collections'),
+                'rating': _('Top Rated Collections'),
+                'updated': _('Last Updated Collections')}.get(sorting) %}
+
+{% block title %}{{ page_title(title) }}{% endblock %}
+
+{% block primary %}
+<section class="primary">
+  <div class="island hero c">
+    <header>
+      {% if request.GET %}
+        <h2>{{ title }}</h2>
+      {% else %}
+        <h2>{{ _('Collections') }}</h2>
+        <p>
+          {% trans url=url('collections.add') %}
+            Collections are groups of related add-ons that anyone can create and
+            share. Explore collections created by other users or
+            <a href="{{ url }}">create your own</a>.
+          {% endtrans %}
+        </p>
+      {% endif %}
+      {{ impala_addon_listing_header(url_base, filter.opts, sorting) }}
+    </header>
+    {{ impala_collection_listing_items(collections.object_list,
+                                       show_weekly=filter.field == 'popular',
+                                       show_date=filter.field) }}
+    {% if sorting != 'featured' %}
+      {{ collections|impala_paginator }}
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

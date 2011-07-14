@@ -1,9 +1,14 @@
 {% if pager.paginator.num_pages > 1 %}
   <nav class="paginator c">
     <p class="num">
-      {# L10n: {0} is a page number. #}
-      <a href="{{ pager.url|urlparams(page=pager.number) }}">
-        {{ _('Page {0}')|f(pager.number) }}</a>
+      {# L10n: This is a page range (e.g., Page 1 of 50). #}
+      {% trans current_pg=pager.number,
+               last_pg=pager.paginator.num_pages,
+               current_pg_url=pager.url|urlparams(page=pager.number),
+               last_pg_url=pager.url|urlparams(page=pager.paginator.num_pages) %}
+        Page <a href="{{ current_pg_url }}">{{ current_pg }}</a> of
+        <a href="{{ last_pg_url }}">{{ last_pg }}</a>
+      {% endtrans %}
     </p>
     <p class="rel">
       <a href="{{ pager.url|urlparams(page=1) }}"
@@ -20,7 +25,7 @@
         &#x25B8;&#x25B8;</a>
     </p>
     <p class="pos">
-      {# L10n: first and second arguments are the result range (e.g., 1-20);
+      {# L10n: First and second arguments are the result range (e.g., 1-20);
                third argument is the number of total results (e.g., 1,000). #}
       {% trans begin=pager.start_index(), end=pager.end_index(),
                count=pager.paginator.count|numberfmt %}

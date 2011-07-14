@@ -2,11 +2,8 @@
 
 .button, button, input[type=submit] {
     position: relative;
-    font-size: 13px;
+    font: bold 13px/1em @head-sans;
     padding: 6px 10px 7px;
-    font-family: @head-sans;
-    font-weight: bold;
-    line-height: 1em;
     text-align: center;
     text-decoration: none;
     color: #fff;
@@ -91,6 +88,11 @@
             .sprite-pos(6, 64, 3px);
         }
     }
+    &.watch:not(.watching) { // Orange
+        background: #ea0;
+        .gradient-two-color(#ea0, darken(#ea0, 10%));
+        color: #fff;
+    }
     &.platform {
         display: none;
     }
@@ -173,4 +175,3 @@
 .thunderbird .listing-grid .install-shell {
     display: none;
 }
-

@@ -429,11 +429,11 @@ MINIFY_BUNDLES = {
             'css/impala/lightbox.less',
             'css/impala/copy.less',
             'css/impala/sharing.less',
-            'css/impala/collections.less',
             'css/impala/abuse.less',
             'css/impala/prose.less',
             'css/impala/paginator.less',
             'css/impala/listing.less',
+            'css/impala/collections.less',
         ),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',
@@ -552,6 +552,7 @@ MINIFY_BUNDLES = {
 
             # Collections
             'js/zamboni/collections.js',
+            'js/impala/collections.js',
 
             # Performance
             'js/zamboni/perf.js',
