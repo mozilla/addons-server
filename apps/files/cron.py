@@ -30,11 +30,9 @@ def cleanup_extracted_file():
                 int(id)
             except ValueError:
                 continue
-            for prefix in ['file-viewer-get-deleted-files',
-                           'file-viewer-get-files',
-                           'file-viewer']:
-                key = hashlib.md5()
-                key.update(str(id))
-                cache.delete('%s:memoize:%s:%s' % (settings.CACHE_PREFIX,
-                                                   prefix, key.hexdigest()))
+
+            key = hashlib.md5()
+            key.update(str(id))
+            cache.delete('%s:memoize:%s:%s' % (settings.CACHE_PREFIX,
+                                               'file-viewer', key.hexdigest()))
             log.info('Removing cache file-viewer cache entries for: %s' % id)

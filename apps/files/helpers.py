@@ -285,7 +285,7 @@ class DiffHelper:
         self.key = None
 
     def __str__(self):
-        return str(self.left)
+        return '%s:%s' % (self.left, self.right)
 
     def extract(self):
         self.left.extract(), self.right.extract()
@@ -302,7 +302,7 @@ class DiffHelper:
                                               'file',
                                               short])
 
-    @memoize(prefix='file-viewer-get-files', time=60 * 60)
+    #@memoize(prefix='file-viewer-get-files', time=60 * 60)
     def get_files(self):
         """
         Get the files from the primary and:
@@ -328,7 +328,7 @@ class DiffHelper:
 
         return left_files
 
-    @memoize(prefix='file-viewer-get-deleted-files', time=60 * 60)
+    #@memoize(prefix='file-viewer-get-deleted-files', time=60 * 60)
     def get_deleted_files(self):
         """
         Get files that exist in right, but not in left. These
