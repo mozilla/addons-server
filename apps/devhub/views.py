@@ -47,7 +47,7 @@ from files.utils import parse_addon
 from translations.models import delete_translation
 from users.models import UserProfile
 from versions.models import License, Version
-from product_details import get_regions
+from product_details import product_details
 from zadmin.models import ValidationResult
 
 from . import forms, tasks, feeds, responsys, signals
@@ -1358,7 +1358,8 @@ def builder(request):
 
 @anonymous_csrf
 def newsletter(request):
-    regions = get_regions(getattr(request, 'LANG', settings.LANGUAGE_CODE))
+    regions = product_details.get_regions(getattr(request, 'LANG',
+                                                  settings.LANGUAGE_CODE))
     form = forms.NewsletterForm(request.POST or None,
                                 regions=sorted(regions.iteritems(),
                                                key=operator.itemgetter(1)))

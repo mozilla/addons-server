@@ -8,7 +8,7 @@ from django.core.validators import ValidationError
 from nose.tools import eq_, assert_raises
 
 from amo.utils import slug_validator, slugify, resize_image, to_language
-
+from product_details import product_details
 
 u = u'Ελληνικά'
 
@@ -77,3 +77,11 @@ def test_to_language():
     for a, b in tests:
         yield check, a, b
 
+
+def test_spotcheck():
+    """Check a couple product-details files to make sure they're available."""
+    languages = product_details.languages
+    eq_(languages['el']['English'], 'Greek')
+    eq_(languages['el']['native'], u'Ελληνικά')
+
+    eq_(product_details.firefox_history_major_releases['1.0'], '2004-11-09')

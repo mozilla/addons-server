@@ -12,7 +12,7 @@ from tower import ugettext_lazy as _lazy
 from quieter_formset.formset import BaseModelFormSet
 
 import amo
-import product_details
+from product_details import product_details
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection, FeaturedCollection

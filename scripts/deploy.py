@@ -35,6 +35,13 @@ def update_locales(ctx):
         ctx.local("svn revert -R .")
         ctx.local("svn up")
 
+
+@task
+def update_products(ctx):
+    with ctx.lcd(AMO_DIR):
+        ctx.local('python2.6 manage.py update_product_details')
+
+
 @task
 def disable_cron(ctx):
     ctx.local("mv /etc/cron.d/addons-prod-maint /tmp/addons-prod-maint")
@@ -135,6 +142,7 @@ def start_update(ctx, tag, vendor_tag):
 def update_amo(ctx):
     # BEGIN: The normal update/push cycle.
     update_locales()
+    update_products()
     compress_assets()
     schematic()
     make_crons()
