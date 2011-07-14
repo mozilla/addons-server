@@ -2,6 +2,11 @@
 
 {% set addon_sets = filter.all() %}
 
+{% set src_dict = {'featured': 'featured',
+               'created': 'recentlyadded',
+               'users': 'mostpopular',
+               'rating': 'toprated'} %}
+
 {% block bodyclass %}category-landing{% endblock %}
 
 {% block primary %}
@@ -10,21 +15,23 @@
   {% if addons %}
     <div class="island hero c">
       <h2>{{ category.name }}</h2>
-      {{ addons[:3]|featured_grid }}
+      {{ addons[:3]|featured_grid(src='cb-hc-recentlyadded',
+                                  dl_src='cb-dl-recentlyadded') }}
     </div>
   {% endif %}
 
   {% for key, title in filter.opts if key != 'featured' %}
   {% set addons = addon_sets[key][:10] %}
   {% set link = url('i_browse.extensions', category.slug)|urlparams(sort=key) %}
+  {% set hc_src = 'cb-hc-' + src_dict[key] %}
+  {% set dl_src = 'cb-dl-' + src_dict[key] %}
   <div class="island c">
     <h2>
       {{ filter.opts_dict[key] }}
       <a class="seeall" href="{{ link }}">{{ _('See all »') }}</a>
     </h2>
-    {{ addons|addon_grid(cols=3) }}
+    {{ addons|addon_grid(cols=3, src=hc_src, dl_src=dl_src) }}
   </div>
   {% endfor %}
-  
 </section>
 {% endblock %}
