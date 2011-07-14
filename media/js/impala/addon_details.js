@@ -1,16 +1,17 @@
 $(function () {
-    $('.performance-note .popup').each(function(i,p) {
-        var $p = $(this),
-            $a = $p.siblings('a').first();
-        $p.popup($a, {width: 300, pointTo: $a});
-    });
-
-    $('.item.addon').each(function(i,p){
-        var $this = $(this);
-        if ($this.find('.concealed').length) {
-            $this.addClass('incompatible');
-        }
-    });
+    if ($('body').hasClass('listing')) {
+        $('.performance-note .popup').each(function(i,p) {
+            var $p = $(this),
+                $a = $p.siblings('a').first();
+            $p.popup($a, {width: 300, pointTo: $a});
+        });
+        $('.item.addon').each(function(i,p){
+            var $this = $(this);
+            if ($this.find('.concealed').length) {
+                $this.addClass('incompatible');
+            }
+        });
+    }
 
     if (!$("body").hasClass('addon-details')) return;
     $(".previews").zCarousel({
