@@ -58,6 +58,8 @@ def gc(test_result=True):
         tasks.delete_stale_contributions.delay(chunk)
     for chunk in chunked(collections_to_delete, 100):
         tasks.delete_anonymous_collections.delay(chunk)
+    # Incomplete addons cannot be deleted because when an addon is rejected
+    # during a review it is marked as incomplete. See bug 670295.
     # for chunk in chunked(addons_to_delete, 100):
     #     tasks.delete_incomplete_addons.delay(chunk)
 
