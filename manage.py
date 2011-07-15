@@ -31,8 +31,7 @@ for item in list(sys.path):
 sys.path[:0] = new_sys_path
 
 # No third-party imports until we've added all our sitedirs!
-from django.core.management import (call_command, execute_manager,
-                                    setup_environ)
+from django.core.management import execute_manager, setup_environ
 
 try:
     import settings_local as settings
@@ -73,11 +72,4 @@ safe_signals.start_the_machine()
 
 
 if __name__ == "__main__":
-    # If product details aren't present, get them.
-    from product_details import product_details
-    if not product_details.last_update:
-        print 'Product details missing, downloading...'
-        call_command('update_product_details')
-        product_details.__init__()  # reload the product details
-
     execute_manager(settings)

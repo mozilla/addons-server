@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import cache_page
 
 import jingo
-from product_details import product_details
+import product_details
 from mobility.decorators import mobile_template
 from tower import ugettext_lazy as _lazy
 

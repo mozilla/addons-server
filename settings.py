@@ -6,7 +6,7 @@ import logging
 import socket
 
 from django.utils.datastructures import SortedDict
-from django.utils.functional import lazy
+import product_details
 
 try:
     # If we have build ids available, we'll grab them here and add them to our
@@ -94,19 +94,9 @@ AMO_LANGUAGES = (
     'tr', 'uk', 'vi', 'zh-CN', 'zh-TW',
 )
 
-def lazy_langs():
-    from django.conf import settings
-    from product_details import product_details
-    if not product_details.languages:
-        return SortedDict()
-    return SortedDict([(i.lower(), product_details.languages[i]['native'])
-                       for i in AMO_LANGUAGES])
-
-# Where product details are stored see django-mozilla-product-details
-PROD_DETAILS_DIR = path('lib/product_json')
-
 # Override Django's built-in with our native names
-LANGUAGES = lazy(lazy_langs, SortedDict)()
+LANGUAGES = SortedDict([(i.lower(), product_details.languages[i]['native'])
+                        for i in AMO_LANGUAGES])
 RTL_LANGUAGES = ('ar', 'fa', 'fa-IR', 'he')
 
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
@@ -318,7 +308,6 @@ INSTALLED_APPS = (
     'jingo_minify',
     'pages',
     'perf',
-    'product_details',
     'reviews',
     'search',
     'sharing',
