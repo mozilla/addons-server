@@ -232,3 +232,10 @@ class TestActivity(HubTest):
         key = RssKey.objects.get()
         res = self.get_response(privaterss=key.key)
         assert "<title>Comment on" not in res.content
+
+    def test_no_guid(self):
+        self.log_creates(1)
+        self.get_response(addon=self.addon.id)
+        key = RssKey.objects.get()
+        res = self.get_response(privaterss=key.key)
+        assert "<guid>" not in res.content

@@ -33,3 +33,6 @@ class ActivityFeedRSS(Feed):
 
     def item_link(self):
         return self.link()
+
+    def item_guid(self):
+        pass
