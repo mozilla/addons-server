@@ -14,6 +14,6 @@ build.py
 *.less.css
 locale
 vendor
-.noseids
+.nose*
 tmp/*
 tags
