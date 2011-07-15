@@ -81,6 +81,7 @@ ADDON_LPADDON = 6
 ADDON_PLUGIN = 7
 ADDON_API = 8  # not actually a type but used to identify extensions + themes
 ADDON_PERSONA = 9
+ADDON_WEBAPP = 11  # Calling this ADDON_* is gross but we've gotta ship code.
 
 # Singular
 ADDON_TYPE = {

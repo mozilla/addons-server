@@ -317,6 +317,7 @@ INSTALLED_APPS = (
     'translations',
     'users',
     'versions',
+    'webapps',
     'zadmin',
 
     # We need this so the jsi18n view will pick up our locale directory.
