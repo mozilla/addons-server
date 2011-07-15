@@ -2,7 +2,7 @@
   {% set charity_url = addon.charity.outgoing_url %}
   {% set charity_name = addon.charity.name %}
 {% endif %}
-<div class="notice c" id="contribution">
+<div class="notice c author" id="contribution">
 
   {% with single_dev = addon.listed_authors|random %}
     <img class="avatar" alt="{{ single_dev.name }}" height="64"
