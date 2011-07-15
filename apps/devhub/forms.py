@@ -744,7 +744,7 @@ class CheckCompatibilityForm(happyforms.Form):
         super(CheckCompatibilityForm, self).__init__(*args, **kw)
         w = self.fields['application'].widget
         # Get the URL after the urlconf has loaded.
-        w.attrs['data-url'] = reverse('zadmin.application_versions_json')
+        w.attrs['data-url'] = reverse('devhub.compat_application_versions')
 
     def version_choices_for_app_id(self, app_id):
         versions = AppVersion.objects.filter(application__id=app_id)

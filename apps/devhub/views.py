@@ -500,6 +500,15 @@ def profile(request, addon_id, addon):
 
 
 @login_required
+@post_required
+@json_view
+def compat_application_versions(request):
+    app_id = request.POST['application_id']
+    f = CheckCompatibilityForm()
+    return {'choices': f.version_choices_for_app_id(app_id)}
+
+
+@login_required
 def validate_addon(request):
     return jingo.render(request, 'devhub/validate_addon.html',
                         {'title': _('Validate Add-on'),

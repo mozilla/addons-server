@@ -474,3 +474,20 @@ class TestUploadCompatCheck(BaseUploadTest):
         doc = pq(res.content)
         # Shows app/version on the results page.
         eq_(doc('table tr td:eq(0)').text(), 'Firefox 3.7a1pre')
+
+    def test_compat_application_versions(self):
+        res = self.client.get(reverse('devhub.check_addon_compatibility'))
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        data = {'application_id': amo.FIREFOX.id,
+                'csrfmiddlewaretoken':
+                            doc('input[name=csrfmiddlewaretoken]').val()}
+        r = self.client.post(doc('#id_application').attr('data-url'),
+                             data)
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        empty = True
+        for id, ver in data['choices']:
+            empty = False
+            eq_(AppVersion.objects.get(pk=id).version, ver)
+        assert not empty, "Unexpected: %r" % data

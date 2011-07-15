@@ -135,6 +135,9 @@ urlpatterns = decorate(write, patterns('',
     # Standalone compatibility checker:
     url('^addon/check-compatibility$', views.check_addon_compatibility,
         name='devhub.check_addon_compatibility'),
+    url(r'^addon/check-compatibility/application_versions\.json$',
+        views.compat_application_versions,
+        name='devhub.compat_application_versions'),
 
     # Add-on packager
     url('^addon/package/', include(packager_patterns)),

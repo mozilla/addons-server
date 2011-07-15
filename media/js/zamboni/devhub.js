@@ -1192,10 +1192,11 @@ function compatModalCallback(obj) {
 }
 
 function initAddonCompatCheck($doc) {
-    var $elem = $('#id_application', $doc);
+    var $elem = $('#id_application', $doc),
+        $form = $doc.closest('form');
 
     $elem.change(function(e) {
-        var $appVer = $('#id_app_version', $doc),
+        var $appVer = $('#id_app_version', $form),
             $sel = $(e.target),
             appId = $('option:selected', $sel).val();
 
@@ -1205,17 +1206,20 @@ function initAddonCompatCheck($doc) {
                                   ['', gettext('Select an application first')]));
             return;
         }
-        $.post($sel.attr('data-url'), {'application_id': appId}, function(d) {
-            $('option', $appVer).remove();
-            $.each(d.choices, function(i, ch) {
-                $appVer.append(format('<option value="{0}">{1}</option>',
-                                      [ch[0], ch[1]]));
+        $.post($sel.attr('data-url'),
+               {application_id: appId,
+                csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]", $form).val()},
+            function(d) {
+                $('option', $appVer).remove();
+                $.each(d.choices, function(i, ch) {
+                    $appVer.append(format('<option value="{0}">{1}</option>',
+                                          [ch[0], ch[1]]));
+                });
             });
-        });
     });
 
     if ($elem.children('option:selected').val() &&
-        !$('#id_app_version option:selected', $doc).val()) {
+        !$('#id_app_version option:selected', $form).val()) {
         // If an app is selected when page loads and it's not a form post.
         $elem.trigger('change');
     }
