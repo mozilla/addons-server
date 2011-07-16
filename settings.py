@@ -945,6 +945,7 @@ UNLINK_SITE_STATS = True
 
 # Use the new featured add-ons system which makes use of featured collections.
 NEW_FEATURES = False
+IMPALA_BROWSE = False
 
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = True
