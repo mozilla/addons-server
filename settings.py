@@ -99,8 +99,13 @@ def lazy_langs():
     from product_details import product_details
     if not product_details.languages:
         return SortedDict()
-    return SortedDict([(i.lower(), product_details.languages[i]['native'])
-                       for i in AMO_LANGUAGES])
+    result = SortedDict([(i.lower(), product_details.languages[i]['native'])
+                        for i in AMO_LANGUAGES])
+    # Makes LANGUAGES['en'] works, TODO(andym): improve this.
+    def getitem(self, key):
+        return super(SortedDict, self).__getitem__(key)
+    result.__class__.__getitem__ = getitem
+    return result
 
 # Where product details are stored see django-mozilla-product-details
 PROD_DETAILS_DIR = path('lib/product_json')
