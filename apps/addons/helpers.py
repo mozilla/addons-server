@@ -196,6 +196,12 @@ def impala_addon_listing_header(context, url_base, sort_opts, selected):
 
 @register.filter
 @jinja2.contextfilter
+def addon_hovercard(context, addon):
+    return addon_grid(context, [addon], cols=1)
+
+
+@register.filter
+@jinja2.contextfilter
 @register.inclusion_tag('addons/impala/addon_grid.html')
 def addon_grid(context, addons, src=None, dl_src=None, pagesize=6, cols=2):
     if not src:
@@ -204,7 +210,7 @@ def addon_grid(context, addons, src=None, dl_src=None, pagesize=6, cols=2):
     if not dl_src:
         dl_src = src
     pages = chunked(addons, pagesize)
-    columns = '' if cols != 3 else 'three-col'
+    columns = 'cols-%d' % cols
     return new_context(**locals())
 
 

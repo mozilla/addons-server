@@ -79,6 +79,27 @@
     }
 }
 
+.notice.author {
+    position: relative;
+    height: 64px;
+    .aux {
+        float: right;
+        text-align: center;
+        margin: 0 1em;
+        p {
+            font-size: 11px;
+        }
+    }
+    .avatar {
+        position: absolute;
+        left: 20px;
+        top: 1em;
+    }
+    #contribute-box {
+        display: none;
+    }
+}
+
 .notice.performance-note {
     background: url("../../img/impala/turtle.png") no-repeat 28px 16px #FFF8DC;
     border-color: #e2dbbf;
@@ -181,27 +202,6 @@
         &.ajax-loading {
             background-position: right 2px;
         }
-    }
-}
-
-.author {
-    position: relative;
-    height: 64px;
-    .aux {
-        float: right;
-        text-align: center;
-        margin: 0 1em;
-        p {
-            font-size: 11px;
-        }
-    }
-    .avatar {
-        position: absolute;
-        left: 20px;
-        top: 1em;
-    }
-    #contribute-box {
-        display: none;
     }
 }
 

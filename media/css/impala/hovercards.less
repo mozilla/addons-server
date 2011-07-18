@@ -2,7 +2,6 @@
 
 .listing-grid {
     li {
-        width: 50%;
         overflow: visible;
         float: left;
         height: 66px;
@@ -10,9 +9,9 @@
     &.personas li {
         height: 78px;
     }
-    &.three-col li {
-        width: 100% / 3;
-    }
+    &.cols-3 li { width: 100% / 3; }
+    &.cols-2 li { width: 100% / 2; }
+    &.cols-1 li { width: 100%; }
     .more, .desc {
         font-family: @sans-stack;
         color: #333;
