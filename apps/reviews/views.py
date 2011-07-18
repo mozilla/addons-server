@@ -70,6 +70,50 @@ def review_list(request, addon, review_id=None, user_id=None, template=None):
     return jingo.render(request, template, ctx)
 
 
+@addon_view
+def impala_review_list(request, addon, review_id=None, user_id=None, template=None):
+    q = (Review.objects.valid().filter(addon=addon)
+         .order_by('-created'))
+
+    ctx = {'addon': addon,
+           'grouped_ratings': GroupedRating.get(addon.id)}
+    ctx.update(flag_context())
+
+    ctx['form'] = forms.ReviewForm(None)
+
+    if review_id is not None:
+        ctx['page'] = 'detail'
+        # If this is a dev reply, find the first msg for context.
+        review = get_object_or_404(Review.objects.all(), pk=review_id)
+        if review.reply_to_id:
+            review_id = review.reply_to_id
+            ctx['reply'] = review
+        q = q.filter(pk=review_id)
+    elif user_id is not None:
+        ctx['page'] = 'user'
+        q = q.filter(user=user_id)
+        if not q:
+            raise http.Http404()
+    else:
+        ctx['page'] = 'list'
+        q = q.filter(is_latest=True)
+
+    ctx['reviews'] = reviews = amo.utils.paginate(request, q)
+    ctx['replies'] = Review.get_replies(reviews.object_list)
+    if request.user.is_authenticated():
+        ctx['review_perms'] = {
+            'is_admin': acl.action_allowed(request, 'Admin', 'EditAnyAddon'),
+            'is_editor': acl.action_allowed(request, 'Editor', '%'),
+            'is_author': acl.check_addon_ownership(request, addon, dev=True),
+            'can_delete': acl.action_allowed(request, 'Editors',
+                                             'DeleteReview'),
+        }
+        ctx['flags'] = get_flags(request, reviews.object_list)
+    else:
+        ctx['review_perms'] = {}
+    return jingo.render(request, template, ctx)
+
+
 def get_flags(request, reviews):
     reviews = [r.id for r in reviews]
     qs = ReviewFlag.objects.filter(review__in=reviews, user=request.user.id)

@@ -1,0 +1,103 @@
+{% extends "impala/base.html" %}
+
+{# L10n: {0} is an add-on name. #}
+{% block title %}{{ page_title(_('{0} :: Reviews')|f(addon.name)) }}{% endblock %}
+
+{% block bodyclass %}reviews gutter wide-gutter{% endblock %}
+
+{% block rss_feed %}
+<link  rel="alternate" type="application/rss+xml"
+       title="RSS" href="{{ url('reviews.list', addon.slug) }}format:rss">
+{% endblock %}
+
+{% block content %}
+  {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+                         (addon.get_url_path(), addon.name),
+                         (link, _('Reviews'))]) }}
+
+  <div class="secondary">
+    <div class="island">
+      {{ addon|addon_hovercard }}
+      <div class="average_rating">
+        <span>
+          {{ addon.average_rating|float|stars }}
+          {% trans total=addon.total_reviews|numberfmt %}
+            <strong>Average Rating</strong> ({{ total }})
+          {% endtrans %}
+        </span>
+      </div>
+      {% include "reviews/grouped_ratings.html" %}
+      {% if not review_perms.is_author %}
+        <div>
+          <a class="button" href="{{ url('reviews.add', addon.slug) }}">
+            {{ _('Write a New Review') }}</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+
+{% block review_header %}
+<header>
+  {# Give a link back to reviews if we're looking at user reviews or a detail page. #}
+  {% with link = None if page == 'list' else url('reviews.list', addon.slug) %}
+  {% endwith %}
+  <hgroup>
+    {% if page == "list" %}
+      <h2>{{ _('Reviews for {0}')|f(addon.name) }}</h2>
+      {% with num = reviews.paginator.count %}
+        {# L10n: {0} is a number. #}
+        <h3>{{ ngettext('<b>{0}</b> review for this add-on',
+                        '<b>{0}</b> reviews for this add-on',
+                        num)|f(num|numberfmt)|safe }}</h3>
+      {% endwith %}
+    {% elif reply %}
+      {# L10n: {0} is a developer's name. #}
+      <h2>{{ _('Developer reply by {0}')|f(reply.user.name) }}</h2>
+    {% elif reviews.object_list %}
+      <h2>{% trans cnt=reviews.object_list|length, addon=addon.name,
+                   user=reviews.object_list[0].user.name %}
+        Review for {{ addon }} by {{ user }}
+      {% pluralize %}
+        Reviews for {{ addon }} by {{ user }}
+      {% endtrans %}</h2>
+    {% else %}
+      <h2>{{ _('No reviews found.') }}</h2>
+    {% endif %}
+  </hgroup>
+</header>
+{% endblock %}
+<div class="primary" role="main">
+
+  {% block review_list %}
+  {% if not reviews.object_list %}
+    <p><a href="{{ url('reviews.add', addon.slug) }}">
+      {{ _('Be the first to write a review.') }}</a><p>
+  {% endif %}
+  {% for review in reviews.object_list %}
+    {% include "reviews/review.html" %}
+    {% if review.id in replies %}
+      {% with review=replies[review.id] %}
+        {% include "reviews/review.html" %}
+      {% endwith %}
+    {% endif %}
+  {% endfor %}
+  {{ reviews|paginator }}
+  {% endblock review_list %}
+  <div class="hidden">
+    <form method="post" id="review-edit-form" action="#"
+          class="review article review-form">
+      {{ csrf() }}
+      {{ field(form.title, _('Title:')) }}
+      {{ field(form.rating, _('Rating:')) }}
+      {{ field(form.body, _('Review:')) }}
+      <p>
+        <input type="submit" value="{{ _('Submit review') }}">
+         or <a href="#" id="review-edit-cancel">Cancel</a>
+      </p>
+    </form>
+  </div>
+</div>
+
+{{ report_review_popup() }}
+{% endblock content %}

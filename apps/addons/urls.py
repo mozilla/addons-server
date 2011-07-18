@@ -39,6 +39,12 @@ detail_patterns = patterns('',
 )
 
 
+impala_detail_patterns = patterns('',
+    url('^$', views.impala_addon_detail, name='addons.i_detail'),
+    ('^reviews/', include('reviews.impala_urls')),
+)
+
+
 urlpatterns = patterns('',
     # The homepage.
     url('^$', views.home, name='home'),
@@ -50,7 +56,7 @@ urlpatterns = patterns('',
     # URLs for a single add-on.
     ('^addon/%s/' % ADDON_ID, include(detail_patterns)),
     # Impala deets.
-    url('^i/addon/%s/$' % ADDON_ID, views.impala_addon_detail, name='addons.i_detail'),
+    url('^i/addon/%s/' % ADDON_ID, include(impala_detail_patterns)),
 
     # Accept extra junk at the end for a cache-busting build id.
     url('^addons/buttons.js(?:/.+)?$', 'addons.buttons.js'),
