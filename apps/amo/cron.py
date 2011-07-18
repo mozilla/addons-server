@@ -9,7 +9,6 @@ import commonware.log
 
 import amo
 from amo.utils import chunked
-from addons.models import Addon
 from addons.utils import AdminActivityLogMigrationTracker
 from bandwagon.models import Collection
 from cake.models import Session
@@ -46,22 +45,14 @@ def gc(test_result=True):
             created__lt=days_ago(2), type=amo.COLLECTION_ANONYMOUS)
             .values_list('id', flat=True))
 
-    # Remove Incomplete add-ons older than 4 days.
-    addons_to_delete = (Addon.objects.filter(
-                        highest_status=amo.STATUS_NULL, status=amo.STATUS_NULL,
-                        created__lt=days_ago(4))
-                        .values_list('id', flat=True))
-
     for chunk in chunked(logs, 100):
         tasks.delete_logs.delay(chunk)
     for chunk in chunked(contributions_to_delete, 100):
         tasks.delete_stale_contributions.delay(chunk)
     for chunk in chunked(collections_to_delete, 100):
         tasks.delete_anonymous_collections.delay(chunk)
-    # Incomplete addons cannot be deleted because when an addon is rejected
-    # during a review it is marked as incomplete. See bug 670295.
-    # for chunk in chunked(addons_to_delete, 100):
-    #     tasks.delete_incomplete_addons.delay(chunk)
+    # Incomplete addons cannot be deleted here because when an addon is
+    # rejected during a review it is marked as incomplete. See bug 670295.
 
     log.debug('Cleaning up sharing services.')
     AddonShareCount.objects.exclude(

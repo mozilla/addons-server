@@ -1,12 +1,7 @@
-from datetime import datetime, timedelta
-
-import nose
 import test_utils
 from nose.tools import eq_
 
-import amo
 from amo.cron import gc
-from addons.models import Addon, AddonCategory, Category
 from bandwagon.models import Collection
 from cake.models import Session
 from devhub.models import ActivityLog
@@ -33,12 +28,3 @@ class GarbageTest(test_utils.TestCase):
         eq_(TestResultCache.objects.all().count(), 0)
         eq_(AddonShareCount.objects.all().count(), 0)
         eq_(Contribution.objects.all().count(), 0)
-
-    def test_incomplete(self):
-        raise nose.SkipTest()
-        a = Addon.objects.create(status=0, highest_status=0, type=1)
-        a.created = datetime.today() - timedelta(days=5)
-        a.save()
-        assert Addon.objects.filter(status=0, highest_status=0)
-        gc()
-        assert not Addon.objects.filter(status=0, highest_status=0)
