@@ -1,0 +1,186 @@
+{% extends "impala/base.html" %}
+{% from 'includes/forms.html' import required %}
+{% from 'devhub/includes/macros.html' import some_html_tip %}
+
+{% block title %}{{ page_title(_('Account Settings')) }}{% endblock %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{{ media('css/zamboni/translations/trans.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="secondary">
+  <h2>{{ _('Add-on Account') }}</h2>
+  <ul>
+    <li><a href="{{ request.user.get_profile().get_url_path() }}">{{ _('View Profile') }}</a></li>
+    <li><a href="{{ url('users.edit') }}">{{ _('Edit Profile') }}</a></li>
+    <li><a href="{{ url('collections.user', amo_user.username) }}">{{ _('My Collections') }}</a></li>
+    <li><a href="{{ url('collections.detail', amo_user.username, 'favorites') }}">{{ _('My Favorites') }}</a></li>
+  </ul>
+
+  <h4>{{ _('Delete Account') }}</h4>
+  <p class="note">
+  {% trans %}
+  We'd hate to see you go!  If we're being a bit too noisy, you can
+  always just change <a href="#acct-notify">how often we contact you</a>.
+  {% endtrans %}
+  </p>
+  <p id="acct-delete" class="note">
+    <a href="{{ url('users.delete') }}" class="button scary"
+       title="{{ _('Permanently delete your account') }}">{{ _('Delete Account') }}</a>
+  </p>
+</div>
+<div class="primary prettyform" role="main">
+  {% include "messages.html" %}
+  <form method="post" action="" class="user-input island"
+        enctype="multipart/form-data">
+    {{ csrf() }}
+    <div id="user-edit" class="tab-wrapper">
+      <div id="user-account" class="tab-panel">
+        <fieldset id="acct-account">
+          <legend>{{ _('My account') }}</legend>
+          <ul>
+            <li>
+              <label for="id_username">{{ _('Username') }} {{ required() }}</label>
+              {{ form.username }}
+              {{ form.username.errors }}
+            </li>
+            <li>
+              <label for="id_email">{{ _('Email Address') }} {{ required() }}</label>
+              {{ form.email }}
+              {{ form.email.errors }}
+            </li>
+            <li>
+              <label>&nbsp;</label>
+              <label for="id_emailhidden" class="check">
+                {{ form.emailhidden }}
+                {{ _('Hide email address from other users') }}
+              </label>
+              {{ form.emailhidden.errors }}
+            </li>
+          </ul>
+        </fieldset>
+
+        <fieldset id="acct-password">
+          <legend>{{ _('Password') }}</legend>
+          <ol>
+            <li>
+              <label for="id_oldpassword">{{ _('Old Password') }}</label>
+              {{ form.oldpassword }}
+              {{ form.oldpassword.errors }}
+            </li>
+            <li>
+              {% with form_user=form.instance %}{% include "users/tougher_password.html" %}{% endwith %}
+              &nbsp;
+            </li>
+            <li>
+              <label for="id_password">{{ _('New Password') }}</label>
+              {{ form.password }}
+              {{ form.password.errors }}
+            </li>
+            <li>
+              <label for="id_password2">{{ _('Confirm Password') }}</label>
+              {{ form.password2 }}
+              {{ form.password2.errors }}
+            </li>
+          </ol>
+        </fieldset>
+
+        <fieldset id="acct-notify">
+          <legend>{{ _('Notifications') }}</legend>
+          <p>
+            {% trans %}
+            From time to time, Mozilla may send you email about upcoming
+            releases and add-on events. Please select the topics you are
+            interested in below:
+            {% endtrans %}
+          </p>
+          {{ form.notifications }}
+
+          <p class="note">
+            {% trans %}
+              Mozilla reserves the right to contact you individually about
+              specific concerns with your hosted add-ons.
+            {% endtrans %}
+          </p>
+        </fieldset>
+      </div>{# /#user-account #}
+      <div id="user-profile" class="tab-panel">
+        <fieldset id="profile-personal">
+          <legend>{{ _('Profile information') }}</legend>
+          <ol>
+            <li>
+              <label for="id_display_name">{{ _('Display Name') }}</label>
+              {{ form.display_name }}
+              {{ form.display_name.errors }}
+            </li>
+            <li>
+              <label for="id_location">{{ _('Location') }}</label>
+              {{ form.location }}
+              {{ form.location.errors }}
+            </li>
+            <li>
+              <label for="id_occupation">{{ _('Occupation') }}</label>
+              {{ form.occupation }}
+              {{ form.occupation.errors }}
+            </li>
+            <li>
+              <label for="id_homepage">{{ _('Homepage') }}</label>
+              {{ form.homepage }}
+              {{ form.homepage.errors }}
+            </li>
+            <li class="profile-photo">
+              <label for="id_photo">{{ _('Profile Photo') }}</label>
+              <div class="invisible-upload">
+                <a class="button" href="#">Choose Photo&hellip;</a>
+                <input type="file" id="id_photo" name="photo">
+              </div>
+              {{ form.photo.errors }}
+              <img src="{{ amouser.picture_url }}"
+                   alt="{% if not amouser.picture_type %}{{ _('No Photo') }}{% endif %}"
+                   class="avatar photo" />
+
+              {% if amouser.picture_type %}
+              <a href="{{ url('users.delete_photo') }}" class="delete">{{ _('delete current') }}</a>
+              {% endif %}
+            </li>
+          </ol>
+        </fieldset>
+        <fieldset id="profile-detail" class="clearboth">
+          <legend>{{ _('Details') }}</legend>
+          <p>
+            {% trans -%}
+              Introduce yourself to the community, if you like!
+              This text will appear publicly on your user info page.
+            {%- endtrans %}
+          </p>
+          {{ form.bio }}
+          {{ some_html_tip() }}
+          {{ form.bio.errors }}
+        </fieldset> {# /.profile-detail #}
+
+        <ul>
+          <li>
+            <label for="id_display_collections" class="check">
+              {{ form.display_collections }}
+              {{ _('Display the collections I have created') }}
+            </label>
+            {{ form.display_collections.errors }}
+          </li>
+          <li>
+            <label for="id_display_collections_fav" class="check">
+              {{ form.display_collections_fav }}
+              {{ _("Display collections I'm following") }}
+            </label>
+            {{ form.display_collections_fav.errors }}
+          </li>
+        </ul>
+
+      </div>{# /#user-profile #}
+      <div class="listing-footer">
+        <button type="submit" class="button prominent">{{ _('Update') }}</button>
+      </div>
+    </div>{# /.tab-wrapper #}
+  </form>
+</div>{# /.primary #}
+{% endblock content %}

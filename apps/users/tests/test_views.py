@@ -16,10 +16,11 @@ from access.models import Group, GroupUser
 from addons.models import Addon, AddonUser
 import amo
 from amo.helpers import urlparams
-from amo.pyquery_wrapper import PyQuery
+from amo.pyquery_wrapper import PyQuery as pq
 from amo.urlresolvers import reverse
 from amo.tests.test_helpers import AbuseBase
-from users.models import BlacklistedPassword, UserProfile
+from users.models import BlacklistedPassword, UserProfile, UserNotification
+import users.notifications as email
 from users.utils import EmailResetCode
 
 
@@ -59,6 +60,7 @@ class TestEdit(UserViewBase):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
         self.user = UserProfile.objects.get(username='jbalogh')
         self.url = reverse('users.edit')
+        self.impala_url = reverse('users.edit_impala')
         self.correct = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
                         'oldpassword': 'foo', 'password': 'longenough',
                         'password2': 'longenough'}
@@ -133,6 +135,20 @@ class TestEdit(UserViewBase):
         self.assertRedirects(r, self.url)
         self.assertContains(r, data['bio'])
         eq_(unicode(self.get_profile().bio), data['bio'])
+
+    def test_edit_notifications(self):
+        post = self.correct.copy()
+        post['notifications'] = [2, 4, 6]
+
+        res = self.client.post(self.impala_url, post)
+        eq_(res.status_code, 302)
+
+        eq_(UserNotification.objects.count(), len(email.NOTIFICATION))
+        eq_(UserNotification.objects.filter(enabled=True).count(), 3)
+
+        res = self.client.get(self.impala_url, post)
+        doc = pq(res.content)
+        eq_(doc('[name=notifications]:checked').length, 3)
 
 
 class TestPasswordAdmin(UserViewBase):
@@ -309,7 +325,7 @@ class TestRegistration(UserViewBase):
         # User doesn't have a confirmation code
         url = reverse('users.confirm', args=[self.user.id, 'code'])
         r = self.client.get(url, follow=True)
-        anon = PyQuery(r.content)('body').attr('data-anonymous')
+        anon = pq(r.content)('body').attr('data-anonymous')
         self.assertTrue(anon)
 
         self.user_profile.confirmationcode = "code"
@@ -331,7 +347,7 @@ class TestRegistration(UserViewBase):
         # User doesn't have a confirmation code
         url = reverse('users.confirm.resend', args=[self.user.id])
         r = self.client.get(url, follow=True)
-        anon = PyQuery(r.content)('body').attr('data-anonymous')
+        anon = pq(r.content)('body').attr('data-anonymous')
         self.assertTrue(anon)
 
         self.user_profile.confirmationcode = "code"
@@ -355,7 +371,7 @@ class TestProfile(UserViewBase):
             """Grab profile, return edit links."""
             url = reverse('users.profile', args=[id])
             r = self.client.get(url)
-            return PyQuery(r.content)('p.editprofile a')
+            return pq(r.content)('p.editprofile a')
 
         # Anonymous user.
         links = get_links(self.user.id)

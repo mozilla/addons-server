@@ -54,3 +54,107 @@ form p {
 .edit_initially_hidden {
     display: none;
 }
+
+.prettyform {
+    fieldset {
+        border-bottom: 1px dotted #C9DDF2;
+        margin: 0 0 1em;
+        padding: 1em;
+        legend {
+            margin-left: 2em;
+            color: #D0D9EB;
+            float: right;
+            font-size: 25px;
+            text-transform: uppercase;
+        }
+    }
+    label {
+        color: #555;
+        display: inline-block;
+        font-weight: normal;
+        padding-bottom: 1em;
+        text-transform: lowercase;
+        width: 120px;
+        text-align: right;
+        padding-right: 1em;
+        &.check {
+            width: auto;
+            text-align: left;
+            color: #777;
+            &:hover {
+                color: #555;
+            }
+        }
+        .req {
+            color: @red;
+        }
+    }
+    input[type="checkbox"] {
+        margin-left: 0;
+    }
+    input[type="text"], input[type="password"], select, textarea {
+        border: 1px solid #B2C8E0;
+        border-radius: 3px 3px 3px 3px;
+        box-shadow: 2px 2px #EFF6FE inset;
+        color: #5B738E;
+        font-size: 1em;
+        margin-bottom: 1em;
+        padding: 4px 7px;
+        &:focus {
+            color: #394D63;
+            border-color: #809CBA;
+        }
+    }
+    p.note {
+        color: #888888;
+        font-size: 0.9em;
+        font-style: italic;
+        margin-top: 0;
+        padding-left: 138px;
+        clear: both;
+        width: 300px;
+    }
+    sup {
+        bottom: 4px;
+        font-size: 0.7em;
+        position: relative;
+        &.msg {
+            color: @red;
+        }
+    }
+    legend + p {
+        margin-top: 0;
+    }
+    .checkboxes {
+        display: inline-block;
+        padding-bottom: 1em;
+        label {
+            padding: 0 0 4px;
+            width: auto;
+            text-align: left;
+            input {
+                margin: 0 8px 0 0;
+            }
+        }
+    }
+    .complex {
+        label, ul {
+            float: left;
+        }
+        label {
+            clear: both;
+        }
+    }
+
+    a {
+        &.delete {
+            color: @red;
+            padding-left: 1em;
+        }
+    }
+    .listing-footer {
+        button {
+            float: right;
+        }
+    }
+}

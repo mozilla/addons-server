@@ -129,6 +129,62 @@ def delete_photo(request):
 
 @write
 @login_required
+def edit_impala(request):
+    # Don't use request.amo_user since it has too much caching.
+    amouser = UserProfile.objects.get(pk=request.user.id)
+    if request.method == 'POST':
+        # ModelForm alters the instance you pass in.  We need to keep a copy
+        # around in case we need to use it below (to email the user)
+        original_email = amouser.email
+        form = forms.UserEditForm(request.POST, request.FILES, request=request,
+                                  instance=amouser)
+        if form.is_valid():
+            messages.success(request, _('Profile Updated'))
+            if amouser.email != original_email:
+                l = {'user': amouser,
+                     'mail1': original_email,
+                     'mail2': amouser.email}
+                log.info(u"User (%(user)s) has requested email change from"
+                          "(%(mail1)s) to (%(mail2)s)" % l)
+                messages.info(request, _('Email Confirmation Sent'),
+                    _(('An email has been sent to {0} to confirm your new ' +
+                       'email address. For the change to take effect, you ' +
+                       'need to click on the link provided in this email. ' +
+                       'Until then, you can keep logging in with your ' +
+                       'current email address.')).format(amouser.email))
+
+                domain = settings.DOMAIN
+                token, hash = EmailResetCode.create(amouser.id, amouser.email)
+                url = "%s%s" % (settings.SITE_URL,
+                                reverse('users.emailchange', args=[amouser.id,
+                                                                token, hash]))
+                t = loader.get_template('users/email/emailchange.ltxt')
+                c = {'domain': domain, 'url': url, }
+                send_mail(_(("Please confirm your email address "
+                             "change at %s") % domain),
+                    t.render(Context(c)), None, [amouser.email],
+                    use_blacklist=False)
+
+                # Reset the original email back.  We aren't changing their
+                # address until they confirm the new one
+                amouser.email = original_email
+            form.save()
+            return http.HttpResponseRedirect(reverse('users.edit_impala'))
+        else:
+
+            messages.error(request, _('Errors Found'),
+                                    _('There were errors in the changes '
+                                      'you made. Please correct them and '
+                                      'resubmit.'))
+    else:
+        form = forms.UserEditForm(instance=amouser)
+
+    return jingo.render(request, 'users/edit_impala.html',
+                        {'form': form, 'amouser': amouser})
+
+
+@write
+@login_required
 def edit(request):
     # Don't use request.amo_user since it has too much caching.
     amouser = UserProfile.objects.get(pk=request.user.id)

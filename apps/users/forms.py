@@ -14,8 +14,10 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 from amo.utils import slug_validator
-from .models import (UserProfile, BlacklistedUsername, BlacklistedEmailDomain,
-                     BlacklistedPassword, DjangoUser)
+from .models import (UserProfile, UserNotification, BlacklistedUsername,
+                     BlacklistedEmailDomain, BlacklistedPassword, DjangoUser)
+from .widgets import NotificationsSelectMultiple
+import users.notifications as email
 from . import tasks
 
 log = commonware.log.getLogger('z.users')
@@ -213,9 +215,31 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
 
     photo = forms.FileField(label=_lazy(u'Profile Photo'), required=False)
 
+    notifications = forms.MultipleChoiceField(
+            choices=email.NOTIFICATIONS_CHOICES,
+            widget=NotificationsSelectMultiple,
+            initial=email.NOTIFICATIONS_DEFAULT,
+            required=False)
+
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         super(UserEditForm, self).__init__(*args, **kwargs)
+
+        if self.instance:
+            default = dict((i, n.default_checked) for i, n
+                           in email.NOTIFICATIONS_BY_ID.items())
+            user = dict((n.notification_id, n.enabled) for n
+                        in self.instance.notifications.all())
+            default.update(user)
+
+            self.fields['notifications'].initial = [i for i, v
+                                                    in default.items() if v]
+
+            # Mark unsaved options as "new"
+            user = (self.instance.notifications
+                        .values_list('notification_id', flat=True))
+            for c in self.fields['notifications'].choices:
+                c[1].new = c[0] not in user
 
         # TODO: We should inherit from a base form not UserRegisterForm
         if self.fields.get('recaptcha'):
@@ -283,6 +307,11 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
             u.set_password(data['password'])
             amo.log(amo.LOG.CHANGE_PASSWORD)
             log.info(u'User (%s) changed their password' % u)
+
+        for (i, n) in email.NOTIFICATIONS_BY_ID.items():
+            enabled = n.mandatory or (str(i) in data['notifications'])
+            UserNotification.update_or_create(user=u, notification_id=i,
+                    update={'enabled': enabled})
 
         log.debug(u'User (%s) updated their profile' % u)
 

@@ -425,6 +425,7 @@ MINIFY_BUNDLES = {
             'css/impala/addon_details.less',
             'css/impala/expando.less',
             'css/impala/popups.less',
+            'css/impala/l10n.less',
             'css/impala/contributions.less',
             'css/impala/lightbox.less',
             'css/impala/copy.less',

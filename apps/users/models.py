@@ -317,6 +317,22 @@ class UserProfile(amo.models.ModelBase):
         return c
 
 
+class UserNotification(amo.models.ModelBase):
+    user = models.ForeignKey(UserProfile, related_name='notifications')
+    notification_id = models.IntegerField()
+    enabled = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = 'users_notifications'
+
+    @staticmethod
+    def update_or_create(update={}, **kwargs):
+        rows = UserNotification.objects.filter(**kwargs).update(**update)
+        if not rows:
+            update.update(dict(**kwargs))
+            obj = UserNotification.objects.create(**update)
+
+
 class RequestUserManager(amo.models.ManagerBase):
 
     def get_query_set(self):

@@ -20,6 +20,10 @@ detail_patterns = patterns('',
     url('^abuse', views.report_abuse, name='users.abuse'),
 )
 
+impala_users_patterns = patterns('',
+    url('^edit$', views.edit_impala, name='users.edit_impala'),
+)
+
 users_patterns = patterns('',
     url('^ajax$', views.ajax, name='users.ajax'),
     url('^delete$', views.delete, name='users.delete'),
@@ -47,5 +51,6 @@ users_patterns = patterns('',
 urlpatterns = patterns('',
     # URLs for a single user.
     ('^user/(?P<user_id>\d+)/', include(detail_patterns)),
+    ('^i/users/', include(impala_users_patterns)),
     ('^users/', include(users_patterns)),
 )
