@@ -39,7 +39,7 @@ from stats.models import GlobalStat, Contribution
 from translations.query import order_by_translation
 from translations.helpers import truncate
 from versions.models import Version
-from .models import Addon, MiniAddon, Persona
+from .models import Addon, MiniAddon, Persona, FrozenAddon
 from .decorators import addon_view_factory
 
 log = commonware.log.getLogger('z.addons')
@@ -416,14 +416,16 @@ def impala_home(request):
     # Add-ons.
     base = Addon.objects.listed(request.APP).filter(type=amo.ADDON_EXTENSION)
     featured_ids = Addon.featured_random(request.APP, request.LANG)
+    # This is lame for performance. Kill it with ES.
+    frozen = FrozenAddon.objects.values_list('addon', flat=True)
 
     # Collections.
     collections = Collection.objects.filter(listed=True,
                                             application=request.APP.id,
                                             type=amo.COLLECTION_FEATURED)
     featured = base.filter(id__in=featured_ids)[:18]
-    popular = base.order_by('-average_daily_users')[:10]
-    hotness = base.order_by('-hotness')[:18]
+    popular = base.exclude(id__in=frozen).order_by('-average_daily_users')[:10]
+    hotness = base.exclude(id__in=frozen).order_by('-hotness')[:18]
     personas = (Addon.objects.listed(request.APP)
                 .filter(type=amo.ADDON_PERSONA, id__in=featured_ids))[:18]
 
