@@ -593,7 +593,10 @@ function initVersions() {
          }});
 
     $('#upload-file-finish').click(function() {
-        $(this).attr('disabled', true);
+        var $button = $(this);
+        setTimeout(function() {
+            $button.attr('disabled', true);
+        }, 50);
     });
 
 }
