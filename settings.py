@@ -5,7 +5,6 @@ import os
 import logging
 import socket
 
-from django.utils.datastructures import SortedDict
 from django.utils.functional import lazy
 
 try:
@@ -98,20 +97,15 @@ def lazy_langs():
     from django.conf import settings
     from product_details import product_details
     if not product_details.languages:
-        return SortedDict()
-    result = SortedDict([(i.lower(), product_details.languages[i]['native'])
-                        for i in AMO_LANGUAGES])
-    # Makes LANGUAGES['en'] works, TODO(andym): improve this.
-    def getitem(self, key):
-        return super(SortedDict, self).__getitem__(key)
-    result.__class__.__getitem__ = getitem
-    return result
+        return {}
+    return dict([(i.lower(), product_details.languages[i]['native'])
+                 for i in AMO_LANGUAGES])
 
 # Where product details are stored see django-mozilla-product-details
 PROD_DETAILS_DIR = path('lib/product_json')
 
 # Override Django's built-in with our native names
-LANGUAGES = lazy(lazy_langs, SortedDict)()
+LANGUAGES = lazy(lazy_langs, dict)()
 RTL_LANGUAGES = ('ar', 'fa', 'fa-IR', 'he')
 
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])

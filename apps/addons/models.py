@@ -11,6 +11,7 @@ from django.db import models, transaction
 from django.dispatch import receiver
 from django.db.models import Q, Max, signals as dbsignals
 from django.utils.translation import trans_real as translation
+from jinja2.filters import do_dictsort
 
 import caching.base as caching
 import commonware.log
@@ -118,7 +119,7 @@ class AddonManager(amo.models.ManagerBase):
 class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES.items()
     LOCALES = [(translation.to_locale(k).replace('_', '-'), v) for k, v in
-               settings.LANGUAGES.items()]
+               do_dictsort(settings.LANGUAGES)]
 
     guid = models.CharField(max_length=255, unique=True, null=True)
     slug = models.CharField(max_length=30, unique=True)
