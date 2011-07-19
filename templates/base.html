@@ -143,7 +143,7 @@
       <script src="{{ static(url('jsi18n')) }}"></script>
       {{ js('common') }}
       <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
-      {% if settings.PAYPAL_USE_EMBEDDED %}<script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>{% endif %}
+      <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
     {% endblock %}
     {% block js %}{% endblock %}
     {% block footer %}

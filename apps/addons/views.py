@@ -540,8 +540,6 @@ def developers(request, addon, page):
     else:
         version = addon.current_version
 
-
-
     if 'src' in request.GET:
         contribution_src = src = request.GET['src']
     else:
@@ -563,55 +561,8 @@ def developers(request, addon, page):
                          'version': version})
 
 
-def old_contribute(request, addon):
-    contrib_type = request.GET.get('type', '')
-    is_suggested = contrib_type == 'suggested'
-    source = request.GET.get('source', '')
-    comment = request.GET.get('comment', '')
-
-    amount = {
-        'suggested': addon.suggested_amount,
-        'onetime': request.GET.get('onetime-amount', ''),
-        'monthly': request.GET.get('monthly-amount', '')}.get(contrib_type, '')
-
-    contribution_uuid = hashlib.md5(str(uuid.uuid4())).hexdigest()
-
-    contrib = Contribution(addon_id=addon.id,
-                           charity_id=addon.charity_id,
-                           amount=amount,
-                           source=source,
-                           source_locale=request.LANG,
-                           annoying=addon.annoying,
-                           uuid=str(contribution_uuid),
-                           is_suggested=is_suggested,
-                           suggested_amount=addon.suggested_amount,
-                           comment=comment)
-    contrib.save()
-
-    return_url = "%s?%s" % (reverse('addons.thanks', args=[addon.slug]),
-                            urllib.urlencode({'uuid': contribution_uuid}))
-    # L10n: {0} is an add-on name.
-    if addon.charity:
-        name, paypal = addon.charity.name, addon.charity.paypal
-    else:
-        name, paypal = addon.name, addon.paypal_id
-    contrib_for = _(u'Contribution for {0}').format(jinja2.escape(name))
-    redirect_url_params = contribute_url_params(
-                            paypal,
-                            addon.id,
-                            contrib_for,
-                            absolutify(return_url),
-                            amount,
-                            contribution_uuid,
-                            contrib_type == 'monthly',
-                            comment)
-
-    return http.HttpResponseRedirect(settings.PAYPAL_CGI_URL
-                                     + '?'
-                                     + urllib.urlencode(redirect_url_params))
-
-
-def embedded_contribute(request, addon):
+@addon_view
+def contribute(request, addon):
     contrib_type = request.GET.get('type', 'suggested')
     is_suggested = contrib_type == 'suggested'
     source = request.GET.get('source', '')
@@ -678,14 +629,6 @@ def embedded_contribute(request, addon):
                                              'error': nice_error}),
                                  content_type='application/json')
     return http.HttpResponseRedirect(url)
-
-
-@addon_view
-def contribute(request, addon):
-    if settings.PAYPAL_USE_EMBEDDED:
-        return embedded_contribute(request, addon)
-    else:
-        return old_contribute(request, addon)
 
 
 def contribute_url_params(business, addon_id, item_name, return_url,

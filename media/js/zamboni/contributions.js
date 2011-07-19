@@ -2,33 +2,29 @@ $(document).ready(function() {
     $("#contribute-why").popup("#contribute-more-info", {
         pointTo: "#contribute-more-info"
     });
-    if (PAYPAL !== undefined) {
-        $('div.contribute a.suggested-amount').live('click', function(event) {
-            var el = this;
-            $.getJSON($(this).attr('href') + '&result_type=json',
-                function(json) {
-                    if (json.paykey) {
-                        dgFlow = new PAYPAL.apps.DGFlow({clicked: el.id});
-                        dgFlow.startFlow(json.url);
-                    } else {
-                        if (!$('#paypal-error').length) {
-                            $(el).closest('div').append('<div id="paypal-error" class="popup"></div>');
-                        }
-                        $('#paypal-error').text(json.error).popup(el, {pointTo:el}).render();
+    $('div.contribute a.suggested-amount').live('click', function(event) {
+        var el = this;
+        $.getJSON($(this).attr('href') + '&result_type=json',
+            function(json) {
+                if (json.paykey) {
+                    dgFlow = new PAYPAL.apps.DGFlow({expType: 'mini'});
+                    dgFlow.startFlow(json.url);
+                } else {
+                    if (!$('#paypal-error').length) {
+                        $(el).closest('div').append('<div id="paypal-error" class="popup"></div>');
                     }
+                    $('#paypal-error').text(json.error).popup(el, {pointTo:el}).render();
                 }
-            );
-            return false;
-        });
-    }
-    if (PAYPAL !== undefined) {
-        if ($('#paypal-result').length) {
-            top_dgFlow = top.dgFlow || (top.opener && top.opener.top.dgFlow);
-            if (top_dgFlow !== null) {
-                top_dgFlow.closeFlow();
-                if (top !== null) {
-                    top.close();
-                }
+            }
+        );
+        return false;
+    });
+    if ($('#paypal-result').length) {
+        top_dgFlow = top.dgFlow || (top.opener && top.opener.top.dgFlow);
+        if (top_dgFlow !== null) {
+            top_dgFlow.closeFlow();
+            if (top !== null) {
+                top.close();
             }
         }
     }
@@ -84,25 +80,20 @@ var contributions = {
                     return false;
                 }
             }
-            if (PAYPAL !== undefined) {
-                var $self = $(this);
-                $.ajax({type: 'GET',
-                    url: $(this).attr('action') + '?result_type=json',
-                    data: $(this).serialize(),
-                    success: function(json) {
-                        if (json.paykey) {
-                            dgFlow = new PAYPAL.apps.DGFlow({clicked: 'contribute-box'});
-                            dgFlow.startFlow(json.url);
-                            $self.find('span.cancel a').click();
-                        } else {
-                            $self.find('#paypal-error').show();
-                        }
+            var $self = $(this);
+            $.ajax({type: 'GET',
+                url: $(this).attr('action') + '?result_type=json',
+                data: $(this).serialize(),
+                success: function(json) {
+                    if (json.paykey) {
+                        dgFlow = new PAYPAL.apps.DGFlow({expType:'mini'});
+                        dgFlow.startFlow(json.url);
+                        $self.find('span.cancel a').click();
+                    } else {
+                        $self.find('#paypal-error').show();
                     }
-                });
-                return false;
-            } else {
-                return true;
-            }
+                }
+            });
         });
 
         // enable overlay; make sure we have the jqm package available.

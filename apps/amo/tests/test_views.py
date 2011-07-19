@@ -3,12 +3,11 @@ import urllib
 
 from django import http, test
 from django.conf import settings
-from django.core.cache import cache, parse_backend_uri
+from django.core.cache import cache
 
 import commonware.log
 from lxml import etree
 from mock import patch, Mock
-from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
@@ -164,7 +163,6 @@ class TestImpala(test_utils.TestCase):
         eq_(request.amo_user.is_developer, False)
         eq_(acl.action_allowed(request, 'Editors', '%'), True)
 
-
         eq_(nav.find('li.tools').length, 1)
         eq_(nav.find('li.tools li').length, 2)
         eq_(nav.find('li.tools > a').length, 1)
@@ -177,6 +175,7 @@ class TestImpala(test_utils.TestCase):
         item = nav.find('.tools ul li a').eq(1)
         eq_(item.text(), "Editor Tools")
         eq_(item.attr('href'), reverse('editors.home'))
+
 
 class TestStuff(test_utils.TestCase):
     fixtures = ('base/users', 'base/global-stats', 'base/configs',
@@ -358,7 +357,6 @@ class TestPaypal(test_utils.TestCase):
         self.url = reverse('amo.paypal')
         self.item = 1234567890
         self.client = Client()
-        settings.PAYPAL_USE_EMBEDDED = True
 
     def urlopener(self, status):
         m = Mock()

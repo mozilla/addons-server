@@ -49,7 +49,6 @@
         data-anonymous="{{ (not request.user.is_authenticated())|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
-        {% if settings.PAYPAL_USE_EMBEDDED %}data-paypal-url="{{ settings.PAYPAL_JS_URL }}"{% endif %}
         {% block bodyattrs %}{% endblock %}>
 
     {% if ADMIN_MESSAGE or settings.READ_ONLY%}
@@ -174,6 +173,7 @@
       <script src="{{ static(url('jsi18n')) }}"></script>
       {{ js('impala') }}
       <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
+      <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
     {% endblock %}
     {% block js %}{% endblock %}
     {% block footer %}
