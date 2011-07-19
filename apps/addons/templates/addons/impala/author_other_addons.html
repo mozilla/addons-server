@@ -1,0 +1,11 @@
+{% if author_addons %}
+  <ol>
+    {% for other in author_addons %}
+      {% if other.id == addon.id %}{% continue %}{% endif %}
+      <li>
+        <a href="{{ other.get_url_path(impala=True) }}" title="{{ other.name }}">
+          {{ other.name|string|truncate(50) }}</a>
+      </li>
+    {% endfor %}
+  </ol>
+{% endif %}

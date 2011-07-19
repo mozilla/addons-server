@@ -1,0 +1,48 @@
+<table class="{{ table_class }}">
+  <caption>{{ _('Developer Information') }}</caption>
+  <tbody>
+    <tr>
+      <th>{{ _('Name') }}</th>
+      <td class="fn n">{{ profile.name }}</td>
+    </tr>
+    {% if profile.location %}
+      <tr>
+        <th>{{ _('Location') }}</th>
+        <td class="adr">{{ profile.location }}</td>
+      </tr>
+    {% endif %}
+    {% if profile.occupation %}
+      <tr>
+        <th>{{ _('Occupation') }}</th>
+        <td class="role">{{ profile.occupation }}</td>
+      </tr>
+    {% endif %}
+    {% if profile.homepage %}
+      <tr>
+        <th>{{ _('Homepage') }}</th>
+        <td><a class="url" href="{{ profile.homepage|external_url }}">
+          {{ profile.homepage }}</a></td>
+      </tr>
+    {% endif %}
+    {% if not profile.emailhidden %}
+      <tr>
+        <th>{{ _('Email address') }}</th>
+        <td>{{ emaillink(profile.email) }}</td>
+      </tr>
+    {% endif %}
+    <tr>
+      <th>{{ _('User since') }}</th>
+      <td>{{ profile.created|datetime }}</td>
+    </tr>
+    {% if author_addons %}
+      <tr>
+        <th>{{ _('Other Add-ons developed') }}</th>
+        <td>{% include "addons/impala/author_other_addons.html" %}</td>
+      </tr>
+    {% endif %}
+    <tr>
+      <th>{{ _('Average rating for their Add-ons') }}</th>
+      <td>{{ profile.averagerating|float|stars }}</td>
+    </tr>
+  </tbody>
+</table>

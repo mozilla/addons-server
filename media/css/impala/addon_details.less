@@ -12,7 +12,6 @@
         margin: 0 12px 1em 0;
     }
     h2 {
-        font-size: 24px;
         padding-right: 54px;
     }
     .install {
@@ -64,7 +63,7 @@
     .border-radius(5px);
     .box-shadow(0 -1px 0 #D7E1ED inset, 0 1px 0 rgba(0, 0, 0, 0.05));
     border: 1px solid #CCD6E3;
-    padding: 1em 1em 1em 104px;
+    padding: 14px 14px 14px 104px;
     background: #E3EDFA;
     margin-bottom: 1em;
     h3 {
@@ -80,17 +79,23 @@
 }
 
 .notice.author {
+    min-height: 64px;
     position: relative;
-    height: 64px;
     .aux {
         float: right;
+        margin-left: 7px;
         text-align: center;
-        margin: 0 1em;
         p {
             font-size: 11px;
         }
     }
+    .continue {
+        display: block;
+        margin-top: .25em;
+    }
     .avatar {
+        height: 64px;
+        width: 64px;
         position: absolute;
         left: 20px;
         top: 1em;
@@ -401,8 +406,8 @@
         }
         h4 {
             font-size: 12px;
+            line-height: 14px;
         }
-        
     }
 }
 
@@ -420,4 +425,94 @@ span.featured {
 }
 span.featured {
     background-color: #093;
+}
+
+span.emaillink {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    .i {
+        display: none;
+    }
+}
+
+caption {
+    display: none;
+}
+
+th {
+    text-align: left;
+}
+
+.html-rtl th {
+    text-align: right;
+}
+
+table.person-info {
+    width: 100%;
+    th, td {
+        border-top: 1px solid @border-black;
+        padding: 8px 0;
+    }
+    th {
+        color: #333;
+        line-height: 15px;
+        width: 40%;
+    }
+    tr:first-child {
+        th, td {
+            border-top: none;
+        }
+    }
+    td {
+        padding-top: 0;
+    }
+    ol {
+        list-style: decimal;
+        margin: 0 0 0 1.5em;
+    }
+}
+
+img.avatar {
+    border: 3px solid #fff;
+}
+img.icon {
+    padding: 4px;
+}
+
+.meet {
+    .hero h2 {
+        margin-top: 1em;
+    }
+    hgroup.hero h2 {
+        margin-bottom: 1em;
+    }
+    &.about {
+        hgroup.hero h2 {
+            margin: 2em 0;
+        }
+    }
+    .author-bio {
+        border-top: 1px dotted @border-blue;
+        margin-top: 1em;
+        padding-top: 1em;
+    }
+    .notice.author {
+        padding-left: 14px;
+        .avatar {
+            display: none;
+        }
+    }
+    .island {
+        > h3 {
+            margin: 0;
+        }
+        > section {
+            float: none;
+            padding: 0 14px 0 0;
+            width: auto;
+        }
+        .secondary {
+            width: 208px;
+        }
+    }
 }
