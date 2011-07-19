@@ -54,6 +54,9 @@ var paypalFixtures = {
 
 module('Contributions', paypalFixtures);
 
+// We don't need to pull in Paypal, but we do need a global var.
+PAYPAL = '';
+
 asyncTest('Paypal failure', function() {
     var self = this;
     $.mockjax({

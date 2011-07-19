@@ -2,16 +2,14 @@ $(document).ready(function() {
     $("#contribute-why").popup("#contribute-more-info", {
         pointTo: "#contribute-more-info"
     });
-    if ($('body').attr('data-paypal-url')) {
+    if (PAYPAL !== undefined) {
         $('div.contribute a.suggested-amount').live('click', function(event) {
             var el = this;
             $.getJSON($(this).attr('href') + '&result_type=json',
                 function(json) {
                     if (json.paykey) {
-                        $.getScript($('body').attr('data-paypal-url'), function() {
-                            dgFlow = new PAYPAL.apps.DGFlow({clicked: el.id});
-                            dgFlow.startFlow(json.url);
-                        });
+                        dgFlow = new PAYPAL.apps.DGFlow({clicked: el.id});
+                        dgFlow.startFlow(json.url);
                     } else {
                         if (!$('#paypal-error').length) {
                             $(el).closest('div').append('<div id="paypal-error" class="popup"></div>');
@@ -23,7 +21,7 @@ $(document).ready(function() {
             return false;
         });
     }
-    if ($('body').attr('data-paypal-url')) {
+    if (PAYPAL !== undefined) {
         if ($('#paypal-result').length) {
             top_dgFlow = top.dgFlow || (top.opener && top.opener.top.dgFlow);
             if (top_dgFlow !== null) {
@@ -86,18 +84,16 @@ var contributions = {
                     return false;
                 }
             }
-            if ($('body').attr('data-paypal-url')) {
+            if (PAYPAL !== undefined) {
                 var $self = $(this);
                 $.ajax({type: 'GET',
                     url: $(this).attr('action') + '?result_type=json',
                     data: $(this).serialize(),
                     success: function(json) {
                         if (json.paykey) {
-                            $.getScript($('body').attr('data-paypal-url'), function() {
-                                dgFlow = new PAYPAL.apps.DGFlow({clicked: 'contribute-box'});
-                                dgFlow.startFlow(json.url);
-                                $self.find('span.cancel a').click();
-                            });
+                            dgFlow = new PAYPAL.apps.DGFlow({clicked: 'contribute-box'});
+                            dgFlow.startFlow(json.url);
+                            $self.find('span.cancel a').click();
                         } else {
                             $self.find('#paypal-error').show();
                         }
