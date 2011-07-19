@@ -4,6 +4,10 @@ settings_local.py
 .coverage
 pip-log.txt
 docs/_gh-pages
+lib/product_json/*.json
+lib/product_json/.last_update
+lib/product_json/regions/*.json
+lib/product_json/regions/.last_update
 build.py
 .DS_Store
 /media/img/uploads
