@@ -512,7 +512,7 @@ def compat_application_versions(request):
 def validate_addon(request):
     return jingo.render(request, 'devhub/validate_addon.html',
                         {'title': _('Validate Add-on'),
-                         'upload_url': reverse('devhub.upload')})
+                         'upload_url': reverse('devhub.standalone_upload')})
 
 
 @login_required
@@ -521,7 +521,7 @@ def check_addon_compatibility(request):
     return jingo.render(request, 'devhub/validate_addon.html',
                         {'appversion_form': form,
                          'title': _('Check Add-on Compatibility'),
-                         'upload_url': reverse('devhub.upload')})
+                         'upload_url': reverse('devhub.standalone_upload')})
 
 
 def packager_path(name):
@@ -594,7 +594,7 @@ def package_addon_download(request, id):
 
 @login_required
 @post_required
-def upload(request, addon_slug=None):
+def upload(request, addon_slug=None, is_standalone=False):
     filedata = request.FILES['upload']
 
     fu = FileUpload.from_post(filedata, filedata.name, filedata.size)
@@ -612,8 +612,23 @@ def upload(request, addon_slug=None):
         and addon_slug):
         return redirect('devhub.upload_detail_for_addon',
                         addon_slug, fu.pk)
+    elif is_standalone:
+        return redirect('devhub.standalone_upload_detail', fu.pk)
     else:
         return redirect('devhub.upload_detail', fu.pk, 'json')
+
+
+@login_required
+@post_required
+def standalone_upload(request):
+    return upload(request, is_standalone=True)
+
+
+@login_required
+@json_view
+def standalone_upload_detail(request, uuid):
+    upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
+    return upload_validation_context(request, upload)
 
 
 @post_required
@@ -752,23 +767,10 @@ def json_upload_detail(request, upload, addon_slug=None):
     addon = None
     if addon_slug:
         addon = get_object_or_404(Addon, slug=addon_slug)
-    if not settings.VALIDATE_ADDONS:
-        upload.task_error = ''
-        upload.validation = json.dumps({'errors': 0, 'messages': [],
-                                        'notices': 0, 'warnings': 0})
-        upload.save()
-
-    validation = json.loads(upload.validation) if upload.validation else ""
-    if waffle.flag_is_active(request, 'form-errors-in-validation') and addon:
-        url = reverse('devhub.upload_detail_for_addon',
-                      args=[addon.slug, upload.uuid])
-    else:
-        url = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
-    full_report_url = reverse('devhub.upload_detail', args=[upload.uuid])
+    result = upload_validation_context(request, upload, addon=addon)
     plat_exclude = []
-
-    if validation:
-        if validation['errors'] == 0:
+    if result['validation']:
+        if result['validation']['errors'] == 0:
             try:
                 apps = parse_addon(upload.path, addon=addon).get('apps', [])
                 app_ids = set([a.id for a in apps])
@@ -797,11 +799,31 @@ def json_upload_detail(request, upload, addon_slug=None):
                 else:
                     log.error("XPI parsing error, ignored: %s" % exc)
 
+    result['platforms_to_exclude'] = plat_exclude
+    return result
+
+
+def upload_validation_context(request, upload, addon_slug=None, addon=None):
+    if addon_slug and not addon:
+        addon = get_object_or_404(Addon, slug=addon_slug)
+    if not settings.VALIDATE_ADDONS:
+        upload.task_error = ''
+        upload.validation = json.dumps({'errors': 0, 'messages': [],
+                                        'notices': 0, 'warnings': 0})
+        upload.save()
+
+    validation = json.loads(upload.validation) if upload.validation else ""
+    if waffle.flag_is_active(request, 'form-errors-in-validation') and addon:
+        url = reverse('devhub.upload_detail_for_addon',
+                      args=[addon.slug, upload.uuid])
+    else:
+        url = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
+    full_report_url = reverse('devhub.upload_detail', args=[upload.uuid])
+
     return make_validation_result(dict(upload=upload.uuid,
                                        validation=validation,
                                        error=upload.task_error, url=url,
-                                       full_report_url=full_report_url,
-                                       platforms_to_exclude=plat_exclude))
+                                       full_report_url=full_report_url))
 
 
 @login_required

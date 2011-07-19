@@ -182,11 +182,11 @@ class TestValidateAddon(test_utils.TestCase):
         eq_(r.status_code, 200)
         doc = pq(r.content)
         eq_(doc('#upload-addon').attr('data-upload-url'),
-            reverse('devhub.upload'))
+            reverse('devhub.standalone_upload'))
 
 
 class TestValidateFile(BaseUploadTest):
-    fixtures = ['base/apps', 'base/users',
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615',
                 'devhub/addon-file-100456', 'base/platforms']
 
     def setUp(self):
@@ -301,6 +301,35 @@ class TestValidateFile(BaseUploadTest):
         eq_(data['validation'], '')
         eq_(data['error'], 'RuntimeError: simulated task error')
 
+    @mock.patch.object(waffle, 'flag_is_active')
+    @mock.patch('devhub.tasks.run_validator')
+    def test_rdf_parse_errors_are_ignored(self, run_validator,
+                                          flag_is_active):
+        run_validator.return_value = json.dumps({
+            "errors": 0,
+            "success": True,
+            "warnings": 0,
+            "notices": 0,
+            "message_tree": {},
+            "messages": [],
+            "metadata": {}
+        })
+        flag_is_active.return_value = True
+        addon = Addon.objects.get(pk=3615)
+        xpi = self.get_upload('extension.xpi')
+        d = parse_addon(xpi.path)
+        # Set up a duplicate upload:
+        addon.update(guid=d['guid'])
+        res = self.client.get(reverse('devhub.validate_addon'))
+        doc = pq(res.content)
+        upload_url = doc('#upload-addon').attr('data-upload-url')
+        with open(xpi.path, 'rb') as f:
+            # Simulate JS file upload
+            res = self.client.post(upload_url, {'upload': f}, follow=True)
+        data = json.loads(res.content)
+        # Make sure we don't see a dupe UUID error:
+        eq_(data['validation']['messages'], [])
+
 
 class TestCompatibilityResults(test_utils.TestCase):
     fixtures = ['base/users', 'devhub/addon-compat-results']
@@ -414,17 +443,19 @@ class TestUploadCompatCheck(BaseUploadTest):
         self.app = Application.objects.get(pk=amo.FIREFOX.id)
         self.appver = AppVersion.objects.get(application=self.app,
                                              version='3.7a1pre')
-        self.upload_url = reverse('devhub.upload')
+        self.upload_url = reverse('devhub.standalone_upload')
 
     def poll_upload_status_url(self, upload_uuid):
         return reverse('devhub.upload_detail', args=[upload_uuid, 'json'])
 
-    def fake_xpi(self):
+    def fake_xpi(self, filename=None):
         """Any useless file that has a name property (for Django)."""
-        return open(get_image_path('non-animated.gif'), 'rb')
+        if not filename:
+            filename = get_image_path('non-animated.gif')
+        return open(filename, 'rb')
 
-    def upload(self):
-        with self.fake_xpi() as f:
+    def upload(self, filename=None):
+        with self.fake_xpi(filename=filename) as f:
             # Simulate how JS posts data w/ app/version from the form.
             res = self.client.post(self.upload_url,
                                    {'upload': f,
@@ -491,3 +522,18 @@ class TestUploadCompatCheck(BaseUploadTest):
             empty = False
             eq_(AppVersion.objects.get(pk=id).version, ver)
         assert not empty, "Unexpected: %r" % data
+
+    @mock.patch.object(waffle, 'flag_is_active')
+    @mock.patch('devhub.tasks.run_validator')
+    def test_rdf_parse_errors_are_ignored(self, run_validator,
+                                          flag_is_active):
+        run_validator.return_value = self.compatibility_result
+        flag_is_active.return_value = True
+        addon = Addon.objects.get(pk=3615)
+        dupe_xpi = self.get_upload('extension.xpi')
+        d = parse_addon(dupe_xpi.path)
+        # Set up a duplicate upload:
+        addon.update(guid=d['guid'])
+        data = self.upload(filename=dupe_xpi.path)
+        # Make sure we don't see a dupe UUID error:
+        eq_(data['validation']['messages'], [])

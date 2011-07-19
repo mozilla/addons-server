@@ -424,7 +424,8 @@
                         $(".platform:hidden").show();
                         $('.platform label').removeClass('platform-disabled');
                         $('input.platform').attr('disabled', false);
-                        if (results.platforms_to_exclude.length) {
+                        if (results.platforms_to_exclude &&
+                            results.platforms_to_exclude.length) {
                             // e.g. after uploading a Mobile add-on
                             var excluded = false;
                             $('input.platform').each(function(e) {

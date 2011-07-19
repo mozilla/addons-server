@@ -152,6 +152,10 @@ urlpatterns = decorate(write, patterns('',
     url('^upload$', views.upload, name='devhub.upload'),
     url('^upload/([^/]+)(?:/([^/]+))?$', views.upload_detail,
         name='devhub.upload_detail'),
+    url('^standalone-upload$', views.standalone_upload,
+        name='devhub.standalone_upload'),
+    url('^standalone-upload/([^/]+)$', views.standalone_upload_detail,
+        name='devhub.standalone_upload_detail'),
 
     # URLs for a single add-on.
     url('^addon/%s/' % ADDON_ID, include(detail_patterns)),
