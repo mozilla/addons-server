@@ -112,8 +112,7 @@ a {
         line-height: 16px;
         margin-bottom: 28px;
     }
-    nav > ul li,
-    #recently-viewed li {
+    li {
         border: 1px solid fadeOut(#000, 80%);
         border-width: 0 0 1px 0;
         position: relative;
@@ -128,6 +127,8 @@ a {
         a:hover {
             background: #ECF5FE;
         }
+    }
+    nav li {
         a:after {
             content: '\203a';
             position: absolute;
@@ -151,15 +152,13 @@ a {
             color: inherit;
         }
     }
-    nav > ul a,
-    #recently-viewed > ul a,
+    li a,
     h2 {
         display: block;
         text-decoration: none;
         line-height: 28px;
     }
-    nav > ul a,
-    #recently-viewed a,
+    li a,
     h2,
     p {
         padding: 0 6px;

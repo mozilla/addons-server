@@ -151,14 +151,22 @@
     }
 }
 
-.secondary {
-    .listing-grid {
+#side-nav .listing-grid {
+    li {
         border: none;
-        li {
-            border: none;
+        a:hover {
+            background: #fff;
         }
-        .item.addon {
-            margin-left: -3px;
+        a {
+            display: inline;
+            line-height: auto;
+            padding: 0;
         }
+        a:after {
+            display: none;
+        }
+    }
+    .item.addon {
+        margin-left: -3px;
     }
 }
