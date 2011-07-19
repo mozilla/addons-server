@@ -22,8 +22,8 @@ from users.models import (UserProfile, get_hexdigest, BlacklistedEmailDomain,
 
 
 class TestUserProfile(test_utils.TestCase):
-    fixtures = ('base/addon_3615', 'base/user_2519', 'users/test_backends',
-                'base/apps',)
+    fixtures = ('base/addon_3615', 'base/user_2519', 'base/user_4043307',
+                'users/test_backends', 'base/apps',)
 
     def test_anonymize(self):
         u = User.objects.get(id='4043307').get_profile()
@@ -120,6 +120,14 @@ class TestUserProfile(test_utils.TestCase):
         u = UserProfile.objects.get(id=2519)
         addons = u.addons_listed.values_list('id', flat=True)
         eq_(sorted(addons), [3615])
+
+    def test_addons_not_listed(self):
+        """Make sure user is not listed when another is."""
+        AddonUser.objects.create(addon_id=3615, user_id=2519, listed=False)
+        AddonUser.objects.create(addon_id=3615, user_id=4043307, listed=True)
+        u = UserProfile.objects.get(id=2519)
+        addons = u.addons_listed.values_list('id', flat=True)
+        assert 3615 not in addons
 
     def test_mobile_collection(self):
         u = UserProfile.objects.get(id='4043307')
