@@ -41,7 +41,7 @@
           {{ impala_performance_note(amount=addon.ts_slowness, listing=True) }}
         {% endif %}
       </div>
-      {{ install_button(addon, impala=True) }}
+      {{ install_button(addon, impala=True, collection=collection) }}
     </div>
   {% endfor %}
 {% endcache %}

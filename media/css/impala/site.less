@@ -54,11 +54,12 @@ a {
 }
 
 .primary {
-    position: relative;
-}
-
-.primary {
     margin-left: 210px;
+    position: relative;
+    &.full {
+        margin: 0;
+        width: 100%;
+    }
     .primary {
         margin-right: 210px;
         margin-left: 0;
@@ -71,6 +72,9 @@ a {
 .html-rtl.gutter .primary {
     margin-left: 210px;
     margin-right: 0;
+    &.full {
+        margin: 0;
+    }
 }
 
 .secondary {
@@ -113,7 +117,7 @@ a {
         margin-bottom: 28px;
     }
     li {
-        border: 1px solid fadeOut(#000, 80%);
+        border: 1px solid @border-black;
         border-width: 0 0 1px 0;
         position: relative;
         &:first-child {
@@ -164,7 +168,7 @@ a {
         padding: 0 6px;
     }
     section > h3 {
-        border-bottom: 1px solid fadeOut(#000, 80%);
+        border-bottom: 1px solid @border-black;
         color: #484848;
         font-size: 12px;
         font-weight: bold;

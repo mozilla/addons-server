@@ -25,6 +25,10 @@ h1 {
     text-transform: uppercase;
 }
 
+h2 {
+    font-size: 24px;
+}
+
 h4 {
     font-size: 14px;
 }
@@ -99,10 +103,6 @@ pre, code, kbd, tt, samp, tt {
         }
     }
     &.hero {
-        h2 {
-            color: @red;
-            font-size: 24px;
-        }
         hgroup {
             h3 {
                 color: #666;
@@ -114,6 +114,20 @@ pre, code, kbd, tt, samp, tt {
         }
         header + .item {
             border-top: 1px dotted #C9DDF2;
+            margin-top: 1em;
+        }
+    }
+}
+
+.primary {
+    .hero {
+        h2 {
+            color: @red;
+        }
+    }
+    .prose {
+        h3 {
+            font: italic 16px/18px @serif-stack;
             margin-top: 1em;
         }
     }
