@@ -17,8 +17,8 @@ $(function() {
                 if (data.watching) {
                     $parent.addClass('watching');
                     follow_text = gettext('Stop following');
-                    $('<span>', {text: gettext('Following'),
-                                 class: 'is-watching'}).insertBefore($widget);
+                    $('<span>', {'text': gettext('Following'),
+                                 'class': 'is-watching'}).insertBefore($widget);
                 } else {
                     $parent.find('.is-watching').remove();
                 }
