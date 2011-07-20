@@ -279,7 +279,7 @@ def es_search(request, tag_name=None, template=None):
     form = ESSearchForm(request.GET or None)
     form.is_valid()  # Let the form try to clean data.
 
-    category = form.cleaned_data.get('cat')
+    category = request.GET.get('cat')
 
     if category == 'collections':
         return _collections(request)
