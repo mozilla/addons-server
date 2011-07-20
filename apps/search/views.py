@@ -311,9 +311,12 @@ def es_search(request, tag_name=None, template=None):
     if query.get('platform'):
         qs = qs.filter(platform=query['platform'])
     if query.get('appver'):
-        appver = version_int(query['appver'])
-        qs = qs.filter(**{'appversion.%s.max__gte' % APP.id: appver,
-                          'appversion.%s.min__lte' % APP.id: appver})
+        # Get a min version less than X.0.
+        low = version_int(query['appver'])
+        # Get a max version greater than X.0a.
+        high = version_int(query['appver'] + 'a')
+        qs = qs.filter(**{'appversion.%s.max__gte' % APP.id: high,
+                          'appversion.%s.min__lte' % APP.id: low})
     if query.get('atype') and query['atype']in amo.ADDON_TYPES:
         qs = qs.filter(type=query['atype'])
     else:
