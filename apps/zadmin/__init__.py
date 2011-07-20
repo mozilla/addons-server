@@ -1,7 +1,11 @@
+from django.contrib import admin
 from django.template import loader
 from django.template.response import SimpleTemplateResponse
 
 import jingo
+
+
+admin.site.disable_action('delete_selected')
 
 
 def jinja_for_django(template_name, context=None, **kw):
