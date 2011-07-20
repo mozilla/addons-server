@@ -192,6 +192,32 @@ def reply(request, addon, review_id):
 
 @addon_view
 @login_required
+def impala_reply(request, addon, review_id):
+    is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
+    is_author = acl.check_addon_ownership(request, addon, dev=True)
+    if not (is_admin or is_author):
+        return http.HttpResponseForbidden()
+
+    review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
+    form = forms.ReviewReplyForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            d = dict(reply_to=review, addon=addon,
+                     defaults=dict(user=request.amo_user))
+            reply, new = Review.objects.get_or_create(**d)
+            for key, val in _review_details(request, addon, form).items():
+                setattr(reply, key, val)
+            reply.save()
+            action = 'New' if new else 'Edited'
+            log.debug('%s reply to %s: %s' % (action, review_id, reply.id))
+            return redirect('i_reviews.detail', addon.slug, review_id)
+    ctx = dict(review=review, form=form, addon=addon)
+    ctx.update(flag_context())
+    return jingo.render(request, 'reviews/impala/reply.html', ctx)
+
+
+@addon_view
+@login_required
 def add(request, addon):
     form = forms.ReviewForm(request.POST or None)
     if request.method == 'POST':
@@ -202,6 +228,21 @@ def add(request, addon):
             log.debug('New review: %s' % review.id)
             return redirect('reviews.list', addon.slug)
     return jingo.render(request, 'reviews/add.html',
+                        dict(addon=addon, form=form))
+
+
+@addon_view
+@login_required
+def impala_add(request, addon):
+    form = forms.ReviewForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            details = _review_details(request, addon, form)
+            review = Review.objects.create(**details)
+            amo.log(amo.LOG.ADD_REVIEW, addon, review)
+            log.debug('New review: %s' % review.id)
+            return redirect('i_reviews.list', addon.slug)
+    return jingo.render(request, 'reviews/impala/add.html',
                         dict(addon=addon, form=form))
 
 

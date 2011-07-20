@@ -7,7 +7,7 @@
   {% set is_flagged = flags[review.id] %}
 {% endif %}
 
-<div class="review item
+<div class="review c item
             {% if is_reply %}reply{% endif %}
             {% if is_flagged %}flagged{% endif %}"
      id="review-{{ review.id }}"
@@ -34,7 +34,8 @@
           and review.ip_address != '0.0.0.0' %}
       <span>[{{ review.ip_address }}]</span>
     {% endif %}
-    <a class="permalink" href="{{ url('reviews.detail', addon.slug, review.id) }}">#</a>
+    <a class="permalink"
+       href="{{ url('i_reviews.detail', addon.slug, review.id) }}">#</a>
   </p>
   <p class="description">{{ review.body|nl2br }}</p>
   {% if outdated and not is_reply %}
@@ -43,7 +44,7 @@
   {% endif %}
   {% if page != 'user' and review.previous_count %}
   <span class="item-note">
-    {% with user_review_url = url('reviews.user', addon.slug, review.user.id) %}
+    {% with user_review_url = url('i_reviews.user', addon.slug, review.user.id) %}
       {% if review.is_latest %}
         {% trans cnt=review.previous_count %}
           This user has a <a href="{{ user_review_url }}">previous review</a> of this add-on.
@@ -70,7 +71,7 @@
     {% endif %}
     {% if not (is_reply or has_reply) and (perms.is_author or perms.is_admin) %}
       <li>
-        <a class="review-delete" href="{{ url('reviews.reply', addon.slug, review.id) }}">
+        <a class="review-delete" href="{{ url('i_reviews.reply', addon.slug, review.id) }}">
           {{ _('Reply to review') }}</a>
       </li>
     {% endif %}

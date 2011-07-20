@@ -1,0 +1,43 @@
+{% extends "impala/base.html" %}
+
+{% set title = _('Reply to review by {0}')|f(review.user.name) %}
+
+{% block bodyclass %}reviews gutter{% endblock %}
+
+{% block title %}{{ page_title(title) }}{% endblock %}
+
+{% block content %}
+
+  {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+                  (addon.get_url_path(impala=True), addon.name),
+                  (url('i_reviews.list', addon.slug), _('Reviews')),
+                  (None, _('Reply'))]) }}
+
+  <div class="secondary">
+    {{ addon|sidebar_listing }}
+  </div>
+
+  <div class="primary island hero" id="reviews">
+    <h2>{{ title }}</h2>
+
+    {% include "reviews/impala/review.html" %}
+    
+    <div class="review item reply">
+      <h2>{{ _('Write a Reply') }}</h2>
+      <form method="post" action="{{ url('i_reviews.reply', addon.slug, review.id) }}">
+        {{ csrf() }}
+        <p>
+          <label for="id_title">{{ form.title.label }} <span class="optional">{{ _('(optional)') }}</span></label>
+          {{ form.title }}
+        </p>
+        {{ field(form.body, _('Reply:')) }}
+        <input type="submit" value="{{ _('Submit Your Reply') }}">
+        {# L10n: this string is following a <button>. #}
+        {% trans url=url('i_reviews.list', addon.slug) %}
+          or <a href="{{ url }}">Cancel</a>
+        {% endtrans %}
+      </form>
+    </div>
+  </div>
+  {{ report_review_popup() }}
+{% endblock %}
