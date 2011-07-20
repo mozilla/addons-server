@@ -6,7 +6,7 @@
       <div class="review">
         <h3>
           {% if review.title %}
-            <span>{{ review.title }}</span>
+            <b>{{ review.title }}</b>
           {% endif %}
           {{ review.rating|stars }}
         </h3>
@@ -24,7 +24,11 @@
     {% endfor %}
     {% if addon %}
       <p>
-        <a class="more-info" href="{{ url('reviews.list', addon.slug) }}">
+        {% if settings.IMPALA_REVIEWS %}
+          <a class="more-info" href="{{ url('i_reviews.list', addon.slug) }}">
+        {% else %}
+          <a class="more-info" href="{{ url('reviews.list', addon.slug) }}">
+        {% endif %}
           {% trans num=addon.total_reviews, cnt=addon.total_reviews|numberfmt %}
             See all user reviews
           {% pluralize %}

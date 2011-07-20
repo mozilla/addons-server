@@ -175,3 +175,44 @@ header .feed {
         }
     }
 }
+
+.item:hover {
+    .item-actions > li > a {
+        color: @link;
+    }
+}
+.item-actions {
+    font-family: @sans-stack;
+    float: right;
+    font-size: 11px;
+    margin-top: 1em;
+    margin-bottom: 2px;
+    color: #aaa;
+    > li {
+        float: left;
+        > a {
+            font-weight: normal;
+            color: #aaa;
+            -moz-transition: color .2s;
+            -webkit-transition: color .2s;
+            transition: color .2s;
+        }
+        &:not(:first-child) {
+            list-style-type: disc;
+            margin-left: 1.6em;
+        }
+    }
+}
+.html-rtl .item-actions {
+    float: left;
+    > li {
+        float: right;
+    }
+}
+.item-note {
+    float: left;
+    color: #666;
+    font: italic 0.9em @sans-stack;
+    margin-bottom: 2px;
+    margin-top: 1em;
+}

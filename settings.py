@@ -543,7 +543,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/contributions.js',
             'js/impala/addon_details.js',
             'js/impala/abuse.js',
-            'js/zamboni/reviews.js',
+            'js/impala/reviews.js',
 
             # Personas
             'js/lib/jquery.hoverIntent.min.js',
@@ -956,6 +956,7 @@ UNLINK_SITE_STATS = True
 # Use the new featured add-ons system which makes use of featured collections.
 NEW_FEATURES = False
 IMPALA_BROWSE = False
+IMPALA_REVIEWS = False
 
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = True

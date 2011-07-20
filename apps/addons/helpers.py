@@ -193,6 +193,13 @@ def impala_addon_listing_header(context, url_base, sort_opts, selected):
 
 @register.filter
 @jinja2.contextfilter
+@register.inclusion_tag('addons/impala/sidebar_listing.html')
+def sidebar_listing(context, addon):
+    return new_context(**locals())
+
+
+@register.filter
+@jinja2.contextfilter
 def addon_hovercard(context, addon):
     return addon_grid(context, [addon], cols=1)
 

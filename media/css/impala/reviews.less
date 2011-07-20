@@ -1,5 +1,42 @@
 @import 'lib';
 
+#reviews .review {
+    border-bottom: 1px dotted @border-blue;
+    overflow: hidden;
+    &.no-reviews {
+        border-bottom: 0;
+        h3 {
+            font-style: normal;
+        }
+    }
+    padding: 1em 0;
+    h3 {
+        color: #333;
+        font-size: 16px;
+        line-height: 16px;
+        font-style: italic;
+        .stars {
+            padding: 2px;
+        }
+        .stars:not(:first-child) {
+            margin-left: .5em;
+        }
+    }
+    .byline {
+        font-style: italic;
+        margin: 2px 0;
+        color: #999;
+        font-size: 12px;
+        a {
+            color: #666;
+        }
+    }
+    .description {
+        margin: 1em 0 0;
+        color: #333;
+    }
+}
+
 .stars {
     display: inline-block;
     vertical-align: middle;
@@ -32,6 +69,27 @@
 
 
 /* grouped ratings style */
+
+.average-rating {
+    position: relative;
+    padding-left: 74px;
+    strong {
+        font-weight: bold;
+    }
+    .stars {
+        position: absolute;
+        left: 0;
+        top: 2px;
+    }
+}
+.html-rtl .average-rating {
+    padding-left: 0;
+    padding-right: 74px;
+    .stars {
+        left: auto;
+        right: 0;
+    }
+}
 
 .grouped_ratings {
     font-family: @sans-stack;
@@ -68,6 +126,30 @@
     .stars {
         float: left;
         margin: 4px 8px 0 0 ;
+    }
+}
+
+.review-reason {
+    a {
+        display: block;
+    }
+}
+.other-note {
+    display: none;
+    clear: left;
+    padding: 8px 0 0;
+    input[type='text'] {
+        width: 138px;
+        margin-right: 8px;
+        padding: 7px;
+    }
+    input[type='submit'] {
+        margin-top: -2px;
+    }
+}
+.other {
+    .other-note {
+        display: block;
     }
 }
 

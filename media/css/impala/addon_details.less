@@ -288,42 +288,6 @@
     }
 }
 
-#reviews .review {
-    border-bottom: 1px dotted @border-blue;
-    overflow: hidden;
-    &.no-reviews {
-        border-bottom: 0;
-        h3 {
-            font-style: normal;
-        }
-    }
-    padding: 1em 0;
-    h3 {
-        color: #333;
-        font-size: 16px;
-        line-height: 16px;
-        font-style: italic;
-        .stars {
-            padding: 2px;
-        }
-        .stars:not(:first-child) {
-            margin-left: .5em;
-        }
-    }
-    .byline {
-        font-style: italic;
-        margin: 2px 0;
-        color: #999;
-        font-size: 12px;
-        a {
-            color: #666;
-        }
-    }
-    .description {
-        margin: 0;
-    }
-}
-
 .metadata {
     li {
         line-height: 1.4em;
@@ -415,6 +379,31 @@
     .install {
         display: inline-block;
         margin-bottom: 1em;
+    }
+}
+
+.secondary .addon {
+    hgroup {
+        position: relative;
+        padding-left: 40px;
+        img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 32px;
+            height: 32px;
+        }
+        h2 {
+            font: bold 16px/18px @serif-stack;
+            font-family: @serif-stack;
+            text-transform: none;
+            margin: 0 0 4px;
+            padding: 0;
+        }
+        h4 {
+            font-size: 12px;
+        }
+        
     }
 }
 

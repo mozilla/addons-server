@@ -111,7 +111,7 @@ def impala_review_list(request, addon, review_id=None, user_id=None, template=No
         ctx['flags'] = get_flags(request, reviews.object_list)
     else:
         ctx['review_perms'] = {}
-    return jingo.render(request, template, ctx)
+    return jingo.render(request, 'reviews/impala/review_list.html', ctx)
 
 
 def get_flags(request, reviews):
