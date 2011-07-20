@@ -45,6 +45,11 @@ class TestES(amo.tests.ESTestCase):
         eq_(qs._build_query(), {'fields': ['id'],
                                 'query': {'term': {'type': 1}}})
 
+    def test_query_text(self):
+        qs = Addon.search().query(name__text='woo woo')
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'query': {'text': {'name': 'woo woo'}}})
+
     def test_query_multiple_and_range(self):
         qs = Addon.search().query(type=1, status__gte=1)
         eq_(qs._build_query(), {'fields': ['id'],
