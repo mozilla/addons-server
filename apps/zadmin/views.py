@@ -356,7 +356,7 @@ def es_collections_json(request):
     try:
         qs = qs.query(id__startswith=int(q))
     except ValueError:
-        qs = qs.query(name__startswith=q)
+        qs = qs.query(name__text=q)
     try:
         qs = qs.filter(app=int(app))
     except ValueError:
