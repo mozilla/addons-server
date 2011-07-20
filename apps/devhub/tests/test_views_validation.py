@@ -327,6 +327,9 @@ class TestValidateFile(BaseUploadTest):
             # Simulate JS file upload
             res = self.client.post(upload_url, {'upload': f}, follow=True)
         data = json.loads(res.content)
+        # Simulate JS result polling:
+        res = self.client.get(data['url'])
+        data = json.loads(res.content)
         # Make sure we don't see a dupe UUID error:
         eq_(data['validation']['messages'], [])
 
@@ -446,7 +449,7 @@ class TestUploadCompatCheck(BaseUploadTest):
         self.upload_url = reverse('devhub.standalone_upload')
 
     def poll_upload_status_url(self, upload_uuid):
-        return reverse('devhub.upload_detail', args=[upload_uuid, 'json'])
+        return reverse('devhub.standalone_upload_detail', args=[upload_uuid])
 
     def fake_xpi(self, filename=None):
         """Any useless file that has a name property (for Django)."""

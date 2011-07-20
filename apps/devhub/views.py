@@ -628,7 +628,9 @@ def standalone_upload(request):
 @json_view
 def standalone_upload_detail(request, uuid):
     upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
-    return upload_validation_context(request, upload)
+    url = reverse('devhub.standalone_upload_detail', args=[uuid])
+    # url = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
+    return upload_validation_context(request, upload, url=url)
 
 
 @post_required
@@ -803,7 +805,8 @@ def json_upload_detail(request, upload, addon_slug=None):
     return result
 
 
-def upload_validation_context(request, upload, addon_slug=None, addon=None):
+def upload_validation_context(request, upload, addon_slug=None, addon=None,
+                                       url=None):
     if addon_slug and not addon:
         addon = get_object_or_404(Addon, slug=addon_slug)
     if not settings.VALIDATE_ADDONS:
@@ -813,11 +816,13 @@ def upload_validation_context(request, upload, addon_slug=None, addon=None):
         upload.save()
 
     validation = json.loads(upload.validation) if upload.validation else ""
-    if waffle.flag_is_active(request, 'form-errors-in-validation') and addon:
-        url = reverse('devhub.upload_detail_for_addon',
-                      args=[addon.slug, upload.uuid])
-    else:
-        url = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
+    if not url:
+        if (waffle.flag_is_active(request, 'form-errors-in-validation')
+            and addon):
+            url = reverse('devhub.upload_detail_for_addon',
+                          args=[addon.slug, upload.uuid])
+        else:
+            url = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
     full_report_url = reverse('devhub.upload_detail', args=[upload.uuid])
 
     return make_validation_result(dict(upload=upload.uuid,
