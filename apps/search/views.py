@@ -327,7 +327,8 @@ def es_search(request, tag_name=None, template=None):
         qs = qs.order_by(mapping[query['sort']])
 
     vs = map(dict_from_int, [f['term'] for f in qs.facets['appversions']])
-    versions = set((v['major'], v['minor1']) for v in vs if v['minor1'] != 99)
+    versions = set((v['major'], v['minor1'] if v['minor1'] != 99 else 0)
+                   for v in vs)
 
     cats = [f['term'] for f in qs.facets['categories']]
     categories = (Category.objects
