@@ -236,6 +236,14 @@ class SecondarySearchForm(forms.Form):
         self._clean_form()
 
 
+SORT_CHOICES = (
+    (None, _lazy(u'Relevance')),
+    ('users', _lazy(u'Most Users')),
+    ('rating', _lazy(u'Highest Rating')),
+    ('updated', _lazy(u'Last Update')),
+)
+
+
 class ESSearchForm(forms.Form):
     q = forms.CharField(required=False)
     tag = forms.CharField(required=False)
@@ -245,6 +253,11 @@ class ESSearchForm(forms.Form):
     atype = forms.TypedChoiceField(required=False, coerce=int,
         choices=[(t, amo.ADDON_TYPE[t]) for t in types])
     cat = forms.CharField(required=False)
+    sort = forms.ChoiceField(required=False, choices=SORT_CHOICES)
+
+    def clean_sort(self):
+        sort = self.cleaned_data.get('sort')
+        return sort if sort in dict(SORT_CHOICES) else None
 
     def clean_cat(self):
         cat = self.cleaned_data.get('cat')

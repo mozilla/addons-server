@@ -152,7 +152,6 @@ def _get_tags(request, tags, selected):
 
 def _get_sort_menu(request, sort):
     items = []
-    url = request.get_full_path()
     sorts = forms.sort_by
 
     item = (None, _('Keyword Match'))
@@ -270,6 +269,7 @@ def ajax_search(request):
 
 # pid => platform
 # lver => appver
+# sort options
 @mobile_template('search/es_results.html')
 def es_search(request, tag_name=None, template=None):
     APP = request.APP
@@ -320,7 +320,11 @@ def es_search(request, tag_name=None, template=None):
         qs = qs.filter(type__in=types)
     if query.get('cat'):
         qs = qs.filter(category=query['cat'])
-
+    if query.get('sort'):
+        mapping = {'users': '-average_daily_users',
+                   'rating': '-bayesian_rating',
+                   'updated': '-last_updated'}
+        qs = qs.order_by(mapping[query['sort']])
 
     vs = map(dict_from_int, [f['term'] for f in qs.facets['appversions']])
     versions = set((v['major'], v['minor1']) for v in vs if v['minor1'] != 99)
@@ -341,6 +345,7 @@ def es_search(request, tag_name=None, template=None):
         'platforms': [facet['term'] for facet in qs.facets['platforms']],
         'versions': ['%s.%s' % v for v in sorted(versions, reverse=True)],
         'categories': categories,
+        'form': form,
     }
     return jingo.render(request, template, ctx)
 

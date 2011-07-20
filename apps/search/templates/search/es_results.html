@@ -19,34 +19,21 @@
     {{ breadcrumbs([(None, _('Search'))]) }}
     <h2>{{ _('Search Results') }}</h2>
     <h3 class="results-count">{{ showing(query.q, query.tag, pager) }}</h3>
-    {% if sort == 'name' %}
-    {# L10n: {0} is the name of the current locale. #}
-    <p><em>{{ _('Sorting by name includes only {0}
-      results.')|f(settings.LANGUAGES.get(LANG.lower())) }}</em></p>
-    {% endif %}
   </header>
 
   <div class="listing results">
     {% if pager.object_list %}
-    <div class="results-inner">
-      <div class="listing-header">
-        <ul title="{{ _('Sort results by&hellip;')|safe }}">
-          {% for item in sort_tabs %}
-          {% include 'includes/refinement.html' %}
-          {% endfor %}
-        </ul>
+      <div class="results-inner">
+        {{ addon_listing_header(request.get_full_path()|urlparams(page=None),
+                                form.fields.sort.choices, query.sort) }}
+        {{ addon_listing_items(pager.object_list, show_date=query.sort, src='search') }}
       </div>
-      {{ addon_listing_items(pager.object_list, show_date=sort, src='browse',
-                             show_downloads=sort=='weeklydownloads') }}
-    </div>
-
-    <div class="listing-footer">
-    {{ pager|paginator }}
-    </div>
-  {% else %}
-  {% include 'search/no_results.html' %}
-  {% endif %}
-
+      <div class="listing-footer">
+        {{ pager|paginator }}
+      </div>
+    {% else %}
+      {% include 'search/no_results.html' %}
+    {% endif %}
   </div>
 
 </section>
@@ -55,6 +42,17 @@
   <div id="refine-results" class="highlight">
 
     <h3>{{ _('Refine Results') }}</h3>
+    <div id="refine-sort">
+      <h5>{{ _('Sort by') }}</h5>
+      <ul class="refinements">
+        {% for val, choice in form.fields.sort.choices %}
+          <li {% if val == query.sort %}class="selected"{% endif %}>
+            <a href="{{ request.get_full_path()|urlparams(sort=val, page=None) }}">
+              {{ choice }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
 
     <div id="refine-category">
       <h5>{{ _('Categories') }}</h5>
