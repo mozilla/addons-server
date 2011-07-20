@@ -7,3 +7,4 @@ class ConsumerAdmin(admin.ModelAdmin):
     raw_id_fields = ('user',)
 
 admin.site.register(Consumer, ConsumerAdmin)
+admin.site.disable_action('delete_selected')
