@@ -272,6 +272,12 @@ class ESSearchForm(forms.Form):
             except ValueError:
                 return None
 
+    def clean_platform(self):
+        try:
+            return int(self.cleaned_data.get('platform'))
+        except ValueError:
+            return None
+
     def full_clean(self):
         """
         Cleans self.data and populates self._errors and self.cleaned_data.
