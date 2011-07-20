@@ -18,7 +18,7 @@ from versions.compare import dict_from_int, version_int
 from search import forms
 from search.client import (Client as SearchClient, SearchError,
                            CollectionsClient, PersonasClient, sphinx)
-from search.forms import SearchForm, SecondarySearchForm
+from search.forms import SearchForm, SecondarySearchForm, ESSearchForm
 
 DEFAULT_NUM_RESULTS = 20
 
@@ -275,10 +275,8 @@ def es_search(request, tag_name=None, template=None):
     APP = request.APP
     types = (amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
              amo.ADDON_SEARCH, amo.ADDON_LPAPP)
-    # If the form is invalid we still want to have a query.
-    query = request.REQUEST.get('q', '')
 
-    form = SearchForm(request)
+    form = ESSearchForm(request.GET or None)
     form.is_valid()  # Let the form try to clean data.
 
     category = form.cleaned_data.get('cat')

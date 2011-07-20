@@ -234,3 +234,44 @@ class SecondarySearchForm(forms.Form):
             return
         self._clean_fields()
         self._clean_form()
+
+
+class ESSearchForm(forms.Form):
+    q = forms.CharField(required=False)
+    tag = forms.CharField(required=False)
+    platform = forms.ChoiceField(required=False,
+        choices=[[p.shortname, p.id] for p in amo.PLATFORMS.values()])
+    appver = forms.CharField(required=False)
+    atype = forms.TypedChoiceField(required=False, coerce=int,
+        choices=[(t, amo.ADDON_TYPE[t]) for t in types])
+    cat = forms.CharField(required=False)
+
+    def clean_cat(self):
+        cat = self.cleaned_data.get('cat')
+        if ',' in cat:
+            try:
+                self.cleaned_data['atype'], cat = map(int, cat.split(','))
+            except ValueError:
+                return None
+        else:
+            try:
+                return int(cat)
+            except ValueError:
+                return None
+
+    def full_clean(self):
+        """
+        Cleans self.data and populates self._errors and self.cleaned_data.
+
+        Does not remove cleaned_data if there are errors.
+        """
+        self._errors = ErrorDict()
+        if not self.is_bound:  # Stop further processing.
+            return
+        self.cleaned_data = {}
+        # If the form is permitted to be empty, and none of the form data
+        # has changed from the initial data, short circuit any validation.
+        if self.empty_permitted and not self.has_changed():
+            return
+        self._clean_fields()
+        self._clean_form()
