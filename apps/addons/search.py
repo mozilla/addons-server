@@ -29,7 +29,6 @@ def extract(addon):
                                 in translations[addon.description_id]))
     d['summary'] = list(set(string for _, string
                             in translations[addon.summary_id]))
-    d['app'] = [a.id for a in addon.compatible_apps]
     # This is an extra query, not good for perf.
     d['category'] = getattr(addon, 'category_ids', [])
     d['tags'] = getattr(addon, 'tag_list', [])
@@ -39,6 +38,7 @@ def extract(addon):
                                      'max': appver.max.version_int})
                            for app, appver in addon.compatible_apps.items()
                            if appver)
+    d['app'] = d['appversion'].keys()
     return d
 
 
