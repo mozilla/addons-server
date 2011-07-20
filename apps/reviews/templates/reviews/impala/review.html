@@ -1,29 +1,11 @@
 {% set perms = review_perms or {} %}
 {% set outdated = (review.version_id
-                      and review.version_id != addon._current_version_id) %}
+                   and review.version_id != addon._current_version_id) %}
 {% set is_reply = review.reply_to_id is not none %}
 {% set has_reply = review.id in replies %}
 {% if flags %}
   {% set is_flagged = flags[review.id] %}
 {% endif %}
-<!-- <div class="review">
-  <h3>
-    {% if review.title %}
-      <span>{{ review.title }}</span>
-    {% endif %}
-    {{ review.rating|stars }}
-  </h3>
-  <p class="byline">
-    {% trans user=review.user|user_link, date=review.created|datetime %}
-      by {{ user }} on {{ date }}
-    {% endtrans %}
-  </p>
-  <p class="description">{{ review.body|nl2br }}</p>
-  {% if replies[review.id] %}
-    <a class="more-info" href="{{ replies[review.id].get_url_path() }}">
-      {{ _("Show the developer's reply to this review") }}</a>
-  {% endif %}
-</div> -->
 
 <div class="review item
             {% if is_reply %}reply{% endif %}

@@ -1,7 +1,7 @@
 $(document).ready(function() {
     var report = $('.review-reason').html();
 
-    $(".review-reason").popup(".flag-review", {
+    $('.review-reason').popup('.flag-review', {
         delegate: $(document.body),
         width: 'inherit',
         callback: function(obj) {
@@ -10,10 +10,10 @@ $(document).ready(function() {
 
             function addFlag(flag, note) {
                 $.ajax({type: 'POST',
-                        url: ct.attr("href"),
+                        url: ct.attr('href'),
                         data: {flag: flag, note: note},
                         success: function() {
-                            $popup.removeClass("other")
+                            $popup.removeClass('other')
                                   .hideMe();
                             ct.replaceWith(gettext('Flagged for review'));
                         },
@@ -22,12 +22,12 @@ $(document).ready(function() {
                 });
             };
 
-            $popup.delegate("li a", "click", function(e) {
+            $popup.delegate('li a', 'click', function(e) {
                 e.preventDefault();
                 var el = $(e.target);
-                if (el.attr("href") == "#review_flag_reason_other") {
+                if (el.attr('href') == '#review_flag_reason_other') {
                     $popup.addClass('other')
-                          .delegate("form", "submit", function(e) {
+                          .delegate('form', 'submit', function(e) {
                               e.preventDefault();
                               var note = $popup.find('#id_note').val();
                               if (!note) {
@@ -40,7 +40,7 @@ $(document).ready(function() {
                           .find('input[type=text]')
                           .focus();
                 } else {
-                    addFlag(el.attr("href").slice(1));
+                    addFlag(el.attr('href').slice(1));
                 }
             });
 
@@ -51,17 +51,17 @@ $(document).ready(function() {
 
     $('.primary').delegate('.review-edit', 'click', function(e) {
         e.preventDefault();
-        var $form = $("#review-edit-form"),
-            $review = $(this).parents(".review"),
-            rating = $review.attr("data-rating"),
-            edit_url = $("a.permalink", $review).attr("href") + "edit";
-            $cancel = $("#review-edit-cancel");
+        var $form = $('#review-edit-form'),
+            $review = $(this).parents('.review'),
+            rating = $review.attr('data-rating'),
+            edit_url = $('a.permalink', $review).attr('href') + 'edit',
+            $cancel = $('#review-edit-cancel');
 
-        $review.attr("action", edit_url);
+        $review.attr('action', edit_url);
         $form.detach().insertAfter($review);
-        $("#id_title").val($review.find("h3 > b").text());
-        $(".ratingwidget input:radio[value=" + rating + "]", $form).click();
-        $("#id_body").val($review.children("p.description").text());
+        $('#id_title').val($review.find('h3 > b').text());
+        $('.ratingwidget input:radio[value=' + rating + ']', $form).click();
+        $('#id_body').val($review.children('p.description').text());
         $review.hide();
         $form.show();
 
@@ -71,10 +71,7 @@ $(document).ready(function() {
             $cancel.unbind();
         }
 
-        $cancel.click(function(e) {
-            e.preventDefault();
-            done_edit();
-        });
+        $cancel.click(_pd(done_edit));
 
         $form.submit(function (e) {
             e.preventDefault();
@@ -82,11 +79,11 @@ $(document).ready(function() {
                 url: edit_url,
                 data: $form.serialize(),
                 success: function(response, status) {
-                    $review.find("h3 > b").text($("#id_title").val());
-                    rating = $(".ratingwidget input:radio:checked", $form).val();
-                    $(".stars", $review).removeClass('stars-0 stars-1 stars-2 stars-3 stars-4 stars-5').addClass('stars-' + rating);
-                    rating = $review.attr("data-rating", rating);
-                    $review.children("p.description").text($("#id_body").val());
+                    $review.find('h3 > b').text($('#id_title').val());
+                    var rating = $('.ratingwidget input:radio:checked', $form).val();
+                    $('.stars', $review).removeClass('stars-0 stars-1 stars-2 stars-3 stars-4 stars-5').addClass('stars-' + rating);
+                    rating = $review.attr('data-rating', rating);
+                    $review.children('p.description').text($('#id_body').val());
                     done_edit();
                 },
                 dataType: 'json'
@@ -105,5 +102,5 @@ $(document).ready(function() {
         target.closest('.review').addClass('deleted');
     });
 
-    $("select[name='rating']").ratingwidget();
+    $('select[name="rating"]').ratingwidget();
 });
