@@ -851,6 +851,7 @@ LOGGING = {
     'loggers': {
         'amqplib': {'handlers': ['null']},
         'caching.invalidation': {'handlers': ['null']},
+        'caching': {'level': logging.WARNING},
         'pyes': {'handlers': ['null']},
         'rdflib': {'handlers': ['null']},
         'suds': {'handlers': ['null']},
