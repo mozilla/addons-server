@@ -499,8 +499,8 @@ class TestUploadCompatCheck(BaseUploadTest):
     def test_compat_result_report(self, run_validator):
         run_validator.return_value = self.compatibility_result
         data = self.upload()
-        url = self.poll_upload_status_url(data['upload'])
-        res = self.client.get(url)
+        poll_url = self.poll_upload_status_url(data['upload'])
+        res = self.client.get(poll_url)
         data = json.loads(res.content)
         res = self.client.get(data['full_report_url'])
         eq_(res.status_code, 200)
@@ -508,6 +508,7 @@ class TestUploadCompatCheck(BaseUploadTest):
         doc = pq(res.content)
         # Shows app/version on the results page.
         eq_(doc('table tr td:eq(0)').text(), 'Firefox 3.7a1pre')
+        eq_(res.context['validate_url'], poll_url)
 
     def test_compat_application_versions(self):
         res = self.client.get(reverse('devhub.check_addon_compatibility'))
