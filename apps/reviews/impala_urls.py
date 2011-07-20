@@ -14,6 +14,6 @@ urlpatterns = patterns('',
     url('^$', views.impala_review_list, name='i_reviews.list'),
     url('^add$', views.impala_add, name='i_reviews.add'),
     url('^(?P<review_id>\d+)/', include(detail_patterns)),
-    url('^format:rss$', ReviewsRss(), name='reviews.list.rss'),
+    url('^format:rss$', ReviewsRss(), name='i_reviews.list.rss'),
     url('^user:(?P<user_id>\d+)$', views.impala_review_list, name='i_reviews.user'),
 )
