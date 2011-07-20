@@ -293,12 +293,14 @@ def es_search(request, tag_name=None, template=None):
     # 1. Prefer text matches first (boost=3).
     # 2. Then try fuzzy matches ("fire bug" => firebug) (boost=2).
     # 3. Then look for the query as a prefix of a name (boost=1.5).
-    # 4. Look for text matches inside the description (boost=1).
+    # 4. Look for text matches inside the summary (boost=0.8).
+    # 5. Look for text matches inside the description (boost=0.3).
     q = query['q']
     search = dict(name__text={'query': q, 'boost': 3},
                   name__fuzzy={'value': q, 'boost': 2, 'prefix_length': 4},
                   name__startswith={'value': q, 'boost': 1.5},
-                  description__text=q)
+                  summary__text={'query': q, 'boost': 0.8},
+                  description__text={'query': q, 'boost': 0.3})
     qs = (Addon.search().query(or_=search)
           .facet(tags={'terms': {'field': 'tag'}},
                  platforms={'terms': {'field': 'platform'}},

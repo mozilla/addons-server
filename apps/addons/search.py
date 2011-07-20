@@ -25,8 +25,10 @@ def extract(addon):
     d['name_sort'] = unicode(addon.name).lower()
     translations = addon.translations
     d['name'] = list(set(string for _, string in translations[addon.name_id]))
-    d['description'] = list(set(string for
-                                _, string in translations[addon.description_id]))
+    d['description'] = list(set(string for _, string
+                                in translations[addon.description_id]))
+    d['summary'] = list(set(string for _, string
+                            in translations[addon.summary_id]))
     d['app'] = [a.id for a in addon.compatible_apps]
     # This is an extra query, not good for perf.
     d['category'] = getattr(addon, 'category_ids', [])
