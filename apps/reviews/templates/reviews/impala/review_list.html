@@ -30,7 +30,7 @@
     </section>
     <section>
       {% if not review_perms.is_author %}
-        <a class="button" href="{{ url('reviews.add', addon.slug) }}">
+        <a class="button" href="{{ url('i_reviews.add', addon.slug) }}">
           {{ _('Write a New Review') }}</a>
       {% endif %}
     </section>
