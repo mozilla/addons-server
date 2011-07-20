@@ -850,7 +850,7 @@ LOGGING_CONFIG = None
 LOGGING = {
     'loggers': {
         'amqplib': {'handlers': ['null']},
-        'caching': {'handlers': ['null']},
+        'caching.invalidation': {'handlers': ['null']},
         'pyes': {'handlers': ['null']},
         'rdflib': {'handlers': ['null']},
         'suds': {'handlers': ['null']},
