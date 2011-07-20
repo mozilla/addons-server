@@ -302,7 +302,7 @@ def es_search(request, tag_name=None, template=None):
                   summary__text={'query': q, 'boost': 0.8},
                   description__text={'query': q, 'boost': 0.3})
     qs = (Addon.search().query(or_=search)
-          .filter(status__in=amo.REVIEWED_STATUSES, is_disabled=False)
+          .filter(status__in=amo.REVIEWED_STATUSES, is_disabled=False,
                   app=APP.id)
           .facet(tags={'terms': {'field': 'tag'}},
                  platforms={'terms': {'field': 'platform'}},
