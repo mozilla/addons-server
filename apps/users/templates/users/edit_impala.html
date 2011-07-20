@@ -135,14 +135,13 @@
                 <a class="button" href="#">Choose Photo&hellip;</a>
                 <input type="file" id="id_photo" name="photo">
               </div>
+              {% if amouser.picture_type %}
+              <a href="{{ url('users.delete_photo') }}" class="delete">{{ _('delete current') }}</a>
+              {% endif %}
               {{ form.photo.errors }}
               <img src="{{ amouser.picture_url }}"
                    alt="{% if not amouser.picture_type %}{{ _('No Photo') }}{% endif %}"
                    class="avatar photo" />
-
-              {% if amouser.picture_type %}
-              <a href="{{ url('users.delete_photo') }}" class="delete">{{ _('delete current') }}</a>
-              {% endif %}
             </li>
           </ol>
         </fieldset>
