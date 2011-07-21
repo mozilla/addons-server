@@ -15,8 +15,8 @@
   {% if addons %}
     <div class="island hero c">
       <h2>{{ category.name }}</h2>
-      {{ addons[:3]|featured_grid(src='cb-hc-recentlyadded',
-                                  dl_src='cb-dl-recentlyadded') }}
+      {{ addons[:3]|featured_grid(src='cb-hc-featured',
+                                  dl_src='cb-dl-featured') }}
     </div>
   {% endif %}
 
