@@ -116,6 +116,7 @@ NOTIFICATIONS = [x for x in vars().values()
                  and x != _NOTIFICATION]
 
 NOTIFICATIONS_BY_ID = dict((l.id, l) for l in NOTIFICATIONS)
+NOTIFICATIONS_BY_SHORT = dict((l.short, l) for l in NOTIFICATIONS)
 NOTIFICATION = AttributeDict((l.__name__, l) for l in NOTIFICATIONS)
 NOTIFICATIONS_DEV = [l.id for l in NOTIFICATIONS if l.group == 'dev']
 NOTIFICATIONS_USER = [l.id for l in NOTIFICATIONS if l.group == 'user']

@@ -30,6 +30,8 @@ from PIL import Image, ImageFile, PngImagePlugin
 from amo import ADDON_ICON_SIZES
 from . import logger_log as log
 from translations.models import Translation
+from users.models import UserProfile, UserNotification
+import users.notifications as notifications
 from versions.models import ApplicationsVersions
 
 
@@ -115,9 +117,13 @@ def paginate(request, queryset, per_page=20, count=None):
     paginated.url = u'%s?%s' % (base, request.GET.urlencode())
     return paginated
 
+    """
+    A wrapper around send_mail, which only sends the email if
+    the permissions allow for it.
+    """
 
 def send_mail(subject, message, from_email=None, recipient_list=None,
-              fail_silently=False, use_blacklist=True):
+              fail_silently=False, use_blacklist=True, perm_setting=None):
     """
     A wrapper around django.core.mail.send_mail.
 
@@ -128,6 +134,18 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 
     if not from_email:
         from_email = settings.DEFAULT_FROM_EMAIL
+
+    # Check against user notification settings
+    if perm_setting:
+        if isinstance(perm_setting, str):
+            perm_setting = notifications.NOTIFICATIONS_BY_SHORT[perm_setting]
+        perms = dict(UserNotification.objects
+                                     .filter(user__email__in=recipient_list,
+                                             notification_id=perm_setting.id)
+                                     .values_list('user__email', 'enabled'))
+
+        d = perm_setting.default_checked
+        recipient_list = [e for e in recipient_list if perms.setdefault(e, d)]
 
     # Prune blacklisted emails.
     if use_blacklist:
