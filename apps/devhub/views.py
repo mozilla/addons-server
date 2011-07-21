@@ -629,7 +629,6 @@ def standalone_upload(request):
 def standalone_upload_detail(request, uuid):
     upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
     url = reverse('devhub.standalone_upload_detail', args=[uuid])
-    # url = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
     return upload_validation_context(request, upload, url=url)
 
 
@@ -660,8 +659,14 @@ def escape_all(v):
     return v
 
 
-def make_validation_result(data):
-    """Safe wrapper around JSON dict containing a validation result."""
+def make_validation_result(data, is_compatibility=False):
+    """Safe wrapper around JSON dict containing a validation result.
+
+    Keyword Arguments
+
+    **is_compatibility=False**
+        When True, compatibilty_summary will override top-level summary.
+    """
     if not settings.EXPOSE_VALIDATOR_TRACEBACKS:
         if data['error']:
             # Just expose the message, not the traceback
@@ -674,6 +679,10 @@ def make_validation_result(data):
                 msg['tier'] = 1
             for k, v in msg.items():
                 msg[k] = escape_all(v)
+        if is_compatibility:
+            compat = data['validation']['compatibility_summary']
+            for k in ('errors', 'warnings', 'notices'):
+                data['validation'][k] = compat[k]
     return data
 
 
@@ -828,7 +837,8 @@ def upload_validation_context(request, upload, addon_slug=None, addon=None,
     return make_validation_result(dict(upload=upload.uuid,
                                        validation=validation,
                                        error=upload.task_error, url=url,
-                                       full_report_url=full_report_url))
+                                       full_report_url=full_report_url),
+                                  is_compatibility=upload.compat_with_app)
 
 
 @login_required

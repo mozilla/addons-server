@@ -541,3 +541,27 @@ class TestUploadCompatCheck(BaseUploadTest):
         data = self.upload(filename=dupe_xpi.path)
         # Make sure we don't see a dupe UUID error:
         eq_(data['validation']['messages'], [])
+
+    @mock.patch('devhub.tasks.run_validator')
+    def test_compat_summary_overrides(self, run_validator):
+        run_validator.return_value = json.dumps({
+            "success": True,
+            "errors": 0,
+            "warnings": 0,
+            "notices": 0,
+            "compatibility_summary": {"notices": 1,
+                                      "errors": 2,
+                                      "warnings": 3},
+            "message_tree": {},
+            "messages": [],
+            "metadata": {}
+        })
+        data = self.upload()
+        eq_(data['validation']['notices'], 1)
+        eq_(data['validation']['errors'], 2)
+        eq_(data['validation']['warnings'], 3)
+        res = self.client.get(self.poll_upload_status_url(data['upload']))
+        data = json.loads(res.content)
+        eq_(data['validation']['notices'], 1)
+        eq_(data['validation']['errors'], 2)
+        eq_(data['validation']['warnings'], 3)
