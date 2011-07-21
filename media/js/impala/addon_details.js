@@ -11,6 +11,11 @@ $(function () {
                 $this.addClass('incompatible');
             }
         });
+        $(document.body).bind('newStatic', function() {
+            $('.install-note:visible').closest('.item').addClass('static');
+        }).bind('closeStatic', function() {
+            $('.item.static').removeClass('static');
+        });
     }
 
     if (!$("body").hasClass('addon-details')) return;

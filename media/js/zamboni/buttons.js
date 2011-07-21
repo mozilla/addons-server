@@ -341,6 +341,7 @@ jQuery.fn.addPopup = function(html, allowClick) {
                 }
                 $this.trigger('newPopup', [_html]);
                 $this.after(_html);
+                $body.trigger('newStatic');
 
                 // Callback to destroy the popup on the first click outside the popup.
                 var cb = function(e) {
@@ -352,6 +353,7 @@ jQuery.fn.addPopup = function(html, allowClick) {
                     }
                     _html.remove();
                     $body.unbind('click newPopup', cb);
+                    $body.trigger('closeStatic');
                 }
                 // Trampoline the binding so it isn't triggered by the current click.
                 setTimeout(function(){ $body.bind('click newPopup', cb); }, 0);
