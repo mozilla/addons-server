@@ -39,6 +39,12 @@ def extract(addon):
                            for app, appver in addon.compatible_apps.items()
                            if appver)
     d['app'] = d['appversion'].keys()
+    # Boost by the number of users on a logarithmic scale. The maximum boost
+    # (11,000,000 users for adblock) is about 5x.
+    d['_boost'] = addon.average_daily_users ** .1
+    # Double the boost if the add-on is public.
+    if addon.status == amo.STATUS_PUBLIC:
+        d['_boost'] *= 2
     return d
 
 
@@ -48,17 +54,22 @@ def setup_mapping():
     # Most fields are detected and mapped automatically.
     appver = {'dynamic': False, 'properties': {'max': {'type': 'long'},
                                                'min': {'type': 'long'}}}
-    m = {
-        # Turn off analysis on name so we can sort by it.
-        'name_sort': {'type': 'string', 'index': 'not_analyzed'},
-        # Adding word-delimiter to split on camelcase and punctuation.
-        'name': {'type': 'string', 'analyzer': 'standardPlusWordDelimiter'},
-        'tags': {'type': 'string',
-                 'index': 'not_analyzed',
-                 'index_name': 'tag'},
-        'platforms': {'type': 'integer', 'index_name': 'platform'},
-        'appversion': {'properties': dict((app.id, appver)
-                                          for app in amo.APP_USAGE)}
+    mapping = {
+        # Optional boosting during indexing.
+        '_boost': {'name': '_boost', 'null_value': 1.0},
+        'properties': {
+            # Turn off analysis on name so we can sort by it.
+            'name_sort': {'type': 'string', 'index': 'not_analyzed'},
+            # Adding word-delimiter to split on camelcase and punctuation.
+            'name': {'type': 'string',
+                     'analyzer': 'standardPlusWordDelimiter'},
+            'tags': {'type': 'string',
+                     'index': 'not_analyzed',
+                     'index_name': 'tag'},
+            'platforms': {'type': 'integer', 'index_name': 'platform'},
+            'appversion': {'properties': dict((app.id, appver)
+                                              for app in amo.APP_USAGE)},
+        },
     }
     es = elasticutils.get_es()
     try:
@@ -70,7 +81,6 @@ def setup_mapping():
     # we'll get burned later on.
     for model in Addon, AppCompat, Collection:
         try:
-            es.put_mapping(model._meta.app_label, {'properties': m},
-                           settings.ES_INDEX)
+            es.put_mapping(model._meta.app_label, mapping, settings.ES_INDEX)
         except pyes.ElasticSearchException, e:
             log.error(e)
