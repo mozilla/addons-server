@@ -137,8 +137,6 @@ class TestEdit(UserViewBase):
         eq_(unicode(self.get_profile().bio), data['bio'])
 
     def test_edit_notifications(self):
-        import nose
-        raise nose.SkipTest()
         post = self.correct.copy()
         post['notifications'] = [2, 4, 6]
 
@@ -151,6 +149,9 @@ class TestEdit(UserViewBase):
         res = self.client.get(self.impala_url, post)
         doc = pq(res.content)
         eq_(doc('[name=notifications]:checked').length, 7)
+
+        eq_(doc('.more-none').length, len(email.NOTIFICATION_GROUPS))
+        eq_(doc('.more-all').length, len(email.NOTIFICATION_GROUPS))
 
 
 class TestPasswordAdmin(UserViewBase):

@@ -1,5 +1,6 @@
 from django import forms
 from django.conf import settings
+from django.template import Context, loader
 from django.utils.encoding import force_unicode
 from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
@@ -43,10 +44,11 @@ class NotificationsSelectMultiple(forms.CheckboxSelectMultiple):
                 ))
 
         output = []
-        template = u'<li><label>%s</label><ul class="checkboxes">%s</ul></li>'
+        template_url = 'users/edit_notification_checkboxes.html'
         for e, name in email.NOTIFICATION_GROUPS.items():
             if e in groups:
-                output.append(template % (name, u'\n'.join(groups[e])))
+                context = {'title': name, 'options': groups[e]}
+                output.append(loader.get_template(template_url).render(Context(context)))
 
         return mark_safe(u'<ol class="complex">%s</ul>' % u'\n'.join(output))
 

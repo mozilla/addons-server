@@ -1,0 +1,14 @@
+<li>
+  <label>
+    {{ title }}
+    <div class='more'>
+      <a class='more-none' href='#'>none</a> &middot;
+      <a class='more-all' href='#'>all</a>
+    </div>
+  </label>
+  <ul class='checkboxes'>
+    {% for option in options %}
+      {{ option|safe }}
+    {% endfor %}
+  </ul>
+</li>
