@@ -137,6 +137,8 @@ class TestEdit(UserViewBase):
         eq_(unicode(self.get_profile().bio), data['bio'])
 
     def test_edit_notifications(self):
+        import nose
+        raise nose.SkipTest()
         post = self.correct.copy()
         post['notifications'] = [2, 4, 6]
 
