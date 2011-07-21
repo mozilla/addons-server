@@ -565,3 +565,26 @@ class TestUploadCompatCheck(BaseUploadTest):
         eq_(data['validation']['notices'], 1)
         eq_(data['validation']['errors'], 2)
         eq_(data['validation']['warnings'], 3)
+
+    @mock.patch('devhub.tasks.run_validator')
+    def test_compat_error_type_override(self, run_validator):
+        run_validator.return_value = json.dumps({
+            "success": True,
+            "errors": 0,
+            "warnings": 0,
+            "notices": 0,
+            "compatibility_summary": {"notices": 0,
+                                      "errors": 1,
+                                      "warnings": 0},
+            "message_tree": {},
+            "messages": [{"type": "warning",
+                          "compatibility_type": "error",
+                          "tier": 1},
+                         {"type": "warning",
+                          "compatibility_type": None,
+                          "tier": 1}],
+            "metadata": {}
+        })
+        data = self.upload()
+        eq_(data['validation']['messages'][0]['type'], 'error')
+        eq_(data['validation']['messages'][1]['type'], 'warning')

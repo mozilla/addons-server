@@ -665,7 +665,8 @@ def make_validation_result(data, is_compatibility=False):
     Keyword Arguments
 
     **is_compatibility=False**
-        When True, compatibilty_summary will override top-level summary.
+        When True, errors will be summarized as if they were in a regular
+        validation result.
     """
     if not settings.EXPOSE_VALIDATOR_TRACEBACKS:
         if data['error']:
@@ -683,6 +684,9 @@ def make_validation_result(data, is_compatibility=False):
             compat = data['validation']['compatibility_summary']
             for k in ('errors', 'warnings', 'notices'):
                 data['validation'][k] = compat[k]
+            for msg in data['validation']['messages']:
+                if msg['compatibility_type']:
+                    msg['type'] = msg['compatibility_type']
     return data
 
 
