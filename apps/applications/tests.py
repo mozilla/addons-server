@@ -73,8 +73,6 @@ class TestCommands(test_utils.TestCase):
             data = apps[str(app.id)]
             versions = sorted([a.version for a in
                                AppVersion.objects.filter(application=app)])
-            if app.id == amo.FIREFOX.id:
-                versions.append(u'4.0.*') # bug 613234
             r_app = amo.APPS_ALL[app.id]
             eq_("%s: %r" % (r_app.short, sorted(data['versions'])),
                 "%s: %r" % (r_app.short, versions))

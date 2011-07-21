@@ -26,7 +26,6 @@ class Command(BaseCommand):
                     .order_by('version_int'))
         for app, version in versions:
             apps[app]['versions'].append(version)
-        apps[amo.FIREFOX.id]['versions'].append('4.0.*')  # bug 613234
         with open(self.JSON_PATH, 'w') as f:
             json.dump(apps, f)
             log.debug("Wrote: %s" % f.name)
