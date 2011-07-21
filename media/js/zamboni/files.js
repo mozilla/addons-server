@@ -270,7 +270,7 @@ function bind_viewer(nodes) {
                             flush($line, $line.offset().top);
                         }
                     });
-                    flush(null, $gutter.offset().bottom);
+                    flush(null, $gutter.offset().top + $gutter.height());
 
                     this.$diffbar = $sb;
                     this.$viewport = $('<div>', { 'class': 'diff-bar-viewport' });
