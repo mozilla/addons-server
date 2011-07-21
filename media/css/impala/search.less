@@ -1,0 +1,43 @@
+@import 'lib';
+
+.refine {
+    padding-top: 16px;
+    h2 {
+        padding: 0;
+        line-height: 1;
+    }
+    h3 {
+        font-size: 14px;
+        margin-bottom: 4px;
+        font-weight: bold;
+    }
+    div {
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1px solid @border-blue;
+    }
+    ul {
+        margin: 0;
+    }
+    li {
+        border: 0;
+        a {
+            line-height: 18px;
+            padding: 0;
+        }
+        &.selected a {
+            font-weight: bold;
+            color: @orange;
+        }
+        ul {
+            padding-left: 12px;
+        }
+    }
+}
+.html-rtl {
+    .refine {
+        li ul {
+            padding: 0 12px 0 0;
+        }
+    }
+}

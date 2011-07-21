@@ -49,7 +49,7 @@ pre, code, kbd, tt, samp, tt {
 
 .primary, .modal {
     h2 {
-        color: #333;
+        color: @dark-gray;
         font-family: @serif-stack;
         font-style: italic;
     }
@@ -70,7 +70,7 @@ pre, code, kbd, tt, samp, tt {
     }
 }
 .popup h3 {
-    color: #333;
+    color: @dark-gray;
     font-family: @serif-stack;
     font-style: italic;
 }
@@ -119,14 +119,20 @@ pre, code, kbd, tt, samp, tt {
     }
 }
 
-.secondary h2 {
-    font-family: @sans-stack;
-    font-style: normal;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #484848;
-    .seeall {
-        .defaultlink
+.secondary {
+    h2 {
+        font-family: @sans-stack;
+        font-style: normal;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: @dark-gray;
+        .seeall {
+            .defaultlink
+        }
+    }
+    h3 {
+        font-family: @sans-stack;
+        color: @dark-gray;
     }
 }
 
