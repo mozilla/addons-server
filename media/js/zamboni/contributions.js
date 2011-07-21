@@ -94,6 +94,7 @@ var contributions = {
                     }
                 }
             });
+            return false;
         });
 
         // enable overlay; make sure we have the jqm package available.
