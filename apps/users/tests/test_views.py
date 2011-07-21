@@ -146,11 +146,11 @@ class TestEdit(UserViewBase):
         eq_(res.status_code, 302)
 
         eq_(UserNotification.objects.count(), len(email.NOTIFICATION))
-        eq_(UserNotification.objects.filter(enabled=True).count(), 3)
+        eq_(UserNotification.objects.filter(enabled=True).count(), 7)
 
         res = self.client.get(self.impala_url, post)
         doc = pq(res.content)
-        eq_(doc('[name=notifications]:checked').length, 3)
+        eq_(doc('[name=notifications]:checked').length, 7)
 
 
 class TestPasswordAdmin(UserViewBase):
