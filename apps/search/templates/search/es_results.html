@@ -37,9 +37,9 @@
   <h2>{{ _('Refine Results') }}</h2>
   {{ facet_links(_('Sort by'), sorting) }}
   {{ facet_links(_('Category'), categories) }}
-  {{ facet_links(_('Compatible with'), versions) }}
-  {{ facet_links(_('Platforms'), platforms) }}
-  {{ facet_links(_('Tags'), tags) }}
+  {{ facet_links(_('{app} Version')|f(app=APP.pretty), versions) }}
+  {{ facet_links(_('Platform'), platforms) }}
+  {{ facet_links(_('Tagged'), tags) }}
 </section>
 
 
