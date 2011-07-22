@@ -22,7 +22,8 @@
 
   {% for key, title in filter.opts if key != 'featured' %}
   {% set addons = addon_sets[key][:10] %}
-  {% set link = url('i_browse.extensions', category.slug)|urlparams(sort=key) %}
+  {% set link = url('i_browse.extensions',
+                    category.slug)|urlparams(sort=key) %}
   {% set hc_src = 'cb-hc-' + src_dict[key] %}
   {% set dl_src = 'cb-dl-' + src_dict[key] %}
   <div class="island c">
