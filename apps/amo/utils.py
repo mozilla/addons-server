@@ -112,9 +112,7 @@ def paginate(request, queryset, per_page=20, count=None):
     except (paginator.EmptyPage, paginator.InvalidPage):
         paginated = p.page(1)
 
-    base = request.build_absolute_uri(request.path)
-
-    paginated.url = u'%s?%s' % (base, request.GET.urlencode())
+    paginated.url = u'%s?%s' % (request.path, request.GET.urlencode())
     return paginated
 
     """
