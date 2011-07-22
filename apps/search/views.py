@@ -276,7 +276,7 @@ def es_search(request, tag_name=None, template=None):
     types = (amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
              amo.ADDON_SEARCH, amo.ADDON_LPAPP)
 
-    form = ESSearchForm(request.GET or None)
+    form = ESSearchForm(request.GET or {})
     form.is_valid()  # Let the form try to clean data.
 
     category = request.GET.get('cat')
