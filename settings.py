@@ -697,6 +697,7 @@ PREVIEWS_PATH = UPLOADS_PATH + '/previews'
 USERPICS_PATH = UPLOADS_PATH + '/userpics'
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 ADDON_ICONS_DEFAULT_PATH = os.path.join(MEDIA_ROOT, 'img/addon-icons')
+
 PREVIEW_THUMBNAIL_PATH = (PREVIEWS_PATH + '/thumbs/%s/%d.png')
 PREVIEW_FULL_PATH = (PREVIEWS_PATH + '/full/%s/%d.png')
 
@@ -707,7 +708,6 @@ ADDON_ICONS_DEFAULT_URL = MEDIA_URL + '/img/addon-icons'
 ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
 ADDON_ICON_URL = ('%s/images/addon_icon/%%d-%%d.png?modified=%%s' %
                   STATIC_URL)
-
 PREVIEW_THUMBNAIL_URL = (STATIC_URL +
         '/img/uploads/previews/thumbs/%s/%d.png?modified=%d')
 PREVIEW_FULL_URL = (STATIC_URL +
