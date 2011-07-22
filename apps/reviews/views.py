@@ -1,5 +1,6 @@
 from django import http
 from django.shortcuts import get_object_or_404, redirect
+from django.template import Context, loader
 
 import commonware.log
 import jingo
@@ -7,8 +8,10 @@ from tower import ugettext as _
 from mobility.decorators import mobile_template
 
 from amo import messages
-import amo.utils
 from amo.decorators import post_required, json_view, login_required
+from amo.helpers import absolutify
+from amo.urlresolvers import reverse
+import amo.utils
 from access import acl
 from addons.decorators import addon_view_factory
 from addons.models import Addon
@@ -23,6 +26,12 @@ addon_view = addon_view_factory(qs=Addon.objects.valid)
 def flag_context():
     return dict(ReviewFlag=ReviewFlag,
                 flag_form=forms.ReviewFlagForm())
+
+def send_mail(template, subject, emails, context, perm_setting):
+    template = loader.get_template(template)
+    amo.utils.send_mail(subject, template.render(Context(context,
+                                                         autoescape=False)),
+                  recipient_list=emails, perm_setting=perm_setting)
 
 
 @addon_view
@@ -226,6 +235,18 @@ def add(request, addon):
             review = Review.objects.create(**details)
             amo.log(amo.LOG.ADD_REVIEW, addon, review)
             log.debug('New review: %s' % review.id)
+
+            data = {'name': addon.name,
+                    'rating': '*' * int(details['rating']),
+                    'review': details['body'],
+                    'reply_url': absolutify(reverse('reviews.reply',
+                            args=[addon.slug, review.id], add_prefix=False)) }
+
+            emails = [a.email for a in addon.authors.all()]
+            send_mail('reviews/emails/add_review.ltxt',
+                       u'Mozilla Add-on User Review: %s' % addon.name,
+                       emails, Context(data), 'new_review')
+
             return redirect('reviews.list', addon.slug)
     return jingo.render(request, 'reviews/add.html',
                         dict(addon=addon, form=form))

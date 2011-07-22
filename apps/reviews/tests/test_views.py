@@ -1,3 +1,5 @@
+from django.core import mail
+
 from nose.tools import eq_
 import test_utils
 
@@ -134,6 +136,9 @@ class TestCreate(ReviewTest):
         eq_(self.qs.count(), old_cnt + 1)
         # We should have an ADD_REVIEW entry now.
         eq_(self.log_count(), log_count + 1)
+
+        eq_(len(mail.outbox), 1)
+        self.assertTemplateUsed(r, 'reviews/emails/add_review.ltxt')
 
     def test_new_reply(self):
         self.client.login(username='trev@adblockplus.org', password='password')
