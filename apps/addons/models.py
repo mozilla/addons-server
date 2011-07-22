@@ -402,7 +402,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return categories[0] if categories else None
 
     def language_ascii(self):
-        return settings.LANGUAGES[translation.to_language(self.default_locale)]
+        lang = translation.to_language(self.default_locale)
+        return settings.LANGUAGES.get(lang)
 
     def get_version(self, backup_version=False):
         """
