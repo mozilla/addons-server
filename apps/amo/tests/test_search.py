@@ -1,7 +1,10 @@
+from django.core import paginator
+
 import mock
 from nose.tools import eq_
 
 import amo.tests
+import amo.utils
 from addons.models import Addon
 
 
@@ -317,3 +320,33 @@ class TestES(amo.tests.ESTestCase):
         eq_(qs._build_query(), {'fields': ['id'],
                                 'filter': {'term': {'app': 1}},
                                 'facets': {'by_status': facet}})
+
+
+class TestPaginator(amo.tests.ESTestCase):
+    es = True
+
+    def setUp(self):
+        self.request = request = mock.Mock()
+        request.GET.get.return_value = 1
+        request.GET.urlencode.return_value = ''
+        request.path = ''
+
+    def test_es_paginator(self):
+        qs = Addon.search()
+        pager = amo.utils.paginate(self.request, qs)
+        assert isinstance(pager.paginator, amo.utils.ESPaginator)
+
+    def test_validate_number(self):
+        p = amo.utils.ESPaginator(Addon.search(), 20)
+        # A bad number raises an exception.
+        with self.assertRaises(paginator.PageNotAnInteger):
+            p.page('a')
+
+        # A large number is ignored.
+        p.page(99)
+
+    def test_count(self):
+        p = amo.utils.ESPaginator(Addon.search(), 20)
+        eq_(p._count, None)
+        p.page(1)
+        eq_(p.count, Addon.search().count())

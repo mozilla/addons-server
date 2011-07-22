@@ -27,6 +27,7 @@ from easy_thumbnails import processors
 import pytz
 from PIL import Image, ImageFile, PngImagePlugin
 
+import amo.search
 from amo import ADDON_ICON_SIZES
 from . import logger_log as log
 from translations.models import Translation
@@ -95,7 +96,8 @@ def paginate(request, queryset, per_page=20, count=None):
     ``.count()`` on the queryset.  This can be good if the queryset would
     produce an expensive count query.
     """
-    p = paginator.Paginator(queryset, per_page)
+    p = (ESPaginator if isinstance(queryset, amo.search.ES)
+         else paginator.Paginator)(queryset, per_page)
 
     if count is not None:
         p._count = count
@@ -547,3 +549,24 @@ def get_email_backend():
     """
     backend = None if settings.SEND_REAL_EMAIL else 'amo.mail.FakeEmailBackend'
     return django.core.mail.get_connection(backend)
+
+
+class ESPaginator(paginator.Paginator):
+    """A better paginator for search results."""
+    # The normal Paginator does a .count() query and then a slice. Since ES
+    # results contain the total number of results, we can take an optimistic
+    # slice and then adjust the count.
+    def page(self, number):
+        # Fake num_pages so it looks like we can have results.
+        self._num_pages = float('inf')
+        number = self.validate_number(number)
+        self._num_pages = None
+
+        bottom = (number - 1) * self.per_page
+        top = bottom + self.per_page
+        page = paginator.Page(self.object_list[bottom:top], number, self)
+
+        # Force the search to evaluate and then attach the count.
+        list(page.object_list)
+        self._count = page.object_list.count()
+        return page
