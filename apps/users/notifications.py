@@ -84,7 +84,7 @@ class sdk_upgrade_fail(_NOTIFICATION):
     id = 10
     group = 'dev'
     short = 'sdk_upgrade_fail'
-    label = _("my sdk-based add-on cannot be ugpraded")
+    label = _("my sdk-based add-on cannot be upgraded")
     mandatory = True
     default_checked = True
 
