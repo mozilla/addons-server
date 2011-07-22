@@ -19,7 +19,13 @@
 
 <aside class="secondary addon-vitals">
   {{ addon.average_rating|stars(large=True) }}
-  <div><a id="reviews-link" href="{{ url('reviews.list', addon.slug) }}">{{ _('{0} user reviews')|f(addon.total_reviews|numberfmt) }}</a></div>
+  <div><a id="reviews-link" href="{{ url('reviews.list', addon.slug) }}">
+    {% trans num=addon.total_reviews %}
+      {{ num|numberfmt }} user review
+    {% pluralize %}
+      {{ num|numberfmt }} user reviews
+    {% endtrans %}
+  </a></div>
   <div id="daily-users">
     {% if addon.public_stats %}
       {# TODO real reverse URL #}
