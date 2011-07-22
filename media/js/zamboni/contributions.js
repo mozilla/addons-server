@@ -4,10 +4,18 @@ $(document).ready(function() {
     });
     $('div.contribute a.suggested-amount').live('click', function(event) {
         var el = this;
-        $.getJSON($(this).attr('href') + '&result_type=json',
-            function(json) {
+        $(el).addClass('ajax-loading');
+        $.ajax({
+            url: $(this).attr('href') + '&result_type=json',
+            dataType: 'json',
+            /* false so that the action is considered within bounds of
+             * user interaction and does not trigger the Firefox popup blocker.
+             */
+            async: false,
+            success: function(json) {
                 if (json.paykey) {
-                    dgFlow = new PAYPAL.apps.DGFlow({clicked: el.id});
+                    /* This is supposed to be a global */
+                    dgFlow = new PAYPAL.apps.DGFlow({expType:'mini'});
                     dgFlow.startFlow(json.url);
                 } else {
                     if (!$('#paypal-error').length) {
@@ -16,7 +24,8 @@ $(document).ready(function() {
                     $('#paypal-error').text(json.error).popup(el, {pointTo:el}).render();
                 }
             }
-        );
+        });
+        $(el).removeClass('ajax-loading');
         return false;
     });
     if ($('#paypal-result').length) {
@@ -81,12 +90,16 @@ var contributions = {
                 }
             }
             var $self = $(this);
+            $self.find('#contribute-actions').children().toggleClass('js-hidden');
             $.ajax({type: 'GET',
                 url: $(this).attr('action') + '?result_type=json',
                 data: $(this).serialize(),
+                /* So popup blocker doesn't fire */
+                async: false,
                 success: function(json) {
                     if (json.paykey) {
-                        dgFlow = new PAYPAL.apps.DGFlow({clicked: 'contribute-box'});
+                        /* This is supposed to be a global */
+                        dgFlow = new PAYPAL.apps.DGFlow({expType:'mini'});
                         dgFlow.startFlow(json.url);
                         $self.find('span.cancel a').click();
                     } else {
@@ -94,6 +107,7 @@ var contributions = {
                     }
                 }
             });
+            $self.find('#contribute-actions').children().toggleClass('js-hidden');
             return false;
         });
 
@@ -106,9 +120,11 @@ var contributions = {
                 overlayClass: 'contrib-overlay',
                 onShow: function(hash) {
                     // avoid bleeding-through form elements
-                    if ($.browser.opera) this.inputs = $(':input:visible').css('visibility', 'hidden');
+                    if ($.browser.opera) {
+                        this.inputs = $(':input:visible').css('visibility', 'hidden');
+                    }
                     // clean up, then show box
-                    hash.w.find('.error').hide()
+                    hash.w.find('.error').hide();
                     hash.w
                         .find('input:text').val('').end()
                         .find('textarea').val('').keyup().end()
@@ -117,7 +133,9 @@ var contributions = {
 
                 },
                 onHide: function(hash) {
-                    if ($.browser.opera) this.inputs.css('visibility', 'visible');
+                    if ($.browser.opera) {
+                        this.inputs.css('visibility', 'visible');
+                    }
                     hash.w.find('.error').hide();
                     hash.w.fadeOut();
                     hash.o.remove();
@@ -132,4 +150,4 @@ var contributions = {
         }
     }
 
-}
+};

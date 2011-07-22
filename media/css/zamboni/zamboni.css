@@ -3361,6 +3361,19 @@ input.ui-autocomplete-loading {
     background-position: right center;
 }
 
+.suggested-amount.ajax-loading,
+#contribute-box .ajax-loading {
+    background-image: url(../../img/zamboni/loading-white.gif);
+    background-repeat: no-repeat;
+    background-position: right center;
+    padding-right: 30px;
+}
+
+#contribute-box .ajax-loading {
+    margin-left: 0px;
+    font-weight: bold;
+}
+
 #popup-staging .popup {
     display: none;
 }
