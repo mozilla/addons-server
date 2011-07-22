@@ -71,7 +71,7 @@ def review_list(request, addon, review_id=None, user_id=None, template=None):
 
 
 @addon_view
-def impala_review_list(request, addon, review_id=None, user_id=None):
+def impala_review_list(request, addon, review_id=None, user_id=None, template=None):
     q = (Review.objects.valid().filter(addon=addon)
          .order_by('-created'))
 

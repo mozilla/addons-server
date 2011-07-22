@@ -532,7 +532,8 @@ def privacy(request, addon):
     return jingo.render(request, 'addons/privacy.html', {'addon': addon})
 
 
-def _developers(request, addon, page, template=None):
+@addon_view
+def developers(request, addon, page):
     if 'version' in request.GET:
         qs = addon.versions.filter(files__status__in=amo.VALID_STATUSES)
         version = get_list_or_404(qs, version=request.GET['version'])[0]
@@ -553,21 +554,11 @@ def _developers(request, addon, page, template=None):
     if addon.is_persona():
         raise http.Http404()
     author_addons = order_by_translation(addon.authors_other_addons, 'name')
-    return jingo.render(request, template,
+    return jingo.render(request, 'addons/developers.html',
                         {'addon': addon, 'author_addons': author_addons,
                          'page': page, 'src': src,
                          'contribution_src': contribution_src,
                          'version': version})
-
-
-@addon_view
-def developers(request, addon, page):
-    return _developers(request, addon, page, 'addons/developers.html')
-
-
-@addon_view
-def impala_developers(request, addon, page):
-    return _developers(request, addon, page, 'addons/impala/developers.html')
 
 
 @addon_view

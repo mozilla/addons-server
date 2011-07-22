@@ -108,14 +108,6 @@ $(function() {
         $img.attr('src', $img.attr('data-defer-src'));
     });
 
-    // Email obfuscation.
-    $('span.emaillink').each(function() {
-        var $this = $(this);
-        $this.find('.i').remove();
-        var em = $this.text().split('').reverse().join('');
-        $this.prev('a').attr('href', 'mailto:' + em);
-    });
-
     //allow dismissal of site-balloons.
     $('.site-balloon .close').click(function(e) {
         e.preventDefault();
