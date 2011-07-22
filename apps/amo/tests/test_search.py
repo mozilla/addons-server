@@ -1,3 +1,4 @@
+import mock
 from nose.tools import eq_
 
 import amo.tests
@@ -145,6 +146,12 @@ class TestES(amo.tests.ESTestCase):
 
     def test_count(self):
         eq_(Addon.search().count(), 6)
+
+    def test_count_uses_cached_results(self):
+        qs = Addon.search()
+        qs._results_cache = mock.Mock()
+        qs._results_cache.count = mock.sentinel.count
+        eq_(qs.count(), mock.sentinel.count)
 
     def test_len(self):
         qs = Addon.search()

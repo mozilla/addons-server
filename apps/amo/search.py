@@ -58,8 +58,10 @@ class ES(object):
         return new
 
     def count(self):
-        hits = self[:0].raw()
-        return hits['hits']['total']
+        if self._results_cache:
+            return self._results_cache.count
+        else:
+            return self[:0].raw()['hits']['total']
 
     def __len__(self):
         return len(self._do_search())
