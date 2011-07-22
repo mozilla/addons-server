@@ -7,6 +7,6 @@ Rating:
 Review:
 {{ review }}
 
-You can reply to this review by going to the following URL:
+You can read the review and reply to it here:
 {{ reply_url }}
 {% endblock %}

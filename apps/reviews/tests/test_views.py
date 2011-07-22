@@ -127,6 +127,8 @@ class TestCreate(ReviewTest):
         r = self.client.post(self.add, {'body': 'no rating'})
         self.assertFormError(r, 'form', 'rating', 'This field is required.')
 
+        eq_(len(mail.outbox), 0)
+
     def test_review_success(self):
         old_cnt = self.qs.count()
         log_count = self.log_count()
