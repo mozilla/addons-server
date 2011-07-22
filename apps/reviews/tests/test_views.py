@@ -151,6 +151,9 @@ class TestCreate(ReviewTest):
                              reverse('reviews.detail', args=['a1865', 218207]))
         eq_(self.qs.filter(reply_to=218207).count(), 1)
 
+        eq_(len(mail.outbox), 1)
+        self.assertTemplateUsed(r, 'reviews/emails/reply_review.ltxt')
+
     def test_double_reply(self):
         self.client.login(username='trev@adblockplus.org', password='password')
         url = reverse('reviews.reply', args=['a1865', 218207])

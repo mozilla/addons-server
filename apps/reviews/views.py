@@ -193,6 +193,19 @@ def reply(request, addon, review_id):
             reply.save()
             action = 'New' if new else 'Edited'
             log.debug('%s reply to %s: %s' % (action, review_id, reply.id))
+
+            if new:
+                data = {'name': addon.name,
+                        'reply_title': reply.title,
+                        'reply': reply.body,
+                        'reply_url': absolutify(reverse('reviews.detail',
+                                args=[addon.slug, review.id],
+                                add_prefix=False)) }
+                emails = [review.user.email]
+                send_mail('reviews/emails/reply_review.ltxt',
+                           u'Mozilla Add-on Developer Reply: %s' % addon.name,
+                           emails, Context(data), 'reply')
+
             return redirect('reviews.detail', addon.slug, review_id)
     ctx = dict(review=review, form=form, addon=addon)
     ctx.update(flag_context())
