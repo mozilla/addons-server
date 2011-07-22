@@ -1,0 +1,28 @@
+{% extends "impala/base_side_categories.html" %}
+{% from "addons/macros.html" import addon_heading %}
+
+{% block title %}
+  {# L10n: {0} is the name of the add-on. #}
+  {{ page_title(_('Privacy Policy for {0}')|f(addon.name)) }}
+{% endblock %}
+
+{% set version = addon.current_version %}
+
+{% block primary %}
+<section class="primary">
+  <hgroup class="hero">
+    {# L10n: The Privacy Policy for this add-on. #}
+    {{ impala_breadcrumbs([(addon.type_url(impala=True), amo.ADDON_TYPES[addon.type]),
+                           (url('addons.i_detail', addon.slug), addon.name),
+                           (None, _('Privacy Policy'))]) }}
+    {{ addon_heading(addon, version) }}
+  </hgroup>
+  <div class="prose">
+    <h3>{{ _('Privacy Policy') }}</h3>
+    <div class="policy-statement">{{ addon.privacy_policy|nl2br }}</div>
+    <p class="policy-back">
+      &#x25C2; <a href="{{ url('addons.i_detail', addon.slug) }}">{{ _('Back to {0}...')|f(addon.name) }}</a>
+    </p>
+  </div>
+</section>
+{% endblock %}

@@ -41,13 +41,19 @@ detail_patterns = patterns('',
 
 impala_detail_patterns = patterns('',
     url('^$', views.impala_addon_detail, name='addons.i_detail'),
-    ('^reviews/', include('reviews.impala_urls')),
+    url('^eula/(?P<file_id>\d+)?$', views.impala_eula, name='addons.i_eula'),
+    url('^license/(?P<version>[^/]+)?', views.impala_license,
+        name='addons.i_license'),
+    url('^privacy/', views.impala_privacy, name='addons.i_privacy'),
+
     url('^developers$', views.impala_developers, {'page': 'developers'},
         name='addons.i_meet'),
     url('^contribute/roadblock/', views.impala_developers,
         {'page': 'roadblock'}, name='addons.i_roadblock'),
     url('^contribute/installed/', views.impala_developers,
         {'page': 'installed'}, name='addons.i_installed'),
+
+    ('^reviews/', include('reviews.impala_urls')),
 )
 
 

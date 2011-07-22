@@ -1,4 +1,4 @@
-{% extends "impala/base.html" %}
+{% extends "impala/base_side_categories.html" %}
 
 {% block title %}
   {{ page_title(category.name if category else _('Extensions')) }}
@@ -37,11 +37,4 @@
 {% block rss_feed %}
   <link rel="alternate" type="application/rss+xml" title="RSS"
         href="{{ feed_url }}">
-{% endblock %}
-
-{% block content %}
-  <section class="secondary">
-    {{ side_nav(amo.ADDON_EXTENSION, category=category, impala=True) }}
-  </section>
-  {% block primary %}{% endblock %}
 {% endblock %}

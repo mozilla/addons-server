@@ -1,0 +1,8 @@
+{% extends "impala/base.html" %}
+
+{% block content %}
+  <section class="secondary">
+    {{ side_nav(amo.ADDON_EXTENSION, category=category, impala=True) }}
+  </section>
+  {% block primary %}{% endblock %}
+{% endblock %}

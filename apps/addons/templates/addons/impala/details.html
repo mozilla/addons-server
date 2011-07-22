@@ -157,7 +157,7 @@
     <li>{{ version.created|datetime }}</li>
     <li>
       {% if version.license %}
-        {% trans url = version.license_url(),
+        {% trans url = version.license_url(impala=True),
            name = version.license if version.license.builtin else _('Custom License') %}
           Released under <a href="{{ url }}">{{ name }}</a>
         {% endtrans %}

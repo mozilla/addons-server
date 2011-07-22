@@ -138,8 +138,9 @@ class Version(amo.models.ModelBase):
     def mirror_path_prefix(self):
         return os.path.join(settings.MIRROR_STAGE_PATH, str(self.addon_id))
 
-    def license_url(self):
-        return reverse('addons.license', args=[self.addon.slug, self.version])
+    def license_url(self, impala=False):
+        u = 'addons.i_license' if impala else 'addons.license'
+        return reverse(u, args=[self.addon.slug, self.version])
 
     def flush_urls(self):
         return self.addon.flush_urls()

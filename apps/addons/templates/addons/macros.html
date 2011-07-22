@@ -15,3 +15,12 @@
     {% endif %}
   </div>
 {% endmacro %}
+
+{% macro addon_heading(addon, version) %}
+  <h2{{ addon.name|locale_html }}>
+    {{ addon.name }}
+    {% if version and not addon.is_selfhosted() %}
+      <span class="version">{{ version.version }}</span>
+    {% endif %}
+  </h2>
+{% endmacro %}

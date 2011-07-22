@@ -130,7 +130,7 @@
         b {
             color: #333;
         }
-        color: #666;
+        color: @medium-gray;
         background: url("../../img/impala/stats.png") no-repeat right top;
         &:hover {
             color: @link;
@@ -140,7 +140,7 @@
 }
 
 .gutter aside {
-    color: #666;
+    color: @medium-gray;
     padding-top: 1em;
 }
 
@@ -469,11 +469,6 @@ table.person-info {
     ol {
         list-style: decimal;
         margin: 0 0 0 1.5em;
-        + a {
-            color: #666;
-            display: block;
-            margin: .5em 0 0 1.5em;
-        }
     }
 }
 
@@ -524,4 +519,27 @@ img.icon {
 
 .html-rtl.meet .island > section {
     padding: 0 0 0 14px;
+}
+
+.policy-statement {
+    background-color: #fff;
+    border: 1px solid @border-black;
+    color: @medium-gray;
+    line-height: 1.4;
+    margin: 1.5em 0;
+    max-height: 300px;
+    overflow: auto;
+    padding: 2px 5px;
+}
+
+p.policy-cancel {
+    margin: 0;
+}
+
+p.policy-back a {
+    color: @dark-gray;
+}
+
+pre.license {
+    margin-top: 1em;
 }

@@ -367,9 +367,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def reviews_url(self):
         return reverse('reviews.list', args=[self.slug])
 
-    def type_url(self):
+    def type_url(self, impala=False):
         """The url for this add-on's AddonType."""
-        return AddonType(self.type).get_url_path()
+        return AddonType(self.type).get_url_path(impala)
 
     def share_url(self):
         return reverse('addons.share', args=[self.slug])
@@ -1162,12 +1162,13 @@ class AddonType(amo.models.ModelBase):
     def __unicode__(self):
         return unicode(self.name)
 
-    def get_url_path(self):
+    def get_url_path(self, impala=False):
         try:
             type = amo.ADDON_SLUGS[self.id]
         except KeyError:
             return None
-        return reverse('browse.%s' % type)
+        u = 'i_browse.%s' if impala else 'browse.%s'
+        return reverse(u % type)
 
 
 class AddonUser(caching.CachingMixin, models.Model):

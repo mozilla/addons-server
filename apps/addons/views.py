@@ -516,6 +516,18 @@ def eula(request, addon, file_id=None):
     return jingo.render(request, 'addons/eula.html',
                         {'addon': addon, 'version': version})
 
+@addon_view
+def impala_eula(request, addon, file_id=None):
+    if not addon.eula:
+        return http.HttpResponseRedirect(addon.get_url_path(impala=True))
+    if file_id is not None:
+        version = get_object_or_404(addon.versions, files__id=file_id)
+    else:
+        version = addon.current_version
+
+    return jingo.render(request, 'addons/impala/eula.html',
+                        {'addon': addon, 'version': version})
+
 
 @addon_view
 def privacy(request, addon):
@@ -523,6 +535,14 @@ def privacy(request, addon):
         return http.HttpResponseRedirect(addon.get_url_path())
 
     return jingo.render(request, 'addons/privacy.html', {'addon': addon})
+
+
+@addon_view
+def impala_privacy(request, addon):
+    if not addon.privacy_policy:
+        return http.HttpResponseRedirect(addon.get_url_path(impala=True))
+    return jingo.render(request, 'addons/impala/privacy.html',
+                        {'addon': addon})
 
 
 def _developers(request, addon, page, template=None):
@@ -742,8 +762,7 @@ def share(request, addon):
                           description=truncate(addon.summary, length=250))
 
 
-@addon_view
-def license(request, addon, version=None):
+def _license(request, addon, version=None, template=None):
     if version is not None:
         qs = addon.versions.filter(files__status__in=amo.VALID_STATUSES)
         version = get_list_or_404(qs, version=version)[0]
@@ -751,8 +770,17 @@ def license(request, addon, version=None):
         version = addon.current_version
     if not (version and version.license):
         raise http.Http404()
-    return jingo.render(request, 'addons/license.html',
-                        dict(addon=addon, version=version))
+    return jingo.render(request, template, dict(addon=addon, version=version))
+
+
+@addon_view
+def license(request, addon, version=None):
+    return _license(request, addon, version, 'addons/license.html')
+
+
+@addon_view
+def impala_license(request, addon, version=None):
+    return _license(request, addon, version, 'addons/impala/license.html')
 
 
 def license_redirect(request, version):
