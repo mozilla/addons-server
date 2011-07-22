@@ -143,12 +143,14 @@ class TestEdit(UserViewBase):
         res = self.client.post(self.impala_url, post)
         eq_(res.status_code, 302)
 
+        mandatory = [n.id for n in email.NOTIFICATIONS if n.mandatory]
+        total = len(post['notifications'] + mandatory)
         eq_(UserNotification.objects.count(), len(email.NOTIFICATION))
-        eq_(UserNotification.objects.filter(enabled=True).count(), 7)
+        eq_(UserNotification.objects.filter(enabled=True).count(), total)
 
         res = self.client.get(self.impala_url, post)
         doc = pq(res.content)
-        eq_(doc('[name=notifications]:checked').length, 7)
+        eq_(doc('[name=notifications]:checked').length, total)
 
         eq_(doc('.more-none').length, len(email.NOTIFICATION_GROUPS))
         eq_(doc('.more-all').length, len(email.NOTIFICATION_GROUPS))
