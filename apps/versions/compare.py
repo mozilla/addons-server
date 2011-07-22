@@ -1,5 +1,7 @@
 import re
 
+from django.utils.encoding import smart_str
+
 
 version_re = re.compile(r"""(?P<major>\d+)         # major (x in x.y)
                             \.?(?P<minor1>\d+|\*)? # minor1 (y in x.y)
@@ -56,7 +58,7 @@ def version_dict(version):
 
 
 def version_int(version):
-    d = version_dict(str(version))
+    d = version_dict(smart_str(version))
     for key in ['alpha_ver', 'major', 'minor1', 'minor2', 'minor3',
                 'pre_ver']:
         if not d[key]:

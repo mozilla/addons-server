@@ -20,7 +20,7 @@ from files.tests.test_models import UploadTest
 from users.models import UserProfile
 from versions import views
 from versions.models import Version, ApplicationsVersions
-from versions.compare import version_int, dict_from_int
+from versions.compare import version_int, dict_from_int, version_dict
 
 
 def test_version_int():
@@ -37,6 +37,22 @@ def test_version_int_compare():
 def test_version_asterix_compare():
     eq_(version_int('5.*'), version_int('5.99'))
     assert version_int('5.*') > version_int('5.0.*')
+
+
+def test_version_dict():
+    eq_(version_dict('5.0'),
+        {'major': 5,
+         'minor1': 0,
+         'minor2': None,
+         'minor3': None,
+         'alpha': None,
+         'alpha_ver': None,
+         'pre': None,
+         'pre_ver': None})
+
+
+def test_version_int_unicode():
+    eq_(version_int(u'\u2322 ugh stephend'), 200100)
 
 
 def test_dict_from_int():
