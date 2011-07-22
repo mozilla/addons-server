@@ -304,12 +304,13 @@ def es_search(request, tag_name=None, template=None):
                   app=APP.id)
           .facet(tags={'terms': {'field': 'tag'}},
                  platforms={'terms': {'field': 'platform'}},
-                 categories={'terms': {'field': 'category', 'size': 100}},
-                 appversions={'terms': {'field': 'appversion.%s.max' % APP.id}}))
+                 appversions={'terms':
+                              {'field': 'appversion.%s.max' % APP.id}},
+                 categories={'terms': {'field': 'category', 'size': 100}}))
     if query.get('tag'):
         qs = qs.filter(tag=query['tag'])
-    if query.get('platform'):
-        qs = qs.filter(platform=query['platform'])
+    if query.get('platform') and query['platform'] in amo.PLATFORM_DICT:
+        qs = qs.filter(platform=amo.PLATFORM_DICT[query['platform']])
     if query.get('appver'):
         # Get a min version less than X.0.
         low = version_int(query['appver'])
@@ -332,27 +333,15 @@ def es_search(request, tag_name=None, template=None):
     pager = amo.utils.paginate(request, qs)
     facets = pager.object_list.facets
 
-    vs = map(dict_from_int, [f['term'] for f in facets['appversions']])
-    versions = set((v['major'], v['minor1'] if v['minor1'] != 99 else 0)
-                   for v in vs)
-
-    cats = [f['term'] for f in facets['categories']]
-    categories = (Category.objects
-                  # Search categories don't have an application.
-                  .filter(Q(application=APP.id) | Q(type=amo.ADDON_SEARCH),
-                          id__in=cats))
-    if query.get('atype') and query['atype']in amo.ADDON_TYPES:
-        categories = categories.filter(type=query['atype'])
-    categories = [(atype, sorted(cats, key=lambda x: x.name))
-                  for atype, cats in sorted_groupby(categories, 'type')]
     ctx = {
-        'facets': facets,
         'pager': pager,
         'query': query,
-        'platforms': [facet['term'] for facet in facets['platforms']],
-        'versions': ['%s.%s' % v for v in sorted(versions, reverse=True)],
-        'categories': categories,
         'form': form,
+        'sorting': sort_sidebar(request, query, form),
+        'categories': category_sidebar(request, query, facets),
+        'platforms': platform_sidebar(request, query, facets),
+        'versions': version_sidebar(request, query, facets),
+        'tags': tag_sidebar(request, query, facets),
     }
     return jingo.render(request, template, ctx)
 
@@ -435,3 +424,76 @@ def search(request, tag_name=None, template=None):
                    versions=versions, categories=categories, tags=tags,
                    sort_tabs=sort_tabs, sort_opts=sort_opts, sort=sort)
     return jingo.render(request, template, context)
+
+
+class FacetLink(object):
+
+    def __init__(self, text, urlparams, selected=False, children=None):
+        self.text = text
+        self.urlparams = urlparams
+        self.selected = selected
+        self.children = children or []
+
+
+def sort_sidebar(request, query, form):
+    return [FacetLink(text, dict(sort=key), key == query['sort'])
+            for key, text in form.fields['sort'].choices]
+
+
+def category_sidebar(request, query, facets):
+    APP = request.APP
+    cats = [f['term'] for f in facets['categories']]
+    categories = (Category.objects.filter(id__in=cats)
+                  # Search categories don't have an application.
+                  .filter(Q(application=APP.id) | Q(type=amo.ADDON_SEARCH)))
+    if query.get('atype') and query['atype'] in amo.ADDON_TYPES:
+        categories = categories.filter(type=query['atype'])
+    categories = [(atype, sorted(cats, key=lambda x: x.name))
+                  for atype, cats in sorted_groupby(categories, 'type')]
+    rv = [FacetLink(_('All Add-ons'), dict(atype=None, cat=None),
+                    not query['atype'])]
+    for addon_type, cats in categories:
+        link = FacetLink(amo.ADDON_TYPES[addon_type],
+                         dict(atype=addon_type, cat=None),
+                         addon_type == query['atype'] and not query['cat'])
+        link.children = [FacetLink(c.name, dict(atype=addon_type, cat=c.id),
+                                   c.id == query['cat']) for c in cats]
+        rv.append(link)
+    return rv
+
+
+def version_sidebar(request, query, facets):
+    rv = [FacetLink(_('All Versions'), dict(appver=None), not query['appver'])]
+    vs = [dict_from_int(f['term']) for f in facets['appversions']]
+    vs = set((v['major'], v['minor1'] if v['minor1'] != 99 else 0)
+             for v in vs)
+    versions = ['%s.%s' % v for v in sorted(vs, reverse=True)]
+    for version, floated in zip(versions, map(float, versions)):
+        if (floated not in request.APP.exclude_versions
+            and floated > request.APP.min_display_version):
+            rv.append(FacetLink(version, dict(appver=version),
+                                query['appver'] == version))
+
+    return rv
+
+
+def platform_sidebar(request, query, facets):
+    app_platforms = request.APP.platforms.values()
+    ALL = app_platforms[0]
+    platforms = [facet['term'] for facet in facets['platforms']
+                 if facet['term'] != ALL.id]
+    all_selected = not query['platform'] or query['platform'] == ALL.shortname
+    rv = [FacetLink(ALL.name, dict(platform=ALL.shortname), all_selected)]
+    for platform in app_platforms[1:]:
+        if platform.id in platforms:
+            rv.append(FacetLink(platform.name,
+                                dict(platform=platform.shortname),
+                                platform.id == query['platform']))
+    return rv
+
+
+def tag_sidebar(request, query, facets):
+    rv = [FacetLink(_('All Tags'), dict(tag=None), not query['tag'])]
+    tags = [facet['term'] for facet in facets['tags']]
+    rv += [FacetLink(tag, dict(tag=tag), tag == query['tag']) for tag in tags]
+    return rv

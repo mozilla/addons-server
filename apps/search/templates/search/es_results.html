@@ -15,82 +15,33 @@
 <meta name="WT.oss_r" content="{{ pager.paginator.count }}">
 {% endblock %}
 
+{% macro facet_links(title, links) %}
+<div>
+  <h3>{{ title }}</h3>
+  <ul>
+    {% for link in links recursive %}
+    <li{% if link.selected %} class="selected"{% endif %}>
+      <a href="{{ request.get_full_path()|urlparams(page=None, **link.urlparams) }}">
+        {{ link.text }}</a>
+      {% if link.children %}
+        <ul>{{ loop(link.children) }}</ul>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endmacro %}
+
 {% block content %}
 <section class="secondary refine" role="complementary">
   <h2>{{ _('Refine Results') }}</h2>
-
-  <div>
-    <h3>{{ _('Sort by') }}</h3>
-    <ul>
-      {% for val, choice in form.fields.sort.choices %}
-        <li {% if val == query.sort %}class="selected"{% endif %}>
-          <a href="{{ request.get_full_path()|urlparams(sort=val, page=None) }}">
-            {{ choice }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-
-  <div>
-    <ul>
-      <li {% if not query.atype %}class="selected"{% endif %}>
-        <a href="{{ request.get_full_path()|urlparams(atype=None, cat=None, page=None) }}">{{ _('All Add-ons') }}</a>
-      </li>
-      {% for addon_type, cats in categories %}
-      <li {% if addon_type == query.atype and not query.cat %}class="selected"{% endif %}>
-        <a href="{{ request.get_full_path()|urlparams(atype=addon_type, cat=None, page=None) }}">{{ amo.ADDON_TYPES[addon_type] }}</a></li>
-      <li>
-      <ul>
-        {% for cat in cats %}
-        <li {%if cat.id == query.cat %}class="selected"{% endif %}>
-          <a href="{{ request.get_full_path()|urlparams(atype=addon_type, cat=cat.id, page=None) }}">{{ cat.name }}</a>
-        </li>
-        {% endfor %}
-      </ul>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
-
-  <div>
-    <h3>{{ _('Compatible with') }}</h3>
-    <ul>
-      {% for version in versions if version|float not in APP.exclude_versions and version|float > APP.min_display_version %}
-      <li {% if version == query.appver %}class="selected"{% endif %}>
-        <a href="{{ request.get_full_path()|urlparams(appver=version, page=None) }}">
-          {{ version }}</a>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
-
-  <div>
-    <h3>{{ _('Platforms') }}</h3>
-    <ul>
-      {% for platform in APP.platforms.values() %}
-        {% if platform in (amo.PLATFORM_ALL, amo.PLATFORM_ALL_MOBILE)
-           or platform.id in platforms %}
-          <li {% if platform.id == query.platform %}class="selected"{% endif %}>
-            <a href="{{ request.get_full_path()|urlparams(platform=platform.shortname, page=None) }}">
-              {{ platform.name }}</a>
-          </li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-  </div>
-
-  <div>
-    <h3>{{ _('Tags') }}</h3>
-    <ul>
-      {% for tag in facets.tags %}
-      <li {% if tag.term == query.tag %}class="selected"{% endif %}>
-        <a href="{{ request.get_full_path()|urlparams(tag=tag.term, page=None) }}">
-          {{ tag.term }}</a>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
+  {{ facet_links(_('Sort by'), sorting) }}
+  {{ facet_links(_('Category'), categories) }}
+  {{ facet_links(_('Compatible with'), versions) }}
+  {{ facet_links(_('Platforms'), platforms) }}
+  {{ facet_links(_('Tags'), tags) }}
 </section>
+
 
 <section class="primary" role="main">
 
