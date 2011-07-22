@@ -59,8 +59,8 @@ def bulk_validate_file(result_id, **kw):
     res = ValidationResult.objects.get(pk=result_id)
     task_error = None
     validation = None
+    file_base = os.path.basename(res.file.file_path)
     try:
-        file_base = os.path.basename(res.file.file_path)
         log.info('[1@None] Validating file %s (%s) for result_id %s'
                  % (res.file, file_base, res.id))
         target = res.validation_job.target_version
@@ -71,8 +71,9 @@ def bulk_validate_file(result_id, **kw):
                                    test_all_tiers=True, overrides=overrides)
     except:
         task_error = sys.exc_info()
-        log.error(u"bulk_validate_file exception: %s: %s"
-                  % (task_error[0], task_error[1]), exc_info=False)
+        log.error(u"bulk_validate_file exception on file %s (%s): %s: %s"
+                  % (res.file, file_base,
+                     task_error[0], task_error[1]), exc_info=False)
 
     res.completed = datetime.now()
     if task_error:
