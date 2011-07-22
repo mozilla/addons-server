@@ -329,11 +329,14 @@ def es_search(request, tag_name=None, template=None):
                    'updated': '-last_updated'}
         qs = qs.order_by(mapping[query['sort']])
 
-    vs = map(dict_from_int, [f['term'] for f in qs.facets['appversions']])
+    pager = amo.utils.paginate(request, qs)
+    facets = pager.object_list.facets
+
+    vs = map(dict_from_int, [f['term'] for f in facets['appversions']])
     versions = set((v['major'], v['minor1'] if v['minor1'] != 99 else 0)
                    for v in vs)
 
-    cats = [f['term'] for f in qs.facets['categories']]
+    cats = [f['term'] for f in facets['categories']]
     categories = (Category.objects
                   # Search categories don't have an application.
                   .filter(Q(application=APP.id) | Q(type=amo.ADDON_SEARCH),
@@ -343,10 +346,10 @@ def es_search(request, tag_name=None, template=None):
     categories = [(atype, sorted(cats, key=lambda x: x.name))
                   for atype, cats in sorted_groupby(categories, 'type')]
     ctx = {
-        'qs': qs,
-        'pager': amo.utils.paginate(request, qs),
+        'facets': facets,
+        'pager': pager,
         'query': query,
-        'platforms': [facet['term'] for facet in qs.facets['platforms']],
+        'platforms': [facet['term'] for facet in facets['platforms']],
         'versions': ['%s.%s' % v for v in sorted(versions, reverse=True)],
         'categories': categories,
         'form': form,
