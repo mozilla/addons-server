@@ -164,21 +164,10 @@
         background: none;
         background-image:
             url(../../img/zamboni/discovery_pane/promos/starter-bg-left.png),
-            url(../../img/zamboni/discovery_pane/promos/starter-bg.png),
-            url(../../img/zamboni/discovery_pane/promos/starter-bg-right.png);
-        background-position: -5% bottom, center top, 105% top;
-        background-repeat: no-repeat, repeat-x, no-repeat;
-    }
-
-    #starter.feature hgroup:after {
-        background: url(../../img/zamboni/discovery_pane/promos/starter-bg-right.png) 100% 0 no-repeat;
-        display: block;
-        content: "";
-        position: absolute;
-        height: 100%;
-        top: 0;
-        right: 0;
-        width: 153px;
+            url(../../img/zamboni/discovery_pane/promos/starter-bg-right.png),
+            url(../../img/zamboni/discovery_pane/promos/starter-bg.png);
+        background-position: -5% bottom, right top, center top;
+        background-repeat: no-repeat, no-repeat, repeat-x;
     }
 
     #starter h2 {
@@ -381,9 +370,12 @@
         visibility: hidden;
     }
 }
-html[lang=it] #promos {
-    .ryff h3,
-    .promo h2 {
-        font-size: 24px;
+html[lang=it],
+html[lang=fr] {
+    #promos {
+        .ryff h3,
+        .promo h2 {
+            font-size: 24px;
+        }
     }
 }
