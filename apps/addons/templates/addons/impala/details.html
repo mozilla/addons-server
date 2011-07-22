@@ -20,10 +20,10 @@
 <aside class="secondary addon-vitals">
   {{ addon.average_rating|stars(large=True) }}
   <div><a id="reviews-link" href="{{ url('reviews.list', addon.slug) }}">
-    {% trans num=addon.total_reviews %}
-      {{ num|numberfmt }} user review
+    {% trans cnt=addon.total_reviews, num=addon.total_reviews|numberfmt %}
+      {{ num }} user review
     {% pluralize %}
-      {{ num|numberfmt }} user reviews
+      {{ num }} user reviews
     {% endtrans %}
   </a></div>
   <div id="daily-users">
