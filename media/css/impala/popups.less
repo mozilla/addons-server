@@ -100,9 +100,21 @@ div.popup-shim {
 .modal-delete h3 {
     color: #6c1a1a;
 }
-.install-note {
-    width: 300px;
+
+.install .install-note > *,
+.popup.warning > * {
+    margin-bottom: 1em;
+    padding-left: 50px;
 }
+
+.install .install-note {
+    width: 300px;
+    ol {
+        list-style-type: decimal;
+        margin: 0;
+    }
+}
+
 /* append the left class if the bubble is to the far right */
 .install-note.left,
 .popup.left {
@@ -183,12 +195,6 @@ div.popup-shim {
 .popup.left:after {
     right: 76px; /* value = (:before right) + (:before border-right) - (:after border-right) */
     left: auto;
-}
-
-.install .install-note > *,
-.popup.warning > * {
-    margin-bottom: 1em;
-    padding-left: 50px;
 }
 
 .install .install-note strong,

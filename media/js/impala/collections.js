@@ -16,7 +16,7 @@ $(function() {
                 $widget.removeClass('ajax-loading');
                 if (data.watching) {
                     $parent.addClass('watching');
-                    follow_text = gettext('Stop following');
+                    follow_text = gettext('Stop Following');
                     $('<span>', {'text': gettext('Following'),
                                  'class': 'is-watching'}).insertBefore($widget);
                 } else {

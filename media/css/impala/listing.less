@@ -125,19 +125,24 @@ header .feed {
         }
     }
     .info,
-    .install-shell {
+    .action {
         display: table-cell;
     }
     .info {
         padding-left: 58px;
     }
+    .action {
+        min-width: 190px;
+    }
     .install-shell {
         text-align: right;
-        min-width: 190px;
         padding: 0 10px;
         visibility: hidden;
         p {
             margin: 0;
+        }
+        .button, .extra {
+            white-space: nowrap;
         }
         .install-note {
             text-align: left;
