@@ -254,7 +254,7 @@ class Contribution(caching.base.CachingMixin, models.Model):
 
         # Send the email
         if send_mail(subject, body, from_email, [to_email],
-                     fail_silently=True):
+                     fail_silently=True, perm_setting='dev_thanks'):
             # Clear out contributor identifying information.
             del(self.post_data['payer_email'])
             self.save()
