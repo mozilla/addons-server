@@ -34,7 +34,7 @@
       <th>{{ _('User since') }}</th>
       <td>{{ profile.created|datetime }}</td>
     </tr>
-    {% if author_addons %}
+    {% if profile.addons_listed|length > 1 %}
       <tr>
         <th>{{ _('Other Add-ons developed') }}</th>
         <td>{% include "addons/impala/author_other_addons.html" %}</td>

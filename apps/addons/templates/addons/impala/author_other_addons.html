@@ -1,6 +1,7 @@
+{% set author_addons = profile.addons_listed %}
 {% if author_addons %}
   <ol>
-    {% for other in author_addons %}
+    {% for other in author_addons[:6] %}
       {% if other.id == addon.id %}{% continue %}{% endif %}
       <li>
         <a href="{{ other.get_url_path(impala=True) }}" title="{{ other.name }}">
@@ -8,4 +9,7 @@
       </li>
     {% endfor %}
   </ol>
+  {% if author_addons|length > 6 %}
+    <a href="{{ profile.get_url_path() }}">{{ _('More add-ons by this developer') }}</a>
+  {% endif %}
 {% endif %}
