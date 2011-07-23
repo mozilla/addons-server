@@ -436,34 +436,36 @@ class FacetLink(object):
 
 
 def sort_sidebar(request, query, form):
-    return [FacetLink(text, dict(sort=key), key == query['sort'])
+    sort = query.get('sort')
+    return [FacetLink(text, dict(sort=key), key == sort)
             for key, text in form.fields['sort'].choices]
 
 
 def category_sidebar(request, query, facets):
     APP = request.APP
+    qatype, qcat = query.get('atype'), query.get('cat')
     cats = [f['term'] for f in facets['categories']]
     categories = (Category.objects.filter(id__in=cats)
                   # Search categories don't have an application.
                   .filter(Q(application=APP.id) | Q(type=amo.ADDON_SEARCH)))
-    if query.get('atype') and query['atype'] in amo.ADDON_TYPES:
-        categories = categories.filter(type=query['atype'])
+    if qatype in amo.ADDON_TYPES:
+        categories = categories.filter(type=qatype)
     categories = [(atype, sorted(cats, key=lambda x: x.name))
                   for atype, cats in sorted_groupby(categories, 'type')]
-    rv = [FacetLink(_('All Add-ons'), dict(atype=None, cat=None),
-                    not query['atype'])]
+    rv = [FacetLink(_('All Add-ons'), dict(atype=None, cat=None), not qatype)]
     for addon_type, cats in categories:
         link = FacetLink(amo.ADDON_TYPES[addon_type],
                          dict(atype=addon_type, cat=None),
-                         addon_type == query['atype'] and not query['cat'])
+                         addon_type == qatype and not qcat)
         link.children = [FacetLink(c.name, dict(atype=addon_type, cat=c.id),
-                                   c.id == query['cat']) for c in cats]
+                                   c.id == qcat) for c in cats]
         rv.append(link)
     return rv
 
 
 def version_sidebar(request, query, facets):
-    rv = [FacetLink(_('All Versions'), dict(appver=None), not query['appver'])]
+    appver = query.get('appver')
+    rv = [FacetLink(_('All Versions'), dict(appver=None), appver)]
     vs = [dict_from_int(f['term']) for f in facets['appversions']]
     vs = set((v['major'], v['minor1'] if v['minor1'] != 99 else 0)
              for v in vs)
@@ -472,28 +474,30 @@ def version_sidebar(request, query, facets):
         if (floated not in request.APP.exclude_versions
             and floated > request.APP.min_display_version):
             rv.append(FacetLink(version, dict(appver=version),
-                                query['appver'] == version))
+                                appver == version))
 
     return rv
 
 
 def platform_sidebar(request, query, facets):
+    qplatform = query.get('platform')
     app_platforms = request.APP.platforms.values()
     ALL = app_platforms[0]
     platforms = [facet['term'] for facet in facets['platforms']
                  if facet['term'] != ALL.id]
-    all_selected = not query['platform'] or query['platform'] == ALL.shortname
+    all_selected = not qplatform or qplatform == ALL.shortname
     rv = [FacetLink(ALL.name, dict(platform=ALL.shortname), all_selected)]
     for platform in app_platforms[1:]:
         if platform.id in platforms:
             rv.append(FacetLink(platform.name,
                                 dict(platform=platform.shortname),
-                                platform.id == query['platform']))
+                                platform.id == qplatform))
     return rv
 
 
 def tag_sidebar(request, query, facets):
-    rv = [FacetLink(_('All Tags'), dict(tag=None), not query['tag'])]
+    qtag = query.get('tag')
+    rv = [FacetLink(_('All Tags'), dict(tag=None), not qtag)]
     tags = [facet['term'] for facet in facets['tags']]
-    rv += [FacetLink(tag, dict(tag=tag), tag == query['tag']) for tag in tags]
+    rv += [FacetLink(tag, dict(tag=tag), tag == qtag) for tag in tags]
     return rv
