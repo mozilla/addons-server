@@ -219,11 +219,11 @@ PENDING_STATUSES = (amo.STATUS_BETA, amo.STATUS_DISABLED, amo.STATUS_LISTED,
                     amo.STATUS_NULL, amo.STATUS_PENDING, amo.STATUS_PUBLIC)
 
 
-def send_mail(template, subject, emails, context):
+def send_mail(template, subject, emails, context, perm_setting=None):
     template = loader.get_template(template)
     amo_send_mail(subject, template.render(Context(context, autoescape=False)),
                   recipient_list=emails, from_email=settings.EDITORS_EMAIL,
-                  use_blacklist=False)
+                  use_blacklist=False, perm_setting=perm_setting)
 
 
 def get_position(addon):
@@ -421,7 +421,7 @@ class ReviewBase:
             data['tested'] = 'Tested with %s' % app
         send_mail('editors/emails/%s.ltxt' % template,
                    subject % (self.addon.name, self.version.version),
-                   emails, Context(data))
+                   emails, Context(data), perm_setting='editor_reviewed')
 
     def get_context_data(self):
         return {'name': self.addon.name,
@@ -445,7 +445,8 @@ class ReviewBase:
         send_mail('editors/emails/info.ltxt',
                    u'Mozilla Add-ons: %s %s' %
                    (self.addon.name, self.version.version),
-                   emails, Context(self.get_context_data()))
+                   emails, Context(self.get_context_data()),
+                   perm_setting='individual_contact')
 
     def send_super_mail(self):
         self.log_action(amo.LOG.REQUEST_SUPER_REVIEW)
