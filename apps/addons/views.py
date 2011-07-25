@@ -562,12 +562,57 @@ def _developers(request, addon, page, template=None):
 
 @addon_view
 def developers(request, addon, page):
-    return _developers(request, addon, page, 'addons/developers.html')
+    if 'version' in request.GET:
+        qs = addon.versions.filter(files__status__in=amo.VALID_STATUSES)
+        version = get_list_or_404(qs, version=request.GET['version'])[0]
+    else:
+        version = addon.current_version
+
+    if 'src' in request.GET:
+        contribution_src = src = request.GET['src']
+    else:
+        # Download src and contribution_src are be different.
+        src = {'developers': 'developers',
+               'installed': 'meet-the-developer-post-install',
+               'roadblock': 'meetthedeveloper_roadblock'}.get(page, None)
+        contribution_src = {'developers': 'meet-developers',
+                            'installed': 'post-download',
+                            'roadblock': 'roadblock'}.get(page, None)
+
+    if addon.is_persona():
+        raise http.Http404()
+    author_addons = order_by_translation(addon.authors_other_addons, 'name')
+    return jingo.render(request, 'addons/developers.html',
+                        {'addon': addon, 'author_addons': author_addons,
+                         'page': page, 'src': src,
+                         'contribution_src': contribution_src,
+                         'version': version})
 
 
 @addon_view
 def impala_developers(request, addon, page):
-    return _developers(request, addon, page, 'addons/impala/developers.html')
+    if addon.is_persona():
+        raise http.Http404()
+    if 'version' in request.GET:
+        qs = addon.versions.filter(files__status__in=amo.VALID_STATUSES)
+        version = get_list_or_404(qs, version=request.GET['version'])[0]
+    else:
+        version = addon.current_version
+
+    if 'src' in request.GET:
+        contribution_src = src = request.GET['src']
+    else:
+        page_srcs = {
+            'developers': ('developers', 'meet-developers'),
+            'installed': ('meet-the-developer-post-install', 'post-download'),
+            'roadblock': ('meetthedeveloper_roadblock', 'roadblock'),
+        }
+        # Download src and contribution_src are different.
+        src, contribution_src = page_srcs.get(page)
+    return jingo.render(request, 'addons/impala/developers.html',
+                        {'addon': addon, 'page': page, 'src': src,
+                         'contribution_src': contribution_src,
+                         'version': version})
 
 
 @addon_view

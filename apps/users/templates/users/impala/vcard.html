@@ -34,12 +34,18 @@
       <th>{{ _('User since') }}</th>
       <td>{{ profile.created|datetime }}</td>
     </tr>
-    {% if profile.addons_listed|length > 1 %}
-      <tr>
-        <th>{{ _('Other Add-ons developed') }}</th>
-        <td>{% include "addons/impala/author_other_addons.html" %}</td>
-      </tr>
-    {% endif %}
+    <tr>
+      <th>{{ _('Number of Add-ons Developed') }}</th>
+      <td>
+        <a href="{{ profile.get_url_path() }}">
+          {% trans num=profile.addons_listed|length %}
+            {{ num }} Add-on
+          {% pluralize %}
+            {{ num }} Add-ons
+          {% endtrans %}
+        </a>
+      </td>
+    </tr>
     <tr>
       <th>{{ _('Average rating for their Add-ons') }}</th>
       <td>{{ profile.averagerating|float|stars }}</td>
