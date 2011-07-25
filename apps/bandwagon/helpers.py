@@ -133,7 +133,7 @@ def collection_add_widget(context, addon, condensed=False):
 @register.inclusion_tag('bandwagon/collection_grid.html')
 def collection_grid(context, collections, src=None, pagesize=4, cols=2):
     pages = chunked(collections, pagesize)
-    columns = '' if cols != 3 else 'three-col'
+    columns = 'cols-%d' % cols
     return new_context(**locals())
 
 

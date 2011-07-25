@@ -1,3 +1,4 @@
+{% from "addons/macros.html" import vital %}
 {% cache addons %}
 <ul class="listing-grid c {{ columns }}">
 {% for page in pages %}
@@ -22,7 +23,7 @@
                 <div class="category" class="more-info">{{ cat }}</div>
               {% endif %}
             {% endwith %}
-            {{ impala_reviews_link(addon) }}
+            {{ vital(addon, vital_summary) }}
           </div>
         </a>
         <div class="more">
@@ -33,9 +34,7 @@
               by {{ users }}
             {% endtrans %}
           </div>
-          <div class="adu">
-            {{ _('{0} users')|f(addon.average_daily_users|numberfmt) }}
-          </div>
+          {{ vital(addon, vital_more) }}
         </div>
       </div>
     </li>

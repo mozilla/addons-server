@@ -1,3 +1,4 @@
+{% from "addons/macros.html" import vital %}
 {% cache addons %}
 <ul class="listing-grid c featured {{ columns }}">
 {% for page in pages %}
@@ -27,9 +28,7 @@
               by {{ users }}
             {% endtrans %}
           </div>
-          <div class="adu">
-            {{ _('{0} users')|f(addon.average_daily_users|numberfmt) }}
-          </div>
+          {{ vital(addon, 'adu') }}
         </div>
       </div>
     </li>

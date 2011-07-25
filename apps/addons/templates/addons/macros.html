@@ -1,0 +1,17 @@
+{% macro vital(addon, type) %}
+  <div class="vital">
+    {% if type == 'rating' %}
+      {{ impala_reviews_link(addon) }}
+    {% endif %}
+    {% if type == 'adu' %}
+      <span class="adu">
+        {% trans cnt=addon.average_daily_users,
+                 num=addon.average_daily_users|numberfmt %}
+          {{ num }} user
+        {% pluralize %}
+          {{ num }} users
+        {% endtrans %}
+      </span>
+    {% endif %}
+  </div>
+{% endmacro %}

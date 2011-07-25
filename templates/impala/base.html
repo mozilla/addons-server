@@ -76,8 +76,8 @@
               {% endif %}
               {% block aux_nav %}
                 <li>
-                  <a href="#" class="controller" title="{{ _('Find add-ons for other applications') }}">{{ _('Other Applications') }}</a>
-                  <ul>
+                  <a href="#" title="{{ _('Find add-ons for other applications') }}">{{ _('Other Applications') }}</a>
+                  <ul class="other-apps">
                     {% for app in amo.APP_USAGE %}
                       {% if app != request.APP %}
                         <li id="app-{{ app.short }}" class="{{ app.short }}">

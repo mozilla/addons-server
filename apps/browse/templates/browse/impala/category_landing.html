@@ -26,12 +26,14 @@
                     category.slug)|urlparams(sort=key) %}
   {% set hc_src = 'cb-hc-' + src_dict[key] %}
   {% set dl_src = 'cb-dl-' + src_dict[key] %}
+  {% set vital = ('adu', 'rating') if key == 'users' else ('rating', 'adu') %}
   <div class="island c">
     <h2>
       {{ filter.opts_dict[key] }}
       <a class="seeall" href="{{ link }}">{{ _('See all »') }}</a>
     </h2>
-    {{ addons|addon_grid(cols=3, src=hc_src, dl_src=dl_src) }}
+    {{ addons|addon_grid(cols=3, src=hc_src, dl_src=dl_src,
+                         vital_summary=vital[0], vital_more=vital[1]) }}
   </div>
   {% endfor %}
 </section>

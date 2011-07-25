@@ -207,7 +207,8 @@ def addon_hovercard(context, addon):
 @register.filter
 @jinja2.contextfilter
 @register.inclusion_tag('addons/impala/addon_grid.html')
-def addon_grid(context, addons, src=None, dl_src=None, pagesize=6, cols=2):
+def addon_grid(context, addons, src=None, dl_src=None, pagesize=6, cols=2,
+               vital_summary='rating', vital_more='adu'):
     if not src:
         src = context.get('src')
     # dl_src is an optional src paramater just for the download links
