@@ -18,17 +18,6 @@
     <li><a href="{{ url('collections.detail', amo_user.username, 'favorites') }}">{{ _('My Favorites') }}</a></li>
   </ul>
 
-  <h4>{{ _('Delete Account') }}</h4>
-  <p class="note">
-  {% trans %}
-  We'd hate to see you go!  If we're being a bit too noisy, you can
-  always just change <a href="#acct-notify">how often we contact you</a>.
-  {% endtrans %}
-  </p>
-  <p id="acct-delete" class="note">
-    <a href="{{ url('users.delete') }}" class="button scary"
-       title="{{ _('Permanently delete your account') }}">{{ _('Delete Account') }}</a>
-  </p>
 </div>
 <div id="user_edit" class="primary prettyform" role="main">
   {% include "messages.html" %}
@@ -182,6 +171,7 @@
       </div>{# /#user-profile #}
       <div class="listing-footer">
         <button type="submit" class="button prominent">{{ _('Update') }}</button>
+        <a href="{{ url('users.delete') }}" class="delete">{{ _('delete account') }}</a>
       </div>
     </div>{# /.tab-wrapper #}
   </form>
