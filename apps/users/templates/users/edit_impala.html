@@ -58,6 +58,11 @@
               </label>
               {{ form.emailhidden.errors }}
             </li>
+            <li>
+              <label>&nbsp;</label>
+              <a href="#acct-password" id="change-acct-password">
+                {{ _('Change Password') }}</a>
+            </li>
           </ul>
         </fieldset>
 
@@ -85,27 +90,6 @@
             </li>
           </ol>
         </fieldset>
-
-        <fieldset id="acct-notify">
-          <legend>{{ _('Notifications') }}</legend>
-          <p>
-            {% trans %}
-            From time to time, Mozilla may send you email about upcoming
-            releases and add-on events. Please select the topics you are
-            interested in below:
-            {% endtrans %}
-          </p>
-          {{ form.notifications }}
-
-          <p class="note">
-            {% trans %}
-              Mozilla reserves the right to contact you individually about
-              specific concerns with your hosted add-ons.
-            {% endtrans %}
-          </p>
-        </fieldset>
-      </div>{# /#user-account #}
-      <div id="user-profile" class="tab-panel">
         <fieldset id="profile-personal">
           <legend>{{ _('Profile information') }}</legend>
           <ol>
@@ -157,24 +141,44 @@
           {{ some_html_tip() }}
           {{ form.bio.errors }}
         </fieldset> {# /.profile-detail #}
-
-        <ul>
-          <li>
+        <fieldset id="profile-detail" class="clearboth">
+          <legend>{{ _('Miscellaneous') }}</legend>
+          <ul>
+            <li>
             <label for="id_display_collections" class="check">
               {{ form.display_collections }}
               {{ _('Display the collections I have created') }}
             </label>
             {{ form.display_collections.errors }}
-          </li>
-          <li>
+            </li>
+            <li>
             <label for="id_display_collections_fav" class="check">
               {{ form.display_collections_fav }}
               {{ _("Display collections I'm following") }}
             </label>
             {{ form.display_collections_fav.errors }}
-          </li>
-        </ul>
+            </li>
+          </ul>
+        </fieldset>
 
+        <fieldset id="acct-notify">
+          <legend>{{ _('Notifications') }}</legend>
+          <p>
+            {% trans %}
+            From time to time, Mozilla may send you email about upcoming
+            releases and add-on events. Please select the topics you are
+            interested in below:
+            {% endtrans %}
+          </p>
+          {{ form.notifications }}
+
+          <p class="note">
+            {% trans %}
+              Mozilla reserves the right to contact you individually about
+              specific concerns with your hosted add-ons.
+            {% endtrans %}
+          </p>
+        </fieldset>
       </div>{# /#user-profile #}
       <div class="listing-footer">
         <button type="submit" class="button prominent">{{ _('Update') }}</button>
