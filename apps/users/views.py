@@ -84,10 +84,10 @@ def confirm_resend(request, user_id):
 
     user.email_confirmation_code()
 
-    msg = _('An email has been sent to your address {0} to confirm '
-            'your account. Before you can log in, you have to activate '
-            'your account by clicking on the link provided in this '
-            'email.').format(user.email)
+    msg = _(u'An email has been sent to your address {0} to confirm '
+             'your account. Before you can log in, you have to activate '
+             'your account by clicking on the link provided in this '
+             'email.').format(user.email)
     messages.info(request, _('Confirmation Email Sent'), msg)
 
     return http.HttpResponseRedirect(reverse('users.login'))
@@ -147,11 +147,11 @@ def edit_impala(request):
                 log.info(u"User (%(user)s) has requested email change from"
                           "(%(mail1)s) to (%(mail2)s)" % l)
                 messages.info(request, _('Email Confirmation Sent'),
-                    _(('An email has been sent to {0} to confirm your new ' +
-                       'email address. For the change to take effect, you ' +
-                       'need to click on the link provided in this email. ' +
-                       'Until then, you can keep logging in with your ' +
-                       'current email address.')).format(amouser.email))
+                    _(u'An email has been sent to {0} to confirm your new '
+                       'email address. For the change to take effect, you '
+                       'need to click on the link provided in this email. '
+                       'Until then, you can keep logging in with your '
+                       'current email address.').format(amouser.email))
 
                 domain = settings.DOMAIN
                 token, hash = EmailResetCode.create(amouser.id, amouser.email)
@@ -203,11 +203,11 @@ def edit(request):
                 log.info(u"User (%(user)s) has requested email change from"
                           "(%(mail1)s) to (%(mail2)s)" % l)
                 messages.info(request, _('Email Confirmation Sent'),
-                    _(('An email has been sent to {0} to confirm your new ' +
-                       'email address. For the change to take effect, you ' +
-                       'need to click on the link provided in this email. ' +
-                       'Until then, you can keep logging in with your ' +
-                       'current email address.')).format(amouser.email))
+                    _(u'An email has been sent to {0} to confirm your new '
+                       'email address. For the change to take effect, you '
+                       'need to click on the link provided in this email. '
+                       'Until then, you can keep logging in with your '
+                       'current email address.').format(amouser.email))
 
                 domain = settings.DOMAIN
                 token, hash = EmailResetCode.create(amouser.id, amouser.email)
@@ -262,7 +262,7 @@ def emailchange(request, user_id, token, hash):
     l = {'user': user, 'newemail': newemail}
     log.info(u"User (%(user)s) confirmed new email address (%(newemail)s)" % l)
     messages.success(request, _('Your email address was changed successfully'),
-            _('From now on, please use {0} to log in.').format(newemail))
+            _(u'From now on, please use {0} to log in.').format(newemail))
 
     return http.HttpResponseRedirect(reverse('users.edit'))
 
@@ -336,9 +336,9 @@ def login(request):
         if user.confirmationcode:
             logout(request)
             log.info(u'Attempt to log in with unconfirmed account (%s)' % user)
-            msg1 = _(('A link to activate your user account was sent by email '
+            msg1 = _(u'A link to activate your user account was sent by email '
                       'to your address {0}. You have to click it before you '
-                      'can log in.').format(user.email))
+                      'can log in.').format(user.email)
             url = "%s%s" % (settings.SITE_URL,
                             reverse('users.confirm.resend', args=[user.id]))
             msg2 = _(('If you did not receive the confirmation email, make '
@@ -465,10 +465,10 @@ def register(request):
                         'created.')
                 messages.success(request, msg)
 
-                msg = _(('An email has been sent to your address {0} to '
+                msg = _(u'An email has been sent to your address {0} to '
                          'confirm your account. Before you can log in, you '
                          'have to activate your account by clicking on the '
-                         'link provided in this email.').format(u.email))
+                         'link provided in this email.').format(u.email)
                 messages.info(request, _('Confirmation Email Sent'), msg)
             except IntegrityError, e:
                 # I was unable to reproduce this, but I suspect it happens
