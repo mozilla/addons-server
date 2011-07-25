@@ -124,4 +124,6 @@ NOTIFICATIONS_USER = [l.id for l in NOTIFICATIONS if l.group == 'user']
 NOTIFICATIONS_DEFAULT = [l.id for l in NOTIFICATIONS if l.default_checked]
 
 NOTIFICATIONS_CHOICES = [(l.id, l.label) for l in NOTIFICATIONS]
+NOTIFICATIONS_CHOICES_NOT_DEV = [(l.id, l.label) for l in NOTIFICATIONS
+                                 if l.group != 'dev']
 

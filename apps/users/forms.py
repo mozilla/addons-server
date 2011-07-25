@@ -216,7 +216,7 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
     photo = forms.FileField(label=_lazy(u'Profile Photo'), required=False)
 
     notifications = forms.MultipleChoiceField(
-            choices=email.NOTIFICATIONS_CHOICES,
+            choices=[],
             widget=NotificationsSelectMultiple,
             initial=email.NOTIFICATIONS_DEFAULT,
             required=False)
@@ -232,6 +232,12 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
                         in self.instance.notifications.all())
             default.update(user)
 
+            # Add choices to Notification
+            choices = email.NOTIFICATIONS_CHOICES
+            if not self.instance.is_developer:
+                choices = email.NOTIFICATIONS_CHOICES_NOT_DEV
+
+            self.fields['notifications'].choices = choices
             self.fields['notifications'].initial = [i for i, v
                                                     in default.items() if v]
 
