@@ -45,6 +45,7 @@ var config = {
 if (typeof SyntaxHighlighter !== 'undefined') {
     /* Turn off double click on the syntax highlighter. */
     SyntaxHighlighter.defaults['quick-code'] = false;
+    SyntaxHighlighter.defaults['auto-links'] = false;
     SyntaxHighlighter.amo_vars = {'deletions': {}, 'additions': {}, 'is_diff': false};
 
     SyntaxHighlighter.Highlighter.prototype.getLineNumbersHtml = function(code, lineNumbers) {
