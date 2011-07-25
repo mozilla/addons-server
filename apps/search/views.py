@@ -466,7 +466,7 @@ def category_sidebar(request, query, facets):
 def version_sidebar(request, query, facets):
     appver = query.get('appver')
     exclude_versions = getattr(request.APP, 'exclude_versions', [])
-    rv = [FacetLink(_('All Versions'), dict(appver=None), appver)]
+    rv = [FacetLink(_('All Versions'), dict(appver=None), not appver)]
     vs = [dict_from_int(f['term']) for f in facets['appversions']]
     vs = set((v['major'], v['minor1'] if v['minor1'] != 99 else 0)
              for v in vs)
