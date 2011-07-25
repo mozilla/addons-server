@@ -55,6 +55,38 @@ form p {
     display: none;
 }
 
+.notification-box {
+    .border-radius(5px);
+    .box-shadow(0 -1px 0 #D7E1ED inset, 0 1px 0 rgba(0, 0, 0, 0.05));
+    border: 1px solid #CCD6E3;
+    padding: 14px;
+    background: #E3EDFA;
+    margin-bottom: 1em;
+    h3 {
+        font-style: italic;
+        font-size: 16px;
+    }
+    p {
+        margin-top: .5em;
+    }
+    b {
+        color: #333;
+    }
+    h2 {
+       font-size: 1.3em;
+       font-style: normal;
+       font-weight: bold;
+       line-height: 1em;
+    }
+    &.error {
+        background: #FEE3E5;
+        border-color: #E0C9D6;
+        h2 {
+            color: #B14949;
+        }
+    }
+}
+
 .prettyform {
     fieldset {
         border-bottom: 1px dotted #C9DDF2;
