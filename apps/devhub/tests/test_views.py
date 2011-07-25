@@ -549,6 +549,12 @@ class TestEditPayments(test_utils.TestCase):
         self.get_addon().update(status=amo.STATUS_LITE)
         assert 'no-edit' in self.client.get(self.url).content
 
+    def test_no_future(self):
+        self.get_addon().update(the_future=None)
+        res = self.client.get(self.url)
+        box = pq(res.content)('div.notification-box h2')
+        eq_(len(box), 1)
+        eq_('completed developer profile' in box.text(), True)
 
 class TestDisablePayments(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']

@@ -17,9 +17,13 @@
 </header>
 <section class="primary payments devhub-form" role="main">
 
-  {% if not can_edit %}
+  {% if not can_edit or not addon.has_full_profile() %}
     <div class="notification-box warning">
-      <h2>{{ _('Payments are only available for fully reviewed add-ons.') }}</h2>
+      <h2>
+      {% trans url=url('devhub.addons.profile', addon.slug) %}
+        Payments are only available for fully reviewed add-ons with a <a href="{{ url }}">completed developer profile</a>.
+      {% endtrans %}
+      </h2>
     </div>
   {% endif %}
 
