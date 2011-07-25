@@ -10,7 +10,7 @@
 
 {% block content %}
 <div class="secondary">
-  <h2>{{ _('Add-on Account') }}</h2>
+  <h2>{{ _('My Account') }}</h2>
   <ul>
     <li><a href="{{ request.user.get_profile().get_url_path() }}">{{ _('View Profile') }}</a></li>
     <li><a href="{{ url('users.edit') }}">{{ _('Edit Profile') }}</a></li>
