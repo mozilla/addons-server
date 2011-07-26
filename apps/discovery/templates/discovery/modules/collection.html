@@ -1,6 +1,6 @@
 {% set collection = promo.collection %}
 <li class="panel">
-  <div id="{{ promo.id }}" class="feature collection {{ promo.cls }}">
+  <div id="{{ promo.id }}" class="feature promo-collection {{ promo.cls }}">
     <hgroup>
       {% if promo.linkify_title %}
         <h2>
@@ -40,11 +40,5 @@
         </li>
       {% endfor %}
     </ul>
-    <p class="more">
-    {% set src = 'discovery-promo' if module_context == 'discovery' else 'homepage' %}
-    {% trans name=collection.name,
-             url=collection.get_url_path()|urlparams(src=src) %}
-    Find more add-ons in the <a href="{{ url }}">{{ name }}</a> collection.
-    {% endtrans %}</p>
   </div>
 </li>

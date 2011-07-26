@@ -31,9 +31,9 @@ $(document).ready(function(){
         initRecs();
 
         // Set up the promo carousel.
-        $("#main-feature").fadeIn("slow").addClass("js").zCarousel({
-            btnNext: "#main-feature .nav-next a",
-            btnPrev: "#main-feature .nav-prev a",
+        $("#promos").fadeIn("slow").addClass("js").zCarousel({
+            btnNext: "#promos .nav-next a",
+            btnPrev: "#promos .nav-prev a",
             circular: true
         });
 
