@@ -483,7 +483,8 @@ img.icon {
     .hero h2:first-child {
         margin-top: 1em;
     }
-    hgroup.hero h2 {
+    hgroup.hero h2,
+    header.hero h2 {
         margin-bottom: 1em;
     }
     &.about {
@@ -526,10 +527,14 @@ img.icon {
     border: 1px solid @border-black;
     color: @medium-gray;
     line-height: 1.4;
-    margin: 1.5em 0;
     max-height: 300px;
     overflow: auto;
     padding: 2px 5px;
+}
+
+.policy-statement,
+pre.license {
+    margin: 1.5em 0;
 }
 
 p.policy-cancel {
@@ -538,8 +543,4 @@ p.policy-cancel {
 
 p.policy-back a {
     color: @dark-gray;
-}
-
-pre.license {
-    margin-top: 1em;
 }

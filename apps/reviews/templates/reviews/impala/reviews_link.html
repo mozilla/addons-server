@@ -1,4 +1,4 @@
-{% set base = url('addons.i_detail', addon.slug)|urlparams('reviews') %}
+{% set base = url('i_addons.detail', addon.slug)|urlparams('reviews') %}
 {% if collection_uuid %}
   {% set base = base|urlparams(collection_uuid=collection_uuid) %}
 {% endif %}

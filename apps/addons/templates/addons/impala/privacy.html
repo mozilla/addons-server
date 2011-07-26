@@ -7,21 +7,22 @@
 {% endblock %}
 
 {% set version = addon.current_version %}
+{% set detail_url = url('i_addons.detail', addon.slug) %}
 
 {% block primary %}
 <section class="primary">
   <hgroup class="hero">
     {# L10n: The Privacy Policy for this add-on. #}
     {{ impala_breadcrumbs([(addon.type_url(impala=True), amo.ADDON_TYPES[addon.type]),
-                           (url('addons.i_detail', addon.slug), addon.name),
+                           (detail_url, addon.name),
                            (None, _('Privacy Policy'))]) }}
     {{ addon_heading(addon, version) }}
   </hgroup>
   <div class="prose">
     <h3>{{ _('Privacy Policy') }}</h3>
-    <div class="policy-statement">{{ addon.privacy_policy|nl2br }}</div>
+    <div class="policy-statement">{{ addon.privacy_policy|clean|nl2br }}</div>
     <p class="policy-back">
-      &#x25C2; <a href="{{ url('addons.i_detail', addon.slug) }}">{{ _('Back to {0}...')|f(addon.name) }}</a>
+      <a href="{{ detail_url }}">{{ _('Back to {0}&hellip;')|f(addon.name)|safe }}</a>
     </p>
   </div>
 </section>

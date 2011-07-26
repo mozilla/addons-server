@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block content %}
-  {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+  {{ impala_breadcrumbs([(addon.type_url(impala=True), amo.ADDON_TYPES[addon.type]),
                          (addon.get_url_path(impala=True), addon.name),
                          (link, _('Reviews'))]) }}
 
@@ -40,7 +40,7 @@
     {% block review_header %}
     <header>
       {# Give a link back to reviews if we're looking at user reviews or a detail page. #}
-      {% with link = None if page == 'list' else url('reviews.list', addon.slug) %}
+      {% with link = None if page == 'list' else url('i_reviews.list', addon.slug) %}
       {% endwith %}
       <hgroup>
         {% if page == "list" %}
@@ -70,7 +70,7 @@
 
     {% block review_list %}
     {% if not reviews.object_list %}
-      <p><a href="{{ url('reviews.add', addon.slug) }}">
+      <p><a href="{{ url('i_reviews.add', addon.slug) }}">
         {{ _('Be the first to write a review.') }}</a><p>
     {% endif %}
     {% for review in reviews.object_list %}

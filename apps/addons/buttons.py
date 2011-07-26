@@ -30,7 +30,7 @@ def _install_button(context, addon, version=None, show_eula=True,
                    or request.GET.get('collection_uuid'))
     button = install_button_factory(addon, app, lang, version,
                                     show_eula, show_contrib, show_warning,
-                                    src, collection, size, detailed)
+                                    src, collection, size, detailed, impala)
     installed = (request.user.is_authenticated() and
                  addon.id in request.amo_user.mobile_addons)
     c = {'button': button, 'addon': addon, 'version': button.version,
@@ -110,7 +110,7 @@ class InstallButton(object):
 
     def __init__(self, addon, app, lang, version=None, show_eula=True,
                  show_contrib=True, show_warning=True, src='', collection=None,
-                 size='', detailed=False):
+                 size='', detailed=False, impala=False):
         self.addon, self.app, self.lang = addon, app, lang
         self.latest = version is None
         self.version = version or addon.current_version
@@ -118,6 +118,7 @@ class InstallButton(object):
         self.collection = collection
         self.size = size
         self.detailed = detailed
+        self.impala = impala
 
         self.is_beta = self.version and self.version.is_beta
         version_unreviewed = self.version and self.version.is_unreviewed
@@ -200,14 +201,15 @@ class InstallButton(object):
         if self.show_eula:
             # L10n: please keep &nbsp; in the string so &rarr; does not wrap.
             text = jinja2.Markup(_('Continue to Download&nbsp;&rarr;'))
-            url = file.eula_url()
+            url = file.eula_url(impala=self.impala)
         elif self.accept_eula:
             text = _('Accept and Download')
         elif self.show_contrib:
             # The eula doesn't exist or has been hit already.
             # L10n: please keep &nbsp; in the string so &rarr; does not wrap.
             text = jinja2.Markup(_('Continue to Download&nbsp;&rarr;'))
-            roadblock = reverse('addons.roadblock', args=[self.addon.id])
+            u = '%saddons.roadblock' % ('i_' if self.impala else '')
+            roadblock = reverse(u, args=[self.addon.id])
             url = urlparams(roadblock, eula='', version=self.version.version)
 
         return text, url, os

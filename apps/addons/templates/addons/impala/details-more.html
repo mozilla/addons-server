@@ -13,8 +13,9 @@
   {% include "reviews/grouped_ratings.html" %}
   {% set amo_user = request.amo_user if user.is_authenticated() else None %}
   {% if not addon.has_author(amo_user) %}
+    {% set r_add = '%sreviews.add' % ('i_' if settings.IMPALA_REVIEWS else '') %}
     <div>
-      <a class="button" id="add-review" href="{{ url('reviews.add', addon.slug) }}">{{ _('Write a review') }}</a>
+      <a class="button" id="add-review" href="{{ url(r_add) }}">{{ _('Write a review') }}</a>
     </div>
   {% endif %}
   <a id="report-abuse" href="{{ remora_url('developers/docs/policies/contact') }}"
@@ -36,7 +37,7 @@
       <ul>
         {% for category in categories %}
         <li>
-          <a href="{{ category.get_url_path() }}">
+          <a href="{{ category.get_url_path(impala=True) }}">
             {{ category }}
           </a>
         </li>

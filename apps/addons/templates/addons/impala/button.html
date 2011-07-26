@@ -43,7 +43,7 @@
       <a class="button {{ b.button_class|join(' ') }} {{ extra }}"
          data-hash="{{ link.file.hash }}"
          {% if b.show_warning %}
-           href="{{ b.addon.get_url_path() }}"
+           href="{{ b.addon.get_url_path(impala=True) }}"
            data-realurl="{{ link.url }}"
          {% else %}
            href="{{ link.url }}"
@@ -67,7 +67,7 @@
 
 {% if b.detailed %}
   {% if addon.privacy_policy %}
-    <a class="privacy-policy badge" href="{{ url('addons.i_privacy', addon.slug) }}">
+    <a class="privacy-policy badge" href="{{ url('i_addons.privacy', addon.slug) }}">
       <strong>{{ _('Privacy Policy') }}</strong>
     </a>
   {% endif %}

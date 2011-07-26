@@ -40,18 +40,18 @@ detail_patterns = patterns('',
 
 
 impala_detail_patterns = patterns('',
-    url('^$', views.impala_addon_detail, name='addons.i_detail'),
-    url('^eula/(?P<file_id>\d+)?$', views.impala_eula, name='addons.i_eula'),
+    url('^$', views.impala_addon_detail, name='i_addons.detail'),
+    url('^eula/(?P<file_id>\d+)?$', views.impala_eula, name='i_addons.eula'),
     url('^license/(?P<version>[^/]+)?', views.impala_license,
-        name='addons.i_license'),
-    url('^privacy/', views.impala_privacy, name='addons.i_privacy'),
+        name='i_addons.license'),
+    url('^privacy/', views.impala_privacy, name='i_addons.privacy'),
 
     url('^developers$', views.impala_developers, {'page': 'developers'},
-        name='addons.i_meet'),
+        name='i_addons.meet'),
     url('^contribute/roadblock/', views.impala_developers,
-        {'page': 'roadblock'}, name='addons.i_roadblock'),
+        {'page': 'roadblock'}, name='i_addons.roadblock'),
     url('^contribute/installed/', views.impala_developers,
-        {'page': 'installed'}, name='addons.i_installed'),
+        {'page': 'installed'}, name='i_addons.installed'),
 
     ('^reviews/', include('reviews.impala_urls')),
 )

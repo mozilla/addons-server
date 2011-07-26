@@ -971,8 +971,11 @@ UNLINK_SITE_STATS = True
 
 # Use the new featured add-ons system which makes use of featured collections.
 NEW_FEATURES = False
+
+# Impala flags.
 IMPALA_BROWSE = False
 IMPALA_REVIEWS = False
+IMPALA_MEET = False  # Meet the Developer page.
 
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = True

@@ -24,7 +24,11 @@ from django.utils.translation import trans_real
 from django.utils.functional import Promise
 from django.utils.encoding import smart_str, smart_unicode
 
+import bleach
 from easy_thumbnails import processors
+import html5lib
+from html5lib.serializer.htmlserializer import HTMLSerializer
+import jinja2
 import pytz
 from PIL import Image, ImageFile, PngImagePlugin
 
@@ -281,6 +285,48 @@ def clear_messages(request):
     """
     for message in messages.get_messages(request):
         pass
+
+
+def clean_nl(string):
+    """
+    This will clean up newlines so that nl2br can properly be called on the
+    cleaned text.
+    """
+
+    html_blocks = ['blockquote', 'ol', 'li', 'ul']
+
+    if not string:
+        return string
+
+    def parse_html(tree):
+        prev_tag = ''
+        for i, node in enumerate(tree.childNodes):
+            if node.type == 4:  # Text node
+                value = node.value
+
+                # Strip new lines directly inside block level elements.
+                if node.parent.name in html_blocks:
+                    value = value.strip('\n')
+
+                # Remove the first new line after a block level element.
+                if (prev_tag in html_blocks and value.startswith('\n')):
+                    value = value[1:]
+
+                tree.childNodes[i].value = value
+            else:
+                tree.insertBefore(parse_html(node), node)
+                tree.removeChild(node)
+
+            prev_tag = node.name
+        return tree
+
+    parse = parse_html(html5lib.parseFragment(string))
+
+    walker = html5lib.treewalkers.getTreeWalker('simpletree')
+    stream = walker(parse)
+    serializer = HTMLSerializer(quote_attr_values=True,
+                                omit_optional_tags=False)
+    return jinja2.Markup(serializer.render(stream)).unescape()
 
 
 # From: http://bit.ly/eTqloE

@@ -14,12 +14,13 @@
 {% endblock %}
 
 {% block content %}
-{{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                (None, addon.name)]) }}
+{{ impala_breadcrumbs([(addon.type_url(impala=True), amo.ADDON_TYPES[addon.type]),
+                       (None, addon.name)]) }}
 
 <aside class="secondary addon-vitals">
   {{ addon.average_rating|stars(large=True) }}
-  <div><a id="reviews-link" href="{{ url('reviews.list', addon.slug) }}">
+  {% set r_list = '%sreviews.list' % ('i_' if settings.IMPALA_REVIEWS else '') %}
+  <div><a id="reviews-link" href="{{ url(r_list, addon.slug) }}">
     {% trans cnt=addon.total_reviews, num=addon.total_reviews|numberfmt %}
       {{ num }} user review
     {% pluralize %}
@@ -86,7 +87,7 @@
         <h3>
           {% trans count=addon.listed_authors|length,
                    name=single_dev.name,
-                   url=addon.meet_the_dev_url() %}
+                   url=addon.meet_the_dev_url(impala=settings.IMPALA_MEET) %}
             Meet the Developer: <a href="{{ url }}">{{ name }}</a>
           {% pluralize %}
             <a href="{{ url }}">Meet the Developers</a>

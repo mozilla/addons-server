@@ -120,7 +120,7 @@ def impala_addon_detail(request, addon):
             prefixer = urlresolvers.get_url_prefix()
             prefixer.app = new_app.short
             return http.HttpResponsePermanentRedirect(reverse(
-                'addons.i_detail', args=[addon.slug]))
+                'i_addons.detail', args=[addon.slug]))
 
 
 def extension_detail(request, addon):
@@ -520,11 +520,10 @@ def eula(request, addon, file_id=None):
 def impala_eula(request, addon, file_id=None):
     if not addon.eula:
         return http.HttpResponseRedirect(addon.get_url_path(impala=True))
-    if file_id is not None:
+    if file_id:
         version = get_object_or_404(addon.versions, files__id=file_id)
     else:
         version = addon.current_version
-
     return jingo.render(request, 'addons/impala/eula.html',
                         {'addon': addon, 'version': version})
 

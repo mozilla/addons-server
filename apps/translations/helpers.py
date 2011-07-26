@@ -7,8 +7,6 @@ import bleach
 import jinja2
 import jingo
 
-from .models import clean_nl
-
 jingo.register.filter(to_language)
 
 
@@ -72,4 +70,5 @@ def all_locales(addon, field_name, nl2br=False):
 
 @jingo.register.filter
 def clean(string):
-    return jinja2.Markup(clean_nl(bleach.clean(string)).strip())
+    from amo.utils import clean_nl
+    return jinja2.Markup(clean_nl(bleach.clean(unicode(string))).strip())

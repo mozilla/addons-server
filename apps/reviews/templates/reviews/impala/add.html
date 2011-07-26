@@ -8,7 +8,7 @@
 
 {% block content %}
 
-  {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+  {{ impala_breadcrumbs([(addon.type_url(impala=True), amo.ADDON_TYPES[addon.type]),
                          (addon.get_url_path(impala=True), addon.name),
                          (url('i_reviews.list', addon.slug), _('Reviews')),
                          (None, _('Add'))]) }}

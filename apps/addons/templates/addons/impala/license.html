@@ -12,17 +12,17 @@
   <hgroup class="hero">
     {# L10n: The License for this add-on. #}
     {{ impala_breadcrumbs([(addon.type_url(impala=True), amo.ADDON_TYPES[addon.type]),
-                           (url('addons.i_detail', addon.slug), addon.name),
+                           (url('i_addons.detail', addon.slug), addon.name),
                            (None, _('License'))]) }}
     {{ addon_heading(addon, version) }}
   </hgroup>
   <div class="prose">
     <h3>{{ _('Source Code License') }}</h3>
     {% if license.url %}
-      <p><a href="{{ license.url }}">{{ license.name }}</a><//p>
+      <p><a href="{{ license.url }}">{{ license.name }}</a></p>
     {% else %}
       <h4>{{ license.name }}</h4>
-      <pre class="license" width="100%">{{ license.text|nl2br }}</pre>
+      <pre class="license">{{ license.text|clean|nl2br }}</pre>
     {% endif %}
   </div>
 </section>

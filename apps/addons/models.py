@@ -356,16 +356,17 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return urls
 
     def get_url_path(self, impala=False):
-        if impala:
-            return reverse('addons.i_detail', args=[self.slug])
-        return reverse('addons.detail', args=[self.slug])
+        u = '%saddons.detail' % ('i_' if impala else '')
+        return reverse(u, args=[self.slug])
 
-    def meet_the_dev_url(self):
-        return reverse('addons.meet', args=[self.slug])
+    def meet_the_dev_url(self, impala=False):
+        u = '%saddons.meet' % ('i_' if impala else '')
+        return reverse(u, args=[self.slug])
 
     @property
-    def reviews_url(self):
-        return reverse('reviews.list', args=[self.slug])
+    def reviews_url(self, impala=False):
+        u = '%sreviews.list' % ('i_' if impala else '')
+        return reverse(u, args=[self.slug])
 
     def type_url(self, impala=False):
         """The url for this add-on's AddonType."""

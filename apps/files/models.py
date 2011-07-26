@@ -192,8 +192,9 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         url = reverse('downloads.latest', kwargs=kw)
         return os.path.join(url, 'addon-%s-latest%s' % (addon, self.extension))
 
-    def eula_url(self):
-        return reverse('addons.eula', args=[self.version.addon_id, self.id])
+    def eula_url(self, impala=False):
+        u = '%saddons.eula' % ('i_' if impala else '')
+        return reverse(u, args=[self.version.addon_id, self.id])
 
     @property
     def file_path(self):
