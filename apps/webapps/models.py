@@ -2,11 +2,10 @@ import amo
 from addons.models import Addon
 
 
-# I don't know if we'll want to inherit and extend the Addon class so we'll
-# start with a proxy for now.
+# We use super(Addon, self) on purpose to override expectations in Addon that
+# are not true for Webapp. Webapp is just inheriting so it can share the db
+# table.
 class Webapp(Addon):
-
-    # TODO: give apps a separate slug namespace from add-ons.
     # TODO: find a place to store the app version number.
 
     class Meta:
@@ -15,4 +14,9 @@ class Webapp(Addon):
     def save(self, **kw):
         # Make sure we have the right type.
         self.type = amo.ADDON_WEBAPP
-        super(Webapp, self).save(**kw)
+        self.clean_slug(slug_field='app_slug')
+        creating = not self.id
+        super(Addon, self).save(**kw)
+        # Set the slug once we have an id to keep things in order.
+        if creating:
+            self.update(slug='app-%s' % self.id)

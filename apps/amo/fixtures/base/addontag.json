@@ -68,6 +68,7 @@
         "pk": 8680,
         "model": "addons.addon",
         "fields": {
+            "slug": "8680",
             "dev_agreement": 1,
             "eula": null,
             "_current_version": 86740,

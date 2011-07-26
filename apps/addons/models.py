@@ -113,7 +113,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                do_dictsort(settings.LANGUAGES)]
 
     guid = models.CharField(max_length=255, unique=True, null=True)
-    slug = models.CharField(max_length=30, unique=True)
+    slug = models.CharField(max_length=30, unique=True, null=True)
+    # This column is only used for webapps, so they can have a slug namespace
+    # separate from addons and personas.
+    app_slug = models.CharField(max_length=30, unique=True, null=True)
     name = TranslatedField()
     default_locale = models.CharField(max_length=10,
                                       default=settings.LANGUAGE_CODE,
@@ -247,19 +250,16 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def __init__(self, *args, **kw):
         super(Addon, self).__init__(*args, **kw)
-        # Make sure all add-ons have a slug.  save() runs clean_slug.
-        if self.id and not self.slug:
-            self.save()
         self._first_category = {}
 
     def save(self, **kw):
         self.clean_slug()
-        log.info('Setting new slug: %s => %s' % (self.id, self.slug))
         super(Addon, self).save(**kw)
 
     @use_master
-    def clean_slug(self):
-        if not self.slug:
+    def clean_slug(self, slug_field='slug'):
+        slug = getattr(self, slug_field, None)
+        if not slug:
             if not self.name:
                 try:
                     name = Translation.objects.filter(id=self.name_id)[0]
@@ -267,23 +267,24 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                     name = str(self.id)
             else:
                 name = self.name
-            self.slug = slugify(name)[:27]
-        if BlacklistedSlug.blocked(self.slug):
-            self.slug += "~"
-        qs = Addon.objects.values_list('slug', 'id')
-        match = qs.filter(slug=self.slug)
+            slug = slugify(name)[:27]
+        if BlacklistedSlug.blocked(slug):
+            slug += '~'
+        qs = Addon.objects.values_list(slug_field, 'id')
+        match = qs.filter(**{slug_field: slug})
         if match and match[0][1] != self.id:
             if self.id:
-                prefix = '%s-%s' % (self.slug[:-len(str(self.id))], self.id)
+                prefix = '%s-%s' % (slug[:-len(str(self.id))], self.id)
             else:
-                prefix = self.slug
+                prefix = slug
             slugs = dict(qs.filter(slug__startswith='%s-' % prefix))
             slugs.update(match)
             for idx in range(len(slugs)):
                 new = ('%s-%s' % (prefix, idx + 1))[:30]
                 if new not in slugs:
-                    self.slug = new
-                    return
+                    slug = new
+                    break
+        setattr(self, slug_field, slug)
 
     @transaction.commit_on_success
     def delete(self, msg):
