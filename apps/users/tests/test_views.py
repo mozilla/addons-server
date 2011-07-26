@@ -142,7 +142,7 @@ class TestEdit(UserViewBase):
 
         # Make jbalogh a developer
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        au = AddonUser.objects.create(user=self.user, addon=addon)
+        AddonUser.objects.create(user=self.user, addon=addon)
 
         res = self.client.post(self.impala_url, post)
         eq_(res.status_code, 302)
@@ -275,7 +275,6 @@ class TestLogin(UserViewBase):
         data.update({'recaptcha': '', 'recaptcha_shown': ''})
         res = self.client.post(self.url, data=data)
         eq_(res.status_code, 302)
-
 
 
 class TestReset(UserViewBase):
