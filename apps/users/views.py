@@ -19,7 +19,8 @@ from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 
 import amo
 from amo import messages
-from amo.decorators import login_required, json_view, write
+from amo.decorators import (json_view, login_required, permission_required,
+                            write)
 from amo.forms import AbuseForm
 from amo.urlresolvers import reverse
 from amo.utils import send_mail, send_abuse_report
@@ -179,6 +180,25 @@ def edit_impala(request):
     else:
         form = forms.UserEditForm(instance=amouser)
 
+    return jingo.render(request, 'users/edit_impala.html',
+                        {'form': form, 'amouser': amouser})
+
+
+@write
+@login_required
+@permission_required('Admin', 'EditAnyUser')
+def admin_edit_impala(request, user_id):
+    amouser = get_object_or_404(UserProfile, pk=user_id)
+
+    if request.method == 'POST':
+        form = forms.AdminUserEditForm(request.POST, request.FILES,
+                                       request=request, instance=amouser)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _('Profile Updated'))
+            return http.HttpResponseRedirect(reverse('zadmin.index'))
+    else:
+        form = forms.AdminUserEditForm(instance=amouser)
     return jingo.render(request, 'users/edit_impala.html',
                         {'form': form, 'amouser': amouser})
 
@@ -413,7 +433,6 @@ def profile(request, user_id):
     else:
         fav_coll = []
 
-    edit_any_user = acl.action_allowed(request, 'Admin', 'EditAnyUser')
     own_profile = request.user.is_authenticated() and (
         request.amo_user.id == user.id)
 
@@ -434,8 +453,7 @@ def profile(request, user_id):
     reviews = user.reviews.transform(get_addons)
 
     data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
-            'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
-            'addons': addons, 'own_profile': own_profile,
+            'fav_coll': fav_coll, 'addons': addons, 'own_profile': own_profile,
             'abuse_form': AbuseForm(request=request)}
 
     return jingo.render(request, 'users/profile.html', data)

@@ -24,12 +24,28 @@
 
 
 {% block content %}
-<h2>Admin Pages</h2>
-<dl>
-  {% for title, link, desc in links|sort %}
-    <dt><a href="{{ link }}">{{ title }}</a></dt>
-    <dd>{{ desc }}</dd>
-  {% endfor %}
-</dl>
 
+{% include "messages.html" %}
+
+<div class="content">
+    <section>
+    <h2>Admin Pages</h2>
+    <dl>
+        {% for title, link, desc in links|sort %}
+          <dt><a href="{{ link }}">{{ title }}</a></dt>
+          <dd>{{ desc }}</dd>
+        {% endfor %}
+    </dl>
+    </section>
+    <aside>
+        <h2>Search Users</h2>
+        <form method="get" action="{{ url('users.admin_edit_impala') }}"
+              data-search-url="{{ url('zadmin.search', 'users', 'userprofile') }}">
+            <div>
+                <input class="searchbar" type="text" value="" name="q" size="40">
+                <p class="help">Enter the first four characters and select the user from the dropdown.</p>
+            </div>
+        </form>
+    </aside>
+</div>
 {% endblock %}

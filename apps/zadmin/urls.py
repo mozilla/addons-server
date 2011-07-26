@@ -52,6 +52,8 @@ urlpatterns = patterns('',
 
     # The Django admin.
     url('^models/', include(admin.site.urls)),
+    url('^models/(?P<app_id>.+)/(?P<model_id>.+)/search.json$',
+        views.general_search, name='zadmin.search'),
 )
 
 

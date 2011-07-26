@@ -170,6 +170,32 @@
             {% endtrans %}
           </p>
         </fieldset>
+
+        {% if 'admin_log' in form.fields %}
+            <fieldset id="acct-admin">
+              <legend>{{ _('Admin') }}</legend>
+              <p>{{ form.admin_log.label }} {{ required() }}</p>
+              {{ form.admin_log.errors }}
+              {{ form.admin_log }}
+
+              <p >{{ form.notes.label }}</p>
+              {{ form.notes.errors }}
+              {{ form.notes }}
+
+              <ul>
+                <li>
+                  <label for="id_confirmationcode">{{ form.confirmationcode.label }}</label>
+                  {{ form.confirmationcode.errors }}
+                  {{ form.confirmationcode }}
+                </li>
+                <li>
+                  <label for="id_anonymize">{{ form.anonymize.label }}</label>
+                  {{ form.anonymize.errors }}
+                  {{ form.anonymize }}
+                </li>
+              </ul>
+            </fieldset>
+        {% endif %}
       </div>{# /#user-profile #}
       <div class="listing-footer">
         <button type="submit" class="button prominent">{{ _('Update') }}</button>

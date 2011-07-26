@@ -1139,3 +1139,24 @@ class TestOAuth(test_utils.TestCase):
                                'description': 'Test description',
                                'status': 'accepted'})
         eq_(Consumer.objects.count(), 1)
+
+
+class TestLookup(test_utils.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        self.url = reverse('zadmin.search', args=['auth', 'user'])
+
+    def test_logged_out(self):
+        self.client.logout()
+        eq_(self.client.get('%s?q=admin' % self.url).status_code, 403)
+
+    def test_search(self):
+        for q, c in [('', 3), ('admin@mozilla.com', 1)]:
+            res = self.client.get('%s?q=%s' % (self.url, q))
+            eq_(res.status_code, 200)
+            content = json.loads(res.content)
+            eq_(len(content), c)
+            eq_(content[0], {u'value': 4043307, u'label': u'admin'})

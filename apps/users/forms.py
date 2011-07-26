@@ -325,6 +325,30 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
         return u
 
 
+class AdminUserEditForm(UserEditForm):
+    admin_log = forms.CharField(required=True, label=_('Reason for change'),
+                                widget=forms.Textarea())
+    confirmationcode = forms.CharField(required=False, max_length=255,
+                                       label=_('Confirmation code'))
+    notes = forms.CharField(required=False, widget=forms.Textarea())
+    anonymize = forms.BooleanField(required=False)
+
+    def clean_anonymize(self):
+        if (self.cleaned_data['anonymize'] and
+            set(self.changed_data) !=
+            set(['admin_log', 'notifications', 'anonymize'])):
+            raise forms.ValidationError(_('To anonymize, enter an admin log, '
+                                          'but do not change any other field'))
+        return self.cleaned_data['anonymize']
+
+    def save(self, *args, **kw):
+        profile = super(AdminUserEditForm, self).save()
+        if self.cleaned_data['anonymize']:
+            profile.anonymize()  # this also logs.
+
+        return profile
+
+
 class BlacklistedUsernameAddForm(forms.Form):
     """Form for adding blacklisted username in bulk fashion."""
     usernames = forms.CharField(widget=forms.Textarea(

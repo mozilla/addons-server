@@ -22,6 +22,8 @@ detail_patterns = patterns('',
 
 impala_users_patterns = patterns('',
     url('^edit$', views.edit_impala, name='users.edit_impala'),
+    url('^edit(?:/(?P<user_id>\d+))?$', views.admin_edit_impala,
+                        name='users.admin_edit_impala'),
 )
 
 users_patterns = patterns('',

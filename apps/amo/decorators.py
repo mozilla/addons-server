@@ -50,6 +50,19 @@ def post_required(f):
     return wrapper
 
 
+def permission_required(app, action):
+    def decorator(f):
+        @functools.wraps(f)
+        def wrapper(request, *args, **kw):
+            from access import acl
+            if acl.action_allowed(request, app, action):
+                return f(request, *args, **kw)
+            else:
+                return http.HttpResponseForbidden()
+        return wrapper
+    return decorator
+
+
 def json_view(f):
     @functools.wraps(f)
     def wrapper(*args, **kw):
@@ -93,6 +106,7 @@ def set_modified_on(f):
     Looks up objects defined in the set_modified_on kwarg.
     """
     from amo.tasks import set_modified_on_object
+
     @functools.wraps(f)
     def wrapper(*args, **kw):
         objs = kw.pop('set_modified_on', None)

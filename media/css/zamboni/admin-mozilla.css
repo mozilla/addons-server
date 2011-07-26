@@ -144,3 +144,21 @@ a.headerlink:hover {
 :-moz-any(h1,h2,h3,h4,h5,h6):hover a.headerlink {
   visibility: visible;
 }
+
+
+#content {
+    display: table;
+}
+
+section {
+    display: table-cell;
+}
+
+section dl {
+    -moz-column-count: 3;
+}
+
+aside {
+    padding-left: 3em;
+    display: table-cell;
+}

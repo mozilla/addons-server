@@ -5,6 +5,7 @@ from django.core import mail
 from django.core.cache import cache
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
+from django.forms.models import model_to_dict
 from django.test.client import Client
 from django.utils.http import int_to_base36
 
@@ -165,6 +166,56 @@ class TestEdit(UserViewBase):
 
         res = self.client.post(self.impala_url, post)
         assert len(res.context['form'].errors['notifications'])
+
+
+class TestEditAdmin(UserViewBase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.client.login(username='admin@mozilla.com', password='password')
+        self.regular = self.get_user()
+        self.url = reverse('users.admin_edit_impala', args=[self.regular.pk])
+
+    def get_data(self):
+        data = model_to_dict(self.regular)
+        data['admin_log'] = 'test'
+        for key in ['password', 'resetcode_expires']:
+            del data[key]
+        return data
+
+    def get_user(self):
+        # Using pk so that we can still get the user after anonymize.
+        return UserProfile.objects.get(pk=999)
+
+    def test_edit(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+
+    def test_edit_forbidden(self):
+        self.client.logout()
+        self.client.login(username='editor@mozilla.com', password='password')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 403)
+
+    def test_edit_forbidden_anon(self):
+        self.client.logout()
+        res = self.client.get(self.url)
+        eq_(res.status_code, 302)
+
+    def test_anonymize(self):
+        data = self.get_data()
+        data['anonymize'] = True
+        res = self.client.post(self.url, data)
+        eq_(res.status_code, 302)
+        eq_(self.get_user().password, "sha512$Anonymous$Password")
+
+    def test_anonymize_fails(self):
+        data = self.get_data()
+        data['anonymize'] = True
+        data['email'] = 'something@else.com'
+        res = self.client.post(self.url, data)
+        eq_(res.status_code, 200)
+        eq_(self.get_user().password, self.regular.password)  # Hasn't changed.
 
 
 class TestPasswordAdmin(UserViewBase):

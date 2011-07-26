@@ -8,9 +8,11 @@ from django import http
 # I'm so glad we named a function in here settings...
 from django.conf import settings as site_settings
 from django.contrib import admin
+from django.db.models.loading import cache as app_cache
 from django.shortcuts import redirect, get_object_or_404
 from django.utils.encoding import smart_str
 from django.views import debug
+from django.views.decorators.cache import never_cache
 
 import commonware.log
 import elasticutils
@@ -492,3 +494,29 @@ def oauth_consumer_create(request):
 
     return jingo.render(request, 'zadmin/oauth-consumer-create.html',
                         {'form': form})
+
+
+@never_cache
+@json_view
+def general_search(request, app_id, model_id):
+    if not admin.site.has_permission(request):
+        return http.HttpResponseForbidden()
+
+    model = app_cache.get_model(app_id, model_id)
+    if not model:
+        return http.Http404()
+
+    limit = 10
+    obj = admin.site._registry[model]
+    ChangeList = obj.get_changelist(request)
+    # This is a hideous api, but uses the builtin admin search_fields API.
+    # Expecting this to get replaced by ES so soon, that I'm not going to lose
+    # too much sleep about it.
+    cl = ChangeList(request, obj.model, [], [], [], [],
+                    obj.search_fields, [], limit, [], obj)
+    qs = cl.get_query_set()
+    # Override search_fields_response on the ModelAdmin object
+    # if you'd like to pass something else back to the front end.
+    lookup = getattr(obj, 'search_fields_response', None)
+    return [{'value':o.pk, 'label':getattr(o, lookup) if lookup else str(o)}
+            for o in qs[:limit]]

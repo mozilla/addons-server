@@ -82,7 +82,7 @@ class TestLoginRequired(object):
     def test_no_redirect_success(self):
         func = decorators.login_required(redirect=False)(self.f)
         self.request.user.is_authenticated.return_value = True
-        response = func(self.request)
+        func(self.request)
         assert self.f.called
 
 
@@ -106,3 +106,30 @@ class TestSetModifiedOn(test_utils.TestCase):
         for user in users:
             date = UserProfile.objects.get(pk=user.pk).modified.date()
             assert date < datetime.today().date()
+
+
+class TestPermissionRequired(test_utils.TestCase):
+
+    def setUp(self):
+        self.f = mock.Mock()
+        self.f.__name__ = 'function'
+        self.request = mock.Mock()
+
+    @mock.patch('access.acl.action_allowed')
+    def test_permission_not_allowed(self, action_allowed):
+        action_allowed.return_value = False
+        func = decorators.permission_required('', '')(self.f)
+        eq_(func(self.request).status_code, 403)
+
+    @mock.patch('access.acl.action_allowed')
+    def test_permission_allowed(self, action_allowed):
+        action_allowed.return_value = True
+        func = decorators.permission_required('', '')(self.f)
+        func(self.request)
+        assert self.f.called
+
+    @mock.patch('access.acl.action_allowed')
+    def test_permission_allowed_correctly(self, action_allowed):
+        func = decorators.permission_required('Admin', '%')(self.f)
+        func(self.request)
+        action_allowed.assert_called_with(self.request, 'Admin', '%')

@@ -11,6 +11,8 @@ from . import forms
 class UserAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'email')
     search_fields = ('^email',)
+    # A custom field used in search json in zadmin, not django.admin.
+    search_fields_response = 'email'
     inlines = (GroupUserInline,)
 
     # XXX TODO: Ability to edit the picture
