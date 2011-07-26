@@ -35,7 +35,6 @@ from amo.utils import chunked, sorted_groupby
 from addons.models import Addon
 from addons.utils import ReverseNameLookup
 from bandwagon.models import Collection
-from cake.helpers import remora_url
 from files.models import Approval, File
 from versions.models import Version
 
@@ -492,4 +491,4 @@ def oauth_consumer_create(request):
         return redirect('admin:piston_consumer_changelist')
 
     return jingo.render(request, 'zadmin/oauth-consumer-create.html',
-                        {'form':form})
+                        {'form': form})
