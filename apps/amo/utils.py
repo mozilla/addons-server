@@ -117,10 +117,6 @@ def paginate(request, queryset, per_page=20, count=None):
     paginated.url = u'%s?%s' % (request.path, request.GET.urlencode())
     return paginated
 
-    """
-    A wrapper around send_mail, which only sends the email if
-    the permissions allow for it.
-    """
 
 def send_mail(subject, message, from_email=None, recipient_list=None,
               fail_silently=False, use_blacklist=True, perm_setting=None):
