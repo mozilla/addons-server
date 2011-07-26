@@ -2,6 +2,7 @@ import caching.base as caching
 import jingo
 import jinja2
 from tower import ugettext_lazy as _
+import waffle
 
 from addons.models import Addon
 from api.views import addon_filter
@@ -190,3 +191,41 @@ class ThunderbirdCollection(CollectionPromo):
     cls = 'promo'
     title = _(u'Thunderbird Collection')
     subtitle = _(u'Here are some great add-ons for Thunderbird.')
+
+
+# TODO(push): Enable the 'summer-promos' switch.
+if waffle.switch_is_active('summer-promos'):
+    class TravelCollection(CollectionPromo):
+        slug = 'Travelers Pack'
+        pk = 4
+        id = 'travel'
+        cls = 'promo'
+        title = _(u'Sit Back and Relax')
+        subtitle = _(u'Add-ons that help you on your travels!')
+
+        def get_descriptions(self):
+            return {
+                5791: _(u"Displays a country flag depicting the location of the "
+                        "current website's server and more."),
+                1117: _(u'FoxClocks let you keep an eye on the time around the '
+                        'world.'),
+                11377: _(u'Automatically get the lowest price when you shop '
+                         'online or search for flights.')
+            }
+
+
+    class SchoolCollection(CollectionPromo):
+        slug = 'School'
+        pk = 2128026  # TODO(push): Change this to 2133887.
+        id = 'school'
+        cls = 'promo'
+        title = _(u'A+ add-ons for School')
+        subtitle = _(u'Add-ons for teachers, parents, and students heading back '
+                     'to school.')
+
+        def get_descriptions(self):
+            return {
+                3456: _(u'Would you like to know which websites you can trust?'),
+                2410: _(u'Xmarks is the #1 bookmarking add-on.'),
+                2444: _(u'Web page and text translator, dictionary, and more!')
+            }

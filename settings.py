@@ -443,6 +443,7 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',
+            'css/impala/promos.less',
             'css/legacy/jquery-lightbox.css',
         ),
         'zamboni/devhub': (
