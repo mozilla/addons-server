@@ -144,6 +144,9 @@ SERVICES_DOMAIN = 'services.%s' % DOMAIN
 #   Example: https://services.addons.mozilla.org
 SERVICES_URL = 'http://%s' % SERVICES_DOMAIN
 
+# When True, the addon API should include performance data.
+API_SHOW_PERF_DATA = True
+
 # The domain of the mobile site.
 MOBILE_DOMAIN = 'm.%s' % DOMAIN
 
@@ -939,6 +942,8 @@ ASYNC_SIGNALS = True
 # Performance notes on add-ons
 PERFORMANCE_NOTES = False
 
+# Used to flag slow addons.
+# If slowness of addon is THRESHOLD percent slower, show a warning.
 PERF_THRESHOLD = 25
 
 REDIS_BACKENDS = {'master': 'redis://localhost:6379?socket_timeout=0.5'}

@@ -140,7 +140,7 @@ class StripHTMLTest(TestCase):
 
 class APITest(TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/addon_4664_twitterbar',
-                'base/addon_5299_gcal']
+                'base/addon_5299_gcal', 'perf/index']
 
     def setUp(self):
         self._new_features = settings.NEW_FEATURES
@@ -228,7 +228,8 @@ class APITest(TestCase):
         self.assertContains(response,
                 """<guid>{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}</guid>""")
         self.assertContains(response, "<version>2.1.072</version>")
-        self.assertContains(response, """<status id="4">Fully Reviewed</status>""")
+        self.assertContains(response,
+                """<status id="4">Fully Reviewed</status>""")
         self.assertContains(response,
             u'<author>55021 \u0627\u0644\u062a\u0637\u0628</author>')
         self.assertContains(response, "<summary>Delicious Bookmarks is the")
@@ -478,6 +479,37 @@ class APITest(TestCase):
         self.assertContains(result, '<full type="">')
         self.assertContains(result,
                             '<thumbnail type="" width="200" height="150">')
+
+    def test_performance_data(self):
+        with self.assertNumQueries(22):
+            response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
+                                       api.CURRENT_VERSION)
+        doc = pq(response.content)
+        eq_(doc('performance application').eq(0).attr('name'), 'fx')
+        eq_(doc('performance application').eq(0).attr('version'), '3.6')
+        eq_(doc('performance application platform').eq(0).attr('name'), 'mac')
+        eq_(doc('performance application platform').eq(0).attr('version'),
+            '10.6')
+        result = doc('performance application platform result').eq(0)
+        eq_(result.attr('type'), 'ts')
+        eq_(result.attr('average'), '5.21')
+        eq_(result.attr('baseline'), '1.2')
+
+    @patch.object(settings, 'PERF_THRESHOLD', 335)
+    def test_performance_threshold_false(self):
+        response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
+                                   api.CURRENT_VERSION)
+        doc = pq(response.content)
+        result = doc('performance application platform result').eq(0)
+        eq_(result.attr('above_threshold'), 'false')
+
+    @patch.object(settings, 'PERF_THRESHOLD', 332)
+    def test_performance_threshold_true(self):
+        response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
+                                   api.CURRENT_VERSION)
+        doc = pq(response.content)
+        result = doc('performance application platform result').eq(0)
+        eq_(result.attr('above_threshold'), 'true')
 
 
 class ListTest(TestCase):

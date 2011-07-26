@@ -16,7 +16,7 @@ from .models import Performance, PerformanceOSVersion
 @cache_control(max_age=60 * 60 * 24)  # Cache for a day.
 def index(request):
     # By default don't show less than 25; bug 647398
-    threshold = getattr(settings, 'PERF_THRESHOLD', 25) or 25
+    threshold = Performance.get_threshold()
 
     addons = (Addon.objects.listed(request.APP, *amo.MIRROR_STATUSES)
               .filter(ts_slowness__gte=threshold).order_by('-ts_slowness'))

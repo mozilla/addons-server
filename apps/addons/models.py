@@ -934,6 +934,37 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                             locale=locale)
             qs.update(localized_string=None, localized_string_clean=None)
 
+    def app_perf_results(self):
+        """Generator of (AppVersion, [list of perf results contexts]).
+
+        A performance result context is a dict that has these keys:
+
+        **baseline**
+            The baseline of the result. For startup time this is the
+            time it takes to start up with no addons.
+
+        **startup_is_too_slow**
+            True/False if this result is slower than the threshold.
+
+        **result**
+            Actual result object
+        """
+        res = collections.defaultdict(list)
+        baselines = {}
+        for result in (self.performance
+                       .select_related('osversion', 'appversion')
+                       .order_by('-created')[:20]):
+            k = (result.appversion.id, result.osversion.id, result.test)
+            if k not in baselines:
+                baselines[k] = result.get_baseline()
+            baseline = baselines[k]
+            appver = result.appversion
+            slow = result.startup_is_too_slow(baseline=baseline)
+            res[appver].append({'baseline': baseline,
+                                'startup_is_too_slow': slow,
+                                'result': result})
+        return res.iteritems()
+
 
 @receiver(dbsignals.post_save, sender=Addon,
           dispatch_uid='addons.update.name.table')

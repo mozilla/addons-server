@@ -1,6 +1,12 @@
+import logging
+
+from django.conf import settings
 from django.db import models
 
 import amo.models
+
+
+log = logging.getLogger('z.perf')
 
 
 class PerformanceAppVersions(amo.models.ModelBase):
@@ -40,11 +46,38 @@ class Performance(amo.models.ModelBase):
 
     TEST_CHOICES = [('ts', 'Startup Time')]
 
-    addon = models.ForeignKey('addons.Addon', null=True)
+    addon = models.ForeignKey('addons.Addon', null=True,
+                              related_name='performance')
     average = models.FloatField(default=0, db_index=True)
     appversion = models.ForeignKey(PerformanceAppVersions)
     osversion = models.ForeignKey(PerformanceOSVersion)
     test = models.CharField(max_length=50, choices=TEST_CHOICES)
+
+    @staticmethod
+    def get_threshold():
+        """Percentage of slowness in which to flag the result as bad."""
+        return getattr(settings, 'PERF_THRESHOLD', 25) or 25
+
+    def get_baseline(self):
+        """Gets the latest baseline startup time per Appversion/OS."""
+        res = (Performance.objects
+               .filter(addon=None, appversion=self.appversion,
+                       osversion=self.osversion, test=self.test)
+               .order_by('-created'))[0]
+        return res.average
+
+    def startup_is_too_slow(self, baseline=None):
+        """Returns True if this result's startup time is slower
+        than the allowed threshold.
+        """
+        if self.test != 'ts':
+            log.info('startup_is_too_slow() only applies to startup time, '
+                     'not %s' % self.test)
+            return False
+        if not baseline:
+            baseline = self.get_baseline()
+        delta = (self.average - baseline) / baseline * 100
+        return delta >= self.get_threshold()
 
     class Meta:
         db_table = 'perf_results'
