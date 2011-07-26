@@ -287,7 +287,7 @@ models.signals.post_delete.connect(cleanup_file, sender=File,
 
 
 @File.on_change
-def check_file_status(old_attr, new_attr, instance, sender, **kw):
+def check_file(old_attr, new_attr, instance, sender, **kw):
     if kw.get('raw'):
         return
     old, new = old_attr.get('status'), instance.status
@@ -295,6 +295,16 @@ def check_file_status(old_attr, new_attr, instance, sender, **kw):
         instance.hide_disabled_file()
     elif old == amo.STATUS_DISABLED and new != amo.STATUS_DISABLED:
         instance.unhide_disabled_file()
+
+    # Log that the hash has changed.
+    old, new = old_attr.get('hash'), instance.hash
+    if old != new:
+        try:
+            addon = instance.version.addon.pk
+        except models.ObjectDoesNotExist:
+            addon = 'unknown'
+        log.info('Hash changed for file: %s, addon: %s, from: %s to: %s' %
+                 (instance.pk, addon, old, new))
 
 
 # TODO(davedash): Get rid of this table once /editors is on zamboni
