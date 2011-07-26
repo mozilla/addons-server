@@ -140,6 +140,10 @@ class TestEdit(UserViewBase):
         post = self.correct.copy()
         post['notifications'] = [2, 4, 6]
 
+        # Make jbalogh a developer
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        au = AddonUser.objects.create(user=self.user, addon=addon)
+
         res = self.client.post(self.impala_url, post)
         eq_(res.status_code, 302)
 
@@ -154,6 +158,13 @@ class TestEdit(UserViewBase):
 
         eq_(doc('.more-none').length, len(email.NOTIFICATION_GROUPS))
         eq_(doc('.more-all').length, len(email.NOTIFICATION_GROUPS))
+
+    def test_edit_notifications_non_dev(self):
+        post = self.correct.copy()
+        post['notifications'] = [2, 4, 6]
+
+        res = self.client.post(self.impala_url, post)
+        assert len(res.context['form'].errors['notifications'])
 
 
 class TestPasswordAdmin(UserViewBase):
