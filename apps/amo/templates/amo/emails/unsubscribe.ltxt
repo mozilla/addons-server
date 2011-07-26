@@ -1,0 +1,7 @@
+{{ message }}
+
+===================================================================
+You received this email because you're subscribed to:
+   * email me when {{ perm_setting }}
+
+Unsubscribe: {{ unsubscribe }}

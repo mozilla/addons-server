@@ -72,6 +72,7 @@ class SendMailTest(test.TestCase):
         success = send_mail('test subject', 'test body', perm_setting='reply',
                             recipient_list=[to], fail_silently=False)
 
+        assert "You received this email because" in mail.outbox[0].body
         assert success, "Email wasn't sent"
         eq_(len(mail.outbox), 1)
 

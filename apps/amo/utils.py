@@ -19,6 +19,7 @@ from django.core.cache import cache
 from django.core.serializers import json
 from django.core.validators import ValidationError, validate_slug
 from django.core.mail import send_mail as django_send_mail
+from django.template import Context, loader
 from django.utils.translation import trans_real
 from django.utils.functional import Promise
 from django.utils.encoding import smart_str, smart_unicode
@@ -29,6 +30,7 @@ from PIL import Image, ImageFile, PngImagePlugin
 
 import amo.search
 from amo import ADDON_ICON_SIZES
+from amo.urlresolvers import reverse
 from . import logger_log as log
 from translations.models import Translation
 from users.models import UserProfile, UserNotification
@@ -142,6 +144,14 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 
         d = perm_setting.default_checked
         recipient_list = [e for e in recipient_list if perms.setdefault(e, d)]
+
+        # Add footer
+        template = loader.get_template('amo/emails/unsubscribe.ltxt')
+        from amo.helpers import absolutify
+        context = {'message': message, 'perm_setting': perm_setting.label,
+                   'unsubscribe': absolutify(reverse('users.edit_impala')),
+                   'SITE_URL': settings.SITE_URL}
+        message = template.render(Context(context, autoescape=False))
 
     # Prune blacklisted emails.
     if use_blacklist:
