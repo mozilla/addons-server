@@ -1010,12 +1010,12 @@ class TestEdit(test_utils.TestCase):
         eq_(sorted(addon_cats), [22])
 
     @mock.patch.object(settings, 'NEW_FEATURES', True)
-    def test_edit_basic_categories_add_new_creatured(self):
+    def test_edit_basic_categories_disable_new_creatured(self):
         """Ensure that other forms are okay when disabling category changes."""
         self._feature_addon()
         self.cat_initial['categories'] = [22, 23]
         data = self.get_dict()
-        r = self.client.post(self.basic_url, data)
+        self.client.post(self.basic_url, data)
         eq_(unicode(self.get_addon().name), data['name'])
 
     @mock.patch.object(settings, 'NEW_FEATURES', False)
