@@ -549,7 +549,7 @@ class RecommendedCollection(Collection):
 
 class FeaturedCollectionManager(amo.models.ManagerBase):
 
-    def featured(self, app=None, lang=None):
+    def _featured(self, app=None, lang=None):
         qs = self
         if app:
             qs = qs.filter(application__id=app.id)
@@ -559,12 +559,12 @@ class FeaturedCollectionManager(amo.models.ManagerBase):
 
     def by_locale(self, app=None, lang=None):
         """Returns locales, ids for all add-ons from filtered collections."""
-        qs = self.featured(app, lang)
+        qs = self._featured(app, lang)
         return list(qs.values('locale', 'collection__addons').distinct())
 
     def addon_ids(self, app=None, lang=None):
         """Returns ids for all add-ons from filtered collections."""
-        qs = self.featured(app, lang)
+        qs = self._featured(app, lang)
         return list(qs.values_list('collection__addons', flat=True).distinct())
 
     def addons(self, app=None, lang=None):
