@@ -33,9 +33,8 @@ from amo import ADDON_ICON_SIZES
 from amo.urlresolvers import reverse
 from . import logger_log as log
 from translations.models import Translation
-from users.models import UserProfile, UserNotification
+from users.models import UserNotification
 import users.notifications as notifications
-from versions.models import ApplicationsVersions
 
 
 def urlparams(url_, hash=None, **query):
@@ -182,6 +181,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 class JSONEncoder(json.DjangoJSONEncoder):
 
     def default(self, obj):
+        from versions.models import ApplicationsVersions
 
         unicodable = (Translation, Promise)
 

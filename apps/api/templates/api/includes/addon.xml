@@ -130,7 +130,13 @@
       </application>
       {%- endfor -%}
     </performance>
-    {%- endif -%}
+    {% endif -%}
+
+    {% if show_localepicker -%}
+    <strings><![CDATA[
+{{ addon.get_localepicker() }}
+    ]]></strings>
+    {% endif %}
   {%- endif -%}
 </addon>
 {% endcache %}

@@ -308,7 +308,8 @@ class LanguageView(APIView):
                                       type=amo.ADDON_LPAPP,
                                       appsupport__app=self.request.APP.id,
                                       disabled_by_user=False).order_by('pk')
-        return self.render('api/list.xml', {'addons': addons})
+        return self.render('api/list.xml', {'addons': addons,
+                                            'show_localepicker': True})
 
 
 # pylint: disable-msg=W0613

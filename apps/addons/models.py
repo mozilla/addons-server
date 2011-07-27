@@ -965,6 +965,18 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                 'result': result})
         return res.iteritems()
 
+    def get_localepicker(self):
+        """For language packs, gets the contents of localepicker."""
+        if (self.type == amo.ADDON_LPAPP and self.status == amo.STATUS_PUBLIC
+            and self.current_version):
+            try:
+                file = (self.current_version
+                            .files.get(platform=amo.PLATFORM_ALL.id))
+                return file.get_localepicker()
+            except File.DoesNotExist:
+                pass
+        return ''
+
 
 @receiver(dbsignals.post_save, sender=Addon,
           dispatch_uid='addons.update.name.table')

@@ -7,16 +7,19 @@ import re
 import unicodedata
 import uuid
 import shutil
+import time
 import zipfile
 
 import django.dispatch
 from django.conf import settings
 from django.db import models
+from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 from django.utils.encoding import smart_str
 
 import commonware
 import path
+from statsd import statsd
 from uuidfield.fields import UUIDField
 
 import amo
@@ -24,6 +27,7 @@ import amo.models
 import amo.utils
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
+from apps.amo.utils import memoize
 import devhub.signals
 from versions.compare import version_int as vint
 
@@ -256,7 +260,51 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                      (self.id, smart_str(self.filename),
                       smart_str(self.file_path)))
 
+    @memoize(prefix='localepicker', time=0)
+    def get_localepicker(self, path='chrome/localepicker.properties'):
+        """
+        For a file that is part of a language pack, extract
+        the chrome/localepicker.properties file and return as
+        a string.
+        """
+        start = time.time()
+        try:
+            obj = zipfile.ZipFile(self.filename)
+        except (zipfile.BadZipfile, IOError), err:
+            log.error('Error extracting file: %s, filename: %s, %s' %
+                      (self.pk, self.filename, err))
+            return ''
 
+        try:
+            data = obj.read(path)
+            end = time.time() - start
+            log.info('Extracted localepicker file: %s in %.2fs' %
+                     (self.pk, end))
+            statsd.timing('files.extract.localepicker', (end * 1000))
+            return data
+        except KeyError:
+            return ''
+
+
+@receiver(models.signals.post_save, sender=File,
+          dispatch_uid='cache_localpicker')
+def cache_localepicker(sender, instance, **kw):
+    if kw.get('raw') or not kw.get('created'):
+        return
+
+    try:
+        addon = instance.version.addon
+    except models.ObjectDoesNotExist:
+        return
+
+    if addon.type == amo.ADDON_LPAPP and addon.status == amo.STATUS_PUBLIC:
+        log.info('Updating localepicker for file: %s, addon: %s' %
+                 (instance.pk, addon.pk))
+        instance.get_localepicker()
+
+
+@receiver(models.signals.post_delete, sender=File,
+          dispatch_uid='version_update_status')
 def update_status(sender, instance, **kw):
     if not kw.get('raw'):
         try:
@@ -264,10 +312,9 @@ def update_status(sender, instance, **kw):
         except models.ObjectDoesNotExist:
             pass
 
-models.signals.post_delete.connect(update_status, sender=File,
-                                   dispatch_uid='version_update_status')
 
-
+@receiver(models.signals.post_delete, sender=File,
+          dispatch_uid='cleanup_file')
 def cleanup_file(sender, instance, **kw):
     """ On delete of the file object from the database, unlink the file from
     the file system """
@@ -281,9 +328,6 @@ def cleanup_file(sender, instance, **kw):
             return
         if os.path.exists(filename):
             os.remove(filename)
-
-models.signals.post_delete.connect(cleanup_file, sender=File,
-                                   dispatch_uid='cleanup_file')
 
 
 @File.on_change

@@ -2,6 +2,7 @@
 from datetime import datetime, timedelta
 import json
 import os
+from textwrap import dedent
 
 from django.core.cache import cache
 from django.conf import settings
@@ -22,6 +23,7 @@ from amo.tests import TestCase
 from amo.urlresolvers import reverse
 from applications.models import Application
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
+from files.tests.test_models import UploadTest
 from search.tests import SphinxTestCase
 from search.utils import stop_sphinx
 
@@ -774,13 +776,16 @@ class SearchTest(SphinxTestCase):
         self.assertContains(response, "</addon>", 1)
 
 
-class LanguagePacks(TestCase):
+class LanguagePacks(UploadTest):
     fixtures = ['addons/listed', 'base/apps']
 
     def setUp(self):
         self.url = reverse('api.language', args=['1.5'])
         self.tb_url = self.url.replace('firefox', 'thunderbird')
         self.addon = Addon.objects.get(pk=3723)
+
+    def tearDown(self):
+        pass
 
     def test_search_language_pack(self):
         self.addon.update(type=amo.ADDON_LPAPP, status=amo.STATUS_PUBLIC)
@@ -801,3 +806,18 @@ class LanguagePacks(TestCase):
         self.addon.update(type=amo.ADDON_LPAPP, status=amo.STATUS_PUBLIC)
         res = self.client.get(self.tb_url)
         self.assertNotContains(res, "<guid>{835A3F80-DF39")
+
+    def test_search_no_localepicker(self):
+        self.addon.update(type=amo.ADDON_LPAPP, status=amo.STATUS_PUBLIC)
+        res = self.client.get(self.tb_url)
+        self.assertNotContains(res, "<strings><![CDATA[")
+
+    @patch('apps.addons.models.Addon.get_localepicker')
+    def test_localepicker(self, get_localepicker):
+        get_localepicker.return_value = 'some value'
+        self.addon.update(type=amo.ADDON_LPAPP, status=amo.STATUS_PUBLIC)
+        res = self.client.get(self.url)
+        self.assertContains(res, dedent("""
+                                                <strings><![CDATA[
+                                            some value
+                                                ]]></strings>"""))

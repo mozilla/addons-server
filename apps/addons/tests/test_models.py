@@ -26,7 +26,7 @@ from applications.models import Application, AppVersion
 from bandwagon.models import CollectionAddon, FeaturedCollection
 from devhub.models import ActivityLog
 from files.models import File, Platform
-from files.tests.test_models import UploadTest
+from files.tests.test_models import TestLanguagePack, UploadTest
 from reviews.models import Review
 from translations.models import TranslationSequence, Translation
 from users.models import UserProfile
@@ -1538,3 +1538,29 @@ class TestSearchSignals(amo.tests.ESTestCase):
         addon.delete('woo')
         self.refresh()
         eq_(Addon.search().count(), 0)
+
+
+class TestLanguagePack(TestLanguagePack):
+
+    def test_extract(self):
+        File.objects.create(platform=self.platform, version=self.version,
+                            filename=self.xpi_path('langpack-localepicker'))
+        assert 'title=Select a language' in self.addon.get_localepicker()
+
+    def test_extract_no_file(self):
+        File.objects.create(platform=self.platform, version=self.version,
+                            filename=self.xpi_path('langpack'))
+        eq_(self.addon.get_localepicker(), '')
+
+    def test_extract_no_files(self):
+        eq_(self.addon.get_localepicker(), '')
+
+    def test_extract_not_language_pack(self):
+        self.addon.update(type=amo.ADDON_LPAPP)
+        eq_(self.addon.get_localepicker(), '')
+
+    def test_extract_not_platform_all(self):
+        self.mac = Platform.objects.create(id=amo.PLATFORM_MAC.id)
+        File.objects.create(platform=self.mac, version=self.version,
+                            filename=self.xpi_path('langpack'))
+        eq_(self.addon.get_localepicker(), '')

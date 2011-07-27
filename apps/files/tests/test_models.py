@@ -667,3 +667,47 @@ class TestCheckJetpackVersion(amo.tests.TestCase):
         File.objects.update(jetpack_version='0.9')
         devhub.signals.submission_done.send(sender=self.addon)
         assert not upgrade_mock.called
+
+
+class LanguagePackBase(UploadTest):
+
+    def setUp(self):
+        super(LanguagePackBase, self).setUp()
+        self.addon = Addon.objects.create(type=amo.ADDON_LPAPP)
+        self.platform = Platform.objects.create(id=amo.PLATFORM_ALL.id)
+        self.version = Version.objects.create(addon=self.addon)
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        self.addon._current_version = self.version
+
+
+class TestLanguagePack(LanguagePackBase):
+
+    def file_create(self, path):
+        return (File.objects.create(platform=self.platform,
+                                    version=self.version,
+                                    filename=self.xpi_path(path)))
+
+    def test_extract(self):
+        obj = self.file_create('langpack-localepicker')
+        assert 'title=Select a language' in obj.get_localepicker()
+
+    def test_extract_no_file(self):
+        obj = self.file_create('langpack')
+        eq_(obj.get_localepicker(), '')
+
+    def test_hits_cache(self):
+        obj = self.file_create('langpack-localepicker')
+        assert 'title=Select a language' in obj.get_localepicker()
+        obj.update(filename='garbage')
+        assert 'title=Select a language' in obj.get_localepicker()
+
+    @mock.patch('files.models.File.get_localepicker')
+    def test_cache_on_create(self, get_localepicker):
+        self.file_create('langpack-localepicker')
+        assert get_localepicker.called
+
+    @mock.patch('files.models.File.get_localepicker')
+    def test_cache_not_on_create(self, get_localepicker):
+        self.addon.update(type=amo.ADDON_DICT)
+        self.file_create('langpack-localepicker')
+        assert not get_localepicker.called
