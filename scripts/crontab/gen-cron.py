@@ -26,13 +26,15 @@ def main():
         parser.error("-z and -r must be defined")
 
     ctx = {'django': 'cd %s; %s manage.py' % (opts.zamboni, opts.python),
-           'remora': 'cd %s' % opts.remora,
-           'python': opts.python}
+           'remora': 'cd %s' % opts.remora}
     ctx['z_cron'] = '%s cron' % ctx['django']
 
     if opts.user:
         for k, v in ctx.iteritems():
             ctx[k] = '%s %s' % (opts.user, v)
+
+    # Needs to stay below the opts.user injection.
+    ctx['python'] = opts.python
 
     print Template(TEMPLATE).render(**ctx)
 
