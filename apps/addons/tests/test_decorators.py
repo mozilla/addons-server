@@ -1,14 +1,14 @@
 from django import http
 
 import mock
-import test_utils
 from nose.tools import eq_
 
+import amo.tests
 from addons.models import Addon
 from addons import decorators as dec
 
 
-class TestAddonView(test_utils.TestCase):
+class TestAddonView(amo.tests.TestCase):
 
     def setUp(self):
         self.addon = Addon.objects.create(slug='x', type=1)

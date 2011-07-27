@@ -18,10 +18,10 @@ from nose.tools import eq_, assert_not_equal, assert_raises
 from nose.plugins.attrib import attr
 from PIL import Image
 from pyquery import PyQuery as pq
-import test_utils
 import waffle
 
 import amo
+import amo.tests
 import paypal
 from amo.helpers import url as url_reverse
 from amo.tests import (formset, initial, close_to_now,
@@ -47,7 +47,7 @@ from users.models import UserProfile
 from versions.models import ApplicationsVersions, License, Version
 
 
-class MetaTests(test_utils.TestCase):
+class MetaTests(amo.tests.TestCase):
 
     def test_assert_close_to_now(dt):
         assert close_to_now(datetime.now() - timedelta(seconds=30))
@@ -56,7 +56,7 @@ class MetaTests(test_utils.TestCase):
         assert not close_to_now(datetime.now() + timedelta(seconds=30))
 
 
-class HubTest(test_utils.TestCase):
+class HubTest(amo.tests.TestCase):
     fixtures = ['browse/nameless-addon', 'base/users']
 
     def setUp(self):
@@ -227,7 +227,7 @@ class TestDashboard(HubTest):
         eq_(doc('.blog-posts li a').eq(4).text(), "hi 4")
 
 
-class TestUpdateCompatibility(test_utils.TestCase):
+class TestUpdateCompatibility(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_4594_a9',
                 'base/addon_3615']
 
@@ -284,7 +284,7 @@ class TestUpdateCompatibility(test_utils.TestCase):
         assert doc('.item[data-addonid=3615] .tooltip.compat-error')
 
 
-class TestDevRequired(test_utils.TestCase):
+class TestDevRequired(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -330,7 +330,7 @@ class TestDevRequired(test_utils.TestCase):
         self.assertRedirects(self.client.post(self.post_url), self.get_url)
 
 
-class TestVersionStats(test_utils.TestCase):
+class TestVersionStats(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -353,7 +353,7 @@ class TestVersionStats(test_utils.TestCase):
         self.assertDictEqual(r, exp)
 
 
-class TestEditPayments(test_utils.TestCase):
+class TestEditPayments(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -556,7 +556,8 @@ class TestEditPayments(test_utils.TestCase):
         eq_(len(box), 1)
         eq_('completed developer profile' in box.text(), True)
 
-class TestDisablePayments(test_utils.TestCase):
+
+class TestDisablePayments(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -585,7 +586,7 @@ class TestDisablePayments(test_utils.TestCase):
         eq_(Addon.uncached.get(id=3615).wants_contributions, False)
 
 
-class TestPaymentsProfile(test_utils.TestCase):
+class TestPaymentsProfile(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -668,7 +669,7 @@ class TestPaymentsProfile(test_utils.TestCase):
         eq_(self.get_addon().wants_contributions, False)
 
 
-class TestDelete(test_utils.TestCase):
+class TestDelete(amo.tests.TestCase):
     fixtures = ('base/apps', 'base/users', 'base/addon_3615',
                 'base/addon_5579',)
 
@@ -691,7 +692,7 @@ class TestDelete(test_utils.TestCase):
         self.assertRaises(Addon.DoesNotExist, self.get_addon)
 
 
-class TestEdit(test_utils.TestCase):
+class TestEdit(amo.tests.TestCase):
     fixtures = ('base/apps', 'base/users', 'base/addon_3615',
                 'base/addon_5579', 'base/addon_3615_categories')
 
@@ -1625,7 +1626,8 @@ class TestEdit(test_utils.TestCase):
 
     def test_text_none_when_no_flags(self):
         addon = self.get_addon()
-        addon.update(external_software=False, site_specific=False, binary=False)
+        addon.update(external_software=False, site_specific=False,
+                     binary=False)
         r = self.client.get(reverse('devhub.addons.edit',
                 kwargs=dict(addon_id=addon.slug)))
         doc = pq(r.content)
@@ -1678,7 +1680,7 @@ class TestEdit(test_utils.TestCase):
             eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'fr')
 
 
-class TestActivityFeed(test_utils.TestCase):
+class TestActivityFeed(amo.tests.TestCase):
     fixtures = ('base/apps', 'base/users', 'base/addon_3615')
 
     def setUp(self):
@@ -1735,7 +1737,7 @@ class TestActivityFeed(test_utils.TestCase):
         eq_(len(doc('#dashboard-sidebar div.recent-activity li.item')), 0)
 
 
-class TestProfileBase(test_utils.TestCase):
+class TestProfileBase(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -1891,7 +1893,7 @@ class TestProfile(TestProfileBase):
         self.check(the_reason='to be hot', the_future='cold stuff')
 
 
-class TestSubmitBase(test_utils.TestCase):
+class TestSubmitBase(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
 
     def setUp(self):
@@ -1922,7 +1924,7 @@ class TestSubmitStep1(TestSubmitBase):
                 (href, ln.text))
 
 
-class TestSubmitStep2(test_utils.TestCase):
+class TestSubmitStep2(amo.tests.TestCase):
     # More tests in TestCreateAddon.
     fixtures = ['base/users']
 
@@ -1941,7 +1943,7 @@ class TestSubmitStep2(test_utils.TestCase):
         self.assertRedirects(r, reverse('devhub.submit.1'))
 
 
-class TestSubmitStep3(test_utils.TestCase):
+class TestSubmitStep3(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/addon_3615_categories',
                 'base/addon_5579', 'base/users']
 
@@ -2508,7 +2510,7 @@ class TestResumeStep(TestSubmitBase):
         self.assertRedirects(r, reverse('devhub.submit.4', args=['a3615']))
 
 
-class TestSubmitSteps(test_utils.TestCase):
+class TestSubmitSteps(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -2802,7 +2804,7 @@ def assert_json_field(request, field, msg):
     eq_(content[field], msg)
 
 
-class UploadTest(BaseUploadTest, test_utils.TestCase):
+class UploadTest(BaseUploadTest, amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -3237,7 +3239,7 @@ class TestVersionXSS(UploadTest):
 
 
 class TestCreateAddon(BaseUploadTest,
-                      test_utils.TestCase):
+                      amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/platforms']
 
     def setUp(self):
@@ -3301,7 +3303,7 @@ class TestCreateAddon(BaseUploadTest,
             [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi'])
 
 
-class TestDeleteAddon(test_utils.TestCase):
+class TestDeleteAddon(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -3328,7 +3330,7 @@ class TestDeleteAddon(test_utils.TestCase):
         self.assertRedirects(r, reverse('devhub.addons'))
 
 
-class TestRequestReview(test_utils.TestCase):
+class TestRequestReview(amo.tests.TestCase):
     fixtures = ['base/users', 'base/platforms']
 
     def setUp(self):
@@ -3431,7 +3433,7 @@ class TestRequestReview(test_utils.TestCase):
             orig_date.timetuple()[0:5])
 
 
-class TestRedirects(test_utils.TestCase):
+class TestRedirects(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -3463,7 +3465,7 @@ class TestRedirects(test_utils.TestCase):
                              301)
 
 
-class TestAdmin(test_utils.TestCase):
+class TestAdmin(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def login_admin(self):
@@ -3500,7 +3502,7 @@ class TestAdmin(test_utils.TestCase):
         eq_(r.status_code, 403)
 
 
-class TestNewsletter(test_utils.TestCase):
+class TestNewsletter(amo.tests.TestCase):
 
     def test_get(self):
         r = self.client.get(reverse('devhub.community.newsletter'))
@@ -3522,7 +3524,7 @@ class TestNewsletter(test_utils.TestCase):
         assert(urlencode({'EMAIL_ADDRESS_': email}) in v.call_args[1]['data'])
 
 
-class TestDocs(test_utils.TestCase):
+class TestDocs(amo.tests.TestCase):
 
     def test_doc_urls(self):
         eq_('/en-US/developers/docs/', reverse('devhub.docs', args=[]))
@@ -3547,7 +3549,7 @@ class TestDocs(test_utils.TestCase):
                 self.assertRedirects(r, index)
 
 
-class TestRemoveLocale(test_utils.TestCase):
+class TestRemoveLocale(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):

@@ -1,13 +1,13 @@
-import test_utils
 from nose.tools import eq_
 
+import amo.tests
 from addons.models import Addon
 from files.models import File
 from tags.models import Tag, AddonTag
 from tags import cron
 
 
-class TestTagJetpacks(test_utils.TestCase):
+class TestTagJetpacks(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_3615']
 
     def setUp(self):

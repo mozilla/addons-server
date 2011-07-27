@@ -13,7 +13,6 @@ from nose import SkipTest
 from nose.tools import eq_, assert_raises
 from pyquery import PyQuery as pq
 
-import test_utils
 
 import amo
 import amo.tests
@@ -22,7 +21,7 @@ from amo.helpers import urlparams
 from addons.tests.test_views import TestMobile
 from addons.models import (Addon, AddonCategory, Category, AppSupport, Feature,
                            Persona)
-from applications.models import Application, AppVersion
+from applications.models import Application
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from browse import views, feeds
 from browse.views import locale_display_name
@@ -110,7 +109,7 @@ def test_locale_display_name():
     assert_raises(KeyError, check, 'fake-lang', '', '')
 
 
-class TestLanguageTools(test_utils.TestCase):
+class TestLanguageTools(amo.tests.TestCase):
     fixtures = ['browse/test_views']
 
     def setUp(self):
@@ -165,7 +164,7 @@ class TestLanguageTools(test_utils.TestCase):
         eq_(list(response.context['locales']), [])
 
 
-class TestThemes(test_utils.TestCase):
+class TestThemes(amo.tests.TestCase):
     fixtures = ('base/category', 'base/addon_6704_grapple', 'base/addon_3615')
 
     def setUp(self):
@@ -229,7 +228,7 @@ class TestThemes(test_utils.TestCase):
         eq_(actual_count, expected_count)
 
 
-class TestCategoryPages(test_utils.TestCase):
+class TestCategoryPages(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/category', 'base/addon_3615',
                 'base/featured', 'addons/featured', 'browse/nameless-addon']
 
@@ -336,7 +335,7 @@ class NewTestCategoryPages(TestCategoryPages):
         settings.NEW_FEATURES = self._new_features
 
 
-class TestFeaturedLocale(test_utils.TestCase):
+class TestFeaturedLocale(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/category', 'base/addon_3615',
                 'base/featured', 'addons/featured', 'browse/nameless-addon']
 
@@ -637,7 +636,7 @@ class TestNewFeaturedLocale(TestFeaturedLocale):
         assert self.addon not in res.context['addons']
 
 
-class TestListingByStatus(test_utils.TestCase):
+class TestListingByStatus(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_3615']
 
     def setUp(self):
@@ -699,7 +698,7 @@ class TestListingByStatus(test_utils.TestCase):
         self.check([])
 
 
-class BaseSearchToolsTest(test_utils.TestCase):
+class BaseSearchToolsTest(amo.tests.TestCase):
     fixtures = ('base/apps', 'base/featured', 'addons/featured',
                 'base/category', 'addons/listed')
 
@@ -959,7 +958,7 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
                 u'Ivan Krstić :: Search Tools :: Add-ons for Firefox')
 
 
-class TestLegacyRedirects(test_utils.TestCase):
+class TestLegacyRedirects(amo.tests.TestCase):
     fixtures = ('base/category.json',)
 
     def test_types(self):
@@ -988,7 +987,7 @@ class TestLegacyRedirects(test_utils.TestCase):
         redirects('/recommended/format:rss', '/featured/format:rss')
 
 
-class TestFeaturedPage(test_utils.TestCase):
+class TestFeaturedPage(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/featured', 'addons/featured']
 
     def setUp(self):
@@ -1006,7 +1005,7 @@ class TestFeaturedPage(test_utils.TestCase):
             sorted(a.id for a in response.context['addons']))
 
 
-class TestCategoriesFeed(test_utils.TestCase):
+class TestCategoriesFeed(amo.tests.TestCase):
 
     def setUp(self):
         self.feed = feeds.CategoriesRss()
@@ -1036,7 +1035,7 @@ class TestCategoriesFeed(test_utils.TestCase):
         assert t.endswith(url), t
 
 
-class TestFeaturedFeed(test_utils.TestCase):
+class TestFeaturedFeed(amo.tests.TestCase):
     fixtures = ['addons/featured', 'base/addon_3615', 'base/apps',
                 'base/collections', 'base/featured', 'base/users']
 
@@ -1072,7 +1071,7 @@ class TestNewFeaturedFeed(TestFeaturedFeed):
         settings.NEW_FEATURES = self._new_features
 
 
-class TestPersonas(test_utils.TestCase):
+class TestPersonas(amo.tests.TestCase):
     fixtures = ('base/apps', 'base/featured', 'addons/featured',
                 'addons/persona')
 

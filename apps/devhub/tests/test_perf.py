@@ -5,8 +5,8 @@ import textwrap
 
 from mock import patch
 from nose.tools import eq_, raises
-import test_utils
 
+import amo.tests
 from devhub.perf import start_perf_test, BadResponse
 from files.models import File
 
@@ -15,7 +15,7 @@ def set_url_content(fake_urlopen, text):
     fake_urlopen.return_value = StringIO(textwrap.dedent(text))
 
 
-class TestPerf(test_utils.TestCase):
+class TestPerf(amo.tests.TestCase):
     fixtures = ['devhub/addon-validation-1']
 
     def setUp(self):

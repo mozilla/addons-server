@@ -3,11 +3,11 @@ from email import utils
 
 from django.db import connection
 
-import test_utils
 from nose.tools import eq_
 
-from addons.models import Addon
 import amo
+import amo.tests
+from addons.models import Addon
 from applications.models import Application, AppVersion
 from files.models import File
 from services import update
@@ -15,7 +15,7 @@ import settings_local
 from versions.models import ApplicationsVersions, Version
 
 
-class TestDataValidate(test_utils.TestCase):
+class TestDataValidate(amo.tests.TestCase):
     fixtures = ['base/addon_3615',
                 'base/platforms',
                 'base/appversion']
@@ -90,7 +90,7 @@ class TestDataValidate(test_utils.TestCase):
         assert not up.is_valid()
 
 
-class TestLookup(test_utils.TestCase):
+class TestLookup(amo.tests.TestCase):
     fixtures = ['addons/update',
                 'base/platforms']
 
@@ -353,7 +353,7 @@ class TestLookup(test_utils.TestCase):
             eq_(version, self.version_1_2_1)
 
 
-class TestResponse(test_utils.TestCase):
+class TestResponse(amo.tests.TestCase):
     fixtures = ['base/addon_3615',
                 'base/platforms',
                 'base/seamonkey']

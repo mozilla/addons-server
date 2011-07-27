@@ -1,8 +1,8 @@
 from nose.tools import eq_
 import mock
-import test_utils
 
 import amo
+import amo.tests
 from addons import cron
 from addons.models import Addon, AppSupport
 from addons.utils import ReverseNameLookup
@@ -11,7 +11,7 @@ from files.models import File, Platform
 from versions.models import Version
 
 
-class TestBuildReverseNameLookup(test_utils.TestCase):
+class TestBuildReverseNameLookup(amo.tests.TestCase):
     fixtures = ('base/addon_3615',)
 
     def test_lookup(self):
@@ -19,7 +19,7 @@ class TestBuildReverseNameLookup(test_utils.TestCase):
         eq_(ReverseNameLookup().get('Delicious Bookmarks'), 3615)
 
 
-class CurrentVersionTestCase(test_utils.TestCase):
+class CurrentVersionTestCase(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def test_addons(self):
@@ -35,7 +35,7 @@ class CurrentVersionTestCase(test_utils.TestCase):
         eq_(Addon.objects.filter(_current_version=None, pk=3615).count(), 0)
 
 
-class TestLastUpdated(test_utils.TestCase):
+class TestLastUpdated(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'addons/listed', 'base/apps',
                 'addons/persona', 'base/seamonkey', 'base/thunderbird']
 
@@ -114,7 +114,7 @@ class TestLastUpdated(test_utils.TestCase):
                                       app=amo.SEAMONKEY.id).count(), 1)
 
 
-class TestGetSatisfactionFix(test_utils.TestCase):
+class TestGetSatisfactionFix(amo.tests.TestCase):
 
     def setUp(self):
         self.addon = (Addon.objects.create(type=amo.ADDON_EXTENSION,
@@ -140,7 +140,7 @@ class TestGetSatisfactionFix(test_utils.TestCase):
         eq_(Addon.objects.get(pk=self.addon.pk).get_satisfaction_company, None)
 
 
-class TestHideDisabledFiles(test_utils.TestCase):
+class TestHideDisabledFiles(amo.tests.TestCase):
     msg = 'Moving disabled file: %s => %s'
 
     def setUp(self):

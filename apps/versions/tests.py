@@ -5,11 +5,11 @@ from datetime import datetime, timedelta
 from django.conf import settings
 
 import mock
-import test_utils
 from nose.tools import eq_
 from pyquery import PyQuery
 
 import amo
+import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from addons.tests.test_views import TestMobile
@@ -67,7 +67,7 @@ def test_dict_from_int():
     eq_(d['pre_ver'], 2)
 
 
-class TestVersion(test_utils.TestCase):
+class TestVersion(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/admin',
                 'base/platforms']
 
@@ -263,7 +263,7 @@ class TestVersion(test_utils.TestCase):
         eq_(version.version_int, None)
 
 
-class TestViews(test_utils.TestCase):
+class TestViews(amo.tests.TestCase):
     fixtures = ['addons/eula+contrib-addon', 'base/apps']
 
     def setUp(self):
@@ -303,7 +303,7 @@ class TestViews(test_utils.TestCase):
         eq_(doc('.version').attr('id'), 'version-%s' % version)
 
 
-class TestFeeds(test_utils.TestCase):
+class TestFeeds(amo.tests.TestCase):
     fixtures = ['addons/eula+contrib-addon', 'base/apps']
 
     def test_feed_elements_present(self):
@@ -331,7 +331,7 @@ class TestFeeds(test_utils.TestCase):
         assert item_pubdate.text == 'Thu, 21 May 2009 05:37:15 -0700'
 
 
-class TestDownloadsBase(test_utils.TestCase):
+class TestDownloadsBase(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_5299_gcal', 'base/admin']
 
     def setUp(self):
@@ -551,7 +551,7 @@ class TestDownloadsLatest(TestDownloadsBase):
         assert r['Location'].endswith('?src=xxx'), r['Location']
 
 
-class TestVersionFromUpload(UploadTest, test_utils.TestCase):
+class TestVersionFromUpload(UploadTest, amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/users',
                 'base/platforms']
 

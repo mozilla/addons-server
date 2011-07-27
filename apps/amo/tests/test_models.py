@@ -1,10 +1,10 @@
-from test_utils import TestCase
 
 from mock import Mock
 from nose.tools import eq_
 
 import amo.models
 from amo.models import manual_order
+from amo.tests import TestCase
 from amo import models as context
 from addons.models import Addon
 
@@ -53,7 +53,7 @@ class TestModelBase(TestCase):
         Addon.on_change(self.cb)
 
     def tearDown(self):
-         amo.models._on_change_callbacks = self.saved_cb
+        amo.models._on_change_callbacks = self.saved_cb
 
     def test_change_called_on_new_instance_save(self):
         for create_addon in (Addon, Addon.objects.create):

@@ -1,12 +1,12 @@
-import test_utils
 from nose.tools import eq_
 
+import amo.tests
 from addons.models import Addon
 from stats import tasks
 from stats.models import GlobalStat, Contribution
 
 
-class TestGlobalStats(test_utils.TestCase):
+class TestGlobalStats(amo.tests.TestCase):
 
     fixtures = ['stats/test_models']
 
@@ -22,7 +22,7 @@ class TestGlobalStats(test_utils.TestCase):
                                                  name=job)), 1)
 
 
-class TestTotalContributions(test_utils.TestCase):
+class TestTotalContributions(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def test_total_contributions(self):
@@ -44,4 +44,3 @@ class TestTotalContributions(test_utils.TestCase):
         tasks.addon_total_contributions(3615)
         a = Addon.objects.no_cache().get(pk=3615)
         eq_(float(a.total_contributions), 19.99)
-

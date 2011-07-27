@@ -13,21 +13,21 @@ from nose.plugins.attrib import attr
 from nose.tools import eq_
 from piston.models import Consumer
 from pyquery import PyQuery as pq
-import test_utils
 
 import amo
+import amo.tests
 from amo.tests import (formset, initial, close_to_now,
                        assert_no_validation_errors)
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from applications.models import AppVersion
-from bandwagon.models import Collection, FeaturedCollection
+from bandwagon.models import FeaturedCollection
 from devhub.models import ActivityLog
 from files.models import Approval, File
 from users.models import UserProfile
 from users.utils import get_task_user
 from versions.models import ApplicationsVersions, Version
-from zadmin.forms import NotifyForm, FeaturedCollectionForm
+from zadmin.forms import NotifyForm
 from zadmin.models import ValidationJob, ValidationResult, EmailPreviewTopic
 from zadmin.views import completed_versions_dirty, find_files
 from zadmin import tasks
@@ -38,7 +38,7 @@ no_op_validation = dict(errors=0, warnings=0, notices=0, messages=[],
                                                    notices=0))
 
 
-class TestFlagged(test_utils.TestCase):
+class TestFlagged(amo.tests.TestCase):
     fixtures = ['zadmin/tests/flagged']
 
     def setUp(self):
@@ -90,7 +90,7 @@ class TestFlagged(test_utils.TestCase):
         eq_(addons[0], Addon.objects.get(id=3))
 
 
-class BulkValidationTest(test_utils.TestCase):
+class BulkValidationTest(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/platforms', 'base/addon_3615',
                 'base/appversion', 'base/users']
 
@@ -992,7 +992,7 @@ def test_settings():
     eq_(response.status_code, 200)
 
 
-class TestEmailPreview(test_utils.TestCase):
+class TestEmailPreview(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
@@ -1014,7 +1014,7 @@ class TestEmailPreview(test_utils.TestCase):
                          'the subject', 'Hello Ivan Krsti\xc4\x87'])
 
 
-class TestFeatures(test_utils.TestCase):
+class TestFeatures(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/collections']
 
     def setUp(self):
@@ -1108,7 +1108,7 @@ class TestFeatures(test_utils.TestCase):
         del dupe['id']
         dupe.update(locale='fr')
         data = formset(initial(self.f), dupe, initial_count=1)
-        r = self.client.post(self.url, data)
+        self.client.post(self.url, data)
         eq_(FeaturedCollection.objects.count(), 2)
         eq_(FeaturedCollection.objects.all()[1].locale, 'fr')
 
@@ -1122,12 +1122,12 @@ class TestFeatures(test_utils.TestCase):
     def test_success_delete(self):
         d = initial(self.f)
         d.update(DELETE=True)
-        r = self.client.post(self.url, formset(d, initial_count=1))
+        self.client.post(self.url, formset(d, initial_count=1))
         eq_(FeaturedCollection.objects.count(), 0)
 
 
-class TestOAuth(test_utils.TestCase):
-    fixtures = ['base/users',]
+class TestOAuth(amo.tests.TestCase):
+    fixtures = ['base/users']
 
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',
@@ -1141,7 +1141,7 @@ class TestOAuth(test_utils.TestCase):
         eq_(Consumer.objects.count(), 1)
 
 
-class TestLookup(test_utils.TestCase):
+class TestLookup(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):

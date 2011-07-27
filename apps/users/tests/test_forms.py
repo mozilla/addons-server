@@ -6,12 +6,12 @@ from django.core import mail
 from django.core.validators import validate_slug
 from django.utils.http import int_to_base36
 
-import test_utils
 from manage import settings
 from mock import Mock, patch
 from nose.tools import eq_
 
 import amo
+import amo.tests
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from amo.tests.test_helpers import get_uploaded_file
@@ -19,7 +19,7 @@ from users.models import BlacklistedPassword, UserProfile
 from users.forms import UserEditForm
 
 
-class UserFormBase(test_utils.TestCase):
+class UserFormBase(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):

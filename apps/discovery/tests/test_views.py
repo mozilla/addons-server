@@ -7,14 +7,14 @@ import mock
 from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import test_utils
 
 import amo
+import amo.tests
 import addons.signals
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from applications.models import Application, AppVersion
-from bandwagon.models import Collection, SyncedCollection
+from bandwagon.models import Collection
 from bandwagon.tests.test_models import TestRecommendations as Recs
 from discovery import views
 from discovery.forms import DiscoveryModuleForm
@@ -24,7 +24,7 @@ from files.models import File
 from versions.models import Version, ApplicationsVersions
 
 
-class TestRecs(test_utils.TestCase):
+class TestRecs(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/appversion', 'base/addon-recs',
                 'base/addon_5299_gcal', 'base/category', 'base/featured']
 
@@ -180,7 +180,7 @@ class TestRecs(test_utils.TestCase):
             2)
 
 
-class TestModuleAdmin(test_utils.TestCase):
+class TestModuleAdmin(amo.tests.TestCase):
     fixtures = ['base/apps']
 
     def test_sync_db_and_registry(self):
@@ -213,7 +213,7 @@ class TestModuleAdmin(test_utils.TestCase):
         eq_(form.cleaned_data['locales'], 'fa en-US he')
 
 
-class TestUrls(test_utils.TestCase):
+class TestUrls(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_3615']
 
     def test_resolve_addon_view(self):
@@ -228,7 +228,7 @@ class TestUrls(test_utils.TestCase):
         self.assertRedirects(r, url, 301)
 
 
-class TestPane(test_utils.TestCase):
+class TestPane(amo.tests.TestCase):
     fixtures = ['addons/featured', 'base/addon_3615', 'base/apps',
                 'base/collections', 'base/featured', 'base/users',
                 'bandwagon/featured_collections']
@@ -322,7 +322,7 @@ class TestPane(test_utils.TestCase):
         self._test_featured_personas()
 
 
-class TestDetails(test_utils.TestCase):
+class TestDetails(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_3615']
 
     def setUp(self):
@@ -374,7 +374,7 @@ class TestDetails(test_utils.TestCase):
         assert doc('.performance-note').length
 
 
-class TestDownloadSources(test_utils.TestCase):
+class TestDownloadSources(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/collections',
                 'base/featured', 'addons/featured',
                 'discovery/discoverymodules']

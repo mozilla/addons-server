@@ -4,10 +4,10 @@ from django.db import IntegrityError
 
 from mock import Mock, patch
 from nose.tools import eq_
-from test_utils import TestCase
 from pyquery import PyQuery as pq
 
 import amo
+from amo.tests import TestCase
 from users.models import UserProfile
 from .backends import SessionBackend
 from .models import Session
@@ -108,7 +108,6 @@ class CakeTestCase(TestCase):
         # We have a legitimate profile, but for some reason the user_id is
         # phony.
         s = SessionBackend()
-        backend = SessionBackend()
         session = Session.objects.get(pk='17f051c99f083244bf653d5798111216')
 
         p_mock.side_effect = User.DoesNotExist()

@@ -1,16 +1,16 @@
-import test_utils
 from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery
 
 import amo
+import amo.tests
 from addons.helpers import (statusflags, flag, support_addon, contribution,
                             performance_note, mobile_persona_preview,
                             mobile_persona_confirm)
 from addons.models import Addon
 
 
-class TestHelpers(test_utils.TestCase):
+class TestHelpers(amo.tests.TestCase):
     fixtures = ['addons/featured', 'base/collections', 'base/featured',
                 'bandwagon/featured_collections']
 
@@ -139,7 +139,7 @@ class TestHelpers(test_utils.TestCase):
         eq_(more.attr('href'), persona.addon.get_url_path())
 
 
-class TestPerformanceNote(test_utils.TestCase):
+class TestPerformanceNote(amo.tests.TestCase):
     listing = '<div class="performance-note">'
     not_listing = '<div class="notification performance-note">'
 

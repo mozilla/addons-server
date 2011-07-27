@@ -1,12 +1,12 @@
 from datetime import datetime, timedelta
 
 import jingo
-import test_utils
 from nose.tools import eq_
 from mock import Mock
 from pyquery import PyQuery as pq
 
 import amo
+import amo.tests
 from addons.models import Addon, AddonUser
 from bandwagon.models import Collection
 from devhub.models import ActivityLog, AddonLog, BlogPost
@@ -17,7 +17,7 @@ from users.models import UserProfile
 from versions.models import Version
 
 
-class TestActivityLog(test_utils.TestCase):
+class TestActivityLog(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
@@ -118,7 +118,6 @@ class TestActivityLog(test_utils.TestCase):
         eq_(len(entries), 1)
 
     def test_version_log(self):
-        request = self.request
         version = Version.objects.all()[0]
         amo.log(amo.LOG.REJECT_VERSION, version.addon, version,
                 user=self.request.amo_user)
@@ -126,13 +125,13 @@ class TestActivityLog(test_utils.TestCase):
         eq_(len(entries), 1)
 
     def test_version_log_transformer(self):
-        request = self.request
         addon = Addon.objects.get()
         version = addon.latest_version
         amo.log(amo.LOG.REJECT_VERSION, addon, version,
                 user=self.request.amo_user)
 
-        version_two = Version(addon=addon, license=version.license, version='1.2.3')
+        version_two = Version(addon=addon, license=version.license,
+                              version='1.2.3')
         version_two.save()
 
         amo.log(amo.LOG.REJECT_VERSION, addon, version_two,
@@ -174,7 +173,7 @@ class TestActivityLog(test_utils.TestCase):
         eq_(len(pq(text)('a')), 1)
 
 
-class TestVersion(test_utils.TestCase):
+class TestVersion(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615',
                 'base/thunderbird', 'base/platforms']
 
@@ -230,7 +229,7 @@ class TestVersion(test_utils.TestCase):
         eq_(self.addon.status, amo.STATUS_NULL)
 
 
-class TestActivityLogCount(test_utils.TestCase):
+class TestActivityLogCount(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
@@ -283,11 +282,10 @@ class TestActivityLogCount(test_utils.TestCase):
         eq_(result[0]['user'], self.user.pk)
 
 
-class TestBlogPosts(test_utils.TestCase):
+class TestBlogPosts(amo.tests.TestCase):
 
     def test_blog_posts(self):
         BlogPost.objects.create(title='hi')
         bp = BlogPost.objects.all()
         eq_(bp.count(), 1)
         eq_(bp[0].title, "hi")
-

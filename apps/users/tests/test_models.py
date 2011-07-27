@@ -9,9 +9,9 @@ from django.utils import encoding
 
 from mock import patch
 from nose.tools import eq_
-import test_utils
 
 import amo
+import amo.tests
 from amo.signals import _connect, _disconnect
 from addons.models import Addon, AddonUser
 from bandwagon.models import Collection
@@ -21,7 +21,7 @@ from users.models import (UserProfile, get_hexdigest, BlacklistedEmailDomain,
                           UserEmailField)
 
 
-class TestUserProfile(test_utils.TestCase):
+class TestUserProfile(amo.tests.TestCase):
     fixtures = ('base/addon_3615', 'base/user_2519', 'base/user_4043307',
                 'users/test_backends', 'base/apps',)
 
@@ -146,7 +146,7 @@ class TestUserProfile(test_utils.TestCase):
         eq_(c.slug, 'favorites')
 
 
-class TestPasswords(test_utils.TestCase):
+class TestPasswords(amo.tests.TestCase):
     utf = u'\u0627\u0644\u062a\u0637\u0628'
 
     def test_invalid_old_password(self):
@@ -173,7 +173,7 @@ class TestPasswords(test_utils.TestCase):
         assert u.check_password(self.utf) is True
 
 
-class TestBlacklistedUsername(test_utils.TestCase):
+class TestBlacklistedUsername(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def test_blocked(self):
@@ -181,7 +181,7 @@ class TestBlacklistedUsername(test_utils.TestCase):
         eq_(BlacklistedUsername.blocked('testo'), False)
 
 
-class TestBlacklistedEmailDomain(test_utils.TestCase):
+class TestBlacklistedEmailDomain(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def test_blocked(self):
@@ -189,7 +189,7 @@ class TestBlacklistedEmailDomain(test_utils.TestCase):
         assert not BlacklistedEmailDomain.blocked('mozilla.com')
 
 
-class TestFlushURLs(test_utils.TestCase):
+class TestFlushURLs(amo.tests.TestCase):
     fixtures = ['base/user_2519']
 
     def setUp(self):
@@ -206,7 +206,7 @@ class TestFlushURLs(test_utils.TestCase):
         assert urlparse(user.picture_url).query.find('modified') > -1
 
 
-class TestUserEmailField(test_utils.TestCase):
+class TestUserEmailField(amo.tests.TestCase):
     fixtures = ['base/user_2519']
 
     def test_success(self):
@@ -224,7 +224,7 @@ class TestUserEmailField(test_utils.TestCase):
         eq_(e.exception.messages[0], 'This field is required.')
 
 
-class TestBlacklistedPassword(test_utils.TestCase):
+class TestBlacklistedPassword(amo.tests.TestCase):
 
     def test_blacklisted(self):
         BlacklistedPassword.objects.create(password='password')

@@ -12,10 +12,10 @@ from django.utils.http import http_date
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import test_utils
 from waffle.models import Switch
 
 import amo
+import amo.tests
 from amo.utils import Message
 from amo.urlresolvers import reverse
 from addons.models import Addon
@@ -247,7 +247,7 @@ class FilesBase:
         eq_(doc('#commands td:last').text(), 'Back to addon')
 
 
-class TestFileViewer(FilesBase, test_utils.TestCase):
+class TestFileViewer(FilesBase, amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def poll_url(self):
@@ -378,7 +378,7 @@ class TestFileViewer(FilesBase, test_utils.TestCase):
         eq_(data['msg'], ['I like cheese.'])
 
 
-class TestDiffViewer(FilesBase, test_utils.TestCase):
+class TestDiffViewer(FilesBase, amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
@@ -461,7 +461,7 @@ class TestDiffViewer(FilesBase, test_utils.TestCase):
         eq_(len(doc('ul.root')), 2)
 
 
-class TestBuilderPingback(test_utils.TestCase):
+class TestBuilderPingback(amo.tests.TestCase):
 
     def post(self, data):
         return self.client.post(reverse('amo.builder-pingback'), data)

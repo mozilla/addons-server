@@ -11,11 +11,11 @@ import mock
 from nose.plugins.attrib import attr
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import test_utils
 import waffle
 
-from addons.models import Addon
 import amo
+import amo.tests
+from addons.models import Addon
 from amo.tests import assert_no_validation_errors
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
@@ -81,7 +81,7 @@ class TestUploadErrors(BaseUploadTest):
               'type': 'error'}])
 
 
-class TestFileValidation(test_utils.TestCase):
+class TestFileValidation(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users',
                 'devhub/addon-validation-1', 'base/platforms']
 
@@ -164,7 +164,7 @@ class TestFileValidation(test_utils.TestCase):
             [[u'&lt;foo/&gt;'], u'&lt;em:description&gt;...'])
 
 
-class TestValidateAddon(test_utils.TestCase):
+class TestValidateAddon(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -346,7 +346,7 @@ class TestValidateFile(BaseUploadTest):
         eq_(data['validation']['messages'], [])
 
 
-class TestCompatibilityResults(test_utils.TestCase):
+class TestCompatibilityResults(amo.tests.TestCase):
     fixtures = ['base/users', 'devhub/addon-compat-results']
 
     def setUp(self):

@@ -4,15 +4,15 @@ import os
 from django.conf import settings
 
 from nose.tools import eq_
-import test_utils
 
+import amo.tests
 from addons.models import Addon
 from devhub.cron import update_blog_posts
 from devhub.tasks import convert_purified
 from devhub.models import BlogPost
 
 
-class TestRSS(test_utils.TestCase):
+class TestRSS(amo.tests.TestCase):
 
     def test_rss_cron(self):
         url = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
@@ -32,7 +32,7 @@ class TestRSS(test_utils.TestCase):
         eq_(bp.permalink, url)
 
 
-class TestPurify(test_utils.TestCase):
+class TestPurify(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):

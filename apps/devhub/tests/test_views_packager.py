@@ -1,18 +1,16 @@
 import json
 import os
 
-from django.conf import settings
-import test_utils
-
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
+import amo.tests
 from amo.tests import formset, initial
 from amo.urlresolvers import reverse
 from devhub.views import packager_path
 
 
-class TestAddOnPackager(test_utils.TestCase):
+class TestAddOnPackager(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/appversion']
 
     def setUp(self):
@@ -120,7 +118,7 @@ class TestAddOnPackager(test_utils.TestCase):
         eq_(r.status_code, 302)
 
 
-class TestPackagerJSON(test_utils.TestCase):
+class TestPackagerJSON(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/appversion']
 
     def setUp(self):
@@ -165,4 +163,3 @@ class TestPackagerJSON(test_utils.TestCase):
         assert isinstance(data['size'], (int, float))
 
         self._unprep_package('foobar')
-

@@ -1,12 +1,12 @@
 from nose.tools import eq_
-import test_utils
 
+import amo.tests
 from addons.models import Addon
 from tags.models import AddonTag, Tag, TagStat
 from tags.tasks import clean_tag
 
 
-class TestTagManager(test_utils.TestCase):
+class TestTagManager(amo.tests.TestCase):
 
     def test_not_blacklisted(self):
         """Make sure Tag Manager filters right for not blacklisted tags."""
@@ -20,7 +20,7 @@ class TestTagManager(test_utils.TestCase):
         eq_(Tag.objects.not_blacklisted()[0], tag1)
 
 
-class TestManagement(test_utils.TestCase):
+class TestManagement(amo.tests.TestCase):
     fixtures = ['base/addon_3615',
                 'base/addon_5369',
                 'tags/tags.json',
@@ -111,7 +111,7 @@ class TestManagement(test_utils.TestCase):
         assert Tag.objects.get(tag_text='sun').blacklisted
 
 
-class TestCount(test_utils.TestCase):
+class TestCount(amo.tests.TestCase):
     fixtures = ['base/addon_3615',
                 'base/addon_5369',
                 'tags/tags.json']

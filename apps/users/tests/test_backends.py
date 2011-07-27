@@ -1,13 +1,10 @@
-from django import test
 from django.contrib.auth import authenticate
-from django.core.cache import cache
 
-import test_utils
-
+import amo.tests
 from users.models import UserProfile
 
 
-class TestAmoUserBackend(test_utils.TestCase):
+class TestAmoUserBackend(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def test_success_without_user(self):

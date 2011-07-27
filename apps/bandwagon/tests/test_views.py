@@ -12,9 +12,9 @@ from mock import patch, Mock
 from nose.tools import eq_
 import path
 from pyquery import PyQuery as pq
-import test_utils
 
 import amo
+import amo.tests
 from addons.models import Addon
 from addons.tests.test_views import TestMobile
 from amo.urlresolvers import reverse
@@ -84,7 +84,7 @@ class HappyUnicodeClient(django.test.Client):
     # Add head, put, options, delete if you need them.
 
 
-class TestViews(test_utils.TestCase):
+class TestViews(amo.tests.TestCase):
     fixtures = ['users/test_backends', 'bandwagon/test_models',
                 'base/addon_3615']
 
@@ -157,7 +157,7 @@ class TestViews(test_utils.TestCase):
         eq_(list(response.context['addons'].object_list), [addon])
 
 
-class TestPrivacy(test_utils.TestCase):
+class TestPrivacy(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
@@ -195,7 +195,7 @@ class TestPrivacy(test_utils.TestCase):
         eq_(self.client.get(self.url).status_code, 200)
 
 
-class TestVotes(test_utils.TestCase):
+class TestVotes(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
@@ -259,7 +259,7 @@ class TestVotes(test_utils.TestCase):
         eq_(r.status_code, 200)
 
 
-class TestCRUD(test_utils.TestCase):
+class TestCRUD(amo.tests.TestCase):
     """Test the collection form."""
     fixtures = ('base/apps',
                 'base/users',
@@ -578,7 +578,7 @@ class TestCRUD(test_utils.TestCase):
         eq_(unicode(newc.name), 'new name')
 
 
-class TestChangeAddon(test_utils.TestCase):
+class TestChangeAddon(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
@@ -687,7 +687,7 @@ class TestChangeAddon(test_utils.TestCase):
                                         args=['jbalogh', 'mobile']))
 
 
-class AjaxTest(test_utils.TestCase):
+class AjaxTest(amo.tests.TestCase):
     fixtures = ('base/apps', 'base/users', 'base/addon_3615',
                 'base/addon_5299_gcal',
                 'base/collections')
@@ -760,7 +760,7 @@ class AjaxTest(test_utils.TestCase):
         eq_(self.client.get(url).status_code, 400)
 
 
-class TestWatching(test_utils.TestCase):
+class TestWatching(amo.tests.TestCase):
     fixtures = ['base/users', 'base/collection_57181']
 
     def setUp(self):
@@ -799,7 +799,7 @@ class TestWatching(test_utils.TestCase):
         eq_(json.loads(r.content), {'watching': True})
 
 
-class TestSharing(test_utils.TestCase):
+class TestSharing(amo.tests.TestCase):
     fixtures = ['base/collection_57181']
 
     def test_twitter_share(self):
@@ -821,7 +821,7 @@ class TestSharing(test_utils.TestCase):
         eq_(r.status_code, 404)
 
 
-class TestFeeds(test_utils.TestCase):
+class TestFeeds(amo.tests.TestCase):
     fixtures = ['base/collection_57181']
 
     def setUp(self):
@@ -852,7 +852,7 @@ class TestMobileCollections(TestMobile):
         self.assertTemplateUsed(r, 'bandwagon/collection_listing.html')
 
 
-class TestMine(test_utils.TestCase):
+class TestMine(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -870,7 +870,7 @@ class TestMine(test_utils.TestCase):
         self.assertRedirects(r, expected)
 
 
-class TestCollectionForm(test_utils.TestCase):
+class TestCollectionForm(amo.tests.TestCase):
     fixtures = ['base/collection_57181']
 
     @patch('amo.models.ModelBase.update')
@@ -882,9 +882,9 @@ class TestCollectionForm(test_utils.TestCase):
                          'slug': collection.slug,
                          'name': collection.name},
                         instance=collection,
-                        files= {'icon': get_uploaded_file('transparent.png')},
-                        initial= {'author':collection.author,
-                                 'application_id':collection.application.pk})
+                        files={'icon': get_uploaded_file('transparent.png')},
+                        initial={'author': collection.author,
+                                 'application_id': collection.application.pk})
         dest = (path.path(settings.COLLECTIONS_ICON_PATH) / 'uploads' /
                           'collection_icons' / '57')
         if not os.path.exists(dest):

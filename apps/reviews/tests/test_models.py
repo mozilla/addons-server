@@ -1,15 +1,14 @@
-from django.core.cache import cache
 from django.utils import translation
 
-import redisutils
-import test_utils
 from nose.tools import eq_
+import test_utils
 
+import amo.tests
 from reviews import tasks
 from reviews.models import Review, GroupedRating
 
 
-class TestReviewModel(test_utils.TestCase):
+class TestReviewModel(amo.tests.TestCase):
     fixtures = ['base/apps', 'reviews/test_models.json']
 
     def test_translations(self):
@@ -34,7 +33,7 @@ class TestReviewModel(test_utils.TestCase):
         test_utils.trans_eq(r2.title, 'r2 title de', 'de')
 
 
-class TestGroupedRating(test_utils.TestCase):
+class TestGroupedRating(amo.tests.TestCase):
     fixtures = ['base/apps', 'reviews/dev-reply.json']
 
     def test_get_none(self):

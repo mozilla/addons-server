@@ -4,9 +4,9 @@ from datetime import datetime
 from django.core import mail
 
 from nose.tools import eq_
-import test_utils
 
 import amo
+import amo.tests
 from addons.models import Addon
 from versions.models import Version, version_uploaded, ApplicationsVersions
 from files.models import Platform, File
@@ -55,7 +55,7 @@ def create_search_ext(name, version_str, addon_status, file_status):
     return ad
 
 
-class TestQueue(test_utils.TestCase):
+class TestQueue(amo.tests.TestCase):
     """Tests common attributes and coercions that each view must support."""
     __test__ = False  # this is an abstract test case
 
@@ -209,7 +209,7 @@ class TestPreliminaryQueue(TestQueue):
         assert row.waiting_time_hours is not None
 
 
-class TestEditorSubscription(test_utils.TestCase):
+class TestEditorSubscription(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):

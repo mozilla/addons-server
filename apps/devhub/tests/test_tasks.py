@@ -6,10 +6,10 @@ import tempfile
 from django.conf import settings
 
 import mock
-import test_utils
 from nose.tools import eq_
 from PIL import Image
 
+import amo.tests
 from addons.models import Addon
 from amo.tests.test_helpers import get_image_path
 from files.models import FileUpload
@@ -85,7 +85,7 @@ def _uploader(resize_size, final_size):
     assert not os.path.exists(src.name)
 
 
-class TestValidator(test_utils.TestCase):
+class TestValidator(amo.tests.TestCase):
 
     def setUp(self):
         self.upload = FileUpload.objects.create()
@@ -116,7 +116,7 @@ class TestValidator(test_utils.TestCase):
         assert error.startswith('Traceback (most recent call last)'), error
 
 
-class TestFlagBinary(test_utils.TestCase):
+class TestFlagBinary(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):

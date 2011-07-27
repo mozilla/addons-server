@@ -4,8 +4,9 @@ from django import test
 from commonware.middleware import HidePasswordOnException
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-from test_utils import TestCase, RequestFactory
+from test_utils import RequestFactory
 
+import amo.tests
 from amo.urlresolvers import reverse
 from zadmin.models import Config, _config_cache
 
@@ -34,7 +35,8 @@ def test_trailing_slash_middleware():
     assert response['Location'].endswith('/en-US/firefox/about?xxx=%C3%83')
 
 
-class AdminMessageTest(TestCase):
+class AdminMessageTest(amo.tests.TestCase):
+
     def test_message(self):
         c = Config()
         c.key = 'site_notice'

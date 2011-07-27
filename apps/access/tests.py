@@ -1,10 +1,10 @@
 from django.http import HttpRequest
 
 import mock
-from nose.tools import assert_false, eq_
-from test_utils import TestCase
+from nose.tools import assert_false
 
 import amo
+from amo.tests import TestCase
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
 from cake.models import Session
@@ -125,7 +125,8 @@ class TestHasPerm(TestCase):
 
     def test_ignore_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        assert check_addon_ownership(self.request, self.addon, ignore_disabled=True)
+        assert check_addon_ownership(self.request, self.addon,
+                                     ignore_disabled=True)
 
     def test_owner(self):
         assert check_addon_ownership(self.request, self.addon)

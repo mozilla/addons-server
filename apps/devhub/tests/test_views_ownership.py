@@ -1,9 +1,9 @@
 """Tests related to the ``devhub.addons.owner`` view."""
-import test_utils
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo
+import amo.tests
 from amo.tests import formset
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
@@ -12,7 +12,7 @@ from devhub.models import ActivityLog
 from versions.models import License, Version
 
 
-class TestOwnership(test_utils.TestCase):
+class TestOwnership(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):

@@ -12,9 +12,9 @@ from django.conf import settings
 
 import mock
 import path
-import test_utils
 from nose.tools import eq_
 
+import amo.tests
 import amo.utils
 import devhub.signals
 from addons.models import Addon
@@ -24,7 +24,7 @@ from files.utils import parse_addon, parse_xpi, check_rdf, JetpackUpgrader
 from versions.models import Version
 
 
-class UploadTest(test_utils.TestCase):
+class UploadTest(amo.tests.TestCase):
     """
     Base for tests that mess with file uploads, safely using temp directories.
     """
@@ -58,7 +58,7 @@ class UploadTest(test_utils.TestCase):
         return upload
 
 
-class TestFile(test_utils.TestCase):
+class TestFile(amo.tests.TestCase):
     """
     Tests the methods of the File model.
     """
@@ -198,7 +198,7 @@ class TestFile(test_utils.TestCase):
         assert os.path.exists(f.mirror_file_path)
 
 
-class TestParseXpi(test_utils.TestCase):
+class TestParseXpi(amo.tests.TestCase):
     fixtures = ['base/apps']
 
     def setUp(self):
@@ -321,7 +321,7 @@ class TestParseXpi(test_utils.TestCase):
         eq_(msg, 'Version numbers should have fewer than 32 characters.')
 
 
-class TestParseAlternateXpi(test_utils.TestCase):
+class TestParseAlternateXpi(amo.tests.TestCase):
     # This install.rdf is completely different from our other xpis.
     fixtures = ['base/apps']
 
@@ -572,7 +572,7 @@ class TestFileFromUpload(UploadTest):
         eq_(f.status, amo.STATUS_LITE_AND_NOMINATED)
 
 
-class TestZip(test_utils.TestCase):
+class TestZip(amo.tests.TestCase):
 
     def test_zip(self):
         # This zip contains just one file chrome/ that we expect
@@ -592,7 +592,7 @@ class TestZip(test_utils.TestCase):
             shutil.rmtree(dest)
 
 
-class TestParseSearch(test_utils.TestCase):
+class TestParseSearch(amo.tests.TestCase):
 
     def parse(self, filename='search.xml'):
         path = 'apps/files/fixtures/files/' + filename
@@ -644,7 +644,7 @@ def test_parse_xpi():
     eq_(rdf['name'], 'Fire.fm')
 
 
-class TestCheckJetpackVersion(test_utils.TestCase):
+class TestCheckJetpackVersion(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):

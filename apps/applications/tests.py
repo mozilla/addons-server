@@ -2,15 +2,15 @@ import json
 
 from django.core.management import call_command
 from nose.tools import eq_
-import test_utils
 
 import amo
+import amo.tests
 from amo.helpers import url
 from applications.models import AppVersion, Application
 from applications.management.commands import dump_apps
 
 
-class TestAppVersion(test_utils.TestCase):
+class TestAppVersion(amo.tests.TestCase):
 
     def test_major_minor(self):
         """Check that major/minor/alpha is getting set."""
@@ -37,7 +37,7 @@ class TestAppVersion(test_utils.TestCase):
         eq_(v.minor3, None)
 
 
-class TestApplication(test_utils.TestCase):
+class TestApplication(amo.tests.TestCase):
     fixtures = ['applications/all_apps.json']
 
     def test_string_representation(self):
@@ -50,7 +50,7 @@ class TestApplication(test_utils.TestCase):
             eq_(unicode(model_app), unicode(static_app.pretty))
 
 
-class TestViews(test_utils.TestCase):
+class TestViews(amo.tests.TestCase):
     fixtures = ['base/appversion']
 
     def test_appversions(self):
@@ -60,7 +60,7 @@ class TestViews(test_utils.TestCase):
         eq_(self.client.get(url('apps.appversions.rss')).status_code, 200)
 
 
-class TestCommands(test_utils.TestCase):
+class TestCommands(amo.tests.TestCase):
     fixtures = ['applications/all_apps.json', 'base/appversion']
 
     def test_dump_apps(self):

@@ -2,13 +2,13 @@ import itertools
 import random
 
 import mock
-import test_utils
 from nose.tools import eq_
 
 import amo
+import amo.tests
 from addons.models import Addon, AddonCategory, AddonRecommendation, Category
 from bandwagon.models import (Collection, CollectionAddon, CollectionUser,
-                              CollectionWatcher, SyncedCollection,
+                              CollectionWatcher,
                               RecommendedCollection, FeaturedCollection)
 from devhub.models import ActivityLog
 from bandwagon import tasks
@@ -27,7 +27,7 @@ def activitylog_count(type):
     return qs.count()
 
 
-class TestCollections(test_utils.TestCase):
+class TestCollections(amo.tests.TestCase):
     fixtures = ('base/apps', 'base/users', 'base/addon_3615',
                 'base/addon_10423_youtubesearch', 'base/addon_1833_yoono',
                 'base/collections', 'bandwagon/test_models')
@@ -151,7 +151,7 @@ class TestCollections(test_utils.TestCase):
         check(1)
 
 
-class TestRecommendations(test_utils.TestCase):
+class TestRecommendations(amo.tests.TestCase):
     fixtures = ['base/addon-recs']
     ids = [5299, 1843, 2464, 7661, 5369]
 
@@ -185,7 +185,7 @@ class TestRecommendations(test_utils.TestCase):
         eq_(recs, [1, 2])
 
 
-class TestFeaturedCollectionManager(test_utils.TestCase):
+class TestFeaturedCollectionManager(amo.tests.TestCase):
     fixtures = ['addons/featured', 'bandwagon/featured_collections',
                 'base/addon_3615', 'base/collections', 'base/featured']
 

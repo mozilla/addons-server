@@ -10,17 +10,16 @@ from django.core import mail
 from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import test_utils
 from waffle.models import Switch
 
 import amo
+import amo.tests
 from amo.urlresolvers import reverse
 from amo.tests import formset, initial
 from addons.models import Addon, AddonUser
 from applications.models import Application
 from devhub.models import ActivityLog
 from editors.models import EditorSubscription, EventLog
-from editors.helpers import get_position
 from files.models import Platform, File
 import reviews
 from reviews.models import Review, ReviewFlag
@@ -30,7 +29,7 @@ from zadmin.models import set_config
 from . test_models import create_addon_file
 
 
-class EditorTest(test_utils.TestCase):
+class EditorTest(amo.tests.TestCase):
     fixtures = ('base/users', 'editors/pending-queue', 'base/approvals')
 
     def login_as_admin(self):
@@ -974,9 +973,9 @@ class TestPerformance(QueueTest):
         # The ' - 1' is to account for REQUEST_VERSION not being displayed.
         num = len(amo.LOG_REVIEW_QUEUE) - 1
         label = datetime.now().isoformat()[:7]
-        data =  {label: {u'teamcount': num, u'teamavg': u'%s.0' % num,
-                         u'usercount': num, u'teamamt': 1,
-                         u'label': datetime.now().strftime('%b %Y')}}
+        data = {label: {u'teamcount': num, u'teamavg': u'%s.0' % num,
+                        u'usercount': num, u'teamamt': 1,
+                        u'label': datetime.now().strftime('%b %Y')}}
 
         eq_(json.loads(doc('#monthly').attr('data-chart')), data)
 
@@ -989,9 +988,9 @@ class TestPerformance(QueueTest):
         # The ' - 1' is to account for REQUEST_VERSION not being displayed.
         label = datetime.now().isoformat()[:7]
         num = len(amo.LOG_REVIEW_QUEUE) - 1
-        data =  {label: {u'teamcount': num, u'teamavg': u'%s.0' % num,
-                         u'usercount': num, u'teamamt': 1,
-                         u'label': datetime.now().strftime('%b %Y')}}
+        data = {label: {u'teamcount': num, u'teamavg': u'%s.0' % num,
+                        u'usercount': num, u'teamamt': 1,
+                        u'label': datetime.now().strftime('%b %Y')}}
 
         eq_(json.loads(doc('#monthly').attr('data-chart')), data)
 

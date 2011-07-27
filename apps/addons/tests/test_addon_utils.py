@@ -1,12 +1,12 @@
-import test_utils
 from nose.tools import eq_
 
+import amo.tests
 from addons.models import Addon
 from addons.utils import ReverseNameLookup
 from addons import cron
 
 
-class TestReverseNameLookup(test_utils.TestCase):
+class TestReverseNameLookup(amo.tests.TestCase):
     fixtures = ('base/addon_3615',)
 
     def setUp(self):

@@ -35,10 +35,10 @@ from django.test.client import (encode_multipart, Client, FakePayload,
 import oauth2 as oauth
 from mock import Mock, patch
 from nose.tools import eq_
-from test_utils import TestCase
-from piston.models import Consumer, Token
+from piston.models import Consumer
 
 import amo
+from amo.tests import TestCase
 from amo.urlresolvers import reverse
 from addons.models import Addon, BlacklistedGuid
 from devhub.models import ActivityLog

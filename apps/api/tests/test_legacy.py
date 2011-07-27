@@ -11,7 +11,6 @@ import jingo
 from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-from test_utils import TestCase
 
 import amo
 import api
@@ -19,6 +18,7 @@ import api.utils
 from addons.models import (Addon, AddonCategory, AppSupport, Category,
                            Feature, Preview)
 from amo import helpers
+from amo.tests import TestCase
 from amo.urlresolvers import reverse
 from applications.models import Application
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection

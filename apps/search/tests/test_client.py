@@ -3,12 +3,12 @@ import socket
 from django.utils import translation
 from django.conf import settings
 
-import test_utils
 import mock
 from nose.tools import eq_, assert_raises
 from pyquery import PyQuery as pq
 
 import amo
+import amo.tests
 from addons.models import Addon
 from amo.urlresolvers import reverse
 from bandwagon.models import Collection
@@ -25,7 +25,7 @@ def test_extract_from_query():
         extract_from_query("yslow voo:3.4", "voo", "[0-9.]+"))
 
 
-class GetCategoryIdTest(test_utils.TestCase):
+class GetCategoryIdTest(amo.tests.TestCase):
     fixtures = ["base/category"]
 
     def test_get_category_id(self):
@@ -101,7 +101,7 @@ class CollectionsPrivateSearchTest(SphinxTestCase):
         eq_(r, [], "Collection shouldn't show up.")
 
 
-class SearchDownTest(test_utils.TestCase):
+class SearchDownTest(amo.tests.TestCase):
 
     def test_search_down(self):
         """
@@ -128,7 +128,7 @@ class SearchDownTest(test_utils.TestCase):
         eq_(doc('.no-results').length, 1)
 
 
-class BadSortOptionTest(test_utils.TestCase):
+class BadSortOptionTest(amo.tests.TestCase):
     def test_bad_sort_option(self):
         """Test that we raise an error on bad sort options."""
         assert_raises(SearchError, lambda: query('xxx', sort="upsidedown"))

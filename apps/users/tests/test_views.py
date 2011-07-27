@@ -9,13 +9,13 @@ from django.forms.models import model_to_dict
 from django.test.client import Client
 from django.utils.http import int_to_base36
 
-import test_utils
 from mock import patch
 from nose.tools import eq_
 
+import amo
+import amo.tests
 from access.models import Group, GroupUser
 from addons.models import Addon, AddonUser
-import amo
 from amo.helpers import urlparams
 from amo.pyquery_wrapper import PyQuery as pq
 from amo.urlresolvers import reverse
@@ -25,7 +25,7 @@ import users.notifications as email
 from users.utils import EmailResetCode
 
 
-class UserViewBase(test_utils.TestCase):
+class UserViewBase(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
@@ -495,7 +495,7 @@ class TestProfile(UserViewBase):
                    for i in xrange(len(addons) - 1))
 
 
-class TestReportAbuse(AbuseBase, test_utils.TestCase):
+class TestReportAbuse(AbuseBase, amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):

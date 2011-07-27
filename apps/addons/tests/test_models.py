@@ -11,7 +11,6 @@ from django.utils import translation
 
 from mock import patch, Mock
 from nose.tools import eq_, assert_not_equal
-import test_utils
 
 import amo
 import amo.tests
@@ -35,7 +34,7 @@ from versions.models import ApplicationsVersions, Version
 from versions.compare import version_int
 
 
-class TestAddonManager(test_utils.TestCase):
+class TestAddonManager(amo.tests.TestCase):
     fixtures = ['addons/featured', 'addons/test_manager', 'base/collections',
                 'base/featured', 'bandwagon/featured_collections',
                 'base/addon_5299_gcal']
@@ -118,7 +117,7 @@ class TestAddonManager(test_utils.TestCase):
         eq_(Addon.objects.valid_and_disabled().count(), 10)
 
 
-class TestAddonManagerFeatured(test_utils.TestCase):
+class TestAddonManagerFeatured(amo.tests.TestCase):
     # TODO(cvan): Merge with above once new featured add-ons are enabled.
     fixtures = ['addons/featured', 'bandwagon/featured_collections',
                 'base/collections', 'base/featured']
@@ -133,7 +132,7 @@ class TestAddonManagerFeatured(test_utils.TestCase):
         assert not f.exists()
 
 
-class TestAddonModels(test_utils.TestCase):
+class TestAddonModels(amo.tests.TestCase):
     fixtures = ['base/apps',
                 'base/collections',
                 'base/featured',
@@ -1121,7 +1120,7 @@ class TestAddonModels(test_utils.TestCase):
         assert addon.get_category(amo.FIREFOX.id).name in names
 
 
-class TestAddonModelsFeatured(test_utils.TestCase):
+class TestAddonModelsFeatured(amo.tests.TestCase):
     fixtures = ['addons/featured', 'bandwagon/featured_collections',
                 'base/addon_3615', 'base/collections', 'base/featured']
 
@@ -1147,7 +1146,7 @@ class TestAddonModelsFeatured(test_utils.TestCase):
         self._test_featured_random()
 
 
-class TestBackupVersion(test_utils.TestCase):
+class TestBackupVersion(amo.tests.TestCase):
     fixtures = ['addons/update']
 
     def setUp(self):
@@ -1201,7 +1200,7 @@ class TestBackupVersion(test_utils.TestCase):
         assert Addon.objects.get(pk=1865).backup_version
 
 
-class TestCategoryModel(test_utils.TestCase):
+class TestCategoryModel(amo.tests.TestCase):
 
     def test_category_url(self):
         """Every type must have a url path for its categories."""
@@ -1212,7 +1211,7 @@ class TestCategoryModel(test_utils.TestCase):
             assert cat.get_url_path()
 
 
-class TestPersonaModel(test_utils.TestCase):
+class TestPersonaModel(amo.tests.TestCase):
 
     def test_image_urls(self):
         mypersona = Persona(id=1234, persona_id=9876)
@@ -1224,7 +1223,7 @@ class TestPersonaModel(test_utils.TestCase):
         assert p.update_url.endswith('9876')
 
 
-class TestPreviewModel(test_utils.TestCase):
+class TestPreviewModel(amo.tests.TestCase):
 
     fixtures = ['base/previews']
 
@@ -1234,7 +1233,7 @@ class TestPreviewModel(test_utils.TestCase):
         eq_(expect, reality)
 
 
-class TestAddonRecommendations(test_utils.TestCase):
+class TestAddonRecommendations(amo.tests.TestCase):
     fixtures = ['base/addon-recs']
 
     def test_scores(self):
@@ -1246,7 +1245,7 @@ class TestAddonRecommendations(test_utils.TestCase):
                 eq_(scores[addon][rec.other_addon_id], rec.score)
 
 
-class TestAddonDependencies(test_utils.TestCase):
+class TestAddonDependencies(amo.tests.TestCase):
     fixtures = ['base/addon_5299_gcal',
                 'base/addon_3615',
                 'base/addon_3723_listed',
@@ -1264,14 +1263,14 @@ class TestAddonDependencies(test_utils.TestCase):
         eq_(sorted([a.id for a in a.dependencies.all()]), sorted(ids))
 
 
-class TestListedAddonTwoVersions(test_utils.TestCase):
+class TestListedAddonTwoVersions(amo.tests.TestCase):
     fixtures = ['addons/listed-two-versions']
 
     def test_listed_two_versions(self):
         Addon.objects.get(id=2795)  # bug 563967
 
 
-class TestFlushURLs(test_utils.TestCase):
+class TestFlushURLs(amo.tests.TestCase):
     fixtures = ['base/addon_5579',
                 'base/previews',
                 'base/addon_4664_twitterbar',
@@ -1401,7 +1400,7 @@ class TestAddonFromUpload(UploadTest):
 REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
 
 
-class TestCharity(test_utils.TestCase):
+class TestCharity(amo.tests.TestCase):
     fixtures = ['base/charity.json']
 
     @patch.object(settings, 'REDIRECT_URL', REDIRECT_URL)
@@ -1416,7 +1415,7 @@ class TestCharity(test_utils.TestCase):
         assert not foundation.outgoing_url.startswith(REDIRECT_URL)
 
 
-class TestFrozenAddons(test_utils.TestCase):
+class TestFrozenAddons(amo.tests.TestCase):
 
     def test_immediate_freeze(self):
         # Adding a FrozenAddon should immediately drop the addon's hotness.
@@ -1425,7 +1424,7 @@ class TestFrozenAddons(test_utils.TestCase):
         eq_(Addon.objects.get(id=a.id).hotness, 0)
 
 
-class TestRemoveLocale(test_utils.TestCase):
+class TestRemoveLocale(amo.tests.TestCase):
 
     def test_remove(self):
         a = Addon.objects.create(type=1)
@@ -1448,7 +1447,7 @@ class TestRemoveLocale(test_utils.TestCase):
                                .values_list('locale', flat=True))
 
 
-class TestAddonWatchDisabled(test_utils.TestCase):
+class TestAddonWatchDisabled(amo.tests.TestCase):
 
     def setUp(self):
         self.addon = Addon(type=amo.ADDON_THEME, disabled_by_user=False,

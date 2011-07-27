@@ -1,6 +1,6 @@
-import test_utils
 from nose.tools import eq_
 
+import amo.tests
 from amo.cron import gc
 from bandwagon.models import Collection
 from cake.models import Session
@@ -9,7 +9,7 @@ from files.models import TestResult, TestResultCache
 from stats.models import AddonShareCount, Contribution
 
 
-class GarbageTest(test_utils.TestCase):
+class GarbageTest(amo.tests.TestCase):
     fixtures = ['base/addon_59', 'base/garbage']
 
     def test_garbage_collection(self):

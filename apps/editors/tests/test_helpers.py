@@ -10,9 +10,9 @@ from django.conf import settings
 from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import test_utils
 
 import amo
+import amo.tests
 from addons.models import Addon
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
@@ -21,7 +21,6 @@ from files.models import File
 from translations.models import Translation
 from users.models import UserProfile
 from versions.models import Version
-from .test_models import create_addon_file
 
 
 REVIEW_ADDON_STATUSES = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
@@ -31,7 +30,7 @@ REVIEW_FILES_STATUSES = (amo.STATUS_BETA, amo.STATUS_NULL, amo.STATUS_PUBLIC,
                          amo.STATUS_LITE)
 
 
-class TestViewPendingQueueTable(test_utils.TestCase):
+class TestViewPendingQueueTable(amo.tests.TestCase):
 
     def setUp(self):
         super(TestViewPendingQueueTable, self).setUp()
@@ -138,7 +137,7 @@ class TestViewPendingQueueTable(test_utils.TestCase):
         eq_(self.table.render_flags(row), '')
 
 
-class TestAdditionalInfoInQueue(test_utils.TestCase):
+class TestAdditionalInfoInQueue(amo.tests.TestCase):
 
     def setUp(self):
         super(TestAdditionalInfoInQueue, self).setUp()
@@ -195,7 +194,7 @@ class TestAdditionalInfoInQueue(test_utils.TestCase):
 yesterday = datetime.today() - timedelta(days=1)
 
 
-class TestReviewHelper(test_utils.TestCase):
+class TestReviewHelper(amo.tests.TestCase):
     fixtures = ('base/addon_3615', 'base/users')
     preamble = 'Mozilla Add-ons: Delicious Bookmarks 2.1.072'
 
@@ -699,7 +698,7 @@ def test_send_email_autoescape():
     eq_(mail.outbox[0].body.count(s), len(ctx))
 
 
-class TestCompareLink(test_utils.TestCase):
+class TestCompareLink(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/platforms']
 
     def setUp(self):

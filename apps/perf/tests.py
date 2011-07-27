@@ -1,16 +1,16 @@
 from django.conf import settings
 
 from mock import patch
-import test_utils
 from nose.tools import eq_
 
+import amo.tests
 from amo.urlresolvers import reverse
 from perf.cron import update_perf
 from perf.models import Performance
 from addons.models import Addon
 
 
-class TestPerfIndex(test_utils.TestCase):
+class TestPerfIndex(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/addon_5299_gcal',
                 'perf/index']
 
@@ -49,7 +49,7 @@ class TestPerfIndex(test_utils.TestCase):
         eq_(r.status_code, 404)
 
 
-class TestModels(test_utils.TestCase):
+class TestModels(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/addon_5299_gcal',
                 'perf/index']
 

@@ -1,11 +1,11 @@
 from  pyquery import PyQuery as pq
-import test_utils
 from nose.tools import eq_
 
+import amo.tests
 from translations import models, widgets
 
 
-class TestWidget(test_utils.TestCase):
+class TestWidget(amo.tests.TestCase):
 
     def test_avoid_purified_translation(self):
         # Even if we pass in a LinkifiedTranslation the widget switches to a

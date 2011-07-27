@@ -7,9 +7,9 @@ import mock
 from django.conf import settings
 
 import amo
+import amo.tests
 from amo.tests.test_helpers import get_image_path
 import paypal
-import test_utils
 from applications.models import AppVersion
 from addons.models import Addon, Charity
 from devhub import forms
@@ -19,7 +19,7 @@ from versions.models import ApplicationsVersions
 from nose.tools import eq_
 
 
-class TestNewAddonForm(test_utils.TestCase):
+class TestNewAddonForm(amo.tests.TestCase):
 
     def test_only_valid_uploads(self):
         f = FileUpload.objects.create(valid=False)
@@ -32,7 +32,7 @@ class TestNewAddonForm(test_utils.TestCase):
         assert 'upload' not in form.errors
 
 
-class TestContribForm(test_utils.TestCase):
+class TestContribForm(amo.tests.TestCase):
 
     def test_neg_suggested_amount(self):
         form = forms.ContribForm({'suggested_amount': -10})
@@ -49,7 +49,7 @@ class TestContribForm(test_utils.TestCase):
             settings.MAX_CONTRIBUTION)
 
 
-class TestCharityForm(test_utils.TestCase):
+class TestCharityForm(amo.tests.TestCase):
 
     def setUp(self):
         self.paypal_mock = mock.Mock()
@@ -74,7 +74,7 @@ class TestCharityForm(test_utils.TestCase):
         assert new_charity.id != charity.id
 
 
-class TestCompatForm(test_utils.TestCase):
+class TestCompatForm(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_3615']
 
     def test_mozilla_app(self):
@@ -88,7 +88,7 @@ class TestCompatForm(test_utils.TestCase):
         assert moz in apps
 
 
-class TestPreviewForm(test_utils.TestCase):
+class TestPreviewForm(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     @mock.patch('amo.models.ModelBase.update')

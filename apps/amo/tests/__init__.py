@@ -66,7 +66,8 @@ class RedisTest(object):
         reset_redis(self._redis)
 
 
-test_utils.TestCase.__bases__ = (RedisTest,) + test_utils.TestCase.__bases__
+class TestCase(RedisTest, test_utils.TestCase):
+    """Base class for all amo tests."""
 
 
 def close_to_now(dt):
@@ -139,7 +140,7 @@ def file_factory(**kw):
     return f
 
 
-class ESTestCase(test_utils.TestCase):
+class ESTestCase(TestCase):
     """Base class for tests that require elasticsearch."""
     # ES is slow to set up so this uses class setup/teardown. That happens
     # outside Django transactions so be careful to clean up afterwards.

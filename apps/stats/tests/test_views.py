@@ -1,13 +1,13 @@
 import csv
 
-import test_utils
 from nose.tools import eq_
 
+import amo.tests
 from amo.urlresolvers import reverse
 from stats import views
 
 
-class TestSeriesBase(test_utils.TestCase):
+class TestSeriesBase(amo.tests.TestCase):
     fixtures = ['stats/test_views.json', 'stats/test_models.json']
 
     def setUp(self):

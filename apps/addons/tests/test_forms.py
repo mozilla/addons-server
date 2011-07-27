@@ -3,7 +3,6 @@ import os
 import shutil
 import tempfile
 
-import test_utils
 from mock import patch
 from nose.tools import eq_
 import path
@@ -11,13 +10,14 @@ import path
 from django.conf import settings
 
 import amo
+import amo.tests
 from amo.tests.test_helpers import get_image_path
 from addons import forms, cron
 from addons.models import Addon, Category
 from tags.models import Tag, AddonTag
 
 
-class FormsTest(test_utils.TestCase):
+class FormsTest(amo.tests.TestCase):
     fixtures = ('base/addon_3615', 'base/addon_3615_categories',
                 'addons/blacklisted')
 
@@ -74,7 +74,7 @@ class FormsTest(test_utils.TestCase):
         eq_(form.errors['slug'], [u'The slug cannot be: 123.'])
 
 
-class TestTagsForm(test_utils.TestCase):
+class TestTagsForm(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/platforms', 'base/users']
 
     def setUp(self):
@@ -198,7 +198,7 @@ class TestTagsForm(test_utils.TestCase):
                                   ' after invalid characters are removed.'])
 
 
-class TestIconForm(test_utils.TestCase):
+class TestIconForm(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     # TODO: AddonFormMedia save() method could do with cleaning up
@@ -255,7 +255,6 @@ class TestIconForm(test_utils.TestCase):
                                     request=self.request,
                                     instance=self.addon)
 
-        img = get_image_path(name)
         dest = self.paths[1] / name
         shutil.copyfile(get_image_path(name), dest)
 
@@ -264,7 +263,7 @@ class TestIconForm(test_utils.TestCase):
         assert update_mock.called
 
 
-class TestCategoryForm(test_utils.TestCase):
+class TestCategoryForm(amo.tests.TestCase):
     fixtures = ['base/apps']
 
     def test_no_possible_categories(self):

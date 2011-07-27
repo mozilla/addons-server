@@ -10,10 +10,10 @@ from django.core import mail
 from django.db import models
 
 import mock
-import test_utils
 from nose.tools import eq_
 
 import amo
+import amo.tests
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from addons.models import Addon
@@ -22,7 +22,7 @@ from files.models import File
 from files.utils import JetpackUpgrader
 
 
-class TestUpgradeJetpacks(test_utils.TestCase):
+class TestUpgradeJetpacks(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
@@ -54,7 +54,7 @@ class TestUpgradeJetpacks(test_utils.TestCase):
         eq_(url, settings.BUILDER_UPGRADE_URL)
 
 
-class TestRepackageJetpack(test_utils.TestCase):
+class TestRepackageJetpack(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):

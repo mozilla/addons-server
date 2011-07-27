@@ -1,15 +1,15 @@
 """Tests for the activitylog."""
 from datetime import datetime
 
-import test_utils
 from nose.tools import eq_
 
 import amo
+import amo.tests
 from addons.models import Addon
 from users.models import UserProfile
 
 
-class LogTest(test_utils.TestCase):
+class LogTest(amo.tests.TestCase):
     def setUp(self):
         u = UserProfile.objects.create(username='foo')
         amo.set_user(u)
@@ -34,4 +34,3 @@ class LogTest(test_utils.TestCase):
         al = amo.log(amo.LOG.CUSTOM_TEXT, 'hi', created=datetime(2009, 1, 1))
 
         eq_(al.created, datetime(2009, 1, 1))
-

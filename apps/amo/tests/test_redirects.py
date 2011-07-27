@@ -1,14 +1,14 @@
 # -*- coding: utf8 -*-
 """Check all our redirects from remora to zamboni."""
 from nose.tools import eq_
-import test_utils
 
 import amo
+import amo.tests
 from addons.models import Category
 from applications.models import Application
 
 
-class TestRedirects(test_utils.TestCase):
+class TestRedirects(amo.tests.TestCase):
     fixtures = ['base/apps', 'reviews/test_models',
                 'addons/persona', 'base/global-stats']
 

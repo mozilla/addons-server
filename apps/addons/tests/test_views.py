@@ -13,10 +13,10 @@ from django.utils.encoding import iri_to_uri
 
 from mock import patch
 from nose.tools import eq_
-import test_utils
 from pyquery import PyQuery as pq
 
 import amo
+import amo.tests
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.tests.test_helpers import AbuseBase
@@ -36,7 +36,7 @@ def norm(s):
     return re.sub(r'[\s]+', ' ', str(s)).strip()
 
 
-class TestHomepage(test_utils.TestCase):
+class TestHomepage(amo.tests.TestCase):
     fixtures = ['base/apps',
                 'base/users',
                 'base/addon_3615',
@@ -115,7 +115,7 @@ class TestHomepage(test_utils.TestCase):
         assert s.strip().startswith('Added'), s
 
 
-class TestPromobox(test_utils.TestCase):
+class TestPromobox(amo.tests.TestCase):
     fixtures = ['addons/ptbr-promobox']
 
     def test_promo_box_ptbr(self):
@@ -124,7 +124,7 @@ class TestPromobox(test_utils.TestCase):
         eq_(response.status_code, 200)
 
 
-class TestContributeInstalled(test_utils.TestCase):
+class TestContributeInstalled(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_592']
 
     def test_no_header_block(self):
@@ -144,7 +144,7 @@ class TestContributeInstalled(test_utils.TestCase):
         eq_(title[:37], 'Thank you for installing Gmail S/MIME')
 
 
-class TestContributeEmbedded(test_utils.TestCase):
+class TestContributeEmbedded(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592']
 
     def setUp(self):
@@ -247,7 +247,7 @@ class TestContributeEmbedded(test_utils.TestCase):
         assert not json.loads(res.content)['paykey']
 
 
-class TestDeveloperPages(test_utils.TestCase):
+class TestDeveloperPages(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592',
                 'base/users', 'addons/eula+contrib-addon',
                 'addons/addon_228106_info+dev+bio.json',
@@ -354,7 +354,7 @@ class TestDeveloperPages(test_utils.TestCase):
         eq_(len(pq(res.content)('div.addon-info b')), 2)
 
 
-class TestLicensePage(test_utils.TestCase):
+class TestLicensePage(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_3615']
 
     def setUp(self):
@@ -398,7 +398,7 @@ class TestLicensePage(test_utils.TestCase):
         eq_(r.context['version'], self.addon.current_version)
 
 
-class TestDetailPage(test_utils.TestCase):
+class TestDetailPage(amo.tests.TestCase):
     fixtures = ['base/apps',
                 'base/addon_3615',
                 'base/users',
@@ -789,7 +789,7 @@ class TestDetailPage(test_utils.TestCase):
         assert 'disabled by an administrator' in res.content
 
 
-class TestStatus(test_utils.TestCase):
+class TestStatus(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_3615']
 
     def setUp(self):
@@ -890,7 +890,7 @@ class TestStatus(test_utils.TestCase):
         eq_(self.addon.get_version(), v)
 
 
-class TestTagsBox(test_utils.TestCase):
+class TestTagsBox(amo.tests.TestCase):
     fixtures = ['base/addontag', 'base/apps']
 
     def test_tag_box(self):
@@ -900,7 +900,7 @@ class TestTagsBox(test_utils.TestCase):
         eq_('SEO', doc('#tagbox ul').children().text())
 
 
-class TestEulaPolicyRedirects(test_utils.TestCase):
+class TestEulaPolicyRedirects(amo.tests.TestCase):
 
     def test_eula_legacy_url(self):
         """
@@ -939,7 +939,7 @@ def test_unicode_redirect():
     eq_(response.status_code, 301)
 
 
-class TestEula(test_utils.TestCase):
+class TestEula(amo.tests.TestCase):
     fixtures = ['addons/eula+contrib-addon', 'base/apps']
 
     def test_current_version(self):
@@ -1011,7 +1011,7 @@ class TestEula(test_utils.TestCase):
         self.assertRedirects(r, reverse('addons.detail', args=['a11730']))
 
 
-class TestPrivacyPolicy(test_utils.TestCase):
+class TestPrivacyPolicy(amo.tests.TestCase):
     fixtures = ['addons/eula+contrib-addon', 'base/apps']
 
     def test_redirect_no_eula(self):
@@ -1036,7 +1036,7 @@ class TestPrivacyPolicy(test_utils.TestCase):
 #    check('RU')
 
 
-class TestAddonSharing(test_utils.TestCase):
+class TestAddonSharing(amo.tests.TestCase):
     fixtures = ['base/apps',
                 'base/addon_3615']
 
@@ -1052,7 +1052,7 @@ class TestAddonSharing(test_utils.TestCase):
         assert iri_to_uri(summary) in r['Location']
 
 
-class TestReportAbuse(AbuseBase, test_utils.TestCase):
+class TestReportAbuse(AbuseBase, amo.tests.TestCase):
     fixtures = ['addons/persona',
                 'base/apps',
                 'base/addon_3615',
@@ -1086,7 +1086,7 @@ class TestReportAbuse(AbuseBase, test_utils.TestCase):
         assert 'spammy' in mail.outbox[0].body
 
 
-class TestMobile(test_utils.TestCase):
+class TestMobile(amo.tests.TestCase):
     fixtures = ['addons/featured', 'base/apps', 'base/addon_3615',
                 'base/featured', 'bandwagon/featured_collections']
 

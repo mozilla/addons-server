@@ -1,19 +1,16 @@
 from nose.tools import eq_
-import test_utils
 
 from django.utils.encoding import force_unicode
 
-from addons.models import Addon
 import amo
+import amo.tests
+from addons.models import Addon
 from editors.forms import get_review_form
 from editors.helpers import NOMINATED_STATUSES
-from files.models import File
 from users.models import UserProfile
 
-from pyquery import PyQuery as pq
 
-
-class TestReviewActions(test_utils.TestCase):
+class TestReviewActions(amo.tests.TestCase):
     fixtures = ('base/users', 'base/addon_3615')
 
     def setUp(self):

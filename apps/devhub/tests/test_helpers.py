@@ -4,12 +4,12 @@ import urllib
 
 from django.utils import translation
 
-import test_utils
 from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo
+import amo.tests
 from amo.urlresolvers import reverse
 from amo.tests.test_helpers import render
 from addons.models import Addon
@@ -144,22 +144,22 @@ class TestDisplayUrl(unittest.TestCase):
 
     def test_utf8(self):
         url = urllib.quote(self.raw_url.encode('utf8'))
-        eq_(render('{{ url|display_url }}', {'url':url}),
+        eq_(render('{{ url|display_url }}', {'url': url}),
             self.raw_url)
 
     def test_unicode(self):
         url = urllib.quote(self.raw_url.encode('utf8'))
         url = unicode(url, 'utf8')
-        eq_(render('{{ url|display_url }}', {'url':url}),
+        eq_(render('{{ url|display_url }}', {'url': url}),
             self.raw_url)
 
     def test_euc_jp(self):
         url = urllib.quote(self.raw_url.encode('euc_jp'))
-        eq_(render('{{ url|display_url }}', {'url':url}),
+        eq_(render('{{ url|display_url }}', {'url': url}),
             self.raw_url)
 
 
-class TestDevFilesStatus(test_utils.TestCase):
+class TestDevFilesStatus(amo.tests.TestCase):
 
     def setUp(self):
         platform = Platform.objects.create(id=amo.PLATFORM_ALL.id)

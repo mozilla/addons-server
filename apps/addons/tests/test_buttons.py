@@ -6,10 +6,10 @@ import jingo
 from mock import patch, Mock, sentinel
 from nose.tools import eq_
 from pyquery import PyQuery
-import test_utils
 
 import amo
 import amo.models
+import amo.tests
 from amo.urlresolvers import reverse
 from addons.buttons import install_button, _install_button, big_install_button
 from addons.models import Addon
@@ -19,7 +19,7 @@ def setup():
     jingo.load_helpers()
 
 
-class ButtonTest(test_utils.TestCase):
+class ButtonTest(amo.tests.TestCase):
 
     def setUp(self):
         self.addon = Mock()
@@ -491,14 +491,16 @@ class TestButtonHtml(ButtonTest):
         self.version.is_lite = True
         warning = self.render(detailed=True)('.install-shell .warning')
         eq_(warning.text(),
-            'This add-on has been preliminarily reviewed by Mozilla. Learn more')
+            'This add-on has been preliminarily reviewed by Mozilla.'
+            ' Learn more')
 
     def test_lite_and_nom_detailed_warning(self):
         self.addon.status = amo.STATUS_LITE_AND_NOMINATED
         self.version.is_lite = True
         warning = self.render(detailed=True)('.install-shell .warning')
         eq_(warning.text(),
-            'This add-on has been preliminarily reviewed by Mozilla. Learn more')
+            'This add-on has been preliminarily reviewed by Mozilla.'
+            ' Learn more')
 
     def test_multi_platform(self):
         self.version.all_files = self.platform_files
@@ -597,7 +599,7 @@ class TestBackup(ButtonTest):
         eq_(doc('a')[1].get('href'), 'xpi.backup.url')
 
 
-class TestViews(test_utils.TestCase):
+class TestViews(amo.tests.TestCase):
     fixtures = ['addons/eula+contrib-addon', 'base/apps']
 
     def test_eula_with_contrib_roadblock(self):

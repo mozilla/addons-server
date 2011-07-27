@@ -10,8 +10,8 @@ from lxml import etree
 from mock import patch, Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import test_utils
 
+import amo.tests
 from access import acl
 from addons.models import Addon, AddonUser
 from amo.urlresolvers import reverse
@@ -65,7 +65,7 @@ def test_404_app_links():
         assert href.startswith('/en-US/thunderbird'), href
 
 
-class TestImpala(test_utils.TestCase):
+class TestImpala(amo.tests.TestCase):
     fixtures = ('base/users', 'base/global-stats', 'base/configs',
                 'base/addon_3615')
 
@@ -177,7 +177,7 @@ class TestImpala(test_utils.TestCase):
         eq_(item.attr('href'), reverse('editors.home'))
 
 
-class TestStuff(test_utils.TestCase):
+class TestStuff(amo.tests.TestCase):
     fixtures = ('base/users', 'base/global-stats', 'base/configs',
                 'base/addon_3615')
 
@@ -351,7 +351,7 @@ class TestStuff(test_utils.TestCase):
             doc('#aux-nav p a')[1].attrib['href'])
 
 
-class TestPaypal(test_utils.TestCase):
+class TestPaypal(amo.tests.TestCase):
 
     def setUp(self):
         self.url = reverse('amo.paypal')
@@ -425,7 +425,7 @@ class TestPaypal(test_utils.TestCase):
         eq_(response.content, 'Unknown error.')
 
 
-class TestEmbeddedPaymentsPaypal(test_utils.TestCase):
+class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):

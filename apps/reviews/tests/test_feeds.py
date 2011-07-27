@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 import mock
-import test_utils
 from nose.tools import eq_
 
+import amo.tests
 from reviews import feeds
 from translations.models import Translation
 
 
-class FeedTest(test_utils.TestCase):
+class FeedTest(amo.tests.TestCase):
     # Rub some unicode all over the reviews feed.
 
     def setUp(self):

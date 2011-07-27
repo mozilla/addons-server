@@ -4,9 +4,9 @@ from datetime import datetime, timedelta
 import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import test_utils
 
 import amo
+import amo.tests
 from amo.urlresolvers import reverse
 from amo.tests import formset, initial
 from addons.models import Addon
@@ -17,7 +17,7 @@ from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
 
 
-class TestVersion(test_utils.TestCase):
+class TestVersion(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -308,7 +308,7 @@ class TestVersion(test_utils.TestCase):
             set(['checkbox']))
 
 
-class TestVersionEdit(test_utils.TestCase):
+class TestVersionEdit(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615',
                 'base/thunderbird', 'base/platforms']
 

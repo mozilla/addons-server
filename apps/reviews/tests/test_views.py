@@ -1,8 +1,8 @@
 from django.core import mail
 
 from nose.tools import eq_
-import test_utils
 
+import amo.tests
 from amo.urlresolvers import reverse
 from access.models import GroupUser
 from addons.tests.test_views import TestMobile
@@ -10,7 +10,7 @@ from devhub.models import ActivityLog
 from reviews.models import Review, ReviewFlag
 
 
-class ReviewTest(test_utils.TestCase):
+class ReviewTest(amo.tests.TestCase):
     fixtures = ['base/apps', 'reviews/dev-reply.json', 'base/admin']
 
 

@@ -3,8 +3,8 @@ from django import http
 
 import mock
 from nose.tools import eq_
-import test_utils
 
+import amo.tests
 from amo import decorators
 from amo.urlresolvers import reverse
 
@@ -86,7 +86,7 @@ class TestLoginRequired(object):
         assert self.f.called
 
 
-class TestSetModifiedOn(test_utils.TestCase):
+class TestSetModifiedOn(amo.tests.TestCase):
     fixtures = ['base/users']
 
     @decorators.set_modified_on
@@ -108,7 +108,7 @@ class TestSetModifiedOn(test_utils.TestCase):
             assert date < datetime.today().date()
 
 
-class TestPermissionRequired(test_utils.TestCase):
+class TestPermissionRequired(amo.tests.TestCase):
 
     def setUp(self):
         self.f = mock.Mock()

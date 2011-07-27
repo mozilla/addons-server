@@ -1,13 +1,10 @@
-
-from django import test
-
-import test_utils
 from nose.tools import eq_
 
+import amo.tests
 from users.utils import EmailResetCode
 
 
-class TestEmailResetCode(test_utils.TestCase):
+class TestEmailResetCode(amo.tests.TestCase):
 
     def test_parse(self):
         id = 1

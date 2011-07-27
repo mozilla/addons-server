@@ -1,12 +1,9 @@
 import json
 
-from django.conf import settings
-
-import redisutils
-import test_utils
 from nose.tools import eq_
 
 import amo
+import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from compat.models import CompatReport
@@ -26,7 +23,7 @@ incoming_data = {
 }
 
 
-class TestIncoming(test_utils.TestCase):
+class TestIncoming(amo.tests.TestCase):
 
     def setUp(self):
         self.url = reverse('compat.incoming')
@@ -64,7 +61,7 @@ class TestIncoming(test_utils.TestCase):
         eq_(r.status_code, 400)
 
 
-class TestReporter(test_utils.TestCase):
+class TestReporter(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def test_success(self):
@@ -83,5 +80,5 @@ class TestReporter(test_utils.TestCase):
                                              expected)
         self.assertRedirects(self.client.get(url + '?guid=%s' % addon.guid),
                                              expected)
-        self.assertRedirects(self.client.get(url + '?guid=%s' % addon.guid[:5]),
-                                             expected)
+        self.assertRedirects(
+            self.client.get(url + '?guid=%s' % addon.guid[:5]), expected)

@@ -10,13 +10,13 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.utils import encoding
 
 import jingo
+import test_utils
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery
 
-import test_utils
-
 import amo
+import amo.tests
 from amo import urlresolvers, utils, helpers
 from amo.utils import ImageCheck, Message, Token
 from versions.models import License
@@ -247,7 +247,7 @@ def test_external_url():
         settings.REDIRECT_SECRET_KEY = secretkey
 
 
-class TestLicenseLink(test_utils.TestCase):
+class TestLicenseLink(amo.tests.TestCase):
 
     def test_license_link(self):
         mit = License.objects.create(
@@ -333,7 +333,7 @@ def get_uploaded_file(name):
                               content_type=mimetypes.guess_type(name)[0])
 
 
-class TestAnimatedImages(test_utils.TestCase):
+class TestAnimatedImages(amo.tests.TestCase):
 
     def test_animated_images(self):
         img = ImageCheck(open(get_image_path('animated.png')))
@@ -353,7 +353,7 @@ class TestAnimatedImages(test_utils.TestCase):
         assert img.is_image()
 
 
-class TestToken(test_utils.TestCase):
+class TestToken(amo.tests.TestCase):
 
     def test_token_pop(self):
         new = Token()
@@ -389,7 +389,7 @@ class TestToken(test_utils.TestCase):
         assert not new.well_formed()
 
 
-class TestMessage(test_utils.TestCase):
+class TestMessage(amo.tests.TestCase):
 
     def test_message_save(self):
         new = Message('abc')

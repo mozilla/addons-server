@@ -3,11 +3,11 @@ from django.db import models
 from django.utils import importlib
 
 import MySQLdb as mysql
-import test_utils
 import safe_signals
 from nose.tools import assert_raises, eq_
 from pyquery import PyQuery as pq
 
+import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon
 
@@ -26,7 +26,7 @@ def quickcopy(val):
     return val
 
 
-class ReadOnlyModeTest(test_utils.TestCase):
+class ReadOnlyModeTest(amo.tests.TestCase):
     extra = ('amo.middleware.ReadOnlyMiddleware',)
 
     def setUp(self):

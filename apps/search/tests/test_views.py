@@ -7,9 +7,9 @@ from django.test import client
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import test_utils
 
 import amo
+import amo.tests
 from amo.urlresolvers import reverse
 from applications.models import AppVersion
 from addons.tests.test_views import TestMobile
@@ -18,7 +18,6 @@ from search import views
 from search.client import SearchError
 from addons.models import Addon, Category
 from tags.models import AddonTag, Tag
-from users.models import UserProfile
 
 
 def test_parse_bad_type():
@@ -221,7 +220,7 @@ class MobileSearchTest(SphinxTestCase, TestMobile):
         self.assertTemplateUsed(r, 'search/mobile/results.html')
 
 
-class ViewTest(test_utils.TestCase):
+class ViewTest(amo.tests.TestCase):
     """Tests some of the functions used in building the view."""
 
     fixtures = ('base/category',)
@@ -333,7 +332,7 @@ class TagTest(SphinxTestCase):
         assert old_related_tags != new_related_tags
 
 
-class TestSearchboxTarget(test_utils.TestCase):
+class TestSearchboxTarget(amo.tests.TestCase):
     # Check that we search within addons/personas/collections as appropriate.
 
     def check(self, url, placeholder, cat):

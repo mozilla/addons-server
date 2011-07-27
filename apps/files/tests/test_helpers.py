@@ -10,8 +10,8 @@ from django import forms
 
 from mock import Mock, patch
 from nose.tools import eq_
-import test_utils
 
+import amo.tests
 from amo.urlresolvers import reverse
 from files.helpers import FileViewer, DiffHelper
 from files.models import File
@@ -34,7 +34,7 @@ def make_file(pk, file_path, **kwargs):
     return obj
 
 
-class TestFileHelper(test_utils.TestCase):
+class TestFileHelper(amo.tests.TestCase):
 
     def setUp(self):
         self.old_tmp = settings.TMP_PATH
@@ -190,7 +190,7 @@ class TestFileHelper(test_utils.TestCase):
         eq_({}, self.viewer.get_files())
 
 
-class TestSearchEngineHelper(test_utils.TestCase):
+class TestSearchEngineHelper(amo.tests.TestCase):
     fixtures = ['base/addon_4594_a9']
 
     def setUp(self):
@@ -221,7 +221,7 @@ class TestSearchEngineHelper(test_utils.TestCase):
         eq_(self.viewer.get_default(None), None)
 
 
-class TestDiffSearchEngine(test_utils.TestCase):
+class TestDiffSearchEngine(amo.tests.TestCase):
 
     def setUp(self):
         src = os.path.join(settings.ROOT, search)
@@ -241,7 +241,7 @@ class TestDiffSearchEngine(test_utils.TestCase):
         eq_(len(self.helper.get_deleted_files()), 0)
 
 
-class TestDiffHelper(test_utils.TestCase):
+class TestDiffHelper(amo.tests.TestCase):
 
     def setUp(self):
         src = os.path.join(settings.ROOT, dictionary)

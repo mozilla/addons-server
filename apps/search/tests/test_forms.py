@@ -1,11 +1,11 @@
-import test_utils
 from nose.tools import eq_
 
 import amo
+import amo.tests
 from search import forms
 
 
-class TestSearchForm(test_utils.TestCase):
+class TestSearchForm(amo.tests.TestCase):
     fixtures = ('base/appversion', 'addons/persona',)
 
     def test_get_app_versions(self):

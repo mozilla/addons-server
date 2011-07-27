@@ -5,9 +5,9 @@ from amo.helpers import absolutify
 
 import mock
 from nose.tools import eq_
-import test_utils
 import time
 
+import amo.tests
 import paypal
 
 
@@ -24,7 +24,8 @@ auth_error = ('error(0).errorId=520003'
 other_error = ('error(0).errorId=520001'
             '&error(0).message=Foo')
 
-class TestPayPal(test_utils.TestCase):
+
+class TestPayPal(amo.tests.TestCase):
     def setUp(self):
         self.data = {'return_url': absolutify(reverse('home')),
                      'cancel_url': absolutify(reverse('home')),
