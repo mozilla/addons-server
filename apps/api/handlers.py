@@ -232,13 +232,24 @@ class VersionsHandler(BaseHandler, BaseVersionHandler):
 
 
 class PerformanceHandler(BaseHandler):
-    allowed_methods = ('POST',)
+    allowed_methods = ('PUT', 'POST')
     model = Performance
     fields = ('addon', 'average', 'appversion', 'osversion', 'test')
 
     def create(self, request):
         form = PerformanceForm(request.POST)
         if form.is_valid():
-            perf = form.save()
+            form.save()
+            return rc.CREATED
+        return _form_error(form)
+
+    def update(self, request, addon_id):
+        try:
+            perf = Performance.objects.get(addon=addon_id)
+        except Performance.DoesNotExist:
+            return rc.NOT_HERE
+        form = PerformanceForm(request.POST, instance=perf)
+        if form.is_valid():
+            form.save()
             return rc.ALL_OK
         return _form_error(form)

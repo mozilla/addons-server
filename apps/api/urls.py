@@ -79,6 +79,8 @@ piston_patterns = patterns('',
     url(r'^addon/%s/version/(?P<version_id>\d+)$' % ADDON_ID,
         version_resource, name='api.version'),
     url(r'^performance/$', performance_resource, name='api.performance'),
+    url(r'^performance/%s$' % ADDON_ID, performance_resource,
+        name='api.performance'),
 )
 
 urlpatterns = patterns('',

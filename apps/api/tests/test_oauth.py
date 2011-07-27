@@ -590,14 +590,26 @@ class TestPerformance(BaseOAuth):
         self.os = PerformanceOSVersion.objects.create(os='l', version='1',
                                                       name='l')
         self.data = {'addon': '3615', 'average': 0.1,
-                'appversion': self.app.pk, 'osversion': self.os.pk,
-                'test': 'ts'}
+                     'appversion': self.app.pk, 'osversion': self.os.pk,
+                     'test': 'ts'}
 
     def test_create_perf(self):
         res = client.post('api.performance', self.accepted_consumer,
                           self.token, data=self.data)
-        assert res.status_code == 200
+        assert res.status_code == 201, res.status_code
         eq_(Performance.objects.count(), 1)
+        eq_(Performance.objects.all()[0].average, 0.1)
+
+    def test_update_perf(self):
+        client.post('api.performance', self.accepted_consumer,
+                    self.token, data=self.data)
+        data = self.data.copy()
+        data['average'] = 0.2
+        res = client.put(('api.performance', 3615), self.accepted_consumer,
+                          self.token, data=data)
+        assert res.status_code == 200, res.status_code
+        eq_(Performance.objects.count(), 1)
+        eq_(Performance.objects.all()[0].average, 0.2)
 
     def test_create_perf_wrong(self):
         data = self.data.copy()
@@ -607,3 +619,12 @@ class TestPerformance(BaseOAuth):
         assert res.status_code == 400, res.status_code
         assert 'addon' in res.content
         eq_(Performance.objects.count(), 0)
+
+    def test_update_perf_wrong(self):
+        client.post('api.performance', self.accepted_consumer,
+                    self.token, data=self.data)
+        data = self.data.copy()
+        data['average'] = 0.2
+        res = client.put(('api.performance', 3616), self.accepted_consumer,
+                          self.token, data=data)
+        assert res.status_code == 410, res.status_code
