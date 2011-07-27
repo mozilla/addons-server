@@ -23,11 +23,9 @@ def collection_listing_items(context, collections, show_weekly=False,
 
 @register.inclusion_tag('bandwagon/impala/collection_listing_items.html')
 @jinja2.contextfunction
-def impala_collection_listing_items(context, collections, show_weekly=False,
-                                    show_date=None):
+def impala_collection_listing_items(context, collections, field=None):
     c = dict(context.items())
-    c.update(collections=collections, show_weekly=show_weekly,
-             show_date=show_date)
+    c.update(collections=collections, field=field)
     return c
 
 

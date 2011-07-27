@@ -28,9 +28,7 @@
       {% endif %}
       {{ impala_addon_listing_header(url_base, filter.opts, sorting) }}
     </header>
-    {{ impala_collection_listing_items(collections.object_list,
-                                       show_weekly=filter.field == 'popular',
-                                       show_date=filter.field) }}
+    {{ impala_collection_listing_items(collections.object_list, filter.field) }}
     {% if sorting != 'featured' %}
       {{ collections|impala_paginator }}
     {% endif %}

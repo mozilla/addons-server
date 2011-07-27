@@ -12,23 +12,15 @@
       <p class="desc">{{ c.description|truncate(250)|nl2br }}</p>
       <div class="vitals c">
         <div class="followers">
-          {% if show_weekly %}
-            {% trans cnt=c.weekly_subscribers, num=c.weekly_subscribers|numberfmt %}
-              <span>{{ num }}</span> new follower
-            {% pluralize %}
-              <span>{{ num }}</span> new followers
-            {% endtrans %}
-          {% else %}
-            {# L10n: People "follow" collections to get notified of updates.
-                     Like Twitter followers. #}
-            {% trans cnt=c.subscribers, num=c.subscribers|numberfmt %}
-              <span>{{ num }}</span> follower
-            {% pluralize %}
-              <span>{{ num }}</span> followers
-            {% endtrans %}
-          {% endif %}
+          {# L10n: People "follow" collections to get notified of updates.
+                   Like Twitter followers. #}
+          {% trans cnt=c.subscribers, num=c.subscribers|numberfmt %}
+            <span>{{ num }}</span> follower
+          {% pluralize %}
+            <span>{{ num }}</span> followers
+          {% endtrans %}
         </div>
-        {% if show_date in ('created', 'newest') %}
+        {% if field in ('created', 'newest') %}
           <div class="updated">
             {# L10n: {0} is a date. #}
             {{ _('Added {0}')|f(c.created|datetime) }}
@@ -42,8 +34,8 @@
         {% if is_watching %}
           <span class="is-watching">{{ _('Following') }}</span>
         {% endif %}
-        <a href="{{ c.watch_url() }}" class="watch button">
-          <span>{{ _('Stop Following') if is_watching else _('Follow this Collection') }}</span></a>
+          <a href="{{ c.watch_url() }}" class="watch button">
+            <span>{{ _('Stop Following') if is_watching else _('Follow this Collection') }}</span></a>
       {% endif %}
       </div>
     </div>
