@@ -2722,7 +2722,7 @@ class TestUploadDetail(BaseUploadTest):
         eq_(doc('header h2').text(), 'Validation Results for animated.png')
         suite = doc('#addon-validator-suite')
         eq_(suite.attr('data-validateurl'),
-            reverse('devhub.upload_detail', args=[upload.uuid, 'json']))
+            reverse('devhub.standalone_upload_detail', args=[upload.uuid]))
 
     @mock.patch('devhub.tasks.run_validator')
     def test_multi_app_addon_can_have_all_platforms(self, v):

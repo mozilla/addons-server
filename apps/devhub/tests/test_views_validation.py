@@ -338,6 +338,12 @@ class TestValidateFile(BaseUploadTest):
         data = json.loads(res.content)
         # Make sure we don't see a dupe UUID error:
         eq_(data['validation']['messages'], [])
+        # Simulate JS result polling on detail page:
+        res = self.client.get(data['full_report_url'], follow=True)
+        res = self.client.get(res.context['validate_url'], follow=True)
+        data = json.loads(res.content)
+        # Again, make sure we don't see a dupe UUID error:
+        eq_(data['validation']['messages'], [])
 
 
 class TestCompatibilityResults(test_utils.TestCase):

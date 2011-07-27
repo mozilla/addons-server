@@ -852,15 +852,12 @@ def upload_detail(request, uuid, format='html'):
     if format == 'json' or request.is_ajax():
         return json_upload_detail(request, upload)
 
+    validate_url = reverse('devhub.standalone_upload_detail',
+                           args=[upload.uuid])
     if upload.compat_with_app:
-        validate_url = reverse('devhub.standalone_upload_detail',
-                               args=[upload.uuid])
         return _compat_result(request, validate_url,
                               upload.compat_with_app,
                               upload.compat_with_appver)
-    else:
-        validate_url = reverse('devhub.upload_detail',
-                               args=[upload.uuid, 'json'])
     return jingo.render(request, 'devhub/validation.html',
                         dict(validate_url=validate_url, filename=upload.name,
                              timestamp=upload.created,
