@@ -9,7 +9,6 @@ from commander.deploy import hosts, hostgroups, task
 import commander_settings as settings
 
 
-
 def git_update(ctx, branch):
     ctx.local("git fetch")
     ctx.local("git checkout -f origin/%s" % branch)
@@ -42,7 +41,7 @@ def update_zamboni(ctx, branch):
         ctx.local("git log -1")
         ctx.local("/bin/bash -c 'source /etc/bash_completion.d/git && __git_ps1'")
         ctx.local('git show -s origin/master --pretty="format:%h" > media/git-rev.txt')
-    
+
 
 @task
 def checkin_changes(ctx):
@@ -52,6 +51,14 @@ def checkin_changes(ctx):
         ctx.local('git commit -q -a -m "push"')
 
 
+@task
+def install_cron(ctx):
+    with ctx.lcd(settings.SRC_DIR):
+        ctx.local('./scripts/crontab/gen-cron.py -z %s -r %s/bin -u apache > /etc/cron.d/.%s' %
+                  (settings.SRC_DIR, settings.REMORA_DIR, settings.CRON_NAME))
+        ctx.local('mv /etc/cron.d/.%s /etc/cron.d/%s' % (settings.CRON_NAME, settings.CRON_NAME))
+
+        
 @hostgroups(settings.WEB_HOSTGROUP, remote_kwargs={'ssh_key': settings.SSH_KEY})
 def deploy_app(ctx):
     checkin_changes()
@@ -70,5 +77,6 @@ def update_gearman(ctx):
 @task
 def update_all(ctx):
     update_zamboni(settings.UPDATE_BRANCH)
+    install_cron()
     deploy_app()
     update_gearman()

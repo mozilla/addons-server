@@ -1,14 +1,18 @@
-SRC_DIR="/data/addons-dev/src/addons-dev.allizom.org/zamboni/"
-WWW_DIR="/data/addons-dev/www/addons-dev.allizom.org/zamboni/"
+SRC_DIR = "/data/addons-dev/src/addons-dev.allizom.org/zamboni"
+WWW_DIR = "/data/addons-dev/www/addons-dev.allizom.org/zamboni"
 
-REMOTE_WSGI="/data/www/addons-dev.allizom.org/zamboni/wsgi/zamboni.wsgi"
-REMOTE_UPDATE_SCRIPT="/data/bin/update-www.sh"
+REMORA_DIR = "/data/addons-dev/src/addons-dev.allizom.org-remora"
 
-CELERY_SERVICE_PREFIX="celeryd-dev"
+REMOTE_WSGI = "/data/www/addons-dev.allizom.org/zamboni/wsgi/zamboni.wsgi"
+REMOTE_UPDATE_SCRIPT = "/data/bin/update-www.sh"
 
-UPDATE_BRANCH="master"
+CELERY_SERVICE_PREFIX = "celeryd-dev"
 
-WEB_HOSTGROUP="addons-dev"
-CELERY_HOSTGROUP="addons-celery-dev"
+UPDATE_BRANCH = "master"
 
-SSH_KEY=None
+WEB_HOSTGROUP = "addons-dev"
+CELERY_HOSTGROUP = "addons-celery-dev"
+
+SSH_KEY = None
+
+CRON_NAME = "addons-dev"
