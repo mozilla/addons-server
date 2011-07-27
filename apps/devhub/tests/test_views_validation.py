@@ -195,10 +195,16 @@ class TestValidateFile(BaseUploadTest):
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.file = File.objects.get(pk=100456)
         # Move the file into place as if it were a real file
-        os.makedirs(os.path.dirname(self.file.file_path))
+        self.file_dir = os.path.dirname(self.file.file_path)
+        os.makedirs(self.file_dir)
         shutil.copyfile(self.file_path('invalid-id-20101206.xpi'),
                         self.file.file_path)
         self.addon = self.file.version.addon
+
+    def tearDown(self):
+        super(TestValidateFile, self).tearDown()
+        if os.path.exists(self.file_dir):
+            shutil.rmtree(self.file_dir)
 
     @attr('validator')
     def test_lazy_validate(self):
