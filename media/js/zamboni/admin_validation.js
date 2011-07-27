@@ -138,7 +138,12 @@ function initAdminValidation(doc) {
                 cache: false,
                 success: function(data) {
                     $.each(data, function(jobId, stats) {
-                        incompleteJobs[jobId].trigger('receivestats', [stats]);
+                        if (incompleteJobs[jobId]) {
+                            incompleteJobs[jobId].trigger('receivestats', [stats]);
+                        } else {
+                            if (typeof console !== 'undefined')
+                                console.log('checkstats: Job ID does not exist: ' + jobId);
+                        }
                     });
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
