@@ -200,25 +200,22 @@ class AddonDetailView(APIView):
         return self.render('api/addon_detail.xml', {'addon': addon})
 
 
-class SearchView(APIView):
+def guid_search(request, api_version, guids):
+    guids = [g.strip() for g in guids.split(',')] if guids else []
+    results = Addon.objects.filter(guid__in=guids, disabled_by_user=False,
+                                   status__in=SEARCHABLE_STATUSES)
+    return render_xml(request, 'api/search.xml',
+                      {'results': results, 'total': len(results),
+                       'api_version': api_version, 'api': api})
 
-    def guid_search(self, query, limit):
-        _, guids = extract_from_query(query, 'guid', '[\s{}@_\.,\-0-9a-zA-Z]+',
-                                      end_of_word_boundary=False)
-        guids = [g.strip() for g in guids.split(',')] if guids else []
-        results = Addon.objects.filter(guid__in=guids, disabled_by_user=False,
-                                       status__in=SEARCHABLE_STATUSES)
-        return self.render('api/search.xml',
-                           {'results': results, 'total': len(results)})
+
+class SearchView(APIView):
 
     def process_request(self, query, addon_type='ALL', limit=10,
                         platform='ALL', version=None):
         """
         This queries sphinx with `query` and serves the results in xml.
         """
-        if query.startswith('guid:'):
-            return self.guid_search(query, limit)
-
         sc = SearchClient()
         limit = min(MAX_LIMIT, int(limit))
 

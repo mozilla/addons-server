@@ -89,6 +89,8 @@ urlpatterns = patterns('',
     url(r'^2/', include(piston_patterns)),
 
     # Append api_version to the real api views
+    url(r'^(?P<api_version>\d+|\d+.\d+)/search/guid:(?P<guids>.*)',
+        views.guid_search),
     url(r'^(?P<api_version>\d+|\d+.\d+)/', include(api_patterns)),
 
 )
