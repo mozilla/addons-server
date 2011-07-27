@@ -26,7 +26,8 @@ def main():
         parser.error("-z and -r must be defined")
 
     ctx = {'django': 'cd %s; %s manage.py' % (opts.zamboni, opts.python),
-           'remora': 'cd %s' % opts.remora}
+           'remora': 'cd %s' % opts.remora,
+           'python': opts.python}
     ctx['z_cron'] = '%s cron' % ctx['django']
 
     if opts.user:

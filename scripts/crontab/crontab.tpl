@@ -36,7 +36,7 @@ HOME=/tmp
 40 */4 * * * {{ django }} clean_redis
 
 #twice per day
-25 1,13 * * * {{ remora }}; /usr/bin/python26 import-personas.py
+25 1,13 * * * {{ remora }}; {{ python }} import-personas.py
 # Add slugs after we get all the new personas.
 25 2,14 * * * {{ z_cron }} addons_add_slugs
 45 2,14 * * * {{ z_cron }} give_personas_versions
@@ -52,8 +52,8 @@ HOME=/tmp
 30 5 * * * {{ remora }}; php -f maintenance.php expired_resetcode
 30 6 * * * {{ remora }}; php -f maintenance.php category_totals
 30 7 * * * {{ remora }}; php -f maintenance.php collection_subscribers
-30 8 * * * {{ remora }}; /usr/bin/python26 maintenance.py personas_adu
-30 9 * * * {{ remora }}; /usr/bin/python26 maintenance.py share_count_totals
+30 8 * * * {{ remora }}; {{ python }} maintenance.py personas_adu
+30 9 * * * {{ remora }}; {{ python }} maintenance.py share_count_totals
 30 10 * * * {{ z_cron }} recs
 30 20 * * * {{ z_cron }} update_perf
 30 22 * * * {{ z_cron }} deliver_hotness
@@ -63,7 +63,7 @@ HOME=/tmp
 
 #Once per day after 2100 PST (after metrics is done)
 35 21 * * * {{ z_cron }} update_addon_download_totals
-40 21 * * * {{ remora }}; /usr/bin/python26 maintenance.py weekly
+40 21 * * * {{ remora }}; {{ python }} maintenance.py weekly
 35 22 * * * {{ z_cron }} update_global_totals
 40 22 * * * {{ z_cron }} update_addon_average_daily_users
 45 23 * * * {{ z_cron }} update_addons_collections_downloads
