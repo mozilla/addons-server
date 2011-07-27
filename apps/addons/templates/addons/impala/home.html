@@ -70,7 +70,7 @@
           {{ personas|impala_persona_grid }}
         </div>
       {% endif %}
-      {% if featured %}
+      {% if collections %}
         <div class="island">
           <h2>{{ _('Featured Collections') }}
             <a class="seeall" href="{{ url('collections.list')|urlparams(sort='featured') }}">{{ _('See all »') }}</a>
