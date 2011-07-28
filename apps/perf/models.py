@@ -60,11 +60,19 @@ class Performance(amo.models.ModelBase):
 
     def get_baseline(self):
         """Gets the latest baseline startup time per Appversion/OS."""
-        res = (Performance.objects
-               .filter(addon=None, appversion=self.appversion,
-                       osversion=self.osversion, test=self.test)
-               .order_by('-created'))[0]
-        return res.average
+        try:
+            res = (Performance.objects
+                   .filter(addon=None, appversion=self.appversion,
+                           osversion=self.osversion, test=self.test)
+                   .order_by('-created'))[0]
+            return res.average
+        except IndexError:
+            # This shouldn't happen but *surprise* it happened in production
+            log.info('Performance.get_baseline(): No baseline for '
+                     'app %s version %s os %s version %s'
+                     % (self.appversion.app, self.appversion.version,
+                        self.osversion.os, self.osversion.version))
+            return self.average
 
     def startup_is_too_slow(self, baseline=None):
         """Returns True if this result's startup time is slower

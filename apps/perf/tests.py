@@ -85,3 +85,10 @@ class TestModels(amo.tests.TestCase):
         get_baseline.return_value = 100.0
         self.result.average = 126.0
         eq_(self.result.startup_is_too_slow(), True)
+
+    def test_baseline(self):
+        eq_(self.result.get_baseline(), 1.2)
+
+    def test_missing_baseline(self):
+        Performance.objects.filter(addon=None).delete()
+        eq_(self.result.get_baseline(), self.result.average)
