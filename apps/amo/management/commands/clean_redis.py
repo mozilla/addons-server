@@ -81,7 +81,7 @@ def cleanup(master, slave, filename):
         except RedisError:
             continue
         num += len(ks)
-        percent = round(float(num) / total[0] * 100, 1)
+        percent = round(float(num) / total[0] * 100, 1) if total[0] else 0
         total[1] += len(drop)
         log.debug('[%s %.1f%%] Dropping %s keys.' % (num, percent, len(drop)))
         pipe = master.pipeline()
