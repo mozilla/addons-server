@@ -20,8 +20,8 @@ HOME=/tmp
 15 * * * * {{ remora }}; php -f update-search-views.php
 20 * * * * {{ z_cron }} addon_last_updated
 25 * * * * {{ z_cron }} update_collections_votes
-30 * * * * {{ remora }}; php -f maintenance.php l10n_stats
-35 * * * * {{ remora }}; php -f maintenance.php l10n_rss
+# 30 * * * * {{ remora }}; php -f maintenance.php l10n_stats
+# 35 * * * * {{ remora }}; php -f maintenance.php l10n_rss
 40 * * * * {{ z_cron }} fetch_ryf_blog
 45 * * * * {{ z_cron }} update_addon_appsupport
 50 * * * * {{ z_cron }} cleanup_extracted_file
