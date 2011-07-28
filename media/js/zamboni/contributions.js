@@ -15,7 +15,8 @@ $(document).ready(function() {
             success: function(json) {
                 if (json.paykey) {
                     /* This is supposed to be a global */
-                    dgFlow = new PAYPAL.apps.DGFlow({expType:'mini'});
+                    //dgFlow = new PAYPAL.apps.DGFlow({expType:'mini'});
+                    dgFlow = new PAYPAL.apps.DGFlow({clicked: el.id});
                     dgFlow.startFlow(json.url);
                 } else {
                     if (!$('#paypal-error').length) {
@@ -99,7 +100,8 @@ var contributions = {
                 success: function(json) {
                     if (json.paykey) {
                         /* This is supposed to be a global */
-                        dgFlow = new PAYPAL.apps.DGFlow({expType:'mini'});
+                        //dgFlow = new PAYPAL.apps.DGFlow({expType:'mini'});
+                        dgFlow = new PAYPAL.apps.DGFlow({clicked: 'contribute-box'});
                         dgFlow.startFlow(json.url);
                         $self.find('span.cancel a').click();
                     } else {
