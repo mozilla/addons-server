@@ -160,7 +160,8 @@ def _extensions(request, category=None, is_impala=False, template=None):
         return category_landing(request, category, is_impala)
 
     addons, filter = addon_listing(request, [TYPE],
-        ImpalaAddonFilter if is_impala else AddonFilter)
+        ImpalaAddonFilter if is_impala else AddonFilter,
+        'users' if is_impala else 'popular')
 
     if category:
         addons = addons.filter(categories__id=category.id)

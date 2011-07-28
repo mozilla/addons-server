@@ -8,7 +8,7 @@
 
 {% set extras = (
     ('featured', _('Featured')),
-    ('popular', _('Most Popular')),
+    ('users', _('Most Popular')),
     ('rating', _('Top Rated')),
     ('updated', _('Last Updated')),
 ) %}
@@ -19,7 +19,7 @@
     <header>
       {% with heading = {'featured': _('Featured Extensions'),
                          'created': _('Newest Extensions'),
-                         'popular': _('Most Popular Extensions'),
+                         'users': _('Most Popular Extensions'),
                          'rating': _('Top Rated Extensions'),
                          'updated': _('Last Updated Extensions')}[sorting] %}
         <h2>{{ category.name if category else heading }}</h2>
