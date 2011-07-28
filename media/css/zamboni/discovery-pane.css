@@ -318,20 +318,13 @@ header:after,
 }
 
 /* @Main @Feature *********/
-#main #promos {
+#main #main-feature {
+    display: none;
+    position: relative;
+    padding: 0;
     background: transparent;
     border: 0;
-    border-radius: 5px;
     box-shadow: none;
-    padding: 0;
-    width: auto;
-}
-
-#promos .prev {
-    left: 0 !important;
-}
-#promos .next {
-    right: 0 !important;
 }
 
 .feature {
@@ -347,16 +340,16 @@ header:after,
 #main #featured-addons {
     margin-top: 283px;
 }
-#main #promos.js + #featured-addons {
+#main #main-feature.js + #featured-addons {
     margin-top: 0;
 }
 
-#main #promos.js {
+#main #main-feature.js {
     height: 273px;
     overflow: hidden;
 }
 
-#promos.js .feature {
+#main-feature.js .feature {
     height: 251px;
     position: relative;
     overflow: hidden;
@@ -394,7 +387,7 @@ header:after,
     position: relative;
 }
 
-#promos.js #nav-features,
+#main-feature.js #nav-features,
 .recs #recs #nav-recs.js {
     display: block;
 }
@@ -415,14 +408,6 @@ header:after,
     -moz-transition-property: opacity, width;
     -moz-transition-duration: 0.5s;
     -moz-transition-timing-function: ease-out;
-}
-
-.nav-prev a.prev {
-    border-radius: 5px 0 0 5px;
-}
-
-.nav-next a.next {
-    border-radius: 0 5px 5px 0;
 }
 
 #nav-recs a {
@@ -482,6 +467,310 @@ header:after,
 .nav-prev .disabled,
 .nav-next .disabled {
     visibility: hidden;
+}
+
+/* @group Rock Your Firefox (RYFF) */
+.ryff {
+    position: relative;
+    overflow: hidden;
+    padding: 20px 10% 10px 270px;
+    background: url(../../img/zamboni/discovery_pane/promos/ryff-bg.png) 0 0 no-repeat;
+    color: #333;
+}
+
+.ryff h3,
+.promo h2 {
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 1.1;
+}
+
+.ryff h2 {
+    white-space: nowrap;
+}
+
+.ryff h3 {
+    margin-bottom: 10px;
+}
+
+.ryff h3 a {
+    color: #7e100a;
+    text-decoration: none;
+}
+
+.ryff img {
+    width: 40%;
+    float: right;
+    margin: 0 0 .5em 10px;
+}
+/* @end */
+
+/* @Collection *********/
+.collection h2,
+#featured-addons h2 {
+    max-width: 650px;
+    margin: 10px auto;
+}
+
+.collection.promo h2 {
+    margin: 0;
+    max-width: auto;
+}
+
+.collection.promo h2 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.promo hgroup,
+#monthly .wrap,
+#go-mobile .wrap,
+#recs .header h2,
+#recs .gallery {
+    margin: 0 auto;
+    max-width: 650px;
+    width: 100%;
+}
+
+.promo h2,
+.promo h3 {
+    margin-bottom: 0;
+}
+
+.promo h2 {
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+}
+
+.promo hgroup {
+    margin: 10px auto 20px;
+}
+
+.collection .more {
+    text-align: center;
+}
+
+#starter .more,
+#st-patricks .more,
+#fx4-collection .more {
+    display: none;
+}
+
+.shopping {
+    background-image: url("../../img/zamboni/discovery_pane/bg-hanger.png"),
+    url("../../img/zamboni/discovery_pane/bg-gift.png");
+    background-position: 107% 20px, 9% 92%;
+    background-repeat: no-repeat;
+}
+
+/* @group Starter Pack */
+#starter.feature {
+    background: none;
+    background-image:
+        url(../../img/zamboni/discovery_pane/promos/starter-bg-left.png),
+        url(../../img/zamboni/discovery_pane/promos/starter-bg.png),
+        url(../../img/zamboni/discovery_pane/promos/starter-bg-right.png);
+    background-position: 0 100%, 50% 0, 100% 0;
+    background-repeat: no-repeat, repeat-x, no-repeat;
+}
+
+#starter.feature hgroup:after {
+    background: url(../../img/zamboni/discovery_pane/promos/starter-bg-right.png) 100% 0 no-repeat;
+    display: block;
+    content: "";
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+    width: 153px;
+}
+
+#starter h2 {
+    color: #075f7a;
+}
+/* @end */
+
+/* @group St. Patrick's Day Personas */
+#st-patricks.feature {
+    background: url(../../img/zamboni/discovery_pane/promos/st-patricks-bg.png) 50% 0 no-repeat;
+}
+#st-patricks h2 {
+    color: #296215;
+}
+/* @end */
+
+/* @group Monthly Pick */
+#monthly {
+    background: url(../../img/zamboni/discovery_pane/promos/monthly-bg.png) 50% 0 no-repeat;
+}
+#monthly .wrap > div,
+#go-mobile .wrap > div {
+    padding: 20px;
+}
+#monthly .wrap > div {
+    overflow: hidden;
+    position: relative;
+    max-height: 120px;
+}
+#monthly h2 {
+    color: #8b0101;
+}
+#monthly h3 {
+    margin-bottom: 10px;
+}
+#monthly .wrap > div > div > p {
+    padding-right: 20px;
+}
+#monthly p.install-button,
+#go-mobile p.install-button {
+    margin-bottom: 0;
+}
+#monthly .wrap > div > div {
+    float: left;
+    width: 50%;
+}
+#monthly img {
+    display: block;
+    float: right;
+    max-width: 50%;
+    max-height: 120px;
+}
+/* @end */
+
+/* @group Go Mobile */
+#go-mobile {
+    background: url(../../img/zamboni/discovery_pane/promos/go-mobile-bg.png) 50% 0 no-repeat;
+}
+#go-mobile h2 {
+    color: #485c65;
+    width: 300px;
+}
+#go-mobile .wrap {
+    width: 384px;
+    margin: 0;
+}
+/* @end */
+
+/* @group Firefox 4 Collection */
+#fx4-collection {
+    background: url(../../img/zamboni/discovery_pane/promos/fx4-collection-bg.png) 50% 0 no-repeat;
+}
+#fx4-collection h2 {
+    color: #2c5c89;
+}
+/* @end */
+
+#featured-addons {
+    padding: 10px 9%;
+}
+
+/* @Addon @boxes *********/
+.addons ul,
+ul.addons {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto 1em;
+}
+
+.addons li {
+    float: left;
+    width: 30%;
+    position: relative;
+    margin-right: 5%;
+    margin-bottom: 5%;
+}
+
+.html-rtl .addons li {
+    float: right;
+}
+
+.addons li:nth-child(3n),
+.html-rtl .addons li:nth-child(3n + 1) {
+    margin-right: 0;
+}
+.html-rtl .addons li:nth-child(3n) {
+    margin-right: 5%;
+}
+
+.addons li > a,
+.rec-addons li > a,
+#monthly > div,
+#go-mobile > div {
+    background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
+    border: 1px solid #b7c3d7;
+    border-radius: 6px;
+    box-shadow: inset 0 -2px 0 rgba(58,78,103,0.08), 0 2px 0 rgba(190,210,230,0.5);
+}
+
+.addons li > a,
+.rec-addons li > a {
+    display: block;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: center;
+    position: relative;
+    height: 120px;
+    width: 100%;
+    width: -moz-calc(100% - 22px);
+    padding: 10px;
+    -moz-transition-property: border-color, box-shadow;
+    -moz-transition-duration: 0.5s;
+    -moz-transition-timing-function: ease-out;
+}
+
+.addons li > a:hover,
+.addons li > a:focus,
+.addons li > a:active,
+.rec-addons li > a:hover,
+.rec-addons li > a:focus,
+.rec-addons li > a:active {
+    border-color: rgba(165,175,185,1);
+    box-shadow: inset 0 -2px 0 rgba(58,78,103,0.1), 0 2px 0 rgba(190,210,230,0.85);
+    -moz-transition-property: border-color, box-shadow;
+    -moz-transition-duration: 0.1s;
+    -moz-transition-timing-function: ease-out;
+    text-decoration: none;
+}
+
+.addons h3,
+.rec-addons h3 {
+    font-size: 14px;
+    line-height: 1.1;
+    font-weight: bold;
+    font-family: inherit;
+    margin: .25em 0;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.addons li > a:hover h3,
+.addons li > a:focus h3,
+.addons li > a:active h3,
+.rec-addons li > a:hover h3,
+.rec-addons li > a:focus h3,
+.rec-addons li > a:active h3 {
+    text-decoration: underline;
+}
+
+.addons p.desc,
+.rec-addons p.desc {
+    -moz-box-flex: 1;
+    overflow: hidden;
+    font-size: 11px;
+    text-align: left;
+    color: #373d48;
+    margin: 0;
+}
+
+.html-rtl .addons p.desc,
+.html-rtl .rec-addons p.desc {
+    text-align: right;
+}
+
+.addons img,
+.rec-addons img {
+    display: block;
+    max-width: 50px;
 }
 
 /* @group Top Add-ons and Featured Personas */
@@ -783,7 +1072,7 @@ header:after,
         width: 100%;
     }
 
-    #main #promos {
+    #main #main-feature {
         height: 290px;
     }
 
@@ -1525,7 +1814,7 @@ body.eula #main {
 }
 
 /* App Specific ****/
-.seamonkey #promos {
+.seamonkey #main-feature {
     /* Hide this for SeaMonkey as it has no content */
     display: none !important;
 }
