@@ -20,7 +20,7 @@
             <h3>{{ addon.name }}</h3>
             {% with cat = addon.get_category(APP.id) %}
               {% if cat %}
-                <div class="category" class="more-info">{{ cat }}</div>
+                <div class="category more-info">{{ cat }}</div>
               {% endif %}
             {% endwith %}
             {{ vital(addon, vital_summary) }}

@@ -12,22 +12,33 @@
 
 {% block primary %}
 <section class="primary">
+  {% if not request.GET %}
+    <masthead class="hero" id="collections-landing">
+      {{ impala_breadcrumbs([(url('i_collections.list'), _('Collections')),
+                             (None, filter.title)]) }}
+      <h2>{{ _('Collections') }}</h2>
+      <p>
+        {% trans url=url('collections.add') %}
+          Collections are groups of related add-ons that anyone can create and
+          share. Explore collections created by other users or
+          <a href="{{ url }}">create your own</a>.
+        {% endtrans %}
+      </p>
+    </masthead>
+  {% endif %}
   <div class="island hero c">
-    <header>
-      {% if request.GET %}
+    {% if request.GET %}
+      <header>
+        {{ impala_breadcrumbs([(url('i_collections.list'), _('Collections')),
+                               (None, filter.title)]) }}
         <h2>{{ title }}</h2>
-      {% else %}
-        <h2>{{ _('Collections') }}</h2>
-        <p>
-          {% trans url=url('collections.add') %}
-            Collections are groups of related add-ons that anyone can create and
-            share. Explore collections created by other users or
-            <a href="{{ url }}">create your own</a>.
-          {% endtrans %}
-        </p>
-      {% endif %}
+      </header>
+    {% endif %}
+
       {{ impala_addon_listing_header(url_base, filter.opts, sorting) }}
-    </header>
+    {% if sorting != 'featured' %}
+      {{ collections|impala_paginator }}
+    {% endif %}
     {{ impala_collection_listing_items(collections.object_list, filter.field) }}
     {% if sorting != 'featured' %}
       {{ collections|impala_paginator }}
