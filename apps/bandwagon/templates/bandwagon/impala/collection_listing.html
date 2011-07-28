@@ -14,8 +14,7 @@
 <section class="primary">
   {% if not request.GET %}
     <masthead class="hero" id="collections-landing">
-      {{ impala_breadcrumbs([(url('i_collections.list'), _('Collections')),
-                             (None, filter.title)]) }}
+      {{ impala_breadcrumbs([(None, _('Collections'))]) }}
       <h2>{{ _('Collections') }}</h2>
       <p>
         {% trans url=url('collections.add') %}
