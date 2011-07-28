@@ -383,6 +383,8 @@ class TestDownloadSources(amo.tests.TestCase):
         self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
 
     def test_promo(self):
+        import nose
+        raise nose.SkipTest()
         r = self.client.get(self.url)
         doc = pq(r.content)
         urls = doc('#main-feature .collection a[href$="?src=discovery-promo"]')
