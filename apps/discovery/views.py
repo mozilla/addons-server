@@ -20,9 +20,11 @@ import amo.utils
 import api.utils
 import api.views
 from amo.decorators import post_required
+from amo.models import manual_order
 from amo.urlresolvers import reverse
 from addons.decorators import addon_view_factory
 from addons.models import Addon, AddonRecommendation
+from addons.utils import FeaturedManager
 from browse.views import personas_listing
 from bandwagon.models import Collection, SyncedCollection
 from reviews.models import Review
@@ -90,9 +92,8 @@ def get_modules(request, platform, version):
 
 def get_featured_personas(request):
     categories, filter, base, category = personas_listing(request)
-    featured_addons = Addon.objects.featured(request.APP)
-    featured = base & featured_addons
-    return featured[:6]
+    ids = FeaturedManager.featured_ids(request.APP, type=amo.ADDON_PERSONA)
+    return manual_order(base, ids)[:6]
 
 
 def api_view(request, platform, version, list_type,

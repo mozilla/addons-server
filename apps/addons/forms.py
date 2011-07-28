@@ -235,7 +235,7 @@ class BaseCategoryFormSet(BaseFormSet):
             # If this add-on is featured for this application, category
             # categories are forbidden.
             form.disabled = (settings.NEW_FEATURES and
-                             self.addon.is_category_featured(app))
+                             self.addon.is_featured(app))
 
     def save(self):
         for f in self.forms:

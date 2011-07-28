@@ -1,5 +1,4 @@
 import mock
-import test_utils
 from nose.tools import eq_
 
 from addons.utils import FeaturedManager, CreaturedManager
@@ -7,7 +6,7 @@ from addons.utils import FeaturedManager, CreaturedManager
 import amo.tests
 
 
-class TestFeaturedManager(test_utils.TestCase):
+class TestFeaturedManager(amo.tests.TestCase):
 
     def setUp(self):
         patcher = mock.patch('addons.utils.FeaturedManager.get_objects')
@@ -15,7 +14,7 @@ class TestFeaturedManager(test_utils.TestCase):
         self.addCleanup(patcher.stop)
 
         # Fake the objects.values() call.
-        self.fields = ['addon', 'addon__type', 'locale', 'application']
+        self.fields = ['addon', 'type', 'locale', 'application']
         self.values = [
             (1, 1, None, 1),
             (2, 1, None, 1),
@@ -34,6 +33,7 @@ class TestFeaturedManager(test_utils.TestCase):
         eq_(self.fm.redis().smembers(self.fm.by_id), set([1, 2, 3, 4, 5, 6]))
 
     def test_by_app(self):
+        eq_(set(self.fm.featured_ids(amo.FIREFOX)), set([1, 2, 3, 4, 5]))
         eq_(set(self.fm.featured_ids(amo.FIREFOX, 'xx')), set([1, 2, 3]))
 
     def test_by_type(self):
@@ -57,7 +57,7 @@ class TestFeaturedManager(test_utils.TestCase):
         eq_(set(self.fm.featured_ids(amo.FIREFOX, 'xx')), set([2, 3]))
 
 
-class TestCreaturedManager(test_utils.TestCase):
+class TestCreaturedManager(amo.tests.TestCase):
 
     def setUp(self):
         patcher = mock.patch('addons.utils.CreaturedManager.get_objects')

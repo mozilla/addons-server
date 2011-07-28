@@ -21,7 +21,7 @@ def statusflags(context, addon):
     lang = context['LANG']
     if addon.is_unreviewed():
         return 'unreviewed'
-    elif addon.is_featured(app, lang) or addon.is_category_featured(app, lang):
+    elif addon.is_featured(app, lang):
         return 'featuredaddon'
     elif addon.is_selfhosted():
         return 'selfhosted'

@@ -24,7 +24,6 @@ class ButtonTest(amo.tests.TestCase):
     def setUp(self):
         self.addon = Mock()
         self.addon.is_featured.return_value = False
-        self.addon.is_category_featured.return_value = False
         self.addon.is_unreviewed.return_value = False
         self.addon.has_eula = False
         self.addon.status = amo.STATUS_PUBLIC
@@ -231,11 +230,6 @@ class TestButton(ButtonTest):
         eq_(b.button_class, ['download'])
         eq_(b.install_class, ['featuredaddon'])
         eq_(b.install_text, 'Featured')
-
-    def test_category_featured(self):
-        self.addon.is_category_featured.return_value = True
-        b = self.get_button()
-        assert b.featured
 
     def test_unreviewed(self):
         # Throw featured in there to make sure it's ignored.

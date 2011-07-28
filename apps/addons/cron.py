@@ -22,7 +22,7 @@ import cronjobs
 from amo.utils import chunked
 from addons import search
 from addons.models import Addon, FrozenAddon, AppSupport
-from addons.utils import ReverseNameLookup
+from addons.utils import ReverseNameLookup, FeaturedManager, CreaturedManager
 from files.models import File
 from stats.models import UpdateCount
 from translations.models import Translation
@@ -445,3 +445,9 @@ def reindex_addons():
     ts = [tasks.index_addons.subtask(args=[chunk])
           for chunk in chunked(sorted(list(ids)), 150)]
     TaskSet(ts).apply_async()
+
+
+@cronjobs.register
+def reset_featured_addons():
+    FeaturedManager.build()
+    CreaturedManager.build()

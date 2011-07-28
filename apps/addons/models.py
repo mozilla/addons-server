@@ -2,7 +2,6 @@ import collections
 import itertools
 import json
 import os
-import random
 import time
 from datetime import datetime, timedelta
 
@@ -25,7 +24,7 @@ from amo.fields import DecimalCharField
 from amo.utils import (send_mail, urlparams, sorted_groupby, JSONEncoder,
                        slugify, to_language)
 from amo.urlresolvers import get_outgoing_url, reverse
-from addons.utils import ReverseNameLookup
+from addons.utils import ReverseNameLookup, FeaturedManager, CreaturedManager
 from files.models import File
 from reviews.models import Review
 from stats.models import AddonShareCountTotal
@@ -75,16 +74,8 @@ class AddonManager(amo.models.ManagerBase):
         """
         Filter for all featured add-ons for an application in all locales.
         """
-        if settings.NEW_FEATURES:
-            from bandwagon.models import FeaturedCollection
-            ids = FeaturedCollection.objects.addon_ids(app=app)
-            return self.valid().filter(id__in=ids)
-        else:
-            return self.valid().filter(feature__application=app.id)
-
-    def category_featured(self):
-        """Get all category-featured add-ons for ``app`` in all locales."""
-        return self.filter(addoncategory__feature=True)
+        ids = FeaturedManager.featured_ids(app)
+        return amo.models.manual_order(self.valid(), ids, 'addons.id')
 
     def listed(self, app, *status):
         """
@@ -612,11 +603,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # Personas need categories for the JSON dump.
         Category.transformer(personas)
 
-        # Store creatured apps on the add-on.
-        creatured = AddonCategory.creatured()
-        for addon in addons:
-            addon._creatured_apps = creatured.get(addon.id, [])
-
         # Attach sharing stats.
         sharing.attach_share_counts(AddonShareCountTotal, 'addon', addon_dict)
 
@@ -740,70 +726,17 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return self.status == amo.STATUS_NULL
 
     @classmethod
-    def featured(cls, app, lang):
-        # TODO(cvan): Remove this once featured collections are enabled.
-        if settings.NEW_FEATURES:
-            from bandwagon.models import FeaturedCollection
-            ids = FeaturedCollection.objects.addon_ids(app=app, lang=lang)
-            return ids
-        else:
-            # Attach an instance of Feature to Addon so we get persistent
-            # @cached_method caching through the request.
-            if not hasattr(cls, '_feature'):
-                cls._feature = Feature()
-            features = cls._feature.by_app(app)
-            return dict((id, locales) for id, locales in features.items()
-                         if None in locales or lang in locales)
-
-    @classmethod
     def featured_random(cls, app, lang):
-        """
-        Sort featured ids for app into those that support lang and
-        those with no locale, then shuffle both groups.
-        """
-        if settings.NEW_FEATURES:
-            from bandwagon.models import FeaturedCollection
-            features = FeaturedCollection.objects.by_locale(app=app, lang=lang)
-            no_locale, specific_locale = [], []
-            for f in features:
-                pk = f['collection__addons']
-                if not pk:
-                    continue
-                if f['locale'] == lang:
-                    specific_locale.append(pk)
-                elif f['locale'] is None:
-                    no_locale.append(pk)
-            random.shuffle(specific_locale)
-            random.shuffle(no_locale)
-            return specific_locale + no_locale
-        else:
-            if not hasattr(cls, '_feature'):
-                cls._feature = Feature()
-            features = cls._feature.by_app(app)
-            no_locale, specific_locale = [], []
-            for id, locales in features.items():
-                if lang in locales:
-                    specific_locale.append(id)
-                elif None in locales:
-                    no_locale.append(id)
-            random.shuffle(no_locale)
-            random.shuffle(specific_locale)
-            return specific_locale + no_locale
+        return FeaturedManager.featured_ids(app, lang)
 
     def is_no_restart(self):
         """Is this a no-restart add-on?"""
         files = self.current_version.all_files
         return files and files[0].no_restart
 
-    def is_featured(self, app, lang):
+    def is_featured(self, app, lang=None):
         """Is add-on globally featured for this app and language?"""
-        return self.id in Addon.featured(app, lang)
-
-    def is_category_featured(self, app, lang=None):
-        """Is add-on featured in any category for this app?"""
-        if lang:
-            return (app.id, lang) in self._creatured_apps
-        return app.id in dict(self._creatured_apps)
+        return self.id in FeaturedManager.featured_ids(app, lang)
 
     def has_full_profile(self):
         """Is developer profile public (completed)?"""
@@ -812,13 +745,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def has_profile(self):
         """Is developer profile (partially or entirely) completed?"""
         return self.the_reason or self.the_future
-
-    @amo.cached_property(writable=True)
-    def _creatured_apps(self):
-        """Return a list of the apps where this add-on is creatured."""
-        # This exists outside of is_category_featured so we can write the list
-        # in the transformer and avoid repeated .creatured() calls.
-        return AddonCategory.creatured().get(self.id, [])
 
     @amo.cached_property
     def tags_partitioned_by_developer(self):
@@ -1196,44 +1122,8 @@ class AddonCategory(caching.CachingMixin, models.Model):
         return urls
 
     @classmethod
-    def creatured_ids(cls):
-        """Returns a list of creatured ids."""
-        if settings.NEW_FEATURES:
-            from bandwagon.models import FeaturedCollection
-            return FeaturedCollection.objects.creatured_ids()
-        else:
-            # TODO(cvan): Remove this once new features are enabled.
-            qs = cls.objects.filter(feature=True)
-            f = lambda: list(qs.values_list('addon', 'category',
-                                            'category__application',
-                                            'feature_locales'))
-            return caching.cached_with(qs, f, 'creatured')
-
-    @classmethod
-    def creatured(cls):
-        """Get a dict of {addon: [app,..]} for all creatured add-ons."""
-        rv = {}
-        for addon, cat, catapp, locale in cls.creatured_ids():
-            rv.setdefault(addon, []).append((catapp, locale))
-        return rv
-
-    @classmethod
     def creatured_random(cls, category, lang):
-        """
-        Sort creatured ids for category into those that support lang and
-        those with no locale, then shuffle both groups.
-        """
-        no_locale, specific_locale = [], []
-        for addon, cat, catapp, locale in cls.creatured_ids():
-            if cat != category.pk:
-                continue
-            if locale and lang in locale:
-                specific_locale.append(addon)
-            elif not locale:
-                no_locale.append(addon)
-        random.shuffle(no_locale)
-        random.shuffle(specific_locale)
-        return specific_locale + no_locale
+        return CreaturedManager.creatured_ids(category, lang)
 
 
 class AddonRecommendation(models.Model):
@@ -1376,20 +1266,6 @@ class Feature(amo.models.ModelBase):
     def __unicode__(self):
         app = amo.APP_IDS[self.application.id].pretty
         return '%s (%s: %s)' % (self.addon.name, app, self.locale)
-
-    @caching.cached_method
-    def by_app(self, app):
-        """
-        Get a dict of featured add-ons for app.
-
-        Returns: {addon_id: [featured locales]}
-        """
-        qs = Addon.objects.featured(app)
-        vals = qs.extra(select={'locale': 'features.locale'})
-        d = collections.defaultdict(list)
-        for id, locale in vals.values_list('id', 'locale'):
-            d[id].append(locale)
-        return dict(d)
 
 
 class Preview(amo.models.ModelBase):

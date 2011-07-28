@@ -3,6 +3,7 @@ import logging
 import random
 from operator import itemgetter
 
+from django.conf import settings
 from django.utils.encoding import smart_str
 
 import commonware.log
@@ -113,14 +114,27 @@ class FeaturedManager(object):
 
     @classmethod
     def get_objects(cls):
-        from addons.models import Feature
-        return Feature.objects.values('addon', 'addon__type',
-                                      'locale', 'application')
+        fields = ['addon', 'type', 'locale', 'application']
+        if settings.NEW_FEATURES:
+            from bandwagon.models import FeaturedCollection
+            vals = FeaturedCollection.objects.values_list(
+                'collection__addons', 'collection__addons__type',
+                'locale', 'application')
+        else:
+            from addons.models import Addon
+            vals = Addon.objects.valid().values_list(
+                'id', 'type', 'feature__locale', 'feature__application')
+        return [dict(zip(fields, val)) for val in vals]
 
     @classmethod
     def build(cls):
         qs = list(cls.get_objects())
-        by_type = sorted_groupby(qs, itemgetter('addon__type'))
+        # Normalize empty values.
+        for row in qs:
+            if not row['locale']:
+                row['locale'] = None
+
+        by_type = sorted_groupby(qs, itemgetter('type'))
         by_locale = sorted_groupby(qs, itemgetter('locale'))
         by_app = sorted_groupby(qs, itemgetter('application'))
 
@@ -140,18 +154,22 @@ class FeaturedManager(object):
         pipe.execute()
 
     @classmethod
-    def featured_ids(cls, app, lang, type_=None):
+    def featured_ids(cls, app, lang=None, type=None):
         redis = cls.redis()
         base = (cls.by_id, cls.by_app(app.id))
-        if type_ is not None:
-            base += (cls.by_type(type_),)
-        all_ = redis.sinter(base + (cls.by_locale(None),))
-        per_locale = redis.sinter(base + (cls.by_locale(lang),))
+        if type is not None:
+            base += (cls.by_type(type),)
+        if lang:
+            all_ = redis.sinter(base + (cls.by_locale(None),))
+            per_locale = redis.sinter(base + (cls.by_locale(lang),))
+        else:
+            all_ = redis.sinter(base)
+            per_locale = set()
         others = list(all_ - per_locale)
         per_locale = list(per_locale)
         random.shuffle(per_locale)
         random.shuffle(others)
-        return map(int, per_locale + others)
+        return map(int, filter(None, per_locale + others))
 
 
 class CreaturedManager(object):
@@ -166,9 +184,16 @@ class CreaturedManager(object):
 
     @classmethod
     def get_objects(cls):
-        from addons.models import AddonCategory
-        return (AddonCategory.objects.filter(feature=True)
-                .values('category', 'addon', 'feature_locales'))
+        fields = ['category', 'addon', 'feature_locales']
+        if settings.NEW_FEATURES:
+            from bandwagon.models import FeaturedCollection
+            return FeaturedCollection.objects.values_list(
+                'collection__addons__category', 'collection__addons', 'locale')
+        else:
+            from addons.models import AddonCategory
+            vals = (AddonCategory.objects.filter(feature=True)
+                    .values_list('category', 'addon', 'feature_locales'))
+        return [dict(zip(fields, val)) for val in vals]
 
     @classmethod
     def build(cls):
@@ -207,4 +232,4 @@ class CreaturedManager(object):
         per_locale = list(per_locale)
         random.shuffle(others)
         random.shuffle(per_locale)
-        return map(int, per_locale + others)
+        return map(int, filter(None, per_locale + others))
