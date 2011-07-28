@@ -423,6 +423,7 @@ class TestFileUpload(UploadTest):
 
         fu = FileUpload.from_post('', u'\u05d0\u05d5\u05e1\u05e3.xpi', 0)
         assert 'xpi' in fu.name
+    test_ascii_names.py27unicode = True
 
 
 class TestFileFromUpload(UploadTest):
@@ -496,6 +497,7 @@ class TestFileFromUpload(UploadTest):
         self.version.addon.name = u'jéts!'
         f = File.from_upload(upload, self.version, self.platform)
         eq_(f.filename, u'jets-0.1-mac.xpi')
+    test_utf8.py27unicode = True
 
     def test_size(self):
         upload = self.upload('extension')

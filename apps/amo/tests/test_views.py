@@ -35,6 +35,7 @@ def test_login_link():
     link = doc('.context a')[1].attrib['href']
     assert link.endswith('?to=%2Fen-US%2Ffirefox%2Fsearch%2F%3Fq%3D%25EF'
             '%25BF%25BD%2B%25EB%25B2%2588%25EF%25BF%25BDA'), "Got %s" % link
+test_login_link.py27unicode = True
 
 
 class Client(test.Client):

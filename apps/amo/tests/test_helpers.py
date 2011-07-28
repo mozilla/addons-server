@@ -42,8 +42,8 @@ def test_strip_html_none():
 
 
 def test_strip_controls():
-    """We want control codes like \x0c to disappear."""
-    eq_('I ove you', render('{{ "I \x0cove you"|strip_controls }}'))
+    # We want control codes like \x0c to disappear.
+    eq_('I ove you', helpers.strip_controls('I \x0cove you'))
 
 
 def test_finalize():
