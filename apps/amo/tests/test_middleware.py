@@ -11,14 +11,16 @@ from amo.urlresolvers import reverse
 from zadmin.models import Config, _config_cache
 
 
-def test_no_vary_cookie():
-    # We don't break good usage of Vary.
-    response = test.Client().get('/')
-    eq_(response['Vary'], 'Accept-Language, User-Agent, X-Mobile')
+class TestMiddleware(amo.tests.TestCase):
 
-    # But we do prevent Vary: Cookie.
-    response = test.Client().get('/', follow=True)
-    eq_(response['Vary'], 'X-Mobile, User-Agent')
+    def test_no_vary_cookie(self):
+        # We don't break good usage of Vary.
+        response = test.Client().get('/')
+        eq_(response['Vary'], 'Accept-Language, User-Agent, X-Mobile')
+
+        # But we do prevent Vary: Cookie.
+        response = test.Client().get('/', follow=True)
+        eq_(response['Vary'], 'X-Mobile, User-Agent')
 
 
 def test_redirect_with_unicode_get():

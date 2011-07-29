@@ -22,20 +22,6 @@ from users.models import UserProfile
 URL_ENCODED = 'application/x-www-form-urlencoded'
 
 
-def test_login_link():
-    "Test that the login link encodes parameters correctly."
-    r = test.Client().get('/?your=mom', follow=True)
-    doc = pq(r.content)
-    assert doc('.context a')[1].attrib['href'].endswith(
-            '?to=%2Fen-US%2Ffirefox%2F%3Fyour%3Dmom'), ("Got %s" %
-            doc('.context a')[1].attrib['href'])
-
-    r = test.Client().get('/en-US/firefox/search/?q=%B8+%EB%B2%88%EC%97%A')
-    doc = pq(r.content)
-    link = doc('.context a')[1].attrib['href']
-    assert link.endswith('?to=%2Fen-US%2Ffirefox%2Fsearch%2F%3Fq%3D%25EF'
-            '%25BF%25BD%2B%25EB%25B2%2588%25EF%25BF%25BDA'), "Got %s" % link
-test_login_link.py27unicode = True
 
 
 class Client(test.Client):
@@ -459,47 +445,63 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
         eq_(response.content, 'Contribution not found')
 
 
-def test_jsi18n_caching():
-    """The jsi18n catalog should be cached for a long time."""
-    # Get the url from a real page so it includes the build id.
-    client = test.Client()
-    doc = pq(client.get('/', follow=True).content)
-    js_url = reverse('jsi18n')
-    url_with_build = doc('script[src^="%s"]' % js_url).attr('src')
 
-    response = client.get(url_with_build, follow=True)
-    fmt = '%a, %d %b %Y %H:%M:%S GMT'
-    expires = datetime.strptime(response['Expires'], fmt)
-    assert (expires - datetime.now()).days >= 365
+class TestOtherStuff(amo.tests.TestCase):
+    # Tests that don't need fixtures but do need redis mocked.
 
+    def test_language_selector(self):
+        doc = pq(test.Client().get('/en-US/firefox/').content)
+        eq_(doc('form.languages option[selected]').attr('value'), 'en-us')
 
-def test_dictionaries_link():
-    doc = pq(test.Client().get('/', follow=True).content)
-    link = doc('#categoriesdropdown a[href*="language-tools"]')
-    eq_(link.text(), 'Dictionaries & Language Packs')
+    @patch.object(settings, 'KNOWN_PROXIES', ['127.0.0.1'])
+    def test_remote_addr(self):
+        """Make sure we're setting REMOTE_ADDR from X_FORWARDED_FOR."""
+        client = test.Client()
+        # Send X-Forwarded-For as it shows up in a wsgi request.
+        client.get('/en-US/firefox/', follow=True,
+                   HTTP_X_FORWARDED_FOR='1.1.1.1')
+        eq_(commonware.log.get_remote_addr(), '1.1.1.1')
 
+    def test_jsi18n_caching(self):
+        # The jsi18n catalog should be cached for a long time.
+        # Get the url from a real page so it includes the build id.
+        client = test.Client()
+        doc = pq(client.get('/', follow=True).content)
+        js_url = reverse('jsi18n')
+        url_with_build = doc('script[src^="%s"]' % js_url).attr('src')
 
-@patch.object(settings, 'KNOWN_PROXIES', ['127.0.0.1'])
-def test_remote_addr():
-    """Make sure we're setting REMOTE_ADDR from X_FORWARDED_FOR."""
-    client = test.Client()
-    # Send X-Forwarded-For as it shows up in a wsgi request.
-    client.get('/en-US/firefox/', follow=True, HTTP_X_FORWARDED_FOR='1.1.1.1')
-    eq_(commonware.log.get_remote_addr(), '1.1.1.1')
+        response = client.get(url_with_build, follow=True)
+        fmt = '%a, %d %b %Y %H:%M:%S GMT'
+        expires = datetime.strptime(response['Expires'], fmt)
+        assert (expires - datetime.now()).days >= 365
 
+    def test_dictionaries_link(self):
+        doc = pq(test.Client().get('/', follow=True).content)
+        link = doc('#categoriesdropdown a[href*="language-tools"]')
+        eq_(link.text(), 'Dictionaries & Language Packs')
 
-def test_opensearch():
-    client = test.Client()
-    page = client.get('/en-US/firefox/opensearch.xml')
+    def test_opensearch(self):
+        client = test.Client()
+        page = client.get('/en-US/firefox/opensearch.xml')
 
-    wanted = ('Content-Type', 'text/xml')
-    eq_(page._headers['content-type'], wanted)
+        wanted = ('Content-Type', 'text/xml')
+        eq_(page._headers['content-type'], wanted)
 
-    doc = etree.fromstring(page.content)
-    e = doc.find("{http://a9.com/-/spec/opensearch/1.1/}ShortName")
-    eq_(e.text, "Firefox Add-ons")
+        doc = etree.fromstring(page.content)
+        e = doc.find("{http://a9.com/-/spec/opensearch/1.1/}ShortName")
+        eq_(e.text, "Firefox Add-ons")
 
+    def test_login_link(self):
+        # Test that the login link encodes parameters correctly.
+        r = test.Client().get('/?your=mom', follow=True)
+        doc = pq(r.content)
+        assert doc('.context a')[1].attrib['href'].endswith(
+                '?to=%2Fen-US%2Ffirefox%2F%3Fyour%3Dmom'), ("Got %s" %
+                doc('.context a')[1].attrib['href'])
 
-def test_language_selector():
-    doc = pq(test.Client().get('/en-US/firefox/').content)
-    eq_(doc('form.languages option[selected]').attr('value'), 'en-us')
+        r = test.Client().get('/en-US/firefox/search/?q=%B8+%EB%B2%88%EC%97%A')
+        doc = pq(r.content)
+        link = doc('.context a')[1].attrib['href']
+        assert link.endswith('?to=%2Fen-US%2Ffirefox%2Fsearch%2F%3Fq%3D%25EF'
+                '%25BF%25BD%2B%25EB%25B2%2588%25EF%25BF%25BDA'), "Got %s" % link
+    test_login_link.py27unicode = True
