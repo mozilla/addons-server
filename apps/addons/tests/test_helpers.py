@@ -14,11 +14,6 @@ class TestHelpers(amo.tests.TestCase):
     fixtures = ['addons/featured', 'base/collections', 'base/featured',
                 'bandwagon/featured_collections']
 
-    def setUp(self):
-        # Addon._feature keeps an in-process cache we need to clear.
-        if hasattr(Addon, '_feature'):
-            del Addon._feature
-
     def test_statusflags(self):
         ctx = {'APP': amo.FIREFOX, 'LANG': 'en-US'}
 

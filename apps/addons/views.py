@@ -30,6 +30,7 @@ from amo.helpers import absolutify
 from amo.models import manual_order
 from amo import urlresolvers
 from amo.urlresolvers import reverse
+from addons.utils import FeaturedManager
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
 import paypal
 from reviews.forms import ReviewForm
@@ -326,8 +327,7 @@ class BaseFilter(object):
 
     def filter_featured(self):
         ids = Addon.featured_random(self.request.APP, self.request.LANG)
-        qs = Addon.objects
-        return qs.filter(id__in=ids) if ids else qs.none()
+        return manual_order(Addon.objects, ids, 'addons.id')
 
     def filter_popular(self):
         return (Addon.objects.order_by('-weekly_downloads')
@@ -377,16 +377,6 @@ class HomepageFilter(BaseFilter):
 
     filter_new = BaseFilter.filter_created
 
-    def __init__(self, *args, **kw):
-        self.featured_ids = Addon.featured_random(args[0].APP, args[0].LANG)
-        super(HomepageFilter, self).__init__(*args, **kw)
-
-    def filter_featured(self):
-        return Addon.objects.filter(pk__in=self.featured_ids)
-
-    def order_featured(self, filter):
-        return manual_order(filter, self.featured_ids, 'addon_id')
-
 
 def home(request):
     # Add-ons.
@@ -415,7 +405,10 @@ def home(request):
 def impala_home(request):
     # Add-ons.
     base = Addon.objects.listed(request.APP).filter(type=amo.ADDON_EXTENSION)
-    featured_ids = Addon.featured_random(request.APP, request.LANG)
+    featured_ext = FeaturedManager.featured_ids(request.APP, request.LANG,
+                                                type=amo.ADDON_EXTENSION)
+    featured_personas = FeaturedManager.featured_ids(request.APP, request.LANG,
+                                                     type=amo.ADDON_PERSONA)
     # This is lame for performance. Kill it with ES.
     frozen = FrozenAddon.objects.values_list('addon', flat=True)
 
@@ -423,11 +416,11 @@ def impala_home(request):
     collections = Collection.objects.filter(listed=True,
                                             application=request.APP.id,
                                             type=amo.COLLECTION_FEATURED)
-    featured = base.filter(id__in=featured_ids)[:18]
+    featured = base.filter(id__in=featured_ext[:18])
     popular = base.exclude(id__in=frozen).order_by('-average_daily_users')[:10]
     hotness = base.exclude(id__in=frozen).order_by('-hotness')[:18]
     personas = (Addon.objects.listed(request.APP)
-                .filter(type=amo.ADDON_PERSONA, id__in=featured_ids))[:18]
+                .filter(type=amo.ADDON_PERSONA, id__in=featured_personas[:18]))
 
     return jingo.render(request, 'addons/impala/home.html',
                         {'popular': popular, 'featured': featured,

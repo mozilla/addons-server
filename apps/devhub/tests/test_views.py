@@ -1001,6 +1001,10 @@ class TestEdit(amo.tests.TestCase):
     def test_edit_basic_categories_add_new_creatured(self):
         """Ensure that categories cannot be changed for creatured add-ons."""
         self._feature_addon()
+        # TODO: remove this when NEW_FEATURES goes away. It's here because
+        # build() was already called in setUp().
+        from addons.cron import reset_featured_addons
+        reset_featured_addons()
         self.cat_initial['categories'] = [22, 23]
         r = self.client.post(self.basic_url, self.get_dict())
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
@@ -1040,6 +1044,10 @@ class TestEdit(amo.tests.TestCase):
     def test_edit_basic_categories_disclaimer(self):
         """Ensure that there is a disclaimer for creatured add-ons."""
         self._feature_addon()
+        # TODO: remove this when NEW_FEATURES goes away. It's here because
+        # build() was already called in setUp().
+        from addons.cron import reset_featured_addons
+        reset_featured_addons()
         r = self.client.get(self.basic_url)
         doc = pq(r.content)
         eq_(doc('#addon-categories-edit div.addon-app-cats').length, 0)

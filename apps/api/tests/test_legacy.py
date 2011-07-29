@@ -16,11 +16,12 @@ from pyquery import PyQuery as pq
 import amo
 import api
 import api.utils
-from addons.models import (Addon, AddonCategory, AppSupport, Category,
-                           Feature, Preview)
 from amo import helpers
 from amo.tests import TestCase
 from amo.urlresolvers import reverse
+from addons.cron import reset_featured_addons
+from addons.models import (Addon, AppSupport, Feature, Preview)
+from addons.utils import FeaturedManager
 from applications.models import Application
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from files.tests.test_models import UploadTest
@@ -145,14 +146,9 @@ class APITest(TestCase):
                 'base/addon_5299_gcal', 'perf/index']
 
     def setUp(self):
-        self._new_features = settings.NEW_FEATURES
-        settings.NEW_FEATURES = False
-
-        if hasattr(Addon, '_feature'):
-            delattr(Addon, '_feature')
-
-    def tearDown(self):
-        settings.NEW_FEATURES = self._new_features
+        patcher = patch.object(settings, 'NEW_FEATURES', False)
+        patcher.start()
+        self.addCleanup(patcher.stop)
 
     def test_api_caching(self):
         response = self.client.get('/en-US/firefox/api/1.5/addon/3615')
@@ -230,8 +226,7 @@ class APITest(TestCase):
         self.assertContains(response,
                 """<guid>{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}</guid>""")
         self.assertContains(response, "<version>2.1.072</version>")
-        self.assertContains(response,
-                """<status id="4">Fully Reviewed</status>""")
+        self.assertContains(response, '<status id="4">Fully Reviewed</status>')
         self.assertContains(response,
             u'<author>55021 \u0627\u0644\u062a\u0637\u0628</author>')
         self.assertContains(response, "<summary>Delicious Bookmarks is the")
@@ -405,12 +400,10 @@ class APITest(TestCase):
                                end=datetime.now() + timedelta(days=10),
                                application_id=amo.FIREFOX.id,
                                locale='ja')
+        reset_featured_addons()
         for lang, app, result in [('ja', 'firefox', 1),
                                   ('en-US', 'firefox', 0),
                                   ('ja', 'seamonkey', 0)]:
-            # Clean out the special cache for feature.
-            if hasattr(Addon, '_feature'):
-                del Addon._feature
             self.assertContains(make_call('addon/5299', version=1.5,
                                           lang=lang, app=app),
                                 '<featured>%s</featured>' % result)
@@ -419,47 +412,14 @@ class APITest(TestCase):
     def test_new_is_featured(self):
         self.assertContains(make_call('addon/5299', version=1.5),
                             '<featured>0</featured>')
-        c = CollectionAddon.objects.create(addon=Addon.objects.get(id=5299),
-            collection=Collection.objects.create())
+        c = CollectionAddon.objects.create(
+                addon=Addon.objects.get(id=5299),
+                collection=Collection.objects.create())
         FeaturedCollection.objects.create(locale='ja',
             application=Application.objects.get(id=amo.FIREFOX.id),
             collection=c.collection)
-        for lang, app, result in [('ja', 'firefox', 1),
-                                  ('en-US', 'firefox', 0),
-                                  ('ja', 'seamonkey', 0)]:
-            self.assertContains(make_call('addon/5299', version=1.5,
-                                          lang=lang, app=app),
-                                '<featured>%s</featured>' % result)
-
-    @patch.object(settings, 'NEW_FEATURES', False)
-    def test_is_category_featured(self):
-        self.assertContains(make_call('addon/5299', version=1.5),
-                            '<featured>0</featured>')
-        AddonCategory.objects.create(addon_id=5299,
-                                     category=Category.objects.all()[0],
-                                     feature=True,
-                                     feature_locales='ja')
-        for lang, app, result in [('ja', 'firefox', 1),
-                                  ('en-US', 'firefox', 0),
-                                  ('ja', 'seamonkey', 0)]:
-            # Clean out the special cache for feature.
-            if hasattr(Addon, '_feature'):
-                delattr(Addon, '_feature')
-            self.assertContains(make_call('addon/5299', version=1.5,
-                                          lang=lang, app=app),
-                                '<featured>%s</featured>' % result)
-
-    @patch.object(settings, 'NEW_FEATURES', True)
-    def test_new_is_category_featured(self):
-        self.assertContains(make_call('addon/5299', version=1.5),
-                            '<featured>0</featured>')
-        AddonCategory.objects.create(addon_id=5299,
-                                     category=Category.objects.all()[0])
-        c = CollectionAddon.objects.create(addon=Addon.objects.get(id=5299),
-            collection=Collection.objects.create())
-        FeaturedCollection.objects.create(locale='ja',
-            application=Application.objects.get(id=amo.FIREFOX.id),
-            collection=c.collection)
+        FeaturedManager.redis().kv.clear()
+        reset_featured_addons()
         for lang, app, result in [('ja', 'firefox', 1),
                                   ('en-US', 'firefox', 0),
                                   ('ja', 'seamonkey', 0)]:
@@ -483,7 +443,7 @@ class APITest(TestCase):
                             '<thumbnail type="" width="200" height="150">')
 
     def test_performance_data(self):
-        with self.assertNumQueries(22):
+        with self.assertNumQueries(20):
             response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
                                        api.CURRENT_VERSION)
         doc = pq(response.content)
@@ -520,13 +480,9 @@ class ListTest(TestCase):
 
     def setUp(self):
         # TODO(cvan): Remove this once featured collections are enabled.
-        self._new_features = settings.NEW_FEATURES
-        settings.NEW_FEATURES = False
-        if hasattr(Addon, '_feature'):
-            delattr(Addon, '_feature')
-
-    def tearDown(self):
-        settings.NEW_FEATURES = self._new_features
+        patcher = patch.object(settings, 'NEW_FEATURES', False)
+        patcher.start()
+        self.addCleanup(patcher.stop)
 
     def test_defaults(self):
         """
@@ -642,11 +598,9 @@ class NewListTest(ListTest):
 
     def setUp(self):
         # TODO(cvan): Remove this once featured collections are enabled.
-        self._new_features = settings.NEW_FEATURES
-        settings.NEW_FEATURES = True
-
-    def tearDown(self):
-        settings.NEW_FEATURES = self._new_features
+        patcher = patch.object(settings, 'NEW_FEATURES', True)
+        patcher.start()
+        self.addCleanup(patcher.stop)
 
 
 class SeamonkeyFeaturedTest(TestCase):

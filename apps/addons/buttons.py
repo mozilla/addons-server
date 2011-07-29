@@ -39,7 +39,7 @@ def _install_button(context, addon, version=None, show_eula=True,
         template = 'addons/impala/button.html'
     elif mobile:
         template = 'addons/mobile/button.html'
-    else: 
+    else:
         template = 'addons/button.html'
     t = jingo.render_to_string(request, template, c)
     return jinja2.Markup(t)
@@ -129,8 +129,7 @@ class InstallButton(object):
                          and not self.lite
                          and not self.self_hosted
                          and not self.is_beta
-                         and addon.is_featured(app, lang)
-                         or addon.is_category_featured(app, lang))
+                         and addon.is_featured(app, lang))
         self.is_persona = addon.type == amo.ADDON_PERSONA
 
         self.accept_eula = addon.has_eula and not show_eula

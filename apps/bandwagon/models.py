@@ -547,50 +547,10 @@ class RecommendedCollection(Collection):
         return [addon for addon, score in addons if addon not in addon_ids]
 
 
-class FeaturedCollectionManager(amo.models.ManagerBase):
-
-    def _featured(self, app=None, lang=None):
-        qs = self
-        if app:
-            qs = qs.filter(application__id=app.id)
-        if lang:
-            qs = qs.filter(Q(locale=lang) | Q(locale__isnull=True))
-        return qs
-
-    def by_locale(self, app=None, lang=None):
-        """Returns locales, ids for all add-ons from filtered collections."""
-        qs = self._featured(app, lang)
-        return list(qs.values('locale', 'collection__addons').distinct())
-
-    def addon_ids(self, app=None, lang=None):
-        """Returns ids for all add-ons from filtered collections."""
-        qs = self._featured(app, lang)
-        return list(qs.values_list('collection__addons', flat=True).distinct())
-
-    def addons(self, app=None, lang=None):
-        """Returns add-ons from filtered collections."""
-        return Addon.objects.filter(id__in=self.addon_ids(app, lang))
-
-    def creatured_ids(self, category=None, lang=None):
-        qs = self
-        if category:
-            qs = qs.filter(collection__addons__category=category)
-        else:
-            qs = qs.filter(collection__addons__category__isnull=False)
-        if lang:
-            qs = qs.filter(Q(locale=lang) | Q(locale__isnull=True))
-        return list(qs.values_list('collection__addons',
-                                   'collection__addons__category',
-                                   'collection__addons__category__application',
-                                   'locale').distinct())
-
-
 class FeaturedCollection(amo.models.ModelBase):
     application = models.ForeignKey(Application)
     collection = models.ForeignKey(Collection)
     locale = models.CharField(max_length=10, null=True)
-
-    objects = FeaturedCollectionManager()
 
     class Meta:
         db_table = 'featured_collections'

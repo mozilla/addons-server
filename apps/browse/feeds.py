@@ -109,9 +109,7 @@ class FeaturedRss(AddonFeedMixin, Feed):
 
     def items(self):
         """Return the Addons to be output as RSS <item>'s"""
-        addons = list(Addon.objects.featured(self.app))
-        random.shuffle(addons)
-        return addons
+        return Addon.objects.featured(self.app)[:20]
 
 
 class SearchToolsRss(AddonFeedMixin, Feed):
