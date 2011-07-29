@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import logging
 import os
 import site
 import sys
@@ -60,6 +61,22 @@ safe_django_forms.monkeypatch()
 
 import session_csrf
 session_csrf.monkeypatch()
+
+# Fix jinja's Markup class to not crash when localizers give us bad format
+# strings.
+from jinja2 import Markup
+mod = Markup.__mod__
+trans_log = logging.getLogger('z.trans')
+
+
+def new(self, arg):
+    try:
+        return mod(self, arg)
+    except Exception:
+        trans_log.error(unicode(self))
+        return ''
+
+Markup.__mod__ = new
 
 # Import for side-effect: configures our logging handlers.
 # pylint: disable-msg=W0611
