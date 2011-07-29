@@ -93,6 +93,6 @@ echo "Starting JS tests..." `date`
 rm $LOG
 cd scripts
 # These env vars are set in the Jenkins build step.
-python run_jstests.py -v --with-xunit --with-django-serv --django-host "$DJANGO_HOST" --django-port "$DJANGO_PORT" --django-log $LOG --with-jstests --jstests-server http://jstestnet.farmdev.com/ --jstests-suite zamboni --jstests-token "$JSTESTS_TOKEN" --jstests-url http://$DJANGO_HOST:$DJANGO_PORT/en-US/qunit --jstests-browsers firefox --debug nose.plugins.jstests
+python run_jstests.py -v --with-xunit --with-django-serv --django-host "$DJANGO_HOST" --django-port "$DJANGO_PORT" --django-log $LOG --django-startup-uri /services/monitor --with-jstests --jstests-server http://jstestnet.farmdev.com/ --jstests-suite zamboni --jstests-token "$JSTESTS_TOKEN" --jstests-url http://$DJANGO_HOST:$DJANGO_PORT/en-US/qunit --jstests-browsers firefox --debug nose.plugins.jstests
 
 echo 'shazam!'
