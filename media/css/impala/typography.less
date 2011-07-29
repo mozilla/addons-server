@@ -18,24 +18,19 @@ body {
     font-size: 13px;
 }
 
-#masthead h1 {
-    font-size: 40px;
-    font-family: MetaBlack;
-    letter-spacing: -1px;
-    text-transform: uppercase;
-}
-
 h1 {
     color: @red;
     font: italic 24px/1.3 @serif-stack;
 }
 
-#breadcrumbs + h1 {
-    margin-bottom: 15px;
-}
-
 section + h1 {
     margin: 15px 0;
+}
+
+#masthead h1 {
+    font: normal 40px/40px MetaBlack;
+    letter-spacing: -1px;
+    text-transform: uppercase;
 }
 
 h2 {
@@ -117,6 +112,9 @@ pre {
         }
     }
     &.hero {
+        h1 {
+            margin-bottom: 5px;
+        }
         hgroup {
             h3 {
                 color: #666;

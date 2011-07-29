@@ -21,7 +21,7 @@
     {% if license.url %}
       <p><a href="{{ license.url }}">{{ license.name }}</a></p>
     {% else %}
-      <h4>{{ license.name }}</h4>
+      <h3>{{ license.name }}</h3>
       <pre class="license">{{ license.text|nl2br }}</pre>
     {% endif %}
   </div>
