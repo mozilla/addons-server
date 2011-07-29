@@ -78,6 +78,8 @@ class Review(amo.models.ModelBase):
 
     @staticmethod
     def post_save(sender, instance, created, **kwargs):
+        if kwargs.get('raw'):
+            return
         if created:
             Review.post_delete(sender, instance)
             # Avoid slave lag with the delay.
@@ -85,6 +87,8 @@ class Review(amo.models.ModelBase):
 
     @staticmethod
     def post_delete(sender, instance, **kwargs):
+        if kwargs.get('raw'):
+            return
         from . import tasks
         pair = instance.addon_id, instance.user_id
         # Do this immediately so is_latest is correct. Use default to avoid
