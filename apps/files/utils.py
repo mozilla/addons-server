@@ -143,40 +143,67 @@ def parse_search(filename, addon=None):
             'version': datetime.now().strftime('%Y%m%d')}
 
 
+class SafeUnzip(object):
+    def __init__(self, source):
+        self.source = source
+        self.info = None
+
+    def is_valid(self, fatal=True):
+        """
+        Runs some overall archive checks.
+        fatal: if the archive is not valid and fatal is True, it will raise
+               an error, otherwise it will return False.
+        """
+        try:
+            zip = zipfile.ZipFile(self.source)
+        except (BadZipfile, IOError), err:
+            log.error('Error (%s) extracting %s' % (err, self.source))
+            if fatal:
+                raise
+            return False
+
+        _info = zip.infolist()
+
+        for info in _info:
+            if '..' in info.filename or info.filename.startswith('/'):
+                log.error('Extraction error, Invalid archive: %s' %
+                          self.source)
+                raise forms.ValidationError(_('Invalid archive.'))
+
+            if info.file_size > settings.FILE_UNZIP_SIZE_LIMIT:
+                log.error('Extraction error, file too big: %s, %s'
+                          % (self.source, info.file_size))
+                raise forms.ValidationError(_('Invalid archive.'))
+
+        self.info = _info
+        self.zip = zip
+        return True
+
+    def extract_file_to_dest(self, info, dest):
+        """Extracts a file to a directory and checks the file size."""
+        self.zip.extract(info, dest)
+        dest = os.path.join(dest, info.filename)
+        if not os.path.isdir(dest):
+            # Directories consistently report their size incorrectly.
+            size = os.stat(dest)[stat.ST_SIZE]
+            if size != info.file_size:
+                log.error('Extraction error, uncompressed size: %s, %s not %s'
+                          % (self.source, size, info.file_size))
+                raise forms.ValidationError(_('Invalid archive.'))
+
+    def extract_to_dest(self, dest):
+        """Extracts the zip file to a directory."""
+        for info in self.info:
+            self.extract_file_to_dest(info, dest)
+
+
 def extract_zip(source, remove=False, fatal=True):
     """Extracts the zip file. If remove is given, removes the source file."""
     tempdir = tempfile.mkdtemp()
 
-    try:
-        zip = zipfile.ZipFile(source)
-    except (BadZipfile, IOError), err:
-        log.error('Error (%s) extracting %s' % (err, source))
-        if fatal:
-            raise
-        return None
-
-    for info in zip.infolist():
-        if '..' in info.filename or info.filename.startswith('/'):
-            log.error('Extraction error, Invalid archive: %s' % source)
-            raise forms.ValidationError(_('Invalid archive.'))
-
-        if info.file_size > settings.FILE_UNZIP_SIZE_LIMIT:
-            log.error('Extraction error, file too big: %s, %s'
-                      % (source, info.file_size))
-            raise forms.ValidationError(_('Invalid archive.'))
-
-        zip.extract(info, tempdir)
-
-        # TODO (andym): find a way to test this.
-        dest = os.path.join(tempdir, info.filename)
-        if os.path.isdir(dest):
-            # Directories consistently report their size incorrectly.
-            continue
-        size = os.stat(dest)[stat.ST_SIZE]
-        if size != info.file_size:
-            log.error('Extraction error, uncompressed size: %s, %s not %s'
-                      % (source, size, info.file_size))
-            raise forms.ValidationError(_('Invalid archive.'))
+    zip = SafeUnzip(source)
+    if zip.is_valid(fatal):
+        zip.extract_to_dest(tempdir)
 
     if remove:
         os.remove(source)
