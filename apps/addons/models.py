@@ -918,8 +918,9 @@ def update_name_table(sender, **kw):
 @receiver(dbsignals.pre_delete, sender=Addon,
           dispatch_uid='addons.clear.name.table')
 def clear_name_table(sender, **kw):
-    addon = kw['instance']
-    ReverseNameLookup().delete(addon.id)
+    if not kw.get('raw'):
+        addon = kw['instance']
+        ReverseNameLookup().delete(addon.id)
 
 
 @receiver(signals.version_changed, dispatch_uid='version_changed')
