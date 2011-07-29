@@ -1,3 +1,17 @@
 {% macro required() -%}
   <abbr class="req" title="{{ _('required') }}">*</abbr>
 {%- endmacro %}
+
+{% macro pretty_field(field, label=None, tag='li', req=False) %}
+  {% set req = field.field.required or req %}
+  <{{ tag }} class="row{{ ' error' if field.errors else '' }}">
+    <label for="{{ field.auto_id }}">
+      {{- label or field.label }}
+      {% if req %}
+        {{ required() -}}
+      {% endif %}
+    </label>
+    {{ field.as_widget() }}
+    {{ field.errors }}
+  </{{ tag }}>
+{% endmacro %}

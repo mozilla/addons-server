@@ -18,11 +18,6 @@ body {
     font-size: 13px;
 }
 
-h1 {
-    color: @red;
-    font: italic 24px/1.3 @serif-stack;
-}
-
 section + h1 {
     margin: 15px 0;
 }
@@ -31,11 +26,27 @@ section + h1 {
     font: normal 40px/40px MetaBlack;
     letter-spacing: -1px;
     text-transform: uppercase;
+    margin-bottom: 7px;
+}
+
+h1 {
+    font: italic 24px @serif-stack;
+    color: @red;
+    margin-bottom: 16px;
 }
 
 h2 {
-    color: @dark-gray;
     font: italic 18px @serif-stack;
+    color: @dark-gray;
+}
+
+hgroup {
+    h2 {
+        color: #666;
+    }
+    b {
+        font-weight: bold;
+    }
 }
 
 h4 {
@@ -89,9 +100,6 @@ pre {
 }
 
 .gutter {
-    .primary, .secondary {
-        font-family: @serif-stack;
-    }
     .secondary h3 {
         font-style: italic;
     }
@@ -103,9 +111,14 @@ pre {
     margin-left: .5em;
 }
 
+.addon-details {
+    .primary, .secondary {
+        font-family: @serif-stack;
+    }
+}
+
 .island, .modal, .popup {
     h2 {
-        font-size: 18px;
         margin-bottom: .5em;
         .seeall {
             .defaultlink

@@ -38,6 +38,9 @@
     &.reply {
         padding-left: 56px;
     }
+    &:first-child {
+        padding-top: 0;
+    }
 }
 
 .stars {
@@ -200,10 +203,9 @@
 }
 
 .ratingwidget {
-    display: block;
+    display: inline-block;
     float: none;
     width: 65px;
-    margin-bottom: 1em;
     input {
         display: none;
     }

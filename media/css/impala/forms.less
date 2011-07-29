@@ -17,14 +17,16 @@ textarea {
     width: 100%;
 }
 
-form p {
-    margin-bottom: 1em;
-}
 
 .note {
     color: @medium-gray;
     font-size: 11px;
     line-height: 1.4;
+}
+
+.errorlist {
+    color: #C00000;
+    font-size: 12px;
 }
 
 .edit_with_prefix, .edit-with-suffix {
@@ -100,7 +102,10 @@ form p {
             text-transform: uppercase;
         }
     }
-    label {
+    li {
+        margin-bottom: 1em;
+    }
+    li > label {
         color: #555;
         display: inline-block;
         font-weight: normal;
@@ -129,12 +134,17 @@ form p {
         box-shadow: 2px 2px #EFF6FE inset;
         color: #5B738E;
         font-size: 1em;
-        margin-bottom: 1em;
         padding: 4px 7px;
         &:focus {
             color: #394D63;
             border-color: #809CBA;
         }
+        display: inline-block;
+        vertical-align: middle;
+    }
+    textarea {
+        width: 400px;
+        vertical-align: text-top;
     }
     p.note {
         color: #888;
@@ -183,9 +193,18 @@ form p {
             padding-left: 1em;
         }
     }
-    .listing-footer {
+    footer {
         button {
             float: right;
         }
+    }
+    .error {
+        input[type="text"], input[type="password"], select, textarea {
+            border-color: #C00000;
+        }
+    }
+    .errorlist {
+        margin-top: 2px;
+        padding-left: 137px;
     }
 }
