@@ -187,7 +187,7 @@ class CreaturedManager(object):
         fields = ['category', 'addon', 'feature_locales']
         if settings.NEW_FEATURES:
             from bandwagon.models import FeaturedCollection
-            return FeaturedCollection.objects.values_list(
+            vals = FeaturedCollection.objects.values_list(
                 'collection__addons__category', 'collection__addons', 'locale')
         else:
             from addons.models import AddonCategory
