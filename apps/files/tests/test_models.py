@@ -693,8 +693,33 @@ class TestLanguagePack(LanguagePackBase):
         obj = self.file_create('langpack-localepicker')
         assert 'title=Select a language' in obj.get_localepicker()
 
-    def test_extract_no_file(self):
+    def test_extract_no_chrome_manifest(self):
         obj = self.file_create('langpack')
+        eq_(obj.get_localepicker(), '')
+
+    def test_zip_invalid(self):
+        obj = self.file_create('search.xml')
+        eq_(obj.get_localepicker(), '')
+
+    @mock.patch('files.utils.SafeUnzip.extract_path')
+    def test_no_locale_browser(self, extract_path):
+        obj = self.file_create('langpack-localepicker')
+        extract_path.return_value = 'some garbage'
+        eq_(obj.get_localepicker(), '')
+
+    @mock.patch('files.utils.SafeUnzip.extract_path')
+    def test_corrupt_locale_browser_path(self, extract_path):
+        obj = self.file_create('langpack-localepicker')
+        extract_path.return_value = 'locale browser de woot?!'
+        eq_(obj.get_localepicker(), '')
+        extract_path.return_value = 'locale browser de woo:t?!as'
+        eq_(obj.get_localepicker(), '')
+
+    @mock.patch('files.utils.SafeUnzip.extract_path')
+    def test_corrupt_locale_browser_data(self, extract_path):
+        obj = self.file_create('langpack-localepicker')
+        # Try and unzip an RDF.
+        extract_path.return_value = 'locale browser de jar:install.rdf!foo'
         eq_(obj.get_localepicker(), '')
 
     def test_hits_cache(self):

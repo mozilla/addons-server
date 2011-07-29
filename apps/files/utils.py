@@ -7,6 +7,7 @@ import os
 import re
 import shutil
 import stat
+import StringIO
 import tempfile
 import zipfile
 from datetime import datetime
@@ -25,7 +26,6 @@ import amo
 from applications.models import AppVersion
 from versions.compare import version_int as vint
 
-from .models import File
 
 log = logging.getLogger('files.utils')
 
@@ -179,8 +179,29 @@ class SafeUnzip(object):
         self.zip = zip
         return True
 
-    def extract_file_to_dest(self, info, dest):
-        """Extracts a file to a directory and checks the file size."""
+    def extract_from_manifest(self, manifest):
+        """
+        Extracts a file given a manifest such as:
+            jar:chrome/de.jar!/locale/de/browser/
+        or
+            locale/de/browser
+        """
+        type, path = manifest.split(':')
+        jar = self
+        if type == 'jar':
+            parts = path.split('!')
+            for part in parts[:-1]:
+                jar = self.__class__(StringIO.StringIO(jar.zip.read(part)))
+                jar.is_valid(fatal=True)
+            path = parts[-1]
+        return jar.extract_path(path[1:] if path.startswith('/') else path)
+
+    def extract_path(self, path):
+        """Given a path, extracts the content at path."""
+        return self.zip.read(path)
+
+    def extract_info_to_dest(self, info, dest):
+        """Extracts the given info to a directory and checks the file size."""
         self.zip.extract(info, dest)
         dest = os.path.join(dest, info.filename)
         if not os.path.isdir(dest):
@@ -194,7 +215,7 @@ class SafeUnzip(object):
     def extract_to_dest(self, dest):
         """Extracts the zip file to a directory."""
         for info in self.info:
-            self.extract_file_to_dest(info, dest)
+            self.extract_info_to_dest(info, dest)
 
 
 def extract_zip(source, remove=False, fatal=True):
@@ -325,6 +346,7 @@ def find_jetpacks(minver, maxver):
 
     Files that should be upgraded will have needs_upgrade=True.
     """
+    from .models import File
     statuses = amo.VALID_STATUSES
     files = (File.objects.filter(jetpack_version__isnull=False,
                                  version__addon__status__in=statuses,

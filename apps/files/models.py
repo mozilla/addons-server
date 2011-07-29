@@ -29,6 +29,7 @@ from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from apps.amo.utils import memoize
 import devhub.signals
+from files.utils import SafeUnzip
 from versions.compare import version_int as vint
 
 log = commonware.log.getLogger('z.files')
@@ -260,30 +261,48 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                      (self.id, smart_str(self.filename),
                       smart_str(self.file_path)))
 
+    _get_localepicker = re.compile('^locale browser ([\w\-_]+) (.*)$', re.M)
+
     @memoize(prefix='localepicker', time=0)
-    def get_localepicker(self, path='chrome/localepicker.properties'):
+    def get_localepicker(self):
         """
         For a file that is part of a language pack, extract
         the chrome/localepicker.properties file and return as
         a string.
         """
         start = time.time()
-        try:
-            obj = zipfile.ZipFile(self.filename)
-        except (zipfile.BadZipfile, IOError), err:
-            log.error('Error extracting file: %s, filename: %s, %s' %
-                      (self.pk, self.filename, err))
+        zip = SafeUnzip(self.filename)
+        if not zip.is_valid(fatal=False):
             return ''
 
         try:
-            data = obj.read(path)
-            end = time.time() - start
-            log.info('Extracted localepicker file: %s in %.2fs' %
-                     (self.pk, end))
-            statsd.timing('files.extract.localepicker', (end * 1000))
-            return data
-        except KeyError:
+            manifest = zip.extract_path('chrome.manifest')
+        except KeyError, e:
+            log.info('No file named: chrome.manifest in file: %s' % self.pk)
             return ''
+
+        res = self._get_localepicker.search(manifest)
+        if not res:
+            log.error('Locale browser not in chrome.manifest: %s' % self.pk)
+            return ''
+
+        try:
+            p = res.groups()[1]
+            if 'localepicker.properties' not in p:
+                p = os.path.join(p, 'localepicker.properties')
+            res = zip.extract_from_manifest(p)
+        except (zipfile.BadZipfile, IOError), e:
+            log.error('Error unzipping: %s, %s in file: %s' % (p, e, self.pk))
+            return ''
+        except (ValueError, KeyError), e:
+            log.error('No file named: %s in file: %s' % (e, self.pk))
+            return ''
+
+        end = time.time() - start
+        log.info('Extracted localepicker file: %s in %.2fs' %
+                 (self.pk, end))
+        statsd.timing('files.extract.localepicker', (end * 1000))
+        return res
 
 
 @receiver(models.signals.post_save, sender=File,

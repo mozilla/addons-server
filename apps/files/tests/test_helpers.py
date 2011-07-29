@@ -3,6 +3,7 @@ import os
 import mimetypes
 import shutil
 import tempfile
+import zipfile
 
 from django.conf import settings
 from django.core.cache import cache
@@ -15,11 +16,10 @@ import amo.tests
 from amo.urlresolvers import reverse
 from files.helpers import FileViewer, DiffHelper
 from files.models import File
+from files.utils import SafeUnzip
 
 root = os.path.join(settings.ROOT, 'apps/files/fixtures/files')
-dictionary = '%s/dictionary-test.xpi' % root
-recurse = '%s/recurse.xpi' % root
-search = '%s/search.xml' % root
+get_file = lambda x: '%s/%s' % (root, x)
 
 
 def make_file(pk, file_path, **kwargs):
@@ -40,7 +40,7 @@ class TestFileHelper(amo.tests.TestCase):
         self.old_tmp = settings.TMP_PATH
         settings.TMP_PATH = tempfile.mkdtemp()
 
-        self.viewer = FileViewer(make_file(1, dictionary))
+        self.viewer = FileViewer(make_file(1, get_file('dictionary-test.xpi')))
 
     def tearDown(self):
         self.viewer.cleanup()
@@ -54,12 +54,12 @@ class TestFileHelper(amo.tests.TestCase):
         eq_(self.viewer.is_extracted(), True)
 
     def test_recurse_extract(self):
-        self.viewer.src = recurse
+        self.viewer.src = get_file('recurse.xpi')
         self.viewer.extract()
         eq_(self.viewer.is_extracted(), True)
 
     def test_recurse_contents(self):
-        self.viewer.src = recurse
+        self.viewer.src = get_file('recurse.xpi')
         self.viewer.extract()
         files = self.viewer.get_files()
         nm = ['recurse/recurse.xpi/chrome/test-root.txt',
@@ -224,7 +224,7 @@ class TestSearchEngineHelper(amo.tests.TestCase):
 class TestDiffSearchEngine(amo.tests.TestCase):
 
     def setUp(self):
-        src = os.path.join(settings.ROOT, search)
+        src = os.path.join(settings.ROOT, get_file('search.xml'))
         self.helper = DiffHelper(make_file(1, src, filename='search.xml'),
                                  make_file(2, src, filename='search.xml'))
 
@@ -244,7 +244,7 @@ class TestDiffSearchEngine(amo.tests.TestCase):
 class TestDiffHelper(amo.tests.TestCase):
 
     def setUp(self):
-        src = os.path.join(settings.ROOT, dictionary)
+        src = os.path.join(settings.ROOT, get_file('dictionary-test.xpi'))
         self.helper = DiffHelper(make_file(1, src), make_file(2, src))
 
     def tearDown(self):
@@ -332,3 +332,26 @@ class TestDiffHelper(amo.tests.TestCase):
         data = open(path, 'r').read()
         data += text
         open(path, 'w').write(data)
+
+
+class TestSafeUnzipFile(amo.tests.TestCase):
+
+    #TODO(andym): get full coverage for existing SafeUnzip methods, most
+    # is covered in the file viewer tests.
+    @patch.object(settings, 'FILE_UNZIP_SIZE_LIMIT', 5)
+    def test_unzip_limit(self):
+        zip = SafeUnzip(get_file('langpack-localepicker.xpi'))
+        self.assertRaises(forms.ValidationError, zip.is_valid)
+
+    def test_unzip_fatal(self):
+        zip = SafeUnzip(get_file('search.xml'))
+        self.assertRaises(zipfile.BadZipfile, zip.is_valid)
+
+    def test_unzip_not_fatal(self):
+        zip = SafeUnzip(get_file('search.xml'))
+        assert not zip.is_valid(fatal=False)
+
+    def test_extract_path(self):
+        zip = SafeUnzip(get_file('langpack-localepicker.xpi'))
+        assert zip.is_valid()
+        assert'locale browser de' in zip.extract_path('chrome.manifest')
