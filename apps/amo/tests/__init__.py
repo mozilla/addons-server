@@ -58,8 +58,8 @@ class RedisTest(object):
     """Mixin for when you need to mock redis for testing."""
 
     def _pre_setup(self):
-        super(RedisTest, self)._pre_setup()
         self._redis = mock_redis()
+        super(RedisTest, self)._pre_setup()
 
     def _post_teardown(self):
         super(RedisTest, self)._post_teardown()
