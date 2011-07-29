@@ -29,6 +29,11 @@
 <html>
   <head>
     <title>Graphite for {{ site_name }}</title>
+    <style>
+      #sizes { list-style-type: none; }
+      #sizes li { display: inline; }
+      a { text-decoration: none; color: #393992; }
+    </style>
   </head>
   <body>
     <h1>Graphite for <a href="{{ site_url }}">{{ site_url }}</a></h1>
@@ -38,6 +43,16 @@
       <li><a href="#errors">Redirects and Errors</a></li>
       <li><a href="#celery">Celery</a></li>
       <li><a href="#blocklist">Blocklist Perf</a></li>
+    </ul>
+    <ul id=sizes>
+      <li><a href="{{ request.get_full_path()|urlparams(width=300, height=None) }}">
+          small</a></li>
+      <li><a href="{{ request.get_full_path()|urlparams(width=None, height=None) }}">
+          normal</a></li>
+      <li><a href="{{ request.get_full_path()|urlparams(width=1250, height=None) }}">
+          wide</a></li>
+      <li><a href="{{ request.get_full_path()|urlparams(width=1250, height=657) }}">
+          big</a></li>
     </ul>
 
     <h2 id="responses">All Responses</h2>
