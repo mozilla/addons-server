@@ -801,9 +801,14 @@ BROKER_CONNECTION_TIMEOUT = 0.1
 CELERY_RESULT_BACKEND = 'amqp'
 CELERY_IGNORE_RESULT = True
 CELERY_IMPORTS = ('django_arecibo.tasks',)
-# We have separate celeryds for processing devhub & images as fast as possible.
+# We have separate celeryds for processing devhub & images as fast as possible
+# Some notes:
+# - always add routes here instead of @task(queue=<name>)
+# - when adding a queue, be sure to update deploy.py so that it gets restarted
 CELERY_ROUTES = {
     'devhub.tasks.validator': {'queue': 'devhub'},
+    'devhub.tasks.compatibility_check': {'queue': 'devhub'},
+    'devhub.tasks.file_validator': {'queue': 'devhub'},
     'devhub.tasks.packager': {'queue': 'devhub'},
     'bandwagon.tasks.resize_icon': {'queue': 'images'},
     'users.tasks.resize_photo': {'queue': 'images'},

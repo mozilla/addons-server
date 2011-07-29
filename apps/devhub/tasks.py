@@ -23,7 +23,6 @@ from PIL import Image
 log = logging.getLogger('z.devhub.task')
 
 
-@task(queue='devhub')
 @write
 def validator(upload_id, **kw):
     if not settings.VALIDATE_ADDONS:
@@ -42,7 +41,6 @@ def validator(upload_id, **kw):
         raise
 
 
-@task(queue='devhub')
 @write
 def compatibility_check(upload_id, app_guid, appversion_str, **kw):
     if not settings.VALIDATE_ADDONS:
@@ -70,7 +68,6 @@ def compatibility_check(upload_id, app_guid, appversion_str, **kw):
         raise
 
 
-@task(queue='devhub')
 @write
 def file_validator(file_id, **kw):
     if not settings.VALIDATE_ADDONS:
