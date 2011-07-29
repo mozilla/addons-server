@@ -306,6 +306,7 @@ MIDDLEWARE_CLASSES = (
 
 # Auth
 AUTHENTICATION_BACKENDS = (
+    'django_browserid.auth.BrowserIDBackend',
     'users.backends.AmoUserBackend',
     'cake.backends.SessionBackend',
 )
@@ -367,6 +368,9 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.sessions',
+
+    # Has to load after auth
+    'django_browserid',
 )
 
 # These apps will be removed from INSTALLED_APPS in a production environment.
@@ -921,6 +925,7 @@ CSP_IMG_SRC = ("'self'", STATIC_URL,
               )
 CSP_SCRIPT_SRC = ("'self'", STATIC_URL,
                   "https://www.google.com",  # Recaptcha
+                  "https://browserid.org",
                   "https://www.paypalobjects.com",
                   )
 CSP_STYLE_SRC = ("'self'", STATIC_URL,)

@@ -1,0 +1,18 @@
+{
+    "name": "Impala Tests",
+    "extra_media_urls": [
+        "js/lib/jstestnet.js",
+        "js/zamboni/tests.js",
+        "js/zamboni/global.js",
+        "js/zamboni/devhub.js",
+        "js/zamboni/validator.js",
+        "js/zamboni/l10n.js",
+        "js/zamboni/storage.js",
+        "js/zamboni/editors.js",
+        "js/zamboni/upload.js",
+        "js/zamboni/files.js",
+        "js/zamboni/contributions.js",
+        "js/zamboni/password-strength.js",
+        "js/impala/persona_creation.js"
+    ]
+}

@@ -1,7 +1,15 @@
 {% extends "base.html" %}
 
 {% block title %}{{ page_title(_('User Login')) }}{% endblock %}
-{% block js %}{% if form.recaptcha %}{% include("amo/recaptcha_js.html") %}{% endif %}{% endblock %}
+
+{% block js %}
+{% if waffle.switch('browserid-login') %}
+<script src="https://browserid.org/include.js"></script>
+{% endif %}
+{% if form.recaptcha %}{% include("amo/recaptcha_js.html") %}{% endif %}
+{% endblock %}
+
+
 
 {% block content %}
 
@@ -18,6 +26,13 @@
   {% endif %}
   <h2>{{ _('Log In') }}</h2>
   <div class="primary featured">
+    {% if waffle.switch('browserid-login') %}
+    <div class="featured-inner">
+      <a class="browserid-login" href="#" data-url="{{ url('users.browserid_login') }}">
+        {{ _('Log in with BrowserID') }}
+      </a>
+    </div>
+    {% endif %}
     <form method="post" action="" class="featured-inner object-lead user-input">
       {{ csrf() }}
       <fieldset>

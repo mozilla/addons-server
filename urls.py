@@ -1,3 +1,4 @@
+import os.path
 from django.conf import settings
 from django.conf.urls.defaults import patterns, url, include
 from django.contrib import admin
@@ -153,20 +154,28 @@ urlpatterns += patterns('piston.authentication.oauth.views',
 
 if 'django_qunit' in settings.INSTALLED_APPS:
 
-    def zamboni_qunit(request, path):
+    def _zamboni_qunit(request, path, template):
         from time import time
         import django_qunit.views
         import jingo
         ctx = django_qunit.views.get_suite_context(request, path)
         ctx.update(timestamp=time())
-        response = jingo.render(request, 'qunit.html', ctx)
+        response = jingo.render(request, template, ctx)
         # This allows another site to embed the QUnit suite
         # in an iframe (for CI).
         response['x-frame-options'] = ''
         return response
 
+    def zamboni_qunit(request, path):
+        return _zamboni_qunit(request, path, 'qunit.html')
+
+    def zamboni_impala_qunit(request, path):
+        return _zamboni_qunit(request, os.path.join(path, 'impala/'),
+                              'impala_qunit.html')
+
     urlpatterns += patterns('',
         url(r'^qunit/(?P<path>.*)', zamboni_qunit),
+        url(r'^impala-qunit/(?P<path>.*)', zamboni_impala_qunit),
         url(r'^_qunit/', include('django_qunit.urls')),
     )
 
