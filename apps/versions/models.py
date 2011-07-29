@@ -36,6 +36,9 @@ class Version(amo.models.ModelBase):
     nomination = models.DateTimeField(null=True)
     reviewed = models.DateTimeField(null=True)
 
+    has_info_request = models.BooleanField(default=False)
+    has_editor_comment = models.BooleanField(default=False)
+
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'versions'
         ordering = ['-created', '-modified']

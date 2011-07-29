@@ -164,6 +164,14 @@ class EditorQueueTable(SQLTable):
             o.append(u'<div class="app-icon ed-sprite-restartless" title="%s">'
                      u'</div>' % _('Bootstrapped Restartless Add-on'))
 
+        if row.has_info_request:
+            o.append(u'<div class="app-icon ed-sprite-info" title="%s">'
+                     u'</div>' % _('More Information Requested'))
+
+        if row.has_editor_comment:
+            o.append(u'<div class="app-icon ed-sprite-editor" title="%s">'
+                     u'</div>' % _('Contains Editor Comment'))
+
         return ''.join(o)
 
     def render_waiting_time_min(self, row):
@@ -440,6 +448,7 @@ class ReviewBase:
         """Send a request for information to the authors."""
         emails = [a.email for a in self.addon.authors.all()]
         self.log_action(amo.LOG.REQUEST_INFORMATION)
+        self.version.update(has_info_request=True)
         log.info(u'Sending request for information for %s to %s' %
                  (self.addon, emails))
         send_mail('editors/emails/info.ltxt',
@@ -526,6 +535,7 @@ class ReviewAddon(ReviewBase):
         self.send_super_mail()
 
     def process_comment(self):
+        self.version.update(has_editor_comment=True)
         self.log_action(amo.LOG.COMMENT_VERSION)
 
 
@@ -594,4 +604,5 @@ class ReviewFiles(ReviewBase):
         self.send_super_mail()
 
     def process_comment(self):
+        self.version.update(has_editor_comment=True)
         self.log_action(amo.LOG.COMMENT_VERSION)

@@ -103,8 +103,19 @@ class TestViewPendingQueueTable(amo.tests.TestCase):
         row = Mock()
         row.admin_review = True
         doc = pq(self.table.render_flags(row))
-        eq_(doc('div.app-icon').attr('class'),
-           'app-icon ed-sprite-admin-review')
+        assert doc('div.ed-sprite-admin-review').length
+
+    def test_flags_info_request(self):
+        row = Mock()
+        row.has_info_request = True
+        doc = pq(self.table.render_flags(row))
+        assert doc('div.ed-sprite-info').length
+
+    def test_flags_editor_comment(self):
+        row = Mock()
+        row.has_editor_comment = True
+        doc = pq(self.table.render_flags(row))
+        assert doc('div.ed-sprite-editor').length
 
     def test_flags_jetpack_and_restartless(self):
         row = Mock()
@@ -134,6 +145,8 @@ class TestViewPendingQueueTable(amo.tests.TestCase):
         row.is_restartless = False
         row.is_jetpack = False
         row.admin_review = False
+        row.has_editor_comment = False
+        row.has_info_request = False
         eq_(self.table.render_flags(row), '')
 
 
@@ -370,6 +383,8 @@ class TestReviewHelper(amo.tests.TestCase):
     def test_request_more_information(self):
         self.setup_data(amo.STATUS_PUBLIC, ['addon_files'])
         self.helper.handler.request_information()
+
+        eq_(self.version.has_info_request, True)
 
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].subject, self.preamble)

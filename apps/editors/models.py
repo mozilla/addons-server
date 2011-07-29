@@ -79,11 +79,14 @@ class ViewQueue(RawSQLModel):
     _latest_version_ids = models.CharField(max_length=255)
     _file_platform_ids = models.CharField(max_length=255)
     _file_platform_vers = models.CharField(max_length=255)
+    _info_request_vers = models.CharField(max_length=255)
+    _editor_comment_vers = models.CharField(max_length=255)
     _application_ids = models.CharField(max_length=255)
     waiting_time_days = models.IntegerField()
     waiting_time_hours = models.IntegerField()
     waiting_time_min = models.IntegerField()
     is_version_specific = False
+    _latest_version_id = None
 
     def base_query(self):
         return {
@@ -102,6 +105,12 @@ class ViewQueue(RawSQLModel):
                 ('_latest_versions', """GROUP_CONCAT(versions.version
                                         ORDER BY versions.created
                                         DESC SEPARATOR '&&&&')"""),
+                ('_editor_comment_vers', """GROUP_CONCAT(DISTINCT CONCAT(CONCAT(
+                                            versions.has_editor_comment, '-'),
+                                            versions.id))"""),
+                ('_info_request_vers', """GROUP_CONCAT(DISTINCT CONCAT(CONCAT(
+                                          versions.has_info_request, '-'),
+                                          versions.id))"""),
                 ('_file_platform_vers', """GROUP_CONCAT(DISTINCT CONCAT(CONCAT(
                                            files.platform_id, '-'),
                                            files.version_id))"""),
@@ -121,6 +130,8 @@ class ViewQueue(RawSQLModel):
                             version_files.version_id = versions.id)""",
                 """LEFT JOIN applications_versions as apps
                             ON versions.id = apps.version_id""",
+
+                #  Translations
                 """JOIN translations AS tr ON (
                             tr.id = addons.name
                             AND tr.locale = addons.defaultlocale)"""
@@ -137,7 +148,10 @@ class ViewQueue(RawSQLModel):
 
     @property
     def latest_version_id(self):
-        return self._explode_concat(self._latest_version_ids)[0]
+        if not self._latest_version_id:
+            ids = self._explode_concat(self._latest_version_ids)
+            self._latest_version_id = ids[0]
+        return self._latest_version_id
 
     @property
     def is_restartless(self):
@@ -152,12 +166,28 @@ class ViewQueue(RawSQLModel):
         return self._explode_concat(self._file_platform_vers, cast=str)
 
     @property
+    def has_info_request(self):
+        return self.for_latest_version(self._info_request_vers)
+
+    @property
+    def has_editor_comment(self):
+        return self.for_latest_version(self._editor_comment_vers)
+
+    @property
     def file_platform_ids(self):
         return self._explode_concat(self._file_platform_ids)
 
     @property
     def application_ids(self):
         return self._explode_concat(self._application_ids)
+
+    def for_latest_version(self, vals, cast=int, default=0):
+        split = self._explode_concat(vals, cast=str)
+        for s in split:
+            val, version_id = s.split('-')
+            if int(version_id) == self.latest_version_id:
+                return cast(val)
+        return default
 
 
 class ViewFullReviewQueue(ViewQueue):

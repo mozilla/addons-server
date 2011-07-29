@@ -30,9 +30,11 @@
 .ed-sprite-jetpack { background-position: 0 -629px; }
 .ed-sprite-restartless { background-position: 0 -695px; }
 .ed-sprite-notes { background-position: 0 -827px; }
+.ed-sprite-info { background-position: 0 -893px; }
+.ed-sprite-editor { background-position: 0 -959px; }
 
 .platform-icon {
-    background: url(../../img/developers/platforms.png?2) no-repeat top left;
+    background: url(../../img/developers/platforms.png?3) no-repeat top left;
 }
 .plat-sprite-all { background-position: 0 0; }
 .plat-sprite-any { background-position: 0 0; }
@@ -46,7 +48,7 @@
 .plat-sprite-maemo { background-position: 0 -128px; }
 
 .sort-icon {
-    background: url(../../img/developers/editor-sprite.png?2) no-repeat top left;
+    background: url(../../img/developers/editor-sprite.png?3) no-repeat top left;
 }
 .ed-sprite-sort-asc {
     background-position: right -321px;
