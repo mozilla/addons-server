@@ -195,7 +195,7 @@ class ES(object):
         qs = self._build_query()
         es = elasticutils.get_es()
         try:
-            hits = es.search(qs, settings.ES_INDEX, self.type._meta.app_label)
+            hits = es.search(qs, settings.ES_INDEX, self.type._meta.db_table)
         except Exception:
             log.error(qs)
             raise

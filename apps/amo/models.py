@@ -272,13 +272,12 @@ class SearchMixin(object):
     def index(cls, document, id=None, bulk=False, force_insert=False):
         """Wrapper around pyes.ES.index."""
         elasticutils.get_es().index(
-            document, index=settings.ES_INDEX, doc_type=cls._meta.app_label,
+            document, index=settings.ES_INDEX, doc_type=cls._meta.db_table,
             id=id, bulk=bulk, force_insert=force_insert)
 
     @classmethod
     def unindex(cls, id):
-        elasticutils.get_es().delete(settings.ES_INDEX,
-                                     cls._meta.app_label, id)
+        elasticutils.get_es().delete(settings.ES_INDEX, cls._meta.db_table, id)
 
     @classmethod
     def search(cls):

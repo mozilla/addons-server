@@ -81,6 +81,6 @@ def setup_mapping():
     # we'll get burned later on.
     for model in Addon, AppCompat, Collection:
         try:
-            es.put_mapping(model._meta.app_label, mapping, settings.ES_INDEX)
+            es.put_mapping(model._meta.db_table, mapping, settings.ES_INDEX)
         except pyes.ElasticSearchException, e:
             log.error(e)

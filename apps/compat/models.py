@@ -37,3 +37,4 @@ class AppCompat(amo.models.ModelBase):
 
     class Meta:
         abstract = True
+        db_table = 'compat'
