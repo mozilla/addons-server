@@ -249,7 +249,6 @@ a {
 }
 
 #breadcrumbs {
-    margin-bottom: 5px;
     font-family: @serif-stack;
     color: #666;
     li {
@@ -265,8 +264,14 @@ a {
     }
 }
 
+#breadcrumbs,
 #breadcrumbs + h1 {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.island #breadcrumbs,
+.island #breadcrumbs + h1 {
+    margin-bottom: 5px;
 }
 
 .js-hidden, #popup-staging, .hidden {

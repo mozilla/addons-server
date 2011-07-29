@@ -16,7 +16,6 @@
 {% block content %}
 {{ impala_breadcrumbs([(addon.type_url(impala=True), amo.ADDON_TYPES[addon.type]),
                        (None, addon.name)]) }}
-
 <aside class="secondary addon-vitals">
   {{ addon.average_rating|stars(large=True) }}
   {% set r_list = '%sreviews.list' % ('i_' if settings.IMPALA_REVIEWS else '') %}
