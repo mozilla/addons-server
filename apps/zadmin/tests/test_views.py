@@ -738,8 +738,22 @@ class TestBulkValidationTask(BulkValidationTest):
         validate.return_value = json.dumps(no_op_validation)
         self.start_validation(new_max='3.7a4')
         assert validate.called
+        overrides = validate.call_args[1]['overrides']
+        eq_(overrides['targetapp_maxVersion'], {amo.FIREFOX.guid: '3.7a4'})
+        minver = self.version.apps.filter(
+                                    application=amo.FIREFOX.id)[0].max.version
+        eq_(overrides['targetapp_minVersion'], {amo.FIREFOX.guid: minver})
+
+    @mock.patch('validator.validate.validate')
+    def test_no_min_appversion(self, validate):
+        validate.return_value = json.dumps(no_op_validation)
+        self.version.apps.all().delete()
+        job = self.create_job(target_version=self.appversion('3.7a4'))
+        res = self.create_result(job, self.create_file(), **{})
+        tasks.bulk_validate_file(res.id)
+        assert validate.called
         eq_(validate.call_args[1]['overrides'],
-            {"targetapp_maxVersion": {amo.FIREFOX.guid: '3.7a4'}})
+            {'targetapp_maxVersion': {amo.FIREFOX.guid: '3.7a4'}})
 
     def create_version(self, addon, statuses, version_str=None):
         max = self.max
