@@ -109,12 +109,12 @@ class TestAddonManager(amo.tests.TestCase):
     def test_valid_disabled_by_user(self):
         addon = Addon.objects.get(pk=5299)
         addon.update(disabled_by_user=True)
-        eq_(Addon.objects.valid_and_disabled().count(), 9)
+        eq_(Addon.objects.valid_and_disabled().count(), 10)
 
     def test_valid_disabled_by_admin(self):
         addon = Addon.objects.get(pk=5299)
         addon.update(status=amo.STATUS_DISABLED)
-        eq_(Addon.objects.valid_and_disabled().count(), 9)
+        eq_(Addon.objects.valid_and_disabled().count(), 10)
 
 
 class TestAddonManagerFeatured(amo.tests.TestCase):
