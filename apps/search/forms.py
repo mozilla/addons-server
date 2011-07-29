@@ -248,7 +248,7 @@ class ESSearchForm(forms.Form):
     q = forms.CharField(required=False)
     tag = forms.CharField(required=False)
     platform = forms.ChoiceField(required=False,
-        choices=[[p.shortname, p.id] for p in amo.PLATFORMS.values()])
+        choices=[(p.shortname, p.id) for p in amo.PLATFORMS.values()])
     appver = forms.CharField(required=False)
     atype = forms.TypedChoiceField(required=False, coerce=int,
         choices=[(t, amo.ADDON_TYPE[t]) for t in types])
@@ -271,12 +271,6 @@ class ESSearchForm(forms.Form):
                 return int(cat)
             except ValueError:
                 return None
-
-    def clean_platform(self):
-        try:
-            return int(self.cleaned_data.get('platform'))
-        except ValueError:
-            return None
 
     def full_clean(self):
         """

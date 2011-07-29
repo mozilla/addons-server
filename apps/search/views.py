@@ -310,7 +310,8 @@ def es_search(request, tag_name=None, template=None):
     if query.get('tag'):
         qs = qs.filter(tag=query['tag'])
     if query.get('platform') and query['platform'] in amo.PLATFORM_DICT:
-        qs = qs.filter(platform=amo.PLATFORM_DICT[query['platform']])
+        ps = (amo.PLATFORM_DICT[query['platform']].id, amo.PLATFORM_ALL.id)
+        qs = qs.filter(platform__in=ps)
     if query.get('appver'):
         # Get a min version less than X.0.
         low = version_int(query['appver'])
@@ -492,7 +493,7 @@ def platform_sidebar(request, query, facets):
         if platform.id in platforms:
             rv.append(FacetLink(platform.name,
                                 dict(platform=platform.shortname),
-                                platform.id == qplatform))
+                                platform.shortname == qplatform))
     return rv
 
 
