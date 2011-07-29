@@ -145,7 +145,8 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                                      .values_list('user__email', 'enabled'))
 
         d = perm_setting.default_checked
-        recipient_list = [e for e in recipient_list if perms.setdefault(e, d)]
+        recipient_list = [e for e in recipient_list
+                          if e and perms.setdefault(e, d)]
 
         # Add footer
         template = loader.get_template('amo/emails/unsubscribe.ltxt')
@@ -159,7 +160,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
     if use_blacklist:
         white_list = []
         for email in recipient_list:
-            if email.lower() in settings.EMAIL_BLACKLIST:
+            if email and email.lower() in settings.EMAIL_BLACKLIST:
                 log.debug('Blacklisted email removed from list: %s' % email)
             else:
                 white_list.append(email)
