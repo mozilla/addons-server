@@ -28,7 +28,6 @@ import bleach
 from easy_thumbnails import processors
 import html5lib
 from html5lib.serializer.htmlserializer import HTMLSerializer
-import jinja2
 import pytz
 from PIL import Image, ImageFile, PngImagePlugin
 
@@ -326,7 +325,7 @@ def clean_nl(string):
     stream = walker(parse)
     serializer = HTMLSerializer(quote_attr_values=True,
                                 omit_optional_tags=False)
-    return jinja2.Markup(serializer.render(stream)).unescape()
+    return serializer.render(stream)
 
 
 # From: http://bit.ly/eTqloE
