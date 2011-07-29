@@ -38,7 +38,7 @@ def extract(addon):
                                      'max': appver.max.version_int})
                            for app, appver in addon.compatible_apps.items()
                            if appver)
-    d['app'] = d['appversion'].keys()
+    d['app'] = [app.id for app in addon.compatible_apps.keys()]
     # Boost by the number of users on a logarithmic scale. The maximum boost
     # (11,000,000 users for adblock) is about 5x.
     d['_boost'] = addon.average_daily_users ** .1
