@@ -123,6 +123,10 @@ class ES(object):
             qs['fields'] = fields
         if facets:
             qs['facets'] = facets
+            # Copy filters into facets. You probably wanted this.
+            for facet in facets.values():
+                if 'facet_filter' not in facet and filters:
+                    facet['facet_filter'] = qs['filter']
         if sort:
             qs['sort'] = sort
         if self.start:

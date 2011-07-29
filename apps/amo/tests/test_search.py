@@ -317,6 +317,8 @@ class TestES(amo.tests.ESTestCase):
         facet = {'range': {'status': [{'lte': 3}, {'gte': 5}]}}
         # Pass a copy so edits aren't propagated back here.
         qs = Addon.search().filter(app=1).facet(by_status=dict(facet))
+        # The filter gets added automatically.
+        facet['facet_filter'] = {'term': {'app': 1}}
         eq_(qs._build_query(), {'fields': ['id'],
                                 'filter': {'term': {'app': 1}},
                                 'facets': {'by_status': facet}})
