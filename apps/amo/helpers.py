@@ -14,7 +14,6 @@ from babel.support import Format
 import caching.base as caching
 import jinja2
 from jingo import register, env
-from jingo.helpers import nl2br
 from tower import ugettext as _
 
 import amo

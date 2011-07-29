@@ -1,6 +1,8 @@
+@import 'lib';
+
 .prettyform {
     .avatar {
-        border: 5px solid #FFFFFF;
+        border: 5px solid #fff;
         box-shadow: 1px 1px 3px #B2C8E0;
         display: block;
         margin-left: 135px;
@@ -23,9 +25,86 @@
             padding: 0;
             text-align: right;
             span {
-                border-bottom: 1px dotted #BBBBBB;
+                border-bottom: 1px dotted #bbb;
                 cursor: help;
             }
         }
     }
+}
+
+span.emaillink {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    .i {
+        display: none;
+    }
+}
+
+table.person-info {
+    width: 100%;
+    th, td {
+        border-top: 1px solid @border-black;
+        padding: 8px 0;
+    }
+    th {
+        color: #333;
+        line-height: 15px;
+        width: 40%;
+    }
+    tr:first-child {
+        th, td {
+            border-top: none;
+        }
+    }
+    td {
+        padding-top: 0;
+    }
+    ol {
+        list-style: decimal;
+        margin: 0 0 0 1.5em;
+    }
+}
+
+img.avatar {
+    border: 3px solid #fff;
+}
+
+img.icon {
+    padding: 4px;
+}
+
+.meet {
+    &.about {
+        .hero h1 {
+            margin: 1em 0;
+        }
+    }
+    .author-bio {
+        border-top: 1px dotted @border-blue;
+        margin-top: 1em;
+        padding-top: 1em;
+    }
+    .notice.author {
+        padding-left: 14px;
+        .avatar {
+            display: none;
+        }
+    }
+    .island {
+        > h3:first-child {
+            margin: 0;
+        }
+        > section {
+            float: none;
+            padding: 0 14px 0 0;
+            width: auto;
+        }
+        .secondary {
+            width: 208px;
+        }
+    }
+}
+
+.html-rtl.meet .island > section {
+    padding: 0 0 0 14px;
 }

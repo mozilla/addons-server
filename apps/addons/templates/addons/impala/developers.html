@@ -50,12 +50,12 @@
   <section class="primary">
     <hgroup class="hero">
       {% if page == 'installed' %}
-        <h2 class="addon"{{ addon.name|locale_html }}>{{ title }}</h2>
+        <h1 class="addon"{{ addon.name|locale_html }}>{{ title }}</h1>
       {% else %}
         {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
                                (addon.get_url_path(), addon.name),
                                (None, title)]) }}
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
       {% endif %}
     </hgroup>
   </section>
@@ -84,12 +84,7 @@
         {% endif %}
       </div>
     </section>
-    <section class="primary full">
-      <header class="hero">
-        <h2>{{ ngettext('About the Developer', 'About the Developers',
-                        authors|length) }}</h2>
-     </header>
-    </section>
+    <h1>{{ ngettext('About the Developer', 'About the Developers', authors|length) }}</h1>
   {% endif %}
 
   {% for author in authors %}

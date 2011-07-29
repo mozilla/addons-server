@@ -44,7 +44,7 @@
       {% endwith %}
       <hgroup>
         {% if page == "list" %}
-          <h2>{{ _('Reviews for {0}')|f(addon.name) }}</h2>
+          <h1>{{ _('Reviews for {0}')|f(addon.name) }}</h1>
           {% with num = reviews.paginator.count %}
             {# L10n: {0} is a number. #}
             <h3>{{ ngettext('<b>{0}</b> review for this add-on',
@@ -53,16 +53,16 @@
           {% endwith %}
         {% elif reply %}
           {# L10n: {0} is a developer's name. #}
-          <h2>{{ _('Developer reply by {0}')|f(reply.user.name) }}</h2>
+          <h1>{{ _('Developer reply by {0}')|f(reply.user.name) }}</h1>
         {% elif reviews.object_list %}
-          <h2>{% trans cnt=reviews.object_list|length, addon=addon.name,
+          <h1>{% trans cnt=reviews.object_list|length, addon=addon.name,
                        user=reviews.object_list[0].user.name %}
             Review for {{ addon }} by {{ user }}
           {% pluralize %}
             Reviews for {{ addon }} by {{ user }}
-          {% endtrans %}</h2>
+          {% endtrans %}</h1>
         {% else %}
-          <h2>{{ _('No reviews found.') }}</h2>
+          <h1>{{ _('No reviews found.') }}</h1>
         {% endif %}
       </hgroup>
     </header>
@@ -92,7 +92,7 @@
         {{ field(form.body, _('Review:')) }}
         <p>
           <input type="submit" value="{{ _('Submit review') }}">
-           or <a href="#" id="review-edit-cancel">{{ _('Cancel') }}</a>
+           {{ _('or') }} <a href="#" id="review-edit-cancel">{{ _('Cancel') }}</a>
         </p>
       </form>
     </div>

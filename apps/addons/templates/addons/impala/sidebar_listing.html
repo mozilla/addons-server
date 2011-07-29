@@ -1,11 +1,11 @@
 <div class="item addon">
   <hgroup class="c">
     <img id="addon-icon" src="{{ addon.get_icon_url(32) }}" class="icon">
-    <h2 class="addon"{{ addon.name|locale_html }}>
+    <h1 class="addon"{{ addon.name|locale_html }}>
       <a href="{{ addon.get_url_path(impala=True) }}">
         {{ addon.name }}
       </a>
-    </h2>
+    </h1>
     <h4 class="author">
       {{ _('by') }} {{ users_list(addon.listed_authors) }}
     </h4>

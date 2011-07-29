@@ -19,10 +19,10 @@
     {{ addon_heading(addon, version) }}
   </hgroup>
   <div class="prose">
-    <h3>{{ _('Privacy Policy') }}</h3>
-    <div class="policy-statement">{{ addon.privacy_policy|clean|nl2br }}</div>
+    <h2>{{ _('Privacy Policy') }}</h2>
+    <div class="policy-statement">{{ addon.privacy_policy|nl2br }}</div>
     <p class="policy-back">
-      <a href="{{ detail_url }}">{{ _('Back to {0}&hellip;')|f(addon.name)|safe }}</a>
+      <a href="{{ detail_url }}">{{ _('Back to {0}…')|f(addon.name) }}</a>
     </p>
   </div>
 </section>

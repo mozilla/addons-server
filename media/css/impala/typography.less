@@ -18,15 +18,29 @@ body {
     font-size: 13px;
 }
 
-h1 {
+#masthead h1 {
     font-size: 40px;
     font-family: MetaBlack;
     letter-spacing: -1px;
     text-transform: uppercase;
 }
 
+h1 {
+    color: @red;
+    font: italic 24px/1.3 @serif-stack;
+}
+
+#breadcrumbs + h1 {
+    margin-bottom: 15px;
+}
+
+section + h1 {
+    margin: 15px 0;
+}
+
 h2 {
-    font-size: 24px;
+    color: @dark-gray;
+    font: italic 18px @serif-stack;
 }
 
 h4 {
@@ -57,11 +71,6 @@ pre {
 }
 
 .primary, .modal {
-    h2 {
-        color: @dark-gray;
-        font-family: @serif-stack;
-        font-style: italic;
-    }
     p {
         font-size: 14px;
         margin-top: 1em;
@@ -118,18 +127,13 @@ pre {
             }
         }
         header + .item {
-            border-top: 1px dotted #C9DDF2;
+            border-top: 1px dotted @border-blue;
             margin-top: 1em;
         }
     }
 }
 
 .primary {
-    .hero {
-        h2 {
-            color: @red;
-        }
-    }
     .prose {
         h3 {
             font: italic 16px/18px @serif-stack;
@@ -157,4 +161,16 @@ pre {
 
 .error {
     color: @red;
+}
+
+caption {
+    display: none;
+}
+
+th {
+    text-align: left;
+}
+
+.html-rtl th {
+    text-align: right;
 }
