@@ -81,6 +81,7 @@ def make_crons(ctx):
 def restart_celery(ctx):
     ctx.remote("service celeryd-prod restart")
     ctx.remote("service celeryd-prod-devhub restart")
+    ctx.remote("service celeryd-prod-bulk restart")
 
 
 @hostgroups(['amo'])
