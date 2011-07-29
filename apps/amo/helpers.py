@@ -228,8 +228,11 @@ def login_link(context):
 @register.function
 @jinja2.contextfunction
 def page_title(context, title):
-    app = context['request'].APP
-    return u'%s :: %s' % (smart_unicode(title), page_name(app))
+    if context['WEBAPPS']:
+        return u'%s :: %s' % (smart_unicode(title), _('Web Appstore'))
+    else:
+        app = context['request'].APP
+        return u'%s :: %s' % (smart_unicode(title), page_name(app))
 
 
 @register.function
@@ -265,7 +268,7 @@ def impala_breadcrumbs(context, items=list(), add_default=True, crumb_size=40):
     show a list of breadcrumbs. If url is None, it won't be a link.
     Accepts: [(url, label)]
     """
-    if add_default:
+    if add_default and not context['WEBAPPS']:
         app = context['request'].APP
         crumbs = [(urlresolvers.reverse('i_home'), page_name(app))]
     else:

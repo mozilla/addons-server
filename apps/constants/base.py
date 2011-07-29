@@ -105,6 +105,7 @@ ADDON_TYPES = {
     ADDON_PLUGIN: _(u'Plugins'),
     ADDON_LPAPP: _(u'Language Packs (Application)'),
     ADDON_PERSONA: _(u'Personas'),
+    ADDON_WEBAPP: _(u'Apps'),
 }
 
 # Icons

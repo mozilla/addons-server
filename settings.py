@@ -227,6 +227,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'amo.context_processors.i18n',
     'amo.context_processors.global_settings',
     'amo.context_processors.static_url',
+    'webapps.context_processors.is_webapps',
     'jingo_minify.helpers.build_ids',
 )
 

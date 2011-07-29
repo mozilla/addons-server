@@ -26,16 +26,20 @@
       {{ num }} user reviews
     {% endtrans %}
   </a></div>
-  <div id="daily-users">
-    {% if addon.public_stats %}
-      {# TODO real reverse URL #}
-      <a class='stats' title='View statistics' href="{{ locale_url('/statistics/addon/{0}'|f(addon.id)) }}">
+
+  {% if addon.average_daily_users %}
+    <div id="daily-users">
+      {% if addon.public_stats %}
+        {# TODO real reverse URL #}
+        <a class='stats' title='View statistics' href="{{ locale_url('/statistics/addon/{0}'|f(addon.id)) }}">
+          {{ _('<b>{0}</b> users')|f(addon.average_daily_users|numberfmt)|safe }}
+        </a>
+      {% else %}
         {{ _('<b>{0}</b> users')|f(addon.average_daily_users|numberfmt)|safe }}
-      </a>
-    {% else %}
-      {{ _('<b>{0}</b> users')|f(addon.average_daily_users|numberfmt)|safe }}
-    {% endif %}
-  </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
   <div class="widgets">
     {{ favorites_widget(addon) }}
     {% include 'addons/includes/collection_add_widget.html' %}
@@ -46,7 +50,7 @@
   {% endif %}
 </aside>
 
-{% set version = addon.current_version %}
+{% set version = addon.current_version if not addon.is_app() else None %}
 
 {# All this depends on the addon or version, and nothing needs the user,
    so we can cache it all against the addon. #}
@@ -57,7 +61,9 @@
       <img id="addon-icon" src="{{ addon.get_icon_url(64) }}" class="icon">
       <h1 class="addon"{{ addon.name|locale_html }}>
         {{ addon.name }}
-        <span class="version-number">{{ version.version }}</span>
+        {% if version %}
+          <span class="version-number">{{ version.version }}</span>
+        {% endif %}
         {% if addon.is_no_restart() %}
           &nbsp;<span class="no-restart">{{ _('No Restart') }}</span>
         {% endif %}
@@ -65,8 +71,10 @@
       <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
     </hgroup>
     <p id="addon-summary" {{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
-    {{ big_install_button(addon, show_warning=False,
-                          impala=True, src='dp-btn-primary') }}
+    {% if version %}
+      {{ big_install_button(addon, show_warning=False,
+                            impala=True, src='dp-btn-primary') }}
+    {% endif %}
     {% if addon.is_featured(APP, LANG) %}
       <div class="banner-box">
         <div class="banner featured">{{ _('Featured') }}</div>
@@ -152,18 +160,20 @@
       </li>
     {% endif %}
   </ul>
-  <ul>
-    <li>{{ _('Version {0}')|f(version.version) }} <a class="scrollto" href="#detail-relnotes">{{ _('Info') }}</a></li>
-    <li>{{ version.created|datetime }}</li>
-    <li>
-      {% if version.license %}
-        {% trans url = version.license_url(impala=True),
-           name = version.license if version.license.builtin else _('Custom License') %}
-          Released under <a href="{{ url }}">{{ name }}</a>
-        {% endtrans %}
-      {% endif %}
-    </li>
-  </ul>
+  {% if version %}
+    <ul>
+      <li>{{ _('Version {0}')|f(version.version) }} <a class="scrollto" href="#detail-relnotes">{{ _('Info') }}</a></li>
+      <li>{{ version.created|datetime }}</li>
+      <li>
+        {% if version.license %}
+          {% trans url = version.license_url(impala=True),
+             name = version.license if version.license.builtin else _('Custom License') %}
+            Released under <a href="{{ url }}">{{ name }}</a>
+          {% endtrans %}
+        {% endif %}
+      </li>
+    </ul>
+  {% endif %}
 </aside>
 
 <section class="primary island c">
@@ -177,6 +187,7 @@
 
 <div id="more-webpage" class="primary c" data-more-url="{{ addon.get_url_path(impala=True) }}"></div>
 
+{% if version or addon.developer_comments or addon.show_beta %}
 <section class="primary island c">
   {% if addon.developer_comments %}
     <section class="expando" id="developer-comments">
@@ -187,12 +198,15 @@
       </div>
     </section>
   {% endif %}
-  <section id="detail-relnotes" class="expando">
-    <h2>{{ _('Version Information') }}<a class="toggle" href="#detail-relnotes"><b></b></a></h2>
-    <div class="content">
-      {{ version_detail(addon, version, src="addon-detail-version", impala=True) }}
-    </div>
-  </section>
+
+  {% if version %}
+    <section id="detail-relnotes" class="expando">
+      <h2>{{ _('Version Information') }}<a class="toggle" href="#detail-relnotes"><b></b></a></h2>
+      <div class="content">
+        {{ version_detail(addon, version, src="addon-detail-version", impala=True) }}
+      </div>
+    </section>
+  {% endif %}
 
   {% if addon.show_beta %}
     <section id="beta-channel" class="expando">
@@ -226,6 +240,7 @@
     </section>
   {% endif %}
 </section>
+{% endif %}
 
 {% endcache %} {# cache addon #}
 

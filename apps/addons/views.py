@@ -96,7 +96,6 @@ def addon_detail(request, addon):
                 'addons.detail', args=[addon.slug]))
 
 
-@author_addon_clicked
 @addon_view
 def impala_addon_detail(request, addon):
     """Add-ons details page dispatcher."""

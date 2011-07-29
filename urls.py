@@ -26,6 +26,9 @@ urlpatterns = patterns('',
     # Add-ons.
     ('', include('addons.urls')),
 
+    # Web apps.
+    ('^apps/', include('webapps.urls')),
+
     # Browse pages.
     ('', include('browse.urls')),
 
