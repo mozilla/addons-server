@@ -163,8 +163,7 @@ class GroupedRating(object):
 class Spam(object):
 
     def __init__(self):
-        from caching.invalidation import get_redis_backend
-        self.redis = get_redis_backend()
+        self.redis = redisutils.connections['master']
 
     def add(self, review, reason):
         reason = 'amo:review:spam:%s' % reason

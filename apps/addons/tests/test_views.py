@@ -916,26 +916,6 @@ class TestEulaPolicyRedirects(amo.tests.TestCase):
         assert (response['Location'].find('/addon/592/privacy/') != -1)
 
 
-def test_button_caching():
-    """The button popups should be cached for a long time."""
-    # Get the url from a real page so it includes the build id.
-    client = test.Client()
-    doc = pq(client.get('/', follow=True).content)
-    js_url = reverse('addons.buttons.js')
-    url_with_build = doc('script[src^="%s"]' % js_url).attr('src')
-
-    response = client.get(url_with_build, follow=True)
-    fmt = '%a, %d %b %Y %H:%M:%S GMT'
-    expires = datetime.strptime(response['Expires'], fmt)
-    assert (expires - datetime.now()).days >= 365
-
-
-def test_unicode_redirect():
-    url = '/en-US/firefox/addon/2848?xx=\xc2\xbcwhscheck\xc2\xbe'
-    response = test.Client().get(url)
-    eq_(response.status_code, 301)
-
-
 class TestEula(amo.tests.TestCase):
     fixtures = ['addons/eula+contrib-addon', 'base/apps']
 
@@ -1144,3 +1124,22 @@ class TestMobileDetails(TestMobile):
 
         self.client.get(relnotes.attr('href'), follow=True)
         eq_(r.status_code, 200)
+
+    def test_button_caching(self):
+        """The button popups should be cached for a long time."""
+        # Get the url from a real page so it includes the build id.
+        client = test.Client()
+        doc = pq(client.get('/', follow=True).content)
+        js_url = reverse('addons.buttons.js')
+        url_with_build = doc('script[src^="%s"]' % js_url).attr('src')
+
+        response = client.get(url_with_build, follow=True)
+        fmt = '%a, %d %b %Y %H:%M:%S GMT'
+        expires = datetime.strptime(response['Expires'], fmt)
+        assert (expires - datetime.now()).days >= 365
+
+
+    def test_unicode_redirect(self):
+        url = '/en-US/firefox/addon/2848?xx=\xc2\xbcwhscheck\xc2\xbe'
+        response = test.Client().get(url)
+        eq_(response.status_code, 301)
