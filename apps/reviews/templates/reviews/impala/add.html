@@ -22,7 +22,7 @@
 
   <div class="primary island hero prettyform c">
     <fieldset class="prose">
-      {% trans support=addon.get_url_path() + "#support",
+      {% trans support=addon.get_url_path(impala=True) + "#support",
                guide=remora_url('pages/review_guide') %}
       <h2>Keep these tips in mind:</h2>
       <ul>
