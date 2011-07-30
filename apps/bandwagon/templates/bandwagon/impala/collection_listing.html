@@ -12,9 +12,12 @@
 
 {% block primary %}
 <section class="primary">
-  {% if not request.GET %}
+  {% if request.GET %}
+    {{ impala_breadcrumbs([(url('i_collections.list'), _('Collections')),
+                           (None, filter.title)]) }}
+  {% else %}
+    {{ impala_breadcrumbs([(None, _('Collections'))]) }}
     <masthead class="hero" id="collections-landing">
-      {{ impala_breadcrumbs([(None, _('Collections'))]) }}
       <h1>{{ _('Collections') }}</h1>
       <p>
         {% trans url=url('collections.add') %}
@@ -26,14 +29,10 @@
     </masthead>
   {% endif %}
   <div class="island hero c">
-    {% if request.GET %}
-      <header>
-        {{ impala_breadcrumbs([(url('i_collections.list'), _('Collections')),
-                               (None, filter.title)]) }}
-        <h2>{{ title }}</h2>
-      </header>
-    {% endif %}
     <header>
+      {% if request.GET %}
+        <h1>{{ title }}</h1>
+      {% endif %}
       {{ impala_addon_listing_header(url_base, filter.opts, sorting) }}
     </header>
     {% if sorting != 'featured' %}

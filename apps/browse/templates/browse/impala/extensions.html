@@ -15,17 +15,18 @@
 
 {% block primary %}
 <section class="primary">
+  {% if category %}
+    {{ impala_breadcrumbs([(url('i_browse.extensions'), _('Extensions')),
+                           (None, category.name)]) }}
+  {% else %}
+    {{ impala_breadcrumbs([(None, _('Extensions'))]) }}
+  {% endif %}
   <div class="island hero c">
     <header>
-      {% if category %}
-        {{ impala_breadcrumbs([(url('i_browse.extensions'), _('Extensions')),
-                               (None, category.name)]) }}
-      {% else %}
-        {{ impala_breadcrumbs([(None, _('Extensions'))]) }}
-      {% endif %}
       {% with heading = {'featured': _('Featured Extensions'),
                          'created': _('Newest Extensions'),
                          'users': _('Most Popular Extensions'),
+                         'popular': _('Most Popular Extensions'),
                          'rating': _('Top Rated Extensions'),
                          'updated': _('Last Updated Extensions')}[sorting] %}
         <h1>{{ category.name if category else heading }}</h1>
