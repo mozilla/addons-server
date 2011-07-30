@@ -1,6 +1,7 @@
 from collections import defaultdict
 
 from django.db.models import Q
+from django.shortcuts import redirect
 
 import commonware.log
 import jingo
@@ -316,14 +317,15 @@ def app_search(request, template=None):
     return jingo.render(request, template, ctx)
 
 
-# pid => platform
-# lver => appver
-# sort options
 @mobile_template('search/es_results.html')
 def es_search(request, tag_name=None, template=None):
     APP = request.APP
     types = (amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
              amo.ADDON_SEARCH, amo.ADDON_LPAPP)
+
+    fixed = fix_search_query(request.GET)
+    if fixed is not request.GET:
+        return redirect(urlparams(request.path, **fixed), permanent=True)
 
     form = ESSearchForm(request.GET or {})
     form.is_valid()  # Let the form try to clean data.
@@ -541,3 +543,33 @@ def tag_sidebar(request, query, facets):
     tags = [facet['term'] for facet in facets['tags']]
     rv += [FacetLink(tag, dict(tag=tag), tag == qtag) for tag in tags]
     return rv
+
+
+def fix_search_query(query):
+    rv = dict(query.items())
+    changed = False
+    # Change old keys to new names.
+    keys = {
+        'lver': 'appver',
+        'pid': 'platform',
+    }
+    for old, new in keys.items():
+        if old in query:
+            rv[new] = rv.pop(old)
+            changed = True
+
+    # Change old parameter values to new values.
+    params = {
+        'sort': {
+            'newest': 'updated',
+            'weeklydownloads': 'users',
+            'averagerating': 'rating',
+        },
+        'platform': dict((str(p.id), p.shortname)
+                         for p in amo.PLATFORMS.values())
+    }
+    for key, fixes in params.items():
+        if key in rv and rv[key] in fixes:
+            rv[key] = fixes[rv[key]]
+            changed = True
+    return rv if changed else query
