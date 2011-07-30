@@ -10,7 +10,7 @@
 
 #files li a {
     display: inline-block;
-    padding: 2px 20px;
+    padding: 1px 1px 2px 20px;
 }
 
 #files ul.root {
@@ -43,6 +43,11 @@ body.file-viewer div.section {
 
 #content-wrapper.full, #thinking.full {
     padding-left: 0;
+}
+
+#validating {
+    text-align: center;
+    margin-bottom: 1em;
 }
 
 span.number {
@@ -84,16 +89,73 @@ a.open {
     background: url('../../img/icons/minus.gif') 0 no-repeat;
 }
 
-a.diff {
+#files a > span {
+    -moz-boder-radius: 4px;
+    border-radius: 4px;
+    padding: 3px;
+}
+
+a.diff > span {
     background-color: #ffffcc;
+}
+
+a.known > span {
+    color: #bbb;
+}
+
+#files a.notice > span, #files a.warning > span, #files a.error > span {
+    margin: -1px;
+}
+
+#files a.notice > span {
+    border: 1px dotted blue;
+}
+
+#files a.warning.warning > span {
+    border: 1px dotted red;
+}
+
+#files a.error.error.error > span {
+    border: 1px solid red;
+}
+
+a.selected > span {
+    background-color: #ddf8dd;
+}
+
+.gutter a.notice, .gutter a.warning, .gutter a.error {
+    margin: -1px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid black;
+}
+.code .notice, .code .warning, .code .error {
+    margin: -1px;
+}
+
+.gutter a.notice, .diff-bar .notice.notice {
+    background-color: yellow;
+}
+.code .notice {
+    border: 1px dotted yellow;
+}
+
+.gutter a.warning.warning, .diff-bar .warning.warning.warning {
+    background-color: orange;
+}
+.code .warning.warning {
+    border: 1px dotted orange;
+}
+
+.gutter a.error.error.error, .diff-bar .error.error.error.error {
+    background-color: red;
+}
+.code .error.error.error {
+    border: 1px dotted red;
 }
 
 div.diff-bar {
     margin-left: -1px;
-}
-
-a.selected {
-    background-color: #ddf8dd;
 }
 
 .waiting {
@@ -123,7 +185,7 @@ a.selected {
     padding: 0 0 0 1ex;
 }
 
-#diff {
+#diff, #content {
     padding-left: 11px;
 }
 
@@ -140,7 +202,6 @@ td.gutter, td.code {
     border: 1px solid gray;
     width: 10px;
     position: absolute;
-    overflow: hidden;
     height: 200px;
 }
 
@@ -173,6 +234,89 @@ td.gutter, td.code {
 #tooltip {
     max-width: 100%;
 }
+
+#tooltip > span {
+    white-space: pre-wrap;
+    text-align: left;
+    max-width: 70ex;
+}
+
+
+.message {
+    display:none;
+
+    position: absolute;
+    padding-left: 10px;
+    top: -.2em;
+    left: 100%;
+
+    position: absolute;
+    z-index: 16385;
+    text-align: left;
+    font-size: 11px;
+}
+
+.diff-bar .message {
+    top: -.8em;
+    margin-top: -4px;
+}
+
+.message-inner {
+    position: relative;
+    padding: 0.5em 1em;
+
+    border: 1px solid #fff;
+    border-radius: .8em;
+    background: #2A4364;
+    color: white;
+    border-radius: .8em;
+    -moz-border-radius: .8em;
+    -webkit-border-radius: .8em;
+}
+
+.message a {
+    color: white;
+    font-weight: bold;
+    text-decoration: underline !important;
+}
+
+.message-inner > div {
+    line-height: 1.2em;
+    width: 70ex;
+    white-space: pre-wrap;
+}
+.message-inner > div + div {
+    margin-top: 1em;
+}
+
+.message p {
+    margin: 1em 0;
+}
+
+.message-inner::before {
+    content: "\00a0";
+    display: block; /* reduce the damage in FF3.0 */
+    position: absolute;
+    width: 0;
+    height: 0;
+    margin-top: -6px;
+    top: 1.1em;
+    left: -16px;
+    border: solid transparent;
+    border-width: 6px 9px;
+    border-right-color: #2A4364;
+    pointer-events: none;
+}
+
+.message-container {
+    position: relative;
+    overflow: visible !important;
+}
+
+.message-container:hover > .message {
+    display: block;
+}
+
 
 .number-combo {
     display: inline-block;

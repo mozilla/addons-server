@@ -44,21 +44,21 @@ jQuery.fn.tooltip = function(tip_el) {
         timeout = false,
         $tgt, $title, delay;
 
-
     function setTip() {
         if (!$tgt) return;
         var pos = $tgt.offset(),
-            title = $title.attr('title');
+            title = $title.attr('title'),
+            html = $title.attr('data-tooltip-html');
 
         delay = $title.is('[data-delay]') ? $title.attr('data-delay') : 300;
 
-        if(title.indexOf('::') > 0) {
+        if(!html && title.indexOf('::') > 0) {
             var title_split = title.split('::');
             $msg.text("");
             $msg.append($("<strong>", {'text': title_split[0].trim()}));
             $msg.append($("<span>", {'text': title_split[1].trim()}));
         } else {
-            $msg.text(title);
+            $msg[html ? 'html' : 'text'](title);
         }
 
         $title.attr('data-oldtitle', title).attr('title', '');

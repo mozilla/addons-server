@@ -26,7 +26,16 @@ def setup_viewer(request, file_obj):
             'version': file_obj.version,
             'addon': file_obj.version.addon,
             'status': False,
-            'selected': {}}
+            'selected': {},
+            'validate_url': ''}
+
+
+    if (acl.action_allowed(request, 'Editors', '%') or
+        acl.check_addon_ownership(request, file_obj.version.addon,
+                                  viewer=True, ignore_disabled=True)):
+        data['validate_url'] = reverse('devhub.json_file_validation',
+                                       args=[file_obj.version.addon.slug,
+                                             file_obj.id])
 
     if acl.action_allowed(request, 'Editors', '%'):
         data['file_link'] = {'text': _('Back to review'),
