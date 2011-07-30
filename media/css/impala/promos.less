@@ -11,6 +11,12 @@
     li > div {
         overflow: hidden;
     }
+    .wrap p {
+        margin: 1em 0 0;
+    }
+    .wrap > div > p:first-child {
+        margin: 0;
+    }
     h2, h3 {
         font-style: normal;
         font-family: "Lucida Grande","Lucida Sans",Helvetica,Arial,sans-serif;
@@ -171,9 +177,6 @@
         margin-bottom: 10px;
         font-size: 14px;
     }
-    p.install-button {
-        margin-bottom: 0;
-    }
     img {
         display: block;
         float: right;
@@ -193,9 +196,6 @@
     }
     .wrap > div {
         padding: 20px;
-    }
-    p.install-button {
-        margin-bottom: 0;
     }
 }
 
@@ -288,7 +288,6 @@
     font-weight: bold;
     font-family: inherit;
     margin: .25em 0;
-    white-space: nowrap;
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
