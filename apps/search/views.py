@@ -2,6 +2,7 @@ from collections import defaultdict
 
 from django.db.models import Q
 from django.shortcuts import redirect
+from django.utils.encoding import smart_str
 
 import commonware.log
 import jingo
@@ -546,7 +547,7 @@ def tag_sidebar(request, query, facets):
 
 
 def fix_search_query(query):
-    rv = dict(query.items())
+    rv = dict((smart_str(k), v) for k, v in query.items())
     changed = False
     # Change old keys to new names.
     keys = {
