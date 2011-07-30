@@ -15,10 +15,12 @@ from amo.decorators import json_view
 from amo.helpers import urlparams
 from amo.utils import MenuItem, sorted_groupby
 from versions.compare import dict_from_int, version_int
-from search import forms
-from search.client import (Client as SearchClient, SearchError,
+from webapps.models import Webapp
+
+from . import forms
+from .client import (Client as SearchClient, SearchError,
                            CollectionsClient, PersonasClient, sphinx)
-from search.forms import SearchForm, SecondarySearchForm, ESSearchForm
+from .forms import SearchForm, SecondarySearchForm, ESSearchForm
 
 DEFAULT_NUM_RESULTS = 20
 
@@ -267,6 +269,53 @@ def ajax_search(request):
         return []
 
 
+def name_query(q):
+    # 1. Prefer text matches first (boost=3).
+    # 2. Then try fuzzy matches ("fire bug" => firebug) (boost=2).
+    # 3. Then look for the query as a prefix of a name (boost=1.5).
+    # 4. Look for text matches inside the summary (boost=0.8).
+    # 5. Look for text matches inside the description (boost=0.3).
+    return dict(name__text={'query': q, 'boost': 3},
+                name__fuzzy={'value': q, 'boost': 2, 'prefix_length': 4},
+                 name__startswith={'value': q, 'boost': 1.5},
+                 summary__text={'query': q, 'boost': 0.8},
+                 description__text={'query': q, 'boost': 0.3})
+
+
+@mobile_template('search/es_results.html')
+def app_search(request, template=None):
+    form = ESSearchForm(request.GET or {}, type=amo.ADDON_WEBAPP)
+    form.is_valid()  # Let the form try to clean data.
+    query = form.cleaned_data
+    qs = (Webapp.search().query(or_=name_query(query['q']))
+          .filter(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
+                  is_disabled=False)
+          .facet(tags={'terms': {'field': 'tag'}},
+                 categories={'terms': {'field': 'category', 'size': 100}}))
+    if query.get('tag'):
+        qs = qs.filter(tag=query['tag'])
+    if query.get('cat'):
+        qs = qs.filter(category=query['cat'])
+    if query.get('sort'):
+        mapping = {'downloads': '-weekly_downloads',
+                   'rating': '-bayesian_rating',
+                   'updated': '-last_updated'}
+        qs = qs.order_by(mapping[query['sort']])
+
+    pager = amo.utils.paginate(request, qs)
+    facets = pager.object_list.facets
+
+    ctx = {
+        'pager': pager,
+        'query': query,
+        'form': form,
+        'sorting': sort_sidebar(request, query, form),
+        'categories': category_sidebar(request, query, facets),
+        'tags': tag_sidebar(request, query, facets),
+    }
+    return jingo.render(request, template, ctx)
+
+
 # pid => platform
 # lver => appver
 # sort options
@@ -288,18 +337,7 @@ def es_search(request, tag_name=None, template=None):
 
     query = form.cleaned_data
 
-    # 1. Prefer text matches first (boost=3).
-    # 2. Then try fuzzy matches ("fire bug" => firebug) (boost=2).
-    # 3. Then look for the query as a prefix of a name (boost=1.5).
-    # 4. Look for text matches inside the summary (boost=0.8).
-    # 5. Look for text matches inside the description (boost=0.3).
-    q = query['q']
-    search = dict(name__text={'query': q, 'boost': 3},
-                  name__fuzzy={'value': q, 'boost': 2, 'prefix_length': 4},
-                  name__startswith={'value': q, 'boost': 1.5},
-                  summary__text={'query': q, 'boost': 0.8},
-                  description__text={'query': q, 'boost': 0.3})
-    qs = (Addon.search().query(or_=search)
+    qs = (Addon.search().query(or_=name_query(query['q']))
           .filter(status__in=amo.REVIEWED_STATUSES, is_disabled=False,
                   app=APP.id)
           .facet(tags={'terms': {'field': 'tag'}},

@@ -243,6 +243,13 @@ SORT_CHOICES = (
     ('updated', _lazy(u'Last Update')),
 )
 
+APP_SORT_CHOICES = (
+    (None, _lazy(u'Relevance')),
+    ('downloads', _lazy(u'Most Downloads')),
+    ('rating', _lazy(u'Highest Rating')),
+    ('updated', _lazy(u'Last Update')),
+)
+
 
 class ESSearchForm(forms.Form):
     q = forms.CharField(required=False)
@@ -254,6 +261,12 @@ class ESSearchForm(forms.Form):
         choices=[(t, amo.ADDON_TYPE[t]) for t in types])
     cat = forms.CharField(required=False)
     sort = forms.ChoiceField(required=False, choices=SORT_CHOICES)
+
+    def __init__(self, *args, **kw):
+        addon_type = kw.pop('type', None)
+        super(ESSearchForm, self).__init__(*args, **kw)
+        if addon_type == amo.ADDON_WEBAPP:
+            self.fields['sort'].choices = APP_SORT_CHOICES
 
     def clean_sort(self):
         sort = self.cleaned_data.get('sort')

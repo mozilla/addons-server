@@ -1,4 +1,5 @@
 import amo
+from amo.urlresolvers import reverse
 from addons.models import Addon
 from versions.models import Version
 
@@ -22,6 +23,9 @@ class Webapp(Addon):
             version = Version.objects.create(addon=self, version='0')
             # Set the slug once we have an id to keep things in order.
             self.update(slug='app-%s' % self.id, _current_version=version)
+
+    def get_url_path(self, impala=None):
+        return reverse('apps.detail', args=[self.app_slug])
 
 
 # These are the translated strings we want to pull in.
