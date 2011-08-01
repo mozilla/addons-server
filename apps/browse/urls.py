@@ -1,20 +1,38 @@
-from django.conf.urls.defaults import patterns, url
+from django.conf.urls.defaults import include, patterns, url
 from django.shortcuts import redirect
 
 from amo.urlresolvers import reverse
 from browse.feeds import CategoriesRss, FeaturedRss, SearchToolsRss
 from . import views
 
+impala_patterns = patterns('',
+    # TODO: When we launch the impala pages, add a redirect for this.
+    url('^featured$',
+        lambda r: redirect(reverse('i_browse.extensions') + '?sort=featured',
+                           permanent=True)),
+    url('^extensions/(?:(?P<category>[^/]+)/)?$', views.impala_extensions,
+        name='i_browse.extensions'),
+
+    # TODO: Impala-ize these views.
+    url('^themes/(?P<category>[^/]+)?$', views.themes,
+        name='i_browse.themes'),
+    url('^extensions/(?P<category>[^/]+)/featured$', views.creatured,
+        name='i_browse.creatured'),
+    url('^personas/(?P<category>[^ /]+)?$', views.personas,
+        name='i_browse.personas'),
+    url('^language-tools/(?P<category>[^/]+)?$', views.language_tools,
+        name='i_browse.language-tools'),
+    url('^search-tools/(?P<category>[^/]+)?$', views.search_tools,
+        name='i_browse.search-tools'),
+)
 
 urlpatterns = patterns('',
+    url('^i/', include(impala_patterns)),
+
     url('^language-tools/(?P<category>[^/]+)?$', views.language_tools,
         name='browse.language-tools'),
 
     url('^featured$', views.featured, name='browse.featured'),
-    # TODO: When we launch the impala pages, add a redirect for this.
-    url('^i/featured$',
-        lambda r: redirect(reverse('i_browse.extensions') + '?sort=featured',
-                           permanent=True)),
 
     url('^themes/(?P<category>[^/]+)?$', views.themes,
         name='browse.themes'),
@@ -23,8 +41,6 @@ urlpatterns = patterns('',
         name='browse.extensions'),
     url('^es/extensions/(?:(?P<category>[^/]+)/)?$', views.es_extensions,
         name='browse.es.extensions'),
-    url('^i/extensions/(?:(?P<category>[^/]+)/)?$', views.impala_extensions,
-        name='i_browse.extensions'),
 
     url('^extensions/(?P<category>[^/]+)/featured$',
         views.creatured, name='browse.creatured'),
