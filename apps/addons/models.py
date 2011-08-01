@@ -913,9 +913,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
           dispatch_uid='addons.update.name.table')
 def update_name_table(sender, **kw):
     from . import cron
-    addon = kw['instance']
-    cron._build_reverse_name_lookup.delay({addon.name_id: addon.id},
-                                          clear=True)
+    if not kw.get('raw'):
+        addon = kw['instance']
+        cron._build_reverse_name_lookup.delay({addon.name_id: addon.id},
+                                              clear=True)
 
 
 @receiver(dbsignals.pre_delete, sender=Addon,

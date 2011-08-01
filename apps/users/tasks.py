@@ -3,11 +3,14 @@ import os
 from django.conf import settings
 
 import commonware.log
+import elasticutils
 from celeryutils import task
 
 from amo.decorators import set_modified_on
-import amo.signals
 from amo.utils import resize_image
+
+from .models import UserProfile
+from . import search
 
 task_log = commonware.log.getLogger('z.task')
 
@@ -38,3 +41,23 @@ def resize_photo(src, dst, **kw):
         return True
     except Exception, e:
         task_log.error("Error saving userpic: %s" % e)
+
+
+@task
+def index_users(ids, **kw):
+    if not settings.USE_ELASTIC:
+        return
+    es = elasticutils.get_es()
+    task_log.info('Indexing users %s-%s [%s].' % (ids[0], ids[-1], len(ids)))
+    for c in UserProfile.objects.filter(id__in=ids):
+        UserProfile.index(search.extract(c), bulk=True, id=c.id)
+    es.flush_bulk(forced=True)
+
+
+@task
+def unindex_users(ids, **kw):
+    if not settings.USE_ELASTIC:
+        return
+    for id in ids:
+        task_log.info('Removing user [%s] from search index.' % id)
+        UserProfile.unindex(id)

@@ -1,7 +1,5 @@
 from operator import attrgetter
 
-import pyes.exceptions as pyes
-
 
 def extract(collection):
     attrs = ('id', 'name', 'slug', 'author_username', 'type', 'application_id')

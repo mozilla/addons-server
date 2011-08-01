@@ -53,3 +53,12 @@ def _update_user_ratings(data, **kw):
     for pk, rating in data:
         rating = "%.2f" % round(rating, 2)
         UserProfile.objects.filter(pk=pk).update(averagerating=rating)
+
+
+@cronjobs.register
+def reindex_users():
+    from . import tasks
+    ids = UserProfile.objects.values_list('id', flat=True)
+    taskset = [tasks.index_users.subtask(args=[chunk])
+               for chunk in chunked(sorted(list(ids)), 150)]
+    TaskSet(taskset).apply_async()

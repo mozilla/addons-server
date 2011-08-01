@@ -10,6 +10,7 @@ import amo
 from .models import Addon
 from bandwagon.models import Collection
 from compat.models import AppCompat
+from users.models import UserProfile
 
 
 log = logging.getLogger('z.es')
@@ -33,7 +34,8 @@ def extract(addon):
     d['category'] = getattr(addon, 'category_ids', [])
     d['tags'] = getattr(addon, 'tag_list', [])
     if addon.current_version:
-        d['platforms'] = [p.id for p in addon.current_version.supported_platforms]
+        d['platforms'] = [p.id for p in
+                          addon.current_version.supported_platforms]
     d['appversion'] = dict((app.id, {'min': appver.min.version_int,
                                      'max': appver.max.version_int})
                            for app, appver in addon.compatible_apps.items()
@@ -79,7 +81,7 @@ def setup_mapping():
     # Adjust the mapping for all models at once because fields are shared
     # across all doc types in an index. If we forget to adjust one of them
     # we'll get burned later on.
-    for model in Addon, AppCompat, Collection:
+    for model in Addon, AppCompat, Collection, UserProfile:
         try:
             es.put_mapping(model._meta.db_table, mapping, settings.ES_INDEX)
         except pyes.ElasticSearchException, e:

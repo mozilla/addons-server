@@ -6,7 +6,7 @@ import re
 import string
 import time
 
-from django import forms
+from django import forms, dispatch
 from django.conf import settings
 from django.contrib.auth.models import User as DjangoUser
 from django.core import validators
@@ -317,6 +317,22 @@ class UserProfile(amo.models.ModelBase):
         return c
 
 
+@dispatch.receiver(models.signals.post_save, sender=UserProfile,
+                   dispatch_uid='user.post_save')
+def user_post_save(sender, instance, **kw):
+    if not kw.get('raw'):
+        from . import tasks
+        tasks.index_users.delay([instance.id])
+
+
+@dispatch.receiver(models.signals.post_delete, sender=UserProfile,
+                   dispatch_uid='user.post_delete')
+def user_post_delete(sender, instance, **kw):
+    if not kw.get('raw'):
+        from . import tasks
+        tasks.unindex_users.delay([instance.id])
+
+
 class UserNotification(amo.models.ModelBase):
     user = models.ForeignKey(UserProfile, related_name='notifications')
     notification_id = models.IntegerField()
@@ -330,7 +346,7 @@ class UserNotification(amo.models.ModelBase):
         rows = UserNotification.objects.filter(**kwargs).update(**update)
         if not rows:
             update.update(dict(**kwargs))
-            obj = UserNotification.objects.create(**update)
+            UserNotification.objects.create(**update)
 
 
 class RequestUserManager(amo.models.ManagerBase):

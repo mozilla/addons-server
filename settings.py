@@ -93,8 +93,8 @@ AMO_LANGUAGES = (
     'tr', 'uk', 'vi', 'zh-CN', 'zh-TW',
 )
 
+
 def lazy_langs():
-    from django.conf import settings
     from product_details import product_details
     if not product_details.languages:
         return {}
@@ -1012,11 +1012,16 @@ MODIFIED_DELAY = 3
 # versions: version numbers to show in comparisons.
 # previous: the major version before :main.
 COMPAT = (
-    dict(app=1, main='8.0', versions=('8.0', '8.0a2', '8.0a1'), previous='7.0'),
-    dict(app=1, main='7.0', versions=('7.0', '7.0a2', '7.0a1'), previous='6.0'),
-    dict(app=1, main='6.0', versions=('6.0', '6.0a2', '6.0a1'), previous='5.0'),
-    dict(app=1, main='5.0', versions=('5.0', '5.0a2', '5.0a1'), previous='4.0'),
-    dict(app=1, main='4.0', versions=('4.0', '4.0a1', '3.7a'), previous='3.6'),
+    dict(app=1, main='8.0', versions=('8.0', '8.0a2', '8.0a1'),
+         previous='7.0'),
+    dict(app=1, main='7.0', versions=('7.0', '7.0a2', '7.0a1'),
+         previous='6.0'),
+    dict(app=1, main='6.0', versions=('6.0', '6.0a2', '6.0a1'),
+         previous='5.0'),
+    dict(app=1, main='5.0', versions=('5.0', '5.0a2', '5.0a1'),
+         previous='4.0'),
+    dict(app=1, main='4.0', versions=('4.0', '4.0a1', '3.7a'),
+         previous='3.6'),
 )
 
 # URL for reporting arecibo errors too. If not set, won't be sent.

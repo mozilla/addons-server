@@ -30,6 +30,7 @@ import addons.cron
 import bandwagon.cron
 import files.tasks
 import files.utils
+import users.cron
 from amo import messages, get_user
 from amo.decorators import login_required, json_view, post_required
 from amo.urlresolvers import reverse
@@ -402,6 +403,8 @@ def elastic(request):
                 'collections': (addons.search.setup_mapping,
                                 bandwagon.cron.reindex_collections),
                 'compat': (addons.search.setup_mapping, None),
+                'users': (addons.search.setup_mapping,
+                          users.cron.reindex_users),
                }
     if request.method == 'POST':
         if request.POST.get('reset') in mappings:
