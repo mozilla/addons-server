@@ -93,14 +93,31 @@ textarea {
     fieldset {
         border-bottom: 1px dotted #C9DDF2;
         margin: 0 0 1em;
-        padding: 1em;
+        padding: 0 1em 1em;
         legend {
-            margin-left: 2em;
-            color: #D0D9EB;
-            float: right;
+            color: #879DCD;
+            display: block;
             font-size: 25px;
+            padding: 10px 0;
+            text-align: right;
             text-transform: uppercase;
+            width: 100%;
         }
+        .sub_legend {
+            color: #888888;
+            float: right;
+            font-size: 12px;
+            line-height: 1.6em;
+            text-align: right;
+            width: 225px;
+        }
+    }
+    .formfields {
+        float: left;
+        max-width: 530px;
+    }
+    .formfields p:first-child {
+        margin-top: 0;
     }
     li {
         margin-bottom: 1em;
@@ -176,14 +193,6 @@ textarea {
             input {
                 margin: 0 8px 0 0;
             }
-        }
-    }
-    .complex {
-        label, ul {
-            float: left;
-        }
-        label {
-            clear: both;
         }
     }
 

@@ -30,7 +30,12 @@
       <div id="user-account" class="tab-panel">
         <fieldset id="acct-account">
           <legend>{{ _('My account') }}</legend>
-          <ul>
+          <p class="sub_legend">
+            {% trans -%}
+              Manage basic account information, such as username and email address.
+            {%- endtrans %}
+          </p>
+          <ul class="formfields">
             <li>
               <label for="id_username">{{ _('Username') }} {{ required() }}</label>
               {{ form.username }}
@@ -59,7 +64,13 @@
 
         <fieldset id="acct-password">
           <legend>{{ _('Password') }}</legend>
-          <ol>
+          <p class="sub_legend">
+            {% trans reset_url=url('users.pwreset') -%}
+            Change your password.  If you forgot your password, you can <a href="{{ reset_url }}">use the reset form</a>.
+            {%- endtrans %}
+          </p>
+          <ol class="formfields">
+          <ol class="formfields">
             <li>
               <label for="id_oldpassword">{{ _('Old Password') }}</label>
               {{ form.oldpassword }}
@@ -82,8 +93,14 @@
           </ol>
         </fieldset>
         <fieldset id="profile-personal">
-          <legend>{{ _('Profile information') }}</legend>
-          <ol>
+          <legend>{{ _('Profile') }}</legend>
+          <p class="sub_legend">
+            {% trans -%}
+              Give us a bit more information about yourself.  All these fields
+              are optional, but they'll help other users get to know you better.
+            {%- endtrans %}
+          </p>
+          <ol class="formfields">
             <li>
               <label for="id_display_name">{{ _('Display Name') }}</label>
               {{ form.display_name }}
@@ -122,19 +139,26 @@
         </fieldset>
         <fieldset id="profile-detail" class="clearboth">
           <legend>{{ _('Details') }}</legend>
-          <p>
+          <p class="sub_legend">
             {% trans -%}
               Introduce yourself to the community, if you like!
               This text will appear publicly on your user info page.
             {%- endtrans %}
           </p>
+          <div class="formfields">
           {{ form.bio }}
           {{ some_html_tip() }}
           {{ form.bio.errors }}
+          </div>
         </fieldset> {# /.profile-detail #}
         <fieldset id="profile-detail" class="clearboth">
           <legend>{{ _('Miscellaneous') }}</legend>
-          <ul>
+          <p class="sub_legend">
+            {% trans -%}
+              Decide what collections should be shown in your profile.
+            {%- endtrans %}
+          </p>
+          <ul class='formfields'>
             <li>
             <label for="id_display_collections" class="check">
               {{ form.display_collections }}
@@ -154,13 +178,14 @@
 
         <fieldset id="acct-notify">
           <legend>{{ _('Notifications') }}</legend>
-          <p>
+          <p class="sub_legend">
             {% trans %}
             From time to time, Mozilla may send you email about upcoming
             releases and add-on events. Please select the topics you are
-            interested in below:
+            interested in.
             {% endtrans %}
           </p>
+          <div class="formfields">
           {{ form.notifications }}
 
           <p class="note">
@@ -169,11 +194,13 @@
               specific concerns with your hosted add-ons.
             {% endtrans %}
           </p>
+          </div>
         </fieldset>
 
         {% if 'admin_log' in form.fields %}
             <fieldset id="acct-admin">
               <legend>{{ _('Admin') }}</legend>
+              <div class="formfields">
               <p>{{ form.admin_log.label }} {{ required() }}</p>
               {{ form.admin_log.errors }}
               {{ form.admin_log }}
@@ -194,6 +221,7 @@
                   {{ form.anonymize }}
                 </li>
               </ul>
+              </div>
             </fieldset>
         {% endif %}
       </div>{# /#user-profile #}

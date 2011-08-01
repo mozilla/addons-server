@@ -1,11 +1,11 @@
 <li>
-  <label>
+  <h3>
     {{ title }}
     <div class='more'>
       <a class='more-none' href='#'>none</a> &middot;
       <a class='more-all' href='#'>all</a>
     </div>
-  </label>
+  </h3>
   <ul class='checkboxes'>
     {% for option in options %}
       {{ option|safe }}
