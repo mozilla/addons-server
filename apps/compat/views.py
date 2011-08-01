@@ -29,6 +29,7 @@ def index(request, version=None):
     if version not in compat_dict:
         return redirect('compat.index', COMPAT[0]['main'])
     qs = AppCompat.search()
+    binary = None
 
     initial= {'appver': '%s-%s' % (request.APP.id, version), 'type': 'all'}
     initial.update(request.GET.items())
@@ -43,7 +44,7 @@ def index(request, version=None):
                 return redirect(urlparams(url, type=type_))
 
         if form.cleaned_data['type'] != 'all':
-            qs = qs.filter(binary=form.cleaned_data['type'] == 'binary')
+            binary = form.cleaned_data['type'] == 'binary'
 
     compat, app = compat_dict[version], str(request.APP.id)
     compat_queries = (
@@ -52,9 +53,9 @@ def index(request, version=None):
         ('top_95', qs.query(top_95=True)),
         ('all', qs),
     )
-    compat_levels = [(key, version_compat(qs, compat, app))
+    compat_levels = [(key, version_compat(qs, compat, app, binary))
                      for key, qs in compat_queries]
-    usage_addons, usage_total = usage_stats(request, compat, app)
+    usage_addons, usage_total = usage_stats(request, compat, app, binary)
     return jingo.render(request, 'compat/index.html',
                         {'version': version,
                          'usage_addons': usage_addons,
@@ -63,27 +64,34 @@ def index(request, version=None):
                          'form': form})
 
 
-def version_compat(qs, compat, app):
+def version_compat(qs, compat, app, binary):
     facets = []
     for v, prev in zip(compat['versions'], (None,) + compat['versions']):
         d = {'from': vint(v)}
         if prev:
             d['to'] = vint(prev)
         facets.append(d)
-    qs = qs.facet(by_status={'range': {'support.%s.max' % app: facets}})
+    # Pick up everything else for an Other count.
+    facets.append({'to': vint(compat['versions'][-1])})
+    facet = {'range': {'support.%s.max' % app: facets}}
+    if binary is not None:
+        facet['facet_filter'] = {'term': {'binary': binary}}
+    qs = qs.facet(by_status=facet)
     result = qs[:0].raw()
     total_addons = result['hits']['total']
     ranges = result['facets']['by_status']['ranges']
-    faceted = [(v, r['count']) for v, r in zip(compat['versions'], ranges)]
-    other = total_addons - sum(r[1] for r in faceted)
-    return total_addons, faceted + [(_('Other'), other)]
+    titles = compat['versions'] + (_('Other'),)
+    faceted = [(v, r['count']) for v, r in zip(titles, ranges)]
+    return total_addons, faceted
 
 
-def usage_stats(request, compat, app):
+def usage_stats(request, compat, app, binary=None):
     # Get the list of add-ons for usage stats.
     redis = redisutils.connections['master']
     qs = (AppCompat.search().order_by('-usage.%s' % app).values_dict()
           .filter(**{'support.%s.max__gte' % app: vint(compat['previous'])}))
+    if binary is not None:
+        qs = qs.filter(binary=True)
     addons = amo.utils.paginate(request, qs)
     for obj in addons.object_list:
         obj['usage'] = obj['usage'][app]
