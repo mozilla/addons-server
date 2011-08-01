@@ -1,0 +1,77 @@
+{% extends "impala/base.html" %}
+
+{% block title %}{{ page_title(_('User Info for {0}')|f(profile.name)) }}{% endblock %}
+{% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}
+{% block bodyclass %}meet gutter{% endblock %}
+
+{% block content %}
+
+{% include "messages.html" %}
+
+{{ impala_breadcrumbs([(None, profile.name)]) }}
+<h1 class="fn n">{{ profile.name }}</h1>
+
+<div class="vcard island c object-lead">
+  <aside class="secondary">
+    <img class="avatar" src="{{ profile.picture_url }}"
+         {% if not profile.picture_type %}alt="{{ _('No Photo') }}"{% endif %}>
+    {% if profile.is_developer %}
+      <div class="user-role">{{ _('Add-ons Developer') }}</div>
+    {% endif %}
+    {% if own_profile %}
+      <a class="button" href="{{ url('users.edit') }}">{{ _('Edit Profile') }}</a>
+    {% endif %}
+    {% if edit_any_user %}
+      {# TODO XXX Once zamboni can delete users, uncomment this line.  bug 595035 #}
+      {# <a href="{{ url("admin:users_userprofile_change", profile.id) }}">{{ _('Manage User') }}</a> #}
+      <a class="button" href="{{ remora_url("/admin/users/%s" % profile.id) }}">{{ _('Manage User') }}</a>
+    {% endif %}
+  </aside>
+  <section class="primary">
+    <h2>{{ _('About Me')}}</h2>
+    <div class="vcard">
+      {% with table_class='person-info' %}
+        {% include "users/impala/vcard.html" %}
+      {% endwith %}
+    </div>
+    <div class="prose">
+      {% if profile.bio %}
+        <h3>{{ _('In a little more detail...') }}</h3>
+        <p class="intro">{{ profile.bio|nl2br }}</p>
+      {% endif %}
+    </div>
+  </section>
+</div>
+
+{% if addons.object_list %}
+  <div class="island c listing">
+    <h2>{{ _("Add-ons I've created") }}</h2>
+    {% cache addons.object_list %}
+      {{ impala_addon_listing_items(addons.object_list, src='category',
+                                    show_date=sorting) }}
+    {% endcache %}
+  </div>
+{% endif %}
+
+{% cache reviews %}
+<div class="island c" id="reviews">
+  <h2>{{ _('My Reviews') }}</h2>
+  <div class="article">
+    {% if reviews %}
+      {% for review in reviews %}
+        {% set addon = review.addon %}
+        {% include "reviews/impala/review.html" %}
+      {% endfor %}
+    {% else %}
+      <p class="noreviews">{{ _('No add-on reviews yet.') }}</p>
+    {% endif %}
+  </div>{# /article #}
+</div>{# /primary #}
+{% endcache %}
+
+{% if abuse_form %}
+  <div class="abuse-wrapper c">{{ user_report_abuse(hide=True, profile=profile) }}</div>
+{% endif %}
+
+
+{% endblock %}

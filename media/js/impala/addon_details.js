@@ -1,22 +1,20 @@
 $(function () {
-    if ($('body').hasClass('listing')) {
-        $('.performance-note .popup').each(function(i,p) {
-            var $p = $(this),
-                $a = $p.siblings('a').first();
-            $p.popup($a, {width: 300, pointTo: $a});
-        });
-        $('.item.addon').each(function(i,p){
-            var $this = $(this);
-            if ($this.find('.concealed').length == $this.find('.button').length) {
-                $this.addClass('incompatible');
-            }
-        });
-        $(document.body).bind('newStatic', function() {
-            $('.install-note:visible').closest('.item').addClass('static');
-        }).bind('closeStatic', function() {
-            $('.item.static').removeClass('static');
-        });
-    }
+    $('.performance-note .popup').each(function(i,p) {
+        var $p = $(this),
+            $a = $p.siblings('a').first();
+        $p.popup($a, {width: 300, pointTo: $a});
+    });
+    $('.item.addon').each(function(i,p){
+        var $this = $(this);
+        if ($this.find('.concealed').length == $this.find('.button').length) {
+            $this.addClass('incompatible');
+        }
+    });
+    $(document.body).bind('newStatic', function() {
+        $('.install-note:visible').closest('.item').addClass('static');
+    }).bind('closeStatic', function() {
+        $('.item.static').removeClass('static');
+    });
 
     if (!$("body").hasClass('addon-details')) return;
     $(".previews").zCarousel({

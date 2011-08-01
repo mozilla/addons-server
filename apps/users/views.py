@@ -459,6 +459,51 @@ def profile(request, user_id):
     return jingo.render(request, 'users/profile.html', data)
 
 
+def impala_profile(request, user_id):
+    """user profile display page"""
+    user = get_object_or_404(UserProfile, id=user_id)
+
+    # get user's own and favorite collections, if they allowed that
+    if user.display_collections:
+        own_coll = (Collection.objects.listed().filter(author=user)
+                    .order_by('-created'))[:10]
+    else:
+        own_coll = []
+    if user.display_collections_fav:
+        fav_coll = (Collection.objects.listed()
+                    .filter(following__user=user)
+                    .order_by('-following__created'))[:10]
+    else:
+        fav_coll = []
+
+    edit_any_user = acl.action_allowed(request, 'Admin', 'EditAnyUser')
+    own_profile = request.user.is_authenticated() and (
+        request.amo_user.id == user.id)
+
+    if user.is_developer:
+        addons = amo.utils.paginate(
+                    request,
+                    user.addons_listed.order_by('-weekly_downloads'))
+    else:
+        addons = []
+
+    def get_addons(reviews):
+        if not reviews:
+            return
+        qs = Addon.objects.filter(id__in=set(r.addon_id for r in reviews))
+        addons = dict((addon.id, addon) for addon in qs)
+        for review in reviews:
+            review.addon = addons.get(review.addon_id)
+    reviews = user.reviews.transform(get_addons)
+
+    data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
+            'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
+            'addons': addons, 'own_profile': own_profile,
+            'abuse_form': AbuseForm(request=request)}
+
+    return jingo.render(request, 'users/impala/profile.html', data)
+
+
 @anonymous_csrf
 def register(request):
     if request.user.is_authenticated():
