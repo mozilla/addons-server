@@ -17,6 +17,7 @@ import amo.models
 import sharing.utils as sharing
 from amo.utils import sorted_groupby
 from amo.urlresolvers import reverse
+from product_details import product_details
 from addons.models import Addon, AddonRecommendation
 from applications.models import Application
 from stats.models import CollectionShareCountTotal
@@ -558,3 +559,21 @@ class FeaturedCollection(amo.models.ModelBase):
     def __unicode__(self):
         return u'%s (%s: %s)' % (self.collection, self.application,
                                  self.locale)
+
+
+def locale_generator():
+    return (('', u'(Default Locale)'),) + tuple(
+           (i, product_details.languages[i]['native'])
+           for i in settings.AMO_LANGUAGES)
+
+
+class MonthlyPick(amo.models.ModelBase):
+    LOCALES = locale_generator()
+
+    addon = models.ForeignKey(Addon)
+    blurb = models.TextField()
+    image = models.URLField()
+    locale = models.CharField(max_length=30, choices=LOCALES, unique=True)
+
+    class Meta:
+        db_table = "monthly_pick"

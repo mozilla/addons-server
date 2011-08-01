@@ -43,7 +43,7 @@ from versions.models import Version
 
 from . import tasks
 from .forms import (BulkValidationForm, FeaturedCollectionFormSet, NotifyForm,
-                    OAuthConsumerForm)
+                    OAuthConsumerForm, MonthlyPickFormSet)
 from .models import ValidationJob, EmailPreviewTopic, ValidationJobTally
 
 log = commonware.log.getLogger('z.zadmin')
@@ -392,6 +392,16 @@ def features(request):
         messages.success(request, 'Changes successfully saved.')
         return redirect('zadmin.features')
     return jingo.render(request, 'zadmin/features.html', dict(form=form))
+
+
+@admin.site.admin_view
+def monthly_pick(request):
+    form = MonthlyPickFormSet(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        messages.success(request, 'Changes successfully saved.')
+        return redirect('zadmin.monthly_pick')
+    return jingo.render(request, 'zadmin/monthly_pick.html', dict(form=form))
 
 
 @admin.site.admin_view

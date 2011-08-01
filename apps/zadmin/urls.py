@@ -40,7 +40,10 @@ urlpatterns = patterns('',
         name='zadmin.collections_json'),
     url('^features/featured-collection$', views.featured_collection,
         name='zadmin.featured_collection'),
-
+    
+    url('^monthly-pick$', views.monthly_pick, 
+        name='zadmin.monthly_pick'),
+    
     url('^elastic$', views.elastic, name='zadmin.elastic'),
     url('^mail$', views.mail, name='zadmin.mail'),
     url('^celery$', views.celery, name='zadmin.celery'),
