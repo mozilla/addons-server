@@ -362,6 +362,10 @@ class TestAddonModels(amo.tests.TestCase):
         f.update(no_restart=True)
         eq_(Addon.objects.get(pk=3615).is_no_restart(), True)
 
+        a.versions.all().delete()
+        a._current_version = None
+        eq_(a.is_no_restart(), False)
+
     def test_is_featured(self):
         """Test if an add-on is globally featured"""
         a = Addon.objects.get(pk=1003)

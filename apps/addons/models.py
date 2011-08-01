@@ -736,8 +736,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def is_no_restart(self):
         """Is this a no-restart add-on?"""
-        files = self.current_version.all_files
-        return files and files[0].no_restart
+        files = self.current_version and self.current_version.all_files
+        return bool(files and files[0].no_restart)
 
     def is_featured(self, app, lang=None):
         """Is add-on globally featured for this app and language?"""
