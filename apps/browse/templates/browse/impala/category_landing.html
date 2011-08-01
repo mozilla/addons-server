@@ -11,11 +11,11 @@
 
 {% block primary %}
 <section class="primary">
+  {{ impala_breadcrumbs([(url('i_browse.extensions'), _('Extensions')),
+                         (None, category.name)]) }}
   {% set addons = addon_sets['featured'] %}
   {% if addons %}
     <div class="island hero c">
-      {{ impala_breadcrumbs([(url('i_browse.extensions'), _('Extensions')),
-                             (None, category.name)]) }}
       <h1>{{ category.name }}</h1>
       {{ addons[:3]|featured_grid(src='cb-hc-featured',
                                   dl_src='cb-dl-featured') }}
