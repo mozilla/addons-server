@@ -8,7 +8,8 @@ REMOTE_UPDATE_SCRIPT = "/data/bin/update-www.sh"
 
 CELERY_SERVICE_PREFIX = "celeryd-dev"
 
-UPDATE_BRANCH = "origin/master"
+UPDATE_REF = "origin/master"
+UPDATE_VENDOR_REF = None # By default vendor will not update
 
 WEB_HOSTGROUP = "addons-dev"
 CELERY_HOSTGROUP = "addons-celery-dev"

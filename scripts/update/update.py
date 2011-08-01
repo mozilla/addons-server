@@ -101,9 +101,9 @@ def deploy(ctx):
 
 
 @task
-def pre_update(ctx):
+def pre_update(ctx, ref=settings.UPDATE_REF, vendor_ref=settings.UPDATE_VENDOR_REF):
     disable_cron()
-    update_code(settings.UPDATE_BRANCH)
+    update_code(ref, vendor_ref)
 
 
 @task
