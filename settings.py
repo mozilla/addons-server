@@ -341,6 +341,7 @@ INSTALLED_APPS = (
 
     # Third party apps
     'djcelery',
+    'django_extensions',
     'django_nose',
     'gunicorn',
     'piston',
