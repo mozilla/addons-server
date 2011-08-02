@@ -122,8 +122,9 @@ class FeaturedManager(object):
                 'locale', 'application')
         else:
             from addons.models import Addon
-            vals = Addon.objects.valid().values_list(
-                'id', 'type', 'feature__locale', 'feature__application')
+            vals = (Addon.objects.valid().filter(feature__isnull=False)
+                    .values_list('id', 'type', 'feature__locale',
+                                 'feature__application'))
         return [dict(zip(fields, val)) for val in vals]
 
     @classmethod
