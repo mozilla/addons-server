@@ -240,14 +240,14 @@ SORT_CHOICES = (
     (None, _lazy(u'Relevance')),
     ('users', _lazy(u'Most Users')),
     ('rating', _lazy(u'Highest Rating')),
-    ('updated', _lazy(u'Last Update')),
+    ('updated', _lazy(u'Last Updated')),
 )
 
 APP_SORT_CHOICES = (
     (None, _lazy(u'Relevance')),
     ('downloads', _lazy(u'Most Downloads')),
     ('rating', _lazy(u'Highest Rating')),
-    ('updated', _lazy(u'Last Update')),
+    ('updated', _lazy(u'Last Updated')),
 )
 
 
