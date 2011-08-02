@@ -16,6 +16,7 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
+import addons.cron
 from amo.urlresolvers import reverse
 from amo.helpers import urlparams
 from addons.cron import reset_featured_addons
@@ -736,6 +737,7 @@ class BaseSearchToolsTest(amo.tests.TestCase):
         s.addoncategory_set.add(AddonCategory(addon=limon, feature=True))
         s.addoncategory_set.add(AddonCategory(addon=readit, feature=True))
         s.save()
+        addons.cron.reset_featured_addons()
 
 
 class TestSearchToolsPages(BaseSearchToolsTest):

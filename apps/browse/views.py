@@ -11,10 +11,12 @@ from product_details import product_details
 from mobility.decorators import mobile_template
 from tower import ugettext_lazy as _lazy
 
+import amo
 import amo.models
 from amo.models import manual_order
-from addons.models import Addon, Category, AddonCategory
 from amo.urlresolvers import reverse
+from addons.models import Addon, Category, AddonCategory
+from addons.utils import FeaturedManager, CreaturedManager
 from addons.views import BaseFilter, ESBaseFilter
 from translations.query import order_by_translation
 
@@ -368,37 +370,20 @@ class SearchToolsFilter(AddonFilter):
             ('popular', _lazy(u'Downloads')),
             ('rating', _lazy(u'Rating')))
 
-    def filter(self, field):
-        """Get the queryset for the given field."""
-        # Ensure that we can combine distinct filters
-        # (like the featured filter)
-        this_filter = self._filter(field)
-        if this_filter.query.distinct:
-            base_qs = self.base_queryset.distinct()
-        else:
-            base_qs = self.base_queryset
-        return this_filter & base_qs
-
     def filter_featured(self):
         # Featured search add-ons in all locales:
-        featured_search = Q(
-            type=amo.ADDON_SEARCH,
-            feature__application=self.request.APP.id)
+        APP, LANG = self.request.APP, self.request.LANG
+        ids = FeaturedManager.featured_ids(APP, LANG, amo.ADDON_SEARCH)
 
-        # Featured in the search-tools category:
-        featured_search_cat = Q(
-            type__in=(amo.ADDON_EXTENSION, amo.ADDON_SEARCH),
-            addoncategory__category__application=self.request.APP.id,
-            addoncategory__category__slug='search-tools',
-            addoncategory__feature=True)
+        try:
+            search_cat = Category.objects.get(slug='search-tools',
+                                              application=APP.id)
+            others = CreaturedManager.creatured_ids(search_cat, LANG)
+            ids.extend(o for o in others if o not in ids)
+        except Category.DoesNotExist:
+            pass
 
-        q = Addon.objects.valid().filter(
-                        featured_search | featured_search_cat)
-
-        # Need to make the query distinct because
-        # one addon can be in multiple categories (see
-        # addoncategory join above)
-        return q.distinct()
+        return manual_order(Addon.objects.valid(), ids, 'addons.id')
 
 
 class SearchExtensionsFilter(AddonFilter):
