@@ -39,3 +39,6 @@ PACKAGER_PATH = _polite_tmpdir()
 
 # Turn off search engine indexing.
 USE_ELASTIC = False
+
+# Ensure all validation code runs in tests:
+VALIDATE_ADDONS = True

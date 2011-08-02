@@ -36,6 +36,7 @@ class TestUploadValidation(BaseUploadTest):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
 
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_no_html_in_messages(self):
         upload = FileUpload.objects.get(name='invalid-id-20101206.xpi')
         r = self.client.get(reverse('devhub.upload_detail',
@@ -207,6 +208,7 @@ class TestValidateFile(BaseUploadTest):
             shutil.rmtree(self.file_dir)
 
     @attr('validator')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_lazy_validate(self):
         r = self.client.post(reverse('devhub.json_file_validation',
                                      args=[self.addon.slug, self.file.id]),
@@ -226,6 +228,7 @@ class TestValidateFile(BaseUploadTest):
 
     @mock.patch.object(settings, 'EXPOSE_VALIDATOR_TRACEBACKS', False)
     @mock.patch('devhub.tasks.run_validator')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_validator_errors(self, v):
         v.side_effect = ValueError('catastrophic failure in amo-validator')
         r = self.client.post(reverse('devhub.json_file_validation',
@@ -238,6 +241,7 @@ class TestValidateFile(BaseUploadTest):
             'ValueError: catastrophic failure in amo-validator')
 
     @mock.patch('devhub.tasks.run_validator')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_validator_sets_binary_flag(self, v):
         v.return_value = json.dumps({
             "errors": 0,
@@ -264,6 +268,7 @@ class TestValidateFile(BaseUploadTest):
         eq_(addon.binary, True)
 
     @mock.patch('devhub.tasks.run_validator')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_linkify_validation_messages(self, v):
         v.return_value = json.dumps({
             "errors": 0,
@@ -296,6 +301,7 @@ class TestValidateFile(BaseUploadTest):
         eq_(doc('a').text(), 'https://bugzilla.mozilla.org/')
 
     @mock.patch.object(settings, 'EXPOSE_VALIDATOR_TRACEBACKS', False)
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     @mock.patch('devhub.tasks.run_validator')
     def test_hide_validation_traceback(self, run_validator):
         run_validator.side_effect = RuntimeError('simulated task error')
@@ -308,6 +314,7 @@ class TestValidateFile(BaseUploadTest):
         eq_(data['error'], 'RuntimeError: simulated task error')
 
     @mock.patch.object(waffle, 'flag_is_active')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     @mock.patch('devhub.tasks.run_validator')
     def test_rdf_parse_errors_are_ignored(self, run_validator,
                                           flag_is_active):
@@ -487,6 +494,7 @@ class TestUploadCompatCheck(BaseUploadTest):
         # TODO(Kumar) actually check the form here after bug 671587
 
     @mock.patch('devhub.tasks.run_validator')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_js_upload_validates_compatibility(self, run_validator):
         run_validator.return_value = ''  # Empty to simulate unfinished task.
         data = self.upload()
@@ -497,6 +505,7 @@ class TestUploadCompatCheck(BaseUploadTest):
         eq_(data['url'], self.poll_upload_status_url(data['upload']))
 
     @mock.patch('devhub.tasks.run_validator')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_js_poll_upload_status(self, run_validator):
         run_validator.return_value = self.compatibility_result
         data = self.upload()
@@ -508,6 +517,7 @@ class TestUploadCompatCheck(BaseUploadTest):
                                  % data['validation']['messages'])
 
     @mock.patch('devhub.tasks.run_validator')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_compat_result_report(self, run_validator):
         run_validator.return_value = self.compatibility_result
         data = self.upload()
@@ -541,6 +551,7 @@ class TestUploadCompatCheck(BaseUploadTest):
 
     @mock.patch.object(waffle, 'flag_is_active')
     @mock.patch('devhub.tasks.run_validator')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_rdf_parse_errors_are_ignored(self, run_validator,
                                           flag_is_active):
         run_validator.return_value = self.compatibility_result
@@ -555,6 +566,7 @@ class TestUploadCompatCheck(BaseUploadTest):
         eq_(data['validation']['messages'], [])
 
     @mock.patch('devhub.tasks.run_validator')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_compat_summary_overrides(self, run_validator):
         run_validator.return_value = json.dumps({
             "success": True,
@@ -579,6 +591,7 @@ class TestUploadCompatCheck(BaseUploadTest):
         eq_(data['validation']['warnings'], 3)
 
     @mock.patch('devhub.tasks.run_validator')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_compat_error_type_override(self, run_validator):
         run_validator.return_value = json.dumps({
             "success": True,
