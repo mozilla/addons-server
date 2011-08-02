@@ -330,7 +330,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     @classmethod
     def from_upload(cls, upload, platforms):
         from files.utils import parse_addon
-        data = parse_addon(upload.path)
+        data = parse_addon(upload)
         fields = cls._meta.get_all_field_names()
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
         addon.status = amo.STATUS_NULL

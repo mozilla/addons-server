@@ -426,7 +426,8 @@
 
                     $(".platform ul.error").empty();
                     $(".platform ul.errorlist").empty();
-                    if (results.validation.detected_type == 'search') {
+                    if (results.validation.detected_type == 'search' ||
+                        results.validation.detected_type == 'webapp') {
                         $(".platform").hide();
                     } else {
                         $(".platform:hidden").show();

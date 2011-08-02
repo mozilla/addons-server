@@ -787,8 +787,8 @@ def json_upload_detail(request, upload, addon_slug=None):
     if result['validation']:
         if result['validation']['errors'] == 0:
             try:
-                apps = parse_addon(upload.path, addon=addon).get('apps', [])
-                app_ids = set([a.id for a in apps])
+                pkg = parse_addon(upload, addon=addon)
+                app_ids = set([a.id for a in pkg.get('apps', [])])
                 supported_platforms = []
                 if amo.MOBILE.id in app_ids:
                     supported_platforms.extend(amo.MOBILE_PLATFORMS.keys())

@@ -1,6 +1,7 @@
 from datetime import datetime
 import hashlib
 import logging
+import os
 import urllib
 import urllib2
 import urlparse
@@ -64,6 +65,7 @@ class FakeUpload(object):
 
     def __init__(self, path, hash, validation):
         self.path = path
+        self.name = os.path.basename(path)
         self.hash = hash
         self.validation = validation
 

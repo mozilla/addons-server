@@ -48,9 +48,10 @@ class UploadTest(amo.tests.TestCase):
     def xpi_path(self, name):
         return self.file_path(name + '.xpi')
 
-    def get_upload(self, filename, validation=None):
-        xpi = open(self.file_path(filename)).read()
-        upload = FileUpload.from_post([xpi], filename=filename, size=1234)
+    def get_upload(self, filename=None, abspath=None, validation=None):
+        xpi = open(abspath if abspath else self.file_path(filename)).read()
+        upload = FileUpload.from_post([xpi], filename=abspath or filename,
+                                      size=1234)
         upload.validation = (validation or
                              json.dumps(dict(errors=0, warnings=1, notices=2,
                                              metadata={}, messages=[])))
@@ -627,7 +628,8 @@ class TestParseSearch(amo.tests.TestCase):
 
 @mock.patch('files.utils.parse_xpi')
 @mock.patch('files.utils.parse_search')
-def test_parse_addon(search_mock, xpi_mock):
+@mock.patch('files.utils.WebAppParser.parse')
+def test_parse_addon(webapp_mock, search_mock, xpi_mock):
     parse_addon('file.xpi', None)
     xpi_mock.assert_called_with('file.xpi', None)
 
@@ -636,6 +638,12 @@ def test_parse_addon(search_mock, xpi_mock):
 
     parse_addon('file.jar', None)
     xpi_mock.assert_called_with('file.jar', None)
+
+    parse_addon('file.webapp', None)
+    webapp_mock.assert_called_with('file.webapp', None)
+
+    parse_addon('file.json', None)
+    webapp_mock.assert_called_with('file.json', None)
 
 
 def test_parse_xpi():
