@@ -229,7 +229,7 @@ def login_link(context):
 @jinja2.contextfunction
 def page_title(context, title):
     if context.get('WEBAPPS'):
-        return u'%s :: %s' % (smart_unicode(title), _('Web Appstore'))
+        return u'%s :: %s' % (smart_unicode(title), _('Apps Marketplace'))
     else:
         app = context['request'].APP
         return u'%s :: %s' % (smart_unicode(title), page_name(app))
