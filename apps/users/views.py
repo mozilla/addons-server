@@ -27,11 +27,13 @@ from amo.utils import send_mail, send_abuse_report
 from addons.models import Addon
 from access import acl
 from bandwagon.models import Collection
+from users.models import UserNotification
+import users.notifications as notifications
 
 from .models import UserProfile
 from .signals import logged_out
 from . import forms
-from .utils import EmailResetCode
+from .utils import EmailResetCode, UnsubscribeCode
 import tasks
 
 log = commonware.log.getLogger('z.users')
@@ -601,3 +603,37 @@ def password_reset_confirm(request, uidb36=None, token=None):
 
     return jingo.render(request, 'users/pwreset_confirm.html',
                         {'form': form, 'validlink': validlink})
+
+
+@never_cache
+def unsubscribe(request, hash=None, token=None, perm_setting=None):
+    """
+    Pulled from django contrib so that we can add user into the form
+    so then we can show relevant messages about the user.
+    """
+    assert hash is not None and token is not None
+    user = None
+
+    try:
+        email = UnsubscribeCode.parse(token, hash)
+        user = UserProfile.objects.get(email=email)
+    except (ValueError, UserProfile.DoesNotExist):
+        pass
+
+    perm_settings = []
+    if user is not None:
+        unsubscribed = True
+        if not perm_setting:
+            # TODO: make this work. nothing currently links to it, though.
+            perm_settings = [l for l in notifications.NOTIFICATIONS
+                             if l.mandatory==False]
+        else:
+            perm_setting = notifications.NOTIFICATIONS_BY_SHORT[perm_setting]
+            UserNotification.update_or_create(update={'enabled': False},
+                    user=user, notification_id=perm_setting.id)
+            perm_settings = [perm_setting]
+    else:
+        unsubscribed = False
+
+    return jingo.render(request, 'users/unsubscribe.html',
+            {'unsubscribed': unsubscribed, 'perm_settings': perm_settings})

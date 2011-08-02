@@ -38,6 +38,7 @@ from . import logger_log as log
 from translations.models import Translation
 from users.models import UserNotification
 import users.notifications as notifications
+from users.utils import UnsubscribeCode
 
 
 def urlparams(url_, hash=None, **query):
@@ -148,14 +149,6 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
         recipient_list = [e for e in recipient_list
                           if e and perms.setdefault(e, d)]
 
-        # Add footer
-        template = loader.get_template('amo/emails/unsubscribe.ltxt')
-        from amo.helpers import absolutify
-        context = {'message': message, 'perm_setting': perm_setting.label,
-                   'unsubscribe': absolutify(reverse('users.edit_impala')),
-                   'SITE_URL': settings.SITE_URL}
-        message = template.render(Context(context, autoescape=False))
-
     # Prune blacklisted emails.
     if use_blacklist:
         white_list = []
@@ -169,8 +162,25 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 
     try:
         if white_list:
-            result = django_send_mail(subject, message, from_email, white_list,
-                                      fail_silently=False)
+            if perm_setting:
+                template = loader.get_template('amo/emails/unsubscribe.ltxt')
+                for recipient in white_list:
+                    # Add unsubscribe link to footer
+                    token, hash = UnsubscribeCode.create(recipient)
+                    from amo.helpers import absolutify
+                    url = absolutify(reverse('users.unsubscribe',
+                            args=[token, hash, perm_setting.short]))
+                    context = {'message': message, 'unsubscribe': url,
+                               'perm_setting': perm_setting.label,
+                               'SITE_URL': settings.SITE_URL}
+                    message = template.render(Context(context,
+                                                      autoescape=False))
+
+                    result = django_send_mail(subject, message, from_email,
+                                              [recipient], fail_silently=False)
+            else:
+                result = django_send_mail(subject, message, from_email, white_list,
+                                          fail_silently=False)
         else:
             result = True
     except Exception as e:

@@ -23,7 +23,7 @@ from amo.tests.test_helpers import AbuseBase
 from devhub.models import ActivityLog
 from users.models import BlacklistedPassword, UserProfile, UserNotification
 import users.notifications as email
-from users.utils import EmailResetCode
+from users.utils import EmailResetCode, UnsubscribeCode
 
 
 class UserViewBase(amo.tests.TestCase):
@@ -356,6 +356,78 @@ class TestLogin(UserViewBase):
         data.update({'recaptcha': '', 'recaptcha_shown': ''})
         res = self.client.post(self.url, data=data)
         eq_(res.status_code, 302)
+
+
+class TestUnsubscribe(UserViewBase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.user = User.objects.get(email='editor@mozilla.com')
+        self.user_profile = self.user.get_profile()
+
+    def test_correct_url_update_notification(self):
+        # Make sure the user is subscribed
+        perm_setting = email.NOTIFICATIONS[0]
+        un = UserNotification.objects.create(notification_id=perm_setting.id,
+                                             user=self.user_profile,
+                                             enabled=True)
+
+        # Create a URL
+        token, hash = UnsubscribeCode.create(self.user.email)
+        url = reverse('users.unsubscribe', args=[token, hash,
+                                                 perm_setting.short])
+
+        # Load the URL
+        r = self.client.get(url)
+        doc = pq(r.content)
+
+        # Check that it was successful
+        assert doc('#unsubscribe-success').length
+        assert doc('#standalone').length
+        eq_(doc('#standalone ul li').length, 1)
+
+        # Make sure the user is unsubscribed
+        un = UserNotification.objects.filter(notification_id=perm_setting.id,
+                                             user=self.user)
+        eq_(un.count(), 1)
+        eq_(un.all()[0].enabled, False)
+
+    def test_correct_url_new_notification(self):
+        # Make sure the user is subscribed
+        assert not UserNotification.objects.count()
+
+        # Create a URL
+        perm_setting = email.NOTIFICATIONS[0]
+        token, hash = UnsubscribeCode.create(self.user.email)
+        url = reverse('users.unsubscribe', args=[token, hash,
+                                                 perm_setting.short])
+
+        # Load the URL
+        r = self.client.get(url)
+        doc = pq(r.content)
+
+        # Check that it was successful
+        assert doc('#unsubscribe-success').length
+        assert doc('#standalone').length
+        eq_(doc('#standalone ul li').length, 1)
+
+        # Make sure the user is unsubscribed
+        un = UserNotification.objects.filter(notification_id=perm_setting.id,
+                                             user=self.user)
+        eq_(un.count(), 1)
+        eq_(un.all()[0].enabled, False)
+
+    def test_wrong_url(self):
+        perm_setting = email.NOTIFICATIONS[0]
+        token, hash = UnsubscribeCode.create(self.user.email)
+        hash = hash[::-1]  # Reverse the hash, so it's wrong
+
+        url = reverse('users.unsubscribe', args=[token, hash,
+                                                 perm_setting.short])
+        r = self.client.get(url)
+        doc = pq(r.content)
+
+        eq_(doc('#unsubscribe-fail').length, 1)
 
 
 class TestReset(UserViewBase):
