@@ -46,7 +46,7 @@ def extract(addon):
     d['_boost'] = addon.average_daily_users ** .1
     # Double the boost if the add-on is public.
     if addon.status == amo.STATUS_PUBLIC:
-        d['_boost'] *= 2
+        d['_boost'] = max(d['_boost'], 1) * 2
     return d
 
 
