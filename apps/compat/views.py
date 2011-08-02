@@ -91,7 +91,7 @@ def usage_stats(request, compat, app, binary=None):
     qs = (AppCompat.search().order_by('-usage.%s' % app).values_dict()
           .filter(**{'support.%s.max__gte' % app: vint(compat['previous'])}))
     if binary is not None:
-        qs = qs.filter(binary=True)
+        qs = qs.filter(binary=binary)
     addons = amo.utils.paginate(request, qs)
     for obj in addons.object_list:
         obj['usage'] = obj['usage'][app]
