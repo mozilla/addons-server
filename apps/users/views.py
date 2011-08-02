@@ -433,6 +433,7 @@ def profile(request, user_id):
     else:
         fav_coll = []
 
+    edit_any_user = acl.action_allowed(request, 'Admin', 'EditAnyUser')
     own_profile = request.user.is_authenticated() and (
         request.amo_user.id == user.id)
 
@@ -453,7 +454,8 @@ def profile(request, user_id):
     reviews = user.reviews.transform(get_addons)
 
     data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
-            'fav_coll': fav_coll, 'addons': addons, 'own_profile': own_profile,
+            'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
+            'addons': addons, 'own_profile': own_profile,
             'abuse_form': AbuseForm(request=request)}
 
     return jingo.render(request, 'users/profile.html', data)
