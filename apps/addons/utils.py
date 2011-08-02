@@ -139,7 +139,7 @@ class FeaturedManager(object):
         by_locale = sorted_groupby(qs, itemgetter('locale'))
         by_app = sorted_groupby(qs, itemgetter('application'))
 
-        pipe = cls.redis().pipeline()
+        pipe = cls.redis().pipeline(transaction=False)
         pipe.delete(cls.by_id)
         for row in qs:
             pipe.sadd(cls.by_id, row['addon'])
@@ -212,7 +212,7 @@ class CreaturedManager(object):
                     d['feature_locales'] = locale.strip()
                     qs.append(d)
 
-        pipe = cls.redis().pipeline()
+        pipe = cls.redis().pipeline(transaction=False)
         for category, rows in sorted_groupby(qs, itemgetter('category')):
             locale_getter = itemgetter('feature_locales')
             for locale, rs in sorted_groupby(rows, locale_getter):
