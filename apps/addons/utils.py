@@ -9,7 +9,7 @@ from django.utils.encoding import smart_str
 import commonware.log
 import redisutils
 
-from amo.utils import sorted_groupby
+from amo.utils import sorted_groupby, memoize
 from translations.models import Translation
 
 safe_key = lambda x: hashlib.md5(smart_str(x).lower().strip()).hexdigest()
@@ -155,6 +155,7 @@ class FeaturedManager(object):
         pipe.execute()
 
     @classmethod
+    @memoize(prefix, time=60 * 10)
     def featured_ids(cls, app, lang=None, type=None):
         redis = cls.redis()
         base = (cls.by_id, cls.by_app(app.id))
@@ -225,6 +226,7 @@ class CreaturedManager(object):
         pipe.execute()
 
     @classmethod
+    @memoize(prefix, time=60 * 10)
     def creatured_ids(cls, category, lang):
         redis = cls.redis()
         all_ = redis.smembers(cls.by_cat(category.id))
