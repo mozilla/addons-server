@@ -73,7 +73,7 @@ def disable_cron(ctx):
 @task
 def install_cron(ctx):
     with ctx.lcd(settings.SRC_DIR):
-        ctx.local('./scripts/crontab/gen-cron.py -z %s -r %s/bin -u apache > /etc/cron.d/.%s' %
+        ctx.local('python2.6 ./scripts/crontab/gen-cron.py -z %s -r %s/bin -u apache > /etc/cron.d/.%s' %
                   (settings.SRC_DIR, settings.REMORA_DIR, settings.CRON_NAME))
         ctx.local('mv /etc/cron.d/.%s /etc/cron.d/%s' % (settings.CRON_NAME, settings.CRON_NAME))
 
