@@ -40,10 +40,12 @@ from piston.models import Consumer
 import amo
 from amo.tests import TestCase
 from amo.urlresolvers import reverse
+from api.authentication import AMOOAuthAuthentication
 from addons.models import Addon, BlacklistedGuid
 from devhub.models import ActivityLog
 from perf.models import (Performance, PerformanceAppVersions,
                          PerformanceOSVersion)
+from test_utils import RequestFactory
 from translations.models import Translation
 from versions.models import AppVersion, Version
 
@@ -182,6 +184,7 @@ class BaseOAuth(TestCase):
 
     def setUp(self):
         self.editor = User.objects.get(email='editor@mozilla.com')
+        self.admin = User.objects.get(email='admin@mozilla.com')
         consumers = []
         for status in ('accepted', 'pending', 'canceled', ):
             c = Consumer(name='a', status=status, user=self.editor)
@@ -216,6 +219,46 @@ class BaseOAuth(TestCase):
         c.secret = 'mom'
         r = client.get('oauth.request_token', c, callback=True)
         eq_(r.content, 'Invalid Consumer.')
+
+    @patch('piston.authentication.oauth.OAuthAuthentication.is_authenticated')
+    def _test_auth(self, pk, is_authenticated, two_legged=True):
+        request = RequestFactory().get('/en-US/firefox/2/api/2/user/',
+                                       data={'authenticate_as': pk})
+        request.user = None
+
+        def alter_request(*args, **kw):
+            request.user = self.admin
+            return True
+        is_authenticated.return_value = True
+        is_authenticated.side_effect = alter_request
+
+        auth = AMOOAuthAuthentication()
+        auth.two_legged = two_legged
+        auth.is_authenticated(request)
+        return request
+
+    def test_login_nonexistant(self):
+        eq_(self.admin, self._test_auth(9999).user)
+
+    def test_login_deleted(self):
+        # If _test_auth returns self.admin, that means the user was
+        # not altered to the user set in authenticate_as.
+        self.editor.get_profile().update(deleted=True)
+        pk = self.editor.get_profile().pk
+        eq_(self.admin, self._test_auth(pk).user)
+
+    def test_login_unconfirmed(self):
+        self.editor.get_profile().update(confirmationcode='something')
+        pk = self.editor.get_profile().pk
+        eq_(self.admin, self._test_auth(pk).user)
+
+    def test_login_works(self):
+        pk = self.editor.get_profile().pk
+        eq_(self.editor, self._test_auth(pk).user)
+
+    def test_login_three_legged(self):
+        pk = self.editor.get_profile().pk
+        eq_(self.admin, self._test_auth(pk, two_legged=False).user)
 
 
 def activitylog_count(type=None):
@@ -267,6 +310,17 @@ class TestAddon(BaseOAuth):
         self.accepted_consumer.save()
         r = self.make_create_request(self.create_data)
         eq_(r.status_code, 401)
+
+    def test_create_user_altered(self):
+        data = self.create_data
+        data['authenticate_as'] = self.editor.get_profile().pk
+        r = self.make_create_request(data)
+        eq_(r.status_code, 200)
+
+        id = json.loads(r.content)['id']
+        ad = Addon.objects.get(pk=id)
+        eq_(len(ad.authors.all()), 1)
+        eq_(ad.authors.all()[0].pk, self.editor.get_profile().pk)
 
     def test_create(self):
         # License (req'd): MIT, GPLv2, GPLv3, LGPLv2.1, LGPLv3, MIT, BSD, Other
