@@ -42,7 +42,7 @@
       <li><a href="#responses">All Responses</a></li>
       <li><a href="#errors">Redirects and Errors</a></li>
       <li><a href="#celery">Celery</a></li>
-      <li><a href="#blocklist">Blocklist Perf</a></li>
+      <li><a href="#guid-search">GUID Search Perf</a></li>
     </ul>
     <ul id=sizes>
       <li><a href="{{ request.get_full_path()|urlparams(width=300, height=None) }}">
@@ -70,7 +70,7 @@
     {% call grid() %}
       target=sumSeries({{ site }}.celery.tasks.pending.*.*.*)&target=nonNegativeDerivative(sumSeries({{ site }}.celery.tasks.total.*.*.*))&target=nonNegativeDerivative(sumSeries({{ site }}.celery.tasks.failed.*.*.*))
     {% endcall %}
-    <h2 id="blocklist">Blocklist Perf</h2>
+    <h2 id="guid-search">GUID Search Perf</h2>
     {% call grid() %}
     &target=stats.timers.{{ site }}.view.api.views.guid_search.GET.lower&target=stats.timers.{{ site }}.view.api.views.guid_search.GET.mean&target=stats.timers.{{ site }}.view.api.views.guid_search.GET.upper_90&target=scale%28stats.timers.{{ site }}.view.api.views.guid_search.GET.count%2C%200.01%29
     {% endcall %}
