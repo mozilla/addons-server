@@ -12,7 +12,7 @@ _src_dir = lambda *p: os.path.join(settings.SRC_DIR, *p)
 
 
 def git_update(ctx, ref):
-    ctx.local("git fetch -t")
+    ctx.local("git fetch && git fetch -t")
     ctx.local("git checkout -f %s" % ref)
     ctx.local("git submodule sync")
     ctx.local("git submodule update --init")
@@ -49,12 +49,12 @@ def update_code(ctx, ref='origin/master', vendor_ref='origin/master'):
 
 
 @task
-def update_info(ctx):
+def update_info(ctx, ref='origin/master', vendor_ref='origin/master'):
     with ctx.lcd(settings.SRC_DIR):
         ctx.local("git status")
         ctx.local("git log -1")
         ctx.local("/bin/bash -c 'source /etc/bash_completion.d/git && __git_ps1'")
-        ctx.local('git show -s origin/master --pretty="format:%h" > media/git-rev.txt')
+        ctx.local('git show -s {0} --pretty="format:%h" > media/git-rev.txt'.format(ref))
 
 
 @task
@@ -105,7 +105,7 @@ def pre_update(ctx, ref=settings.UPDATE_REF, vendor_ref=settings.UPDATE_VENDOR_R
     ctx.local('date')
     disable_cron()
     update_code(ref, vendor_ref)
-    update_info()
+    update_info(ref, vendor_ref)
 
 
 @task
