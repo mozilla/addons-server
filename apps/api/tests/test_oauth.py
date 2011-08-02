@@ -89,8 +89,10 @@ class OAuthClient(Client):
     signature_method = oauth.SignatureMethod_HMAC_SHA1()
 
     def get(self, url, consumer=None, token=None, callback=False,
-            verifier=None):
+            verifier=None, params=None):
         url = get_absolute_url(url)
+        if params:
+            url = '%s?%s' % (url, urllib.urlencode(params))
         req = oauth.Request(method='GET', url=url,
                             parameters=_get_args(consumer, callback=callback,
                                                  verifier=verifier))
@@ -659,26 +661,32 @@ class TestPerformance(BaseOAuth):
                     self.token, data=self.data)
         data = self.data.copy()
         data['average'] = 0.2
-        res = client.put(('api.performance', 3615), self.accepted_consumer,
-                          self.token, data=data)
+        pk = Performance.objects.all()[0].pk
+        res = client.put(('api.performance', pk), self.accepted_consumer,
+                         self.token, data=data)
         assert res.status_code == 200, res.status_code
         eq_(Performance.objects.count(), 1)
         eq_(Performance.objects.all()[0].average, 0.2)
 
-    def test_create_perf_wrong(self):
-        data = self.data.copy()
-        data['addon'] = '3616'
-        res = client.post('api.performance', self.accepted_consumer,
-                          self.token, data=data)
-        assert res.status_code == 400, res.status_code
-        assert 'addon' in res.content
-        eq_(Performance.objects.count(), 0)
-
-    def test_update_perf_wrong(self):
+    def test_delete_perf(self):
         client.post('api.performance', self.accepted_consumer,
                     self.token, data=self.data)
-        data = self.data.copy()
-        data['average'] = 0.2
-        res = client.put(('api.performance', 3616), self.accepted_consumer,
-                          self.token, data=data)
-        assert res.status_code == 410, res.status_code
+        pk = Performance.objects.all()[0].pk
+        client.delete(('api.performance', pk),
+                      self.accepted_consumer, self.token)
+        eq_(Performance.objects.count(), 0)
+
+    def test_paginate(self):
+        for x in range(0, 25):
+            PerformanceAppVersions.objects.create(app='1', version=x)
+        res = client.get('api.performance.app', self.accepted_consumer,
+                         self.token)
+        data = json.loads(res.content)
+        eq_(data['objects'][0]['version'], '24')
+        eq_(data['count'], 26)
+        eq_(data['num_pages'], 2)
+
+        res = client.get('api.performance.app', self.accepted_consumer,
+                         self.token, params={'page': 2})
+        data = json.loads(res.content)
+        eq_(data['objects'][0]['version'], '4')

@@ -69,6 +69,17 @@ user_resource = Resource(handler=handlers.UserHandler, **ad)
 addons_resource = Resource(handler=handlers.AddonsHandler, **ad)
 version_resource = Resource(handler=handlers.VersionsHandler, **ad)
 performance_resource = Resource(handler=handlers.PerformanceHandler, **ad)
+app_resource = Resource(handler=handlers.PerformanceAppHandler, **ad)
+os_resource = Resource(handler=handlers.PerformanceOSHandler, **ad)
+
+performance_patterns = patterns('',
+    url(r'^$', performance_resource, name='api.performance'),
+    url(r'^(?P<id>\d+)$', performance_resource, name='api.performance'),
+    url(r'^app/$', app_resource, name='api.performance.app'),
+    url(r'^app/(?P<id>\d+)$', app_resource, name='api.performance.app'),
+    url(r'^os/$', os_resource, name='api.performance.os'),
+    url(r'^os/(?P<id>\d+)$', os_resource, name='api.performance.os'),
+)
 
 piston_patterns = patterns('',
     url(r'^user/$', user_resource, name='api.user'),
@@ -78,9 +89,7 @@ piston_patterns = patterns('',
         name='api.versions'),
     url(r'^addon/%s/version/(?P<version_id>\d+)$' % ADDON_ID,
         version_resource, name='api.version'),
-    url(r'^performance/$', performance_resource, name='api.performance'),
-    url(r'^performance/%s$' % ADDON_ID, performance_resource,
-        name='api.performance'),
+    url(r'^performance/', include(performance_patterns)),
 )
 
 urlpatterns = patterns('',

@@ -25,6 +25,7 @@ class PerformanceAppVersions(amo.models.ModelBase):
 
     class Meta:
         db_table = 'perf_appversions'
+        ordering = ('-id',)
 
 
 class PerformanceOSVersion(amo.models.ModelBase):
@@ -34,6 +35,7 @@ class PerformanceOSVersion(amo.models.ModelBase):
 
     class Meta:
         db_table = 'perf_osversions'
+        ordering = ('-id',)
 
     def __unicode__(self):
         return self.name or '%s %s' % (self.os, self.version)

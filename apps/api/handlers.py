@@ -3,6 +3,7 @@ import functools
 from django.db import transaction
 
 import commonware.log
+import happyforms
 from piston.handler import AnonymousBaseHandler, BaseHandler
 from piston.utils import rc, throttle
 from tower import ugettext as _
@@ -10,9 +11,10 @@ from tower import ugettext as _
 from access import acl
 from addons.forms import AddonForm
 from addons.models import Addon
+from amo.utils import paginate
 from devhub.forms import LicenseForm
-from perf.forms import PerformanceForm
-from perf.models import Performance
+from perf.models import (Performance, PerformanceAppVersions,
+                         PerformanceOSVersion)
 from users.models import UserProfile
 from versions.forms import XPIForm
 from versions.models import Version, ApplicationsVersions
@@ -231,25 +233,70 @@ class VersionsHandler(BaseHandler, BaseVersionHandler):
         return addon.versions.all()
 
 
-class PerformanceHandler(BaseHandler):
-    allowed_methods = ('PUT', 'POST')
-    model = Performance
-    fields = ('addon', 'average', 'appversion', 'osversion', 'test')
+class AMOBaseHandler(BaseHandler):
+    """
+    A generic Base Handler that automates create, delete, read and update.
+    For list, we use a pagination handler rather than just returning all.
+    For list, if an id is given, only one object is returned.
+    For delete and update the id of the record is required.
+    """
+
+    def get_form(self, *args, **kw):
+        class Form(happyforms.ModelForm):
+            class Meta:
+                model = self.model
+        return Form(*args, **kw)
+
+    def delete(self, request, id):
+        try:
+            return self.model.objects.get(pk=id).delete()
+        except Performance.DoesNotExist:
+            return rc.NOT_HERE
 
     def create(self, request):
-        form = PerformanceForm(request.POST)
+        form = self.get_form(request.POST)
         if form.is_valid():
             form.save()
             return rc.CREATED
         return _form_error(form)
 
-    def update(self, request, addon_id):
+    def read(self, request, id=None):
+        if id:
+            try:
+                return self.model.objects.get(pk=id)
+            except Performance.DoesNotExist:
+                return rc.NOT_HERE
+        else:
+            paginator = paginate(request, self.model.objects.all())
+            return {'objects': paginator.object_list,
+                    'num_pages': paginator.paginator.num_pages,
+                    'count': paginator.paginator.count}
+
+    def update(self, request, id):
         try:
-            perf = Performance.objects.get(addon=addon_id)
+            obj = self.model.objects.get(pk=id)
         except Performance.DoesNotExist:
             return rc.NOT_HERE
-        form = PerformanceForm(request.POST, instance=perf)
+        form = self.get_form(request.POST, instance=obj)
         if form.is_valid():
             form.save()
             return rc.ALL_OK
         return _form_error(form)
+
+
+class PerformanceHandler(AMOBaseHandler):
+    allowed_methods = ('DELETE', 'GET', 'POST', 'PUT')
+    model = Performance
+    fields = ('id', 'addon', 'average', 'appversion', 'osversion', 'test')
+
+
+class PerformanceAppHandler(AMOBaseHandler):
+    allowed_methods = ('DELETE', 'GET', 'POST', 'PUT')
+    model = PerformanceAppVersions
+    fields = ('id', 'app', 'version')
+
+
+class PerformanceOSHandler(AMOBaseHandler):
+    allowed_methods = ('DELETE', 'GET', 'POST', 'PUT')
+    model = PerformanceOSVersion
+    fields = ('id', 'os', 'version', 'name')
