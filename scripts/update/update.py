@@ -104,6 +104,7 @@ def deploy(ctx):
 def pre_update(ctx, ref=settings.UPDATE_REF, vendor_ref=settings.UPDATE_VENDOR_REF):
     disable_cron()
     update_code(ref, vendor_ref)
+    update_info()
 
 
 @task
