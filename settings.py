@@ -289,7 +289,7 @@ MIDDLEWARE_CLASSES = (
     # This should come after authentication middleware
     'access.middleware.ACLMiddleware',
 
-    'commonware.middleware.HidePasswordOnException',
+    'commonware.middleware.ScrubRequestOnException',
 )
 
 # Auth
