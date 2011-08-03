@@ -3,9 +3,11 @@ import json
 import os
 import shutil
 import sys
+import tempfile
 import traceback
 
 from django.conf import settings
+from django import forms
 
 import mock
 from nose.plugins.attrib import attr
@@ -22,7 +24,7 @@ from amo.urlresolvers import reverse
 from applications.models import AppVersion, Application
 from files.models import File, FileUpload, FileValidation
 from files.tests.test_models import UploadTest as BaseUploadTest
-from files.utils import parse_addon
+from files.utils import parse_addon, WebAppParser
 from users.models import UserProfile
 from zadmin.models import ValidationResult
 
@@ -36,6 +38,7 @@ class TestUploadValidation(BaseUploadTest):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
 
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_no_html_in_messages(self):
         upload = FileUpload.objects.get(name='invalid-id-20101206.xpi')
         r = self.client.get(reverse('devhub.upload_detail',
@@ -68,7 +71,7 @@ class TestUploadErrors(BaseUploadTest):
     def test_dupe_uuid(self, flag_is_active):
         flag_is_active.return_value = True
         addon = Addon.objects.get(pk=3615)
-        d = parse_addon(self.get_upload('extension.xpi').path)
+        d = parse_addon(self.get_upload('extension.xpi'))
         addon.update(guid=d['guid'])
 
         dupe_xpi = self.get_upload('extension.xpi')
@@ -207,6 +210,7 @@ class TestValidateFile(BaseUploadTest):
             shutil.rmtree(self.file_dir)
 
     @attr('validator')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_lazy_validate(self):
         r = self.client.post(reverse('devhub.json_file_validation',
                                      args=[self.addon.slug, self.file.id]),
@@ -226,6 +230,7 @@ class TestValidateFile(BaseUploadTest):
 
     @mock.patch.object(settings, 'EXPOSE_VALIDATOR_TRACEBACKS', False)
     @mock.patch('devhub.tasks.run_validator')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_validator_errors(self, v):
         v.side_effect = ValueError('catastrophic failure in amo-validator')
         r = self.client.post(reverse('devhub.json_file_validation',
@@ -238,6 +243,7 @@ class TestValidateFile(BaseUploadTest):
             'ValueError: catastrophic failure in amo-validator')
 
     @mock.patch('devhub.tasks.run_validator')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_validator_sets_binary_flag(self, v):
         v.return_value = json.dumps({
             "errors": 0,
@@ -264,6 +270,7 @@ class TestValidateFile(BaseUploadTest):
         eq_(addon.binary, True)
 
     @mock.patch('devhub.tasks.run_validator')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_linkify_validation_messages(self, v):
         v.return_value = json.dumps({
             "errors": 0,
@@ -296,6 +303,7 @@ class TestValidateFile(BaseUploadTest):
         eq_(doc('a').text(), 'https://bugzilla.mozilla.org/')
 
     @mock.patch.object(settings, 'EXPOSE_VALIDATOR_TRACEBACKS', False)
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     @mock.patch('devhub.tasks.run_validator')
     def test_hide_validation_traceback(self, run_validator):
         run_validator.side_effect = RuntimeError('simulated task error')
@@ -308,6 +316,7 @@ class TestValidateFile(BaseUploadTest):
         eq_(data['error'], 'RuntimeError: simulated task error')
 
     @mock.patch.object(waffle, 'flag_is_active')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     @mock.patch('devhub.tasks.run_validator')
     def test_rdf_parse_errors_are_ignored(self, run_validator,
                                           flag_is_active):
@@ -487,6 +496,7 @@ class TestUploadCompatCheck(BaseUploadTest):
         # TODO(Kumar) actually check the form here after bug 671587
 
     @mock.patch('devhub.tasks.run_validator')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_js_upload_validates_compatibility(self, run_validator):
         run_validator.return_value = ''  # Empty to simulate unfinished task.
         data = self.upload()
@@ -497,6 +507,7 @@ class TestUploadCompatCheck(BaseUploadTest):
         eq_(data['url'], self.poll_upload_status_url(data['upload']))
 
     @mock.patch('devhub.tasks.run_validator')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_js_poll_upload_status(self, run_validator):
         run_validator.return_value = self.compatibility_result
         data = self.upload()
@@ -508,6 +519,7 @@ class TestUploadCompatCheck(BaseUploadTest):
                                  % data['validation']['messages'])
 
     @mock.patch('devhub.tasks.run_validator')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_compat_result_report(self, run_validator):
         run_validator.return_value = self.compatibility_result
         data = self.upload()
@@ -541,13 +553,14 @@ class TestUploadCompatCheck(BaseUploadTest):
 
     @mock.patch.object(waffle, 'flag_is_active')
     @mock.patch('devhub.tasks.run_validator')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_rdf_parse_errors_are_ignored(self, run_validator,
                                           flag_is_active):
         run_validator.return_value = self.compatibility_result
         flag_is_active.return_value = True
         addon = Addon.objects.get(pk=3615)
         dupe_xpi = self.get_upload('extension.xpi')
-        d = parse_addon(dupe_xpi.path)
+        d = parse_addon(dupe_xpi)
         # Set up a duplicate upload:
         addon.update(guid=d['guid'])
         data = self.upload(filename=dupe_xpi.path)
@@ -555,6 +568,7 @@ class TestUploadCompatCheck(BaseUploadTest):
         eq_(data['validation']['messages'], [])
 
     @mock.patch('devhub.tasks.run_validator')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_compat_summary_overrides(self, run_validator):
         run_validator.return_value = json.dumps({
             "success": True,
@@ -579,6 +593,7 @@ class TestUploadCompatCheck(BaseUploadTest):
         eq_(data['validation']['warnings'], 3)
 
     @mock.patch('devhub.tasks.run_validator')
+    @mock.patch.object(settings, 'VALIDATE_ADDONS', True)
     def test_compat_error_type_override(self, run_validator):
         run_validator.return_value = json.dumps({
             "success": True,
@@ -600,3 +615,46 @@ class TestUploadCompatCheck(BaseUploadTest):
         data = self.upload()
         eq_(data['validation']['messages'][0]['type'], 'error')
         eq_(data['validation']['messages'][1]['type'], 'warning')
+
+
+class TestWebApps(amo.tests.TestCase):
+
+    def setUp(self):
+        self.webapp_path = os.path.join(os.path.dirname(__file__),
+                                        'addons', 'mozball.webapp')
+        self.tmp_files = []
+
+    def tearDown(self):
+        for tmp in self.tmp_files:
+            os.unlink(tmp)
+
+    def webapp(self, data=None, contents='', suffix='.webapp'):
+        fp, tmp = tempfile.mkstemp(suffix=suffix)
+        self.tmp_files.append(tmp)
+        with open(tmp, 'w') as f:
+            f.write(json.dumps(data) if data else contents)
+        return tmp
+
+    def test_parse(self):
+        wp = WebAppParser().parse(self.webapp_path)
+        eq_(wp['guid'], None)
+        eq_(wp['type'], amo.ADDON_WEBAPP)
+        eq_(wp['summary']['en-us'], u'Exciting Open Web development action!')
+        eq_(wp['summary']['es'],
+            u'¡Acción abierta emocionante del desarrollo del Web!')
+        eq_(wp['summary']['it'],
+            u'Azione aperta emozionante di sviluppo di fotoricettore!')
+        eq_(wp['version'], '1.0')
+        eq_(wp['default_locale'], 'en-us')
+
+    def test_no_locales(self):
+        wp = WebAppParser().parse(self.webapp(dict(name='foo', version='1.0',
+                                                   description='summary')))
+        eq_(wp['summary']['en-us'], u'summary')
+
+    def test_syntax_error(self):
+        with self.assertRaises(forms.ValidationError) as exc:
+            WebAppParser().parse(self.webapp(contents='}]'))
+        m = exc.exception.messages[0]
+        assert m.startswith('Could not parse webapp manifest'), (
+                                                    'Unexpected: %s' % m)

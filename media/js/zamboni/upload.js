@@ -126,7 +126,7 @@
     }
 
     $.fn.addonUploader = function( options ) {
-        var settings = {'filetypes': ['xpi', 'jar', 'xml'], 'getErrors': getErrors, 'cancel': $()};
+        var settings = {'filetypes': ['xpi', 'jar', 'xml', 'webapp', 'json'], 'getErrors': getErrors, 'cancel': $()};
 
         if (options) {
             $.extend( settings, options );
@@ -156,7 +156,14 @@
 
             var ui_parent = $('<div>', {'class': 'invisible-upload prominent cta', 'id': 'upload-file-widget'}),
                 ui_link = $('<a>', {'class': 'button prominent', 'href': '#', 'text': gettext('Select a file...')}),
-                ui_details = $('<div>', {'class': 'upload-details', 'text': gettext('Your add-on should end with .xpi or .jar')});
+                ui_msg,
+                ui_details;
+            if (waffle.flag('accept-webapps')) {
+                ui_msg = gettext('Your add-on should end with .xpi, .jar, .xml, .webapp or .json');
+            } else {
+                ui_msg = gettext('Your add-on should end with .xpi, .jar or .xml');
+            }
+            ui_details = $('<div>', {'class': 'upload-details', 'text': ui_msg});
 
             $upload_field.attr('disabled', false);
             $upload_field.wrap(ui_parent);
@@ -255,6 +262,7 @@
             });
 
             $upload_field.bind("upload_errors", function(e, file, errors, results){
+                var all_errors = $.extend([], errors);  // be nice to other handlers
                 upload_progress_inside.stop().css({'width': '100%'});
 
                 $upload_field.val("").attr('disabled', false);
@@ -268,20 +276,20 @@
                 var error_message = format(ngettext(
                         "Your add-on failed validation with {0} error.",
                         "Your add-on failed validation with {0} errors.",
-                        errors.length), [errors.length]);
+                        all_errors.length), [all_errors.length]);
 
                 $("<strong>").text(error_message).appendTo(upload_results);
 
                 var errors_ul = $('<ul>', {'id': 'upload_errors'});
 
-                $.each(errors.splice(0, 5), function(i, error) {
+                $.each(all_errors.splice(0, 5), function(i, error) {
                     errors_ul.append($("<li>", {'html': error }));
                 });
 
-                if(errors.length > 0) {
+                if(all_errors.length > 0) {
                     var message = format(ngettext('&hellip;and {0} more',
                                                   '&hellip;and {0} more',
-                                                  errors.length), [errors.length]);
+                                                  all_errors.length), [all_errors.length]);
                     errors_ul.append($('<li>', {'html': message}));
                 }
 
@@ -418,7 +426,8 @@
 
                     $(".platform ul.error").empty();
                     $(".platform ul.errorlist").empty();
-                    if (results.validation.detected_type == 'search') {
+                    if (results.validation.detected_type == 'search' ||
+                        results.validation.detected_type == 'webapp') {
                         $(".platform").hide();
                     } else {
                         $(".platform:hidden").show();

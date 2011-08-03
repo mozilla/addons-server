@@ -377,7 +377,7 @@ class NewAddonForm(happyforms.Form):
 
     def clean(self):
         if not self.errors:
-            xpi = parse_addon(self.cleaned_data['upload'].path)
+            xpi = parse_addon(self.cleaned_data['upload'])
             addons.forms.clean_name(xpi['name'])
             self._clean_all_platforms()
         return self.cleaned_data
@@ -396,7 +396,7 @@ class NewVersionForm(NewAddonForm):
 
     def clean(self):
         if not self.errors:
-            xpi = parse_addon(self.cleaned_data['upload'].path, self.addon)
+            xpi = parse_addon(self.cleaned_data['upload'], self.addon)
             if self.addon.versions.filter(version=xpi['version']):
                 raise forms.ValidationError(
                     _('Version %s already exists') % xpi['version'])
@@ -445,7 +445,7 @@ class NewFileForm(happyforms.Form):
 
         # Check for errors in the xpi.
         if not self.errors:
-            xpi = parse_addon(self.cleaned_data['upload'].path, self.addon)
+            xpi = parse_addon(self.cleaned_data['upload'], self.addon)
             if xpi['version'] != self.version.version:
                 raise forms.ValidationError(_("Version doesn't match"))
         return self.cleaned_data
@@ -460,7 +460,8 @@ class FileForm(happyforms.ModelForm):
 
     def __init__(self, *args, **kw):
         super(FileForm, self).__init__(*args, **kw)
-        if kw['instance'].version.addon.type == amo.ADDON_SEARCH:
+        if kw['instance'].version.addon.type in (amo.ADDON_SEARCH,
+                                                 amo.ADDON_WEBAPP):
             del self.fields['platform']
         else:
             compat = kw['instance'].version.compatible_platforms()

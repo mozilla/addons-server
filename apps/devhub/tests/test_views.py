@@ -3174,7 +3174,7 @@ class TestUploadErrors(UploadTest):
         eq_(res.status_code, 200)
         doc = pq(res.content)
 
-        # javascript: upoad file:
+        # javascript: upload file:
         upload_url = doc('#upload-addon').attr('data-upload-url')
         with self.xpi() as f:
             res = self.client.post(upload_url, {'upload': f}, follow=True)
@@ -3247,17 +3247,7 @@ class TestVersionXSS(UploadTest):
         assert '&lt;script&gt;alert' in r.content
 
 
-class TestCreateAddon(BaseUploadTest,
-                      amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/platforms']
-
-    def setUp(self):
-        super(TestCreateAddon, self).setUp()
-        self.upload = self.get_upload('extension.xpi')
-        self.url = reverse('devhub.submit.2')
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
-        self.client.post(reverse('devhub.submit.1'))
+class UploadAddon(object):
 
     def post(self, desktop_platforms=[amo.PLATFORM_ALL], mobile_platforms=[],
              expect_errors=False):
@@ -3271,6 +3261,18 @@ class TestCreateAddon(BaseUploadTest,
             if r.context and 'new_addon_form' in r.context:
                 eq_(r.context['new_addon_form'].errors.as_text(), '')
         return r
+
+
+class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/platforms']
+
+    def setUp(self):
+        super(TestCreateAddon, self).setUp()
+        self.upload = self.get_upload('extension.xpi')
+        self.url = reverse('devhub.submit.2')
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        self.client.post(reverse('devhub.submit.1'))
 
     def assert_json_error(self, *args):
         UploadTest().assert_json_error(self, *args)
@@ -3310,6 +3312,37 @@ class TestCreateAddon(BaseUploadTest,
                                         args=[addon.slug]))
         eq_(sorted([f.filename for f in addon.current_version.all_files]),
             [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi'])
+
+
+class TestCreateWebApp(BaseUploadTest, UploadAddon, amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/platforms']
+
+    def setUp(self):
+        super(TestCreateWebApp, self).setUp()
+        manifest = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
+                                'addons', 'mozball.webapp')
+        self.upload = self.get_upload(abspath=manifest)
+        self.url = reverse('devhub.submit.2')
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        self.client.post(reverse('devhub.submit.1'))
+
+    def post(self, desktop_platforms=[], mobile_platforms=[], **kw):
+        return super(TestCreateWebApp, self).post(**kw)
+
+    def test_from_uploaded_manifest(self):
+        eq_(Addon.objects.count(), 0)
+        r = self.post()
+        addon = Addon.objects.get()
+        eq_(addon.type, amo.ADDON_WEBAPP)
+        eq_(addon.guid, None)
+        eq_(unicode(addon.name), 'MozillaBall')
+        eq_(addon.slug, 'mozillaball')
+        eq_(addon.latest_version.version, '1.0')
+        eq_(addon.summary, u'Exciting Open Web development action!')
+        eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
+            u'Azione aperta emozionante di sviluppo di fotoricettore!')
+        self.assertRedirects(r, reverse('devhub.submit.3', args=[addon.slug]))
 
 
 class TestDeleteAddon(amo.tests.TestCase):

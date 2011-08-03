@@ -304,6 +304,13 @@
         <input type="password" data-min-length="8" />
     </div>
 
+  <script type="text/javascript">
+      waffle = {
+          flag: function () { return true; },
+          switch: function () { return true; },
+          sample: function () { return true; }
+      }
+  </script>
   <script src="{{ static(url('jsi18n')) }}"></script>
   {{ js('common') }}
   <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>

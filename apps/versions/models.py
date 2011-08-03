@@ -66,7 +66,7 @@ class Version(amo.models.ModelBase):
 
     @classmethod
     def from_upload(cls, upload, addon, platforms, send_signal=True):
-        data = utils.parse_addon(upload.path, addon)
+        data = utils.parse_addon(upload, addon)
         try:
             license = addon.versions.latest().license_id
         except Version.DoesNotExist:

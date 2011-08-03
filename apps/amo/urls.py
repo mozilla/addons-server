@@ -1,4 +1,5 @@
 import csp.views
+from waffle.views import wafflejs
 
 from django.conf.urls.defaults import patterns, url, include
 from django.views.decorators.cache import never_cache
@@ -15,6 +16,7 @@ services_patterns = patterns('',
     url('^builder-pingback', views.builder_pingback,
         name='amo.builder-pingback'),
     url('^graphite/(pamo|namo|amo)$', views.graphite, name='amo.graphite'),
+    url(r'^wafflejs$', wafflejs, name='wafflejs'),
 )
 
 urlpatterns = patterns('',

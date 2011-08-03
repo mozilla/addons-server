@@ -260,6 +260,16 @@ test('append form data callback', function() {
     ok(called);
 });
 
+test('Unrecognized file type', function() {
+    var errors;
+    $(this.el).bind('upload_errors', function(e, file, error_msgs) {
+        errors = error_msgs;
+    });
+    this.file.name = 'somefile.pdf';
+    $(this.el).trigger('change');
+    equals(errors[0], "The filetype you uploaded isn't recognized.");
+});
+
 
 module('fileUpload', {
     setup: function() {
