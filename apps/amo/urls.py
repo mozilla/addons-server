@@ -16,11 +16,11 @@ services_patterns = patterns('',
     url('^builder-pingback', views.builder_pingback,
         name='amo.builder-pingback'),
     url('^graphite/(pamo|namo|amo)$', views.graphite, name='amo.graphite'),
-    url(r'^wafflejs$', wafflejs, name='wafflejs'),
 )
 
 urlpatterns = patterns('',
     url('^robots.txt$', views.robots, name='robots.txt'),
+    url(r'^wafflejs$', wafflejs, name='wafflejs'),
     ('^services/', include(services_patterns)),
 
     url('^opensearch.xml$', 'api.views.render_xml',
