@@ -15,7 +15,7 @@ from jingo import register, env
 from tower import ugettext as _
 
 import amo
-from amo.utils import memoize
+from amo.utils import memoize, Message
 from amo.urlresolvers import reverse
 from files.utils import extract_xpi, get_md5
 from validator.testcases.packagelayout import (blacklisted_extensions,
@@ -71,6 +71,10 @@ class FileViewer:
     def __str__(self):
         return str(self.file.id)
 
+    def _extraction_cache_key(self):
+        return ('%s:file-viewer:extraction-in-progress:%s' %
+                (settings.CACHE_PREFIX, self.file.id))
+
     def extract(self):
         """
         Will make all the directories and expand the files.
@@ -105,7 +109,8 @@ class FileViewer:
 
     def is_extracted(self):
         """If the file has been extracted or not."""
-        return os.path.exists(self.dest)
+        return (os.path.exists(self.dest) and not
+                Message(self._extraction_cache_key()).get())
 
     def _is_binary(self, mimetype, path):
         """Uses the filename to see if the file can be shown in HTML or not."""
