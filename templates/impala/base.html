@@ -35,6 +35,10 @@
         <meta id="live_refresh" name="live_refresh" value="1">
       {% endif %}
       {{ js('debug') }}
+      {% if settings.REMOTE_JS_DEBUG %}
+        <meta id="remote_debug_server" name="remote_debug_server" value="{{ settings.REMOTE_JS_DEBUG }}">
+        <script src="{{ media('js/debug/remote_debug.js') }}"></script>
+      {% endif %}
     {% endif %}
 
     {% if request.user.is_authenticated() %}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>remote error log</title>
+    <style>
+      body {
+        font-family: Helvetica;
+        font-size: 14px;
+      }
+      li {
+        clear: both;
+        list-style-type: none;
+        padding: 1em;
+        margin: 0;
+      }
+      ul {
+        padding: 0;
+      }
+      li:nth-child(even) {
+        background: #eee;
+      }
+      li i {
+        float: right;
+      }
+      li b {
+        color: #c00;
+      }
+    </style>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <script src="/nowjs/now.js"></script>
+    <script>
+      $(document).ready(function(){
+        now.showError = function(err){
+          var obj = JSON.parse(decodeURIComponent(err)),
+              el = $('<li>');
+          el.append('<b>' + obj.msg + '</b>');
+          el.append('<i>' + obj.file + ':' + obj.line + '</1>');
+          $('ul').append(el);
+        };
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Remote Error Log</h1>
+    <ul>
+    </ul>
+  </body>
+</html>

@@ -19,6 +19,11 @@
       {{ css('zamboni/mobile') }}
     {% endblock %}
 
+    {% if settings.DEBUG and settings.REMOTE_JS_DEBUG %}
+      <meta id="remote_debug_server" name="remote_debug_server" value="{{ settings.REMOTE_JS_DEBUG }}">
+      <script src="{{ media('js/debug/remote_debug.js') }}"></script>
+    {% endif %}
+
     {% block extrahead %}{% endblock %}
   </head>
   <body class="html-{{ DIR }} {{ request.APP.short }} lang-{{ LANG }} {% block bodyclass %}{% endblock %}"
