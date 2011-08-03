@@ -8,9 +8,10 @@ from piston.handler import AnonymousBaseHandler, BaseHandler
 from piston.utils import rc, throttle
 from tower import ugettext as _
 
+import amo
 from access import acl
 from addons.forms import AddonForm
-from addons.models import Addon
+from addons.models import Addon, AddonUser
 from amo.utils import paginate
 from devhub.forms import LicenseForm
 from perf.models import (Performance, PerformanceAppVersions,
@@ -78,7 +79,7 @@ class UserHandler(BaseHandler):
 
 
 class AddonsHandler(BaseHandler):
-    allowed_methods = ('POST', 'PUT', 'DELETE')
+    allowed_methods = ('GET', 'POST', 'PUT', 'DELETE')
     model = Addon
 
     fields = ('id', 'name', 'eula', 'guid')
@@ -87,7 +88,7 @@ class AddonsHandler(BaseHandler):
     # Custom handler so translated text doesn't look weird
     @classmethod
     def name(cls, addon):
-        return addon.name.localized_string
+        return addon.name.localized_string if addon.name else ''
 
     # We need multiple validation, so don't use @validate decorators.
     @transaction.commit_on_success
@@ -119,6 +120,31 @@ class AddonsHandler(BaseHandler):
     def delete(self, request, addon):
         addon.delete(msg='Deleted via API')
         return rc.DELETED
+
+    def read(self, request, addon_id=None):
+        """
+        Returns authors who can update an addon (not Viewer role) for addons
+        that have not been admin disabled. Optionally provide an addon id.
+        """
+        if not request.user.is_authenticated():
+            return rc.BAD_REQUEST
+        ids = (AddonUser.objects.values_list('addon_id', flat=True)
+                                .filter(user=request.amo_user,
+                                        role__in=[amo.AUTHOR_ROLE_DEV,
+                                                  amo.AUTHOR_ROLE_OWNER]))
+        qs = (Addon.objects.filter(id__in=ids)
+                           .exclude(status=amo.STATUS_DISABLED)
+                           .no_transforms())
+        if addon_id:
+            try:
+                return qs.get(id=addon_id)
+            except Addon.DoesNotExist:
+                rc.NOT_HERE
+
+        paginator = paginate(request, qs)
+        return {'objects': paginator.object_list,
+                'num_pages': paginator.paginator.num_pages,
+                'count': paginator.paginator.count}
 
 
 class ApplicationsVersionsHandler(AnonymousBaseHandler):

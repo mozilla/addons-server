@@ -41,7 +41,7 @@ import amo
 from amo.tests import TestCase
 from amo.urlresolvers import reverse
 from api.authentication import AMOOAuthAuthentication
-from addons.models import Addon, BlacklistedGuid
+from addons.models import Addon, AddonUser, BlacklistedGuid
 from devhub.models import ActivityLog
 from perf.models import (Performance, PerformanceAppVersions,
                          PerformanceOSVersion)
@@ -635,6 +635,51 @@ class TestAddon(BaseOAuth):
             val = data[0].get(attr)
             eq_(expect, val,
                 'Got "%s" was expecting "%s" for "%s".' % (val, expect, attr,))
+
+    def test_no_addons(self):
+        r = client.get('api.addons', self.accepted_consumer, self.token)
+        eq_(json.loads(r.content)['count'], 0)
+
+    def test_no_user(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        AddonUser.objects.create(addon=addon, user=self.admin.get_profile(),
+                                 role=amo.AUTHOR_ROLE_DEV)
+        r = client.get('api.addons', self.accepted_consumer, self.token)
+        eq_(json.loads(r.content)['count'], 0)
+
+    def test_my_addons_only(self):
+        for num in range(0, 2):
+            addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        AddonUser.objects.create(addon=addon, user=self.editor.get_profile(),
+                                 role=amo.AUTHOR_ROLE_DEV)
+        r = client.get('api.addons', self.accepted_consumer, self.token,
+                       params={'authenticate_as': self.editor.pk})
+        j = json.loads(r.content)
+        eq_(j['count'], 1)
+        eq_(j['objects'][0]['id'], addon.id)
+
+    def test_one_addon(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        AddonUser.objects.create(addon=addon, user=self.editor.get_profile(),
+                                 role=amo.AUTHOR_ROLE_DEV)
+        r = client.get(('api.addon', addon.pk), self.accepted_consumer,
+                       self.token, params={'authenticate_as': self.editor.pk})
+        eq_(json.loads(r.content)['id'], addon.pk)
+
+    def test_my_addons_role(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        AddonUser.objects.create(addon=addon, user=self.editor.get_profile(),
+                                 role=amo.AUTHOR_ROLE_VIEWER)
+        r = client.get('api.addons', self.accepted_consumer, self.token)
+        eq_(json.loads(r.content)['count'], 0)
+
+    def test_my_addons_disabled(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
+                                     status=amo.STATUS_DISABLED)
+        AddonUser.objects.create(addon=addon, user=self.editor.get_profile(),
+                                 role=amo.AUTHOR_ROLE_DEV)
+        r = client.get('api.addons', self.accepted_consumer, self.token)
+        eq_(json.loads(r.content)['count'], 0)
 
 
 class TestPerformance(BaseOAuth):
