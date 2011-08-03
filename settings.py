@@ -1013,6 +1013,7 @@ MODIFIED_DELAY = 3
 # versions: version numbers to show in comparisons.
 # previous: the major version before :main.
 COMPAT = (
+    # Firefox.
     dict(app=1, main='8.0', versions=('8.0', '8.0a2', '8.0a1'),
          previous='7.0'),
     dict(app=1, main='7.0', versions=('7.0', '7.0a2', '7.0a1'),
@@ -1023,6 +1024,12 @@ COMPAT = (
          previous='4.0'),
     dict(app=1, main='4.0', versions=('4.0', '4.0a1', '3.7a'),
          previous='3.6'),
+    # Thunderbird.
+    dict(app=18, main='6.0', versions=('6.0', '6.0a2', '6.0a1'),
+         previous='5.0'),
+    # Seamonkey.
+    dict(app=59, main='2.3', versions=('2.3', '2.3b', '2.3a'),
+         previous='2.2'),
 )
 
 # URL for reporting arecibo errors too. If not set, won't be sent.
