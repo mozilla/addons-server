@@ -304,25 +304,6 @@ class TestLicenseLink(amo.tests.TestCase):
             eq_(s, ex)
 
 
-class AbuseBase:
-    @patch('captcha.fields.ReCaptchaField.clean')
-    def test_abuse_anonymous(self, clean):
-        clean.return_value = ""
-        self.client.post(self.full_page, {'text': 'spammy'})
-        eq_(len(mail.outbox), 1)
-        assert 'spammy' in mail.outbox[0].body
-
-    def test_abuse_anonymous_fails(self):
-        r = self.client.post(self.full_page, {'text': 'spammy'})
-        assert 'recaptcha' in r.context['abuse_form'].errors
-
-    def test_abuse_logged_in(self):
-        self.client.login(username='regular@mozilla.com', password='password')
-        self.client.post(self.full_page, {'text': 'spammy'})
-        eq_(len(mail.outbox), 1)
-        assert 'spammy' in mail.outbox[0].body
-
-
 def get_image_path(name):
     return os.path.join(settings.ROOT, 'apps', 'amo', 'tests', 'images', name)
 

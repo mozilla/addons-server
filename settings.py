@@ -310,6 +310,7 @@ ROOT_URLCONF = '%s.urls' % ROOT_PACKAGE
 
 INSTALLED_APPS = (
     'amo',  # amo comes first so it always takes precedence.
+    'abuse',
     'access',
     'addons',
     'api',

@@ -25,11 +25,12 @@ from mobility.decorators import mobilized, mobile_template
 import amo
 from amo import messages
 from amo.forms import AbuseForm
-from amo.utils import sorted_groupby, randslice, send_abuse_report
+from amo.utils import sorted_groupby, randslice
 from amo.helpers import absolutify
 from amo.models import manual_order
 from amo import urlresolvers
 from amo.urlresolvers import reverse
+from abuse.models import send_abuse_report
 from addons.utils import FeaturedManager
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
 import paypal
@@ -520,6 +521,7 @@ def eula(request, addon, file_id=None):
     return jingo.render(request, 'addons/eula.html',
                         {'addon': addon, 'version': version})
 
+
 @addon_view
 def impala_eula(request, addon, file_id=None):
     if not addon.eula:
@@ -796,8 +798,7 @@ def license_redirect(request, version):
 def report_abuse(request, addon):
     form = AbuseForm(request.POST or None, request=request)
     if request.method == "POST" and form.is_valid():
-        url = reverse('addons.detail', args=[addon.slug])
-        send_abuse_report(request, addon, url, form.cleaned_data['text'])
+        send_abuse_report(request, addon, form.cleaned_data['text'])
         messages.success(request, _('Abuse reported.'))
         return redirect('addons.detail', addon.slug)
     else:

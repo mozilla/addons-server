@@ -24,7 +24,6 @@ from django.utils.translation import trans_real
 from django.utils.functional import Promise
 from django.utils.encoding import smart_str, smart_unicode
 
-import bleach
 from easy_thumbnails import processors
 import html5lib
 from html5lib.serializer.htmlserializer import HTMLSerializer
@@ -34,11 +33,12 @@ from PIL import Image, ImageFile, PngImagePlugin
 import amo.search
 from amo import ADDON_ICON_SIZES
 from amo.urlresolvers import reverse
-from . import logger_log as log
 from translations.models import Translation
 from users.models import UserNotification
 import users.notifications as notifications
 from users.utils import UnsubscribeCode
+
+from . import logger_log as log
 
 
 def urlparams(url_, hash=None, **query):
@@ -446,24 +446,6 @@ class ImageCheck(object):
 class MenuItem():
     """Refinement item with nestable children for use in menus."""
     url, text, selected, children = ('', '', False, [])
-
-
-def send_abuse_report(request, obj, url, message):
-    """Send email about an abusive addon/user/relationship."""
-    if request.user.is_anonymous():
-        user_name = 'An anonymous user'
-    else:
-        user_name = '%s (%s)' % (request.amo_user.name,
-                                 request.amo_user.email)
-
-    subject = 'Abuse Report for %s' % obj.name
-    msg = u'%s reported abuse for %s (%s%s).\n\n%s'
-    msg = msg % (user_name, obj.name, settings.SITE_URL, url, message)
-    msg += '\n\nhttp://translate.google.com/#auto|en|%s' % message
-
-    log.debug('Abuse reported by %s for %s: %s.' %
-              (smart_str(user_name), obj.id, smart_str(obj.name)))
-    send_mail(subject, msg, recipient_list=(settings.FLIGTAR,))
 
 
 def to_language(locale):

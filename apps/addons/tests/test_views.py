@@ -19,7 +19,7 @@ import amo
 import amo.tests
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from amo.tests.test_helpers import AbuseBase
+from abuse.models import AbuseReport
 from addons.models import Addon, AddonUser, Charity
 from files.models import File
 from paypal.tests import other_error
@@ -1029,7 +1029,7 @@ class TestAddonSharing(amo.tests.TestCase):
         assert iri_to_uri(summary) in r['Location']
 
 
-class TestReportAbuse(AbuseBase, amo.tests.TestCase):
+class TestReportAbuse(amo.tests.TestCase):
     fixtures = ['addons/persona',
                 'base/apps',
                 'base/addon_3615',
@@ -1039,6 +1039,29 @@ class TestReportAbuse(AbuseBase, amo.tests.TestCase):
         settings.RECAPTCHA_PRIVATE_KEY = 'something'
         self.full_page = reverse('addons.abuse', args=['a3615'])
 
+    @patch('captcha.fields.ReCaptchaField.clean')
+    def test_abuse_anonymous(self, clean):
+        clean.return_value = ""
+        self.client.post(self.full_page, {'text': 'spammy'})
+        eq_(len(mail.outbox), 1)
+        assert 'spammy' in mail.outbox[0].body
+        report = AbuseReport.objects.get(addon=3615)
+        eq_(report.message, 'spammy')
+        eq_(report.reporter, None)
+
+    def test_abuse_anonymous_fails(self):
+        r = self.client.post(self.full_page, {'text': 'spammy'})
+        assert 'recaptcha' in r.context['abuse_form'].errors
+
+    def test_abuse_logged_in(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.post(self.full_page, {'text': 'spammy'})
+        eq_(len(mail.outbox), 1)
+        assert 'spammy' in mail.outbox[0].body
+        report = AbuseReport.objects.get(addon=3615)
+        eq_(report.message, 'spammy')
+        eq_(report.reporter.email, 'regular@mozilla.com')
+
     def test_abuse_name(self):
         addon = Addon.objects.get(pk=3615)
         addon.name = 'Bmrk.ru Социальные закладки'
@@ -1047,6 +1070,7 @@ class TestReportAbuse(AbuseBase, amo.tests.TestCase):
         self.client.login(username='regular@mozilla.com', password='password')
         self.client.post(self.full_page, {'text': 'spammy'})
         assert 'spammy' in mail.outbox[0].body
+        assert AbuseReport.objects.get(addon=addon)
 
     def test_abuse_persona(self):
         addon_url = reverse('addons.detail', args=['a15663'])
@@ -1061,7 +1085,7 @@ class TestReportAbuse(AbuseBase, amo.tests.TestCase):
         self.assertRedirects(r, addon_url)
         eq_(len(mail.outbox), 1)
         assert 'spammy' in mail.outbox[0].body
-
+        assert AbuseReport.objects.get(addon=15663)
 
 class TestMobile(amo.tests.TestCase):
     fixtures = ['addons/featured', 'base/apps', 'base/addon_3615',

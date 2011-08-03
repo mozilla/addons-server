@@ -14,12 +14,12 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
+from abuse.models import AbuseReport
 from access.models import Group, GroupUser
 from addons.models import Addon, AddonUser
 from amo.helpers import urlparams
 from amo.pyquery_wrapper import PyQuery as pq
 from amo.urlresolvers import reverse
-from amo.tests.test_helpers import AbuseBase
 from devhub.models import ActivityLog
 from users.models import BlacklistedPassword, UserProfile, UserNotification
 import users.notifications as email
@@ -597,9 +597,32 @@ class TestProfile(UserViewBase):
                    for i in xrange(len(addons) - 1))
 
 
-class TestReportAbuse(AbuseBase, amo.tests.TestCase):
+class TestReportAbuse(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
         settings.RECAPTCHA_PRIVATE_KEY = 'something'
         self.full_page = reverse('users.abuse', args=[10482])
+
+    @patch('captcha.fields.ReCaptchaField.clean')
+    def test_abuse_anonymous(self, clean):
+        clean.return_value = ""
+        self.client.post(self.full_page, {'text': 'spammy'})
+        eq_(len(mail.outbox), 1)
+        assert 'spammy' in mail.outbox[0].body
+        report = AbuseReport.objects.get(user=10482)
+        eq_(report.message, 'spammy')
+        eq_(report.reporter, None)
+
+    def test_abuse_anonymous_fails(self):
+        r = self.client.post(self.full_page, {'text': 'spammy'})
+        assert 'recaptcha' in r.context['abuse_form'].errors
+
+    def test_abuse_logged_in(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.post(self.full_page, {'text': 'spammy'})
+        eq_(len(mail.outbox), 1)
+        assert 'spammy' in mail.outbox[0].body
+        report = AbuseReport.objects.get(user=10482)
+        eq_(report.message, 'spammy')
+        eq_(report.reporter.email, 'regular@mozilla.com')
