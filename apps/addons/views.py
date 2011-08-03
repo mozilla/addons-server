@@ -96,8 +96,13 @@ def addon_detail(request, addon):
                 'addons.detail', args=[addon.slug]))
 
 
-@addon_view
+@addon_disabled_view
 def impala_addon_detail(request, addon):
+    """Add-ons details page dispatcher."""
+    if addon.disabled_by_user or addon.status == amo.STATUS_DISABLED:
+        return jingo.render(request, 'addons/impala/disabled.html',
+                            {'addon': addon}, status=404)
+
     """Add-ons details page dispatcher."""
     # addon needs to have a version and be valid for this app.
     if addon.type in request.APP.types:

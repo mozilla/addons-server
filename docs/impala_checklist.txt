@@ -5,7 +5,7 @@ Impala Master Template Checklist
 
 √    apps/addons/templates/addons/details.html
 √    apps/addons/templates/addons/developers.html
-    apps/addons/templates/addons/disabled.html
+√    apps/addons/templates/addons/disabled.html
 √    apps/addons/templates/addons/eula.html
 √    apps/addons/templates/addons/home.html
 √    apps/addons/templates/addons/license.html
@@ -44,6 +44,7 @@ X    apps/browse/templates/browse/featured.html
     apps/browse/templates/browse/personas/grid.html
     apps/browse/templates/browse/search_tools.html
     apps/browse/templates/browse/themes.html
+
     apps/compat/templates/compat/details.html
     apps/compat/templates/compat/index.html
     apps/compat/templates/compat/reporter.html
@@ -113,6 +114,7 @@ X    apps/browse/templates/browse/featured.html
 √    apps/reviews/templates/reviews/reply.html
 √    apps/reviews/templates/reviews/review_list.html
     apps/reviews/templates/reviews/spam.html
+
     apps/search/templates/search/collections.html
     apps/search/templates/search/down.html
 √    apps/search/templates/search/es_results.html
