@@ -2,7 +2,6 @@ import caching.base as caching
 import jingo
 import jinja2
 from tower import ugettext_lazy as _
-import waffle
 
 from addons.models import Addon
 from api.views import addon_filter
@@ -73,11 +72,9 @@ class MonthlyPick(TemplatePromo):
     # TODO A bit of hardcoding here to support an alternative locale.  This
     # will all be redone with the mango bugs: http://bugzil.la/[t:mango]
     def context(self):
-        return {
-                'addon': Addon.objects.get(id=6416),
+        return {'addon': Addon.objects.get(id=6416),
                 'addon_de': Addon.objects.get(id=146384),
-                'module_context': 'discovery'
-               }
+                'module_context': 'discovery'}
 
 
 class GoMobile(TemplatePromo):
@@ -108,6 +105,9 @@ class CollectionPromo(PromoModule):
         return caching.cached_with(addons, f, repr(kw))
 
     def render(self, module_context='discovery'):
+        if module_context == 'home':
+            self.platform = 'ALL'
+            self.version = None
         c = dict(promo=self, addons=self.get_addons(),
                  module_context=module_context,
                  descriptions=self.get_descriptions())

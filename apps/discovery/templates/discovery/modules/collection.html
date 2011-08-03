@@ -1,4 +1,5 @@
 {% set collection = promo.collection %}
+{% if addons %}
 <li class="panel">
   <div id="{{ promo.id }}" class="feature promo-collection {{ promo.cls }}">
     <hgroup>
@@ -42,3 +43,4 @@
     </ul>
   </div>
 </li>
+{% endif %}
