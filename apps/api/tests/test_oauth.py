@@ -697,7 +697,8 @@ class TestPerformance(BaseOAuth):
     def test_create_perf(self):
         res = client.post('api.performance', self.accepted_consumer,
                           self.token, data=self.data)
-        assert res.status_code == 201, res.status_code
+        assert 'id' in json.loads(res.content)
+        assert res.status_code == 200, res.status_code
         eq_(Performance.objects.count(), 1)
         eq_(Performance.objects.all()[0].average, 0.1)
 

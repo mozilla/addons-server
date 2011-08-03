@@ -282,8 +282,7 @@ class AMOBaseHandler(BaseHandler):
     def create(self, request):
         form = self.get_form(request.POST)
         if form.is_valid():
-            form.save()
-            return rc.CREATED
+            return form.save()
         return _form_error(form)
 
     def read(self, request, id=None):
