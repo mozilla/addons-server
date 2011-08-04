@@ -30,8 +30,8 @@
 .ed-sprite-jetpack { background-position: 0 -629px; }
 .ed-sprite-restartless { background-position: 0 -695px; }
 .ed-sprite-notes { background-position: 0 -827px; }
-.ed-sprite-info { background-position: 0 -893px; }
-.ed-sprite-editor { background-position: 0 -959px; }
+.ed-sprite-editor { background-position: 0 -893px; }
+.ed-sprite-info { background-position: 0 -959px; }
 
 .platform-icon {
     background: url(../../img/developers/platforms.png?6) no-repeat top left;
