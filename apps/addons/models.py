@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 import collections
 import itertools
 import json
@@ -900,11 +901,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         """For language packs, gets the contents of localepicker."""
         if (self.type == amo.ADDON_LPAPP and self.status == amo.STATUS_PUBLIC
             and self.current_version):
+            files = (self.current_version.files
+                         .filter(platform__in=amo.MOBILE_PLATFORMS.keys()))
             try:
-                file = (self.current_version
-                            .files.get(platform=amo.PLATFORM_ALL.id))
-                return file.get_localepicker()
-            except File.DoesNotExist:
+                return unicode(files[0].get_localepicker(), 'utf-8')
+            except IndexError:
                 pass
         return ''
 

@@ -272,7 +272,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         a string.
         """
         start = time.time()
-        zip = SafeUnzip(self.filename)
+        zip = SafeUnzip(self.file_path)
         if not zip.is_valid(fatal=False):
             return ''
 
