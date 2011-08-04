@@ -1499,6 +1499,10 @@ class TestSearchSignals(amo.tests.ESTestCase):
 
 class TestLanguagePack(TestLanguagePack):
 
+    def setUp(self):
+        super(TestLanguagePack, self).setUp()
+        self.platform = Platform.objects.create(id=amo.PLATFORM_ANDROID.id)
+
     def test_extract(self):
         File.objects.create(platform=self.platform, version=self.version,
                             filename=self.xpi_path('langpack-localepicker'))
