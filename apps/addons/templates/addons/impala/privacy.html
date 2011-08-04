@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% set version = addon.current_version %}
-{% set detail_url = url('i_addons.detail', addon.slug) %}
+{% set detail_url = addon.get_url_path(impala=True) %}
 
 {% block primary %}
 <section class="primary">
