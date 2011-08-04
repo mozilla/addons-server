@@ -15,7 +15,7 @@ import jingo
 from ratelimit.decorators import ratelimit
 from tower import ugettext as _
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
-
+from mobility.decorators import mobile_template
 
 import amo
 from amo import messages
@@ -318,8 +318,9 @@ def _clean_next_url(request):
 
 
 @anonymous_csrf
+@mobile_template('users/{mobile/}login.html')
 @ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
-def login(request):
+def login(request, template=None):
     # In case we need it later.  See below.
     get_copy = request.GET.copy()
 
@@ -330,7 +331,7 @@ def login(request):
 
     limited = getattr(request, 'limited', 'recaptcha_shown' in request.POST)
     partial_form = partial(forms.AuthenticationForm, use_recaptcha=limited)
-    r = auth.views.login(request, template_name='users/login.html',
+    r = auth.views.login(request, template_name=template,
                          redirect_field_name='to',
                          authentication_form=partial_form)
 

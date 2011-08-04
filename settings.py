@@ -473,6 +473,7 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/mobile': (
             'css/zamboni/mobile.css',
+            'css/zamboni/mobile-forms.less',
         ),
     },
     'js': {

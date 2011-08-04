@@ -1,0 +1,64 @@
+{% extends "mobile/base.html" %}
+
+{% block title %}{{ page_title(_('User Login')) }}{% endblock %}
+{% block js %}{% if form.recaptcha %}{% include("amo/recaptcha_js.html") %}{% endif %}{% endblock %}
+
+{% block page %}
+
+<div class="primary" role="main">
+  {% include "messages.html" %}
+  {% if form.non_field_errors() %}
+      <div class="notification-box error">
+        <ul>
+        {% for error in form.non_field_errors() %}
+          <h2>{{ error }}</h2>
+        {% endfor %}
+        </ul>
+      </div>
+  {% endif %}
+  <h2>{{ _('Log In') }}</h2>
+  <section id="content">
+    <form method="post" action="" class="form-mobile featured-inner object-lead user-input">
+      {{ csrf() }}
+      <fieldset>
+        <ul>
+          <li>
+            <label for="id_username">{{ _('Email address') }}</label>
+            {{ form.username }}
+            {{ form.username.errors }}
+          </li>
+          <li>
+            <label for="id_password">{{ _('Password') }}</label>
+            {{ form.password }}
+            {{ form.password.errors }}
+          </li>
+          <li>
+            <label for="id_rememberme" class="check">
+              {{ form.rememberme }}
+              {{ _('Remember me on this computer') }}
+            </label>
+            {{ form.rememberme.errors }}
+          </li>
+          {% if form.recaptcha %}
+            {{ form.recaptcha_shown }}
+            {{ recaptcha(form) }}
+          {% endif %}
+        </ul>
+      </fieldset>
+      <div class="fm-control">
+        <button id="login-submit" class="button" type="submit">{{ _('Log in') }}</button>
+      </div>
+    </form>
+  </section>
+
+  <div id="login-help" class="article">
+    <h2>{{ _('Login Problems?') }}</h2>
+    <ul class="listview">
+      <li><a href="{{ url('users.register') }}">{{ _("I don't have an account.") }} </a></li>
+      <li><a href="{{ url('users.pwreset') }}">{{ _("I forgot my password.") }}</a></li>
+    </ul>
+  </div>
+
+</div>{# .primary #}
+
+{% endblock page %}
