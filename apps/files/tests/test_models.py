@@ -13,6 +13,7 @@ from django.conf import settings
 import mock
 import path
 from nose.tools import eq_
+import waffle
 
 import amo.tests
 import amo.utils
@@ -55,7 +56,7 @@ class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
         return upload
 
 
-class TestFile(amo.tests.TestCase):
+class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
     """
     Tests the methods of the File model.
     """
@@ -193,6 +194,12 @@ class TestFile(amo.tests.TestCase):
             open(f.file_path, 'w')
         f.copy_to_mirror()
         assert os.path.exists(f.mirror_file_path)
+
+    def test_generate_hash(self):
+        f = File()
+        f.version = Version.objects.get(pk=81551)
+        fn = self.xpi_path('delicious_bookmarks-2.1.106-fx')
+        assert f.generate_hash(fn).startswith('sha256:fd277d45ab44f6240e')
 
 
 class TestParseXpi(amo.tests.TestCase):
@@ -567,6 +574,19 @@ class TestFileFromUpload(UploadTest):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED, trusted=True)
         f = File.from_upload(upload, self.version, self.platform, data)
         eq_(f.status, amo.STATUS_LITE_AND_NOMINATED)
+
+    @mock.patch.object(waffle, 'switch_is_active', lambda x: True)
+    def test_file_hash_paranoia(self):
+        upload = self.upload('extension')
+        f = File.from_upload(upload, self.version, self.platform)
+        assert f.hash.startswith('sha256:035ae07b4988711')
+
+    @mock.patch.object(waffle, 'switch_is_active', lambda x: False)
+    def test_file_hash_no_paranoia(self):
+        upload = self.upload('extension')
+        upload.hash = 'oops'
+        f = File.from_upload(upload, self.version, self.platform)
+        assert f.hash.startswith('oops')
 
 
 class TestZip(amo.tests.TestCase, amo.tests.AMOPaths):

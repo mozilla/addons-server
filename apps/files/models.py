@@ -21,6 +21,7 @@ import commonware
 import path
 from statsd import statsd
 from uuidfield.fields import UUIDField
+import waffle
 
 import amo
 import amo.models
@@ -112,7 +113,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         f.filename = f.generate_filename(extension=upload.path.ext or '.xpi')
         f.size = int(max(1, round(upload.path.size / 1024, 0)))  # Kilobytes.
         f.jetpack_version = cls.get_jetpack_version(upload.path)
-        f.hash = upload.hash
         f.no_restart = parse_data.get('no_restart', False)
         if version.addon.status == amo.STATUS_PUBLIC:
             if amo.VERSION_BETA.search(parse_data.get('version', '')):
@@ -122,6 +122,9 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         elif (version.addon.status in amo.LITE_STATUSES
               and version.addon.trusted):
             f.status = version.addon.status
+        f.hash = (f.generate_hash(upload.path)
+                  if waffle.switch_is_active('file-hash-paranoia')
+                  else upload.hash)
         f.save()
         log.debug('New file: %r from %r' % (f, upload))
         # Move the uploaded file from the temp location.
@@ -145,6 +148,14 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                 return opts['sdkVersion']
         except Exception:
             return None
+
+    def generate_hash(self, filename=None):
+        """Generate a hash for a file."""
+        hash = hashlib.sha256()
+        with open(filename if filename else self.file_path, 'rb') as obj:
+            for chunk in iter(lambda: obj.read(1024), ''):
+                hash.update(chunk)
+        return 'sha256:%s' % hash.hexdigest()
 
     def generate_filename(self, extension='.xpi'):
         """
