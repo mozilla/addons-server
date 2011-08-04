@@ -106,14 +106,14 @@ class FeaturedManager(object):
     by_app = classmethod(lambda cls, x: '%s:%s' % (cls.prefix + 'byapp', x))
     by_type = classmethod(lambda cls, x: '%s:%s' % (cls.prefix + 'bytype', x))
     by_locale = classmethod(lambda cls, x: '%s:%s' %
-                            (cls.prefix + 'bylocale', x))
+                            (cls.prefix + 'bylocale', x and x.lower()))
 
     @classmethod
     def redis(cls):
         return redisutils.connections['master']
 
     @classmethod
-    def get_objects(cls):
+    def _get_objects(cls):
         fields = ['addon', 'type', 'locale', 'application']
         if settings.NEW_FEATURES:
             from bandwagon.models import FeaturedCollection
@@ -128,6 +128,14 @@ class FeaturedManager(object):
                     .values_list('id', 'type', 'feature__locale',
                                  'feature__application'))
         return [dict(zip(fields, val)) for val in vals]
+
+    @classmethod
+    def get_objects(cls):
+        rv = cls._get_objects()
+        for d in rv:
+            if d['locale']:
+                d['locale'] = d['locale'].lower()
+        return rv
 
     @classmethod
     def build(cls):
@@ -186,15 +194,15 @@ class CreaturedManager(object):
 
     @classmethod
     def by_locale(cls, cat, app, locale):
-        return '%s:%s:%s:%s' % (cls.prefix, cat, app, locale)
+        return '%s:%s:%s:%s' % (cls.prefix, cat, app, locale.lower())
 
     @classmethod
     def redis(cls):
         return redisutils.connections['master']
 
     @classmethod
-    def get_objects(cls):
-        fields = ['category', 'addon', 'feature_locales', 'app']
+    def _get_objects(cls):
+        fields = ['category', 'addon', 'locales', 'app']
         if settings.NEW_FEATURES:
             from bandwagon.models import FeaturedCollection
             vals = (FeaturedCollection.objects
@@ -210,24 +218,32 @@ class CreaturedManager(object):
         return [dict(zip(fields, val)) for val in vals]
 
     @classmethod
+    def get_objects(cls):
+        rv = cls._get_objects()
+        for d in rv:
+            if d['locales']:
+                d['locales'] = d['locales'].lower()
+        return rv
+
+    @classmethod
     def build(cls):
         qs = list(cls.get_objects())
         # Expand any comma-separated lists of locales.
         for row in list(qs):
             # Normalize empty strings to None.
-            if row['feature_locales'] == '':
-                row['feature_locales'] = None
-            if row['feature_locales']:
+            if row['locales'] == '':
+                row['locales'] = None
+            if row['locales']:
                 qs.remove(row)
-                for locale in row['feature_locales'].split(','):
+                for locale in row['locales'].split(','):
                     d = dict(row)
-                    d['feature_locales'] = locale.strip()
+                    d['locales'] = locale.strip()
                     qs.append(d)
 
         pipe = cls.redis().pipeline(transaction=False)
         catapp = itemgetter('category', 'app')
         for (category, app), rows in sorted_groupby(qs, catapp):
-            locale_getter = itemgetter('feature_locales')
+            locale_getter = itemgetter('locales')
             for locale, rs in sorted_groupby(rows, locale_getter):
                 if locale:
                     name = cls.by_locale(category, app, locale)
