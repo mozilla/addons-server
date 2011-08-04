@@ -987,6 +987,7 @@ NEW_FEATURES = False
 IMPALA_BROWSE = False
 IMPALA_REVIEWS = False
 IMPALA_MEET = False  # Meet the Developer page.
+IMPALA_EDIT = False
 
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = True

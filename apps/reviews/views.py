@@ -202,9 +202,10 @@ def reply(request, addon, review_id):
                                 args=[addon.slug, review.id],
                                 add_prefix=False)) }
                 emails = [review.user.email]
-                send_mail('reviews/emails/reply_review.ltxt',
-                           u'Mozilla Add-on Developer Reply: %s' % addon.name,
-                           emails, Context(data), 'reply')
+                if settings.IMPALA_EDIT:
+                    sub = u'Mozilla Add-on Developer Reply: %s' % addon.name
+                    send_mail('reviews/emails/reply_review.ltxt',
+                            sub, emails, Context(data), 'reply')
 
             return redirect('reviews.detail', addon.slug, review_id)
     ctx = dict(review=review, form=form, addon=addon)
@@ -256,9 +257,10 @@ def add(request, addon):
                             args=[addon.slug, review.id], add_prefix=False)) }
 
             emails = [a.email for a in addon.authors.all()]
-            send_mail('reviews/emails/add_review.ltxt',
-                       u'Mozilla Add-on User Review: %s' % addon.name,
-                       emails, Context(data), 'new_review')
+            if settings.IMPALA_EDIT:
+                send_mail('reviews/emails/add_review.ltxt',
+                           u'Mozilla Add-on User Review: %s' % addon.name,
+                           emails, Context(data), 'new_review')
 
             return redirect('reviews.list', addon.slug)
     return jingo.render(request, 'reviews/add.html',
