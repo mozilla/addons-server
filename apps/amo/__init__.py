@@ -12,8 +12,9 @@ from constants.applications import *
 from constants.base import *
 from constants.licenses import *
 from constants.platforms import *
-from .log import (LOG, LOG_BY_ID, LOG_EDITORS, LOG_HIDE_DEVELOPER,
-                  LOG_KEEP, LOG_REVIEW_QUEUE, LOG_REVIEW_EMAIL_USER, log)
+from .log import (LOG, LOG_BY_ID, LOG_ADMINS, LOG_EDITORS,
+                  LOG_HIDE_DEVELOPER, LOG_KEEP, LOG_REVIEW_QUEUE,
+                  LOG_REVIEW_EMAIL_USER, log)
 
 logger_log = commonware.log.getLogger('z.amo')
 

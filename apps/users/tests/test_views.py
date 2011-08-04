@@ -20,6 +20,7 @@ from amo.helpers import urlparams
 from amo.pyquery_wrapper import PyQuery as pq
 from amo.urlresolvers import reverse
 from amo.tests.test_helpers import AbuseBase
+from devhub.models import ActivityLog
 from users.models import BlacklistedPassword, UserProfile, UserNotification
 import users.notifications as email
 from users.utils import EmailResetCode
@@ -216,6 +217,35 @@ class TestEditAdmin(UserViewBase):
         res = self.client.post(self.url, data)
         eq_(res.status_code, 200)
         eq_(self.get_user().password, self.regular.password)  # Hasn't changed.
+
+    def test_admin_logs_edit(self):
+        data = self.get_data()
+        data['email'] = 'something@else.com'
+        self.client.post(self.url, data)
+        res = ActivityLog.objects.filter(action=amo.LOG.ADMIN_USER_EDITED.id)
+        eq_(res.count(), 1)
+        assert self.get_data()['admin_log'] in res[0]._arguments
+
+    def test_admin_logs_anonymize(self):
+        data = self.get_data()
+        data['anonymize'] = True
+        self.client.post(self.url, data)
+        res = (ActivityLog.objects
+                          .filter(action=amo.LOG.ADMIN_USER_ANONYMIZED.id))
+        eq_(res.count(), 1)
+        assert self.get_data()['admin_log'] in res[0]._arguments
+
+    def test_admin_no_password(self):
+        data = self.get_data()
+        data.update({'password': 'pass1234',
+                     'password2': 'pass1234',
+                     'oldpassword': 'password'})
+        self.client.post(self.url, data)
+        logs = ActivityLog.objects.filter
+        eq_(logs(action=amo.LOG.CHANGE_PASSWORD.id).count(), 0)
+        res = logs(action=amo.LOG.ADMIN_USER_EDITED.id)
+        eq_(res.count(), 1)
+        eq_(res[0].details['password'][0], u'****')
 
 
 class TestPasswordAdmin(UserViewBase):

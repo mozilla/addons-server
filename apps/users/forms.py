@@ -290,7 +290,7 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
 
         return photo
 
-    def save(self):
+    def save(self, log_for_developer=True):
         u = super(UserEditForm, self).save(commit=False)
         data = self.cleaned_data
         photo = data['photo']
@@ -311,8 +311,9 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
 
         if data['password']:
             u.set_password(data['password'])
-            amo.log(amo.LOG.CHANGE_PASSWORD)
-            log.info(u'User (%s) changed their password' % u)
+            if log_for_developer:
+                amo.log(amo.LOG.CHANGE_PASSWORD)
+                log.info(u'User (%s) changed their password' % u)
 
         for (i, n) in email.NOTIFICATIONS_BY_ID.items():
             enabled = n.mandatory or (str(i) in data['notifications'])
@@ -333,19 +334,38 @@ class AdminUserEditForm(UserEditForm):
     notes = forms.CharField(required=False, widget=forms.Textarea())
     anonymize = forms.BooleanField(required=False)
 
+    def changed_fields(self):
+        """Returns changed_data ignoring these fields."""
+        return (set(self.changed_data) - set(['admin_log', 'notifications',
+                                              'password', 'password2',
+                                              'oldpassword']))
+
+    def changes(self):
+        """A dictionary of changed fields, old, new. Hides password."""
+        details = dict([(k, (self.initial[k], self.cleaned_data[k]))
+                           for k in self.changed_fields()])
+        if 'password' in self.changed_data:
+            details['password'] = ['****', '****']
+        return details
+
     def clean_anonymize(self):
         if (self.cleaned_data['anonymize'] and
-            set(self.changed_data) !=
-            set(['admin_log', 'notifications', 'anonymize'])):
+            self.changed_fields() != set(['anonymize'])):
             raise forms.ValidationError(_('To anonymize, enter an admin log, '
                                           'but do not change any other field'))
         return self.cleaned_data['anonymize']
 
     def save(self, *args, **kw):
-        profile = super(AdminUserEditForm, self).save()
+        profile = super(AdminUserEditForm, self).save(log_for_developer=False)
         if self.cleaned_data['anonymize']:
-            profile.anonymize()  # this also logs.
-
+            amo.log(amo.LOG.ADMIN_USER_ANONYMIZED, self.instance,
+                    self.cleaned_data['admin_log'])
+            profile.anonymize()  # This also logs
+        else:
+            amo.log(amo.LOG.ADMIN_USER_EDITED, self.instance,
+                    self.cleaned_data['admin_log'], details=self.changes())
+            log.info('Admin edit user: %s changed fields: %s' %
+                     (self.instance, self.changed_fields()))
         return profile
 
 

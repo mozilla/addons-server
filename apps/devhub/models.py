@@ -153,6 +153,12 @@ class ActivityLogManager(amo.models.ManagerBase):
                     .values_list('activity_log', flat=True))
         return self.filter(pk__in=list(vals))
 
+    def for_developer(self):
+        return self.exclude(action__in=amo.LOG_ADMINS + amo.LOG_HIDE_DEVELOPER)
+
+    def admin_events(self):
+        return self.filter(action__in=amo.LOG_ADMINS)
+
     def editor_events(self):
         return self.filter(action__in=amo.LOG_EDITORS)
 
@@ -187,7 +193,7 @@ class SafeFormatter(string.Formatter):
 
 
 class ActivityLog(amo.models.ModelBase):
-    TYPES = [(value, key) for key, value in amo.LOG.items()]
+    TYPES = sorted([(value.id, key) for key, value in amo.LOG.items()])
     user = models.ForeignKey('users.UserProfile', null=True)
     action = models.SmallIntegerField(choices=TYPES, db_index=True)
     _arguments = models.TextField(blank=True, db_column='arguments')

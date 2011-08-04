@@ -1726,20 +1726,22 @@ class TestActivityFeed(amo.tests.TestCase):
         r = self.client.get(reverse('devhub.feed', args=[addon.slug]))
         eq_(r.status_code, 302)
 
-    def add_comment(self):
+    def add_hidden_log(self, action=amo.LOG.COMMENT_VERSION):
         addon = Addon.objects.get(id=3615)
         amo.set_user(UserProfile.objects.get(email='del@icio.us'))
-        amo.log(amo.LOG.COMMENT_VERSION, addon, addon.versions.all()[0])
+        amo.log(action, addon, addon.versions.all()[0])
         return addon
 
     def test_feed_hidden(self):
-        addon = self.add_comment()
+        addon = self.add_hidden_log()
+        self.add_hidden_log(amo.LOG.OBJECT_ADDED)
         res = self.client.get(reverse('devhub.feed', args=[addon.slug]))
         doc = pq(res.content)
         eq_(len(doc('#recent-activity p')), 1)
 
     def test_addons_hidden(self):
-        self.add_comment()
+        self.add_hidden_log()
+        self.add_hidden_log(amo.LOG.OBJECT_ADDED)
         res = self.client.get(reverse('devhub.addons'))
         doc = pq(res.content)
         eq_(len(doc('#dashboard-sidebar div.recent-activity li.item')), 0)
