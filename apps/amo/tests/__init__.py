@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import os
 import random
 import time
 
@@ -73,6 +74,17 @@ class TestCase(RedisTest, test_utils.TestCase):
         super(TestCase, self)._pre_setup()
         from addons.cron import reset_featured_addons
         reset_featured_addons()
+
+
+class AMOPaths(object):
+    """Mixin for getting common AMO Paths."""
+
+    def file_fixture_path(self, name):
+        path = 'apps/files/fixtures/files/%s' % name
+        return os.path.join(settings.ROOT, path)
+
+    def xpi_path(self, name):
+        return self.file_fixture_path(name + '.xpi')
 
 
 def close_to_now(dt):

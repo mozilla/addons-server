@@ -24,7 +24,7 @@ from files.utils import parse_addon, parse_xpi, check_rdf, JetpackUpgrader
 from versions.models import Version
 
 
-class UploadTest(amo.tests.TestCase):
+class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
     """
     Base for tests that mess with file uploads, safely using temp directories.
     """
@@ -41,12 +41,8 @@ class UploadTest(amo.tests.TestCase):
     def tearDown(self):
         path.path.rename = self._rename
 
-    def file_path(self, name):
-        path = 'apps/files/fixtures/files/%s' % name
-        return os.path.join(settings.ROOT, path)
-
-    def xpi_path(self, name):
-        return self.file_path(name + '.xpi')
+    def file_path(self, *args, **kw):
+        return self.fixture_file_path(*args, **kw)
 
     def get_upload(self, filename=None, abspath=None, validation=None):
         xpi = open(abspath if abspath else self.file_path(filename)).read()
@@ -322,7 +318,7 @@ class TestParseXpi(amo.tests.TestCase):
         eq_(msg, 'Version numbers should have fewer than 32 characters.')
 
 
-class TestParseAlternateXpi(amo.tests.TestCase):
+class TestParseAlternateXpi(amo.tests.TestCase, amo.tests.AMOPaths):
     # This install.rdf is completely different from our other xpis.
     fixtures = ['base/apps']
 
@@ -332,9 +328,7 @@ class TestParseAlternateXpi(amo.tests.TestCase):
                                       version=version)
 
     def parse(self, filename='alt-rdf.xpi'):
-        path = 'apps/files/fixtures/files/' + filename
-        xpi = os.path.join(settings.ROOT, path)
-        return parse_addon(xpi)
+        return parse_addon(self.file_fixture_path(filename))
 
     def test_parse_basics(self):
         # Everything but the apps.
@@ -575,13 +569,12 @@ class TestFileFromUpload(UploadTest):
         eq_(f.status, amo.STATUS_LITE_AND_NOMINATED)
 
 
-class TestZip(amo.tests.TestCase):
+class TestZip(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def test_zip(self):
         # This zip contains just one file chrome/ that we expect
         # to be unzipped as a directory, not a file.
-        xpi = os.path.join(os.path.dirname(__file__), '..', 'fixtures',
-                           'files', 'directory-test.xpi')
+        xpi = self.xpi_path('directory-test')
 
         # This is to work around: http://bugs.python.org/issue4710
         # which was fixed in Python 2.6.2. If the required version
@@ -595,11 +588,10 @@ class TestZip(amo.tests.TestCase):
             shutil.rmtree(dest)
 
 
-class TestParseSearch(amo.tests.TestCase):
+class TestParseSearch(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def parse(self, filename='search.xml'):
-        path = 'apps/files/fixtures/files/' + filename
-        return parse_addon(os.path.join(settings.ROOT, path))
+        return parse_addon(self.file_fixture_path(filename))
 
     def extract(self):
         # This is the expected return value from extract_search.
