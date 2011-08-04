@@ -556,7 +556,7 @@
                 return;
             }
 
-            // Convert it to binary.
+            // Convert it.
             if (typeof window.URL == 'object') {
                 file.dataURL = window.URL.createObjectURL(f);
             } else if (typeof window.webkitURL == 'object') {
