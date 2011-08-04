@@ -93,7 +93,10 @@ class CollectionPromo(PromoModule):
 
     def __init__(self, *args, **kw):
         super(CollectionPromo, self).__init__(*args, **kw)
-        self.collection = Collection.objects.get(pk=self.pk)
+        try:
+            self.collection = Collection.objects.get(pk=self.pk)
+        except Collection.DoesNotExist:
+            self.collection = None
 
     def get_descriptions(self):
         return {}
@@ -109,9 +112,10 @@ class CollectionPromo(PromoModule):
         if module_context == 'home':
             self.platform = 'ALL'
             self.version = None
-        c = dict(promo=self, addons=self.get_addons(),
-                 module_context=module_context,
+        c = dict(promo=self, module_context=module_context,
                  descriptions=self.get_descriptions())
+        if self.collection:
+            c.update(addons=self.get_addons())
         return jinja2.Markup(
             jingo.render_to_string(self.request, self.template, c))
 
@@ -215,7 +219,7 @@ class TravelCollection(CollectionPromo):
 
 class SchoolCollection(CollectionPromo):
     slug = 'School'
-    pk = 2128026  # TODO(push): Change this to 2133887.
+    pk = 2133887
     id = 'school'
     cls = 'promo'
     title = _(u'A+ add-ons for School')
