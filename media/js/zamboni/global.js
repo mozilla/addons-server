@@ -537,5 +537,5 @@ $.fn.objectUrl = function() {
         }
     }
     return url;
-}
+};
 
