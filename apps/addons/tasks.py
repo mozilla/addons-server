@@ -40,8 +40,10 @@ def update_last_updated(addon_id):
     else:
         q = 'exp'
     qs = queries[q].filter(pk=addon_id).using('default')
-    pk, t = qs.values_list('id', 'last_updated')[0]
-    Addon.objects.filter(pk=pk).update(last_updated=t)
+    res = qs.values_list('id', 'last_updated')
+    if res:
+        pk, t = res[0]
+        Addon.objects.filter(pk=pk).update(last_updated=t)
 
 
 @transaction.commit_on_success
