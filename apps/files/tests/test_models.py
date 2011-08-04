@@ -42,7 +42,7 @@ class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
         path.path.rename = self._rename
 
     def file_path(self, *args, **kw):
-        return self.fixture_file_path(*args, **kw)
+        return self.file_fixture_path(*args, **kw)
 
     def get_upload(self, filename=None, abspath=None, validation=None):
         xpi = open(abspath if abspath else self.file_path(filename)).read()
