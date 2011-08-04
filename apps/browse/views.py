@@ -247,6 +247,7 @@ def category_landing(request, category, is_impala=False):
         template = 'browse/category_landing.html'
     return jingo.render(request, template,
                         {'category': category, 'filter': filter,
+                         'sorting': filter.field,
                          'search_cat': '%s,0' % category.type})
 
 
