@@ -28,6 +28,13 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
+# need to view JS errors on a remote device? (requires node)
+# > npm install now
+# > node media/js/debug/remote_debug_server.node.js
+# REMOTE_JS_DEBUG = '<yourhost>:37767'
+# then connect to <yourhost>:8080 to view
+REMOTE_JS_DEBUG = False
+
 # Skip indexing ES to speed things up?
 SKIP_SEARCH_INDEX = False
 
