@@ -117,9 +117,11 @@ class FeaturedManager(object):
         fields = ['addon', 'type', 'locale', 'application']
         if settings.NEW_FEATURES:
             from bandwagon.models import FeaturedCollection
-            vals = FeaturedCollection.objects.values_list(
-                'collection__addons', 'collection__addons__type',
-                'locale', 'application')
+            vals = (FeaturedCollection.objects
+                    .filter(collection__addons__isnull=False)
+                    .values_list('collection__addons',
+                                 'collection__addons__type', 'locale',
+                                 'application'))
         else:
             from addons.models import Addon
             vals = (Addon.objects.valid().filter(feature__isnull=False)
@@ -151,7 +153,8 @@ class FeaturedManager(object):
                 name = prefixer(key)
                 pipe.delete(name)
                 for row in rows:
-                    pipe.sadd(name, row['addon'])
+                    if row['addon']:
+                        pipe.sadd(name, row['addon'])
         pipe.execute()
 
     @classmethod
@@ -194,9 +197,11 @@ class CreaturedManager(object):
         fields = ['category', 'addon', 'feature_locales', 'app']
         if settings.NEW_FEATURES:
             from bandwagon.models import FeaturedCollection
-            vals = FeaturedCollection.objects.values_list(
-                'collection__addons__category', 'collection__addons', 'locale',
-                'application')
+            vals = (FeaturedCollection.objects
+                    .filter(collection__addons__isnull=False)
+                    .values_list('collection__addons__category',
+                                 'collection__addons', 'locale',
+                                 'application'))
         else:
             from addons.models import AddonCategory
             vals = (AddonCategory.objects.filter(feature=True)
@@ -230,7 +235,8 @@ class CreaturedManager(object):
                     name = cls.by_cat(category, app)
                 pipe.delete(name)
                 for row in rs:
-                    pipe.sadd(name, row['addon'])
+                    if row['addon']:
+                        pipe.sadd(name, row['addon'])
         pipe.execute()
 
     @classmethod
