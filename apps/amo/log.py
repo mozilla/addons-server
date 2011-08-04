@@ -397,30 +397,35 @@ class OBJECT_ADDED(_LOG):
     id = 100
     format = _(u'Created: {0}.')
     admin_event = True
+    action_class = None
 
 
 class OBJECT_EDITED(_LOG):
     id = 101
     format = _(u'Edited field: {2} set to: {0}.')
     admin_event = True
+    action_class = None
 
 
 class OBJECT_DELETED(_LOG):
     id = 102
     format = _(u'Deleted: {1}.')
     admin_event = True
+    action_class = None
 
 
 class ADMIN_USER_EDITED(_LOG):
     id = 103
     format = _(u'User {user} edited with log: {0}.')
     admin_event = True
+    action_class = None
 
 
 class ADMIN_USER_ANONYMIZED(_LOG):
     id = 104
     format = _(u'User {user} anonymized with log: {0}.')
     admin_event = True
+    action_class = None
 
 
 LOGS = [x for x in vars().values()
