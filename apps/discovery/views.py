@@ -92,7 +92,8 @@ def get_modules(request, platform, version):
 
 def get_featured_personas(request):
     categories, filter, base, category = personas_listing(request)
-    ids = FeaturedManager.featured_ids(request.APP, type=amo.ADDON_PERSONA)
+    ids = FeaturedManager.featured_ids(request.APP, request.LANG,
+                                       type=amo.ADDON_PERSONA)
     return manual_order(base, ids)[:6]
 
 
