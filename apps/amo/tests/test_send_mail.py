@@ -59,6 +59,8 @@ class SendMailTest(test.TestCase):
         assert success, "Email wasn't sent"
         eq_(len(mail.outbox), 1)
 
+        eq_(mail.outbox[0].body.count('users/unsubscribe'), 1)  # bug 676601
+
     def test_user_setting_checked(self):
         user = UserProfile.objects.all()[0]
         to = user.email

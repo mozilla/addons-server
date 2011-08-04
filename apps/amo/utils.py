@@ -173,10 +173,10 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                     context = {'message': message, 'unsubscribe': url,
                                'perm_setting': perm_setting.label,
                                'SITE_URL': settings.SITE_URL}
-                    message = template.render(Context(context,
-                                                      autoescape=False))
+                    send_message = template.render(Context(context,
+                                                           autoescape=False))
 
-                    result = django_send_mail(subject, message, from_email,
+                    result = django_send_mail(subject, send_message, from_email,
                                               [recipient], fail_silently=False)
             else:
                 result = django_send_mail(subject, message, from_email, white_list,
