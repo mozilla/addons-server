@@ -3,6 +3,7 @@ import jingo
 import jinja2
 from tower import ugettext_lazy as _
 
+import amo
 from addons.models import Addon
 from api.views import addon_filter
 from bandwagon.models import Collection
@@ -98,9 +99,9 @@ class CollectionPromo(PromoModule):
         return {}
 
     def get_addons(self):
-        addons = self.collection.addons.all()
+        addons = self.collection.addons.filter(status=amo.STATUS_PUBLIC)
         kw = dict(addon_type='ALL', limit=self.limit, app=self.request.APP,
-                  platform=self.platform, version=self.version, shuffle=True)
+                  platform=self.platform, version=self.version)
         f = lambda: addon_filter(addons, **kw)
         return caching.cached_with(addons, f, repr(kw))
 
