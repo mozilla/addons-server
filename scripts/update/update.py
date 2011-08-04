@@ -80,7 +80,6 @@ def install_cron(ctx):
 
 @hostgroups(settings.WEB_HOSTGROUP, remote_kwargs={'ssh_key': settings.SSH_KEY})
 def deploy_app(ctx):
-    checkin_changes()
     ctx.remote(settings.REMOTE_UPDATE_SCRIPT)
     ctx.remote("/bin/touch %s" % settings.REMOTE_WSGI)
 
@@ -96,6 +95,7 @@ def update_celery(ctx):
 @task
 def deploy(ctx):
     install_cron()
+    checkin_changes()
     deploy_app()
     update_celery()
 
