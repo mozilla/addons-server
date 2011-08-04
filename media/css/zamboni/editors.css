@@ -13,7 +13,7 @@
 .app-icon, .platform-icon {
     float: left;
     margin-right: 4px;
-    background: url(../../img/developers/editor-sprite.png?3) no-repeat top left;
+    background: url(../../img/developers/editor-sprite.png?5) no-repeat top left;
     width: 16px; height: 16px;
     position: relative;
     top: 4px;
@@ -34,7 +34,7 @@
 .ed-sprite-editor { background-position: 0 -959px; }
 
 .platform-icon {
-    background: url(../../img/developers/platforms.png?3) no-repeat top left;
+    background: url(../../img/developers/platforms.png?5) no-repeat top left;
 }
 .plat-sprite-all { background-position: 0 0; }
 .plat-sprite-any { background-position: 0 0; }
@@ -48,7 +48,7 @@
 .plat-sprite-maemo { background-position: 0 -128px; }
 
 .sort-icon {
-    background: url(../../img/developers/editor-sprite.png?3) no-repeat top left;
+    background: url(../../img/developers/editor-sprite.png?5) no-repeat top left;
 }
 .ed-sprite-sort-asc {
     background-position: right -321px;
