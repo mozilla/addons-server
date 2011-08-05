@@ -6,7 +6,7 @@ import time
 from django import http
 from django.conf import settings
 from django.core.cache import cache
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.shortcuts import redirect, get_object_or_404
 from django.utils.datastructures import SortedDict
 from django.views.decorators.cache import never_cache
@@ -18,7 +18,8 @@ import amo
 from access import acl
 from addons.decorators import addon_view
 from addons.models import Addon, Version
-from amo.decorators import login_required, json_view, post_required
+from amo.decorators import (login_required, json_view, post_required,
+                            permission_required)
 from amo.utils import paginate
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
@@ -32,6 +33,7 @@ from files.models import Approval, File
 from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
+from webapps.models import Webapp
 from zadmin.models import get_config, set_config
 
 
@@ -551,3 +553,20 @@ def reviewlog(request):
          }
     data = context(form=form, pager=pager, ACTION_DICT=ad)
     return jingo.render(request, 'editors/reviewlog.html', data)
+
+
+# - Holding
+# ** Approved   -- PUBLIC
+# ** Unapproved -- PENDING
+# - Open
+# ** Reviewed   -- PUBLIC
+# ** Unreviewed -- LITE
+# ** Rejected   -- REJECTED
+@permission_required('Editors', 'Apps')
+def apps(request):
+    status = (amo.STATUS_PENDING if settings.WEBAPPS_RESTRICTED
+              else amo.STATUS_LITE)
+    qs = (Webapp.uncached.filter(status=status).order_by('created')
+          .annotate(Count('abuse_reports')))
+    return jingo.render(request, 'editors/apps.html',
+                        {'apps': amo.utils.paginate(request, qs)})
