@@ -1,0 +1,14 @@
+index:
+  analysis:
+    analyzer:
+      standardPlusWordDelimiter:
+        type: custom
+        tokenizer: standard
+        filter: [standard, wordDelim, lowercase, stop, dict]
+    filter:
+      wordDelim:
+        type: word_delimiter
+        preserve_original: true
+      dict:
+        type: dictionary_decompounder
+        word_list_path: wordlist.txt
