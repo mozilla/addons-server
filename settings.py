@@ -1091,3 +1091,7 @@ DEVELOPER_BLOG_URL = 'http://blog.mozilla.com/addons/feed/'
 
 LOGIN_RATELIMIT_USER = 5
 LOGIN_RATELIMIT_ALL_USERS = '15/m'
+
+# If this is true all new webapps go into an approval queue. If it's false then
+# they go public immediately.
+WEBAPPS_RESTRICTED = True
