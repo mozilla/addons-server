@@ -21,15 +21,15 @@
           {{ impala_reviews_link(addon) }}
           <div class="adu">
             {% if addon.type == amo.ADDON_SEARCH %}
-              {% with num=addon.average_daily_users %}
-                {# L10n: {0} is the number of users. #}
-                {{ ngettext('{0} user', '{0} users', num)|f(num|numberfmt) }}
-              {% endwith %}
-            {% else %}
               {% with num=addon.weekly_downloads %}
                 {# L10n: {0} is the number of downloads. #}
                 {{ ngettext('{0} weekly download', '{0} weekly downloads',
                             num)|f(num|numberfmt) }}
+              {% endwith %}
+            {% else %}
+              {% with num=addon.average_daily_users %}
+                {# L10n: {0} is the number of users. #}
+                {{ ngettext('{0} user', '{0} users', num)|f(num|numberfmt) }}
               {% endwith %}
             {% endif %}
           </div>
