@@ -35,7 +35,7 @@ from versions.compare import version_int as vint
 log = commonware.log.getLogger('z.files')
 
 # Acceptable extensions.
-EXTENSIONS = ('.xpi', '.jar', '.xml')
+EXTENSIONS = ('.xpi', '.jar', '.xml', '.webapp', '.json')
 
 
 class File(amo.models.OnChangeMixin, amo.models.ModelBase):
