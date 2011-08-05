@@ -1,14 +1,24 @@
 from django.db import models
 
 import amo
+import amo.models
 from amo.urlresolvers import reverse
 from addons.models import Addon, update_search_index, delete_search_index
+
+
+class WebappManager(amo.models.ManagerBase):
+
+    def get_query_set(self):
+        qs = super(WebappManager, self).get_query_set()
+        return qs.filter(type=amo.ADDON_WEBAPP)
 
 
 # We use super(Addon, self) on purpose to override expectations in Addon that
 # are not true for Webapp. Webapp is just inheriting so it can share the db
 # table.
 class Webapp(Addon):
+
+    objects = WebappManager()
 
     class Meta:
         proxy = True
