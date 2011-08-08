@@ -246,6 +246,22 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     class Meta:
         db_table = 'addons'
 
+    @staticmethod
+    def __new__(cls, *args, **kw):
+        # Return a Webapp instead of an Addon if the `type` column says this is
+        # really a webapp.
+        try:
+            type_idx = Addon._meta._type_idx
+        except AttributeError:
+            type_idx = (idx for idx, f in enumerate(Addon._meta.fields)
+                        if f.attname == 'type').next()
+            Addon._meta._type_idx = type_idx
+        if ((len(args) == len(Addon._meta.fields)
+             and args[type_idx] == amo.ADDON_WEBAPP)
+            or kw and kw.get('type') == amo.ADDON_WEBAPP):
+            cls = Webapp
+        return super(Addon, cls).__new__(cls, *args, **kw)
+
     def __unicode__(self):
         return u'%s: %s' % (self.id, self.name)
 
@@ -1401,3 +1417,8 @@ def freezer(sender, instance, **kw):
     # Adjust the hotness of the FrozenAddon.
     if instance.addon_id:
         Addon.objects.get(id=instance.addon_id).update(hotness=0)
+
+
+# webapps.models imports addons.models to get Addon, so we need to keep the
+# Webapp import down here.
+from webapps.models import Webapp

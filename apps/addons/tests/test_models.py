@@ -30,6 +30,7 @@ from translations.models import TranslationSequence, Translation
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
 from versions.compare import version_int
+from webapps.models import Webapp
 
 
 class TestAddonManager(amo.tests.TestCase):
@@ -130,6 +131,27 @@ class TestAddonManagerFeatured(amo.tests.TestCase):
             [1001, 1003, 2464, 3481, 7661, 15679])
         f = Addon.objects.featured(amo.SUNBIRD)
         assert not f.exists()
+
+
+class TestNewAddonVsWebapp(amo.tests.TestCase):
+
+    def test_addon_from_kwargs(self):
+        a = Addon(type=amo.ADDON_EXTENSION)
+        assert isinstance(a, Addon)
+
+    def test_webapp_from_kwargs(self):
+        w = Addon(type=amo.ADDON_WEBAPP)
+        assert isinstance(w, Webapp)
+
+    def test_addon_from_db(self):
+        a = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        assert isinstance(a, Addon)
+        assert isinstance(Addon.objects.get(id=a.id), Addon)
+
+    def test_webapp_from_db(self):
+        a = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        assert isinstance(a, Webapp)
+        assert isinstance(Addon.objects.get(id=a.id), Webapp)
 
 
 class TestAddonModels(amo.tests.TestCase):
