@@ -22,23 +22,25 @@ import bleach
 import commonware.log
 import jingo
 import jinja2
-from tower import ugettext_lazy as _lazy, ugettext as _
+from PIL import Image
 from session_csrf import anonymous_csrf
+from tower import ugettext_lazy as _lazy, ugettext as _
 import waffle
 
 from applications.models import Application, AppVersion
 import amo
 import amo.utils
 from amo import messages, urlresolvers
+from amo.decorators import json_view, login_required, post_required
 from amo.helpers import urlparams
 from amo.utils import MenuItem
 from amo.urlresolvers import reverse
-from amo.decorators import json_view, login_required, post_required
 from access import acl
 from addons import forms as addon_forms
 from addons.decorators import addon_view
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
+from devhub.decorators import dev_required
 from devhub.forms import CheckCompatibilityForm
 from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
 from editors.helpers import get_position
@@ -57,45 +59,6 @@ log = commonware.log.getLogger('z.devhub')
 
 # We use a session cookie to make sure people see the dev agreement.
 DEV_AGREEMENT_COOKIE = 'yes-I-read-the-dev-agreement'
-
-
-def dev_required(owner_for_post=False, allow_editors=False):
-    """Requires user to be add-on owner or admin.
-
-    When allow_editors is True, an editor can view the page.
-    """
-    def decorator(f):
-        @addon_view
-        @login_required
-        @functools.wraps(f)
-        def wrapper(request, addon, *args, **kw):
-            fun = lambda: f(request, addon_id=addon.id, addon=addon, *args,
-                            **kw)
-            if allow_editors:
-                if acl.action_allowed(request, 'Editors', '%'):
-                    return fun()
-            # Require an owner or dev for POST requests.
-            if request.method == 'POST':
-                if acl.check_addon_ownership(request, addon,
-                                             dev=not owner_for_post):
-                    return fun()
-            # Ignore disabled so they can view their add-on.
-            elif acl.check_addon_ownership(request, addon, viewer=True,
-                                           ignore_disabled=True):
-                step = SubmitStep.objects.filter(addon=addon)
-                # Redirect to the submit flow if they're not done.
-                if not getattr(f, 'submitting', False) and step:
-                    return _resume(addon, step)
-                return fun()
-            return http.HttpResponseForbidden()
-        return wrapper
-    # The arg will be a function if they didn't pass owner_for_post.
-    if callable(owner_for_post):
-        f = owner_for_post
-        owner_for_post = False
-        return decorator(f)
-    else:
-        return decorator
 
 
 class AddonFilter(BaseFilter):
@@ -952,8 +915,7 @@ def image_status(request, addon_id, addon):
 
 
 @json_view
-@dev_required
-def upload_image(request, addon_id, addon, upload_type):
+def ajax_upload_image(request, upload_type):
     errors = []
     upload_hash = ''
 
@@ -970,19 +932,46 @@ def upload_image(request, addon_id, addon, upload_type):
             for chunk in upload_preview:
                 fd.write(chunk)
 
+        is_icon = upload_type in ('icon', 'preview')
+        is_persona = upload_type.startswith('persona_')
+
         check = amo.utils.ImageCheck(upload_preview)
         if (not check.is_image() or
-            upload_preview.content_type not in
-            ('image/png', 'image/jpeg', 'image/jpg')):
-            errors.append(_('Icons must be either PNG or JPG.'))
+            upload_preview.content_type not in amo.IMG_TYPES):
+            if is_icon:
+                errors.append(_('Icons must be either PNG or JPG.'))
+            else:
+                errors.append(_('Images must be either PNG or JPG.'))
 
         if check.is_animated():
-            errors.append(_('Icons cannot be animated.'))
+            if is_icon:
+                errors.append(_('Icons cannot be animated.'))
+            else:
+                errors.append(_('Images cannot be animated.'))
 
-        if (upload_type == 'icon' and
-            upload_preview.size > settings.MAX_ICON_UPLOAD_SIZE):
-            errors.append(_('Please use images smaller than %dMB.') %
-                        (settings.MAX_ICON_UPLOAD_SIZE / 1024 / 1024 - 1))
+        max_size = None
+        if is_icon:
+            max_size = settings.MAX_ICON_UPLOAD_SIZE
+        if is_persona:
+            max_size = settings.MAX_PERSONA_UPLOAD_SIZE
+
+        if max_size and upload_preview.size > max_size:
+            if is_icon:
+                errors.append(_('Please use images smaller than %dMB.') % (
+                    max_size / 1024 / 1024 - 1))
+            if is_persona:
+                errors.append(_('Images cannot be larger than %dKB.') % (
+                    max_size / 1024))
+
+        if check.is_image() and is_persona:
+            persona, img_type = upload_type.split('_')  # 'header' or 'footer'
+            expected_size = amo.PERSONA_IMAGE_SIZES.get(img_type)[1]
+            actual_size = Image.open(loc).size
+            if actual_size != expected_size:
+                # L10n: {0} is an image width (in pixels), {1} is a height.
+                errors.append(_('Image must be exactly {0} pixels wide '
+                                'and {1} pixels tall.')
+                              .format(expected_size[0], expected_size[1]))
     else:
         errors.append(_('There was an error uploading your preview.'))
 
@@ -990,6 +979,11 @@ def upload_image(request, addon_id, addon, upload_type):
         upload_hash = ''
 
     return {'upload_hash': upload_hash, 'errors': errors}
+
+
+@dev_required
+def upload_image(request, addon_id, addon, upload_type):
+    return ajax_upload_image(request, upload_type)
 
 
 @dev_required

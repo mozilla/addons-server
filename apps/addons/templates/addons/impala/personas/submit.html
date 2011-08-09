@@ -1,0 +1,211 @@
+{% set addon_type = amo.ADDON_PERSONA %}
+{% extends "impala/base_side_categories.html" %}
+
+{% from "includes/forms.html" import pretty_field, tip %}
+{% from "devhub/includes/macros.html" import some_html_tip %}
+
+{% set title = _('Create a New Persona') %}
+
+{% block title %}{{ page_title(title) }}{% endblock %}
+
+{% block primary %}
+<section class="primary">
+  {{ impala_breadcrumbs([(url('browse.personas'), _('Personas')),
+                         (None, _('Create'))]) }}
+  <h1>{{ title }}</h1>
+  {% include "messages.html" %}
+  <div class="island hero prettyform" id="submit-persona">
+    <form action="" method="post">
+      {{ csrf() }}
+      <fieldset>
+        <legend>{{ _('Persona Details') }}</legend>
+        <ul>
+          {{ pretty_field(form.name, label=_('Give your Persona a name.'), req=True) }}
+          {{ pretty_field(form.category, label=_('Select the category that best describes your Persona.'),
+                          req=True, class='row radios addon-cats') }}
+          <li class="row">
+            {{ pretty_field(form.tags, label=_('Add some tags to describe your Persona.'), tag=None, opt=True) }}
+            <span class="note">
+              {{ ngettext('Comma-separated, minimum of {0} character.',
+                          'Comma-separated, minimum of {0} characters.',
+                          amo.MIN_TAG_LENGTH)|f(amo.MIN_TAG_LENGTH) }}
+              {{ _('Example: pop, hen, yum.  Limit 20.') }}
+            </span>
+          </li>
+          <li class="row c">
+            {{ pretty_field(form.summary, label=_('Describe your Persona.'),
+                            tooltip=_("A short explanation of your add-on's
+                                      basic functionality that is displayed in
+                                      search and browse listings, as well as at
+                                      the top of your add-on's details page."),
+                            tag=None, opt=True) }}
+            <div class="note">
+              {{ some_html_tip() }}
+              <span class="char-count" data-for="{{ form.summary.auto_id }}"
+                    data-maxlength="{{ form.summary.field.max_length }}"></span>
+            </div>
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset>
+        <legend>{{ _('Persona License') }}</legend>
+        <div id="cc-chooser"{% if form.license.value() %} class="hidden"{% endif %}>
+          {{ form.license }}
+          {{ form.license.errors }}
+          <h3>{{ _("Can others share your Persona, as long as you're given credit?") }}</h3>
+          <ul class="radios">
+            <li>
+              <label>
+                <input type="radio" name="cc-attrib" value="0">
+                {{ _('Yes') }}
+                {{ tip(None, _('The licensor permits others to copy, distribute, '
+                               'display, and perform the work, including for '
+                               'commercial purposes.')) }}
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="cc-attrib" value="1">
+                {{ _('No') }}
+                {{ tip(None, _('The licensor permits others to copy, distribute, '
+                               'display, and perform the work for non-commercial '
+                               'purposes only.')) }}
+              </label>
+            </li>
+          </ul>
+          <h3>{{ _('Can others make commercial use of your Persona?') }}</h3>
+          <ul class="radios">
+            <li>
+              <label>
+                <input type="radio" name="cc-noncom" value="0">
+                {{ _('Yes') }}
+                {{ tip(None, _('The licensor permits others to copy, distribute, '
+                               'display, and perform the work, including for '
+                               'commercial purposes.')) }}
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="cc-noncom" value="1">
+                {{ _('No') }}
+                {{ tip(None, _('The licensor permits others to copy, distribute, '
+                               'display, and perform the work for non-commercial '
+                               'purposes only.')) }}
+              </label>
+            </li>
+          </ul>
+          <h3>{{ _('Can others create derivative works from your Persona?') }}</h3>
+          <ul class="radios">
+            <li>
+              <label>
+                <input type="radio" name="cc-noderiv" value="0">
+                {{ _('Yes') }}
+                {{ tip(None, _('The licensor permits others to copy, distribute, '
+                               'display and perform the work, as well as make '
+                               'derivative works based on it.')) }}
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="cc-noderiv" value="1">
+                {{ _('Yes, as long as they share alike') }}
+                {{ tip(None, _('The licensor permits others to distribute derivative'
+                               'works only under the same license or one compatible '
+                               "with the one that governs the licensor's work.")) }}
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="cc-noderiv" value="2">
+                {{ _('No') }}
+                {{ tip(None, _('The licensor permits others to copy, distribute and '
+                               'transmit only unaltered copies of the work — not '
+                               'derivative works based on it.')) }}
+              </label>
+            </li>
+          </ul>
+          <div id="persona-license">
+            <p>{{ _('Your Persona will be released under the following license:') }}</p>
+            <p id="cc-license" class="license icon"></p>
+            <p class="select-license">
+              <a href="#">{{ _('Select a different license.') }}</a>
+            </p>
+          </div>
+        </div>
+        <div id="persona-license-list"{% if not form.license.value() %} class="hidden"{% endif %}>
+          <h3>{{ _('Select a license for your Persona.') }}</h3>
+          <ul class="radios">
+            {% for license in amo.PERSONA_LICENSES %}
+              <li><label><input type="radio" name="license" value="{{ license.id }}">
+                {{ license.name }}</label></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </fieldset>
+      <fieldset id="persona-design">
+        <legend>{{ _('Persona Design') }}</legend>
+        <ul>
+          <li id="persona-header" class="row">
+            {{ pretty_field(form.header, label=_('Select a header image for your Persona.'),
+                            tag=None, req=True) }}
+            {{ form.header_hash }}
+            {{ form.header_hash.errors }}
+            <ul class="note">
+              <li>{{ _('3000 &times; 200 pixels') }}</li>
+              <li>{{ _('300 KB max') }}</li>
+              <li>{{ _('PNG or JPG') }}</li>
+              <li>{{ _('Aligned to top-right') }}</li>
+            </ul>
+            <ul class="errorlist"></ul>
+            <img class="preview">
+            <a href="#" class="reset">
+              {{ _('Select a different header image') }}</a>
+          </li>
+          <li id="persona-footer" class="row">
+            {{ pretty_field(form.footer, label=_('Select a footer image for your Persona.'),
+                            tag=None, req=True) }}
+            {{ form.footer_hash }}
+            {{ form.footer_hash.errors }}
+            <ul class="note">
+              <li>{{ _('3000 &times; 100 pixels') }}</li>
+              <li>{{ _('300 KB max') }}</li>
+              <li>{{ _('PNG or JPG') }}</li>
+              <li>{{ _('Aligned to bottom-left') }}</li>
+            </ul>
+            <ul class="errorlist"></ul>
+            <img class="preview">
+            <a href="#" class="reset">
+              {{ _('Select a different footer image') }}</a>
+          </li>
+        </ul>
+        <h3>{{ _('Select colors for your Persona.') }}</h3>
+        <ul class="colors">
+          {{ pretty_field(form.textcolor, label=_('Foreground Text'),
+                          tooltip=_('This is the color of the tab text.')) }}
+          {{ pretty_field(form.accentcolor, label=_('Background'),
+                          tooltip=_('This is the color of the tabs.')) }}
+        </ul>
+      </fieldset>
+      <fieldset id="persona-preview">
+        <legend>{{ _('Preview') }}</legend>
+        <div class="persona persona-large persona-preview">
+          <div class="persona-viewer" data-browsertheme>
+            <div class="details">
+              <span class="title" id="persona-preview-name">
+                {{ _("Your Persona's Name") }}</span>
+              <span class="author">
+                {% set amo_user = request.amo_user %}
+                {% trans user=amo_user.username,
+                         profile_url=url('users.profile', amo_user.id) %}
+                  by <a href="{{ profile_url }}" target="_blank">{{ user }}</a>
+                {% endtrans %}
+              </span>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <p><button>{{ _('Submit Persona') }}</button></p>
+    </form>
+  </div>
+</section>
+{% endblock %}

@@ -564,7 +564,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def update_status(self, using=None):
         if (self.status == amo.STATUS_NULL or self.is_disabled
-            or self.is_webapp()):
+            or self.is_webapp() or self.is_persona()):
             return
 
         def logit(reason, old=self.status):
@@ -1047,7 +1047,7 @@ class Persona(caching.CachingMixin, models.Model):
     author = models.CharField(max_length=32, null=True)
     display_username = models.CharField(max_length=32, null=True)
     submit = models.DateTimeField(null=True)
-    approve = models.DateTimeField(null=True)
+    approve = models.DateTimeField(null=False)
 
     movers = models.FloatField(null=True, db_index=True)
     popularity = models.IntegerField(null=False, default=0, db_index=True)

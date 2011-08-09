@@ -7,9 +7,10 @@ from django.db import connection, transaction
 
 from celeryutils import task
 import elasticutils
+from PIL import Image
 
 import amo
-from amo.decorators import write
+from amo.decorators import set_modified_on, write
 from amo.utils import sorted_groupby
 from tags.models import Tag
 from translations.models import Translation
@@ -137,7 +138,8 @@ def attach_translations(addons):
         ids.update((getattr(addon, field.attname, None), addon)
                    for field in fields)
     ids.pop(None, None)
-    qs = (Translation.objects.filter(id__in=ids, localized_string__isnull=False)
+    qs = (Translation.objects
+          .filter(id__in=ids, localized_string__isnull=False)
           .values_list('id', 'locale', 'localized_string'))
     for id, translations in sorted_groupby(qs, lambda x: x[0]):
         ids[id].translations[id] = [(locale, string)
@@ -159,3 +161,52 @@ def unindex_addons(ids, **kw):
     for addon in ids:
         log.info('Removing addon [%s] from search index.' % addon)
         Addon.unindex(addon)
+
+
+@task
+def delete_persona_image(dst, **kw):
+    log.info('[1@None] Deleting persona image: %s.' % dst)
+    if not dst.startswith(settings.PERSONAS_PATH):
+        log.error("Someone tried deleting something they shouldn't: %s" % dst)
+        return
+    try:
+        os.remove(dst)
+    except Exception, e:
+        log.error('Error deleting persona image: %s' % e)
+
+
+@task
+@set_modified_on
+def create_persona_preview_image(src, dst, img_basename, **kw):
+    """Creates a 680x100 thumbnail used for the Persona preview."""
+    log.info('[1@None] Resizing persona image: %s' % dst)
+    if not os.path.exists(dst):
+        os.makedirs(dst)
+    try:
+        preview, full = amo.PERSONA_IMAGE_SIZES['header']
+        new_w, new_h = preview
+        orig_w, orig_h = full
+        i = Image.open(src)
+        # Crop image from the right.
+        i = i.crop((orig_w - (new_h * 2), 0, orig_w, orig_h))
+        i = i.resize(preview, Image.ANTIALIAS)
+        i.load()
+        i.save(os.path.join(dst, img_basename))
+        return True
+    except Exception, e:
+        log.error('Error saving persona image: %s' % e)
+
+
+@task
+@set_modified_on
+def save_persona_image(src, dst, img_basename, **kw):
+    """Creates a JPG of a Persona header/footer image."""
+    log.info('[1@None] Saving persona image: %s' % dst)
+    if not os.path.exists(dst):
+        os.makedirs(dst)
+    try:
+        i = Image.open(src)
+        i.save(os.path.join(dst, img_basename))
+        return True
+    except Exception, e:
+        log.error('Error saving persona image: %s' % e)

@@ -1,0 +1,48 @@
+import functools
+
+from django import http
+
+from amo.decorators import login_required
+from access import acl
+from addons.decorators import addon_view
+from devhub.models import SubmitStep
+
+
+def dev_required(owner_for_post=False, allow_editors=False):
+    """Requires user to be add-on owner or admin.
+
+    When allow_editors is True, an editor can view the page.
+    """
+    def decorator(f):
+        @addon_view
+        @login_required
+        @functools.wraps(f)
+        def wrapper(request, addon, *args, **kw):
+            from devhub.views import _resume
+            fun = lambda: f(request, addon_id=addon.id, addon=addon, *args,
+                            **kw)
+            if allow_editors:
+                if acl.action_allowed(request, 'Editors', '%'):
+                    return fun()
+            # Require an owner or dev for POST requests.
+            if request.method == 'POST':
+                if acl.check_addon_ownership(request, addon,
+                                             dev=not owner_for_post):
+                    return fun()
+            # Ignore disabled so they can view their add-on.
+            elif acl.check_addon_ownership(request, addon, viewer=True,
+                                           ignore_disabled=True):
+                step = SubmitStep.objects.filter(addon=addon)
+                # Redirect to the submit flow if they're not done.
+                if not getattr(f, 'submitting', False) and step:
+                    return _resume(addon, step)
+                return fun()
+            return http.HttpResponseForbidden()
+        return wrapper
+    # The arg will be a function if they didn't pass owner_for_post.
+    if callable(owner_for_post):
+        f = owner_for_post
+        owner_for_post = False
+        return decorator(f)
+    else:
+        return decorator

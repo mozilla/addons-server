@@ -159,6 +159,15 @@ ADDON_ICON_SIZES = [32, 48, 64]
 # Preview upload sizes [thumb, full]
 ADDON_PREVIEW_SIZES = [(200, 150), (700, 525)]
 
+# Persona image sizes [preview, full]
+PERSONA_IMAGE_SIZES = {
+    'header': [(680, 100), (3000, 200)],
+    'footer': [None, (3000, 100)]
+}
+
+# Accepted image MIME-types
+IMG_TYPES = ('image/png', 'image/jpeg', 'image/jpg')
+
 # These types don't maintain app compatibility in the db.  Instead, we look at
 # APP.types and APP_TYPE_SUPPORT to figure out where they are compatible.
 NO_COMPAT = (ADDON_SEARCH, ADDON_PERSONA)

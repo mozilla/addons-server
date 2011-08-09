@@ -452,6 +452,8 @@ MINIFY_BUNDLES = {
             'css/impala/collections.less',
             'css/impala/tooltips.less',
             'css/impala/search.less',
+            'css/impala/colorpicker.less',
+            'css/impala/personas.less',
         ),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',
@@ -574,6 +576,11 @@ MINIFY_BUNDLES = {
             'js/lib/jquery.hoverIntent.min.js',
             'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
+
+            # Persona creation
+            'js/zamboni/upload.js',
+            'js/lib/jquery.minicolors.js',
+            'js/impala/persona_creation.js',
 
             # Collections
             'js/zamboni/collections.js',
@@ -722,6 +729,7 @@ PRIVATE_MIRROR_URL = '/_privatefiles'
 ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
 COLLECTIONS_ICON_PATH = UPLOADS_PATH + '/collection_icons'
 PREVIEWS_PATH = UPLOADS_PATH + '/previews'
+PERSONAS_PATH = UPLOADS_PATH + '/personas'
 USERPICS_PATH = UPLOADS_PATH + '/userpics'
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 ADDON_ICONS_DEFAULT_PATH = os.path.join(MEDIA_ROOT, 'img/addon-icons')
@@ -744,6 +752,8 @@ USERPICS_URL = STATIC_URL + '/img/uploads/userpics/%s/%s/%s.png?modified=%d'
 # paths for uploaded extensions
 COLLECTION_ICON_URL = ('%s/images/collection_icon/%%s.png?modified=%%s' %
                        STATIC_URL)
+NEW_PERSONAS_IMAGE_URL = (STATIC_URL +
+                          '/img/uploads/personas/%(id)d/%(file)s.jpg')
 PERSONAS_IMAGE_URL = ('http://www.getpersonas.com/static/'
                       '%(tens)d/%(units)d/%(id)d/%(file)s')
 PERSONAS_IMAGE_URL_SSL = ('https://www.getpersonas.com/static/'
@@ -959,6 +969,7 @@ def read_only_mode(env):
 # Uploaded file limits
 MAX_ICON_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
+MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
 
 # RECAPTCHA - copy all three statements to settings_local.py
 RECAPTCHA_PUBLIC_KEY = ''

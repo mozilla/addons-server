@@ -21,9 +21,11 @@ import commonware.log
 import session_csrf
 from tower import ugettext as _, ugettext_lazy as _lazy
 from mobility.decorators import mobilized, mobile_template
+import waffle
 
 import amo
 from amo import messages
+from amo.decorators import login_required
 from amo.forms import AbuseForm
 from amo.utils import sorted_groupby, randslice
 from amo.helpers import absolutify
@@ -33,6 +35,7 @@ from amo.urlresolvers import reverse
 from abuse.models import send_abuse_report
 from addons.utils import FeaturedManager
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
+from devhub.decorators import dev_required
 import paypal
 from reviews.forms import ReviewForm
 from reviews.models import Review, GroupedRating
@@ -42,11 +45,13 @@ from translations.query import order_by_translation
 from translations.helpers import truncate
 from versions.models import Version
 from .models import Addon, Persona, FrozenAddon
+from .forms import NewPersonaForm
 from .decorators import addon_view_factory
 
 log = commonware.log.getLogger('z.addons')
 paypal_log = commonware.log.getLogger('z.paypal')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
+addon_unreviewed_view = addon_view_factory(qs=Addon.objects.unreviewed)
 addon_disabled_view = addon_view_factory(qs=Addon.objects.valid_and_disabled)
 
 
@@ -817,3 +822,27 @@ def report_abuse(request, addon):
 def persona_redirect(request, persona_id):
     persona = get_object_or_404(Persona, persona_id=persona_id)
     return redirect('addons.detail', persona.addon.slug, permanent=True)
+
+
+@login_required
+def submit_persona(request):
+    if not waffle.flag_is_active(request, 'submit-personas'):
+        return http.HttpResponseForbidden()
+    form = NewPersonaForm(data=request.POST or None,
+                          files=request.FILES or None, request=request)
+    if request.method == 'POST' and form.is_valid():
+        addon = form.save()
+        messages.success(request, _('Persona successfully added.'))
+        return redirect('personas.submit.done', addon.slug)
+    return jingo.render(request, 'addons/impala/personas/submit.html',
+                        dict(form=form))
+
+
+@dev_required
+def submit_persona_done(request, addon_id, addon):
+    if not waffle.flag_is_active(request, 'submit-personas'):
+        return http.HttpResponseForbidden()
+    if addon.status != amo.STATUS_UNREVIEWED:
+        return http.HttpResponseRedirect(addon.get_url_path(impala=True))
+    return jingo.render(request, 'addons/impala/personas/submit_done.html',
+                        dict(addon=addon))

@@ -130,6 +130,7 @@ def monitor(request, format=None):
           settings.COLLECTIONS_ICON_PATH,
           settings.PACKAGER_PATH,
           settings.PREVIEWS_PATH,
+          settings.PERSONAS_PATH,
           settings.USERPICS_PATH,
           settings.SPHINX_CATALOG_PATH,
           settings.SPHINX_LOG_PATH,

@@ -33,6 +33,12 @@
     transform: @tform;
 }
 
+.background-size(@size) {
+    -moz-background-size: @size;
+    -wekbkit-background-size: @size;
+    background-size: @size;
+}
+
 .box-shadow(@shadow) {
     box-shadow: @shadow;
     -moz-box-shadow: @shadow;

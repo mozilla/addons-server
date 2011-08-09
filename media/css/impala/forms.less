@@ -13,7 +13,9 @@ label {
     font-weight: bold;
 }
 
-.req {
+.req,
+.errorlist,
+.error {
     color: @error-red;
 }
 
@@ -87,12 +89,33 @@ textarea {
 }
 
 .prettyform {
+   .char-count {
+        float: left;
+        b {
+            color: @dark-gray;
+        }
+        &.error b {
+            color: darken(@error-red, 10%);
+        }
+    }
+    .note,
+    .html-support {
+        color: @medium-gray;
+        font-size: 11px;
+        line-height: 1.4;
+    }
+    .html-support {
+        margin: 0;
+        padding: 0;
+        float: right;
+        span {
+            border-bottom: 1px dotted #bbb;
+            cursor: help;
+        }
+    }
     ul {
         font-size: 13px;
         &.note {
-            color: @medium-gray;
-            font-size: 11px;
-            line-height: 1.4;
             li {
                 display: inline-block;
                 &:before {
@@ -106,7 +129,6 @@ textarea {
             }
         }
         &.errorlist {
-            color: #c00;
             font-size: 12px;
         }
     }
@@ -137,6 +159,9 @@ textarea {
     }
     .row {
         margin: 0 0 15px;
+        &.c {
+            float: left;
+        }
     }
     h3,
     .row > label {
@@ -174,26 +199,6 @@ textarea {
     textarea {
         width: 400px;
         vertical-align: text-top;
-    }
-    p.note {
-        color: #888;
-        font-size: 0.9em;
-        font-style: italic;
-        margin-top: 0;
-        padding-left: 138px;
-        clear: both;
-        width: 300px;
-    }
-    sup {
-        bottom: 4px;
-        font-size: 0.7em;
-        position: relative;
-        &.msg {
-            color: @red;
-        }
-    }
-    legend + p {
-        margin: 0 0 1em;
     }
     footer {
         button {
@@ -250,6 +255,17 @@ textarea {
                 margin-top: 0;
             }
         }
+        sup {
+            bottom: 4px;
+            font-size: 0.7em;
+            position: relative;
+            &.msg {
+                color: @red;
+            }
+        }
+        legend + p {
+            margin: 0 0 1em;
+        }
     }
     .checkboxes,
     .radios {
@@ -273,6 +289,15 @@ textarea {
 }
 
 .html-rtl .prettyform {
+    .row.c {
+        float: right;
+    }
+    .char-count {
+        float: right;
+    }
+    .html-support {
+        float: left;
+    }
     ul.note li {
         &:before {
            padding: 0 0 0 3px;
