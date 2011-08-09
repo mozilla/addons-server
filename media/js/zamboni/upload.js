@@ -556,6 +556,8 @@
                 return;
             }
 
+            file.dataURL = $upload_field.objectUrl(v);
+
             // Convert it.
             if (typeof window.URL == 'object') {
                 file.dataURL = window.URL.createObjectURL(f);

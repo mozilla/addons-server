@@ -16,7 +16,7 @@ $(function() {
 
     // Display image inline
     var $avatar = $('.profile-photo .avatar'),
-        $a = $('<a>', {'text': 'use original', 'class': 'delete', 'href': '#'}).hide();
+        $a = $('<a>', {'text': gettext('use original'), 'class': 'delete', 'href': '#'}).hide();
 
     $avatar.attr('data-original', $avatar.attr('src'));
     $a.click(_pd(function() {

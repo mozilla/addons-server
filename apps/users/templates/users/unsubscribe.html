@@ -3,12 +3,12 @@
 
 {% block content %}
 <div class="primary island" id="standalone">
-  {% if unsubscribed:  %}
+  {% if unsubscribed %}
     <h2 id="unsubscribe-success">{{ _('You are successfully unsubscribed!') }}
     </h2>
     <p>{{ _('You will no longer get emails when:') }}</p>
     <ul class="indent">
-      {% for s in perm_settings: %}
+      {% for s in perm_settings %}
         <li><em>{{ s.label }}</em></li>
       {% endfor %}
     </ul>
