@@ -38,6 +38,7 @@ from amo.utils import chunked, sorted_groupby
 from addons.models import Addon
 from addons.utils import ReverseNameLookup
 from bandwagon.models import Collection
+from devhub.models import ActivityLog
 from files.models import Approval, File
 from versions.models import Version
 
@@ -477,7 +478,8 @@ def addon_name_blocklist(request):
 
 @admin.site.admin_view
 def index(request):
-    return jingo.render(request, 'zadmin/index.html')
+    log = ActivityLog.objects.admin_events()[:5]
+    return jingo.render(request, 'zadmin/index.html', {'log': log})
 
 
 @admin.site.admin_view
@@ -491,6 +493,7 @@ def addon_search(request):
             qs = (Addon.search().query(name=q.lower())
                   .order_by('name_sort')[:100])
         if len(qs) == 1:
+            # Note this is a remora URL and should be removed.
             return redirect('/admin/addons?q=[%s]' % qs[0].id)
         ctx['addons'] = qs
     return jingo.render(request, 'zadmin/addon-search.html', ctx)

@@ -416,14 +416,14 @@ class OBJECT_DELETED(_LOG):
 
 class ADMIN_USER_EDITED(_LOG):
     id = 103
-    format = _(u'User {user} edited with log: {0}.')
+    format = _(u'User {user} edited, reason: {1}')
     admin_event = True
     action_class = None
 
 
 class ADMIN_USER_ANONYMIZED(_LOG):
     id = 104
-    format = _(u'User {user} anonymized with log: {0}.')
+    format = _(u'User {user} anonymized.')
     admin_event = True
     action_class = None
 

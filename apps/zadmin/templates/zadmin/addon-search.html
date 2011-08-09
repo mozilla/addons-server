@@ -3,11 +3,8 @@
 {% block title %}{{ page_title('Add-on Search') }}{% endblock %}
 
 {% block content %}
-<h2>Add-on Search</h2>
-<p>Type in names or ids to find an add-on. No auto-complete yet. Don't wrap numbers in braces.</p>
-<form action="">
-  <input type="search" name="q" value="{{ q }}" placeholder="name or id">
-</form>
+<h2>Search Add-ons</h2>
+{% include "zadmin/includes/search_addons.html" %}
 
 {% if q %}
 <h3>Results for <b>{{ q }}</b> (1&ndash;{{ addons|length }} of {{ addons.count() }}):</h3>

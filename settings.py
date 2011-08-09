@@ -475,6 +475,11 @@ MINIFY_BUNDLES = {
             'css/zamboni/mobile.css',
             'css/zamboni/mobile-forms.less',
         ),
+        'zamboni/admin': (
+            'css/zamboni/admin-django.css',
+            'css/zamboni/admin-mozilla.css',
+            'css/zamboni/admin_features.css'
+        ),
     },
     'js': {
         # JS files common to the entire site.
@@ -662,6 +667,11 @@ MINIFY_BUNDLES = {
             'js/zamboni/stats/stats_manager.js',
             'js/zamboni/stats/stats_tables.js',
             'js/zamboni/stats/stats.js',
+        ),
+        'zamboni/admin': (
+            'js/zamboni/admin.js',
+            'js/zamboni/admin_features.js',
+            'js/zamboni/admin_validation.js',
         ),
         # This is included when DEBUG is True.  Bundle in <head>.
         'debug': (

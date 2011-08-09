@@ -222,7 +222,7 @@ class ActivityLog(amo.models.ModelBase):
         for item in d:
             # item has only one element.
             model_name, pk = item.items()[0]
-            if model_name in ('str', 'int'):
+            if model_name in ('str', 'int', 'null'):
                 objs.append(pk)
             else:
                 (app_label, model_name) = model_name.split('.')
