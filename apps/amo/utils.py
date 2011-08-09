@@ -1,3 +1,4 @@
+import functools
 import hashlib
 import itertools
 import operator
@@ -498,9 +499,10 @@ def memoize(prefix, time=60):
     key based on stringing args and kwargs. Keep args simple.
     """
     def decorator(func):
+        @functools.wraps(func)
         def wrapper(*args, **kwargs):
             key = hashlib.md5()
-            for arg in itertools.chain(args, kwargs):
+            for arg in itertools.chain(args, sorted(kwargs.items())):
                 key.update(str(arg))
             key = '%s:memoize:%s:%s' % (settings.CACHE_PREFIX,
                                         prefix, key.hexdigest())
