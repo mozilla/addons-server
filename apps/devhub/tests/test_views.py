@@ -3339,7 +3339,8 @@ class TestCreateWebApp(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         eq_(addon.type, amo.ADDON_WEBAPP)
         eq_(addon.guid, None)
         eq_(unicode(addon.name), 'MozillaBall')
-        eq_(addon.slug, 'mozillaball')
+        eq_(addon.slug, 'app-%s' % addon.id)
+        eq_(addon.app_slug, 'mozillaball')
         eq_(addon.latest_version.version, '1.0')
         eq_(addon.summary, u'Exciting Open Web development action!')
         eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
