@@ -293,6 +293,21 @@ class TestViews(amo.tests.TestCase):
                                     args=[self.addon.slug, 2]))
         eq_(r.status_code, 404)
 
+    def get_content(self):
+        url = reverse('addons.versions', args=[self.addon.slug])
+        return PyQuery(self.client.get(url).content)
+
+    def test_version_source(self):
+        self.addon.update(view_source=True)
+        eq_(len(self.get_content()('a.source-code')), 1)
+
+    def test_version_no_source_one(self):
+        eq_(len(self.get_content()('a.source-code')), 0)
+
+    def test_version_no_source_two(self):
+        self.addon.update(view_source=True, status=amo.STATUS_NULL)
+        eq_(len(self.get_content()('a.source-code')), 0)
+
     def test_version_link(self):
         addon = Addon.objects.get(id=11730)
         version = addon.current_version.version
