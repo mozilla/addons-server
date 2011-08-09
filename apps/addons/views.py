@@ -41,7 +41,7 @@ from stats.models import GlobalStat, Contribution
 from translations.query import order_by_translation
 from translations.helpers import truncate
 from versions.models import Version
-from .models import Addon, MiniAddon, Persona, FrozenAddon
+from .models import Addon, Persona, FrozenAddon
 from .decorators import addon_view_factory
 
 log = commonware.log.getLogger('z.addons')
@@ -154,7 +154,7 @@ def extension_detail(request, addon):
     tags = addon.tags.not_blacklisted()
 
     # addon recommendations
-    recommended = MiniAddon.objects.valid().filter(
+    recommended = Addon.objects.valid().filter(
         recommended_for__addon=addon)[:5]
 
     # popular collections this addon is part of

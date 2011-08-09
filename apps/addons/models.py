@@ -662,7 +662,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         """
         Return other addons by the author(s) of this addon
         """
-        return (MiniAddon.objects.valid().exclude(id=self.id)
+        return (Addon.objects.valid().exclude(id=self.id)
                 .filter(addonuser__listed=True,
                         authors__in=self.listed_authors).distinct())
 
@@ -1008,24 +1008,6 @@ def watch_disabled(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
     if instance.is_disabled and not Addon(**attrs).is_disabled:
         for f in File.objects.filter(version__addon=instance.id):
             f.hide_disabled_file()
-
-
-class MiniAddonManager(AddonManager):
-
-    def get_query_set(self):
-        qs = super(MiniAddonManager, self).get_query_set()
-        return qs.only_translations()
-
-
-class MiniAddon(Addon):
-    """A smaller lightweight version of Addon suitable for the
-    update script or other areas that don't need all the transforms.
-    This class exists to give the addon a different key for cache machine."""
-
-    objects = MiniAddonManager()
-
-    class Meta:
-        proxy = True
 
 
 class Persona(caching.CachingMixin, models.Model):
