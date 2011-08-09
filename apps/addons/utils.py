@@ -7,6 +7,7 @@ from django.conf import settings
 from django.utils.encoding import smart_str
 
 import commonware.log
+import lru_cache
 import redisutils
 
 from amo.utils import sorted_groupby, memoize
@@ -166,6 +167,7 @@ class FeaturedManager(object):
         pipe.execute()
 
     @classmethod
+    @lru_cache.lru_cache(maxsize=100)
     @memoize(prefix, time=60 * 10)
     def featured_ids(cls, app, lang=None, type=None):
         redis = cls.redis()
@@ -256,6 +258,7 @@ class CreaturedManager(object):
         pipe.execute()
 
     @classmethod
+    @lru_cache.lru_cache(maxsize=100)
     @memoize(prefix, time=60 * 10)
     def creatured_ids(cls, category, lang):
         redis = cls.redis()
