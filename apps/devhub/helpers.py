@@ -155,7 +155,7 @@ def status_class(addon):
         amo.STATUS_LITE_AND_NOMINATED: 'lite-nom',
         amo.STATUS_PURGATORY: 'purgatory',
     }
-    if addon.disabled_by_user:
+    if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED:
         cls = 'disabled'
     else:
         cls = classes.get(addon.status, 'none')
