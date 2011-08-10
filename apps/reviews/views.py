@@ -29,10 +29,12 @@ def flag_context():
                 flag_form=forms.ReviewFlagForm())
 
 def send_mail(template, subject, emails, context, perm_setting):
+    cxn = amo.utils.get_email_backend()
     template = loader.get_template(template)
     amo.utils.send_mail(subject, template.render(Context(context,
                                                          autoescape=False)),
-                  recipient_list=emails, perm_setting=perm_setting)
+                  recipient_list=emails, perm_setting=perm_setting,
+                  connection=cxn)
 
 
 @addon_view
