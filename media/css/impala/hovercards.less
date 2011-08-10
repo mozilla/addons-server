@@ -50,6 +50,9 @@
         display: none;
         position: relative;
         padding: 0 14px 8px 12px;
+        p:first-child {
+            margin-top: 0;
+        }
     }
     a {
         text-decoration: none;
@@ -224,7 +227,7 @@
             height: 212px;
             width: 240px;
         }
-        .item {
+        .hovercard {
             padding: 9px;
             margin: 0;
             &.addon {
@@ -295,7 +298,7 @@
     li {
         float: right;
     }
-    .item {
+    .hovercard {
         &.addon {
             margin: 5px 61px 5px 5px;
         }
@@ -318,7 +321,7 @@
         float: right;
     }
     &.featured {
-        .item.addon {
+        .hovercard.addon {
             margin: 0;
         }
     }
