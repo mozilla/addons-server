@@ -1547,3 +1547,30 @@ class TestLanguagePack(TestLanguagePack):
         File.objects.create(platform=self.mac, version=self.version,
                             filename=self.xpi_path('langpack'))
         eq_(self.addon.get_localepicker(), '')
+
+
+class TestMarketplace(amo.tests.ESTestCase):
+
+    def setUp(self):
+        self.addon = Addon(type=amo.ADDON_EXTENSION)
+
+    def test_is_premium(self):
+        assert not self.addon.is_premium()
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        assert self.addon.is_premium()
+
+    def test_can_be_premium_status(self):
+        for status in amo.STATUS_CHOICES.keys():
+            self.addon.update(status=status)
+            if status in amo.PREMIUM_STATUSES:
+                assert self.addon.can_become_premium()
+            else:
+                assert not self.addon.can_become_premium()
+
+    def test_can_be_premium_type(self):
+        for type in amo.ADDON_TYPES.keys():
+            self.addon.update(type=type)
+            if type in [amo.ADDON_EXTENSION, amo.ADDON_WEBAPP]:
+                assert self.addon.can_become_premium()
+            else:
+                assert not self.addon.can_become_premium()

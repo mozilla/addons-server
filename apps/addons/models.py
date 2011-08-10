@@ -230,6 +230,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     dependencies = models.ManyToManyField('self', symmetrical=False,
                                           through='AddonDependency',
                                           related_name='addons')
+    premium_type = models.PositiveIntegerField(
+                                    choices=amo.ADDON_PREMIUM_TYPES.items(),
+                                    default=amo.ADDON_FREE)
 
     _current_version = models.ForeignKey(Version, related_name='___ignore',
             db_column='current_version', null=True, on_delete=models.SET_NULL)
@@ -747,6 +750,15 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def is_incomplete(self):
         return self.status == amo.STATUS_NULL
+
+    def can_become_premium(self):
+        """Not all addons can become premium."""
+        return (self.status in amo.PREMIUM_STATUSES
+                and self.highest_status in amo.PREMIUM_STATUSES
+                and self.type in [amo.ADDON_EXTENSION, amo.ADDON_WEBAPP])
+
+    def is_premium(self):
+        return self.premium_type == amo.ADDON_PREMIUM
 
     @classmethod
     def featured_random(cls, app, lang):

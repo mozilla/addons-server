@@ -50,6 +50,9 @@ LITE_STATUSES = (STATUS_LITE, STATUS_LITE_AND_NOMINATED)
 MIRROR_STATUSES = (STATUS_PUBLIC, STATUS_BETA,
                    STATUS_LITE, STATUS_LITE_AND_NOMINATED)
 
+# An add-on in one of these statuses can become premium.
+PREMIUM_STATUSES = (STATUS_NULL, STATUS_UNDER_REVIEW, STATUS_NOMINATED)
+
 # Types of administrative review queues for an add-on:
 ADMIN_REVIEW_FULL = 1
 ADMIN_REVIEW_PRELIM = 2
@@ -135,6 +138,14 @@ ADDON_SLUGS_UPDATE = {
     ADDON_LPADDON: 'extension',
     ADDON_PERSONA: 'persona',
     ADDON_PLUGIN: 'plugin',
+}
+
+ADDON_FREE = 0
+ADDON_PREMIUM = 1
+
+ADDON_PREMIUM_TYPES = {
+    ADDON_FREE: 'free',
+    ADDON_PREMIUM: 'premium',
 }
 
 # Edit addon information
