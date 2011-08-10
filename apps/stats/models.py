@@ -49,7 +49,7 @@ class CollectionStats(caching.base.CachingMixin, models.Model):
         db_table = 'stats_collections'
 
 
-class DownloadCount(caching.base.CachingMixin, models.Model):
+class DownloadCount(models.Model):
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     date = models.DateField()
@@ -67,7 +67,7 @@ class DownloadCount(caching.base.CachingMixin, models.Model):
         return ['*/addon/%d/statistics/downloads*' % self.addon_id, ]
 
 
-class UpdateCount(caching.base.CachingMixin, models.Model):
+class UpdateCount(models.Model):
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     date = models.DateField()
