@@ -19,8 +19,9 @@ from amo import set_user
 from amo.helpers import absolutify
 from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonCategory, AddonDependency,
-                           AddonRecommendation, AddonType, BlacklistedGuid,
-                           Category, Charity, FrozenAddon, Persona, Preview)
+                           AddonRecommendation, AddonType, AddonUpsell,
+                           BlacklistedGuid, Category, Charity, FrozenAddon,
+                           Persona, Preview)
 from applications.models import Application, AppVersion
 from devhub.models import ActivityLog
 from files.models import File, Platform
@@ -1574,3 +1575,18 @@ class TestMarketplace(amo.tests.ESTestCase):
                 assert self.addon.can_become_premium()
             else:
                 assert not self.addon.can_become_premium()
+
+
+class TestAddonUpsell(amo.tests.TestCase):
+
+    def setUp(self):
+        self.one = Addon.objects.create(type=amo.ADDON_EXTENSION, name='free')
+        self.two = Addon.objects.create(type=amo.ADDON_EXTENSION,
+                                        name='premium')
+        self.upsell = AddonUpsell.objects.create(free=self.one,
+                                                 premium=self.two, text='yup')
+
+    def test_create_upsell(self):
+        eq_(self.one.upsell.premium, self.two)
+        eq_(self.one.upsell.text, 'yup')
+        eq_(self.two.upsell, None)

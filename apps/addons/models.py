@@ -938,6 +938,15 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 pass
         return ''
 
+    @amo.cached_property
+    def upsell(self):
+        """Return the upsell or add-on, or None if there isn't one."""
+        try:
+            # We set unique_together on the model, so there will only be one.
+            return self._upsell_from.all()[0]
+        except IndexError:
+            pass
+
 
 @receiver(dbsignals.post_save, sender=Addon,
           dispatch_uid='addons.update.name.table')
@@ -1412,6 +1421,19 @@ def freezer(sender, instance, **kw):
     # Adjust the hotness of the FrozenAddon.
     if instance.addon_id:
         Addon.objects.get(id=instance.addon_id).update(hotness=0)
+
+
+class AddonUpsell(amo.models.ModelBase):
+    free = models.ForeignKey(Addon, related_name='_upsell_from')
+    premium = models.ForeignKey(Addon, related_name='_upsell_to')
+    text = PurifiedField()
+
+    class Meta:
+        db_table = 'addon_upsell'
+        unique_together = ('free', 'premium')
+
+    def __unicode__(self):
+        return u'Free: %s to Premium: %s' % (self.free, self.premium)
 
 
 # webapps.models imports addons.models to get Addon, so we need to keep the
