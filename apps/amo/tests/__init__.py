@@ -73,7 +73,11 @@ class TestCase(RedisTest, test_utils.TestCase):
     def _pre_setup(self):
         super(TestCase, self)._pre_setup()
         from addons.cron import reset_featured_addons
+        from addons.utils import FeaturedManager, CreaturedManager
         reset_featured_addons()
+        # Clear the in-process caches.
+        FeaturedManager.featured_ids.clear()
+        CreaturedManager.creatured_ids.clear()
 
 
 class AMOPaths(object):
