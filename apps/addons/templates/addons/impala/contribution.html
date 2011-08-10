@@ -30,8 +30,7 @@
       {# L10n: Click Contribute button OR Install button #}
       <span class="continue">{{ _('or') }}</span>
       {% set ver = version or None %}
-      {{ install_button(addon, impala=True, version=ver, show_contrib=False,
-                        src=src) }}
+      {{ install_button(addon, impala=True, version=ver, show_contrib=False) }}
     {% endif %}
   </div>{# /aux #}
 

@@ -72,8 +72,7 @@
     </hgroup>
     <p id="addon-summary" {{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
     {% if version %}
-      {{ big_install_button(addon, show_warning=False,
-                            impala=True, src='dp-btn-primary') }}
+      {{ big_install_button(addon, show_warning=False, impala=True) }}
     {% endif %}
     {% if addon.is_featured(APP, LANG) %}
       <div class="banner-box">
@@ -233,7 +232,7 @@
               addon.current_beta_version.version) }}</dt>
             <dd>{{ install_button(addon, version=addon.current_beta_version,
                                   show_warning=False, impala=True,
-                                  src='dp-btn-devchannel') }}</dd>
+                                  src=request.GET.get('src', 'dp-btn-devchannel')) }}</dd>
           </dl>
         </div>
       </div>
