@@ -748,6 +748,16 @@ function initPayments() {
         $(".intro").show();
         $("#setup").hide();
     });
+    $("#do-marketplace").click(function (e) {
+        e.preventDefault();
+        $("#marketplace-confirm").removeClass("hidden").show();
+        $(".intro").hide();
+    });
+    $("#marketplace-cancel").click(function (e) {
+        e.preventDefault();
+        $(".intro").show();
+        $("#marketplace-confirm").hide();
+    });
     $(".recipient").change(function (e) {
         var v = $(this).val();
         $(".paypal").hide(200);

@@ -56,6 +56,7 @@ form .char-count:after,
 }
 
 #setup h3,
+#marketplace-confirm h3,
 .addon-submission-process > h3,
 .developer-hub .primary > h3 {
     margin-top: 0;
@@ -970,6 +971,7 @@ input.valid {
     -webkit-border-radius: 8px;
     border-radius: 8px;
     display: inline-block;
+    vertical-align: top;
 }
 .payments .intro ul {
     list-style-type: disc;
@@ -984,8 +986,12 @@ input.valid {
 .payments .intro p {
     font-size: .9em;
 }
-.payments .intro .button-wrapper {
+.payments .intro .button-wrapper,
+.payments .learn-more {
     text-align: center;
+}
+.payments .indent {
+    padding-left: 2em;
 }
 .devhub-form .brform label,
 .devhub-form .b {
@@ -1000,9 +1006,6 @@ input.valid {
 }
 .payments form > div {
     margin-bottom: 2em;
-}
-.paypal {
-    margin-left: 2em;
 }
 .extra {
     font-size: .9em;

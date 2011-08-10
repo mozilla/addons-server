@@ -412,7 +412,7 @@ def payments(request, addon_id, addon):
     errors = charity_form.errors or contrib_form.errors or profile_form.errors
     if errors:
         messages.error(request, _('There were errors in your submission.'))
-    return jingo.render(request, 'devhub/addons/payments.html',
+    return jingo.render(request, 'devhub/payments/payments.html',
         dict(addon=addon, charity_form=charity_form, errors=errors,
              contrib_form=contrib_form, profile_form=profile_form))
 
@@ -1384,6 +1384,9 @@ def docs(request, doc_name=None, doc_page=None):
                 'how-to': ['getting-started', 'extension-development',
                            'thunderbird-mobile', 'theme-development',
                            'other-addons']}
+    
+    if waffle.switch_is_active('marketplace'):
+        all_docs['marketplace'] = ['voluntary']
 
     if doc_name and doc_name in all_docs:
         filename = '%s.html' % doc_name

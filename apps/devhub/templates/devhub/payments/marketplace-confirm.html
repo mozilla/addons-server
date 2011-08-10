@@ -1,0 +1,22 @@
+<div id="marketplace-confirm" class="hidden">
+  <h3>{{ _('Mozilla Marketplace') }}</h3>
+  <p>{% trans doc_url=url('devhub.docs', doc_name='marketplace'),
+              agree_url=url('devhub.docs', doc_name='policies', doc_page='agreement') %}
+    Thanks for your interest in selling your add-on in the Mozilla Marketplace.
+    Please be sure to read our <a href="{{ doc_url }}">Marketplace Documentation and Policies</a>
+    before continuing, as well as the <a href="{{ agree_url }}">Developer Agreement</a> you agreed
+    to when first submitting this add-on.
+  {% endtrans %}</p>
+  <p>{% trans %}Please confirm this is the premium add-on you wish to sell.{% endtrans %}</p>
+  <div class="indent">
+    <h4>{{ addon.name }}</h4>
+    <p>{{ addon.guid }}</p>
+  </div>
+  <p>{% trans %}If this is the free version of your add-on, please create a new UUID
+    for your premium add-on and submit it seperately before enrolling in Mozilla Marketplace.
+  {% endtrans %}</p>
+  <button id="marketplace-submit" type="submit">{{ _('Sell this Add-on') }}</button>
+  {% trans %}
+    or <a id="marketplace-cancel" href="#">Cancel</a>
+  {% endtrans %}
+</div>

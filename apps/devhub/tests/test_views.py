@@ -669,13 +669,47 @@ class TestPaymentsProfile(amo.tests.TestCase):
         eq_(self.get_addon().wants_contributions, False)
 
 
+class TestMarketplace(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=3615)
+        self.url = reverse('devhub.addons.payments', args=[self.addon.slug])
+        assert self.client.login(username='del@icio.us', password='password')
+
+        self.marketplace = (waffle.models.Switch.objects
+                                  .get_or_create(name='marketplace')[0])
+        self.marketplace.active = True
+        self.marketplace.save()
+
+    def tearDown(self):
+        self.marketplace.active = False
+        self.marketplace.save()
+
+    @mock.patch('addons.models.Addon.can_become_premium')
+    def test_ask_page(self, can_become_premium):
+        can_become_premium.return_value = True
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(len(doc('div.intro')), 2)
+
+    @mock.patch('addons.models.Addon.can_become_premium')
+    def test_cant_become_premium(self, can_become_premium):
+        can_become_premium.return_value = False
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(len(doc('div.intro')), 1)
+
+
 class TestDelete(amo.tests.TestCase):
     fixtures = ('base/apps', 'base/users', 'base/addon_3615',
                 'base/addon_5579',)
 
     def setUp(self):
         self.addon = self.get_addon()
-        assert self.client.login(username='del@icio.us', password='password')
+
         self.url = reverse('devhub.addons.delete', args=[self.addon.slug])
 
     def get_addon(self):
