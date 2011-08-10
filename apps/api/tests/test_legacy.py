@@ -493,26 +493,6 @@ class ListTest(TestCase):
         response = make_call('list')
         self.assertContains(response, '<addon id', 3)
 
-    def test_randomness(self):
-        """
-        This tests that we're sufficiently random when recommending addons.
-
-        We can test for this by querying /list/recommended a number of times
-        until we get two response.contents that do not match.
-        """
-        response = make_call('list/recommended')
-        all_identical = True
-
-        for i in range(99):
-            cache.clear()
-            current_request = make_call('list/recommended')
-            if current_request.content != response.content:
-                all_identical = False
-                break
-
-        assert not all_identical, (
-                "All 100 requests returned the exact same response.")
-
     def test_type_filter(self):
         """
         This tests that list filtering works.
