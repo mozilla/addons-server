@@ -93,6 +93,7 @@ ADDON_TYPE = {
     ADDON_PLUGIN: _(u'Plugin'),
     ADDON_LPAPP: _(u'Language Pack (Application)'),
     ADDON_PERSONA: _(u'Persona'),
+    ADDON_WEBAPP: _(u'App'),
 }
 
 # Plural
