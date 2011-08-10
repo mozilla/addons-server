@@ -122,6 +122,9 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         elif (version.addon.status in amo.LITE_STATUSES
               and version.addon.trusted):
             f.status = version.addon.status
+        elif version.addon.is_webapp():
+            # Files don't really matter for webapps, just make them public.
+            f.status = amo.STATUS_PUBLIC
         f.hash = (f.generate_hash(upload.path)
                   if waffle.switch_is_active('file-hash-paranoia')
                   else upload.hash)

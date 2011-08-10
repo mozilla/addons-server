@@ -1,7 +1,6 @@
 import amo
 from amo.urlresolvers import reverse
 from addons.models import Addon
-from versions.models import Version
 
 
 # We use super(Addon, self) on purpose to override expectations in Addon that
@@ -19,10 +18,8 @@ class Webapp(Addon):
         creating = not self.id
         super(Addon, self).save(**kw)
         if creating:
-            # Set current_version since a lot of things expect it.
-            version = Version.objects.create(addon=self, version='0')
             # Set the slug once we have an id to keep things in order.
-            self.update(slug='app-%s' % self.id, _current_version=version)
+            self.update(slug='app-%s' % self.id)
 
     def get_url_path(self, impala=None):
         return reverse('apps.detail', args=[self.app_slug])

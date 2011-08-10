@@ -558,7 +558,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                     self.id, size, int(time.mktime(self.modified.timetuple())))
 
     def update_status(self, using=None):
-        if self.status == amo.STATUS_NULL or self.is_disabled or self.is_app():
+        if (self.status == amo.STATUS_NULL or self.is_disabled
+            or self.is_webapp()):
             return
 
         def logit(reason, old=self.status):
@@ -723,7 +724,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def is_persona(self):
         return self.type == amo.ADDON_PERSONA
 
-    def is_app(self):
+    def is_webapp(self):
         return self.type == amo.ADDON_WEBAPP
 
     @property

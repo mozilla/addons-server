@@ -3332,20 +3332,36 @@ class TestCreateWebApp(BaseUploadTest, UploadAddon, amo.tests.TestCase):
     def post(self, desktop_platforms=[], mobile_platforms=[], **kw):
         return super(TestCreateWebApp, self).post(**kw)
 
-    def test_from_uploaded_manifest(self):
+    def post_addon(self):
         eq_(Addon.objects.count(), 0)
+        self.post()
+        return Addon.objects.get()
+
+    def test_post_addon_redirect(self):
         r = self.post()
         addon = Addon.objects.get()
+        self.assertRedirects(r, reverse('devhub.submit.3', args=[addon.slug]))
+
+    def test_addon_from_uploaded_manifest(self):
+        addon = self.post_addon()
         eq_(addon.type, amo.ADDON_WEBAPP)
         eq_(addon.guid, None)
         eq_(unicode(addon.name), 'MozillaBall')
         eq_(addon.slug, 'app-%s' % addon.id)
         eq_(addon.app_slug, 'mozillaball')
-        eq_(addon.latest_version.version, '0')
         eq_(addon.summary, u'Exciting Open Web development action!')
         eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
-        self.assertRedirects(r, reverse('devhub.submit.3', args=[addon.slug]))
+
+    def test_version_from_uploaded_manifest(self):
+        addon = self.post_addon()
+        eq_(addon.current_version.version, '1.0')
+
+    def test_file_from_uploaded_manifest(self):
+        addon = self.post_addon()
+        files = addon.current_version.files.all()
+        eq_(len(files), 1)
+        eq_(files[0].status, amo.STATUS_PUBLIC)
 
 
 class TestDeleteAddon(amo.tests.TestCase):

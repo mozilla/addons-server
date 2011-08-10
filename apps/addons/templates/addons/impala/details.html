@@ -50,7 +50,7 @@
   {% endif %}
 </aside>
 
-{% set version = addon.current_version if not addon.is_app() else None %}
+{% set version = addon.current_version if not addon.is_webapp() else None %}
 
 {# All this depends on the addon or version, and nothing needs the user,
    so we can cache it all against the addon. #}
