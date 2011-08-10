@@ -366,6 +366,8 @@ class TestFeaturedLocale(amo.tests.TestCase):
         cache.clear()
         FeaturedManager.redis().flushall()
         reset_featured_addons()
+        FeaturedManager.featured_ids.clear()
+        CreaturedManager.creatured_ids.clear()
 
     def list_featured(self, content):
         # Not sure we want to get into testing randomness
