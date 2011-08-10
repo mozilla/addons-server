@@ -125,7 +125,8 @@ def paginate(request, queryset, per_page=20, count=None):
 
 
 def send_mail(subject, message, from_email=None, recipient_list=None,
-              fail_silently=False, use_blacklist=True, perm_setting=None):
+              fail_silently=False, use_blacklist=True, perm_setting=None,
+              connection=None):
     """
     A wrapper around django.core.mail.send_mail.
 
@@ -178,10 +179,12 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                                                            autoescape=False))
 
                     result = django_send_mail(subject, send_message, from_email,
-                                              [recipient], fail_silently=False)
+                                              [recipient], fail_silently=False,
+                                              connection=connection)
             else:
-                result = django_send_mail(subject, message, from_email, white_list,
-                                          fail_silently=False)
+                result = django_send_mail(subject, message, from_email,
+                                          white_list, fail_silently=False,
+                                          connection=connection)
         else:
             result = True
     except Exception as e:
