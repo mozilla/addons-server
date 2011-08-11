@@ -1,5 +1,5 @@
 {% extends "impala/base.html" %}
-{% from 'includes/forms.html' import required %}
+{% from 'includes/forms.html' import pretty_field, required %}
 {% from 'devhub/includes/macros.html' import some_html_tip %}
 
 {% block title %}{{ page_title(_('Account Settings')) }}{% endblock %}
@@ -21,7 +21,7 @@
   </ul>
 
 </div>
-<div id="user_edit" class="primary prettyform tight" role="main">
+<div id="user_edit" class="primary prettyform grid" role="main">
   {% include "messages.html" %}
   <form method="post" action="" class="user-input island"
         enctype="multipart/form-data">
@@ -69,7 +69,6 @@
             Change your password.  If you forgot your password, you can <a href="{{ reset_url }}">use the reset form</a>.
             {%- endtrans %}
           </p>
-          <ol class="formfields">
           <ol class="formfields">
             <li>
               <label for="id_oldpassword">{{ _('Old Password') }}</label>
@@ -158,7 +157,7 @@
               Decide what collections should be shown in your profile.
             {%- endtrans %}
           </p>
-          <ul class='formfields'>
+          <ul class="checkboxes">
             <li>
             <label for="id_display_collections" class="check">
               {{ form.display_collections }}
@@ -185,7 +184,7 @@
             interested in.
             {% endtrans %}
           </p>
-          <div class="user_notifications formfields">
+          <div class="user-notifications formfields">
             {{ form.notifications }}
 
             <p class="note">
@@ -225,10 +224,10 @@
             </fieldset>
         {% endif %}
       </div>{# /#user-profile #}
-      <div class="listing-footer">
+      <p>
         <button type="submit" class="button prominent">{{ _('Update') }}</button>
-        <a href="{{ url('users.delete') }}" class="delete">{{ _('delete account') }}</a>
-      </div>
+        <a href="{{ url('users.delete') }}" class="delete">{{ _('Delete Account') }}</a>
+      </p>
     </div>{# /.tab-wrapper #}
   </form>
 </div>{# /.primary #}

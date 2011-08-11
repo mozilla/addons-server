@@ -1,8 +1,10 @@
 @import 'lib';
 
-input[type="text"], input[type="password"], select, textarea {
+input[type=text], input[type=color], input[type=password], select, textarea {
     border: 1px solid #5875A0;
     color: @medium-gray;
+    font-family: inherit;
+    line-height: 1.3;
     padding: 2px 5px;
 }
 
@@ -11,22 +13,20 @@ label {
     font-weight: bold;
 }
 
+.req {
+    color: @error-red;
+}
+
+.optional {
+    color: @note-gray;
+    font-size: 11px;
+    font-weight: normal;
+}
+
 textarea {
     .border-box();
     display: block;
     width: 100%;
-}
-
-
-.note {
-    color: @medium-gray;
-    font-size: 11px;
-    line-height: 1.4;
-}
-
-.errorlist {
-    color: #C00000;
-    font-size: 12px;
 }
 
 .edit_with_prefix, .edit-with-suffix {
@@ -64,10 +64,6 @@ textarea {
     padding: 14px;
     background: #E3EDFA;
     margin-bottom: 1em;
-    h3 {
-        font-style: italic;
-        font-size: 16px;
-    }
     p {
         margin-top: .5em;
     }
@@ -79,6 +75,7 @@ textarea {
        font-style: normal;
        font-weight: bold;
        line-height: 1em;
+       margin: 0;
     }
     &.error {
         background: #FEE3E5;
@@ -90,6 +87,33 @@ textarea {
 }
 
 .prettyform {
+    ul {
+        font-size: 13px;
+        &.note {
+            color: @medium-gray;
+            font-size: 11px;
+            line-height: 1.4;
+            li {
+                display: inline-block;
+                &:before {
+                    content: "\b7";
+                    padding-right: 3px;
+                }
+                &:first-child:before {
+                    content: "";
+                    padding: 0;
+                }
+            }
+        }
+        &.errorlist {
+            color: #c00;
+            font-size: 12px;
+        }
+    }
+    label {
+        color: #555;
+        font-weight: normal;
+    }
     fieldset {
         border-bottom: 1px dotted #C9DDF2;
         margin: 0 0 1em;
@@ -111,45 +135,26 @@ textarea {
             width: 225px;
         }
     }
-    .formfields {
-        float: left;
-        max-width: 430px;
+    .row {
+        margin: 0 0 15px;
     }
-    .formfields p:first-child {
-        margin-top: 0;
+    h3,
+    .row > label {
+        color: #333;
+        display: block;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 1.3;
+        margin-bottom: 5px;
     }
-    li {
-        margin-bottom: 1em;
-    }
-    &.tight li {
-        margin-bottom: 0;
-    }
-    li > label {
-        color: #555;
-        display: inline-block;
-        font-weight: normal;
-        padding: 0 1em 1em 0;
-        width: 120px;
-        text-align: right;
-        &.check {
-            width: auto;
-            text-align: left;
-            color: #777;
-            &:hover {
-                color: #555;
-            }
-        }
-        .req {
-            color: @red;
-        }
-    }
-    input[type=checkbox] {
+    input[type=checkbox],
+    input[type=radio] {
         margin-left: 0;
     }
-    input[type=text], input[type=password], select, textarea {
+    input[type=text], input[type=color], input[type=password], select, textarea {
         border: 1px solid #B2C8E0;
         .border-radius(3px);
-        box-shadow: 2px 2px #EFF6FE inset;
+        .box-shadow(2px 2px #EFF6FE inset);
         color: #5B738E;
         font-size: 1em;
         padding: 4px 7px;
@@ -159,6 +164,12 @@ textarea {
         }
         display: inline-block;
         vertical-align: middle;
+    }
+    input[type=text] {
+        width: 200px;
+    }
+    input[type=color] {
+        width: 80px;
     }
     textarea {
         width: 400px;
@@ -182,41 +193,95 @@ textarea {
         }
     }
     legend + p {
-        margin-top: 0;
-    }
-    .checkboxes {
-        display: inline-block;
-        padding-bottom: 1em;
-        label {
-            padding: 0 0 4px;
-            width: auto;
-            text-align: left;
-            input {
-                margin: 0 8px 0 0;
-            }
-        }
-    }
-
-    a {
-        &.delete {
-            color: @red;
-            padding-left: 1em;
-        }
+        margin: 0 0 1em;
     }
     footer {
         button {
             float: right;
         }
     }
+    p button {
+        margin-right: 1em;
+    }
     .error {
-        input[type="text"], input[type="password"], select, textarea {
-            border-color: #C00000;
+        input[type=text], input[type=color], input[type=password], select, textarea {
+            border-color: #c00;
         }
     }
     .errorlist {
-        color: #C63717;
-        margin-bottom: 13px;
-        margin-left: 137px;
-        margin-top: 5px;
+        margin-top: 2px;
+    }
+    fieldset > .errorlist {
+        margin-bottom: 1em;
+    }
+    &.grid {
+        li {
+            a.delete {
+                color: @error-red;
+                margin-left: 1em;
+            }
+        }
+        li label {
+            color: #555;
+            display: inline-block;
+            font-weight: normal;
+            padding: 0 1em 1em 0;
+            width: 120px;
+            text-align: right;
+            &.check {
+                width: auto;
+                text-align: left;
+                color: #777;
+                &:hover {
+                    color: #555;
+                }
+            }
+        }
+        .errorlist {
+            color: #C63717;
+            margin-bottom: 13px;
+            margin-left: 137px;
+            margin-top: 5px;
+        }
+        .formfields {
+            float: left;
+            max-width: 430px;
+            p:first-child {
+                margin-top: 0;
+            }
+        }
+    }
+    .checkboxes,
+    .radios {
+        display: inline-block;
+        margin-bottom: 1em;
+        ul {
+            margin-top: 10px;
+        }
+        li {
+            margin-bottom: 5px;
+            label {
+                padding: 0 0 4px;
+                width: auto;
+                text-align: left;
+                input {
+                    margin: 0 8px 0 0;
+                }
+            }
+        }
+    }
+}
+
+.html-rtl .prettyform {
+    ul.note li {
+        &:before {
+           padding: 0 0 0 3px;
+        }
+        &:first-child:before {
+            padding: 0;
+        }
+    }
+    p button {
+        margin: 0 0 0 1em;
     }
 }
