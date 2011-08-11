@@ -15,7 +15,7 @@
               (_('Select a license'), True),
               (_('Select a review process'), False),
               (_("You're done!"), True): %}
-      {% if not addon.is_webapp() or show_for_webapp: %}
+      {% if not addon or not addon.is_webapp() or show_for_webapp: %}
       <li {% if step.current == loop.index %}class="current"{% endif %}>
         {% if step.current < HAS_ADDON %}
           {% if loop.index <= step.current %}
