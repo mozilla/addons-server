@@ -5,7 +5,7 @@ from django.db import transaction
 import commonware.log
 import happyforms
 from piston.handler import AnonymousBaseHandler, BaseHandler
-from piston.utils import rc, throttle
+from piston.utils import rc
 from tower import ugettext as _
 
 import amo
@@ -222,46 +222,42 @@ class VersionsHandler(BaseHandler, BaseVersionHandler):
     anonymous = AnonymousVersionsHandler
 
     @check_addon_and_version
-    @throttle(5, 60 * 60)  # 5 new versions an hour
     def create(self, request, addon):
-        # This has license data
-        license_form = LicenseForm(request.POST)
-
-        if not license_form.is_valid():
-            return _form_error(license_form)
-
         new_file_form = XPIForm(request, request.POST, request.FILES,
                                 addon=addon)
 
         if not new_file_form.is_valid():
             return _xpi_form_error(new_file_form, request)
 
-        license = license_form.save()
+        license = None
+        if 'builtin' in request.POST:
+            license_form = LicenseForm(request.POST)
+            if not license_form.is_valid():
+                return _form_error(license_form)
+            license = license_form.save()
+
         v = new_file_form.create_version(license=license)
         return v
 
     @check_addon_and_version
-    @throttle(10, 60 * 60)
     def update(self, request, addon, version):
-        # This has license data.
-        license_form = LicenseForm(request.POST)
-
-        if license_form.is_valid():
-            license = license_form.save()
-        else:
-            license = version.license
-
         new_file_form = XPIForm(request, request.PUT, request.FILES,
                                 version=version)
 
         if not new_file_form.is_valid():
             return _xpi_form_error(new_file_form, request)
 
+        license = None
+        if 'builtin' in request.POST:
+            license_form = LicenseForm(request.POST)
+            if not license_form.is_valid():
+                return _form_error(license_form)
+            license = license_form.save()
+
         v = new_file_form.update_version(license)
         return v
 
     @check_addon_and_version
-    @throttle(10, 60 * 60)  # allow 10 deletes an hour
     def delete(self, request, addon, version):
         version.delete()
         return rc.DELETED

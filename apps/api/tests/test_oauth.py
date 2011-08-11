@@ -529,48 +529,65 @@ class TestAddon(BaseOAuth):
 
         eq_(r.status_code, 400, r.content)
 
-    def test_update_version_bad_license(self):
+    def test_create_version_no_license(self):
         data = self.create_addon()
         id = data['id']
-        a = Addon.objects.get(pk=id)
-        v = a.versions.get()
-        path = 'apps/files/fixtures/files/extension-0.2.xpi'
-        data = dict(
-                release_notes='fukyeah',
-                license_type='FFFF',
-                platform='windows',
-                xpi=open(os.path.join(settings.ROOT, path)),
-                )
-        r = client.put(('api.version', id, v.id), self.accepted_consumer,
-                       self.token, data=data, content_type=MULTIPART_CONTENT)
+        data = self.version_data.copy()
+        del data['builtin']
+        r = client.post(('api.versions', id,), self.accepted_consumer,
+                        self.token, data=data)
+
         eq_(r.status_code, 200, r.content)
         data = json.loads(r.content)
         id = data['id']
         v = Version.objects.get(pk=id)
-        eq_(str(v.license.text), 'This is FREE!')
+        assert not v.license
 
-    def test_update_version(self):
-        # Create an addon
+    def create_for_update(self):
         data = self.create_addon()
         id = data['id']
-
-        # verify version
         a = Addon.objects.get(pk=id)
         v = a.versions.get()
-
         eq_(v.version, '0.1')
+        return a, v, 'apps/files/fixtures/files/extension-0.2.xpi'
 
-        path = 'apps/files/fixtures/files/extension-0.2.xpi'
+    def test_update_version_no_license(self):
+        a, v, path = self.create_for_update()
         data = dict(
                 release_notes='fukyeah',
-                license_type='bsd',
                 platform='windows',
                 xpi=open(os.path.join(settings.ROOT, path)),
                 )
+        r = client.put(('api.version', a.id, v.id), self.accepted_consumer,
+                       self.token, data=data, content_type=MULTIPART_CONTENT)
+        eq_(r.status_code, 200, r.content)
+        v = a.versions.get()
+        eq_(v.version, '0.2')
+        eq_(v.license, None)
 
+    def test_update_version_bad_license(self):
+        a, v, path = self.create_for_update()
+        data = dict(
+                release_notes='fukyeah',
+                builtin=3,
+                platform='windows',
+                xpi=open(os.path.join(settings.ROOT, path)),
+                )
+        r = client.put(('api.version', a.id, v.id), self.accepted_consumer,
+                       self.token, data=data, content_type=MULTIPART_CONTENT)
+        eq_(r.status_code, 400, r.content)
+
+    def test_update_version(self):
+        a, v, path = self.create_for_update()
+        data = dict(
+                release_notes='fukyeah',
+                builtin=2,
+                platform='windows',
+                xpi=open(os.path.join(settings.ROOT, path)),
+                )
         log_count = activitylog_count()
         # upload new version
-        r = client.put(('api.version', id, v.id), self.accepted_consumer,
+        r = client.put(('api.version', a.id, v.id), self.accepted_consumer,
                        self.token, data=data, content_type=MULTIPART_CONTENT)
         eq_(r.status_code, 200, r.content[:1000])
 
@@ -580,6 +597,7 @@ class TestAddon(BaseOAuth):
         v = a.versions.get()
         eq_(v.version, '0.2')
         eq_(str(v.releasenotes), 'fukyeah')
+        eq_(str(v.license.builtin), '2')
 
     def test_update_version_bad_xpi(self):
         data = self.create_addon()
@@ -593,7 +611,6 @@ class TestAddon(BaseOAuth):
 
         data = dict(
                 release_notes='fukyeah',
-                license_type='bsd',
                 platform='windows',
                 )
 
