@@ -38,5 +38,13 @@
                          vital_summary=vital[0], vital_more=vital[1]) }}
   </div>
   {% endfor %}
+  <h2 class="seeall"><a href="{{ url('i_browse.extensions',
+                      category.slug)|urlparams(sort='users') }}">
+    {% trans cnt = category.count, name = category.name %}
+      See the {{ cnt }} extension in {{ name }} &raquo;
+    {% pluralize %}
+      See all {{ cnt }} extensions in {{ name }} &raquo;
+    {% endtrans %}
+  </a></h2>
 </section>
 {% endblock %}
