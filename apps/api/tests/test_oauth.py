@@ -350,6 +350,20 @@ class TestAddon(BaseOAuth):
         eq_(json.loads(r.content)['status'], 0)
         eq_(Addon.objects.count(), 1)
 
+    def test_create_review_type(self):
+        data = self.create_data.copy()
+        data['review_type'] = 1
+        r = self.make_create_request(data)
+        eq_(r.status_code, 200, r.content)
+        eq_(json.loads(r.content)['status'], 1)
+        eq_(Addon.objects.count(), 1)
+
+    def test_create_review_type_wrong(self):
+        data = self.create_data.copy()
+        data['review_type'] = 4
+        r = self.make_create_request(data)
+        eq_(r.status_code, 400)
+
     def test_delete(self):
         data = self.create_addon()
         id = data['id']

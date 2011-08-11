@@ -12,6 +12,7 @@ import amo
 from access import acl
 from addons.forms import AddonForm
 from addons.models import Addon, AddonUser
+from apps.devhub.forms import ReviewTypeForm
 from amo.utils import paginate
 from devhub.forms import LicenseForm
 from perf.models import (Performance, PerformanceAppVersions,
@@ -98,6 +99,14 @@ class AddonsHandler(BaseHandler):
         if not new_file_form.is_valid():
             return _xpi_form_error(new_file_form, request)
 
+        # Status can be optional
+        review_type = 0
+        if 'review_type' in request.POST:
+            status_form = ReviewTypeForm(request.POST)
+            if not status_form.is_valid():
+                return _form_error(status_form)
+            review_type = status_form.cleaned_data['review_type']
+
         # License Form can be optional
         license = None
         if 'builtin' in request.POST:
@@ -107,6 +116,8 @@ class AddonsHandler(BaseHandler):
             license = license_form.save()
 
         a = new_file_form.create_addon(license=license)
+        if review_type != a.status:
+            a.update(status=review_type)
         return a
 
     @check_addon_and_version
