@@ -90,9 +90,6 @@ $(function() {
         z.visitor.set('seen_badbrowser_warning', 1);
     });
 
-    // Truncate text in Firefox.
-    $('.vtruncate').truncate({dir: 'v'});
-
     // Bind to the mobile site if a mobile link is clicked.
     $(".mobile-link").attr("href", window.location).click(function() {
         $.cookie("mamo", "on", {expires:30});
