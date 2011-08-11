@@ -2383,6 +2383,24 @@ class TestSubmitStep6(TestSubmitBase):
         eq_(self.get_version().nomination.timetuple()[0:5],
             nomdate.timetuple()[0:5])
 
+    def test_skip_step_for_webapp(self):
+        self.get_addon().update(type=amo.ADDON_WEBAPP)
+        assert self.get_addon().is_webapp()
+
+        r = self.client.get(self.url, follow=True)
+        doc = pq(r.content)
+
+        eq_(r.redirect_chain[0][1], 302)
+        assert r.redirect_chain[0][0].endswith('7')
+
+        addon = self.get_addon()
+        status = (amo.STATUS_PENDING if settings.WEBAPPS_RESTRICTED
+                  else amo.STATUS_LITE)
+        eq_(addon.status, status)
+
+        # Make sure the 7th step isn't shown
+        eq_(doc('.submit-addon-progress li').length, 6)
+
 
 class TestSubmitStep7(TestSubmitBase):
 

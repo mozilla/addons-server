@@ -7,32 +7,35 @@
     <h3>{{ _('Submission Process') }}</h3>
   </hgroup>
   <ol class="submit-addon-progress">
-    {% for text in _('Getting Started'),
-                   _('Upload your add-on'),
-                   _('Describe your add-on'),
-                   _('Add images'),
-                   _('Select a license'),
-                   _('Select a review process'),
-                   _("You're done!"): %}
-    <li {% if step.current == loop.index %}class="current"{% endif %}>
-      {% if step.current < HAS_ADDON %}
-        {% if loop.index <= step.current %}
-          <a href="{{ url('devhub.submit.%s' % loop.index) }}">{{ text }}</a>
+    {% for text, show_for_webapp
+           in (_('Getting Started'), True),
+              (_('Upload your add-on'), True),
+              (_('Describe your add-on'), True),
+              (_('Add images'), True),
+              (_('Select a license'), True),
+              (_('Select a review process'), False),
+              (_("You're done!"), True): %}
+      {% if not addon.is_webapp() or show_for_webapp: %}
+      <li {% if step.current == loop.index %}class="current"{% endif %}>
+        {% if step.current < HAS_ADDON %}
+          {% if loop.index <= step.current %}
+            <a href="{{ url('devhub.submit.%s' % loop.index) }}">{{ text }}</a>
+          {% else %}
+            {{ text }}
+          {% endif %}
         {% else %}
-          {{ text }}
+          {# 1. We have an addon, so don't link to non-addon steps.
+             2. Don't link steps above the max step the addon has reached.
+             3. If step.max == MAX the addon is done, so we only show the final page. #}
+          {% if loop.index < HAS_ADDON or loop.index > step.max or step.max == MAX %}
+            {{ text }}
+          {% else %}
+            <a href="{{ url('devhub.submit.%s' % loop.index, addon.slug) }}">
+              {{ text }}</a>
+          {% endif %}
         {% endif %}
-      {% else %}
-        {# 1. We have an addon, so don't link to non-addon steps.
-           2. Don't link steps above the max step the addon has reached.
-           3. If step.max == MAX the addon is done, so we only show the final page. #}
-        {% if loop.index < HAS_ADDON or loop.index > step.max or step.max == MAX %}
-          {{ text }}
-        {% else %}
-          <a href="{{ url('devhub.submit.%s' % loop.index, addon.slug) }}">
-            {{ text }}</a>
-        {% endif %}
+      </li>
       {% endif %}
-    </li>
     {% endfor %}
   </ol>
 </div>

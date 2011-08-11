@@ -1257,12 +1257,20 @@ def submit_license(request, addon_id, addon, step):
 @submit_step(6)
 def submit_select_review(request, addon_id, addon, step):
     review_type_form = forms.ReviewTypeForm(request.POST or None)
-    if request.method == 'POST' and review_type_form.is_valid():
-        addon.status = review_type_form.cleaned_data['review_type']
-        addon.save()
+    updated_status = None
+
+    if addon.is_webapp():
+        updated_status = (amo.STATUS_PENDING if settings.WEBAPPS_RESTRICTED
+                          else amo.STATUS_LITE)
+    elif request.method == 'POST' and review_type_form.is_valid():
+        updated_status = review_type_form.cleaned_data['review_type']
+
+    if updated_status:
+        addon.update(status=updated_status)
         SubmitStep.objects.filter(addon=addon).delete()
         signals.submission_done.send(sender=addon)
         return redirect('devhub.submit.7', addon.slug)
+
     return jingo.render(request, 'devhub/addons/submit/select-review.html',
                         {'addon': addon, 'review_type_form': review_type_form,
                          'step': step})
