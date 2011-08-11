@@ -397,4 +397,6 @@ class RawSQLModel(object):
         if value is None:
             # for NULL fields, ala left joins
             return []
-        return [cast(i) for i in value.split(sep)]
+        # Cope with a value like ...1261530,1261530, which occurs because of:
+        # 1 line(s) were cut by GROUP_CONCAT()
+        return [cast(i) for i in value.split(sep) if i]
