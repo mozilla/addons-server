@@ -82,7 +82,7 @@ class AddonsHandler(BaseHandler):
     allowed_methods = ('GET', 'POST', 'PUT', 'DELETE')
     model = Addon
 
-    fields = ('id', 'name', 'eula', 'guid')
+    fields = ('id', 'name', 'eula', 'guid', 'status')
     exclude = ('highest_status', 'icon_type')
 
     # Custom handler so translated text doesn't look weird
