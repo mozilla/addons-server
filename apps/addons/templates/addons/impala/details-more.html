@@ -39,7 +39,7 @@
       <ul>
         {% for category in categories %}
         <li>
-          <a href="{{ category.get_url_path(impala=True) }}">
+          <a href="{{ category.get_url_path() }}">
             {{ category }}
           </a>
         </li>

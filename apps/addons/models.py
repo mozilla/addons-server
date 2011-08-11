@@ -376,6 +376,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return urls
 
     def get_url_path(self, impala=False):
+        if settings.IMPALA_ADDON_DETAILS:
+            return reverse('addons.detail', args=[self.slug])
         u = '%saddons.detail' % ('i_' if impala else '')
         return reverse(u, args=[self.slug])
 

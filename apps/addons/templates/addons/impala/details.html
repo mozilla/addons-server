@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block content %}
-{{ impala_breadcrumbs([(addon.type_url(impala=True), amo.ADDON_TYPES[addon.type]),
+{{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
                        (None, addon.name)]) }}
 <aside class="secondary addon-vitals">
   {{ addon.average_rating|stars(large=True) }}
@@ -165,7 +165,7 @@
       <li>{{ version.created|datetime }}</li>
       <li>
         {% if version.license %}
-          {% trans url = version.license_url(impala=True),
+          {% trans url = version.license_url(),
              name = version.license if version.license.builtin else _('Custom License') %}
             Released under <a href="{{ url }}">{{ name }}</a>
           {% endtrans %}

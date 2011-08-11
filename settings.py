@@ -1001,6 +1001,8 @@ IMPALA_BROWSE = False
 IMPALA_REVIEWS = False
 IMPALA_MEET = False  # Meet the Developer page.
 IMPALA_EDIT = False
+IMPALA_HOMEPAGE = True
+IMPALA_ADDON_DETAILS = True
 
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = True

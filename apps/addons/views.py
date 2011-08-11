@@ -125,7 +125,10 @@ def impala_addon_detail(request, addon):
             prefixer = urlresolvers.get_url_prefix()
             prefixer.app = new_app.short
             return http.HttpResponsePermanentRedirect(reverse(
-                'i_addons.detail', args=[addon.slug]))
+                'addons.detail', args=[addon.slug]))
+
+if settings.IMPALA_ADDON_DETAILS:
+    addon_detail = impala_addon_detail
 
 
 def extension_detail(request, addon):
@@ -431,6 +434,10 @@ def impala_home(request):
                         {'popular': popular, 'featured': featured,
                          'hotness': hotness, 'personas': personas,
                          'src': 'homepage', 'collections': collections})
+
+
+if settings.IMPALA_HOMEPAGE:
+    home = impala_home
 
 
 @mobilized(home)
