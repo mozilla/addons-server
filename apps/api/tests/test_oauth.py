@@ -338,12 +338,17 @@ class TestAddon(BaseOAuth):
         assert Addon.objects.get(pk=id)
 
     def test_create_nolicense(self):
-        data = {}
-
+        data = self.create_data.copy()
+        del data['builtin']
         r = self.make_create_request(data)
-        eq_(r.status_code, 400, r.content)
-        eq_(r.content, 'Bad Request: '
-            'Invalid data provided: This field is required. (builtin)')
+        eq_(r.status_code, 200, r.content)
+        eq_(Addon.objects.count(), 1)
+
+    def test_create_status(self):
+        r = self.make_create_request(self.create_data)
+        eq_(r.status_code, 200, r.content)
+        eq_(json.loads(r.content)['status'], 0)
+        eq_(Addon.objects.count(), 1)
 
     def test_delete(self):
         data = self.create_addon()

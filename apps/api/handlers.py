@@ -93,17 +93,18 @@ class AddonsHandler(BaseHandler):
     # We need multiple validation, so don't use @validate decorators.
     @transaction.commit_on_success
     def create(self, request):
-        license_form = LicenseForm(request.POST)
-
-        if not license_form.is_valid():
-            return _form_error(license_form)
-
         new_file_form = XPIForm(request, request.POST, request.FILES)
 
         if not new_file_form.is_valid():
             return _xpi_form_error(new_file_form, request)
 
-        license = license_form.save()
+        # License Form can be optional
+        license = None
+        if 'builtin' in request.POST:
+            license_form = LicenseForm(request.POST)
+            if not license_form.is_valid():
+                return _form_error(license_form)
+            license = license_form.save()
 
         a = new_file_form.create_addon(license=license)
         return a
