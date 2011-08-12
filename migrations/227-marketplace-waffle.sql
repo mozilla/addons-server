@@ -1,0 +1,1 @@
+INSERT INTO waffle_switch (name, active, note) VALUES ('marketplace', 0, 'Controls apps/addon marketplace content.') ON DUPLICATE KEY UPDATE active = 0;
