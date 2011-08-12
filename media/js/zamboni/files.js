@@ -192,29 +192,14 @@ function bind_viewer(nodes) {
         this.hidden = false;
         this.top = null;
         this.last = null;
-        this.fix_vertically = function($inner, $outer) {
-            var $self = this;
-            if (!$self.top) {
-                $self.top = $outer.position().top;
-            }
-            function update() {
-                var sb_bottom = $self.top + $outer.height() - $inner.height();
-                if ($(window).scrollTop() > sb_bottom) {
-                    $inner.css({'position': 'absolute', 'top': sb_bottom});
-                } else if ($(window).scrollTop() > $self.top) {
-                    $inner.css({'position': 'fixed', 'top': 0});
-                } else {
-                    $inner.css({'position': 'absolute', 'top': $self.top});
-                }
-            }
-            $(window).scroll(debounce(update), 200);
-            update();
-        };
         this.size_line_numbers = function($node, deleted) {
             /* We need to re-size the line numbers correctly depending upon
                the wrapping. */
 
             $node.each(function() {
+                /* Be sure to make all size calculations before modifying
+                 * the DOM so that we don't force unnecessary reflows. */
+
                 var $self = $(this),
                     long_lines = $(this).find('td.code div.longline'),
                     changes = [];
@@ -229,14 +214,14 @@ function bind_viewer(nodes) {
                     $self.find(change[0]).css('height', change[1]);
                 });
             });
-            this.updateViewport(true);
+            this.update_viewport(true);
         };
         this.compute = function(node) {
             var $diff = node.find('#diff'),
                 $content = node.find('#content');
 
             if ($content && !$diff.length) {
-                SyntaxHighlighter.highlight($content);
+                SyntaxHighlighter.highlight({}, $content[0]);
                 // Note SyntaxHighlighter has nuked the node and replaced it.
                 this.size_line_numbers(node.find('#content'), false);
             }
@@ -251,7 +236,7 @@ function bind_viewer(nodes) {
 
                 /* Reset the syntax highlighter variables. */
                 SyntaxHighlighter.amo_vars = {'deletions': {}, 'additions': {}, 'is_diff': true};
-                SyntaxHighlighter.highlight($diff);
+                SyntaxHighlighter.highlight({}, $diff[0]);
                 // Note SyntaxHighlighter has nuked the node and replaced it.
                 $diff = node.find('#diff');
                 this.size_line_numbers($diff, true);
@@ -262,6 +247,8 @@ function bind_viewer(nodes) {
             if (window.location.hash && window.location.hash != 'top') {
                 window.location = window.location;
             }
+
+            this.show_selected();
         };
         this.message_type_map = {
             'error': 'error',
@@ -312,6 +299,8 @@ function bind_viewer(nodes) {
                 $sb.empty();
 
                 if ($lines.length) {
+                    /* Be sure to make all size calculations before modifying
+                     * the DOM so that we don't force unnecessary reflows. */
                     var changes = [];
                     var flush = function($line, bottom) {
                         var height = (bottom - $start.offset().top) * 100 / $gutter.height(),
@@ -360,12 +349,12 @@ function bind_viewer(nodes) {
                     $sb.append(this.$viewport);
 
                     $diff.addClass('diff-bar-height');
-                    $sb.show();
+                    $sb.removeClass('js-hidden');
 
-                    this.updateViewport(true);
+                    this.update_viewport(true);
                 }
             }
-        }
+        };
         this.update_validation = function(data) {
             var viewer = this;
 
@@ -444,33 +433,60 @@ function bind_viewer(nodes) {
                                                 data.error) }));
             }
         };
-        this.updateViewport = function(resize) {
-            var $viewport = this.$viewport,
-                $gutter = this.$gutter,
-                $diffbar = this.$diffbar;
-
-            if (!$viewport) {
-                return;
+        this.fix_vertically = function($node, changes, resize) {
+            var rect = $node.parent()[0].getBoundingClientRect(),
+                window_height = $(window).height();
+            if (resize) {
+                changes.push([$node, { 'height': Math.min(rect.bottom - rect.top,
+                                                 window_height) + 'px' }]);
             }
 
-            var gutter = $gutter[0].getBoundingClientRect(),
-                gutter_height = gutter.bottom - gutter.top,
-                window_height = $(window).height(),
-                diffbar_top = -Math.min(0, gutter.top) * 100 / gutter_height + "%",
-                height = Math.max(0, gutter_height + Math.min(0, gutter.top) - Math.max(gutter.bottom - window_height, 0));
+            if (rect.bottom <= window_height) {
+                changes.push([$node, { 'position': 'absolute', 'top': '', 'bottom': '0' }]);
+            } else if (rect.top > 0) {
+                changes.push([$node, { 'position': 'absolute', 'top': '0', 'bottom': '' }]);
+            } else {
+                changes.push([$node, { 'position': 'fixed', 'top': '0px', 'bottom': '' }]);
+            }
+        };
+        this.update_viewport = function(resize) {
+            /* Be sure to make all size calculations before modifying
+             * the DOM so that we don't force unnecessary reflows. */
+
+            var $viewport = this.$viewport,
+                changes = [];
 
             if (resize) {
-                $diffbar.css({ 'height': Math.min($('#diff-wrapper').height(), window_height) + "px" });
+                var height = $('#controls-inner').height() / $('#metadata').width();
+                changes.push([$('#files-inner'), { 'padding-bottom': height + 'em' }]);
             }
 
-            $viewport.css({ 'height': height * 100 / gutter_height + '%', 'top': diffbar_top });
+            this.fix_vertically(this.nodes.$files, changes, resize);
 
-            if (gutter.bottom <= window_height) {
-                $diffbar.css({ 'position': 'absolute', 'top': '', 'bottom': '0' });
-            } else if (gutter.top > 0) {
-                $diffbar.css({ 'position': 'absolute', 'top': '0', 'bottom': '' });
-            } else {
-                $diffbar.css({ 'position': 'fixed', 'top': '0px', 'bottom': '' });
+            if ($viewport) {
+                var $gutter = this.$gutter,
+                    $diffbar = this.$diffbar,
+                    gr = $gutter[0].getBoundingClientRect(),
+                    gh = gr.bottom - gr.top,
+                    height = Math.max(0, Math.min(gr.bottom, $(window).height())
+                                       - Math.max(gr.top, 0));
+
+                changes.push([$viewport,
+                              { 'height': height / gh * 100 + '%',
+                                'top': -Math.min(0, gr.top) / gh * 100 + '%' }]);
+
+                this.fix_vertically($diffbar, changes, resize);
+            }
+
+            $.each(changes, function (i, change) {
+                change[0].css(change[1]);
+            });
+
+            if (resize && !($.browser.mozilla || $.browser.webkit)) {
+                /* Opera does not handle max-height:100% properly in
+                 * this case, and I won't place any bets on IE. */
+                var $wrapper = $('#files-wrapper');
+                $wrapper.css({ 'max-height': $wrapper.parent().height() + 'px' });
             }
         };
         this.toggle_leaf = function($leaf) {
@@ -501,6 +517,23 @@ function bind_viewer(nodes) {
             } else {
                 $('.breadcrumbs').append(format('<li>{0}</li>', $link.attr('data-short')));
             }
+
+            this.show_selected();
+        };
+        this.show_selected = function() {
+            var $sel = this.nodes.$files.find('.selected'),
+                $cont = $('#files-wrapper');
+
+            if ($sel.position().top < 0) {
+                $cont.scrollTop($cont.scrollTop() + $sel.position().top);
+            } else {
+                /* Unfortunately, jQuery does not provide anything
+                   comparable to clientHeight, which we can't do without */
+                var offset = $sel.position().top + $sel.outerHeight() - $cont[0].clientHeight;
+                if (offset > 0) {
+                    $cont.scrollTop($cont.scrollTop() + offset);
+                }
+            }
         };
         this.load = function($link) {
             /* Accepts a jQuery wrapped node, which is part of the tree.
@@ -510,6 +543,7 @@ function bind_viewer(nodes) {
                 $old_wrapper = $('#content-wrapper');
             $old_wrapper.hide();
             this.nodes.$thinking.show();
+            this.update_viewport(true);
             if (location.hash != 'top') {
                 if (history.pushState !== undefined) {
                     this.last = $link.attr('href');
@@ -525,9 +559,6 @@ function bind_viewer(nodes) {
                         var $new_wrapper = $('#content-wrapper');
                         self.compute($new_wrapper);
                         $new_wrapper.slideDown();
-                        if (self.hidden) {
-                            self.toggle_files('hide');
-                        }
                     }
                 }
             );
@@ -558,18 +589,14 @@ function bind_viewer(nodes) {
                 this.size_line_numbers($('#content-wrapper'), false);
             }
         };
-        this.toggle_files = function(state) {
-            this.hidden = (state == 'hide' || !this.hidden);
-            if (this.hidden) {
-                this.nodes.$files.hide();
-                this.nodes.$commands.detach().appendTo('div.featured-inner:first');
-                this.nodes.$thinking.addClass('full');
-            } else {
-                this.nodes.$files.show();
-                this.nodes.$commands.detach().appendTo(this.nodes.$files);
-                this.nodes.$thinking.removeClass('full');
-            }
-            $('#content-wrapper').toggleClass('full');
+        this.toggle_files = function(action) {
+            var collapse = null;
+            if (action == 'hide')
+                collapse = true;
+            else if (action == 'show')
+                collapse = false;
+
+            $('#file-viewer').toggleClass('collapsed-files', collapse);
             this.size_line_numbers($('#content-wrapper'), false);
         };
         this.next_changed = function(offset) {
@@ -580,9 +607,11 @@ function bind_viewer(nodes) {
 
             var a = [], list = a;
             $files.each(function() {
+                var $file = $(this);
                 if (this == selected) {
                     list = [selected];
-                } else if (config.needreview_pattern.test($(this).attr('data-short')) && $(this).is(filter)) {
+                } else if (($file.is('.notice, .warning, .error') || config.needreview_pattern.test($file.attr('data-short')))
+                           && $file.is(filter)) {
                     list.push(this);
                 }
             });
@@ -635,18 +664,16 @@ function bind_viewer(nodes) {
     var viewer = new Viewer();
 
     if (viewer.nodes.$files.find('li').length == 1) {
-        viewer.toggle_files();
-        $('#files-down').parent().hide();
-        $('#files-up').parent().hide();
-        $('#files-expand-all').parent().hide();
+        viewer.toggle_files('hide');
+        $('#files-down, #files-up, #files-expand-all').hide();
     }
 
     viewer.nodes.$files.find('.directory').click(_pd(function() {
         viewer.toggle_leaf($(this));
     }));
 
-    $(window).resize(debounce(function() { viewer.updateViewport(true); }));
-    $(window).scroll(debounce(function() { viewer.updateViewport(false); }));
+    $(window).resize(debounce(function() { viewer.update_viewport(true); }))
+             .scroll(debounce(function() { viewer.update_viewport(false); }));
 
     $('#files-up').click(_pd(function() {
         viewer.next_changed(-1);

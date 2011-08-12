@@ -931,6 +931,7 @@ div.popup-shim {
     position: absolute;
     padding: 0.5em 1em;
     pointer-events: none;
+    z-index: 16389;
 }
 
 #tooltip.error {

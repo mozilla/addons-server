@@ -15,61 +15,109 @@
      data-validation-failed="{{ _("Validation failed:") }}"></div>
 
 <h3>
-    <a href="{{ file_link['url'] }}">{{ addon.name }} {{ version }}</a>
-    {% if file.platform.id != amo.PLATFORM_ALL.id %}({{ file.platform }}){% endif %}
+  <a href="{{ file_link['url'] }}">{{ addon.name }} {{ version }}</a>
+  {% if file.platform.id != amo.PLATFORM_ALL.id %}({{ file.platform }}){% endif %}
 </h3>
 <ol id="top" class="breadcrumbs">
-    <li><a href="{{ file_link['url'] }}">{{ addon.name }}</a></li>
-    <li><a href="{{ url('addons.versions', addon.slug) }}">{{ version }}</a></li>
+  <li><a href="{{ file_link['url'] }}">{{ addon.name }}</a></li>
+  <li><a href="{{ url('addons.versions', addon.slug) }}">{{ version }}</a></li>
 </ol>
 <div id="file-viewer" class="featured">
-    <div class="featured-inner">
+  <div class="featured-inner">
+    <div id="file-viewer-inner">
+      <div id="messages">
         {% if not status %}
-            <p class="waiting" id="extracting" data-url="{{ poll_url }}">
-                {{ _('Add-on file being processed, please wait.') }}
-            </p>
-            <div class="notification-box error js-hidden"></div>
+          <p class="waiting" id="extracting" data-url="{{ poll_url }}">
+            {{ _('Add-on file being processed, please wait.') }}
+          </p>
         {% endif %}
         <div id="validating" class="js-hidden">
-            <span class="waiting">{{ _('Fetching validation results...') }}</span>
+          <span class="waiting">{{ _('Fetching validation results...') }}</span>
         </div>
-        <div id="files">
-            {% if files %}
+      </div>
+      <div id="files">
+        <div id="files-inner">
+          {% if files %}
+            <div id="files-wrapper">
+              <div id="files-tree">
                 <h4>{{ _('Files:') }}</h4>
                 {{ file_tree(files, key) }}
                 {% if diff and files_deleted %}
-                    <h4>{{ _('Deleted files:') }}</h4>
-                    {{ file_tree(files_deleted, key) }}
+                  <h4>{{ _('Deleted files:') }}</h4>
+                  {{ file_tree(files_deleted, key) }}
                 {% endif %}
-                <p id="controls">
-                    <div id="tab-stops-container">
-                        <label class="control" for="tab-stops">{{ _('Tab stops:') }}</label>
-                        <input id="tab-stops" type="range" size="1" />
-                    </div>
-                </p>
+              </div>
+            </div>
+            <div id="controls">
+              <div id="controls-inner">
+                <div id="tab-stops-container">
+                  <label class="control" for="tab-stops">{{ _('Tab stops:') }}</label>
+                  <input id="tab-stops" type="range" size="1" />
+                </div>
+
                 <table id="commands">
-                    <tr><th><code>k</code></th> <td><a href="#" id="files-up">{{ _('Previous file') }}</a></td></tr>
-                    <tr><th><code>j</code></th> <td><a href="#" id="files-down">{{ _('Next file') }}</a></td></tr>
-		                {% if diff %}
-                        <tr><th><code>[c</code></th> <td><a href="#" id="files-change-prev">{{ _('Previous change') }}</a></td></tr>
-                        <tr><th><code>]c</code></th> <td><a href="#" id="files-change-next">{{ _('Next change') }}</a></td></tr>
-		                {% endif %}
-                    <tr><th><code>e</code></th> <td><a href="#" id="files-expand-all">{{ _('Expand all') }}</a></td></tr>
-                    <tr><th><code>h</code></th> <td><a href="#" id="files-hide">{{ _('Hide or unhide tree') }}</a></td></tr>
-                    <tr><th><code>w</code></th> <td><a href="#" id="files-wrap">{{ _('Wrap or unwrap text') }}</a></td></tr>
-                    <tr><th></th> <td><a href="{{ file_link['url'] }}">{{ file_link['text'] }}</a></td></tr>
+                  <tr id="files-up">
+                    <th><code title="{{ _('Up file') }}">k</code></th>
+                    <td><a href="#" class="command">{{ _('Up file') }}</a></td>
+                  </tr>
+
+                  <tr id="files-down">
+                    <th><code title="{{ _('Down file') }}">j</code></th>
+                    <td><a href="#" class="command">{{ _('Down file') }}</a></td>
+                  </tr>
+
+                  <tr id="files-change-prev">
+                    {% if diff %}
+                      <th><code title="{{ _('Previous diff') }}">[c</code></th>
+                      <td><a href="#" class="command">{{ _('Previous diff') }}</a></td>
+                    {% else %}
+                      <th><code title="{{ _('Previous note') }}">[c</code></th>
+                      <td><a href="#" class="command">{{ _('Previous note') }}</a></td>
+                    {% endif %}
+                  </tr>
+
+                  <tr id="files-change-next">
+                    {% if diff %}
+                      <th><code title="{{ _('Next diff') }}">]c</code></th>
+                      <td><a href="#" class="command">{{ _('Next diff') }}</a></td>
+                    {% else %}
+                      <th><code title="{{ _('Next note') }}">]c</code></th>
+                      <td><a href="#" class="command">{{ _('Next note') }}</a></td>
+                    {% endif %}
+                  </tr>
+
+                  <tr id="files-expand-all">
+                    <th><code title="{{ _('Expand all') }}">e</code></th>
+                    <td><a href="#" class="command">{{ _('Expand all') }}</a></td>
+                  </tr>
+
+                  <tr id="files-hide">
+                    <th><code title="{{ _('Hide or unhide tree') }}">h</code></th>
+                    <td><a href="#" class="command">{{ _('Hide or unhide tree') }}</a></td>
+                  </tr>
+
+                  <tr id="files-wrap">
+                    <th><code title="{{ _('Wrap or unwrap text') }}">w</code></th>
+                    <td><a href="#" class="command">{{ _('Wrap or unwrap text') }}</a></td>
+                  </tr>
+
+                  <tr><th></th> <td><a href="{{ file_link['url'] }}" class="command">{{ file_link['text'] }}</a></td></tr>
                 </table>
-            {% elif not files and status %}
-                <div>{{ _('No files in the uploaded file.') }}</div>
-            {% endif %}
+              </div>
+            </div>
+          {% elif not files and status %}
+            <div>{{ _('No files in the uploaded file.') }}</div>
+          {% endif %}
         </div>
-        <div id="thinking" class="js-hidden">
-            <p class="waiting">
-                {{ _('Fetching file.') }}
-            </p>
-        </div>
-        {% include "files/content.html" %}
+      </div>
+      <div id="thinking" class="js-hidden">
+        <p class="waiting">
+        {{ _('Fetching file.') }}
+        </p>
+      </div>
+      {% include "files/content.html" %}
     </div>
+  </div>
 </div>
 
 {% endblock %}

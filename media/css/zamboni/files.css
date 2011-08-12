@@ -1,11 +1,31 @@
+#file-viewer, #files-wrapper, #file-viewer table tr td {
+    /* The file viewer currently completely falls apart in RTL mode.
+       The contents also tend to be formatted for LTR regardless of
+       locale. */
+    direction: ltr;
+    text-align: left;
+}
+.html-rtl #files,
+.html-rtl h4,
+.html-rtl #diff-wrapper + * {
+    direction: rtl;
+    text-align: right;
+}
+
 #file-viewer div.featured-inner {
     padding: 1em;
 }
 
+#file-viewer-inner {
+    position: relative;
+    min-height: 40em;
+}
+
 #files {
-    width: 20%;
     display: block;
-    float: left;
+    position: absolute;
+    width: 20em;
+    z-index: 2;
 }
 
 #files li a {
@@ -14,11 +34,88 @@
 }
 
 #files ul.root {
-    overflow-x: auto;
+    white-space: nowrap;
+    overflow: visible;
 }
 
 #files ul.root ul {
     padding-left: 20px;
+}
+
+#files-inner {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+#files-wrapper {
+    max-height: 100%;
+    overflow: auto;
+}
+
+#content-wrapper, #messages, #thinking {
+    padding-left: 23em;
+}
+
+#controls {
+    height: 0;
+}
+
+#controls-inner {
+    padding-bottom: 1ex;
+}
+
+.collapsed-files #files {
+    width: 2em;
+}
+
+.collapsed-files #content-wrapper, .collapsed-files #messages, .collapsed-collapsed #thinking {
+    padding-left: 3em;
+}
+
+.collapsed-files #files-wrapper {
+    height: 1.8em;
+    width: 1.8em;
+    overflow: visible;
+    background: url(../../img/developers/folder.png) no-repeat center center;
+}
+
+.collapsed-files #files-wrapper:hover {
+    border-top: 1px solid #000;
+    margin-top: -1px;
+}
+
+.collapsed-files #files-wrapper:hover > #files-tree {
+    display: block;
+    background: #fff;
+    position: absolute;
+    margin: -1px 0 0 1.8em;
+    max-height: 100%;
+    overflow-y: auto;
+    padding-left: 1em;
+    width: 20em;
+    border: 1px solid #000;
+    border-left: none;
+    border-radius: 0 1em 1em 0;
+}
+
+.collapsed-files #files-tree {
+    display: none;
+}
+
+.collapsed-files .command,
+.collapsed-files #tab-stops-container {
+    display: none !important;
+}
+
+.collapsed-files #files {
+    padding-bottom: 0 !important;
+}
+
+/* Hack to find the default font's em width. */
+#metadata {
+    width: 1em;
 }
 
 /* The following fixes the minimum width and makes
@@ -33,16 +130,8 @@ body.file-viewer div.section {
     max-width: 58em;
 }
 
-.full .syntaxhighlighter .line {
+.collapsed-files .syntaxhighlighter .line {
     max-width: 80em;
-}
-
-#content-wrapper, #thinking {
-    padding-left: 25%;
-}
-
-#content-wrapper.full, #thinking.full {
-    padding-left: 0;
 }
 
 #validating {
@@ -77,8 +166,12 @@ div.diff-bar .delete, #diff td.code div.delete, #diff td.code div.delete .conten
     color: #444444;
 }
 
-#diff .syntaxhighlighter, #diff table {
+.syntaxhighlighter, .syntaxhighlighter table {
     margin: 0;
+}
+
+#diff-wrapper {
+    margin-bottom: 1em;
 }
 
 a.closed {
@@ -127,7 +220,7 @@ a.selected > span {
     margin: -1px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    border: 1px solid black;
+    border: 1px solid #000;
 }
 .code .notice, .code .warning, .code .error {
     margin: -1px;
@@ -179,6 +272,7 @@ div.diff-bar {
     padding: 0px 2px;
     border-radius: 2px;
     -moz-border-radius: 2px;
+    cursor: pointer;
 }
 
 #commands td {
@@ -187,6 +281,10 @@ div.diff-bar {
 
 #diff, #content {
     padding-left: 11px;
+}
+
+.diff-bar.js-hidden + #diff, .diff-bar.js-hidden + #content {
+    padding-left: 0;
 }
 
 #diff-wrapper {
@@ -338,9 +436,10 @@ td.gutter, td.code {
 
 .number-combo-button-up:hover,
 .number-combo-button-down:hover {
-    text-shadow: black 0 0 .01em;
+    text-shadow: #000 0 0 .01em;
 }
 
 #tab-stops-container {
     display: none;
+    margin: 1ex 0;
 }
