@@ -14,7 +14,7 @@ import addons.signals
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from applications.models import Application, AppVersion
-from bandwagon.models import Collection
+from bandwagon.models import Collection, MonthlyPick
 from bandwagon.tests.test_models import TestRecommendations as Recs
 from discovery import views
 from discovery.forms import DiscoveryModuleForm
@@ -419,3 +419,23 @@ class TestDownloadSources(amo.tests.TestCase):
             '?src=discovery-upandcoming')
         assert doc('#install li:eq(1)').find('a').attr('href').endswith(
             '?src=discovery-upandcoming')
+
+
+class TestMonthlyPick(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/addon_3615', 'discovery/discoverymodules']
+
+    def setUp(self):
+        self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
+
+    def test_monthlypick(self):
+        addon = Addon.objects.get(id=3615)
+        DiscoveryModule.objects.create(
+            app=Application.objects.get(id=amo.FIREFOX.id), ordering=4,
+            module='Monthly Pick')
+        MonthlyPick.objects.create(addon=addon, blurb='BOOP',
+                                   image='http://mozilla.com')
+        r = self.client.get(self.url)
+        pick = pq(r.content)('#monthly')
+        eq_(pick.find('h3').text(), unicode(addon.name))
+        eq_(pick.find('img').attr('src'), 'http://mozilla.com')
+        eq_(pick.find('p').text(), 'BOOP')

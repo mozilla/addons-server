@@ -4,9 +4,8 @@ import jinja2
 from tower import ugettext_lazy as _
 
 import amo
-from addons.models import Addon
 from api.views import addon_filter
-from bandwagon.models import Collection
+from bandwagon.models import Collection, MonthlyPick as MP
 from .models import BlogCacheRyf
 
 
@@ -70,12 +69,14 @@ class MonthlyPick(TemplatePromo):
     slug = 'Monthly Pick'
     template = 'discovery/modules/monthly.html'
 
-    # TODO A bit of hardcoding here to support an alternative locale.  This
-    # will all be redone with the mango bugs: http://bugzil.la/[t:mango]
     def context(self):
-        return {'addon': Addon.objects.get(id=6416),
-                'addon_de': Addon.objects.get(id=146384),
-                'module_context': 'discovery'}
+        try:
+            pick = MP.objects.filter(locale=self.request.LANG)[0]
+        except IndexError:
+            pick = MP.objects.filter(locale__isnull=True)[0]
+        except IndexError:
+            pick = None
+        return {'pick': pick, 'module_context': 'discovery'}
 
 
 class GoMobile(TemplatePromo):

@@ -561,19 +561,16 @@ class FeaturedCollection(amo.models.ModelBase):
                                  self.locale)
 
 
-def locale_generator():
-    return (('', u'(Default Locale)'),) + tuple(
-           (i, product_details.languages[i]['native'])
-           for i in settings.AMO_LANGUAGES)
-
-
 class MonthlyPick(amo.models.ModelBase):
-    LOCALES = locale_generator()
+    LOCALES = (('', u'(Default Locale)'),) + tuple(
+               (i, product_details.languages[i]['native'])
+               for i in settings.AMO_LANGUAGES)
 
     addon = models.ForeignKey(Addon)
     blurb = models.TextField()
     image = models.URLField()
-    locale = models.CharField(max_length=30, choices=LOCALES, unique=True)
+    locale = models.CharField(max_length=10, choices=LOCALES, unique=True,
+                              null=True, blank=True)
 
     class Meta:
-        db_table = "monthly_pick"
+        db_table = 'monthly_pick'

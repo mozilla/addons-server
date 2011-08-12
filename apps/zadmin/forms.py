@@ -162,12 +162,14 @@ FeaturedCollectionFormSet = modelformset_factory(FeaturedCollection,
 
 
 class OAuthConsumerForm(happyforms.ModelForm):
+
     class Meta:
         model = Consumer
         fields = ['name', 'description', 'status']
 
 
 class MonthlyPickForm(happyforms.ModelForm):
+
     class Meta:
         model = MonthlyPick
         widgets = {
