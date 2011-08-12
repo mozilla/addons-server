@@ -238,10 +238,16 @@ def impala_extension_detail(request, addon):
         return jingo.render(request, 'addons/impala/details.html', ctx)
 
 
-@mobilized(impala_extension_detail)
-def impala_extension_detail(request, addon):
-    return jingo.render(request, 'addons/mobile/details.html',
-                        {'addon': addon})
+if settings.IMPALA_ADDON_DETAILS:
+    @mobilized(impala_extension_detail)
+    def impala_extension_detail(request, addon):
+        return jingo.render(request, 'addons/mobile/details.html',
+                            {'addon': addon})
+else:
+    @mobilized(extension_detail)
+    def extension_detail(request, addon):
+        return jingo.render(request, 'addons/mobile/details.html',
+                            {'addon': addon})
 
 
 def _category_personas(qs, limit):
