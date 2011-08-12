@@ -233,8 +233,8 @@ def impala_extension_detail(request, addon):
         return jingo.render(request, 'addons/impala/details.html', ctx)
 
 
-@mobilized(extension_detail)
-def extension_detail(request, addon):
+@mobilized(impala_extension_detail)
+def impala_extension_detail(request, addon):
     return jingo.render(request, 'addons/mobile/details.html',
                         {'addon': addon})
 
