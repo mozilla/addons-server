@@ -9,3 +9,5 @@ Subscribe to our `newsletter`_ by sending mail to zamboni@librelist.com.
 .. _`addons.mozilla.org`: https://addons.mozilla.org
 .. _`install docs`: http://jbalogh.github.com/zamboni/topics/installation/
 .. _`newsletter`: http://librelist.com/browser/zamboni/
+
+something
