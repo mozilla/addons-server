@@ -1047,7 +1047,7 @@ class Persona(caching.CachingMixin, models.Model):
     author = models.CharField(max_length=32, null=True)
     display_username = models.CharField(max_length=32, null=True)
     submit = models.DateTimeField(null=True)
-    approve = models.DateTimeField(null=False)
+    approve = models.DateTimeField(null=True)
 
     movers = models.FloatField(null=True, db_index=True)
     popularity = models.IntegerField(null=False, default=0, db_index=True)
