@@ -202,11 +202,7 @@ class InstallButton(object):
         if self.show_eula:
             # L10n: please keep &nbsp; in the string so &rarr; does not wrap.
             text = jinja2.Markup(_('Continue to Download&nbsp;&rarr;'))
-<<<<<<< HEAD
-            url = file.eula_url(impala=True)
-=======
             url = file.eula_url(impala = settings.IMPALA_ADDON_DETAILS)
->>>>>>> impala-nizing links on buttons
         elif self.accept_eula:
             text = _('Accept and Download')
         elif self.show_contrib:
