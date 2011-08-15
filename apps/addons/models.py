@@ -224,15 +224,15 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
                                      related_name='addons')
-
     categories = models.ManyToManyField('Category', through='AddonCategory')
-
     dependencies = models.ManyToManyField('self', symmetrical=False,
                                           through='AddonDependency',
                                           related_name='addons')
     premium_type = models.PositiveIntegerField(
                                     choices=amo.ADDON_PREMIUM_TYPES.items(),
                                     default=amo.ADDON_FREE)
+    domain = models.URLField(max_length=255, blank=True, null=True,
+                             verify_exists=False)
 
     _current_version = models.ForeignKey(Version, related_name='___ignore',
             db_column='current_version', null=True, on_delete=models.SET_NULL)
