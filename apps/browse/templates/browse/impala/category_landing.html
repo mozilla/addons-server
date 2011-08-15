@@ -19,6 +19,9 @@
       <h1>{{ category.name }}</h1>
       {{ addons[:3]|featured_grid(src='cb-hc-featured',
                                   dl_src='cb-dl-featured') }}
+      <div class="banner-box">
+        <div class="banner featured">{{ _('Featured') }}</div>
+      </div>
     </div>
   {% endif %}
 
