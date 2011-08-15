@@ -3144,7 +3144,7 @@ class TestUploadErrors(UploadTest):
         "notices": 0,
         "message_tree": {},
         "messages": [],
-        "metadata": {}
+        "metadata": {},
     })
 
     def xpi(self):
