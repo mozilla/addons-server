@@ -78,9 +78,11 @@ pre {
 
 .primary, .modal {
     p, ul {
-        margin-top: 1em;
         color: @medium-gray;
         line-height: 1.3em;
+    }
+    p {
+        margin-top: 1em;
     }
     ul {
         &.indent {
@@ -140,14 +142,6 @@ pre {
 }
 
 .primary {
-    .prose {
-        h2, h3 {
-            margin-top: 1em;
-        }
-        h3 {
-            font: italic 16px/18px @serif-stack;
-        }
-    }
     > .seeall {
         text-align: center;
         clear: both;
