@@ -438,7 +438,9 @@ class TestMonthlyPick(amo.tests.TestCase):
         pick = pq(r.content)('#monthly')
         eq_(pick.find('h3').text(), unicode(self.addon.name))
         eq_(pick.find('img').attr('src'), 'http://mozilla.com')
-        eq_(pick.find('p').text(), 'BOOP')
+        eq_(pick.find('.wrap > div > div > p').text(), 'BOOP')
+        eq_(pick.find('p.install-button a').attr('href')
+                .endswith('?src=discovery-promo'), True)
 
     def test_no_monthlypick(self):
         r = self.client.get(self.url)

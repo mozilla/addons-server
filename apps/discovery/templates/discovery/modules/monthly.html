@@ -7,9 +7,15 @@
     <div class="wrap">
       <div>
         <img src="{{ pick.image }}">
-        <h3>{{ pick.addon.name }}</h3>
+        {% set addon = pick.addon %}
+        <h3>{{ addon.name }}</h3>
         <div>
           <p>{{ pick.blurb }}</p>
+          {% if module_context == 'discovery' %}
+            {{ install_button(addon, src='discovery-promo') }}
+          {% else %}
+            {{ install_button(addon, src='hp-btn-promo', impala=True) }}
+          {% endif %}
         </div>
       </div>
     </div>
