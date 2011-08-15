@@ -15,8 +15,8 @@ Markup
 - ``<!DOCTYPE html>``
 - double-quote attributes
 - Soft tab (2 space) indentation
-- Title-Case form labels
-    - "Display Name" vs "Display name"
+- Title-Case ``<label>``s
+  - "Display Name" vs "Display name"
 - to clearfix, use the class ``c`` on an element
 
 
