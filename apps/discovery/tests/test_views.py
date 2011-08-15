@@ -426,16 +426,20 @@ class TestMonthlyPick(amo.tests.TestCase):
 
     def setUp(self):
         self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
-
-    def test_monthlypick(self):
-        addon = Addon.objects.get(id=3615)
+        self.addon = Addon.objects.get(id=3615)
         DiscoveryModule.objects.create(
             app=Application.objects.get(id=amo.FIREFOX.id), ordering=4,
             module='Monthly Pick')
-        MonthlyPick.objects.create(addon=addon, blurb='BOOP',
+
+    def test_monthlypick(self):
+        MonthlyPick.objects.create(addon=self.addon, blurb='BOOP',
                                    image='http://mozilla.com')
         r = self.client.get(self.url)
         pick = pq(r.content)('#monthly')
-        eq_(pick.find('h3').text(), unicode(addon.name))
+        eq_(pick.find('h3').text(), unicode(self.addon.name))
         eq_(pick.find('img').attr('src'), 'http://mozilla.com')
         eq_(pick.find('p').text(), 'BOOP')
+
+    def test_no_monthlypick(self):
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#monthly').length, 0)
