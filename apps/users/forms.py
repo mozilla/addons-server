@@ -351,8 +351,9 @@ class AdminUserEditForm(UserEditForm):
     def clean_anonymize(self):
         if (self.cleaned_data['anonymize'] and
             self.changed_fields() != set(['anonymize'])):
-            raise forms.ValidationError(_('To anonymize, enter an admin log, '
-                                          'but do not change any other field'))
+            raise forms.ValidationError(_('To anonymize, enter a reason for'
+                                          ' the change but do not change any'
+                                          ' other field.'))
         return self.cleaned_data['anonymize']
 
     def save(self, *args, **kw):
