@@ -1,4 +1,5 @@
 {% extends "impala/base.html" %}
+{% from 'includes/forms.html' import required, pretty_field %}
 
 {# L10n: {0} is an add-on name. #}
 {% block title %}{{ page_title(_('{0} :: Reviews')|f(addon.name)) }}{% endblock %}
@@ -83,15 +84,19 @@
     {% endblock review_list %}
     <div class="hidden">
       <form method="post" id="review-edit-form" action="#"
-            class="review article review-form">
+            class="review article review-form prettyform">
         {{ csrf() }}
-        {{ field(form.title, _('Title:')) }}
-        {{ field(form.rating, _('Rating:')) }}
-        {{ field(form.body, _('Review:')) }}
-        <p>
+        <fieldset>
+          <ul>
+            {{ pretty_field(form.title, _('Title')) }}
+            {{ pretty_field(form.rating, _('Rating')) }}
+            {{ pretty_field(form.body, _('Review')) }}
+          </ul>
+        </fieldset>
+        <footer>
           <input type="submit" value="{{ _('Submit review') }}">
            {{ _('or') }} <a href="#" id="review-edit-cancel">{{ _('Cancel') }}</a>
-        </p>
+        </footer>
       </form>
     </div>
   </div>
