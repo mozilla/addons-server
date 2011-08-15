@@ -3205,9 +3205,9 @@ class TestQueuePosition(UploadTest):
                            args=[self.addon.slug, self.version.id])
         self.edit_url = reverse('devhub.versions.edit',
                                 args=[self.addon.slug, self.version.id])
-        files = self.version.files.all()[0]
-        files.platform_id = amo.PLATFORM_LINUX.id
-        files.save()
+        version_files = self.version.files.all()[0]
+        version_files.platform_id = amo.PLATFORM_LINUX.id
+        version_files.save()
 
     def test_not_in_queue(self):
         r = self.client.get(reverse('devhub.versions', args=[self.addon.slug]))
@@ -3249,9 +3249,9 @@ class TestVersionAddFile(UploadTest):
                            args=[self.addon.slug, self.version.id])
         self.edit_url = reverse('devhub.versions.edit',
                                 args=[self.addon.slug, self.version.id])
-        files = self.version.files.all()[0]
-        files.platform_id = amo.PLATFORM_LINUX.id
-        files.save()
+        version_files = self.version.files.all()[0]
+        version_files.platform_id = amo.PLATFORM_LINUX.id
+        version_files.save()
 
     def make_mobile(self):
         app = Application.objects.get(pk=amo.MOBILE.id)
@@ -3301,9 +3301,9 @@ class TestVersionAddFile(UploadTest):
                  (amo.STATUS_LISTED, amo.STATUS_LISTED, False)]
 
         for c in cases:
-            files = self.addon.current_version.files.all()
-            files[0].update(status=c[0])
-            files[1].update(status=c[1])
+            version_files = self.addon.current_version.files.all()
+            version_files[0].update(status=c[0])
+            version_files[1].update(status=c[1])
 
             r = self.client.get(self.edit_url)
             doc = pq(r.content)('#file-list')
@@ -3679,6 +3679,57 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
                                         args=[addon.slug]))
         eq_(sorted([f.filename for f in addon.current_version.all_files]),
             [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi'])
+
+
+class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/platforms']
+
+    def setUp(self):
+        super(BaseWebAppTest, self).setUp()
+        self.manifest = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
+                                     'addons', 'mozball.webapp')
+        self.upload = self.get_upload(abspath=self.manifest)
+        self.url = reverse('devhub.submit.2')
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        self.client.post(reverse('devhub.submit.1'))
+
+    def post(self, desktop_platforms=[], mobile_platforms=[], **kw):
+        return super(BaseWebAppTest, self).post(**kw)
+
+    def post_addon(self):
+        eq_(Addon.objects.count(), 0)
+        self.post()
+        return Addon.objects.get()
+
+
+class TestCreateWebApp(BaseWebAppTest):
+
+    def test_post_addon_redirect(self):
+        r = self.post()
+        addon = Addon.objects.get()
+        self.assertRedirects(r, reverse('devhub.submit.3', args=[addon.slug]))
+
+    def test_addon_from_uploaded_manifest(self):
+        addon = self.post_addon()
+        eq_(addon.type, amo.ADDON_WEBAPP)
+        eq_(addon.guid, None)
+        eq_(unicode(addon.name), 'MozillaBall')
+        eq_(addon.slug, 'app-%s' % addon.id)
+        eq_(addon.app_slug, 'mozillaball')
+        eq_(addon.summary, u'Exciting Open Web development action!')
+        eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
+            u'Azione aperta emozionante di sviluppo di fotoricettore!')
+
+    def test_version_from_uploaded_manifest(self):
+        addon = self.post_addon()
+        eq_(addon.current_version.version, '1.0')
+
+    def test_file_from_uploaded_manifest(self):
+        addon = self.post_addon()
+        files = addon.current_version.files.all()
+        eq_(len(files), 1)
+        eq_(files[0].status, amo.STATUS_PUBLIC)
 
 
 class TestDeleteAddon(amo.tests.TestCase):

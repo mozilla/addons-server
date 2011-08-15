@@ -12,11 +12,15 @@ import mock
 from nose.tools import eq_
 from PIL import Image
 
+import amo
 import amo.tests
 from addons.models import Addon
 from amo.tests.test_helpers import get_image_path
+from amo.urlresolvers import reverse
+from amo.utils import ImageCheck
+from devhub import tasks
+from devhub.tests.test_views import BaseWebAppTest
 from files.models import FileUpload
-from devhub.tasks import flag_binary, resize_icon, validator, fetch_manifest
 
 
 def test_resize_icon_shrink():
@@ -72,7 +76,7 @@ def _uploader(resize_size, final_size):
         for rsize, fsize in zip(resize_size, final_size):
             dest_name = str(path.path(settings.ADDON_ICONS_PATH) / '1234')
 
-            resize_icon(src.name, dest_name, resize_size)
+            tasks.resize_icon(src.name, dest_name, resize_size)
             dest_image = Image.open("%s-%s.png" % (dest_name, rsize))
             eq_(dest_image.size, fsize)
 
@@ -81,7 +85,7 @@ def _uploader(resize_size, final_size):
             assert not os.path.exists(dest_image.filename)
     else:
         dest = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png")
-        resize_icon(src.name, dest.name, resize_size)
+        tasks.resize_icon(src.name, dest.name, resize_size)
         dest_image = Image.open(dest.name)
         eq_(dest_image.size, final_size)
 
@@ -100,13 +104,13 @@ class TestValidator(amo.tests.TestCase):
     @mock.patch('devhub.tasks.run_validator')
     def test_pass_validation(self, _mock):
         _mock.return_value = '{"errors": 0}'
-        validator(self.upload.pk)
+        tasks.validator(self.upload.pk)
         assert self.get_upload().valid
 
     @mock.patch('devhub.tasks.run_validator')
     def test_fail_validation(self, _mock):
         _mock.return_value = '{"errors": 2}'
-        validator(self.upload.pk)
+        tasks.validator(self.upload.pk)
         assert not self.get_upload().valid
 
     @mock.patch('devhub.tasks.run_validator')
@@ -114,7 +118,7 @@ class TestValidator(amo.tests.TestCase):
         _mock.side_effect = Exception
         eq_(self.upload.task_error, None)
         with self.assertRaises(Exception):
-            validator(self.upload.pk)
+            tasks.validator(self.upload.pk)
         error = self.get_upload().task_error
         assert error.startswith('Traceback (most recent call last)'), error
 
@@ -129,19 +133,19 @@ class TestFlagBinary(amo.tests.TestCase):
     @mock.patch('devhub.tasks.run_validator')
     def test_flag_binary(self, _mock):
         _mock.return_value = '{"metadata":{"contains_binary_extension": 1}}'
-        flag_binary([self.addon.pk])
+        tasks.flag_binary([self.addon.pk])
         eq_(Addon.objects.get(pk=self.addon.pk).binary, True)
 
     @mock.patch('devhub.tasks.run_validator')
     def test_flag_not_binary(self, _mock):
         _mock.return_value = '{"metadata":{"contains_binary_extension": 0}}'
-        flag_binary([self.addon.pk])
+        tasks.flag_binary([self.addon.pk])
         eq_(Addon.objects.get(pk=self.addon.pk).binary, False)
 
     @mock.patch('devhub.tasks.run_validator')
     def test_flag_error(self, _mock):
         _mock.side_effect = RuntimeError()
-        flag_binary([self.addon.pk])
+        tasks.flag_binary([self.addon.pk])
         eq_(Addon.objects.get(pk=self.addon.pk).binary, False)
 
 
@@ -162,7 +166,7 @@ class TestFetchManifest(amo.tests.TestCase):
         response_mock.headers = {'Content-Type': self.content_type}
         self.urlopen_mock.return_value = response_mock
 
-        fetch_manifest('http://xx.com/manifest.json', self.upload.pk)
+        tasks.fetch_manifest('http://xx.com/manifest.json', self.upload.pk)
         upload = FileUpload.objects.get(pk=self.upload.pk)
         eq_(upload.name, 'http://xx.com/manifest.json')
         eq_(open(upload.path).read(), 'woo')
@@ -175,7 +179,7 @@ class TestFetchManifest(amo.tests.TestCase):
         response_mock.headers = {'Content-Type': ct}
         self.urlopen_mock.return_value = response_mock
 
-        fetch_manifest('http://xx.com/manifest.json', self.upload.pk)
+        tasks.fetch_manifest('http://xx.com/manifest.json', self.upload.pk)
         assert validator_mock.called
 
     def check_validation(self, msg):
@@ -189,19 +193,19 @@ class TestFetchManifest(amo.tests.TestCase):
     def test_connection_error(self):
         reason = socket.gaierror(8, 'nodename nor servname provided')
         self.urlopen_mock.side_effect = urllib2.URLError(reason)
-        fetch_manifest('url', self.upload.pk)
+        tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation('Could not contact host at "url".')
 
     def test_url_timeout(self):
         reason = socket.timeout('too slow')
         self.urlopen_mock.side_effect = urllib2.URLError(reason)
-        fetch_manifest('url', self.upload.pk)
+        tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation('Connection to "url" timed out.')
 
     def test_other_url_error(self):
         reason = Exception('Some other failure.')
         self.urlopen_mock.side_effect = urllib2.URLError(reason)
-        fetch_manifest('url', self.upload.pk)
+        tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation('Some other failure.')
 
     def test_no_content_type(self):
@@ -210,7 +214,7 @@ class TestFetchManifest(amo.tests.TestCase):
         response_mock.headers = {}
         self.urlopen_mock.return_value = response_mock
 
-        fetch_manifest('url', self.upload.pk)
+        tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation(
             'Your manifest must be served with the HTTP header '
             '"Content-Type: application/x-web-app-manifest+json".')
@@ -221,7 +225,7 @@ class TestFetchManifest(amo.tests.TestCase):
         response_mock.headers = {'Content-Type': 'x'}
         self.urlopen_mock.return_value = response_mock
 
-        fetch_manifest('url', self.upload.pk)
+        tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation(
             'Your manifest must be served with the HTTP header '
             '"Content-Type: application/x-web-app-manifest+json". We saw "x".')
@@ -233,11 +237,70 @@ class TestFetchManifest(amo.tests.TestCase):
         response_mock.headers = {'Content-Type': self.content_type}
         self.urlopen_mock.return_value = response_mock
 
-        fetch_manifest('url', self.upload.pk)
+        tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation('Your manifest must be less than 2097152 bytes.')
 
     def test_http_error(self):
         self.urlopen_mock.side_effect = urllib2.HTTPError(
             'url', 404, 'Not Found', [], None)
-        fetch_manifest('url', self.upload.pk)
+        tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation('url responded with 404 (Not Found).')
+
+
+class TestFetchIcon(BaseWebAppTest):
+
+    def setUp(self):
+        super(TestFetchIcon, self).setUp()
+        self.content_type = 'image/png'
+        self.apps_path = (path.path(settings.ROOT) / 'apps'
+                          / 'devhub' / 'tests' / 'addons')
+
+    def webapp_from_path(self, path):
+        self.upload = self.get_upload(abspath=path)
+        self.url = reverse('devhub.submit.2')
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        self.client.post(reverse('devhub.submit.1'))
+        return self.post_addon()
+
+    def test_no_icons(self):
+        path = self.apps_path / 'noicon.webapp'
+        iconless_app = self.webapp_from_path(path)
+        urllib2.urlopen = mock.Mock()
+        tasks.fetch_icon(iconless_app)
+        assert not urllib2.urlopen.called
+
+    def check_icons(self, webapp):
+        manifest = webapp.get_manifest_json()
+        biggest = max([int(size) for size in manifest['icons']])
+
+        icon_dir = webapp.get_icon_dir()
+        for size in amo.ADDON_ICON_SIZES:
+            if not size <= biggest:
+                continue
+            icon_path = os.path.join(icon_dir, '%s-%s.png'
+                                     % (str(webapp.id), size))
+            with open(icon_path, 'r') as img:
+                checker = ImageCheck(img)
+                assert checker.is_image()
+                eq_(checker.img.size, (size, size))
+
+    def test_data_uri(self):
+        app_path = self.apps_path / 'dataicon.webapp'
+        webapp = self.webapp_from_path(app_path)
+
+        tasks.fetch_icon(webapp)
+        eq_(webapp.icon_type, self.content_type)
+        
+        self.check_icons(webapp)
+
+    def test_hosted_icon(self):
+        app_path = self.apps_path / 'mozball.webapp'
+        webapp = self.webapp_from_path(app_path)
+
+        img_path = self.apps_path / 'mozball-128.png'
+        with open(img_path, 'r') as content:
+            tasks.save_icon(webapp, content.read())
+        eq_(webapp.icon_type, self.content_type)
+
+        self.check_icons(webapp)

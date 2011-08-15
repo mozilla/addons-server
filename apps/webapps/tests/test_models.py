@@ -1,8 +1,11 @@
+import json
+
 import test_utils
 from nose.tools import eq_
 
 import amo
 from addons.models import Addon, BlacklistedSlug
+from devhub.tests.test_views import BaseWebAppTest
 from webapps.models import Webapp
 
 
@@ -45,5 +48,17 @@ class TestWebapp(test_utils.TestCase):
         eq_(webapp.get_url_path(more=True), '/en-US/apps/woo/more')
 
     def test_get_origin(self):
-        webapp = Webapp(manifest_url='http://www.xx.com:4000/randompath/manifest.webapp')
+        url = 'http://www.xx.com:4000/randompath/manifest.webapp'
+        webapp = Webapp(manifest_url=url)
         eq_(webapp.origin, 'http://www.xx.com:4000')
+
+
+class TestManifest(BaseWebAppTest):
+
+    def test_get_manifest_json(self):
+        webapp = self.post_addon()
+        assert webapp.current_version
+        assert webapp.current_version.has_files
+        with open(self.manifest, 'r') as mf:
+            manifest_json = json.load(mf)
+            eq_(webapp.get_manifest_json(), manifest_json)

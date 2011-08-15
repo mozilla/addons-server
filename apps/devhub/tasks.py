@@ -1,12 +1,14 @@
+import base64
 import json
 import logging
 import os
+import path
 import shutil
 import socket
 import sys
 import traceback
 import urllib2
-import urlparse
+import uuid
 
 from django.conf import settings
 from django.core.management import call_command
@@ -16,7 +18,7 @@ from tower import ugettext as _
 
 import amo
 from amo.decorators import write, set_modified_on
-from amo.utils import slugify, resize_image
+from amo.utils import slugify, resize_image, remove_icons
 from addons.models import Addon
 from applications.management.commands import dump_apps
 from applications.models import Application, AppVersion
@@ -282,9 +284,9 @@ def failed_validation(*messages):
     return json.dumps({'errors': 1, 'success': False, 'messages': m})
 
 
-def _fetch_manifest(url):
+def _fetch_content(url):
     try:
-        response = urllib2.urlopen(url, timeout=5)
+        return urllib2.urlopen(url, timeout=5)
     except urllib2.HTTPError, e:
         raise Exception(_('%s responded with %s (%s).') % (url, e.code, e.msg))
     except urllib2.URLError, e:
@@ -296,23 +298,77 @@ def _fetch_manifest(url):
         else:
             raise Exception(str(e.reason))
 
-    content_type = 'application/x-web-app-manifest+json'
+
+def check_content_type(response, content_type,
+                       no_ct_message, wrong_ct_message):
     if not response.headers.get('Content-Type', '').startswith(content_type):
         if 'Content-Type' in response.headers:
-            raise Exception(_('Your manifest must be served with the HTTP '
-                              'header "Content-Type: %s". We saw "%s".')
-                            % (content_type, response.headers['Content-Type']))
+            raise Exception(wrong_ct_message %
+                            (content_type, response.headers['Content-Type']))
         else:
-            raise Exception(_('Your manifest must be served with the HTTP '
-                              'header "Content-Type: %s".') % content_type)
+            raise Exception(no_ct_message % content_type)
 
+
+def get_content_and_check_size(response, max_size, error_message):
     # Read one extra byte. Reject if it's too big so we don't have issues
     # downloading huge files.
-    content = response.read(settings.MAX_WEBAPP_UPLOAD_SIZE + 1)
-    if len(content) > settings.MAX_WEBAPP_UPLOAD_SIZE:
-        raise Exception(_('Your manifest must be less than %s bytes.')
-                        % settings.MAX_WEBAPP_UPLOAD_SIZE)
+    content = response.read(max_size + 1)
+    if len(content) > max_size:
+        raise Exception(error_message % max_size)
     return content
+
+
+def save_icon(webapp, content):
+    tmp_path = path.path(settings.TMP_PATH) / 'icon'
+    if not os.path.exists(tmp_path):
+        os.makedirs(tmp_path)
+    tmp_dst = tmp_path / uuid.uuid4().hex
+    with open(tmp_dst, 'wb') as fd:
+        fd.write(content)
+
+    dirname = webapp.get_icon_dir()
+    destination = os.path.join(dirname, '%s' % webapp.id)
+    remove_icons(destination)
+    resize_icon.delay(tmp_dst, destination, amo.ADDON_ICON_SIZES,
+                      set_modified_on=[webapp])
+
+    # Need to set the icon type so .get_icon_url() works
+    # normally submit step 4 does it through AddonFormMedia,
+    # but we want to beat them to the punch.
+    # resize_icon outputs pngs, so we know it's 'image/png'
+    webapp.icon_type = 'image/png'
+    webapp.save()
+
+
+@task
+def fetch_icon(webapp, **kw):
+    """Downloads a webapp icon from the location specified in the manifest.
+    Returns False if icon was not able to be retrieved
+    """
+    log.info(u'[1@None] Fetching icon for webapp %s.' % webapp.name)
+
+    manifest = webapp.get_manifest_json()
+    if not 'icons' in manifest:
+        return
+    biggest = max([int(size) for size in manifest['icons']])
+    icon_url = manifest['icons'][str(biggest)]
+    if icon_url.startswith('data:image'):
+        image_string = icon_url.split('base64,')[1]
+        content = base64.decodestring(image_string)
+    else:
+        try:
+            response = _fetch_content(webapp.origin + icon_url)
+        except Exception, e:
+            log.error('Failed to fetch icon for webapp %s: %s'
+                      % (webapp.pk, e.message))
+            return
+
+        size_error_message = _('Your icon must be less than %s bytes.')
+        content = get_content_and_check_size(response,
+                                             settings.MAX_ICON_UPLOAD_SIZE,
+                                             size_error_message)
+
+    save_icon(webapp, content)
 
 
 @task
@@ -321,7 +377,19 @@ def fetch_manifest(url, upload_pk=None, **kw):
     upload = FileUpload.objects.get(pk=upload_pk)
 
     try:
-        content = _fetch_manifest(url)
+        response = _fetch_content(url)
+
+        no_ct_message = _('Your manifest must be served with the HTTP '
+                          'header "Content-Type: %s".')
+        wrong_ct_message = _('Your manifest must be served with the HTTP '
+                             'header "Content-Type: %s". We saw "%s".')
+        check_content_type(response, 'application/x-web-app-manifest+json',
+                           no_ct_message, wrong_ct_message)
+
+        size_error_message = _('Your manifest must be less than %s bytes.')
+        content = get_content_and_check_size(response,
+                                             settings.MAX_WEBAPP_UPLOAD_SIZE,
+                                             size_error_message)
     except Exception, e:
         # Drop a message in the validation slot and bail.
         upload.update(validation=failed_validation(e.message))

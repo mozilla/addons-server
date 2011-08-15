@@ -855,6 +855,7 @@ CELERY_ROUTES = {
     'devhub.tasks.validator': {'queue': 'devhub'},
     'devhub.tasks.compatibility_check': {'queue': 'devhub'},
     'devhub.tasks.fetch_manifest': {'queue': 'devhub'},
+    'devhub.tasks.fetch_icon': {'queue': 'devhub'},
     'devhub.tasks.file_validator': {'queue': 'devhub'},
     'devhub.tasks.packager': {'queue': 'devhub'},
 

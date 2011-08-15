@@ -1363,6 +1363,8 @@ def submit_addon(request, step, webapp=False):
                      list(data.get('mobile_platforms', [])))
 
             addon = Addon.from_upload(data['upload'], p)
+            if webapp:
+                tasks.fetch_icon.delay(addon)
             AddonUser(addon=addon, user=request.amo_user).save()
             SubmitStep.objects.create(addon=addon, step=3)
             return redirect('devhub.submit.3', addon.slug)
@@ -1391,7 +1393,7 @@ def submit_describe(request, addon_id, addon, step):
 @submit_step(4)
 def submit_media(request, addon_id, addon, step):
     form_icon = addon_forms.AddonFormMedia(request.POST or None,
-            request.FILES, instance=addon, request=request)
+            request.FILES or None, instance=addon, request=request)
     form_previews = forms.PreviewFormSet(request.POST or None,
             prefix='files', queryset=addon.previews.all())
 

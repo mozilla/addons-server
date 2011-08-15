@@ -1,12 +1,17 @@
+import json
 import urlparse
 
 from django.conf import settings
 from django.db import models
 
+import commonware.log
+
 import amo
 import amo.models
 from amo.urlresolvers import reverse
 from addons.models import Addon, update_search_index, delete_search_index
+
+log = commonware.log.getLogger('z.addons')
 
 
 class WebappManager(amo.models.ManagerBase):
@@ -57,6 +62,19 @@ class Webapp(Addon):
     def origin(self):
         parsed = urlparse.urlparse(self.manifest_url)
         return '%s://%s' % (parsed.scheme, parsed.netloc)
+
+    def get_manifest_json(self):
+        cur = self.current_version
+        try:
+            # The first file created for each version of the web app
+            # is the manifest.
+            manifest = cur.files.order_by('created')[0]
+            with open(manifest.file_path, 'r') as mf:
+                return json.load(mf)
+        except Exception, e:
+            log.error('Failed to open the manifest for webapp %s,'
+                      ' version %s: %s.' % (self.pk, cur, e.message))
+            raise
 
 
 # These are the translated strings we want to pull in.
