@@ -177,11 +177,13 @@
 
 <section class="primary island c">
   <h2>{{ _('About this Add-on') }}</h2>
+  <div class="prose">
   {% if addon.description %}
-    <p id="addon-description" {{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
+    <p id="addon-description" class="prose" {{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
   {% else %}
-    <p id="addon-description" {{ addon.description|locale_html }}>{{ addon.summary|nl2br }}</p>
+    <p id="addon-description" class="prose" {{ addon.description|locale_html }}>{{ addon.summary|nl2br }}</p>
   {% endif %}
+  </div>
 </section>
 
 <div id="more-webpage" class="primary c" data-more-url="{{ addon.get_url_path(impala=True) }}"></div>
@@ -201,7 +203,7 @@
   {% if version %}
     <section id="detail-relnotes" class="expando">
       <h2>{{ _('Version Information') }}<a class="toggle" href="#detail-relnotes"><b></b></a></h2>
-      <div class="content">
+      <div class="content prose">
         {{ version_detail(addon, version, src="addon-detail-version", impala=True) }}
       </div>
     </section>
