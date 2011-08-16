@@ -727,10 +727,10 @@ def contribute_url_params(business, addon_id, item_name, return_url,
 
     lang = translation.get_language()
     try:
-        paypal_lang = settings.PAYPAL_COUNTRYMAP[lang]
+        paypal_lang = amo.PAYPAL_COUNTRYMAP[lang]
     except KeyError:
         lang = lang.split('-')[0]
-        paypal_lang = settings.PAYPAL_COUNTRYMAP.get(lang, 'US')
+        paypal_lang = amo.PAYPAL_COUNTRYMAP.get(lang, 'US')
 
     # Get all the data elements that will be URL params
     # on the Paypal redirect URL.

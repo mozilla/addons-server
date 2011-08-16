@@ -44,5 +44,38 @@
       "id": 1171642,
       "localized_string": ""
     }
+  },
+  {
+    "pk": 1,
+    "model": "market.pricecurrency",
+    "fields": {
+      "currency": "it",
+      "tier": 1,
+      "price": "5.01",
+      "modified": "2011-08-15 16:14:15",
+      "created": "2011-08-15 16:14:15"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "market.pricecurrency",
+    "fields": {
+      "currency": "es",
+      "tier": 1,
+      "price": "3.01",
+      "modified": "2011-08-15 16:14:26",
+      "created": "2011-08-15 16:14:26"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "market.pricecurrency",
+    "fields": {
+      "currency": "pt-BR",
+      "tier": 2,
+      "price": "1.01",
+      "modified": "2011-08-15 16:15:23",
+      "created": "2011-08-15 16:15:23"
+    }
   }
 ]

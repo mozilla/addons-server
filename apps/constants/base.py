@@ -162,7 +162,7 @@ ADDON_PREVIEW_SIZES = [(200, 150), (700, 525)]
 # Persona image sizes [preview, full]
 PERSONA_IMAGE_SIZES = {
     'header': [(680, 100), (3000, 200)],
-    'footer': [None, (3000, 100)]
+    'footer': [None, (3000, 100)],
 }
 
 # Accepted image MIME-types
@@ -233,3 +233,44 @@ VERSION_SEARCH = re.compile('\.(\d+)$')
 
 # Editor Tools
 EDITOR_VIEWING_INTERVAL = 8  # How often we ping for "who's watching?"
+
+# Paypal is an awful place that doesn't understand locales.  Instead they have
+# country codes.  This maps our locales to their codes.
+PAYPAL_COUNTRYMAP = {
+    'af': 'ZA', 'ar': 'EG', 'ca': 'ES', 'cs': 'CZ', 'cy': 'GB', 'da': 'DK',
+    'de': 'DE', 'de-AT': 'AT', 'de-CH': 'CH', 'el': 'GR', 'en-GB': 'GB',
+    'eu': 'BS', 'fa': 'IR', 'fi': 'FI', 'fr': 'FR', 'he': 'IL', 'hu': 'HU',
+    'id': 'ID', 'it': 'IT', 'ja': 'JP', 'ko': 'KR', 'mn': 'MN', 'nl': 'NL',
+    'pl': 'PL', 'ro': 'RO', 'ru': 'RU', 'sk': 'SK', 'sl': 'SI', 'sq': 'AL',
+    'sr': 'CS', 'tr': 'TR', 'uk': 'UA', 'vi': 'VI',
+}
+
+# Source, PayPal docs, PP_AdaptivePayments.PDF
+PAYPAL_CURRENCIES = {
+    'AUD': _('Australian Dollar'),
+    'BRL': _('Brazilian Real'),
+    'CAD': _('Canadian Dollar'),
+    'CZK': _('Czech Koruna'),
+    'DKK': _('Danish Krone'),
+    'EUR': _('Euro'),
+    'HKD': _('Hong Kong Dollar'),
+    'HUF': _('Hungararian Forint'),
+    'ILS': _('Israeli New Sheqel'),
+    'JPY': _('Japanese Yen'),
+    'MYR': _('Malaysian Ringgit'),
+    'MXN': _('Mexican Peso'),
+    'NOK': _('Norwegian Krone'),
+    'NZD': _('New Zealand Dollar'),
+    'PHP': _('Philippine Peso'),
+    'PLN': _('Polish Zloty'),
+    'GBP': _('Pound Sterling'),
+    'SGD': _('Singapore Dollar'),
+    'SEK': _('Swedish Krona'),
+    'CHF': _('Swiss Franc'),
+    'TWD': _('Taiwan New Dollar'),
+    'THB': _('Thai Baht'),
+    'USD': _('U.S. Dollar'),
+}
+
+OTHER_CURRENCIES = PAYPAL_CURRENCIES.copy()
+del OTHER_CURRENCIES['USD']
