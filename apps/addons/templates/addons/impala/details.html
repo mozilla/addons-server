@@ -186,7 +186,7 @@
   </div>
 </section>
 
-<div id="more-webpage" class="primary c" data-more-url="{{ addon.get_url_path(impala=True) }}"></div>
+<div id="more-webpage" class="primary c" data-more-url="{{ url('addons.detail_more', addon.slug) }}"></div>
 
 {% if version or addon.developer_comments or addon.show_beta %}
 <section class="primary island c">

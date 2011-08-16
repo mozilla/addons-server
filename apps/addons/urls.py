@@ -11,6 +11,7 @@ ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 # These will all start with /addon/<addon_id>/
 detail_patterns = patterns('',
     url('^$', views.addon_detail, name='addons.detail'),
+    url('^more$', views.addon_detail, name='addons.detail_more'),
     url('^eula/(?P<file_id>\d+)?$', views.eula, name='addons.eula'),
     url('^license/(?P<version>[^/]+)?', views.license, name='addons.license'),
     url('^privacy/', views.privacy, name='addons.privacy'),
