@@ -709,13 +709,13 @@ class TestDelete(amo.tests.TestCase):
 
     def setUp(self):
         self.addon = self.get_addon()
-
+        assert self.client.login(username='del@icio.us', password='password')
         self.url = reverse('devhub.addons.delete', args=[self.addon.slug])
 
     def get_addon(self):
         return Addon.objects.no_cache().get(id=3615)
 
-    def test_post_nopw(self):
+    def test_post_not(self):
         r = self.client.post(self.url, follow=True)
         eq_(pq(r.content)('.notification-box').text(),
                           'Password was incorrect. Add-on was not deleted.')
