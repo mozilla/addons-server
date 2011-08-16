@@ -1,12 +1,16 @@
 from datetime import date
 from decimal import Decimal
 
+from django.db import models
 from django import test
 
 from nose.tools import eq_
 
+import amo
+from addons.models import Addon
 from stats.db import StatsDict
 from stats.models import Contribution, DownloadCount, UpdateCount
+from users.models import UserProfile
 
 
 class TestDownloadCountModel(test.TestCase):
@@ -142,3 +146,10 @@ class TestContributionModel(test.TestCase):
         eq_(len(days), 1, 'unexpected number of days')
         eq_(days[0]['row_count'], 2, 'unexpected row_count')
         eq_(days[0]['amount'], Decimal('4.98'), 'unexpected total amount')
+
+    def test_related_protected(self):
+        user = UserProfile.objects.create(username='foo@bar.com')
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        payment = Contribution.objects.create(user=user, addon=addon)
+        Contribution.objects.create(user=user, addon=addon, related=payment)
+        self.assertRaises(models.ProtectedError, payment.delete)

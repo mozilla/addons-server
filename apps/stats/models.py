@@ -5,6 +5,7 @@ from django.db import models
 from django.template import Context, loader
 
 import caching.base
+from jinja2.filters import do_dictsort
 import tower
 from tower import ugettext as _
 
@@ -136,23 +137,41 @@ class ContributionError(Exception):
 
 
 class Contribution(caching.base.CachingMixin, models.Model):
+    # TODO(addon): figure out what to do when we delete the add-on.
     addon = models.ForeignKey('addons.Addon')
-    charity = models.ForeignKey('addons.Charity', null=True)
     amount = DecimalCharField(max_digits=9, decimal_places=2,
                               nullify_invalid=True, null=True)
+    currency = models.CharField(max_length=3,
+                                choices=do_dictsort(amo.PAYPAL_CURRENCIES),
+                                default=amo.CURRENCY_DEFAULT)
     source = models.CharField(max_length=255, null=True)
     source_locale = models.CharField(max_length=10, null=True)
-    annoying = models.PositiveIntegerField(
-        choices=amo.CONTRIB_CHOICES, default=0)
+
     created = models.DateTimeField(auto_now_add=True)
     uuid = models.CharField(max_length=255, null=True)
-    is_suggested = models.BooleanField()
-    suggested_amount = DecimalCharField(max_digits=254, decimal_places=2,
-                                        nullify_invalid=True, null=True)
     comment = models.CharField(max_length=255)
     transaction_id = models.CharField(max_length=255, null=True)
     paykey = models.CharField(max_length=255, null=True)
     post_data = StatsDictField(null=True)
+
+    # Voluntary Contribution specific.
+    charity = models.ForeignKey('addons.Charity', null=True)
+    annoying = models.PositiveIntegerField(default=0,
+                                           choices=amo.CONTRIB_CHOICES,)
+    is_suggested = models.BooleanField()
+    suggested_amount = DecimalCharField(max_digits=254, decimal_places=2,
+                                        nullify_invalid=True, null=True)
+
+    # Marketplace specific.
+    # TODO(andym): figure out what to do when we delete the user.
+    user = models.ForeignKey('users.UserProfile', blank=True, null=True)
+    type = models.PositiveIntegerField(default=amo.CONTRIB_TYPE_DEFAULT,
+                                       choices=do_dictsort(amo.CONTRIB_TYPES))
+    price_tier = models.ForeignKey('market.Price', blank=True, null=True,
+                                   on_delete=models.PROTECT)
+    # If this is a refund or a chargeback, which charge did it relate to.
+    related = models.ForeignKey('self', blank=True, null=True,
+                                on_delete=models.PROTECT)
 
     objects = models.Manager()
     stats = StatsManager('created')
