@@ -104,12 +104,19 @@ div.popup-shim {
 
 .install .install-note > *,
 .popup.warning > * {
+    margin-top: 1em;
     padding-left: 50px;
 }
 
 .install .install-note {
     width: 300px;
-    ol, ul {
+    li {
+        margin: 1em 0;
+    }
+    .msg:first-child {
+        margin: 0;
+    }
+    ol, ul, p:first-child {
         margin: 0;
     }
     ol {

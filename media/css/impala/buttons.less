@@ -126,16 +126,29 @@
     top: 2px;
     .box-shadow(0 1px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset, 0 0 100px rgba(255, 255, 255, 0.2) inset);
 }
-.extra {
+
+.install-shell {
+    .install {
+        display: inline-block;
+        margin-right: 1em;
+    }
+    .warning {
+        font-size: 12px;
+    }
+    .extra {
+        margin-top: 8px;
+    }
     .notavail {
         color: @error-red;
         display: block;
         margin: 0 0 4px;
-    }
-}
-.install-shell {
-    .warning {
+        font-family: @sans-stack;
         font-size: 12px;
+        line-height: 12px;
+        padding: 1px 0 1px 18px;
+        margin-right: 14px;  /* Match the padding of .install. */
+        background: url(../../img/impala/no.png) 0 30% no-repeat;
+        white-space: nowrap;
     }
 }
 
