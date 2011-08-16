@@ -51,7 +51,7 @@ MIRROR_STATUSES = (STATUS_PUBLIC, STATUS_BETA,
                    STATUS_LITE, STATUS_LITE_AND_NOMINATED)
 
 # An add-on in one of these statuses can become premium.
-PREMIUM_STATUSES = (STATUS_NULL, STATUS_UNDER_REVIEW, STATUS_NOMINATED)
+PREMIUM_STATUSES = (STATUS_NULL,) + STATUS_UNDER_REVIEW
 
 # Types of administrative review queues for an add-on:
 ADMIN_REVIEW_FULL = 1
