@@ -790,6 +790,18 @@ class TestDetailPage(amo.tests.TestCase):
         eq_(res.status_code, 404)
         assert 'disabled by an administrator' in res.content
 
+    def test_ready_to_buy(self):
+        addon = Addon.objects.get(id=3615)
+        addon.update(premium_type=amo.ADDON_PREMIUM,
+                     status=amo.STATUS_PUBLIC)
+        eq_(self.client.get(reverse('addons.detail', args=[addon.slug])), 404)
+
+    def test_not_ready_to_buy(self):
+        addon = Addon.objects.get(id=3615)
+        addon.update(premium_type=amo.ADDON_PREMIUM,
+                     status=amo.STATUS_NOMINATED)
+        eq_(self.client.get(reverse('addons.detail', args=[addon.slug])), 404)
+
 
 class TestStatus(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_3615']

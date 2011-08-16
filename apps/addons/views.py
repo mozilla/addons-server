@@ -75,7 +75,8 @@ def author_addon_clicked(f):
 @addon_disabled_view
 def addon_detail(request, addon):
     """Add-ons details page dispatcher."""
-    if addon.disabled_by_user or addon.status == amo.STATUS_DISABLED:
+    if (addon.disabled_by_user or addon.status == amo.STATUS_DISABLED
+        or (addon.is_premium() and not addon.can_be_purchased())):
         return jingo.render(request, 'addons/disabled.html',
                             {'addon': addon}, status=404)
 
@@ -105,7 +106,8 @@ def addon_detail(request, addon):
 @addon_disabled_view
 def impala_addon_detail(request, addon):
     """Add-ons details page dispatcher."""
-    if addon.disabled_by_user or addon.status == amo.STATUS_DISABLED:
+    if (addon.disabled_by_user or addon.status == amo.STATUS_DISABLED
+        or (addon.is_premium() and not addon.can_be_purchased())):
         return jingo.render(request, 'addons/impala/disabled.html',
                             {'addon': addon}, status=404)
 

@@ -762,6 +762,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def is_premium(self):
         return self.premium_type == amo.ADDON_PREMIUM
 
+    def can_be_purchased(self):
+        return self.is_premium() and self.status in amo.REVIEWED_STATUSES
+
     @classmethod
     def featured_random(cls, app, lang):
         return FeaturedManager.featured_ids(app, lang)
