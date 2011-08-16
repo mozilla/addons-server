@@ -275,7 +275,7 @@ class TestPane(amo.tests.TestCase):
         url = reverse('discovery.addons.detail', args=[7661])
         assert a.attr('href').endswith(url + '?src=discovery-featured'), (
             'Unexpected add-on details URL')
-        eq_(li.find('h3.vtruncate').text(), unicode(addon.name))
+        eq_(li.find('h3').text(), unicode(addon.name))
         eq_(li.find('img').attr('src'), addon.icon_url)
 
         addon = Addon.objects.get(id=2464)
@@ -285,7 +285,7 @@ class TestPane(amo.tests.TestCase):
         url = reverse('discovery.addons.detail', args=[2464])
         assert a.attr('href').endswith(url + '?src=discovery-featured'), (
             'Unexpected add-on details URL')
-        eq_(li.find('h3.vtruncate').text(), unicode(addon.name))
+        eq_(li.find('h3').text(), unicode(addon.name))
         eq_(li.find('img').attr('src'), addon.icon_url)
 
     @mock.patch.object(settings, 'NEW_FEATURES', False)
