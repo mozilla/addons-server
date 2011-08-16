@@ -2,21 +2,25 @@ import json
 import logging
 import os
 import shutil
+import socket
 import sys
 import traceback
+import urllib2
+import urlparse
 
 from django.conf import settings
 from django.core.management import call_command
-from amo.utils import slugify
-from celeryutils import task
 
-from addons.models import Addon
+from celeryutils import task
+from tower import ugettext as _
+
 import amo
 from amo.decorators import write, set_modified_on
-from amo.utils import resize_image
-from files.models import FileUpload, File, FileValidation
+from amo.utils import slugify, resize_image
+from addons.models import Addon
 from applications.management.commands import dump_apps
 from applications.models import Application, AppVersion
+from files.models import FileUpload, File, FileValidation
 
 from PIL import Image
 
@@ -280,3 +284,54 @@ def packager(data, feature_set, **kw):
         shutil.move(xpi_path, packager_path(data['uuid']))
     except IOError:
         log.error('Error unlocking add-on: %s' % xpi_path)
+
+
+def failed_validation(*messages):
+    """Return a validation object that looks like the add-on validator."""
+    return json.dumps({'errors': 1, 'success': False, 'messages': messages})
+
+
+def _fetch_manifest(url):
+    try:
+        response = urllib2.urlopen(url, timeout=5)
+    except urllib2.URLError, e:
+        # Unpack the URLError to try and find a useful message.
+        if isinstance(e.reason, socket.timeout):
+            raise Exception(_('Connection to "%s" timed out.') % url)
+        elif isinstance(e.reason, socket.gaierror):
+            raise Exception(_('Could not contact host at "%s".') % url)
+        else:
+            raise Exception(str(e.reason))
+
+    content_type = 'application/x-web-app-manifest+json'
+    if not response.headers.get('Content-Type', '').startswith(content_type):
+        if 'Content-Type' in response.headers:
+            raise Exception(_('Your manifest must be served with the HTTP '
+                              'header "Content-Type: %s". We saw "%s".')
+                            % (content_type, response.headers['Content-Type']))
+        else:
+            raise Exception(_('Your manifest must be served with the HTTP '
+                              'header "Content-Type: %s".') % content_type)
+
+    # Read one extra byte. Reject if it's too big so we don't have issues
+    # downloading huge files.
+    content = response.read(settings.MAX_WEBAPP_UPLOAD_SIZE + 1)
+    if len(content) > settings.MAX_WEBAPP_UPLOAD_SIZE:
+        raise Exception(_('Your manifest must be less than %s bytes.')
+                        % settings.MAX_WEBAPP_UPLOAD_SIZE)
+    return content
+
+
+@task
+def fetch_manifest(url, upload_pk=None, **kw):
+    log.info(u'[1@None] Fetching manifest: %s.' % url)
+    upload = FileUpload.objects.get(pk=upload_pk)
+    try:
+        content = _fetch_manifest(url)
+    except Exception, e:
+        # Drop a message in the validation slot and bail.
+        return upload.update(validation=failed_validation(e.message))
+
+    upload.add_file([content], url, len(content))
+    # Send the upload to the validator.
+    validator(upload.pk)

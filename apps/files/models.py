@@ -425,8 +425,8 @@ class Platform(amo.models.ModelBase):
 class FileUpload(amo.models.ModelBase):
     """Created when a file is uploaded for validation/submission."""
     uuid = UUIDField(primary_key=True, auto=True)
-    path = models.CharField(max_length=255)
-    name = models.CharField(max_length=255,
+    path = models.CharField(max_length=255, default='')
+    name = models.CharField(max_length=255, default='',
                             help_text="The user's original filename")
     hash = models.CharField(max_length=255, default='')
     user = models.ForeignKey('users.UserProfile', null=True)
@@ -455,8 +455,7 @@ class FileUpload(amo.models.ModelBase):
                 log.error('Invalid validation json: %r' % self)
         super(FileUpload, self).save()
 
-    @classmethod
-    def from_post(cls, chunks, filename, size):
+    def add_file(self, chunks, filename, size):
         filename = smart_str(filename)
         loc = path.path(settings.ADDONS_PATH) / 'temp' / uuid.uuid4().hex
         if not loc.dirname().exists():
@@ -470,8 +469,16 @@ class FileUpload(amo.models.ModelBase):
             for chunk in chunks:
                 hash.update(chunk)
                 fd.write(chunk)
-        return cls.objects.create(path=loc, name=filename,
-                                  hash='sha256:%s' % hash.hexdigest())
+        self.path = loc
+        self.name = filename
+        self.hash = 'sha256:%s' % hash.hexdigest()
+        self.save()
+
+    @classmethod
+    def from_post(cls, chunks, filename, size):
+        fu = FileUpload()
+        fu.add_file(chunks, filename, size)
+        return fu
 
 
 class FileValidation(amo.models.ModelBase):

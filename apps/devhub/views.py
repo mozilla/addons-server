@@ -44,7 +44,7 @@ from devhub.decorators import dev_required
 from devhub.forms import CheckCompatibilityForm
 from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
 from editors.helpers import get_position
-from files.models import File, FileUpload
+from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
 from translations.models import delete_translation
 from users.models import UserProfile
@@ -579,6 +579,26 @@ def upload(request, addon_slug=None, is_standalone=False):
         return redirect('devhub.standalone_upload_detail', fu.pk)
     else:
         return redirect('devhub.upload_detail', fu.pk, 'json')
+
+
+@login_required
+@post_required
+def upload_webapp(request):
+    form = forms.NewWebappForm(request.POST)
+    if form.is_valid():
+        # Eventually we'll pass a pointer to the FileUpload back to the client
+        # and wait for the tasks to finish.
+        upload = FileUpload.objects.create()
+        # TODO: make this .delay()'d, communicate asynchronously.
+        tasks.fetch_manifest(form.cleaned_data['manifest'], upload.pk)
+        # Get the new data.
+        upload = FileUpload.objects.get(pk=upload.pk)
+        # TODO: when we go async reuse the submit_addon() code.
+        platform = Platform.objects.get(id=amo.PLATFORM_ALL.id)
+        addon = Addon.from_upload(upload, [platform])
+        AddonUser(addon=addon, user=request.amo_user).save()
+        SubmitStep.objects.create(addon=addon, step=3)
+        return redirect('devhub.submit.3', addon.slug)
 
 
 @login_required

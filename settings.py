@@ -832,6 +832,7 @@ CELERY_IMPORTS = ('django_arecibo.tasks',)
 CELERY_ROUTES = {
     'devhub.tasks.validator': {'queue': 'devhub'},
     'devhub.tasks.compatibility_check': {'queue': 'devhub'},
+    'devhub.tasks.fetch_manifest': {'queue': 'devhub'},
     'devhub.tasks.file_validator': {'queue': 'devhub'},
     'devhub.tasks.packager': {'queue': 'devhub'},
     'bandwagon.tasks.resize_icon': {'queue': 'images'},
@@ -961,6 +962,7 @@ def read_only_mode(env):
 MAX_ICON_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
 MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
+MAX_WEBAPP_UPLOAD_SIZE = 2 * 1024 * 1024
 
 # RECAPTCHA - copy all three statements to settings_local.py
 RECAPTCHA_PUBLIC_KEY = ''

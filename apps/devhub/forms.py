@@ -762,3 +762,7 @@ class CheckCompatibilityForm(happyforms.Form):
     def clean_app_version(self):
         v = self.cleaned_data['app_version']
         return AppVersion.objects.get(pk=int(v))
+
+
+class NewWebappForm(happyforms.Form):
+    manifest = forms.URLField()

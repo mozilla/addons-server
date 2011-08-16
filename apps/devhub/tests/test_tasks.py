@@ -1,7 +1,10 @@
+import json
 import os
 import path
 import shutil
+import socket
 import tempfile
+import urllib2
 
 from django.conf import settings
 
@@ -13,7 +16,7 @@ import amo.tests
 from addons.models import Addon
 from amo.tests.test_helpers import get_image_path
 from files.models import FileUpload
-from devhub.tasks import flag_binary, resize_icon, validator
+from devhub.tasks import flag_binary, resize_icon, validator, fetch_manifest
 
 
 def test_resize_icon_shrink():
@@ -140,3 +143,95 @@ class TestFlagBinary(amo.tests.TestCase):
         _mock.side_effect = RuntimeError()
         flag_binary([self.addon.pk])
         eq_(Addon.objects.get(pk=self.addon.pk).binary, False)
+
+
+class TestFetchManifest(amo.tests.TestCase):
+
+    def setUp(self):
+        self.upload = FileUpload.objects.create()
+        self.content_type = 'application/x-web-app-manifest+json'
+
+        patcher = mock.patch('devhub.tasks.urllib2.urlopen')
+        self.urlopen_mock = patcher.start()
+        self.addCleanup(patcher.stop)
+
+    @mock.patch('devhub.tasks.validator')
+    def test_success_add_file(self, validator_mock):
+        response_mock = mock.Mock()
+        response_mock.read.return_value = 'woo'
+        response_mock.headers = {'Content-Type': self.content_type}
+        self.urlopen_mock.return_value = response_mock
+
+        fetch_manifest('http://xx.com/manifest.json', self.upload.pk)
+        upload = FileUpload.objects.get(pk=self.upload.pk)
+        eq_(upload.name, 'http://xx.com/manifest.json')
+        eq_(open(upload.path).read(), 'woo')
+
+    @mock.patch('devhub.tasks.validator')
+    def test_success_call_validator(self, validator_mock):
+        response_mock = mock.Mock()
+        response_mock.read.return_value = 'woo'
+        ct = self.content_type + '; charset=utf-8'
+        response_mock.headers = {'Content-Type': ct}
+        self.urlopen_mock.return_value = response_mock
+
+        fetch_manifest('http://xx.com/manifest.json', self.upload.pk)
+        assert validator_mock.called
+
+    def check_validation(self, msg):
+        upload = FileUpload.objects.get(pk=self.upload.pk)
+        validation = json.loads(upload.validation)
+        eq_(validation['errors'], 1)
+        eq_(validation['success'], False)
+        eq_(len(validation['messages']), 1)
+        eq_(validation['messages'][0], msg)
+
+    def test_connection_error(self):
+        reason = socket.gaierror(8, 'nodename nor servname provided')
+        self.urlopen_mock.side_effect = urllib2.URLError(reason)
+        fetch_manifest('url', self.upload.pk)
+        self.check_validation('Could not contact host at "url".')
+
+    def test_url_timeout(self):
+        reason = socket.timeout('too slow')
+        self.urlopen_mock.side_effect = urllib2.URLError(reason)
+        fetch_manifest('url', self.upload.pk)
+        self.check_validation('Connection to "url" timed out.')
+
+    def test_other_url_error(self):
+        reason = Exception('Some other failure.')
+        self.urlopen_mock.side_effect = urllib2.URLError(reason)
+        fetch_manifest('url', self.upload.pk)
+        self.check_validation('Some other failure.')
+
+    def test_no_content_type(self):
+        response_mock = mock.Mock()
+        response_mock.read.return_value = 'woo'
+        response_mock.headers = {}
+        self.urlopen_mock.return_value = response_mock
+
+        fetch_manifest('http://xx.com/manifest.json', self.upload.pk)
+        self.check_validation(
+            'Your manifest must be served with the HTTP header '
+            '"Content-Type: application/x-web-app-manifest+json".')
+
+    def test_bad_content_type(self):
+        response_mock = mock.Mock()
+        response_mock.read.return_value = 'woo'
+        response_mock.headers = {'Content-Type': 'x'}
+        self.urlopen_mock.return_value = response_mock
+
+        fetch_manifest('http://xx.com/manifest.json', self.upload.pk)
+        self.check_validation(
+            'Your manifest must be served with the HTTP header '
+            '"Content-Type: application/x-web-app-manifest+json". We saw "x".')
+
+    def test_response_too_large(self):
+        response_mock = mock.Mock()
+        content = 'x' * (settings.MAX_WEBAPP_UPLOAD_SIZE + 1)
+        response_mock.read.return_value = content
+        response_mock.headers = {'Content-Type': self.content_type}
+        self.urlopen_mock.return_value = response_mock
+
+        fetch_manifest('http://xx.com/manifest.json', self.upload.pk)
+        self.check_validation('Your manifest must be less than 2097152 bytes.')
