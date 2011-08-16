@@ -355,6 +355,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
         addon.status = amo.STATUS_NULL
         addon.default_locale = to_language(translation.get_language())
+        if addon.is_webapp():
+            addon.manifest_url = upload.name
         addon.save()
         Version.from_upload(upload, addon, platforms)
         amo.log(amo.LOG.CREATE_ADDON, addon)

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime, timedelta
 import itertools
+import os
+from datetime import datetime, timedelta
 from urlparse import urlparse
 
 from django import forms
@@ -1321,6 +1322,14 @@ class TestAddonFromUpload(UploadTest):
         eq_(addon.summary, 'xpi description')
         eq_(addon.description, None)
         eq_(addon.slug, 'xpi-name')
+
+    def test_manifest_url(self):
+        path = os.path.join(settings.ROOT,
+                            'apps/devhub/tests/addons/mozball.webapp')
+        upload = self.get_upload(abspath=path)
+        addon = Addon.from_upload(upload, [self.platform])
+        assert addon.is_webapp()
+        eq_(addon.manifest_url, upload.name)
 
     def test_xpi_version(self):
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
