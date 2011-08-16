@@ -86,7 +86,7 @@
 
 // Vertical sprite
 .sprite(@url, @pos, @spacing, @offset:0) {
-    background: url(@url) no-repeat;
+    background: ~'url(@{url}) no-repeat';
     background-position: 0 (@spacing * @pos * -1 + @offset) + 0px;
 }
 .sprite-pos(@pos, @spacing, @offset:0) {
@@ -98,7 +98,7 @@
 
 // Horizontal sprite
 .hsprite(@url, @pos, @spacing, @offset:0) {
-    background: url(@url) no-repeat;
+    background: ~'url(@{url}) no-repeat';
     background-position: (@spacing * @pos * -1 + @offset) + 0px 0;
 }
 .hsprite-pos(@pos, @spacing, @offset:0) {
