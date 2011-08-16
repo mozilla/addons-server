@@ -4,8 +4,8 @@
     ('rating', _('Top Rated')),
 ) %}
 
-{% macro section(title, base_url, extras, categories) %}
-  <li>
+{% macro section(id, title, base_url, extras, categories) %}
+  <li id="{{ id }}">
     <a href="{{ base_url }}">{{ title }}</a>
     <ul class="two-col">
       {% for sort, title in extras %}
@@ -20,12 +20,12 @@
 
 <nav id="site-nav" class="menu-nav c">
   <ul>
-    {{ section(_('Extensions'), url('browse.extensions'), extras, extensions) }}
-    {{ section(_('Personas'), url('browse.personas'), extras, personas) }}
+    {{ section('extensions', _('Extensions'), url('browse.extensions'), extras, extensions) }}
+    {{ section('personas', _('Personas'), url('browse.personas'), extras, personas) }}
     {% if themes %}
-      {{ section(_('Themes'), url('browse.themes'), extras, themes) }}
+      {{ section('themes', _('Themes'), url('browse.themes'), extras, themes) }}
     {% endif %}
-    <li>
+    <li id="collections">
       <a href="#">{{ _('Collections') }}</a>
       <ul>
         {% with base_url = url('collections.list') %}
@@ -43,7 +43,7 @@
           {{ _('My Favorite Add-ons') }}</a></li>
       </ul>
     </li>
-    <li>
+    <li id="more">
       <a href="#">{{ _('More&hellip;') }}</a>
       <ul>
         <li><a href="{{ url('browse.language-tools') }}">
