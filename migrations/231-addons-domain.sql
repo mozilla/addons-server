@@ -1,2 +1,2 @@
 ALTER TABLE addons
-   ADD COLUMN `domain` varchar(255);
+   ADD COLUMN `manifest_url` varchar(255);
