@@ -30,7 +30,7 @@ def compatibility_report():
                                         addon__disabled_by_user=False,
                                         addon__status__in=amo.VALID_STATUSES,
                                         addon___current_version__isnull=False,
-                                        date=latest)
+                                        date=latest).order_by('-count')
         total = qs.aggregate(Sum('count'))['count__sum']
         redis.hset('compat:%s' % app.id, 'total', total)
         adus = 0
