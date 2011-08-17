@@ -559,6 +559,28 @@ class TestEditPayments(amo.tests.TestCase):
         eq_(len(box), 1)
         eq_('completed developer profile' in box.text(), True)
 
+    @mock.patch('addons.models.Addon.upsell')
+    def test_with_upsell_no_contributions(self, upsell):
+        upsell.return_value = True
+        res = self.client.get(self.url)
+        error = pq(res.content)('p.error')
+        eq_('premium add-on enrolled' in error.text(), True)
+
+    def test_addon_public(self):
+        self.get_addon().update(status=amo.STATUS_PUBLIC)
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        eq_(doc('#do-setup').text(), 'Set up Contributions')
+        eq_('You cannot enroll in the Marketplace' in doc('p.error').text(),
+            True)
+
+    def test_addon_not_reviewed(self):
+        self.get_addon().update(status=amo.STATUS_NULL)
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        eq_(doc('#do-marketplace').text(), 'Enroll in Marketplace')
+        eq_('fully reviewed add-ons' in doc('p.error').text(), True)
+
 
 class TestDisablePayments(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']

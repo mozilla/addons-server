@@ -739,26 +739,22 @@ function initPayments() {
     .delegate("a.extra", "click", function(e) {
         e.preventDefault();
     });
-    $("#do-setup").click(function (e) {
-        e.preventDefault();
+    $("#do-setup").click(_pd(function (e) {
         $("#setup").removeClass("hidden").show();
-        $(".intro").hide();
-    });
-    $("#setup-cancel").click(function (e) {
-        e.preventDefault();
-        $(".intro").show();
+        $(".intro, .intro-blah").hide();
+    }));
+    $("#setup-cancel").click(_pd(function (e) {
+        $(".intro, .intro-blah").show();
         $("#setup").hide();
-    });
-    $("#do-marketplace").click(function (e) {
-        e.preventDefault();
+    }));
+    $("#do-marketplace").click(_pd(function (e) {
         $("#marketplace-confirm").removeClass("hidden").show();
-        $(".intro").hide();
-    });
-    $("#marketplace-cancel").click(function (e) {
-        e.preventDefault();
-        $(".intro").show();
+        $(".intro, .intro-blah").hide();
+    }));
+    $("#marketplace-cancel").click(_pd(function (e) {
+        $(".intro, .intro-blah").show();
         $("#marketplace-confirm").hide();
-    });
+    }));
     $(".recipient").change(function (e) {
         var v = $(this).val();
         $(".paypal").hide(200);
