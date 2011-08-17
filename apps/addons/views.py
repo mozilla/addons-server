@@ -532,25 +532,12 @@ class CollectionPromoBox(object):
 @addon_view
 def eula(request, addon, file_id=None):
     if not addon.eula:
-        return http.HttpResponseRedirect(addon.get_url_path())
-    if file_id is not None:
-        version = get_object_or_404(addon.versions, files__id=file_id)
-    else:
-        version = addon.current_version
-
-    return jingo.render(request, 'addons/eula.html',
-                        {'addon': addon, 'version': version})
-
-
-@addon_view
-def impala_eula(request, addon, file_id=None):
-    if not addon.eula:
         return http.HttpResponseRedirect(addon.get_url_path(impala=True))
     if file_id:
         version = get_object_or_404(addon.versions, files__id=file_id)
     else:
         version = addon.current_version
-    return jingo.render(request, 'addons/impala/eula.html',
+    return jingo.render(request, 'addons/eula.html',
                         {'addon': addon, 'version': version})
 
 

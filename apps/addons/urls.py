@@ -43,7 +43,6 @@ detail_patterns = patterns('',
 
 impala_detail_patterns = patterns('',
     url('^$', views.impala_addon_detail, name='i_addons.detail'),
-    url('^eula/(?P<file_id>\d+)?$', views.impala_eula, name='i_addons.eula'),
     url('^license/(?P<version>[^/]+)?', views.impala_license,
         name='i_addons.license'),
     url('^privacy/', views.impala_privacy, name='i_addons.privacy'),
