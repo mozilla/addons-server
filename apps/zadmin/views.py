@@ -490,8 +490,7 @@ def addon_search(request):
         if q.isdigit():
             qs = Addon.objects.filter(id=int(q))
         else:
-            qs = (Addon.search().query(name=q.lower())
-                  .order_by('name_sort')[:100])
+            qs = Addon.search().query(name__text=q.lower())[:100]
         if len(qs) == 1:
             # Note this is a remora URL and should be removed.
             return redirect('/admin/addons?q=[%s]' % qs[0].id)
