@@ -40,12 +40,18 @@ jp_log = commonware.log.getLogger('z.jp.repack')
 
 
 def check_redis():
-    redis = caching.invalidation.get_redis_backend()
-    try:
-        return redis.info(), None
-    except Exception, e:
-        monitor_log.critical('Failed to chat with redis: (%s)' % e)
-        return None, e
+    import redisutils
+
+    results = {}
+
+    for alias, redis in redisutils.connections.iteritems():
+        try:
+            results[alias] = redis.info()
+        except Exception, e:
+            results[alias] = None
+            monitor_log.critical('Failed to chat with redis: (%s)' % e)
+
+    return results
 
 
 @never_cache
@@ -153,10 +159,10 @@ def monitor(request, format=None):
     status_summary['filepaths'] = filepath_status
 
     # Check Redis
-    redis_results = [None, 'REDIS_BACKEND is not set']
-    if getattr(settings, 'REDIS_BACKEND', False):
+    redis_results = [None, 'REDIS_BACKENDS is not set']
+    if getattr(settings, 'REDIS_BACKENDS', False):
         redis_results = check_redis()
-    status_summary['redis'] = bool(redis_results[0])
+    status_summary['redis'] = all(i for i in redis_results.values())
 
     # Check Hera
     hera_results = []

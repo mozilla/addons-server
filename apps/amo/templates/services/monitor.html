@@ -67,7 +67,10 @@
 
 <div class="notification-box {{ status(status_summary.redis) }}">
   <h2>[Redis] Redis Info</h2>
-  {% with info, error = redis_results %}
+  <dl>
+  {% for alias, info in redis_results.iteritems() %}
+  <dt>{{ alias }}</dt>
+  <dd>
     {% if info %}
       <ul>
         {% for k, v in info|dictsort %}
@@ -78,7 +81,9 @@
       <strong>Error!</strong>
       <code>{{ error }}</code>
     {% endif %}
-  {% endwith %}
+  </dd>
+  {% endfor %}
+  </dl>
 </div>
 
 <div class="notification-box {{ status(status_summary.hera) }}">
