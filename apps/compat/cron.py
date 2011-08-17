@@ -1,7 +1,6 @@
 import collections
 import logging
 
-from django.conf import settings
 from django.db.models import Sum, Max
 
 import cronjobs
@@ -10,7 +9,6 @@ import redisutils
 
 import amo
 import amo.utils
-import versions.compare as vc
 from addons.models import Addon
 from stats.models import UpdateCount
 
@@ -29,6 +27,7 @@ def compatibility_report():
         log.info(u'Making compat report for %s.' % app.pretty)
         latest = UpdateCount.objects.aggregate(d=Max('date'))['d']
         qs = UpdateCount.objects.filter(addon__appsupport__app=app.id,
+                                        addon__disabled_by_user=False,
                                         addon__status__in=amo.VALID_STATUSES,
                                         addon___current_version__isnull=False,
                                         date=latest)
