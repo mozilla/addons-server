@@ -91,6 +91,7 @@ $(document).ready(function() {
                     var errors = $.parseJSON(xhr.responseText);
                     $("#upload-file").find(".errorlist").remove();
                     $("#upload-file").find(".upload-status").before(generateErrorList(errors));
+                    $('#upload-file-finish').attr('disabled', false);
                     $modal.setPos();
                 }
             });
@@ -594,7 +595,7 @@ function initVersions() {
 
     $('#upload-file-finish').click(function() {
         var $button = $(this);
-        setTimeout(function() {
+        setTimeout(function() { // Chrome fix
             $button.attr('disabled', true);
         }, 50);
     });
