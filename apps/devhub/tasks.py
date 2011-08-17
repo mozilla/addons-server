@@ -330,7 +330,8 @@ def fetch_manifest(url, upload_pk=None, **kw):
         content = _fetch_manifest(url)
     except Exception, e:
         # Drop a message in the validation slot and bail.
-        return upload.update(validation=failed_validation(e.message))
+        upload.update(validation=failed_validation(e.message))
+        raise
 
     upload.add_file([content], url, len(content))
     # Send the upload to the validator.
