@@ -45,4 +45,16 @@
     <li>{{ _('View approximate review queue <a href="{0}">wait times</a>.')|f('https://forums.addons.mozilla.org/viewforum.php?f=21')|safe }}</li>
   </ul>
 </div>
+
+{% if waffle.switch('marketplace') %}
+  <div class="action-needed">
+    <h3>{{ _('Enrolling in Marketplace') }}</h3>
+    <p>{% trans doc_url=url('devhub.docs', doc_name='marketplace'),
+                payments_url=url('devhub.addons.payments', addon.slug) %}
+        If this is a premium add-on you wish to sell in our Marketplace, be sure to enroll
+        on the <a href="{{ payments_url }}">Manage Payments</a> page
+        <b>before</b> your add-on is reviewed by an editor. <a href="{{ doc_url }}">Learn more</a>.
+    {% endtrans %}</p>
+  </div>
+{% endif %}
 {% endblock %}

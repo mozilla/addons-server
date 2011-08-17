@@ -13,12 +13,15 @@ from django.core.cache import cache
 from django.utils import translation
 from django.utils.http import urlencode
 
+import jingo
 import mock
 from nose.tools import eq_, assert_not_equal, assert_raises
 from nose.plugins.attrib import attr
 from PIL import Image
 from pyquery import PyQuery as pq
 import waffle
+# Unused, but needed so that we can patch jingo.
+from waffle import helpers
 
 import amo
 import amo.tests
@@ -2544,6 +2547,12 @@ class TestSubmitStep7(TestSubmitBase):
         eq_(doc('#submitted-addon-url').text(),
             u'%s/en-US/firefox/addon/%s/' % (
                 settings.SITE_URL, u.decode('utf8')))
+
+    @mock.patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
+    def test_marketplace(self):
+        addon = Addon.objects.get(pk=3615)
+        res = self.client.get(reverse('devhub.submit.7', args=[addon.slug]))
+        eq_('If this is a premium add-on' in res.content, True)
 
 
 class TestResumeStep(TestSubmitBase):
