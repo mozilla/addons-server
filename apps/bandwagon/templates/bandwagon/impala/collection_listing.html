@@ -29,14 +29,11 @@
       </p>
     </masthead>
   {% endif %}
-  <div class="island hero c listing">
-    <header>
-      {{ impala_addon_listing_header(url_base, filter.opts, sorting) }}
-    </header>
-    {% if sorting != 'featured' %}
-      {{ collections|impala_paginator }}
-    {% endif %}
-    {{ impala_collection_listing_items(collections.object_list, filter.field) }}
+  <div class="island hero c listing collections-listing">
+    {{ impala_addon_listing_header(url_base, filter.opts, sorting) }}
+    <div class="items">
+      {{ impala_collection_listing_items(collections.object_list, filter.field) }}
+    </div>
     {% if sorting != 'featured' %}
       {{ collections|impala_paginator }}
     {% endif %}

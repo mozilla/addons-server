@@ -1,13 +1,13 @@
 @import 'lib';
 
-header .feed {
+#subscribe {
     /* TODO(cvan): sprite-ify */
     background: url(../../img/impala/feed.png) no-repeat 0 50%;
     float: right;
     padding-left: 16px;
 }
 
-.html-rtl header .feed {
+.html-rtl #subscribe {
     float: left;
 }
 
@@ -35,7 +35,6 @@ header .feed {
 }
 
 .html-rtl #sorter {
-    float: right;
     li {
         float: right;
         &:first-child + li a {
@@ -55,11 +54,13 @@ header .feed {
     font: bold 24px @sans-stack;
 }
 
-.listing .item {
-    border-top: 1px dotted @border-blue;
-    color: @note-gray;
+.listing .items {
     display: table;
-    padding: 20px 0;
+}
+
+.listing .item {
+    color: @note-gray;
+    display: table-row;
     width: 100%;
     &:hover,
     &.static {
@@ -74,7 +75,8 @@ header .feed {
                 color: @error-red;
             }
         }
-        .info {
+        .info,
+        .action {
             opacity: 0.4;
         }
         .install-shell {
@@ -134,29 +136,27 @@ header .feed {
     }
     .info,
     .action {
+        border-top: 1px dotted @border-blue;
         display: table-cell;
+        padding: 20px 0;
     }
     .info {
         padding-left: 58px;
     }
-    .action {
-        min-width: 190px;
-    }
     .install-shell {
-        text-align: right;
         padding: 0 10px;
         visibility: hidden;
         p {
             margin: 0;
         }
+        .extra {
+            margin: 0;
+            .notavail {
+                color: @note-gray;
+            }
+        }
         .button, .extra {
             white-space: nowrap;
-        }
-        .install-note {
-            text-align: left;
-        }
-        .extra .notavail {
-            color: @note-gray;
         }
     }
     .collector-note,
@@ -172,31 +172,29 @@ header .feed {
         color: #666;
     }
 }
-.paginator + .item {
+
+.paginator + .item,
+#sorter + .items {
     margin-top: 1em;
 }
-header + .paginator,
-.item + .paginator {
+
+.item + .paginator,
+.items + .paginator {
     padding-top: 1em;
     border-top: 1px dotted @border-blue;
 }
 
-.html-rtl.listing .primary .item {
+.html-rtl .listing .item {
     .collector-note,
     .performance-note {
         float: right;
     }
     h3 img {
+        left: auto;
         right: 25px;
     }
     .info {
-        padding: 0 58px 0 0;
-    }
-    .install-shell {
-        text-align: left;
-        .install-note {
-            text-align: right;
-        }
+        padding: 20px 58px 20px 0;
     }
 }
 

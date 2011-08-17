@@ -30,12 +30,12 @@
     <h1>{{ category.name if category else heading }}</h1>
   {% endwith %}
   <div class="island hero c listing">
-    <header>
-      <a href="{{ feed_url }}" class="feed">{{ _('Subscribe') }}</a>
-      {{ impala_addon_listing_header(url_base, extras, sorting) }}
-    </header>
-    {{ impala_addon_listing_items(addons.object_list, src='category',
-                                  show_date=sorting) }}
+    <a href="{{ feed_url }}" id="subscribe">{{ _('Subscribe') }}</a>
+    {{ impala_addon_listing_header(url_base, extras, sorting) }}
+    <div class="items">
+      {{ impala_addon_listing_items(addons.object_list, src='category',
+                                    show_date=sorting) }}
+    </div>
     {% if sorting != 'featured' %}
       {{ addons|impala_paginator }}
     {% endif %}
