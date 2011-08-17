@@ -24,6 +24,8 @@ class ACLMiddleware(object):
 
             if acl.action_allowed(request, 'Admin', '%'):
                 request.user.is_staff = True
+        else:
+            request.amo_user = None
 
     def process_response(self, request, response):
         amo.set_user(None)
