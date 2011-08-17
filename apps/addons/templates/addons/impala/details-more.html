@@ -3,6 +3,8 @@
    so we pull in reviews and links to other add-ons with js.
    This view returns a chunk of HTML that's injected into the DOM. #}
 {% set version = addon.current_version %}
+{% set reviews = reviews[:3] %}
+
 <aside class="secondary addon-reviews c">
   {% if reviews %}
     <div>
@@ -37,7 +39,7 @@
       <ul>
         {% for category in categories %}
         <li>
-          <a href="{{ category.get_url_path(impala=True) }}">
+          <a href="{{ category.get_url_path() }}">
             {{ category }}
           </a>
         </li>

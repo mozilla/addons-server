@@ -21,17 +21,21 @@ import commonware.log
 import session_csrf
 from tower import ugettext as _, ugettext_lazy as _lazy
 from mobility.decorators import mobilized, mobile_template
+import waffle
 
 import amo
 from amo import messages
+from amo.decorators import login_required
 from amo.forms import AbuseForm
-from amo.utils import sorted_groupby, randslice, send_abuse_report
+from amo.utils import sorted_groupby, randslice
 from amo.helpers import absolutify
 from amo.models import manual_order
 from amo import urlresolvers
 from amo.urlresolvers import reverse
+from abuse.models import send_abuse_report
 from addons.utils import FeaturedManager
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
+from devhub.decorators import dev_required
 import paypal
 from reviews.forms import ReviewForm
 from reviews.models import Review, GroupedRating
@@ -40,12 +44,14 @@ from stats.models import GlobalStat, Contribution
 from translations.query import order_by_translation
 from translations.helpers import truncate
 from versions.models import Version
-from .models import Addon, MiniAddon, Persona, FrozenAddon
+from .models import Addon, Persona, FrozenAddon
+from .forms import NewPersonaForm
 from .decorators import addon_view_factory
 
 log = commonware.log.getLogger('z.addons')
 paypal_log = commonware.log.getLogger('z.paypal')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
+addon_unreviewed_view = addon_view_factory(qs=Addon.objects.unreviewed)
 addon_disabled_view = addon_view_factory(qs=Addon.objects.valid_and_disabled)
 
 
@@ -69,7 +75,8 @@ def author_addon_clicked(f):
 @addon_disabled_view
 def addon_detail(request, addon):
     """Add-ons details page dispatcher."""
-    if addon.disabled_by_user or addon.status == amo.STATUS_DISABLED:
+    if (addon.disabled_by_user or addon.status == amo.STATUS_DISABLED
+        or (addon.is_premium() and not addon.can_be_purchased())):
         return jingo.render(request, 'addons/disabled.html',
                             {'addon': addon}, status=404)
 
@@ -96,8 +103,14 @@ def addon_detail(request, addon):
                 'addons.detail', args=[addon.slug]))
 
 
-@addon_view
+@addon_disabled_view
 def impala_addon_detail(request, addon):
+    """Add-ons details page dispatcher."""
+    if (addon.disabled_by_user or addon.status == amo.STATUS_DISABLED
+        or (addon.is_premium() and not addon.can_be_purchased())):
+        return jingo.render(request, 'addons/impala/disabled.html',
+                            {'addon': addon}, status=404)
+
     """Add-ons details page dispatcher."""
     # addon needs to have a version and be valid for this app.
     if addon.type in request.APP.types:
@@ -119,7 +132,10 @@ def impala_addon_detail(request, addon):
             prefixer = urlresolvers.get_url_prefix()
             prefixer.app = new_app.short
             return http.HttpResponsePermanentRedirect(reverse(
-                'i_addons.detail', args=[addon.slug]))
+                'addons.detail', args=[addon.slug]))
+
+if settings.IMPALA_ADDON_DETAILS:
+    addon_detail = impala_addon_detail
 
 
 def extension_detail(request, addon):
@@ -148,7 +164,7 @@ def extension_detail(request, addon):
     tags = addon.tags.not_blacklisted()
 
     # addon recommendations
-    recommended = MiniAddon.objects.valid().filter(
+    recommended = Addon.objects.valid().filter(
         recommended_for__addon=addon)[:5]
 
     # popular collections this addon is part of
@@ -190,7 +206,7 @@ def impala_extension_detail(request, addon):
                               addon.get_satisfaction_company)
 
     # Other add-ons from the same author(s).
-    author_addons = (Addon.objects.valid().exclude(id=addon.id)
+    author_addons = (Addon.objects.valid().exclude(id=addon.id).distinct()
                      .filter(addonuser__listed=True,
                              authors__in=addon.listed_authors))[:6]
 
@@ -224,10 +240,16 @@ def impala_extension_detail(request, addon):
         return jingo.render(request, 'addons/impala/details.html', ctx)
 
 
-@mobilized(extension_detail)
-def extension_detail(request, addon):
-    return jingo.render(request, 'addons/mobile/details.html',
-                        {'addon': addon})
+if settings.IMPALA_ADDON_DETAILS:
+    @mobilized(impala_extension_detail)
+    def impala_extension_detail(request, addon):
+        return jingo.render(request, 'addons/mobile/details.html',
+                            {'addon': addon})
+else:
+    @mobilized(extension_detail)
+    def extension_detail(request, addon):
+        return jingo.render(request, 'addons/mobile/details.html',
+                            {'addon': addon})
 
 
 def _category_personas(qs, limit):
@@ -427,6 +449,10 @@ def impala_home(request):
                          'src': 'homepage', 'collections': collections})
 
 
+if settings.IMPALA_HOMEPAGE:
+    home = impala_home
+
+
 @mobilized(home)
 @cache_page(60 * 10)
 def home(request):
@@ -514,6 +540,7 @@ def eula(request, addon, file_id=None):
 
     return jingo.render(request, 'addons/eula.html',
                         {'addon': addon, 'version': version})
+
 
 @addon_view
 def impala_eula(request, addon, file_id=None):
@@ -702,10 +729,10 @@ def contribute_url_params(business, addon_id, item_name, return_url,
 
     lang = translation.get_language()
     try:
-        paypal_lang = settings.PAYPAL_COUNTRYMAP[lang]
+        paypal_lang = amo.PAYPAL_COUNTRYMAP[lang]
     except KeyError:
         lang = lang.split('-')[0]
-        paypal_lang = settings.PAYPAL_COUNTRYMAP.get(lang, 'US')
+        paypal_lang = amo.PAYPAL_COUNTRYMAP.get(lang, 'US')
 
     # Get all the data elements that will be URL params
     # on the Paypal redirect URL.
@@ -791,8 +818,7 @@ def license_redirect(request, version):
 def report_abuse(request, addon):
     form = AbuseForm(request.POST or None, request=request)
     if request.method == "POST" and form.is_valid():
-        url = reverse('addons.detail', args=[addon.slug])
-        send_abuse_report(request, addon, url, form.cleaned_data['text'])
+        send_abuse_report(request, addon, form.cleaned_data['text'])
         messages.success(request, _('Abuse reported.'))
         return redirect('addons.detail', addon.slug)
     else:
@@ -804,3 +830,27 @@ def report_abuse(request, addon):
 def persona_redirect(request, persona_id):
     persona = get_object_or_404(Persona, persona_id=persona_id)
     return redirect('addons.detail', persona.addon.slug, permanent=True)
+
+
+@login_required
+def submit_persona(request):
+    if not waffle.flag_is_active(request, 'submit-personas'):
+        return http.HttpResponseForbidden()
+    form = NewPersonaForm(data=request.POST or None,
+                          files=request.FILES or None, request=request)
+    if request.method == 'POST' and form.is_valid():
+        addon = form.save()
+        messages.success(request, _('Persona successfully added.'))
+        return redirect('personas.submit.done', addon.slug)
+    return jingo.render(request, 'addons/impala/personas/submit.html',
+                        dict(form=form))
+
+
+@dev_required
+def submit_persona_done(request, addon_id, addon):
+    if not waffle.flag_is_active(request, 'submit-personas'):
+        return http.HttpResponseForbidden()
+    if addon.status != amo.STATUS_UNREVIEWED:
+        return http.HttpResponseRedirect(addon.get_url_path(impala=True))
+    return jingo.render(request, 'addons/impala/personas/submit_done.html',
+                        dict(addon=addon))

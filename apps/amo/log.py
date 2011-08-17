@@ -393,11 +393,47 @@ class CUSTOM_HTML(_LOG):
     format = '{0}'
 
 
+class OBJECT_ADDED(_LOG):
+    id = 100
+    format = _(u'Created: {0}.')
+    admin_event = True
+    action_class = None
+
+
+class OBJECT_EDITED(_LOG):
+    id = 101
+    format = _(u'Edited field: {2} set to: {0}.')
+    admin_event = True
+    action_class = None
+
+
+class OBJECT_DELETED(_LOG):
+    id = 102
+    format = _(u'Deleted: {1}.')
+    admin_event = True
+    action_class = None
+
+
+class ADMIN_USER_EDITED(_LOG):
+    id = 103
+    format = _(u'User {user} edited, reason: {1}')
+    admin_event = True
+    action_class = None
+
+
+class ADMIN_USER_ANONYMIZED(_LOG):
+    id = 104
+    format = _(u'User {user} anonymized.')
+    admin_event = True
+    action_class = None
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 
 LOG_BY_ID = dict((l.id, l) for l in LOGS)
 LOG = AttributeDict((l.__name__, l) for l in LOGS)
+LOG_ADMINS = [l.id for l in LOGS if hasattr(l, 'admin_event')]
 LOG_KEEP = [l.id for l in LOGS if hasattr(l, 'keep')]
 LOG_EDITORS = [l.id for l in LOGS if hasattr(l, 'editor_event')]
 LOG_REVIEW_QUEUE = [l.id for l in LOGS if hasattr(l, 'review_queue')]
@@ -406,7 +442,8 @@ LOG_REVIEW_QUEUE = [l.id for l in LOGS if hasattr(l, 'review_queue')]
 LOG_REVIEW_EMAIL_USER = [l.id for l in LOGS if hasattr(l, 'review_email_user')]
 # Logs *not* to show to the developer.
 LOG_HIDE_DEVELOPER = [l.id for l in LOGS
-                           if getattr(l, 'hide_developer', False)]
+                           if (getattr(l, 'hide_developer', False)
+                               or l.id in LOG_ADMINS)]
 
 
 def log(action, *args, **kw):

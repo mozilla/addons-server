@@ -1,5 +1,12 @@
+import re
+
+from django.forms import fields
 from django.db import models
 from django.core import exceptions
+
+from tower import ugettext as _
+
+from amo.widgets import ColorWidget
 
 
 class DecimalCharField(models.DecimalField):
@@ -47,3 +54,19 @@ class DecimalCharField(models.DecimalField):
         if value is None:
             return value
         return self.format_number(value)
+
+
+class ColorField(fields.CharField):
+
+    widget = ColorWidget
+
+    def __init__(self, max_length=7, min_length=None, *args, **kwargs):
+        super(ColorField, self).__init__(max_length, min_length, *args,
+                                         **kwargs)
+
+    def clean(self, value):
+        super(ColorField, self).clean(value)
+        if value and not re.match('^\#([0-9a-fA-F]{6})$', value):
+            raise exceptions.ValidationError(
+                _(u'This must be a valid hex color code, such as #000000.'))
+        return value

@@ -1,0 +1,7 @@
+<form method="get" action="{{ url('users.admin_edit_impala') }}"
+      data-search-url="{{ url('zadmin.search', 'users', 'userprofile') }}">
+    <div>
+        <input class="searchbar" type="text" value="" name="q" placeholder="email address">
+        <p class="help">Enter the first four characters and select the user from the dropdown.</p>
+    </div>
+</form>

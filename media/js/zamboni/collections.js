@@ -19,6 +19,13 @@ var collections = {};
 
 (function() {
 
+var $c = $('h2.collection[data-collectionid]');
+if ($c.length) {
+    $c.find('img').click(function() {
+        window.location.hash = 'id=' + $c.attr('data-collectionid');
+    })
+}
+
 /** Helpers for recently_viewed. **/
 
 RECENTLY_VIEWED_LIMIT = 5;

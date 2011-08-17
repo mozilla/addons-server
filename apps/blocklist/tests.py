@@ -50,6 +50,12 @@ class BlocklistItemTest(BlocklistTest):
         self.app = BlocklistApp.objects.create(blitem=self.item,
                                                guid=amo.FIREFOX.guid)
 
+    def stupid_unicode_test(self):
+        junk = u'\xc2\x80\x15\xc2\x80\xc3'
+        url = reverse('blocklist', args=[3, amo.FIREFOX.guid, junk])
+        # Just make sure it doesn't fail.
+        eq_(self.client.get(url).status_code, 200)
+
     def test_content_type(self):
         response = self.client.get(self.fx4_url)
         eq_(response['Content-Type'], 'text/xml')

@@ -16,7 +16,7 @@
   <h3>{{ _('Current Status') }}</h3>
   <div class="item" id="version-status">
     <div>
-      {% if addon.disabled_by_user %}
+      {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
         {{ status(_('You have <b>disabled</b> this add-on.')|safe) }}
         {{ _("Your add-on's listing is disabled and is not showing anywhere in our gallery or update service. You may re-enable it at any time below.") }}
       {% elif addon.status == amo.STATUS_NULL %}
@@ -79,7 +79,7 @@
           {% endif %}
         {% endif %}
         {% if check_addon_ownership(request, addon) %}
-          {% if addon.disabled_by_user %}
+          {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
             <a href="{{ url('devhub.addons.enable', addon.slug) }}" id="enable-addon">{{ _('Enable Add-on') }}</a> &middot;
           {% elif not addon.is_disabled %}
             <a href="#" id="disable-addon">{{ _('Disable Add-on') }}</a> &middot;

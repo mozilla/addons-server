@@ -200,8 +200,11 @@ def sidebar_listing(context, addon):
 
 @register.filter
 @jinja2.contextfilter
-def addon_hovercard(context, addon):
-    return addon_grid(context, [addon], cols=1)
+@register.inclusion_tag('addons/impala/addon_hovercard.html')
+def addon_hovercard(context, addon, lazyload=False):
+    vital_summary = context.get('vital_summary') or 'rating'
+    vital_more = context.get('vital_more') or 'adu'
+    return new_context(**locals())
 
 
 @register.filter

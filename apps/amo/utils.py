@@ -1,3 +1,4 @@
+import functools
 import hashlib
 import itertools
 import operator
@@ -24,7 +25,6 @@ from django.utils.translation import trans_real
 from django.utils.functional import Promise
 from django.utils.encoding import smart_str, smart_unicode
 
-import bleach
 from easy_thumbnails import processors
 import html5lib
 from html5lib.serializer.htmlserializer import HTMLSerializer
@@ -34,10 +34,12 @@ from PIL import Image, ImageFile, PngImagePlugin
 import amo.search
 from amo import ADDON_ICON_SIZES
 from amo.urlresolvers import reverse
-from . import logger_log as log
 from translations.models import Translation
 from users.models import UserNotification
 import users.notifications as notifications
+from users.utils import UnsubscribeCode
+
+from . import logger_log as log
 
 
 def urlparams(url_, hash=None, **query):
@@ -123,7 +125,8 @@ def paginate(request, queryset, per_page=20, count=None):
 
 
 def send_mail(subject, message, from_email=None, recipient_list=None,
-              fail_silently=False, use_blacklist=True, perm_setting=None):
+              fail_silently=False, use_blacklist=True, perm_setting=None,
+              connection=None):
     """
     A wrapper around django.core.mail.send_mail.
 
@@ -148,14 +151,6 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
         recipient_list = [e for e in recipient_list
                           if e and perms.setdefault(e, d)]
 
-        # Add footer
-        template = loader.get_template('amo/emails/unsubscribe.ltxt')
-        from amo.helpers import absolutify
-        context = {'message': message, 'perm_setting': perm_setting.label,
-                   'unsubscribe': absolutify(reverse('users.edit_impala')),
-                   'SITE_URL': settings.SITE_URL}
-        message = template.render(Context(context, autoescape=False))
-
     # Prune blacklisted emails.
     if use_blacklist:
         white_list = []
@@ -169,8 +164,27 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 
     try:
         if white_list:
-            result = django_send_mail(subject, message, from_email, white_list,
-                                      fail_silently=False)
+            if settings.IMPALA_EDIT and perm_setting:
+                template = loader.get_template('amo/emails/unsubscribe.ltxt')
+                for recipient in white_list:
+                    # Add unsubscribe link to footer
+                    token, hash = UnsubscribeCode.create(recipient)
+                    from amo.helpers import absolutify
+                    url = absolutify(reverse('users.unsubscribe',
+                            args=[token, hash, perm_setting.short]))
+                    context = {'message': message, 'unsubscribe': url,
+                               'perm_setting': perm_setting.label,
+                               'SITE_URL': settings.SITE_URL}
+                    send_message = template.render(Context(context,
+                                                           autoescape=False))
+
+                    result = django_send_mail(subject, send_message, from_email,
+                                              [recipient], fail_silently=False,
+                                              connection=connection)
+            else:
+                result = django_send_mail(subject, message, from_email,
+                                          white_list, fail_silently=False,
+                                          connection=connection)
         else:
             result = True
     except Exception as e:
@@ -438,24 +452,6 @@ class MenuItem():
     url, text, selected, children = ('', '', False, [])
 
 
-def send_abuse_report(request, obj, url, message):
-    """Send email about an abusive addon/user/relationship."""
-    if request.user.is_anonymous():
-        user_name = 'An anonymous user'
-    else:
-        user_name = '%s (%s)' % (request.amo_user.name,
-                                 request.amo_user.email)
-
-    subject = 'Abuse Report for %s' % obj.name
-    msg = u'%s reported abuse for %s (%s%s).\n\n%s'
-    msg = msg % (user_name, obj.name, settings.SITE_URL, url, message)
-    msg += '\n\nhttp://translate.google.com/#auto|en|%s' % message
-
-    log.debug('Abuse reported by %s for %s: %s.' %
-              (smart_str(user_name), obj.id, smart_str(obj.name)))
-    send_mail(subject, msg, recipient_list=(settings.FLIGTAR,))
-
-
 def to_language(locale):
     """Like django's to_language, but en_US comes out as en-US."""
     # A locale looks like en_US or fr.
@@ -506,9 +502,10 @@ def memoize(prefix, time=60):
     key based on stringing args and kwargs. Keep args simple.
     """
     def decorator(func):
+        @functools.wraps(func)
         def wrapper(*args, **kwargs):
             key = hashlib.md5()
-            for arg in itertools.chain(args, kwargs):
+            for arg in itertools.chain(args, sorted(kwargs.items())):
                 key.update(str(arg))
             key = '%s:memoize:%s:%s' % (settings.CACHE_PREFIX,
                                         prefix, key.hexdigest())

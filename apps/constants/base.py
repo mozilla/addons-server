@@ -50,6 +50,9 @@ LITE_STATUSES = (STATUS_LITE, STATUS_LITE_AND_NOMINATED)
 MIRROR_STATUSES = (STATUS_PUBLIC, STATUS_BETA,
                    STATUS_LITE, STATUS_LITE_AND_NOMINATED)
 
+# An add-on in one of these statuses can become premium.
+PREMIUM_STATUSES = (STATUS_NULL,) + STATUS_UNDER_REVIEW
+
 # Types of administrative review queues for an add-on:
 ADMIN_REVIEW_FULL = 1
 ADMIN_REVIEW_PRELIM = 2
@@ -93,6 +96,7 @@ ADDON_TYPE = {
     ADDON_PLUGIN: _(u'Plugin'),
     ADDON_LPAPP: _(u'Language Pack (Application)'),
     ADDON_PERSONA: _(u'Persona'),
+    ADDON_WEBAPP: _(u'App'),
 }
 
 # Plural
@@ -136,6 +140,14 @@ ADDON_SLUGS_UPDATE = {
     ADDON_PLUGIN: 'plugin',
 }
 
+ADDON_FREE = 0
+ADDON_PREMIUM = 1
+
+ADDON_PREMIUM_TYPES = {
+    ADDON_FREE: 'free',
+    ADDON_PREMIUM: 'premium',
+}
+
 # Edit addon information
 MAX_TAGS = 20
 MIN_TAG_LENGTH = 2
@@ -146,6 +158,15 @@ ADDON_ICON_SIZES = [32, 48, 64]
 
 # Preview upload sizes [thumb, full]
 ADDON_PREVIEW_SIZES = [(200, 150), (700, 525)]
+
+# Persona image sizes [preview, full]
+PERSONA_IMAGE_SIZES = {
+    'header': [(680, 100), (3000, 200)],
+    'footer': [None, (3000, 100)],
+}
+
+# Accepted image MIME-types
+IMG_TYPES = ('image/png', 'image/jpeg', 'image/jpg')
 
 # These types don't maintain app compatibility in the db.  Instead, we look at
 # APP.types and APP_TYPE_SUPPORT to figure out where they are compatible.
@@ -212,3 +233,44 @@ VERSION_SEARCH = re.compile('\.(\d+)$')
 
 # Editor Tools
 EDITOR_VIEWING_INTERVAL = 8  # How often we ping for "who's watching?"
+
+# Paypal is an awful place that doesn't understand locales.  Instead they have
+# country codes.  This maps our locales to their codes.
+PAYPAL_COUNTRYMAP = {
+    'af': 'ZA', 'ar': 'EG', 'ca': 'ES', 'cs': 'CZ', 'cy': 'GB', 'da': 'DK',
+    'de': 'DE', 'de-AT': 'AT', 'de-CH': 'CH', 'el': 'GR', 'en-GB': 'GB',
+    'eu': 'BS', 'fa': 'IR', 'fi': 'FI', 'fr': 'FR', 'he': 'IL', 'hu': 'HU',
+    'id': 'ID', 'it': 'IT', 'ja': 'JP', 'ko': 'KR', 'mn': 'MN', 'nl': 'NL',
+    'pl': 'PL', 'ro': 'RO', 'ru': 'RU', 'sk': 'SK', 'sl': 'SI', 'sq': 'AL',
+    'sr': 'CS', 'tr': 'TR', 'uk': 'UA', 'vi': 'VI',
+}
+
+# Source, PayPal docs, PP_AdaptivePayments.PDF
+PAYPAL_CURRENCIES = {
+    'AUD': _('Australian Dollar'),
+    'BRL': _('Brazilian Real'),
+    'CAD': _('Canadian Dollar'),
+    'CZK': _('Czech Koruna'),
+    'DKK': _('Danish Krone'),
+    'EUR': _('Euro'),
+    'HKD': _('Hong Kong Dollar'),
+    'HUF': _('Hungararian Forint'),
+    'ILS': _('Israeli New Sheqel'),
+    'JPY': _('Japanese Yen'),
+    'MYR': _('Malaysian Ringgit'),
+    'MXN': _('Mexican Peso'),
+    'NOK': _('Norwegian Krone'),
+    'NZD': _('New Zealand Dollar'),
+    'PHP': _('Philippine Peso'),
+    'PLN': _('Polish Zloty'),
+    'GBP': _('Pound Sterling'),
+    'SGD': _('Singapore Dollar'),
+    'SEK': _('Swedish Krona'),
+    'CHF': _('Swiss Franc'),
+    'TWD': _('Taiwan New Dollar'),
+    'THB': _('Thai Baht'),
+    'USD': _('U.S. Dollar'),
+}
+
+OTHER_CURRENCIES = PAYPAL_CURRENCIES.copy()
+del OTHER_CURRENCIES['USD']

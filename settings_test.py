@@ -30,6 +30,7 @@ def _polite_tmpdir():
 # See settings.py for documentation:
 NETAPP_STORAGE = _polite_tmpdir()
 ADDONS_PATH = _polite_tmpdir()
+PERSONAS_PATH = _polite_tmpdir()
 GUARDED_ADDONS_PATH = _polite_tmpdir()
 UPLOADS_PATH = _polite_tmpdir()
 MIRROR_STAGE_PATH = _polite_tmpdir()
@@ -39,3 +40,9 @@ PACKAGER_PATH = _polite_tmpdir()
 
 # Turn off search engine indexing.
 USE_ELASTIC = False
+
+# Ensure all validation code runs in tests:
+VALIDATE_ADDONS = True
+
+# We want these impala tests to pass
+IMPALA_EDIT = True

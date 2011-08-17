@@ -1,0 +1,219 @@
+@import 'lib';
+
+.notice {
+    .border-radius(5px);
+    padding: 1em 1em 1em 104px;
+    background: #ECF5FE;
+    margin-bottom: 1em;
+    h3 {
+        font-style: italic;
+        font-size: 16px;
+    }
+    p {
+        margin-top: .5em;
+    }
+    b {
+        color: #333;
+    }
+}
+
+ul.license {
+    position: relative;
+    top: 3px;
+    li {
+        display: block;
+        float: left;
+        list-style: none;
+        margin-right: 2px;
+        &.text {
+            font-size: 90%;
+            line-height: 15px;
+            margin-left: 4px;
+        }
+    }
+}
+
+.html-rtl ul.license {
+    li {
+        float: right;
+        margin: 0 0 0 2px;
+        &.text {
+            margin: 0 4px 0 0;
+        }
+    }
+}
+
+.license .icon,
+.license.icon {
+    background: url(../../img/zamboni/licenses.png) no-repeat;
+    &.cc-attrib { background-position: 0 0; }
+    &.cc-noderiv { background-position: 0 -65px; }
+    &.cc-noncom { background-position: 0 -130px; }
+    &.cc-share { background-position: 0 -195px; }
+    &.copyr { background-position: 0 -260px; }
+}
+
+/* Persona previews */
+
+.persona-large .persona-,
+.persona-large p {
+    .border-radius(6px);
+}
+
+.persona-preview {
+    .persona-viewer {
+        background: transparent no-repeat right top;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+        display: table;
+        position: relative;
+        height: 100px;
+        width: 100%;
+    }
+    p, .persona-viewer {
+        .border-radius(6px);
+    }
+
+}
+
+.persona-large {
+    max-width: 680px;
+    p {
+        background-image: url(../../img/zamboni/mobile/loading-white.png);
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        .background-size(auto 32px);
+        color: #fff;
+        display: none;
+        font: 18px Georgia, serif;
+        pointer-events: none;
+        text-align: center;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+        vertical-align: middle;
+    }
+    .details {
+        margin: 8px;
+        a {
+            color: inherit;
+        }
+        .title,
+        .author {
+            background: fadeOut(#fff, 40%);
+            clear: left;
+            display: block;
+            float: left;
+            line-height: 1.3;
+            padding: 3px 6px;
+        }
+        .title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .author {
+            color: @dark-gray;
+        }
+    }
+}
+
+.persona-hover .persona-viewer p {
+    background-color: rgba(0, 0, 0, 0.4);
+    display: table-cell;
+}
+
+#submit-persona {
+    .note {
+        display: block;
+        padding-top: 2px;
+    }
+    .addon-cats ul {
+        .columns(4);
+    }
+    #persona-license {
+        display: none;
+    }
+    #persona-license-list {
+        ul {
+            margin: .5em 0 0;
+        }
+    }
+    #persona-license,
+    #persona-license-list {
+        background-color: darken(#FCFDFE, 10%);
+        .border-radius(5px);
+        padding: 1em;
+        width: 400px;
+        p {
+            margin: 0;
+        }
+        p.license {
+            font-size: 12px;
+            font-weight: bold;
+            height: auto;
+            margin: .5em 0;
+            padding-left: 20px;
+            width: auto;
+        }
+    }
+    .colors {
+        .row {
+            display: inline-block;
+            margin-right: 2em;
+        }
+        .row > label {
+            font-weight: normal;
+        }
+    }
+    #persona-design {
+        .preview,
+        .reset {
+            display: none;
+        }
+        .reset {
+            font-weight: bold;
+        }
+        .preview {
+            background-color: #ccc;
+            display: none;
+            width: 100%;
+        }
+        #persona-header .preview.loading {
+            height: 50px;
+        }
+        #persona-footer .preview.loading {
+            height: 25px;
+        }
+        .loading,
+        .loaded {
+            display: block;
+        }
+        .loading:before {
+            background: #444 url(../../img/zamboni/mobile/loading-white.png) no-repeat 50% 50%;
+            .background-size(auto 70%);
+            content: "\00a0";
+            display: block;
+            height: 100%;
+            -moz-transition: opacity .5s;
+            opacity: .4;
+            width: 100%;
+        }
+        .loaded:before {
+            opacity: 0;
+        }
+        .error-loading {
+            border: @error-red 1px solid;
+        }
+    }
+    #persona-preview .persona-viewer {
+        .background-size(cover);
+        .gradient-two-color(#ccc, #bbb);
+    }
+}
+
+#submitted-addon-url {
+    font-size: 1.3em;
+    padding-left: 2em;
+}
+
+.done-next-steps li {
+    margin-bottom: 0.3em;
+}

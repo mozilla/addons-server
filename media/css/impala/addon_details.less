@@ -14,23 +14,6 @@
     h1 {
         padding-right: 54px;
     }
-    .install {
-        display: inline-block;
-        margin-right: 1em;
-    }
-    .extra {
-        margin-top: 8px;
-        display: inline-block;
-    }
-    .notavail {
-        font-family: @sans-stack;
-        font-size: 12px;
-        line-height: 12px;
-        padding: 1px 0 1px 18px;
-        margin-right: 14px;  /* Match the padding of .install. */
-        background: url(../../img/impala/no.png) 0 30% no-repeat;
-        white-space: nowrap;
-    }
     .badge {
         font-size: 14px;
         margin-right: 1em;
@@ -52,6 +35,18 @@
         margin-right: 0;
         margin-left: 14px;
     }
+}
+
+#addon .notavail,
+#eula .notavail,
+.listing .notavail {
+    font-family: @sans-stack;
+    font-size: 12px;
+    line-height: 12px;
+    padding: 1px 0 1px 18px;
+    margin-right: 14px;  /* Match the padding of .install. */
+    background: url(../../img/impala/no.png) 0 30% no-repeat;
+    white-space: nowrap;
 }
 
 .version-number {
@@ -152,6 +147,7 @@
 .widget {
     padding-left: 21px;
     background: url(../../img/impala/widgets.png) no-repeat 0 4px;
+    white-space: nowrap;
     &:hover {
         color: @link;
     }
@@ -346,7 +342,7 @@
     h1 {
         line-height: 25px;
     }
-    .copy {
+    .prose {
         height: 400px;
         padding: 1em 0 0;
         overflow: auto;

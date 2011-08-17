@@ -2,16 +2,38 @@
   <abbr class="req" title="{{ _('required') }}">*</abbr>
 {%- endmacro %}
 
-{% macro pretty_field(field, label=None, tag='li', req=False) %}
+{% macro optional() -%}
+  <span class="optional">{{ _('(optional)') }}</span>
+{%- endmacro %}
+
+{% macro pretty_field(field, label=None, tooltip=None, tag='li', req=False,
+                      opt=False, class='row') %}
   {% set req = field.field.required or req %}
-  <{{ tag }} class="row{{ ' error' if field.errors else '' }}">
+  {% if tag %}
+    <{{ tag }} class="{{ class }}{{ ' error' if field.errors }}">
+  {% endif %}
     <label for="{{ field.auto_id }}">
       {{- label or field.label }}
       {% if req %}
         {{ required() -}}
       {% endif %}
+      {% if opt %}
+        {{ optional() -}}
+      {% endif %}
+      {% if tooltip %}
+        {{ tip(None, tooltip) }}
+      {% endif %}
     </label>
     {{ field.as_widget() }}
     {{ field.errors }}
-  </{{ tag }}>
+  {% if tag %}
+    </{{ tag }}>
+  {% endif %}
+{% endmacro %}
+
+{% macro tip(name, tip) %}
+  {% if name %}
+    <span class="label">{{ name }}</span>
+  {% endif %}
+  <span class="tip tooltip" title="{{ tip }}">?</span>
 {% endmacro %}

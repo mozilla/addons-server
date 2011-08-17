@@ -3,16 +3,20 @@ import functools
 from django.db import transaction
 
 import commonware.log
+import happyforms
 from piston.handler import AnonymousBaseHandler, BaseHandler
-from piston.utils import rc, throttle
+from piston.utils import rc
 from tower import ugettext as _
 
+import amo
 from access import acl
 from addons.forms import AddonForm
-from addons.models import Addon
+from addons.models import Addon, AddonUser
+from apps.devhub.forms import ReviewTypeForm
+from amo.utils import paginate
 from devhub.forms import LicenseForm
-from perf.forms import PerformanceForm
-from perf.models import Performance
+from perf.models import (Performance, PerformanceAppVersions,
+                         PerformanceOSVersion)
 from users.models import UserProfile
 from versions.forms import XPIForm
 from versions.models import Version, ApplicationsVersions
@@ -76,34 +80,34 @@ class UserHandler(BaseHandler):
 
 
 class AddonsHandler(BaseHandler):
-    allowed_methods = ('POST', 'PUT', 'DELETE')
+    allowed_methods = ('GET', 'POST', 'PUT', 'DELETE')
     model = Addon
 
-    fields = ('id', 'name', 'eula', 'guid')
+    fields = ('id', 'name', 'eula', 'guid', 'status')
     exclude = ('highest_status', 'icon_type')
 
     # Custom handler so translated text doesn't look weird
     @classmethod
     def name(cls, addon):
-        return addon.name.localized_string
+        return addon.name.localized_string if addon.name else ''
 
     # We need multiple validation, so don't use @validate decorators.
     @transaction.commit_on_success
     def create(self, request):
-        license_form = LicenseForm(request.POST)
-
-        if not license_form.is_valid():
-            return _form_error(license_form)
-
         new_file_form = XPIForm(request, request.POST, request.FILES)
 
         if not new_file_form.is_valid():
             return _xpi_form_error(new_file_form, request)
 
-        license = license_form.save()
+        # License Form can be optional
+        license = None
+        if 'builtin' in request.POST:
+            license_form = LicenseForm(request.POST)
+            if not license_form.is_valid():
+                return _form_error(license_form)
+            license = license_form.save()
 
-        a = new_file_form.create_addon(license=license)
-        return a
+        return new_file_form.create_addon(license=license)
 
     @check_addon_and_version
     def update(self, request, addon):
@@ -117,6 +121,31 @@ class AddonsHandler(BaseHandler):
     def delete(self, request, addon):
         addon.delete(msg='Deleted via API')
         return rc.DELETED
+
+    def read(self, request, addon_id=None):
+        """
+        Returns authors who can update an addon (not Viewer role) for addons
+        that have not been admin disabled. Optionally provide an addon id.
+        """
+        if not request.user.is_authenticated():
+            return rc.BAD_REQUEST
+        ids = (AddonUser.objects.values_list('addon_id', flat=True)
+                                .filter(user=request.amo_user,
+                                        role__in=[amo.AUTHOR_ROLE_DEV,
+                                                  amo.AUTHOR_ROLE_OWNER]))
+        qs = (Addon.objects.filter(id__in=ids)
+                           .exclude(status=amo.STATUS_DISABLED)
+                           .no_transforms())
+        if addon_id:
+            try:
+                return qs.get(id=addon_id)
+            except Addon.DoesNotExist:
+                rc.NOT_HERE
+
+        paginator = paginate(request, qs)
+        return {'objects': paginator.object_list,
+                'num_pages': paginator.paginator.num_pages,
+                'count': paginator.paginator.count}
 
 
 class ApplicationsVersionsHandler(AnonymousBaseHandler):
@@ -182,46 +211,42 @@ class VersionsHandler(BaseHandler, BaseVersionHandler):
     anonymous = AnonymousVersionsHandler
 
     @check_addon_and_version
-    @throttle(5, 60 * 60)  # 5 new versions an hour
     def create(self, request, addon):
-        # This has license data
-        license_form = LicenseForm(request.POST)
-
-        if not license_form.is_valid():
-            return _form_error(license_form)
-
         new_file_form = XPIForm(request, request.POST, request.FILES,
                                 addon=addon)
 
         if not new_file_form.is_valid():
             return _xpi_form_error(new_file_form, request)
 
-        license = license_form.save()
+        license = None
+        if 'builtin' in request.POST:
+            license_form = LicenseForm(request.POST)
+            if not license_form.is_valid():
+                return _form_error(license_form)
+            license = license_form.save()
+
         v = new_file_form.create_version(license=license)
         return v
 
     @check_addon_and_version
-    @throttle(10, 60 * 60)
     def update(self, request, addon, version):
-        # This has license data.
-        license_form = LicenseForm(request.POST)
-
-        if license_form.is_valid():
-            license = license_form.save()
-        else:
-            license = version.license
-
         new_file_form = XPIForm(request, request.PUT, request.FILES,
                                 version=version)
 
         if not new_file_form.is_valid():
             return _xpi_form_error(new_file_form, request)
 
+        license = None
+        if 'builtin' in request.POST:
+            license_form = LicenseForm(request.POST)
+            if not license_form.is_valid():
+                return _form_error(license_form)
+            license = license_form.save()
+
         v = new_file_form.update_version(license)
         return v
 
     @check_addon_and_version
-    @throttle(10, 60 * 60)  # allow 10 deletes an hour
     def delete(self, request, addon, version):
         version.delete()
         return rc.DELETED
@@ -231,25 +256,69 @@ class VersionsHandler(BaseHandler, BaseVersionHandler):
         return addon.versions.all()
 
 
-class PerformanceHandler(BaseHandler):
-    allowed_methods = ('PUT', 'POST')
-    model = Performance
-    fields = ('addon', 'average', 'appversion', 'osversion', 'test')
+class AMOBaseHandler(BaseHandler):
+    """
+    A generic Base Handler that automates create, delete, read and update.
+    For list, we use a pagination handler rather than just returning all.
+    For list, if an id is given, only one object is returned.
+    For delete and update the id of the record is required.
+    """
 
-    def create(self, request):
-        form = PerformanceForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return rc.CREATED
-        return _form_error(form)
+    def get_form(self, *args, **kw):
+        class Form(happyforms.ModelForm):
+            class Meta:
+                model = self.model
+        return Form(*args, **kw)
 
-    def update(self, request, addon_id):
+    def delete(self, request, id):
         try:
-            perf = Performance.objects.get(addon=addon_id)
+            return self.model.objects.get(pk=id).delete()
         except Performance.DoesNotExist:
             return rc.NOT_HERE
-        form = PerformanceForm(request.POST, instance=perf)
+
+    def create(self, request):
+        form = self.get_form(request.POST)
+        if form.is_valid():
+            return form.save()
+        return _form_error(form)
+
+    def read(self, request, id=None):
+        if id:
+            try:
+                return self.model.objects.get(pk=id)
+            except Performance.DoesNotExist:
+                return rc.NOT_HERE
+        else:
+            paginator = paginate(request, self.model.objects.all())
+            return {'objects': paginator.object_list,
+                    'num_pages': paginator.paginator.num_pages,
+                    'count': paginator.paginator.count}
+
+    def update(self, request, id):
+        try:
+            obj = self.model.objects.get(pk=id)
+        except Performance.DoesNotExist:
+            return rc.NOT_HERE
+        form = self.get_form(request.POST, instance=obj)
         if form.is_valid():
             form.save()
             return rc.ALL_OK
         return _form_error(form)
+
+
+class PerformanceHandler(AMOBaseHandler):
+    allowed_methods = ('DELETE', 'GET', 'POST', 'PUT')
+    model = Performance
+    fields = ('id', 'addon', 'average', 'appversion', 'osversion', 'test')
+
+
+class PerformanceAppHandler(AMOBaseHandler):
+    allowed_methods = ('DELETE', 'GET', 'POST', 'PUT')
+    model = PerformanceAppVersions
+    fields = ('id', 'app', 'version')
+
+
+class PerformanceOSHandler(AMOBaseHandler):
+    allowed_methods = ('DELETE', 'GET', 'POST', 'PUT')
+    model = PerformanceOSVersion
+    fields = ('id', 'os', 'version', 'name')

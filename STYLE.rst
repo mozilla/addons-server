@@ -10,6 +10,16 @@ Python
 - see https://wiki.mozilla.org/Webdev:Python
 
 
+Markup
+------
+- ``<!DOCTYPE html>``
+- double-quote attributes
+- Soft tab (2 space) indentation
+- Title-Case ``<label>``s
+  - "Display Name" vs "Display name"
+- to clearfix, use the class ``c`` on an element
+
+
 JavaScript
 ----------
 - Soft tabs (4 space) indentation

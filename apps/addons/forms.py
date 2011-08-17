@@ -1,29 +1,36 @@
+from datetime import datetime
 import os
+import path
 import re
 
 from django import forms
 from django.conf import settings
 from django.forms.formsets import formset_factory
 
+import commonware.log
 import happyforms
-import path
-from tower import ugettext as _, ungettext as ngettext
 from quieter_formset.formset import BaseFormSet
+from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
 from access import acl
 import amo
 import captcha.fields
+from amo.fields import ColorField
+from amo.urlresolvers import reverse
 from amo.utils import slug_validator, slugify, sorted_groupby, remove_icons
-from addons.models import (Addon, AddonCategory, BlacklistedSlug,
-                           Category, ReverseNameLookup)
+from addons.models import (Addon, AddonCategory, AddonUser, BlacklistedSlug,
+                           Category, Persona, ReverseNameLookup)
 from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from applications.models import Application
-from devhub import tasks
+from devhub import tasks as devhub_tasks
 from tags.models import Tag
 from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
 from translations.models import Translation
 from translations.widgets import TranslationTextInput
+from versions.models import Version
+
+log = commonware.log.getLogger('z.addons')
 
 
 def clean_name(name, instance=None):
@@ -34,6 +41,55 @@ def clean_name(name, instance=None):
         raise forms.ValidationError(_('This add-on name is already in use.  '
                                       'Please choose another.'))
     return name
+
+
+def clean_tags(request, tags):
+    target = [slugify(t, spaces=True, lower=True) for t in tags.split(',')]
+    target = set(filter(None, target))
+
+    min_len = amo.MIN_TAG_LENGTH
+    max_len = Tag._meta.get_field('tag_text').max_length
+    max_tags = amo.MAX_TAGS
+    total = len(target)
+
+    blacklisted = (Tag.objects.values_list('tag_text', flat=True)
+                      .filter(tag_text__in=target, blacklisted=True))
+    if blacklisted:
+        # L10n: {0} is a single tag or a comma-separated list of tags.
+        msg = ngettext('Invalid tag: {0}', 'Invalid tags: {0}',
+                       len(blacklisted)).format(', '.join(blacklisted))
+        raise forms.ValidationError(msg)
+
+    restricted = (Tag.objects.values_list('tag_text', flat=True)
+                     .filter(tag_text__in=target, restricted=True))
+    if not acl.action_allowed(request, 'Admin', 'EditAnyAddon'):
+        if restricted:
+            # L10n: {0} is a single tag or a comma-separated list of tags.
+            msg = ngettext('"{0}" is a reserved tag and cannot be used.',
+                           '"{0}" are reserved tags and cannot be used.',
+                           len(restricted)).format('", "'.join(restricted))
+            raise forms.ValidationError(msg)
+    else:
+        # Admin's restricted tags don't count towards the limit.
+        total = len(target - set(restricted))
+
+    if total > max_tags:
+        num = total - max_tags
+        msg = ngettext('You have {0} too many tags.',
+                       'You have {0} too many tags.', num).format(num)
+        raise forms.ValidationError(msg)
+
+    if any(t for t in target if len(t) > max_len):
+        raise forms.ValidationError(_('All tags must be %s characters '
+                'or less after invalid characters are removed.' % max_len))
+
+    if any(t for t in target if len(t) < min_len):
+        msg = ngettext("All tags must be at least {0} character.",
+                       "All tags must be at least {0} characters.",
+                       min_len).format(min_len)
+        raise forms.ValidationError(msg)
+
+    return target
 
 
 class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
@@ -90,53 +146,7 @@ class AddonFormBasic(AddonFormBase):
         return addonform
 
     def clean_tags(self):
-        target = [slugify(t, spaces=True, lower=True)
-                  for t in self.cleaned_data['tags'].split(',')]
-        target = set(filter(None, target))
-
-        min_len = amo.MIN_TAG_LENGTH
-        max_len = Tag._meta.get_field('tag_text').max_length
-        max_tags = amo.MAX_TAGS
-        total = len(target)
-
-        blacklisted = (Tag.objects.values_list('tag_text', flat=True)
-                          .filter(tag_text__in=target, blacklisted=True))
-        if blacklisted:
-            # L10n: {0} is a single tag or a comma-separated list of tags.
-            msg = ngettext('Invalid tag: {0}', 'Invalid tags: {0}',
-                           len(blacklisted)).format(', '.join(blacklisted))
-            raise forms.ValidationError(msg)
-
-        restricted = (Tag.objects.values_list('tag_text', flat=True)
-                         .filter(tag_text__in=target, restricted=True))
-        if not acl.action_allowed(self.request, 'Admin', 'EditAnyAddon'):
-            if restricted:
-                # L10n: {0} is a single tag or a comma-separated list of tags.
-                msg = ngettext('"{0}" is a reserved tag and cannot be used.',
-                               '"{0}" are reserved tags and cannot be used.',
-                               len(restricted)).format('", "'.join(restricted))
-                raise forms.ValidationError(msg)
-        else:
-            # Admin's restricted tags don't count towards the limit.
-            total = len(target - set(restricted))
-
-        if total > max_tags:
-            num = total - max_tags
-            msg = ngettext('You have {0} too many tags.',
-                           'You have {0} too many tags.', num).format(num)
-            raise forms.ValidationError(msg)
-
-        if any(t for t in target if len(t) > max_len):
-            raise forms.ValidationError(_('All tags must be %s characters '
-                    'or less after invalid characters are removed.' % max_len))
-
-        if any(t for t in target if len(t) < min_len):
-            msg = ngettext("All tags must be at least {0} character.",
-                           "All tags must be at least {0} characters.",
-                           min_len).format(min_len)
-            raise forms.ValidationError(msg)
-
-        return target
+        return clean_tags(self.request, self.cleaned_data['tags'])
 
     def clean_slug(self):
         target = self.cleaned_data['slug']
@@ -285,9 +295,9 @@ class AddonFormMedia(AddonFormBase):
             destination = os.path.join(dirname, '%s' % addon.id)
 
             remove_icons(destination)
-            tasks.resize_icon.delay(upload_path, destination,
-                                    amo.ADDON_ICON_SIZES,
-                                    set_modified_on=[addon])
+            devhub_tasks.resize_icon.delay(upload_path, destination,
+                                           amo.ADDON_ICON_SIZES,
+                                           set_modified_on=[addon])
 
         return super(AddonFormMedia, self).save(commit)
 
@@ -410,3 +420,104 @@ class AbuseForm(happyforms.Form):
         if (not self.request.user.is_anonymous() or
             not settings.RECAPTCHA_PRIVATE_KEY):
             del self.fields['recaptcha']
+
+
+class NewPersonaForm(AddonFormBase):
+    name = forms.CharField(max_length=50)
+    category = forms.ModelChoiceField(queryset=Category.objects.all(),
+                                      widget=forms.widgets.RadioSelect)
+    summary = forms.CharField(widget=forms.Textarea(attrs={'rows': 4}),
+                              max_length=250, required=False)
+    tags = forms.CharField(required=False)
+
+    license = forms.TypedChoiceField(choices=amo.PERSONA_LICENSES_IDS,
+        coerce=int, empty_value=None, widget=forms.HiddenInput,
+        error_messages={'required': _lazy(u'A license must be selected.')})
+    header = forms.FileField(required=False)
+    header_hash = forms.CharField(widget=forms.HiddenInput)
+    footer = forms.FileField(required=False)
+    footer_hash = forms.CharField(widget=forms.HiddenInput)
+    accentcolor = ColorField(required=False)
+    textcolor = ColorField(required=False)
+
+    class Meta:
+        model = Addon
+        fields = ('name', 'summary', 'tags')
+
+    def __init__(self, *args, **kwargs):
+        super(NewPersonaForm, self).__init__(*args, **kwargs)
+        cats = Category.objects.filter(application=amo.FIREFOX.id,
+                                       type=amo.ADDON_PERSONA, weight__gte=0)
+        cats = sorted(cats, key=lambda x: x.name)
+        self.fields['category'].choices = [(c.id, c.name) for c in cats]
+        self.fields['header'].widget.attrs['data-upload-url'] = reverse(
+            'personas.upload_persona', args=['persona_header'])
+        self.fields['footer'].widget.attrs['data-upload-url'] = reverse(
+            'personas.upload_persona', args=['persona_footer'])
+
+    def clean_name(self):
+        return clean_name(self.cleaned_data['name'])
+
+    def clean_tags(self):
+        return clean_tags(self.request, self.cleaned_data['tags'])
+
+    def save(self, commit=False):
+        from .tasks import create_persona_preview_image, save_persona_image
+        # We ignore `commit`, since we need it to be `False` so we can save
+        # the ManyToMany fields on our own.
+        addon = super(NewPersonaForm, self).save(commit=False)
+        addon.status = amo.STATUS_UNREVIEWED
+        addon.type = amo.ADDON_PERSONA
+        addon.save()
+        addon._current_version = Version.objects.create(addon=addon,
+                                                        version='0')
+        addon.save()
+        amo.log(amo.LOG.CREATE_ADDON, addon)
+        log.debug('New persona %r uploaded' % addon)
+
+        data = self.cleaned_data
+
+        header = data['header_hash']
+        footer = data['footer_hash']
+
+        header = os.path.join(settings.TMP_PATH, 'persona_header', header)
+        footer = os.path.join(settings.TMP_PATH, 'persona_footer', footer)
+        dst = os.path.join(settings.PERSONAS_PATH, str(addon.id))
+
+        # Save header, footer, and preview images.
+        save_persona_image(src=header, dst=dst, img_basename='header.jpg')
+        save_persona_image(src=footer, dst=dst, img_basename='footer.jpg')
+        create_persona_preview_image(src=header, dst=dst,
+                                     img_basename='preview.jpg',
+                                     set_modified_on=[addon])
+
+        # Save user info.
+        user = self.request.amo_user
+        AddonUser(addon=addon, user=user).save()
+
+        p = Persona()
+        p.persona_id = 0
+        p.addon = addon
+        p.header = 'header.jpg'
+        p.footer = 'footer.jpg'
+        if data['accentcolor']:
+            p.accentcolor = data['accentcolor'].lstrip('#')
+        if data['textcolor']:
+            p.textcolor = data['textcolor'].lstrip('#')
+        p.license_id = data['license']
+        p.submit = datetime.now()
+        p.author = user.name
+        p.display_username = user.username
+        p.save()
+
+        # Save tags.
+        for t in data['tags']:
+            Tag(tag_text=t).save_tag(addon)
+
+        # Save categories.
+        tb_c = Category.objects.get(application=amo.THUNDERBIRD.id,
+                                    name__id=data['category'].name_id)
+        AddonCategory(addon=addon, category=data['category']).save()
+        AddonCategory(addon=addon, category=tb_c).save()
+
+        return addon

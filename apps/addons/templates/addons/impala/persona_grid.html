@@ -5,7 +5,7 @@
   <section>
   {% for addon in page %}
     <li>
-      <div class="persona item">
+      <div class="persona hovercard">
         <a href="{{ addon.get_url_path() }}">
           <div class="persona-preview">
             <img {{ 'src' if first_page else 'data-defer-src' }}="{{ addon.persona.thumb_url }}"

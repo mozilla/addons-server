@@ -1,9 +1,4 @@
-{% macro tip(name, tip) %}
-  {% if name %}
-    <span class="label">{{ name }}</span>
-  {% endif %}
-  <span class="tip tooltip" title="{{ tip }}">?</span>
-{% endmacro %}
+{% extends "includes/forms.html" %}
 
 {% macro some_html_tip() %}
 <p class="html-support">

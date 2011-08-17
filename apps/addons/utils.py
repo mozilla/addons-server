@@ -7,9 +7,10 @@ from django.conf import settings
 from django.utils.encoding import smart_str
 
 import commonware.log
+import lru_cache
 import redisutils
 
-from amo.utils import sorted_groupby
+from amo.utils import sorted_groupby, memoize
 from translations.models import Translation
 
 safe_key = lambda x: hashlib.md5(smart_str(x).lower().strip()).hexdigest()
@@ -106,25 +107,36 @@ class FeaturedManager(object):
     by_app = classmethod(lambda cls, x: '%s:%s' % (cls.prefix + 'byapp', x))
     by_type = classmethod(lambda cls, x: '%s:%s' % (cls.prefix + 'bytype', x))
     by_locale = classmethod(lambda cls, x: '%s:%s' %
-                            (cls.prefix + 'bylocale', x))
+                            (cls.prefix + 'bylocale', x and x.lower()))
 
     @classmethod
     def redis(cls):
         return redisutils.connections['master']
 
     @classmethod
-    def get_objects(cls):
+    def _get_objects(cls):
         fields = ['addon', 'type', 'locale', 'application']
         if settings.NEW_FEATURES:
             from bandwagon.models import FeaturedCollection
-            vals = FeaturedCollection.objects.values_list(
-                'collection__addons', 'collection__addons__type',
-                'locale', 'application')
+            vals = (FeaturedCollection.objects
+                    .filter(collection__addons__isnull=False)
+                    .values_list('collection__addons',
+                                 'collection__addons__type', 'locale',
+                                 'application'))
         else:
             from addons.models import Addon
-            vals = Addon.objects.valid().values_list(
-                'id', 'type', 'feature__locale', 'feature__application')
+            vals = (Addon.objects.valid().filter(feature__isnull=False)
+                    .values_list('id', 'type', 'feature__locale',
+                                 'feature__application'))
         return [dict(zip(fields, val)) for val in vals]
+
+    @classmethod
+    def get_objects(cls):
+        rv = cls._get_objects()
+        for d in rv:
+            if d['locale']:
+                d['locale'] = d['locale'].lower()
+        return rv
 
     @classmethod
     def build(cls):
@@ -138,7 +150,7 @@ class FeaturedManager(object):
         by_locale = sorted_groupby(qs, itemgetter('locale'))
         by_app = sorted_groupby(qs, itemgetter('application'))
 
-        pipe = cls.redis().pipeline()
+        pipe = cls.redis().pipeline(transaction=False)
         pipe.delete(cls.by_id)
         for row in qs:
             pipe.sadd(cls.by_id, row['addon'])
@@ -150,10 +162,13 @@ class FeaturedManager(object):
                 name = prefixer(key)
                 pipe.delete(name)
                 for row in rows:
-                    pipe.sadd(name, row['addon'])
+                    if row['addon']:
+                        pipe.sadd(name, row['addon'])
         pipe.execute()
 
     @classmethod
+    @lru_cache.lru_cache(maxsize=100)
+    @memoize(prefix, time=60 * 10)
     def featured_ids(cls, app, lang=None, type=None):
         redis = cls.redis()
         base = (cls.by_id, cls.by_app(app.id))
@@ -174,26 +189,43 @@ class FeaturedManager(object):
 
 class CreaturedManager(object):
     prefix = 'addons:creatured'
-    by_cat = classmethod(lambda cls, cat: '%s:%s' % (cls.prefix, cat))
-    by_locale = classmethod(lambda cls, cat, locale: '%s:%s:%s' %
-                            (cls.prefix, cat, locale))
+
+    @classmethod
+    def by_cat(cls, cat, app):
+        return '%s:%s:%s' % (cls.prefix, cat, app)
+
+    @classmethod
+    def by_locale(cls, cat, app, locale):
+        return '%s:%s:%s:%s' % (cls.prefix, cat, app, locale.lower())
 
     @classmethod
     def redis(cls):
         return redisutils.connections['master']
 
     @classmethod
-    def get_objects(cls):
-        fields = ['category', 'addon', 'feature_locales']
+    def _get_objects(cls):
+        fields = ['category', 'addon', 'locales', 'app']
         if settings.NEW_FEATURES:
             from bandwagon.models import FeaturedCollection
-            vals = FeaturedCollection.objects.values_list(
-                'collection__addons__category', 'collection__addons', 'locale')
+            vals = (FeaturedCollection.objects
+                    .filter(collection__addons__isnull=False)
+                    .values_list('collection__addons__category',
+                                 'collection__addons', 'locale',
+                                 'application'))
         else:
             from addons.models import AddonCategory
             vals = (AddonCategory.objects.filter(feature=True)
-                    .values_list('category', 'addon', 'feature_locales'))
+                    .values_list('category', 'addon', 'feature_locales',
+                                 'category__application'))
         return [dict(zip(fields, val)) for val in vals]
+
+    @classmethod
+    def get_objects(cls):
+        rv = cls._get_objects()
+        for d in rv:
+            if d['locales']:
+                d['locales'] = d['locales'].lower()
+        return rv
 
     @classmethod
     def build(cls):
@@ -201,33 +233,38 @@ class CreaturedManager(object):
         # Expand any comma-separated lists of locales.
         for row in list(qs):
             # Normalize empty strings to None.
-            if row['feature_locales'] == '':
-                row['feature_locales'] = None
-            if row['feature_locales']:
+            if row['locales'] == '':
+                row['locales'] = None
+            if row['locales']:
                 qs.remove(row)
-                for locale in row['feature_locales'].split(','):
+                for locale in row['locales'].split(','):
                     d = dict(row)
-                    d['feature_locales'] = locale.strip()
+                    d['locales'] = locale.strip()
                     qs.append(d)
 
-        pipe = cls.redis().pipeline()
-        for category, rows in sorted_groupby(qs, itemgetter('category')):
-            locale_getter = itemgetter('feature_locales')
+        pipe = cls.redis().pipeline(transaction=False)
+        catapp = itemgetter('category', 'app')
+        for (category, app), rows in sorted_groupby(qs, catapp):
+            locale_getter = itemgetter('locales')
             for locale, rs in sorted_groupby(rows, locale_getter):
                 if locale:
-                    name = cls.by_locale(category, locale)
+                    name = cls.by_locale(category, app, locale)
                 else:
-                    name = cls.by_cat(category)
+                    name = cls.by_cat(category, app)
                 pipe.delete(name)
                 for row in rs:
-                    pipe.sadd(name, row['addon'])
+                    if row['addon']:
+                        pipe.sadd(name, row['addon'])
         pipe.execute()
 
     @classmethod
+    @lru_cache.lru_cache(maxsize=100)
+    @memoize(prefix, time=60 * 10)
     def creatured_ids(cls, category, lang):
         redis = cls.redis()
-        all_ = redis.smembers(cls.by_cat(category.id))
-        per_locale = redis.smembers(cls.by_locale(category.id, lang))
+        all_ = redis.smembers(cls.by_cat(category.id, category.application_id))
+        locale_key = cls.by_locale(category.id, category.application_id, lang)
+        per_locale = redis.smembers(locale_key)
         others = list(all_ - per_locale)
         per_locale = list(per_locale)
         random.shuffle(others)

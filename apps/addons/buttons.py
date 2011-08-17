@@ -201,15 +201,14 @@ class InstallButton(object):
         if self.show_eula:
             # L10n: please keep &nbsp; in the string so &rarr; does not wrap.
             text = jinja2.Markup(_('Continue to Download&nbsp;&rarr;'))
-            url = file.eula_url(impala=self.impala)
+            url = file.eula_url(impala=True)
         elif self.accept_eula:
             text = _('Accept and Download')
         elif self.show_contrib:
             # The eula doesn't exist or has been hit already.
             # L10n: please keep &nbsp; in the string so &rarr; does not wrap.
             text = jinja2.Markup(_('Continue to Download&nbsp;&rarr;'))
-            u = '%saddons.roadblock' % ('i_' if self.impala else '')
-            roadblock = reverse(u, args=[self.addon.id])
+            roadblock = reverse('addons.roadblock', args=[self.addon.id])
             url = urlparams(roadblock, eula='', version=self.version.version)
 
         return text, url, os

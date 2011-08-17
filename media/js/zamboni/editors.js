@@ -53,6 +53,7 @@ $(function() {
 
 function initReviewActions() {
     var groups = $('#id_canned_response').find('optgroup');
+
     function showForm(element, pageload) {
         var $element = $(element),
             value = $element.find('input').val(),
@@ -146,7 +147,9 @@ function initReviewActions() {
             setTimeout(check_currently_viewing, d.interval_seconds * 1000);
         });
     }
-    check_currently_viewing();
+    if(!(('localStorage' in window) && window.localStorage['dont_poll'])) {
+        check_currently_viewing();
+    }
 
     /* Item History */
     $('#review-files tr.listing-header').click(function() {
@@ -228,15 +231,17 @@ function initQueue() {
         addon_ids = $.map($('.addon-row'), function(el) {
         return $(el).attr('data-addon');
     });
-    (function checkCurrentlyViewing() {
-        $.post(url, {'addon_ids': addon_ids.join(',')}, function(data) {
-            $('#addon-queue .locked').removeClass('locked');
-            $.each(data, function(k, v) {
-                $('#addon-' + k).addClass('locked');
+    if(!(('localStorage' in window) && window.localStorage['dont_poll'])) {
+        (function checkCurrentlyViewing() {
+            $.post(url, {'addon_ids': addon_ids.join(',')}, function(data) {
+                $('#addon-queue .locked').removeClass('locked');
+                $.each(data, function(k, v) {
+                    $('#addon-' + k).addClass('locked');
+                });
+                setTimeout(checkCurrentlyViewing, 2000);
             });
-            setTimeout(checkCurrentlyViewing, 2000);
-        });
-    })();
+        })();
+    }
 
     var pop = $('#popup-notes').hide(),
         loadNotes = function(e) {

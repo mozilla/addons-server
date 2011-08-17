@@ -21,6 +21,7 @@ import commonware
 import path
 from statsd import statsd
 from uuidfield.fields import UUIDField
+import waffle
 
 import amo
 import amo.models
@@ -35,7 +36,7 @@ from versions.compare import version_int as vint
 log = commonware.log.getLogger('z.files')
 
 # Acceptable extensions.
-EXTENSIONS = ('.xpi', '.jar', '.xml')
+EXTENSIONS = ('.xpi', '.jar', '.xml', '.webapp', '.json')
 
 
 class File(amo.models.OnChangeMixin, amo.models.ModelBase):
@@ -112,7 +113,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         f.filename = f.generate_filename(extension=upload.path.ext or '.xpi')
         f.size = int(max(1, round(upload.path.size / 1024, 0)))  # Kilobytes.
         f.jetpack_version = cls.get_jetpack_version(upload.path)
-        f.hash = upload.hash
         f.no_restart = parse_data.get('no_restart', False)
         if version.addon.status == amo.STATUS_PUBLIC:
             if amo.VERSION_BETA.search(parse_data.get('version', '')):
@@ -122,6 +122,12 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         elif (version.addon.status in amo.LITE_STATUSES
               and version.addon.trusted):
             f.status = version.addon.status
+        elif version.addon.is_webapp():
+            # Files don't really matter for webapps, just make them public.
+            f.status = amo.STATUS_PUBLIC
+        f.hash = (f.generate_hash(upload.path)
+                  if waffle.switch_is_active('file-hash-paranoia')
+                  else upload.hash)
         f.save()
         log.debug('New file: %r from %r' % (f, upload))
         # Move the uploaded file from the temp location.
@@ -145,6 +151,14 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                 return opts['sdkVersion']
         except Exception:
             return None
+
+    def generate_hash(self, filename=None):
+        """Generate a hash for a file."""
+        hash = hashlib.sha256()
+        with open(filename if filename else self.file_path, 'rb') as obj:
+            for chunk in iter(lambda: obj.read(1024), ''):
+                hash.update(chunk)
+        return 'sha256:%s' % hash.hexdigest()
 
     def generate_filename(self, extension='.xpi'):
         """
@@ -272,7 +286,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         a string.
         """
         start = time.time()
-        zip = SafeUnzip(self.filename)
+        zip = SafeUnzip(self.file_path)
         if not zip.is_valid(fatal=False):
             return ''
 
@@ -411,8 +425,8 @@ class Platform(amo.models.ModelBase):
 class FileUpload(amo.models.ModelBase):
     """Created when a file is uploaded for validation/submission."""
     uuid = UUIDField(primary_key=True, auto=True)
-    path = models.CharField(max_length=255)
-    name = models.CharField(max_length=255,
+    path = models.CharField(max_length=255, default='')
+    name = models.CharField(max_length=255, default='',
                             help_text="The user's original filename")
     hash = models.CharField(max_length=255, default='')
     user = models.ForeignKey('users.UserProfile', null=True)
@@ -441,8 +455,7 @@ class FileUpload(amo.models.ModelBase):
                 log.error('Invalid validation json: %r' % self)
         super(FileUpload, self).save()
 
-    @classmethod
-    def from_post(cls, chunks, filename, size):
+    def add_file(self, chunks, filename, size):
         filename = smart_str(filename)
         loc = path.path(settings.ADDONS_PATH) / 'temp' / uuid.uuid4().hex
         if not loc.dirname().exists():
@@ -456,8 +469,16 @@ class FileUpload(amo.models.ModelBase):
             for chunk in chunks:
                 hash.update(chunk)
                 fd.write(chunk)
-        return cls.objects.create(path=loc, name=filename,
-                                  hash='sha256:%s' % hash.hexdigest())
+        self.path = loc
+        self.name = filename
+        self.hash = 'sha256:%s' % hash.hexdigest()
+        self.save()
+
+    @classmethod
+    def from_post(cls, chunks, filename, size):
+        fu = FileUpload()
+        fu.add_file(chunks, filename, size)
+        return fu
 
 
 class FileValidation(amo.models.ModelBase):

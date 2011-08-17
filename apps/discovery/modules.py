@@ -2,11 +2,10 @@ import caching.base as caching
 import jingo
 import jinja2
 from tower import ugettext_lazy as _
-import waffle
 
-from addons.models import Addon
+import amo
 from api.views import addon_filter
-from bandwagon.models import Collection
+from bandwagon.models import Collection, MonthlyPick as MP
 from .models import BlogCacheRyf
 
 
@@ -70,14 +69,15 @@ class MonthlyPick(TemplatePromo):
     slug = 'Monthly Pick'
     template = 'discovery/modules/monthly.html'
 
-    # TODO A bit of hardcoding here to support an alternative locale.  This
-    # will all be redone with the mango bugs: http://bugzil.la/[t:mango]
     def context(self):
-        return {
-                'addon': Addon.objects.get(id=6416),
-                'addon_de': Addon.objects.get(id=146384),
-                'module_context': 'discovery'
-               }
+        try:
+            pick = MP.objects.filter(locale=self.request.LANG)[0]
+        except IndexError:
+            try:
+                pick = MP.objects.filter(locale__isnull=True)[0]
+            except IndexError:
+                pick = None
+        return {'pick': pick, 'module_context': 'discovery'}
 
 
 class GoMobile(TemplatePromo):
@@ -95,22 +95,29 @@ class CollectionPromo(PromoModule):
 
     def __init__(self, *args, **kw):
         super(CollectionPromo, self).__init__(*args, **kw)
-        self.collection = Collection.objects.get(pk=self.pk)
+        try:
+            self.collection = Collection.objects.get(pk=self.pk)
+        except Collection.DoesNotExist:
+            self.collection = None
 
     def get_descriptions(self):
         return {}
 
     def get_addons(self):
-        addons = self.collection.addons.all()
+        addons = self.collection.addons.filter(status=amo.STATUS_PUBLIC)
         kw = dict(addon_type='ALL', limit=self.limit, app=self.request.APP,
-                  platform=self.platform, version=self.version, shuffle=True)
+                  platform=self.platform, version=self.version)
         f = lambda: addon_filter(addons, **kw)
         return caching.cached_with(addons, f, repr(kw))
 
     def render(self, module_context='discovery'):
-        c = dict(promo=self, addons=self.get_addons(),
-                 module_context=module_context,
+        if module_context == 'home':
+            self.platform = 'ALL'
+            self.version = None
+        c = dict(promo=self, module_context=module_context,
                  descriptions=self.get_descriptions())
+        if self.collection:
+            c.update(addons=self.get_addons())
         return jinja2.Markup(
             jingo.render_to_string(self.request, self.template, c))
 
@@ -214,7 +221,7 @@ class TravelCollection(CollectionPromo):
 
 class SchoolCollection(CollectionPromo):
     slug = 'School'
-    pk = 2128026  # TODO(push): Change this to 2133887.
+    pk = 2133887
     id = 'school'
     cls = 'promo'
     title = _(u'A+ add-ons for School')

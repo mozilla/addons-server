@@ -542,6 +542,7 @@ section#featured-addons {
 }
 
 .htruncate {
+    text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }

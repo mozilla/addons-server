@@ -10,6 +10,7 @@ from django.conf import settings
 from django.db.models import Q, signals as db_signals
 from django.shortcuts import get_object_or_404
 from django.utils.cache import patch_cache_control
+from django.utils.encoding import smart_str
 
 import jingo
 import redisutils
@@ -28,7 +29,7 @@ BlItem = collections.namedtuple('BlItem', 'rows os modified block_id')
 def blocklist(request, apiver, app, appver):
     key = 'blocklist:%s:%s:%s' % (apiver, app, appver)
     # Use md5 to make sure the memcached key is clean.
-    key = hashlib.md5(key).hexdigest()
+    key = hashlib.md5(smart_str(key)).hexdigest()
     response = cache.get(key)
     if response is None:
         response = _blocklist(request, apiver, app, appver)

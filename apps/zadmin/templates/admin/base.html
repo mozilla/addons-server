@@ -3,76 +3,57 @@
 {% block title %}:: AMO Admin{% endblock %}
 
 {% block site_header_title %}
-<a href="{{ url('zadmin.home') }}" title="keep it real fliggy">Site Administration</a>
+    <a href="{{ url('zadmin.index') }}">Site Administration</a>
 {% endblock %}
 
-{% block extrahead %}
-<link rel="stylesheet" media="screen,projection,tv"
-      href="{{ media('css/zamboni/admin-mozilla.css') }}">
-<link rel="stylesheet" media="screen,projection,tv"
-      href="{{ media('css/developers.css') }}">
-<link rel="stylesheet" href="{{ media('css/zamboni/translations/trans.css') }}">
+{% block site_css %}
+    {{ css('zamboni/css') }}
+    {{ css('zamboni/devhub') }}
+    {{ css('zamboni/admin') }}
 {% endblock %}
 
 {% block js %}
-<script src="{{ media('js/zamboni/tabs.js') }}"></script>
-<script src="{{ media('js/zamboni/admin.js') }}"></script>
+    {{ js('zamboni/admin') }}
+{% endblock %}
+
+{% block search_form %}
 {% endblock %}
 
 {% block navbar %}
 <div id="navbar">
   <ul class="top">
-    <li class="top">
-      <a href="#" class="controller">Manage Add-ons</a>
+      <li class="top"><a href="" class="controller">Manage Add-ons</a>
       <ul>
-        <li><a href="{{ url('admin:addons_blacklistedguid_changelist') }}">
-          Banned GUIDs</a></li>
-        <li><a href="{{ url('admin:addons_feature_changelist') }}">
-          Featured Add-ons</a></li>
-        <li><a href="{{ url('zadmin.flagged') }}">
-          Flagged Add-ons</a></li>
-        <li><a href="{{ url('admin:addons_addon_changelist') }}">
-          Manage an Add-on</a></li>
+        <li><a href="{{ url('zadmin.addon-search') }}">Search for add-ons by name or id</a></li>
+        <li><a href="{{ url('zadmin.features') }}">Featured add-ons</a></li>
+        <li><a href="{{ url('zadmin.jetpack') }}">Upgrade jetpack add-ons</a></li>
+        <li><a href="{{ url('zadmin.addon-name-blocklist') }}">Name blocklist</a></li>
+        <li><a href="{{ url('zadmin.validation') }}">Bulk add-on validation</a></li>
+        <li><a href="{{ url('zadmin.mail') }}">Fake mail</a></li>
+        <li><a href="{{ url('zadmin.flagged') }}">Flagged reviews</a></li>
       </ul>
-    </li>
-    <li class="top">
-      <a href="#" class="controller">Manage Users</a>
+      </li>
+      <li class="top"><a href="" class="controller">Manage Users</a>
       <ul>
-        <li><a href="{{ url('admin:access_group_changelist') }}">
-          Configure Groups</a></li>
-        <li><a href="{{ url('admin:users_userprofile_changelist') }}">
-          Manage a User</a></li>
+        <li><a href="{{ url('admin:access_group_changelist') }}">Configure groups</a></li>
       </ul>
-    </li>
-    <li class="top">
-      <a href="#" class="controller">Site Settings</a>
+      </li>
+      <li class="top"><a href="" class="controller">Site Settings</a>
       <ul>
-        <li><a href="{{ url('admin:applications_application_changelist') }}">
-          Applications</a></li>
-        <li><a href="{{ url('admin:editors_cannedresponse_changelist') }}">
-          Canned Response</a></li>
-        <li><a href="{{ url('admin:addons_category_changelist') }}">
-          Categories</a></li>
-        <li><a href="{{ url('admin:tags_tag_changelist') }}">
-          Tags</a></li>
+        <li><a href="{{ url('zadmin.settings') }}">See the site settings</a></li>
+        <li><a href="{{ url('zadmin.home') }}">Django admin pages</a></li>
       </ul>
-    </li>
-    <li class="top">
-      <a href="#" class="controller">Dev Hub</a>
+      </li>
+      <li class="top"><a href="" class="controller">Server Tools</a>
       <ul>
-        <li><a href="{{ url('admin:devhub_hubpromo_changelist') }}">
-          Promos</a></li>
-        <li><a href="{{ url('admin:devhub_hubevent_changelist') }}">
-          Events</a></li>
+        <li><a href="{{ url('amo.env') }}">See the request environment</a></li>
+        <li><a href="{{ url('zadmin.elastic') }}">Manage elasticsearch</a></li>
+        <li><a href="{{ url('zadmin.celery') }}">See celery stats</a></li>
+        <li><a href="{{ url('zadmin.hera') }}">Purge pages from zeus</a></li>
+        <li><a href="{{ url('amo.graphite', 'amo') }}">See graphite trends</a></li>
+        <li><a href="{{ url('zadmin.oauth-consumer-create') }}">Create a new OAuth Consumer</a></li>
       </ul>
-    </li>
-    <li class="top">
-      <a href="#" class="controller">Server Config</a>
-      <ul>
-        <li><a href="{{ url('zadmin.hera') }}">Hera</a></li>
-        <li><a href="{{ url('zadmin.settings') }}">Settings</a></li>
-      </ul>
-    </li>
+      </li>
   </ul>
 </div>
 {% endblock %}

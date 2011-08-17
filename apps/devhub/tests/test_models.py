@@ -281,6 +281,16 @@ class TestActivityLogCount(amo.tests.TestCase):
         eq_(result[0]['approval_count'], 1)
         eq_(result[0]['user'], self.user.pk)
 
+    def test_log_admin(self):
+        amo.log(amo.LOG['OBJECT_EDITED'], Addon.objects.get())
+        eq_(len(ActivityLog.objects.admin_events()), 1)
+        eq_(len(ActivityLog.objects.for_developer()), 0)
+
+    def test_log_not_admin(self):
+        amo.log(amo.LOG['EDIT_VERSION'], Addon.objects.get())
+        eq_(len(ActivityLog.objects.admin_events()), 0)
+        eq_(len(ActivityLog.objects.for_developer()), 1)
+
 
 class TestBlogPosts(amo.tests.TestCase):
 

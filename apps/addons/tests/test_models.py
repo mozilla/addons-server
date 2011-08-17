@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime, timedelta
 import itertools
+import os
+from datetime import datetime, timedelta
 from urlparse import urlparse
 
 from django import forms
@@ -19,8 +20,9 @@ from amo import set_user
 from amo.helpers import absolutify
 from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonCategory, AddonDependency,
-                           AddonRecommendation, AddonType, BlacklistedGuid,
-                           Category, Charity, FrozenAddon, Persona, Preview)
+                           AddonRecommendation, AddonType, AddonUpsell,
+                           BlacklistedGuid, Category, Charity, FrozenAddon,
+                           Persona, Preview)
 from applications.models import Application, AppVersion
 from devhub.models import ActivityLog
 from files.models import File, Platform
@@ -30,6 +32,7 @@ from translations.models import TranslationSequence, Translation
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
 from versions.compare import version_int
+from webapps.models import Webapp
 
 
 class TestAddonManager(amo.tests.TestCase):
@@ -130,6 +133,27 @@ class TestAddonManagerFeatured(amo.tests.TestCase):
             [1001, 1003, 2464, 3481, 7661, 15679])
         f = Addon.objects.featured(amo.SUNBIRD)
         assert not f.exists()
+
+
+class TestNewAddonVsWebapp(amo.tests.TestCase):
+
+    def test_addon_from_kwargs(self):
+        a = Addon(type=amo.ADDON_EXTENSION)
+        assert isinstance(a, Addon)
+
+    def test_webapp_from_kwargs(self):
+        w = Addon(type=amo.ADDON_WEBAPP)
+        assert isinstance(w, Webapp)
+
+    def test_addon_from_db(self):
+        a = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        assert isinstance(a, Addon)
+        assert isinstance(Addon.objects.get(id=a.id), Addon)
+
+    def test_webapp_from_db(self):
+        a = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        assert isinstance(a, Webapp)
+        assert isinstance(Addon.objects.get(id=a.id), Webapp)
 
 
 class TestAddonModels(amo.tests.TestCase):
@@ -1299,6 +1323,14 @@ class TestAddonFromUpload(UploadTest):
         eq_(addon.description, None)
         eq_(addon.slug, 'xpi-name')
 
+    def test_manifest_url(self):
+        path = os.path.join(settings.ROOT,
+                            'apps/devhub/tests/addons/mozball.webapp')
+        upload = self.get_upload(abspath=path)
+        addon = Addon.from_upload(upload, [self.platform])
+        assert addon.is_webapp()
+        eq_(addon.manifest_url, upload.name)
+
     def test_xpi_version(self):
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
                                   [self.platform])
@@ -1499,6 +1531,10 @@ class TestSearchSignals(amo.tests.ESTestCase):
 
 class TestLanguagePack(TestLanguagePack):
 
+    def setUp(self):
+        super(TestLanguagePack, self).setUp()
+        self.platform = Platform.objects.create(id=amo.PLATFORM_ANDROID.id)
+
     def test_extract(self):
         File.objects.create(platform=self.platform, version=self.version,
                             filename=self.xpi_path('langpack-localepicker'))
@@ -1521,3 +1557,57 @@ class TestLanguagePack(TestLanguagePack):
         File.objects.create(platform=self.mac, version=self.version,
                             filename=self.xpi_path('langpack'))
         eq_(self.addon.get_localepicker(), '')
+
+
+class TestMarketplace(amo.tests.ESTestCase):
+
+    def setUp(self):
+        self.addon = Addon(type=amo.ADDON_EXTENSION)
+
+    def test_is_premium(self):
+        assert not self.addon.is_premium()
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        assert self.addon.is_premium()
+
+    def test_can_be_premium_status(self):
+        for status in amo.STATUS_CHOICES.keys():
+            self.addon.update(status=status)
+            if status in amo.PREMIUM_STATUSES:
+                assert self.addon.can_become_premium()
+            else:
+                assert not self.addon.can_become_premium()
+
+    def test_can_be_premium_type(self):
+        for type in amo.ADDON_TYPES.keys():
+            self.addon.update(type=type)
+            if type in [amo.ADDON_EXTENSION, amo.ADDON_WEBAPP]:
+                assert self.addon.can_become_premium()
+            else:
+                assert not self.addon.can_become_premium()
+
+    def test_can_not_be_purchased(self):
+        assert not self.addon.can_be_purchased()
+
+    def test_can_still_not_be_purchased(self):
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        assert not self.addon.can_be_purchased()
+
+    def test_can_be_purchased(self):
+        for status in amo.REVIEWED_STATUSES:
+            self.addon.update(premium_type=amo.ADDON_PREMIUM,
+                              status=status)
+            assert self.addon.can_be_purchased()
+
+class TestAddonUpsell(amo.tests.TestCase):
+
+    def setUp(self):
+        self.one = Addon.objects.create(type=amo.ADDON_EXTENSION, name='free')
+        self.two = Addon.objects.create(type=amo.ADDON_EXTENSION,
+                                        name='premium')
+        self.upsell = AddonUpsell.objects.create(free=self.one,
+                                                 premium=self.two, text='yup')
+
+    def test_create_upsell(self):
+        eq_(self.one.upsell.premium, self.two)
+        eq_(self.one.upsell.text, 'yup')
+        eq_(self.two.upsell, None)

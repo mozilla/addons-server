@@ -1,3 +1,5 @@
+@import 'lib';
+
 /** Button =Popups *********/
 .install {
     position: relative;
@@ -8,11 +10,6 @@
 }
 div.popup-shim {
     display: inline-block;
-}
-
-.popup p:last-child,
-.popup ul:last-child {
-    margin-bottom: 0;
 }
 
 .install-note .msg,
@@ -85,7 +82,8 @@ div.popup-shim {
 
 .popup {
     h3 {
-        font-size: 18px;
+        color: @dark-gray;
+        font: italic 18px @serif-stack;
         margin-bottom: 1em;
     }
     fieldset {
@@ -96,6 +94,9 @@ div.popup-shim {
     li {
         line-height: 1.5em;
     }
+    ul:last-child {
+        margin-bottom: 0;
+    }
 }
 .modal-delete h3 {
     color: #6c1a1a;
@@ -103,16 +104,31 @@ div.popup-shim {
 
 .install .install-note > *,
 .popup.warning > * {
-    margin-bottom: 1em;
+    margin-top: 1em;
     padding-left: 50px;
 }
 
 .install .install-note {
     width: 300px;
-    ol {
-        list-style-type: decimal;
+    li {
+        margin: 1em 0;
+    }
+    .msg:first-child {
         margin: 0;
     }
+    ol, ul, p:first-child {
+        margin: 0;
+    }
+    ol {
+        list-style: decimal;
+    }
+    ul {
+        list-style: none;
+    }
+}
+
+.primary .install-note > p:first-child {
+    margin-top: 0;
 }
 
 /* append the left class if the bubble is to the far right */

@@ -4,7 +4,7 @@
   {{ page_title(category.name if category else _('Extensions')) }}
 {% endblock %}
 
-{% block bodyclass %}listing s-{{ sorting }}{% endblock %}
+{% block bodyclass %}s-{{ sorting }}{% endblock %}
 
 {% if category %}
   {% block extrahead %}
@@ -24,6 +24,7 @@
 {% set sort = {'featured': 'featured',
                'created': 'newest',
                'popular': 'popular',
+               'users': 'users',
                'rating': 'averagerating'}.get(sorting, 'updated') %}
 
 {% if category %}

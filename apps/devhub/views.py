@@ -22,27 +22,29 @@ import bleach
 import commonware.log
 import jingo
 import jinja2
-from tower import ugettext_lazy as _lazy, ugettext as _
+from PIL import Image
 from session_csrf import anonymous_csrf
+from tower import ugettext_lazy as _lazy, ugettext as _
 import waffle
 
 from applications.models import Application, AppVersion
 import amo
 import amo.utils
 from amo import messages, urlresolvers
+from amo.decorators import json_view, login_required, post_required
 from amo.helpers import urlparams
 from amo.utils import MenuItem
 from amo.urlresolvers import reverse
-from amo.decorators import json_view, login_required, post_required
 from access import acl
 from addons import forms as addon_forms
 from addons.decorators import addon_view
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
+from devhub.decorators import dev_required
 from devhub.forms import CheckCompatibilityForm
 from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
 from editors.helpers import get_position
-from files.models import File, FileUpload
+from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
 from translations.models import delete_translation
 from users.models import UserProfile
@@ -57,45 +59,6 @@ log = commonware.log.getLogger('z.devhub')
 
 # We use a session cookie to make sure people see the dev agreement.
 DEV_AGREEMENT_COOKIE = 'yes-I-read-the-dev-agreement'
-
-
-def dev_required(owner_for_post=False, allow_editors=False):
-    """Requires user to be add-on owner or admin.
-
-    When allow_editors is True, an editor can view the page.
-    """
-    def decorator(f):
-        @addon_view
-        @login_required
-        @functools.wraps(f)
-        def wrapper(request, addon, *args, **kw):
-            fun = lambda: f(request, addon_id=addon.id, addon=addon, *args,
-                            **kw)
-            if allow_editors:
-                if acl.action_allowed(request, 'Editors', '%'):
-                    return fun()
-            # Require an owner or dev for POST requests.
-            if request.method == 'POST':
-                if acl.check_addon_ownership(request, addon,
-                                             dev=not owner_for_post):
-                    return fun()
-            # Ignore disabled so they can view their add-on.
-            elif acl.check_addon_ownership(request, addon, viewer=True,
-                                           ignore_disabled=True):
-                step = SubmitStep.objects.filter(addon=addon)
-                # Redirect to the submit flow if they're not done.
-                if not getattr(f, 'submitting', False) and step:
-                    return _resume(addon, step)
-                return fun()
-            return http.HttpResponseForbidden()
-        return wrapper
-    # The arg will be a function if they didn't pass owner_for_post.
-    if callable(owner_for_post):
-        f = owner_for_post
-        owner_for_post = False
-        return decorator(f)
-    else:
-        return decorator
 
 
 class AddonFilter(BaseFilter):
@@ -449,7 +412,7 @@ def payments(request, addon_id, addon):
     errors = charity_form.errors or contrib_form.errors or profile_form.errors
     if errors:
         messages.error(request, _('There were errors in your submission.'))
-    return jingo.render(request, 'devhub/addons/payments.html',
+    return jingo.render(request, 'devhub/payments/payments.html',
         dict(addon=addon, charity_form=charity_form, errors=errors,
              contrib_form=contrib_form, profile_form=profile_form))
 
@@ -616,6 +579,26 @@ def upload(request, addon_slug=None, is_standalone=False):
         return redirect('devhub.standalone_upload_detail', fu.pk)
     else:
         return redirect('devhub.upload_detail', fu.pk, 'json')
+
+
+@login_required
+@post_required
+def upload_webapp(request):
+    form = forms.NewWebappForm(request.POST)
+    if form.is_valid():
+        # Eventually we'll pass a pointer to the FileUpload back to the client
+        # and wait for the tasks to finish.
+        upload = FileUpload.objects.create()
+        # TODO: make this .delay()'d, communicate asynchronously.
+        tasks.fetch_manifest(form.cleaned_data['manifest'], upload.pk)
+        # Get the new data.
+        upload = FileUpload.objects.get(pk=upload.pk)
+        # TODO: when we go async reuse the submit_addon() code.
+        platform = Platform.objects.get(id=amo.PLATFORM_ALL.id)
+        addon = Addon.from_upload(upload, [platform])
+        AddonUser(addon=addon, user=request.amo_user).save()
+        SubmitStep.objects.create(addon=addon, step=3)
+        return redirect('devhub.submit.3', addon.slug)
 
 
 @login_required
@@ -787,8 +770,8 @@ def json_upload_detail(request, upload, addon_slug=None):
     if result['validation']:
         if result['validation']['errors'] == 0:
             try:
-                apps = parse_addon(upload.path, addon=addon).get('apps', [])
-                app_ids = set([a.id for a in apps])
+                pkg = parse_addon(upload, addon=addon)
+                app_ids = set([a.id for a in pkg.get('apps', [])])
                 supported_platforms = []
                 if amo.MOBILE.id in app_ids:
                     supported_platforms.extend(amo.MOBILE_PLATFORMS.keys())
@@ -952,8 +935,7 @@ def image_status(request, addon_id, addon):
 
 
 @json_view
-@dev_required
-def upload_image(request, addon_id, addon, upload_type):
+def ajax_upload_image(request, upload_type):
     errors = []
     upload_hash = ''
 
@@ -970,19 +952,46 @@ def upload_image(request, addon_id, addon, upload_type):
             for chunk in upload_preview:
                 fd.write(chunk)
 
+        is_icon = upload_type in ('icon', 'preview')
+        is_persona = upload_type.startswith('persona_')
+
         check = amo.utils.ImageCheck(upload_preview)
         if (not check.is_image() or
-            upload_preview.content_type not in
-            ('image/png', 'image/jpeg', 'image/jpg')):
-            errors.append(_('Icons must be either PNG or JPG.'))
+            upload_preview.content_type not in amo.IMG_TYPES):
+            if is_icon:
+                errors.append(_('Icons must be either PNG or JPG.'))
+            else:
+                errors.append(_('Images must be either PNG or JPG.'))
 
         if check.is_animated():
-            errors.append(_('Icons cannot be animated.'))
+            if is_icon:
+                errors.append(_('Icons cannot be animated.'))
+            else:
+                errors.append(_('Images cannot be animated.'))
 
-        if (upload_type == 'icon' and
-            upload_preview.size > settings.MAX_ICON_UPLOAD_SIZE):
-            errors.append(_('Please use images smaller than %dMB.') %
-                        (settings.MAX_ICON_UPLOAD_SIZE / 1024 / 1024 - 1))
+        max_size = None
+        if is_icon:
+            max_size = settings.MAX_ICON_UPLOAD_SIZE
+        if is_persona:
+            max_size = settings.MAX_PERSONA_UPLOAD_SIZE
+
+        if max_size and upload_preview.size > max_size:
+            if is_icon:
+                errors.append(_('Please use images smaller than %dMB.') % (
+                    max_size / 1024 / 1024 - 1))
+            if is_persona:
+                errors.append(_('Images cannot be larger than %dKB.') % (
+                    max_size / 1024))
+
+        if check.is_image() and is_persona:
+            persona, img_type = upload_type.split('_')  # 'header' or 'footer'
+            expected_size = amo.PERSONA_IMAGE_SIZES.get(img_type)[1]
+            actual_size = Image.open(loc).size
+            if actual_size != expected_size:
+                # L10n: {0} is an image width (in pixels), {1} is a height.
+                errors.append(_('Image must be exactly {0} pixels wide '
+                                'and {1} pixels tall.')
+                              .format(expected_size[0], expected_size[1]))
     else:
         errors.append(_('There was an error uploading your preview.'))
 
@@ -990,6 +999,11 @@ def upload_image(request, addon_id, addon, upload_type):
         upload_hash = ''
 
     return {'upload_hash': upload_hash, 'errors': errors}
+
+
+@dev_required
+def upload_image(request, addon_id, addon, upload_type):
+    return ajax_upload_image(request, upload_type)
 
 
 @dev_required
@@ -1257,12 +1271,20 @@ def submit_license(request, addon_id, addon, step):
 @submit_step(6)
 def submit_select_review(request, addon_id, addon, step):
     review_type_form = forms.ReviewTypeForm(request.POST or None)
-    if request.method == 'POST' and review_type_form.is_valid():
-        addon.status = review_type_form.cleaned_data['review_type']
-        addon.save()
+    updated_status = None
+
+    if addon.is_webapp():
+        updated_status = (amo.STATUS_PENDING if settings.WEBAPPS_RESTRICTED
+                          else amo.STATUS_LITE)
+    elif request.method == 'POST' and review_type_form.is_valid():
+        updated_status = review_type_form.cleaned_data['review_type']
+
+    if updated_status:
+        addon.update(status=updated_status)
         SubmitStep.objects.filter(addon=addon).delete()
         signals.submission_done.send(sender=addon)
         return redirect('devhub.submit.7', addon.slug)
+
     return jingo.render(request, 'devhub/addons/submit/select-review.html',
                         {'addon': addon, 'review_type_form': review_type_form,
                          'step': step})
@@ -1382,6 +1404,9 @@ def docs(request, doc_name=None, doc_page=None):
                 'how-to': ['getting-started', 'extension-development',
                            'thunderbird-mobile', 'theme-development',
                            'other-addons']}
+    
+    if waffle.switch_is_active('marketplace'):
+        all_docs['marketplace'] = ['voluntary']
 
     if doc_name and doc_name in all_docs:
         filename = '%s.html' % doc_name

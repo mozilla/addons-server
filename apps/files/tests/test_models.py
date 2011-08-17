@@ -13,6 +13,7 @@ from django.conf import settings
 import mock
 import path
 from nose.tools import eq_
+import waffle
 
 import amo.tests
 import amo.utils
@@ -24,7 +25,7 @@ from files.utils import parse_addon, parse_xpi, check_rdf, JetpackUpgrader
 from versions.models import Version
 
 
-class UploadTest(amo.tests.TestCase):
+class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
     """
     Base for tests that mess with file uploads, safely using temp directories.
     """
@@ -41,16 +42,13 @@ class UploadTest(amo.tests.TestCase):
     def tearDown(self):
         path.path.rename = self._rename
 
-    def file_path(self, name):
-        path = 'apps/files/fixtures/files/%s' % name
-        return os.path.join(settings.ROOT, path)
+    def file_path(self, *args, **kw):
+        return self.file_fixture_path(*args, **kw)
 
-    def xpi_path(self, name):
-        return self.file_path(name + '.xpi')
-
-    def get_upload(self, filename, validation=None):
-        xpi = open(self.file_path(filename)).read()
-        upload = FileUpload.from_post([xpi], filename=filename, size=1234)
+    def get_upload(self, filename=None, abspath=None, validation=None):
+        xpi = open(abspath if abspath else self.file_path(filename)).read()
+        upload = FileUpload.from_post([xpi], filename=abspath or filename,
+                                      size=1234)
         upload.validation = (validation or
                              json.dumps(dict(errors=0, warnings=1, notices=2,
                                              metadata={}, messages=[])))
@@ -58,7 +56,7 @@ class UploadTest(amo.tests.TestCase):
         return upload
 
 
-class TestFile(amo.tests.TestCase):
+class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
     """
     Tests the methods of the File model.
     """
@@ -197,6 +195,12 @@ class TestFile(amo.tests.TestCase):
         f.copy_to_mirror()
         assert os.path.exists(f.mirror_file_path)
 
+    def test_generate_hash(self):
+        f = File()
+        f.version = Version.objects.get(pk=81551)
+        fn = self.xpi_path('delicious_bookmarks-2.1.106-fx')
+        assert f.generate_hash(fn).startswith('sha256:fd277d45ab44f6240e')
+
 
 class TestParseXpi(amo.tests.TestCase):
     fixtures = ['base/apps']
@@ -321,7 +325,7 @@ class TestParseXpi(amo.tests.TestCase):
         eq_(msg, 'Version numbers should have fewer than 32 characters.')
 
 
-class TestParseAlternateXpi(amo.tests.TestCase):
+class TestParseAlternateXpi(amo.tests.TestCase, amo.tests.AMOPaths):
     # This install.rdf is completely different from our other xpis.
     fixtures = ['base/apps']
 
@@ -331,9 +335,7 @@ class TestParseAlternateXpi(amo.tests.TestCase):
                                       version=version)
 
     def parse(self, filename='alt-rdf.xpi'):
-        path = 'apps/files/fixtures/files/' + filename
-        xpi = os.path.join(settings.ROOT, path)
-        return parse_addon(xpi)
+        return parse_addon(self.file_fixture_path(filename))
 
     def test_parse_basics(self):
         # Everything but the apps.
@@ -573,14 +575,26 @@ class TestFileFromUpload(UploadTest):
         f = File.from_upload(upload, self.version, self.platform, data)
         eq_(f.status, amo.STATUS_LITE_AND_NOMINATED)
 
+    @mock.patch.object(waffle, 'switch_is_active', lambda x: True)
+    def test_file_hash_paranoia(self):
+        upload = self.upload('extension')
+        f = File.from_upload(upload, self.version, self.platform)
+        assert f.hash.startswith('sha256:035ae07b4988711')
 
-class TestZip(amo.tests.TestCase):
+    @mock.patch.object(waffle, 'switch_is_active', lambda x: False)
+    def test_file_hash_no_paranoia(self):
+        upload = self.upload('extension')
+        upload.hash = 'oops'
+        f = File.from_upload(upload, self.version, self.platform)
+        assert f.hash.startswith('oops')
+
+
+class TestZip(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def test_zip(self):
         # This zip contains just one file chrome/ that we expect
         # to be unzipped as a directory, not a file.
-        xpi = os.path.join(os.path.dirname(__file__), '..', 'fixtures',
-                           'files', 'directory-test.xpi')
+        xpi = self.xpi_path('directory-test')
 
         # This is to work around: http://bugs.python.org/issue4710
         # which was fixed in Python 2.6.2. If the required version
@@ -594,11 +608,10 @@ class TestZip(amo.tests.TestCase):
             shutil.rmtree(dest)
 
 
-class TestParseSearch(amo.tests.TestCase):
+class TestParseSearch(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def parse(self, filename='search.xml'):
-        path = 'apps/files/fixtures/files/' + filename
-        return parse_addon(os.path.join(settings.ROOT, path))
+        return parse_addon(self.file_fixture_path(filename))
 
     def extract(self):
         # This is the expected return value from extract_search.
@@ -627,7 +640,8 @@ class TestParseSearch(amo.tests.TestCase):
 
 @mock.patch('files.utils.parse_xpi')
 @mock.patch('files.utils.parse_search')
-def test_parse_addon(search_mock, xpi_mock):
+@mock.patch('files.utils.WebAppParser.parse')
+def test_parse_addon(webapp_mock, search_mock, xpi_mock):
     parse_addon('file.xpi', None)
     xpi_mock.assert_called_with('file.xpi', None)
 
@@ -636,6 +650,12 @@ def test_parse_addon(search_mock, xpi_mock):
 
     parse_addon('file.jar', None)
     xpi_mock.assert_called_with('file.jar', None)
+
+    parse_addon('file.webapp', None)
+    webapp_mock.assert_called_with('file.webapp', None)
+
+    parse_addon('file.json', None)
+    webapp_mock.assert_called_with('file.json', None)
 
 
 def test_parse_xpi():

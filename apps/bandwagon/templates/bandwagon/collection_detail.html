@@ -19,7 +19,7 @@
     {{ breadcrumbs(crumbs) }}
   {% endwith %}
   <hgroup>
-    <h2 class="collection">
+    <h2 class="collection" data-collectionid="{{ collection.id }}">
       <img src="{{ c.icon_url }}" class="icon">
       <span>{{ c.name }}</span>
       {% if not c.listed %}

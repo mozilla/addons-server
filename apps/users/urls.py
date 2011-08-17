@@ -52,6 +52,9 @@ users_patterns = patterns('',
     url(r'^pwresetcomplete$', auth_views.password_reset_complete,
                         {'template_name': 'users/pwreset_complete.html'},
                         name="users.pwreset_complete"),
+    url(r'^unsubscribe/(?P<token>[-\w]+={0,3})/(?P<hash>[\w]+)/'
+         '(?P<perm_setting>[\w]+)?$', views.unsubscribe,
+        name="users.unsubscribe"),
 )
 
 urlpatterns = patterns('',

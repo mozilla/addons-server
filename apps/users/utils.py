@@ -55,6 +55,35 @@ class EmailResetCode():
         return hashlib.sha256("%s%s" % (token, key)).hexdigest()
 
 
+class UnsubscribeCode():
+
+    @classmethod
+    def create(cls, email):
+        """Encode+Hash an email for an unsubscribe code."""
+        secret = cls.make_secret(email)
+        return base64.urlsafe_b64encode(email), secret
+
+    @classmethod
+    def parse(cls, code, hash):
+        try:
+            decoded = base64.urlsafe_b64decode(str(code))
+            mail = decoded
+        except (ValueError, TypeError):
+            # Data is broken
+            raise ValueError
+
+        if cls.make_secret(decoded) != hash:
+            log.info(u"[Tampering] Unsubscribe link data does not match hash")
+            raise ValueError
+
+        return mail
+
+    @classmethod
+    def make_secret(cls, token):
+        key = settings.SECRET_KEY
+        return hashlib.sha256("%s%s" % (token, key)).hexdigest()
+
+
 def get_task_user():
     """
     Returns a user object. This user is suitable for assigning to

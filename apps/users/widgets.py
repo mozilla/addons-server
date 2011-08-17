@@ -50,5 +50,5 @@ class NotificationsSelectMultiple(forms.CheckboxSelectMultiple):
                 context = {'title': name, 'options': groups[e]}
                 output.append(loader.get_template(template_url).render(Context(context)))
 
-        return mark_safe(u'<ol class="complex">%s</ul>' % u'\n'.join(output))
+        return mark_safe(u'<ol class="complex">%s</ol>' % u'\n'.join(output))
 

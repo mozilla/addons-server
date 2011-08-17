@@ -15,6 +15,7 @@ header .feed {
     color: @note-gray;
     font-family: @sans-stack;
     font-size: 11px;
+    margin: 0;
     li {
         float: left;
         margin: 0;
@@ -44,6 +45,14 @@ header .feed {
             border-left: 0 none;
         }
     }
+}
+
+.no-results {
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 1px #fff;
+    opacity: .5;
+    font: bold 24px @sans-stack;
 }
 
 .listing .item {
@@ -166,6 +175,7 @@ header .feed {
 .paginator + .item {
     margin-top: 1em;
 }
+header + .paginator,
 .item + .paginator {
     padding-top: 1em;
     border-top: 1px dotted @border-blue;

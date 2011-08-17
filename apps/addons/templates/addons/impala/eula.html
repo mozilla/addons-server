@@ -6,10 +6,10 @@
   {{ page_title(_('End-User License Agreement for {0}')|f(addon.name)) }}
 {% endblock %}
 
-{% set detail_url = url('i_addons.detail', addon.slug) %}
+{% set detail_url = addon.get_url_path(impala=True) %}
 
 {% block primary %}
-<section class="primary">
+<section class="primary" id="eula">
   <hgroup class="hero">
     {# L10n: EULA stand for End User License Agreement #}
     {{ impala_breadcrumbs([(addon.type_url(impala=True), amo.ADDON_TYPES[addon.type]),

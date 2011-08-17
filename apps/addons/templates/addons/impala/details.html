@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block content %}
-{{ impala_breadcrumbs([(addon.type_url(impala=True), amo.ADDON_TYPES[addon.type]),
+{{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
                        (None, addon.name)]) }}
 <aside class="secondary addon-vitals">
   {{ addon.average_rating|stars(large=True) }}
@@ -50,7 +50,7 @@
   {% endif %}
 </aside>
 
-{% set version = addon.current_version if not addon.is_app() else None %}
+{% set version = addon.current_version if not addon.is_webapp() else None %}
 
 {# All this depends on the addon or version, and nothing needs the user,
    so we can cache it all against the addon. #}
@@ -72,8 +72,7 @@
     </hgroup>
     <p id="addon-summary" {{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
     {% if version %}
-      {{ big_install_button(addon, show_warning=False,
-                            impala=True, src='dp-btn-primary') }}
+      {{ big_install_button(addon, show_warning=False, impala=True) }}
     {% endif %}
     {% if addon.is_featured(APP, LANG) %}
       <div class="banner-box">
@@ -166,7 +165,7 @@
       <li>{{ version.created|datetime }}</li>
       <li>
         {% if version.license %}
-          {% trans url = version.license_url(impala=True),
+          {% trans url = version.license_url(),
              name = version.license if version.license.builtin else _('Custom License') %}
             Released under <a href="{{ url }}">{{ name }}</a>
           {% endtrans %}
@@ -178,14 +177,16 @@
 
 <section class="primary island c">
   <h2>{{ _('About this Add-on') }}</h2>
+  <div class="prose">
   {% if addon.description %}
-    <p id="addon-description" {{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
+    <p id="addon-description" class="prose" {{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
   {% else %}
-    <p id="addon-description" {{ addon.description|locale_html }}>{{ addon.summary|nl2br }}</p>
+    <p id="addon-description" class="prose" {{ addon.description|locale_html }}>{{ addon.summary|nl2br }}</p>
   {% endif %}
+  </div>
 </section>
 
-<div id="more-webpage" class="primary c" data-more-url="{{ addon.get_url_path(impala=True) }}"></div>
+<div id="more-webpage" class="primary c" data-more-url="{{ url('addons.detail_more', addon.slug) }}"></div>
 
 {% if version or addon.developer_comments or addon.show_beta %}
 <section class="primary island c">
@@ -202,7 +203,7 @@
   {% if version %}
     <section id="detail-relnotes" class="expando">
       <h2>{{ _('Version Information') }}<a class="toggle" href="#detail-relnotes"><b></b></a></h2>
-      <div class="content">
+      <div class="content prose">
         {{ version_detail(addon, version, src="addon-detail-version", impala=True) }}
       </div>
     </section>
@@ -233,7 +234,7 @@
               addon.current_beta_version.version) }}</dt>
             <dd>{{ install_button(addon, version=addon.current_beta_version,
                                   show_warning=False, impala=True,
-                                  src='dp-btn-devchannel') }}</dd>
+                                  src=request.GET.get('src', 'dp-btn-devchannel')) }}</dd>
           </dl>
         </div>
       </div>

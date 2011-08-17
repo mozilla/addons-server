@@ -19,16 +19,17 @@
     {{ addon|sidebar_listing }}
   </div>
 
-  <div class="primary island hero prettyform" id="reviews">
+  <div class="primary island hero" id="reviews">
     {% include "reviews/impala/review.html" %}
     <div class="c">
       <h2>{{ _('Write a Reply') }}</h2>
-      <form method="post" action="{{ url('i_reviews.reply', addon.slug, review.id) }}">
+      <form method="post" class="prettyform" 
+            action="{{ url('i_reviews.reply', addon.slug, review.id) }}">
         {{ csrf() }}
         <fieldset>
           <ul>
-            {{ pretty_field(form.title, label=_('title')) }}
-            {{ pretty_field(form.body, label=_('reply')) }}
+            {{ pretty_field(form.title, label=_('Title')) }}
+            {{ pretty_field(form.body, label=_('Reply')) }}
           </ul>
         </fieldset>
         <footer>

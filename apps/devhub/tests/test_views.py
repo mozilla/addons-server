@@ -669,6 +669,40 @@ class TestPaymentsProfile(amo.tests.TestCase):
         eq_(self.get_addon().wants_contributions, False)
 
 
+class TestMarketplace(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=3615)
+        self.url = reverse('devhub.addons.payments', args=[self.addon.slug])
+        assert self.client.login(username='del@icio.us', password='password')
+
+        self.marketplace = (waffle.models.Switch.objects
+                                  .get_or_create(name='marketplace')[0])
+        self.marketplace.active = True
+        self.marketplace.save()
+
+    def tearDown(self):
+        self.marketplace.active = False
+        self.marketplace.save()
+
+    @mock.patch('addons.models.Addon.can_become_premium')
+    def test_ask_page(self, can_become_premium):
+        can_become_premium.return_value = True
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(len(doc('div.intro')), 2)
+
+    @mock.patch('addons.models.Addon.can_become_premium')
+    def test_cant_become_premium(self, can_become_premium):
+        can_become_premium.return_value = False
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(len(doc('div.intro')), 1)
+
+
 class TestDelete(amo.tests.TestCase):
     fixtures = ('base/apps', 'base/users', 'base/addon_3615',
                 'base/addon_5579',)
@@ -681,7 +715,7 @@ class TestDelete(amo.tests.TestCase):
     def get_addon(self):
         return Addon.objects.no_cache().get(id=3615)
 
-    def test_post_nopw(self):
+    def test_post_not(self):
         r = self.client.post(self.url, follow=True)
         eq_(pq(r.content)('.notification-box').text(),
                           'Password was incorrect. Add-on was not deleted.')
@@ -1726,20 +1760,22 @@ class TestActivityFeed(amo.tests.TestCase):
         r = self.client.get(reverse('devhub.feed', args=[addon.slug]))
         eq_(r.status_code, 302)
 
-    def add_comment(self):
+    def add_hidden_log(self, action=amo.LOG.COMMENT_VERSION):
         addon = Addon.objects.get(id=3615)
         amo.set_user(UserProfile.objects.get(email='del@icio.us'))
-        amo.log(amo.LOG.COMMENT_VERSION, addon, addon.versions.all()[0])
+        amo.log(action, addon, addon.versions.all()[0])
         return addon
 
     def test_feed_hidden(self):
-        addon = self.add_comment()
+        addon = self.add_hidden_log()
+        self.add_hidden_log(amo.LOG.OBJECT_ADDED)
         res = self.client.get(reverse('devhub.feed', args=[addon.slug]))
         doc = pq(res.content)
         eq_(len(doc('#recent-activity p')), 1)
 
     def test_addons_hidden(self):
-        self.add_comment()
+        self.add_hidden_log()
+        self.add_hidden_log(amo.LOG.OBJECT_ADDED)
         res = self.client.get(reverse('devhub.addons'))
         doc = pq(res.content)
         eq_(len(doc('#dashboard-sidebar div.recent-activity li.item')), 0)
@@ -2380,6 +2416,24 @@ class TestSubmitStep6(TestSubmitBase):
         self.get_addon().update(slug='foobar')
         eq_(self.get_version().nomination.timetuple()[0:5],
             nomdate.timetuple()[0:5])
+
+    def test_skip_step_for_webapp(self):
+        self.get_addon().update(type=amo.ADDON_WEBAPP)
+        assert self.get_addon().is_webapp()
+
+        r = self.client.get(self.url, follow=True)
+        doc = pq(r.content)
+
+        eq_(r.redirect_chain[0][1], 302)
+        assert r.redirect_chain[0][0].endswith('7')
+
+        addon = self.get_addon()
+        status = (amo.STATUS_PENDING if settings.WEBAPPS_RESTRICTED
+                  else amo.STATUS_LITE)
+        eq_(addon.status, status)
+
+        # Make sure the 7th step isn't shown
+        eq_(doc('.submit-addon-progress li').length, 6)
 
 
 class TestSubmitStep7(TestSubmitBase):
@@ -3124,7 +3178,7 @@ class TestUploadErrors(UploadTest):
         "notices": 0,
         "message_tree": {},
         "messages": [],
-        "metadata": {}
+        "metadata": {},
     })
 
     def xpi(self):
@@ -3174,7 +3228,7 @@ class TestUploadErrors(UploadTest):
         eq_(res.status_code, 200)
         doc = pq(res.content)
 
-        # javascript: upoad file:
+        # javascript: upload file:
         upload_url = doc('#upload-addon').attr('data-upload-url')
         with self.xpi() as f:
             res = self.client.post(upload_url, {'upload': f}, follow=True)
@@ -3247,17 +3301,7 @@ class TestVersionXSS(UploadTest):
         assert '&lt;script&gt;alert' in r.content
 
 
-class TestCreateAddon(BaseUploadTest,
-                      amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/platforms']
-
-    def setUp(self):
-        super(TestCreateAddon, self).setUp()
-        self.upload = self.get_upload('extension.xpi')
-        self.url = reverse('devhub.submit.2')
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
-        self.client.post(reverse('devhub.submit.1'))
+class UploadAddon(object):
 
     def post(self, desktop_platforms=[amo.PLATFORM_ALL], mobile_platforms=[],
              expect_errors=False):
@@ -3271,6 +3315,18 @@ class TestCreateAddon(BaseUploadTest,
             if r.context and 'new_addon_form' in r.context:
                 eq_(r.context['new_addon_form'].errors.as_text(), '')
         return r
+
+
+class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/platforms']
+
+    def setUp(self):
+        super(TestCreateAddon, self).setUp()
+        self.upload = self.get_upload('extension.xpi')
+        self.url = reverse('devhub.submit.2')
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        self.client.post(reverse('devhub.submit.1'))
 
     def assert_json_error(self, *args):
         UploadTest().assert_json_error(self, *args)
@@ -3310,6 +3366,54 @@ class TestCreateAddon(BaseUploadTest,
                                         args=[addon.slug]))
         eq_(sorted([f.filename for f in addon.current_version.all_files]),
             [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi'])
+
+
+class TestCreateWebApp(BaseUploadTest, UploadAddon, amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/platforms']
+
+    def setUp(self):
+        super(TestCreateWebApp, self).setUp()
+        manifest = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
+                                'addons', 'mozball.webapp')
+        self.upload = self.get_upload(abspath=manifest)
+        self.url = reverse('devhub.submit.2')
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        self.client.post(reverse('devhub.submit.1'))
+
+    def post(self, desktop_platforms=[], mobile_platforms=[], **kw):
+        return super(TestCreateWebApp, self).post(**kw)
+
+    def post_addon(self):
+        eq_(Addon.objects.count(), 0)
+        self.post()
+        return Addon.objects.get()
+
+    def test_post_addon_redirect(self):
+        r = self.post()
+        addon = Addon.objects.get()
+        self.assertRedirects(r, reverse('devhub.submit.3', args=[addon.slug]))
+
+    def test_addon_from_uploaded_manifest(self):
+        addon = self.post_addon()
+        eq_(addon.type, amo.ADDON_WEBAPP)
+        eq_(addon.guid, None)
+        eq_(unicode(addon.name), 'MozillaBall')
+        eq_(addon.slug, 'app-%s' % addon.id)
+        eq_(addon.app_slug, 'mozillaball')
+        eq_(addon.summary, u'Exciting Open Web development action!')
+        eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
+            u'Azione aperta emozionante di sviluppo di fotoricettore!')
+
+    def test_version_from_uploaded_manifest(self):
+        addon = self.post_addon()
+        eq_(addon.current_version.version, '1.0')
+
+    def test_file_from_uploaded_manifest(self):
+        addon = self.post_addon()
+        files = addon.current_version.files.all()
+        eq_(len(files), 1)
+        eq_(files[0].status, amo.STATUS_PUBLIC)
 
 
 class TestDeleteAddon(amo.tests.TestCase):

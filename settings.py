@@ -7,6 +7,8 @@ import socket
 
 from django.utils.functional import lazy
 
+# jingo-minify settings
+CACHEBUST_IMGS = True
 try:
     # If we have build ids available, we'll grab them here and add them to our
     # CACHE_PREFIX.  This will let us not have to flush memcache during updates
@@ -27,6 +29,13 @@ ROOT_PACKAGE = os.path.basename(ROOT)
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEBUG_PROPAGATE_EXCEPTIONS = True
+
+# need to view JS errors on a remote device? (requires node)
+# > npm install now
+# > node media/js/debug/remote_debug_server.node.js
+# REMOTE_JS_DEBUG = '<yourhost>:37767'
+# then connect to <yourhost>:8080 to view
+REMOTE_JS_DEBUG = False
 
 # Skip indexing ES to speed things up?
 SKIP_SEARCH_INDEX = False
@@ -289,7 +298,7 @@ MIDDLEWARE_CLASSES = (
     # This should come after authentication middleware
     'access.middleware.ACLMiddleware',
 
-    'commonware.middleware.HidePasswordOnException',
+    'commonware.middleware.ScrubRequestOnException',
 )
 
 # Auth
@@ -303,6 +312,7 @@ ROOT_URLCONF = '%s.urls' % ROOT_PACKAGE
 
 INSTALLED_APPS = (
     'amo',  # amo comes first so it always takes precedence.
+    'abuse',
     'access',
     'addons',
     'api',
@@ -319,6 +329,7 @@ INSTALLED_APPS = (
     'extras',
     'files',
     'jingo_minify',
+    'market',
     'pages',
     'perf',
     'product_details',
@@ -341,6 +352,7 @@ INSTALLED_APPS = (
 
     # Third party apps
     'djcelery',
+    'django_extensions',
     'django_nose',
     'gunicorn',
     'piston',
@@ -442,6 +454,8 @@ MINIFY_BUNDLES = {
             'css/impala/collections.less',
             'css/impala/tooltips.less',
             'css/impala/search.less',
+            'css/impala/colorpicker.less',
+            'css/impala/personas.less',
         ),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',
@@ -464,6 +478,12 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/mobile': (
             'css/zamboni/mobile.css',
+            'css/zamboni/mobile-forms.less',
+        ),
+        'zamboni/admin': (
+            'css/zamboni/admin-django.css',
+            'css/zamboni/admin-mozilla.css',
+            'css/zamboni/admin_features.css'
         ),
     },
     'js': {
@@ -559,6 +579,11 @@ MINIFY_BUNDLES = {
             'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
 
+            # Persona creation
+            'js/zamboni/upload.js',
+            'js/lib/jquery.minicolors.js',
+            'js/impala/persona_creation.js',
+
             # Collections
             'js/zamboni/collections.js',
             'js/impala/collections.js',
@@ -653,10 +678,15 @@ MINIFY_BUNDLES = {
             'js/zamboni/stats/stats_tables.js',
             'js/zamboni/stats/stats.js',
         ),
+        'zamboni/admin': (
+            'js/zamboni/admin.js',
+            'js/zamboni/admin_features.js',
+            'js/zamboni/admin_validation.js',
+        ),
         # This is included when DEBUG is True.  Bundle in <head>.
         'debug': (
             'js/debug/less_setup.js',
-            'js/lib/less-1.0.41.js',
+            'js/lib/less-1.1.4.js',
             'js/debug/less_live.js',
         ),
     }
@@ -701,6 +731,7 @@ PRIVATE_MIRROR_URL = '/_privatefiles'
 ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
 COLLECTIONS_ICON_PATH = UPLOADS_PATH + '/collection_icons'
 PREVIEWS_PATH = UPLOADS_PATH + '/previews'
+PERSONAS_PATH = UPLOADS_PATH + '/personas'
 USERPICS_PATH = UPLOADS_PATH + '/userpics'
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 ADDON_ICONS_DEFAULT_PATH = os.path.join(MEDIA_ROOT, 'img/addon-icons')
@@ -723,6 +754,8 @@ USERPICS_URL = STATIC_URL + '/img/uploads/userpics/%s/%s/%s.png?modified=%d'
 # paths for uploaded extensions
 COLLECTION_ICON_URL = ('%s/images/collection_icon/%%s.png?modified=%%s' %
                        STATIC_URL)
+NEW_PERSONAS_IMAGE_URL = (STATIC_URL +
+                          '/img/uploads/personas/%(id)d/%(file)s.jpg')
 PERSONAS_IMAGE_URL = ('http://www.getpersonas.com/static/'
                       '%(tens)d/%(units)d/%(id)d/%(file)s')
 PERSONAS_IMAGE_URL_SSL = ('https://www.getpersonas.com/static/'
@@ -767,17 +800,6 @@ PAYPAL_JS_URL = 'https://www.paypalobjects.com/js/external/dg.js'
 PAYPAL_EMBEDDED_AUTH = {'USER': '', 'PASSWORD': '', 'SIGNATURE': ''}
 PAYPAL_EMAIL = ''
 
-# Paypal is an awful place that doesn't understand locales.  Instead they have
-# country codes.  This maps our locales to their codes.
-PAYPAL_COUNTRYMAP = {
-    'af': 'ZA', 'ar': 'EG', 'ca': 'ES', 'cs': 'CZ', 'cy': 'GB', 'da': 'DK',
-    'de': 'DE', 'de-AT': 'AT', 'de-CH': 'CH', 'el': 'GR', 'en-GB': 'GB',
-    'eu': 'BS', 'fa': 'IR', 'fi': 'FI', 'fr': 'FR', 'he': 'IL', 'hu': 'HU',
-    'id': 'ID', 'it': 'IT', 'ja': 'JP', 'ko': 'KR', 'mn': 'MN', 'nl': 'NL',
-    'pl': 'PL', 'ro': 'RO', 'ru': 'RU', 'sk': 'SK', 'sl': 'SI', 'sq': 'AL',
-    'sr': 'CS', 'tr': 'TR', 'uk': 'UA', 'vi': 'VI',
-}
-
 # Contribution limit, one time and monthly
 MAX_CONTRIBUTION = 1000
 
@@ -810,6 +832,7 @@ CELERY_IMPORTS = ('django_arecibo.tasks',)
 CELERY_ROUTES = {
     'devhub.tasks.validator': {'queue': 'devhub'},
     'devhub.tasks.compatibility_check': {'queue': 'devhub'},
+    'devhub.tasks.fetch_manifest': {'queue': 'devhub'},
     'devhub.tasks.file_validator': {'queue': 'devhub'},
     'devhub.tasks.packager': {'queue': 'devhub'},
     'bandwagon.tasks.resize_icon': {'queue': 'images'},
@@ -872,6 +895,7 @@ LOGGING = {
         'suds': {'handlers': ['null']},
         'z.sphinx': {'level': logging.INFO},
         'z.task': {'level': logging.INFO},
+        'nose': {'level': logging.WARNING},
     },
 }
 
@@ -937,6 +961,8 @@ def read_only_mode(env):
 # Uploaded file limits
 MAX_ICON_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
+MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
+MAX_WEBAPP_UPLOAD_SIZE = 2 * 1024 * 1024
 
 # RECAPTCHA - copy all three statements to settings_local.py
 RECAPTCHA_PUBLIC_KEY = ''
@@ -978,6 +1004,9 @@ NEW_FEATURES = False
 IMPALA_BROWSE = False
 IMPALA_REVIEWS = False
 IMPALA_MEET = False  # Meet the Developer page.
+IMPALA_EDIT = False
+IMPALA_HOMEPAGE = True
+IMPALA_ADDON_DETAILS = True
 
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = True
@@ -1012,6 +1041,7 @@ MODIFIED_DELAY = 3
 # versions: version numbers to show in comparisons.
 # previous: the major version before :main.
 COMPAT = (
+    # Firefox.
     dict(app=1, main='8.0', versions=('8.0', '8.0a2', '8.0a1'),
          previous='7.0'),
     dict(app=1, main='7.0', versions=('7.0', '7.0a2', '7.0a1'),
@@ -1022,6 +1052,12 @@ COMPAT = (
          previous='4.0'),
     dict(app=1, main='4.0', versions=('4.0', '4.0a1', '3.7a'),
          previous='3.6'),
+    # Thunderbird.
+    dict(app=18, main='6.0', versions=('6.0', '6.0a2', '6.0a1'),
+         previous='5.0'),
+    # Seamonkey.
+    dict(app=59, main='2.3', versions=('2.3', '2.3b', '2.3a'),
+         previous='2.2'),
 )
 
 # URL for reporting arecibo errors too. If not set, won't be sent.
@@ -1073,3 +1109,7 @@ DEVELOPER_BLOG_URL = 'http://blog.mozilla.com/addons/feed/'
 
 LOGIN_RATELIMIT_USER = 5
 LOGIN_RATELIMIT_ALL_USERS = '15/m'
+
+# If this is true all new webapps go into an approval queue. If it's false then
+# they go public immediately.
+WEBAPPS_RESTRICTED = True

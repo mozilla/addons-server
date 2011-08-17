@@ -2,50 +2,36 @@
 
 {% block title %}{{ page_title('Admin Pages') }}{% endblock %}
 
-{% set links = (
-  ('Add-on Name Blocklist', url('zadmin.addon-name-blocklist'),
-   'Manage name blocklist'),
-   ('Add-on Search', url('zadmin.addon-search'),
-   'Search for add-ons by name or id'),
-  ('Celery', url('zadmin.celery'), 'See celery stats'),
-  ('Elasticseach', url('zadmin.elastic'), 'Manage elasticsearch'),
-  ('Env', url('amo.env'), 'See the request environment'),
-  ('Features', url('zadmin.features'), 'Manage featured add-ons'),
-  ('Flagged', url('zadmin.flagged'), 'See flagged reviews'),
-  ('Graphite', url('amo.graphite', 'amo'), 'See trends and statistics'),
-  ('Hera', url('zadmin.hera'), 'Purge pages from zeus'),
-  ('Jetpack', url('zadmin.jetpack'), 'Upgrade jetpack add-ons'),
-  ('Mail', url('zadmin.mail'), 'View fake mail'),
-  ('Models', url('zadmin.home'), 'Django Admin Pages'),
-  ('OAuth Consumer', url('zadmin.oauth-consumer-create'), 'Create a new OAuth Consumer'),
-  ('Settings', url('zadmin.settings'), 'See the site settings'),
-  ('Validation', url('zadmin.validation'), 'Bulk add-on validation'),
-) %}
-
-
 {% block content %}
 
 {% include "messages.html" %}
 
 <div class="content">
     <section>
-    <h2>Admin Pages</h2>
-    <dl>
-        {% for title, link, desc in links|sort %}
-          <dt><a href="{{ link }}">{{ title }}</a></dt>
-          <dd>{{ desc }}</dd>
-        {% endfor %}
-    </dl>
+        <h2>Search Add-ons</h2>
+        {% include "zadmin/includes/search_addons.html" %}
+        <h2>Search Users</h2>
+        {% include "zadmin/includes/search_users.html" %}
     </section>
     <aside>
-        <h2>Search Users</h2>
-        <form method="get" action="{{ url('users.admin_edit_impala') }}"
-              data-search-url="{{ url('zadmin.search', 'users', 'userprofile') }}">
-            <div>
-                <input class="searchbar" type="text" value="" name="q" size="40">
-                <p class="help">Enter the first four characters and select the user from the dropdown.</p>
-            </div>
-        </form>
+        <h2>Admin Log</h2>
+        {% if log %}
+        <ul>
+          {% for item in log %}
+            <li class="item">
+              {{ item }}
+              <span class="activity-timestamp">
+              {% trans user=item.user|user_link, ago=item.created|timesince %}
+              {{ ago }} by {{ user }}
+              {% endtrans %}
+              </span>
+            </li>
+          {% endfor %}
+          <p><a href="{{ url("admin:devhub_activitylog_changelist") }}">more...</a></p>
+        </ul>
+        {% else %}
+            <p>No entries.</p>
+        {% endif %}
     </aside>
 </div>
 {% endblock %}

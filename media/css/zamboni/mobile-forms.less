@@ -1,0 +1,36 @@
+@import '../impala/lib';
+
+.form-mobile {
+    padding: 1em;
+    label {
+        color: @medium-gray;
+        font-family: @sans-stack;
+        display: block;
+        padding-bottom: 4px;
+        &.check {
+            margin-bottom: 1em;
+        }
+    }
+
+  input[type=text], input[type=password] {
+      border: 1px solid #ccc;
+      padding: 3px;
+      .border-radius(5px);
+      font-size: 1.3em;
+      width: 100%;
+      .border-box;
+      margin-bottom: 1em
+  }
+}
+
+#content .notification-box {
+    padding: 1em;
+    margin: 1em;
+    .border-radius(10px);
+    h2 {
+        margin: 0;
+    }
+    &.error {
+        background-color: #FFD5D5;
+    }
+}

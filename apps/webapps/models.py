@@ -1,7 +1,9 @@
+from django.db import models
+from django.dispatch import receiver
+
 import amo
 from amo.urlresolvers import reverse
-from addons.models import Addon
-from versions.models import Version
+from addons.models import Addon, update_search_index, delete_search_index
 
 
 # We use super(Addon, self) on purpose to override expectations in Addon that
@@ -19,10 +21,8 @@ class Webapp(Addon):
         creating = not self.id
         super(Addon, self).save(**kw)
         if creating:
-            # Set current_version since a lot of things expect it.
-            version = Version.objects.create(addon=self, version='0')
             # Set the slug once we have an id to keep things in order.
-            self.update(slug='app-%s' % self.id, _current_version=version)
+            self.update(slug='app-%s' % self.id)
 
     def get_url_path(self, impala=None):
         return reverse('apps.detail', args=[self.app_slug])
@@ -32,3 +32,9 @@ class Webapp(Addon):
 translated = 'name', 'summary', 'description'
 Webapp._meta.translated_fields = [f for f in Webapp._meta.fields
                                   if f.name in translated]
+
+
+models.signals.post_save.connect(update_search_index, sender=Webapp,
+                                 dispatch_uid='webapps.index')
+models.signals.post_delete.connect(delete_search_index, sender=Webapp,
+                                   dispatch_uid='webapps.unindex')

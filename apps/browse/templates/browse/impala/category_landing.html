@@ -19,6 +19,9 @@
       <h1>{{ category.name }}</h1>
       {{ addons[:3]|featured_grid(src='cb-hc-featured',
                                   dl_src='cb-dl-featured') }}
+      <div class="banner-box">
+        <div class="banner featured">{{ _('Featured') }}</div>
+      </div>
     </div>
   {% endif %}
 
@@ -38,5 +41,13 @@
                          vital_summary=vital[0], vital_more=vital[1]) }}
   </div>
   {% endfor %}
+  <h2 class="seeall"><a href="{{ url('i_browse.extensions',
+                      category.slug)|urlparams(sort='users') }}">
+    {% trans cnt = category.count, name = category.name %}
+      See the {{ cnt }} extension in {{ name }} &raquo;
+    {% pluralize %}
+      See all {{ cnt }} extensions in {{ name }} &raquo;
+    {% endtrans %}
+  </a></h2>
 </section>
 {% endblock %}

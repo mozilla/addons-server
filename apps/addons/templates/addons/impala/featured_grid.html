@@ -6,7 +6,7 @@
   <section>
   {% for addon in page %}
     <li>
-      <div class="item addon">
+      <div class="hovercard addon">
         <a href="{{ addon.get_url_path(impala=True)|urlparams(src=dl_src) }}">
           <div class="summary">
             <h3>{{ addon.name }}</h3>
@@ -21,7 +21,7 @@
           </div>
         </a>
         <div class="more">
-          {{ install_button(addon, impala=True, src=src) }}
+          {{ install_button(addon, impala=True) }}
           {{ addon.summary|truncate(250)|nl2br }}
           <div class="byline">
             {% trans users=users_list(addon.listed_authors, size=2) %}

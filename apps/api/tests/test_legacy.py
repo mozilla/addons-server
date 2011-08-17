@@ -24,6 +24,7 @@ from addons.models import (Addon, AppSupport, Feature, Preview)
 from addons.utils import FeaturedManager
 from applications.models import Application
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
+from files.models import File
 from files.tests.test_models import UploadTest
 from search.tests import SphinxTestCase
 from search.utils import stop_sphinx
@@ -492,26 +493,6 @@ class ListTest(TestCase):
         response = make_call('list')
         self.assertContains(response, '<addon id', 3)
 
-    def test_randomness(self):
-        """
-        This tests that we're sufficiently random when recommending addons.
-
-        We can test for this by querying /list/recommended a number of times
-        until we get two response.contents that do not match.
-        """
-        response = make_call('list/recommended')
-        all_identical = True
-
-        for i in range(99):
-            cache.clear()
-            current_request = make_call('list/recommended')
-            if current_request.content != response.content:
-                all_identical = False
-                break
-
-        assert not all_identical, (
-                "All 100 requests returned the exact same response.")
-
     def test_type_filter(self):
         """
         This tests that list filtering works.
@@ -731,7 +712,7 @@ class SearchTest(SphinxTestCase):
 
 
 class LanguagePacks(UploadTest):
-    fixtures = ['addons/listed', 'base/apps']
+    fixtures = ['addons/listed', 'base/apps', 'base/platforms']
 
     def setUp(self):
         self.url = reverse('api.language', args=['1.5'])
@@ -766,12 +747,27 @@ class LanguagePacks(UploadTest):
         res = self.client.get(self.tb_url)
         self.assertNotContains(res, "<strings><![CDATA[")
 
+    def setup_localepicker(self, platform):
+        self.addon.update(type=amo.ADDON_LPAPP, status=amo.STATUS_PUBLIC)
+        version = self.addon.versions.all()[0]
+        File.objects.create(version=version, platform_id=platform)
+
+    def test_search_wrong_platform(self):
+        self.setup_localepicker(amo.PLATFORM_MAC.id)
+        eq_(self.addon.get_localepicker(), '')
+
+    @patch('apps.files.models.File.get_localepicker')
+    def test_search_right_platform(self, get_localepicker):
+        get_localepicker.return_value = 'some data'
+        self.setup_localepicker(amo.PLATFORM_ANDROID.id)
+        eq_(self.addon.get_localepicker(), 'some data')
+
     @patch('apps.addons.models.Addon.get_localepicker')
     def test_localepicker(self, get_localepicker):
-        get_localepicker.return_value = 'some value'
+        get_localepicker.return_value = unicode('title=اختر لغة', 'utf8')
         self.addon.update(type=amo.ADDON_LPAPP, status=amo.STATUS_PUBLIC)
         res = self.client.get(self.url)
         self.assertContains(res, dedent("""
                                                 <strings><![CDATA[
-                                            some value
+                                            title=اختر لغة
                                                 ]]></strings>"""))

@@ -1,3 +1,4 @@
+{%- if pick -%}
 <li class="panel">
   <div id="monthly" class="feature promo">
     <hgroup>
@@ -5,31 +6,19 @@
     </hgroup>
     <div class="wrap">
       <div>
-        {% if LANG == 'de' %}
-          <h3>{{ addon_de.name }}</h3>
-          <div>
-            <p>Surfen und sparen: Wenn Sie einen Online-Shop besuchen, zeigt Ihnen dieses
-            Add-on, ob für die Seite Gutscheine zur Verfügung stehen.</p>
-            {{ install_button(addon_de, src='discovery-promo') }}
-          </div>
-          {# TODO: Change this screenshot when changing the monthly pick. #}
-          <img src="{{ addon_de.thumbnail_url }}">
-        {% else %}
-          <img src="{{ addon.thumbnail_url }}">
-          <h3>{{ addon.name }}</h3>
-          <div>
-            <p>{% trans %}
-            Include results from your social networks and favorite websites whenever
-            you search the web.
-            {% endtrans %}</p>
-            {% if module_context == 'discovery' %}
-              {{ install_button(addon, src='discovery-promo') }}
-            {% else %}
-              {{ install_button(addon, src='hp-btn-promo', impala=True) }}
-            {% endif %}
-          </div>
-        {% endif %}
+        <img src="{{ pick.image }}">
+        {% set addon = pick.addon %}
+        <h3>{{ addon.name }}</h3>
+        <div>
+          <p>{{ pick.blurb }}</p>
+          {% if module_context == 'discovery' %}
+            {{ install_button(addon, src='discovery-promo') }}
+          {% else %}
+            {{ install_button(addon, src='hp-btn-promo', impala=True) }}
+          {% endif %}
+        </div>
       </div>
     </div>
   </div>
 </li>
+{%- endif -%}

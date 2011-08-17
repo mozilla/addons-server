@@ -14,15 +14,16 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
+from abuse.models import AbuseReport
 from access.models import Group, GroupUser
 from addons.models import Addon, AddonUser
 from amo.helpers import urlparams
 from amo.pyquery_wrapper import PyQuery as pq
 from amo.urlresolvers import reverse
-from amo.tests.test_helpers import AbuseBase
+from devhub.models import ActivityLog
 from users.models import BlacklistedPassword, UserProfile, UserNotification
 import users.notifications as email
-from users.utils import EmailResetCode
+from users.utils import EmailResetCode, UnsubscribeCode
 
 
 class UserViewBase(amo.tests.TestCase):
@@ -217,6 +218,35 @@ class TestEditAdmin(UserViewBase):
         eq_(res.status_code, 200)
         eq_(self.get_user().password, self.regular.password)  # Hasn't changed.
 
+    def test_admin_logs_edit(self):
+        data = self.get_data()
+        data['email'] = 'something@else.com'
+        self.client.post(self.url, data)
+        res = ActivityLog.objects.filter(action=amo.LOG.ADMIN_USER_EDITED.id)
+        eq_(res.count(), 1)
+        assert self.get_data()['admin_log'] in res[0]._arguments
+
+    def test_admin_logs_anonymize(self):
+        data = self.get_data()
+        data['anonymize'] = True
+        self.client.post(self.url, data)
+        res = (ActivityLog.objects
+                          .filter(action=amo.LOG.ADMIN_USER_ANONYMIZED.id))
+        eq_(res.count(), 1)
+        assert self.get_data()['admin_log'] in res[0]._arguments
+
+    def test_admin_no_password(self):
+        data = self.get_data()
+        data.update({'password': 'pass1234',
+                     'password2': 'pass1234',
+                     'oldpassword': 'password'})
+        self.client.post(self.url, data)
+        logs = ActivityLog.objects.filter
+        eq_(logs(action=amo.LOG.CHANGE_PASSWORD.id).count(), 0)
+        res = logs(action=amo.LOG.ADMIN_USER_EDITED.id)
+        eq_(res.count(), 1)
+        eq_(res[0].details['password'][0], u'****')
+
 
 class TestPasswordAdmin(UserViewBase):
     fixtures = ['base/users']
@@ -326,6 +356,78 @@ class TestLogin(UserViewBase):
         data.update({'recaptcha': '', 'recaptcha_shown': ''})
         res = self.client.post(self.url, data=data)
         eq_(res.status_code, 302)
+
+
+class TestUnsubscribe(UserViewBase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.user = User.objects.get(email='editor@mozilla.com')
+        self.user_profile = self.user.get_profile()
+
+    def test_correct_url_update_notification(self):
+        # Make sure the user is subscribed
+        perm_setting = email.NOTIFICATIONS[0]
+        un = UserNotification.objects.create(notification_id=perm_setting.id,
+                                             user=self.user_profile,
+                                             enabled=True)
+
+        # Create a URL
+        token, hash = UnsubscribeCode.create(self.user.email)
+        url = reverse('users.unsubscribe', args=[token, hash,
+                                                 perm_setting.short])
+
+        # Load the URL
+        r = self.client.get(url)
+        doc = pq(r.content)
+
+        # Check that it was successful
+        assert doc('#unsubscribe-success').length
+        assert doc('#standalone').length
+        eq_(doc('#standalone ul li').length, 1)
+
+        # Make sure the user is unsubscribed
+        un = UserNotification.objects.filter(notification_id=perm_setting.id,
+                                             user=self.user)
+        eq_(un.count(), 1)
+        eq_(un.all()[0].enabled, False)
+
+    def test_correct_url_new_notification(self):
+        # Make sure the user is subscribed
+        assert not UserNotification.objects.count()
+
+        # Create a URL
+        perm_setting = email.NOTIFICATIONS[0]
+        token, hash = UnsubscribeCode.create(self.user.email)
+        url = reverse('users.unsubscribe', args=[token, hash,
+                                                 perm_setting.short])
+
+        # Load the URL
+        r = self.client.get(url)
+        doc = pq(r.content)
+
+        # Check that it was successful
+        assert doc('#unsubscribe-success').length
+        assert doc('#standalone').length
+        eq_(doc('#standalone ul li').length, 1)
+
+        # Make sure the user is unsubscribed
+        un = UserNotification.objects.filter(notification_id=perm_setting.id,
+                                             user=self.user)
+        eq_(un.count(), 1)
+        eq_(un.all()[0].enabled, False)
+
+    def test_wrong_url(self):
+        perm_setting = email.NOTIFICATIONS[0]
+        token, hash = UnsubscribeCode.create(self.user.email)
+        hash = hash[::-1]  # Reverse the hash, so it's wrong
+
+        url = reverse('users.unsubscribe', args=[token, hash,
+                                                 perm_setting.short])
+        r = self.client.get(url)
+        doc = pq(r.content)
+
+        eq_(doc('#unsubscribe-fail').length, 1)
 
 
 class TestReset(UserViewBase):
@@ -495,9 +597,32 @@ class TestProfile(UserViewBase):
                    for i in xrange(len(addons) - 1))
 
 
-class TestReportAbuse(AbuseBase, amo.tests.TestCase):
+class TestReportAbuse(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
         settings.RECAPTCHA_PRIVATE_KEY = 'something'
         self.full_page = reverse('users.abuse', args=[10482])
+
+    @patch('captcha.fields.ReCaptchaField.clean')
+    def test_abuse_anonymous(self, clean):
+        clean.return_value = ""
+        self.client.post(self.full_page, {'text': 'spammy'})
+        eq_(len(mail.outbox), 1)
+        assert 'spammy' in mail.outbox[0].body
+        report = AbuseReport.objects.get(user=10482)
+        eq_(report.message, 'spammy')
+        eq_(report.reporter, None)
+
+    def test_abuse_anonymous_fails(self):
+        r = self.client.post(self.full_page, {'text': 'spammy'})
+        assert 'recaptcha' in r.context['abuse_form'].errors
+
+    def test_abuse_logged_in(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.post(self.full_page, {'text': 'spammy'})
+        eq_(len(mail.outbox), 1)
+        assert 'spammy' in mail.outbox[0].body
+        report = AbuseReport.objects.get(user=10482)
+        eq_(report.message, 'spammy')
+        eq_(report.reporter.email, 'regular@mozilla.com')

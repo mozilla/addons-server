@@ -15,7 +15,7 @@ import jingo
 from ratelimit.decorators import ratelimit
 from tower import ugettext as _
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
-
+from mobility.decorators import mobile_template
 
 import amo
 from amo import messages
@@ -23,15 +23,18 @@ from amo.decorators import (json_view, login_required, permission_required,
                             write)
 from amo.forms import AbuseForm
 from amo.urlresolvers import reverse
-from amo.utils import send_mail, send_abuse_report
+from amo.utils import send_mail
+from abuse.models import send_abuse_report
 from addons.models import Addon
 from access import acl
 from bandwagon.models import Collection
+from users.models import UserNotification
+import users.notifications as notifications
 
 from .models import UserProfile
 from .signals import logged_out
 from . import forms
-from .utils import EmailResetCode
+from .utils import EmailResetCode, UnsubscribeCode
 import tasks
 
 log = commonware.log.getLogger('z.users')
@@ -315,8 +318,9 @@ def _clean_next_url(request):
 
 
 @anonymous_csrf
+@mobile_template('users/{mobile/}login.html')
 @ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
-def login(request):
+def login(request, template=None):
     # In case we need it later.  See below.
     get_copy = request.GET.copy()
 
@@ -327,7 +331,7 @@ def login(request):
 
     limited = getattr(request, 'limited', 'recaptcha_shown' in request.POST)
     partial_form = partial(forms.AuthenticationForm, use_recaptcha=limited)
-    r = auth.views.login(request, template_name='users/login.html',
+    r = auth.views.login(request, template_name=template,
                          redirect_field_name='to',
                          authentication_form=partial_form)
 
@@ -562,8 +566,7 @@ def report_abuse(request, user_id):
     user = get_object_or_404(UserProfile, pk=user_id)
     form = AbuseForm(request.POST or None, request=request)
     if request.method == "POST" and form.is_valid():
-        url = reverse('users.profile', args=[user.pk])
-        send_abuse_report(request, user, url, form.cleaned_data['text'])
+        send_abuse_report(request, user, form.cleaned_data['text'])
         messages.success(request, _('User reported.'))
     else:
         return jingo.render(request, 'users/report_abuse_full.html',
@@ -601,3 +604,37 @@ def password_reset_confirm(request, uidb36=None, token=None):
 
     return jingo.render(request, 'users/pwreset_confirm.html',
                         {'form': form, 'validlink': validlink})
+
+
+@never_cache
+def unsubscribe(request, hash=None, token=None, perm_setting=None):
+    """
+    Pulled from django contrib so that we can add user into the form
+    so then we can show relevant messages about the user.
+    """
+    assert hash is not None and token is not None
+    user = None
+
+    try:
+        email = UnsubscribeCode.parse(token, hash)
+        user = UserProfile.objects.get(email=email)
+    except (ValueError, UserProfile.DoesNotExist):
+        pass
+
+    perm_settings = []
+    if user is not None:
+        unsubscribed = True
+        if not perm_setting:
+            # TODO: make this work. nothing currently links to it, though.
+            perm_settings = [l for l in notifications.NOTIFICATIONS
+                             if l.mandatory==False]
+        else:
+            perm_setting = notifications.NOTIFICATIONS_BY_SHORT[perm_setting]
+            UserNotification.update_or_create(update={'enabled': False},
+                    user=user, notification_id=perm_setting.id)
+            perm_settings = [perm_setting]
+    else:
+        unsubscribed = False
+
+    return jingo.render(request, 'users/unsubscribe.html',
+            {'unsubscribed': unsubscribed, 'perm_settings': perm_settings})

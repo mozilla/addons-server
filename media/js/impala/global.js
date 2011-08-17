@@ -49,7 +49,7 @@ function listing_grid() {
         if (n != current) {
             n = n < 0 ? 0 : (n > maxPage ? maxPage : n);
             current = n;
-            $pages.hide().eq(n).show().find('.item h3').truncate();
+            $pages.hide().eq(n).show().find('.hovercard h3').truncate();
             $grid.trigger("grid.update", {self: $grid, current: current, maxPage: maxPage});
         }
     };
@@ -59,13 +59,13 @@ function listing_grid() {
     $grid.next = function() {
         $grid.go(current+1);
     };
-    $grid.find('.item h3').truncate();
-    $grid.delegate('.item', 'mouseover', function() {
+    $grid.find('.hovercard h3').truncate();
+    $grid.delegate('.hovercard', 'mouseover', function() {
         var $el = $(this);
         setTimeout(function() {
             $el.find('h3').untruncate();
         }, 100);
-    }).delegate('.item', 'mouseout', function() {
+    }).delegate('.hovercard', 'mouseout', function() {
         var $el = $(this);
         setTimeout(function() {
             $el.find('h3').truncate();
@@ -89,10 +89,6 @@ $(function() {
     $("#site-nonfx .close").click(function() {
         z.visitor.set('seen_badbrowser_warning', 1);
     });
-
-    // //Truncate text in Firefox.
-    // $('.htruncate').truncate({dir: 'h'});
-    // $('.vtruncate').truncate({dir: 'v'});
 
     // Bind to the mobile site if a mobile link is clicked.
     $(".mobile-link").attr("href", window.location).click(function() {

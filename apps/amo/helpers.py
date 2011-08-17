@@ -270,7 +270,7 @@ def impala_breadcrumbs(context, items=list(), add_default=True, crumb_size=40):
     """
     if add_default and not context.get('WEBAPPS'):
         app = context['request'].APP
-        crumbs = [(urlresolvers.reverse('i_home'), page_name(app))]
+        crumbs = [(urlresolvers.reverse('home'), page_name(app))]
     else:
         crumbs = []
 

@@ -10,6 +10,7 @@ body {
 
 #page {
     max-width: 960px;
+    min-height: 350px;
     width: 960px;
     margin: 0 auto;
     position: relative;
@@ -24,7 +25,7 @@ a {
 }
 
 .island {
-    background: repeat scroll 0 0 transparent;
+    background: #FCFDFE;
     .gradient-two-color(#FCFDFE, #F4F8FC);
     border: 1px solid @border-blue;
     .border-radius(5px);
@@ -55,6 +56,12 @@ header + .island {
     margin-top: 1em;
 }
 
+#standalone { // Used on pages such as the unsubscribe page
+    float: none;
+    margin: 6em auto 0;
+    width: 500px;
+}
+
 .primary {
     margin-left: 210px;
     position: relative;
@@ -71,6 +78,7 @@ header + .island {
     }
     .island.hero {
         width: 720px;
+        position: relative;
     }
 }
 

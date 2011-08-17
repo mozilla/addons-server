@@ -20,7 +20,7 @@ def extract(addon):
     """Extract indexable attributes from an add-on."""
     attrs = ('id', 'created', 'last_updated', 'weekly_downloads',
              'bayesian_rating', 'average_daily_users', 'status', 'type',
-             'is_disabled')
+             'is_disabled', 'premium_type')
     d = dict(zip(attrs, attrgetter(*attrs)(addon)))
     # Coerce the Translation into a string.
     d['name_sort'] = unicode(addon.name).lower()
@@ -43,10 +43,10 @@ def extract(addon):
     d['app'] = [app.id for app in addon.compatible_apps.keys()]
     # Boost by the number of users on a logarithmic scale. The maximum boost
     # (11,000,000 users for adblock) is about 5x.
-    d['_boost'] = addon.average_daily_users ** .1
+    d['_boost'] = addon.average_daily_users ** .2
     # Double the boost if the add-on is public.
     if addon.status == amo.STATUS_PUBLIC:
-        d['_boost'] = max(d['_boost'], 1) * 2
+        d['_boost'] = max(d['_boost'], 1) * 4
     return d
 
 

@@ -2,6 +2,7 @@ from django.conf.urls.defaults import patterns, url, include
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect
 
+from devhub.views import ajax_upload_image
 from . import views
 
 ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
@@ -10,6 +11,7 @@ ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 # These will all start with /addon/<addon_id>/
 detail_patterns = patterns('',
     url('^$', views.addon_detail, name='addons.detail'),
+    url('^more$', views.addon_detail, name='addons.detail_more'),
     url('^eula/(?P<file_id>\d+)?$', views.eula, name='addons.eula'),
     url('^license/(?P<version>[^/]+)?', views.license, name='addons.license'),
     url('^privacy/', views.privacy, name='addons.privacy'),
@@ -69,6 +71,14 @@ urlpatterns = patterns('',
     ('^addon/%s/' % ADDON_ID, include(detail_patterns)),
     # Impala deets.
     url('^i/addon/%s/' % ADDON_ID, include(impala_detail_patterns)),
+
+    # Personas submission.
+    url('^i/personas/%s/submit/done$' % ADDON_ID, views.submit_persona_done,
+        name='personas.submit.done'),
+    url('^i/personas/submit$', views.submit_persona, name='personas.submit'),
+    url('^i/personas/submit/upload/'
+        '(?P<upload_type>persona_header|persona_footer)$',
+        ajax_upload_image, name='personas.upload_persona'),
 
     # Accept extra junk at the end for a cache-busting build id.
     url('^addons/buttons.js(?:/.+)?$', 'addons.buttons.js'),

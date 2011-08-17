@@ -8,8 +8,8 @@ from . import views
 
 urlpatterns = patterns('',
     # AMO stuff.
-    url('^$', lambda r: redirect('admin:index'), name='zadmin.home'),
-    url('^index.html$', views.index, name='zadmin.index'),
+    url('^$', views.index, name='zadmin.index'),
+    url('^models$', lambda r: redirect('admin:index'), name='zadmin.home'),
     url('^env$', views.env, name='amo.env'),
     url('^flagged', views.flagged, name='zadmin.flagged'),
     url('^hera', views.hera, name='zadmin.hera'),
@@ -40,6 +40,9 @@ urlpatterns = patterns('',
         name='zadmin.collections_json'),
     url('^features/featured-collection$', views.featured_collection,
         name='zadmin.featured_collection'),
+
+    url('^monthly-pick$', views.monthly_pick,
+        name='zadmin.monthly_pick'),
 
     url('^elastic$', views.elastic, name='zadmin.elastic'),
     url('^mail$', views.mail, name='zadmin.mail'),

@@ -1,4 +1,5 @@
 import csp.views
+from waffle.views import wafflejs
 
 from django.conf.urls.defaults import patterns, url, include
 from django.views.decorators.cache import never_cache
@@ -19,6 +20,7 @@ services_patterns = patterns('',
 
 urlpatterns = patterns('',
     url('^robots.txt$', views.robots, name='robots.txt'),
+    url(r'^wafflejs$', wafflejs, name='wafflejs'),
     ('^services/', include(services_patterns)),
 
     url('^opensearch.xml$', 'api.views.render_xml',

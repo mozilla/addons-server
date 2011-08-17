@@ -1,6 +1,7 @@
 from datetime import datetime
 import hashlib
 import logging
+import os
 import urllib
 import urllib2
 import urlparse
@@ -28,8 +29,11 @@ jp_log = logging.getLogger('z.jp.repack')
 
 @task
 def extract_file(viewer, **kw):
+    # This message is for end users so they'll see a nice error.
     msg = Message('file-viewer:%s' % viewer)
     msg.delete()
+    # This flag is so that we can signal when the extraction is completed.
+    flag = Message(viewer._extraction_cache_key())
     task_log.info('[1@%s] Unzipping %s for file viewer.' % (
                   extract_file.rate_limit, viewer))
 
@@ -44,6 +48,7 @@ def extract_file(viewer, **kw):
         task_log.error('[1@%s] Error unzipping: %s' %
                        (extract_file.rate_limit, err))
 
+    flag.delete()
 
 @task
 def migrate_jetpack_versions(ids, **kw):
@@ -60,6 +65,7 @@ class FakeUpload(object):
 
     def __init__(self, path, hash, validation):
         self.path = path
+        self.name = os.path.basename(path)
         self.hash = hash
         self.validation = validation
 

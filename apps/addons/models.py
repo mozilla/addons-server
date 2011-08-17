@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 import collections
 import itertools
 import json
@@ -223,12 +224,15 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
                                      related_name='addons')
-
     categories = models.ManyToManyField('Category', through='AddonCategory')
-
     dependencies = models.ManyToManyField('self', symmetrical=False,
                                           through='AddonDependency',
                                           related_name='addons')
+    premium_type = models.PositiveIntegerField(
+                                    choices=amo.ADDON_PREMIUM_TYPES.items(),
+                                    default=amo.ADDON_FREE)
+    manifest_url = models.URLField(max_length=255, blank=True, null=True,
+                                   verify_exists=False)
 
     _current_version = models.ForeignKey(Version, related_name='___ignore',
             db_column='current_version', null=True, on_delete=models.SET_NULL)
@@ -244,6 +248,22 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     class Meta:
         db_table = 'addons'
+
+    @staticmethod
+    def __new__(cls, *args, **kw):
+        # Return a Webapp instead of an Addon if the `type` column says this is
+        # really a webapp.
+        try:
+            type_idx = Addon._meta._type_idx
+        except AttributeError:
+            type_idx = (idx for idx, f in enumerate(Addon._meta.fields)
+                        if f.attname == 'type').next()
+            Addon._meta._type_idx = type_idx
+        if ((len(args) == len(Addon._meta.fields)
+             and args[type_idx] == amo.ADDON_WEBAPP)
+            or kw and kw.get('type') == amo.ADDON_WEBAPP):
+            cls = Webapp
+        return super(Addon, cls).__new__(cls, *args, **kw)
 
     def __unicode__(self):
         return u'%s: %s' % (self.id, self.name)
@@ -330,11 +350,13 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     @classmethod
     def from_upload(cls, upload, platforms):
         from files.utils import parse_addon
-        data = parse_addon(upload.path)
+        data = parse_addon(upload)
         fields = cls._meta.get_all_field_names()
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
         addon.status = amo.STATUS_NULL
         addon.default_locale = to_language(translation.get_language())
+        if addon.is_webapp():
+            addon.manifest_url = upload.name
         addon.save()
         Version.from_upload(upload, addon, platforms)
         amo.log(amo.LOG.CREATE_ADDON, addon)
@@ -356,6 +378,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return urls
 
     def get_url_path(self, impala=False):
+        if settings.IMPALA_ADDON_DETAILS:
+            return reverse('addons.detail', args=[self.slug])
         u = '%saddons.detail' % ('i_' if impala else '')
         return reverse(u, args=[self.slug])
 
@@ -541,7 +565,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                     self.id, size, int(time.mktime(self.modified.timetuple())))
 
     def update_status(self, using=None):
-        if self.status == amo.STATUS_NULL or self.is_disabled or self.is_app():
+        if (self.status == amo.STATUS_NULL or self.is_disabled
+            or self.is_webapp() or self.is_persona()):
             return
 
         def logit(reason, old=self.status):
@@ -645,7 +670,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         """
         Return other addons by the author(s) of this addon
         """
-        return (MiniAddon.objects.valid().exclude(id=self.id)
+        return (Addon.objects.valid().exclude(id=self.id)
                 .filter(addonuser__listed=True,
                         authors__in=self.listed_authors).distinct())
 
@@ -706,7 +731,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def is_persona(self):
         return self.type == amo.ADDON_PERSONA
 
-    def is_app(self):
+    def is_webapp(self):
         return self.type == amo.ADDON_WEBAPP
 
     @property
@@ -729,6 +754,18 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def is_incomplete(self):
         return self.status == amo.STATUS_NULL
+
+    def can_become_premium(self):
+        """Not all addons can become premium."""
+        return (self.status in amo.PREMIUM_STATUSES
+                and self.highest_status in amo.PREMIUM_STATUSES
+                and self.type in [amo.ADDON_EXTENSION, amo.ADDON_WEBAPP])
+
+    def is_premium(self):
+        return self.premium_type == amo.ADDON_PREMIUM
+
+    def can_be_purchased(self):
+        return self.is_premium() and self.status in amo.REVIEWED_STATUSES
 
     @classmethod
     def featured_random(cls, app, lang):
@@ -900,13 +937,22 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         """For language packs, gets the contents of localepicker."""
         if (self.type == amo.ADDON_LPAPP and self.status == amo.STATUS_PUBLIC
             and self.current_version):
+            files = (self.current_version.files
+                         .filter(platform__in=amo.MOBILE_PLATFORMS.keys()))
             try:
-                file = (self.current_version
-                            .files.get(platform=amo.PLATFORM_ALL.id))
-                return file.get_localepicker()
-            except File.DoesNotExist:
+                return unicode(files[0].get_localepicker(), 'utf-8')
+            except IndexError:
                 pass
         return ''
+
+    @amo.cached_property
+    def upsell(self):
+        """Return the upsell or add-on, or None if there isn't one."""
+        try:
+            # We set unique_together on the model, so there will only be one.
+            return self._upsell_from.all()[0]
+        except IndexError:
+            pass
 
 
 @receiver(dbsignals.post_save, sender=Addon,
@@ -991,24 +1037,6 @@ def watch_disabled(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
     if instance.is_disabled and not Addon(**attrs).is_disabled:
         for f in File.objects.filter(version__addon=instance.id):
             f.hide_disabled_file()
-
-
-class MiniAddonManager(AddonManager):
-
-    def get_query_set(self):
-        qs = super(MiniAddonManager, self).get_query_set()
-        return qs.only_translations()
-
-
-class MiniAddon(Addon):
-    """A smaller lightweight version of Addon suitable for the
-    update script or other areas that don't need all the transforms.
-    This class exists to give the addon a different key for cache machine."""
-
-    objects = MiniAddonManager()
-
-    class Meta:
-        proxy = True
 
 
 class Persona(caching.CachingMixin, models.Model):
@@ -1400,3 +1428,21 @@ def freezer(sender, instance, **kw):
     # Adjust the hotness of the FrozenAddon.
     if instance.addon_id:
         Addon.objects.get(id=instance.addon_id).update(hotness=0)
+
+
+class AddonUpsell(amo.models.ModelBase):
+    free = models.ForeignKey(Addon, related_name='_upsell_from')
+    premium = models.ForeignKey(Addon, related_name='_upsell_to')
+    text = PurifiedField()
+
+    class Meta:
+        db_table = 'addon_upsell'
+        unique_together = ('free', 'premium')
+
+    def __unicode__(self):
+        return u'Free: %s to Premium: %s' % (self.free, self.premium)
+
+
+# webapps.models imports addons.models to get Addon, so we need to keep the
+# Webapp import down here.
+from webapps.models import Webapp

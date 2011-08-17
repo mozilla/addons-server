@@ -15,6 +15,7 @@
   {% if request.GET %}
     {{ impala_breadcrumbs([(url('i_collections.list'), _('Collections')),
                            (None, filter.title)]) }}
+    <h1>{{ title }}</h1>
   {% else %}
     {{ impala_breadcrumbs([(None, _('Collections'))]) }}
     <masthead class="hero" id="collections-landing">
@@ -28,11 +29,8 @@
       </p>
     </masthead>
   {% endif %}
-  <div class="island hero c">
+  <div class="island hero c listing">
     <header>
-      {% if request.GET %}
-        <h1>{{ title }}</h1>
-      {% endif %}
       {{ impala_addon_listing_header(url_base, filter.opts, sorting) }}
     </header>
     {% if sorting != 'featured' %}

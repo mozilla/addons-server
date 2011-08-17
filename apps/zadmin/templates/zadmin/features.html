@@ -8,15 +8,6 @@ data-collections-url="{{ url('zadmin.collections_json') }}"
 data-featured-collection-url="{{ url('zadmin.featured_collection') }}"
 {% endblock %}
 
-{% block extrahead %}
-<link rel="stylesheet" href="{{ media('css/zamboni/admin_features.css') }}">
-{% endblock %}
-
-{% block js %}
-{{ super() }}
-<script src="{{ media('js/zamboni/admin_features.js') }}"></script>
-{% endblock %}
-
 {% macro fc(form) %}
   {% set app_id = form.application.value()|int %}
   {% set app = amo.APPS_ALL.get(app_id, '') %}

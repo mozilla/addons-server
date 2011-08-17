@@ -3,7 +3,7 @@
   <h2><a href="{{ base_url }}">{{ _('Collections') }}</a></h2>
   <ul>
     {% for sort, title in filter.opts %}
-      <li class="s-{{ sort }}"><em><a href="{{ base_url|urlparams(sort=sort) }}">{{ title }}</a></em></li>
+      <li class="s-{{ sort }}"><a href="{{ base_url|urlparams(sort=sort) }}">{{ title }}</a></li>
     {% endfor %}
   </ul>
   {% if request.user.is_authenticated() %}
@@ -30,14 +30,14 @@
   <section id="recently-viewed">
     <h3>{{ _('Recently Viewed') }}</h3>
   </section>
-  <section>
-    <h3>{{ _('Add-on Collector') }}</h3>
-    <p>
-      {% trans app=request.APP.pretty %}
-        Get updates on followed collections or manage your own collections
-        directly from {{ app }} with this add-on.
-      {% endtrans %}
-    </p>
-    {{ addon_collector|addon_hovercard }}
-  </section>
 </nav>
+<section>
+  <h3>{{ _('Add-on Collector') }}</h3>
+  <p>
+    {% trans app=request.APP.pretty %}
+      Get updates on followed collections or manage your own collections
+      directly from {{ app }} with this add-on.
+    {% endtrans %}
+  </p>
+  {{ addon_collector|addon_hovercard }}
+</section>

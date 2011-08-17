@@ -9,7 +9,7 @@ import amo.tests
 class TestFeaturedManager(amo.tests.TestCase):
 
     def setUp(self):
-        patcher = mock.patch('addons.utils.FeaturedManager.get_objects')
+        patcher = mock.patch('addons.utils.FeaturedManager._get_objects')
         self.objects_mock = patcher.start()
         self.addCleanup(patcher.stop)
 
@@ -21,7 +21,7 @@ class TestFeaturedManager(amo.tests.TestCase):
             (3, 9, None, 1),     # A different type.
             (4, 1, 'ja', 1),     # Restricted locale.
             (5, 1, 'ja', 1),
-            (5, 1, 'en-US', 1),  # Same add-on, different locale.
+            (5, 1, 'en-Us', 1),  # Same add-on, different locale.
             (6, 1, None, 18),    # Different app.
         ]
         self.objects_mock.return_value = [dict(zip(self.fields, v))
@@ -60,20 +60,22 @@ class TestFeaturedManager(amo.tests.TestCase):
 class TestCreaturedManager(amo.tests.TestCase):
 
     def setUp(self):
-        patcher = mock.patch('addons.utils.CreaturedManager.get_objects')
+        patcher = mock.patch('addons.utils.CreaturedManager._get_objects')
         self.objects_mock = patcher.start()
         self.addCleanup(patcher.stop)
 
         self.category = mock.Mock()
         self.category.id = 1
+        self.category.application_id = 1
 
-        self.fields = ['category', 'addon', 'feature_locales']
+        self.fields = ['category', 'addon', 'locales', 'app']
         self.values = [
-            (1, 1, None),     # No locales.
-            (1, 2, ''),       # Make sure empty string is ok.
-            (2, 3, None),     # Something from a different category.
-            (1, 4, 'ja'),     # Check locales with no comma.
-            (1, 5, 'ja,en'),  # Locales with a comma.
+            (1, 1, None, 1),     # No locales.
+            (1, 2, '', 1),       # Make sure empty string is ok.
+            (2, 3, None, 1),     # Something from a different category.
+            (1, 4, 'JA', 1),     # Check locales with no comma.
+            (1, 5, 'ja,en', 1),  # Locales with a comma.
+            (1, 6, '', 9),       # Make sure empty string is ok.
         ]
         self.objects_mock.return_value = [dict(zip(self.fields, v))
                                           for v in self.values]

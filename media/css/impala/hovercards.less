@@ -12,6 +12,18 @@
     &.cols-3 li { width: 100% / 3; }
     &.cols-2 li { width: 100% / 2; }
     &.cols-1 li { width: 100%; }
+    section {
+        display: none;
+        position: relative;
+        &:first-child {
+            display: block;
+        }
+    }
+}
+.hovercard {
+    position: relative;
+    border: 1px solid transparent;
+    z-index: 20;
     .more, .desc {
         font-family: @sans-stack;
         color: #333;
@@ -23,163 +35,161 @@
         max-height: 2.6em;
         overflow: hidden;
     }
-    .item {
+    h3 {
+        color: @link;
+        font-weight: bold;
+        margin: 0 0 2px 0;
+        font-size: 13px;
+        line-height: 16px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 200px;
+    }
+    .more {
+        display: none;
         position: relative;
-        border: 1px solid transparent;
-        z-index: 20;
-        h3 {
-            color: @link;
-            font-weight: bold;
-            margin: 0 0 2px 0;
-            font-size: 13px;
-            line-height: 16px;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            max-width: 200px;
+        padding: 0 14px 8px 12px;
+        p:first-child {
+            margin-top: 0;
         }
-        .more {
-            display: none;
-            position: relative;
-            padding: 0 14px 8px 12px;
-        }
+    }
+    a {
+        text-decoration: none;
+    }
+    .adu {
+        color: #390;
+        font-size: 11px;
+    }
+    .byline {
+        margin: 8px 0;
+        font-size: 11px;
+        font-style: italic;
         a {
-            text-decoration: none;
+            display: inline;
+            color: inherit;
         }
-        .adu {
-            color: #390;
-            font-size: 11px;
+    }
+    &:hover {
+        z-index: 25;
+        background: #fff;
+        border-color: #ccc;
+        .box-shadow(0 0 4px rgba(0,0,0,.4));
+        .more {
+            background: #fff;
+            display: block;
+            z-index: 28;
         }
-        .byline {
-            margin: 8px 0;
-            font-size: 11px;
-            font-style: italic;
-            a {
-                display: inline;
-                color: inherit;
+        h3 {
+            text-decoration: underline;
+            white-space: normal;
+        }
+    }
+    &.persona {
+        overflow: hidden;
+        padding: 9px;
+        height: 78px;
+        a {
+            overflow: hidden;
+            display: block;
+        }
+        .persona-preview {
+            width: 200px;
+            height: 48px;
+            float: right;
+            overflow: hidden;
+            position: relative;
+            img {
+                width: 200px;
+                height: 67px;
+                position: absolute;
+                right: 0;
+                top: 0;
             }
         }
+        .more {
+            padding: 0;
+            margin-top: 10px;
+        }
+        h3 {
+            clear: right;
+        }
         &:hover {
+            .border-radius(5px);
+            height: auto;
+        }
+    }
+    &.addon {
+        margin: 5px 5px 5px 61px;
+        .summary, .icon {
+            position: relative;
+            padding: 8px;
+        }
+        .summary {
+            height: 48px;
+            z-index: 21;
+            overflow: hidden;
+            div {
+                white-space: nowrap;
+            }
+        }
+        .icon {
+            position: absolute;
+            left: -57px;
+            top: -1px;
+            padding-right: 0;
+            height: 48px;
+            width: 48px;
+            border-width: 1px 0 1px 1px;
+            border-style: solid;
+            z-index: 22;
+            border-color: transparent;
+            img {
+                margin: 8px;
+                width: 32px;
+                height: 32px;
+                border: 0;
+                padding: 0;
+            }
+        }
+        .more .vital {
+            border-top: 1px dotted #CCCCCC;
+            padding: 8px 0 0;
+            margin: 8px 0 4px;
+        }
+        &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            height: 66px;
+            width: 56px;
+            top: -1px;
+            left: -57px;
+            z-index: 1;
+        }
+        &:hover {
+            float: left;
             z-index: 25;
             background: #fff;
             border-color: #ccc;
             .box-shadow(0 0 4px rgba(0,0,0,.4));
-            .more {
-                background: #fff;
-                display: block;
-                z-index: 28;
-            }
-            h3 {
-                text-decoration: underline;
-                white-space: normal;
-            }
-        }
-        &.persona {
-            overflow: hidden;
-            padding: 9px;
-            height: 78px;
-            a {
-                overflow: hidden;
-                display: block;
-            }
-            .persona-preview {
-                width: 200px;
-                height: 48px;
-                float: right;
-                overflow: hidden;
-                position: relative;
-                img {
-                    width: 200px;
-                    height: 67px;
-                    position: absolute;
-                    right: 0;
-                    top: 0;
-                }
-            }
-            .more {
-                padding: 0;
-                margin-top: 10px;
-            }
-            h3 {
-                clear: right;
-            }
-            &:hover {
-                .border-radius(5px);
-                height: auto;
-            }
-        }
-        &.addon {
-            margin: 5px 5px 5px 61px;
-            .summary, .icon {
-                position: relative;
-                padding: 8px;
-            }
             .summary {
-                height: 48px;
-                z-index: 21;
-                overflow: hidden;
-                div {
-                    white-space: nowrap;
-                }
+                background: white;
+                z-index: 26;
+                height: auto;
+                min-height: 48px;
             }
             .icon {
-                position: absolute;
-                left: -57px;
-                top: -1px;
-                padding-right: 0;
-                height: 48px;
-                width: 48px;
-                border-width: 1px 0 1px 1px;
-                border-style: solid;
-                z-index: 22;
-                border-color: transparent;
-                img {
-                    margin: 8px;
-                    width: 32px;
-                    height: 32px;
-                    border: 0;
-                    padding: 0;
-                }
-            }
-            .more .vital {
-                border-top: 1px dotted #CCCCCC;
-                padding: 8px 0 0;
-                margin: 8px 0 4px;
-            }
-            &:before {
-                content: "";
-                display: block;
-                position: absolute;
-                height: 66px;
-                width: 56px;
-                top: -1px;
-                left: -57px;
-                z-index: 1;
-            }
-            &:hover {
-                float: left;
-                z-index: 25;
                 background: #fff;
                 border-color: #ccc;
+                z-index: 27;
+            }
+            &:before {
                 .box-shadow(0 0 4px rgba(0,0,0,.4));
-                .summary {
-                    background: white;
-                    z-index: 26;
-                    height: auto;
-                    min-height: 48px;
-                }
-                .icon {
-                    background: #fff;
-                    border-color: #ccc;
-                    z-index: 27;
-                }
-                &:before {
-                    .box-shadow(0 0 4px rgba(0,0,0,.4));
-                }
             }
         }
     }
-    .collection {
+    &.collection {
         &:hover {
             .summary {
                 overflow: visible;
@@ -194,6 +204,7 @@
                 border-top: 1px dotted #CCCCCC;
                 padding: 8px 0;
                 margin: 0 8px;
+                color: #390;
             }
         }
     }
@@ -208,66 +219,79 @@
         font-size: 10px;
         line-height: 12px;
     }
-    section {
-        display: none;
-        position: relative;
-        &:first-child {
-            display: block;
-        }
+}
+.featured {
+    h3 {
+        font-size: 16px;
+        line-height: 18px;
     }
-    &.featured {
-        h3 {
-            font-size: 16px;
-            line-height: 18px;
-        }
-        li {
-            height: 212px;
-            width: 240px;
-        }
-        .item {
-            padding: 9px;
-            margin: 0;
-            &.addon {
-                &:before {
-                    display: none;
-                    content: none;
-                }
-                .summary {
-                    height: 192px;
-                    padding: 0;
-                    div {
-                        width: 220px;
-                        height: 170px;
-                        position: relative;
-                        img {
-                            padding: 8px;
-                            top: 0;
-                            left: 0;
-                            bottom: 0;
-                            right: 0;
-                            margin: auto;
-                            border: 1px solid #ccc;
-                            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-                            position: absolute;
-                        }
+    li {
+        height: 212px;
+        width: 240px;
+    }
+    .hovercard {
+        padding: 9px;
+        margin: 0;
+        &.addon {
+            &:before {
+                display: none;
+                content: none;
+            }
+            .summary {
+                height: 192px;
+                padding: 0;
+                div {
+                    width: 220px;
+                    height: 170px;
+                    position: relative;
+                    img {
+                        padding: 8px;
+                        top: 0;
+                        left: 0;
+                        bottom: 0;
+                        right: 0;
+                        margin: auto;
+                        border: 1px solid #ccc;
+                        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+                        position: absolute;
                     }
                 }
             }
-            &:hover {
-                &.addon .summary {
-                    height: auto;
-                }
-                .more {
-                    padding: 14px 0 0;
-                }
+        }
+        &:hover {
+            &.addon .summary {
+                height: auto;
+            }
+            .more {
+                padding: 14px 0 0;
             }
         }
     }
 }
+
 .secondary {
-    .listing-grid {
-        li .item.addon {
-            margin: 0 0 0 56px;
+    .hovercard.addon {
+        line-height: inherit;
+        width: 196px;
+        position: relative;
+        left: -8px;
+        border: 0;
+        margin: 0;
+        .icon {
+            float: left;
+            position: static;
+            left: auto;
+            right: auto;
+            border: 0;
+        }
+        .summary a, p {
+            padding: 0;
+        }
+        .summary a {
+            display: inline;
+        }
+        &:before {
+            content: none;
         }
     }
 }
@@ -275,7 +299,7 @@
     li {
         float: right;
     }
-    .item {
+    .hovercard {
         &.addon {
             margin: 5px 61px 5px 5px;
         }
@@ -298,7 +322,7 @@
         float: right;
     }
     &.featured {
-        .item.addon {
+        .hovercard.addon {
             margin: 0;
         }
     }

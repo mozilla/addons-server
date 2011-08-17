@@ -1,0 +1,24 @@
+{% extends "impala/base.html" %}
+
+{% block title %}{{ page_title(addon.name) }}{% endblock %}
+{% block bodyclass %}gutter{% endblock %}
+
+{% block content %}
+{{ impala_breadcrumbs([(addon.type_url(impala=True), amo.ADDON_TYPES[addon.type]),
+                (None, addon.name)]) }}
+
+<aside class="secondary">
+  {{ addon|sidebar_listing }}
+</aside>
+
+<div class="primary">
+  <div class="notification-box error">
+    {% if addon.disabled_by_user %}
+        {{ _('This add-on has been removed by its author.') }}
+    {% elif addon.status == amo.STATUS_DISABLED %}
+        {{ _('This add-on has been disabled by an administrator.') }}
+    {% endif %}
+  </div>
+</div>
+
+{% endblock content %}

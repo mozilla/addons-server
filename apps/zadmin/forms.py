@@ -15,7 +15,7 @@ import amo
 from product_details import product_details
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
-from bandwagon.models import Collection, FeaturedCollection
+from bandwagon.models import Collection, FeaturedCollection, MonthlyPick
 from zadmin.models import ValidationJob
 
 
@@ -162,6 +162,21 @@ FeaturedCollectionFormSet = modelformset_factory(FeaturedCollection,
 
 
 class OAuthConsumerForm(happyforms.ModelForm):
+
     class Meta:
         model = Consumer
         fields = ['name', 'description', 'status']
+
+
+class MonthlyPickForm(happyforms.ModelForm):
+
+    class Meta:
+        model = MonthlyPick
+        widgets = {
+            'addon': forms.TextInput(),
+            'blurb': forms.Textarea(attrs={'cols': 20, 'rows': 2})
+        }
+
+MonthlyPickFormSet = modelformset_factory(MonthlyPick,
+                                          form=MonthlyPickForm,
+                                          can_delete=True, extra=0)

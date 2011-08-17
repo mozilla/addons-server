@@ -38,12 +38,13 @@ from amo.utils import chunked, sorted_groupby
 from addons.models import Addon
 from addons.utils import ReverseNameLookup
 from bandwagon.models import Collection
+from devhub.models import ActivityLog
 from files.models import Approval, File
 from versions.models import Version
 
 from . import tasks
 from .forms import (BulkValidationForm, FeaturedCollectionFormSet, NotifyForm,
-                    OAuthConsumerForm)
+                    OAuthConsumerForm, MonthlyPickFormSet)
 from .models import ValidationJob, EmailPreviewTopic, ValidationJobTally
 
 log = commonware.log.getLogger('z.zadmin')
@@ -395,6 +396,16 @@ def features(request):
 
 
 @admin.site.admin_view
+def monthly_pick(request):
+    form = MonthlyPickFormSet(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        messages.success(request, 'Changes successfully saved.')
+        return redirect('zadmin.monthly_pick')
+    return jingo.render(request, 'zadmin/monthly_pick.html', dict(form=form))
+
+
+@admin.site.admin_view
 def elastic(request):
     INDEX = site_settings.ES_INDEX
     es = elasticutils.get_es()
@@ -467,7 +478,8 @@ def addon_name_blocklist(request):
 
 @admin.site.admin_view
 def index(request):
-    return jingo.render(request, 'zadmin/index.html')
+    log = ActivityLog.objects.admin_events()[:5]
+    return jingo.render(request, 'zadmin/index.html', {'log': log})
 
 
 @admin.site.admin_view
@@ -481,6 +493,7 @@ def addon_search(request):
             qs = (Addon.search().query(name=q.lower())
                   .order_by('name_sort')[:100])
         if len(qs) == 1:
+            # Note this is a remora URL and should be removed.
             return redirect('/admin/addons?q=[%s]' % qs[0].id)
         ctx['addons'] = qs
     return jingo.render(request, 'zadmin/addon-search.html', ctx)

@@ -8,7 +8,7 @@
     .avatar {
         border: 5px solid #fff;
         box-shadow: 1px 1px 3px #B2C8E0;
-        display: block;
+        display: inline-block;
         margin-left: 135px;
         width: 100px;
     }
@@ -18,20 +18,28 @@
     #acct-notify .check {
         text-transform: none;
     }
-
     #profile-detail {
         .html-support, #trans-bio textarea {
             width: 430px;
         }
-        .html-support {
-            font-size: 0.9em;
-            margin: 0;
-            padding: 0;
-            text-align: right;
-            span {
-                border-bottom: 1px dotted #bbb;
-                cursor: help;
+    }
+    .user-notifications {
+        li {
+            margin-bottom: 0;
+        }
+        h3 {
+            color: #777;
+            font-size: 1.5em;
+            font-weight: normal;
+            margin-bottom: .5em;
+            .more {
+                font-size: 0.6em;
             }
+        }
+        p.note {
+            clear: both;
+            font-style: italic;
+            width: 300px;
         }
     }
 }

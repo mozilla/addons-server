@@ -2,6 +2,7 @@ import collections
 import cPickle as pickle
 import glob
 import hashlib
+import json
 import logging
 import os
 import re
@@ -17,6 +18,7 @@ from zipfile import BadZipfile
 
 from django import forms
 from django.conf import settings
+from django.utils.translation import trans_real as translation
 
 import rdflib
 import redisutils
@@ -35,6 +37,13 @@ class ParseError(forms.ValidationError):
 
 
 VERSION_RE = re.compile('^[-+*.\w]{,32}$')
+
+
+def get_filepath(fileorpath):
+    """Get the actual file path of fileorpath if it's a FileUpload object."""
+    if hasattr(fileorpath, 'path'):  # FileUpload
+        return fileorpath.path
+    return fileorpath
 
 
 class Extractor(object):
@@ -127,20 +136,77 @@ def extract_search(content):
     return rv
 
 
-def parse_search(filename, addon=None):
+def parse_search(fileorpath, addon=None):
+    filename = get_filepath(fileorpath)
     try:
-        data = extract_search(open(filename))
+        with open(filename) as f:
+            data = extract_search(f)
     except forms.ValidationError:
         raise
     except Exception:
         log.error('OpenSearch parse error', exc_info=True)
-        raise forms.ValidationError(_('Could not parse %s.') % filename)
+        raise forms.ValidationError(_('Could not parse uploaded file.'))
 
     return {'guid': None,
             'type': amo.ADDON_SEARCH,
             'name': data['name'],
             'summary': data['description'],
             'version': datetime.now().strftime('%Y%m%d')}
+
+
+class WebAppParser(object):
+
+    def extract_locale(self, locales, key, default=None):
+        """Gets a locale item based on key.
+
+        For example, given this:
+
+            locales = {'en': {'foo': 1, 'bar': 2},
+                       'it': {'foo': 1, 'bar': 2}}
+
+        You can get english foo like:
+
+            self.extract_locale(locales, 'foo', 'en')
+
+        """
+        ex = {}
+        for loc, data in locales.iteritems():
+            ex[loc] = data.get(key, default)
+        return ex
+
+    def parse(self, fileorpath, addon=None):
+        filename = get_filepath(fileorpath)
+        with open(filename) as f:
+            try:
+                data = json.load(f)
+            except ValueError:
+                raise forms.ValidationError(
+                                _('Could not parse webapp manifest file.'))
+        loc = data.get('default_locale', translation.get_language())
+        default_locale = self.trans_locale(loc)
+        localized_descr = self.extract_locale(data.get('locales', {}),
+                                              'description', default='')
+        localized_descr.update({default_locale: data['description']})
+        return {'guid': None,
+                'type': amo.ADDON_WEBAPP,
+                'name': data['name'],
+                'summary': self.trans_all_locales(localized_descr),
+                'version': '1.0',
+                'default_locale': default_locale}
+
+    def trans_locale(self, locale):
+        # TODO(Kumar) translate all possible locale differences.
+        # 'en' might be the only one in need of translating.
+        if locale == 'en':
+            locale = 'en-us'
+        return locale
+
+    def trans_all_locales(self, locale_dict):
+        trans = {}
+        for key, item in locale_dict.iteritems():
+            key = self.trans_locale(key)
+            trans[key] = item
+        return trans
 
 
 class SafeUnzip(object):
@@ -275,6 +341,7 @@ def extract_xpi(xpi, path, expand=False):
 
 def parse_xpi(xpi, addon=None):
     """Extract and parse an XPI."""
+    xpi = get_filepath(xpi)
     # Extract to /tmp
     path = tempfile.mkdtemp()
     try:
@@ -319,6 +386,8 @@ def parse_addon(pkg, addon=None):
     name = getattr(pkg, 'name', pkg)
     if name.endswith('.xml'):
         parsed = parse_search(pkg, addon)
+    elif name.endswith('.webapp') or name.endswith('.json'):
+        parsed = WebAppParser().parse(pkg, addon)
     else:
         parsed = parse_xpi(pkg, addon)
 

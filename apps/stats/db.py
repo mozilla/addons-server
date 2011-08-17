@@ -10,8 +10,6 @@ try:
 except ImportError:
     import json
 
-import caching.base
-
 
 # Common date helpers
 # These all take a date or datetime and return a date.
@@ -160,7 +158,7 @@ class DayAvg(Sum):
             return None
 
 
-class StatsQuerySet(caching.base.CachingQuerySet):
+class StatsQuerySet(models.query.QuerySet):
 
     def __init__(self, *args, **kwargs):
         super(StatsQuerySet, self).__init__(*args, **kwargs)
@@ -434,7 +432,7 @@ class StatsQuerySet(caching.base.CachingQuerySet):
         return
 
 
-class StatsManager(caching.base.CachingManager):
+class StatsManager(models.Manager):
 
     def __init__(self, date_field='date'):
         super(StatsManager, self).__init__()

@@ -40,10 +40,12 @@ from piston.models import Consumer
 import amo
 from amo.tests import TestCase
 from amo.urlresolvers import reverse
-from addons.models import Addon, BlacklistedGuid
+from api.authentication import AMOOAuthAuthentication
+from addons.models import Addon, AddonUser, BlacklistedGuid
 from devhub.models import ActivityLog
 from perf.models import (Performance, PerformanceAppVersions,
                          PerformanceOSVersion)
+from test_utils import RequestFactory
 from translations.models import Translation
 from versions.models import AppVersion, Version
 
@@ -87,8 +89,10 @@ class OAuthClient(Client):
     signature_method = oauth.SignatureMethod_HMAC_SHA1()
 
     def get(self, url, consumer=None, token=None, callback=False,
-            verifier=None):
+            verifier=None, params=None):
         url = get_absolute_url(url)
+        if params:
+            url = '%s?%s' % (url, urllib.urlencode(params))
         req = oauth.Request(method='GET', url=url,
                             parameters=_get_args(consumer, callback=callback,
                                                  verifier=verifier))
@@ -182,6 +186,7 @@ class BaseOAuth(TestCase):
 
     def setUp(self):
         self.editor = User.objects.get(email='editor@mozilla.com')
+        self.admin = User.objects.get(email='admin@mozilla.com')
         consumers = []
         for status in ('accepted', 'pending', 'canceled', ):
             c = Consumer(name='a', status=status, user=self.editor)
@@ -216,6 +221,46 @@ class BaseOAuth(TestCase):
         c.secret = 'mom'
         r = client.get('oauth.request_token', c, callback=True)
         eq_(r.content, 'Invalid Consumer.')
+
+    @patch('piston.authentication.oauth.OAuthAuthentication.is_authenticated')
+    def _test_auth(self, pk, is_authenticated, two_legged=True):
+        request = RequestFactory().get('/en-US/firefox/2/api/2/user/',
+                                       data={'authenticate_as': pk})
+        request.user = None
+
+        def alter_request(*args, **kw):
+            request.user = self.admin
+            return True
+        is_authenticated.return_value = True
+        is_authenticated.side_effect = alter_request
+
+        auth = AMOOAuthAuthentication()
+        auth.two_legged = two_legged
+        auth.is_authenticated(request)
+        return request
+
+    def test_login_nonexistant(self):
+        eq_(self.admin, self._test_auth(9999).user)
+
+    def test_login_deleted(self):
+        # If _test_auth returns self.admin, that means the user was
+        # not altered to the user set in authenticate_as.
+        self.editor.get_profile().update(deleted=True)
+        pk = self.editor.get_profile().pk
+        eq_(self.admin, self._test_auth(pk).user)
+
+    def test_login_unconfirmed(self):
+        self.editor.get_profile().update(confirmationcode='something')
+        pk = self.editor.get_profile().pk
+        eq_(self.admin, self._test_auth(pk).user)
+
+    def test_login_works(self):
+        pk = self.editor.get_profile().pk
+        eq_(self.editor, self._test_auth(pk).user)
+
+    def test_login_three_legged(self):
+        pk = self.editor.get_profile().pk
+        eq_(self.admin, self._test_auth(pk, two_legged=False).user)
 
 
 def activitylog_count(type=None):
@@ -268,6 +313,17 @@ class TestAddon(BaseOAuth):
         r = self.make_create_request(self.create_data)
         eq_(r.status_code, 401)
 
+    def test_create_user_altered(self):
+        data = self.create_data
+        data['authenticate_as'] = self.editor.get_profile().pk
+        r = self.make_create_request(data)
+        eq_(r.status_code, 200)
+
+        id = json.loads(r.content)['id']
+        ad = Addon.objects.get(pk=id)
+        eq_(len(ad.authors.all()), 1)
+        eq_(ad.authors.all()[0].pk, self.editor.get_profile().pk)
+
     def test_create(self):
         # License (req'd): MIT, GPLv2, GPLv3, LGPLv2.1, LGPLv3, MIT, BSD, Other
         # Custom License (if other, req'd)
@@ -282,12 +338,17 @@ class TestAddon(BaseOAuth):
         assert Addon.objects.get(pk=id)
 
     def test_create_nolicense(self):
-        data = {}
-
+        data = self.create_data.copy()
+        del data['builtin']
         r = self.make_create_request(data)
-        eq_(r.status_code, 400, r.content)
-        eq_(r.content, 'Bad Request: '
-            'Invalid data provided: This field is required. (builtin)')
+        eq_(r.status_code, 200, r.content)
+        eq_(Addon.objects.count(), 1)
+
+    def test_create_status(self):
+        r = self.make_create_request(self.create_data)
+        eq_(r.status_code, 200, r.content)
+        eq_(json.loads(r.content)['status'], 0)
+        eq_(Addon.objects.count(), 1)
 
     def test_delete(self):
         data = self.create_addon()
@@ -454,48 +515,65 @@ class TestAddon(BaseOAuth):
 
         eq_(r.status_code, 400, r.content)
 
-    def test_update_version_bad_license(self):
+    def test_create_version_no_license(self):
         data = self.create_addon()
         id = data['id']
-        a = Addon.objects.get(pk=id)
-        v = a.versions.get()
-        path = 'apps/files/fixtures/files/extension-0.2.xpi'
-        data = dict(
-                release_notes='fukyeah',
-                license_type='FFFF',
-                platform='windows',
-                xpi=open(os.path.join(settings.ROOT, path)),
-                )
-        r = client.put(('api.version', id, v.id), self.accepted_consumer,
-                       self.token, data=data, content_type=MULTIPART_CONTENT)
+        data = self.version_data.copy()
+        del data['builtin']
+        r = client.post(('api.versions', id,), self.accepted_consumer,
+                        self.token, data=data)
+
         eq_(r.status_code, 200, r.content)
         data = json.loads(r.content)
         id = data['id']
         v = Version.objects.get(pk=id)
-        eq_(str(v.license.text), 'This is FREE!')
+        assert not v.license
 
-    def test_update_version(self):
-        # Create an addon
+    def create_for_update(self):
         data = self.create_addon()
         id = data['id']
-
-        # verify version
         a = Addon.objects.get(pk=id)
         v = a.versions.get()
-
         eq_(v.version, '0.1')
+        return a, v, 'apps/files/fixtures/files/extension-0.2.xpi'
 
-        path = 'apps/files/fixtures/files/extension-0.2.xpi'
+    def test_update_version_no_license(self):
+        a, v, path = self.create_for_update()
         data = dict(
                 release_notes='fukyeah',
-                license_type='bsd',
                 platform='windows',
                 xpi=open(os.path.join(settings.ROOT, path)),
                 )
+        r = client.put(('api.version', a.id, v.id), self.accepted_consumer,
+                       self.token, data=data, content_type=MULTIPART_CONTENT)
+        eq_(r.status_code, 200, r.content)
+        v = a.versions.get()
+        eq_(v.version, '0.2')
+        eq_(v.license, None)
 
+    def test_update_version_bad_license(self):
+        a, v, path = self.create_for_update()
+        data = dict(
+                release_notes='fukyeah',
+                builtin=3,
+                platform='windows',
+                xpi=open(os.path.join(settings.ROOT, path)),
+                )
+        r = client.put(('api.version', a.id, v.id), self.accepted_consumer,
+                       self.token, data=data, content_type=MULTIPART_CONTENT)
+        eq_(r.status_code, 400, r.content)
+
+    def test_update_version(self):
+        a, v, path = self.create_for_update()
+        data = dict(
+                release_notes='fukyeah',
+                builtin=2,
+                platform='windows',
+                xpi=open(os.path.join(settings.ROOT, path)),
+                )
         log_count = activitylog_count()
         # upload new version
-        r = client.put(('api.version', id, v.id), self.accepted_consumer,
+        r = client.put(('api.version', a.id, v.id), self.accepted_consumer,
                        self.token, data=data, content_type=MULTIPART_CONTENT)
         eq_(r.status_code, 200, r.content[:1000])
 
@@ -505,6 +583,7 @@ class TestAddon(BaseOAuth):
         v = a.versions.get()
         eq_(v.version, '0.2')
         eq_(str(v.releasenotes), 'fukyeah')
+        eq_(str(v.license.builtin), '2')
 
     def test_update_version_bad_xpi(self):
         data = self.create_addon()
@@ -518,7 +597,6 @@ class TestAddon(BaseOAuth):
 
         data = dict(
                 release_notes='fukyeah',
-                license_type='bsd',
                 platform='windows',
                 )
 
@@ -580,6 +658,51 @@ class TestAddon(BaseOAuth):
             eq_(expect, val,
                 'Got "%s" was expecting "%s" for "%s".' % (val, expect, attr,))
 
+    def test_no_addons(self):
+        r = client.get('api.addons', self.accepted_consumer, self.token)
+        eq_(json.loads(r.content)['count'], 0)
+
+    def test_no_user(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        AddonUser.objects.create(addon=addon, user=self.admin.get_profile(),
+                                 role=amo.AUTHOR_ROLE_DEV)
+        r = client.get('api.addons', self.accepted_consumer, self.token)
+        eq_(json.loads(r.content)['count'], 0)
+
+    def test_my_addons_only(self):
+        for num in range(0, 2):
+            addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        AddonUser.objects.create(addon=addon, user=self.editor.get_profile(),
+                                 role=amo.AUTHOR_ROLE_DEV)
+        r = client.get('api.addons', self.accepted_consumer, self.token,
+                       params={'authenticate_as': self.editor.pk})
+        j = json.loads(r.content)
+        eq_(j['count'], 1)
+        eq_(j['objects'][0]['id'], addon.id)
+
+    def test_one_addon(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        AddonUser.objects.create(addon=addon, user=self.editor.get_profile(),
+                                 role=amo.AUTHOR_ROLE_DEV)
+        r = client.get(('api.addon', addon.pk), self.accepted_consumer,
+                       self.token, params={'authenticate_as': self.editor.pk})
+        eq_(json.loads(r.content)['id'], addon.pk)
+
+    def test_my_addons_role(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        AddonUser.objects.create(addon=addon, user=self.editor.get_profile(),
+                                 role=amo.AUTHOR_ROLE_VIEWER)
+        r = client.get('api.addons', self.accepted_consumer, self.token)
+        eq_(json.loads(r.content)['count'], 0)
+
+    def test_my_addons_disabled(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
+                                     status=amo.STATUS_DISABLED)
+        AddonUser.objects.create(addon=addon, user=self.editor.get_profile(),
+                                 role=amo.AUTHOR_ROLE_DEV)
+        r = client.get('api.addons', self.accepted_consumer, self.token)
+        eq_(json.loads(r.content)['count'], 0)
+
 
 class TestPerformance(BaseOAuth):
     fixtures = BaseOAuth.fixtures + ['base/addon_3615']
@@ -596,7 +719,8 @@ class TestPerformance(BaseOAuth):
     def test_create_perf(self):
         res = client.post('api.performance', self.accepted_consumer,
                           self.token, data=self.data)
-        assert res.status_code == 201, res.status_code
+        assert 'id' in json.loads(res.content)
+        assert res.status_code == 200, res.status_code
         eq_(Performance.objects.count(), 1)
         eq_(Performance.objects.all()[0].average, 0.1)
 
@@ -605,26 +729,32 @@ class TestPerformance(BaseOAuth):
                     self.token, data=self.data)
         data = self.data.copy()
         data['average'] = 0.2
-        res = client.put(('api.performance', 3615), self.accepted_consumer,
-                          self.token, data=data)
+        pk = Performance.objects.all()[0].pk
+        res = client.put(('api.performance', pk), self.accepted_consumer,
+                         self.token, data=data)
         assert res.status_code == 200, res.status_code
         eq_(Performance.objects.count(), 1)
         eq_(Performance.objects.all()[0].average, 0.2)
 
-    def test_create_perf_wrong(self):
-        data = self.data.copy()
-        data['addon'] = '3616'
-        res = client.post('api.performance', self.accepted_consumer,
-                          self.token, data=data)
-        assert res.status_code == 400, res.status_code
-        assert 'addon' in res.content
-        eq_(Performance.objects.count(), 0)
-
-    def test_update_perf_wrong(self):
+    def test_delete_perf(self):
         client.post('api.performance', self.accepted_consumer,
                     self.token, data=self.data)
-        data = self.data.copy()
-        data['average'] = 0.2
-        res = client.put(('api.performance', 3616), self.accepted_consumer,
-                          self.token, data=data)
-        assert res.status_code == 410, res.status_code
+        pk = Performance.objects.all()[0].pk
+        client.delete(('api.performance', pk),
+                      self.accepted_consumer, self.token)
+        eq_(Performance.objects.count(), 0)
+
+    def test_paginate(self):
+        for x in range(0, 25):
+            PerformanceAppVersions.objects.create(app='1', version=x)
+        res = client.get('api.performance.app', self.accepted_consumer,
+                         self.token)
+        data = json.loads(res.content)
+        eq_(data['objects'][0]['version'], '24')
+        eq_(data['count'], 26)
+        eq_(data['num_pages'], 2)
+
+        res = client.get('api.performance.app', self.accepted_consumer,
+                         self.token, params={'page': 2})
+        data = json.loads(res.content)
+        eq_(data['objects'][0]['version'], '4')

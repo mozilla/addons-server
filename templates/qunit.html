@@ -304,6 +304,56 @@
         <input type="password" data-min-length="8" />
     </div>
 
+  <div id="personas">
+    <legend>Persona License</legend>
+    <input type="hidden" name="license" id="id_license">
+    <div id="cc-chooser">
+      <h3>Can others share your Persona, as long as you're given credit?</h3>
+      <ul>
+        <li><label><input type="radio" name="cc-attrib" value="0"> Yes</label></li>
+        <li><label><input type="radio" name="cc-attrib" value="1"> No</label></li>
+      </ul>
+      <h3>Can others make commercial use of your Persona?</h3>
+      <ul>
+        <li><label><input type="radio" name="cc-noncom" value="0"> Yes</label></li>
+        <li><label><input type="radio" name="cc-noncom" value="1"> No</label></li>
+      </ul>
+      <h3>Can others create derivative works from your Persona?</h3>
+      <ul>
+        <li><label><input type="radio" name="cc-noderiv" value="0"> Yes</label></li>
+        <li><label><input type="radio" name="cc-noderiv" value="1"> Yes, as long as they share alike</label></li>
+        <li><label><input type="radio" name="cc-noderiv" value="2"> No</label></li>
+      </ul>
+      <div id="persona-license">
+        <p>Your Persona will be released under the following license:</p>
+        <p id="cc-license" class="license icon"></p>
+        <p class="select-license">
+          <a href="#">Select a different license.</a>
+        </p>
+      </div>
+    </div>
+    <div id="persona-license-list" class="hidden">
+      <h3>Select a license for your Persona.</h3>
+      <ul>
+        <li><label><input type="radio" name="license" value="7"> All Rights Reserved</label></li>
+        <li><label><input type="radio" name="license" value="9"> Creative Commons Attribution 3.0</label></li>
+        <li><label><input type="radio" name="license" value="10"> Creative Commons Attribution-NonCommercial 3.0</label></li>
+        <li><label><input type="radio" name="license" value="11"> Creative Commons Attribution-NonCommercial-NoDerivs 3.0</label></li>
+        <li><label><input type="radio" name="license" value="8"> Creative Commons Attribution-Noncommercial-Share Alike 3.0</label></li>
+        <li><label><input type="radio" name="license" value="12"> Creative Commons Attribution-NoDerivs 3.0</label></li>
+        <li><label><input type="radio" name="license" value="13"> Creative Commons Attribution-ShareAlike 3.0</label></li>
+      </ul>
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+      waffle = {
+          flag: function () { return true; },
+          switch: function () { return true; },
+          sample: function () { return true; }
+      }
+  </script>
   <script src="{{ static(url('jsi18n')) }}"></script>
   {{ js('common') }}
   <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>

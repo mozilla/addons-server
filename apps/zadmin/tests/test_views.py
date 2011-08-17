@@ -21,7 +21,7 @@ from amo.tests import (formset, initial, close_to_now,
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from applications.models import AppVersion
-from bandwagon.models import FeaturedCollection
+from bandwagon.models import Collection, FeaturedCollection, MonthlyPick
 from devhub.models import ActivityLog
 from files.models import Approval, File
 from users.models import UserProfile
@@ -1026,6 +1026,55 @@ class TestEmailPreview(amo.tests.TestCase):
         eq_(rdr.next(), ['from_email', 'recipient_list', 'subject', 'body'])
         eq_(rdr.next(), ['admin@mozilla.org', 'funnyguy@mozilla.org',
                          'the subject', 'Hello Ivan Krsti\xc4\x87'])
+
+
+class TestMonthlyPick(amo.tests.TestCase):
+    fixtures = ['base/addon_3615', 'base/apps', 'base/users']
+
+    def setUp(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        self.url = reverse('zadmin.monthly_pick')
+        addon = Addon.objects.get(pk=3615)
+        MonthlyPick.objects.create(addon=addon,
+                                   locale='zh-CN',
+                                   blurb="test data",
+                                   image="http://www.google.com")
+        self.f = self.client.get(self.url).context['form'].initial_forms[0]
+        self.initial = self.f.initial
+
+    def test_form_initial(self):
+        eq_(self.initial['addon'], 3615)
+        eq_(self.initial['locale'], 'zh-CN')
+        eq_(self.initial['blurb'], 'test data')
+        eq_(self.initial['image'], 'http://www.google.com')
+
+    def test_success_insert(self):
+        dupe = initial(self.f)
+        del dupe['id']
+        dupe.update(locale='fr')
+        data = formset(initial(self.f), dupe, initial_count=1)
+        r = self.client.post(self.url, data)
+        eq_(MonthlyPick.objects.count(), 2)
+        eq_(MonthlyPick.objects.all()[1].locale, 'fr')
+
+    def test_success_update(self):
+        d = initial(self.f)
+        d.update(locale='fr')
+        r = self.client.post(self.url, formset(d, initial_count=1))
+        eq_(r.status_code, 302)
+        eq_(MonthlyPick.objects.all()[0].locale, 'fr')
+
+    def test_success_delete(self):
+        d = initial(self.f)
+        d.update(DELETE=True)
+        r = self.client.post(self.url, formset(d, initial_count=1))
+        eq_(MonthlyPick.objects.count(), 0)
+
+    def test_require_login(self):
+        self.client.logout()
+        r = self.client.get(self.url)
+        eq_(r.status_code, 302)
 
 
 class TestFeatures(amo.tests.TestCase):
