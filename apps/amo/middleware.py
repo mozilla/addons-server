@@ -71,7 +71,7 @@ class LocaleAndAppURLMiddleware(object):
 
         request.path_info = '/' + prefixer.shortened_path
         tower.activate(prefixer.locale)
-        request.APP = amo.APPS.get(prefixer.app)
+        request.APP = amo.APPS.get(prefixer.app, amo.FIREFOX)
         request.LANG = prefixer.locale
 
 
