@@ -794,13 +794,15 @@ class TestDetailPage(amo.tests.TestCase):
         addon = Addon.objects.get(id=3615)
         addon.update(premium_type=amo.ADDON_PREMIUM,
                      status=amo.STATUS_PUBLIC)
-        eq_(self.client.get(reverse('addons.detail', args=[addon.slug])), 404)
+        response = self.client.get(reverse('addons.detail', args=[addon.slug]))
+        eq_(response.status_code, 200)
 
     def test_not_ready_to_buy(self):
         addon = Addon.objects.get(id=3615)
         addon.update(premium_type=amo.ADDON_PREMIUM,
                      status=amo.STATUS_NOMINATED)
-        eq_(self.client.get(reverse('addons.detail', args=[addon.slug])), 404)
+        response = self.client.get(reverse('addons.detail', args=[addon.slug]))
+        eq_(response.status_code, 404)
 
 
 class TestStatus(amo.tests.TestCase):
