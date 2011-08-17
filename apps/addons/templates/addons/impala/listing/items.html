@@ -53,5 +53,7 @@
         {{ install_button(addon, impala=True, collection=collection) }}
       </div>
     </div>
+  {% else %}
+    {% include 'search/no_results.html' %}
   {% endfor %}
 {% endcache %}
