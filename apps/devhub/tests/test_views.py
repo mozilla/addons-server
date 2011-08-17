@@ -545,17 +545,11 @@ class TestEditPayments(amo.tests.TestCase):
         eq_(addon.enable_thankyou, False)
         eq_(addon.thankyou_note, None)
 
-    def test_require_public_status_to_edit(self):
-        # pyquery drops all the attributes on <body> so we just go
-        # for string search.
-        assert 'no-edit' not in self.client.get(self.url).content
-        self.get_addon().update(status=amo.STATUS_LITE)
-        assert 'no-edit' in self.client.get(self.url).content
-
     def test_no_future(self):
         self.get_addon().update(the_future=None)
         res = self.client.get(self.url)
         box = pq(res.content)('div.notification-box h2')
+        assert 'no-edit' in res.content
         eq_(len(box), 1)
         eq_('completed developer profile' in box.text(), True)
 
@@ -566,6 +560,7 @@ class TestEditPayments(amo.tests.TestCase):
         error = pq(res.content)('p.error')
         eq_('premium add-on enrolled' in error.text(), True)
 
+    @mock.patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
     def test_addon_public(self):
         self.get_addon().update(status=amo.STATUS_PUBLIC)
         res = self.client.get(self.url)
@@ -574,12 +569,22 @@ class TestEditPayments(amo.tests.TestCase):
         eq_('You cannot enroll in the Marketplace' in doc('p.error').text(),
             True)
 
+    @mock.patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
     def test_addon_not_reviewed(self):
-        self.get_addon().update(status=amo.STATUS_NULL)
+        self.get_addon().update(status=amo.STATUS_NULL,
+                                highest_status=amo.STATUS_NULL)
         res = self.client.get(self.url)
         doc = pq(res.content)
         eq_(doc('#do-marketplace').text(), 'Enroll in Marketplace')
         eq_('fully reviewed add-ons' in doc('p.error').text(), True)
+
+    @mock.patch('addons.models.Addon.upsell')
+    def test_upsell(self, upsell):
+        upsell.return_value = self.get_addon()
+        d = dict(recipient='dev', suggested_amount=2, paypal_id='greed@dev',
+                 annoying=amo.CONTRIB_AFTER)
+        res = self.client.post(self.url, d)
+        eq_('premium add-on' in res.content, True)
 
 
 class TestDisablePayments(amo.tests.TestCase):
