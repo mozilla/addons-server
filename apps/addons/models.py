@@ -297,7 +297,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 prefix = '%s-%s' % (slug[:-len(str(self.id))], self.id)
             else:
                 prefix = slug
-            slugs = dict(qs.filter(slug__startswith='%s-' % prefix))
+            slugs = dict(qs.filter(
+                **{'%s__startswith' % slug_field: '%s-' % prefix}))
             slugs.update(match)
             for idx in range(len(slugs)):
                 new = ('%s-%s' % (prefix, idx + 1))[:30]

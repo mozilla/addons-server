@@ -26,6 +26,10 @@ class TestWebapp(test_utils.TestCase):
         w2.save()
         eq_(w2.app_slug, 'slug-1')
 
+        w3 = Webapp(app_slug='slug')
+        w3.save()
+        eq_(w3.app_slug, 'slug-2')
+
     def test_app_slug_blocklist(self):
         BlacklistedSlug.objects.create(name='slug')
         w = Webapp(app_slug='slug')
