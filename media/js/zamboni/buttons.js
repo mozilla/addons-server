@@ -63,8 +63,15 @@ var installButton = function() {
     var badPlatform = ($button.find('.os').length &&
                        !$button.hasClass(z.platform));
 
+    try {
+        var storage = z.Storage();
+        z.hasACR = storage.get('ShowIncompatibleAddons');
+    } catch (TypeError) {
+        z.hasACR = false;
+    }
+
     // min and max only exist if the add-on is compatible with request[APP].
-    if (appSupported) {
+    if (appSupported && !z.hasACR) {
         // The user *has* an older/newer browser.
         olderBrowser = VersionCompare.compareVersions(z.browserVersion, min) < 0;
         newerBrowser = VersionCompare.compareVersions(z.browserVersion, max) > 0;

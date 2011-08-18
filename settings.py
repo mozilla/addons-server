@@ -496,11 +496,11 @@ MINIFY_BUNDLES = {
             'js/amo2009/addons.js',
             'js/zamboni/init.js',
             'js/zamboni/format.js',
+            'js/lib/jquery.cookie.js',
+            'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
             'js/zamboni/tabs.js',
 
-            'js/lib/jquery.cookie.js',
-            'js/zamboni/storage.js',
             'js/zamboni/global.js',
             'js/amo2009/global.js',
             'js/impala/ratingwidget.js',
@@ -552,10 +552,10 @@ MINIFY_BUNDLES = {
             'js/amo2009/addons.js',
             'js/zamboni/init.js',
             'js/zamboni/format.js',
-            'js/zamboni/buttons.js',
-
             'js/lib/jquery.cookie.js',
             'js/zamboni/storage.js',
+            'js/zamboni/buttons.js',
+
             'js/zamboni/truncation.js',
             'js/zamboni/global.js',
             'js/impala/global.js',
@@ -573,6 +573,9 @@ MINIFY_BUNDLES = {
             'js/impala/addon_details.js',
             'js/impala/abuse.js',
             'js/impala/reviews.js',
+
+            # Browse listing pages
+            'js/impala/listing.js',
 
             # Personas
             'js/lib/jquery.hoverIntent.min.js',
@@ -607,6 +610,8 @@ MINIFY_BUNDLES = {
             'js/impala/carousel.js',
 
             # Add-ons details
+            'js/lib/jquery.cookie.js',
+            'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
             'js/lib/jquery-ui/ui.lightbox.js',
 
@@ -617,8 +622,6 @@ MINIFY_BUNDLES = {
 
             'js/zamboni/debouncer.js',
             'js/zamboni/truncation.js',
-            'js/lib/jquery.cookie.js',
-            'js/zamboni/storage.js',
             'js/zamboni/discovery_addons.js',
             'js/zamboni/discovery_pane.js',
         ),
