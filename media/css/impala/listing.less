@@ -71,19 +71,22 @@
     }
     &.incompatible {
         &:hover {
+            .action {
+                border-color: @border-blue;
+                opacity: 1;
+            }
             .extra .notavail {
                 color: @error-red;
             }
         }
-        .info,
-        .action {
+        .info, .action {
+            border-color: darken(@border-blue, 10%);
             opacity: 0.4;
         }
         .install-shell {
-            font: 10px/12px Arial;
+            font: 10px/12px Arial, sans-serif;
             visibility: visible;
-            .install,
-            br {
+            .install, br {
                 display: none;
             }
         }
@@ -100,7 +103,7 @@
             width: 32px;
         }
         .author {
-            color: #666;
+            color: @medium-gray;
             font-size: 12px;
             a {
                 color: #333;
@@ -144,15 +147,18 @@
         padding-left: 58px;
     }
     .install-shell {
+        text-align: right;
         padding: 0 10px;
         visibility: hidden;
         p {
             margin: 0;
+            text-align: left;
         }
         .extra {
             margin: 0;
             .notavail {
                 color: @note-gray;
+                text-align: left;
             }
         }
         .button, .extra {
@@ -169,7 +175,7 @@
     }
     .performance-note {
         background-color: #fff3cc;
-        color: #666;
+        color: @medium-gray;
     }
 }
 
@@ -195,6 +201,9 @@
     }
     .info {
         padding: 20px 58px 20px 0;
+    }
+    .install-shell .extra .notavail {
+        text-align: right;
     }
 }
 
@@ -233,7 +242,7 @@
 }
 .item-note {
     float: left;
-    color: #666;
+    color: @medium-gray;
     font: italic 0.9em @sans-stack;
     margin-bottom: 2px;
     margin-top: 1em;

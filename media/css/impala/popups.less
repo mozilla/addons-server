@@ -1,15 +1,7 @@
 @import 'lib';
 
-/** Button =Popups *********/
 .install {
     position: relative;
-}
-
-.popup-shim {
-    position: relative;
-}
-div.popup-shim {
-    display: inline-block;
 }
 
 .install-note .msg,
@@ -58,13 +50,9 @@ div.popup-shim {
     background: #fff;
     padding: 10px;
     border: 3px solid #2e5186;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
-    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.35);
-    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.35);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.35);
-    z-index: 2001; /* because of devhub title */
+    .border-radius(8px);
+    .box-shadow(0 1px 3px rgba(0,0,0,0.35));
+    z-index: 2001;
 }
 .modal, .popup {
     padding: 1em;
@@ -110,9 +98,6 @@ div.popup-shim {
 
 .install .install-note {
     width: 300px;
-    li {
-        margin: 1em 0;
-    }
     .msg:first-child {
         margin: 0;
     }
@@ -125,6 +110,9 @@ div.popup-shim {
     ul {
         list-style: none;
     }
+    li {
+        margin: 1em 0;
+    }
 }
 
 .primary .install-note > p:first-child {
@@ -134,7 +122,7 @@ div.popup-shim {
 /* append the left class if the bubble is to the far right */
 .install-note.left,
 .popup.left {
-    left: -160px;
+    left: -170px;
 }
 
 .unreviewed .install-note,
@@ -151,8 +139,6 @@ div.popup-shim {
 .modal-overlay {
     background-color: #fff;
     height: 100%;
-    -khtml-opacity: 0.75;
-    -moz-opacity: 0.75;
     opacity: 0.75;
     position: fixed;
     top: 0;
