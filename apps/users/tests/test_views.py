@@ -11,6 +11,7 @@ from django.utils.http import int_to_base36
 
 from mock import patch
 from nose.tools import eq_
+import waffle
 
 import amo
 import amo.tests
@@ -21,6 +22,7 @@ from amo.helpers import urlparams
 from amo.pyquery_wrapper import PyQuery as pq
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
+from stats.models import Contribution
 from users.models import BlacklistedPassword, UserProfile, UserNotification
 import users.notifications as email
 from users.utils import EmailResetCode, UnsubscribeCode
@@ -628,3 +630,31 @@ class TestReportAbuse(amo.tests.TestCase):
         report = AbuseReport.objects.get(user=10482)
         eq_(report.message, 'spammy')
         eq_(report.reporter.email, 'regular@mozilla.com')
+
+
+class TestPurchases(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.patcher = patch.object(waffle, 'switch_is_active', lambda x: True)
+        self.addCleanup(self.patcher.stop)
+        self.patcher.start()
+        self.url = reverse('users.purchases')
+        self.client.login(username='regular@mozilla.com', password='password')
+        self.user = User.objects.get(email='regular@mozilla.com')
+
+    def test_in_menu(self):
+        doc = pq(self.client.get(self.url))
+
+    def test_not_purchase(self):
+        self.client.logout()
+        eq_(self.client.get(self.url).status_code, 302)
+
+    def test_purchase(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='Test')
+        Contribution.objects.create(user=self.user.get_profile(),
+                                    addon=addon, amount='1.00')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(len(res.context['purchases'].object_list), 1)
+        eq_('Test' in res.content, True)

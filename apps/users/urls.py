@@ -55,6 +55,7 @@ users_patterns = patterns('',
     url(r'^unsubscribe/(?P<token>[-\w]+={0,3})/(?P<hash>[\w]+)/'
          '(?P<perm_setting>[\w]+)?$', views.unsubscribe,
         name="users.unsubscribe"),
+    url(r'purchases$', views.purchases, name='users.purchases'),
 )
 
 urlpatterns = patterns('',

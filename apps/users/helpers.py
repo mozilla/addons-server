@@ -5,6 +5,8 @@ import jinja2
 from jingo import register, env
 from tower import ugettext as _
 
+import amo
+
 
 @register.function
 def emaillink(email, title=None):
@@ -73,3 +75,8 @@ def user_report_abuse(context, hide, profile):
     new.update({'hide': hide, 'profile': profile,
                 'abuse_form': context['abuse_form']})
     return new
+
+
+@register.filter
+def contribution_type(type):
+    return amo.CONTRIB_TYPES[type]

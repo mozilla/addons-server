@@ -16,6 +16,7 @@ from ratelimit.decorators import ratelimit
 from tower import ugettext as _
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 from mobility.decorators import mobile_template
+import waffle
 
 import amo
 from amo import messages
@@ -28,6 +29,7 @@ from abuse.models import send_abuse_report
 from addons.models import Addon
 from access import acl
 from bandwagon.models import Collection
+from stats.models import Contribution
 from users.models import UserNotification
 import users.notifications as notifications
 
@@ -638,3 +640,15 @@ def unsubscribe(request, hash=None, token=None, perm_setting=None):
 
     return jingo.render(request, 'users/unsubscribe.html',
             {'unsubscribed': unsubscribed, 'perm_settings': perm_settings})
+
+
+@login_required
+def purchases(request):
+    """A list of purchases that a user has made through the marketplace."""
+    if not waffle.switch_is_active('marketplace'):
+        raise http.Http404
+
+    qs = Contribution.objects.filter(user=request.amo_user)
+    purchases = amo.utils.paginate(request, qs)
+    return jingo.render(request, 'users/purchases.html',
+                        {'purchases': purchases})
