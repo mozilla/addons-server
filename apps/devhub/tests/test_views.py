@@ -730,7 +730,7 @@ class TestMarketplace(amo.tests.TestCase):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         doc = pq(res.content)
-        eq_(len(doc('div.intro')), 1)
+        eq_(len(doc('.error')), 1)
 
 
 class TestDelete(amo.tests.TestCase):
