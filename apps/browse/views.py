@@ -59,7 +59,10 @@ class AddonFilter(BaseFilter):
 
 
 class ImpalaAddonFilter(AddonFilter):
-    opts = AddonFilter.opts + (('featured', _lazy(u'Featured')),)
+    opts = (('featured', _lazy(u'Featured')),
+            ('users', _lazy(u'Most Users')),
+            ('rating', _lazy(u'Top Rated')),
+            ('created', _lazy(u'Newest')))
 
 
 class ESAddonFilter(ESBaseFilter):
@@ -163,7 +166,7 @@ def _extensions(request, category=None, is_impala=False, template=None):
 
     addons, filter = addon_listing(request, [TYPE],
         ImpalaAddonFilter if is_impala else AddonFilter,
-        'users' if is_impala else 'popular')
+        'featured' if is_impala else 'popular')
 
     if category:
         addons = addons.filter(categories__id=category.id)
@@ -171,7 +174,7 @@ def _extensions(request, category=None, is_impala=False, template=None):
     addons = amo.utils.paginate(request, addons, count=addons.count())
     return jingo.render(request, template,
                         {'category': category, 'addons': addons,
-                         'sorting': filter.field,
+                         'filter': filter, 'sorting': filter.field,
                          'sort_opts': filter.opts,
                          'search_cat': '%s,0' % TYPE})
 

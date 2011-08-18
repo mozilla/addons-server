@@ -21,19 +21,13 @@
   {% endblock %}
 {% endif %}
 
-{% set sort = {'featured': 'featured',
-               'created': 'newest',
-               'popular': 'popular',
-               'users': 'users',
-               'rating': 'averagerating'}.get(sorting, 'updated') %}
-
 {% if category %}
   {% set feed = url('browse.extensions.rss', category.slug) %}
 {% else %}
   {% set feed = url('browse.extensions.rss') %}
 {% endif %}
 
-{% set feed_url = feed|urlparams(sort=sort) %}
+{% set feed_url = feed|urlparams(sort=sorting) %}
 
 {% block rss_feed %}
   <link rel="alternate" type="application/rss+xml" title="RSS"

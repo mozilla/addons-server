@@ -13,6 +13,11 @@ $(function() {
         }
     });
 
+    // Advanced search dropdown.
+    $('#sorter').delegate('select', 'change', function() {
+        window.location = $('#sorter form').attr('action') + '?sort=' + $(this).val();
+    });
+
     // Make this row appear 'static' so the installation buttons and pop-ups
     // stay open when hovering outside the item row.
     $(document.body).bind('newStatic', function() {

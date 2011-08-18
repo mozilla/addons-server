@@ -1,5 +1,11 @@
 @import 'lib';
 
+#subscribe,
+#sorter,
+#sorter ul {
+    line-height: 18px;
+}
+
 #subscribe {
     /* TODO(cvan): sprite-ify */
     background: url(../../img/impala/feed.png) no-repeat 0 50%;
@@ -12,14 +18,17 @@
 }
 
 #sorter {
-    color: @note-gray;
     font-family: @sans-stack;
     font-size: 11px;
-    margin: 0;
+    h3, ul, form {
+        color: @note-gray;
+        float: left;
+        margin: 0;
+    }
     li {
         float: left;
         margin: 0;
-        &:first-child + li a {
+        &:first-child a {
             border-left-width: 0;
         }
         &.selected a {
@@ -27,22 +36,43 @@
             font-weight: bold;
             text-decoration: none;
         }
+        a {
+            border-left: 1px solid #ccc;
+            padding: 0 6px;
+        }
     }
-    a {
-        border-left: 1px solid #ccc;
-        padding: 0 6px;
+    label {
+        border-left: 1px solid #eee;
+        font-weight: normal;
+        margin: 0 6px;
+        padding-left: 12px;
+    }
+    select {
+        margin-left: 6px;
     }
 }
 
 .html-rtl #sorter {
+    float: right;
+    h3, ul, form {
+        float: right;
+    }
     li {
         float: right;
-        &:first-child + li a {
+        &:first-child a {
             border-left-width: 1px;
         }
         &:last-child a {
-            border-left: 0 none;
+            border-left: none;
         }
+    }
+    label {
+        border: none;
+        border-right: 1px solid #eee;
+        padding: 0 12px 0 0;
+    }
+    select {
+        margin: 0 6px 0 0;
     }
 }
 

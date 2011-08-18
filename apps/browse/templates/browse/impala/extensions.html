@@ -6,13 +6,10 @@
   {% set url_base = url('i_browse.extensions') %}
 {% endif %}
 
-{% set extras = (
-    ('featured', _('Featured')),
-    ('users', _('Most Popular')),
-    ('rating', _('Top Rated')),
-    ('updated', _('Last Updated')),
-) %}
-
+{% set extras = (('name', _('Name')),
+                 ('popular', _('Weekly Downloads')),
+                 ('updated', _('Recently Updated'))) %}
+
 {% block primary %}
 <section class="primary">
   {% if category %}
@@ -21,17 +18,10 @@
   {% else %}
     {{ impala_breadcrumbs([(None, _('Extensions'))]) }}
   {% endif %}
-  {% with heading = {'featured': _('Featured Extensions'),
-                     'created': _('Newest Extensions'),
-                     'users': _('Most Popular Extensions'),
-                     'popular': _('Most Popular Extensions'),
-                     'rating': _('Top Rated Extensions'),
-                     'updated': _('Last Updated Extensions')}[sorting] %}
-    <h1>{{ category.name if category else heading }}</h1>
-  {% endwith %}
+  <h1>{{ category.name if category else filter.opts_dict[sorting] }}</h1>
   <div class="island hero c listing">
     <a href="{{ feed_url }}" id="subscribe">{{ _('Subscribe') }}</a>
-    {{ impala_addon_listing_header(url_base, extras, sorting) }}
+    {{ impala_addon_listing_header(url_base, sort_opts, sorting, extras) }}
     <div class="items">
       {{ impala_addon_listing_items(addons.object_list, src='category',
                                     show_date=sorting) }}

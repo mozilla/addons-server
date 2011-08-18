@@ -187,7 +187,8 @@ def addon_listing_header(context, url_base, sort_opts, selected):
 
 @register.inclusion_tag('addons/impala/listing/sorter.html')
 @jinja2.contextfunction
-def impala_addon_listing_header(context, url_base, sort_opts, selected):
+def impala_addon_listing_header(context, url_base, sort_opts, selected,
+                                extra_sort_opts):
     return new_context(**locals())
 
 
