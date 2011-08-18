@@ -549,14 +549,6 @@ def privacy(request, addon):
     return jingo.render(request, 'addons/privacy.html', {'addon': addon})
 
 
-@addon_view
-def impala_privacy(request, addon):
-    if not addon.privacy_policy:
-        return http.HttpResponseRedirect(addon.get_url_path(impala=True))
-    return jingo.render(request, 'addons/impala/privacy.html',
-                        {'addon': addon})
-
-
 def _developers(request, addon, page, template=None):
     if 'version' in request.GET:
         qs = addon.versions.filter(files__status__in=amo.VALID_STATUSES)

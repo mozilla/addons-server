@@ -45,8 +45,6 @@ impala_detail_patterns = patterns('',
     url('^$', views.impala_addon_detail, name='i_addons.detail'),
     url('^license/(?P<version>[^/]+)?', views.impala_license,
         name='i_addons.license'),
-    url('^privacy/', views.impala_privacy, name='i_addons.privacy'),
-
     url('^developers$', views.impala_developers, {'page': 'developers'},
         name='i_addons.meet'),
     url('^contribute/roadblock/', views.impala_developers,
