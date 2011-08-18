@@ -6,8 +6,10 @@
 <div class="notice c author" id="contribution">
 
   {% with single_dev = addon.listed_authors|random %}
-    <img class="avatar" alt="{{ single_dev.name }}"
-         src="{{ single_dev.picture_url }}">
+    {% if single_dev %}
+      <img class="avatar" alt="{{ single_dev.name }}"
+           src="{{ single_dev.picture_url }}">
+    {% endif %}
   {% endwith %}
 
   <div class="aux">

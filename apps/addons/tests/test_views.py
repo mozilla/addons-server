@@ -1001,10 +1001,11 @@ class TestEula(amo.tests.TestCase):
         eq_(r.context['version'], old)
 
     def test_redirect_no_eula(self):
-        Addon.objects.filter(id=11730).update(eula=None)
+        addon = Addon.objects.get(id=11730)
+        addon.update(eula=None)
         r = self.client.get(reverse('addons.eula', args=['a11730']),
                             follow=True)
-        self.assertRedirects(r, reverse('addons.detail', args=['a11730']))
+        self.assertRedirects(r, addon.get_url_path())
 
 
 class TestPrivacyPolicy(amo.tests.TestCase):

@@ -532,7 +532,7 @@ class CollectionPromoBox(object):
 @addon_view
 def eula(request, addon, file_id=None):
     if not addon.eula:
-        return http.HttpResponseRedirect(addon.get_url_path(impala=True))
+        return http.HttpResponseRedirect(addon.get_url_path())
     if file_id:
         version = get_object_or_404(addon.versions, files__id=file_id)
     else:
@@ -830,6 +830,6 @@ def submit_persona_done(request, addon_id, addon):
     if not waffle.flag_is_active(request, 'submit-personas'):
         return http.HttpResponseForbidden()
     if addon.status != amo.STATUS_UNREVIEWED:
-        return http.HttpResponseRedirect(addon.get_url_path(impala=True))
+        return http.HttpResponseRedirect(addon.get_url_path())
     return jingo.render(request, 'addons/impala/personas/submit_done.html',
                         dict(addon=addon))
