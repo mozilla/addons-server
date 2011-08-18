@@ -72,6 +72,9 @@ class TestCase(RedisTest, test_utils.TestCase):
 
     def _pre_setup(self):
         super(TestCase, self)._pre_setup()
+        self.reset_featured_addons()
+
+    def reset_featured_addons(self):
         from addons.cron import reset_featured_addons
         from addons.utils import FeaturedManager, CreaturedManager
         reset_featured_addons()

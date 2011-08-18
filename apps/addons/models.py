@@ -71,12 +71,12 @@ class AddonManager(amo.models.ManagerBase):
         return self.filter(_current_version__isnull=False,
                            status__in=statuses)
 
-    def featured(self, app):
+    def featured(self, app, lang=None, type=None):
         """
         Filter for all featured add-ons for an application in all locales.
         """
-        ids = FeaturedManager.featured_ids(app)
-        return amo.models.manual_order(self.valid(), ids, 'addons.id')
+        ids = FeaturedManager.featured_ids(app, lang, type)
+        return amo.models.manual_order(self.listed(app), ids, 'addons.id')
 
     def listed(self, app, *status):
         """

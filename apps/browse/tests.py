@@ -18,7 +18,6 @@ import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from amo.helpers import urlparams
-from addons.cron import reset_featured_addons
 from addons.tests.test_views import TestMobile
 from addons.models import (Addon, AddonCategory, Category, AppSupport, Feature,
                            Persona)
@@ -365,9 +364,7 @@ class TestFeaturedLocale(amo.tests.TestCase):
     def reset(self):
         cache.clear()
         FeaturedManager.redis().flushall()
-        reset_featured_addons()
-        FeaturedManager.featured_ids.clear()
-        CreaturedManager.creatured_ids.clear()
+        self.reset_featured_addons()
 
     def list_featured(self, content):
         # Not sure we want to get into testing randomness
@@ -492,18 +489,18 @@ class TestFeaturedLocale(amo.tests.TestCase):
     def test_homepage(self):
         url = reverse('home')
         res = self.client.get(url)
-        assert self.extension in res.context['filter'].filter('featured')
+        assert self.extension in res.context['featured']
 
         self.change_addon(self.extension, 'es-ES')
         res = self.client.get(url)
-        assert self.extension not in res.context['filter'].filter('featured')
+        assert self.extension not in res.context['featured']
 
         res = self.client.get(url.replace('en-US', 'es-ES'))
-        assert self.extension in res.context['filter'].filter('featured')
+        assert self.extension in res.context['featured']
 
     def test_homepage_persona(self):
         res = self.client.get(reverse('home'))
-        assert self.persona not in res.context['filter'].filter('featured')
+        assert self.persona not in res.context['featured']
 
     def test_homepage_filter(self):
         # Ensure that the base homepage filter is applied.
@@ -513,7 +510,7 @@ class TestFeaturedLocale(amo.tests.TestCase):
                                       .exclude(type=amo.ADDON_PERSONA)]
 
         featured = Addon.featured_random(amo.FIREFOX, 'en-US')
-        actual = [p.pk for p in res.context['filter'].filter('featured')]
+        actual = [p.pk for p in res.context['featured']]
 
         eq_(sorted(actual), sorted(set(listed) & set(featured)))
 
@@ -537,22 +534,23 @@ class TestFeaturedLocale(amo.tests.TestCase):
         # The order should be random within those boundaries.
         another = Addon.objects.get(id=1003)
         self.change_addon(another, 'en-US')
+        self.reset_featured_addons()
 
         url = reverse('home')
         res = self.client.get(url)
-        items = res.context['addon_sets']['featured']
+        items = res.context['featured']
 
         eq_([1003, 3481], sorted([i.pk for i in items[0:2]]))
         eq_([2464, 7661], sorted([i.pk for i in items[2:]]))
 
         res = self.client.get(url.replace('en-US', 'es-ES'))
-        items = res.context['filter'].filter('featured')
+        items = res.context['featured']
         eq_([2464, 7661], sorted([i.pk for i in items]))
 
         self.change_addon(another, 'es-ES')
 
         res = self.client.get(url.replace('en-US', 'es-ES'))
-        items = res.context['filter'].filter('featured')
+        items = res.context['featured']
         eq_(items[0].pk, 1003)
         eq_([1003, 2464, 7661], sorted([i.pk for i in items]))
 
@@ -586,7 +584,7 @@ class TestNewFeaturedLocale(TestFeaturedLocale):
         super(TestNewFeaturedLocale, self).setUp()
         patcher = mock.patch.object(settings, 'NEW_FEATURES', True)
         patcher.start()
-        reset_featured_addons()
+        self.reset_featured_addons()
         self.addCleanup(patcher.stop)
 
     def test_featured_random_caching(self):
@@ -627,7 +625,7 @@ class TestNewFeaturedLocale(TestFeaturedLocale):
         # TODO(cvan): Change the TestFeaturedLocale test
         # accordingly after we switch over to the new features.
         FeaturedCollection.objects.filter(collection__addons=3615)[0].delete()
-        super(TestNewFeaturedLocale, self).test_featured_ids()
+        super(TestNewFeaturedLocale, self).test_homepage_order()
 
     def test_creatured_locale_es_ES(self):
         """Ensure 'en-US'-creatured add-ons do not exist for other locales."""
@@ -738,7 +736,7 @@ class BaseSearchToolsTest(amo.tests.TestCase):
         s.addoncategory_set.add(AddonCategory(addon=limon, feature=True))
         s.addoncategory_set.add(AddonCategory(addon=readit, feature=True))
         s.save()
-        reset_featured_addons()
+        self.reset_featured_addons()
 
 
 class TestSearchToolsPages(BaseSearchToolsTest):

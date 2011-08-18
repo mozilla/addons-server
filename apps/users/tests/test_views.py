@@ -455,13 +455,15 @@ class TestReset(UserViewBase):
 class TestLogout(UserViewBase):
 
     def test_success(self):
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        user = UserProfile.objects.get(email='jbalogh@mozilla.com')
+        self.client.login(username=user.email, password='foo')
         r = self.client.get('/', follow=True)
-        self.assertContains(r, "Welcome, Jeff")
+        eq_(pq(r.content.decode('utf-8'))('.account .user').text(),
+            user.display_name)
+        eq_(pq(r.content)('.account .user').attr('title'), user.email)
 
         r = self.client.get('/users/logout', follow=True)
-        self.assertNotContains(r, "Welcome, Jeff")
-        self.assertContains(r, "Log in")
+        assert not pq(r.content)('.account .user')
 
     def test_redirect(self):
         self.client.login(username='jbalogh@mozilla.com', password='foo')

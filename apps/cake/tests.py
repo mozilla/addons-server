@@ -30,11 +30,14 @@ class CakeTestCase(TestCase):
         Given a known remora cookie, can we visit the homepage and appear
         logged in?
         """
+        profile = UserProfile.objects.get(pk=1)
         # log in using cookie -
         client = self.client
         client.cookies['AMOv3'] = "17f051c99f083244bf653d5798111216"
-        response = client.get('/en-US/firefox/')
-        self.assertContains(response, 'Welcome, Scott')
+        r = client.get('/en-US/firefox/')
+        eq_(pq(r.content.decode('utf-8'))('.account .user').text(),
+            profile.display_name)
+        eq_(pq(r.content)('.account .user').attr('title'), profile.email)
 
         # test that the data copied over correctly.
         profile = UserProfile.objects.get(pk=1)
@@ -93,13 +96,16 @@ class CakeTestCase(TestCase):
         # login with a cookie and verify we are logged in
         client = self.client
         client.cookies['AMOv3'] = "17f051c99f083244bf653d5798111216"
-        response = client.get('/en-US/firefox/')
-        self.assertContains(response, 'Welcome, Scott')
+        r = client.get('/en-US/firefox/')
+        profile = UserProfile.objects.get(pk=1)
+        eq_(pq(r.content.decode('utf-8'))('.account .user').text(),
+            profile.display_name)
+        eq_(pq(r.content)('.account .user').attr('title'), profile.email)
         # logout and verify we are logged out and our AMOv3 cookie is gone
-        response = client.get('/en-US/firefox/users/logout')
-        response = client.get('/en-US/firefox/')
+        r = client.get('/en-US/firefox/users/logout')
+        r = client.get('/en-US/firefox/')
 
-        assert isinstance(response.context['user'], AnonymousUser)
+        assert isinstance(r.context['user'], AnonymousUser)
         self.assertEqual(client.cookies.get('AMOv3').value, '')
 
     @patch('django.db.models.fields.related.'

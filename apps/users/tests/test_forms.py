@@ -9,6 +9,7 @@ from django.utils.http import int_to_base36
 from manage import settings
 from mock import Mock, patch
 from nose.tools import eq_
+from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
@@ -242,16 +243,20 @@ class TestUserLoginForm(UserFormBase):
                                              "fields are case-sensitive."))
 
     def test_credential_success(self):
+        user = UserProfile.objects.get(email='jbalogh@mozilla.com')
         url = self._get_login_url()
-        r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
+        r = self.client.post(url, {'username': user.email,
                                    'password': 'foo'}, follow=True)
-        self.assertContains(r, "Welcome, Jeff Balogh")
-        self.assertTrue(self.client.session.get_expire_at_browser_close())
+        eq_(pq(r.content.decode('utf-8'))('.account .user').text(),
+            user.display_name)
+        eq_(pq(r.content)('.account .user').attr('title'), user.email)
 
-        r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
+        r = self.client.post(url, {'username': user.email,
                                    'password': 'foo',
                                    'rememberme': 1}, follow=True)
-        self.assertContains(r, "Welcome, Jeff Balogh")
+        eq_(pq(r.content.decode('utf-8'))('.account .user').text(),
+            user.display_name)
+        eq_(pq(r.content)('.account .user').attr('title'), user.email)
         # Subtract 100 to give some breathing room
         age = settings.SESSION_COOKIE_AGE - 100
         assert self.client.session.get_expiry_age() > age

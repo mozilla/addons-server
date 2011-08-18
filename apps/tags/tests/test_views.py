@@ -14,8 +14,8 @@ class TestManagement(amo.tests.TestCase):
 
     def test_tags_details_view(self):
         """Test that there are some tags being shown on the details page."""
-        url = reverse('addons.detail', args=['a3615'])
-        r = self.client.get(url)
+        url = reverse('addons.detail_more', args=['a3615'])
+        r = self.client.get(url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         doc = pq(r.content)
         eq_(len(doc('li.tag')), 4)
         assert 'Tags' in [d.text for d in doc('h3')]
@@ -36,8 +36,8 @@ class TestXSS(amo.tests.TestCase):
 
     def test_tags_xss_detail(self):
         """Test xss tag detail."""
-        url = reverse('addons.detail', args=['a3615'])
-        r = self.client.get(url)
+        url = reverse('addons.detail_more', args=['a3615'])
+        r = self.client.get(url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         doc = pq(r.content)
         eq_(doc('li.tag')[0].text_content().strip(), self.xss)
 
@@ -64,8 +64,8 @@ class TestXSSURLFail(amo.tests.TestCase):
 
     def test_tags_xss(self):
         """Test xss tag detail."""
-        url = reverse('addons.detail', args=['a3615'])
-        r = self.client.get(url)
+        url = reverse('addons.detail_more', args=['a3615'])
+        r = self.client.get(url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         doc = pq(r.content)
         eq_(doc('li.tag')[0].text_content().strip(), self.xss)
 

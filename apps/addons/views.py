@@ -426,10 +426,6 @@ def home(request):
 def impala_home(request):
     # Add-ons.
     base = Addon.objects.listed(request.APP).filter(type=amo.ADDON_EXTENSION)
-    featured_ext = FeaturedManager.featured_ids(request.APP, request.LANG,
-                                                type=amo.ADDON_EXTENSION)
-    featured_personas = FeaturedManager.featured_ids(request.APP, request.LANG,
-                                                     type=amo.ADDON_PERSONA)
     # This is lame for performance. Kill it with ES.
     frozen = FrozenAddon.objects.values_list('addon', flat=True)
 
@@ -437,12 +433,12 @@ def impala_home(request):
     collections = Collection.objects.filter(listed=True,
                                             application=request.APP.id,
                                             type=amo.COLLECTION_FEATURED)
-    featured = base.filter(id__in=featured_ext[:18])
+    featured = Addon.objects.featured(request.APP, request.LANG,
+                                      amo.ADDON_EXTENSION)[:18]
     popular = base.exclude(id__in=frozen).order_by('-average_daily_users')[:10]
     hotness = base.exclude(id__in=frozen).order_by('-hotness')[:18]
-    personas = (Addon.objects.listed(request.APP)
-                .filter(type=amo.ADDON_PERSONA, id__in=featured_personas[:18]))
-
+    personas = Addon.objects.featured(request.APP, request.LANG,
+                                      amo.ADDON_PERSONA)[:18]
     return jingo.render(request, 'addons/impala/home.html',
                         {'popular': popular, 'featured': featured,
                          'hotness': hotness, 'personas': personas,

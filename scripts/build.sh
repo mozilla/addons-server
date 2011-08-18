@@ -63,8 +63,6 @@ CACHE_BACKEND = 'caching.backends.locmem://'
 CELERY_ALWAYS_EAGER = True
 ADDONS_PATH = '/tmp/warez'
 STATIC_URL = ''
-IMPALA_HOMEPAGE = False
-IMPALA_ADDON_DETAILS = False
 
 TEST_SPHINX_CATALOG_PATH = TMP_PATH + '/$1/data/sphinx'
 TEST_SPHINX_LOG_PATH = TMP_PATH + '/$1/log/serachd'

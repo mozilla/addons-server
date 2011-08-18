@@ -168,12 +168,6 @@ class TestStuff(amo.tests.TestCase):
     fixtures = ('base/users', 'base/global-stats', 'base/configs',
                 'base/addon_3615')
 
-    def test_hide_stats_link(self):
-        r = self.client.get('/', follow=True)
-        doc = pq(r.content)
-        assert doc('.stats')
-        assert not doc('.stats a')
-
     def test_data_anonymous(self):
         def check(expected):
             response = self.client.get('/', follow=True)
@@ -191,22 +185,20 @@ class TestStuff(amo.tests.TestCase):
 
         # Logged out
         doc = get_homepage()
-        eq_(doc('#aux-nav .account').length, 0)
+        eq_(doc('#aux-nav .account.anonymous').length, 1)
         eq_(doc('#aux-nav .tools').length, 0)
 
         # Logged in, regular user = one tools link
         self.client.login(username='regular@mozilla.com', password='password')
         doc = get_homepage()
         eq_(doc('#aux-nav .account').length, 1)
-        eq_(doc('#aux-nav ul.tools').length, 0)
-        eq_(doc('#aux-nav p.tools').length, 1)
+        eq_(doc('#aux-nav li.tools.nomenu').length, 1)
 
         # Logged in, admin = multiple links
         self.client.login(username='admin@mozilla.com', password='password')
         doc = get_homepage()
         eq_(doc('#aux-nav .account').length, 1)
-        eq_(doc('#aux-nav ul.tools').length, 1)
-        eq_(doc('#aux-nav p.tools').length, 0)
+        eq_(doc('#aux-nav li.tools').length, 1)
 
     def test_heading(self):
         def title_eq(url, alt, text):
@@ -217,7 +209,7 @@ class TestStuff(amo.tests.TestCase):
 
         title_eq('/firefox', 'Firefox', 'Add-ons')
         title_eq('/thunderbird', 'Thunderbird', 'Add-ons')
-        title_eq('/mobile', 'Firefox', 'Mobile Add-ons')
+        title_eq('/mobile', 'Mobile', 'Mobile Add-ons')
 
     def test_tools_loggedout(self):
         r = self.client.get(reverse('home'), follow=True)
@@ -250,20 +242,19 @@ class TestStuff(amo.tests.TestCase):
 
         eq_(request.amo_user.is_developer, True)
 
-        eq_(nav.find('ul.tools').length, 1)
-        eq_(nav.find('ul.tools li').length, 4)
-        eq_(nav.find('ul.tools > li > a').length, 1)
-        eq_(nav.find('ul.tools > li > a').text(), "Developer")
+        eq_(nav.find('li.tools').length, 1)
+        eq_(nav.find('li.tools > a').text(), "Developer")
+        eq_(nav.find('li.tools li').length, 3)
 
-        item = nav.find('ul.tools ul li a').eq(0)
+        item = nav.find('li.tools ul li a').eq(0)
         eq_(item.text(), "Manage My Add-ons")
         eq_(item.attr('href'), reverse('devhub.addons'))
 
-        item = nav.find('ul.tools ul li a').eq(1)
+        item = nav.find('li.tools ul li a').eq(1)
         eq_(item.text(), "Submit a New Add-on")
         eq_(item.attr('href'), reverse('devhub.submit.1'))
 
-        item = nav.find('ul.tools ul li a').eq(2)
+        item = nav.find('li.tools ul li a').eq(2)
         eq_(item.text(), "Developer Hub")
         eq_(item.attr('href'), reverse('devhub.index'))
 
@@ -282,24 +273,22 @@ class TestStuff(amo.tests.TestCase):
         eq_(request.amo_user.is_developer, True)
         eq_(acl.action_allowed(request, 'Editors', '%'), True)
 
-        eq_(nav.find('ul.tools').length, 1)
-        eq_(nav.find('ul.tools li').length, 5)
-        eq_(nav.find('ul.tools > li > a').length, 1)
-        eq_(nav.find('ul.tools > li > a').text(), "Tools")
+        eq_(nav.find('li.tools').length, 1)
+        eq_(nav.find('li.tools li').length, 4)
 
-        item = nav.find('ul.tools ul li a').eq(0)
+        item = nav.find('li.tools ul li a').eq(0)
         eq_(item.text(), "Manage My Add-ons")
         eq_(item.attr('href'), reverse('devhub.addons'))
 
-        item = nav.find('ul.tools ul li a').eq(1)
+        item = nav.find('li.tools ul li a').eq(1)
         eq_(item.text(), "Submit a New Add-on")
         eq_(item.attr('href'), reverse('devhub.submit.1'))
 
-        item = nav.find('ul.tools ul li a').eq(2)
+        item = nav.find('li.tools ul li a').eq(2)
         eq_(item.text(), "Developer Hub")
         eq_(item.attr('href'), reverse('devhub.index'))
 
-        item = nav.find('ul.tools ul li a').eq(3)
+        item = nav.find('li.tools ul li a').eq(3)
         eq_(item.text(), "Editor Tools")
         eq_(item.attr('href'), reverse('editors.home'))
 
@@ -313,16 +302,14 @@ class TestStuff(amo.tests.TestCase):
         eq_(request.amo_user.is_developer, False)
         eq_(acl.action_allowed(request, 'Editors', '%'), True)
 
-        eq_(nav.find('ul.tools').length, 1)
-        eq_(nav.find('ul.tools li').length, 3)
-        eq_(nav.find('ul.tools > li > a').length, 1)
-        eq_(nav.find('ul.tools > li > a').text(), "Tools")
+        eq_(nav.find('li.tools').length, 1)
+        eq_(nav.find('li.tools > a').text(), 'Tools')
 
-        item = nav.find('ul.tools ul li a').eq(0)
+        item = nav.find('li.tools ul li a').eq(0)
         eq_(item.text(), "Developer Hub")
         eq_(item.attr('href'), reverse('devhub.index'))
 
-        item = nav.find('ul.tools ul li a').eq(1)
+        item = nav.find('li.tools ul li a').eq(1)
         eq_(item.text(), "Editor Tools")
         eq_(item.attr('href'), reverse('editors.home'))
 
@@ -335,7 +322,7 @@ class TestStuff(amo.tests.TestCase):
         doc = PyQuery(r.content)
         next = urllib.urlencode({'to': '/en-US/firefox/'})
         eq_('/en-US/firefox/users/login?%s' % next,
-            doc('#aux-nav p a')[1].attrib['href'])
+            doc('.account.anonymous a')[1].attrib['href'])
 
 
 class TestPaypal(amo.tests.TestCase):
@@ -477,7 +464,7 @@ class TestOtherStuff(amo.tests.TestCase):
 
     def test_dictionaries_link(self):
         doc = pq(test.Client().get('/', follow=True).content)
-        link = doc('#categoriesdropdown a[href*="language-tools"]')
+        link = doc('#site-nav #more a[href*="language-tools"]')
         eq_(link.text(), 'Dictionaries & Language Packs')
 
     def test_opensearch(self):
@@ -495,13 +482,13 @@ class TestOtherStuff(amo.tests.TestCase):
         # Test that the login link encodes parameters correctly.
         r = test.Client().get('/?your=mom', follow=True)
         doc = pq(r.content)
-        assert doc('.context a')[1].attrib['href'].endswith(
+        assert doc('.account.anonymous a')[1].attrib['href'].endswith(
                 '?to=%2Fen-US%2Ffirefox%2F%3Fyour%3Dmom'), ("Got %s" %
-                doc('.context a')[1].attrib['href'])
+                doc('.account.anonymous a')[1].attrib['href'])
 
-        r = test.Client().get('/en-US/firefox/search/?q=%B8+%EB%B2%88%EC%97%A')
+        r = test.Client().get('/ar/firefox/?q=%B8+%EB%B2%88%EC%97%A')
         doc = pq(r.content)
-        link = doc('.context a')[1].attrib['href']
-        assert link.endswith('?to=%2Fen-US%2Ffirefox%2Fsearch%2F%3Fq%3D%25EF'
+        link = doc('.account.anonymous a')[1].attrib['href']
+        assert link.endswith('?to=%2Far%2Ffirefox%2F%3Fq%3D%25EF'
                 '%25BF%25BD%2B%25EB%25B2%2588%25EF%25BF%25BDA'), "Got %s" % link
     test_login_link.py27unicode = True

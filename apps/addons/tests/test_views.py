@@ -56,65 +56,18 @@ class TestHomepage(amo.tests.TestCase):
         super(TestHomepage, self).setUp()
         self.base_url = reverse('home')
 
-    def test_promo_box_public_addons(self):
-        """Only public add-ons in the promobox."""
-        r = self.client.get(self.base_url, follow=True)
-        doc = pq(r.content)
-        assert doc('.addon-view .item').length > 0
-
-        Addon.objects.update(status=amo.STATUS_UNREVIEWED)
-        cache.clear()
-        r = self.client.get(self.base_url, follow=True)
-        doc = pq(r.content)
-        eq_(doc('.addon-view .item').length, 0)
-
-    def test_promo_box(self):
-        """Test that promobox features have proper translations."""
-        r = self.client.get(self.base_url, follow=True)
-        doc = pq(r.content)
-        eq_(doc('.lead a')[0].text, 'WebDev')
-
     def test_thunderbird(self):
         """Thunderbird homepage should have the Thunderbird title."""
         r = self.client.get('/en-US/thunderbird/')
         doc = pq(r.content)
         eq_('Add-ons for Thunderbird', doc('title').text())
 
-    def test_default_feature(self):
-        response = self.client.get(self.base_url, follow=True)
-        eq_(response.status_code, 200)
-        eq_(response.context['filter'].field, 'featured')
-
-    def test_featured(self):
-        response = self.client.get(self.base_url + '?browse=featured',
-                                   follow=True)
-        eq_(response.status_code, 200)
-        eq_(response.context['filter'].field, 'featured')
-        featured = response.context['addon_sets']['featured']
-        ids = [a.id for a in featured]
-        eq_(set(ids), set([2464, 7661]))
-        for addon in featured:
-            assert addon.is_featured(amo.FIREFOX, settings.LANGUAGE_CODE)
-
-    def _test_invalid_feature(self):
-        response = self.client.get(self.base_url + '?browse=xxx')
-        self.assertRedirects(response, '/en-US/firefox/', status_code=301)
-
     def test_no_unreviewed(self):
         response = self.client.get(self.base_url)
-        for addons in response.context['addon_sets'].values():
-            for addon in addons:
+        addon_lists = 'popular featured hotness personas'.split()
+        for key in addon_lists:
+            for addon in response.context[key]:
                 assert addon.status != amo.STATUS_UNREVIEWED
-
-    def test_filter_opts(self):
-        response = self.client.get(self.base_url)
-        opts = [k[0] for k in response.context['filter'].opts]
-        eq_(opts, 'featured popular new updated'.split())
-
-    def test_added_date(self):
-        doc = pq(self.client.get(self.base_url).content)
-        s = doc('#list-new .item .updated').text()
-        assert s.strip().startswith('Added'), s
 
 
 class TestPromobox(amo.tests.TestCase):
@@ -421,15 +374,6 @@ class TestDetailPage(amo.tests.TestCase):
         eq_(response.status_code, 200)
         eq_(response.context['addon'].id, 15663)
 
-    def test_review_microdata_extension(self):
-        a = Addon.objects.get(id=3615)
-        a.name = '<script>alert("fff")</script>'
-        a.save()
-        response = self.client.get(reverse('addons.detail', args=['a3615']))
-        html = pq(response.content)('table caption').html()
-        assert '&lt;script&gt;alert("fff")&lt;/script&gt;' in html
-        assert '<script>' not in html
-
     def test_review_microdata_personas(self):
         a = Addon.objects.get(id=15663)
         a.name = '<script>alert("fff")</script>'
@@ -467,19 +411,6 @@ class TestDetailPage(amo.tests.TestCase):
         doc = pq(self.client.get(url).content)
         assert doc(m)
 
-    def test_listed(self):
-        """Show certain things for hosted but not listed add-ons."""
-        hosted_resp = self.client.get(reverse('addons.detail', args=['a3615']),
-                                      follow=True)
-        hosted = pq(hosted_resp.content)
-
-        listed_resp = self.client.get(reverse('addons.detail', args=['a3723']),
-                                      follow=True)
-        listed = pq(listed_resp.content)
-
-        eq_(hosted('#releasenotes').length, 1)
-        eq_(listed('#releasenotes').length, 0)
-
     def test_more_about(self):
         # Don't show more about box if there's nothing to populate it.
         addon = Addon.objects.get(id=3615)
@@ -514,25 +445,6 @@ class TestDetailPage(amo.tests.TestCase):
         myaddon.update(status=amo.STATUS_UNREVIEWED)
         beta = get_pq_content()
         eq_(beta('#beta-channel').length, 0)
-
-    def test_other_addons(self):
-        """Test "other add-ons by author" list."""
-
-        # Grab a user and give them some add-ons.
-        u = UserProfile.objects.get(pk=55021)
-        thisaddon = u.addons.all()[0]
-        qs = Addon.objects.valid().exclude(pk=thisaddon.pk)
-        other_addons = order_by_translation(qs, 'name')[:3]
-        for addon in other_addons:
-            AddonUser.objects.create(user=u, addon=addon)
-
-        page = self.client.get(reverse('addons.detail', args=[thisaddon.slug]),
-                               follow=True)
-        doc = pq(page.content)
-        eq_(doc('.other-author-addons li').length, other_addons.count())
-        for i in range(other_addons.count()):
-            link = doc('.other-author-addons li a').eq(i)
-            eq_(link.attr('href'), other_addons[i].get_url_path())
 
     def test_type_redirect(self):
         """
@@ -580,7 +492,7 @@ class TestDetailPage(amo.tests.TestCase):
         response = self.client.get(reverse('addons.detail', args=[addon.slug]),
                                    follow=True)
         doc = pq(response.content)
-        eq_(doc('#addon-summary a[href^="%s"]' %
+        eq_(doc('aside a.home[href^="%s"]' %
                 settings.REDIRECT_URL).length, 1)
 
     def test_no_privacy_policy(self):
@@ -670,32 +582,6 @@ class TestDetailPage(amo.tests.TestCase):
                                    follow=True)
         eq_(response.status_code, 404)
 
-    def test_other_author_addons(self):
-        """
-        Make sure the list of other author addons doesn't include this one.
-        """
-        r = self.client.get(reverse('addons.detail', args=['a3615']))
-        doc = pq(r.content)
-        eq_(len([a.attrib['value'] for a
-                 in doc('#addons-author-addons-select option')
-                 if a.attrib['value'] == '3615']), 0)
-
-        # Test "other addons" redirect functionality with valid and
-        # invalid input.
-        forward_to = lambda input: self.client.get(reverse(
-            'addons.detail', args=[3615]), {
-                'addons-author-addons-select': input})
-        # Valid input.
-        response = forward_to('3615')
-        eq_(response.status_code, 301)
-        assert response['Location'].find('3615') > 0
-        # Textual input.
-        response = forward_to('abc')
-        eq_(response.status_code, 400)
-        # Unicode input.
-        response = forward_to(u'\u271D')
-        eq_(response.status_code, 400)
-
     def test_detailed_review_link(self):
         self.client.login(username='regular@mozilla.com', password='password')
         r = self.client.get(reverse('addons.detail', args=['a3615']))
@@ -722,21 +608,22 @@ class TestDetailPage(amo.tests.TestCase):
     def test_search_engine_works_with(self):
         """We don't display works-with info for search engines."""
         addon = Addon.objects.filter(type=amo.ADDON_SEARCH)[0]
-        r = self.client.get(reverse('addons.detail', args=[addon.slug]))
-        headings = pq(r.content)('table[itemscope] th')
-        assert not any(th.text.strip().lower() == 'works with'
+        r = self.client.get(reverse('addons.detail_more', args=[addon.slug]),
+                           HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        headings = pq(r.content)('#detail-relnotes .item-info h5')
+        assert not any(th.text.strip().lower() == 'works with:'
                        for th in headings)
 
         # Make sure we find Works with for an extension.
         r = self.client.get(reverse('addons.detail', args=['a3615']))
-        headings = pq(r.content)('table[itemscope] th')
-        assert any(th.text.strip().lower() == 'works with'
+        headings = pq(r.content)('#detail-relnotes .item-info h5')
+        assert any(th.text.strip().lower() == 'works with:'
                    for th in headings)
 
     def test_show_profile(self):
         addon = Addon.objects.get(id=3615)
         url = reverse('addons.detail', args=[addon.slug])
-        selector = '.secondary a[href="%s"]' % addon.meet_the_dev_url()
+        selector = '.author a[href="%s"]' % addon.meet_the_dev_url()
 
         assert not (addon.the_reason or addon.the_future)
         assert not pq(self.client.get(url).content)(selector)
@@ -746,7 +633,7 @@ class TestDetailPage(amo.tests.TestCase):
         assert pq(self.client.get(url).content)(selector)
 
     def test_no_restart(self):
-        no_restart = '<div id="no-restart"'
+        no_restart = '<span class="no-restart">No Restart</span>'
         addon = Addon.objects.get(id=3615)
         url = reverse('addons.detail', args=[addon.slug])
         f = addon.current_version.all_files[0]
@@ -911,7 +798,9 @@ class TestTagsBox(amo.tests.TestCase):
 
     def test_tag_box(self):
         """Verify that we don't show duplicate tags."""
-        r = self.client.get(reverse('addons.detail', args=[8680]), follow=True)
+        r = self.client.get(reverse('addons.detail_more', args=[8680]),
+                            follow=True,
+                           HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         doc = pq(r.content)
         eq_('SEO', doc('#tagbox ul').children().text())
 
