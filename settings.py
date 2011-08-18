@@ -8,7 +8,7 @@ import socket
 from django.utils.functional import lazy
 
 # jingo-minify settings
-CACHEBUST_IMGS = True
+CACHEBUST_IMGS = False
 try:
     # If we have build ids available, we'll grab them here and add them to our
     # CACHE_PREFIX.  This will let us not have to flush memcache during updates
