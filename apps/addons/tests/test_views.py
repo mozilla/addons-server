@@ -798,7 +798,7 @@ class TestTagsBox(amo.tests.TestCase):
         """Verify that we don't show duplicate tags."""
         r = self.client.get(reverse('addons.detail_more', args=[8680]),
                             follow=True,
-                           HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         doc = pq(r.content)
         eq_('SEO', doc('#tagbox ul').children().text())
 
