@@ -21,7 +21,7 @@ from amo.helpers import urlparams
 from addons.tests.test_views import TestMobile
 from addons.models import (Addon, AddonCategory, Category, AppSupport, Feature,
                            Persona)
-from addons.utils import FeaturedManager, CreaturedManager
+from addons.utils import FeaturedManager
 from applications.models import Application
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from browse import views, feeds
@@ -1037,7 +1037,6 @@ class TestFeaturedFeed(amo.tests.TestCase):
         self.addCleanup(patcher.stop)
 
     def test_feed_elements_present(self):
-        """specific elements are present and reasonably well formed"""
         url = reverse('browse.featured.rss')
         r = self.client.get(url, follow=True)
         doc = pq(r.content)
@@ -1045,9 +1044,10 @@ class TestFeaturedFeed(amo.tests.TestCase):
                 'Featured Add-ons :: Add-ons for Firefox')
         assert doc('rss channel link')[0].text.endswith('/en-US/firefox/')
         eq_(doc('rss channel description')[0].text,
-                "Here's a few of our favorite add-ons to help you get " \
+                "Here's a few of our favorite add-ons to help you get "
                 "started customizing Firefox.")
-        eq_(len(doc('rss channel item')), 6)
+        eq_(len(doc('rss channel item')),
+            Addon.objects.featured(amo.FIREFOX).count())
 
 
 class TestNewFeaturedFeed(TestFeaturedFeed):

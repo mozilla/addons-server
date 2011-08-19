@@ -46,8 +46,8 @@ class TestAddonManager(amo.tests.TestCase):
     @patch.object(settings, 'NEW_FEATURES', False)
     def test_featured(self):
         eq_(Addon.objects.featured(amo.FIREFOX).count(),
-            Addon.objects.valid().filter(feature__application=amo.FIREFOX.id)
-            .count())
+            Addon.objects.listed(amo.FIREFOX)
+            .filter(feature__application=amo.FIREFOX.id).count())
 
     @patch.object(settings, 'NEW_FEATURES', True)
     def test_new_featured(self):
@@ -55,7 +55,7 @@ class TestAddonManager(amo.tests.TestCase):
         # build() was already called in setUp().
         from addons.cron import reset_featured_addons
         reset_featured_addons()
-        eq_(Addon.objects.featured(amo.FIREFOX).count(), 6)
+        eq_(Addon.objects.featured(amo.FIREFOX).count(), 3)
 
     def test_listed(self):
         Addon.objects.filter(id=5299).update(disabled_by_user=True)
@@ -128,9 +128,9 @@ class TestAddonManagerFeatured(amo.tests.TestCase):
     @patch.object(settings, 'NEW_FEATURES', True)
     def test_new_featured(self):
         f = Addon.objects.featured(amo.FIREFOX)
-        eq_(f.count(), 6)
+        eq_(f.count(), 3)
         eq_(sorted(x.id for x in f),
-            [1001, 1003, 2464, 3481, 7661, 15679])
+            [2464, 7661, 15679])
         f = Addon.objects.featured(amo.SUNBIRD)
         assert not f.exists()
 
@@ -1597,6 +1597,7 @@ class TestMarketplace(amo.tests.ESTestCase):
             self.addon.update(premium_type=amo.ADDON_PREMIUM,
                               status=status)
             assert self.addon.can_be_purchased()
+
 
 class TestAddonUpsell(amo.tests.TestCase):
 

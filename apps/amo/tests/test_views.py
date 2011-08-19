@@ -22,8 +22,6 @@ from users.models import UserProfile
 URL_ENCODED = 'application/x-www-form-urlencoded'
 
 
-
-
 class Client(test.Client):
     """Test client that uses form-urlencoded (like browsers)."""
 
@@ -432,7 +430,6 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
         eq_(response.content, 'Contribution not found')
 
 
-
 class TestOtherStuff(amo.tests.TestCase):
     # Tests that don't need fixtures but do need redis mocked.
 
@@ -489,6 +486,6 @@ class TestOtherStuff(amo.tests.TestCase):
         r = test.Client().get('/ar/firefox/?q=%B8+%EB%B2%88%EC%97%A')
         doc = pq(r.content)
         link = doc('.account.anonymous a')[1].attrib['href']
-        assert link.endswith('?to=%2Far%2Ffirefox%2F%3Fq%3D%25EF'
-                '%25BF%25BD%2B%25EB%25B2%2588%25EF%25BF%25BDA'), "Got %s" % link
+        assert link.endswith('?to=%2Far%2Ffirefox%2F%3Fq%3D%25EF%25BF%25BD%2B'
+                             '%25EB%25B2%2588%25EF%25BF%25BDA'), link
     test_login_link.py27unicode = True

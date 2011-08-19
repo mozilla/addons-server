@@ -9,7 +9,6 @@ import re
 from django import test
 from django.conf import settings
 from django.core import mail
-from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 
 from mock import patch
@@ -30,7 +29,6 @@ from files.models import File
 from paypal.tests import other_error
 from stats.models import Contribution
 from translations.helpers import truncate
-from translations.query import order_by_translation
 from users.helpers import users_list
 from users.models import UserProfile
 from versions.models import License, Version

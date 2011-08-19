@@ -33,7 +33,6 @@ from amo.models import manual_order
 from amo import urlresolvers
 from amo.urlresolvers import reverse
 from abuse.models import send_abuse_report
-from addons.utils import FeaturedManager
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
 from devhub.decorators import dev_required
 import paypal
