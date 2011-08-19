@@ -1101,6 +1101,17 @@ class TestAddonModels(amo.tests.TestCase):
         assert addon.get_category(amo.FIREFOX.id).name in names
 
 
+class TestAddonGetURLPath(amo.tests.TestCase):
+
+    def test_get_url_path(self):
+        addon = Addon(slug='woo')
+        eq_(addon.get_url_path(), '/en-US/firefox/addon/woo/')
+
+    def test_get_url_path_more(self):
+        addon = Addon(slug='woo')
+        eq_(addon.get_url_path(more=True), '/en-US/firefox/addon/woo/more')
+
+
 class TestAddonModelsFeatured(amo.tests.TestCase):
     fixtures = ['addons/featured', 'bandwagon/featured_collections',
                 'base/addon_3615', 'base/collections', 'base/featured']

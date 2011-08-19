@@ -378,9 +378,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         return urls
 
-    def get_url_path(self, impala=False):
+    def get_url_path(self, impala=False, more=False):
+        # If more=True you get the link to the ajax'd middle chunk of the
+        # detail page.
         if settings.IMPALA_ADDON_DETAILS:
-            return reverse('addons.detail', args=[self.slug])
+            view = 'addons.detail_more' if more else 'addons.detail'
+            return reverse(view, args=[self.slug])
         u = '%saddons.detail' % ('i_' if impala else '')
         return reverse(u, args=[self.slug])
 

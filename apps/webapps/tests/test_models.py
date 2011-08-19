@@ -14,7 +14,7 @@ class TestWebapp(test_utils.TestCase):
         eq_(webapp.type, amo.ADDON_WEBAPP)
 
     def test_app_slugs_separate_from_addon_slugs(self):
-        addon = Addon.objects.create(type=1, slug='slug')
+        Addon.objects.create(type=1, slug='slug')
         webapp = Webapp(app_slug='slug')
         webapp.save()
         eq_(webapp.slug, 'app-%s' % webapp.id)
@@ -35,3 +35,11 @@ class TestWebapp(test_utils.TestCase):
         w = Webapp(app_slug='slug')
         w.save()
         eq_(w.app_slug, 'slug~')
+
+    def test_get_url_path(self):
+        webapp = Webapp(app_slug='woo')
+        eq_(webapp.get_url_path(), '/en-US/apps/woo/')
+
+    def test_get_url_path_more(self):
+        webapp = Webapp(app_slug='woo')
+        eq_(webapp.get_url_path(more=True), '/en-US/apps/woo/more')

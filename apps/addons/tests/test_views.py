@@ -689,6 +689,12 @@ class TestDetailPage(amo.tests.TestCase):
         response = self.client.get(reverse('addons.detail', args=[addon.slug]))
         eq_(response.status_code, 404)
 
+    def test_more_url(self):
+        addon = Addon.objects.get(id=3615)
+        response = self.client.get(reverse('addons.detail', args=[addon.slug]))
+        eq_(pq(response.content)('#more-webpage').attr('data-more-url'),
+            addon.get_url_path(more=True))
+
 
 class TestStatus(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_3615']

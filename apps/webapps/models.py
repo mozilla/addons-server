@@ -1,5 +1,4 @@
 from django.db import models
-from django.dispatch import receiver
 
 import amo
 from amo.urlresolvers import reverse
@@ -24,8 +23,9 @@ class Webapp(Addon):
             # Set the slug once we have an id to keep things in order.
             self.update(slug='app-%s' % self.id)
 
-    def get_url_path(self, impala=None):
-        return reverse('apps.detail', args=[self.app_slug])
+    def get_url_path(self, impala=None, more=False):
+        view = 'apps.detail_more' if more else 'apps.detail'
+        return reverse(view, args=[self.app_slug])
 
 
 # These are the translated strings we want to pull in.
