@@ -1411,7 +1411,7 @@ class TestReview(ReviewBase):
         eq_(response.status_code, 200)
         doc = pq(response.content)
         eq_(doc('title').text(),
-            '%s :: Editor Tools :: Add-ons' % self.addon.name)
+            '%s :: Editor Tools :: Add-ons for Firefox' % self.addon.name)
 
     def test_paging_num(self):
         response = self.client.get('%s?num=1' % self.url)
