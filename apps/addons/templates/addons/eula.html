@@ -29,9 +29,6 @@
     <div class="policy-install">
       {{ install_button(addon, version=version, show_contrib=False,
                         show_eula=False, show_warning=False, impala=True) }}
-      <p class="policy-cancel">
-        <a href="{{ detail_url }}">{{ _('Cancel Installation') }}</a>
-      </p>
     </div>
     <p class="policy-back">
       <a href="{{ detail_url }}">{{ _('Back to {0}…')|f(addon.name) }}</a>
