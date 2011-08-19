@@ -28,6 +28,7 @@ def flag_context():
     return dict(ReviewFlag=ReviewFlag,
                 flag_form=forms.ReviewFlagForm())
 
+
 def send_mail(template, subject, emails, context, perm_setting):
     cxn = amo.utils.get_email_backend()
     template = loader.get_template(template)
@@ -41,7 +42,7 @@ def send_mail(template, subject, emails, context, perm_setting):
 @mobile_template('reviews/{mobile/}review_list.html')
 def review_list(request, addon, review_id=None, user_id=None, template=None):
     q = (Review.objects.valid().filter(addon=addon)
-         .order_by('-created'))
+         .transform(Review.transformer).order_by('-created'))
 
     ctx = {'addon': addon,
            'grouped_ratings': GroupedRating.get(addon.id)}
@@ -203,7 +204,7 @@ def reply(request, addon, review_id):
                         'reply': reply.body,
                         'reply_url': absolutify(reverse('reviews.detail',
                                 args=[addon.slug, review.id],
-                                add_prefix=False)) }
+                                add_prefix=False))}
                 emails = [review.user.email]
                 if settings.IMPALA_EDIT:
                     sub = u'Mozilla Add-on Developer Reply: %s' % addon.name
@@ -257,7 +258,7 @@ def add(request, addon):
                     'rating': '*' * int(details['rating']),
                     'review': details['body'],
                     'reply_url': absolutify(reverse('reviews.reply',
-                            args=[addon.slug, review.id], add_prefix=False)) }
+                            args=[addon.slug, review.id], add_prefix=False))}
 
             emails = [a.email for a in addon.authors.all()]
             if settings.IMPALA_EDIT:

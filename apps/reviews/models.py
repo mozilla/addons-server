@@ -1,8 +1,6 @@
 import json
 from datetime import datetime, timedelta
 
-from django.conf import settings
-from django.core.cache import cache
 from django.db import models
 
 import bleach
@@ -14,7 +12,6 @@ import amo.models
 from amo.urlresolvers import reverse
 from translations.fields import TranslatedField
 from users.models import UserProfile
-from versions.models import Version
 
 
 class ReviewManager(amo.models.ManagerBase):
@@ -95,6 +92,12 @@ class Review(amo.models.ModelBase):
         # slave lag.
         tasks.update_denorm(pair, using='default')
         tasks.addon_review_aggregates.delay(instance.addon_id, using='default')
+
+    @staticmethod
+    def transformer(reviews):
+        user_ids = dict((r.user_id, r) for r in reviews)
+        for user in UserProfile.uncached.filter(id__in=user_ids):
+            user_ids[user.id].user = user
 
 
 models.signals.post_save.connect(Review.post_save, sender=Review)
