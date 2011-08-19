@@ -282,7 +282,7 @@ def impala_breadcrumbs(context, items=list(), add_default=True, crumb_size=40):
             crumbs.append(items)
 
     crumbs = [(url, truncate(label, crumb_size)) for (url, label) in crumbs]
-    c = {'breadcrumbs': crumbs}
+    c = {'breadcrumbs': crumbs, 'has_home': add_default}
     t = env.get_template('amo/impala/breadcrumbs.html').render(**c)
     return jinja2.Markup(t)
 
