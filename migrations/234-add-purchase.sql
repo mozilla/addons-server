@@ -3,7 +3,7 @@ ALTER TABLE stats_contributions ADD COLUMN type int(11) unsigned NOT NULL;
 ALTER TABLE stats_contributions ADD COLUMN user_id int(11) unsigned;
 ALTER TABLE stats_contributions ADD COLUMN price_tier_id int(11);
 ALTER TABLE stats_contributions ADD COLUMN currency varchar(3);
-ALTER TABLE stats_contributions ADD COLUMN related_id int(11);
+ALTER TABLE stats_contributions ADD COLUMN related_id int(11) unsigned;
 
 ALTER TABLE stats_contributions ADD CONSTRAINT user_id_refs FOREIGN KEY (user_id) REFERENCES users (id);
 ALTER TABLE stats_contributions ADD CONSTRAINT price_tier_id_refs FOREIGN KEY (price_tier_id) REFERENCES prices (id);
