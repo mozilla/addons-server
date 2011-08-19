@@ -55,6 +55,13 @@ class TestEditPolicy(TestOwnership):
         eq_(r.status_code, 302)
         eq_(self.get_addon().eula, None)
 
+    def test_edit_eula_locale(self):
+        self.addon.eula = {'de': 'some eula', 'en-US': ''}
+        self.addon.save()
+        res = self.client.get(self.url.replace('en-US', 'it'))
+        doc = pq(res.content)
+        eq_(doc('#id_has_eula').attr('checked'), 'checked')
+
 
 class TestEditLicense(TestOwnership):
 

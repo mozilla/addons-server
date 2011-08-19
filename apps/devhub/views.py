@@ -46,7 +46,7 @@ from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
 from editors.helpers import get_position
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
-from translations.models import delete_translation
+from translations.models import Translation, delete_translation
 from users.models import UserProfile
 from versions.models import License, Version
 from product_details import product_details
@@ -326,10 +326,15 @@ def _license_form(request, addon, save=False, log=True):
 
 
 def _policy_form(request, addon, save=False):
+    def has_field(n):
+        # If there's a eula in any language, this addon has a eula.
+        n = getattr(addon, '%s_id' % n)
+        return any(map(bool, Translation.objects.filter(id=n)))
+
     policy_form = forms.PolicyForm(
         request.POST or None, instance=addon,
-        initial=dict(has_priv=bool(addon.privacy_policy),
-                     has_eula=bool(addon.eula)))
+        initial=dict(has_priv=has_field('privacy_policy'),
+                     has_eula=has_field('eula')))
     if save and policy_form.is_valid():
         policy_form.save()
         if 'privacy_policy' in policy_form.changed_data:
@@ -1404,7 +1409,7 @@ def docs(request, doc_name=None, doc_page=None):
                 'how-to': ['getting-started', 'extension-development',
                            'thunderbird-mobile', 'theme-development',
                            'other-addons']}
-    
+
     if waffle.switch_is_active('marketplace'):
         all_docs['marketplace'] = ['voluntary']
 
