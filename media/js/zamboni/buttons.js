@@ -14,6 +14,22 @@ z.button.after = {'contrib': function(xpi_url, status) {
 var notavail = '<div class="extra"><span class="notavail">{0}</span></div>',
     download_re = new RegExp('(/downloads/(?:latest|file)/\\d+)');
 
+
+var webappButton = function() {
+    var $this = $(this),
+        manifestURL = $this.attr('data-manifest-url');
+    if (navigator.apps && navigator.apps.install) {
+        $this.find('.button')
+            .removeClass('disabled')
+            .click(function(e) {
+                e.preventDefault();
+                navigator.apps.install({url: manifestURL});
+            });
+    } else {
+        // Attach something that says you can't install apps.
+    }
+};
+
 /* Called by the jQuery plugin to set up a single button. */
 var installButton = function() {
     // Create a bunch of data and helper functions, then drive the buttons
@@ -21,6 +37,10 @@ var installButton = function() {
     var self = this,
         $this = $(this),
         $button = $this.find('.button');
+
+    if ($this.hasClass('webapp')) {
+        return webappButton.call(this);
+    }
 
     // Unreviewed and self-hosted buttons point to the add-on detail page for
     // non-js safety.  Flip them to the real xpi url here.

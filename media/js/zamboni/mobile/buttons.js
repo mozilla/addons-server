@@ -85,6 +85,10 @@
             initFromDom();
             collectHashes();
 
+            if (self.classes.webapp) {
+                initWebapp();
+            }
+
             versionPlatformCheck();
 
             this.actionQueue.push([0, function() {
@@ -159,7 +163,8 @@
                 'icon'        : b.attr('data-icon'),
                 'after'       : b.attr('data-after'),
                 'search'      : b.hasattr('data-search'),
-                'accept_eula' : b.hasClass('accept')
+                'accept_eula' : b.hasClass('accept'),
+                'manifest_url': b.attr('data-manifest-url')
             };
 
             self.classes = {
@@ -170,7 +175,8 @@
                 'persona'     : b.hasClass('persona'),
                 'contrib'     : b.hasClass('contrib'),
                 'search'      : b.hasattr('data-search'),
-                'eula'        : b.hasClass('eula')
+                'eula'        : b.hasClass('eula'),
+                'webapp'      : b.hasClass('webapp')
             };
 
             dom.buttons.each(function() {
@@ -269,6 +275,21 @@
                 dom.buttons.click(startInstall);
             }
         }
+
+
+        function initWebapp() {
+            if (navigator.apps && navigator.apps.install) {
+                dom.self.find('.button')
+                    .removeClass('disabled')
+                    .click(function(e) {
+                        e.preventDefault();
+                        navigator.apps.install({url: manifestURL});
+                    });
+            } else {
+                // Attach something that says you can't install apps.
+            }
+        }
+
 
         //and of course, initialize the button.
         this.init();

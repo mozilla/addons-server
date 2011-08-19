@@ -71,7 +71,7 @@
       <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
     </hgroup>
     <p id="addon-summary" {{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
-    {% if version %}
+    {% if version or addon.is_webapp() %}
       {{ big_install_button(addon, show_warning=False, impala=True) }}
     {% endif %}
     {% if addon.is_featured(APP, LANG) %}

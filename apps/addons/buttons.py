@@ -35,7 +35,9 @@ def _install_button(context, addon, version=None, show_eula=True,
                  addon.id in request.amo_user.mobile_addons)
     c = {'button': button, 'addon': addon, 'version': button.version,
          'installed': installed}
-    if impala:
+    if addon.is_webapp():
+        template = 'webapps/button.html'
+    elif impala:
         template = 'addons/impala/button.html'
     elif mobile:
         template = 'addons/mobile/button.html'
