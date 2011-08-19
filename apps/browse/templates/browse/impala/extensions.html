@@ -6,9 +6,6 @@
   {% set url_base = url('i_browse.extensions') %}
 {% endif %}
 
-{% set extras = (('name', _('Name')),
-                 ('popular', _('Weekly Downloads')),
-                 ('updated', _('Recently Updated'))) %}
 
 {% block primary %}
 <section class="primary">
@@ -18,10 +15,10 @@
   {% else %}
     {{ impala_breadcrumbs([(None, _('Extensions'))]) }}
   {% endif %}
-  <h1>{{ category.name if category else filter.opts_dict[sorting] }}</h1>
+  <h1>{{ category.name if category else filter.title }}</h1>
   <div class="island hero c listing">
     <a href="{{ feed_url }}" id="subscribe">{{ _('Subscribe') }}</a>
-    {{ impala_addon_listing_header(url_base, sort_opts, sorting, extras) }}
+    {{ impala_addon_listing_header(url_base, filter.opts, sorting, filter.extras) }}
     <div class="items">
       {{ impala_addon_listing_items(addons.object_list, src='category',
                                     show_date=sorting) }}

@@ -12,7 +12,7 @@ import mock
 from nose import SkipTest
 from nose.tools import eq_, assert_raises
 from pyquery import PyQuery as pq
-
+import waffle
 
 import amo
 import amo.tests
@@ -25,7 +25,7 @@ from addons.utils import FeaturedManager
 from applications.models import Application
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from browse import views, feeds
-from browse.views import locale_display_name
+from browse.views import locale_display_name, ImpalaAddonFilter
 from translations.models import Translation
 from translations.query import order_by_translation
 from versions.models import Version
@@ -322,14 +322,57 @@ class TestCategoryPages(amo.tests.TestCase):
         assert 57132 not in [a.id for a in ids]
 
 
-class NewTestCategoryPages(TestCategoryPages):
-    fixtures = (TestCategoryPages.fixtures +
-                ['base/addon_3615_featuredcollection'])
+class TestImpalaCategoryFeeds(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/category', 'base/featured',
+                'addons/featured', 'addons/listed', 'base/collections',
+                'bandwagon/featured_collections']
 
     def setUp(self):
-        patcher = mock.patch.object(settings, 'NEW_FEATURES', True)
+        patcher = mock.patch.object(waffle, 'switch_is_active', lambda x: True)
         patcher.start()
         self.addCleanup(patcher.stop)
+        self.reset_featured_addons()
+        self.extensions_rss_url = reverse('browse.extensions.rss')
+        self.extensions_url = reverse('i_browse.extensions')
+
+    def check_feed(self, url, expected_sort='featured'):
+        """
+        Check RSS feed URLs and that the results on the listing pages match
+        those for their respective RSS feeds.
+        """
+        # Check URLs.
+        r = self.client.get(url, follow=True)
+        doc = pq(r.content)
+        rss_url = '%s?sort=%s' % (self.extensions_rss_url, expected_sort)
+        eq_(doc('link[type="application/rss+xml"]').attr('href'), rss_url)
+        eq_(doc('#subscribe').attr('href'), rss_url)
+
+        # Ensure that the RSS items match those on the browse listing pages.
+        expected_urls = [a.get('href') for a in doc('.items h3 a')]
+        r = self.client.get(rss_url)
+        doc = pq(r.content)
+        rss_urls = [urlparse(a.text).path for a in doc('item link')]
+        eq_(sorted(expected_urls), sorted(rss_urls))
+
+    def check_sort_urls(self, items, opts, attribute):
+        for item, options in zip(items, getattr(ImpalaAddonFilter, opts)):
+            slug, title = options
+            url = '%s?sort=%s' % (self.extensions_url, slug)
+            val = item.get(attribute)
+            if attribute == 'href':
+                eq_(val, url)
+            else:
+                eq_(val, slug)
+            eq_(item.text, unicode(title))
+            self.check_feed(url, slug)
+
+    def test_sort_opts_urls(self):
+        r = self.client.get(self.extensions_url, follow=True)
+        doc = pq(r.content)
+        self.check_feed(self.extensions_url, 'featured')
+        self.check_sort_urls(doc('#sorter a'), 'opts', attribute='href')
+        self.check_sort_urls(doc('#sorter option[value!=""]'), 'extras',
+                             attribute='value')
 
 
 class TestFeaturedLocale(amo.tests.TestCase):
@@ -1027,12 +1070,42 @@ class TestCategoriesFeed(amo.tests.TestCase):
         assert t.endswith(url), t
 
 
+class TestCategoriesFeed(amo.tests.TestCase):
+
+    def setUp(self):
+        self.feed = feeds.CategoriesRss()
+        self.u = u'Ελληνικά'
+        self.wut = Translation(localized_string=self.u, locale='el')
+
+        self.feed.request = mock.Mock()
+        self.feed.request.APP.pretty = self.u
+
+        self.category = Category(name=self.u)
+
+        self.addon = Addon(name=self.u, id=2, type=1, slug='xx')
+        self.addon._current_version = Version(version='v%s' % self.u)
+
+    def test_title(self):
+        eq_(self.feed.title(self.category),
+            u'%s :: Add-ons for %s' % (self.wut, self.u))
+
+    def test_item_title(self):
+        eq_(self.feed.item_title(self.addon),
+            u'%s v%s' % (self.u, self.u))
+
+    def test_item_guid(self):
+        t = self.feed.item_guid(self.addon)
+        url = u'/addon/%s/versions/v%s' % (self.addon.slug,
+                                           urllib.urlquote(self.u))
+        assert t.endswith(url), t
+
+
 class TestFeaturedFeed(amo.tests.TestCase):
     fixtures = ['addons/featured', 'base/addon_3615', 'base/apps',
                 'base/collections', 'base/featured', 'base/users']
 
     def setUp(self):
-        patcher = mock.patch.object(settings, 'NEW_FEATURES', False)
+        patcher = mock.object(settings, 'NEW_FEATURES', False)
         patcher.start()
         self.addCleanup(patcher.stop)
 

@@ -84,7 +84,7 @@ class CategoriesRss(AddonFeedMixin, Feed):
         addons, _ = addon_listing(self.request, [self.TYPE], default='updated')
         if category:
             addons = addons.filter(categories__id=category.id)
-        return addons[:30]
+        return addons[:20]
 
 
 class FeaturedRss(AddonFeedMixin, Feed):

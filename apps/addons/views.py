@@ -316,6 +316,7 @@ class BaseFilter(object):
 
     def __init__(self, request, base, key, default):
         self.opts_dict = dict(self.opts)
+        self.extras_dict = dict(self.extras) if hasattr(self, 'extras') else {}
         self.request = request
         self.base_queryset = base
         self.key = key
@@ -324,11 +325,16 @@ class BaseFilter(object):
 
     def options(self, request, key, default):
         """Get the (option, title) pair we want according to the request."""
-        if key in request.GET and request.GET[key] in self.opts_dict:
+        if key in request.GET and (request.GET[key] in self.opts_dict or
+                                   request.GET[key] in self.extras_dict):
             opt = request.GET[key]
         else:
             opt = default
-        return opt, self.opts_dict[opt]
+        if opt in self.opts_dict:
+            title = self.opts_dict[opt]
+        else:
+            title = self.extras_dict[opt]
+        return opt, title
 
     def all(self):
         """Get a full mapping of {option: queryset}."""
