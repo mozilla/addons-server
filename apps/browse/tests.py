@@ -1075,7 +1075,7 @@ class TestFeaturedFeed(amo.tests.TestCase):
                 'base/collections', 'base/featured', 'base/users']
 
     def setUp(self):
-        patcher = mock.object(settings, 'NEW_FEATURES', False)
+        patcher = mock.patch.object(settings, 'NEW_FEATURES', False)
         patcher.start()
         self.addCleanup(patcher.stop)
 
