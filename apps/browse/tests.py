@@ -1070,36 +1070,6 @@ class TestCategoriesFeed(amo.tests.TestCase):
         assert t.endswith(url), t
 
 
-class TestCategoriesFeed(amo.tests.TestCase):
-
-    def setUp(self):
-        self.feed = feeds.CategoriesRss()
-        self.u = u'Ελληνικά'
-        self.wut = Translation(localized_string=self.u, locale='el')
-
-        self.feed.request = mock.Mock()
-        self.feed.request.APP.pretty = self.u
-
-        self.category = Category(name=self.u)
-
-        self.addon = Addon(name=self.u, id=2, type=1, slug='xx')
-        self.addon._current_version = Version(version='v%s' % self.u)
-
-    def test_title(self):
-        eq_(self.feed.title(self.category),
-            u'%s :: Add-ons for %s' % (self.wut, self.u))
-
-    def test_item_title(self):
-        eq_(self.feed.item_title(self.addon),
-            u'%s v%s' % (self.u, self.u))
-
-    def test_item_guid(self):
-        t = self.feed.item_guid(self.addon)
-        url = u'/addon/%s/versions/v%s' % (self.addon.slug,
-                                           urllib.urlquote(self.u))
-        assert t.endswith(url), t
-
-
 class TestFeaturedFeed(amo.tests.TestCase):
     fixtures = ['addons/featured', 'base/addon_3615', 'base/apps',
                 'base/collections', 'base/featured', 'base/users']
