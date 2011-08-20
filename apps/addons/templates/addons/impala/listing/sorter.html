@@ -14,7 +14,8 @@
         <select>
           <option value="">-----</option>
           {% for value, title in extra_sort_opts %}
-            <option {{ 'selected' if request.GET.get('sort') == value }} value="{{ value }}">{{ title }}</option>
+            <option {{ 'selected' if request.GET.get('sort') == value }}
+              value="{{ value }}">{{ title }}</option>
           {% endfor %}
         </select>
       </label>
