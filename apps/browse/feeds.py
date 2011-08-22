@@ -90,7 +90,10 @@ class CategoriesRss(AddonFeedMixin, Feed):
 
 class FeaturedRss(AddonFeedMixin, Feed):
 
+    request = None
+
     def get_object(self, request):
+        self.request = request
         self.app = request.APP
         self.appname = unicode(request.APP.pretty)
 

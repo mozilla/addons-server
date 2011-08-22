@@ -10,7 +10,6 @@ import jingo
 from product_details import product_details
 from mobility.decorators import mobile_template
 from tower import ugettext_lazy as _lazy
-import waffle
 
 import amo
 import amo.models
@@ -74,13 +73,15 @@ class ESAddonFilter(ESBaseFilter):
     opts = AddonFilter.opts
 
 
-def addon_listing(request, addon_types, Filter=AddonFilter, default='popular'):
-    if waffle.switch_is_active('impala-rss'):
-        Filter = ImpalaAddonFilter
-
+def addon_listing(request, addon_types, Filter=AddonFilter, default='popular',
+                  is_impala=False):
     # Set up the queryset and filtering for themes & extension listing pages.
     status = [amo.STATUS_PUBLIC, amo.STATUS_LITE,
               amo.STATUS_LITE_AND_NOMINATED]
+
+    if is_impala:
+        Filter = ImpalaAddonFilter
+        default = 'featured'
 
     qs = (Addon.objects.listed(request.APP, *status)
           .filter(type__in=addon_types))
@@ -172,9 +173,7 @@ def _extensions(request, category=None, is_impala=False, template=None):
         and category and category.count > 4):
         return category_landing(request, category, is_impala)
 
-    addons, filter = addon_listing(request, [TYPE],
-        ImpalaAddonFilter if is_impala else AddonFilter,
-        default='featured' if is_impala else 'popular')
+    addons, filter = addon_listing(request, [TYPE], is_impala=is_impala)
 
     if category:
         addons = addons.filter(categories__id=category.id)

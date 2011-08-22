@@ -13,7 +13,6 @@ import mock
 from nose import SkipTest
 from nose.tools import eq_, assert_raises
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 import amo.tests
@@ -329,9 +328,6 @@ class TestImpalaCategoryFeeds(amo.tests.TestCase):
                 'bandwagon/featured_collections']
 
     def setUp(self):
-        patcher = mock.patch.object(waffle, 'switch_is_active', lambda x: True)
-        patcher.start()
-        self.addCleanup(patcher.stop)
         self.reset_featured_addons()
         self.extensions_rss_url = reverse('browse.extensions.rss')
         self.extensions_url = reverse('i_browse.extensions')
