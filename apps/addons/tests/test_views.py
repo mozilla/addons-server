@@ -1017,7 +1017,7 @@ class TestMobileHome(TestMobile):
         eq_(r.status_code, 200)
         app, lang = r.context['APP'], r.context['LANG']
         featured, popular = r.context['featured'], r.context['popular']
-        eq_(len(featured), 6)
+        eq_(len(featured), 3)
         assert all(a.is_featured(app, lang) for a in featured)
         eq_(len(popular), 3)
         eq_([a.id for a in popular],

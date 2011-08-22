@@ -463,7 +463,7 @@ def home(request):
     # Shuffle the list and get 3 items.
     rand = lambda xs: random.shuffle(xs) or xs[:3]
     # Get some featured add-ons with randomness.
-    featured = Addon.featured_random(request.APP, request.LANG)
+    featured = Addon.featured_random(request.APP, request.LANG)[:3]
     # Get 10 popular add-ons, then pick 3 at random.
     qs = list(Addon.objects.listed(request.APP)
                    .order_by('-average_daily_users')
