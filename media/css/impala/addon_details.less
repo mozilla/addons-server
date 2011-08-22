@@ -36,9 +36,10 @@
     h1 {
         padding-right: 0;
         padding-left: 54px;
+        text-align: right;
     }
     .notavail {
-        padding: 1px 18px 1 0;
+        padding: 1px 18px 1px 0;
         margin-right: 0;
         margin-left: 14px;
     }
@@ -83,39 +84,72 @@
     b {
         color: #333;
     }
-}
-
-.notice.author {
-    min-height: 64px;
-    position: relative;
-    .aux {
-        float: right;
-        margin-left: 7px;
-        text-align: center;
-        p {
-            font-size: 11px;
+    .prose {
+        color: @medium-gray;
+        li {
+            margin-bottom: .5em;
         }
     }
-    .continue {
-        display: block;
-        margin-top: .25em;
+    &.author {
+        min-height: 64px;
+        position: relative;
+        .aux {
+            float: right;
+            margin-left: 7px;
+            text-align: center;
+            p {
+                font-size: 11px;
+            }
+        }
+        .continue {
+            display: block;
+            margin-top: .25em;
+        }
+        .avatar {
+            height: 64px;
+            width: 64px;
+            position: absolute;
+            left: 20px;
+            top: 1em;
+        }
+        #contribute-box {
+            display: none;
+        }
     }
-    .avatar {
-        height: 64px;
-        width: 64px;
-        position: absolute;
-        left: 20px;
-        top: 1em;
+    &.performance-note {
+        background: url(../../img/impala/turtle.png) no-repeat 28px 16px #fff8dc;
+        border-color: #e2dbbf;
+        .box-shadow(0 -1px 0 #F7F0D5 inset, 0 1px 0 rgba(0, 0, 0, 0.05));
     }
-    #contribute-box {
-        display: none;
+    &.upsell {
+        min-height: 64px;
+        padding: 14px !important;
+        position: relative;
+        h3 {
+            margin: 0 0 .5em;
+        }
+        .premium {
+            position: absolute;
+            top: 14px;
+            right: 7px;
+            h3 {
+                font: bold 13px/16px @sans-stack;
+            }
+        }
     }
 }
 
-.notice.performance-note {
-    background: url("../../img/impala/turtle.png") no-repeat 28px 16px #FFF8DC;
-    border-color: #e2dbbf;
-    .box-shadow(0 -1px 0 #F7F0D5 inset, 0 1px 0 rgba(0, 0, 0, 0.05));
+.html-rtl .notice {
+    padding: 14px 104px 14px 14px;
+    &.performance-note {
+        background-position: 96% 16px;
+    }
+    &.upsell {
+        .premium {
+            right: auto;
+            left: 21px;
+        }
+    }
 }
 
 .addon-vitals {

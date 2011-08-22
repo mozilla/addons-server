@@ -85,6 +85,8 @@
     {{ impala_performance_note(amount=addon.ts_slowness) }}
   {% endif %}
 
+  {{ upsell_note(addon) }}
+
   {% if addon.takes_contributions %}
     {{ impala_contribution(addon=addon, src='addon-detail') }}
   {% elif addon.has_profile() and addon.listed_authors %}
@@ -271,4 +273,3 @@
     </div>
   {% endif %}
 {% endblock %}
-

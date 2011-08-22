@@ -119,7 +119,8 @@ section > section {
 body:after,
 header:after,
 .addons:after,
-#install:after {
+#install:after,
+.notice:after {
     content: ".";
     display: block;
     clear: both;
@@ -978,24 +979,86 @@ p#back:hover:before {
     padding: 4px 12px 3px;
 }
 
-.performance-note {
-    background: #fff3cc;
+.notice {
+    background: #e3edfa;
     border-radius: 5px;
-    display: inline-block;
+    width: 50%;
     margin-bottom: 1.286em;
-    padding: 1em;
+    padding: 14px 14px 14px 104px;
 }
-.performance-note h3 {
+.notice p {
+    margin: 0;
+}
+.html-rtl .notice {
+    padding: 14px 104px 14px 14px;
+}
+
+.performance-note {
+    background: url(../../img/impala/turtle.png) no-repeat 28px 16px #fff8dc;
+}
+.html-rtl .performance-note {
+    background-position: 96% 16px;
+}
+.notice h3,
+.upsell .premium a {
     font: normal bold 14px/1.2em "helvetica neue", helvetica, arial, sans-serif;
 }
-.performance-note span:first-child {
-    background: url(../../img/zamboni/notifications.png) no-repeat 0 -226px;
-    float: left;
-    height: 32px;
-    width: 32px;
+
+.upsell {
+    padding: 14px !important;
+    position: relative;
 }
-.performance-note div {
-    margin-left: 45px;
+
+.upsell > h3,
+.upsell .premium {
+    line-height: 32px;
+    padding: 0 0 .5em;
+}
+
+.upsell > h3 {
+    float: left;
+    margin-right: 1em;
+}
+.html-rtl .upsell > h3 {
+    float: right;
+    margin: 0 0 0 1em;
+}
+
+.upsell .premium {
+    float: right;
+}
+.html-rtl .upsell .premium {
+    float: left;
+}
+
+.upsell .premium a {
+    text-decoration: none;
+}
+
+.upsell img {
+    float: left;
+    margin-right: 5px;
+    height: 32px;
+}
+
+.upsell .prose {
+    clear: both;
+}
+
+.upsell ul {
+    list-style: disc;
+}
+.upsell ol {
+    list-style: decimal;
+}
+
+.upsell ul,
+.upsell ol {
+    margin: 0 0 0 2em;
+}
+.html-rtl .upsell ul,
+.html-rtl .upsell ol {
+    margin: 0 2em 0 0;
 }
 
 /* @group Installation popup notices */

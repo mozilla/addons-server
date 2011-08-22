@@ -60,6 +60,12 @@ def impala_performance_note(context, amount, listing=False):
     return new_context(**locals())
 
 
+@register.inclusion_tag('addons/impala/upsell_note.html')
+@jinja2.contextfunction
+def upsell_note(context, addon, module_context='impala'):
+    return new_context(**locals())
+
+
 @register.inclusion_tag('addons/contribution.html')
 @jinja2.contextfunction
 def contribution(context, addon, text=None, src='', show_install=False,

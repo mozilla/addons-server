@@ -12,7 +12,7 @@ import amo
 import amo.tests
 import addons.signals
 from amo.urlresolvers import reverse
-from addons.models import Addon
+from addons.models import Addon, AddonUpsell
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection, MonthlyPick
 from bandwagon.tests.test_models import TestRecommendations as Recs
@@ -323,7 +323,7 @@ class TestPane(amo.tests.TestCase):
 
 
 class TestDetails(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615']
+    fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592']
 
     def setUp(self):
         self.addon = self.get_addon()
@@ -331,27 +331,18 @@ class TestDetails(amo.tests.TestCase):
                                   args=[self.addon.slug])
         self.eula_url = reverse('discovery.addons.eula',
                                  args=[self.addon.slug])
-        self._perf_threshold = settings.PERF_THRESHOLD
-        settings.PERF_THRESHOLD = 25
-
-    def tearDown(self):
-        settings.PERF_THRESHOLD = self._perf_threshold
 
     def get_addon(self):
         return Addon.objects.get(id=3615)
 
     def test_no_restart(self):
-        no_restart = '<li id="no-restart"'
         f = self.addon.current_version.all_files[0]
-
-        assert f.no_restart == False
+        eq_(f.no_restart, False)
         r = self.client.get(self.detail_url)
-        assert no_restart not in r.content
-
-        f.no_restart = True
-        f.save()
+        eq_(pq(r.content)('#no-restart').length, 0)
+        f.update(no_restart=True)
         r = self.client.get(self.detail_url)
-        self.assertContains(r, no_restart)
+        eq_(pq(r.content)('#no-restart').length, 1)
 
     def test_install_button_eula(self):
         doc = pq(self.client.get(self.detail_url).content)
@@ -367,11 +358,22 @@ class TestDetails(amo.tests.TestCase):
         self.assertRedirects(r, self.detail_url, 302)
 
     def test_perf_warning(self):
+        eq_(self.addon.ts_slowness, None)
+        doc = pq(self.client.get(self.detail_url).content)
+        eq_(doc('.performance-note').length, 0)
         self.addon.update(ts_slowness=100)
         doc = pq(self.client.get(self.detail_url).content)
-        assert doc('.performance-note').length
-        doc = pq(self.client.get(self.eula_url).content)
-        assert doc('.performance-note').length
+        eq_(doc('.performance-note').length, 1)
+
+    def test_upsell(self):
+        doc = pq(self.client.get(self.detail_url).content)
+        eq_(doc('.upsell').length, 0)
+        premie = Addon.objects.get(id=592)
+        AddonUpsell.objects.create(free=self.addon, premium=premie, text='XXX')
+        upsell = pq(self.client.get(self.detail_url).content)('.upsell')
+        eq_(upsell.length, 1)
+        eq_(upsell.find('.prose').text(), 'XXX')
+        eq_(upsell.find('.premium a').text(), unicode(premie.name))
 
 
 class TestDownloadSources(amo.tests.TestCase):

@@ -24,7 +24,7 @@ from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from abuse.models import AbuseReport
 from addons import cron
-from addons.models import Addon, AddonUser, Charity, Category
+from addons.models import Addon, AddonUpsell, AddonUser, Charity, Category
 from files.models import File
 from paypal.tests import other_error
 from stats.models import Contribution
@@ -694,6 +694,41 @@ class TestDetailPage(amo.tests.TestCase):
         response = self.client.get(reverse('addons.detail', args=[addon.slug]))
         eq_(pq(response.content)('#more-webpage').attr('data-more-url'),
             addon.get_url_path(more=True))
+
+
+class TestImpalaDetailPage(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=3615)
+        self.url = self.addon.get_url_path(impala=True)
+
+    def test_perf_warning(self):
+        eq_(self.addon.ts_slowness, None)
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('.performance-note').length, 0)
+        self.addon.update(ts_slowness=100)
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('.performance-note').length, 1)
+
+    def test_upsell(self):
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('.upsell').length, 0)
+        premie = Addon.objects.get(id=592)
+        AddonUpsell.objects.create(free=self.addon, premium=premie, text='XXX')
+        upsell = pq(self.client.get(self.url).content)('.upsell')
+        eq_(upsell.length, 1)
+        eq_(upsell.find('.prose').text(), 'XXX')
+        eq_(upsell.find('.hovercard h3').text(), unicode(premie.name))
+
+    def test_no_restart(self):
+        f = self.addon.current_version.all_files[0]
+        eq_(f.no_restart, False)
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('.no-restart').length, 0)
+        f.update(no_restart=True)
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('.no-restart').length, 1)
 
 
 class TestStatus(amo.tests.TestCase):

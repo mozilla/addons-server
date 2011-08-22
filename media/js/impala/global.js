@@ -37,14 +37,31 @@ z.visitor = z.Storage('visitor');
     }
 })();
 
+function hoverTruncate(grid) {
+    var $grid = $(grid || this);
+    if ($grid.hasClass('hovercard')) {
+        $grid = $grid.parent();
+    }
+    $grid.find('.hovercard h3').truncate();
+    $grid.delegate('.hovercard', 'mouseover', function() {
+        var $el = $(this);
+        setTimeout(function() {
+            $el.find('h3').untruncate();
+        }, 100);
+    }).delegate('.hovercard', 'mouseout', function() {
+        var $el = $(this);
+        setTimeout(function() {
+            $el.find('h3').truncate();
+        }, 100);
+    });
+}
+
 function listing_grid() {
     var $grid = $(this),
         $pages = $grid.find('section'),
         current = 0,
         maxPage = $pages.length-1;
-
     $grid.trigger("grid.init", {self: $grid, current: current, maxPage: maxPage});
-
     $grid.go = function(n) {
         if (n != current) {
             n = n < 0 ? 0 : (n > maxPage ? maxPage : n);
@@ -59,18 +76,7 @@ function listing_grid() {
     $grid.next = function() {
         $grid.go(current+1);
     };
-    $grid.find('.hovercard h3').truncate();
-    $grid.delegate('.hovercard', 'mouseover', function() {
-        var $el = $(this);
-        setTimeout(function() {
-            $el.find('h3').untruncate();
-        }, 100);
-    }).delegate('.hovercard', 'mouseout', function() {
-        var $el = $(this);
-        setTimeout(function() {
-            $el.find('h3').truncate();
-        }, 100);
-    });
+    hoverTruncate(this);
     $grid.css({
         'width': $grid.width() + 'px',
         'height': $grid.height() + 'px'
@@ -97,6 +103,9 @@ $(function() {
 
     // Paginate listing grids.
     $('.listing-grid').each(listing_grid);
+
+    // Truncate titles on single hovercards.
+    $('.hovercard.single').each(hoverTruncate);
 
     // load deferred images.
     $('img[data-defer-src]').each(function() {
