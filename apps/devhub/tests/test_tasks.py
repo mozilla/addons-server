@@ -241,3 +241,10 @@ class TestFetchManifest(amo.tests.TestCase):
         with self.assertRaises(Exception):
             fetch_manifest('url', self.upload.pk)
         self.check_validation('Your manifest must be less than 2097152 bytes.')
+
+    def test_http_error(self):
+        self.urlopen_mock.side_effect = urllib2.HTTPError(
+            'url', 404, 'Not Found', [], None)
+        with self.assertRaises(Exception):
+            fetch_manifest('url', self.upload.pk)
+        self.check_validation('url responded with 404 (Not Found).')

@@ -294,6 +294,8 @@ def failed_validation(*messages):
 def _fetch_manifest(url):
     try:
         response = urllib2.urlopen(url, timeout=5)
+    except urllib2.HTTPError, e:
+        raise Exception(_('%s responded with %s (%s).') % (url, e.code, e.msg))
     except urllib2.URLError, e:
         # Unpack the URLError to try and find a useful message.
         if isinstance(e.reason, socket.timeout):
