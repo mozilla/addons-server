@@ -375,6 +375,10 @@ class BaseFilter(object):
         return (Addon.objects.order_by('-bayesian_rating')
                 .with_index(addons='rating_type_idx'))
 
+    def filter_upandcoming(self):
+        return (Addon.objects.order_by('-hotness')
+                .with_index(addons='hotness_idx'))
+
     def filter_name(self):
         return order_by_translation(Addon.objects.all(), 'name')
 

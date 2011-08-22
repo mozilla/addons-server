@@ -66,7 +66,8 @@ class ImpalaAddonFilter(AddonFilter):
             ('created', _lazy(u'Newest')))
     extras = (('name', _lazy(u'Name')),
               ('popular', _lazy(u'Weekly Downloads')),
-              ('updated', _lazy(u'Recently Updated')))
+              ('updated', _lazy(u'Recently Updated')),
+              ('upandcoming', _lazy(u'Up & Coming')))
 
 
 class ESAddonFilter(ESBaseFilter):

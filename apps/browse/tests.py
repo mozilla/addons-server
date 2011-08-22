@@ -6,6 +6,7 @@ from urlparse import urlparse
 from django import http
 from django.conf import settings
 from django.core.cache import cache
+from django.db import connection
 from django.utils import http as urllib
 
 import mock
@@ -334,6 +335,9 @@ class TestImpalaCategoryFeeds(amo.tests.TestCase):
         self.reset_featured_addons()
         self.extensions_rss_url = reverse('browse.extensions.rss')
         self.extensions_url = reverse('i_browse.extensions')
+        cursor = connection.cursor()
+        cursor.execute('CREATE INDEX hotness_idx ON addons (hotness)')
+        cursor.close()
 
     def check_feed(self, url, expected_sort='featured'):
         """
