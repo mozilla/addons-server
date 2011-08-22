@@ -273,7 +273,8 @@ def _paypal(request):
     # embedded payments.
     for old, new in [('payment_status', 'status'),
                      ('item_number', 'tracking_id'),
-                     ('txn_id', 'tracking_id')]:
+                     ('txn_id', 'tracking_id'),
+                     ('payer_email', 'sender_email')]:
         if old not in post and new in post:
             post[old] = post[new]
 

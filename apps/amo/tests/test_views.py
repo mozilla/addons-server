@@ -4,6 +4,7 @@ import urllib
 from django import http, test
 from django.conf import settings
 from django.core.cache import cache
+from django.core import mail
 
 import commonware.log
 from lxml import etree
@@ -353,6 +354,21 @@ class TestPaypal(amo.tests.TestCase):
         response = self.client.post(self.url, {'txn_type': 'subscr_xxx'})
         eq_(response.status_code, 200)
         eq_(SubscriptionEvent.objects.count(), 1)
+
+    @patch('amo.views.urllib2.urlopen')
+    def test_mail(self, urlopen):
+        urlopen.return_value = self.urlopener('VERIFIED')
+        add = Addon.objects.create(enable_thankyou=True,
+                                   support_email='a@a.com',
+                                   type=amo.ADDON_EXTENSION)
+        Contribution.objects.create(addon_id=add.pk,
+                                    uuid='123')
+        response = self.client.post(self.url, {u'action_type': u'PAY',
+                                               u'sender_email': u'a@a.com',
+                                               u'status': u'COMPLETED',
+                                               u'tracking_id': u'123'})
+        eq_(response.status_code, 200)
+        eq_(len(mail.outbox), 1)
 
     def test_get_not_allowed(self):
         response = self.client.get(self.url)
