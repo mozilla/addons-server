@@ -70,26 +70,28 @@
         <th>{{ _('Downloads', 'list_sortby_downloads') }}</th>
         <td>{{ addon.total_downloads|numberfmt }}</td>
       </tr>
-      <tr>
-        <th>{{ _('Version') }}</th>
-        <td>
-          <ul class="versions">
-            {% set version = addon.current_version %}
-            <li>
-              <a href="{{ url('addons.versions', addon.slug, version.version) }}">
-                {# L10n: {0} is a version number. #}
-                {{ _('{0} (Release Notes)')|f(version.version) }}</a>
-            </li>
-            <li>
-              <a href="{{ url('addons.versions', addon.slug) }}">
-                {{ _('View All Versions') }}</a>
-            </li>
-            {% if addon.current_beta_version %}
-              <li><a href="#beta" class="expando">{{ _('View Development Version') }}</a></li>
-            {% endif %}
-          </ul>
-        </td>
-      </tr>
+      {% set version = addon.current_version %}
+      {% if version %}
+        <tr>
+          <th>{{ _('Version') }}</th>
+          <td>
+            <ul class="versions">
+              <li>
+                <a href="{{ url('addons.versions', addon.slug, version.version) }}">
+                  {# L10n: {0} is a version number. #}
+                  {{ _('{0} (Release Notes)')|f(version.version) }}</a>
+              </li>
+              <li>
+                <a href="{{ url('addons.versions', addon.slug) }}">
+                  {{ _('View All Versions') }}</a>
+              </li>
+              {% if addon.current_beta_version %}
+                <li><a href="#beta" class="expando">{{ _('View Development Version') }}</a></li>
+              {% endif %}
+            </ul>
+          </td>
+        </tr>
+      {% endif %}
     </table>
   </details>
   {% if addon.current_beta_version %}
