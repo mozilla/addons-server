@@ -18,7 +18,7 @@
   </section>
 {% else %}
 <section class="copy">
-<a href="{{ url('reviews.add', addon.slug) }}" class="button">Log In to Add a Review</a>
+<a href="{{ url('reviews.add', addon.slug) }}" class="login_button button">{{ _('Log in to add a review') }}</a>
 </section>
 {% endif %}
 
