@@ -6,21 +6,64 @@
         color: @medium-gray;
         font-family: @sans-stack;
         display: block;
-        padding-bottom: 4px;
+        padding-bottom: 6px;
         &.check {
             margin-bottom: 1em;
         }
     }
-
-  input[type=text], input[type=password] {
-      border: 1px solid #ccc;
-      padding: 3px;
-      .border-radius(5px);
-      font-size: 1.3em;
-      width: 100%;
-      .border-box;
-      margin-bottom: 1em
-  }
+    input[type=text], input[type=password], select, textarea {
+        margin-bottom: 1em;
+        font-size: 1.3em;
+    }
+    textarea, input[type=text], input[type=password] {
+        border: 1px solid #ccc;
+        padding: 3px;
+        .border-radius(5px);
+        .border-box;
+        width: 100%;
+    }
+    .errorlist {
+        color: @red;
+        font-family: @sans-stack;
+        font-size: 1.3em;
+        font-weight: bold;
+        margin-bottom: 0.5em;
+        margin-top: 1em;
+        + p {
+            input, textarea {
+                border-color: red;
+                background-color: #FFEBEB;
+            }
+        }
+    }
+    .stars {
+        background-image: url("../../img/icons/stars-big.png");
+        label {
+            height: 40px;
+        }
+    }
+    .stars-0 { background-position: -195px 50%; }
+    .stars-1 { background-position: -156px 50%; }
+    .stars-2 { background-position: -117px 50%; }
+    .stars-3 { background-position: -78px 50%; }
+    .stars-4 { background-position: -39px 50%; }
+    .stars-5 { background-position: 0px 50%; }
+    .ratingwidget {
+        display: block;
+        float: none;
+        width: 195px;
+        margin-bottom: 1em;
+        height: 40px;
+        input {
+            display: none;
+        }
+        label {
+            text-indent: -5000px;
+            display: block;
+            float: left;
+            width: 39px;
+        }
+    }
 }
 
 #content .notification-box {

@@ -244,8 +244,9 @@ def impala_reply(request, addon, review_id):
 
 
 @addon_view
+@mobile_template('reviews/{mobile/}add.html')
 @login_required
-def add(request, addon):
+def add(request, addon, template=None):
     form = forms.ReviewForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
@@ -267,7 +268,7 @@ def add(request, addon):
                            emails, Context(data), 'new_review')
 
             return redirect('reviews.list', addon.slug)
-    return jingo.render(request, 'reviews/add.html',
+    return jingo.render(request, template,
                         dict(addon=addon, form=form))
 
 

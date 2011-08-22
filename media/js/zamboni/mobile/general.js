@@ -230,6 +230,9 @@ $(function() {
                     .css("max-height", "none");
         }));
     }
+
+    // Review form (add stars)
+    $('#review-form').find("select[name='rating']").ratingwidget();
 });
 
 $(".desktop-link").attr("href", window.location).click(function() {

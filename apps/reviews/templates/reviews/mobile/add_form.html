@@ -1,0 +1,24 @@
+<h2>{{ _('Add A Review') }}</h2>
+{% if user.is_authenticated() %}
+  <form method="post" class="form-mobile review-form" id="review-form"
+        action="{{ url('reviews.add', addon.slug) }}">
+    {{ csrf() }}
+    <p>
+      <label for="id_title">{{ _('Title:') }} <span class="optional">{{ _('(optional)') }}</span></label>
+      {{ form.title }}
+    </p>
+    {{ field(form.rating, _('Rating:')) }}
+    {{ field(form.body, _('Review:')) }}
+    <input type="submit" value="{{ _('Submit review') }}" class="button">
+  </form>
+  <section class="copy">
+    {% trans username=amo_user.username, logout=url('users.logout') %}
+    Logged in as <strong>{{ username }}</strong> (<a href="{{ logout }}">Log out</a>)
+    {% endtrans %}
+  </section>
+{% else %}
+<section class="copy">
+<a href="{{ url('reviews.add', addon.slug) }}" class="button">Log In to Add a Review</a>
+</section>
+{% endif %}
+

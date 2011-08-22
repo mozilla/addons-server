@@ -671,6 +671,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/personas_core.js',
             'js/zamboni/mobile/personas.js',
             'js/zamboni/mobile/general.js',
+            'js/impala/ratingwidget.js',
         ),
         'zamboni/stats': (
             'js/lib/jquery-datepicker.js',

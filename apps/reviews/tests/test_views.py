@@ -1,6 +1,7 @@
 from django.core import mail
 
 from nose.tools import eq_
+from pyquery import PyQuery as pq
 
 import amo.tests
 from amo.urlresolvers import reverse
@@ -195,9 +196,38 @@ class TestEdit(ReviewTest):
 
 
 class TestMobileReviews(TestMobile):
-    fixtures = ['base/apps', 'reviews/dev-reply.json']
+    fixtures = ['base/apps', 'reviews/dev-reply.json', 'base/admin']
 
     def test_mobile(self):
         r = self.client.get(reverse('reviews.list', args=['a1865']))
         eq_(r.status_code, 200)
+
+        doc = pq(r.content)
+        eq_('Log In to Add a Review', doc('.copy .button').text())
+
         self.assertTemplateUsed(r, 'reviews/mobile/review_list.html')
+
+    def test_add(self):
+        self.client.login(username='jbalogh@mozilla.com', password='password')
+        r = self.client.get(reverse('reviews.add', args=['a1865']))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'reviews/mobile/add.html')
+
+    def test_add_submit(self):
+        self.client.login(username='jbalogh@mozilla.com', password='password')
+        url = reverse('reviews.add', args=['a1865'])
+        r = self.client.post(url, {'body': 'hi', 'rating': 3})
+        eq_(r.status_code, 302)
+
+        url = reverse('reviews.list', args=['a1865'])
+        r = self.client.get(url)
+        doc = pq(r.content)
+        text = doc('.review').eq(0).text()
+        assert "hi" in text
+        assert "Rated 3 out of 5" in text
+
+    def test_add_logged_out(self):
+        self.client.logout()
+        r = self.client.get(reverse('reviews.add', args=['a1865']))
+        eq_(r.status_code, 302)
+

@@ -46,5 +46,7 @@
 
 {{ reviews|mobile_paginator }}
 
+{% include "reviews/mobile/add_form.html" %}
+
 {% endif %} {# if addon.total_reviews #}
 {% endblock %}
