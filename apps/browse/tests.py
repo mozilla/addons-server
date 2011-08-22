@@ -336,6 +336,7 @@ class TestImpalaCategoryFeeds(amo.tests.TestCase):
         self.extensions_rss_url = reverse('browse.extensions.rss')
         self.extensions_url = reverse('i_browse.extensions')
         cursor = connection.cursor()
+        cursor.execute('DROP INDEX hotness_idx ON addons')
         cursor.execute('CREATE INDEX hotness_idx ON addons (hotness)')
         cursor.close()
 
@@ -352,11 +353,17 @@ class TestImpalaCategoryFeeds(amo.tests.TestCase):
         eq_(doc('#subscribe').attr('href'), rss_url)
 
         # Ensure that the RSS items match those on the browse listing pages.
-        expected_urls = [a.get('href') for a in doc('.items h3 a')]
-        r = self.client.get(rss_url)
-        doc = pq(r.content)
-        rss_urls = [urlparse(a.text).path for a in doc('item link')]
-        eq_(sorted(expected_urls), sorted(rss_urls))
+        browse_items = doc('.items .item')
+        rss_items = doc('item')
+        for browse_item, rss_item in zip(browse_items, rss_items):
+            browse_url = browse_item.find('h3 a').get('href')
+            rss_url = urlparse(rss_item.find('link').text).path
+            eq_(browse_url, rss_url)
+            browse_ts = browse_item.find('.vitals .updated')
+            if browse_ts:
+                browse_ts.strip('Added Updated')
+                rss_ts = rss_item.find('pubDate').text
+                eq_(rss_ts.startswith(browse_ts), True)
 
     def check_sort_urls(self, items, opts, attribute):
         for item, options in zip(items, getattr(ImpalaAddonFilter, opts)):
