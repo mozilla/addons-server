@@ -22,6 +22,7 @@ from django.utils.translation import trans_real as translation
 
 import rdflib
 import redisutils
+from statsd import statsd
 from tower import ugettext as _
 
 import amo
@@ -37,6 +38,13 @@ class ParseError(forms.ValidationError):
 
 
 VERSION_RE = re.compile('^[-+*.\w]{,32}$')
+# The default update URL.
+default = ('https://versioncheck.addons.mozilla.org/update/VersionCheck.php?'
+    'reqVersion=%REQ_VERSION%&id=%ITEM_ID%&version=%ITEM_VERSION%&'
+    'maxAppVersion=%ITEM_MAXAPPVERSION%&status=%ITEM_STATUS%&appID=%APP_ID%&'
+    'appVersion=%APP_VERSION%&appOS=%APP_OS%&appABI=%APP_ABI%&'
+    'locale=%APP_LOCALE%&currentAppVersion=%CURRENT_APP_VERSION%&'
+    'updateType=%UPDATE_TYPE%')
 
 
 def get_filepath(fileorpath):
@@ -210,9 +218,10 @@ class WebAppParser(object):
 
 
 class SafeUnzip(object):
-    def __init__(self, source):
+    def __init__(self, source, mode='r'):
         self.source = source
         self.info = None
+        self.mode = mode
 
     def is_valid(self, fatal=True):
         """
@@ -221,7 +230,7 @@ class SafeUnzip(object):
                an error, otherwise it will return False.
         """
         try:
-            zip = zipfile.ZipFile(self.source)
+            zip = zipfile.ZipFile(self.source, self.mode)
         except (BadZipfile, IOError), err:
             log.error('Error (%s) extracting %s' % (err, self.source))
             if fatal:
@@ -493,3 +502,57 @@ class JetpackUpgrader(object):
         self.redis.hdel(self.file_key, file_id)
         if not self.redis.hlen(self.file_key):
             self.redis.delete(self.version_key)
+
+
+class RDF(object):
+
+    def __init__(self, data):
+        self.dom = minidom.parseString(data)
+
+    def __str__(self):
+        # See: https://bugzilla.mozilla.org/show_bug.cgi?id=567660
+        buf = StringIO.StringIO()
+        self.dom.writexml(buf, encoding="utf-8")
+        return buf.getvalue().encode('utf-8')
+
+    def set(self, value):
+        parent = (self.dom.documentElement
+                          .getElementsByTagName('Description')[0])
+        existing = parent.getElementsByTagName('em:updateURL')
+
+        for current in existing:
+            parent.removeChild(current)
+            current.unlink()
+
+        value = u'%s&%s=%s' % (default, amo.WATERMARK_KEY, value)
+        elem = self.dom.createElement('em:updateURL')
+        elem.appendChild(self.dom.createTextNode(value))
+        parent.appendChild(elem)
+
+
+def watermark(file, user):
+    """
+    Creates a copy of the file in a temp directory and watermarks the
+    metadata with the users.email. If something goes wrong, will
+    raise an error. Since this addon is now in a temp directory, its
+    up to the calling function to move it into an appropriate place.
+    """
+    with statsd.timer('marketplace.watermark'):
+        inzip = SafeUnzip(file.file_path)
+        inzip.is_valid()
+
+        try:
+            install = inzip.extract_path('install.rdf')
+            data = RDF(install)
+            data.set(user.email)
+        except Exception, e:
+            log.error('Could not alter install.rdf in file: %s, %s'
+                      % (file.pk, e))
+            raise
+
+        tmp = tempfile.mkstemp()[1]
+        shutil.copyfile(file.file_path, tmp)
+        outzip = SafeUnzip(tmp, mode='w')
+        outzip.is_valid()
+        outzip.zip.writestr('install.rdf', str(data))
+    return tmp

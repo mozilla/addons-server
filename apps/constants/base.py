@@ -292,3 +292,6 @@ CONTRIB_TYPES = {
 }
 
 CONTRIB_TYPE_DEFAULT = CONTRIB_VOLUNTARY
+
+# Used to watermark addons install.rdf and update.
+WATERMARK_KEY = 'purchaser'
