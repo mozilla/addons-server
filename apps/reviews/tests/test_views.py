@@ -203,7 +203,7 @@ class TestMobileReviews(TestMobile):
         eq_(r.status_code, 200)
 
         doc = pq(r.content)
-        assert doc('.copy .login_button').length >= 1
+        assert doc('.copy .login_button').length >= 1, "No login link on page"
 
         self.assertTemplateUsed(r, 'reviews/mobile/review_list.html')
 
