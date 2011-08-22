@@ -38,6 +38,9 @@ TMP_PATH = _polite_tmpdir()
 COLLECTIONS_ICON_PATH = _polite_tmpdir()
 PACKAGER_PATH = _polite_tmpdir()
 
+# We won't actually send an email.
+SEND_REAL_EMAIL = True
+
 # Turn off search engine indexing.
 USE_ELASTIC = False
 
