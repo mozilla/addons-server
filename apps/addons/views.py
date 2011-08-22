@@ -376,8 +376,7 @@ class BaseFilter(object):
                 .with_index(addons='rating_type_idx'))
 
     def filter_hotness(self):
-        return (Addon.objects.order_by('-hotness')
-                .with_index(addons='hotness_idx'))
+        return Addon.objects.order_by('-hotness')
 
     def filter_name(self):
         return order_by_translation(Addon.objects.all(), 'name')
