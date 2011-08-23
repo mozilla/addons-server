@@ -84,6 +84,11 @@
     font: bold 24px @sans-stack;
 }
 
+.listing .items,
+.listing .item {
+    width: 100%;
+}
+
 .listing .items {
     display: table;
 }
@@ -91,7 +96,6 @@
 .listing .item {
     color: @note-gray;
     display: table-row;
-    width: 100%;
     &:hover,
     &.static {
         background-color: fadeOut(@border-blue, 90%);
@@ -232,6 +236,9 @@
     }
     .info {
         padding: 20px 58px 20px 0;
+    }
+    .install-shell {
+        text-align: left;
     }
 }
 

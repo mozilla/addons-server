@@ -139,16 +139,24 @@ header + .island {
         &:first-child {
             border-top-width: 1px;
         }
-        a.selected {
-            color: #333;
-            font-weight: bold;
-        }
-        a.selected,
-        a:hover {
-            background: #ECF5FE;
+        a {
+            &.selected {
+                color: #333;
+                font-weight: bold;
+            }
+            &.selected,
+            &:hover {
+                background: #ECF5FE;
+            }
         }
     }
     nav li {
+        a {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            padding-right: 12px;
+            white-space: nowrap;
+        }
         a:after {
             content: '\203a';
             position: absolute;
@@ -203,6 +211,17 @@ header + .island {
     }
     section section {
         margin: 0;
+    }
+}
+
+.html-rtl .secondary {
+    nav li a {
+        padding: 0 6px 0 12px;
+        &:after {
+            position: absolute;
+            right: auto;
+            left: 6px;
+        }
     }
 }
 
@@ -272,14 +291,18 @@ header + .island {
             font-weight: bold;
         }
         a.home {
-            background: url("../../img/impala/breadcrumb-home.png") no-repeat;
+            background: url(../../img/impala/breadcrumb-home.png) no-repeat;
             display: block;
             float: left;
             height: 13px;
             overflow: hidden;
             text-indent: -9999px;
+            text-decoration: none;
             width: 15px;
             margin: 2px 2px 0 0;
+            &:hover {
+                opacity: .7;
+            }
         }
         &:first-child:before {
             content: none;
@@ -322,8 +345,11 @@ a.more-info {
     a.more-info {
         float: left;
     }
+    #breadcrumbs a.home {
+        float: right;
+        margin: 2px 0 0 2px;
+    }
 }
-
 
 #more-webpage {
     background: url(../../img/impala/loading-more.gif) no-repeat center;
