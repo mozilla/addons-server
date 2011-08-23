@@ -53,20 +53,20 @@
 {% if recommendations or collections or author_addons %}
   <section class="primary island c">
     {% if recommendations %}
-      <section>
+      <section id="recommendations-grid">
         <h2 class="compact-bottom">{{ _('Often used with&hellip;')|safe }}</h2>
         {{ recommendations|addon_grid(cols=3, src='dp-hc-oftenusedwith',
                                       dl_src='dp-dl-oftenusedwith') }}
       </section>
     {% endif %}
     {% if collections %}
-      <section>
+      <section id="collections-grid">
         <h2>{{ _('Part of these Collections') }}</h2>
         {{ collections|collection_grid(cols=3) }}
       </section>
       {% endif %}
     {% if author_addons %}
-      <section>
+      <section id="author-addons">
         <h2>
           {% trans count = addon.listed_authors|length,
                    author = users_list(addon.listed_authors) %}
