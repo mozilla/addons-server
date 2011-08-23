@@ -65,7 +65,7 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def test_get_absolute_url(self):
         f = File.objects.get(id=67442)
-        url = f.get_absolute_url(amo.FIREFOX, src='src')
+        url = f.get_absolute_url(src='src')
         expected = ('/firefox/downloads/file/67442/'
                     'delicious_bookmarks-2.1.072-fx.xpi?src=src')
         assert url.endswith(expected), url

@@ -85,7 +85,7 @@
       <td><a href="{{ url('devhub.versions.edit', file.version.addon_id, file.version.id) }}">{{ file.version.version }}</a></td>
       <td>{{ amo.STATUS_CHOICES[file.status] }}</td>
       <td>{{ file.jetpack_version }}</td>
-      <td><a href="{{ file.get_url_path('', '') }}">{{ file.id }}</a></td>
+      <td><a href="{{ file.get_url_path('') }}">{{ file.id }}</a></td>
       {% if upgrading %}
         {% if file.id|string in repack_status %}
           {% with repack = repack_status[file.id|string] %}

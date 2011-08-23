@@ -98,8 +98,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         return posixpath.join(*map(smart_str, [host, addon.id, self.filename]))
 
-    def get_url_path(self, app, src):
-        # TODO: remove app
+    def get_url_path(self, src):
         from amo.helpers import urlparams, absolutify
         url = os.path.join(reverse('downloads.file', args=[self.id]),
                            self.filename)

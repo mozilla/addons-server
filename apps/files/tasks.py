@@ -209,7 +209,7 @@ def start_upgrade(file_ids, priority='low', **kw):
                 'file_id': file_.id,
                 'priority': priority,
                 'secret': settings.BUILDER_SECRET_KEY,
-                'location': file_.get_url_path(None, 'builder'),
+                'location': file_.get_url_path('builder'),
                 'uuid': data['uuid'],
                 'version': parse_version(file_.version.version),
                 'pingback': absolutify(reverse('amo.builder-pingback'))}

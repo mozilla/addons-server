@@ -37,7 +37,7 @@ class TestPerf(amo.tests.TestCase):
         params = cgi.parse_qs(params)
         eq_(params['os'], ['win32'])
         eq_(params['firefox'], ['firefox4.0'])
-        eq_(params['url'], [self.file.get_url_path(None, 'perftest')])
+        eq_(params['url'], [self.file.get_url_path('perftest')])
 
     @raises(BadResponse)
     @patch('devhub.perf.urlopen')

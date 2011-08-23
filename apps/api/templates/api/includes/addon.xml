@@ -83,7 +83,7 @@
     <install hash="{{ file.hash }}" os="{{ file.platform.name }}"
              size="{{ file.size * 1024 }}"
              status="{{ amo.STATUS_CHOICES[amo.STATUS_BETA] }}">
-      {{ file.get_url_path(APP, 'api') }}
+      {{ file.get_url_path('api') }}
     </install>
     {% endfor -%}
     {%- endif -%}

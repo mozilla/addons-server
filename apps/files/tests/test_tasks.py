@@ -46,7 +46,7 @@ class TestUpgradeJetpacks(amo.tests.TestCase):
             'file_id': str(file_.id),
             'priority': 'low',
             'secret': settings.BUILDER_SECRET_KEY,
-            'location': file_.get_url_path('', 'builder'),
+            'location': file_.get_url_path('builder'),
             'uuid': args['uuid'],  # uuid is random so steal from args.
             'version': '2.1.072.sdk.{sdk_version}',
             'pingback': absolutify(reverse('amo.builder-pingback')),
