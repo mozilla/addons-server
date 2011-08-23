@@ -1,8 +1,6 @@
 @import 'lib';
 
 #addon {
-    font-size: 1.2em;
-    font-family: @sans-stack;
     position: relative;
     padding: 20px 20px 20px 104px;
     .icon {
@@ -11,13 +9,21 @@
         left: 20px;
         margin: 0 12px 1em 0;
     }
+    #addon-summary {
+        font-size: 16px;
+        line-height: 20px;
+    }
     h1 {
+        color: @dark-gray;
         margin: 0 0 2px;
         padding-right: 54px;
     }
     .badge {
         font-size: 14px;
-        margin: 0 1em 0 .5em;
+        margin: 0 1em;
+    }
+    .install-shell {
+        font-family: @sans-stack;
     }
 }
 .html-rtl #addon {
