@@ -5,6 +5,7 @@ import json
 import os
 import shutil
 import tempfile
+from xml.parsers import expat
 import zipfile
 
 from django import forms
@@ -21,7 +22,9 @@ import devhub.signals
 from addons.models import Addon
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, FileValidation, Platform
-from files.utils import parse_addon, parse_xpi, check_rdf, JetpackUpgrader
+from files.utils import parse_addon, parse_xpi, check_rdf, JetpackUpgrader, RDF
+from files.utils import SafeUnzip, RDF
+from users.models import UserProfile
 from versions.models import Version
 
 
@@ -758,3 +761,102 @@ class TestLanguagePack(LanguagePackBase):
         self.addon.update(type=amo.ADDON_DICT)
         self.file_create('langpack-localepicker')
         assert not get_localepicker.called
+
+
+class TestWatermark(amo.tests.TestCase, amo.tests.AMOPaths):
+    fixtures = ['base/addon_3615', 'base/users']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(pk=3615)
+        self.version = Version.objects.create(addon=self.addon)
+        self.file = File.objects.create(version=self.version,
+                                        filename='firefm.xpi')
+
+        self.xpi_copy_over(self.file, 'firefm')
+        self.user = UserProfile.objects.get(pk=999)
+        self.dest = self.file.watermarked_file_path(self.user.pk)
+
+    def get_rdf(self, tmp):
+        assert tmp
+        unzip = SafeUnzip(tmp)
+        unzip.is_valid()
+        return RDF(unzip.extract_path('install.rdf'))
+
+    def get_updateURL(self, rdf):
+        return (rdf.dom.getElementsByTagName('em:updateURL')[0]
+                       .firstChild.nodeValue)
+
+    @mock.patch('files.utils.SafeUnzip.extract_path')
+    def get_extract(self, data, extract_path):
+        extract_path.return_value = data
+        return self.file.watermark(self.user)
+
+    def test_install_rdf(self):
+        self.user.update(email='a@a.com')
+        data = self.file.watermark_install_rdf(self.user)
+        eq_(self.user.email in str(data), True)
+
+    @mock.patch('files.utils.SafeUnzip.extract_path')
+    def test_install_rdf_no_data(self, extract_path):
+        extract_path.return_value = ''
+        self.assertRaises(expat.ExpatError, self.file.watermark_install_rdf,
+                          self.user)
+
+    def test_write_watermarked(self):
+        self.user.update(email='a@a.com')
+        data = self.file.watermark_install_rdf(self.user)
+        self.file.write_watermarked_addon(self.dest, data)
+        assert os.path.exists(self.dest)
+        eq_(self.user.email in
+            self.get_updateURL(self.get_rdf(self.dest)), True)
+
+    def test_watermark(self):
+        tmp = self.file.watermark(self.user)
+        eq_(self.user.email in
+            self.get_updateURL(self.get_rdf(tmp)), True)
+
+    def test_watermark_unicode(self):
+        self.user.email = u'Strauß@Magyarország.com'
+        tmp = self.file.watermark(self.user)
+        eq_(self.user.email in
+            self.get_updateURL(self.get_rdf(tmp)), True)
+
+    def test_watermark_no_description(self):
+        self.assertRaises(IndexError, self.get_extract, """
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+</RDF>""")
+
+    def test_watermark_overwrites(self):
+        tmp = self.get_extract("""
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+  <Description about="urn:mozilla:install-manifest">
+    <em:updateURL>http://my.other.site/</em:updateURL>
+  </Description>
+</RDF>""")
+        eq_(self.user.email in self.get_updateURL(self.get_rdf(tmp)), True)
+
+    def test_watermark_overwrites_multiple(self):
+        tmp = self.get_extract("""
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+  <Description about="urn:mozilla:install-manifest">
+    <em:updateURL>http://my.other.site/</em:updateURL>
+    <em:updateURL>http://my.other.other.site/</em:updateURL>
+  </Description>
+</RDF>""")
+        eq_(self.user.email in self.get_updateURL(self.get_rdf(tmp)), True)
+        # one close and one open
+        eq_(str(self.get_rdf(tmp)).count('updateURL'), 2)
+
+    def test_in_progress(self):
+        msg = amo.utils.Message('marketplace.watermark.%s' % self.dest)
+        msg.save(True)
+        assert not self.file.watermark(self.user)
+
+    def test_watermark_task(self):
+        # Doesn't do much but checks the file.
+        assert self.file.watermark(self.user)

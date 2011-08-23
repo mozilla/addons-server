@@ -50,6 +50,7 @@ def extract_file(viewer, **kw):
 
     flag.delete()
 
+
 @task
 def migrate_jetpack_versions(ids, **kw):
     # TODO(jbalogh): kill in bug 656997
@@ -228,3 +229,9 @@ def start_upgrade(file_ids, priority='low', **kw):
 
 def parse_version(v):
     return v.split('.sdk.')[0] + '.sdk.{sdk_version}'
+
+
+@task
+def watermark_task(file, user):
+    task_log.info('Starting watermarking of: %s' % file.pk)
+    file.watermark(user)

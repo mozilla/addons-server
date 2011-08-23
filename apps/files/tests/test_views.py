@@ -12,6 +12,7 @@ from django.utils.http import http_date
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
+import waffle
 from waffle.models import Switch
 
 import amo
@@ -482,3 +483,48 @@ class TestBuilderPingback(amo.tests.TestCase):
     def test_bad_data(self):
         r = self.post({'wut': 0})
         eq_(r.status_code, 400)
+
+
+@patch.object(waffle, 'switch_is_active', lambda x: True)
+class TestWatermarkedFile(amo.tests.TestCase, amo.tests.AMOPaths):
+    fixtures = ['base/addon_3615', 'base/users.json']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(pk=3615)
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.file = self.addon.current_version.all_files[0]
+        self.xpi_copy_over(self.file, 'firefm')
+        self.url = reverse('downloads.watermarked', args=[self.file.pk])
+        self.user = UserProfile.objects.get(pk=999)
+        self.client.login(username='regular@mozilla.com', password='password')
+
+    def test_get_anon_watermarked(self):
+        self.client.logout()
+        res = self.client.get(self.url)
+        eq_(res.status_code, 302)
+
+    def test_get_watermarked(self):
+        res = self.client.get(self.url)
+        assert os.path.exists(res['X-SENDFILE'])
+
+    def test_get_headers(self):
+        res = self.client.get(self.url)
+        eq_(res['Content-Type'], 'application/xp-install')
+        eq_(res['Cache-Control'], 'max-age=0')
+
+    def test_get_disabled(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 404)
+
+    def test_get_free(self):
+        self.addon.update(premium_type=amo.ADDON_FREE)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 404)
+
+    def test_watermark_locked(self):
+        dest = self.file.watermarked_file_path(self.user.pk)
+        msg = Message('marketplace.watermark.%s' % dest)
+        msg.save(True)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 404)

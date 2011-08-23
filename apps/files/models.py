@@ -30,7 +30,7 @@ from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from apps.amo.utils import memoize
 import devhub.signals
-from files.utils import SafeUnzip
+from files.utils import RDF, SafeUnzip
 from versions.compare import version_int as vint
 
 log = commonware.log.getLogger('z.files')
@@ -223,6 +223,11 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         return os.path.join(settings.GUARDED_ADDONS_PATH,
                             str(self.version.addon_id), self.filename)
 
+    def watermarked_file_path(self, user_pk):
+        return os.path.join(settings.WATERMARKED_ADDONS_PATH,
+                            str(self.version.addon_id),
+                            '%s-%s-%s' % (self.pk, user_pk, self.filename))
+
     @property
     def extension(self):
         return os.path.splitext(self.filename)[-1]
@@ -316,6 +321,63 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                  (self.pk, end))
         statsd.timing('files.extract.localepicker', (end * 1000))
         return res
+
+    def watermark_install_rdf(self, user):
+        """
+        Reads the install_rdf out of an addon and writes the user information
+        into it.
+        """
+        inzip = SafeUnzip(self.file_path)
+        inzip.is_valid()
+
+        try:
+            install = inzip.extract_path('install.rdf')
+            data = RDF(install)
+            data.set(user.email)
+        except Exception, e:
+            log.error('Could not alter install.rdf in file: %s for %s, %s'
+                      % (self.pk, user.pk, e))
+            raise
+
+        return data
+
+    def write_watermarked_addon(self, dest, data):
+        """
+        Writes the watermarked addon to the destination given
+        the addons install.rdf data.
+        """
+        directory = os.path.dirname(dest)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+        shutil.copyfile(self.file_path, dest)
+        outzip = SafeUnzip(dest, mode='w')
+        outzip.is_valid()
+        outzip.zip.writestr('install.rdf', str(data))
+
+    def watermark(self, user):
+        """
+        Creates a copy of the file and watermarks the
+        metadata with the users.email. If something goes wrong, will
+        raise an error, will return the dest if its ready to be served.
+        """
+        dest = self.watermarked_file_path(user.pk)
+
+        with amo.utils.guard('marketplace.watermark.%s' % dest) as locked:
+            if locked:
+                # The calling method will need to do something about this.
+                log.error('Watermarking in progress of: %s for %s' %
+                          (self.pk, user.pk))
+                return
+
+            #TODO(andym): re-use or automatically mark stale old watermarks.
+            with statsd.timer('marketplace.watermark'):
+                log.info('Starting watermarking of: %s for %s' %
+                         (self.pk, user.pk))
+                data = self.watermark_install_rdf(user)
+                self.write_watermarked_addon(dest, data)
+
+        return dest
 
 
 @receiver(models.signals.post_save, sender=File,

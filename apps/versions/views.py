@@ -1,15 +1,17 @@
 import posixpath
 
 from django import http
-from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect
+from django.views.decorators.cache import never_cache
 
 import caching.base as caching
 import commonware.log
 import jingo
 from mobility.decorators import mobile_template
+import waffle
 
 import amo
+from amo.decorators import login_required
 from amo.urlresolvers import reverse
 from amo.utils import urlparams, HttpResponseSendFile
 from access import acl
@@ -56,6 +58,33 @@ def _find_version_page(qs, addon, version_num):
         return redirect(urlparams(url, 'version-%s' % version_num, page=page))
     else:
         raise http.Http404()
+
+
+@never_cache
+@login_required
+def download_watermarked(request, file_id):
+    if not waffle.switch_is_active('marketplace'):
+        raise http.Http404()
+
+    file = get_object_or_404(File.objects, pk=file_id)
+    addon = get_object_or_404(Addon.objects, pk=file.version.addon_id)
+    # TODO(andym): assert payment went through here?
+
+    if (not addon.is_premium() or addon.is_disabled
+        or file.status == amo.STATUS_DISABLED):
+        raise http.Http404()
+
+    dest = file.watermark(request.amo_user)
+    if not dest:
+        # TODO(andym): the watermarking is already in progress and we've
+        # got multiple requests from the same users for the same file
+        # perhaps this should go into a loop.
+        log.debug('Watermark already in progress: %s' % file_id)
+        raise http.Http404()
+
+    log.debug('Serving watermarked file for: %s' % file_id)
+    return HttpResponseSendFile(request, dest,
+                                content_type='application/xp-install')
 
 
 # Should accept junk at the end for filename goodness.

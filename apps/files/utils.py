@@ -528,31 +528,3 @@ class RDF(object):
         elem = self.dom.createElement('em:updateURL')
         elem.appendChild(self.dom.createTextNode(value))
         parent.appendChild(elem)
-
-
-def watermark(file, user):
-    """
-    Creates a copy of the file in a temp directory and watermarks the
-    metadata with the users.email. If something goes wrong, will
-    raise an error. Since this addon is now in a temp directory, its
-    up to the calling function to move it into an appropriate place.
-    """
-    with statsd.timer('marketplace.watermark'):
-        inzip = SafeUnzip(file.file_path)
-        inzip.is_valid()
-
-        try:
-            install = inzip.extract_path('install.rdf')
-            data = RDF(install)
-            data.set(user.email)
-        except Exception, e:
-            log.error('Could not alter install.rdf in file: %s, %s'
-                      % (file.pk, e))
-            raise
-
-        tmp = tempfile.mkstemp()[1]
-        shutil.copyfile(file.file_path, tmp)
-        outzip = SafeUnzip(tmp, mode='w')
-        outzip.is_valid()
-        outzip.zip.writestr('install.rdf', str(data))
-    return tmp
