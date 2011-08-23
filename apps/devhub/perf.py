@@ -31,7 +31,7 @@ def start_perf_test(file_, os_name, firefox):
     https://intranet.mozilla.org/Anodelman:doc:TriggerSendchange
     """
     params = dict(os=os_name, firefox=firefox,
-                  url=file_.get_url_path(None, 'perftest'))
+                  url=file_.get_url_path('perftest'))
     url = '%s?%s' % (settings.PERF_TEST_URL, urllib.urlencode(params))
     timeout = 10
     res = urlopen(url, None, timeout)
