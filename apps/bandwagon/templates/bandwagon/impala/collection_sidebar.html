@@ -31,6 +31,7 @@
     <h3>{{ _('Recently Viewed') }}</h3>
   </section>
 </nav>
+{% if addon_collector %}
 <section>
   <h3>{{ _('Add-on Collector') }}</h3>
   <p>
@@ -41,3 +42,4 @@
   </p>
   {{ addon_collector|addon_hovercard }}
 </section>
+{% endif %}

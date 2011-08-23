@@ -76,18 +76,22 @@ def legacy_directory_redirects(request, page):
 
 class CollectionFilter(BaseFilter):
     opts = (('featured', _lazy(u'Featured')),
-            ('popular', _lazy(u'Popular')),
-            ('rating', _lazy(u'Highest Rated')),
-            ('created', _lazy(u'Recently Added')))
+            ('users', _lazy(u'Most Subscribers')),
+            ('rating', _lazy(u'Top Rated')),
+            ('created', _lazy(u'Newest')))
+    extras = (('name', _lazy(u'Name')),
+              ('updated', _lazy(u'Recently Updated')))
 
     def filter(self, field):
         qs = self.base_queryset
         if field == 'featured':
             return qs.filter(type=amo.COLLECTION_FEATURED)
-        elif field == 'popular':
+        elif field == 'users':
             return qs.order_by('-weekly_subscribers')
         elif field == 'rating':
             return qs.order_by('-rating')
+        elif field == 'updated':
+            return qs.order_by('-modified')
         else:
             return qs.order_by('-created')
 
@@ -118,12 +122,13 @@ def collection_listing(request, base=None, extra={}):
 def impala_collection_listing(request, base=None):
     filter = get_filter(request, base)
     collections = amo.utils.paginate(request, filter.qs)
-    votes = get_votes(request, collections.object_list)
-    addon_collector = Addon.objects.get(id=11950)
+    try:
+        addon_collector = Addon.objects.get(id=11950)
+    except Addon.DoesNotExist:
+        addon_collector = None
     return render(request, 'bandwagon/impala/collection_listing.html',
                   dict(collections=collections, filter=filter,
-                       sorting=filter.field, collection_votes=votes,
-                       addon_collector=addon_collector))
+                       sorting=filter.field, addon_collector=addon_collector))
 
 
 def get_votes(request, collections):

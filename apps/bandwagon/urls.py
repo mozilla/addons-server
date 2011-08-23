@@ -21,7 +21,7 @@ detail_urls = patterns('',
         name='collections.alter'),
     url('^watch$', views.watch, name='collections.watch'),
     url('^share$', views.share, name='collections.share'),
-    url('^format:rss$', feeds.CollectionFeed(),
+    url('^format:rss$', feeds.CollectionDetailFeed(),
         name='collections.detail.rss'),
 )
 
@@ -57,4 +57,7 @@ urlpatterns = patterns('',
         include(detail_urls)),
     url('^collections/add$', views.add, name='collections.add'),
     url('^collections/ajax/', include(ajax_urls)),
+
+    url('^collections/format:rss$', feeds.CollectionFeed(),
+        name='collections.rss'),
 )

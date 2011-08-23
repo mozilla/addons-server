@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
+from dateutil.parser import parse as parse_dt
 import re
 from urlparse import urlparse
 
@@ -16,7 +17,7 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from amo.helpers import urlparams
+from amo.helpers import absolutify, urlparams
 from addons.tests.test_views import TestMobile
 from addons.models import (Addon, AddonCategory, Category, AppSupport, Feature,
                            Persona)
@@ -353,60 +354,71 @@ class TestImpalaExtensions(amo.tests.TestCase):
         eq_('weekly downloads' in doc('.items .item .adu').text(), True)
 
 
-class TestImpalaCategoryFeeds(amo.tests.TestCase):
+class TestFeeds(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/category', 'base/featured',
                 'addons/featured', 'addons/listed', 'base/collections',
                 'bandwagon/featured_collections']
 
     def setUp(self):
         self.reset_featured_addons()
-        self.extensions_rss_url = reverse('browse.extensions.rss')
-        self.extensions_url = reverse('i_browse.extensions')
+        self.url = reverse('i_browse.extensions')
+        self.rss_url = reverse('browse.extensions.rss')
+        self.filter = ImpalaAddonFilter
 
-    def check_feed(self, url, expected_sort='featured'):
+    def _check_feed(self, browse_url, rss_url, expected_sort='featured'):
         """
         Check RSS feed URLs and that the results on the listing pages match
         those for their respective RSS feeds.
         """
         # Check URLs.
-        r = self.client.get(url, follow=True)
+        r = self.client.get(browse_url, follow=True)
         doc = pq(r.content)
-        rss_url = '%s?sort=%s' % (self.extensions_rss_url, expected_sort)
+        rss_url += '?sort=%s' % expected_sort
         eq_(doc('link[type="application/rss+xml"]').attr('href'), rss_url)
         eq_(doc('#subscribe').attr('href'), rss_url)
 
         # Ensure that the RSS items match those on the browse listing pages.
-        browse_items = doc('.items .item')
-        rss_items = doc('item')
-        for browse_item, rss_item in zip(browse_items, rss_items):
-            browse_url = browse_item.find('h3 a').get('href')
-            rss_url = urlparse(rss_item.find('link').text).path
-            eq_(browse_url, rss_url)
-            browse_ts = browse_item.find('.vitals .updated')
-            if browse_ts:
-                browse_ts.strip('Added Updated')
-                rss_ts = rss_item.find('pubDate').text
-                eq_(rss_ts.startswith(browse_ts), True)
+        r = self.client.get(rss_url)
+        rss_doc = pq(r.content)
+        pg_items = doc('.items .item')
+        rss_items = rss_doc('item')
+        for pg_item, rss_item in zip(pg_items, rss_items):
+            pg_item, rss_item = pq(pg_item), pq(rss_item)
+            pg_url = absolutify(pg_item.find('h3 a').attr('href'))
+            rss_url = rss_item.find('link').text()
+            eq_(pg_url, rss_url)
+            if expected_sort in ('added', 'updated'):
+                # Check timestamps.
+                pg_ts = pg_item.find('.updated').text().strip('Added Updated')
+                rss_ts = rss_item.find('pubDate').text()
+                # Look at YMD, since we don't have h:m on listing pages.
+                eq_(parse_dt(pg_ts).isocalendar(),
+                    parse_dt(rss_ts).isocalendar())
 
-    def check_sort_urls(self, items, opts, attribute):
-        for item, options in zip(items, getattr(ImpalaAddonFilter, opts)):
+    def _check_sort_urls(self, items, opts, attr):
+        pg_url = self.url
+        rss_url = self.rss_url
+        filter_ = self.filter
+        for item, options in zip(items, getattr(filter_, opts)):
             slug, title = options
-            url = '%s?sort=%s' % (self.extensions_url, slug)
-            val = item.get(attribute)
-            if attribute == 'href':
+            url = '%s?sort=%s' % (pg_url, slug)
+            val = item.get(attr)
+            if attr == 'href':
                 eq_(val, url)
             else:
                 eq_(val, slug)
             eq_(item.text, unicode(title))
-            self.check_feed(url, slug)
+            self._check_feed(url, rss_url, slug)
+
+    def test_feed(self):
+        eq_(self.client.get(self.rss_url).status_code, 200)
 
     def test_sort_opts_urls(self):
-        r = self.client.get(self.extensions_url, follow=True)
-        doc = pq(r.content)
-        self.check_feed(self.extensions_url, 'featured')
-        self.check_sort_urls(doc('#sorter a'), 'opts', attribute='href')
-        self.check_sort_urls(doc('#sorter option[value!=""]'), 'extras',
-                             attribute='value')
+        r = self.client.get(self.url, follow=True)
+        s = pq(r.content)('#sorter')
+        self._check_feed(self.url, self.rss_url, 'featured')
+        self._check_sort_urls(s.find('ul > li a'), 'opts', 'href')
+        self._check_sort_urls(s.find('option[value!=""]'), 'extras', 'value')
 
 
 class TestFeaturedLocale(amo.tests.TestCase):

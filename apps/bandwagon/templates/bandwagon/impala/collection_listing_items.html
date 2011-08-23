@@ -20,10 +20,15 @@
             <span>{{ num }}</span> followers
           {% endtrans %}
         </div>
-        {% if field in ('created', 'newest') %}
+        {% if field in ('created', 'updated') %}
           <div class="updated">
-            {# L10n: {0} is a date. #}
-            {{ _('Added {0}')|f(c.created|datetime) }}
+            {% if field == 'created' %}
+              {# L10n: {0} is a date. #}
+              {{ _('Added {0}')|f(c.created|datetime) }}
+            {% elif field == 'updated' %}
+              {# L10n: {0} is a date. #}
+              {{ _('Updated {0}')|f(c.modified|datetime) }}
+            {% endif %}
           </div>
         {% endif %}
       </div>

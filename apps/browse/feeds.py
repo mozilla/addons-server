@@ -1,5 +1,3 @@
-import random
-
 from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
 
@@ -20,7 +18,10 @@ class AddonFeedMixin(object):
         return absolutify(reverse('addons.detail', args=[addon.slug]))
 
     def item_title(self, addon):
-        return u'%s %s' % (addon.name, addon.current_version)
+        version = ''
+        if addon.current_version:
+            version = u' %s' % addon.current_version
+        return u'%s%s' % (addon.name, version)
 
     def item_description(self, addon):
         """Description for particular add-on (<item><description>)"""
@@ -82,7 +83,10 @@ class CategoriesRss(AddonFeedMixin, Feed):
 
     def items(self, category):
         """Return the Addons for this Category to be output as RSS <item>'s"""
-        addons, _ = addon_listing(self.request, [self.TYPE], default='updated')
+        # TODO(cvan): Remove the `is_impala` argument once the new listing
+        # page/RSS feeds go live.
+        addons, _ = addon_listing(self.request, [self.TYPE], default='updated',
+                                  is_impala=True)
         if category:
             addons = addons.filter(categories__id=category.id)
         return addons[:20]

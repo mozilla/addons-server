@@ -23,6 +23,8 @@ from amo.tests.test_helpers import get_uploaded_file
 from bandwagon import forms
 from bandwagon.models import (Collection, CollectionVote, CollectionUser,
                               CollectionWatcher)
+from bandwagon.views import CollectionFilter
+from browse.tests import TestFeeds
 from devhub.models import ActivityLog
 from users.models import UserProfile
 
@@ -821,7 +823,17 @@ class TestSharing(amo.tests.TestCase):
         eq_(r.status_code, 404)
 
 
-class TestFeeds(amo.tests.TestCase):
+class TestCollectionFeed(TestFeeds):
+    fixtures = TestFeeds.fixtures
+
+    def setUp(self):
+        super(TestCollectionFeed, self).setUp()
+        self.url = reverse('i_collections.list')
+        self.rss_url = reverse('collections.rss')
+        self.filter = CollectionFilter
+
+
+class TestCollectionDetailFeed(amo.tests.TestCase):
     fixtures = ['base/collection_57181']
 
     def setUp(self):

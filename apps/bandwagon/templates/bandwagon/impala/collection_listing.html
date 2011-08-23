@@ -1,12 +1,7 @@
 {% extends "bandwagon/impala/base_collection.html" %}
 
 {% set url_base = url('i_collections.list') %}
-
-{% set title = {'featured': _('Featured Collections'),
-                'popular': _('Popular Collections'),
-                'created': _('Recently Added Collections'),
-                'rating': _('Top Rated Collections'),
-                'updated': _('Last Updated Collections')}.get(sorting) %}
+{% set title = filter.title %}
 
 {% block title %}{{ page_title(title) }}{% endblock %}
 
@@ -19,7 +14,7 @@
   {% else %}
     {{ impala_breadcrumbs([(None, _('Collections'))]) }}
     <masthead class="hero" id="collections-landing">
-      <h1>{{ _('Collections') }}</h1>
+      <h1>{{ title }}</h1>
       <p>
         {% trans url=url('collections.add') %}
           Collections are groups of related add-ons that anyone can create and
@@ -30,10 +25,11 @@
     </masthead>
   {% endif %}
   <div class="island hero c listing">
-    {{ impala_addon_listing_header(url_base, filter.opts, sorting) }}
     {% if sorting != 'featured' %}
       {{ collections|impala_paginator }}
     {% endif %}
+    <a href="{{ feed_url }}" id="subscribe">{{ _('Subscribe') }}</a>
+    {{ impala_addon_listing_header(url_base, filter.opts, sorting, filter.extras) }}
     <div class="items">
       {{ impala_collection_listing_items(collections.object_list, filter.field) }}
     </div>
