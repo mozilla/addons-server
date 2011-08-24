@@ -447,8 +447,7 @@
             var out = {
                     count : row.count,
                     date : row.date,
-                    end : row.end,
-                    row_count : row.row_count,
+                    end : row.end
                 }, set, ver, key;
             var ra = {};
             var apps = row.applications;
