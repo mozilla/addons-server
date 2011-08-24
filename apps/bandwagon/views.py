@@ -87,8 +87,6 @@ class CollectionFilter(BaseFilter):
             return qs.filter(type=amo.COLLECTION_FEATURED)
         elif field == 'users':
             return qs.order_by('-weekly_subscribers')
-        elif field == 'rating':
-            return qs.order_by('-rating')
         elif field == 'updated':
             return qs.order_by('-modified')
         else:

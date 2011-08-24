@@ -194,7 +194,16 @@ def addon_listing_header(context, url_base, sort_opts, selected):
 @register.inclusion_tag('addons/impala/listing/sorter.html')
 @jinja2.contextfunction
 def impala_addon_listing_header(context, url_base, sort_opts, selected,
-                                extra_sort_opts=None):
+                                extra_sort_opts={}):
+    # When an "extra" sort option becomes selected, it will appear alongside
+    # the normal sort options.
+    old_extras = extra_sort_opts
+    sort_opts, extra_sort_opts = list(sort_opts), []
+    for k, v in old_extras:
+        if k == selected:
+            sort_opts.append((k, v, True))
+        else:
+            extra_sort_opts.append((k, v))
     return new_context(**locals())
 
 

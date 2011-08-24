@@ -331,26 +331,87 @@ class TestImpalaExtensions(amo.tests.TestCase):
         self.reset_featured_addons()
         self.url = reverse('i_browse.extensions')
 
+    def test_default_sort(self):
+        r = self.client.get(self.url)
+        eq_(r.context['sorting'], 'featured')
+
+    def test_featured_sort(self):
+        r = self.client.get(urlparams(self.url, sort='featured'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'opt')
+        eq_(sel.text(), 'Featured')
+
+    def test_mostusers_sort(self):
+        r = self.client.get(urlparams(self.url, sort='users'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'opt')
+        eq_(sel.text(), 'Most Users')
+        a = r.context['addons'].object_list
+        eq_(list(a),
+            sorted(a, key=lambda x: x.average_daily_users, reverse=True))
+
+    def test_toprated_sort(self):
+        r = self.client.get(urlparams(self.url, sort='rating'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'opt')
+        eq_(sel.text(), 'Top Rated')
+        a = r.context['addons'].object_list
+        eq_(list(a), sorted(a, key=lambda x: x.bayesian_rating, reverse=True))
+
+    def test_newest_sort(self):
+        r = self.client.get(urlparams(self.url, sort='created'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'opt')
+        eq_(sel.text(), 'Newest')
+        a = r.context['addons'].object_list
+        eq_(list(a), sorted(a, key=lambda x: x.created, reverse=True))
+
+    def test_name_sort(self):
+        r = self.client.get(urlparams(self.url, sort='name'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'extra-opt')
+        eq_(sel.text(), 'Name')
+        a = r.context['addons'].object_list
+        eq_(list(a), sorted(a, key=lambda x: x.name))
+
+    def test_weeklydownloads_sort(self):
+        r = self.client.get(urlparams(self.url, sort='popular'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'extra-opt')
+        eq_(sel.text(), 'Weekly Downloads')
+        a = r.context['addons'].object_list
+        eq_(list(a), sorted(a, key=lambda x: x.weekly_downloads, reverse=True))
+
+    def test_updated_sort(self):
+        r = self.client.get(urlparams(self.url, sort='updated'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'extra-opt')
+        eq_(sel.text(), 'Recently Updated')
+        a = r.context['addons'].object_list
+        eq_(list(a), sorted(a, key=lambda x: x.last_updated, reverse=True))
+
+    def test_upandcoming_sort(self):
+        r = self.client.get(urlparams(self.url, sort='hotness'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'extra-opt')
+        eq_(sel.text(), 'Up & Coming')
+        a = r.context['addons'].object_list
+        eq_(list(a), sorted(a, key=lambda x: x.hotness, reverse=True))
+
     def test_added_date(self):
-        self.url += '?sort=created'
-        doc = pq(self.client.get(self.url).content)
+        doc = pq(self.client.get(urlparams(self.url, sort='created')).content)
         eq_(doc('.items .item .updated').text().startswith('Added'), True)
 
     def test_updated_date(self):
-        self.url += '?sort=updated'
-        doc = pq(self.client.get(self.url).content)
+        doc = pq(self.client.get(urlparams(self.url, sort='updated')).content)
         eq_(doc('.items .item .updated').text().startswith('Updated'), True)
 
     def test_users_adu_unit(self):
-        self.url += '?sort=users'
-        doc = pq(self.client.get(self.url).content)
-        s = doc('.items .item .adu').text()
+        doc = pq(self.client.get(urlparams(self.url, sort='users')).content)
         eq_('users' in doc('.items .item .adu').text(), True)
 
     def test_popular_adu_unit(self):
-        self.url += '?sort=popular'
-        doc = pq(self.client.get(self.url).content)
-        s = doc('.items .item .adu').text()
+        doc = pq(self.client.get(urlparams(self.url, sort='popular')).content)
         eq_('weekly downloads' in doc('.items .item .adu').text(), True)
 
 
@@ -365,7 +426,7 @@ class TestFeeds(amo.tests.TestCase):
         self.rss_url = reverse('browse.extensions.rss')
         self.filter = ImpalaAddonFilter
 
-    def _check_feed(self, browse_url, rss_url, expected_sort='featured'):
+    def _check_feed(self, browse_url, rss_url, sort='featured'):
         """
         Check RSS feed URLs and that the results on the listing pages match
         those for their respective RSS feeds.
@@ -373,7 +434,7 @@ class TestFeeds(amo.tests.TestCase):
         # Check URLs.
         r = self.client.get(browse_url, follow=True)
         doc = pq(r.content)
-        rss_url += '?sort=%s' % expected_sort
+        rss_url += '?sort=%s' % sort
         eq_(doc('link[type="application/rss+xml"]').attr('href'), rss_url)
         eq_(doc('#subscribe').attr('href'), rss_url)
 
@@ -387,7 +448,7 @@ class TestFeeds(amo.tests.TestCase):
             pg_url = absolutify(pg_item.find('h3 a').attr('href'))
             rss_url = rss_item.find('link').text()
             eq_(pg_url, rss_url)
-            if expected_sort in ('added', 'updated'):
+            if sort in ('added', 'updated'):
                 # Check timestamps.
                 pg_ts = pg_item.find('.updated').text().strip('Added Updated')
                 rss_ts = rss_item.find('pubDate').text()
@@ -395,20 +456,16 @@ class TestFeeds(amo.tests.TestCase):
                 eq_(parse_dt(pg_ts).isocalendar(),
                     parse_dt(rss_ts).isocalendar())
 
-    def _check_sort_urls(self, items, opts, attr):
-        pg_url = self.url
-        rss_url = self.rss_url
-        filter_ = self.filter
-        for item, options in zip(items, getattr(filter_, opts)):
+    def _check_sort_urls(self, items, opts):
+        items = sorted(items, key=lambda x: x.get('href'))
+        options = getattr(self.filter, opts)
+        options = sorted(options, key=lambda x: x[0])
+        for item, options in zip(items, options):
             slug, title = options
-            url = '%s?sort=%s' % (pg_url, slug)
-            val = item.get(attr)
-            if attr == 'href':
-                eq_(val, url)
-            else:
-                eq_(val, slug)
+            url = '%s?sort=%s' % (self.url, slug)
+            eq_(item.get('href'), url)
             eq_(item.text, unicode(title))
-            self._check_feed(url, rss_url, slug)
+            self._check_feed(url, self.rss_url, slug)
 
     def test_feed(self):
         eq_(self.client.get(self.rss_url).status_code, 200)
@@ -417,8 +474,8 @@ class TestFeeds(amo.tests.TestCase):
         r = self.client.get(self.url, follow=True)
         s = pq(r.content)('#sorter')
         self._check_feed(self.url, self.rss_url, 'featured')
-        self._check_sort_urls(s.find('ul > li a'), 'opts', 'href')
-        self._check_sort_urls(s.find('option[value!=""]'), 'extras', 'value')
+        self._check_sort_urls(s.find('a.opt'), 'opts')
+        self._check_sort_urls(s.find('a.extra-opt'), 'extras')
 
 
 class TestFeaturedLocale(amo.tests.TestCase):
