@@ -70,7 +70,11 @@ def test_short_users_list():
 
 def test_user_link_unicode():
     """make sure helper won't choke on unicode input"""
-    u = UserProfile(username=u'jmüller', display_name=u'Jürgen Müller',
-                    pk=1)
+    u = UserProfile(username=u'jmüller', display_name=u'Jürgen Müller', pk=1)
     eq_(user_link(u), u'<a href="%s">Jürgen Müller</a>' %
         reverse('users.profile', args=[1]))
+
+    u = UserProfile(username='\xe5\xaf\x92\xe6\x98\x9f', pk=1)
+    url = reverse('users.profile', args=[1])
+    eq_(user_link(u),
+        u'<a href="%s">%s</a>' % (url, u.username.decode('utf-8')))
