@@ -9,7 +9,7 @@ from jingo import register
 from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
 import amo
-from amo.helpers import breadcrumbs, page_title, absolutify
+from amo.helpers import breadcrumbs, page_title, absolutify, timesince
 from amo.urlresolvers import reverse
 from amo.utils import send_mail as amo_send_mail
 
@@ -17,6 +17,7 @@ import commonware.log
 from editors.models import (ViewPendingQueue, ViewFullReviewQueue,
                             ViewPreliminaryQueue)
 from editors.sql_table import SQLTable
+from webapps.models import Webapp
 
 
 @register.function
@@ -59,33 +60,37 @@ def editor_page_title(context, title=None, addon=None):
 
 @register.function
 @jinja2.contextfunction
-def editors_breadcrumbs(context, queue=None, queue_id=None, items=None):
+def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None):
     """
     Wrapper function for ``breadcrumbs``. Prepends 'Editor Tools'
     breadcrumbs.
 
     **items**
         list of [(url, label)] to be inserted after Add-on.
-    **addon**
-        Adds the Add-on name to the end of the trail.  If items are
-        specified then the Add-on will be linked.
-    **add_default**
-        Prepends trail back to home when True.  Default is False.
+    **addon_queue**
+        Addon object. This sets the queue by addon type or addon status.
+    **queue**
+        Explicit queue type to set.
     """
     crumbs = [(reverse('editors.home'), _('Editor Tools'))]
 
-    if queue_id:
-        queue_ids = {1: 'prelim', 3: 'nominated', 4: 'pending',
-                     8: 'prelim', 9: 'nominated', 2: 'pending'}
+    if addon_queue:
+        if addon_queue.type == amo.ADDON_WEBAPP:
+            queue = 'apps'
+        else:
+            queue_id = addon_queue.status
+            queue_ids = {1: 'prelim', 3: 'nominated', 4: 'pending',
+                         8: 'prelim', 9: 'nominated', 2: 'pending'}
 
-        queue = queue_ids.get(queue_id, 'queue')
+            queue = queue_ids.get(queue_id, 'queue')
 
     if queue:
         queues = {'queue': _("Queue"),
                   'pending': _("Pending Updates"),
                   'nominated': _("Full Reviews"),
                   'prelim': _("Preliminary Reviews"),
-                  'moderated': _("Moderated Reviews")}
+                  'moderated': _("Moderated Reviews"),
+                  'apps': _("Apps")}
 
         if items and not queue == 'queue':
             url = reverse('editors.queue_%s' % queue)
@@ -99,7 +104,16 @@ def editors_breadcrumbs(context, queue=None, queue_id=None, items=None):
     return breadcrumbs(context, crumbs, add_default=False)
 
 
-class EditorQueueTable(SQLTable):
+class ItemStateTable(object):
+
+    def increment_item(self):
+        self.item_number += 1
+
+    def set_page(self, page):
+        self.item_number = page.start_index()
+
+
+class EditorQueueTable(SQLTable, ItemStateTable):
     addon_name = tables.Column(verbose_name=_lazy(u'Addon'))
     addon_type_id = tables.Column(verbose_name=_lazy(u'Type'))
     waiting_time_min = tables.Column(verbose_name=_lazy(u'Waiting Time'))
@@ -115,7 +129,7 @@ class EditorQueueTable(SQLTable):
         url = '%s?num=%s' % (reverse('editors.review',
                                      args=[row.addon_slug]),
                              self.item_number)
-        self.item_number += 1
+        self.increment_item()
         return u'<a href="%s">%s <em>%s</em></a>' % (
                     url, jinja2.escape(row.addon_name),
                     jinja2.escape(row.latest_version))
@@ -191,8 +205,22 @@ class EditorQueueTable(SQLTable):
                          row.waiting_time_days).format(row.waiting_time_days)
         return jinja2.escape(r)
 
-    def set_page(self, page):
-        self.item_number = page.start_index()
+    @classmethod
+    def translate_legacy_cols(cls, colname):
+        legacy_sorts = {
+            'name': 'addon_name',
+            'age': 'waiting_time_min',
+            'type': 'addon_type_id',
+        }
+        return legacy_sorts.get(colname, colname)
+
+    @classmethod
+    def default_order_by(cls):
+        return '-waiting_time_min'
+
+    @classmethod
+    def get_addon_slug(cls, row):
+        return row.addon_slug
 
     class Meta:
         sortable = True
@@ -216,6 +244,38 @@ class ViewPreliminaryQueueTable(EditorQueueTable):
 
     class Meta(EditorQueueTable.Meta):
         model = ViewPreliminaryQueue
+
+
+class WebappQueueTable(tables.ModelTable, ItemStateTable):
+    name = tables.Column(verbose_name=_lazy(u'App'))
+    created = tables.Column(verbose_name=_lazy(u'Waiting Time'))
+    abuse_reports__count = tables.Column(verbose_name=_lazy(u'Abuse Reports'))
+
+    def render_name(self, row):
+        url = '%s?num=%s' % (reverse('editors.review', args=[row.slug]),
+                             self.item_number)
+        self.increment_item()
+        return u'<a href="%s">%s</a>' % (url, jinja2.escape(row.name))
+
+    def render_created(self, row):
+        return timesince(row.created)
+
+    @classmethod
+    def translate_legacy_cols(cls, colname):
+        return colname
+
+    @classmethod
+    def default_order_by(cls):
+        return '-created'
+
+    @classmethod
+    def get_addon_slug(cls, row):
+        return row.slug
+
+    class Meta:
+        sortable = True
+        model = Webapp
+        columns = ['name', 'created', 'abuse_reports__count']
 
 
 log = commonware.log.getLogger('z.mailer')
@@ -271,7 +331,10 @@ class ReviewHelper:
         self.handler.set_data(data)
 
     def get_review_type(self, request, addon, version):
-        if self.addon.status in NOMINATED_STATUSES:
+        if self.addon.type == amo.ADDON_WEBAPP:
+            self.review_type = 'apps'
+            self.handler = ReviewAddon(request, addon, version, 'pending')
+        elif self.addon.status in NOMINATED_STATUSES:
             self.review_type = 'nominated'
             self.handler = ReviewAddon(request, addon, version, 'nominated')
 

@@ -22,14 +22,19 @@
                              ('moderated', 'queue_moderated',
                               ngettext('Moderated Review ({0})',
                                        'Moderated Reviews ({0})',
-                                       queue_counts['moderated'])|f(queue_counts['moderated']))) %}
+                                       queue_counts['moderated'])|f(queue_counts['moderated'])),
+                             ('apps', 'queue_apps',
+                              ngettext('Apps ({0})',
+                                       'Apps ({0})',
+                                       queue_counts['apps'])|f(queue_counts['apps']))) %}
   <li class="{% if tab==this %}selected{% endif %}"><a href="{{ url('editors.%s' % loc) }}">{{ text }}</a></li>
   {% endfor %}
 </ul>
 
 <div class="queue-outer">
   <div class="queue-inner">
-    {% if search_form %}
+    {# TODO(Kumar) enable for apps when search form supports them #}
+    {% if search_form and tab != 'apps' %}
     <div id="queue-search">
       <form action="" method="get">
         {{ search_form['searching'] }}
@@ -163,9 +168,11 @@
               <td>{{ value|xssafe }}</td>
             {% endfor %}
             <td>
+              {% if tab != 'apps' %}
               <div class="addon-version-notes">
                 <a href="#" class="ed-sprite-notes app-icon" title="{{ _('Version Notes') }}">&nbsp;</a>
               </div>
+              {% endif %}
             </td>
             </tr>
           {% endfor %}

@@ -18,8 +18,7 @@ import amo
 from access import acl
 from addons.decorators import addon_view
 from addons.models import Addon, Version
-from amo.decorators import (login_required, json_view, post_required,
-                            permission_required)
+from amo.decorators import login_required, json_view, post_required
 from amo.utils import paginate
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
@@ -28,8 +27,7 @@ from editors.models import (EditorSubscription, ViewPendingQueue,
                             ViewFullReviewQueue, ViewPreliminaryQueue,
                             EventLog, CannedResponse, PerformanceGraph)
 from editors.helpers import (ViewPendingQueueTable, ViewFullReviewQueueTable,
-                             ViewPreliminaryQueueTable)
-from files.models import Approval, File
+                             ViewPreliminaryQueueTable, WebappQueueTable)
 from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
@@ -211,14 +209,14 @@ def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
 
         if row.user_id == user_id:
             user_count = monthly_data[label]['usercount']
-            monthly_data[label]['usercount'] =  user_count + row.total
+            monthly_data[label]['usercount'] = user_count + row.total
 
     # Calculate averages
     for i, vals in monthly_data.items():
         average = round(vals['teamcount'] / float(vals['teamamt']), 1)
         monthly_data[i]['teamavg'] = str(average)  # floats aren't valid json
 
-    return monthly_data;
+    return monthly_data
 
 
 @editor_required
@@ -243,8 +241,9 @@ def save_motd(request):
     return jingo.render(request, 'editors/motd.html', data)
 
 
-def _queue(request, TableObj, tab):
-    qs = TableObj.Meta.model.objects.all()
+def _queue(request, TableObj, tab, qs=None):
+    if not qs:
+        qs = TableObj.Meta.model.objects.all()
     if request.GET:
         search_form = forms.QueueSearchForm(request.GET)
         if search_form.is_valid():
@@ -261,21 +260,16 @@ def _queue(request, TableObj, tab):
             try:
                 # Force a limit query for efficiency:
                 start = review_num - 1
-                row = qs[start : start + 1][0]
+                row = qs[start: start + 1][0]
                 return redirect('%s?num=%s' % (
                                 reverse('editors.review',
-                                        args=[row.addon_slug]),
+                                        args=[TableObj.get_addon_slug(row)]),
                                 review_num))
             except IndexError:
                 pass
-    order_by = request.GET.get('sort', '-waiting_time_min')
-    legacy_sorts = {
-        'name': 'addon_name',
-        'age': 'waiting_time_min',
-        'type': 'addon_type_id',
-    }
-    order_by = legacy_sorts.get(order_by, order_by)
-    table = TableObj(qs, order_by=order_by)
+    order_by = request.GET.get('sort', TableObj.default_order_by())
+    order_by = TableObj.translate_legacy_cols(order_by)
+    table = TableObj(data=qs, order_by=order_by)
     default = 100
     per_page = request.GET.get('per_page', default)
     try:
@@ -310,7 +304,8 @@ def _queue_counts(type=None, **kw):
               'nominated': construct_query(ViewFullReviewQueue, **kw),
               'prelim': construct_query(ViewPreliminaryQueue, **kw),
               'moderated': Review.objects.filter(reviewflag__isnull=False,
-                                                 editorreview=1).count}
+                                                 editorreview=1).count,
+              'apps': Webapp.pending().count}
     rv = {}
     if isinstance(type, basestring):
         return counts[type]()
@@ -361,6 +356,12 @@ def queue_moderated(request):
                         context(reviews_formset=reviews_formset,
                                 tab='moderated', page=page, flags=flags,
                                 search_form=None))
+
+
+@editor_required
+def queue_apps(request):
+    qs = Webapp.pending().annotate(Count('abuse_reports'))
+    return _queue(request, WebappQueueTable, 'apps', qs=qs)
 
 
 @editor_required
@@ -553,20 +554,3 @@ def reviewlog(request):
          }
     data = context(form=form, pager=pager, ACTION_DICT=ad)
     return jingo.render(request, 'editors/reviewlog.html', data)
-
-
-# - Holding
-# ** Approved   -- PUBLIC
-# ** Unapproved -- PENDING
-# - Open
-# ** Reviewed   -- PUBLIC
-# ** Unreviewed -- LITE
-# ** Rejected   -- REJECTED
-@permission_required('Editors', 'Apps')
-def apps(request):
-    status = (amo.STATUS_PENDING if settings.WEBAPPS_RESTRICTED
-              else amo.STATUS_LITE)
-    qs = (Webapp.uncached.filter(status=status).order_by('created')
-          .annotate(Count('abuse_reports')))
-    return jingo.render(request, 'editors/apps.html',
-                        {'apps': amo.utils.paginate(request, qs)})

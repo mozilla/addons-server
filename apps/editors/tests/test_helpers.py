@@ -275,6 +275,10 @@ class TestReviewHelper(amo.tests.TestCase):
         eq_(self.setup_type(amo.STATUS_BETA), 'pending')
         eq_(self.setup_type(amo.STATUS_PURGATORY), 'pending')
 
+    def test_webapp_type(self):
+        self.addon.update(type=amo.ADDON_WEBAPP, status=amo.STATUS_PENDING)
+        eq_(self.get_helper().review_type, 'apps')
+
     def test_review_files(self):
         for status in REVIEW_FILES_STATUSES:
             self.setup_data(status=status)

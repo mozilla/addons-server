@@ -425,6 +425,12 @@ class QueueTest(EditorTest):
                         amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED)
         self.addon_file(u'Public', u'0.1',
                         amo.STATUS_PUBLIC, amo.STATUS_LISTED)
+        self.addon_file(u'App One', u'1.0',
+                        amo.STATUS_PENDING, amo.STATUS_PENDING,
+                        addon_type=amo.ADDON_WEBAPP)
+        self.addon_file(u'App Two', u'1.0',
+                        amo.STATUS_PENDING, amo.STATUS_PENDING,
+                        addon_type=amo.ADDON_WEBAPP)
 
     def addon_file(self, *args, **kw):
         a = create_addon_file(*args, **kw)
@@ -516,7 +522,7 @@ class TestQueueBasics(QueueTest):
         doc = pq(r.content)
         eq_(doc('#navbar li.top ul').eq(0).text(),
             'Full Reviews (2) Pending Updates (2) '
-            'Preliminary Reviews (2) Moderated Reviews (0)')
+            'Preliminary Reviews (2) Moderated Reviews (0) Apps (2)')
 
     def test_legacy_queue_sort(self):
         sorts = (
@@ -938,6 +944,37 @@ class TestModeratedQueue(QueueTest):
         eq_(doc('.no-results').text(), message)
 
         eq_(doc('.review-saved button').length, 1)  # Only show one button.
+
+
+class TestAppQueue(QueueTest):
+
+    def test_results(self):
+        r = self.client.get(reverse('editors.queue_apps'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        row = doc('table.data-grid tr:eq(1)')
+        eq_(doc('td:eq(1)', row).text(), u'App One')
+        slug_one = self.versions[u'App One'].addon.slug
+        eq_(doc('td a:eq(0)', row).attr('href'),
+            reverse('editors.review', args=[slug_one]) + '?num=1')
+        row = doc('table.data-grid tr:eq(2)')
+        eq_(doc('td:eq(1)', row).text(), u'App Two')
+        slug_two = self.versions[u'App Two'].addon.slug
+        eq_(doc('a:eq(0)', row).attr('href'),
+            reverse('editors.review', args=[slug_two]) + '?num=2')
+
+    def test_queue_count(self):
+        r = self.client.get(reverse('editors.queue_apps'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.tabnav li a:eq(4)').text(), u'Apps (2)')
+
+    def test_sort(self):
+        r = self.client.get(reverse('editors.queue_apps'), {'sort': '-name'})
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        row = doc('table.data-grid tr:eq(1)')
+        eq_(doc('td:eq(1)', row).text(), u'App Two')
 
 
 class TestPerformance(QueueTest):

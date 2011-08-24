@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import patterns, url
+from django.conf.urls.defaults import url
 
 from addons.urls import ADDON_ID
 from . import views
@@ -15,6 +15,8 @@ urlpatterns = (
         name='editors.queue_prelim'),
     url(r'^queue/reviews$', views.queue_moderated,
         name='editors.queue_moderated'),
+    url(r'^queue/apps$', views.queue_apps,
+        name='editors.queue_apps'),
     url(r'^queue/application_versions\.json$', views.application_versions_json,
         name='editors.application_versions_json'),
     url(r'^logs$', views.eventlog, name='editors.eventlog'),
@@ -32,7 +34,4 @@ urlpatterns = (
     url(r'^motd$', views.motd, name='editors.motd'),
     url(r'^motd/save$', views.save_motd, name='editors.save_motd'),
     url(r'^$', views.home, name='editors.home'),
-
-    # Apps.
-    url('^apps/$', views.apps, name='editors.apps'),
 )
