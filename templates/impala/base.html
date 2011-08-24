@@ -53,17 +53,6 @@
         data-media-url="{{ MEDIA_URL }}"
         {% block bodyattrs %}{% endblock %}>
 
-    {% if ADMIN_MESSAGE or settings.READ_ONLY%}
-      <div id="site-notice">
-        {% if ADMIN_MESSAGE %}
-          <p>{{ ADMIN_MESSAGE|safe }}</p>
-        {% endif %}
-        {% if settings.READ_ONLY %}
-          <p>{{ _("Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly.") }}</p>
-        {% endif %}
-      </div>
-      </div>
-    {% endif %}
     <div id="page">
       {% block site_header %}
         {# Well that's an awful tiny mozilla header #}
@@ -103,6 +92,19 @@
             {{ site_nav() }}
             {% endblock %}
           </div>
+          {% if ADMIN_MESSAGE or settings.READ_ONLY %}
+            <div class="site-balloon" id="site-notice">
+              {% if ADMIN_MESSAGE %}
+                <p>{{ ADMIN_MESSAGE|safe }}</p>
+              {% endif %}
+              {% if settings.READ_ONLY %}
+                <p>{% trans %}
+                  Some features are temporarily disabled while we perform
+                  website maintenance. We'll be back to full capacity shortly.
+                  {% endtrans %}</p>
+              {% endif %}
+            </div>
+          {% endif %}
           <div class="site-balloon" id="site-nonfx">
             <p>
               {% trans url='http://mozilla.org/firefox/?src=amo' %}
