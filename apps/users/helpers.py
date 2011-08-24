@@ -1,7 +1,8 @@
 import random
 
-import jinja2
+from django.utils.encoding import smart_unicode
 
+import jinja2
 from jingo import register, env
 from tower import ugettext as _
 
@@ -56,7 +57,7 @@ def _user_link(user):
     if isinstance(user, basestring):
         return user
     return u'<a href="%s">%s</a>' % (
-        user.get_url_path(), unicode(jinja2.escape(user.name)))
+        user.get_url_path(), jinja2.escape(smart_unicode(user.name)))
 
 
 @register.filter
