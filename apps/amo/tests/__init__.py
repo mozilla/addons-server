@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 import os
 import random
+import shutil
 import time
 
 from django import forms
@@ -92,6 +93,12 @@ class AMOPaths(object):
 
     def xpi_path(self, name):
         return self.file_fixture_path(name + '.xpi')
+
+    def xpi_copy_over(self, file, name):
+        """Copies over a file into place for tests."""
+        if not os.path.exists(os.path.dirname(file.file_path)):
+            os.makedirs(os.path.dirname(file.file_path))
+        shutil.copyfile(self.xpi_path(name), file.file_path)
 
 
 def close_to_now(dt):
