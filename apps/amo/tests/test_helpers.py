@@ -18,7 +18,7 @@ from pyquery import PyQuery
 import amo
 import amo.tests
 from amo import urlresolvers, utils, helpers
-from amo.utils import ImageCheck, Message, Token
+from amo.utils import guard, ImageCheck, Message, Token
 from versions.models import License
 
 
@@ -395,6 +395,21 @@ class TestMessage(amo.tests.TestCase):
         eq_(new.get(delete=False), '123')
         eq_(new.get(delete=True), '123')
         eq_(new.get(), None)
+
+    def test_guard(self):
+        with guard('abc') as locked:
+            eq_(locked, False)
+            eq_(Message('abc').get(), True)
+
+    def test_guard_deletes(self):
+        with guard('abc'):
+            pass
+        eq_(Message('abc').get(), None)
+
+    def test_guard_blocks(self):
+        Message('abc').save(True)
+        with guard('abc') as locked:
+            eq_(locked, True)
 
 
 def test_site_nav():

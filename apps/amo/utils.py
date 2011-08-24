@@ -1,3 +1,4 @@
+import contextlib
 import functools
 import hashlib
 import itertools
@@ -539,6 +540,24 @@ class Message:
         if delete:
             cache.delete(self.key)
         return res
+
+
+@contextlib.contextmanager
+def guard(name):
+    """
+    A memcache based guard around a function such as extracting something on
+    to the file system, that you'd like to prevent from having race conditions.
+    Saves us doing lock files or similar.
+    """
+    msg = Message(name)
+    if msg.get():
+        # This is currently in progress
+        yield True
+    else:
+        # This is not in progress, save a flag and delete on exit.
+        msg.save(True)
+        yield False
+        msg.delete()
 
 
 class Token:
