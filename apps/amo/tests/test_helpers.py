@@ -401,6 +401,15 @@ class TestMessage(amo.tests.TestCase):
             eq_(locked, False)
             eq_(Message('abc').get(), True)
 
+    def test_guard_copes(self):
+        try:
+            with guard('abc'):
+                1/0
+        except ZeroDivisionError:
+            pass
+
+        eq_(Message('abc').get(), None)
+
     def test_guard_deletes(self):
         with guard('abc'):
             pass

@@ -551,13 +551,15 @@ def guard(name):
     """
     msg = Message(name)
     if msg.get():
-        # This is currently in progress
+        # This is currently in progress.
         yield True
     else:
         # This is not in progress, save a flag and delete on exit.
         msg.save(True)
-        yield False
-        msg.delete()
+        try:
+            yield False
+        finally:
+            msg.delete()
 
 
 class Token:
