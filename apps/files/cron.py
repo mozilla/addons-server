@@ -36,3 +36,24 @@ def cleanup_extracted_file():
             cache.delete('%s:memoize:%s:%s' % (settings.CACHE_PREFIX,
                                                'file-viewer', key.hexdigest()))
             log.info('Removing cache file-viewer cache entries for: %s' % id)
+
+
+@cronjobs.register
+def cleanup_watermarked_file():
+    log.info('Removing watermarked files.')
+    root = settings.WATERMARKED_ADDONS_PATH
+    if not os.path.exists(root):
+        os.makedirs(root)
+
+    for path in os.listdir(root):
+        folder = os.path.join(root, path)
+        for file in os.listdir(folder):
+            full = os.path.join(root, path, file)
+            age = time.time() - os.stat(full)[stat.ST_ATIME]
+            if age > settings.WATERMARK_CLEANUP_SECONDS:
+                log.info('Removing watermarked file: %s, %dsecs.'
+                         % (full, age))
+                os.remove(full)
+
+        if not os.listdir(folder):
+            shutil.rmtree(folder)

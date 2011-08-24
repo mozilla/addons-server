@@ -1120,3 +1120,11 @@ LOGIN_RATELIMIT_ALL_USERS = '15/m'
 # If this is true all new webapps go into an approval queue. If it's false then
 # they go public immediately.
 WEBAPPS_RESTRICTED = True
+
+# How long a watermarked addon should be re-used for, after this
+# time it will be regenerated.
+WATERMARK_REUSE_SECONDS = 1800
+# How long a watermarked addon should wait before being deleted
+# by a cron. Setting this far apart from the reuse flag so that we
+# shouldn't have an overlap.
+WATERMARK_CLEANUP_SECONDS = 3600

@@ -13,6 +13,7 @@ HOME = /tmp
 # Every 30 minutes.
 */30 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron tag_jetpacks
 */30 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron update_addons_current_version
+*/30 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron cleanup_watermarked_file
 
 #once per hour
 5 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron update_collections_subscribers

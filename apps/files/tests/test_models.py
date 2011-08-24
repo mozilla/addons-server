@@ -4,7 +4,9 @@ import hashlib
 import json
 import os
 import shutil
+import stat
 import tempfile
+import time
 from xml.parsers import expat
 import zipfile
 
@@ -21,8 +23,9 @@ import amo.utils
 import devhub.signals
 from addons.models import Addon
 from applications.models import Application, AppVersion
+from files.cron import cleanup_watermarked_file
 from files.models import File, FileUpload, FileValidation, Platform
-from files.utils import parse_addon, parse_xpi, check_rdf, JetpackUpgrader, RDF
+from files.utils import parse_addon, parse_xpi, check_rdf, JetpackUpgrader
 from files.utils import SafeUnzip, RDF
 from users.models import UserProfile
 from versions.models import Version
@@ -860,3 +863,62 @@ class TestWatermark(amo.tests.TestCase, amo.tests.AMOPaths):
     def test_watermark_task(self):
         # Doesn't do much but checks the file.
         assert self.file.watermark(self.user)
+
+    @mock.patch('files.utils.SafeUnzip')
+    def test_already_watermarked(self, SafeUnzip):
+        if not os.path.exists(os.path.dirname(self.dest)):
+            os.makedirs(os.path.dirname(self.dest))
+        open(self.dest, 'w')
+        assert self.file.watermark(self.user)
+        assert not SafeUnzip.called
+
+    def test_already_watermarked_updates(self):
+        if not os.path.exists(os.path.dirname(self.dest)):
+            os.makedirs(os.path.dirname(self.dest))
+        open(self.dest, 'w')
+        old_time = time.time() - 1000
+        os.utime(self.dest, (old_time, old_time))
+        assert self.file.watermark(self.user)
+        eq_(os.stat(self.dest)[stat.ST_ATIME] != old_time, True)
+
+    def test_already_watermarked_stale(self):
+        if not os.path.exists(os.path.dirname(self.dest)):
+            os.makedirs(os.path.dirname(self.dest))
+        open(self.dest, 'w')
+        old_time = time.time() - settings.WATERMARK_REUSE_SECONDS - 5
+        os.utime(self.dest, (old_time, old_time))
+        assert self.file.watermark(self.user)
+
+
+class TestWatermarkCleanup(amo.tests.TestCase, amo.tests.AMOPaths):
+    fixtures = ['base/addon_3615', 'base/users']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(pk=3615)
+        self.version = Version.objects.create(addon=self.addon)
+        self.file = File.objects.create(version=self.version,
+                                        filename='firefm.xpi')
+        self.xpi_copy_over(self.file, 'firefm')
+        self.folder = os.path.dirname(self.file.watermarked_file_path(1))
+        if os.path.exists(self.folder):
+            shutil.rmtree(self.folder)
+        for user in UserProfile.objects.all():
+            self.file.watermark(user)
+
+    def test_cron_fresh(self):
+        cleanup_watermarked_file()
+        eq_(len(os.listdir(self.folder)), UserProfile.objects.count())
+
+    def test_cron_one_stale(self):
+        path = os.path.join(self.folder, os.listdir(self.folder)[0])
+        old = time.time() - settings.WATERMARK_CLEANUP_SECONDS - 1000
+        os.utime(path, (old, old))
+        cleanup_watermarked_file()
+        eq_(len(os.listdir(self.folder)), UserProfile.objects.count() - 1)
+
+    def test_cron_all_stale(self):
+        old = time.time() - settings.WATERMARK_CLEANUP_SECONDS - 1000
+        for path in os.listdir(self.folder):
+            os.utime(os.path.join(self.folder, path), (old, old))
+        cleanup_watermarked_file()
+        assert not os.path.exists(self.folder)
