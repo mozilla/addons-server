@@ -31,6 +31,9 @@
   {% endif %}
   <div class="island hero c listing">
     {{ impala_addon_listing_header(url_base, filter.opts, sorting) }}
+    {% if sorting != 'featured' %}
+      {{ collections|impala_paginator }}
+    {% endif %}
     <div class="items">
       {{ impala_collection_listing_items(collections.object_list, filter.field) }}
     </div>

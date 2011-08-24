@@ -19,6 +19,9 @@
   <div class="island hero c listing">
     <a href="{{ feed_url }}" id="subscribe">{{ _('Subscribe') }}</a>
     {{ impala_addon_listing_header(url_base, filter.opts, sorting, filter.extras) }}
+    {% if sorting != 'featured' %}
+      {{ addons|impala_paginator }}
+    {% endif %}
     <div class="items">
       {{ impala_addon_listing_items(addons.object_list, src='category',
                                     show_date=sorting) }}

@@ -20,6 +20,7 @@
 #sorter {
     font-family: @sans-stack;
     font-size: 11px;
+    margin-bottom: 1em;
     h3, ul, form {
         color: @note-gray;
         float: left;
@@ -184,11 +185,8 @@
         padding: 0 10px;
         text-align: right;
         visibility: hidden;
-        p {
+        p.install-button {
             text-align: left;
-            &.install-button {
-                margin: 0;
-            }
         }
         .extra {
             margin: 0;
@@ -214,15 +212,15 @@
     }
 }
 
-.paginator + .item,
-#sorter + .items {
+.paginator + .items {
     margin-top: 1em;
 }
 
 .item + .paginator,
-.items + .paginator {
-    padding-top: 1em;
+.items + .paginator,
+#sorter + .paginator {
     border-top: 1px dotted @border-blue;
+    padding-top: 1em;
 }
 
 .html-rtl .listing .item {
