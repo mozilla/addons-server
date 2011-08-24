@@ -4,6 +4,7 @@ from django.db import connection, transaction
 from django.db.models import Sum, Max
 
 import commonware.log
+import elasticutils
 from celery.decorators import task
 
 import amo
@@ -14,6 +15,7 @@ from reviews.models import Review
 from users.models import UserProfile
 from versions.models import Version
 from .models import UpdateCount, DownloadCount, AddonCollectionCount
+from . import search
 
 log = commonware.log.getLogger('z.task')
 
@@ -322,3 +324,35 @@ class _JSONUpdater(object):
             self.report('Updating model %s.%s (%s/%s)'
                         % (model.__name__, field_name, count + 1, len(all_models)))
             self.update_objs(model, field_name)
+
+
+@task
+def index_update_counts(ids):
+    es = elasticutils.get_es()
+    log.info('Indexing updates %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
+    qs = UpdateCount.objects.filter(id__in=ids)
+    try:
+        for update in qs:
+            key = '%s-%s' % (update.addon_id, update.date)
+            UpdateCount.index(search.extract_update_count(update),
+                              bulk=True, id=key)
+        es.flush_bulk(forced=True)
+    except Exception, exc:
+        log.error(exc)
+        index_update_counts.retry(args=[ids], exc=exc)
+
+
+@task
+def index_download_counts(ids):
+    es = elasticutils.get_es()
+    log.info('Indexing downloads %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
+    qs = DownloadCount.objects.filter(id__in=ids)
+    try:
+        for dl in qs:
+            key = '%s-%s' % (dl.addon_id, dl.date)
+            DownloadCount.index(search.extract_download_count(dl),
+                                bulk=True, id=key)
+        es.flush_bulk(forced=True)
+    except Exception, exc:
+        log.error(exc)
+        index_download_counts.retry(args=[ids], exc=exc)

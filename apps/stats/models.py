@@ -10,7 +10,7 @@ import tower
 from tower import ugettext as _
 
 import amo
-from amo.models import ModelBase
+from amo.models import ModelBase, SearchMixin
 from amo.fields import DecimalCharField
 from amo.utils import send_mail
 
@@ -50,7 +50,7 @@ class CollectionStats(caching.base.CachingMixin, models.Model):
         db_table = 'stats_collections'
 
 
-class DownloadCount(models.Model):
+class DownloadCount(SearchMixin, models.Model):
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     date = models.DateField()
@@ -68,7 +68,7 @@ class DownloadCount(models.Model):
         return ['*/addon/%d/statistics/downloads*' % self.addon_id, ]
 
 
-class UpdateCount(models.Model):
+class UpdateCount(SearchMixin, models.Model):
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     date = models.DateField()

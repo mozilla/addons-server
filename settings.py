@@ -843,18 +843,25 @@ CELERY_IMPORTS = ('django_arecibo.tasks',)
 # - always add routes here instead of @task(queue=<name>)
 # - when adding a queue, be sure to update deploy.py so that it gets restarted
 CELERY_ROUTES = {
+    # Devhub.
     'devhub.tasks.validator': {'queue': 'devhub'},
     'devhub.tasks.compatibility_check': {'queue': 'devhub'},
     'devhub.tasks.fetch_manifest': {'queue': 'devhub'},
     'devhub.tasks.file_validator': {'queue': 'devhub'},
     'devhub.tasks.packager': {'queue': 'devhub'},
+
+    # Images.
     'bandwagon.tasks.resize_icon': {'queue': 'images'},
     'users.tasks.resize_photo': {'queue': 'images'},
     'users.tasks.delete_photo': {'queue': 'images'},
     'devhub.tasks.resize_icon': {'queue': 'images'},
     'devhub.tasks.resize_preview': {'queue': 'images'},
+
+    # Bulk.
     'zadmin.tasks.bulk_validate_file': {'queue': 'bulk'},
     'devhub.tasks.flag_binary': {'queue': 'bulk'},
+    'stats.tasks.index_update_counts': {'queue': 'bulk'},
+    'stats.tasks.index_download_counts': {'queue': 'bulk'},
 }
 
 # When testing, we always want tasks to raise exceptions. Good for sanity.

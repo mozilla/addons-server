@@ -120,6 +120,26 @@
         }
     },
     {
+        "pk": 9,
+        "model": "stats.downloadcount",
+        "fields": {
+            "addon": 5,
+            "count": 10,
+            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "date": "2009-10-03"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "stats.downloadcount",
+        "fields": {
+            "addon": 4,
+            "count": 10,
+            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "date": "2009-10-03"
+        }
+    },
+    {
         "pk": 1,
         "model": "stats.updatecount",
         "fields": {
