@@ -77,7 +77,6 @@ def legacy_directory_redirects(request, page):
 class CollectionFilter(BaseFilter):
     opts = (('featured', _lazy(u'Featured')),
             ('users', _lazy(u'Most Subscribers')),
-            ('rating', _lazy(u'Top Rated')),
             ('created', _lazy(u'Newest')))
     extras = (('name', _lazy(u'Name')),
               ('updated', _lazy(u'Recently Updated')))

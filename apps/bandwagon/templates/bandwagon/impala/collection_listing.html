@@ -25,11 +25,11 @@
     </masthead>
   {% endif %}
   <div class="island hero c listing">
+    <a href="{{ feed_url }}" id="subscribe">{{ _('Subscribe') }}</a>
+    {{ impala_addon_listing_header(url_base, filter.opts, sorting, filter.extras) }}
     {% if sorting != 'featured' %}
       {{ collections|impala_paginator }}
     {% endif %}
-    <a href="{{ feed_url }}" id="subscribe">{{ _('Subscribe') }}</a>
-    {{ impala_addon_listing_header(url_base, filter.opts, sorting, filter.extras) }}
     <div class="items">
       {{ impala_collection_listing_items(collections.object_list, filter.field) }}
     </div>
