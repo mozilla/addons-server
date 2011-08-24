@@ -53,7 +53,7 @@ urlpatterns = patterns('',
     url(series['versions'], views.usage_breakdown_series,
         name='stats.versions_series', kwargs={'field': 'versions'}),
     url(series['apps'], views.usage_breakdown_series,
-        name='stats.apps_series', kwargs={'field': 'apps'}),
+        name='stats.apps_series', kwargs={'field': 'applications'}),
 
 
     # special case time series

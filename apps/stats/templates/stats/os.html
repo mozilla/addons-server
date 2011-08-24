@@ -1,7 +1,7 @@
 {% extends "stats/stats.html" %}
 
 {% block chart_config %}
-  data-series="WINNT,Darwin,Linux"
+  data-series="Windows,Mac OS X,Linux"
 {% endblock %}
 
 {% block csvtable %}
@@ -11,22 +11,22 @@
     <table class="csv-table">
       <thead>
         <tr>
-          <th 
+          <th
             data-field="date"
             data-format="date">
               {{_('Date')}}
           </th>
-          <th 
-            data-field="oses|WINNT"
+          <th
+            data-field="oses|Windows"
             data-format="number">
               {{_('Windows')}}
           </th>
-          <th 
-            data-field="oses|Darwin"
+          <th
+            data-field="oses|Mac OS X"
             data-format="number">
               {{_('Mac')}}
           </th>
-          <th 
+          <th
             data-field="oses|Linux"
             data-format="number">
               {{_('Linux')}}

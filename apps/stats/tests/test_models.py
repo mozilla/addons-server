@@ -22,20 +22,6 @@ class TestDownloadCountModel(test.TestCase):
         assert isinstance(dc.sources, StatsDict), 'sources is not a StatsDict'
         assert len(dc.sources) > 0, 'sources is empty'
 
-    def test_summary(self):
-        # somewhat contrived, but a good test: summarize the entire dataset
-        summary = DownloadCount.stats.all().summary(
-                count_sum='count', sources_sum='sources')
-
-        eq_(len(summary), 5, 'unexpected number of keys in summary')
-        eq_(summary['start'], date(2009, 6, 1),
-            'unexpected summary start date')
-        eq_(summary['end'], date(2009, 9, 3), 'unexpected summary end date')
-        assert summary['row_count'] > 0, 'zero rows in summary'
-        assert summary['count_sum'] > 0, 'zero count_sum in summary'
-        assert sum(summary['sources_sum'].values()) > 0, \
-                'zero sources in summary'
-
     def test_remap_special_fields(self):
         qs = DownloadCount.stats.filter(pk=1)
         days = list(qs.daily_summary(date='start', rows='row_count',
@@ -95,7 +81,7 @@ class TestDownloadCountModel(test.TestCase):
 class TestUpdateCountModel(test.TestCase):
     fixtures = ['stats/test_models.json']
     test_app = '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}'
-    test_ver = '3.0.9'
+    test_ver = '4.0'
 
     def test_serial_types(self):
         uc = UpdateCount.stats.get(id=1)
@@ -105,7 +91,6 @@ class TestUpdateCountModel(test.TestCase):
         assert isinstance(uc.applications, StatsDict), \
             'applications not a StatsDict'
         assert isinstance(uc.oses, StatsDict), 'oses not a StatsDict'
-        assert uc.locales == None, 'locales is not None'
         assert len(uc.statuses) > 0, 'statuses is empty'
 
     def test_applications(self):

@@ -329,8 +329,9 @@ class _JSONUpdater(object):
 @task
 def index_update_counts(ids):
     es = elasticutils.get_es()
-    log.info('Indexing updates %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
-    qs = UpdateCount.objects.filter(id__in=ids)
+    qs = list(UpdateCount.objects.filter(id__in=ids))
+    if qs:
+        log.info('Indexing %s updates for %s.' % (len(qs), qs[0].date))
     try:
         for update in qs:
             key = '%s-%s' % (update.addon_id, update.date)
@@ -345,8 +346,9 @@ def index_update_counts(ids):
 @task
 def index_download_counts(ids):
     es = elasticutils.get_es()
-    log.info('Indexing downloads %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
     qs = DownloadCount.objects.filter(id__in=ids)
+    if qs:
+        log.info('Indexing %s downloads for %s.' % (len(qs), qs[0].date))
     try:
         for dl in qs:
             key = '%s-%s' % (dl.addon_id, dl.date)
