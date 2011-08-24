@@ -23,8 +23,7 @@
       {{ addons|impala_paginator }}
     {% endif %}
     <div class="items">
-      {{ impala_addon_listing_items(addons.object_list, src='category',
-                                    show_date=sorting) }}
+      {{ impala_addon_listing_items(addons.object_list, sorting, src='category') }}
     </div>
     {% if sorting != 'featured' %}
       {{ addons|impala_paginator }}

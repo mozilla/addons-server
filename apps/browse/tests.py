@@ -321,6 +321,38 @@ class TestCategoryPages(amo.tests.TestCase):
         assert 57132 not in [a.id for a in ids]
 
 
+class TestImpalaExtensions(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/category', 'base/featured',
+                'addons/featured', 'addons/listed', 'base/collections',
+                'bandwagon/featured_collections']
+
+    def setUp(self):
+        self.reset_featured_addons()
+        self.url = reverse('i_browse.extensions')
+
+    def test_added_date(self):
+        self.url += '?sort=created'
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('.items .item .updated').text().startswith('Added'), True)
+
+    def test_updated_date(self):
+        self.url += '?sort=updated'
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('.items .item .updated').text().startswith('Updated'), True)
+
+    def test_users_adu_unit(self):
+        self.url += '?sort=users'
+        doc = pq(self.client.get(self.url).content)
+        s = doc('.items .item .adu').text()
+        eq_('users' in doc('.items .item .adu').text(), True)
+
+    def test_popular_adu_unit(self):
+        self.url += '?sort=popular'
+        doc = pq(self.client.get(self.url).content)
+        s = doc('.items .item .adu').text()
+        eq_('weekly downloads' in doc('.items .item .adu').text(), True)
+
+
 class TestImpalaCategoryFeeds(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/category', 'base/featured',
                 'addons/featured', 'addons/listed', 'base/collections',

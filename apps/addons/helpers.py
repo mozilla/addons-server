@@ -168,7 +168,7 @@ def addon_listing_items(context, addons, show_date=False,
 
 @register.inclusion_tag('addons/impala/listing/items.html')
 @jinja2.contextfunction
-def impala_addon_listing_items(context, addons, show_date=False, src=None,
+def impala_addon_listing_items(context, addons, field=None, src=None,
                                notes={}):
     return new_context(**locals())
 
