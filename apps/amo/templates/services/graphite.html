@@ -51,6 +51,7 @@
       <li><a href="#celery">Celery</a></li>
       <li><a href="#guid-search">GUID Search Perf</a></li>
       <li><a href="#homepage">Homepage</a></li>
+      <li><a href="#search">Search</a></li>
     </ul>
     <ul id=sizes>
       <li><a href="{{ request.get_full_path()|urlparams(width=300, height=None) }}">
@@ -87,6 +88,11 @@
     <h2 id="homepage">Homepage</h2>
     {% call grid() %}
       target=stats.timers.{{ site }}.view.addons.views.home.GET.count&target=stats.timers.{{ site }}.view.addons.views.home.GET.lower&target=stats.timers.{{ site }}.view.addons.views.home.GET.mean&target=stats.timers.{{ site }}.view.addons.views.home.GET.upper_90
+    {% endcall %}
+
+    <h2 id="search">Search</h2>
+    {% call grid() %}
+      target=stats.timers.{{ site }}.view.search.views.search.GET.count&target=stats.timers.{{ site }}.view.search.views.search.GET.lower&target=stats.timers.{{ site }}.view.search.views.search.GET.mean&target=stats.timers.{{ site }}.view.search.views.search.GET.upper_90
     {% endcall %}
 
     <script>
