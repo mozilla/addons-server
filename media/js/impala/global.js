@@ -105,7 +105,9 @@ $(function() {
     $('.listing-grid').each(listing_grid);
 
     // Truncate titles on single hovercards.
-    $('.hovercard.single').each(hoverTruncate);
+    $('.hovercard.single').each(function() {
+        hoverTruncate(this);
+    });
 
     // load deferred images.
     $('img[data-defer-src]').each(function() {
