@@ -485,6 +485,10 @@ class TestDownloads(TestDownloadsBase):
         self.file.update(status=amo.STATUS_BETA)
         self.assert_served_locally(self.client.get(self.file_url))
 
+    def test_no_premium(self):
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        eq_(self.client.get(self.file_url).status_code, 403)
+
 
 class TestDownloadsLatest(TestDownloadsBase):
 
@@ -564,6 +568,10 @@ class TestDownloadsLatest(TestDownloadsBase):
         r = self.client.get(url)
         eq_(r.status_code, 302)
         assert r['Location'].endswith('?src=xxx'), r['Location']
+
+    def test_no_premium(self):
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        eq_(self.client.get(self.latest_url).status_code, 403)
 
 
 class TestVersionFromUpload(UploadTest, amo.tests.TestCase):

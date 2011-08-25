@@ -190,16 +190,28 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         f.version.addon = Addon(name=u' フォクすけ  といっしょ')
         eq_(f.generate_filename(), 'addon-0.1.7-fx.xpi')
 
-    def test_copy_to_mirror(self):
-        f = File.objects.get(id=67442)
-        if os.path.exists(f.mirror_file_path):
+    def clean_files(self, f):
+        if f.mirror_file_path and os.path.exists(f.mirror_file_path):
             os.remove(f.mirror_file_path)
         if not os.path.exists(os.path.dirname(f.file_path)):
             os.mkdir(os.path.dirname(f.file_path))
         if not os.path.exists(f.file_path):
             open(f.file_path, 'w')
+
+    def test_copy_to_mirror(self):
+        f = File.objects.get(id=67442)
+        self.clean_files(f)
         f.copy_to_mirror()
         assert os.path.exists(f.mirror_file_path)
+
+    @mock.patch('shutil.copyfile')
+    def test_not_copy_to_mirror(self, copyfile):
+        f = File.objects.get(id=67442)
+        f.version.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.clean_files(f)
+        f.copy_to_mirror()
+        assert not f.mirror_file_path
+        assert not copyfile.called
 
     def test_generate_hash(self):
         f = File()

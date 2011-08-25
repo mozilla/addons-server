@@ -92,6 +92,9 @@ def download_file(request, file_id, type=None):
     file = get_object_or_404(File.objects, pk=file_id)
     addon = get_object_or_404(Addon.objects, pk=file.version.addon_id)
 
+    if addon.is_premium():
+        return http.HttpResponseForbidden()
+
     if addon.is_disabled or file.status == amo.STATUS_DISABLED:
         if acl.check_addon_ownership(request, addon, viewer=True, ignore_disabled=True):
             return HttpResponseSendFile(request, file.guarded_file_path,
@@ -110,6 +113,9 @@ def download_file(request, file_id, type=None):
 guard = lambda: Addon.objects.filter(_current_version__isnull=False)
 @addon_view_factory(guard)
 def download_latest(request, addon, type='xpi', platform=None):
+    if addon.is_premium():
+        return http.HttpResponseForbidden()
+
     platforms = [amo.PLATFORM_ALL.id]
     if platform is not None and int(platform) in amo.PLATFORMS:
         platforms.append(int(platform))
