@@ -94,7 +94,7 @@ class TestContributeInstalled(amo.tests.TestCase):
     def test_title(self):
         r = self.client.get(reverse('addons.installed', args=['a592']))
         title = pq(r.content)('title').text()
-        eq_(title[:37], 'Thank you for installing Gmail S/MIME')
+        eq_(title.startswith('Thank you for installing Gmail S/MIME'), True)
 
 
 class TestContributeEmbedded(amo.tests.TestCase):
@@ -209,28 +209,28 @@ class TestDeveloperPages(amo.tests.TestCase):
     def test_meet_the_dev_title(self):
         r = self.client.get(reverse('addons.meet', args=['a592']))
         title = pq(r.content)('title').text()
-        eq_(title[:31], 'Meet the Gmail S/MIME Developer')
+        eq_(title.startswith('Meet the Gmail S/MIME Developer'), True)
 
     def test_roadblock_title(self):
         r = self.client.get(reverse('addons.meet', args=['a592']))
         title = pq(r.content)('title').text()
-        eq_(title[:31], 'Meet the Gmail S/MIME Developer')
+        eq_(title.startswith('Meet the Gmail S/MIME Developer'), True)
 
     def test_meet_the_dev_src(self):
         r = self.client.get(reverse('addons.meet', args=['a11730']))
         button = pq(r.content)('.install-button a.button').attr('href')
-        assert button.endswith('?src=developers'), button
+        eq_(button.endswith('?src=developers'), True)
 
     def test_nl2br_info(self):
         r = self.client.get(reverse('addons.meet', args=['a228106']))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        author_parts = [pq(p).html() for p in doc('.addon-info p')]
-        eq_(author_parts[0],
+        eq_(doc('.bio').html(),
             'Bio: This is line one.<br/><br/>This is line two')
-        eq_(author_parts[1],
+        addon_reasons = doc('#about-addon p')
+        eq_(addon_reasons.eq(0).html(),
             'Why: This is line one.<br/><br/>This is line two')
-        eq_(author_parts[2],
+        eq_(addon_reasons.eq(1).html(),
             'Future: This is line one.<br/><br/>This is line two')
 
     def test_nl2br_info_for_multiple_devs(self):
@@ -238,49 +238,40 @@ class TestDeveloperPages(amo.tests.TestCase):
         # which will trigger the else block in the template.
         r = self.client.get(reverse('addons.meet', args=['a228107']))
         eq_(r.status_code, 200)
-        doc = pq(r.content)
-        author_parts = [pq(p).html() for p in doc('.addon-author-info p')]
-        eq_(author_parts[0],
+        bios = pq(r.content)('.bio')
+        eq_(bios.eq(0).html(),
             'Bio1: This is line one.<br/><br/>This is line two')
-        eq_(author_parts[1],
+        eq_(bios.eq(1).html(),
             'Bio2: This is line one.<br/><br/>This is line two')
-
-        info_parts = [pq(p).html() for p in doc('.addon-info p')]
-        eq_(info_parts[0],
-            'Why: This is line one.<br/><br/>This is line two')
-        eq_(info_parts[1],
-            'Future: This is line one.<br/><br/>This is line two')
 
     def test_roadblock_src(self):
         # If they end up at the roadblock we force roadblock on them
         url = reverse('addons.roadblock', args=['a11730']) + '?src=addondetail'
         r = self.client.get(url)
         button = pq(r.content)('.install-button a.button').attr('href')
-        assert button.endswith('?src=addondetail'), button
+        eq_(button.endswith('?src=addondetail'), True)
 
         # No previous source gets the roadblock page source
         url = reverse('addons.roadblock', args=['a11730'])
         r = self.client.get(url)
         button = pq(r.content)('.install-button a.button').attr('href')
-        assert button.endswith('?src=meetthedeveloper_roadblock'), button
+        eq_(button.endswith('?src=meetthedeveloper_roadblock'), True)
 
     def test_roadblock_different(self):
         url = reverse('addons.roadblock', args=['a11730']) + '?src=addondetail'
         r = self.client.get(url)
         button = pq(r.content)('.install-button a.button').attr('href')
-        assert button.endswith('?src=addondetail'), button
+        eq_(button.endswith('?src=addondetail'), True)
 
         contribute = pq(r.content)('#contribute-button').attr('href')
-        assert contribute.endswith('?src=roadblock'), button
+        eq_(contribute.endswith('?src=roadblock'), True)
 
     def test_contribute_multiple_devs(self):
         a = Addon.objects.get(pk=592)
         u = UserProfile.objects.get(pk=999)
         AddonUser(addon=a, user=u).save()
         r = self.client.get(reverse('addons.meet', args=['a592']))
-        # Make sure it has multiple devs.
-        assert pq(r.content)('.section-teaser')
-        assert pq(r.content)('#contribute-button')
+        eq_(pq(r.content)('#contribute-button').length, 1)
 
     def test_get_old_version(self):
         url = reverse('addons.meet', args=['a11730'])
@@ -303,8 +294,9 @@ class TestDeveloperPages(amo.tests.TestCase):
         addon.the_reason = addon.the_future = '<b>foo</b>'
         addon.save()
         url = reverse('addons.meet', args=['592'])
-        res = self.client.get(url, follow=True)
-        eq_(len(pq(res.content)('div.addon-info b')), 2)
+        r = self.client.get(url, follow=True)
+        doc = pq(r.content)
+        eq_(pq(r.content)('#about-addon b').length, 2)
 
 
 class TestLicensePage(amo.tests.TestCase):

@@ -388,8 +388,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return reverse(u, args=[self.slug])
 
     def meet_the_dev_url(self, impala=False):
-        u = '%saddons.meet' % ('i_' if impala else '')
-        return reverse(u, args=[self.slug])
+        return reverse('addons.meet', args=[self.slug])
 
     @property
     def reviews_url(self, impala=False):

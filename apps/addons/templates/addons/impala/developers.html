@@ -73,7 +73,7 @@
 
   {% if addon.the_reason or addon.the_future %}
     <section class="primary full c">
-      <div class="island prose">
+      <div id="about-addon" class="island prose">
         {% if addon.the_reason %}
           <h3>{{ _('Why was {0} created?')|f(addon.name) }}</h3>
           <p>{{ addon.the_reason|nl2br }}</p>
@@ -102,7 +102,7 @@
         <div class="prose">
           {% if author.bio %}
             <h3>{{ _('Who is {0}?')|f(author.name) }}</h3>
-            <p class="intro">{{ author.bio|nl2br }}</p>
+            <p class="bio">{{ author.bio|nl2br }}</p>
           {% endif %}
         </div>
       </section>

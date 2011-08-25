@@ -104,106 +104,13 @@ p.install-button {
     font-size: 120%;
 }
 
-.section-teaser .item {
-    margin: 0;
-    padding-top: 1em;
-}
-
-.section-teaser .slideshow-controls {
-    margin:-38px 0 0;
-}
-.section-teaser .addon-view .column {
-    width: 31%;
-}
-.section-teaser .addon-view .lead {
-    padding-top: 1em;
-    margin-bottom: 1em;
-    margin-left: 4.5em;
-}
-.html-rtl .section-teaser .addon-view .lead {
-    margin-left: auto;
-    margin-right: 4.5em;
-}
-
-.section-teaser .addon-view h3 {
-    margin-bottom: 0.2em;
-}
-
-.section-teaser .teaser-header ol li {
-    margin-right: 2.5em;
-}
-
-.html-rtl .section-teaser .window ol.teaser-items {
-    direction: rtl;
-    left: auto;
-    right: 0;
-}
-
 .html-rtl .column {
     float: right;
     margin-left: 0;
     margin-right: 2%;
 }
-.html-rtl .section-teaser .column {
-    border-left: none;
-    border-right: 1px dotted #A4CFDE;
-}
 .html-rtl .first {
     margin-right: 0;
-}
-.html-rtl .section-teaser .first {
-    border-right: none;
-}
-.html-rtl .section-teaser .addon-view {
-    background-position: left bottom;
-}
-.html-rtl .section-teaser .addon-view .column {
-    border: none;
-    text-align: right;
-}
-.html-rtl .section-teaser .addon-view .column-inner {
-    padding-left: 0;
-    padding-right: 55px;
-}
-.html-rtl .section-teaser .column p, .html-rtl .section-teaser .column h3 {
-    margin-left: 0;
-    margin-right: 1em;
-}
-.html-rtl .section-teaser .column p.install-button {
-    margin-right: 0;
-}
-.html-rtl .section-teaser .teaser-header ol li {
-    margin-left: 5em;
-    margin-right: 0;
-    float: right;
-}
-.html-rtl .section-teaser .teaser-header ol li:last-child {
-    margin-left: 0;
-}
-.html-rtl .section-teaser .prev,
-.html-rtl .section-teaser .next {
-    right: auto;
-    left: 8px;
-    background-position: 0 0;
-}
-.html-rtl .section-teaser .prev {
-    left: auto;
-    right: 8px;
-    background-position: 0 -150px;
-}
-.html-rtl .section-teaser .active.next {
-    background-position: 0 -50px;
-}
-.html-rtl .section-teaser .active.prev {
-    background-position: 0 -200px;
-}
-.html-rtl .section-teaser .active.next:focus,
-.html-rtl .section-teaser .active.next:hover {
-    background-position: 0 -100px;
-}
-.html-rtl .section-teaser .active.prev:focus,
-.html-rtl .section-teaser .active.prev:hover {
-    background-position: 0 -250px;
 }
 
 /* Email links */

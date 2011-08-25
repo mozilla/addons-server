@@ -43,13 +43,6 @@ detail_patterns = patterns('',
 
 impala_detail_patterns = patterns('',
     url('^$', views.impala_addon_detail, name='i_addons.detail'),
-    url('^developers$', views.impala_developers, {'page': 'developers'},
-        name='i_addons.meet'),
-    url('^contribute/roadblock/', views.impala_developers,
-        {'page': 'roadblock'}, name='i_addons.roadblock'),
-    url('^contribute/installed/', views.impala_developers,
-        {'page': 'installed'}, name='i_addons.installed'),
-
     ('^reviews/', include('reviews.impala_urls')),
 )
 

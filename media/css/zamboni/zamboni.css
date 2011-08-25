@@ -151,8 +151,7 @@ ul.errorlist {
 
 /* 'listing footer' */
 .listing-footer,
-.tab-wrapper .fm-control,
-.section-teaser .teaser-header {
+.tab-wrapper .fm-control {
     background-color: #E0EFFD;
     background: -webkit-gradient(
         linear,
