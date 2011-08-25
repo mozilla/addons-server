@@ -155,6 +155,9 @@ class ES(object):
                 rv.append({'in': {key: val}})
             elif field_action in ('gt', 'gte', 'lt', 'lte'):
                 rv.append({'range': {key: {field_action: val}}})
+            elif field_action == 'range':
+                from_, to = val
+                rv.append({'range': {key: {'gte': from_, 'lte': to}}})
         if or_:
             rv.append({'or': self._process_filters(or_.items())})
         return rv
