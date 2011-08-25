@@ -255,8 +255,7 @@ class TestVotes(amo.tests.TestCase):
         self.assertRedirects(r, self.c_url)
 
     def test_ajax_response(self):
-        r = self.client.post(self.up, follow=True,
-                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        r = self.client.post_ajax(self.up, follow=True)
         assert not r.redirect_chain
         eq_(r.status_code, 200)
 
@@ -615,8 +614,7 @@ class TestChangeAddon(amo.tests.TestCase):
 
     def test_publisher(self):
         CollectionUser.objects.create(user_id=4043307, collection=self.flig)
-        r = self.client.post(self.flig_add, {'addon_id': self.addon.id},
-                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        r = self.client.post_ajax(self.flig_add, {'addon_id': self.addon.id})
         self.check_redirect(r)
 
     def test_no_addon(self):
@@ -624,8 +622,7 @@ class TestChangeAddon(amo.tests.TestCase):
         eq_(r.status_code, 400)
 
     def test_add_success(self):
-        r = self.client.post(self.add, {'addon_id': self.addon.id},
-                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        r = self.client.post_ajax(self.add, {'addon_id': self.addon.id})
         self.check_redirect(r)
         c = Collection.objects.get(author__username='jbalogh', slug='mobile')
         self.assert_(self.addon in c.addons.all())
@@ -635,17 +632,14 @@ class TestChangeAddon(amo.tests.TestCase):
         """
         When we add to a private collection, make sure we don't log anything.
         """
-        self.client.post(self.add, {'addon_id': self.addon.id},
-                         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.client.post_ajax(self.add, {'addon_id': self.addon.id})
         # There should be no log objects for this add-on
         eq_(len(ActivityLog.objects.for_addons(self.addon)), 0)
 
     def test_add_existing(self):
-        r = self.client.post(self.add, {'addon_id': self.addon.id},
-                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        r = self.client.post_ajax(self.add, {'addon_id': self.addon.id})
         self.check_redirect(r)
-        r = self.client.post(self.add, {'addon_id': self.addon.id},
-                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        r = self.client.post_ajax(self.add, {'addon_id': self.addon.id})
         self.check_redirect(r)
         c = Collection.objects.get(author__username='jbalogh', slug='mobile')
         self.assert_(self.addon in c.addons.all())
@@ -656,28 +650,23 @@ class TestChangeAddon(amo.tests.TestCase):
         When we remove from a private collection, make sure we don't log
         anything.
         """
-        self.client.post(self.add, {'addon_id': self.addon.id},
-                         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.client.post(self.remove, {'addon_id': self.addon.id},
-                         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.client.post_ajax(self.add, {'addon_id': self.addon.id})
+        self.client.post_ajax(self.remove, {'addon_id': self.addon.id})
         # There should be no log objects for this add-on
         eq_(len(ActivityLog.objects.for_addons(self.addon)), 0)
 
     def test_remove_success(self):
-        r = self.client.post(self.add, {'addon_id': self.addon.id},
-                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        r = self.client.post_ajax(self.add, {'addon_id': self.addon.id})
         self.check_redirect(r)
 
-        r = self.client.post(self.remove, {'addon_id': self.addon.id},
-                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        r = self.client.post_ajax(self.remove, {'addon_id': self.addon.id})
         self.check_redirect(r)
 
         c = Collection.objects.get(author__username='jbalogh', slug='mobile')
         eq_(c.addons.count(), 0)
 
     def test_remove_nonexistent(self):
-        r = self.client.post(self.remove, {'addon_id': self.addon.id},
-                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        r = self.client.post_ajax(self.remove, {'addon_id': self.addon.id})
         self.check_redirect(r)
         c = Collection.objects.get(author__username='jbalogh', slug='mobile')
         eq_(c.addons.count(), 0)
@@ -707,9 +696,8 @@ class AjaxTest(amo.tests.TestCase):
         eq_(doc('li').attr('data-id'), '80')
 
     def test_add_collection(self):
-        r = self.client.post(reverse('collections.ajax_add'),
-                             {'addon_id': 3615, 'id': 80}, follow=True,
-                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        r = self.client.post_ajax(reverse('collections.ajax_add'),
+                                  {'addon_id': 3615, 'id': 80}, follow=True)
         doc = pq(r.content)
         eq_(doc('li.selected').attr('data-id'), '80')
 
@@ -795,8 +783,7 @@ class TestWatching(amo.tests.TestCase):
         eq_(r.context['amo_user'].watching, [57181])
 
     def test_ajax_response(self):
-        r = self.client.post(self.url, follow=True,
-                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        r = self.client.post_ajax(self.url, follow=True)
         eq_(r.status_code, 200)
         eq_(json.loads(r.content), {'watching': True})
 
@@ -896,7 +883,6 @@ class TestImpalaCollectionListing(amo.tests.TestCase):
     def test_mostsubscribers_adu_unit(self):
         doc = pq(self.client.get(urlparams(self.url, sort='users')).content)
         eq_('followers' in doc('.items .item .followers').text(), True)
-
 
 
 class TestCollectionDetailFeed(amo.tests.TestCase):

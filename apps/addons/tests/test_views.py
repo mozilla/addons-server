@@ -606,8 +606,8 @@ class TestDetailPage(amo.tests.TestCase):
     def test_search_engine_works_with(self):
         """We don't display works-with info for search engines."""
         addon = Addon.objects.filter(type=amo.ADDON_SEARCH)[0]
-        r = self.client.get(reverse('addons.detail_more', args=[addon.slug]),
-                           HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        r = self.client.get_ajax(reverse('addons.detail_more',
+                                         args=[addon.slug]))
         headings = pq(r.content)('#detail-relnotes .item-info h5')
         assert not any(th.text.strip().lower() == 'works with:'
                        for th in headings)
@@ -837,9 +837,8 @@ class TestTagsBox(amo.tests.TestCase):
 
     def test_tag_box(self):
         """Verify that we don't show duplicate tags."""
-        r = self.client.get(reverse('addons.detail_more', args=[8680]),
-                            follow=True,
-                            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        r = self.client.get_ajax(reverse('addons.detail_more', args=[8680]),
+                                 follow=True)
         doc = pq(r.content)
         eq_('SEO', doc('#tagbox ul').children().text())
 
