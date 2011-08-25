@@ -689,7 +689,7 @@ class TestDetailPage(amo.tests.TestCase):
 
 
 class TestImpalaDetailPage(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592']
+    fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592', 'base/users']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)
@@ -721,6 +721,23 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         f.update(no_restart=True)
         r = self.client.get(self.url)
         eq_(pq(r.content)('.no-restart').length, 1)
+
+    def get_more_pq(self):
+        return pq(self.client.get_ajax(self.url).content)
+
+    def test_can_review_free(self):
+        self.addon.update(premium_type=amo.ADDON_FREE)
+        eq_(len(self.get_more_pq()('#add-review')), 1)
+
+    def test_can_review_premium(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        self.addon.addonpurchase_set.create(user_id=999)
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        eq_(len(self.get_more_pq()('#add-review')), 1)
+
+    def test_not_review_premium(self):
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        eq_(len(self.get_more_pq()('#add-review')), 0)
 
 
 class TestStatus(amo.tests.TestCase):

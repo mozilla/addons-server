@@ -14,7 +14,7 @@
   {% endif %}
   {% include "reviews/grouped_ratings.html" %}
   {% set amo_user = request.amo_user if user.is_authenticated() else None %}
-  {% if not addon.has_author(amo_user) %}
+  {% if not addon.has_author(amo_user) and addon.can_review(amo_user) %}
     {% set r_add = '%sreviews.add' % ('i_' if settings.IMPALA_REVIEWS else '') %}
     <div>
       <a class="button" id="add-review" href="{{ url(r_add, addon.slug) }}">{{ _('Write a review') }}</a>

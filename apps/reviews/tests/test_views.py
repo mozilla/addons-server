@@ -6,10 +6,11 @@ from pyquery import PyQuery as pq
 import amo.tests
 from amo.urlresolvers import reverse
 from access.models import GroupUser
+from addons.models import Addon
 from addons.tests.test_views import TestMobile
 from devhub.models import ActivityLog
 from reviews.models import Review, ReviewFlag
-
+from users.models import UserProfile
 
 class ReviewTest(amo.tests.TestCase):
     fixtures = ['base/apps', 'reviews/dev-reply.json', 'base/admin']
@@ -119,8 +120,10 @@ class TestDelete(ReviewTest):
 class TestCreate(ReviewTest):
 
     def setUp(self):
-        self.add = reverse('reviews.add', args=['a1865'])
+        self.addon = Addon.objects.get(slug='a1865')
+        self.add = reverse('reviews.add', args=[self.addon.slug])
         self.client.login(username='root_x@ukr.net', password='password')
+        self.user = UserProfile.objects.get(email='root_x@ukr.net')
         self.qs = Review.objects.filter(addon=1865)
         self.log_count = ActivityLog.objects.count
 
@@ -164,6 +167,37 @@ class TestCreate(ReviewTest):
         eq_(self.qs.filter(reply_to=218207).count(), 1)
         review = Review.objects.get(id=218468)
         eq_('%s' % review.body, 'unst unst')
+
+    def test_can_review_purchased(self):
+        self.addon.addonpurchase_set.create(user=self.user)
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        data = {'body': 'x', 'rating': 1}
+        eq_(self.client.get(self.add, data).status_code, 200)
+        eq_(self.client.post(self.add, data).status_code, 302)
+
+    def test_not_review_purchased(self):
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        data = {'body': 'x', 'rating': 1}
+        eq_(self.client.get(self.add, data).status_code, 403)
+        eq_(self.client.post(self.add, data).status_code, 403)
+
+    def test_no_add_review_link(self):
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.get(reverse('reviews.list', args=[self.addon.slug]))
+        eq_(len(pq(res.content)('#add-review')), 0)
+
+    def test_no_add_review_link_anon(self):
+        self.client.logout()
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.get(reverse('reviews.list', args=[self.addon.slug]))
+        eq_(len(pq(res.content)('#add-review')), 0)
+
+    def test_add_review_link(self):
+        self.addon.addonpurchase_set.create(user=self.user)
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.get(reverse('reviews.list', args=[self.addon.slug]))
+        eq_(len(pq(res.content)('#add-review')), 0)
+
 
 
 class TestEdit(ReviewTest):
@@ -230,4 +264,3 @@ class TestMobileReviews(TestMobile):
         self.client.logout()
         r = self.client.get(reverse('reviews.add', args=['a1865']))
         eq_(r.status_code, 302)
-

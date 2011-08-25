@@ -96,7 +96,7 @@
       </span>
     </div>
     {% include "reviews/grouped_ratings.html" %}
-    {% if not review_perms.is_author %}
+    {% if not review_perms.is_author and addon.can_review(request.amo_user) %}
       <div>
         <a class="button" href="{{ url('reviews.add', addon.slug) }}">
           {{ _('Write a New Review') }}</a>

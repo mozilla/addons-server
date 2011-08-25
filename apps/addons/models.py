@@ -957,6 +957,13 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         except IndexError:
             pass
 
+    def has_purchased(self, user):
+        return (self.is_premium() and
+                self.addonpurchase_set.filter(user=user).exists())
+
+    def can_review(self, user):
+        return not self.is_premium() or self.has_purchased(user)
+
 
 @receiver(dbsignals.post_save, sender=Addon,
           dispatch_uid='addons.update.name.table')

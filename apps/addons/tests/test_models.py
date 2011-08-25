@@ -1623,3 +1623,25 @@ class TestAddonUpsell(amo.tests.TestCase):
         eq_(self.one.upsell.premium, self.two)
         eq_(self.one.upsell.text, 'yup')
         eq_(self.two.upsell, None)
+
+
+class TestAddonPurchase(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.user = UserProfile.objects.get(pk=999)
+        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
+                                          premium_type=amo.ADDON_PREMIUM,
+                                          name='premium')
+
+    def test_no_premium(self):
+        self.addon.addonpurchase_set.create(user=self.user)
+        self.addon.update(premium_type=amo.ADDON_FREE)
+        assert not self.addon.has_purchased(self.user)
+
+    def test_has_purchased(self):
+        self.addon.addonpurchase_set.create(user=self.user)
+        assert self.addon.has_purchased(self.user)
+
+    def test_not_purchased(self):
+        assert not self.addon.has_purchased(self.user)

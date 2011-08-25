@@ -32,3 +32,13 @@ def addon_view_factory(qs):
     # GOOD: lambda: Addon.objects.valid().filter(type=1)
     # BAD: Addon.objects.valid()
     return functools.partial(addon_view, qs=qs)
+
+
+def purchase_required(f):
+    """If the addon is premium, require a purchase."""
+    @functools.wraps(f)
+    def wrapper(request, addon, *args, **kw):
+        if addon.is_premium() and not addon.has_purchased(request.amo_user):
+            return http.HttpResponseForbidden()
+        return f(request, addon, *args, **kw)
+    return wrapper

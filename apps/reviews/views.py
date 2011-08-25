@@ -9,12 +9,12 @@ from tower import ugettext as _
 from mobility.decorators import mobile_template
 
 from amo import messages
-from amo.decorators import post_required, json_view, login_required
+from amo.decorators import json_view, login_required, post_required
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 import amo.utils
 from access import acl
-from addons.decorators import addon_view_factory
+from addons.decorators import addon_view_factory, purchase_required
 from addons.models import Addon
 
 from .models import Review, ReviewFlag, GroupedRating, Spam
@@ -246,6 +246,7 @@ def impala_reply(request, addon, review_id):
 @addon_view
 @mobile_template('reviews/{mobile/}add.html')
 @login_required
+@purchase_required
 def add(request, addon, template=None):
     form = forms.ReviewForm(request.POST or None)
     if request.method == 'POST':
@@ -274,6 +275,7 @@ def add(request, addon, template=None):
 
 @addon_view
 @login_required
+@purchase_required
 def impala_add(request, addon):
     form = forms.ReviewForm(request.POST or None)
     if request.method == 'POST':
