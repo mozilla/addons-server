@@ -3,8 +3,10 @@ from django.db import models
 
 from translations.fields import TranslatedField
 
+from addons.models import Addon
 import amo
 import amo.models
+from users.models import UserProfile
 
 import commonware.log
 from jinja2.filters import do_dictsort
@@ -47,3 +49,14 @@ class PriceCurrency(amo.models.ModelBase):
 
     def __unicode__(self):
         return u'%s, %s: %s' % (self.tier.name, self.currency, self.price)
+
+
+class AddonPurchase(amo.models.ModelBase):
+    addon = models.ForeignKey(Addon)
+    user = models.ForeignKey(UserProfile)
+
+    class Meta:
+        db_table = 'addon_purchase'
+
+    def __unicode__(self):
+        return u'%s: %s' % (self.addon, self.user)
