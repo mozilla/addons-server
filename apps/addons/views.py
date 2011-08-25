@@ -541,7 +541,7 @@ def eula(request, addon, file_id=None):
         version = get_object_or_404(addon.versions, files__id=file_id)
     else:
         version = addon.current_version
-    return jingo.render(request, 'addons/impala/eula.html',
+    return jingo.render(request, 'addons/eula.html',
                         {'addon': addon, 'version': version})
 
 
@@ -549,8 +549,8 @@ def eula(request, addon, file_id=None):
 def privacy(request, addon):
     if not addon.privacy_policy:
         return http.HttpResponseRedirect(addon.get_url_path())
-    return jingo.render(request, 'addons/impala/privacy.html',
-                        {'addon': addon})
+
+    return jingo.render(request, 'addons/privacy.html', {'addon': addon})
 
 
 def _developers(request, addon, page, template=None):
