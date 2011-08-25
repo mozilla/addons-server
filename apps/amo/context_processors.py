@@ -40,7 +40,7 @@ def global_settings(request):
 
     tools_title = _('Developer')
 
-    if request.user.is_authenticated() and request.amo_user:
+    if request.user.is_authenticated() and hasattr(request, 'amo_user'):
         amo_user = request.amo_user
         account_links.append({
             'text': _('View Profile'),
