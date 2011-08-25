@@ -18,7 +18,8 @@ import amo
 from access import acl
 from addons.decorators import addon_view
 from addons.models import Addon, Version
-from amo.decorators import login_required, json_view, post_required
+from amo.decorators import (login_required, json_view, post_required,
+                            permission_required)
 from amo.utils import paginate
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
@@ -262,8 +263,7 @@ def _queue(request, TableObj, tab, qs=None):
                 start = review_num - 1
                 row = qs[start: start + 1][0]
                 return redirect('%s?num=%s' % (
-                                reverse('editors.review',
-                                        args=[TableObj.get_addon_slug(row)]),
+                                TableObj.review_url(row),
                                 review_num))
             except IndexError:
                 pass
@@ -358,7 +358,7 @@ def queue_moderated(request):
                                 search_form=None))
 
 
-@editor_required
+@permission_required('Editors', 'Apps')
 def queue_apps(request):
     qs = Webapp.pending().annotate(Count('abuse_reports'))
     return _queue(request, WebappQueueTable, 'apps', qs=qs)
@@ -376,6 +376,16 @@ def application_versions_json(request):
 @editor_required
 @addon_view
 def review(request, addon):
+    return _review(request, addon)
+
+
+@permission_required('Editors', 'Apps')
+@addon_view
+def app_review(request, addon):
+    return _review(request, addon)
+
+
+def _review(request, addon):
     version = addon.latest_version
 
     if (not settings.DEBUG and

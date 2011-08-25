@@ -219,8 +219,8 @@ class EditorQueueTable(SQLTable, ItemStateTable):
         return '-waiting_time_min'
 
     @classmethod
-    def get_addon_slug(cls, row):
-        return row.addon_slug
+    def review_url(cls, row):
+        return reverse('editors.review', args=[row.addon_slug])
 
     class Meta:
         sortable = True
@@ -252,7 +252,7 @@ class WebappQueueTable(tables.ModelTable, ItemStateTable):
     abuse_reports__count = tables.Column(verbose_name=_lazy(u'Abuse Reports'))
 
     def render_name(self, row):
-        url = '%s?num=%s' % (reverse('editors.review', args=[row.slug]),
+        url = '%s?num=%s' % (reverse('editors.app_review', args=[row.slug]),
                              self.item_number)
         self.increment_item()
         return u'<a href="%s">%s</a>' % (url, jinja2.escape(row.name))
@@ -269,8 +269,8 @@ class WebappQueueTable(tables.ModelTable, ItemStateTable):
         return 'created'
 
     @classmethod
-    def get_addon_slug(cls, row):
-        return row.slug
+    def review_url(cls, row):
+        return reverse('editors.app_review', args=[row.slug])
 
     class Meta:
         sortable = True

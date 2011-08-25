@@ -956,12 +956,12 @@ class TestAppQueue(QueueTest):
         eq_(doc('td:eq(1)', row).text(), u'App One')
         slug_one = self.versions[u'App One'].addon.slug
         eq_(doc('td a:eq(0)', row).attr('href'),
-            reverse('editors.review', args=[slug_one]) + '?num=1')
+            reverse('editors.app_review', args=[slug_one]) + '?num=1')
         row = doc('table.data-grid tr:eq(2)')
         eq_(doc('td:eq(1)', row).text(), u'App Two')
         slug_two = self.versions[u'App Two'].addon.slug
         eq_(doc('a:eq(0)', row).attr('href'),
-            reverse('editors.review', args=[slug_two]) + '?num=2')
+            reverse('editors.app_review', args=[slug_two]) + '?num=2')
 
     def test_queue_count(self):
         r = self.client.get(reverse('editors.queue_apps'))
@@ -975,6 +975,12 @@ class TestAppQueue(QueueTest):
         doc = pq(r.content)
         row = doc('table.data-grid tr:eq(1)')
         eq_(doc('td:eq(1)', row).text(), u'App Two')
+
+    def test_redirect_to_review(self):
+        r = self.client.get(reverse('editors.queue_apps'), data={'num': 2})
+        slug = self.versions['App Two'].addon.slug
+        url = reverse('editors.app_review', args=[slug])
+        self.assertRedirects(r, url + '?num=2')
 
 
 class TestPerformance(QueueTest):

@@ -29,6 +29,8 @@ urlpatterns = (
     url(r'^review_viewing$', views.review_viewing,
         name='editors.review_viewing'),
     url(r'^review/%s$' % ADDON_ID, views.review, name='editors.review'),
+    url(r'^apps/review/%s$' % ADDON_ID, views.app_review,
+        name='editors.app_review'),
     url(r'^performance/(?P<user_id>\d+)?$', views.performance,
         name='editors.performance'),
     url(r'^motd$', views.motd, name='editors.motd'),
