@@ -1961,6 +1961,32 @@ class TestReviewPending(ReviewBase):
         assert 'disabled' not in doc('#file-%s' % self.file.pk)[0].keys()
 
 
+class TestReviewApp(ReviewBase):
+
+    def get_addon(self):
+        return Addon.objects.get(pk=self.addon.pk)
+
+    def setUp(self):
+        super(TestReviewApp, self).setUp()
+        self.url = reverse('editors.app_review', args=[self.addon.slug])
+        self.addon.update(type=amo.ADDON_WEBAPP)
+        AddonUser.objects.create(addon=self.addon,
+                                 user=UserProfile.objects.get(pk=999))
+        self.file = File.objects.create(version=self.version,
+                                        status=amo.STATUS_PUBLIC)
+
+    def test_push_public(self):
+        self.addon.update(status=amo.STATUS_PENDING)
+        response = self.client.post(self.url,
+                    {'action': 'public',
+                     'operating_systems': '',
+                     'applications': '',
+                     'comments': 'something',
+                     'addon_files': [v.pk for v in self.version.files.all()]})
+        eq_(response.status_code, 302)
+        eq_(self.get_addon().status, amo.STATUS_PUBLIC)
+
+
 class TestEditorMOTD(EditorTest):
 
     def test_change_motd(self):
