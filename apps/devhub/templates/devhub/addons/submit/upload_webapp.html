@@ -1,0 +1,22 @@
+{% extends "devhub/addons/submit/base.html" %}
+
+{% block title %}{{ dev_page_title(_('Step 2'), addon) }}{% endblock %}
+
+{% block primary %}
+
+<form method="post" id="upload-webapp" action="{{ url('devhub.upload_webapp') }}">
+  {{ csrf() }}
+  <h3>{{ _('Step 2. Upload Your Web App') }}</h3>
+  <p>
+  TODO(fligtar?): Copy for web-app text!
+  </p>
+  <section id="upload-file">
+    <br> <!-- <= remove this br! TODO(gkoberger) -->
+    <label>Submit a webapp manifest by URL:
+      <input type="url" id="upload-webapp" name="manifest"
+             data-upload-url="{{ url('devhub.upload_webapp') }}">
+    </label>
+    <button type="submit">Alright then!</button>
+  </section>
+</form>
+{% endblock primary %}

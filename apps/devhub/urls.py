@@ -5,6 +5,7 @@ from urlconf_decorator import decorate
 
 from addons.urls import ADDON_ID
 from amo.decorators import write
+from devhub.decorators import use_apps
 from . import views
 
 
@@ -127,6 +128,13 @@ urlpatterns = decorate(write, patterns('',
     url('^addon/submit/1$', views.submit, name='devhub.submit.1'),
     url('^addon/submit/2$', views.submit_addon,
         name='devhub.submit.2'),
+
+    # Web App submission
+    url('^apps/submit/$',
+        lambda r: redirect('devhub.submit_apps.1', permanent=True)),
+    url('^apps/submit/1$', use_apps(views.submit), name='devhub.submit_apps.1'),
+    url('^apps/submit/2$', use_apps(views.submit_addon),
+        name='devhub.submit_apps.2'),
 
     # Standalone validator:
     url('^addon/validate/?$', views.validate_addon,

@@ -1,15 +1,20 @@
 {% extends "devhub/base.html" %}
 
-{% set title = _('Submit a New Add-on') %}
+{% if webapp %}
+  {% set title = _('Submit a New Web App') %}
+{% else %}
+  {% set title = _('Submit a New Add-on') %}
+{% endif %}
 
 {% block title %}
 {{ dev_page_title(title) }}
 {% endblock %}
 
 {% block content %}
+{% set page_title = _('Submit Web App') if webapp else _('Submit Add-on') %}
 <header>
-  {{ dev_breadcrumbs(items=[(None, _('Submit Add-on'))]) }}
-  <h2>{{ title }}</h2>
+  {{ dev_breadcrumbs(items=[(None, page_title)]) }}
+  <h2 class="{{ 'is_webapp' if webapp else 'is_addon' }}">{{ title }}</h2>
 </header>
 <section class="secondary" role="complementary">
   {% include "devhub/addons/submit/sidebar.html" %}

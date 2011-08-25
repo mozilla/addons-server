@@ -590,6 +590,7 @@ def upload(request, addon_slug=None, is_standalone=False):
 @post_required
 def upload_webapp(request):
     form = forms.NewWebappForm(request.POST)
+
     if form.is_valid():
         # Eventually we'll pass a pointer to the FileUpload back to the client
         # and wait for the tasks to finish.
@@ -1174,6 +1175,9 @@ def submit_step(step):
                 elif step != max_step:
                     # We couldn't find a step, so we must be done.
                     return redirect('devhub.submit.7', addon.slug)
+
+                accept_wa = waffle.flag_is_active(request, 'accept-webapps')
+
             kw['step'] = Step(step, max_step)
             return f(request, *args, **kw)
         # Tell @dev_required that this is a function in the submit flow so it
@@ -1185,21 +1189,27 @@ def submit_step(step):
 
 @login_required
 @submit_step(1)
-def submit(request, step):
+def submit(request, step, webapp=False):
     if request.method == 'POST':
-        response = redirect('devhub.submit.2')
+        if webapp:
+            response = redirect('devhub.submit_apps.2')
+        else:
+            resuponse = redirect('devhub.submit.2')
         response.set_cookie(DEV_AGREEMENT_COOKIE)
         return response
 
     return jingo.render(request, 'devhub/addons/submit/start.html',
-                        {'step': step})
+                        {'step': step, 'webapp': webapp})
 
 
 @login_required
 @submit_step(2)
-def submit_addon(request, step):
+def submit_addon(request, step, webapp=False):
     if DEV_AGREEMENT_COOKIE not in request.COOKIES:
-        return redirect('devhub.submit.1')
+        if webapp:
+            return redirect('devhub.submit_apps.1')
+        else:
+            return redirect('devhub.submit.1')
     form = forms.NewAddonForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
@@ -1210,8 +1220,9 @@ def submit_addon(request, step):
             AddonUser(addon=addon, user=request.amo_user).save()
             SubmitStep.objects.create(addon=addon, step=3)
             return redirect('devhub.submit.3', addon.slug)
-    return jingo.render(request, 'devhub/addons/submit/upload.html',
-                        {'step': step, 'new_addon_form': form})
+    template = 'upload_webapp.html' if webapp else 'upload.html'
+    return jingo.render(request, 'devhub/addons/submit/%s' % template,
+            {'step': step, 'webapp': webapp, 'new_addon_form': form})
 
 
 @dev_required
@@ -1227,7 +1238,7 @@ def submit_describe(request, addon_id, addon, step):
         return redirect('devhub.submit.4', addon.slug)
     return jingo.render(request, 'devhub/addons/submit/describe.html',
                         {'form': form, 'cat_form': cat_form, 'addon': addon,
-                         'step': step})
+                         'step': step, 'webapp': addon.is_webapp()})
 
 
 @dev_required
@@ -1250,7 +1261,8 @@ def submit_media(request, addon_id, addon, step):
 
     return jingo.render(request, 'devhub/addons/submit/media.html',
                         {'form': form_icon, 'addon': addon, 'step': step,
-                         'preview_form': form_previews})
+                         'preview_form': form_previews,
+                         'webapp': addon.is_webapp()})
 
 
 @dev_required
@@ -1268,7 +1280,8 @@ def submit_license(request, addon_id, addon, step):
         _policy_form(request, addon, save=True)
         SubmitStep.objects.filter(addon=addon).update(step=6)
         return redirect('devhub.submit.6', addon.slug)
-    ctx.update(addon=addon, policy_form=policy_form, step=step)
+    ctx.update(addon=addon, policy_form=policy_form, step=step,
+               webapp=addon.is_webapp())
     return jingo.render(request, 'devhub/addons/submit/license.html', ctx)
 
 
@@ -1306,6 +1319,7 @@ def submit_done(request, addon_id, addon, step):
 
     return jingo.render(request, 'devhub/addons/submit/done.html',
                         {'addon': addon, 'step': step,
+                         'webapp': addon.is_webapp(),
                          'is_platform_specific': is_platform_specific})
 
 

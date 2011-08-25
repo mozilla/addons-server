@@ -4,18 +4,6 @@
 
 {% block primary %}
 
-
-{% if waffle.flag('accept-webapps') %}
-<form method="post" id="upload-webapp" action="{{ url('devhub.upload_webapp') }}">
-  {{ csrf() }}
-  <label>Submit a webapp manifest by URL:
-    <input type="url" id="upload-webapp" name="manifest"
-           data-upload-url="{{ url('devhub.upload_webapp') }}">
-  </label>
-  <button type="submit">Alright then!</button>
-</form>
-{% endif %}
-
 <form method="post" id="create-addon" class="item" action="">
   {{ csrf() }}
   <h3>{{ _('Step 2. Upload Your Add-on') }}</h3>

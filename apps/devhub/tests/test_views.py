@@ -2010,6 +2010,19 @@ class TestSubmitStep1(TestSubmitBase):
                 "Looks like link %r to %r is still a placeholder" %
                 (href, ln.text))
 
+    def test_step1_apps_submit(self):
+        response = self.client.get(reverse('devhub.submit_apps.1'))
+        eq_(response.status_code, 200)
+        doc = pq(response.content)
+        links = doc('#agreement-container a')
+        assert len(links)
+        assert doc('h2.is_webapp'), "Webapp submit has add-on heading"
+        for ln in links:
+            href = ln.attrib['href']
+            assert not href.startswith('%'), (
+                "Looks like link %r to %r is still a placeholder" %
+                (href, ln.text))
+
 
 class TestSubmitStep2(amo.tests.TestCase):
     # More tests in TestCreateAddon.
@@ -2024,10 +2037,21 @@ class TestSubmitStep2(amo.tests.TestCase):
         r = self.client.get(reverse('devhub.submit.2'))
         eq_(r.status_code, 200)
 
+    def test_step_2_apps_with_cookie(self):
+        r = self.client.post(reverse('devhub.submit_apps.1'))
+        self.assertRedirects(r, reverse('devhub.submit_apps.2'))
+        r = self.client.get(reverse('devhub.submit_apps.2'))
+        eq_(r.status_code, 200)
+
     def test_step_2_no_cookie(self):
         # We require a cookie that gets set in step 1.
         r = self.client.get(reverse('devhub.submit.2'), follow=True)
         self.assertRedirects(r, reverse('devhub.submit.1'))
+
+    def test_step_2_apps_no_cookie(self):
+        # We require a cookie that gets set in step 1.
+        r = self.client.get(reverse('devhub.submit_apps.2'), follow=True)
+        self.assertRedirects(r, reverse('devhub.submit_apps.1'))
 
 
 class TestSubmitStep3(amo.tests.TestCase):
@@ -2081,6 +2105,22 @@ class TestSubmitStep3(amo.tests.TestCase):
         log_items = ActivityLog.objects.for_addons(addon)
         assert not log_items.filter(action=amo.LOG.EDIT_DESCRIPTIONS.id), \
                 "Creating a description needn't be logged."
+
+    def test_submit_apps_success(self):
+        self.get_addon().update(type=amo.ADDON_WEBAPP)
+        assert self.get_addon().is_webapp()
+
+        # Post and be redirected.
+        d = self.get_dict()
+        r = self.client.post(self.url, d)
+        eq_(r.status_code, 302)
+        eq_(SubmitStep.objects.get(addon=3615).step, 4)
+
+        addon = self.get_addon()
+        eq_(addon.name, 'Test name')
+        eq_(addon.slug, 'testname')
+        eq_(addon.description, 'desc')
+        eq_(addon.summary, 'Hello!')
 
     def test_submit_name_unique(self):
         # Make sure name is unique.
