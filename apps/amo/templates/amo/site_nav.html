@@ -18,6 +18,12 @@
   </li>
 {% endmacro %}
 
+{% set collection_extras = (
+    ('featured', _('Featured')),
+    ('users', _('Most Subscribers')),
+    ('created', _('Newest')),
+) %}
+
 <nav id="site-nav" class="menu-nav c">
   <ul>
     {{ section('extensions', _('Extensions'), url('browse.extensions'), extras, extensions) }}
@@ -29,7 +35,7 @@
       <a href="#">{{ _('Collections') }}</a>
       <ul>
         {% with base_url = url('collections.list') %}
-          {% for sort, title in extras %}
+          {% for sort, title in collection_extras %}
             <li><em><a href="{{ base_url|urlparams(sort=sort) }}">{{ title }}</a></em></li>
           {% endfor %}
         {% endwith %}
