@@ -461,10 +461,11 @@ class TestFeeds(amo.tests.TestCase):
         options = getattr(self.filter, opts)
         options = sorted(options, key=lambda x: x[0])
         for item, options in zip(items, options):
+            item = pq(item)
             slug, title = options
             url = '%s?sort=%s' % (self.url, slug)
-            eq_(item.get('href'), url)
-            eq_(item.text, unicode(title))
+            eq_(item.attr('href'), url)
+            eq_(item.text(), unicode(title))
             self._check_feed(url, self.rss_url, slug)
 
     def test_feed(self):
