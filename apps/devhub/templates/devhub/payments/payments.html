@@ -43,7 +43,7 @@
         <button type="submit">{{ _('Disable Contributions') }}</button>
       </form>
     </div>
-  {% elif not errors %}
+  {% elif not addon.is_premium() and not errors %}
     {% if waffle.switch('marketplace') %}
     <p class="intro-blah">{% trans %}
       Mozilla is pleased to provide you with the ability to ask for optional financial contributions
@@ -116,8 +116,10 @@
   {% endif %}
 
   {% include "devhub/payments/voluntary.html" %}
+
   {% if waffle.switch('marketplace') and addon.can_become_premium() %}
     {% include "devhub/payments/marketplace-confirm.html" %}
+    {% include "devhub/payments/marketplace.html" %}
   {% endif %}
 </section>
 {% include "devhub/includes/addons_edit_nav.html" %}
