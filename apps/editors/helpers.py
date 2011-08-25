@@ -206,7 +206,7 @@ class EditorQueueTable(SQLTable, ItemStateTable):
         return jinja2.escape(r)
 
     @classmethod
-    def translate_legacy_cols(cls, colname):
+    def translate_sort_cols(cls, colname):
         legacy_sorts = {
             'name': 'addon_name',
             'age': 'waiting_time_min',
@@ -261,12 +261,12 @@ class WebappQueueTable(tables.ModelTable, ItemStateTable):
         return timesince(row.created)
 
     @classmethod
-    def translate_legacy_cols(cls, colname):
+    def translate_sort_cols(cls, colname):
         return colname
 
     @classmethod
     def default_order_by(cls):
-        return '-created'
+        return 'created'
 
     @classmethod
     def get_addon_slug(cls, row):

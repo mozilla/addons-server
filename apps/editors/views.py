@@ -268,7 +268,7 @@ def _queue(request, TableObj, tab, qs=None):
             except IndexError:
                 pass
     order_by = request.GET.get('sort', TableObj.default_order_by())
-    order_by = TableObj.translate_legacy_cols(order_by)
+    order_by = TableObj.translate_sort_cols(order_by)
     table = TableObj(data=qs, order_by=order_by)
     default = 100
     per_page = request.GET.get('per_page', default)
