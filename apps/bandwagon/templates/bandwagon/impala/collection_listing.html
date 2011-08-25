@@ -1,7 +1,11 @@
 {% extends "bandwagon/impala/base_collection.html" %}
 
 {% set url_base = url('i_collections.list') %}
-{% set title = filter.title %}
+{% set title = {'featured': _('Featured Collections'),
+                'users': _('Most-Followed Collections'),
+                'created': _('Newest Collections'),
+                'name': _('Collections by Name'),
+                'updated': _('Recently Updated Collections')}.get(sorting) %}
 
 {% block title %}{{ page_title(title) }}{% endblock %}
 
@@ -9,12 +13,12 @@
 <section class="primary">
   {% if request.GET %}
     {{ impala_breadcrumbs([(url('i_collections.list'), _('Collections')),
-                           (None, filter.title)]) }}
+                           (None, title)]) }}
     <h1>{{ title }}</h1>
   {% else %}
     {{ impala_breadcrumbs([(None, _('Collections'))]) }}
     <masthead class="hero" id="collections-landing">
-      <h1>{{ title }}</h1>
+      <h1>{{ _('Collections') }}</h1>
       <p>
         {% trans url=url('collections.add') %}
           Collections are groups of related add-ons that anyone can create and

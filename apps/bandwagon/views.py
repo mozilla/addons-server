@@ -76,7 +76,7 @@ def legacy_directory_redirects(request, page):
 
 class CollectionFilter(BaseFilter):
     opts = (('featured', _lazy(u'Featured')),
-            ('users', _lazy(u'Most Subscribers')),
+            ('users', _lazy(u'Most Followers')),
             ('created', _lazy(u'Newest')))
     extras = (('name', _lazy(u'Name')),
               ('updated', _lazy(u'Recently Updated')))
@@ -126,8 +126,9 @@ def impala_collection_listing(request, base=None):
     except Addon.DoesNotExist:
         addon_collector = None
     return render(request, 'bandwagon/impala/collection_listing.html',
-                  dict(collections=collections, filter=filter,
-                       sorting=filter.field, addon_collector=addon_collector))
+                  dict(collections=collections, src='collection',
+                       filter=filter, sorting=filter.field,
+                       addon_collector=addon_collector))
 
 
 def get_votes(request, collections):

@@ -856,7 +856,7 @@ class TestImpalaCollectionListing(amo.tests.TestCase):
         r = self.client.get(urlparams(self.url, sort='users'))
         sel = pq(r.content)('#sorter ul > li.selected')
         eq_(sel.find('a').attr('class'), 'opt')
-        eq_(sel.text(), 'Most Subscribers')
+        eq_(sel.text(), 'Most Followers')
         c = r.context['collections'].object_list
         eq_(list(c),
             sorted(c, key=lambda x: x.weekly_subscribers, reverse=True))

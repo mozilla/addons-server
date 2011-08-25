@@ -39,6 +39,11 @@
     -wekbkit-background-size: @size;
     background-size: @size;
 }
+.background-size(@size, @size2) {
+    -moz-background-size: @size, @size2;
+    -wekbkit-background-size: @size, @size2;
+    background-size: @size, @size2;
+}
 
 .box-shadow(@shadow) {
     box-shadow: @shadow;

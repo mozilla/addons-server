@@ -1,7 +1,20 @@
 {% extends "impala/base_side_categories.html" %}
 
+{% if category %}
+  {% set title = category.name %}
+{% else %}
+  {% set title = {'featured': _('Featured Extensions'),
+                  'users': _('Most Popular Extensions'),
+                  'rating': _('Top-Rated Extensions'),
+                  'created': _('Newest Extensions'),
+                  'name': _('Extensions by Name'),
+                  'popular': _('Extensions by Weekly Downloads'),
+                  'updated': _('Recently Updated Extensions'),
+                  'hotness': _('Up & Coming Extensions')}.get(sorting) %}
+{% endif %}
+
 {% block title %}
-  {{ page_title(category.name if category else _('Extensions')) }}
+  {{ page_title(title) }}
 {% endblock %}
 
 {% block bodyclass %}s-{{ sorting }}{% endblock %}
