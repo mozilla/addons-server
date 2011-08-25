@@ -12,7 +12,7 @@ from django.contrib.auth.models import User as DjangoUser
 from django.core import validators
 from django.db import models
 from django.template import Context, loader
-from django.utils.encoding import smart_str
+from django.utils.encoding import smart_str, smart_unicode
 from django.utils.functional import lazy
 
 import caching.base as caching
@@ -175,7 +175,7 @@ class UserProfile(amo.models.ModelBase):
 
     @property
     def name(self):
-        return self.display_name or self.username
+        return smart_unicode(self.display_name or self.username)
 
     welcome_name = name
 
