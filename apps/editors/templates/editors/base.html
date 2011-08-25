@@ -33,8 +33,10 @@
                 {{ _('Preliminary Reviews') }} ({{ queue_counts['prelim'] }})</a></li>
           <li><a href="{{ url('editors.queue_moderated') }}">
                 {{ _('Moderated Reviews') }} ({{ queue_counts['moderated'] }})</a></li>
+          {% if waffle.flag('accept-webapps') %}
           <li><a href="{{ url('editors.queue_apps') }}">
                 {{ _('Apps') }} ({{ queue_counts['apps'] }})</a></li>
+          {% endif %}
           {% endif %}
         </ul>
       </li>

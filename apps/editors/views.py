@@ -50,7 +50,7 @@ def editor_required(func):
 
 def context(**kw):
     ctx = dict(motd=get_config('editors_review_motd'),
-               queue_counts=_queue_counts())
+               queue_counts=queue_counts())
     ctx.update(kw)
     return ctx
 
@@ -104,10 +104,10 @@ def _editor_progress():
        period of time) and the percentage (out of all add-ons of that type)."""
 
     types = ['nominated', 'prelim', 'pending']
-    progress = {'new': _queue_counts(types, days_max=4),
-                'med': _queue_counts(types, days_min=5, days_max=10),
-                'old': _queue_counts(types, days_min=11),
-                'week': _queue_counts(types, days_max=7)}
+    progress = {'new': queue_counts(types, days_max=4),
+                'med': queue_counts(types, days_min=5, days_max=10),
+                'old': queue_counts(types, days_min=11),
+                'week': queue_counts(types, days_max=7)}
 
     # Return the percent of (p)rogress out of (t)otal.
     pct = lambda p, t: (p / float(t)) * 100 if p > 0 else 0
@@ -285,7 +285,7 @@ def _queue(request, TableObj, tab, qs=None):
                                 search_form=search_form))
 
 
-def _queue_counts(type=None, **kw):
+def queue_counts(type=None, **kw):
     def construct_query(query_type, days_min=None, days_max=None):
         def apply_query(query, *args):
             query = query.having(*args)
@@ -407,7 +407,7 @@ def _review(request, addon):
             num = int(num)
         except (ValueError, TypeError):
             raise http.Http404
-        total = _queue_counts(queue_type)
+        total = queue_counts(queue_type)
         paging = {'current': num, 'total': total,
                   'prev': num > 1, 'next': num < total,
                   'prev_url': '%s?num=%s' % (redirect_url, num - 1),

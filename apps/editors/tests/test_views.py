@@ -516,7 +516,9 @@ class TestQueueBasics(QueueTest):
         eq_(doc('.data-grid-bottom .num-results').text(),
             u'Results 1 \u2013 1 of 2')
 
-    def test_navbar_queue_counts(self):
+    @patch('waffle.flag_is_active')
+    def test_navbar_queue_counts(self, flag):
+        flag.return_value = True
         r = self.client.get(reverse('editors.home'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
@@ -963,7 +965,9 @@ class TestAppQueue(QueueTest):
         eq_(doc('a:eq(0)', row).attr('href'),
             reverse('editors.app_review', args=[slug_two]) + '?num=2')
 
-    def test_queue_count(self):
+    @patch('waffle.flag_is_active')
+    def test_queue_count(self, flag):
+        flag.return_value = True
         r = self.client.get(reverse('editors.queue_apps'))
         eq_(r.status_code, 200)
         doc = pq(r.content)

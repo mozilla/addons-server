@@ -7,6 +7,7 @@ import django_tables as tables
 import jinja2
 from jingo import register
 from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
+import waffle
 
 import amo
 from amo.helpers import breadcrumbs, page_title, absolutify, timesince
@@ -102,6 +103,40 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None):
     if items:
         crumbs.extend(items)
     return breadcrumbs(context, crumbs, add_default=False)
+
+
+@register.function
+@jinja2.contextfunction
+def queue_tabnav(context):
+    """Returns tuple of tab navigation for the queue pages.
+
+    Each tuple contains three elements: (tab_code, page_url, tab_text)
+    """
+    from .views import queue_counts
+    counts = queue_counts()
+    tabnav = [('nominated', 'queue_nominated',
+               (ngettext('Full Review ({0})', 'Full Reviews ({0})',
+                         counts['nominated'])
+                .format(counts['nominated']))),
+              ('pending', 'queue_pending',
+               (ngettext('Pending Update ({0})', 'Pending Updates ({0})',
+                         counts['pending'])
+                .format(counts['pending']))),
+              ('prelim', 'queue_prelim',
+               (ngettext('Preliminary Review ({0})',
+                         'Preliminary Reviews ({0})',
+                         counts['prelim'])
+                .format(counts['prelim']))),
+              ('moderated', 'queue_moderated',
+               (ngettext('Moderated Review ({0})', 'Moderated Reviews ({0})',
+                         counts['moderated'])
+                .format(counts['moderated'])))]
+
+    if waffle.flag_is_active(context['request'], 'accept-webapps'):
+        tabnav.append(('apps', 'queue_apps',
+                       (ngettext('Apps ({0})', 'Apps ({0})', counts['apps'])
+                        .format(counts['apps']))))
+    return tabnav
 
 
 class ItemStateTable(object):
