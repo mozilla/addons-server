@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 import amo
@@ -36,6 +37,19 @@ class Webapp(Addon):
     def get_url_path(self, impala=None, more=False):
         view = 'apps.detail_more' if more else 'apps.detail'
         return reverse(view, args=[self.app_slug])
+
+    @classmethod
+    def pending(cls):
+        # - Holding
+        # ** Approved   -- PUBLIC
+        # ** Unapproved -- PENDING
+        # - Open
+        # ** Reviewed   -- PUBLIC
+        # ** Unreviewed -- LITE
+        # ** Rejected   -- REJECTED
+        status = (amo.STATUS_PENDING if settings.WEBAPPS_RESTRICTED
+                  else amo.STATUS_LITE)
+        return cls.uncached.filter(status=status)
 
 
 # These are the translated strings we want to pull in.
