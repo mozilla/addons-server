@@ -89,8 +89,10 @@ class CollectionFilter(BaseFilter):
             return qs.order_by('-weekly_subscribers')
         elif field == 'updated':
             return qs.order_by('-modified')
-        else:
+        elif field == 'created':
             return qs.order_by('-created')
+        elif field == 'name':
+            return order_by_translation(qs, 'name')
 
 
 def get_filter(request, base=None):

@@ -833,6 +833,72 @@ class TestCollectionFeed(TestFeeds):
         self.filter = CollectionFilter
 
 
+class TestImpalaCollectionListing(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/category', 'base/featured',
+                'addons/featured', 'addons/listed', 'base/collections',
+                'bandwagon/featured_collections']
+
+    def setUp(self):
+        self.reset_featured_addons()
+        self.url = reverse('i_collections.list')
+
+    def test_default_sort(self):
+        r = self.client.get(self.url)
+        eq_(r.context['sorting'], 'featured')
+
+    def test_featured_sort(self):
+        r = self.client.get(urlparams(self.url, sort='featured'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'opt')
+        eq_(sel.text(), 'Featured')
+
+    def test_mostsubscribers_sort(self):
+        r = self.client.get(urlparams(self.url, sort='users'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'opt')
+        eq_(sel.text(), 'Most Subscribers')
+        c = r.context['collections'].object_list
+        eq_(list(c),
+            sorted(c, key=lambda x: x.weekly_subscribers, reverse=True))
+
+    def test_newest_sort(self):
+        r = self.client.get(urlparams(self.url, sort='created'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'opt')
+        eq_(sel.text(), 'Newest')
+        c = r.context['collections'].object_list
+        eq_(list(c), sorted(c, key=lambda x: x.created, reverse=True))
+
+    def test_name_sort(self):
+        r = self.client.get(urlparams(self.url, sort='name'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'extra-opt')
+        eq_(sel.text(), 'Name')
+        c = r.context['collections'].object_list
+        eq_(list(c), sorted(c, key=lambda x: x.name))
+
+    def test_updated_sort(self):
+        r = self.client.get(urlparams(self.url, sort='updated'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'extra-opt')
+        eq_(sel.text(), 'Recently Updated')
+        c = r.context['collections'].object_list
+        eq_(list(c), sorted(c, key=lambda x: x.modified, reverse=True))
+
+    def test_added_date(self):
+        doc = pq(self.client.get(urlparams(self.url, sort='created')).content)
+        eq_(doc('.items .item .updated').text().startswith('Added'), True)
+
+    def test_updated_date(self):
+        doc = pq(self.client.get(urlparams(self.url, sort='updated')).content)
+        eq_(doc('.items .item .updated').text().startswith('Updated'), True)
+
+    def test_mostsubscribers_adu_unit(self):
+        doc = pq(self.client.get(urlparams(self.url, sort='users')).content)
+        eq_('followers' in doc('.items .item .followers').text(), True)
+
+
+
 class TestCollectionDetailFeed(amo.tests.TestCase):
     fixtures = ['base/collection_57181']
 
