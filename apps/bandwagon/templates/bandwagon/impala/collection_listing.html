@@ -11,7 +11,7 @@
 
 {% block primary %}
 <section class="primary">
-  {% if request.GET %}
+  {% if sort %}
     {{ impala_breadcrumbs([(url('i_collections.list'), _('Collections')),
                            (None, title)]) }}
     <h1>{{ title }}</h1>

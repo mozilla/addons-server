@@ -164,12 +164,12 @@ def themes(request, category=None):
 
 def _extensions(request, category=None, is_impala=False, template=None):
     TYPE = amo.ADDON_EXTENSION
-
+    sort = request.GET.get('sort')
     if category is not None:
         q = Category.objects.filter(application=request.APP.id, type=TYPE)
         category = get_object_or_404(q, slug=category)
 
-    if ('sort' not in request.GET and not request.MOBILE
+    if (sort and not request.MOBILE
         and category and category.count > 4):
         return category_landing(request, category, is_impala)
 
@@ -182,7 +182,7 @@ def _extensions(request, category=None, is_impala=False, template=None):
     return jingo.render(request, template,
                         {'category': category, 'addons': addons,
                          'filter': filter, 'sorting': filter.field,
-                         'sort_opts': filter.opts,
+                         'sort_opts': filter.opts, 'sort': sort,
                          'search_cat': '%s,0' % TYPE})
 
 

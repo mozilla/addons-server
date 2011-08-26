@@ -9,7 +9,7 @@
 
 {% block primary %}
 <section class="primary">
-  {% if category or request.GET %}
+  {% if category or sort %}
     {{ impala_breadcrumbs([(url('i_browse.extensions'), _('Extensions')),
                            (None, title)]) }}
   {% else %}

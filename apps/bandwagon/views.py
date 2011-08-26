@@ -119,6 +119,7 @@ def collection_listing(request, base=None, extra={}):
 
 
 def impala_collection_listing(request, base=None):
+    sort = request.GET.get('sort')
     filter = get_filter(request, base)
     collections = amo.utils.paginate(request, filter.qs)
     try:
@@ -127,7 +128,7 @@ def impala_collection_listing(request, base=None):
         addon_collector = None
     return render(request, 'bandwagon/impala/collection_listing.html',
                   dict(collections=collections, src='co-hc-sidebar',
-                       dl_src='co-dp-sidebar', filter=filter,
+                       dl_src='co-dp-sidebar', filter=filter, sort=sort,
                        sorting=filter.field, addon_collector=addon_collector))
 
 
