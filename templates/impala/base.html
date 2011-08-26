@@ -48,6 +48,7 @@
         data-appname="{{ request.APP.pretty }}"
         data-appid="{{ request.APP.id }}"
         data-min-beta-version="{{ settings.MIN_BETA_VERSION }}"
+        data-nightly-version="{{ settings.COMPAT[0]['main'] }}"
         data-anonymous="{{ (not request.user.is_authenticated())|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
@@ -105,6 +106,16 @@
               {% endif %}
             </div>
           {% endif %}
+          <div class="site-tip" id="acr-pitch">
+            <p>
+              {% trans url=url('addons.detail', 'add-on-compatibility-reporter') %}
+                Thanks for testing a pre-release version of Firefox! To try out
+                add-ons not yet compatible, grab the
+                <a href="{{ url }}">Add-on Compatibility Reporter</a>.
+              {% endtrans %}
+            </p>
+            <a href="#" class="close">{{ _('Close') }}</a>
+          </div>
           <div class="site-balloon" id="site-nonfx">
             <p>
               {% trans url='http://mozilla.org/firefox/?src=amo' %}

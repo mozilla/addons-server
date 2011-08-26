@@ -224,6 +224,9 @@ var installButton = function() {
                 // L10n: {0} is an app name, {1} is the app version.
                 warn(format(gettext('Not available for {0} {1}'),
                             [z.appName, z.browserVersion]));
+                if (z.hasNightly && newerBrowser && !z.hasACR) {
+                    $(document.body).addClass('acr-pitch');
+                }
             }
             $button.closest('div').attr('data-version-supported', false);
             $button.addClass('concealed');

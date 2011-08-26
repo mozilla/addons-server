@@ -335,20 +335,37 @@ button.search-button {
     background-position: 212px center;
 }
 
-.site-balloon {
+.site-tip, .site-balloon {
+    border: 2px solid #e3873b;
+    .border-radius(10px);
+    display: none;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
     position: relative;
     margin-top: 22px;
-    padding: 15px 45px 15px 15px;
-    border: 2px solid #E3873B;
-    background: #FCEFB7;
-    font-family: Arial;
-    font-size: 14px;
-    color: #333;
-    display: none;
-    .border-radius(10px);
     h3, p {
         display: inline;
     }
+    p a {
+        font-weight: bold;
+    }
+}
+
+.site-tip {
+    background-color: fadeOut(#fff, 50%);
+    border-color: #c9ddf2;
+    color: #666;
+    padding: 10px 45px 10px 15px;
+}
+
+.acr-pitch #acr-pitch {
+    display: block;
+}
+
+.site-balloon {
+    background-color: #fcefb7;
+    color: #333;
+    padding: 15px 45px 15px 15px;
     h3, strong {
         font-weight: bold;
     }
@@ -372,7 +389,6 @@ button.search-button {
     }
     p a {
         color: #c40000;
-        font-weight: bold;
     }
 }
 
@@ -380,7 +396,7 @@ button.search-button {
     display: block;
 }
 
-.site-balloon, #lightbox, .modal {
+.site-tip, .site-hint, #lightbox, .modal {
     .close {
         position: absolute;
         overflow: hidden;
@@ -398,7 +414,8 @@ button.search-button {
         }
     }
 }
-.site-balloon .close {
+.site-balloon .close,
+.site-tip .close {
     margin: auto;
     top: 0;
     bottom: 0;
