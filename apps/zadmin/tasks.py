@@ -65,19 +65,14 @@ def bulk_validate_file(result_id, **kw):
                  % (res.file, file_base, res.id))
         target = res.validation_job.target_version
         ver = {target.application.guid: [target.version]}
-        overrides = {'targetapp_maxVersion':
+        # Set min/max so the validator only tests for compatibility with
+        # the target version. Note that previously we explicitly checked
+        # for compatibility with older versions. See bug 675306 for
+        # the old behavior.
+        overrides = {'targetapp_minVersion':
+                                {target.application.guid: target.version},
+                     'targetapp_maxVersion':
                                 {target.application.guid: target.version}}
-        qs = res.file.version.apps.filter(application=target.application)
-        if qs.count() == 1:
-            # This addon version is already compatible with some version
-            # of <app>. This tells the validator to ignore some
-            # irrelevant tests
-            minver = {target.application.guid: qs[0].max.version}
-            overrides['targetapp_minVersion'] = minver
-        else:
-            log.info('bulk_validate_file maxVersion not defined '
-                     '(or duplicated) for file %s (%s), application %s'
-                     % (res.file, file_base, target.application))
         validation = run_validator(res.file.file_path, for_appversions=ver,
                                    test_all_tiers=True, overrides=overrides)
     except:
