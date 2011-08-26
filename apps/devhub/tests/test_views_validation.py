@@ -495,7 +495,8 @@ class TestUploadCompatCheck(BaseUploadTest):
         kw = run_validator.call_args[1]
         eq_(kw['for_appversions'], {self.app.guid: [self.appver.version]})
         eq_(kw['overrides'],
-            {'targetapp_maxVersion': {self.app.guid: self.appver.version}})
+            {'targetapp_minVersion': {self.app.guid: self.appver.version},
+             'targetapp_maxVersion': {self.app.guid: self.appver.version}})
         eq_(data['url'], self.poll_upload_status_url(data['upload']))
 
     @mock.patch('devhub.tasks.run_validator')
