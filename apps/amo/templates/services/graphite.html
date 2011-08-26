@@ -87,12 +87,12 @@
 
     <h2 id="homepage">Homepage</h2>
     {% call grid() %}
-      target=stats.timers.{{ site }}.view.addons.views.home.GET.count&target=stats.timers.{{ site }}.view.addons.views.home.GET.lower&target=stats.timers.{{ site }}.view.addons.views.home.GET.mean&target=stats.timers.{{ site }}.view.addons.views.home.GET.upper_90
+      target=scale(stats.timers.{{ site }}.view.addons.views.home.GET.count,0.1)&target=stats.timers.{{ site }}.view.addons.views.home.GET.lower&target=stats.timers.{{ site }}.view.addons.views.home.GET.mean&target=stats.timers.{{ site }}.view.addons.views.home.GET.upper_90
     {% endcall %}
 
     <h2 id="search">Search</h2>
     {% call grid() %}
-      target=stats.timers.{{ site }}.view.search.views.search.GET.count&target=stats.timers.{{ site }}.view.search.views.search.GET.lower&target=stats.timers.{{ site }}.view.search.views.search.GET.mean&target=stats.timers.{{ site }}.view.search.views.search.GET.upper_90
+      target=scale(stats.timers.{{ site }}.view.search.views.search.GET.count,0.1)&target=stats.timers.{{ site }}.view.search.views.search.GET.lower&target=stats.timers.{{ site }}.view.search.views.search.GET.mean&target=stats.timers.{{ site }}.view.search.views.search.GET.upper_90
     {% endcall %}
 
     <script>
