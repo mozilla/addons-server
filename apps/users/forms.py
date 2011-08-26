@@ -336,9 +336,9 @@ class AdminUserEditForm(UserEditForm):
 
     def changed_fields(self):
         """Returns changed_data ignoring these fields."""
-        return (set(self.changed_data) - set(['admin_log', 'notifications',
-                                              'password', 'password2',
-                                              'oldpassword']))
+        return (set(self.changed_data) -
+                set(['admin_log', 'nickname', 'notifications',
+                     'password', 'password2', 'oldpassword']))
 
     def changes(self):
         """A dictionary of changed fields, old, new. Hides password."""

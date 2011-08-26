@@ -208,6 +208,7 @@ class TestEditAdmin(UserViewBase):
     def test_anonymize(self):
         data = self.get_data()
         data['anonymize'] = True
+        data['nickname'] = ''
         res = self.client.post(self.url, data)
         eq_(res.status_code, 302)
         eq_(self.get_user().password, "sha512$Anonymous$Password")
