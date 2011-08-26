@@ -9,7 +9,7 @@
 
 {% block content %}
 
-  {{ impala_breadcrumbs([(addon.type_url(impala=True), amo.ADDON_TYPES[addon.type]),
+  {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
                   (addon.get_url_path(impala=True), addon.name),
                   (url('i_reviews.list', addon.slug), _('Reviews')),
                   (None, _('Reply'))]) }}
@@ -23,7 +23,7 @@
     {% include "reviews/impala/review.html" %}
     <div class="c">
       <h2>{{ _('Write a Reply') }}</h2>
-      <form method="post" class="prettyform" 
+      <form method="post" class="prettyform"
             action="{{ url('i_reviews.reply', addon.slug, review.id) }}">
         {{ csrf() }}
         <fieldset>

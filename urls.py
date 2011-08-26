@@ -5,6 +5,8 @@ from django.shortcuts import redirect
 from django.views.i18n import javascript_catalog
 from django.views.decorators.cache import cache_page
 
+from amo.urlresolvers import reverse
+
 import blocklist.views
 import versions.urls
 
@@ -132,7 +134,8 @@ urlpatterns = patterns('',
      lambda r, id: redirect('addons.contribute', id, permanent=True)),
 
     ('^recommended$',
-     lambda r: redirect('browse.featured', permanent=True)),
+     lambda r: redirect(reverse('browse.extensions') + '?sort=featured',
+                        permanent=True)),
 
     ('^recommended/format:rss$',
      lambda r: redirect('browse.featured.rss', permanent=True)),

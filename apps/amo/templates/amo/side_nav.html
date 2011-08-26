@@ -14,7 +14,7 @@
   <h2>{{ _('Categories') }}</h2>
   <ul>
     {% for cat in categories %}
-      <li id="c-{{ cat.id }}"><a href="{{ cat.get_url_path(impala=impala) }}">{{ cat.name }}</a></li>
+      <li id="c-{{ cat.id }}"><a href="{{ cat.get_url_path() }}">{{ cat.name }}</a></li>
     {% endfor %}
   </ul>
 </nav>

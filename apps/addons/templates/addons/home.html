@@ -32,7 +32,7 @@
 {% set view_all = {
   'featured': {
     'text': _('View all featured add-ons'),
-    'link': url('browse.featured'),
+    'link': url('browse.extensions')|urlparams(sort='featured'),
     'feed': url('browse.featured.rss'),
   },
   'popular': {

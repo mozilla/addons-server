@@ -7,13 +7,13 @@
 {% endblock %}
 
 {% set version = addon.current_version %}
-{% set detail_url = addon.get_url_path(impala=True) %}
+{% set detail_url = addon.get_url_path() %}
 
 {% block primary %}
 <section class="primary">
   <hgroup class="hero">
     {# L10n: The Privacy Policy for this add-on. #}
-    {{ impala_breadcrumbs([(addon.type_url(impala=True), amo.ADDON_TYPES[addon.type]),
+    {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
                            (detail_url, addon.name),
                            (None, _('Privacy Policy'))]) }}
     {{ addon_heading(addon, version) }}
