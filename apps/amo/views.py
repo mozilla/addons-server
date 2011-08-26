@@ -62,11 +62,13 @@ def monitor(request, format=None):
     status = 200
 
     # Check all memcached servers
-    scheme, servers, _ = parse_backend_uri(settings.CACHE_BACKEND)
+    memcache = getattr(settings, 'CACHES', {}).get('default')
     memcache_results = []
     status_summary['memcache'] = True
-    if 'memcached' in scheme:
-        hosts = servers.split(';')
+    if memcache and 'memcached' in memcache['BACKEND']:
+        hosts = memcache['LOCATION']
+        if not isinstance(hosts, (tuple, list)):
+            hosts = [hosts]
         for host in hosts:
             ip, port = host.split(':')
             try:
