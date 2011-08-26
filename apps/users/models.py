@@ -124,6 +124,11 @@ class UserProfile(amo.models.ModelBase):
     class Meta:
         db_table = 'users'
 
+    def __init__(self, *args, **kw):
+        super(UserProfile, self).__init__(*args, **kw)
+        if self.username:
+            self.username = smart_unicode(self.username)
+
     def __unicode__(self):
         return '%s: %s' % (self.id, self.display_name or self.username)
 
