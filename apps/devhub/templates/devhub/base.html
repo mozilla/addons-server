@@ -5,6 +5,9 @@
 {% endif %}
 {% block bodyclass %}developer-hub {{ editable }}{% endblock %}
 
+{# Don't show the amo header on devhub pages #}
+{% set hide_header = True %}
+
 {% block bodyattrs %}
 {% if addon %}data-default-locale="{{ addon.default_locale|lower }}"{% endif %}
 {% endblock %}
