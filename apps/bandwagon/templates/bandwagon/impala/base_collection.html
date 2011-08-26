@@ -1,8 +1,5 @@
 {% extends "impala/base.html" %}
 
-{% block title %}
-  {{ page_title(category.name if category else _('Extensions')) }}
-{% endblock %}
 
 {% block bodyclass %}collections s-{{ sorting }}{% endblock %}
 
