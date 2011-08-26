@@ -7,6 +7,7 @@ import time
 from django.conf import settings
 from django.core import mail
 
+import jingo
 from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -516,13 +517,13 @@ class TestQueueBasics(QueueTest):
         eq_(doc('.data-grid-bottom .num-results').text(),
             u'Results 1 \u2013 1 of 2')
 
-    @patch('waffle.flag_is_active')
-    def test_navbar_queue_counts(self, flag):
-        from nose.exc import SkipTest
-        # TODO(Kumar) find out how to bust this template cache so waffle works
-        raise SkipTest('something is cached here, cannot find it')
-        flag.return_value = True
-        r = self.client.get(reverse('editors.home'))
+    def test_navbar_queue_counts(self):
+        # TODO(Kumar) turn this flag on in a less ugly way.
+        #             See https://github.com/jsocol/django-waffle/issues/21
+        import waffle.helpers  # fills the jingo globals cache
+        flag = {'flag': lambda x: True}
+        with patch.dict(jingo.env.globals['waffle'], flag):
+            r = self.client.get(reverse('editors.home'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
         eq_(doc('#navbar li.top ul').eq(0).text(),
