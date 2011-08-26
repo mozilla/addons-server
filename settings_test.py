@@ -48,5 +48,3 @@ USE_ELASTIC = False
 # Ensure all validation code runs in tests:
 VALIDATE_ADDONS = True
 
-# We want these impala tests to pass
-IMPALA_EDIT = True
