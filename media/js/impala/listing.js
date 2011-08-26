@@ -8,8 +8,14 @@ $(function() {
     // Mark incompatible add-ons on listing pages.
     $('.listing .item.addon').each(function(i,p) {
         var $this = $(this);
-        if ($this.find('.concealed').length == $this.find('.button').length) {
-            $this.addClass('incompatible');
+        if ($this.find('.acr').length) {
+            $this.addClass('acr');
+        } else {
+            if ($this.find('.concealed').length == $this.find('.button').length) {
+                if (!$this.find('.acr').length) {
+                    $this.addClass('incompatible');
+                }
+            }
         }
     });
 
