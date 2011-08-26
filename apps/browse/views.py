@@ -169,8 +169,7 @@ def _extensions(request, category=None, is_impala=False, template=None):
         q = Category.objects.filter(application=request.APP.id, type=TYPE)
         category = get_object_or_404(q, slug=category)
 
-    if (sort and not request.MOBILE
-        and category and category.count > 4):
+    if not sort and not request.MOBILE and category and category.count > 4:
         return category_landing(request, category, is_impala)
 
     addons, filter = addon_listing(request, [TYPE], is_impala=is_impala)
