@@ -126,9 +126,9 @@ def impala_collection_listing(request, base=None):
     except Addon.DoesNotExist:
         addon_collector = None
     return render(request, 'bandwagon/impala/collection_listing.html',
-                  dict(collections=collections, src='collection',
-                       filter=filter, sorting=filter.field,
-                       addon_collector=addon_collector))
+                  dict(collections=collections, src='co-hc-sidebar',
+                       dl_src='co-dp-sidebar', filter=filter,
+                       sorting=filter.field, addon_collector=addon_collector))
 
 
 def get_votes(request, collections):
