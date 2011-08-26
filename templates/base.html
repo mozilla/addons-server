@@ -62,7 +62,7 @@
     {% endif %}
     <div class="section">
       {% block site_header %}
-        {% if request.APP == amo.FIREFOX or request.APP == amo.MOBILE %}
+        {% if not hide_header and (request.APP == amo.FIREFOX or request.APP == amo.MOBILE) %}
           {% include "amo_header.html" %}
         {% else %}
           <div id="minimal-header"><a class="mozilla" href="http://www.mozilla.org/">
