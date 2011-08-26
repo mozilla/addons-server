@@ -91,7 +91,7 @@ var installButton = function() {
     }
 
     // min and max only exist if the add-on is compatible with request[APP].
-    if (appSupported) {
+    if (appSupported && !z.hasACR) {
         // The user *has* an older/newer browser.
         olderBrowser = VersionCompare.compareVersions(z.browserVersion, min) < 0;
         newerBrowser = VersionCompare.compareVersions(z.browserVersion, max) > 0;
@@ -213,21 +213,10 @@ var installButton = function() {
             $button.first().css('display', 'inherit');
         }
 
-        if (appSupported && (olderBrowser || newerBrowser || z.hasACR)) {
-            if ((olderBrowser || newerBrowser) && z.hasACR) {
-                // L10n: {0} is an app name, {1} is the app version.
-                warn(format(gettext('May be available for {0} {1}'),
-                            [z.appName, z.browserVersion]));
-                $button.addClass('acr');
-                return false;
-            } else {
-                // L10n: {0} is an app name, {1} is the app version.
-                warn(format(gettext('Not available for {0} {1}'),
-                            [z.appName, z.browserVersion]));
-                if (z.hasNightly && newerBrowser && !z.hasACR) {
-                    $(document.body).addClass('acr-pitch');
-                }
-            }
+        if (appSupported && (olderBrowser || newerBrowser)) {
+            // L10n: {0} is an app name, {1} is the app version.
+            warn(format(gettext('Not available for {0} {1}'),
+                              [z.appName, z.browserVersion]));
             $button.closest('div').attr('data-version-supported', false);
             $button.addClass('concealed');
             if (!opts.addPopup) return;
