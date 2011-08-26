@@ -27,7 +27,7 @@
   </li>
   <li><a href="{{ url('addons.detail', addon.slug, src='discovery-learnmore') }}"
          id="learn-more" class="button">{{ _('Learn More') }}</a></li>
-  {% if not addon.is_no_restart() %}
+  {% if addon.is_no_restart() %}
     <li id="no-restart">
       <span id="no-restart-msg">{{ _('No restart required') }}</span>
     </li>
