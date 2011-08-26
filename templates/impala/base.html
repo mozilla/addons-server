@@ -108,7 +108,7 @@
           {% endif %}
           <div class="site-tip" id="acr-pitch">
             <p>
-              {% trans url=url('addons.detail', 'add-on-compatibility-reporter') %}
+              {% trans url=url('addons.detail', 'add-on-compatibility-reporter')|urlparams(src='prerelease-banner') %}
                 Thanks for testing a pre-release version of Firefox! To try out
                 add-ons not yet compatible, grab the
                 <a href="{{ url }}">Add-on Compatibility Reporter</a>.
