@@ -109,16 +109,7 @@ def render(request, template, data={}, extra={}):
 
 # TODO (potch): restore this when we do mobile bandwagon
 # @mobile_template('bandwagon/{mobile/}collection_listing.html')
-def collection_listing(request, base=None, extra={}):
-    filter = get_filter(request, base)
-    collections = amo.utils.paginate(request, filter.qs)
-    votes = get_votes(request, collections.object_list)
-    return render(request, 'bandwagon/collection_listing.html',
-                  dict(collections=collections, filter=filter,
-                       collection_votes=votes, **extra))
-
-
-def impala_collection_listing(request, base=None):
+def collection_listing(request, base=None):
     sort = request.GET.get('sort')
     filter = get_filter(request, base)
     collections = amo.utils.paginate(request, filter.qs)

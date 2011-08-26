@@ -32,7 +32,7 @@
       {{ section('themes', _('Themes'), url('browse.themes'), extras, themes) }}
     {% endif %}
     <li id="collections">
-      {% with base_url = url('i_collections.list') %}
+      {% with base_url = url('collections.list') %}
       <a href="{{ base_url }}">{{ _('Collections') }}</a>
       <ul>
           {% for sort, title in collection_extras %}

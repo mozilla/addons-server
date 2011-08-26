@@ -815,7 +815,7 @@ class TestCollectionFeed(TestFeeds):
 
     def setUp(self):
         super(TestCollectionFeed, self).setUp()
-        self.url = reverse('i_collections.list')
+        self.url = reverse('collections.list')
         self.rss_url = reverse('collections.rss')
         self.filter = CollectionFilter
 
@@ -827,7 +827,7 @@ class TestImpalaCollectionListing(amo.tests.TestCase):
 
     def setUp(self):
         self.reset_featured_addons()
-        self.url = reverse('i_collections.list')
+        self.url = reverse('collections.list')
 
     def test_default_sort(self):
         r = self.client.get(self.url)
@@ -913,7 +913,7 @@ class TestMobileCollections(TestMobile):
     def test_collections(self):
         r = self.client.get(reverse('collections.list'))
         eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'bandwagon/collection_listing.html')
+        self.assertTemplateUsed(r, 'bandwagon/impala/collection_listing.html')
 
 
 class TestMine(amo.tests.TestCase):
