@@ -3,7 +3,7 @@
 {% block title %}{{ _('Not Found') }}{% endblock %}
 
 {% block content %}
-{% trans rec=url('browse.featured'), search=url('search.search'), home=url('home') %}
+{% trans rec=url('browse.extensions')|urlparams(sort='featured'), search=url('search.search'), home=url('home') %}
 <h1>We're sorry, but we can't find what you're looking for.</h1>
 
 <p>

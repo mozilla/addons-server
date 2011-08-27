@@ -1,0 +1,17 @@
+{% set deps = addon.dependencies %}
+{% if deps %}
+  <div class="notice upsell">
+    <h3>{{ _('Premium version available') }}</h3>
+    <div class="premium">
+      {% with prm = upsell.premium %}
+        {% if module_context == 'discovery' %}
+          <a href="{{ services_url('discovery.addons.detail', prm.slug, src='discovery-details') }}">
+            <img src="{{ prm.icon }}">{{ prm.name }}</a>
+        {% else %}
+          {{ prm|addon_hovercard }}
+        {% endif %}
+      {% endwith %}
+    </div>
+    <div class="prose">{{ upsell.text|nl2br }}</div>
+  </div>
+{% endif %}
