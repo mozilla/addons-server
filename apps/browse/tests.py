@@ -787,7 +787,7 @@ class TestListingByStatus(amo.tests.TestCase):
         return Addon.objects.get(id=3615)
 
     def check(self, exp):
-        r = self.client.get(reverse('browse.extensions'))
+        r = self.client.get(reverse('browse.extensions') + '?sort=created')
         addons = list(r.context['addons'].object_list)
         eq_(addons, exp)
 
