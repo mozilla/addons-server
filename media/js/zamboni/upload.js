@@ -299,6 +299,7 @@
                     // There might not be a link to the full report
                     // if we get an early error like unsupported type.
                     upload_results.append($("<a>", {'href': results.full_report_url,
+                                                    'class': 'view-more',
                                                     'target': '_blank',
                                                     'text': gettext('See full validation report')}));
                 }

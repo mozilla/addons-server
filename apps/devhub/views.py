@@ -588,24 +588,17 @@ def upload(request, addon_slug=None, is_standalone=False):
 
 @login_required
 @post_required
-def upload_webapp(request):
-    form = forms.NewWebappForm(request.POST)
-
+@json_view
+def upload_manifest(request):
+    form = forms.NewManifestForm(request.POST)
     if form.is_valid():
-        # Eventually we'll pass a pointer to the FileUpload back to the client
-        # and wait for the tasks to finish.
         upload = FileUpload.objects.create()
-        # TODO: make this .delay()'d, communicate asynchronously.
-        tasks.fetch_manifest(form.cleaned_data['manifest'], upload.pk)
-        # Get the new data.
-        upload = FileUpload.objects.get(pk=upload.pk)
-        # TODO: when we go async reuse the submit_addon() code.
-        platform = Platform.objects.get(id=amo.PLATFORM_ALL.id)
-        addon = Addon.from_upload(upload, [platform])
-        AddonUser(addon=addon, user=request.amo_user).save()
-        SubmitStep.objects.create(addon=addon, step=3)
-        return redirect('devhub.submit.3', addon.slug)
-
+        tasks.fetch_manifest.delay(form.cleaned_data['manifest'], upload.pk)
+        return redirect('devhub.upload_detail', upload.pk, 'json')
+    else:
+        error = _('There was an error with the submission.')
+        return make_validation_result({'validation': '',
+                                       'error': error})
 
 @login_required
 @post_required
@@ -1191,10 +1184,8 @@ def submit_step(step):
 @submit_step(1)
 def submit(request, step, webapp=False):
     if request.method == 'POST':
-        if webapp:
-            response = redirect('devhub.submit_apps.2')
-        else:
-            resuponse = redirect('devhub.submit.2')
+        response = (redirect('devhub.submit_apps.2') if webapp else
+                    redirect('devhub.submit.2'))
         response.set_cookie(DEV_AGREEMENT_COOKIE)
         return response
 
@@ -1210,12 +1201,18 @@ def submit_addon(request, step, webapp=False):
             return redirect('devhub.submit_apps.1')
         else:
             return redirect('devhub.submit.1')
-    form = forms.NewAddonForm(request.POST or None)
+    NewItem = forms.NewWebappForm if webapp else forms.NewAddonForm
+    form = NewItem(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
             data = form.cleaned_data
-            p = (list(data['desktop_platforms']) +
-                 list(data['mobile_platforms']))
+
+            if webapp:
+                p = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
+            else:
+                p = (list(data.get('desktop_platforms', [])) +
+                     list(data.get('mobile_platforms', [])))
+
             addon = Addon.from_upload(data['upload'], p)
             AddonUser(addon=addon, user=request.amo_user).save()
             SubmitStep.objects.create(addon=addon, step=3)

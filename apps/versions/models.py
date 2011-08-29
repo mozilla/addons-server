@@ -8,6 +8,7 @@ import jinja2
 
 import commonware.log
 import caching.base
+import path
 
 import amo
 import amo.models
@@ -91,7 +92,7 @@ class Version(amo.models.ModelBase):
         v.disable_old_files()
         # After the upload has been copied to all
         # platforms, remove the upload.
-        upload.path.unlink()
+        path.path(upload.path).unlink()
         if send_signal:
             version_uploaded.send(sender=v)
         return v

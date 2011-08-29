@@ -2010,7 +2010,10 @@ class TestSubmitStep1(TestSubmitBase):
                 "Looks like link %r to %r is still a placeholder" %
                 (href, ln.text))
 
-    def test_step1_apps_submit(self):
+    @mock.patch.object(waffle, 'flag_is_active')
+    def test_step1_apps_submit(self, fia):
+        fia.return_value = True
+
         response = self.client.get(reverse('devhub.submit_apps.1'))
         eq_(response.status_code, 200)
         doc = pq(response.content)
@@ -2037,7 +2040,10 @@ class TestSubmitStep2(amo.tests.TestCase):
         r = self.client.get(reverse('devhub.submit.2'))
         eq_(r.status_code, 200)
 
-    def test_step_2_apps_with_cookie(self):
+    @mock.patch.object(waffle, 'flag_is_active')
+    def test_step_2_apps_with_cookie(self, fia):
+        fia.return_value = True
+
         r = self.client.post(reverse('devhub.submit_apps.1'))
         self.assertRedirects(r, reverse('devhub.submit_apps.2'))
         r = self.client.get(reverse('devhub.submit_apps.2'))
@@ -2048,7 +2054,10 @@ class TestSubmitStep2(amo.tests.TestCase):
         r = self.client.get(reverse('devhub.submit.2'), follow=True)
         self.assertRedirects(r, reverse('devhub.submit.1'))
 
-    def test_step_2_apps_no_cookie(self):
+    @mock.patch.object(waffle, 'flag_is_active')
+    def test_step_2_apps_no_cookie(self, fia):
+        fia.return_value = True
+
         # We require a cookie that gets set in step 1.
         r = self.client.get(reverse('devhub.submit_apps.2'), follow=True)
         self.assertRedirects(r, reverse('devhub.submit_apps.1'))
@@ -2628,8 +2637,10 @@ class TestSubmitStep7(TestSubmitBase):
             u'%s/en-US/firefox/addon/%s/' % (
                 settings.SITE_URL, u.decode('utf8')))
 
-    @mock.patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
+    @mock.patch.object(waffle, 'flag_is_active')
     def test_marketplace(self):
+        flag_is_active.return_value = True
+
         addon = Addon.objects.get(pk=3615)
         res = self.client.get(reverse('devhub.submit.7', args=[addon.slug]))
         eq_('If this is a premium add-on' in res.content, True)

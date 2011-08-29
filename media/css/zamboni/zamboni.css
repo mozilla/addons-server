@@ -477,7 +477,7 @@ input[type=button].caution {
     color: #333;
     background: #fc0 url("../../img/zamboni/button-caution.png") 0 50% repeat-x;
     background: -moz-linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 60%),
-                -moz-repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
+    -moz-repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
     border-color: #a70;
     text-shadow: 0 1px 0 #ffe56b;
 }
@@ -490,7 +490,7 @@ input[type=button].caution.concealed {
     color: #859fae;
     border-color: #a70;
     background: -moz-linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6) 60%),
-                -moz-repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
+    -moz-repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
 }
 
 a.button.caution: hover,
@@ -508,7 +508,7 @@ a.button.caution:active {
     border-color: #850;
     background-image: url("../../img/zamboni/button-caution-on.png");
     background: -moz-linear-gradient(rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.3) 60%),
-                -moz-repeating-linear-gradient(45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
+    -moz-repeating-linear-gradient(45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
     -moz-box-shadow: inset 0 0 5px rgba(0,0,0,.5);
     -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,.5);
 }
@@ -724,7 +724,7 @@ a.button.concealed:active {
 .other .button.bsd,
 .other .button.solaris,
 .windows .button.windows {
-      display: inherit;
+    display: inherit;
 }
 
 th, td {
@@ -1204,7 +1204,7 @@ fieldset legend { /* based on h3 */
 }
 
 .user-input h3 {
-  margin: 0 0 .5em;
+    margin: 0 0 .5em;
 }
 
 fieldset ol,
@@ -1230,6 +1230,7 @@ fieldset li {
 }
 
 input[type="text"],
+input[type="url"],
 input[type="password"],
 select,
 textarea {
@@ -1247,6 +1248,7 @@ select {
 }
 
 input[type="text"]:focus,
+input[type="url"]:focus,
 input[type="password"]:focus,
 select:focus,
 textarea:focus {
@@ -1334,6 +1336,7 @@ form .error .errorlist li {
 }
 
 form .error input[type="text"],
+form .error input[type="url"],
 form .error input[type="password"],
 form .error select,
 form .error textarea {

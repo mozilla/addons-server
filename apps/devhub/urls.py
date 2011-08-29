@@ -164,7 +164,8 @@ urlpatterns = decorate(write, patterns('',
         name='devhub.standalone_upload'),
     url('^standalone-upload/([^/]+)$', views.standalone_upload_detail,
         name='devhub.standalone_upload_detail'),
-    url('^upload-webapp$', views.upload_webapp, name='devhub.upload_webapp'),
+
+    url('^upload-manifest$', views.upload_manifest, name='devhub.upload_manifest'),
 
     # URLs for a single add-on.
     url('^addon/%s/' % ADDON_ID, include(detail_patterns)),

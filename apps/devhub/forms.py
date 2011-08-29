@@ -361,6 +361,13 @@ CompatFormSet = modelformset_factory(
     form=CompatForm, can_delete=True, extra=0)
 
 
+class NewWebappForm(happyforms.Form):
+    upload = forms.ModelChoiceField(widget=forms.HiddenInput,
+        queryset=FileUpload.objects.filter(valid=True),
+        error_messages={'invalid_choice': _lazy('There was an error with your '
+                                                'upload. Please try again.')})
+
+
 class NewAddonForm(happyforms.Form):
     upload = forms.ModelChoiceField(widget=forms.HiddenInput,
         queryset=FileUpload.objects.filter(valid=True),
@@ -769,5 +776,6 @@ class CheckCompatibilityForm(happyforms.Form):
         return AppVersion.objects.get(pk=int(v))
 
 
-class NewWebappForm(happyforms.Form):
+class NewManifestForm(happyforms.Form):
     manifest = forms.URLField()
+

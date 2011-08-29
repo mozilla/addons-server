@@ -1245,7 +1245,7 @@ a.extra {
     display: none;
 }
 
-#upload-status-results a {
+#upload-status-results a.view-more {
     color: #359AFF;
     display: block;
     font-size: 12px;

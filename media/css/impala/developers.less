@@ -237,3 +237,59 @@
         background-position: 0 -16px;
     }
 }
+
+
+#upload-file {
+    #validate-field {
+        display: table;
+        width: 100%;
+        margin: 0;
+        border: 1px solid #5875A0;
+        overflow: hidden;
+        .border-radius(5px);
+        #upload-webapp-url {
+            .border-box;
+            border: 0 none;
+            font-family: @sans-stack;
+            font-size: 1.3em;
+            margin: 0;
+            padding: 4px;
+            width: 100%;
+            &.loading {
+                background-image: url("../../img/zamboni/loading-white.gif");
+                background-position: 98% center;
+                background-repeat: no-repeat;
+            }
+            &:-moz-placeholder {
+                color: #ccc;
+            }
+            &::-webkit-placeholder {
+              color: #cbcbcb;
+            }
+            &:invalid {
+                background-color: #FEE7E7;
+                border-bottom-color: red;
+                border-left-color: red;
+                border-top-color: red;
+                box-shadow: 0 0 !important;
+            }
+        }
+        > div {
+            display: table-cell;
+            &.vf-text {
+                width: 100%;
+            }
+            &.vf-button button {
+                .border-radius(0);
+                border: none;
+                border-left: 1px solid #5875A0;
+                font-family: @sans-stack;
+                font-size: 1.3em;
+                line-height: 1em;
+                margin: 0;
+                padding: 5px;
+            }
+        }
+    }
+}
+

@@ -292,7 +292,11 @@ def packager(data, feature_set, **kw):
 
 def failed_validation(*messages):
     """Return a validation object that looks like the add-on validator."""
-    return json.dumps({'errors': 1, 'success': False, 'messages': messages})
+    m = []
+    for msg in messages:
+        m.append({'type': 'error', 'message': msg, 'tier': 1})
+
+    return json.dumps({'errors': 1, 'success': False, 'messages': m})
 
 
 def _fetch_manifest(url):
@@ -332,12 +336,13 @@ def _fetch_manifest(url):
 def fetch_manifest(url, upload_pk=None, **kw):
     log.info(u'[1@None] Fetching manifest: %s.' % url)
     upload = FileUpload.objects.get(pk=upload_pk)
+
     try:
         content = _fetch_manifest(url)
     except Exception, e:
         # Drop a message in the validation slot and bail.
         upload.update(validation=failed_validation(e.message))
-        raise
+        return
 
     upload.add_file([content], url, len(content))
     # Send the upload to the validator.
