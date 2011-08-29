@@ -10,7 +10,7 @@ from manage import settings
 from search.utils import start_sphinx, stop_sphinx, reindex
 
 
-class SphinxTestCase(amo.tests.RedisTest, test_utils.TransactionTestCase):
+class SphinxTestCase(amo.tests.RedisTest, test_utils.FastFixtureTestCase):
     """
     This test case type can setUp and tearDown the sphinx daemon.  Use this
     when testing any feature that requires sphinx.
@@ -42,7 +42,13 @@ class SphinxTestCase(amo.tests.RedisTest, test_utils.TransactionTestCase):
             SphinxTestCase.sphinx_is_running = True
 
     @classmethod
+    def setUpClass(cls):
+        # resolve multiple inheritance
+        super(SphinxTestCase, cls).setUpClass()
+
+    @classmethod
     def tearDownClass(cls):
+        super(SphinxTestCase, cls).tearDownClass()
         if SphinxTestCase.sphinx_is_running:
             stop_sphinx()
             SphinxTestCase.sphinx_is_running = False
