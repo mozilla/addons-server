@@ -142,7 +142,11 @@ z.readonly = JSON.parse(document.body.getAttribute('data-readonly'));
 
 if (z.browser.firefox) {
     var nightlyVer = document.body.getAttribute('data-nightly-version');
-    z.hasNightly = (VersionCompare.compareVersions(z.browserVersion, nightlyVer) > -1);
+    if (nightlyVer) {
+        z.hasNightly = (VersionCompare.compareVersions(z.browserVersion, nightlyVer) > -1);
+    } else {
+        z.hasNightly = false;
+    }
     var betaVer = document.body.getAttribute('data-min-beta-version');
     z.fxBeta = (VersionCompare.compareVersions(z.browserVersion, betaVer) > -1);
     if (z.fxBeta) {
