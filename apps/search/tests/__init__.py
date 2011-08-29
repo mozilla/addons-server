@@ -3,19 +3,14 @@ import shutil
 import time
 
 from nose import SkipTest
-import test_utils
-# TODO(Kumar) move to FastFixtureTestCase when fully upgraded
-try:
-    from test_utils import FastFixtureTestCase as SphinxTestCaseBase
-except ImportError:
-    from test_utils import TransactionTestCase as SphinxTestCaseBase
+from test_utils import FastFixtureTestCase
 
 import amo.tests
 from manage import settings
 from search.utils import start_sphinx, stop_sphinx, reindex
 
 
-class SphinxTestCase(amo.tests.RedisTest, SphinxTestCaseBase):
+class SphinxTestCase(amo.tests.RedisTest, FastFixtureTestCase):
     """
     This test case type can setUp and tearDown the sphinx daemon.  Use this
     when testing any feature that requires sphinx.
