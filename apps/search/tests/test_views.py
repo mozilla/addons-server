@@ -105,7 +105,7 @@ class TestSearchboxTarget(amo.tests.TestCase):
                    'personas')
 
 
-class TestESSearch(amo.tests.TestCase):
+class TestESSearch(amo.tests.ESTestCase):
 
     def test_legacy_redirects(self):
         base = reverse('search.es_search')
