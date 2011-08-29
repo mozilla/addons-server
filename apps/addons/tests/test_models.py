@@ -1253,6 +1253,7 @@ class TestAddonDependencies(amo.tests.TestCase):
                 dependent_addon=Addon.objects.get(id=dependent_id)).save()
 
         eq_(sorted([a.id for a in a.dependencies.all()]), sorted(ids))
+        eq_(list(a.dependencies.all()), a.all_dependencies)
 
 
 class TestListedAddonTwoVersions(amo.tests.TestCase):

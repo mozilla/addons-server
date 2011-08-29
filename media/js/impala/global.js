@@ -38,7 +38,7 @@ z.visitor = z.Storage('visitor');
 })();
 
 function hoverTruncate(grid) {
-    var $grid = $(grid || this);
+    var $grid = $(grid);
     if ($grid.hasClass('hovercard')) {
         $grid = $grid.parent();
     }
@@ -113,7 +113,7 @@ $(function() {
     $('.listing-grid').each(listing_grid);
 
     // Truncate titles on single hovercards.
-    $('.hovercard.single').each(function() {
+    $('.hovercard').each(function() {
         hoverTruncate(this);
     });
 

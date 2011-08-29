@@ -66,6 +66,12 @@ def upsell_note(context, addon, module_context='impala'):
     return new_context(**locals())
 
 
+@register.inclusion_tag('addons/impala/dependencies_note.html')
+@jinja2.contextfunction
+def dependencies_note(context, addon, module_context='impala'):
+    return new_context(**locals())
+
+
 @register.inclusion_tag('addons/contribution.html')
 @jinja2.contextfunction
 def contribution(context, addon, text=None, src='', show_install=False,
@@ -217,7 +223,11 @@ def sidebar_listing(context, addon):
 @register.filter
 @jinja2.contextfilter
 @register.inclusion_tag('addons/impala/addon_hovercard.html')
-def addon_hovercard(context, addon, lazyload=False):
+def addon_hovercard(context, addon, lazyload=False, src=None, dl_src=None):
+    if not src:
+        src = context.get('src')
+    if not dl_src:
+        dl_src = context.get('dl_src', src)
     vital_summary = context.get('vital_summary') or 'rating'
     vital_more = context.get('vital_more') or 'adu'
     return new_context(**locals())
@@ -230,9 +240,9 @@ def addon_grid(context, addons, src=None, dl_src=None, pagesize=6, cols=2,
                vital_summary='rating', vital_more='adu'):
     if not src:
         src = context.get('src')
-    # dl_src is an optional src paramater just for the download links
+    # dl_src is an optional src parameter just for the download links
     if not dl_src:
-        dl_src = src
+        dl_src = context.get('dl_src', src)
     pages = chunked(addons, pagesize)
     columns = 'cols-%d' % cols
     return new_context(**locals())

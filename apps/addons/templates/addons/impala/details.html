@@ -85,6 +85,8 @@
     {{ impala_performance_note(amount=addon.ts_slowness) }}
   {% endif %}
 
+  {{ dependencies_note(addon) }}
+
   {{ upsell_note(addon) }}
 
   {% if addon.takes_contributions %}

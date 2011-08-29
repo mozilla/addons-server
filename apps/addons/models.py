@@ -964,6 +964,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def can_review(self, user):
         return not self.is_premium() or self.has_purchased(user)
 
+    @property
+    def all_dependencies(self):
+        """Return all the add-ons this add-on depends on."""
+        return list(self.dependencies.all()[:9])
+
 
 @receiver(dbsignals.post_save, sender=Addon,
           dispatch_uid='addons.update.name.table')
