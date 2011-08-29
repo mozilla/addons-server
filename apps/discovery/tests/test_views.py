@@ -29,7 +29,8 @@ class TestRecs(amo.tests.TestCase):
                 'base/addon_5299_gcal', 'base/category', 'base/featured']
 
     @classmethod
-    def setup_class(cls):
+    def setUpClass(cls):
+        super(TestRecs, cls).setUpClass()
         test.Client().get('/')
 
     def setUp(self):

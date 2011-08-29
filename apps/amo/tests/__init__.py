@@ -221,6 +221,7 @@ class ESTestCase(TestCase):
         addons.search.setup_mapping()
         cls.add_addons()
         cls.refresh()
+        super(ESTestCase, cls).setUpClass()
 
     @classmethod
     def tearDownClass(cls):
@@ -230,6 +231,7 @@ class ESTestCase(TestCase):
                   Translation, Addon, AppVersion, Application)
         for model in models:
             model.objects.all().delete()
+        super(ESTestCase, cls).tearDownClass()
 
     @classmethod
     def refresh(cls):
