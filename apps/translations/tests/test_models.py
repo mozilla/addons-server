@@ -71,6 +71,7 @@ class TranslationTestCase(ExtraAppTestCase):
         self.redirect_secret_key = settings.REDIRECT_SECRET_KEY
         settings.REDIRECT_URL = None
         settings.REDIRECT_SECRET_KEY = 'sekrit'
+        translation.activate('en-US')
 
     def tearDown(self):
         super(TranslationTestCase, self).tearDown()
