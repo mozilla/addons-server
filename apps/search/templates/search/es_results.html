@@ -60,7 +60,7 @@
     </header>
     {% if pager.object_list %}
       {{ pager|impala_paginator }}
-      {{ impala_addon_listing_items(pager.object_list, show_date=query.sort,
+      {{ impala_addon_listing_items(pager.object_list, field=query.sort,
                                     src='search') }}
       {{ pager|impala_paginator }}
     {% else %}
