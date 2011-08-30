@@ -562,9 +562,7 @@ class FeaturedCollection(amo.models.ModelBase):
 
 
 class MonthlyPick(amo.models.ModelBase):
-    LOCALES = (('', u'(Default Locale)'),) + tuple(
-               (i, product_details.languages[i]['native'])
-               for i in settings.AMO_LANGUAGES)
+    LOCALES = [('', u'(Default Locale)'),] + settings.LANGUAGES.items()
 
     addon = models.ForeignKey(Addon)
     blurb = models.TextField()
