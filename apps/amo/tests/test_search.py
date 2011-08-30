@@ -1,7 +1,6 @@
 from django.core import paginator
 
 import mock
-from nose import SkipTest
 from nose.tools import eq_
 
 import amo.tests
@@ -9,16 +8,19 @@ import amo.utils
 from addons.models import Addon
 
 
-class TestES(amo.tests.ESTestCase):
+class TestESIndexing(amo.tests.ESTestCase):
     es = True
 
-    # This should go in a test for the cron.
+    # This needs to be in its own class for data isolation.
     def test_indexed_count(self):
-        raise SkipTest
         # Did all the right addons get indexed?
         eq_(Addon.search().filter(type=1, is_disabled=False).count(),
             Addon.objects.filter(disabled_by_user=False,
                                  status__in=amo.VALID_STATUSES).count())
+
+
+class TestES(amo.tests.ESTestCase):
+    es = True
 
     def test_clone(self):
         # Doing a filter creates a new ES object.

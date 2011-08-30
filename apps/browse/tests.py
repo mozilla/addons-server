@@ -31,12 +31,26 @@ from translations.query import order_by_translation
 from versions.models import Version
 
 
-class TestExtensions(amo.tests.ESTestCase):
+class ExtensionTestCase(amo.tests.ESTestCase):
     es = True
 
     def setUp(self):
-        super(TestExtensions, self).setUp()
+        super(ExtensionTestCase, self).setUp()
         self.url = reverse('browse.es.extensions')
+
+
+class TestUpdatedSort(ExtensionTestCase):
+
+    # This needs to run in its own class for isolation.
+    def test_updated_sort(self):
+        r = self.client.get(urlparams(self.url, sort='updated'))
+        addons = r.context['addons'].object_list
+        assert list(addons)
+        eq_(list(addons),
+            sorted(addons, key=lambda x: x.last_updated, reverse=True))
+
+
+class TestExtensions(ExtensionTestCase):
 
     def test_default_sort(self):
         r = self.client.get(self.url)
@@ -47,14 +61,6 @@ class TestExtensions(amo.tests.ESTestCase):
         addons = r.context['addons'].object_list
         assert list(addons)
         eq_(list(addons), sorted(addons, key=lambda x: x.name))
-
-    def test_updated_sort(self):
-        raise SkipTest
-        r = self.client.get(urlparams(self.url, sort='updated'))
-        addons = r.context['addons'].object_list
-        assert list(addons)
-        eq_(list(addons),
-            sorted(addons, key=lambda x: x.last_updated, reverse=True))
 
     def test_created_sort(self):
         r = self.client.get(urlparams(self.url, sort='created'))
