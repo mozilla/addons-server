@@ -221,7 +221,6 @@ class ESTestCase(TestCase):
         addons.search.setup_mapping()
         cls.add_addons()
         cls.refresh()
-        super(ESTestCase, cls).setUpClass()
 
     @classmethod
     def tearDownClass(cls):
