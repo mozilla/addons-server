@@ -61,10 +61,10 @@ urlpatterns = patterns('',
     url('^i/addon/%s/' % ADDON_ID, include(impala_detail_patterns)),
 
     # Personas submission.
-    url('^i/personas/%s/submit/done$' % ADDON_ID, views.submit_persona_done,
+    url('^personas/submit$', views.submit_persona, name='personas.submit'),
+    url('^personas/%s/submit/done$' % ADDON_ID, views.submit_persona_done,
         name='personas.submit.done'),
-    url('^i/personas/submit$', views.submit_persona, name='personas.submit'),
-    url('^i/personas/submit/upload/'
+    url('^personas/submit/upload/'
         '(?P<upload_type>persona_header|persona_footer)$',
         ajax_upload_image, name='personas.upload_persona'),
 

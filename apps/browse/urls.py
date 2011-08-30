@@ -6,14 +6,7 @@ from browse.feeds import CategoriesRss, FeaturedRss, SearchToolsRss
 from . import views
 
 impala_patterns = patterns('',
-    # TODO: When we launch the impala pages, add a redirect for this.
-    url('^featured$',
-        lambda r: redirect(reverse('i_browse.extensions') + '?sort=featured',
-                           permanent=True)),
-    url('^extensions/(?:(?P<category>[^/]+)/)?$', views.impala_extensions,
-        name='i_browse.extensions'),
-
-    # TODO: Impala-ize these views.
+    # TODO: Impalacize these views.
     url('^themes/(?P<category>[^/]+)?$', views.themes,
         name='i_browse.themes'),
     url('^extensions/(?P<category>[^/]+)/featured$', views.creatured,
@@ -32,7 +25,9 @@ urlpatterns = patterns('',
     url('^language-tools/(?P<category>[^/]+)?$', views.language_tools,
         name='browse.language-tools'),
 
-    url('^featured$', views.featured, name='browse.featured'),
+    url('^featured$',
+        lambda r: redirect(reverse('browse.extensions') + '?sort=featured',
+                           permanent=True)),
 
     url('^themes/(?P<category>[^/]+)?$', views.themes,
         name='browse.themes'),

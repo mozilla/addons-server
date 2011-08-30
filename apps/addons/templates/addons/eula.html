@@ -12,7 +12,7 @@
 <section class="primary" id="eula">
   <hgroup class="hero">
     {# L10n: EULA stand for End User License Agreement #}
-    {{ impala_breadcrumbs([(addon.type_url(impala=True), amo.ADDON_TYPES[addon.type]),
+    {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
                            (detail_url, addon.name),
                            (None, _('EULA'))]) }}
     {{ addon_heading(addon, version) }}

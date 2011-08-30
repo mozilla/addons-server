@@ -428,7 +428,7 @@ def _side_nav(context, addon_type, cat, impala):
     sort_key = attrgetter('weight', 'name')
     categories = sorted(qs.filter(type=addon_type), key=sort_key)
     if cat:
-        base_url = cat.get_url_path(impala=impala)
+        base_url = cat.get_url_path()
     else:
         base_url = AddonType(addon_type).get_url_path()
     ctx = dict(request=request, base_url=base_url,

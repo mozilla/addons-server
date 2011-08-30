@@ -42,6 +42,8 @@
   {{ impala_performance_note(amount=addon.ts_slowness) }}
 {% endif %}
 
+{{ dependencies_note(addon, 'discovery') }}
+
 {{ upsell_note(addon, 'discovery') }}
 
 {% if addon.type != amo.ADDON_PERSONA %}

@@ -10,11 +10,11 @@
 <div class="primary" role="main">
 
   <p>
-  {% trans link_gallery=url('browse.featured') %}
+  {% trans link_gallery=url('browse.extensions')|urlparams(sort='featured') %}
   Featured add-ons are top-quality add-ons highlighted in our <a href="{{ link_gallery }}">gallery</a>, Firefox's Add-ons Manager, <a href="http://www.rockyourfirefox.com">Rock Your Firefox</a>, and across other Mozilla websites. These add-ons showcase the power of Firefox customization and are useful to a wide audience of consumers.
   {% endtrans %}
   </p>
-  
+
   <p>
   {% trans %}
   Featured add-ons are chosen each month by the Featured Add-ons Advisory Board, a small group of add-on developers and fans from the Mozilla community who have volunteered to review and vote on nominations.
@@ -22,13 +22,13 @@
   </p>
 
   <h3>{{ _('Criteria for Featured Add-ons') }}</h3>
-  
+
   <p>
   {% trans %}
   Before nominating your add-on to be featured, please ensure it meets all of the required criteria below:
   {% endtrans %}
   </p>
-  
+
   <ol>
       <li>{{ _('The add-on must have a complete and informative listing on AMO. This means:') }}</li>
       <ul>
@@ -57,7 +57,7 @@
     <li>{{ _('optionally, links to any external reviews or articles mentioning the add-on') }}</li>
     <li>{{ _('optionally, a video overview/demo/tutorial of the add-on less than 5 minutes long') }}</li>
   </ul>
-  
+
   <p>
   {% trans %}
   Nominations are reviewed by the Featured Add-ons Advisory Board once a month and you will receive an email regarding the decision and any suggestions for improvement. Common reasons for rejection include lacking wide appeal to consumers, a suboptimal user experience, quality or security issues, and too similar to another featured add-on. Rejected add-ons must wait 3 months before nominating again.
@@ -89,7 +89,7 @@
     {% endtrans %}
     </li>
   </ul>
-  
+
   <h3>{{ _('Joining the Featured Add-ons Advisory Board') }}</h3>
 
   <p>
@@ -97,20 +97,20 @@
   Every six months a new Featured Add-ons Advisory Board is chosen based on applications from the add-ons community. Members must:
   {% endtrans %}
   </p>
-  
+
   <ul>
       <li>{{ _('be active members of the add-ons community, whether as a developer, evangelist, or fan') }}</li>
       <li>{{ _('commit to trying all of the nominations submitted each month and giving their feedback and vote for each add-on') }}</li>
       <li>{{ _('join a monthly conference call to go through the votes and select the next month\'s featured add-ons') }}</li>
       <li>{{ _('abstain from voting on add-ons that they have any business or personal affiliations with, as well as direct competitors of any such add-ons') }}</li>
   </ul>
-  
+
   <p>
   {% trans link_blog='http://blog.mozilla.com/addons', link_twitter='http://www.twitter.com/mozamo' %}
   Watch the <a href="{{ link_blog }}">Add-ons Blog</a> or <a href="{{ link_twitter }}">Twitter</a> to learn when the next application period opens.
   {% endtrans %}
   </p>
-  
+
   <p><em>{{ _('Last updated: July 7, 2011') }}</em></p>
 </div>
 {{ sidebar() }}

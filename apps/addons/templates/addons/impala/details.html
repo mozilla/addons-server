@@ -85,6 +85,8 @@
     {{ impala_performance_note(amount=addon.ts_slowness) }}
   {% endif %}
 
+  {{ dependencies_note(addon) }}
+
   {{ upsell_note(addon) }}
 
   {% if addon.takes_contributions %}
@@ -95,7 +97,7 @@
         <h3>
           {% trans count=addon.listed_authors|length,
                    name=single_dev.name,
-                   url=addon.meet_the_dev_url(impala=settings.IMPALA_MEET) %}
+                   url=addon.meet_the_dev_url() %}
             Meet the Developer: <a href="{{ url }}">{{ name }}</a>
           {% pluralize %}
             <a href="{{ url }}">Meet the Developers</a>

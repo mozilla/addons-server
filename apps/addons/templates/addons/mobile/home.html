@@ -43,7 +43,7 @@
     <div id="listing-featured" class="tab-pane selected">
       <ul id="list-featured" class="listview">
         {{ addon_listing_items_mobile(featured, src='homepagebrowse') }}
-        <li><a href="{{ url('browse.featured') }}">
+        <li><a href="{{ url('browse.extensions')|urlparams(sort='featured') }}">
           {{ _('View all Featured add-ons') }}</a></li>
       </ul>
     </div><div id="listing-popular" class="tab-pane">

@@ -4,6 +4,9 @@
 
 {% block bodyclass %}editor-tools {% endblock %}
 
+{# Don't show the amo header on editor pages #}
+{% set hide_header = True %}
+
 {% block site_header_title %}
 <h1 class="site-title">
   <a href="{{ url('editors.home') }}" title="{{ _('Return to the Editor Tools homepage') }}">

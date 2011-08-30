@@ -8,6 +8,7 @@ from django import forms
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
+from django.db import IntegrityError
 from django.utils import translation
 
 from mock import patch, Mock
@@ -1253,6 +1254,17 @@ class TestAddonDependencies(amo.tests.TestCase):
                 dependent_addon=Addon.objects.get(id=dependent_id)).save()
 
         eq_(sorted([a.id for a in a.dependencies.all()]), sorted(ids))
+        eq_(list(a.dependencies.all()), a.all_dependencies)
+
+    def test_unique_dependencies(self):
+        a = Addon.objects.get(id=5299)
+        b = Addon.objects.get(id=3615)
+        AddonDependency.objects.create(addon=a, dependent_addon=b)
+        try:
+            AddonDependency.objects.create(addon=a, dependent_addon=b)
+        except IntegrityError:
+            pass
+        eq_(list(a.dependencies.values_list('id', flat=True)), [3615])
 
 
 class TestListedAddonTwoVersions(amo.tests.TestCase):

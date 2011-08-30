@@ -87,20 +87,6 @@ class CollectionsSearchTest(SphinxTestCase):
         eq_(r, [])
 
 
-class CollectionsPrivateSearchTest(SphinxTestCase):
-    fixtures = ('base/collection_57181', 'base/apps',)
-
-    def setUp(self):
-        c = Collection.objects.get(pk=57181)
-        c.listed = False
-        c.save()
-        super(CollectionsPrivateSearchTest, self).setUp()
-
-    def test_query(self):
-        r = cquery("")
-        eq_(r, [], "Collection shouldn't show up.")
-
-
 class SearchDownTest(amo.tests.TestCase):
 
     def test_search_down(self):
@@ -257,42 +243,6 @@ class SearchTest(SphinxTestCase):
 
     def test_summary(self):
         eq_(query("bookmarking")[0].id, 3615)  # Should get us Delicious
-
-
-class SearchStatusTest(SphinxTestCase):
-    fixtures = ('base/addon_3615', 'base/addon_5369', 'base/addon_592',
-                'base/addon_5579', 'base/addon_40', 'search/560618-alpha-sort',
-                'base/apps', 'base/category', 'addons/persona')
-
-    def reindex(self):
-        stop_sphinx()
-        reindex()
-        start_sphinx()
-
-    def test_unreviewed_hidden(self):
-        # Only public, lite, and nominated add-ons should be found.
-        Addon.objects.update(status=amo.STATUS_UNREVIEWED)
-        self.reindex()
-        eq_(len(query('')), 0)
-
-    def test_persona_status(self):
-        Addon.objects.update(status=amo.STATUS_PUBLIC)
-        eq_(len(pquery('')), 1)
-        Addon.objects.update(status=amo.STATUS_DISABLED)
-        self.reindex()
-        eq_(len(pquery('')), 0)
-
-    def test_searchable_status(self):
-        Addon.objects.update(status=amo.STATUS_UNREVIEWED)
-        Addon.objects.filter(id=5579).update(status=amo.STATUS_PUBLIC)
-        Addon.objects.filter(id=3615).update(status=amo.STATUS_LITE)
-        Addon.objects.filter(id=5369).update(
-            status=amo.STATUS_LITE_AND_NOMINATED)
-        self.reindex()
-
-        ids = [x.id for x in query('')]
-        eq_(len(ids), 3)
-        eq_(ids, [5579, 3615, 5369])
 
 
 class RankingTest(SphinxTestCase):

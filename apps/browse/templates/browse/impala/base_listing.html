@@ -17,21 +17,23 @@
   {{ page_title(title) }}
 {% endblock %}
 
-{% block bodyclass %}s-{{ sorting }}{% endblock %}
+{% if not request.MOBILE %}
+  {% block bodyclass %}s-{{ sorting }}{% endblock %}
 
-{% if category %}
-  {% block extrahead %}
-    <style>
-      #c-{{ category.id }} a {
-          background: #ecf5fe;
-          color: #333;
-          font-weight: bold;
-      }
-      #c-{{ category.id }} a:after {
-          color: inherit;
-      }
-    </style>
-  {% endblock %}
+  {% if category %}
+    {% block extrahead %}
+      <style>
+        #c-{{ category.id }} a {
+            background: #ecf5fe;
+            color: #333;
+            font-weight: bold;
+        }
+        #c-{{ category.id }} a:after {
+            color: inherit;
+        }
+      </style>
+    {% endblock %}
+  {% endif %}
 {% endif %}
 
 {% if category %}
@@ -46,3 +48,9 @@
   <link rel="alternate" type="application/rss+xml" title="RSS"
         href="{{ feed_url }}">
 {% endblock %}
+
+{% if category %}
+  {% set base_url = url('browse.extensions', category.slug) %}
+{% else %}
+  {% set base_url = url('browse.extensions') %}
+{% endif %}

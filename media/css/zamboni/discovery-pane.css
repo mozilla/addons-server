@@ -988,20 +988,19 @@ li#no-restart {
     border-radius: 5px;
     width: 50%;
     margin-bottom: 1.286em;
-    padding: 14px 14px 14px 104px;
+    padding: 14px;
 }
 .notice p {
     margin: 0;
 }
-.html-rtl .notice {
-    padding: 14px 104px 14px 14px;
-}
 
 .performance-note {
     background: url(../../img/impala/turtle.png) no-repeat 28px 16px #fff8dc;
+    padding: 14px 14px 14px 104px;
 }
 .html-rtl .performance-note {
     background-position: 96% 16px;
+    padding: 14px 104px 14px 14px;
 }
 .notice h3,
 .upsell .premium a {
@@ -1009,7 +1008,6 @@ li#no-restart {
 }
 
 .upsell {
-    padding: 14px !important;
     position: relative;
 }
 

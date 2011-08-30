@@ -49,7 +49,7 @@
       {% if featured %}
         <div class="island">
           <h2>{{ _('Featured Extensions') }}
-            <a class="seeall" href="{{ url('browse.featured') }}">{{ _('See all »') }}</a>
+            <a class="seeall" href="{{ url('browse.extensions')|urlparams(sort='featured') }}">{{ _('See all »') }}</a>
           </h2>
           {{ featured|addon_grid(src='hp-hc-featured',
                                  dl_src='hp-dl-featured') }}

@@ -308,12 +308,6 @@ class TestCategoryPages(amo.tests.TestCase):
 
         eq_(len(addons), old_count - 1, "The number of addons is the same.")
 
-    def test_added_date(self):
-        url = reverse('browse.extensions') + '?sort=created'
-        doc = pq(self.client.get(url).content)
-        s = doc('.featured .item .updated').text()
-        assert s.strip().startswith('Added'), s
-
     def test_sorting_nameless(self):
         """Nameless add-ons are dropped from the sort."""
         qs = Addon.objects.all()
@@ -329,7 +323,7 @@ class TestImpalaExtensions(amo.tests.TestCase):
 
     def setUp(self):
         self.reset_featured_addons()
-        self.url = reverse('i_browse.extensions')
+        self.url = reverse('browse.extensions')
 
     def test_default_sort(self):
         r = self.client.get(self.url)
@@ -422,7 +416,7 @@ class TestFeeds(amo.tests.TestCase):
 
     def setUp(self):
         self.reset_featured_addons()
-        self.url = reverse('i_browse.extensions')
+        self.url = reverse('browse.extensions')
         self.rss_url = reverse('browse.extensions.rss')
         self.filter = ImpalaAddonFilter
 
@@ -571,16 +565,16 @@ class TestFeaturedLocale(amo.tests.TestCase):
         assert self.addon in res.context['addons']
 
     def test_featured_locale_en_US(self):
-        res = self.client.get(reverse('browse.featured'))
+        res = self.client.get(reverse('browse.extensions') + '?sort=featured')
         assert self.extension in res.context['addons']
 
     def test_featured_locale_not_persona_en_US(self):
-        res = self.client.get(reverse('browse.featured'))
+        res = self.client.get(reverse('browse.extensions') + '?sort=featured')
         assert not self.persona in res.context['addons']
 
     def test_featured_locale_es_ES(self):
         self.change_addon(self.extension, 'es-ES')
-        url = reverse('browse.featured')
+        url = reverse('browse.extensions') + '?sort=featured'
         res = self.client.get(url)
         assert self.extension not in res.context['addons']
 
@@ -793,7 +787,7 @@ class TestListingByStatus(amo.tests.TestCase):
         return Addon.objects.get(id=3615)
 
     def check(self, exp):
-        r = self.client.get(reverse('browse.extensions'))
+        r = self.client.get(reverse('browse.extensions') + '?sort=created')
         addons = list(r.context['addons'].object_list)
         eq_(addons, exp)
 
@@ -1128,7 +1122,8 @@ class TestLegacyRedirects(amo.tests.TestCase):
         redirects('/browse/type:4', '/search-tools/')
         redirects('/search-engines', '/search-tools/')
         # redirects('/browse/type:7', '/plugins/')
-        redirects('/recommended', '/featured')
+        redirects('/recommended', '/extensions/?sort=featured')
+        redirects('/featured', '/extensions/?sort=featured')
         redirects('/recommended/format:rss', '/featured/format:rss')
 
 
@@ -1137,10 +1132,14 @@ class TestFeaturedPage(amo.tests.TestCase):
 
     @mock.patch.object(settings, 'NEW_FEATURES', False)
     def test_featured_addons(self):
-        """Make sure that only featured add-ons are shown."""
-        response = self.client.get(reverse('browse.featured'))
+        """Make sure that only featured extensions are shown."""
+        url = reverse('browse.extensions') + '?sort=featured'
+        response = self.client.get(url)
         # But not in the content.
-        eq_([1001, 1003, 2464, 3481, 7661],
+        featured = (Addon.objects.listed(amo.FIREFOX)
+                    .filter(type=amo.ADDON_EXTENSION)
+                    .values_list('id', flat=True))
+        eq_(sorted(featured),
             sorted(a.id for a in response.context['addons']))
 
 
@@ -1269,9 +1268,10 @@ class TestPersonas(amo.tests.TestCase):
 class TestMobileFeatured(TestMobile):
 
     def test_featured(self):
-        r = self.client.get(reverse('browse.featured'))
+        r = self.client.get(reverse('browse.extensions') + '?sort=featured')
         eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'browse/mobile/featured.html')
+        self.assertTemplateUsed(r, 'browse/mobile/extensions.html')
+        eq_(r.context['sorting'], 'featured')
 
 
 class TestMobileExtensions(TestMobile):

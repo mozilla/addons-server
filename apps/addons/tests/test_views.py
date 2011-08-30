@@ -9,6 +9,7 @@ import re
 from django import test
 from django.conf import settings
 from django.core import mail
+from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 
 from mock import patch
@@ -24,7 +25,8 @@ from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from abuse.models import AbuseReport
 from addons import cron
-from addons.models import Addon, AddonUpsell, AddonUser, Charity, Category
+from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
+                           Charity, Category)
 from files.models import File
 from paypal.tests import other_error
 from stats.models import Contribution
@@ -703,6 +705,21 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         doc = pq(self.client.get(self.url).content)
         eq_(doc('.performance-note').length, 1)
 
+    def test_dependencies(self):
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('.dependencies').length, 0)
+        req = Addon.objects.get(id=592)
+        AddonDependency.objects.create(addon=self.addon, dependent_addon=req)
+        eq_(self.addon.all_dependencies, [req])
+        cache.clear()
+        d = pq(self.client.get(self.url).content)('.dependencies')
+        eq_(d.length, 1)
+        eq_(d.find('.hovercard h3').text(), unicode(req.name))
+        eq_(d.find('.hovercard > a').attr('href')
+            .endswith('?src=dp-dl-dependencies'), True)
+        eq_(d.find('.hovercard .install-button a').attr('href')
+            .endswith('?src=dp-hc-dependencies'), True)
+
     def test_upsell(self):
         doc = pq(self.client.get(self.url).content)
         eq_(doc('.upsell').length, 0)
@@ -712,6 +729,10 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         eq_(upsell.length, 1)
         eq_(upsell.find('.prose').text(), 'XXX')
         eq_(upsell.find('.hovercard h3').text(), unicode(premie.name))
+        eq_(upsell.find('.hovercard > a').attr('href')
+            .endswith('?src=dp-dl-upsell'), True)
+        eq_(upsell.find('.hovercard .install-button a').attr('href')
+            .endswith('?src=dp-hc-upsell'), True)
 
     def test_no_restart(self):
         f = self.addon.current_version.all_files[0]

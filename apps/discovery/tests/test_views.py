@@ -2,6 +2,7 @@ import json
 
 from django import test
 from django.conf import settings
+from django.core.cache import cache
 
 import mock
 from nose import SkipTest
@@ -12,7 +13,7 @@ import amo
 import amo.tests
 import addons.signals
 from amo.urlresolvers import reverse
-from addons.models import Addon, AddonUpsell
+from addons.models import Addon, AddonDependency, AddonUpsell
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection, MonthlyPick
 from bandwagon.tests.test_models import TestRecommendations as Recs
@@ -29,7 +30,8 @@ class TestRecs(amo.tests.TestCase):
                 'base/addon_5299_gcal', 'base/category', 'base/featured']
 
     @classmethod
-    def setup_class(cls):
+    def setUpClass(cls):
+        super(TestRecs, cls).setUpClass()
         test.Client().get('/')
 
     def setUp(self):
@@ -365,6 +367,19 @@ class TestDetails(amo.tests.TestCase):
         doc = pq(self.client.get(self.detail_url).content)
         eq_(doc('.performance-note').length, 1)
 
+    def test_dependencies(self):
+        doc = pq(self.client.get(self.detail_url).content)
+        eq_(doc('.dependencies').length, 0)
+        req = Addon.objects.get(id=592)
+        AddonDependency.objects.create(addon=self.addon, dependent_addon=req)
+        eq_(self.addon.all_dependencies, [req])
+        cache.clear()
+        d = pq(self.client.get(self.detail_url).content)('.dependencies')
+        eq_(d.length, 1)
+        a = d.find('ul a')
+        eq_(a.text(), unicode(req.name))
+        eq_(a.attr('href').endswith('?src=discovery-dependencies'), True)
+
     def test_upsell(self):
         doc = pq(self.client.get(self.detail_url).content)
         eq_(doc('.upsell').length, 0)
@@ -373,7 +388,9 @@ class TestDetails(amo.tests.TestCase):
         upsell = pq(self.client.get(self.detail_url).content)('.upsell')
         eq_(upsell.length, 1)
         eq_(upsell.find('.prose').text(), 'XXX')
-        eq_(upsell.find('.premium a').text(), unicode(premie.name))
+        a = upsell.find('.premium a')
+        eq_(a.text(), unicode(premie.name))
+        eq_(a.attr('href').endswith('?src=discovery-upsell'), True)
 
 
 class TestDownloadSources(amo.tests.TestCase):

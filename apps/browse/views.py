@@ -162,17 +162,21 @@ def themes(request, category=None):
                          'search_cat': '%s,0' % amo.ADDON_THEME})
 
 
-def _extensions(request, category=None, is_impala=False, template=None):
+@mobile_template('browse/{mobile/}extensions.html')
+def extensions(request, category=None, template=None):
     TYPE = amo.ADDON_EXTENSION
-    sort = request.GET.get('sort')
+
     if category is not None:
         q = Category.objects.filter(application=request.APP.id, type=TYPE)
         category = get_object_or_404(q, slug=category)
 
+    sort = request.GET.get('sort')
     if not sort and not request.MOBILE and category and category.count > 4:
-        return category_landing(request, category, is_impala)
+        return category_landing(request, category)
 
-    addons, filter = addon_listing(request, [TYPE], is_impala=is_impala)
+    addons, filter = addon_listing(request, [TYPE], is_impala=True)
+    sorting = filter.field
+    src = 'featured' if sorting == 'featured' else 'category'
 
     if category:
         addons = addons.filter(categories__id=category.id)
@@ -180,19 +184,9 @@ def _extensions(request, category=None, is_impala=False, template=None):
     addons = amo.utils.paginate(request, addons, count=addons.count())
     return jingo.render(request, template,
                         {'category': category, 'addons': addons,
-                         'filter': filter, 'sorting': filter.field,
-                         'sort_opts': filter.opts, 'sort': sort,
+                         'filter': filter, 'sorting': sorting,
+                         'sort_opts': filter.opts, 'src': src,
                          'search_cat': '%s,0' % TYPE})
-
-
-@mobile_template('browse/{mobile/}extensions.html')
-def extensions(request, category=None, template=None):
-    return _extensions(request, category, False, template)
-
-
-def impala_extensions(request, category=None, template=None):
-    return _extensions(request, category, True,
-                       'browse/impala/extensions.html')
 
 
 @mobile_template('browse/{mobile/}extensions.html')
@@ -212,7 +206,8 @@ def es_extensions(request, category=None, template=None):
                                 is_disabled=False,
                                 status__in=amo.REVIEWED_STATUSES))
     filter = ESAddonFilter(request, qs, key='sort', default='popular')
-    qs = filter.qs
+    qs, sorting = filter.qs, filter.field
+    src = 'featured' if sorting == 'featured' else 'category'
 
     if category:
         qs = qs.filter(category=category.id)
@@ -220,7 +215,8 @@ def es_extensions(request, category=None, template=None):
 
     return jingo.render(request, template,
                         {'category': category, 'addons': addons,
-                         'sorting': filter.field, 'sort_opts': filter.opts,
+                         'filter': filter, 'sorting': sorting,
+                         'sort_opts': filter.opts,
                          'search_cat': '%s,0' % TYPE})
 
 
@@ -245,16 +241,12 @@ class CategoryLandingFilter(BaseFilter):
         return manual_order(filter, self.ids, pk_name='addons.id')
 
 
-def category_landing(request, category, is_impala=False):
+def category_landing(request, category):
     base = (Addon.objects.listed(request.APP).exclude(type=amo.ADDON_PERSONA)
             .filter(categories__id=category.id))
     filter = CategoryLandingFilter(request, base, category,
                                    key='browse', default='featured')
-    if is_impala:
-        template = 'browse/impala/category_landing.html'
-    else:
-        template = 'browse/category_landing.html'
-    return jingo.render(request, template,
+    return jingo.render(request, 'browse/impala/category_landing.html',
                         {'category': category, 'filter': filter,
                          'sorting': filter.field,
                          'search_cat': '%s,0' % category.type})
@@ -266,7 +258,7 @@ def es_category_landing(request, category):
                                 is_disabled=False,
                                 status__in=amo.REVIEWED_STATUSES))
     filter = ESAddonFilter(request, qs, key='sort', default='popular')
-    return jingo.render(request, 'browse/category_landing.html',
+    return jingo.render(request, 'browse/impala/category_landing.html',
                         {'category': category, 'filter': filter,
                          'search_cat': '%s,0' % category.type})
 
@@ -444,10 +436,3 @@ def search_tools(request, category=None):
                         {'categories': categories, 'category': category,
                          'addons': addons, 'filter': filter,
                          'search_extensions_filter': sidebar_ext})
-
-
-@mobile_template('browse/{mobile/}featured.html')
-def featured(request, category=None, template=None):
-    ids = Addon.featured_random(request.APP, request.LANG)
-    addons = manual_order(Addon.objects.exclude(type=amo.ADDON_PERSONA), ids)
-    return jingo.render(request, template, {'addons': addons})
