@@ -111,7 +111,11 @@ function initPreview() {
             updatePersona();
         },
         upload_start = function(e, file) {
-            var $p = $(this).closest('.row');
+            var $p = $(this).closest('.row'),
+                $errors = $p.find('.errorlist');
+            if ($errors.length == 2) {
+                $errors.eq(0).remove();
+            }
             $p.find('.errorlist').html('');
             $p.find('.preview').addClass('loading').removeClass('error-loading');
             $('#submit-persona button').attr('disabled', true);
