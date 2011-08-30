@@ -54,7 +54,7 @@ class Webapp(Addon):
         return cls.uncached.filter(status=status)
 
     @property
-    def get_origin(self):
+    def origin(self):
         parsed = urlparse.urlparse(self.manifest_url)
         return '%s://%s' % (parsed.scheme, parsed.netloc)
 
