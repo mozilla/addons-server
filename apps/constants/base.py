@@ -254,7 +254,7 @@ PAYPAL_CURRENCIES = {
     'DKK': _('Danish Krone'),
     'EUR': _('Euro'),
     'HKD': _('Hong Kong Dollar'),
-    'HUF': _('Hungararian Forint'),
+    'HUF': _('Hungarian Forint'),
     'ILS': _('Israeli New Sheqel'),
     'JPY': _('Japanese Yen'),
     'MYR': _('Malaysian Ringgit'),
