@@ -1168,9 +1168,6 @@ def submit_step(step):
                 elif step != max_step:
                     # We couldn't find a step, so we must be done.
                     return redirect('devhub.submit.7', addon.slug)
-
-                accept_wa = waffle.flag_is_active(request, 'accept-webapps')
-
             kw['step'] = Step(step, max_step)
             return f(request, *args, **kw)
         # Tell @dev_required that this is a function in the submit flow so it

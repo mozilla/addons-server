@@ -105,7 +105,7 @@ $(document).ready(function() {
         $('#upload-webapp-url').bind("keyup change blur", function(e) {
             var $this = $(this),
                 $button = $('#validate_app'),
-                match = $this.val().match(/http:\/\/(.*)\/(.*)\.(webapp|json)/);
+                match = $this.val().match(/http(.*)\/(.*)\.(webapp|json)/);
           if($this.attr('data-input') != $this.val()) {
               $button.attr('disabled', !match);
               $this.attr('data-input', $this.val());
