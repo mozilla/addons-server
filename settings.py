@@ -470,6 +470,7 @@ MINIFY_BUNDLES = {
             'css/legacy/jquery-lightbox.css',
         ),
         'zamboni/devhub': (
+            'css/impala/tooltips.less',
             'css/zamboni/developers.css',
             'css/zamboni/docs.less',
             'css/impala/developers.less',

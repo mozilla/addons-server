@@ -620,12 +620,41 @@ class NewsletterForm(forms.Form):
 
 
 class PackagerBasicForm(forms.Form):
-    name = forms.CharField()
-    description = forms.CharField(required=False, widget=forms.Textarea)
-    version = forms.CharField(max_length=32)
-    id = forms.CharField()
-    author_name = forms.CharField()
-    contributors = forms.CharField(required=False, widget=forms.Textarea)
+    name = forms.CharField(help_text=_lazy(u'Give your add-on a name. The most '
+                                            'successful add-ons give some '
+                                            'indication of their function in '
+                                            'their name.'))
+    description = forms.CharField(required=False, widget=forms.Textarea,
+                                  help_text=_lazy(u'Briefly describe your '
+                                                   'add-on in one sentence. '
+                                                   'This appears in the '
+                                                   'Add-ons Manager.'))
+    version = forms.CharField(max_length=32,
+                              help_text=_lazy(u'Enter your initial version '
+                                               'number. Depending on the '
+                                               'number of releases and your '
+                                               'preferences, this is usually '
+                                               '0.1 or 1.0'))
+    id = forms.CharField(help_text=_lazy(u'Each add-on requires a unique ID in '
+                                          'the form of a UUID or an email '
+                                          'address, such as '
+                                          'addon-name@developer.com. The email '
+                                          'address does not have to be valid.'))
+
+    # Package Name help_text (bug 683306):
+    # The package name of your add-on used within the browser. This should be a
+    # short form of its name, for example, Test Extension might be
+    # testextension.
+
+    author_name = forms.CharField(help_text=_lazy(u'Enter the name of the '
+                                                   'person or entity to be '
+                                                   'listed as the author of '
+                                                   'this add-on.'))
+    contributors = forms.CharField(required=False, widget=forms.Textarea,
+                                   help_text=_lazy(u'Enter the names of any '
+                                                    'other contributors to '
+                                                    'this extension, one '
+                                                    'per line.'))
 
     def clean_name(self):
         name_regex = re.compile('(mozilla|firefox)', re.I)
@@ -657,9 +686,11 @@ class PackagerBasicForm(forms.Form):
 class PackagerCompatForm(forms.Form):
     enabled = forms.BooleanField(required=False)
     min_ver = forms.ModelChoiceField(AppVersion.objects.none(),
-                                     empty_label=None)
+                                     empty_label=None,
+                                     label=_lazy(u'Minimum'))
     max_ver = forms.ModelChoiceField(AppVersion.objects.none(),
-                                     empty_label=None)
+                                     empty_label=None,
+                                     label=_lazy(u'Maximum'))
 
     def __init__(self, *args, **kwargs):
         super(PackagerCompatForm, self).__init__(*args, **kwargs)
@@ -724,25 +755,32 @@ PackagerCompatFormSet = formset_factory(PackagerCompatForm,
 class PackagerFeaturesForm(forms.Form):
     about_dialog = forms.BooleanField(
             required=False,
-            label=_lazy('About dialog'))
+            label=_lazy(u'About dialog'),
+            help_text=_lazy(u'Creates a standard About dialog for your extension'))
     preferences_dialog = forms.BooleanField(
             required=False,
-            label=_lazy('Preferences Dialog'))
+            label=_lazy(u'Preferences Dialog'),
+            help_text=_lazy(u'Creates an example Preferences window'))
     toolbar = forms.BooleanField(
             required=False,
-            label=_lazy('Toolbar'))
+            label=_lazy(u'Toolbar'),
+            help_text=_lazy(u'Creates an example toolbar for your extension'))
     toolbar_button = forms.BooleanField(
             required=False,
-            label=_lazy('Toolbar button'))
+            label=_lazy(u'Toolbar button'),
+            help_text=_lazy(u'Creates an example button on the browser toolbar'))
     main_menu_command = forms.BooleanField(
             required=False,
-            label=_lazy('Main menu command'))
+            label=_lazy(u'Main menu command'),
+            help_text=_lazy(u'Creates an item on the Tools menu'))
     context_menu_command = forms.BooleanField(
             required=False,
-            label=_lazy('Context menu command'))
+            label=_lazy(u'Context menu command'),
+            help_text=_lazy(u'Creates a context menu item for images'))
     sidebar_support = forms.BooleanField(
             required=False,
-            label=_lazy('Sidebar support'))
+            label=_lazy(u'Sidebar support'),
+            help_text=_lazy(u'Creates an example sidebar panel'))
 
 
 class CheckCompatibilityForm(happyforms.Form):
