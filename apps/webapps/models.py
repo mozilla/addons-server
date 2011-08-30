@@ -1,3 +1,5 @@
+import urlparse
+
 from django.conf import settings
 from django.db import models
 
@@ -50,6 +52,11 @@ class Webapp(Addon):
         status = (amo.STATUS_PENDING if settings.WEBAPPS_RESTRICTED
                   else amo.STATUS_LITE)
         return cls.uncached.filter(status=status)
+
+    @property
+    def get_origin(self):
+        parsed = urlparse.urlparse(self.manifest_url)
+        return '%s://%s' % (parsed.scheme, parsed.netloc)
 
 
 # These are the translated strings we want to pull in.
