@@ -1247,6 +1247,7 @@ class AddonDependency(models.Model):
 
     class Meta:
         db_table = 'addons_dependencies'
+        unique_together = ('addon', 'dependent_addon')
 
 
 class BlacklistedGuid(amo.models.ModelBase):
