@@ -334,24 +334,41 @@ class TestDiffHelper(amo.tests.TestCase):
         open(path, 'w').write(data)
 
 
-class TestSafeUnzipFile(amo.tests.TestCase):
+class TestSafeUnzipFile(amo.tests.TestCase, amo.tests.AMOPaths):
 
     #TODO(andym): get full coverage for existing SafeUnzip methods, most
     # is covered in the file viewer tests.
     @patch.object(settings, 'FILE_UNZIP_SIZE_LIMIT', 5)
     def test_unzip_limit(self):
-        zip = SafeUnzip(get_file('langpack-localepicker.xpi'))
+        zip = SafeUnzip(self.xpi_path('langpack-localepicker'))
         self.assertRaises(forms.ValidationError, zip.is_valid)
 
     def test_unzip_fatal(self):
-        zip = SafeUnzip(get_file('search.xml'))
+        zip = SafeUnzip(self.xpi_path('search.xml'))
         self.assertRaises(zipfile.BadZipfile, zip.is_valid)
 
     def test_unzip_not_fatal(self):
-        zip = SafeUnzip(get_file('search.xml'))
+        zip = SafeUnzip(self.xpi_path('search.xml'))
         assert not zip.is_valid(fatal=False)
 
     def test_extract_path(self):
-        zip = SafeUnzip(get_file('langpack-localepicker.xpi'))
+        zip = SafeUnzip(self.xpi_path('langpack-localepicker'))
         assert zip.is_valid()
         assert'locale browser de' in zip.extract_path('chrome.manifest')
+
+    def test_not_secure(self):
+        zip = SafeUnzip(self.xpi_path('extension'))
+        zip.is_valid()
+        assert not zip.is_signed()
+
+    def test_is_secure(self):
+        print 'test_is_secure'
+        zip = SafeUnzip(self.xpi_path('signed'))
+        zip.is_valid()
+        assert zip.is_signed()
+
+    def test_is_broken(self):
+        zip = SafeUnzip(self.xpi_path('signed'))
+        zip.is_valid()
+        zip.info[2].filename = 'META-INF/foo.sf'
+        assert not zip.is_signed()

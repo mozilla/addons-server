@@ -22,7 +22,6 @@ from django.utils.translation import trans_real as translation
 
 import rdflib
 import redisutils
-from statsd import statsd
 from tower import ugettext as _
 
 import amo
@@ -38,6 +37,7 @@ class ParseError(forms.ValidationError):
 
 
 VERSION_RE = re.compile('^[-+*.\w]{,32}$')
+SIGNED_RE = re.compile('^META\-INF/(\w+)\.(rsa|sf)$')
 # The default update URL.
 default = ('https://versioncheck.addons.mozilla.org/update/VersionCheck.php?'
     'reqVersion=%REQ_VERSION%&id=%ITEM_ID%&version=%ITEM_VERSION%&'
@@ -253,6 +253,18 @@ class SafeUnzip(object):
         self.info = _info
         self.zip = zip
         return True
+
+    def is_signed(self):
+        """Tells us if an addon is signed."""
+        finds = []
+        for info in self.info:
+            match = SIGNED_RE.match(info.filename)
+            if match:
+                name, ext = match.groups()
+                # If it's rsa or sf, just look for the opposite.
+                if (name, {'rsa': 'sf', 'sf': 'rsa'}[ext]) in finds:
+                    return True
+                finds.append((name, ext))
 
     def extract_from_manifest(self, manifest):
         """

@@ -109,7 +109,9 @@ class AMOPaths(object):
         return os.path.join(settings.ROOT, path)
 
     def xpi_path(self, name):
-        return self.file_fixture_path(name + '.xpi')
+        if not os.path.splitext(name)[-1]:
+            return self.file_fixture_path(name + '.xpi')
+        return self.file_fixture_path(name)
 
     def xpi_copy_over(self, file, name):
         """Copies over a file into place for tests."""
