@@ -116,11 +116,14 @@
             display: none;
         }
     }
+    &.author,
+    &.performance-note {
+        padding-left: 104px;
+    }
     &.performance-note {
         background: url(../../img/impala/turtle.png) no-repeat 28px 16px #fff8dc;
         border-color: #e2dbbf;
         .box-shadow(0 -1px 0 #F7F0D5 inset, 0 1px 0 rgba(0, 0, 0, 0.05));
-        padding-left: 104px;
     }
     &.upsell,
     &.dependencies {
@@ -147,9 +150,12 @@
 }
 
 .html-rtl .notice {
+    &.author,
+    &.performance-note {
+        padding: 14px 104px 14px 14px;
+    }
     &.performance-note {
         background-position: 96% 16px;
-        padding: 14px 104px 14px 14px;
     }
     &.upsell {
         .premium {
