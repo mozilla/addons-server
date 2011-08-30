@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf8 -*-
 import json
 import os
 import re
@@ -744,39 +744,6 @@ class TestMarketplace(amo.tests.TestCase):
         eq_(res.status_code, 200)
         doc = pq(res.content)
         eq_(len(doc('.error')), 1)
-
-    @mock.patch('addons.models.Addon.is_premium')
-    def test_premium_details(self, is_premium):
-        """
-        For premium addons, the premium details form is displayed.
-        """
-        is_premium.return_value = True
-
-        doc = pq(self.client.get(self.url).content)
-        self.assertFalse(doc("#marketplace-setup").hasClass("hidden"))
-
-    @mock.patch('addons.models.Addon.is_premium')
-    def test_no_premium_details(self, is_premium):
-        """
-        For non-premium addons, the premium details form is not
-        displayed.
-        """
-        is_premium.return_value = False
-
-        doc = pq(self.client.get(self.url).content)
-        self.assertEqual(doc("#marketplace-setup"), [])
-
-    @mock.patch('addons.models.Addon.can_become_premium')
-    @mock.patch('addons.models.Addon.is_premium')
-    def test_premium_paypal_id(self, can_become_premium, is_premium):
-        """
-        The premium addon form asks for a PayPal ID.
-        """
-        can_become_premium.return_value = True
-        is_premium.return_value = True
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        eq_(int(doc('#mp_paypal_id').attr('size')), 50)
 
 
 class TestDelete(amo.tests.TestCase):

@@ -199,8 +199,7 @@ class CharityForm(happyforms.ModelForm):
         model = Charity
 
     def clean_paypal(self):
-        check_paypal_id(self.cleaned_data['paypal'],
-                        _('PayPal ID required to accept contributions.'))
+        check_paypal_id(self.cleaned_data['paypal'])
         return self.cleaned_data['paypal']
 
     def save(self, commit=True):
@@ -209,27 +208,6 @@ class CharityForm(happyforms.ModelForm):
         if self.changed_data and self.instance.id:
             self.instance.id = None
         return super(CharityForm, self).save(commit)
-
-
-class SalesForm(TranslationFormMixin, happyforms.ModelForm):
-    class Meta:
-        model = Addon
-        fields = ('paypal_id',)
-        widgets = {'is_premium': forms.HiddenInput(attrs={"value": "1"}),
-                   'paypal_id':
-                       forms.TextInput(attrs={'size': '50',
-                                              'id': 'mp_paypal_id'})}
-
-    def clean(self):
-        data = self.cleaned_data
-        try:
-            if not self.errors:
-                check_paypal_id(
-                    data['paypal_id'],
-                    _('PayPal ID required to sell premium add-ons.'))
-        except forms.ValidationError, e:
-            self.errors['paypal_id'] = self.error_class(e.messages)
-        return data
 
 
 class ContribForm(TranslationFormMixin, happyforms.ModelForm):
@@ -269,9 +247,7 @@ class ContribForm(TranslationFormMixin, happyforms.ModelForm):
         data = self.cleaned_data
         try:
             if not self.errors and data['recipient'] == 'dev':
-                check_paypal_id(
-                    data['paypal_id'],
-                    _('PayPal ID required to accept contributions.'))
+                check_paypal_id(data['paypal_id'])
         except forms.ValidationError, e:
             self.errors['paypal_id'] = self.error_class(e.messages)
         # thankyou_note is a dict since it's a Translation.
@@ -293,10 +269,10 @@ class ContribForm(TranslationFormMixin, happyforms.ModelForm):
         return amount
 
 
-def check_paypal_id(paypal_id, missing_msg):
+def check_paypal_id(paypal_id):
     if not paypal_id:
         raise forms.ValidationError(
-            missing_msg)
+            _('PayPal ID required to accept contributions.'))
     try:
         valid, msg = paypal.check_paypal_id(paypal_id)
         if not valid:

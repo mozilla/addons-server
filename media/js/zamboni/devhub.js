@@ -755,14 +755,6 @@ function initPayments() {
         $(".intro, .intro-blah").show();
         $("#marketplace-confirm").hide();
     }));
-    $("#marketplace-submit").click(_pd(function(e) {
-        $("#marketplace-setup").removeClass("hidden").show();                                         
-        $("#marketplace-confirm").hide(); 
-    }));
-    $("#setup-cancel").click(_pd(function (e) {
-        $(".intro, .intro-blah").show();
-        $("#marketplace-setup").hide();
-    }));
     $(".recipient").change(function (e) {
         var v = $(this).val();
         $(".paypal").hide(200);

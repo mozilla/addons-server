@@ -397,7 +397,6 @@ def payments(request, addon_id, addon):
                                      prefix='charity')
     contrib_form = forms.ContribForm(request.POST or None, instance=addon,
                                      initial=forms.ContribForm.initial(addon))
-    sales_form = forms.SalesForm(request.POST or None, instance=addon)
     profile_form = forms.ProfileForm(request.POST or None, instance=addon,
                                      required=True)
     if request.method == 'POST':
@@ -413,19 +412,14 @@ def payments(request, addon_id, addon):
                 addon.save()
                 messages.success(request, _('Changes successfully saved.'))
                 amo.log(amo.LOG.EDIT_CONTRIBUTIONS, addon)
+
                 return redirect('devhub.addons.payments', addon.slug)
-        elif request.POST.get('is_premium') and sales_form.is_valid():
-            addon = sales_form.save(commit=False)
-            addon.premium_type = amo.ADDON_PREMIUM
-            addon.save()
-            return redirect('devhub.addons.payments', addon.slug)
-    errors = (charity_form.errors or contrib_form.errors or profile_form.errors or (request.POST.get('is_premium') and sales_form.errors))
+    errors = charity_form.errors or contrib_form.errors or profile_form.errors
     if errors:
         messages.error(request, _('There were errors in your submission.'))
     return jingo.render(request, 'devhub/payments/payments.html',
         dict(addon=addon, charity_form=charity_form, errors=errors,
-             contrib_form=contrib_form, profile_form=profile_form,
-             sales_form=sales_form, premium=addon.is_premium()))
+             contrib_form=contrib_form, profile_form=profile_form))
 
 
 def _save_charity(addon, contrib_form, charity_form):
