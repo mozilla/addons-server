@@ -187,25 +187,7 @@ def resize_icon(src, dst, size, **kw):
 
 @task
 @set_modified_on
-def resize_preview(src, thumb_dst, full_dst, **kw):
-    """Resizes preview images."""
-    log.info('[1@None] Resizing preview: %s' % thumb_dst)
-    try:
-        # Generate the thumb.
-        size = amo.ADDON_PREVIEW_SIZES[0]
-        resize_image(src, thumb_dst, size, remove_src=False)
-
-        # Resize the original.
-        size = amo.ADDON_PREVIEW_SIZES[1]
-        resize_image(src, full_dst, size, remove_src=True)
-        return True
-    except Exception, e:
-        log.error("Error saving preview: %s" % e)
-
-
-@task
-@set_modified_on
-def resize_preview_store_size(src, instance, **kw):
+def resize_preview(src, instance, **kw):
     """Resizes preview images and stores the sizes on the preview."""
     thumb_dst, full_dst = instance.thumbnail_path, instance.image_path
     sizes = {}
