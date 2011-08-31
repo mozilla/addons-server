@@ -47,7 +47,9 @@
   <div class="island c listing">
     <h2>{{ _("Add-ons I've created") }}</h2>
     {% cache addons.object_list %}
-      {{ impala_addon_listing_items(addons.object_list, field=sorting, src='category') }}
+      <div class="items">
+        {{ impala_addon_listing_items(addons.object_list, field=sorting, src='userprofile') }}
+      </div>
     {% endcache %}
   </div>
 {% endif %}
@@ -59,7 +61,9 @@
     {% if reviews %}
       {% for review in reviews %}
         {% set addon = review.addon %}
-        {% include "reviews/impala/review.html" %}
+        {% with show_addon = True %}
+          {% include "reviews/impala/review.html" %}
+        {% endwith %}
       {% endfor %}
     {% else %}
       <p class="noreviews">{{ _('No add-on reviews yet.') }}</p>

@@ -1,5 +1,10 @@
 @import 'lib';
 
+#reviews h2 + .article {
+    border-top: 1px dotted @border-blue;
+    padding: 1em;
+}
+
 #reviews .review {
     border-bottom: 1px dotted @border-blue;
     overflow: hidden;
@@ -10,7 +15,7 @@
         }
     }
     padding: 1em 0;
-    h3 {
+    h3, h4 {
         color: #333;
         font-size: 16px;
         line-height: 16px;
@@ -21,6 +26,14 @@
         .stars:not(:first-child) {
             margin-left: .5em;
         }
+    }
+    h3.addon-name {
+        font-style: normal;
+        font-weight: bold;
+        margin: 0 0 .5em;
+    }
+    h4 {
+        font-size: 14px;
     }
     .byline {
         font-style: italic;
