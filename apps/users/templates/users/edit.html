@@ -29,7 +29,7 @@
     <div id="user-edit" class="tab-wrapper">
       <div id="user-account" class="tab-panel">
         <fieldset id="acct-account">
-          <legend>{{ _('MY ACCOUNT') }}</legend>
+          <legend>{{ _('My Account') }}</legend>
           <p class="sub_legend">
             {% trans -%}
               Manage basic account information, such as username and email address.
@@ -63,7 +63,7 @@
         </fieldset>
 
         <fieldset id="acct-password">
-          <legend>{{ _('PASSWORD') }}</legend>
+          <legend>{{ _('Password') }}</legend>
           <p class="sub_legend">
             {% trans reset_url=url('users.pwreset') -%}
             Change your password.  If you forgot your password, you can <a href="{{ reset_url }}">use the reset form</a>.
@@ -92,7 +92,7 @@
           </ol>
         </fieldset>
         <fieldset id="profile-personal">
-          <legend>{{ _('PROFILE') }}</legend>
+          <legend>{{ _('Profile') }}</legend>
           <p class="sub_legend">
             {% trans -%}
               Give us a bit more information about yourself.  All these fields
@@ -137,7 +137,7 @@
           </ol>
         </fieldset>
         <fieldset id="profile-detail" class="clearboth">
-          <legend>{{ _('DETAILS') }}</legend>
+          <legend>{{ _('Details') }}</legend>
           <p class="sub_legend">
             {% trans -%}
               Introduce yourself to the community, if you like!
@@ -151,7 +151,7 @@
           </div>
         </fieldset> {# /.profile-detail #}
         <fieldset id="profile-detail" class="clearboth">
-          <legend>{{ _('MISCELLANEOUS') }}</legend>
+          <legend>{{ _('Miscellaneous') }}</legend>
           <p class="sub_legend">
             {% trans -%}
               Decide what collections should be shown in your profile.
@@ -176,7 +176,7 @@
         </fieldset>
 
         <fieldset id="acct-notify">
-          <legend>{{ _('NOTIFICATIONS') }}</legend>
+          <legend>{{ _('Notifications') }}</legend>
           <p class="sub_legend">
             {% trans %}
             From time to time, Mozilla may send you email about upcoming
@@ -198,7 +198,7 @@
 
         {% if 'admin_log' in form.fields %}
             <fieldset id="acct-admin">
-              <legend>{{ _('ADMIN') }}</legend>
+              <legend>{{ _('Admin') }}</legend>
               <ul class="formfields">
                 <li>
                   {{ form.admin_log.label }} {{ required() }}
@@ -225,9 +225,9 @@
             </fieldset>
         {% endif %}
       </div>{# /#user-profile #}
-      <p>
-        <button type="submit" class="button prominent">{{ _('Update') }}</button>
+      <p class="footer-submit">
         <a href="{{ url('users.delete') }}" class="delete">{{ _('Delete Account') }}</a>
+        <button type="submit" class="button prominent">{{ _('Update Account') }}</button>
       </p>
     </div>{# /.tab-wrapper #}
   </form>
