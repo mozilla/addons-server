@@ -186,9 +186,7 @@ $(document).ready(function() {
                     $.ajax({
                         url: results.url,
                         dataType: 'json',
-                        success: function(r) {
-                            check_webapp_validation(results);
-                        },
+                        success: check_webapp_validation,
                         error: function(xhr, textStatus, errorThrown) {
                             /*
                             var errOb = parseErrorsFromJson(xhr.responseText);
