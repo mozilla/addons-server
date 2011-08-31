@@ -157,9 +157,29 @@ def themes(request, category=None):
     return jingo.render(request, 'browse/themes.html',
                         {'categories': categories,
                          'themes': themes, 'category': category,
-                         'sorting': filter.field,
                          'sort_opts': filter.opts,
                          'search_cat': '%s,0' % amo.ADDON_THEME})
+
+
+def impala_themes(request, category=None):
+    TYPE = amo.ADDON_THEME
+    if category is not None:
+        q = Category.objects.filter(application=request.APP.id, type=TYPE)
+        category = get_object_or_404(q, slug=category)
+
+    addons, filter = addon_listing(request, [TYPE], is_impala=True)
+    sorting = filter.field
+    src = 'cb-btn-%s' % sorting
+    dl_src = 'cb-dl-%s' % sorting
+
+    if category is not None:
+        addons = addons.filter(categories__id=category.id)
+
+    addons = amo.utils.paginate(request, addons, 16, count=addons.count())
+    return jingo.render(request, 'browse/impala/themes.html',
+                {'section': 'themes', 'addon_type': TYPE, 'addons': addons,
+                 'category': category, 'filter': filter, 'sorting': sorting,
+                 'search_cat': '%s,0' % TYPE, 'src': src, 'dl_src': dl_src})
 
 
 @mobile_template('browse/{mobile/}extensions.html')
@@ -184,10 +204,11 @@ def extensions(request, category=None, template=None):
 
     addons = amo.utils.paginate(request, addons, count=addons.count())
     return jingo.render(request, template,
-                        {'category': category, 'addons': addons,
+                        {'section': 'extensions', 'addon_type': TYPE,
+                         'category': category, 'addons': addons,
                          'filter': filter, 'sorting': sorting,
-                         'sort_opts': filter.opts, 'src': src,
-                         'dl_src': dl_src, 'search_cat': '%s,0' % TYPE})
+                         'src': src, 'dl_src': dl_src,
+                         'search_cat': '%s,0' % TYPE})
 
 
 @mobile_template('browse/{mobile/}extensions.html')
@@ -208,7 +229,8 @@ def es_extensions(request, category=None, template=None):
                                 status__in=amo.REVIEWED_STATUSES))
     filter = ESAddonFilter(request, qs, key='sort', default='popular')
     qs, sorting = filter.qs, filter.field
-    src = 'featured' if sorting == 'featured' else 'category'
+    src = 'cb-btn-%s' % sorting
+    dl_src = 'cb-dl-%s' % sorting
 
     if category:
         qs = qs.filter(category=category.id)

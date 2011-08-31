@@ -11,7 +11,7 @@
   <h1>{{ title }}</h1>
   <div class="island hero c listing">
     <a href="{{ feed_url }}" id="subscribe">{{ _('Subscribe') }}</a>
-    {{ impala_addon_listing_header(base_url, filter.opts, sorting, filter.extras) }}
+    {{ impala_addon_listing_header(base_url, search_filter=filter) }}
     <div class="items">
       {{ impala_addon_listing_items(addons.object_list, sorting, src=src) }}
     </div>

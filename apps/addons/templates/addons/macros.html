@@ -1,16 +1,34 @@
 {% macro vital(addon, type) %}
   <div class="vital">
-    {% if type == 'rating' %}
+    {% if type in ('updated', 'created') %}
+      <span class="updated">
+        {% if sorting == 'updated' %}
+          {# L10n: {0} is a date. #}
+          {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
+        {% else %}
+          {# L10n: {0} is a date. #}
+          {{ _('Added {0}')|f(addon.created|datetime) }}
+        {% endif %}
+      </span>
+    {% elif type == 'rating' %}
       {{ impala_reviews_link(addon) }}
-    {% endif %}
-    {% if type == 'adu' %}
+    {% elif type in ('downloads', 'adu') %}
       <span class="adu">
-        {% trans cnt=addon.average_daily_users,
-                 num=addon.average_daily_users|numberfmt %}
-          {{ num }} user
-        {% pluralize %}
-          {{ num }} users
-        {% endtrans %}
+        {% if type == 'downloads' %}
+          {% trans cnt=addon.weekly_downloads,
+                   num=addon.weekly_downloads|numberfmt %}
+            {{ num }} weekly download
+          {% pluralize %}
+            {{ num }} weekly downloads
+          {% endtrans %}
+        {% else %}
+          {% trans cnt=addon.average_daily_users,
+                   num=addon.average_daily_users|numberfmt %}
+            {{ num }} user
+          {% pluralize %}
+            {{ num }} users
+          {% endtrans %}
+        {% endif %}
       </span>
     {% endif %}
   </div>

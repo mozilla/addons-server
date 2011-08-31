@@ -203,8 +203,13 @@ def addon_listing_header(context, url_base, sort_opts, selected):
 
 @register.inclusion_tag('addons/impala/listing/sorter.html')
 @jinja2.contextfunction
-def impala_addon_listing_header(context, url_base, sort_opts, selected,
-                                extra_sort_opts={}):
+def impala_addon_listing_header(context, url_base, sort_opts={}, selected=None,
+                                extra_sort_opts={}, search_filter=None):
+    if search_filter:
+        selected = search_filter.field
+        sort_opts = search_filter.opts
+        if hasattr(search_filter, 'extras'):
+            extra_sort_opts = search_filter.extras
     # When an "extra" sort option becomes selected, it will appear alongside
     # the normal sort options.
     old_extras = extra_sort_opts
@@ -323,6 +328,16 @@ def persona_grid(context, addons):
 @register.inclusion_tag('addons/impala/persona_grid.html')
 def impala_persona_grid(context, personas, src=None, pagesize=6):
     pages = chunked(personas, pagesize)
+    return new_context(**locals())
+
+
+@register.filter
+@jinja2.contextfilter
+@register.inclusion_tag('addons/impala/theme_grid.html')
+def theme_grid(context, themes, src=None, dl_src=None):
+    src = context.get('src', src)
+    if not dl_src:
+        dl_src = context.get('dl_src', src)
     return new_context(**locals())
 
 

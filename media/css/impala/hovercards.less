@@ -35,6 +35,14 @@
         max-height: 2.6em;
         overflow: hidden;
     }
+    .install-shell .extra {
+        + .extra {
+            margin: 0;
+        }
+        .notavail {
+            margin: 0 0 2px;
+        }
+    }
     h3 {
         color: @link;
         font-weight: bold;
@@ -54,7 +62,7 @@
             margin-top: 0;
         }
     }
-    a {
+    > a {
         text-decoration: none;
     }
     .adu {
@@ -152,8 +160,8 @@
                 padding: 0;
             }
         }
-        .more .vital {
-            border-top: 1px dotted #CCCCCC;
+        &:hover .vital {
+            border-top: 1px dotted #ccc;
             padding: 8px 0 0;
             margin: 8px 0 4px;
         }
@@ -220,7 +228,8 @@
         line-height: 12px;
     }
 }
-.featured {
+.featured,
+.theme-grid {
     h3 {
         font-size: 16px;
         line-height: 18px;
@@ -265,6 +274,49 @@
             .more {
                 padding: 14px 0 0;
             }
+        }
+    }
+}
+.theme-grid {
+    li {
+        height: 205px;
+        margin-bottom: 1em;
+        width: 180px;
+    }
+    .incompatible {
+        img {
+            opacity: .4;
+        }
+        &:hover {
+            img {
+                opacity: 1;
+            }
+            > .notavail {
+                display: none;
+            }
+        }
+        > .notavail {
+            color: @note-gray;
+            display: block;
+            font: 10px/10px Arial, sans-serif;
+            margin-top: 8px;
+        }
+    }
+    .hovercard.addon .summary {
+        height: 157px;
+        div {
+            height: 135px;
+            width: 160px;
+            img {
+                width: 142px;
+            }
+        }
+    }
+    .hovercard.addon > .vital {
+        font-size: 11px;
+        margin-top: 8px;
+        .adu, .updated {
+            color: #390;
         }
     }
 }

@@ -3,14 +3,25 @@
 {% if category %}
   {% set title = category.name %}
 {% else %}
-  {% set title = {'featured': _('Featured Extensions'),
-                  'users': _('Most Popular Extensions'),
-                  'rating': _('Top-Rated Extensions'),
-                  'created': _('Newest Extensions'),
-                  'name': _('Extensions by Name'),
-                  'popular': _('Extensions by Weekly Downloads'),
-                  'updated': _('Recently Updated Extensions'),
-                  'hotness': _('Up & Coming Extensions')}.get(sorting) %}
+  {% if section == 'extensions' %}
+    {% set title = {'featured': _('Featured Extensions'),
+                    'users': _('Most Popular Extensions'),
+                    'rating': _('Top-Rated Extensions'),
+                    'created': _('Newest Extensions'),
+                    'name': _('Extensions by Name'),
+                    'popular': _('Extensions by Weekly Downloads'),
+                    'updated': _('Recently Updated Extensions'),
+                    'hotness': _('Up & Coming Extensions')}.get(sorting) %}
+  {% elif section == 'themes' %}
+    {% set title = {'featured': _('Featured Themes'),
+                    'users': _('Most Popular Themes'),
+                    'rating': _('Top-Rated Themes'),
+                    'created': _('Newest Themes'),
+                    'name': _('Themes by Name'),
+                    'popular': _('Themes by Weekly Downloads'),
+                    'updated': _('Recently Updated Themes'),
+                    'hotness': _('Up & Coming Themes')}.get(sorting) %}
+  {% endif %}
 {% endif %}
 
 {% block title %}
@@ -18,8 +29,7 @@
 {% endblock %}
 
 {% if not request.MOBILE %}
-  {% block bodyclass %}s-{{ sorting }}{% endblock %}
-
+  {% block bodyclass %}{{ section }} s-{{ sorting }}{% endblock %}
   {% if category %}
     {% block extrahead %}
       <style>
@@ -36,21 +46,22 @@
   {% endif %}
 {% endif %}
 
-{% if category %}
-  {% set feed = url('browse.extensions.rss', category.slug) %}
-{% else %}
-  {% set feed = url('browse.extensions.rss') %}
+{% if section == 'extensions' %}
+  {% if category %}
+    {% set feed = url('browse.extensions.rss', category.slug) %}
+  {% else %}
+    {% set feed = url('browse.extensions.rss') %}
+  {% endif %}
+  {% set feed_url = feed|urlparams(sort=sorting) %}
+  {% block rss_feed %}
+    <link rel="alternate" type="application/rss+xml" title="RSS"
+          href="{{ feed_url }}">
+  {% endblock %}
 {% endif %}
 
-{% set feed_url = feed|urlparams(sort=sorting) %}
-
-{% block rss_feed %}
-  <link rel="alternate" type="application/rss+xml" title="RSS"
-        href="{{ feed_url }}">
-{% endblock %}
-
+{% set browse_url = 'browse.%s' % section %}
 {% if category %}
-  {% set base_url = url('browse.extensions', category.slug) %}
+  {% set base_url = url(browse_url, category.slug) %}
 {% else %}
-  {% set base_url = url('browse.extensions') %}
+  {% set base_url = url(browse_url) %}
 {% endif %}
