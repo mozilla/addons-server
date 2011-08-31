@@ -257,7 +257,7 @@ def add(request, addon, template=None):
             log.debug('New review: %s' % review.id)
 
             data = {'name': addon.name,
-                    'rating': '*' * int(details['rating']),
+                    'rating': '%s out of 5 stars' % details['rating'],
                     'review': details['body'],
                     'reply_url': absolutify(reverse('reviews.reply',
                             args=[addon.slug, review.id], add_prefix=False))}

@@ -144,6 +144,8 @@ class TestCreate(ReviewTest):
         eq_(self.log_count(), log_count + 1)
 
         eq_(len(mail.outbox), 1)
+
+        assert '3 out of 5' in mail.outbox[0].body, "Rating not included"
         self.assertTemplateUsed(r, 'reviews/emails/add_review.ltxt')
 
     def test_new_reply(self):
