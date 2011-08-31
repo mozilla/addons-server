@@ -1075,6 +1075,11 @@ COMPAT = (
 
 # URL for reporting arecibo errors too. If not set, won't be sent.
 ARECIBO_SERVER_URL = ""
+# Make AMO group posts and wait for 60 seconds when we get lots of errors.
+ARECIBO_SETTINGS = {
+    'GROUP_POSTS': True,
+    'GROUP_WAIT': 60
+}
 
 # A whitelist of domains that the authentication script will redirect to upon
 # successfully logging in or out.
