@@ -2638,12 +2638,12 @@ class TestSubmitStep7(TestSubmitBase):
                 settings.SITE_URL, u.decode('utf8')))
 
     @mock.patch.object(waffle, 'flag_is_active')
-    def test_marketplace(self):
+    def test_marketplace(self, flag_is_active):
         flag_is_active.return_value = True
 
         addon = Addon.objects.get(pk=3615)
         res = self.client.get(reverse('devhub.submit.7', args=[addon.slug]))
-        eq_('If this is a premium add-on' in res.content, True)
+        assert 'If this is a premium add-on' in res.content
 
 
 class TestResumeStep(TestSubmitBase):

@@ -184,27 +184,24 @@ class TestFetchManifest(amo.tests.TestCase):
         eq_(validation['errors'], 1)
         eq_(validation['success'], False)
         eq_(len(validation['messages']), 1)
-        eq_(validation['messages'][0], msg)
+        eq_(validation['messages'][0]['message'], msg)
 
     def test_connection_error(self):
         reason = socket.gaierror(8, 'nodename nor servname provided')
         self.urlopen_mock.side_effect = urllib2.URLError(reason)
-        with self.assertRaises(Exception):
-            fetch_manifest('url', self.upload.pk)
+        fetch_manifest('url', self.upload.pk)
         self.check_validation('Could not contact host at "url".')
 
     def test_url_timeout(self):
         reason = socket.timeout('too slow')
         self.urlopen_mock.side_effect = urllib2.URLError(reason)
-        with self.assertRaises(Exception):
-            fetch_manifest('url', self.upload.pk)
+        fetch_manifest('url', self.upload.pk)
         self.check_validation('Connection to "url" timed out.')
 
     def test_other_url_error(self):
         reason = Exception('Some other failure.')
         self.urlopen_mock.side_effect = urllib2.URLError(reason)
-        with self.assertRaises(Exception):
-            fetch_manifest('url', self.upload.pk)
+        fetch_manifest('url', self.upload.pk)
         self.check_validation('Some other failure.')
 
     def test_no_content_type(self):
@@ -213,8 +210,7 @@ class TestFetchManifest(amo.tests.TestCase):
         response_mock.headers = {}
         self.urlopen_mock.return_value = response_mock
 
-        with self.assertRaises(Exception):
-            fetch_manifest('url', self.upload.pk)
+        fetch_manifest('url', self.upload.pk)
         self.check_validation(
             'Your manifest must be served with the HTTP header '
             '"Content-Type: application/x-web-app-manifest+json".')
@@ -225,8 +221,7 @@ class TestFetchManifest(amo.tests.TestCase):
         response_mock.headers = {'Content-Type': 'x'}
         self.urlopen_mock.return_value = response_mock
 
-        with self.assertRaises(Exception):
-            fetch_manifest('url', self.upload.pk)
+        fetch_manifest('url', self.upload.pk)
         self.check_validation(
             'Your manifest must be served with the HTTP header '
             '"Content-Type: application/x-web-app-manifest+json". We saw "x".')
@@ -238,13 +233,11 @@ class TestFetchManifest(amo.tests.TestCase):
         response_mock.headers = {'Content-Type': self.content_type}
         self.urlopen_mock.return_value = response_mock
 
-        with self.assertRaises(Exception):
-            fetch_manifest('url', self.upload.pk)
+        fetch_manifest('url', self.upload.pk)
         self.check_validation('Your manifest must be less than 2097152 bytes.')
 
     def test_http_error(self):
         self.urlopen_mock.side_effect = urllib2.HTTPError(
             'url', 404, 'Not Found', [], None)
-        with self.assertRaises(Exception):
-            fetch_manifest('url', self.upload.pk)
+        fetch_manifest('url', self.upload.pk)
         self.check_validation('url responded with 404 (Not Found).')
