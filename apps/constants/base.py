@@ -144,8 +144,8 @@ ADDON_FREE = 0
 ADDON_PREMIUM = 1
 
 ADDON_PREMIUM_TYPES = {
-    ADDON_FREE: 'free',
-    ADDON_PREMIUM: 'premium',
+    ADDON_FREE: _('Free'),
+    ADDON_PREMIUM: _('Premium'),
 }
 
 # Edit addon information

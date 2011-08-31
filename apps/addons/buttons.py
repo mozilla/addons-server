@@ -193,7 +193,7 @@ class InstallButton(object):
             self.addon.status == file.status == amo.STATUS_PUBLIC):
             url = file.latest_xpi_url()
         else:
-            url = file.get_url_path(self.src)
+            url = file.get_url_path(self.src, self.addon)
 
         if platform == amo.PLATFORM_ALL.id:
             text, os = _('Download Now'), None

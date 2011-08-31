@@ -147,6 +147,7 @@ class TestViewPendingQueueTable(amo.tests.TestCase):
         row.admin_review = False
         row.has_editor_comment = False
         row.has_info_request = False
+        row.is_premium = False
         eq_(self.table.render_flags(row), '')
 
 

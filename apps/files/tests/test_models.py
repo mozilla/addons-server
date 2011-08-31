@@ -19,6 +19,7 @@ from nose.tools import eq_
 import waffle
 
 import amo.tests
+from amo.urlresolvers import reverse
 import amo.utils
 import devhub.signals
 from addons.models import Addon
@@ -900,6 +901,12 @@ class TestWatermark(amo.tests.TestCase, amo.tests.AMOPaths):
         old_time = time.time() - settings.WATERMARK_REUSE_SECONDS - 5
         os.utime(self.dest, (old_time, old_time))
         assert self.file.watermark(self.user)
+
+    def test_get_url_path(self):
+        url = reverse('downloads.watermarked', args=[self.file.id])
+        assert url not in self.file.get_url_path('test')
+        self.file.version.addon.update(premium_type=amo.ADDON_PREMIUM)
+        assert url in self.file.get_url_path('test')
 
 
 class TestWatermarkCleanup(amo.tests.TestCase, amo.tests.AMOPaths):

@@ -456,3 +456,8 @@ def _site_nav(context):
                personas=cats.get(amo.ADDON_PERSONA, []),
                themes=cats.get(amo.ADDON_THEME, []))
     return jinja2.Markup(env.get_template('amo/site_nav.html').render(ctx))
+
+
+@register.filter
+def premium_text(type):
+    return amo.ADDON_PREMIUM_TYPES[type]

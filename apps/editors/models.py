@@ -73,6 +73,7 @@ class ViewQueue(RawSQLModel):
     is_site_specific = models.BooleanField()
     external_software = models.BooleanField()
     binary = models.BooleanField()
+    premium_type = models.IntegerField()
     _no_restart = models.CharField(max_length=255)
     _jetpack_versions = models.CharField(max_length=255)
     _latest_versions = models.CharField(max_length=255)
@@ -100,6 +101,7 @@ class ViewQueue(RawSQLModel):
                 ('is_site_specific', 'addons.sitespecific'),
                 ('external_software', 'addons.externalsoftware'),
                 ('binary', 'addons.binary'),
+                ('premium_type', 'addons.premium_type'),
                 ('_latest_version_ids', """GROUP_CONCAT(versions.id
                                            ORDER BY versions.created DESC)"""),
                 ('_latest_versions', """GROUP_CONCAT(versions.version
@@ -160,6 +162,10 @@ class ViewQueue(RawSQLModel):
     @property
     def is_jetpack(self):
         return bool(self._jetpack_versions)
+
+    @property
+    def is_premium(self):
+        return self.premium_type == amo.ADDON_PREMIUM
 
     @property
     def file_platform_vers(self):

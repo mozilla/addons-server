@@ -7,6 +7,7 @@ import time
 from django.conf import settings
 from django.core import mail
 
+import jingo
 from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -665,6 +666,20 @@ class TestQueueBasics(QueueTest):
         # Only show jetpack if it's both.
         assert "ed-sprite-jetpack" in tds.eq(4).html()
         assert "ed-sprite-restartless" not in tds.eq(4).html()
+
+    def test_flags_premium(self):
+        ad = create_addon_file('Premium add-on', '0.1',
+                               amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED)
+        ad['addon'].update(premium_type=amo.ADDON_PREMIUM)
+
+        url = reverse('editors.queue_nominated')
+        r = self.client.get(url)
+        doc = pq(r.content)
+
+        tds = doc('.data-grid tr').eq(3).find('td')
+        eq_(tds.eq(1).text(), 'Premium add-on 0.1')
+
+        assert 'ed-sprite-premium' in tds.eq(4).html()
 
 
 class TestPendingQueue(QueueTest):
@@ -1826,6 +1841,21 @@ class TestReview(ReviewBase):
         eq_(doc('.files').eq(1).find('a').eq(3).attr('href'),
             reverse('files.compare', args=(next_file.pk,
                                            first_file.pk)))
+
+    @patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
+    def test_show_premium(self):
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        eq_(len(doc('#premium-type')), 1)
+        eq_(doc('#premium-type li').eq(0).text(), 'Premium')
+
+    def test_download_watermarked(self):
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        files = doc('#review-files .files ul').eq(0)
+        assert 'watermarked' in files.find('a').eq(0).attr('href')
 
 
 class TestReviewPreliminary(ReviewBase):

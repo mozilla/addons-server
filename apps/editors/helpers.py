@@ -213,6 +213,10 @@ class EditorQueueTable(SQLTable, ItemStateTable):
             o.append(u'<div class="app-icon ed-sprite-restartless" title="%s">'
                      u'</div>' % _('Bootstrapped Restartless Add-on'))
 
+        if row.is_premium:
+            o.append(u'<div class="app-icon ed-sprite-premium" title="%s">'
+                     u'</div>' % _('Premium add-on'))
+
         if row.has_info_request:
             o.append(u'<div class="app-icon ed-sprite-info" title="%s">'
                      u'</div>' % _('More Information Requested'))
