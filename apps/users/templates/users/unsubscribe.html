@@ -14,15 +14,15 @@
     </ul>
     <p>
       <strong>{{ _('More Actions:') }}</strong>
-      <a href="{{ url('users.edit_impala') }}#acct-notify">
+      <a href="{{ url('users.edit') }}#acct-notify">
         {{ _('edit your notification settings') }}</a>
       &middot;
-      <a href="{{ url('users.edit_impala') }}">{{ _('edit your profile') }}</a>
+      <a href="{{ url('users.edit') }}">{{ _('edit your profile') }}</a>
     </p>
   {% else %}
     <h2 id="unsubscribe-fail">{{ _('We could not unsubscribe you') }}</h2>
     <p>
-      {% set edit_url='%s#acct-notify' % url('users.edit_impala') %}
+      {% set edit_url='%s#acct-notify' % url('users.edit') %}
       {% trans edit_url=edit_url %}
         Unfortunately, we weren't able to unsubscribe you.  The link you clicked is invalid.
         However, you can unsubscribe still unsubscribe on your <a href="{{ edit_url }}">edit profile page</a>.

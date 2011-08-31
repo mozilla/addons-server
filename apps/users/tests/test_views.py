@@ -64,7 +64,6 @@ class TestEdit(UserViewBase):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
         self.user = UserProfile.objects.get(username='jbalogh')
         self.url = reverse('users.edit')
-        self.impala_url = reverse('users.edit_impala')
         self.correct = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
                         'oldpassword': 'foo', 'password': 'longenough',
                         'password2': 'longenough'}
@@ -148,7 +147,7 @@ class TestEdit(UserViewBase):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         AddonUser.objects.create(user=self.user, addon=addon)
 
-        res = self.client.post(self.impala_url, post)
+        res = self.client.post(self.url, post)
         eq_(res.status_code, 302)
 
         mandatory = [n.id for n in email.NOTIFICATIONS if n.mandatory]
@@ -156,7 +155,7 @@ class TestEdit(UserViewBase):
         eq_(UserNotification.objects.count(), len(email.NOTIFICATION))
         eq_(UserNotification.objects.filter(enabled=True).count(), total)
 
-        res = self.client.get(self.impala_url, post)
+        res = self.client.get(self.url, post)
         doc = pq(res.content)
         eq_(doc('[name=notifications]:checked').length, total)
 
@@ -167,7 +166,7 @@ class TestEdit(UserViewBase):
         post = self.correct.copy()
         post['notifications'] = [2, 4, 6]
 
-        res = self.client.post(self.impala_url, post)
+        res = self.client.post(self.url, post)
         assert len(res.context['form'].errors['notifications'])
 
 
@@ -177,7 +176,7 @@ class TestEditAdmin(UserViewBase):
     def setUp(self):
         self.client.login(username='admin@mozilla.com', password='password')
         self.regular = self.get_user()
-        self.url = reverse('users.admin_edit_impala', args=[self.regular.pk])
+        self.url = reverse('users.admin_edit', args=[self.regular.pk])
 
     def get_data(self):
         data = model_to_dict(self.regular)

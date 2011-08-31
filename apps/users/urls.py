@@ -24,19 +24,16 @@ impala_detail_patterns = patterns('',
     url('^$', views.impala_profile, name='i_users.profile'),
 )
 
-impala_users_patterns = patterns('',
-    url('^edit$', views.edit_impala, name='users.edit_impala'),
-    url('^edit(?:/(?P<user_id>\d+))?$', views.admin_edit_impala,
-                        name='users.admin_edit_impala'),
-)
-
 users_patterns = patterns('',
     url('^ajax$', views.ajax, name='users.ajax'),
     url('^delete$', views.delete, name='users.delete'),
     url('^delete_photo$', views.delete_photo, name='users.delete_photo'),
     url('^edit$', views.edit, name='users.edit'),
+    url('^edit$', views.edit, name='users.edit'),
+    url('^edit(?:/(?P<user_id>\d+))?$', views.admin_edit,
+                           name='users.admin_edit'),
     url('^browserid-login', views.browserid_login,
-        name='users.browserid_login'),                          
+        name='users.browserid_login'),
     url('^login', views.login, name='users.login'),
     url('^logout', views.logout, name='users.logout'),
     url('^register$', views.register, name='users.register'),
@@ -64,6 +61,5 @@ urlpatterns = patterns('',
     # URLs for a single user.
     ('^i/user/(?P<user_id>\d+)/', include(impala_detail_patterns)),
     ('^user/(?P<user_id>\d+)/', include(detail_patterns)),
-    ('^i/users/', include(impala_users_patterns)),
     ('^users/', include(users_patterns)),
 )
