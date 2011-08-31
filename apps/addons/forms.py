@@ -190,7 +190,7 @@ class CategoryForm(forms.Form):
             AddonCategory.objects.filter(addon=addon, category=c).delete()
 
     def clean_categories(self):
-        if 'disabled' in self and self.disabled:
+        if hasattr(self, "disabled") and self.disabled:
             raise forms.ValidationError(_('Categories cannot be changed while '
                 'your add-on is featured for this application.'))
         categories = self.cleaned_data['categories']
