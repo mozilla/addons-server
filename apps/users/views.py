@@ -21,7 +21,7 @@ import waffle
 import amo
 from amo import messages
 from amo.decorators import (json_view, login_required, permission_required,
-                            write)
+                            write, post_required)
 from amo.forms import AbuseForm
 from amo.urlresolvers import reverse
 from amo.utils import send_mail
@@ -317,6 +317,20 @@ def _clean_next_url(request):
 
     request.GET = gets
     return request
+
+
+@anonymous_csrf
+@post_required
+@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
+def browserid_login(request):
+    if waffle.switch_is_active('browserid-login'):
+        logout(request)
+        user = auth.authenticate(assertion=request.POST['assertion'],
+                                 host=request.POST['audience'])
+        if user is not None:
+            auth.login(request, user)
+            return http.HttpResponse(status=200)
+    return http.HttpResponse(status=401)
 
 
 @anonymous_csrf

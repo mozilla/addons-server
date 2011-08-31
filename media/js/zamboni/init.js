@@ -1,6 +1,44 @@
 /* Global initialization script */
 var z = {};
 
+function makeRedirectAfterBrowserIDLogin(to) {
+    return function(data, textStatus, jqXHR) {
+        if (to) {
+            window.location = to;
+        }
+    };
+}
+
+function gotVerifiedEmail(assertion, redirectTo, domContext) {
+    function displayErrBox(errmsg) {
+
+        $('.primary', domContext).prepend(
+            '<div class="notification-box error">'
+          + '<ul><h2>' + errmsg + '</h2></ul></div>');
+    }
+    if (assertion) {
+        var a = $.ajax({
+                   url: $('.browserid-login', domContext).attr('data-url'),
+                   type: 'POST',
+                   data: {
+                       'audience': document.location.host,
+                       'assertion': assertion,
+                       'csrfmiddlewaretoken':
+                       $('input[name=csrfmiddlewaretoken]').val()
+                   },
+                   success: makeRedirectAfterBrowserIDLogin(redirectTo),
+                   error: function(jqXHR, textStatus, errorThrown) {
+                       displayErrBox(gettext(
+                                  'BrowserID login failed. Maybe you don\'t '
+                                + 'have an account under that email address?'));}
+                   });
+        return a;
+    } else {
+        // user clicked 'cancel', don't do anything
+        return null;
+    };
+}
+
 $(document).ready(function(){
 
     // Initialize install buttons.
@@ -20,7 +58,18 @@ $(document).ready(function(){
         var em = $(this).text().split('').reverse().join('');
         $(this).prev('a').attr('href', 'mailto:' + em).addClass('email');
     });
-
+    // Initialize BrowserID login.
+    $('.browserid-login').each(
+        function() {
+            var to = decodeURIComponent(window.location.href.split('?to=')[1]);
+            $(this).click(
+                function (e) {
+                    $('.primary .notification-box').remove();
+                    navigator.id.getVerifiedEmail(
+                        function(assertion) {
+                            gotVerifiedEmail(assertion, to);
+                });
+        });});
     // fake placeholders if we need to.
     if (!('placeholder' in document.createElement('input'))) {
         $('input[placeholder]').placeholder();
