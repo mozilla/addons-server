@@ -433,6 +433,7 @@ MINIFY_BUNDLES = {
             'css/zamboni/amo_headerfooter.css',
             'css/zamboni/tags.css',
             'css/zamboni/tabs.css',
+            'css/impala/formset.less',
         ),
         'zamboni/impala': (
             'css/impala/base.css',
@@ -471,6 +472,7 @@ MINIFY_BUNDLES = {
             'css/impala/login.less',
             'css/impala/dictionaries.less',
             'css/impala/apps.less',
+            'css/impala/formset.less',
         ),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',
@@ -483,6 +485,7 @@ MINIFY_BUNDLES = {
             'css/zamboni/docs.less',
             'css/impala/developers.less',
             'css/impala/devhub/packager.less',
+            'css/impala/formset.less',
         ),
         'zamboni/devhub_impala': (
             'css/impala/developers.less',
@@ -666,6 +669,7 @@ MINIFY_BUNDLES = {
         'zamboni/devhub': (
             'js/zamboni/truncation.js',
             'js/zamboni/upload.js',
+            'js/impala/formset.js',
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
             'js/zamboni/packager.js',

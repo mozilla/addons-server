@@ -13,6 +13,7 @@ from django import http
 from django.conf import settings
 from django import forms as django_forms
 from django.db.models import Count
+from django.forms.models import modelformset_factory
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
 from django.utils.encoding import smart_unicode
@@ -39,7 +40,7 @@ from amo.urlresolvers import reverse
 from access import acl
 from addons import forms as addon_forms
 from addons.decorators import addon_view
-from addons.models import Addon, AddonUser
+from addons.models import Addon, AddonDependency, AddonUser
 from addons.views import BaseFilter
 from devhub.decorators import dev_required
 from devhub.forms import CheckCompatibilityForm
@@ -935,14 +936,13 @@ def addons_section(request, addon_id, addon, section, editable=False):
               'details': addon_forms.AddonFormDetails,
               'support': addon_forms.AddonFormSupport,
               'technical': addon_forms.AddonFormTechnical,
-              'admin': forms.AdminForm,
-    }
+              'admin': forms.AdminForm}
 
     if section not in models:
-        return http.HttpResponseNotFound()
+        raise http.Http404()
 
     tags = previews = restricted_tags = []
-    cat_form = None
+    cat_form = dependency_form = None
 
     if section == 'basic':
         tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
@@ -952,14 +952,20 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
     elif section == 'media':
         previews = forms.PreviewFormSet(request.POST or None,
-                prefix='files', queryset=addon.previews.all())
+            prefix='files', queryset=addon.previews.all())
+
+    elif section == 'technical':
+        if waffle.flag_is_active(request, 'edit-dependencies'):
+            dependency_form = forms.DependencyFormSet(request.POST or None,
+                queryset=addon.addons_dependencies.all(), addon=addon,
+                prefix='dependencies')
 
     # Get the slug before the form alters it to the form data.
     valid_slug = addon.slug
     if editable:
         if request.method == 'POST':
             form = models[section](request.POST, request.FILES,
-                                  instance=addon, request=request)
+                                   instance=addon, request=request)
             if form.is_valid() and (not previews or previews.is_valid()):
                 addon = form.save(addon)
 
@@ -979,6 +985,11 @@ def addons_section(request, addon_id, addon, section, editable=False):
                     cat_form.save()
                 else:
                     editable = True
+            if dependency_form:
+                if dependency_form.is_valid():
+                    dependency_form.save()
+                else:
+                    editable = True
         else:
             form = models[section](instance=addon, request=request)
     else:
@@ -991,8 +1002,8 @@ def addons_section(request, addon_id, addon, section, editable=False):
             'restricted_tags': restricted_tags,
             'cat_form': cat_form,
             'preview_form': previews,
-            'valid_slug': valid_slug,
-            }
+            'dependency_form': dependency_form,
+            'valid_slug': valid_slug}
 
     return jingo.render(request,
                         'devhub/addons/edit/%s.html' % section, data)

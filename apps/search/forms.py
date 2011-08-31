@@ -9,9 +9,6 @@ import amo
 from amo import helpers
 from applications.models import AppVersion
 
-types = (amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
-         amo.ADDON_SEARCH, amo.ADDON_LPAPP, amo.ADDON_PERSONA,)
-
 sort_by = (
     ('', _lazy(u'Keyword Match')),
     ('updated', _lazy(u'Updated', 'advanced_search_form_updated')),
@@ -118,8 +115,8 @@ def SearchForm(request):
         appver = forms.CharField(required=False)
 
         atype = forms.TypedChoiceField(label=_('Type'),
-            choices=[(t, amo.ADDON_TYPE[t]) for t in types], required=False,
-            coerce=int, empty_value=amo.ADDON_ANY)
+            choices=[(t, amo.ADDON_TYPE[t]) for t in amo.ADDON_SEARCH_TYPES],
+            required=False, coerce=int, empty_value=amo.ADDON_ANY)
 
         pid = forms.TypedChoiceField(label=_('Platform'),
                 choices=[(p[0], p[1].name) for p in amo.PLATFORMS.iteritems()
@@ -267,7 +264,7 @@ class ESSearchForm(forms.Form):
         choices=[(p.shortname, p.id) for p in amo.PLATFORMS.values()])
     appver = forms.CharField(required=False)
     atype = forms.TypedChoiceField(required=False, coerce=int,
-        choices=[(t, amo.ADDON_TYPE[t]) for t in types])
+        choices=[(t, amo.ADDON_TYPE[t]) for t in amo.ADDON_SEARCH_TYPES])
     cat = forms.CharField(required=False)
     sort = forms.ChoiceField(required=False, choices=SORT_CHOICES)
 

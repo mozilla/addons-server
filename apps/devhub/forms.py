@@ -17,8 +17,8 @@ from quieter_formset.formset import BaseModelFormSet
 import amo
 import addons.forms
 import paypal
-from addons.models import (Addon, AddonUpsell, AddonUser, BlacklistedSlug,
-                           Charity, Preview)
+from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
+                           BlacklistedSlug, Charity, Preview)
 from amo.forms import AMOModelForm
 from amo.urlresolvers import reverse
 from amo.utils import slug_validator
@@ -934,3 +934,25 @@ class PremiumForm(happyforms.Form):
             upsell.save()
         elif not self.cleaned_data['do_upsell'] and upsell:
             upsell.delete()
+
+
+def DependencyFormSet(*args, **kw):
+    addon_parent = kw.pop('addon')
+
+    class _Form(happyforms.ModelForm):
+        addon = forms.CharField(required=False, widget=forms.HiddenInput)
+        dependent_addon = forms.ModelChoiceField(
+            Addon.objects.public().exclude(Q(id=addon_parent.id) |
+                                           Q(type=amo.ADDON_PERSONA)),
+            widget=forms.HiddenInput)
+
+        class Meta:
+            model = AddonDependency
+            fields = ('addon', 'dependent_addon')
+
+        def clean_addon(self):
+            return addon_parent
+
+    FormSet = modelformset_factory(AddonDependency, form=_Form,
+                                   extra=0, can_delete=True)
+    return FormSet(*args, **kw)

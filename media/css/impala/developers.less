@@ -238,13 +238,12 @@
     }
 }
 
-
 #upload-file {
     #validate-field {
         display: table;
         width: 100%;
         margin: 0;
-        border: 1px solid #5875A0;
+        border: 1px solid @teal;
         overflow: hidden;
         .border-radius(5px);
         #upload-webapp-url {
@@ -282,7 +281,7 @@
             &.vf-button button {
                 .border-radius(0);
                 border: none;
-                border-left: 1px solid #5875A0;
+                border-left: 1px solid @teal;
                 font-family: @sans-stack;
                 font-size: 1.3em;
                 line-height: 1em;
@@ -293,3 +292,35 @@
     }
 }
 
+#required-addons {
+    ul {
+        margin: 0;
+    }
+    input.autocomplete {
+        width: 300px;
+    }
+    .dependencies {
+        margin: 0 0 .5em;
+        li {
+            padding-bottom: .5em;
+            position: relative;
+            &:last-child {
+                margin-bottom: .5em;
+            }
+            a.remove {
+                float: none;
+                position: absolute;
+                right: 0;
+                top: 2px;
+            }
+        }
+        div {
+            background: #eee no-repeat 6px 50%;
+            .background-size(12px auto);
+            border: 1px solid @teal;
+            color: @medium-gray;
+            padding: 2px 5px 2px 25px;
+            width: 280px;
+        }
+    }
+}

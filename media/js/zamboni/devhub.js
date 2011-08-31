@@ -417,6 +417,12 @@ function addonFormSubmit() {
                         imageStatus.start();
                         hideSameSizedIcons();
                     }
+                    if ($('#addon-categories-edit').length) {
+                        initCatFields();
+                    }
+                    if ($('#required-addons').length) {
+                        initRequiredAddons();
+                    }
 
                     if (!parent_div.find(".errorlist").length) {
                         var e = $(format('<b class="save-badge">{0}</b>',
@@ -445,14 +451,17 @@ function initEditAddon() {
     $('#edit-addon').delegate('h3 a', 'click', function(e){
         e.preventDefault();
 
-        a = e.target;
+        var a = e.target;
         parent_div = $(a).closest('.edit-addon-section');
 
         (function(parent_div, a){
             parent_div.find(".item").addClass("loading");
             parent_div.load($(a).attr('data-editurl'), function(){
-                if($('#addon-categories-edit').length) {
+                if ($('#addon-categories-edit').length) {
                     initCatFields();
+                }
+                if ($('#required-addons').length) {
+                    initRequiredAddons();
                 }
                 $(this).each(addonFormSubmit);
             });
@@ -466,6 +475,28 @@ function initEditAddon() {
     initUploadIcon();
     initUploadPreview();
 }
+
+
+function initRequiredAddons() {
+    $.fn.zAutoFormset({
+        delegate: '#required-addons',
+        forms: 'ul.dependencies',
+        prefix: 'dependencies',
+        hiddenField: 'dependent_addon',
+        addedCB: function(emptyForm, item) {
+            var f = template(emptyForm)({
+                icon: item.icon,
+                name: item.label || ''
+            });
+            // Firefox automatically escapes the contents of `href`, borking
+            // the curly braces in the {url} placeholder, so let's do this.
+            var $f = $(f);
+            $f.find('div a').attr('href', item.url);
+            return $f;
+        }
+    });
+}
+
 
 function create_new_preview_field() {
     var forms_count = $('#id_files-TOTAL_FORMS').val(),

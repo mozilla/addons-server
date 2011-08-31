@@ -112,6 +112,17 @@ ADDON_TYPES = {
     ADDON_WEBAPP: _(u'Apps'),
 }
 
+# Searchable Add-on Types
+ADDON_SEARCH_TYPES = [
+    ADDON_ANY,
+    ADDON_EXTENSION,
+    ADDON_THEME,
+    ADDON_DICT,
+    ADDON_SEARCH,
+    ADDON_LPAPP,
+    ADDON_PERSONA,
+]
+
 # Icons
 ADDON_ICONS = {
     ADDON_ANY: 'default-addon.png',

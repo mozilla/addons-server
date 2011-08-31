@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import redirect
 from django.utils.encoding import smart_str
@@ -257,18 +258,36 @@ def ajax_search(request):
         ...
     ]
     """
+    # TODO(cvan): Replace with better ES-powered JSON views. Coming soon.
+    results = []
+    if 'q' in request.GET:
+        if settings.USE_ELASTIC:
+            q = request.GET['q']
+            exclude_personas = request.GET.get('exclude_personas', False)
+            if q.isdigit():
+                qs = Addon.objects.filter(id=int(q))
+            else:
+                qs = Addon.search().query(or_=name_query(q))
+            types = amo.ADDON_SEARCH_TYPES[:]
+            if exclude_personas:
+                types.remove(amo.ADDON_PERSONA)
+            qs = qs.filter(type__in=types)
+            results = qs.filter(status__in=amo.REVIEWED_STATUSES,
+                                is_disabled=False)[:10]
+        else:
+            # TODO: Let this die when we kill Sphinx.
+            q = request.GET.get('q', '')
+            client = SearchClient()
+            try:
+                results = client.query('@name ' + q, limit=10,
+                                       match=sphinx.SPH_MATCH_EXTENDED2)
+            except SearchError:
+                pass
+    return [dict(id=result.id, label=unicode(result.name),
+                 url=result.get_url_path(), icon=result.icon_url,
+                 value=unicode(result.name).lower())
+            for result in results]
 
-    q = request.GET.get('q', '')
-    client = SearchClient()
-    try:
-
-        results = client.query('@name ' + q, limit=10,
-                               match=sphinx.SPH_MATCH_EXTENDED2)
-        return [dict(id=result.id, label=unicode(result.name),
-                     icon=result.icon_url, value=unicode(result.name).lower())
-                for result in results]
-    except SearchError:
-        return []
 
 
 def name_query(q):

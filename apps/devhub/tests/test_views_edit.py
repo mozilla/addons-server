@@ -10,6 +10,7 @@ import mock
 from nose.tools import eq_
 from PIL import Image
 from pyquery import PyQuery as pq
+from waffle.models import Flag
 
 import amo
 import amo.tests
@@ -17,7 +18,8 @@ from amo.tests import formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons.forms import AddonFormBasic
-from addons.models import Addon, AddonCategory, AddonUser, Category
+from addons.models import (Addon, AddonCategory, AddonDependency, AddonUser,
+                           Category)
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from devhub.models import ActivityLog
 from tags.models import Tag, AddonTag
@@ -25,8 +27,8 @@ from users.models import UserProfile
 
 
 class TestEdit(amo.tests.TestCase):
-    fixtures = ('base/apps', 'base/users', 'base/addon_3615',
-                'base/addon_5579', 'base/addon_3615_categories')
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615',
+                'base/addon_5579', 'base/addon_3615_categories']
 
     def setUp(self):
         super(TestEdit, self).setUp()
@@ -1009,17 +1011,35 @@ class TestEditSupport(TestEdit):
 
 
 class TestEditTechnical(TestEdit):
+    fixtures = TestEdit.fixtures + ['base/addon_5299_gcal', 'base/addon_40',
+                                    'addons/persona']
 
     def setUp(self):
         super(TestEditTechnical, self).setUp()
-        self.technical_url = self.get_url('technical', edit=True)
-        self.technical_edit_url = self.get_url('technical')
+        self.dependent_addon = Addon.objects.get(id=5579)
+        Flag.objects.create(name='edit-dependencies', everyone=True)
+        AddonDependency.objects.create(addon=self.addon,
+                                       dependent_addon=self.dependent_addon)
+        self.technical_url = self.get_url('technical')
+        self.technical_edit_url = self.get_url('technical', edit=True)
+        ctx = self.client.get(self.technical_edit_url).context
+        self.dep = initial(ctx['dependency_form'].initial_forms[0])
+        self.dep_initial = formset(self.dep, prefix='dependencies',
+                                   initial_count=1)
+
+    def dep_formset(self, *args, **kw):
+        kw.setdefault('initial_count', 1)
+        kw.setdefault('prefix', 'dependencies')
+        return formset(self.dep, *args, **kw)
+
+    def formset(self, data):
+        return self.dep_formset(**data)
 
     def test_log(self):
-        data = {'developer_comments': 'This is a test'}
+        data = self.formset({'developer_comments': 'This is a test'})
         o = ActivityLog.objects
         eq_(o.count(), 0)
-        r = self.client.post(self.technical_url, data)
+        r = self.client.post(self.technical_edit_url, data)
         eq_(r.context['form'].errors, {})
         eq_(o.filter(action=amo.LOG.EDIT_PROPERTIES.id).count(), 1)
 
@@ -1031,7 +1051,7 @@ class TestEditTechnical(TestEdit):
                     site_specific='on',
                     view_source='on')
 
-        r = self.client.post(self.technical_url, data)
+        r = self.client.post(self.technical_edit_url, self.formset(data))
         eq_(r.context['form'].errors, {})
 
         addon = self.get_addon()
@@ -1043,7 +1063,7 @@ class TestEditTechnical(TestEdit):
 
         # Andddd offf
         data = dict(developer_comments='Test comment!')
-        r = self.client.post(self.technical_url, data)
+        r = self.client.post(self.technical_edit_url, self.formset(data))
         addon = self.get_addon()
 
         eq_(addon.binary, False)
@@ -1057,8 +1077,7 @@ class TestEditTechnical(TestEdit):
                     external_software='on',
                     site_specific='on',
                     view_source='on')
-
-        r = self.client.post(self.technical_url, data)
+        r = self.client.post(self.technical_edit_url, self.formset(data))
         eq_(r.context['form'].errors, {})
 
         addon = self.get_addon()
@@ -1081,6 +1100,131 @@ class TestEditTechnical(TestEdit):
         f.save()
         r = self.client.get(self.technical_edit_url)
         self.assertContains(r, 'Upgrade SDK?')
+
+    def test_edit_dependencies_overview(self):
+        eq_([d.id for d in self.addon.all_dependencies], [5579])
+        r = self.client.get(self.technical_url)
+        req = pq(r.content)('td#required-addons')
+        eq_(req.length, 1)
+        eq_(req.attr('data-src'), reverse('search.ajax'))
+        eq_(req.find('li').length, 1)
+        a = req.find('a')
+        eq_(a.attr('href'), self.dependent_addon.get_url_path())
+        eq_(a.text(), unicode(self.dependent_addon.name))
+
+    def test_edit_dependencies_initial(self):
+        r = self.client.get(self.technical_edit_url)
+        form = pq(r.content)('#required-addons .dependencies li[data-addonid]')
+        eq_(form.length, 1)
+        eq_(form.find('input[id$=-dependent_addon]').val(),
+            str(self.dependent_addon.id))
+        div = form.find('div')
+        eq_(div.attr('style'),
+            'background-image:url(%s)' % self.dependent_addon.icon_url)
+        a = div.find('a')
+        eq_(a.attr('href'), self.dependent_addon.get_url_path())
+        eq_(a.text(), unicode(self.dependent_addon.name))
+
+    def test_edit_dependencies_add(self):
+        addon = Addon.objects.get(id=5299)
+        eq_(addon.type, amo.ADDON_EXTENSION)
+        eq_(addon in list(Addon.objects.public()), True)
+
+        d = self.dep_formset({'dependent_addon': addon.id})
+        r = self.client.post(self.technical_edit_url, d)
+        eq_(any(r.context['dependency_form'].errors), False)
+        self.check_dep_ids([self.dependent_addon.id, addon.id])
+
+        r = self.client.get(self.technical_edit_url)
+        reqs = pq(r.content)('#required-addons .dependencies')
+        eq_(reqs.find('li[data-addonid]').length, 2)
+        req = reqs.find('li[data-addonid=5299]')
+        eq_(req.length, 1)
+        a = req.find('div a')
+        eq_(a.attr('href'), addon.get_url_path())
+        eq_(a.text(), unicode(addon.name))
+
+    def check_dep_ids(self, expected=[]):
+        a = AddonDependency.objects.values_list('dependent_addon__id',
+                                                flat=True)
+        eq_(sorted(list(a)), sorted(expected))
+
+    def check_bad_dep(self, r):
+        """This helper checks that bad dependency data doesn't go through."""
+        eq_(r.context['dependency_form'].errors[1]['dependent_addon'],
+            ['Select a valid choice. That choice is not one of the available '
+             'choices.'])
+        self.check_dep_ids([self.dependent_addon.id])
+
+    def test_edit_dependencies_add_public(self):
+        """Ensure that non-public add-ons cannot be added."""
+        addon = Addon.objects.get(id=40)
+        d = self.dep_formset({'dependent_addon': addon.id})
+        r = self.client.post(self.technical_edit_url, d)
+        self.check_bad_dep(r)
+
+    def test_edit_dependencies_add_nonpublic(self):
+        """Ensure that non-public add-ons cannot be made as dependencies."""
+        addon = Addon.objects.get(id=40)
+        eq_(addon in list(Addon.objects.public()), False)
+        d = self.dep_formset({'dependent_addon': addon.id})
+        r = self.client.post(self.technical_edit_url, d)
+        self.check_bad_dep(r)
+
+    def test_edit_dependencies_add_public_persona(self):
+        """Ensure that public Personas cannot be made as dependencies."""
+        addon = Addon.objects.get(id=15663)
+        eq_(addon.type, amo.ADDON_PERSONA)
+        eq_(addon in list(Addon.objects.public()), True)
+        d = self.dep_formset({'dependent_addon': addon.id})
+        r = self.client.post(self.technical_edit_url, d)
+        self.check_bad_dep(r)
+
+    def test_edit_dependencies_add_nonpublic_persona(self):
+        """Ensure that non-public Personas cannot be made as dependencies."""
+        addon = Addon.objects.get(id=15663)
+        addon.update(status=amo.STATUS_UNREVIEWED)
+        eq_(addon.status, amo.STATUS_UNREVIEWED)
+        eq_(addon in list(Addon.objects.public()), False)
+        d = self.dep_formset({'dependent_addon': addon.id})
+        r = self.client.post(self.technical_edit_url, d)
+        self.check_bad_dep(r)
+
+    def test_edit_dependencies_add_self(self):
+        """Ensure that an add-on cannot be made dependent on itself."""
+        d = self.dep_formset({'dependent_addon': self.addon.id})
+        r = self.client.post(self.technical_edit_url, d)
+        self.check_bad_dep(r)
+
+    def test_edit_dependencies_add_invalid(self):
+        """Ensure that a non-existent add-on cannot be a dependency."""
+        d = self.dep_formset({'dependent_addon': 9999})
+        r = self.client.post(self.technical_edit_url, d)
+        self.check_bad_dep(r)
+
+    def test_edit_dependencies_add_duplicate(self):
+        """Ensure that an add-on cannot be made dependent more than once."""
+        d = self.dep_formset({'dependent_addon': self.dependent_addon.id})
+        r = self.client.post(self.technical_edit_url, d)
+        eq_(r.context['dependency_form'].forms[1].non_field_errors(),
+            ['Addon dependency with this Addon and Dependent addon already '
+             'exists.'])
+        self.check_dep_ids([self.dependent_addon.id])
+
+    def test_edit_dependencies_delete(self):
+        self.dep['DELETE'] = True
+        d = self.dep_formset(total_count=1, initial_count=1)
+        r = self.client.post(self.technical_edit_url, d)
+        eq_(any(r.context['dependency_form'].errors), False)
+        self.check_dep_ids()
+
+    def test_edit_dependencies_add_delete(self):
+        """Ensure that we can both delete a dependency and add another."""
+        self.dep['DELETE'] = True
+        d = self.dep_formset({'dependent_addon': 5299})
+        r = self.client.post(self.technical_edit_url, d)
+        eq_(any(r.context['dependency_form'].errors), False)
+        self.check_dep_ids([5299])
 
 
 class TestAdmin(amo.tests.TestCase):

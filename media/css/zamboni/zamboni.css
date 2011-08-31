@@ -3154,23 +3154,6 @@ td.input {
 #id_name {
     display: block;
 }
-.ui-autocomplete {
-    background-color: #fff;
-    border: 1px solid black;
-    width: 300px;
-    z-index: 11;
-}
-.ui-autocomplete span {
-    line-height: 32px;
-}
-.ui-autocomplete a {
-    display: block;
-    padding: 2px;
-    cursor: pointer;
-}
-.ui-autocomplete img {
-    float:left;
-}
 #addons-list a.remove,
 #addons-list a.comment,
 #contributors-list a.remove {

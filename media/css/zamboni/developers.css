@@ -163,7 +163,8 @@ span.remove {
 .devhub-form tr:hover > td > a.remove,
 .addon-submission-process #icon_preview:hover .tip,
 .compat-versions tr:hover a.remove,
-#existing_locales li:hover a.remove {
+#existing_locales li:hover a.remove,
+#required-addons ul.dependencies li:hover a.remove {
     background-color: #CCC;
 }
 
@@ -172,13 +173,9 @@ span.remove {
     cursor: help;
 }
 
-.devhub-form tr:hover .tip:hover,
-.addon-submission-process #icon_preview .tip:hover,
-.devhub-form tr:hover a.remove:hover,
-.compat-versions tr:hover a.remove:hover,
-#existing_locales li:hover a.remove:hover,
+span.tip:hover,
 a.remove:hover {
-    background-color: #2A4364;
+    background-color: #2A4364 !important;
 }
 
 .devhub-form .empty {

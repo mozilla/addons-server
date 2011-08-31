@@ -394,12 +394,12 @@ if (addon_ac.length) {
             .attr('data-icon', ui.item.icon);
             return false;
         }
-    }).data( "autocomplete" )._renderItem = function( ul, item ) {
-        if (!$("#addons-list input[value='" + item.id + "']").length) {
-            return $( "<li></li>" )
-                .data( "item.autocomplete", item )
-                .append( '<a><img src="' + item.icon + '"/>&nbsp;<span>' + item.label + "</span></a>" )
-                .appendTo( ul );
+    }).data('autocomplete')._renderItem = function(ul, item) {
+        if (!$("#addons-list input[value=" + item.id + "]").length) {
+            return $('<li>')
+                .data('item.autocomplete', item)
+                .append('<a><img src="' + item.icon + '">' + item.label + '</a>')
+                .appendTo(ul);
         }
     };
 }
