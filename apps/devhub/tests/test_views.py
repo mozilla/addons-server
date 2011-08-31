@@ -2637,10 +2637,8 @@ class TestSubmitStep7(TestSubmitBase):
             u'%s/en-US/firefox/addon/%s/' % (
                 settings.SITE_URL, u.decode('utf8')))
 
-    @mock.patch.object(waffle, 'flag_is_active')
-    def test_marketplace(self, flag_is_active):
-        flag_is_active.return_value = True
-
+    @mock.patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
+    def test_marketplace(self):
         addon = Addon.objects.get(pk=3615)
         res = self.client.get(reverse('devhub.submit.7', args=[addon.slug]))
         assert 'If this is a premium add-on' in res.content
