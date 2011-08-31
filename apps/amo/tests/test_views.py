@@ -8,9 +8,13 @@ from django.core import mail
 
 import commonware.log
 from lxml import etree
+import mock
 from mock import patch, Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
+import waffle
+# Unused, but needed so that we can patch jingo.
+from waffle import helpers
 
 import amo.tests
 from access import acl
@@ -72,7 +76,10 @@ class TestImpala(amo.tests.TestCase):
         eq_(nav.find('.tools a').eq(0).text(), "Developer Hub")
         eq_(nav.find('.tools a').eq(0).attr('href'), reverse('devhub.index'))
 
-    def test_tools_developer(self):
+    @mock.patch.object(waffle, 'flag_is_active')
+    def test_tools_developer(self, fia):
+        fia.return_value = True
+
         # Make them a developer
         user = UserProfile.objects.get(email='regular@mozilla.com')
         addon = Addon.objects.all()[0]
@@ -99,11 +106,14 @@ class TestImpala(amo.tests.TestCase):
         eq_(item.text(), "Submit a New Add-on")
         eq_(item.attr('href'), reverse('devhub.submit.1'))
 
-        item = nav.find('.tools ul li a').eq(2)
+        item = nav.find('.tools ul li a').eq(3)
         eq_(item.text(), "Developer Hub")
         eq_(item.attr('href'), reverse('devhub.index'))
 
-    def test_tools_developer_and_editor(self):
+    @mock.patch.object(waffle, 'flag_is_active')
+    def test_tools_developer_and_editor(self, fia):
+        fia.return_value = True
+
         # Make them a developer
         user = UserProfile.objects.get(email='editor@mozilla.com')
         addon = Addon.objects.all()[0]
@@ -131,15 +141,18 @@ class TestImpala(amo.tests.TestCase):
         eq_(item.text(), "Submit a New Add-on")
         eq_(item.attr('href'), reverse('devhub.submit.1'))
 
-        item = nav.find('.tools ul li a').eq(2)
+        item = nav.find('.tools ul li a').eq(3)
         eq_(item.text(), "Developer Hub")
         eq_(item.attr('href'), reverse('devhub.index'))
 
-        item = nav.find('.tools ul li a').eq(3)
+        item = nav.find('.tools ul li a').eq(4)
         eq_(item.text(), "Editor Tools")
         eq_(item.attr('href'), reverse('editors.home'))
 
-    def test_tools_editor(self):
+    @mock.patch.object(waffle, 'flag_is_active')
+    def test_tools_editor(self, fia):
+        fia.return_value = True
+
         self.client.login(username='editor@mozilla.com', password='password')
         r = self.client.get(reverse('i_home'), follow=True)
         nav = pq(r.content)('#aux-nav')
@@ -227,7 +240,10 @@ class TestStuff(amo.tests.TestCase):
         eq_(nav.find('.tools a').eq(0).text(), "Developer Hub")
         eq_(nav.find('.tools a').eq(0).attr('href'), reverse('devhub.index'))
 
-    def test_tools_developer(self):
+    @mock.patch.object(waffle, 'flag_is_active')
+    def test_tools_developer(self, fia):
+        fia.return_value = True
+
         # Make them a developer
         user = UserProfile.objects.get(email='regular@mozilla.com')
         addon = Addon.objects.all()[0]
@@ -253,11 +269,14 @@ class TestStuff(amo.tests.TestCase):
         eq_(item.text(), "Submit a New Add-on")
         eq_(item.attr('href'), reverse('devhub.submit.1'))
 
-        item = nav.find('li.tools ul li a').eq(2)
+        item = nav.find('li.tools ul li a').eq(3)
         eq_(item.text(), "Developer Hub")
         eq_(item.attr('href'), reverse('devhub.index'))
 
-    def test_tools_developer_and_editor(self):
+    @mock.patch.object(waffle, 'flag_is_active')
+    def test_tools_developer_and_editor(self, fia):
+        fia.return_value = True
+
         # Make them a developer
         user = UserProfile.objects.get(email='editor@mozilla.com')
         addon = Addon.objects.all()[0]
@@ -284,10 +303,14 @@ class TestStuff(amo.tests.TestCase):
         eq_(item.attr('href'), reverse('devhub.submit.1'))
 
         item = nav.find('li.tools ul li a').eq(2)
+        eq_(item.text(), "Submit a New Web App")
+        eq_(item.attr('href'), reverse('devhub.submit_apps.1'))
+
+        item = nav.find('li.tools ul li a').eq(3)
         eq_(item.text(), "Developer Hub")
         eq_(item.attr('href'), reverse('devhub.index'))
 
-        item = nav.find('li.tools ul li a').eq(3)
+        item = nav.find('li.tools ul li a').eq(4)
         eq_(item.text(), "Editor Tools")
         eq_(item.attr('href'), reverse('editors.home'))
 
