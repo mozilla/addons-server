@@ -87,7 +87,7 @@ class TestImpala(amo.tests.TestCase):
         eq_(request.amo_user.is_developer, True)
 
         eq_(nav.find('.tools').length, 1)
-        eq_(nav.find('.tools li').length, 3)
+        eq_(nav.find('.tools li').length, 4)
         eq_(nav.find('.tools > a').length, 1)
         eq_(nav.find('.tools > a').text(), "Developer")
 
@@ -119,7 +119,7 @@ class TestImpala(amo.tests.TestCase):
         eq_(acl.action_allowed(request, 'Editors', '%'), True)
 
         eq_(nav.find('li.tools').length, 1)
-        eq_(nav.find('li.tools li').length, 4)
+        eq_(nav.find('li.tools li').length, 5)
         eq_(nav.find('li.tools > a').length, 1)
         eq_(nav.find('li.tools > a').text(), "Tools")
 
@@ -243,7 +243,7 @@ class TestStuff(amo.tests.TestCase):
 
         eq_(nav.find('li.tools').length, 1)
         eq_(nav.find('li.tools > a').text(), "Developer")
-        eq_(nav.find('li.tools li').length, 3)
+        eq_(nav.find('li.tools li').length, 4)
 
         item = nav.find('li.tools ul li a').eq(0)
         eq_(item.text(), "Manage My Add-ons")
@@ -273,7 +273,7 @@ class TestStuff(amo.tests.TestCase):
         eq_(acl.action_allowed(request, 'Editors', '%'), True)
 
         eq_(nav.find('li.tools').length, 1)
-        eq_(nav.find('li.tools li').length, 4)
+        eq_(nav.find('li.tools li').length, 5)
 
         item = nav.find('li.tools ul li a').eq(0)
         eq_(item.text(), "Manage My Add-ons")
