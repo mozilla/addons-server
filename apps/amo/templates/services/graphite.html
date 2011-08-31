@@ -95,6 +95,11 @@
       target=scale(stats.timers.{{ site }}.view.search.views.search.GET.count,0.1)&target=stats.timers.{{ site }}.view.search.views.search.GET.lower&target=stats.timers.{{ site }}.view.search.views.search.GET.mean&target=stats.timers.{{ site }}.view.search.views.search.GET.upper_90
     {% endcall %}
 
+    <h2 id="marketplace">Marketplace</h2>
+    {% call grid() %}
+    target=stats.timers.{{ site }}.paypal.paykey.retrieval.upper_90
+    {% endcall %}
+
     <script>
       /* Press `r` to only update the pictures that really need it. */
       var classes = {
