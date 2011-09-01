@@ -89,6 +89,9 @@ urlpatterns = patterns('',
     # Review spam.
     url('^reviews/spam/$', 'reviews.views.spam', name='reviews.spam'),
 
+    # marketplace
+    ('^market/', include('market.urls')),
+
     # Redirect patterns.
     ('^bookmarks/?$',
       lambda r: redirect('browse.extensions', 'bookmarks', permanent=True)),
