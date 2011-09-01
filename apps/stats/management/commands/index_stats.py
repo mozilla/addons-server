@@ -61,8 +61,9 @@ class Command(BaseCommand):
             if not (dates or addons):
                 # We're loading the whole world. Do it in stages so we get most
                 # recent stats first and don't do huge queries.
-                limits = qs.model.objects.aggregate(min=Min('date'),
-                                                    max=Max('date'))
+                limits = (qs.model.objects.filter(date__isnull=False)
+                          .extra(where=['date <> "0000-00-00"'])
+                          .aggregate(min=Min('date'), max=Max('date')))
                 num_days = (limits['max'] - limits['min']).days
                 today = date.today()
                 for start in range(0, num_days, STEP):
