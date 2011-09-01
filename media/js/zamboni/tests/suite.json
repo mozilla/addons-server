@@ -3,7 +3,8 @@
     "extra_media_urls": [
         "js/lib/jstestnet.js",
         "js/zamboni/tests.js",
-        "js/zamboni/global.js",
+        "js/zamboni/buttons.js",
+        "js/impala/global.js",
         "js/zamboni/devhub.js",
         "js/zamboni/validator.js",
         "js/zamboni/l10n.js",

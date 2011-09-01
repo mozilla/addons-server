@@ -9,6 +9,7 @@
         data-appname="{{ request.APP.pretty }}"
         data-appid="{{ request.APP.id }}"
         data-min-beta-version="{{ settings.MIN_BETA_VERSION }}"
+        data-nightly-version="{{ settings.NIGHTLY_VERSION }}"
         data-anonymous="true"
         data-readonly="false"
         data-media-url="{{ MEDIA_URL }}"
@@ -346,6 +347,18 @@
     </div>
   </div>
 
+  <div id="acr">
+    <div class="site-tip hidden" id="acr-pitch">Some ACR propaganda goes here.</div>
+    <div class="install-shell">
+      <div class="install featuredaddon" data-addon="1865"
+           data-name="Adblock Plus" data-min="3.0" data-max="4.0">
+        <p class="install-button">
+          <a data-hash="sha256:2bb766a6b096e9724df3a584bbe4f2e0ca687f1cd199e1a2c0ce58d4d8487284"
+             class="button download">Download Now</a>
+        </p>
+      </div>
+    </div>
+  </div>
 
   <script type="text/javascript">
       waffle = {

@@ -75,26 +75,24 @@ var installButton = function() {
         params = {addon: addon,
                   msg: z.appMatchesUserAgent ? addto : gettext('Download Now')},
         appSupported = z.appMatchesUserAgent && min && max,
-        olderBrowser = null,
-        newerBrowser = null;
+        $body = $(document.body),
+        olderBrowser,
+        newerBrowser;
 
     // If we have os-specific buttons, check that one of them matches the
     // current platform.
     var badPlatform = ($button.find('.os').length &&
                        !$button.hasClass(z.platform));
 
-    try {
-        var storage = z.Storage();
-        z.hasACR = storage.get('ShowIncompatibleAddons');
-    } catch (TypeError) {
-        z.hasACR = false;
-    }
-
     // min and max only exist if the add-on is compatible with request[APP].
-    if (appSupported && !z.hasACR) {
+    if (appSupported) {
         // The user *has* an older/newer browser.
         olderBrowser = VersionCompare.compareVersions(z.browserVersion, min) < 0;
         newerBrowser = VersionCompare.compareVersions(z.browserVersion, max) > 0;
+    }
+
+    if (!$body.hasClass('acr-pitch') && newerBrowser && z.hasNightly && !z.hasACR) {
+        $body.addClass('acr-pitch');
     }
 
     // Helper for dealing with lazy-loaded z.button.messages.

@@ -86,23 +86,7 @@ function listing_grid() {
 $(function() {
     "use strict";
 
-    // Show the first visit banner.
-    if (!z.visitor.get('seen_impala_first_visit')) {
-        $('body').addClass('firstvisit');
-        z.visitor.set('seen_impala_first_visit', 1);
-    }
-
-    $("#site-nonfx .close").click(function() {
-        z.visitor.set('seen_badbrowser_warning', 1);
-    });
-
-    // Show the ACR pitch if it has not been dismissed.
-    if (!z.visitor.get('seen_acr_pitch') && $('body').hasClass('acr-pitch')) {
-        $('#acr-pitch').show();
-        $('#acr-pitch .close').click(function() {
-            z.visitor.set('seen_acr_pitch', 1);
-        });
-    }
+    initBanners();
 
     // Bind to the mobile site if a mobile link is clicked.
     $(".mobile-link").attr("href", window.location).click(function() {
@@ -131,12 +115,6 @@ $(function() {
         $this.prev('a').attr('href', 'mailto:' + em);
     });
 
-    //allow dismissal of site-balloons.
-    $('.site-balloon .close, .site-tip .close').click(function(e) {
-        e.preventDefault();
-        $(this).closest('.site-balloon, .site-tip').fadeOut();
-    });
-
     $('#page').delegate('.expando .toggle', 'click', _pd(function() {
         $(this).closest('.expando').toggleClass('expanded');
     }));
@@ -156,3 +134,29 @@ $(function() {
 
     $("select[name='rating']").ratingwidget();
 });
+
+
+function initBanners() {
+    // Show the first visit banner.
+    if (!z.visitor.get('seen_impala_first_visit')) {
+        $('body').addClass('firstvisit');
+        z.visitor.set('seen_impala_first_visit', 1);
+    }
+
+    $('#site-nonfx .close').click(function() {
+        z.visitor.set('seen_badbrowser_warning', 1);
+    });
+
+    // Show the ACR pitch if it has not been dismissed.
+    if (!z.visitor.get('seen_acr_pitch') && $('body').hasClass('acr-pitch')) {
+        $('#acr-pitch').show();
+        $('#acr-pitch .close').click(function() {
+            z.visitor.set('seen_acr_pitch', 1);
+        });
+    }
+
+    // Allow dismissal of site-balloons.
+    $('.site-balloon .close, .site-tip .close').click(_pd(function() {
+        $(this).closest('.site-balloon, .site-tip').fadeOut();
+    }));
+}

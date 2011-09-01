@@ -879,7 +879,7 @@ function initCatFields() {
         var $parent = $(this).closest("[data-max-categories]"),
             $main = $(this).find(".addon-categories"),
             $misc = $(this).find(".addon-misc-category"),
-            maxCats = parseInt($parent.attr("data-max-categories"));
+            maxCats = parseInt($parent.attr("data-max-categories"), 10);
         var checkMainDefault = function() {
             var checkedLength = $("input:checked", $main).length,
                 disabled = checkedLength >= maxCats;
