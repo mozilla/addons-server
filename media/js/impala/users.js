@@ -28,9 +28,11 @@ $(function() {
 
     $avatar.after($a);
     $('#id_photo').change(function() {
-        var $li = $(this).closest('li');
+        var $li = $(this).closest('li'),
+            file = $(this)[0].files[0],
+            file_name = file.name || file.fileName;
         $li.find('.errorlist').remove();
-        if(!$(this)[0].files[0].fileName.match(/\.(jpg|png|jpeg)$/)) {
+        if(!file_name.match(/\.(jpg|png|jpeg)$/)) {
             $ul = $('<ul>', {'class': 'errorlist'});
             $ul.append($('<li>', {'text': gettext('Images must be either PNG or JPG.')}));
             $li.append($ul);
