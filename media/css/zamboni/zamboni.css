@@ -348,6 +348,7 @@ button.link {
 }
 
 .cta a.button.disabled,
+a.button.disabled,
 a.button[disabled],
 button.button:disabled,
 input[type=submit]:disabled,
