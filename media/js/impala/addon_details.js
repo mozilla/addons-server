@@ -10,6 +10,7 @@ $(function () {
             $lightbox = $("#lightbox"),
             $content = $("#lightbox .content"),
             $caption = $("#lightbox .caption span"),
+            $previews = $('.previews'),
             current, $strip,
             lbImage = template('<img id="preview{0}" src="{1}">');
         if (!$lightbox.length) return;
@@ -47,6 +48,8 @@ $(function () {
                 $oldimg = $lightbox.find("img");
             current = $a.parent().index();
             $strip = $a.closest("ul").find("li");
+            $previews.find('.panel').removeClass('active')
+                     .eq(current).addClass('active');
             var $img = $("#preview"+current);
             if ($img.length) {
                 $oldimg.css("opacity", 0);

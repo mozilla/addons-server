@@ -43,8 +43,6 @@ $.fn.zCarousel = function(o) {
             }
         }
         $strip.css(prop, currentPos * -100 + "%");
-        $strip.find('.panel').removeClass('active')
-              .eq(currentPos).addClass('active');
         $prev.toggleClass("disabled", currentPos == 0 && !o.circular);
         $next.toggleClass("disabled", currentPos == maxPos-1 && !o.circular);
         //wait for paint to clear the class. lame.
