@@ -285,7 +285,7 @@ class _TestCSVs(TestSeriesBase):
 class TestCacheControl(TestSeriesBase):
     """Tests we set cache control headers"""
 
-    def test_cache_control(self):
+    def _test_cache_control(self):
         response = self.get_view_response('stats.downloads_series',
                                           group='month', format='json')
         assert response.get('cache-control', '').startswith('max-age='), (
