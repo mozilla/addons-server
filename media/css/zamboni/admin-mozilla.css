@@ -68,13 +68,6 @@ fieldset {
     clear: both;
     height: 2.5em;
 }
-#admin-validation form .last-row {
-    padding-left: 15em;
-}
-#admin-validation form .button {
-    float: left;
-    padding-left: 10em;
-}
 #admin-validation .errorlist li {
     list-style: disc;
     margin-left: 2em;

@@ -3,11 +3,6 @@
 {% set title = 'Bulk Addon Validation' %}
 {% block title %}{{ page_title(title) }}{% endblock %}
 
-{% block js %}
-{{ super() }}
-<script src="{{ media('js/zamboni/admin_validation.js') }}"></script>
-{% endblock %}
-
 {% block content %}
 <section id="admin-validation"
          data-status-url="{{ url('zadmin.job_status') }}">
@@ -25,9 +20,7 @@
   <div class="form-row last-row">
     <label for="id_finish_email">{{ form['finish_email'].label }}</label>
     <span id="elem-finish_email">{{ form['finish_email'] }}</span>
-    <div class="button">
       <button type="submit">Start validation</button>
-    </div>
   </div>
   </form>
   <div class="featured daily-message">
