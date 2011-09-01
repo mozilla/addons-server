@@ -123,7 +123,7 @@
             <li class="profile-photo">
               <label for="id_photo">{{ _('Profile Photo') }}</label>
               <div class="invisible-upload">
-                <a class="button" href="#">Choose Photo&hellip;</a>
+                <a class="button" href="#">{{ _('Choose Photo&hellip;') }}</a>
                 <input type="file" id="id_photo" name="photo">
               </div>
               {% if amouser.picture_type %}
@@ -136,7 +136,7 @@
             </li>
           </ol>
         </fieldset>
-        <fieldset id="profile-detail" class="clearboth">
+        <fieldset id="profile-detail" class="c">
           <legend>{{ _('Details') }}</legend>
           <p class="sub_legend">
             {% trans -%}
@@ -150,7 +150,7 @@
           {{ form.bio.errors }}
           </div>
         </fieldset> {# /.profile-detail #}
-        <fieldset id="profile-detail" class="clearboth">
+        <fieldset id="profile-detail" class="c">
           <legend>{{ _('Miscellaneous') }}</legend>
           <p class="sub_legend">
             {% trans -%}
