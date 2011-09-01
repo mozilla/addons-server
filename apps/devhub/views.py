@@ -596,9 +596,13 @@ def upload_manifest(request):
         tasks.fetch_manifest.delay(form.cleaned_data['manifest'], upload.pk)
         return redirect('devhub.upload_detail', upload.pk, 'json')
     else:
-        error = _('There was an error with the submission.')
-        return make_validation_result({'validation': '',
-                                       'error': error})
+        error_text = _('There was an error with the submission.')
+        if 'manifest' in form.errors:
+            error_text = ' '.join(form.errors['manifest'])
+        error_message = {'type': 'error', 'message': error_text, 'tier': 1}
+
+        v =  {'errors': 1, 'success': False, 'messages': [error_message]}
+        return make_validation_result(dict(validation=v, error=error_text))
 
 @login_required
 @post_required
