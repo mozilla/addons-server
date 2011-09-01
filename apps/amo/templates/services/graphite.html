@@ -1,24 +1,23 @@
-{% set ns = "stats." + site %}
-
-{% if site == 'addons' %}
-  {% set base = "https://graphite-phx.mozilla.org/render/?width={0}&height={1}"|f(width, height) %}
-{% else %}
-  {% set base = "https://graphite-sjc.mozilla.org/render/?width={0}&height={1}"|f(width, height) %}
-{% endif %}
+{% set base = "https://graphite-phx.mozilla.org/render/?width={0}&height={1}"|f(width, height) %}
 
 {% set site_name = {
-    'pamo': 'Preview',
-    'namo': 'Next',
-    'amo': 'Production',
     'addons': 'PHX',
+    'dev': 'Preview',
+    'stage': 'Stage',
 }[site] %}
 
 {% set site_url = {
-    'pamo': 'https://addons.allizom.org',
-    'namo': 'https://addons-next.allizom.org',
-    'amo': 'https://addons.mozilla.org',
     'addons': 'https://addons.mozilla.org',
+    'dev': 'https://addons-dev.allizom.org',
+    'stage': 'https://addons.allizom.org',
 }[site] %}
+
+{% set site = {
+  'addons': 'addons',
+  'dev': 'addons-dev',
+  'stage': 'addons-stage',
+}[site] %}
+{% set ns = "stats." + site %}
 
 {% set fifteen = "from=-15minutes&title=15 minutes" %}
 {% set hour = "from=-1hours&title=1 hour" %}
