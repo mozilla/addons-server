@@ -220,7 +220,6 @@ var installButton = function() {
                 // L10n: {0} is an app name, {1} is the app version.
                 warn(format(gettext('May be incompatible with {0} {1}'),
                             [z.appName, z.browserVersion]));
-                console.log("ADDING CLASS");
                 $button.addClass('acr-override');
                 return false;
             }
