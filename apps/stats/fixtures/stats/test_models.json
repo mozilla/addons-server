@@ -1,6 +1,26 @@
 [
     {
         "pk": 1,
+        "model": "applications.application",
+        "fields": {
+            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
+            "modified": "2008-11-03 15:34:59",
+            "created": "2007-03-05 13:09:26"
+        }
+    },
+    {
+        "pk": 282,
+        "model": "applications.appversion",
+        "fields": {
+            "application": 1,
+            "version": "4.0",
+            "created": "2007-03-05 13:09:26",
+            "version_int": 3070000001000,
+            "modified": null
+        }
+    },
+    {
+        "pk": 1,
         "model": "addons.addontype",
         "fields": {
             "name": null,
@@ -120,6 +140,26 @@
         }
     },
     {
+        "pk": 9,
+        "model": "stats.downloadcount",
+        "fields": {
+            "addon": 5,
+            "count": 10,
+            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "date": "2009-10-03"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "stats.downloadcount",
+        "fields": {
+            "addon": 4,
+            "count": 10,
+            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "date": "2009-10-03"
+        }
+    },
+    {
         "pk": 1,
         "model": "stats.updatecount",
         "fields": {
@@ -127,9 +167,9 @@
             "count": 1000,
             "versions": "a:2:{s:3:\"1.0\";i:200;s:3:\"2.0\";i:800;}",
             "statuses": "a:2:{s:11:\"userEnabled\";i:950;s:12:\"userDisabled\";i:50;}",
-            "applications": "a:1:{s:38:\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\";a:1:{s:5:\"3.0.9\";i:1000;}}",
+            "applications": "a:1:{s:38:\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\";a:1:{s:3:\"4.0\";i:1000;}}",
             "oses": "a:2:{s:5:\"Linux\";i:300;s:5:\"WINNT\";i:400;}",
-            "locales": null,
+            "locales": "a:2:{s:5:\"en-US\";i:300;s:2:\"el\";i:400;}",
             "date": "2009-06-01"
         }
     },
@@ -141,9 +181,9 @@
             "count": 1500,
             "versions": "a:2:{s:3:\"1.0\";i:550;s:3:\"2.0\";i:950;}",
             "statuses": "a:2:{s:11:\"userEnabled\";i:1370;s:12:\"userDisabled\";i:130;}",
-            "applications": "a:1:{s:38:\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\";a:1:{s:5:\"3.0.9\";i:1500;}}",
+            "applications": "a:1:{s:38:\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\";a:1:{s:3:\"4.0\";i:1500;}}",
             "oses": "a:2:{s:5:\"Linux\";i:400;s:5:\"WINNT\";i:500;}",
-            "locales": null,
+            "locales": "a:2:{s:5:\"en-US\";i:300;s:2:\"el\";i:400;}",
             "date": "2009-06-02"
         }
     },
@@ -153,11 +193,11 @@
         "fields": {
             "addon": 4,
             "count": 10,
-            "versions": null,
-            "statuses": null,
-            "applications": "a:2:{s:2:\"ff\";a:1:{s:5:\"3.0.9\";i:5;}s:7:\"unknown\";a:1:{s:5:\"1.0.1\";i:1;}}",
-            "oses": null,
-            "locales": null,
+            "versions": "a:2:{s:3:\"1.0\";i:200;s:3:\"2.0\";i:800;}",
+            "statuses": "a:2:{s:11:\"userEnabled\";i:950;s:12:\"userDisabled\";i:50;}",
+            "applications": "a:1:{s:38:\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\";a:1:{s:3:\"4.0\";i:1500;}}",
+            "oses": "a:2:{s:5:\"Linux\";i:400;s:5:\"WINNT\";i:500;}",
+            "locales": "a:2:{s:5:\"en-US\";i:300;s:2:\"el\";i:400;}",
             "date": "2007-01-01"
         }
     },

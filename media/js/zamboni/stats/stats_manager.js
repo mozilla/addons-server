@@ -447,25 +447,19 @@
             var out = {
                     count : row.count,
                     date : row.date,
-                    end : row.end,
-                    row_count : row.row_count,
+                    end : row.end
                 }, set, ver, key;
             var ra = {};
             var apps = row.applications;
             for (var i in apps) {
                 if (apps.hasOwnProperty(i)) {
                     var set = apps[i];
-                    for (var j in set) {
-                        if (precision) {
-                            ver = j.split('.').slice(0,precision).join('.') + '.x';
-                        } else {
-                            ver = j;
-                        }
+                    for (var ver in set) {
                         key = i + '_' + ver;
                         if (!(key in ra)) {
                             ra[key] = 0;
                         };
-                        var v = parseFloat(set[j]);
+                        var v = parseFloat(set[ver]);
                         ra[key] += v;
                     }
                 }

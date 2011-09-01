@@ -5,6 +5,7 @@ from django import test
 
 from nose.tools import eq_
 
+import amo
 from stats import utils
 from stats.models import UpdateCount
 from stats.db import DayAvg
@@ -33,7 +34,6 @@ class TestUnknownGen(test.TestCase):
         eq_(len(rows), 1)
         row = rows[0]
         eq_(row['date'], date(2007, 1, 1))
-        eq_(row['count'], Decimal('10'))
-        eq_(row['applications/ff/3.0.9'], Decimal('5'))
-        eq_(row['applications/unknown/1.0.1'], Decimal('1'))
-        eq_(row['applications/unknown'], Decimal('4'))
+        eq_(row['count'], 10)
+        eq_(row['applications/%s/4.0' % amo.FIREFOX.guid], 1500)
+        eq_(row['applications/unknown'], 0)

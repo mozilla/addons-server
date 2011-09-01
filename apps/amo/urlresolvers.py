@@ -11,7 +11,7 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 
 import jinja2
 
-import amo.models
+import amo
 
 # Get a pointer to Django's reverse because we're going to hijack it after we
 # define our own.
@@ -35,7 +35,7 @@ def get_url_prefix():
 def clean_url_prefixes():
     """Purge prefix cache."""
     if hasattr(_local, 'prefix'):
-       delattr(_local, 'prefix')
+        delattr(_local, 'prefix')
 
 
 def get_app_redirect(app):

@@ -202,6 +202,12 @@ class TestES(amo.tests.ESTestCase):
         eq_(qs._build_query(), {'fields': ['id'],
                                 'filter': {'range': {'status': {'lt': 4}}}})
 
+    def test_range(self):
+        qs = Addon.search().filter(date__range=('a', 'b'))
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'filter': {'range': {'date': {'gte': 'a',
+                                                              'lte': 'b'}}}})
+
     def test_prefix(self):
         qs = Addon.search().query(name__startswith='woo')
         eq_(qs._build_query(), {'fields': ['id'],

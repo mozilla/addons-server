@@ -29,7 +29,7 @@ self.tasks = {
         var v, datum, sorted_sums,
             total = 0;
             sums = {};
-        
+
         for (var i=0; i<data.length; i++) {
             datum = data[i];
             for (var j in datum) {
@@ -102,7 +102,7 @@ self.tasks = {
             nodata = true,
             data = info.data,
             fieldName = info.fieldName;
-            
+
         if (!data.length) {
             error("no data passed!");
         }
@@ -136,7 +136,7 @@ self.tasks = {
                 }
             });
         }
-    } 
+    }
 };
 
 addEventListener('message', function(e) {

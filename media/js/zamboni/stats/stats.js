@@ -20,7 +20,7 @@ function set_loading(el) {
 function get_page_state(_opts) {
     var params = {},
         pairs, str, qstr;
-        
+
     if (window.location.hash) {
         str = window.location.hash;
         if (str != page_state.last_hash) {
@@ -51,10 +51,10 @@ function get_page_state(_opts) {
                     sd_str: sd,
                     ed_str: ed
                 };
-                
+
                 $('.criteria li.selected').removeClass("selected");
                 $('.criteria li[data-range~="custom"]').addClass("selected");
-                
+
                 if (!_opts.skip_update) {
                     update_page_state();
                 }
@@ -63,10 +63,10 @@ function get_page_state(_opts) {
                 var data_range = params.last;
                 if (("7 30 90").indexOf(data_range) > -1) {
                     page_state.data_range = data_range + " days";
-                    
+
                     $('.criteria li.selected').removeClass("selected");
                     $('.criteria li[data-range~="'+data_range+'"]').addClass("selected");
-                    
+
                     if (!_opts.skip_update) {
                         update_page_state();
                     }
@@ -94,7 +94,7 @@ function update_page_state() {
     var start, end,
         range = page_state.data_range,
         queryparams;
-        
+
     if (typeof range === "string") {
         range = parseInt(range);
         queryparams = 'last=' + range;
@@ -107,10 +107,10 @@ function update_page_state() {
     } else {
         return false;
     }
-    
+
     var seriesURL = AMO.getStatsBaseURL() + ([AMO.getReportName(),"day",Highcharts.dateFormat('%Y%m%d', start),Highcharts.dateFormat('%Y%m%d', end)]).join("-") + ".csv";
     $('#export_data').attr('href', seriesURL);
-    
+
     if (capabilities.replaceState) {
         history.replaceState(page_state, document.title, '?' + queryparams);
     } else {
@@ -221,7 +221,7 @@ function SeriesChart() {
             return true;
         }, this);
     }
-    
+
     this.init = function(cfg) {
         if (chartObj) chartObj.destroy();
         chartObj = new Highcharts.Chart(cfg);
@@ -282,7 +282,7 @@ chartConfig = {
       events: {
           redraw: done_loading,
           load: done_loading
-      },          
+      },
       margin: [30,20,30,70]
     },
     credits: { enabled: false },
@@ -375,7 +375,7 @@ function initTopChart(el) {
               [$(row[0]).text(), fancyParse($(row[1]).text())]
            );
         }
-        
+
         var options = {
            chart: {
               renderTo: container,
@@ -472,7 +472,7 @@ function fetch_top_charts() {
             initTopChart(toplist);
             $(toplist).addClass('loaded');
         }
-            
+
         if (report && field) {
             RankedList.get({
                 metric: report,
@@ -528,7 +528,7 @@ function show_aggregate_stats (_field, range) {
                             $("#mean_range").text(Highcharts.numberFormat(mean_range, 0));
                             $("#mean_prev_range").text(Highcharts.numberFormat(mean_prev_range, 0));
                             draw_diff($("#mean_diff"), mean_range, mean_prev_range);
-                            draw_diff($("#mean_prev_diff"), mean_prev_range, mean_3x_range);                            
+                            draw_diff($("#mean_prev_diff"), mean_prev_range, mean_3x_range);
                         });
                     });
                 });
@@ -544,7 +544,7 @@ $(document).ready(function () {
         return this.attr("data-" + name);
     };
     headerChart.init(chartConfig);
-    
+
     var $report_el = $(".primary");
     var data_range = $report_el.getData("range");
     page_state.addon_id = $report_el.getData("addon_id");

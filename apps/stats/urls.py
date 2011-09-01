@@ -11,7 +11,7 @@ series = dict((type, '^%s-%s-%s\.%s$' % (type, group_re, range_re, format_re))
 
 urlpatterns = patterns('',
     # page URLs
-    url('^$', views.stats_report, name='stats.overview', 
+    url('^$', views.stats_report, name='stats.overview',
         kwargs={'report': 'overview'}),
     url('^downloads/$', views.stats_report, name='stats.downloads',
         kwargs={'report': 'downloads'}),

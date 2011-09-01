@@ -16,7 +16,7 @@ from addons.models import Addon
 from amo.urlresolvers import reverse
 
 import unicode_csv
-from .db import DayAvg, Avg
+from .db import Avg
 from .decorators import allow_cross_site_request
 from .models import DownloadCount, UpdateCount, Contribution
 from .utils import csv_prep, csv_dynamic_prep
@@ -28,86 +28,53 @@ SERIES = ('downloads', 'usage', 'contributions',
           'sources', 'os', 'locales', 'statuses', 'versions', 'apps')
 
 
+def get_series(model, extra=None, **filters):
+    """
+    Get a generator of dicts for the stats model given by the filters.
+
+    Returns {'date': , 'count': } by default. Add other fields by passing a
+    {key in generator: key in index} dict.
+    """
+    if extra is None:
+        extra = {}
+    # Put a slice on it so we get more than 10 (the default), but limit to 365.
+    qs = (model.search().order_by('-date').filter(**filters)
+          .values_dict('date', 'count', *extra.values()))[:365]
+    for val in qs:
+        # Convert the datetimes to a date.
+        date_ = date(*val['date'].timetuple()[:3])
+        rv = dict((key, extract(val[field])) for key, field in extra.items())
+        # TODO(jbalogh): can we get rid of end?
+        rv.update(count=val['count'], date=date_, end=date_)
+        yield rv
+
+
+def extract(dicts):
+    """Turn a list of dicts like we store in ES into one big dict.
+
+    Also works if the list of dicts is nested inside another dict.
+
+    >>> extract([{'k': 'a', 'v': 1}, {'k': 'b', 'v': 2}])
+    {'a': 1, 'b': 2}
+    """
+    if hasattr(dicts, 'items'):
+        return dict((k, extract(v)) for k, v in dicts.items())
+    return dict((d['k'], d['v']) for d in dicts)
+
+
 @addon_view
 def downloads_series(request, addon, group, start, end, format):
     """Generate download counts grouped by ``group`` in ``format``."""
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
 
-    # resultkey to fieldname map - stored as a list to maintain order for csv
-    fields = [('date', 'start'), ('count', 'count')]
-    qs = DownloadCount.stats.filter(addon=addon, date__range=date_range)
-    gen = qs.period_summary(group, **dict(fields))
+    series = get_series(DownloadCount, addon=addon.id, date__range=date_range)
 
     if format == 'csv':
-        gen, headings = csv_prep(gen, fields)
-        return render_csv(request, addon, gen, headings)
+        series, headings = csv_prep(series, fields)
+        return render_csv(request, addon, series, headings)
     elif format == 'json':
-        return render_json(request, addon, gen)
-
-
-@addon_view
-def usage_series(request, addon, group, start, end, format):
-    """Generate ADU counts grouped by ``group`` in ``format``."""
-    date_range = check_series_params_or_404(group, start, end, format)
-    check_stats_permission(request, addon)
-
-    # resultkey to fieldname map - stored as a list to maintain order for csv
-    fields = [('date', 'start'), ('count', DayAvg('count'))]
-    qs = UpdateCount.stats.filter(addon=addon, date__range=date_range)
-    gen = qs.period_summary(group, **dict(fields))
-
-    if format == 'csv':
-        gen, headings = csv_prep(gen, fields)
-        return render_csv(request, addon, gen, headings)
-    elif format == 'json':
-        return render_json(request, addon, gen)
-
-
-@addon_view
-def contributions_series(request, addon, group, start, end, format):
-    """Generate summarized contributions grouped by ``group`` in ``format``."""
-    date_range = check_series_params_or_404(group, start, end, format)
-    check_stats_permission(request, addon, for_contributions=True)
-
-    qs = addon_contributions_queryset(addon, *date_range)
-
-    # Note that average is per contribution and not per day
-    fields = [('date', 'start'), ('total', 'amount'), ('count', 'row_count'),
-              ('average', Avg('amount'))]
-    gen = qs.period_summary(group, **dict(fields))
-
-    if format == 'csv':
-        gen, headings = csv_prep(gen, fields, precision='0.01')
-        return render_csv(request, addon, gen, headings)
-    elif format == 'json':
-        return render_json(request, addon, gen)
-
-
-@addon_view
-def contributions_detail(request, addon, start, end, format):
-    """Generate detailed contributions in ``format``."""
-    # This view doesn't do grouping, but we can leverage our series parameter
-    # checker by passing in a valid group value.
-    date_range = check_series_params_or_404('day', start, end, format)
-    check_stats_permission(request, addon, for_contributions=True)
-    qs = addon_contributions_queryset(addon, *date_range)
-
-    def property_lookup_gen(qs, fields):
-        for obj in qs:
-            yield dict((k, getattr(obj, f, None)) for k, f in fields)
-
-    fields = [('date', 'date'), ('amount', 'amount'),
-              ('requested', 'suggested_amount'),
-              ('contributor', 'contributor'),
-              ('email', 'email'), ('comment', 'comment')]
-    gen = property_lookup_gen(qs, fields)
-
-    if format == 'csv':
-        gen, headings = csv_prep(gen, fields, precision='0.01')
-        return render_csv(request, addon, gen, headings)
-    elif format == 'json':
-        return render_json(request, addon, gen)
+        return render_json(request, addon, series)
 
 
 @addon_view
@@ -116,16 +83,30 @@ def sources_series(request, addon, group, start, end, format):
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
 
-    # resultkey to fieldname map - stored as a list to maintain order for csv
-    fields = [('date', 'start'), ('count', 'count'), ('sources', 'sources')]
-    qs = DownloadCount.stats.filter(addon=addon, date__range=date_range)
-    gen = qs.period_summary(group, **dict(fields))
+    series = get_series(DownloadCount, {'sources': '_source.sources'},
+                        addon=addon.id, date__range=date_range)
 
     if format == 'csv':
-        gen, headings = csv_dynamic_prep(gen, qs, fields, 'count', 'sources')
-        return render_csv(request, addon, gen, headings)
+        series, headings = csv_dynamic_prep(series, qs, fields,
+                                            'count', 'sources')
+        return render_csv(request, addon, series, headings)
     elif format == 'json':
-        return render_json(request, addon, gen)
+        return render_json(request, addon, series)
+
+
+@addon_view
+def usage_series(request, addon, group, start, end, format):
+    """Generate ADU counts grouped by ``group`` in ``format``."""
+    date_range = check_series_params_or_404(group, start, end, format)
+    check_stats_permission(request, addon)
+
+    series = get_series(UpdateCount, addon=addon.id, date__range=date_range)
+
+    if format == 'csv':
+        series, headings = csv_prep(series, fields)
+        return render_csv(request, addon, series, headings)
+    elif format == 'json':
+        return render_json(request, addon, series)
 
 
 @addon_view
@@ -135,19 +116,22 @@ def usage_breakdown_series(request, addon, group,
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
 
-    # resultkey to fieldname map - stored as a list to maintain order for csv
-    # Use DayAvg so days with 0 rows affect the calculation.
-    fields = [('date', 'start'), ('count', DayAvg('count')),
-              (field, DayAvg(field))]
-    qs = UpdateCount.stats.filter(addon=addon, date__range=date_range)
-    gen = qs.period_summary(group, **dict(fields))
+    fields = {
+        'applications': '_source.apps',
+        'locales': '_source.locales',
+        'oses': '_source.os',
+        'versions': '_source.versions',
+        'statuses': '_source.status',
+    }
+    series = get_series(UpdateCount, {field: fields[field]},
+                        addon=addon.id, date__range=date_range)
 
     if format == 'csv':
-        gen, headings = csv_dynamic_prep(gen, qs, fields,
-                                         'count', field)
-        return render_csv(request, addon, gen, headings)
+        series, headings = csv_dynamic_prep(series, qs, fields,
+                                            'count', field)
+        return render_csv(request, addon, series, headings)
     elif format == 'json':
-        return render_json(request, addon, gen)
+        return render_json(request, addon, series)
 
 
 def check_series_params_or_404(group, start, end, format):
@@ -253,6 +237,52 @@ def addon_contributions_queryset(addon, start_date, end_date):
                                      transaction_id__isnull=False,
                                      amount__gt=0,
                                      created__range=(start_date, end_date))
+
+
+@addon_view
+def contributions_series(request, addon, group, start, end, format):
+    """Generate summarized contributions grouped by ``group`` in ``format``."""
+    date_range = check_series_params_or_404(group, start, end, format)
+    check_stats_permission(request, addon, for_contributions=True)
+
+    qs = addon_contributions_queryset(addon, *date_range)
+
+    # Note that average is per contribution and not per day
+    fields = [('date', 'start'), ('total', 'amount'), ('count', 'row_count'),
+              ('average', Avg('amount'))]
+    gen = qs.period_summary(group, **dict(fields))
+
+    if format == 'csv':
+        gen, headings = csv_prep(gen, fields, precision='0.01')
+        return render_csv(request, addon, gen, headings)
+    elif format == 'json':
+        return render_json(request, addon, gen)
+
+
+@addon_view
+def contributions_detail(request, addon, start, end, format):
+    """Generate detailed contributions in ``format``."""
+    # This view doesn't do grouping, but we can leverage our series parameter
+    # checker by passing in a valid group value.
+    date_range = check_series_params_or_404('day', start, end, format)
+    check_stats_permission(request, addon, for_contributions=True)
+    qs = addon_contributions_queryset(addon, *date_range)
+
+    def property_lookup_gen(qs, fields):
+        for obj in qs:
+            yield dict((k, getattr(obj, f, None)) for k, f in fields)
+
+    fields = [('date', 'date'), ('amount', 'amount'),
+              ('requested', 'suggested_amount'),
+              ('contributor', 'contributor'),
+              ('email', 'email'), ('comment', 'comment')]
+    gen = property_lookup_gen(qs, fields)
+
+    if format == 'csv':
+        gen, headings = csv_prep(gen, fields, precision='0.01')
+        return render_csv(request, addon, gen, headings)
+    elif format == 'json':
+        return render_json(request, addon, gen)
 
 
 # 7 days in seconds

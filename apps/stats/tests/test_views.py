@@ -1,18 +1,20 @@
 import csv
+import json
 
 from nose.tools import eq_
 
 import amo.tests
 from amo.urlresolvers import reverse
-from stats import views
+from stats import views, tasks
+from stats.models import DownloadCount, UpdateCount
 
 
-class TestSeriesBase(amo.tests.TestCase):
+class StatsTest(object):
     fixtures = ['stats/test_views.json', 'stats/test_models.json']
 
     def setUp(self):
         """Setup some reasonable testing defaults."""
-        super(TestSeriesBase, self).setUp()
+        super(StatsTest, self).setUp()
         # default url_args to an addon and range with data
         self.url_args = {'start': '20090601', 'end': '20090930', 'addon_id': 4}
         # most tests don't care about permissions
@@ -58,6 +60,10 @@ class TestSeriesBase(amo.tests.TestCase):
                 yield (view, args)
 
 
+class TestSeriesBase(StatsTest, amo.tests.TestCase):
+    pass
+
+
 class TestSeriesSecurity(TestSeriesBase):
     """Tests to make sure all restricted data remains restricted."""
 
@@ -94,7 +100,7 @@ class TestSeriesSecurity(TestSeriesBase):
                 'unexpected http status for %s' % view)
 
 
-class TestCSVs(TestSeriesBase):
+class _TestCSVs(TestSeriesBase):
     """Tests for CSV output of all known series views."""
     first_row = 5
 
@@ -281,6 +287,204 @@ class TestCacheControl(TestSeriesBase):
 
     def test_cache_control(self):
         response = self.get_view_response('stats.downloads_series',
-                                          group='month', format='csv')
+                                          group='month', format='json')
         assert response.get('cache-control', '').startswith('max-age='), (
             'Bad or no cache-control: %r' % response.get('cache-control', ''))
+
+
+class TestJSON(StatsTest, amo.tests.ESTestCase):
+    es = True
+
+    def setUp(self):
+        super(TestJSON, self).setUp()
+        self.index()
+
+    @classmethod
+    def add_addons(cls):
+        # Override the default that adds some add-ons.
+        pass
+
+    def index(self):
+        updates = UpdateCount.objects.values_list('id', flat=True)
+        tasks.index_update_counts(list(updates))
+        downloads = DownloadCount.objects.values_list('id', flat=True)
+        tasks.index_download_counts(list(downloads))
+        self.refresh()
+
+    def test_usage(self):
+        r = self.get_view_response('stats.usage_series', group='day',
+                                   format='json')
+        eq_(r.status_code, 200)
+        self.assertListEqual(json.loads(r.content), [
+            {'count': 1500, 'date': '2009-06-02', 'end': '2009-06-02'},
+            {'count': 1000, 'date': '2009-06-01', 'end': '2009-06-01'},
+        ])
+
+    def test_usage_by_app(self):
+        r = self.get_view_response('stats.apps_series', group='day',
+                                   format='json')
+        eq_(r.status_code, 200)
+        self.assertListEqual(json.loads(r.content), [
+            {
+                "applications": {
+                    "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": {"4.0": 1500}
+                },
+                "count": 1500,
+                "date": "2009-06-02",
+                "end": "2009-06-02"
+            },
+            {
+                "applications": {
+                    "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": {"4.0": 1000}
+                },
+                "count": 1000,
+                "date": "2009-06-01",
+                "end": "2009-06-01"
+            }
+        ])
+
+    def test_usage_by_locale(self):
+        r = self.get_view_response('stats.locales_series', group='day',
+                                   format='json')
+        eq_(r.status_code, 200)
+        self.assertListEqual(json.loads(r.content), [
+            {
+                "count": 1500,
+                "date": "2009-06-02",
+                "end": "2009-06-02",
+                "locales": {
+                    "el": 400,
+                    "en-us": 300
+                }
+            },
+            {
+                "count": 1000,
+                "date": "2009-06-01",
+                "end": "2009-06-01",
+                "locales": {
+                    "el": 400,
+                    "en-us": 300
+                }
+            }
+        ])
+
+    def test_usage_by_os(self):
+        r = self.get_view_response('stats.os_series', group='day',
+                                   format='json')
+        eq_(r.status_code, 200)
+        self.assertListEqual(json.loads(r.content), [
+            {
+                "count": 1500,
+                "date": "2009-06-02",
+                "end": "2009-06-02",
+                "oses": {
+                    "Linux": 400,
+                    "Windows": 500
+                }
+            },
+            {
+                "count": 1000,
+                "date": "2009-06-01",
+                "end": "2009-06-01",
+                "oses": {
+                    "Linux": 300,
+                    "Windows": 400
+                }
+            }
+        ])
+
+    def test_usage_by_version(self):
+        r = self.get_view_response('stats.versions_series', group='day',
+                                   format='json')
+        eq_(r.status_code, 200)
+        self.assertListEqual(json.loads(r.content), [
+            {
+                "count": 1500,
+                "date": "2009-06-02",
+                "end": "2009-06-02",
+                "versions": {
+                    "1.0": 550,
+                    "2.0": 950
+                }
+            },
+            {
+                "count": 1000,
+                "date": "2009-06-01",
+                "end": "2009-06-01",
+                "versions": {
+                    "1.0": 200,
+                    "2.0": 800
+                }
+            }
+        ])
+
+    def test_usage_by_status(self):
+        r = self.get_view_response('stats.statuses_series', group='day',
+                                   format='json')
+        eq_(r.status_code, 200)
+        self.assertListEqual(json.loads(r.content), [
+            {
+                "count": 1500,
+                "date": "2009-06-02",
+                "end": "2009-06-02",
+                "statuses": {
+                    "userDisabled": 130,
+                    "userEnabled": 1370
+                }
+            },
+            {
+                "count": 1000,
+                "date": "2009-06-01",
+                "end": "2009-06-01",
+                "statuses": {
+                    "userDisabled": 50,
+                    "userEnabled": 950
+                }
+            }
+        ])
+
+    def test_downloads(self):
+        r = self.get_view_response('stats.downloads_series', group='day',
+                                   format='json')
+        eq_(r.status_code, 200)
+        self.assertListEqual(json.loads(r.content), [
+            {"count": 10, "date": "2009-09-03", "end": "2009-09-03"},
+            {"count": 10, "date": "2009-08-03", "end": "2009-08-03"},
+            {"count": 10, "date": "2009-07-03", "end": "2009-07-03"},
+            {"count": 10, "date": "2009-06-28", "end": "2009-06-28"},
+            {"count": 10, "date": "2009-06-20", "end": "2009-06-20"},
+            {"count": 10, "date": "2009-06-12", "end": "2009-06-12"},
+            {"count": 10, "date": "2009-06-07", "end": "2009-06-07"},
+            {"count": 10, "date": "2009-06-01", "end": "2009-06-01"},
+        ])
+
+    def test_downloads_sources(self):
+        r = self.get_view_response('stats.sources_series', group='day',
+                                   format='json')
+        eq_(r.status_code, 200)
+        self.assertListEqual(json.loads(r.content), [
+            {"count": 10, "date": "2009-09-03", "end": "2009-09-03",
+             "sources": {"api": 2, "search": 3}
+            },
+            {"count": 10, "date": "2009-08-03", "end": "2009-08-03",
+             "sources": {"api": 2, "search": 3}
+            },
+            {"count": 10, "date": "2009-07-03", "end": "2009-07-03",
+             "sources": {"api": 2, "search": 3}
+            },
+            {"count": 10, "date": "2009-06-28", "end": "2009-06-28",
+             "sources": {"api": 2, "search": 3}
+            },
+            {"count": 10, "date": "2009-06-20", "end": "2009-06-20",
+             "sources": {"api": 2, "search": 3}
+            },
+            {"count": 10, "date": "2009-06-12", "end": "2009-06-12",
+             "sources": {"api": 2, "search": 3}
+            },
+            {"count": 10, "date": "2009-06-07", "end": "2009-06-07",
+             "sources": {"api": 2, "search": 3}
+            },
+            {"count": 10, "date": "2009-06-01", "end": "2009-06-01",
+             "sources": {"api": 2, "search": 3}
+            }
+        ])

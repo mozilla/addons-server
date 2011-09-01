@@ -106,6 +106,7 @@ PLATFORM_DICT = {
     'darwin': PLATFORM_MAC,
     'bsd': PLATFORM_BSD,
     'bsd_os': PLATFORM_BSD,
+    'freebsd': PLATFORM_BSD,
     'win': PLATFORM_WIN,
     'winnt': PLATFORM_WIN,
     'windows': PLATFORM_WIN,
