@@ -448,7 +448,7 @@ class TestFeeds(amo.tests.TestCase):
             pg_item, rss_item = pq(pg_item), pq(rss_item)
             pg_url = absolutify(pg_item.find('h3 a').attr('href'))
             rss_url = rss_item.find('link').text()
-            eq_(pg_url, rss_url)
+            eq_(pg_url.split('?')[0], rss_url)
             if sort in ('added', 'updated'):
                 # Check timestamps.
                 pg_ts = pg_item.find('.updated').text().strip('Added Updated')
