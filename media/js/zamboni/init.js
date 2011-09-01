@@ -189,13 +189,6 @@ z.media_url = document.body.getAttribute('data-media-url');
 
 z.readonly = JSON.parse(document.body.getAttribute('data-readonly'));
 
-try {
-    var storage = z.Storage();
-    z.hasACR = storage.get('ShowIncompatibleAddons');
-} catch (TypeError) {
-    z.hasACR = false;
-}
-
 z.hasNightly = false;
 if (z.browser.firefox) {
     var nightlyVer = document.body.getAttribute('data-nightly-version');

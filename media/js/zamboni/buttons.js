@@ -1,4 +1,10 @@
 (function() {
+
+try {
+    z.hasACR = z.Storage().get('ShowIncompatibleAddons');
+} catch (TypeError) {
+}
+
 /* Call this with something like $('.install').installButton(); */
 z.button = {};
 
