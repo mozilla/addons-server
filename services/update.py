@@ -15,6 +15,8 @@ from django.core.management import setup_environ
 import settings_local as settings
 setup_environ(settings)
 import log_settings
+# This has to be imported after the settings so statsd knows where to log to.
+from statsd import statsd
 
 try:
     from compare import version_int
@@ -306,17 +308,18 @@ def application(environ, start_response):
     status = '200 OK'
     timing = (environ['REQUEST_METHOD'], '%s?%s' %
               (environ['SCRIPT_NAME'], environ['QUERY_STRING']))
-    data = dict(parse_qsl(environ['QUERY_STRING']))
-    try:
-        update = Update(data)
-        output = update.get_rdf()
-        start_response(status, update.get_headers(len(output)))
-    except:
-        timing_log.info('%s "%s" (500) %.2f [ANON]' %
+    with statsd.timer('services.update'):
+        data = dict(parse_qsl(environ['QUERY_STRING']))
+        try:
+            update = Update(data)
+            output = update.get_rdf()
+            start_response(status, update.get_headers(len(output)))
+        except:
+            timing_log.info('%s "%s" (500) %.2f [ANON]' %
+                            (timing[0], timing[1], time() - start))
+            #mail_exception(data)
+            log_exception(data)
+            raise
+        timing_log.info('%s "%s" (200) %.2f [ANON]' %
                         (timing[0], timing[1], time() - start))
-        #mail_exception(data)
-        log_exception(data)
-        raise
-    timing_log.info('%s "%s" (200) %.2f [ANON]' %
-                    (timing[0], timing[1], time() - start))
     return [output]
