@@ -52,6 +52,10 @@ $(document).ready(function() {
         initUploadPreview();
     }
 
+    if ($('.perf-tests').length) {
+        initPerfTests(window.document);
+    }
+
     // Add-on uploader
     if($('#upload-addon').length) {
         var opt = {'cancel': $('.upload-file-cancel') };
@@ -1338,4 +1342,30 @@ function initAddonCompatCheck($doc) {
         // If an app is selected when page loads and it's not a form post.
         $elem.trigger('change');
     }
+}
+
+function initPerfTests(doc) {
+    $('.perf-test-listing .start-perf-tests', doc).click(function(ev) {
+        var $start = $(ev.target),
+            start_url = $start.attr('href'),
+            $results = $('.perf-results', $start.closest('ul'));
+        ev.preventDefault();
+        $results.text(gettext('Starting tests...'));
+        $.ajax({type: 'GET',
+                url: start_url,
+                success: function(data) {
+                    // TODO(Kumar) poll for results and display message
+                    $results.attr('data-got-response', 1);
+                    if (data.success) {
+                        $results.text('TODO: poll for results?');
+                    } else {
+                        $results.text(gettext('Internal Server Error'));
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    $results.attr('data-got-response', 1);
+                    $results.text(gettext('Internal Server Error'));
+                },
+                dataType: 'json'});
+    });
 }

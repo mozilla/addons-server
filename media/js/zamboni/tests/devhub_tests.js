@@ -501,4 +501,70 @@ test('existing platforms', function() {
 });
 
 
+module('perf-tests', {
+    setup: function() {
+        this.sandbox = tests.createSandbox('#file-perf-tests');
+        initPerfTests(this.sandbox);
+    },
+    teardown: function() {
+        this.sandbox.remove();
+    }
+});
+
+asyncTest('success', function() {
+    var $sb = this.sandbox;
+    $('.start-perf-tests', $sb).attr('href', '/file-perf-stub1');
+    $.mockjax({
+        url: '/file-perf-stub1',
+        responseText: {success: true},
+        status: 200,
+        responseTime: 0
+    });
+    $('.start-perf-tests', $sb).trigger('click');
+    tests.waitFor(function() {
+        return $('.perf-results', $sb).attr('data-got-response') == '1';
+    }).thenDo(function() {
+        // TODO(Kumar) add checks for polling
+        equals($('.perf-results', $sb).text(), 'TODO: poll for results?')
+        start();
+    });
+});
+
+asyncTest('failure', function() {
+    var $sb = this.sandbox;
+    $('.start-perf-tests', $sb).attr('href', '/file-perf-stub2');
+    $.mockjax({
+        url: '/file-perf-stub2',
+        responseText: {success: false},
+        status: 200,
+        responseTime: 0
+    });
+    $('.start-perf-tests', $sb).trigger('click');
+    tests.waitFor(function() {
+        return $('.perf-results', $sb).attr('data-got-response') == '1';
+    }).thenDo(function() {
+        equals($('.perf-results', $sb).text(), 'Internal Server Error')
+        start();
+    });
+});
+
+asyncTest('500 error', function() {
+    var $sb = this.sandbox;
+    $('.start-perf-tests', $sb).attr('href', '/file-perf-stub3');
+    $.mockjax({
+        url: '/file-perf-stub3',
+        responseText: '',
+        status: 500,
+        responseTime: 0
+    });
+    $('.start-perf-tests', $sb).trigger('click');
+    tests.waitFor(function() {
+        return $('.perf-results', $sb).attr('data-got-response') == '1';
+    }).thenDo(function() {
+        equals($('.perf-results', $sb).text(), 'Internal Server Error')
+        start();
+    });
+});
+
+
 });

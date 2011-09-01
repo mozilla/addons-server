@@ -78,6 +78,14 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         else:
             return True
 
+    def can_be_perf_tested(self):
+        """True if it's okay to run performance tests on this addon file.
+        """
+        is_eligible = (self.status in amo.REVIEWED_STATUSES and
+                       self.version.addon.type != amo.ADDON_WEBAPP and
+                       not self.version.addon.disabled_by_user)
+        return is_eligible
+
     def get_mirror(self, addon, attachment=False):
         if self.datestatuschanged:
             published = datetime.now() - self.datestatuschanged
