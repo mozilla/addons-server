@@ -1143,6 +1143,8 @@ LOGIN_RATELIMIT_ALL_USERS = '15/m'
 # If this is true all new webapps go into an approval queue. If it's false then
 # they go public immediately.
 WEBAPPS_RESTRICTED = True
+# The key we'll use to sign webapp receipts.
+WEBAPPS_RECEIPT_KEY = ''
 
 # How long a watermarked addon should be re-used for, after this
 # time it will be regenerated.
