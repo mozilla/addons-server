@@ -215,6 +215,15 @@ var installButton = function() {
             warn(gettext('Not available for your platform'));
             $button.addClass('concealed');
             $button.first().css('display', 'inherit');
+        } else {
+            if (appSupported && z.hasACR && (newerBrowser || olderBrowser)) {
+                // L10n: {0} is an app name, {1} is the app version.
+                warn(format(gettext('May be incompatible with {0} {1}'),
+                            [z.appName, z.browserVersion]));
+                console.log("ADDING CLASS");
+                $button.addClass('acr-override');
+                return false;
+            }
         }
 
         if (appSupported && (olderBrowser || newerBrowser)) {
@@ -264,7 +273,7 @@ var installButton = function() {
     if (selfhosted) {
         $button.addPopup(message('selfhosted'));
     } else if (eula || contrib) {
-        versionsAndPlatforms({addPopup: false})
+        versionsAndPlatforms({addPopup: false});
     } else if (persona) {
         $button.removeClass('download').addClass('add').find('span').text(addto);
         if ($.hasPersonas()) {

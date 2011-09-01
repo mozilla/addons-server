@@ -156,6 +156,20 @@
             visibility: visible;
         }
     }
+    &.acr,
+    &.incompatible {
+        .install-shell {
+            font: 10px/12px Arial, sans-serif;
+        }
+    }
+    &.acr .install-shell {
+        .install {
+            margin: 0 0 6px;
+        }
+        .extra {
+            margin: 0;
+        }
+    }
     &.incompatible {
         &:hover {
             .action {
@@ -171,7 +185,6 @@
             opacity: 0.4;
         }
         .install-shell {
-            font: 10px/12px Arial, sans-serif;
             visibility: visible;
             .install, br {
                 display: none;
@@ -245,7 +258,7 @@
             text-align: left;
         }
         .extra {
-            margin: 0;
+            margin: 0 0 2px;
             .notavail {
                 color: @note-gray;
             }

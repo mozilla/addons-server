@@ -47,6 +47,6 @@ z.Storage = (function() {
             remove: function(key) {
                 return engine.removeItem(namespace + key);
             }
-        }
+        };
     };
 })();

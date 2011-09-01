@@ -48,11 +48,9 @@ $(document).ready(function() {
                 $(document.body).attr('data-nightly-version'), true, '3.0');
         }
     }));
-
     test('Show pitch', function() {
         this.check(true);
     });
-
 
     module('ACR nightly compatible', $.extend({}, acrFixture, {
         setup: function() {
@@ -60,20 +58,121 @@ $(document).ready(function() {
             acrFixture.setup.call(this, nightlyVer, true, nightlyVer);
         }
     }));
-
     test('No pitch', function() {
         this.check(false);
     });
-
 
     module('ACR non-nightly compatible', $.extend({}, acrFixture, {
         setup: function() {
             acrFixture.setup.call(this, '4.0', false);
         }
     }));
-
     test('No pitch', function() {
         this.check(false);
+    });
+
+
+    var acrOverrideFixture = {
+        setup: function(browserVersion, hasACR) {
+            this.sandbox = tests.createSandbox('#acr-override');
+            this._browser = z.browserVersion;
+            this._hasACR = z.hasACR;
+            z.browserVersion = browserVersion;
+            z.hasACR = hasACR != null ? hasACR : false;
+            $('.install', this.sandbox).installButton();
+            this.buttons = $('.install-shell', this.sandbox);
+            this.override_msg = 'May be incompatible with Firefox ' + z.browserVersion;
+            this.notavail_msg = 'Not available for Firefox ' + z.browserVersion;
+        },
+        teardown: function() {
+            z.browserVersion = this._browser;
+            z.hasACR = this._hasACR;
+            this.sandbox.remove();
+        },
+        isCompat: function(el) {
+            equals(el.find('.extra').length, 0);
+            equals(el.find('.add').text(), 'Add to Firefox');
+        },
+        notAvail: function(el) {
+            equals(el.find('.notavail').text(), this.notavail_msg);
+            equals(el.find('.concealed').text(), 'Add to Firefox');
+        },
+        mayCompat: function(el) {
+            equals(el.find('.notavail').text(), this.override_msg);
+            equals(el.find('.add.acr-override').text(), 'Add to Firefox');
+        }
+    };
+
+
+    module('ACR installed: override for incompatible maxVer', $.extend({}, acrOverrideFixture, {
+        setup: function() {
+            acrOverrideFixture.setup.call(this, '8.0', true);
+        }
+    }));
+    test('Firefox 9.0', function() {
+        equals(this.buttons.find('div[data-version-supported=true]').length, 2);
+        // This one should always be compatible (maxVer is 99.9).
+        this.isCompat(this.buttons.eq(0));
+        // 9.0 "may be incompatible" (maxVer is 7.*).
+        this.mayCompat(this.buttons.eq(1));
+    });
+
+    module('ACR installed: override for incompatible minVer', $.extend({}, acrOverrideFixture, {
+        setup: function() {
+            acrOverrideFixture.setup.call(this, '2.0', true);
+        }
+    }));
+    test('Firefox 2.0', function() {
+        equals(this.buttons.find('div[data-version-supported=true]').length, 2);
+        this.isCompat(this.buttons.eq(0));
+        // 2.0 "may be incompatible" (minVer is 3.6).
+        this.mayCompat(this.buttons.eq(1));
+    });
+
+    module('ACR installed: override for compatible', $.extend({}, acrOverrideFixture, {
+        setup: function() {
+            acrOverrideFixture.setup.call(this, '6.0', true);
+        }
+    }));
+    test('Firefox 6.0', function() {
+        equals(this.buttons.find('div[data-version-supported=true]').length, 2);
+        this.isCompat(this.buttons.eq(0));
+        // 6.0 should certainly be compatible (2.0 - 7.*).
+        this.isCompat(this.buttons.eq(1));
+    });
+
+
+    module('no ACR: incompatible maxVer', $.extend({}, acrOverrideFixture, {
+        setup: function() {
+            acrOverrideFixture.setup.call(this, '8.0', false);
+        }
+    }));
+    test('Firefox 9.0', function() {
+        equals(this.buttons.find('div[data-version-supported=true][data-addon=1865]').length, 1);
+        this.isCompat(this.buttons.eq(0));  // maxVer is 99.9
+        this.notAvail(this.buttons.eq(1));  // maxVer is 7.*
+    });
+
+    module('no ACR: incompatible minVer', $.extend({}, acrOverrideFixture, {
+        setup: function() {
+            acrOverrideFixture.setup.call(this, '2.0', false);
+        }
+    }));
+    test('Firefox 2.0', function() {
+        equals(this.buttons.find('div[data-version-supported=true][data-addon=1865]').length, 1);
+        this.isCompat(this.buttons.eq(0));
+        this.notAvail(this.buttons.eq(1));  // minVer is 3.6
+    });
+
+    module('no ACR: override for compatible', $.extend({}, acrOverrideFixture, {
+        setup: function() {
+            acrOverrideFixture.setup.call(this, '6.0', false);
+        }
+    }));
+    test('Firefox 6.0', function() {
+        equals(this.buttons.find('div[data-version-supported=true]').length, 2);
+        this.isCompat(this.buttons.eq(0));
+        this.isCompat(this.buttons.eq(1));  // 2.0 - 7.*
     });
 
 });
