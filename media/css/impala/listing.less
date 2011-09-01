@@ -36,9 +36,13 @@
     }
     > ul > li {
         float: left;
+        position: relative;
         > a {
             border-right: 1px solid #ccc;
             padding: 0 6px;
+        }
+        &:last-child:not(.extras) a {
+            border-right: none;
         }
         &.extras {
             > a {
@@ -66,7 +70,7 @@
                 display: none;
                 padding: 6px;
                 position: absolute;
-                top: 35px;
+                top: 18px;
                 z-index: 49;
                 width: 120px;
                 a {
@@ -92,6 +96,15 @@
                     margin-left: -1px;
                     padding-left: 7px;
                 }
+                &:after {
+                    background: #fff;
+                    content: "";
+                    height: 7px;
+                    position: absolute;
+                    top: 19px;
+                    width: 130px;
+                    z-index: 52;
+                }
             }
         }
     }
@@ -107,6 +120,9 @@
         > a {
             border: none;
             border-left: 1px solid #ccc;
+        }
+        &:last-child:not(.extras) a {
+            border-left: none;
         }
         &.extras {
             > a {
