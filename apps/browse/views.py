@@ -176,7 +176,8 @@ def extensions(request, category=None, template=None):
 
     addons, filter = addon_listing(request, [TYPE], is_impala=True)
     sorting = filter.field
-    src = 'featured' if sorting == 'featured' else 'category'
+    src = 'cb-btn-%s' % sorting
+    dl_src = 'cb-dl-%s' % sorting
 
     if category:
         addons = addons.filter(categories__id=category.id)
@@ -186,7 +187,7 @@ def extensions(request, category=None, template=None):
                         {'category': category, 'addons': addons,
                          'filter': filter, 'sorting': sorting,
                          'sort_opts': filter.opts, 'src': src,
-                         'search_cat': '%s,0' % TYPE})
+                         'dl_src': dl_src, 'search_cat': '%s,0' % TYPE})
 
 
 @mobile_template('browse/{mobile/}extensions.html')

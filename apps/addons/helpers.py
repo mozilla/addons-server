@@ -175,7 +175,11 @@ def addon_listing_items(context, addons, show_date=False,
 @register.inclusion_tag('addons/impala/listing/items.html')
 @jinja2.contextfunction
 def impala_addon_listing_items(context, addons, field=None, src=None,
-                               notes={}):
+                               dl_src=None, notes={}):
+    if not src:
+        src = context.get('src')
+    if not dl_src:
+        dl_src = context.get('dl_src', src)
     return new_context(**locals())
 
 

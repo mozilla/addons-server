@@ -3,7 +3,11 @@
     <div class="item addon">
       <div class="info">
         <h3>
-          <a href="{{ addon.get_url_path(impala=True) }}">
+          {% set dl_url = addon.get_url_path() %}
+          {% if dl_src %}
+            {% set dl_url = dl_url|urlparams(src=dl_src) %}
+          {% endif %}
+          <a href="{{ dl_url }}">
             <img src="{{ addon.icon_url }}">{{ addon.name }}</a>
           {% if addon.is_no_restart() %}
             <span class="no-restart">{{ _('No Restart') }}</span>
