@@ -14,6 +14,7 @@ import jingo
 from celeryutils import task
 from tower import ugettext as _
 
+import amo
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import Message, get_email_backend
@@ -144,10 +145,19 @@ def repackage_jetpack(builder_data, **kw):
     try:
         new_version = Version.from_upload(upload, addon, [old_file.platform],
                                           send_signal=False)
-        # Sync the compatible apps of the new version.
+        # Sync the compatible apps of the new version with data from the old
+        # version if the repack didn't specify compat info.
         for app in old_version.apps.values():
-            app.update(version_id=new_version.id, id=None)
-            ApplicationsVersions.objects.create(**app)
+            sync_app = amo.APP_IDS[app['application_id']]
+            new_compat = new_version.compatible_apps
+            if sync_app not in new_compat:
+                app.update(version_id=new_version.id, id=None)
+                ApplicationsVersions.objects.create(**app)
+            else:
+                new_compat[sync_app].min_id = app['min_id']
+                new_compat[sync_app].max_id = app['max_id']
+                new_compat[sync_app].save()
+
         # Sync the status of the new file.
         new_file = new_version.files.using('default')[0]
         new_file.status = old_file.status

@@ -17,6 +17,7 @@ import amo.tests
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from addons.models import Addon
+from applications.models import AppVersion
 from files import tasks
 from files.models import File
 from files.utils import JetpackUpgrader
@@ -183,12 +184,17 @@ class TestRepackageJetpack(amo.tests.TestCase):
         eq_(len(mail.outbox), 1)
 
     def test_supported_apps(self):
-        version = tasks.repackage_jetpack(self.builder_data()).version
-        old_apps = self.file.version.compatible_apps
-        eq_(version.compatible_apps.keys(), old_apps.keys())
-        for app, appver in version.compatible_apps.items():
-            eq_(old_apps[app].max, appver.max)
-            eq_(old_apps[app].min, appver.min)
+        # Create AppVersions to match what's in the xpi.
+        AppVersion.objects.create(application_id=amo.FIREFOX.id, version='3.6')
+        AppVersion.objects.create(
+            application_id=amo.FIREFOX.id, version='4.0b6')
+
+        # Make sure the new appver matches the old appver.
+        new = tasks.repackage_jetpack(self.builder_data()).version
+        for old_app in self.file.version.apps.all():
+            new_app = new.apps.filter(application=old_app.application)
+            eq_(new_app.values_list('min', 'max')[0],
+                (old_app.min_id, old_app.max_id))
 
 
 def test_parse_version():
