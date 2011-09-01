@@ -3,10 +3,13 @@
 {% block title %}{{ page_title(_('User Login')) }}{% endblock %}
 
 {% block js %}
-{% if waffle.switch('browserid-login') %}
-<script src="https://browserid.org/include.js"></script>
-{% endif %}
-{% if form.recaptcha %}{% include("amo/recaptcha_js.html") %}{% endif %}
+  {% if waffle.switch('browserid-login') %}
+    <script src="https://browserid.org/include.js"></script>
+  {% endif %}
+  {% if form.recaptcha %}
+    {% include("amo/recaptcha_js.html") %}
+  {% endif %}
+{{ js('zamboni/login') }}
 {% endblock %}
 
 
@@ -25,12 +28,13 @@
       </div>
   {% endif %}
   <h2>{{ _('Log In') }}</h2>
-  <div class="primary featured">
+  <div class="featured">
     {% if waffle.switch('browserid-login') %}
     <div class="featured-inner">
-      <a class="browserid-login" href="#" data-url="{{ url('users.browserid_login') }}">
+      <button class="browserid-login" type="submit"
+              data-url="{{ url('users.browserid_login') }}">
         {{ _('Log in with BrowserID') }}
-      </a>
+      </button>
     </div>
     {% endif %}
     <form method="post" action="" class="featured-inner object-lead user-input">

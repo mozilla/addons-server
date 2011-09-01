@@ -359,6 +359,32 @@ class TestLogin(UserViewBase):
         res = self.client.post(self.url, data=data)
         eq_(res.status_code, 302)
 
+    @patch.object(waffle, 'switch_is_active', lambda x: True)
+    @patch('httplib2.Http.request')
+    def test_browserid_login_success(self, http_request):
+        """
+        A success response from BrowserID results in successful login.
+        """
+        http_request.return_value = (200, json.dumps({'status': 'okay',
+                                          'email': 'jbalogh@mozilla.com'}))
+        res = self.client.post(reverse('users.browserid_login'),
+                               data=dict(assertion='fake-assertion',
+                                         audience='fakeamo.org'))
+        eq_(res.status_code, 200)
+
+
+    @patch.object(waffle, 'switch_is_active', lambda x: True)
+    @patch('httplib2.Http.request')
+    def test_browserid_login_failure(self, http_request):
+        """
+        A failure response from BrowserID results in login failure.
+        """
+        http_request.return_value = (200, json.dumps({'status': 'busted'}))
+        res = self.client.post(reverse('users.browserid_login'),
+                               data=dict(assertion='fake-assertion',
+                                         audience='fakeamo.org'))
+        eq_(res.status_code, 401)
+
 
 class TestUnsubscribe(UserViewBase):
     fixtures = ['base/users']

@@ -696,6 +696,9 @@ MINIFY_BUNDLES = {
             'js/zamboni/admin_features.js',
             'js/zamboni/admin_validation.js',
         ),
+        'zamboni/login': (
+            'js/zamboni/browserid_support.js',
+        ),
         # This is included when DEBUG is True.  Bundle in <head>.
         'debug': (
             'js/debug/less_setup.js',

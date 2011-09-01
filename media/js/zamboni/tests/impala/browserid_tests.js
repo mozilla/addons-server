@@ -9,7 +9,7 @@ asyncTest('Login failure (error from server)', function() {
     function check() {
         $.mockjaxClear();
     };
-    redirectAfterBrowserIDLogin = function() { start();};
+    browserIDRedirect = function() { start();};
     $.mockjax({url: '/en-US/firefox/users/browserid-login',
                response: check,
                status: 401});
@@ -37,7 +37,7 @@ test('Login cancellation', function() {
 asyncTest('Login success', function() {
     var ajaxCalled = false;
     equal($(".primary .notification-box", this.sandbox).length, 0);
-    makeRedirectAfterBrowserIDLogin = function(to) {
+    browserIDRedirect = function(to) {
         return function() { ajaxCalled = true; $.mockjaxClear();};
     };
     $.mockjax({url: '/en-US/firefox/users/browserid-login',
@@ -50,5 +50,5 @@ asyncTest('Login success', function() {
             ok(ajaxCalled);
             start();
         });
-});
+    });
 });
