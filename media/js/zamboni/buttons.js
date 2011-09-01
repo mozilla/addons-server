@@ -18,6 +18,7 @@ z.button.after = {'contrib': function(xpi_url, status) {
 }};
 
 var notavail = '<div class="extra"><span class="notavail">{0}</span></div>',
+    incompat = '<div class="extra"><span class="notavail acr-incompat">{0}</span></div>',
     download_re = new RegExp('(/downloads/(?:latest|file)/\\d+)');
 
 
@@ -110,7 +111,7 @@ var installButton = function() {
         }
     };
 
-    var addWarning = function(msg) { $this.parent().append(format(notavail, [msg])); };
+    var addWarning = function(msg, type) { $this.parent().append(format(type || notavail, [msg])); };
 
     // Change the button text to "Add to Firefox".
     var addToApp = function() {
@@ -219,7 +220,8 @@ var installButton = function() {
             if (appSupported && z.hasACR && (newerBrowser || olderBrowser)) {
                 // L10n: {0} is an app name, {1} is the app version.
                 warn(format(gettext('May be incompatible with {0} {1}'),
-                            [z.appName, z.browserVersion]));
+                            [z.appName, z.browserVersion]),
+                     incompat);
                 $button.addClass('acr-override');
                 return false;
             }

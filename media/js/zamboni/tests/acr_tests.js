@@ -94,11 +94,12 @@ $(document).ready(function() {
             equals(el.find('.add').text(), 'Add to Firefox');
         },
         notAvail: function(el) {
+            tests.lacksClass(el.find('.notavail'), 'acr-incompat');
             equals(el.find('.notavail').text(), this.notavail_msg);
             equals(el.find('.concealed').text(), 'Add to Firefox');
         },
         mayCompat: function(el) {
-            equals(el.find('.notavail').text(), this.override_msg);
+            equals(el.find('.notavail.acr-incompat').text(), this.override_msg);
             equals(el.find('.add.acr-override').text(), 'Add to Firefox');
         }
     };
