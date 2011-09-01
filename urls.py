@@ -161,8 +161,9 @@ if 'django_qunit' in settings.INSTALLED_APPS:
         from time import time
         import django_qunit.views
         import jingo
+        import mock
         ctx = django_qunit.views.get_suite_context(request, path)
-        ctx.update(timestamp=time())
+        ctx.update(timestamp=time(), Mock=mock.Mock)
         response = jingo.render(request, template, ctx)
         # This allows another site to embed the QUnit suite
         # in an iframe (for CI).
