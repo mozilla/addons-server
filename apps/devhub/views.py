@@ -43,6 +43,7 @@ from addons.views import BaseFilter
 from devhub.decorators import dev_required
 from devhub.forms import CheckCompatibilityForm
 from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
+from devhub import perf
 from editors.helpers import get_position
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
@@ -492,6 +493,26 @@ def check_addon_compatibility(request):
                          'upload_url': reverse('devhub.standalone_upload')})
 
 
+@dev_required
+@json_view
+def file_perf_tests_start(request, addon_id, addon, file_id):
+    if not waffle.flag_is_active(request, 'perf-tests'):
+        return http.HttpResponseForbidden()
+    file_ = get_object_or_404(File, pk=file_id)
+
+    plats = perf.PLATFORM_MAP.get(file_.platform.id, None)
+    if plats is None:
+        log.info('Unsupported performance platform %s for file %s'
+                 % (file_.platform.id, file_))
+        # TODO(Kumar) provide a message about this
+        return {'success': False}
+
+    for app in perf.ALL_APPS:
+        for plat in plats:
+            tasks.start_perf_test_for_file.delay(file_.id, plat, app)
+    return {'success': True}
+
+
 def packager_path(name):
     return os.path.join(settings.PACKAGER_PATH, '%s.zip' % name)
 
@@ -601,8 +622,9 @@ def upload_manifest(request):
             error_text = ' '.join(form.errors['manifest'])
         error_message = {'type': 'error', 'message': error_text, 'tier': 1}
 
-        v =  {'errors': 1, 'success': False, 'messages': [error_message]}
+        v = {'errors': 1, 'success': False, 'messages': [error_message]}
         return make_validation_result(dict(validation=v, error=error_text))
+
 
 @login_required
 @post_required

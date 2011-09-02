@@ -1,12 +1,31 @@
-"""Test addon performance."""
+"""Test addon performance.
+
+For more information on the parameters and values that the performance
+testing service accepts, see
+https://intranet.mozilla.org/Anodelman:doc:TriggerSendchange
+"""
 import logging
 import urllib
 from urllib2 import urlopen
 
 from django.conf import settings
 
+import amo
+
 
 log = logging.getLogger('z.devhub.task')
+
+
+# These are all the apps available for a file to be tested against:
+ALL_APPS = ('firefox3.5', 'firefox3.6', 'firefox4.0')
+
+# This translates AMO platforms into performance service platforms:
+PLATFORM_MAP = {amo.PLATFORM_LINUX.id: ('linux', 'linux64'),
+                amo.PLATFORM_WIN.id: ('win32', 'win64'),
+                amo.PLATFORM_MAC.id: ('macosx', 'macosx64')}
+PLATFORM_MAP[amo.PLATFORM_ALL.id] = (PLATFORM_MAP[amo.PLATFORM_LINUX.id] +
+                                     PLATFORM_MAP[amo.PLATFORM_WIN.id] +
+                                     PLATFORM_MAP[amo.PLATFORM_MAC.id])
 
 
 class BadResponse(Exception):
@@ -33,11 +52,9 @@ def start_perf_test(file_, os_name, firefox):
     params = dict(os=os_name, firefox=firefox,
                   url=file_.get_url_path('perftest'))
     url = '%s?%s' % (settings.PERF_TEST_URL, urllib.urlencode(params))
-    timeout = 10
-    res = urlopen(url, None, timeout)
+    res = None
     try:
-        log.info('PERF TEST started for version %s at %s'
-                 % (file_.version, url))
+        res = urlopen(url, None, settings.PERF_TEST_TIMEOUT)
         ok = False
         for line in res:
             log.debug('PERF TEST line: %s' % line)
@@ -47,8 +64,13 @@ def start_perf_test(file_, os_name, firefox):
                 ok = True
         if not ok:
             raise BadResponse('no SENDCHANGE found in response')
+    except Exception, exc:
+        log.info('perf test exception %s: %s at URL %s'
+                 % (exc.__class__.__name__, exc, url))
+        raise
     finally:
-        res.close()
+        if res:
+            res.close()
 
 
 start_perf_test.__test__ = False  # not for Nose

@@ -249,6 +249,11 @@
     {% endwith %}
     <div id="editor-motd"><!-- admin edit form and stuff --></div>
   </div>
+  <div id="file-perf-tests">
+    {% with version={'all_files': [{'can_be_perf_tested': Mock(return_value=True), 'id': 1}]}, addon={'slug': 'foo'} %}
+      {% include "devhub/addons/listing/perf_file_listing.html" %}
+    {% endwith %}
+  </div>
   <div id="csrf-template">
     <input id="csrfmiddlewaretoken" value="<csrf-from-input>">
   </div>

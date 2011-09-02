@@ -1,0 +1,18 @@
+<ul>
+  {% for file in version.all_files %}
+    <li>{{ file.platform }}
+    <ul class="perf-test-listing">
+      {% if file.can_be_perf_tested() %}
+        <li class="perf-results" data-got-response="0">{{ _('No test results.') }}</li>
+        <li>
+          <a href="{{ url('devhub.file_perf_tests_start', addon.slug, file.id) }}" class="button start-perf-tests">{{ _('Start performance tests') }}</a>
+        </li>
+      {% else %}
+        <li>
+          <a title="{{ _('This file is not eligible for performance testing.') }}" href="#" class="button disabled">{{ _('Start performance tests') }}</a>
+        </li>
+      {% endif %}
+    </ul>
+    </li>
+  {% endfor %}
+</ul>
