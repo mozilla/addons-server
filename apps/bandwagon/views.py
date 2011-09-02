@@ -10,11 +10,12 @@ import jingo
 import caching.base as caching
 from tower import ugettext_lazy as _lazy, ugettext as _
 
+import amo
 from amo import messages
-import amo.utils
 import sharing.views
 from amo.decorators import login_required, post_required, json_view, write
 from amo.urlresolvers import reverse
+from amo.utils import urlparams, paginate
 from access import acl
 from addons.models import Addon
 from addons.views import BaseFilter
@@ -62,10 +63,11 @@ def legacy_redirect(request, uuid, edit=False):
 
 
 def legacy_directory_redirects(request, page):
-    sorts = {'editors_picks': 'featured', 'popular': 'popular'}
+    sorts = {'editors_picks': 'featured', 'popular': 'popular',
+             'users': 'followers'}
     loc = base = reverse('collections.list')
     if page in sorts:
-        loc = amo.utils.urlparams(base, sort=sorts[page])
+        loc = urlparams(base, sort=sorts[page])
     elif request.user.is_authenticated():
         if page == 'mine':
             loc = reverse('collections.user', args=[request.amo_user.username])
@@ -76,16 +78,19 @@ def legacy_directory_redirects(request, page):
 
 class CollectionFilter(BaseFilter):
     opts = (('featured', _lazy(u'Featured')),
-            ('users', _lazy(u'Most Followers')),
+            ('followers', _lazy(u'Most Followers')),
             ('created', _lazy(u'Newest')))
     extras = (('name', _lazy(u'Name')),
-              ('updated', _lazy(u'Recently Updated')))
+              ('updated', _lazy(u'Recently Updated')),
+              ('popular', _lazy(u'Recently Popular')))
 
     def filter(self, field):
         qs = self.base_queryset
         if field == 'featured':
             return qs.filter(type=amo.COLLECTION_FEATURED)
-        elif field == 'users':
+        elif field == 'followers':
+            return qs.order_by('-subscribers')
+        elif field == 'popular':
             return qs.order_by('-weekly_subscribers')
         elif field == 'updated':
             return qs.order_by('-modified')
@@ -111,8 +116,12 @@ def render(request, template, data={}, extra={}):
 # @mobile_template('bandwagon/{mobile/}collection_listing.html')
 def collection_listing(request, base=None):
     sort = request.GET.get('sort')
+    # We turn users into followers.
+    if sort == 'users':
+        return redirect(urlparams(reverse('collections.list'),
+                                  sort='followers'), permanent=True)
     filter = get_filter(request, base)
-    collections = amo.utils.paginate(request, filter.qs)
+    collections = paginate(request, filter.qs)
     try:
         addon_collector = Addon.objects.get(id=11950)
     except Addon.DoesNotExist:
@@ -138,7 +147,7 @@ def user_listing(request, username):
     if not (request.user.is_authenticated() and
             request.amo_user.username == username):
         qs = qs.filter(listed=True)
-    collections = amo.utils.paginate(request, qs)
+    collections = paginate(request, qs)
     votes = get_votes(request, collections.object_list)
     return render(request, 'bandwagon/user_listing.html',
                   dict(collections=collections, collection_votes=votes,
@@ -176,7 +185,7 @@ def collection_detail(request, username, slug):
     count = CollectionAddon.objects.filter(
         Addon.objects.valid_q(amo.VALID_STATUSES, prefix='addon__'),
         collection=c.id)
-    addons = amo.utils.paginate(request, filter.qs, per_page=15,
+    addons = paginate(request, filter.qs, per_page=15,
                                 count=count.count())
 
     # The add-on query is not related to the collection, so we need to manually
@@ -547,7 +556,7 @@ def share(request, username, slug):
 def following(request):
     qs = (Collection.objects.filter(following__user=request.amo_user)
           .order_by('-following__created'))
-    collections = amo.utils.paginate(request, qs)
+    collections = paginate(request, qs)
     votes = get_votes(request, collections.object_list)
     return render(request, 'bandwagon/user_listing.html',
                   dict(collections=collections, votes=votes,

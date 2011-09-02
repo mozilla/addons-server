@@ -820,7 +820,7 @@ class TestCollectionFeed(TestFeeds):
         self.filter = CollectionFilter
 
 
-class TestImpalaCollectionListing(amo.tests.TestCase):
+class TestCollectionListing(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/category', 'base/featured',
                 'addons/featured', 'addons/listed', 'base/collections',
                 'bandwagon/featured_collections']
@@ -839,14 +839,18 @@ class TestImpalaCollectionListing(amo.tests.TestCase):
         eq_(sel.find('a').attr('class'), 'opt')
         eq_(sel.text(), 'Featured')
 
-    def test_mostsubscribers_sort(self):
+    def test_users_redirect(self):
+        """Test that 'users' sort redirects to 'followers' sort."""
         r = self.client.get(urlparams(self.url, sort='users'))
+        self.assertRedirects(r, urlparams(self.url, sort='followers'), 301)
+
+    def test_mostsubscribers_sort(self):
+        r = self.client.get(urlparams(self.url, sort='followers'))
         sel = pq(r.content)('#sorter ul > li.selected')
         eq_(sel.find('a').attr('class'), 'opt')
         eq_(sel.text(), 'Most Followers')
         c = r.context['collections'].object_list
-        eq_(list(c),
-            sorted(c, key=lambda x: x.weekly_subscribers, reverse=True))
+        eq_(list(c), sorted(c, key=lambda x: x.subscribers, reverse=True))
 
     def test_newest_sort(self):
         r = self.client.get(urlparams(self.url, sort='created'))
@@ -872,17 +876,26 @@ class TestImpalaCollectionListing(amo.tests.TestCase):
         c = r.context['collections'].object_list
         eq_(list(c), sorted(c, key=lambda x: x.modified, reverse=True))
 
+    def test_popular_sort(self):
+        r = self.client.get(urlparams(self.url, sort='popular'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'extra-opt')
+        eq_(sel.text(), 'Recently Popular')
+        c = r.context['collections'].object_list
+        eq_(list(c),
+            sorted(c, key=lambda x: x.weekly_subscribers, reverse=True))
+
     def test_added_date(self):
         doc = pq(self.client.get(urlparams(self.url, sort='created')).content)
         eq_(doc('.items .item .updated').text().startswith('Added'), True)
 
     def test_updated_date(self):
-        doc = pq(self.client.get(urlparams(self.url, sort='updated')).content)
-        eq_(doc('.items .item .updated').text().startswith('Updated'), True)
+        d = pq(self.client.get(urlparams(self.url, sort='updated')).content)
+        eq_(d('.items .item .updated').text().startswith('Updated'), True)
 
     def test_mostsubscribers_adu_unit(self):
-        doc = pq(self.client.get(urlparams(self.url, sort='users')).content)
-        eq_('followers' in doc('.items .item .followers').text(), True)
+        d = pq(self.client.get(urlparams(self.url, sort='followers')).content)
+        eq_('followers' in d('.items .item .followers').text(), True)
 
 
 class TestCollectionDetailFeed(amo.tests.TestCase):
