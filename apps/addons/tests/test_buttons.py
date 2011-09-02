@@ -26,6 +26,7 @@ class ButtonTest(amo.tests.TestCase):
         self.addon.is_featured.return_value = False
         self.addon.is_unreviewed.return_value = False
         self.addon.is_webapp.return_value = False
+        self.addon.can_be_purchased.return_value = False
         self.addon.has_eula = False
         self.addon.status = amo.STATUS_PUBLIC
         self.addon.id = 2
