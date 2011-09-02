@@ -8,5 +8,4 @@ PIL
 psutil>=0.2.0
 
 # For JWT to sign App receipts:
-hmac==20101005
 M2Crypto==0.21.1
