@@ -433,3 +433,9 @@ def test_jinja_trans_monkeypatch():
     render('{% trans come_on=1 %}% (come_on)s{% endtrans %}')
     render('{% trans come_on=1 %}%(come_on){% endtrans %}')
     render('{% trans come_on=1 %}%(come_on)z{% endtrans %}')
+
+
+def test_absolutify():
+    eq_(helpers.absolutify('/woo'), settings.SITE_URL + '/woo')
+    eq_(helpers.absolutify('https://addons.mozilla.org'),
+        'https://addons.mozilla.org')
