@@ -117,12 +117,11 @@
             <a href="#" class="close">{{ _('Close') }}</a>
           </div>
           <div class="site-balloon" id="site-welcome">
+            {# L10n: {0} is an application, such as Firefox. #}
             <h3>{{ _('Welcome to {0} Add-ons.')|f(APP.pretty) }}</h3>
             <p>
-              {% trans %}
-                Choose from thousands of extra features and styles for Firefox.
-                {# Fligtar said to remove this until we have something to link to.
-                   <a href="#">Learn more…</a> #}
+              {% trans app=APP.pretty %}
+                Choose from thousands of extra features and styles for {{ app }}.
               {% endtrans %}
             </p>
             <a href="#" class="close">{{ _('Close') }}</a>
