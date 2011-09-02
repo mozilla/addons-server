@@ -157,7 +157,7 @@ def themes(request, category=None):
     return jingo.render(request, 'browse/themes.html',
                         {'categories': categories,
                          'themes': themes, 'category': category,
-                         'sort_opts': filter.opts,
+                         'sorting': filter.field, 'sort_opts': filter.opts,
                          'search_cat': '%s,0' % amo.ADDON_THEME})
 
 
@@ -207,8 +207,8 @@ def extensions(request, category=None, template=None):
                         {'section': 'extensions', 'addon_type': TYPE,
                          'category': category, 'addons': addons,
                          'filter': filter, 'sorting': sorting,
-                         'src': src, 'dl_src': dl_src,
-                         'search_cat': '%s,0' % TYPE})
+                         'sort_opts': filter.opts, 'src': src,
+                         'dl_src': dl_src, 'search_cat': '%s,0' % TYPE})
 
 
 @mobile_template('browse/{mobile/}extensions.html')
