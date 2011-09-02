@@ -215,6 +215,11 @@ class Version(amo.models.ModelBase):
                        for f in self.all_files])
         return status.values()
 
+    @property
+    def statuses(self):
+        """Unadulterated statuses, good for an API."""
+        return [f.status for f in self.all_files]
+
     def is_allowed_upload(self):
         """Check that a file can be uploaded based on the files
         per platform for that type of addon."""

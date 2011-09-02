@@ -206,7 +206,7 @@ class AnonymousVersionsHandler(AnonymousBaseHandler, BaseVersionHandler):
 class VersionsHandler(BaseHandler, BaseVersionHandler):
     allowed_methods = ('POST', 'PUT', 'DELETE', 'GET')
     model = Version
-    fields = AnonymousVersionsHandler.fields
+    fields = AnonymousVersionsHandler.fields + ('statuses',)
     exclude = ('approvalnotes', )
     anonymous = AnonymousVersionsHandler
 
@@ -252,8 +252,8 @@ class VersionsHandler(BaseHandler, BaseVersionHandler):
         return rc.DELETED
 
     @check_addon_and_version
-    def read(self, request, addon):
-        return addon.versions.all()
+    def read(self, request, addon, version=None):
+        return version if version else addon.versions.all()
 
 
 class AMOBaseHandler(BaseHandler):

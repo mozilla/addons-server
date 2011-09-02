@@ -610,6 +610,20 @@ class TestAddon(BaseOAuth):
                        self.token, data={}, content_type=MULTIPART_CONTENT)
         eq_(r.status_code, 410, r.content)
 
+    def test_get_version(self):
+        data = self.create_addon()
+        a = Addon.objects.get(pk=data['id'])
+        r = client.get(('api.version', data['id'], a.versions.get().id),
+                       self.accepted_consumer, self.token)
+        eq_(r.status_code, 200)
+
+    def test_get_version_statuses(self):
+        data = self.create_addon()
+        a = Addon.objects.get(pk=data['id'])
+        r = client.get(('api.version', data['id'], a.versions.get().id),
+                       self.accepted_consumer, self.token)
+        eq_(json.loads(r.content)['statuses'], [1])
+
     @patch('access.acl.check_addon_ownership')
     def test_not_my_addon(self, acl):
         data = self.create_addon()
