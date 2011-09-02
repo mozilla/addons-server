@@ -12,7 +12,7 @@ from django.core import mail
 from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 
-from mock import patch
+from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 from PIL import Image
@@ -1072,6 +1072,8 @@ class TestMobile(amo.tests.TestCase):
     def setUp(self):
         self.client.cookies['mamo'] = 'on'
         self.client.defaults['SERVER_NAME'] = settings.MOBILE_DOMAIN
+        self.request = Mock()
+        self.request.MOBILE = True
 
 
 class TestMobileHome(TestMobile):

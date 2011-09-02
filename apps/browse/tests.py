@@ -52,9 +52,15 @@ class TestUpdatedSort(ExtensionTestCase):
 
 class TestExtensions(ExtensionTestCase):
 
-    def test_default_sort(self):
+    def test_landing(self):
         r = self.client.get(self.url)
+        self.assertTemplateUsed(r, 'browse/extensions.html')
+        self.assertTemplateUsed(r, 'addons/impala/listing/items.html')
         eq_(r.context['sorting'], 'popular')
+        eq_(r.context['category'], None)
+        doc = pq(r.content)
+        eq_(doc('body').hasClass('s-featured'), True)
+        eq_(doc('.addon-listing .listview').length, 0)
 
     def test_name_sort(self):
         r = self.client.get(urlparams(self.url, sort='name'))
@@ -1287,7 +1293,9 @@ class TestMobileExtensions(TestMobile):
         r = self.client.get(reverse('browse.extensions'))
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'browse/mobile/extensions.html')
+        self.assertTemplateUsed(r, 'addons/listing/items_mobile.html')
         eq_(r.context['category'], None)
+        eq_(pq(r.content)('.addon-listing .listview').length, 1)
 
     def test_category(self):
         cat = Category.objects.all()[0]

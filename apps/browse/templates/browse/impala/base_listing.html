@@ -1,4 +1,8 @@
-{% extends "impala/base_side_categories.html" %}
+{% if request.MOBILE %}
+  {% extends "mobile/base.html" %}
+{% else %}
+  {% extends "impala/base_side_categories.html" %}
+{% endif %}
 
 {% if category %}
   {% set title = category.name %}
