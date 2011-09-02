@@ -1025,12 +1025,8 @@ UNLINK_SITE_STATS = True
 NEW_FEATURES = False
 
 # Impala flags.
-IMPALA_BROWSE = False
 IMPALA_REVIEWS = False
-IMPALA_MEET = False  # Meet the Developer page.
 IMPALA_EDIT = True
-IMPALA_HOMEPAGE = True
-IMPALA_ADDON_DETAILS = True
 
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = True

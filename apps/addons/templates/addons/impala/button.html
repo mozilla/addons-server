@@ -43,7 +43,7 @@
       <a class="button {{ b.button_class|join(' ') }} {{ extra }}"
          data-hash="{{ link.file.hash }}"
          {% if b.show_warning %}
-           href="{{ b.addon.get_url_path(impala=True) }}"
+           href="{{ b.addon.get_url_path() }}"
            data-realurl="{{ link.url }}"
          {% else %}
            href="{{ link.url }}"

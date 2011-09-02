@@ -42,7 +42,6 @@ detail_patterns = patterns('',
 
 
 impala_detail_patterns = patterns('',
-    url('^$', views.impala_addon_detail, name='i_addons.detail'),
     ('^reviews/', include('reviews.impala_urls')),
 )
 
@@ -50,8 +49,6 @@ impala_detail_patterns = patterns('',
 urlpatterns = patterns('',
     # The homepage.
     url('^$', views.home, name='home'),
-    # The impala homepage.
-    url('^i/$', views.impala_home, name='i_home'),
     # Promo modules for the homepage
     url('^i/promos$', views.homepage_promos, name='addons.homepage_promos'),
 

@@ -1,4 +1,8 @@
-{% extends "impala/base_side_categories.html" %}
+{% if request.MOBILE %}
+  {% extends "mobile/base.html" %}
+{% else %}
+  {% extends "impala/base_side_categories.html" %}
+{% endif %}
 
 {% if category %}
   {% set title = category.name %}
@@ -28,24 +32,6 @@
   {{ page_title(title) }}
 {% endblock %}
 
-{% if not request.MOBILE %}
-  {% block bodyclass %}{{ section }} s-{{ sorting }}{% endblock %}
-  {% if category %}
-    {% block extrahead %}
-      <style>
-        #c-{{ category.id }} a {
-            background: #ecf5fe;
-            color: #333;
-            font-weight: bold;
-        }
-        #c-{{ category.id }} a:after {
-            color: inherit;
-        }
-      </style>
-    {% endblock %}
-  {% endif %}
-{% endif %}
-
 {% if section == 'extensions' %}
   {% if category %}
     {% set feed = url('browse.extensions.rss', category.slug) %}
@@ -64,4 +50,22 @@
   {% set base_url = url(browse_url, category.slug) %}
 {% else %}
   {% set base_url = url(browse_url) %}
+{% endif %}
+
+{% if not request.MOBILE %}
+  {% block bodyclass %}{{ section }} s-{{ sorting }}{% endblock %}
+  {% if category %}
+    {% block extrahead %}
+      <style>
+        #c-{{ category.id }} a {
+            background: #ecf5fe;
+            color: #333;
+            font-weight: bold;
+        }
+        #c-{{ category.id }} a:after {
+            color: inherit;
+        }
+      </style>
+    {% endblock %}
+  {% endif %}
 {% endif %}

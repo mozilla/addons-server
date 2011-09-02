@@ -10,7 +10,7 @@
 {% block content %}
 
   {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                         (addon.get_url_path(impala=True), addon.name),
+                         (addon.get_url_path(), addon.name),
                          (url('i_reviews.list', addon.slug), _('Reviews')),
                          (None, _('Add'))]) }}
 
@@ -22,7 +22,7 @@
 
   <div class="primary island hero prettyform c">
     <fieldset class="prose">
-      {% trans support=addon.get_url_path(impala=True) + "#support",
+      {% trans support=addon.get_url_path() + "#support",
                guide=remora_url('pages/review_guide') %}
       <h2>Keep these tips in mind:</h2>
       <ul>

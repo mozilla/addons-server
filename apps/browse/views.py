@@ -237,10 +237,11 @@ def es_extensions(request, category=None, template=None):
     addons = amo.utils.paginate(request, qs)
 
     return jingo.render(request, template,
-                        {'category': category, 'addons': addons,
+                        {'section': 'extensions', 'addon_type': TYPE,
+                         'category': category, 'addons': addons,
                          'filter': filter, 'sorting': sorting,
-                         'sort_opts': filter.opts,
-                         'search_cat': '%s,0' % TYPE})
+                         'sort_opts': filter.opts, 'src': src,
+                         'dl_src': dl_src, 'search_cat': '%s,0' % TYPE})
 
 
 class CategoryLandingFilter(BaseFilter):

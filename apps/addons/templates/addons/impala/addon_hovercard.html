@@ -1,6 +1,6 @@
 {% from "addons/macros.html" import vital %}
 <div class="addon hovercard">
-  <a href="{{ addon.get_url_path(impala=True)|urlparams(src=dl_src) }}">
+  <a href="{{ addon.get_url_path()|urlparams(src=dl_src) }}">
     <div class="icon">
       {% if lazyload %}
         <img src="{{ addon.icon_url }}">

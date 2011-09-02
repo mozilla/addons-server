@@ -2,7 +2,7 @@
 
 {% block content %}
   <section class="secondary">
-    {{ side_nav(addon_type or amo.ADDON_EXTENSION, category=category, impala=True) }}
+    {{ side_nav(addon_type or amo.ADDON_EXTENSION, category=category) }}
   </section>
   {% block primary %}{% endblock %}
 {% endblock %}

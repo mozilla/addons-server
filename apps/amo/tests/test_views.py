@@ -55,18 +55,18 @@ def test_404_app_links():
         assert href.startswith('/en-US/thunderbird'), href
 
 
-class TestImpala(amo.tests.TestCase):
+class TestHome(amo.tests.TestCase):
     fixtures = ('base/users', 'base/global-stats', 'base/configs',
                 'base/addon_3615')
 
     def test_tools_loggedout(self):
-        r = self.client.get(reverse('i_home'), follow=True)
+        r = self.client.get(reverse('home'), follow=True)
         nav = pq(r.content)('#aux-nav')
         eq_(nav.find('.tools').length, 0)
 
     def test_tools_regular_user(self):
         self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.get(reverse('i_home'), follow=True)
+        r = self.client.get(reverse('home'), follow=True)
         nav = pq(r.content)('#aux-nav')
 
         request = r.context['request']
@@ -86,7 +86,7 @@ class TestImpala(amo.tests.TestCase):
         AddonUser.objects.create(user=user, addon=addon)
 
         self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.get(reverse('i_home'), follow=True)
+        r = self.client.get(reverse('home'), follow=True)
         nav = pq(r.content)('#aux-nav')
 
         request = r.context['request']
@@ -120,7 +120,7 @@ class TestImpala(amo.tests.TestCase):
         AddonUser.objects.create(user=user, addon=addon)
 
         self.client.login(username='editor@mozilla.com', password='password')
-        r = self.client.get(reverse('i_home'), follow=True)
+        r = self.client.get(reverse('home'), follow=True)
         nav = pq(r.content)('#aux-nav')
 
         request = r.context['request']
@@ -154,7 +154,7 @@ class TestImpala(amo.tests.TestCase):
         fia.return_value = True
 
         self.client.login(username='editor@mozilla.com', password='password')
-        r = self.client.get(reverse('i_home'), follow=True)
+        r = self.client.get(reverse('home'), follow=True)
         nav = pq(r.content)('#aux-nav')
 
         request = r.context['request']

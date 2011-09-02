@@ -7,7 +7,7 @@
   {% for addon in page %}
     <li>
       <div class="hovercard addon">
-        <a href="{{ addon.get_url_path(impala=True)|urlparams(src=dl_src) }}">
+        <a href="{{ addon.get_url_path()|urlparams(src=dl_src) }}">
           <div class="summary">
             <h3>{{ addon.name }}</h3>
             <div>

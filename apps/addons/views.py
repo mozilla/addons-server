@@ -70,15 +70,15 @@ def author_addon_clicked(f):
     return decorated
 
 
-@author_addon_clicked
 @addon_disabled_view
 def addon_detail(request, addon):
     """Add-ons details page dispatcher."""
     if (addon.is_disabled or
         (addon.is_premium() and not addon.can_be_purchased())):
-        return jingo.render(request, 'addons/disabled.html',
+        return jingo.render(request, 'addons/impala/disabled.html',
                             {'addon': addon}, status=404)
 
+    """Add-ons details page dispatcher."""
     # addon needs to have a version and be valid for this app.
     if addon.type in request.APP.types:
         if addon.type == amo.ADDON_PERSONA:
@@ -102,95 +102,8 @@ def addon_detail(request, addon):
                 'addons.detail', args=[addon.slug]))
 
 
-@addon_disabled_view
-def impala_addon_detail(request, addon):
-    """Add-ons details page dispatcher."""
-    if (addon.is_disabled or
-        (addon.is_premium() and not addon.can_be_purchased())):
-        return jingo.render(request, 'addons/impala/disabled.html',
-                            {'addon': addon}, status=404)
-
-    """Add-ons details page dispatcher."""
-    # addon needs to have a version and be valid for this app.
-    if addon.type in request.APP.types:
-        if addon.type == amo.ADDON_PERSONA:
-            return persona_detail(request, addon)
-        else:
-            if not addon.current_version:
-                raise http.Http404
-
-            return impala_extension_detail(request, addon)
-    else:
-        # Redirect to an app that supports this type.
-        try:
-            new_app = [a for a in amo.APP_USAGE if addon.type
-                       in a.types][0]
-        except IndexError:
-            raise http.Http404
-        else:
-            prefixer = urlresolvers.get_url_prefix()
-            prefixer.app = new_app.short
-            return http.HttpResponsePermanentRedirect(reverse(
-                'addons.detail', args=[addon.slug]))
-
-if settings.IMPALA_ADDON_DETAILS:
-    addon_detail = impala_addon_detail
-
-
-def extension_detail(request, addon):
-    """Extensions details page."""
-
-    # if current version is incompatible with this app, redirect
-    comp_apps = addon.compatible_apps
-    if comp_apps and request.APP not in comp_apps:
-        prefixer = urlresolvers.get_url_prefix()
-        prefixer.app = comp_apps.keys()[0].short
-        return http.HttpResponsePermanentRedirect(reverse(
-            'addons.detail', args=[addon.slug]))
-
-    # source tracking
-    src = request.GET.get('src', 'addondetail')
-
-    # get satisfaction only supports en-US
-    lang = translation.to_locale(translation.get_language())
-    addon.has_satisfaction = (lang == 'en_US' and
-                              addon.get_satisfaction_company)
-
-    # other add-ons from the same author(s)
-    author_addons = order_by_translation(addon.authors_other_addons, 'name')
-
-    # tags
-    tags = addon.tags.not_blacklisted()
-
-    # addon recommendations
-    recommended = Addon.objects.valid().filter(
-        recommended_for__addon=addon)[:5]
-
-    # popular collections this addon is part of
-    collections = Collection.objects.listed().filter(
-        addons=addon, application__id=request.APP.id)
-
-    data = {
-        'addon': addon,
-        'author_addons': author_addons,
-
-        'src': src,
-        'tags': tags,
-
-        'recommendations': recommended,
-        'review_form': ReviewForm(),
-        'reviews': Review.objects.latest().filter(addon=addon),
-        'get_replies': Review.get_replies,
-
-        'collections': collections.order_by('-subscribers')[:3],
-        'abuse_form': AbuseForm(request=request),
-    }
-
-    return jingo.render(request, 'addons/details.html', data)
-
-
 @vary_on_headers('X-Requested-With')
-def impala_extension_detail(request, addon):
+def extension_detail(request, addon):
     """Extensions details page."""
     # If current version is incompatible with this app, redirect.
     comp_apps = addon.compatible_apps
@@ -239,16 +152,10 @@ def impala_extension_detail(request, addon):
         return jingo.render(request, 'addons/impala/details.html', ctx)
 
 
-if settings.IMPALA_ADDON_DETAILS:
-    @mobilized(impala_extension_detail)
-    def impala_extension_detail(request, addon):
-        return jingo.render(request, 'addons/mobile/details.html',
-                            {'addon': addon})
-else:
-    @mobilized(extension_detail)
-    def extension_detail(request, addon):
-        return jingo.render(request, 'addons/mobile/details.html',
-                            {'addon': addon})
+@mobilized(extension_detail)
+def extension_detail(request, addon):
+    return jingo.render(request, 'addons/mobile/details.html',
+                        {'addon': addon})
 
 
 def _category_personas(qs, limit):
@@ -409,30 +316,6 @@ class HomepageFilter(BaseFilter):
 
 def home(request):
     # Add-ons.
-    base = Addon.objects.listed(request.APP).exclude(type=amo.ADDON_PERSONA)
-    filter = HomepageFilter(request, base, key='browse', default='featured')
-    addon_sets = dict((key, qs[:4]) for key, qs in filter.all().items())
-
-    # Collections.
-    q = Collection.objects.filter(listed=True, application=request.APP.id)
-    collections = q.order_by('-weekly_subscribers')[:3]
-    promobox = CollectionPromoBox(request)
-
-    # Global stats.
-    try:
-        downloads = (GlobalStat.objects.filter(name='addon_total_downloads')
-                     .latest())
-    except GlobalStat.DoesNotExist:
-        downloads = None
-
-    return jingo.render(request, 'addons/home.html',
-                        {'downloads': downloads,
-                         'filter': filter, 'addon_sets': addon_sets,
-                         'collections': collections, 'promobox': promobox})
-
-
-def impala_home(request):
-    # Add-ons.
     base = Addon.objects.listed(request.APP).filter(type=amo.ADDON_EXTENSION)
     # This is lame for performance. Kill it with ES.
     frozen = FrozenAddon.objects.values_list('addon', flat=True)
@@ -451,10 +334,6 @@ def impala_home(request):
                         {'popular': popular, 'featured': featured,
                          'hotness': hotness, 'personas': personas,
                          'src': 'homepage', 'collections': collections})
-
-
-if settings.IMPALA_HOMEPAGE:
-    home = impala_home
 
 
 @mobilized(home)

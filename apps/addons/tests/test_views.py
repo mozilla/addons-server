@@ -695,7 +695,7 @@ class TestImpalaDetailPage(amo.tests.TestCase):
 
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)
-        self.url = self.addon.get_url_path(impala=True)
+        self.url = self.addon.get_url_path()
 
     def test_perf_warning(self):
         eq_(self.addon.ts_slowness, None)

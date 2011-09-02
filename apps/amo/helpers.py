@@ -383,7 +383,12 @@ def recaptcha(context, form):
 
 
 @register.inclusion_tag('amo/mobile/sort_by.html')
-def mobile_sort_by(base_url, options, selected):
+def mobile_sort_by(base_url, options={}, selected=None, search_filter=None):
+    if search_filter:
+        selected = search_filter.field
+        options = search_filter.opts
+        if hasattr(search_filter, 'extras'):
+            options += search_filter.extras
     current = [title for key, title in options if key == selected][0]
     return locals()
 
@@ -417,15 +422,14 @@ def attrs(ctx, *args, **kw):
 
 @register.function
 @jinja2.contextfunction
-def side_nav(context, addon_type, category=None, impala=False):
+def side_nav(context, addon_type, category=None):
     app = context['request'].APP.id
-    imp = 'impala' if impala else 'old'
     cat = str(category.id) if category else 'all'
-    return caching.cached(lambda: _side_nav(context, addon_type, category, impala),
-                          'side-nav-%s-%s-%s-%s' % (app, addon_type, cat, impala))
+    return caching.cached(lambda: _side_nav(context, addon_type, category),
+                          'side-nav-%s-%s-%s' % (app, addon_type, cat))
 
 
-def _side_nav(context, addon_type, cat, impala):
+def _side_nav(context, addon_type, cat):
     request = context['request']
     qs = Category.objects.filter(application=request.APP.id, weight__gte=0)
     sort_key = attrgetter('weight', 'name')
@@ -434,8 +438,8 @@ def _side_nav(context, addon_type, cat, impala):
         base_url = cat.get_url_path()
     else:
         base_url = AddonType(addon_type).get_url_path()
-    ctx = dict(request=request, base_url=base_url,
-               categories=categories, addon_type=addon_type, impala=impala)
+    ctx = dict(request=request, base_url=base_url, categories=categories,
+               addon_type=addon_type)
     return jinja2.Markup(env.get_template('amo/side_nav.html').render(ctx))
 
 

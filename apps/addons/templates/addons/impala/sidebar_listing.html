@@ -2,7 +2,7 @@
   <hgroup class="c">
     <img id="addon-icon" src="{{ addon.get_icon_url(32) }}" class="icon">
     <h1 class="addon"{{ addon.name|locale_html }}>
-      <a href="{{ addon.get_url_path(impala=True) }}">
+      <a href="{{ addon.get_url_path() }}">
         {{ addon.name }}
       </a>
     </h1>
