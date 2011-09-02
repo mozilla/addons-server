@@ -17,7 +17,7 @@ log = logging.getLogger('z.devhub.task')
 
 
 # These are all the apps available for a file to be tested against:
-ALL_APPS = ('firefox3.5', 'firefox3.6', 'firefox4.0')
+ALL_APPS = ('firefox3.6', 'firefox6.0')
 
 # This translates AMO platforms into performance service platforms:
 PLATFORM_MAP = {amo.PLATFORM_LINUX.id: ('linux', 'linux64'),

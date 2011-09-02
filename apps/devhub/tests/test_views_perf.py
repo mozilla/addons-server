@@ -55,16 +55,13 @@ class TestPerfViews(amo.tests.TestCase):
         re = self.start()
         eq_(re, {'success': True})
         for os in ('linux', 'linux64'):
-            self.assert_call(((self.file, os, 'firefox3.5'), {}))
             self.assert_call(((self.file, os, 'firefox3.6'), {}))
-            self.assert_call(((self.file, os, 'firefox4.0'), {}))
+            self.assert_call(((self.file, os, 'firefox6.0'), {}))
 
     def test_start_all(self):
         self.set_platform(amo.PLATFORM_ALL)
         self.start()
-        self.assert_call(((self.file, 'linux', 'firefox4.0'), {}))
-        self.assert_call(((self.file, 'win32', 'firefox4.0'), {}))
-        self.assert_call(((self.file, 'macosx', 'firefox4.0'), {}))
+        self.assert_call(((self.file, 'linux', 'firefox6.0'), {}))
 
     def test_unsupported_plat(self):
         self.set_platform(amo.PLATFORM_ANDROID)
