@@ -9,6 +9,9 @@
      data-developers="{{ addon.meet_the_dev_url() }}"
      data-name="{{ addon.name }}"
      {{ b.attrs()|xmlattr }}
+  {% if addon.is_premium() %}
+     data-cost="$123.45" {# TODO(gkoberger): Change This! #}
+  {% endif %}
   {% if compat %}
      data-min="{{ compat.min.version }}"
      data-max="{{ compat.max.version }}"

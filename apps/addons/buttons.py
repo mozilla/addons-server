@@ -135,6 +135,7 @@ class InstallButton(object):
                          and addon.is_featured(app, lang))
         self.is_persona = addon.type == amo.ADDON_PERSONA
 
+        self.can_be_purchased = addon.can_be_purchased()
         self.accept_eula = addon.has_eula and not show_eula
         self._show_contrib = show_contrib
         self.show_contrib = (show_contrib and addon.takes_contributions
@@ -163,6 +164,9 @@ class InstallButton(object):
             self.install_class.append('accept')
         if self.size:
             self.button_class.append(self.size)
+        if self.can_be_purchased:
+            self.install_class.append('premium')
+            self.button_class.append('premium')
         if self.is_beta:
             self.install_class.append('beta')
 
@@ -212,6 +216,11 @@ class InstallButton(object):
             text = jinja2.Markup(_('Continue to Download&nbsp;&rarr;'))
             roadblock = reverse('addons.roadblock', args=[self.addon.id])
             url = urlparams(roadblock, eula='', version=self.version.version)
+
+        if self.can_be_purchased:
+            # TODO(gkobes): Use the actual price!
+            # L10n: {0} is a price
+            text = _('Purchase for {0}').format('$123.45')
 
         return text, url, os
 

@@ -251,8 +251,8 @@ $.fn.popup = function(click_target, o) {
 // click_target defines the element/elements that trigger the modal.
 // currently presumes the given element uses the '.modal' style
 // o takes the following optional fields:
-//     callback:    a function to run before displaying the modal. Returning
-//                  false from the function cancels the modal.
+//     callback:    a function to run before displaying the modal. You must
+//                  return true, or it cancels the modal.
 //     container:   if set the modal will be appended to the container before
 //                  being displayed.
 //     width:       the width of the modal.
@@ -262,6 +262,8 @@ $.fn.popup = function(click_target, o) {
 //                  when the user clicks outside of it.
 //     emptyme:     defaults to false; if set to true, modal will be cleared
 //                  after it is hidden.
+//     close:       defaults to false; if set to true, modal will have a
+//                  close button
 // note: all options may be overridden and modified by returning them in an
 //       object from the callback.
 $.fn.modal = function(click_target, o) {
@@ -333,8 +335,15 @@ $.fn.modal = function(click_target, o) {
                 $(document.body).bind('click modal', $modal.hider);
             }, 0);
         }
+        if (p.close) {
+            var close = $("<a>", {'class': 'close', 'text': 'X'});
+            $modal.append(close);
+        }
         $('.popup').hide();
         $modal.delegate('.close', 'click', function(e) {
+            if (p.emptyme) {
+                $modal.empty();
+            }
             e.preventDefault();
             $modal.hideMe();
         });

@@ -73,6 +73,7 @@ var installButton = function() {
         icon = $this.attr('data-icon'),
         after = $this.attr('data-after'),
         search = $this.hasattr('data-search'),
+        premium = $this.hasClass('premium'),
         accept_eula = $this.hasClass('accept'),
         // L10n: {0} is an app name like Firefox.
         _s = accept_eula ? gettext('Accept and Install') : gettext('Add to {0}'),
@@ -275,6 +276,8 @@ var installButton = function() {
         $button.addPopup(message('selfhosted'));
     } else if (eula || contrib) {
         versionsAndPlatforms({addPopup: false});
+    } else if (premium) {
+        $button.addPaypal();
     } else if (persona) {
         $button.removeClass('download').addClass('add').find('span').text(addto);
         if ($.hasPersonas()) {
@@ -338,6 +341,36 @@ jQuery.fn.showBackupButton = function() {
                 $('h2.addon span.version').text($src.attr('data-version'));
             }
         }
+    });
+}
+
+jQuery.fn.addPaypal = function(html, allowClick) {
+    function createPaypal(el){
+        var modal = this,
+            $install = $(el.click_target).closest('.install');
+
+        modal.append($('<h2>', {'text': gettext('Purchase Add-on')}));
+        modal.append($('<span>', {'class': 'price', 'text': $install.attr('data-cost')}));
+        modal.append($('<h5>', {'text': $install.attr('data-name')}));
+        var links = $('<div>', {'class': 'paypal-links'}),
+            divider = $('<span> &middot; </span>');
+        links.append($('<a>', {'text': gettext('Learn about purchases')}));
+        links.append(divider.clone());
+        links.append($('<a>', {'text': gettext('Change Currency')}));
+        modal.append(links);
+
+        var paypal = $('<div>', {'class': 'paypal-parent'});
+        modal.append(paypal);
+        paypal.append($("<button>", {'class': 'button prominent paypal',
+                                    'html': gettext('Pay <small>with</small> Pay<em>Pal</em>')}));
+        paypal.append($('<p>', {'text': gettext('Complete your purchase with PayPal.  No account necessary.')}));
+        return true;
+    }
+    return this.each(function() {
+        var $this = $(this),
+            modal = $('<div>', {'class': 'paypal-modal modal'});
+
+        modal.modal($this, {'callback': createPaypal, 'close': true, 'hideme': false, 'emptyme': true});
     });
 }
 
