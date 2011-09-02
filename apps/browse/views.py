@@ -265,12 +265,14 @@ class CategoryLandingFilter(BaseFilter):
 
 
 def category_landing(request, category):
+    TYPE = amo.ADDON_EXTENSION
     base = (Addon.objects.listed(request.APP).exclude(type=amo.ADDON_PERSONA)
             .filter(categories__id=category.id))
     filter = CategoryLandingFilter(request, base, category,
                                    key='browse', default='featured')
     return jingo.render(request, 'browse/impala/category_landing.html',
-                        {'category': category, 'filter': filter,
+                        {'section': 'extensions', 'addon_type': TYPE,
+                         'category': category, 'filter': filter,
                          'sorting': filter.field,
                          'search_cat': '%s,0' % category.type})
 
