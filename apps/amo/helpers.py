@@ -295,7 +295,10 @@ def json(s):
 @register.filter
 def absolutify(url):
     """Takes a URL and prepends the SITE_URL"""
-    return settings.SITE_URL + url
+    if url.startswith('http'):
+        return url
+    else:
+        return settings.SITE_URL + url
 
 
 @register.filter
