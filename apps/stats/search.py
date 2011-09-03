@@ -79,7 +79,7 @@ def extract_download_count(dl):
     return {'addon': dl.addon_id,
             'date': dl.date,
             'count': dl.count,
-            'sources': es_dict(dl.sources),
+            'sources': es_dict(dl.sources) if dl.sources else {},
             'id': dl.id}
 
 
