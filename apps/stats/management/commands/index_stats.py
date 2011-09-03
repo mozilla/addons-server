@@ -46,7 +46,7 @@ class Command(BaseCommand):
     help = HELP
 
     def handle(self, *args, **kw):
-        if kw['fixup']:
+        if kw.get('fixup'):
             fixup()
 
         addons, dates = kw['addons'], kw['date']
