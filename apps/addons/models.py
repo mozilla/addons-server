@@ -27,6 +27,7 @@ from amo.utils import (send_mail, urlparams, sorted_groupby, JSONEncoder,
 from amo.urlresolvers import get_outgoing_url, reverse
 from addons.utils import ReverseNameLookup, FeaturedManager, CreaturedManager
 from files.models import File
+from market.models import AddonPremium
 from reviews.models import Review
 from stats.models import AddonShareCountTotal
 from translations.fields import (TranslatedField, PurifiedField,
@@ -648,6 +649,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         for addon in addons:
             category = categories[cats[addon.id]] if addon.id in cats else None
             addon._first_category[amo.FIREFOX.id] = category
+
+        # Attach premium addons.
+        qs = AddonPremium.objects.filter(addon__in=addons)
+        for addon_p in qs:
+            addon_dict[addon_p.addon_id].premium = addon_p
 
     @property
     def show_beta(self):

@@ -4,7 +4,6 @@ from django.dispatch import receiver
 
 from translations.fields import TranslatedField
 
-from addons.models import Addon
 import amo
 import amo.models
 from stats.models import Contribution
@@ -53,7 +52,7 @@ class PriceCurrency(amo.models.ModelBase):
 
 
 class AddonPurchase(amo.models.ModelBase):
-    addon = models.ForeignKey(Addon)
+    addon = models.ForeignKey('addons.Addon')
     user = models.ForeignKey(UserProfile)
 
     class Meta:
@@ -93,3 +92,16 @@ def create_addon_purchase(sender, instance, **kw):
             log.debug('Deleting addon purchase: %s, addon %s, user %s'
                       % (p.pk, instance.addon.pk, instance.user.pk))
             p.delete()
+
+
+class AddonPremium(amo.models.ModelBase):
+    """Additions to the Addon model that only apply to Premium add-ons."""
+    addon = models.OneToOneField('addons.Addon')
+    price = models.ForeignKey(Price)
+    paypal_permissions_token = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        db_table = 'addons_premium'
+
+    def __unicode__(self):
+        return u'Premium %s: %s' % (self.addon, self.price)

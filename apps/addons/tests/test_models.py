@@ -28,6 +28,7 @@ from applications.models import Application, AppVersion
 from devhub.models import ActivityLog
 from files.models import File, Platform
 from files.tests.test_models import TestLanguagePack, UploadTest
+from market.models import Price, AddonPremium
 from reviews.models import Review
 from translations.models import TranslationSequence, Translation
 from users.models import UserProfile
@@ -1585,7 +1586,7 @@ class TestLanguagePack(TestLanguagePack):
 class TestMarketplace(amo.tests.ESTestCase):
 
     def setUp(self):
-        self.addon = Addon(type=amo.ADDON_EXTENSION)
+        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
 
     def test_is_premium(self):
         assert not self.addon.is_premium()
@@ -1620,6 +1621,16 @@ class TestMarketplace(amo.tests.ESTestCase):
             self.addon.update(premium_type=amo.ADDON_PREMIUM,
                               status=status)
             assert self.addon.can_be_purchased()
+
+    def test_transformer(self):
+        other = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        price = Price.objects.create(price='1.00')
+
+        self.addon.update(type=amo.ADDON_PREMIUM)
+        AddonPremium.objects.create(addon=self.addon, price=price)
+
+        assert hasattr(Addon.objects.get(pk=self.addon.pk), 'premium')
+        assert not hasattr(Addon.objects.get(pk=other.pk), 'premium')
 
 
 class TestAddonUpsell(amo.tests.TestCase):
