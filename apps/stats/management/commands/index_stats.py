@@ -1,3 +1,4 @@
+import logging
 from datetime import date, timedelta
 from optparse import make_option
 
@@ -9,6 +10,8 @@ from celery.task.sets import TaskSet
 from amo.utils import chunked
 from stats.models import UpdateCount, DownloadCount
 from stats.tasks import index_update_counts, index_download_counts
+
+log = logging.getLogger('z.stats')
 
 # Number of days of stats to process in one chunk if we're indexing everything.
 STEP = 5
@@ -26,6 +29,7 @@ To limit the  date range:
     `--date=2011-08-15` or `--date=2011-08-15:2011-08-22`
 """
 
+
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option('--addons',
@@ -35,11 +39,15 @@ class Command(BaseCommand):
                     help='The date or date range to process. Use the format '
                          'YYYY-MM-DD for a single date or '
                          'YYYY-MM-DD:YYYY-MM-DD to index a range of dates '
-                         '(inclusive).')
+                         '(inclusive).'),
+        make_option('--fixup', action='store_true',
+                    help='Find and index rows we missed.'),
     )
     help = HELP
 
     def handle(self, *args, **kw):
+        if kw['fixup']:
+            fixup()
 
         addons, dates = kw['addons'], kw['date']
 
@@ -76,6 +84,22 @@ class Command(BaseCommand):
 
 
 def create_tasks(task, qs):
-    from amo.utils import chunked
     ts = [task.subtask(args=[chunk]) for chunk in chunked(qs, 50)]
     TaskSet(ts).apply_async()
+
+
+def fixup():
+    queries = [(UpdateCount, index_update_counts),
+               (DownloadCount, index_download_counts)]
+
+    for model, task in queries:
+        all_addons = model.objects.distinct().values_list('addon', flat=True)
+        for addon in all_addons:
+            qs = model.objects.filter(addon=addon)
+            search = model.search().filter(addon=addon)
+            if qs.count() != search.count():
+                all_ids = list(qs.values_list('id', flat=True))
+                search_ids = list(search.values()[:5000])
+                ids = set(all_ids) - set(search_ids)
+                log.info('Missing %s rows for %s.' % (len(ids), addon))
+                create_tasks(task, list(ids))
