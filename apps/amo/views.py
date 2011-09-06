@@ -1,26 +1,17 @@
 import json
-import os
 import random
-from PIL import Image
-import socket
-import StringIO
-import time
-import traceback
 import urllib2
-from urlparse import urlparse
 
 from django import http
 from django.conf import settings
-from django.core.cache import cache, parse_backend_uri
+from django.core.cache import cache
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 from django_arecibo.tasks import post
-import caching.invalidation
 import commonware.log
-import elasticutils
 import jingo
 import phpserialize as php
 import waffle
@@ -28,10 +19,8 @@ import waffle
 import amo
 import files.tasks
 from amo.decorators import post_required
-from hera.contrib.django_utils import get_hera
 from stats.models import Contribution, ContributionError, SubscriptionEvent
-from applications.management.commands import dump_apps
-from . import cron
+from . import monitors
 
 monitor_log = commonware.log.getLogger('z.monitor')
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -39,143 +28,20 @@ csp_log = commonware.log.getLogger('z.csp')
 jp_log = commonware.log.getLogger('z.jp.repack')
 
 
-def check_redis():
-    import redisutils
-
-    results = {}
-
-    for alias, redis in redisutils.connections.iteritems():
-        try:
-            results[alias] = redis.info()
-        except Exception, e:
-            results[alias] = None
-            monitor_log.critical('Failed to chat with redis: (%s)' % e)
-
-    return results
-
-
 @never_cache
 def monitor(request, format=None):
 
     # For each check, a boolean pass/fail status to show in the template
     status_summary = {}
+    results = {}
     status = 200
 
-    # Check all memcached servers
-    memcache = getattr(settings, 'CACHES', {}).get('default')
-    memcache_results = []
-    status_summary['memcache'] = True
-    if memcache and 'memcached' in memcache['BACKEND']:
-        hosts = memcache['LOCATION']
-        if not isinstance(hosts, (tuple, list)):
-            hosts = [hosts]
-        for host in hosts:
-            ip, port = host.split(':')
-            try:
-                s = socket.socket()
-                s.connect((ip, int(port)))
-            except Exception, e:
-                result = False
-                status_summary['memcache'] = False
-                monitor_log.critical('Failed to connect to memcached (%s): %s'
-                                     % (host, e))
-            else:
-                result = True
-            finally:
-                s.close()
+    checks = ['memcache', 'libraries', 'elastic', 'path', 'redis', 'hera']
 
-            memcache_results.append((ip, port, result))
-        if len(memcache_results) < 2:
-            status_summary['memcache'] = False
-            monitor_log.warning('You should have 2+ memcache servers. '
-                                'You have %s.' % len(memcache_results))
-    if not memcache_results:
-        status_summary['memcache'] = False
-        monitor_log.info('Memcache is not configured.')
-
-    # Check Libraries and versions
-    libraries_results = []
-    status_summary['libraries'] = True
-    try:
-        Image.new('RGB', (16, 16)).save(StringIO.StringIO(), 'JPEG')
-        libraries_results.append(('PIL+JPEG', True, 'Got it!'))
-    except Exception, e:
-        status_summary['libraries'] = False
-        msg = "Failed to create a jpeg image: %s" % e
-        libraries_results.append(('PIL+JPEG', False, msg))
-
-    if settings.SPIDERMONKEY:
-        if os.access(settings.SPIDERMONKEY, os.R_OK):
-            libraries_results.append(('Spidermonkey is ready!', True, None))
-            # TODO: see if it works?
-        else:
-            status_summary['libraries'] = False
-            msg = "You said it was at (%s)" % settings.SPIDERMONKEY
-            libraries_results.append(('Spidermonkey not found!', False, msg))
-    else:
-        status_summary['libraries'] = False
-        msg = "Please set SPIDERMONKEY in your settings file."
-        libraries_results.append(("Spidermonkey isn't set up.", False, msg))
-
-    elastic_results = None
-    if settings.USE_ELASTIC:
-        status_summary['elastic'] = False
-        try:
-            health = elasticutils.get_es().cluster_health()
-            status_summary['elastic'] = health['status'] != 'red'
-            elastic_results = health
-        except Exception:
-            elastic_results = traceback.format_exc()
-
-    # Check file paths / permissions
-    rw = (settings.TMP_PATH,
-          settings.NETAPP_STORAGE,
-          settings.UPLOADS_PATH,
-          settings.ADDONS_PATH,
-          settings.MIRROR_STAGE_PATH,
-          settings.GUARDED_ADDONS_PATH,
-          settings.ADDON_ICONS_PATH,
-          settings.COLLECTIONS_ICON_PATH,
-          settings.PACKAGER_PATH,
-          settings.PREVIEWS_PATH,
-          settings.PERSONAS_PATH,
-          settings.USERPICS_PATH,
-          settings.SPHINX_CATALOG_PATH,
-          settings.SPHINX_LOG_PATH,
-          dump_apps.Command.JSON_PATH,)
-    r = [os.path.join(settings.ROOT, 'locale'),
-         # The deploy process will want write access to this.
-         # We do not want Django to have write access though.
-         settings.PROD_DETAILS_DIR]
-    filepaths = [(path, os.R_OK | os.W_OK, "We want read + write")
-                 for path in rw]
-    filepaths += [(path, os.R_OK, "We want read") for path in r]
-    filepath_results = []
-    filepath_status = True
-
-    for path, perms, notes in filepaths:
-        path_exists = os.path.exists(path)
-        path_perms = os.access(path, perms)
-        filepath_status = filepath_status and path_exists and path_perms
-        filepath_results.append((path, path_exists, path_perms, notes))
-
-    status_summary['filepaths'] = filepath_status
-
-    # Check Redis
-    redis_results = [None, 'REDIS_BACKENDS is not set']
-    if getattr(settings, 'REDIS_BACKENDS', False):
-        redis_results = check_redis()
-    status_summary['redis'] = all(i for i in redis_results.values())
-
-    # Check Hera
-    hera_results = []
-    status_summary['hera'] = True
-    for i in settings.HERA:
-        r = {'location': urlparse(i['LOCATION'])[1],
-             'result': bool(get_hera(i))}
-        hera_results.append(r)
-        if not hera_results[-1]['result']:
-            status_summary['hera'] = False
+    for c in checks:
+        status, result = getattr(monitors, c)()
+        status_summary[c] = status
+        results['%s_results' % c] = result
 
     # If anything broke, send HTTP 500
     if not all(status_summary.values()):
@@ -184,16 +50,12 @@ def monitor(request, format=None):
     if format == '.json':
         return http.HttpResponse(json.dumps(status_summary),
                                  status=status)
+    ctx = {}
+    ctx.update(results)
+    ctx['status_summary'] = status_summary
 
     return jingo.render(request, 'services/monitor.html',
-                        {'memcache_results': memcache_results,
-                         'libraries_results': libraries_results,
-                         'filepath_results': filepath_results,
-                         'redis_results': redis_results,
-                         'hera_results': hera_results,
-                         'elastic_results': elastic_results,
-                         'status_summary': status_summary},
-                        status=status)
+                        ctx, status=status)
 
 
 def robots(request):

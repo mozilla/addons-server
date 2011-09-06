@@ -40,10 +40,10 @@
   {% endfor %}
   </dl>
 </div>
-<div class="notification-box {{ status(status_summary.filepaths) }}">
+<div class="notification-box {{ status(status_summary.path) }}">
   <h2>[Paths] Paths and Permissions</h2>
   <dl>
-  {% for path, exists, permissions, extra in filepath_results %}
+  {% for path, exists, permissions, extra in path_results %}
     <dt>{{ path }}</dt>
     <dd>
     {% if exists %}
