@@ -147,6 +147,11 @@ def repackage_jetpack(builder_data, **kw):
     try:
         new_version = Version.from_upload(upload, addon, [old_file.platform],
                                           send_signal=False)
+    except Exception:
+        jp_log.error(msg('Error creating new version.'))
+        raise
+
+    try:
         # Sync the compatible apps of the new version with data from the old
         # version if the repack didn't specify compat info.
         for app in old_version.apps.values():
@@ -159,13 +164,18 @@ def repackage_jetpack(builder_data, **kw):
                 new_compat[sync_app].min_id = app['min_id']
                 new_compat[sync_app].max_id = app['max_id']
                 new_compat[sync_app].save()
+    except Exception:
+        jp_log.error(msg('Error syncing compat info. [%s] => [%s]' %
+                         (old_version.id, new_version.id)), exc_info=True)
+        pass  # Skip this for now, we can fix up later.
 
+    try:
         # Sync the status of the new file.
         new_file = new_version.files.using('default')[0]
         new_file.status = old_file.status
         new_file.save()
     except Exception:
-        jp_log.error(msg('Error creating new version/file.'), exc_info=True)
+        jp_log.error(msg('Error syncing old file status.'), exc_info=True)
         raise
 
     # Sync out the new version.
