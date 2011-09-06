@@ -356,7 +356,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         fields = cls._meta.get_all_field_names()
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
         addon.status = amo.STATUS_NULL
-        addon.default_locale = to_language(translation.get_language())
+        locale_is_set = (addon.default_locale and
+                         addon.default_locale != settings.LANGUAGE_CODE)
+        if not locale_is_set:
+            addon.default_locale = to_language(translation.get_language())
         if addon.is_webapp():
             addon.manifest_url = upload.name
         addon.save()
