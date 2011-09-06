@@ -90,7 +90,7 @@
   {{ upsell_note(addon) }}
 
   {% if addon.takes_contributions %}
-    {{ impala_contribution(addon=addon, src='addon-detail') }}
+    {{ impala_contribution(addon=addon, src='dp-btn-primary') }}
   {% elif addon.has_profile() and addon.listed_authors %}
     <div class="notice c author">
       {% with single_dev = addon.listed_authors|random %}
@@ -208,7 +208,7 @@
     <section id="detail-relnotes" class="expando">
       <h2>{{ _('Version Information') }}<a class="toggle" href="#detail-relnotes"><b></b></a></h2>
       <div class="content prose">
-        {{ version_detail(addon, version, src="addon-detail-version", impala=True) }}
+        {{ version_detail(addon, version, src=version_src, impala=True) }}
       </div>
     </section>
   {% endif %}

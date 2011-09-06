@@ -133,7 +133,8 @@ def extension_detail(request, addon):
     ctx = {
         'addon': addon,
         'author_addons': author_addons,
-        'src': request.GET.get('src', 'addondetail'),
+        'src': request.GET.get('src', 'dp-btn-primary'),
+        'version_src': request.GET.get('src', 'dp-btn-version'),
         'tags': addon.tags.not_blacklisted(),
         'grouped_ratings': GroupedRating.get(addon.id),
         'recommendations': recommended,

@@ -247,23 +247,22 @@ class TestDeveloperPages(amo.tests.TestCase):
             'Bio2: This is line one.<br/><br/>This is line two')
 
     def test_roadblock_src(self):
+        url = reverse('addons.roadblock', args=['a11730'])
         # If they end up at the roadblock we force roadblock on them
-        url = reverse('addons.roadblock', args=['a11730']) + '?src=addondetail'
-        r = self.client.get(url)
+        r = self.client.get(url + '?src=dp-btn-primary')
         button = pq(r.content)('.install-button a.button').attr('href')
-        eq_(button.endswith('?src=addondetail'), True)
+        eq_(button.endswith('?src=dp-btn-primary'), True)
 
         # No previous source gets the roadblock page source
-        url = reverse('addons.roadblock', args=['a11730'])
         r = self.client.get(url)
         button = pq(r.content)('.install-button a.button').attr('href')
         eq_(button.endswith('?src=meetthedeveloper_roadblock'), True)
 
     def test_roadblock_different(self):
-        url = reverse('addons.roadblock', args=['a11730']) + '?src=addondetail'
-        r = self.client.get(url)
+        url = reverse('addons.roadblock', args=['a11730'])
+        r = self.client.get(url + '?src=dp-btn-primary')
         button = pq(r.content)('.install-button a.button').attr('href')
-        eq_(button.endswith('?src=addondetail'), True)
+        eq_(button.endswith('?src=dp-btn-primary'), True)
 
         contribute = pq(r.content)('#contribute-button').attr('href')
         eq_(contribute.endswith('?src=roadblock'), True)
@@ -353,6 +352,10 @@ class TestDetailPage(amo.tests.TestCase):
                 'base/addon_4594_a9',
                 'addons/listed',
                 'addons/persona']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=3615)
+        self.url = self.addon.get_url_path()
 
     def test_anonymous_extension(self):
         response = self.client.get(reverse('addons.detail', args=['a3615']),
@@ -562,6 +565,26 @@ class TestDetailPage(amo.tests.TestCase):
         response = self.client.get(reverse('addons.detail', args=['a3615']),
                                    follow=True)
         assert pq(response.content)('.button').hasClass('prominent')
+
+    def test_button_src_default(self):
+        r = self.client.get(self.url, follow=True)
+        eq_((pq(r.content)('#addon .button').attr('href')
+             .endswith('?src=dp-btn-primary')), True)
+
+    def test_button_src_trickle(self):
+        r = self.client.get(self.url + '?src=trickleortreat', follow=True)
+        eq_((pq(r.content)('#addon .button').attr('href')
+             .endswith('?src=trickleortreat')), True)
+
+    def test_version_button_src_default(self):
+        r = self.client.get(self.url, follow=True)
+        eq_((pq(r.content)('#detail-relnotes .button').attr('href')
+             .endswith('?src=dp-btn-version')), True)
+
+    def test_version_button_src_trickle(self):
+        r = self.client.get(self.url + '?src=trickleortreat', follow=True)
+        eq_((pq(r.content)('#detail-relnotes .button').attr('href')
+             .endswith('?src=trickleortreat')), True)
 
     def test_invalid_version(self):
         """Only render details pages for add-ons that have a version."""
