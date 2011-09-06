@@ -373,10 +373,6 @@ input.long, textarea.long {
     width: 30em;
 }
 
-input.placeholder {
-    color: #444;
-}
-
 textarea {
     width: 100%;
     -moz-box-sizing: border-box;

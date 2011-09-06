@@ -3102,10 +3102,6 @@ label > .optional {
     margin-top: 2em;
 }
 
-input.placeholder {
-    color: #ccc;
-}
-
 table#addons-list, table#contributors-list {
     width: 100%;
 }
