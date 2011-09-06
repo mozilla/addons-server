@@ -9,6 +9,7 @@ import uuid
 
 import django.core.mail
 from django.conf import settings
+from django.db import transaction
 
 import jingo
 from celeryutils import task
@@ -90,6 +91,7 @@ class RedisLogHandler(logging.Handler):
 
 
 @task
+@transaction.commit_on_success
 def repackage_jetpack(builder_data, **kw):
     repack_data = dict(urlparse.parse_qsl(builder_data['request']))
     jp_log.info('[1@None] Repackaging jetpack for %s.'
