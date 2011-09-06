@@ -464,6 +464,7 @@ MINIFY_BUNDLES = {
             'css/impala/colorpicker.less',
             'css/impala/personas.less',
             'css/impala/login.less',
+            'css/impala/dictionaries.less',
         ),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',

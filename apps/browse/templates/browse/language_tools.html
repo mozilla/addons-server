@@ -1,6 +1,7 @@
-{% extends "base.html" %}
+{% extends "impala/base.html" %}
 
 {% block title %}{{ _('Dictionaries & Language Packs') }}{% endblock %}
+{% block bodyclass %}dictionaries{% endblock %}
 
 {% if request.APP.browser %}
   {% set install_dict = _('Install Dictionary') %}
@@ -25,34 +26,52 @@
 {% block content %}
 {% cache addons %}
 <header>
-  {{ breadcrumbs([(None, _('Dictionaries & Language Packs'))]) }}
-  <h2>{{ _('Dictionaries & Language Packs') }}</h2>
+  {{ impala_breadcrumbs([(None, _('Dictionaries & Language Packs'))]) }}
+  <h1>{{ _('Dictionaries & Language Packs') }}</h1>
 </header>
-<div class="featured">
-  <div class="featured-inner">
-    <div id="dictionaries">
-      <table>
-        <caption>{{ _('List of language packs and dictionaries.') }}</caption>
-        <thead>
-          <tr>
-            <th colspan="2">{{ _('Language') }}</th>
-            <th>{{ _('Dictionary') }}</th>
-            <th>{{ _('Language Pack') }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for lang, locale in locales %}
-          <tr>
-            <th>{{ locale.display }}</th>
-            <td lang="{{ lang }}">{{ locale.native }}</td>
-            <td>{{ langtool(locale.dicts, install_dict) }}</td>
-            <td>{{ langtool(locale.packs, install_pack) }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
+<section class="island">
+  <h2>{{ _('Available in your locale') }}</h2>
+  <table>
+    <caption>{{ _('List of language packs and dictionaries available in your locale.') }}</caption>
+    <thead>
+      <tr>
+        <th colspan="2">{{ _('Language') }}</th>
+        <th>{{ _('Dictionary') }}</th>
+        <th>{{ _('Language Pack') }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for lang, locale in lang_addons %}
+      <tr>
+        <th>{{ locale.display }}</th>
+        <td lang="{{ lang }}">{{ locale.native }}</td>
+        <td>{{ langtool(locale.dicts, install_dict) }}</td>
+        <td>{{ langtool(locale.packs, install_pack) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <h2>{{ _('All locales') }}</h2>
+  <table>
+    <caption>{{ _('List of language packs and dictionaries.') }}</caption>
+    <thead>
+      <tr>
+        <th colspan="2">{{ _('Language') }}</th>
+        <th>{{ _('Dictionary') }}</th>
+        <th>{{ _('Language Pack') }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for lang, locale in locales %}
+      <tr>
+        <th>{{ locale.display }}</th>
+        <td lang="{{ lang }}">{{ locale.native }}</td>
+        <td>{{ langtool(locale.dicts, install_dict) }}</td>
+        <td>{{ langtool(locale.packs, install_pack) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
 {% endcache %}
 {% endblock %}

@@ -134,8 +134,10 @@ def language_tools(request, category=None):
               .filter(appsupport__app=request.APP.id, type__in=types,
                       target_locale__isnull=False).exclude(target_locale=''))
     locales = _get_locales(addons)
+    lang_addons = _get_locales(addons.filter(target_locale=request.LANG))
     return jingo.render(request, 'browse/language_tools.html',
                         {'locales': locales, 'addons': addons,
+                         'lang_addons': lang_addons,
                          'search_cat': '%s,0' % amo.ADDON_DICT})
 
 
