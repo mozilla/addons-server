@@ -1,0 +1,32 @@
+@import 'lib';
+
+.dictionaries {
+    h2 {
+        color: @red;
+    }
+    table {
+        width: 100%;
+        margin-bottom: 1em;
+        position: relative;
+    }
+    th {
+        font-weight: bold;
+    }
+    th, td {
+        padding: 6px 12px;
+    }
+    tbody {
+        td, th {
+            width: 25%;
+        }
+    }
+    tr {
+        line-height: 1.5em;
+    }
+    tr:nth-child(2n), thead {
+        background: lighten(@link, 45%);
+    }
+    tbody tr:nth-child(2n+1) {
+        background: #fff;
+    }
+}
