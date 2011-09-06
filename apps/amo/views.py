@@ -10,11 +10,12 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
-from django_arecibo.tasks import post
 import commonware.log
 import jingo
 import phpserialize as php
 import waffle
+from django_arecibo.tasks import post
+from statsd import statsd
 
 import amo
 import files.tasks
@@ -38,10 +39,12 @@ def monitor(request, format=None):
 
     checks = ['memcache', 'libraries', 'elastic', 'path', 'redis', 'hera']
 
-    for c in checks:
-        status, result = getattr(monitors, c)()
-        status_summary[c] = status
-        results['%s_results' % c] = result
+    for check in checks:
+        with statsd.timer('monitor.%s' % check) as timer:
+            status, result = getattr(monitors, check)()
+        status_summary[check] = status
+        results['%s_results' % check] = result
+        results['%s_timer' % check] = timer.ms
 
     # If anything broke, send HTTP 500
     if not all(status_summary.values()):
