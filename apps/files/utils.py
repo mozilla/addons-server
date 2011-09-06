@@ -25,6 +25,7 @@ import redisutils
 from tower import ugettext as _
 
 import amo
+from amo.utils import to_language
 from applications.models import AppVersion
 from versions.compare import version_int as vint
 
@@ -207,7 +208,7 @@ class WebAppParser(object):
         # 'en' might be the only one in need of translating.
         if locale == 'en':
             locale = 'en-us'
-        return locale
+        return to_language(locale)
 
     def trans_all_locales(self, locale_dict):
         trans = {}

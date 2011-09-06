@@ -627,18 +627,18 @@ class TestWebApps(amo.tests.TestCase):
         wp = WebAppParser().parse(self.webapp_path)
         eq_(wp['guid'], None)
         eq_(wp['type'], amo.ADDON_WEBAPP)
-        eq_(wp['summary']['en-us'], u'Exciting Open Web development action!')
+        eq_(wp['summary']['en-US'], u'Exciting Open Web development action!')
         eq_(wp['summary']['es'],
             u'¡Acción abierta emocionante del desarrollo del Web!')
         eq_(wp['summary']['it'],
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
         eq_(wp['version'], '1.0')
-        eq_(wp['default_locale'], 'en-us')
+        eq_(wp['default_locale'], 'en-US')
 
     def test_no_locales(self):
         wp = WebAppParser().parse(self.webapp(dict(name='foo', version='1.0',
                                                    description='summary')))
-        eq_(wp['summary']['en-us'], u'summary')
+        eq_(wp['summary']['en-US'], u'summary')
 
     def test_syntax_error(self):
         with self.assertRaises(forms.ValidationError) as exc:

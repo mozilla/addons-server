@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
+from contextlib import nested
 import itertools
+import json
 import os
 from datetime import datetime, timedelta
+import tempfile
 from urlparse import urlparse
 
 from django import forms
@@ -1328,6 +1331,10 @@ class TestAddonFromUpload(UploadTest):
         for version in ('3.0', '3.6.*'):
             AppVersion.objects.create(application_id=1, version=version)
 
+    def webapp(self):
+        return os.path.join(settings.ROOT,
+                            'apps/devhub/tests/addons/mozball.webapp')
+
     def test_blacklisted_guid(self):
         BlacklistedGuid.objects.create(guid='guid@xpi')
         with self.assertRaises(forms.ValidationError) as e:
@@ -1348,9 +1355,7 @@ class TestAddonFromUpload(UploadTest):
         eq_(addon.slug, 'xpi-name')
 
     def test_manifest_url(self):
-        path = os.path.join(settings.ROOT,
-                            'apps/devhub/tests/addons/mozball.webapp')
-        upload = self.get_upload(abspath=path)
+        upload = self.get_upload(abspath=self.webapp())
         addon = Addon.from_upload(upload, [self.platform])
         assert addon.is_webapp()
         eq_(addon.manifest_url, upload.name)
@@ -1408,6 +1413,17 @@ class TestAddonFromUpload(UploadTest):
                                   [self.platform])
         eq_(addon.default_locale, 'es-ES')
         translation.deactivate()
+
+    def test_webapp_default_locale_override(self):
+        with nested(tempfile.NamedTemporaryFile('w', suffix='.webapp'),
+                    open(self.webapp())) as (tmp, mf):
+            mf = json.load(mf)
+            mf['default_locale'] = 'gb'
+            tmp.write(json.dumps(mf))
+            tmp.flush()
+            upload = self.get_upload(abspath=tmp.name)
+        addon = Addon.from_upload(upload, [self.platform])
+        eq_(addon.default_locale, 'gb')
 
 
 REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
