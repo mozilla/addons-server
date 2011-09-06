@@ -3102,6 +3102,13 @@ label > .optional {
     margin-top: 2em;
 }
 
+input:-moz-placeholder {
+    color: #ccc;
+}
+input::-webkit-placeholder {
+    color: #ccc;
+}
+
 table#addons-list, table#contributors-list {
     width: 100%;
 }
