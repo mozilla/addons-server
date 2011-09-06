@@ -1,0 +1,54 @@
+{% extends "devhub/base.html" %}
+{% from 'devhub/includes/macros.html' import some_html_tip %}
+
+{% set title = _('Manage Payments') %}
+{% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
+
+{% set can_edit = check_addon_ownership(request, addon) and addon.has_full_profile() %}
+{% block bodyclass %}
+  {{ super() }}{% if not can_edit %} no-edit{% endif %}
+{% endblock %}
+
+{% block content %}
+<header>
+  {{ dev_breadcrumbs(addon, items=[(None, title)]) }}
+  {{ l10n_menu(addon.default_locale) }}
+  <h2>{{ title }}</h2>
+</header>
+<section class="primary payments devhub-form" role="main">
+<form method="post" action="{{ url('devhub.addons.payments', addon.slug) }}">
+    {{ csrf() }}
+    <div id="org-dev" class="brform paypal">
+        {{ form.paypal_id.errors }}
+        <label for="id_paypal_id">{{ _('What is your PayPal ID?') }}</label>
+        <div>{{ form.paypal_id }}</div>
+    </div>
+    <div class="brform">
+        {{ form.price.errors }}
+        <label for="id_price">{{ form.price.label }}</label>
+        <div class="extra">
+            {% trans doc_url=url('devhub.docs', doc_name='marketplace') %}
+                Select a price tier for your add-on below. Price tiers
+                are based on US Dollars and are fixed for all supported countries. For more
+                information, <a href="{{ doc_url }}">view our pricing matrix</a>.
+            {% endtrans %}
+        </div>
+        <div>{{ form.price }}</div>
+    </div>
+    <div class="brform">
+        {{ form.do_upsell.errors }}
+        <div>{{ form.do_upsell }}</div>
+        <div class="indent">
+            {{ form.free.errors }}
+            <div>{{ form.free }}</div>
+            <div class="extra">{% trans %}Pitch your premium add-on, describing the added benefits and functionality over the free version. This will appear on the free add-on's details page.{% endtrans %}</div>
+            {{ form.text.errors }}
+            <div>{{ form.text }}</div>
+            {{ some_html_tip() }}
+        </div>
+    </div>
+    <button type="submit">{{ _('Save Changes') }}</button>
+</form>
+</section>
+{% include "devhub/includes/addons_edit_nav.html" %}
+{% endblock %}

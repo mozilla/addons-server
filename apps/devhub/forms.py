@@ -17,13 +17,14 @@ from quieter_formset.formset import BaseModelFormSet
 import amo
 import addons.forms
 import paypal
-from addons.models import Addon, AddonUser, Charity, Preview
+from addons.models import Addon, AddonUpsell, AddonUser, Charity, Preview
 from amo.forms import AMOModelForm
 from amo.urlresolvers import reverse
 from amo.widgets import EmailWidget
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon, VERSION_RE
+from market.models import Price
 from translations.widgets import TranslationTextarea, TranslationTextInput
 from translations.fields import TransTextarea, TransField
 from translations.models import delete_translation
@@ -817,3 +818,84 @@ class CheckCompatibilityForm(happyforms.Form):
 class NewManifestForm(happyforms.Form):
     manifest = forms.URLField()
 
+
+class PremiumForm(happyforms.Form):
+    """
+    The premium details for an addon, which is unfortunately
+    distributed across a few models.
+    """
+    paypal_id = forms.CharField()
+    price = forms.ModelChoiceField(queryset=Price.objects.active(),
+                                   label=_('Add-on price'),
+                                   empty_label=None)
+    do_upsell = forms.TypedChoiceField(coerce=lambda x: bool(int(x)),
+                                       choices=(
+                        (0, _("I don't have a free add-on to associate.")),
+                        (1, _('This is a premium upgrade to:'))
+                                       ),
+                                       widget=forms.RadioSelect(),
+                                       required=False)
+    free = forms.ModelChoiceField(queryset=Addon.objects.none(),
+                                  required=False,
+                                  empty_label='')
+    text = forms.CharField(widget=forms.Textarea(), required=False)
+
+    def __init__(self, *args, **kw):
+        self.addon = kw.pop('addon')
+        self.amo_user = kw.pop('amo_user')
+        kw['initial'] = {
+            'paypal_id': self.addon.paypal_id,
+            'price': self.addon.addonpremium.price,
+            'do_upsell': 0,
+        }
+        upsell = self.get_upsell_to()
+        if upsell:
+            kw['initial'].update({
+                'text': upsell.text,
+                'free': upsell.free,
+                'do_upsell': 1
+            })
+
+        super(PremiumForm, self).__init__(*args, **kw)
+        self.fields['free'].queryset = (self.amo_user.addons
+                                            .exclude(pk=self.addon.pk))
+
+    def clean_paypal_id(self):
+        # TODO(andym): insert some paypal checking.
+        return self.cleaned_data['paypal_id']
+
+    def clean_text(self):
+        if self.cleaned_data['do_upsell'] and not self.cleaned_data['text']:
+            raise forms.ValidationError(_('This field is required.'))
+        return self.cleaned_data['text']
+
+    def clean_free(self):
+        if self.cleaned_data['do_upsell'] and not self.cleaned_data['free']:
+            raise forms.ValidationError(_('This field is required.'))
+        return self.cleaned_data['free']
+
+    def get_upsell_to(self):
+        """
+        If you use addon.upsell you get the free to premium upsell.
+        This is the other, premium to free for the purposes of editing.
+        """
+        try:
+            return self.addon._upsell_to.all()[0]
+        except IndexError:
+            pass
+
+    def save(self):
+        self.addon.update(paypal_id=self.cleaned_data['paypal_id'])
+        self.addon.addonpremium.update(price=self.cleaned_data['price'])
+
+        upsell = self.get_upsell_to()
+        if (self.cleaned_data['do_upsell'] and
+            self.cleaned_data['text'] and self.cleaned_data['free']):
+
+            if not upsell:
+                upsell = AddonUpsell(premium=self.addon)
+            upsell.text = self.cleaned_data['text']
+            upsell.free = self.cleaned_data['free']
+            upsell.save()
+        elif not self.cleaned_data['do_upsell'] and upsell:
+            upsell.delete()

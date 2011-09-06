@@ -33,7 +33,8 @@ from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons import cron
 from addons.forms import AddonFormBasic
-from addons.models import Addon, AddonUser, Charity, Category, AddonCategory
+from addons.models import (Addon, AddonUser, Charity, Category, AddonCategory,
+                           AddonUpsell)
 from addons.utils import ReverseNameLookup
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
@@ -43,6 +44,7 @@ from devhub import tasks
 import files
 from files.models import File, FileUpload, Platform
 from files.tests.test_models import UploadTest as BaseUploadTest
+from market.models import AddonPremium, Price
 from reviews.models import Review
 from tags.models import Tag, AddonTag
 from translations.models import Translation
@@ -744,6 +746,91 @@ class TestMarketplace(amo.tests.TestCase):
         eq_(res.status_code, 200)
         doc = pq(res.content)
         eq_(len(doc('.error')), 1)
+
+    def setup_premium(self):
+        self.price = Price.objects.create(price='0.99')
+        self.price_two = Price.objects.create(price='1.99')
+        self.other_addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        AddonUser.objects.create(addon=self.other_addon,
+                                 user=self.addon.authors.all()[0])
+        AddonPremium.objects.create(addon=self.addon, price_id=self.price.pk)
+        self.addon.update(premium_type=amo.ADDON_PREMIUM,
+                          paypal_id='a@a.com')
+
+    def get_data(self):
+        return {
+            'paypal_id': 'a@a.com',
+            'price': self.price.pk,
+            'free': self.other_addon.pk,
+            'do_upsell': 1,
+            'text': 'some upsell'
+        }
+
+    def test_template_premium(self):
+        self.setup_premium()
+        res = self.client.get(self.url)
+        self.assertTemplateUsed(res, 'devhub/payments/premium.html')
+
+    def test_template_free(self):
+        res = self.client.get(self.url)
+        self.assertTemplateUsed(res, 'devhub/payments/payments.html')
+
+    def test_initial(self):
+        self.setup_premium()
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.context['form'].initial['price'], self.price)
+        eq_(res.context['form'].initial['paypal_id'], 'a@a.com')
+
+    def test_set(self):
+        self.setup_premium()
+        res = self.client.post(self.url, data={
+            'paypal_id': 'b@b.com',
+            'price': self.price_two.pk,
+        })
+        eq_(res.status_code, 302)
+        self.addon = Addon.objects.get(pk=self.addon.pk)
+        eq_(self.addon.paypal_id, 'b@b.com')
+        eq_(self.addon.addonpremium.price, self.price_two)
+
+    def test_set_upsell(self):
+        self.setup_premium()
+        res = self.client.post(self.url, data=self.get_data())
+        eq_(res.status_code, 302)
+        eq_(len(self.addon._upsell_to.all()), 1)
+
+    def test_set_upsell_required(self):
+        self.setup_premium()
+        data = self.get_data()
+        data['text'] = ''
+        res = self.client.post(self.url, data=data)
+        eq_(res.status_code, 200)
+
+    def test_set_upsell_not_mine(self):
+        self.setup_premium()
+        self.other_addon.authors.clear()
+        res = self.client.post(self.url, data=self.get_data())
+        eq_(res.status_code, 200)
+
+    def test_remove_upsell(self):
+        self.setup_premium()
+        upsell = AddonUpsell.objects.create(free=self.other_addon,
+                                            premium=self.addon)
+        eq_(self.addon._upsell_to.all()[0], upsell)
+        data = self.get_data().copy()
+        data['do_upsell'] = 0
+        self.client.post(self.url, data=data)
+        eq_(len(self.addon._upsell_to.all()), 0)
+
+    def test_change_upsell(self):
+        self.setup_premium()
+        AddonUpsell.objects.create(free=self.other_addon,
+                                   premium=self.addon, text='foo')
+        eq_(self.addon._upsell_to.all()[0].text, 'foo')
+        data = self.get_data().copy()
+        data['text'] = 'bar'
+        self.client.post(self.url, data=data)
+        eq_(self.addon._upsell_to.all()[0].text, 'bar')
 
 
 class TestDelete(amo.tests.TestCase):

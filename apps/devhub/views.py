@@ -393,6 +393,24 @@ def ownership(request, addon_id, addon):
 
 @dev_required(owner_for_post=True)
 def payments(request, addon_id, addon):
+    if addon.is_premium():
+        return _premium(request, addon_id, addon)
+    return _voluntary(request, addon_id, addon)
+
+
+def _premium(request, addon_id, addon):
+    premium_form = forms.PremiumForm(request.POST or None,
+                                     addon=addon, amo_user=request.amo_user)
+    if request.method == 'POST' and premium_form.is_valid():
+        premium_form.save()
+        messages.success(request, _('Changes successfully saved.'))
+        return redirect('devhub.addons.payments', addon.slug)
+
+    return jingo.render(request, 'devhub/payments/premium.html',
+                        dict(addon=addon, form=premium_form))
+
+
+def _voluntary(request, addon_id, addon):
     charity = None if addon.charity_id == amo.FOUNDATION_ORG else addon.charity
     charity_form = forms.CharityForm(request.POST or None, instance=charity,
                                      prefix='charity')

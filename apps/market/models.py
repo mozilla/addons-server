@@ -34,7 +34,7 @@ class Price(amo.models.ModelBase):
         db_table = 'prices'
 
     def __unicode__(self):
-        return u'%s: %s' % (self.name, self.price)
+        return u'%s - $%s USD' % (self.name, self.price)
 
 
 class PriceCurrency(amo.models.ModelBase):
