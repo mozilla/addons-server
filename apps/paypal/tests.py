@@ -1,5 +1,6 @@
 from cStringIO import StringIO
 
+from django.conf import settings
 from amo.urlresolvers import reverse
 from amo.helpers import absolutify
 
@@ -7,6 +8,7 @@ import mock
 from nose.tools import eq_
 import time
 
+from addons.models import Addon
 import amo.tests
 import paypal
 
@@ -59,3 +61,38 @@ def test_check_paypal_id(urlopen_mock):
     urlopen_mock.return_value = StringIO('ACK=Success')
     val = paypal.check_paypal_id(u'\u30d5\u30a9\u30af\u3059\u3051')
     eq_(val, (True, None))
+
+
+@mock.patch('paypal._call')
+@mock.patch.object(settings, 'PAYPAL_PERMISSIONS_URL', 'something')
+class TestRefundPermissions(amo.tests.TestCase):
+
+    def test_refund_permissions_url(self, _call):
+        """
+        `paypal_refund_permission_url` returns an URL for PayPal's
+        permissions request service containing the token PayPal gives
+        us.
+        """
+        _call.return_value = {'token': 'foo'}
+        addon = Addon(type=amo.ADDON_EXTENSION, slug='foo')
+        assert 'foo' in paypal.refund_permission_url(addon)
+
+    def test_check_refund_permission_fail(self, _call):
+        """
+        `check_paypal_refund_permission` returns False if PayPal
+        doesn't put 'REFUND' in the permissions response.
+        """
+        _call.return_value = {'scope(0)': 'HAM_SANDWICH'}
+        assert not paypal.check_refund_permission('foo')
+
+    def test_check_refund_permission(self, _call):
+        """
+        `check_paypal_refund_permission` returns True if PayPal
+        puts 'REFUND' in the permissions response.
+        """
+        _call.return_value = {'scope(0)': 'REFUND'}
+        eq_(paypal.check_refund_permission('foo'), True)
+
+    def test_get_permissions_token(self, _call):
+        _call.return_value = {'token': 'FOO'}
+        eq_(paypal.get_permissions_token('foo', ''), 'FOO')

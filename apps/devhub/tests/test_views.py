@@ -714,6 +714,10 @@ class TestPaymentsProfile(amo.tests.TestCase):
         eq_(self.get_addon().wants_contributions, False)
 
 
+# Mock out verfiying the paypal id has refund permissions with paypal.:conf q
+#
+@mock.patch('devhub.forms.PremiumForm.clean_paypal_id',
+            new=lambda x: x.cleaned_data['paypal_id'])
 class TestMarketplace(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
@@ -831,6 +835,28 @@ class TestMarketplace(amo.tests.TestCase):
         data['text'] = 'bar'
         self.client.post(self.url, data=data)
         eq_(self.addon._upsell_to.all()[0].text, 'bar')
+
+    def test_no_token(self):
+        self.setup_premium()
+        res = self.client.get(self.url)
+        assert 'You do not have' in res.content
+
+    def test_with_token(self):
+        self.setup_premium()
+        self.addon.addonpremium.update(paypal_permissions_token='foo')
+        res = self.client.get(self.url)
+        assert 'You have' in res.content
+
+    @mock.patch('paypal.get_permissions_token', lambda x, y: x.upper())
+    def test_permissions_token(self):
+        self.setup_premium()
+        eq_(self.addon.addonpremium.paypal_permissions_token, '')
+        url = reverse('devhub.addons.acquire_refund_permission',
+                      args=[self.addon.slug])
+        data = {'request_token': 'foo', 'verification_code': 'bar'}
+        self.client.get('%s?%s' % (url, urlencode(data)))
+        self.addon = Addon.objects.get(pk=self.addon.pk)
+        eq_(self.addon.addonpremium.paypal_permissions_token, 'FOO')
 
 
 class TestDelete(amo.tests.TestCase):

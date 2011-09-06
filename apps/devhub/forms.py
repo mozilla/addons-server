@@ -831,8 +831,7 @@ class PremiumForm(happyforms.Form):
     do_upsell = forms.TypedChoiceField(coerce=lambda x: bool(int(x)),
                                        choices=(
                         (0, _("I don't have a free add-on to associate.")),
-                        (1, _('This is a premium upgrade to:'))
-                                       ),
+                        (1, _('This is a premium upgrade to:'))),
                                        widget=forms.RadioSelect(),
                                        required=False)
     free = forms.ModelChoiceField(queryset=Addon.objects.none(),
@@ -853,7 +852,7 @@ class PremiumForm(happyforms.Form):
             kw['initial'].update({
                 'text': upsell.text,
                 'free': upsell.free,
-                'do_upsell': 1
+                'do_upsell': 1,
             })
 
         super(PremiumForm, self).__init__(*args, **kw)
@@ -861,7 +860,9 @@ class PremiumForm(happyforms.Form):
                                             .exclude(pk=self.addon.pk))
 
     def clean_paypal_id(self):
-        # TODO(andym): insert some paypal checking.
+        token = self.addon.addonpremium.paypal_permissions_token
+        if not paypal.check_refund_permission(token):
+            raise forms.ValidationError(_('Third party refund not set up.'))
         return self.cleaned_data['paypal_id']
 
     def clean_text(self):

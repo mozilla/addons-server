@@ -47,6 +47,7 @@ from devhub import perf
 from editors.helpers import get_position
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
+import paypal
 from translations.models import Translation, delete_translation
 from users.models import UserProfile
 from versions.models import License, Version
@@ -406,8 +407,21 @@ def _premium(request, addon_id, addon):
         messages.success(request, _('Changes successfully saved.'))
         return redirect('devhub.addons.payments', addon.slug)
 
+    # If PayPal hates us, let's keep this empty.
+    url = ''
+    if not addon.addonpremium.paypal_permissions_token:
+        try:
+            url = paypal.refund_permission_url(addon)
+        except paypal.PaypalError, e:
+            # If you've got and tld, or a port or anything else that
+            # PayPal doesn't like, then you'll get a malformed URL here.
+            # Which is a real pain for our dev servers.
+            if 'malformed' in e.message:
+                log.debug('PayPal does not like your server, set to empty.')
+
     return jingo.render(request, 'devhub/payments/premium.html',
-                        dict(addon=addon, form=premium_form))
+                        dict(addon=addon, premium=addon.addonpremium,
+                             form=premium_form, paypal_url=url))
 
 
 def _voluntary(request, addon_id, addon):
@@ -453,6 +467,21 @@ def _save_charity(addon, contrib_form, charity_form):
         else:
             return False
     return True
+
+
+@dev_required
+def acquire_refund_permission(request, addon_id, addon):
+    """This is the callback from Paypal."""
+    log.debug('User approved refund for addon: %s' % addon_id)
+    print paypal.get_permissions_token('b','a')
+    print paypal.get_permissions_token
+    token = paypal.get_permissions_token(request.GET['request_token'],
+                                         request.GET['verification_code'])
+    log.debug('Got refund token for addon: %s' % addon_id)
+    # Sadly this is an update on a POST.
+    addon.addonpremium.update(paypal_permissions_token=token)
+    amo.log(amo.LOG.EDIT_PROPERTIES, addon)
+    return redirect('devhub.addons.payments', addon.slug)
 
 
 @dev_required

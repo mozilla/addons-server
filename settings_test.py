@@ -48,3 +48,4 @@ USE_ELASTIC = False
 # Ensure all validation code runs in tests:
 VALIDATE_ADDONS = True
 
+PAYPAL_PERMISSIONS_URL = ''

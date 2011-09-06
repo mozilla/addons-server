@@ -1,6 +1,5 @@
 import contextlib
 import socket
-import time
 import urllib
 import urllib2
 import urlparse
@@ -26,6 +25,7 @@ class AuthError(Exception):
 errors = {'520003': AuthError}
 paypal_log = commonware.log.getLogger('z.paypal')
 
+
 def get_paykey(data):
     """
     Gets a paykey from Paypal. Need to pass in the following in data:
@@ -36,17 +36,6 @@ def get_paykey(data):
     uuid: contribution_uuid (required)
     memo: any nice message
     """
-    start = time.time()
-    request = urllib2.Request(settings.PAYPAL_PAY_URL)
-    for key, value in [
-            ('security-userid', settings.PAYPAL_EMBEDDED_AUTH['USER']),
-            ('security-password', settings.PAYPAL_EMBEDDED_AUTH['PASSWORD']),
-            ('security-signature', settings.PAYPAL_EMBEDDED_AUTH['SIGNATURE']),
-            ('application-id', settings.PAYPAL_APP_ID),
-            ('device-ipaddress', data['ip']),
-            ('request-data-format', 'NV'),
-            ('response-data-format', 'NV')]:
-        request.add_header('X-PAYPAL-%s' % key.upper(), value)
 
     paypal_data = {
         'actionType': 'PAY',
@@ -65,6 +54,79 @@ def get_paykey(data):
     if data.get('memo'):
         paypal_data['memo'] = data['memo']
 
+    with statsd.timer('paypal.paykey.retrieval'):
+        response = _call(settings.PAYPAL_PAY_URL, paypal_data, ip=data['ip'])
+    return response['payKey']
+
+
+def check_refund_permission(token):
+    """
+    Asks PayPal whether the PayPal ID for this account has granted
+    refund permission to us.
+    """
+    # This is set in settings_test so we don't start calling PayPal
+    # by accident. Explicitly set this in your tests.
+    if not settings.PAYPAL_PERMISSIONS_URL:
+        return False
+    try:
+        with statsd.timer('paypal.permissions.refund'):
+            r = _call(settings.PAYPAL_PERMISSIONS_URL + 'GetPermissions',
+                      {'token': token})
+    except PaypalError:
+        return False
+    # in the future we may ask for other permissions so let's just
+    # make sure REFUND is one of them.
+    return 'REFUND' in [v for (k, v) in r.iteritems()
+                        if k.startswith('scope')]
+
+
+def refund_permission_url(addon):
+    """
+    Send permissions request to PayPal for refund privileges on
+    this addon's paypal account. Returns URL on PayPal site to visit.
+    """
+    # This is set in settings_test so we don't start calling PayPal
+    # by accident. Explicitly set this in your tests.
+    if not settings.PAYPAL_PERMISSIONS_URL:
+        return ''
+    with statsd.timer('paypal.permissions.url'):
+        url = reverse('devhub.addons.acquire_refund_permission',
+                      args=[addon.slug])
+        r = _call(settings.PAYPAL_PERMISSIONS_URL + 'RequestPermissions',
+                  {'scope': 'REFUND', 'callback': absolutify(url)})
+    return (settings.PAYPAL_CGI_URL +
+            '?cmd=_grant-permission&request_token=%s' % r['token'])
+
+
+def get_permissions_token(request_token, verification_code):
+    """
+    Send request for permissions token, after user has granted the
+    requested permissions via the PayPal page we redirected them to.
+    """
+    with statsd.timer('paypal.permissions.token'):
+        r = _call(settings.PAYPAL_PERMISSIONS_URL + 'GetAccessToken',
+                  {'token': request_token, 'verifier': verification_code})
+    return r['token']
+
+
+def _call(url, paypal_data, ip=None):
+    request = urllib2.Request(url)
+
+    if 'requestEnvelope.errorLanguage' not in paypal_data:
+        paypal_data['requestEnvelope.errorLanguage'] = 'en_US'
+
+    for key, value in [
+            ('security-userid', settings.PAYPAL_EMBEDDED_AUTH['USER']),
+            ('security-password', settings.PAYPAL_EMBEDDED_AUTH['PASSWORD']),
+            ('security-signature', settings.PAYPAL_EMBEDDED_AUTH['SIGNATURE']),
+            ('application-id', settings.PAYPAL_APP_ID),
+            ('request-data-format', 'NV'),
+            ('response-data-format', 'NV')]:
+        request.add_header('X-PAYPAL-%s' % key.upper(), value)
+
+    if ip:
+        request.add_header('X-PAYPAL-DEVICE-IPADDRESS', ip)
+
     opener = urllib2.build_opener()
     try:
         with socket_timeout(10):
@@ -80,10 +142,7 @@ def get_paykey(data):
         paypal_log.error('Paypal Error: %s' % response['error(0).message'])
         raise error(response['error(0).message'])
 
-    end = time.time() - start
-    paypal_log.info('Paypal got key: %s (%.2fs)' % (response['payKey'], end))
-    statsd.timing('paypal.paykey.retrieval', (end * 1000))
-    return response['payKey']
+    return response
 
 
 def check_paypal_id(name):
