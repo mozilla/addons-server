@@ -198,11 +198,13 @@ class ES(object):
         qs = self._build_query()
         es = elasticutils.get_es()
         try:
-            hits = es.search(qs, settings.ES_INDEX, self.type._meta.db_table)
+            with statsd.timer('search.es.timer'):
+                hits = es.search(qs, settings.ES_INDEX,
+                                 self.type._meta.db_table)
         except Exception:
             log.error(qs)
             raise
-        statsd.timing('search', hits['took'])
+        statsd.timing('search.es.took', hits['took'])
         log.debug('[%s] %s' % (hits['took'], qs))
         return hits
 
