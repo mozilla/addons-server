@@ -1,6 +1,8 @@
-{% extends "base.html" %}
+{% extends "impala/base.html" %}
 
 {% block title %}{{ page_title(_('User Login')) }}{% endblock %}
+
+{% block bodyclass %}login{% endblock %}
 
 {% block js %}
   {% if waffle.switch('browserid-login') %}
@@ -12,11 +14,9 @@
 {{ js('zamboni/login') }}
 {% endblock %}
 
-
-
 {% block content %}
 
-<div class="primary" role="main">
+<div class="primary">
   {% include "messages.html" %}
   {% if form.non_field_errors() %}
       <div class="notification-box error">
@@ -27,17 +27,25 @@
         </ul>
       </div>
   {% endif %}
-  <h2>{{ _('Log In') }}</h2>
-  <div class="featured">
+  <div class="secondary">
+      <div id="login-help" class="article">
+          <h2>{{ _('Login Problems?') }}</h2>
+          <ul>
+              <li><a href="{{ url('users.register') }}">{{ _("I don't have an account.") }} </a></li>
+              <li><a href="{{ url('users.pwreset') }}">{{ _("I forgot my password.") }}</a></li>
+          </ul>
+      </div>
+  </div>
+  <section class="island hero primary prettyform grid">
+    <h1>{{ _('Log In') }}</h1>
     {% if waffle.switch('browserid-login') %}
-    <div class="featured-inner">
       <button class="browserid-login" type="submit"
               data-url="{{ url('users.browserid_login') }}">
         {{ _('Log in with BrowserID') }}
       </button>
     </div>
     {% endif %}
-    <form method="post" action="" class="featured-inner object-lead user-input">
+    <form method="post" action="">
       {{ csrf() }}
       <fieldset>
         <ul>
@@ -62,25 +70,10 @@
             {{ form.recaptcha_shown }}
             {{ recaptcha(form) }}
           {% endif %}
-
+          <button id="login-submit" type="submit">{{ _('Log in') }}</button>
         </ul>
       </fieldset>
-      <div class="fm-control">
-        <button id="login-submit" type="submit">{{ _('Log in') }}</button>
-      </div>
     </form>
-  </div>
-
-  <div class="secondary">
-      <div id="login-help" class="article">
-          <h3>{{ _('Login Problems?') }}</h3>
-          <ul>
-              <li><a href="{{ url('users.register') }}">{{ _("I don't have an account.") }} </a></li>
-              <li><a href="{{ url('users.pwreset') }}">{{ _("I forgot my password.") }}</a></li>
-          </ul>
-      </div>
-  </div>
-
-</div>{# .primary #}
-
+  </section>
+</div>
 {% endblock content %}
