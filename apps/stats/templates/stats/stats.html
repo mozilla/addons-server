@@ -59,11 +59,9 @@
   <div id="lm" class="loadmessage"><span>{{ _('Loading the latest data&hellip;') }}</span></div>
   <div class="secondary">
     {{ report_menu(addon, report) }}
-    <aside class="highlight">
-      {% block stats_note %}
-      {% endblock %}
-      <pre id="dbgout"></pre>
-    </aside>
+    {% block stats_note %}
+    {% endblock %}
+    <pre id="dbgout"></pre>
   </div>
   <div class="primary statistics"
     data-report="{{ report }}"

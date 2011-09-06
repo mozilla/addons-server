@@ -55,7 +55,7 @@ def report_menu(context, addon, report):
                     'title': _('by Operating System')
                 },
                 {
-                    'name': 'status',
+                    'name': 'statuses',
                     'url': '/usage/status/',
                     'title': _('by Add-on Status')
                 },
