@@ -514,8 +514,6 @@ def register(request):
             #return http.HttpResponseRedirect(reverse('users.login'))
 
         else:
-            log.warning('Form errors:\n%s' % form.errors)
-            log.warning('non-field errors:\n%s' % form.non_field_errors())
             messages.error(request, _('There are errors in this form'),
                             _('Please correct them and resubmit.'))
     else:
