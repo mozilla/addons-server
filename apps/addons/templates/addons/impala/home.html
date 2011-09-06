@@ -47,7 +47,7 @@
 
     <section class="primary">
       {% if featured %}
-        <div class="island">
+        <div id="featured-extensions" class="island">
           <h2>{{ _('Featured Extensions') }}
             <a class="seeall" href="{{ url('browse.extensions')|urlparams(sort='featured') }}">{{ _('See all »') }}</a>
           </h2>
@@ -56,14 +56,14 @@
         </div>
       {% endif %}
       {% if hotness %}
-        <div class="island">
+        <div id="upandcoming" class="island">
           <h2>{{ _('Up &amp; Coming Extensions') }}</h2>
           {{ hotness|addon_grid(src='hp-hc-upandcoming',
                                 dl_src='hp-dl-upandcoming') }}
         </div>
       {% endif %}
       {% if personas %}
-        <div class="island">
+        <div id="featured-personas" class="island">
           <h2>{{ _('Featured Personas') }}
             <a class="seeall" href="{{ url('browse.personas') }}">{{ _('See all »') }}</a>
           </h2>
@@ -71,7 +71,7 @@
         </div>
       {% endif %}
       {% if collections %}
-        <div class="island">
+        <div id="featured-collections" class="island">
           <h2>{{ _('Featured Collections') }}
             <a class="seeall" href="{{ url('collections.list')|urlparams(sort='featured') }}">{{ _('See all »') }}</a>
           </h2>
