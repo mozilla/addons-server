@@ -126,7 +126,7 @@
     }
 
     $.fn.addonUploader = function( options ) {
-        var settings = {'filetypes': ['xpi', 'jar', 'xml', 'webapp', 'json'], 'getErrors': getErrors, 'cancel': $()};
+        var settings = {'filetypes': ['xpi', 'jar', 'xml'], 'getErrors': getErrors, 'cancel': $()};
 
         if (options) {
             $.extend( settings, options );
@@ -156,14 +156,7 @@
 
             var ui_parent = $('<div>', {'class': 'invisible-upload prominent cta', 'id': 'upload-file-widget'}),
                 ui_link = $('<a>', {'class': 'button prominent', 'href': '#', 'text': gettext('Select a file...')}),
-                ui_msg,
-                ui_details;
-            if (waffle.flag('accept-webapps')) {
-                ui_msg = gettext('Your add-on should end with .xpi, .jar, .xml, .webapp or .json');
-            } else {
-                ui_msg = gettext('Your add-on should end with .xpi, .jar or .xml');
-            }
-            ui_details = $('<div>', {'class': 'upload-details', 'text': ui_msg});
+                ui_details = $('<div>', {'class': 'upload-details', 'text': gettext('Your add-on should end with .xpi, .jar or .xml')});
 
             $upload_field.attr('disabled', false);
             $upload_field.wrap(ui_parent);
