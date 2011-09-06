@@ -359,8 +359,22 @@ jQuery.fn.addPaypal = function(html, allowClick) {
         links.append($('<a>', {'text': gettext('Change Currency')}));
         modal.append(links);
 
-        var paypal = $('<div>', {'class': 'paypal-parent'});
+        var paypal = $('<div>', {'class': 'paypal-parent'}),
+            user = $("<div>", {'class': 'paypal-user'});
+
         modal.append(paypal);
+        paypal.append(user);
+        if($install.attr('data-email')) {
+            user.html(format(gettext("Logged in as: <strong>{0}</strong>"), $install.attr('data-email')));
+        } else {
+            user.append($("<strong>", {'html': gettext("Have a Firefox Add-ons account? <a href='#' class='login'>Log In</a>")}));
+            user.append($("<div>", {'html': gettext("No account? No problem! You can create one after your purchase.")}));
+            var user_login =  $("<div>", {'class': 'login'}).hide();
+            user.append(user_login);
+            user.find('a.login').click(_pd(function() {
+                user_login.show().load($install.attr('data-login-url'));
+            }));
+        }
         paypal.append($("<button>", {'class': 'button prominent paypal',
                                     'html': gettext('Pay <small>with</small> Pay<em>Pal</em>')}));
         paypal.append($('<p>', {'text': gettext('Complete your purchase with PayPal.  No account necessary.')}));

@@ -1,0 +1,36 @@
+{% if user.is_authenticated() %}
+  You are now logged in as {{ user.email }}!
+{% else %}
+  <form method="post" action="{{ url('users.login_modal') }}" class="ajax-submit featured-inner object-lead user-input">
+    {{ csrf() }}
+    <fieldset>
+      <ul>
+        <li>
+        <label for="id_username">{{ _('Email address') }}</label>
+        {{ form.username }}
+        {{ form.username.errors }}
+        </li>
+        <li>
+        <label for="id_password">{{ _('Password') }}</label>
+        {{ form.password }}
+        {{ form.password.errors }}
+        </li>
+        <li>
+        <label for="id_rememberme" class="check">
+          {{ form.rememberme }}
+          {{ _('Remember me on this computer') }}
+        </label>
+        {{ form.rememberme.errors }}
+        </li>
+        {% if form.recaptcha %}
+        {{ form.recaptcha_shown }}
+        {{ recaptcha(form) }}
+        {% endif %}
+
+      </ul>
+    </fieldset>
+    <div class="fm-control">
+      <button id="login-submit" type="submit">{{ _('Log in') }}</button>
+    </div>
+  </form>
+{% endif %}

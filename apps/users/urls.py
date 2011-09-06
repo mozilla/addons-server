@@ -5,6 +5,7 @@ from session_csrf import anonymous_csrf
 
 from . import forms, views
 from .models import UserProfile
+from amo.decorators import modal_view
 
 # We need Django to use our User model.
 auth_views.User = UserProfile
@@ -34,6 +35,7 @@ users_patterns = patterns('',
                            name='users.admin_edit'),
     url('^browserid-login', views.browserid_login,
         name='users.browserid_login'),
+    url('^login/modal', modal_view(views.login), name='users.login_modal'),
     url('^login', views.login, name='users.login'),
     url('^logout', views.logout, name='users.logout'),
     url('^register$', views.register, name='users.register'),

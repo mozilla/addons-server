@@ -9,8 +9,10 @@
      data-developers="{{ addon.meet_the_dev_url() }}"
      data-name="{{ addon.name }}"
      {{ b.attrs()|xmlattr }}
-  {% if addon.is_premium() %}
+  {% if addon.can_be_purchased() %}
      data-cost="$123.45" {# TODO(gkoberger): Change This! #}
+     data-email="{{ user.email }}"
+     data-login-url="{{ url('users.login_modal') }}"
   {% endif %}
   {% if compat %}
      data-min="{{ compat.min.version }}"

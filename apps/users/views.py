@@ -280,7 +280,7 @@ def browserid_login(request):
 @anonymous_csrf
 @mobile_template('users/{mobile/}login.html')
 @ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
-def login(request, template=None):
+def login(request, modal=False, template=None):
     # In case we need it later.  See below.
     get_copy = request.GET.copy()
 
@@ -288,6 +288,9 @@ def login(request, template=None):
 
     if 'to' in request.GET:
         request = _clean_next_url(request)
+
+    if modal:
+        template = 'users/login_modal.html'
 
     limited = getattr(request, 'limited', 'recaptcha_shown' in request.POST)
     partial_form = partial(forms.AuthenticationForm, use_recaptcha=limited)

@@ -63,6 +63,14 @@ def permission_required(app, action):
     return decorator
 
 
+def modal_view(f):
+    @functools.wraps(f)
+    def wrapper(*args, **kw):
+        response = f(*args, modal=True, **kw)
+        return response
+    return wrapper
+
+
 def json_view(f):
     @functools.wraps(f)
     def wrapper(*args, **kw):

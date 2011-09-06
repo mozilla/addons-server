@@ -160,3 +160,15 @@ function initBanners() {
         $(this).closest('.site-balloon, .site-tip').fadeOut();
     }));
 }
+
+// AJAX form submit
+
+$('form.ajax-submit').live('submit', function() {
+    var $this = $(this),
+        params = $this.serializeArray();
+
+    $.post($this.attr('action'), params, function(d) {
+        $this.replaceWith(d);
+    });
+    return false;
+});
