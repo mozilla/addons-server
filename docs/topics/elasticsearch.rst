@@ -35,9 +35,9 @@ Settings
 We use a custom analyzer for indexing add-on names since they're a little
 different from normal text. To get the same results as our servers, put this in
 your elasticsearch.yml (available at
-:src:`scripts/elasticsearch/elasticsearch.yml`)::
+:src:`scripts/elasticsearch/elasticsearch.yml`)
 
-.. literalinclude:: /scripts/elasticsearch/elasticsearch.yml
+.. literalinclude:: /../scripts/elasticsearch/elasticsearch.yml
 
 
 If you don't do this your results will be slightly different, but you probably
