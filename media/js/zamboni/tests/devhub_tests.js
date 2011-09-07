@@ -525,7 +525,7 @@ asyncTest('success', function() {
         return $('.perf-results', $sb).attr('data-got-response') == '1';
     }).thenDo(function() {
         // TODO(Kumar) add checks for polling
-        equals($('.perf-results', $sb).text(), 'TODO: poll for results?')
+        equals($('.perf-results', $sb).text(), 'Waiting for test results...')
         start();
     });
 });
