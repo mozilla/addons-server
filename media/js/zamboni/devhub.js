@@ -1357,7 +1357,7 @@ function initPerfTests(doc) {
                     // TODO(Kumar) poll for results and display message
                     $results.attr('data-got-response', 1);
                     if (data.success) {
-                        $results.text('TODO: poll for results?');
+                        $results.text(gettext('Waiting for test results...'));
                     } else {
                         $results.text(gettext('Internal Server Error'));
                     }
