@@ -16,6 +16,7 @@ from celeryutils import task
 from tower import ugettext as _
 
 import amo
+from amo.decorators import write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import Message, get_email_backend
@@ -91,6 +92,7 @@ class RedisLogHandler(logging.Handler):
 
 
 @task
+@write
 @transaction.commit_on_success
 def repackage_jetpack(builder_data, **kw):
     repack_data = dict(urlparse.parse_qsl(builder_data['request']))

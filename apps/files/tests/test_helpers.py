@@ -362,7 +362,6 @@ class TestSafeUnzipFile(amo.tests.TestCase, amo.tests.AMOPaths):
         assert not zip.is_signed()
 
     def test_is_secure(self):
-        print 'test_is_secure'
         zip = SafeUnzip(self.xpi_path('signed'))
         zip.is_valid()
         assert zip.is_signed()
