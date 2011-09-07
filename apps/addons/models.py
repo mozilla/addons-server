@@ -974,6 +974,13 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         except IndexError:
             pass
 
+    def has_purchased(self, user):
+        return (self.is_premium() and
+                self.addonpurchase_set.filter(user=user).exists())
+
+    def can_review(self, user):
+        return not self.is_premium() or self.has_purchased(user)
+
     @property
     def all_dependencies(self):
         """Return all the add-ons this add-on depends on."""
