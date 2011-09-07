@@ -120,9 +120,16 @@
             {# L10n: {0} is an application, such as Firefox. #}
             <h3>{{ _('Welcome to {0} Add-ons.')|f(APP.pretty) }}</h3>
             <p>
-              {% trans app=APP.pretty %}
-                Choose from thousands of extra features and styles for {{ app }}.
-              {% endtrans %}
+              {% if APP == amo.FIREFOX %}
+                {% trans %}
+                  Choose from thousands of extra features and styles to make
+                  Firefox your own.
+                {% endtrans %}
+              {% else %}
+                {% trans app=APP.pretty %}
+                  Add extra features and styles to make {{ app }} your own.
+                {% endtrans %}
+              {% endif %}
             </p>
             <a href="#" class="close">{{ _('Close') }}</a>
           </div>

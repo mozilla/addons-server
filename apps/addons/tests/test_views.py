@@ -62,6 +62,18 @@ class TestHomepage(amo.tests.TestCase):
         doc = pq(r.content)
         eq_('Add-ons for Thunderbird', doc('title').text())
 
+    def test_welcome_msg(self):
+        r = self.client.get('/en-US/firefox/')
+        welcome = pq(r.content)('#site-welcome').remove('a.close')
+        eq_(welcome.text(),
+            'Welcome to Firefox Add-ons. Choose from thousands of extra '
+            'features and styles to make Firefox your own.')
+        r = self.client.get('/en-US/thunderbird/')
+        welcome = pq(r.content)('#site-welcome').remove('a.close')
+        eq_(welcome.text(),
+            'Welcome to Thunderbird Add-ons. Add extra features and styles to '
+            'make Thunderbird your own.')
+
     def test_no_unreviewed(self):
         response = self.client.get(self.base_url)
         addon_lists = 'popular featured hotness personas'.split()
