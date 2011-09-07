@@ -403,17 +403,16 @@ def payments(request, addon_id, addon):
 def _paypal_url(addon):
     # If PayPal hates us, let's keep this empty.
     url = ''
-    if not addon.addonpremium.paypal_permissions_token:
-        try:
-            url = paypal.refund_permission_url(addon)
-        except paypal.PaypalError, e:
-            # If you've got and tld, or a port or anything else that
-            # PayPal doesn't like, then you'll get a malformed URL here.
-            # Which is a real pain for our dev servers.
-            if 'malformed' in e.message:
-                log.debug('PayPal does not like your server, set to empty.')
-            else:
-                raise
+    try:
+        url = paypal.refund_permission_url(addon)
+    except paypal.PaypalError, e:
+        # If you've got and tld, or a port or anything else that
+        # PayPal doesn't like, then you'll get a malformed URL here.
+        # Which is a real pain for our dev servers.
+        if 'malformed' in e.message:
+            log.debug('PayPal does not like your server, set to empty.')
+        else:
+            raise
     return url
 
 
