@@ -473,7 +473,7 @@ class TestBuilderPingback(amo.tests.TestCase):
         r = self.post({'result': '', 'msg': '', 'filename': '',
                        'location': '', 'request': '',
                        'secret': settings.BUILDER_SECRET_KEY})
-        assert repackage_jetpack.delay.called
+        assert repackage_jetpack.called
         eq_(r.status_code, 200)
 
     def test_bad_secret(self):

@@ -24,7 +24,7 @@ from addons.models import Addon
 from versions.compare import version_int as vint
 from versions.models import Version, ApplicationsVersions
 from .models import File
-from .utils import JetpackUpgrader
+from .utils import JetpackUpgrader, parse_addon
 
 task_log = logging.getLogger('z.task')
 jp_log = logging.getLogger('z.jp.repack')
@@ -144,6 +144,15 @@ def repackage_jetpack(builder_data, **kw):
 
     upload = FakeUpload(path=filepath, hash='sha256:%s' % hash_.hexdigest(),
                         validation=None)
+    try:
+        version = parse_addon(upload, addon)['version']
+        if addon.versions.filter(version=version).exists():
+            jp_log.warning('Duplicate version [%s] for %r detected. Bailing.'
+                           % (version, addon))
+            return
+    except Exception:
+        pass
+
     # TODO: multi-file: have we already created the new version for a different
     # file?
     try:

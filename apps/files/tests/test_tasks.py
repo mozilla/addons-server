@@ -74,15 +74,19 @@ class TestRepackageJetpack(amo.tests.TestCase):
         # Set up a temp file so urllib.urlretrieve works.
         self.xpi_path = os.path.join(settings.ROOT,
                                      'apps/files/fixtures/files/jetpack.xpi')
-        tmp_file = tempfile.NamedTemporaryFile(delete=False)
-        tmp_file.write(open(self.xpi_path, 'rb').read())
-        tmp_file.flush()
+        tmp_file = self.create_temp_file()
         self.urllib.urlretrieve.return_value = (tmp_file.name, None)
 
         self.upgrader = JetpackUpgrader()
         settings.SEND_REAL_EMAIL = True
 
         self.uuid = uuid.uuid4().hex
+
+    def create_temp_file(self):
+        tmp_file = tempfile.NamedTemporaryFile(delete=False)
+        tmp_file.write(open(self.xpi_path, 'rb').read())
+        tmp_file.flush()
+        return tmp_file
 
     def builder_data(self, **kw):
         """Generate builder_data response dictionary with sensible defaults."""
@@ -195,6 +199,18 @@ class TestRepackageJetpack(amo.tests.TestCase):
             new_app = new.apps.filter(application=old_app.application)
             eq_(new_app.values_list('min', 'max')[0],
                 (old_app.min_id, old_app.max_id))
+
+    def test_block_duplicate_version(self):
+        eq_(self.addon.versions.count(), 1)
+        assert tasks.repackage_jetpack(self.builder_data())
+        eq_(self.addon.versions.count(), 2)
+
+        # Make a new temp file for urlretrieve.
+        tmp_file = self.create_temp_file()
+        self.urllib.urlretrieve.return_value = (tmp_file.name, None)
+
+        assert not tasks.repackage_jetpack(self.builder_data())
+        eq_(self.addon.versions.count(), 2)
 
 
 def test_parse_version():
