@@ -400,15 +400,7 @@ def payments(request, addon_id, addon):
     return _voluntary(request, addon_id, addon)
 
 
-def _premium(request, addon_id, addon):
-    premium_form = forms.PremiumForm(request.POST or None,
-                                     extra={'addon': addon,
-                                            'amo_user': request.amo_user})
-    if request.method == 'POST' and premium_form.is_valid():
-        premium_form.save()
-        messages.success(request, _('Changes successfully saved.'))
-        return redirect('devhub.addons.payments', addon.slug)
-
+def _paypal_url(addon):
     # If PayPal hates us, let's keep this empty.
     url = ''
     if not addon.addonpremium.paypal_permissions_token:
@@ -422,10 +414,23 @@ def _premium(request, addon_id, addon):
                 log.debug('PayPal does not like your server, set to empty.')
             else:
                 raise
+    return url
+
+
+def _premium(request, addon_id, addon):
+    premium_form = forms.PremiumForm(request.POST or None,
+                                     extra={'addon': addon,
+                                            'amo_user': request.amo_user})
+    if request.method == 'POST' and premium_form.is_valid():
+        premium_form.save()
+        messages.success(request, _('Changes successfully saved.'))
+        return redirect('devhub.addons.payments', addon.slug)
+
 
     return jingo.render(request, 'devhub/payments/premium.html',
                         dict(addon=addon, premium=addon.addonpremium,
-                             form=premium_form, paypal_url=url))
+                             form=premium_form,
+                             paypal_url=_paypal_url(addon)))
 
 
 def _voluntary(request, addon_id, addon):
@@ -1270,8 +1275,10 @@ def marketplace_paypal(request, addon_id, addon):
     if form.is_valid():
         form.save()
         return redirect('devhub.market.2', addon.slug)
+
     return jingo.render(request, 'devhub/payments/paypal.html',
-                        {'form': form, 'addon': addon, 'premium': None})
+                        {'form': form, 'addon': addon, 'premium': None,
+                         'paypal_url': _paypal_url(addon)})
 
 
 @dev_required
