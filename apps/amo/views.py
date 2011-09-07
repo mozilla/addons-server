@@ -250,7 +250,7 @@ def builder_pingback(request):
     except Exception:
         jp_log.warning('Problem with builder pingback.', exc_info=True)
         return http.HttpResponseBadRequest()
-    files.tasks.repackage_jetpack.delay(data)
+    files.tasks.repackage_jetpack(data)
     return http.HttpResponse()
 
 
