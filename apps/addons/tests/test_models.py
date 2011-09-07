@@ -1409,10 +1409,12 @@ class TestAddonFromUpload(UploadTest):
         eq_(addon.default_locale, 'en-US')
 
         translation.activate('es-ES')
-        addon = Addon.from_upload(self.get_upload('search.xml'),
-                                  [self.platform])
-        eq_(addon.default_locale, 'es-ES')
-        translation.deactivate()
+        try:
+            addon = Addon.from_upload(self.get_upload('search.xml'),
+                                      [self.platform])
+            eq_(addon.default_locale, 'es-ES')
+        finally:
+            translation.deactivate()
 
     def test_webapp_default_locale_override(self):
         with nested(tempfile.NamedTemporaryFile('w', suffix='.webapp'),
@@ -1424,6 +1426,15 @@ class TestAddonFromUpload(UploadTest):
             upload = self.get_upload(abspath=tmp.name)
         addon = Addon.from_upload(upload, [self.platform])
         eq_(addon.default_locale, 'gb')
+
+    def test_browsing_locale_does_not_override(self):
+        translation.activate('gb')
+        try:
+            upload = self.get_upload(abspath=self.webapp())  # en-US default
+            addon = Addon.from_upload(upload, [self.platform])
+            eq_(addon.default_locale, 'en-US')  # not gb
+        finally:
+            translation.deactivate()
 
 
 REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
