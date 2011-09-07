@@ -1,0 +1,18 @@
+    <div id="org-dev" class="brform paypal">
+        <label for="id_paypal_id">{{ _('What is your PayPal ID?') }}</label>
+        <div class="extra">
+            {% trans %}You must have PayPal configured to allow third party refunds
+            permissions from this account.{% endtrans %}
+            {% if not premium.paypal_permissions_token %}
+                <strong>
+                {% trans %}You do not have refund permission setup,
+                <a href="{{ paypal_url }}">click here to set this up on Paypal</a>.
+                {% endtrans %}
+                </strong>
+            {% else %}
+                {% trans %}You have the refund permission setup.{% endtrans %}
+            {% endif %}
+        </div>
+        {{ form.paypal_id.errors }}
+        <div>{{ form.paypal_id }}</div>
+    </div>

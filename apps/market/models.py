@@ -97,7 +97,7 @@ def create_addon_purchase(sender, instance, **kw):
 class AddonPremium(amo.models.ModelBase):
     """Additions to the Addon model that only apply to Premium add-ons."""
     addon = models.OneToOneField('addons.Addon')
-    price = models.ForeignKey(Price)
+    price = models.ForeignKey(Price, blank=True, null=True)
     paypal_permissions_token = models.CharField(max_length=255, blank=True)
 
     class Meta:

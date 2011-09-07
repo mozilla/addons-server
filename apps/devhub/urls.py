@@ -20,6 +20,13 @@ submit_patterns = patterns('',
     url('^bump$', views.submit_bump, name='devhub.submit.bump'),
 )
 
+marketplace_patterns = patterns('',
+    url('^1$', views.marketplace_paypal, name='devhub.market.1'),
+    url('^2$', views.marketplace_pricing, name='devhub.market.2'),
+    url('^3$', views.marketplace_upsell, name='devhub.market.3'),
+    url('^4$', views.marketplace_confirm, name='devhub.market.4')
+)
+
 # These will all start with /addon/<addon_id>/
 detail_patterns = patterns('',
     # Redirect to the edit page from the base.
@@ -37,6 +44,7 @@ detail_patterns = patterns('',
         name='devhub.addons.payments.disable'),
     url('^payments/permission/refund$', views.acquire_refund_permission,
         name='devhub.addons.acquire_refund_permission'),
+    url('^payments/', include(marketplace_patterns)),
     url('^profile$', views.profile, name='devhub.addons.profile'),
     url('^profile/remove$', views.remove_profile,
         name='devhub.addons.profile.remove'),

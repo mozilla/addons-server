@@ -38,7 +38,7 @@ from amo.urlresolvers import reverse
 from access import acl
 from addons import forms as addon_forms
 from addons.decorators import addon_view
-from addons.models import Addon, AddonUser
+from addons.models import Addon, AddonPremium, AddonUser
 from addons.views import BaseFilter
 from devhub.decorators import dev_required
 from devhub.forms import CheckCompatibilityForm
@@ -47,6 +47,7 @@ from devhub import perf
 from editors.helpers import get_position
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
+from market.models import Price
 import paypal
 from translations.models import Translation, delete_translation
 from users.models import UserProfile
@@ -401,7 +402,8 @@ def payments(request, addon_id, addon):
 
 def _premium(request, addon_id, addon):
     premium_form = forms.PremiumForm(request.POST or None,
-                                     addon=addon, amo_user=request.amo_user)
+                                     extra={'addon': addon,
+                                            'amo_user': request.amo_user})
     if request.method == 'POST' and premium_form.is_valid():
         premium_form.save()
         messages.success(request, _('Changes successfully saved.'))
@@ -418,6 +420,8 @@ def _premium(request, addon_id, addon):
             # Which is a real pain for our dev servers.
             if 'malformed' in e.message:
                 log.debug('PayPal does not like your server, set to empty.')
+            else:
+                raise
 
     return jingo.render(request, 'devhub/payments/premium.html',
                         dict(addon=addon, premium=addon.addonpremium,
@@ -473,13 +477,15 @@ def _save_charity(addon, contrib_form, charity_form):
 def acquire_refund_permission(request, addon_id, addon):
     """This is the callback from Paypal."""
     log.debug('User approved refund for addon: %s' % addon_id)
-    print paypal.get_permissions_token('b','a')
-    print paypal.get_permissions_token
     token = paypal.get_permissions_token(request.GET['request_token'],
                                          request.GET['verification_code'])
     log.debug('Got refund token for addon: %s' % addon_id)
     # Sadly this is an update on a POST.
-    addon.addonpremium.update(paypal_permissions_token=token)
+    try:
+        addon.addonpremium.update(paypal_permissions_token=token)
+    except AddonPremium.DoesNotExist:
+        AddonPremium.objects.create(addon=addon,
+                                    paypal_permissions_token=token)
     amo.log(amo.LOG.EDIT_PROPERTIES, addon)
     return redirect('devhub.addons.payments', addon.slug)
 
@@ -1227,7 +1233,7 @@ def submit_step(step):
     def decorator(f):
         @functools.wraps(f)
         def wrapper(request, *args, **kw):
-            max_step = 7
+            max_step =7
             # We only bounce on pages with an addon id.
             if 'addon' in kw:
                 addon = kw['addon']
@@ -1236,8 +1242,7 @@ def submit_step(step):
                     max_step = on_step[0].step
                     if max_step < step:
                         # The step was too high, so bounce to the saved step.
-                        return redirect('devhub.submit.%s' % max_step,
-                                        addon.slug)
+                        return redirect('devhub.submit.7', addon.slug)
                 elif step != max_step:
                     # We couldn't find a step, so we must be done.
                     return redirect('devhub.submit.7', addon.slug)
@@ -1248,6 +1253,67 @@ def submit_step(step):
         wrapper.submitting = True
         return wrapper
     return decorator
+
+
+@dev_required
+def marketplace_paypal(request, addon_id, addon):
+    """
+    Start of the marketplace wizard, none of this means anything until
+    addon-premium is set, so we'll just save as we go along. Further
+    we might have the PayPal permissions bounce happen at any time
+    so we'll need to cope with AddonPremium being incomplete.
+    """
+    form = forms.PremiumForm(request.POST or None,
+                             extra={'addon': addon,
+                                    'amo_user': request.amo_user,
+                                    'not_required': ['price']})
+    if form.is_valid():
+        form.save()
+        return redirect('devhub.market.2', addon.slug)
+    return jingo.render(request, 'devhub/payments/paypal.html',
+                        {'form': form, 'addon': addon, 'premium': None})
+
+
+@dev_required
+def marketplace_pricing(request, addon_id, addon):
+    form = forms.PremiumForm(request.POST or None,
+                             extra={'addon': addon,
+                                    'amo_user': request.amo_user,
+                                    'not_required': ['paypal_id']})
+    if form.is_valid():
+        form.save()
+        return redirect('devhub.market.3', addon.slug)
+    return jingo.render(request, 'devhub/payments/tier.html',
+                        {'form': form, 'addon': addon, 'premium': None})
+
+
+@dev_required
+def marketplace_upsell(request, addon_id, addon):
+    form = forms.PremiumForm(request.POST or None,
+                             extra={'addon': addon,
+                                    'amo_user': request.amo_user,
+                                    'not_required': ['price', 'paypal_id']})
+    if form.is_valid():
+        form.save()
+        return redirect('devhub.market.4', addon.slug)
+    return jingo.render(request, 'devhub/payments/upsell.html',
+                        {'form': form, 'addon': addon, 'premium': None})
+
+
+@dev_required
+def marketplace_confirm(request, addon_id, addon):
+    if request.method == 'POST':
+        # Minimum required to become premium.
+        if (not addon.paypal_id or addon.addonpremium.price
+            or addon.addonpremium.paypal_permissions_token):
+            messages.error(request, 'Some required details are missing.')
+            return redirect('devhub.market.1', addon.slug)
+        addon.update(premium_type=amo.ADDON_PREMIUM)
+        return redirect('devhub.addons.payments', addon.slug)
+
+    return jingo.render(request, 'devhub/payments/confirm.html',
+                        {'addon': addon, 'upsell': addon.upsold,
+                         'premium': addon.premium})
 
 
 @login_required
@@ -1285,7 +1351,7 @@ def submit_addon(request, step, webapp=False):
 
             addon = Addon.from_upload(data['upload'], p)
             AddonUser(addon=addon, user=request.amo_user).save()
-            SubmitStep.objects.create(addon=addon, step=3)
+            SubmitStep.objects.create(addon=addon, step=3, type='submit')
             return redirect('devhub.submit.3', addon.slug)
     template = 'upload_webapp.html' if webapp else 'upload.html'
     return jingo.render(request, 'devhub/addons/submit/%s' % template,

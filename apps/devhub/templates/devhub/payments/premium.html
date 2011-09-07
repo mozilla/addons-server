@@ -1,5 +1,4 @@
 {% extends "devhub/base.html" %}
-{% from 'devhub/includes/macros.html' import some_html_tip %}
 
 {% set title = _('Manage Payments') %}
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
@@ -18,54 +17,9 @@
 <section class="primary payments devhub-form" role="main">
 <form method="post" action="{{ url('devhub.addons.payments', addon.slug) }}">
     {{ csrf() }}
-    <div id="org-dev" class="brform paypal">
-        <label for="id_paypal_id">{{ _('What is your PayPal ID?') }}</label>
-        <div class="extra">
-            {% trans %}You must have PayPal configured to allow third party refunds
-            permissions from this account.{% endtrans %}
-            {% if not premium.paypal_permissions_token %}
-                <strong>
-                {% trans %}You do not have refund permission setup,
-                <a href="{{ paypal_url }}">click here to set this up on Paypal</a>.
-                {% endtrans %}
-                </strong>
-            {% else %}
-                {% trans %}You have the refund permission setup.{% endtrans %}
-            {% endif %}
-        </div>
-        {{ form.paypal_id.errors }}
-        <div>{{ form.paypal_id }}</div>
-    </div>
-    <div class="brform">
-        <label for="id_price">{{ form.price.label }}</label>
-        <div class="extra">
-            {% trans doc_url=url('devhub.docs', doc_name='marketplace') %}
-                Select a price tier for your add-on below. Price tiers
-                are based on US Dollars and are fixed for all supported countries. For more
-                information, <a href="{{ doc_url }}">view our pricing matrix</a>.
-            {% endtrans %}
-        </div>
-        {{ form.price.errors }}
-        <div>{{ form.price }}</div>
-    </div>
-    <div class="brform">
-        {{ form.do_upsell.errors }}
-        <div>{{ form.do_upsell }}</div>
-        <div class="indent">
-            {{ form.free.errors }}
-            <div>{{ form.free }}</div>
-            <div class="extra">
-                {% trans %}
-                    Pitch your premium add-on, describing the added benefits
-                    and functionality over the free version. This will appear
-                    on the free add-on's details page.
-                {% endtrans %}
-            </div>
-            {{ form.text.errors }}
-            <div>{{ form.text }}</div>
-            {{ some_html_tip() }}
-        </div>
-    </div>
+    {% include "devhub/payments/includes/paypal.html" %}
+    {% include "devhub/payments/includes/tier.html" %}
+    {% include "devhub/payments/includes/upsell.html" %}
     <button type="submit">{{ _('Save Changes') }}</button>
 </form>
 </section>

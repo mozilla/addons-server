@@ -1,0 +1,20 @@
+{% from 'devhub/includes/macros.html' import some_html_tip %}
+    <div class="brform">
+        {{ form.do_upsell.errors }}
+        <div>{{ form.do_upsell }}</div>
+        <div class="indent">
+            {{ form.free.errors }}
+            <div>{{ form.free }}</div>
+            <div class="extra">
+                {% trans %}
+                    Pitch your premium add-on, describing the added benefits
+                    and functionality over the free version. This will appear
+                    on the free add-on's details page.
+                {% endtrans %}
+            </div>
+            {{ form.text.errors }}
+            <div>{{ form.text }}</div>
+            {{ some_html_tip() }}
+        </div>
+    </div>
+

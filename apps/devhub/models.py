@@ -357,6 +357,7 @@ class LegacyAddonLog(models.Model):
 class SubmitStep(models.Model):
     addon = models.ForeignKey(Addon)
     step = models.IntegerField()
+    type = models.CharField(max_length=20, default='submit')
 
     class Meta:
         db_table = 'submit_step'

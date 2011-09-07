@@ -24,7 +24,7 @@ from amo.widgets import EmailWidget
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon, VERSION_RE
-from market.models import Price
+from market.models import AddonPremium, Price
 from translations.widgets import TranslationTextarea, TranslationTextInput
 from translations.fields import TransTextarea, TransField
 from translations.models import delete_translation
@@ -840,14 +840,18 @@ class PremiumForm(happyforms.Form):
     text = forms.CharField(widget=forms.Textarea(), required=False)
 
     def __init__(self, *args, **kw):
-        self.addon = kw.pop('addon')
-        self.amo_user = kw.pop('amo_user')
+        self.extra = kw.pop('extra')
+        self.addon = self.extra['addon']
         kw['initial'] = {
             'paypal_id': self.addon.paypal_id,
-            'price': self.addon.addonpremium.price,
             'do_upsell': 0,
         }
-        upsell = self.get_upsell_to()
+        try:
+            kw['initial']['price'] = self.addon.addonpremium.price
+        except AddonPremium.DoesNotExist:
+            pass
+
+        upsell = self.addon.upsold
         if upsell:
             kw['initial'].update({
                 'text': upsell.text,
@@ -856,11 +860,18 @@ class PremiumForm(happyforms.Form):
             })
 
         super(PremiumForm, self).__init__(*args, **kw)
-        self.fields['free'].queryset = (self.amo_user.addons
+        self.fields['free'].queryset = (self.extra['amo_user'].addons
                                             .exclude(pk=self.addon.pk))
+        # For the wizard, we need fields not shown to be optional
+        for field in self.extra.get('not_required', []):
+            self.fields[field].required = False
 
     def clean_paypal_id(self):
-        token = self.addon.addonpremium.paypal_permissions_token
+        try:
+            token = self.addon.addonpremium.paypal_permissions_token
+        except AddonPremium.DoesNotExist:
+            raise forms.ValidationError(_('No third party token set up.'))
+
         if not paypal.check_refund_permission(token):
             raise forms.ValidationError(_('Third party refund not set up.'))
         return self.cleaned_data['paypal_id']
@@ -875,21 +886,20 @@ class PremiumForm(happyforms.Form):
             raise forms.ValidationError(_('This field is required.'))
         return self.cleaned_data['free']
 
-    def get_upsell_to(self):
-        """
-        If you use addon.upsell you get the free to premium upsell.
-        This is the other, premium to free for the purposes of editing.
-        """
-        try:
-            return self.addon._upsell_to.all()[0]
-        except IndexError:
-            pass
-
     def save(self):
-        self.addon.update(paypal_id=self.cleaned_data['paypal_id'])
-        self.addon.addonpremium.update(price=self.cleaned_data['price'])
+        if self.cleaned_data['paypal_id']:
+            self.addon.update(paypal_id=self.cleaned_data['paypal_id'])
 
-        upsell = self.get_upsell_to()
+        if self.cleaned_data['price']:
+            try:
+                premium = self.addon.addonpremium
+            except AddonPremium.DoesNotExist:
+                premium = AddonPremium()
+                premium.addon = self.addon
+            premium.price = self.cleaned_data['price']
+            premium.save()
+
+        upsell = self.addon.upsold
         if (self.cleaned_data['do_upsell'] and
             self.cleaned_data['text'] and self.cleaned_data['free']):
 

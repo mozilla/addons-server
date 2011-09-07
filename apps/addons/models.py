@@ -963,12 +963,16 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         except IndexError:
             pass
 
-    def has_purchased(self, user):
-        return (self.is_premium() and
-                self.addonpurchase_set.filter(user=user).exists())
-
-    def can_review(self, user):
-        return not self.is_premium() or self.has_purchased(user)
+    @amo.cached_property
+    def upsold(self):
+        """
+        Return what this is going to upsold from,
+        or None if there isn't one.
+        """
+        try:
+            return self._upsell_to.all()[0]
+        except IndexError:
+            pass
 
     @property
     def all_dependencies(self):

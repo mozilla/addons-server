@@ -858,6 +858,61 @@ class TestMarketplace(amo.tests.TestCase):
         self.addon = Addon.objects.get(pk=self.addon.pk)
         eq_(self.addon.addonpremium.paypal_permissions_token, 'FOO')
 
+    @mock.patch('paypal.get_permissions_token', lambda x, y: x.upper())
+    def test_permissions_token_no_premium(self):
+        self.setup_premium()
+        # They could hit this URL before anything else, we need to cope
+        # with AddonPremium not being there.
+        self.addon.addonpremium.delete()
+        url = reverse('devhub.addons.acquire_refund_permission',
+                      args=[self.addon.slug])
+        data = {'request_token': 'foo', 'verification_code': 'bar'}
+        self.client.get('%s?%s' % (url, urlencode(data)))
+        self.addon = Addon.objects.get(pk=self.addon.pk)
+        eq_(self.addon.addonpremium.paypal_permissions_token, 'FOO')
+
+    @mock.patch('devhub.forms.PremiumForm.clean_paypal_id')
+    def test_wizard_step_1(self, clean_paypal_id):
+        url = reverse('devhub.market.1', args=[self.addon.slug])
+        data = 'some@paypal.com'
+        clean_paypal_id.return_value = data
+        eq_(self.client.post(url, {'paypal_id': data}).status_code, 302)
+        eq_(Addon.objects.get(pk=self.addon.pk).paypal_id, data)
+
+    def test_wizard_step_2(self):
+        self.price = Price.objects.create(price='0.99')
+        url = reverse('devhub.market.2', args=[self.addon.slug])
+        eq_(self.client.post(url, {'price': self.price.pk}).status_code, 302)
+        eq_(Addon.objects.get(pk=self.addon.pk).premium.price.pk,
+            self.price.pk)
+
+    def test_wizard_step_3(self):
+        url = reverse('devhub.market.3', args=[self.addon.slug])
+        self.other_addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        AddonUser.objects.create(addon=self.other_addon,
+                                 user=self.addon.authors.all()[0])
+        data = {
+            'free': self.other_addon.pk,
+            'do_upsell': 1,
+            'text': 'some upsell'
+        }
+        eq_(self.client.post(url, data).status_code, 302)
+        eq_(Addon.objects.get(pk=self.addon.pk).upsold.free,
+            self.other_addon)
+
+    def test_wizard_step_4_failed(self):
+        url = reverse('devhub.market.4', args=[self.addon.slug])
+        assert not Addon.objects.get(pk=self.addon.pk).is_premium()
+        eq_(self.client.post(url, {}).status_code, 302)
+        assert not Addon.objects.get(pk=self.addon.pk).is_premium()
+
+    def test_wizard_step_4(self):
+        url = reverse('devhub.market.4', args=[self.addon.slug])
+        assert not Addon.objects.get(pk=self.addon.pk).is_premium()
+        self.setup_premium()
+        eq_(self.client.post(url, {}).status_code, 302)
+        assert Addon.objects.get(pk=self.addon.pk).is_premium()
+
 
 class TestDelete(amo.tests.TestCase):
     fixtures = ('base/apps', 'base/users', 'base/addon_3615',
