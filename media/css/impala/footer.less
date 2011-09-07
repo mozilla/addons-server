@@ -28,13 +28,14 @@
 #footer-logo a,
 #footer-logo a:link,
 #footer-logo a:visited {
-    background: url(../../img/zamboni/global/header-logos.png) 15px 0 no-repeat;
+    background: url(../../img/impala/footer-logo.png) center center no-repeat;
+    width: 128px;
 }
 
 #footer-logo a:hover,
 #footer-logo a:active {
     background: -moz-radial-gradient(center 45deg, ellipse closest-side, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%),
-url(../../img/zamboni/global/header-logos.png) 15px 0 no-repeat;
+url(../../img/impala/footer-logo.png) center center no-repeat;
 }
 
 #footer-contents[dir="rtl"] {
@@ -76,8 +77,9 @@ url(../../img/zamboni/global/header-logos.png) 15px 0 no-repeat;
 }
 
 #footer-logo {
-    margin-left: 3px;
-    width: 10%;
+    margin-left: 0;
+    margin-right: 25px;
+    width: 128px;
 }
 #footer-menu {
     display: table;
@@ -87,9 +89,12 @@ url(../../img/zamboni/global/header-logos.png) 15px 0 no-repeat;
     }
     li {
         display: table-cell;
-        width: 10%;
+        width: 5%;
         padding: 11px 16px 0 0;
         float: none;
+        &:first-child {
+            width: 3%;
+        }
     }
 }
 
