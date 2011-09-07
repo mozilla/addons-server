@@ -74,15 +74,17 @@ def setup_mapping():
         },
     }
     es = elasticutils.get_es()
-    try:
-        es.create_index_if_missing(settings.ES_INDEX)
-    except pyes.ElasticSearchException:
-        pass
+    indexes = settings.ES_INDEXES
     # Adjust the mapping for all models at once because fields are shared
     # across all doc types in an index. If we forget to adjust one of them
     # we'll get burned later on.
     for model in Addon, AppCompat, Collection, UserProfile:
+        index = model._get_index()
         try:
-            es.put_mapping(model._meta.db_table, mapping, settings.ES_INDEX)
+            es.create_index_if_missing(index)
+        except pyes.ElasticSearchException:
+            pass
+        try:
+            es.put_mapping(model._meta.db_table, mapping, index)
         except pyes.ElasticSearchException, e:
             log.error(e)

@@ -339,8 +339,8 @@ def index_update_counts(ids):
                               bulk=True, id=key)
         es.flush_bulk(forced=True)
     except Exception, exc:
-        log.error(exc)
         index_update_counts.retry(args=[ids], exc=exc)
+        raise
 
 
 @task
@@ -356,5 +356,5 @@ def index_download_counts(ids):
                                 bulk=True, id=key)
         es.flush_bulk(forced=True)
     except Exception, exc:
-        log.error(exc)
         index_download_counts.retry(args=[ids], exc=exc)
+        raise

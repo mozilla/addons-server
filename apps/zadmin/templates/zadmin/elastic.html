@@ -20,7 +20,10 @@
   <input name="reindex" placeholder="mapping name">
   <button>Reindex</button>
 </form>
-<pre>{{ mapping|dictsort|pprint }}</pre>
+{% for index, mapping in mappings %}
+  <h4>{{ index }}</h4>
+  <pre>{{ mapping|dictsort|pprint }}</pre>
+{% endfor %}
 <h3 id="health">Health</h3>
 <pre>{{ health|pprint }}</pre>
 <h3 id="state">State</h3>

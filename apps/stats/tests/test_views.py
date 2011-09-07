@@ -309,7 +309,7 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
         tasks.index_update_counts(list(updates))
         downloads = DownloadCount.objects.values_list('id', flat=True)
         tasks.index_download_counts(list(downloads))
-        self.refresh()
+        self.refresh('update_counts')
 
     def test_usage(self):
         r = self.get_view_response('stats.usage_series', group='day',

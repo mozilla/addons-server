@@ -1110,7 +1110,9 @@ BUILDER_UPGRADE_URL = 'https://addons.mozilla.org/services/builder'
 
 ## Elastic Search
 ES_HOSTS = ['127.0.0.1:9200']
-ES_INDEX = 'amo'
+ES_INDEXES = {'default': 'amo',
+              'update_counts': 'amo_stats',
+              'download_counts': 'amo_stats'}
 ES_TIMEOUT = 5
 USE_ELASTIC = True
 

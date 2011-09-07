@@ -5,6 +5,8 @@ from applications.models import AppVersion
 
 
 def es_dict(items):
+    if not items:
+        return {}
     if hasattr(items, 'items'):
         items = items.items()
     return [{'k': key, 'v': value} for key, value in items]

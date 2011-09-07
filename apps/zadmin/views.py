@@ -407,7 +407,7 @@ def monthly_pick(request):
 
 @admin.site.admin_view
 def elastic(request):
-    INDEX = site_settings.ES_INDEX
+    INDEX = site_settings.ES_INDEXES['default']
     es = elasticutils.get_es()
     mappings = {'addons': (addons.search.setup_mapping,
                            addons.cron.reindex_addons),
@@ -430,11 +430,13 @@ def elastic(request):
             messages.info(request, 'Reindexing %s.' % name)
         return redirect('zadmin.elastic')
 
+    indexes = set(site_settings.ES_INDEXES.values())
+    mappings = es.get_mapping(None, indexes)
     ctx = {
         'nodes': es.cluster_nodes(),
         'health': es.cluster_health(),
         'state': es.cluster_state(),
-        'mapping': es.get_mapping(None, INDEX)[INDEX],
+        'mappings': [(index, mappings.get(index, {})) for index in indexes],
     }
     return jingo.render(request, 'zadmin/elastic.html', ctx)
 

@@ -1541,7 +1541,8 @@ class TestSearchSignals(amo.tests.ESTestCase):
         self.addCleanup(self.cleanup)
 
     def cleanup(self):
-        self.es.delete_index(settings.ES_INDEX)
+        for index in settings.ES_INDEXES.values():
+            self.es.delete_index_if_exists(index)
 
     def test_no_addons(self):
         eq_(Addon.search().count(), 0)

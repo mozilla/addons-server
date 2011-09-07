@@ -203,7 +203,8 @@ class ESTestCase(TestCase):
         settings.USE_ELASTIC = True
 
         if ESTestCase.use_es is None:
-            settings.ES_INDEX = 'test_%s' % settings.ES_INDEX
+            for key, index in settings.ES_INDEXES.items():
+                settings.ES_INDEXES[key] = 'test_%s' % index
             try:
                 cls.es.cluster_health()
                 ESTestCase.use_es = True
@@ -214,10 +215,11 @@ class ESTestCase(TestCase):
         if not ESTestCase.use_es:
             raise nose.SkipTest()
 
-        try:
-            cls.es.delete_index(settings.ES_INDEX)
-        except Exception, e:
-            pass
+        for index in settings.ES_INDEXES.values():
+            try:
+                cls.es.delete_index(index)
+            except Exception, e:
+                pass
 
         super(ESTestCase, cls).setUpClass()
         addons.search.setup_mapping()
@@ -235,8 +237,8 @@ class ESTestCase(TestCase):
         super(ESTestCase, cls).tearDownClass()
 
     @classmethod
-    def refresh(cls):
-        cls.es.refresh(settings.ES_INDEX, timesleep=0)
+    def refresh(cls, index='default'):
+        cls.es.refresh(settings.ES_INDEXES[index], timesleep=0)
 
     @classmethod
     def add_addons(cls):

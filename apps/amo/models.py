@@ -269,19 +269,24 @@ class OnChangeMixin(object):
 class SearchMixin(object):
 
     @classmethod
+    def _get_index(cls):
+        indexes = settings.ES_INDEXES
+        return indexes.get(cls._meta.db_table) or indexes['default']
+
+    @classmethod
     def index(cls, document, id=None, bulk=False, force_insert=False):
         """Wrapper around pyes.ES.index."""
         elasticutils.get_es().index(
-            document, index=settings.ES_INDEX, doc_type=cls._meta.db_table,
+            document, index=cls._get_index(), doc_type=cls._meta.db_table,
             id=id, bulk=bulk, force_insert=force_insert)
 
     @classmethod
     def unindex(cls, id):
-        elasticutils.get_es().delete(settings.ES_INDEX, cls._meta.db_table, id)
+        elasticutils.get_es().delete(cls._get_index(), cls._meta.db_table, id)
 
     @classmethod
     def search(cls):
-        return search.ES(cls)
+        return search.ES(cls, cls._get_index())
 
 
 class ModelBase(SearchMixin, caching.base.CachingMixin, models.Model):

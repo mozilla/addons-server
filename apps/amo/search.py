@@ -11,8 +11,9 @@ log = logging.getLogger('z.es')
 
 class ES(object):
 
-    def __init__(self, type_):
+    def __init__(self, type_, index):
         self.type = type_
+        self.index = index
         self.steps = []
         self.start = 0
         self.stop = None
@@ -20,7 +21,7 @@ class ES(object):
         self._results_cache = None
 
     def _clone(self, next_step=None):
-        new = self.__class__(self.type)
+        new = self.__class__(self.type, self.index)
         new.steps = list(self.steps)
         if next_step:
             new.steps.append(next_step)
@@ -198,14 +199,13 @@ class ES(object):
         qs = self._build_query()
         es = elasticutils.get_es()
         try:
-            with statsd.timer('search.es.timer'):
-                hits = es.search(qs, settings.ES_INDEX,
-                                 self.type._meta.db_table)
+            with statsd.timer('search.es.timer') as timer:
+                hits = es.search(qs, self.index, self.type._meta.db_table)
         except Exception:
             log.error(qs)
             raise
         statsd.timing('search.es.took', hits['took'])
-        log.debug('[%s] %s' % (hits['took'], qs))
+        log.debug('[%s] [%s] %s' % (hits['took'], timer.ms, qs))
         return hits
 
     def __iter__(self):
