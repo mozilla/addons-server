@@ -238,8 +238,9 @@ def cspreport(request):
 @csrf_exempt
 @post_required
 def builder_pingback(request):
+    data = dict(request.POST.items())
+    jp_log.info('Pingback from builder: %r' % data)
     try:
-        data = dict(request.POST.items())
         # We expect all these attributes to be available.
         attrs = 'result msg location secret request'.split()
         for attr in attrs:
