@@ -919,6 +919,17 @@ class TestBulkValidationTask(BulkValidationTest):
         ids = self.find_files(job_kwargs=kw)
         eq_(len(ids), 0)
 
+    def test_version_compatible_with_target_app(self):
+        self.create_version(self.addon, [amo.STATUS_PUBLIC],
+                            version_str='3.7a2')
+        # Already has a version that supports target:
+        self.create_version(self.addon, [amo.STATUS_PUBLIC],
+                            version_str='3.7a3')
+        kw = dict(curr_max_version=self.appversion('3.7a2'),
+                  target_version=self.appversion('3.7a3'))
+        ids = self.find_files(job_kwargs=kw)
+        eq_(len(ids), 0)
+
 
 class TestTallyValidationErrors(BulkValidationTest):
 

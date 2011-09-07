@@ -129,12 +129,12 @@ def add_validation_jobs(pks, job_pk, **kw):
 
         already_compat = addon.versions.filter(
                                     files__status=amo.STATUS_PUBLIC,
-                                    apps__max__version_int__gt=target_ver)
+                                    apps__max__version_int__gte=target_ver)
         if already_compat.count():
             log.info('Addon %s already has a public version %r which is '
-                     'compatible with a newer version of app %s'
+                     'compatible with target version of app %s %s (or newer)'
                      % (addon.pk, [v.pk for v in already_compat.all()],
-                        job.application.id))
+                        job.application.id, job.target_version))
             continue
 
         try:
