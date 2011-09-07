@@ -183,6 +183,8 @@ def repackage_jetpack(builder_data, **kw):
     # Sync out the new version.
     addon.update_version()
     upgrader.finish(repack_data['file_id'])
+    jp_log.info('Repacked %r from %r for %r.' %
+                (new_version, old_version, addon))
     jp_log.removeHandler(redis_logger)
 
     try:
