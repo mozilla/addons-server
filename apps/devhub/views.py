@@ -1351,7 +1351,7 @@ def submit_addon(request, step, webapp=False):
 
             addon = Addon.from_upload(data['upload'], p)
             AddonUser(addon=addon, user=request.amo_user).save()
-            SubmitStep.objects.create(addon=addon, step=3, type='submit')
+            SubmitStep.objects.create(addon=addon, step=3)
             return redirect('devhub.submit.3', addon.slug)
     template = 'upload_webapp.html' if webapp else 'upload.html'
     return jingo.render(request, 'devhub/addons/submit/%s' % template,
