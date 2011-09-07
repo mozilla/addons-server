@@ -806,7 +806,7 @@ CAKE_SESSION_TIMEOUT = 8640
 
 # PayPal Settings
 PAYPAL_API_URL = 'https://api-3t.paypal.com/nvp'
-PAYPAL_API_VERSION = '50'
+PAYPAL_API_VERSION = '78'
 PAYPAL_APP_ID = ''
 PAYPAL_BN = ''
 PAYPAL_CGI_URL = 'https://www.paypal.com/cgi-bin/webscr'
