@@ -62,7 +62,7 @@
             margin-top: 0;
         }
     }
-    > a {
+    a {
         text-decoration: none;
     }
     .adu {
@@ -127,6 +127,12 @@
             height: auto;
         }
     }
+    &.addon .more .vital,
+    &.theme:hover .more + .vital {
+        border-top: 1px dotted #ccc;
+        padding: 8px 0 0;
+        margin: 8px 0 4px;
+    }
     &.addon {
         margin: 5px 5px 5px 61px;
         .summary, .icon {
@@ -159,11 +165,6 @@
                 border: 0;
                 padding: 0;
             }
-        }
-        &:hover .vital {
-            border-top: 1px dotted #ccc;
-            padding: 8px 0 0;
-            margin: 8px 0 4px;
         }
         &:before {
             content: "";
