@@ -1330,6 +1330,7 @@ class TestAddonFromUpload(UploadTest):
         self.platform = Platform.objects.create(id=amo.PLATFORM_MAC.id)
         for version in ('3.0', '3.6.*'):
             AppVersion.objects.create(application_id=1, version=version)
+        self.addCleanup(translation.deactivate)
 
     def webapp(self):
         return os.path.join(settings.ROOT,
@@ -1409,12 +1410,9 @@ class TestAddonFromUpload(UploadTest):
         eq_(addon.default_locale, 'en-US')
 
         translation.activate('es-ES')
-        try:
-            addon = Addon.from_upload(self.get_upload('search.xml'),
-                                      [self.platform])
-            eq_(addon.default_locale, 'es-ES')
-        finally:
-            translation.deactivate()
+        addon = Addon.from_upload(self.get_upload('search.xml'),
+                                  [self.platform])
+        eq_(addon.default_locale, 'es-ES')
 
     def test_webapp_default_locale_override(self):
         with nested(tempfile.NamedTemporaryFile('w', suffix='.webapp'),
@@ -1429,12 +1427,9 @@ class TestAddonFromUpload(UploadTest):
 
     def test_browsing_locale_does_not_override(self):
         translation.activate('gb')
-        try:
-            upload = self.get_upload(abspath=self.webapp())  # en-US default
-            addon = Addon.from_upload(upload, [self.platform])
-            eq_(addon.default_locale, 'en-US')  # not gb
-        finally:
-            translation.deactivate()
+        upload = self.get_upload(abspath=self.webapp())  # en-US default
+        addon = Addon.from_upload(upload, [self.platform])
+        eq_(addon.default_locale, 'en-US')  # not gb
 
 
 REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
