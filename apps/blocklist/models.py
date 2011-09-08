@@ -21,6 +21,13 @@ class BlocklistApp(amo.models.ModelBase):
         return ['/blocklist*']  # no lang/app
 
 
+class BlocklistCA(amo.models.ModelBase):
+    data = models.TextField()
+
+    class Meta(amo.models.ModelBase.Meta):
+        db_table = 'blca'
+
+
 class BlocklistDetail(amo.models.ModelBase):
     name = models.CharField(max_length=255)
     why = models.TextField()

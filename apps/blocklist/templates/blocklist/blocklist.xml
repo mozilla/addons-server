@@ -66,5 +66,8 @@
   </gfxItems>
 {% endif %}
 
+{% if cas %}
+  <caBlacklistEntry>{{ cas }}</caBlacklistEntry>
+{% endif %}
 
 </blocklist>
