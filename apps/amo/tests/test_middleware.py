@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
+from django import http
+from django.conf import settings
 from django import test
 
 from commonware.middleware import HidePasswordOnException
-from nose.tools import eq_
+from mock import patch
+from nose.tools import eq_, raises
 from pyquery import PyQuery as pq
 from test_utils import RequestFactory
 
 import amo.tests
+from amo.middleware import LazyPjaxMiddleware
 from amo.urlresolvers import reverse
 from zadmin.models import Config, _config_cache
 
@@ -68,3 +72,77 @@ def test_hide_password_middleware():
     eq_(request.POST['x'], '1')
     eq_(request.POST['password'], '******')
     eq_(request.POST['password2'], '******')
+
+
+class TestLazyPjaxMiddleware(amo.tests.TestCase):
+
+    def setUp(self):
+        self.factory = RequestFactory()
+        self.patch = patch.object(settings, 'PJAX_SELECTOR', '#page')
+        self.patch.start()
+
+    def tearDown(self):
+        self.patch.stop()
+
+    def process(self, page_content, title=''):
+        request = self.factory.get('/', HTTP_X_PJAX=True)
+        response = self.view(request, page_content, title=title)
+        return LazyPjaxMiddleware().process_response(request, response)
+
+    def view(self, request, page_content, title=''):
+        if title:
+            title = '<title>%s</title>' % title
+        return http.HttpResponse("""<html>%s<body>
+                                    <div id="header">the header</div>
+                                    <div id="page">%s</div>
+                                    </body></html>""" % (title, page_content))
+
+    def test_render_text(self):
+        eq_(self.process('the page').content, 'the page')
+
+    def test_render_empty(self):
+        eq_(self.process('').content, '')
+
+    def test_render_mixed(self):
+        eq_(self.process('the page <div>foo</div>').content,
+            'the page <div>foo</div>')
+
+    def test_render_nested(self):
+        eq_(self.process('<div><b>strong</b> tea</div>').content,
+            '<div><b>strong</b> tea</div>')
+
+    def test_trailing_text(self):
+        eq_(self.process('head <b>middle</b> tail').content,
+            'head <b>middle</b> tail')
+
+    def test_title(self):
+        eq_(self.process('the page', title='Title').content,
+            '<title>Title</title>the page')
+
+    def test_unicode(self):
+        rs = self.process(u'Ivan Krsti\u0107 <div>Ivan Krsti\u0107</div>')
+        eq_(rs.content,
+            'Ivan Krsti&#196;&#135; <div>Ivan Krsti&#196;&#135;</div>')
+
+    @raises(ValueError)
+    @patch.object(settings, 'DEBUG', True)
+    def test_missing_page_element(self):
+        request = self.factory.get('/', HTTP_X_PJAX=True)
+        response = http.HttpResponse('<html><body></body></html>')
+        LazyPjaxMiddleware().process_response(request, response)
+
+    @patch.object(settings, 'DEBUG', False)
+    def test_missing_page_element_logged_in_prod(self):
+        request = self.factory.get('/', HTTP_X_PJAX=True)
+        body = '<html><body></body></html>'
+        response = http.HttpResponse(body)
+        response = LazyPjaxMiddleware().process_response(request, response)
+        eq_(response.content, body)
+
+    def test_non_200_response(self):
+        request = self.factory.get('/', HTTP_X_PJAX=True)
+        response = http.HttpResponse('<html><body>Error</body></html>',
+                                     status=500)
+        response = LazyPjaxMiddleware().process_response(request, response)
+        assert response.content.startswith('<html>'), (
+                    'Did not expect a pjax response: %s' % response.content)

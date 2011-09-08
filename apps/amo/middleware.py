@@ -15,9 +15,11 @@ from django.utils.cache import patch_vary_headers, patch_cache_control
 from django.utils.encoding import iri_to_uri, smart_str
 
 import commonware.log
+import lxml.html
 import MySQLdb as mysql
 import tower
 import jingo
+from statsd import statsd
 
 import amo
 from . import urlresolvers
@@ -175,4 +177,48 @@ class TimingMiddleware(object):
              'url': smart_str(request.path_info)}
         msg = '{method} "{url}" ({code}) {time:.2f} [{auth}]'.format(**d)
         timing_log.info(msg)
+        return response
+
+
+pjax_log = commonware.log.getLogger('z.timer')
+
+
+class LazyPjaxMiddleware(object):
+
+    def process_request(self, request):
+        # This activates JS in templates:
+        request.ALLOWS_PJAX = True
+
+    def process_response(self, request, response):
+        if request.META.get('HTTP_X_PJAX') and response.status_code == 200:
+            # TODO(Kumar) cache this.
+            with statsd.timer('pjax.parse'):
+                tree = lxml.html.document_fromstring(response.content)
+                # HTML is encoded as ascii with entity refs for non-ascii.
+                html = []
+                found_pjax = False
+                for elem in tree.cssselect('title,%s'
+                                           % settings.PJAX_SELECTOR):
+                    if elem.tag == 'title':
+                        # Inject a <title> for jquery-pjax
+                        html.append(lxml.html.tostring(elem, encoding=None))
+                    else:
+                        found_pjax = True
+                        if elem.text:
+                            html.append(elem.text.encode('ascii',
+                                                         'xmlcharrefreplace'))
+                        for ch in elem.iterchildren():
+                            html.append(lxml.html.tostring(ch, encoding=None))
+                if not found_pjax:
+                    msg = ('pjax response for %s does not contain selector %r'
+                           % (request.path, settings.PJAX_SELECTOR))
+                    if settings.DEBUG:
+                        # Tell the developer the template is bad.
+                        raise ValueError(msg)
+                    else:
+                        pjax_log.error(msg)
+                        return response
+
+                response.content = ''.join(html)
+
         return response

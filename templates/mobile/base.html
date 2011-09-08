@@ -37,6 +37,10 @@
         data-anonymous="{{ (not request.user.is_authenticated())|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
+        {% if request.ALLOWS_PJAX %}
+          data-use-pjax="1"
+          data-pjax-container="{{ settings.PJAX_SELECTOR }}"
+        {% endif %}
         {% block bodyattrs %}{% endblock %}>
 
     <div id="page">
