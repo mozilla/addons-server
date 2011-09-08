@@ -1,8 +1,8 @@
-{% extends "impala/base.html" %}
+{% extends "impala/base_shared.html" %}
 
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
 {% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}
-{% block bodyclass %}gutter addon-details{% endblock %}
+{% block bodyclass %}gutter addon-details {{ super() }}{% endblock %}
 
 {% block extrahead %}
   {% if settings.ENGAGE_ROBOTS and addon.status == amo.STATUS_UNREVIEWED %}
@@ -105,8 +105,13 @@
         </h3>
         <img class="avatar" alt="{{ single_dev.name }}" height="64"
              width="64" src="{{ single_dev.picture_url }}"/>
-        <p>{{ _("Learn why {0} was created and find out what's next for this "
-                'add-on.')|f(addon.name) }}</p>
+        {% if addon.is_webapp() %}
+          <p>{{ _("Learn why {0} was created and find out what's next for this "
+                  'app.')|f(addon.name) }}</p>
+        {% else %}
+          <p>{{ _("Learn why {0} was created and find out what's next for this "
+                  'add-on.')|f(addon.name) }}</p>
+        {% endif %}
       {% endwith %}
     </div>
   {% endif %}
@@ -146,7 +151,8 @@
 <aside class="secondary metadata c">
   <ul class="links">
     {% if addon.homepage %}
-      <li><a class="home" href="{{ addon.homepage|external_url }}">{{ _('Add-on home page') }}</a></li>
+      <li><a class="home" href="{{ addon.homepage|external_url }}">
+        {{ _('App home page') if addon.is_webapp() else _('Add-on home page') }}</a></li>
     {% endif %}
     {% if addon.support_url %}
       <li><a class="support" href="{{ addon.support_url|external_url }}">{{ _('Support site') }}</a></li>
@@ -180,7 +186,11 @@
 </aside>
 
 <section class="primary island c">
-  <h2>{{ _('About this Add-on') }}</h2>
+  {% if addon.is_webapp() %}
+    <h2>{{ _('About this App') }}</h2>
+  {% else %}
+    <h2>{{ _('About this Add-on') }}</h2>
+  {% endif %}
   <div class="prose">
   {% if addon.description %}
     <p id="addon-description" class="prose" {{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>

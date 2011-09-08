@@ -1,0 +1,22 @@
+@import 'lib';
+
+.app-nav {
+    margin: 0;
+    > ul > li.slim:hover {
+        &:after {
+            display: none;
+        }
+        > a {
+            .border-radius(3px);
+        }
+    }
+}
+
+.apps #footer {
+    .footer-wrap {
+        background: url(../../img/zamboni/global/bg-footer.png) 0 -192px repeat-x;
+    }
+    .section {
+        padding: 20px 0 10px;
+    }
+}

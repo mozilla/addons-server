@@ -369,6 +369,16 @@ class TestDetailPage(amo.tests.TestCase):
         self.addon = Addon.objects.get(id=3615)
         self.url = self.addon.get_url_path()
 
+    def test_site_title(self):
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('h1.site-title').text(), 'Add-ons')
+
+    def test_addon_headings(self):
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(doc('h2:first').text(), 'About this Add-on')
+        eq_(doc('.metadata .home').text(), 'Add-on home page')
+
     def test_anonymous_extension(self):
         response = self.client.get(reverse('addons.detail', args=['a3615']),
                                    follow=True)

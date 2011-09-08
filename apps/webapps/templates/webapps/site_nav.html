@@ -1,0 +1,51 @@
+{% from "amo/site_nav.html" import section %}
+
+{% set featured_extras = (
+    ('paid', _('Top Paid')),
+    ('popular', _('Top Free')),
+) %}
+
+{% set collection_extras = (
+    ('featured', _('Featured')),
+    ('users', _('Most Followers')),
+    ('created', _('Newest')),
+) %}
+
+<nav id="site-nav" class="app-nav menu-nav c">
+  {# TODO(cvan): Localize these titles and replace links with real URLs. #}
+  <ul>
+    {{ section('featured-apps', _('Featured'), '#', featured_extras) }}
+    <li class="slim" id="most-popular-apps">
+      <a href="#">{{ _('Most Popular') }}</a>
+    </li>
+    <li class="slim" id="my-apps">
+      {# TODO(cvan): This will lead to the purchased collection if user is logged in. #}
+      <a href="#">{{ _('My Apps') }}</a>
+    </li>
+    <li id="collections">
+    {% with base_url = url('collections.list') %}
+      <a href="{{ base_url }}">{{ _('Collections') }}</a>
+      <ul>
+        {% for sort, title in collection_extras %}
+          <li><em><a href="{{ base_url|urlparams(sort=sort) }}">{{ title }}</a></em></li>
+        {% endfor %}
+        <hr>
+        <li><a href="{{ url('collections.mine') }}">
+          {{ _("Collections I've Made") }}</a></li>
+        <li><a href="{{ url('collections.following') }}">
+          {{ _("App Collections I'm Following") }}</a></li>
+        <li><a href="{{ url('collections.mine', 'favorites') }}">
+          My Favorite Apps</a></li>
+      </ul>
+    {% endwith %}
+    </li>
+    <li id="more">
+      <a href="#">{{ _('More&hellip;') }}</a>
+      <ul>
+        <li><a href="#">Submit an App</a></li>
+        <li><a href="#">How to use Apps</a></li>
+        <li><a href="{{ url('home') }}">Firefox Add-ons</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>

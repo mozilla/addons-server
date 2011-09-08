@@ -1,0 +1,21 @@
+{% extends "impala/base.html" %}
+
+{% block bodyclass %}apps{% endblock %}
+
+{% block site_header_title %}
+  {# TODO(cvan): Add the URL when we land the apps landing page. #}
+  <h1 class="site-title"><a href="#">{{ _('Apps') }}</a></h1>
+  {% include "webapps/site_nav.html" %}
+{% endblock %}
+
+{% block aux_nav %}{% endblock %}
+
+{% block footer %}
+  <div id="footer" role="contentinfo">
+    <div class="footer-wrap">
+      <div class="section">
+        {% include "global/copyright.html" %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

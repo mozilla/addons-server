@@ -7,7 +7,7 @@
 {% macro section(id, title, base_url, extras, categories) %}
   <li id="{{ id }}">
     <a href="{{ base_url }}">{{ title }}</a>
-    <ul class="two-col">
+    <ul{% if categories %} class="{{ col_class }}"{% endif %}>
       {% for sort, title in extras %}
         <li><em><a href="{{ base_url|urlparams(sort=sort) }}">{{ title }}</a></em></li>
       {% endfor %}
@@ -18,12 +18,6 @@
   </li>
 {% endmacro %}
 
-{% set collection_extras = (
-    ('featured', _('Featured')),
-    ('users', _('Most Followers')),
-    ('created', _('Newest')),
-) %}
-
 <nav id="site-nav" class="menu-nav c">
   <ul>
     {{ section('extensions', _('Extensions'), url('browse.extensions'), extras, extensions) }}
@@ -31,13 +25,18 @@
     {% if themes %}
       {{ section('themes', _('Themes'), url('browse.themes'), extras, themes) }}
     {% endif %}
+    {% set collection_extras = (
+        ('featured', _('Featured')),
+        ('users', _('Most Followers')),
+        ('created', _('Newest')),
+    ) %}
     <li id="collections">
       {% with base_url = url('collections.list') %}
       <a href="{{ base_url }}">{{ _('Collections') }}</a>
       <ul>
-          {% for sort, title in collection_extras %}
-            <li><em><a href="{{ base_url|urlparams(sort=sort) }}">{{ title }}</a></em></li>
-          {% endfor %}
+        {% for sort, title in collection_extras %}
+          <li><em><a href="{{ base_url|urlparams(sort=sort) }}">{{ title }}</a></em></li>
+        {% endfor %}
         <hr>
         <li><a href="{{ url('collections.mine') }}">
           {{ _("Collections I've Made") }}</a></li>

@@ -83,7 +83,8 @@ def get_search_groups(app):
 SEARCH_CHOICES = (
     ('all', _lazy('search for add-ons')),
     ('collections', _lazy('search for collections')),
-    ('personas', _lazy('search for personas')))
+    ('personas', _lazy('search for personas')),
+    ('apps', _lazy('search for apps')))
 
 
 class SimpleSearchForm(forms.Form):

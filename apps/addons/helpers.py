@@ -238,7 +238,8 @@ def addon_hovercard(context, addon, lazyload=False, src=None, dl_src=None):
     if not dl_src:
         dl_src = context.get('dl_src', src)
     vital_summary = context.get('vital_summary') or 'rating'
-    vital_more = context.get('vital_more') or 'adu'
+    vital_more_default = 'downloads' if addon.is_webapp() else 'adu'
+    vital_more = context.get('vital_more') or vital_more_default
     return new_context(**locals())
 
 

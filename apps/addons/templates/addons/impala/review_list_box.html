@@ -40,7 +40,11 @@
   {% else %}
     <div class="review no-reviews">
       <h3>
-        {{ _('This add-on has not yet been reviewed.') }}
+        {% if addon.is_webapp() %}
+          {{ _('This app has not yet been reviewed.') }}
+        {% else %}
+          {{ _('This add-on has not yet been reviewed.') }}
+        {% endif %}
         {% if not addon.has_author(amo_user) %}
           <a href="{{ url('reviews.add', addon.slug) }}">
             {{ _('Be the first!') }}

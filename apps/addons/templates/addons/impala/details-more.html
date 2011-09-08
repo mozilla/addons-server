@@ -68,12 +68,22 @@
     {% if author_addons %}
       <section id="author-addons">
         <h2>
-          {% trans count = addon.listed_authors|length,
-                   author = users_list(addon.listed_authors) %}
-            Other add-ons by {{ author }}
-          {% pluralize %}
-            Other add-ons by these authors
-          {% endtrans %}
+          {% with count=addon.listed_authors|length,
+                  author=users_list(addon.listed_authors) %}
+            {% if addon.is_webapp() %}
+              {% trans count=count %}
+                Other apps by {{ author }}
+              {% pluralize %}
+                Other apps by these authors
+              {% endtrans %}
+            {% else %}
+              {% trans count=count %}
+                Other add-ons by {{ author }}
+              {% pluralize %}
+                Other add-ons by these authors
+              {% endtrans %}
+            {% endif %}
+          {% endwith %}
         </h2>
         {{ author_addons|addon_grid(cols=3, src='dp-hc-othersby',
                                     dl_src='dp-dl-othersby') }}
