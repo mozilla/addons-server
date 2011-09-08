@@ -35,7 +35,6 @@ def monitor(request, format=None):
     # For each check, a boolean pass/fail status to show in the template
     status_summary = {}
     results = {}
-    status_code = 200
 
     checks = ['memcache', 'libraries', 'elastic', 'path', 'redis', 'hera']
 
@@ -46,9 +45,8 @@ def monitor(request, format=None):
         results['%s_results' % check] = result
         results['%s_timer' % check] = timer.ms
 
-    # If anything broke, send HTTP 500
-    if not all(status_summary.values()):
-        status_code = 500
+    # If anything broke, send HTTP 500.
+    status_code = 200 if all(status_summary.values()) else 500
 
     if format == '.json':
         return http.HttpResponse(json.dumps(status_summary),
