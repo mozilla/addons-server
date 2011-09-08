@@ -1237,7 +1237,7 @@ def submit_step(step):
     def decorator(f):
         @functools.wraps(f)
         def wrapper(request, *args, **kw):
-            max_step =7
+            max_step = 7
             # We only bounce on pages with an addon id.
             if 'addon' in kw:
                 addon = kw['addon']
@@ -1246,7 +1246,8 @@ def submit_step(step):
                     max_step = on_step[0].step
                     if max_step < step:
                         # The step was too high, so bounce to the saved step.
-                        return redirect('devhub.submit.7', addon.slug)
+                        return redirect('devhub.submit.%s' % max_step,
+                                        addon.slug)
                 elif step != max_step:
                     # We couldn't find a step, so we must be done.
                     return redirect('devhub.submit.7', addon.slug)
