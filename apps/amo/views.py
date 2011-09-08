@@ -35,7 +35,7 @@ def monitor(request, format=None):
     # For each check, a boolean pass/fail status to show in the template
     status_summary = {}
     results = {}
-    status = 200
+    status_code = 200
 
     checks = ['memcache', 'libraries', 'elastic', 'path', 'redis', 'hera']
 
@@ -48,17 +48,17 @@ def monitor(request, format=None):
 
     # If anything broke, send HTTP 500
     if not all(status_summary.values()):
-        status = 500
+        status_code = 500
 
     if format == '.json':
         return http.HttpResponse(json.dumps(status_summary),
-                                 status=status)
+                                 status=status_code)
     ctx = {}
     ctx.update(results)
     ctx['status_summary'] = status_summary
 
     return jingo.render(request, 'services/monitor.html',
-                        ctx, status=status)
+                        ctx, status=status_code)
 
 
 def robots(request):
