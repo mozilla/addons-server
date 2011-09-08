@@ -13,10 +13,10 @@
 <section class="primary">
   {{ impala_breadcrumbs([(url('browse.extensions'), _('Extensions')),
                          (None, title)]) }}
-  <h1>{{ title }}</h1>
   {% set addons = addon_sets['featured'] %}
   {% if addons %}
     <div class="island hero c">
+      <h1>{{ title }}</h1>
       {{ addons[:3]|featured_grid(src='cb-hc-featured',
                                   dl_src='cb-dl-featured') }}
       <div class="banner-box">
