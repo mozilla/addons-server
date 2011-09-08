@@ -846,10 +846,8 @@ class PremiumForm(happyforms.Form):
             'paypal_id': self.addon.paypal_id,
             'do_upsell': 0,
         }
-        try:
-            kw['initial']['price'] = self.addon.addonpremium.price
-        except AddonPremium.DoesNotExist:
-            pass
+        if self.addon.premium:
+            kw['initial']['price'] = self.addon.premium.price
 
         upsell = self.addon.upsold
         if upsell:
@@ -867,9 +865,9 @@ class PremiumForm(happyforms.Form):
             self.fields[field].required = False
 
     def clean_paypal_id(self):
-        try:
-            token = self.addon.addonpremium.paypal_permissions_token
-        except AddonPremium.DoesNotExist:
+        if self.addon.premium:
+            token = self.addon.premium.paypal_permissions_token
+        else:
             raise forms.ValidationError(_('No third party token set up.'))
 
         if not paypal.check_refund_permission(token):
@@ -891,9 +889,8 @@ class PremiumForm(happyforms.Form):
             self.addon.update(paypal_id=self.cleaned_data['paypal_id'])
 
         if self.cleaned_data['price']:
-            try:
-                premium = self.addon.addonpremium
-            except AddonPremium.DoesNotExist:
+            premium = self.addon.premium
+            if not premium:
                 premium = AddonPremium()
                 premium.addon = self.addon
             premium.price = self.cleaned_data['price']

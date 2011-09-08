@@ -907,9 +907,10 @@ class TestMarketplace(amo.tests.TestCase):
         assert not Addon.objects.get(pk=self.addon.pk).is_premium()
 
     def test_wizard_step_4(self):
-        url = reverse('devhub.market.4', args=[self.addon.slug])
-        assert not Addon.objects.get(pk=self.addon.pk).is_premium()
         self.setup_premium()
+        self.addon.premium.update(paypal_permissions_token='foo')
+        self.addon.update(premium_type=amo.ADDON_FREE)
+        url = reverse('devhub.market.4', args=[self.addon.slug])
         eq_(self.client.post(url, {}).status_code, 302)
         assert Addon.objects.get(pk=self.addon.pk).is_premium()
 

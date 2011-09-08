@@ -1652,8 +1652,8 @@ class TestMarketplace(amo.tests.ESTestCase):
         self.addon.update(type=amo.ADDON_PREMIUM)
         AddonPremium.objects.create(addon=self.addon, price=price)
 
-        assert hasattr(Addon.objects.get(pk=self.addon.pk), 'premium')
-        assert not hasattr(Addon.objects.get(pk=other.pk), 'premium')
+        assert getattr(Addon.objects.get(pk=self.addon.pk), 'premium')
+        assert not getattr(Addon.objects.get(pk=other.pk), 'premium')
 
 
 class TestAddonUpsell(amo.tests.TestCase):

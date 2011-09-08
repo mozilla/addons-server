@@ -425,7 +425,6 @@ def _premium(request, addon_id, addon):
         messages.success(request, _('Changes successfully saved.'))
         return redirect('devhub.addons.payments', addon.slug)
 
-
     return jingo.render(request, 'devhub/payments/premium.html',
                         dict(addon=addon, premium=addon.addonpremium,
                              form=premium_form,
@@ -483,11 +482,12 @@ def acquire_refund_permission(request, addon_id, addon):
     log.debug('User approved refund for addon: %s' % addon_id)
     token = paypal.get_permissions_token(request.GET['request_token'],
                                          request.GET['verification_code'])
-    log.debug('Got refund token for addon: %s' % addon_id)
-    # Sadly this is an update on a POST.
-    try:
+    log.debug('Got refund token for addon: %s, token: %s....' %
+              (addon_id, token[:5]))
+    # Sadly this is an update on a GET.
+    if addon.premium:
         addon.addonpremium.update(paypal_permissions_token=token)
-    except AddonPremium.DoesNotExist:
+    else:
         AddonPremium.objects.create(addon=addon,
                                     paypal_permissions_token=token)
     amo.log(amo.LOG.EDIT_PROPERTIES, addon)
@@ -1311,8 +1311,10 @@ def marketplace_upsell(request, addon_id, addon):
 def marketplace_confirm(request, addon_id, addon):
     if request.method == 'POST':
         # Minimum required to become premium.
-        if (not addon.paypal_id or addon.addonpremium.price
-            or addon.addonpremium.paypal_permissions_token):
+        if (not addon.premium
+            or not addon.paypal_id
+            or not addon.premium.price
+            or not addon.premium.paypal_permissions_token):
             messages.error(request, 'Some required details are missing.')
             return redirect('devhub.market.1', addon.slug)
         addon.update(premium_type=amo.ADDON_PREMIUM)
