@@ -426,7 +426,7 @@ def _premium(request, addon_id, addon):
         return redirect('devhub.addons.payments', addon.slug)
 
     return jingo.render(request, 'devhub/payments/premium.html',
-                        dict(addon=addon, premium=addon.addonpremium,
+                        dict(addon=addon, premium=addon.premium,
                              form=premium_form,
                              paypal_url=_paypal_url(addon)))
 
@@ -486,7 +486,7 @@ def acquire_refund_permission(request, addon_id, addon):
               (addon_id, token[:5]))
     # Sadly this is an update on a GET.
     if addon.premium:
-        addon.addonpremium.update(paypal_permissions_token=token)
+        addon.premium.update(paypal_permissions_token=token)
     else:
         AddonPremium.objects.create(addon=addon,
                                     paypal_permissions_token=token)
