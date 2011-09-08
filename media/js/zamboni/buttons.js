@@ -360,12 +360,13 @@ jQuery.fn.addPaypal = function(html, allowClick) {
         modal.append(links);
 
         var paypal = $('<div>', {'class': 'paypal-parent'}),
-            user = $("<div>", {'class': 'paypal-user'});
+            user = $("<div>", {'class': 'paypal-user'}),
+            user_email = $('.account a').attr('title');
 
         modal.append(paypal);
         paypal.append(user);
-        if($install.attr('data-email')) {
-            user.html(format(gettext("Logged in as: <strong>{0}</strong>"), $install.attr('data-email')));
+        if(user_email) {
+            user.html(format(gettext("Logged in as: <strong>{0}</strong>"), user_email));
         } else {
             user.append($("<strong>", {'html': gettext("Have a Firefox Add-ons account? <a href='#' class='login'>Log In</a>")}));
             user.append($("<div>", {'html': gettext("No account? No problem! You can create one after your purchase.")}));
