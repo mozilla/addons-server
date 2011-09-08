@@ -46,11 +46,15 @@
     <p>If you don't see pictures, you don't have LDAP authentication.</p>
     <ul>
       <li><a href="#responses">All Responses</a></li>
+      <li><a href="#perf">Site Performance</a></li>
       <li><a href="#errors">Redirects and Errors</a></li>
       <li><a href="#celery">Celery</a></li>
       <li><a href="#guid-search">GUID Search Perf</a></li>
+      <li><a href="#update">Update</a></li>
       <li><a href="#homepage">Homepage</a></li>
       <li><a href="#search">Search</a></li>
+      <li><a href="#marketplace">Marketplace</a></li>
+      <li><a href="#auth">Authenticated Responses</a></li>
     </ul>
     <ul id=sizes>
       <li><a href="{{ request.get_full_path()|urlparams(width=300, height=None) }}">
@@ -68,6 +72,10 @@
       target=sumSeries%28{{ ns }}.response.*%29&target={{ ns }}.response.200&target={{ ns }}.response.301&target={{ ns }}.response.302&target={{ ns }}.response.403&target={{ ns }}.response.404&target={{ ns }}.response.405&target={{ ns }}.response.500
     {% endcall %}
 
+    <h2 id="perf">Site performance</h2>
+    {% call grid() %}
+      target=stats.timers.{{ site }}.view.GET.lower&target=stats.timers.{{ site }}.view.GET.mean&target=stats.timers.{{ site }}.view.GET.upper_90&from=-1hours
+    {% endcall %}
 
     <h2 id="errors">Redirects and Errors</h2>
     {% call grid() %}
@@ -84,6 +92,11 @@
       target=stats.timers.{{ site }}.view.api.views.guid_search.GET.lower&target=stats.timers.{{ site }}.view.api.views.guid_search.GET.mean&target=stats.timers.{{ site }}.view.api.views.guid_search.GET.upper_90&target=scale%28stats.timers.{{ site }}.view.api.views.guid_search.GET.count%2C%200.01%29
     {% endcall %}
 
+    <h2 id="update">Update</h2>
+    {% call grid() %}
+      target=stats.timers.{{ site }}.services.update.lower&target=stats.timers.{{ site }}.services.update.mean&target=stats.timers.{{ site }}.services.update.upper_90&target=scale(stats.timers.{{ site }}.services.update.count%2C%200.01)&from=-1hours
+    {% endcall %}
+
     <h2 id="homepage">Homepage</h2>
     {% call grid() %}
       target=scale(stats.timers.{{ site }}.view.addons.views.home.GET.count,0.1)&target=stats.timers.{{ site }}.view.addons.views.home.GET.lower&target=stats.timers.{{ site }}.view.addons.views.home.GET.mean&target=stats.timers.{{ site }}.view.addons.views.home.GET.upper_90
@@ -94,9 +107,14 @@
       target=scale(stats.timers.{{ site }}.view.search.views.search.GET.count,0.1)&target=stats.timers.{{ site }}.view.search.views.search.GET.lower&target=stats.timers.{{ site }}.view.search.views.search.GET.mean&target=stats.timers.{{ site }}.view.search.views.search.GET.upper_90
     {% endcall %}
 
+    <h2 id="auth">Authenticated Responses</h2>
+    {% call grid() %}
+      target=stats.{{ site }}.response.auth.200&target=scale(stats.{{ site }}.response.200%2C0.1)&from=-1hours
+    {% endcall %}
+
     <h2 id="marketplace">Marketplace</h2>
     {% call grid() %}
-    target=stats.timers.{{ site }}.paypal.paykey.retrieval.upper_90
+      target=stats.timers.{{ site }}.paypal.paykey.retrieval.upper_90
     {% endcall %}
 
     <script>
