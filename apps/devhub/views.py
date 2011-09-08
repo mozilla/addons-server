@@ -38,7 +38,7 @@ from amo.urlresolvers import reverse
 from access import acl
 from addons import forms as addon_forms
 from addons.decorators import addon_view
-from addons.models import Addon, AddonPremium, AddonUser
+from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from devhub.decorators import dev_required
 from devhub.forms import CheckCompatibilityForm
@@ -47,7 +47,7 @@ from devhub import perf
 from editors.helpers import get_position
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
-from market.models import Price
+from market.models import AddonPremium
 import paypal
 from translations.models import Translation, delete_translation
 from users.models import UserProfile
