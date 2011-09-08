@@ -988,8 +988,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if its not there, try and get it. Will return None if there's nothing
         there.
         """
-        current = hasattr(self, '_premium')
-        if not current:
+        if not hasattr(self, '_premium'):
             try:
                 self._premium = self.addonpremium
             except AddonPremium.DoesNotExist:
