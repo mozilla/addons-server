@@ -1,0 +1,18 @@
+{% extends "impala/base.html" %}
+
+{% block title %}{{ _('Oops') }}{% endblock %}
+
+{% block content %}
+  <section class="primary">
+    {% trans %}
+      <h1>Oops! Not allowed.</h1>
+      <p>You tried to do something that you weren't allowed to.</p>
+    {% endtrans %}
+    {% if csrf %}
+      {% trans %}
+      <p>Try going back to the previous page, refreshing
+      and then trying again.</p>
+      {% endtrans %}
+    {% endif %}
+  </section>
+{% endblock %}
