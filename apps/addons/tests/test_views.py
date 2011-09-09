@@ -821,10 +821,12 @@ class TestDetailPage(amo.tests.TestCase):
         eq_(res.status_code, 404)
         assert 'disabled by an administrator' in res.content
 
-    def test_ready_to_buy(self):
+    @patch('addons.models.Addon.premium')
+    def test_ready_to_buy(self, premium):
         addon = Addon.objects.get(id=3615)
         addon.update(premium_type=amo.ADDON_PREMIUM,
                      status=amo.STATUS_PUBLIC)
+        addon.premium.price.price = '0.99'
         response = self.client.get(reverse('addons.detail', args=[addon.slug]))
         eq_(response.status_code, 200)
 
