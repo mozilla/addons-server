@@ -816,7 +816,7 @@ class CheckCompatibilityForm(happyforms.Form):
 
 
 class NewManifestForm(happyforms.Form):
-    manifest = forms.URLField()
+    manifest = forms.URLField(verify_exists=False)
 
 
 class PremiumForm(happyforms.Form):
