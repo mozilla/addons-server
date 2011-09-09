@@ -138,6 +138,8 @@ def settings(request):
     for i in ['PAYPAL_EMBEDDED_AUTH', 'PAYPAL_CGI_AUTH']:
         settings_dict[i] = debug.cleanse_setting(i, getattr(site_settings, i))
 
+    settings_dict['WEBAPPS_RECEIPT_KEY'] = '********************'
+
     return jingo.render(request, 'zadmin/settings.html',
                         {'settings_dict': settings_dict})
 

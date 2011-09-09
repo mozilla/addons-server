@@ -64,6 +64,12 @@ def libraries():
         msg = "Failed to create a jpeg image: %s" % e
         libraries_results.append(('PIL+JPEG', False, msg))
 
+    try:
+        import M2Crypto
+        libraries_results.append(('M2Crypto', True, 'Got it!'))
+    except ImportError:
+        libraries_results.append(('M2Crypto', False, 'Failed to import'))
+
     if settings.SPIDERMONKEY:
         if os.access(settings.SPIDERMONKEY, os.R_OK):
             libraries_results.append(('Spidermonkey is ready!', True, None))
@@ -111,6 +117,7 @@ def path():
           settings.USERPICS_PATH,
           settings.SPHINX_CATALOG_PATH,
           settings.SPHINX_LOG_PATH,
+          settings.WATERMARKED_ADDONS_PATH,
           dump_apps.Command.JSON_PATH,)
     r = [os.path.join(settings.ROOT, 'locale'),
          # The deploy process will want write access to this.
@@ -127,6 +134,12 @@ def path():
         path_perms = os.access(path, perms)
         filepath_status = filepath_status and path_exists and path_perms
         filepath_results.append((path, path_exists, path_perms, notes))
+
+    key_exists = os.path.exists(settings.WEBAPPS_RECEIPT_KEY)
+    key_perms = os.access(settings.WEBAPPS_RECEIPT_KEY, os.R_OK)
+    filepath_status = filepath_status and key_exists and key_perms
+    filepath_results.append(('settings.WEBAPPS_RECEIPT_KEY',
+                             key_exists, key_perms, 'We want read'))
 
     status = filepath_status
 
