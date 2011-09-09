@@ -7,7 +7,7 @@
 {% macro section(id, title, base_url, extras, categories) %}
   <li id="{{ id }}">
     <a href="{{ base_url }}">{{ title }}</a>
-    <ul{% if categories %} class="{{ col_class }}"{% endif %}>
+    <ul{% if categories %} class="two-col"{% endif %}>
       {% for sort, title in extras %}
         <li><em><a href="{{ base_url|urlparams(sort=sort) }}">{{ title }}</a></em></li>
       {% endfor %}
