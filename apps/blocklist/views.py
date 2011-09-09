@@ -1,3 +1,4 @@
+import base64
 import collections
 import hashlib
 from datetime import datetime, timedelta
@@ -19,7 +20,7 @@ from amo.utils import sorted_groupby
 from amo.tasks import flush_front_end_cache_urls
 from versions.compare import version_int
 from .models import (BlocklistItem, BlocklistPlugin, BlocklistGfx,
-                     BlocklistApp, BlocklistDetail)
+                     BlocklistApp, BlocklistDetail, BlocklistCA)
 
 
 App = collections.namedtuple('App', 'guid min max')
@@ -48,15 +49,22 @@ def _blocklist(request, apiver, app, appver):
     items = get_items(apiver, app, appver)[0]
     plugins = get_plugins(apiver, app, appver)
     gfxs = BlocklistGfx.objects.filter(Q(guid__isnull=True) | Q(guid=app))
+    cas = None
+
+    try:
+        cas = BlocklistCA.objects.all()[0]
+        cas = base64.b64encode(cas.data)
+    except IndexError:
+        pass
+
     # Find the latest created/modified date across all sections.
     all_ = list(items.values()) + list(plugins) + list(gfxs)
     last_update = max(x.modified for x in all_) if all_ else datetime.now()
     # The client expects milliseconds, Python's time returns seconds.
     last_update = int(time.mktime(last_update.timetuple()) * 1000)
-    return jingo.render(request, 'blocklist/blocklist.xml',
-                        dict(items=items, plugins=plugins, gfxs=gfxs,
-                             apiver=apiver, appguid=app, appver=appver,
-                             last_update=last_update),
+    data = dict(items=items, plugins=plugins, gfxs=gfxs, apiver=apiver,
+                appguid=app, appver=appver, last_update=last_update, cas=cas)
+    return jingo.render(request, 'blocklist/blocklist.xml', data,
                         content_type='text/xml')
 
 
@@ -69,7 +77,8 @@ def clear_blocklist(*args, **kw):
     flush_front_end_cache_urls.delay(['/blocklist/*'])
 
 
-for m in BlocklistItem, BlocklistPlugin, BlocklistGfx, BlocklistApp:
+for m in (BlocklistItem, BlocklistPlugin, BlocklistGfx, BlocklistApp,
+          BlocklistCA):
     db_signals.post_save.connect(clear_blocklist, sender=m,
                                  dispatch_uid='save_%s' % m)
     db_signals.post_delete.connect(clear_blocklist, sender=m,

@@ -1,3 +1,4 @@
+import base64
 from datetime import datetime
 from xml.dom import minidom
 
@@ -9,9 +10,8 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from .models import (BlocklistApp, BlocklistDetail, BlocklistItem,
-                     BlocklistGfx, BlocklistPlugin)
-
+from .models import (BlocklistApp, BlocklistCA, BlocklistDetail,
+                     BlocklistItem, BlocklistGfx, BlocklistPlugin)
 
 base_xml = """
 <?xml version="1.0"?>
@@ -379,3 +379,16 @@ class BlocklistGfxTest(BlocklistTest):
         item = (self.dom(self.fx4_url)
                 .getElementsByTagName('gfxBlacklistEntry')[0])
         eq_(item.getAttribute('blockID'), 'g' + str(self.details.id))
+
+
+class BlocklistCATest(BlocklistTest):
+
+    def setUp(self):
+        super(BlocklistCATest, self).setUp()
+        self.ca = BlocklistCA.objects.create(data='999')
+
+    def test_ca(self):
+        r = self.client.get(self.fx4_url)
+        dom = minidom.parseString(r.content)
+        ca = dom.getElementsByTagName('caBlacklistEntry')[0]
+        eq_(base64.b64decode(ca.childNodes[0].toxml()), self.ca.data)
