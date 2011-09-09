@@ -12,13 +12,23 @@
       <p class="desc">{{ c.description|truncate(250)|nl2br }}</p>
       <div class="vitals c">
         <div class="followers">
-          {# L10n: People "follow" collections to get notified of updates.
-                   Like Twitter followers. #}
-          {% trans cnt=c.subscribers, num=c.subscribers|numberfmt %}
-            <span>{{ num }}</span> follower
-          {% pluralize %}
-            <span>{{ num }}</span> followers
-          {% endtrans %}
+          {% if field == 'popular' %}
+            {# L10n: People "follow" collections to get notified of updates.
+                     Like Twitter followers. #}
+            {% trans cnt=c.weekly_subscribers, num=c.weekly_subscribers|numberfmt %}
+              {{ num }} weekly follower
+            {% pluralize %}
+              {{ num }} weekly followers
+            {% endtrans %}
+          {% else %}
+            {# L10n: People "follow" collections to get notified of updates.
+                     Like Twitter followers. #}
+            {% trans cnt=c.subscribers, num=c.subscribers|numberfmt %}
+              {{ num }} follower
+            {% pluralize %}
+              {{ num }} followers
+            {% endtrans %}
+          {% endif %}
         </div>
         {% if field in ('created', 'updated') %}
           <div class="updated">

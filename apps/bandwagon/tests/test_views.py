@@ -895,7 +895,11 @@ class TestCollectionListing(amo.tests.TestCase):
 
     def test_mostsubscribers_adu_unit(self):
         d = pq(self.client.get(urlparams(self.url, sort='followers')).content)
-        eq_('followers' in d('.items .item .followers').text(), True)
+        eq_('follower' in d('.items .item .followers').text(), True)
+
+    def test_popular_adu_unit(self):
+        d = pq(self.client.get(urlparams(self.url, sort='popular')).content)
+        eq_('weekly follower' in d('.items .item .followers').text(), True)
 
 
 class TestCollectionDetailFeed(amo.tests.TestCase):
