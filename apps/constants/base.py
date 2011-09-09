@@ -281,6 +281,9 @@ CONTRIB_VOLUNTARY = 0
 CONTRIB_PURCHASE = 1
 CONTRIB_REFUND = 2
 CONTRIB_CHARGEBACK = 3
+# We've started a transaction and we need to wait to see what
+# paypal will return.
+CONTRIB_PENDING = 4
 CONTRIB_OTHER = 99
 
 CONTRIB_TYPES = {

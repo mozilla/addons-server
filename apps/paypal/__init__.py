@@ -29,15 +29,15 @@ paypal_log = commonware.log.getLogger('z.paypal')
 def get_paykey(data):
     """
     Gets a paykey from Paypal. Need to pass in the following in data:
-    slug: addon, will form urls for where user goes back to (required)
+    pattern: the reverse pattern to resolve
     email: who the money is going to (required)
     amount: the amount of money (required)
     ip: ip address of end user (required)
     uuid: contribution_uuid (required)
     memo: any nice message
     """
-    complete = reverse('addons.paypal', args=[data['slug'], 'complete'])
-    cancel = reverse('addons.paypal', args=[data['slug'], 'cancel'])
+    complete = reverse(data['pattern'], args=[data['slug'], 'complete'])
+    cancel = reverse(data['pattern'], args=[data['slug'], 'cancel'])
     uuid_qs = urllib.urlencode({'uuid': data['uuid']})
 
     paypal_data = {
@@ -59,12 +59,28 @@ def get_paykey(data):
 
     with statsd.timer('paypal.paykey.retrieval'):
         try:
-            response = _call(settings.PAYPAL_PAY_URL, paypal_data,
+            response = _call(settings.PAYPAL_PAY_URL + 'Pay', paypal_data,
                              ip=data['ip'])
         except AuthError, error:
-             paypal_log.error('Authentication error: %s' % error)
-             raise
+            paypal_log.error('Authentication error: %s' % error)
+            raise
     return response['payKey']
+
+
+def check_purchase(paykey):
+    """
+    When a purchase is complete checks paypal that the purchase has gone
+    through.
+    """
+    with statsd.timer('paypal.payment.details'):
+        try:
+            response = _call(settings.PAYPAL_PAY_URL + 'PaymentDetails',
+                             {'payKey': paykey})
+        except PaypalError:
+            paypal_log.error('Payment details error', exc_info=True)
+            return False
+
+    return response['status']
 
 
 def check_refund_permission(token):

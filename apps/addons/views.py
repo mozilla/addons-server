@@ -33,6 +33,7 @@ from amo.urlresolvers import reverse
 from abuse.models import send_abuse_report
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
 from devhub.decorators import dev_required
+from market.models import AddonPurchase
 import paypal
 from reviews.forms import ReviewForm
 from reviews.models import Review, GroupedRating
@@ -465,27 +466,37 @@ def developers(request, addon, page):
 @login_required
 @addon_view
 def purchase(request, addon):
-    if not waffle.switch_is_active('marketplace'):
+    if not waffle.switch_is_active('marketplace') or not addon.is_premium():
         raise http.Http404
 
-    if (not addon.is_premium() or not addon.premium):
-        raise http.Http404
-
+    log.debug('Starting purchase of addon: %s by user: %s'
+              % (addon.pk, request.amo_user.pk))
     amount = addon.premium.price.price
+    source = request.GET.get('source', '')
     uuid_ = hashlib.md5(str(uuid.uuid4())).hexdigest()
+    # l10n: {0} is the addon name
     contrib_for = _(u'Purchase of {0}').format(jinja2.escape(addon.name))
 
     paykey, error = '', ''
     try:
         paykey = paypal.get_paykey(dict(uuid=uuid_, slug=addon.slug,
-                                        amount=amount, memo=contrib_for,
-                                        email=addon.paypal_id,
-                                        ip=request.META.get('REMOTE_ADDR')))
-    except Exception:
+                    amount=amount, memo=contrib_for, email=addon.paypal_id,
+                    ip=request.META.get('REMOTE_ADDR'),
+                    pattern='addons.purchase.finished'))
+    except:
         log.error('Error getting paykey, purchase of addon: %s' % addon.pk,
                   exc_info=True)
         error = _('There was an error communicating with PayPal.')
 
+    if paykey:
+        contrib = Contribution(addon_id=addon.id, amount=amount,
+                               source=source, source_locale=request.LANG,
+                               uuid=str(uuid_), type=amo.CONTRIB_PENDING,
+                               paykey=paykey)
+        contrib.save()
+
+    log.debug('Got paykey for addon: %s by user: %s'
+              % (addon.pk, request.amo_user.pk))
     url = '%s?paykey=%s' % (settings.PAYPAL_FLOW_URL, paykey)
     if request.GET.get('result_type') == 'json' or request.is_ajax():
         return http.HttpResponse(json.dumps({'url': url,
@@ -493,6 +504,44 @@ def purchase(request, addon):
                                              'error': error}),
                                  content_type='application/json')
     return http.HttpResponseRedirect(url)
+
+
+# TODO(andym): again, remove this onece we figure out logged out flow.
+@login_required
+@addon_view
+def purchase_complete(request, addon, status):
+    if not waffle.switch_is_active('marketplace') or not addon.is_premium():
+        raise http.Http404
+
+    result = ''
+    if status == 'complete':
+        con = Contribution.objects.get(uuid=request.GET.get('uuid'),
+                                       type=amo.CONTRIB_PENDING)
+        log.debug('Check purchase paypal addon: %s, user: %s, paykey: %s'
+                  % (addon.pk, request.amo_user.pk, con.paykey[:10]))
+        try:
+            result = paypal.check_purchase(con.paykey)
+        except:
+            log.error('Check purchase paypal addon: %s, user: %s, paykey: %s'
+                      % (addon.pk, request.amo_user.pk, con.paykey[:10]),
+                      exc_info=True)
+            result = 'ERROR'
+
+        log.debug('Paypal returned: %s for paykey: %s'
+                  % (result, con.paykey[:10]))
+        if result == 'COMPLETED':
+            # Sadly we are changing things on a GET.
+            # Create an addon purchase.
+            AddonPurchase.objects.create(addon=addon, user=request.amo_user)
+            # Markup the contribution suitably
+            con.type = amo.CONTRIB_PURCHASE
+            con.uuid = None
+            con.save()
+
+    response = jingo.render(request, 'addons/paypal_result.html',
+                            {'addon': addon, 'status': result})
+    response['x-frame-options'] = 'allow'
+    return response
 
 
 @addon_view
@@ -514,15 +563,16 @@ def contribute(request, addon):
         name, paypal_id = addon.charity.name, addon.charity.paypal
     else:
         name, paypal_id = addon.name, addon.paypal_id
+    # l10n: {0} is the addon name
     contrib_for = _(u'Contribution for {0}').format(jinja2.escape(name))
 
     paykey, error = '', ''
     try:
         paykey = paypal.get_paykey(dict(uuid=contribution_uuid,
-                                        slug=addon.slug, amount=amount,
-                                        email=paypal_id, memo=contrib_for,
-                                        ip=request.META.get('REMOTE_ADDR')))
-    except Exception:
+                    slug=addon.slug, amount=amount, email=paypal_id,
+                    memo=contrib_for, ip=request.META.get('REMOTE_ADDR'),
+                    pattern='addons.paypal'))
+    except:
         log.error('Error getting paykey, contribution for addon: %s'
                   % addon.pk, exc_info=True)
         error = _('There was an error communicating with PayPal.')

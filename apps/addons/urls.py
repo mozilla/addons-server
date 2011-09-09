@@ -31,6 +31,8 @@ detail_patterns = patterns('',
         name='addons.paypal'),
 
     url('^purchase/$', views.purchase, name='addons.purchase'),
+    url('^purchase/(?P<status>cancel|complete)$', views.purchase_complete,
+        name='addons.purchase.finished'),
 
     url('^about$', lambda r, addon_id: redirect('addons.installed',
                                                  addon_id, permanent=True),

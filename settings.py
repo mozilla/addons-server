@@ -814,7 +814,7 @@ PAYPAL_BN = ''
 PAYPAL_CGI_URL = 'https://www.paypal.com/cgi-bin/webscr'
 PAYPAL_CGI_AUTH = {'USER': '', 'PASSWORD': '', 'SIGNATURE': ''}
 
-PAYPAL_PAY_URL = 'https://svcs.paypal.com/AdaptivePayments/Pay'
+PAYPAL_PAY_URL = 'https://svcs.paypal.com/AdaptivePayments/'
 PAYPAL_FLOW_URL = 'https://paypal.com/webapps/adaptivepayment/flow/pay'
 PAYPAL_PERMISSIONS_URL = 'https://svcs.paypal.com/Permissions/'
 PAYPAL_JS_URL = 'https://www.paypalobjects.com/js/external/dg.js'
@@ -1093,7 +1093,7 @@ ARECIBO_SERVER_URL = ""
 # Make AMO group posts and wait for 60 seconds when we get lots of errors.
 ARECIBO_SETTINGS = {
     'GROUP_POSTS': True,
-    'GROUP_WAIT': 60
+    'GROUP_WAIT': 60,
 }
 
 # A whitelist of domains that the authentication script will redirect to upon

@@ -1,8 +1,6 @@
 from cStringIO import StringIO
 
 from django.conf import settings
-from amo.urlresolvers import reverse
-from amo.helpers import absolutify
 
 import mock
 from nose.tools import eq_
@@ -26,14 +24,17 @@ auth_error = ('error(0).errorId=520003'
 other_error = ('error(0).errorId=520001'
             '&error(0).message=Foo')
 
+good_check_purchase = ('status=CREATED')  # There is more, but I trimmed it.
 
-class TestPayPal(amo.tests.TestCase):
+
+class TestPayKey(amo.tests.TestCase):
     def setUp(self):
         self.data = {'slug': 'xx',
                      'amount': 10,
                      'email': 'someone@somewhere.com',
                      'uuid': time.time(),
-                     'ip': '127.0.0.1'}
+                     'ip': '127.0.0.1',
+                     'pattern': 'addons.purchase.finished'}
 
     @mock.patch('urllib2.OpenerDirector.open')
     def test_auth_fails(self, opener):
@@ -53,6 +54,24 @@ class TestPayPal(amo.tests.TestCase):
     def _test_no_mock(self):
         # Remove _ and run if you'd like to try unmocked.
         return paypal.get_paykey(self.data)
+
+    def _test_check_purchase_no_mock(self):
+        # Remove _ and run if you'd like to try this unmocked.
+        key = paypal.get_paykey(self.data)
+        eq_(paypal.check_purchase(key), 'CREATED')
+
+
+class TestPurchase(amo.tests.TestCase):
+
+    @mock.patch('urllib2.OpenerDirector.open')
+    def test_check_purchase(self, opener):
+        opener.return_value = StringIO(good_check_purchase)
+        eq_(paypal.check_purchase('some-paykey'), 'CREATED')
+
+    @mock.patch('urllib2.OpenerDirector.open')
+    def test_check_purchase_fails(self, opener):
+        opener.return_value = StringIO(other_error)
+        eq_(paypal.check_purchase('some-paykey'), False)
 
 
 @mock.patch('paypal.urllib.urlopen')

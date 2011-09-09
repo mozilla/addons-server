@@ -28,7 +28,7 @@ from addons import cron
 from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
                            Charity, Category)
 from files.models import File
-from market.models import AddonPremium
+from market.models import AddonPremium, AddonPurchase
 from paypal.tests import other_error
 from stats.models import Contribution
 from translations.helpers import truncate
@@ -216,7 +216,7 @@ class TestContributeEmbedded(amo.tests.TestCase):
 
 
 class TestPurchaseEmbedded(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_592', 'prices']
+    fixtures = ['base/apps', 'base/addon_592', 'base/users', 'prices']
 
     def setUp(self):
         waffle.models.Switch.objects.create(name='marketplace', active=True)
@@ -225,6 +225,7 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
                           status=amo.STATUS_PUBLIC)
         AddonPremium.objects.create(addon=self.addon, price_id=1)
         self.purchase_url = reverse('addons.purchase', args=[self.addon.slug])
+        self.client.login(username='regular@mozilla.com', password='password')
 
     def test_premium_only(self):
         self.addon.update(premium_type=amo.ADDON_FREE)
@@ -255,6 +256,70 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         get_paykey.side_effect = Exception('woah')
         res = self.client.get_ajax(self.purchase_url)
         assert json.loads(res.content)['error'].startswith('There was an')
+
+    @patch('paypal.get_paykey')
+    def test_paykey_contribution(self, get_paykey):
+        get_paykey.return_value = 'some-pay-key'
+        self.client.get_ajax(self.purchase_url)
+        cons = Contribution.objects.filter(type=amo.CONTRIB_PENDING)
+        eq_(cons.count(), 1)
+        eq_(cons[0].amount, Decimal('0.99'))
+
+    def make_contribution(self):
+        return Contribution.objects.create(type=amo.CONTRIB_PENDING,
+                                           uuid='123', addon=self.addon,
+                                           paykey='1234')
+
+    def get_url(self, status):
+        return reverse('addons.purchase.finished',
+                       args=[self.addon.slug, status])
+
+    @patch('paypal.check_purchase')
+    def test_check_purchase(self, check_purchase):
+        check_purchase.return_value = 'COMPLETED'
+        self.make_contribution()
+        self.client.get_ajax('%s?uuid=%s' % (self.get_url('complete'), '123'))
+        cons = Contribution.objects.all()
+        eq_(cons.count(), 1)
+        eq_(cons[0].type, amo.CONTRIB_PURCHASE)
+        eq_(cons[0].uuid, None)
+
+    @patch('paypal.check_purchase')
+    def test_check_addon_purchase(self, check_purchase):
+        check_purchase.return_value = 'COMPLETED'
+        self.make_contribution()
+        self.client.get_ajax('%s?uuid=%s' % (self.get_url('complete'), '123'))
+        eq_(AddonPurchase.objects.filter(addon=self.addon).count(), 1)
+
+    @patch('paypal.check_purchase')
+    def test_check_cancel(self, check_purchase):
+        check_purchase.return_value = 'COMPLETED'
+        self.make_contribution()
+        self.client.get_ajax('%s?uuid=%s' % (self.get_url('cancel'), '123'))
+        eq_(Contribution.objects.filter(type=amo.CONTRIB_PURCHASE).count(), 0)
+
+    @patch('paypal.check_purchase')
+    def test_check_wrong_uuid(self, check_purchase):
+        check_purchase.return_value = 'COMPLETED'
+        self.make_contribution()
+        self.assertRaises(Contribution.DoesNotExist,
+                          self.client.get_ajax,
+                          '%s?uuid=%s' % (self.get_url('complete'), 'foo'))
+
+    @patch('paypal.check_purchase')
+    def test_check_pending(self, check_purchase):
+        check_purchase.return_value = 'PENDING'
+        self.make_contribution()
+        self.client.get_ajax('%s?uuid=%s' % (self.get_url('complete'), '123'))
+        eq_(Contribution.objects.filter(type=amo.CONTRIB_PURCHASE).count(), 0)
+
+    @patch('paypal.check_purchase')
+    def test_check_pending_error(self, check_purchase):
+        check_purchase.side_effect = Exception('wtf')
+        self.make_contribution()
+        url = '%s?uuid=%s' % (self.get_url('complete'), '123')
+        res = self.client.get_ajax(url)
+        eq_(res.context['status'], 'ERROR')
 
 
 class TestDeveloperPages(amo.tests.TestCase):
@@ -351,7 +416,6 @@ class TestDeveloperPages(amo.tests.TestCase):
         addon.save()
         url = reverse('addons.meet', args=['592'])
         r = self.client.get(url, follow=True)
-        doc = pq(r.content)
         eq_(pq(r.content)('#about-addon b').length, 2)
 
 
