@@ -1,3 +1,5 @@
+from datetime import date, timedelta
+
 from django.core.management import call_command
 
 import mock
@@ -7,7 +9,7 @@ import amo.tests
 from addons.models import Addon
 from stats import tasks
 from stats.models import DownloadCount, UpdateCount, GlobalStat, Contribution
-from stats import tasks
+from stats import tasks, cron
 
 
 class TestGlobalStats(amo.tests.TestCase):
@@ -98,3 +100,23 @@ class TestIndexStats(amo.tests.TestCase):
             1 + (updates[0] - updates[-1]).days / 5)
         eq_(len([c for c in calls if c[0][0] == tasks.index_download_counts]),
             1 + (downloads[0] - downloads[-1]).days / 5)
+
+
+class TestIndexLatest(amo.tests.ESTestCase):
+    es = True
+
+    @classmethod
+    def add_addons(self):
+        pass
+
+    def test_index_latest(self):
+        latest = date.today() - timedelta(days=5)
+        UpdateCount.index({'date': latest})
+        self.refresh('update_counts')
+
+        start = latest.strftime('%Y-%m-%d')
+        finish = date.today().strftime('%Y-%m-%d')
+        with mock.patch('stats.cron.call_command') as call:
+            cron.index_latest_stats()
+            call.assert_called_with('index_stats', addons=None,
+                                    date='%s:%s' % (start, finish))

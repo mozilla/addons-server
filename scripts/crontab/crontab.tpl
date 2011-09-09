@@ -67,6 +67,7 @@ HOME=/tmp
 40 21 * * * {{ remora }}; {{ python }} maintenance.py weekly
 35 22 * * * {{ z_cron }} update_global_totals
 40 22 * * * {{ z_cron }} update_addon_average_daily_users
+30 23 * * * {{ z_cron }} index_latest_stats
 45 23 * * * {{ z_cron }} update_addons_collections_downloads
 
 # Once per week

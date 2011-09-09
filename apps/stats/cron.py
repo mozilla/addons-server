@@ -1,5 +1,6 @@
 import datetime
 
+from django.core.management import call_command
 from django.db.models import Sum, Max
 
 import commonware.log
@@ -13,6 +14,7 @@ from .models import (AddonCollectionCount, CollectionCount,
 from . import tasks
 
 task_log = commonware.log.getLogger('z.task')
+cron_log = commonware.log.getLogger('z.cron')
 
 
 @cronjobs.register
@@ -62,3 +64,12 @@ def addon_total_contributions():
     ts = [tasks.cron_total_contributions.subtask(args=chunk)
           for chunk in chunked(addons, 100)]
     TaskSet(ts).apply_async()
+
+
+@cronjobs.register
+def index_latest_stats():
+    latest = UpdateCount.search().order_by('-date').values_dict()[0]['date']
+    fmt = lambda d: d.strftime('%Y-%m-%d')
+    date_range = '%s:%s' % (fmt(latest), fmt(datetime.date.today()))
+    cron_log.info('index_stats --date=%s' % date_range)
+    call_command('index_stats', addons=None, date=date_range)
