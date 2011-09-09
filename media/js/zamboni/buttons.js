@@ -347,23 +347,26 @@ jQuery.fn.showBackupButton = function() {
 jQuery.fn.addPaypal = function(html, allowClick) {
     function createPaypal(el){
         var modal = this,
-            $install = $(el.click_target).closest('.install');
+            $install = $(el.click_target).closest('.install'),
+            content = $('<div>', {'class': 'paypal-content'});
 
         modal.append($('<h2>', {'text': gettext('Purchase Add-on')}));
-        modal.append($('<span>', {'class': 'price', 'text': $install.attr('data-cost')}));
-        modal.append($('<h5>', {'text': $install.attr('data-name')}));
+        modal.append(content);
+
+        content.append($('<span>', {'class': 'price', 'text': $install.attr('data-cost')}));
+        content.append($('<h5>', {'text': $install.attr('data-name')}));
         var links = $('<div>', {'class': 'paypal-links'}),
             divider = $('<span> &middot; </span>');
         links.append($('<a>', {'text': gettext('Learn about purchases')}));
         links.append(divider.clone());
         links.append($('<a>', {'text': gettext('Change Currency')}));
-        modal.append(links);
+        content.append(links);
 
         var paypal = $('<div>', {'class': 'paypal-parent'}),
             user = $("<div>", {'class': 'paypal-user'}),
             user_email = $('.account a').attr('title');
 
-        modal.append(paypal);
+        content.append(paypal);
         paypal.append(user);
         if(user_email) {
             user.html(format(gettext("Logged in as: <strong>{0}</strong>"), user_email));
@@ -389,6 +392,19 @@ jQuery.fn.addPaypal = function(html, allowClick) {
         modal.modal($this, {'callback': createPaypal, 'close': true, 'hideme': false, 'emptyme': true});
     });
 }
+
+/* This is mostly a stub for now.  Currently triggering it
+*  on any install button will do the same thing.  We'll have
+*  to figure out a way to pick the correct .install when the
+*  time comes to hook it up.
+*  To trigger, just call: $('.install').eq(0).trigger('paypal-success');
+*/
+$('.install').bind('paypal-success', function(addon_id) {
+    var content = $('.paypal-modal .paypal-content').html("");
+
+    content.append($('<h3>', {'text': gettext('Thank You!')}));
+    content.append($('<p>', {'text': gettext('Your purchase is complete.')}));
+});
 
 // Create a popup box when the element is clicked.  html can be a function.
 jQuery.fn.addPopup = function(html, allowClick) {
