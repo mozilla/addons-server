@@ -1,20 +1,27 @@
 @import 'lib';
 
+html, body {
+    height: 100%;
+}
+
 html {
-    background: #33559b;
+    background: #fff url(../../img/zamboni/global/bg-header.png) repeat-x;
 }
 
 body {
-    background: #fff url(../../img/zamboni/global/bg-header.png) repeat-x;
     border-top: 2px solid #686868;
 }
 
 #page {
     max-width: 960px;
-    min-height: 350px;
+    min-height: 100%;
+    height: auto;
     width: 960px;
-    margin: 0 auto;
+    margin: 0 auto -123px;
     position: relative;
+    .bump {
+        min-height: 123px;
+    }
 }
 
 a {
