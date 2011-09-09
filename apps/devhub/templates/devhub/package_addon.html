@@ -3,7 +3,7 @@
 
 {% set title = _('Add-on Packager') %}
 {% block title %}{{ dev_page_title(title) }}{% endblock %}
-{% block bodyclass %}inverse{% endblock %}
+{% block bodyclass %}inverse {{ super() }}{% endblock %}
 
 {% block content %}
 <section class="primary">
