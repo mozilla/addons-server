@@ -879,7 +879,7 @@ function initPayments() {
 }
 
 function initCatFields() {
-    $(".select-addon-cats").each(function() {
+    $(".addon-app-cats").each(function() {
         var $parent = $(this).closest("[data-max-categories]"),
             $main = $(this).find(".addon-categories"),
             $misc = $(this).find(".addon-misc-category"),

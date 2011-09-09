@@ -975,8 +975,11 @@ def addons_section(request, addon_id, addon, section, editable=False):
                     amo.log(amo.LOG.EDIT_PROPERTIES, addon)
 
                 valid_slug = addon.slug
-            if cat_form and cat_form.is_valid():
-                cat_form.save()
+            if cat_form:
+                if cat_form.is_valid():
+                    cat_form.save()
+                else:
+                    editable = True
         else:
             form = models[section](instance=addon, request=request)
     else:
