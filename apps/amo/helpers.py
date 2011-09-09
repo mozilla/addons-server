@@ -5,6 +5,7 @@ import re
 from operator import attrgetter
 
 from django.conf import settings
+from django.forms import CheckboxInput, RadioSelect
 from django.utils import translation
 from django.utils.encoding import smart_unicode
 from django.template import defaultfilters
@@ -380,6 +381,14 @@ def recaptcha(context, form):
     d = dict(context.items())
     d.update(form=form)
     return d
+
+
+@register.filter
+def is_choice_field(value):
+    try:
+        return isinstance(value.field.widget, (CheckboxInput, RadioSelect))
+    except AttributeError:
+        pass
 
 
 @register.inclusion_tag('amo/mobile/sort_by.html')

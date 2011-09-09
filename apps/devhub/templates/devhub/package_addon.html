@@ -1,5 +1,5 @@
 {% extends "devhub/base.html" %}
-{% from 'includes/forms.html' import required %}
+{% from "includes/forms.html" import pretty_field %}
 
 {% set title = _('Add-on Packager') %}
 {% block title %}{{ dev_page_title(title) }}{% endblock %}
@@ -30,30 +30,10 @@
       </p>
       {{ basic_form.non_field_errors() }}
       <ul>
-        <li class="required packager_input">
-          <label for="name">{{ _('Add-on Name') }} {{ required() }}</label>
-          <span class="tip tooltip" title="{{ basic_form.name.help_text }}">?</span>
-          {{ basic_form.name }}
-          {{ basic_form.name.errors }}
-        </li>
-        <li class="packager_input">
-          <label for="description">{{ _('Description') }}</label>
-          <span class="tip tooltip" title="{{ basic_form.description.help_text }}">?</span>
-          {{ basic_form.description }}
-          {{ basic_form.description.errors }}
-        </li>
-        <li class="required packager_input">
-          <label for="version">{{ _('Add-on Version') }} {{ required() }}</label>
-          <span class="tip tooltip" title="{{ basic_form.version.help_text }}">?</span>
-          {{ basic_form.version }}
-          {{ basic_form.version.errors }}
-        </li>
-        <li class="required packager_input">
-          <label for="id">{{ _('Unique ID') }} {{ required() }}</label>
-          <span class="tip tooltip" title="{{ basic_form.id.help_text }}">?</span>
-          {{ basic_form.id }}
-          {{ basic_form.id.errors }}
-        </li>
+        {{ pretty_field(basic_form.name, _('Add-on Name'), req=True) }}
+        {{ pretty_field(basic_form.description, _('Description')) }}
+        {{ pretty_field(basic_form.version, _('Add-on Version'), req=True) }}
+        {{ pretty_field(basic_form.id, _('Unique ID'), req=True) }}
       </ul>
     </fieldset>
     <fieldset>
@@ -65,18 +45,8 @@
       {% endtrans %}
       </p>
       <ul>
-        <li class="required packager_input">
-          <label for="author_name">{{ _('Primary Author') }} {{ required() }}</label>
-          <span class="tip tooltip" title="{{ basic_form.author_name.help_text }}">?</span>
-          {{ basic_form.author_name }}
-          {{ basic_form.author_name.errors }}
-        </li>
-        <li class="packager_input">
-          <label for="contributors">{{ _('Contributors') }}</label>
-          <span class="tip tooltip" title="{{ basic_form.contributors.help_text }}">?</span>
-          {{ basic_form.contributors }}
-          {{ basic_form.contributors.errors }}
-        </li>
+        {{ pretty_field(basic_form.author_name, _('Primary Author'), req=True) }}
+        {{ pretty_field(basic_form.contributors, _('Contributors')) }}
       </ul>
     </fieldset>
     <fieldset>
@@ -89,28 +59,19 @@
         that you intend to test your add-on with.
         {% endtrans %}
       </p>
-      <div class="supportedapps">
+      <div class="supported-apps">
         <label>{{ _('Supported Applications and Versions') }}</label>
         {{ compat_forms.management_form }}
         {{ compat_forms.non_form_errors() }}
-        <ul>
-        {% for compat in compat_forms %}
-        <li class="compat_form">
-          <label>
-            {{ compat.enabled }}
-            {{ compat.enabled.label }}
-          </label>
-          <span>
-            {{ compat.min_ver.label }}
-            {{ compat.min_ver }}
-          </span>
-          <span>
-            {{ compat.max_ver.label }}
-            {{ compat.max_ver }}
-          </span>
-          {{ compat.non_field_errors() }}
-        </li>
-        {% endfor %}
+        <ul class="choices">
+          {% for compat in compat_forms %}
+            <li class="row">
+              {{ pretty_field(compat.enabled, tag=None, class='app ' + compat.app.short) }}
+              {{ pretty_field(compat.min_ver, tag='span') }}
+              {{ pretty_field(compat.max_ver, tag='span') }}
+              {{ compat.non_field_errors() }}
+            </li>
+          {% endfor %}
         </ul>
       </div>
     </fieldset>
@@ -123,27 +84,27 @@
         select so your extension will work out of the box.
         {% endtrans %}
       </p>
-      <ul>
+      <ul class="choices">
         {% for feature in features_form %}
-        <li>
-          {{ feature }}
-          {{ feature.label }}
-          <span class="tip tooltip" title="{{ feature.help_text }}">?</span>
-        </li>
+          {{ pretty_field(feature) }}
         {% endfor %}
       </ul>
     </fieldset>
-    <input type="submit" value="{{ _('Submit and Build') }}" />
+    <footer>
+      <button>{{ _('Submit and Build') }}</button>
+    </footer>
   </form>
 </section>
 
 <aside class="secondary">
-  <h3>{{ _('Advanced Building') }}</h3>
-  <p>
+  <div class="highlight">
+    <h3>{{ _('Advanced Building') }}</h3>
+    <p>
       {% trans url="http://www.mozdev.org/projects/wizard/" %}
       Want to create XULRunner applications, XPCOM components, and other advanced
       skeletons? Visit the <a href="{{ url }}">MozDev Project Wizard</a>.
       {% endtrans %}
-  </p>
+    </p>
+  </div>
 </aside>
 {% endblock content %}

@@ -28,7 +28,7 @@ class TestAddOnPackager(amo.tests.TestCase):
 
         doc = pq(r.content)
         # Assert that the first dropdown (Firefox) has at least thirty items.
-        assert len(doc('.compat_form select').children()) > 30
+        assert len(doc('.supported-apps select').children()) > 30
 
     def test_no_mozilla(self):
         """
@@ -39,7 +39,7 @@ class TestAddOnPackager(amo.tests.TestCase):
         eq_(r.status_code, 200)
 
         doc = pq(r.content)
-        for label in doc('.compat_form label'):
+        for label in doc('.supported-apps label.app'):
             assert pq(label).text() != 'Mozilla'
 
     def _form_data(self, data=None, compat_form=True):

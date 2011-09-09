@@ -1,0 +1,147 @@
+@import '../lib';
+
+#packager {
+    fieldset {
+        border: none;
+    }
+    li.row {
+        border-bottom: 1px dotted #add0dc;
+        clear: both;
+        float: left;
+        margin: 0;
+        padding: .5em 0;
+        width: 100%;
+        &:first-child {
+            border-top: 1px dotted #add0dc;
+        }
+        label {
+            float: left;
+            margin-right: 1em;
+            width: 25%;
+            &.choice {
+                width: auto;
+            }
+        }
+        label.choice, .errorlist {
+            margin-left: 27%;
+        }
+        .error {
+            color: @error-red;
+        }
+        .errorlist {
+            color: fadeOut(@error-red, 30%);
+        }
+    }
+    .choices li.row {
+        label.choice, .errorlist {
+            margin-left: 0;
+        }
+    }
+    label.choice {
+        font-weight: normal;
+    }
+    input[type=text] {
+        width: 20em;
+    }
+    #id_version {
+        width: 5em;
+    }
+    textarea {
+        width: auto;
+    }
+    .supported-apps {
+        > label {
+            display: block;
+            margin: 2em 0 .5em;
+        }
+        li.row {
+            line-height: 30px;
+            padding: .5em 0;
+            label.app, span.row {
+                opacity: .5;
+                -moz-transition: opacity .25s;
+            }
+            label.app.choice {
+                background-position: 0 .25em;
+                .background-size(auto 24px);
+                color: #000;
+                margin: 0 1em 0 0;
+                width: 25%;
+                input {
+                    margin-left: 32px;
+                }
+            }
+            span.row {
+                color: @medium-gray;
+                display: block;
+                float: left;
+                margin-right: 2em;
+                &.error {
+                    color: @error-red;
+                }
+                label {
+                    font-weight: normal;
+                }
+                .req {
+                    display: none;
+                }
+                select {
+                    margin-left: .5em;
+                    width: 10em;
+                }
+            }
+            &.selected {
+                label.app,
+                span.row {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+#packager-download {
+    padding: 30px 0;
+    span {
+        background: #fff;
+        border: 1px solid #eee;
+        border-width: 0 1px 3px;
+        border-radius: 5px;
+        color: #888;
+        display: block;
+        margin: 0 auto;
+        padding: 10px 5px;
+        text-align: center;
+        width: 200px;
+    }
+    a {
+        background: #64A61C;
+        background: -moz-linear-gradient(center top, #84C63C, #489615);
+        border-radius: 6px;
+        box-shadow: 0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset;
+        color: #fff;
+        display: block;
+        font-size: 16px;
+        line-height: 18px;
+        margin: 2px auto;
+        padding: 10px 5px;
+        text-align: center;
+        text-decoration: none;
+        width: 230px;
+        &:hover {
+            box-shadow: 0 3px rgba(0, 0, 0, 0.1), 0 -6px rgba(0, 0, 0, 0.1) inset;
+            margin: 0 auto 2px;
+            padding-bottom: 12px;
+        }
+        &:active {
+            box-shadow: 0 3px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset;
+            margin: 4px auto 2px;
+            padding-bottom: 8px;
+        }
+    }
+    b {
+        font: italic 12px/14px @serif-stack;
+        margin: 0 6px;
+        text-align: left;
+    }
+}

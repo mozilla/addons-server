@@ -10,7 +10,7 @@
   <h2>{{ title }}</h2>
   <h3>{{ _('Add-on packaged successfully!') }}</h3>
 </header>
-<section class="item">
+<section>
   <p>
   {% trans %}
   Use the download link below to save a copy of your extension's compressed
@@ -19,7 +19,7 @@
   {% endtrans %}
   </p>
   <div id="packager-download" data-downloadurl="{{ url('devhub.package_addon_json', uuid) }}">
-    <span>{{ _('Please wait...') }}</span>
+    <span>{{ _('Please wait&hellip;') }}</span>
     <noscript>
       {% trans %}
       JavaScript needs to be enabled to fetch the packaged add-on.
@@ -30,7 +30,7 @@
 <header>
   <h3>{{ _('What do I do next?') }}</h3>
 </header>
-<section class="item">
+<section>
   <p>
   {% trans gs_url=url('devhub.docs', 'getting-started'),
            ht_url=url('devhub.docs', 'how-to') %}
