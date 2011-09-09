@@ -301,7 +301,9 @@ def app_search(request, template=None):
     if query.get('sort'):
         mapping = {'downloads': '-weekly_downloads',
                    'rating': '-bayesian_rating',
-                   'updated': '-last_updated'}
+                   'created': '-created',
+                   'name': '-name_sort',
+                   'hotness': '-hotness'}
         qs = qs.order_by(mapping[query['sort']])
 
     pager = amo.utils.paginate(request, qs)
@@ -369,16 +371,23 @@ def es_search(request, tag_name=None, template=None):
     if query.get('sort'):
         mapping = {'users': '-average_daily_users',
                    'rating': '-bayesian_rating',
-                   'updated': '-last_updated'}
+                   'created': '-created',
+                   'name': 'name_sort',
+                   'downloads': '-weekly_downloads',
+                   'updated': '-last_updated',
+                   'hotness': '-hotness'}
         qs = qs.order_by(mapping[query['sort']])
 
     pager = amo.utils.paginate(request, qs)
     facets = pager.object_list.facets
 
+    sort, extra_sort = split_choices(form.fields['sort'].choices, 'created')
     ctx = {
         'pager': pager,
         'query': query,
         'form': form,
+        'sort_opts': sort,
+        'extra_sort_opts': extra_sort,
         'sorting': sort_sidebar(request, query, form),
         'categories': category_sidebar(request, query, facets),
         'platforms': platform_sidebar(request, query, facets),
@@ -574,3 +583,14 @@ def fix_search_query(query):
             rv[key] = fixes[rv[key]]
             changed = True
     return rv if changed else query
+
+
+def split_choices(choices, split):
+    """Split a list of [(key, title)] pairs after key == split."""
+    index = [idx for idx, (key, title) in enumerate(choices)
+             if key == split]
+    if index:
+        index = index[0] + 1
+        return choices[:index], choices[index:]
+    else:
+        return choices, []

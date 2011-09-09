@@ -238,17 +238,25 @@ class SecondarySearchForm(forms.Form):
 
 
 SORT_CHOICES = (
-    (None, _lazy(u'Relevance')),
+    (None, _lazy(u'Keyword Match')),
     ('users', _lazy(u'Most Users')),
-    ('rating', _lazy(u'Highest Rating')),
-    ('updated', _lazy(u'Last Updated')),
+    ('rating', _lazy(u'Top Rated')),
+    ('created', _lazy(u'Newest')),
+    # --
+    ('name', _lazy(u'Name')),
+    ('downloads', _lazy(u'Weekly Downloads')),
+    ('updated', _lazy(u'Recently Updated')),
+    ('hotness', _lazy(u'Up & Coming')),
 )
 
 APP_SORT_CHOICES = (
-    (None, _lazy(u'Relevance')),
-    ('downloads', _lazy(u'Most Downloads')),
-    ('rating', _lazy(u'Highest Rating')),
-    ('updated', _lazy(u'Last Updated')),
+    (None, _lazy(u'Keyword Match')),
+    ('downloads', _lazy(u'Weekly Downloads')),
+    ('rating', _lazy(u'Top Rated')),
+    ('created', _lazy(u'Newest')),
+    # --
+    ('name', _lazy(u'Name')),
+    ('hotness', _lazy(u'Up & Coming')),
 )
 
 
