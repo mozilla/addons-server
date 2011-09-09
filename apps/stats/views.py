@@ -9,6 +9,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.core.exceptions import PermissionDenied
 
 import jingo
+from product_details import product_details
 
 from access import acl
 from addons.decorators import addon_view, addon_view_factory
@@ -125,6 +126,8 @@ def usage_breakdown_series(request, addon, group,
     }
     series = get_series(UpdateCount, {field: fields[field]},
                         addon=addon.id, date__range=date_range)
+    if field == 'locales':
+        series = process_locales(series)
 
     if format == 'csv':
         series, headings = csv_dynamic_prep(series, qs, fields,
@@ -132,6 +135,21 @@ def usage_breakdown_series(request, addon, group,
         return render_csv(request, addon, series, headings)
     elif format == 'json':
         return render_json(request, addon, series)
+
+
+def process_locales(series):
+    """Convert locale codes to pretty names, skip any unknown locales."""
+    languages = dict((k.lower(), v['native'])
+                     for k, v in product_details.languages.items())
+    for row in series:
+        if 'locales' in row:
+            new = {}
+            for key, count in row['locales'].items():
+                if key in languages:
+                    k = u'%s (%s)' % (languages[key], key)
+                    new[k] = count
+            row['locales'] = new
+        yield row
 
 
 def check_series_params_or_404(group, start, end, format):

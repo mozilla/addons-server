@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import csv
 import json
 
@@ -353,8 +354,8 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
                 "date": "2009-06-02",
                 "end": "2009-06-02",
                 "locales": {
-                    "el": 400,
-                    "en-us": 300
+                    u"Ελληνικά (el)": 400,
+                    u"English (US) (en-us)": 300
                 }
             },
             {
@@ -362,8 +363,8 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
                 "date": "2009-06-01",
                 "end": "2009-06-01",
                 "locales": {
-                    "el": 400,
-                    "en-us": 300
+                    u"Ελληνικά (el)": 400,
+                    u"English (US) (en-us)": 300
                 }
             }
         ])
