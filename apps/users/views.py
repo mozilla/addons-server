@@ -328,11 +328,11 @@ def login(request, modal=False, template=None):
                       'can log in.').format(user.email)
             url = "%s%s" % (settings.SITE_URL,
                             reverse('users.confirm.resend', args=[user.id]))
-            msg2 = _(('If you did not receive the confirmation email, make '
+            msg2 = _('If you did not receive the confirmation email, make '
                       'sure your email service did not mark it as "junk '
                       'mail" or "spam". If you need to, you can have us '
                       '<a href="%s">resend the confirmation message</a> '
-                      'to your email address mentioned above.') % url)
+                      'to your email address mentioned above.') % url
             messages.error(request, _('Activation Email Sent'),  msg1)
             messages.info(request, _('Having Trouble?'), msg2,
                           title_safe=True)
@@ -590,7 +590,7 @@ def unsubscribe(request, hash=None, token=None, perm_setting=None):
         if not perm_setting:
             # TODO: make this work. nothing currently links to it, though.
             perm_settings = [l for l in notifications.NOTIFICATIONS
-                             if l.mandatory==False]
+                             if not l.mandatory]
         else:
             perm_setting = notifications.NOTIFICATIONS_BY_SHORT[perm_setting]
             UserNotification.update_or_create(update={'enabled': False},
