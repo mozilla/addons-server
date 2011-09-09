@@ -118,7 +118,7 @@ def extension_detail(request, addon):
                               addon.get_satisfaction_company)
 
     # Other add-ons from the same author(s).
-    author_addons = (Addon.objects.valid().exclude(id=addon.id).distinct()
+    author_addons = (Addon.objects.reviewed().exclude(id=addon.id).distinct()
                      .filter(addonuser__listed=True,
                              authors__in=addon.listed_authors))[:6]
 

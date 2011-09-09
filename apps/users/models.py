@@ -145,8 +145,8 @@ class UserProfile(amo.models.ModelBase):
     @amo.cached_property
     def addons_listed(self):
         """Public add-ons this user is listed as author of."""
-        return self.addons.valid().filter(addonuser__user=self,
-                                          addonuser__listed=True)
+        return self.addons.reviewed().filter(addonuser__user=self,
+                                             addonuser__listed=True)
 
     @property
     def picture_dir(self):

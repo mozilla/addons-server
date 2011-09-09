@@ -58,6 +58,10 @@ class AddonManager(amo.models.ManagerBase):
         """Get public add-ons only"""
         return self.filter(self.valid_q([amo.STATUS_PUBLIC]))
 
+    def reviewed(self):
+        """Get add-ons with a reviewed status"""
+        return self.filter(self.valid_q(amo.REVIEWED_STATUSES))
+
     def unreviewed(self):
         """Get only unreviewed add-ons"""
         return self.filter(self.valid_q(amo.UNREVIEWED_STATUSES))
@@ -69,8 +73,8 @@ class AddonManager(amo.models.ManagerBase):
     def valid_and_disabled(self):
         """Get valid, enabled and disabled add-ons."""
         statuses = list(amo.LISTED_STATUSES) + [amo.STATUS_DISABLED]
-        return self.filter(_current_version__isnull=False,
-                           status__in=statuses)
+        return self.filter(Q(status__in=statuses) | Q(disabled_by_user=True),
+                           _current_version__isnull=False)
 
     def featured(self, app, lang=None, type=None):
         """

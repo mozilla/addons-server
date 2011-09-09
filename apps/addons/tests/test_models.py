@@ -95,6 +95,11 @@ class TestAddonManager(amo.tests.TestCase):
             assert_not_equal(
                 a.id, 3, 'public() must not return unreviewed add-ons')
 
+    def test_reviewed(self):
+        addons = Addon.objects.reviewed()
+        for a in addons:
+            assert a.status in amo.REVIEWED_STATUSES, (a.id, a.status)
+
     def test_unreviewed(self):
         """
         Tests for unreviewed addons.
@@ -115,14 +120,16 @@ class TestAddonManager(amo.tests.TestCase):
             assert not addon.disabled_by_user
 
     def test_valid_disabled_by_user(self):
+        before = Addon.objects.valid_and_disabled().count()
         addon = Addon.objects.get(pk=5299)
         addon.update(disabled_by_user=True)
-        eq_(Addon.objects.valid_and_disabled().count(), 10)
+        eq_(Addon.objects.valid_and_disabled().count(), before)
 
     def test_valid_disabled_by_admin(self):
+        before = Addon.objects.valid_and_disabled().count()
         addon = Addon.objects.get(pk=5299)
         addon.update(status=amo.STATUS_DISABLED)
-        eq_(Addon.objects.valid_and_disabled().count(), 10)
+        eq_(Addon.objects.valid_and_disabled().count(), before)
 
 
 class TestAddonManagerFeatured(amo.tests.TestCase):
