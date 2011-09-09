@@ -18,12 +18,19 @@ class PaypalError(Exception):
     id = None
 
 
-class AuthError(Exception):
+class AuthError(PaypalError):
     pass
 
 
 errors = {'520003': AuthError}
 paypal_log = commonware.log.getLogger('z.paypal')
+
+def should_ignore_paypal():
+    """
+    Returns whether to skip PayPal communications for development
+    purposes or not.
+    """
+    return settings.DEBUG and 'sandbox' not in settings.PAYPAL_PERMISSIONS_URL
 
 
 def get_paykey(data):

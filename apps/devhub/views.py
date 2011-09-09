@@ -407,11 +407,9 @@ def _paypal_url(addon):
     try:
         url = paypal.refund_permission_url(addon)
     except paypal.PaypalError, e:
-        # If you've got and tld, or a port or anything else that
-        # PayPal doesn't like, then you'll get a malformed URL here.
-        # Which is a real pain for our dev servers.
-        if 'malformed' in e.message:
-            log.debug('PayPal does not like your server, set to empty.')
+        # dev servers aren't always set up for paypal.
+        if paypal.should_ignore_paypal():
+            log.debug('Paypal error %r skipped due to dev mode' % (e,))
         else:
             raise
     return url
@@ -1318,9 +1316,10 @@ def marketplace_upsell(request, addon_id, addon):
 def marketplace_confirm(request, addon_id, addon):
     if request.method == 'POST':
         # Minimum required to become premium.
-        if (not addon.premium or not addon.paypal_id
-            or not addon.support_email or not addon.premium.price
-            or not addon.premium.paypal_permissions_token):
+        if (paypal.should_ignore_paypal() and
+            (not addon.premium or not addon.paypal_id
+             or not addon.support_email or not addon.premium.price
+             or not addon.premium.paypal_permissions_token)):
             messages.error(request, 'Some required details are missing.')
             return redirect('devhub.market.1', addon.slug)
         addon.update(premium_type=amo.ADDON_PREMIUM)

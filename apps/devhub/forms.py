@@ -877,18 +877,19 @@ class PremiumForm(happyforms.Form):
             self.fields[field].required = False
 
     def clean_paypal_id(self):
-        if self.addon.premium:
-            token = self.addon.premium.paypal_permissions_token
-        else:
-            # l10n: We require PayPal users to have a third party token
-            raise forms.ValidationError(
-                    _('No PayPal third party refund token set up.'))
+        if not paypal.should_ignore_paypal():
+            if self.addon.premium:
+                token = self.addon.premium.paypal_permissions_token
+            else:
+                # l10n: We require PayPal users to have a third party token
+                raise forms.ValidationError(
+                        _('No PayPal third party refund token set up.'))
 
-        if not paypal.check_refund_permission(token):
-            # l10n: We require PayPal users to have a third party token
-            raise forms.ValidationError(
-                    _('The PayPal third party refund '
-                      'token on your account is invalid.'))
+            if not paypal.check_refund_permission(token):
+                # l10n: We require PayPal users to have a third party token
+                raise forms.ValidationError(
+                        _('The PayPal third party refund '
+                          'token on your account is invalid.'))
         return self.cleaned_data['paypal_id']
 
     def clean_text(self):
