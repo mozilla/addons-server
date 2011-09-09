@@ -26,6 +26,9 @@
          {% if b.show_warning %}
            href="{{ b.addon.get_url_path() }}"
            data-realurl="{{ link.url }}"
+         {% elif b.show_eula %}
+           href="{{ link.url|absolutify }}"
+           data-realurl="{{ b.xpiurl }}"
          {% else %}
            href="{{ link.url|absolutify }}"
          {% endif %}>

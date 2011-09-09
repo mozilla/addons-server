@@ -207,6 +207,7 @@ class InstallButton(object):
         if self.show_eula:
             # L10n: please keep &nbsp; in the string so &rarr; does not wrap.
             text = jinja2.Markup(_('Continue to Download&nbsp;&rarr;'))
+            self.xpiurl = url
             url = file.eula_url()
         elif self.accept_eula:
             text = _('Accept and Download')
