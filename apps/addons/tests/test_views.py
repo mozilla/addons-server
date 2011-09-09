@@ -28,6 +28,7 @@ from addons import cron
 from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
                            Charity, Category)
 from files.models import File
+from market.models import AddonPremium
 from paypal.tests import other_error
 from stats.models import Contribution
 from translations.helpers import truncate
@@ -212,6 +213,48 @@ class TestContributeEmbedded(amo.tests.TestCase):
                         reverse('addons.contribute', args=[self.addon.slug]),
                         'result_type=json'))
         assert not json.loads(res.content)['paykey']
+
+
+class TestPurchaseEmbedded(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/addon_592', 'prices']
+
+    def setUp(self):
+        waffle.models.Switch.objects.create(name='marketplace', active=True)
+        self.addon = Addon.objects.get(pk=592)
+        self.addon.update(premium_type=amo.ADDON_PREMIUM,
+                          status=amo.STATUS_PUBLIC)
+        AddonPremium.objects.create(addon=self.addon, price_id=1)
+        self.purchase_url = reverse('addons.purchase', args=[self.addon.slug])
+
+    def test_premium_only(self):
+        self.addon.update(premium_type=amo.ADDON_FREE)
+        eq_(self.client.get(self.purchase_url).status_code, 404)
+
+    @patch('paypal.get_paykey')
+    def test_redirect(self, get_paykey):
+        get_paykey.return_value = 'some-pay-key'
+        res = self.client.get(self.purchase_url)
+        assert 'some-pay-key' in res['Location']
+
+    @patch('paypal.get_paykey')
+    def test_ajax(self, get_paykey):
+        get_paykey.return_value = 'some-pay-key'
+        res = self.client.get_ajax(self.purchase_url)
+        assert json.loads(res.content)['paykey'] == 'some-pay-key'
+
+    @patch('paypal.get_paykey')
+    def test_paykey_amount(self, get_paykey):
+        # Test the amount the paykey for is the price.
+        get_paykey.return_value = 'some-pay-key'
+        self.client.get_ajax(self.purchase_url)
+        # wtf? Can we get any more [0]'s there?
+        eq_(get_paykey.call_args_list[0][0][0]['amount'], Decimal('0.99'))
+
+    @patch('paypal.get_paykey')
+    def test_paykey_error(self, get_paykey):
+        get_paykey.side_effect = Exception('woah')
+        res = self.client.get_ajax(self.purchase_url)
+        assert json.loads(res.content)['error'].startswith('There was an')
 
 
 class TestDeveloperPages(amo.tests.TestCase):

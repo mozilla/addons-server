@@ -29,20 +29,23 @@ paypal_log = commonware.log.getLogger('z.paypal')
 def get_paykey(data):
     """
     Gets a paykey from Paypal. Need to pass in the following in data:
-    return_url and cancel_url: where user goes back to (required)
+    slug: addon, will form urls for where user goes back to (required)
     email: who the money is going to (required)
     amount: the amount of money (required)
     ip: ip address of end user (required)
     uuid: contribution_uuid (required)
     memo: any nice message
     """
+    complete = reverse('addons.paypal', args=[data['slug'], 'complete'])
+    cancel = reverse('addons.paypal', args=[data['slug'], 'cancel'])
+    uuid_qs = urllib.urlencode({'uuid': data['uuid']})
 
     paypal_data = {
         'actionType': 'PAY',
         'requestEnvelope.errorLanguage': 'US',
         'currencyCode': 'USD',
-        'cancelUrl': data['cancel_url'],
-        'returnUrl': data['return_url'],
+        'cancelUrl': absolutify('%s?%s' % (cancel, uuid_qs)),
+        'returnUrl': absolutify('%s?%s' % (complete, uuid_qs)),
         'receiverList.receiver(0).email': data['email'],
         'receiverList.receiver(0).amount': data['amount'],
         'receiverList.receiver(0).invoiceID': 'mozilla-%s' % data['uuid'],
@@ -55,7 +58,12 @@ def get_paykey(data):
         paypal_data['memo'] = data['memo']
 
     with statsd.timer('paypal.paykey.retrieval'):
-        response = _call(settings.PAYPAL_PAY_URL, paypal_data, ip=data['ip'])
+        try:
+            response = _call(settings.PAYPAL_PAY_URL, paypal_data,
+                             ip=data['ip'])
+        except AuthError, error:
+             paypal_log.error('Authentication error: %s' % error)
+             raise
     return response['payKey']
 
 

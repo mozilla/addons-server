@@ -29,8 +29,7 @@ other_error = ('error(0).errorId=520001'
 
 class TestPayPal(amo.tests.TestCase):
     def setUp(self):
-        self.data = {'return_url': absolutify(reverse('home')),
-                     'cancel_url': absolutify(reverse('home')),
+        self.data = {'slug': 'xx',
                      'amount': 10,
                      'email': 'someone@somewhere.com',
                      'uuid': time.time(),

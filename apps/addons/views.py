@@ -10,7 +10,6 @@ from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.translation import trans_real as translation
-from django.utils import http as urllib
 from django.views.decorators.cache import cache_page, cache_control
 from django.views.decorators.vary import vary_on_headers
 
@@ -28,7 +27,6 @@ from amo import messages
 from amo.decorators import login_required
 from amo.forms import AbuseForm
 from amo.utils import sorted_groupby, randslice
-from amo.helpers import absolutify
 from amo.models import manual_order
 from amo import urlresolvers
 from amo.urlresolvers import reverse
@@ -39,7 +37,7 @@ import paypal
 from reviews.forms import ReviewForm
 from reviews.models import Review, GroupedRating
 from sharing.views import share as share_redirect
-from stats.models import GlobalStat, Contribution
+from stats.models import Contribution
 from translations.query import order_by_translation
 from translations.helpers import truncate
 from versions.models import Version
@@ -462,6 +460,41 @@ def developers(request, addon, page):
                          'version': version})
 
 
+# TODO(andym): remove this once we figure out how to process for
+# anonymous users. For now we are concentrating on logged in users.
+@login_required
+@addon_view
+def purchase(request, addon):
+    if not waffle.switch_is_active('marketplace'):
+        raise http.Http404
+
+    if (not addon.is_premium() or not addon.premium):
+        raise http.Http404
+
+    amount = addon.premium.price.price
+    uuid_ = hashlib.md5(str(uuid.uuid4())).hexdigest()
+    contrib_for = _(u'Purchase of {0}').format(jinja2.escape(addon.name))
+
+    paykey, error = '', ''
+    try:
+        paykey = paypal.get_paykey(dict(uuid=uuid_, slug=addon.slug,
+                                        amount=amount, memo=contrib_for,
+                                        email=addon.paypal_id,
+                                        ip=request.META.get('REMOTE_ADDR')))
+    except Exception:
+        log.error('Error getting paykey, purchase of addon: %s' % addon.pk,
+                  exc_info=True)
+        error = _('There was an error communicating with PayPal.')
+
+    url = '%s?paykey=%s' % (settings.PAYPAL_FLOW_URL, paykey)
+    if request.GET.get('result_type') == 'json' or request.is_ajax():
+        return http.HttpResponse(json.dumps({'url': url,
+                                             'paykey': paykey,
+                                             'error': error}),
+                                 content_type='application/json')
+    return http.HttpResponseRedirect(url)
+
+
 @addon_view
 def contribute(request, addon):
     contrib_type = request.GET.get('type', 'suggested')
@@ -476,7 +509,6 @@ def contribute(request, addon):
         amount = settings.DEFAULT_SUGGESTED_CONTRIBUTION
 
     contribution_uuid = hashlib.md5(str(uuid.uuid4())).hexdigest()
-    uuid_qs = urllib.urlencode({'uuid': contribution_uuid})
 
     if addon.charity:
         name, paypal_id = addon.charity.name, addon.charity.paypal
@@ -484,26 +516,16 @@ def contribute(request, addon):
         name, paypal_id = addon.name, addon.paypal_id
     contrib_for = _(u'Contribution for {0}').format(jinja2.escape(name))
 
-    paykey, nice_error = None, None
+    paykey, error = '', ''
     try:
-        paykey = paypal.get_paykey({
-            'return_url': absolutify('%s?%s' % (reverse('addons.paypal',
-                                                args=[addon.slug, 'complete']),
-                                                uuid_qs)),
-            'cancel_url': absolutify('%s?%s' % (reverse('addons.paypal',
-                                                args=[addon.slug, 'cancel']),
-                                                uuid_qs)),
-            'uuid': contribution_uuid,
-            'amount': str(amount),
-            'email': paypal_id,
-            'ip': request.META.get('REMOTE_ADDR'),
-            'memo': contrib_for})
-    except paypal.AuthError, error:
-        paypal_log.error('Authentication error: %s' % error)
-        nice_error = _('There was a problem communicating with Paypal.')
-    except Exception, error:
-        paypal_log.error('Error: %s' % error)
-        nice_error = _('There was a problem with that contribution.')
+        paykey = paypal.get_paykey(dict(uuid=contribution_uuid,
+                                        slug=addon.slug, amount=amount,
+                                        email=paypal_id, memo=contrib_for,
+                                        ip=request.META.get('REMOTE_ADDR')))
+    except Exception:
+        log.error('Error getting paykey, contribution for addon: %s'
+                  % addon.pk, exc_info=True)
+        error = _('There was an error communicating with PayPal.')
 
     if paykey:
         contrib = Contribution(addon_id=addon.id,
@@ -527,7 +549,7 @@ def contribute(request, addon):
         # not have a paykey and the JS can cope appropriately.
         return http.HttpResponse(json.dumps({'url': url,
                                              'paykey': paykey,
-                                             'error': nice_error}),
+                                             'error': error}),
                                  content_type='application/json')
     return http.HttpResponseRedirect(url)
 

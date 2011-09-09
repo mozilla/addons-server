@@ -219,9 +219,10 @@ class InstallButton(object):
             url = urlparams(roadblock, eula='', version=self.version.version)
 
         if self.can_be_purchased:
-            # TODO(gkobes): Use the actual price!
+            # TODO(andym): make this faster and less naff
             # L10n: {0} is a price
-            text = _('Purchase for {0}').format('$123.45')
+            text = _('Purchase for {0}').format(self.addon
+                                                    .premium.price.price)
 
         return text, url, os
 

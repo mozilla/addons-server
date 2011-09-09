@@ -2,7 +2,7 @@ $(document).ready(function() {
     $("#contribute-why").popup("#contribute-more-info", {
         pointTo: "#contribute-more-info"
     });
-    $('div.contribute a.suggested-amount').live('click', function(event) {
+    $('div.contribute a.suggested-amount,button.paypal').live('click', function(event) {
         var el = this;
         $(el).addClass('ajax-loading');
         $.ajax({

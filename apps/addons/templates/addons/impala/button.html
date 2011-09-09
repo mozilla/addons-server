@@ -9,8 +9,10 @@
      data-developers="{{ addon.meet_the_dev_url() }}"
      data-name="{{ addon.name }}"
      {{ b.attrs()|xmlattr }}
-  {% if addon.can_be_purchased() %}
-     data-cost="$123.45" {# TODO(gkoberger): Change This! #}
+  {% if waffle.switch('marketplace') and addon.can_be_purchased() %}
+     data-purchase="{{ url('addons.purchase', addon.slug) }}?"
+     {# TODO(andym): make this faster and less naff #}
+     data-cost="{{ addon.premium.price.price }}"
      data-login-url="{{ url('users.login_modal') }}"
   {% endif %}
   {% if compat %}
