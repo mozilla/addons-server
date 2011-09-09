@@ -167,6 +167,7 @@ $('form.ajax-submit').live('submit', function() {
     var $this = $(this),
         params = $this.serializeArray();
 
+    $(this).find('.submit, button[type=submit], submit').attr('disabled', true).addClass('loading-submit');
     $.post($this.attr('action'), params, function(d) {
         $this.replaceWith(d);
     });

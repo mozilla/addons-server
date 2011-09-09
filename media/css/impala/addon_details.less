@@ -533,4 +533,37 @@ span.featured {
             font-weight: bold;
         }
     }
+    div.login {
+        border-bottom: 1px dotted #CCC;
+        margin: 0 0 1em;
+        padding: 0 0 1em;
+        label {
+            color: #777;
+            display: inline-block;
+            font-weight: normal;
+            width: 100px;
+            &.check {
+                width: 500px;
+                color: #333;
+                margin-left: 100px;
+            }
+        }
+        input {
+            margin-bottom: 5px;
+        }
+        .errorlist {
+            color: @error-red;
+            margin-left: 105px;
+            padding-bottom: 5px;
+        }
+        .notification-box {
+            border: 0 none;
+            .box-shadow(0 0 white);
+            h2 {
+              font-family: @sans-stack;
+              font-size: 1em;
+              font-weight: normal;
+            }
+        }
+    }
 }

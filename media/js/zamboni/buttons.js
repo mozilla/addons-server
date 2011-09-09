@@ -373,10 +373,11 @@ jQuery.fn.addPaypal = function(html, allowClick) {
         } else {
             user.append($("<strong>", {'html': gettext("Have a Firefox Add-ons account? <a href='#' class='login'>Log In</a>")}));
             user.append($("<div>", {'html': gettext("No account? No problem! You can create one after your purchase.")}));
-            var user_login =  $("<div>", {'class': 'login'}).hide();
-            user.append(user_login);
             user.find('a.login').click(_pd(function() {
-                user_login.show().load($install.attr('data-login-url'));
+                user.html(gettext("Loading&hellip;")).show().addClass('login')
+                    .load($install.attr('data-login-url'), function() {
+                        $(this).find('#id_username').focus();
+                    });
             }));
         }
         paypal.append($("<button>", {'class': 'button prominent paypal',

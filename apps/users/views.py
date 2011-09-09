@@ -284,13 +284,15 @@ def login(request, modal=False, template=None):
     # In case we need it later.  See below.
     get_copy = request.GET.copy()
 
+    if modal:
+        template = 'users/login_modal.html'
+        if request.user.is_authenticated():
+            return jingo.render(request, 'users/login_modal.html')
+
     logout(request)
 
     if 'to' in request.GET:
         request = _clean_next_url(request)
-
-    if modal:
-        template = 'users/login_modal.html'
 
     limited = getattr(request, 'limited', 'recaptcha_shown' in request.POST)
     partial_form = partial(forms.AuthenticationForm, use_recaptcha=limited)
@@ -303,6 +305,7 @@ def login(request, modal=False, template=None):
         # redirecting to another domain.  Since we want to allow this in
         # certain cases, we have to make a new response object here to replace
         # the above.
+
         if 'domain' in request.GET:
             request.GET = get_copy
             request = _clean_next_url(request)
@@ -356,6 +359,10 @@ def login(request, modal=False, template=None):
                                         '"remember me" set') % user)
         else:
             user.log_login_attempt(request, True)
+
+        if modal:
+            r = redirect('users.login_modal')
+
     elif 'username' in request.POST:
         # Hitting POST directly because cleaned_data doesn't exist
         user = UserProfile.objects.filter(email=request.POST['username'])

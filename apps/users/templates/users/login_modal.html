@@ -1,8 +1,20 @@
 {% if user.is_authenticated() %}
-  You are now logged in as {{ user.email }}!
+  {% trans user_email=user.email %}
+  You are now logged in as <strong>{{ user_email }}</strong>!
+  {% endtrans %}
 {% else %}
   <form method="post" action="{{ url('users.login_modal') }}" class="ajax-submit featured-inner object-lead user-input">
     {{ csrf() }}
+    {% include "messages.html" %}
+    {% if form.non_field_errors() %}
+        <div class="notification-box error">
+          <ul>
+          {% for error in form.non_field_errors() %}
+          <li><h2>{{ error }}</h2></li>
+          {% endfor %}
+          </ul>
+        </div>
+    {% endif %}
     <fieldset>
       <ul>
         <li>
@@ -26,7 +38,6 @@
         {{ form.recaptcha_shown }}
         {{ recaptcha(form) }}
         {% endif %}
-
       </ul>
     </fieldset>
     <div class="fm-control">

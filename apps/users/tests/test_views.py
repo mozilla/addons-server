@@ -324,6 +324,32 @@ class TestLogin(UserViewBase):
                                      password='wrong')
         assert self.client.login(**self.data)
 
+    def test_login_ajax(self):
+        url = reverse('users.login_modal')
+        r = self.client.get(url)
+        eq_(r.status_code, 200)
+
+        res = self.client.post(url, data=self.data)
+        eq_(res.status_code, 302)
+
+    def test_login_ajax_error(self):
+        url = reverse('users.login_modal')
+        data = self.data
+        data['username'] = ''
+
+        res = self.client.post(url, data=self.data)
+        eq_(res.context['form'].errors['username'][0],
+            'This field is required.')
+
+    def test_login_ajax_wrong(self):
+        url = reverse('users.login_modal')
+        data = self.data
+        data['username'] = 'jeffb@mozilla.com'
+
+        res = self.client.post(url, data=self.data)
+        text = 'Please enter a correct username and password.'
+        assert res.context['form'].errors['__all__'][0].startswith(text)
+
     def test_login_no_recaptcha(self):
         res = self.client.post(self.url, data=self.data)
         eq_(res.status_code, 302)
