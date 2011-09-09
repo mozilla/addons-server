@@ -67,7 +67,7 @@
 {% endif %}
 
 {% if cas %}
-  <caBlacklistEntry>{{ cas }}</caBlacklistEntry>
+  <caBlocklistEntry>{{ cas }}</caBlocklistEntry>
 {% endif %}
 
 </blocklist>

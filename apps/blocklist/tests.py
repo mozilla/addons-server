@@ -390,5 +390,5 @@ class BlocklistCATest(BlocklistTest):
     def test_ca(self):
         r = self.client.get(self.fx4_url)
         dom = minidom.parseString(r.content)
-        ca = dom.getElementsByTagName('caBlacklistEntry')[0]
+        ca = dom.getElementsByTagName('caBlocklistEntry')[0]
         eq_(base64.b64decode(ca.childNodes[0].toxml()), self.ca.data)

@@ -27,6 +27,9 @@ class BlocklistCA(amo.models.ModelBase):
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'blca'
 
+    def flush_urls(self):
+        return ['/blocklist*']  # no lang/app
+
 
 class BlocklistDetail(amo.models.ModelBase):
     name = models.CharField(max_length=255)

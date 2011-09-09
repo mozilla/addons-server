@@ -13,6 +13,7 @@ class DetailAdmin(admin.ModelAdmin):
     inlines = inlines
 
 admin.site.register(models.BlocklistApp)
+admin.site.register(models.BlocklistCA)
 admin.site.register(models.BlocklistItem)
 admin.site.register(models.BlocklistPlugin)
 admin.site.register(models.BlocklistGfx)
