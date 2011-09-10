@@ -27,15 +27,17 @@
     {% endtrans %}
   </a></div>
 
-  {% if addon.average_daily_users %}
+  {% set adu = addon.average_daily_users %}
+  {% if adu %}
     <div id="daily-users">
-      {% if addon.public_stats %}
+      {% set stats = addon.public_stats %}
+      {% if stats %}
         {# TODO real reverse URL #}
         <a class='stats' title='View statistics' href="{{ locale_url('/statistics/addon/{0}'|f(addon.id)) }}">
-          {{ _('<b>{0}</b> users')|f(addon.average_daily_users|numberfmt)|safe }}
+      {% endif %}
+      {{ ngettext('{0} user', '{0} users', adu)|f(adu|numberfmt) }}
+      {% if stats %}
         </a>
-      {% else %}
-        {{ _('<b>{0}</b> users')|f(addon.average_daily_users|numberfmt)|safe }}
       {% endif %}
     </div>
   {% endif %}
