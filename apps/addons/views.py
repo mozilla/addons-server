@@ -471,7 +471,7 @@ def purchase(request, addon):
 
     log.debug('Starting purchase of addon: %s by user: %s'
               % (addon.pk, request.amo_user.pk))
-    amount = addon.premium.price.price
+    amount = addon.premium.get_price
     source = request.GET.get('source', '')
     uuid_ = hashlib.md5(str(uuid.uuid4())).hexdigest()
     # l10n: {0} is the addon name

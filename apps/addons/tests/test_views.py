@@ -826,7 +826,7 @@ class TestDetailPage(amo.tests.TestCase):
         addon = Addon.objects.get(id=3615)
         addon.update(premium_type=amo.ADDON_PREMIUM,
                      status=amo.STATUS_PUBLIC)
-        addon.premium.price.price = '0.99'
+        addon.premium.get_price = '0.99'
         response = self.client.get(reverse('addons.detail', args=[addon.slug]))
         eq_(response.status_code, 200)
 

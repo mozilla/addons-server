@@ -11,8 +11,7 @@
      {{ b.attrs()|xmlattr }}
   {% if waffle.switch('marketplace') and addon.can_be_purchased() %}
      data-purchase="{{ url('addons.purchase', addon.slug) }}?"
-     {# TODO(andym): make this faster and less naff #}
-     data-cost="{{ addon.premium.price.price }}"
+     data-cost="{{ addon.premium.get_price }}"
      data-login-url="{{ url('users.login_modal') }}"
   {% endif %}
   {% if compat %}

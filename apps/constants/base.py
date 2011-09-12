@@ -275,6 +275,15 @@ PAYPAL_CURRENCIES = {
 OTHER_CURRENCIES = PAYPAL_CURRENCIES.copy()
 del OTHER_CURRENCIES['USD']
 
+# Need to find a more complete list for this. This is just a sample.
+LOCALE_CURRENCY = {
+    'en_US': 'USD',
+    'en_CA': 'CAD',
+    'it': 'EUR',
+    'fr': 'EUR',
+    'pt_BR': 'BRL',
+}
+
 CURRENCY_DEFAULT = 'USD'
 
 CONTRIB_VOLUNTARY = 0

@@ -1,3 +1,4 @@
+from decimal import Decimal
 import json
 
 from nose.tools import eq_
@@ -6,9 +7,11 @@ import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon
-from market.models import Price
+from market.models import AddonPremium, Price
 from stats.models import Contribution
 from users.models import UserProfile
+
+from django.utils import translation
 
 
 class TestPrice(amo.tests.TestCase):
@@ -23,6 +26,33 @@ class TestPrice(amo.tests.TestCase):
 
     def test_currency(self):
         eq_(self.tier_one.pricecurrency_set.count(), 2)
+
+    def test_get(self):
+        eq_(Price.objects.get(pk=1).get_price, Decimal('0.99'))
+
+    def test_get_locale(self):
+        translation.activate('fr')
+        eq_(Price.objects.filter(pk=2)[0].get_price, Decimal('1.99'))
+        # If you are in France, you might still get US prices but at
+        # least we'll format into French for you.
+        eq_(Price.objects.filter(pk=2)[0].get_price_locale, u'1,99\xa0$US')
+        # In this case we have a currency so it's converted into Euro.
+        eq_(Price.objects.filter(pk=1)[0].get_price_locale, u'5,01\xa0\u20ac')
+
+    def test_get_tier(self):
+        translation.activate('en_CA')
+        eq_(Price.objects.get(pk=1).get_price, Decimal('3.01'))
+        eq_(Price.objects.get(pk=1).get_price_locale, u'$3.01')
+
+    def test_get_tier_and_locale(self):
+        translation.activate('pt_BR')
+        eq_(Price.objects.get(pk=2).get_price, Decimal('1.01'))
+        eq_(Price.objects.get(pk=2).get_price_locale, u'R$1,01')
+
+    def test_fallback(self):
+        translation.activate('foo')
+        eq_(Price.objects.get(pk=1).get_price, Decimal('0.99'))
+        eq_(Price.objects.get(pk=1).get_price_locale, u'$0.99')
 
 
 class TestAddonPurchase(amo.tests.TestCase):

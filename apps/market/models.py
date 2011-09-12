@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.dispatch import receiver
+from django.utils import translation
 
 from translations.fields import TranslatedField
 
@@ -9,6 +10,7 @@ import amo.models
 from stats.models import Contribution
 from users.models import UserProfile
 
+from babel import Locale, numbers
 import commonware.log
 from jinja2.filters import do_dictsort
 
@@ -28,13 +30,36 @@ class Price(amo.models.ModelBase):
     price = models.DecimalField(max_digits=5, decimal_places=2)
 
     objects = PriceManager()
-    currency = 'US'
+    currency = 'USD'
 
     class Meta:
         db_table = 'prices'
 
     def __unicode__(self):
-        return u'%s - $%s USD' % (self.name, self.price)
+        return u'%s - $%s' % (self.name, self.price)
+
+    def _price(self):
+        """Return the price and currency for the current locale."""
+        lang = translation.get_language()
+        locale = Locale(translation.to_locale(lang))
+        currency = amo.LOCALE_CURRENCY.get(locale.language)
+        if currency:
+            price_currency = self.pricecurrency_set.filter(currency=currency)
+            if price_currency:
+                return price_currency[0].price, currency, locale
+
+        return self.price, self.currency, locale
+
+    @property
+    def get_price(self):
+        """Return the price as a decimal for the current locale."""
+        return self._price()[0]
+
+    @property
+    def get_price_locale(self):
+        """Return the price as a nicely localised string for the locale."""
+        price, currency, locale = self._price()
+        return numbers.format_currency(price, currency, locale=locale)
 
 
 class PriceCurrency(amo.models.ModelBase):
@@ -105,3 +130,11 @@ class AddonPremium(amo.models.ModelBase):
 
     def __unicode__(self):
         return u'Premium %s: %s' % (self.addon, self.price)
+
+    @amo.cached_property
+    def get_price(self):
+        return self.price.get_price
+
+    @amo.cached_property
+    def get_price_locale(self):
+        return self.price.get_price_locale
