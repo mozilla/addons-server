@@ -163,7 +163,7 @@ $(document).ready(function() {
 
             if(warnings > 0) {
                 message = format(ngettext(
-                            "Your app passed validation with no errors and {0} messages.",
+                            "Your app passed validation with no errors and {0} message.",
                             "Your app passed validation with no errors and {0} messages.",
                             warnings), [warnings]);
             } else {
