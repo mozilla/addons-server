@@ -25,7 +25,7 @@
     <div id="org-dev" class="brform paypal {{ 'hidden' if (values.recipient != 'dev') }}">
       {{ contrib_form.paypal_id.errors }}
       <label for="id_paypal_id">{{ _('What is your PayPal ID?') }}</label>
-      <div>{{ contrib_form.paypal_id }} <a class="extra" href="{{ settings.PAYPAL_CGI_URL + '?cmd=_registration-run' }}">{{ _('Sign up for Paypal') }}</a></div>
+      <div>{{ contrib_form.paypal_id }} <a class="extra" href="{{ settings.PAYPAL_CGI_URL + '?cmd=_registration-run' }}">{{ _('Sign up for PayPal') }}</a></div>
     </div>
     <div class="brform">
       {{ contrib_form.suggested_amount.errors }}

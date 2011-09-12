@@ -163,7 +163,7 @@ def _paypal(request):
         paypal_log.warning('Contribution (uuid=%s) not found for IPN request '
                            '#%s.' % (post['item_number'], count))
         if count > 10:
-            msg = ("Paypal sent a transaction that we don't know "
+            msg = ("PayPal sent a transaction that we don't know "
                    "about and we're giving up on it.")
             _log_error_with_data(msg, request)
             cache.delete(key)
