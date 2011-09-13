@@ -50,12 +50,10 @@ class Price(amo.models.ModelBase):
 
         return self.price, self.currency, locale
 
-    @property
     def get_price(self):
         """Return the price as a decimal for the current locale."""
         return self._price()[0]
 
-    @property
     def get_price_locale(self):
         """Return the price as a nicely localised string for the locale."""
         price, currency, locale = self._price()
@@ -73,7 +71,7 @@ class PriceCurrency(amo.models.ModelBase):
         verbose_name = 'Price currencies'
 
     def __unicode__(self):
-        return u'%s, %s: %s' % (self.tier.name, self.currency, self.price)
+        return u'%s, %s: %s' % (self.tier, self.currency, self.price)
 
 
 class AddonPurchase(amo.models.ModelBase):
@@ -131,10 +129,8 @@ class AddonPremium(amo.models.ModelBase):
     def __unicode__(self):
         return u'Premium %s: %s' % (self.addon, self.price)
 
-    @amo.cached_property
     def get_price(self):
-        return self.price.get_price
+        return self.price.get_price()
 
-    @amo.cached_property
     def get_price_locale(self):
-        return self.price.get_price_locale
+        return self.price.get_price_locale()
