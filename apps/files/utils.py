@@ -195,7 +195,8 @@ class WebAppParser(object):
         default_locale = self.trans_locale(loc)
         localized_descr = self.extract_locale(data.get('locales', {}),
                                               'description', default='')
-        localized_descr.update({default_locale: data['description']})
+        if 'description' in data:
+            localized_descr.update({default_locale: data['description']})
         return {'guid': None,
                 'type': amo.ADDON_WEBAPP,
                 'name': data['name'],

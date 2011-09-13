@@ -640,6 +640,10 @@ class TestWebApps(amo.tests.TestCase):
                                                    description='summary')))
         eq_(wp['summary']['en-US'], u'summary')
 
+    def test_no_description(self):
+        wp = WebAppParser().parse(self.webapp(dict(name='foo', version='1.0')))
+        eq_(wp['summary'], {})
+
     def test_syntax_error(self):
         with self.assertRaises(forms.ValidationError) as exc:
             WebAppParser().parse(self.webapp(contents='}]'))
