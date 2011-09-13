@@ -695,15 +695,20 @@ class TestPurchases(amo.tests.TestCase):
         self.client.login(username='regular@mozilla.com', password='password')
         self.user = User.objects.get(email='regular@mozilla.com')
 
+
     def test_in_menu(self):
         doc = pq(self.client.get(self.url).content)
-        assert 'My Purchases' in doc('ul.account li').text()
+        assert 'My Purchases' in doc('li.account li').text()
+
+    def test_in_side_menu(self):
+        doc = pq(self.client.get(self.url).content)
+        assert 'My Purchases' in doc('div.secondary li').text()
 
     def test_not_purchase(self):
         self.client.logout()
         eq_(self.client.get(self.url).status_code, 302)
 
-    def test_purchase(self):
+    def test_purchase_list(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='Test')
         Contribution.objects.create(user=self.user.get_profile(),
                                     addon=addon, amount='1.00')

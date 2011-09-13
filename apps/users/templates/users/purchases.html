@@ -1,33 +1,17 @@
-{% extends "base.html" %}
+{% extends "impala/base.html" %}
 
-{% block title %}{{ page_title('Purchases') }}{% endblock %}
+{% block title %}{{ page_title('My Purchases') }}{% endblock %}
 {% block content %}
+{% include 'users/includes/navigation.html' %}
 
-{# Temporary, waiting on mock, no l10n, to avoid unnessecary work for localisers #}
-{% if purchases.count %}
-<table>
-  <thead>
-  <tr>
-    <th>Add-on</th>
-    <th>Amount</th>
-    <th>Date</th>
-    <th>Type</th>
-  </tr>
-  </thead>
-  <tbody>
 {% for purchase in purchases.object_list %}
-  <tr>
-    <td>{{ purchase.addon.name }}</td>
-    <td>{{ purchase.amount }} {{ purchase.currency }}</td>
-    <td>{{ purchase.created|datetime }}</td>
-    <td>{{ purchase.type|contribution_type }}</td>
-  </td>
-{% endfor %}
-  </tbody>
-</table>
+<p>{{ purchase.addon.name }}</p>
+{% trans date=purchase.created, amount=purchase.amount, url='' %}
+<p>Purchased {{ date }} for {{ amount }} - <a href="{{ url }}">Request Support</a></p>
+{% endtrans %}
 {{ purchases|paginator }}
 {% else %}
   <p>You have no purchases.</p>
-{% endif %}
+{% endfor %}
 
 {% endblock %}

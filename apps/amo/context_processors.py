@@ -48,9 +48,6 @@ def global_settings(request):
         })
         account_links.append({'text': _('Edit Profile'),
                               'href': reverse('users.edit')})
-        if waffle.switch_is_active('marketplace'):
-            account_links.append({'text': _('My Purchases'),
-                                  'href': reverse('users.purchases')})
         account_links.append({
             'text': _('My Collections'),
             'href': reverse('collections.user', args=[amo_user.username])})
@@ -61,6 +58,9 @@ def global_settings(request):
                  'href': reverse('collections.detail',
                                  args=[amo_user.username, 'favorites'])})
 
+        if waffle.switch_is_active('marketplace'):
+            account_links.append({'text': _('My Purchases'),
+                                  'href': reverse('users.purchases')})
         account_links.append({
             'text': _('Log out'),
             'href': remora_url('/users/logout?to=' + urlquote(request.path)),
