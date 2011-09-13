@@ -670,7 +670,8 @@ class TestPurchases(amo.tests.TestCase):
         self.user = User.objects.get(email='regular@mozilla.com')
 
     def test_in_menu(self):
-        doc = pq(self.client.get(self.url))
+        doc = pq(self.client.get(self.url).content)
+        assert 'My Purchases' in doc('ul.account li').text()
 
     def test_not_purchase(self):
         self.client.logout()
