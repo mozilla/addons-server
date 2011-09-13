@@ -3,7 +3,9 @@ import datetime
 from django.conf import settings
 from django.db import models
 from django.template import Context, loader
+from django.utils import translation
 
+from babel import Locale, numbers
 import caching.base
 from jinja2.filters import do_dictsort
 import tower
@@ -282,6 +284,15 @@ class Contribution(caching.base.CachingMixin, models.Model):
     def post_save(sender, instance, **kwargs):
         from . import tasks
         tasks.addon_total_contributions.delay(instance.addon_id)
+
+    def get_amount_locale(self, locale=None):
+        """Localise the amount paid into the current locale."""
+        if not locale:
+            lang = translation.get_language()
+            locale = Locale(translation.to_locale(lang))
+        return numbers.format_currency(self.amount or 0,
+                                       self.currency or 'USD',
+                                       locale=locale)
 
 
 models.signals.post_save.connect(Contribution.post_save, sender=Contribution)

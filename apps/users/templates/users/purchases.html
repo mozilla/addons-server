@@ -2,16 +2,32 @@
 
 {% block title %}{{ page_title('My Purchases') }}{% endblock %}
 {% block content %}
-{% include 'users/includes/navigation.html' %}
-
-{% for purchase in purchases.object_list %}
-<p>{{ purchase.addon.name }}</p>
-{% trans date=purchase.created, amount=purchase.amount, url='' %}
-<p>Purchased {{ date }} for {{ amount }} - <a href="{{ url }}">Request Support</a></p>
-{% endtrans %}
-{{ purchases|paginator }}
-{% else %}
-  <p>You have no purchases.</p>
-{% endfor %}
-
+  {% include 'users/includes/navigation.html' %}
+  <section class="primary">
+    {{ impala_breadcrumbs([(None, _('My Purchases'))]) }}
+    <h1>{{ _('My Purchases') }}</h1>
+    <div class="island hero c listing">
+      {{ impala_addon_listing_header(url_base, filter.opts, sorting, filter.extras) }}
+      <div class="items">
+        {% for addon in purchases.object_list %}
+          <div class="item addon ignore-compatibility">
+            <div class="info">
+              <h3>
+                <a href="{{ addon.get_url_path() }}">
+                  <img src="{{ addon.icon_url }}">{{ addon.name }}</a>
+              </h3>
+              <p class="desc">{{ addon.description|truncate(250)|nl2br }}</p>
+              <div class="vitals c">
+              {% trans date=addon.created, amt=prices[addon.pk][1], url='' %}
+                <div>Purchased {{ date }} for {{ amt }} - <a href="{{ url }}">Request Support</a></div>
+              {% endtrans %}
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <p>You have no purchases.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 {% endblock %}

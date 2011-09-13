@@ -5,12 +5,13 @@ $(function() {
         $p.popup($a, {width: 300, pointTo: $a});
     });
 
-    // Mark incompatible add-ons on listing pages.
+    // Mark incompatible add-ons on listing pages unless marked with ignore.
     $('.listing .item.addon').each(function() {
         var $this = $(this);
         if ($this.find('.acr-override').length) {
             $this.addClass('acr');
-        } else if ($this.find('.concealed').length == $this.find('.button').length) {
+        } else if (!$this.hasClass('ignore-compatibility') &&
+                   $this.find('.concealed').length == $this.find('.button').length) {
             $this.addClass('incompatible');
         }
     });

@@ -13,7 +13,7 @@ from django.contrib.auth.tokens import default_token_generator
 import commonware.log
 import jingo
 from ratelimit.decorators import ratelimit
-from tower import ugettext as _
+from tower import ugettext as _, ugettext_lazy as _lazy
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 from mobility.decorators import mobile_template
 import waffle
@@ -27,9 +27,11 @@ from amo.urlresolvers import reverse
 from amo.utils import send_mail
 from abuse.models import send_abuse_report
 from addons.models import Addon
+from addons.views import BaseFilter
 from access import acl
 from bandwagon.models import Collection
 from stats.models import Contribution
+from translations.query import order_by_translation
 from users.models import UserNotification
 import users.notifications as notifications
 
@@ -610,13 +612,42 @@ def unsubscribe(request, hash=None, token=None, perm_setting=None):
             {'unsubscribed': unsubscribed, 'perm_settings': perm_settings})
 
 
+class ContributionsFilter(BaseFilter):
+    opts = (('date', _lazy(u'Purchase Date')),
+            ('price', _lazy(u'Price')),
+            ('name', _lazy(u'Name')))
+
+    def __init__(self, *args, **kw):
+        self.prices = kw.pop('prices')
+        super(ContributionsFilter, self).__init__(*args, **kw)
+
+    def filter(self, field):
+        qs = self.base_queryset
+        if field == 'date':
+            return qs.order_by('-created')
+        elif field == 'price':
+            # TODO(andym): If someone has a large number of purchases,
+            # this will get expensive.
+            return sorted(list(qs), key=lambda x: self.prices[x.pk][0])
+        elif field == 'name':
+            return order_by_translation(qs, 'name')
+
+
 @login_required
 def purchases(request):
     """A list of purchases that a user has made through the marketplace."""
     if not waffle.switch_is_active('marketplace'):
         raise http.Http404
 
-    qs = Contribution.objects.filter(user=request.amo_user)
-    purchases = amo.utils.paginate(request, qs)
+    cs = Contribution.objects.filter(user=request.amo_user,
+                                     type=amo.CONTRIB_PURCHASE)
+    prices = dict((p.addon_id, (p.amount, p.get_amount_locale())) for p in cs)
+    base = Addon.objects.filter(id__in=prices.keys())
+    filter = ContributionsFilter(request, base, key='sort',
+                                 default='date', prices=prices)
+
+    purchases = amo.utils.paginate(request, filter.qs)
     return jingo.render(request, 'users/purchases.html',
-                        {'purchases': purchases})
+                        {'purchases': purchases, 'filter': filter,
+                         'url_base': reverse('users.purchases'),
+                         'prices': prices})

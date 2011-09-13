@@ -3,6 +3,7 @@ from decimal import Decimal
 
 from django.db import models
 from django import test
+from django.utils import translation
 
 from nose.tools import eq_
 
@@ -138,3 +139,9 @@ class TestContributionModel(test.TestCase):
         payment = Contribution.objects.create(user=user, addon=addon)
         Contribution.objects.create(user=user, addon=addon, related=payment)
         self.assertRaises(models.ProtectedError, payment.delete)
+
+    def test_locale(self):
+        translation.activate('en_US')
+        eq_(Contribution.objects.all()[0].get_amount_locale(), u'$1.99')
+        translation.activate('fr')
+        eq_(Contribution.objects.all()[0].get_amount_locale(), u'1,99\xa0$US')

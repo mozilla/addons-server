@@ -398,7 +398,6 @@ class TestLogin(UserViewBase):
                                          audience='fakeamo.org'))
         eq_(res.status_code, 200)
 
-
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('httplib2.Http.request')
     def test_browserid_login_failure(self, http_request):
@@ -691,10 +690,17 @@ class TestPurchases(amo.tests.TestCase):
         self.patcher = patch.object(waffle, 'switch_is_active', lambda x: True)
         self.addCleanup(self.patcher.stop)
         self.patcher.start()
+
         self.url = reverse('users.purchases')
         self.client.login(username='regular@mozilla.com', password='password')
         self.user = User.objects.get(email='regular@mozilla.com')
 
+        for x in range(1, 5):
+            addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
+                                         name='t%s' % x)
+            Contribution.objects.create(user=self.user.get_profile(),
+                                        addon=addon, amount='%s.00' % x,
+                                        type=amo.CONTRIB_PURCHASE)
 
     def test_in_menu(self):
         doc = pq(self.client.get(self.url).content)
@@ -709,10 +715,23 @@ class TestPurchases(amo.tests.TestCase):
         eq_(self.client.get(self.url).status_code, 302)
 
     def test_purchase_list(self):
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='Test')
-        Contribution.objects.create(user=self.user.get_profile(),
-                                    addon=addon, amount='1.00')
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        eq_(len(res.context['purchases'].object_list), 1)
-        eq_('Test' in res.content, True)
+        eq_(len(res.context['purchases'].object_list), 4)
+
+    def get_order(self, order):
+        res = self.client.get('%s?sort=%s' % (self.url, order))
+        return [str(a.name) for a in res.context['purchases'].object_list]
+
+    def test_ordering(self):
+        eq_(self.get_order('name'), ['t1', 't2', 't3', 't4'])
+        eq_(self.get_order('price'), ['t1', 't2', 't3', 't4'])
+        eq_(self.get_order('date'), ['t4', 't3', 't2', 't1'])
+
+    def test_price(self):
+        res = self.client.get(self.url)
+        assert '$4.00' in pq(res.content)('div.vitals').eq(0).text()
+
+    def test_price_locale(self):
+        res = self.client.get('/fr/firefox' + self.url)
+        assert '4,00 $US' in pq(res.content)('div.vitals').eq(0).text()
