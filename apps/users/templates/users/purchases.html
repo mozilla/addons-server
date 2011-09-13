@@ -7,7 +7,13 @@
     {{ impala_breadcrumbs([(None, _('My Purchases'))]) }}
     <h1>{{ _('My Purchases') }}</h1>
     <div class="island hero c listing">
-      {{ impala_addon_listing_header(url_base, filter.opts, sorting, filter.extras) }}
+      {% if single %}
+        <div id="sorter" class="c">
+          <ul><li><a class="opt" href="{{ url('users.purchases') }}">{{ _('Show all purchases') }}</a></li></ul>
+        </div>
+      {% else %}
+        {{ impala_addon_listing_header(url_base, filter.opts, sorting, filter.extras) }}
+      {% endif %}
       <div class="items">
         {% for addon in purchases.object_list %}
           <div class="item addon ignore-compatibility">

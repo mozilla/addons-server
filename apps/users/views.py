@@ -634,14 +634,20 @@ class ContributionsFilter(BaseFilter):
 
 
 @login_required
-def purchases(request):
+def purchases(request, addon_id=None):
     """A list of purchases that a user has made through the marketplace."""
     if not waffle.switch_is_active('marketplace'):
         raise http.Http404
 
     cs = Contribution.objects.filter(user=request.amo_user,
                                      type=amo.CONTRIB_PURCHASE)
+    if addon_id:
+        cs = cs.filter(addon=addon_id)
     prices = dict((p.addon_id, (p.amount, p.get_amount_locale())) for p in cs)
+    if addon_id and not prices:
+        # User has requested a receipt for an addon they don't have.
+        raise http.Http404
+
     base = Addon.objects.filter(id__in=prices.keys())
     filter = ContributionsFilter(request, base, key='sort',
                                  default='date', prices=prices)
@@ -650,4 +656,4 @@ def purchases(request):
     return jingo.render(request, 'users/purchases.html',
                         {'purchases': purchases, 'filter': filter,
                          'url_base': reverse('users.purchases'),
-                         'prices': prices})
+                         'prices': prices, 'single': bool(addon_id)})

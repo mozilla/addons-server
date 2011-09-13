@@ -701,6 +701,7 @@ class TestPurchases(amo.tests.TestCase):
             Contribution.objects.create(user=self.user.get_profile(),
                                         addon=addon, amount='%s.00' % x,
                                         type=amo.CONTRIB_PURCHASE)
+        self.addon = addon
 
     def test_in_menu(self):
         doc = pq(self.client.get(self.url).content)
@@ -733,5 +734,20 @@ class TestPurchases(amo.tests.TestCase):
         assert '$4.00' in pq(res.content)('div.vitals').eq(0).text()
 
     def test_price_locale(self):
-        res = self.client.get('/fr/firefox' + self.url)
-        assert '4,00 $US' in pq(res.content)('div.vitals').eq(0).text()
+        res = self.client.get(self.url.replace('/en-US', '/fr'))
+        assert u'4,00' in pq(res.content)('div.vitals').eq(0).text()
+
+    def test_receipt(self):
+        res = self.client.get(reverse('users.purchases.receipt',
+                              args=[self.addon.pk]))
+        eq_(len(res.context['purchases'].object_list), 1)
+        eq_(res.context['purchases'].object_list[0].pk, self.addon.pk)
+
+    def test_receipt_404(self):
+        url = reverse('users.purchases.receipt', args=[545])
+        eq_(self.client.get(url).status_code, 404)
+
+    def test_receipt_view(self):
+        res = self.client.get(reverse('users.purchases.receipt',
+                              args=[self.addon.pk]))
+        eq_(pq(res.content)('#sorter').text(), 'Show all purchases')

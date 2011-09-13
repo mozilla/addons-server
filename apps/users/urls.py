@@ -3,6 +3,7 @@ from django.conf.urls.defaults import patterns, url, include
 
 from session_csrf import anonymous_csrf
 
+from addons.urls import ADDON_ID
 from . import forms, views
 from .models import UserProfile
 from amo.decorators import modal_view
@@ -56,7 +57,9 @@ users_patterns = patterns('',
     url(r'^unsubscribe/(?P<token>[-\w]+={0,3})/(?P<hash>[\w]+)/'
          '(?P<perm_setting>[\w]+)?$', views.unsubscribe,
         name="users.unsubscribe"),
-    url(r'purchases$', views.purchases, name='users.purchases'),
+    url(r'purchases/$', views.purchases, name='users.purchases'),
+    url(r'purchases/%s$' % ADDON_ID, views.purchases,
+        name='users.purchases.receipt'),
 )
 
 urlpatterns = patterns('',
