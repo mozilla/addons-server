@@ -1512,6 +1512,20 @@ class TestEdit(amo.tests.TestCase):
         for k in data:
             eq_(unicode(getattr(addon, k)), data[k])
 
+    def test_edit_support_premium(self):
+        self.get_addon().update(premium_type=amo.ADDON_PREMIUM)
+        data = dict(support_email='sjobs@apple.com',
+                    support_url='')
+        r = self.client.post(self.get_url('support', True), data)
+        eq_(r.context['form'].errors, {})
+        eq_(self.get_addon().support_email, data['support_email'])
+
+    def test_edit_support_premium_required(self):
+        self.get_addon().update(premium_type=amo.ADDON_PREMIUM)
+        data = dict(support_url='')
+        r = self.client.post(self.get_url('support', True), data)
+        assert 'support_email' in r.context['form'].errors
+
     def test_edit_support_getsatisfaction(self):
         urls = [("http://getsatisfaction.com/abc/products/def", 'abcdef'),
                 ("http://getsatisfaction.com/abc/", 'abc'),  # No company

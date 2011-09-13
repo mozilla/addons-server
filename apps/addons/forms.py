@@ -354,6 +354,11 @@ class AddonFormSupport(AddonFormBase):
         model = Addon
         fields = ('support_email', 'support_url')
 
+    def __init__(self, *args, **kw):
+        super(AddonFormSupport, self).__init__(*args, **kw)
+        if self.instance.is_premium():
+            self.fields['support_email'].required = True
+
     def save(self, addon, commit=True):
         instance = self.instance
         url = instance.support_url.localized_string
