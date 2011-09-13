@@ -620,21 +620,21 @@ def package_addon_success(request, id):
 @login_required
 def package_addon_json(request, id):
     """Return the URL of the packaged add-on."""
-    path = packager_path(id)
-    if os.path.isfile(path):
+    path_ = packager_path(id)
+    if os.path.isfile(path_):
         download_url = reverse('devhub.package_addon_download', args=[id])
         return {'download_url': download_url,
-                'size': round(os.path.getsize(path) / 1024, 1)}
+                'size': round(os.path.getsize(path_) / 1024, 1)}
 
 
 @login_required
 def package_addon_download(request, id):
     """Serve a packaged add-on."""
-    path = packager_path(id)
-    if not os.path.isfile(path):
+    path_ = packager_path(id)
+    if not os.path.isfile(path_):
         raise http.Http404()
 
-    return amo.utils.HttpResponseSendFile(request, path,
+    return amo.utils.HttpResponseSendFile(request, path_,
                                           content_type='application/zip')
 
 
