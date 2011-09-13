@@ -1323,7 +1323,7 @@ def marketplace_confirm(request, addon_id, addon):
         addon.update(premium_type=amo.ADDON_PREMIUM)
         return redirect('devhub.addons.payments', addon.slug)
 
-    return jingo.render(request, 'devhub/payments/confirm.html',
+    return jingo.render(request, 'devhub/payments/second-confirm.html',
                         {'addon': addon, 'upsell': addon.upsold,
                          'premium': addon.premium})
 

@@ -117,7 +117,7 @@
 
   {% include "devhub/payments/voluntary.html" %}
   {% if waffle.switch('marketplace') and addon.can_become_premium() %}
-    {% include "devhub/payments/marketplace-confirm.html" %}
+    {% include "devhub/payments/first-confirm.html" %}
   {% endif %}
 </section>
 {% include "devhub/includes/addons_edit_nav.html" %}
