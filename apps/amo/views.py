@@ -92,7 +92,7 @@ def paypal(request):
 
 
 def _paypal(request):
-    def _log_error_with_data(msg, request):
+    def _log_error_with_data(msg, post):
         """Log a message along with some of the POST info from PayPal."""
 
         id = random.randint(0, 99999999)
@@ -100,14 +100,14 @@ def _paypal(request):
 
         paypal_log.error(msg)
 
-        logme = {'txn_id': request.POST.get('txn_id'),
-                 'txn_type': request.POST.get('txn_type'),
-                 'payer_email': request.POST.get('payer_email'),
-                 'receiver_email': request.POST.get('receiver_email'),
-                 'payment_status': request.POST.get('payment_status'),
-                 'payment_type': request.POST.get('payment_type'),
-                 'mc_gross': request.POST.get('mc_gross'),
-                 'item_number': request.POST.get('item_number'),
+        logme = {'txn_id': post.get('txn_id'),
+                 'txn_type': post.get('txn_type'),
+                 'payer_email': post.get('payer_email'),
+                 'receiver_email': post.get('receiver_email'),
+                 'payment_status': post.get('payment_status'),
+                 'payment_type': post.get('payment_type'),
+                 'mc_gross': post.get('mc_gross'),
+                 'item_number': post.get('item_number'),
                 }
 
         paypal_log.error("[%s] PayPal Data: %s" % (id, logme))
@@ -124,16 +124,6 @@ def _paypal(request):
     paypal_response = urllib2.urlopen(settings.PAYPAL_CGI_URL,
                                       data, 20).readline()
 
-    if paypal_response != 'VERIFIED':
-        msg = ("Expecting 'VERIFIED' from PayPal, got '%s'. "
-               "Failing." % paypal_response)
-        _log_error_with_data(msg, request)
-        return http.HttpResponseForbidden('Invalid confirmation')
-
-    if post.get('txn_type', '').startswith('subscr_'):
-        SubscriptionEvent.objects.create(post_data=php.serialize(post))
-        return http.HttpResponse('Success!')
-
     # List of (old, new) codes so we can transpose the data for
     # embedded payments.
     for old, new in [('payment_status', 'status'),
@@ -142,6 +132,16 @@ def _paypal(request):
                      ('payer_email', 'sender_email')]:
         if old not in post and new in post:
             post[old] = post[new]
+
+    if paypal_response != 'VERIFIED':
+        msg = ("Expecting 'VERIFIED' from PayPal, got '%s'. "
+               "Failing." % paypal_response)
+        _log_error_with_data(msg, post)
+        return http.HttpResponseForbidden('Invalid confirmation')
+
+    if post.get('txn_type', '').startswith('subscr_'):
+        SubscriptionEvent.objects.create(post_data=php.serialize(post))
+        return http.HttpResponse('Success!')
 
     # We only care about completed transactions.
     if post.get('payment_status', '').lower() != 'completed':
@@ -165,7 +165,7 @@ def _paypal(request):
         if count > 10:
             msg = ("PayPal sent a transaction that we don't know "
                    "about and we're giving up on it.")
-            _log_error_with_data(msg, request)
+            _log_error_with_data(msg, post)
             cache.delete(key)
             return http.HttpResponse('Transaction not found; skipping.')
         cache.set(key, count, 1209600)  # This is 2 weeks.
