@@ -706,6 +706,7 @@ class TestPurchases(amo.tests.TestCase):
         assert 'My Purchases' in doc('li.account li').text()
 
     def test_in_side_menu(self):
+        raise SkipTest
         doc = pq(self.client.get(self.url).content)
         assert 'My Purchases' in doc('div.secondary li').text()
 
