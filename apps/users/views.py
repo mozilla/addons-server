@@ -652,7 +652,7 @@ def purchases(request, addon_id=None):
     filter = ContributionsFilter(request, base, key='sort',
                                  default='date', prices=prices)
 
-    purchases = amo.utils.paginate(request, filter.qs)
+    purchases = amo.utils.paginate(request, filter.qs, count=len(prices))
     return jingo.render(request, 'users/purchases.html',
                         {'purchases': purchases, 'filter': filter,
                          'url_base': reverse('users.purchases'),

@@ -21,6 +21,7 @@ from django.core.cache import cache
 from django.core.serializers import json
 from django.core.validators import ValidationError, validate_slug
 from django.core.mail import send_mail as django_send_mail
+from django.db.models.sql.datastructures import EmptyResultSet
 from django.template import Context, loader
 from django.utils.translation import trans_real
 from django.utils.functional import Promise

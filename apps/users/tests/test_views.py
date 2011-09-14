@@ -11,6 +11,7 @@ from django.utils.http import int_to_base36
 
 from mock import patch
 from nose.tools import eq_
+from nose import SkipTest
 import waffle
 
 import amo
@@ -683,14 +684,11 @@ class TestReportAbuse(amo.tests.TestCase):
         eq_(report.reporter.email, 'regular@mozilla.com')
 
 
+@patch('waffle.switch_is_active', lambda x: True)
 class TestPurchases(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        self.patcher = patch.object(waffle, 'switch_is_active', lambda x: True)
-        self.addCleanup(self.patcher.stop)
-        self.patcher.start()
-
         self.url = reverse('users.purchases')
         self.client.login(username='regular@mozilla.com', password='password')
         self.user = User.objects.get(email='regular@mozilla.com')
@@ -714,6 +712,11 @@ class TestPurchases(amo.tests.TestCase):
     def test_not_purchase(self):
         self.client.logout()
         eq_(self.client.get(self.url).status_code, 302)
+
+    def test_no_purchases(self):
+        Contribution.objects.all().delete()
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
 
     def test_purchase_list(self):
         res = self.client.get(self.url)
