@@ -3,7 +3,7 @@
 {% set title = _('Manage Payments') %}
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
 
-{% set can_edit = check_addon_ownership(request, addon) and addon.has_full_profile() %}
+{% set can_edit = check_addon_ownership(request, addon) %}
 {% block bodyclass %}
   {{ super() }}{% if not can_edit %} no-edit{% endif %}
 {% endblock %}
@@ -15,16 +15,6 @@
   <h2>{{ title }}</h2>
 </header>
 <section class="primary payments devhub-form" role="main">
-  {% if not addon.has_full_profile() %}
-    <div class="notification-box warning">
-      <h2>
-      {% trans url=url('devhub.addons.profile', addon.slug) %}
-        Payments are only available for add-ons with a <a href="{{ url }}">completed developer profile</a>.
-      {% endtrans %}
-      </h2>
-    </div>
-  {% endif %}
-
   {% set contrib = addon.takes_contributions and addon.has_full_profile() or errors %}
   {% if contrib and not errors %}
     <div id="status-bar">
@@ -59,7 +49,13 @@
         <li>{{ _('Choose when and how users are asked to contribute') }}</li>
         <li>{{ _('Receive contributions in your PayPal account or send them to an organization of your choice') }}</li>
       </ul>
-      {% if addon.status != amo.STATUS_PUBLIC %}
+      {% if not addon.has_full_profile() %}
+        <p class="error">
+        {% trans url=url('devhub.addons.profile', addon.slug) %}
+          Contributions are only available for add-ons with a <a href="{{ url }}">completed developer profile</a>.
+        {% endtrans %}
+        </p>
+      {% elif addon.status != amo.STATUS_PUBLIC %}
         <p class="error">
         {% trans %}
           Contributions are only available for fully reviewed add-ons.

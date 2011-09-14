@@ -563,10 +563,8 @@ class TestEditPayments(amo.tests.TestCase):
     def test_no_future(self):
         self.get_addon().update(the_future=None)
         res = self.client.get(self.url)
-        box = pq(res.content)('div.notification-box h2')
-        assert 'no-edit' in res.content
-        eq_(len(box), 1)
-        eq_('completed developer profile' in box.text(), True)
+        err = pq(res.content)('p.error')
+        eq_('completed developer profile' in err.text(), True)
 
     @mock.patch('addons.models.Addon.upsell')
     def test_with_upsell_no_contributions(self, upsell):
@@ -749,7 +747,7 @@ class TestMarketplace(amo.tests.TestCase):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         doc = pq(res.content)
-        eq_(len(doc('.error')), 1)
+        eq_(len(doc('.error')), 2)
 
     def setup_premium(self):
         self.price = Price.objects.create(price='0.99')
@@ -852,20 +850,20 @@ class TestMarketplace(amo.tests.TestCase):
     @mock.patch('paypal.get_permissions_token', lambda x, y: x.upper())
     def test_permissions_token(self):
         self.setup_premium()
-        eq_(self.addon.addonpremium.paypal_permissions_token, '')
+        eq_(self.addon.premium.paypal_permissions_token, '')
         url = reverse('devhub.addons.acquire_refund_permission',
                       args=[self.addon.slug])
         data = {'request_token': 'foo', 'verification_code': 'bar'}
         self.client.get('%s?%s' % (url, urlencode(data)))
         self.addon = Addon.objects.get(pk=self.addon.pk)
-        eq_(self.addon.addonpremium.paypal_permissions_token, 'FOO')
+        eq_(self.addon.premium.paypal_permissions_token, 'FOO')
 
     @mock.patch('paypal.get_permissions_token', lambda x, y: x.upper())
     def test_permissions_token_no_premium(self):
         self.setup_premium()
         # They could hit this URL before anything else, we need to cope
         # with AddonPremium not being there.
-        self.addon.addonpremium.delete()
+        self.addon.premium.delete()
         url = reverse('devhub.addons.acquire_refund_permission',
                       args=[self.addon.slug])
         data = {'request_token': 'foo', 'verification_code': 'bar'}
@@ -904,6 +902,9 @@ class TestMarketplace(amo.tests.TestCase):
         eq_(Addon.objects.get(pk=self.addon.pk).premium.price.pk,
             self.price.pk)
 
+    def get_addon(self):
+        return Addon.objects.get(pk=self.addon.pk)
+
     def test_wizard_step_3(self):
         url = reverse('devhub.market.3', args=[self.addon.slug])
         self.other_addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
@@ -915,14 +916,13 @@ class TestMarketplace(amo.tests.TestCase):
             'text': 'some upsell',
         }
         eq_(self.client.post(url, data).status_code, 302)
-        eq_(Addon.objects.get(pk=self.addon.pk).upsold.free,
-            self.other_addon)
+        eq_(self.get_addon().upsold.free, self.other_addon)
 
     def test_wizard_step_4_failed(self):
         url = reverse('devhub.market.4', args=[self.addon.slug])
-        assert not Addon.objects.get(pk=self.addon.pk).is_premium()
+        assert not self.get_addon().is_premium()
         eq_(self.client.post(url, {}).status_code, 302)
-        assert not Addon.objects.get(pk=self.addon.pk).is_premium()
+        assert not self.get_addon().is_premium()
 
     def test_wizard_step_4(self):
         self.setup_premium()
@@ -930,7 +930,21 @@ class TestMarketplace(amo.tests.TestCase):
         self.addon.update(premium_type=amo.ADDON_FREE)
         url = reverse('devhub.market.4', args=[self.addon.slug])
         eq_(self.client.post(url, {}).status_code, 302)
-        assert Addon.objects.get(pk=self.addon.pk).is_premium()
+        assert self.get_addon().is_premium()
+
+    def test_changing_paypal_id(self):
+        self.setup_premium()
+        self.addon.premium.update(paypal_permissions_token='foo')
+        data = self.get_data()
+        data['paypal_id'] = 'e@e.com'
+        self.client.post(self.url, data)
+        eq_(self.get_addon().premium.paypal_permissions_token, '')
+
+    def test_not_changing_paypal_id(self):
+        self.setup_premium()
+        self.addon.premium.update(paypal_permissions_token='foo')
+        self.client.post(self.url, self.get_data())
+        assert self.get_addon().premium.paypal_permissions_token
 
 
 class TestDelete(amo.tests.TestCase):
