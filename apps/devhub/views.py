@@ -1289,7 +1289,8 @@ def marketplace_pricing(request, addon_id, addon):
     form = forms.PremiumForm(request.POST or None,
                              extra={'addon': addon,
                                     'amo_user': request.amo_user,
-                                    'not_required': ['paypal_id']})
+                                    'not_required': ['paypal_id',
+                                                     'support_email']})
     if form.is_valid():
         form.save()
         return redirect('devhub.market.3', addon.slug)
@@ -1302,7 +1303,8 @@ def marketplace_upsell(request, addon_id, addon):
     form = forms.PremiumForm(request.POST or None,
                              extra={'addon': addon,
                                     'amo_user': request.amo_user,
-                                    'not_required': ['price', 'paypal_id']})
+                                    'not_required': ['price', 'paypal_id',
+                                                     'support_email']})
     if form.is_valid():
         form.save()
         return redirect('devhub.market.4', addon.slug)
@@ -1314,9 +1316,8 @@ def marketplace_upsell(request, addon_id, addon):
 def marketplace_confirm(request, addon_id, addon):
     if request.method == 'POST':
         # Minimum required to become premium.
-        if (not addon.premium
-            or not addon.paypal_id
-            or not addon.premium.price
+        if (not addon.premium or not addon.paypal_id
+            or not addon.support_email or not addon.premium.price
             or not addon.premium.paypal_permissions_token):
             messages.error(request, 'Some required details are missing.')
             return redirect('devhub.market.1', addon.slug)

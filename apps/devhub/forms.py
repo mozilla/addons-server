@@ -838,12 +838,14 @@ class PremiumForm(happyforms.Form):
                                   required=False,
                                   empty_label='')
     text = forms.CharField(widget=forms.Textarea(), required=False)
+    support_email = forms.EmailField()
 
     def __init__(self, *args, **kw):
         self.extra = kw.pop('extra')
         self.addon = self.extra['addon']
         kw['initial'] = {
             'paypal_id': self.addon.paypal_id,
+            'support_email': self.addon.support_email,
             'do_upsell': 0,
         }
         if self.addon.premium:
@@ -891,7 +893,9 @@ class PremiumForm(happyforms.Form):
 
     def save(self):
         if self.cleaned_data['paypal_id']:
-            self.addon.update(paypal_id=self.cleaned_data['paypal_id'])
+            self.addon.paypal_id = self.cleaned_data['paypal_id']
+            self.addon.support_email = self.cleaned_data['support_email']
+            self.addon.save()
 
         if self.cleaned_data['price']:
             premium = self.addon.premium

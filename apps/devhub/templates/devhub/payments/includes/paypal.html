@@ -16,3 +16,12 @@
         {{ form.paypal_id.errors }}
         <div>{{ form.paypal_id }}</div>
     </div>
+    <div class="brform">
+      <label for="id_support_email">{{ form.support_email.label }}</label>
+      <div class="extra">
+        {% trans %}The email address used by end users to contact you
+        with support issues and refund requests.{% endtrans %}
+      </div>
+      {{ form.support_email.errors }}
+      <div>{{ form.support_email }}</div>
+    </div>

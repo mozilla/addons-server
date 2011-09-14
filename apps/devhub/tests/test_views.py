@@ -766,8 +766,9 @@ class TestMarketplace(amo.tests.TestCase):
             'paypal_id': 'a@a.com',
             'price': self.price.pk,
             'free': self.other_addon.pk,
+            'support_email': 'b@b.com',
             'do_upsell': 1,
-            'text': 'some upsell'
+            'text': 'some upsell',
         }
 
     def test_template_premium(self):
@@ -790,6 +791,7 @@ class TestMarketplace(amo.tests.TestCase):
         self.setup_premium()
         res = self.client.post(self.url, data={
             'paypal_id': 'b@b.com',
+            'support_email': 'c@c.com',
             'price': self.price_two.pk,
         })
         eq_(res.status_code, 302)
@@ -874,10 +876,26 @@ class TestMarketplace(amo.tests.TestCase):
     @mock.patch('devhub.forms.PremiumForm.clean_paypal_id')
     def test_wizard_step_1(self, clean_paypal_id):
         url = reverse('devhub.market.1', args=[self.addon.slug])
-        data = 'some@paypal.com'
-        clean_paypal_id.return_value = data
-        eq_(self.client.post(url, {'paypal_id': data}).status_code, 302)
-        eq_(Addon.objects.get(pk=self.addon.pk).paypal_id, data)
+        data = {'paypal_id': 'some@paypal.com', 'support_email': 'a@a.com'}
+        clean_paypal_id.return_value = data['paypal_id']
+        eq_(self.client.post(url, data).status_code, 302)
+        addon = Addon.objects.get(pk=self.addon.pk)
+        eq_(addon.paypal_id, data['paypal_id'])
+        eq_(addon.support_email, data['support_email'])
+
+    @mock.patch('devhub.forms.PremiumForm.clean_paypal_id')
+    def test_wizard_step_1_required_paypal(self, clean_paypal_id):
+        url = reverse('devhub.market.1', args=[self.addon.slug])
+        data = {'paypal_id': '', 'support_email': 'a@a.com'}
+        clean_paypal_id.return_value = data['paypal_id']
+        eq_(self.client.post(url, data).status_code, 200)
+
+    @mock.patch('devhub.forms.PremiumForm.clean_paypal_id')
+    def test_wizard_step_1_required_email(self, clean_paypal_id):
+        url = reverse('devhub.market.1', args=[self.addon.slug])
+        data = {'paypal_id': 'a@a.com', 'support_email': ''}
+        clean_paypal_id.return_value = data['support_email']
+        eq_(self.client.post(url, data).status_code, 200)
 
     def test_wizard_step_2(self):
         self.price = Price.objects.create(price='0.99')
@@ -894,7 +912,7 @@ class TestMarketplace(amo.tests.TestCase):
         data = {
             'free': self.other_addon.pk,
             'do_upsell': 1,
-            'text': 'some upsell'
+            'text': 'some upsell',
         }
         eq_(self.client.post(url, data).status_code, 302)
         eq_(Addon.objects.get(pk=self.addon.pk).upsold.free,
