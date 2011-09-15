@@ -9,17 +9,18 @@ $(document).ready(function() {
             z.browserVersion = browserVersion;
             z.hasNightly = hasNightly;
             z.hasACR = false;
+            $(document.body).removeClass('acr-pitch');
             if (maxVer) {
                 $('.install', this.sandbox).attr('data-max', maxVer);
             }
             $('.install', this.sandbox).installButton();
-            initBanners();
+            initBanners(this.sandbox);
         },
         teardown: function() {
-            $(document.body).removeClass('acr-pitch');
             z.browserVersion = this._browser;
             z.hasNightly = this._hasNightly;
             z.hasACR = this._hasACR;
+            $(document.body).removeClass('acr-pitch');
             this.sandbox.remove();
         },
         check: function(showPitch) {
@@ -41,9 +42,10 @@ $(document).ready(function() {
         }
     };
 
-
     module('ACR nightly incompatible', $.extend({}, acrFixture, {
         setup: function() {
+            // 3.0 is older than Nightly (which we're pretending is 8.0), so
+            // this is certainly incompatible.
             acrFixture.setup.call(this,
                 $(document.body).attr('data-nightly-version'), true, '3.0');
         }
@@ -55,6 +57,8 @@ $(document).ready(function() {
     module('ACR nightly compatible', $.extend({}, acrFixture, {
         setup: function() {
             var nightlyVer = $(document.body).attr('data-nightly-version');
+            // We're running Nightly, and we're going to pretend all the
+            // add-ons are compatible with 8.0.
             acrFixture.setup.call(this, nightlyVer, true, nightlyVer);
         }
     }));
@@ -73,13 +77,17 @@ $(document).ready(function() {
 
 
     var acrOverrideFixture = {
-        setup: function(browserVersion, hasACR) {
+        setup: function(browserVersion, hasACR, maxVer) {
             this.sandbox = tests.createSandbox('#acr-override');
             this._browser = z.browserVersion;
             this._hasACR = z.hasACR;
             z.browserVersion = browserVersion;
             z.hasACR = hasACR != null ? hasACR : false;
-            $('.install', this.sandbox).installButton();
+            $(document.body).removeClass('acr-pitch');
+            if (maxVer) {
+                $('.install-shell > div', this.sandbox).attr('data-max', maxVer);
+            }
+            $('.install-shell > div', this.sandbox).installButton();
             this.buttons = $('.install-shell', this.sandbox);
             this.override_msg = 'May be incompatible with Firefox ' + z.browserVersion;
             this.notavail_msg = 'Not available for Firefox ' + z.browserVersion;
@@ -87,6 +95,7 @@ $(document).ready(function() {
         teardown: function() {
             z.browserVersion = this._browser;
             z.hasACR = this._hasACR;
+            $(document.body).removeClass('acr-pitch');
             this.sandbox.remove();
         },
         isCompat: function(el) {
@@ -107,11 +116,12 @@ $(document).ready(function() {
 
     module('ACR installed: override for incompatible maxVer', $.extend({}, acrOverrideFixture, {
         setup: function() {
-            acrOverrideFixture.setup.call(this, '8.0', true);
+            // We're running 9.0.
+            acrOverrideFixture.setup.call(this, '9.0', true);
         }
     }));
-    test('Firefox 9.0', function() {
-        equals(this.buttons.find('div[data-version-supported=true]').length, 2);
+    test('Firefox: Pre-Release Version', function() {
+        equals(this.buttons.find('div[data-version-supported=true]').length, 1);
         // This one should always be compatible (maxVer is 99.9).
         this.isCompat(this.buttons.eq(0));
         // 9.0 "may be incompatible" (maxVer is 7.*).
@@ -123,8 +133,8 @@ $(document).ready(function() {
             acrOverrideFixture.setup.call(this, '2.0', true);
         }
     }));
-    test('Firefox 2.0', function() {
-        equals(this.buttons.find('div[data-version-supported=true]').length, 2);
+    test('Firefox: Old Version', function() {
+        equals(this.buttons.find('div[data-version-supported=true]').length, 1);
         this.isCompat(this.buttons.eq(0));
         // 2.0 "may be incompatible" (minVer is 3.6).
         this.mayCompat(this.buttons.eq(1));
@@ -135,20 +145,19 @@ $(document).ready(function() {
             acrOverrideFixture.setup.call(this, '6.0', true);
         }
     }));
-    test('Firefox 6.0', function() {
+    test('Firefox: Current Version', function() {
         equals(this.buttons.find('div[data-version-supported=true]').length, 2);
         this.isCompat(this.buttons.eq(0));
         // 6.0 should certainly be compatible (2.0 - 7.*).
         this.isCompat(this.buttons.eq(1));
     });
 
-
     module('no ACR: incompatible maxVer', $.extend({}, acrOverrideFixture, {
         setup: function() {
             acrOverrideFixture.setup.call(this, '8.0', false);
         }
     }));
-    test('Firefox 9.0', function() {
+    test('Firefox: Pre-Release Version', function() {
         equals(this.buttons.find('div[data-version-supported=true][data-addon=1865]').length, 1);
         this.isCompat(this.buttons.eq(0));  // maxVer is 99.9
         this.notAvail(this.buttons.eq(1));  // maxVer is 7.*
@@ -159,7 +168,7 @@ $(document).ready(function() {
             acrOverrideFixture.setup.call(this, '2.0', false);
         }
     }));
-    test('Firefox 2.0', function() {
+    test('Firefox: Old Version', function() {
         equals(this.buttons.find('div[data-version-supported=true][data-addon=1865]').length, 1);
         this.isCompat(this.buttons.eq(0));
         this.notAvail(this.buttons.eq(1));  // minVer is 3.6
@@ -167,10 +176,10 @@ $(document).ready(function() {
 
     module('no ACR: override for compatible', $.extend({}, acrOverrideFixture, {
         setup: function() {
-            acrOverrideFixture.setup.call(this, '6.0', false);
+            acrOverrideFixture.setup.call(this, '5.0', false);
         }
     }));
-    test('Firefox 6.0', function() {
+    test('Firefox: Current Version', function() {
         equals(this.buttons.find('div[data-version-supported=true]').length, 2);
         this.isCompat(this.buttons.eq(0));
         this.isCompat(this.buttons.eq(1));  // 2.0 - 7.*

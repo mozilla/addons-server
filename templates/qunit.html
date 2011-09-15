@@ -9,7 +9,7 @@
         data-appname="{{ request.APP.pretty }}"
         data-appid="{{ request.APP.id }}"
         data-min-beta-version="{{ settings.MIN_BETA_VERSION }}"
-        data-nightly-version="{{ settings.NIGHTLY_VERSION }}"
+        data-nightly-version="8.0"
         data-anonymous="true"
         data-readonly="false"
         data-media-url="{{ MEDIA_URL }}"
@@ -356,7 +356,7 @@
     <div class="site-tip hidden" id="acr-pitch">Some ACR propaganda goes here.</div>
     <div class="install-shell">
       <div class="install featuredaddon" data-addon="1865"
-           data-name="Adblock Plus" data-min="3.0" data-max="4.0">
+           data-name="Adblock Plus" data-min="3.0" data-max="9.0">
         <p class="install-button">
           <a data-hash="sha256:2bb766a" class="button download">Download Now</a>
         </p>
@@ -368,8 +368,7 @@
     <div class="items">
       <div class="item addon">
         <div class="install-shell">
-          <div class="install featuredaddon" data-addon="1865"
-               data-name="Adblock Plus" data-min="1.0" data-max="99.9">
+          <div data-addon="1865" data-name="Adblock Plus" data-min="1.0" data-max="99.9">
             <p class="install-button">
               <a data-hash="sha256:2bb766a" class="button download" href=""><span>Download Now</span></a>
             </p>
@@ -378,8 +377,7 @@
       </div>
       <div class="item addon">
         <div class="install-shell">
-          <div class="install featuredaddon" data-addon="3615"
-               data-name="Delicious Bookmarks" data-min="3.6" data-max="7.*">
+          <div data-addon="3615" data-name="Delicious Bookmarks" data-min="3.6" data-max="7.*">
             <p class="install-button">
               <a data-hash="sha256:2bb766a" class="button download" href=""><span>Download Now</span></a>
             </p>

@@ -878,8 +878,11 @@ function initPayments() {
     }).change();
 }
 
-function initCatFields() {
-    $(".addon-app-cats").each(function() {
+function initCatFields(delegate) {
+    if (!delegate) {
+        delegate = document.body;
+    }
+    $(delegate).find('.addon-app-cats').each(function() {
         var $parent = $(this).closest("[data-max-categories]"),
             $main = $(this).find(".addon-categories"),
             $misc = $(this).find(".addon-misc-category"),

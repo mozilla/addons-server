@@ -3,7 +3,7 @@ $(document).ready(function(){
 var catFixture = {
     setup: function() {
         this.sandbox = tests.createSandbox('#addon-cats');
-        initCatFields();
+        initCatFields(this.sandbox);
     },
     teardown: function() {
         this.sandbox.remove();
