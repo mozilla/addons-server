@@ -147,7 +147,8 @@ def create_addon_purchase(sender, instance, **kw):
     if instance.type == amo.CONTRIB_PURCHASE:
         log.debug('Creating addon purchase: addon %s, user %s'
                   % (instance.addon.pk, instance.user.pk))
-        AddonPurchase.objects.create(addon=instance.addon, user=instance.user)
+        AddonPurchase.objects.get_or_create(addon=instance.addon,
+                                            user=instance.user)
 
     elif instance.type in [amo.CONTRIB_REFUND, amo.CONTRIB_CHARGEBACK]:
         purchases = AddonPurchase.objects.filter(addon=instance.addon,

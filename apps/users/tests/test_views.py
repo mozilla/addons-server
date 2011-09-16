@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 import json
 
 from django.conf import settings
@@ -704,9 +705,13 @@ class TestPurchases(amo.tests.TestCase):
         for x in range(1, 5):
             addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
                                          name='t%s' % x)
-            Contribution.objects.create(user=self.user.get_profile(),
-                                        addon=addon, amount='%s.00' % x,
-                                        type=amo.CONTRIB_PURCHASE)
+            con = Contribution.objects.create(user=self.user.get_profile(),
+                                              addon=addon, amount='%s.00' % x,
+                                              type=amo.CONTRIB_PURCHASE)
+            con.created = datetime.now() - timedelta(days=10 - x)
+            con.save()
+
+        self.con = con
         self.addon = addon
 
     def test_in_menu(self):
@@ -734,7 +739,8 @@ class TestPurchases(amo.tests.TestCase):
 
     def get_order(self, order):
         res = self.client.get('%s?sort=%s' % (self.url, order))
-        return [str(a.name) for a in res.context['purchases'].object_list]
+        return [str(c.addon.name) for c in
+                res.context['purchases'].object_list]
 
     def test_ordering(self):
         eq_(self.get_order('name'), ['t1', 't2', 't3', 't4'])
@@ -774,3 +780,112 @@ class TestPurchases(amo.tests.TestCase):
         self.user.get_profile().addonpurchase_set.all().delete()
         doc = pq(self.client.get(self.url).content)
         eq_(doc('body').attr('data-purchases'), '')
+
+    def test_refund_link(self):
+        doc = pq(self.client.get(self.url).content)
+        url = reverse('users.support', args=[self.con.pk])
+        eq_(doc('div.vitals a').eq(0).attr('href'), url)
+
+    def get_url(self, *args):
+        return reverse('users.support', args=[self.con.pk] + list(args))
+
+    def test_support_not_logged_in(self):
+        self.client.logout()
+        eq_(self.client.get(self.get_url()).status_code, 302)
+
+    def test_support_not_mine(self):
+        self.client.login(username='admin@mozilla.com', password='password')
+        eq_(self.client.get(self.get_url()).status_code, 404)
+
+    def test_support_page(self):
+        doc = pq(self.client.get(self.get_url()).content)
+        eq_(doc('section.primary a').attr('href'), self.get_url('author'))
+
+    def test_support_page_other(self):
+        self.addon.support_url = 'http://cbc.ca'
+        self.addon.save()
+
+        doc = pq(self.client.get(self.get_url()).content)
+        eq_(doc('section.primary a').attr('href'), self.get_url('site'))
+
+    def test_support_site(self):
+        self.addon.support_url = 'http://cbc.ca'
+        self.addon.save()
+
+        doc = pq(self.client.get(self.get_url('site')).content)
+        eq_(doc('section.primary a').attr('href'), self.addon.support_url)
+
+    def test_contact(self):
+        data = {'text': 'Lorem ipsum dolor sit amet, consectetur'}
+        res = self.client.post(self.get_url('author'), data)
+        eq_(res.status_code, 302)
+
+    def test_contact_mails(self):
+        self.addon.support_email = 'a@a.com'
+        self.addon.save()
+
+        data = {'text': 'Lorem ipsum dolor sit amet, consectetur'}
+        self.client.post(self.get_url('author'), data)
+        eq_(len(mail.outbox), 1)
+        email = mail.outbox[0]
+        eq_(email.to, ['a@a.com'])
+        eq_(email.from_email, 'regular@mozilla.com')
+
+    def test_contact_fails(self):
+        res = self.client.post(self.get_url('author'), {'b': 'c'})
+        assert 'text' in res.context['form'].errors
+
+    def test_contact_mozilla(self):
+        data = {'text': 'Lorem ipsum dolor sit amet, consectetur'}
+        res = self.client.post(self.get_url('mozilla'), data)
+        eq_(res.status_code, 302)
+
+    def test_contact_mozilla_mails(self):
+        data = {'text': 'Lorem ipsum dolor sit amet, consectetur'}
+        self.client.post(self.get_url('mozilla'), data)
+        eq_(len(mail.outbox), 1)
+        email = mail.outbox[0]
+        eq_(email.to, [settings.FLIGTAR])
+        eq_(email.from_email, 'regular@mozilla.com')
+        assert 'Lorem' in email.body
+
+    def test_contact_mozilla_fails(self):
+        res = self.client.post(self.get_url('mozilla'), {'b': 'c'})
+        assert 'text' in res.context['form'].errors
+
+    def test_refund_remove(self):
+        res = self.client.post(self.get_url('request'), {'remove': 1})
+        eq_(res.status_code, 302)
+
+    def test_refund_remove_fails(self):
+        res = self.client.post(self.get_url('request'), {})
+        eq_(res.status_code, 200)
+
+    def test_skip_fails(self):
+        res = self.client.post(self.get_url('reason'), {})
+        self.assertRedirects(res, self.get_url('request'))
+
+    def test_request(self):
+        self.client.post(self.get_url('request'), {'remove': 1})
+        res = self.client.post(self.get_url('reason'), {'text': 'something'})
+        eq_(res.status_code, 302)
+
+    def test_request_mails(self):
+        self.addon.support_email = 'a@a.com'
+        self.addon.save()
+
+        self.client.post(self.get_url('request'), {'remove': 1})
+        self.client.post(self.get_url('reason'), {'text': 'something'})
+        eq_(len(mail.outbox), 1)
+        email = mail.outbox[0]
+        eq_(email.to, ['a@a.com'])
+        eq_(email.from_email, 'regular@mozilla.com')
+        assert '$4.00' in email.body
+
+    def test_request_fails(self):
+        self.addon.support_email = 'a@a.com'
+        self.addon.save()
+
+        self.client.post(self.get_url('request'), {'remove': 1})
+        res = self.client.post(self.get_url('reason'), {})
+        eq_(res.status_code, 200)

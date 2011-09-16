@@ -408,3 +408,13 @@ class BlacklistedEmailDomainAddForm(forms.Form):
             self._errors['domains'] = ErrorList([msg])
 
         return data
+
+
+class ContactForm(happyforms.Form):
+    text = forms.CharField(widget=forms.Textarea(), required=True)
+
+
+class RemoveForm(happyforms.Form):
+    remove = forms.BooleanField(required=True,
+                                label=_('I have removed this add-on from '
+                                        'all of my devices.'))

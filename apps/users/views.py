@@ -6,12 +6,16 @@ from django.db import IntegrityError
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib import auth
 from django.template import Context, loader
+from django.utils.datastructures import SortedDict
 from django.views.decorators.cache import never_cache
+from django.utils.decorators import method_decorator
+from django.utils.encoding import smart_str
 from django.utils.http import base36_to_int
 from django.contrib.auth.tokens import default_token_generator
 
 import commonware.log
 import jingo
+from radagast.wizard import Wizard
 from ratelimit.decorators import ratelimit
 from tower import ugettext as _, ugettext_lazy as _lazy
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
@@ -28,10 +32,10 @@ from amo.utils import send_mail
 from abuse.models import send_abuse_report
 from addons.models import Addon
 from addons.views import BaseFilter
+from addons.decorators import addon_view
 from access import acl
 from bandwagon.models import Collection
 from stats.models import Contribution
-from translations.query import order_by_translation
 from users.models import UserNotification
 import users.notifications as notifications
 
@@ -612,20 +616,14 @@ class ContributionsFilter(BaseFilter):
             ('price', _lazy(u'Price')),
             ('name', _lazy(u'Name')))
 
-    def __init__(self, *args, **kw):
-        self.prices = kw.pop('prices')
-        super(ContributionsFilter, self).__init__(*args, **kw)
-
     def filter(self, field):
         qs = self.base_queryset
         if field == 'date':
             return qs.order_by('-created')
         elif field == 'price':
-            # TODO(andym): If someone has a large number of purchases,
-            # this will get expensive.
-            return sorted(list(qs), key=lambda x: self.prices[x.pk][0])
+            return qs.order_by('amount')
         elif field == 'name':
-            return order_by_translation(qs, 'name')
+            return qs.order_by('addon__name')
 
 
 @login_required
@@ -634,21 +632,144 @@ def purchases(request, addon_id=None):
     if not waffle.switch_is_active('marketplace'):
         raise http.Http404
 
+    # TODO(ashort): this is where we'll need to get cunning about refunds.
     cs = Contribution.objects.filter(user=request.amo_user,
                                      type=amo.CONTRIB_PURCHASE)
     if addon_id:
         cs = cs.filter(addon=addon_id)
-    prices = dict((p.addon_id, (p.amount, p.get_amount_locale())) for p in cs)
-    if addon_id and not prices:
+
+    filter = ContributionsFilter(request, cs, key='sort', default='date')
+    purchases = amo.utils.paginate(request, filter.qs)
+
+    if addon_id and not purchases.object_list:
         # User has requested a receipt for an addon they don't have.
         raise http.Http404
-
-    base = Addon.objects.filter(id__in=prices.keys())
-    filter = ContributionsFilter(request, base, key='sort',
-                                 default='date', prices=prices)
-
-    purchases = amo.utils.paginate(request, filter.qs, count=len(prices))
     return jingo.render(request, 'users/purchases.html',
                         {'purchases': purchases, 'filter': filter,
                          'url_base': reverse('users.purchases'),
-                         'prices': prices, 'single': bool(addon_id)})
+                         'single': bool(addon_id)})
+
+
+# Start of the Support wizard all of these are accessed through the
+# SupportWizard below.
+def plain(request, contribution, wizard):
+    # Simple view that just shows a template matching the step.
+    tpl = wizard.tpl('%s.html' % wizard.step)
+    return wizard.render(request, tpl, {'addon': contribution.addon,
+                                        'contribution': contribution})
+
+
+def support_author(request, contribution, wizard):
+    addon = contribution.addon
+    form = forms.ContactForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            template = jingo.render_to_string(request,
+                                wizard.tpl('emails/support-request.txt'),
+                                context={'contribution': contribution,
+                                         'addon': addon, 'form': form,
+                                         'user': request.amo_user})
+            log.info('Support request to dev. by user: %s for addon: %s' %
+                     (request.amo_user.pk, addon.pk))
+            # L10n: %s is the addon name.
+            send_mail(_(u'New Support Request for %s' % addon.name),
+                      template, request.amo_user.email,
+                      [smart_str(addon.support_email)])
+            return redirect(reverse('users.support',
+                                    args=[contribution.pk, 'author-sent']))
+
+    return wizard.render(request, wizard.tpl('author.html'),
+                         {'addon': addon, 'form': form})
+
+
+def support_mozilla(request, contribution, wizard):
+    addon = contribution.addon
+    form = forms.ContactForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            template = jingo.render_to_string(request,
+                                wizard.tpl('emails/support-request.txt'),
+                                context={'addon': addon, 'form': form,
+                                         'contribution': contribution,
+                                         'user': request.amo_user})
+            log.info('Support request to mozilla by user: %s for addon: %s' %
+                     (request.amo_user.pk, addon.pk))
+            # L10n: %s is the addon name.
+            send_mail(_(u'New Support Request for %s' % addon.name),
+                      template, request.amo_user.email, [settings.FLIGTAR])
+            return redirect(reverse('users.support',
+                                    args=[contribution.pk, 'mozilla-sent']))
+
+    return wizard.render(request, wizard.tpl('mozilla.html'),
+                         {'addon': addon, 'form': form})
+
+
+def refund_request(request, contribution, wizard):
+    addon = contribution.addon
+    form = forms.RemoveForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            return redirect(reverse('users.support',
+                                    args=[contribution.pk, 'reason']))
+
+    return wizard.render(request, wizard.tpl('request.html'),
+                         {'addon': addon, 'form': form,
+                          'contribution': contribution})
+
+
+def refund_reason(request, contribution, wizard):
+    addon = contribution.addon
+    if not 'request' in wizard.get_progress():
+        return redirect(reverse('users.support',
+                                args=[contribution.pk, 'request']))
+
+    form = forms.ContactForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            # if under 30 minutes, refund
+            # TODO(ashort): add in the logic for under 30 minutes.
+            template = jingo.render_to_string(request,
+                                wizard.tpl('emails/refund-request.txt'),
+                                context={'addon': addon, 'form': form,
+                                         'user': request.amo_user,
+                                         'contribution': contribution})
+            log.info('Refund request sent by user: %s for addon: %s' %
+                     (request.amo_user.pk, addon.pk))
+            # L10n: %s is the addon name.
+            send_mail(_(u'New Refund Request for %s' % addon.name),
+                      template, request.amo_user.email,
+                      [smart_str(addon.support_email)])
+            return redirect(reverse('users.support',
+                                    args=[contribution.pk, 'refund-sent']))
+
+    return wizard.render(request, wizard.tpl('refund.html'),
+                         {'contribut': addon, 'form': form})
+
+
+class SupportWizard(Wizard):
+    title = _lazy('Support')
+    steps = SortedDict((('start', plain),
+                ('site', plain),
+                ('resources', plain),
+                ('mozilla', support_mozilla),
+                ('mozilla-sent', plain),
+                ('author', support_author),
+                ('author-sent', plain),
+                ('request', refund_request),
+                ('reason', refund_reason),
+                ('refund-sent', plain)))
+
+    def tpl(self, x):
+        return 'users/support/%s' % x
+
+    @property
+    def wrapper(self):
+        return self.tpl('wrapper.html')
+
+    @method_decorator(login_required)
+    def dispatch(self, request, contribution_id, step='', *args, **kw):
+        contribution = get_object_or_404(Contribution, pk=contribution_id)
+        if contribution.user.pk != request.amo_user.pk:
+            raise http.Http404
+        args = [contribution] + list(args)
+        return super(SupportWizard, self).dispatch(request, step, *args, **kw)

@@ -1,0 +1,13 @@
+<h1>{{ _('Contact the Author') }}</h1>
+<form method="POST">
+    {{ csrf() }}
+    <p>{% trans %}For support questions regarding this add-on's functionality,
+        please contact the author using the form below.{% endtrans %}</p>
+    <p><strong>{% trans name=addon.name %}To: {{ name }}{% endtrans %}</strong></p>
+    <p><strong>{% trans %}Please describe the issue:{% endtrans %}</strong></p>
+    {{ form.text.errors }}
+    {{ form.text }}
+    <p>{% trans %}Your email address will be made available to the
+       add-on author for replies.{% endtrans %}</p>
+       <button type="submit">{{ _('Send Request') }}</button>
+</form>

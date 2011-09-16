@@ -1,0 +1,5 @@
+<h1>{{ _('Request Refund') }}</h1>
+<p>{% trans name=addon.name %}Your request for a refund of {{ name }} has been
+submitted. You will receive an email when the author of this add-on has
+responded.{% endtrans %}</p>
+<p><a href="{{ url('users.purchases') }}" class="button">Close</a></p>

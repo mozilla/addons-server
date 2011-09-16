@@ -1,0 +1,8 @@
+<h1>{{ _('Request Refund') }}</h1>
+<form method="POST">
+    {{ csrf() }}
+    <p>{% trans %} Please tell us why you are requesting a refund.{% endtrans %}</p>
+    {{ form.text.errors }}
+    {{ form.text }}
+    <button type="submit">{{ _('Request Refund') }}</button>
+</form>

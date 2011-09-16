@@ -15,7 +15,8 @@
         {{ impala_addon_listing_header(url_base, filter.opts, sorting, filter.extras) }}
       {% endif %}
       <div class="items">
-        {% for addon in purchases.object_list %}
+        {% for contribution in purchases.object_list %}
+          {% with addon=contribution.addon %}
           <div class="item addon ignore-compatibility">
             <div class="info">
               <h3>
@@ -24,12 +25,13 @@
               </h3>
               <p class="desc">{{ addon.description|truncate(250)|nl2br }}</p>
               <div class="vitals c">
-              {% trans date=addon.created, amt=prices[addon.pk][1], url='' %}
+                {% trans date=addon.created, amt=contribution.get_amount_locale(), url=url('users.support', contribution.pk) %}
                 <div>Purchased {{ date }} for {{ amt }} - <a href="{{ url }}">Request Support</a></div>
               {% endtrans %}
             </div>
           </div>
         </div>
+        {% endwith %}
       {% else %}
         <p>You have no purchases.</p>
       {% endfor %}

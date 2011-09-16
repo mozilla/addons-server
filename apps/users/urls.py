@@ -60,6 +60,9 @@ users_patterns = patterns('',
     url(r'purchases/$', views.purchases, name='users.purchases'),
     url(r'purchases/%s$' % ADDON_ID, views.purchases,
         name='users.purchases.receipt'),
+    url(r'support/(?P<contribution_id>\d+)(?:/(?P<step>[\w-]+))?$',
+        views.SupportWizard.as_view(),
+        name='users.support')
 )
 
 urlpatterns = patterns('',

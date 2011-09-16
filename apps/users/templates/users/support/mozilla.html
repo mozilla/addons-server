@@ -1,0 +1,14 @@
+<h1>{{ _('Contact Mozilla') }}</h1>
+<form method="POST">
+    {{ csrf() }}
+    <p>{% trans %}Please use this form <strong>only for issues with the Mozilla
+        Marketplace</strong>. For other suport and question, please visit
+        <a href="{{ sumo }}">support.mozilla.com</a>. We are unable to respond
+        to misdirected support requests through this form
+        {% endtrans %}</p>
+    <p><strong>{% trans %}To: Mozilla Marketplace Support{% endtrans %}</strong></p>
+    <p><strong>{% trans %}Please describe the issue:{% endtrans %}</strong></p>
+    {{ form.text.errors }}
+    {{ form.text }}
+    <button type="submit">{{ _('Send Request') }}</button>
+</form>
