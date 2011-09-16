@@ -19,4 +19,5 @@ build.py
 locale
 vendor
 .nose*
+tmp/*
 tags
