@@ -115,6 +115,7 @@ class TestCount(amo.tests.TestCase):
     fixtures = ['base/addon_3615',
                 'base/addon_5369',
                 'tags/tags.json']
+    exempt_from_fixture_bundling = True
 
     def setUp(self):
         self.tag = Tag.objects.get(pk=2652)
