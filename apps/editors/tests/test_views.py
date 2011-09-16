@@ -1914,7 +1914,7 @@ class TestReviewPreliminary(ReviewBase):
 
         file = self.version.files.all()[0]
 
-        status_choices = amo.STATUS_CHOICES
+        status_choices = dict(amo.STATUS_CHOICES)
         del status_choices[7]
         for status in status_choices:
             if status != amo.STATUS_UNREVIEWED:
