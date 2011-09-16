@@ -196,6 +196,7 @@ class ESTestCase(TestCase):
     # outside Django transactions so be careful to clean up afterwards.
     es = True
     use_es = None
+    exempt_from_fixture_bundling = True  # ES doesn't support bundling (yet?)
 
     @classmethod
     def setUpClass(cls):
