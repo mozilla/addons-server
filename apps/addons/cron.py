@@ -365,7 +365,7 @@ def recs():
             _dump_recs(sims)
         except Exception:
             recs_log.error('SQL issue', exc_info=True)
-            print idx, 'Error dumping recommendations.'
+            recs_log.error('Error dumping recommendations.')
         sims.clear()
         timers['sql'].append(time.time() - calc)
         start[0] = time.time()
