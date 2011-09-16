@@ -380,6 +380,9 @@ DEV_APPS = (
 
 # Tests
 TEST_RUNNER = 'test_utils.runner.RadicalTestSuiteRunner'
+NOSE_ARGS = [
+    '--with-fixture-bundling',
+]
 
 # If you want to run Selenium tests, you'll need to have a server running.
 # Then give this a dictionary of settings.  Something like:
