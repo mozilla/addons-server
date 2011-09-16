@@ -52,5 +52,6 @@ PAYPAL_PERMISSIONS_URL = ''
 
 STATIC_URL = ''
 SITE_URL = ''
+MOBILE_SITE_URL = ''
 
 CACHE_BACKEND = 'caching.backends.locmem://'

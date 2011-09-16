@@ -454,7 +454,8 @@ class TestFeeds(amo.tests.TestCase):
             pg_item, rss_item = pq(pg_item), pq(rss_item)
             pg_url = absolutify(pg_item.find('h3 a').attr('href'))
             rss_url = rss_item.find('link').text()
-            eq_(pg_url.split('?')[0], rss_url)
+            abs_url = pg_url.split('?')[0]
+            assert rss_url.endswith(abs_url), 'Unexpected URL: %s' % abs_url
             if sort in ('added', 'updated'):
                 # Check timestamps.
                 pg_ts = pg_item.find('.updated').text().strip('Added Updated')

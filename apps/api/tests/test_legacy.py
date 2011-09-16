@@ -260,14 +260,6 @@ class APITest(TestCase):
         install = doc('install')[0].text
         eq_(install, install.strip())
 
-    def test_double_site_url(self):
-        """
-        For some reason I noticed hostnames getting doubled up.  This checks
-        that it doesn't happen.
-        """
-        response = make_call('addon/4664', version=1.5)
-        self.assertNotContains(response, settings.SITE_URL + settings.SITE_URL)
-
     def test_absolute_install_url(self):
         response = make_call('addon/4664', version=1.2)
         doc = pq(response.content)
