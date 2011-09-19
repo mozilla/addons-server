@@ -8,6 +8,7 @@
         "js/zamboni/devhub.js",
         "js/zamboni/validator.js",
         "js/zamboni/l10n.js",
+        "js/zamboni/truncation.js",
         "js/zamboni/storage.js",
         "js/zamboni/editors.js",
         "js/zamboni/upload.js",

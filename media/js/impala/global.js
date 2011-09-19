@@ -17,9 +17,9 @@ $('.island .listing-grid').bind('grid.init', function(e, data) {
             if ($tgt.hasClass('dot')) {
                 $grid.go($tgt.index() - 1);
             } else if ($tgt.hasClass('prev')){
-                $grid.prev();
+                $grid.prevPage();
             } else if ($tgt.hasClass('next')){
-                $grid.next();
+                $grid.nextPage();
             }
         });
         $grid.bind('grid.update', function(e, data) {
@@ -70,10 +70,10 @@ function listing_grid() {
             $grid.trigger("grid.update", {self: $grid, current: current, maxPage: maxPage});
         }
     };
-    $grid.prev = function() {
+    $grid.prevPage = function() {
         $grid.go(current-1);
     };
-    $grid.next = function() {
+    $grid.nextPage = function() {
         $grid.go(current+1);
     };
     hoverTruncate(this);
@@ -81,6 +81,7 @@ function listing_grid() {
         'width': $grid.width() + 'px',
         'height': $grid.height() + 'px'
     });
+    return $grid;
 }
 
 $(function() {
