@@ -1,4 +1,4 @@
-settings_local.py
+settings_local.py*
 *.py[co]
 *.sw[po]
 .coverage
@@ -22,3 +22,6 @@ vendor
 .nose*
 tmp/*
 tags
+vagrantconfig_local.yaml
+vagrant/manifests/classes/custom.pp
+vagrant/manifests/build
