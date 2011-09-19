@@ -38,10 +38,10 @@ Impala Master Template Checklist
 X    apps/browse/templates/browse/creatured.html
 √    apps/browse/templates/browse/extensions.html
 X    apps/browse/templates/browse/featured.html
-    apps/browse/templates/browse/language_tools.html
+√    apps/browse/templates/browse/language_tools.html
     apps/browse/templates/browse/personas/base.html
     apps/browse/templates/browse/personas/category_landing.html
-    apps/browse/templates/browse/personas/grid.html
+?    apps/browse/templates/browse/personas/grid.html
     apps/browse/templates/browse/search_tools.html
     apps/browse/templates/browse/themes.html
 
@@ -140,7 +140,7 @@ X    apps/search/templates/search/results.html
     apps/users/templates/users/delete.html
     apps/users/templates/users/delete_photo.html
 √    apps/users/templates/users/edit.html
-    apps/users/templates/users/login.html
+√    apps/users/templates/users/login.html
 √    apps/users/templates/users/profile.html
     apps/users/templates/users/pwreset_complete.html
     apps/users/templates/users/pwreset_confirm.html
