@@ -2856,7 +2856,14 @@ class TestSubmitStep7(TestSubmitBase):
     def test_marketplace(self):
         addon = Addon.objects.get(pk=3615)
         res = self.client.get(reverse('devhub.submit.7', args=[addon.slug]))
-        assert 'If this is a premium add-on' in res.content
+        eq_(pq(res.content)('.action-needed').length, 1)
+
+    @mock.patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
+    def test_marketplace_not(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.update(type=amo.ADDON_SEARCH)
+        res = self.client.get(reverse('devhub.submit.7', args=[addon.slug]))
+        eq_(pq(res.content)('.action_needed').length, 0)
 
 
 class TestResumeStep(TestSubmitBase):
