@@ -2,6 +2,7 @@ settings_local.py
 *.py[co]
 *.sw[po]
 .coverage
+.vagrant
 pip-log.txt
 docs/_gh-pages
 lib/product_json/*.json
