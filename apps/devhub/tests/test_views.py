@@ -3011,7 +3011,6 @@ class TestUpload(BaseUploadTest):
         r = self.client.post(self.url, {'upload': data})
         # If this is broke, we'll get a traceback.
         eq_(r.status_code, 302)
-    test_fileupload_ascii_post.py27unicode = True
 
     @attr('validator')
     def test_fileupload_validation(self):

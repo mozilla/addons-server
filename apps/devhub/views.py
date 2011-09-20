@@ -15,6 +15,7 @@ from django import forms as django_forms
 from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
+from django.utils.encoding import smart_unicode
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_view_exempt
 
@@ -1029,7 +1030,8 @@ def ajax_upload_image(request, upload_type):
         upload_preview.seek(0)
 
         upload_hash = uuid.uuid4().hex
-        loc = path.path(settings.TMP_PATH) / upload_type / upload_hash
+        loc = (path.path(smart_unicode(settings.TMP_PATH))
+               / upload_type / upload_hash)
         if not loc.dirname().exists():
             loc.dirname().makedirs()
 

@@ -14,6 +14,7 @@ from django.utils.encoding import iri_to_uri
 
 from mock import Mock, patch
 from nose.tools import eq_
+from nose import SkipTest
 from pyquery import PyQuery as pq
 from PIL import Image
 import waffle
@@ -1442,6 +1443,9 @@ class TestSubmitPersona(amo.tests.TestCase):
             eq_(r_json['errors'], ['Images must be either PNG or JPG.'])
 
     def test_success(self):
+        if not hasattr(Image.core, 'jpeg_encoder'):
+            raise SkipTest
+
         data = self.get_dict()
         header_url, footer_url = self.get_img_urls()
 

@@ -15,11 +15,19 @@ INSTALLED_APPS += (
 # You want one of the caching backends.  Dummy won't do any caching, locmem is
 # cleared every time you restart the server, and memcached is what we run in
 # production.
-# CACHE_BACKEND = 'caching.backends.memcached://localhost:11211?timeout=500'
-CACHE_BACKEND = 'caching.backends.locmem://'
-# Some cache is required for CSRF to work. Dummy will allow some functionality,
-# but won't allow you to login.
-# CACHE_BACKEND = 'dummy://'
+#CACHES = {
+#    'default': {
+#        'BACKEND': 'django.core.cache.backends.memcached.Memcached',
+#        'LOCATION': 'localhost:11211',
+#    }
+#}
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'zamboni',
+    }
+}
+# Caching is required for CSRF to work, please do not use the dummy cache.
 
 DATABASES = {
     'default': {

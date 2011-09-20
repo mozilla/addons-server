@@ -16,7 +16,7 @@ from django.conf import settings
 from django.db import models
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
-from django.utils.encoding import smart_str
+from django.utils.encoding import smart_str, smart_unicode
 
 import commonware
 import path
@@ -124,7 +124,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     @classmethod
     def from_upload(cls, upload, version, platform, parse_data={}):
         f = cls(version=version, platform=platform)
-        upload.path = path.path(nfd_str(upload.path))
+        upload.path = path.path(smart_unicode(nfd_str(upload.path)))
         f.filename = f.generate_filename(extension=upload.path.ext or '.xpi')
         f.size = int(max(1, round(upload.path.size / 1024, 0)))  # Kilobytes.
         f.jetpack_version = cls.get_jetpack_version(upload.path)
@@ -555,7 +555,7 @@ class FileUpload(amo.models.ModelBase):
         loc = path.path(settings.ADDONS_PATH) / 'temp' / uuid.uuid4().hex
         if not loc.dirname().exists():
             loc.dirname().makedirs()
-        ext = path.path(filename).ext
+        ext = path.path(smart_unicode(filename)).ext
         if ext in EXTENSIONS:
             loc += ext
         log.info('UPLOAD: %r (%s bytes) to %r' % (filename, size, loc))
