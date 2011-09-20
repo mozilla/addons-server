@@ -2,4 +2,6 @@ This was generated from jqueryui.com.
 
 It includes UI Core, Autocomplete and the Datepicker.
 
-It uses the Cupertino theme.
+===========================
+
+When adding something, don't forget the .css file, and do add it to settings.py!

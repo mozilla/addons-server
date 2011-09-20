@@ -507,9 +507,8 @@ MINIFY_BUNDLES = {
     'js': {
         # JS files common to the entire site.
         'common': (
-            'js/lib/jquery-1.4.2.min.js',
-            'js/lib/jquery-ui/custom-1.8.5.min.js',
-            'js/lib/underscore-min.js',
+            'js/lib/jquery-1.4.2.js',
+            'js/lib/underscore.js',
             'js/zamboni/browser.js',
             'js/amo2009/addons.js',
             'js/zamboni/init.js',
@@ -518,6 +517,13 @@ MINIFY_BUNDLES = {
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
             'js/zamboni/tabs.js',
+
+            # jQuery UI
+            'js/lib/jquery-ui/jquery.ui.core.js',
+            'js/lib/jquery-ui/jquery.ui.position.js',
+            'js/lib/jquery-ui/jquery.ui.widget.js',
+            'js/lib/jquery-ui/jquery.ui.autocomplete.js',
+            'js/lib/jquery-ui/jquery.ui.datepicker.js',
 
             'js/zamboni/global.js',
             'js/amo2009/global.js',
@@ -539,7 +545,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/reviews.js',
 
             # Personas
-            'js/lib/jquery.hoverIntent.min.js',
+            'js/lib/jquery.hoverIntent.js',
             'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
 
@@ -562,9 +568,8 @@ MINIFY_BUNDLES = {
             'js/zamboni/password-strength.js'
         ),
         'impala': (
-            'js/lib/jquery-1.6.min.js',
-            'js/lib/jquery-ui/custom-1.8.5.min.js',
-            'js/lib/underscore-min.js',
+            'js/lib/jquery-1.6.4.js',
+            'js/lib/underscore.js',
             'js/impala/carousel.js',
             'js/zamboni/browser.js',
             'js/amo2009/addons.js',
@@ -573,6 +578,13 @@ MINIFY_BUNDLES = {
             'js/lib/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
+
+            # jQuery UI
+            'js/lib/jquery-ui/jquery.ui.core.js',
+            'js/lib/jquery-ui/jquery.ui.position.js',
+            'js/lib/jquery-ui/jquery.ui.widget.js',
+            'js/lib/jquery-ui/jquery.ui.autocomplete.js',
+            'js/lib/jquery-ui/jquery.ui.datepicker.js',
 
             'js/zamboni/truncation.js',
             'js/zamboni/global.js',
@@ -596,7 +608,7 @@ MINIFY_BUNDLES = {
             'js/impala/listing.js',
 
             # Personas
-            'js/lib/jquery.hoverIntent.min.js',
+            'js/lib/jquery.hoverIntent.js',
             'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
 
@@ -620,8 +632,8 @@ MINIFY_BUNDLES = {
             'js/zamboni/outgoing_links.js',
         ),
         'zamboni/discovery': (
-            'js/lib/jquery-1.4.2.min.js',
-            'js/lib/underscore-min.js',
+            'js/lib/jquery-1.4.2.js',
+            'js/lib/underscore.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
             'js/zamboni/format.js',
@@ -634,7 +646,7 @@ MINIFY_BUNDLES = {
             'js/lib/jquery-ui/ui.lightbox.js',
 
             # Personas
-            'js/lib/jquery.hoverIntent.min.js',
+            'js/lib/jquery.hoverIntent.js',
             'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
 
@@ -678,7 +690,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/files.js',
         ),
         'zamboni/mobile': (
-            'js/lib/jquery-1.5.min.js',
+            'js/lib/jquery-1.5.js',
             'js/lib/jqmobile.js',
             'js/lib/jquery.cookie.js',
             'js/lib/jquery.pjax.js',
