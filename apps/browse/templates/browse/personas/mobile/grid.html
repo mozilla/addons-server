@@ -6,15 +6,9 @@
 
 {% block bodyclass %}personas-grid{% endblock %}
 
-{% if category %}
-  {% set base_url = url('browse.personas', category.slug) %}
-{% else %}
-  {% set base_url = url('browse.personas') %}
-{% endif %}
-
 {% block page %}
   <h2>{{ title }}</h2>
-  {{ mobile_sort_by(base_url, sort_opts, sorting) }}
+  {{ mobile_sort_by(request.get_full_path(), sort_opts, sorting) }}
   <div class="addon-listing">
     <ul class="listview">
       {% for addon in addons.object_list %}

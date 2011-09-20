@@ -41,7 +41,7 @@ class Webapp(Addon):
             # Set the slug once we have an id to keep things in order.
             self.update(slug='app-%s' % self.id)
 
-    def get_url_path(self, impala=None, more=False):
+    def get_url_path(self, more=False):
         view = 'apps.detail_more' if more else 'apps.detail'
         return reverse(view, args=[self.app_slug])
 

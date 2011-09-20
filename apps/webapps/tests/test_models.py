@@ -41,11 +41,11 @@ class TestWebapp(test_utils.TestCase):
 
     def test_get_url_path(self):
         webapp = Webapp(app_slug='woo')
-        eq_(webapp.get_url_path(), '/en-US/apps/woo/')
+        eq_(webapp.get_url_path(), '/en-US/apps/app/woo/')
 
     def test_get_url_path_more(self):
         webapp = Webapp(app_slug='woo')
-        eq_(webapp.get_url_path(more=True), '/en-US/apps/woo/more')
+        eq_(webapp.get_url_path(more=True), '/en-US/apps/app/woo/more')
 
     def test_get_origin(self):
         url = 'http://www.xx.com:4000/randompath/manifest.webapp'

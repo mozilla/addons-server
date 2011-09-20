@@ -69,6 +69,16 @@ class ImpalaAddonFilter(AddonFilter):
               ('hotness', _lazy(u'Up & Coming')))
 
 
+class AppFilter(AddonFilter):
+    opts = (('featured', _lazy(u'Featured')),
+            ('downloads', _lazy(u'Weekly Downloads')),
+            ('rating', _lazy(u'Top Rated')),
+            ('created', _lazy(u'Newest')))
+    extras = (('name', _lazy(u'Name')),
+              ('updated', _lazy(u'Recently Updated')),
+              ('hotness', _lazy(u'Up & Coming')))
+
+
 class ESAddonFilter(ESBaseFilter):
     opts = AddonFilter.opts
 
@@ -80,7 +90,10 @@ def addon_listing(request, addon_types, Filter=AddonFilter, default='popular',
               amo.STATUS_LITE_AND_NOMINATED]
 
     if is_impala:
-        Filter = ImpalaAddonFilter
+        if addon_types == [amo.ADDON_WEBAPP]:
+            Filter = AppFilter
+        else:
+            Filter = ImpalaAddonFilter
         default = 'featured'
 
     qs = (Addon.objects.listed(request.APP, *status)
@@ -267,16 +280,20 @@ class CategoryLandingFilter(BaseFilter):
         return manual_order(filter, self.ids, pk_name='addons.id')
 
 
-def category_landing(request, category):
-    TYPE = amo.ADDON_EXTENSION
-    base = (Addon.objects.listed(request.APP).exclude(type=amo.ADDON_PERSONA)
-            .filter(categories__id=category.id))
-    filter = CategoryLandingFilter(request, base, category,
-                                   key='browse', default='featured')
+def category_landing(request, category, addon_type=amo.ADDON_EXTENSION,
+                     Filter=CategoryLandingFilter):
+    if addon_type == amo.ADDON_WEBAPP:
+        base = (Addon.objects.public()
+                .filter(type=amo.ADDON_WEBAPP, categories__id=category.id))
+    else:
+        base = (Addon.objects.listed(request.APP)
+                .exclude(type=amo.ADDON_PERSONA)
+                .filter(categories__id=category.id))
+    filter = Filter(request, base, category, key='browse', default='featured')
     return jingo.render(request, 'browse/impala/category_landing.html',
-                        {'section': 'extensions', 'addon_type': TYPE,
-                         'category': category, 'filter': filter,
-                         'sorting': filter.field,
+                        {'section': amo.ADDON_SLUGS[addon_type],
+                         'addon_type': addon_type, 'category': category,
+                         'filter': filter, 'sorting': filter.field,
                          'search_cat': '%s,0' % category.type})
 
 

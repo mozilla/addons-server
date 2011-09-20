@@ -269,9 +269,10 @@ def impala_breadcrumbs(context, items=list(), add_default=True, crumb_size=40):
     show a list of breadcrumbs. If url is None, it won't be a link.
     Accepts: [(url, label)]
     """
-    if add_default and not context.get('WEBAPPS'):
+    home = 'apps.home' if context.get('WEBAPPS') else 'home'
+    if add_default:
         app = context['request'].APP
-        crumbs = [(urlresolvers.reverse('home'), page_name(app))]
+        crumbs = [(urlresolvers.reverse(home), page_name(app))]
     else:
         crumbs = []
 
@@ -447,8 +448,13 @@ def _side_nav(context, addon_type, cat):
         base_url = cat.get_url_path()
     else:
         base_url = AddonType(addon_type).get_url_path()
+    if addon_type == amo.ADDON_WEBAPP:
+        # Apps don't have ADU, so popularity is measured by weekly downloads.
+        popular = 'downloads'
+    else:
+        popular = 'users'
     ctx = dict(request=request, base_url=base_url, categories=categories,
-               addon_type=addon_type)
+               addon_type=addon_type, popular=popular)
     return jinja2.Markup(env.get_template('amo/side_nav.html').render(ctx))
 
 

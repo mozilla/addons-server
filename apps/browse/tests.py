@@ -254,7 +254,8 @@ class TestCategoryPages(amo.tests.TestCase):
     def test_browsing_urls(self):
         """Every browse page URL exists."""
         for _, slug in amo.ADDON_SLUGS.items():
-            assert reverse('browse.%s' % slug)
+            view = 'apps.list' if slug == 'apps' else 'browse.%s' % slug
+            assert reverse(view)
 
     def test_matching_opts(self):
         """Every filter on landing pages is available on listing pages."""

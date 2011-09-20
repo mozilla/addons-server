@@ -3,15 +3,16 @@
 {% block primary %}
 <section class="primary">
   {% if category %}
-    {{ impala_breadcrumbs([(url('browse.extensions'), _('Extensions')),
-                           (None, title)]) }}
+    {{ impala_breadcrumbs([base_crumb, (None, title)]) }}
   {% else %}
-    {{ impala_breadcrumbs([(None, _('Extensions'))]) }}
+    {{ impala_breadcrumbs([base_crumb]) }}
   {% endif %}
   <h1>{{ title }}</h1>
   <div class="island hero c listing">
-    <a href="{{ feed_url }}" id="subscribe">{{ _('Subscribe') }}</a>
-    {{ impala_addon_listing_header(base_url, search_filter=filter) }}
+    {% if feed_url %}
+      <a href="{{ feed_url }}" id="subscribe">{{ _('Subscribe') }}</a>
+    {% endif %}
+    {{ impala_addon_listing_header(request.get_full_path(), search_filter=filter) }}
     <div class="items">
       {{ impala_addon_listing_items(addons.object_list, sorting, src=src) }}
     </div>

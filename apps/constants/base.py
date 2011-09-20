@@ -126,6 +126,7 @@ ADDON_SLUGS = {
     ADDON_LPAPP: 'language-tools',
     ADDON_PERSONA: 'personas',
     ADDON_SEARCH: 'search-tools',
+    ADDON_WEBAPP: 'apps',
 }
 
 # These are used in the update API.
@@ -138,6 +139,7 @@ ADDON_SLUGS_UPDATE = {
     ADDON_LPADDON: 'extension',
     ADDON_PERSONA: 'persona',
     ADDON_PLUGIN: 'plugin',
+    ADDON_WEBAPP: 'app',
 }
 
 ADDON_FREE = 0

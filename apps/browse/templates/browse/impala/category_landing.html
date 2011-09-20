@@ -2,17 +2,18 @@
 
 {% set addon_sets = filter.all() %}
 
+{% set popular = 'downloads' if section == 'apps' else 'users' %}
+
 {% set src_dict = {'featured': 'featured',
                    'created': 'recentlyadded',
-                   'users': 'mostpopular',
+                   popular: 'mostpopular',
                    'rating': 'toprated'} %}
 
 {% block bodyclass %}category-landing{% endblock %}
 
 {% block primary %}
 <section class="primary">
-  {{ impala_breadcrumbs([(url('browse.extensions'), _('Extensions')),
-                         (None, title)]) }}
+  {{ impala_breadcrumbs([base_crumb, (None, title)]) }}
   {% set addons = addon_sets['featured'] %}
   {% if addons %}
     <div class="island hero c">
@@ -27,11 +28,10 @@
 
   {% for key, title in filter.opts if key != 'featured' %}
   {% set addons = addon_sets[key][:18] %}
-  {% set link = url('browse.extensions',
-                    category.slug)|urlparams(sort=key) %}
+  {% set link = request.get_full_path()|urlparams(sort=key) %}
   {% set hc_src = 'cb-hc-' + src_dict[key] %}
   {% set dl_src = 'cb-dl-' + src_dict[key] %}
-  {% set vital = ('adu', 'rating') if key == 'users' else ('rating', 'adu') %}
+  {% set vital = ('adu', 'rating') if key == popular else ('rating', 'adu') %}
   <div class="island c">
     <h2>
       {{ filter.opts_dict[key] }}
@@ -41,13 +41,20 @@
                          vital_summary=vital[0], vital_more=vital[1]) }}
   </div>
   {% endfor %}
-  <h2 class="seeall"><a href="{{ url('browse.extensions',
-                      category.slug)|urlparams(sort='users') }}">
-    {% trans cnt = category.count, name = category.name %}
-      See the {{ cnt }} extension in {{ name }} &raquo;
-    {% pluralize %}
-      See all {{ cnt }} extensions in {{ name }} &raquo;
-    {% endtrans %}
+  <h2 class="seeall"><a href="{{ request.get_full_path()|urlparams(sort=popular) }}">
+    {% if section == 'extensions' %}
+      {% trans cnt = category.count, name = category.name %}
+        See the {{ cnt }} extension in {{ name }} &raquo;
+      {% pluralize %}
+        See all {{ cnt }} extensions in {{ name }} &raquo;
+      {% endtrans %}
+    {% elif section == 'apps' %}
+      {% trans cnt = category.count, name = category.name %}
+        See the {{ cnt }} app in {{ name }} &raquo;
+      {% pluralize %}
+        See all {{ cnt }} apps in {{ name }} &raquo;
+      {% endtrans %}
+    {% endif %}
   </a></h2>
 </section>
 {% endblock %}

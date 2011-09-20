@@ -25,12 +25,26 @@
                     'popular': _('Themes by Weekly Downloads'),
                     'updated': _('Recently Updated Themes'),
                     'hotness': _('Up & Coming Themes')}.get(sorting) %}
+  {% elif section == 'apps' %}
+    {% set title = {'featured': _('Featured Apps'),
+                    'downloads': _('Apps by Weekly Downloads'),
+                    'rating': _('Top-Rated Apps'),
+                    'created': _('Newest Apps'),
+                    'name': _('Apps by Name'),
+                    'updated': _('Recently Updated Apps'),
+                    'hotness': _('Up & Coming Apps')}.get(sorting) %}
   {% endif %}
 {% endif %}
 
 {% block title %}
   {{ page_title(title) }}
 {% endblock %}
+
+{% set base_crumb = {
+    'extensions': (url('browse.extensions'), _('Extensions')),
+    'themes': (url('browse.themes'), _('Themes')),
+    'apps': (url('apps.list'), _('Apps'))
+}.get(section, 'extensions') %}
 
 {% if section == 'extensions' %}
   {% if category %}
@@ -43,13 +57,6 @@
     <link rel="alternate" type="application/rss+xml" title="RSS"
           href="{{ feed_url }}">
   {% endblock %}
-{% endif %}
-
-{% set browse_url = 'browse.%s' % section %}
-{% if category %}
-  {% set base_url = url(browse_url, category.slug) %}
-{% else %}
-  {% set base_url = url(browse_url) %}
 {% endif %}
 
 {% if not request.MOBILE %}

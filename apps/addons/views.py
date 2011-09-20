@@ -268,6 +268,9 @@ class BaseFilter(object):
         return (Addon.objects.order_by('-weekly_downloads')
                 .with_index(addons='downloads_type_idx'))
 
+    def filter_downloads(self):
+        return self.filter_popular()
+
     def filter_users(self):
         return (Addon.objects.order_by('-average_daily_users')
                 .with_index(addons='adus_type_idx'))

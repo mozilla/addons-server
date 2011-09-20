@@ -1257,6 +1257,8 @@ class AddonType(amo.models.ModelBase):
             type = amo.ADDON_SLUGS[self.id]
         except KeyError:
             return None
+        if type == 'apps':
+            return reverse('apps.list')
         return reverse('browse.%s' % type)
 
 
@@ -1326,14 +1328,13 @@ class Category(amo.models.ModelBase):
         urls = ['*%s' % self.get_url_path(), ]
         return urls
 
-    def get_url_path(self, impala=False):
+    def get_url_path(self):
         try:
             type = amo.ADDON_SLUGS[self.type]
         except KeyError:
             type = amo.ADDON_SLUGS[amo.ADDON_EXTENSION]
-        if impala:
-            return reverse('i_browse.%s' % type, args=[self.slug])
-        return reverse('browse.%s' % type, args=[self.slug])
+        view = 'apps.list' if type == 'apps' else 'browse.%s' % type
+        return reverse(view, args=[self.slug])
 
     @staticmethod
     def transformer(addons):
