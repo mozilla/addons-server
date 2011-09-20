@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import json
+
 from django import http
 from django.conf import settings
 from django import test
@@ -84,9 +86,12 @@ class TestLazyPjaxMiddleware(amo.tests.TestCase):
     def tearDown(self):
         self.patch.stop()
 
-    def process(self, page_content, title=''):
+    def process(self, page_content=None, title='', response=None):
         request = self.factory.get('/', HTTP_X_PJAX=True)
-        response = self.view(request, page_content, title=title)
+        if not response:
+            assert page_content is not None, (
+                        'Without a response, page_content= cannot be None')
+            response = self.view(request, page_content, title=title)
         return LazyPjaxMiddleware().process_response(request, response)
 
     def view(self, request, page_content, title=''):
@@ -149,3 +154,12 @@ class TestLazyPjaxMiddleware(amo.tests.TestCase):
         response = LazyPjaxMiddleware().process_response(request, response)
         assert response.content.startswith('<html>'), (
                     'Did not expect a pjax response: %s' % response.content)
+
+    @patch.object(settings, 'DEBUG', True)
+    def test_non_html_is_ignored(self):
+        # The client should never request a non-html page with the pjax
+        # header but let's handle it just in case.
+        resp = http.HttpResponse(json.dumps({'foo': 1}),
+                                 content_type='application/json')
+        resp = self.process(response=resp)
+        eq_(json.loads(resp.content), {'foo': 1})

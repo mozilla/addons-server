@@ -190,7 +190,9 @@ class LazyPjaxMiddleware(object):
         request.ALLOWS_PJAX = True
 
     def process_response(self, request, response):
-        if request.META.get('HTTP_X_PJAX') and response.status_code == 200:
+        if (request.META.get('HTTP_X_PJAX') and
+            response.status_code == 200 and
+            'html' in response.get('content-type', '').lower()):
             # TODO(Kumar) cache this.
             with statsd.timer('pjax.parse'):
                 tree = lxml.html.document_fromstring(response.content)
