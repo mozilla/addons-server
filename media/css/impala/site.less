@@ -84,9 +84,12 @@ header + .island {
     .secondary {
         float: right;
     }
-    .island.hero {
-        width: 720px;
-        position: relative;
+    .island {
+        .width-calc(~'100% - 30px');
+        &.hero {
+            width: 720px;
+            position: relative;
+        }
     }
 }
 
