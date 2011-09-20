@@ -641,3 +641,10 @@ class ESPaginator(paginator.Paginator):
         list(page.object_list)
         self._count = page.object_list.count()
         return page
+
+
+def smart_path(string):
+    """Returns a string you can pass to path.path safely."""
+    if os.path.supports_unicode_filenames:
+        return smart_unicode(string)
+    return smart_str(string)
