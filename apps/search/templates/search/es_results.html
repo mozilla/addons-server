@@ -15,9 +15,14 @@
 <meta name="WT.oss_r" content="{{ pager.paginator.count }}">
 {% endblock %}
 
-{% macro facet_links(title, links) %}
-<div>
-  <h3>{{ title }}</h3>
+{% macro facet(title, links) %}
+  <li class="facet">
+    <h3>{{ title }}</h3>
+    {{ facet_links(links) }}
+  </li>
+{% endmacro %}
+
+{% macro facet_links(links) %}
   <ul>
     {% for link in links recursive %}
     <li{% if link.selected %} class="selected"{% endif %}>
@@ -29,21 +34,25 @@
     </li>
     {% endfor %}
   </ul>
-</div>
 {% endmacro %}
 
 {% block content %}
-<section class="secondary refine" role="complementary">
-  <h2>{{ _('Refine Results') }}</h2>
-  {{ facet_links(_('Sort by'), sorting) }}
-  {{ facet_links(_('Category'), categories) }}
-  {% if versions %}
-    {{ facet_links(_('{app} Version')|f(app=APP.pretty), versions) }}
-  {% endif %}
-  {% if platforms %}
-    {{ facet_links(_('Platform'), platforms) }}
-  {% endif %}
-  {{ facet_links(_('Tagged'), tags) }}
+<section id="search-facets" class="secondary" role="complementary">
+  <h2>{{ _('Filter Results') }}</h2>
+  <ul class="facets island">
+    {{ facet(_('Category'), categories) }}
+    <li class="facet">
+      <h3>{{ _('Works with') }}</h3>
+      {% if versions %}
+        {{ facet_links(versions) }}
+      {% endif %}
+      {% if platforms %}
+        {{ facet_links(platforms) }}
+      {% endif %}
+    </li>
+    {{ facet(_('Tag'), tags) }}
+  </ul>
+  <p>{{ _('{0} matching results')|f(pager.paginator.count|numberfmt) }}</p>
 </section>
 
 
@@ -59,9 +68,10 @@
              sort_opts, query.sort, extra_sort_opts) }}
     </header>
     {% if pager.object_list %}
-      {{ pager|impala_paginator }}
-      {{ impala_addon_listing_items(pager.object_list, field=query.sort,
-                                    src='search') }}
+      <div class="items">
+        {{ impala_addon_listing_items(pager.object_list, field=query.sort,
+                                      src='search') }}
+      </div>
       {{ pager|impala_paginator }}
     {% else %}
       {% include 'search/no_results.html' %}

@@ -628,6 +628,9 @@ MINIFY_BUNDLES = {
             'js/zamboni/users.js',
             'js/impala/users.js',
 
+            # Search
+            'js/impala/search.js',
+
             # Fix-up outgoing links
             'js/zamboni/outgoing_links.js',
         ),
