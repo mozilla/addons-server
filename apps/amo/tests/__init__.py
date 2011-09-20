@@ -1,3 +1,4 @@
+from contextlib import contextmanager
 from datetime import datetime, timedelta
 from functools import partial
 import os
@@ -8,6 +9,7 @@ import time
 from django import forms
 from django.conf import settings
 from django.test.client import Client
+from django.utils import translation
 
 import elasticutils
 import nose
@@ -15,6 +17,7 @@ import test_utils
 from redisutils import mock_redis, reset_redis
 
 import amo
+from amo.urlresolvers import Prefixer, get_url_prefix, set_url_prefix
 import addons.search
 from addons.models import Addon
 from applications.models import Application, AppVersion
@@ -100,6 +103,16 @@ class TestCase(RedisTest, test_utils.TestCase):
         FeaturedManager.featured_ids.clear()
         CreaturedManager.creatured_ids.clear()
 
+    @contextmanager
+    def activate(self, locale):
+        old_prefix = get_url_prefix()
+        old_locale = translation.get_language()
+        rf = test_utils.RequestFactory()
+        set_url_prefix(Prefixer(rf.get('/%s/' % (locale,))))
+        translation.activate(locale)
+        yield
+        set_url_prefix(old_prefix)
+        translation.activate(old_locale)
 
 class AMOPaths(object):
     """Mixin for getting common AMO Paths."""
