@@ -537,6 +537,13 @@ class TestResponse(amo.tests.TestCase):
         eq_(up.data['row']['file_id'], file.pk)
         assert settings_local.MIRROR_URL in up.data['row']['url']
 
+    def test_url_premium(self):
+        self.addon_one.update(premium_type=amo.ADDON_PREMIUM)
+        up = self.get(self.good_data.copy())
+        up.get_rdf()
+        eq_(up.data['row']['url'],
+            settings_local.SITE_URL + '/downloads/watermarked/67442')
+
     def test_hash(self):
         rdf = self.get(self.good_data).get_rdf()
         assert rdf.find('updateHash') > -1

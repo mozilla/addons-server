@@ -23,7 +23,7 @@ try:
 except ImportError:
     from apps.versions.compare import version_int
 
-from utils import (get_mirror,
+from utils import (get_mirror, ADDON_PREMIUM,
                    APP_GUIDS, PLATFORMS, VERSION_BETA,
                    STATUS_PUBLIC, STATUSES_PUBLIC, STATUS_BETA, STATUS_NULL,
                    STATUS_LITE, STATUS_LITE_AND_NOMINATED, ADDON_SLUGS_UPDATE)
@@ -182,7 +182,8 @@ class Update(object):
                 files.status as file_status, files.hash,
                 files.filename, versions.id as version_id,
                 files.datestatuschanged as datestatuschanged,
-                versions.releasenotes, versions.version as version
+                versions.releasenotes, versions.version as version,
+                addons.premium_type
             FROM versions
             INNER JOIN addons
                 ON addons.id = versions.addon_id AND addons.id = %(id)s
@@ -225,11 +226,16 @@ class Update(object):
             row = dict(zip([
                 'guid', 'type', 'disabled_by_user', 'appguid', 'min', 'max',
                 'file_id', 'file_status', 'hash', 'filename', 'version_id',
-                'datestatuschanged', 'releasenotes', 'version'],
+                'datestatuschanged', 'releasenotes', 'version',
+                'premium_type'],
                 list(result)))
             row['type'] = ADDON_SLUGS_UPDATE[row['type']]
-            row['url'] = get_mirror(self.data['addon_status'],
-                                    self.data['id'], row)
+            if row['premium_type'] == ADDON_PREMIUM:
+                row['url'] = ('%s/downloads/watermarked/%s' %
+                              (settings.SITE_URL, row['file_id']))
+            else:
+                row['url'] = get_mirror(self.data['addon_status'],
+                                        self.data['id'], row)
             data['row'] = row
             return True
 
