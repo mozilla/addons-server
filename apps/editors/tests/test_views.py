@@ -1999,14 +1999,13 @@ class TestReviewApp(ReviewBase):
     def setUp(self):
         super(TestReviewApp, self).setUp()
         self.url = reverse('editors.app_review', args=[self.addon.slug])
-        self.addon.update(type=amo.ADDON_WEBAPP)
+        self.addon.update(type=amo.ADDON_WEBAPP, status=amo.STATUS_PENDING)
         AddonUser.objects.create(addon=self.addon,
                                  user=UserProfile.objects.get(pk=999))
         self.file = File.objects.create(version=self.version,
                                         status=amo.STATUS_PUBLIC)
 
     def test_push_public(self):
-        self.addon.update(status=amo.STATUS_PENDING)
         response = self.client.post(self.url,
                     {'action': 'public',
                      'operating_systems': '',
@@ -2015,6 +2014,28 @@ class TestReviewApp(ReviewBase):
                      'addon_files': [v.pk for v in self.version.files.all()]})
         eq_(response.status_code, 302)
         eq_(self.get_addon().status, amo.STATUS_PUBLIC)
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0].message().as_string()
+        assert 'Your app' in msg, ('Message not customized for apps: %s' % msg)
+
+    def test_comment(self):
+        response = self.client.post(self.url, {'action': 'comment',
+                                               'comments': 'mmm, nice app'})
+        eq_(response.status_code, 302)
+        eq_(len(mail.outbox), 0)
+        comment_version = amo.LOG.COMMENT_VERSION
+        eq_(ActivityLog.objects.filter(action=comment_version.id).count(), 1)
+
+    def test_reject(self):
+        response = self.client.post(self.url, {'action': 'reject',
+                                               'comments': 'suxor'})
+        eq_(response.status_code, 302)
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0].message().as_string()
+        assert 'Your app' in msg, ('Message not customized for apps: %s' % msg)
+        eq_(self.get_addon().status, amo.STATUS_NULL)
+        action = amo.LOG.REJECT_VERSION
+        eq_(ActivityLog.objects.filter(action=action.id).count(), 1)
 
 
 class TestEditorMOTD(EditorTest):

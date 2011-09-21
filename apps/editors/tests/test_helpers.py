@@ -280,6 +280,11 @@ class TestReviewHelper(amo.tests.TestCase):
         self.addon.update(type=amo.ADDON_WEBAPP, status=amo.STATUS_PENDING)
         eq_(self.get_helper().review_type, 'apps')
 
+    def test_webapp_actions(self):
+        self.addon.update(type=amo.ADDON_WEBAPP, status=amo.STATUS_PENDING)
+        eq_(self.get_helper().get_actions().keys(),
+            ['public', 'reject', 'comment'])
+
     def test_review_files(self):
         for status in REVIEW_FILES_STATUSES:
             self.setup_data(status=status)

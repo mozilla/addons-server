@@ -389,6 +389,8 @@ class ReviewHelper:
             self.handler = ReviewFiles(request, addon, version, 'pending')
 
     def get_actions(self):
+        if self.addon.type == amo.ADDON_WEBAPP:
+            return self.get_app_actions()
         labels, details = self._review_actions()
 
         actions = SortedDict()
@@ -415,6 +417,28 @@ class ReviewHelper:
         for k, v in actions.items():
             v['details'] = details.get(k)
 
+        return actions
+
+    def get_app_actions(self):
+        actions = SortedDict()
+        actions['public'] = {'method': self.handler.process_public,
+                             'minimal': False,
+                             'label': _lazy('Push to public'),
+                             'details': _lazy(
+                                'This will approve the sandboxed app so it '
+                                'appears on the public side.')}
+        actions['reject'] = {'method': self.handler.process_sandbox,
+                             'label': _lazy('Reject'),
+                             'minimal': False,
+                             'details': _lazy(
+                                'This will reject the app and remove it '
+                                'from the review queue.')}
+        actions['comment'] = {'method': self.handler.process_comment,
+                              'label': _lazy('Comment'),
+                              'minimal': True,
+                              'details': _lazy(
+                                    'Make a comment on this app.  The '
+                                    'author won\'t be able to see this.')}
         return actions
 
     def _review_actions(self):
@@ -529,6 +553,9 @@ class ReviewBase:
             data['tested'] = 'Tested on %s' % os
         elif not os and app:
             data['tested'] = 'Tested with %s' % app
+        data['addon_type'] = (_lazy('app')
+                              if self.addon.type == amo.ADDON_WEBAPP
+                              else _lazy('add-on'))
         send_mail('editors/emails/%s.ltxt' % template,
                    subject % (self.addon.name, self.version.version),
                    emails, Context(data), perm_setting='editor_reviewed')

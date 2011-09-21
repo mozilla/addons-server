@@ -72,6 +72,15 @@
                   </td>
                 </tr>
               {% endif %}
+              {% if addon.type == amo.ADDON_WEBAPP %}
+                <tr class="meta-abuse">
+                  <th>{{ _('Abuse Reports') }}</th>
+                  <td>
+                    {# TODO(Kumar) link to abuse reports page when it exists #}
+                    <strong>{{ addon.abuse_reports.count()|numberfmt }}</strong>
+                  </td>
+                </tr>
+              {% endif %}
               {% if not show_actions %}
                 {# Show privacy policy / eula if the button isn't shown #}
                 {# (Basically, on the editor review page) #}
