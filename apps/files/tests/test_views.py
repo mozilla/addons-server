@@ -22,6 +22,7 @@ from amo.urlresolvers import reverse
 from addons.models import Addon
 from files.helpers import FileViewer, DiffHelper
 from files.models import File
+from market.models import AddonPurchase
 from users.models import UserProfile
 
 dictionary = 'apps/files/fixtures/files/dictionary-test.xpi'
@@ -496,6 +497,8 @@ class TestWatermarkedFile(amo.tests.TestCase, amo.tests.AMOPaths):
         self.xpi_copy_over(self.file, 'firefm')
         self.url = reverse('downloads.watermarked', args=[self.file.pk])
         self.user = UserProfile.objects.get(pk=999)
+        self.purchase = AddonPurchase.objects.create(addon=self.addon,
+                                                     user=self.user)
         self.client.login(username='regular@mozilla.com', password='password')
 
     def test_get_anon_watermarked(self):
@@ -528,3 +531,8 @@ class TestWatermarkedFile(amo.tests.TestCase, amo.tests.AMOPaths):
         msg.save(True)
         res = self.client.get(self.url)
         eq_(res.status_code, 404)
+
+    def test_not_purchased(self):
+        self.purchase.delete()
+        res = self.client.get(self.url)
+        eq_(res.status_code, 403)

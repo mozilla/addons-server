@@ -68,11 +68,13 @@ def download_watermarked(request, file_id):
 
     file = get_object_or_404(File.objects, pk=file_id)
     addon = get_object_or_404(Addon.objects, pk=file.version.addon_id)
-    # TODO(andym): assert payment went through here?
 
     if (not addon.is_premium() or addon.is_disabled
         or file.status == amo.STATUS_DISABLED):
         raise http.Http404()
+
+    if not addon.has_purchased(request.user):
+        return http.HttpResponseForbidden()
 
     dest = file.watermark(request.amo_user)
     if not dest:
