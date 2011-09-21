@@ -9,6 +9,7 @@
         data-appname="{{ request.APP.pretty }}"
         data-appid="{{ request.APP.id }}"
         data-min-beta-version="{{ settings.MIN_BETA_VERSION }}"
+        data-nightly-version="8.0"
         data-anonymous="true"
         data-readonly="false"
         data-media-url="{{ MEDIA_URL }}"
@@ -33,15 +34,21 @@
   <div id="qunit-fixture">test markup, will be hidden</div>
   <div id="sandbox"><!-- custom Zamboni sandbox area --></div>
 
-    <div id="browserid-test">
-      <div class="primary"></div>
-        <a class="browserid-login" href="#"
-           data-url="{{ url('users.browserid_login') }}">BrowserID Login</a>
-    </div>
+  {% block fixtures %}
+  {% endblock %}
+
+  <script type="text/javascript">
+      waffle = {
+          flag: function () { return true; },
+          switch: function () { return true; },
+          sample: function () { return true; }
+      }
+  </script>
 
   <script src="{{ static(url('jsi18n')) }}"></script>
-  {{ js('impala') }}
-  {{ js('zamboni/login') }}
+  {% block init_scripts %}
+  {% endblock %}
+  <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
   <script type="text/javascript" src="{{ url('qunit_js') }}?v={{ timestamp }}"></script>
   <script type="text/javascript" src="{{ MEDIA_URL }}js/lib/jquery.mockjax.js?v={{ timestamp }}"></script>
   {% for url in suite.extra_urls %}

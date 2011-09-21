@@ -1,40 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>QUnit Test Suite</title>
-  <link rel="stylesheet" href="{{ url('qunit_css') }}?v={{ timestamp }}" type="text/css" media="screen">
-</head>
-<body
-        data-app="{{ request.APP.short }}"
-        data-appname="{{ request.APP.pretty }}"
-        data-appid="{{ request.APP.id }}"
-        data-min-beta-version="{{ settings.MIN_BETA_VERSION }}"
-        data-nightly-version="8.0"
-        data-anonymous="true"
-        data-readonly="false"
-        data-media-url="{{ MEDIA_URL }}"
-        data-paypal-url="/paypal"
-        data-default-locale="en-us">
-  <h1 id="qunit-header">QUnit Test Suite ({{ suite.name }})</h1>
-	<h2 id="qunit-banner"></h2>
-	<div id="qunit-testrunner-toolbar"></div>
-  {% if in_directory or subsuites %}
-  <div id="navigation">
-    {% if in_subdirectory %}
-    <a href="{{ url('qunit_test_overview', previous_directory) }}">..</a>
-    {% endif %}
+{% extends "qunit/base.html" %}
 
-    {% for suite in subsuites %}
-    <a href="{{ suite }}/">{{ suite }}</a>
-    {% endfor %}
-  </div>
-  {% endif %}
-	<h2 id="qunit-userAgent"></h2>
-	<ol id="qunit-tests"></ol>
-  <div id="qunit-fixture">test markup, will be hidden</div>
-  <div id="sandbox"><!-- custom Zamboni sandbox area --></div>
+{% block init_scripts %}
+  {{ js('common') }}
+{% endblock %}
 
-  {# The following HTML can be applied to #qunit-fixture in test setup #}
+{% block fixtures %}
+
   <div id="addon-validator-template">
     <div class="addon-validator-suite" id="addon-validator-suite-test"
          data-validateurl="/validate">
@@ -43,6 +14,7 @@
       {% endwith %}
     </div>
   </div>
+
   <div id="addon-compatibility-template">
     <div class="addon-validator-suite" id="addon-validator-suite-test"
          data-validateurl="/validate">
@@ -52,25 +24,6 @@
         {% include "devhub/addons/includes/validation_compat_test_results.html" %}
       {% endwith %}
     </div>
-  </div>
-  <div id="l10n-translation">
-    <div data-name="summary" class="trans" id="trans-summary">
-      <textarea lang="en-us" name="summary_en-us" cols="40" rows="10"
-                id="id_summary_0" style="display: block;">
-      Firebug integrates with Firefox to put a wealth of development tools...
-      </textarea>
-      <textarea lang="ja" name="summary_ja" cols="40" rows="10" id="id_summary_1"
-                style="display: none;">
-      Firebug は、Web ページを閲覧中にクリック一つで使える豊富な開発ツールを Firefox に統合します。あなたはあらゆる
-      </textarea>
-    </div>
-  </div>
-  <div id="l10n-menu">
-    <ul>
-      <li><a href="#en-us" class="default-locale">English (US)</a></li>
-      <li><a href="#ja">日本語</a></li>
-      <li><a href="#id">Bahasa Indonesia</a></li>
-    </ul>
   </div>
 
   <div id="preview-list">
@@ -186,9 +139,6 @@
     </div>
   </div>
 
-  <div id="exists">
-    <span class="exists"></span>
-  </div>
   <div id="slugified-field">
     <input id="id_name" />
     <span id="slug_edit" class="edit_with_prefix edit_initially_hidden">
@@ -199,6 +149,7 @@
       <a id="edit_slug" href="#">{{ _('Edit') }}</a>
     </span>
   </div>
+
   <div id="addon-cats" data-max-categories="2">
     <div data-max-categories="2">
       <div id="addon-cats-fx" class="addon-app-cats">
@@ -224,132 +175,11 @@
       </div>
     </div>
   </div>
-  <div id="editors-search-form">
-    <form>
-      <label for="id_application_id">Application</label>
-      <select data-url="/application_versions.json" name="application_id" id="id_application_id">
-        <option value="" selected="selected"></option>
-        <option value="1">Firefox</option>
-        <option value="2">Mozilla</option>
-      </select>
-      <label for="id_max_version">Max. Version</label>
-      <select name="max_version" id="id_max_version">
-        <option value="" selected="selected">Select an application first</option>
-      </select>
-    </form>
-  </div>
-  <div id="editors-motd-template">
-    {% with motd='This is an announcement' %}
-      {% include "editors/includes/daily-message.html" %}
-    {% endwith %}
-  </div>
-  <div id="editors-motd-for-edit-template">
-    {% with motd='This is an announcement' %}
-      {% include "editors/includes/daily-message.html" %}
-    {% endwith %}
-    <div id="editor-motd"><!-- admin edit form and stuff --></div>
-  </div>
+
   <div id="file-perf-tests">
     {% with version={'all_files': [{'can_be_perf_tested': Mock(return_value=True), 'id': 1}]}, addon={'slug': 'foo'} %}
       {% include "devhub/addons/listing/perf_file_listing.html" %}
     {% endwith %}
-  </div>
-  <div id="csrf-template">
-    <input id="csrfmiddlewaretoken" value="<csrf-from-input>">
-  </div>
-  <div id="buttons">
-    <h2 class="addon"><span class="version"></span></h2>
-    <div id="addon-summary">
-        <table>
-            <tr class="addon-compatible"><td></td></tr>
-            <tr class="addon-updated"><td><time></time></td></tr>
-        </table>
-    </div>
-    <div class="install-shell">
-        <div class="install featuredaddon"
-             data-version-supported="false">
-        </div>
-    </div>
-    <div class="backup-button hidden">
-        <div class="install-shell">
-            <div class="install featuredaddon"
-                 data-min=""
-                 data-max=""
-                 data-version="0.2"
-                 data-compatible-apps="Fx 1.0"
-                 data-lastupdated-isotime="today"
-                 data-lastupdated-datetime="today"
-                 data-version-supported="true">
-            </div>
-        </div>
-    </div>
-  </div>
-    <div id="files-wrapper">
-      <div id="files">
-      <ul>
-        <li>
-            <a class="file" href="">someurl</a>
-        </li>
-        <li>
-            <a class="directory closed" href="">foo</a>
-        </li>
-        <ul class="js-hidden">
-            <li>
-                <a class="file" href="someurl">foo/bar.txt</a>
-            </li>
-        </ul>
-      </ul>
-      </div>
-    </div>
-    <div id="paypal">
-        <div class="contribute">
-            <a href="/paykey?src=direct" class="suggested-amount">Contribute</a>
-        </div>
-    </div>
-    <div id="password-strength">
-        <input type="password" data-min-length="8" />
-    </div>
-
-  <div id="personas">
-    <legend>Persona License</legend>
-    <input type="hidden" name="license" id="id_license">
-    <div id="cc-chooser">
-      <h3>Can others share your Persona, as long as you're given credit?</h3>
-      <ul>
-        <li><label><input type="radio" name="cc-attrib" value="0"> Yes</label></li>
-        <li><label><input type="radio" name="cc-attrib" value="1"> No</label></li>
-      </ul>
-      <h3>Can others make commercial use of your Persona?</h3>
-      <ul>
-        <li><label><input type="radio" name="cc-noncom" value="0"> Yes</label></li>
-        <li><label><input type="radio" name="cc-noncom" value="1"> No</label></li>
-      </ul>
-      <h3>Can others create derivative works from your Persona?</h3>
-      <ul>
-        <li><label><input type="radio" name="cc-noderiv" value="0"> Yes</label></li>
-        <li><label><input type="radio" name="cc-noderiv" value="1"> Yes, as long as they share alike</label></li>
-        <li><label><input type="radio" name="cc-noderiv" value="2"> No</label></li>
-      </ul>
-      <div id="persona-license">
-        <p>Your Persona will be released under the following license:</p>
-        <p id="cc-license" class="license icon"></p>
-        <p class="select-license">
-          <a href="#">Select a different license.</a>
-        </p>
-      </div>
-    </div>
-    <div id="persona-license-list" class="hidden">
-      <h3>Select a license for your Persona.</h3>
-      <ul>
-        <li><label><input type="radio" name="license" value="7"> All Rights Reserved</label></li>
-        <li><label><input type="radio" name="license" value="9"> Creative Commons Attribution 3.0</label></li>
-        <li><label><input type="radio" name="license" value="10"> Creative Commons Attribution-NonCommercial 3.0</label></li>
-        <li><label><input type="radio" name="license" value="11"> Creative Commons Attribution-NonCommercial-NoDerivs 3.0</label></li>
-        <li><label><input type="radio" name="license" value="8"> Creative Commons Attribution-Noncommercial-Share Alike 3.0</label></li>
-        <li><label><input type="radio" name="license" value="12"> Creative Commons Attribution-NoDerivs 3.0</label></li>
-        <li><label><input type="radio" name="license" value="13"> Creative Commons Attribution-ShareAlike 3.0</label></li>
-      </ul>
-    </div>
   </div>
 
   <div id="acr">
@@ -387,6 +217,34 @@
     </div>
   </div>
 
+  <div id="editors-search-form">
+    <form>
+      <label for="id_application_id">Application</label>
+      <select data-url="/application_versions.json" name="application_id" id="id_application_id">
+        <option value="" selected="selected"></option>
+        <option value="1">Firefox</option>
+        <option value="2">Mozilla</option>
+      </select>
+      <label for="id_max_version">Max. Version</label>
+      <select name="max_version" id="id_max_version">
+        <option value="" selected="selected">Select an application first</option>
+      </select>
+    </form>
+  </div>
+
+  <div id="editors-motd-template">
+    {% with motd='This is an announcement' %}
+      {% include "editors/includes/daily-message.html" %}
+    {% endwith %}
+  </div>
+
+  <div id="editors-motd-for-edit-template">
+    {% with motd='This is an announcement' %}
+      {% include "editors/includes/daily-message.html" %}
+    {% endwith %}
+    <div id="editor-motd"><!-- admin edit form and stuff --></div>
+  </div>
+
   <div id="hovercard-grid">
     <div class="island">
       <ul class="listing-grid">
@@ -409,28 +267,4 @@
     </div>
   </div>
 
-  <script type="text/javascript">
-      waffle = {
-          flag: function () { return true; },
-          switch: function () { return true; },
-          sample: function () { return true; }
-      }
-  </script>
-
-  <script src="{{ static(url('jsi18n')) }}"></script>
-  {{ js('common') }}
-  <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
-  <script type="text/javascript" src="{{ url('qunit_js') }}?v={{ timestamp }}"></script>
-  <script type="text/javascript" src="{{ MEDIA_URL }}js/lib/jquery.mockjax.js?v={{ timestamp }}"></script>
-  {% for url in suite.extra_urls %}
-    <script type="text/javascript" src="{{ url }}?v={{ timestamp }}"></script>
-  {% endfor %}
-  {% for url in suite.extra_media_urls %}
-    <script type="text/javascript" src="{{ MEDIA_URL }}{{ url }}?v={{ timestamp }}"></script>
-  {% endfor %}
-  {% for file in files %}
-    <script type="text/javascript" src="{{ url('qunit_test', file) }}?v={{ timestamp }}"></script>
-  {% endfor %}
-
-</body>
-</html>
+{% endblock %}
