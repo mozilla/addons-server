@@ -1,10 +1,10 @@
 # -*- coding: utf8 -*-
 from datetime import datetime, timedelta
+from decimal import Decimal
 import json
 import os
 from textwrap import dedent
 
-from django.core.cache import cache
 from django.conf import settings
 from django.test.client import Client
 
@@ -26,6 +26,7 @@ from applications.models import Application
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from files.models import File
 from files.tests.test_models import UploadTest
+from market.models import AddonPremium, Price
 from search.tests import SphinxTestCase
 from search.utils import stop_sphinx
 
@@ -346,6 +347,33 @@ class APITest(TestCase):
         Addon.objects.filter(id=4664).update(suggested_amount=None)
         response = make_call('addon/4664', version=1.5)
         assert '<suggested_amount' not in response.content
+
+    def setup_premium(self, lang='en-US'):
+        addon = Addon.objects.get(id=4664)
+        addon.update(premium_type=amo.ADDON_PREMIUM,
+                     wants_contributions=False)
+        price = Price.objects.create(price=Decimal('5.12'))
+        AddonPremium.objects.create(addon=addon, price=price)
+        return pq(make_call('addon/4664', version=1.5, lang=lang).content)
+
+    def test_purchase(self):
+        doc = self.setup_premium()
+        eq_(len(doc('payment_data')), 1)
+
+    def test_purchase_number(self):
+        doc = self.setup_premium()
+        eq_(doc('amount').attr('amount'), '5.12')
+        eq_(doc('amount').text(), '$5.12')
+
+    def test_purchase_number_fr(self):
+        doc = self.setup_premium(lang='fr')
+        eq_(doc('amount').attr('amount'), '5.12')
+        eq_(doc('amount').text(), u'5,12\xa0$US')
+
+    @patch.object(settings, 'SITE_URL', 'http://foo')
+    def test_absolute(self):
+        doc = self.setup_premium()
+        assert 'http://foo' in doc('payment_data').text()
 
     def test_beta_channel(self):
         """
