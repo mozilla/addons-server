@@ -15,9 +15,9 @@
     <form method="post">
         {{ csrf() }}
         {% include "devhub/payments/includes/paypal.html" %}
-        <button id="marketplace-submit" type="submit">{{ _('Continue') }}</button>
+        <button type="submit">{{ _('Continue') }}</button>
         {% trans cancel= url('devhub.addons.payments', addon.slug) %}
-            or <a id="marketplace-cancel" href="{{ cancel }}">Cancel</a>
+            or <a href="{{ cancel }}">Cancel</a>
         {% endtrans %}
     </form>
 </section>
