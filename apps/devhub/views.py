@@ -486,11 +486,10 @@ def acquire_refund_permission(request, addon_id, addon):
     log.debug('Got refund token for addon: %s, token: %s....' %
               (addon_id, token[:5]))
     # Sadly this is an update on a GET.
-    if addon.premium:
-        addon.premium.update(paypal_permissions_token=token)
-    else:
-        AddonPremium.objects.create(addon=addon,
-                                    paypal_permissions_token=token)
+    addonpremium, created = AddonPremium.objects.get_or_create(addon=addon)
+    addonpremium.paypal_permissions_token = token
+    addonpremium.save()
+
     amo.log(amo.LOG.EDIT_PROPERTIES, addon)
     return redirect('devhub.addons.payments', addon.slug)
 
