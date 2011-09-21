@@ -1380,7 +1380,8 @@ def submit_addon(request, step, webapp=False):
 def submit_describe(request, addon_id, addon, step):
     form = forms.Step3Form(request.POST or None, instance=addon,
                            request=request)
-    cat_form = addon_forms.CategoryFormSet(request.POST or None, addon=addon)
+    cat_form = addon_forms.CategoryFormSet(request.POST or None, addon=addon,
+                                           request=request)
     if request.method == 'POST' and form.is_valid() and cat_form.is_valid():
         addon = form.save(addon)
         cat_form.save()
