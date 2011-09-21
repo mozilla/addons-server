@@ -66,6 +66,12 @@
             </label>
             {{ form.rememberme.errors }}
           </li>
+          <li id="captcha">
+            {% if form.recaptcha %}
+              {{ form.recaptcha_shown }}
+              {{ recaptcha(form) }}
+            {% endif %}
+          </li>
           <li class="footer-submit">
             <button id="login-submit" type="submit">{{ _('Log in') }}</button>
           </li>
