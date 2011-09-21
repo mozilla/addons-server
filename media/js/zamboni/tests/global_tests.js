@@ -8,7 +8,7 @@ function _inspectHeaders(inspector, url) {
         status: 200,
         response: function(settings) {
             inspector(this.headers);
-            headersInspected = true;
+            start();
         }
     });
     $.ajax({
@@ -19,11 +19,6 @@ function _inspectHeaders(inspector, url) {
         error: function(xhr) {
             console.log('ajax request Failed');
         }
-    });
-    tests.waitFor(function() {
-        return headersInspected;
-    }).thenDo(function() {
-        start();
     });
 }
 
@@ -51,7 +46,6 @@ module('CSRF Token from input', {
         this.sandbox = tests.createSandbox('#csrf-template');
     },
     teardown: function() {
-        $.mockjaxClear();
         this.sandbox.remove();
         if (this._csrf) {
             $.cookie('csrftoken', this._csrf);
