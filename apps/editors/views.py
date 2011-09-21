@@ -243,7 +243,7 @@ def save_motd(request):
 
 
 def _queue(request, TableObj, tab, qs=None):
-    if not qs:
+    if qs is None:
         qs = TableObj.Meta.model.objects.all()
     if request.GET:
         search_form = forms.QueueSearchForm(request.GET)
