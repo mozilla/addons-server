@@ -5,6 +5,7 @@ from pyquery import PyQuery as pq
 
 import amo
 from amo.urlresolvers import reverse
+from addons.models import Addon
 from devhub.models import RssKey
 from devhub.tests.test_views import HubTest
 from bandwagon.models import Collection
