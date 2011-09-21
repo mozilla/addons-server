@@ -949,7 +949,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
     if section == 'basic':
         tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
         cat_form = addon_forms.CategoryFormSet(request.POST or None,
-                                               addon=addon)
+                                               addon=addon, request=request)
         restricted_tags = addon.tags.filter(restricted=True)
 
     elif section == 'media':

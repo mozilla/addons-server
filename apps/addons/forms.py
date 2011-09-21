@@ -190,7 +190,8 @@ class CategoryForm(forms.Form):
             AddonCategory.objects.filter(addon=addon, category=c).delete()
 
     def clean_categories(self):
-        if hasattr(self, "disabled") and self.disabled:
+        if (getattr(self, 'disabled', False) and not
+            acl.action_allowed(self.request, 'Admin', 'EditAnyAddon')):
             raise forms.ValidationError(_('Categories cannot be changed while '
                 'your add-on is featured for this application.'))
         categories = self.cleaned_data['categories']
@@ -216,6 +217,7 @@ class BaseCategoryFormSet(BaseFormSet):
 
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon')
+        self.request = kw.pop('request')
         super(BaseCategoryFormSet, self).__init__(*args, **kw)
         self.initial = []
         apps = sorted(self.addon.compatible_apps.keys(), key=lambda x: x.id)
@@ -237,6 +239,7 @@ class BaseCategoryFormSet(BaseFormSet):
         self._construct_forms()
 
         for app, form in zip(apps, self.forms):
+            form.request = self.request
             form.initial['application'] = app.id
             form.app = app
             cats = sorted(app_cats[app.id], key=lambda x: x.name)

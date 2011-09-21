@@ -1038,6 +1038,10 @@ class TestEdit(amo.tests.TestCase):
             args.append('edit')
         return reverse('devhub.addons.section', args=args)
 
+    def login_admin(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+
     def test_redirect(self):
         # /addon/:id => /addon/:id/edit
         r = self.client.get('/en-US/developers/addon/3615/', follow=True)
@@ -1291,6 +1295,20 @@ class TestEdit(amo.tests.TestCase):
              'this application.'])
         # This add-on's categories should not change.
         eq_(sorted(addon_cats), [22])
+
+    @mock.patch.object(settings, 'NEW_FEATURES', True)
+    def test_edit_basic_categories_add_new_creatured_admin(self):
+        """Ensure that admins can change categories for creatured add-ons."""
+        self.login_admin()
+        self._feature_addon()
+        from addons.cron import reset_featured_addons
+        reset_featured_addons()
+        self.cat_initial['categories'] = [22, 23]
+        r = self.client.post(self.basic_url, self.get_dict())
+        addon_cats = self.get_addon().categories.values_list('id', flat=True)
+        eq_('categories' in r.context['cat_form'].errors[0], False)
+        # This add-on's categories should change.
+        eq_(sorted(addon_cats), [22, 23])
 
     @mock.patch.object(settings, 'NEW_FEATURES', True)
     def test_edit_basic_categories_disable_new_creatured(self):
