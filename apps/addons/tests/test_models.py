@@ -1634,7 +1634,8 @@ class TestMarketplace(amo.tests.ESTestCase):
     def test_can_be_premium_type(self):
         for type in amo.ADDON_TYPES.keys():
             self.addon.update(type=type)
-            if type in [amo.ADDON_EXTENSION, amo.ADDON_WEBAPP]:
+            if type in [amo.ADDON_EXTENSION, amo.ADDON_WEBAPP,
+                        amo.ADDON_LPAPP, amo.ADDON_DICT, amo.ADDON_THEME]:
                 assert self.addon.can_become_premium()
             else:
                 assert not self.addon.can_become_premium()
