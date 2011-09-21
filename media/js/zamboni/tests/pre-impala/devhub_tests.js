@@ -202,7 +202,14 @@ test('HTML in filename (on error)', function() {
 });
 
 test('HTML in filename (on success)', function() {
-    var results = {};
+    $.mockjax({
+        url: '/poll-for-results-success',
+        responseText: {
+            error: ""
+        },
+        status: 200
+    });
+    var results = {url: '/poll-for-results-success'};
     $(this.el).trigger("upload_success",
                        [{name: "tester's add-on2.xpi"}, results]);
     equals($('#upload-status-text', this.sandbox).text(),
