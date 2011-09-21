@@ -1,7 +1,3 @@
-#
-# !!AUTO-GENERATED!!  Edit scripts/crontab/make-crons.py instead.
-#
-
 MAILTO=amo-developers@mozilla.org
 
 HOME=/tmp
@@ -14,7 +10,7 @@ HOME=/tmp
 */30 * * * * {{ z_cron }} tag_jetpacks
 */30 * * * * {{ z_cron }} update_addons_current_version
 */30 * * * * {{ z_cron }} reset_featured_addons
-*/30 * * * * {{ z_cron }} cleanup_watermarked_addons
+*/30 * * * * {{ z_cron }} cleanup_watermarked_file
 
 #once per hour
 5 * * * * {{ z_cron }} update_collections_subscribers
