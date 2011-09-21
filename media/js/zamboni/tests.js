@@ -29,8 +29,8 @@ tests.waitFor = function(checkCondition, config) {
     if (typeof(config) === 'undefined') {
         config = {};
     }
-    var interval = config.interval || 5,
-        timeout = config.timeout || 300,
+    var interval = config.interval || 20,
+        timeout = config.timeout || 1000,
         run,
         runWhenReady,
         timeSpent = 0;

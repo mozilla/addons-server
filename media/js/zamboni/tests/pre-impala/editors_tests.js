@@ -3,7 +3,6 @@ $(document).ready(function(){
 var editorFixtures = {
     setup: function() {
         this.sandbox = tests.createSandbox('#editors-search-form');
-        initQueueSearch(this.sandbox);
     },
     teardown: function() {
         this.sandbox.remove();
@@ -19,8 +18,10 @@ module('editors search form 1', editorFixtures);
 
 asyncTest('select application', function() {
     var doc = this.sandbox;
+    $('#id_application_id', doc).attr('data-url', '/app-ver1.json');
+    initQueueSearch(doc);
     $.mockjax({
-        url: '/application_versions.json',
+        url: '/app-ver1.json',
         status: 200,
         response: function(settings) {
             equals(settings.data.application_id, '1');
@@ -50,8 +51,10 @@ module('editors search form 2', editorFixtures);
 asyncTest('de-select application', function() {
     var suite = this,
         doc = this.sandbox;
+    $('#id_application_id', doc).attr('data-url', '/app-ver2.json');
+    initQueueSearch(doc);
     $.mockjax({
-        url: '/application_versions.json',
+        url: '/app-ver2.json',
         status: 200,
         responseText: {choices: [['', ''], ['4.0b2pre', '4.0b2pre']]}
     });

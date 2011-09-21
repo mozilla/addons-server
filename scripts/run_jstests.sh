@@ -92,7 +92,12 @@ echo "Starting JS tests..." `date`
 
 rm $LOG
 cd scripts
-# These env vars are set in the Jenkins build step.
-python run_jstests.py -v --with-xunit --with-django-serv --django-host "$DJANGO_HOST" --django-port "$DJANGO_PORT" --django-log $LOG --django-startup-uri /robots.txt --with-jstests --jstests-server http://jstestnet.farmdev.com/ --jstests-suite zamboni --jstests-token "$JSTESTS_TOKEN" --jstests-url http://$DJANGO_HOST:$DJANGO_PORT/en-US/qunit --jstests-browsers firefox --debug nose.plugins.jstests
+# Some of these env vars are set in the Jenkins build step.
+BROWSERS=firefox
+XARGS= -v --with-xunit --with-django-serv --django-host "$DJANGO_HOST" --django-port "$DJANGO_PORT" --django-log $LOG --django-startup-uri /robots.txt --with-jstests --jstests-server http://jstestnet.farmdev.com/ --jstests-suite zamboni --jstests-token "$JSTESTS_TOKEN" --jstests-browsers $BROWSERS --debug nose.plugins.jstests
+echo '**************** /qunit/ ****************'
+python run_jstests.py --jstests-url http://$DJANGO_HOST:$DJANGO_PORT/en-US/qunit/ --xunit-file=nosetests.xml $XARGS
+echo '**************** /qunit/pre-impala/ ****************'
+python run_jstests.py --jstests-url http://$DJANGO_HOST:$DJANGO_PORT/en-US/qunit/pre-impala/ --xunit-file=nosetests-pre-impala.xml $XARGS
 
 echo 'shazam!'

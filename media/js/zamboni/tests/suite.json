@@ -15,6 +15,7 @@
         "js/zamboni/files.js",
         "js/zamboni/contributions.js",
         "js/zamboni/password-strength.js",
-        "js/impala/persona_creation.js"
+        "js/impala/persona_creation.js",
+        "js/zamboni/browserid_support.js"
     ]
 }
