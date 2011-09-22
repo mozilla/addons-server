@@ -20,9 +20,9 @@ log = logging.getLogger('z.devhub.task')
 ALL_APPS = ('firefox3.6', 'firefox6.0')
 
 # This translates AMO platforms into performance service platforms:
-PLATFORM_MAP = {amo.PLATFORM_LINUX.id: ('linux', 'linux64'),
-                amo.PLATFORM_WIN.id: ('win32', 'win64'),
-                amo.PLATFORM_MAC.id: ('macosx', 'macosx64')}
+PLATFORM_MAP = {amo.PLATFORM_LINUX.id: ('linux',),
+                amo.PLATFORM_WIN.id: ('win32',),
+                amo.PLATFORM_MAC.id: ('macosx64',)}
 PLATFORM_MAP[amo.PLATFORM_ALL.id] = (PLATFORM_MAP[amo.PLATFORM_LINUX.id] +
                                      PLATFORM_MAP[amo.PLATFORM_WIN.id] +
                                      PLATFORM_MAP[amo.PLATFORM_MAC.id])

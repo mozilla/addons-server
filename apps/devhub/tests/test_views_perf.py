@@ -54,9 +54,8 @@ class TestPerfViews(amo.tests.TestCase):
         self.set_platform(amo.PLATFORM_LINUX)
         re = self.start()
         eq_(re, {'success': True})
-        for os in ('linux', 'linux64'):
-            self.assert_call(((self.file, os, 'firefox3.6'), {}))
-            self.assert_call(((self.file, os, 'firefox6.0'), {}))
+        self.assert_call(((self.file, 'linux', 'firefox3.6'), {}))
+        self.assert_call(((self.file, 'linux', 'firefox6.0'), {}))
 
     def test_start_all(self):
         self.set_platform(amo.PLATFORM_ALL)
