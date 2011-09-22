@@ -522,8 +522,10 @@ MINIFY_BUNDLES = {
             'js/lib/jquery-ui/jquery.ui.core.js',
             'js/lib/jquery-ui/jquery.ui.position.js',
             'js/lib/jquery-ui/jquery.ui.widget.js',
+            'js/lib/jquery-ui/jquery.ui.mouse.js',
             'js/lib/jquery-ui/jquery.ui.autocomplete.js',
             'js/lib/jquery-ui/jquery.ui.datepicker.js',
+            'js/lib/jquery-ui/jquery.ui.sortable.js',
 
             'js/zamboni/global.js',
             'js/amo2009/global.js',
@@ -583,8 +585,10 @@ MINIFY_BUNDLES = {
             'js/lib/jquery-ui/jquery.ui.core.js',
             'js/lib/jquery-ui/jquery.ui.position.js',
             'js/lib/jquery-ui/jquery.ui.widget.js',
+            'js/lib/jquery-ui/jquery.ui.mouse.js',
             'js/lib/jquery-ui/jquery.ui.autocomplete.js',
             'js/lib/jquery-ui/jquery.ui.datepicker.js',
+            'js/lib/jquery-ui/jquery.ui.sortable.js',
 
             'js/zamboni/truncation.js',
             'js/zamboni/global.js',
