@@ -45,6 +45,7 @@ HOME=/tmp
 30 1 * * * {{ z_cron }} update_user_ratings
 50 1 * * * {{ z_cron }} gc
 30 3 * * * {{ django }} cleanup
+45 3 * * * {{ z_cron }} reindex_addons
 30 4 * * * {{ z_cron }} cleanup_synced_collections
 30 5 * * * {{ remora }}; php -f maintenance.php expired_resetcode
 30 6 * * * {{ remora }}; php -f maintenance.php category_totals
