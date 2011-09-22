@@ -595,6 +595,7 @@ def package_addon(request):
         data = {'id': basic_data['id'],
                 'version': basic_data['version'],
                 'name': basic_data['name'],
+                'slug': basic_data['package_name'],
                 'description': basic_data['description'],
                 'author_name': basic_data['author_name'],
                 'contributors': basic_data['contributors'],

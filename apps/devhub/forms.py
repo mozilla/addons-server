@@ -17,9 +17,12 @@ from quieter_formset.formset import BaseModelFormSet
 import amo
 import addons.forms
 import paypal
-from addons.models import Addon, AddonUpsell, AddonUser, Charity, Preview
+from addons.models import (Addon, AddonUpsell, AddonUser, BlacklistedSlug,
+                           Charity, Preview)
 from amo.forms import AMOModelForm
 from amo.urlresolvers import reverse
+from amo.utils import slug_validator
+
 from amo.widgets import EmailWidget
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, Platform
@@ -642,10 +645,10 @@ class PackagerBasicForm(forms.Form):
                                           'addon-name@developer.com. The email '
                                           'address does not have to be valid.'))
 
-    # Package Name help_text (bug 683306):
-    # The package name of your add-on used within the browser. This should be a
-    # short form of its name, for example, Test Extension might be
-    # testextension.
+    package_name = forms.CharField(help_text=_lazy(
+        u'The package name of your add-on used within the browser. This '
+         'should be a short form of its name (for example, Test Extension '
+         'might be testextension).'))
 
     author_name = forms.CharField(help_text=_lazy(u'Enter the name of the '
                                                    'person or entity to be '
@@ -658,12 +661,20 @@ class PackagerBasicForm(forms.Form):
                                                     'per line.'))
 
     def clean_name(self):
-        name_regex = re.compile('(mozilla|firefox)', re.I)
-
+        name_regex = re.compile('(mozilla|firefox|thunderbird)', re.I)
         if name_regex.match(self.cleaned_data['name']):
             raise forms.ValidationError(
                 _('Add-on names should not contain Mozilla trademarks.'))
         return self.cleaned_data['name']
+
+    def clean_package_name(self):
+        slug = self.cleaned_data['package_name']
+        slug_validator(slug, lower=False)
+        if Addon.objects.filter(slug=slug).exists():
+            raise forms.ValidationError(_('This slug is already in use.'))
+        if BlacklistedSlug.blocked(slug):
+            raise forms.ValidationError(_('The slug cannot be: %s.' % slug))
+        return slug
 
     def clean_id(self):
         id_regex = re.compile(
@@ -673,14 +684,13 @@ class PackagerBasicForm(forms.Form):
 
         if not id_regex.match(self.cleaned_data['id']):
             raise forms.ValidationError(
-                _('The add-on ID must be a UUID string or an email ' +
+                _('The add-on ID must be a UUID string or an email '
                   'address.'))
         return self.cleaned_data['id']
 
     def clean_version(self):
         if not VERSION_RE.match(self.cleaned_data['version']):
-            raise forms.ValidationError(
-                _('The version string is invalid.'))
+            raise forms.ValidationError(_('The version string is invalid.'))
         return self.cleaned_data['version']
 
 
@@ -746,7 +756,7 @@ class PackagerCompatBaseFormSet(BaseFormSet):
 
         if not any(cf.cleaned_data.get('enabled') for cf in self.forms):
             raise forms.ValidationError(
-                        _('At least one target application must be selected.'))
+                    _('At least one target application must be selected.'))
 
 PackagerCompatFormSet = formset_factory(PackagerCompatForm,
         formset=PackagerCompatBaseFormSet,

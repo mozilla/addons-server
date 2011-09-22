@@ -1,17 +1,21 @@
 import json
 import os
 
+from django.core.validators import validate_slug
+
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo.tests
 from amo.tests import formset, initial
 from amo.urlresolvers import reverse
+from addons.models import BlacklistedSlug
 from devhub.views import packager_path
 
 
 class TestAddOnPackager(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/appversion']
+    fixtures = ['base/apps', 'base/users', 'base/appversion',
+                'base/addon_3615']
 
     def setUp(self):
         assert self.client.login(username='regular@mozilla.com',
@@ -49,6 +53,7 @@ class TestAddOnPackager(amo.tests.TestCase):
                         'contributors': '',
                         'description': '',
                         'name': 'name',
+                        'package_name': 'name',
                         'id': 'foo@bar.com',
                         'version': '1.2.3'}
 
@@ -79,6 +84,31 @@ class TestAddOnPackager(amo.tests.TestCase):
         self.assertFormError(
                 r, 'basic_form', 'name',
                 'Add-on names should not contain Mozilla trademarks.')
+
+    def test_validate_package_name_required(self):
+        r = self.client.post(self.package_addon,
+                             self._form_data({'package_name': ''}))
+        self.assertFormError(r, 'basic_form', 'package_name',
+                             'This field is required.')
+
+    def test_validate_package_name_format(self):
+        r = self.client.post(self.package_addon,
+                             self._form_data({'package_name': 'addon name'}))
+        self.assertFormError(r, 'basic_form', 'package_name',
+                             validate_slug.message)
+
+    def test_validate_package_name_taken(self):
+        r = self.client.post(self.package_addon,
+                             self._form_data({'package_name': 'a3615'}))
+        self.assertFormError(r, 'basic_form', 'package_name',
+                             'This slug is already in use.')
+
+    def test_validate_package_name_blacklisted(self):
+        BlacklistedSlug.objects.create(name='slap_tickle')
+        r = self.client.post(self.package_addon,
+                             self._form_data({'package_name': 'slap_tickle'}))
+        self.assertFormError(r, 'basic_form', 'package_name',
+                             'The slug cannot be: slap_tickle.')
 
     def test_validate_version(self):
         """Test that the add-on version is properly validated."""

@@ -1,7 +1,9 @@
 $(document).ready(function() {
 
-    if ($('#packager').length) {
-        $('#packager').delegate('.app input:checkbox', 'change', function() {
+    var $pkgr = $('#packager');
+    if ($pkgr.length) {
+        // Adds a 'selected' class upon clicking an application checkbox.
+        $pkgr.delegate('.app input:checkbox', 'change', function() {
             var $this = $(this),
                 $li = $this.closest('li');
             if ($this.is(':checked')) {
@@ -10,7 +12,15 @@ $(document).ready(function() {
                 $li.removeClass('selected');
             }
         });
-        $('#packager .app input:checkbox').trigger('change');
+        $pkgr.find('.app input:checkbox').trigger('change');
+
+        // Upon keypress, generates a package name slug from add-on name.
+        function pkg_slugify() {
+            var slug = makeslug($('#id_name').val());
+            $('#id_package_name').val(slug);
+        }
+        pkg_slugify();
+        $pkgr.delegate('#id_name', 'keyup blur', pkg_slugify);
     }
 
     if ($('#packager-download').length) {

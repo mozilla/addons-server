@@ -262,10 +262,7 @@ def packager(data, feature_set, **kw):
     log.info('Saving package to: %s' % xpi_path)
 
     from packager.main import packager
-
-    data['slug'] = slugify(data['name']).replace('-', '_')
     features = set([k for k, v in feature_set.items() if v])
-
     packager(data, xpi_path, features)
 
     # Unlock the file and make it available.
