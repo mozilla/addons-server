@@ -5,14 +5,13 @@
 ) %}
 <nav id="side-nav" class="c">
   <h2>{{ _('Explore') }}</h2>
-  <ul>
+  <ul id="side-explore">
     {% for sort, title in extras %}
       <li class="s-{{ sort }}"><em><a href="{{ base_url|urlparams(sort=sort) }}">{{ title }}</a></em></li>
     {% endfor %}
   </ul>
-
   <h2>{{ _('Categories') }}</h2>
-  <ul>
+  <ul id="side-categories">
     {% for cat in categories %}
       <li id="c-{{ cat.id }}"><a href="{{ cat.get_url_path() }}">{{ cat.name }}</a></li>
     {% endfor %}
