@@ -190,8 +190,7 @@ class CategoryForm(forms.Form):
             AddonCategory.objects.filter(addon=addon, category=c).delete()
 
     def clean_categories(self):
-        if (getattr(self, 'disabled', False) and self.request and not
-            acl.action_allowed(self.request, 'Admin', 'EditAnyAddon')):
+        if getattr(self, 'disabled', False):
             raise forms.ValidationError(_('Categories cannot be changed while '
                 'your add-on is featured for this application.'))
         categories = self.cleaned_data['categories']
@@ -246,9 +245,10 @@ class BaseCategoryFormSet(BaseFormSet):
             form.fields['categories'].choices = [(c.id, c.name) for c in cats]
 
             # If this add-on is featured for this application, category
-            # categories are forbidden.
-            form.disabled = (settings.NEW_FEATURES and
-                             self.addon.is_featured(app))
+            # changes are forbidden.
+            if not acl.action_allowed(self.request, 'Admin', 'EditAnyAddon'):
+                form.disabled = (settings.NEW_FEATURES and
+                                 self.addon.is_featured(app))
 
     def save(self):
         for f in self.forms:

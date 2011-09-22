@@ -329,6 +329,10 @@ class TestEditBasic(TestEdit):
         self._feature_addon()
         from addons.cron import reset_featured_addons
         reset_featured_addons()
+        r = self.client.get(self.basic_edit_url)
+        doc = pq(r.content)
+        eq_(doc('#addon-categories-edit div.addon-app-cats').length, 1)
+        eq_(doc('#addon-categories-edit > p').length, 0)
         self.cat_initial['categories'] = [22, 23]
         r = self.client.post(self.basic_edit_url, self.get_dict())
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
