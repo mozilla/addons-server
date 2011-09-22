@@ -8,6 +8,7 @@ import tempfile
 from urlparse import urlparse
 
 from django import forms
+from django.contrib.auth.models import AnonymousUser
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
@@ -1699,3 +1700,7 @@ class TestAddonPurchase(amo.tests.TestCase):
 
     def test_not_purchased(self):
         assert not self.addon.has_purchased(self.user)
+
+    def test_anonymous(self):
+        assert not self.addon.has_purchased(None)
+        assert not self.addon.has_purchased(AnonymousUser)

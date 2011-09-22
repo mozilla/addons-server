@@ -979,6 +979,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             pass
 
     def has_purchased(self, user):
+        if not user or not isinstance(user, UserProfile):
+            return False
         return (self.is_premium() and
                 self.addonpurchase_set.filter(user=user).exists())
 
