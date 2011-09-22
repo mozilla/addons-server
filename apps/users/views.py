@@ -297,6 +297,17 @@ def login(request, modal=False, template=None):
         request = _clean_next_url(request)
 
     limited = getattr(request, 'limited', 'recaptcha_shown' in request.POST)
+    user = None
+    if 'username' in request.POST:
+        try:
+            # We are doing all this before we try and validate the form.
+            user = UserProfile.objects.get(email=request.POST['username'])
+            limited = ((user.failed_login_attempts >=
+                        settings.LOGIN_RATELIMIT_USER) or limited)
+            user.log_login_attempt(request, False)
+        except UserProfile.DoesNotExist:
+            pass
+
     partial_form = partial(forms.AuthenticationForm, use_recaptcha=limited)
     r = auth.views.login(request, template_name=template,
                          redirect_field_name='to',
@@ -344,16 +355,6 @@ def login(request, modal=False, template=None):
             return jingo.render(request, 'users/login.html',
                                 {'form': partial_form()})
 
-        if (user.failed_login_attempts > settings.LOGIN_RATELIMIT_USER
-            and not limited):
-            # This reshows the form with the recaptcha. Until they are logged
-            # in we don't know if the user needs to have recaptcha shown.
-            # The UX for this isn't good, we should fix this.
-            logout(request)
-            log.info(u'Attempt to log in with too many failures (%s)' % user)
-            form = forms.AuthenticationForm(request.POST, use_recaptcha=True)
-            return jingo.render(request, 'users/login.html', {'form': form})
-
         rememberme = request.POST.get('rememberme', None)
         if rememberme:
             request.session.set_expiry(settings.SESSION_COOKIE_AGE)
@@ -364,12 +365,6 @@ def login(request, modal=False, template=None):
 
         if modal:
             r = redirect('users.login_modal')
-
-    elif 'username' in request.POST:
-        # Hitting POST directly because cleaned_data doesn't exist
-        user = UserProfile.objects.filter(email=request.POST['username'])
-        if user:
-            user.get().log_login_attempt(request, False)
 
     return r
 

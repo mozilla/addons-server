@@ -386,6 +386,13 @@ class TestLogin(UserViewBase):
         res = self.client.post(self.url, data=data)
         eq_(res.status_code, 302)
 
+    def test_login_fails_increment(self):
+        # It increment even when the form is wrong.
+        user = UserProfile.objects.filter(email=self.data['username'])
+        eq_(user.get().failed_login_attempts, 3)
+        self.client.post(self.url, data={'username': self.data['username']})
+        eq_(user.get().failed_login_attempts, 4)
+
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('httplib2.Http.request')
     def test_browserid_login_success(self, http_request):
