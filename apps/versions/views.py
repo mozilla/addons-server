@@ -73,7 +73,7 @@ def download_watermarked(request, file_id):
         or file.status == amo.STATUS_DISABLED):
         raise http.Http404()
 
-    if not addon.has_purchased(request.user):
+    if not addon.has_purchased(request.amo_user):
         return http.HttpResponseForbidden()
 
     dest = file.watermark(request.amo_user)
