@@ -16,7 +16,7 @@ from redisutils import mock_redis, reset_redis
 
 import amo
 import addons.search
-from addons.models import Addon, AddonUser
+from addons.models import Addon
 from applications.models import Application, AppVersion
 from files.models import File, Platform
 from translations.models import Translation
