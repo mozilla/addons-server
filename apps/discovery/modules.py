@@ -74,7 +74,7 @@ class MonthlyPick(TemplatePromo):
             pick = MP.objects.filter(locale=self.request.LANG)[0]
         except IndexError:
             try:
-                pick = MP.objects.filter(locale__isnull=True)[0]
+                pick = MP.objects.filter(locale='')[0]
             except IndexError:
                 pick = None
         return {'pick': pick, 'module_context': 'discovery'}

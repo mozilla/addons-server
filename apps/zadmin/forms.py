@@ -177,6 +177,6 @@ class MonthlyPickForm(happyforms.ModelForm):
             'blurb': forms.Textarea(attrs={'cols': 20, 'rows': 2})
         }
 
-MonthlyPickFormSet = modelformset_factory(MonthlyPick,
-                                          form=MonthlyPickForm,
+
+MonthlyPickFormSet = modelformset_factory(MonthlyPick, form=MonthlyPickForm,
                                           can_delete=True, extra=0)

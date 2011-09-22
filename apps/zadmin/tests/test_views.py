@@ -1056,6 +1056,15 @@ class TestMonthlyPick(amo.tests.TestCase):
         eq_(MonthlyPick.objects.count(), 2)
         eq_(MonthlyPick.objects.all()[1].locale, 'fr')
 
+    def test_success_insert_no_locale(self):
+        dupe = initial(self.f)
+        del dupe['id']
+        del dupe['locale']
+        data = formset(initial(self.f), dupe, initial_count=1)
+        r = self.client.post(self.url, data)
+        eq_(MonthlyPick.objects.count(), 2)
+        eq_(MonthlyPick.objects.all()[1].locale, '')
+
     def test_success_update(self):
         d = initial(self.f)
         d.update(locale='fr')

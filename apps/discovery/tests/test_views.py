@@ -451,10 +451,14 @@ class TestMonthlyPick(amo.tests.TestCase):
             module='Monthly Pick')
 
     def test_monthlypick(self):
-        MonthlyPick.objects.create(addon=self.addon, blurb='BOOP',
-                                   image='http://mozilla.com')
+        mp = MonthlyPick.objects.create(addon=self.addon, blurb='BOOP',
+                                        image='http://mozilla.com')
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#monthly').length, 0)
+        mp.update(locale='')
         r = self.client.get(self.url)
         pick = pq(r.content)('#monthly')
+        eq_(pick.length, 1)
         eq_(pick.find('h3').text(), unicode(self.addon.name))
         eq_(pick.find('img').attr('src'), 'http://mozilla.com')
         eq_(pick.find('.wrap > div > div > p').text(), 'BOOP')
