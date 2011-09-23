@@ -141,6 +141,13 @@ class TestAddonPurchase(amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(json.loads(res.content)['status'], 'invalid')
 
+    def test_user_not_purchased(self):
+        eq_(list(self.user.purchase_ids()), [])
+
+    def test_user_purchased(self):
+        self.addon.addonpurchase_set.create(user=self.user)
+        eq_(list(self.user.purchase_ids()), [3615L])
+
 
 class TestContribution(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']

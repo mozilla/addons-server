@@ -762,3 +762,14 @@ class TestPurchases(amo.tests.TestCase):
         res = self.client.get(reverse('users.purchases.receipt',
                               args=[self.addon.pk]))
         eq_(pq(res.content)('#sorter').text(), 'Show all purchases')
+
+    def test_purchases_attribute(self):
+        doc = pq(self.client.get(self.url).content)
+        ids = list(Addon.objects.values_list('pk', flat=True).order_by('pk'))
+        eq_(doc('body').attr('data-purchases'),
+            ','.join([str(i) for i in ids]))
+
+    def test_no_purchases_attribute(self):
+        self.user.get_profile().addonpurchase_set.all().delete()
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('body').attr('data-purchases'), '')
