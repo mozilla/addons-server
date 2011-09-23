@@ -259,7 +259,7 @@ $(document).ready(function() {
     }
     $('#edit-addon-media').bind('click', function() {
         imageStatus.cancel();
-    })
+    });
 });
 
 function initUploadControls() {
@@ -810,7 +810,8 @@ function initEditVersions() {
 
 }
 
-function initPayments() {
+function initPayments(delegate) {
+  var $delegate = $(delegate || document.body);
     if (z.noEdit) return;
     var previews = [
         "img/zamboni/contributions/passive.png",
@@ -876,6 +877,9 @@ function initPayments() {
             $(".thankyou-note").hide();
         }
     }).change();
+    $delegate.find('#id_text, #id_free').focus(function(e) {
+        $delegate.find('#id_do_upsell_1').attr('checked', true);
+    });
 }
 
 function initCatFields(delegate) {

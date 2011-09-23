@@ -2,6 +2,7 @@
 
 {% block init_scripts %}
   {{ js('impala') }}
+  {{ js('zamboni/devhub') }}
 {% endblock %}
 
 {% block fixtures %}  
@@ -134,6 +135,24 @@
     <div class="primary"></div>
       <a class="browserid-login" href="#"
          data-url="/nowhere">BrowserID Login</a>
+  </div>
+  <div id="upsell-test">
+    <form action="/en-US/developers/addon/status-watch/payments" method="post">
+      <div class="brform">
+        <div><ul>
+            <li><label for="id_do_upsell_0"><input type="radio" name="do_upsell" value="0" id="id_do_upsell_0" checked="checked"> I don't have a free add-on to associate.</label></li>
+            <li><label for="id_do_upsell_1"><input type="radio" name="do_upsell" value="1" id="id_do_upsell_1"> This is a premium upgrade to:</label></li>
+        </ul>
+        </div>
+        <div class="indent">
+          <div><select id="id_free" name="free">
+              <option selected="selected" value=""></option>
+          </select></div>
+          <div><textarea name="text" cols="40" rows="10" id="id_text"></textarea></div>
+        </div>
+      </div>
+      <button type="submit">Save Changes</button>
+    </form>
   </div>
 
 {% endblock %}
