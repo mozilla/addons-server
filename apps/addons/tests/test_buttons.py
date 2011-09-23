@@ -458,6 +458,14 @@ class TestButtonHtml(ButtonTest):
             doc('.install').attr('class').split())
         eq_('Featured', doc('.install strong:last-child').text())
 
+    def test_premium(self):
+        self.addon.is_premium.return_value = True
+        self.addon.can_be_purchased.return_value = True
+        doc = self.render()
+
+        eq_(['install', 'premium'],
+            doc('.install').attr('class').split())
+
     def test_unreviewed(self):
         self.addon.status = amo.STATUS_UNREVIEWED
         self.addon.is_unreviewed.return_value = True

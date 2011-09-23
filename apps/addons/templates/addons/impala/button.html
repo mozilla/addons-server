@@ -50,6 +50,9 @@
          {% if b.show_warning %}
            href="{{ b.addon.get_url_path() }}"
            data-realurl="{{ link.url }}"
+         {% elif waffle.switch('marketplace') and addon.can_be_purchased() %}
+           href="{{ url('addons.purchase', addon.slug) }}"
+           data-realurl="{{ link.url }}"
          {% else %}
            href="{{ link.url }}"
          {% endif %}>
