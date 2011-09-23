@@ -1,61 +1,71 @@
 {# addon, version, request #}
 <div class="version {{ itemclass }}" id="version-{{ version.version }}">
-  <h3><a href="{{ version.get_url_path() }}"
-        title="{{ _('Permanent link to this version') }}">
-       {{ _('Version {0}', 'addon_display_header_version')|f(version.version) }}</a>
-    <span title="{{ version.created|isotime }}">{{
-      version.created|datetime }}</span>
-    {% if version.has_files %}
-      <span>{{ (version.all_files[0].size * 1024)|filesizeformat }}</span>
-    {% endif %}
-  </h3>
+  <div class="info">
+    <h3><a href="{{ version.get_url_path() }}"
+          title="{{ _('Permanent link to this version') }}">
+         {{ _('Version {0}', 'addon_display_header_version')|f(version.version) }}</a>
+       <span>
+       <time datetime="{{ version.created|isotime }}">
+        {{ version.created|datetime }}
+       </time>
+       {% if version.has_files %}
+       &middot; {{ (version.all_files[0].size * 1024)|filesizeformat }}
+       {% endif %}
+       </span>
+    </h3>
 
-  <div class="item-info">
-    {{ install_button(addon, version=version, show_backup=False, impala=impala) }}
+    <p class="desc" {{ version.releasenotes|locale_html }}>
+        {{ version.releasenotes|nl2br }}
+    </p>
 
-    {% if version.compatible_apps %}
-      <h5>{{ _('Works with:') }}</h5>
-      <ul>
-        {% for compat in version.compatible_apps.values() %}
-          <li>{{ compat }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
+    <ul class="inline">
+      {% if version.compatible_apps %}
+        <li>
+          <strong>{{ _('Works with:') }}</strong>
+          {{ version.compatible_apps.values()|join(', ') }}
+        </li>
+      {% endif %}
+
+      {# License #}
+      {% if version.license %}
+        <li>
+          {% set license = version.license %}
+          <strong>
+            {{ _('License:') }}
+          </strong>
+          {% if license.builtin %}
+            {{ license_link(license) }}
+          {% else %}
+            <a href="{{ version.license_url() }}">
+              {{ license.name }}</a>
+          {% endif %}
+          {# TODO reverse URL #}
+          [<span><a href="{{ remora_url('/pages/faq#license') }}">
+              {{ _("What's this?", 'addons_display_a_license_what') }}
+          </a></span>]
+        </li>
+      {% endif %}
+
+      {% if addon.view_source and version.has_files and addon.status in amo.REVIEWED_STATUSES %}
+      <li>
+        <strong>
+          <a class="source-code" href="{{ remora_url('/files/browse/{0}'|f(version.all_files[0].pk)) }}">
+            {{ _('View the source') }}</a>
+        </strong>
+      </li>
+      {% endif %}
+      {% if show_versions_link and not addon.is_selfhosted() %}
+      <li>
+        <strong>
+          <a class="more-info" href="{{ url('addons.versions', addon.slug)}}">
+            {{ _('View all versions') }}
+          </a>
+        </strong>
+      </li>
+      {% endif %}
+    </ul>
   </div>
-
-  <blockquote>
-    <div class="prose userinput" {{ version.releasenotes|locale_html }}>
-      {{ version.releasenotes|nl2br }}
-    </div>
-  </blockquote>
-
-  {# License #}
-  {% if version.license %}
-    {% set license = version.license %}
-    <h5>
-      {{ _('Source Code License') }}
-      {# TODO reverse URL #}
-      <span><a href="{{ remora_url('/pages/faq#license') }}">
-        {{ _("What's this?", 'addons_display_a_license_what') }}
-      </a></span>
-    </h5>
-    {% if license.builtin %}
-      {{ license_link(license) }}
-    {% else %}
-      <a href="{{ version.license_url() }}">
-        {{ license.name }}</a>
-    {% endif %}
-  {% endif %}
-
-  {% if addon.view_source and version.has_files and addon.status in amo.REVIEWED_STATUSES %}
-      <br/><a class="source-code" href="{{ remora_url('/files/browse/{0}'|f(version.all_files[0].pk)) }}">
-        {{ _('View the source') }}</a>
-  {% endif %}
-  {% if show_versions_link and not addon.is_selfhosted() %}
-    <nav class="further-navigation">
-      <a class="more-info" href="{{ url('addons.versions', addon.slug)}}">
-        {{ _('View all versions') }}
-      </a>
-    </nav>
-  {% endif %}
+  <div class="action">
+    {{ install_button(addon, version=version, show_backup=False, impala=impala) }}
+  </div>
 </div>
