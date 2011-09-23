@@ -321,6 +321,9 @@ class UserProfile(amo.models.ModelBase):
             c = Collection.objects.using('default').get(id=c.id)
         return c
 
+    def purchases(self):
+        return self.addonpurchase_set.values_list('addon_id', flat=True)
+
 
 @dispatch.receiver(models.signals.post_save, sender=UserProfile,
                    dispatch_uid='user.post_save')
