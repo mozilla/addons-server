@@ -87,6 +87,13 @@ var installButton = function() {
         olderBrowser,
         newerBrowser;
 
+    // Check to see if it's been purchased.
+    if($.inArray(parseInt(addon), addons_purchased) >= 0) {
+        premium = false;
+        $this.removeClass('premium');
+        $this.find('.premium').removeClass('premium');
+    }
+
     // If we have os-specific buttons, check that one of them matches the
     // current platform.
     var badPlatform = ($button.find('.os').length &&
@@ -314,6 +321,9 @@ var installButton = function() {
     }
 };
 
+
+var addons_purchased = $.map($('body').attr('data-purchases').split(','),
+                             function(v) { return parseInt(v, 10) });
 
 jQuery.fn.installButton = function() {
     return this.each(installButton);
