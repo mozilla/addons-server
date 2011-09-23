@@ -279,9 +279,9 @@ def name_query(q):
     # 5. Look for text matches inside the description (boost=0.3).
     return dict(name__text={'query': q, 'boost': 3},
                 name__fuzzy={'value': q, 'boost': 2, 'prefix_length': 4},
-                 name__startswith={'value': q, 'boost': 1.5},
-                 summary__text={'query': q, 'boost': 0.8},
-                 description__text={'query': q, 'boost': 0.3})
+                name__startswith={'value': q, 'boost': 1.5},
+                summary__text={'query': q, 'boost': 0.8},
+                description__text={'query': q, 'boost': 0.3})
 
 
 @mobile_template('search/es_results.html')
@@ -362,7 +362,7 @@ def es_search(request, tag_name=None, template=None):
         high = version_int(query['appver'] + 'a')
         qs = qs.filter(**{'appversion.%s.max__gte' % APP.id: high,
                           'appversion.%s.min__lte' % APP.id: low})
-    if query.get('atype') and query['atype']in amo.ADDON_TYPES:
+    if query.get('atype') and query['atype'] in amo.ADDON_TYPES:
         qs = qs.filter(type=query['atype'])
     else:
         qs = qs.filter(type__in=types)

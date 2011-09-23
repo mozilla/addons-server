@@ -4,7 +4,6 @@ import re
 
 from django.conf import settings
 
-import amo
 from versions.compare import version_re
 
 call = lambda x: subprocess.Popen(x, stdout=subprocess.PIPE).communicate()
