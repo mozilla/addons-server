@@ -322,7 +322,8 @@ var installButton = function() {
 };
 
 
-var addons_purchased = $.map($('body').attr('data-purchases').split(','),
+var data_purchases = $('body').attr('data-purchases') || "",
+    addons_purchased = $.map(data_purchases.split(','),
                              function(v) { return parseInt(v, 10) });
 
 jQuery.fn.installButton = function() {
