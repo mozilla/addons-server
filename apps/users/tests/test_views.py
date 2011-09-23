@@ -691,11 +691,12 @@ class TestReportAbuse(amo.tests.TestCase):
         eq_(report.reporter.email, 'regular@mozilla.com')
 
 
-@patch('waffle.switch_is_active', lambda x: True)
 class TestPurchases(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        waffle.models.Switch.objects.create(name='marketplace', active=True)
+
         self.url = reverse('users.purchases')
         self.client.login(username='regular@mozilla.com', password='password')
         self.user = User.objects.get(email='regular@mozilla.com')
