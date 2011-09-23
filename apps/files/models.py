@@ -214,12 +214,16 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                              m.group('suffix'))
 
     def latest_xpi_url(self):
-        addon = self.version.addon_id
-        kw = {'addon_id': addon}
+        addon = self.version.addon
+        kw = {'addon_id': addon.pk}
         if self.platform_id != amo.PLATFORM_ALL.id:
             kw['platform'] = self.platform_id
-        url = reverse('downloads.latest', kwargs=kw)
-        return os.path.join(url, 'addon-%s-latest%s' % (addon, self.extension))
+        if addon.is_premium():
+            url = reverse('downloads.watermarked', args=[self.id])
+        else:
+            url = reverse('downloads.latest', kwargs=kw)
+        return os.path.join(url, 'addon-%s-latest%s' %
+                            (addon.pk, self.extension))
 
     def eula_url(self):
         return reverse('addons.eula', args=[self.version.addon_id, self.id])

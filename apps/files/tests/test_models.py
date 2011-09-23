@@ -936,6 +936,12 @@ class TestWatermark(amo.tests.TestCase, amo.tests.AMOPaths):
         self.file.version.addon.update(premium_type=amo.ADDON_PREMIUM)
         assert url in self.file.get_url_path('test')
 
+    def test_get_latest_path(self):
+        url = reverse('downloads.watermarked', args=[self.file.id])
+        assert url not in self.file.latest_xpi_url()
+        self.file.version.addon.update(premium_type=amo.ADDON_PREMIUM)
+        assert url in self.file.latest_xpi_url()
+
 
 class TestWatermarkCleanup(amo.tests.TestCase, amo.tests.AMOPaths):
     fixtures = ['base/addon_3615', 'base/users']
