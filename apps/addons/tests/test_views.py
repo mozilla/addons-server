@@ -761,7 +761,8 @@ class TestDetailPage(amo.tests.TestCase):
 
         # Make sure we find Works with for an extension.
         r = self.client.get(reverse('addons.detail', args=['a3615']))
-        headings = pq(r.content)('#detail-relnotes .item-info h5')
+        headings = pq(r.content)('#detail-relnotes .info strong')
+
         assert any(th.text.strip().lower() == 'works with:'
                    for th in headings)
 
