@@ -1,5 +1,5 @@
 {% extends "impala/base.html" %}
-{% from 'includes/forms.html' import required, pretty_field %}
+{% from 'includes/forms.html' import pretty_field %}
 
 {% set title = _('Add a review for {0}')|f(addon.name) %}
 
@@ -11,7 +11,7 @@
 
   {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
                          (addon.get_url_path(), addon.name),
-                         (url('i_reviews.list', addon.slug), _('Reviews')),
+                         (addon.reviews_url, _('Reviews')),
                          (None, _('Add'))]) }}
 
   <h1>{{ title }}</h1>
@@ -20,7 +20,7 @@
     {{ addon|sidebar_listing }}
   </div>
 
-  <div class="primary island hero prettyform c">
+  <div id="reviews" class="primary island hero prettyform c">
     <fieldset class="prose">
       {% trans support=addon.get_url_path() + "#support",
                guide=remora_url('pages/review_guide') %}
