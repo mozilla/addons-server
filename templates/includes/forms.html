@@ -1,3 +1,7 @@
+{% macro required_note() -%}
+  <p class="req" title="{{ _('required') }}">* {{ _('Required fields') }}</p>
+{%- endmacro %}
+
 {% macro required() -%}
   <abbr class="req" title="{{ _('required') }}">*</abbr>
 {%- endmacro %}

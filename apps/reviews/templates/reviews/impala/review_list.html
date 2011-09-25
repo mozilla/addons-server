@@ -1,5 +1,5 @@
 {% extends "impala/base.html" %}
-{% from 'includes/forms.html' import required, pretty_field %}
+{% from 'includes/forms.html' import pretty_field, required_note %}
 
 {# L10n: {0} is an add-on name. #}
 {% block title %}{{ page_title(_('{0} :: Reviews')|f(addon.name)) }}{% endblock %}
@@ -101,6 +101,7 @@
           </ul>
         </fieldset>
         <footer>
+          {{ required_note() }}
           <input type="submit" value="{{ _('Submit review') }}">
            {{ _('or') }} <a href="#" id="review-edit-cancel">{{ _('Cancel') }}</a>
         </footer>
