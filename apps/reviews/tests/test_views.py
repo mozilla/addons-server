@@ -179,10 +179,14 @@ class TestCreate(ReviewTest):
         self.qs = Review.objects.filter(addon=1865)
         self.log_count = ActivityLog.objects.count
 
+    def test_no_body(self):
+        r = self.client.post(self.add, {'body': ''})
+        self.assertFormError(r, 'form', 'body', 'This field is required.')
+        eq_(len(mail.outbox), 0)
+
     def test_no_rating(self):
         r = self.client.post(self.add, {'body': 'no rating'})
         self.assertFormError(r, 'form', 'rating', 'This field is required.')
-
         eq_(len(mail.outbox), 0)
 
     def test_title_maxlength(self):

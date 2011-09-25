@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
     var report = $('.review-reason').html();
 
     $('.review-reason').popup('.flag-review', {
@@ -54,11 +55,12 @@ $(document).ready(function() {
     $('.primary').delegate('.review-edit', 'click', function(e) {
         e.preventDefault();
         var $form = $('#review-edit-form'),
-            $review = $(this).parents('.review'),
+            $review = $(this).closest('.review'),
             rating = $review.attr('data-rating'),
             edit_url = $('a.permalink', $review).attr('href') + 'edit',
             $cancel = $('#review-edit-cancel');
 
+        clearErrors($form);
         $review.attr('action', edit_url);
         $form.detach().insertAfter($review);
         $('#id_title').val($review.find('h3 > b').text());
@@ -66,8 +68,10 @@ $(document).ready(function() {
         $('#id_body').val($review.children('p.description').text());
         $review.hide();
         $form.show();
+        location.hash = '#review-edit-form';
 
         function done_edit() {
+            clearErrors($form);
             $form.unbind().hide();
             $review.show();
             $cancel.unbind();
@@ -81,12 +85,17 @@ $(document).ready(function() {
                 url: edit_url,
                 data: $form.serialize(),
                 success: function(response, status) {
-                    $review.find('h3 > b').text($('#id_title').val());
-                    var rating = $('.ratingwidget input:radio:checked', $form).val();
-                    $('.stars', $review).removeClass('stars-0 stars-1 stars-2 stars-3 stars-4 stars-5').addClass('stars-' + rating);
-                    rating = $review.attr('data-rating', rating);
-                    $review.children('p.description').text($('#id_body').val());
-                    done_edit();
+                      clearErrors($form);
+                      $review.find('h3 > b').text($('#id_title').val());
+                      var rating = $('.ratingwidget input:radio:checked', $form).val();
+                      $('.stars', $review).removeClass('stars-0 stars-1 stars-2 stars-3 stars-4 stars-5').addClass('stars-' + rating);
+                      rating = $review.attr('data-rating', rating);
+                      $review.children('p.description').text($('#id_body').val());
+                      done_edit();
+                },
+                error: function(xhr) {
+                    var errors = $.parseJSON(xhr.responseText);
+                    populateErrors($form, errors);
                 },
                 dataType: 'json'
             });

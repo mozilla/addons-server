@@ -293,6 +293,7 @@ def impala_add(request, addon):
 
 
 @addon_view
+@json_view
 @login_required(redirect=False)
 @post_required
 def edit(request, addon, review_id):

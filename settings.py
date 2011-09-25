@@ -596,6 +596,7 @@ MINIFY_BUNDLES = {
             'js/impala/ratingwidget.js',
             'js/lib/jquery-ui/jqModal.js',
             'js/zamboni/l10n.js',
+            'js/impala/forms.js',
 
             # Homepage
             'js/impala/homepage.js',
