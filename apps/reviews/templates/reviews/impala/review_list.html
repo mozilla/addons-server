@@ -8,13 +8,13 @@
 
 {% block rss_feed %}
 <link  rel="alternate" type="application/rss+xml"
-       title="RSS" href="{{ url('reviews.list', addon.slug) }}format:rss">
+       title="RSS" href="{{ addon.reviews_url }}format:rss">
 {% endblock %}
 
 {% block content %}
   {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
                          (addon.get_url_path(), addon.name),
-                         (link, _('Reviews'))]) }}
+                         (None if page == 'list' else addon.reviews_url, _('Reviews'))]) }}
   {% block review_header %}
   <header>
     <hgroup>

@@ -396,9 +396,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return reverse('addons.meet', args=[self.slug])
 
     @property
-    def reviews_url(self, impala=False):
-        u = '%sreviews.list' % ('i_' if impala else '')
-        return reverse(u, args=[self.slug])
+    def reviews_url(self):
+        return reverse('reviews.list', args=[self.slug])
 
     def type_url(self):
         """The url for this add-on's AddonType."""
