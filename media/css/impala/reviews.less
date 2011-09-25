@@ -86,10 +86,8 @@
 }
 
 .html-rtl .stars {
-    margin-right: 0;
-    margin-left: 4px;
+    margin: 0 0 0 4px;
 }
-
 
 /* grouped ratings style */
 
@@ -147,8 +145,7 @@
         font-size: 10px;
     }
     .stars {
-        float: left;
-        margin: 4px 8px 0 0 ;
+        margin: 4px 8px 0 0;
     }
 }
 
@@ -177,10 +174,12 @@
 }
 
 .html-rtl .grouped_ratings {
+    .stars {
+        margin: 4px 0 0 8px;
+    }
     .rating_bar {
         border-left: 0;
         border-right: 1px solid black;
-        float: right;
         span.bar {
             float: right;
             margin: .4em 0 0 .5em;
@@ -232,11 +231,5 @@
         float: left;
         width: 13px;
         cursor: pointer;
-    }
-}
-.html-rtl {
-    .ratingwidget label {
-        text-indent: 5000px;
-        float: right;
     }
 }

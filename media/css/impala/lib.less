@@ -34,6 +34,12 @@
     transform: @tform;
 }
 
+.transition(@property, @duration:2s) {
+    -moz-transition: @property @duration;
+    -webkit-transition: @property @duration;
+    transition: @property @duration;
+}
+
 .background-size(@size) {
     -moz-background-size: @size;
     -wekbkit-background-size: @size;

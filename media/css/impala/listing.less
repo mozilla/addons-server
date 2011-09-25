@@ -341,13 +341,11 @@
         > a {
             font-weight: normal;
             color: #aaa;
-            -moz-transition: color .2s;
-            -webkit-transition: color .2s;
-            transition: color .2s;
+            .transition(color);
         }
         &:not(:first-child) {
             list-style-type: disc;
-            margin-left: 1.6em;
+            margin-left: 1.9em;
         }
     }
 }
@@ -355,6 +353,9 @@
     float: left;
     > li {
         float: right;
+        &:not(:first-child) {
+            margin: 0 1.9em 0 0;
+        }
     }
 }
 .item-note {
