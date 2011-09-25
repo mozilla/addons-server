@@ -1,8 +1,40 @@
 @import 'lib';
 
-#reviews h2 + .article {
-    border-top: 1px dotted @border-blue;
-    padding: 1em;
+#reviews {
+    form {
+        background-color: fadeOut(@border-blue, 90%);
+        padding: 1em 0;
+        fieldset, footer {
+            padding: 0 1em;
+        }
+        fieldset {
+            margin: 0;
+        }
+        footer {
+            input, button {
+                margin-right: .25em;
+            }
+            button {
+                float: none;
+            }
+            a {
+                padding-left: .25em;
+            }
+        }
+    }
+    h2 + .article {
+        border-top: 1px dotted @border-blue;
+        padding: 1em;
+    }
+}
+
+.html-rtl #reviews form footer {
+    input, button {
+        margin: 0 .25em 0 0;
+    }
+    a {
+        padding: 0 .25em;
+    }
 }
 
 .reviews header h3 {

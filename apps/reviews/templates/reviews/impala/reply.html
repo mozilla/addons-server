@@ -1,5 +1,5 @@
 {% extends "impala/base.html" %}
-{% from 'includes/forms.html' import required, pretty_field %}
+{% from 'includes/forms.html' import pretty_field %}
 
 {% set title = _('Reply to review by {0}')|f(review.user.name) %}
 
@@ -10,9 +10,9 @@
 {% block content %}
 
   {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                  (addon.get_url_path(), addon.name),
-                  (url('i_reviews.list', addon.slug), _('Reviews')),
-                  (None, _('Reply'))]) }}
+                         (addon.get_url_path(), addon.name),
+                         (addon.reviews_url, _('Reviews')),
+                         (None, _('Reply'))]) }}
   <h1>{{ title }}</h1>
 
   <div class="secondary">
@@ -21,26 +21,24 @@
 
   <div class="primary island hero" id="reviews">
     {% include "reviews/impala/review.html" %}
-    <div class="c">
-      <h2>{{ _('Write a Reply') }}</h2>
-      <form method="post" class="prettyform"
-            action="{{ url('i_reviews.reply', addon.slug, review.id) }}">
-        {{ csrf() }}
-        <fieldset>
-          <ul>
-            {{ pretty_field(form.title, label=_('Title')) }}
-            {{ pretty_field(form.body, label=_('Reply')) }}
-          </ul>
-        </fieldset>
-        <footer>
-          <button type="submit">{{ _('Submit review') }}</button>
-          {# L10n: this string is following a <button>. #}
-          {% trans url=url('i_reviews.list', addon.slug) %}
-            <a href="{{ url }}">Cancel</a>
-          {% endtrans %}
-        </footer>
-      </form>
-    </div>
+    <form method="post" class="prettyform c"
+          action="{{ url('i_reviews.reply', addon.slug, review.id) }}">
+      {{ csrf() }}
+      <fieldset>
+        <h2>{{ _('Write a Reply') }}</h2>
+        <ul>
+          {{ pretty_field(form.title, label=_('Title')) }}
+          {{ pretty_field(form.body, label=_('Reply')) }}
+        </ul>
+      </fieldset>
+      <footer>
+        <button type="submit">{{ _('Submit review') }}</button>
+        {# L10n: this string is following a <button>. #}
+        {% trans url=addon.reviews_url %}
+          or <a href="{{ url }}">Cancel</a>
+        {% endtrans %}
+      </footer>
+    </form>
   </div>
   {{ report_review_popup() }}
 {% endblock %}
