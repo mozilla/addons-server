@@ -7,9 +7,7 @@
   {% set is_flagged = flags[review.id] %}
 {% endif %}
 
-<div class="review c item
-            {% if is_reply %}reply{% endif %}
-            {% if is_flagged %}flagged{% endif %}"
+<div class="review c item{{ ' reply' if is_reply }}{{ ' flagged' if is_flagged }}"
      id="review-{{ review.id }}"
      data-rating="{{ review.rating }}">
   {% if show_addon %}
@@ -67,9 +65,9 @@
   {% if request.user.is_authenticated() %}
   <ul class="item-actions">
     {% if is_flagged %}
-      <li>{{ _('Flagged for review') }}</li>
-    {% else %}
-      <li class="review-wrapper">
+      <li class="flagged">{{ _('Flagged for review') }}</li>
+    {% elif review.user_id != request.user.id %}
+      <li>
         <a class="flag-review" href="{{ url('reviews.flag', addon.slug, review.id) }}">
           {{ _('Report this review') }}</a>
       </li>

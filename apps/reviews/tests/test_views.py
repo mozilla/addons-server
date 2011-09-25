@@ -15,6 +15,11 @@ from users.models import UserProfile
 class ReviewTest(amo.tests.TestCase):
     fixtures = ['base/apps', 'reviews/dev-reply.json', 'base/admin']
 
+    def make_it_my_review(self, review_id=218468):
+        r = Review.objects.get(id=review_id)
+        r.user = UserProfile.objects.get(username='jbalogh')
+        r.save()
+
 
 class TestViews(ReviewTest):
 
@@ -32,6 +37,48 @@ class TestViews(ReviewTest):
         url = reverse('reviews.list.rss', args=['a1865'])
         r = self.client.get(url)
         eq_(r.status_code, 200)
+
+    def test_list(self):
+        r = self.client.get(reverse('i_reviews.list', args=['a1865']))
+        eq_(r.status_code, 200)
+        reviews = pq(r.content)('#reviews .item')
+        eq_(reviews.length, Review.objects.count())
+        eq_(reviews.find('.item-actions').length, 0)
+
+        r = Review.objects.get(id=218207)
+        item = reviews.filter('#review-218207')
+        eq_(r.reply_to_id, None)
+        eq_(item.hasClass('reply'), False)
+        eq_(item.length, 1)
+        eq_(item.attr('data-rating'), str(r.rating))
+
+        r = Review.objects.get(id=218468)
+        item = reviews.filter('#review-218468')
+        eq_(item.length, 1)
+        eq_(r.reply_to_id, 218207)
+        eq_(item.hasClass('reply'), True)
+        eq_(r.rating, None)
+        eq_(item.attr('data-rating'), '')
+
+    def test_list_item_actions(self):
+        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.make_it_my_review()
+        r = self.client.get(reverse('i_reviews.list', args=['a1865']))
+        reviews = pq(r.content)('#reviews .item')
+
+        r = Review.objects.get(id=218207)
+        item = reviews.filter('#review-218207')
+        actions = item.find('.item-actions')
+        eq_(actions.length, 1)
+        classes = sorted([c.get('class') for c in actions.find('li a')])
+        eq_(classes, ['delete-review', 'flag-review'])
+
+        r = Review.objects.get(id=218468)
+        item = reviews.filter('#review-218468')
+        actions = item.find('.item-actions')
+        eq_(actions.length, 1)
+        classes = sorted([c.get('class') for c in actions.find('li a')])
+        eq_(classes, ['delete-review', 'review-edit'])
 
 
 class TestFlag(ReviewTest):
@@ -52,6 +99,11 @@ class TestFlag(ReviewTest):
                                        'flagged for editor approval."}')
         eq_(ReviewFlag.objects.filter(flag=ReviewFlag.SPAM).count(), 1)
         eq_(Review.objects.filter(editorreview=True).count(), 1)
+
+    def test_new_flag_mine(self):
+        self.make_it_my_review()
+        response = self.client.post(self.url, {'flag': ReviewFlag.SPAM})
+        eq_(response.status_code, 404)
 
     def test_update_flag(self):
         response = self.client.post(self.url, {'flag': ReviewFlag.SPAM})

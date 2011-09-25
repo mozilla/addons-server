@@ -138,6 +138,9 @@ def get_flags(request, reviews):
 @login_required(redirect=False)
 @json_view
 def flag(request, addon, review_id):
+    review = get_object_or_404(Review, pk=review_id, addon=addon)
+    if review.user_id == request.user.id:
+        raise http.Http404()
     d = dict(review=review_id, user=request.user.id)
     try:
         instance = ReviewFlag.objects.get(**d)

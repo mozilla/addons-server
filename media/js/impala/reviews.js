@@ -15,7 +15,9 @@ $(document).ready(function() {
                         success: function() {
                             $popup.removeClass('other')
                                   .hideMe();
-                            ct.replaceWith(gettext('Flagged for review'));
+                            ct.closest('.item').addClass('flagged');
+                            ct.replaceWith(gettext('Flagged for review'))
+                              .addClass('flagged');
                         },
                         error: function(){ },
                         dataType: 'json'

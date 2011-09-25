@@ -44,6 +44,10 @@
 #reviews .review {
     border-bottom: 1px dotted @border-blue;
     overflow: hidden;
+    &.flagged {
+        opacity: .6;
+        -moz-transition: .2s opacity ease;
+    }
     &.no-reviews {
         border-bottom: 0;
         h3 {
