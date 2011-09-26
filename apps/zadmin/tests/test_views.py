@@ -160,10 +160,6 @@ class BulkValidationTest(amo.tests.TestCase):
 
 class TestBulkValidation(BulkValidationTest):
 
-    def assertNoFormErrors(self, r):
-        if 'form' in r.context:
-            eq_(r.context['form'].errors.as_text(), '')
-
     @mock.patch('zadmin.tasks.bulk_validate_file')
     def test_start(self, bulk_validate_file):
         new_max = self.appversion('3.7a3')
