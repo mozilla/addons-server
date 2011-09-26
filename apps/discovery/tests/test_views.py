@@ -459,7 +459,12 @@ class TestMonthlyPick(amo.tests.TestCase):
         r = self.client.get(self.url)
         pick = pq(r.content)('#monthly')
         eq_(pick.length, 1)
-        eq_(pick.find('h3').text(), unicode(self.addon.name))
+        a = pick.find('h3 a')
+        url = reverse('discovery.addons.detail', args=['a3615'])
+        assert a.attr('href').endswith(url + '?src=discovery-promo'), (
+            'Unexpected add-on details URL')
+        eq_(a.attr('target'), '_self')
+        eq_(a.text(), unicode(self.addon.name))
         eq_(pick.find('img').attr('src'), 'http://mozilla.com')
         eq_(pick.find('.wrap > div > div > p').text(), 'BOOP')
         eq_(pick.find('p.install-button a').attr('href')
