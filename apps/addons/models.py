@@ -769,7 +769,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return self.status == amo.STATUS_NULL
 
     def can_become_premium(self):
-        """Not all addons can become premium."""
+        """
+        Not all addons can become premium and those that can only at
+        certain times. Webapps can become premium at any time.
+        """
+        if self.type == amo.ADDON_WEBAPP and not self.is_premium():
+            return True
         return (self.status in amo.PREMIUM_STATUSES
                 and self.highest_status in amo.PREMIUM_STATUSES
                 and self.type in amo.ADDON_BECOME_PREMIUM)

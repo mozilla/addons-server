@@ -1632,6 +1632,12 @@ class TestMarketplace(amo.tests.ESTestCase):
             else:
                 assert not self.addon.can_become_premium()
 
+    def test_webapp_can_become_premium(self):
+        self.addon.update(type=amo.ADDON_WEBAPP)
+        for status in amo.STATUS_CHOICES.keys():
+            self.addon.update(status=status)
+            assert self.addon.can_become_premium(), status
+
     def test_can_be_premium_type(self):
         for type in amo.ADDON_TYPES.keys():
             self.addon.update(type=type)
