@@ -133,6 +133,12 @@ class TestCreate(ReviewTest):
 
         eq_(len(mail.outbox), 0)
 
+    def test_title_maxlength(self):
+        r = self.client.post(self.add, {'title': 'x' * 256})
+        self.assertFormError(r, 'form', 'title',
+            'Ensure this value has at most 255 characters (it has 256).')
+        eq_(len(mail.outbox), 0)
+
     def test_review_success(self):
         old_cnt = self.qs.count()
         log_count = self.log_count()
