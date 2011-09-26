@@ -60,6 +60,20 @@ def _find_version_page(qs, addon, version_num):
         raise http.Http404()
 
 
+def update_info(request, addon_id, version_num):
+    version = get_object_or_404(Version, addon__id=addon_id,
+                                version=version_num)
+    return jingo.render(request, 'versions/update_info.html',
+                        {'version': version})
+
+
+def update_info_redirect(request, version_id):
+    version = get_object_or_404(Version, pk=version_id)
+    return redirect(reverse('addons.versions.update_info',
+                            args=(version.addon.id, version.version)),
+                    permanent=True)
+
+
 @never_cache
 @login_required
 def download_watermarked(request, file_id):
@@ -98,7 +112,8 @@ def download_file(request, file_id, type=None):
         return http.HttpResponseForbidden()
 
     if addon.is_disabled or file.status == amo.STATUS_DISABLED:
-        if acl.check_addon_ownership(request, addon, viewer=True, ignore_disabled=True):
+        if acl.check_addon_ownership(request, addon, viewer=True,
+                                     ignore_disabled=True):
             return HttpResponseSendFile(request, file.guarded_file_path,
                                         content_type='application/xp-install')
         else:

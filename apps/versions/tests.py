@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import hashlib
 import os
 
@@ -261,6 +262,30 @@ class TestVersion(amo.tests.TestCase):
         version.version = '1237.2319.32161734.2383290.34'
         version.save()
         eq_(version.version_int, None)
+
+    def test_version_update_info(self):
+        addon = Addon.objects.get(pk=3615)
+        r = self.client.get(reverse('addons.versions.update_info',
+                                    args=(addon.id, self.version.version)))
+        eq_(r.status_code, 200)
+        doc = PyQuery(r.content)
+        eq_(doc('p').html(), 'Fix for an important bug')
+
+        # Test update info in another language.
+        with self.activate('fr'):
+            r = self.client.get(reverse('addons.versions.update_info',
+                                        args=(addon.id, self.version.version)))
+            eq_(r.status_code, 200)
+            doc = PyQuery(r.content)
+            eq_(doc('p').html(), u"Quelque chose en français.<br/><br/>" \
+                                 u"Quelque chose d'autre.")
+
+    def test_version_update_info_legacy_redirect(self):
+        r = self.client.get('/versions/updateInfo/%s' % self.version.id,
+                            follow=True)
+        url = reverse('addons.versions.update_info',
+                      args=(self.version.addon.id, self.version.version))
+        self.assertRedirects(r, url, 301)
 
 
 class TestViews(amo.tests.TestCase):

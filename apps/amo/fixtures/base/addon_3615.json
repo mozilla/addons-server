@@ -137,6 +137,17 @@
         }
     },
     {
+        "pk": 697693,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "Quelque chose en français.\n\nQuelque chose d'autre.",
+            "created": "2009-10-21 10:02:38",
+            "locale": "fr",
+            "modified": null,
+            "id": 650353
+        }
+    },
+    {
         "pk": 1,
         "model": "files.platform",
         "fields": {

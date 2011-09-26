@@ -9,6 +9,8 @@ urlpatterns = patterns('',
     url('^format:rss$', VersionsRss(), name='addons.versions.rss'),
     url('^(?P<version_num>[^/]+)$', views.version_detail,
         name='addons.versions'),
+    url('^(?P<version_num>[^/]+)/updateinfo/$', views.update_info,
+        name='addons.versions.update_info'),
 )
 
 download_patterns = patterns('',
