@@ -12,7 +12,7 @@ from .models import ReviewFlag, Review
 
 
 class ReviewReplyForm(forms.Form):
-    title = forms.CharField(max_length=255, required=False)
+    title = forms.CharField(required=False)
     body = forms.CharField(widget=forms.Textarea(attrs={'rows': 3}))
 
 
