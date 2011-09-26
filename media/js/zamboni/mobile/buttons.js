@@ -278,12 +278,12 @@
 
 
         function initWebapp() {
-            if (navigator.apps && navigator.apps.install) {
+            if (navigator.mozApps && navigator.mozApps.install) {
                 dom.self.find('.button')
                     .removeClass('disabled')
                     .click(function(e) {
                         e.preventDefault();
-                        navigator.apps.install({url: manifestURL});
+                        navigator.mozApps.install(manifestURL);
                     });
             } else {
                 // Attach something that says you can't install apps.

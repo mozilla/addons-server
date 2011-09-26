@@ -25,12 +25,12 @@ var notavail = '<div class="extra"><span class="notavail">{0}</span></div>',
 var webappButton = function() {
     var $this = $(this),
         manifestURL = $this.attr('data-manifest-url');
-    if (navigator.apps && navigator.apps.install) {
+    if (navigator.mozApps && navigator.mozApps.install) {
         $this.find('.button')
             .removeClass('disabled')
             .click(function(e) {
                 e.preventDefault();
-                navigator.apps.install({url: manifestURL});
+                navigator.mozApps.install(manifestURL);
             });
     } else {
         // Attach something that says you can't install apps.
