@@ -96,7 +96,7 @@ function update_page_state() {
         queryparams;
 
     if (typeof range === "string") {
-        range = parseInt(range);
+        range = parseInt(range, 10);
         queryparams = 'last=' + range;
         start = ago(range + ' days');
         end = today();
@@ -124,8 +124,27 @@ function dayFormatter(x) { return Highcharts.dateFormat('%a, %b %e, %Y', x); }
 function weekFormatter(x) { return Highcharts.dateFormat('%b %e - ', x) + Highcharts.dateFormat('%b %e, %Y', x+7*24*60*60*1000); }
 function monthFormatter(x) { return Highcharts.dateFormat('%B %Y', x); }
 
-function downloadFormatter(y) { return Highcharts.numberFormat(y, 0) + ' downloads'; }
-function userFormatter(y) { return Highcharts.numberFormat(y, 0) + ' users'; }
+
+function downloadFormatter(y) {
+    return dayFormatter(new Date(this.x)) + '<br/>' +
+           "<b>" + Highcharts.numberFormat(this.y, 0) + ' downloads</b>';
+}
+function userFormatter(y) {
+    return dayFormatter(new Date(this.x)) + '<br/>' +
+           "<b>" + Highcharts.numberFormat(this.y, 0) + ' users</b>';
+}
+
+var tooltip_metrics = {
+    "apps"      : userFormatter,
+    "os"        : userFormatter,
+    "versions"  : userFormatter,
+    "statuses"  : userFormatter,
+    "locales"   : userFormatter,
+    "usage"     : userFormatter,
+    "downloads" : downloadFormatter,
+    "sources"   : downloadFormatter
+};
+
 function currencyFormatter(y) { return '$' + Highcharts.numberFormat(y, 2); }
 
 function numberLabelFormatter(i) { return Highcharts.numberFormat(this.value, 0); }
@@ -250,6 +269,9 @@ function SeriesChart() {
         var newView = $.extend({}, currentView, view);
         dbg("rendering", newView);
         set_loading(chartObj.container);
+        chartObj.options.tooltip = {
+            formatter: tooltip_metrics[newView.metric] || function() { return false; }
+        };
         Series.get(newView, function(seriesSet) {
             var s = chartObj.series;
             while(chartObj.series.length) {
@@ -305,12 +327,6 @@ chartConfig = {
         },
         startOnTick: false,
         showFirstLabel: false
-    },
-    tooltip: {
-        formatter: function() {
-            return dayFormatter(new Date(this.x)) + '<br/>'+
-                "<b>" + downloadFormatter(this.y) + "</b>";
-        }
     },
     legend: {
         enabled: false
@@ -368,9 +384,9 @@ function initTopChart(el) {
     }
 
     if (table) {
-        var data = [];
-        for (var i = 0; i < rows.length; i++) {
-           var row = $(rows[i]).children();
+        var data = [], i, row;
+        for (i = 0; i < rows.length; i++) {
+           row = $(rows[i]).children();
            data.push(
               [$(row[0]).text(), fancyParse($(row[1]).text())]
            );
@@ -416,8 +432,8 @@ function initTopChart(el) {
            }]
         };
         var topchart1 = new Highcharts.Chart(options);
-        for (var i = 0; i < rows.length; i++) {
-           var row = $(rows[i]).children();
+        for (i = 0; i < rows.length; i++) {
+           row = $(rows[i]).children();
            $(row[0]).append($("<b class='seriesdot' style='background:" + topchart1.series[0].data.color + "'>&nbsp;</b>"));
         }
     } // end if(table)
@@ -510,14 +526,13 @@ function show_aggregate_stats (_field, range) {
     field = {
         metric: AMO.getReportName(),
         name: _field
-    }
+    };
     $(".stats-aggregate .range").text("Last " + range);
     $(".stats-aggregate .prev_range").text("Prior " + range);
 
     AMO.StatsManager.getSum(field, ago(range, 3), ago(range, 2) + millis("1 day"), function(sum_3x_range) {
         AMO.StatsManager.getSum(field, ago(range, 2), ago(range) + millis("1 day"), function(sum_prev_range) {
             AMO.StatsManager.getSum(field, ago(range), today(), function(sum_range) {
-
                 $("#sum_range").text(Highcharts.numberFormat(sum_range, 0));
                 $("#sum_prev_range").text(Highcharts.numberFormat(sum_prev_range, 0));
                 draw_diff($("#sum_diff"), sum_range, sum_prev_range);
@@ -576,9 +591,9 @@ $(document).ready(function () {
     page_state.chart_fields = $("#head-chart").getData("series").split(',') || ["count"];
     var stats_base_url = $report_el.getData("base_url");
     AMO.aggregate_stats_field = $(".stats-aggregate").getData("field");
-    AMO.getAddonId = function () { return page_state.addon_id };
-    AMO.getReportName = function () { return page_state.report_name };
-    AMO.getStatsBaseURL = function () { return stats_base_url };
+    AMO.getAddonId = function () { return page_state.addon_id; };
+    AMO.getReportName = function () { return page_state.report_name; };
+    AMO.getStatsBaseURL = function () { return stats_base_url; };
 
     AMO.StatsManager.init();
 
@@ -661,10 +676,11 @@ $(document).ready(function () {
 
     LoadBar.on(gettext("Loading the latest data&hellip;"));
     //Get initial dataset
+    var fetchStart;
     if (datastore[page_state.report_name] && datastore[page_state.report_name].maxdate) {
-        var fetchStart = datastore[page_state.report_name].maxdate - millis("1 day");
+        fetchStart = datastore[page_state.report_name].maxdate - millis("1 day");
     } else {
-        var fetchStart = ago('30 days');
+        fetchStart = ago('30 days');
     }
 
     var seriesURL = AMO.getStatsBaseURL() + ([page_state.report_name,"day",Highcharts.dateFormat('%Y%m%d', ago('30 days')),Highcharts.dateFormat('%Y%m%d', today())]).join("-") + ".csv";

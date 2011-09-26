@@ -1,6 +1,6 @@
 
     // Versioning for offline storage
-    var version = "12";
+    var version = "16";
 
     // where all the time-series data for the page is kept
     var datastore = {};
@@ -15,8 +15,8 @@
     var page_state = {};
     var capabilities = {
         'JSON' : window.JSON && typeof JSON.parse == 'function',
-        'debug' : !(('' + document.location).indexOf("dbg") < 0),
-        'debug_in_page' : !(('' + document.location).indexOf("dbginpage") < 0),
+        'debug' : (('' + document.location).indexOf("dbg") >= 0),
+        'debug_in_page' : (('' + document.location).indexOf("dbginpage") >= 0),
         'console' : window.console && (typeof window.console.log == 'function'),
         'replaceState' : typeof history.replaceState === "function"
     };
@@ -74,7 +74,7 @@
 
     function millis(str) {
         var tokens = str.split(/\s+/);
-        n = parseInt(tokens[0]);
+        n = parseInt(tokens[0], 10);
         unit = tokens[1].replace(/s$/,'').toLowerCase();
         return n * _millis[ unit ];
     }
@@ -108,16 +108,17 @@
 
     document.onbeforeunload = function () {
         AMO.StatsManager.write_local();
-    }
+    };
 
     Series = new AsyncCache(
         function miss(key, set) {
+            var seriesStart, seriesEnd;
             if (typeof key.time === "string") {
-                var seriesStart = ago(key.time);
-                var seriesEnd = today();
+                seriesStart = ago(key.time);
+                seriesEnd = today();
             } else if (typeof key.time === "object") {
-                var seriesStart = key.time.start;
-                var seriesEnd = key.time.end;
+                seriesStart = key.time.start;
+                seriesEnd = key.time.end;
             } else {
                 return false;
             }
@@ -304,15 +305,15 @@
                         datastore[metric].maxdate = 0;
                     }
 
-                    var ds = datastore[metric];
+                    var ds = datastore[metric], data;
                     // process the Data. We want to directly use the native JSON
                     // without jQuery's costly regexes if we can.
                     if (capabilities.JSON) {
                         dbg("native JSON");
-                        var data = JSON.parse(raw_data);
+                        data = JSON.parse(raw_data);
                     } else {
                         dbg("jQuery JSON");
-                        var data = $.parseJSON(raw_data);
+                        data = $.parseJSON(raw_data);
                     }
 
                     chunkfor({
@@ -321,14 +322,14 @@
                         step: 1,
                         chunk_size: 50,
                         inner: function(i) {
-                            var datekey = parseInt(Date.parse(data[i].date));
+                            var datekey = parseInt(Date.parse(data[i].date), 10);
                             maxdate = Math.max(datekey, maxdate);
                             mindate = Math.min(datekey, mindate);
                             ds[datekey] = data[i];
                         },
                         callback: function () {
-                            ds.maxdate = Math.max(parseInt(maxdate), parseInt(ds.maxdate));
-                            ds.mindate = Math.min(parseInt(mindate), parseInt(ds.mindate));
+                            ds.maxdate = Math.max(parseInt(maxdate, 10), parseInt(ds.maxdate, 10));
+                            ds.mindate = Math.min(parseInt(mindate, 10), parseInt(ds.mindate, 10));
                             pending_fetches--;
                             callback.call(this, true);
                             clearTimeout(writeInterval);
@@ -343,7 +344,7 @@
                     var retry_delay = 30000;
 
                     if (xhr.getResponseHeader("Retry-After")) {
-                        retry_delay = parseInt(xhr.getResponseHeader("Retry-After")) * 1000;
+                        retry_delay = parseInt(xhr.getResponseHeader("Retry-After"), 10) * 1000;
                     }
 
                     setTimeout(function () {
@@ -364,8 +365,8 @@
          */
 
         getDataRange: function (metric, start, end, callback, opts) {
+            opts = opts || {};
             var needed = 0,
-                opts = opts || {};
                 quiet = opts.quiet || false,
                 force = opts.force || false;
 
@@ -408,12 +409,13 @@
 
         getDataSlice: function(metric, time, base) {
             base = base || "";
+            var seriesStart, seriesEnd;
             if (typeof time === "string") {
-                var seriesStart = ago(time);
-                var seriesEnd = today();
+                seriesStart = ago(time);
+                seriesEnd = today();
             } else if (typeof time === "object") {
-                var seriesStart = time.start;
-                var seriesEnd = time.end;
+                seriesStart = time.start;
+                seriesEnd = time.end;
             } else {
                 return false;
             }
@@ -453,12 +455,12 @@
             var apps = row.applications;
             for (var i in apps) {
                 if (apps.hasOwnProperty(i)) {
-                    var set = apps[i];
-                    for (var ver in set) {
+                    set = apps[i];
+                    for (ver in set) {
                         key = i + '_' + ver;
                         if (!(key in ra)) {
                             ra[key] = 0;
-                        };
+                        }
                         var v = parseFloat(set[ver]);
                         ra[key] += v;
                     }
