@@ -51,9 +51,9 @@ from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
 from market.models import AddonPremium
 import paypal
-from translations.models import Translation, delete_translation
+from translations.models import delete_translation
 from users.models import UserProfile
-from versions.models import License, Version
+from versions.models import Version
 from product_details import product_details
 from zadmin.models import ValidationResult
 
@@ -302,49 +302,6 @@ def disable(request, addon_id, addon):
     addon.update(disabled_by_user=True)
     amo.log(amo.LOG.USER_DISABLE, addon)
     return redirect('devhub.versions', addon.slug)
-
-
-def _license_form(request, addon, save=False, log=True):
-    qs = addon.versions.order_by('-version')[:1]
-    version = qs[0] if qs else None
-    if version:
-        instance, initial = version.license, None
-        # Clear out initial data if it's a builtin license.
-        if getattr(instance, 'builtin', None):
-            instance, initial = None, {'builtin': instance.builtin}
-        license_form = forms.LicenseForm(request.POST or None, initial=initial,
-                                         instance=instance)
-
-    if save and version and license_form.is_valid():
-        changed = license_form.changed_data
-        license = license_form.save()
-        if changed or license != version.license:
-            version.update(license=license)
-            if log:
-                amo.log(amo.LOG.CHANGE_LICENSE, license, addon)
-
-    license_urls = dict(License.objects.builtins()
-                        .values_list('builtin', 'url'))
-    return dict(license_urls=license_urls, version=version,
-                license_form=version and license_form,
-                license_other_val=License.OTHER)
-
-
-def _policy_form(request, addon, save=False):
-    def has_field(n):
-        # If there's a eula in any language, this addon has a eula.
-        n = getattr(addon, '%s_id' % n)
-        return any(map(bool, Translation.objects.filter(id=n)))
-
-    policy_form = forms.PolicyForm(
-        request.POST or None, instance=addon,
-        initial=dict(has_priv=has_field('privacy_policy'),
-                     has_eula=has_field('eula')))
-    if save and policy_form.is_valid():
-        policy_form.save()
-        if 'privacy_policy' in policy_form.changed_data:
-            amo.log(amo.LOG.CHANGE_POLICY, addon, policy_form.instance)
-    return policy_form
 
 
 @dev_required(owner_for_post=True)
