@@ -224,6 +224,7 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         self.addon = Addon.objects.get(pk=592)
         self.addon.update(premium_type=amo.ADDON_PREMIUM,
                           status=amo.STATUS_PUBLIC)
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
         AddonPremium.objects.create(addon=self.addon, price_id=1)
         self.purchase_url = reverse('addons.purchase', args=[self.addon.slug])
         self.client.login(username='regular@mozilla.com', password='password')
@@ -269,7 +270,7 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
     def make_contribution(self):
         return Contribution.objects.create(type=amo.CONTRIB_PENDING,
                                            uuid='123', addon=self.addon,
-                                           paykey='1234')
+                                           paykey='1234', user=self.user)
 
     def get_url(self, status):
         return reverse('addons.purchase.finished',

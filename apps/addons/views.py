@@ -33,7 +33,6 @@ from amo.urlresolvers import reverse
 from abuse.models import send_abuse_report
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
 from devhub.decorators import dev_required
-from market.models import AddonPurchase
 import paypal
 from reviews.forms import ReviewForm
 from reviews.models import Review, GroupedRating
@@ -530,9 +529,6 @@ def purchase_complete(request, addon, status):
         log.debug('Paypal returned: %s for paykey: %s'
                   % (result, con.paykey[:10]))
         if result == 'COMPLETED':
-            # Sadly we are changing things on a GET.
-            # Create an addon purchase.
-            AddonPurchase.objects.create(addon=addon, user=request.amo_user)
             # Markup the contribution suitably
             con.type = amo.CONTRIB_PURCHASE
             con.uuid = None
