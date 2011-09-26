@@ -49,7 +49,7 @@
   <span class="item-note">
     {% with user_review_url = url('i_reviews.user', addon.slug, review.user.id) %}
       {% if review.is_latest %}
-        {% trans cnt=review.previous_count %}
+        {% trans num=review.previous_count, cnt=review.previous_count|numberfmt %}
           This user has a <a href="{{ user_review_url }}">previous review</a> of this add-on.
         {% pluralize %}
           This user has <a href="{{ user_review_url }}">{{ cnt }} previous reviews</a> of this add-on.
