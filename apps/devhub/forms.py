@@ -881,14 +881,14 @@ class PremiumForm(happyforms.Form):
             if self.addon.premium:
                 token = self.addon.premium.paypal_permissions_token
             else:
-                # l10n: We require PayPal users to have a third party token
+                # L10n: We require PayPal users to have a third party token.
                 raise forms.ValidationError(
-                        _('No PayPal third party refund token set up.'))
+                        _('No PayPal third-party refund token set up.'))
 
             if not paypal.check_refund_permission(token):
-                # l10n: We require PayPal users to have a third party token
+                # L10n: We require PayPal users to have a third party token.
                 raise forms.ValidationError(
-                        _('The PayPal third party refund '
+                        _('The PayPal third-party refund '
                           'token on your account is invalid.'))
         return self.cleaned_data['paypal_id']
 
