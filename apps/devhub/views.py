@@ -1327,10 +1327,12 @@ def marketplace_upsell(request, addon_id, addon):
 def marketplace_confirm(request, addon_id, addon):
     if request.method == 'POST':
         # Minimum required to become premium.
-        if (paypal.should_ignore_paypal() and
-            (not addon.premium or not addon.paypal_id
+        def paypal_permissions():
+            return (not paypal.should_ignore_paypal() and
+                    addon.premium.paypal_permissions_token)
+        if (not addon.premium or not addon.paypal_id
              or not addon.support_email or not addon.premium.price
-             or not addon.premium.paypal_permissions_token)):
+             or not paypal_permissions()):
             messages.error(request, 'Some required details are missing.')
             return redirect('devhub.market.1', addon.slug)
         addon.update(premium_type=amo.ADDON_PREMIUM)
