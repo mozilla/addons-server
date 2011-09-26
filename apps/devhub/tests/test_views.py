@@ -7,7 +7,6 @@ from decimal import Decimal
 from collections import namedtuple
 
 from django.conf import settings
-from django.utils import translation
 from django.utils.http import urlencode
 
 import jingo
@@ -1601,15 +1600,19 @@ class TestSubmitStep4(TestSubmitBase):
         eq_(self.get_step().step, 5)
 
 
-class TestSubmitStep5(TestSubmitBase):
-    """License submission."""
+class Step5TestBase(TestSubmitBase):
 
     def setUp(self):
-        super(TestSubmitStep5, self).setUp()
-        SubmitStep.objects.create(addon_id=3615, step=5)
+        super(Step5TestBase, self).setUp()
+        self.addon = Addon.objects.get(pk=3615)
+        SubmitStep.objects.create(addon_id=self.addon.id, step=5)
         self.url = reverse('devhub.submit.5', args=['a3615'])
         self.next_step = reverse('devhub.submit.6', args=['a3615'])
         License.objects.create(builtin=3, on_form=True)
+
+
+class TestSubmitStep5(Step5TestBase):
+    """License submission."""
 
     def test_get(self):
         eq_(self.client.get(self.url).status_code, 200)
@@ -1649,6 +1652,25 @@ class TestSubmitStep5(TestSubmitBase):
         r = self.client.post(self.url, dict(builtin=3, has_eula=True))
         self.assertRedirects(r, self.next_step)
         eq_(self.get_step().step, 6)
+
+
+class TestSubmitStep5WithApp(Step5TestBase):
+
+    def setUp(self):
+        super(TestSubmitStep5WithApp, self).setUp()
+        self.addon.update(type=amo.ADDON_WEBAPP)
+        self.next_step = reverse('devhub.submit.7', args=['a3615'])
+
+    def test_view_app_eula(self):
+        r = self.client.get(self.url)  # no errors
+        eq_(r.status_code, 200)
+
+    def test_post_app_without_license(self):
+        r = self.client.post(self.url, {'has_eula': True},  # no license
+                             follow=True)
+        self.assertNoFormErrors(r)
+        assert r.redirect_chain[-1][0].endswith(self.next_step), (
+                        'Unexpected redirect chain: %s' % r.redirect_chain)
 
 
 class TestSubmitStep6(TestSubmitBase):

@@ -312,11 +312,13 @@ def ownership(request, addon_id, addon):
     user_form = forms.AuthorFormSet(request.POST or None, queryset=qs)
     fs.append(user_form)
     # Versions.
-    ctx.update(_license_form(request, addon))
-    if ctx['license_form']:
-        fs.append(ctx['license_form'])
+    license_form = forms.LicenseForm(request.POST or None, addon=addon)
+    if not addon.is_webapp():
+        ctx.update(license_form.get_context())
+        if ctx['license_form']:  # if addon has a version
+            fs.append(ctx['license_form'])
     # Policy.
-    policy_form = _policy_form(request, addon)
+    policy_form = forms.PolicyForm(request.POST or None, addon=addon)
     fs.append(policy_form)
 
     if request.method == 'POST' and all([form.is_valid() for form in fs]):
@@ -343,8 +345,9 @@ def ownership(request, addon_id, addon):
             amo.log(amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
                     author.get_role_display(), addon)
 
-        _license_form(request, addon, save=True)
-        _policy_form(request, addon, save=True)
+        if license_form in fs:
+            license_form.save()
+        policy_form.save()
         messages.success(request, _('Changes successfully saved.'))
         return redirect('devhub.addons.owner', addon.slug)
 
@@ -1390,14 +1393,17 @@ def submit_media(request, addon_id, addon, step):
 def submit_license(request, addon_id, addon, step):
     fs, ctx = [], {}
     # Versions.
-    ctx.update(_license_form(request, addon))
-    fs.append(ctx['license_form'])
+    license_form = forms.LicenseForm(request.POST or None, addon=addon)
+    if not addon.is_webapp():
+        ctx.update(license_form.get_context())
+        fs.append(ctx['license_form'])
     # Policy.
-    policy_form = _policy_form(request, addon)
+    policy_form = forms.PolicyForm(request.POST or None, addon=addon)
     fs.append(policy_form)
     if request.method == 'POST' and all([form.is_valid() for form in fs]):
-        _license_form(request, addon, save=True, log=False)
-        _policy_form(request, addon, save=True)
+        if license_form in fs:
+            license_form.save(log=False)
+        policy_form.save()
         SubmitStep.objects.filter(addon=addon).update(step=6)
         return redirect('devhub.submit.6', addon.slug)
     ctx.update(addon=addon, policy_form=policy_form, step=step,

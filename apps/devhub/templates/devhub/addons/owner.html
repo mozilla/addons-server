@@ -46,7 +46,9 @@
           </ul>
         </td>
       </tr>
-      {% include "devhub/includes/license_form.html" %}
+      {% if license_form %}
+        {% include "devhub/includes/license_form.html" %}
+      {% endif %}
       {% include "devhub/includes/policy_form.html" %}
     </table>
   </div>
