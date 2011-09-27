@@ -8,7 +8,8 @@
     </hgroup>
     <div class="wrap">
       <div>
-        <img src="{{ pick.image }}">
+        <a href="{{ addon_url }}" target="_self">
+          <img src="{{ pick.image }}"></a>
         {% set addon = pick.addon %}
         {% if module_context == 'discovery' %}
           {% set addon_url = services_url('discovery.addons.detail', addon.slug or addon.id, src=src) %}
