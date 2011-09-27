@@ -522,7 +522,7 @@ def category_sidebar(request, query, facets):
         categories = categories.filter(type=qatype)
     categories = [(atype, sorted(cats, key=lambda x: x.name))
                   for atype, cats in sorted_groupby(categories, 'type')]
-    rv = [FacetLink(_('All Add-ons'), dict(atype=None, cat=None), not qatype)]
+    rv = [FacetLink(_(u'All Add-ons'), dict(atype=None, cat=None), not qatype)]
     for addon_type, cats in categories:
         link = FacetLink(amo.ADDON_TYPES[addon_type],
                          dict(atype=addon_type, cat=None),
@@ -539,7 +539,7 @@ def version_sidebar(request, query, facets):
     exclude_versions = getattr(request.APP, 'exclude_versions', [])
     # L10n: {0} is an application, such as Firefox. This means "any version of
     # Firefox."
-    rv = [FacetLink(_('Any {0}').format(app), dict(appver=None), not appver)]
+    rv = [FacetLink(_(u'Any {0}').format(app), dict(appver=None), not appver)]
     vs = [dict_from_int(f['term']) for f in facets['appversions']]
     vs = set((v['major'], v['minor1'] if v['minor1'] != 99 else 0)
              for v in vs)
@@ -559,7 +559,7 @@ def platform_sidebar(request, query, facets):
     platforms = [facet['term'] for facet in facets['platforms']
                  if facet['term'] != ALL.id]
     all_selected = not qplatform or qplatform == ALL.shortname
-    rv = [FacetLink(_('All Systems'), dict(platform=ALL.shortname),
+    rv = [FacetLink(_(u'All Systems'), dict(platform=ALL.shortname),
                     all_selected)]
     for platform in app_platforms[1:]:
         if platform.id in platforms:
@@ -571,7 +571,7 @@ def platform_sidebar(request, query, facets):
 
 def tag_sidebar(request, query, facets):
     qtag = query.get('tag')
-    rv = [FacetLink(_('All Tags'), dict(tag=None), not qtag)]
+    rv = [FacetLink(_(u'All Tags'), dict(tag=None), not qtag)]
     tags = [facet['term'] for facet in facets['tags']]
     rv += [FacetLink(tag, dict(tag=tag), tag == qtag) for tag in tags]
     return rv
