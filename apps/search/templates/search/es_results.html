@@ -2,9 +2,10 @@
 
 {% block title %}
 {% if query.q %}
-  {{ page_title(_('Add-on Search Results for {0}')|f(query.q)) }}
+  {# L10n: {0} is the search term, such as Firebug. #}
+  {{ page_title(_('{0} :: Search')|f(query.q)) }}
 {% else %}
-  {{ page_title(_('Add-on Search Results')) }}
+  {{ page_title(_('Search')) }}
 {% endif %}
 {% endblock %}
 
