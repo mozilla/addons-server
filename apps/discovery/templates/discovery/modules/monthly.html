@@ -1,6 +1,7 @@
 {%- if pick -%}
 {% set is_disco = module_context == 'discovery' %}
 {% set src = 'discovery-promo' if is_disco else 'hp-btn-promo' %}
+{% set addon = pick.addon %}
 <li class="panel">
   <div id="monthly" class="feature promo">
     <hgroup>
@@ -8,14 +9,13 @@
     </hgroup>
     <div class="wrap">
       <div>
-        <a href="{{ addon_url }}" target="_self">
-          <img src="{{ pick.image }}"></a>
-        {% set addon = pick.addon %}
         {% if module_context == 'discovery' %}
           {% set addon_url = services_url('discovery.addons.detail', addon.slug or addon.id, src=src) %}
         {% else %}
           {% set addon_url = addon.get_url_path() %}
         {% endif %}
+        <a href="{{ addon_url }}" target="_self">
+          <img src="{{ pick.image }}"></a>
         <h3><a href="{{ addon_url }}" target="_self">{{ addon.name }}</a></h3>
         <div>
           <p>{{ pick.blurb }}</p>
