@@ -132,7 +132,12 @@ def _update_addon_average_daily_users(data, **kw):
                    (len(data), _update_addon_average_daily_users.rate_limit))
 
     for pk, count in data:
-        Addon.objects.filter(pk=pk).update(average_daily_users=count)
+        addon = Addon.objects.get(pk=pk)
+        if (count - addon.total_downloads) > 10000:
+            task_log.info('Readjusted ADU counts for addon %s' % addon.slug)
+            addon.update(average_daily_users=addon.total_downloads)
+        else:
+            addon.update(average_daily_users=count)
 
 
 @cronjobs.register

@@ -230,3 +230,18 @@ class TestHideDisabledFiles(amo.tests.TestCase):
         # It should have been removed from mirror stagins.
         os_mock.remove.assert_called_with(f1.mirror_file_path)
         eq_(os_mock.remove.call_count, 1)
+
+
+class AvgDailyUserCountTestCase(amo.tests.TestCase):
+    fixtures = ['base/addon_3615']
+
+    def test_adu_is_adjusted_in_cron(self):
+        addon = Addon.objects.get(pk=3615)
+        self.assertTrue(
+            addon.average_daily_users > addon.total_downloads + 10000,
+            'Unexpected ADU count. ADU of %d not greater than %d' % (
+                addon.average_daily_users, addon.total_downloads + 10000))
+        cron._update_addon_average_daily_users([(3615, 6000000)])
+        addon = Addon.objects.get(pk=3615)
+        eq_(addon.average_daily_users, addon.total_downloads)
+
