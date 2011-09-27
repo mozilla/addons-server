@@ -30,7 +30,7 @@ from files.utils import parse_addon, VERSION_RE
 from market.models import AddonPremium, Price
 from translations.widgets import TranslationTextarea, TranslationTextInput
 from translations.fields import TransTextarea, TransField
-from translations.models import delete_translation
+from translations.models import delete_translation, Translation
 from translations.forms import TranslationFormMixin
 from versions.models import License, Version, ApplicationsVersions
 from . import tasks
@@ -111,46 +111,92 @@ class LicenseRadioInput(forms.widgets.RadioInput):
             self.choice_label = mark_safe(self.choice_label + details)
 
 
-def LicenseForm(*args, **kw):
-    # This needs to be lazy so we get the right translations.
-    cs = [(x.builtin, x)
-          for x in License.objects.builtins().filter(on_form=True)]
-    cs.append((License.OTHER, _('Other')))
+class LicenseForm(AMOModelForm):
+    builtin = forms.TypedChoiceField(choices=[], coerce=int,
+                        widget=forms.RadioSelect(attrs={'class': 'license'},
+                                                 renderer=LicenseChoiceRadio))
+    name = forms.CharField(widget=TranslationTextInput(),
+                           label=_("What is your license's name?"),
+                           required=False, initial=_('Custom License'))
+    text = forms.CharField(widget=TranslationTextarea(), required=False,
+                           label=_('Provide the text of your license.'))
 
-    class _Form(AMOModelForm):
-        builtin = forms.TypedChoiceField(choices=cs, coerce=int,
-            widget=forms.RadioSelect(attrs={'class': 'license'},
-                                     renderer=LicenseChoiceRadio))
-        name = forms.CharField(widget=TranslationTextInput(),
-                               label=_("What is your license's name?"),
-                               required=False, initial=_('Custom License'))
-        text = forms.CharField(widget=TranslationTextarea(), required=False,
-                               label=_('Provide the text of your license.'))
+    def __init__(self, *args, **kw):
+        addon = kw.pop('addon', None)
+        if not addon:
+            raise ValueError('addon keyword arg cannot be None')
+        qs = addon.versions.order_by('-version')[:1]
+        self.version = qs[0] if qs else None
+        if self.version:
+            kw['instance'], kw['initial'] = self.version.license, None
+            # Clear out initial data if it's a builtin license.
+            if getattr(kw['instance'], 'builtin', None):
+                kw['initial'] = {'builtin': kw['instance'].builtin}
+                kw['instance'] = None
 
-        class Meta:
-            model = License
-            fields = ('builtin', 'name', 'text')
+        super(LicenseForm, self).__init__(*args, **kw)
 
-        def clean_name(self):
-            name = self.cleaned_data['name']
-            return name.strip() or _('Custom License')
+        cs = [(x.builtin, x)
+              for x in License.objects.builtins().filter(on_form=True)]
+        cs.append((License.OTHER, _('Other')))
+        self.fields['builtin'].choices = cs
 
-        def clean(self):
-            data = self.cleaned_data
-            if self.errors:
-                return data
-            elif data['builtin'] == License.OTHER and not data['text']:
-                raise forms.ValidationError(
-                    _('License text is required when choosing Other.'))
+    class Meta:
+        model = License
+        fields = ('builtin', 'name', 'text')
+
+    def clean_name(self):
+        name = self.cleaned_data['name']
+        return name.strip() or _('Custom License')
+
+    def clean(self):
+        data = self.cleaned_data
+        if self.errors:
             return data
+        elif data['builtin'] == License.OTHER and not data['text']:
+            raise forms.ValidationError(
+                _('License text is required when choosing Other.'))
+        return data
 
-        def save(self, commit=True):
-            builtin = self.cleaned_data['builtin']
-            if builtin != License.OTHER:
-                return License.objects.get(builtin=builtin)
-            return super(_Form, self).save(commit)
+    def get_context(self):
+        """Returns a view context dict having keys license_urls, license_form,
+        and license_other_val.
+        """
+        license_urls = dict(License.objects.builtins()
+                            .values_list('builtin', 'url'))
+        return dict(license_urls=license_urls, version=self.version,
+                    license_form=self.version and self,
+                    license_other_val=License.OTHER)
 
-    return _Form(*args, **kw)
+    def save(self, *args, **kw):
+        """Save all form data.
+
+        This will only create a new license if it's not one of the builtin
+        ones.
+
+        Keyword arguments
+
+        **log=True**
+            Set to False if you do not want to log this action for display
+            on the developer dashboard.
+        """
+        log = kw.pop('log', True)
+        changed = self.changed_data
+
+        builtin = self.cleaned_data['builtin']
+        if builtin != License.OTHER:
+            license = License.objects.get(builtin=builtin)
+        else:
+            # Save the custom license:
+            license = super(LicenseForm, self).save(*args, **kw)
+
+        if self.version:
+            if changed or license != self.version.license:
+                self.version.update(license=license)
+                if log:
+                    amo.log(amo.LOG.CHANGE_LICENSE, license,
+                            self.version.addon)
+        return license
 
 
 class PolicyForm(TranslationFormMixin, AMOModelForm):
@@ -165,15 +211,35 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
     privacy_policy = TransField(widget=TransTextarea(), required=False,
         label=_lazy(u"Please specify your add-on's Privacy Policy:"))
 
+    def __init__(self, *args, **kw):
+        self.addon = kw.pop('addon', None)
+        if not self.addon:
+            raise ValueError('addon keyword arg cannot be None')
+        kw['instance'] = self.addon
+        kw['initial'] = dict(has_priv=self._has_field('privacy_policy'),
+                             has_eula=self._has_field('eula'))
+        super(PolicyForm, self).__init__(*args, **kw)
+
+    def _has_field(self, name):
+        # If there's a eula in any language, this addon has a eula.
+        n = getattr(self.addon, '%s_id' % name)
+        return any(map(bool, Translation.objects.filter(id=n)))
+
     class Meta:
         model = Addon
         fields = ('eula', 'privacy_policy')
 
     def save(self, commit=True):
-        super(PolicyForm, self).save(commit)
-        for k, field in (('has_eula', 'eula'), ('has_priv', 'privacy_policy')):
+        ob = super(PolicyForm, self).save(commit)
+        for k, field in (('has_eula', 'eula'),
+                         ('has_priv', 'privacy_policy')):
             if not self.cleaned_data[k]:
                 delete_translation(self.instance, field)
+
+        if 'privacy_policy' in self.changed_data:
+            amo.log(amo.LOG.CHANGE_POLICY, self.addon, self.instance)
+
+        return ob
 
 
 def ProfileForm(*args, **kw):

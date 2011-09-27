@@ -114,6 +114,31 @@ class TestCase(RedisTest, test_utils.TestCase):
         set_url_prefix(old_prefix)
         translation.activate(old_locale)
 
+    def assertNoFormErrors(self, response):
+        """Asserts that no form in the context has errors.
+
+        If you add this check before checking the status code of the response
+        you'll see a more informative error.
+        """
+        # TODO(Kumar) liberate upstream to Django?
+        if response.context is None:
+            # It's probably a redirect.
+            return
+        if len(response.templates) == 1:
+            tpl = [response.context]
+        else:
+            # There are multiple contexts so iter all of them.
+            tpl = response.context
+        for ctx in tpl:
+            for k, v in ctx.iteritems():
+                if isinstance(v, forms.BaseForm):
+                    msg = v.errors.as_text()
+                    if msg != '':
+                        self.fail('form %r had the following error(s):\n%s'
+                                  % (k, msg))
+                    self.assertEquals(v.non_field_errors(), [])
+
+
 class AMOPaths(object):
     """Mixin for getting common AMO Paths."""
 

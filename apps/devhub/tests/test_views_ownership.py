@@ -162,7 +162,7 @@ class TestEditLicense(TestOwnership):
 
     def test_license_details_links(self):
         # Check that builtin licenses get details links.
-        doc = pq(unicode(LicenseForm()))
+        doc = pq(unicode(LicenseForm(addon=self.version.addon)))
         for license in License.objects.builtins():
             radio = 'input.license[value=%s]' % license.builtin
             eq_(doc(radio).parent().text(), unicode(license.name) + ' Details')
@@ -204,10 +204,10 @@ class TestEditAuthor(TestOwnership):
         u2 = f.initial
         data = self.formset(u1, u2)
 
-        eq_(ActivityLog.objects.all().count(), 2)
+        orig = ActivityLog.objects.all().count()
         r = self.client.post(self.url, data)
         eq_(r.status_code, 302)
-        eq_(ActivityLog.objects.all().count(), 2)
+        eq_(ActivityLog.objects.all().count(), orig)
 
     def test_success_add_user(self):
         q = (AddonUser.objects.no_cache().filter(addon=3615)

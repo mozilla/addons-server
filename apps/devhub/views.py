@@ -51,9 +51,9 @@ from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
 from market.models import AddonPremium
 import paypal
-from translations.models import Translation, delete_translation
+from translations.models import delete_translation
 from users.models import UserProfile
-from versions.models import License, Version
+from versions.models import Version
 from product_details import product_details
 from zadmin.models import ValidationResult
 
@@ -304,49 +304,6 @@ def disable(request, addon_id, addon):
     return redirect('devhub.versions', addon.slug)
 
 
-def _license_form(request, addon, save=False, log=True):
-    qs = addon.versions.order_by('-version')[:1]
-    version = qs[0] if qs else None
-    if version:
-        instance, initial = version.license, None
-        # Clear out initial data if it's a builtin license.
-        if getattr(instance, 'builtin', None):
-            instance, initial = None, {'builtin': instance.builtin}
-        license_form = forms.LicenseForm(request.POST or None, initial=initial,
-                                         instance=instance)
-
-    if save and version and license_form.is_valid():
-        changed = license_form.changed_data
-        license = license_form.save()
-        if changed or license != version.license:
-            version.update(license=license)
-            if log:
-                amo.log(amo.LOG.CHANGE_LICENSE, license, addon)
-
-    license_urls = dict(License.objects.builtins()
-                        .values_list('builtin', 'url'))
-    return dict(license_urls=license_urls, version=version,
-                license_form=version and license_form,
-                license_other_val=License.OTHER)
-
-
-def _policy_form(request, addon, save=False):
-    def has_field(n):
-        # If there's a eula in any language, this addon has a eula.
-        n = getattr(addon, '%s_id' % n)
-        return any(map(bool, Translation.objects.filter(id=n)))
-
-    policy_form = forms.PolicyForm(
-        request.POST or None, instance=addon,
-        initial=dict(has_priv=has_field('privacy_policy'),
-                     has_eula=has_field('eula')))
-    if save and policy_form.is_valid():
-        policy_form.save()
-        if 'privacy_policy' in policy_form.changed_data:
-            amo.log(amo.LOG.CHANGE_POLICY, addon, policy_form.instance)
-    return policy_form
-
-
 @dev_required(owner_for_post=True)
 def ownership(request, addon_id, addon):
     fs, ctx = [], {}
@@ -355,11 +312,13 @@ def ownership(request, addon_id, addon):
     user_form = forms.AuthorFormSet(request.POST or None, queryset=qs)
     fs.append(user_form)
     # Versions.
-    ctx.update(_license_form(request, addon))
-    if ctx['license_form']:
-        fs.append(ctx['license_form'])
+    license_form = forms.LicenseForm(request.POST or None, addon=addon)
+    if not addon.is_webapp():
+        ctx.update(license_form.get_context())
+        if ctx['license_form']:  # if addon has a version
+            fs.append(ctx['license_form'])
     # Policy.
-    policy_form = _policy_form(request, addon)
+    policy_form = forms.PolicyForm(request.POST or None, addon=addon)
     fs.append(policy_form)
 
     if request.method == 'POST' and all([form.is_valid() for form in fs]):
@@ -386,8 +345,9 @@ def ownership(request, addon_id, addon):
             amo.log(amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
                     author.get_role_display(), addon)
 
-        _license_form(request, addon, save=True)
-        _policy_form(request, addon, save=True)
+        if license_form in fs:
+            license_form.save()
+        policy_form.save()
         messages.success(request, _('Changes successfully saved.'))
         return redirect('devhub.addons.owner', addon.slug)
 
@@ -1433,14 +1393,17 @@ def submit_media(request, addon_id, addon, step):
 def submit_license(request, addon_id, addon, step):
     fs, ctx = [], {}
     # Versions.
-    ctx.update(_license_form(request, addon))
-    fs.append(ctx['license_form'])
+    license_form = forms.LicenseForm(request.POST or None, addon=addon)
+    if not addon.is_webapp():
+        ctx.update(license_form.get_context())
+        fs.append(ctx['license_form'])
     # Policy.
-    policy_form = _policy_form(request, addon)
+    policy_form = forms.PolicyForm(request.POST or None, addon=addon)
     fs.append(policy_form)
     if request.method == 'POST' and all([form.is_valid() for form in fs]):
-        _license_form(request, addon, save=True, log=False)
-        _policy_form(request, addon, save=True)
+        if license_form in fs:
+            license_form.save(log=False)
+        policy_form.save()
         SubmitStep.objects.filter(addon=addon).update(step=6)
         return redirect('devhub.submit.6', addon.slug)
     ctx.update(addon=addon, policy_form=policy_form, step=step,
