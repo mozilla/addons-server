@@ -46,8 +46,7 @@ fi
 
 # Update the vendor lib.
 echo "Updating vendor..."
-pushd $VENDOR && git pull && git submodule --quiet sync && git submodule update --init;
-popd
+git submodule --quiet sync && git submodule update --init --recursive
 
 cp -f docs/settings/settings_local.dev.py settings_local.py
 cat >> settings_local.py <<SETTINGS
