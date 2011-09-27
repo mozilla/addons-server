@@ -65,7 +65,7 @@ $(document).ready(function() {
         $form.detach().insertAfter($review);
         $('#id_title').val($review.find('h3 > b').text());
         $('.ratingwidget input:radio[value=' + rating + ']', $form).click();
-        $('#id_body').val($review.children('p.description').text());
+        $('#id_body').val($review.children('p.description').html().replace("<br>", "\n", "g"));
         $review.hide();
         $form.show();
         location.hash = '#review-edit-form';
@@ -90,7 +90,7 @@ $(document).ready(function() {
                       var rating = $('.ratingwidget input:radio:checked', $form).val();
                       $('.stars', $review).removeClass('stars-0 stars-1 stars-2 stars-3 stars-4 stars-5').addClass('stars-' + rating);
                       rating = $review.attr('data-rating', rating);
-                      $review.children('p.description').text($('#id_body').val());
+                      $review.children('p.description').html($('#id_body').val().replace("\n", "<br>", "g"));
                       done_edit();
                 },
                 error: function(xhr) {
