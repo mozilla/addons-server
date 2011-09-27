@@ -464,28 +464,44 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
                                    format='json')
         eq_(r.status_code, 200)
         self.assertListEqual(json.loads(r.content), [
-            {"count": 10, "date": "2009-09-03", "end": "2009-09-03",
+            {"count": 10,
+             "date": "2009-09-03",
+             "end": "2009-09-03",
              "data": {"api": 2, "search": 3}
             },
-            {"count": 10, "date": "2009-08-03", "end": "2009-08-03",
+            {"count": 10,
+             "date": "2009-08-03",
+             "end": "2009-08-03",
              "data": {"api": 2, "search": 3}
             },
-            {"count": 10, "date": "2009-07-03", "end": "2009-07-03",
+            {"count": 10,
+             "date": "2009-07-03",
+             "end": "2009-07-03",
              "data": {"api": 2, "search": 3}
             },
-            {"count": 10, "date": "2009-06-28", "end": "2009-06-28",
+            {"count": 10,
+             "date": "2009-06-28",
+             "end": "2009-06-28",
              "data": {"api": 2, "search": 3}
             },
-            {"count": 10, "date": "2009-06-20", "end": "2009-06-20",
+            {"count": 10,
+             "date": "2009-06-20",
+             "end": "2009-06-20",
              "data": {"api": 2, "search": 3}
             },
-            {"count": 10, "date": "2009-06-12", "end": "2009-06-12",
+            {"count": 10,
+             "date": "2009-06-12",
+             "end": "2009-06-12",
              "data": {"api": 2, "search": 3}
             },
-            {"count": 10, "date": "2009-06-07", "end": "2009-06-07",
+            {"count": 10,
+             "date": "2009-06-07",
+             "end": "2009-06-07",
              "data": {"api": 2, "search": 3}
             },
-            {"count": 10, "date": "2009-06-01", "end": "2009-06-01",
+            {"count": 10,
+             "date": "2009-06-01",
+             "end": "2009-06-01",
              "data": {"api": 2, "search": 3}
             }
         ])
