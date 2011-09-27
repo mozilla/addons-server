@@ -327,7 +327,7 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
         eq_(r.status_code, 200)
         self.assertListEqual(json.loads(r.content), [
             {
-                "applications": {
+                "data": {
                     "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": {"4.0": 1500}
                 },
                 "count": 1500,
@@ -335,7 +335,7 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
                 "end": "2009-06-02"
             },
             {
-                "applications": {
+                "data": {
                     "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": {"4.0": 1000}
                 },
                 "count": 1000,
@@ -353,7 +353,7 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
                 "count": 1500,
                 "date": "2009-06-02",
                 "end": "2009-06-02",
-                "locales": {
+                "data": {
                     u"Ελληνικά (el)": 400,
                     u"English (US) (en-us)": 300
                 }
@@ -362,7 +362,7 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
                 "count": 1000,
                 "date": "2009-06-01",
                 "end": "2009-06-01",
-                "locales": {
+                "data": {
                     u"Ελληνικά (el)": 400,
                     u"English (US) (en-us)": 300
                 }
@@ -378,7 +378,7 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
                 "count": 1500,
                 "date": "2009-06-02",
                 "end": "2009-06-02",
-                "oses": {
+                "data": {
                     "Linux": 400,
                     "Windows": 500
                 }
@@ -387,7 +387,7 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
                 "count": 1000,
                 "date": "2009-06-01",
                 "end": "2009-06-01",
-                "oses": {
+                "data": {
                     "Linux": 300,
                     "Windows": 400
                 }
@@ -403,7 +403,7 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
                 "count": 1500,
                 "date": "2009-06-02",
                 "end": "2009-06-02",
-                "versions": {
+                "data": {
                     "1.0": 550,
                     "2.0": 950
                 }
@@ -412,7 +412,7 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
                 "count": 1000,
                 "date": "2009-06-01",
                 "end": "2009-06-01",
-                "versions": {
+                "data": {
                     "1.0": 200,
                     "2.0": 800
                 }
@@ -428,7 +428,7 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
                 "count": 1500,
                 "date": "2009-06-02",
                 "end": "2009-06-02",
-                "statuses": {
+                "data": {
                     "userDisabled": 130,
                     "userEnabled": 1370
                 }
@@ -437,7 +437,7 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
                 "count": 1000,
                 "date": "2009-06-01",
                 "end": "2009-06-01",
-                "statuses": {
+                "data": {
                     "userDisabled": 50,
                     "userEnabled": 950
                 }
@@ -465,27 +465,27 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
         eq_(r.status_code, 200)
         self.assertListEqual(json.loads(r.content), [
             {"count": 10, "date": "2009-09-03", "end": "2009-09-03",
-             "sources": {"api": 2, "search": 3}
+             "data": {"api": 2, "search": 3}
             },
             {"count": 10, "date": "2009-08-03", "end": "2009-08-03",
-             "sources": {"api": 2, "search": 3}
+             "data": {"api": 2, "search": 3}
             },
             {"count": 10, "date": "2009-07-03", "end": "2009-07-03",
-             "sources": {"api": 2, "search": 3}
+             "data": {"api": 2, "search": 3}
             },
             {"count": 10, "date": "2009-06-28", "end": "2009-06-28",
-             "sources": {"api": 2, "search": 3}
+             "data": {"api": 2, "search": 3}
             },
             {"count": 10, "date": "2009-06-20", "end": "2009-06-20",
-             "sources": {"api": 2, "search": 3}
+             "data": {"api": 2, "search": 3}
             },
             {"count": 10, "date": "2009-06-12", "end": "2009-06-12",
-             "sources": {"api": 2, "search": 3}
+             "data": {"api": 2, "search": 3}
             },
             {"count": 10, "date": "2009-06-07", "end": "2009-06-07",
-             "sources": {"api": 2, "search": 3}
+             "data": {"api": 2, "search": 3}
             },
             {"count": 10, "date": "2009-06-01", "end": "2009-06-01",
-             "sources": {"api": 2, "search": 3}
+             "data": {"api": 2, "search": 3}
             }
         ])

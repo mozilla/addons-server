@@ -29,24 +29,25 @@ SERIES = ('downloads', 'usage', 'contributions',
           'sources', 'os', 'locales', 'statuses', 'versions', 'apps')
 
 
-def get_series(model, extra=None, **filters):
+def get_series(model, extra_field=None, **filters):
     """
     Get a generator of dicts for the stats model given by the filters.
 
-    Returns {'date': , 'count': } by default. Add other fields by passing a
-    {key in generator: key in index} dict.
+    Returns {'date': , 'count': } by default. Add an extra field (such as
+    application faceting) by passing `extra_field=apps`. `apps` should be in
+    the query result.
     """
-    if extra is None:
-        extra = {}
+    extra = () if extra_field is None else (extra_field,)
     # Put a slice on it so we get more than 10 (the default), but limit to 365.
     qs = (model.search().order_by('-date').filter(**filters)
-          .values_dict('date', 'count', *extra.values()))[:365]
+          .values_dict('date', 'count', *extra))[:365]
     for val in qs:
         # Convert the datetimes to a date.
         date_ = date(*val['date'].timetuple()[:3])
-        rv = dict((key, extract(val[field])) for key, field in extra.items())
+        rv = dict(count=val['count'], date=date_, end=date_)
+        if extra_field:
+            rv['data'] = extract(val[extra_field])
         # TODO(jbalogh): can we get rid of end?
-        rv.update(count=val['count'], date=date_, end=date_)
         yield rv
 
 
@@ -84,7 +85,7 @@ def sources_series(request, addon, group, start, end, format):
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
 
-    series = get_series(DownloadCount, {'sources': '_source.sources'},
+    series = get_series(DownloadCount, extra_field='_source.sources',
                         addon=addon.id, date__range=date_range)
 
     if format == 'csv':
@@ -124,7 +125,7 @@ def usage_breakdown_series(request, addon, group,
         'versions': '_source.versions',
         'statuses': '_source.status',
     }
-    series = get_series(UpdateCount, {field: fields[field]},
+    series = get_series(UpdateCount, extra_field=fields[field],
                         addon=addon.id, date__range=date_range)
     if field == 'locales':
         series = process_locales(series)
@@ -142,13 +143,13 @@ def process_locales(series):
     languages = dict((k.lower(), v['native'])
                      for k, v in product_details.languages.items())
     for row in series:
-        if 'locales' in row:
+        if 'data' in row:
             new = {}
-            for key, count in row['locales'].items():
+            for key, count in row['data'].items():
                 if key in languages:
                     k = u'%s (%s)' % (languages[key], key)
                     new[k] = count
-            row['locales'] = new
+            row['data'] = new
         yield row
 
 
