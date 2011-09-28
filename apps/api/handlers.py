@@ -12,7 +12,6 @@ import amo
 from access import acl
 from addons.forms import AddonForm
 from addons.models import Addon, AddonUser
-from apps.devhub.forms import ReviewTypeForm
 from amo.utils import paginate
 from devhub.forms import LicenseForm
 from perf.models import (Performance, PerformanceAppVersions,
@@ -99,7 +98,7 @@ class AddonsHandler(BaseHandler):
         if not new_file_form.is_valid():
             return _xpi_form_error(new_file_form, request)
 
-        # License Form can be optional
+        # License can be optional.
         license = None
         if 'builtin' in request.POST:
             license_form = LicenseForm(request.POST)
@@ -107,7 +106,13 @@ class AddonsHandler(BaseHandler):
                 return _form_error(license_form)
             license = license_form.save()
 
-        return new_file_form.create_addon(license=license)
+        addon = new_file_form.create_addon(license=license)
+        if not license:
+            # If there is no license, we push you to step
+            # 5 so that you can pick one.
+            addon.submitstep_set.create(step=5)
+
+        return addon
 
     @check_addon_and_version
     def update(self, request, addon):

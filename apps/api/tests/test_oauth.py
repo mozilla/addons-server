@@ -42,7 +42,7 @@ from amo.tests import TestCase
 from amo.urlresolvers import reverse
 from api.authentication import AMOOAuthAuthentication
 from addons.models import Addon, AddonUser, BlacklistedGuid
-from devhub.models import ActivityLog
+from devhub.models import ActivityLog, SubmitStep
 from perf.models import (Performance, PerformanceAppVersions,
                          PerformanceOSVersion)
 from test_utils import RequestFactory
@@ -337,17 +337,38 @@ class TestAddon(BaseOAuth):
         eq_(name, 'xpi name')
         assert Addon.objects.get(pk=id)
 
-    def test_create_nolicense(self):
+    def create_no_license(self):
         data = self.create_data.copy()
         del data['builtin']
-        r = self.make_create_request(data)
+        return self.make_create_request(data)
+
+    def test_create_no_license(self):
+        r = self.create_no_license()
         eq_(r.status_code, 200, r.content)
         eq_(Addon.objects.count(), 1)
+
+    def test_create_no_license_step(self):
+        r = self.create_no_license()
+        eq_(r.status_code, 200, r.content)
+        id = json.loads(r.content)['id']
+        eq_(SubmitStep.objects.get(addon=id).step, 5)
+
+    def test_create_no_license_url(self):
+        self.create_no_license()
+        self.client.login(username='editor@mozilla.com', password='password')
+        res = self.client.get(reverse('devhub.submit.resume',
+                                      args=['xpi-name']))
+        self.assertRedirects(res, reverse('devhub.submit.5',
+                                          args=['xpi-name']))
+
+    def test_create_no_license_status(self):
+        self.create_no_license()
+        eq_(Addon.objects.get(slug='xpi-name').status, 0)
 
     def test_create_status(self):
         r = self.make_create_request(self.create_data)
         eq_(r.status_code, 200, r.content)
-        eq_(json.loads(r.content)['status'], 0)
+        eq_(Addon.objects.get(slug='xpi-name').status, 0)
         eq_(Addon.objects.count(), 1)
 
     def test_delete(self):
