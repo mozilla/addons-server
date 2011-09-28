@@ -464,6 +464,7 @@ MINIFY_BUNDLES = {
             'css/impala/abuse.less',
             'css/impala/paginator.less',
             'css/impala/listing.less',
+            'css/impala/versions.less',
             'css/impala/users.less',
             'css/impala/collections.less',
             'css/impala/tooltips.less',

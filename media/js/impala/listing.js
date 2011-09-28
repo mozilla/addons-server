@@ -6,7 +6,7 @@ $(function() {
     });
 
     // Mark incompatible add-ons on listing pages unless marked with ignore.
-    $('.listing .item.addon').each(function() {
+    $('.listing .item').each(function() {
         var $this = $(this);
         if ($this.find('.acr-override').length) {
             $this.addClass('acr');
