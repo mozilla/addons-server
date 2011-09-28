@@ -759,7 +759,7 @@ class TestPurchases(amo.tests.TestCase):
         res = self.client.get(reverse('users.purchases.receipt',
                               args=[self.addon.pk]))
         eq_(len(res.context['purchases'].object_list), 1)
-        eq_(res.context['purchases'].object_list[0].pk, self.addon.pk)
+        eq_(res.context['purchases'].object_list[0].addon.pk, self.addon.pk)
 
     def test_receipt_404(self):
         url = reverse('users.purchases.receipt', args=[545])
