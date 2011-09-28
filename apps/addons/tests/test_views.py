@@ -751,21 +751,14 @@ class TestDetailPage(amo.tests.TestCase):
         assert "&lt;script&gt;alert" in output
         assert "<script>alert" not in output
 
-    def test_search_engine_works_with(self):
-        """We don't display works-with info for search engines."""
-        addon = Addon.objects.filter(type=amo.ADDON_SEARCH)[0]
-        r = self.client.get_ajax(reverse('addons.detail_more',
-                                         args=[addon.slug]))
-        headings = pq(r.content)('#detail-relnotes .item-info h5')
-        assert not any(th.text.strip().lower() == 'works with:'
-                       for th in headings)
+    def test_display_compatible_apps(self):
+        """Show compatiblity info for extensions but not for search engines."""
+        r = self.client.get(self.addon.get_url_path())
+        eq_(pq(r.content)('#detail-relnotes .compat').length, 1)
 
-        # Make sure we find Works with for an extension.
-        r = self.client.get(reverse('addons.detail', args=['a3615']))
-        headings = pq(r.content)('#detail-relnotes .info strong')
-
-        assert any(th.text.strip().lower() == 'works with:'
-                   for th in headings)
+        a = Addon.objects.filter(type=amo.ADDON_SEARCH)[0]
+        r = self.client.get(a.get_url_path())
+        eq_(pq(r.content)('#detail-relnotes .compat').length, 0)
 
     def test_show_profile(self):
         addon = Addon.objects.get(id=3615)

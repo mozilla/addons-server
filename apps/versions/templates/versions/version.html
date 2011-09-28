@@ -16,7 +16,7 @@
         {% endif %}
       </span>
       {% if version.compatible_apps %}
-        <span class="meta">
+        <span class="meta compat">
           {# L10n: This refers to this version's compatible applications, such as Firefox 8.0 #}
           {{ _('Works with') }}
           {{ version.compatible_apps.values()|join(', ') }}
