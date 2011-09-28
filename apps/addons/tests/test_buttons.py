@@ -429,6 +429,7 @@ class TestButtonHtml(ButtonTest):
         a.icon_url = 'icon url'
         a.meet_the_dev_url.return_value = 'meet.dev'
         a.name = 'addon name'
+        a.is_premium.return_value = False
         self.file.hash = 'file hash'
 
         doc = self.render()
