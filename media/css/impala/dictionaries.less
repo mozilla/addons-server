@@ -16,6 +16,7 @@
         padding: 6px 12px;
     }
     tbody {
+        color: #555;
         td, th {
             width: 25%;
         }
@@ -23,7 +24,10 @@
     tr {
         line-height: 1.5em;
     }
-    tr:nth-child(2n), thead {
+    thead {
+        background: @border-blue;
+    }
+    tr:nth-child(2n) {
         background: lighten(@link, 45%);
     }
     tbody tr:nth-child(2n+1) {

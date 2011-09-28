@@ -1,6 +1,8 @@
 {% extends "impala/base.html" %}
 
-{% block title %}{{ _('Dictionaries & Language Packs') }}{% endblock %}
+{% set title = _('Dictionaries & Language Packs') %}
+
+{% block title %}{{ page_title(title) }}{% endblock %}
 {% block bodyclass %}dictionaries{% endblock %}
 
 {% if request.APP.browser %}
@@ -24,10 +26,10 @@
 {% endmacro %}
 
 {% block content %}
-{% cache addons %}
+{% cache addons, extra=[lang_addons] %}
 <header>
-  {{ impala_breadcrumbs([(None, _('Dictionaries & Language Packs'))]) }}
-  <h1>{{ _('Dictionaries & Language Packs') }}</h1>
+  {{ impala_breadcrumbs([(None, title)]) }}
+  <h1>{{ title }}</h1>
 </header>
 <section class="island">
   {% if lang_addons %}
