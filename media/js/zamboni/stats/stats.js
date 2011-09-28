@@ -215,8 +215,7 @@ function SeriesChart() {
             task: "getFieldList",
             data: AMO.StatsManager.getDataSlice(
                 currentView.metric,
-                currentView.time,
-                breakdown_metrics[currentView.metric]
+                currentView.time
             )
         };
         StatsWorkerPool.queueJob(stats_worker_url, job, function(msg, worker) {

@@ -1,6 +1,6 @@
 
     // Versioning for offline storage
-    var version = "16";
+    var version = "17";
 
     // where all the time-series data for the page is kept
     var datastore = {};
@@ -57,12 +57,12 @@
     var StatsWorkerPool = new WorkerPool(4);
 
     var breakdown_metrics = {
-        "apps"      : "applications",
-        "locales"   : "locales",
-        "sources"   : "sources",
-        "os"        : "oses",
-        "versions"  : "versions",
-        "statuses"  : "statuses"
+        "applications": true,
+        "languages": true,
+        "os": true,
+        "sources": true,
+        "versions": true,
+        "status": true
     };
 
     // date management helpers
@@ -124,12 +124,13 @@
             }
             var metric = key.metric,
                 fields = [],
-                out    = {};
+                out    = {},
+                isBreakdown = (metric in breakdown_metrics);
             AMO.StatsManager.getDataRange(metric, seriesStart, seriesEnd, function() {
                 for (var j=0; j<key.fields.length; j++) {
                     k = key.fields[j];
-                    if (metric in breakdown_metrics)
-                        k = breakdown_metrics[metric] + "|" + k;
+                    if (isBreakdown)
+                        k = "data|" + k;
                     out[k] = [];
                     fields.push(k);
                 }
@@ -407,9 +408,9 @@
             finished();
         },
 
-        getDataSlice: function(metric, time, base) {
-            base = base || "";
-            var seriesStart, seriesEnd;
+        getDataSlice: function(metric, time) {
+            var base = (metric in breakdown_metrics) ? "data" : "",
+                seriesStart, seriesEnd;
             if (typeof time === "string") {
                 seriesStart = ago(time);
                 seriesEnd = today();
