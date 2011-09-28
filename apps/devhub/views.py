@@ -1286,17 +1286,13 @@ def marketplace_upsell(request, addon_id, addon):
 @dev_required
 def marketplace_confirm(request, addon_id, addon):
     if request.method == 'POST':
-        # Minimum required to become premium.
-        def paypal_permissions():
-            return (not paypal.should_ignore_paypal() and
-                    addon.premium.paypal_permissions_token)
-        if (not addon.premium or not addon.paypal_id
-             or not addon.support_email or not addon.premium.price
-             or not paypal_permissions()):
-            messages.error(request, 'Some required details are missing.')
-            return redirect('devhub.market.1', addon.slug)
-        addon.update(premium_type=amo.ADDON_PREMIUM)
-        return redirect('devhub.addons.payments', addon.slug)
+        if (addon.premium and addon.premium.is_complete()
+            and addon.premium.has_permissions_token()):
+            addon.update(premium_type=amo.ADDON_PREMIUM)
+            return redirect('devhub.addons.payments', addon.slug)
+
+        messages.error(request, 'Some required details are missing.')
+        return redirect('devhub.market.1', addon.slug)
 
     return jingo.render(request, 'devhub/payments/second-confirm.html',
                         {'addon': addon, 'upsell': addon.upsold,

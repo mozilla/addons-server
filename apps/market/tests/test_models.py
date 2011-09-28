@@ -11,7 +11,7 @@ from addons.models import Addon
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from market.models import AddonPurchase, Price, get_key
+from market.models import AddonPurchase, AddonPremium, Price, get_key
 from stats.models import Contribution
 from users.models import UserProfile
 from webapps.models import Webapp
@@ -19,6 +19,36 @@ from webapps.models import Webapp
 key = os.path.join(os.path.dirname(__file__), 'sample.key')
 
 from django.utils import translation
+
+
+class TestPremium(amo.tests.TestCase):
+    fixtures = ['prices.json', 'base/addon_3615.json']
+
+    def setUp(self):
+        self.tier_one = Price.objects.get(pk=1)
+        self.addon = Addon.objects.get(pk=3615)
+
+    def test_is_complete(self):
+        ap = AddonPremium.objects.create(addon=self.addon)
+        assert not ap.is_complete()
+        ap.price = self.tier_one
+        assert not ap.is_complete()
+        ap.addon.paypal_id = 'asd'
+        assert ap.is_complete()
+
+    @mock.patch('paypal.should_ignore_paypal', lambda: False)
+    def test_has_permissions_token(self):
+        ap = AddonPremium.objects.create(addon=self.addon)
+        assert not ap.has_permissions_token()
+        ap.paypal_permissions_token = 'asd'
+        assert ap.has_permissions_token()
+
+    @mock.patch('paypal.should_ignore_paypal', lambda: True)
+    def test_has_permissions_token_ignore(self):
+        ap = AddonPremium.objects.create(addon=self.addon)
+        assert ap.has_permissions_token()
+        ap.paypal_permissions_token = 'asd'
+        assert ap.has_permissions_token()
 
 
 class TestPrice(amo.tests.TestCase):

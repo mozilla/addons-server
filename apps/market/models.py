@@ -176,3 +176,17 @@ class AddonPremium(amo.models.ModelBase):
 
     def get_price_locale(self):
         return self.price.get_price_locale()
+
+    def is_complete(self):
+        return bool(self.addon and self.price and
+                    self.addon.paypal_id and self.addon.support_email)
+
+    def has_permissions_token(self):
+        """
+        Have we got a permissions token. If you've got 'should_ignore_paypal'
+        enabled, then it will just happily return True.
+        """
+        # TODO(andym): remove circular import.
+        import paypal
+        return bool(paypal.should_ignore_paypal() or
+                    self.paypal_permissions_token)
