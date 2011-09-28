@@ -18,10 +18,10 @@
                            (None, _('Versions'))]) }}
     {# L10n: {0} is an add-on name. #}
     <hgroup>
-      <h2>{{ _('{0} Version History')|f(addon.name) }}</h2>
+      <h1>{{ _('{0} Version History')|f(addon.name) }}</h1>
       {% with cnt=versions.paginator.count %}
         {# L10n: {0} is a number. #}
-        <h3>{{ ngettext('{0} version', '{0} versions', cnt)|f(cnt) }}</h3>
+        <h3>{{ ngettext('<b>{0}</b> version', '<b>{0}</b> versions', cnt)|f(cnt)|safe }}</h3>
       {% endwith %}
     </hgroup>
   </header>
@@ -36,7 +36,7 @@
     <div class="items">
       {% for version in versions.object_list %}
         {{ version_detail(addon, version, show_versions_link=False,
-                          src="version-history", itemclass="item") }}
+                          src="version-history", itemclass="item", impala=True) }}
       {% endfor %}
     </div>
     <div class="listing-footer">
