@@ -3,7 +3,7 @@
 {% set title = _('Manage Payments') %}
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
 
-{% set can_edit = check_addon_ownership(request, addon) and addon.has_full_profile() %}
+{% set can_edit = check_addon_ownership(request, addon) %}
 {% block bodyclass %}
   {{ super() }}{% if not can_edit %} no-edit{% endif %}
 {% endblock %}

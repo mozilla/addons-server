@@ -936,6 +936,10 @@ class TestMarketplace(amo.tests.TestCase):
         self.client.post(self.url, self.get_data())
         assert self.get_addon().premium.paypal_permissions_token
 
+    def test_can_edit(self):
+        self.setup_premium()
+        assert 'no-edit' not in self.client.get(self.url).content
+
 
 class TestDelete(amo.tests.TestCase):
     fixtures = ('base/apps', 'base/users', 'base/addon_3615',
