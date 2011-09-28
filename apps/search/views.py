@@ -353,13 +353,13 @@ def es_search(request, tag_name=None, template=None):
     form.is_valid()  # Let the form try to clean data.
 
     category = request.GET.get('cat')
+    query = form.cleaned_data
 
     if category == 'collections':
         return _collections(request)
-    elif category == 'personas':
+    elif category == 'personas' or query.get('atype') == amo.ADDON_PERSONA:
         return _personas(request)
 
-    query = form.cleaned_data
     sort, extra_sort = split_choices(form.fields['sort'].choices, 'created')
 
     qs = (Addon.search().query(or_=name_query(query['q']))
