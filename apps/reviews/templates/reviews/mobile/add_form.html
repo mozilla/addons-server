@@ -1,5 +1,11 @@
-<h2>{{ _('Add A Review') }}</h2>
-{% if user.is_authenticated() %}
+{% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
+{% if not amo_user %}
+  <h2 id="add-review">{{ _('Add a Review') }}</h2>
+  <section class="copy">
+    <a href="{{ url('reviews.add', addon.slug) }}" class="login-button button">{{ _('Log in to add a review') }}</a>
+  </section>
+{% elif addon.can_review(amo_user) %}
+  <h2 id="add-review">{{ _('Add a Review') }}</h2>
   <form method="post" class="form-mobile review-form" id="review-form"
         action="{{ url('reviews.add', addon.slug) }}">
     {{ csrf() }}
@@ -16,9 +22,4 @@
     Logged in as <strong>{{ username }}</strong> (<a href="{{ logout }}">Log out</a>)
     {% endtrans %}
   </section>
-{% else %}
-<section class="copy">
-<a href="{{ url('reviews.add', addon.slug) }}" class="login_button button">{{ _('Log in to add a review') }}</a>
-</section>
 {% endif %}
-

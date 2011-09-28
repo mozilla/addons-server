@@ -1227,6 +1227,9 @@ class TestMobile(amo.tests.TestCase):
                 'base/featured', 'bandwagon/featured_collections']
 
     def setUp(self):
+        self.mobile_init()
+
+    def mobile_init(self):
         self.client.cookies['mamo'] = 'on'
         self.client.defaults['SERVER_NAME'] = settings.MOBILE_DOMAIN
         self.request = Mock()

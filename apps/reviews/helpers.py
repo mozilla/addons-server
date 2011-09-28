@@ -35,10 +35,12 @@ def impala_reviews_link(addon, collection_uuid=None):
                                   collection_uuid=collection_uuid))
 
 
-@jingo.register.function
-def mobile_reviews_link(addon):
-    t = jingo.env.get_template('reviews/mobile/reviews_link.html')
-    return jinja2.Markup(t.render(addon=addon))
+@jingo.register.inclusion_tag('reviews/mobile/reviews_link.html')
+@jinja2.contextfunction
+def mobile_reviews_link(context, addon):
+    c = dict(context.items())
+    c.update(addon=addon)
+    return c
 
 
 @jingo.register.inclusion_tag('reviews/report_review.html')

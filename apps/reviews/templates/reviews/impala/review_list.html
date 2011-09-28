@@ -1,5 +1,6 @@
 {% extends "impala/base.html" %}
 {% from 'includes/forms.html' import pretty_field, required_note %}
+{% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
 
 {# L10n: {0} is an add-on name. #}
 {% block title %}{{ page_title(_('{0} :: Reviews')|f(addon.name)) }}{% endblock %}
@@ -66,8 +67,8 @@
       {% include "reviews/grouped_ratings.html" %}
     </section>
     <section>
-      {% if not review_perms.is_author %}
-        <a class="button" href="{{ url('i_reviews.add', addon.slug) }}">
+      {% if amo_user and addon.can_review(amo_user) %}
+        <a class="button" id="add-review" href="{{ url('i_reviews.add', addon.slug) }}">
           {{ _('Write a New Review') }}</a>
       {% endif %}
     </section>
@@ -76,8 +77,12 @@
   <div class="primary island c" id="reviews" role="main">
     {% block review_list %}
     {% if not reviews.object_list %}
-      <p><a href="{{ url('i_reviews.add', addon.slug) }}">
-        {{ _('Be the first to write a review.') }}</a><p>
+      {% if addon.can_review(amo_user) %}
+        <p id="add-first-review"><a href="{{ url('i_reviews.add', addon.slug) }}">
+          {{ _('Be the first to write a review.') }}</a><p>
+      {% else %}
+        <p id="no-add-first-review">{{ _('No reviews found.') }}</p>
+      {% endif %}
     {% endif %}
     {% for review in reviews.object_list %}
       {% include "reviews/impala/review.html" %}

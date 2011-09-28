@@ -15,6 +15,9 @@ from users.models import UserProfile
 class ReviewTest(amo.tests.TestCase):
     fixtures = ['base/apps', 'reviews/dev-reply.json', 'base/admin']
 
+    def login_dev(self):
+        self.client.login(username='trev@adblockplus.org', password='password')
+
     def make_it_my_review(self, review_id=218468):
         r = Review.objects.get(id=review_id)
         r.user = UserProfile.objects.get(username='jbalogh')
@@ -178,6 +181,8 @@ class TestCreate(ReviewTest):
         self.user = UserProfile.objects.get(email='root_x@ukr.net')
         self.qs = Review.objects.filter(addon=1865)
         self.log_count = ActivityLog.objects.count
+        self.more = reverse('addons.detail_more', args=['a1865'])
+        self.list = reverse('i_reviews.list', args=['a1865'])
 
     def test_no_body(self):
         r = self.client.post(self.add, {'body': ''})
@@ -205,7 +210,7 @@ class TestCreate(ReviewTest):
         self.assertTemplateUsed(r, 'reviews/emails/add_review.ltxt')
 
     def test_new_reply(self):
-        self.client.login(username='trev@adblockplus.org', password='password')
+        self.login_dev()
         Review.objects.filter(reply_to__isnull=False).delete()
         url = reverse('reviews.reply', args=['a1865', 218207])
         r = self.client.post(url, {'body': 'unst unst'})
@@ -217,7 +222,7 @@ class TestCreate(ReviewTest):
         self.assertTemplateUsed(r, 'reviews/emails/reply_review.ltxt')
 
     def test_double_reply(self):
-        self.client.login(username='trev@adblockplus.org', password='password')
+        self.login_dev()
         url = reverse('reviews.reply', args=['a1865', 218207])
         r = self.client.post(url, {'body': 'unst unst'})
         self.assertRedirects(r,
@@ -239,23 +244,110 @@ class TestCreate(ReviewTest):
         eq_(self.client.get(self.add, data).status_code, 403)
         eq_(self.client.post(self.add, data).status_code, 403)
 
-    def test_no_add_review_link(self):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.get(reverse('reviews.list', args=[self.addon.slug]))
-        eq_(len(pq(res.content)('#add-review')), 0)
+    def test_add_link_visitor(self):
+        """
+        Ensure non-logged user can see Add Review links on details page
+        but not on Reviews listing page.
+        """
+        self.client.logout()
+        r = self.client.get_ajax(self.more)
+        eq_(pq(r.content)('#add-review').length, 1)
+        r = self.client.get(reverse('i_reviews.list', args=['a1865']))
+        doc = pq(r.content)
+        eq_(doc('#add-review').length, 0)
+        eq_(doc('#add-first-review').length, 0)
 
-    def test_no_add_review_link_anon(self):
+    def test_add_link_logged(self):
+        """Ensure logged user can see Add Review links."""
+        r = self.client.get_ajax(self.more)
+        eq_(pq(r.content)('#add-review').length, 1)
+        r = self.client.get(self.list)
+        doc = pq(r.content)
+        eq_(doc('#add-review').length, 1)
+        eq_(doc('#add-first-review').length, 0)
+
+    def test_add_link_dev(self):
+        """Ensure developer cannot see Add Review links."""
+        self.login_dev()
+        r = self.client.get_ajax(self.more)
+        eq_(pq(r.content)('#add-review').length, 0)
+        r = self.client.get(reverse('i_reviews.list', args=['a1865']))
+        doc = pq(r.content)
+        eq_(doc('#add-review').length, 0)
+        eq_(doc('#add-first-review').length, 0)
+
+    def test_list_none_add_review_link_visitor(self):
+        """If no reviews, ensure visitor user cannot see Add Review link."""
+        Review.objects.all().delete()
+        self.client.logout()
+        r = self.client.get(self.list)
+        doc = pq(r.content)('#reviews')
+        eq_(doc('#add-review').length, 0)
+        eq_(doc('#no-add-first-review').length, 0)
+        eq_(doc('#add-first-review').length, 1)
+
+    def test_list_none_add_review_link_logged(self):
+        """If no reviews, ensure logged user can see Add Review link."""
+        Review.objects.all().delete()
+        r = self.client.get(self.list)
+        doc = pq(r.content)
+        eq_(doc('#add-review').length, 1)
+        eq_(doc('#no-add-first-review').length, 0)
+        eq_(doc('#add-first-review').length, 1)
+
+    def test_list_none_add_review_link_dev(self):
+        """If no reviews, ensure developer can see Add Review link."""
+        Review.objects.all().delete()
+        self.login_dev()
+        r = self.client.get(self.list)
+        doc = pq(r.content)('#reviews')
+        eq_(doc('#add-review').length, 0)
+        eq_(doc('#no-add-first-review').length, 1)
+        eq_(doc('#add-first-review').length, 0)
+
+    def test_premium_no_add_review_link_visitor(self):
+        """Check for no review link for premium add-ons for non-logged user."""
         self.client.logout()
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.get(reverse('reviews.list', args=[self.addon.slug]))
-        eq_(len(pq(res.content)('#add-review')), 0)
+        r = self.client.get_ajax(self.more)
+        eq_(pq(r.content)('#add-review').length, 0)
+        r = self.client.get(self.list)
+        eq_(pq(r.content)('#add-review').length, 0)
 
-    def test_add_review_link(self):
+    def test_premium_no_add_review_link_logged(self):
+        """Check for no review link for premium add-ons for logged users."""
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        r = self.client.get_ajax(self.more)
+        eq_(pq(r.content)('#add-review').length, 0)
+        r = self.client.get(self.list)
+        eq_(pq(r.content)('#add-review').length, 0)
+
+    def test_premium_add_review_link_dev(self):
+        """Check for no review link for premium add-ons for add-on owners."""
+        self.login_dev()
         self.addon.addonpurchase_set.create(user=self.user)
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.get(reverse('reviews.list', args=[self.addon.slug]))
-        eq_(len(pq(res.content)('#add-review')), 0)
+        r = self.client.get_ajax(self.more)
+        eq_(pq(r.content)('#add-review').length, 0)
+        r = self.client.get(self.list)
+        eq_(pq(r.content)('#add-review').length, 0)
 
+    def test_premium_add_review_link_nonpurchased_premium(self):
+        """Check for review link for non-purchased premium add-ons."""
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        r = self.client.get_ajax(self.more)
+        eq_(pq(r.content)('#add-review').length, 0)
+        r = self.client.get(self.list)
+        eq_(pq(r.content)('#add-review').length, 0)
+
+    def test_premium_add_review_link_purchased_premium(self):
+        """Check for review link for owners of purchased premium add-ons."""
+        self.addon.addonpurchase_set.create(user=self.user)
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        r = self.client.get_ajax(self.more)
+        eq_(pq(r.content)('#add-review').length, 1)
+        r = self.client.get(self.list)
+        eq_(pq(r.content)('#add-review').length, 1)
 
 
 class TestEdit(ReviewTest):
@@ -277,7 +369,7 @@ class TestEdit(ReviewTest):
         eq_(r.status_code, 403)
 
     def test_edit_reply(self):
-        self.client.login(username='trev@adblockplus.org', password='password')
+        self.login_dev()
         url = reverse('reviews.edit', args=['a1865', 218468])
         r = self.client.post(url, {'title': 'fo', 'body': 'shizzle'},
                              X_REQUESTED_WITH='XMLHttpRequest')
@@ -288,31 +380,86 @@ class TestEdit(ReviewTest):
 
 
 class TestMobileReviews(TestMobile):
-    fixtures = ['base/apps', 'reviews/dev-reply.json', 'base/admin']
+    fixtures = ['base/apps', 'reviews/dev-reply.json', 'base/admin',
+                'base/users']
+
+    def setUp(self):
+        super(TestMobileReviews, self).setUp()
+        self.addon = Addon.objects.get(id=1865)
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.login_regular()
+        self.add = reverse('reviews.add', args=['a1865'])
+        self.list = reverse('reviews.list', args=['a1865'])
+
+    def login_regular(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+
+    def login_dev(self):
+        self.client.login(username='trev@adblockplus.org', password='password')
 
     def test_mobile(self):
-        r = self.client.get(reverse('reviews.list', args=['a1865']))
+        self.client.logout()
+        self.mobile_init()
+        r = self.client.get(self.list)
         eq_(r.status_code, 200)
-
-        doc = pq(r.content)
-        assert doc('.copy .login_button').length >= 1, "No login link on page"
-
         self.assertTemplateUsed(r, 'reviews/mobile/review_list.html')
 
-    def test_add(self):
-        self.client.login(username='jbalogh@mozilla.com', password='password')
-        r = self.client.get(reverse('reviews.add', args=['a1865']))
+    def test_add_visitor(self):
+        self.client.logout()
+        self.mobile_init()
+        r = self.client.get(self.add)
+        eq_(r.status_code, 302)
+
+    def test_add_logged(self):
+        r = self.client.get(self.add)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'reviews/mobile/add.html')
 
+    def test_add_dev(self):
+        self.login_dev()
+        r = self.client.get(self.add)
+        eq_(r.status_code, 403)
+
+    def test_add_nonpurchased_premium(self):
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        data = {'body': 'x', 'rating': 1}
+        eq_(self.client.get(self.add).status_code, 403)
+        eq_(self.client.post(self.add, data).status_code, 403)
+
+    def test_add_purchased_premium(self):
+        self.addon.addonpurchase_set.create(user=self.user)
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        data = {'body': 'x', 'rating': 1}
+        eq_(self.client.get(self.add).status_code, 200)
+        eq_(self.client.post(self.add, data).status_code, 302)
+
+    def test_add_link_visitor(self):
+        self.client.logout()
+        self.mobile_init()
+        r = self.client.get(self.list)
+        doc = pq(r.content)
+        eq_(doc('#add-review').length, 1)
+        eq_(doc('.copy .login-button').length, 1)
+        eq_(doc('#review-form').length, 0)
+
+    def test_add_link_logged(self):
+        r = self.client.get(self.list)
+        doc = pq(r.content)
+        eq_(doc('#add-review').length, 1)
+        eq_(doc('#review-form').length, 1)
+
+    def test_add_link_dev(self):
+        self.login_dev()
+        r = self.client.get(self.list)
+        doc = pq(r.content)
+        eq_(doc('#add-review').length, 0)
+        eq_(doc('#review-form').length, 0)
+
     def test_add_submit(self):
-        self.client.login(username='jbalogh@mozilla.com', password='password')
-        url = reverse('reviews.add', args=['a1865'])
-        r = self.client.post(url, {'body': 'hi', 'rating': 3})
+        r = self.client.post(self.add, {'body': 'hi', 'rating': 3})
         eq_(r.status_code, 302)
 
-        url = reverse('reviews.list', args=['a1865'])
-        r = self.client.get(url)
+        r = self.client.get(self.list)
         doc = pq(r.content)
         text = doc('.review').eq(0).text()
         assert "hi" in text
@@ -320,5 +467,6 @@ class TestMobileReviews(TestMobile):
 
     def test_add_logged_out(self):
         self.client.logout()
+        self.mobile_init()
         r = self.client.get(reverse('reviews.add', args=['a1865']))
         eq_(r.status_code, 302)

@@ -2,6 +2,7 @@
    We want the above-the-fold portion to return and render really fast
    so we pull in reviews and links to other add-ons with js.
    This view returns a chunk of HTML that's injected into the DOM. #}
+{% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
 {% set version = addon.current_version %}
 {% set reviews = reviews[:3] %}
 
@@ -13,8 +14,7 @@
     </div>
   {% endif %}
   {% include "reviews/grouped_ratings.html" %}
-  {% set amo_user = request.amo_user if user.is_authenticated() else None %}
-  {% if not addon.has_author(amo_user) and addon.can_review(amo_user) %}
+  {% if addon.can_review(amo_user) %}
     {% set r_add = '%sreviews.add' % ('i_' if settings.IMPALA_REVIEWS else '') %}
     <div>
       <a class="button" id="add-review" href="{{ url(r_add, addon.slug) }}">{{ _('Write a review') }}</a>

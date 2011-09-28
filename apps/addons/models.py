@@ -989,7 +989,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 self.addonpurchase_set.filter(user=user).exists())
 
     def can_review(self, user):
-        return not self.is_premium() or self.has_purchased(user)
+        if user and self.has_author(user):
+            return False
+        else:
+            return not self.is_premium() or self.has_purchased(user)
 
     @property
     def premium(self):

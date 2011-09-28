@@ -218,7 +218,7 @@ class InstallButton(object):
             roadblock = reverse('addons.roadblock', args=[self.addon.id])
             url = urlparams(roadblock, eula='', version=self.version.version)
 
-        if self.can_be_purchased:
+        if self.addon.premium and self.can_be_purchased:
             # L10n: {0} is a price
             text = _(u'Purchase for {0}').format(self.addon.premium
                                                      .get_price_locale())
