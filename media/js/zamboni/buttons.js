@@ -88,7 +88,7 @@ var installButton = function() {
         newerBrowser;
 
     // Check to see if it's been purchased.
-    if($.inArray(parseInt(addon), addons_purchased) >= 0) {
+    if($.inArray(parseInt(addon, 10), addons_purchased) >= 0) {
         premium = false;
         $this.removeClass('premium');
         $this.find('.premium').removeClass('premium');
@@ -154,6 +154,7 @@ var installButton = function() {
             $this.find('.button[data-hash]').each(function() {
                 hashes[$(this).attr('href')] = $(this).attr('data-hash');
             });
+            // For premium add-ons this will be undefined.
             var hash = hashes[installer.attr('href')];
 
             var f = _.haskey(z.button.after, after)
