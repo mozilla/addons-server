@@ -8,6 +8,8 @@ $(document).ready(function() {
         callback: function(obj) {
             var ct = $(obj.click_target),
                 $popup = this;
+            //reset our event handlers
+            $popup.hideMe();
 
             function addFlag(flag, note) {
                 $.ajax({type: 'POST',
@@ -47,6 +49,7 @@ $(document).ready(function() {
                 }
             });
 
+            $popup.removeClass("other");
             $popup.html(report);
             return { pointTo: ct };
         }

@@ -146,7 +146,8 @@ $.fn.popup = function(click_target, o) {
 
     var $ct         = $(click_target),
         $popup      = this,
-        uid         = (z.uid++);
+        uid         = (z.uid++),
+        spawned     = 0;
 
     $popup.o = $.extend({
         delegate:   false,
@@ -195,12 +196,12 @@ $.fn.popup = function(click_target, o) {
         $popup.unbind();
         $popup.undelegate();
         $(document.body).unbind('click.'+uid, $popup.hider);
-
         return $popup;
     };
 
     function handler(e) {
         e.preventDefault();
+        spawned = e.timeStamp;
         var resp = o.callback ? (o.callback.call($popup, {
                 click_target: this,
                 evt: e
@@ -212,8 +213,13 @@ $.fn.popup = function(click_target, o) {
     }
 
     $popup.render = function() {
-        var p = $popup.o;
-        $popup.hider = makeBlurHideCallback($popup);
+        var p = $popup.o,
+            hideCallback = makeBlurHideCallback($popup);
+        $popup.hider = function(e) {
+            if (e.timeStamp != spawned) {
+                hideCallback.call(this, e);
+            }
+        };
         if (p.hideme) {
             setTimeout(function(){
                 $(document.body).bind('click.'+uid, $popup.hider);
