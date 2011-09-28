@@ -901,6 +901,10 @@ CELERY_ROUTES = {
 
     # Bulk.
     'zadmin.tasks.bulk_validate_file': {'queue': 'bulk'},
+    'zadmin.tasks.tally_validation_results': {'queue': 'bulk'},
+    'zadmin.tasks.add_validation_jobs': {'queue': 'bulk'},
+    'zadmin.tasks.notify_success': {'queue': 'bulk'},
+    'zadmin.tasks.notify_failed': {'queue': 'bulk'},
     'devhub.tasks.flag_binary': {'queue': 'bulk'},
     'stats.tasks.index_update_counts': {'queue': 'bulk'},
     'stats.tasks.index_download_counts': {'queue': 'bulk'},
