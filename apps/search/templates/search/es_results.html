@@ -1,12 +1,17 @@
 {% extends "impala/base.html" %}
 
-{% block title %}
 {% if query.q %}
-  {# L10n: {0} is the search term, such as Firebug. #}
-  {{ page_title(_('{0} :: Search')|f(query.q)) }}
+  {# L10n: {0} is a search term, such as Firebug. #}
+  {% set title = _('{0} :: Search')|f(query.q) %}
+  {# L10n: {0} is a search term, such as Firebug. #}
+  {% set heading = _('Search Results for "{0}"')|f(query.q) %}
 {% else %}
-  {{ page_title(_('Search')) }}
+  {% set title = _('Search') %}
+  {% set heading = title %}
 {% endif %}
+
+{% block title %}
+  {{ page_title(title) }}
 {% endblock %}
 
 {% block extrahead %}
@@ -58,14 +63,10 @@
 <section class="primary" role="main">
 
   <div class="listing results island hero c">
-    <header>
-      <h2>{{ _('Search Results') }}</h2>
-    </header>
-    <header>
-      {{ impala_addon_listing_header(
-             request.get_full_path()|urlparams(page=None),
-             sort_opts, query.sort, extra_sort_opts) }}
-    </header>
+    <h1>{{ heading }}</h1>
+    {{ impala_addon_listing_header(
+           request.get_full_path()|urlparams(page=None),
+           sort_opts, query.sort, extra_sort_opts) }}
     {% if pager.object_list %}
       <div class="items">
         {{ impala_addon_listing_items(pager.object_list, field=query.sort,

@@ -19,7 +19,7 @@
         margin-bottom: 4px;
     }
     p {
-        font-size: 12px;
+        font-size: 14px;
         padding: 0 11px;
         text-align: center;
     }
@@ -78,6 +78,10 @@
             li {
                 a {
                     display: none;
+                    &:hover {
+                        background: inherit;
+                        text-decoration: underline;
+                    }
                 }
                 &.selected {
                     > a {
@@ -85,7 +89,7 @@
                         color: @orange;
                         display: block;
                         &:hover {
-                            background-color: inherit;
+                            text-decoration: none;
                         }
                     }
                 }
