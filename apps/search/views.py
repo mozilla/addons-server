@@ -353,13 +353,13 @@ def es_search(request, tag_name=None, template=None):
     form.is_valid()  # Let the form try to clean data.
 
     category = request.GET.get('cat')
-    query = form.cleaned_data
 
     if category == 'collections':
         return _collections(request)
-    elif query.get('atype') == amo.ADDON_PERSONA or category == 'personas':
+    elif category == 'personas':
         return _personas(request)
 
+    query = form.cleaned_data
     sort, extra_sort = split_choices(form.fields['sort'].choices, 'created')
 
     qs = (Addon.search().query(or_=name_query(query['q']))
@@ -520,20 +520,13 @@ def category_sidebar(request, query, facets):
     APP = request.APP
     qatype, qcat = query.get('atype'), query.get('cat')
     cats = [f['term'] for f in facets['categories']]
-    qs = Category.objects
-    if query.get('q'):
-        qs = qs.filter(id__in=cats)
-    else:
-        # This is misleading because we'll never have Persona categories in
-        # our facets. But until we index add-ons without versions (Personas),
-        # this'll have to do.
-        qs = qs.filter(Q(id__in=cats) | Q(type=amo.ADDON_PERSONA))
-    # Search categories don't have an application.
-    qs = qs.filter(Q(application=APP.id) | Q(type=amo.ADDON_SEARCH))
+    categories = (Category.objects.filter(id__in=cats)
+                  # Search categories don't have an application.
+                  .filter(Q(application=APP.id) | Q(type=amo.ADDON_SEARCH)))
     if qatype in amo.ADDON_TYPES:
-        qs = qs.filter(type=qatype)
+        categories = categories.filter(type=qatype)
     categories = [(atype, sorted(cats, key=lambda x: x.name))
-                  for atype, cats in sorted_groupby(qs, 'type')]
+                  for atype, cats in sorted_groupby(categories, 'type')]
     rv = [FacetLink(_(u'All Add-ons'), dict(atype=None, cat=None), not qatype)]
     for addon_type, cats in categories:
         link = FacetLink(amo.ADDON_TYPES[addon_type],
