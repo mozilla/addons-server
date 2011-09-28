@@ -360,6 +360,7 @@ def es_search(request, tag_name=None, template=None):
         return _personas(request)
 
     query = form.cleaned_data
+    sort, extra_sort = split_choices(form.fields['sort'].choices, 'created')
 
     qs = (Addon.search().query(or_=name_query(query['q']))
           .filter(status__in=amo.REVIEWED_STATUSES, is_disabled=False,
@@ -383,6 +384,11 @@ def es_search(request, tag_name=None, template=None):
                           'appversion.%s.min__lte' % APP.id: low})
     if query.get('atype') and query['atype'] in amo.ADDON_TYPES:
         qs = qs.filter(type=query['atype'])
+        if query['atype'] == amo.ADDON_SEARCH:
+            # Search add-ons should not be searched by ADU, so replace 'Users'
+            # sort with 'Weekly Downloads'.
+            sort[1] = extra_sort[1]
+            del extra_sort[1]
     else:
         qs = qs.filter(type__in=types)
     if query.get('cat'):
@@ -400,7 +406,6 @@ def es_search(request, tag_name=None, template=None):
     pager = amo.utils.paginate(request, qs)
     facets = pager.object_list.facets
 
-    sort, extra_sort = split_choices(form.fields['sort'].choices, 'created')
     ctx = {
         'pager': pager,
         'query': query,
