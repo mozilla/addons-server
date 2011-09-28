@@ -25,6 +25,7 @@ class AuthError(PaypalError):
 errors = {'520003': AuthError}
 paypal_log = commonware.log.getLogger('z.paypal')
 
+
 def should_ignore_paypal():
     """
     Returns whether to skip PayPal communications for development
@@ -99,14 +100,20 @@ def check_refund_permission(token):
     # by accident. Explicitly set this in your tests.
     if not settings.PAYPAL_PERMISSIONS_URL:
         return False
+    paypal_log.debug('Checking refund permission for token: %s..'
+                     % token[:10])
     try:
         with statsd.timer('paypal.permissions.refund'):
             r = _call(settings.PAYPAL_PERMISSIONS_URL + 'GetPermissions',
                       {'token': token})
-    except PaypalError:
+    except PaypalError, error:
+        paypal_log.debug('Paypal returned error for token: %s.. error: %s'
+                         % (token[:10], error))
         return False
     # in the future we may ask for other permissions so let's just
     # make sure REFUND is one of them.
+    paypal_log.debug('Paypal returned permissions for token: %s.. perms: %s'
+                     % (token[:10], r))
     return 'REFUND' in [v for (k, v) in r.iteritems()
                         if k.startswith('scope')]
 

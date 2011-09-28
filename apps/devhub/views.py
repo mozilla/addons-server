@@ -60,6 +60,7 @@ from zadmin.models import ValidationResult
 from . import forms, tasks, feeds, responsys, signals
 
 log = commonware.log.getLogger('z.devhub')
+paypal_log = commonware.log.getLogger('z.paypal')
 
 
 # We use a session cookie to make sure people see the dev agreement.
@@ -439,15 +440,18 @@ def _save_charity(addon, contrib_form, charity_form):
 @dev_required
 def acquire_refund_permission(request, addon_id, addon):
     """This is the callback from Paypal."""
-    log.debug('User approved refund for addon: %s' % addon_id)
+    paypal_log.debug('User approved refund for addon: %s' % addon_id)
     token = paypal.get_permissions_token(request.GET['request_token'],
                                          request.GET['verification_code'])
-    log.debug('Got refund token for addon: %s, token: %s....' %
-              (addon_id, token[:5]))
+    paypal_log.debug('Got refund token for addon: %s, token: %s....' %
+                     (addon_id, token[:10]))
+
     # Sadly this is an update on a GET.
     addonpremium, created = AddonPremium.objects.get_or_create(addon=addon)
     addonpremium.paypal_permissions_token = token
     addonpremium.save()
+    paypal_log.debug('AddonPremium %s with id: %s' %
+                     ('created' if created else 'updated', addonpremium.pk))
 
     amo.log(amo.LOG.EDIT_PROPERTIES, addon)
     return redirect('devhub.addons.payments', addon.slug)
