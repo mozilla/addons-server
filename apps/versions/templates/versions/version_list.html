@@ -39,9 +39,7 @@
                           src="version-history", itemclass="item", impala=True) }}
       {% endfor %}
     </div>
-    <div class="listing-footer">
-      {{ versions|impala_paginator }}
-    </div>
+    {{ versions|impala_paginator }}
   </div>
 </section>
 {% endblock %}

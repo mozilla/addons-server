@@ -175,15 +175,7 @@
     &.acr,
     &.incompatible {
         .install-shell {
-            font: 10px/12px Arial, sans-serif;
-        }
-    }
-    &.acr .install-shell {
-        .install {
-            margin: 0 0 6px;
-        }
-        .extra {
-            margin: 0;
+            font: 10px/12px @sans-stack;
         }
     }
     &.incompatible {
@@ -269,12 +261,15 @@
         padding: 0 10px;
         text-align: right;
         visibility: hidden;
+        .install {
+            margin: 0 0 6px;
+        }
         p.install-button {
             margin: 0;
             text-align: left;
         }
         .extra {
-            margin: 0 0 2px;
+            margin: 0 0 6px;
             .notavail {
                 color: @note-gray;
                 font-size: 10px;

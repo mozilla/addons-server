@@ -32,15 +32,10 @@
       {% set license = version.license %}
       <ul class="source">
         <li>
-          {% if license.builtin %}
-            {% trans name = license_link(license) %}
-              Source code released under {{ name }}
-            {% endtrans %}
-          {% else %}
-            {% trans url = version.license_url() %}
-              Source code released under <a href="{{ url }}">Custom License</a>
-            {% endtrans %}
-          {% endif %}
+          {% trans url = version.license_url(),
+                   name = version.license if version.license.builtin else _('Custom License') %}
+            Source code released under <a href="{{ url }}">{{ name }}</a>
+          {% endtrans %}
         </li>
         <li>
           {# TODO: reverse URL #}
