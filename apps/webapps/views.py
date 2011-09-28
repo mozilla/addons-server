@@ -22,7 +22,7 @@ def es_app_list(request):
 
 
 def app_home(request):
-    # TODO: For now, the home is the listing page.
+    # TODO: This will someday no longer be the listing page.
     return app_list(request)
 
 

@@ -14,8 +14,8 @@ detail_patterns = patterns('',
 
 urlpatterns = patterns('',
     url('^$', views.app_home, name='apps.home'),
-    url('^(?:(?P<category>[^/]+)/)?$', views.app_list, name='apps.list'),
     url('^search/$', 'search.views.app_search', name='apps.search'),
+    url('^(?P<category>[^/]+)?$', views.app_list, name='apps.list'),
 
     # URLs for a single app.
     ('^app/%s/' % APP_SLUG, include(detail_patterns)),
