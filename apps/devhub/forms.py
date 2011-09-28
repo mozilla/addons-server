@@ -123,16 +123,16 @@ class LicenseForm(AMOModelForm):
 
     def __init__(self, *args, **kw):
         addon = kw.pop('addon', None)
-        if not addon:
-            raise ValueError('addon keyword arg cannot be None')
-        qs = addon.versions.order_by('-version')[:1]
-        self.version = qs[0] if qs else None
-        if self.version:
-            kw['instance'], kw['initial'] = self.version.license, None
-            # Clear out initial data if it's a builtin license.
-            if getattr(kw['instance'], 'builtin', None):
-                kw['initial'] = {'builtin': kw['instance'].builtin}
-                kw['instance'] = None
+        self.version = None
+        if addon:
+            qs = addon.versions.order_by('-version')[:1]
+            self.version = qs[0] if qs else None
+            if self.version:
+                kw['instance'], kw['initial'] = self.version.license, None
+                # Clear out initial data if it's a builtin license.
+                if getattr(kw['instance'], 'builtin', None):
+                    kw['initial'] = {'builtin': kw['instance'].builtin}
+                    kw['instance'] = None
 
         super(LicenseForm, self).__init__(*args, **kw)
 
