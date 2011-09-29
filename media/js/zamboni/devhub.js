@@ -392,17 +392,13 @@ function truncateFields() {
 function addonFormSubmit() {
     parent_div = $(this);
 
-    console.log("pd1", parent_div);
     (function(parent_div){
         // If the baseurl changes (the slug changed) we need to go to the new url.
         var baseurl = function(){
             return parent_div.find('#addon-edit-basic').attr('data-baseurl');
         }
         $('.edit-media-button button').attr('disabled', false);
-        console.log("pd2", parent_div);
-        console.log("form", $('form', parent_div));
         $('form', parent_div).submit(function(e){
-            alert(1);
             e.preventDefault();
             var old_baseurl = baseurl();
             parent_div.find(".item").removeClass("loaded").addClass("loading");
@@ -452,27 +448,21 @@ function initEditAddon() {
     if (z.noEdit) return;
 
     // Load the edit form.
-    console.log("Test");
     $('#edit-addon').delegate('h3 a', 'click', function(e){
         e.preventDefault();
-        console.log("Edit clicked");
 
         var a = e.target;
         parent_div = $(a).closest('.edit-addon-section');
 
         (function(parent_div, a){
-            console.log("Closure run", parent_div, a);
             parent_div.find(".item").addClass("loading");
             parent_div.load($(a).attr('data-editurl'), function(){
-                console.log("Loaded!");
                 if ($('#addon-categories-edit').length) {
                     initCatFields();
                 }
                 if (false && $('#required-addons').length) {
                     initRequiredAddons();
                 }
-                console.log('this', $(this));
-                console.log('addonFormSubmit', addonFormSubmit);
                 $(this).each(addonFormSubmit);
             });
         })(parent_div, a);
