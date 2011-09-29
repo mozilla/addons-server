@@ -201,8 +201,10 @@ def notify_success(version_pks, job_pk, data, **kw):
              % (len(version_pks), notify_success.rate_limit, job_pk))
     job = ValidationJob.objects.get(pk=job_pk)
     set_user(get_task_user())
+    dry_run = data['preview_only']
     stats = collections.defaultdict(int)
     stats['processed'] = 0
+    stats['is_dry_run'] = int(dry_run)
     for version in Version.objects.filter(pk__in=version_pks):
         stats['processed'] += 1
         addon = version.addon
@@ -218,7 +220,6 @@ def notify_success(version_pks, job_pk, data, **kw):
             continue
 
         app_flag = False
-        dry_run = data['preview_only']
         for app in version.apps.filter(
                                 application=job.curr_max_version.application):
             if (app.max.version == job.curr_max_version.version and

@@ -398,7 +398,8 @@ class TestBulkUpdate(BulkValidationTest):
         self.client.post(self.update_url, self.data)
         eq_(log.info.call_args_list[-1][0][0],
             '[1@None] bulk update stats for job %s: '
-            '{author_emailed: 1, bumped: 1, processed: 1}' % self.job.pk)
+            '{author_emailed: 1, bumped: 1, is_dry_run: 0, processed: 1}'
+            % self.job.pk)
 
     def test_application_version(self):
         self.create_result(self.job, self.create_file(self.version))
