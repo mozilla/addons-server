@@ -3,6 +3,7 @@ import socket
 import urllib
 import urllib2
 import urlparse
+import re
 
 from django.conf import settings
 from django.utils.http import urlencode
@@ -89,6 +90,45 @@ def check_purchase(paykey):
             return False
 
     return response['status']
+
+def refund(txnid):
+    """
+    Refund a payment.
+
+    Arguments: transaction id of payment to refund
+
+    Returns: A list of dicts containing the refund info for each
+    receiver of the original payment.
+    """
+    OK_STATUSES = ['REFUNDED', 'REFUNDED_PENDING']
+    with statsd.timer('paypal.payment.refund'):
+        try:
+            response = _call(settings.PAYPAL_PAY_URL + 'Refund',
+                             {'transactionID': txnid})
+        except PaypalError:
+            paypal_log.error('Refund error', exc_info=True)
+            raise
+        responses = []
+        for k in response:
+            g = re.match('refundInfoList.refundInfo\((\d+)\).(.*)', k)
+            if g:
+                i = int(g.group(1))
+                subkey = g.group(2)
+                while i >= len(responses):
+                    responses.append({})
+                responses[i][subkey] = response[k]
+        for d in responses:
+            if d['refundStatus'] not in OK_STATUSES:
+                raise PaypalError('Bad refund status for %s: %s'
+                                  % (d['receiver.email'],
+                                     d['refundStatus']))
+            paypal_log.debug('Refund successful for transaction %s.'
+                             ' Statuses: %r"
+                             % (txnid, [(d['receiver.email'], d['refundStatus'])
+                                        for d in responses]))
+
+
+        return responses
 
 
 def check_refund_permission(token):

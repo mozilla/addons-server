@@ -114,3 +114,56 @@ class TestRefundPermissions(amo.tests.TestCase):
     def test_get_permissions_token(self, _call):
         _call.return_value = {'token': 'FOO'}
         eq_(paypal.get_permissions_token('foo', ''), 'FOO')
+
+
+good_refund_string = (
+    'refundInfoList.refundInfo(0).receiver.amount=123.45'
+    '&refundInfoList.refundInfo(0).receiver.email=bob@example.com'
+    '&refundInfoList.refundInfo(0).refundFeeAmount=1.03'
+    '&refundInfoList.refundInfo(0).refundGrossAmount=123.45'
+    '&refundInfoList.refundInfo(0).refundNetAmount=122.42'
+    '&refundInfoList.refundInfo(0).refundStatus=REFUNDED_PENDING'
+    '&refundInfoList.refundInfo(1).receiver.amount=1.23'
+    '&refundInfoList.refundInfo(1).receiver.email=apps@mozilla.com'
+    '&refundInfoList.refundInfo(1).refundFeeAmount=0.02'
+    '&refundInfoList.refundInfo(1).refundGrossAmount=1.23'
+    '&refundInfoList.refundInfo(1).refundNetAmount=1.21'
+    '&refundInfoList.refundInfo(1).refundStatus=REFUNDED')
+
+good_refund_data = [{'receiver.email': 'bob@example.com',
+                     'receiver.amount': '123.45',
+                     'refundFeeAmount': '1.03',
+                     'refundGrossAmount': '123.45',
+                     'refundNetAmount': '122.42',
+                     'refundStatus': 'REFUNDED_PENDING'},
+                    {'receiver.email': 'apps@mozilla.com',
+                     'receiver.amount': '1.23',
+                     'refundFeeAmount': '0.02',
+                     'refundGrossAmount': '1.23',
+                     'refundNetAmount': '1.21',
+                     'refundStatus': 'REFUNDED'}]
+
+error_refund_string = (
+    'refundInfoList.refundInfo(0).receiver.amount=123.45'
+    '&refundInfoList.refundInfo(0).receiver.email=bob@example.com'
+    '&refundInfoList.refundInfo(0).refundStatus=NO_API_ACCESS_TO_RECEIVER')
+
+
+class TestRefund(amo.tests.TestCase):
+    """
+    Tests for making refunds.
+    """
+
+    @mock.patch('urllib2.OpenerDirector.open')
+    def test_refundSuccess(self, opener):
+        """
+        Making refund requests returns the refund info.
+        """
+        opener.return_value = StringIO(good_refund_string)
+        eq_(paypal.refund('fake-txnid'), good_refund_data)
+
+    @mock.patch('urllib2.OpenerDirector.open')
+    def test_refundFailure(self, opener):
+        opener.return_value = StringIO(error_refund_string)
+        with self.assertRaises(paypal.PaypalError):
+            paypal.refund('fake-txnid')
