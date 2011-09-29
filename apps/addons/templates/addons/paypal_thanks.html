@@ -1,0 +1,25 @@
+{% extends "base_modal.html" if is_ajax else "base.html" %}
+
+{% block classes %}paypal-modal{% endblock %}
+
+{% block content %}
+<section class="paypal-parent">
+  <h2>{{ _('Purchase Add-on') }}</h2>
+  <h5>{{ _('Thank you!') }}</h5>
+  {% trans addon_name=addon.name, trigger='#' %}
+  Your purchase of <strong>{{ addon_name }}</strong> is complete.
+  <p>If installation does not automatically being, please <a class="trigger_download" href="{{ trigger }}">click here</a>.</p>
+  {% endtrans %}
+
+  <p class="mozilla-mission">
+  {% trans learn_more='http://www.mozilla.org/causes' %}
+  Your purchase helps support Mozilla's mission. <a href="{{ learn_more }}" target="_blank">Learn more</a>
+  {% endtrans %}
+  </p>
+</section>
+<section class="paypal-parent">
+  <a href="#">{{ _('My Purchases') }}</a>
+  &middot;
+  <a href="#">{{ _('Marketplace Support') }}</a>
+</section>
+{% endblock %}

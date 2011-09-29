@@ -57,6 +57,12 @@ table {
 }
 /* end meyer reset */
 
+/* Bold/Strong should be bold and strong! */
+b,
+strong {
+    font-weight: bold;
+}
+
 /* >> The Magnificent CLEARFIX <<
    Lifted from html5boilerplate.com
    License is Public domain */

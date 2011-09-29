@@ -518,8 +518,25 @@ span.featured {
             padding: 0 3px;
         }
     }
+    section {
+        border-top: 1px dotted #ccc;
+        margin-top: 1em;
+        padding-top: 1em;
+        &:first-child {
+            border-top: 0 none;
+            padding-top: 0;
+            margin-top: 0;
+        }
+    }
     .paypal-parent {
         text-align: center;
+        h1, h2 {
+            text-align: left;
+        }
+        h5 {
+            font-size: 2em;
+            line-height: 2em;
+        }
         p {
             font-size: 0.9em;
             color: #999;

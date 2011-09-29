@@ -406,19 +406,6 @@ jQuery.fn.addPaypal = function(html, allowClick) {
     });
 }
 
-/* This is mostly a stub for now.  Currently triggering it
-*  on any install button will do the same thing.  We'll have
-*  to figure out a way to pick the correct .install when the
-*  time comes to hook it up.
-*  To trigger, just call: $('.install').eq(0).trigger('paypal-success');
-*/
-$('.install').bind('paypal-success', function(addon_id) {
-    var content = $('.paypal-modal .paypal-content').html("");
-
-    content.append($('<h3>', {'text': gettext('Thank You!')}));
-    content.append($('<p>', {'text': gettext('Your purchase is complete.')}));
-});
-
 // Create a popup box when the element is clicked.  html can be a function.
 jQuery.fn.addPopup = function(html, allowClick) {
     return this.each(function() {

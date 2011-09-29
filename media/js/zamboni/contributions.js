@@ -32,7 +32,13 @@ $(document).ready(function() {
     if ($('#paypal-result').length) {
         top_dgFlow = top.dgFlow || (top.opener && top.opener.top.dgFlow);
         if (top_dgFlow !== null) {
+            var thanks_url = $('#paypal-thanks').attr('href');
+            if(thanks_url) {
+                // TODO: play around with top.opener
+                top.modalFromURL(thanks_url);
+            }
             top_dgFlow.closeFlow();
+
             if (top !== null) {
                 top.close();
             }

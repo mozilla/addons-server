@@ -117,6 +117,9 @@ function makeBlurHideCallback(el) {
         if (el.o.emptyme) {
             el.empty();
         }
+        if (el.o.deleteme) {
+            el.remove();
+        }
     };
     return hider;
 }
@@ -268,6 +271,8 @@ $.fn.popup = function(click_target, o) {
 //                  when the user clicks outside of it.
 //     emptyme:     defaults to false; if set to true, modal will be cleared
 //                  after it is hidden.
+//     deleteme:    defaults to false; if set to true, popup will be deleted
+//                  after it is hidden.
 //     close:       defaults to false; if set to true, modal will have a
 //                  close button
 // note: all options may be overridden and modified by returning them in an
@@ -284,6 +289,7 @@ $.fn.modal = function(click_target, o) {
         onresize:   function(){$modal.setPos();},
         hideme:     true,
         emptyme:    false,
+        deleteme:   false,
         offset:     {},
         width:      450
     }, o);
@@ -329,6 +335,7 @@ $.fn.modal = function(click_target, o) {
             })) : true;
         $modal.o = $.extend({click_target: this}, $modal.o, resp);
         if (resp) {
+            $('.modal-overlay').trigger('click'); // We don't want two!
             $modal.render();
         }
     }
@@ -349,6 +356,9 @@ $.fn.modal = function(click_target, o) {
         $modal.delegate('.close', 'click', function(e) {
             if (p.emptyme) {
                 $modal.empty();
+            }
+            if (p.deleteme) {
+                $modal.remove();
             }
             e.preventDefault();
             $modal.hideMe();
@@ -381,6 +391,15 @@ $.fn.modal = function(click_target, o) {
 
     return $modal;
 };
+
+// Modal from URL. Pass in a URL, and load it in a modal.
+function modalFromURL(url) {
+    $.get(url, function(html){
+        var a = $('<a>');
+        $(html).modal(a, {'deleteme': true, 'close': true});
+        a.trigger('click');
+    });
+}
 
 // Slugify
 // This allows you to create a line of text with a "Edit" field,

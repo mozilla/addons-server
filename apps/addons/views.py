@@ -549,6 +549,12 @@ def purchase_complete(request, addon, status):
 
 
 @addon_view
+def purchase_thanks(request, addon):
+    return jingo.render(request, 'addons/paypal_thanks.html',
+                        {'addon': addon, 'is_ajax': request.is_ajax() })
+
+
+@addon_view
 def contribute(request, addon):
     contrib_type = request.GET.get('type', 'suggested')
     is_suggested = contrib_type == 'suggested'
