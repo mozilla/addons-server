@@ -172,11 +172,28 @@ def refund_permission_url(addon):
     # by accident. Explicitly set this in your tests.
     if not settings.PAYPAL_PERMISSIONS_URL:
         return ''
+    paypal_log.debug('Getting refund permission URL for addon: %s' % addon.pk)
+
     with statsd.timer('paypal.permissions.url'):
         url = reverse('devhub.addons.acquire_refund_permission',
                       args=[addon.slug])
-        r = _call(settings.PAYPAL_PERMISSIONS_URL + 'RequestPermissions',
-                  {'scope': 'REFUND', 'callback': absolutify(url)})
+        try:
+            r = _call(settings.PAYPAL_PERMISSIONS_URL + 'RequestPermissions',
+                      {'scope': 'REFUND', 'callback': absolutify(url)})
+        except PaypalError, e:
+            paypal_log.debug('Error on refund permission URL addon: %s, %s' %
+                             (addon.pk, e))
+            if 'malformed' in str(e):
+                # PayPal is very picky about where they redirect users to.
+                # If you try and create a PayPal permissions URL on a
+                # zamboni that has a non-standard port number or a
+                # non-standard TLD, it will blow up with an error. We need
+                # to be able to at least visit these pages and alter them
+                # in dev, so this will give you a broken token that doesn't
+                # work, but at least the page will function.
+                r = {'token': 'wont-work-paypal-doesnt-like-your-domain'}
+            else:
+                raise
     return (settings.PAYPAL_CGI_URL +
             '?cmd=_grant-permission&request_token=%s' % r['token'])
 

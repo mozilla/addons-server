@@ -19,7 +19,6 @@ from tower import ugettext as _
 
 import amo
 from amo import utils, urlresolvers
-from addons.models import Category, AddonType
 from translations.query import order_by_translation
 from translations.helpers import truncate
 
@@ -121,6 +120,7 @@ def is_mobile(app):
 @register.function
 def sidebar(app):
     """Populates the sidebar with (categories, types)."""
+    from addons.models import Category
     if app is None:
         return [], []
 
@@ -440,6 +440,8 @@ def side_nav(context, addon_type, category=None):
 
 
 def _side_nav(context, addon_type, cat):
+    # Prevent helpers generating circular imports.
+    from addons.models import Category, AddonType
     request = context['request']
     qs = Category.objects.filter(application=request.APP.id, weight__gte=0)
     sort_key = attrgetter('weight', 'name')
@@ -466,6 +468,8 @@ def site_nav(context):
 
 
 def _site_nav(context):
+    # Prevent helpers from generating circular imports.
+    from addons.models import Category
     request = context['request']
     types = amo.ADDON_EXTENSION, amo.ADDON_PERSONA, amo.ADDON_THEME
     qs = Category.objects.filter(application=request.APP.id, weight__gte=0,

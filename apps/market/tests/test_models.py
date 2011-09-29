@@ -50,6 +50,22 @@ class TestPremium(amo.tests.TestCase):
         ap.paypal_permissions_token = 'asd'
         assert ap.has_permissions_token()
 
+    @mock.patch('paypal.should_ignore_paypal', lambda: False)
+    @mock.patch('paypal.check_refund_permission')
+    def test_has_valid_permissions_token(self, check_refund_permission):
+        ap = AddonPremium.objects.create(addon=self.addon)
+        check_refund_permission.return_value = False
+        assert not ap.has_valid_permissions_token()
+        check_refund_permission.return_value = True
+        assert ap.has_valid_permissions_token()
+
+    @mock.patch('paypal.should_ignore_paypal', lambda: True)
+    def test_has_valid_permissions_token_ignore(self):
+        ap = AddonPremium.objects.create(addon=self.addon)
+        assert ap.has_valid_permissions_token()
+        ap.paypal_permissions_token = 'asd'
+        assert ap.has_valid_permissions_token()
+
 
 class TestPrice(amo.tests.TestCase):
     fixtures = ['prices.json']

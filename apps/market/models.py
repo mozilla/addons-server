@@ -18,7 +18,7 @@ from babel import Locale, numbers
 import commonware.log
 from jinja2.filters import do_dictsort
 import jwt
-
+import paypal
 
 log = commonware.log.getLogger('z.market')
 
@@ -186,7 +186,14 @@ class AddonPremium(amo.models.ModelBase):
         Have we got a permissions token. If you've got 'should_ignore_paypal'
         enabled, then it will just happily return True.
         """
-        # TODO(andym): remove circular import.
-        import paypal
         return bool(paypal.should_ignore_paypal() or
                     self.paypal_permissions_token)
+
+    def has_valid_permissions_token(self):
+        """
+        Have we got a valid permissions token by ping paypal. If you've got
+        'should_ignore_paypal', then it will just happily return True.
+        """
+        token = self.paypal_permissions_token
+        return bool(paypal.should_ignore_paypal() or
+                    paypal.check_refund_permission(token))
