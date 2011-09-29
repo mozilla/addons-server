@@ -156,14 +156,15 @@
 #monthly {
     background: url(../../img/zamboni/discovery_pane/promos/monthly-bg.png) 50% 0 no-repeat;
     .wrap > div {
-        overflow: hidden;
         display: table;
+        overflow: hidden;
         position: relative;
         max-height: 120px;
-        padding: 20px;
+        width: 100%;
     }
     .blurb, .thumb {
         display: table-cell;
+        padding: 20px;
         vertical-align: top;
         width: 50%;
     }
@@ -175,15 +176,16 @@
         margin-bottom: 10px;
         font-size: 16px;
     }
-    .thumb img {
-        display: block;
-        margin-left: 20px;
-        max-height: 120px;
+    .thumb {
+        text-align: right;
+        img {
+            max-height: 120px;
+        }
     }
 }
 
-.html-rtl #monthly .thumb img {
-    margin: 0 20px 0 0;
+.html-rtl #monthly .thumb {
+    text-align: left;
 }
 
 #go-mobile {
