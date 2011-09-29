@@ -180,7 +180,7 @@ def reply(request, addon, review_id):
 @login_required
 @purchase_required
 def add(request, addon, template=None):
-    if acl.check_addon_ownership(request, addon, dev=True):
+    if addon.has_author(request.user):
         return http.HttpResponseForbidden()
     form = forms.ReviewForm(request.POST or None)
     if request.method == 'POST':

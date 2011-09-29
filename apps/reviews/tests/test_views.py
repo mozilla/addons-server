@@ -18,6 +18,9 @@ class ReviewTest(amo.tests.TestCase):
     def login_dev(self):
         self.client.login(username='trev@adblockplus.org', password='password')
 
+    def login_admin(self):
+        self.client.login(username='jbalogh@mozilla.com', password='password')
+
     def make_it_my_review(self, review_id=218468):
         r = Review.objects.get(id=review_id)
         r.user = UserProfile.objects.get(username='jbalogh')
@@ -64,7 +67,7 @@ class TestViews(ReviewTest):
         eq_(item.attr('data-rating'), '')
 
     def test_list_item_actions(self):
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.login_admin()
         self.make_it_my_review()
         r = self.client.get(reverse('reviews.list', args=['a1865']))
         reviews = pq(r.content)('#reviews .item')
@@ -88,7 +91,7 @@ class TestFlag(ReviewTest):
 
     def setUp(self):
         self.url = reverse('reviews.flag', args=['a1865', 218468])
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.login_admin()
 
     def test_no_login(self):
         self.client.logout()
@@ -140,7 +143,7 @@ class TestDelete(ReviewTest):
 
     def setUp(self):
         self.url = reverse('reviews.delete', args=['a1865', 218207])
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.login_admin()
 
     def test_no_login(self):
         self.client.logout()
@@ -183,6 +186,21 @@ class TestCreate(ReviewTest):
         self.log_count = ActivityLog.objects.count
         self.more = reverse('addons.detail_more', args=['a1865'])
         self.list = reverse('reviews.list', args=['a1865'])
+
+    def test_add_logged(self):
+        r = self.client.get(self.add)
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'reviews/add.html')
+
+    def test_add_admin(self):
+        self.login_admin()
+        r = self.client.get(self.add)
+        eq_(r.status_code, 200)
+
+    def test_add_dev(self):
+        self.login_dev()
+        r = self.client.get(self.add)
+        eq_(r.status_code, 403)
 
     def test_no_body(self):
         r = self.client.post(self.add, {'body': ''})
@@ -397,6 +415,9 @@ class TestMobileReviews(TestMobile):
     def login_dev(self):
         self.client.login(username='trev@adblockplus.org', password='password')
 
+    def login_admin(self):
+        self.client.login(username='jbalogh@mozilla.com', password='password')
+
     def test_mobile(self):
         self.client.logout()
         self.mobile_init()
@@ -414,6 +435,11 @@ class TestMobileReviews(TestMobile):
         r = self.client.get(self.add)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'reviews/mobile/add.html')
+
+    def test_add_admin(self):
+        self.login_admin()
+        r = self.client.get(self.add)
+        eq_(r.status_code, 200)
 
     def test_add_dev(self):
         self.login_dev()
