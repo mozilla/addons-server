@@ -21,7 +21,7 @@ from amo.tests import (formset, initial, close_to_now,
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from applications.models import AppVersion
-from bandwagon.models import Collection, FeaturedCollection, MonthlyPick
+from bandwagon.models import FeaturedCollection, MonthlyPick
 from devhub.models import ActivityLog
 from files.models import Approval, File
 from users.models import UserProfile
@@ -390,6 +390,15 @@ class TestBulkUpdate(BulkValidationTest):
         self.client.post(self.update_url, data)
         eq_(mail.outbox[0].subject,
             '%s%s' % (self.addon.name, f.version.version))
+
+    @mock.patch('zadmin.tasks.log')
+    def test_bulk_update_logs_stats(self, log):
+        log.info = mock.Mock()
+        self.create_result(self.job, self.create_file(self.version))
+        self.client.post(self.update_url, self.data)
+        eq_(log.info.call_args_list[-1][0][0],
+            '[1@None] bulk update stats for job %s: '
+            '{author_emailed: 1, bumped: 1, processed: 1}' % self.job.pk)
 
     def test_application_version(self):
         self.create_result(self.job, self.create_file(self.version))
@@ -1048,7 +1057,7 @@ class TestMonthlyPick(amo.tests.TestCase):
         del dupe['id']
         dupe.update(locale='fr')
         data = formset(initial(self.f), dupe, initial_count=1)
-        r = self.client.post(self.url, data)
+        self.client.post(self.url, data)
         eq_(MonthlyPick.objects.count(), 2)
         eq_(MonthlyPick.objects.all()[1].locale, 'fr')
 
@@ -1057,7 +1066,7 @@ class TestMonthlyPick(amo.tests.TestCase):
         del dupe['id']
         del dupe['locale']
         data = formset(initial(self.f), dupe, initial_count=1)
-        r = self.client.post(self.url, data)
+        self.client.post(self.url, data)
         eq_(MonthlyPick.objects.count(), 2)
         eq_(MonthlyPick.objects.all()[1].locale, '')
 
@@ -1071,7 +1080,7 @@ class TestMonthlyPick(amo.tests.TestCase):
     def test_success_delete(self):
         d = initial(self.f)
         d.update(DELETE=True)
-        r = self.client.post(self.url, formset(d, initial_count=1))
+        self.client.post(self.url, formset(d, initial_count=1))
         eq_(MonthlyPick.objects.count(), 0)
 
     def test_require_login(self):

@@ -1,3 +1,4 @@
+import collections
 from datetime import datetime
 import json
 import logging
@@ -196,17 +197,21 @@ def get_context(addon, version, job, results, fileob=None):
 @task
 @write
 def notify_success(version_pks, job_pk, data, **kw):
-    log.info('[%s@None] Updating max version for job %s.'
-             % (len(version_pks), job_pk))
+    log.info('[%s@%s] Updating max version for job %s.'
+             % (len(version_pks), notify_success.rate_limit, job_pk))
     job = ValidationJob.objects.get(pk=job_pk)
     set_user(get_task_user())
+    stats = collections.defaultdict(int)
+    stats['processed'] = 0
     for version in Version.objects.filter(pk__in=version_pks):
+        stats['processed'] += 1
         addon = version.addon
         file_pks = version.files.values_list('pk', flat=True)
         errors = (ValidationResult.objects.filter(validation_job=job,
                                                   file__pk__in=file_pks)
                                           .values_list('errors', flat=True))
         if any(errors):
+            stats['invalid'] += 1
             log.info('Version %s for addon %s not updated, '
                      'one of the files did not pass validation'
                      % (version.pk, version.addon.pk))
@@ -218,6 +223,7 @@ def notify_success(version_pks, job_pk, data, **kw):
                                 application=job.curr_max_version.application):
             if (app.max.version == job.curr_max_version.version and
                 job.target_version.version != app.max.version):
+                stats['bumped'] += 1
                 log.info('Updating version %s%s for addon %s from version %s '
                          'to version %s'
                          % (version.pk,
@@ -231,6 +237,7 @@ def notify_success(version_pks, job_pk, data, **kw):
                 app_flag = True
 
             else:
+                stats['missed_targets'] += 1
                 log.info('Version %s for addon %s not updated, '
                          'current max version is %s not %s'
                          % (version.pk, version.addon.pk,
@@ -252,11 +259,16 @@ def notify_success(version_pks, job_pk, data, **kw):
                 if dry_run:
                     job.preview_success_mail(*args, **kwargs)
                 else:
+                    stats['author_emailed'] += 1
                     send_mail(*args, **kwargs)
                     amo.log(amo.LOG.BULK_VALIDATION_UPDATED,
                             version.addon, version,
                             details={'version': version.version,
                                      'target': job.target_version.version})
+    log.info('[%s@%s] bulk update stats for job %s: {%s}'
+             % (len(version_pks), notify_success.rate_limit, job_pk,
+                ', '.join('%s: %s' % (k, stats[k])
+                          for k in sorted(stats.keys()))))
 
 
 @task
