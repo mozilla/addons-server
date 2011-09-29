@@ -2,11 +2,11 @@
 
 /* general initialization */
 $(document).ready(function() {
-    //performance warnings
 
-    if ($("#addon[data-id], #persona[data-id]").length) {
+    // Personas are not impalacized yet!
+    if ($("#persona[data-id]").length) {
         $(".addon .icon").click(function() {
-            window.location.hash = "id=" + $("#addon, #persona").attr("data-id");
+            window.location.hash = "id=" + $("#persona").attr("data-id");
         })
     }
 
@@ -42,30 +42,4 @@ $(document).ready(function() {
         && VersionCompare.compareVersions(z.browserVersion, '4.0a1') > 0) {
         no_restart.show();
     }
-});
-
-/* get satisfaction initialization */
-$(document).ready(function () {
-    var btn = $('#feedback_btn');
-    if (!btn.length) return; // no button, no satisfaction ;)
-
-    var widget_options = {};
-    widget_options.display = "overlay";
-    widget_options.company = btn.attr('data-company');
-    widget_options.placement = "hidden";
-    widget_options.color = "#222";
-    widget_options.style = "question";
-    widget_options.container = 'get_satisfaction_container';
-    if (btn.attr('data-product'))
-        widget_options.product = btn.attr('data-product');
-    var feedback_widget = new GSFN.feedback_widget(widget_options);
-
-    // The feedback widget expects to be right before the end of <body>.
-    // Otherwise it's 100% width overlay isn't across the whole page.
-    $('#fdbk_overlay').prependTo('body');
-
-    btn.click(function(e) {
-        e.preventDefault();
-        feedback_widget.show();
-    });
 });
