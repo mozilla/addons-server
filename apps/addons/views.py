@@ -494,7 +494,7 @@ def purchase(request, addon):
         contrib = Contribution(addon_id=addon.id, amount=amount,
                                source=source, source_locale=request.LANG,
                                uuid=str(uuid_), type=amo.CONTRIB_PENDING,
-                               paykey=paykey)
+                               paykey=paykey, user=request.amo_user)
         contrib.save()
 
     log.debug('Got paykey for addon: %s by user: %s'
