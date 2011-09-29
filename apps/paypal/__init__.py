@@ -123,7 +123,7 @@ def refund(txnid):
                                   % (d['receiver.email'],
                                      d['refundStatus']))
             paypal_log.debug('Refund successful for transaction %s.'
-                             ' Statuses: %r"
+                             ' Statuses: %r'
                              % (txnid, [(d['receiver.email'], d['refundStatus'])
                                         for d in responses]))
 
