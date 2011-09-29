@@ -846,6 +846,7 @@ class TestImpalaDetailPage(amo.tests.TestCase):
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)
         self.url = self.addon.get_url_path()
+        self.more_url = self.addon.get_url_path(more=True)
 
     def test_perf_warning(self):
         eq_(self.addon.ts_slowness, None)
@@ -894,7 +895,7 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         eq_(pq(r.content)('.no-restart').length, 1)
 
     def get_more_pq(self):
-        return pq(self.client.get_ajax(self.url).content)
+        return pq(self.client.get_ajax(self.more_url).content)
 
     def test_can_review_free(self):
         self.addon.update(premium_type=amo.ADDON_FREE)
@@ -909,6 +910,29 @@ class TestImpalaDetailPage(amo.tests.TestCase):
     def test_not_review_premium(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         eq_(len(self.get_more_pq()('#add-review')), 0)
+
+    def test_license_link_builtin(self):
+        g = 'http://google.com'
+        version = self.addon._current_version
+        license = version.license
+        license.builtin = 1
+        license.name = 'License to Kill'
+        license.url = g
+        license.save()
+        eq_(license.builtin, 1)
+        eq_(license.url, g)
+        r = self.client.get(self.url)
+        a = pq(r.content)('.secondary.metadata .source-license a')
+        eq_(a.attr('href'), g)
+        eq_(a.text(), 'License to Kill')
+
+    def test_license_link_custom(self):
+        version = self.addon._current_version
+        eq_(version.license.url, None)
+        r = self.client.get(self.url)
+        a = pq(r.content)('.secondary.metadata .source-license a')
+        eq_(a.attr('href'), version.license_url())
+        eq_(a.text(), 'Custom License')
 
 
 class TestStatus(amo.tests.TestCase):
