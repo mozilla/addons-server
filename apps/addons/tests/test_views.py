@@ -290,15 +290,17 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
     def test_check_addon_purchase(self, check_purchase):
         check_purchase.return_value = 'COMPLETED'
         self.make_contribution()
-        self.client.get_ajax('%s?uuid=%s' % (self.get_url('complete'), '123'))
+        res = self.client.get_ajax('%s?uuid=%s' %
+                                   (self.get_url('complete'), '123'))
         eq_(AddonPurchase.objects.filter(addon=self.addon).count(), 1)
+        eq_(res.context['status'], 'complete')
 
-    @patch('paypal.check_purchase')
-    def test_check_cancel(self, check_purchase):
-        check_purchase.return_value = 'COMPLETED'
+    def test_check_cancel(self):
         self.make_contribution()
-        self.client.get_ajax('%s?uuid=%s' % (self.get_url('cancel'), '123'))
+        res = self.client.get_ajax('%s?uuid=%s' %
+                                   (self.get_url('cancel'), '123'))
         eq_(Contribution.objects.filter(type=amo.CONTRIB_PURCHASE).count(), 0)
+        eq_(res.context['status'], 'cancel')
 
     @patch('paypal.check_purchase')
     def test_check_wrong_uuid(self, check_purchase):
@@ -321,7 +323,7 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         self.make_contribution()
         url = '%s?uuid=%s' % (self.get_url('complete'), '123')
         res = self.client.get_ajax(url)
-        eq_(res.context['status'], 'ERROR')
+        eq_(res.context['result'], 'ERROR')
 
 
 class TestDeveloperPages(amo.tests.TestCase):

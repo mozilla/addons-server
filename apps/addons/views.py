@@ -528,6 +528,7 @@ def purchase_complete(request, addon, status):
                       % (addon.pk, request.amo_user.pk, con.paykey[:10]),
                       exc_info=True)
             result = 'ERROR'
+            status = 'error'
 
         log.debug('Paypal returned: %s for paykey: %s'
                   % (result, con.paykey[:10]))
@@ -538,7 +539,11 @@ def purchase_complete(request, addon, status):
             con.save()
 
     response = jingo.render(request, 'addons/paypal_result.html',
-                            {'addon': addon, 'status': result})
+                            {'addon': addon,
+                             # What the client claimed they did.
+                             'status': status,
+                             # And what paypal thought of that claim.
+                             'result': result})
     response['x-frame-options'] = 'allow'
     return response
 
