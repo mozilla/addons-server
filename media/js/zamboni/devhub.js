@@ -468,7 +468,7 @@ function initEditAddon() {
                 if ($('#addon-categories-edit').length) {
                     initCatFields();
                 }
-                if ($('#required-addons').length) {
+                if (false && $('#required-addons').length) {
                     initRequiredAddons();
                 }
                 console.log('this', $(this));
