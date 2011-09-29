@@ -45,8 +45,7 @@
           {% endif %}
         </li>
         <li>
-          {# TODO: reverse URL #}
-          <a class="license-faq" href="{{ remora_url('/pages/faq#license') }}">
+          <a class="license-faq" href="{{ url('pages.faq')|urlparams('license') }}">
             {{ _("What's this?", 'addons_display_a_license_what') }}</a>
         </li>
         {% if addon.view_source and version.has_files and
