@@ -166,7 +166,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 
     try:
         if white_list:
-            if settings.IMPALA_EDIT and perm_setting:
+            if perm_setting:
                 template = loader.get_template('amo/emails/unsubscribe.ltxt')
                 for recipient in white_list:
                     # Add unsubscribe link to footer
