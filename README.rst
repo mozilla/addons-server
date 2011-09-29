@@ -20,3 +20,5 @@ created a base template for new websites.
 .. _`irc://irc.mozilla.org/amo`: irc://irc.mozilla.org/amo
 .. _`newsletter`: http://librelist.com/browser/zamboni/
 .. _`Playdoh`: https://github.com/mozilla/playdoh
+
+changes
