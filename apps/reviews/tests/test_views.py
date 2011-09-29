@@ -47,9 +47,12 @@ class TestViews(ReviewTest):
     def test_list(self):
         r = self.client.get(reverse('reviews.list', args=['a1865']))
         eq_(r.status_code, 200)
-        reviews = pq(r.content)('#reviews .item')
+        doc = pq(r.content)
+        reviews = doc('#reviews .item')
         eq_(reviews.length, Review.objects.count())
-        eq_(reviews.find('.item-actions').length, 0)
+        eq_(Review.objects.count(), 2)
+        eq_(doc('.secondary .average-rating').length, 1)
+        eq_(doc('.secondary .no-rating').length, 0)
 
         r = Review.objects.get(id=218207)
         item = reviews.filter('#review-218207')
@@ -65,6 +68,17 @@ class TestViews(ReviewTest):
         eq_(item.hasClass('reply'), True)
         eq_(r.rating, None)
         eq_(item.attr('data-rating'), '')
+
+    def test_empty_list(self):
+        Review.objects.all().delete()
+        eq_(Review.objects.count(), 0)
+        r = self.client.get(reverse('reviews.list', args=['a1865']))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('#reviews .item').length, 0)
+        eq_(doc('#add-first-review').length, 1)
+        eq_(doc('.secondary .average-rating').length, 0)
+        eq_(doc('.secondary .no-rating').length, 1)
 
     def test_list_item_actions(self):
         self.login_admin()

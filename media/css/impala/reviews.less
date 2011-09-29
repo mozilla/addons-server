@@ -1,6 +1,10 @@
 @import 'lib';
 
 #reviews {
+    p#add-first-review, p#no-add-first-review {
+        font: 16px @serif-stack;
+        margin: 0;
+    }
     form {
         background-color: fadeOut(@border-blue, 90%);
         padding: 1em 0;
@@ -122,6 +126,11 @@
 }
 
 /* grouped ratings style */
+
+.no-rating strong {
+    font-size: 12px;
+    font-weight: bold;
+}
 
 .average-rating {
     position: relative;
