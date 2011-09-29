@@ -1,20 +1,14 @@
 from optparse import make_option
 
 from django.core.management.base import BaseCommand
-from django.db.models import Q
 
 from addons.models import Addon
-from addons.tasks import fix_get_satisfaction
 from amo.utils import chunked
 from devhub.tasks import convert_purified, flag_binary, get_preview_sizes
 
 
 tasks = {
     'flag_binary': {'method': flag_binary, 'qs': []},
-    'fix_get_satisfaction': {
-        'method': fix_get_satisfaction,
-        'qs': [Q(get_satisfaction_company__startswith='http')],
-    },
     'get_preview_sizes': {'method': get_preview_sizes, 'qs': []},
     'convert_purified': {'method': convert_purified, 'qs': []}
 }

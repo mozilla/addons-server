@@ -79,21 +79,6 @@ def update_appsupport(ids):
 
 
 @task
-def fix_get_satisfaction(ids, **kw):
-    log.info('[%s@None] Fixing get satisfaction starting with id: %s...' %
-             (len(ids), ids[0]))
-    for addon in Addon.objects.filter(pk__in=ids):
-        url = addon.support_url
-        if url is None:
-            url = ''
-        else:
-            url = url.localized_string
-        (c, p) = get_satisfaction(url)
-        addon.update(get_satisfaction_company=c, get_satisfaction_product=p)
-        log.info('Updated get satisfaction for: %s' % addon.pk)
-
-
-@task
 def delete_preview_files(id, **kw):
     log.info('[1@None] Removing preview with id of %s.' % id)
 
