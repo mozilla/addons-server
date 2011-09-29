@@ -1,38 +1,45 @@
-{% extends "reviews/review_list.html" %}
+{% extends "impala/base.html" %}
+{% from 'includes/forms.html' import pretty_field, required_note %}
 
 {% set title = _('Reply to review by {0}')|f(review.user.name) %}
+
+{% block bodyclass %}reviews gutter{% endblock %}
 
 {% block title %}{{ page_title(title) }}{% endblock %}
 
 {% block content %}
-  {% block review_header %}
-    <header>
-      {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                      (addon.get_url_path(), addon.name),
-                      (url('reviews.list', addon.slug), _('Reviews')),
-                      (None, _('Reply'))]) }}
-      <h2>{{ title }}</h2>
-    </header>
-  {% endblock %}
 
-  {% block review_list %}
+  {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+                         (addon.get_url_path(), addon.name),
+                         (addon.reviews_url, _('Reviews')),
+                         (None, _('Reply'))]) }}
+  <h1>{{ title }}</h1>
+
+  <div class="secondary">
+    {{ addon|sidebar_listing }}
+  </div>
+
+  <div class="primary island hero" id="reviews">
     {% include "reviews/review.html" %}
-    <div class="review article reply-form">
-      <h3>{{ _('Write a Reply') }}</h3>
-      <form method="post" action="{{ url('reviews.reply', addon.slug, review.id) }}">
-        {{ csrf() }}
-        <p>
-          <label for="id_title">{{ form.title.label }} <span class="optional">{{ _('(optional)') }}</span></label>
-          {{ form.title }}
-        </p>
-        {{ field(form.body, _('Reply:')) }}
-        <input type="submit" value="{{ _('Submit Your Reply') }}">
+    <form method="post" class="prettyform c"
+          action="{{ url('reviews.reply', addon.slug, review.id) }}">
+      {{ csrf() }}
+      <fieldset>
+        <h2>{{ _('Write a Reply') }}</h2>
+        <ul>
+          {{ pretty_field(form.title, label=_('Title')) }}
+          {{ pretty_field(form.body, label=_('Reply')) }}
+        </ul>
+      </fieldset>
+      <footer>
+        {{ required_note() }}
+        <button type="submit">{{ _('Submit review') }}</button>
         {# L10n: this string is following a <button>. #}
-        {% trans url=url('reviews.list', addon.slug) %}
+        {% trans url=addon.reviews_url %}
           or <a href="{{ url }}">Cancel</a>
         {% endtrans %}
-      </form>
-    </div>
-  {% endblock %}
-{{ report_review_popup() }}
+      </footer>
+    </form>
+  </div>
+  {{ report_review_popup() }}
 {% endblock %}

@@ -15,9 +15,8 @@
   {% endif %}
   {% include "reviews/grouped_ratings.html" %}
   {% if addon.can_review(amo_user) %}
-    {% set r_add = '%sreviews.add' % ('i_' if settings.IMPALA_REVIEWS else '') %}
     <div>
-      <a class="button" id="add-review" href="{{ url(r_add, addon.slug) }}">{{ _('Write a review') }}</a>
+      <a class="button" id="add-review" href="{{ url('reviews.add', addon.slug) }}">{{ _('Write a review') }}</a>
     </div>
   {% endif %}
   <a id="report-abuse" href="{{ remora_url('developers/docs/policies/contact') }}"

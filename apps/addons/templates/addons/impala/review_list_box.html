@@ -24,11 +24,7 @@
     {% endfor %}
     {% if addon %}
       <p>
-        {% if settings.IMPALA_REVIEWS %}
-          <a class="more-info" href="{{ url('i_reviews.list', addon.slug) }}">
-        {% else %}
-          <a class="more-info" href="{{ url('reviews.list', addon.slug) }}">
-        {% endif %}
+        <a class="more-info" href="{{ addon.reviews_url }}">
           {% trans num=addon.total_reviews, cnt=addon.total_reviews|numberfmt %}
             See all user reviews
           {% pluralize %}

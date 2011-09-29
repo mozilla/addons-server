@@ -18,8 +18,7 @@
                        (None, addon.name)]) }}
 <aside class="secondary addon-vitals">
   {{ addon.average_rating|stars(large=True) }}
-  {% set r_list = '%sreviews.list' % ('i_' if settings.IMPALA_REVIEWS else '') %}
-  <div><a id="reviews-link" href="{{ url(r_list, addon.slug) }}">
+  <div><a id="reviews-link" href="{{ addon.reviews_url }}">
     {% trans cnt=addon.total_reviews, num=addon.total_reviews|numberfmt %}
       {{ num }} user review
     {% pluralize %}

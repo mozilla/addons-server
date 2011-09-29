@@ -44,11 +44,6 @@ detail_patterns = patterns('',
 )
 
 
-impala_detail_patterns = patterns('',
-    ('^reviews/', include('reviews.impala_urls')),
-)
-
-
 urlpatterns = patterns('',
     # The homepage.
     url('^$', views.home, name='home'),
@@ -57,8 +52,6 @@ urlpatterns = patterns('',
 
     # URLs for a single add-on.
     ('^addon/%s/' % ADDON_ID, include(detail_patterns)),
-    # Impala deets.
-    url('^i/addon/%s/' % ADDON_ID, include(impala_detail_patterns)),
 
     # Personas submission.
     url('^personas/submit$', views.submit_persona, name='personas.submit'),

@@ -1068,7 +1068,6 @@ UNLINK_SITE_STATS = True
 NEW_FEATURES = False
 
 # Impala flags.
-IMPALA_REVIEWS = False
 IMPALA_EDIT = True
 
 # Set to True if we're allowed to use X-SENDFILE.

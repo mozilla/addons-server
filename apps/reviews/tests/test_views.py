@@ -42,7 +42,7 @@ class TestViews(ReviewTest):
         eq_(r.status_code, 200)
 
     def test_list(self):
-        r = self.client.get(reverse('i_reviews.list', args=['a1865']))
+        r = self.client.get(reverse('reviews.list', args=['a1865']))
         eq_(r.status_code, 200)
         reviews = pq(r.content)('#reviews .item')
         eq_(reviews.length, Review.objects.count())
@@ -66,7 +66,7 @@ class TestViews(ReviewTest):
     def test_list_item_actions(self):
         self.client.login(username='jbalogh@mozilla.com', password='password')
         self.make_it_my_review()
-        r = self.client.get(reverse('i_reviews.list', args=['a1865']))
+        r = self.client.get(reverse('reviews.list', args=['a1865']))
         reviews = pq(r.content)('#reviews .item')
 
         r = Review.objects.get(id=218207)
@@ -182,7 +182,7 @@ class TestCreate(ReviewTest):
         self.qs = Review.objects.filter(addon=1865)
         self.log_count = ActivityLog.objects.count
         self.more = reverse('addons.detail_more', args=['a1865'])
-        self.list = reverse('i_reviews.list', args=['a1865'])
+        self.list = reverse('reviews.list', args=['a1865'])
 
     def test_no_body(self):
         r = self.client.post(self.add, {'body': ''})
@@ -252,7 +252,7 @@ class TestCreate(ReviewTest):
         self.client.logout()
         r = self.client.get_ajax(self.more)
         eq_(pq(r.content)('#add-review').length, 1)
-        r = self.client.get(reverse('i_reviews.list', args=['a1865']))
+        r = self.client.get(reverse('reviews.list', args=['a1865']))
         doc = pq(r.content)
         eq_(doc('#add-review').length, 0)
         eq_(doc('#add-first-review').length, 0)
@@ -271,7 +271,7 @@ class TestCreate(ReviewTest):
         self.login_dev()
         r = self.client.get_ajax(self.more)
         eq_(pq(r.content)('#add-review').length, 0)
-        r = self.client.get(reverse('i_reviews.list', args=['a1865']))
+        r = self.client.get(reverse('reviews.list', args=['a1865']))
         doc = pq(r.content)
         eq_(doc('#add-review').length, 0)
         eq_(doc('#add-first-review').length, 0)
