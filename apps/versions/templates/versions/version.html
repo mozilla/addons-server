@@ -57,11 +57,4 @@
   <div class="action">
     {{ install_button(addon, version=version, show_backup=False, impala=impala) }}
   </div>
-  {% if show_versions_link and not addon.is_selfhosted() %}
-    <p class="more">
-      <a href="{{ url('addons.versions', addon.slug) }}">
-        {{ _('See complete version history &raquo;') }}
-      </a>
-    </p>
-  {% endif %}
 </div>

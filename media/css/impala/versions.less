@@ -51,11 +51,6 @@
             display: inline-block;
         }
     }
-    .more {
-        border-top: 1px dotted @border-blue;
-        padding-top: 1em;
-        margin-top: 1em;
-    }
 }
 
 .html-rtl .version {
@@ -92,4 +87,26 @@
 
 .html-rtl .listing .item.version .info {
     padding: 20px 10px 20px 0;
+}
+
+/* Version Information for add-on details */
+#detail-relnotes .items {
+    border-bottom: 1px dotted @border-blue;
+    .item:hover, .item.static {
+        background: inherit;
+    }
+    .info, .action {
+        border: 0;
+        padding: 20px 0 !important;
+    }
+    .install-shell {
+        padding-right: 0;
+    }
+    .install-shell {
+        visibility: visible;
+    }
+}
+
+.html-rtl #detail-relnotes .install-shell {
+    padding-left: 0;
 }

@@ -35,8 +35,7 @@
     </div>
     <div class="items">
       {% for version in versions.object_list %}
-        {{ version_detail(addon, version, show_versions_link=False,
-                          src="version-history", itemclass="item", impala=True) }}
+        {{ version_detail(addon, version, src='version-history', impala=True) }}
       {% endfor %}
     </div>
     {{ versions|impala_paginator }}
