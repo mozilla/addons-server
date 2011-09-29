@@ -14,13 +14,13 @@
         {% else %}
           {% set addon_url = addon.get_url_path() %}
         {% endif %}
-        <a href="{{ addon_url }}" target="_self">
-          <img src="{{ pick.image }}"></a>
-        <h3><a href="{{ addon_url }}" target="_self">{{ addon.name }}</a></h3>
-        <div>
+        <div class="blurb">
+          <h3><a href="{{ addon_url }}" target="_self">{{ addon.name }}</a></h3>
           <p>{{ pick.blurb }}</p>
           {{ install_button(addon, impala=not is_disco) }}
         </div>
+        <a href="{{ addon_url }}" target="_self" class="thumb">
+          <img src="{{ pick.image }}"></a>
       </div>
     </div>
   </div>

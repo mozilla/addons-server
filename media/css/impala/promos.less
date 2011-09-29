@@ -157,18 +157,15 @@
     background: url(../../img/zamboni/discovery_pane/promos/monthly-bg.png) 50% 0 no-repeat;
     .wrap > div {
         overflow: hidden;
+        display: table;
         position: relative;
         max-height: 120px;
         padding: 20px;
-        > div {
-            > div {
-                float: left;
-                width: 50%;
-            }
-            > p {
-                padding-right: 20px;
-            }
-        }
+    }
+    .blurb, .thumb {
+        display: table-cell;
+        vertical-align: top;
+        width: 50%;
     }
     h2 {
         color: #8b0101;
@@ -178,12 +175,15 @@
         margin-bottom: 10px;
         font-size: 16px;
     }
-    img {
+    .thumb img {
         display: block;
-        float: right;
-        max-width: 50%;
+        margin-left: 20px;
         max-height: 120px;
     }
+}
+
+.html-rtl #monthly .thumb img {
+    margin: 0 20px 0 0;
 }
 
 #go-mobile {
