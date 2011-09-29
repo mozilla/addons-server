@@ -924,6 +924,7 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         r = self.client.get(self.url)
         a = pq(r.content)('.secondary.metadata .source-license a')
         eq_(a.attr('href'), g)
+        eq_(a.attr('target'), '_blank')
         eq_(a.text(), 'License to Kill')
 
     def test_license_link_custom(self):
@@ -932,6 +933,7 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         r = self.client.get(self.url)
         a = pq(r.content)('.secondary.metadata .source-license a')
         eq_(a.attr('href'), version.license_url())
+        eq_(a.attr('target'), None)
         eq_(a.text(), 'Custom License')
 
 
