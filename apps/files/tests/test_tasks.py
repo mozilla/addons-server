@@ -1,5 +1,6 @@
 import hashlib
 import os
+import shutil
 import tempfile
 import urllib
 import urlparse
@@ -211,6 +212,19 @@ class TestRepackageJetpack(amo.tests.TestCase):
 
         assert not tasks.repackage_jetpack(self.builder_data())
         eq_(self.addon.versions.count(), 2)
+
+    def test_file_on_mirror(self):
+        # Make sure the mirror dir is clear.
+        shutil.rmtree(os.path.dirname(self.file.mirror_file_path))
+        new_file = tasks.repackage_jetpack(self.builder_data())
+        assert os.path.exists(new_file.mirror_file_path)
+
+    def test_unreviewed_file_not_on_mirror(self):
+        # Make sure the mirror dir is clear.
+        shutil.rmtree(os.path.dirname(self.file.mirror_file_path))
+        self.file.update(status=amo.STATUS_UNREVIEWED)
+        new_file = tasks.repackage_jetpack(self.builder_data())
+        assert not os.path.exists(new_file.mirror_file_path)
 
 
 def test_parse_version():

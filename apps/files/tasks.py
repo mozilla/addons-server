@@ -185,6 +185,9 @@ def repackage_jetpack(builder_data, **kw):
         new_file = new_version.files.using('default')[0]
         new_file.status = old_file.status
         new_file.save()
+        if (addon.status in amo.MIRROR_STATUSES
+            and new_file.status in amo.MIRROR_STATUSES):
+            new_file.copy_to_mirror()
     except Exception:
         jp_log.error(msg('Error syncing old file status.'), exc_info=True)
         raise
@@ -202,7 +205,6 @@ def repackage_jetpack(builder_data, **kw):
         jp_log.error(msg('Could not send success email.'), exc_info=True)
         raise
 
-    # TODO: don't send editor notifications about the new file.
     # Return the new file to make testing easier.
     return new_file
 
