@@ -41,7 +41,9 @@ $(document).ready(function() {
             var thanks_url = $('#paypal-thanks').attr('href');
             if(thanks_url) {
                 // TODO: play around with top.opener
-                top.modalFromURL(thanks_url);
+                top.modalFromURL(thanks_url, {'callback': function() {
+                    z.installAddon("Title View", $(".trigger_download", this).attr('href'));
+                }});
             }
             top_dgFlow.closeFlow();
 

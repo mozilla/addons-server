@@ -260,8 +260,8 @@ $.fn.popup = function(click_target, o) {
 // click_target defines the element/elements that trigger the modal.
 // currently presumes the given element uses the '.modal' style
 // o takes the following optional fields:
-//     callback:    a function to run before displaying the modal. You must
-//                  return true, or it cancels the modal.
+//     callback:    a function to run before displaying the modal. Returning
+//                  false will cancel the modal.
 //     container:   if set the modal will be appended to the container before
 //                  being displayed.
 //     width:       the width of the modal.
@@ -336,7 +336,7 @@ $.fn.modal = function(click_target, o) {
         var resp = o.callback ? (o.callback.call($modal, {
                 click_target: this,
                 evt: e
-            })) : true;
+            })) !== false : true;
         $modal.o = $.extend({click_target: this}, $modal.o, resp);
         if (resp) {
             $('.modal').trigger('close'); // We don't want two!
@@ -400,12 +400,25 @@ $.fn.modal = function(click_target, o) {
 };
 
 // Modal from URL. Pass in a URL, and load it in a modal.
-function modalFromURL(url) {
+function modalFromURL(url, settings) {
+    var a = $('<a>'),
+        defaults = {'deleteme': true, 'close': true},
+        callback = settings['callback'];
+
+    delete settings['callback'];
+    settings = $.extend(defaults, settings);
+
+    var modal = $("<div>", {'text': gettext('Loading...'), 'class': 'modal'}).modal(a, settings);
+    a.trigger('click');
+
     $.get(url, function(html){
-        var a = $('<a>');
-        $(html).modal(a, {'deleteme': true, 'close': true});
-        a.trigger('click');
+        modal.appendTo('body')
+        modal.html("").append(html);
+        if(callback) {
+            callback.call(modal);
+        }
     });
+    return modal;
 }
 
 // Slugify
