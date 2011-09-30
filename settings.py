@@ -1103,6 +1103,10 @@ MODIFIED_DELAY = 3
 # previous: the major version before :main.
 COMPAT = (
     # Firefox.
+    dict(app=1, main='10.0', versions=('10.0', '10.0a2', '10.0a1'),
+         previous='9.0'),
+    dict(app=1, main='9.0', versions=('9.0', '9.0a2', '9.0a1'),
+         previous='8.0'),
     dict(app=1, main='8.0', versions=('8.0', '8.0a2', '8.0a1'),
          previous='7.0'),
     dict(app=1, main='7.0', versions=('7.0', '7.0a2', '7.0a1'),
