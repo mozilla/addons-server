@@ -61,10 +61,9 @@ def compatibility_report():
 
         # Figure out which add-ons are in the top 95% for this app.
         running_total = 0
-        for addon, count in sorted(updates.items(), key=lambda x: x[1]):
+        for addon, count in sorted(updates.items(), key=lambda x: x[1],
+                                   reverse=True):
             running_total += count
-            if 'top_95_all' not in docs[addon]:
-                print docs[addon]
             docs[addon]['top_95_all'][app.id] = running_total < (.95 * total)
 
     # Mark the top 95% of add-ons compatible with the previous version for each
@@ -76,7 +75,7 @@ def compatibility_report():
                      if app in doc.get('support', {})
                         and doc['support'][app]['max'] >= ver]
         # Sort by count so we can get the top 95% most-used add-ons.
-        supported = sorted(supported, key=lambda d: d['count'])
+        supported = sorted(supported, key=lambda d: d['count'], reverse=True)
         total = sum(doc['count'] for doc in supported)
         # Figure out which add-ons are in the top 95% for this app + version.
         running_total = 0
