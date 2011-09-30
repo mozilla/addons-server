@@ -42,7 +42,8 @@ $(document).ready(function() {
             if(thanks_url) {
                 // TODO: play around with top.opener
                 top.modalFromURL(thanks_url, {'callback': function() {
-                    z.installAddon("Title View", $(".trigger_download", this).attr('href'));
+                    z.installAddon($(".addon-title", this).text(),
+                                   $(".trigger_download", this).attr('href'));
                 }});
             }
             top_dgFlow.closeFlow();

@@ -7,7 +7,7 @@
   <h2>{{ _('Purchase Add-on') }}</h2>
   <h5>{{ _('Thank you!') }}</h5>
   {% trans addon_name=addon.name %}
-  Your purchase of <strong>{{ addon_name }}</strong> is complete.
+  Your purchase of <strong class='addon-title'>{{ addon_name }}</strong> is complete.
   <p>If installation does not automatically begin, please <a class="trigger_download" href="{{ download }}">click here</a>.</p>
   {% endtrans %}
 
