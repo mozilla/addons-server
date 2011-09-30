@@ -11,8 +11,10 @@ def share(request, obj, name, description):
         service = sharing.SERVICES[request.GET['service']]
     except KeyError:
         raise http.Http404()
+    is_webapp = hasattr(obj, 'is_webapp') and obj.is_webapp()
     d = {
-        'title': page_title({'request': request}, name),
+        'title': page_title({'request': request}, name,
+                            force_webapps=is_webapp),
         'description': u(description),
         'url': absolutify(u(obj.get_url_path())),
     }
