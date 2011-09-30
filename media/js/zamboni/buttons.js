@@ -370,8 +370,10 @@ jQuery.fn.addPaypal = function(html, allowClick) {
         var links = $('<div>', {'class': 'paypal-links'}),
             divider = $('<span> &middot; </span>');
         links.append($('<a>', {'text': gettext('Learn about purchases')}));
-        links.append(divider.clone());
-        links.append($('<a>', {'text': gettext('Change Currency')}));
+        /* Until we know what this does, and have some currencies, removing.
+        * links.append(divider.clone());
+        * links.append($('<a>', {'text': gettext('Change Currency')}));
+        */
         content.append(links);
 
         var paypal = $('<div>', {'class': 'paypal-parent'}),
