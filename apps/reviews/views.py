@@ -1,5 +1,4 @@
 from django import http
-from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect
 from django.template import Context, loader
 
@@ -14,7 +13,7 @@ from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 import amo.utils
 from access import acl
-from addons.decorators import addon_view_factory, purchase_required
+from addons.decorators import addon_view_factory, has_purchased
 from addons.models import Addon
 
 from .models import Review, ReviewFlag, GroupedRating, Spam
@@ -178,7 +177,7 @@ def reply(request, addon, review_id):
 @addon_view
 @mobile_template('reviews/{mobile/}add.html')
 @login_required
-@purchase_required
+@has_purchased
 def add(request, addon, template=None):
     if addon.has_author(request.user):
         return http.HttpResponseForbidden()

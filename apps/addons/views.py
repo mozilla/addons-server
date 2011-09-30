@@ -35,7 +35,6 @@ from abuse.models import send_abuse_report
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
 from devhub.decorators import dev_required
 import paypal
-from files.models import File
 from reviews.forms import ReviewForm
 from reviews.models import Review, GroupedRating
 from sharing.views import share as share_redirect
@@ -45,7 +44,7 @@ from translations.helpers import truncate
 from versions.models import Version
 from .models import Addon, Persona, FrozenAddon
 from .forms import NewPersonaForm
-from .decorators import addon_view_factory
+from .decorators import addon_view_factory, can_be_purchased, has_purchased
 
 log = commonware.log.getLogger('z.addons')
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -469,10 +468,8 @@ def developers(request, addon, page):
 # anonymous users. For now we are concentrating on logged in users.
 @login_required
 @addon_view
+@can_be_purchased
 def purchase(request, addon):
-    if not waffle.switch_is_active('marketplace') or not addon.is_premium():
-        raise http.Http404
-
     log.debug('Starting purchase of addon: %s by user: %s'
               % (addon.pk, request.amo_user.pk))
     amount = addon.premium.get_price()
@@ -514,10 +511,8 @@ def purchase(request, addon):
 # TODO(andym): again, remove this onece we figure out logged out flow.
 @login_required
 @addon_view
+@can_be_purchased
 def purchase_complete(request, addon, status):
-    if not waffle.switch_is_active('marketplace') or not addon.is_premium():
-        raise http.Http404
-
     result = ''
     if status == 'complete':
         con = Contribution.objects.get(uuid=request.GET.get('uuid'),
@@ -552,14 +547,11 @@ def purchase_complete(request, addon, status):
     return response
 
 
+@login_required
 @addon_view
+@can_be_purchased
+@has_purchased
 def purchase_thanks(request, addon):
-    if not waffle.switch_is_active('marketplace') or not addon.is_premium():
-        raise http.Http404
-
-    if not addon.has_purchased(request.amo_user):
-        return http.HttpResponseForbidden()
-
     download = urlparse(request.GET.get('realurl', '')).path
     return jingo.render(request, 'addons/paypal_thanks.html',
                         {'addon': addon, 'is_ajax': request.is_ajax(),

@@ -232,7 +232,7 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
 
     def test_premium_only(self):
         self.addon.update(premium_type=amo.ADDON_FREE)
-        eq_(self.client.get(self.purchase_url).status_code, 404)
+        eq_(self.client.get(self.purchase_url).status_code, 403)
 
     @patch('paypal.get_paykey')
     def test_redirect(self, get_paykey):
