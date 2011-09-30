@@ -1,4 +1,5 @@
 from cStringIO import StringIO
+import urlparse
 
 from django.conf import settings
 
@@ -50,6 +51,15 @@ class TestPayKey(amo.tests.TestCase):
     def test_other_fails(self, opener):
         opener.return_value = StringIO(other_error)
         self.assertRaises(paypal.PaypalError, paypal.get_paykey, self.data)
+
+    @mock.patch('paypal._call')
+    def test_qs_passed(self, _call):
+        data = self.data.copy()
+        data['qs'] = {'foo': 'bar'}
+        _call.return_value = {'payKey': '123'}
+        paypal.get_paykey(data)
+        qs = _call.call_args[0][1]['returnUrl'].split('?')[1]
+        eq_(dict(urlparse.parse_qsl(qs))['foo'], 'bar')
 
     def _test_no_mock(self):
         # Remove _ and run if you'd like to try unmocked.

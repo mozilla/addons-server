@@ -44,10 +44,15 @@ def get_paykey(data):
     ip: ip address of end user (required)
     uuid: contribution_uuid (required)
     memo: any nice message
+    qs: anything you want to append to the complete or cancel(optional)
     """
     complete = reverse(data['pattern'], args=[data['slug'], 'complete'])
     cancel = reverse(data['pattern'], args=[data['slug'], 'cancel'])
-    uuid_qs = urllib.urlencode({'uuid': data['uuid']})
+
+    qs = {'uuid': data['uuid']}
+    if 'qs' in data:
+        qs.update(data['qs'])
+    uuid_qs = urllib.urlencode(qs)
 
     paypal_data = {
         'actionType': 'PAY',

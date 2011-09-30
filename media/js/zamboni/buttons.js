@@ -394,7 +394,8 @@ jQuery.fn.addPaypal = function(html, allowClick) {
         }
         paypal.append($("<button>", {'class': 'button prominent paypal',
                                      'href': $install.attr('data-purchase'),
-                                     'html': gettext('Pay <small>with</small> Pay<em>Pal</em>')}));
+                                     'html': gettext('Pay <small>with</small> Pay<em>Pal</em>'),
+                                     'data-realurl': $install.find('a.premium').attr('data-realurl')}));
         paypal.append($('<p>', {'text': gettext('Complete your purchase with PayPal.  No account necessary.')}));
         return true;
     }

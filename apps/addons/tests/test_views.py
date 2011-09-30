@@ -224,6 +224,7 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         self.addon = Addon.objects.get(pk=592)
         self.addon.update(premium_type=amo.ADDON_PREMIUM,
                           status=amo.STATUS_PUBLIC)
+        self.file = File.objects.get(pk=87384)
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
         AddonPremium.objects.create(addon=self.addon, price_id=1)
         self.purchase_url = reverse('addons.purchase', args=[self.addon.slug])
@@ -267,8 +268,8 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         eq_(cons.count(), 1)
         eq_(cons[0].amount, Decimal('0.99'))
 
-    def make_contribution(self):
-        return Contribution.objects.create(type=amo.CONTRIB_PENDING,
+    def make_contribution(self, type=amo.CONTRIB_PENDING):
+        return Contribution.objects.create(type=type,
                                            uuid='123', addon=self.addon,
                                            paykey='1234', user=self.user)
 
@@ -324,6 +325,27 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         url = '%s?uuid=%s' % (self.get_url('complete'), '123')
         res = self.client.get_ajax(url)
         eq_(res.context['result'], 'ERROR')
+
+    def test_check_thankyou(self):
+        url = reverse('addons.purchase.thanks', args=[self.addon.slug])
+        eq_(self.client.get(url).status_code, 403)
+        self.make_contribution(type=amo.CONTRIB_PURCHASE)
+        eq_(self.client.get(url).status_code, 200)
+
+    def test_trigger(self):
+        url = reverse('addons.purchase.thanks', args=[self.addon.slug])
+        self.make_contribution(type=amo.CONTRIB_PURCHASE)
+        dest = reverse('downloads.watermarked', args=[self.file.pk])
+        res = self.client.get('%s?realurl=%s' % (url, dest))
+        eq_(res.status_code, 200)
+        eq_(pq(res.content)('a.trigger_download').attr('href'), dest)
+
+    def test_trigger_nasty(self):
+        url = reverse('addons.purchase.thanks', args=[self.addon.slug])
+        self.make_contribution(type=amo.CONTRIB_PURCHASE)
+        res = self.client.get('%s?realurl=%s' % (url, 'http://bad.site/foo'))
+        eq_(res.status_code, 200)
+        eq_(pq(res.content)('a.trigger_download').attr('href'), '/foo')
 
 
 class TestDeveloperPages(amo.tests.TestCase):

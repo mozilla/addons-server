@@ -22,7 +22,8 @@
     <h4>{{ _('Payment cancelled') }}</h4>
 {% else %}
     <h4>{{ _('Payment completed') }}</h4>
-    <a href="{{ url('addons.purchase.thanks', addon.slug) }}" id="paypal-thanks">{{ _('Thank you for purchasing your add-on') }}</a>
+    <a href="{{ url('addons.purchase.thanks', addon.slug) }}?realurl={{ realurl }}"
+       id="paypal-thanks">{{ _('Thank you for purchasing your add-on') }}</a>
 {% endif %}
 <p><a id="paypal-result" target="_top" href="{{ url('addons.detail', addon.slug) }}">{{ _('Return to the addon.') }}</a></p>
 {% endblock %}

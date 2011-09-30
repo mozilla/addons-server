@@ -3,10 +3,14 @@ $(document).ready(function() {
         pointTo: "#contribute-more-info"
     });
     $('div.contribute a.suggested-amount,button.paypal').live('click', function(event) {
-        var el = this;
+        var el = this,
+            url = $(el).attr('href') + '&result_type=json';
+        if ($(el).attr('data-realurl')) {
+            url += '&realurl=' + encodeURIComponent($(el).attr('data-realurl'));
+        }
         $(el).addClass('ajax-loading');
         $.ajax({
-            url: $(this).attr('href') + '&result_type=json',
+            url: url,
             dataType: 'json',
             /* false so that the action is considered within bounds of
              * user interaction and does not trigger the Firefox popup blocker.

@@ -2,6 +2,7 @@ import functools
 import hashlib
 import json
 import random
+from urlparse import urlparse
 import uuid
 from operator import attrgetter
 
@@ -34,6 +35,7 @@ from abuse.models import send_abuse_report
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
 from devhub.decorators import dev_required
 import paypal
+from files.models import File
 from reviews.forms import ReviewForm
 from reviews.models import Review, GroupedRating
 from sharing.views import share as share_redirect
@@ -484,7 +486,8 @@ def purchase(request, addon):
         paykey = paypal.get_paykey(dict(uuid=uuid_, slug=addon.slug,
                     amount=amount, memo=contrib_for, email=addon.paypal_id,
                     ip=request.META.get('REMOTE_ADDR'),
-                    pattern='addons.purchase.finished'))
+                    pattern='addons.purchase.finished',
+                    qs={'realurl': request.GET.get('realurl')}))
     except:
         log.error('Error getting paykey, purchase of addon: %s' % addon.pk,
                   exc_info=True)
@@ -540,6 +543,7 @@ def purchase_complete(request, addon, status):
 
     response = jingo.render(request, 'addons/paypal_result.html',
                             {'addon': addon,
+                             'realurl': request.GET.get('realurl', ''),
                              # What the client claimed they did.
                              'status': status,
                              # And what paypal thought of that claim.
@@ -550,8 +554,16 @@ def purchase_complete(request, addon, status):
 
 @addon_view
 def purchase_thanks(request, addon):
+    if not waffle.switch_is_active('marketplace') or not addon.is_premium():
+        raise http.Http404
+
+    if not addon.has_purchased(request.amo_user):
+        return http.HttpResponseForbidden()
+
+    download = urlparse(request.GET.get('realurl', '')).path
     return jingo.render(request, 'addons/paypal_thanks.html',
-                        {'addon': addon, 'is_ajax': request.is_ajax() })
+                        {'addon': addon, 'is_ajax': request.is_ajax(),
+                         'download': download})
 
 
 @addon_view

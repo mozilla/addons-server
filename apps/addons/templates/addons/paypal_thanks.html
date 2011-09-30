@@ -6,9 +6,9 @@
 <section class="paypal-parent">
   <h2>{{ _('Purchase Add-on') }}</h2>
   <h5>{{ _('Thank you!') }}</h5>
-  {% trans addon_name=addon.name, trigger='#' %}
+  {% trans addon_name=addon.name %}
   Your purchase of <strong>{{ addon_name }}</strong> is complete.
-  <p>If installation does not automatically being, please <a class="trigger_download" href="{{ trigger }}">click here</a>.</p>
+  <p>If installation does not automatically being, please <a class="trigger_download" href="{{ download }}">click here</a>.</p>
   {% endtrans %}
 
   <p class="mozilla-mission">
@@ -18,8 +18,8 @@
   </p>
 </section>
 <section class="paypal-parent">
-  <a href="#">{{ _('My Purchases') }}</a>
+  <a href="{{ url('users.purchases') }}">{{ _('My Purchases') }}</a>
   &middot;
-  <a href="#">{{ _('Marketplace Support') }}</a>
+  <a href="{{ url('devhub.docs', doc_name='marketplace') }}">{{ _('Marketplace Support') }}</a>
 </section>
 {% endblock %}
