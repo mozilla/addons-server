@@ -24,7 +24,7 @@ class VersionsRss(Feed):
 
     def title(self, addon):
         """Title for the feed"""
-        return _('%s Version History') % addon.name
+        return _(u'%s Version History' % addon.name)
 
     def link(self, addon):
         """Link for the feed"""
