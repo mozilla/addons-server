@@ -10,7 +10,7 @@
   {% endif %}
   <h1>{{ title }}</h1>
     <div class="island listing c">
-      {{ impala_addon_listing_header(base_url, search_filter=filter) }}
+      {{ impala_addon_listing_header(request.get_full_path(), search_filter=filter) }}
       {{ addons.object_list|theme_grid }}
     </div>
   {% if sorting != 'featured' %}
