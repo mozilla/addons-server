@@ -31,7 +31,7 @@ def index(request, version=None):
     qs = AppCompat.search()
     binary = None
 
-    initial= {'appver': '%s-%s' % (request.APP.id, version), 'type': 'all'}
+    initial = {'appver': '%s-%s' % (request.APP.id, version), 'type': 'all'}
     initial.update(request.GET.items())
     form = CompatForm(initial)
     if request.GET and form.is_valid():
@@ -48,9 +48,10 @@ def index(request, version=None):
 
     compat, app = compat_dict[version], str(request.APP.id)
     compat_queries = (
-        ('prev', qs.query(top_95=True, **{
+        ('prev', qs.query(**{
+            'top_95.%s.%s' % (app, vint(compat['previous'])): True,
             'support.%s.max__gte' % app: vint(compat['previous'])})),
-        ('top_95', qs.query(top_95=True)),
+        ('top_95', qs.query(**{'top_95_all.%s' % app: True})),
         ('all', qs),
     )
     compat_levels = [(key, version_compat(qs, compat, app, binary))
