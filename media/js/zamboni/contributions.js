@@ -4,11 +4,12 @@ $(document).ready(function() {
     });
     $('div.contribute a.suggested-amount,button.paypal').live('click', function(event) {
         var el = this,
-            url = $(el).attr('href') + '&result_type=json';
+            url = $(el).attr('href') + '&result_type=json',
+            classes = 'ajax-loading loading-submit disabled';
         if ($(el).attr('data-realurl')) {
             url += '&realurl=' + encodeURIComponent($(el).attr('data-realurl'));
         }
-        $(el).addClass('ajax-loading');
+        $(el).addClass(classes);
         $.ajax({
             url: url,
             dataType: 'json',
@@ -17,6 +18,8 @@ $(document).ready(function() {
              */
             async: false,
             success: function(json) {
+                $(el).removeClass(classes);
+                $('.modal').trigger('close'); // Hide all modals
                 if (json.paykey) {
                     /* This is supposed to be a global */
                     //dgFlow = new PAYPAL.apps.DGFlow({expType:'mini'});
@@ -30,7 +33,6 @@ $(document).ready(function() {
                 }
             }
         });
-        $(el).removeClass('ajax-loading');
         return false;
     });
     if ($('#paypal-result').length) {

@@ -277,6 +277,10 @@ $.fn.popup = function(click_target, o) {
 //                  close button
 // note: all options may be overridden and modified by returning them in an
 //       object from the callback.
+//
+// If you want to close all existing modals, use:
+//      $('.modal').trigger('close');
+
 $.fn.modal = function(click_target, o) {
     o = o || {};
 
@@ -335,7 +339,7 @@ $.fn.modal = function(click_target, o) {
             })) : true;
         $modal.o = $.extend({click_target: this}, $modal.o, resp);
         if (resp) {
-            $('.modal-overlay').trigger('click'); // We don't want two!
+            $('.modal').trigger('close'); // We don't want two!
             $modal.render();
         }
     }
@@ -354,6 +358,9 @@ $.fn.modal = function(click_target, o) {
         }
         $('.popup').hide();
         $modal.delegate('.close', 'click', function(e) {
+            $modal.trigger('close');
+        });
+        $modal.bind('close', function(e) {
             if (p.emptyme) {
                 $modal.empty();
             }
