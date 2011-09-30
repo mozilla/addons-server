@@ -41,8 +41,8 @@
         {% else %}
           {{ _('This add-on has not yet been reviewed.') }}
         {% endif %}
-        {% if not addon.has_author(amo_user) %}
-          <a href="{{ url('reviews.add', addon.slug) }}">
+        {% if addon.can_review(amo_user) %}
+          <a id="add-first-review" href="{{ url('reviews.add', addon.slug) }}">
             {{ _('Be the first!') }}
           </a>
         {% endif %}

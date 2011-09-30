@@ -12,6 +12,7 @@ from devhub.models import ActivityLog
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
 
+
 class ReviewTest(amo.tests.TestCase):
     fixtures = ['base/apps', 'reviews/dev-reply.json', 'base/admin']
 
@@ -364,15 +365,16 @@ class TestCreate(ReviewTest):
         r = self.client.get(self.list)
         eq_(pq(r.content)('#add-review').length, 0)
 
-    def test_premium_add_review_link_nonpurchased_premium(self):
+    def test_premium_no_add_review_link(self):
         """Check for review link for non-purchased premium add-ons."""
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         r = self.client.get_ajax(self.more)
         eq_(pq(r.content)('#add-review').length, 0)
         r = self.client.get(self.list)
         eq_(pq(r.content)('#add-review').length, 0)
+        eq_(pq(r.content)('#add-first-review').length, 0)
 
-    def test_premium_add_review_link_purchased_premium(self):
+    def test_premium_add_review_link(self):
         """Check for review link for owners of purchased premium add-ons."""
         self.addon.addonpurchase_set.create(user=self.user)
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
@@ -380,6 +382,29 @@ class TestCreate(ReviewTest):
         eq_(pq(r.content)('#add-review').length, 1)
         r = self.client.get(self.list)
         eq_(pq(r.content)('#add-review').length, 1)
+        eq_(pq(r.content)('#add-first-review').length, 0)
+
+    def test_no_reviews_premium_no_add_review_link(self):
+        """Ensure no 'Be the First!' link for non-purchased premium add-ons."""
+        Review.objects.all().delete()
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        r = self.client.get_ajax(self.more)
+        eq_(pq(r.content)('#add-review').length, 0)
+        eq_(pq(r.content)('#add-first-review').length, 0)
+        r = self.client.get(self.list)
+        eq_(pq(r.content)('#add-review').length, 0)
+        eq_(pq(r.content)('#add-first-review').length, 0)
+
+    def test_no_reviews_premium_add_review_link(self):
+        """Ensure 'Be the First!' link exists for purchased premium add-ons."""
+        Review.objects.all().delete()
+        self.addon.addonpurchase_set.create(user=self.user)
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        r = self.client.get_ajax(self.more)
+        eq_(pq(r.content)('#add-review').length, 1)
+        r = self.client.get(self.list)
+        eq_(pq(r.content)('#add-review').length, 1)
+        eq_(pq(r.content)('#add-first-review').length, 1)
 
 
 class TestEdit(ReviewTest):

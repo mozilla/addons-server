@@ -86,7 +86,8 @@
         <p id="add-first-review"><a href="{{ url('reviews.add', addon.slug) }}">
           {{ _('Be the first to write a review.') }}</a><p>
       {% else %}
-        <p id="no-add-first-review">{{ _('No reviews found.') }}</p>
+        <p id="no-add-first-review">
+          {{ _('This add-on has not yet been reviewed.') }}</p>
       {% endif %}
     {% endif %}
     {% for review in reviews.object_list %}
@@ -118,6 +119,5 @@
       </form>
     </div>
   </div>
-
   {{ report_review_popup() }}
 {% endblock content %}
