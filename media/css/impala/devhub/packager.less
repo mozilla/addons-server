@@ -16,7 +16,7 @@
         }
         label {
             float: left;
-            margin-right: 1em;
+            margin-right: 2%;
             width: 25%;
             &.choice {
                 width: auto;
@@ -29,7 +29,7 @@
             color: @error-red;
         }
         .errorlist {
-            color: fadeOut(@error-red, 30%);
+            color: lighten(@error-red, 5%);
         }
     }
     .choices li.row {
@@ -81,6 +81,7 @@
                 }
                 label {
                     font-weight: normal;
+                    margin-right: 1em;
                 }
                 .req {
                     display: none;
@@ -89,12 +90,51 @@
                     margin-left: .5em;
                     width: 10em;
                 }
+                .errorlist {
+                    line-height: 20px;
+                }
             }
             &.selected {
                 label.app,
                 span.row {
                     opacity: 1;
                 }
+            }
+        }
+    }
+}
+
+.html-rtl #packager {
+    li.row {
+        label {
+            float: right;
+            margin: 0 0 0 2%;
+        }
+        label.choice, .errorlist {
+            margin: 0 27% 0 0;
+        }
+        span.row label {
+            margin: 0 0 0 1em;
+        }
+    }
+    .choices li.row {
+        label.choice, .errorlist {
+            margin: 0;
+        }
+    }
+    .supported-apps li.row {
+        label.app.choice {
+            background-position: 100% .25em;
+            margin: 0 0 0 1em;
+            input {
+                margin: 0 32px 0 0;
+            }
+        }
+        span.row {
+            float: right;
+            margin: 0 0 0 2em;
+            select {
+                margin: 0 .5em 0 0;
             }
         }
     }

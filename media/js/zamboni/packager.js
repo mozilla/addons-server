@@ -19,7 +19,6 @@ $(document).ready(function() {
             var slug = makeslug($('#id_name').val());
             $('#id_package_name').val(slug);
         }
-        pkg_slugify();
         $pkgr.delegate('#id_name', 'keyup blur', pkg_slugify);
     }
 
