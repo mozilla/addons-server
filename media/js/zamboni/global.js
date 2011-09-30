@@ -408,12 +408,16 @@ function modalFromURL(url, settings) {
     delete settings['callback'];
     settings = $.extend(defaults, settings);
 
-    var modal = $("<div>", {'text': gettext('Loading...'), 'class': 'modal'}).modal(a, settings);
+
+    var inside = $('<div>', {'class': 'modal-inside', 'text': gettext('Loading...')}),
+        modal = $("<div>", {'class': 'modal'}).modal(a, settings);
+
+    modal.append(inside);
     a.trigger('click');
 
     $.get(url, function(html){
         modal.appendTo('body')
-        modal.html("").append(html);
+        inside.html("").append(html);
         if(callback) {
             callback.call(modal);
         }
