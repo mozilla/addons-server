@@ -3,7 +3,7 @@
 {% block classes %}paypal-modal{% endblock %}
 
 {% block content %}
-<section class="paypal-parent">
+<section class="paypal-parent" id="addon_info" data-addon="{{ addon.id }}">
   <h2>{{ _('Purchase Add-on') }}</h2>
   <h5>{{ _('Thank you!') }}</h5>
   {% trans addon_name=addon.name %}

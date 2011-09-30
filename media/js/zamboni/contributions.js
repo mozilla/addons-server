@@ -42,6 +42,16 @@ $(document).ready(function() {
             if(thanks_url) {
                 // TODO: play around with top.opener
                 top.modalFromURL(thanks_url, {'callback': function() {
+                    // Change the add-on buttons
+                    var context  = $(this).closest('body'),
+                        addon_id = $('#addon_info', this).attr('data-addon'),
+                        install = $('.install[data-addon='+ addon_id +']', context);
+
+                    install.removeClass('premium').find('.premium').removeClass('premium');
+                    install.find('a').unbind('click')
+                    install.installButton();
+
+                    // Trigger install
                     z.installAddon($(".addon-title", this).text(),
                                    $(".trigger_download", this).attr('href'));
                 }});
