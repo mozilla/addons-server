@@ -33,7 +33,7 @@ from applications.models import Application, AppVersion
 import amo
 import amo.utils
 from amo import messages, urlresolvers
-from amo.decorators import json_view, login_required, post_required
+from amo.decorators import json_view, login_required, post_required, write
 from amo.helpers import urlparams
 from amo.utils import MenuItem
 from amo.urlresolvers import reverse
@@ -437,6 +437,7 @@ def _save_charity(addon, contrib_form, charity_form):
     return True
 
 
+@write
 @dev_required
 def acquire_refund_permission(request, addon_id, addon):
     """This is the callback from Paypal."""
