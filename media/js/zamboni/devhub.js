@@ -396,46 +396,46 @@ function addonFormSubmit() {
         // If the baseurl changes (the slug changed) we need to go to the new url.
         var baseurl = function(){
             return parent_div.find('#addon-edit-basic').attr('data-baseurl');
-        }
+        };
         $('.edit-media-button button').attr('disabled', false);
         $('form', parent_div).submit(function(e){
             e.preventDefault();
             var old_baseurl = baseurl();
             parent_div.find(".item").removeClass("loaded").addClass("loading");
-            var scrollBottom = $(document).height() - $(document).scrollTop(),
-                $form = parent_div.find('form'),
-                hasErrors = parent_div.find('.errorlist').length;
+            var $document = $(document),
+                scrollBottom = $document.height() - $document.scrollTop(),
+                $form = $(this),
+                hasErrors = $form.find('.errorlist').length;
 
-            $.post($form.attr('action'),
-                $(this).serialize(), function(d) {
-                    parent_div.html(d).each(addonFormSubmit);
-                    if (!hasErrors && old_baseurl && old_baseurl !== baseurl()) {
-                        document.location = baseurl();
-                    }
-                    $(document).scrollTop($(document).height() - scrollBottom);
-                    truncateFields();
-                    annotateLocalizedErrors(parent_div);
-                    if (parent_div.is('#edit-addon-media')) {
-                        imageStatus.start();
-                        hideSameSizedIcons();
-                    }
-                    if ($form.find('#addon-categories-edit').length) {
-                        initCatFields();
-                    }
-                    if ($form.find('#required-addons').length) {
-                        initRequiredAddons();
-                    }
+            $.post($form.attr('action'), $form.serialize(), function(d) {
+                parent_div.html(d).each(addonFormSubmit);
+                if (!hasErrors && old_baseurl && old_baseurl !== baseurl()) {
+                    document.location = baseurl();
+                }
+                $document.scrollTop($document.height() - scrollBottom);
+                truncateFields();
+                annotateLocalizedErrors(parent_div);
+                if (parent_div.is('#edit-addon-media')) {
+                    imageStatus.start();
+                    hideSameSizedIcons();
+                }
+                if ($form.find('#addon-categories-edit').length) {
+                    initCatFields();
+                }
+                if ($form.find('#required-addons').length) {
+                    initRequiredAddons();
+                }
 
-                    if (!hasErrors) {
-                        var e = $(format('<b class="save-badge">{0}</b>',
-                                         [gettext('Changes Saved')]))
-                                  .appendTo(parent_div.find('h3').first());
-                        setTimeout(function(){
-                            e.css('opacity', 0);
-                            setTimeout(function(){ e.remove(); }, 200);
-                        }, 2000);
-                    }
-                });
+                if (!hasErrors) {
+                    var e = $(format('<b class="save-badge">{0}</b>',
+                                     [gettext('Changes Saved')]))
+                              .appendTo(parent_div.find('h3').first());
+                    setTimeout(function(){
+                        e.css('opacity', 0);
+                        setTimeout(function(){ e.remove(); }, 200);
+                    }, 2000);
+                }
+            });
         });
         reorderPreviews();
         z.refreshL10n();
