@@ -968,7 +968,8 @@ class PremiumForm(happyforms.Form):
 
     def save(self):
         if self.cleaned_data['paypal_id']:
-            if (self.addon.paypal_id != self.cleaned_data['paypal_id']
+            if (self.addon.paypal_id
+                and self.addon.paypal_id != self.cleaned_data['paypal_id']
                 and self.addon.premium
                 and self.addon.premium.paypal_permissions_token):
                 # If a user changes their paypal id, then we need
