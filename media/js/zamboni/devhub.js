@@ -402,12 +402,14 @@ function addonFormSubmit() {
             e.preventDefault();
             var old_baseurl = baseurl();
             parent_div.find(".item").removeClass("loaded").addClass("loading");
-            var scrollBottom = $(document).height() - $(document).scrollTop();
+            var scrollBottom = $(document).height() - $(document).scrollTop(),
+                $form = parent_div.find('form'),
+                hasErrors = parent_div.find('.errorlist').length;
 
-            $.post(parent_div.find('form').attr('action'),
+            $.post($form.attr('action'),
                 $(this).serialize(), function(d) {
                     parent_div.html(d).each(addonFormSubmit);
-                    if (!parent_div.find(".errorlist").length && old_baseurl && old_baseurl !== baseurl()) {
+                    if (!hasErrors && old_baseurl && old_baseurl !== baseurl()) {
                         document.location = baseurl();
                     }
                     $(document).scrollTop($(document).height() - scrollBottom);
@@ -417,14 +419,14 @@ function addonFormSubmit() {
                         imageStatus.start();
                         hideSameSizedIcons();
                     }
-                    if (parent_div.is('#edit-addon-basic')) {
+                    if ($form.find('#addon-categories-edit').length) {
                         initCatFields();
                     }
-                    if (parent_div.is('#edit-addon-technical')) {
+                    if ($form.find('#required-addons').length) {
                         initRequiredAddons();
                     }
 
-                    if (!parent_div.find(".errorlist").length) {
+                    if (!hasErrors) {
                         var e = $(format('<b class="save-badge">{0}</b>',
                                          [gettext('Changes Saved')]))
                                   .appendTo(parent_div.find('h3').first());
@@ -457,10 +459,12 @@ function initEditAddon() {
         (function(parent_div, a){
             parent_div.find(".item").addClass("loading");
             parent_div.load($(a).attr('data-editurl'), function(){
-                if ($('#addon-categories-edit').length) {
+                if (parent_div.find('#addon-categories-edit').length) {
                     initCatFields();
                 }
-                initRequiredAddons();
+                if (parent_div.find('#required-addons').length) {
+                    initRequiredAddons();
+                }
                 $(this).each(addonFormSubmit);
             });
         })(parent_div, a);

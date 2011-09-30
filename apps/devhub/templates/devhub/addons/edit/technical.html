@@ -1,6 +1,7 @@
 {% from "devhub/includes/macros.html" import tip, some_html_tip, empty_unless, flags %}
 
-<form method="post" action="{{ url('devhub.addons.section', addon.slug, 'technical', 'edit') }}">
+<form id="edit-addon-technical" method="post"
+      action="{{ url('devhub.addons.section', addon.slug, 'technical', 'edit') }}">
   <h3>
     {{ _('Technical Details') }}
     {% if not editable %}
