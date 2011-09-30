@@ -413,14 +413,14 @@ function addonFormSubmit() {
                     $(document).scrollTop($(document).height() - scrollBottom);
                     truncateFields();
                     annotateLocalizedErrors(parent_div);
-                    if(parent_div.is('#edit-addon-media')) {
+                    if (parent_div.is('#edit-addon-media')) {
                         imageStatus.start();
                         hideSameSizedIcons();
                     }
-                    if ($('#addon-categories-edit').length) {
+                    if (parent_div.is('#edit-addon-basic')) {
                         initCatFields();
                     }
-                    if ($('#required-addons').length) {
+                    if (parent_div.is('#edit-addon-technical')) {
                         initRequiredAddons();
                     }
 
@@ -460,9 +460,7 @@ function initEditAddon() {
                 if ($('#addon-categories-edit').length) {
                     initCatFields();
                 }
-                if (false && $('#required-addons').length) {
-                    initRequiredAddons();
-                }
+                initRequiredAddons();
                 $(this).each(addonFormSubmit);
             });
         })(parent_div, a);
@@ -478,6 +476,10 @@ function initEditAddon() {
 
 
 function initRequiredAddons() {
+    var $req = $('#required-addons');
+    if (!$req.length || !$('input.autocomplete', $req).length) {
+        return;
+    }
     $.fn.zAutoFormset({
         delegate: '#required-addons',
         forms: 'ul.dependencies',
@@ -914,10 +916,8 @@ function initPayments(delegate) {
 }
 
 function initCatFields(delegate) {
-    if (!delegate) {
-        delegate = document.body;
-    }
-    $(delegate).find('.addon-app-cats').each(function() {
+    var $delegate = $(delegate || '#addon-categories-edit');
+    $delegate.find('div.addon-app-cats').each(function() {
         var $parent = $(this).closest("[data-max-categories]"),
             $main = $(this).find(".addon-categories"),
             $misc = $(this).find(".addon-misc-category"),
