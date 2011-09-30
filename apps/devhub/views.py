@@ -1255,7 +1255,8 @@ def marketplace_paypal(request, addon_id, addon):
         return redirect('devhub.market.2', addon.slug)
 
     return jingo.render(request, 'devhub/payments/paypal.html',
-                        {'form': form, 'addon': addon, 'premium': None,
+                        {'form': form, 'addon': addon,
+                         'premium': addon.premium,
                          'paypal_url': _paypal_url(addon)})
 
 
@@ -1270,7 +1271,8 @@ def marketplace_pricing(request, addon_id, addon):
         form.save()
         return redirect('devhub.market.3', addon.slug)
     return jingo.render(request, 'devhub/payments/tier.html',
-                        {'form': form, 'addon': addon, 'premium': None})
+                        {'form': form, 'addon': addon,
+                         'premium': addon.premium})
 
 
 @dev_required
@@ -1284,7 +1286,8 @@ def marketplace_upsell(request, addon_id, addon):
         form.save()
         return redirect('devhub.market.4', addon.slug)
     return jingo.render(request, 'devhub/payments/upsell.html',
-                        {'form': form, 'addon': addon, 'premium': None})
+                        {'form': form, 'addon': addon,
+                         'premium': addon.premium})
 
 
 @dev_required
