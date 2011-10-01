@@ -438,11 +438,11 @@ function load_unicode() {
     $body.append("<script src='" + $body.attr('data-media-url') + "/js/zamboni/unicode.js'></script>");
 }
 
-function makeslug(s) {
+function makeslug(s, delimiter) {
     if(! s) return "";
     var re = new RegExp("[^\\w" + z.unicode_letters + "\\s-]+","g");
     s = $.trim(s.replace(re, ' '));
-    s = s.replace(/[-\s]+/g, '-').toLowerCase();
+    s = s.replace(/[-\s]+/g, delimiter || '-').toLowerCase();
     return s;
 }
 
