@@ -362,6 +362,15 @@ class TestBulkUpdate(BulkValidationTest):
         self.client.post(self.update_url, self.data)
         eq_(self.version.apps.all()[0].max, self.appversion('3.6'))
 
+    def test_update_all_within_range(self):
+        self.create_result(self.job, self.create_file(self.version))
+        # Create an appversion in between current and target.
+        av = self.version.apps.all()[0]
+        av.max = self.appversion('3.7a2')
+        av.save()
+        self.client.post(self.update_url, self.data)
+        eq_(self.version.apps.all()[0].max, self.appversion('3.7a3'))
+
     def test_update_different_app(self):
         self.create_result(self.job, self.create_file(self.version))
         target = self.version.apps.all()[0]
