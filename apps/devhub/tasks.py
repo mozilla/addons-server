@@ -258,16 +258,16 @@ def packager(data, feature_set, **kw):
 
     # "Lock" the file by putting .lock in its name.
     from devhub.views import packager_path
-    xpi_path = packager_path('%s.lock' % data['uuid'])
+    xpi_path = packager_path('%s.lock' % data['slug'])
     log.info('Saving package to: %s' % xpi_path)
 
     from packager.main import packager
     features = set([k for k, v in feature_set.items() if v])
-    packager(data, xpi_path, features)
+    dst_path = packager(data, xpi_path, features)
 
     # Unlock the file and make it available.
     try:
-        shutil.move(xpi_path, packager_path(data['uuid']))
+        shutil.move(dst_path, packager_path(data['slug']))
     except IOError:
         log.error('Error unlocking add-on: %s' % xpi_path)
 

@@ -555,18 +555,19 @@ def package_addon(request):
 
         # Generate a unique, non-iterable ID for the package we're building.
         builder_uuid = uuid.uuid4().hex
+        pkg_name = basic_data['package_name']
 
         data = {'id': basic_data['id'],
                 'version': basic_data['version'],
                 'name': basic_data['name'],
-                'slug': basic_data['package_name'],
+                'slug': pkg_name,
                 'description': basic_data['description'],
                 'author_name': basic_data['author_name'],
                 'contributors': basic_data['contributors'],
                 'targetapplications': [c for c in compat_data if c['enabled']],
                 'uuid': builder_uuid}
         tasks.packager.delay(data, features_form.cleaned_data)
-        return redirect('devhub.package_addon_success', builder_uuid)
+        return redirect('devhub.package_addon_success', pkg_name)
 
     return jingo.render(request, 'devhub/package_addon.html',
                         {'basic_form': basic_form,
@@ -575,30 +576,30 @@ def package_addon(request):
 
 
 @login_required
-def package_addon_success(request, id):
+def package_addon_success(request, package_name):
     """Return the success page for the add-on packager."""
     return jingo.render(request, 'devhub/package_addon_success.html',
-                        {'uuid': id})
+                        {'package_name': package_name})
 
 
 @json_view
 @login_required
-def package_addon_json(request, id):
+def package_addon_json(request, package_name):
     """Return the URL of the packaged add-on."""
-    path_ = packager_path(id)
+    path_ = packager_path(package_name)
     if os.path.isfile(path_):
-        download_url = reverse('devhub.package_addon_download', args=[id])
+        download_url = reverse('devhub.package_addon_download',
+                               args=[package_name])
         return {'download_url': download_url,
                 'size': round(os.path.getsize(path_) / 1024, 1)}
 
 
 @login_required
-def package_addon_download(request, id):
+def package_addon_download(request, package_name):
     """Serve a packaged add-on."""
-    path_ = packager_path(id)
+    path_ = packager_path(package_name)
     if not os.path.isfile(path_):
         raise http.Http404()
-
     return amo.utils.HttpResponseSendFile(request, path_,
                                           content_type='application/zip')
 

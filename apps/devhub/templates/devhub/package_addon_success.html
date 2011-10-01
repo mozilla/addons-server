@@ -18,7 +18,8 @@
   application, simply rename the <kbd>.zip</kbd> extension to <kbd>.xpi</kbd>.
   {% endtrans %}
   </p>
-  <div id="packager-download" data-downloadurl="{{ url('devhub.package_addon_json', uuid) }}">
+  <div id="packager-download"
+       data-downloadurl="{{ url('devhub.package_addon_json', package_name) }}">
     <span>{{ _('Please wait&hellip;') }}</span>
     <noscript>
       {% trans %}
