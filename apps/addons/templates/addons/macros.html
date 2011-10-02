@@ -2,7 +2,7 @@
   <div class="vital">
     {% if type in ('updated', 'created') %}
       <span class="updated">
-        {% if sorting == 'updated' %}
+        {% if type == 'updated' %}
           {# L10n: {0} is a date. #}
           {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
         {% else %}

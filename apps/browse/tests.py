@@ -9,6 +9,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.utils import http as urllib
 
+from jingo.helpers import datetime as datetime_filter
 import mock
 from nose import SkipTest
 from nose.tools import eq_, assert_raises
@@ -17,7 +18,7 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from amo.helpers import absolutify, urlparams
+from amo.helpers import absolutify, numberfmt, urlparams
 from addons.tests.test_views import TestMobile
 from addons.models import (Addon, AddonCategory, Category, AppSupport, Feature,
                            Persona)
@@ -50,7 +51,7 @@ class TestUpdatedSort(ExtensionTestCase):
             sorted(addons, key=lambda x: x.last_updated, reverse=True))
 
 
-class TestExtensions(ExtensionTestCase):
+class TestESExtensions(ExtensionTestCase):
 
     def test_landing(self):
         r = self.client.get(self.url)
@@ -121,6 +122,118 @@ def test_locale_display_name():
     check('el', 'Greek', u'Ελληνικά')
     check('el-XX', 'Greek', u'Ελληνικά')
     assert_raises(KeyError, check, 'fake-lang', '', '')
+
+
+class TestListing(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/category', 'base/featured',
+                'addons/featured', 'addons/listed', 'base/collections',
+                'bandwagon/featured_collections']
+
+    def setUp(self):
+        self.reset_featured_addons()
+        self.url = reverse('browse.extensions')
+
+    def test_default_sort(self):
+        r = self.client.get(self.url)
+        eq_(r.context['sorting'], 'featured')
+
+    def test_featured_sort(self):
+        r = self.client.get(urlparams(self.url, sort='featured'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'opt')
+        eq_(sel.text(), 'Featured')
+
+    def test_mostusers_sort(self):
+        r = self.client.get(urlparams(self.url, sort='users'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'opt')
+        eq_(sel.text(), 'Most Users')
+        a = r.context['addons'].object_list
+        eq_(list(a),
+            sorted(a, key=lambda x: x.average_daily_users, reverse=True))
+
+    def test_toprated_sort(self):
+        r = self.client.get(urlparams(self.url, sort='rating'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'opt')
+        eq_(sel.text(), 'Top Rated')
+        a = r.context['addons'].object_list
+        eq_(list(a), sorted(a, key=lambda x: x.bayesian_rating, reverse=True))
+
+    def test_newest_sort(self):
+        r = self.client.get(urlparams(self.url, sort='created'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'opt')
+        eq_(sel.text(), 'Newest')
+        a = r.context['addons'].object_list
+        eq_(list(a), sorted(a, key=lambda x: x.created, reverse=True))
+
+    def test_name_sort(self):
+        r = self.client.get(urlparams(self.url, sort='name'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'extra-opt')
+        eq_(sel.text(), 'Name')
+        a = r.context['addons'].object_list
+        eq_(list(a), sorted(a, key=lambda x: x.name))
+
+    def test_weeklydownloads_sort(self):
+        r = self.client.get(urlparams(self.url, sort='popular'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'extra-opt')
+        eq_(sel.text(), 'Weekly Downloads')
+        a = r.context['addons'].object_list
+        eq_(list(a), sorted(a, key=lambda x: x.weekly_downloads, reverse=True))
+
+    def test_updated_sort(self):
+        r = self.client.get(urlparams(self.url, sort='updated'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'extra-opt')
+        eq_(sel.text(), 'Recently Updated')
+        a = r.context['addons'].object_list
+        eq_(list(a), sorted(a, key=lambda x: x.last_updated, reverse=True))
+
+    def test_upandcoming_sort(self):
+        r = self.client.get(urlparams(self.url, sort='hotness'))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), 'extra-opt')
+        eq_(sel.text(), 'Up & Coming')
+        a = r.context['addons'].object_list
+        eq_(list(a), sorted(a, key=lambda x: x.hotness, reverse=True))
+
+    def test_added_date(self):
+        doc = pq(self.client.get(urlparams(self.url, sort='created')).content)
+        for item in doc('.items .item'):
+            item = pq(item)
+            addon_id = item('.install').attr('data-addon')
+            ts = Addon.objects.get(id=addon_id).created
+            eq_(item('.updated').text(), 'Added %s' % datetime_filter(ts))
+
+    def test_updated_date(self):
+        doc = pq(self.client.get(urlparams(self.url, sort='updated')).content)
+        for item in doc('.items .item'):
+            item = pq(item)
+            addon_id = item('.install').attr('data-addon')
+            ts = Addon.objects.get(id=addon_id).last_updated
+            eq_(item('.updated').text(), 'Updated %s' % datetime_filter(ts))
+
+    def test_users_adu_unit(self):
+        doc = pq(self.client.get(urlparams(self.url, sort='users')).content)
+        for item in doc('.items .item'):
+            item = pq(item)
+            addon_id = item('.install').attr('data-addon')
+            adu = Addon.objects.get(id=addon_id).average_daily_users
+            eq_(item('.adu').text(),
+                '%s user%s' % (numberfmt(adu), 's' if adu != 1 else ''))
+
+    def test_popular_adu_unit(self):
+        doc = pq(self.client.get(urlparams(self.url, sort='popular')).content)
+        for item in doc('.items .item'):
+            item = pq(item)
+            addon_id = item('.install').attr('data-addon')
+            adu = Addon.objects.get(id=addon_id).weekly_downloads
+            eq_(item('.adu').text(),
+                '%s weekly download%s' % (numberfmt(adu),
+                                          's' if adu != 1 else ''))
 
 
 class TestLanguageTools(amo.tests.TestCase):
@@ -242,6 +355,13 @@ class TestThemes(amo.tests.TestCase):
         eq_(actual_count, expected_count)
 
 
+class TestImpalaThemes(TestListing):
+
+    def setUp(self):
+        super(TestImpalaThemes, self).setUp()
+        self.url = reverse('i_browse.themes')
+
+
 class TestCategoryPages(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/category', 'base/addon_3615',
                 'base/featured', 'addons/featured', 'browse/nameless-addon']
@@ -328,99 +448,6 @@ class TestCategoryPages(amo.tests.TestCase):
         ids = order_by_translation(qs, 'name')
         assert 57132 in [a.id for a in qs]
         assert 57132 not in [a.id for a in ids]
-
-
-class TestImpalaExtensions(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/category', 'base/featured',
-                'addons/featured', 'addons/listed', 'base/collections',
-                'bandwagon/featured_collections']
-
-    def setUp(self):
-        self.reset_featured_addons()
-        self.url = reverse('browse.extensions')
-
-    def test_default_sort(self):
-        r = self.client.get(self.url)
-        eq_(r.context['sorting'], 'featured')
-
-    def test_featured_sort(self):
-        r = self.client.get(urlparams(self.url, sort='featured'))
-        sel = pq(r.content)('#sorter ul > li.selected')
-        eq_(sel.find('a').attr('class'), 'opt')
-        eq_(sel.text(), 'Featured')
-
-    def test_mostusers_sort(self):
-        r = self.client.get(urlparams(self.url, sort='users'))
-        sel = pq(r.content)('#sorter ul > li.selected')
-        eq_(sel.find('a').attr('class'), 'opt')
-        eq_(sel.text(), 'Most Users')
-        a = r.context['addons'].object_list
-        eq_(list(a),
-            sorted(a, key=lambda x: x.average_daily_users, reverse=True))
-
-    def test_toprated_sort(self):
-        r = self.client.get(urlparams(self.url, sort='rating'))
-        sel = pq(r.content)('#sorter ul > li.selected')
-        eq_(sel.find('a').attr('class'), 'opt')
-        eq_(sel.text(), 'Top Rated')
-        a = r.context['addons'].object_list
-        eq_(list(a), sorted(a, key=lambda x: x.bayesian_rating, reverse=True))
-
-    def test_newest_sort(self):
-        r = self.client.get(urlparams(self.url, sort='created'))
-        sel = pq(r.content)('#sorter ul > li.selected')
-        eq_(sel.find('a').attr('class'), 'opt')
-        eq_(sel.text(), 'Newest')
-        a = r.context['addons'].object_list
-        eq_(list(a), sorted(a, key=lambda x: x.created, reverse=True))
-
-    def test_name_sort(self):
-        r = self.client.get(urlparams(self.url, sort='name'))
-        sel = pq(r.content)('#sorter ul > li.selected')
-        eq_(sel.find('a').attr('class'), 'extra-opt')
-        eq_(sel.text(), 'Name')
-        a = r.context['addons'].object_list
-        eq_(list(a), sorted(a, key=lambda x: x.name))
-
-    def test_weeklydownloads_sort(self):
-        r = self.client.get(urlparams(self.url, sort='popular'))
-        sel = pq(r.content)('#sorter ul > li.selected')
-        eq_(sel.find('a').attr('class'), 'extra-opt')
-        eq_(sel.text(), 'Weekly Downloads')
-        a = r.context['addons'].object_list
-        eq_(list(a), sorted(a, key=lambda x: x.weekly_downloads, reverse=True))
-
-    def test_updated_sort(self):
-        r = self.client.get(urlparams(self.url, sort='updated'))
-        sel = pq(r.content)('#sorter ul > li.selected')
-        eq_(sel.find('a').attr('class'), 'extra-opt')
-        eq_(sel.text(), 'Recently Updated')
-        a = r.context['addons'].object_list
-        eq_(list(a), sorted(a, key=lambda x: x.last_updated, reverse=True))
-
-    def test_upandcoming_sort(self):
-        r = self.client.get(urlparams(self.url, sort='hotness'))
-        sel = pq(r.content)('#sorter ul > li.selected')
-        eq_(sel.find('a').attr('class'), 'extra-opt')
-        eq_(sel.text(), 'Up & Coming')
-        a = r.context['addons'].object_list
-        eq_(list(a), sorted(a, key=lambda x: x.hotness, reverse=True))
-
-    def test_added_date(self):
-        doc = pq(self.client.get(urlparams(self.url, sort='created')).content)
-        eq_(doc('.items .item .updated').text().startswith('Added'), True)
-
-    def test_updated_date(self):
-        doc = pq(self.client.get(urlparams(self.url, sort='updated')).content)
-        eq_(doc('.items .item .updated').text().startswith('Updated'), True)
-
-    def test_users_adu_unit(self):
-        doc = pq(self.client.get(urlparams(self.url, sort='users')).content)
-        eq_('users' in doc('.items .item .adu').text(), True)
-
-    def test_popular_adu_unit(self):
-        doc = pq(self.client.get(urlparams(self.url, sort='popular')).content)
-        eq_('weekly downloads' in doc('.items .item .adu').text(), True)
 
 
 class TestFeeds(amo.tests.TestCase):
