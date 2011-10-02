@@ -14,11 +14,13 @@ from django.conf import settings
 from django.core.management import call_command
 
 from celeryutils import task
+from packager.main import packager
+from statsd import statsd
 from tower import ugettext as _
 
 import amo
 from amo.decorators import write, set_modified_on
-from amo.utils import slugify, resize_image, remove_icons
+from amo.utils import guard, slugify, resize_image, remove_icons
 from addons.models import Addon
 from applications.management.commands import dump_apps
 from applications.models import Application, AppVersion
@@ -256,20 +258,23 @@ def packager(data, feature_set, **kw):
     """Build an add-on based on input data."""
     log.info('[1@None] Packaging add-on')
 
-    # "Lock" the file by putting .lock in its name.
     from devhub.views import packager_path
-    xpi_path = packager_path('%s.lock' % data['slug'])
-    log.info('Saving package to: %s' % xpi_path)
+    dest = packager_path(data['slug'])
 
-    from packager.main import packager
-    features = set([k for k, v in feature_set.items() if v])
-    dst_path = packager(data, xpi_path, features)
+    with guard('devhub.packager.%s' % dest) as locked:
+        if locked:
+            log.error('Packaging in progress: %s' % dest)
+            return
 
-    # Unlock the file and make it available.
-    try:
-        shutil.move(dst_path, packager_path(data['slug']))
-    except IOError:
-        log.error('Error unlocking add-on: %s' % xpi_path)
+        with statsd.timer('devhub.packager'):
+            log.info('Starting packaging: %s' % dest)
+            features = set([k for k, v in feature_set.items() if v])
+            try:
+                packager(data, dest, features)
+            except Exception, err:
+                log.error('Failed to package add-on: %s' % err)
+            if os.path.exists(dest):
+                log.info('Package saved: %s' % dest)
 
 
 def failed_validation(*messages):

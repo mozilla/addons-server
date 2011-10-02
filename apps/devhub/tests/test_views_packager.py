@@ -11,7 +11,7 @@ from addons.models import BlacklistedSlug
 from devhub.views import packager_path
 
 
-class TestAddOnPackager(amo.tests.TestCase):
+class TestPackager(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/appversion',
                 'base/addon_3615']
 
@@ -29,7 +29,7 @@ class TestAddOnPackager(amo.tests.TestCase):
                         'contributors': '',
                         'description': '',
                         'name': 'name',
-                        'package_name': 'name',
+                        'package_name': 'pkg_name',
                         'id': 'foo@bar.com',
                         'version': '1.2.3'}
         if not compat_forms:
@@ -55,16 +55,27 @@ class TestAddOnPackager(amo.tests.TestCase):
             assert pq(label).hasClass(app_class), (
                 'Label for application %r not found' % app_class)
 
-    def test_validate_pass(self):
+    def test_success(self):
         """
-        Test that a proper set of data will pass validation and pass through
-        to the success view.
+        Test that a proper set of data will pass validation, pass through
+        to the success view, and check if the .zip file exists.
         """
-        self.compat_form['enabled'] = 'on'
-        self.compat_form['min_ver'] = '86'
-        self.compat_form['max_ver'] = '114'
+        self.compat_form = {'enabled': 'on', 'min_ver': '86', 'max_ver': '114'}
         r = self.client.post(self.url, self._form_data(), follow=True)
+        self.assertRedirects(r, reverse('devhub.package_addon_success',
+                                        args=['pkg_name']), 302)
         eq_(r.status_code, 200)
+        d = pq(r.content)('#packager-download')
+        eq_(d.attr('data-downloadurl'),
+            reverse('devhub.package_addon_json', args=['pkg_name']))
+
+        assert os.path.isfile(packager_path('pkg_name')), (
+            'Package was not created.')
+        pkg = self.client.get(reverse('devhub.package_addon_download',
+                              args=['pkg_name']))
+        eq_(pkg.status_code, 200)
+        eq_(pkg['content-type'], 'application/zip')
+        eq_(pkg['X-SENDFILE'], packager_path('pkg_name'))
 
     def test_validate_name(self):
         """Test that the add-on name is properly validated."""
@@ -139,48 +150,61 @@ class TestAddOnPackager(amo.tests.TestCase):
             'Min version must be less than Max version.')
 
 
-class TestPackagerJSON(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/appversion']
+class TestPackagerDownload(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users']
 
     def setUp(self):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
-
-    def package_json(self, id):
-        return reverse('devhub.package_addon_json', args=[id])
+        self.url = lambda f: reverse('devhub.package_addon_json', args=[f])
 
     def _prep_mock_package(self, name):
         """Prep a fake package to be downloaded."""
         path = packager_path(name)
         with open(path, mode='w') as package:
             package.write('ready')
+        return path
 
     def _unprep_package(self, name):
         package = packager_path(name)
         if os.path.exists(package):
             os.remove(package)
 
-    def test_json_unavailable(self):
+    def test_package_pending(self):
         """
         Test that an unavailable message is returned when the file isn't ready
         to be downloaded yet.
         """
-
-        # Ensure a deleted file returns an empty message.
         self._unprep_package('foobar')
-        r = self.client.get(self.package_json('foobar'))
+        r = self.client.get(self.url('foobar'))
+        # Ensure a deleted file returns an empty message.
         eq_(r.content, 'null')
 
-        # Ensure a completed file returns the file data.
-        self._prep_mock_package('foobar')
-        r = self.client.get(self.package_json('foobar'))
+    def test_package_success(self):
+        """Ensure a completed file returns the file data."""
+        dst = self._prep_mock_package('foobar')
+        r = self.client.get(self.url('foobar'))
         data = json.loads(r.content)
 
-        assert 'download_url' in data
-        pack = self.client.get(data['download_url'])
-        eq_(pack.status_code, 200)
+        # Size in kB.
+        eq_(data['size'], round(os.path.getsize(dst) / 1024, 1))
 
-        assert 'size' in data
-        assert isinstance(data['size'], (int, float))
+        eq_(data['filename'], os.path.basename(dst))
 
+        eq_(data['download_url'], reverse('devhub.package_addon_download',
+                                          args=['foobar']))
+        assert data['download_url'].endswith('.zip'), (
+            'Expected filename to end with .zip.')
+
+        pkg = self.client.get(data['download_url'])
+        eq_(pkg.status_code, 200)
+        eq_(pkg['content-type'], 'application/zip')
+        eq_(pkg['X-SENDFILE'], dst)
+
+        self._unprep_package('foobar')
+
+    def test_login_required(self):
+        self._prep_mock_package('foobar')
+        self.client.logout()
+        eq_(self.client.get(self.url('foobar')).status_code, 302)
         self._unprep_package('foobar')

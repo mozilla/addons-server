@@ -1,5 +1,4 @@
 {% extends "devhub/base.html" %}
-{% from 'includes/forms.html' import required %}
 
 {% set title = _('Add-on Packager') %}
 {% block title %}{{ dev_page_title(title) }}{% endblock %}
@@ -27,11 +26,7 @@
       {% endtrans %}
     </noscript>
   </div>
-</section>
-<header>
   <h3>{{ _('What do I do next?') }}</h3>
-</header>
-<section>
   <p>
   {% trans gs_url=url('devhub.docs', 'getting-started'),
            ht_url=url('devhub.docs', 'how-to') %}

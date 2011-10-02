@@ -8,7 +8,7 @@ from amo.decorators import write
 from devhub.decorators import use_apps
 from . import views
 
-PACKAGE_NAME = '(?P<package_name>[-_\w]+)'
+PACKAGE_NAME = '(?P<package_name>[_\w]+)'
 
 
 # These will all start with /addon/<addon_id>/submit/
@@ -112,7 +112,7 @@ ajax_patterns = patterns('',
 
 packager_patterns = patterns('',
     url('^$', views.package_addon, name='devhub.package_addon'),
-    url('^download/%s$' % PACKAGE_NAME, views.package_addon_download,
+    url('^download/%s.zip$' % PACKAGE_NAME, views.package_addon_download,
         name='devhub.package_addon_download'),
     url('^json/%s$' % PACKAGE_NAME, views.package_addon_json,
         name='devhub.package_addon_json'),

@@ -59,7 +59,7 @@
             padding: .5em 0;
             label.app, span.row {
                 opacity: .5;
-                -moz-transition: opacity .25s;
+                .transition(opacity);
             }
             label.app.choice {
                 background-position: 0 .25em;
@@ -141,42 +141,41 @@
 }
 
 #packager-download {
-    padding: 30px 0;
-    span {
-        background: #fff;
-        border: 1px solid #eee;
-        border-width: 0 1px 3px;
-        border-radius: 5px;
-        color: #888;
+    padding: 2em 0;
+    span, a {
+        border-radius: 6px;
         display: block;
         margin: 0 auto;
-        padding: 10px 5px;
+        padding: 12px 16px 14px;
         text-align: center;
-        width: 200px;
+        width: 500px;
+    }
+    span {
+        border: 1px solid #eee;
+        border-bottom-width: 3px;
+        color: #888;
+        padding-bottom: 8px;
     }
     a {
-        background: #64A61C;
-        background: -moz-linear-gradient(center top, #84C63C, #489615);
-        border-radius: 6px;
+        .transition(box-shadow);
+        background-color: #84C63C;
+        .gradient-two-color(#84C63C, darken(#84C63C, 15%));
         box-shadow: 0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset;
         color: #fff;
-        display: block;
         font-size: 16px;
         line-height: 18px;
-        margin: 2px auto;
-        padding: 10px 5px;
-        text-align: center;
+        position: relative;
         text-decoration: none;
-        width: 230px;
         &:hover {
-            box-shadow: 0 3px rgba(0, 0, 0, 0.1), 0 -6px rgba(0, 0, 0, 0.1) inset;
-            margin: 0 auto 2px;
-            padding-bottom: 12px;
+            box-shadow: 0 3px rgba(0, 0, 0, 0.1),
+                        0 -4px rgba(0, 0, 0, 0.1) inset,
+                        0 0 100px rgba(255, 255, 255, 0.2) inset;
         }
         &:active {
-            box-shadow: 0 3px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset;
-            margin: 4px auto 2px;
-            padding-bottom: 8px;
+            top: 2px;
+            box-shadow: 0 1px rgba(0, 0, 0, 0.1),
+                        0 -4px rgba(0, 0, 0, 0.1) inset,
+                        0 0 100px rgba(255, 255, 255, 0.4) inset;
         }
     }
     b {

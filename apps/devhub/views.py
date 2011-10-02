@@ -35,7 +35,7 @@ import amo.utils
 from amo import messages, urlresolvers
 from amo.decorators import json_view, login_required, post_required, write
 from amo.helpers import urlparams
-from amo.utils import MenuItem
+from amo.utils import HttpResponseSendFile, MenuItem
 from amo.urlresolvers import reverse
 from access import acl
 from addons import forms as addon_forms
@@ -553,21 +553,17 @@ def package_addon(request):
         basic_data = basic_form.cleaned_data
         compat_data = compat_forms.cleaned_data
 
-        # Generate a unique, non-iterable ID for the package we're building.
-        builder_uuid = uuid.uuid4().hex
-        pkg_name = basic_data['package_name']
-
         data = {'id': basic_data['id'],
                 'version': basic_data['version'],
                 'name': basic_data['name'],
-                'slug': pkg_name,
+                'slug': basic_data['package_name'],
                 'description': basic_data['description'],
                 'author_name': basic_data['author_name'],
                 'contributors': basic_data['contributors'],
-                'targetapplications': [c for c in compat_data if c['enabled']],
-                'uuid': builder_uuid}
+                'targetapplications': [c for c in compat_data if c['enabled']]}
         tasks.packager.delay(data, features_form.cleaned_data)
-        return redirect('devhub.package_addon_success', pkg_name)
+        return redirect('devhub.package_addon_success',
+                        basic_data['package_name'])
 
     return jingo.render(request, 'devhub/package_addon.html',
                         {'basic_form': basic_form,
@@ -588,9 +584,8 @@ def package_addon_json(request, package_name):
     """Return the URL of the packaged add-on."""
     path_ = packager_path(package_name)
     if os.path.isfile(path_):
-        download_url = reverse('devhub.package_addon_download',
-                               args=[package_name])
-        return {'download_url': download_url,
+        url = reverse('devhub.package_addon_download', args=[package_name])
+        return {'download_url': url, 'filename': os.path.basename(path_),
                 'size': round(os.path.getsize(path_) / 1024, 1)}
 
 
@@ -600,8 +595,7 @@ def package_addon_download(request, package_name):
     path_ = packager_path(package_name)
     if not os.path.isfile(path_):
         raise http.Http404()
-    return amo.utils.HttpResponseSendFile(request, path_,
-                                          content_type='application/zip')
+    return HttpResponseSendFile(request, path_, content_type='application/zip')
 
 
 @login_required

@@ -16,7 +16,7 @@ $(document).ready(function() {
 
         // Upon keypress, generates a package name slug from add-on name.
         function pkg_slugify() {
-            var slug = makeslug($('#id_name').val());
+            var slug = makeslug($('#id_name').val(), '_');
             $('#id_package_name').val(slug);
         }
         $pkgr.delegate('#id_name', 'keyup blur', pkg_slugify);
@@ -33,9 +33,10 @@ $(document).ready(function() {
                             '<a href="{url}">{text}<b>{size} kB</b></a>'
                         );
                         $this.html(a({
-                            url: json['download_url'],
-                            text: gettext('Download ZIP'),
-                            size: json['size']
+                            // L10n: {0} is a filename, such as `addon.zip`.
+                            text: format(gettext('Download {0}'), json['filename']),
+                            size: json['size'],
+                            url: json['download_url']
                         }));
                     } else {
                         // Pause before polling again.
