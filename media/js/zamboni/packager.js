@@ -30,14 +30,12 @@ $(document).ready(function() {
                 $.getJSON(url, function(json) {
                     if (json !== null && 'download_url' in json) {
                         var a = template(
-                            '<a href="{url}">{text}<b>{size} {unit}</b></a>'
+                            '<a href="{url}">{text}<b>{size} kB</b></a>'
                         );
-                        // L10n: "kB" is for kilobytes, denoting the file size.
                         $this.html(a({
                             url: json['download_url'],
                             text: gettext('Download ZIP'),
-                            size: json['size'],
-                            unit: gettext('kB')
+                            size: json['size']
                         }));
                     } else {
                         // Pause before polling again.

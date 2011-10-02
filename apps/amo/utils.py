@@ -21,7 +21,6 @@ from django.core.cache import cache
 from django.core.serializers import json
 from django.core.validators import ValidationError, validate_slug
 from django.core.mail import send_mail as django_send_mail
-from django.db.models.sql.datastructures import EmptyResultSet
 from django.forms.fields import Field
 from django.template import Context, loader
 from django.utils.translation import trans_real
@@ -181,8 +180,9 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                     send_message = template.render(Context(context,
                                                            autoescape=False))
 
-                    result = django_send_mail(subject, send_message, from_email,
-                                              [recipient], fail_silently=False,
+                    result = django_send_mail(subject, send_message,
+                                              from_email, [recipient],
+                                              fail_silently=False,
                                               connection=connection)
             else:
                 result = django_send_mail(subject, message, from_email,
@@ -266,7 +266,7 @@ def randslice(qs, limit, exclude=None):
 SLUG_OK = '-_~'
 
 
-def slugify(s, ok=SLUG_OK, lower=True, spaces=False):
+def slugify(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-'):
     # L and N signify letter/number.
     # http://www.unicode.org/reports/tr44/tr44-4.html#GC_Values_Table
     rv = []
@@ -278,18 +278,18 @@ def slugify(s, ok=SLUG_OK, lower=True, spaces=False):
             rv.append(' ')
     new = ''.join(rv).strip()
     if not spaces:
-        new = re.sub('[-\s]+', '-', new)
+        new = re.sub('[-\s]+', delimiter, new)
     return new.lower() if lower else new
 
 
-def slug_validator(s, ok=SLUG_OK, lower=True):
+def slug_validator(s, ok=SLUG_OK, lower=True, delimiter='-'):
     """
     Raise an error if the string has any punctuation characters.
 
     Regexes don't work here because they won't check alnums in the right
     locale.
     """
-    if not (s and slugify(s, ok, lower) == s):
+    if not (s and slugify(s, ok, lower, delimiter) == s):
         raise ValidationError(validate_slug.message,
                               code=validate_slug.code)
 

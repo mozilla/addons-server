@@ -22,7 +22,7 @@ from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
                            BlacklistedSlug, Charity, Preview)
 from amo.forms import AMOModelForm
 from amo.urlresolvers import reverse
-from amo.utils import raise_required, slug_validator
+from amo.utils import raise_required, slugify
 
 from amo.widgets import EmailWidget
 from applications.models import Application, AppVersion
@@ -736,11 +736,16 @@ class PackagerBasicForm(forms.Form):
 
     def clean_package_name(self):
         slug = self.cleaned_data['package_name']
-        slug_validator(slug, lower=False)
+        if slugify(slug, ok='_', lower='False', delimiter='_') != slug:
+            raise forms.ValidationError(
+                _('Enter a valid package name consisting of letters, numbers, '
+                  'or underscores.'))
         if Addon.objects.filter(slug=slug).exists():
-            raise forms.ValidationError(_('This slug is already in use.'))
+            raise forms.ValidationError(
+                _('This package name is already in use.'))
         if BlacklistedSlug.blocked(slug):
-            raise forms.ValidationError(_('The slug cannot be: %s.' % slug))
+            raise forms.ValidationError(
+                _(u'The package name cannot be: %s.' % slug))
         return slug
 
     def clean_id(self):

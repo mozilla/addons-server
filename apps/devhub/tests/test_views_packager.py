@@ -1,8 +1,6 @@
 import json
 import os
 
-from django.core.validators import validate_slug
-
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -81,31 +79,34 @@ class TestAddOnPackager(amo.tests.TestCase):
                              'This field is required.')
 
     def test_validate_package_name_format(self):
+        error = ('Enter a valid package name consisting of letters, numbers, '
+                 'or underscores.')
         r = self.client.post(self.url,
                              self._form_data({'package_name': 'addon name'}))
-        self.assertFormError(r, 'basic_form', 'package_name',
-                             validate_slug.message)
+        self.assertFormError(r, 'basic_form', 'package_name', error)
+        r = self.client.post(self.url,
+                             self._form_data({'package_name': 'addon-name'}))
+        self.assertFormError(r, 'basic_form', 'package_name', error)
 
     def test_validate_package_name_taken(self):
         r = self.client.post(self.url,
                              self._form_data({'package_name': 'a3615'}))
         self.assertFormError(r, 'basic_form', 'package_name',
-                             'This slug is already in use.')
+                             'This package name is already in use.')
 
     def test_validate_package_name_blacklisted(self):
         BlacklistedSlug.objects.create(name='slap_tickle')
         r = self.client.post(self.url,
                              self._form_data({'package_name': 'slap_tickle'}))
         self.assertFormError(r, 'basic_form', 'package_name',
-                             'The slug cannot be: slap_tickle.')
+                             'The package name cannot be: slap_tickle.')
 
     def test_validate_version(self):
         """Test that the add-on version is properly validated."""
         r = self.client.post(self.url,
                              self._form_data({'version': 'invalid version'}))
-        self.assertFormError(
-                r, 'basic_form', 'version',
-                'The version string is invalid.')
+        self.assertFormError(r, 'basic_form', 'version',
+                             'The version string is invalid.')
 
     def test_validate_id(self):
         """Test that the add-on id is properly validated."""
