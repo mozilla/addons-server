@@ -8,11 +8,13 @@ import time
 
 from django import forms
 from django.conf import settings
+from django.forms.fields import Field
 from django.test.client import Client
 from django.utils import translation
 
 import elasticutils
 import nose
+from nose.tools import eq_
 import test_utils
 from redisutils import mock_redis, reset_redis
 
@@ -59,6 +61,10 @@ def initial(form):
             if not val:
                 del data[name]
     return data
+
+
+def assert_required(error_msg):
+    eq_(error_msg, unicode(Field.default_error_messages['required']))
 
 
 class RedisTest(object):

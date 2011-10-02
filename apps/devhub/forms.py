@@ -5,6 +5,7 @@ import socket
 from django import forms
 from django.conf import settings
 from django.db.models import Q
+from django.forms.fields import Field
 from django.forms.models import modelformset_factory
 from django.forms.formsets import formset_factory, BaseFormSet
 from django.utils.safestring import mark_safe
@@ -21,7 +22,7 @@ from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
                            BlacklistedSlug, Charity, Preview)
 from amo.forms import AMOModelForm
 from amo.urlresolvers import reverse
-from amo.utils import slug_validator
+from amo.utils import raise_required, slug_validator
 
 from amo.widgets import EmailWidget
 from applications.models import Application, AppVersion
@@ -763,10 +764,10 @@ class PackagerBasicForm(forms.Form):
 class PackagerCompatForm(forms.Form):
     enabled = forms.BooleanField(required=False)
     min_ver = forms.ModelChoiceField(AppVersion.objects.none(),
-                                     empty_label=None,
+                                     empty_label=None, required=False,
                                      label=_lazy(u'Minimum'))
     max_ver = forms.ModelChoiceField(AppVersion.objects.none(),
-                                     empty_label=None,
+                                     empty_label=None, required=False,
                                      label=_lazy(u'Maximum'))
 
     def __init__(self, *args, **kwargs):
@@ -784,33 +785,43 @@ class PackagerCompatForm(forms.Form):
         self.fields['min_ver'].queryset = qs.filter(~Q(version__contains='*'))
         self.fields['max_ver'].queryset = qs.all()
 
+    def clean_min_ver(self):
+        if self.cleaned_data['enabled'] and not self.cleaned_data['min_ver']:
+            raise_required()
+        return self.cleaned_data['min_ver']
+
+    def clean_max_ver(self):
+        if self.cleaned_data['enabled'] and not self.cleaned_data['max_ver']:
+            raise_required()
+        return self.cleaned_data['max_ver']
+
     def clean(self):
         if self.errors:
             return
 
         data = self.cleaned_data
-        if not data['enabled']:
-            return data
 
-        min_ver = data['min_ver']
-        max_ver = data['max_ver']
-        if not (min_ver and max_ver):
-            raise forms.ValidationError(
-                    _('Invalid version range.'))
+        if data['enabled']:
+            min_ver = data['min_ver']
+            max_ver = data['max_ver']
+            if not (min_ver and max_ver):
+                raise forms.ValidationError(_('Invalid version range.'))
 
-        if min_ver.version_int > max_ver.version_int:
-            raise forms.ValidationError(
+            if min_ver.version_int > max_ver.version_int:
+                raise forms.ValidationError(
                     _('Min version must be less than Max version.'))
 
-        # Pass back the app name and GUID.
-        data['min_ver'] = str(min_ver)
-        data['max_ver'] = str(max_ver)
-        data['name'] = self.app.pretty
-        data['guid'] = self.app.guid
+            # Pass back the app name and GUID.
+            data['min_ver'] = str(min_ver)
+            data['max_ver'] = str(max_ver)
+            data['name'] = self.app.pretty
+            data['guid'] = self.app.guid
+
         return data
 
 
 class PackagerCompatBaseFormSet(BaseFormSet):
+
     def __init__(self, *args, **kw):
         super(PackagerCompatBaseFormSet, self).__init__(*args, **kw)
         self.initial = [{'application': a} for a in amo.APP_USAGE]
@@ -819,14 +830,15 @@ class PackagerCompatBaseFormSet(BaseFormSet):
     def clean(self):
         if any(self.errors):
             return
-
-        if not any(cf.cleaned_data.get('enabled') for cf in self.forms):
+        if (not self.forms or not
+            any(f.cleaned_data.get('enabled') for f in self.forms)):
             raise forms.ValidationError(
                     _('At least one target application must be selected.'))
+        return self.cleaned_data
+
 
 PackagerCompatFormSet = formset_factory(PackagerCompatForm,
-        formset=PackagerCompatBaseFormSet,
-        extra=0)
+    formset=PackagerCompatBaseFormSet, extra=0)
 
 
 class PackagerFeaturesForm(forms.Form):
@@ -958,12 +970,12 @@ class PremiumForm(happyforms.Form):
 
     def clean_text(self):
         if self.cleaned_data['do_upsell'] and not self.cleaned_data['text']:
-            raise forms.ValidationError(_('This field is required.'))
+            raise_required()
         return self.cleaned_data['text']
 
     def clean_free(self):
         if self.cleaned_data['do_upsell'] and not self.cleaned_data['free']:
-            raise forms.ValidationError(_('This field is required.'))
+            raise_required()
         return self.cleaned_data['free']
 
     def save(self):

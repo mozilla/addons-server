@@ -22,6 +22,7 @@ from django.core.serializers import json
 from django.core.validators import ValidationError, validate_slug
 from django.core.mail import send_mail as django_send_mail
 from django.db.models.sql.datastructures import EmptyResultSet
+from django.forms.fields import Field
 from django.template import Context, loader
 from django.utils.translation import trans_real
 from django.utils.functional import Promise
@@ -291,6 +292,10 @@ def slug_validator(s, ok=SLUG_OK, lower=True):
     if not (s and slugify(s, ok, lower) == s):
         raise ValidationError(validate_slug.message,
                               code=validate_slug.code)
+
+
+def raise_required():
+    raise ValidationError(Field.default_error_messages['required'])
 
 
 def clear_messages(request):
