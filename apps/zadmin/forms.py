@@ -3,19 +3,22 @@ import re
 
 from django import forms
 from django.conf import settings
+from django.forms import ModelForm
 from django.forms.models import modelformset_factory
 from django.template import Context, Template, TemplateSyntaxError
 
 import happyforms
 from piston.models import Consumer
+from product_details import product_details
 from tower import ugettext_lazy as _lazy
 from quieter_formset.formset import BaseModelFormSet
 
 import amo
-from product_details import product_details
+from addons.models import Addon
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection, FeaturedCollection, MonthlyPick
+from files.models import File
 from zadmin.models import ValidationJob
 
 
@@ -180,3 +183,19 @@ class MonthlyPickForm(happyforms.ModelForm):
 
 MonthlyPickFormSet = modelformset_factory(MonthlyPick, form=MonthlyPickForm,
                                           can_delete=True, extra=0)
+
+
+class AddonStatusForm(ModelForm):
+    class Meta:
+        model = Addon
+        fields = ('status', 'highest_status')
+
+
+class FileStatusForm(ModelForm):
+    class Meta:
+        model = File
+        fields = ('status',)
+
+
+FileFormSet = modelformset_factory(File, form=FileStatusForm,
+                                   formset=BaseModelFormSet, extra=0)

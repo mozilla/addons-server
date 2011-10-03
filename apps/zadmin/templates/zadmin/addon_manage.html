@@ -1,0 +1,72 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ page_title('Manage {0}')|f(addon.name) }}{% endblock %}
+
+{% block content %}
+<h2>Manage {{ addon.name }}</h2>
+<form method="post" action="">
+  <p>
+    <a href="{{ url('addons.detail', addon.slug) }}">Public Listing</a> |
+    <a href="{{ url('devhub.addons.edit', addon.slug) }}">Edit Add-on</a>
+  </p>
+  <p>
+    <label>Status:</label> {{ form.status }}<br>
+    <label>Highest:</label> {{ form.highest_status }}<br>
+  </p>
+  {% if versions %}
+  <h3>Versions &amp; Files</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Version ID</th>
+          <th>File ID</th>
+          <th>Platform</th>
+          <th>Status</th>
+          <th>Hash</th>
+          <th>Copied</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for v in versions %}
+        <tr>
+          <td>{{ v.created|datetime }}</td>
+          <td><a href="{{ url('editors.review', v.id) }}" title="{{ v.version }}">{{ v.id }}</a></td>
+          {% with files = file_map.get(v.id, []) %}
+            {% if files %}
+              {% for file in files %}
+                {% if not loop.first %}</tr><tr><td colspan="2">{% endif %}
+                <td><a href="{{ url('files.list', file.id) }}" title="{{ file.filename }}">{{ file.id }}</a></td>
+                <td>{{ file.platform }}</td>
+                <td>
+                  {{ form_map[file.id].status }}
+                  {% for hidden in form_map[file.id].hidden_fields() %}
+                    {{ hidden }}
+                  {% endfor %}
+                </td>
+                <td><a href="/admin/addons/hash/{{ addon.id }}/{{ file.id }}" title="{{ file.hash }}">Recalc Hash</a></td>
+                <td>
+                  {% if file.is_public() %}
+                    {{ "Copied" if file.has_been_copied() else "Not Copied" }}
+                  {% endif %}
+                </td>
+              {% endfor %}
+            {% else %}
+              <td colspan="5"></td>
+            {% endif %}
+          {% endwith %}
+        </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+  <p><input type="submit" value="Update Statuses"></p>
+  {{ formset.management_form }}
+  {{ csrf() }}
+  {% if pager.paginator.num_pages > 1 %}
+    <div class="listing-footer">
+      {{ pager|paginator }}
+    </div>
+  {% endif %}
+</form>
+
+{% endblock %}
