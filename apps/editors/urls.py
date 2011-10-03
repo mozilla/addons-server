@@ -6,6 +6,7 @@ from . import views
 
 # All URLs under /editors/
 urlpatterns = (
+    url(r'^$', views.home, name='editors.home'),
     url(r'^queue$', views.queue, name='editors.queue'),
     url(r'^queue/nominated$', views.queue_nominated,
         name='editors.queue_nominated'),
@@ -35,5 +36,6 @@ urlpatterns = (
         name='editors.performance'),
     url(r'^motd$', views.motd, name='editors.motd'),
     url(r'^motd/save$', views.save_motd, name='editors.save_motd'),
-    url(r'^$', views.home, name='editors.home'),
+    url(r'^abuse-reports/%s$' % ADDON_ID, views.abuse_reports,
+        name='editors.abuse_reports'),
 )

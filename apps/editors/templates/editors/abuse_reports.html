@@ -1,0 +1,32 @@
+{% extends "editors/base.html" %}
+
+{% block title %}
+  {{ editor_page_title(_('{addon} :: Abuse Reports')|f(addon=addon.name)) }}
+{% endblock %}
+
+{% block breadcrumbs %}
+  {{ editors_breadcrumbs() }}
+{% endblock %}
+
+{% block content %}
+<h2>{{_('Abuse Reports for {addon} ({num})')|f(addon=addon.name, num=total|numberfmt) }}</h2>
+<ul>
+  {% for report in reports %}
+  <li>
+    {% with date=report.created|datetime, ip_address=report.ip_address %}
+      {% if report.reporter %}
+        {% trans user=report.reporter|user_link %}
+          {{ user }} on {{ date }} [{{ ip_address }}]
+        {% endtrans %}
+      {% else %}
+        {% trans %}
+          <i>anonymous</i> on {{ date }} [{{ ip_address }}]
+        {% endtrans %}
+      {% endif %}
+    {% endwith %}
+    <blockquote>{{ report.message }}</blockquote>
+  </li>
+  {% endfor %}
+</ul>
+{{ reports|paginator }}
+{% endblock %}

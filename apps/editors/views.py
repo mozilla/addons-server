@@ -15,6 +15,7 @@ import jingo
 from tower import ugettext as _
 
 import amo
+from abuse.models import AbuseReport
 from access import acl
 from addons.decorators import addon_view
 from addons.models import Addon, Version
@@ -564,3 +565,13 @@ def reviewlog(request):
          }
     data = context(form=form, pager=pager, ACTION_DICT=ad)
     return jingo.render(request, 'editors/reviewlog.html', data)
+
+
+@editor_required
+@addon_view
+def abuse_reports(request, addon):
+    reports = AbuseReport.objects.filter(addon=addon).order_by('-created')
+    total = reports.count()
+    reports = amo.utils.paginate(request, reports)
+    return jingo.render(request, 'editors/abuse_reports.html',
+                        dict(addon=addon, reports=reports, total=total))

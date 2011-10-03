@@ -17,6 +17,7 @@ import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from amo.tests import formset, initial
+from abuse.models import AbuseReport
 from addons.models import Addon, AddonUser
 from applications.models import Application
 from devhub.models import ActivityLog
@@ -2114,3 +2115,23 @@ class TestStatusFile(ReviewBase):
         node = pq(res.content)('td.files div').eq(1)
 
         assert unicode(amo.STATUS_CHOICES[self.file.status]) in node.text()
+
+
+class TestAbuseReports(amo.tests.TestCase):
+    fixtures = ['base/users', 'base/addon_3615']
+
+    def setUp(self):
+        user = UserProfile.objects.all()[0]
+        AbuseReport.objects.create(addon_id=3615, message='woo')
+        AbuseReport.objects.create(addon_id=3615, message='yeah',
+                                   reporter=user)
+        # Make a user abuse report to make sure it doesn't show up.
+        AbuseReport.objects.create(user=user, message='hey now')
+
+    def test_abuse_reports_list(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        r = self.client.get(reverse('editors.abuse_reports', args=['a3615']))
+        eq_(r.status_code, 200)
+        # We see the two abuse reports created in setUp.
+        eq_(len(r.context['reports']), 2)
