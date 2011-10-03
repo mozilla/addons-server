@@ -40,8 +40,12 @@ $(document).ready(function() {
         if (top_dgFlow !== null) {
             var thanks_url = $('#paypal-thanks').attr('href');
             if(thanks_url) {
-                // TODO: play around with top.opener
-                top.modalFromURL(thanks_url, {'callback': function() {
+                var top_opener = top;
+                if (top.opener && top.opener.top.dgFlow) {
+                    top_opener = top.opener.top;
+                }
+
+                top_opener.modalFromURL(thanks_url, {'callback': function() {
                     // Change the add-on buttons
                     var context  = $(this).closest('body'),
                         addon_id = $('#addon_info', this).attr('data-addon'),
