@@ -8,6 +8,7 @@ import amo.tests
 from amo.tests import assert_required, formset, initial
 from amo.urlresolvers import reverse
 from addons.models import BlacklistedSlug
+from addons.utils import ReverseNameLookup
 from devhub.views import packager_path
 
 
@@ -28,8 +29,8 @@ class TestPackager(amo.tests.TestCase):
         initial_data = {'author_name': 'author',
                         'contributors': '',
                         'description': '',
-                        'name': 'name',
-                        'package_name': 'pkg_name',
+                        'name': 'My Addon',
+                        'package_name': 'my_addon',
                         'id': 'foo@bar.com',
                         'version': '1.2.3'}
         if not compat_forms:
@@ -61,35 +62,61 @@ class TestPackager(amo.tests.TestCase):
         to the success view, and check if the .zip file exists.
         """
         self.compat_form = {'enabled': 'on', 'min_ver': '86', 'max_ver': '114'}
-        r = self.client.post(self.url, self._form_data(), follow=True)
+        data = self._form_data()
+        pkg_name = data['package_name']
+        r = self.client.post(self.url, data, follow=True)
         self.assertRedirects(r, reverse('devhub.package_addon_success',
-                                        args=['pkg_name']), 302)
+                                        args=[pkg_name]), 302)
         eq_(r.status_code, 200)
         d = pq(r.content)('#packager-download')
         eq_(d.attr('data-downloadurl'),
-            reverse('devhub.package_addon_json', args=['pkg_name']))
+            reverse('devhub.package_addon_json', args=[pkg_name]))
 
-        assert os.path.isfile(packager_path('pkg_name')), (
+        assert os.path.isfile(packager_path(pkg_name)), (
             'Package was not created.')
         pkg = self.client.get(reverse('devhub.package_addon_download',
-                              args=['pkg_name']))
+                              args=[pkg_name]))
         eq_(pkg.status_code, 200)
         eq_(pkg['content-type'], 'application/zip')
-        eq_(pkg['X-SENDFILE'], packager_path('pkg_name'))
+        eq_(pkg['X-SENDFILE'], packager_path(pkg_name))
 
-    def test_validate_name(self):
-        """Test that the add-on name is properly validated."""
-        r = self.client.post(self.url, self._form_data({'name': 'Mozilla <3'}))
-        self.assertFormError(
-                r, 'basic_form', 'name',
-                'Add-on names should not contain Mozilla trademarks.')
-
-    def test_validate_package_name_required(self):
+    def test_name_required(self):
         r = self.client.post(self.url, self._form_data({'package_name': ''}))
         self.assertFormError(r, 'basic_form', 'package_name',
                              'This field is required.')
 
-    def test_validate_package_name_format(self):
+    def test_name_trademarks(self):
+        """Test that the add-on name cannot contain Mozilla trademarks."""
+        r = self.client.post(self.url, self._form_data({'name': 'Mozilla <3'}))
+        self.assertFormError(r, 'basic_form', 'name',
+            'Add-on names should not contain Mozilla trademarks.')
+
+    def test_name_taken(self):
+        """Test that the add-on name is not already taken."""
+        ReverseNameLookup().add('Delicious Bookmarks', 34)
+        data = self._form_data({'name': 'Delicious Bookmarks'})
+        r = self.client.post(self.url, data)
+        self.assertFormError(r, 'basic_form', 'name',
+            'This add-on name is already in use. Please choose another.')
+
+    def test_name_minlength(self):
+        data = self._form_data({'name': 'abcd'})
+        r = self.client.post(self.url, data)
+        self.assertFormError(r, 'basic_form', 'name',
+            'Ensure this value has at least 5 characters (it has 4).')
+
+    def test_name_maxlength(self):
+        data = self._form_data({'name': 'x' * 51})
+        r = self.client.post(self.url, data)
+        self.assertFormError(r, 'basic_form', 'name',
+            'Ensure this value has at most 50 characters (it has 51).')
+
+    def test_package_name_required(self):
+        r = self.client.post(self.url, self._form_data({'package_name': ''}))
+        self.assertFormError(r, 'basic_form', 'package_name',
+                             'This field is required.')
+
+    def test_package_name_format(self):
         error = ('Enter a valid package name consisting of letters, numbers, '
                  'or underscores.')
         r = self.client.post(self.url,
@@ -99,27 +126,27 @@ class TestPackager(amo.tests.TestCase):
                              self._form_data({'package_name': 'addon-name'}))
         self.assertFormError(r, 'basic_form', 'package_name', error)
 
-    def test_validate_package_name_taken(self):
+    def test_package_name_taken(self):
         r = self.client.post(self.url,
                              self._form_data({'package_name': 'a3615'}))
         self.assertFormError(r, 'basic_form', 'package_name',
                              'This package name is already in use.')
 
-    def test_validate_package_name_blacklisted(self):
+    def test_package_name_blacklisted(self):
         BlacklistedSlug.objects.create(name='slap_tickle')
         r = self.client.post(self.url,
                              self._form_data({'package_name': 'slap_tickle'}))
         self.assertFormError(r, 'basic_form', 'package_name',
                              'The package name cannot be: slap_tickle.')
 
-    def test_validate_version(self):
+    def test_version(self):
         """Test that the add-on version is properly validated."""
         r = self.client.post(self.url,
                              self._form_data({'version': 'invalid version'}))
         self.assertFormError(r, 'basic_form', 'version',
                              'The version string is invalid.')
 
-    def test_validate_id(self):
+    def test_id(self):
         """Test that the add-on id is properly validated."""
         r = self.client.post(self.url, self._form_data({'id': 'invalid id'}))
         self.assertFormError(
@@ -140,7 +167,7 @@ class TestPackager(amo.tests.TestCase):
         assert_required(r.context['compat_forms'].errors[1]['min_ver'][0])
         assert_required(r.context['compat_forms'].errors[1]['max_ver'][0])
 
-    def test_validate_version_order(self):
+    def test_version_order(self):
         """Test that the min version is lte the max version."""
         self.compat_form['enabled'] = 'on'
         self.compat_form['min_ver'] = '114'

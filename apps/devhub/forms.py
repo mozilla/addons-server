@@ -5,7 +5,6 @@ import socket
 from django import forms
 from django.conf import settings
 from django.db.models import Q
-from django.forms.fields import Field
 from django.forms.models import modelformset_factory
 from django.forms.formsets import formset_factory, BaseFormSet
 from django.utils.safestring import mark_safe
@@ -631,7 +630,8 @@ class PreviewForm(happyforms.ModelForm):
             super(PreviewForm, self).save(commit=commit)
             if self.cleaned_data['upload_hash']:
                 upload_hash = self.cleaned_data['upload_hash']
-                upload_path = path.path(settings.TMP_PATH) / 'preview' / upload_hash
+                upload_path = (path.path(settings.TMP_PATH) / 'preview' /
+                               upload_hash)
                 tasks.resize_preview.delay(str(upload_path),
                                 self.instance, set_modified_on=[self.instance])
 
@@ -691,48 +691,42 @@ class NewsletterForm(forms.Form):
 
 
 class PackagerBasicForm(forms.Form):
-    name = forms.CharField(help_text=_lazy(u'Give your add-on a name. The most '
-                                            'successful add-ons give some '
-                                            'indication of their function in '
-                                            'their name.'))
+    name = forms.CharField(min_length=5, max_length=50,
+        help_text=_lazy(u'Give your add-on a name. The most successful '
+                        'add-ons give some indication of their function in '
+                        'their name.'))
     description = forms.CharField(required=False, widget=forms.Textarea,
-                                  help_text=_lazy(u'Briefly describe your '
-                                                   'add-on in one sentence. '
-                                                   'This appears in the '
-                                                   'Add-ons Manager.'))
+        help_text=_lazy(u'Briefly describe your add-on in one sentence. '
+                        'This appears in the Add-ons Manager.'))
     version = forms.CharField(max_length=32,
-                              help_text=_lazy(u'Enter your initial version '
-                                               'number. Depending on the '
-                                               'number of releases and your '
-                                               'preferences, this is usually '
-                                               '0.1 or 1.0'))
-    id = forms.CharField(help_text=_lazy(u'Each add-on requires a unique ID in '
-                                          'the form of a UUID or an email '
-                                          'address, such as '
-                                          'addon-name@developer.com. The email '
-                                          'address does not have to be valid.'))
-
-    package_name = forms.CharField(help_text=_lazy(
-        u'The package name of your add-on used within the browser. This '
-         'should be a short form of its name (for example, Test Extension '
-         'might be testextension).'))
-
-    author_name = forms.CharField(help_text=_lazy(u'Enter the name of the '
-                                                   'person or entity to be '
-                                                   'listed as the author of '
-                                                   'this add-on.'))
+        help_text=_lazy(u'Enter your initial version number. Depending on the '
+                         'number of releases and your preferences, this is '
+                         'usually 0.1 or 1.0'))
+    id = forms.CharField(
+        help_text=_lazy(u'Each add-on requires a unique ID in the form of a '
+                        'UUID or an email address, such as '
+                        'addon-name@developer.com. The email address does not '
+                        'have to be valid.'))
+    package_name = forms.CharField(
+        help_text=_lazy(u'The package name of your add-on used within the '
+                        'browser. This should be a short form of its name '
+                        '(for example, Test Extension might be '
+                        'test_extension).'))
+    author_name = forms.CharField(
+        help_text=_lazy(u'Enter the name of the person or entity to be '
+                        'listed as the author of this add-on.'))
     contributors = forms.CharField(required=False, widget=forms.Textarea,
-                                   help_text=_lazy(u'Enter the names of any '
-                                                    'other contributors to '
-                                                    'this extension, one '
-                                                    'per line.'))
+       help_text=_lazy(u'Enter the names of any other contributors to this '
+                       'extension, one per line.'))
 
     def clean_name(self):
+        name = self.cleaned_data['name']
+        addons.forms.clean_name(name)
         name_regex = re.compile('(mozilla|firefox|thunderbird)', re.I)
-        if name_regex.match(self.cleaned_data['name']):
+        if name_regex.match(name):
             raise forms.ValidationError(
                 _('Add-on names should not contain Mozilla trademarks.'))
-        return self.cleaned_data['name']
+        return name
 
     def clean_package_name(self):
         slug = self.cleaned_data['package_name']
@@ -850,7 +844,8 @@ class PackagerFeaturesForm(forms.Form):
     about_dialog = forms.BooleanField(
             required=False,
             label=_lazy(u'About dialog'),
-            help_text=_lazy(u'Creates a standard About dialog for your extension'))
+            help_text=_lazy(u'Creates a standard About dialog for your '
+                            'extension'))
     preferences_dialog = forms.BooleanField(
             required=False,
             label=_lazy(u'Preferences Dialog'),
@@ -862,7 +857,8 @@ class PackagerFeaturesForm(forms.Form):
     toolbar_button = forms.BooleanField(
             required=False,
             label=_lazy(u'Toolbar button'),
-            help_text=_lazy(u'Creates an example button on the browser toolbar'))
+            help_text=_lazy(u'Creates an example button on the browser '
+                            'toolbar'))
     main_menu_command = forms.BooleanField(
             required=False,
             label=_lazy(u'Main menu command'),
