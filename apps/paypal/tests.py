@@ -61,6 +61,21 @@ class TestPayKey(amo.tests.TestCase):
         qs = _call.call_args[0][1]['returnUrl'].split('?')[1]
         eq_(dict(urlparse.parse_qsl(qs))['foo'], 'bar')
 
+    @mock.patch('paypal._call')
+    def test_ipn_skipped(self, _call):
+        data = self.data.copy()
+        data['ipn'] = False
+        _call.return_value = {'payKey': '123'}
+        paypal.get_paykey(data)
+        assert 'ipnNotificationUrl' not in _call.call_args[0][1]
+
+    @mock.patch('paypal._call')
+    def test_ipn_asked(self, _call):
+        data = self.data.copy()
+        _call.return_value = {'payKey': '123'}
+        paypal.get_paykey(data)
+        assert 'ipnNotificationUrl' in _call.call_args[0][1]
+
     def _test_no_mock(self):
         # Remove _ and run if you'd like to try unmocked.
         return paypal.get_paykey(self.data)
