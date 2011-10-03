@@ -228,8 +228,8 @@ def login_link(context):
 
 @register.function
 @jinja2.contextfunction
-def page_title(context, title):
-    if context.get('WEBAPPS'):
+def page_title(context, title, force_webapps=False):
+    if context.get('WEBAPPS') or force_webapps:
         return u'%s :: %s' % (smart_unicode(title), _('Apps Marketplace'))
     else:
         app = context['request'].APP

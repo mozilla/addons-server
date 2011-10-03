@@ -1,3 +1,5 @@
+from urlparse import urlparse, parse_qs
+
 from django import test
 from django.contrib.auth.models import User as DjangoUser
 from django.utils import translation, encoding
@@ -10,6 +12,7 @@ from pyquery import PyQuery as pq
 from addons.models import Addon
 import amo
 import sharing
+import sharing.views
 from sharing.helpers import sharing_box
 from sharing import DIGG, FACEBOOK
 
@@ -77,3 +80,19 @@ def test_share_view():
     sharing.views.share(request, obj, u, u)
     obj.get_url_path.return_value = s
     sharing.views.share(request, obj, s, s)
+
+
+def test_share_view_for_webapp():
+    u = u'\u05d0\u05d5\u05e1\u05e3'
+    s = encoding.smart_str(u)
+    request, obj = Mock(), Mock()
+    request.GET = {'service': 'twitter'}
+    obj.get_url_path.return_value = u
+    obj.is_webapp = Mock()
+    obj.is_webapp.return_value = True
+    sharing.views.share(request, obj, u, u)
+    obj.get_url_path.return_value = s
+    res = sharing.views.share(request, obj, s, s)
+    qs = parse_qs(urlparse(res['Location']).query)
+    assert 'Apps Marketplace' in qs['status'][0], (
+                                    'Unexpected status: %s' % qs['status'][0])
