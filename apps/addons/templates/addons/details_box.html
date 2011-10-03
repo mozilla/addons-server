@@ -58,29 +58,25 @@
                 <th>{{ _('Rating', 'advanced_search_form_rating') }}</th>
                 <td>{{ reviews_link(addon) }}</td>
               </tr>
-              {% if not addon.is_selfhosted() %}
-                <tr class="meta-stats">
-                  <th>{{ _('Downloads', 'list_sortby_downloads') }}</th>
-                  <td>
-                    <strong class="downloads">{{
-                      addon.total_downloads|numberfmt }}</strong>
-                    {% if addon.public_stats %}
-                      {# TODO real reverse URL #}
-                      <a href="{{ locale_url('/statistics/addon/{0}'|f(addon.id)) }}">
-                        {{ _('View Statistics') }}</a>
-                    {% endif %}
-                  </td>
-                </tr>
-              {% endif %}
-              {% if addon.type == amo.ADDON_WEBAPP %}
-                <tr class="meta-abuse">
-                  <th>{{ _('Abuse Reports') }}</th>
-                  <td>
-                    {# TODO(Kumar) link to abuse reports page when it exists #}
-                    <strong>{{ addon.abuse_reports.count()|numberfmt }}</strong>
-                  </td>
-                </tr>
-              {% endif %}
+              <tr class="meta-stats">
+                <th>{{ _('Downloads', 'list_sortby_downloads') }}</th>
+                <td>
+                  <strong class="downloads">{{
+                    addon.total_downloads|numberfmt }}</strong>
+                  {% if addon.public_stats %}
+                    {# TODO real reverse URL #}
+                    <a href="{{ locale_url('/statistics/addon/{0}'|f(addon.id)) }}">
+                      {{ _('View Statistics') }}</a>
+                  {% endif %}
+                </td>
+              </tr>
+              <tr class="meta-abuse">
+                <th>{{ _('Abuse Reports') }}</th>
+                <td>
+                  <a href="{{ url('editors.abuse_reports', addon.slug) }}">
+                    <strong>{{ addon.abuse_reports.count()|numberfmt }}</strong></a>
+                </td>
+              </tr>
               {% if not show_actions %}
                 {# Show privacy policy / eula if the button isn't shown #}
                 {# (Basically, on the editor review page) #}

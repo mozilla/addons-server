@@ -296,6 +296,11 @@ class WebappQueueTable(tables.ModelTable, ItemStateTable):
         self.increment_item()
         return u'<a href="%s">%s</a>' % (url, jinja2.escape(row.name))
 
+    def render_abuse_reports__count(self, row):
+        url = reverse('editors.abuse_reports', args=[row.slug])
+        return u'<a href="%s">%s</a>' % (jinja2.escape(url),
+                                         row.abuse_reports__count)
+
     def render_created(self, row):
         return timesince(row.created)
 
