@@ -43,6 +43,7 @@ from amo.urlresolvers import reverse
 from api.authentication import AMOOAuthAuthentication
 from addons.models import Addon, AddonUser, BlacklistedGuid
 from devhub.models import ActivityLog, SubmitStep
+from files.models import File
 from perf.models import (Performance, PerformanceAppVersions,
                          PerformanceOSVersion)
 from test_utils import RequestFactory
@@ -643,7 +644,8 @@ class TestAddon(BaseOAuth):
         a = Addon.objects.get(pk=data['id'])
         r = client.get(('api.version', data['id'], a.versions.get().id),
                        self.accepted_consumer, self.token)
-        eq_(json.loads(r.content)['statuses'], [1])
+        eq_(json.loads(r.content)['statuses'],
+            [[File.objects.all()[0].pk, 1]])
 
     @patch('access.acl.check_addon_ownership')
     def test_not_my_addon(self, acl):

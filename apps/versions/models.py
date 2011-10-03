@@ -218,7 +218,7 @@ class Version(amo.models.ModelBase):
     @property
     def statuses(self):
         """Unadulterated statuses, good for an API."""
-        return [f.status for f in self.all_files]
+        return [(f.id, f.status) for f in self.all_files]
 
     def is_allowed_upload(self):
         """Check that a file can be uploaded based on the files
