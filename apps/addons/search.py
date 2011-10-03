@@ -11,6 +11,7 @@ from .models import Addon
 from bandwagon.models import Collection
 from compat.models import AppCompat
 from users.models import UserProfile
+from versions.models import version_int
 
 
 log = logging.getLogger('z.es')
@@ -42,7 +43,7 @@ def extract(addon):
             min_, max_ = appver.min.version_int, appver.max.version_int
         else:
             # Fake wide compatibility for search tools and personas.
-            min_, max_ = 0, 9999
+            min_, max_ = 0, version_int('9999')
         d['appversion'][app.id] = dict(min=min_, max=max_)
     d['app'] = [app.id for app in addon.compatible_apps.keys()]
     # Boost by the number of users on a logarithmic scale. The maximum boost
