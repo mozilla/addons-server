@@ -11,7 +11,7 @@ from .models import Addon
 from bandwagon.models import Collection
 from compat.models import AppCompat
 from users.models import UserProfile
-from versions.models import version_int
+from versions.compare import version_int
 
 
 log = logging.getLogger('z.es')
