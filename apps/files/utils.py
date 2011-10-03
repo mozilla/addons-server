@@ -441,6 +441,7 @@ def find_jetpacks(minver, maxver):
     from .models import File
     statuses = amo.VALID_STATUSES
     files = (File.objects.filter(jetpack_version__isnull=False,
+                                 version__addon__auto_repackage=True,
                                  version__addon__status__in=statuses,
                                  version__addon__disabled_by_user=False)
              .exclude(status=amo.STATUS_DISABLED).no_cache()
