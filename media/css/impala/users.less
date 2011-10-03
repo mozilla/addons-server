@@ -1,8 +1,8 @@
 @import 'lib';
 
 .user-input {
-  width: 100%;
-  .border-box;
+    width: 100%;
+    .border-box;
 }
 .prettyform {
     .avatar {
@@ -102,6 +102,13 @@ img.icon {
             margin: 1em 0;
         }
     }
+    .user-role {
+        padding: .5em 3px;
+    }
+    .user-role,
+    .avatar {
+        max-width: 200px;
+    }
     .notice.author {
         padding-left: 14px;
         .avatar {
@@ -117,12 +124,71 @@ img.icon {
             padding: 0 14px 0 0;
             width: auto;
         }
-        .secondary {
-            width: 208px;
+    }
+    #my-addons {
+        margin: 0 0 15px;
+    }
+    .secondary {
+        width: 208px;
+    }
+}
+
+.gutter.meet {
+    .primary,
+    .secondary {
+        .border-box;
+    }
+    .primary {
+        width: 75%;
+        &#my-addons {
+            width: 100%;
         }
+    }
+    .secondary {
+        width: 23.5%;
     }
 }
 
 .html-rtl.meet .island > section {
     padding: 0 0 0 14px;
+}
+
+#my-collections {
+    padding: 0;
+    div {
+        padding: 15px 15px 16px;
+    }
+    h2, li a, p {
+        padding: 0;
+    }
+    h2, li a {
+        line-height: inherit;
+    }
+    ul {
+        font-size: 11px;
+        margin: 0;
+    }
+    li {
+        border: 0;
+        a {
+            display: inline;
+            &:hover {
+                background: inherit;
+                text-decoration: underline;
+            }
+        }
+    }
+    h2, h3 {
+        margin-bottom: .5em;
+    }
+    h2 {
+        font: italic 18px/21px @serif-stack;
+        text-transform: none;
+    }
+    h3 {
+        border-top: 1px dotted @border-blue;
+        font-style: inherit;
+        font-weight: bold;
+        padding-top: 1em;
+    }
 }

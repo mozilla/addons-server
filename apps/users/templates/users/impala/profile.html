@@ -11,7 +11,7 @@
 {{ impala_breadcrumbs([(None, profile.name)]) }}
 <h1 class="fn n">{{ profile.name }}</h1>
 
-<div class="vcard island c object-lead">
+<div class="vcard island c">
   <aside class="secondary">
     <img class="avatar" src="{{ profile.picture_url }}"
          {% if not profile.picture_type %}alt="{{ _('No Photo') }}"{% endif %}>
@@ -28,7 +28,7 @@
     {% endif %}
   </aside>
   <section class="primary">
-    <h2>{{ _('About Me')}}</h2>
+    <h2>{{ _('About Me') }}</h2>
     <div class="vcard">
       {% with table_class='person-info' %}
         {% include "users/impala/vcard.html" %}
@@ -40,11 +40,14 @@
         <p class="intro">{{ profile.bio|nl2br }}</p>
       {% endif %}
     </div>
+    {% if abuse_form %}
+      <div class="abuse-wrapper c">{{ user_report_abuse(hide=True, profile=profile) }}</div>
+    {% endif %}
   </section>
 </div>
 
 {% if addons.object_list %}
-  <div class="island c listing">
+  <div id="my-addons" class="island primary listing c">
     <h2>{{ _("Add-ons I've created") }}</h2>
     {% cache addons.object_list %}
       <div class="items">
@@ -54,27 +57,36 @@
   </div>
 {% endif %}
 
+{% if own_coll or fav_coll %}
+<aside class="secondary" id="my-collections">
+  <div class="island">
+    <h2>{{ _('My Collections') }}</h2>
+    {{ user_collection_list(heading=_('Followed by Me'), collections=fav_coll,
+                            id='my-favorite') }}
+    {{ user_collection_list(heading=_('Created by Me'), collections=own_coll,
+                            id='my-created',
+                            link=url('collections.user', profile.username)) }}
+  </div>
+</aside>
+{% endif %}
+
 {% cache reviews %}
-<div class="island c" id="reviews">
+<div class="island primary c" id="reviews">
   <h2>{{ _('My Reviews') }}</h2>
-  <div class="article">
-    {% if reviews %}
+  {% if reviews %}
+    <div class="items">
       {% for review in reviews %}
         {% set addon = review.addon %}
         {% with show_addon = True %}
           {% include "reviews/review.html" %}
         {% endwith %}
       {% endfor %}
-    {% else %}
-      <p class="noreviews">{{ _('No add-on reviews yet.') }}</p>
-    {% endif %}
-  </div>{# /article #}
-</div>{# /primary #}
+    </div>
+  {% else %}
+    <p class="no-reviews">{{ _('No add-on reviews yet.') }}</p>
+  {% endif %}
+</div>
 {% endcache %}
-
-{% if abuse_form %}
-  <div class="abuse-wrapper c">{{ user_report_abuse(hide=True, profile=profile) }}</div>
-{% endif %}
 
 {{ report_review_popup() }}
 {% endblock %}

@@ -1,12 +1,18 @@
+@import 'lib';
+
 /** =Report abuse form *********/
 .abuse {
     border: 0;
     padding: 1em 0 0;
     position: relative;
     ol {
+        background-color: fadeOut(@border-blue, 90%);
         list-style: none;
         margin: 0;
-        padding: 0;
+        padding: 1em;
+        p {
+            margin: 0;
+        }
     }
     label {
         font-weight: normal;
@@ -34,8 +40,9 @@
     legend {
         float: right;
     }
-    ol {
-        padding-top: 3em;
+    .abuse ol {
+        clear: both;
+        margin-top: 2em;
     }
 }
 

@@ -35,7 +35,7 @@
       <td>{{ profile.created|datetime }}</td>
     </tr>
     <tr>
-      <th>{{ _('Number of Add-ons Developed') }}</th>
+      <th>{{ _('Number of Add-ons developed') }}</th>
       <td>
         <a href="{{ profile.get_url_path() }}">
           {% trans num=profile.addons_listed|length %}

@@ -23,7 +23,9 @@ from addons.models import Addon, AddonUser
 from amo.helpers import urlparams
 from amo.pyquery_wrapper import PyQuery as pq
 from amo.urlresolvers import reverse
+from bandwagon.models import Collection
 from devhub.models import ActivityLog
+from reviews.models import Review
 from stats.models import Contribution
 from users.models import BlacklistedPassword, UserProfile, UserNotification
 import users.notifications as email
@@ -663,6 +665,51 @@ class TestProfile(UserViewBase):
     def test_abuse_form(self):
         r = self.client.get(reverse('i_users.profile', args=[9945]))
         self.assertTemplateUsed(r, 'reviews/report_review.html')
+
+
+class TestImpalaProfile(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615',
+                'base/addon_5299_gcal', 'base/collections',
+                'reviews/dev-reply.json']
+
+    def setUp(self):
+        self.user = UserProfile.objects.get(id=10482)
+        self.url = reverse('i_users.profile', args=[self.user.id])
+
+    def test_my_addons(self):
+        AddonUser.objects.create(user=self.user, addon_id=3615)
+        AddonUser.objects.create(user=self.user, addon_id=5299)
+
+        doc = pq(self.client.get(self.url).content)('#my-addons')
+        items = doc('.item')
+        eq_(items.length, 2)
+        eq_(items('.install[data-addon=3615]').length, 1)
+        eq_(items('.install[data-addon=5299]').length, 1)
+
+    def test_my_reviews(self):
+        r = Review.objects.filter(reply_to=None)[0]
+        r.user_id = self.user.id
+        r.save()
+        cache.clear()
+        eq_(list(self.user.reviews), [r])
+
+        doc = pq(self.client.get(self.url).content)('#reviews')
+        eq_(doc('.item').length, 1)
+        eq_(doc('#review-218207').length, 1)
+
+    def test_my_collections(self):
+        doc = pq(self.client.get(self.url).content)('#my-collections')
+        ul = doc('#my-created')
+        eq_(ul.length, 1)
+
+        c = Collection.objects.all()
+        li = ul('li')
+        eq_(li.length, len(c))
+        eq_(li.length, 1)
+
+        a = li('a')
+        eq_(a.attr('href'), c[0].get_url_path())
+        eq_(a.text(), unicode(c[0].name))
 
 
 class TestReportAbuse(amo.tests.TestCase):

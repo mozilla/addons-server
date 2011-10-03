@@ -32,7 +32,6 @@ from amo.utils import send_mail
 from abuse.models import send_abuse_report
 from addons.models import Addon
 from addons.views import BaseFilter
-from addons.decorators import addon_view
 from access import acl
 from bandwagon.models import Collection
 from stats.models import Contribution
@@ -437,30 +436,27 @@ def profile(request, user_id):
 
 
 def impala_profile(request, user_id):
-    """user profile display page"""
     user = get_object_or_404(UserProfile, id=user_id)
 
-    # get user's own and favorite collections, if they allowed that
+    # Get user's own and favorite collections, if they allowed that.
     if user.display_collections:
         own_coll = (Collection.objects.listed().filter(author=user)
                     .order_by('-created'))[:10]
     else:
         own_coll = []
     if user.display_collections_fav:
-        fav_coll = (Collection.objects.listed()
-                    .filter(following__user=user)
+        fav_coll = (Collection.objects.listed().filter(following__user=user)
                     .order_by('-following__created'))[:10]
     else:
         fav_coll = []
 
     edit_any_user = acl.action_allowed(request, 'Admin', 'EditAnyUser')
-    own_profile = request.user.is_authenticated() and (
-        request.amo_user.id == user.id)
+    own_profile = (request.user.is_authenticated() and
+                   request.amo_user.id == user.id)
 
     if user.is_developer:
-        addons = amo.utils.paginate(
-                    request,
-                    user.addons_listed.order_by('-weekly_downloads'))
+        addons = amo.utils.paginate(request,
+            user.addons_listed.order_by('-weekly_downloads'))
     else:
         addons = []
 

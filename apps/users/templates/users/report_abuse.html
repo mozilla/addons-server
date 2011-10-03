@@ -19,7 +19,9 @@
       <li>
         <button type="submit">{{ _('Send Report') }}</button>
         {% if hide %}
-        or <button type="reset" class="link">{{ _('Cancel') }}</button>
+          {% trans %}
+            or <a href="#" class="cancel">Cancel</a>
+          {% endtrans %}
         {% endif %}
       </li>
     </ol>
