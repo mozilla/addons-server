@@ -1,0 +1,91 @@
+@import 'lib';
+
+#site-search-suggestions {
+    .transition-property(~'bottom, opacity, visibility');
+    .transition-duration(.3s);
+    font-size: 14px;
+    height: 0;
+    opacity: 0;
+    position: absolute;
+    right: -10px;
+    bottom: -5px;
+    left: -10px;
+    visibility: hidden;
+    z-index: 1000;
+    &.visible {
+        opacity: 1;
+        bottom: -15px;
+        visibility: visible;
+    }
+    .wrap {
+        background: #fff;
+        border: 1px solid #98B2C9;
+        .border-radius(4px);
+        .box-shadow(0 0 4px rgba(0, 0, 0, 0.2),
+                    0 -2px 0 rgba(152, 178, 201, 0.3) inset);
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        &:before {
+            background: url(../../img/impala/search-stem.png) 50% 100% no-repeat;
+            content: "";
+            display: block;
+            height: 20px;
+            position: absolute;
+            top: -20px;
+            left: 14px;
+            width: 40px;
+        }
+    }
+    ul {
+        margin: 0 16px 10px;
+    }
+    p {
+        margin: 10px 16px 0;
+    }
+    a {
+        background: no-repeat 3px 3px;
+        .background-size(20px auto);
+        display: block;
+        font: 13px/26px @sans-stack;
+        overflow: hidden;
+        padding: 0 4px 0 32px;
+        text-decoration: none;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        &.cat {
+            background-image: url(../../img/icons/search-cat.png);
+        }
+        &.app {
+            background-image: url(../../img/app-icons/16/sprite.png);
+            .background-size(18px auto);
+            background-position: 4px 5px;
+            min-height: 0 !important;
+        }
+        &.thunderbird {
+            background-position: 5px -32px;
+        }
+        &.seamonkey {
+            background-position: 4px -68px;
+        }
+        &.sunbird {
+            background-position: 4px -103px;
+        }
+    }
+    a:hover,
+    a.sel,
+    &.sel a.sel:hover {
+        background-color: #EBF4FE;
+        color: #447BC4;
+    }
+    &.sel a:hover {
+        background-color: transparent;
+        color: @link;
+    }
+}
+
+.html-rtl #site-search-suggestions .wrap:before {
+    left: auto;
+    right: 14px;
+}

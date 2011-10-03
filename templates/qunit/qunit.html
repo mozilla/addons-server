@@ -5,7 +5,7 @@
   {{ js('zamboni/devhub') }}
 {% endblock %}
 
-{% block fixtures %}  
+{% block fixtures %}
   {# The following HTML can be applied to #qunit-fixture in test setup #}
 
   <div id="exists">
@@ -152,6 +152,15 @@
         </div>
       </div>
       <button type="submit">Save Changes</button>
+    </form>
+  </div>
+
+  <div id="search-suggestions">
+    <form id="search" action="/en-us/firefox/search/">
+      <input id="search-q" type="text" name="q" required autocomplete="off" title=""
+             class="text placeholder" placeholder="search for add-ons" value="">
+      <input type="hidden" name="cat" value="all" id="id_cat">
+      <div id="site-search-suggestions" data-src="/askjeeves"></div>
     </form>
   </div>
 

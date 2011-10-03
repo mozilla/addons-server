@@ -470,6 +470,7 @@ MINIFY_BUNDLES = {
             'css/impala/collections.less',
             'css/impala/tooltips.less',
             'css/impala/search.less',
+            'css/impala/suggestions.less',
             'css/impala/colorpicker.less',
             'css/impala/personas.less',
             'css/impala/login.less',
@@ -600,6 +601,7 @@ MINIFY_BUNDLES = {
             'js/lib/jquery-ui/jquery.ui.sortable.js',
 
             'js/zamboni/truncation.js',
+            'js/impala/ajaxcache.js',
             'js/zamboni/global.js',
             'js/impala/global.js',
             'js/impala/ratingwidget.js',
@@ -644,6 +646,7 @@ MINIFY_BUNDLES = {
 
             # Search
             'js/impala/search.js',
+            'js/impala/suggestions.js',
 
             # Fix-up outgoing links
             'js/zamboni/outgoing_links.js',

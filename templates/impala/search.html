@@ -1,6 +1,6 @@
 {% set search_form = SimpleSearchForm(request, search_cat) %}
 <form id="search" action="{{ search_url|default(url('search.search')) }}">
-  <input id="search-q" type="text" name="q" required title=""
+  <input id="search-q" type="text" name="q" required autocomplete="off" title=""
          class="text {% if not search_form.q.data %}placeholder{% endif %}"
          placeholder="{{ search_form.placeholder() }}"
          value="{{ search_form.q.data or '' }}">
@@ -9,4 +9,8 @@
   {{ search_form.platform }}
   <button class="search-button" type="submit" title="{{ _('Search') }}"
          src="{{ media('img/zamboni/global/btn-search.png') }}"></button>
+  {% if waffle.switch('search-suggestions') %}
+    <div id="site-search-suggestions"
+         data-src="{{ url('search.suggestions') }}"></div>
+  {% endif %}
 </form>

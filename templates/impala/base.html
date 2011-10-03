@@ -196,6 +196,7 @@
     {# js #}
     {% block site_js %}
       <script src="{{ static(url('jsi18n')) }}"></script>
+      <script src="{{ url('wafflejs') }}"></script>
       {{ js('impala') }}
       <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
       <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>

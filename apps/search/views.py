@@ -16,7 +16,7 @@ import bandwagon.views
 import browse.views
 from addons.models import Addon, Category
 from amo.decorators import json_view
-from amo.helpers import urlparams
+from amo.helpers import locale_url, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import MenuItem, sorted_groupby
 from versions.compare import dict_from_int, version_int
@@ -318,6 +318,12 @@ class BaseAjaxSearch(object):
         return results
 
 
+class SuggestionsAjax(BaseAjaxSearch):
+    # No personas. No webapps.
+    types = [amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME,
+             amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_LPAPP]
+
+
 @json_view
 def ajax_search(request):
     """This is currently used only to return add-ons for populating a
@@ -326,6 +332,48 @@ def ajax_search(request):
 
     """
     return BaseAjaxSearch(request).items
+
+
+@json_view
+def ajax_search_suggestions(request):
+    # TODO(cvan): Tests will come when I know this is what fligtar wants.
+    results = []
+    q = request.GET.get('q')
+    if q and (q.isdigit() or (not q.isdigit() and len(q) > 2)):
+        q_ = q.lower()
+
+        # Applications.
+        for a in amo.APP_USAGE:
+            if q_ in unicode(a.pretty).lower():
+                results.append({
+                    'id': a.id,
+                    'label': _(u'{0} Add-ons').format(a.pretty),
+                    'url': locale_url(a.short),
+                    'cls': 'app ' + a.short
+                })
+
+        # Categories.
+        cats = (Category.objects
+                .filter(Q(application=request.APP.id) |
+                        Q(type=amo.ADDON_SEARCH))
+                .exclude(type=amo.ADDON_WEBAPP))
+        for c in cats:
+            if not c.name:
+                continue
+            name_ = unicode(c.name).lower()
+            word_matches = [w for w in q_.split() if name_ in w]
+            if q_ in name_ or word_matches:
+                results.append({
+                    'id': c.id,
+                    'label': unicode(c.name),
+                    'url': c.get_url_path(),
+                    'cls': 'cat'
+                })
+
+        # Add-ons.
+        results += SuggestionsAjax(request).items
+
+    return results
 
 
 def name_only_query(q):
