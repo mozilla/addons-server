@@ -282,14 +282,14 @@ def slugify(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-'):
     return new.lower() if lower else new
 
 
-def slug_validator(s, ok=SLUG_OK, lower=True, delimiter='-'):
+def slug_validator(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-'):
     """
     Raise an error if the string has any punctuation characters.
 
     Regexes don't work here because they won't check alnums in the right
     locale.
     """
-    if not (s and slugify(s, ok, lower, delimiter) == s):
+    if not (s and slugify(s, ok, lower, spaces, delimiter) == s):
         raise ValidationError(validate_slug.message,
                               code=validate_slug.code)
 
