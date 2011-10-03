@@ -73,14 +73,13 @@ class TestHelpers(test.TestCase):
         response = unicode(user_collection_list([c1, c2], heading))
 
         # heading
-        self.assertNotEqual(response.find(u'<h4>%s</h4' % heading), -1,
-                            'collection list heading missing')
+        eq_(pq(response)('h3').text(), heading)
+
         # both items
         # TODO reverse URLs
-        self.assert_(response.find(c1.get_url_path()) >= 0,
-                            'collection UUID link missing')
-        self.assert_(response.find(c2.get_url_path()) >= 0,
-                            'collection nickname link missing')
+        assert c1.get_url_path() in response, ('Collection UUID link missing.')
+        assert c2.get_url_path() in response, (
+            'Collection nickname link missing.')
 
         # empty collection, empty response
         response = unicode(user_collection_list([], heading))
