@@ -8,7 +8,10 @@
 
   <h3>{{ _('Step 2. Upload Your Web App') }}</h3>
   <p>
-  TODO(fligtar?): Copy for web-app text!
+  {% trans url="https://developer.mozilla.org/en/OpenWebApps/The_Manifest" %}
+  You're about to submit your web app for all the world to see. All you need to complete
+  this process is a working <a href="{{ url }}">manifest</a> for your app.
+  {% endtrans %}
   </p>
   <section id="upload-file">
     <div class="upload-status">
