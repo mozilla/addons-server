@@ -14,7 +14,6 @@ from django.conf import settings
 from django.core.management import call_command
 
 from celeryutils import task
-from packager.main import packager
 from statsd import statsd
 from tower import ugettext as _
 
@@ -267,6 +266,7 @@ def packager(data, feature_set, **kw):
             return
 
         with statsd.timer('devhub.packager'):
+            from packager.main import packager
             log.info('Starting packaging: %s' % dest)
             features = set([k for k, v in feature_set.items() if v])
             try:
