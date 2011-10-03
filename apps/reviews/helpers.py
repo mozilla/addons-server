@@ -3,6 +3,9 @@ import jinja2
 import jingo
 from tower import ugettext as _
 
+from reviews.models import ReviewFlag
+from .forms import ReviewFlagForm
+
 
 @jingo.register.filter
 def stars(num, large=False):
@@ -46,4 +49,6 @@ def mobile_reviews_link(context, addon):
 @jingo.register.inclusion_tag('reviews/report_review.html')
 @jinja2.contextfunction
 def report_review_popup(context):
-    return context
+    c = dict(context.items())
+    c.update(ReviewFlag=ReviewFlag, flag_form=ReviewFlagForm())
+    return c

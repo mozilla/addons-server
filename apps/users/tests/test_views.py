@@ -660,6 +660,10 @@ class TestProfile(UserViewBase):
         assert all(addons[i].weekly_downloads >= addons[i + 1].weekly_downloads
                    for i in xrange(len(addons) - 1))
 
+    def test_abuse_form(self):
+        r = self.client.get(reverse('i_users.profile', args=[9945]))
+        self.assertTemplateUsed(r, 'reviews/report_review.html')
+
 
 class TestReportAbuse(amo.tests.TestCase):
     fixtures = ['base/users']

@@ -23,11 +23,6 @@ log = commonware.log.getLogger('z.reviews')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 
 
-def flag_context():
-    return dict(ReviewFlag=ReviewFlag,
-                flag_form=forms.ReviewFlagForm())
-
-
 def send_mail(template, subject, emails, context, perm_setting):
     cxn = amo.utils.get_email_backend()
     template = loader.get_template(template)
@@ -45,7 +40,6 @@ def review_list(request, addon, review_id=None, user_id=None, template=None):
 
     ctx = {'addon': addon,
            'grouped_ratings': GroupedRating.get(addon.id)}
-    ctx.update(flag_context())
 
     ctx['form'] = forms.ReviewForm(None)
 
@@ -170,7 +164,6 @@ def reply(request, addon, review_id):
 
             return redirect('reviews.detail', addon.slug, review_id)
     ctx = dict(review=review, form=form, addon=addon)
-    ctx.update(flag_context())
     return jingo.render(request, 'reviews/reply.html', ctx)
 
 

@@ -45,6 +45,12 @@ class TestViews(ReviewTest):
         r = self.client.get(url)
         eq_(r.status_code, 200)
 
+    def test_abuse_form(self):
+        r = self.client.get(reverse('reviews.list', args=['a1865']))
+        self.assertTemplateUsed(r, 'reviews/report_review.html')
+        r = self.client.get(reverse('reviews.detail', args=['a1865', 218468]))
+        self.assertTemplateUsed(r, 'reviews/report_review.html')
+
     def test_list(self):
         r = self.client.get(reverse('reviews.list', args=['a1865']))
         eq_(r.status_code, 200)
