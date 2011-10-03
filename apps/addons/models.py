@@ -22,6 +22,7 @@ import amo.models
 import sharing.utils as sharing
 from amo.decorators import use_master
 from amo.fields import DecimalCharField
+from amo.helpers import absolutify
 from amo.utils import (send_mail, urlparams, sorted_groupby, JSONEncoder,
                        slugify, to_language)
 from amo.urlresolvers import get_outgoing_url, reverse
@@ -314,7 +315,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @transaction.commit_on_success
     def delete(self, msg):
-        from amo.helpers import absolutify
         delete_harder = self.highest_status or self.status
         if delete_harder:
             if self.guid:
@@ -391,6 +391,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # detail page.
         view = 'addons.detail_more' if more else 'addons.detail'
         return reverse(view, args=[self.slug])
+
+    def get_api_url(self):
+        # Used by Piston in output.
+        return absolutify(self.get_url_path())
 
     def meet_the_dev_url(self):
         return reverse('addons.meet', args=[self.slug])

@@ -372,6 +372,13 @@ class TestAddon(BaseOAuth):
         eq_(Addon.objects.get(slug='xpi-name').status, 0)
         eq_(Addon.objects.count(), 1)
 
+    def test_create_slug(self):
+        r = self.make_create_request(self.create_data)
+        content = json.loads(r.content)
+        eq_(content['slug'], 'xpi-name')
+        eq_(content['resource_uri'],
+            reverse('addons.detail', args=['xpi-name']))
+
     def test_delete(self):
         data = self.create_addon()
         id = data['id']
