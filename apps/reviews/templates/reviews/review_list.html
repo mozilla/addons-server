@@ -1,5 +1,4 @@
 {% extends "impala/base.html" %}
-{% from 'includes/forms.html' import pretty_field, required_note %}
 {% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
 
 {# L10n: {0} is an add-on name. #}
@@ -100,24 +99,7 @@
     {% endfor %}
     {{ reviews|impala_paginator }}
     {% endblock review_list %}
-    <div class="hidden">
-      <form method="post" id="review-edit-form" action="#"
-            class="review article review-form prettyform">
-        {{ csrf() }}
-        <fieldset>
-          <ul>
-            {{ pretty_field(form.title, _('Title')) }}
-            {{ pretty_field(form.rating, _('Rating')) }}
-            {{ pretty_field(form.body, _('Review')) }}
-          </ul>
-        </fieldset>
-        <footer>
-          {{ required_note() }}
-          <input type="submit" value="{{ _('Submit review') }}">
-           {{ _('or') }} <a href="#" id="review-edit-cancel">{{ _('Cancel') }}</a>
-        </footer>
-      </form>
-    </div>
+    {{ edit_review_form() }}
   </div>
   {{ report_review_popup() }}
 {% endblock content %}

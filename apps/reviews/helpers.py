@@ -4,7 +4,7 @@ import jingo
 from tower import ugettext as _
 
 from reviews.models import ReviewFlag
-from .forms import ReviewFlagForm
+from . import forms
 
 
 @jingo.register.filter
@@ -50,5 +50,13 @@ def mobile_reviews_link(context, addon):
 @jinja2.contextfunction
 def report_review_popup(context):
     c = dict(context.items())
-    c.update(ReviewFlag=ReviewFlag, flag_form=ReviewFlagForm())
+    c.update(ReviewFlag=ReviewFlag, flag_form=forms.ReviewFlagForm())
+    return c
+
+
+@jingo.register.inclusion_tag('reviews/edit_review.html')
+@jinja2.contextfunction
+def edit_review_form(context):
+    c = dict(context.items())
+    c.update(form=forms.ReviewForm())
     return c

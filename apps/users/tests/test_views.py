@@ -693,9 +693,13 @@ class TestImpalaProfile(amo.tests.TestCase):
         cache.clear()
         eq_(list(self.user.reviews), [r])
 
-        doc = pq(self.client.get(self.url).content)('#reviews')
+        r = self.client.get(self.url)
+        doc = pq(r.content)('#reviews')
         eq_(doc('.item').length, 1)
         eq_(doc('#review-218207').length, 1)
+
+        # Edit Review form should be present.
+        self.assertTemplateUsed(r, 'reviews/edit_review.html')
 
     def test_my_collections(self):
         doc = pq(self.client.get(self.url).content)('#my-collections')

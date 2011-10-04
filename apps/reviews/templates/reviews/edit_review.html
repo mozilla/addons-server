@@ -1,0 +1,19 @@
+{% from "includes/forms.html" import pretty_field, required_note %}
+<div class="hidden">
+  <form method="post" id="review-edit-form" action="#"
+        class="review article review-form prettyform">
+    {{ csrf() }}
+    <fieldset>
+      <ul>
+        {{ pretty_field(form.title, _('Title')) }}
+        {{ pretty_field(form.rating, _('Rating')) }}
+        {{ pretty_field(form.body, _('Review')) }}
+      </ul>
+    </fieldset>
+    <footer>
+      {{ required_note() }}
+      <input type="submit" value="{{ _('Submit review') }}">
+       {{ _('or') }} <a href="#" id="review-edit-cancel">{{ _('Cancel') }}</a>
+    </footer>
+  </form>
+</div>

@@ -83,6 +83,7 @@
           {% include "reviews/review.html" %}
         {% endwith %}
       {% endfor %}
+      {{ edit_review_form() }}
     </div>
   {% else %}
     <p class="no-reviews">{{ _('No add-on reviews yet.') }}</p>

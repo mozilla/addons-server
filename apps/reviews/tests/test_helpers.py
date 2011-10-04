@@ -6,6 +6,7 @@ from pyquery import PyQuery as pq
 from addons.models import Addon
 from amo.urlresolvers import reverse
 from reviews.models import ReviewFlag
+from reviews.forms import ReviewForm
 
 
 def setup():
@@ -87,3 +88,11 @@ def test_report_review_popup():
     for flag, text in ReviewFlag.FLAGS:
         eq_(doc('li a[href$=%s]' % flag).text(), text)
     eq_(doc('form input[name=note]').length, 1)
+
+
+def test_edit_review_form():
+    doc = pq(render('{{ edit_review_form() }}'))
+    eq_(doc('#review-edit-form').length, 1)
+    eq_(doc('p.req').length, 1)
+    for name in ReviewForm().fields.keys():
+        eq_(doc('[name=%s]' % name).length, 1)
