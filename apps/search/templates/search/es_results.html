@@ -1,5 +1,11 @@
 {% extends "impala/base.html" %}
 
+{% block search_form %}
+{% with search_url = url('search.es_search') %}
+  {% include 'impala/search.html' %}
+{% endwith %}
+{% endblock %}
+
 {% if query.q %}
   {# L10n: {0} is a search term, such as Firebug. #}
   {% set title = _('{0} :: Search')|f(query.q) %}
