@@ -98,8 +98,8 @@ class AddonPurchase(amo.models.ModelBase):
                        iss=settings.SITE_URL,
                        nbf=time.time(),
                        iat=time.time(),
-                       detail='',  # Not implemented yet
-                       #  Slugs can be edited, so lets us the pk.
+                       detail=reverse('users.purchases.receipt',
+                                      args=[self.addon.pk]),
                        verify=reverse('api.market.verify',
                                       args=[self.addon.pk]))
         self.receipt = jwt.encode(receipt, get_key())
