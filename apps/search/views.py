@@ -7,6 +7,7 @@ from django.utils.encoding import smart_str
 
 import commonware.log
 import jingo
+import waffle
 from tower import ugettext as _
 from mobility.decorators import mobile_template
 
@@ -16,6 +17,7 @@ import browse.views
 from addons.models import Addon, Category
 from amo.decorators import json_view
 from amo.helpers import urlparams
+from amo.urlresolvers import reverse
 from amo.utils import MenuItem, sorted_groupby
 from versions.compare import dict_from_int, version_int
 from webapps.models import Webapp
@@ -422,6 +424,13 @@ def es_search(request, tag_name=None, template=None):
 
 @mobile_template('search/{mobile/}results.html')
 def search(request, tag_name=None, template=None):
+    # Redirect to search/es if this isn't mobile or a /tag page and waffle
+    # gives us the thumbs up.
+    if (not request.MOBILE and not tag_name
+        and waffle.sample_is_active('elastic-search')):
+        url = reverse('search.es_search') + '?' + request.GET.urlencode()
+        return redirect(url)
+
     # If the form is invalid we still want to have a query.
     query = request.REQUEST.get('q', '')
 
