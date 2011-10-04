@@ -194,6 +194,8 @@ class AddonPremium(amo.models.ModelBase):
         Have we got a valid permissions token by ping paypal. If you've got
         'should_ignore_paypal', then it will just happily return True.
         """
-        token = self.paypal_permissions_token
-        return bool(paypal.should_ignore_paypal() or
-                    paypal.check_refund_permission(token))
+        if paypal.should_ignore_paypal():
+            return True
+        if not self.paypal_permissions_token:
+            return False
+        return paypal.check_refund_permission(self.paypal_permissions_token)
