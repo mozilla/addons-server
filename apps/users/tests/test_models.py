@@ -230,3 +230,14 @@ class TestBlacklistedPassword(amo.tests.TestCase):
         BlacklistedPassword.objects.create(password='password')
         assert BlacklistedPassword.blocked('password')
         assert not BlacklistedPassword.blocked('passw0rd')
+
+
+class TestUserHistory(amo.tests.TestCase):
+
+    def test_user_history(self):
+        user = UserProfile.objects.create(email='foo@bar.com')
+        eq_(user.history.count(), 0)
+        user.update(email='foopy@barby.com')
+        eq_(user.history.count(), 1)
+        user.update(email='foopy@barby.com')
+        eq_(user.history.count(), 1)

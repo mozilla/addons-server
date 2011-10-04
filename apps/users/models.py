@@ -77,7 +77,7 @@ class UserEmailField(forms.EmailField):
                 'data-src': lazy_reverse('users.ajax')}
 
 
-class UserProfile(amo.models.ModelBase):
+class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
     # nickname, firstname, & lastname are deprecated.
     nickname = models.CharField(max_length=255, default='', null=True,
                                 blank=True)
@@ -477,3 +477,21 @@ class BlacklistedPassword(amo.models.ModelBase):
     @classmethod
     def blocked(cls, password):
         return cls.objects.filter(password=password)
+
+
+class UserHistory(amo.models.ModelBase):
+    email = models.EmailField(unique=True, null=True)
+    user = models.ForeignKey(UserProfile, related_name='history')
+
+    class Meta:
+        db_table = 'users_history'
+        ordering = ('-created',)
+
+
+@UserProfile.on_change
+def watch_email(old_attr={}, new_attr={}, instance=None,
+                sender=None, **kw):
+    new_email, old_email = new_attr.get('email'), old_attr.get('email')
+    if old_email and new_email != old_email:
+        log.debug('Creating user history for user: %s' % instance.pk)
+        UserHistory.objects.create(email=old_email, user_id=instance.pk)
