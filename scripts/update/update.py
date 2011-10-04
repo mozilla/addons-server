@@ -46,6 +46,13 @@ def update_code(ctx, ref='origin/master', vendor_ref='origin/master'):
         if vendor_ref:
             with ctx.lcd("vendor"):
                 git_update(ctx, vendor_ref)
+                
+
+@task
+def update_remora(ctx):
+    with ctx.lcd(settings.REMORA_DIR):
+        ctx.local('svn revert -R .')
+        ctx.local('svn up')
 
 
 @task
