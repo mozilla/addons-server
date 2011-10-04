@@ -15,11 +15,13 @@ $(document).ready(function() {
         $pkgr.find('.app input:checkbox').trigger('change');
 
         // Upon keypress, generates a package name slug from add-on name.
-        function pkg_slugify() {
+        $pkgr.delegate('#id_name', 'keyup blur', function() {
             var slug = makeslug($('#id_name').val(), '_');
             $('#id_package_name').val(slug);
-        }
-        $pkgr.delegate('#id_name', 'keyup blur', pkg_slugify);
+        }).delegate('#id_package_name', 'blur', function() {
+            var $this = $(this);
+            $this.val(makeslug($this.val(), '_'));
+        });
     }
 
     if ($('#packager-download').length) {
