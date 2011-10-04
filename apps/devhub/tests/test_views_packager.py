@@ -1,6 +1,9 @@
 import json
 import os
 
+from django.conf import settings
+
+from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -9,6 +12,7 @@ from amo.tests import assert_required, formset, initial
 from amo.urlresolvers import reverse
 from addons.models import BlacklistedSlug
 from addons.utils import ReverseNameLookup
+from applications.models import AppVersion
 from devhub.views import packager_path
 
 
@@ -19,6 +23,7 @@ class TestPackager(amo.tests.TestCase):
     def setUp(self):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
+
         self.url = reverse('devhub.package_addon')
 
         ctx = self.client.get(self.url).context['compat_forms']
@@ -49,7 +54,7 @@ class TestPackager(amo.tests.TestCase):
         """Ensure that the initial forms for each application are present."""
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        rows = pq(r.content)('.supported-apps li.row')
+        rows = pq(r.content)('#supported-apps li.row')
         classes = [a.short for a in amo.APP_USAGE]
         eq_(rows.length, len(classes))
         for app_class, label in zip(classes, rows('label.app')):
@@ -180,6 +185,29 @@ class TestPackager(amo.tests.TestCase):
         r = self.client.post(self.url, self._form_data())
         eq_(r.context['compat_forms'].errors[0]['__all__'][0],
             'Min version must be less than Max version.')
+
+    @patch.object(settings, 'FIREFOX_MINVER', '3.6')
+    def test_default_firefox_minver(self):
+        eq_(len(AppVersion.objects.filter(version='3.6')), 1)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        form = r.context['compat_forms'].forms[0]
+        eq_(form.fields['min_ver'].initial.version, '3.6')
+
+    @patch.object(settings, 'FIREFOX_MINVER', '999.0')
+    def test_no_default_firefox_minver(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        form = r.context['compat_forms'].forms[0]
+        eq_(form.fields['min_ver'].initial, None)
+
+    @patch.object(settings, 'FIREFOX_MINVER', '3.6')
+    def test_no_default_firefox_minver_on_post(self):
+        self.compat_form['min_ver'] = '114'
+        r = self.client.post(self.url, self._form_data())
+        form = r.context['compat_forms'].forms[0]
+        assert form.fields['min_ver'].initial.version != '3.6', (
+            'The Firefox minVer default should not be set on POST.')
 
 
 class TestPackagerDownload(amo.tests.TestCase):

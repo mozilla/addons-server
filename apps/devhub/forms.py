@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 import path
 import re
 import socket
@@ -105,7 +106,7 @@ class LicenseRadioInput(forms.widgets.RadioInput):
         super(LicenseRadioInput, self).__init__(name, value, attrs, choice,
                                                 index)
         license = choice[1]  # Choice is a tuple (object.id, object).
-        link = '<a class="xx extra" href="%s" target="_blank">%s</a>'
+        link = u'<a class="xx extra" href="%s" target="_blank">%s</a>'
         if hasattr(license, 'url'):
             details = link % (license.url, _('Details'))
             self.choice_label = mark_safe(self.choice_label + details)
@@ -222,7 +223,7 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
 
     def _has_field(self, name):
         # If there's a eula in any language, this addon has a eula.
-        n = getattr(self.addon, '%s_id' % name)
+        n = getattr(self.addon, u'%s_id' % name)
         return any(map(bool, Translation.objects.filter(id=n)))
 
     class Meta:
@@ -481,7 +482,7 @@ class NewVersionForm(NewAddonForm):
             xpi = parse_addon(self.cleaned_data['upload'], self.addon)
             if self.addon.versions.filter(version=xpi['version']):
                 raise forms.ValidationError(
-                    _('Version %s already exists') % xpi['version'])
+                    _(u'Version %s already exists') % xpi['version'])
             self._clean_all_platforms()
         return self.cleaned_data
 
@@ -783,6 +784,14 @@ class PackagerCompatForm(forms.Form):
         # Don't allow version ranges as the minimum version.
         self.fields['min_ver'].queryset = qs.filter(~Q(version__contains='*'))
         self.fields['max_ver'].queryset = qs.all()
+
+        # Unreasonably hardcode a reasonable default Firefox minVersion.
+        if self.app == amo.FIREFOX and not self.data.get('min_ver'):
+            try:
+                self.fields['min_ver'].initial = qs.filter(
+                    version=settings.FIREFOX_MINVER)[0]
+            except (IndexError, AttributeError):
+                pass
 
     def clean_min_ver(self):
         if self.cleaned_data['enabled'] and not self.cleaned_data['min_ver']:

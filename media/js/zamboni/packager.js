@@ -2,8 +2,18 @@ $(document).ready(function() {
 
     var $pkgr = $('#packager');
     if ($pkgr.length) {
+        // Upon keypress, generates a package name slug from add-on name.
+        $pkgr.delegate('#id_name', 'keyup blur', function() {
+            var slug = makeslug($('#id_name').val(), '_');
+            $('#id_package_name').val(slug);
+        }).delegate('#id_package_name', 'blur', function() {
+            var $this = $(this);
+            $this.val(makeslug($this.val(), '_'));
+        });
+
         // Adds a 'selected' class upon clicking an application checkbox.
-        $pkgr.delegate('.app input:checkbox', 'change', function() {
+        var $supported = $('#supported-apps');
+        $supported.delegate('input:checkbox', 'change', function() {
             var $this = $(this),
                 $li = $this.closest('li');
             if ($this.is(':checked')) {
@@ -12,15 +22,11 @@ $(document).ready(function() {
                 $li.removeClass('selected');
             }
         });
-        $pkgr.find('.app input:checkbox').trigger('change');
+        $supported.find('input:checkbox').trigger('change');
 
-        // Upon keypress, generates a package name slug from add-on name.
-        $pkgr.delegate('#id_name', 'keyup blur', function() {
-            var slug = makeslug($('#id_name').val(), '_');
-            $('#id_package_name').val(slug);
-        }).delegate('#id_package_name', 'blur', function() {
-            var $this = $(this);
-            $this.val(makeslug($this.val(), '_'));
+        $supported.delegate('select', 'change', function() {
+            var $checkbox = $(this).closest('li.row').find('input:checkbox');
+            $checkbox.attr('checked', true).trigger('change');
         });
     }
 
