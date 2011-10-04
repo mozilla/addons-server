@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 import base64
 import json
 import logging
@@ -260,9 +261,9 @@ def packager(data, feature_set, **kw):
     from devhub.views import packager_path
     dest = packager_path(data['slug'])
 
-    with guard('devhub.packager.%s' % dest) as locked:
+    with guard(u'devhub.packager.%s' % dest) as locked:
         if locked:
-            log.error('Packaging in progress: %s' % dest)
+            log.error(u'Packaging in progress: %s' % dest)
             return
 
         with statsd.timer('devhub.packager'):
@@ -272,9 +273,10 @@ def packager(data, feature_set, **kw):
             try:
                 packager(data, dest, features)
             except Exception, err:
-                log.error('Failed to package add-on: %s' % err)
+                log.error(u'Failed to package add-on: %s' % err)
+                raise
             if os.path.exists(dest):
-                log.info('Package saved: %s' % dest)
+                log.info(u'Package saved: %s' % dest)
 
 
 def failed_validation(*messages):
