@@ -126,6 +126,11 @@ class TestPackager(amo.tests.TestCase):
                              self._form_data({'package_name': 'addon-name'}))
         self.assertFormError(r, 'basic_form', 'package_name', error)
 
+    def test_package_name_uppercase(self):
+        r = self.client.post(self.url,
+                             self._form_data({'package_name': 'ADDON_NAME'}))
+        eq_(r.context['basic_form'].errors, {})
+
     def test_package_name_taken(self):
         r = self.client.post(self.url,
                              self._form_data({'package_name': 'a3615'}))
