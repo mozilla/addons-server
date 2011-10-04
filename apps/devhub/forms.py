@@ -730,7 +730,7 @@ class PackagerBasicForm(forms.Form):
 
     def clean_package_name(self):
         slug = self.cleaned_data['package_name']
-        if slugify(slug, ok='_', lower='False', delimiter='_') != slug:
+        if slugify(slug, ok='_', lower=False, delimiter='_') != slug:
             raise forms.ValidationError(
                 _('Enter a valid package name consisting of letters, numbers, '
                   'or underscores.'))
