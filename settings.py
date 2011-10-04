@@ -1203,7 +1203,8 @@ WATERMARK_REUSE_SECONDS = 1800
 # by a cron. Setting this far apart from the reuse flag so that we
 # shouldn't have an overlap.
 WATERMARK_CLEANUP_SECONDS = 3600
-
+# Used in providing a hash for the download of the addon.
+WATERMARK_SECRET_KEY = ''
 
 CSRF_FAILURE_VIEW = 'amo.views.csrf_failure'
 

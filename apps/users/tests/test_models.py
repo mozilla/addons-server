@@ -19,6 +19,7 @@ from reviews.models import Review
 from users.models import (UserProfile, get_hexdigest, BlacklistedEmailDomain,
                           BlacklistedPassword, BlacklistedUsername,
                           UserEmailField)
+from users.utils import find_users
 
 
 class TestUserProfile(amo.tests.TestCase):
@@ -241,3 +242,17 @@ class TestUserHistory(amo.tests.TestCase):
         eq_(user.history.count(), 1)
         user.update(email='foopy@barby.com')
         eq_(user.history.count(), 1)
+
+    def test_user_find(self):
+        user = UserProfile.objects.create(email='luke@jedi.com')
+        user.update(email='dark@sith.com')
+        eq_([user], list(find_users('luke@jedi.com')))
+        eq_([user], list(find_users('dark@sith.com')))
+
+    def test_user_find_multiple(self):
+        user_1 = UserProfile.objects.create(username='user_1',
+                                            email='luke@jedi.com')
+        user_1.update(email='dark@sith.com')
+        user_2 = UserProfile.objects.create(username='user_2',
+                                            email='luke@jedi.com')
+        eq_([user_1, user_2], list(find_users('luke@jedi.com')))

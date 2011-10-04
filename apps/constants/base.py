@@ -323,3 +323,4 @@ CONTRIB_TYPE_DEFAULT = CONTRIB_VOLUNTARY
 
 # Used to watermark addons install.rdf and update.
 WATERMARK_KEY = 'purchaser'
+WATERMARK_KEY_HASH = '%s-hash' % WATERMARK_KEY

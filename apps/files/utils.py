@@ -18,6 +18,7 @@ from zipfile import BadZipfile
 
 from django import forms
 from django.conf import settings
+from django.utils.http import urlencode
 from django.utils.translation import trans_real as translation
 
 import rdflib
@@ -530,7 +531,7 @@ class RDF(object):
         self.dom.writexml(buf, encoding="utf-8")
         return buf.getvalue().encode('utf-8')
 
-    def set(self, value):
+    def set(self, user, hsh):
         parent = (self.dom.documentElement
                           .getElementsByTagName('Description')[0])
         existing = parent.getElementsByTagName('em:updateURL')
@@ -539,7 +540,9 @@ class RDF(object):
             parent.removeChild(current)
             current.unlink()
 
-        value = u'%s&%s=%s' % (default, amo.WATERMARK_KEY, value)
+        qs = urlencode({amo.WATERMARK_KEY: user,
+                        amo.WATERMARK_KEY_HASH: hsh})
+        value = u'%s&%s' % (default, qs)
         elem = self.dom.createElement('em:updateURL')
         elem.appendChild(self.dom.createTextNode(value))
         parent.appendChild(elem)

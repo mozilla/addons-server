@@ -1710,3 +1710,44 @@ class TestAddonPurchase(amo.tests.TestCase):
     def test_anonymous(self):
         assert not self.addon.has_purchased(None)
         assert not self.addon.has_purchased(AnonymousUser)
+
+
+class TestWatermarkHash(amo.tests.TestCase):
+    fixtures = ['base/addon_3615', 'base/users']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(pk=3615)
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
+
+    def test_watermark_change_email(self):
+        hsh = self.addon.get_watermark_hash(self.user)
+        self.user.update(email='foo@bar.com')
+        eq_(hsh, self.addon.get_watermark_hash(self.user))
+
+    def test_check_hash(self):
+        hsh = self.addon.get_watermark_hash(self.user)
+        eq_(self.user, self.addon.get_user_from_hash(self.user.email, hsh))
+
+    def test_check_hash_messed(self):
+        hsh = self.addon.get_watermark_hash(self.user)
+        hsh = hsh + 'asd'
+        eq_(None, self.addon.get_user_from_hash(self.user.email, hsh))
+
+    def test_check_user_change(self):
+        self.user.update(email='foo@bar.com')
+        hsh = self.addon.get_watermark_hash(self.user)
+        eq_(self.user,
+            self.addon.get_user_from_hash('regular@mozilla.com', hsh))
+
+    def test_check_user_multiple(self):
+        hsh = self.addon.get_watermark_hash(self.user)
+        self.user.update(email='foo@bar.com')
+        UserProfile.objects.create(email='regular@mozilla.com')
+        eq_(self.user,
+            self.addon.get_user_from_hash('regular@mozilla.com', hsh))
+
+    def test_cant_takeover(self):
+        hsh = self.addon.get_watermark_hash(self.user)
+        self.user.delete()
+        UserProfile.objects.create(email='regular@mozilla.com')
+        eq_(None, self.addon.get_user_from_hash('regular@mozilla.com', hsh))

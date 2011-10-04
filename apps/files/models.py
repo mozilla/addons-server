@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 import hashlib
+import hmac
 import json
 import os
 import posixpath
@@ -369,7 +370,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         try:
             install = inzip.extract_path('install.rdf')
             data = RDF(install)
-            data.set(user.email)
+            data.set(user.email, self.version.addon.get_watermark_hash(user))
         except Exception, e:
             log.error('Could not alter install.rdf in file: %s for %s, %s'
                       % (self.pk, user.pk, e))

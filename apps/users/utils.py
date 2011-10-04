@@ -3,6 +3,7 @@ import hashlib
 import time
 
 from django.conf import settings
+from django.db.models import Q
 
 import commonware.log
 
@@ -90,3 +91,12 @@ def get_task_user():
     cron jobs or long running tasks.
     """
     return UserProfile.objects.get(pk=settings.TASK_USER_ID)
+
+
+def find_users(email):
+    """
+    Given an email find all the possible users, by looking in
+    users and in their history.
+    """
+    return UserProfile.objects.filter(Q(email=email) |
+                                      Q(history__email=email))

@@ -7,11 +7,13 @@ import shutil
 import stat
 import tempfile
 import time
+import urllib
 from xml.parsers import expat
 import zipfile
 
 from django import forms
 from django.conf import settings
+from django.utils.encoding import smart_str
 
 import mock
 import path
@@ -871,7 +873,7 @@ class TestWatermark(amo.tests.TestCase, amo.tests.AMOPaths):
     def test_install_rdf(self):
         self.user.update(email='a@a.com')
         data = self.file.watermark_install_rdf(self.user)
-        eq_(self.user.email in str(data), True)
+        assert urllib.quote_plus(self.user.email) in str(data)
 
     @mock.patch('files.utils.SafeUnzip.extract_path')
     def test_install_rdf_no_data(self, extract_path):
@@ -884,19 +886,25 @@ class TestWatermark(amo.tests.TestCase, amo.tests.AMOPaths):
         data = self.file.watermark_install_rdf(self.user)
         self.file.write_watermarked_addon(self.dest, data)
         assert os.path.exists(self.dest)
-        eq_(self.user.email in
-            self.get_updateURL(self.get_rdf(self.dest)), True)
+        encoded = urllib.quote_plus(self.user.email)
+        assert encoded in self.get_updateURL(self.get_rdf(self.dest))
 
     def test_watermark(self):
         tmp = self.file.watermark(self.user)
-        eq_(self.user.email in
-            self.get_updateURL(self.get_rdf(tmp)), True)
+        encoded = urllib.quote_plus(self.user.email)
+        assert encoded in self.get_updateURL(self.get_rdf(tmp))
+
+    def test_watermark_hash(self):
+        tmp = self.file.watermark(self.user)
+        wm = self.file.version.addon.get_watermark_hash(self.user)
+        hsh = '&%s=%s' % (amo.WATERMARK_KEY_HASH, wm)
+        assert hsh in self.get_updateURL(self.get_rdf(tmp))
 
     def test_watermark_unicode(self):
         self.user.email = u'Strauß@Magyarország.com'
         tmp = self.file.watermark(self.user)
-        eq_(self.user.email in
-            self.get_updateURL(self.get_rdf(tmp)), True)
+        encoded = urllib.quote_plus(smart_str(self.user.email))
+        assert encoded in self.get_updateURL(self.get_rdf(tmp))
 
     def test_watermark_no_description(self):
         self.assertRaises(IndexError, self.get_extract, """
@@ -913,7 +921,9 @@ class TestWatermark(amo.tests.TestCase, amo.tests.AMOPaths):
     <em:updateURL>http://my.other.site/</em:updateURL>
   </Description>
 </RDF>""")
-        eq_(self.user.email in self.get_updateURL(self.get_rdf(tmp)), True)
+
+        encoded = urllib.quote_plus(smart_str(self.user.email))
+        assert encoded in self.get_updateURL(self.get_rdf(tmp))
 
     def test_watermark_overwrites_multiple(self):
         tmp = self.get_extract("""
@@ -925,7 +935,8 @@ class TestWatermark(amo.tests.TestCase, amo.tests.AMOPaths):
     <em:updateURL>http://my.other.other.site/</em:updateURL>
   </Description>
 </RDF>""")
-        eq_(self.user.email in self.get_updateURL(self.get_rdf(tmp)), True)
+        encoded = urllib.quote_plus(smart_str(self.user.email))
+        assert encoded in self.get_updateURL(self.get_rdf(tmp))
         # one close and one open
         eq_(str(self.get_rdf(tmp)).count('updateURL'), 2)
 
