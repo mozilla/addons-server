@@ -191,22 +191,23 @@ class TestPackager(amo.tests.TestCase):
         eq_(len(AppVersion.objects.filter(version='3.6')), 1)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        form = r.context['compat_forms'].forms[0]
-        eq_(form.fields['min_ver'].initial.version, '3.6')
+        s = pq(r.content)('select#id_form-0-min_ver option[selected]').text()
+        eq_(s, '3.6')
 
     @patch.object(settings, 'FIREFOX_MINVER', '999.0')
     def test_no_default_firefox_minver(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        form = r.context['compat_forms'].forms[0]
-        eq_(form.fields['min_ver'].initial, None)
+        s = pq(r.content)('select#id_form-0-min_ver option[selected]').text()
+        assert s != '3.6', (
+            'The Firefox minVer default should not be set on POST.')
 
     @patch.object(settings, 'FIREFOX_MINVER', '3.6')
     def test_no_default_firefox_minver_on_post(self):
         self.compat_form['min_ver'] = '114'
         r = self.client.post(self.url, self._form_data())
-        form = r.context['compat_forms'].forms[0]
-        assert form.fields['min_ver'].initial.version != '3.6', (
+        s = pq(r.content)('select#id_form-0-min_ver option[selected]').text()
+        assert s != '3.6', (
             'The Firefox minVer default should not be set on POST.')
 
 
