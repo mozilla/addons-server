@@ -676,8 +676,9 @@ class TestImpalaProfile(amo.tests.TestCase):
         AddonUser.objects.create(user=self.user, addon_id=3615)
         AddonUser.objects.create(user=self.user, addon_id=5299)
 
-        doc = pq(self.client.get(self.url).content)('#my-addons')
-        items = doc('.item')
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('.num-addons a[href="#my-addons"]').length, 1)
+        items = doc('#my-addons .item')
         eq_(items.length, 2)
         eq_(items('.install[data-addon=3615]').length, 1)
         eq_(items('.install[data-addon=5299]').length, 1)

@@ -36,13 +36,13 @@
     </tr>
     <tr>
       <th>{{ _('Number of Add-ons developed') }}</th>
-      <td>
-        <a href="{{ profile.get_url_path() }}">
+      <td class="num-addons">
+        <a href="{{ '#my-addons' if is_profile else profile.get_url_path() }}">
           {% trans num=profile.addons_listed|length %}
             {{ num }} Add-on
           {% pluralize %}
             {{ num }} Add-ons
-          {% endtrans %}
+          {% endtrans -%}
         </a>
       </td>
     </tr>

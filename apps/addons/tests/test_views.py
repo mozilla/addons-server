@@ -96,10 +96,13 @@ class TestPromobox(amo.tests.TestCase):
 class TestContributeInstalled(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_592']
 
+    def setUp(self):
+        self.addon = Addon.objects.get(pk=592)
+        self.url = reverse('addons.installed', args=['a592'])
+
     def test_no_header_block(self):
         # bug 565493, Port post-install contributions page
-        response = self.client.get(reverse('addons.installed', args=['a592']),
-                                   follow=True)
+        response = self.client.get(self.url, follow=True)
         doc = pq(response.content)
         header = doc('#header')
         aux_header = doc('#aux-nav')
@@ -107,8 +110,15 @@ class TestContributeInstalled(amo.tests.TestCase):
         eq_(header, [])
         eq_(aux_header, [])
 
+    def test_num_addons_link(self):
+        r = self.client.get(self.url)
+        a = pq(r.content)('.num-addons a')
+        eq_(a.length, 1)
+        author = self.addon.authors.all()[0]
+        eq_(a.attr('href'), reverse('users.profile', args=[author.id]))
+
     def test_title(self):
-        r = self.client.get(reverse('addons.installed', args=['a592']))
+        r = self.client.get(self.url)
         title = pq(r.content)('title').text()
         eq_(title.startswith('Thank you for installing Gmail S/MIME'), True)
 
