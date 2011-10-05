@@ -744,7 +744,6 @@ class TestImpalaProfile(amo.tests.TestCase):
 
     def test_no_self_abuse(self):
         self.client.login(username='clouserw@gmail.com', password='password')
-        abuse_url = reverse('users.abuse', args=[self.user.id])
         r = self.client.get(self.url)
         doc = pq(r.content)
         eq_(doc('#profile-actions #report-user-abuse').length, 0)

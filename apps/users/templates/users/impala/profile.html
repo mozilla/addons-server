@@ -66,7 +66,7 @@
     <h2>{{ _('My Collections') }}</h2>
     {% if own_coll or fav_coll %}
       {{ user_collection_list(heading=_('Followed by Me'), collections=fav_coll,
-                              id='my-favorite') }}
+                              link=url('collections.following'), id='my-favorite') }}
       {{ user_collection_list(heading=_('Created by Me'), collections=own_coll,
                               id='my-created',
                               link=url('collections.user', profile.username)) }}
