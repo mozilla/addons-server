@@ -54,8 +54,8 @@
       <li><a href="#update">Update</a></li>
       <li><a href="#homepage">Homepage</a></li>
       <li><a href="#search">Search</a></li>
-      <li><a href="#es-timer">ES Request Time</a></li>
-      <li><a href="#es-took">ES Internal Timer</a></li>
+      <li><a href="#elastic-request">ES Request Time</a></li>
+      <li><a href="#elastic-internal">ES Internal Timer</a></li>
       <li><a href="#marketplace">Marketplace</a></li>
       <li><a href="#auth">Authenticated Responses</a></li>
     </ul>
@@ -110,12 +110,12 @@
       target=scale(stats.timers.{{ site }}.view.search.views.search.GET.count,0.1)&target=stats.timers.{{ site }}.view.search.views.search.GET.lower&target=stats.timers.{{ site }}.view.search.views.search.GET.mean&target=stats.timers.{{ site }}.view.search.views.search.GET.upper_90
     {% endcall %}
 
-    <h2 id="es-timer">ES Request Time</h2>
+    <h2 id="elastic-request">ES Request Time</h2>
     {% call grid() %}
       target=scale(stats.timers.{{ site }}.search.es.timer.count%2C0.1)&target=stats.timers.{{ site }}.search.es.timer.lower&target=stats.timers.{{ site }}.search.es.timer.mean&target=stats.timers.{{ site }}.search.es.timer.upper_90
     {% endcall %}
 
-    <h2 id="es-took">ES Internal Timer</h2>
+    <h2 id="elastic-internal">ES Internal Timer</h2>
     {% call grid() %}
       target=scale(stats.timers.{{ site }}.search.es.took.count%2C0.1)&target=stats.timers.{{ site }}.search.es.took.lower&target=stats.timers.{{ site }}.search.es.took.mean&target=stats.timers.{{ site }}.search.es.took.upper_90
     {% endcall %}
