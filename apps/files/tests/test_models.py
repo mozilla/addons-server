@@ -20,6 +20,7 @@ import waffle
 
 import amo.tests
 from amo.urlresolvers import reverse
+import amo
 import amo.utils
 import devhub.signals
 from addons.models import Addon
@@ -142,6 +143,26 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         f.status = amo.STATUS_PUBLIC
         f.save()
         assert unhide_mock.called
+
+    @mock.patch('files.models.File.copy_to_mirror')
+    def test_copy_to_mirror_on_status_change(self, copy_mock):
+
+        assert amo.STATUS_UNREVIEWED not in amo.MIRROR_STATUSES
+
+        f = File.objects.get(pk=67442)
+        f.status = amo.STATUS_UNREVIEWED
+        f.save()
+        assert not copy_mock.called
+        copy_mock.reset_mock()
+
+        for status in amo.MIRROR_STATUSES:
+            f = File.objects.get(pk=67442)
+            f.status = status
+            f.save()
+            assert copy_mock.called, "Copy not called"
+            f.status = amo.STATUS_UNREVIEWED
+            f.save()
+            copy_mock.reset_mock()
 
     def test_latest_url(self):
         # With platform.

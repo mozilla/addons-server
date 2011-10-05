@@ -2,6 +2,7 @@ from django.conf.urls.defaults import patterns, url, include
 from django.contrib import admin
 from django.shortcuts import redirect
 
+from addons.urls import ADDON_ID
 from amo.urlresolvers import reverse
 from . import views
 
@@ -10,6 +11,8 @@ urlpatterns = patterns('',
     # AMO stuff.
     url('^$', views.index, name='zadmin.index'),
     url('^models$', lambda r: redirect('admin:index'), name='zadmin.home'),
+    url('^addon/manage/%s/$' % ADDON_ID,
+        views.addon_manage, name='zadmin.addon_manage'),
     url('^env$', views.env, name='amo.env'),
     url('^flagged', views.flagged, name='zadmin.flagged'),
     url('^hera', views.hera, name='zadmin.hera'),

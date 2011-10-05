@@ -27,7 +27,7 @@ from files.models import Approval, File
 from users.models import UserProfile
 from users.utils import get_task_user
 from versions.models import ApplicationsVersions, Version
-from zadmin.forms import NotifyForm
+from zadmin import forms
 from zadmin.models import ValidationJob, ValidationResult, EmailPreviewTopic
 from zadmin.views import completed_versions_dirty, find_files
 from zadmin import tasks
@@ -570,7 +570,8 @@ class TestBulkNotify(BulkValidationTest):
     def test_notify_template(self):
         for text, res in (['some sample text', True],
                           ['{{ ADDON_NAME }}{% if %}', False]):
-            eq_(NotifyForm({'text': text, 'subject': '...'}).is_valid(), res)
+            eq_(forms.NotifyForm({'text': text, 'subject': '...'}).is_valid(),
+                res)
 
     def test_notify_syntax(self):
         for text, res in (['some sample text', True],
@@ -596,7 +597,7 @@ class TestBulkNotify(BulkValidationTest):
                         'Text %r unexpectedly resulted in %r' % (text, res))
 
     def test_undeclared_variable_form_submit(self):
-        f = NotifyForm({'text': '{{ UNDECLARED }}', 'subject': '...'})
+        f = forms.NotifyForm({'text': '{{ UNDECLARED }}', 'subject': '...'})
         eq_(f.is_valid(), False)
 
     def test_addon_name_contains_platform(self):
@@ -1245,3 +1246,39 @@ class TestLookup(amo.tests.TestCase):
             content = json.loads(res.content)
             eq_(len(content), c)
             eq_(content[0], {u'value': 4043307, u'label': u'admin'})
+
+
+class TestAddonManage(amo.tests.TestCase):
+    fixtures = ['base/addon_3615', 'base/users']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(pk=3615)
+        self.url = reverse('zadmin.addon_manage', args=[self.addon.slug])
+        self.client.login(username='admin@mozilla.com', password='password')
+
+    def _form_data(self, data=None):
+        initial_data = {
+            'status': '4',
+            'highest_status': '4',
+            'form-0-status': '4',
+            'form-0-id': '67442',
+            'form-TOTAL_FORMS': '1',
+            'form-INITIAL_FORMS': '1',
+        }
+        if data:
+            initial_data.update(data)
+        return initial_data
+
+    def test_addon_status_change(self):
+        data = self._form_data({'status': '2'})
+        r = self.client.post(self.url, data, follow=True)
+        eq_(r.status_code, 200)
+        addon = Addon.objects.get(pk=3615)
+        eq_(addon.status, 2)
+
+    def test_addon_file_status_change(self):
+        data = self._form_data({'form-0-status': '2'})
+        r = self.client.post(self.url, data, follow=True)
+        eq_(r.status_code, 200)
+        file = File.objects.get(pk=67442)
+        eq_(file.status, 2)

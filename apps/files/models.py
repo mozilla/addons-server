@@ -78,6 +78,13 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         else:
             return True
 
+    def is_public(self):
+        return self.status == amo.STATUS_PUBLIC
+
+    def has_been_copied(self):
+        """Checks if file has been copied to mirror"""
+        return os.path.isfile(self.mirror_file_path)
+
     def can_be_perf_tested(self):
         """True if it's okay to run performance tests on this addon file.
         """
@@ -106,7 +113,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
             host = settings.LOCAL_MIRROR_URL
 
         return posixpath.join(*map(smart_str, [host, addon.id, self.filename]))
-
 
     def get_url_path(self, src, addon=None):
         from amo.helpers import urlparams, absolutify
@@ -472,6 +478,8 @@ def check_file(old_attr, new_attr, instance, sender, **kw):
         instance.hide_disabled_file()
     elif old == amo.STATUS_DISABLED and new != amo.STATUS_DISABLED:
         instance.unhide_disabled_file()
+    elif (new in amo.MIRROR_STATUSES and old not in amo.MIRROR_STATUSES):
+        instance.copy_to_mirror()
 
     # Log that the hash has changed.
     old, new = old_attr.get('hash'), instance.hash

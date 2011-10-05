@@ -25,8 +25,8 @@ from tower import ugettext as _
 import amo.mail
 import amo.models
 import amo.tasks
-import addons.search
 import addons.cron
+import addons.search
 import bandwagon.cron
 import files.tasks
 import files.utils
@@ -35,6 +35,7 @@ from amo import messages, get_user
 from amo.decorators import login_required, json_view, post_required
 from amo.urlresolvers import reverse
 from amo.utils import chunked, sorted_groupby
+from addons.decorators import addon_view
 from addons.models import Addon
 from addons.utils import ReverseNameLookup
 from bandwagon.models import Collection
@@ -44,7 +45,8 @@ from versions.models import Version
 
 from . import tasks
 from .forms import (BulkValidationForm, FeaturedCollectionFormSet, NotifyForm,
-                    OAuthConsumerForm, MonthlyPickFormSet)
+                    OAuthConsumerForm, MonthlyPickFormSet, AddonStatusForm,
+                    FileFormSet)
 from .models import ValidationJob, EmailPreviewTopic, ValidationJobTally
 
 log = commonware.log.getLogger('z.zadmin')
@@ -496,8 +498,7 @@ def addon_search(request):
         else:
             qs = Addon.search().query(name__text=q.lower())[:100]
         if len(qs) == 1:
-            # Note this is a remora URL and should be removed.
-            return redirect('/admin/addons?q=[%s]' % qs[0].id)
+            return redirect('zadmin.addon_manage', qs[0].id)
         ctx['addons'] = qs
     return jingo.render(request, 'zadmin/addon-search.html', ctx)
 
@@ -539,3 +540,50 @@ def general_search(request, app_id, model_id):
     lookup = getattr(obj, 'search_fields_response', None)
     return [{'value':o.pk, 'label':getattr(o, lookup) if lookup else str(o)}
             for o in qs[:limit]]
+
+
+@admin.site.admin_view
+@addon_view
+def addon_manage(request, addon):
+
+    form = AddonStatusForm(request.POST or None, instance=addon)
+    pager = amo.utils.paginate(request, addon.versions.all(), 30)
+    # A list coercion so this doesn't result in a subquery with a LIMIT which
+    # MySQL doesn't support (at this time).
+    versions = list(pager.object_list)
+    files = File.objects.filter(version__in=versions).select_related('version')
+    formset = FileFormSet(request.POST or None, queryset=files)
+
+    if form.is_valid() and formset.is_valid():
+        if 'status' in form.changed_data:
+            amo.log(amo.LOG.CHANGE_STATUS, addon, form.cleaned_data['status'])
+            log.info('Addon "%s" status changed to: %s' % (
+                addon.slug, form.cleaned_data['status']))
+            form.save()
+        if 'highest_status' in form.changed_data:
+            log.info('Addon "%s" highest status changed to: %s' % (
+                addon.slug, form.cleaned_data['highest_status']))
+            form.save()
+        for form in formset:
+            if 'status' in form.changed_data:
+                log.info('Addon "%s" file (ID:%d) status changed to: %s' % (
+                    addon.slug, form.instance.id, form.cleaned_data['status']))
+                form.save()
+        return redirect('zadmin.addon_manage', addon.slug)
+
+    # Build a map from file.id to form in formset for precise form display
+    form_map = dict((form.instance.id, form) for form in formset.forms)
+    # A version to file map to avoid an extra query in the template
+    file_map = {}
+    for file in files:
+        file_map.setdefault(file.version_id, []).append(file)
+
+    return jingo.render(request, 'zadmin/addon_manage.html', {
+        'addon': addon,
+        'pager': pager,
+        'versions': versions,
+        'form': form,
+        'formset': formset,
+        'form_map': form_map,
+        'file_map': file_map,
+    })
