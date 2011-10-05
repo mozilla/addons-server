@@ -161,7 +161,13 @@ img.icon {
         .border-box;
     }
     #reviews {
+        p.no-reviews {
+            margin: 0;
+        }
         width: 75%;
+        &.full {
+            width: 100%;
+        }
     }
     #my-collections {
         width: 23.5%;
@@ -195,14 +201,16 @@ img.icon {
         line-height: inherit;
     }
     ul {
-        margin: 0;
+        margin: 0 0 0 20px;
+        list-style: disc;
     }
     #my-favorite {
-        margin: 0 0 1.5em;
+        margin-bottom: 1.5em;
     }
     li {
         border: 0;
         a {
+            color: @dark-gray;
             display: inline;
             &:hover {
                 background: inherit;
@@ -224,4 +232,8 @@ img.icon {
         font-weight: bold;
         padding-top: 1em;
     }
+}
+
+.html-rtl #my-collections ul {
+    margin: 0 20px 0 0;
 }

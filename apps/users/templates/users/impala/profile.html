@@ -61,26 +61,24 @@
   </div>
 {% endif %}
 
+{% if own_coll or fav_coll %}
 <aside class="secondary" id="my-collections">
   <div class="island">
     <h2>{{ _('My Collections') }}</h2>
-    {% if own_coll or fav_coll %}
-      {{ user_collection_list(heading=_('Followed by Me'), collections=fav_coll,
-                              link=url('collections.following'), id='my-favorite') }}
-      {{ user_collection_list(heading=_('Created by Me'), collections=own_coll,
-                              id='my-created',
-                              link=url('collections.user', profile.username)) }}
-    {% else %}
-      <p>{{ _('No collections yet.') }}</p>
-    {% endif %}
+    {{ user_collection_list(heading=_('Followed by Me'), collections=fav_coll,
+                            link=url('collections.following'), id='my-favorite') }}
+    {{ user_collection_list(heading=_('Created by Me'), collections=own_coll,
+                            id='my-created',
+                            link=url('collections.user', profile.username)) }}
   </div>
 </aside>
+{% endif %}
 
+<div class="island primary c{{ ' full' if not (own_col or fav_coll) }}" id="reviews">
 {% cache reviews %}
-<div class="island primary c" id="reviews">
   <h2>{{ _('My Reviews') }}</h2>
-  {% if reviews %}
-    <div class="items">
+  <div class="items">
+    {% if reviews %}
       {% for review in reviews %}
         {% set addon = review.addon %}
         {% with show_addon = True %}
@@ -88,12 +86,12 @@
         {% endwith %}
       {% endfor %}
       {{ edit_review_form() }}
-    </div>
-  {% else %}
-    <p class="no-reviews">{{ _('No add-on reviews yet.') }}</p>
-  {% endif %}
-</div>
+    {% else %}
+      <p class="no-reviews">{{ _('No add-on reviews yet.') }}</p>
+    {% endif %}
+  </div>
 {% endcache %}
+</div>
 
 {% endblock %}
 

@@ -713,8 +713,12 @@ class TestImpalaProfile(amo.tests.TestCase):
         eq_(pq(r.content)('#my-addons .paginator').length, 1)
 
     def test_my_collections(self):
-        doc = pq(self.client.get(self.url).content)('#my-collections')
-        ul = doc('#my-created')
+        r = self.client.get(self.url)
+        self.assertTemplateUsed(r, 'bandwagon/users/collection_list.html')
+        doc = pq(r.content)
+        eq_(doc('#reviews.full').length, 1)
+
+        ul = doc('#my-collections #my-created')
         eq_(ul.length, 1)
 
         c = Collection.objects.all()
@@ -725,6 +729,14 @@ class TestImpalaProfile(amo.tests.TestCase):
         a = li('a')
         eq_(a.attr('href'), c[0].get_url_path())
         eq_(a.text(), unicode(c[0].name))
+
+    def test_no_my_collections(self):
+        Collection.objects.filter(author=self.user).delete()
+        r = self.client.get(self.url)
+        self.assertTemplateNotUsed(r, 'bandwagon/users/collection_list.html')
+        doc = pq(r.content)
+        eq_(doc('#my-collections').length, 0)
+        eq_(doc('#reviews.full').length, 1)
 
     def test_review_abuse_form(self):
         r = self.client.get(self.url)
