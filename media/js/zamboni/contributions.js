@@ -36,15 +36,15 @@ $(document).ready(function() {
         return false;
     });
     if ($('#paypal-result').length) {
-        top_dgFlow = top.dgFlow || (top.opener && top.opener.top.dgFlow);
+        var top_opener = top;
+        if (top.opener && top.opener.top.dgFlow) {
+            top_opener = top.opener.top;
+        }
+        top_dgFlow = top_opener.dgFlow;
+
         if (top_dgFlow !== null) {
             var thanks_url = $('#paypal-thanks').attr('href');
             if(thanks_url) {
-                var top_opener = top;
-                if (top.opener && top.opener.top.dgFlow) {
-                    top_opener = top.opener.top;
-                }
-
                 top_opener.modalFromURL(thanks_url, {'callback': function() {
                     // Change the add-on buttons
                     var context  = $(this).closest('body'),
