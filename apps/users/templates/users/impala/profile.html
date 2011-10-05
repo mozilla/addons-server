@@ -11,12 +11,12 @@
 {{ impala_breadcrumbs([(None, profile.name)]) }}
 <div id="profile-actions" class="c">
   {% if own_profile %}
-    <a class="button" href="{{ url('users.edit') }}">{{ _('Edit Profile') }}</a>
+    <a class="button" href="{{ url('users.edit') }}">{{ _('Edit profile') }}</a>
   {% endif %}
   {% if edit_any_user %}
     {# TODO XXX Once zamboni can delete users, uncomment this line.  bug 595035 #}
-    {# <a href="{{ url("admin:users_userprofile_change", profile.id) }}">{{ _('Manage User') }}</a> #}
-    <a class="button" href="{{ remora_url("/admin/users/%s" % profile.id) }}">{{ _('Manage User') }}</a>
+    {# <a href="{{ url("admin:users_userprofile_change", profile.id) }}">{{ _('Manage user') }}</a> #}
+    <a class="button" href="{{ remora_url("/admin/users/%s" % profile.id) }}">{{ _('Manage user') }}</a>
   {% endif %}
   {% if abuse_form %}
     <a id="report-user-abuse" class="button" href="{{ url('users.abuse', profile.id) }}">
@@ -34,7 +34,7 @@
     {% endif %}
   </aside>
   <section class="primary">
-    <h2>{{ _('About Me') }}</h2>
+    <h2>{{ _('About me') }}</h2>
     <div class="vcard">
       {% with table_class='person-info', is_profile=True %}
         {% include "users/impala/vcard.html" %}
