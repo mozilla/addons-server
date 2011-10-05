@@ -1291,18 +1291,10 @@ class TestReportAbuse(amo.tests.TestCase):
         assert AbuseReport.objects.get(addon=15663)
 
 
-class TestMobile(amo.tests.TestCase):
+class TestMobile(amo.tests.MobileTest, amo.tests.TestCase):
     fixtures = ['addons/featured', 'base/apps', 'base/addon_3615',
                 'base/featured', 'bandwagon/featured_collections']
 
-    def setUp(self):
-        self.mobile_init()
-
-    def mobile_init(self):
-        self.client.cookies['mamo'] = 'on'
-        self.client.defaults['SERVER_NAME'] = settings.MOBILE_DOMAIN
-        self.request = Mock()
-        self.request.MOBILE = True
 
 
 class TestMobileHome(TestMobile):

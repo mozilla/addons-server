@@ -1,6 +1,6 @@
 from contextlib import contextmanager
 from datetime import datetime, timedelta
-from functools import partial
+from functools import partial, wraps
 import os
 import random
 import shutil
@@ -14,6 +14,7 @@ from django.utils import translation
 
 import elasticutils
 import nose
+import mock
 from nose.tools import eq_
 import test_utils
 from redisutils import mock_redis, reset_redis
@@ -77,6 +78,31 @@ class RedisTest(object):
     def _post_teardown(self):
         super(RedisTest, self)._post_teardown()
         reset_redis(self._redis)
+
+
+class MobileTest(object):
+    """Mixing for when you want to hit a mobile view."""
+
+    def _pre_setup(self):
+        super(MobileTest, self)._pre_setup()
+        MobileTest._mobile_init(self)
+
+    # This is a static method so we can call it in @mobile_test.
+    @staticmethod
+    def _mobile_init(self):
+        self.client.cookies['mamo'] = 'on'
+        self.client.defaults['SERVER_NAME'] = settings.MOBILE_DOMAIN
+        self.request = mock.Mock()
+        self.request.MOBILE = True
+
+
+def mobile_test(f):
+    """Test decorator for hitting mobile views."""
+    @wraps(f)
+    def wrapper(self, *args, **kw):
+        MobileTest._mobile_init(self)
+        return f(self, *args, **kw)
+    return wrapper
 
 
 class TestClient(Client):
