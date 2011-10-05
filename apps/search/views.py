@@ -305,7 +305,7 @@ def name_query(q):
                 description__text={'query': q, 'boost': 0.3, 'type': 'phrase'})
 
 
-@mobile_template('search/es_results.html')
+@mobile_template('search/{mobile/}es_results.html')
 def app_search(request, template=None):
     form = ESSearchForm(request.GET or {}, type=amo.ADDON_WEBAPP)
     form.is_valid()  # Let the form try to clean data.
@@ -335,6 +335,7 @@ def app_search(request, template=None):
         'query': query,
         'form': form,
         'sorting': sort_sidebar(request, query, form),
+        'sort_opts': form.fields['sort'].choices,
         'categories': category_sidebar(request, query, facets),
         'tags': tag_sidebar(request, query, facets),
     }

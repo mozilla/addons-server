@@ -216,3 +216,20 @@ def test_search_redirects():
         assert views.fix_search_query(q) is q
     for qs in queries:
         yield same, qs
+
+
+class TestWebappSearch(amo.tests.ESTestCase):
+
+    def setUp(self):
+        self.url = reverse('apps.search')
+
+    def test_get(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'search/es_results.html')
+
+    @amo.tests.mobile_test
+    def test_mobile_get(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'search/mobile/es_results.html')

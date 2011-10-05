@@ -24,7 +24,7 @@
       {% include "search/mobile/search.html" %}
     {% endwith %}
   </div>
-  {{ mobile_sort_by(request.get_full_path(), sort_opts, sort or None) }}
+  {{ mobile_sort_by(request.get_full_path(), sort_opts, query.sort) }}
 
   <div class="addon-listing">
     <ul class="listview">
