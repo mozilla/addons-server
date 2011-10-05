@@ -271,6 +271,18 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         f.version.addon.update(type=amo.ADDON_WEBAPP)
         eq_(f.can_be_perf_tested(), False)
 
+    def test_file_is_mirrorable(self):
+        f = File.objects.get(pk=67442)
+        eq_(f.is_mirrorable(), True)
+
+        f.update(status=amo.STATUS_DISABLED)
+        eq_(f.is_mirrorable(), False)
+
+    def test_premium_addon_not_mirrorable(self):
+        f = File.objects.get(pk=67442)
+        f.version.addon.premium_type = amo.ADDON_PREMIUM
+        eq_(f.is_mirrorable(), False)
+
 
 class TestParseXpi(amo.tests.TestCase):
     fixtures = ['base/apps']

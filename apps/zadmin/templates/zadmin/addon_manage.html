@@ -46,7 +46,7 @@
                 </td>
                 <td><a href="/admin/addons/hash/{{ addon.id }}/{{ file.id }}" title="{{ file.hash }}">Recalc Hash</a></td>
                 <td>
-                  {% if file.is_public() %}
+                  {% if file.is_mirrorable() %}
                     {{ "Copied" if file.has_been_copied() else "Not Copied" }}
                   {% endif %}
                 </td>

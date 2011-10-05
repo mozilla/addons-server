@@ -78,11 +78,15 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         else:
             return True
 
-    def is_public(self):
-        return self.status == amo.STATUS_PUBLIC
+    def is_mirrorable(self):
+        if self.version.addon.is_premium():
+            return False
+        return self.status in amo.MIRROR_STATUSES
 
     def has_been_copied(self):
         """Checks if file has been copied to mirror"""
+        if not self.mirror_file_path:
+            return False
         return os.path.isfile(self.mirror_file_path)
 
     def can_be_perf_tested(self):
