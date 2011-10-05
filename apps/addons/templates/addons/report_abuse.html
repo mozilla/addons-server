@@ -6,10 +6,17 @@
     {% endif %}
     <ol {% if hide %}style="display: none"{% endif %}>
       <li>
-        <p>{% trans url=remora_url('developers/docs/policies') %}
-          If you suspect this add-on violates <a href="{{ url }}">our policies</a> or
-          has security or privacy issues, please use the form below to describe your
-          concerns. Please do not use this form for any other reason.{% endtrans %}</p>
+        {% if addon.is_webapp() %}
+          <p>{% trans url=remora_url('developers/docs/policies') %}
+            If you suspect this app violates <a href="{{ url }}">our policies</a> or
+            has security or privacy issues, please use the form below to describe your
+            concerns. Please do not use this form for any other reason.{% endtrans %}</p>
+        {% else %}
+          <p>{% trans url=remora_url('developers/docs/policies') %}
+            If you suspect this add-on violates <a href="{{ url }}">our policies</a> or
+            has security or privacy issues, please use the form below to describe your
+            concerns. Please do not use this form for any other reason.{% endtrans %}</p>
+        {% endif %}
       </li>
       <li>
         {{ csrf() }}
