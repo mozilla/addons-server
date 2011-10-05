@@ -54,6 +54,7 @@
       <div class="items">
         {{ impala_addon_listing_items(addons.object_list, field=sorting, src='userprofile') }}
       </div>
+      {{ addons|impala_paginator }}
     {% endcache %}
   </div>
 {% endif %}

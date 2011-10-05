@@ -697,6 +697,20 @@ class TestImpalaProfile(amo.tests.TestCase):
         # Edit Review form should be present.
         self.assertTemplateUsed(r, 'reviews/edit_review.html')
 
+    def test_my_reviews_no_pagination(self):
+        r = self.client.get(self.url)
+        assert len(self.user.addons_listed) <= 10, (
+            'This user should have fewer than 10 add-ons.')
+        eq_(pq(r.content)('#my-addons .paginator').length, 0)
+
+    def test_my_reviews_pagination(self):
+        for i in xrange(20):
+            AddonUser.objects.create(user=self.user, addon_id=3615)
+        assert len(self.user.addons_listed) > 10, (
+            'This user should have way more than 10 add-ons.')
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#my-addons .paginator').length, 1)
+
     def test_my_collections(self):
         doc = pq(self.client.get(self.url).content)('#my-collections')
         ul = doc('#my-created')
