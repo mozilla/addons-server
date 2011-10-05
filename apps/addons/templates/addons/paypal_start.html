@@ -5,7 +5,7 @@
 {% block content %}
 <h2>{{ _('Purchase Add-on') }}</h2>
 <div class="paypal-content">
-  <span class="price">{{ addon.premium.get_price() }}</span></span>
+  <span class="price">{{ addon.premium.get_price() }}</span>
 <h5>{{ addon.name }}</h5>
   <div class="paypal-links">
     <a>{{ _('Learn about purchases') }}</a>
@@ -14,15 +14,17 @@
     <div class="paypal-user">
       {% if user.is_authenticated() %}
         {% trans email=user.email %}
-        Logged in as: <strong>{{ email }}</strong>
+        Logged in as <strong>{{ email }}</strong>
         {% endtrans %}
       {% else %}
       <strong>
         {% trans login=login_link() %}
-        Have a Firefox Add-ons account? <a href="{{ login }}">Log In</a>
+        Have an Add-ons account? <a href="{{ login }}">Log In</a>
         {% endtrans %}
       </strong>
-      {{ _('No account? No problem! You can create one after your purchase.') }}
+      <div>
+        {{ _('No account? No problem! You can create one after your purchase.') }}
+      </div>
       {% endif %}
     </div>
     <button class="button prominent paypal"
