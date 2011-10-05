@@ -736,11 +736,20 @@ class TestImpalaProfile(amo.tests.TestCase):
         button = doc('#profile-actions #report-user-abuse')
         eq_(button.length, 1)
         eq_(button.attr('href'), abuse_url)
-        modal = doc('#report-user-modal.modal')
+        modal = doc('#popup-staging #report-user-modal.modal')
         eq_(modal.length, 1)
         eq_(modal('form').attr('action'), abuse_url)
         eq_(modal('textarea[name=text]').length, 1)
         self.assertTemplateUsed(r, 'users/report_abuse.html')
+
+    def test_no_self_abuse(self):
+        self.client.login(username='clouserw@gmail.com', password='password')
+        abuse_url = reverse('users.abuse', args=[self.user.id])
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(doc('#profile-actions #report-user-abuse').length, 0)
+        eq_(doc('#popup-staging #report-user-modal.modal').length, 0)
+        self.assertTemplateNotUsed(r, 'users/report_abuse.html')
 
 
 class TestReportAbuse(amo.tests.TestCase):

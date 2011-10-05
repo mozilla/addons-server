@@ -471,8 +471,9 @@ def impala_profile(request, user_id):
 
     data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
             'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
-            'addons': addons, 'own_profile': own_profile,
-            'abuse_form': AbuseForm(request=request)}
+            'addons': addons, 'own_profile': own_profile}
+    if not own_profile:
+        data['abuse_form'] = AbuseForm(request=request)
 
     return jingo.render(request, 'users/impala/profile.html', data)
 
