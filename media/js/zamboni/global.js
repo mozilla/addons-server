@@ -358,6 +358,7 @@ $.fn.modal = function(click_target, o) {
         }
         $('.popup').hide();
         $modal.delegate('.close', 'click', function(e) {
+            e.preventDefault();
             $modal.trigger('close');
         });
         $modal.bind('close', function(e) {

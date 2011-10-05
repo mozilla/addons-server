@@ -1,4 +1,6 @@
 $(function() {
+    $('#report-user-modal').modal('#report-user-abuse', {delegate: '#page'});
+
     if($('#user_edit').exists()) {
         $('.more-all, .more-none').click(_pd(function() {
             var $this = $(this);

@@ -9,6 +9,10 @@
 {% include "messages.html" %}
 
 {{ impala_breadcrumbs([(None, profile.name)]) }}
+{% if abuse_form %}
+  <a id="report-user-abuse" class="button c" href="{{ url('users.abuse', profile.id) }}">
+    {{ _('Report user') }}</a>
+{% endif %}
 <h1 class="fn n">{{ profile.name }}</h1>
 
 <div class="vcard island c">
@@ -40,9 +44,6 @@
         <p class="intro">{{ profile.bio|nl2br }}</p>
       {% endif %}
     </div>
-    {% if abuse_form %}
-      <div class="abuse-wrapper c">{{ user_report_abuse(hide=True, profile=profile) }}</div>
-    {% endif %}
   </section>
 </div>
 
@@ -91,5 +92,15 @@
 </div>
 {% endcache %}
 
-{{ report_review_popup() }}
+{% endblock %}
+
+{% block popups %}
+  {{ report_review_popup() }}
+  {% if abuse_form %}
+    <div id="report-user-modal" class="modal hidden">
+      <a href="#" class="close">{{ _('close') }}</a>
+      <h2>{{ _('Report User') }}</h2>
+      {{ user_report_abuse(hide=False, profile=profile) }}
+    </div>
+  {% endif %}
 {% endblock %}

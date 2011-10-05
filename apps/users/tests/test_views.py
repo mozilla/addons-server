@@ -662,10 +662,6 @@ class TestProfile(UserViewBase):
         assert all(addons[i].weekly_downloads >= addons[i + 1].weekly_downloads
                    for i in xrange(len(addons) - 1))
 
-    def test_abuse_form(self):
-        r = self.client.get(reverse('i_users.profile', args=[9945]))
-        self.assertTemplateUsed(r, 'reviews/report_review.html')
-
 
 class TestImpalaProfile(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615',
@@ -714,6 +710,23 @@ class TestImpalaProfile(amo.tests.TestCase):
         a = li('a')
         eq_(a.attr('href'), c[0].get_url_path())
         eq_(a.text(), unicode(c[0].name))
+
+    def test_review_abuse_form(self):
+        r = self.client.get(self.url)
+        self.assertTemplateUsed(r, 'reviews/report_review.html')
+
+    def test_user_abuse_form(self):
+        abuse_url = reverse('users.abuse', args=[self.user.id])
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        button = doc('#report-user-abuse')
+        eq_(button.length, 1)
+        eq_(button.attr('href'), abuse_url)
+        modal = doc('#report-user-modal.modal')
+        eq_(modal.length, 1)
+        eq_(modal('form').attr('action'), abuse_url)
+        eq_(modal('textarea[name=text]').length, 1)
+        self.assertTemplateUsed(r, 'users/report_abuse.html')
 
 
 class TestReportAbuse(amo.tests.TestCase):
