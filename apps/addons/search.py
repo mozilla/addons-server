@@ -70,10 +70,6 @@ def setup_mapping():
             # Adding word-delimiter to split on camelcase and punctuation.
             'name': {'type': 'string',
                      'analyzer': 'standardPlusWordDelimiter'},
-            'summary': {'type': 'string',
-                        'analyzer': 'snowball'},
-            'description': {'type': 'string',
-                            'analyzer': 'snowball'},
             'tags': {'type': 'string',
                      'index': 'not_analyzed',
                      'index_name': 'tag'},
