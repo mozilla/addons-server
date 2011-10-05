@@ -9,26 +9,28 @@
 {% include "messages.html" %}
 
 {{ impala_breadcrumbs([(None, profile.name)]) }}
-{% if abuse_form %}
-  <a id="report-user-abuse" class="button c" href="{{ url('users.abuse', profile.id) }}">
-    {{ _('Report user') }}</a>
-{% endif %}
+<div id="profile-actions" class="c">
+  {% if own_profile %}
+    <a class="button" href="{{ url('users.edit') }}">{{ _('Edit Profile') }}</a>
+  {% endif %}
+  {% if edit_any_user %}
+    {# TODO XXX Once zamboni can delete users, uncomment this line.  bug 595035 #}
+    {# <a href="{{ url("admin:users_userprofile_change", profile.id) }}">{{ _('Manage User') }}</a> #}
+    <a class="button" href="{{ remora_url("/admin/users/%s" % profile.id) }}">{{ _('Manage User') }}</a>
+  {% endif %}
+  {% if abuse_form %}
+    <a id="report-user-abuse" class="button" href="{{ url('users.abuse', profile.id) }}">
+      {{ _('Report user') }}</a>
+  {% endif %}
+</div>
 <h1 class="fn n">{{ profile.name }}</h1>
 
-<div class="vcard island c">
+<div class="island c">
   <aside class="secondary">
     <img class="avatar" src="{{ profile.picture_url }}"
          {% if not profile.picture_type %}alt="{{ _('No Photo') }}"{% endif %}>
     {% if profile.is_developer %}
-      <div class="user-role">{{ _('Add-ons Developer') }}</div>
-    {% endif %}
-    {% if own_profile %}
-      <a class="button" href="{{ url('users.edit') }}">{{ _('Edit Profile') }}</a>
-    {% endif %}
-    {% if edit_any_user %}
-      {# TODO XXX Once zamboni can delete users, uncomment this line.  bug 595035 #}
-      {# <a href="{{ url("admin:users_userprofile_change", profile.id) }}">{{ _('Manage User') }}</a> #}
-      <a class="button" href="{{ remora_url("/admin/users/%s" % profile.id) }}">{{ _('Manage User') }}</a>
+      <div class="user-role"><p>{{ _('Add-ons Developer') }}</p></div>
     {% endif %}
   </aside>
   <section class="primary">

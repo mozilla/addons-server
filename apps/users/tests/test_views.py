@@ -733,7 +733,7 @@ class TestImpalaProfile(amo.tests.TestCase):
         abuse_url = reverse('users.abuse', args=[self.user.id])
         r = self.client.get(self.url)
         doc = pq(r.content)
-        button = doc('#report-user-abuse')
+        button = doc('#profile-actions #report-user-abuse')
         eq_(button.length, 1)
         eq_(button.attr('href'), abuse_url)
         modal = doc('#report-user-modal.modal')

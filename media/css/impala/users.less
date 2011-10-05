@@ -85,12 +85,6 @@ table.person-info {
 img.avatar {
     border: 3px solid #fff;
 }
-.user-role {
-    font-weight: bold;
-    color: @dark-gray;
-    margin: 0 4px 1em;
-    text-align: center;
-}
 
 img.icon {
     padding: 4px;
@@ -102,11 +96,36 @@ img.icon {
             margin: 1em 0;
         }
     }
-    #report-user-abuse {
+    #profile-actions {
         float: right;
     }
     .user-role {
-        padding: .5em 3px;
+        background: #fff;
+        color: #246;
+        font-size: 12px;
+        font-weight: bold;
+        height: 25px;
+        text-transform: uppercase;
+        line-height: 25px;
+        padding: 0 3px;
+        p {
+            margin: 0 6px;
+            padding: 0;
+            text-align: center;
+            &:before {
+                /* TODO: sprite-ify */
+                background: url(../../img/icons/developer.png) 0 50% no-repeat;
+                .background-size(15px, auto);
+                content: "";
+                display: inline-block;
+                height: 15px;
+                margin: 0 6px -3px 0;
+                width: 15px;
+            }
+        }
+    }
+    .secondary .avatar {
+        display: block;
     }
     .user-role,
     .avatar {
@@ -137,27 +156,28 @@ img.icon {
 }
 
 .gutter.meet {
-    .primary,
-    .secondary {
+    #reviews,
+    #my-collections {
         .border-box;
     }
-    .primary {
+    #reviews {
         width: 75%;
-        &#my-addons {
-            width: 100%;
-        }
     }
-    .secondary {
+    #my-collections {
         width: 23.5%;
     }
 }
 
-.html-rtl #report-user-abuse {
-    float: left;
-}
-
-.html-rtl.meet .island > section {
-    padding: 0 0 0 14px;
+.html-rtl.meet {
+    #profile-actions {
+        float: left;
+    }
+    .user-role p:before {
+        margin: 0 0 -3px 6px;
+    }
+    .island > section {
+        padding: 0 0 0 14px;
+    }
 }
 
 #my-collections {
