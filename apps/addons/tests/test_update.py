@@ -1,7 +1,11 @@
+# -*- coding: utf8 -*-
 from datetime import datetime, timedelta
 from email import utils
+import urllib
+import urlparse
 
 from django.db import connection
+from django.utils.encoding import smart_str
 
 from nose.tools import eq_
 
@@ -541,8 +545,20 @@ class TestResponse(amo.tests.TestCase):
         self.addon_one.update(premium_type=amo.ADDON_PREMIUM)
         up = self.get(self.good_data.copy())
         up.get_rdf()
-        eq_(up.data['row']['url'],
-            settings_local.SITE_URL + '/downloads/watermarked/67442')
+        target = settings_local.SITE_URL + '/downloads/watermarked/67442'
+        assert up.data['row']['url'].startswith(target)
+
+    def test_url_premium_gets(self):
+        self.addon_one.update(premium_type=amo.ADDON_PREMIUM)
+        data = self.good_data.copy()
+        data[amo.WATERMARK_KEY] = urllib.quote_plus(smart_str('ø@bar.com'))
+        data[amo.WATERMARK_KEY_HASH] = 'somehash'
+        up = self.get(data)
+        up.get_rdf()
+        query = urlparse.urlparse(up.data['row']['url']).query
+        params = dict(urlparse.parse_qsl(query, True))
+        eq_(params[amo.WATERMARK_KEY], data[amo.WATERMARK_KEY])
+        eq_(params[amo.WATERMARK_KEY_HASH], data[amo.WATERMARK_KEY_HASH])
 
     def test_hash(self):
         rdf = self.get(self.good_data).get_rdf()

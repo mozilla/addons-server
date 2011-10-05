@@ -9,11 +9,8 @@ import re
 
 from constants.applications import APPS_ALL
 from constants.platforms import PLATFORMS
-from constants.base import (ADDON_PREMIUM, STATUS_NULL, STATUS_UNREVIEWED,
-                            STATUS_PENDING, STATUS_NOMINATED, STATUS_PUBLIC,
-                            STATUS_DISABLED, STATUS_LISTED, STATUS_BETA,
-                            STATUS_LITE, STATUS_LITE_AND_NOMINATED,
-                            STATUS_PURGATORY, VERSION_BETA)
+from constants.base import (STATUS_PUBLIC, STATUS_DISABLED, STATUS_BETA,
+                            STATUS_LITE, STATUS_LITE_AND_NOMINATED)
 
 APP_GUIDS = dict([(app.guid, app.id) for app in APPS_ALL.values()])
 PLATFORMS = dict([(plat.api_name, plat.id) for plat in PLATFORMS.values()])

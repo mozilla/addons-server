@@ -11,6 +11,7 @@ import sqlalchemy.pool as pool
 
 import commonware.log
 from django.core.management import setup_environ
+from django.utils.http import urlencode
 
 import settings_local as settings
 setup_environ(settings)
@@ -23,10 +24,8 @@ try:
 except ImportError:
     from apps.versions.compare import version_int
 
-from utils import (get_mirror, ADDON_PREMIUM,
-                   APP_GUIDS, PLATFORMS, VERSION_BETA,
-                   STATUS_PUBLIC, STATUSES_PUBLIC, STATUS_BETA, STATUS_NULL,
-                   STATUS_LITE, STATUS_LITE_AND_NOMINATED, ADDON_SLUGS_UPDATE)
+from constants import base
+from utils import get_mirror, APP_GUIDS, PLATFORMS, STATUSES_PUBLIC
 
 
 good_rdf = """<?xml version="1.0"?>
@@ -132,14 +131,15 @@ class Update(object):
             else:
                 data['appOS'] = None
 
-        self.is_beta_version = VERSION_BETA.search(data.get('version', ''))
+        self.is_beta_version = base.VERSION_BETA.search(data.get('version',
+                                                                 ''))
         return True
 
     def get_beta(self):
         data = self.data
-        data['status'] = STATUS_PUBLIC
+        data['status'] = base.STATUS_PUBLIC
 
-        if data['addon_status'] == STATUS_PUBLIC:
+        if data['addon_status'] == base.STATUS_PUBLIC:
             # Beta channel looks at the addon name to see if it's beta.
             if self.is_beta_version:
                 # For beta look at the status of the existing files.
@@ -156,17 +156,18 @@ class Update(object):
                     status = result[1]
                     # If it's in Beta or Public, then we should be looking
                     # for similar. If not, find something public.
-                    if status in (STATUS_BETA, STATUS_PUBLIC):
+                    if status in (base.STATUS_BETA, base.STATUS_PUBLIC):
                         data['status'] = status
                     else:
                         data.update(STATUSES_PUBLIC)
                         self.flags['multiple_status'] = True
 
-        elif data['addon_status'] in (STATUS_LITE, STATUS_LITE_AND_NOMINATED):
-            data['status'] = STATUS_LITE
+        elif data['addon_status'] in (base.STATUS_LITE,
+                                      base.STATUS_LITE_AND_NOMINATED):
+            data['status'] = base.STATUS_LITE
         else:
             # Otherwise then we'll keep the update within the current version.
-            data['status'] = STATUS_NULL
+            data['status'] = base.STATUS_NULL
             self.flags['use_version'] = True
 
     def get_update(self):
@@ -229,10 +230,12 @@ class Update(object):
                 'datestatuschanged', 'releasenotes', 'version',
                 'premium_type'],
                 list(result)))
-            row['type'] = ADDON_SLUGS_UPDATE[row['type']]
-            if row['premium_type'] == ADDON_PREMIUM:
-                row['url'] = ('%s/downloads/watermarked/%s' %
-                              (settings.SITE_URL, row['file_id']))
+            row['type'] = base.ADDON_SLUGS_UPDATE[row['type']]
+            if row['premium_type'] == base.ADDON_PREMIUM:
+                qs = urlencode(dict((k, data.get(k, ''))
+                               for k in base.WATERMARK_KEYS))
+                row['url'] = (u'%s/downloads/watermarked/%s?%s' %
+                              (settings.SITE_URL, row['file_id'], qs))
             else:
                 row['url'] = get_mirror(self.data['addon_status'],
                                         self.data['id'], row)
@@ -258,7 +261,7 @@ class Update(object):
         return rdf
 
     def get_no_updates_rdf(self):
-        name = ADDON_SLUGS_UPDATE[self.data['type']]
+        name = base.ADDON_SLUGS_UPDATE[self.data['type']]
         return no_updates_rdf % ({'guid': self.data['guid'], 'type': name})
 
     def get_good_rdf(self):
