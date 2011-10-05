@@ -11,7 +11,6 @@ from mobility.decorators import mobile_template
 import waffle
 
 import amo
-from amo.decorators import login_required
 from amo.urlresolvers import reverse
 from amo.utils import urlparams, HttpResponseSendFile
 from access import acl
@@ -75,7 +74,6 @@ def update_info_redirect(request, version_id):
 
 
 @never_cache
-@login_required
 def download_watermarked(request, file_id):
     if not waffle.switch_is_active('marketplace'):
         raise http.Http404()
@@ -87,18 +85,32 @@ def download_watermarked(request, file_id):
         or file.status == amo.STATUS_DISABLED):
         raise http.Http404()
 
-    if not addon.has_purchased(request.amo_user):
+    user = request.amo_user
+    if request.user.is_anonymous():
+        log.debug('Anonymous user, checking hash: %s' % file_id)
+        email = request.GET.get(amo.WATERMARK_KEY, None)
+        hsh = request.GET.get(amo.WATERMARK_KEY_HASH, None)
+
+        user = addon.get_user_from_hash(email, hsh)
+        if not user:
+            log.debug('Watermarking denied, no user: %s, %s, %s'
+                      % (file_id, email, hsh))
+            return http.HttpResponseForbidden()
+
+    if not addon.has_purchased(user):
+        log.debug('Watermarking denied, not purchased: %s, %s'
+                  % (file_id, user.id))
         return http.HttpResponseForbidden()
 
-    dest = file.watermark(request.amo_user)
+    dest = file.watermark(user)
     if not dest:
         # TODO(andym): the watermarking is already in progress and we've
         # got multiple requests from the same users for the same file
         # perhaps this should go into a loop.
-        log.debug('Watermark already in progress: %s' % file_id)
+        log.debug('Watermarking in progress: %s, %s' % (file_id, user.id))
         raise http.Http404()
 
-    log.debug('Serving watermarked file for: %s' % file_id)
+    log.debug('Serving watermarked file: %s, %s' % (file_id, user.id))
     return HttpResponseSendFile(request, dest,
                                 content_type='application/xp-install')
 
@@ -128,6 +140,8 @@ def download_file(request, file_id, type=None):
 
 
 guard = lambda: Addon.objects.filter(_current_version__isnull=False)
+
+
 @addon_view_factory(guard)
 def download_latest(request, addon, type='xpi', platform=None):
     if addon.is_premium():

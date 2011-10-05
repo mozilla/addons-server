@@ -7,7 +7,7 @@ import urlparse
 from django.conf import settings
 from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
-from django.utils.http import http_date
+from django.utils.http import http_date, urlencode
 
 from mock import Mock, patch
 from nose.tools import eq_
@@ -501,10 +501,32 @@ class TestWatermarkedFile(amo.tests.TestCase, amo.tests.AMOPaths):
                                                      user=self.user)
         self.client.login(username='regular@mozilla.com', password='password')
 
-    def test_get_anon_watermarked(self):
+    def get_anon(self, user=None, hsh=None):
         self.client.logout()
-        res = self.client.get(self.url)
-        eq_(res.status_code, 302)
+        url = reverse('downloads.watermarked', args=[self.file.pk])
+        qs = urlencode({amo.WATERMARK_KEY: user,
+                        amo.WATERMARK_KEY_HASH: hsh})
+        return self.client.get('%s?%s' % (url, qs))
+
+    def test_get_anon_watermarked(self):
+        eq_(self.get_anon().status_code, 403)
+
+    def test_get_anon_email(self):
+        eq_(self.get_anon(user=self.user.email).status_code, 403)
+
+    def test_get_anon_hash(self):
+        eq_(self.get_anon(user=self.user.email, hsh='123').status_code, 403)
+
+    def test_get_good_hash(self):
+        data = {'user': self.user.email,
+                'hsh': self.addon.get_watermark_hash(self.user)}
+        eq_(self.get_anon(**data).status_code, 200)
+
+    def test_good_hash_for_free(self):
+        self.purchase.delete()
+        data = {'user': self.user.email,
+                'hsh': self.addon.get_watermark_hash(self.user)}
+        eq_(self.get_anon(**data).status_code, 403)
 
     def test_get_watermarked(self):
         res = self.client.get(self.url)
