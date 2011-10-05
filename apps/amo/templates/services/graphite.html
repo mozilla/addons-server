@@ -44,6 +44,7 @@
   <body>
     <h1>Graphite for <a href="{{ site_url }}">{{ site_url }}</a></h1>
     <p>If you don't see pictures, you don't have LDAP authentication.</p>
+    <p>Press <code>r</code> for faster updates.</p>
     <ul>
       <li><a href="#responses">All Responses</a></li>
       <li><a href="#perf">Site Performance</a></li>
@@ -53,6 +54,8 @@
       <li><a href="#update">Update</a></li>
       <li><a href="#homepage">Homepage</a></li>
       <li><a href="#search">Search</a></li>
+      <li><a href="#es-timer">ES Request Time</a></li>
+      <li><a href="#es-took">ES Internal Timer</a></li>
       <li><a href="#marketplace">Marketplace</a></li>
       <li><a href="#auth">Authenticated Responses</a></li>
     </ul>
@@ -74,7 +77,7 @@
 
     <h2 id="perf">Site performance</h2>
     {% call grid() %}
-      target=stats.timers.{{ site }}.view.GET.lower&target=stats.timers.{{ site }}.view.GET.mean&target=stats.timers.{{ site }}.view.GET.upper_90&from=-1hours
+      target=stats.timers.{{ site }}.view.GET.lower&target=stats.timers.{{ site }}.view.GET.mean&target=stats.timers.{{ site }}.view.GET.upper_90
     {% endcall %}
 
     <h2 id="errors">Redirects and Errors</h2>
@@ -94,7 +97,7 @@
 
     <h2 id="update">Update</h2>
     {% call grid() %}
-      target=stats.timers.{{ site }}.services.update.lower&target=stats.timers.{{ site }}.services.update.mean&target=stats.timers.{{ site }}.services.update.upper_90&target=scale(stats.timers.{{ site }}.services.update.count%2C%200.01)&from=-1hours
+      target=stats.timers.{{ site }}.services.update.lower&target=stats.timers.{{ site }}.services.update.mean&target=stats.timers.{{ site }}.services.update.upper_90&target=scale(stats.timers.{{ site }}.services.update.count%2C%200.01)
     {% endcall %}
 
     <h2 id="homepage">Homepage</h2>
@@ -105,6 +108,16 @@
     <h2 id="search">Search</h2>
     {% call grid() %}
       target=scale(stats.timers.{{ site }}.view.search.views.search.GET.count,0.1)&target=stats.timers.{{ site }}.view.search.views.search.GET.lower&target=stats.timers.{{ site }}.view.search.views.search.GET.mean&target=stats.timers.{{ site }}.view.search.views.search.GET.upper_90
+    {% endcall %}
+
+    <h2 id="es-timer">ES Request Time</h2>
+    {% call grid() %}
+      target=scale(stats.timers.{{ site }}.search.es.timer.count%2C0.1)&target=stats.timers.{{ site }}.search.es.timer.lower&target=stats.timers.{{ site }}.search.es.timer.mean&target=stats.timers.{{ site }}.search.es.timer.upper_90
+    {% endcall %}
+
+    <h2 id="es-took">ES Internal Timer</h2>
+    {% call grid() %}
+      target=scale(stats.timers.{{ site }}.search.es.took.count%2C0.1)&target=stats.timers.{{ site }}.search.es.took.lower&target=stats.timers.{{ site }}.search.es.took.mean&target=stats.timers.{{ site }}.search.es.took.upper_90
     {% endcall %}
 
     <h2 id="auth">Authenticated Responses</h2>
