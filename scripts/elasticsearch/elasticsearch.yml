@@ -11,7 +11,7 @@ index:
       standardPlusWordDelimiter:
         type: custom
         tokenizer: standard
-        filter: [standard, wordDelim, lowercase, stop, dict]
+        filter: [standard, wordDelim, lowercase, stop, dict, snowball]
     filter:
       wordDelim:
         type: word_delimiter
