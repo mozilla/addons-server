@@ -404,6 +404,7 @@ $.fn.modal = function(click_target, o) {
 function modalFromURL(url, settings) {
     var a = $('<a>'),
         defaults = {'deleteme': true, 'close': true},
+        settings = settings || {},
         callback = settings['callback'];
 
     delete settings['callback'];

@@ -548,6 +548,13 @@ def purchase_complete(request, addon, status):
     return response
 
 
+@addon_view
+@can_be_purchased
+def purchase_start(request, addon):
+    return jingo.render(request, 'addons/paypal_start.html',
+                        {'addon': addon, 'is_ajax': request.is_ajax()})
+
+
 @login_required
 @addon_view
 @can_be_purchased

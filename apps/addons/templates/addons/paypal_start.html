@@ -1,0 +1,37 @@
+{% extends "base_modal.html" if is_ajax else "base.html" %}
+
+{% block classes %}paypal-modal{% endblock %}
+
+{% block content %}
+<h2>{{ _('Purchase Add-on') }}</h2>
+<div class="paypal-content">
+  <span class="price">{{ addon.premium.get_price() }}</span></span>
+<h5>{{ addon.name }}</h5>
+  <div class="paypal-links">
+    <a>{{ _('Learn about purchases') }}</a>
+  </div>
+  <div class="paypal-parent">
+    <div class="paypal-user">
+      {% if user.is_authenticated() %}
+        {% trans email=user.email %}
+        Logged in as: <strong>{{ email }}</strong>
+        {% endtrans %}
+      {% else %}
+      <strong>
+        {% trans login=login_link() %}
+        Have a Firefox Add-ons account? <a href="{{ login }}">Log In</a>
+        {% endtrans %}
+      </strong>
+      {{ _('No account? No problem! You can create one after your purchase.') }}
+      {% endif %}
+    </div>
+    <button class="button prominent paypal"
+      href="/en-US/firefox/addon/tile-view/purchase/?"
+      data-realurl="/firefox/downloads/watermarked/125554/addon-311619-latest.xpi?src=hp-hc-upandcoming">
+      {# The <small> makes it smaller, <em> makes it darker. Don't localize "PayPal". #}
+      {{ _('Pay <small>with</small> Pay<em>Pal</em>') }}
+    </button>
+    <p>{{ _('Complete your purchase with PayPal.  No account necessary.') }}</p>
+  </div>
+</div>
+{% endblock %}

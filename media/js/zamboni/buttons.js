@@ -357,56 +357,9 @@ jQuery.fn.showBackupButton = function() {
 }
 
 jQuery.fn.addPaypal = function(html, allowClick) {
-    function createPaypal(el){
-        var modal = this,
-            $install = $(el.click_target).closest('.install'),
-            content = $('<div>', {'class': 'paypal-content'});
-
-        modal.append($('<h2>', {'text': gettext('Purchase Add-on')}));
-        modal.append(content);
-
-        content.append($('<span>', {'class': 'price', 'text': $install.attr('data-cost')}));
-        content.append($('<h5>', {'text': $install.attr('data-name')}));
-        var links = $('<div>', {'class': 'paypal-links'}),
-            divider = $('<span> &middot; </span>');
-        links.append($('<a>', {'text': gettext('Learn about purchases')}));
-        /* Until we know what this does, and have some currencies, removing.
-        * links.append(divider.clone());
-        * links.append($('<a>', {'text': gettext('Change Currency')}));
-        */
-        content.append(links);
-
-        var paypal = $('<div>', {'class': 'paypal-parent'}),
-            user = $("<div>", {'class': 'paypal-user'}),
-            user_email = $('.account a').attr('title');
-
-        content.append(paypal);
-        paypal.append(user);
-        if(user_email) {
-            user.html(format(gettext("Logged in as: <strong>{0}</strong>"), user_email));
-        } else {
-            user.append($("<strong>", {'html': gettext("Have a Firefox Add-ons account? <a href='#' class='login'>Log In</a>")}));
-            user.append($("<div>", {'html': gettext("No account? No problem! You can create one after your purchase.")}));
-            user.find('a.login').click(_pd(function() {
-                user.html(gettext("Loading&hellip;")).show().addClass('login')
-                    .load($install.attr('data-login-url'), function() {
-                        $(this).find('#id_username').focus();
-                    });
-            }));
-        }
-        paypal.append($("<button>", {'class': 'button prominent paypal',
-                                     'href': $install.attr('data-purchase'),
-                                     'html': gettext('Pay <small>with</small> Pay<em>Pal</em>'),
-                                     'data-realurl': $install.find('a.premium').attr('data-realurl')}));
-        paypal.append($('<p>', {'text': gettext('Complete your purchase with PayPal.  No account necessary.')}));
-        return true;
-    }
-    return this.each(function() {
-        var $this = $(this),
-            modal = $('<div>', {'class': 'paypal-modal modal'});
-
-        modal.modal($this, {'callback': createPaypal, 'close': true, 'hideme': false, 'emptyme': true});
-    });
+    return this.click(_pd(function() {
+        modalFromURL($(this).closest('.install').attr('data-start-purchase'));
+    }));
 }
 
 // Create a popup box when the element is clicked.  html can be a function.
