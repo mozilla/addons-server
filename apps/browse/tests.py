@@ -35,6 +35,11 @@ from versions.models import Version
 class ExtensionTestCase(amo.tests.ESTestCase):
     es = True
 
+    @classmethod
+    def setUpClass(cls):
+        super(ExtensionTestCase, cls).setUpClass()
+        setUpIndex()
+
     def setUp(self):
         super(ExtensionTestCase, self).setUp()
         self.url = reverse('browse.es.extensions')

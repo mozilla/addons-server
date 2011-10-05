@@ -1535,14 +1535,6 @@ class TestAddonWatchDisabled(amo.tests.TestCase):
 class TestSearchSignals(amo.tests.ESTestCase):
     es = True
 
-    @classmethod
-    def add_addons(cls):
-        pass
-
-    @classmethod
-    def reindex(cls):
-        pass
-
     def setUp(self):
         super(TestSearchSignals, self).setUp()
         addons.search.setup_mapping()
@@ -1614,7 +1606,7 @@ class TestLanguagePack(TestLanguagePack):
         eq_(self.addon.get_localepicker(), '')
 
 
-class TestMarketplace(amo.tests.ESTestCase):
+class TestMarketplace(amo.tests.TestCase):
 
     def setUp(self):
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)

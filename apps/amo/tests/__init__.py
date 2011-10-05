@@ -294,6 +294,9 @@ class ESTestCase(TestCase):
 
         super(ESTestCase, cls).setUpClass()
         addons.search.setup_mapping()
+
+    @classmethod
+    def setUpIndex(cls):
         cls.add_addons()
         cls.refresh()
 

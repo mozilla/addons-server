@@ -105,10 +105,6 @@ class TestIndexStats(amo.tests.TestCase):
 class TestIndexLatest(amo.tests.ESTestCase):
     es = True
 
-    @classmethod
-    def add_addons(self):
-        pass
-
     def test_index_latest(self):
         latest = date.today() - timedelta(days=5)
         UpdateCount.index({'date': latest})

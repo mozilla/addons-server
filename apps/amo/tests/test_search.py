@@ -11,6 +11,11 @@ from addons.models import Addon
 class TestESIndexing(amo.tests.ESTestCase):
     es = True
 
+    @classmethod
+    def setUpClass(cls):
+        super(TestESIndexing, cls).setUpClass()
+        cls.setUpIndex()
+
     # This needs to be in its own class for data isolation.
     def test_indexed_count(self):
         # Did all the right addons get indexed?
@@ -21,6 +26,11 @@ class TestESIndexing(amo.tests.ESTestCase):
 
 class TestES(amo.tests.ESTestCase):
     es = True
+
+    @classmethod
+    def setUpClass(cls):
+        super(TestES, cls).setUpClass()
+        cls.setUpIndex()
 
     def test_clone(self):
         # Doing a filter creates a new ES object.
@@ -334,6 +344,11 @@ class TestES(amo.tests.ESTestCase):
 
 class TestPaginator(amo.tests.ESTestCase):
     es = True
+
+    @classmethod
+    def setUpClass(cls):
+        super(TestPaginator, cls).setUpClass()
+        cls.setUpIndex()
 
     def setUp(self):
         self.request = request = mock.Mock()

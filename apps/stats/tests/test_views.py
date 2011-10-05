@@ -300,11 +300,6 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
         super(TestJSON, self).setUp()
         self.index()
 
-    @classmethod
-    def add_addons(cls):
-        # Override the default that adds some add-ons.
-        pass
-
     def index(self):
         updates = UpdateCount.objects.values_list('id', flat=True)
         tasks.index_update_counts(list(updates))
