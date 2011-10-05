@@ -340,7 +340,7 @@ def app_search(request, template=None):
     return jingo.render(request, template, ctx)
 
 
-@mobile_template('search/es_results.html')
+@mobile_template('search/{mobile/}es_results.html')
 def es_search(request, tag_name=None, template=None):
     APP = request.APP
     types = (amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
