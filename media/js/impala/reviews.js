@@ -65,7 +65,8 @@ $(document).ready(function() {
             title_selector;
 
         clearErrors($form);
-        $review.attr('action', edit_url);
+        $form.unbind().hide();
+        $('.review').not($review).show();
         $form.detach().insertAfter($review);
 
         if ($review.find('h4').length) {
@@ -74,9 +75,9 @@ $(document).ready(function() {
             title_selector = 'h3 > b';
         }
 
-        $('#id_title').val($review.find(title_selector).text());
-        $('.ratingwidget input:radio[value=' + rating + ']', $form).click();
-        $('#id_body').val($review.children('p.description').html().replace("<br>", "\n", "g"));
+        $form.find('#id_title').val($review.find(title_selector).text());
+        $form.find('.ratingwidget input:radio[value=' + rating + ']').click();
+        $form.find('#id_body').val($review.children('p.description').html().replace("<br>", "\n", "g"));
         $review.hide();
         $form.show();
         location.hash = '#review-edit-form';
@@ -97,11 +98,11 @@ $(document).ready(function() {
                 data: $form.serialize(),
                 success: function(response, status) {
                       clearErrors($form);
-                      $review.find(title_selector).text($('#id_title').val());
-                      var rating = $('.ratingwidget input:radio:checked', $form).val();
+                      $review.find(title_selector).text($form.find('#id_title').val());
+                      var rating = $form.find('.ratingwidget input:radio:checked').val();
                       $('.stars', $review).removeClass('stars-0 stars-1 stars-2 stars-3 stars-4 stars-5').addClass('stars-' + rating);
                       rating = $review.attr('data-rating', rating);
-                      $review.children('p.description').html($('#id_body').val().replace("\n", "<br>", "g"));
+                      $review.children('p.description').html($form.find('#id_body').val().replace("\n", "<br>", "g"));
                       done_edit();
                 },
                 error: function(xhr) {
