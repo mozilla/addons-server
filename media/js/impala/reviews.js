@@ -61,12 +61,20 @@ $(document).ready(function() {
             $review = $(this).closest('.review'),
             rating = $review.attr('data-rating'),
             edit_url = $('a.permalink', $review).attr('href') + 'edit',
-            $cancel = $('#review-edit-cancel');
+            $cancel = $('#review-edit-cancel'),
+            title_selector;
 
         clearErrors($form);
         $review.attr('action', edit_url);
         $form.detach().insertAfter($review);
-        $('#id_title').val($review.find('h3 > b').text());
+
+        if ($review.find('h4').length) {
+            title_selector = 'h4 > b';
+        } else {
+            title_selector = 'h3 > b';
+        }
+
+        $('#id_title').val($review.find(title_selector).text());
         $('.ratingwidget input:radio[value=' + rating + ']', $form).click();
         $('#id_body').val($review.children('p.description').html().replace("<br>", "\n", "g"));
         $review.hide();
@@ -89,7 +97,7 @@ $(document).ready(function() {
                 data: $form.serialize(),
                 success: function(response, status) {
                       clearErrors($form);
-                      $review.find('h3 > b').text($('#id_title').val());
+                      $review.find(title_selector).text($('#id_title').val());
                       var rating = $('.ratingwidget input:radio:checked', $form).val();
                       $('.stars', $review).removeClass('stars-0 stars-1 stars-2 stars-3 stars-4 stars-5').addClass('stars-' + rating);
                       rating = $review.attr('data-rating', rating);
