@@ -350,7 +350,7 @@ class TestBulkUpdate(BulkValidationTest):
         self.create_result(self.job, self.create_file(self.version))
         eq_(ActivityLog.objects.for_addons(self.addon).count(), 0)
         self.client.post(self.update_url, self.data)
-        upd = amo.LOG.BULK_VALIDATION_UPDATED.id
+        upd = amo.LOG.MAX_APPVERSION_UPDATED.id
         logs = ActivityLog.objects.for_addons(self.addon).filter(action=upd)
         eq_(logs.count(), 1)
         eq_(logs[0].user, get_task_user())
@@ -451,7 +451,7 @@ class TestBulkUpdate(BulkValidationTest):
         eq_([e.subject for e in rs], ['the subject'])
         # version should not be bumped since it's in preview mode:
         eq_(self.version.apps.all()[0].max, self.max)
-        upd = amo.LOG.BULK_VALIDATION_UPDATED.id
+        upd = amo.LOG.MAX_APPVERSION_UPDATED.id
         logs = ActivityLog.objects.for_addons(self.addon).filter(action=upd)
         eq_(logs.count(), 0)
 

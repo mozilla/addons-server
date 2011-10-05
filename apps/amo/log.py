@@ -363,7 +363,7 @@ class DELETE_REVIEW(_LOG):
     editor_event = True
 
 
-class BULK_VALIDATION_UPDATED(_LOG):
+class MAX_APPVERSION_UPDATED(_LOG):
     id = 46
     action_class = None
     format = _(u'Application max version for {version} updated.')
