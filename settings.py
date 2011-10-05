@@ -1207,6 +1207,8 @@ WATERMARK_CLEANUP_SECONDS = 3600
 
 CSRF_FAILURE_VIEW = 'amo.views.csrf_failure'
 
-
 # CSS selector for what part of the response to return in an X-PJAX request
 PJAX_SELECTOR = '#page'
+
+# Testing responsiveness without rate limits.
+CELERY_DISABLE_RATE_LIMITS = True
