@@ -3,6 +3,7 @@
 {% block title %}{{ page_title('Manage {0}')|f(addon.name) }}{% endblock %}
 
 {% block content %}
+{% include "messages.html" %}
 <h2>Manage {{ addon.name }}</h2>
 <form method="post" action="">
   <p>
@@ -44,7 +45,7 @@
                     {{ hidden }}
                   {% endfor %}
                 </td>
-                <td><a href="/admin/addons/hash/{{ addon.id }}/{{ file.id }}" title="{{ file.hash }}">Recalc Hash</a></td>
+                <td><a href="{{ url('zadmin.recalc_hash', file.id)|urlparams(page=pager.number) }}" title="{{ file.hash }}">Recalc Hash</a></td>
                 <td>
                   {% if file.is_mirrorable() %}
                     {{ "Copied" if file.has_been_copied() else "Not Copied" }}

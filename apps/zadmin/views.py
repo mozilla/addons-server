@@ -1,5 +1,6 @@
 import csv
 import json
+import os
 from datetime import datetime
 from decimal import Decimal
 from urlparse import urlparse
@@ -34,7 +35,7 @@ import users.cron
 from amo import messages, get_user
 from amo.decorators import login_required, json_view, post_required
 from amo.urlresolvers import reverse
-from amo.utils import chunked, sorted_groupby
+from amo.utils import chunked, sorted_groupby, urlparams
 from addons.decorators import addon_view
 from addons.models import Addon
 from addons.utils import ReverseNameLookup
@@ -587,3 +588,21 @@ def addon_manage(request, addon):
         'form_map': form_map,
         'file_map': file_map,
     })
+
+
+@admin.site.admin_view
+def recalc_hash(request, file_id):
+
+    file = get_object_or_404(File, pk=file_id)
+    file.size = int(max(1, round(os.path.getsize(file.file_path) / 1024, 0)))
+    file.hash = file.generate_hash()
+    file.save()
+
+    log.info('Recalculated hash for file ID %d' % file.id)
+    messages.success(request,
+                     'File hash and size recalculated for file %d.' % file.id)
+
+    redirect_url = reverse('zadmin.addon_manage',
+                           args=[file.version.addon.slug])
+    page = request.GET.get('page', 1)
+    return redirect(urlparams(redirect_url, page=page))

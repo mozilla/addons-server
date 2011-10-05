@@ -1261,7 +1261,7 @@ class TestLookup(amo.tests.TestCase):
             eq_(content[0], {u'value': 4043307, u'label': u'admin'})
 
 
-class TestAddonManage(amo.tests.TestCase):
+class TestAddonManagement(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
@@ -1295,3 +1295,18 @@ class TestAddonManage(amo.tests.TestCase):
         eq_(r.status_code, 200)
         file = File.objects.get(pk=67442)
         eq_(file.status, 2)
+
+    @mock.patch.object(File, 'file_path',
+                       amo.tests.AMOPaths().file_fixture_path(
+                           'delicious_bookmarks-2.1.106-fx.xpi'))
+    def test_regenerate_hash(self):
+        version = Version.objects.create(addon_id=3615)
+        file = File.objects.create(
+            filename='delicious_bookmarks-2.1.106-fx.xpi', version=version)
+
+        r = self.client.get(reverse('zadmin.recalc_hash', args=[file.id]),
+                           follow=True)
+        file = File.objects.get(pk=file.id)
+        assert file.size, 'File size should not be zero'
+        assert file.hash, 'File hash should not be empty'
+
