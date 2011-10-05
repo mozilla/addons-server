@@ -222,8 +222,8 @@ def notify_success(version_pks, job_pk, data, **kw):
         app_flag = False
         for app in version.apps.filter(
                                 application=job.curr_max_version.application):
-            if (app.max.version >= job.curr_max_version.version and
-                app.max.version < job.target_version.version):
+            if (app.max.version_int >= job.curr_max_version.version_int and
+                app.max.version_int < job.target_version.version_int):
                 stats['bumped'] += 1
                 log.info('Updating version %s%s for addon %s from version %s '
                          'to version %s'

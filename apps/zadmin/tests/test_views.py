@@ -119,8 +119,9 @@ class BulkValidationTest(amo.tests.TestCase):
 
     def create_job(self, **kwargs):
         kw = dict(application_id=amo.FIREFOX.id,
-                  curr_max_version=self.curr_max,
-                  target_version=self.appversion('3.7a3'),
+                  curr_max_version=kwargs.pop('current', self.curr_max),
+                  target_version=kwargs.pop('target',
+                                            self.appversion('3.7a3')),
                   creator=self.creator)
         kw.update(kwargs)
         return ValidationJob.objects.create(**kw)
@@ -370,6 +371,18 @@ class TestBulkUpdate(BulkValidationTest):
         av.save()
         self.client.post(self.update_url, self.data)
         eq_(self.version.apps.all()[0].max, self.appversion('3.7a3'))
+
+    def test_version_comparison(self):
+        # regression test for bug 691984
+        job = self.create_job(completed=datetime.now(),
+                              current=self.appversion('3.0.9'),
+                              target=self.appversion('3.5'))
+        # .* was not sorting right
+        self.version.apps.all().update(max=self.appversion('3.0.*'))
+        self.create_result(job, self.create_file(self.version))
+        self.client.post(reverse('zadmin.notify.success', args=[job.pk]),
+                         self.data)
+        eq_(self.version.apps.all()[0].max, self.appversion('3.5'))
 
     def test_update_different_app(self):
         self.create_result(self.job, self.create_file(self.version))
