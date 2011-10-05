@@ -587,7 +587,6 @@ $(document).ready(function () {
     }
 
 
-    page_state.chart_fields = $("#head-chart").getData("series").split(',') || ["count"];
     var stats_base_url = $report_el.getData("base_url");
     AMO.aggregate_stats_field = $(".stats-aggregate").getData("field");
     AMO.getAddonId = function () { return page_state.addon_id; };

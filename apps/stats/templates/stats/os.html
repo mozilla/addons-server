@@ -1,9 +1,5 @@
 {% extends "stats/stats.html" %}
 
-{% block chart_config %}
-  data-series="Windows,Mac OS X,Linux"
-{% endblock %}
-
 {% block csvtable %}
 <h3>{{_('OS usage by Date')}}<a id="export_data" href=''>{{_('Export as CSV')}}</a></h3>
 <div class="statbox">

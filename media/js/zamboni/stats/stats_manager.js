@@ -1,6 +1,6 @@
 
     // Versioning for offline storage
-    var version = "17";
+    var version = "19";
 
     // where all the time-series data for the page is kept
     var datastore = {};
@@ -57,12 +57,12 @@
     var StatsWorkerPool = new WorkerPool(4);
 
     var breakdown_metrics = {
-        "applications": true,
-        "languages": true,
+        "apps": true,
+        "locales": true,
         "os": true,
         "sources": true,
         "versions": true,
-        "status": true
+        "statuses": true
     };
 
     // date management helpers
@@ -127,13 +127,27 @@
                 out    = {},
                 isBreakdown = (metric in breakdown_metrics);
             AMO.StatsManager.getDataRange(metric, seriesStart, seriesEnd, function() {
-                for (var j=0; j<key.fields.length; j++) {
-                    k = key.fields[j];
-                    if (isBreakdown)
-                        k = "data|" + k;
-                    out[k] = [];
-                    fields.push(k);
+                var fieldList = [];
+                if (key.fields) {
+                    fields = key.fields;
+                } else {
+                    if (!isBreakdown) {
+                        fields.push("count");
+                    } else {
+                        var point = ds[ds.maxdate]['data'];
+                        fields = _.sortBy(_.keys(point),
+                                        function(a) {
+                                            return -point[a];
+                                        });
+                        console.log(fields[0]);
+                        fields = fields.slice(0,5);
+                        fields = _.map(fields, function(f) {
+                            return "data|" + f;
+                        });
+                        console.log(fields[0]);
+                    }
                 }
+                _.each(fields, function(f) { out[f] = [] });
                 chunkfor({
                     start: seriesStart,
                     end: seriesEnd,
@@ -169,13 +183,14 @@
             });
         },
         function hash(key) {
-            var time;
+            var time, fields;
+            fields = key.fields ? key.fields.join("_") : "auto";
             if (typeof key.time === "string") {
                 time = key.time.replace(/\s/g, '_');
             } else if (typeof time === "object") {
                 time = key.time.start + "_" + key.time.end;
             }
-            return [key.metric,key.fields.join("_"),time].join('_');
+            return [key.metric,fields,time].join('_');
         }
     );
 
