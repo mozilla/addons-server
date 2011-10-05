@@ -15,9 +15,7 @@
   {% endif %}
   {% with tag = 'h4' if show_addon else 'h3' %}
     <{{ tag }}>
-      {% if review.title %}
-        <b>{{ review.title }}</b>
-      {% endif %}
+      <b>{{ review.title }}</b>
       {% if not is_reply %}
         {{ review.rating|stars }}
       {% endif %}

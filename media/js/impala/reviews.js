@@ -70,7 +70,9 @@ $(document).ready(function() {
         $form.detach().insertAfter($review);
 
         if ($review.find('h4').length) {
+            $form.find('fieldset h3').remove();
             title_selector = 'h4 > b';
+            $form.find('fieldset').prepend($review.find('h3').clone());
         } else {
             title_selector = 'h3 > b';
         }
