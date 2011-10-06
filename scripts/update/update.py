@@ -127,3 +127,5 @@ def update(ctx):
     update_products()
     compress_assets()
     schematic()
+    with ctx.lcd(settings.SRC_DIR):
+        ctx.local('python2.6 manage.py dump_apps')
