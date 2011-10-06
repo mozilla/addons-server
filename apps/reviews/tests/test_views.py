@@ -7,7 +7,6 @@ import amo.tests
 from amo.urlresolvers import reverse
 from access.models import GroupUser
 from addons.models import Addon
-from addons.tests.test_views import TestMobile
 from devhub.models import ActivityLog
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
@@ -448,7 +447,7 @@ class TestEdit(ReviewTest):
         eq_('%s' % review.body, 'shizzle')
 
 
-class TestMobileReviews(TestMobile):
+class TestMobileReviews(amo.tests.MobileTest, amo.tests.TestCase):
     fixtures = ['base/apps', 'reviews/dev-reply.json', 'base/admin',
                 'base/users']
 
@@ -471,14 +470,14 @@ class TestMobileReviews(TestMobile):
 
     def test_mobile(self):
         self.client.logout()
-        self._mobile_init()
+        self.mobile_init()
         r = self.client.get(self.list)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'reviews/mobile/review_list.html')
 
     def test_add_visitor(self):
         self.client.logout()
-        self._mobile_init()
+        self.mobile_init()
         r = self.client.get(self.add)
         eq_(r.status_code, 302)
 
@@ -512,7 +511,7 @@ class TestMobileReviews(TestMobile):
 
     def test_add_link_visitor(self):
         self.client.logout()
-        self._mobile_init()
+        self.mobile_init()
         r = self.client.get(self.list)
         doc = pq(r.content)
         eq_(doc('#add-review').length, 1)
@@ -544,6 +543,6 @@ class TestMobileReviews(TestMobile):
 
     def test_add_logged_out(self):
         self.client.logout()
-        self._mobile_init()
+        self.mobile_init()
         r = self.client.get(reverse('reviews.add', args=['a1865']))
         eq_(r.status_code, 302)

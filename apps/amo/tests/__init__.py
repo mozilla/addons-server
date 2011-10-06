@@ -87,6 +87,9 @@ class MobileTest(object):
         super(MobileTest, self)._pre_setup()
         MobileTest._mobile_init(self)
 
+    def mobile_init(self):
+        MobileTest._mobile_init(self)
+
     # This is a static method so we can call it in @mobile_test.
     @staticmethod
     def _mobile_init(self):
