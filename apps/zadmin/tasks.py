@@ -262,10 +262,12 @@ def notify_success(version_pks, job_pk, data, **kw):
                 else:
                     stats['author_emailed'] += 1
                     send_mail(*args, **kwargs)
-                    amo.log(amo.LOG.BULK_VALIDATION_UPDATED,
+                    app_id = job.target_version.application.pk
+                    amo.log(amo.LOG.MAX_APPVERSION_UPDATED,
                             version.addon, version,
                             details={'version': version.version,
-                                     'target': job.target_version.version})
+                                     'target': job.target_version.version,
+                                     'application': app_id})
     log.info('[%s@%s] bulk update stats for job %s: {%s}'
              % (len(version_pks), notify_success.rate_limit, job_pk,
                 ', '.join('%s: %s' % (k, stats[k])

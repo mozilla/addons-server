@@ -642,6 +642,15 @@ class TestPlatformSearch(TestVersionEdit):
 
 class TestVersionEditCompat(TestVersionEdit):
 
+    def get_form(self, url=None):
+        if not url:
+            url = self.url
+        av = self.version.apps.get()
+        eq_(av.min.version, '2.0')
+        eq_(av.max.version, '3.7a1pre')
+        f = self.client.get(url).context['compat_form'].initial_forms[0]
+        return initial(f)
+
     def formset(self, *args, **kw):
         defaults = formset(prefix='files')
         defaults.update(kw)
@@ -655,13 +664,11 @@ class TestVersionEditCompat(TestVersionEdit):
         eq_(r.status_code, 302)
         apps = self.get_version().compatible_apps.keys()
         eq_(sorted(apps), sorted([amo.FIREFOX, amo.THUNDERBIRD]))
+        eq_(list(ActivityLog.objects.all().values_list('action')),
+            [(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
 
     def test_update_appversion(self):
-        av = self.version.apps.get()
-        eq_(av.min.version, '2.0')
-        eq_(av.max.version, '3.7a1pre')
-        f = self.client.get(self.url).context['compat_form'].initial_forms[0]
-        d = initial(f)
+        d = self.get_form()
         d.update(min=self.v1.id, max=self.v4.id)
         r = self.client.post(self.url,
                              self.formset(d, initial_count=1))
@@ -669,6 +676,21 @@ class TestVersionEditCompat(TestVersionEdit):
         av = self.version.apps.get()
         eq_(av.min.version, '1.0')
         eq_(av.max.version, '4.0')
+        eq_(list(ActivityLog.objects.all().values_list('action')),
+            [(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
+
+    def test_ajax_update_appversion(self):
+        url = reverse('devhub.ajax.compat.update',
+                      args=['a3615', self.version.id])
+        d = self.get_form(url)
+        d.update(min=self.v1.id, max=self.v4.id)
+        r = self.client.post(url, self.formset(d, initial_count=1))
+        eq_(r.status_code, 200)
+        av = self.version.apps.get()
+        eq_(av.min.version, '1.0')
+        eq_(av.max.version, '4.0')
+        eq_(list(ActivityLog.objects.all().values_list('action')),
+            [(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
 
     def test_delete_appversion(self):
         # Add thunderbird compat so we can delete firefox.
@@ -680,6 +702,8 @@ class TestVersionEditCompat(TestVersionEdit):
         eq_(r.status_code, 302)
         apps = self.get_version().compatible_apps.keys()
         eq_(apps, [amo.THUNDERBIRD])
+        eq_(list(ActivityLog.objects.all().values_list('action')),
+            [(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
 
     def test_unique_apps(self):
         f = self.client.get(self.url).context['compat_form'].initial_forms[0]
