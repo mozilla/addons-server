@@ -5,6 +5,7 @@ from session_csrf import anonymous_csrf
 
 from . import forms, views
 from .models import UserProfile
+from addons.urls import ADDON_ID
 from amo.decorators import modal_view
 
 # We need Django to use our User model.
@@ -32,7 +33,7 @@ users_patterns = patterns('',
                            name='users.admin_edit'),
     url('^browserid-login', views.browserid_login,
         name='users.browserid_login'),
-    url('^login/modal', modal_view(views.login), name='users.login_modal'),
+    url('^login/modal', views.login_modal, name='users.login_modal'),
     url('^login', views.login, name='users.login'),
     url('^logout', views.logout, name='users.logout'),
     url('^register$', views.register, name='users.register'),
@@ -56,6 +57,8 @@ users_patterns = patterns('',
     url(r'purchases/$', views.purchases, name='users.purchases'),
     url(r'purchases/(?P<addon_id>\d+)', views.purchases,
         name='users.purchases.receipt'),
+    url(r'purchase/start/%s$' % ADDON_ID, views.paypal_start,
+        name='users.purchase.start'),
     url(r'support/(?P<contribution_id>\d+)(?:/(?P<step>[\w-]+))?$',
         views.SupportWizard.as_view(),
         name='users.support')

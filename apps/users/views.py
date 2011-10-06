@@ -1,4 +1,5 @@
 from functools import partial
+from urlparse import urlparse
 
 from django import http
 from django.conf import settings
@@ -22,6 +23,7 @@ from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 from mobility.decorators import mobile_template
 import waffle
 
+from access.middleware import ACLMiddleware
 import amo
 from amo import messages
 from amo.decorators import (json_view, login_required, permission_required,
@@ -32,6 +34,7 @@ from amo.utils import send_mail
 from abuse.models import send_abuse_report
 from addons.models import Addon
 from addons.views import BaseFilter
+from addons.decorators import addon_view_factory, can_be_purchased
 from access import acl
 from bandwagon.models import Collection
 from stats.models import Contribution
@@ -45,6 +48,7 @@ from .utils import EmailResetCode, UnsubscribeCode
 import tasks
 
 log = commonware.log.getLogger('z.users')
+addon_view = addon_view_factory(qs=Addon.objects.valid)
 
 
 @login_required(redirect=False)
@@ -285,17 +289,38 @@ def browserid_login(request):
     return http.HttpResponse(status=401)
 
 
+@addon_view
+@can_be_purchased
+@anonymous_csrf
+@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
+def paypal_start(request, addon=None):
+    download = urlparse(request.GET.get('realurl', '')).path
+    data = {'addon': addon, 'is_ajax': request.is_ajax(), 'download': download}
+
+    if request.user.is_authenticated():
+        return jingo.render(request, 'addons/paypal_start.html', data)
+
+    return _login(request, data=data, template='addons/paypal_start.html',
+                  dont_redirect=True)
+
+
+@anonymous_csrf
+@mobile_template('users/{mobile/}login_modal.html')
+@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
+def login_modal(request, template=None):
+    return _login(request, template=template)
+
+
 @anonymous_csrf
 @mobile_template('users/{mobile/}login.html')
 @ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
-def login(request, modal=False, template=None):
+def login(request, template=None):
+    return _login(request, template=template)
+
+
+def _login(request, template=None, data=None, dont_redirect=False):
     # In case we need it later.  See below.
     get_copy = request.GET.copy()
-
-    if modal:
-        template = 'users/login_modal.html'
-        if request.user.is_authenticated():
-            return jingo.render(request, 'users/login_modal.html')
 
     logout(request)
 
@@ -317,7 +342,8 @@ def login(request, modal=False, template=None):
     partial_form = partial(forms.AuthenticationForm, use_recaptcha=limited)
     r = auth.views.login(request, template_name=template,
                          redirect_field_name='to',
-                         authentication_form=partial_form)
+                         authentication_form=partial_form,
+                         extra_context=data)
 
     if isinstance(r, http.HttpResponseRedirect):
         # Django's auth.views.login has security checks to prevent someone from
@@ -339,8 +365,8 @@ def login(request, modal=False, template=None):
             logout(request)
             log.warning(u'Attempt to log in with deleted account (%s)' % user)
             messages.error(request, _('Wrong email address or password!'))
-            return jingo.render(request, 'users/login.html',
-                                {'form': partial_form()})
+            return jingo.render(request, template,
+                                data.update({'form': partial_form()}))
 
         if user.confirmationcode:
             logout(request)
@@ -358,8 +384,8 @@ def login(request, modal=False, template=None):
             messages.error(request, _('Activation Email Sent'),  msg1)
             messages.info(request, _('Having Trouble?'), msg2,
                           title_safe=True)
-            return jingo.render(request, 'users/login.html',
-                                {'form': partial_form()})
+            return jingo.render(request, template,
+                                data.update({'form': partial_form()}))
 
         rememberme = request.POST.get('rememberme', None)
         if rememberme:
@@ -369,8 +395,10 @@ def login(request, modal=False, template=None):
         else:
             user.log_login_attempt(request, True)
 
-        if modal:
-            r = redirect('users.login_modal')
+        if dont_redirect:
+            # We're recalling the middleware to re-initialize amo_user
+            ACLMiddleware().process_request(request)
+            r = jingo.render(request, template, data)
 
     return r
 

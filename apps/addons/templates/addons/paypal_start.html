@@ -3,37 +3,48 @@
 {% block classes %}paypal-modal{% endblock %}
 
 {% block content %}
-<h2>{{ _('Purchase Add-on') }}</h2>
-<div class="paypal-content">
-  <span class="price">{{ addon.premium.get_price() }}</span>
-<h5>{{ addon.name }}</h5>
-  <div class="paypal-links">
-    <a>{{ _('Learn about purchases') }}</a>
-  </div>
-  <div class="paypal-parent">
-    <div class="paypal-user">
+{% if user.is_authenticated() and addon.has_purchased(user.get_profile()) %}
+<section class="paypal-parent ajax-submit">
+  <h2>{{ _('Purchased Add-on') }}</h2>
+  {{ _("You've already bought this add-on!") }}
+  <p>
+  {% trans download=download %}
+  If installation does not automatically begin, please <a class="trigger_download" href="{{ download }}">click here</a>.
+  {% endtrans %}
+  </p>
+</section>
+{% else: %}
+<div class="ajax-submit">
+  <h2>{{ _('Purchase Add-on') }}</h2>
+  <div class="paypal-content">
+    <span class="price">{{ addon.premium.get_price() }}</span>
+    <h5>{{ addon.name }}</h5>
+    <div class="paypal-links">
+      <a>{{ _('Learn about purchases') }}</a>
+    </div>
+    <div class="paypal-parent">
       {% if user.is_authenticated() %}
-        {% trans email=user.email %}
-        Logged in as <strong>{{ email }}</strong>
+      <div class="paypal-user">
+        {% trans user_email=user.email %}
+        You are logged in as <strong>{{ user_email }}</strong>!
         {% endtrans %}
-      {% else %}
-      <strong>
-        {% trans login=login_link() %}
-        Have an Add-ons account? <a href="{{ login }}">Log In</a>
-        {% endtrans %}
-      </strong>
-      <div>
-        {{ _('No account? No problem! You can create one after your purchase.') }}
       </div>
+      <button class="button prominent paypal"
+              href="{{ url('addons.purchase', addon.slug) }}?"
+              data-realurl="{{ download }}">
+        {# The <small> makes it smaller, <em> makes it darker. Don't localize "PayPal". #}
+            {{ _('Pay <small>with</small> Pay<em>Pal</em>') }}
+      </button>
+      <p>{{ _('Complete your purchase with PayPal.  No account necessary.') }}</p>
+      {% else %}
+      <div class="paypal-user login">
+        {% with is_ajax=False, action="%s?realurl=%s" % (url('users.purchase.start', addon.slug), download) %}
+          {% include "users/login_form.html" %}
+        {% endwith %}
+      </div>
+      <p>{{ _('For now, you need to have an addons.mozilla.org account.') }}</p>
       {% endif %}
     </div>
-    <button class="button prominent paypal"
-      href="/en-US/firefox/addon/tile-view/purchase/?"
-      data-realurl="/firefox/downloads/watermarked/125554/addon-311619-latest.xpi?src=hp-hc-upandcoming">
-      {# The <small> makes it smaller, <em> makes it darker. Don't localize "PayPal". #}
-      {{ _('Pay <small>with</small> Pay<em>Pal</em>') }}
-    </button>
-    <p>{{ _('Complete your purchase with PayPal.  No account necessary.') }}</p>
   </div>
-</div>
+{% endif %}
 {% endblock %}

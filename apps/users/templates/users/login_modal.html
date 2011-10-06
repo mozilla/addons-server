@@ -1,47 +1,11 @@
 {% if user.is_authenticated() %}
-  {% trans user_email=user.email %}
-  You are now logged in as <strong>{{ user_email }}</strong>!
-  {% endtrans %}
+  <div class="ajax-submit login-success">
+    {% trans user_email=user.email %}
+    You are now logged in as <strong>{{ user_email }}</strong>!
+    {% endtrans %}
+  </div>
 {% else %}
-  <form method="post" action="{{ url('users.login_modal') }}" class="ajax-submit featured-inner object-lead user-input">
-    {{ csrf() }}
-    {% include "messages.html" %}
-    {% if form.non_field_errors() %}
-        <div class="notification-box error">
-          <ul>
-          {% for error in form.non_field_errors() %}
-          <li><h2>{{ error }}</h2></li>
-          {% endfor %}
-          </ul>
-        </div>
-    {% endif %}
-    <fieldset>
-      <ul>
-        <li>
-        <label for="id_username">{{ _('Email address') }}</label>
-        {{ form.username }}
-        {{ form.username.errors }}
-        </li>
-        <li>
-        <label for="id_password">{{ _('Password') }}</label>
-        {{ form.password }}
-        {{ form.password.errors }}
-        </li>
-        <li>
-        <label for="id_rememberme" class="check">
-          {{ form.rememberme }}
-          {{ _('Remember me on this computer') }}
-        </label>
-        {{ form.rememberme.errors }}
-        </li>
-        {% if form.recaptcha %}
-        {{ form.recaptcha_shown }}
-        {{ recaptcha(form) }}
-        {% endif %}
-      </ul>
-    </fieldset>
-    <div class="fm-control">
-      <button id="login-submit" type="submit">{{ _('Log in') }}</button>
-    </div>
-  </form>
+  {% with is_ajax=True, action=url('users.login_modal') %}
+    {% include "users/login_form.html" %}
+  {% endwith %}
 {% endif %}

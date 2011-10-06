@@ -405,11 +405,11 @@ function modalFromURL(url, settings) {
     var a = $('<a>'),
         defaults = {'deleteme': true, 'close': true},
         settings = settings || {},
+        data = settings['data'] || {},
         callback = settings['callback'];
 
     delete settings['callback'];
     settings = $.extend(defaults, settings);
-
 
     var inside = $('<div>', {'class': 'modal-inside', 'text': gettext('Loading...')}),
         modal = $("<div>", {'class': 'modal'}).modal(a, settings);
@@ -417,7 +417,7 @@ function modalFromURL(url, settings) {
     modal.append(inside);
     a.trigger('click');
 
-    $.get(url, function(html){
+    $.get(url, data, function(html){
         modal.appendTo('body')
         inside.html("").append(html);
         if(callback) {

@@ -167,13 +167,19 @@ function initBanners(delegate) {
 
 // AJAX form submit
 
-$('form.ajax-submit').live('submit', function() {
-    var $this = $(this),
-        params = $this.serializeArray();
+$(function() {
+  $('form.ajax-submit, .ajax-submit form').live('submit', function() {
+      var $form = $(this),
+          $parent = $form.is('.ajax-submit') ? $form : $form.closest('.ajax-submit'),
+          params = $form.serializeArray();
 
-    $(this).find('.submit, button[type=submit], submit').attr('disabled', true).addClass('loading-submit');
-    $.post($this.attr('action'), params, function(d) {
-        $this.replaceWith(d);
-    });
-    return false;
+      $form.find('.submit, button[type=submit], submit').attr('disabled', true).addClass('loading-submit');
+      $.post($form.attr('action'), params, function(d) {
+          var $replacement = $(d);
+          $parent.replaceWith($replacement);
+          $replacement.trigger('ajax-submit-loaded');
+          $replacement.find('.ajax-submit').trigger('ajax-submit-loaded');
+      });
+      return false;
+  });
 });

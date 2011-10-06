@@ -17,16 +17,6 @@
 {% block content %}
 
 <div class="primary">
-  {% include "messages.html" %}
-  {% if form.non_field_errors() %}
-      <div class="notification-box error">
-        <ul>
-        {% for error in form.non_field_errors() %}
-          <h2>{{ error }}</h2>
-        {% endfor %}
-        </ul>
-      </div>
-  {% endif %}
   <div class="secondary">
       <div id="login-help" class="article">
           <h2>{{ _('Login Problems?') }}</h2>
@@ -45,39 +35,7 @@
       </button>
     </div>
     {% endif %}
-    <form method="post" action="">
-      {{ csrf() }}
-      <fieldset>
-        <ul>
-          <li>
-            <label for="id_username">{{ _('Email address') }}</label>
-            {{ form.username }}
-            {{ form.username.errors }}
-          </li>
-          <li>
-            <label for="id_password">{{ _('Password') }}</label>
-            {{ form.password }}
-            {{ form.password.errors }}
-          </li>
-          <li id="remember-me">
-            <label for="id_rememberme" class="check">
-              {{ form.rememberme }}
-              {{ _('Remember me on this computer') }}
-            </label>
-            {{ form.rememberme.errors }}
-          </li>
-          <li id="captcha">
-            {% if form.recaptcha %}
-              {{ form.recaptcha_shown }}
-              {{ recaptcha(form) }}
-            {% endif %}
-          </li>
-          <li class="footer-submit">
-            <button id="login-submit" type="submit">{{ _('Log in') }}</button>
-          </li>
-        </ul>
-      </fieldset>
-    </form>
+    {% include "users/login_form.html" %}
   </section>
 </div>
 {% endblock content %}

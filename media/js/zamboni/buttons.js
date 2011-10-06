@@ -357,8 +357,25 @@ jQuery.fn.showBackupButton = function() {
 }
 
 jQuery.fn.addPaypal = function(html, allowClick) {
+    function checkForAddon(el) {
+        var $this = $(el);
+        // Focus on the username field if it exists.
+        $('#id_username', $this).focus();
+
+        // Trigger any downloads that exist.
+        if($(".trigger_download", $this).exists()) {
+            z.installAddon($(".addon-title", $this).text(),
+                           $(".trigger_download", $this).attr('href'));
+        }
+    }
     return this.click(_pd(function() {
-        modalFromURL($(this).closest('.install').attr('data-start-purchase'));
+        var $install = $(this).closest('.install'),
+            url = $install.attr('data-start-purchase');
+
+        modalFromURL(url, {'callback': function(el) {
+            checkForAddon(this);
+            $(this).delegate('.ajax-submit', 'ajax-submit-loaded', function(){ checkForAddon(this); });
+        }, 'data': {'realurl': $install.find('a.premium').attr('data-realurl')}});
     }));
 }
 
