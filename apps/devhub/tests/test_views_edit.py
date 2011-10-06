@@ -1131,7 +1131,7 @@ class TestEditTechnical(TestEdit):
     def test_edit_dependencies_add(self):
         addon = Addon.objects.get(id=5299)
         eq_(addon.type, amo.ADDON_EXTENSION)
-        eq_(addon in list(Addon.objects.public()), True)
+        eq_(addon in list(Addon.objects.reviewed()), True)
 
         d = self.dep_formset({'dependent_addon': addon.id})
         r = self.client.post(self.technical_edit_url, d)
@@ -1148,7 +1148,7 @@ class TestEditTechnical(TestEdit):
         eq_(a.text(), unicode(addon.name))
 
     def test_edit_dependencies_limit(self):
-        deps = Addon.objects.public().exclude(
+        deps = Addon.objects.reviewed().exclude(
             Q(id__in=[self.addon.id, self.dependent_addon.id]) |
             Q(type=amo.ADDON_PERSONA))
         args = []
@@ -1172,29 +1172,46 @@ class TestEditTechnical(TestEdit):
              'choices.'])
         self.check_dep_ids([self.dependent_addon.id])
 
-    def test_edit_dependencies_add_nonpublic(self):
-        """Ensure that non-public add-ons cannot be made as dependencies."""
+    def test_edit_dependencies_add_reviewed(self):
+        """Ensure that reviewed add-ons can be made as dependencies."""
         addon = Addon.objects.get(id=40)
-        eq_(addon in list(Addon.objects.public()), False)
-        d = self.dep_formset({'dependent_addon': addon.id})
-        r = self.client.post(self.technical_edit_url, d)
-        self.check_bad_dep(r)
+        for status in amo.REVIEWED_STATUSES:
+            addon.update(status=status)
 
-    def test_edit_dependencies_add_public_persona(self):
-        """Ensure that public Personas cannot be made as dependencies."""
+            eq_(addon in list(Addon.objects.reviewed()), True)
+            d = self.dep_formset({'dependent_addon': addon.id})
+            r = self.client.post(self.technical_edit_url, d)
+            eq_(any(r.context['dependency_form'].errors), False)
+            self.check_dep_ids([self.dependent_addon.id, addon.id])
+
+            AddonDependency.objects.get(dependent_addon=addon).delete()
+
+    def test_edit_dependencies_no_add_unreviewed(self):
+        """Ensure that unreviewed add-ons cannot be made as dependencies."""
+        addon = Addon.objects.get(id=40)
+        for status in amo.UNREVIEWED_STATUSES:
+            addon.update(status=status)
+
+            eq_(addon in list(Addon.objects.reviewed()), False)
+            d = self.dep_formset({'dependent_addon': addon.id})
+            r = self.client.post(self.technical_edit_url, d)
+            self.check_bad_dep(r)
+
+    def test_edit_dependencies_no_add_reviewed_persona(self):
+        """Ensure that reviewed Personas cannot be made as dependencies."""
         addon = Addon.objects.get(id=15663)
         eq_(addon.type, amo.ADDON_PERSONA)
-        eq_(addon in list(Addon.objects.public()), True)
+        eq_(addon in list(Addon.objects.reviewed()), True)
         d = self.dep_formset({'dependent_addon': addon.id})
         r = self.client.post(self.technical_edit_url, d)
         self.check_bad_dep(r)
 
-    def test_edit_dependencies_add_nonpublic_persona(self):
-        """Ensure that non-public Personas cannot be made as dependencies."""
+    def test_edit_dependencies_no_add_unreviewed_persona(self):
+        """Ensure that unreviewed Personas cannot be made as dependencies."""
         addon = Addon.objects.get(id=15663)
         addon.update(status=amo.STATUS_UNREVIEWED)
         eq_(addon.status, amo.STATUS_UNREVIEWED)
-        eq_(addon in list(Addon.objects.public()), False)
+        eq_(addon in list(Addon.objects.reviewed()), False)
         d = self.dep_formset({'dependent_addon': addon.id})
         r = self.client.post(self.technical_edit_url, d)
         self.check_bad_dep(r)

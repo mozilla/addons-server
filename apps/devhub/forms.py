@@ -1030,8 +1030,8 @@ def DependencyFormSet(*args, **kw):
     class _Form(happyforms.ModelForm):
         addon = forms.CharField(required=False, widget=forms.HiddenInput)
         dependent_addon = forms.ModelChoiceField(
-            Addon.objects.public().exclude(Q(id=addon_parent.id) |
-                                           Q(type=amo.ADDON_PERSONA)),
+            Addon.objects.reviewed().exclude(Q(id=addon_parent.id) |
+                                             Q(type=amo.ADDON_PERSONA)),
             widget=forms.HiddenInput)
 
         class Meta:
