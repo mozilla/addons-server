@@ -1128,8 +1128,8 @@ COMPAT = (
 # Latest nightly version of Firefox.
 NIGHTLY_VERSION = COMPAT[0]['main']
 
-# Default minimum version of Firefox for Add-on Packager.
-FIREFOX_MINVER = COMPAT[4]['main']
+# Default minimum version of Firefox/Thunderbird for Add-on Packager.
+DEFAULT_MINVER = COMPAT[4]['main']
 
 # URL for reporting arecibo errors too. If not set, won't be sent.
 ARECIBO_SERVER_URL = ""

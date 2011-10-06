@@ -785,11 +785,11 @@ class PackagerCompatForm(forms.Form):
         self.fields['min_ver'].queryset = qs.filter(~Q(version__contains='*'))
         self.fields['max_ver'].queryset = qs.all()
 
-        # Unreasonably hardcode a reasonable default Firefox minVersion.
-        if self.app == amo.FIREFOX:
+        # Unreasonably hardcode a reasonable default minVersion.
+        if self.app in (amo.FIREFOX, amo.MOBILE, amo.THUNDERBIRD):
             try:
                 self.fields['min_ver'].initial = qs.filter(
-                    version=settings.FIREFOX_MINVER)[0]
+                    version=settings.DEFAULT_MINVER)[0]
             except (IndexError, AttributeError):
                 pass
 
