@@ -27,6 +27,12 @@ def update_locales(ctx):
 
 
 @task
+def update_products(ctx):
+    with ctx.lcd(settings.SRC_DIR):
+        ctx.local('python2.6 manage.py update_product_details')
+
+
+@task
 def compress_assets(ctx, arg=''):
     with ctx.lcd(settings.SRC_DIR):
         ctx.local("python2.6 manage.py compress_assets %s" % arg)
@@ -46,7 +52,7 @@ def update_code(ctx, ref='origin/master', vendor_ref='origin/master'):
         if vendor_ref:
             with ctx.lcd("vendor"):
                 git_update(ctx, vendor_ref)
-                
+
 
 @task
 def update_remora(ctx):
@@ -118,5 +124,6 @@ def pre_update(ctx, ref=settings.UPDATE_REF, vendor_ref=settings.UPDATE_VENDOR_R
 @task
 def update(ctx):
     update_locales()
+    update_products()
     compress_assets()
     schematic()
