@@ -126,6 +126,10 @@ def ajax_compat_update(request, addon_id, addon, version_id):
         for compat in compat_form.save(commit=False):
             compat.version = version
             compat.save()
+        for form in compat_form.forms:
+            if (isinstance(form, forms.CompatForm) and
+                'max' in form.changed_data):
+                _log_max_version_change(addon, version, form.instance)
     return jingo.render(request, 'devhub/addons/ajax_compat_update.html',
                         dict(addon=addon, version=version,
                              compat_form=compat_form))
@@ -1097,12 +1101,24 @@ def version_edit(request, addon_id, addon, version_id):
             for compat in data['compat_form'].save(commit=False):
                 compat.version = version
                 compat.save()
+            for form in data['compat_form'].forms:
+                if (isinstance(form, forms.CompatForm) and
+                    'max' in form.changed_data):
+                    _log_max_version_change(addon, version, form.instance)
         messages.success(request, _('Changes successfully saved.'))
         return redirect('devhub.versions.edit', addon.slug, version_id)
 
     data.update(addon=addon, version=version, new_file_form=new_file_form,
                 file_history=file_history)
     return jingo.render(request, 'devhub/versions/edit.html', data)
+
+
+def _log_max_version_change(addon, version, appversion):
+    details = {'version': version.version,
+               'target': appversion.version.version,
+               'application': appversion.application.pk}
+    amo.log(amo.LOG.MAX_APPVERSION_UPDATED,
+            addon, version, details=details)
 
 
 def _get_file_history(version):
