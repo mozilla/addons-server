@@ -225,6 +225,11 @@ class TestContributeEmbedded(amo.tests.TestCase):
                         'result_type=json'))
         assert not json.loads(res.content)['paykey']
 
+    def test_result_page(self):
+        url = reverse('addons.paypal', args=[self.addon.slug, 'complete'])
+        doc = pq(self.client.get(url).content)
+        eq_(len(doc('#paypal-thanks')), 0)
+
 
 class TestPurchaseEmbedded(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_592', 'base/users', 'prices']
@@ -356,6 +361,17 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         res = self.client.get('%s?realurl=%s' % (url, 'http://bad.site/foo'))
         eq_(res.status_code, 200)
         eq_(pq(res.content)('a.trigger_download').attr('href'), '/foo')
+
+    @patch('paypal.check_purchase')
+    def test_result_page(self, check_purchase):
+        check_purchase.return_value = 'COMPLETED'
+        Contribution.objects.create(addon=self.addon, uuid='1',
+                                    user=self.user, paykey='sdf',
+                                    type=amo.CONTRIB_PENDING)
+        url = reverse('addons.purchase.finished',
+                      args=[self.addon.slug, 'complete'])
+        doc = pq(self.client.get('%s?uuid=1' % url).content)
+        eq_(len(doc('#paypal-thanks')), 1)
 
 
 class TestDeveloperPages(amo.tests.TestCase):
