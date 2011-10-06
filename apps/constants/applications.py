@@ -15,7 +15,9 @@ class FIREFOX:
     guid = '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}'
     min_display_version = 3.0
     # These versions were relabeled and should not be displayed.
-    exclude_versions = (3.1, 3.7, 4.2)
+    # 99 comes from the hacks we do to make search tools compatible with all
+    # versions (bug 692360).
+    exclude_versions = (3.1, 3.7, 4.2, 99)
     backup_version = version_int('3.7.*')
     user_agent_string = 'Firefox'
     platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
@@ -45,7 +47,9 @@ class SEAMONKEY:
              ADDON_LPAPP, ADDON_PLUGIN, ADDON_PERSONA]
     guid = '{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'
     min_display_version = 1.0
-    exclude_versions = (1.5,)
+    # 99 comes from the hacks we do to make search tools compatible with all
+    # versions (bug 692360).
+    exclude_versions = (1.5, 99)
     latest_version = None
     user_agent_string = 'SeaMonkey'
     platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
@@ -75,6 +79,9 @@ class MOBILE:
              ADDON_LPAPP, ADDON_PERSONA]
     guid = '{a23983c0-fd0e-11dc-95ff-0800200c9a66}'
     min_display_version = 0.1
+    # 99 comes from the hacks we do to make search tools compatible with all
+    # versions (bug 692360).
+    exclude_versions = (99,)
     latest_version = None
     user_agent_string = 'Fennec'
     platforms = 'mobile'  # DESKTOP_PLATFORMS (set in constants.platforms)
