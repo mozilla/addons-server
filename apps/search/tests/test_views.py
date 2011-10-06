@@ -7,6 +7,7 @@ from django.http import QueryDict
 from django.test import client
 
 from mock import Mock, patch
+from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -18,7 +19,7 @@ from addons.tests.test_views import TestMobile
 from search.tests import SphinxTestCase
 from search import views
 from search.client import SearchError
-from addons.models import Addon, Category
+from addons.models import Addon, Category, Persona
 from tags.models import AddonTag, Tag
 
 
@@ -111,6 +112,77 @@ class TestESSearch(amo.tests.ESTestCase):
         base = reverse('search.es_search')
         r = self.client.get(base + '?sort=averagerating')
         self.assertRedirects(r, base + '?sort=rating', status_code=301)
+
+    def assert_ajax_query(self, params, addons=[]):
+        r = self.client.get(reverse('search.ajax') + '?' + params)
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+
+        data = sorted(data, key=lambda x: x['id'])
+        addons = sorted(addons, key=lambda x: x.id)
+
+        eq_(len(data), len(addons))
+        for got, expected in zip(data, addons):
+            eq_(got['id'], expected.id)
+            eq_(got['label'], unicode(expected.name))
+            eq_(got['url'], expected.get_url_path())
+            eq_(got['icon'], expected.icon_url)
+
+            assert expected.status in amo.REVIEWED_STATUSES, (
+                'Unreviewed add-ons should not appear in search results.')
+            eq_(expected.is_disabled, False)
+            assert expected.type in amo.ADDON_SEARCH_TYPES, (
+                'Add-on type %s should not be searchable.' % addon.type)
+
+    def test_ajax_search_by_id(self):
+        addon = Addon.objects.get(id=4)
+        self.assert_ajax_query('q=4', [addon])
+
+    def test_ajax_search_by_bad_id(self):
+        self.assert_ajax_query('q=999', [])
+
+    def test_ajax_search_unreviewed_by_id(self):
+        addon = Addon.objects.get(id=4)
+        addon.update(status=amo.STATUS_UNREVIEWED)
+        self.assert_ajax_query('q=999', [])
+
+    def test_ajax_search_lite_reviewed_by_id(self):
+        addon = Addon.objects.get(id=4)
+        addon.update(status=amo.STATUS_LITE)
+        self.assert_ajax_query('q=4', [addon])
+
+        addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        self.assert_ajax_query('q=4', [addon])
+
+    def test_ajax_search_user_disabled_by_id(self):
+        addon = Addon.objects.get(id=1)
+        eq_(addon.disabled_by_user, True)
+        self.assert_ajax_query('q=1', [])
+
+    def test_ajax_search_admin_disabled_by_id(self):
+        addon = Addon.objects.get(id=2)
+        eq_(addon.status, amo.STATUS_DISABLED)
+        self.assert_ajax_query('q=1', [])
+
+    def test_ajax_search_personas_by_id(self):
+        addon = Addon.objects.get(id=4)
+        addon.update(type=amo.ADDON_PERSONA)
+        Persona.objects.create(persona_id=4, addon_id=4)
+        self.assert_ajax_query('q=4', [addon])
+        self.assert_ajax_query('q=4&exclude_personas=true', [])
+
+    def test_ajax_search_char_limit(self):
+        self.assert_ajax_query('q=ad', [])
+
+    def test_ajax_search_by_name(self):
+        raise SkipTest
+        # Exclude the following:
+        # 1 (user-disabled), 2 (admin-disabled), 3 (unreviewed).
+        self.assert_ajax_query('q=add',
+            list(Addon.objects.filter(id__in=[4, 5, 6])))
+
+    def test_ajax_search_by_bad_name(self):
+        self.assert_ajax_query('q=some+filthy+bad+word', [])
 
 
 def test_search_redirects():

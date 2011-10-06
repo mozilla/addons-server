@@ -265,17 +265,18 @@ def ajax_search(request):
     if 'q' in request.GET:
         if settings.USE_ELASTIC:
             q = request.GET['q']
-            exclude_personas = request.GET.get('exclude_personas', False)
-            if q.isdigit():
-                qs = Addon.objects.filter(id=int(q))
-            else:
-                qs = Addon.search().query(or_=name_query(q))
-            types = amo.ADDON_SEARCH_TYPES[:]
-            if exclude_personas:
-                types.remove(amo.ADDON_PERSONA)
-            qs = qs.filter(type__in=types)
-            results = qs.filter(status__in=amo.REVIEWED_STATUSES,
-                                is_disabled=False)[:10]
+            if q.isdigit() or (not q.isdigit() and len(q) > 2):
+                if q.isdigit():
+                    qs = Addon.objects.filter(id=int(q),
+                                              disabled_by_user=False)
+                else:
+                    qs = (Addon.search().query(or_=name_query(q))
+                          .filter(is_disabled=False))
+                types = amo.ADDON_SEARCH_TYPES[:]
+                if request.GET.get('exclude_personas', False):
+                    types.remove(amo.ADDON_PERSONA)
+                results = qs.filter(type__in=types,
+                                    status__in=amo.REVIEWED_STATUSES)[:10]
         else:
             # TODO: Let this die when we kill Sphinx.
             q = request.GET.get('q', '')
