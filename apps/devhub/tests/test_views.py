@@ -742,7 +742,8 @@ class TestMarketplace(amo.tests.TestCase):
     def setup_premium(self):
         self.price = Price.objects.create(price='0.99')
         self.price_two = Price.objects.create(price='1.99')
-        self.other_addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        self.other_addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
+                                                premium_type=amo.ADDON_FREE)
         AddonUser.objects.create(addon=self.other_addon,
                                  user=self.addon.authors.all()[0])
         AddonPremium.objects.create(addon=self.addon, price_id=self.price.pk)
@@ -825,6 +826,12 @@ class TestMarketplace(amo.tests.TestCase):
         data['text'] = 'bar'
         self.client.post(self.url, data=data)
         eq_(self.addon._upsell_to.all()[0].text, 'bar')
+
+    def test_no_free(self):
+        self.setup_premium()
+        self.other_addon.authors.clear()
+        res = self.client.get(self.url)
+        assert not pq(res.content)('#id_free')
 
     def test_no_token(self):
         self.setup_premium()
@@ -916,11 +923,17 @@ class TestMarketplace(amo.tests.TestCase):
     def get_addon(self):
         return Addon.objects.get(pk=self.addon.pk)
 
-    def test_wizard_step_3(self):
-        url = reverse('devhub.market.3', args=[self.addon.slug])
-        self.other_addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        AddonUser.objects.create(addon=self.other_addon,
+    def add_addon_author(self, type):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
+                                     premium_type=type)
+        AddonUser.objects.create(addon=addon,
                                  user=self.addon.authors.all()[0])
+        return addon
+
+    def test_wizard_step_3(self):
+        self.setup_premium()
+        url = reverse('devhub.market.3', args=[self.addon.slug])
+        self.other_addon = self.add_addon_author(amo.ADDON_FREE)
         data = {
             'free': self.other_addon.pk,
             'do_upsell': 1,
@@ -928,6 +941,22 @@ class TestMarketplace(amo.tests.TestCase):
         }
         eq_(self.client.post(url, data).status_code, 302)
         eq_(self.get_addon().upsold.free, self.other_addon)
+
+    def test_form_only_free(self):
+        self.premium = self.add_addon_author(amo.ADDON_PREMIUM)
+        self.free = self.add_addon_author(amo.ADDON_FREE)
+        url = reverse('devhub.market.3', args=[self.addon.slug])
+        res = self.client.get(url)
+        upsell = res.context['form'].fields['free'].queryset.all()
+        assert self.free in upsell
+        assert self.premium not in upsell
+
+    def test_wizard_no_free(self):
+        self.price = Price.objects.create(price='0.99')
+        url = reverse('devhub.market.2', args=[self.addon.slug])
+        res = self.client.post(url, {'price': self.price.pk})
+        self.assertRedirects(res, reverse('devhub.market.4',
+                                          args=[self.addon.slug]))
 
     def test_wizard_step_4_failed(self):
         url = reverse('devhub.market.4', args=[self.addon.slug])

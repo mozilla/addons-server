@@ -959,7 +959,8 @@ class PremiumForm(happyforms.Form):
 
         super(PremiumForm, self).__init__(*args, **kw)
         self.fields['free'].queryset = (self.extra['amo_user'].addons
-                                            .exclude(pk=self.addon.pk))
+                                            .exclude(pk=self.addon.pk)
+                                            .filter(premium_type=amo.ADDON_FREE))
         # For the wizard, we need fields not shown to be optional
         for field in self.extra.get('not_required', []):
             self.fields[field].required = False

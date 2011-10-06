@@ -1265,6 +1265,9 @@ def marketplace_pricing(request, addon_id, addon):
                                                      'support_email']})
     if form.is_valid():
         form.save()
+        if not (request.amo_user.addons.exclude(pk=addon.pk)
+                                       .filter(premium_type=amo.ADDON_FREE)):
+            return redirect('devhub.market.4', addon.slug)
         return redirect('devhub.market.3', addon.slug)
     return jingo.render(request, 'devhub/payments/tier.html',
                         {'form': form, 'addon': addon,
