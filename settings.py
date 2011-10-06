@@ -486,7 +486,7 @@ MINIFY_BUNDLES = {
             'css/zamboni/developers.css',
             'css/zamboni/docs.less',
             'css/impala/developers.less',
-            'css/impala/devhub/packager.less',
+            'css/impala/devhub-packager.less',
             'css/impala/formset.less',
         ),
         'zamboni/devhub_impala': (
