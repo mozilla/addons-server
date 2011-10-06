@@ -702,10 +702,12 @@ class TestPaymentsProfile(amo.tests.TestCase):
         eq_(self.get_addon().wants_contributions, False)
 
 
-# Mock out verfiying the paypal id has refund permissions with paypal.:conf q
+# Mock out verfiying the paypal id has refund permissions with paypal and
+# that the account exists on paypal.
 #
 @mock.patch('devhub.forms.PremiumForm.clean_paypal_id',
             new=lambda x: x.cleaned_data['paypal_id'])
+@mock.patch('devhub.forms.PremiumForm.clean', new=lambda x: x.cleaned_data)
 class TestMarketplace(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
@@ -868,42 +870,34 @@ class TestMarketplace(amo.tests.TestCase):
         self.addon = Addon.objects.get(pk=self.addon.pk)
         eq_(self.addon.addonpremium.paypal_permissions_token, 'FOO')
 
-    @mock.patch('devhub.forms.PremiumForm.clean_paypal_id')
-    def test_wizard_step_1(self, clean_paypal_id):
+    def test_wizard_step_1(self):
         url = reverse('devhub.market.1', args=[self.addon.slug])
         data = {'paypal_id': 'some@paypal.com', 'support_email': 'a@a.com'}
-        clean_paypal_id.return_value = data['paypal_id']
         eq_(self.client.post(url, data).status_code, 302)
         addon = Addon.objects.get(pk=self.addon.pk)
         eq_(addon.paypal_id, data['paypal_id'])
         eq_(addon.support_email, data['support_email'])
 
-    @mock.patch('devhub.forms.PremiumForm.clean_paypal_id')
-    def test_wizard_step_1_not_reset(self, clean_paypal_id):
+    def test_wizard_step_1_not_reset(self):
         url = reverse('devhub.market.1', args=[self.addon.slug])
         AddonPremium.objects.create(addon=self.addon,
                                     paypal_permissions_token='ad')
         data = {'paypal_id': 'some@paypal.com', 'support_email': 'a@a.com'}
         eq_(self.client.post(url, data).status_code, 302)
-        clean_paypal_id.return_value = data['paypal_id']
         eq_(self.addon.premium.paypal_permissions_token, 'ad')
 
-    @mock.patch('devhub.forms.PremiumForm.clean_paypal_id')
-    def test_wizard_step_1_reset(self, clean_paypal_id):
+    def test_wizard_step_1_reset(self):
         url = reverse('devhub.market.1', args=[self.addon.slug])
         AddonPremium.objects.create(addon=self.addon,
                                     paypal_permissions_token='ad')
         self.addon.update(paypal_id='123')
         data = {'paypal_id': 'some@paypal.com', 'support_email': 'a@a.com'}
         eq_(self.client.post(url, data).status_code, 302)
-        clean_paypal_id.return_value = data['paypal_id']
         eq_(self.addon.premium.paypal_permissions_token, '')
 
-    @mock.patch('devhub.forms.PremiumForm.clean_paypal_id')
-    def test_wizard_step_1_required_paypal(self, clean_paypal_id):
+    def test_wizard_step_1_required_paypal(self):
         url = reverse('devhub.market.1', args=[self.addon.slug])
         data = {'paypal_id': '', 'support_email': 'a@a.com'}
-        clean_paypal_id.return_value = data['paypal_id']
         eq_(self.client.post(url, data).status_code, 200)
 
     @mock.patch('devhub.forms.PremiumForm.clean_paypal_id')
