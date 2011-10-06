@@ -46,8 +46,8 @@ If you've used Firefox add-ons before, you know that they're capable of some pre
         <h4 class="step">2</h4>
         <h3>{{ _('Build your add-on') }}</h3>
         <p>
-        {% trans %}
-        Once you're familiar with the extension development environment, it's time to start on your first add-on. Back in the day, this meant climbing up a hill in the snow to find a suitable template to copy for your add-on's install manifest. Fortunately, the Add-on Developer Hub (that's this!) introduces the snowmobile of extension packaging: the <a href="/en-US/developers/tools/builder">Add-on Builder</a>!
+        {% trans url=url('devhub.package_addon') %}
+        Once you're familiar with the extension development environment, it's time to start on your first add-on. Back in the day, this meant climbing up a hill in the snow to find a suitable template to copy for your add-on's install manifest. Fortunately, the Add-on Developer Hub (that's this!) introduces the snowmobile of extension packaging: the <a href="{{ url }}">Add-on Packager</a>!
         {% endtrans %}
         </p>
         <p>
