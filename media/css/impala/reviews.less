@@ -67,10 +67,10 @@
         line-height: 16px;
         font-style: italic;
         .stars {
-            padding: 2px 0;
+            padding: 1px 0;
         }
-        .stars:not(:first-child) {
-            margin-left: .5em;
+        b:not(:empty) {
+            margin-right: .5em;
         }
     }
     h3.addon-name {
@@ -99,6 +99,14 @@
     }
     &:first-child {
         padding-top: 0;
+    }
+}
+
+.html-rtl #reviews .review {
+    h3, h4 {
+        b:not(:empty) {
+            margin: 0 0 0 .5em;
+        }
     }
 }
 
