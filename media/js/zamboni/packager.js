@@ -11,22 +11,8 @@ $(document).ready(function() {
             $this.val(makeslug($this.val(), '_'));
         });
 
-        // Adds a 'selected' class upon clicking an application checkbox.
-        var $supported = $('#supported-apps');
-        $supported.delegate('input:checkbox', 'change', function() {
-            var $this = $(this),
-                $li = $this.closest('li');
-            if ($this.is(':checked')) {
-                $li.addClass('selected');
-            } else {
-                $li.removeClass('selected');
-            }
-        });
-        $supported.find('input:checkbox').trigger('change');
-
-        $supported.delegate('select', 'change', function() {
-            var $checkbox = $(this).closest('li.row').find('input:checkbox');
-            $checkbox.attr('checked', true).trigger('change');
+        $('#supported-apps').delegate('select', 'change', function() {
+            $(this).closest('li.row').find('input:checkbox').attr('checked', true);
         });
     }
 

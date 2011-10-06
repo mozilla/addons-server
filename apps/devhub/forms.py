@@ -857,7 +857,7 @@ class PackagerFeaturesForm(forms.Form):
                             'extension'))
     preferences_dialog = forms.BooleanField(
             required=False,
-            label=_lazy(u'Preferences Dialog'),
+            label=_lazy(u'Preferences dialog'),
             help_text=_lazy(u'Creates an example Preferences window'))
     toolbar = forms.BooleanField(
             required=False,
