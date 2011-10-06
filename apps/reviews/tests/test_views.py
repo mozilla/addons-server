@@ -471,14 +471,14 @@ class TestMobileReviews(TestMobile):
 
     def test_mobile(self):
         self.client.logout()
-        self.mobile_init()
+        self._mobile_init()
         r = self.client.get(self.list)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'reviews/mobile/review_list.html')
 
     def test_add_visitor(self):
         self.client.logout()
-        self.mobile_init()
+        self._mobile_init()
         r = self.client.get(self.add)
         eq_(r.status_code, 302)
 
@@ -512,7 +512,7 @@ class TestMobileReviews(TestMobile):
 
     def test_add_link_visitor(self):
         self.client.logout()
-        self.mobile_init()
+        self._mobile_init()
         r = self.client.get(self.list)
         doc = pq(r.content)
         eq_(doc('#add-review').length, 1)
@@ -544,6 +544,6 @@ class TestMobileReviews(TestMobile):
 
     def test_add_logged_out(self):
         self.client.logout()
-        self.mobile_init()
+        self._mobile_init()
         r = self.client.get(reverse('reviews.add', args=['a1865']))
         eq_(r.status_code, 302)
