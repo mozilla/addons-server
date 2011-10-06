@@ -1,7 +1,6 @@
 import json
 import os
 import shutil
-import tempfile
 import urlparse
 
 from django.conf import settings
@@ -51,11 +50,6 @@ class FilesBase:
 
         self.login_as_editor()
 
-        self.old_tmp = settings.TMP_PATH
-        self.old_addon = settings.ADDONS_PATH
-        settings.TMP_PATH = tempfile.mkdtemp()
-        settings.ADDONS_PATH = tempfile.mkdtemp()
-
         for file_obj in [self.file, self.file_two]:
             src = os.path.join(settings.ROOT, dictionary)
             try:
@@ -72,8 +66,6 @@ class FilesBase:
 
     def tearDown(self):
         self.file_viewer.cleanup()
-        settings.TMP_PATH = self.old_tmp
-        settings.ADDONS_PATH = self.old_addon
 
     def files_redirect(self, file):
         return reverse('files.redirect', args=[self.file.pk, file])

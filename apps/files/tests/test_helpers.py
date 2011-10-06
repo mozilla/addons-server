@@ -37,14 +37,10 @@ def make_file(pk, file_path, **kwargs):
 class TestFileHelper(amo.tests.TestCase):
 
     def setUp(self):
-        self.old_tmp = settings.TMP_PATH
-        settings.TMP_PATH = tempfile.mkdtemp()
-
         self.viewer = FileViewer(make_file(1, get_file('dictionary-test.xpi')))
 
     def tearDown(self):
         self.viewer.cleanup()
-        settings.TMP_PATH = self.old_tmp
 
     def test_files_not_extracted(self):
         eq_(self.viewer.is_extracted(), False)
