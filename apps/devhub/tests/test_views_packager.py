@@ -21,9 +21,6 @@ class TestPackager(amo.tests.TestCase):
                 'base/addon_3615']
 
     def setUp(self):
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
-
         self.url = reverse('devhub.package_addon')
 
         ctx = self.client.get(self.url).context['compat_forms']
@@ -45,10 +42,11 @@ class TestPackager(amo.tests.TestCase):
             initial_data.update(data)
         return initial_data
 
-    def test_required_login(self):
-        self.client.logout()
-        r = self.client.get(self.url)
-        eq_(r.status_code, 302)
+    def test_login_optional(self):
+        eq_(self.client.get(self.url).status_code, 200)
+
+        self.client.login(username='regular@mozilla.com', password='password')
+        eq_(self.client.get(self.url).status_code, 200)
 
     def test_form_initial(self):
         """Ensure that the initial forms for each application are present."""
@@ -225,11 +223,10 @@ class TestPackager(amo.tests.TestCase):
 
 
 class TestPackagerDownload(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users']
+    fixtures = ['base/apps', 'base/users', 'base/appversion',
+                'base/addon_3615']
 
     def setUp(self):
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
         self.url = lambda f: reverse('devhub.package_addon_json', args=[f])
 
     def _prep_mock_package(self, name):
@@ -277,8 +274,13 @@ class TestPackagerDownload(amo.tests.TestCase):
 
         self._unprep_package('foobar')
 
-    def test_login_required(self):
+    def test_login_optional(self):
         self._prep_mock_package('foobar')
-        self.client.logout()
-        eq_(self.client.get(self.url('foobar')).status_code, 302)
+
+        url = self.url('foobar')
+        eq_(self.client.get(url).status_code, 200)
+
+        self.client.login(username='regular@mozilla.com', password='password')
+        eq_(self.client.get(url).status_code, 200)
+
         self._unprep_package('foobar')

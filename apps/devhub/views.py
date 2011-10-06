@@ -542,7 +542,6 @@ def packager_path(name):
     return os.path.join(settings.PACKAGER_PATH, '%s.zip' % name)
 
 
-@login_required
 def package_addon(request):
     basic_form = forms.PackagerBasicForm(request.POST or None)
     features_form = forms.PackagerFeaturesForm(request.POST or None)
@@ -575,7 +574,6 @@ def package_addon(request):
                          'features_form': features_form})
 
 
-@login_required
 def package_addon_success(request, package_name):
     """Return the success page for the add-on packager."""
     return jingo.render(request, 'devhub/package_addon_success.html',
@@ -583,7 +581,6 @@ def package_addon_success(request, package_name):
 
 
 @json_view
-@login_required
 def package_addon_json(request, package_name):
     """Return the URL of the packaged add-on."""
     path_ = packager_path(package_name)
@@ -593,7 +590,6 @@ def package_addon_json(request, package_name):
                 'size': round(os.path.getsize(path_) / 1024, 1)}
 
 
-@login_required
 def package_addon_download(request, package_name):
     """Serve a packaged add-on."""
     path_ = packager_path(package_name)
