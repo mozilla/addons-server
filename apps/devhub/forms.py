@@ -708,7 +708,7 @@ class PackagerBasicForm(forms.Form):
                         'UUID or an email address, such as '
                         'addon-name@developer.com. The email address does not '
                         'have to be valid.'))
-    package_name = forms.CharField(
+    package_name = forms.CharField(min_length=5, max_length=50,
         help_text=_lazy(u'The package name of your add-on used within the '
                         'browser. This should be a short form of its name '
                         '(for example, Test Extension might be '

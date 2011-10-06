@@ -121,6 +121,18 @@ class TestPackager(amo.tests.TestCase):
         self.assertFormError(r, 'basic_form', 'package_name',
                              'This field is required.')
 
+    def test_package_name_minlength(self):
+        data = self._form_data({'package_name': 'abcd'})
+        r = self.client.post(self.url, data)
+        self.assertFormError(r, 'basic_form', 'package_name',
+            'Ensure this value has at least 5 characters (it has 4).')
+
+    def test_package_name_maxlength(self):
+        data = self._form_data({'package_name': 'x' * 51})
+        r = self.client.post(self.url, data)
+        self.assertFormError(r, 'basic_form', 'package_name',
+            'Ensure this value has at most 50 characters (it has 51).')
+
     def test_package_name_format(self):
         error = ('Enter a valid package name consisting of letters, numbers, '
                  'or underscores.')
