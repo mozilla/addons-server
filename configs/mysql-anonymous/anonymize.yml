@@ -1,7 +1,10 @@
 # This is to be used with https://github.com/davedash/mysql-anonymous.
+# Last updated 2011-10-05; Migration 253
 database:
     truncate:
+        - abuse_reports
         - addonlogs
+        - addon_purchase
         - api_auth_tokens
         - approvals
         - auth_group
@@ -18,6 +21,8 @@ database:
         - django_session
         - django_site
         - download_counts
+        - editor_subscriptions
+        - email_preview
         - eventlog
         - facebook_data
         - facebook_detected
@@ -30,7 +35,9 @@ database:
         - hubrsskeys
         - log_activity
         - log_activity_addon
+        - log_activity_comment
         - log_activity_user
+        - log_activity_version
         - piston_consumer
         - piston_nonce
         - piston_token
@@ -47,6 +54,7 @@ database:
         - stats_share_counts_totals
         - subscription_events
         - update_counts
+        - users_history
         - users_versioncomments
         - versioncomments
     tables:
@@ -56,6 +64,8 @@ database:
                 - average_daily_downloads
                 - average_daily_users
                 - total_contributions
+        addons_premium:
+            nullify: paypal_permissions_token
         addons_users:
             delete:
                 listed: 0
