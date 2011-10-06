@@ -249,6 +249,7 @@ form .char-count.error b {
 
 form .char-count b,
 span.locale,
+span.hint,
 .devhub-form label {
     font-weight: normal;
 }
@@ -258,11 +259,13 @@ span.locale,
 }
 
 form .char-count,
-span.locale {
+span.locale,
+span.hint {
     color: #888;
 }
 
-span.locale {
+span.locale,
+span.hint {
     display: block;
     font-size: .9em;
     line-height: 1;

@@ -1018,7 +1018,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     @property
     def all_dependencies(self):
         """Return all the add-ons this add-on depends on."""
-        return list(self.dependencies.all()[:9])
+        return list(self.dependencies.all()[:3])
 
     def get_watermark_hash(self, user):
         """

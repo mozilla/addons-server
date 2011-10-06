@@ -1040,6 +1040,16 @@ def DependencyFormSet(*args, **kw):
         def clean_addon(self):
             return addon_parent
 
-    FormSet = modelformset_factory(AddonDependency, form=_Form,
-                                   extra=0, can_delete=True)
+    class _Formset(BaseModelFormSet):
+
+        def clean(self):
+            if any(self.errors):
+                return
+            if len(self.forms) > self.max_num:
+                raise forms.ValidationError(
+                    _('There cannot be more than 3 required add-ons.'))
+
+    FormSet = modelformset_factory(AddonDependency, formset=_Formset,
+                                   form=_Form, extra=0, max_num=3,
+                                   can_delete=True)
     return FormSet(*args, **kw)

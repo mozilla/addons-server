@@ -1,7 +1,14 @@
 function updateTotalForms(prefix, inc) {
     var $totalForms = $('#id_' + prefix + '-TOTAL_FORMS'),
+        $maxForms = $('#id_' + prefix + '-MAX_FORMS'),
         inc = inc || 1,
         num = parseInt($totalForms.val(), 10) + inc;
+    if ($maxForms.length) {
+        var maxNum = parseInt($maxForms.val(), 10);
+        if (num > maxNum) {
+            return num - 1;
+        }
+    }
     $totalForms.val(num);
     return num;
 }
@@ -69,10 +76,15 @@ $.fn.zAutoFormset = function(o) {
         searchField = o.searchField,
         excludePersonas = o.excludePersonas,
         minLength = o.minSearchLength,
+        $maxForms = $('#id_' + formsetPrefix + '-MAX_FORMS'),
         width = o.width,
         addedCB = o.addedCB,
         removedCB = o.removedCB,
         autocomplete = o.autocomplete;
+
+        if ($maxForms.length) {
+            var maxItems = parseInt($maxForms.val(), 10);
+        }
 
     function findItem(item) {
         if (item) {
@@ -88,6 +100,19 @@ $.fn.zAutoFormset = function(o) {
     function clearInput() {
         $input.val('');
         $input.removeAttr('data-item');
+        toggleInput();
+    }
+
+    function toggleInput() {
+        if (!maxItems) {
+            return;
+        }
+        var $visible = $forms.find(formSelector + ':visible').length;
+        if ($visible >= maxItems) {
+            $input.attr('disabled', true).slideUp();
+        } else if ($visible < maxItems) {
+            $input.filter(':disabled').removeAttr('disabled').slideDown();
+        }
     }
 
     function added() {
@@ -100,7 +125,7 @@ $.fn.zAutoFormset = function(o) {
                 // Undelete the item.
                 var $item = dupe.item;
                 $item.find('input[name$=-DELETE]').removeAttr('checked');
-                $item.slideDown();
+                $item.slideDown(toggleInput);
             }
             clearInput();
             return;
@@ -118,7 +143,7 @@ $.fn.zAutoFormset = function(o) {
             $f = $(f);
         }
 
-        $f.hide().appendTo($forms).slideDown();
+        $f.hide().appendTo($forms).slideDown(toggleInput);
 
         // Update hidden field.
         $forms.find(formSelector + ':last [name$=-' + hiddenField + ']')
@@ -126,7 +151,7 @@ $.fn.zAutoFormset = function(o) {
     }
 
     function removed(el) {
-        el.slideUp();
+        el.slideUp(toggleInput);
         // Mark as deleted.
         el.find('input[name$=-DELETE]').attr('checked', true);
 
@@ -177,6 +202,8 @@ $.fn.zAutoFormset = function(o) {
             }
         };
     }
+
+    toggleInput();
 
     $delegate.delegate('.' + removeClass, 'click', _pd(function() {
         removed($(this).closest(formSelector));

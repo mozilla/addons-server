@@ -5,6 +5,7 @@ import tempfile
 
 from django.conf import settings
 from django.core.cache import cache
+from django.db.models import Q
 
 import mock
 from nose.tools import eq_
@@ -1011,8 +1012,10 @@ class TestEditSupport(TestEdit):
 
 
 class TestEditTechnical(TestEdit):
-    fixtures = TestEdit.fixtures + ['base/addon_5299_gcal', 'base/addon_40',
-                                    'addons/persona']
+    fixtures = TestEdit.fixtures + ['addons/persona', 'base/addon_40',
+                                    'base/addon_1833_yoono',
+                                    'base/addon_4664_twitterbar.json',
+                                    'base/addon_5299_gcal', 'base/addon_6113']
 
     def setUp(self):
         super(TestEditTechnical, self).setUp()
@@ -1144,6 +1147,19 @@ class TestEditTechnical(TestEdit):
         eq_(a.attr('href'), addon.get_url_path())
         eq_(a.text(), unicode(addon.name))
 
+    def test_edit_dependencies_limit(self):
+        deps = Addon.objects.public().exclude(
+            Q(id__in=[self.addon.id, self.dependent_addon.id]) |
+            Q(type=amo.ADDON_PERSONA))
+        args = []
+        eq_(deps.count(), 4)  # The limit is 3.
+        for dep in deps:
+            args.append({'dependent_addon': dep.id})
+        d = self.dep_formset(*args)
+        r = self.client.post(self.technical_edit_url, d)
+        eq_(r.context['dependency_form'].non_form_errors(),
+            ['There cannot be more than 3 required add-ons.'])
+
     def check_dep_ids(self, expected=[]):
         a = AddonDependency.objects.values_list('dependent_addon__id',
                                                 flat=True)
@@ -1155,13 +1171,6 @@ class TestEditTechnical(TestEdit):
             ['Select a valid choice. That choice is not one of the available '
              'choices.'])
         self.check_dep_ids([self.dependent_addon.id])
-
-    def test_edit_dependencies_add_public(self):
-        """Ensure that non-public add-ons cannot be added."""
-        addon = Addon.objects.get(id=40)
-        d = self.dep_formset({'dependent_addon': addon.id})
-        r = self.client.post(self.technical_edit_url, d)
-        self.check_bad_dep(r)
 
     def test_edit_dependencies_add_nonpublic(self):
         """Ensure that non-public add-ons cannot be made as dependencies."""

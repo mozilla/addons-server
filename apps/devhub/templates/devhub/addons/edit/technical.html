@@ -41,7 +41,12 @@
           </tr>
           {% if waffle.flag('edit-dependencies') %}
             <tr>
-              <th>{{ _('Required Add-ons') }}</th>
+              <th>
+                {{ _('Required Add-ons') }}
+                {% if editable %}
+                  <span class="hint">{{ _('Limit 3') }}</span>
+                {% endif %}
+              </th>
               <td id="required-addons" data-src="{{ url('search.ajax') }}">
                 {% if editable %}
                   {% include "devhub/addons/edit/technical_dependencies.html" %}
