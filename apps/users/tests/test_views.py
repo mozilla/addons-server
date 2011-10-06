@@ -594,9 +594,8 @@ class TestRegistration(UserViewBase):
         #self.assertContains(r, 'An email has been sent to your address')
 
 
-class TestProfile(UserViewBase):
-    fixtures = ['base/featured',
-                'users/test_backends']
+class TestProfileLinks(UserViewBase):
+    fixtures = ['base/featured', 'users/test_backends']
 
     def test_edit_buttons(self):
         """Ensure admin/user edit buttons are shown."""
@@ -605,16 +604,19 @@ class TestProfile(UserViewBase):
             """Grab profile, return edit links."""
             url = reverse('users.profile', args=[id])
             r = self.client.get(url)
-            return pq(r.content)('p.editprofile a')
+            return pq(r.content)('#profile-actions a')
 
         # Anonymous user.
         links = get_links(self.user.id)
-        eq_(links.length, 0)
+        eq_(links.length, 1)
+        eq_(links.eq(0).attr('href'), reverse('users.abuse',
+                                              args=[self.user.id]))
 
         # Non-admin, someone else's profile.
         self.client.login(username='jbalogh@mozilla.com', password='foo')
         links = get_links(9945)
-        eq_(links.length, 0)
+        eq_(links.length, 1)
+        eq_(links.eq(0).attr('href'), reverse('users.abuse', args=[9945]))
 
         # Non-admin, own profile.
         links = get_links(self.user.id)
@@ -626,6 +628,11 @@ class TestProfile(UserViewBase):
         admingroup.save()
         GroupUser.objects.create(group=admingroup, user=self.user_profile)
         cache.clear()
+
+        links = get_links(self.user.id)
+        eq_(links.length, 2)
+        eq_(links.filter('#edit-profile').length, 1)
+        eq_(links.filter('#manage-user').length, 1)
 
         # TODO XXX Uncomment this when zamboni can delete users. Bug 595035
         #links = get_links(9945)
@@ -651,32 +658,25 @@ class TestProfile(UserViewBase):
         assert hasattr(request.amo_user, 'favorite_addons')
         assert hasattr(request.user.get_profile(), 'favorite_addons')
 
-    def test_profile_addons_sort(self):
-        u = UserProfile.objects.get(id=9945)
 
-        for a in Addon.objects.public():
-            AddonUser.objects.create(user=u, addon=a)
-
-        r = self.client.get(reverse('users.profile', args=[9945]))
-        addons = r.context['addons'].object_list
-        assert all(addons[i].weekly_downloads >= addons[i + 1].weekly_downloads
-                   for i in xrange(len(addons) - 1))
-
-
-class TestImpalaProfile(amo.tests.TestCase):
+class TestProfileSections(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615',
                 'base/addon_5299_gcal', 'base/collections',
                 'reviews/dev-reply.json']
 
     def setUp(self):
         self.user = UserProfile.objects.get(id=10482)
-        self.url = reverse('i_users.profile', args=[self.user.id])
+        self.url = reverse('users.profile', args=[self.user.id])
 
     def test_my_addons(self):
         AddonUser.objects.create(user=self.user, addon_id=3615)
         AddonUser.objects.create(user=self.user, addon_id=5299)
 
-        doc = pq(self.client.get(self.url).content)
+        r = self.client.get(self.url)
+        a = r.context['addons'].object_list
+        eq_(list(a), sorted(a, key=lambda x: x.weekly_downloads, reverse=True))
+
+        doc = pq(r.content)
         eq_(doc('.num-addons a[href="#my-addons"]').length, 1)
         items = doc('#my-addons .item')
         eq_(items.length, 2)

@@ -1,60 +1,54 @@
-<div>
-  <table class="{{ table_class }}">
-    <caption>{{ _('Developer Information') }}</caption>
-    <tbody>
-      {# TODO msgctxt for table headers #}
+<table class="{{ table_class }}">
+  <caption>{{ _('Developer Information') }}</caption>
+  <tbody>
+    <tr>
+      <th>{{ _('Name') }}</th>
+      <td class="fn n">{{ profile.name }}</td>
+    </tr>
+    {% if profile.location %}
       <tr>
-        <th>{{ _('Name') }}</th>
-        <td class="fn n">{{ profile.name }}</td>
+        <th>{{ _('Location') }}</th>
+        <td class="adr">{{ profile.location }}</td>
       </tr>
-      {% if profile.location %}
-        <tr>
-          <th>{{ _('Location') }}</th>
-          <td class="adr">{{ profile.location }}</td>
-        </tr>
-      {% endif %}
-      {% if profile.occupation %}
-        <tr>
-          <th>{{ _('Occupation') }}</th>
-          <td class="role">{{ profile.occupation }}</td>
-        </tr>
-      {% endif %}
-      {# TODO cleaned external links #}
-      {% if profile.homepage %}
-        <tr>
-          <th>{{ _('Homepage') }}</th>
-          <td><a class="url" href="{{ profile.homepage|external_url
-              }}">{{ profile.homepage }}</a></td>
-        </tr>
-      {% endif %}
-      {% if not profile.emailhidden %}
-        <tr>
-          <th>{{ _('Email address') }}</th>
-          <td>{{ emaillink(profile.email) }}</td>
-        </tr>
-      {% endif %}
+    {% endif %}
+    {% if profile.occupation %}
       <tr>
-        <th>{{ _('User since') }}</th>
-        <td>{{ profile.created|datetime }}</td>
+        <th>{{ _('Occupation') }}</th>
+        <td class="role">{{ profile.occupation }}</td>
       </tr>
-      {% if about_addons %}
-        <tr>
-          <th>{{ _('Number of Add-ons Developed') }}</th>
-          <td>
-            <a href="{{ profile.get_url_path() }}">
-              {% trans num=profile.addons_listed|length %}
-              {{ num }} Add-on
-              {% pluralize %}
-              {{ num }} Add-ons
-              {% endtrans %}
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <th>{{ _('Average rating for their Add-ons') }}</th>
-          <td>{{ profile.averagerating|float|stars }}</td>
-        </tr>
-      {% endif %}
-    </tbody>
-  </table>
-</div>
+    {% endif %}
+    {% if profile.homepage %}
+      <tr>
+        <th>{{ _('Homepage') }}</th>
+        <td><a class="url" href="{{ profile.homepage|external_url }}">
+          {{ profile.homepage }}</a></td>
+      </tr>
+    {% endif %}
+    {% if not profile.emailhidden %}
+      <tr>
+        <th>{{ _('Email address') }}</th>
+        <td>{{ emaillink(profile.email) }}</td>
+      </tr>
+    {% endif %}
+    <tr>
+      <th>{{ _('User since') }}</th>
+      <td>{{ profile.created|datetime }}</td>
+    </tr>
+    <tr>
+      <th>{{ _('Number of add-ons developed') }}</th>
+      <td class="num-addons">
+        <a href="{{ '#my-addons' if is_profile else profile.get_url_path() }}">
+          {% trans num=profile.addons_listed|length %}
+            {{ num }} add-on
+          {% pluralize %}
+            {{ num }} add-ons
+          {% endtrans -%}
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <th>{{ _('Average rating for their add-ons') }}</th>
+      <td>{{ profile.averagerating|float|stars }}</td>
+    </tr>
+  </tbody>
+</table>

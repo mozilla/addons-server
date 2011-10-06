@@ -95,9 +95,7 @@
       </aside>
       <section class="primary">
         <div class="vcard">
-          {% with profile=author, table_class='person-info' %}
-            {% include "users/impala/vcard.html" %}
-          {% endwith %}
+          {{ author|user_vcard }}
         </div>
         <div class="prose">
           {% if author.bio %}
