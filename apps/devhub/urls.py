@@ -164,7 +164,7 @@ urlpatterns = decorate(write, patterns('',
         name='devhub.compat_application_versions'),
 
     # Add-on packager
-    url('^addon/package/', include(packager_patterns)),
+    url('^tools/package/', include(packager_patterns)),
 
     # Redirect to /addons/ at the base.
     url('^addon$', lambda r: redirect('devhub.addons', permanent=True)),
