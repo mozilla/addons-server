@@ -1,6 +1,6 @@
 function updateTotalForms(prefix, inc) {
     var $totalForms = $('#id_' + prefix + '-TOTAL_FORMS'),
-        $maxForms = $('#id_' + prefix + '-MAX_FORMS'),
+        $maxForms = $('#id_' + prefix + '-MAX_NUM_FORMS'),
         inc = inc || 1,
         num = parseInt($totalForms.val(), 10) + inc;
     if ($maxForms.length) {
@@ -76,7 +76,7 @@ $.fn.zAutoFormset = function(o) {
         searchField = o.searchField,
         excludePersonas = o.excludePersonas,
         minLength = o.minSearchLength,
-        $maxForms = $('#id_' + formsetPrefix + '-MAX_FORMS'),
+        $maxForms = $('#id_' + formsetPrefix + '-MAX_NUM_FORMS'),
         width = o.width,
         addedCB = o.addedCB,
         removedCB = o.removedCB,
