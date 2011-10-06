@@ -365,7 +365,7 @@ def es_search(request, tag_name=None, template=None):
 
     sort, extra_sort = split_choices(form.fields['sort'].choices, 'created')
 
-    qs = (Addon.search().query(or_=name_query(query['q']))
+    qs = (Addon.search()
           .filter(status__in=amo.REVIEWED_STATUSES, is_disabled=False,
                   app=APP.id)
           .facet(tags={'terms': {'field': 'tag'}},
@@ -373,6 +373,8 @@ def es_search(request, tag_name=None, template=None):
                  appversions={'terms':
                               {'field': 'appversion.%s.max' % APP.id}},
                  categories={'terms': {'field': 'category', 'size': 100}}))
+    if query.get('q'):
+        qs = qs.query(or_=name_query(query['q']))
     if query.get('tag'):
         qs = qs.filter(tag=query['tag'])
     if query.get('platform') and query['platform'] in amo.PLATFORM_DICT:
@@ -405,6 +407,10 @@ def es_search(request, tag_name=None, template=None):
                    'updated': '-last_updated',
                    'hotness': '-hotness'}
         qs = qs.order_by(mapping[query['sort']])
+    elif not query.get('q'):
+        # Sort by weekly downloads if there was no query so we get predictable
+        # results.
+        qs = qs.order_by('-weekly_downloads')
 
     pager = amo.utils.paginate(request, qs)
     facets = pager.object_list.facets
