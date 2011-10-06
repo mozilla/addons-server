@@ -26,7 +26,7 @@
 <h1 class="fn n">{{ profile.name }}</h1>
 
 <div class="island c">
-  <aside class="secondary">
+  <aside class="secondary user-avatar">
     <img class="avatar" src="{{ profile.picture_url }}"
          {% if not profile.picture_type %}alt="{{ _('No Photo') }}"{% endif %}>
     {% if profile.is_developer %}
