@@ -1,6 +1,6 @@
 @import 'lib';
 
-html {
+html, body {
     height: 100%;
 }
 
@@ -9,8 +9,6 @@ html {
 }
 
 body {
-    min-height: 100%;
-    position: relative;
     border-top: 2px solid #686868;
 }
 
@@ -19,19 +17,13 @@ body {
     min-height: 100%;
     height: auto;
     width: 960px;
-    margin: 0 auto;
+    margin: 0 auto -123px;
     position: relative;
-    padding-bottom: 600px;
+    .bump {
+        min-height: 123px;
+    }
     > header h3 {
         margin-bottom: 16px;
-    }
-}
-
-.thunderbird,
-.seamonkey,
-.sunbird {
-    #page {
-        padding-bottom: 336px;
     }
 }
 

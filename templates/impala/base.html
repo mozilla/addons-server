@@ -57,7 +57,7 @@
         {% endif %}
         {% block bodyattrs %}{% endblock %}>
 
-    <div id="page" class="c">
+    <div id="page">
       {% block site_header %}
         {# Well that's an awful tiny mozilla header #}
         <div id="global-header-tab">
@@ -168,6 +168,7 @@
         {% block outer_content %}{% endblock %}
         {% block content %}{% endblock %}
       {% endblock %}
+      <div class="bump"></div>
     </div>
     <div id="tooltip">
       <span></span>
