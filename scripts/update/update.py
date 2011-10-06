@@ -103,6 +103,7 @@ def update_celery(ctx):
     ctx.remote("/sbin/service %s restart" % settings.CELERY_SERVICE_PREFIX)
     ctx.remote("/sbin/service %s-devhub restart" % settings.CELERY_SERVICE_PREFIX)
     ctx.remote("/sbin/service %s-bulk restart" % settings.CELERY_SERVICE_PREFIX)
+    ctx.remote("/sbin/service %s-images restart" % settings.CELERY_SERVICE_PREFIX)
 
 
 @task
