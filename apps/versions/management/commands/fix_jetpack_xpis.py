@@ -4,6 +4,7 @@ import pprint
 import shutil
 import tempfile
 
+from django.core.management.base import BaseCommand
 from django.db import transaction
 
 import path
@@ -18,44 +19,47 @@ from versions.models import Version
 log = logging.getLogger('z.migrations')
 
 
-@transaction.commit_manually
-def run():
-    success, fails = 0, 0
-    failed_ver_ids = []
-    for version in Version.objects.filter(version__endswith='sdk.1.1'):
-        try:
-            new_ver_str = version.version.replace('.sdk.1.1', '.1')
-            log.info('%s [%s] -> %s' % (version, version.pk, new_ver_str))
-            version.version = new_ver_str
-            version.save()
-            for file_ in version.files.all():
-                tmp = tempfile.mkdtemp()
-                try:
-                    xpi_dir = os.path.join(tmp, 'xpi_dir')
-                    os.mkdir(xpi_dir)
-                    xpi = os.path.join(tmp, 'xpi.zip')
-                    shutil.copy(file_.file_path, xpi)
-                    extract_xpi(file_.file_path, xpi_dir)
-                    new_xpi = fix_xpi(xpi, xpi_dir, new_ver_str)
-                    replace_xpi(file_, new_xpi, version)
-                finally:
-                    shutil.rmtree(tmp)
-        except:
-            failed_ver_ids.append(version.pk)
-            transaction.rollback()
-            log.exception(' ** rollback()')
-            fails += 1
-        else:
-            transaction.commit()
-            success += 1
+class Command(BaseCommand):
+    help = "One time script to fix broken jetpack XPIs. See bug 692524"
 
-    log.info('These versions failed: %s' % pprint.pformat(failed_ver_ids))
-    summary = ['SUCCESS: ', success, "\n",
-               'FAILS: ', fails, "\n",
-               'TOTAL: ', (success + fails)]
-    log.info(''.join([str(s) for s in summary]))
-    print ''.join([str(s) for s in summary])
-    print 'Check the log for details'
+    @transaction.commit_manually
+    def handle(self, *args, **kw):
+        success, fails = 0, 0
+        failed_ver_ids = []
+        for version in Version.objects.filter(version__endswith='sdk.1.1'):
+            try:
+                new_ver_str = version.version.replace('.sdk.1.1', '.1')
+                log.info('%s [%s] -> %s' % (version, version.pk, new_ver_str))
+                version.version = new_ver_str
+                version.save()
+                for file_ in version.files.all():
+                    tmp = tempfile.mkdtemp()
+                    try:
+                        xpi_dir = os.path.join(tmp, 'xpi_dir')
+                        os.mkdir(xpi_dir)
+                        xpi = os.path.join(tmp, 'xpi.zip')
+                        shutil.copy(file_.file_path, xpi)
+                        extract_xpi(file_.file_path, xpi_dir)
+                        new_xpi = fix_xpi(xpi, xpi_dir, new_ver_str)
+                        replace_xpi(file_, new_xpi, version)
+                    finally:
+                        shutil.rmtree(tmp)
+            except:
+                failed_ver_ids.append(version.pk)
+                transaction.rollback()
+                log.exception(' ** rollback()')
+                fails += 1
+            else:
+                transaction.commit()
+                success += 1
+
+        log.info('These versions failed: %s' % pprint.pformat(failed_ver_ids))
+        summary = ['SUCCESS: ', success, "\n",
+                   'FAILS: ', fails, "\n",
+                   'TOTAL: ', (success + fails)]
+        log.info(''.join([str(s) for s in summary]))
+        print ''.join([str(s) for s in summary])
+        print 'Check the log for details'
 
 
 def fix_xpi(xpi, xpi_dir, new_version):
