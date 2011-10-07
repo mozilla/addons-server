@@ -19,6 +19,12 @@ from versions.models import Version
 log = logging.getLogger('z.migrations')
 
 
+def _log(msg):
+    # Sigh. Vanishing log messages.  No really.
+    print msg
+    log.info(msg)
+
+
 class Command(BaseCommand):
     help = "One time script to fix broken jetpack XPIs. See bug 692524"
 
@@ -29,7 +35,8 @@ class Command(BaseCommand):
         for version in Version.objects.filter(version__endswith='sdk.1.1'):
             try:
                 new_ver_str = version.version.replace('.sdk.1.1', '.1')
-                log.info('%s [%s] -> %s' % (version, version.pk, new_ver_str))
+                _log('version: %s [%s] -> %s' % (version, version.pk,
+                                                 new_ver_str))
                 version.version = new_ver_str
                 version.save()
                 for file_ in version.files.all():
@@ -53,13 +60,10 @@ class Command(BaseCommand):
                 transaction.commit()
                 success += 1
 
-        log.info('These versions failed: %s' % pprint.pformat(failed_ver_ids))
-        summary = ['SUCCESS: ', success, "\n",
-                   'FAILS: ', fails, "\n",
-                   'TOTAL: ', (success + fails)]
-        log.info(''.join([str(s) for s in summary]))
-        print ''.join([str(s) for s in summary])
-        print 'Check the log for details'
+        _log('These versions failed: %s' % pprint.pformat(failed_ver_ids))
+        _log('SUCCESS: %s' % success)
+        _log('FAILS: %s' % fails)
+        _log('TOTAL: %s' % (success + fails))
 
 
 def fix_xpi(xpi, xpi_dir, new_version):
@@ -96,7 +100,7 @@ def replace_xpi(file_, new_xpi, version):
             dest.makedirs()
         file_dest = dest / nfd_str(file_.filename)
         new_xpi.copyfile(file_dest)
-        log.info('%s [%s] at %s -> %s at %s' % (old_filename,
-                                                file_.pk, old_filepath,
-                                                file_.filename,
-                                                file_dest))
+        _log('file: %s [%s] at %s -> %s at %s' % (old_filename,
+                                                  file_.pk, old_filepath,
+                                                  file_.filename,
+                                                  file_dest))
