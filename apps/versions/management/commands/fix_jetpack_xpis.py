@@ -38,6 +38,7 @@ class Command(BaseCommand):
                 _log('version: %s [%s] -> %s' % (version, version.pk,
                                                  new_ver_str))
                 version.version = new_ver_str
+                version.version_int = None  # recalculate on save
                 version.save()
                 for file_ in version.files.all():
                     tmp = tempfile.mkdtemp()
