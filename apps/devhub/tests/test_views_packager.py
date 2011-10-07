@@ -173,12 +173,12 @@ class TestPackager(amo.tests.TestCase):
                 r, 'basic_form', 'id',
                 'The add-on ID must be a UUID string or an email address.')
 
-    def test_app_required(self):
+    def test_firefox_required(self):
         """Ensure that at least one target application is required."""
         self.compat_form = {}
         r = self.client.post(self.url, self._form_data())
         eq_(r.context['compat_forms'].non_form_errors(),
-            ['At least one target application must be selected.'])
+            ['Firefox is a required target application.'])
 
     def test_enabled_apps_version_required(self):
         """Min/Max Version fields should be required for enabled apps."""

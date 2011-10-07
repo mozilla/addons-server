@@ -780,6 +780,8 @@ class PackagerCompatForm(forms.Form):
                                 .order_by('-version_int'))
 
         self.fields['enabled'].label = self.app.pretty
+        if self.app == amo.FIREFOX:
+            self.fields['enabled'].widget.attrs['checked'] = True
 
         # Don't allow version ranges as the minimum version.
         self.fields['min_ver'].queryset = qs.filter(~Q(version__contains='*'))
@@ -839,9 +841,12 @@ class PackagerCompatBaseFormSet(BaseFormSet):
         if any(self.errors):
             return
         if (not self.forms or not
-            any(f.cleaned_data.get('enabled') for f in self.forms)):
+            any(f.cleaned_data.get('enabled') for f in self.forms
+                if f.app == amo.FIREFOX)):
+            # L10n: {0} is Firefox.
             raise forms.ValidationError(
-                    _('At least one target application must be selected.'))
+                _(u'{0} is a required target application.')
+                .format(amo.FIREFOX.pretty))
         return self.cleaned_data
 
 
