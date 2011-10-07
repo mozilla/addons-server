@@ -9,12 +9,14 @@
     {{ impala_breadcrumbs([(None, _('Themes'))]) }}
   {% endif %}
     <h1>{{ title }}</h1>
-    <div class="island listing c">
+    <div id="themes-listing" class="island listing c">
       {{ impala_addon_listing_header(request.get_full_path(), search_filter=filter) }}
-      {{ addons.object_list|theme_grid }}
+      <div class="items">
+        {{ addons.object_list|theme_grid }}
+      </div>
+      {% if sorting != 'featured' %}
+        {{ addons|impala_paginator }}
+      {% endif %}
     </div>
-  {% if sorting != 'featured' %}
-    {{ addons|impala_paginator }}
-  {% endif %}
 </section>
 {% endblock %}
