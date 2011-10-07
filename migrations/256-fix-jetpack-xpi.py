@@ -22,9 +22,9 @@ log = logging.getLogger('z.migrations')
 def run():
     success, fails = 0, 0
     failed_ver_ids = []
-    for version in Version.objects.filter(version__endswith='sdk1.1'):
+    for version in Version.objects.filter(version__endswith='sdk.1.1'):
         try:
-            new_ver_str = version.version.replace('.sdk1.1', '.1')
+            new_ver_str = version.version.replace('.sdk.1.1', '.1')
             log.info('%s [%s] -> %s' % (version, version.pk, new_ver_str))
             version.version = new_ver_str
             version.save()
