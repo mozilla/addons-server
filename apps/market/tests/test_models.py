@@ -149,6 +149,7 @@ class TestReceipt(amo.tests.TestCase):
         assert self.webapp.addonpurchase_set.all()[0].receipt
 
 
+@mock.patch('addons.models.Addon.is_premium', lambda x: True)
 class TestAddonPurchase(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
@@ -175,14 +176,16 @@ class TestAddonPurchase(amo.tests.TestCase):
 
     def test_logged_in_ok(self):
         self.client.login(username='regular@mozilla.com', password='password')
-        self.addon.addonpurchase_set.create(user=self.user)
+        self.addon.addonpurchase_set.create(user=self.user,
+                                            receipt='yak.shave')
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(json.loads(res.content)['status'], 'ok')
 
     def test_logged_in_other(self):
         self.client.login(username='admin@mozilla.com', password='password')
-        self.addon.addonpurchase_set.create(user=self.user)
+        self.addon.addonpurchase_set.create(user=self.user,
+                                            receipt='yak.shave')
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(json.loads(res.content)['status'], 'invalid')
@@ -191,7 +194,8 @@ class TestAddonPurchase(amo.tests.TestCase):
         eq_(list(self.user.purchase_ids()), [])
 
     def test_user_purchased(self):
-        self.addon.addonpurchase_set.create(user=self.user)
+        self.addon.addonpurchase_set.create(user=self.user,
+                                            receipt='yak.shave')
         eq_(list(self.user.purchase_ids()), [3615L])
 
 
