@@ -15,7 +15,7 @@ from django.utils import translation
 import elasticutils
 import nose
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, nottest
 import test_utils
 from redisutils import mock_redis, reset_redis
 
@@ -99,6 +99,7 @@ class MobileTest(object):
         self.request.MOBILE = True
 
 
+@nottest
 def mobile_test(f):
     """Test decorator for hitting mobile views."""
     @wraps(f)
