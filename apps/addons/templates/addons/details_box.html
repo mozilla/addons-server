@@ -70,6 +70,20 @@
                   {% endif %}
                 </td>
               </tr>
+              {% if addon.average_daily_users %}
+                <tr class="meta-stats">
+                  <th>{{ _('Average Daily Users') }}</th>
+                  <td>
+                    <strong class="downloads">{{
+                      addon.average_daily_users|numberfmt }}</strong>
+                    {% if addon.public_stats %}
+                      {# TODO real reverse URL #}
+                      <a href="{{ locale_url('/statistics/addon/{0}'|f(addon.id)) }}">
+                        {{ _('View Statistics') }}</a>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endif %}
               <tr class="meta-abuse">
                 <th>{{ _('Abuse Reports') }}</th>
                 <td>
