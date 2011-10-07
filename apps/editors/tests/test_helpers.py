@@ -224,8 +224,6 @@ class TestReviewHelper(amo.tests.TestCase):
 
         self.old_mirror = settings.MIRROR_STAGE_PATH
         self.old_normal = settings.ADDONS_PATH
-        settings.MIRROR_STAGE_PATH = tempfile.mkdtemp()
-        settings.ADDONS_PATH = tempfile.mkdtemp()
 
         self.create_paths()
 
@@ -236,11 +234,6 @@ class TestReviewHelper(amo.tests.TestCase):
                 os.mkdir(dr)
         if not os.path.exists(self.file.file_path):
             open(self.file.file_path, 'w')
-
-    def tearDown(self):
-        shutil.rmtree(settings.MIRROR_STAGE_PATH)
-        settings.MIRROR_STAGE_PATH = self.old_mirror
-        settings.ADDONS_PATH = self.old_normal
 
     def get_data(self):
         return {'comments': 'foo', 'addon_files': self.version.files.all(),
