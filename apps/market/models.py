@@ -5,6 +5,7 @@ from django.conf import settings
 from django.db import models
 from django.dispatch import receiver
 from django.utils import translation
+from django.utils.http import urlencode
 
 from translations.fields import TranslatedField
 
@@ -91,6 +92,11 @@ class AddonPurchase(amo.models.ModelBase):
         return u'%s: %s' % (self.addon, self.user)
 
     def create_receipt(self):
+        verify = reverse('api.market.verify', args=[self.addon.pk])
+        hsh = self.addon.get_watermark_hash(self.user)
+        url = urlencode({amo.WATERMARK_KEY: self.user.email,
+                         amo.WATERMARK_KEY_HASH: hsh})
+        verify = '%s?%s' % (verify, url)
         receipt = dict(typ='purchase-receipt',
                        product=self.addon.origin,
                        user={'type': 'email',
@@ -100,8 +106,7 @@ class AddonPurchase(amo.models.ModelBase):
                        iat=time.time(),
                        detail=reverse('users.purchases.receipt',
                                       args=[self.addon.pk]),
-                       verify=reverse('api.market.verify',
-                                      args=[self.addon.pk]))
+                       verify=verify)
         self.receipt = jwt.encode(receipt, get_key())
 
 
