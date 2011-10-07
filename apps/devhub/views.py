@@ -542,6 +542,7 @@ def packager_path(name):
     return os.path.join(settings.PACKAGER_PATH, '%s.zip' % name)
 
 
+@anonymous_csrf
 def package_addon(request):
     basic_form = forms.PackagerBasicForm(request.POST or None)
     features_form = forms.PackagerFeaturesForm(request.POST or None)
