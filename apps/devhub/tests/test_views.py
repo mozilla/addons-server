@@ -878,23 +878,6 @@ class TestMarketplace(amo.tests.TestCase):
         eq_(addon.paypal_id, data['paypal_id'])
         eq_(addon.support_email, data['support_email'])
 
-    def test_wizard_step_1_not_reset(self):
-        url = reverse('devhub.market.1', args=[self.addon.slug])
-        AddonPremium.objects.create(addon=self.addon,
-                                    paypal_permissions_token='ad')
-        data = {'paypal_id': 'some@paypal.com', 'support_email': 'a@a.com'}
-        eq_(self.client.post(url, data).status_code, 302)
-        eq_(self.addon.premium.paypal_permissions_token, 'ad')
-
-    def test_wizard_step_1_reset(self):
-        url = reverse('devhub.market.1', args=[self.addon.slug])
-        AddonPremium.objects.create(addon=self.addon,
-                                    paypal_permissions_token='ad')
-        self.addon.update(paypal_id='123')
-        data = {'paypal_id': 'some@paypal.com', 'support_email': 'a@a.com'}
-        eq_(self.client.post(url, data).status_code, 302)
-        eq_(self.addon.premium.paypal_permissions_token, '')
-
     def test_wizard_step_1_required_paypal(self):
         url = reverse('devhub.market.1', args=[self.addon.slug])
         data = {'paypal_id': '', 'support_email': 'a@a.com'}
@@ -965,20 +948,6 @@ class TestMarketplace(amo.tests.TestCase):
         url = reverse('devhub.market.4', args=[self.addon.slug])
         eq_(self.client.post(url, {}).status_code, 302)
         assert self.get_addon().is_premium()
-
-    def test_changing_paypal_id(self):
-        self.setup_premium()
-        self.addon.premium.update(paypal_permissions_token='foo')
-        data = self.get_data()
-        data['paypal_id'] = 'e@e.com'
-        self.client.post(self.url, data)
-        eq_(self.get_addon().premium.paypal_permissions_token, '')
-
-    def test_not_changing_paypal_id(self):
-        self.setup_premium()
-        self.addon.premium.update(paypal_permissions_token='foo')
-        self.client.post(self.url, self.get_data())
-        assert self.get_addon().premium.paypal_permissions_token
 
     def test_can_edit(self):
         self.setup_premium()

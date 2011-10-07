@@ -14,6 +14,8 @@ from applications.models import AppVersion
 from addons.models import Addon, Charity
 from devhub import forms
 from files.models import FileUpload
+from market.models import AddonPremium
+from users.models import UserProfile
 from versions.models import ApplicationsVersions
 
 from nose.tools import eq_
@@ -118,3 +120,40 @@ class TestPreviewForm(amo.tests.TestCase):
         form.save(addon)
         eq_(addon.previews.all()[0].sizes,
             {u'image': [250, 297], u'thumbnail': [126, 150]})
+
+
+@mock.patch('market.models.AddonPremium.has_valid_permissions_token',
+            lambda z: True)
+class TestPremiumForm(amo.tests.TestCase):
+    fixtures = ['base/addon_3615', 'base/users']
+
+    def complete(self, data):
+        return forms.PremiumForm(data, extra={
+            'addon': Addon.objects.get(pk=3615),
+            'amo_user': UserProfile.objects.get(pk=999),
+            'not_required': ['price']})
+
+    def test_remove_token(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.update(paypal_id='')
+        ap = AddonPremium.objects.create(paypal_permissions_token='1',
+                                         addon=addon)
+        data = {'support_email': 'foo@bar.com', 'paypal_id': 'foo@bar.com'}
+        form = self.complete(data)
+        form.is_valid()
+        form.save()
+        # Do not remove the token, we had no paypal_id.
+        assert AddonPremium.objects.get(pk=ap.pk).paypal_permissions_token
+
+        data['paypal_id'] = 'fooa@bar.com'
+        form = self.complete(data)
+        # Remove the token and fail the form.
+        assert not form.is_valid()
+        assert not AddonPremium.objects.get(pk=ap.pk).paypal_permissions_token
+
+        AddonPremium.objects.get(pk=ap.pk).update(paypal_permissions_token='a')
+        data['paypal_id'] = 'foo@bar.com'
+        form = self.complete(data)
+        # Do not remove the token the token.
+        assert form.is_valid()
+        assert AddonPremium.objects.get(pk=ap.pk).paypal_permissions_token
