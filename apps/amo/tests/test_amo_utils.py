@@ -53,7 +53,7 @@ def test_resize_image():
 def test_resize_transparency():
     src = os.path.join(settings.ROOT, 'apps', 'amo', 'tests',
                        'images', 'transparent.png')
-    dest = tempfile.mkstemp()[1]
+    dest = tempfile.mkstemp(dir=settings.TMP_PATH)[1]
     expected = src.replace('.png', '-expected.png')
     try:
         resize_image(src, dest, (32, 32), remove_src=False)
