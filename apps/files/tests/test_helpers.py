@@ -2,7 +2,6 @@
 import os
 import mimetypes
 import shutil
-import tempfile
 import zipfile
 
 from django.conf import settings
@@ -81,7 +80,7 @@ class TestFileHelper(amo.tests.TestCase):
             m, encoding = mimetypes.guess_type(f)
             assert binary(m, f), '%s should be binary' % f
 
-        filename = tempfile.mktemp()
+        filename = os.path.join(settings.TMP_PATH, 'test_isbinary')
         for txt in ['#!/usr/bin/python', '#python', u'\0x2']:
             open(filename, 'w').write(txt)
             m, encoding = mimetypes.guess_type(filename)
@@ -91,6 +90,7 @@ class TestFileHelper(amo.tests.TestCase):
             open(filename, 'w').write(txt)
             m, encoding = mimetypes.guess_type(filename)
             assert binary(m, filename), '%s should be binary' % txt
+        os.remove(filename)
 
     def test_truncate(self):
         truncate = self.viewer.truncate
@@ -131,11 +131,12 @@ class TestFileHelper(amo.tests.TestCase):
         eq_(files['dictionaries/license.txt']['depth'], 1)
 
     def test_bom(self):
-        dest = tempfile.mkstemp()[1]
+        dest = os.path.join(settings.TMP_PATH, 'test_bom')
         open(dest, 'w').write('foo'.encode('utf-16'))
         self.viewer.select('foo')
         self.viewer.selected = {'full': dest, 'size': 1}
         eq_(self.viewer.read_file(), u'foo')
+        os.remove(dest)
 
     def test_syntax(self):
         for filename, syntax in [('foo.rdf', 'xml'),

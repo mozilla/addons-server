@@ -84,7 +84,8 @@ class TestRepackageJetpack(amo.tests.TestCase):
         self.uuid = uuid.uuid4().hex
 
     def create_temp_file(self):
-        tmp_file = tempfile.NamedTemporaryFile(delete=False)
+        tmp_file = tempfile.NamedTemporaryFile(delete=False,
+                                               dir=settings.TMP_PATH)
         tmp_file.write(open(self.xpi_path, 'rb').read())
         tmp_file.flush()
         return tmp_file

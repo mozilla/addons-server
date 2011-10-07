@@ -313,8 +313,12 @@ def extract_zip(source, remove=False, fatal=True):
     tempdir = tempfile.mkdtemp()
 
     zip = SafeUnzip(source)
-    if zip.is_valid(fatal):
-        zip.extract_to_dest(tempdir)
+    try:
+        if zip.is_valid(fatal):
+            zip.extract_to_dest(tempdir)
+    except:
+        shutil.rmtree(tempdir)
+        raise
 
     if remove:
         os.remove(source)
