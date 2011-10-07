@@ -1,0 +1,2 @@
+-- Bridge stolen. Read full story for details:
+-- http://www.post-gazette.com/pg/11280/1180364-455.stm
