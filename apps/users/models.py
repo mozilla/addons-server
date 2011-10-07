@@ -480,7 +480,7 @@ class BlacklistedPassword(amo.models.ModelBase):
 
 
 class UserHistory(amo.models.ModelBase):
-    email = models.EmailField(unique=True, null=True)
+    email = models.EmailField()
     user = models.ForeignKey(UserProfile, related_name='history')
 
     class Meta:

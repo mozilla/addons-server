@@ -245,6 +245,10 @@ class TestUserHistory(amo.tests.TestCase):
 
     def test_user_find(self):
         user = UserProfile.objects.create(email='luke@jedi.com')
+        # Checks that you can have multiple copies of the same email and
+        # that we only get distinct results back.
+        user.update(email='dark@sith.com')
+        user.update(email='luke@jedi.com')
         user.update(email='dark@sith.com')
         eq_([user], list(find_users('luke@jedi.com')))
         eq_([user], list(find_users('dark@sith.com')))

@@ -99,4 +99,4 @@ def find_users(email):
     users and in their history.
     """
     return UserProfile.objects.filter(Q(email=email) |
-                                      Q(history__email=email))
+                                      Q(history__email=email)).distinct()
