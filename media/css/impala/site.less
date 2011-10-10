@@ -143,6 +143,15 @@ header + .island {
         line-height: 16px;
         margin-bottom: 28px;
     }
+    ul ul {
+        margin-bottom: 0;
+        li {
+            border-top: 0;
+            a {
+                padding-left: 1em;
+            }
+        }
+    }
     li {
         border: 1px solid @border-black;
         border-width: 0 0 1px 0;
@@ -240,7 +249,8 @@ header + .island {
 .s-users #side-nav .s-users a,
 .s-downloads #side-nav .s-downloads a,
 .s-rating #side-nav .s-rating a,
-.s-created #side-nav .s-created a {
+.s-created #side-nav .s-created a,
+#side-nav .selected {
     background: #ecf5fe;
     color: #333;
     font-weight: bold;
@@ -249,7 +259,8 @@ header + .island {
 .s-users #side-nav .s-users a:after,
 .s-downloads #side-nav .s-downloads a:after,
 .s-rating #side-nav .s-rating a:after,
-.s-created #side-nav .s-created a:after {
+.s-created #side-nav .s-created a:after,
+#side-nav .selected a:after {
     color: inherit;
 }
 

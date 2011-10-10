@@ -1,6 +1,5 @@
 {% set show_contributions = false %}
-<div class="secondary-item-list report-menu">
-  <h3>{{ _('Add-on Statistics') }}</h3>
+<nav id='side-nav'>
   <ul>
     {% for item in report_tree %}
       {% if item.name != 'contributions' or show_contributions %}
@@ -10,21 +9,21 @@
           <li>
         {% endif %}
           <a href="{{ base_url + item.url }}">{{ item.title }}</a>
-          {% if item.children %}
-            <ul>
-              {% for child in item.children %}
-                {% if child.name == report %}
-                  <li class="selected">
-                {% else %}
-                  <li>
-                {% endif %}
-                  <a href="{{ base_url + child.url }}">{{ child.title }}</a>
-                  </li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-          </li>
-        {% endif %}
+        </li>
+      {% endif %}
+      {% if item.children %}
+        <ul>
+          {% for child in item.children %}
+            {% if child.name == report %}
+              <li class="selected">
+            {% else %}
+              <li>
+            {% endif %}
+              <a href="{{ base_url + child.url }}">{{ child.title }}</a>
+              </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
     {% endfor %}
   </ul>
-</div>
+</nav>

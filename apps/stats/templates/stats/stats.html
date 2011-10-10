@@ -1,9 +1,11 @@
-{% extends "base.html" %}
+{% extends "impala/base.html" %}
 
 {% set range = view.range %}
 
+{% block bodyclass %}statistics{% endblock %}
+
 {% block extrahead %}
-  <link rel="stylesheet" href="{{ media('css/legacy/stats.css') }}"/>
+  {{ css('zamboni/stats') }}
   <link rel="stylesheet"
         href="{{ media('css/zamboni/jquery-ui/custom-1.7.2.css') }}">
 {% endblock %}
@@ -14,9 +16,9 @@
 {% endblock %}
 
 {% block navbar %}
-  {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                  (addon.get_url_path(), addon.name),
-                  (link, _('Statistics'))]) }}
+  {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+                         (addon.get_url_path(), addon.name),
+                         (link, _('Statistics'))]) }}
   {# TODO: Replace above line with this --> once we serve the extension home. { breadcrumbs([(addon.type.get_url_path(), amo.ADDON_TYPES[addon.type_id])]) } #}
 
 
@@ -41,18 +43,14 @@
           <a href="#">{{ _('Custom') }}</a></li>
     </ul>
   </div>
-
-  <hgroup>
-  <h2 class="addon"{{ addon.name|locale_html }}>
-    <img src="{{ addon.icon_url }}" class="icon"/>
-    <span>
-      {# L10n: {0} is an add-on name #}
-      {{ _('Statistics for {0}')|f(addon.name) }}
-    </span>
-  </h2>
-  {# L10n: {0} is an add-on author #}
-  <h4 class="author">{{ _('by {0}')|f(users_list(addon.listed_authors))|xssafe }}</h4>
-  </hgroup>
+  <header>
+    <hgroup>
+      <h1 class="addon"{{ addon.name|locale_html }}>
+        {# L10n: {0} is an add-on name #}
+        {{ _('Statistics for {0}')|f(addon.name) }}
+      </h1>
+    </hgroup>
+  </header>
 {% endblock %}
 
 {% block content %}
@@ -92,19 +90,8 @@
         </form>
       </div>
     {% endif %}
-    <div class="featured">
-      <div class="featured-inner chart">
-        <div class="listing-header">
-          {% block chart_menu %}
-            <ul><li class="selected">&nbsp;</li></ul>
-          {% endblock %}
-        </div>
-        <div class="featured-body" id="head-chart" style="background:#fff;height:256px"
-          {% block chart_config %}
-          data-series="{{ series_fields }}"
-          {% endblock %}
-          >
-        </div>
+    <div class="island chart c">
+      <div id="head-chart" style="background:#fff;height:384px">
       </div>
     </div>
     {% block stats %}

@@ -476,6 +476,9 @@ MINIFY_BUNDLES = {
             'css/impala/apps.less',
             'css/impala/formset.less',
         ),
+        'zamboni/stats': (
+            'css/impala/stats.less',
+        ),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',
             'css/impala/promos.less',
@@ -722,11 +725,16 @@ MINIFY_BUNDLES = {
         'zamboni/stats': (
             'js/lib/jquery-datepicker.js',
             'js/lib/highcharts.src.js',
-            'js/zamboni/stats/csv_keys.js',
-            'js/zamboni/stats/helpers.js',
-            'js/zamboni/stats/stats_manager.js',
-            'js/zamboni/stats/stats_tables.js',
-            'js/zamboni/stats/stats.js',
+            'js/impala/stats/csv_keys.js',
+            # 'js/zamboni/stats/helpers.js',
+            # 'js/zamboni/stats/stats_manager.js',
+            # 'js/zamboni/stats/stats_tables.js',
+            # 'js/zamboni/stats/stats.js',
+            'js/impala/stats/dateutils.js',
+            'js/impala/stats/manager.js',
+            'js/impala/stats/controls.js',
+            'js/impala/stats/chart.js',
+            'js/impala/stats/stats.js',
         ),
         'zamboni/admin': (
             'js/zamboni/admin.js',
