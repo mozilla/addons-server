@@ -1,8 +1,10 @@
 import logging
 import os
 import pprint
+import re
 import shutil
 import tempfile
+import zipfile
 
 from django.core.management.base import BaseCommand
 from django.db import transaction
@@ -12,11 +14,12 @@ import path
 import amo
 import amo.utils
 from files.models import nfd_str
-from files.utils import extract_xpi, RDF, SafeUnzip
+from files.utils import extract_xpi, RDF
 from versions.models import Version
 
 
 log = logging.getLogger('z.migrations')
+old_version = re.compile(r'\.1$')
 
 
 def _log(msg):
@@ -26,15 +29,23 @@ def _log(msg):
 
 
 class Command(BaseCommand):
-    help = "One time script to fix broken jetpack XPIs. See bug 692524"
+    help = ("One time script to fix broken jetpack XPIs. See bug 692524 "
+            "and bug 693429")
 
     @transaction.commit_manually
     def handle(self, *args, **kw):
-        success, fails = 0, 0
+        success, fails, skipped = 0, 0, 0
         failed_ver_ids = []
-        for version in Version.objects.filter(version__endswith='sdk.1.1'):
+        for version in Version.objects.filter(pk__in=VERSION_IDS):
             try:
-                new_ver_str = version.version.replace('.sdk.1.1', '.1')
+                if not old_version.search(version.version):
+                    _log('skipped: Unexpected version: %s [%s]'
+                         % (version.version, version.pk))
+                    transaction.rollback()
+                    skipped += 1
+                    continue
+                # eg. 1.0.1 -> 1.0.2
+                new_ver_str = old_version.sub('.2', version.version)
                 _log('version: %s [%s] -> %s' % (version, version.pk,
                                                  new_ver_str))
                 version.version = new_ver_str
@@ -45,9 +56,8 @@ class Command(BaseCommand):
                     try:
                         xpi_dir = os.path.join(tmp, 'xpi_dir')
                         os.mkdir(xpi_dir)
-                        xpi = os.path.join(tmp, 'xpi.zip')
-                        shutil.copy(file_.file_path, xpi)
                         extract_xpi(file_.file_path, xpi_dir)
+                        xpi = os.path.join(tmp, 'xpi.zip')
                         new_xpi = fix_xpi(xpi, xpi_dir, new_ver_str)
                         replace_xpi(file_, new_xpi, version)
                     finally:
@@ -64,7 +74,8 @@ class Command(BaseCommand):
         _log('These versions failed: %s' % pprint.pformat(failed_ver_ids))
         _log('SUCCESS: %s' % success)
         _log('FAILS: %s' % fails)
-        _log('TOTAL: %s' % (success + fails))
+        _log('SKIPPED: %s' % skipped)
+        _log('TOTAL: %s' % (success + fails + skipped))
 
 
 def fix_xpi(xpi, xpi_dir, new_version):
@@ -78,11 +89,20 @@ def fix_xpi(xpi, xpi_dir, new_version):
     elem = data.dom.createElement('em:version')
     elem.appendChild(data.dom.createTextNode(new_version))
     parent.appendChild(elem)
-    outzip = SafeUnzip(xpi, mode='w')
-    outzip.is_valid()
-    outzip.zip.writestr('install.rdf', str(data))
-    outzip.zip.close()
-    return path.path(amo.utils.smart_path(nfd_str(xpi)))
+    # Replace install.rdf:
+    with open(os.path.join(xpi_dir, 'install.rdf'), 'w') as f:
+        f.write(str(data))
+
+    zip = zipfile.ZipFile(xpi, 'w')
+    for root, dirs, files in os.walk(xpi_dir):
+        relroot = root.replace(xpi_dir, '')
+        if relroot.startswith('/'):
+            relroot = relroot[1:]
+        for f in files:
+            zip.write(os.path.join(root, f), os.path.join(relroot, f))
+    zip.close()
+
+    return path.path(xpi)
 
 
 def replace_xpi(file_, new_xpi, version):
@@ -100,8 +120,48 @@ def replace_xpi(file_, new_xpi, version):
         if not dest.exists():
             dest.makedirs()
         file_dest = dest / nfd_str(file_.filename)
+        if os.path.exists(file_dest):
+            backup_file(file_dest)
         new_xpi.copyfile(file_dest)
         _log('file: %s [%s] at %s -> %s at %s' % (old_filename,
                                                   file_.pk, old_filepath,
                                                   file_.filename,
                                                   file_dest))
+
+
+def backup_file(file_path, base=None, tries=1):
+    if not base:
+        base = '%s.bak' % file_path
+    if tries > 1:
+        new_path = '%s.%s' % (base, tries)
+    else:
+        new_path = base
+    if os.path.exists(new_path):
+        return backup_file(file_path, base=base, tries=tries + 1)
+    _log('backed up: %s -> %s' % (file_path, new_path))
+    shutil.copy(file_path, new_path)
+
+
+# The exact versions to fix:
+VERSION_IDS = [1272303, 1271533, 1271532, 1271531, 1271530, 1271527, 1271526,
+1271525, 1271523, 1271524, 1271520, 1271519, 1271518, 1271515, 1271514,
+1271513, 1271511, 1271500, 1271499, 1271498, 1271497, 1271494, 1271493,
+1271479, 1271436, 1271435, 1271434, 1271433, 1271432, 1271431, 1271430,
+1271429, 1271428, 1271427, 1271426, 1271425, 1271424, 1271422, 1271421,
+1271420, 1271419, 1271418, 1271417, 1271416, 1271414, 1271413, 1271412,
+1271411, 1271410, 1271409, 1271408, 1271407, 1271406, 1271403, 1271404,
+1271405, 1271402, 1271401, 1271400, 1271399, 1271398, 1271397, 1271396,
+1271393, 1271394, 1271392, 1271391, 1271390, 1271389, 1271388, 1271387,
+1271386, 1271385, 1271384, 1271382, 1271383, 1271381, 1271378, 1271379,
+1271380, 1271377, 1271376, 1271375, 1271374, 1271373, 1271372, 1271371,
+1271370, 1271369, 1271368, 1271367, 1271366, 1271365, 1271364, 1271363,
+1271361, 1271360, 1271359, 1271356, 1271357, 1271358, 1271355, 1271354,
+1271353, 1271352, 1271351, 1271350, 1271349, 1271348, 1271347, 1271345,
+1271344, 1271346, 1271342, 1271341, 1271340, 1271337, 1271338, 1271339,
+1271336, 1271335, 1271334, 1271331, 1271332, 1271333, 1271330, 1271329,
+1271328, 1271327, 1271326, 1271325, 1271324, 1271323, 1271322, 1271320,
+1271318, 1271319, 1271317, 1271316, 1271315, 1271314, 1271313, 1271312,
+1271311, 1271309, 1271310, 1271308, 1271307, 1271306, 1271305, 1271304,
+1271303, 1271302, 1271300, 1271301, 1271299, 1271297, 1271296, 1271295,
+1271294, 1271293, 1271292, 1271291, 1271290, 1271289, 1271288, 1271287,
+1271286, 1271285, 1271283]
