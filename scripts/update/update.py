@@ -130,3 +130,4 @@ def update(ctx):
     schematic()
     with ctx.lcd(settings.SRC_DIR):
         ctx.local('python2.6 manage.py dump_apps')
+        ctx.local('python2.6 manage.py fix_jetpack_xpis')
