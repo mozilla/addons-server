@@ -10,7 +10,7 @@ function browserIDRedirect(to) {
 function gotVerifiedEmail(assertion, redirectTo, domContext) {
     function displayErrBox(errmsg) {
 
-        $('.primary', domContext).prepend(
+        $('section.primary', domContext).prepend(
             format('<div class="notification-box error">'
                    + '<ul><h2>{0}</h2></ul></div>', [errmsg]));
     }
@@ -26,9 +26,16 @@ function gotVerifiedEmail(assertion, redirectTo, domContext) {
                    },
                    success: browserIDRedirect(redirectTo),
                    error: function(jqXHR, textStatus, errorThrown) {
-                       displayErrBox(gettext(
-                                  'BrowserID login failed. Maybe you don\'t '
-                                + 'have an account under that email address?'));}
+                       if (jqXHR.status == 400) {
+                           displayErrBox(gettext(
+                                  'Admins and editors must provide'
+                                + ' a password to log in.'));
+                       } else {
+                           displayErrBox(gettext(
+                                  "BrowserID login failed. Maybe you don't "
+                                + 'have an account under that email address?'));
+                       }
+                   }
                    });
         return a;
     } else {

@@ -409,6 +409,33 @@ class TestLogin(UserViewBase):
                                          audience='fakeamo.org'))
         eq_(res.status_code, 200)
 
+    def _make_admin_user(self, email):
+        """
+        Create a user with at least one admin privilege.
+        """
+        p = UserProfile(username='admin', email=email,
+                        password='hunter2', created=datetime.now(), pk=998)
+        p.create_django_user()
+        admingroup = Group.objects.create(rules='Admin:EditAnyUser')
+        GroupUser.objects.create(group=admingroup, user=p)
+
+    @patch.object(waffle, 'switch_is_active', lambda x: True)
+    @patch('httplib2.Http.request')
+    def test_browserid_restricted_login(self, http_request):
+        """
+        A success response from BrowserID for accounts restricted to
+        password login results in a 400 error, for which the frontend
+        will display a message about the restriction.
+        """
+        email = 'admin@mozilla.com'
+        http_request.return_value = (200, json.dumps({'status': 'okay',
+                                          'email': email}))
+        self._make_admin_user(email)
+        res = self.client.post(reverse('users.browserid_login'),
+                               data=dict(assertion='fake-assertion',
+                                         audience='fakeamo.org'))
+        eq_(res.status_code, 400)
+
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('httplib2.Http.request')
     def test_browserid_login_failure(self, http_request):

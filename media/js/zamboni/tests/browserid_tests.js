@@ -53,4 +53,24 @@ asyncTest('Login success', function() {
             start();
         });
     });
+
+
+asyncTest('Admin login failure', function() {
+    var sandbox = this.sandbox;
+    $('.browserid-login', sandbox).attr('data-url', '/browserid-login-fail');
+    equal($(".primary .notification-box", sandbox).length, 0);
+    browserIDRedirect = function() { start();};
+    $.mockjax({url: '/browserid-login-fail',
+               response: function() {},
+               status: 405});
+    gotVerifiedEmail('browserid-assertion', '/', sandbox).fail(
+        function() {
+            equal($('.primary .notification-box h2', sandbox).text(),
+                  'Admins and editors must provide a password'
+                + ' to log in.');
+            $(".primary .notification-box", sandbox).remove();
+            start();
+        });
+});
+
 });
