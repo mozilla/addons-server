@@ -4,8 +4,8 @@ import os
 import pprint
 import re
 import shutil
+import subprocess
 import tempfile
-import zipfile
 
 from django.core.management.base import BaseCommand
 from django.db import transaction
@@ -104,15 +104,12 @@ def fix_xpi(xpi, xpi_dir, new_version):
     with open(os.path.join(xpi_dir, 'install.rdf'), 'w') as f:
         f.write(str(data))
 
-    zip = zipfile.ZipFile(xpi, 'w')
-    for root, dirs, files in os.walk(xpi_dir):
-        relroot = root.replace(xpi_dir, '')
-        if relroot.startswith('/'):
-            relroot = relroot[1:]
-        for f in files:
-            zip.write(os.path.join(root, f), os.path.join(relroot, f))
-    zip.close()
-
+    wd = os.getcwd()
+    try:
+        os.chdir(xpi_dir)
+        subprocess.check_call(['zip', '-r', xpi] + os.listdir(os.getcwd()))
+    finally:
+        os.chdir(wd)
     return path.path(xpi)
 
 
