@@ -107,7 +107,7 @@ def fix_xpi(xpi, xpi_dir, new_version):
     wd = os.getcwd()
     try:
         os.chdir(xpi_dir)
-        subprocess.check_call(['zip', '-r', xpi] + os.listdir(os.getcwd()))
+        subprocess.check_call(['zip', '-qr', xpi] + os.listdir(os.getcwd()))
     finally:
         os.chdir(wd)
     return path.path(xpi)
