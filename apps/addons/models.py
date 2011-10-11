@@ -1531,6 +1531,53 @@ class AddonUpsell(amo.models.ModelBase):
         return u'Free: %s to Premium: %s' % (self.free, self.premium)
 
 
+class CompatOverride(amo.models.ModelBase):
+    """Helps manage compat info for add-ons not hosted on AMO."""
+    name = models.CharField(max_length=255, blank=True, null=True)
+    guid = models.CharField(max_length=255, unique=True)
+    addon = models.ForeignKey(Addon, blank=True, null=True,
+                              help_text='Fill this out to link an override '
+                                        'to a hosted add-on')
+
+    class Meta:
+        db_table = 'compat_override'
+
+    def save(self, *args, **kw):
+        if not self.addon:
+            qs = Addon.objects.filter(guid=self.guid)
+            if qs:
+                self.addon = qs[0]
+        return super(CompatOverride, self).save(*args, **kw)
+
+    def __unicode__(self):
+        if self.addon:
+            return unicode(self.addon)
+        elif self.name:
+            return '%s (%s)' % (self.name, self.guid)
+        else:
+            return self.guid
+
+
+OVERRIDE_TYPES = (
+    (0, 'Compatible (not supported)'),
+    (1, 'Incompatible'),
+)
+
+
+class CompatOverrideRange(amo.models.ModelBase):
+    """App compatibility for a certain version range of a RemoteAddon."""
+    compat = models.ForeignKey(CompatOverride)
+    type = models.SmallIntegerField(choices=OVERRIDE_TYPES, default=1)
+    min_version = models.CharField(max_length=255, blank=True, default='*')
+    max_version = models.CharField(max_length=255, blank=True, default='*')
+    app = models.ForeignKey('applications.Application')
+    min_app_version = models.CharField(max_length=255, blank=True, default='*')
+    max_app_version = models.CharField(max_length=255, blank=True, default='*')
+
+    class Meta:
+        db_table = 'compat_override_range'
+
+
 # webapps.models imports addons.models to get Addon, so we need to keep the
 # Webapp import down here.
 from webapps.models import Webapp

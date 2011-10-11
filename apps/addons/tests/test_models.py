@@ -27,7 +27,7 @@ from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonCategory, AddonDependency,
                            AddonRecommendation, AddonType, AddonUpsell,
                            BlacklistedGuid, Category, Charity, FrozenAddon,
-                           Persona, Preview)
+                           Persona, Preview, CompatOverride)
 from applications.models import Application, AppVersion
 from devhub.models import ActivityLog
 from files.models import File, Platform
@@ -1743,3 +1743,16 @@ class TestWatermarkHash(amo.tests.TestCase):
         self.user.delete()
         UserProfile.objects.create(email='regular@mozilla.com')
         eq_(None, self.addon.get_user_from_hash('regular@mozilla.com', hsh))
+
+
+class TestCompatOverride(amo.tests.TestCase):
+    fixtures = ['base/addon_3615']
+
+    def test_guid_match(self):
+        # We hook up the add-on automatically if we see a matching guid.
+        addon = Addon.objects.get(id=3615)
+        c = CompatOverride.objects.create(guid=addon.guid)
+        eq_(c.addon_id, addon.id)
+
+        c = CompatOverride.objects.create(guid='something else')
+        assert c.addon is None
