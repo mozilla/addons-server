@@ -2,63 +2,73 @@
     "use strict";
 
     var $rangeSelector = $(".criteria.range ul"),
-        $customRangeForm = $("div.custom.criteria");
+        $customRangeForm = $("div.custom.criteria"),
+        $groupSelector = $(".criteria.group ul");
 
     $.datepicker.setDefaults({showAnim: ''});
-    $("#date-range-start").datepicker();
-    $("#date-range-end").datepicker();
+    var $customModal = $("#custom-criteria").modal("#custom-date-range", { width: 520, hideme: false });
+    var $startPicker = $("#start-date-picker").datepicker({
+        maxDate: 0,
+        onSelect: function(dateText) {
+            $("#date-range-start").val(dateText);
+        }
+    });
+    var $endPicker = $("#end-date-picker").datepicker({
+        maxDate: 0,
+        onSelect: function(dateText) {
+            $("#date-range-end").val(dateText);
+        }
+    });
 
     $rangeSelector.click(function(e) {
         var $target = $(e.target).parent();
         var newRange = $target.attr("data-range");
-
-        if (newRange) {
-            $rangeSelector.children("li.selected").removeClass("selected");
-            $target.addClass("selected");
-
-            if (newRange == "custom") {
-                $customRangeForm.removeClass("hidden").slideDown('fast');
-            } else {
-                $target.trigger('changeview', {range: newRange});
-                $customRangeForm.slideUp('fast');
-            }
+        if (newRange && newRange != "custom") {
+            $target.trigger('changeview', {range: newRange});
         }
         e.preventDefault();
     });
-    $(window).bind('changeview', function(e, newState) {
-        function populateCustomRange() {
-            var nRange = z.date.normalizeRange(newState.range);
-            $("#date-range-start").val(
-                z.date.datepicker_format(
-                    new Date(nRange.start)
-                )
-            );
-            $("#date-range-end").val(
-                z.date.datepicker_format(
-                    new Date(nRange.end)
-                )
-            );
-            $rangeSelector.children("li.selected").removeClass("selected");
-            $('[data-range="custom"]').addClass("selected");
-            $customRangeForm.removeClass("hidden").slideDown('fast');
-        }
 
-        if (newState && newState.range) {
+    $groupSelector.delegate('a', 'click', function(e) {
+        var $target = $(this).parent(),
+            newGroup = $target.attr("data-group");
+
+        $(this).trigger('changeview', { group: newGroup });
+        e.preventDefault();
+    });
+
+    // set controls when `changeview` is detected.
+    $(window).bind('changeview', function(e, newState) {
+        if (!newState) return;
+        function populateCustomRange() {
+            var nRange = z.date.normalizeRange(newState.range),
+                startStr = z.date.datepicker_format(new Date(nRange.start)),
+                endStr = z.date.datepicker_format(new Date(nRange.end));
+            $("#date-range-start").val(startStr);
+            $startPicker.datepicker("setDate", startStr);
+            $("#date-range-end").val(endStr);
+            $endPicker.datepicker("setDate", endStr);
+        }
+        if (newState.range) {
             if (!newState.range.custom) {
                 var newRange = newState.range,
                     $rangeEl = $('[data-range="' + newRange + '"]');
                 if ($rangeEl.length) {
                     $rangeSelector.children("li.selected").removeClass("selected");
                     $rangeEl.addClass("selected");
-                    return;
-                } else {
-                    populateCustomRange();
                 }
             } else {
-                populateCustomRange();
+                $rangeSelector.children("li.selected").removeClass("selected");
+                $('[data-range="custom"]').addClass("selected");
             }
+            populateCustomRange();
+        }
+        if (newState.group) {
+            $groupSelector.children('.selected').removeClass('selected');
+            $('[data-group="' + newState.group + '"]').addClass('selected');
         }
     });
+    
     $("#date-range-form").submit(function(e) {
         e.preventDefault();
         var start = new Date($("#date-range-start").val()),
@@ -70,6 +80,7 @@
             };
 
         $rangeSelector.trigger('changeview', {range: newRange});
+        $customModal.trigger('close');
         return false;
     });
 })();

@@ -1,4 +1,15 @@
+@import 'lib';
+
 /* Clearfix! */
+.statistics #page {
+    max-width: 1280px;
+    width: auto;
+    min-width: 1024px;
+    padding-bottom: 500px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 .statbox:after {
     content: ".";
     display: block;
@@ -92,104 +103,31 @@ div.statbox {
 **/
 
 .criteria {
-    background: -moz-linear-gradient(#fdfefe,#daf0f6);
-    border: .1em solid #abc4d2;
-    -moz-border-radius: 4px;
+    padding: 0 0 0 12px;
+    margin: 0 0 0 1em;
+    z-index: 1000;
+    float: right;
     ul {
         line-height: 2.5em;
     }
-    &.custom {
-        position: relative;
-        margin-bottom: 1em;
-        display: none;
-        form {
-            line-height: 2.5em;
-            margin: .3em 1em;
-            input {
-                z-index: 10;
-                position: relative;
-            }
-        }
-    }
-    &.range {
-        float: right;
-        position: relative;
-        top: -32px;
-        z-index: 1000;
-    }
     li {
-        float: left;
+        color: @dark-gray;
         font-weight: bold;
-        &:first-child {
-            padding-left: 1.4em;
+        display: inline;
+        a {
+            font-weight: normal;
+            border: 1px solid transparent;
+            color: @link;
+            padding: 4px 8px;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        &.selected a {
+            font-weight: bold;
+            color:@orange;
         }
     }
 }
-
-.statistics #page {
-    max-width: 1280px;
-    width: auto;
-    min-width: 960px;
-    padding-bottom: 500px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-.criteria li.divider:before {
-    font-weight: normal;
-    font-size: 160%;
-    color: #b8cdd9;
-    content: "|";
-}
-.criteria li a  {
--moz-border-radius:3px 3px 3px 3px;
-border:1px solid transparent;
-color:#003595;
-font-weight:bold;
-padding:0.3em 0.8em;
-text-decoration:none;
-white-space:nowrap;
-}
-.criteria li a:active,
-.criteria li a:active,
-.criteria li.selected a {
--moz-border-radius:3px 3px 3px 3px;
-color:#fff;
-background:#003595;
-}
-
-/* creates the inner triangle */
-.criteria.custom:before {
-    font-weight: normal;
-    content: "\00a0";
-    display: block; /* reduce the damage in FF3.0 */
-    position: absolute;
-    width: 0;
-    height: 0;
-    top: -38px; /* value = - border-top-width - border-bottom-width */
-    right: 25px; /* controls horizontal position */
-    border: 20px solid transparent;
-    border-bottom-color: #abc4d2;
-    border-width: 19px 14px; /* vary these values to change the angle of the vertex */
-    border-style: solid;
-}
-
-/* creates the outer triangle */
-.criteria.custom:after {
-    content: "\00a0";
-    display: block; /* reduce the damage in FF3.0 */
-    position: absolute;
-    width: 0;
-    height: 0;
-    top: -37px; /* value = - border-top-width - border-bottom-width */
-    right: 24px; /* value = (:before right) + (:before border-right) - (:after border-right) */
-    border: 13px solid transparent;
-    border-bottom-color: #fdfdfe;
-    border-width: 20px 15px; /* vary these values to change the angle of the vertex */
-    border-style: solid;
-}
-
-/* @end */
 
 /**
  *  Three-up stats
@@ -536,5 +474,21 @@ table.stats-aggregate tbody span.change.minus {
     max-height: 300px;
     min-width: 160px;
     overflow-y: auto;
+}
+
+#custom-criteria {
+    form {
+        overflow: hidden;
+    }
+    fieldset {
+        display: inline-block;
+        vertical-align: top;
+        &:first-child {
+            margin-right: 1em;
+        }
+    }
+    footer {
+        clear: left;
+    }
 }
 

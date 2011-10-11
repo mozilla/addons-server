@@ -16,13 +16,22 @@
 {% endblock %}
 
 {% block navbar %}
-  {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                         (addon.get_url_path(), addon.name),
-                         (link, _('Statistics'))]) }}
-  {# TODO: Replace above line with this --> once we serve the extension home. { breadcrumbs([(addon.type.get_url_path(), amo.ADDON_TYPES[addon.type_id])]) } #}
-
-
-  <div class="criteria range">
+<header>
+  <div class="criteria group island">
+    <ul>
+      <li>{{ _('Group by:') }}</li>
+      <li data-group="day">
+          <a href="#">{{ _('day') }}</a>
+      </li>
+      <li data-group="week">
+          <a href="#">{{ _('week') }}</a>
+      </li>
+      <li data-group="month">
+          <a href="#">{{ _('month') }}</a>
+      </li>
+    </ul>
+  </div>
+  <div class="criteria range island">
     <ul>
       <li>{{ _('For last:') }}</li>
       <li data-range="7 days"
@@ -37,20 +46,22 @@
       <li data-range="365 days"
           {% if range=='365' %}class="selected"{% endif %}>
           <a href="#">{{ _('365 days') }}</a></li>
-      <li class="divider"></li>
       <li data-range="custom"
           {% if range=='custom' %}class="selected"{% endif %}>
-          <a href="#">{{ _('Custom') }}</a></li>
+          <a id="custom-date-range" href="#">{{ _('Custom...') }}</a></li>
     </ul>
   </div>
-  <header>
-    <hgroup>
-      <h1 class="addon"{{ addon.name|locale_html }}>
-        {# L10n: {0} is an add-on name #}
-        {{ _('Statistics for {0}')|f(addon.name) }}
-      </h1>
-    </hgroup>
-  </header>
+  {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+                         (addon.get_url_path(), addon.name),
+                         (link, _('Statistics'))]) }}
+  {# TODO: Replace above line with this --> once we serve the extension home. { breadcrumbs([(addon.type.get_url_path(), amo.ADDON_TYPES[addon.type_id])]) } #}
+  <hgroup>
+    <h1 class="addon"{{ addon.name|locale_html }}>
+      {# L10n: {0} is an add-on name #}
+      {{ _('Statistics for {0}')|f(addon.name) }}
+    </h1>
+  </hgroup>
+</header>
 {% endblock %}
 
 {% block content %}
@@ -73,23 +84,6 @@
     data-end_date="{{ view.end }}"
     {% endif %}
     data-base_url="{{ stats_base_url }}">
-    {% if true %}
-      <div class="custom criteria">
-        <form id="date-range-form">
-          <label for="date-range-start">{{ _('From') }}</label>
-          <input type="date" id="date-range-start" />
-          <label for="date-range-end">{{ _('To') }}</label>
-          <input type="date" id="date-range-end" />
-          <label for="date-range-grouping">{{ _('grouped by') }}</label>
-          <select id="date-range-grouping">
-            <option >{{ _('day') }}</option>
-            <option >{{ _('month') }}</option>
-            <option >{{ _('year') }}</option>
-          </select>
-          <button id="date-range-submit" type="submit">{{ _('Update') }}</button>
-        </form>
-      </div>
-    {% endif %}
     <div class="island chart c">
       <div id="head-chart" style="background:#fff;height:384px">
       </div>
@@ -106,6 +100,34 @@
         </form>
       </div>
     </div>
+  </div>
+{% endblock %}
+
+{% block popups %}
+  <div class="modal" id="custom-criteria">
+    <h2>{{ _('Custom Date Range') }}</h2>
+    <a class="close">close</a>
+    <form id="date-range-form">
+      <fieldset>
+        <p>
+          <label for="date-range-start">{{ _('From') }}</label>
+          <input type="date" id="date-range-start">
+        </p>
+        <div id="start-date-picker"></div>
+      </fieldset>
+      <fieldset>
+        <p>
+          <label for="date-range-end">{{ _('To') }}</label>
+          <input type="date" id="date-range-end">
+        </p>
+        <div id="end-date-picker"></div>
+      </fieldset>
+      <footer>
+        <p>
+          <button id="date-range-submit" type="submit">{{ _('Update') }}</button>
+        </p>
+      </footer>
+    </form>
   </div>
 {% endblock %}
 

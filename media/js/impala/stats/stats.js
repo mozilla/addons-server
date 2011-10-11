@@ -1,21 +1,27 @@
 $(function() {
+    "use strict";
+
+    $(window).bind("changeview", function(e, view) {
+        var queryParams = {},
+            range = view.range;
+        if (range) {
+            if (typeof range == "string") {
+                queryParams['last'] = range.split(/\s+/)[0];
+            } else if (typeof range == "object") {
+
+            }
+        }
+        queryParams = $.param(queryParams);
+        if (queryParams) {
+            history.replaceState(view, document.title, '?' + queryParams);
+        }
+    });
+
     var initView = {
             metric: $('.primary').attr('data-report'),
-            range: '365 days', //$('.primary').attr('data-range'),
-            group: 'month'
+            range: $('.primary').attr('data-range'),
+            group: 'day'
         };
 
     $(window).trigger('changeview', initView);
 });
-
-$(window).bind("changeview", function(e, view) {
-    var queryParams;
-    if (view.range) {
-        if (typeof view == "string") {
-            queryparams = "last=" + view.split(/\s+/)[0];
-            history.replaceState(view, document.title, '?' + queryparams);
-        } else if (typeof view == "object") {
-            
-        }
-    }
-})
