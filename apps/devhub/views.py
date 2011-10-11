@@ -1274,7 +1274,7 @@ def marketplace_paypal(request, addon_id, addon):
     form = forms.PremiumForm(request.POST or None,
                              extra={'addon': addon,
                                     'amo_user': request.amo_user,
-                                    'not_required': ['price']})
+                                    'exclude': ['price']})
     if form.is_valid():
         form.save()
         return redirect('devhub.market.2', addon.slug)
@@ -1290,8 +1290,8 @@ def marketplace_pricing(request, addon_id, addon):
     form = forms.PremiumForm(request.POST or None,
                              extra={'addon': addon,
                                     'amo_user': request.amo_user,
-                                    'not_required': ['paypal_id',
-                                                     'support_email']})
+                                    'exclude': ['paypal_id',
+                                                'support_email']})
     if form.is_valid():
         form.save()
         if not (request.amo_user.addons.exclude(pk=addon.pk)
@@ -1308,8 +1308,8 @@ def marketplace_upsell(request, addon_id, addon):
     form = forms.PremiumForm(request.POST or None,
                              extra={'addon': addon,
                                     'amo_user': request.amo_user,
-                                    'not_required': ['price', 'paypal_id',
-                                                     'support_email']})
+                                    'exclude': ['price', 'paypal_id',
+                                                'support_email']})
     if form.is_valid():
         form.save()
         return redirect('devhub.market.4', addon.slug)

@@ -966,34 +966,35 @@ class PremiumForm(happyforms.Form):
         self.fields['free'].queryset = (self.extra['amo_user'].addons
                                         .exclude(pk=self.addon.pk)
                                         .filter(premium_type=amo.ADDON_FREE))
-        # For the wizard, we need fields not shown to be optional
-        for field in self.extra.get('not_required', []):
-            self.fields[field].required = False
+        # For the wizard, we need to remove some fields.
+        for field in self.extra.get('exclude', []):
+            del self.fields[field]
 
     def clean_paypal_id(self):
-        check_paypal_id(self.cleaned_data['paypal_id'])
-        return self.cleaned_data['paypal_id']
+        paypal_id = self.cleaned_data['paypal_id']
+        # Check it's a valid paypal id.
+        check_paypal_id(paypal_id)
 
-    def clean(self):
-        if (self.addon.paypal_id
-            and self.addon.paypal_id != self.cleaned_data['paypal_id']
+        if (self.addon.paypal_id and self.addon.paypal_id != paypal_id
             and self.addon.premium
-            and self.addon.premium.paypal_permissions_token):
+            and self.addon.premium.has_permissions_token()):
             # If a user changes their paypal id, then we need
-            # to nuke the token.
+            # to nuke the token, but don't do this when it's is blank.
             self.addon.premium.paypal_permissions_token = ''
             self.addon.premium.save()
-            raise forms.ValidationError(
-                        _('The PayPal third-party refund '
-                          'token has been removed.'))
+            raise forms.ValidationError(_('The PayPal third-party refund '
+                                          'token has been removed.'))
 
-        if (not self.addon.premium or not
-            self.addon.premium.has_permissions_token()):
+        return paypal_id
+
+    def clean(self):
+        if (not self.addon.premium or
+            not self.addon.premium.has_permissions_token()):
             # L10n: We require PayPal users to have a third party token.
             raise forms.ValidationError(
                         _('No PayPal third-party refund token set up.'))
-        if (self.addon.premium and not
-            self.addon.premium.has_valid_permissions_token()):
+        if (self.addon.premium and
+            not self.addon.premium.has_valid_permissions_token()):
             # L10n: We require PayPal users to have a third party token.
             raise forms.ValidationError(
                         _('The PayPal third-party refund '
@@ -1011,12 +1012,12 @@ class PremiumForm(happyforms.Form):
         return self.cleaned_data['free']
 
     def save(self):
-        if self.cleaned_data['paypal_id']:
+        if 'paypal_id' in self.cleaned_data:
             self.addon.paypal_id = self.cleaned_data['paypal_id']
             self.addon.support_email = self.cleaned_data['support_email']
             self.addon.save()
 
-        if self.cleaned_data['price']:
+        if 'price' in self.cleaned_data:
             premium = self.addon.premium
             if not premium:
                 premium = AddonPremium()

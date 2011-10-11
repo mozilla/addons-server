@@ -124,36 +124,47 @@ class TestPreviewForm(amo.tests.TestCase):
 
 @mock.patch('market.models.AddonPremium.has_valid_permissions_token',
             lambda z: True)
+@mock.patch('devhub.forms.check_paypal_id', lambda z: True)
 class TestPremiumForm(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
-    def complete(self, data):
+    def complete(self, data, exclude):
         return forms.PremiumForm(data, extra={
             'addon': Addon.objects.get(pk=3615),
             'amo_user': UserProfile.objects.get(pk=999),
-            'not_required': ['price']})
+            'exclude': exclude})
 
+    @mock.patch('devhub.forms.check_paypal_id', lambda z: True)
     def test_remove_token(self):
         addon = Addon.objects.get(pk=3615)
         addon.update(paypal_id='')
         ap = AddonPremium.objects.create(paypal_permissions_token='1',
                                          addon=addon)
         data = {'support_email': 'foo@bar.com', 'paypal_id': 'foo@bar.com'}
-        form = self.complete(data)
-        form.is_valid()
+        form = self.complete(data, ['price'])
+        assert form.is_valid()
         form.save()
         # Do not remove the token, we had no paypal_id.
         assert AddonPremium.objects.get(pk=ap.pk).paypal_permissions_token
 
         data['paypal_id'] = 'fooa@bar.com'
-        form = self.complete(data)
+        form = self.complete(data, ['price'])
         # Remove the token and fail the form.
         assert not form.is_valid()
         assert not AddonPremium.objects.get(pk=ap.pk).paypal_permissions_token
 
         AddonPremium.objects.get(pk=ap.pk).update(paypal_permissions_token='a')
         data['paypal_id'] = 'foo@bar.com'
-        form = self.complete(data)
+        form = self.complete(data, ['price'])
         # Do not remove the token the token.
         assert form.is_valid()
         assert AddonPremium.objects.get(pk=ap.pk).paypal_permissions_token
+
+    def test_no_paypal_id(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.update(paypal_id='some@id.com')
+        AddonPremium.objects.create(paypal_permissions_token='1',
+                                    addon=addon)
+        form = self.complete({}, ['paypal_id', 'support_email'])
+        assert not form.is_valid()
+        eq_(['price'], form.errors.keys())
