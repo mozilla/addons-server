@@ -713,6 +713,8 @@ class TestMarketplace(amo.tests.TestCase):
 
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)
+        self.addon.update(status=amo.STATUS_NOMINATED,
+                          highest_status=amo.STATUS_NOMINATED)
         self.url = reverse('devhub.addons.payments', args=[self.addon.slug])
         assert self.client.login(username='del@icio.us', password='password')
 
@@ -964,6 +966,13 @@ class TestMarketplace(amo.tests.TestCase):
         eq_(res.status_code, 302)
         self.addon = Addon.objects.get(pk=self.addon.pk)
         eq_(self.addon.support_email, 'c@c.com')
+
+    def test_wizard_denied(self):
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        for x in xrange(1, 5):
+            url = reverse('devhub.market.%s' % x, args=[self.addon.slug])
+            res = self.client.get(url)
+            eq_(res.status_code, 403)
 
 
 class TestDelete(amo.tests.TestCase):

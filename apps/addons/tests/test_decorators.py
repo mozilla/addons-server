@@ -2,6 +2,7 @@ from django import http
 
 import mock
 from nose.tools import eq_
+from test_utils import RequestFactory
 
 import amo.tests
 from addons.models import Addon
@@ -82,3 +83,23 @@ class TestAddonView(amo.tests.TestCase):
         eq_(r, mock.sentinel.OK)
         request, addon = self.func.call_args[0]
         eq_(addon, a)
+
+
+class TestPremiumDecorators(amo.tests.TestCase):
+
+    def setUp(self):
+        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        self.func = mock.Mock()
+        self.func.return_value = True
+        self.func.__name__ = 'mock_function'
+
+    def test_cant_become_premium(self):
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        view = dec.can_become_premium(self.func)
+        res = view(RequestFactory().get('/'), self.addon.pk, self.addon)
+        eq_(res.status_code, 403)
+
+    def test_can_become_premium(self):
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        view = dec.can_become_premium(self.func)
+        assert view(RequestFactory().get('/'), self.addon.pk, self.addon)

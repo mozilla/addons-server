@@ -62,3 +62,13 @@ def has_purchased(f):
             return http.HttpResponseForbidden()
         return f(request, addon, *args, **kw)
     return wrapper
+
+
+def can_become_premium(f):
+    """Check that the addon can become premium."""
+    @functools.wraps(f)
+    def wrapper(request, addon_id, addon, *args, **kw):
+        if not addon.can_become_premium():
+            return http.HttpResponseForbidden()
+        return f(request, addon_id, addon, *args, **kw)
+    return wrapper

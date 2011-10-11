@@ -40,7 +40,7 @@ from amo.utils import HttpResponseSendFile, MenuItem
 from amo.urlresolvers import reverse
 from access import acl
 from addons import forms as addon_forms
-from addons.decorators import addon_view
+from addons.decorators import addon_view, can_become_premium
 from addons.models import Addon, AddonDependency, AddonUser
 from addons.views import BaseFilter
 from devhub.decorators import dev_required
@@ -1264,6 +1264,7 @@ def submit_step(step):
 
 
 @dev_required
+@can_become_premium
 def marketplace_paypal(request, addon_id, addon):
     """
     Start of the marketplace wizard, none of this means anything until
@@ -1286,6 +1287,7 @@ def marketplace_paypal(request, addon_id, addon):
 
 
 @dev_required
+@can_become_premium
 def marketplace_pricing(request, addon_id, addon):
     form = forms.PremiumForm(request.POST or None,
                              extra={'addon': addon,
@@ -1303,6 +1305,7 @@ def marketplace_pricing(request, addon_id, addon):
 
 
 @dev_required
+@can_become_premium
 def marketplace_upsell(request, addon_id, addon):
     form = forms.PremiumForm(request.POST or None,
                              extra={'addon': addon,
@@ -1318,6 +1321,7 @@ def marketplace_upsell(request, addon_id, addon):
 
 
 @dev_required
+@can_become_premium
 def marketplace_confirm(request, addon_id, addon):
     if request.method == 'POST':
         if (addon.premium and addon.premium.is_complete()
