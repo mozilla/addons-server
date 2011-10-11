@@ -1,6 +1,6 @@
 {% from 'devhub/includes/macros.html' import some_html_tip %}
 <div class="brform">
-  {% if form.fields['free'].queryset.count() > 1 %}
+  {% if form.fields['free'].queryset.count() %}
     {{ form.do_upsell.errors }}
     <div>{{ form.do_upsell }}</div>
     <div class="indent">
