@@ -77,10 +77,8 @@ class Webapp(Addon):
             raise
 
 
-# These are the translated strings we want to pull in.
-translated = 'name', 'summary', 'description'
-Webapp._meta.translated_fields = [f for f in Webapp._meta.fields
-                                  if f.name in translated]
+# Pull all translated_fields from Addon over to Webapp.
+Webapp._meta.translated_fields = Addon._meta.translated_fields
 
 
 models.signals.post_save.connect(update_search_index, sender=Webapp,

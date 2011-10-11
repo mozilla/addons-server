@@ -953,6 +953,18 @@ class TestMarketplace(amo.tests.TestCase):
         self.setup_premium()
         assert 'no-edit' not in self.client.get(self.url).content
 
+    def test_webapp(self):
+        self.addon.update(type=amo.ADDON_WEBAPP)
+        self.setup_premium()
+        res = self.client.post(self.url, data={
+            'paypal_id': 'b@b.com',
+            'support_email': 'c@c.com',
+            'price': self.price_two.pk,
+        })
+        eq_(res.status_code, 302)
+        self.addon = Addon.objects.get(pk=self.addon.pk)
+        eq_(self.addon.support_email, 'c@c.com')
+
 
 class TestDelete(amo.tests.TestCase):
     fixtures = ('base/apps', 'base/users', 'base/addon_3615',
