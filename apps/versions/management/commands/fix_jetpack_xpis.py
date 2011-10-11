@@ -47,7 +47,7 @@ class Command(BaseCommand):
         else:
             _log('using production IDs')
             ids = VERSION_IDS
-        for version in Version.objects.filter(pk__in=VERSION_IDS):
+        for version in Version.objects.filter(pk__in=ids):
             try:
                 if not old_version.search(version.version):
                     _log('skipped: Unexpected version: %s [%s]'
