@@ -1,6 +1,7 @@
+import itertools
 import time
 from types import GeneratorType
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 
 from django import http
 from django.utils import simplejson
@@ -25,7 +26,7 @@ from .utils import csv_prep, csv_dynamic_prep
 
 SERIES_GROUPS = ('day', 'week', 'month')
 SERIES_FORMATS = ('json', 'csv')
-SERIES = ('downloads', 'usage', 'contributions',
+SERIES = ('downloads', 'usage', 'contributions', 'overview',
           'sources', 'os', 'locales', 'statuses', 'versions', 'apps')
 
 
@@ -62,6 +63,51 @@ def extract(dicts):
     if hasattr(dicts, 'items'):
         return dict((k, extract(v)) for k, v in dicts.items())
     return dict((d['k'], d['v']) for d in dicts)
+
+
+@addon_view
+def overview_series(request, addon, group, start, end, format):
+    """Combines downloads_series and updates_series into one payload."""
+    date_range = check_series_params_or_404(group, start, end, format)
+    check_stats_permission(request, addon)
+
+    dls = get_series(DownloadCount, addon=addon.id, date__range=date_range)
+    updates = get_series(UpdateCount, addon=addon.id, date__range=date_range)
+
+    series = zip_overview(dls, updates)
+
+    if format == 'json':
+        return render_json(request, addon, series)
+
+
+def zip_overview(downloads, updates):
+    # Jump through some hoops to make sure we're matching dates across download
+    # and update series and inserting zeroes for any missing days.
+    if not (downloads or updates):
+        return
+    downloads, updates = list(downloads), list(updates)
+    start_date = None
+    if downloads:
+        start_date = downloads[0]['date']
+    if updates:
+        start_date = max(start_date, updates[0]['date'])
+    downloads, updates = iter(downloads), iter(updates)
+
+    def iterator(series):
+        item = next(series)
+        next_date = start_date
+        while 1:
+            if item['date'] == next_date:
+                yield item['count']
+                item = next(series)
+            else:
+                yield 0
+            next_date = next_date - timedelta(days=1)
+
+    series = itertools.izip_longest(iterator(downloads), iterator(updates))
+    for idx, (dl_count, up_count) in enumerate(series):
+        yield {'date': start_date - timedelta(days=idx),
+               'data': {'downloads': dl_count, 'updates': up_count}}
 
 
 @addon_view

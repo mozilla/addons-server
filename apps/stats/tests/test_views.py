@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import csv
 import json
+from datetime import datetime
 
 from nose.tools import eq_
 
@@ -438,6 +439,90 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
                 }
             }
         ])
+
+    def test_overview(self):
+        r = self.get_view_response('stats.overview_series', group='day',
+                                   format='json')
+        eq_(r.status_code, 200)
+        # These are the dates from the fixtures. The return value will have
+        # dates in between filled with zeroes.
+        expected_data = [
+            {"date": "2009-09-03",
+             "data": {
+                 "downloads": 10,
+                 "updates": 0,
+             },
+            },
+            {"date": "2009-08-03",
+             "data": {
+                 "downloads": 10,
+                 "updates": 0,
+             },
+            },
+            {"date": "2009-07-03",
+             "data": {
+                 "downloads": 10,
+                 "updates": 0,
+             },
+            },
+            {"date": "2009-06-28",
+             "data": {
+                 "downloads": 10,
+                 "updates": 0,
+             },
+            },
+            {"date": "2009-06-20",
+             "data": {
+                 "downloads": 10,
+                 "updates": 0,
+             },
+            },
+            {"date": "2009-06-12",
+             "data": {
+                 "downloads": 10,
+                 "updates": 0,
+             },
+            },
+            {"date": "2009-06-07",
+             "data": {
+                 "downloads": 10,
+                 "updates": 0,
+             },
+            },
+            {"date": "2009-06-02",
+             "data": {
+                 "downloads": 0,
+                 "updates": 1500,
+             },
+            },
+            {"date": "2009-06-01",
+             "data": {
+                 "downloads": 10,
+                 "updates": 1000,
+             },
+            }
+        ]
+        actual_data = json.loads(r.content)
+        # Make sure they match up at the front and back.
+        eq_(actual_data[0]['date'], expected_data[0]['date'])
+        eq_(actual_data[-1]['date'], expected_data[-1]['date'])
+        end_date = expected_data[-1]['date']
+
+        expected, actual = iter(expected_data), iter(actual_data)
+        next_expected, next_actual = next(expected), next(actual)
+        while 1:
+            if next_expected['date'] == next_actual['date']:
+                # If they match it's a date we have data for.
+                self.assertDictEqual(next_expected, next_actual)
+                if next_expected['date'] == end_date:
+                    break
+                next_expected, next_actual = next(expected), next(actual)
+            else:
+                # Otherwise just check that the data is zeroes.
+                self.assertDictEqual(next_actual['data'],
+                                     {'downloads': 0, 'updates': 0})
+                next_actual = next(actual)
+
 
     def test_downloads(self):
         r = self.get_view_response('stats.downloads_series', group='day',

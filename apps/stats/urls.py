@@ -36,6 +36,8 @@ urlpatterns = patterns('',
 
     # time series URLs following this pattern:
     # /addon/{addon_id}/statistics/{series}-{group}-{start}-{end}.{format}
+    url(series['overview'], views.overview_series,
+        name='stats.overview_series'),
     url(series['downloads'], views.downloads_series,
         name='stats.downloads_series'),
     url(series['usage'], views.usage_series,
