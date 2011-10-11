@@ -58,7 +58,7 @@ from versions.models import Version
 from product_details import product_details
 from zadmin.models import ValidationResult
 
-from . import forms, tasks, feeds, responsys, signals
+from . import forms, tasks, feeds, signals
 
 log = commonware.log.getLogger('z.devhub')
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -1613,10 +1613,11 @@ def newsletter(request):
     if request.method == 'POST':
         if form.is_valid():
             data = form.cleaned_data
-            responsys.subscribe.delay(
-                'ABOUT_ADDONS', data['email'], data['format'],
-                responsys.make_source_url(request), request.LANG,
-                data['region'])
+            # Responsys expects the URL in the format example.com/foo.
+            responsys_url = request.get_host() + request.get_full_path()
+            tasks.subscribe_to_responsys.delay('ABOUT_ADDONS', data['email'],
+                                               data['format'], responsys_url,
+                                               request.LANG, data['region'])
             messages.success(request, _('Thanks for subscribing!'))
             return redirect('devhub.community.newsletter')
 
