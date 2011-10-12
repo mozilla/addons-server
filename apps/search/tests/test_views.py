@@ -37,14 +37,6 @@ def test_parse_bad_type():
                        "nonexistent addon type.")
 
 
-class MobileSearchTest(SphinxTestCase, TestMobile):
-
-    def test_search(self):
-        r = self.client.get(reverse('search.search'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'search/mobile/results.html')
-
-
 class ViewTest(amo.tests.TestCase):
     """Tests some of the functions used in building the view."""
 
@@ -112,6 +104,12 @@ class TestESSearch(amo.tests.ESTestCase):
     def setUpClass(cls):
         super(TestESSearch, cls).setUpClass()
         cls.setUpIndex()
+
+    @amo.tests.mobile_test
+    def test_mobile_get(self):
+        r = self.client.get(reverse('search.search'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'search/mobile/results.html')
 
     def test_legacy_redirects(self):
         base = reverse('search.search')
