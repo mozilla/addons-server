@@ -347,7 +347,7 @@ def ajax_search_suggestions(request):
             if q_ in unicode(a.pretty).lower():
                 results.append({
                     'id': a.id,
-                    'label': _(u'{0} Add-ons').format(a.pretty),
+                    'name': _(u'{0} Add-ons').format(a.pretty),
                     'url': locale_url(a.short),
                     'cls': 'app ' + a.short
                 })
@@ -365,7 +365,7 @@ def ajax_search_suggestions(request):
             if q_ in name_ or word_matches:
                 results.append({
                     'id': c.id,
-                    'label': unicode(c.name),
+                    'name': unicode(c.name),
                     'url': c.get_url_path(),
                     'cls': 'cat'
                 })
