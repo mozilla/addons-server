@@ -14,6 +14,8 @@ from amo.urlresolvers import reverse
 from addons.buttons import install_button, _install_button, big_install_button
 from addons.models import Addon
 
+import waffle
+
 
 def setup():
     jingo.load_helpers()
@@ -573,6 +575,38 @@ class TestButtonHtml(ButtonTest):
 
         # Webapp buttons are disabled until js runs.
         assert doc('.webapp .button').hasClass('disabled')
+
+
+class TestPremiumWebapp(ButtonTest):
+
+    def render(self, **kwargs):
+        kwargs['impala'] = True
+        return PyQuery(_install_button(self.context, self.addon, **kwargs))
+
+    def setUp(self):
+        super(TestPremiumWebapp, self).setUp()
+        self.addon.is_webapp.return_value = True
+        self.addon.is_premium.return_value = True
+        self.addon.can_be_purchased.return_value = True
+        self.addon.has_purchased.return_value = False
+        waffle.models.Switch.objects.create(name='marketplace', active=True)
+
+    def test_is_premium_webapp(self):
+        doc = self.render()
+        assert doc('.install').hasClass('webapp')
+        assert doc('.install').hasClass('premium')
+        eq_(doc('.webapp').attr('data-manifest-url'), '')
+        eq_(doc('.button').attr('data-realurl'), None)
+
+    def test_is_premium_webapp_purchased(self):
+        self.addon.has_purchased.return_value = True
+        self.addon.manifest_url = 'http://foo.com/bar'
+        doc = self.render()
+        eq_(doc('.webapp').attr('data-manifest-url'), self.addon.manifest_url)
+
+    def test_is_premium_webapp_not_purchased(self):
+        doc = self.render()
+        eq_(doc('.webapp').attr('data-manifest-url'), '')
 
 
 class TestBackup(ButtonTest):

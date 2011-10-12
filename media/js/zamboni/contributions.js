@@ -56,8 +56,14 @@ $(document).ready(function() {
                     install.installButton();
 
                     // Trigger install
-                    z.installAddon($(".addon-title", this).text(),
-                                   $(".trigger_download", this).attr('href'));
+                    if ($('.trigger_download').exists()) {
+                        z.installAddon($('.addon-title', this).text(),
+                                       $('.trigger_download', this).attr('href'));
+                    } else if ($('.trigger_app_install').exists()) {
+                        if (navigator.mozApps && navigator.mozApps.install) {
+                            navigator.mozApps.install($('.trigger_app_install', this).attr('data-manifest-url'));
+                        }
+                    }
                 }});
             }
             top_dgFlow.closeFlow();

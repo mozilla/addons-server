@@ -35,9 +35,7 @@ def _install_button(context, addon, version=None, show_eula=True,
                  addon.id in request.amo_user.mobile_addons)
     c = {'button': button, 'addon': addon, 'version': button.version,
          'installed': installed}
-    if addon.is_webapp():
-        template = 'webapps/button.html'
-    elif impala:
+    if impala:
         template = 'addons/impala/button.html'
     elif mobile:
         template = 'addons/mobile/button.html'
@@ -136,6 +134,7 @@ class InstallButton(object):
         self.is_persona = addon.type == amo.ADDON_PERSONA
 
         self.can_be_purchased = addon.can_be_purchased()
+        self.is_webapp = addon.is_webapp()
         self.accept_eula = addon.has_eula and not show_eula
         self._show_contrib = show_contrib
         self.show_contrib = (show_contrib and addon.takes_contributions
@@ -169,6 +168,8 @@ class InstallButton(object):
             self.button_class.append('premium')
         if self.is_beta:
             self.install_class.append('beta')
+        if self.is_webapp:
+            self.install_class.append('webapp')
 
     def attrs(self):
         rv = {}
@@ -218,7 +219,10 @@ class InstallButton(object):
             roadblock = reverse('addons.roadblock', args=[self.addon.id])
             url = urlparams(roadblock, eula='', version=self.version.version)
 
-        if self.addon.premium and self.can_be_purchased:
+        if self.addon.is_webapp():
+            text = _(u'Install Web App')
+
+        if self.addon.is_premium() and self.can_be_purchased:
             # L10n: {0} is a price
             text = _(u'Purchase for {0}').format(self.addon.premium
                                                      .get_price_locale())

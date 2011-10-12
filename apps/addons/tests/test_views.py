@@ -12,7 +12,7 @@ from django.core import mail
 from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 
-from mock import Mock, patch
+from mock import patch
 from nose.tools import eq_
 from nose import SkipTest
 from pyquery import PyQuery as pq
@@ -381,6 +381,14 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
                       args=[self.addon.slug, 'complete'])
         doc = pq(self.client.get('%s?uuid=1' % url).content)
         eq_(len(doc('#paypal-thanks')), 1)
+
+    def test_trigger_webapp(self):
+        url = reverse('addons.purchase.thanks', args=[self.addon.slug])
+        self.make_contribution(type=amo.CONTRIB_PURCHASE)
+        self.addon.update(type=amo.ADDON_WEBAPP, manifest_url='http://f.com')
+        doc = pq(self.client.get(url).content)
+        eq_(doc('.trigger_app_install').attr('data-manifest-url'),
+            self.addon.manifest_url)
 
 
 class TestDeveloperPages(amo.tests.TestCase):
@@ -1303,7 +1311,6 @@ class TestReportAbuse(amo.tests.TestCase):
 class TestMobile(amo.tests.MobileTest, amo.tests.TestCase):
     fixtures = ['addons/featured', 'base/apps', 'base/addon_3615',
                 'base/featured', 'bandwagon/featured_collections']
-
 
 
 class TestMobileHome(TestMobile):

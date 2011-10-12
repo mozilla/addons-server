@@ -18,7 +18,13 @@
   {% if compat %}
      data-min="{{ compat.min.version }}"
      data-max="{{ compat.max.version }}"
-  {% endif %}>
+  {% endif %}
+  {% if addon.is_webapp() %}
+     data-manifest-url="{% if (addon.is_premium() and addon.has_purchased(amo_user)) or (not addon.is_premium()) -%}
+        {{ addon.manifest_url }}
+    {%- endif %}"
+  {% endif %}
+  >
   <p class="install-button">
     {% set links = b.links() %}
     {% if not links %}
@@ -47,15 +53,17 @@
     {% for link in links %}
       {% set extra = "platform " + link.os.shortname if link.os else "" %}
       <a class="button {{ b.button_class|join(' ') }} {{ extra }}"
-         {% if not addon.is_premium() %}
+         {% if not addon.is_premium() and not addon.is_webapp() %}
            data-hash="{{ link.file.hash }}"
          {% endif %}
-         {% if b.show_warning %}
+         {% if b.show_warning and not addon.is_webapp() %}
            href="{{ b.addon.get_url_path() }}"
            data-realurl="{{ link.url }}"
          {% elif waffle.switch('marketplace') and addon.can_be_purchased() %}
            href="{{ url('addons.purchase', addon.slug) }}"
-           data-realurl="{{ link.url }}"
+           {% if not addon.is_webapp() %}
+             data-realurl="{{ link.url }}"
+           {% endif %}
          {% else %}
            href="{{ link.url }}"
          {% endif %}>

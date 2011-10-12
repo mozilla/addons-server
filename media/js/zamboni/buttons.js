@@ -24,16 +24,41 @@ var notavail = '<div class="extra"><span class="notavail">{0}</span></div>',
 
 var webappButton = function() {
     var $this = $(this),
+        premium = $this.hasClass('premium'),
         manifestURL = $this.attr('data-manifest-url');
-    if (navigator.mozApps && navigator.mozApps.install) {
+    if (manifestURL && navigator.mozApps && navigator.mozApps.install) {
         $this.find('.button')
             .removeClass('disabled')
             .click(function(e) {
                 e.preventDefault();
                 navigator.mozApps.install(manifestURL);
+                // If this install fails would be nice to raise a message.
             });
     } else {
         // Attach something that says you can't install apps.
+    }
+    if (premium) {
+        return premiumButton.call($this);
+    }
+};
+
+var premiumButton = function() {
+    // Pass in the button wrapper and this will check to see if its been
+    // purchased and alter if appropriate. Will return the purchase state.
+    var $this = $(this),
+        addon = $this.attr('data-addon'),
+        webapp = $this.hasClass('webapp'),
+        $button = $this.find('.button');
+    if($.inArray(parseInt(addon, 10), addons_purchased) >= 0) {
+        $this.removeClass('premium');
+        $this.find('.premium').removeClass('premium');
+        if (webapp) {
+            $('a', $this).text(gettext('Install Web App')).attr('href', '#');
+        }
+        return false;
+    } else {
+        $button.addPaypal();
+        return true;
     }
 };
 
@@ -45,7 +70,7 @@ var installButton = function() {
         $this = $(this),
         $button = $this.find('.button');
 
-    if ($this.hasClass('webapp')) {
+    if ($this.hasClass('webapp') && $this.attr('data-manifest-url')) {
         return webappButton.call(this);
     }
 
@@ -75,6 +100,7 @@ var installButton = function() {
         search = $this.hasattr('data-search'),
         premium = $this.hasClass('premium'),
         accept_eula = $this.hasClass('accept'),
+        webapp = $this.hasattr('data-manifest-url'),
         // L10n: {0} is an app name like Firefox.
         _s = accept_eula ? gettext('Accept and Install') : gettext('Add to {0}'),
         addto = format(_s, [z.appName]),
@@ -86,13 +112,6 @@ var installButton = function() {
         $body = $(document.body),
         olderBrowser,
         newerBrowser;
-
-    // Check to see if it's been purchased.
-    if($.inArray(parseInt(addon, 10), addons_purchased) >= 0) {
-        premium = false;
-        $this.removeClass('premium');
-        $this.find('.premium').removeClass('premium');
-    }
 
     // If we have os-specific buttons, check that one of them matches the
     // current platform.
@@ -275,8 +294,13 @@ var installButton = function() {
         search = $this.hasattr('data-search'),
         eula = $this.hasClass('eula');
 
-    if (unreviewed && !(selfhosted || eula || contrib || beta)) {
+    if (unreviewed && !(selfhosted || eula || contrib || beta || webapp)) {
         $button.addPopup(message('unreviewed'));
+    }
+
+
+    if (premium) {
+        premium = premiumButton.call($this);
     }
 
     // Drive the install button based on its type.
@@ -284,8 +308,6 @@ var installButton = function() {
         $button.addPopup(message('selfhosted'));
     } else if (eula || contrib) {
         versionsAndPlatforms({addPopup: false});
-    } else if (premium) {
-        $button.addPaypal();
     } else if (persona) {
         $button.removeClass('download').addClass('add').find('span').text(addto);
         if ($.hasPersonas()) {
