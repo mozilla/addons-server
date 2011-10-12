@@ -590,6 +590,7 @@ MINIFY_BUNDLES = {
             'js/lib/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
+            'js/lib/jquery.pjax.js',
 
             # jQuery UI
             'js/lib/jquery-ui/jquery.ui.core.js',

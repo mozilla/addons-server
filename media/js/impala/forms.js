@@ -13,3 +13,9 @@ function populateErrors(context, o) {
         $row.append($list.append($(format('<li>{0}</li>', v))));
     });
 }
+
+
+function fieldFocused(e) {
+    var tags = /input|keygen|meter|option|output|progress|select|textarea/i;
+    return tags.test(e.target.nodeName);
+}

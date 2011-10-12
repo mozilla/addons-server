@@ -25,15 +25,15 @@
 // Returns the jQuery object
 $.fn.pjax = function( container, options ) {
   if ( options )
-    options.container = container
+    options.container = container;
   else
-    options = $.isPlainObject(container) ? container : {container:container}
+    options = $.isPlainObject(container) ? container : {container:container};
 
   // We can't persist $objects using the history API so we must use
   // a String selector. Bail if we got anything else.
   if ( options.container && typeof options.container !== 'string' ) {
-    throw "pjax container must be a string selector!"
-    return false
+    throw "pjax container must be a string selector!";
+    return false;
   }
 
   return this.live('click', function(event){
@@ -42,18 +42,18 @@ $.fn.pjax = function( container, options ) {
     if ( event.which > 1 || event.metaKey ||
          // the href was only a hash:
          this.href.replace(this.hash || '', '') == window.location)
-      return true
+      return true;
 
     var defaults = {
       url: this.href,
       container: $(this).attr('data-pjax'),
       clickedElement: $(this),
       fragment: null
-    }
+    };
 
-    $.pjax($.extend({}, defaults, options))
+    $.pjax($.extend({}, defaults, options));
 
-    event.preventDefault()
+    event.preventDefault();
   })
 }
 
@@ -79,100 +79,100 @@ $.fn.pjax = function( container, options ) {
 // Returns whatever $.ajax returns.
 var pjax = $.pjax = function( options ) {
   var $container = $(options.container),
-      success = options.success || $.noop
+      success = options.success || $.noop;
 
   // We don't want to let anyone override our success handler.
-  delete options.success
+  delete options.success;
 
   // We can't persist $objects using the history API so we must use
   // a String selector. Bail if we got anything else.
   if ( typeof options.container !== 'string' )
-    throw "pjax container must be a string selector!"
+    throw "pjax container must be a string selector!";
 
   options = $.extend(true, {}, pjax.defaults, options)
 
   if ( $.isFunction(options.url) ) {
-    options.url = options.url()
+    options.url = options.url();
   }
 
-  options.context = $container
+  options.context = $container;
 
   options.success = function(data){
     if ( options.fragment ) {
       // If they specified a fragment, look for it in the response
       // and pull it out.
-      var $fragment = $(data).find(options.fragment)
+      var $fragment = $(data).find(options.fragment);
       if ( $fragment.length )
-        data = $fragment.children()
+        data = $fragment.children();
       else
-        return window.location = options.url
+        return window.location = options.url;
     } else {
         // If we got no data or an entire web page, go directly
         // to the page and let normal error handling happen.
         if ( !$.trim(data) || /<html/i.test(data) )
-          return window.location = options.url
+          return window.location = options.url;
     }
 
     // Make it happen.
-    this.html(data)
+    this.html(data);
 
     // If there's a <title> tag in the response, use it as
     // the page's title.
     var oldTitle = document.title,
-        title = $.trim( this.find('title').remove().text() )
-    if ( title ) document.title = title
+        title = $.trim( this.find('title').remove().text() );
+    if ( title ) document.title = title;
 
     var state = {
       pjax: options.container,
       fragment: options.fragment,
       timeout: options.timeout
-    }
+    };
 
     // If there are extra params, save the complete URL in the state object
-    var query = $.param(options.data)
+    var query = $.param(options.data);
     if ( query != "_pjax=true" )
-      state.url = options.url + (/\?/.test(options.url) ? "&" : "?") + query
+      state.url = options.url + (/\?/.test(options.url) ? "&" : "?") + query;
 
     if ( options.replace ) {
-      window.history.replaceState(state, document.title, options.url)
+      window.history.replaceState(state, document.title, options.url);
     } else if ( options.push ) {
       // this extra replaceState before first push ensures good back
       // button behavior
       if ( !pjax.active ) {
-        window.history.replaceState($.extend({}, state, {url:null}), oldTitle)
-        pjax.active = true
+        window.history.replaceState($.extend({}, state, {url:null}), oldTitle);
+        pjax.active = true;
       }
 
-      window.history.pushState(state, document.title, options.url)
+      window.history.pushState(state, document.title, options.url);
     }
 
     // Google Analytics support
     if ( (options.replace || options.push) && window._gaq )
-      _gaq.push(['_trackPageview'])
+      _gaq.push(['_trackPageview']);
 
     // If the URL has a hash in it, make sure the browser
     // knows to navigate to the hash.
-    var hash = window.location.hash.toString()
+    var hash = window.location.hash.toString();
     if ( hash !== '' ) {
-      window.location.href = hash
+      window.location.href = hash;
     }
 
     // Invoke their success handler if they gave us one.
-    success.apply(this, arguments)
+    success.apply(this, arguments);
   }
 
   // Cancel the current request if we're already pjaxing
-  var xhr = pjax.xhr
+  var xhr = pjax.xhr;
   if ( xhr && xhr.readyState < 4) {
-    xhr.onreadystatechange = $.noop
-    xhr.abort()
+    xhr.onreadystatechange = $.noop;
+    xhr.abort();
   }
 
-  pjax.options = options
-  pjax.xhr = $.ajax(options)
-  $(document).trigger('pjax', [pjax.xhr, options])
+  pjax.options = options;
+  pjax.xhr = $.ajax(options);
+  $(document).trigger('pjax', [pjax.xhr, options]);
 
-  return pjax.xhr
+  return pjax.xhr;
 }
 
 
@@ -187,22 +187,22 @@ pjax.defaults = {
   type: 'GET',
   dataType: 'html',
   beforeSend: function(xhr){
-    this.trigger('start.pjax', [xhr, pjax.options])
-    xhr.setRequestHeader('X-PJAX', 'true')
+    this.trigger('start.pjax', [xhr, pjax.options]);
+    xhr.setRequestHeader('X-PJAX', 'true');
   },
   error: function(xhr, textStatus, errorThrown){
     if ( textStatus !== 'abort' )
-      window.location = pjax.options.url
+      window.location = pjax.options.url;
   },
   complete: function(xhr){
-    this.trigger('end.pjax', [xhr, pjax.options])
+    this.trigger('end.pjax', [xhr, pjax.options]);
   }
 }
 
 
 // Used to detect initial (useless) popstate.
 // If history.state exists, assume browser isn't going to fire initial popstate.
-var popped = ('state' in window.history), initialURL = location.href
+var popped = ('state' in window.history), initialURL = location.href;
 
 
 // popstate handler takes care of the back and forward buttons
@@ -211,14 +211,14 @@ var popped = ('state' in window.history), initialURL = location.href
 // stuff yet.
 $(window).bind('popstate', function(event){
   // Ignore inital popstate that some browsers fire on page load
-  var initialPop = !popped && location.href == initialURL
-  popped = true
-  if ( initialPop ) return
+  var initialPop = !popped && location.href == initialURL;
+  popped = true;
+  if ( initialPop ) return;
 
-  var state = event.state
+  var state = event.state;
 
   if ( state && state.pjax ) {
-    var container = state.pjax
+    var container = state.pjax;
     if ( $(container+'').length )
       $.pjax({
         url: state.url || location.href,
@@ -226,9 +226,9 @@ $(window).bind('popstate', function(event){
         container: container,
         push: false,
         timeout: state.timeout
-      })
+      });
     else
-      window.location = location.href
+      window.location = location.href;
   }
 })
 
@@ -236,22 +236,22 @@ $(window).bind('popstate', function(event){
 // Add the state property to jQuery's event object so we can use it in
 // $(window).bind('popstate')
 if ( $.inArray('state', $.event.props) < 0 )
-  $.event.props.push('state')
+  $.event.props.push('state');
 
 
 // Is pjax supported by this browser?
 $.support.pjax =
   window.history && window.history.pushState && window.history.replaceState
   // pushState isn't reliable on iOS yet.
-  && !navigator.userAgent.match(/(iPod|iPhone|iPad|WebApps\/.+CFNetwork)/)
+  && !navigator.userAgent.match(/(iPod|iPhone|iPad|WebApps\/.+CFNetwork)/);
 
 
 // Fall back to normalcy for older browsers.
 if ( !$.support.pjax ) {
   $.pjax = function( options ) {
     window.location = $.isFunction(options.url) ? options.url() : options.url
-  }
-  $.fn.pjax = function() { return this }
+  };
+  $.fn.pjax = function() { return this };
 }
 
 })(jQuery);

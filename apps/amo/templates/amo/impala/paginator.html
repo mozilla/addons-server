@@ -1,5 +1,5 @@
 {% if pager.paginator.num_pages > 1 %}
-  <nav class="paginator c">
+  <nav class="paginator c pjax-trigger">
     <p class="num">
       {# L10n: This is a page range (e.g., Page 1 of 50). #}
       {% trans current_pg=pager.number,
@@ -16,10 +16,10 @@
          {% if not pager.has_previous() %}class="disabled"{% endif %}>
         &#x25C2;&#x25C2;</a>
       <a href="{{ pager.url|urlparams(page=pager.previous_page_number()) }}"
-         class="button{% if not pager.has_previous() %} disabled{% endif %}">
+         class="button prev{% if not pager.has_previous() %} disabled{% endif %}">
         &#x25C2; {{ _('Previous') }}</a>
       <a href="{{ pager.url|urlparams(page=pager.next_page_number()) }}"
-         class="button{% if not pager.has_next() %} disabled{% endif %}">
+         class="button next{% if not pager.has_next() %} disabled{% endif %}">
         {{ _('Next') }} &#x25B8;</a>
       <a href="{{ pager.url|urlparams(page=pager.paginator.num_pages) }}"
          title="{{ _('Jump to last page') }}"

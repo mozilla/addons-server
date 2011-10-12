@@ -138,7 +138,9 @@ var installButton = function() {
         }
     };
 
-    var addWarning = function(msg, type) { $this.parent().append(format(type || notavail, [msg])); };
+    var addWarning = function(msg, type) {
+        $this.parent().append(format(type || notavail, [msg]));
+    };
 
     // Change the button text to "Add to Firefox".
     var addToApp = function() {

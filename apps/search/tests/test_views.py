@@ -104,9 +104,10 @@ class TestESSearch(amo.tests.ESTestCase):
     def setUpClass(cls):
         super(TestESSearch, cls).setUpClass()
         cls.setUpIndex()
+        cls.search_views = ('search.search', 'apps.search')
 
     @amo.tests.mobile_test
-    def test_mobile_get(self):
+    def test_mobile_results(self):
         r = self.client.get(reverse('search.search'))
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'search/mobile/results.html')
@@ -115,6 +116,40 @@ class TestESSearch(amo.tests.ESTestCase):
         base = reverse('search.search')
         r = self.client.get(base + '?sort=averagerating')
         self.assertRedirects(r, base + '?sort=rating', status_code=301)
+
+    def test_results(self):
+        # These context variables should exist for normal requests.
+        expected_context_vars = {
+            'search.search': ('categories', 'platforms', 'versions', 'tags'),
+            'apps.search': ('categories', 'tags'),
+        }
+
+        for view in self.search_views:
+            r = self.client.get(reverse(view))
+            eq_(r.status_code, 200)
+            eq_(r.context['is_pjax'], None)
+
+            for var in expected_context_vars[view]:
+                assert var in r.context, (
+                    '%r missing context var in view %r' % (var, view))
+
+            doc = pq(r.content)
+            eq_(doc('html').length, 1)
+            eq_(doc('#pjax-results').length, 1)
+            eq_(doc('#search-facets .facets.pjax-trigger').length, 1)
+            eq_(doc('#sorter.pjax-trigger').length, 1)
+
+    def test_pjax_results(self):
+        for view in self.search_views:
+            r = self.client.get(reverse(view), HTTP_X_PJAX=True)
+            eq_(r.status_code, 200)
+            eq_(r.context['is_pjax'], True)
+
+            doc = pq(r.content)
+            eq_(doc('html').length, 0)
+            eq_(doc('#pjax-results').length, 0)
+            eq_(doc('#search-facets .facets.pjax-trigger').length, 0)
+            eq_(doc('#sorter.pjax-trigger').length, 1)
 
     def assert_ajax_query(self, params, addons=[]):
         r = self.client.get(reverse('search.ajax') + '?' + params)
@@ -172,7 +207,6 @@ class TestESSearch(amo.tests.ESTestCase):
         addon.update(type=amo.ADDON_PERSONA)
         Persona.objects.create(persona_id=4, addon_id=4)
         self.assert_ajax_query('q=4', [addon])
-        self.assert_ajax_query('q=4&exclude_personas=true', [])
 
     def test_ajax_search_char_limit(self):
         self.assert_ajax_query('q=ad', [])

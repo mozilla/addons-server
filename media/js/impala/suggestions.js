@@ -163,8 +163,7 @@ $.fn.searchSuggestions = function(results) {
     });
 
     $(document).keyup(function(e) {
-        if (/input|keygen|meter|option|output|progress|select|textarea/i.test(e.target.nodeName) ||
-            e.target.type === 'text') {
+        if (fieldFocused(e)) {
             return;
         }
         if (e.which == 16 || e.which == 83) {

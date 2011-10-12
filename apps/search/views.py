@@ -418,14 +418,18 @@ def app_search(request, template=None):
     facets = pager.object_list.facets
 
     ctx = {
+        'is_pjax': request.META.get('HTTP_X_PJAX'),
         'pager': pager,
         'query': query,
         'form': form,
         'sorting': sort_sidebar(request, query, form),
         'sort_opts': form.fields['sort'].choices,
-        'categories': category_sidebar(request, query, facets),
-        'tags': tag_sidebar(request, query, facets),
     }
+    if not ctx['is_pjax']:
+        ctx.update({
+            'categories': category_sidebar(request, query, facets),
+            'tags': tag_sidebar(request, query, facets),
+        })
     return jingo.render(request, template, ctx)
 
 
@@ -500,20 +504,24 @@ def search(request, tag_name=None, template=None):
         qs = qs.order_by('-weekly_downloads')
 
     pager = amo.utils.paginate(request, qs)
-    facets = pager.object_list.facets
 
     ctx = {
+        'is_pjax': request.META.get('HTTP_X_PJAX'),
         'pager': pager,
         'query': query,
         'form': form,
         'sort_opts': sort,
         'extra_sort_opts': extra_sort,
         'sorting': sort_sidebar(request, query, form),
-        'categories': category_sidebar(request, query, facets),
-        'platforms': platform_sidebar(request, query, facets),
-        'versions': version_sidebar(request, query, facets),
-        'tags': tag_sidebar(request, query, facets),
     }
+    if not ctx['is_pjax']:
+        facets = pager.object_list.facets
+        ctx.update({
+            'categories': category_sidebar(request, query, facets),
+            'platforms': platform_sidebar(request, query, facets),
+            'versions': version_sidebar(request, query, facets),
+            'tags': tag_sidebar(request, query, facets),
+        })
     return jingo.render(request, template, ctx)
 
 
