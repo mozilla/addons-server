@@ -41,7 +41,7 @@ from amo.urlresolvers import reverse
 from access import acl
 from addons import forms as addon_forms
 from addons.decorators import addon_view, can_become_premium
-from addons.models import Addon, AddonDependency, AddonUser
+from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from devhub.decorators import dev_required
 from devhub.forms import CheckCompatibilityForm
@@ -52,6 +52,7 @@ from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
 from market.models import AddonPremium
 import paypal
+from search.views import BaseAjaxSearch
 from translations.models import delete_translation
 from users.models import UserProfile
 from versions.models import Version
@@ -904,6 +905,24 @@ def upload_detail(request, uuid, format='html'):
                         dict(validate_url=validate_url, filename=upload.name,
                              timestamp=upload.created,
                              addon=None))
+
+
+class AddonDependencySearch(BaseAjaxSearch):
+    # No personas. No webapps.
+    types = [amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME,
+             amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_LPAPP]
+
+
+class AppDependencySearch(BaseAjaxSearch):
+    # Only webapps.
+    types = [amo.ADDON_WEBAPP]
+
+
+@dev_required
+@json_view
+def ajax_dependencies(request, addon_id, addon):
+    s = AppDependencySearch if addon.is_webapp() else AddonDependencySearch
+    return s(request, excluded_ids=[addon_id]).items
 
 
 @dev_required

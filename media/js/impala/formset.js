@@ -21,7 +21,7 @@ function updateTotalForms(prefix, inc) {
 
 (function($) {
 
-$.fn.zAutoFormset = function(o) {
+$.zAutoFormset = function(o) {
 
     o = $.extend({
         delegate: document.body,   // Delegate (probably some nearby parent).
@@ -30,6 +30,8 @@ $.fn.zAutoFormset = function(o) {
 
         extraForm: '.extra-form',  // Selector for element that contains the
                                    // HTML for extra-form template.
+
+        maxForms: 3,               // Maximum number of forms allowed.
 
         prefix: 'form',            // Formset prefix (Django default: 'form').
 
@@ -48,8 +50,6 @@ $.fn.zAutoFormset = function(o) {
         input: null,               // Input field for autocompletion search.
 
         searchField: 'q',          // Name of form field for search query.
-
-        excludePersonas: true,     // Exclude Personas in search results?
 
         minSearchLength: 3,        // Minimum character length for queries.
 
@@ -74,16 +74,18 @@ $.fn.zAutoFormset = function(o) {
         src = o.src || $delegate.attr('data-src'),
         $input = o.input ? $(o.input) : $delegate.find('input.autocomplete'),
         searchField = o.searchField,
-        excludePersonas = o.excludePersonas,
         minLength = o.minSearchLength,
         $maxForms = $('#id_' + formsetPrefix + '-MAX_NUM_FORMS'),
         width = o.width,
         addedCB = o.addedCB,
         removedCB = o.removedCB,
-        autocomplete = o.autocomplete;
+        autocomplete = o.autocomplete,
+        maxItems;
 
-        if ($maxForms.length) {
-            var maxItems = parseInt($maxForms.val(), 10);
+        if ($maxForms.length && $maxForms.val()) {
+            maxItems = parseInt($maxForms.val(), 10);
+        } else if (o.maxForms) {
+            maxItems = o.maxForms;
         }
 
     function findItem(item) {
@@ -110,6 +112,7 @@ $.fn.zAutoFormset = function(o) {
         var $visible = $forms.find(formSelector + ':visible').length;
         if ($visible >= maxItems) {
             $input.attr('disabled', true).slideUp();
+            $('.ui-autocomplete').hide();
         } else if ($visible < maxItems) {
             $input.filter(':disabled').removeAttr('disabled').slideDown();
         }
@@ -176,19 +179,16 @@ $.fn.zAutoFormset = function(o) {
             source: function(request, response) {
                 var d = {};
                 d[searchField] = request.term;
-                if (excludePersonas) {
-                    d['exclude_personas'] = true;
-                }
                 $.getJSON(src, d, response);
             },
             focus: function(event, ui) {
                 event.preventDefault();
-                $input.val(ui.item.label);
+                $input.val(ui.item.name);
             },
             select: function(event, ui) {
                 event.preventDefault();
                 if (ui.item) {
-                    $input.val(ui.item.label);
+                    $input.val(ui.item.name);
                     $input.attr('data-item', JSON.stringify(ui.item));
                     added();
                 }
@@ -196,7 +196,7 @@ $.fn.zAutoFormset = function(o) {
         }).data('autocomplete')._renderItem = function(ul, item) {
             if (!findItem(item).visible) {
                 var $a = $(format('<a><img src="{0}">{1}</a>',
-                                  [item.icon, item.label]));
+                                  [item.icon, item.name]));
                 return $('<li>').data('item.autocomplete', item)
                                 .append($a).appendTo(ul);
             }

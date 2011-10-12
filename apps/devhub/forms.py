@@ -1041,12 +1041,17 @@ class PremiumForm(happyforms.Form):
 def DependencyFormSet(*args, **kw):
     addon_parent = kw.pop('addon')
 
+    # Add-ons: Required add-ons cannot include apps nor personas.
+    # Apps:    Required apps cannot include any add-ons.
+    qs = Addon.objects.reviewed().exclude(id=addon_parent.id)
+    if addon_parent.is_webapp():
+        qs = qs.filter(type=amo.ADDON_WEBAPP)
+    else:
+        qs = qs.exclude(type__in=[amo.ADDON_PERSONA, amo.ADDON_WEBAPP])
+
     class _Form(happyforms.ModelForm):
         addon = forms.CharField(required=False, widget=forms.HiddenInput)
-        dependent_addon = forms.ModelChoiceField(
-            Addon.objects.reviewed().exclude(Q(id=addon_parent.id) |
-                                             Q(type=amo.ADDON_PERSONA)),
-            widget=forms.HiddenInput)
+        dependent_addon = forms.ModelChoiceField(qs, widget=forms.HiddenInput)
 
         class Meta:
             model = AddonDependency
@@ -1055,16 +1060,20 @@ def DependencyFormSet(*args, **kw):
         def clean_addon(self):
             return addon_parent
 
-    class _Formset(BaseModelFormSet):
+    class _FormSet(BaseModelFormSet):
 
         def clean(self):
             if any(self.errors):
                 return
-            if len(self.forms) > self.max_num:
-                raise forms.ValidationError(
-                    _('There cannot be more than 3 required add-ons.'))
+            form_count = len([f for f in self.forms
+                              if not f.cleaned_data.get('DELETE', False)])
+            if form_count > 3:
+                if addon_parent.is_webapp():
+                    error = _('There cannot be more than 3 required apps.')
+                else:
+                    error = _('There cannot be more than 3 required add-ons.')
+                raise forms.ValidationError(error)
 
-    FormSet = modelformset_factory(AddonDependency, formset=_Formset,
-                                   form=_Form, extra=0, max_num=3,
-                                   can_delete=True)
+    FormSet = modelformset_factory(AddonDependency, formset=_FormSet,
+                                   form=_Form, extra=0, can_delete=True)
     return FormSet(*args, **kw)

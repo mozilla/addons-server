@@ -251,45 +251,87 @@ def _collections(request):
     return jingo.render(request, 'search/collections.html', c)
 
 
-@json_view
-def ajax_search(request):
-    """ Returns a json feed of ten results for auto-complete used in
-    collections.
+class BaseAjaxSearch(object):
+    """Generates a list of dictionaries of add-on objects based on
+    ID or name matches. Safe to be served to a JSON-friendly view.
+
+    Sample output:
     [
-        {"id": 123, "name": "best addon", "icon": "http://path/to/icon"},
+        {
+            "id": 1865,
+            "label": "Adblock Plus",
+            "url": "http://path/to/details/page",
+            "icon": "http://path/to/icon",
+        },
         ...
     ]
+
     """
-    # TODO(cvan): Replace with better ES-powered JSON views. Coming soon.
-    results = []
-    if 'q' in request.GET:
-        if settings.USE_ELASTIC:
-            q = request.GET['q']
+
+    def __init__(self, request, excluded_ids=[]):
+        self.request = request
+        self.excluded_ids = excluded_ids
+        self.types = getattr(self, 'types', amo.ADDON_SEARCH_TYPES)
+        self.limit = 10
+        self.key = 'q'  # Name of search field.
+
+        # Mapping of JSON key => add-on property.
+        default_fields = {
+            'id': 'id',
+            'name': 'name',
+            'url': 'get_url_path',
+            'icon': 'icon_url'
+        }
+        self.fields = getattr(self, 'fields', default_fields)
+        self.items = self.build_list()
+
+    def queryset(self):
+        """Get items based on ID or search by name."""
+        results = []
+        if self.key in self.request.GET:
+            q = self.request.GET[self.key]
             if q.isdigit() or (not q.isdigit() and len(q) > 2):
                 if q.isdigit():
                     qs = Addon.objects.filter(id=int(q),
                                               disabled_by_user=False)
                 else:
-                    qs = (Addon.search().query(or_=name_query(q))
+                    # Oh, how I wish I could elastically exclude terms.
+                    qs = (Addon.search().query(or_=name_only_query(q))
                           .filter(is_disabled=False))
-                types = amo.ADDON_SEARCH_TYPES[:]
-                if request.GET.get('exclude_personas', False):
-                    types.remove(amo.ADDON_PERSONA)
-                results = qs.filter(type__in=types,
-                                    status__in=amo.REVIEWED_STATUSES)[:10]
-        else:
-            # TODO: Let this die when we kill Sphinx.
-            q = request.GET.get('q', '')
-            client = SearchClient()
-            try:
-                results = client.query('@name ' + q, limit=10,
-                                       match=sphinx.SPH_MATCH_EXTENDED2)
-            except SearchError:
-                pass
-    return [dict(id=result.id, label=unicode(result.name),
-                 url=result.get_url_path(), icon=result.icon_url,
-                 value=unicode(result.name).lower())
-            for result in results]
+                results = qs.filter(type__in=self.types,
+                                    status__in=amo.REVIEWED_STATUSES)
+        return results
+
+    def build_list(self):
+        """Populate a list of dictionaries based on label => property."""
+        results = []
+        for item in self.queryset()[:self.limit]:
+            if item.id in self.excluded_ids:
+                continue
+            d = {}
+            for key, prop in self.fields.iteritems():
+                val = getattr(item, prop, '')
+                if callable(val):
+                    val = val()
+                d[key] = unicode(val)
+            results.append(d)
+        return results
+
+
+@json_view
+def ajax_search(request):
+    """This is currently used only to return add-ons for populating a
+    new collection. Personas are included by default, so this can be
+    used elsewhere.
+
+    """
+    return BaseAjaxSearch(request).items
+
+
+def name_only_query(q):
+    return dict(name__text={'query': q, 'boost': 3, 'analyzer': 'standard'},
+                name__fuzzy={'value': q, 'boost': 2, 'prefix_length': 4},
+                name__startswith={'value': q, 'boost': 1.5})
 
 
 def name_query(q):
@@ -298,11 +340,9 @@ def name_query(q):
     # 3. Then look for the query as a prefix of a name (boost=1.5).
     # 4. Look for phrase matches inside the summary (boost=0.8).
     # 5. Look for phrase matches inside the description (boost=0.3).
-    return dict(name__text={'query': q, 'boost': 3, 'analyzer': 'standard'},
-                name__fuzzy={'value': q, 'boost': 2, 'prefix_length': 4},
-                name__startswith={'value': q, 'boost': 1.5},
-                summary__text={'query': q, 'boost': 0.8, 'type': 'phrase'},
+    more = dict(summary__text={'query': q, 'boost': 0.8, 'type': 'phrase'},
                 description__text={'query': q, 'boost': 0.3, 'type': 'phrase'})
+    return dict(more, **name_only_query(q))
 
 
 @mobile_template('search/{mobile/}es_results.html')

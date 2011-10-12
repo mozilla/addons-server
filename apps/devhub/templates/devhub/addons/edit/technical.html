@@ -42,12 +42,17 @@
           {% if waffle.flag('edit-dependencies') %}
             <tr>
               <th>
-                {{ _('Required Add-ons') }}
+                {% if addon.is_webapp() %}
+                  {{ _('Required Apps') }}
+                {% else %}
+                  {{ _('Required Add-ons') }}
+                {% endif %}
                 {% if editable %}
                   <span class="hint">{{ _('Limit 3') }}</span>
                 {% endif %}
               </th>
-              <td id="required-addons" data-src="{{ url('search.ajax') }}">
+              <td id="required-addons"
+                  data-src="{{ url('devhub.ajax.dependencies', addon.slug) }}">
                 {% if editable %}
                   {% include "devhub/addons/edit/technical_dependencies.html" %}
                 {% else %}

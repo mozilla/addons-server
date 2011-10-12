@@ -1104,18 +1104,19 @@ class TestEditTechnical(TestEdit):
         r = self.client.get(self.technical_edit_url)
         self.assertContains(r, 'Upgrade SDK?')
 
-    def test_edit_dependencies_overview(self):
+    def test_dependencies_overview(self):
         eq_([d.id for d in self.addon.all_dependencies], [5579])
         r = self.client.get(self.technical_url)
         req = pq(r.content)('td#required-addons')
         eq_(req.length, 1)
-        eq_(req.attr('data-src'), reverse('search.ajax'))
+        eq_(req.attr('data-src'),
+            reverse('devhub.ajax.dependencies', args=[self.addon.slug]))
         eq_(req.find('li').length, 1)
         a = req.find('a')
         eq_(a.attr('href'), self.dependent_addon.get_url_path())
         eq_(a.text(), unicode(self.dependent_addon.name))
 
-    def test_edit_dependencies_initial(self):
+    def test_dependencies_initial(self):
         r = self.client.get(self.technical_edit_url)
         form = pq(r.content)('#required-addons .dependencies li[data-addonid]')
         eq_(form.length, 1)
@@ -1128,7 +1129,7 @@ class TestEditTechnical(TestEdit):
         eq_(a.attr('href'), self.dependent_addon.get_url_path())
         eq_(a.text(), unicode(self.dependent_addon.name))
 
-    def test_edit_dependencies_add(self):
+    def test_dependencies_add(self):
         addon = Addon.objects.get(id=5299)
         eq_(addon.type, amo.ADDON_EXTENSION)
         eq_(addon in list(Addon.objects.reviewed()), True)
@@ -1147,7 +1148,7 @@ class TestEditTechnical(TestEdit):
         eq_(a.attr('href'), addon.get_url_path())
         eq_(a.text(), unicode(addon.name))
 
-    def test_edit_dependencies_limit(self):
+    def test_dependencies_limit(self):
         deps = Addon.objects.reviewed().exclude(
             Q(id__in=[self.addon.id, self.dependent_addon.id]) |
             Q(type=amo.ADDON_PERSONA))
@@ -1159,6 +1160,27 @@ class TestEditTechnical(TestEdit):
         r = self.client.post(self.technical_edit_url, d)
         eq_(r.context['dependency_form'].non_form_errors(),
             ['There cannot be more than 3 required add-ons.'])
+
+        # Check error message for apps.
+        Addon.objects.all().update(type=amo.ADDON_WEBAPP)
+        r = self.client.post(self.technical_edit_url, d)
+        eq_(r.context['dependency_form'].non_form_errors(),
+            ['There cannot be more than 3 required apps.'])
+
+    def test_dependencies_limit_with_deleted_form(self):
+        deps = Addon.objects.reviewed().exclude(
+            Q(id__in=[self.addon.id, self.dependent_addon.id]) |
+            Q(type=amo.ADDON_PERSONA))[:3]
+        args = []
+        for dep in deps:
+            args.append({'dependent_addon': dep.id})
+
+        # If we delete one form and add three, everything should be A-OK.
+        self.dep['DELETE'] = True
+        d = self.dep_formset(*args)
+        r = self.client.post(self.technical_edit_url, d)
+        eq_(any(r.context['dependency_form'].errors), False)
+        self.check_dep_ids(deps.values_list('id', flat=True))
 
     def check_dep_ids(self, expected=[]):
         a = AddonDependency.objects.values_list('dependent_addon__id',
@@ -1172,7 +1194,7 @@ class TestEditTechnical(TestEdit):
              'choices.'])
         self.check_dep_ids([self.dependent_addon.id])
 
-    def test_edit_dependencies_add_reviewed(self):
+    def test_dependencies_add_reviewed(self):
         """Ensure that reviewed add-ons can be made as dependencies."""
         addon = Addon.objects.get(id=40)
         for status in amo.REVIEWED_STATUSES:
@@ -1186,7 +1208,7 @@ class TestEditTechnical(TestEdit):
 
             AddonDependency.objects.get(dependent_addon=addon).delete()
 
-    def test_edit_dependencies_no_add_unreviewed(self):
+    def test_dependencies_no_add_unreviewed(self):
         """Ensure that unreviewed add-ons cannot be made as dependencies."""
         addon = Addon.objects.get(id=40)
         for status in amo.UNREVIEWED_STATUSES:
@@ -1197,7 +1219,7 @@ class TestEditTechnical(TestEdit):
             r = self.client.post(self.technical_edit_url, d)
             self.check_bad_dep(r)
 
-    def test_edit_dependencies_no_add_reviewed_persona(self):
+    def test_dependencies_no_add_reviewed_persona(self):
         """Ensure that reviewed Personas cannot be made as dependencies."""
         addon = Addon.objects.get(id=15663)
         eq_(addon.type, amo.ADDON_PERSONA)
@@ -1206,7 +1228,7 @@ class TestEditTechnical(TestEdit):
         r = self.client.post(self.technical_edit_url, d)
         self.check_bad_dep(r)
 
-    def test_edit_dependencies_no_add_unreviewed_persona(self):
+    def test_dependencies_no_add_unreviewed_persona(self):
         """Ensure that unreviewed Personas cannot be made as dependencies."""
         addon = Addon.objects.get(id=15663)
         addon.update(status=amo.STATUS_UNREVIEWED)
@@ -1216,19 +1238,44 @@ class TestEditTechnical(TestEdit):
         r = self.client.post(self.technical_edit_url, d)
         self.check_bad_dep(r)
 
-    def test_edit_dependencies_add_self(self):
+    def test_edit_app_dependencies(self):
+        """Apps should be able to add app dependencies."""
+        Addon.objects.all().update(type=amo.ADDON_WEBAPP)
+        addon = Addon.objects.get(id=5299)
+        d = self.dep_formset({'dependent_addon': addon.id})
+        r = self.client.post(self.technical_edit_url, d)
+        eq_(any(r.context['dependency_form'].errors), False)
+        self.check_dep_ids([self.dependent_addon.id, addon.id])
+
+    def test_edit_addon_dependencies_no_add_apps(self):
+        """Add-ons should not be able to add app dependencies."""
+        addon = Addon.objects.get(id=5299)
+        addon.update(type=amo.ADDON_WEBAPP)
+        d = self.dep_formset({'dependent_addon': addon.id})
+        r = self.client.post(self.technical_edit_url, d)
+        self.check_bad_dep(r)
+
+    def test_edit_app_dependencies_no_add_addons(self):
+        """Apps should not be able to add add-on dependencies."""
+        addon = Addon.objects.get(id=5299)
+        addon.update
+        d = self.dep_formset({'dependent_addon': True})
+        r = self.client.post(self.technical_edit_url, d)
+        self.check_bad_dep(r)
+
+    def test_dependencies_add_self(self):
         """Ensure that an add-on cannot be made dependent on itself."""
         d = self.dep_formset({'dependent_addon': self.addon.id})
         r = self.client.post(self.technical_edit_url, d)
         self.check_bad_dep(r)
 
-    def test_edit_dependencies_add_invalid(self):
+    def test_dependencies_add_invalid(self):
         """Ensure that a non-existent add-on cannot be a dependency."""
         d = self.dep_formset({'dependent_addon': 9999})
         r = self.client.post(self.technical_edit_url, d)
         self.check_bad_dep(r)
 
-    def test_edit_dependencies_add_duplicate(self):
+    def test_dependencies_add_duplicate(self):
         """Ensure that an add-on cannot be made dependent more than once."""
         d = self.dep_formset({'dependent_addon': self.dependent_addon.id})
         r = self.client.post(self.technical_edit_url, d)
@@ -1237,14 +1284,14 @@ class TestEditTechnical(TestEdit):
              'exists.'])
         self.check_dep_ids([self.dependent_addon.id])
 
-    def test_edit_dependencies_delete(self):
+    def test_dependencies_delete(self):
         self.dep['DELETE'] = True
         d = self.dep_formset(total_count=1, initial_count=1)
         r = self.client.post(self.technical_edit_url, d)
         eq_(any(r.context['dependency_form'].errors), False)
         self.check_dep_ids()
 
-    def test_edit_dependencies_add_delete(self):
+    def test_dependencies_add_delete(self):
         """Ensure that we can both delete a dependency and add another."""
         self.dep['DELETE'] = True
         d = self.dep_formset({'dependent_addon': 5299})

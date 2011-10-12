@@ -386,11 +386,11 @@ if (addon_ac.length) {
           }, response);
         },
         focus: function(event, ui) {
-          $('#addon-ac').val(ui.item.label);
+          $('#addon-ac').val(ui.item.name);
           return false;
         },
         select: function(event, ui) {
-            $('#addon-ac').val(ui.item.label).attr('data-id', ui.item.id)
+            $('#addon-ac').val(ui.item.name).attr('data-id', ui.item.id)
             .attr('data-icon', ui.item.icon);
             return false;
         }
@@ -398,7 +398,7 @@ if (addon_ac.length) {
         if (!$("#addons-list input[value=" + item.id + "]").length) {
             return $('<li>')
                 .data('item.autocomplete', item)
-                .append('<a><img src="' + item.icon + '">' + item.label + '</a>')
+                .append('<a><img src="' + item.icon + '">' + item.name + '</a>')
                 .appendTo(ul);
         }
     };

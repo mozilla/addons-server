@@ -484,7 +484,7 @@ function initRequiredAddons() {
     if (!$req.length || !$('input.autocomplete', $req).length) {
         return;
     }
-    $.fn.zAutoFormset({
+    $.zAutoFormset({
         delegate: '#required-addons',
         forms: 'ul.dependencies',
         prefix: 'dependencies',
@@ -492,7 +492,7 @@ function initRequiredAddons() {
         addedCB: function(emptyForm, item) {
             var f = template(emptyForm)({
                 icon: item.icon,
-                name: item.label || ''
+                name: item.name || ''
             });
             // Firefox automatically escapes the contents of `href`, borking
             // the curly braces in the {url} placeholder, so let's do this.
