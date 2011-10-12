@@ -51,7 +51,7 @@
     <li id="more">
       <a href="#">{{ _('More&hellip;') }}</a>
       <ul>
-        {% if request.APP == amo.FIREFOX %}
+        {% if request and request.APP == amo.FIREFOX %}
           <li class="more-mobile"><a href="{{ locale_url(amo.MOBILE.short) }}">
             {{ _('Add-ons for Mobile') }}</a></li>
         {% endif %}
