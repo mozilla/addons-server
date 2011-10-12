@@ -99,5 +99,7 @@ database:
                 - last_login_attempt_ip
                 - failed_login_attempts
             random_username: [username, nickname]
+        users_history:
+            random_email: email
         versions:
             nullify: approvalnotes
