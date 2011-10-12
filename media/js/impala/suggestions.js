@@ -1,7 +1,5 @@
 $(document).ready(function() {
-    if (waffle.switch('search-suggestions')) {
-        $('#search #search-q').searchSuggestions($('#site-search-suggestions'));
-    }
+    $('#search #search-q').searchSuggestions($('#site-search-suggestions'));
 });
 
 
@@ -9,6 +7,10 @@ $.fn.searchSuggestions = function(results) {
     var $self = this,
         $form = $self.closest('form'),
         $results = results;
+
+    if (!$results.length) {
+        return;
+    }
 
     // Some base elements that we don't want to keep creating on the fly.
     $results.html(
