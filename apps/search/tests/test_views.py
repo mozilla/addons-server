@@ -124,7 +124,7 @@ class TestESSearch(amo.tests.ESTestCase):
         eq_(len(data), len(addons))
         for got, expected in zip(data, addons):
             eq_(got['id'], expected.id)
-            eq_(got['label'], unicode(expected.name))
+            eq_(got['name'], unicode(expected.name))
             eq_(got['url'], expected.get_url_path())
             eq_(got['icon'], expected.icon_url)
 
