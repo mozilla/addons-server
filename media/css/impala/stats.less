@@ -1,21 +1,19 @@
 @import 'lib';
 
 /* Clearfix! */
-.statistics #page {
-    max-width: 1280px;
-    width: auto;
-    min-width: 1024px;
-    padding-bottom: 500px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-.statbox:after {
-    content: ".";
-    display: block;
-    clear: both;
-    height: 0;
-    visibility: hidden;
+.statistics {
+    #page {
+        max-width: 1280px;
+        width: auto;
+        min-width: 1024px;
+        padding-bottom: 500px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .island {
+        float: none;
+        margin-bottom: 2em;
+    }
 }
 
 .statbox .pagination {
@@ -61,16 +59,6 @@ table {
  *  common styles
 **/
 
-.statbox .listing-header  {
-    -moz-border-radius:0 0 4px 4px;
-    background-color:#F0F8FC;
-    background-image: -moz-linear-gradient(#daf0f6,#fdfefe);
-    border:0;
-    border-top:1px solid #A5BFCE;
-    line-height:2.5em;
-    overflow:hidden;
-    padding:0.1em 0 0.1em 0.25em;
-}
 
 table tbody tr {
     border-top: 1px dotted #B5D9E5;
@@ -78,14 +66,6 @@ table tbody tr {
 
 .featured-inner {
     background: -moz-linear-gradient(#ffffff, #eff8fb);
-}
-
-div.statbox {
-    border: 1px solid #C9E8F3;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    background: #fff;
 }
 
 .secondary {
@@ -102,7 +82,7 @@ div.statbox {
  *  Rules for date criteria selection
 **/
 
-.criteria {
+.island.criteria {
     padding: 0 0 0 12px;
     margin: 0 0 0 1em;
     z-index: 1000;
@@ -133,32 +113,31 @@ div.statbox {
  *  Three-up stats
 **/
 
-.two-up > div {
-    float: left;
-    width: 50%;
-    margin: 10px 0;
-    text-align:center;
-}
-.two-up > div > div {
-    border-left: 1px dotted #aaa;
-}
-.two-up div a {
-    font-weight: bold;
-    font-size: 140%;
-}
-.two-up div small {
-    font-size: 110%;
-}
-
-.listing-header ul.chart_legend {
-    float: right;
-}
-
-.listing-header ul.chart_legend li {
-    margin: 0 .5em;
-    line-height: 2.5em;
-    display: block;
-    float: right;
+.two-up {
+    div {
+        float: left;
+        text-align: center;
+        width: 50%;
+        height: 48px;
+        position: relative;
+        &:first-child:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-left: 1px dotted @medium-gray;
+            height: 100%;
+        }
+        a {
+            display: block;
+            font-weight: bold;
+            font-size: 140%;
+        }
+        small {
+            font-size: 110%;
+        }
+    }
 }
 
 /**
@@ -413,10 +392,13 @@ table.stats-aggregate tbody span.change.minus {
     width: 648px;
     padding: 0;
     width: 100%;
+    overflow: hidden;
 }
 #head-chart {
-    border-radius: 1em;
+    position: relative;
+    background: #fff;
     overflow: hidden;
+    height: 384px;
 }
 
 .loadmessage {

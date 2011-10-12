@@ -1,9 +1,11 @@
 (function () {
+    // "use strict";
     var $win = $(window),
+        $chart = $('#head-chart');
         baseConfig = {
             chart: {
               renderTo: 'head-chart',
-              zoomType: 'x',
+              zoomType: 'x'
             },
             credits: { enabled: false },
             title: {
@@ -69,6 +71,10 @@
         "sources"   : "downloads"
     };
     
+    $win.bind("changeview", function() {
+        $chart.addClass('loading');
+    });
+
     $win.bind("dataready", function(e, obj) {
         var view    = obj.view,
             metric  = view.metric,
@@ -120,7 +126,7 @@
         }
 
         // Populate the chart config object.
-        var chartData = [], id
+        var chartData = [], id;
         for (i = 0; i < fields.length; i++) {
             field = fields[i];
             id = field.split("|").slice(-1)[0];
@@ -149,28 +155,79 @@
             } else {
                 xFormatter = dayFormatter;
             }
-            if (metricTypes[metric] == "users") {
-                yFormatter = userFormatter;
+            if (metric == 'overview') {
+                return function() {
+                    return "<b>" + xFormatter(this.x) + "</b><br>" +
+                           downloadFormatter(this.points[0].y) + "<br>" +
+                           userFormatter(this.points[1].y);
+                };
             } else {
-                yFormatter = downloadFormatter;
-            }
-            return function() {
-                return "<b>" + this.series.name + "</b><br>" +
-                       xFormatter(this.x) + "<br>" +
-                       yFormatter(this.y);
+                if (metricTypes[metric] == "users") {
+                    yFormatter = userFormatter;
+                } else {
+                    yFormatter = downloadFormatter;
+                }
+                return function() {
+                    return "<b>" + this.series.name + "</b><br>" +
+                           xFormatter(this.x) + "<br>" +
+                           yFormatter(this.y);
+                };
             }
         })();
 
         // Set up the new chart's configuration.
         var newConfig = $.extend(baseConfig, { series: chartData });
-        if (fields.length == 1) {
-            newConfig.legend.enabled = false;
-            newConfig.chart.margin = [50, 50, 50, 80]
+        // set up dual-axes for the overview chart.
+        if (metric == "overview" && newConfig.series.length) {
+            newConfig.yAxis = [
+                { // Downloads
+                    title: {
+                       text: gettext('Downloads')
+                    },
+                    // min: 0,
+                    labels: {
+                        formatter: function() {
+                            return Highcharts.numberFormat(this.value, 0);
+                        }
+                    }
+                }, { // Daily Users
+                    title: {
+                        text: gettext('Daily Users')
+                    },
+                    labels: {
+                        formatter: function() {
+                            return Highcharts.numberFormat(this.value, 0);
+                        }
+                    },
+                    // min: 0,
+                    opposite: true
+                }
+            ];
+            // set Daily Users series to use the right yAxis.
+            newConfig.series[1].yAxis = 1;
+            newConfig.tooltip.shared = true;
         }
         newConfig.tooltip.formatter = tooltipFormatter;
 
+        if (fields.length == 1) {
+            newConfig.legend.enabled = false;
+            // newConfig.chart.margin = [50, 50, 50, 80];
+        }
+
+        // Generate a pretty title for the chart.
+        var title;
+        if (typeof obj.view.range == 'string') {
+            title = format(csv_keys.chartTitle[metric][0], obj.view.range);
+        } else {
+            title = format(csv_keys.chartTitle[metric][1], [z.date.date_string(new Date(start), '-'),
+                                                            z.date.date_string(new Date(end), '-')]);
+        }
+        newConfig.title = {
+            text: title
+        };
 
         if (chart) chart.destroy();
         chart = new Highcharts.Chart(newConfig);
+        $chart.removeClass('loading');
     });
 })();

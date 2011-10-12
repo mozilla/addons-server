@@ -6,9 +6,10 @@ $(function() {
             range = view.range;
         if (range) {
             if (typeof range == "string") {
-                queryParams['last'] = range.split(/\s+/)[0];
+                queryParams.last = range.split(/\s+/)[0];
             } else if (typeof range == "object") {
-
+                // queryParams.start = z.date.date_string(new Date(range.start), '');
+                // queryParams.end = z.date.date_string(new Date(range.end), '');
             }
         }
         queryParams = $.param(queryParams);
@@ -17,10 +18,11 @@ $(function() {
         }
     });
 
+    // Set up initial default view.
     var initView = {
             metric: $('.primary').attr('data-report'),
             range: $('.primary').attr('data-range'),
-            group: 'day'
+            group: 'week'
         };
 
     $(window).trigger('changeview', initView);

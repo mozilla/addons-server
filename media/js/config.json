@@ -11,6 +11,8 @@
     "jquery"    : true,
 
     "predef"    : [    // AMO's globals
-        "z"
+        "z",
+        "_",
+        "Highcharts"
     ]
 }

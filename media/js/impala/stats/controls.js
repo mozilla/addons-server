@@ -52,10 +52,13 @@
         if (newState.range) {
             if (!newState.range.custom) {
                 var newRange = newState.range,
-                    $rangeEl = $('[data-range="' + newRange + '"]');
+                    $rangeEl = $('li[data-range="' + newRange + '"]');
                 if ($rangeEl.length) {
                     $rangeSelector.children("li.selected").removeClass("selected");
                     $rangeEl.addClass("selected");
+                } else {
+                    $rangeSelector.children("li.selected").removeClass("selected");
+                    $('li[data-range="custom"]').addClass("selected");
                 }
             } else {
                 $rangeSelector.children("li.selected").removeClass("selected");
@@ -65,12 +68,11 @@
         }
         if (newState.group) {
             $groupSelector.children('.selected').removeClass('selected');
-            $('[data-group="' + newState.group + '"]').addClass('selected');
+            $('li[data-group="' + newState.group + '"]').addClass('selected');
         }
     });
     
-    $("#date-range-form").submit(function(e) {
-        e.preventDefault();
+    $("#date-range-form").submit(_pd(function(e) {
         var start = new Date($("#date-range-start").val()),
             end = new Date($("#date-range-end").val()),
             newRange = {
@@ -78,9 +80,7 @@
                 start: z.date.date(start),
                 end: z.date.date(end)
             };
-
         $rangeSelector.trigger('changeview', {range: newRange});
         $customModal.trigger('close');
-        return false;
-    });
+    }));
 })();

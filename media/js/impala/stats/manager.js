@@ -7,11 +7,11 @@ function dbg() {
 z.hasPushState = (typeof history.replaceState === "function");
 
 z.StatsManager = (function() {
-    "use strict";
+    // "use strict";
 
     // The version of the stats localStorage we are using.
     // If you increment this number, you cache-bust everyone!
-    var STATS_VERSION = 21;
+    var STATS_VERSION = 22;
 
     var storage         = z.Storage("stats"),
         storageCache    = z.Storage("statscache"),
@@ -30,7 +30,8 @@ z.StatsManager = (function() {
         "os": true,
         "sources": true,
         "versions": true,
-        "statuses": true
+        "statuses": true,
+        "overview": true
     };
 
     // is a metric an average or a sum?
@@ -46,7 +47,7 @@ z.StatsManager = (function() {
     };
 
     // Initialize from localStorage when dom is ready.
-    $(function() {
+    function init() {
         dbg("looking for local data");
         if (verifyLocalStorage()) {
             var cacheObject = storageCache.get(addonId);
@@ -58,8 +59,8 @@ z.StatsManager = (function() {
                 }
             }
         }
-    });
-
+    }
+    $(init);
 
     // These functions deal with our localStorage cache.
 
@@ -80,6 +81,7 @@ z.StatsManager = (function() {
             return true;
         } else {
             dbg("wrong offline data verion");
+            clearLocalStorage();
             return false;
         }
     }
@@ -93,11 +95,12 @@ z.StatsManager = (function() {
         currentView = $.extend(currentView, newView);
 
         // Fetch the data from the server or storage, and notify other components.
-        getDataRange(currentView, function(data) {
+        $.when( getDataRange(currentView) )
+         .then( function(data) {
             $(window).trigger("dataready", {
-                'view':   currentView,
+                'view'  : currentView,
                 'fields': getAvailableFields(currentView),
-                'data':   data
+                'data'  : data
             });
         });
     }
@@ -153,17 +156,18 @@ z.StatsManager = (function() {
     // the range currently stored locally. Once all server requests return,
     // we move on.
     function getDataRange(view, callback) {
-        dbg("enter getDataRange");
+        dbg("enter getDataRange", view.metric);
         var range = z.date.normalizeRange(view.range),
             metric = view.metric,
             ds,
-            needed = 0;
+            needed = 0,
+            $def = $.Deferred();
 
         function finished() {
             needed--;
             dbg(pendingFetches, " fetches pending");
             if (needed < 1) {
-                var ret = {}, i, row,
+                var ret = {}, row,
                     step = z.date.millis("1 day");
                 ds = dataStore[metric];
                 for (var i=range.start; i<range.end; i+= step) {
@@ -172,13 +176,14 @@ z.StatsManager = (function() {
                     }
                 }
                 ret = groupData(ret, view);
-                callback.call(this, ret);
+                ret.metric = metric;
+                $def.resolve(ret);
             }
         }
 
         if (dataStore[metric]) {
             ds = dataStore[metric];
-            dbg("range", range.start, range.end)
+            dbg("range", range.start, range.end);
             if (ds.maxdate < range.end) {
                 needed++;
                 fetchData(metric, ds.maxdate, range.end, finished);
@@ -196,10 +201,11 @@ z.StatsManager = (function() {
             needed++;
             fetchData(metric, range.start, range.end, finished);
         }
+        return $def;
     }
 
 
-    // Aggregate data based on our view's `group` setting.
+    // Aggregate data based on view's `group` setting.
     function groupData(data, view) {
         var metric = view.metric,
             range = z.date.normalizeRange(view.range),
@@ -216,17 +222,20 @@ z.StatsManager = (function() {
             d = new Date(i);
             row = data[i];
             // Here's where grouping points are caluculated.
-            if ((group == 'week' && d.getDay() == 0) || (group == 'month' && d.getDate() == 1)) {
+            if ((group == 'week' && d.getDay() === 0) || (group == 'month' && d.getDate() == 1)) {
                 // we drop the some days of data from the result set
                 // if they are not a complete grouping.
                 if (groupKey && groupVal) {
                     // average `count` for mean metrics
                     if (metricTypes[metric] == 'mean') {
-                        groupVal['count'] /= groupCount;
+                        groupVal.count /= groupCount;
                     }
-                    if (metric in breakdownMetrics) {
+                    // overview gets special treatment. Only average ADUs.
+                    if (metric == "overview") {
+                        groupVal.data.updates /= groupCount;
+                    } else if (metric in breakdownMetrics) {
+                        // average for mean metrics.
                         _.each(groupVal.data, function(val, field) {
-                            // average for mean metrics.
                             if (metricTypes[metric] == 'mean') {
                                 groupVal.data[field] /= groupCount;
                             }
@@ -264,8 +273,8 @@ z.StatsManager = (function() {
 
     // The beef. Negotiates with the server for data.
     function fetchData(metric, start, end, callback) {
-        var seriesStart = start;
-        var seriesEnd = end;
+        var seriesStart = start,
+            seriesEnd = end;
 
         pendingFetches++;
 
@@ -291,9 +300,8 @@ z.StatsManager = (function() {
                     dataStore[metric].maxdate = 0;
                 }
 
-                var ds = dataStore[metric], data;
-
-                data = JSON.parse(raw_data);
+                var ds = dataStore[metric],
+                    data = JSON.parse(raw_data);
 
                 var i, datekey;
                 for (i=0; i<data.length; i++) {
@@ -318,7 +326,7 @@ z.StatsManager = (function() {
                 }
 
                 setTimeout(function () {
-                    AMO.fetchData(metric, start, end, callback);
+                    fetchData(metric, start, end, callback);
                 }, retry_delay);
 
             }
@@ -363,7 +371,10 @@ z.StatsManager = (function() {
         var parts   = field.split('|'),
             val     = row;
 
+        // give up if the row is falsy.
         if (!val) return null;
+        // drill into the row object for a nested key.
+        // `data|api` means row['data']['api']
         for (var i = 0; i < parts.length; i++) {
             val = val[parts[i]];
             if (!val) {
@@ -376,8 +387,8 @@ z.StatsManager = (function() {
 
 
     function getPrettyName(metric, field) {
-        var parts = field.split('_');
-        var key = parts[0];
+        var parts = field.split('_'),
+            key = parts[0];
         parts = parts.slice(1);
 
         if (metric in csv_keys) {

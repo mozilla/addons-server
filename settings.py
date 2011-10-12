@@ -727,7 +727,7 @@ MINIFY_BUNDLES = {
             'js/lib/jquery-datepicker.js',
             'js/lib/highcharts.src.js',
             'js/impala/stats/csv_keys.js',
-            # 'js/zamboni/stats/helpers.js',
+            'js/zamboni/stats/helpers.js',
             # 'js/zamboni/stats/stats_manager.js',
             # 'js/zamboni/stats/stats_tables.js',
             # 'js/zamboni/stats/stats.js',
