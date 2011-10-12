@@ -162,7 +162,11 @@ $.fn.searchSuggestions = function(results) {
         }
     });
 
-    $(window).keyup(function(e) {
+    $(document).keyup(function(e) {
+        if (/input|keygen|meter|option|output|progress|select|textarea/i.test(e.target.nodeName) ||
+            e.target.type === 'text') {
+            return;
+        }
         if (e.which == 16 || e.which == 83) {
             $self.focus();
         }
