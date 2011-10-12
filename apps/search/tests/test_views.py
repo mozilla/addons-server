@@ -108,8 +108,13 @@ class TestSearchboxTarget(amo.tests.TestCase):
 
 class TestESSearch(amo.tests.ESTestCase):
 
+    @classmethod
+    def setUpClass(cls):
+        super(TestESSearch, cls).setUpClass()
+        cls.setUpIndex()
+
     def test_legacy_redirects(self):
-        base = reverse('search.es_search')
+        base = reverse('search.search')
         r = self.client.get(base + '?sort=averagerating')
         self.assertRedirects(r, base + '?sort=rating', status_code=301)
 
@@ -123,7 +128,7 @@ class TestESSearch(amo.tests.ESTestCase):
 
         eq_(len(data), len(addons))
         for got, expected in zip(data, addons):
-            eq_(got['id'], expected.id)
+            eq_(int(got['id']), expected.id)
             eq_(got['name'], unicode(expected.name))
             eq_(got['url'], expected.get_url_path())
             eq_(got['icon'], expected.icon_url)
@@ -226,10 +231,10 @@ class TestWebappSearch(amo.tests.ESTestCase):
     def test_get(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'search/es_results.html')
+        self.assertTemplateUsed(r, 'search/results.html')
 
     @amo.tests.mobile_test
     def test_mobile_get(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'search/mobile/es_results.html')
+        self.assertTemplateUsed(r, 'search/mobile/results.html')

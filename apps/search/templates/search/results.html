@@ -1,66 +1,86 @@
-{% extends "base.html" %}
+{% extends "impala/base.html" %}
+
+{% block search_form %}
+{% include 'impala/search.html' %}
+{% endblock %}
+
+{% if query.q %}
+  {# L10n: {0} is a search term, such as Firebug. #}
+  {% set title = _('{0} :: Search')|f(query.q) %}
+  {# L10n: {0} is a search term, such as Firebug. #}
+  {% set heading = _('Search Results for "{0}"')|f(query.q) %}
+{% else %}
+  {% set title = _('Search') %}
+  {% set heading = title %}
+{% endif %}
 
 {% block title %}
-{% if query %}
-  {{ page_title(_('Add-on Search Results for {0}')|f(query)) }}
-{% else %}
-  {{ page_title(_('Add-on Search Results')) }}
-{% endif %}
+  {{ page_title(title) }}
 {% endblock %}
 
 {% block extrahead %}
-<meta name="WT.oss" content="{{ query }}">
+<meta name="WT.oss" content="{{ query.q }}">
 <meta name="WT.oss_r" content="{{ pager.paginator.count }}">
 {% endblock %}
 
+{% macro facet(title, links) %}
+  <li class="facet">
+    <h3>{{ title }}</h3>
+    {{ facet_links(links) }}
+  </li>
+{% endmacro %}
+
+{% macro facet_links(links) %}
+  <ul>
+    {% for link in links recursive %}
+    <li{% if link.selected %} class="selected"{% endif %}>
+      <a href="{{ request.get_full_path()|urlparams(page=None, **link.urlparams) }}">
+        {{ link.text }}</a>
+      {% if link.children %}
+        <ul>{{ loop(link.children) }}</ul>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
 {% block content %}
-<section class="primary" role="main">
-  <header class="results-head">
-    {{ breadcrumbs([(None, _('Search'))]) }}
-    <h2>{{ _('Search Results') }}</h2>
-    <h3 class="results-count">{{ showing(query, tag, pager) }}</h3>
-    {% if sort == 'name' %}
-    {# L10n: {0} is the name of the current locale. #}
-    <p><em>{{ _('Sorting by name includes only {0}
-      results.')|f(settings.LANGUAGES.get(LANG.lower())) }}</em></p>
-    {% endif %}
-  </header>
-
-  <div class="listing results">
-    {% if pager.object_list %}
-    <div class="results-inner">
-      <div class="listing-header">
-        <ul title="{{ _('Sort results by&hellip;')|safe }}">
-          {% for item in sort_tabs %}
-          {% include 'includes/refinement.html' %}
-          {% endfor %}
-        </ul>
-      </div>
-      {{ addon_listing_items(pager.object_list, show_date=sort, src='search',
-                             show_downloads=sort=='weeklydownloads') }}
-    </div>
-
-    <div class="listing-footer">
-    {{ pager|paginator }}
-    </div>
-  {% else %}
-  {% include 'search/no_results.html' %}
-  {% endif %}
-
-  </div>
-
+<section id="search-facets" class="secondary" role="complementary">
+  <h2>{{ _('Filter Results') }}</h2>
+  <ul class="facets island">
+    {{ facet(_('Category'), categories) }}
+    <li class="facet">
+      <h3>{{ _('Works with') }}</h3>
+      {% if versions %}
+        {{ facet_links(versions) }}
+      {% endif %}
+      {% if platforms %}
+        {{ facet_links(platforms) }}
+      {% endif %}
+    </li>
+    {{ facet(_('Tag'), tags) }}
+  </ul>
+  <p>{{ _('{0} matching results')|f(pager.paginator.count|numberfmt) }}</p>
 </section>
 
-<section class="secondary" role="complementary">
-  <div id="refine-results" class="highlight">
 
-    <h3>{{ _('Refine Results') }}</h3>
+<section class="primary" role="main">
 
-    {{ refinements(categories, _('Categories'), 'category') }}
-    {{ refinements(versions, _('Compatible with'), 'compatibility') }}
-    {{ refinements(platforms, _('Platforms'), 'platform') }}
-    {{ refinements(tags, _('Tags'), 'tags') }}
-
+  <div class="listing results island hero c">
+    <h1>{{ heading }}</h1>
+    {{ impala_addon_listing_header(
+           request.get_full_path()|urlparams(page=None),
+           sort_opts, query.sort, extra_sort_opts) }}
+    {% if pager.object_list %}
+      <div class="items">
+        {{ impala_addon_listing_items(pager.object_list, field=query.sort,
+                                      src='search') }}
+      </div>
+      {{ pager|impala_paginator }}
+    {% else %}
+      {% include 'search/no_results.html' %}
+    {% endif %}
   </div>
+
 </section>
 {% endblock %}

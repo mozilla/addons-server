@@ -7,7 +7,6 @@ from django.utils.encoding import smart_str
 
 import commonware.log
 import jingo
-import waffle
 from tower import ugettext as _
 from mobility.decorators import mobile_template
 
@@ -393,7 +392,7 @@ def name_query(q):
     return dict(more, **name_only_query(q))
 
 
-@mobile_template('search/{mobile/}es_results.html')
+@mobile_template('search/{mobile/}results.html')
 def app_search(request, template=None):
     form = ESSearchForm(request.GET or {}, type=amo.ADDON_WEBAPP)
     form.is_valid()  # Let the form try to clean data.
@@ -430,8 +429,8 @@ def app_search(request, template=None):
     return jingo.render(request, template, ctx)
 
 
-@mobile_template('search/{mobile/}es_results.html')
-def es_search(request, tag_name=None, template=None):
+@mobile_template('search/{mobile/}results.html')
+def search(request, tag_name=None, template=None):
     APP = request.APP
     types = (amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
              amo.ADDON_SEARCH, amo.ADDON_LPAPP)
@@ -463,8 +462,8 @@ def es_search(request, tag_name=None, template=None):
                  categories={'terms': {'field': 'category', 'size': 100}}))
     if query.get('q'):
         qs = qs.query(or_=name_query(query['q']))
-    if query.get('tag'):
-        qs = qs.filter(tag=query['tag'])
+    if tag_name or query.get('tag'):
+        qs = qs.filter(tag=tag_name or query['tag'])
     if query.get('platform') and query['platform'] in amo.PLATFORM_DICT:
         ps = (amo.PLATFORM_DICT[query['platform']].id, amo.PLATFORM_ALL.id)
         qs = qs.filter(platform__in=ps)
@@ -516,93 +515,6 @@ def es_search(request, tag_name=None, template=None):
         'tags': tag_sidebar(request, query, facets),
     }
     return jingo.render(request, template, ctx)
-
-
-@mobile_template('search/{mobile/}results.html')
-def search(request, tag_name=None, template=None):
-    # Redirect to search/es if this isn't mobile or a /tag page and waffle
-    # gives us the thumbs up.
-    if (not request.MOBILE and not tag_name
-        and waffle.sample_is_active('elastic-search')):
-        url = reverse('search.es_search') + '?' + request.GET.urlencode()
-        return redirect(url)
-
-    # If the form is invalid we still want to have a query.
-    query = request.REQUEST.get('q', '')
-
-    search_opts = {
-            'meta': ('versions', 'categories', 'tags', 'platforms'),
-            'version': None,
-            }
-
-    form = SearchForm(request)
-    form.is_valid()  # Let the form try to clean data.
-
-    category = form.cleaned_data.get('cat')
-
-    if category == 'collections':
-        return _collections(request)
-    elif category == 'personas':
-        return _personas(request)
-
-    # TODO: Let's change the form values to something less gross when
-    # Remora dies in a fire.
-    query = form.cleaned_data['q']
-
-    addon_type = form.cleaned_data.get('atype', 0)
-    tag = tag_name if tag_name is not None else form.cleaned_data.get('tag')
-    if tag_name:
-        search_opts['show_personas'] = True
-    page = form.cleaned_data['page']
-    sort = form.cleaned_data.get('sort')
-
-    search_opts['version'] = form.cleaned_data.get('lver')
-    search_opts['limit'] = form.cleaned_data.get('pp', DEFAULT_NUM_RESULTS)
-    search_opts['platform'] = form.cleaned_data.get('pid', amo.PLATFORM_ALL)
-    search_opts['sort'] = sort
-    search_opts['app'] = request.APP.id
-    search_opts['offset'] = (page - 1) * search_opts['limit']
-
-    if category:
-        search_opts['category'] = category
-    elif addon_type:
-        search_opts['type'] = addon_type
-
-    search_opts['tag'] = tag
-
-    client = SearchClient()
-
-    try:
-        results = client.query(query, **search_opts)
-    except SearchError, e:
-        log.error('Sphinx Error: %s' % e)
-        return jingo.render(request, 'search/down.html', locals(), status=503)
-
-    version_filters = client.meta['versions']
-
-    # If we are filtering by a version, make sure we explicitly list it.
-    if search_opts['version']:
-        try:
-            version_filters += (version_int(search_opts['version']),)
-        except UnicodeEncodeError:
-            pass  # We didn't want to list you anyway.
-
-    versions = _get_versions(request, client.meta['versions'],
-                             search_opts['version'])
-    categories = _get_categories(request, client.meta['categories'],
-                                 addon_type, category)
-    tags = _get_tags(request, client.meta['tags'], tag)
-    platforms = _get_platforms(request, client.meta['platforms'],
-                               search_opts['platform'])
-    sort_tabs = _get_sorts(request, sort)
-    sort_opts = _get_sort_menu(request, sort)
-
-    pager = amo.utils.paginate(request, results, search_opts['limit'])
-
-    context = dict(pager=pager, query=query, tag=tag, platforms=platforms,
-                   versions=versions, categories=categories, tags=tags,
-                   sort_tabs=sort_tabs, sort_opts=sort_opts, sort=sort)
-    return jingo.render(request, template, context)
 
 
 class FacetLink(object):
