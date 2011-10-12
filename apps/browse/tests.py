@@ -308,27 +308,27 @@ class TestThemes(amo.tests.TestCase):
         for category in Category.objects.all():
             category.type = amo.ADDON_THEME
             category.save()
-
-        self.base_url = reverse('browse.themes')
-        self.exp_url = urlparams(self.base_url)
+        self.url = reverse('browse.themes')
 
     def test_default_sort(self):
-        """Default sort should be by popular."""
-        response = self.client.get(self.base_url)
-        eq_(response.context['sorting'], 'popular')
+        """Default sort should be by featured."""
+        response = self.client.get(self.url)
+        eq_(response.context['sorting'], 'featured')
 
     def test_unreviewed(self):
-        # Only 3 without unreviewed.
-        response = self.client.get(self.base_url)
-        eq_(len(response.context['themes'].object_list), 2)
+        pop = urlparams(self.url, sort='popular')
 
-        response = self.client.get(self.exp_url)
-        eq_(len(response.context['themes'].object_list), 2)
+        # Only 3 without unreviewed.
+        response = self.client.get(pop)
+        eq_(len(response.context['addons'].object_list), 2)
+
+        response = self.client.get(pop)
+        eq_(len(response.context['addons'].object_list), 2)
 
     def _get_sort(self, sort):
-        response = self.client.get(urlparams(self.exp_url, sort=sort))
+        response = self.client.get(urlparams(self.url, sort=sort))
         eq_(response.context['sorting'], sort)
-        return [a.id for a in response.context['themes'].object_list]
+        return [a.id for a in response.context['addons'].object_list]
 
     def test_download_sort(self):
         ids = self._get_sort('popular')
@@ -350,21 +350,11 @@ class TestThemes(amo.tests.TestCase):
         ids = self._get_sort('rating')
         eq_(ids, [6704, 3615])
 
-    def test_category_count(self):
-        cat = Category.objects.filter(name__isnull=False)[0]
-        response = self.client.get(reverse('browse.themes', args=[cat.slug]))
-        doc = pq(response.content)
-        actual_count = int(doc('hgroup h3').text().split()[0])
-        page = response.context['themes']
-        expected_count = page.paginator.count
-        eq_(actual_count, expected_count)
-
-
-class TestImpalaThemes(TestListing):
-
-    def setUp(self):
-        super(TestImpalaThemes, self).setUp()
-        self.url = reverse('i_browse.themes')
+    def test_category_sidebar(self):
+        c = Category.objects.filter(weight__gte=0).values_list('id', flat=True)
+        doc = pq(self.client.get(self.url).content)
+        for id in c:
+            eq_(doc('#side-categories #c-%s' % id).length, 1)
 
 
 class TestCategoryPages(amo.tests.TestCase):

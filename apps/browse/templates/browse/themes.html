@@ -1,138 +1,22 @@
-{% extends "base.html" %}
+{% extends "browse/impala/base_listing.html" %}
 
-{% set meta_categories = (
-  ('popular', _('Most Popular')),
-  ('rating', _('Top Rated')),
-  ('created', _('Recently Added')),
-) %}
-
-{% block title %}
-{% if category or sorting in dict(meta_categories) %}
-  {% with name = category.name if category else dict(meta_categories)[sorting]
-  %}
-    {# L10n: {0} is a translated theme name like "Nature" or "Sports" #}
-    {{ page_title(_('{0} :: Themes')|f(name)) }}
-  {% endwith %}
-{% else %}
-  {{ page_title(_('Themes')) }}
-{% endif %}
-{% endblock %}
-
-{% block bodyclass %}browse-thumbs{% endblock %}
-
-{% block extrahead %}
-{% with selector=category.id if category else sorting %}
-  {{ category_arrow(selector, prefix='c') }}
-{% endwith %}
-{% endblock %}
-
-{% block content %}
-<div class="primary" role="main">
-  <header>
-    {% if category %}
-      {{ breadcrumbs([(url('browse.themes'), _('Themes')),
-                      (None, category.name)]) }}
-      <hgroup>
-        <h2>{{ category.name }}</h2>
-    {% else %}
-      {{ breadcrumbs([(None, _('Themes'))]) }}
-      <hgroup>
-        <h2>{{ _('Themes') }}</h2>
-    {% endif %}
-        {# L10n: {0} is an integer. #}
-        {% with num=themes.paginator.count %}
-          <h3>{{ ngettext('<b>{0}</b> add-on', '<b>{0}</b> add-ons',
-                          num)|f(num|numberfmt)|safe }}</h3>
-        {% endwith %}
-      </hgroup>
-  </header>
-
-  <div id="addon-listing" class="featured listing">
-    <div class="featured-inner">
-      {% with url_base=url('browse.themes', category.slug) %}
-        {{ addon_listing_header(url_base, sort_opts, sorting) }}
-      {% endwith %}
-      {% cache themes.object_list %}
-      {% for row in themes.object_list|batch(4) %}
-      <ul class="thumbs">
-        {% for addon in row %}
-        {% set compat = addon.compatible_apps[request.APP] %}
-        <li {% if compat %}
-              data-min="{{ compat.min.version }}"
-              data-max="{{ compat.max.version }}"
-              {% endif %} class="{{ addon|statusflags }}">
-        <div class="inner">
-          {{ addon|flag }}
-          <a href="{{ addon.get_url_path() }}">
-            <img alt="" src="{{ addon.thumbnail_url }}">
-          </a>
-          <div class="details">
-            <h4><a href="{{ addon.get_url_path() }}">{{ addon.name }}</a></h4>
-            <p class="meta">
-              {% if sorting == "updated" %}
-                {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
-              {% elif sorting == "created" %}
-                {{ _('Added {0}')|f(addon.created|datetime) }}
-              {% elif sorting == "popular" %}
-                {% with num=addon.weekly_downloads %}
-                  {# L10n: {0} is the number of downloads. #}
-                  {{ ngettext("{0} weekly download", "{0} weekly downloads",
-                              num)|f(num|numberfmt) }}
-                {% endwith %}
-              {% elif sorting == "users" %}
-                {% with num=addon.average_daily_users %}
-                  {# L10n: {0} is the number of users. #}
-                  {{ ngettext("{0} user", "{0} users",
-                              num)|f(num|numberfmt) }}
-                {% endwith %}
-              {% else %}
-                {% with num=addon.total_reviews %}
-                {% if num %}
-                  {{ addon.average_rating|float|stars }}
-                  <a href="{{ addon.get_url_path() }}#reviews">
-                    {# L10n: {0} is the review count. #}
-                    {{ ngettext("{0} review", "{0} reviews", num)|f(num|numberfmt) }}</a>
-                {% else %}
-                  <strong>{{ _('Not yet rated') }}</strong>
-                {% endif %}
-                {% endwith %}
-              {% endif %}
-            </p>
-          </div>
-        </div>
-        </li>
-        {% endfor %}
-      </ul>
-      {% endfor %}
-      {% endcache %}
-    </div> {# featured-inner #}
-  </div> {# featured #}
-  {{ themes|paginator }}
-</div>
-
-<div class="secondary" role="complementary">
-  <div class="other-categories highlight">
-    <h3>{{ _('Themes') }}</h3>
-    <ul>
-      {% for key, title in meta_categories %}
-        <li id="c-{{ key }}">
-          <a href="{{ url('browse.themes')|urlparams(sort=key) }}">{{ title }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-    <ul>
-    {% cache categories %}
-    {% for cat in categories %}
-      <li id="c-{{ cat.id }}">
-        <a href="{{ url('browse.themes', cat.slug) }}">{{ cat.name }}</a>
-      </li>
-    {% endfor %}
-    {% endcache %}
-    </ul>
-  </div>
-</div>
-{% endblock %}
-
-{% block js %}
-<script src="{{ media('js/zamboni/themes.js') }}"></script>
+{% block primary %}
+<section class="primary">
+  {% if category %}
+    {{ impala_breadcrumbs([(url('browse.themes'), _('Themes')),
+                           (None, title)]) }}
+  {% else %}
+    {{ impala_breadcrumbs([(None, _('Themes'))]) }}
+  {% endif %}
+    <h1>{{ title }}</h1>
+    <div id="themes-listing" class="island listing c">
+      {{ impala_addon_listing_header(request.get_full_path(), search_filter=filter) }}
+      <div class="items">
+        {{ addons.object_list|theme_grid }}
+      </div>
+      {% if sorting != 'featured' %}
+        {{ addons|impala_paginator }}
+      {% endif %}
+    </div>
+</section>
 {% endblock %}

@@ -155,28 +155,6 @@ def language_tools(request, category=None):
 
 
 def themes(request, category=None):
-    q = Category.objects.filter(application=request.APP.id,
-                                type=amo.ADDON_THEME)
-    categories = order_by_translation(q, 'name')
-
-    addons, filter = addon_listing(request, [amo.ADDON_THEME])
-
-    if category is not None:
-        try:
-            category = dict((c.slug, c) for c in categories)[category]
-        except KeyError:
-            raise http.Http404()
-        addons = addons.filter(categories__id=category.id)
-
-    themes = amo.utils.paginate(request, addons, count=addons.count())
-    return jingo.render(request, 'browse/themes.html',
-                        {'categories': categories,
-                         'themes': themes, 'category': category,
-                         'sorting': filter.field, 'sort_opts': filter.opts,
-                         'search_cat': '%s,0' % amo.ADDON_THEME})
-
-
-def impala_themes(request, category=None):
     TYPE = amo.ADDON_THEME
     if category is not None:
         q = Category.objects.filter(application=request.APP.id, type=TYPE)
@@ -191,7 +169,7 @@ def impala_themes(request, category=None):
         addons = addons.filter(categories__id=category.id)
 
     addons = amo.utils.paginate(request, addons, 16, count=addons.count())
-    return jingo.render(request, 'browse/impala/themes.html',
+    return jingo.render(request, 'browse/themes.html',
                 {'section': 'themes', 'addon_type': TYPE, 'addons': addons,
                  'category': category, 'filter': filter, 'sorting': sorting,
                  'search_cat': '%s,0' % TYPE, 'src': src, 'dl_src': dl_src})

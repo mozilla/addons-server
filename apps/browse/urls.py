@@ -6,9 +6,6 @@ from browse.feeds import CategoriesRss, FeaturedRss, SearchToolsRss
 from . import views
 
 impala_patterns = patterns('',
-    url('^themes/(?P<category>[^/]+)?$', views.impala_themes,
-        name='i_browse.themes'),
-
     # TODO: Impalacize these views.
     url('^extensions/(?P<category>[^/]+)/featured$', views.creatured,
         name='i_browse.creatured'),
