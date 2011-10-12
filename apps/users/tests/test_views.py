@@ -324,7 +324,7 @@ class TestPaypalStart(UserViewBase):
         self.url = reverse('users.purchase.start', args=[self.addon.slug])
 
         self.price = Price.objects.create(price='0.99')
-        AddonPremium.objects.filter(addon=self.addon)[0].update(price=self.price)
+        AddonPremium.objects.create(addon=self.addon, price=self.price)
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
 
         self.user = User.objects.filter(email=self.data['username'])[0]
@@ -391,6 +391,7 @@ class TestPaypalStart(UserViewBase):
 
 
 class TestLogin(UserViewBase):
+    fixtures = ['users/test_backends', 'base/addon_3615']
 
     def setUp(self):
         super(TestLogin, self).setUp()
@@ -414,13 +415,19 @@ class TestLogin(UserViewBase):
         res = self.client.post(url, data=self.data)
         eq_(res.status_code, 302)
 
+    @patch.object(waffle, 'switch_is_active', lambda x: True)
     def test_login_paypal(self):
-        url = reverse('users.purchase.start')
-        r = self.client.get(url)
+        addon = Addon.objects.all()[0]
+        price = Price.objects.create(price='0.99')
+        AddonPremium.objects.create(addon=addon, price=price)
+        addon.update(premium_type=amo.ADDON_PREMIUM)
+
+        url = reverse('users.purchase.start', args=[addon.slug])
+        r = self.client.get_ajax(url)
         eq_(r.status_code, 200)
 
-        res = self.client.post(url, data=self.data)
-        eq_(res.status_code, 302)
+        res = self.client.post_ajax(url, data=self.data)
+        eq_(res.status_code, 200)
 
     def test_login_ajax_error(self):
         url = reverse('users.login_modal')
