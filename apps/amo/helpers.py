@@ -477,7 +477,7 @@ def _site_nav(context):
     groups = utils.sorted_groupby(qs, key=attrgetter('type'))
     cats = dict((key, sorted(cs, key=attrgetter('weight', 'name')))
                 for key, cs in groups)
-    ctx = dict(request=request,
+    ctx = dict(request=request, amo=amo,
                extensions=cats.get(amo.ADDON_EXTENSION, []),
                personas=cats.get(amo.ADDON_PERSONA, []),
                themes=cats.get(amo.ADDON_THEME, []))

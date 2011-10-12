@@ -19,6 +19,7 @@ from waffle import helpers
 import amo.tests
 from access import acl
 from addons.models import Addon, AddonUser
+from amo.helpers import locale_url
 from amo.urlresolvers import reverse
 from amo.pyquery_wrapper import PyQuery
 from stats.models import SubscriptionEvent, Contribution
@@ -500,8 +501,18 @@ class TestOtherStuff(amo.tests.TestCase):
 
     def test_dictionaries_link(self):
         doc = pq(test.Client().get('/', follow=True).content)
-        link = doc('#site-nav #more a[href*="language-tools"]')
-        eq_(link.text(), 'Dictionaries & Language Packs')
+        eq_(doc('#site-nav #more .more-lang a').attr('href'),
+            reverse('browse.language-tools'))
+
+    def test_mobile_link_firefox(self):
+        doc = pq(test.Client().get('/firefox', follow=True).content)
+        eq_(doc('#site-nav #more .more-mobile a').attr('href'),
+            locale_url(amo.MOBILE.short))
+
+    def test_mobile_link_nonfirefox(self):
+        for app in ('thunderbird', 'mobile'):
+            doc = pq(test.Client().get('/' + app, follow=True).content)
+            eq_(doc('#site-nav #more .more-mobile').length, 0)
 
     def test_opensearch(self):
         client = test.Client()
