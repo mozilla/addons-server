@@ -1,5 +1,4 @@
 from decimal import Decimal
-import json
 import os
 
 from django.conf import settings
@@ -10,7 +9,6 @@ from nose.tools import eq_
 from addons.models import Addon
 import amo
 import amo.tests
-from amo.urlresolvers import reverse
 from market.models import AddonPurchase, AddonPremium, Price, get_key
 from stats.models import Contribution
 from users.models import UserProfile
@@ -147,56 +145,6 @@ class TestReceipt(amo.tests.TestCase):
         assert self.webapp.has_purchased(self.user)
         assert not self.webapp.has_purchased(self.other_user)
         assert self.webapp.addonpurchase_set.all()[0].receipt
-
-
-@mock.patch('addons.models.Addon.is_premium', lambda x: True)
-class TestAddonPurchase(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
-
-    def setUp(self):
-        self.addon = Addon.objects.get(pk=3615)
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        self.user = UserProfile.objects.get(pk=999)
-        self.url = reverse('api.market.verify', args=[self.addon.slug])
-
-    def test_anonymous(self):
-        eq_(self.client.get(self.url).status_code, 302)
-
-    def test_wrong_type(self):
-        self.client.login(username='regular@mozilla.com', password='password')
-        self.addon.update(type=amo.ADDON_EXTENSION)
-        res = self.client.get(self.url)
-        eq_(res.status_code, 400)
-
-    def test_logged_in(self):
-        self.client.login(username='regular@mozilla.com', password='password')
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        eq_(json.loads(res.content)['status'], 'invalid')
-
-    def test_logged_in_ok(self):
-        self.client.login(username='regular@mozilla.com', password='password')
-        self.addon.addonpurchase_set.create(user=self.user,
-                                            receipt='yak.shave')
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        eq_(json.loads(res.content)['status'], 'ok')
-
-    def test_logged_in_other(self):
-        self.client.login(username='admin@mozilla.com', password='password')
-        self.addon.addonpurchase_set.create(user=self.user,
-                                            receipt='yak.shave')
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        eq_(json.loads(res.content)['status'], 'invalid')
-
-    def test_user_not_purchased(self):
-        eq_(list(self.user.purchase_ids()), [])
-
-    def test_user_purchased(self):
-        self.addon.addonpurchase_set.create(user=self.user,
-                                            receipt='yak.shave')
-        eq_(list(self.user.purchase_ids()), [3615L])
 
 
 class TestContribution(amo.tests.TestCase):
