@@ -2947,7 +2947,7 @@ class TestNewsletter(amo.tests.TestCase):
         r = self.client.get(reverse('devhub.community.newsletter'))
         eq_(r.status_code, 200)
 
-    @mock.patch('devhub.responsys.urllib2.urlopen')
+    @mock.patch('devhub.tasks.urllib2.urlopen')
     def test_post(self, v):
         v.return_value = namedtuple('_', 'code')
         v.return_value.code = 200
