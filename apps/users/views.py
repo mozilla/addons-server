@@ -318,7 +318,7 @@ def login(request, template=None):
     return _login(request, template=template)
 
 
-def _login(request, template=None, data=None, dont_redirect=False):
+def _login(request, template=None, data={}, dont_redirect=False):
     # In case we need it later.  See below.
     get_copy = request.GET.copy()
 
@@ -365,8 +365,8 @@ def _login(request, template=None, data=None, dont_redirect=False):
             logout(request)
             log.warning(u'Attempt to log in with deleted account (%s)' % user)
             messages.error(request, _('Wrong email address or password!'))
-            return jingo.render(request, template,
-                                data.update({'form': partial_form()}))
+            data.update({'form': partial_form()})
+            return jingo.render(request, template, data)
 
         if user.confirmationcode:
             logout(request)
@@ -384,8 +384,8 @@ def _login(request, template=None, data=None, dont_redirect=False):
             messages.error(request, _('Activation Email Sent'),  msg1)
             messages.info(request, _('Having Trouble?'), msg2,
                           title_safe=True)
-            return jingo.render(request, template,
-                                data.update({'form': partial_form()}))
+            data.update({'form': partial_form()})
+            return jingo.render(request, template, data)
 
         rememberme = request.POST.get('rememberme', None)
         if rememberme:
