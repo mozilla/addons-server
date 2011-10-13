@@ -49,7 +49,7 @@ function initAdminValidation(doc) {
             if ($ct.hasClass('set-max-version')) {
                 // L10n: {0} is the number of add-ons, {1} is a version like 4.0
                 msg = ngettext('Set {0} add-on to a max version of {1} and email the author.',
-                               'Set {0} add-ons to a max version of {1} and email the authors',
+                               'Set {0} add-ons to a max version of {1} and email the authors.',
                                $ct.attr('data-job-count'));
                 msg = format(msg, [$ct.attr('data-job-count'), $ct.attr('data-job-version')]);
                 form = $('#success-form').html();
