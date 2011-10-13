@@ -103,27 +103,27 @@
 
     <h2 id="homepage">Homepage</h2>
     {% call grid() %}
-      target=scale(stats.timers.{{ site }}.view.addons.views.home.GET.count,0.1)&target=stats.timers.{{ site }}.view.addons.views.home.GET.lower&target=stats.timers.{{ site }}.view.addons.views.home.GET.mean&target=stats.timers.{{ site }}.view.addons.views.home.GET.upper_90
+      target=stats.timers.{{ site }}.view.addons.views.home.GET.lower&target=stats.timers.{{ site }}.view.addons.views.home.GET.mean&target=stats.timers.{{ site }}.view.addons.views.home.GET.upper_90&target=scale(stats.timers.{{ site }}.view.addons.views.home.GET.count,0.1)
     {% endcall %}
 
     <h2 id="search">Search</h2>
     {% call grid() %}
-      target=scale(stats.timers.{{ site }}.view.search.views.search.GET.count,0.1)&target=stats.timers.{{ site }}.view.search.views.search.GET.lower&target=stats.timers.{{ site }}.view.search.views.search.GET.mean&target=stats.timers.{{ site }}.view.search.views.search.GET.upper_90
+      target=stats.timers.{{ site }}.view.search.views.search.GET.lower&target=stats.timers.{{ site }}.view.search.views.search.GET.mean&target=stats.timers.{{ site }}.view.search.views.search.GET.upper_90&target=scale(stats.timers.{{ site }}.view.search.views.search.GET.count,0.1)
     {% endcall %}
 
     <h2 id="elasticsearch">Elasticsearch</h2>
     {% call grid() %}
-      target=scale(stats.timers.{{ site }}.view.search.views.es_search.GET.count,0.1)&target=stats.timers.{{ site }}.view.search.views.es_search.GET.lower&target=stats.timers.{{ site }}.view.search.views.es_search.GET.mean&target=stats.timers.{{ site }}.view.search.views.es_search.GET.upper_90
+      target=stats.timers.{{ site }}.view.search.views.es_search.GET.lower&target=stats.timers.{{ site }}.view.search.views.es_search.GET.mean&target=stats.timers.{{ site }}.view.search.views.es_search.GET.upper_90&target=scale(stats.timers.{{ site }}.view.search.views.es_search.GET.count,0.1)
     {% endcall %}
 
     <h2 id="elastic-request">ES Request Time</h2>
     {% call grid() %}
-      target=scale(stats.timers.{{ site }}.search.es.timer.count%2C0.1)&target=stats.timers.{{ site }}.search.es.timer.lower&target=stats.timers.{{ site }}.search.es.timer.mean&target=stats.timers.{{ site }}.search.es.timer.upper_90
+      target=stats.timers.{{ site }}.search.es.timer.lower&target=stats.timers.{{ site }}.search.es.timer.mean&target=stats.timers.{{ site }}.search.es.timer.upper_90&target=scale(stats.timers.{{ site }}.search.es.timer.count%2C0.1)
     {% endcall %}
 
     <h2 id="elastic-internal">ES Internal Timer</h2>
     {% call grid() %}
-      target=scale(stats.timers.{{ site }}.search.es.took.count%2C0.1)&target=stats.timers.{{ site }}.search.es.took.lower&target=stats.timers.{{ site }}.search.es.took.mean&target=stats.timers.{{ site }}.search.es.took.upper_90
+      target=stats.timers.{{ site }}.search.es.took.lower&target=stats.timers.{{ site }}.search.es.took.mean&target=stats.timers.{{ site }}.search.es.took.upper_90&target=scale(stats.timers.{{ site }}.search.es.took.count%2C0.1)
     {% endcall %}
 
     <h2 id="auth">Authenticated Responses</h2>
