@@ -309,7 +309,8 @@
             height: 135px;
             width: 160px;
             img {
-                width: 142px;
+                max-height: 108px;
+                max-width: 142px;
             }
         }
     }
@@ -378,6 +379,9 @@
     &.featured, &.theme-grid {
         .hovercard.addon {
             margin: 0;
+            &:hover .more {
+                padding: 14px 0 0;
+            }
         }
     }
 }
