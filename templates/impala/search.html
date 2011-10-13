@@ -5,6 +5,8 @@
          placeholder="{{ search_form.placeholder() }}"
          value="{{ search_form.q.data or '' }}">
   {{ search_form.cat }}
+  {{ search_form.appver }}
+  {{ search_form.platform }}
   <button class="search-button" type="submit" title="{{ _('Search') }}"
          src="{{ media('img/zamboni/global/btn-search.png') }}"></button>
   {% if waffle.switch('search-suggestions') %}

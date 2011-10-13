@@ -151,6 +151,10 @@ if (z.browser.firefox) {
     if (z.fxBeta) {
         $(document.body).addClass('fxbeta');
     }
+
+    // Populate search form with browser version and OS.
+    $('#search #id_appver').val(z.browserVersion);
+    $('#search #id_platform').val(z.platform);
 } else {
     z.fxBeta = false;
 }
