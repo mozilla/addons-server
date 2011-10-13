@@ -145,7 +145,7 @@ $.fn.searchSuggestions = function(results) {
          .keydown(rowHandler)
          .bind('keyup input paste', _.throttle(inputHandler, 250));
 
-    $results.delegate('li', 'hover', function() {
+    $results.delegate('li, p', 'hover', function() {
         $results.find('.sel').removeClass('sel');
         $results.addClass('sel');
         $(this).find('a').addClass('sel');
@@ -184,6 +184,9 @@ $.fn.searchSuggestions = function(results) {
             }
         });
         $results.addClass('visible');
+        if (!$results.find('.sel').length) {
+            pageUp();
+        }
     }
 
     return this;
