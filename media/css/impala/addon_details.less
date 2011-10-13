@@ -313,7 +313,7 @@
         top: 0;
         &:hover {
             border-color: @link;
-            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+            .box-shadow(0 4px 4px rgba(0, 0, 0, 0.1));
             top: -4px;
         }
         img {
@@ -351,7 +351,7 @@
         line-height: 200px;
         top: 0;
         z-index: 100;
-        -moz-transition: .3s color;
+        .transition(color, .3s);
         &.next {
             right: 0;
         }
