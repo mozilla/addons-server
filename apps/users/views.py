@@ -318,7 +318,8 @@ def login(request, template=None):
     return _login(request, template=template)
 
 
-def _login(request, template=None, data={}, dont_redirect=False):
+def _login(request, template=None, data=None, dont_redirect=False):
+    data = data or {}
     # In case we need it later.  See below.
     get_copy = request.GET.copy()
 
