@@ -14,7 +14,7 @@
           class='trigger_app_install' if addon.is_webapp() else 'trigger_download',
           href='#' if addon.is_webapp() else download %}
     Your purchase of <strong class='addon-title'>{{ addon_name }}</strong> is complete.
-    <p>If installation does not automatically begin, please <a class="{{ class }}" data-manifest-url="{{ manifest_url }}" href="{{ download }}">click here</a>.</p>
+    <p>If installation does not automatically begin, please <a class="{{ class }}" data-manifest-url="{{ manifest_url }}" href="{{ href }}">click here</a>.</p>
   {% endtrans %}
   <p class="mozilla-mission">
   {% trans learn_more='http://www.mozilla.org/causes' %}

@@ -1,78 +1,126 @@
-$(document).ready(function() {
-    $("#contribute-why").popup("#contribute-more-info", {
-        pointTo: "#contribute-more-info"
-    });
-    $('div.contribute a.suggested-amount,button.paypal').live('click', function(event) {
-        var el = this,
-            url = $(el).attr('href') + '&result_type=json',
-            classes = 'ajax-loading loading-submit disabled';
-        if ($(el).attr('data-realurl')) {
-            url += '&realurl=' + encodeURIComponent($(el).attr('data-realurl'));
-        }
-        $(el).addClass(classes);
-        $.ajax({
-            url: url,
-            dataType: 'json',
-            /* false so that the action is considered within bounds of
-             * user interaction and does not trigger the Firefox popup blocker.
-             */
-            async: false,
-            success: function(json) {
-                $(el).removeClass(classes);
-                $('.modal').trigger('close'); // Hide all modals
-                if (json.paykey) {
-                    /* This is supposed to be a global */
-                    //dgFlow = new PAYPAL.apps.DGFlow({expType:'mini'});
-                    dgFlow = new PAYPAL.apps.DGFlow({clicked: el.id});
-                    dgFlow.startFlow(json.url);
-                } else {
-                    if (!$('#paypal-error').length) {
-                        $(el).closest('div').append('<div id="paypal-error" class="popup"></div>');
+var purchases = {
+    init: function() {
+        $("#contribute-why").popup("#contribute-more-info", {
+            pointTo: "#contribute-more-info"
+        });
+        $('div.contribute a.suggested-amount,button.paypal').live('click', function(event) {
+            var el = this,
+                url = $(el).attr('href') + '&result_type=json',
+                classes = 'ajax-loading loading-submit disabled';
+            if ($(el).attr('data-realurl')) {
+                url += '&realurl=' + encodeURIComponent($(el).attr('data-realurl'));
+            }
+            $(el).addClass(classes);
+            $.ajax({
+                url: url,
+                dataType: 'json',
+                /* false so that the action is considered within bounds of
+                 * user interaction and does not trigger the Firefox popup blocker.
+                 */
+                async: false,
+                success: function(json) {
+                    $(el).removeClass(classes);
+                    $('.modal').trigger('close'); // Hide all modals
+                    if (json.paykey) {
+                        /* This is supposed to be a global */
+                        //dgFlow = new PAYPAL.apps.DGFlow({expType:'mini'});
+                        dgFlow = new PAYPAL.apps.DGFlow({clicked: el.id});
+                        dgFlow.startFlow(json.url);
+                    } else {
+                        if (!$('#paypal-error').length) {
+                            $(el).closest('div').append('<div id="paypal-error" class="popup"></div>');
+                        }
+                        $('#paypal-error').text(json.error).popup(el, {pointTo:el}).render();
                     }
-                    $('#paypal-error').text(json.error).popup(el, {pointTo:el}).render();
+                }
+            });
+            return false;
+        });
+        purchases.result();
+    },
+    result: function() {
+        /* Process the paypal result page. This is the complete or cancel
+         * page. Its main job is to close and take us back to the modal */
+        if ($('#paypal-result').length) {
+            var top_opener = top;
+            if (top.opener && top.opener.top.dgFlow) {
+                top_opener = top.opener.top;
+            }
+            top_dgFlow = top_opener.dgFlow;
+
+            if (top_dgFlow !== null) {
+                var thanks_url = $('#paypal-thanks').attr('href');
+                if(thanks_url) {
+                    top_opener.modalFromURL(thanks_url, {'callback': purchases.thanks});
+                }
+                top_dgFlow.closeFlow();
+
+                if (top !== null) {
+                    top.close();
                 }
             }
-        });
-        return false;
-    });
-    if ($('#paypal-result').length) {
-        var top_opener = top;
-        if (top.opener && top.opener.top.dgFlow) {
-            top_opener = top.opener.top;
         }
-        top_dgFlow = top_opener.dgFlow;
-
-        if (top_dgFlow !== null) {
-            var thanks_url = $('#paypal-thanks').attr('href');
-            if(thanks_url) {
-                top_opener.modalFromURL(thanks_url, {'callback': function() {
-                    // Change the add-on buttons
-                    var context  = $(this).closest('body'),
-                        addon_id = $('#addon_info', this).attr('data-addon'),
-                        install = $('.install[data-addon='+ addon_id +']', context);
-
-                    install.removeClass('premium').find('.premium').removeClass('premium');
-                    install.find('a').unbind('click')
-                    install.installButton();
-
-                    // Trigger install
-                    if ($('.trigger_download').exists()) {
-                        z.installAddon($('.addon-title', this).text(),
-                                       $('.trigger_download', this).attr('href'));
-                    } else if ($('.trigger_app_install').exists()) {
-                        if (navigator.mozApps && navigator.mozApps.install) {
-                            navigator.mozApps.install($('.trigger_app_install', this).attr('data-manifest-url'));
-                        }
-                    }
-                }});
+    },
+    reset: function(button) {
+        /* This resets the button for this add-on to show that it's been
+         * purchased and do the work for add-ons or web apps. */
+        var $button = $(button),
+            $install = $(button).closest('.install');
+        $install.removeClass('premium');
+        $button.find('.premium').removeClass('premium');
+        if ($install.hasClass('webapp')) {
+            $button.text(gettext('Install Web App')).attr('href', '#');
+            if (!$install.attr('data-manifest-url')) {
+                $.getJSON($install.attr('data-manifest-url-lookup'),
+                          function(json) {
+                            $.each(json, function() {
+                                $install.attr('data-manifest-url', this.manifest_url);
+                                $install.installButton();
+                            });
+                          });
             }
-            top_dgFlow.closeFlow();
-
-            if (top !== null) {
-                top.close();
-            }
+        }
+        $install.installButton();
+    },
+    find_button: function(win) {
+        /* Find the relevant button to reset. */
+        return $('.install[data-addon=' +
+                 $('#addon_info', win).attr('data-addon') +']:visible',
+                 win.closest('body')).find('a.button');
+    },
+    thanks: function() {
+        /* Process the thanks modal that we show. */
+        // This needs to be bound to this so that callback will get the
+        // correct window.
+        var $button = purchases.find_button($(this));
+        purchases.reset($button);
+        purchases.trigger(this);
+    },
+    trigger: function(modal) {
+        /* Trigger the downloads or install when we show the thanks
+         * or already purchased pages and wire up click triggers. */
+        if ($('.trigger_download', modal).exists()) {
+            z.installAddon($('.addon-title', modal).text(),
+                           $('.trigger_download', modal).attr('href'));
+        } else if ($('.trigger_app_install', modal).exists()) {
+            purchases.install_app($('.trigger_app_install', modal).attr('data-manifest-url'));
+            $('.trigger_app_install').click(_pd(function() {
+                purchases.install_app($(modal).attr('data-manifest-url'));
+            }));
+        }
+    },
+    install_app: function(url) {
+        /* Try and install the app. */
+        if (navigator.mozApps && navigator.mozApps.install) {
+            navigator.mozApps.install(url);
+        } else {
+            // Notify that it can't be installed.
         }
     }
+};
+
+$(document).ready(function() {
+    purchases.init();
 });
 
 /**

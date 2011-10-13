@@ -4,18 +4,28 @@
 
 {% block content %}
 {% if user.is_authenticated() and addon.has_purchased(user.get_profile()) %}
-<section class="paypal-parent ajax-submit">
+<section class="paypal-parent ajax-submit" id="addon_info" data-addon="{{ addon.id }}">
+  {% if addon.is_webapp() %}
+  <h2>{{ _('Purchased App') }}</h2>
+  {{ _("You've already bought this app!") }}
+  {% else %}
   <h2>{{ _('Purchased Add-on') }}</h2>
   {{ _("You've already bought this add-on!") }}
-  <p>
-  {% trans download=download %}
-  If installation does not automatically begin, please <a class="trigger_download" href="{{ download }}">click here</a>.
+  {% endif %}
+  {% trans manifest_url=addon.manifest_url if addon.is_webapp() else '',
+          class='trigger_app_install' if addon.is_webapp() else 'trigger_download',
+          href='#' if addon.is_webapp() else download %}
+    <p>If installation does not automatically begin, please <a class="{{ class }}" data-manifest-url="{{ manifest_url }}" href="{{ href }}">click here</a>.</p>
   {% endtrans %}
   </p>
 </section>
 {% else: %}
 <div class="ajax-submit">
+  {% if addon.is_webapp() %}
+  <h2>{{ _('Purchase App') }}</h2>
+  {% else %}
   <h2>{{ _('Purchase Add-on') }}</h2>
+  {% endif %}
   <div class="paypal-content">
     <span class="price">{{ addon.premium.get_price() }}</span>
     <h5>{{ addon.name }}</h5>

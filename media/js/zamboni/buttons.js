@@ -28,6 +28,7 @@ var webappButton = function() {
         manifestURL = $this.attr('data-manifest-url');
     if (manifestURL && navigator.mozApps && navigator.mozApps.install) {
         $this.find('.button')
+            .unbind('click')
             .removeClass('disabled')
             .click(function(e) {
                 e.preventDefault();
@@ -47,14 +48,9 @@ var premiumButton = function() {
     // purchased and alter if appropriate. Will return the purchase state.
     var $this = $(this),
         addon = $this.attr('data-addon'),
-        webapp = $this.hasClass('webapp'),
         $button = $this.find('.button');
     if($.inArray(parseInt(addon, 10), addons_purchased) >= 0) {
-        $this.removeClass('premium');
-        $this.find('.premium').removeClass('premium');
-        if (webapp) {
-            $('a', $this).text(gettext('Install Web App')).attr('href', '#');
-        }
+        purchases.reset($button);
         return false;
     } else {
         $button.addPaypal();
@@ -301,14 +297,13 @@ var installButton = function() {
     }
 
 
-    if (premium) {
-        premium = premiumButton.call($this);
-    }
-
     // Drive the install button based on its type.
     if (selfhosted) {
         $button.addPopup(message('selfhosted'));
     } else if (eula || contrib) {
+        versionsAndPlatforms({addPopup: false});
+    } else if (premium) {
+        premiumButton.call($this);
         versionsAndPlatforms({addPopup: false});
     } else if (persona) {
         $button.removeClass('download').addClass('add').find('span').text(addto);
@@ -385,11 +380,9 @@ jQuery.fn.addPaypal = function(html, allowClick) {
         var $this = $(el);
         // Focus on the username field if it exists.
         $('#id_username', $this).focus();
-
-        // Trigger any downloads that exist.
-        if($(".trigger_download", $this).exists()) {
-            z.installAddon($(".addon-title", $this).text(),
-                           $(".trigger_download", $this).attr('href'));
+        if ($('#addon_info').exists()) {
+            purchases.reset(purchases.find_button($this));
+            purchases.trigger($this);
         }
     }
     return this.click(_pd(function() {
