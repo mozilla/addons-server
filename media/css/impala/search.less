@@ -29,7 +29,8 @@
     li {
         border: 0;
         a {
-            line-height: 18px;
+            line-height: 16px;
+            margin-top: 2px;
             padding: 0;
         }
         ul {
@@ -74,6 +75,9 @@
             > ul {
                 max-height: 250px;
                 overflow-y: auto;
+                > li.selected:first-child a {
+                    color: @link;
+                }
             }
             li {
                 a {
