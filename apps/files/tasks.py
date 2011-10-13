@@ -249,7 +249,6 @@ def start_upgrade(file_ids, priority='low', **kw):
                 'secret': settings.BUILDER_SECRET_KEY,
                 'location': file_.get_url_path('builder'),
                 'uuid': data['uuid'],
-                'version': parse_version(file_.version.version),
                 'pingback': absolutify(reverse('amo.builder-pingback'))}
         try:
             jp_log.info(urllib.urlencode(post))
@@ -262,10 +261,6 @@ def start_upgrade(file_ids, priority='low', **kw):
                          exc_info=True)
 
         upgrader.file(file_.id, data)
-
-
-def parse_version(v):
-    return v.split('.sdk.')[0] + '.sdk.{sdk_version}'
 
 
 @task

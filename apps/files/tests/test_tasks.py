@@ -50,7 +50,6 @@ class TestUpgradeJetpacks(amo.tests.TestCase):
             'secret': settings.BUILDER_SECRET_KEY,
             'location': file_.get_url_path('builder'),
             'uuid': args['uuid'],  # uuid is random so steal from args.
-            'version': '2.1.072.sdk.{sdk_version}',
             'pingback': absolutify(reverse('amo.builder-pingback')),
         })
         eq_(url, settings.BUILDER_UPGRADE_URL)
@@ -226,21 +225,3 @@ class TestRepackageJetpack(amo.tests.TestCase):
         self.file.update(status=amo.STATUS_UNREVIEWED)
         new_file = tasks.repackage_jetpack(self.builder_data())
         assert not os.path.exists(new_file.mirror_file_path)
-
-
-def test_parse_version():
-    def check(v, expected):
-        eq_(tasks.parse_version(v), expected)
-
-    # Start with some normalish version numbers.
-    d = (('1.1', '1.1.sdk.{sdk_version}'),
-         ('0.2.3', '0.2.3.sdk.{sdk_version}'),
-         ('0.2.3-woo', '0.2.3-woo.sdk.{sdk_version}'),
-         ('023ab', '023ab.sdk.{sdk_version}'),
-         ('0.2.3', '0.2.3.sdk.{sdk_version}'),
-    )
-    for version, expected in d:
-        yield check, version, expected
-        # Append .sdk.1.0 to the normal numbers to simulate versions that have
-        # already been upgraded in the past. We still get the same template.
-        yield check, version + '.sdk.1.0', expected
