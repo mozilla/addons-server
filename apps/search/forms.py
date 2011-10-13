@@ -88,8 +88,6 @@ class SimpleSearchForm(forms.Form):
     """Powers the search box on every page."""
     q = forms.CharField(required=False)
     cat = forms.CharField(required=False, widget=forms.HiddenInput)
-    appver = forms.CharField(required=False, widget=forms.HiddenInput)
-    platform = forms.CharField(required=False, widget=forms.HiddenInput)
     choices = dict(SEARCH_CHOICES)
 
     def clean_cat(self):
