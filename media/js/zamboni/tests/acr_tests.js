@@ -9,6 +9,7 @@ $(document).ready(function() {
             z.browserVersion = browserVersion;
             z.hasNightly = hasNightly;
             z.hasACR = false;
+            z.Storage('visitor').remove('seen_acr_pitch');
             $(document.body).removeClass('acr-pitch');
             if (maxVer) {
                 $('.install', this.sandbox).attr('data-max', maxVer);
@@ -34,7 +35,11 @@ $(document).ready(function() {
                 equals(newerBrowser, true);
                 tests.hasClass($body, 'acr-pitch');
                 equals($('#acr-pitch:visible', this.sandbox).length, 1);
+                $.when($('#acr-pitch .close', this.sandbox).click()).done(function() {
+                    equal(z.Storage('visitor').get('seen_acr_pitch'), '1');
+                });
             } else {
+                equal(z.Storage('visitor').get('seen_acr_pitch'), undefined);
                 equals(newerBrowser, false);
                 tests.lacksClass($body, 'acr-pitch');
                 equals($('#acr-pitch:hidden', this.sandbox).length, 1);
@@ -50,7 +55,7 @@ $(document).ready(function() {
                 $(document.body).attr('data-nightly-version'), true, '3.0');
         }
     }));
-    test('Show pitch', function() {
+    test('Show pitch balloon', function() {
         this.check(true);
     });
 
@@ -62,7 +67,7 @@ $(document).ready(function() {
             acrFixture.setup.call(this, nightlyVer, true, nightlyVer);
         }
     }));
-    test('No pitch', function() {
+    test('No pitch balloon', function() {
         this.check(false);
     });
 
@@ -71,7 +76,7 @@ $(document).ready(function() {
             acrFixture.setup.call(this, '4.0', false);
         }
     }));
-    test('No pitch', function() {
+    test('No pitch balloon', function() {
         this.check(false);
     });
 

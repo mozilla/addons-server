@@ -147,21 +147,20 @@ function initBanners(delegate) {
         z.visitor.set('seen_impala_first_visit', 1);
     }
 
-    $(delegate).delegate('#site-nonfx .close', 'click', function() {
-        z.visitor.set('seen_badbrowser_warning', 1);
-    });
-
     // Show the ACR pitch if it has not been dismissed.
     if (!z.visitor.get('seen_acr_pitch') && $('body').hasClass('acr-pitch')) {
         $(delegate).find('#acr-pitch').show();
-        $(delegate).find('#acr-pitch .close', 'click', function() {
-            z.visitor.set('seen_acr_pitch', 1);
-        });
     }
 
     // Allow dismissal of site-balloons.
     $(delegate).delegate('.site-balloon .close, .site-tip .close', 'click', _pd(function() {
-        $(this).closest('.site-balloon, .site-tip').fadeOut();
+        var $parent = $(this).closest('.site-balloon, .site-tip');
+        $parent.fadeOut();
+        if ($parent.is('#site-nonfx')) {
+            z.visitor.set('seen_badbrowser_warning', 1);
+        } else if ($parent.is('#acr-pitch')) {
+            z.visitor.set('seen_acr_pitch', 1);
+        }
     }));
 }
 
