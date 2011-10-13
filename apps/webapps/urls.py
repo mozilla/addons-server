@@ -9,6 +9,7 @@ APP_SLUG = r"""(?P<app_slug>[^/<>"']+)"""
 detail_patterns = patterns('',
     url('^$', views.app_detail, name='apps.detail'),
     url('^more$', views.app_detail, name='apps.detail_more'),
+    url('^share$', views.share, name='apps.share'),
 )
 
 

@@ -1,11 +1,12 @@
 from urlparse import urlparse, parse_qs
 
 from django import test
+from django.conf import settings
 from django.contrib.auth.models import User as DjangoUser
 from django.utils import translation, encoding
 
 import jingo
-from mock import Mock
+from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -13,6 +14,7 @@ from addons.models import Addon
 import amo
 import sharing
 import sharing.views
+from sharing.forms import ShareForm
 from sharing.helpers import sharing_box
 from sharing import DIGG, FACEBOOK
 
@@ -96,3 +98,16 @@ def test_share_view_for_webapp():
     qs = parse_qs(urlparse(res['Location']).query)
     assert 'Apps Marketplace' in qs['status'][0], (
                                     'Unexpected status: %s' % qs['status'][0])
+
+
+@patch.object(settings, 'SITE_URL', 'http://test')
+def test_share_form():
+    form = ShareForm({
+        'title': 'title',
+        'url': '/path/to/nowhere/',
+        'description': 'x' * 250 + 'abcdef',
+    })
+    form.full_clean()
+    eq_(form.cleaned_data['description'], 'x' * 250 + '...')
+    assert form.cleaned_data['url'].startswith('http'), (
+        "Unexpected: URL not absolute")

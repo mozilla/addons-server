@@ -40,7 +40,6 @@ from reviews.models import Review, GroupedRating
 from sharing.views import share as share_redirect
 from stats.models import Contribution
 from translations.query import order_by_translation
-from translations.helpers import truncate
 from versions.models import Version
 from .models import Addon, Persona, FrozenAddon
 from .forms import NewPersonaForm
@@ -680,8 +679,7 @@ def paypal_result(request, addon, status):
 @addon_view
 def share(request, addon):
     """Add-on sharing"""
-    return share_redirect(request, addon, name=addon.name,
-                          description=truncate(addon.summary, length=250))
+    return share_redirect(request, addon, addon.name, addon.summary)
 
 
 @addon_view

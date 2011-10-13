@@ -8,8 +8,9 @@ from amo.utils import paginate
 import addons.views
 import search.views
 
-from addons.models import Addon, Category
+from addons.models import Category
 from browse.views import addon_listing, category_landing, CategoryLandingFilter
+from sharing.views import share as share_redirect
 from .models import Webapp
 
 TYPE = amo.ADDON_WEBAPP
@@ -66,3 +67,8 @@ def app_detail(request, app_slug):
     # TODO: check status.
     webapp = get_object_or_404(Webapp, app_slug=app_slug)
     return addons.views.extension_detail(request, webapp)
+
+
+def share(request, app_slug):
+    webapp = get_object_or_404(Webapp, app_slug=app_slug)
+    return share_redirect(request, webapp, webapp.name, webapp.summary)

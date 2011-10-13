@@ -82,6 +82,9 @@ class Webapp(Addon):
     def can_be_purchased(self):
         return self.is_premium()
 
+    def share_url(self):
+        return reverse('apps.share', args=[self.app_slug])
+
 
 # Pull all translated_fields from Addon over to Webapp.
 Webapp._meta.translated_fields = Addon._meta.translated_fields
