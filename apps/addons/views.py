@@ -709,7 +709,7 @@ def report_abuse(request, addon):
     if request.method == "POST" and form.is_valid():
         send_abuse_report(request, addon, form.cleaned_data['text'])
         messages.success(request, _('Abuse reported.'))
-        return redirect('addons.detail', addon.slug)
+        return redirect(addon.get_url_path())
     else:
         return jingo.render(request, 'addons/report_abuse_full.html',
                             {'addon': addon, 'abuse_form': form, })
