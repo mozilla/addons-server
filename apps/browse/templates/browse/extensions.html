@@ -16,9 +16,7 @@
     <div class="items">
       {{ impala_addon_listing_items(addons.object_list, sorting, src=src) }}
     </div>
-    {% if sorting != 'featured' %}
-      {{ addons|impala_paginator }}
-    {% endif %}
+    {{ addons|impala_paginator }}
   </div>
 </section>
 {% endblock %}
