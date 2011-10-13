@@ -767,6 +767,9 @@ FETCH_BY_ID = True
 # it's not possible to invalidate these queries.
 CACHE_COUNT_TIMEOUT = 60
 
+# To enable pylibmc compression (in bytes)
+PYLIBMC_MIN_COMPRESS_LEN = 0  # disabled
+
 # External tools.
 SPHINX_INDEXER = 'indexer'
 SPHINX_SEARCHD = 'searchd'
