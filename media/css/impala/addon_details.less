@@ -298,6 +298,10 @@
     margin: 2em 0;
     padding: 30px 5%;
     li a {
+        .transition-duration(0.3s);
+        .transition-property(~'top, border-color, -moz-box-shadow');
+        .box-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
+        border: 1px solid #ccc;
         display: block;
         margin: 0 auto;
         text-align: center;
@@ -305,7 +309,13 @@
         width: 200px;
         background: #fff;
         padding: 5px;
-        border: 1px solid #ccc;
+        position: relative;
+        top: 0;
+        &:hover {
+            border-color: @link;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+            top: -4px;
+        }
         img {
             display: inline-block;
             vertical-align: middle;
