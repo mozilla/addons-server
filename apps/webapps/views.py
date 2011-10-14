@@ -46,7 +46,7 @@ def app_list(request, category=None):
         return category_landing(request, category, TYPE,
                                 AppCategoryLandingFilter)
 
-    addons, filter = addon_listing(request, [TYPE], is_impala=True)
+    addons, filter = addon_listing(request, [TYPE])
     sorting = filter.field
     src = 'cb-btn-%s' % sorting
     dl_src = 'cb-dl-%s' % sorting

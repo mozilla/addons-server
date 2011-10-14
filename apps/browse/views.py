@@ -50,20 +50,22 @@ Locale = collections.namedtuple('Locale', 'locale display native dicts packs')
 
 
 class AddonFilter(BaseFilter):
-    opts = (('name', _lazy(u'Name')),
-            ('updated', _lazy(u'Updated')),
-            ('created', _lazy(u'Created')),
-            ('popular', _lazy(u'Downloads')),
-            ('users', _lazy(u'Users')),
-            ('rating', _lazy(u'Rating')))
-
-
-class ImpalaAddonFilter(AddonFilter):
     opts = (('featured', _lazy(u'Featured')),
             ('users', _lazy(u'Most Users')),
             ('rating', _lazy(u'Top Rated')),
             ('created', _lazy(u'Newest')))
     extras = (('name', _lazy(u'Name')),
+              ('popular', _lazy(u'Weekly Downloads')),
+              ('updated', _lazy(u'Recently Updated')),
+              ('hotness', _lazy(u'Up & Coming')))
+
+
+class ThemeFilter(AddonFilter):
+    opts = (('users', _lazy(u'Most Users')),
+            ('rating', _lazy(u'Top Rated')),
+            ('created', _lazy(u'Newest')))
+    extras = (('name', _lazy(u'Name')),
+              ('featured', _lazy(u'Featured')),
               ('popular', _lazy(u'Weekly Downloads')),
               ('updated', _lazy(u'Recently Updated')),
               ('hotness', _lazy(u'Up & Coming')))
@@ -83,23 +85,19 @@ class ESAddonFilter(ESBaseFilter):
     opts = AddonFilter.opts
 
 
-def addon_listing(request, addon_types, Filter=AddonFilter, default='popular',
-                  is_impala=False):
+def addon_listing(request, addon_types, filter_=AddonFilter,
+                  default='popular'):
     # Set up the queryset and filtering for themes & extension listing pages.
     status = [amo.STATUS_PUBLIC, amo.STATUS_LITE,
               amo.STATUS_LITE_AND_NOMINATED]
 
-    if is_impala:
-        if addon_types == [amo.ADDON_WEBAPP]:
-            Filter = AppFilter
-        else:
-            Filter = ImpalaAddonFilter
-        default = 'featured'
+    if filter_ == AddonFilter and addon_types == [amo.ADDON_WEBAPP]:
+        filter_ = AppFilter
 
     qs = (Addon.objects.listed(request.APP, *status)
           .filter(type__in=addon_types))
 
-    filter = Filter(request, qs, 'sort', default)
+    filter = filter_(request, qs, 'sort', default)
     return filter.qs, filter
 
 
@@ -160,7 +158,8 @@ def themes(request, category=None):
         q = Category.objects.filter(application=request.APP.id, type=TYPE)
         category = get_object_or_404(q, slug=category)
 
-    addons, filter = addon_listing(request, [TYPE], is_impala=True)
+    addons, filter = addon_listing(request, [TYPE], default='users',
+                                   filter_=ThemeFilter)
     sorting = filter.field
     src = 'cb-btn-%s' % sorting
     dl_src = 'cb-dl-%s' % sorting
@@ -187,7 +186,7 @@ def extensions(request, category=None, template=None):
     if not sort and not request.MOBILE and category and category.count > 4:
         return category_landing(request, category)
 
-    addons, filter = addon_listing(request, [TYPE], is_impala=True)
+    addons, filter = addon_listing(request, [TYPE], default='featured')
     sorting = filter.field
     src = 'cb-btn-%s' % sorting
     dl_src = 'cb-dl-%s' % sorting

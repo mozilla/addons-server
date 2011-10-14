@@ -26,7 +26,7 @@ from addons.utils import FeaturedManager
 from applications.models import Application
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from browse import views, feeds
-from browse.views import locale_display_name, ImpalaAddonFilter
+from browse.views import locale_display_name, AddonFilter, ThemeFilter
 from translations.models import Translation
 from translations.query import order_by_translation
 from versions.models import Version
@@ -313,7 +313,7 @@ class TestThemes(amo.tests.TestCase):
     def test_default_sort(self):
         """Default sort should be by featured."""
         response = self.client.get(self.url)
-        eq_(response.context['sorting'], 'featured')
+        eq_(response.context['sorting'], 'users')
 
     def test_unreviewed(self):
         pop = urlparams(self.url, sort='popular')
@@ -325,30 +325,41 @@ class TestThemes(amo.tests.TestCase):
         response = self.client.get(pop)
         eq_(len(response.context['addons'].object_list), 2)
 
-    def _get_sort(self, sort):
-        response = self.client.get(urlparams(self.url, sort=sort))
-        eq_(response.context['sorting'], sort)
-        return [a.id for a in response.context['addons'].object_list]
+    def _get_sort(self, sort, key=None, reverse=False, sel_class='opt'):
+        r = self.client.get(urlparams(self.url, sort=sort))
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), sel_class)
+        eq_(r.context['sorting'], sort)
+        a = r.context['addons'].object_list
+        ids = list(a)
+        eq_(ids, sorted(a, key=lambda x: getattr(x, key), reverse=reverse))
 
-    def test_download_sort(self):
-        ids = self._get_sort('popular')
-        eq_(ids, [3615, 6704])
-
-    def test_name_sort(self):
-        ids = self._get_sort('name')
-        eq_(ids, [3615, 6704])
-
-    def test_created_sort(self):
-        ids = self._get_sort('created')
-        eq_(ids, [6704, 3615])
-
-    def test_updated_sort(self):
-        ids = self._get_sort('updated')
-        eq_(ids, [6704, 3615])
+    def test_users_sort(self):
+        ids = self._get_sort('users', 'average_daily_users', reverse=True)
 
     def test_rating_sort(self):
-        ids = self._get_sort('rating')
-        eq_(ids, [6704, 3615])
+        ids = self._get_sort('rating', 'bayesian_rating', reverse=True)
+
+    def test_newest_sort(self):
+        ids = self._get_sort('created', 'created', reverse=True)
+
+    def test_name_sort(self):
+        ids = self._get_sort('name', 'name', sel_class='extra-opt')
+
+    def test_featured_sort(self):
+        ids = self._get_sort('featured', sel_class='extra-opt')
+
+    def test_downloads_sort(self):
+        ids = self._get_sort('popular', 'weekly_downloads', reverse=True,
+                             sel_class='extra-opt')
+
+    def test_updated_sort(self):
+        ids = self._get_sort('updated', 'last_updated', reverse=True,
+                             sel_class='extra-opt')
+
+    def test_hotness_sort(self):
+        ids = self._get_sort('hotness', 'hotness', reverse=True,
+                             sel_class='extra-opt')
 
     def test_category_sidebar(self):
         c = Category.objects.filter(weight__gte=0).values_list('id', flat=True)
@@ -454,7 +465,7 @@ class TestFeeds(amo.tests.TestCase):
         self.reset_featured_addons()
         self.url = reverse('browse.extensions')
         self.rss_url = reverse('browse.extensions.rss')
-        self.filter = ImpalaAddonFilter
+        self.filter = AddonFilter
 
     def _check_feed(self, browse_url, rss_url, sort='featured'):
         """

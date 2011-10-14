@@ -456,7 +456,7 @@ def _side_nav(context, addon_type, cat):
     else:
         popular = 'users'
     ctx = dict(request=request, base_url=base_url, categories=categories,
-               addon_type=addon_type, popular=popular)
+               addon_type=addon_type, popular=popular, amo=amo)
     return jinja2.Markup(env.get_template('amo/side_nav.html').render(ctx))
 
 
