@@ -20,7 +20,8 @@ from amo import helpers
 from amo.tests import TestCase
 from amo.urlresolvers import reverse
 from addons.cron import reset_featured_addons
-from addons.models import (Addon, AppSupport, Feature, Preview)
+from addons.models import (Addon, AppSupport, CompatOverride,
+                           CompatOverrideRange, Feature, Preview)
 from addons.utils import FeaturedManager
 from applications.models import Application
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
@@ -619,11 +620,21 @@ class SeamonkeyFeaturedTest(TestCase):
 class TestGuidSearch(TestCase):
     fixtures = ('base/apps', 'base/addon_6113', 'base/addon_3615')
 
+    def setUp(self):
+        addon = Addon.objects.get(id=3615)
+        c = CompatOverride.objects.create(guid=addon.guid)
+        app = addon.compatible_apps.keys()[0]
+        CompatOverrideRange.objects.create(compat=c, app_id=app.id)
+
     def test_success(self):
         r = make_call('search/guid:{22870005-adef-4c9d-ae36-d0e1f2f27e5a},'
                       '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}')
+        dom = pq(r.content)
         eq_(set(['3615', '6113']),
-            set([a.attrib['id'] for a in pq(r.content)('addon')]))
+            set([a.attrib['id'] for a in dom('addon')]))
+
+        # Make sure the <addon_compatibility> blocks are there.
+        eq_(['3615'], [a.attrib['id'] for a in dom('addon_compatibility')])
 
     def test_block_inactive(self):
         Addon.objects.filter(id=6113).update(disabled_by_user=True)
@@ -649,6 +660,46 @@ class TestGuidSearch(TestCase):
         # No addons should exist with guid koberger and the , should not
         # indicate that we are searching for null guid.
         eq_(len(doc('addon')), 0)
+
+    def test_addon_compatibility(self):
+        addon = Addon.objects.get(id=3615)
+        r = make_call('search/guid:%s' % addon.guid)
+        dom = pq(r.content)
+        eq_(len(dom('addon_compatibility')), 1)
+        eq_(dom('addon_compatibility')[0].attrib['id'], '3615')
+        eq_(dom('addon_compatibility')[0].attrib['hosted'], 'true')
+
+        eq_(dom('addon_compatibility guid').text(), addon.guid)
+        eq_(dom('addon_compatibility > name').text(), '')
+
+        eq_(dom('addon_compatibility version_ranges version_range '
+                'compatible_applications application appID').text(),
+            amo.FIREFOX.guid)
+
+    def test_addon_compatibility_not_hosted(self):
+        c = CompatOverride.objects.create(guid='yeah', name='ok')
+        CompatOverrideRange.objects.create(app_id=1, compat=c,
+                                           min_version='1', max_version='2',
+                                           min_app_version='3',
+                                           max_app_version='4')
+
+        r = make_call('search/guid:%s' % c.guid)
+        dom = pq(r.content)
+        eq_(len(dom('addon_compatibility')), 1)
+        eq_(dom('addon_compatibility')[0].attrib['hosted'], 'false')
+        assert 'id' not in dom('addon_compatibility')[0].attrib
+
+        eq_(dom('addon_compatibility guid').text(), c.guid)
+        eq_(dom('addon_compatibility > name').text(), c.name)
+
+        cr = c.compat_ranges[0]
+        eq_(dom('version_range > min_version').text(), cr.min_version)
+        eq_(dom('version_range > max_version').text(), cr.max_version)
+        eq_(dom('application name').text(), amo.FIREFOX.pretty)
+        eq_(dom('application application_id').text(), str(amo.FIREFOX.id))
+        eq_(dom('application appID').text(), amo.FIREFOX.guid)
+        eq_(dom('application min_version').text(), cr.min_app_version)
+        eq_(dom('application max_version').text(), cr.max_app_version)
 
 
 class SearchTest(SphinxTestCase):

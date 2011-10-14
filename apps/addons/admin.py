@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Addon, BlacklistedGuid, Feature, Category, FrozenAddon
+from . import models
 
 
 class AddonAdmin(admin.ModelAdmin):
@@ -59,8 +59,19 @@ class FrozenAddonAdmin(admin.ModelAdmin):
     raw_id_fields = ('addon',)
 
 
-admin.site.register(BlacklistedGuid)
-admin.site.register(Feature, FeatureAdmin)
-admin.site.register(Addon, AddonAdmin)
-admin.site.register(Category, CategoryAdmin)
-admin.site.register(FrozenAddon, FrozenAddonAdmin)
+class CompatOverrideRangeInline(admin.TabularInline):
+    model = models.CompatOverrideRange
+
+
+class CompatOverrideAdmin(admin.ModelAdmin):
+    raw_id_fields = ('addon',)
+    inlines = [CompatOverrideRangeInline]
+
+
+admin.site.register(models.BlacklistedGuid)
+admin.site.register(models.Feature, FeatureAdmin)
+admin.site.register(models.Addon, AddonAdmin)
+admin.site.register(models.Category, CategoryAdmin)
+admin.site.register(models.FrozenAddon, FrozenAddonAdmin)
+admin.site.register(models.CompatOverride, CompatOverrideAdmin)
+admin.site.register(models.CompatOverrideRange)

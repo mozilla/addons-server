@@ -1531,6 +1531,90 @@ class AddonUpsell(amo.models.ModelBase):
         return u'Free: %s to Premium: %s' % (self.free, self.premium)
 
 
+class CompatOverride(amo.models.ModelBase):
+    """Helps manage compat info for add-ons not hosted on AMO."""
+    name = models.CharField(max_length=255, blank=True, null=True)
+    guid = models.CharField(max_length=255, unique=True)
+    addon = models.ForeignKey(Addon, blank=True, null=True,
+                              help_text='Fill this out to link an override '
+                                        'to a hosted add-on')
+
+    class Meta:
+        db_table = 'compat_override'
+
+    def save(self, *args, **kw):
+        if not self.addon:
+            qs = Addon.objects.filter(guid=self.guid)
+            if qs:
+                self.addon = qs[0]
+        return super(CompatOverride, self).save(*args, **kw)
+
+    def __unicode__(self):
+        if self.addon:
+            return unicode(self.addon)
+        elif self.name:
+            return '%s (%s)' % (self.name, self.guid)
+        else:
+            return self.guid
+
+    def is_hosted(self):
+        """Am I talking about an add-on on AMO?"""
+        return bool(self.addon_id)
+
+    @staticmethod
+    def transformer(overrides):
+        if not overrides:
+            return
+
+        id_map = dict((o.id, o) for o in overrides)
+        qs = CompatOverrideRange.objects.filter(compat__in=id_map)
+
+        for compat_id, ranges in sorted_groupby(qs, 'compat_id'):
+            id_map[compat_id].compat_ranges = list(ranges)
+
+    # May be filled in by a transformer for performance.
+    @amo.cached_property(writable=True)
+    def compat_ranges(self):
+        return list(self._compat_ranges.all())
+
+    def collapsed_ranges(self):
+        """Collapse identical version ranges into one entity."""
+        Range = collections.namedtuple('Range', 'type min max apps')
+        AppRange = collections.namedtuple('AppRange', 'app min max')
+        rv = []
+        sort_key = lambda x: (x.min_version, x.max_version)
+        for key, compats in sorted_groupby(self.compat_ranges, key=sort_key):
+            compats = list(compats)
+            first = compats[0]
+            item = Range(first.type, first.min_version, first.max_version, [])
+            for compat in compats:
+                app = AppRange(amo.APP_IDS[compat.app_id],
+                               compat.min_app_version, compat.max_app_version)
+                item.apps.append(app)
+            rv.append(item)
+        return rv
+
+
+OVERRIDE_TYPES = (
+    (0, 'Compatible (not supported)'),
+    (1, 'Incompatible'),
+)
+
+
+class CompatOverrideRange(amo.models.ModelBase):
+    """App compatibility for a certain version range of a RemoteAddon."""
+    compat = models.ForeignKey(CompatOverride, related_name='_compat_ranges')
+    type = models.SmallIntegerField(choices=OVERRIDE_TYPES, default=1)
+    min_version = models.CharField(max_length=255, blank=True, default='*')
+    max_version = models.CharField(max_length=255, blank=True, default='*')
+    app = models.ForeignKey('applications.Application')
+    min_app_version = models.CharField(max_length=255, blank=True, default='*')
+    max_app_version = models.CharField(max_length=255, blank=True, default='*')
+
+    class Meta:
+        db_table = 'compat_override_range'
+
+
 # webapps.models imports addons.models to get Addon, so we need to keep the
 # Webapp import down here.
 from webapps.models import Webapp
