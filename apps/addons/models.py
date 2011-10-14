@@ -1582,11 +1582,12 @@ class CompatOverride(amo.models.ModelBase):
         Range = collections.namedtuple('Range', 'type min max apps')
         AppRange = collections.namedtuple('AppRange', 'app min max')
         rv = []
-        sort_key = lambda x: (x.min_version, x.max_version)
+        sort_key = lambda x: (x.min_version, x.max_version, x.type)
         for key, compats in sorted_groupby(self.compat_ranges, key=sort_key):
             compats = list(compats)
             first = compats[0]
-            item = Range(first.type, first.min_version, first.max_version, [])
+            item = Range(first.override_type(), first.min_version,
+                         first.max_version, [])
             for compat in compats:
                 app = AppRange(amo.APP_IDS[compat.app_id],
                                compat.min_app_version, compat.max_app_version)
@@ -1613,6 +1614,10 @@ class CompatOverrideRange(amo.models.ModelBase):
 
     class Meta:
         db_table = 'compat_override_range'
+
+    def override_type(self):
+        """This is what Firefox wants to see in the XML output."""
+        return {0: 'compatible', 1: 'incompatible'}[self.type]
 
 
 # webapps.models imports addons.models to get Addon, so we need to keep the

@@ -6,7 +6,7 @@
     <name>{{ c.name }}</name>
     <version_ranges>
       {% for vr in c.collapsed_ranges() %}
-        <version_range>
+        <version_range type="{{ vr.type }}">
           <min_version>{{ vr.min }}</min_version>
           <max_version>{{ vr.max }}</max_version>
           <compatible_applications>

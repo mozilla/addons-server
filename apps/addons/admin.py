@@ -61,6 +61,8 @@ class FrozenAddonAdmin(admin.ModelAdmin):
 
 class CompatOverrideRangeInline(admin.TabularInline):
     model = models.CompatOverrideRange
+    # Exclude type since firefox only supports blocking right now.
+    exclude = ('type',)
 
 
 class CompatOverrideAdmin(admin.ModelAdmin):

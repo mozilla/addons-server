@@ -693,6 +693,7 @@ class TestGuidSearch(TestCase):
         eq_(dom('addon_compatibility > name').text(), c.name)
 
         cr = c.compat_ranges[0]
+        eq_(dom('version_range')[0].attrib['type'], cr.override_type())
         eq_(dom('version_range > min_version').text(), cr.min_version)
         eq_(dom('version_range > max_version').text(), cr.max_version)
         eq_(dom('application name').text(), amo.FIREFOX.pretty)

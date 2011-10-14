@@ -1775,6 +1775,16 @@ class TestCompatOverride(amo.tests.TestCase):
         c = CompatOverride.objects.create(guid='b')
         assert c.is_hosted()
 
+    def test_override_type(self):
+        one = CompatOverride.objects.get(guid='one')
+
+        # The default is incompatible.
+        c = CompatOverrideRange.objects.create(compat=one, app_id=1)
+        eq_(c.override_type(), 'incompatible')
+
+        c = CompatOverrideRange.objects.create(compat=one, app_id=1, type=0)
+        eq_(c.override_type(), 'compatible')
+
     def test_guid_match(self):
         # We hook up the add-on automatically if we see a matching guid.
         addon = Addon.objects.create(id=1, guid='oh yeah', type=1)
@@ -1801,7 +1811,7 @@ class TestCompatOverride(amo.tests.TestCase):
 
         eq_(len(r), 1)
         compat_range = r[0]
-        self.check(compat_range, type=1, min='*', max='*')
+        self.check(compat_range, type='incompatible', min='*', max='*')
 
         eq_(len(compat_range.apps), 1)
         self.check(compat_range.apps[0], app=amo.FIREFOX, min='*', max='*')
@@ -1816,13 +1826,32 @@ class TestCompatOverride(amo.tests.TestCase):
 
         eq_(len(r), 2)
 
-        self.check(r[0], type=1, min='*', max='*')
+        self.check(r[0], type='incompatible', min='*', max='*')
         eq_(len(r[0].apps), 1)
         self.check(r[0].apps[0], app=amo.FIREFOX, min='*', max='*')
 
-        self.check(r[1], type=1, min='1', max='2')
+        self.check(r[1], type='incompatible', min='1', max='2')
         eq_(len(r[1].apps), 1)
         self.check(r[1].apps[0], app=amo.FIREFOX, min='3', max='3.*')
+
+    def test_collapsed_ranges_different_types(self):
+        # If the override ranges have different types they should be separate
+        # entries.
+        c = CompatOverride.objects.get(guid='one')
+        CompatOverrideRange.objects.create(compat=c, app_id=1, type=0,
+                                           min_app_version='3',
+                                           max_app_version='3.*')
+        r = c.collapsed_ranges()
+
+        eq_(len(r), 2)
+
+        self.check(r[0], type='compatible', min='*', max='*')
+        eq_(len(r[0].apps), 1)
+        self.check(r[0].apps[0], app=amo.FIREFOX, min='3', max='3.*')
+
+        self.check(r[1], type='incompatible', min='*', max='*')
+        eq_(len(r[1].apps), 1)
+        self.check(r[1].apps[0], app=amo.FIREFOX, min='*', max='*')
 
     def test_collapsed_ranges_multiple_apps(self):
         c = CompatOverride.objects.get(guid='two')
@@ -1830,7 +1859,19 @@ class TestCompatOverride(amo.tests.TestCase):
 
         eq_(len(r), 1)
         compat_range = r[0]
-        self.check(compat_range, type=1, min='1', max='2')
+        self.check(compat_range, type='incompatible', min='1', max='2')
+
+        eq_(len(compat_range.apps), 2)
+        self.check(compat_range.apps[0], app=amo.FIREFOX, min='*', max='*')
+        self.check(compat_range.apps[1], app=amo.FIREFOX, min='3', max='4')
+
+    def test_collapsed_ranges_multiple_apps(self):
+        c = CompatOverride.objects.get(guid='two')
+        r = c.collapsed_ranges()
+
+        eq_(len(r), 1)
+        compat_range = r[0]
+        self.check(compat_range, type='incompatible', min='1', max='2')
 
         eq_(len(compat_range.apps), 2)
         self.check(compat_range.apps[0], app=amo.FIREFOX, min='*', max='*')
@@ -1843,12 +1884,12 @@ class TestCompatOverride(amo.tests.TestCase):
         r = c.collapsed_ranges()
 
         eq_(len(r), 2)
-        self.check(r[0], type=1, min='1', max='2')
+        self.check(r[0], type='incompatible', min='1', max='2')
 
         eq_(len(r[0].apps), 2)
         self.check(r[0].apps[0], app=amo.FIREFOX, min='*', max='*')
         self.check(r[0].apps[1], app=amo.FIREFOX, min='3', max='4')
 
-        self.check(r[1], type=1, min='5', max='6')
+        self.check(r[1], type='incompatible', min='5', max='6')
         eq_(len(r[1].apps), 1)
         self.check(r[1].apps[0], app=amo.FIREFOX, min='*', max='*')
