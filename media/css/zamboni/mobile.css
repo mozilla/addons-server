@@ -193,6 +193,10 @@ html {
 table {
     width: 100%;
 }
+table th,
+table td {
+    vertical-align: top;
+}
 table th {
     text-align: right;
     padding: 0 8px 8px 0;
@@ -901,7 +905,10 @@ a.listview:before {
 
 td .versions li a {
     display: block;
-    padding: 4px 0;
+    margin: 0 0 8px;
+}
+td .versions li:last-child a {
+    margin: 0;
 }
 
 .author,
@@ -1367,6 +1374,7 @@ li.persona-previewer {
 .badges .warning {
     background-color: #fef9d7;
     border-color: #bebaa1;
+    cursor: pointer;
 }
 .install .privacy-policy {
     display: block;

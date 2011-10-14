@@ -21,7 +21,7 @@ import waffle
 
 import amo
 import amo.tests
-from amo.helpers import absolutify
+from amo.helpers import absolutify, numberfmt
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from abuse.models import AbuseReport
@@ -915,6 +915,11 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         self.url = self.addon.get_url_path()
         self.more_url = self.addon.get_url_path(more=True)
 
+    def test_adu(self):
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('#daily-users').text().split()[0],
+            numberfmt(self.addon.average_daily_users))
+
     def test_perf_warning(self):
         eq_(self.addon.ts_slowness, None)
         doc = pq(self.client.get(self.url).content)
@@ -1385,6 +1390,10 @@ class TestMobileDetails(TestMobile):
         eq_(relnotes.attr('href'), version_url)
         self.client.get(version_url, follow=True)
         eq_(r.status_code, 200)
+
+    def test_extension_adu(self):
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('.adu td').text(), numberfmt(self.ext.average_daily_users))
 
     def test_button_caching(self):
         """The button popups should be cached for a long time."""
