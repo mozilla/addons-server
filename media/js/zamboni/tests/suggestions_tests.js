@@ -36,7 +36,7 @@ module('Search Suggestions', {
         var self = this,
             $input = self.input,
             $results = self.results,
-            query = 'xxx';
+            query = '<script>alert("xss")</script>';
         self.mockRequest();
         if (fail) {
             var inputIgnored = false;
@@ -53,8 +53,12 @@ module('Search Suggestions', {
         } else {
             self.sandbox.bind('resultsUpdated', function(e, items) {
                 tests.equalObjects(items, self.jsonResults);
-                equal($results.find('.wrap p a.sel b').text(),
-                      '"' + query + '"');
+                // Browser unescapes escaped apostrophes and quotation marks.
+                // If you can explain why, please contact cvan.
+                var expected = escape_(query).replace(/&#39;/g, "'")
+                                             .replace(/&#34;/g, '"');
+                equal($results.find('.wrap p a.sel b').html(),
+                      '"' + expected + '"');
                 start();
             });
         }

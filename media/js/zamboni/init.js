@@ -112,8 +112,8 @@ jQuery.fn.hasattr = function(name) {
 
 
 var escape_ = function(s){
-    return s.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;')
-            .replace("'", '&#39;').replace('"', '&#34;');
+    return s.replace(/&/g, '&amp;').replace(/>/g, '&gt;').replace(/</g, '&lt;')
+            .replace(/'/g, '&#39;').replace(/"/g, '&#34;');
 };
 
 //TODO(potch): kill underscore dead. until then, fake it on mobile.

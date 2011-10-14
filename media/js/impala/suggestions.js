@@ -90,7 +90,7 @@ $.fn.searchSuggestions = function(results) {
     }
 
     function inputHandler(e) {
-        var val = $self.val();
+        var val = escape_($self.val());
         if (val.length < 3) {
             $results.filter('.visible').removeClass('visible');
             return;
@@ -114,17 +114,17 @@ $.fn.searchSuggestions = function(results) {
                     if (items !== undefined) {
                         var ul = '';
                         $.each(items, function(i, item) {
-                            var d = {url: item.url || '#', icon: '', cls: ''};
+                            var d = {url: escape_(item.url) || '#', icon: '', cls: ''};
                             if (item.icon) {
                                 d.icon = format(
                                     'style="background-image:url({0})"',
-                                    item.icon);
+                                    escape_(item.icon));
                             }
                             if (item.cls) {
-                                d.cls = format('class="{0}"', item.cls);
+                                d.cls = format('class="{0}"', escape_(item.cls));
                             }
                             if (item.name) {
-                                d.name = item.name;
+                                d.name = escape_(item.name);
                                 ul += li_item(d);
                             }
                         });
