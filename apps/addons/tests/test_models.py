@@ -1767,6 +1767,14 @@ class TestCompatOverride(amo.tests.TestCase):
             actual = getattr(obj, key)
             eq_(actual, expected, '[%s] %r != %r' % (key, actual, expected))
 
+    def test_is_hosted(self):
+        c = CompatOverride.objects.create(guid='a')
+        assert not c.is_hosted()
+
+        a = Addon.objects.create(type=1, guid='b')
+        c = CompatOverride.objects.create(guid='b')
+        assert c.is_hosted()
+
     def test_guid_match(self):
         # We hook up the add-on automatically if we see a matching guid.
         addon = Addon.objects.create(id=1, guid='oh yeah', type=1)

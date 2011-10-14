@@ -21,9 +21,9 @@ from api.utils import addon_to_dict
 from amo.models import manual_order
 from amo.urlresolvers import get_url_prefix
 from amo.utils import JSONEncoder
-from addons.models import Addon
+from addons.models import Addon, CompatOverride
 from search.client import (Client as SearchClient, SearchError,
-                           extract_from_query, SEARCHABLE_STATUSES)
+                           SEARCHABLE_STATUSES)
 from search import utils as search_utils
 
 ERROR = 'error'
@@ -204,8 +204,11 @@ def guid_search(request, api_version, guids):
     guids = [g.strip() for g in guids.split(',')] if guids else []
     results = Addon.objects.filter(guid__in=guids, disabled_by_user=False,
                                    status__in=SEARCHABLE_STATUSES)
+    compat = (CompatOverride.objects.filter(guid__in=guids)
+              .transform(CompatOverride.transformer))
     return render_xml(request, 'api/search.xml',
                       {'results': results, 'total': len(results),
+                       'compat': compat,
                        'api_version': api_version, 'api': api})
 
 

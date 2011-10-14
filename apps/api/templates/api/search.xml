@@ -3,4 +3,5 @@
   {% for addon in results -%}
   {% include 'api/includes/addon.xml' -%}
   {% endfor %}
+  {% if compat %}{% include 'api/compat.xml' %}{% endif %}
 </searchresults>
