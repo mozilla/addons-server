@@ -70,14 +70,14 @@
         <th>{{ _('Downloads', 'list_sortby_downloads') }}</th>
         <td>{{ addon.total_downloads|numberfmt }}</td>
       </tr>
-      {% set version = addon.current_version %}
+      {% set version = addon.current_version if not addon.is_webapp() else None %}
       {% if version %}
         <tr>
           <th>{{ _('Version') }}</th>
           <td>
             <ul class="versions">
               <li>
-                <a href="{{ url('addons.versions', addon.slug, version.version) }}">
+                <a href="{{ version.get_url_path() }}">
                   {# L10n: {0} is a version number. #}
                   {{ _('{0} (Release Notes)')|f(version.version) }}</a>
               </li>

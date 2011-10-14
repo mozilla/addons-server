@@ -96,7 +96,9 @@ a:link {
 .num_ratings,
 .review .old-version,
 .install-wrapper,
-.install-wrapper a {
+.install-wrapper a,
+table,
+table a:link {
     font-family: "Droid Sans", sans-serif;
 }
 #content h2,
@@ -190,7 +192,6 @@ html {
 
 table {
     width: 100%;
-    font-family: Helvetica, "Droid Sans", sans-serif;
 }
 table th {
     text-align: right;

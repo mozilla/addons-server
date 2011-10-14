@@ -9,8 +9,7 @@ from webapps.models import Webapp
 class WebappTest(amo.tests.TestCase):
 
     def setUp(self):
-        self.webapp = Webapp(name='woo', app_slug='yeah')
-        self.webapp.save()
+        self.webapp = Webapp.objects.create(name='woo', app_slug='yeah')
         self.url = self.webapp.get_url_path()
 
 
@@ -50,3 +49,15 @@ class TestDetail(WebappTest):
         response = self.client.get_ajax(self.webapp.get_url_path(more=True))
         eq_(pq(response.content)('#reviews h3').remove('a').text(),
             'This app has not yet been reviewed.')
+
+
+class TestMobileDetail(amo.tests.MobileTest, WebappTest):
+
+    def test_page(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'addons/mobile/details.html')
+
+    def test_no_release_notes(self):
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('.versions').length, 0)

@@ -1353,14 +1353,19 @@ class TestMobileHome(TestMobile):
 class TestMobileDetails(TestMobile):
     fixtures = TestMobile.fixtures + ['base/featured']
 
+    def setUp(self):
+        super(TestMobileDetails, self).setUp()
+        self.ext = Addon.objects.get(id=3615)
+        self.url = reverse('addons.detail', args=[self.ext.slug])
+
     def test_extension(self):
-        r = self.client.get(reverse('addons.detail', args=['a3615']))
+        r = self.client.get(self.url)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'addons/mobile/details.html')
 
     def test_persona(self):
-        addon = Addon.objects.get(id=15679)
-        r = self.client.get(addon.get_url_path())
+        persona = Addon.objects.get(id=15679)
+        r = self.client.get(persona.get_url_path())
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'addons/mobile/persona_detail.html')
         assert 'review_form' not in r.context
@@ -1371,13 +1376,14 @@ class TestMobileDetails(TestMobile):
         r = self.client.get('/en-US/mobile/addon/15679/')
         eq_(r.status_code, 200)
 
-    def test_release_notes(self):
-        a = Addon.objects.get(id=3615)
-        r = self.client.get(reverse('addons.detail', args=['a3615']))
+    def test_extension_release_notes(self):
+        r = self.client.get(self.url)
         relnotes = pq(r.content)('.versions li:first-child > a')
-        eq_(relnotes.text(), '%s (Release Notes)' % a.current_version.version)
-
-        self.client.get(relnotes.attr('href'), follow=True)
+        assert relnotes.text().startswith(self.ext.current_version.version), (
+            'Version number missing')
+        version_url = self.ext.current_version.get_url_path()
+        eq_(relnotes.attr('href'), version_url)
+        self.client.get(version_url, follow=True)
         eq_(r.status_code, 200)
 
     def test_button_caching(self):
