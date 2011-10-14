@@ -79,6 +79,9 @@ class Webapp(Addon):
     def is_unreviewed(self):
         return False
 
+    def can_be_purchased(self):
+        return self.is_premium()
+
 
 # Pull all translated_fields from Addon over to Webapp.
 Webapp._meta.translated_fields = Addon._meta.translated_fields

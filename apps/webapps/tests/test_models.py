@@ -55,6 +55,10 @@ class TestWebapp(test_utils.TestCase):
     def test_reviewed(self):
         assert not Webapp().is_unreviewed()
 
+    def can_be_purchased(self):
+        assert Webapp(premium_type=True).can_be_purchased()
+        assert not Webapp(premium_type=False).can_be_purchased()
+
 
 class TestManifest(BaseWebAppTest):
 

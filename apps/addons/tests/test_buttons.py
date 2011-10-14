@@ -583,6 +583,13 @@ class TestButtonHtml(ButtonTest):
         assert not doc('.warning')
         eq_(doc('.webapp .button').attr('href'), '#')
 
+    def test_webapp_purchasable(self):
+        self.addon.is_webapp.return_value = True
+        self.addon.can_be_purchased.return_value = True
+        self.addon.update(status=1)
+        doc = self.render(impala=True)
+        assert doc('.webapp').hasClass('premium')
+
 
 class TestPremiumWebapp(ButtonTest):
 
