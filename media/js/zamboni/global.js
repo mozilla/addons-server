@@ -308,13 +308,13 @@ $.fn.modal = function(click_target, o) {
 
         $modal.detach().appendTo("body");
         var toX = ($(window).width() - $modal.outerWidth()) / 2,
-            toY = ($(window).height() - $modal.outerHeight()) / 2;
+            toY = $(window).scrollTop() + 26; //distance from top of the window
         $modal.css({
             'left': toX,
-            'top': toY,
+            'top': toY + 'px',
             'right': 'inherit',
             'bottom': 'inherit',
-            'position': 'fixed'
+            'position': 'absolute'
         });
         return $modal;
     };
