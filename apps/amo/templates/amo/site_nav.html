@@ -1,6 +1,6 @@
 {% set extras = (
     ('featured', _('Featured')),
-    ('popular', _('Most Popular')),
+    ('users', _('Most Popular')),
     ('rating', _('Top Rated')),
 ) %}
 
@@ -23,7 +23,12 @@
     {{ section('extensions', _('Extensions'), url('browse.extensions'), extras, extensions) }}
     {{ section('personas', _('Personas'), url('browse.personas'), extras, personas) }}
     {% if themes %}
-      {{ section('themes', _('Themes'), url('browse.themes'), extras, themes) }}
+      {% set theme_extras = (
+          ('users', _('Most Popular')),
+          ('rating', _('Top Rated')),
+          ('created', _('Newest')),
+      ) %}
+      {{ section('themes', _('Themes'), url('browse.themes'), theme_extras, themes) }}
     {% endif %}
     {% set collection_extras = (
         ('featured', _('Featured')),
