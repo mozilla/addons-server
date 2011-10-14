@@ -576,6 +576,13 @@ class TestButtonHtml(ButtonTest):
         # Webapp buttons are disabled until js runs.
         assert doc('.webapp .button').hasClass('disabled')
 
+    def test_webapp(self):
+        self.addon.is_webapp.return_value = True
+        self.addon.update(status=1)
+        doc = self.render(impala=True)
+        assert not doc('.warning')
+        eq_(doc('.webapp .button').attr('href'), '#')
+
 
 class TestPremiumWebapp(ButtonTest):
 

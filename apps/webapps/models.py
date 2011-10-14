@@ -76,6 +76,9 @@ class Webapp(Addon):
                       ' version %s: %s.' % (self.pk, cur, e.message))
             raise
 
+    def is_unreviewed(self):
+        return False
+
 
 # Pull all translated_fields from Addon over to Webapp.
 Webapp._meta.translated_fields = Addon._meta.translated_fields

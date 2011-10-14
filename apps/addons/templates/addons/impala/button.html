@@ -65,8 +65,10 @@
            {% if not addon.is_webapp() %}
              data-realurl="{{ link.url }}"
            {% endif %}
+         {% elif addon.is_webapp() %}
+            href="#"
          {% else %}
-           href="{{ link.url }}"
+            href="{{ link.url }}"
          {% endif %}>
         <b></b>
         <span>
