@@ -26,8 +26,8 @@ from amo.helpers import absolutify
 from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonCategory, AddonDependency,
                            AddonRecommendation, AddonType, AddonUpsell,
-                           BlacklistedGuid, Category, Charity, FrozenAddon,
-                           Persona, Preview, CompatOverride)
+                           BlacklistedGuid, Category, Charity, CompatOverride,
+                           CompatOverrideRange, FrozenAddon, Persona, Preview)
 from applications.models import Application, AppVersion
 from devhub.models import ActivityLog
 from files.models import File, Platform
@@ -1746,13 +1746,101 @@ class TestWatermarkHash(amo.tests.TestCase):
 
 
 class TestCompatOverride(amo.tests.TestCase):
-    fixtures = ['base/addon_3615']
+
+    def setUp(self):
+        app = Application.objects.create(id=1)
+
+        one = CompatOverride.objects.create(guid='one')
+        CompatOverrideRange.objects.create(compat=one, app=app)
+
+        two = CompatOverride.objects.create(guid='two')
+        CompatOverrideRange.objects.create(compat=two, app=app,
+                                           min_version='1', max_version='2')
+        CompatOverrideRange.objects.create(compat=two, app=app,
+                                           min_version='1', max_version='2',
+                                           min_app_version='3',
+                                           max_app_version='4')
+
+    def check(self, obj, **kw):
+        """Check that key/value pairs in kw match attributes of obj."""
+        for key, expected in kw.items():
+            actual = getattr(obj, key)
+            eq_(actual, expected, '[%s] %r != %r' % (key, actual, expected))
 
     def test_guid_match(self):
         # We hook up the add-on automatically if we see a matching guid.
-        addon = Addon.objects.get(id=3615)
+        addon = Addon.objects.create(id=1, guid='oh yeah', type=1)
         c = CompatOverride.objects.create(guid=addon.guid)
         eq_(c.addon_id, addon.id)
 
         c = CompatOverride.objects.create(guid='something else')
         assert c.addon is None
+
+    def test_transformer(self):
+        compats = list(CompatOverride.objects
+                       .transform(CompatOverride.transformer))
+        ranges = list(CompatOverrideRange.objects.all())
+        # If the transformer works then we won't have any more queries.
+        with self.assertNumQueries(0):
+            for c in compats:
+                eq_(c.compat_ranges,
+                    [r for r in ranges if r.compat_id == c.id])
+
+    def test_collapsed_ranges(self):
+        # Test that we get back the right structures from collapsed_ranges().
+        c = CompatOverride.objects.get(guid='one')
+        r = c.collapsed_ranges()
+
+        eq_(len(r), 1)
+        compat_range = r[0]
+        self.check(compat_range, type=1, min='*', max='*')
+
+        eq_(len(compat_range.apps), 1)
+        self.check(compat_range.apps[0], app=amo.FIREFOX, min='*', max='*')
+
+    def test_collapsed_ranges_multiple_versions(self):
+        c = CompatOverride.objects.get(guid='one')
+        CompatOverrideRange.objects.create(compat=c, app_id=1,
+                                           min_version='1', max_version='2',
+                                           min_app_version='3',
+                                           max_app_version='3.*')
+        r = c.collapsed_ranges()
+
+        eq_(len(r), 2)
+
+        self.check(r[0], type=1, min='*', max='*')
+        eq_(len(r[0].apps), 1)
+        self.check(r[0].apps[0], app=amo.FIREFOX, min='*', max='*')
+
+        self.check(r[1], type=1, min='1', max='2')
+        eq_(len(r[1].apps), 1)
+        self.check(r[1].apps[0], app=amo.FIREFOX, min='3', max='3.*')
+
+    def test_collapsed_ranges_multiple_apps(self):
+        c = CompatOverride.objects.get(guid='two')
+        r = c.collapsed_ranges()
+
+        eq_(len(r), 1)
+        compat_range = r[0]
+        self.check(compat_range, type=1, min='1', max='2')
+
+        eq_(len(compat_range.apps), 2)
+        self.check(compat_range.apps[0], app=amo.FIREFOX, min='*', max='*')
+        self.check(compat_range.apps[1], app=amo.FIREFOX, min='3', max='4')
+
+    def test_collapsed_ranges_multiple_versions_and_apps(self):
+        c = CompatOverride.objects.get(guid='two')
+        CompatOverrideRange.objects.create(min_version='5', max_version='6',
+                                           compat=c, app_id=1)
+        r = c.collapsed_ranges()
+
+        eq_(len(r), 2)
+        self.check(r[0], type=1, min='1', max='2')
+
+        eq_(len(r[0].apps), 2)
+        self.check(r[0].apps[0], app=amo.FIREFOX, min='*', max='*')
+        self.check(r[0].apps[1], app=amo.FIREFOX, min='3', max='4')
+
+        self.check(r[1], type=1, min='5', max='6')
+        eq_(len(r[1].apps), 1)
+        self.check(r[1].apps[0], app=amo.FIREFOX, min='*', max='*')

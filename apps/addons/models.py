@@ -1557,6 +1557,39 @@ class CompatOverride(amo.models.ModelBase):
         else:
             return self.guid
 
+    @staticmethod
+    def transformer(overrides):
+        if not overrides:
+            return
+
+        id_map = dict((o.id, o) for o in overrides)
+        qs = CompatOverrideRange.objects.filter(compat__in=id_map)
+
+        for compat_id, ranges in sorted_groupby(qs, 'compat_id'):
+            id_map[compat_id].compat_ranges = list(ranges)
+
+    # May be filled in by a transformer for performance.
+    @amo.cached_property(writable=True)
+    def compat_ranges(self):
+        return list(self._compat_ranges.all())
+
+    def collapsed_ranges(self):
+        """Collapse identical version ranges into one entity."""
+        Range = collections.namedtuple('Range', 'type min max apps')
+        AppRange = collections.namedtuple('AppRange', 'app min max')
+        rv = []
+        sort_key = lambda x: (x.min_version, x.max_version)
+        for key, compats in sorted_groupby(self.compat_ranges, key=sort_key):
+            compats = list(compats)
+            first = compats[0]
+            item = Range(first.type, first.min_version, first.max_version, [])
+            for compat in compats:
+                app = AppRange(amo.APP_IDS[compat.app_id],
+                               compat.min_app_version, compat.max_app_version)
+                item.apps.append(app)
+            rv.append(item)
+        return rv
+
 
 OVERRIDE_TYPES = (
     (0, 'Compatible (not supported)'),
@@ -1566,7 +1599,7 @@ OVERRIDE_TYPES = (
 
 class CompatOverrideRange(amo.models.ModelBase):
     """App compatibility for a certain version range of a RemoteAddon."""
-    compat = models.ForeignKey(CompatOverride)
+    compat = models.ForeignKey(CompatOverride, related_name='_compat_ranges')
     type = models.SmallIntegerField(choices=OVERRIDE_TYPES, default=1)
     min_version = models.CharField(max_length=255, blank=True, default='*')
     max_version = models.CharField(max_length=255, blank=True, default='*')
