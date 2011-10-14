@@ -686,16 +686,14 @@ class TestRegistration(UserViewBase):
         self.user_profile.save()
 
         # URL has the wrong confirmation code
-        # TODO XXX POSTREMORA: Uncomment when remora goes away
-        #url = reverse('users.confirm', args=[self.user.id, 'blah'])
-        #r = self.client.get(url, follow=True)
-        #self.assertContains(r, 'Invalid confirmation code!')
+        url = reverse('users.confirm', args=[self.user.id, 'blah'])
+        r = self.client.get(url, follow=True)
+        self.assertContains(r, 'Invalid confirmation code!')
 
         # URL has the right confirmation code
-        # TODO XXX POSTREMORA: Uncomment when remora goes away
-        #url = reverse('users.confirm', args=[self.user.id, 'code'])
-        #r = self.client.get(url, follow=True)
-        #self.assertContains(r, 'Successfully verified!')
+        url = reverse('users.confirm', args=[self.user.id, 'code'])
+        r = self.client.get(url, follow=True)
+        self.assertContains(r, 'Successfully verified!')
 
     def test_confirm_resend(self):
         # User doesn't have a confirmation code
@@ -708,10 +706,9 @@ class TestRegistration(UserViewBase):
         self.user_profile.save()
 
         # URL has the wrong confirmation code
-        # TODO XXX: Bug 593055
-        #url = reverse('users.confirm.resend', args=[self.user.id])
-        #r = self.client.get(url, follow=True)
-        #self.assertContains(r, 'An email has been sent to your address')
+        url = reverse('users.confirm.resend', args=[self.user.id])
+        r = self.client.get(url, follow=True)
+        self.assertContains(r, 'An email has been sent to your address')
 
 
 class TestProfileLinks(UserViewBase):
@@ -749,23 +746,12 @@ class TestProfileLinks(UserViewBase):
         GroupUser.objects.create(group=admingroup, user=self.user_profile)
         cache.clear()
 
+        # Admin, own profile.
         links = get_links(self.user.id)
         eq_(links.length, 2)
-        eq_(links.filter('#edit-profile').length, 1)
-        eq_(links.filter('#manage-user').length, 1)
-
-        # TODO XXX Uncomment this when zamboni can delete users. Bug 595035
-        #links = get_links(9945)
-        #eq_(links.length, 1)
-        #eq_(links.eq(0).attr('href'),
-        #reverse('admin:users_userprofile_change', args=[9945]))
-
-        # TODO XXX Uncomment this when zamboni can delete users. Bug 595035
-        # Admin, own profile.
-        #links = get_links(self.user.id)
-        #eq_(links.length, 2)
-        #eq_(links.eq(0).attr('href'), reverse('users.edit'))
-        #eq_(links.eq(1).attr('href'),
+        eq_(links.eq(0).attr('href'), reverse('users.edit'))
+        # TODO XXX Uncomment when we have real user editing pages
+        #eq_(links.eq(1).attr('href') + "/",
         #reverse('admin:users_userprofile_change', args=[self.user.id]))
 
     def test_amouser(self):
