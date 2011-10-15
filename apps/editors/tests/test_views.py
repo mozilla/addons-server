@@ -18,7 +18,7 @@ import amo.tests
 from amo.urlresolvers import reverse
 from amo.tests import formset, initial
 from abuse.models import AbuseReport
-from addons.models import Addon, AddonUser
+from addons.models import Addon, AddonDependency, AddonUser
 from applications.models import Application
 from devhub.models import ActivityLog
 from editors.models import EditorSubscription, EventLog
@@ -1384,6 +1384,7 @@ class ReviewBase(QueueTest):
 
 
 class TestReview(ReviewBase):
+
     def setUp(self):
         super(TestReview, self).setUp()
         AddonUser.objects.create(addon=self.addon,
@@ -1738,6 +1739,15 @@ class TestReview(ReviewBase):
                  applications='something', comments='something',
                  addon_files=[version.files.all()[0].pk])
         self.client.post(url, d)
+
+    def test_dependencies_listed(self):
+        AddonDependency.objects.create(addon=self.addon,
+                                       dependent_addon=self.addon)
+        r = self.client.get(self.url)
+        deps = pq(r.content)('#addon-summary .addon-dependencies')
+        eq_(deps.length, 1)
+        eq_(deps.find('li').length, 1)
+        eq_(deps.find('a').attr('href'), self.addon.get_url_path())
 
     def test_eula_displayed(self):
         assert not self.addon.eula

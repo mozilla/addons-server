@@ -52,7 +52,26 @@
                   <td>{{ addon.compatible_apps[APP] }}</td>
                 </tr>
               {% endif %}
-              {# XXX future feature: 'Depends on' ... #}
+              {% set deps = addon.all_dependencies %}
+              {% if deps %}
+                <tr class="addon-dependencies">
+                  <th>
+                    {% if addon.is_webapp() %}
+                      {{ _('Required Apps') }}
+                    {% else %}
+                      {{ _('Required Add-ons') }}
+                    {% endif %}
+                  </th>
+                  <td>
+                    <ul>
+                      {% for d in deps %}
+                        <li><a href="{{ d.get_url_path() }}" target="_blank">
+                          {{ d.name }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </td>
+                </tr>
+              {% endif %}
               {# XXX future feature: 'Localizations' ... #}
               <tr>
                 <th>{{ _('Rating', 'advanced_search_form_rating') }}</th>

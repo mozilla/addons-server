@@ -103,6 +103,9 @@
     padding: 6em 1em;
     font-size: 1.1em;
 }
+table ul {
+    margin: 0;
+}
 table.data-grid {
     width: 100%;
     margin-bottom: 0;
