@@ -1,12 +1,11 @@
 # -*- coding: utf8 -*-
 import json
-import urllib
 import urlparse
 
 from django.http import QueryDict
 from django.test import client
 
-from mock import Mock, patch
+from mock import Mock
 from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -14,13 +13,11 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from applications.models import AppVersion
-from addons.tests.test_views import TestMobile
 from search.tests import SphinxTestCase
 from search import views
-from search.client import SearchError
 from addons.models import Addon, Category, Persona
-from tags.models import AddonTag, Tag
+from tags.models import Tag
+from versions.models import ApplicationsVersions
 
 
 def test_parse_bad_type():
@@ -104,20 +101,52 @@ class TestESSearch(amo.tests.ESTestCase):
     def setUpClass(cls):
         super(TestESSearch, cls).setUpClass()
         cls.setUpIndex()
-        cls.search_views = ('search.search', 'apps.search')
+
+    def setUp(self):
+        self.url = reverse('search.search')
+        self.search_views = ('search.search', 'apps.search')
 
     @amo.tests.mobile_test
     def test_mobile_results(self):
-        r = self.client.get(reverse('search.search'))
+        r = self.client.get(self.url)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'search/mobile/results.html')
 
     def test_legacy_redirects(self):
-        base = reverse('search.search')
-        r = self.client.get(base + '?sort=averagerating')
-        self.assertRedirects(r, base + '?sort=rating', status_code=301)
+        r = self.client.get(self.url + '?sort=averagerating')
+        self.assertRedirects(r, self.url + '?sort=rating', status_code=301)
 
-    def test_results(self):
+    def check_appver_filters(self, appver='', appver_min=''):
+        if not appver_min:
+            appver_min = appver
+        r = self.client.get('%s?appver=%s' % (self.url, appver))
+        av_max = ApplicationsVersions.objects.values_list(
+            'max__version', flat=True).distinct()
+        app = unicode(r.context['request'].APP.pretty)
+        eq_(r.context['query']['appver'], appver_min)
+        eq_(r.context['versions'][0].text, 'Any %s' % app)
+        eq_(r.context['versions'][0].selected, not appver_min)
+        for label, av in zip(r.context['versions'][1:], av_max):
+            eq_(label.text, ' '.join([app, av]))
+            eq_(label.selected, appver_min == av)
+
+    def test_appver_default(self):
+        self.check_appver_filters()
+
+    def test_appver_known(self):
+        self.check_appver_filters('5.0')
+
+    def test_appver_oddballs(self):
+        self.check_appver_filters('3.6', '3.0')    # 3.6 should become 3.0.
+        self.check_appver_filters('5.0a2', '5.0')
+        self.check_appver_filters('8.0a2', '8.0')
+
+    def test_appver_bad(self):
+        self.check_appver_filters('.')
+        self.check_appver_filters('_')
+        self.check_appver_filters('x.x')
+
+    def test_non_pjax_results(self):
         # These context variables should exist for normal requests.
         expected_context_vars = {
             'search.search': ('categories', 'platforms', 'versions', 'tags'),
@@ -170,7 +199,7 @@ class TestESSearch(amo.tests.ESTestCase):
                 'Unreviewed add-ons should not appear in search results.')
             eq_(expected.is_disabled, False)
             assert expected.type in amo.ADDON_SEARCH_TYPES, (
-                'Add-on type %s should not be searchable.' % addon.type)
+                'Add-on type %s should not be searchable.' % expected.type)
 
     def test_ajax_search_by_id(self):
         addon = Addon.objects.get(id=4)

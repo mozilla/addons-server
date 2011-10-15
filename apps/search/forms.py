@@ -276,6 +276,14 @@ class ESSearchForm(forms.Form):
         if addon_type == amo.ADDON_WEBAPP:
             self.fields['sort'].choices = APP_SORT_CHOICES
 
+    def clean_appver(self):
+        appver = self.cleaned_data.get('appver')
+        if appver:
+            major = appver.split('.')[0]
+            if major.isdigit():
+                appver = major + '.0'
+        return appver
+
     def clean_sort(self):
         sort = self.cleaned_data.get('sort')
         return sort if sort in dict(SORT_CHOICES) else None
