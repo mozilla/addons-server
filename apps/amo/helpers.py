@@ -393,13 +393,18 @@ def is_choice_field(value):
 
 
 @register.inclusion_tag('amo/mobile/sort_by.html')
-def mobile_sort_by(base_url, options={}, selected=None, search_filter=None):
+def mobile_sort_by(base_url, options=None, selected=None, extra_sort_opts=None,
+                   search_filter=None):
     if search_filter:
         selected = search_filter.field
         options = search_filter.opts
         if hasattr(search_filter, 'extras'):
             options += search_filter.extras
-    current = [title for key, title in options if key == selected][0]
+    options_dict = dict(options)
+    if selected in options_dict:
+        current = options_dict[selected]
+    else:
+        selected, current = options[0]  # Default to the first option.
     return locals()
 
 

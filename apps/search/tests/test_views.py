@@ -112,6 +112,41 @@ class TestESSearch(amo.tests.ESTestCase):
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'search/mobile/results.html')
 
+    def check_sort_links(self, key, title, sort_by=None, reverse=True):
+        r = self.client.get('%s?sort=%s' % (self.url, key))
+        eq_(r.status_code, 200)
+        menu = pq(r.content)('#sort-menu')
+        eq_(menu.find('span').text(), title)
+        eq_(menu.find('li.selected').text(), title)
+        if sort_by:
+            a = r.context['pager'].object_list
+            eq_(list(a),
+                sorted(a, key=lambda x: getattr(x, sort_by), reverse=reverse))
+
+    @amo.tests.mobile_test
+    def test_mobile_results_sort_default(self):
+        self.check_sort_links('relevance', 'Relevance', 'weekly_downloads')
+
+    @amo.tests.mobile_test
+    def test_mobile_results_sort_relevance(self):
+        self.check_sort_links('relevance', 'Relevance')
+
+    @amo.tests.mobile_test
+    def test_mobile_results_sort_users(self):
+        self.check_sort_links('users', 'Most Users', 'average_daily_users')
+
+    @amo.tests.mobile_test
+    def test_mobile_results_sort_rating(self):
+        self.check_sort_links('rating', 'Top Rated', 'bayesian_rating')
+
+    @amo.tests.mobile_test
+    def test_mobile_results_sort_newest(self):
+        self.check_sort_links('created', 'Newest', 'created')
+
+    @amo.tests.mobile_test
+    def test_mobile_results_sort_unknown(self):
+        self.check_sort_links('updated', 'Relevance')
+
     def test_legacy_redirects(self):
         r = self.client.get(self.url + '?sort=averagerating')
         self.assertRedirects(r, self.url + '?sort=rating', status_code=301)

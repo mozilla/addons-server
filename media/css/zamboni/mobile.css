@@ -1374,6 +1374,8 @@ li.persona-previewer {
 .badges .warning {
     background-color: #fef9d7;
     border-color: #bebaa1;
+}
+.badges .warning span {
     cursor: pointer;
 }
 .install .privacy-policy {

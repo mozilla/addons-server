@@ -1,7 +1,7 @@
 {% extends "mobile/base.html" %}
 
 {% block title %}
-{% if query %}
+{% if query.q %}
   {# L10n: {0} is a search query. #}
   {{ page_title(_('{0} :: Search')|f(query.q)) }}
 {% else %}
@@ -24,7 +24,7 @@
       {% include "search/mobile/search.html" %}
     {% endwith %}
   </div>
-  {{ mobile_sort_by(request.get_full_path(), sort_opts, query.sort) }}
+  {{ mobile_sort_by(request.get_full_path(), sort_opts, query.sort, extra_sort_opts) }}
 
   <div class="addon-listing">
     <ul class="listview">
