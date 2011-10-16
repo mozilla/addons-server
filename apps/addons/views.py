@@ -223,12 +223,13 @@ class BaseFilter(object):
     that's used if nothing good is found in request.GET.
     """
 
-    def __init__(self, request, base, key, default):
+    def __init__(self, request, base, key, default, model=Addon):
         self.opts_dict = dict(self.opts)
         self.extras_dict = dict(self.extras) if hasattr(self, 'extras') else {}
         self.request = request
         self.base_queryset = base
         self.key = key
+        self.model = model
         self.field, self.title = self.options(self.request, key, default)
         self.qs = self.filter(self.field)
 
@@ -261,37 +262,37 @@ class BaseFilter(object):
         return getattr(self, 'filter_%s' % field)()
 
     def filter_featured(self):
-        ids = Addon.featured_random(self.request.APP, self.request.LANG)
-        return manual_order(Addon.objects, ids, 'addons.id')
+        ids = self.model.featured_random(self.request.APP, self.request.LANG)
+        return manual_order(self.model.objects, ids, 'addons.id')
 
     def filter_popular(self):
-        return (Addon.objects.order_by('-weekly_downloads')
+        return (self.model.objects.order_by('-weekly_downloads')
                 .with_index(addons='downloads_type_idx'))
 
     def filter_downloads(self):
         return self.filter_popular()
 
     def filter_users(self):
-        return (Addon.objects.order_by('-average_daily_users')
+        return (self.model.objects.order_by('-average_daily_users')
                 .with_index(addons='adus_type_idx'))
 
     def filter_created(self):
-        return (Addon.objects.order_by('-created')
+        return (self.model.objects.order_by('-created')
                 .with_index(addons='created_type_idx'))
 
     def filter_updated(self):
-        return (Addon.objects.order_by('-last_updated')
+        return (self.model.objects.order_by('-last_updated')
                 .with_index(addons='last_updated_type_idx'))
 
     def filter_rating(self):
-        return (Addon.objects.order_by('-bayesian_rating')
+        return (self.model.objects.order_by('-bayesian_rating')
                 .with_index(addons='rating_type_idx'))
 
     def filter_hotness(self):
-        return Addon.objects.order_by('-hotness')
+        return self.model.objects.order_by('-hotness')
 
     def filter_name(self):
-        return order_by_translation(Addon.objects.all(), 'name')
+        return order_by_translation(self.model.objects.all(), 'name')
 
 
 class ESBaseFilter(BaseFilter):

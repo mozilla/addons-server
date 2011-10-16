@@ -71,16 +71,6 @@ class ThemeFilter(AddonFilter):
               ('hotness', _lazy(u'Up & Coming')))
 
 
-class AppFilter(AddonFilter):
-    opts = (('featured', _lazy(u'Featured')),
-            ('downloads', _lazy(u'Weekly Downloads')),
-            ('rating', _lazy(u'Top Rated')),
-            ('created', _lazy(u'Newest')))
-    extras = (('name', _lazy(u'Name')),
-              ('updated', _lazy(u'Recently Updated')),
-              ('hotness', _lazy(u'Up & Coming')))
-
-
 class ESAddonFilter(ESBaseFilter):
     opts = AddonFilter.opts
 
@@ -88,15 +78,8 @@ class ESAddonFilter(ESBaseFilter):
 def addon_listing(request, addon_types, filter_=AddonFilter,
                   default='featured'):
     # Set up the queryset and filtering for themes & extension listing pages.
-    status = [amo.STATUS_PUBLIC, amo.STATUS_LITE,
-              amo.STATUS_LITE_AND_NOMINATED]
-
-    if filter_ == AddonFilter and addon_types == [amo.ADDON_WEBAPP]:
-        filter_ = AppFilter
-
-    qs = (Addon.objects.listed(request.APP, *status)
+    qs = (Addon.objects.listed(request.APP, *amo.REVIEWED_STATUSES)
           .filter(type__in=addon_types))
-
     filter = filter_(request, qs, 'sort', default)
     return filter.qs, filter
 

@@ -8,8 +8,8 @@ from amo.utils import paginate
 import addons.views
 import search.views
 
-from addons.models import Category
-from browse.views import addon_listing, category_landing, CategoryLandingFilter
+from addons.models import Addon, Category
+from browse.views import category_landing, CategoryLandingFilter
 from sharing.views import share as share_redirect
 from .models import Webapp
 
@@ -29,10 +29,26 @@ def app_home(request):
 
 class AppCategoryLandingFilter(CategoryLandingFilter):
 
-    opts = (('featured', _lazy(u'Featured')),
-            ('downloads', _lazy(u'Most Popular')),
+    opts = (('downloads', _lazy(u'Most Popular')),
             ('rating', _lazy(u'Top Rated')),
-            ('created', _lazy(u'Recently Added')))
+            ('created', _lazy(u'Recently Added')),
+            ('featured', _lazy(u'Featured')))
+
+
+class AppFilter(addons.views.BaseFilter):
+    opts = (('downloads', _lazy(u'Weekly Downloads')),
+            ('rating', _lazy(u'Top Rated')),
+            ('created', _lazy(u'Newest')))
+    extras = (('name', _lazy(u'Name')),
+              ('featured', _lazy(u'Featured')),
+              ('updated', _lazy(u'Recently Updated')),
+              ('hotness', _lazy(u'Up & Coming')))
+
+
+def app_listing(request):
+    qs = Webapp.objects.listed()
+    filter = AppFilter(request, qs, 'sort', default='downloads', model=Webapp)
+    return filter.qs, filter
 
 
 # TODO(cvan): Implement mobile pages.
@@ -47,7 +63,7 @@ def app_list(request, category=None):
         return category_landing(request, category, TYPE,
                                 AppCategoryLandingFilter)
 
-    addons, filter = addon_listing(request, [TYPE])
+    addons, filter = app_listing(request)
     sorting = filter.field
     src = 'cb-btn-%s' % sorting
     dl_src = 'cb-dl-%s' % sorting

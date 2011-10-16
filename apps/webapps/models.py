@@ -9,7 +9,9 @@ import commonware.log
 import amo
 import amo.models
 from amo.urlresolvers import reverse
+from addons import query
 from addons.models import Addon, update_search_index, delete_search_index
+
 
 log = commonware.log.getLogger('z.addons')
 
@@ -18,7 +20,15 @@ class WebappManager(amo.models.ManagerBase):
 
     def get_query_set(self):
         qs = super(WebappManager, self).get_query_set()
+        qs = qs._clone(klass=query.IndexQuerySet)
         return qs.filter(type=amo.ADDON_WEBAPP)
+
+    def reviewed(self):
+        return self.filter(status__in=amo.REVIEWED_STATUSES)
+
+    def listed(self):
+        return self.reviewed().filter(_current_version__isnull=False,
+                                      disabled_by_user=False)
 
 
 # We use super(Addon, self) on purpose to override expectations in Addon that

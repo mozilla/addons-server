@@ -39,10 +39,7 @@ class TestListing(WebappTest):
         self.url = reverse('apps.list')
 
     def test_default_sort(self):
-        test_default_sort(self, 'featured')
-
-    def test_downloads_sort(self):
-        test_listing_sort(self, 'downloads', 'weekly_downloads')
+        test_default_sort(self, 'downloads', 'weekly_downloads')
 
     def test_rating_sort(self):
         test_listing_sort(self, 'rating', 'bayesian_rating')
@@ -53,6 +50,9 @@ class TestListing(WebappTest):
     def test_name_sort(self):
         test_listing_sort(self, 'name', 'name', reverse=False,
                           sel_class='extra-opt')
+
+    def test_featured_sort(self):
+        test_listing_sort(self, 'featured', sel_class='extra-opt')
 
     def test_updated_sort(self):
         test_listing_sort(self, 'updated', 'last_updated',

@@ -6,6 +6,7 @@ from nose.tools import eq_
 import amo
 from addons.models import Addon, BlacklistedSlug
 from devhub.tests.test_views import BaseWebAppTest
+from versions.models import Version
 from webapps.models import Webapp
 
 
@@ -58,6 +59,46 @@ class TestWebapp(test_utils.TestCase):
     def can_be_purchased(self):
         assert Webapp(premium_type=True).can_be_purchased()
         assert not Webapp(premium_type=False).can_be_purchased()
+
+
+class TestWebappManager(test_utils.TestCase):
+
+    def setUp(self):
+        self.reviewed_eq = (lambda f=[]:
+                            eq_(list(Webapp.objects.reviewed()), f))
+        self.listed_eq = (lambda f=[]: eq_(list(Webapp.objects.listed()), f))
+
+    def test_reviewed(self):
+        for status in amo.REVIEWED_STATUSES:
+            w = Webapp.objects.create(status=status)
+            self.reviewed_eq([w])
+            Webapp.objects.all().delete()
+
+    def test_unreviewed(self):
+        for status in amo.UNREVIEWED_STATUSES:
+            w = Webapp.objects.create(status=status)
+            self.reviewed_eq()
+            Webapp.objects.all().delete()
+
+    def test_listed(self):
+        # Public status, non-null current version, non-user-disabled.
+        w = Webapp.objects.create(status=amo.STATUS_PUBLIC)
+        w._current_version = Version.objects.create(addon=w)
+        w.save()
+        self.listed_eq([w])
+
+    def test_unlisted(self):
+        # Public, null current version, non-user-disabled.
+        w = Webapp.objects.create()
+        self.listed_eq()
+
+        # With current version but unreviewed.
+        Version.objects.create(addon=w)
+        self.listed_eq()
+
+        # And user-disabled.
+        w.update(disabled_by_user=True)
+        self.listed_eq()
 
 
 class TestManifest(BaseWebAppTest):

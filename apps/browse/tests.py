@@ -39,8 +39,8 @@ def test_listing_sort(self, sort, key=None, reverse=True, sel_class='opt'):
     sel = pq(r.content)('#sorter ul > li.selected')
     eq_(sel.find('a').attr('class'), sel_class)
     eq_(r.context['sorting'], sort)
-    a = r.context['addons'].object_list
     if key:
+        a = r.context['addons'].object_list
         eq_(list(a), sorted(a, key=lambda x: getattr(x, key), reverse=reverse))
 
 
@@ -346,14 +346,6 @@ class TestThemes(amo.tests.TestCase):
 
     def test_default_sort(self):
         test_default_sort(self, 'users', 'average_daily_users')
-
-    def test_bad_sort(self):
-        r = self.client.get(urlparams(self.url, sort='xxx'))
-        eq_(r.status_code, 200)
-        eq_(r.context['sorting'], 'users')
-
-    def test_users_sort(self):
-        test_listing_sort(self, 'users', 'average_daily_users')
 
     def test_rating_sort(self):
         test_listing_sort(self, 'rating', 'bayesian_rating')
