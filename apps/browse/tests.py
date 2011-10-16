@@ -12,7 +12,7 @@ from django.utils import http as urllib
 from jingo.helpers import datetime as datetime_filter
 import mock
 from nose import SkipTest
-from nose.tools import eq_, assert_raises
+from nose.tools import eq_, assert_raises, nottest
 from pyquery import PyQuery as pq
 
 import amo
@@ -30,6 +30,30 @@ from browse.views import locale_display_name, AddonFilter, ThemeFilter
 from translations.models import Translation
 from translations.query import order_by_translation
 from versions.models import Version
+
+
+@nottest
+def test_listing_sort(self, sort, key=None, reverse=True, sel_class='opt'):
+    r = self.client.get(urlparams(self.url, sort=sort))
+    eq_(r.status_code, 200)
+    sel = pq(r.content)('#sorter ul > li.selected')
+    eq_(sel.find('a').attr('class'), sel_class)
+    eq_(r.context['sorting'], sort)
+    a = r.context['addons'].object_list
+    if key:
+        eq_(list(a), sorted(a, key=lambda x: getattr(x, key), reverse=reverse))
+
+
+@nottest
+def test_default_sort(self, sort, key=None):
+    r = self.client.get(self.url)
+    eq_(r.status_code, 200)
+    eq_(r.context['sorting'], sort)
+
+    r = self.client.get(urlparams(self.url, sort='xxx'))
+    eq_(r.status_code, 200)
+    eq_(r.context['sorting'], sort)
+    test_listing_sort(self, sort, key)
 
 
 class ExtensionTestCase(amo.tests.ESTestCase):
@@ -310,11 +334,6 @@ class TestThemes(amo.tests.TestCase):
             category.save()
         self.url = reverse('browse.themes')
 
-    def test_default_sort(self):
-        """Default sort should be by featured."""
-        response = self.client.get(self.url)
-        eq_(response.context['sorting'], 'users')
-
     def test_unreviewed(self):
         pop = urlparams(self.url, sort='popular')
 
@@ -325,41 +344,41 @@ class TestThemes(amo.tests.TestCase):
         response = self.client.get(pop)
         eq_(len(response.context['addons'].object_list), 2)
 
-    def _get_sort(self, sort, key=None, reverse=False, sel_class='opt'):
-        r = self.client.get(urlparams(self.url, sort=sort))
-        sel = pq(r.content)('#sorter ul > li.selected')
-        eq_(sel.find('a').attr('class'), sel_class)
-        eq_(r.context['sorting'], sort)
-        a = r.context['addons'].object_list
-        ids = list(a)
-        eq_(ids, sorted(a, key=lambda x: getattr(x, key), reverse=reverse))
+    def test_default_sort(self):
+        test_default_sort(self, 'users', 'average_daily_users')
+
+    def test_bad_sort(self):
+        r = self.client.get(urlparams(self.url, sort='xxx'))
+        eq_(r.status_code, 200)
+        eq_(r.context['sorting'], 'users')
 
     def test_users_sort(self):
-        ids = self._get_sort('users', 'average_daily_users', reverse=True)
+        test_listing_sort(self, 'users', 'average_daily_users')
 
     def test_rating_sort(self):
-        ids = self._get_sort('rating', 'bayesian_rating', reverse=True)
+        test_listing_sort(self, 'rating', 'bayesian_rating')
 
     def test_newest_sort(self):
-        ids = self._get_sort('created', 'created', reverse=True)
+        test_listing_sort(self, 'created', 'created')
 
     def test_name_sort(self):
-        ids = self._get_sort('name', 'name', sel_class='extra-opt')
+        test_listing_sort(self, 'name', 'name', reverse=False,
+                          sel_class='extra-opt')
 
     def test_featured_sort(self):
-        ids = self._get_sort('featured', sel_class='extra-opt')
+        test_listing_sort(self, 'featured', reverse=False,
+                          sel_class='extra-opt')
 
     def test_downloads_sort(self):
-        ids = self._get_sort('popular', 'weekly_downloads', reverse=True,
-                             sel_class='extra-opt')
+        test_listing_sort(self, 'popular', 'weekly_downloads',
+                          sel_class='extra-opt')
 
     def test_updated_sort(self):
-        ids = self._get_sort('updated', 'last_updated', reverse=True,
-                             sel_class='extra-opt')
+        test_listing_sort(self, 'updated', 'last_updated',
+                          sel_class='extra-opt')
 
-    def test_hotness_sort(self):
-        ids = self._get_sort('hotness', 'hotness', reverse=True,
-                             sel_class='extra-opt')
+    def test_upandcoming_sort(self):
+        test_listing_sort(self, 'hotness', 'hotness', sel_class='extra-opt')
 
     def test_category_sidebar(self):
         c = Category.objects.filter(weight__gte=0).values_list('id', flat=True)

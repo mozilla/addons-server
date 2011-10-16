@@ -86,7 +86,7 @@ class ESAddonFilter(ESBaseFilter):
 
 
 def addon_listing(request, addon_types, filter_=AddonFilter,
-                  default='popular'):
+                  default='featured'):
     # Set up the queryset and filtering for themes & extension listing pages.
     status = [amo.STATUS_PUBLIC, amo.STATUS_LITE,
               amo.STATUS_LITE_AND_NOMINATED]
@@ -186,7 +186,7 @@ def extensions(request, category=None, template=None):
     if not sort and not request.MOBILE and category and category.count > 4:
         return category_landing(request, category)
 
-    addons, filter = addon_listing(request, [TYPE], default='featured')
+    addons, filter = addon_listing(request, [TYPE])
     sorting = filter.field
     src = 'cb-btn-%s' % sorting
     dl_src = 'cb-dl-%s' % sorting

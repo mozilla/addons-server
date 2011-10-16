@@ -2,7 +2,8 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo.tests
-
+from amo.urlresolvers import reverse
+from browse.tests import test_listing_sort, test_default_sort
 from webapps.models import Webapp
 
 
@@ -26,6 +27,35 @@ class TestLayout(WebappTest):
     def test_footer(self):
         response = self.client.get(self.url)
         eq_(pq(response.content)('#social-footer').length, 0)
+
+
+class TestListing(WebappTest):
+
+    def setUp(self):
+        self.url = reverse('apps.list')
+
+    def test_default_sort(self):
+        test_default_sort(self, 'featured')
+
+    def test_downloads_sort(self):
+        test_listing_sort(self, 'downloads', 'weekly_downloads')
+
+    def test_rating_sort(self):
+        test_listing_sort(self, 'rating', 'bayesian_rating')
+
+    def test_newest_sort(self):
+        test_listing_sort(self, 'created', 'created')
+
+    def test_name_sort(self):
+        test_listing_sort(self, 'name', 'name', reverse=False,
+                          sel_class='extra-opt')
+
+    def test_updated_sort(self):
+        test_listing_sort(self, 'updated', 'last_updated',
+                          sel_class='extra-opt')
+
+    def test_upandcoming_sort(self):
+        test_listing_sort(self, 'hotness', 'hotness', sel_class='extra-opt')
 
 
 class TestDetail(WebappTest):
