@@ -27,7 +27,7 @@ class NotificationsSelectMultiple(forms.CheckboxSelectMultiple):
 
             if notification.mandatory:
                 cb_attrs = dict(cb_attrs, disabled=1)
-                notes.append(u'<abbr title="required" class="req">*</abbr>')
+                notes.append(u'<span title="required" class="req">*</span>')
 
             if c[1].new:
                 notes.append(u'<sup class="msg">%s</sup>' % _('new'))

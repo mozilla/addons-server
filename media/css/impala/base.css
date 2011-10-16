@@ -63,6 +63,12 @@ strong {
     font-weight: bold;
 }
 
+/* Give abbr and acronym dotted underline. */
+abbr,
+acronym {
+    border-bottom: 1px dotted;
+}
+
 /* >> The Magnificent CLEARFIX <<
    Lifted from html5boilerplate.com
    License is Public domain */
