@@ -50,4 +50,4 @@ JavaScript
 
 - Write `JavaScript`_ tests whenever possible
 
-.. _`JavaScript`: http://jbalogh.github.com/zamboni/topics/testing/#javascript-tests
+.. _`JavaScript`: http://mozilla.github.com/zamboni/topics/testing/#javascript-tests

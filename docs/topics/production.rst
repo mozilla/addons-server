@@ -10,7 +10,7 @@ Getting Requirements
 
 Grab zamboni from github with ::
 
-    git clone git://github.com/jbalogh/zamboni.git
+    git clone git://github.com/mozilla/zamboni.git
     git submodule update --init
 
 You're going to need virtualenv and pip, but I'll let you figure that one out.

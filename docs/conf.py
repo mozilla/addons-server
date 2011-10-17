@@ -217,4 +217,4 @@ for key, val in intersphinx_mapping.items():
     intersphinx_mapping[key] = '_intersphinx/' + val
 
 # Root url where source files can be browsed online.
-src_base_url = 'http://github.com/jbalogh/zamboni/tree/master/'
+src_base_url = 'http://github.com/mozilla/zamboni/tree/master/'

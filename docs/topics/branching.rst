@@ -32,5 +32,5 @@ but to use a merge commit if you have multiple commits that form a cohesive unit
 
 
 .. _nvie's branching model: http://nvie.com/posts/a-successful-git-branching-model/
-.. _master: http://github.com/jbalogh/zamboni/tree/master
-.. _next: http://github.com/jbalogh/zamboni/tree/next
+.. _master: http://github.com/mozilla/zamboni/tree/master
+.. _next: http://github.com/mozilla/zamboni/tree/next

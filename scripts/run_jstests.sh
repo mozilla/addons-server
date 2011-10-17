@@ -41,7 +41,7 @@ fi
 
 if [ ! -d "$VENDOR" ]; then
     echo "No vendor lib?  Cloning..."
-    git clone --recursive git://github.com/jbalogh/zamboni-lib.git $VENDOR
+    git clone --recursive git://github.com/mozilla/zamboni-lib.git $VENDOR
 fi
 
 # Update the vendor lib.

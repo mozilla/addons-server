@@ -15,13 +15,13 @@ The Perfect Git Configuration
 
 We're going to talk about two git repositories:
 
-* *origin* will be the main zamboni repo at http://github.com/jbalogh/zamboni.
+* *origin* will be the main zamboni repo at http://github.com/mozilla/zamboni.
 * *mine* will be your fork at http://github.com/:user/zamboni.
 
 There should be something like this in your ``.git/config`` already::
 
     [remote "origin"]
-        url = git://github.com/jbalogh/zamboni.git
+        url = git://github.com/mozilla/zamboni.git
         fetch = +refs/heads/*:refs/remotes/origin/*
 
 Now we'll set up your master to pull directly from the upstream zamboni::

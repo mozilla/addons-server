@@ -54,9 +54,8 @@ Use the Source
 
 Grab zamboni from github with::
 
-    git clone --recursive git://github.com/jbalogh/zamboni.git
+    git clone --recursive git://github.com/mozilla/zamboni.git
     cd zamboni
-    git clone --recursive git://github.com/jbalogh/zamboni-lib.git vendor
     svn co http://svn.mozilla.org/addons/trunk/site/app/locale locale
 
 ``zamboni.git`` is all the source code.  ``zamboni-lib.git`` is all of our

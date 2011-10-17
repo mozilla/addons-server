@@ -37,7 +37,7 @@ repositories.  These are maintained by Hudson in the zamboni-lib repository.
 
 Check out the vendor lib with ::
 
-    git clone --recursive git://github.com/jbalogh/zamboni-lib.git ./vendor
+    git clone --recursive git://github.com/mozilla/zamboni-lib.git ./vendor
 
 Once the zamboni-lib repo has been downloaded to ``/vendor``, you only need to
 install the compiled packages.  These can come from your system package manager
