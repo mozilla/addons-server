@@ -13,13 +13,6 @@
     };
     var pending_fetches = 0;
     var page_state = {};
-    var capabilities = {
-        'JSON' : window.JSON && typeof JSON.parse == 'function',
-        'debug' : (('' + document.location).indexOf("dbg") >= 0),
-        'debug_in_page' : (('' + document.location).indexOf("dbginpage") >= 0),
-        'console' : window.console && (typeof window.console.log == 'function'),
-        'replaceState' : typeof history.replaceState === "function"
-    };
 
     var writeInterval = false;
 
@@ -324,7 +317,7 @@
                     var ds = datastore[metric], data;
                     // process the Data. We want to directly use the native JSON
                     // without jQuery's costly regexes if we can.
-                    if (capabilities.JSON) {
+                    if (z.capabilities.JSON) {
                         dbg("native JSON");
                         data = JSON.parse(raw_data);
                     } else {

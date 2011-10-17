@@ -31,7 +31,7 @@ $.ajaxCache = function(o) {
         ajaxFailure: $.noop,      // Callback upon failure of Ajax request.
     }, o);
 
-    if (parseFloat(jQuery.fn.jquery) < 1.5) {
+    if (!z.capabilities.JSON || parseFloat(jQuery.fn.jquery) < 1.5) {
         // jqXHR objects allow Deferred methods as of jQuery 1.5. Some of our
         // old pages are stuck on jQuery 1.4, so hopefully this'll disappear
         // sooner than later.
@@ -51,11 +51,11 @@ $.ajaxCache = function(o) {
 
     var cache = z.AjaxCache(o.url + ':' + o.type),
         args = JSON.stringify(o.data),
-        $self = this,
+        previous_args = JSON.stringify(cache.previous.args),
         items,
         request;
 
-    if (args != JSON.stringify(cache.previous.args)) {
+    if (args != previous_args) {
         if (!!cache.items[args]) {
             items = cache.items[args];
             if (o.newItems) {

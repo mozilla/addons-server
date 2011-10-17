@@ -28,13 +28,7 @@ z.Storage = (function() {
             return $.cookie(key, null);
         }
     };
-    var engine = cookieStorage;
-    try {
-        if ('localStorage' in window && window['localStorage'] !== null) {
-            engine = window.localStorage;
-        }
-    } catch (e) {
-    }
+    var engine = z.capabilities.localStorage ? localStorage : cookieStorage;
     return function(namespace) {
         namespace = namespace ? namespace + '-' : '';
         return {
