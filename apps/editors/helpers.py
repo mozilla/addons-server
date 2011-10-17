@@ -399,14 +399,16 @@ class ReviewHelper:
         labels, details = self._review_actions()
 
         actions = SortedDict()
-        if (self.review_type != 'preliminary'):
+        if self.review_type != 'preliminary':
             actions['public'] = {'method': self.handler.process_public,
                                  'minimal': False,
                                  'label': _lazy('Push to public')}
 
-        actions['prelim'] = {'method': self.handler.process_preliminary,
-                             'label': labels['prelim'],
-                             'minimal': False}
+        if not self.addon.is_premium():
+            actions['prelim'] = {'method': self.handler.process_preliminary,
+                                 'label': labels['prelim'],
+                                 'minimal': False}
+
         actions['reject'] = {'method': self.handler.process_sandbox,
                              'label': _lazy('Reject'),
                              'minimal': False}
@@ -640,6 +642,9 @@ class ReviewAddon(ReviewBase):
 
     def process_preliminary(self):
         """Set an addon to preliminary."""
+        if self.addon.is_premium():
+            raise AssertionError('Premium add-ons cannot become preliminary.')
+
         changes = {'status': amo.STATUS_LITE}
         if (self.addon.status in (amo.STATUS_PUBLIC,
                                   amo.STATUS_LITE_AND_NOMINATED)):
@@ -712,6 +717,9 @@ class ReviewFiles(ReviewBase):
 
     def process_preliminary(self):
         """Set an addons files to preliminary."""
+        if self.addon.is_premium():
+            raise AssertionError('Premium add-ons cannot become preliminary.')
+
         self.set_files(amo.STATUS_LITE, self.data['addon_files'],
                        copy_to_mirror=True)
 

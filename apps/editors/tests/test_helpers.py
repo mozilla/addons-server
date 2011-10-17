@@ -1,8 +1,6 @@
 # -*- coding: utf8 -*-
 import os
 from datetime import datetime, timedelta
-import shutil
-import tempfile
 
 from django.core import mail
 from django.conf import settings
@@ -329,6 +327,11 @@ class TestReviewHelper(amo.tests.TestCase):
         eq_(self.get_action(amo.STATUS_PUBLIC, 'public')[-29:],
             'to appear on the public side.')
 
+    def test_action_premium(self):
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.assertRaises(KeyError, self.get_action,
+                          amo.STATUS_NOMINATED, 'prelim')
+
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
         self.helper.set_data({'addon_files': self.version.files.all()})
@@ -463,6 +466,16 @@ class TestReviewHelper(amo.tests.TestCase):
 
             eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
 
+    def to_preliminary_premium(self, statuses):
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        for status in helpers.NOMINATED_STATUSES:
+            self.setup_data(status)
+            self.assertRaises(AssertionError,
+                              self.helper.handler.process_preliminary)
+
+    def test_nomination_to_preliminary_premium(self):
+        self.to_preliminary_premium(helpers.NOMINATED_STATUSES)
+
     def test_nomination_to_preliminary(self):
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
@@ -535,6 +548,9 @@ class TestReviewHelper(amo.tests.TestCase):
         self.setup_data(amo.STATUS_LITE)
         self.assertRaises(AssertionError,
                           self.helper.handler.process_public)
+
+    def test_preliminary_to_preliminary_premium(self):
+        self.to_preliminary_premium(helpers.PRELIMINARY_STATUSES)
 
     def test_preliminary_to_preliminary(self):
         for status in helpers.PRELIMINARY_STATUSES:
