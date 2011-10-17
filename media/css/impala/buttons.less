@@ -65,7 +65,7 @@
         }
     }
     &.premium {
-      .gradient-two-color(#E3C17F, #D6913D);
+        .gradient-two-color(#E3C17F, #D6913D);
     }
     &.paypal {
         .gradient-two-color(#F8EAC4, #EEC546);
@@ -113,9 +113,51 @@
 }
 .html-rtl {
     .button {
-        .add span {
-            padding-left: 0;
-            padding-right: 16px;
+        &.add {
+            span {
+                background-position: 93px 3px;
+                padding: 0 16px 0 0;
+            }
+            &.prominent {
+                span {
+                    padding: 0 24px 0 0;
+                    .sprite-pos-right(3, 64, 3px);
+                }
+                &.disabled, &.concealed {
+                    span {
+                        .sprite-pos-right(4, 64, 3px);
+                    }
+                }
+                &.warning, &.caution {
+                    span {
+                        .sprite-pos-right(5, 64, 3px);
+                    }
+                }
+            }
+            &.warning,
+            &.caution {
+                span {
+                    .sprite-pos-right(2, 64, 3px);
+                }
+            }
+            &.disabled,
+            &.concealed {
+                span {
+                    .sprite-pos-right(1, 64, 3px);
+                }
+            }
+        }
+        &.contribute.prominent b {
+            margin: 0 -4px 0 0;
+            padding: 0 24px 0 4px;
+            .sprite-pos-right(7, 64, 4px);
+        }
+        &.developer, &.scary {
+            span {
+                margin: 0 -4px 0 0;
+                padding: 0 24px 0 0;
+                .sprite-pos-right(6, 64, 3px);
+            }
         }
     }
 }
@@ -124,26 +166,34 @@
 .button:active,
 .button.selected {
     text-decoration: none;
-    .box-shadow(0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset, 0 0 100px rgba(255, 255, 255, 0.2) inset);
+    .box-shadow(0 1px rgba(0, 0, 0, 0.1),
+                0 -2px rgba(0, 0, 0, 0.1) inset,
+                0 0 100px rgba(255, 255, 255, 0.2) inset);
 }
 
 .button:active,
 .button.selected {
     top: 2px;
-    .box-shadow(0 0px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset, 0 0 100px rgba(255, 255, 255, 0.2) inset);
+    .box-shadow(0 0px rgba(0, 0, 0, 0.1),
+                0 -2px rgba(0, 0, 0, 0.1) inset,
+                0 0 100px rgba(255, 255, 255, 0.2) inset);
 }
 
 .button.prominent:hover,
 .button.prominent:focus,
 .button.prominent:active,
 .button.prominent.selected {
-    .box-shadow(0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset, 0 0 100px rgba(255, 255, 255, 0.2) inset);
+    .box-shadow(0 3px rgba(0, 0, 0, 0.1),
+                0 -4px rgba(0, 0, 0, 0.1) inset,
+                0 0 100px rgba(255, 255, 255, 0.2) inset);
 }
 
 .button.prominent:active,
 .button.prominent.selected {
     top: 2px;
-    .box-shadow(0 1px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset, 0 0 100px rgba(255, 255, 255, 0.2) inset);
+    .box-shadow(0 1px rgba(0, 0, 0, 0.1),
+                0 -4px rgba(0, 0, 0, 0.1) inset,
+                0 0 100px rgba(255, 255, 255, 0.2) inset);
 }
 
 .install-shell {
