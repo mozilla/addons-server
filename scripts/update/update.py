@@ -11,13 +11,6 @@ import commander_settings as settings
 _src_dir = lambda *p: os.path.join(settings.SRC_DIR, *p)
 
 
-def git_update(ctx, ref):
-    ctx.local("git fetch && git fetch -t")
-    ctx.local("git checkout -f %s" % ref)
-    ctx.local("git submodule sync")
-    ctx.local("git submodule update --init")
-
-
 @task
 def update_locales(ctx):
     with ctx.lcd(_src_dir("locale")):
@@ -45,13 +38,15 @@ def schematic(ctx):
 
 
 @task
-def update_code(ctx, ref='origin/master', vendor_ref='origin/master'):
+def update_code(ctx, ref='origin/master'):
     with ctx.lcd(settings.SRC_DIR):
-        git_update(ctx, ref)
-
-        if vendor_ref:
-            with ctx.lcd("vendor"):
-                git_update(ctx, vendor_ref)
+        ctx.local("git fetch && git fetch -t")
+        ctx.local("git checkout -f %s" % ref)
+        ctx.local("git submodule sync")
+        # submodule sync doesn't do --recursive yet.
+        with ctx.lcd("vendor"):
+            ctx.local("git submodule sync")
+        ctx.local("git submodule update --init --recursive")
 
 
 @task
@@ -62,7 +57,7 @@ def update_remora(ctx):
 
 
 @task
-def update_info(ctx, ref='origin/master', vendor_ref='origin/master'):
+def update_info(ctx, ref='origin/master'):
     with ctx.lcd(settings.SRC_DIR):
         ctx.local("git status")
         ctx.local("git log -1")
@@ -114,11 +109,11 @@ def deploy(ctx):
 
 
 @task
-def pre_update(ctx, ref=settings.UPDATE_REF, vendor_ref=settings.UPDATE_VENDOR_REF):
+def pre_update(ctx, ref=settings.UPDATE_REF):
     ctx.local('date')
     disable_cron()
-    update_code(ref, vendor_ref)
-    update_info(ref, vendor_ref)
+    update_code(ref)
+    update_info(ref)
 
 
 @task
