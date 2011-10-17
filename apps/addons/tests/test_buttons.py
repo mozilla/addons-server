@@ -28,6 +28,7 @@ class ButtonTest(amo.tests.TestCase):
         self.addon.is_featured.return_value = False
         self.addon.is_unreviewed.return_value = False
         self.addon.is_webapp.return_value = False
+        self.addon.is_premium.return_value = False
         self.addon.can_be_purchased.return_value = False
         self.addon.has_eula = False
         self.addon.status = amo.STATUS_PUBLIC
@@ -431,7 +432,6 @@ class TestButtonHtml(ButtonTest):
         a.icon_url = 'icon url'
         a.meet_the_dev_url.return_value = 'meet.dev'
         a.name = 'addon name'
-        a.is_premium.return_value = False
         self.file.hash = 'file hash'
 
         doc = self.render()
@@ -569,6 +569,7 @@ class TestButtonHtml(ButtonTest):
 
     def test_is_webapp(self):
         self.addon.is_webapp.return_value = True
+        self.addon.can_be_purchased.return_value = True
         doc = self.render()
         # Make sure the webapp template is called.
         eq_(len(doc('.install.webapp')), 1)
@@ -578,6 +579,7 @@ class TestButtonHtml(ButtonTest):
 
     def test_webapp(self):
         self.addon.is_webapp.return_value = True
+        self.addon.can_be_purchased.return_value = True
         self.addon.update(status=1)
         doc = self.render(impala=True)
         assert not doc('.warning')
@@ -589,6 +591,12 @@ class TestButtonHtml(ButtonTest):
         self.addon.update(status=1)
         doc = self.render(impala=True)
         assert doc('.webapp').hasClass('premium')
+
+    def test_addon_not_ready(self):
+        self.addon.is_premium.return_value = True
+        self.addon.can_be_purchased.return_value = False
+        doc = self.render(impala=True)
+        assert doc('.install-button').text('Not ready for purchase.')
 
 
 class TestPremiumWebapp(ButtonTest):

@@ -28,7 +28,9 @@
   >
   <p class="install-button">
     {% set links = b.links() %}
-    {% if not links %}
+    {% if b.is_premium and not b.can_be_purchased %}
+      {{ _('Not ready for purchase.') }}
+    {% elif not links %}
       {{ _('No compatible versions') }}
     {% endif %}
     {% if settings.ADD_TO_MOBILE %}

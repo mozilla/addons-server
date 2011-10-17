@@ -134,6 +134,7 @@ class InstallButton(object):
         self.is_persona = addon.type == amo.ADDON_PERSONA
 
         self.can_be_purchased = addon.can_be_purchased()
+        self.is_premium = addon.is_premium()
         self.is_webapp = addon.is_webapp()
         self.accept_eula = addon.has_eula and not show_eula
         self._show_contrib = show_contrib

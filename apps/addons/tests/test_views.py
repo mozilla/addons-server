@@ -8,7 +8,6 @@ import re
 
 from django import test
 from django.conf import settings
-from django.db.models import Q
 from django.core import mail
 from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
@@ -169,7 +168,7 @@ class TestContributeEmbedded(amo.tests.TestCase):
         self.addon.charity = Charity.objects.create(name='foo')
         self.addon.save()
         url = reverse('addons.contribute', args=['a592'])
-        res = self.client.get(url)
+        self.client.get(url)
         eq_(get_paykey.call_args[0][0]['memo'],
             u'Contribution for Gmail S/MIME: foo')
 
@@ -919,7 +918,8 @@ class TestDetailPage(amo.tests.TestCase):
         addon.update(premium_type=amo.ADDON_PREMIUM,
                      status=amo.STATUS_NOMINATED)
         response = self.client.get(reverse('addons.detail', args=[addon.slug]))
-        eq_(response.status_code, 404)
+        eq_(response.status_code, 200)
+        eq_(len(pq(response.content)('.install a')), 0)
 
     def test_more_url(self):
         addon = Addon.objects.get(id=3615)
@@ -1035,7 +1035,7 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         eq_(list(Addon.objects.listed(amo.FIREFOX).exclude(id=self.addon.id)),
             [other])
 
-        author = add_addon_author(other, self.addon)
+        add_addon_author(other, self.addon)
         doc = self.get_more_pq()('#author-addons')
         eq_(doc.length, 1)
         test_hovercards(self, doc, [other], src='dp-dl-othersby')
