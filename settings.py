@@ -856,6 +856,8 @@ PERSONAS_UPDATE_URL = 'https://www.getpersonas.com/update_check/%d'
 # Outgoing URL bouncer
 REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
 REDIRECT_SECRET_KEY = ''
+# Allow URLs from these servers. Use full domain names.
+REDIRECT_URL_WHITELIST = ['addons.mozilla.org']
 
 # Default to short expiration; check "remember me" to override
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'

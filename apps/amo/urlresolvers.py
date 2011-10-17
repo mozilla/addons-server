@@ -149,8 +149,11 @@ def get_outgoing_url(url):
     if not settings.REDIRECT_URL:
         return url
 
-    # no double-escaping
-    if urlparse(url).netloc == urlparse(settings.REDIRECT_URL).netloc:
+    url_netloc = urlparse(url).netloc
+
+    # No double-escaping, and some domain names are excluded.
+    if (url_netloc == urlparse(settings.REDIRECT_URL).netloc
+        or url_netloc in settings.REDIRECT_URL_WHITELIST):
         return url
 
     url = encoding.smart_str(jinja2.utils.Markup(url).unescape())
