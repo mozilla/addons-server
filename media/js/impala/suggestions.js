@@ -48,6 +48,9 @@ $.fn.searchSuggestions = function(results) {
     }
 
     function dismissHandler() {
+        if ($results.hasClass('locked')) {
+            return;
+        }
         $results.removeClass('visible sel');
         $results.find('.sel').removeClass('sel');
     }
@@ -141,7 +144,7 @@ $.fn.searchSuggestions = function(results) {
         }
     }
 
-    $self.blur(dismissHandler)
+    $self.blur(function() { _.delay(dismissHandler, 250); })
          .keydown(rowHandler)
          .bind('keyup input paste', _.throttle(inputHandler, 250));
 
@@ -149,7 +152,8 @@ $.fn.searchSuggestions = function(results) {
         $results.find('.sel').removeClass('sel');
         $results.addClass('sel');
         $(this).find('a').addClass('sel');
-    }).delegate('p a', 'click', _pd(function() {
+    }).delegate('a', 'click', _pd(function() {
+        $results.addClass('locked');
         $form.submit();
     }));
 
