@@ -3,8 +3,9 @@
 {% block bodyclass %}apps{% endblock %}
 
 {% block site_header_title %}
-  {# TODO(cvan): Add the URL when we land the apps landing page. #}
-  <h1 class="site-title"><a href="#">{{ _('Apps') }}</a></h1>
+  <h1 class="site-title">
+    <a href="{{ url('apps.home') }}">{{ _('Apps') }}</a>
+  </h1>
   {% include "webapps/site_nav.html" %}
 {% endblock %}
 

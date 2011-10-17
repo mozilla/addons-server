@@ -8,12 +8,13 @@ import re
 
 from django import test
 from django.conf import settings
+from django.db.models import Q
 from django.core import mail
 from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 
 from mock import patch
-from nose.tools import eq_
+from nose.tools import eq_, nottest
 from nose import SkipTest
 from pyquery import PyQuery as pq
 from PIL import Image
@@ -21,7 +22,7 @@ import waffle
 
 import amo
 import amo.tests
-from amo.helpers import absolutify, numberfmt
+from amo.helpers import absolutify, numberfmt, urlparams
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from abuse.models import AbuseReport
@@ -41,6 +42,26 @@ from versions.models import License, Version
 def norm(s):
     """Normalize a string so that whitespace is uniform."""
     return re.sub(r'[\s]+', ' ', str(s)).strip()
+
+
+def add_addon_author(original, copy):
+    """Make both add-ons share an author."""
+    author = original.listed_authors[0]
+    AddonUser.objects.create(addon=copy, user=author, listed=True)
+    return author
+
+
+@nottest
+def test_hovercards(self, doc, addons, src=''):
+    addons = list(addons)
+    eq_(doc.find('.addon.hovercard').length, len(addons))
+    for addon in addons:
+        btn = doc.find('.install[data-addon=%s]' % addon.id)
+        eq_(btn.length, 1)
+        hc = btn.parents('.addon.hovercard')
+        eq_(hc.children('a').attr('href'),
+            urlparams(addon.get_url_path(), src=src))
+        eq_(hc.find('h3').text(), unicode(addon.name))
 
 
 class TestHomepage(amo.tests.TestCase):
@@ -1007,6 +1028,42 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         eq_(a.attr('href'), version.license_url())
         eq_(a.attr('target'), None)
         eq_(a.text(), 'Custom License')
+
+    def test_other_addons(self):
+        """Ensure listed add-ons by the same author show up."""
+        other = Addon.objects.get(id=592)
+        eq_(list(Addon.objects.listed(amo.FIREFOX).exclude(id=self.addon.id)),
+            [other])
+
+        author = add_addon_author(other, self.addon)
+        doc = self.get_more_pq()('#author-addons')
+        eq_(doc.length, 1)
+        test_hovercards(self, doc, [other], src='dp-dl-othersby')
+
+    def test_other_addons_no_webapps(self):
+        """An app by the same author should not show up."""
+        other = Addon.objects.get(id=592)
+        other.update(type=amo.ADDON_WEBAPP)
+
+        add_addon_author(other, self.addon)
+        eq_(self.get_more_pq()('#author-addons').length, 0)
+
+    def test_other_addons_no_unlisted(self):
+        """An unlisted add-on by the same author should not show up."""
+        other = Addon.objects.get(id=592)
+        other.update(status=amo.STATUS_UNREVIEWED, disabled_by_user=True)
+
+        add_addon_author(other, self.addon)
+        eq_(self.get_more_pq()('#author-addons').length, 0)
+
+    def test_other_addons_by_others(self):
+        """Add-ons by different authors should not show up."""
+        author = UserProfile.objects.get(pk=999)
+        AddonUser.objects.create(addon=self.addon, user=author, listed=True)
+        eq_(self.get_more_pq()('#author-addons').length, 0)
+
+    def test_other_addons_none(self):
+        eq_(self.get_more_pq()('#author-addons').length, 0)
 
 
 class TestStatus(amo.tests.TestCase):

@@ -41,6 +41,7 @@ from sharing.views import share as share_redirect
 from stats.models import Contribution
 from translations.query import order_by_translation
 from versions.models import Version
+from webapps.models import Webapp
 from .models import Addon, Persona, FrozenAddon
 from .forms import NewPersonaForm
 from .decorators import addon_view_factory, can_be_purchased, has_purchased
@@ -115,11 +116,6 @@ def extension_detail(request, addon):
     addon.has_satisfaction = (lang == 'en_US' and
                               addon.get_satisfaction_company)
 
-    # Other add-ons from the same author(s).
-    author_addons = (Addon.objects.reviewed().exclude(id=addon.id).distinct()
-                     .filter(addonuser__listed=True,
-                             authors__in=addon.listed_authors))[:6]
-
     # Addon recommendations.
     recommended = Addon.objects.listed(request.APP).filter(
         recommended_for__addon=addon)[:6]
@@ -130,7 +126,6 @@ def extension_detail(request, addon):
 
     ctx = {
         'addon': addon,
-        'author_addons': author_addons,
         'src': request.GET.get('src', 'dp-btn-primary'),
         'version_src': request.GET.get('src', 'dp-btn-version'),
         'tags': addon.tags.not_blacklisted(),
@@ -143,14 +138,23 @@ def extension_detail(request, addon):
         'abuse_form': AbuseForm(request=request),
     }
 
-    if addon.is_webapp():
-        ctx['search_cat'] = 'apps'
-
     # details.html just returns the top half of the page for speed. The bottom
     # does a lot more queries we don't want on the initial page load.
     if request.is_ajax():
+        # Other add-ons/apps from the same author(s).
+        if addon.is_webapp():
+            others = Webapp.objects.listed().filter(type=amo.ADDON_WEBAPP)
+        else:
+            others = (Addon.objects.listed(request.APP)
+                      .exclude(type=amo.ADDON_WEBAPP))
+        others = (others.exclude(id=addon.id).distinct()
+                        .filter(addonuser__listed=True,
+                                authors__in=addon.listed_authors))
+        ctx['author_addons'] = others[:6]
         return jingo.render(request, 'addons/impala/details-more.html', ctx)
     else:
+        if addon.is_webapp():
+            ctx['search_cat'] = 'apps'
         return jingo.render(request, 'addons/impala/details.html', ctx)
 
 
