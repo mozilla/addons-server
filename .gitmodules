@@ -12,4 +12,4 @@
 	url = git://github.com/mozilla/django-moz-header.git
 [submodule "vendor"]
 	path = vendor
-	url = git://github.com/jbalogh/zamboni-lib.git
+	url = git://github.com/mozilla/zamboni-lib.git
