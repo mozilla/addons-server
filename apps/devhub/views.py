@@ -1346,6 +1346,7 @@ def marketplace_confirm(request, addon_id, addon):
         if (addon.premium and addon.premium.is_complete()
             and addon.premium.has_permissions_token()):
             addon.update(premium_type=amo.ADDON_PREMIUM)
+            amo.log(amo.LOG.MAKE_PREMIUM, addon)
             return redirect('devhub.addons.payments', addon.slug)
 
         messages.error(request, 'Some required details are missing.')

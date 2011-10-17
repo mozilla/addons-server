@@ -951,6 +951,14 @@ class TestMarketplace(amo.tests.TestCase):
         eq_(self.client.post(url, {}).status_code, 302)
         assert self.get_addon().is_premium()
 
+    def test_logs(self):
+        self.setup_premium()
+        self.addon.premium.update(paypal_permissions_token='foo')
+        url = reverse('devhub.market.4', args=[self.addon.slug])
+        eq_(self.client.post(url, {}).status_code, 302)
+        eq_(ActivityLog.objects.for_addons(self.addon)[0].action,
+            amo.LOG.MAKE_PREMIUM.id)
+
     def test_can_edit(self):
         self.setup_premium()
         assert 'no-edit' not in self.client.get(self.url).content

@@ -381,6 +381,12 @@ class CHANGE_PASSWORD(_LOG):
     format = _(u'Password changed.')
 
 
+class MAKE_PREMIUM(_LOG):
+    id = 50
+    action_class = None
+    format = _(u'{addon} changed to premium.')
+
+
 class CUSTOM_TEXT(_LOG):
     id = 98
     action_class = None
