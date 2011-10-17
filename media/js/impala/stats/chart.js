@@ -57,7 +57,7 @@
               }
            }
         };
-
+    Highcharts.setOptions({ lang: { resetZoom: '' } });
     var chart;
     // which unit do we use for a given metric?
     var metricTypes = {
@@ -85,6 +85,7 @@
             fields  = obj.fields ? obj.fields.slice(0,5) : ['count'],
             data    = obj.data,
             series  = {},
+            chartRange = {},
             t, row, i, field, val;
 
         // Initialize the empty series object.
@@ -179,33 +180,38 @@
         var newConfig = $.extend(baseConfig, { series: chartData });
         // set up dual-axes for the overview chart.
         if (metric == "overview" && newConfig.series.length) {
-            newConfig.yAxis = [
-                { // Downloads
-                    title: {
-                       text: gettext('Downloads')
-                    },
-                    // min: 0,
-                    labels: {
-                        formatter: function() {
-                            return Highcharts.numberFormat(this.value, 0);
+            _.extend(newConfig, {
+                yAxis : [
+                    { // Downloads
+                        title: {
+                           text: gettext('Downloads')
+                        },
+                        // min: 0,
+                        labels: {
+                            formatter: function() {
+                                return Highcharts.numberFormat(this.value, 0);
+                            }
                         }
+                    }, { // Daily Users
+                        title: {
+                            text: gettext('Daily Users')
+                        },
+                        labels: {
+                            formatter: function() {
+                                return Highcharts.numberFormat(this.value, 0);
+                            }
+                        },
+                        // min: 0,
+                        opposite: true
                     }
-                }, { // Daily Users
-                    title: {
-                        text: gettext('Daily Users')
-                    },
-                    labels: {
-                        formatter: function() {
-                            return Highcharts.numberFormat(this.value, 0);
-                        }
-                    },
-                    // min: 0,
-                    opposite: true
+                ],
+                tooltip: {
+                    shared : true,
+                    crosshairs : true
                 }
-            ];
+            });
             // set Daily Users series to use the right yAxis.
             newConfig.series[1].yAxis = 1;
-            newConfig.tooltip.shared = true;
         }
         newConfig.tooltip.formatter = tooltipFormatter;
 
@@ -228,6 +234,10 @@
 
         if (chart) chart.destroy();
         chart = new Highcharts.Chart(newConfig);
+        chartRange = chart.xAxis[0].getExtremes();
+        $("h1").click(function() {
+            chart.xAxis[0].setExtremes(chartRange.min, chartRange.max);
+        })
         $chart.removeClass('loading');
     });
 })();

@@ -11,7 +11,7 @@ z.StatsManager = (function() {
 
     // The version of the stats localStorage we are using.
     // If you increment this number, you cache-bust everyone!
-    var STATS_VERSION = 22;
+    var STATS_VERSION = 1;
 
     var storage         = z.Storage("stats"),
         storageCache    = z.Storage("statscache"),
@@ -155,21 +155,18 @@ z.StatsManager = (function() {
     // and queues up requests to the server if the requested data is outside
     // the range currently stored locally. Once all server requests return,
     // we move on.
-    function getDataRange(view, callback) {
+    function getDataRange(view) {
         dbg("enter getDataRange", view.metric);
         var range = z.date.normalizeRange(view.range),
             metric = view.metric,
-            ds,
-            needed = 0,
+            ds = dataStore[metric],
+            reqs = [],
             $def = $.Deferred();
 
         function finished() {
-            needed--;
-            dbg(pendingFetches, " fetches pending");
-            if (needed < 1) {
-                var ret = {}, row,
-                    step = z.date.millis("1 day");
-                ds = dataStore[metric];
+            var ret = {}, row,
+                step = z.date.millis("1 day");
+            if (ds) {
                 for (var i=range.start; i<range.end; i+= step) {
                     if (ds[i]) {
                         ret[i] = (metric == 'apps') ? collapseVersions(ds[i], 1) : ds[i];
@@ -177,30 +174,26 @@ z.StatsManager = (function() {
                 }
                 ret = groupData(ret, view);
                 ret.metric = metric;
-                $def.resolve(ret);
             }
+            if (_.isEmpty(ret)) {
+                ret.empty = true;
+            }
+            $def.resolve(ret);
         }
 
-        if (dataStore[metric]) {
-            ds = dataStore[metric];
+        if (ds) {
             dbg("range", range.start, range.end);
             if (ds.maxdate < range.end) {
-                needed++;
-                fetchData(metric, ds.maxdate, range.end, finished);
+                reqs.push(fetchData(metric, ds.maxdate, range.end));
             }
             if (ds.mindate > range.start) {
-                needed++;
-                fetchData(metric, range.start, ds.mindate, finished);
-            }
-            if (ds.mindate <= range.start && ds.maxdate >= range.end) {
-                dbg("all data found locally");
-                finished();
+                reqs.push(fetchData(metric, range.start, ds.mindate));
             }
         } else {
-            dbg("metric not found");
-            needed++;
-            fetchData(metric, range.start, range.end, finished);
+            reqs.push(fetchData(metric, range.start, range.end));
         }
+
+        $.when.apply(null, reqs).then(finished);
         return $def;
     }
 
@@ -217,32 +210,49 @@ z.StatsManager = (function() {
             groupVal = false,
             groupCount = 0,
             d, row;
+
+        if (group == 'all') {
+            groupKey = range.start;
+            groupCount = 0;
+            groupVal = {
+                date: z.date.date_string(new Date(groupKey), '-'),
+                count: 0,
+                data: {}
+            };
+        }
+        
+        function performAggregation() {
+            // we drop the some days of data from the result set
+            // if they are not a complete grouping.
+            if (groupKey && groupVal) {
+                // average `count` for mean metrics
+                if (metricTypes[metric] == 'mean') {
+                    groupVal.count /= groupCount;
+                }
+                // overview gets special treatment. Only average ADUs.
+                if (metric == "overview") {
+                    groupVal.data.updates /= groupCount;
+                } else if (metric in breakdownMetrics) {
+                    // average for mean metrics.
+                    _.each(groupVal.data, function(val, field) {
+                        if (metricTypes[metric] == 'mean') {
+                            groupVal.data[field] /= groupCount;
+                        }
+                    });
+                }
+                groupedData[groupKey] = groupVal;
+            }
+        }
+
         // big loop!
-        for (var i=range.start; i<range.end; i+= z.date.millis('1 day')) {
+        for (var i=range.start; i <= range.end; i+= z.date.millis('1 day')) {
             d = new Date(i);
             row = data[i];
             // Here's where grouping points are caluculated.
-            if ((group == 'week' && d.getDay() === 0) || (group == 'month' && d.getDate() == 1)) {
-                // we drop the some days of data from the result set
-                // if they are not a complete grouping.
-                if (groupKey && groupVal) {
-                    // average `count` for mean metrics
-                    if (metricTypes[metric] == 'mean') {
-                        groupVal.count /= groupCount;
-                    }
-                    // overview gets special treatment. Only average ADUs.
-                    if (metric == "overview") {
-                        groupVal.data.updates /= groupCount;
-                    } else if (metric in breakdownMetrics) {
-                        // average for mean metrics.
-                        _.each(groupVal.data, function(val, field) {
-                            if (metricTypes[metric] == 'mean') {
-                                groupVal.data[field] /= groupCount;
-                            }
-                        });
-                    }
-                    groupedData[groupKey] = groupVal;
-                }
+            if ((group == 'week' && d.getDay() === 0) ||
+                (group == 'month' && d.getDate() == 1)) {
+
+                performAggregation();
                 // set the new group date to the current iteration.
                 groupKey = i;
                 // reset our aggregates.
@@ -267,16 +277,16 @@ z.StatsManager = (function() {
             }
             groupCount++;
         }
+        if (group == 'all') performAggregation();
         return groupedData;
     }
 
 
     // The beef. Negotiates with the server for data.
-    function fetchData(metric, start, end, callback) {
+    function fetchData(metric, start, end) {
         var seriesStart = start,
-            seriesEnd = end;
-
-        pendingFetches++;
+            seriesEnd = end,
+            $def = $.Deferred();
 
         var seriesURLStart = Highcharts.dateFormat('%Y%m%d', seriesStart),
             seriesURLEnd = Highcharts.dateFormat('%Y%m%d', seriesEnd),
@@ -286,7 +296,12 @@ z.StatsManager = (function() {
 
         $.ajax({ url:       seriesURL,
                  dataType:  'text',
-                 success:   fetchHandler});
+                 success:   fetchHandler,
+                 error:     errorHandler });
+
+        function errorHandler() {
+            $def.fail();
+        }
 
         function fetchHandler(raw_data, status, xhr) {
             var maxdate = 0,
@@ -312,10 +327,9 @@ z.StatsManager = (function() {
                 }
                 ds.maxdate = Math.max(parseInt(maxdate, 10), parseInt(ds.maxdate, 10));
                 ds.mindate = Math.min(parseInt(mindate, 10), parseInt(ds.mindate, 10));
-                pendingFetches--;
-                callback.call(this, true);
                 clearTimeout(writeInterval);
                 writeInterval = setTimeout(writeLocalStorage, 1000);
+                $def.resolve();
 
             } else if (xhr.status == 202) { //Handle a successful fetch but with no reponse
 
@@ -331,6 +345,7 @@ z.StatsManager = (function() {
 
             }
         }
+        return $def;
     }
 
 
@@ -402,9 +417,11 @@ z.StatsManager = (function() {
 
     // Expose some functionality to the z.StatsManager api.
     return {
-        'fetchData'     : fetchData,
-        'dataStore'     : dataStore,
-        'getPrettyName' : getPrettyName,
-        'getField'      : getField
+        'getDataRange'      : getDataRange,
+        'fetchData'         : fetchData,
+        'dataStore'         : dataStore,
+        'getPrettyName'     : getPrettyName,
+        'getField'          : getField,
+        'clearLocalStorage' : clearLocalStorage
     };
 })();

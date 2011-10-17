@@ -746,6 +746,8 @@ MINIFY_BUNDLES = {
             'js/impala/stats/dateutils.js',
             'js/impala/stats/manager.js',
             'js/impala/stats/controls.js',
+            'js/impala/stats/overview.js',
+            'js/impala/stats/topchart.js',
             'js/impala/stats/chart.js',
             'js/impala/stats/stats.js',
         ),
