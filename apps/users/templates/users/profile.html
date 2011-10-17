@@ -72,7 +72,7 @@
 </aside>
 {% endif %}
 
-<div class="island primary c{{ ' full' if not (own_coll or fav_coll) }}" id="reviews">
+<div class="island primary{{ ' full' if not (own_coll or fav_coll) }}" id="reviews">
 {% cache reviews %}
   <h2>{{ _('My Reviews') }}</h2>
   <div class="items">
