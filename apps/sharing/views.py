@@ -19,7 +19,7 @@ def share(request, obj, name, description):
         'title': page_title({'request': request}, name,
                             force_webapps=is_webapp),
         'url': u(obj.get_url_path()),
-        'description': u(description),
+        'description': description,
     })
     form.full_clean()
     return redirect(service.url.format(**form.cleaned_data))

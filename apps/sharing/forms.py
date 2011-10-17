@@ -14,7 +14,4 @@ class ShareForm(forms.Form):
         return absolutify(self.cleaned_data.get('url'))
 
     def clean_description(self):
-        desc = self.cleaned_data.get('description', '')
-        if desc:
-            desc = truncate(desc, 250)
-        return desc
+        return truncate(self.cleaned_data.get('description', ''), 250)
