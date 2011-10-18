@@ -31,6 +31,24 @@ $.ajaxCache = function(o) {
         ajaxFailure: $.noop,      // Callback upon failure of Ajax request.
     }, o);
 
+    if (parseFloat(jQuery.fn.jquery) < 1.5) {
+        // jqXHR objects allow Deferred methods as of jQuery 1.5. Some of our
+        // old pages are stuck on jQuery 1.4, so hopefully this'll disappear
+        // sooner than later.
+        return $.ajax({
+            url: o.url,
+            type: o.method,
+            data: o.data,
+            success: function(data) {
+                o.newItems(data, data);
+                o.ajaxSuccess(data, items);
+            },
+            errors: function(data) {
+                o.ajaxFailure(data);
+            }
+        });
+    }
+
     var cache = z.AjaxCache(o.url + ':' + o.type),
         args = JSON.stringify(o.data),
         $self = this,
@@ -55,12 +73,8 @@ $.ajaxCache = function(o) {
                 if (!objEqual(data, cache.previous.data)) {
                     items = data;
                 }
-                if (o.newItems) {
-                    o.newItems(data, items);
-                }
-                if (o.ajaxSuccess) {
-                    o.ajaxSuccess(data, items);
-                }
+                o.newItems(data, items);
+                o.ajaxSuccess(data, items);
             });
 
             // Optional failure callback.

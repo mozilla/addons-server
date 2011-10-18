@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% from "browse/macros.html" import secondary_categories %}
 
+{% block search_form %}
+  {% with skip_autofill=True %}
+    {% include "search.html" %}
+  {% endwith %}
+{% endblock %}
+
 {% block title %}
 {% if query %}
   {{ page_title(_('Personas Search Results for {0}')|f(query)) }}

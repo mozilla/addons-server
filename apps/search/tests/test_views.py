@@ -6,12 +6,12 @@ from django.http import QueryDict
 from django.test import client
 
 from mock import Mock
-from nose import SkipTest
 from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
+from amo.helpers import locale_url
 from amo.urlresolvers import reverse
 from search.tests import SphinxTestCase
 from search import views
@@ -266,15 +266,14 @@ class TestWebappSearch(amo.tests.ESTestCase):
         self.assertTemplateUsed(r, 'search/mobile/results.html')
 
 
-@nottest
 class TestAjaxSearch(amo.tests.ESTestCase):
 
     @classmethod
     def setUpClass(cls):
-        super(TestSearchSuggestions, cls).setUpClass()
+        super(TestAjaxSearch, cls).setUpClass()
         cls.setUpIndex()
 
-    def assert_ajax_query(self, url, params, addons=[],
+    def search_addons(self, url, params, addons=[],
                           types=amo.ADDON_SEARCH_TYPES):
         r = self.client.get('?'.join([url, params]))
         eq_(r.status_code, 200)
@@ -299,85 +298,119 @@ class TestAjaxSearch(amo.tests.ESTestCase):
 
 class TestBaseAjaxSearch(TestAjaxSearch):
 
-    def assert_ajax_query(self, params, addons=[]):
-        super(TestBaseAjaxSearch, self).assert_ajax_query(
+    def search_addons(self, params, addons=[]):
+        self.refresh()
+        super(TestBaseAjaxSearch, self).search_addons(
             reverse('search.ajax'), params, addons)
 
     def test_ajax_search_by_id(self):
         addon = Addon.objects.get(id=4)
-        self.assert_ajax_query('q=4', [addon])
+        self.search_addons('q=4', [addon])
 
     def test_ajax_search_by_bad_id(self):
-        self.assert_ajax_query('q=999', [])
+        self.search_addons('q=999', [])
 
     def test_ajax_search_unreviewed_by_id(self):
         addon = Addon.objects.get(id=4)
         addon.update(status=amo.STATUS_UNREVIEWED)
-        self.assert_ajax_query('q=999', [])
+        self.search_addons('q=999', [])
 
     def test_ajax_search_lite_reviewed_by_id(self):
         addon = Addon.objects.get(id=4)
         addon.update(status=amo.STATUS_LITE)
-        self.assert_ajax_query('q=4', [addon])
+        self.search_addons('q=4', [addon])
 
         addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        self.assert_ajax_query('q=4', [addon])
+        self.search_addons('q=4', [addon])
 
     def test_ajax_search_user_disabled_by_id(self):
         addon = Addon.objects.get(id=1)
         eq_(addon.disabled_by_user, True)
-        self.assert_ajax_query('q=1', [])
+        self.search_addons('q=1', [])
 
     def test_ajax_search_admin_disabled_by_id(self):
         addon = Addon.objects.get(id=2)
         eq_(addon.status, amo.STATUS_DISABLED)
-        self.assert_ajax_query('q=1', [])
+        self.search_addons('q=1', [])
 
     def test_ajax_search_personas_by_id(self):
         addon = Addon.objects.get(id=4)
         addon.update(type=amo.ADDON_PERSONA)
         Persona.objects.create(persona_id=4, addon_id=4)
-        self.assert_ajax_query('q=4', [addon])
+        self.search_addons('q=4', [addon])
 
     def test_ajax_search_char_limit(self):
-        self.assert_ajax_query('q=ad', [])
+        self.search_addons('q=ad', [])
 
     def test_ajax_search_by_name(self):
+        from nose import SkipTest
         raise SkipTest
-        # Exclude the following:
-        # 1 (user-disabled), 2 (admin-disabled), 3 (unreviewed).
-        self.assert_ajax_query('q=add',
-            list(Addon.objects.filter(id__in=[4, 5, 6])))
+        self.search_addons('q=add', list(Addon.objects.reviewed()))
 
     def test_ajax_search_by_bad_name(self):
-        self.assert_ajax_query('q=some+filthy+bad+word', [])
+        self.search_addons('q=some+filthy+bad+word', [])
 
 
 class TestSearchSuggestions(TestAjaxSearch):
 
     def setUp(self):
-        super(TestSearchSuggestions, self).setUp()
         self.url = reverse('search.suggestions')
-        Addon.objects.get(id=4).update(type=amo.ADDON_WEBAPP)
+        amo.tests.addon_factory(name='addon webapp', type=amo.ADDON_WEBAPP)
+        amo.tests.addon_factory(name='addon persona', type=amo.ADDON_PERSONA)
+        amo.tests.addon_factory(name='addon persona', type=amo.ADDON_PERSONA,
+                                disabled_by_user=True, status=amo.STATUS_NULL)
         self.refresh()
 
-    def assert_ajax_query(self, params, addons=[],
-                          types=amo.ADDON_SEARCH_TYPES):
-        super(TestBaseAjaxSearch, self).assert_ajax_query(
+    def search_addons(self, params, addons=[],
+                          types=views.AddonSuggestionsAjax.types):
+        super(TestSearchSuggestions, self).search_addons(
             self.url, params, addons, types)
+
+    def search_applications(self, params, apps=[]):
+        r = self.client.get('?'.join([self.url, params]))
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+
+        data = sorted(data, key=lambda x: x['id'])
+        apps = sorted(apps, key=lambda x: x.id)
+
+        eq_(len(data), len(apps))
+        for got, expected in zip(data, apps):
+            eq_(int(got['id']), expected.id)
+            eq_(got['name'], '%s Add-ons' % unicode(expected.pretty))
+            eq_(got['url'], locale_url(expected.short))
+            eq_(got['cls'], 'app ' + expected.short)
 
     def test_get(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
 
     def test_addons(self):
-        addons = (Addon.objects.reviewed().exclude(type=amo.ADDON_WEBAPP)
-                  .filter(disabled_by_user=False))
-        self.assert_ajax_query('q=add', list(addons))
-        self.assert_ajax_query('q=add&cat=all', list(addons))
+        addons = (Addon.objects.reviewed()
+                  .filter(disabled_by_user=False,
+                          type__in=views.AddonSuggestionsAjax.types))
+        self.search_addons('q=add', list(addons))
+        self.search_addons('q=add&cat=all', list(addons))
+
+    def test_personas(self):
+        personas = (Addon.objects.reviewed()
+                    .filter(type=amo.ADDON_PERSONA, disabled_by_user=False))
+        self.search_addons('q=add&cat=personas', list(personas),
+                               types=[amo.ADDON_PERSONA])
+        self.search_addons('q=persona&cat=all', [])
 
     def test_webapps(self):
-        apps = (Addon.objects.reviewed().filter(type=amo.ADDON_WEBAPP)
-                .filter(disabled_by_user=False))
-        self.assert_ajax_query('q=add&cat=apps', list(apps),
-                               types=[amo.ADDON_WEBAPP])
+        apps = (Addon.objects.reviewed()
+                .filter(type=amo.ADDON_WEBAPP, disabled_by_user=False))
+        self.search_addons('q=add&cat=apps', list(apps),
+                              types=[amo.ADDON_WEBAPP])
+
+    def test_applications(self):
+        self.search_applications('', [])
+        self.search_applications('q=firefox', [amo.FIREFOX])
+        self.search_applications('q=thunder', [amo.THUNDERBIRD])
+        self.search_applications('q=monkey', [amo.SEAMONKEY])
+        self.search_applications('q=sun', [amo.SUNBIRD])
+        self.search_applications('q=bird', [amo.THUNDERBIRD, amo.SUNBIRD])
+        self.search_applications('q=mobile', [amo.MOBILE])
+        self.search_applications('q=mozilla', [])

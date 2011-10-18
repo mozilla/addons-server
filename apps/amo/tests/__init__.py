@@ -22,7 +22,7 @@ from redisutils import mock_redis, reset_redis
 import amo
 from amo.urlresolvers import Prefixer, get_url_prefix, set_url_prefix
 import addons.search
-from addons.models import Addon
+from addons.models import Addon, Persona
 from applications.models import Application, AppVersion
 from files.models import File, Platform
 from translations.models import Translation
@@ -240,6 +240,8 @@ def addon_factory(version_kw={}, file_kw={}, **kw):
     a.status = amo.STATUS_PUBLIC
     for key, value in kw.items():
         setattr(a, key, value)
+        if key == 'type' and value == amo.ADDON_PERSONA:
+            Persona.objects.create(addon_id=a.id, persona_id=a.id)
     a.save()
     return a
 

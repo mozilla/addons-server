@@ -103,6 +103,7 @@ body {
 /** Search */
 
 div.header-search {
+    position: relative;
     margin: 0;
     width: 380px;
     clear: right;
