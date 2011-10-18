@@ -65,10 +65,8 @@ def get_paykey(data):
         'receiverList.receiver(0).invoiceID': 'mozilla-%s' % data['uuid'],
         'receiverList.receiver(0).primary': 'TRUE',
         'receiverList.receiver(0).paymentType': 'DIGITALGOODS',
-        'trackingId': data['uuid']}
-
-    if data.get('ipn', True):
-        paypal_data['ipnNotificationUrl'] = absolutify(reverse('amo.paypal'))
+        'trackingId': data['uuid'],
+        'ipnNotificationUrl': absolutify(reverse('amo.paypal'))}
 
     if data.get('memo'):
         paypal_data['memo'] = data['memo']
@@ -98,7 +96,6 @@ def check_purchase(paykey):
 
     return response['status']
 
-
 def refund(txnid):
     """
     Refund a payment.
@@ -126,11 +123,15 @@ def refund(txnid):
                     responses.append({})
                 responses[i][subkey] = response[k]
         for d in responses:
-            status = '%s: %s' % (d['receiver.email'], d['refundStatus'])
             if d['refundStatus'] not in OK_STATUSES:
-                raise PaypalError('Bad refund status for %s' % status)
-            paypal_log.debug('Refund done for transaction %s, status: %s'
-                             % (txnid, status))
+                raise PaypalError('Bad refund status for %s: %s'
+                                  % (d['receiver.email'],
+                                     d['refundStatus']))
+            paypal_log.debug('Refund successful for transaction %s.'
+                             ' Statuses: %r'
+                             % (txnid, [(d['receiver.email'], d['refundStatus'])
+                                        for d in responses]))
+
 
         return responses
 

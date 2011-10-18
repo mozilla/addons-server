@@ -72,7 +72,7 @@ test('Generated HTML tags', function() {
     var $results = this.results,
         $sel = $results.find('.wrap p a.sel');
     equal($sel.length, 1);
-    equal($sel.find('b').length, 0);
+    equal($sel.find('b').length, 1);
     equal($results.find('.wrap ul').length, 1);
 });
 

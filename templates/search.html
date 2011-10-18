@@ -2,13 +2,20 @@
 <form id="search" action="{{ url('search.search') }}">
   <span class="wrap">
     <input id="search-q" type="text" name="q" required
+           required autocomplete="off" title=""
            class="text {% if not search_form.q.data %}placeholder{% endif %}"
            placeholder="{{ search_form.placeholder() }}"
            value="{{ search_form.q.data or '' }}">
     {{ search_form.cat }}
-    {{ search_form.appver }}
-    {{ search_form.platform }}
+    {% if not skip_autofill %}
+      {{ search_form.appver }}
+      {{ search_form.platform }}
+    {% endif %}
   </span>
   <input id="search-button" type="image" class="submit search-button" title="{{ _('Search') }}"
          src="{{ media('img/zamboni/global/btn-search.png') }}">
+  {% if waffle.switch('search-suggestions') %}
+    <div id="site-search-suggestions"
+         data-src="{{ url('search.suggestions') }}"></div>
+  {% endif %}
 </form>

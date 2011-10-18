@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
+{% block search_form %}
+  {% with skip_autofill=True %}
+    {% include "search.html" %}
+  {% endwith %}
+{% endblock %}
+
 {% block title %}
   {% if query %}
     {{ page_title(_('Collection Search Results for {0}')|f(query)) }}

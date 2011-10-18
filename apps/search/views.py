@@ -323,6 +323,10 @@ class AddonSuggestionsAjax(BaseAjaxSearch):
              amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_LPAPP]
 
 
+class PersonaSuggestionsAjax(BaseAjaxSearch):
+    types = [amo.ADDON_PERSONA]
+
+
 class WebappSuggestionsAjax(BaseAjaxSearch):
     types = [amo.ADDON_WEBAPP]
 
@@ -339,11 +343,12 @@ def ajax_search(request):
 
 @json_view
 def ajax_search_suggestions(request):
-    # TODO(cvan): Tests will come when I know this is what fligtar wants.
     results = []
     q = request.GET.get('q')
     if q and (q.isdigit() or (not q.isdigit() and len(q) > 2)):
         q_ = q.lower()
+
+        cat = request.GET.get('cat', 'all')
 
         # Applications.
         for a in amo.APP_USAGE:
@@ -358,8 +363,14 @@ def ajax_search_suggestions(request):
         # Categories.
         cats = (Category.objects
                 .filter(Q(application=request.APP.id) |
-                        Q(type=amo.ADDON_SEARCH))
-                .exclude(type=amo.ADDON_WEBAPP))
+                        Q(type=amo.ADDON_SEARCH)))
+        if cat == 'personas':
+            cats = cats.filter(type=amo.ADDON_PERSONA)
+        elif cat == 'apps':
+            cats = cats.filter(type=amo.ADDON_WEBAPP)
+        else:
+            cats = cats.exclude(type__in=[amo.ADDON_PERSONA, amo.ADDON_WEBAPP])
+
         for c in cats:
             if not c.name:
                 continue
@@ -373,10 +384,13 @@ def ajax_search_suggestions(request):
                     'cls': 'cat'
                 })
 
-        if request.GET.get('cat') == 'apps':
-            results += WebappSuggestionsAjax(request).items
-        else:
-            results += AddonSuggestionsAjax(request).items
+        suggestions = {
+            'all': AddonSuggestionsAjax,
+            'personas': PersonaSuggestionsAjax,
+            'apps': WebappSuggestionsAjax,
+        }.get(cat, AddonSuggestionsAjax)
+
+        results += suggestions(request).items
 
     return results
 

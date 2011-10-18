@@ -1,4 +1,11 @@
 {% extends 'base.html' %}
+
+{% block search_form %}
+  {% with skip_autofill=True %}
+    {% include "search.html" %}
+  {% endwith %}
+{% endblock %}
+
 {% block title %}{{ page_title(title) }}{% endblock %}
 {% block content %}
 <div role="main" class="primary wide">

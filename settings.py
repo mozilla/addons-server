@@ -441,6 +441,7 @@ MINIFY_BUNDLES = {
             'css/zamboni/tags.css',
             'css/zamboni/tabs.css',
             'css/impala/formset.less',
+            'css/impala/suggestions.less',
         ),
         'zamboni/impala': (
             'css/impala/base.css',
@@ -582,7 +583,12 @@ MINIFY_BUNDLES = {
             'js/global/menu.js',
 
             # Password length and strength
-            'js/zamboni/password-strength.js'
+            'js/zamboni/password-strength.js',
+
+            # Search suggestions
+            'js/impala/forms.js',
+            'js/impala/ajaxcache.js',
+            'js/impala/suggestions.js',
         ),
         'impala': (
             'js/lib/jquery-1.6.4.js',
