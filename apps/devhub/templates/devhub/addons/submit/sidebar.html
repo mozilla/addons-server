@@ -7,21 +7,21 @@
     <h3>{{ _('Submission Process') }}</h3>
   </hgroup>
   <ol class="submit-addon-progress">
-    {% for text, show_for_webapp
-           in (_('Getting Started'), True),
-              (_('Upload your add-on'), True),
-              (_('Describe your add-on'), True),
-              (_('Add images'), True),
-              (_('Select a license'), True),
-              (_('Select a review process'), False),
-              (_("You're done!"), True): %}
+    {% for text, show_for_webapp, alt_text
+           in (_('Getting Started'), True, None),
+              (_('Upload your add-on'), True, _('Link your app')),
+              (_('Describe your add-on'), True, _('Describe your app')),
+              (_('Add images'), True, None),
+              (_('Select a license'), True, None),
+              (_('Select a review process'), False, None),
+              (_("You're done!"), True, None): %}
       {% if not webapp or show_for_webapp: %}
       <li {% if step.current == loop.index %}class="current"{% endif %}>
         {% if step.current < HAS_ADDON %}
           {% if loop.index <= step.current %}
-            <a href="{{ url('devhub.submit.%s' % loop.index) }}">{{ text }}</a>
+            <a href="{{ url('devhub.submit.%s' % loop.index) }}">{{ alt_text if webapp and alt_text else text }}</a>
           {% else %}
-            {{ text }}
+            {{ alt_text if webapp and alt_text else text }}
           {% endif %}
         {% else %}
           {# 1. We have an addon, so don't link to non-addon steps.
