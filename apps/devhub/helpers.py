@@ -60,11 +60,17 @@ def dev_breadcrumbs(context, addon=None, items=None, add_default=False):
         Prepends trail back to home when True.  Default is False.
     """
     crumbs = [(reverse('devhub.index'), _('Developer Hub'))]
+
+    if context.get('WEBAPPS'):
+        title = _('My Apps')
+    else:
+        title = _('My Add-ons')
+
     if not addon and not items:
         # We are at the end of the crumb trail.
-        crumbs.append((None, _('My Add-ons')))
+        crumbs.append((None, title))
     else:
-        crumbs.append((reverse('devhub.addons'), _('My Add-ons')))
+        crumbs.append((reverse('devhub.addons'), title))
     if addon:
         if items:
             url = reverse('devhub.addons.edit', args=[addon.slug])
