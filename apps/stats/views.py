@@ -83,14 +83,15 @@ def overview_series(request, addon, group, start, end, format):
 def zip_overview(downloads, updates):
     # Jump through some hoops to make sure we're matching dates across download
     # and update series and inserting zeroes for any missing days.
+    downloads, updates = list(downloads), list(updates)
     if not (downloads or updates):
         return
-    downloads, updates = list(downloads), list(updates)
     start_date = None
     if downloads:
         start_date = downloads[0]['date']
     if updates:
-        start_date = max(start_date, updates[0]['date'])
+        d = updates[0]['date']
+        start_date = max(start_date, d) if start_date else d
     downloads, updates = iter(downloads), iter(updates)
 
     def iterator(series):
