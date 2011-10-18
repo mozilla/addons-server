@@ -1,4 +1,4 @@
-from datetime import date
+import datetime
 import hashlib
 from urlparse import urlparse
 
@@ -82,11 +82,11 @@ class TestUserProfile(amo.tests.TestCase):
         Test for a preview URL if image is set, or default image otherwise.
         """
         u = UserProfile(id=1234, picture_type='image/png',
-                        modified=date.today())
+                        modified=datetime.date.today())
         u.picture_url.index('/userpics/0/1/1234.png?modified=')
 
         u = UserProfile(id=1234567890, picture_type='image/png',
-                        modified=date.today())
+                        modified=datetime.date.today())
         u.picture_url.index('/userpics/1234/1234567/1234567890.png?modified=')
 
         u = UserProfile(id=1234, picture_type=None)
@@ -129,6 +129,28 @@ class TestUserProfile(amo.tests.TestCase):
         u = UserProfile.objects.get(id=2519)
         addons = u.addons_listed.values_list('id', flat=True)
         assert 3615 not in addons
+
+    def test_my_addons(self):
+        """Test helper method to get N addons."""
+        addon1 = Addon.objects.create(name='test-1', type=amo.ADDON_EXTENSION)
+        AddonUser.objects.create(addon_id=addon1.id, user_id=2519, listed=True)
+        addon2 = Addon.objects.create(name='test-2', type=amo.ADDON_EXTENSION)
+        AddonUser.objects.create(addon_id=addon2.id, user_id=2519, listed=True)
+        u = UserProfile.objects.get(id=2519)
+        addons = u.my_addons()
+        self.assertTrue(sorted([a.name for a in addons]) == [addon1.name,
+                                                             addon2.name])
+
+    def test_my_apps(self):
+        """Test helper method to get N apps."""
+        addon1 = Addon.objects.create(name='test-1', type=amo.ADDON_WEBAPP)
+        AddonUser.objects.create(addon_id=addon1.id, user_id=2519, listed=True)
+        addon2 = Addon.objects.create(name='test-2', type=amo.ADDON_WEBAPP)
+        AddonUser.objects.create(addon_id=addon2.id, user_id=2519, listed=True)
+        u = UserProfile.objects.get(id=2519)
+        addons = u.my_apps()
+        self.assertTrue(sorted([a.name for a in addons]) == [addon1.name,
+                                                             addon2.name])
 
     def test_mobile_collection(self):
         u = UserProfile.objects.get(id='4043307')

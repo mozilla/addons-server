@@ -112,7 +112,7 @@ class TestHome(amo.tests.TestCase):
         eq_(request.amo_user.is_developer, True)
 
         eq_(nav.find('.tools').length, 1)
-        eq_(nav.find('.tools li').length, 4)
+        eq_(nav.find('.tools li').length, 5)
         eq_(nav.find('.tools > a').length, 1)
         eq_(nav.find('.tools > a').text(), "Developer")
 
@@ -124,7 +124,15 @@ class TestHome(amo.tests.TestCase):
         eq_(item.text(), "Submit a New Add-on")
         eq_(item.attr('href'), reverse('devhub.submit.1'))
 
+        item = nav.find('.tools ul li a').eq(2)
+        eq_(item.text(), "Manage My Apps")
+        eq_(item.attr('href'), reverse('devhub.apps'))
+
         item = nav.find('.tools ul li a').eq(3)
+        eq_(item.text(), "Submit a New App")
+        eq_(item.attr('href'), reverse('devhub.submit_apps.1'))
+
+        item = nav.find('.tools ul li a').eq(4)
         eq_(item.text(), "Developer Hub")
         eq_(item.attr('href'), reverse('devhub.index'))
 
@@ -147,7 +155,7 @@ class TestHome(amo.tests.TestCase):
         eq_(acl.action_allowed(request, 'Editors', '%'), True)
 
         eq_(nav.find('li.tools').length, 1)
-        eq_(nav.find('li.tools li').length, 5)
+        eq_(nav.find('li.tools li').length, 6)
         eq_(nav.find('li.tools > a').length, 1)
         eq_(nav.find('li.tools > a').text(), "Tools")
 
@@ -159,11 +167,19 @@ class TestHome(amo.tests.TestCase):
         eq_(item.text(), "Submit a New Add-on")
         eq_(item.attr('href'), reverse('devhub.submit.1'))
 
+        item = nav.find('.tools ul li a').eq(2)
+        eq_(item.text(), "Manage My Apps")
+        eq_(item.attr('href'), reverse('devhub.apps'))
+
         item = nav.find('.tools ul li a').eq(3)
+        eq_(item.text(), "Submit a New App")
+        eq_(item.attr('href'), reverse('devhub.submit_apps.1'))
+
+        item = nav.find('.tools ul li a').eq(4)
         eq_(item.text(), "Developer Hub")
         eq_(item.attr('href'), reverse('devhub.index'))
 
-        item = nav.find('.tools ul li a').eq(4)
+        item = nav.find('.tools ul li a').eq(5)
         eq_(item.text(), "Editor Tools")
         eq_(item.attr('href'), reverse('editors.home'))
 
@@ -258,9 +274,8 @@ class TestStuff(amo.tests.TestCase):
         eq_(nav.find('.tools a').eq(0).text(), "Developer Hub")
         eq_(nav.find('.tools a').eq(0).attr('href'), reverse('devhub.index'))
 
-    @mock.patch.object(waffle, 'flag_is_active')
-    def test_tools_developer(self, fia):
-        fia.return_value = True
+    def test_tools_developer(self):
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
 
         # Make them a developer
         user = UserProfile.objects.get(email='regular@mozilla.com')
@@ -277,7 +292,7 @@ class TestStuff(amo.tests.TestCase):
 
         eq_(nav.find('li.tools').length, 1)
         eq_(nav.find('li.tools > a').text(), "Developer")
-        eq_(nav.find('li.tools li').length, 4)
+        eq_(nav.find('li.tools li').length, 5)
 
         item = nav.find('li.tools ul li a').eq(0)
         eq_(item.text(), "Manage My Add-ons")
@@ -287,13 +302,20 @@ class TestStuff(amo.tests.TestCase):
         eq_(item.text(), "Submit a New Add-on")
         eq_(item.attr('href'), reverse('devhub.submit.1'))
 
+        item = nav.find('li.tools ul li a').eq(2)
+        eq_(item.text(), "Manage My Apps")
+        eq_(item.attr('href'), reverse('devhub.apps'))
+
         item = nav.find('li.tools ul li a').eq(3)
+        eq_(item.text(), "Submit a New App")
+        eq_(item.attr('href'), reverse('devhub.submit_apps.1'))
+
+        item = nav.find('li.tools ul li a').eq(4)
         eq_(item.text(), "Developer Hub")
         eq_(item.attr('href'), reverse('devhub.index'))
 
-    @mock.patch.object(waffle, 'flag_is_active')
-    def test_tools_developer_and_editor(self, fia):
-        fia.return_value = True
+    def test_tools_developer_and_editor(self):
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
 
         # Make them a developer
         user = UserProfile.objects.get(email='editor@mozilla.com')
@@ -310,7 +332,7 @@ class TestStuff(amo.tests.TestCase):
         eq_(acl.action_allowed(request, 'Editors', '%'), True)
 
         eq_(nav.find('li.tools').length, 1)
-        eq_(nav.find('li.tools li').length, 5)
+        eq_(nav.find('li.tools li').length, 6)
 
         item = nav.find('li.tools ul li a').eq(0)
         eq_(item.text(), "Manage My Add-ons")
@@ -321,14 +343,18 @@ class TestStuff(amo.tests.TestCase):
         eq_(item.attr('href'), reverse('devhub.submit.1'))
 
         item = nav.find('li.tools ul li a').eq(2)
+        eq_(item.text(), "Manage My Apps")
+        eq_(item.attr('href'), reverse('devhub.apps'))
+
+        item = nav.find('li.tools ul li a').eq(3)
         eq_(item.text(), "Submit a New App")
         eq_(item.attr('href'), reverse('devhub.submit_apps.1'))
 
-        item = nav.find('li.tools ul li a').eq(3)
+        item = nav.find('li.tools ul li a').eq(4)
         eq_(item.text(), "Developer Hub")
         eq_(item.attr('href'), reverse('devhub.index'))
 
-        item = nav.find('li.tools ul li a').eq(4)
+        item = nav.find('li.tools ul li a').eq(5)
         eq_(item.text(), "Editor Tools")
         eq_(item.attr('href'), reverse('editors.home'))
 

@@ -23,6 +23,7 @@ import amo
 import amo.models
 from amo.urlresolvers import reverse
 from translations.fields import PurifiedField
+from translations.query import order_by_translation
 
 log = commonware.log.getLogger('z.users')
 
@@ -147,6 +148,18 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         """Public add-ons this user is listed as author of."""
         return self.addons.reviewed().filter(addonuser__user=self,
                                              addonuser__listed=True)
+
+    def my_addons(self, n=8):
+        """Returns n addons (anything not a webapp)"""
+        qs = self.addons.exclude(type=amo.ADDON_WEBAPP)
+        qs = order_by_translation(qs, 'name')
+        return qs[:n]
+
+    def my_apps(self, n=8):
+        """Returns n apps"""
+        qs = self.addons.filter(type=amo.ADDON_WEBAPP)
+        qs = order_by_translation(qs, 'name')
+        return qs[:n]
 
     @property
     def picture_dir(self):

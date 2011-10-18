@@ -51,11 +51,12 @@ from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
 from market.models import AddonPremium
 import paypal
+from product_details import product_details
 from search.views import BaseAjaxSearch
 from translations.models import delete_translation
 from users.models import UserProfile
 from versions.models import Version
-from product_details import product_details
+from webapps.views import AppFilter
 from zadmin.models import ValidationResult
 
 from . import forms, tasks, feeds, signals
@@ -76,10 +77,14 @@ class AddonFilter(BaseFilter):
             ('rating', _lazy(u'Rating')))
 
 
-def addon_listing(request, addon_type, default='name'):
+def addon_listing(request, default='name', webapp=False):
     """Set up the queryset and filtering for addon listing for Dashboard."""
-    qs = request.amo_user.addons.all()
-    filter = AddonFilter(request, qs, 'sort', default)
+    Filter = AppFilter if webapp else AddonFilter
+    if webapp:
+        qs = request.amo_user.addons.filter(type=amo.ADDON_WEBAPP)
+    else:
+        qs = request.amo_user.addons.exclude(type=amo.ADDON_WEBAPP)
+    filter = Filter(request, qs, 'sort', default)
     return filter.qs, filter
 
 
@@ -89,14 +94,16 @@ def index(request):
 
 
 @login_required
-def dashboard(request):
-    addons, filter = addon_listing(request, addon_type=amo.ADDON_ANY)
+def dashboard(request, webapp=False):
+    addon_type = amo.ADDON_WEBAPP if webapp else amo.ADDON_ANY
+    addons, filter = addon_listing(request, webapp=webapp)
     addons = amo.utils.paginate(request, addons, per_page=10)
     blog_posts = _get_posts()
     data = dict(addons=addons, sorting=filter.field,
                 items=_get_items(None, request.amo_user.addons.all())[:4],
                 sort_opts=filter.opts, rss=_get_rss_feed(request),
-                blog_posts=blog_posts, timestamp=int(time.time()))
+                blog_posts=blog_posts, timestamp=int(time.time()),
+                webapp=webapp)
     return jingo.render(request, 'devhub/addons/dashboard.html', data)
 
 
