@@ -62,7 +62,7 @@ class ExtensionTestCase(amo.tests.ESTestCase):
     @classmethod
     def setUpClass(cls):
         super(ExtensionTestCase, cls).setUpClass()
-        setUpIndex()
+        cls.setUpIndex()
 
     def setUp(self):
         super(ExtensionTestCase, self).setUp()
