@@ -919,7 +919,7 @@ class TestDetailPage(amo.tests.TestCase):
                      status=amo.STATUS_NOMINATED)
         response = self.client.get(reverse('addons.detail', args=[addon.slug]))
         eq_(response.status_code, 200)
-        eq_(len(pq(response.content)('.install a')), 2)
+        eq_(len(pq(response.content)('.install a')), 0)
 
     def test_more_url(self):
         addon = Addon.objects.get(id=3615)

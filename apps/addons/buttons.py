@@ -185,6 +185,8 @@ class InstallButton(object):
     def links(self):
         if not self.version:
             return []
+        if self.is_premium and not self.can_be_purchased:
+            return []
         rv = []
         files = [f for f in self.version.all_files
                  if f.status in amo.VALID_STATUSES]

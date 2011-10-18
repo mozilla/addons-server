@@ -1,9 +1,9 @@
 function dbg() {
-    if (capabilities.debug) {
-        if(capabilities.console && !capabilities.debug_in_page) {
+    if (z.capabilities.debug) {
+        if (z.capabilities.console && !z.capabilities.debug_in_page) {
             window.console.log(Array.prototype.slice.apply(arguments));
         }
-        if (capabilities.debug_in_page) {
+        if (z.capabilities.debug_in_page) {
             var args = Array.prototype.slice.apply(arguments);
             $("#dbgout").append(args.join("\t"));
             $("#dbgout").append("\n");
@@ -111,7 +111,7 @@ function update_page_state() {
     var seriesURL = AMO.getStatsBaseURL() + ([AMO.getReportName(),"day",Highcharts.dateFormat('%Y%m%d', start),Highcharts.dateFormat('%Y%m%d', end)]).join("-") + ".csv";
     $('#export_data').attr('href', seriesURL);
 
-    if (capabilities.replaceState) {
+    if (z.capabilities.replaceState) {
         history.replaceState(page_state, document.title, '?' + queryparams);
     } else {
         page_state.last_hash = '#' + queryparams;

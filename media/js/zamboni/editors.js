@@ -147,7 +147,7 @@ function initReviewActions() {
             setTimeout(check_currently_viewing, d.interval_seconds * 1000);
         });
     }
-    if(!(('localStorage' in window) && window.localStorage['dont_poll'])) {
+    if (!(z.capabilities.localStorage && window.localStorage['dont_poll'])) {
         check_currently_viewing();
     }
 
