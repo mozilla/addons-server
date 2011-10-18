@@ -7,7 +7,7 @@ from django.test import client
 
 from mock import Mock
 from nose import SkipTest
-from nose.tools import eq_
+from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
 
 import amo
@@ -215,8 +215,68 @@ class TestESSearch(amo.tests.ESTestCase):
             eq_(doc('#search-facets .facets.pjax-trigger').length, 0)
             eq_(doc('#sorter.pjax-trigger').length, 1)
 
-    def assert_ajax_query(self, params, addons=[]):
-        r = self.client.get(reverse('search.ajax') + '?' + params)
+
+def test_search_redirects():
+    changes = (
+        ('q=yeah&sort=newest', 'q=yeah&sort=updated'),
+        ('sort=weeklydownloads', 'sort=users'),
+        ('sort=averagerating', 'sort=rating'),
+        ('lver=5.*', 'appver=5.*'),
+        ('q=woo&sort=averagerating&lver=6.0', 'q=woo&sort=rating&appver=6.0'),
+        ('pid=2', 'platform=linux'),
+        ('q=woo&lver=6.0&sort=users&pid=5',
+         'q=woo&appver=6.0&sort=users&platform=windows'),
+    )
+
+    def check(before, after):
+        eq_(views.fix_search_query(QueryDict(before)),
+            dict(urlparse.parse_qsl(after)))
+    for before, after in changes:
+        yield check, before, after
+
+    queries = (
+        'q=yeah',
+        'q=yeah&sort=users',
+        'sort=users',
+        'q=yeah&appver=6.0',
+        'q=yeah&appver=6.0&platform=mac',
+    )
+
+    def same(qs):
+        q = QueryDict(qs)
+        assert views.fix_search_query(q) is q
+    for qs in queries:
+        yield same, qs
+
+
+class TestWebappSearch(amo.tests.ESTestCase):
+
+    def setUp(self):
+        self.url = reverse('apps.search')
+
+    def test_get(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'search/results.html')
+
+    @amo.tests.mobile_test
+    def test_mobile_get(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'search/mobile/results.html')
+
+
+@nottest
+class TestAjaxSearch(amo.tests.ESTestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        super(TestSearchSuggestions, cls).setUpClass()
+        cls.setUpIndex()
+
+    def assert_ajax_query(self, url, params, addons=[],
+                          types=amo.ADDON_SEARCH_TYPES):
+        r = self.client.get('?'.join([url, params]))
         eq_(r.status_code, 200)
         data = json.loads(r.content)
 
@@ -233,8 +293,15 @@ class TestESSearch(amo.tests.ESTestCase):
             assert expected.status in amo.REVIEWED_STATUSES, (
                 'Unreviewed add-ons should not appear in search results.')
             eq_(expected.is_disabled, False)
-            assert expected.type in amo.ADDON_SEARCH_TYPES, (
+            assert expected.type in types, (
                 'Add-on type %s should not be searchable.' % expected.type)
+
+
+class TestBaseAjaxSearch(TestAjaxSearch):
+
+    def assert_ajax_query(self, params, addons=[]):
+        super(TestBaseAjaxSearch, self).assert_ajax_query(
+            reverse('search.ajax'), params, addons)
 
     def test_ajax_search_by_id(self):
         addon = Addon.objects.get(id=4)
@@ -286,51 +353,31 @@ class TestESSearch(amo.tests.ESTestCase):
         self.assert_ajax_query('q=some+filthy+bad+word', [])
 
 
-def test_search_redirects():
-    changes = (
-        ('q=yeah&sort=newest', 'q=yeah&sort=updated'),
-        ('sort=weeklydownloads', 'sort=users'),
-        ('sort=averagerating', 'sort=rating'),
-        ('lver=5.*', 'appver=5.*'),
-        ('q=woo&sort=averagerating&lver=6.0', 'q=woo&sort=rating&appver=6.0'),
-        ('pid=2', 'platform=linux'),
-        ('q=woo&lver=6.0&sort=users&pid=5',
-         'q=woo&appver=6.0&sort=users&platform=windows'),
-    )
-
-    def check(before, after):
-        eq_(views.fix_search_query(QueryDict(before)),
-            dict(urlparse.parse_qsl(after)))
-    for before, after in changes:
-        yield check, before, after
-
-    queries = (
-        'q=yeah',
-        'q=yeah&sort=users',
-        'sort=users',
-        'q=yeah&appver=6.0',
-        'q=yeah&appver=6.0&platform=mac',
-    )
-
-    def same(qs):
-        q = QueryDict(qs)
-        assert views.fix_search_query(q) is q
-    for qs in queries:
-        yield same, qs
-
-
-class TestWebappSearch(amo.tests.ESTestCase):
+class TestSearchSuggestions(TestAjaxSearch):
 
     def setUp(self):
-        self.url = reverse('apps.search')
+        super(TestSearchSuggestions, self).setUp()
+        self.url = reverse('search.suggestions')
+        Addon.objects.get(id=4).update(type=amo.ADDON_WEBAPP)
+        self.refresh()
+
+    def assert_ajax_query(self, params, addons=[],
+                          types=amo.ADDON_SEARCH_TYPES):
+        super(TestBaseAjaxSearch, self).assert_ajax_query(
+            self.url, params, addons, types)
 
     def test_get(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'search/results.html')
 
-    @amo.tests.mobile_test
-    def test_mobile_get(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'search/mobile/results.html')
+    def test_addons(self):
+        addons = (Addon.objects.reviewed().exclude(type=amo.ADDON_WEBAPP)
+                  .filter(disabled_by_user=False))
+        self.assert_ajax_query('q=add', list(addons))
+        self.assert_ajax_query('q=add&cat=all', list(addons))
+
+    def test_webapps(self):
+        apps = (Addon.objects.reviewed().filter(type=amo.ADDON_WEBAPP)
+                .filter(disabled_by_user=False))
+        self.assert_ajax_query('q=add&cat=apps', list(apps),
+                               types=[amo.ADDON_WEBAPP])

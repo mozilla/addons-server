@@ -13,9 +13,16 @@ $.fn.searchSuggestions = function(results) {
     }
 
     // Some base elements that we don't want to keep creating on the fly.
-    $results.html(
-        '<div class="wrap"><p><a class="sel" href="#"></a></p><ul></ul></div>'
-    );
+    var msg;
+    if ($form.find('input[name=cat]').val() == 'apps') {
+        msg = gettext('Search apps for <b>{0}</b>');
+    } else {
+        msg = gettext('Search add-ons for <b>{0}</b>');
+    }
+    var base = template('<div class="wrap">' +
+                        '<p><a class="sel" href="#">{msg}</a></p><ul></ul>' +
+                        '</div>');
+    $results.html(base({'msg': msg}));
 
     // Control keys that shouldn't trigger new requests.
     var ignoreKeys = [
@@ -102,8 +109,8 @@ $.fn.searchSuggestions = function(results) {
         if ($.inArray(e.which, ignoreKeys) !== -1) {
             $results.trigger('inputIgnored');
         } else {
-            var msg = format(gettext('Search add-ons for <b>"{0}"</b>'), val);
-            $results.find('p a').html(msg);
+            // Update the 'Search add-ons for <b>"{addon}"</b>' text.
+            $results.find('p b').html(format('"{0}"', [val]));
 
             var li_item = template(
                 '<li><a href="{url}" {icon} {cls}>{name}</a></li>'
@@ -117,17 +124,23 @@ $.fn.searchSuggestions = function(results) {
                     if (items !== undefined) {
                         var ul = '';
                         $.each(items, function(i, item) {
-                            var d = {url: escape_(item.url) || '#', icon: '', cls: ''};
+                            var d = {
+                                url: escape_(item.url) || '#',
+                                icon: '',
+                                cls: ''
+                            };
                             if (item.icon) {
                                 d.icon = format(
                                     'style="background-image:url({0})"',
                                     escape_(item.icon));
                             }
                             if (item.cls) {
-                                d.cls = format('class="{0}"', escape_(item.cls));
+                                d.cls = format('class="{0}"',
+                                               escape_(item.cls));
                             }
                             if (item.name) {
                                 d.name = escape_(item.name);
+                                // Append the item only if it has a name.
                                 ul += li_item(d);
                             }
                         });

@@ -258,7 +258,7 @@ class BaseAjaxSearch(object):
     [
         {
             "id": 1865,
-            "label": "Adblock Plus",
+            "name": "Adblock Plus",
             "url": "http://path/to/details/page",
             "icon": "http://path/to/icon",
         },
@@ -317,10 +317,14 @@ class BaseAjaxSearch(object):
         return results
 
 
-class SuggestionsAjax(BaseAjaxSearch):
+class AddonSuggestionsAjax(BaseAjaxSearch):
     # No personas. No webapps.
     types = [amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME,
              amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_LPAPP]
+
+
+class WebappSuggestionsAjax(BaseAjaxSearch):
+    types = [amo.ADDON_WEBAPP]
 
 
 @json_view
@@ -369,8 +373,10 @@ def ajax_search_suggestions(request):
                     'cls': 'cat'
                 })
 
-        # Add-ons.
-        results += SuggestionsAjax(request).items
+        if request.GET.get('cat') == 'apps':
+            results += WebappSuggestionsAjax(request).items
+        else:
+            results += AddonSuggestionsAjax(request).items
 
     return results
 
