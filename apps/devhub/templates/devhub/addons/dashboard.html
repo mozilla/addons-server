@@ -1,62 +1,71 @@
-{% extends "devhub/base.html" %}
+{% extends "devhub/base_impala.html" %}
 
-{% block bodyclass %}{{ super() }} inverse{% endblock %}
+{% if webapp %}
+  {% set title = _('Manage My Apps') %}
+{% else %}
+  {% set title = _('Manage My Add-ons') %}
+{% endif %}
 
-{% block title %}{{ dev_page_title(_('Manage My Add-ons')) }}{% endblock %}
+{% block title %}{{ dev_page_title(title) }}{% endblock %}
 
 {% block content %}
-<header>
-  {{ dev_breadcrumbs() }}
-  <hgroup>
-    <h2>{{ _('Manage My Add-ons') }}</h2>
+  <section class="primary">
+    <header class="hero">
+      {{ dev_breadcrumbs(impala=True) }}
+      <h1>{{ title }}</h1>
+      {% if addons %}
+        {% set cnt = addons.paginator.count %}
+        {% if webapp %}
+          {# L10n: {0} is an integer. #}
+          <h2>{{ ngettext('<b>{0}</b> app', '<b>{0}</b> apps', cnt)|f(cnt|numberfmt)|safe }}</h2>
+        {% else %}
+          {# L10n: {0} is an integer. #}
+          <h2>{{ ngettext('<b>{0}</b> add-on', '<b>{0}</b> add-ons', cnt)|f(cnt|numberfmt)|safe }}</h2>
+        {% endif %}
+      {% endif %}
+    </header>
+  </section>
 
-    {% if addons %}
-      {% set cnt = addons.paginator.count %}
-      {# L10n: {0} is an integer. #}
-      <h3>{{ ngettext('<b>{0}</b> add-on', '<b>{0}</b> add-ons',cnt)|f(cnt|numberfmt)|safe }}</h3>
-    {% endif %}
-  </hgroup>
-</header>
 
 {% if not addons %}
   <div class="action-needed">
     <h3>{{ _('Welcome to the Developer Dashboard') }}</h3>
-    <p>
-    {% trans %}
-      You don't currently have any add-ons hosted on Mozilla Add-ons. To learn
-      how the process works and submit your first add-on, click Get Started
-      below.
-    {% endtrans %}
-    </p>
-    <p class="button-wrapper">
-      <a href="{{ url('devhub.submit.1') }}"
-         class="action-button rounded">{{ _('Get Started') }}</a>
-    </p>
+    {% if webapp %}
+      <p>
+      {% trans %}
+        You don't currently have any apps hosted on Mozilla Marketplace. To
+        learn how the process works and submit your first app, click Get
+        Started below.
+      {% endtrans %}
+      </p>
+      <p class="button-wrapper">
+        <a href="{{ url('devhub.submit_apps.1') }}"
+           class="action-button rounded">{{ _('Get Started') }}</a>
+      </p>
+    {% else %}
+      <p>
+      {% trans %}
+        You don't currently have any add-ons hosted on Mozilla Add-ons. To learn
+        how the process works and submit your first add-on, click Get Started
+        below.
+      {% endtrans %}
+      </p>
+      <p class="button-wrapper">
+        <a href="{{ url('devhub.submit.1') }}"
+           class="action-button rounded">{{ _('Get Started') }}</a>
+      </p>
+    {% endif %}
   </div>
 {% else %}
-  <section id="dashboard" class="primary" role="main">
-    <div class="featured listing">
-      <div class="featured-inner">
-        {% set url_base = url('devhub.addons') %}
-        {% if addons.paginator.num_pages > 1 %}
-          {{ addon_listing_header(url_base, sort_opts, sorting) }}
-        {% endif %}
-
-        {{ dev_addon_listing_items(addons.object_list) }}
-
-        {% if addons.paginator.num_pages > 1 %}
-          <div class="listing-footer">
-            {{ addons|paginator }}
-          </div>
-        {% endif %}
-      </div>{# /featured-inner #}
-    </div>
-  </section>
-
-  <section id="dashboard-sidebar" class="secondary" role="complementary">
+  <aside id="devhub-sidebar" class="secondary" role="complementary">
     <p id="submit-addon" class="cta">
-      <a href="{{ url('devhub.submit.1') }}"
-         class="button prominent">{{ _('Submit a New Add-on') }}</a>
+      {% if webapp %}
+        <a href="{{ url('devhub.submit_apps.1') }}"
+           class="button prominent">{{ _('Submit a New App') }}</a>
+      {% else %}
+        <a href="{{ url('devhub.submit.1') }}"
+           class="button prominent">{{ _('Submit a New Add-on') }}</a>
+       {% endif %}
     </p>
     <div class="recent-activity">
       <h3>
@@ -78,11 +87,34 @@
           {% endfor %}
         </ul>
       {% endif %}
-      <p class="older-activity"><a href="{{ url('devhub.feed_all') }}">
-        {{ _('Older activity for My Add-ons') }} &#9658;</a></p>
+      {% if webapp %}
+        <p class="older-activity"><a href="{{ url('devhub.feed_all') }}">
+          {{ _('Older activity for My Apps') }} &#9658;</a></p>
+      {% else %}
+        <p class="older-activity"><a href="{{ url('devhub.feed_all') }}">
+          {{ _('Older activity for My Add-ons') }} &#9658;</a></p>
+      {% endif %}
     </div>
 
-    {% include "devhub/includes/blog_posts.html" %}
+    {% if not webapp %}
+      {% include "devhub/includes/blog_posts.html" %}
+    {% endif %}
+
+  </aside>
+  <section id="dashboard" class="primary" role="main">
+    <div class="listing island hero c">
+      {% set url_base = url('devhub.apps') if webapp else url('devhub.addons') %}
+      {% if addons.paginator.num_pages > 1 %}
+        {{ impala_addon_listing_header(url_base, sort_opts, sorting) }}
+      {% endif %}
+      <div class="items">
+        {{ dev_addon_listing_items(addons.object_list) }}
+      </div>{# /items #}
+      {% if addons.paginator.num_pages > 1 %}
+        {{ addons|impala_paginator }}
+      {% endif %}
+    </div>
   </section>
+
 {% endif %}
 {% endblock %}
