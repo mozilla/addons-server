@@ -39,7 +39,7 @@ class TestUpgradeJetpacks(amo.tests.TestCase):
         addon = Addon.objects.get(id=3615)
         File.objects.all().update(jetpack_version='0.9')
         file_ = addon.current_version.all_files[0]
-        tasks.start_upgrade([file_.id])
+        tasks.start_upgrade([file_.id], sdk_version='1.2')
         assert self.urllib2.urlopen.called
         url, args = self.urllib2.urlopen.call_args[0]
         args = dict(urlparse.parse_qsl(args))
@@ -51,6 +51,7 @@ class TestUpgradeJetpacks(amo.tests.TestCase):
             'location': file_.get_url_path('builder'),
             'uuid': args['uuid'],  # uuid is random so steal from args.
             'pingback': absolutify(reverse('amo.builder-pingback')),
+            'sdk_version': '1.2',
         })
         eq_(url, settings.BUILDER_UPGRADE_URL)
 

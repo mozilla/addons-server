@@ -353,7 +353,7 @@ def start_upgrade(minver, maxver):
     ids = [f.id for f in jetpacks if f.needs_upgrade]
     log.info('Starting a jetpack upgrade to %s [%s files].'
              % (maxver, len(ids)))
-    files.tasks.start_upgrade.delay(ids)
+    files.tasks.start_upgrade.delay(ids, sdk_version=maxver)
 
 
 @login_required

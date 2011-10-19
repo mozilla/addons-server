@@ -221,7 +221,7 @@ def send_upgrade_email(addon, new_version, sdk_version):
 
 
 @task
-def start_upgrade(file_ids, priority='low', **kw):
+def start_upgrade(file_ids, sdk_version=None, priority='low', **kw):
     upgrader = JetpackUpgrader()
     minver, maxver = upgrader.jetpack_versions()
     files = File.objects.filter(id__in=file_ids).select_related('version')
@@ -250,6 +250,8 @@ def start_upgrade(file_ids, priority='low', **kw):
                 'location': file_.get_url_path('builder'),
                 'uuid': data['uuid'],
                 'pingback': absolutify(reverse('amo.builder-pingback'))}
+        if sdk_version:
+            post['sdk_version'] = sdk_version
         try:
             jp_log.info(urllib.urlencode(post))
             response = urllib2.urlopen(settings.BUILDER_UPGRADE_URL,
