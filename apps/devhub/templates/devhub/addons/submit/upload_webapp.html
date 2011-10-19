@@ -6,10 +6,10 @@
 
 {# TODO(gkoberger): Localize this page when we nail down the copy #}
 
-  <h3>{{ _('Step 2. Link to Your Web App') }}</h3>
+  <h3>{{ _('Step 2. Link to Your App') }}</h3>
   <p>
   {% trans url="https://developer.mozilla.org/en/OpenWebApps/The_Manifest" %}
-  You're about to submit your web app for all the world to see. All you need to complete
+  You're about to submit your app for all the world to see. All you need to complete
   this process is a working <a href="{{ url }}">manifest</a> for your app.
   {% endtrans %}
   </p>
@@ -27,7 +27,7 @@
           </div>
         </form>
       </label>
-      <div class="upload-details">Web apps must start with a protocol (for example, http://) and end with either .webapp or .json.</div>
+      <div class="upload-details">apps must start with a protocol (for example, http://) and end with either .webapp or .json.</div>
     </div>
     <form method="post" id="upload-webapp" action="">
       {{ csrf() }}

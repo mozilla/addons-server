@@ -304,7 +304,7 @@ class TestStuff(amo.tests.TestCase):
         eq_(item.attr('href'), reverse('devhub.submit.1'))
 
         item = nav.find('li.tools ul li a').eq(2)
-        eq_(item.text(), "Submit a New Web App")
+        eq_(item.text(), "Submit a New App")
         eq_(item.attr('href'), reverse('devhub.submit_apps.1'))
 
         item = nav.find('li.tools ul li a').eq(3)

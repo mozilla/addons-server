@@ -69,7 +69,7 @@ var purchases = {
         $install.removeClass('premium');
         $button.find('.premium').removeClass('premium');
         if ($install.hasClass('webapp')) {
-            $button.text(gettext('Install Web App')).attr('href', '#');
+            $button.text(gettext('Install App')).attr('href', '#');
             if (!$install.attr('data-manifest-url')) {
                 $.getJSON($install.attr('data-manifest-url-lookup'),
                           function(json) {

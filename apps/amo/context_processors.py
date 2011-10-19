@@ -74,7 +74,7 @@ def global_settings(request):
                                 'href': reverse('devhub.submit.1')})
 
             if waffle.flag_is_active(request, 'accept-webapps'):
-                tools_links.append({'text': _('Submit a New Web App'),
+                tools_links.append({'text': _('Submit a New App'),
                                     'href': reverse('devhub.submit_apps.1')})
 
         tools_links.append({'text': _('Developer Hub'),
