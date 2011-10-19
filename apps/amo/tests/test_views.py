@@ -439,7 +439,7 @@ class TestPaypal(amo.tests.TestCase):
 
 
 class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         self.url = reverse('amo.paypal')
@@ -469,6 +469,51 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
 
         response = self.client.post(self.url, data)
         eq_(response.content, 'Contribution not found')
+
+    def _receive_refund_ipn(self, uuid, urlopen):
+        """
+        Create and post a refund IPN.
+        """
+        urlopen.return_value = self.urlopener('VERIFIED')
+        response = self.client.post(self.url, {u'action_type': u'PAY',
+                                               u'sender_email': u'a@a.com',
+                                               u'status': u'REFUNDED',
+                                               u'tracking_id': u'123',
+                                               u'mc_gross': u'12.34',
+                                               u'mc_currency': u'US',
+                                               u'item_number': uuid})
+        return response
+
+    @patch('amo.views.urllib2.urlopen')
+    def test_refund(self, urlopen):
+        """
+        Receipt of an IPN for a refund results in a Contribution
+        object recording its relation to the original payment.
+        """
+        uuid = 'e76059abcf747f5b4e838bf47822e6b2'
+        user = UserProfile.objects.get(pk=999)
+        original = Contribution.objects.create(uuid=uuid, user=user,
+                                               addon=self.addon)
+
+        response = self._receive_refund_ipn(uuid, urlopen)
+        eq_(response.content, 'Success!')
+        refunds = Contribution.objects.filter(related=original)
+        eq_(len(refunds), 1)
+        eq_(refunds[0].addon, self.addon)
+        eq_(refunds[0].user, user)
+        eq_(refunds[0].type, amo.CONTRIB_REFUND)
+
+    @patch('amo.views.urllib2.urlopen')
+    def test_orphanedRefund(self, urlopen):
+        """
+        Receipt of an IPN for a refund for a payment we haven't
+        recorded results in an error.
+        """
+        uuid = 'e76059abcf747f5b4e838bf47822e6b2'
+        response = self._receive_refund_ipn(uuid, urlopen)
+        eq_(response.content, 'Contribution not found')
+        refunds = Contribution.objects.filter(type=amo.CONTRIB_REFUND)
+        eq_(len(refunds), 0)
 
 
 class TestOtherStuff(amo.tests.TestCase):

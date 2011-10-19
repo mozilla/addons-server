@@ -91,26 +91,28 @@ def paypal(request):
         return http.HttpResponseServerError('Unknown error.')
 
 
+def _log_error_with_data(msg, post):
+    """Log a message along with some of the POST info from PayPal."""
+
+    id = random.randint(0, 99999999)
+    msg = "[%s] %s (dumping data)" % (id, msg)
+
+    paypal_log.error(msg)
+
+    logme = {'txn_id': post.get('txn_id'),
+             'txn_type': post.get('txn_type'),
+             'payer_email': post.get('payer_email'),
+             'receiver_email': post.get('receiver_email'),
+             'payment_status': post.get('payment_status'),
+             'payment_type': post.get('payment_type'),
+             'mc_gross': post.get('mc_gross'),
+             'item_number': post.get('item_number'),
+            }
+
+    paypal_log.error("[%s] PayPal Data: %s" % (id, logme))
+
+
 def _paypal(request):
-    def _log_error_with_data(msg, post):
-        """Log a message along with some of the POST info from PayPal."""
-
-        id = random.randint(0, 99999999)
-        msg = "[%s] %s (dumping data)" % (id, msg)
-
-        paypal_log.error(msg)
-
-        logme = {'txn_id': post.get('txn_id'),
-                 'txn_type': post.get('txn_type'),
-                 'payer_email': post.get('payer_email'),
-                 'receiver_email': post.get('receiver_email'),
-                 'payment_status': post.get('payment_status'),
-                 'payment_type': post.get('payment_type'),
-                 'mc_gross': post.get('mc_gross'),
-                 'item_number': post.get('item_number'),
-                }
-
-        paypal_log.error("[%s] PayPal Data: %s" % (id, logme))
 
     if request.method != 'POST':
         return http.HttpResponseNotAllowed(['POST'])
@@ -142,16 +144,7 @@ def _paypal(request):
     if post.get('txn_type', '').startswith('subscr_'):
         SubscriptionEvent.objects.create(post_data=php.serialize(post))
         return http.HttpResponse('Success!')
-
-    # We only care about completed transactions.
-    if post.get('payment_status', '').lower() != 'completed':
-        return http.HttpResponse('Payment not completed')
-
-    # Make sure transaction has not yet been processed.
-    if (Contribution.objects
-                   .filter(transaction_id=post['txn_id']).count()) > 0:
-        return http.HttpResponse('Transaction already processed')
-
+    payment_status = post.get('payment_status', '').lower()
     # Fetch and update the contribution - item_number is the uuid we created.
     try:
         c = Contribution.objects.get(uuid=post['item_number'])
@@ -170,7 +163,40 @@ def _paypal(request):
             return http.HttpResponse('Transaction not found; skipping.')
         cache.set(key, count, 1209600)  # This is 2 weeks.
         return http.HttpResponseServerError('Contribution not found')
+    if payment_status == 'refunded':
+        return paypal_refunded(request, post, c)
+    # Otherwise, we only care about completed transactions.
+    elif payment_status == 'completed':
+        return paypal_completed(request, post, c)
 
+    return http.HttpResponse('Payment not completed')
+
+
+def paypal_refunded(request, post, original):
+
+    # Make sure transaction has not yet been processed.
+    if (Contribution.objects
+        .filter(transaction_id=post['txn_id'],
+                type=amo.CONTRIB_REFUND).count()) > 0:
+        return http.HttpResponse('Transaction already processed')
+    paypal_log.info('Refund IPN received for transaction %s' % post['txn_id'])
+    refund = Contribution.objects.create(
+        addon=original.addon, related=original,
+        user=original.user, type=amo.CONTRIB_REFUND,
+        )
+    refund.amount = post['mc_gross']
+    refund.currency = post['mc_currency']
+    refund.uuid = None
+    refund.post_data = php.serialize(post)
+    return http.HttpResponse('Success!')
+
+
+def paypal_completed(request, post, c):
+    # Make sure transaction has not yet been processed.
+    if (Contribution.objects
+        .filter(transaction_id=post['txn_id'],
+                type=amo.CONTRIB_PURCHASE).count()) > 0:
+        return http.HttpResponse('Transaction already processed')
     c.transaction_id = post['txn_id']
     # Embedded payments does not send an mc_gross.
     if 'mc_gross' in post:
@@ -185,7 +211,6 @@ def _paypal(request):
     except ContributionError as e:
         # A failed thankyou email is not a show stopper, but is good to know.
         paypal_log.error('Thankyou note email failed with error: %s' % e)
-
     return http.HttpResponse('Success!')
 
 
