@@ -1,4 +1,5 @@
 from datetime import datetime
+import sys
 import urllib
 
 from django import http, test
@@ -10,6 +11,7 @@ import commonware.log
 from lxml import etree
 import mock
 from mock import patch, Mock
+from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
@@ -526,6 +528,8 @@ class TestOtherStuff(amo.tests.TestCase):
         eq_(e.text, "Firefox Add-ons")
 
     def test_login_link(self):
+        if sys.version_info >= (2,7):
+            raise SkipTest
         # Test that the login link encodes parameters correctly.
         r = test.Client().get('/?your=mom', follow=True)
         doc = pq(r.content)
