@@ -4,11 +4,11 @@
 {% block title %}{{ dev_page_title(_('Step 3'), addon) }}{% endblock %}
 
 {% block primary %}
-  <h3>{{ _('Step 3. Describe Your Add-on') }}</h3>
+  <h3>{{ _('Step 3. Describe') }}</h3>
   <form method="post" id="submit-describe" class="item" action="">
     {{ csrf() }}
     <div class="addon-submission-field">
-      <label for="id_name">{{ _("Your add-on's name and version:") }}</label>
+      <label for="id_name">{{ _("Name and version:") }}</label>
       {{ form.name }}
 
       {% set version = addon.current_version %}
@@ -17,7 +17,7 @@
       {{ form.name.errors }}
     </div>
     <div class="addon-submission-field">
-      <label>{{ _("Your add-on's detail page will be:") }}</label>
+      <label>{{ _("The detail page will be:") }}</label>
       <div id="slug_edit" class="edit_with_prefix edit_initially_hidden">
         <span>{{ settings.SITE_URL }}</span>{{ form.slug }}
         <div class="edit-addon-details">
@@ -31,12 +31,12 @@
       {{ form.slug.errors }}
     </div>
     <div class="addon-submission-field">
-      <label>{{ _('Provide a brief summary of your add-on:') }}</label>
+      <label>{{ _('Provide a brief summary:') }}</label>
       {{ form.summary }}
       {{ form.summary.errors }}
       <div class="edit-addon-details">
         {% trans %}
-          This summary will be shown with your add-on in listings and searches.
+          This summary will be shown in listings and searches.
         {% endtrans %}
         <div class="char-count"
              data-for-startswith="{{ form.summary.auto_id }}_"
@@ -52,11 +52,11 @@
       {% endfor %}
     </div>
     <div class="addon-submission-field">
-      <label>{{ _('Provide a more detailed description of your add-on:') }}</label>
+      <label>{{ _('Provide a more detailed description:') }}</label>
       {{ form.description }}
       {{ form.description.errors }}
       <div class="edit-addon-details">
-        {{ _("The description will appear on your add-on's detail page.") }}
+        {{ _("The description will appear on the detail page.") }}
         {{ some_html_tip() }}
       </div>
     </div>

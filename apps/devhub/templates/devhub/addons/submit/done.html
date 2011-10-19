@@ -6,24 +6,26 @@
 
 {% block primary %}
 <h3>{{ _("You're done!") }}</h3>
-<p>
-{% if addon.status == amo.STATUS_UNREVIEWED %}
+{% if not webapp %}
+  <p>
+  {% if addon.status == amo.STATUS_UNREVIEWED %}
+    {% trans %}
+      Your submission has been submitted to the Preliminary Review queue.
+    {% endtrans %}
+  {% elif addon.status == amo.STATUS_NOMINATED %}
+    {% trans %}
+      Your submission has been submitted to the Full Review queue.
+    {% endtrans %}
+  {% endif %}
+  </p>
+  <p>
   {% trans %}
-    Your add-on has been submitted to the Preliminary Review queue.
+    You'll receive an email once it has been reviewed by an editor. In
+    the meantime, you and your friends can install it directly from its
+    details page:
   {% endtrans %}
-{% elif addon.status == amo.STATUS_NOMINATED %}
-  {% trans %}
-    Your add-on has been submitted to the Full Review queue.
-  {% endtrans %}
+  </p>
 {% endif %}
-</p>
-<p>
-{% trans %}
-  You'll receive an email once your add-on has been reviewed by an editor. In
-  the meantime, you and your friends can install the add-on directly from its
-  details page:
-{% endtrans %}
-</p>
 <p>
   <a id="submitted-addon-url" href="{{ addon.get_url_path() }}">
     {{ addon.get_url_path()|absolutify|display_url }}</a>
@@ -37,11 +39,15 @@
       <li>{{ _('<a href="{0}">Upload</a> another platform-specific file to this version.')|f(files_url)|xssafe }}</li>
     {% endif %}
     {% set edit_url = url('devhub.addons.edit', addon.slug) %}
-    <li>{{ _('Provide more details about your add-on by <a href="{0}">editing its listing</a>.')|f(edit_url)|safe }}</li>
+    <li>{{ _('Provide more details by <a href="{0}">editing its listing</a>.')|f(edit_url)|safe }}</li>
     {% set profile_url = url('devhub.addons.profile', addon.slug) %}
-    <li>{{ _('Tell your users why you created this add-on in your <a href="{0}">Developer Profile</a>.')|f(profile_url)|safe }}</li>
+    <li>{{ _('Tell your users why you created this in your <a href="{0}">Developer Profile</a>.')|f(profile_url)|safe }}</li>
     {% set feed_url = url('devhub.feed', addon.slug) %}
-    <li>{{ _('View and subscribe to your add-on\'s <a href="{0}">activity feed</a> to stay updated on reviews, collections, and more.')|f(feed_url)|safe }}</li>
+    {% if webapp: %}
+      <li>{{ _('View and subscribe to your webapp\'s <a href="{0}">activity feed</a> to stay updated on reviews, collections, and more.')|f(feed_url)|safe }}</li>
+    {% else: %}
+      <li>{{ _('View and subscribe to your add-on\'s <a href="{0}">activity feed</a> to stay updated on reviews, collections, and more.')|f(feed_url)|safe }}</li>
+    {% endif %}
     <li>{{ _('View approximate review queue <a href="{0}">wait times</a>.')|f('https://forums.addons.mozilla.org/viewforum.php?f=21')|safe }}</li>
   </ul>
 </div>
