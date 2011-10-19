@@ -26,6 +26,10 @@ log = commonware.log.getLogger('z.market')
 
 class PriceManager(amo.models.ManagerBase):
 
+    def get_query_set(self):
+        qs = super(PriceManager, self).get_query_set()
+        return qs.transform(Price.transformer)
+
     def active(self):
         return self.filter(active=True)
 
@@ -44,15 +48,22 @@ class Price(amo.models.ModelBase):
     def __unicode__(self):
         return u'%s - $%s' % (self.name, self.price)
 
+    @staticmethod
+    def transformer(prices):
+        # There are a constrained number of price currencies, let's just
+        # get them all.
+        Price._currencies = dict([(p.currency, p.tier_id), p]
+                                 for p in PriceCurrency.objects.all())
+
     def _price(self):
         """Return the price and currency for the current locale."""
         lang = translation.get_language()
         locale = Locale(translation.to_locale(lang))
         currency = amo.LOCALE_CURRENCY.get(locale.language)
         if currency:
-            price_currency = self.pricecurrency_set.filter(currency=currency)
+            price_currency = Price._currencies.get((currency, self.id), None)
             if price_currency:
-                return price_currency[0].price, currency, locale
+                return price_currency.price, currency, locale
 
         return self.price, self.currency, locale
 

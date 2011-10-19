@@ -106,6 +106,11 @@ class TestPrice(amo.tests.TestCase):
         eq_(Price.objects.get(pk=1).get_price(), Decimal('0.99'))
         eq_(Price.objects.get(pk=1).get_price_locale(), u'$0.99')
 
+    def test_transformer(self):
+        prices = list(Price.objects.filter(pk=1))
+        with self.assertNumQueries(0):
+            eq_(prices[0].get_price_locale(), u'$0.99')
+
 
 class TestReceipt(amo.tests.TestCase):
     fixtures = ['base/users.json']
