@@ -57,6 +57,9 @@ class Price(amo.models.ModelBase):
 
     def _price(self):
         """Return the price and currency for the current locale."""
+        if not hasattr(self, '_currencies'):
+            Price.transformer([])
+
         lang = translation.get_language()
         locale = Locale(translation.to_locale(lang))
         currency = amo.LOCALE_CURRENCY.get(locale.language)
