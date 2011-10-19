@@ -244,7 +244,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'amo.context_processors.i18n',
     'amo.context_processors.global_settings',
     'amo.context_processors.static_url',
-    'search.context_processors.is_pjax',
     'webapps.context_processors.is_webapps',
     'jingo_minify.helpers.build_ids',
 )
@@ -283,7 +282,6 @@ MIDDLEWARE_CLASSES = (
     # Mobile detection should happen in Zeus.
     'mobility.middleware.DetectMobileMiddleware',
     'mobility.middleware.XMobileMiddleware',
-    'amo.middleware.PjaxMiddleware',
     # Disabled until ready:
     # 'amo.middleware.LazyPjaxMiddleware',
     'amo.middleware.RemoveSlashMiddleware',

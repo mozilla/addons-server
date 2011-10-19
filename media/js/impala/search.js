@@ -82,7 +82,7 @@ function initSearchPjax(container) {
         $wrapper.removeClass('loading').find('.updating').remove();
 
         // Scroll up.
-        $('html, body').animate({scrollTop: 0}, 200);
+        $('html').animate({scrollTop: 0}, 200);
     }
 
     function turnPages(e) {

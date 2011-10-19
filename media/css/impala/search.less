@@ -100,7 +100,7 @@
             }
             &.active {
                 &:after {
-                    .transform(rotate(90deg));
+                    -moz-transform: rotate(90deg);
                 }
                 li a {
                     display: block;
@@ -129,7 +129,7 @@
                 left: 5px;
             }
             &.active:after {
-                .transform(rotate(-90deg));
+                -moz-transform: rotate(-90deg);
             }
         }
     }
