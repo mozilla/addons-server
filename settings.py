@@ -670,6 +670,7 @@ MINIFY_BUNDLES = {
             'js/lib/underscore.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
+            'js/impala/capabilities.js',
             'js/zamboni/format.js',
             'js/impala/carousel.js',
 
@@ -735,6 +736,7 @@ MINIFY_BUNDLES = {
             'js/impala/pjax.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
+            'js/impala/capabilities.js',
             'js/zamboni/format.js',
             'js/zamboni/mobile/buttons.js',
             'js/zamboni/truncation.js',
