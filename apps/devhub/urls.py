@@ -22,6 +22,13 @@ submit_patterns = patterns('',
     url('^bump$', views.submit_bump, name='devhub.submit.bump'),
 )
 
+submit_apps_patterns = patterns('',
+    url('^3$', use_apps(views.submit_describe), name='devhub.submit_apps.3'),
+    url('^4$', use_apps(views.submit_media), name='devhub.submit_apps.4'),
+    url('^5$', use_apps(views.submit_done), name='devhub.submit_apps.5'),
+    url('^bump$', use_apps(views.submit_bump), name='devhub.submit_apps.bump'),
+)
+
 marketplace_patterns = patterns('',
     url('^1$', views.marketplace_paypal, name='devhub.market.1'),
     url('^2$', views.marketplace_pricing, name='devhub.market.2'),
@@ -144,14 +151,14 @@ urlpatterns = decorate(write, patterns('',
     url('^addon/submit/$',
         lambda r: redirect('devhub.submit.1', permanent=True)),
     url('^addon/submit/1$', views.submit, name='devhub.submit.1'),
-    url('^addon/submit/2$', views.submit_addon,
-        name='devhub.submit.2'),
+    url('^addon/submit/2$', views.submit_addon, name='devhub.submit.2'),
 
     # Web App submission
-    url('^apps/submit/$',
+    url('^app/submit/$',
         lambda r: redirect('devhub.submit_apps.1', permanent=True)),
-    url('^apps/submit/1$', use_apps(views.submit), name='devhub.submit_apps.1'),
-    url('^apps/submit/2$', use_apps(views.submit_addon),
+    url('^app/submit/1$', use_apps(views.submit),
+        name='devhub.submit_apps.1'),
+    url('^app/submit/2$', use_apps(views.submit_addon),
         name='devhub.submit_apps.2'),
 
     # Standalone validator:
@@ -187,6 +194,8 @@ urlpatterns = decorate(write, patterns('',
 
     # URLs for a single add-on.
     url('^addon/%s/' % ADDON_ID, include(detail_patterns)),
+    url('^app/%s/submit/' % ADDON_ID, include(submit_apps_patterns)),
+
     url('^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
 
     # Newsletter archive & signup

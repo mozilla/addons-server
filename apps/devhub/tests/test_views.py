@@ -1326,15 +1326,12 @@ class TestSubmitStep2(amo.tests.TestCase):
         self.assertRedirects(r, reverse('devhub.submit_apps.1'))
 
 
-class TestSubmitStep3(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/addon_3615_categories',
-                'base/addon_5579', 'base/users']
+class TestSubmitStep3(TestSubmitBase):
 
     def setUp(self):
         super(TestSubmitStep3, self).setUp()
         self.addon = self.get_addon()
         self.url = reverse('devhub.submit.3', args=['a3615'])
-        assert self.client.login(username='del@icio.us', password='password')
         SubmitStep.objects.create(addon_id=3615, step=3)
         cron.build_reverse_name_lookup()
 
@@ -1345,9 +1342,6 @@ class TestSubmitStep3(amo.tests.TestCase):
 
         ctx = self.client.get(self.url).context['cat_form']
         self.cat_initial = initial(ctx.initial_forms[0])
-
-    def get_addon(self):
-        return Addon.objects.no_cache().get(id=3615)
 
     def get_dict(self, **kw):
         cat_initial = kw.pop('cat_initial', self.cat_initial)
@@ -1366,7 +1360,7 @@ class TestSubmitStep3(amo.tests.TestCase):
         d = self.get_dict()
         r = self.client.post(self.url, d)
         eq_(r.status_code, 302)
-        eq_(SubmitStep.objects.get(addon=3615).step, 4)
+        eq_(self.get_step().step, 4)
 
         addon = self.get_addon()
         eq_(addon.name, 'Test name')
@@ -1378,17 +1372,22 @@ class TestSubmitStep3(amo.tests.TestCase):
         assert not log_items.filter(action=amo.LOG.EDIT_DESCRIPTIONS.id), \
                 "Creating a description needn't be logged."
 
-    def test_submit_apps_success(self):
+    @mock.patch.object(waffle, 'flag_is_active')
+    def test_submit_apps_success(self, fia):
+        fia.return_value = True
+
         self.get_addon().update(type=amo.ADDON_WEBAPP)
         assert self.get_addon().is_webapp()
 
         # Post and be redirected.
         d = self.get_dict()
-        r = self.client.post(self.url, d)
+        r = self.client.post(reverse('devhub.submit_apps.3', args=['a3615']),
+                             d)
         eq_(r.status_code, 302)
-        eq_(SubmitStep.objects.get(addon=3615).step, 4)
-
+        eq_(self.get_step().step, 4)
         addon = self.get_addon()
+        self.assertRedirects(r, reverse('devhub.submit_apps.4',
+                                        args=[addon.slug]))
         eq_(addon.name, 'Test name')
         eq_(addon.app_slug, 'testname')
         eq_(addon.description, 'desc')
@@ -1509,12 +1508,12 @@ class TestSubmitStep3(amo.tests.TestCase):
 class TestSubmitStep4(TestSubmitBase):
 
     def setUp(self):
+        super(TestSubmitStep4, self).setUp()
         self.old_addon_icon_url = settings.ADDON_ICON_URL
         url_string = "%s/%s/%s/images/addon_icon/%%d-%%d.png?%%s"
         settings.ADDON_ICON_URL = url_string % (
             settings.STATIC_URL, settings.LANGUAGE_CODE, settings.DEFAULT_APP)
-        super(TestSubmitStep4, self).setUp()
-        SubmitStep.objects.create(addon_id=3615, step=5)
+        SubmitStep.objects.create(addon_id=3615, step=4)
         self.url = reverse('devhub.submit.4', args=['a3615'])
         self.next_step = reverse('devhub.submit.5', args=['a3615'])
         self.icon_upload = reverse('devhub.addons.upload_icon',
@@ -1534,6 +1533,21 @@ class TestSubmitStep4(TestSubmitBase):
         r = self.client.post(self.url, data_formset)
         eq_(r.status_code, 302)
         eq_(self.get_step().step, 5)
+
+    @mock.patch.object(waffle, 'flag_is_active')
+    def test_apps_post(self, fia):
+        fia.return_value = True
+
+        self.get_addon().update(type=amo.ADDON_WEBAPP)
+        assert self.get_addon().is_webapp(), "Unexpected: Addon not webapp"
+
+        data_formset = self.formset_media(icon_type='')
+        r = self.client.post(reverse('devhub.submit_apps.4', args=['a3615']),
+                             data_formset)
+        eq_(r.status_code, 302)
+        eq_(self.get_step().step, 5)
+        self.assertRedirects(r, reverse('devhub.submit_apps.5',
+                                        args=[self.get_addon().slug]))
 
     def formset_new_form(self, *args, **kw):
         ctx = self.client.get(self.url).context
@@ -1722,25 +1736,6 @@ class TestSubmitStep5(Step5TestBase):
         eq_(self.get_step().step, 6)
 
 
-class TestSubmitStep5WithApp(Step5TestBase):
-
-    def setUp(self):
-        super(TestSubmitStep5WithApp, self).setUp()
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        self.next_step = reverse('devhub.submit.7', args=['a3615'])
-
-    def test_view_app_eula(self):
-        r = self.client.get(self.url)  # no errors
-        eq_(r.status_code, 200)
-
-    def test_post_app_without_license(self):
-        r = self.client.post(self.url, {'has_eula': True},  # no license
-                             follow=True)
-        self.assertNoFormErrors(r)
-        assert r.redirect_chain[-1][0].endswith(self.next_step), (
-                        'Unexpected redirect chain: %s' % r.redirect_chain)
-
-
 class TestSubmitStep6(TestSubmitBase):
 
     def setUp(self):
@@ -1794,24 +1789,6 @@ class TestSubmitStep6(TestSubmitBase):
         self.get_addon().update(slug='foobar')
         eq_(self.get_version().nomination.timetuple()[0:5],
             nomdate.timetuple()[0:5])
-
-    def test_skip_step_for_webapp(self):
-        self.get_addon().update(type=amo.ADDON_WEBAPP)
-        assert self.get_addon().is_webapp()
-
-        r = self.client.get(self.url, follow=True)
-        doc = pq(r.content)
-
-        eq_(r.redirect_chain[0][1], 302)
-        assert r.redirect_chain[0][0].endswith('7')
-
-        addon = self.get_addon()
-        status = (amo.STATUS_PENDING if settings.WEBAPPS_RESTRICTED
-                  else amo.STATUS_LITE)
-        eq_(addon.status, status)
-
-        # Make sure steps 6 (license) and 7 (review process) aren't shown.
-        eq_(doc('.submit-addon-progress li').length, 5)
 
 
 class TestSubmitStep7(TestSubmitBase):
@@ -1955,6 +1932,37 @@ class TestResumeStep(TestSubmitBase):
         r = self.client.get(reverse('devhub.addons.edit', args=['a3615']),
                             follow=True)
         self.assertRedirects(r, reverse('devhub.submit.4', args=['a3615']))
+
+
+class TestSubmitBump(TestSubmitBase):
+
+    def setUp(self):
+        super(TestSubmitBump, self).setUp()
+        self.url = reverse('devhub.submit.bump', args=['a3615'])
+
+    def test_bump_acl(self):
+        r = self.client.post(self.url, {'step': 4})
+        eq_(r.status_code, 403)
+
+    def test_apps_bump_acl(self):
+        r = self.client.post(reverse('devhub.submit_apps.bump', args=['a3615']))
+        eq_(r.status_code, 403)
+
+    def test_bump_submit_and_redirect(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        r = self.client.post(self.url, {'step': 4}, follow=True)
+        self.assertRedirects(r, reverse('devhub.submit.4', args=['a3615']))
+        eq_(self.get_step().step, 4)
+
+    def test_apps_bump_submit_and_redirect(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        self.get_addon().update(type=amo.ADDON_WEBAPP)
+        url = reverse('devhub.submit_apps.bump', args=['a3615'])
+        r = self.client.post(url, {'step': 4}, follow=True)
+        self.assertRedirects(r, reverse('devhub.submit_apps.4', args=['a3615']))
+        eq_(self.get_step().step, 4)
 
 
 class TestSubmitSteps(amo.tests.TestCase):
@@ -2760,10 +2768,10 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         self.manifest = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
                                      'addons', 'mozball.webapp')
         self.upload = self.get_upload(abspath=self.manifest)
-        self.url = reverse('devhub.submit.2')
+        self.url = reverse('devhub.submit_apps.2')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
-        self.client.post(reverse('devhub.submit.1'))
+        self.client.post(reverse('devhub.submit_apps.1'))
 
     def post(self, desktop_platforms=[], mobile_platforms=[], **kw):
         return super(BaseWebAppTest, self).post(**kw)
@@ -2776,10 +2784,15 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
 class TestCreateWebApp(BaseWebAppTest):
 
-    def test_post_addon_redirect(self):
+    @mock.patch('devhub.tasks.fetch_icon')
+    @mock.patch.object(waffle, 'flag_is_active')
+    def test_post_app_redirect(self, fia, v):
+        fia.return_value = True
+        v.return_value = True
         r = self.post()
         addon = Addon.objects.get()
-        self.assertRedirects(r, reverse('devhub.submit.3', args=[addon.slug]))
+        self.assertRedirects(r, reverse('devhub.submit_apps.3',
+                                        args=[addon.slug]))
 
     def test_addon_from_uploaded_manifest(self):
         addon = self.post_addon()

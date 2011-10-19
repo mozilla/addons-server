@@ -1253,12 +1253,17 @@ def version_stats(request, addon_id, addon):
 Step = collections.namedtuple('Step', 'current max')
 
 
-def submit_step(step):
+def submit_step(outer_step):
     """Wraps the function with a decorator that bounces to the right step."""
     def decorator(f):
         @functools.wraps(f)
         def wrapper(request, *args, **kw):
-            max_step = 7
+            step = outer_step
+            webapp = kw.get('webapp', False)
+            if webapp and step == 7:
+                # decorator calls this step 7, but it's step 5 for apps
+                step = 5
+            max_step = 5 if webapp else 7
             # We only bounce on pages with an addon id.
             if 'addon' in kw:
                 addon = kw['addon']
@@ -1267,11 +1272,10 @@ def submit_step(step):
                     max_step = on_step[0].step
                     if max_step < step:
                         # The step was too high, so bounce to the saved step.
-                        return redirect('devhub.submit.%s' % max_step,
-                                        addon.slug)
+                        return redirect(_step_url(max_step, webapp), addon.slug)
                 elif step != max_step:
                     # We couldn't find a step, so we must be done.
-                    return redirect('devhub.submit.7', addon.slug)
+                    return redirect(_step_url(7, webapp), addon.slug)
             kw['step'] = Step(step, max_step)
             return f(request, *args, **kw)
         # Tell @dev_required that this is a function in the submit flow so it
@@ -1359,12 +1363,18 @@ def marketplace_confirm(request, addon_id, addon):
                          'premium': addon.premium})
 
 
+def _step_url(step, is_webapp):
+    url_base = 'devhub.submit%s' % ('_apps' if is_webapp else '')
+    if is_webapp and str(step).isdigit() and step > 5:
+        step = 5
+    return '%s.%s' % (url_base, step)
+
+
 @login_required
 @submit_step(1)
 def submit(request, step, webapp=False):
     if request.method == 'POST':
-        response = (redirect('devhub.submit_apps.2') if webapp else
-                    redirect('devhub.submit.2'))
+        response = redirect(_step_url(2, webapp))
         response.set_cookie(DEV_AGREEMENT_COOKIE)
         return response
 
@@ -1376,10 +1386,7 @@ def submit(request, step, webapp=False):
 @submit_step(2)
 def submit_addon(request, step, webapp=False):
     if DEV_AGREEMENT_COOKIE not in request.COOKIES:
-        if webapp:
-            return redirect('devhub.submit_apps.1')
-        else:
-            return redirect('devhub.submit.1')
+        return redirect(_step_url(1, webapp))
     NewItem = forms.NewWebappForm if webapp else forms.NewAddonForm
     form = NewItem(request.POST or None)
     if request.method == 'POST':
@@ -1397,7 +1404,7 @@ def submit_addon(request, step, webapp=False):
                 tasks.fetch_icon.delay(addon)
             AddonUser(addon=addon, user=request.amo_user).save()
             SubmitStep.objects.create(addon=addon, step=3)
-            return redirect('devhub.submit.3', addon.slug)
+            return redirect(_step_url(3, webapp), addon.slug)
     template = 'upload_webapp.html' if webapp else 'upload.html'
     return jingo.render(request, 'devhub/addons/submit/%s' % template,
             {'step': step, 'webapp': webapp, 'new_addon_form': form})
@@ -1405,7 +1412,7 @@ def submit_addon(request, step, webapp=False):
 
 @dev_required
 @submit_step(3)
-def submit_describe(request, addon_id, addon, step):
+def submit_describe(request, addon_id, addon, step, webapp=False):
     form = forms.Step3Form(request.POST or None, instance=addon,
                            request=request)
     cat_form = addon_forms.CategoryFormSet(request.POST or None, addon=addon,
@@ -1414,7 +1421,7 @@ def submit_describe(request, addon_id, addon, step):
         addon = form.save(addon)
         cat_form.save()
         SubmitStep.objects.filter(addon=addon).update(step=4)
-        return redirect('devhub.submit.4', addon.slug)
+        return redirect(_step_url(4, webapp), addon.slug)
     return jingo.render(request, 'devhub/addons/submit/describe.html',
                         {'form': form, 'cat_form': cat_form, 'addon': addon,
                          'step': step, 'webapp': addon.is_webapp()})
@@ -1422,7 +1429,7 @@ def submit_describe(request, addon_id, addon, step):
 
 @dev_required
 @submit_step(4)
-def submit_media(request, addon_id, addon, step):
+def submit_media(request, addon_id, addon, step, webapp=False):
     form_icon = addon_forms.AddonFormMedia(request.POST or None,
             request.FILES or None, instance=addon, request=request)
     form_previews = forms.PreviewFormSet(request.POST or None,
@@ -1436,7 +1443,7 @@ def submit_media(request, addon_id, addon, step):
             preview.save(addon)
 
         SubmitStep.objects.filter(addon=addon).update(step=5)
-        return redirect('devhub.submit.5', addon.slug)
+        return redirect(_step_url(5, webapp), addon.slug)
 
     return jingo.render(request, 'devhub/addons/submit/media.html',
                         {'form': form_icon, 'addon': addon, 'step': step,
@@ -1446,7 +1453,7 @@ def submit_media(request, addon_id, addon, step):
 
 @dev_required
 @submit_step(5)
-def submit_license(request, addon_id, addon, step):
+def submit_license(request, addon_id, addon, step, webapp=False):
     fs, ctx = [], {}
     # Versions.
     license_form = forms.LicenseForm(request.POST or None, addon=addon)
@@ -1492,7 +1499,7 @@ def submit_select_review(request, addon_id, addon, step):
 
 @dev_required
 @submit_step(7)
-def submit_done(request, addon_id, addon, step):
+def submit_done(request, addon_id, addon, step, webapp=False):
     # Bounce to the versions page if they don't have any versions.
     if not addon.versions.exists():
         return redirect('devhub.versions', addon.slug)
@@ -1513,14 +1520,14 @@ def submit_resume(request, addon_id, addon):
 
 def _resume(addon, step):
     if step:
-        return redirect('devhub.submit.%s' % step[0].step, addon.slug)
+        return redirect(_step_url(step[0].step, addon.is_webapp()), addon.slug)
 
     return redirect('devhub.versions', addon.slug)
 
 
 @login_required
 @dev_required
-def submit_bump(request, addon_id, addon):
+def submit_bump(request, addon_id, addon, webapp=False):
     if not acl.action_allowed(request, 'Admin', 'EditSubmitStep'):
         return http.HttpResponseForbidden()
     step = SubmitStep.objects.filter(addon=addon)
@@ -1532,7 +1539,7 @@ def submit_bump(request, addon_id, addon):
         else:
             step = SubmitStep(addon=addon, step=new_step)
         step.save()
-        return redirect('devhub.submit.bump', addon.slug)
+        return redirect(_step_url('bump', webapp), addon.slug)
     return jingo.render(request, 'devhub/addons/submit/bump.html',
                         dict(addon=addon, step=step))
 
