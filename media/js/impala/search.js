@@ -31,7 +31,7 @@ function initSearchPjax(container) {
                 url: url,
                 container: container,
                 beforeSend: function(xhr) {
-                    this.trigger('end.pjax', [xhr, url, container]);
+                    this.trigger('begin.pjax', [xhr, url, container]);
                     xhr.setRequestHeader('X-PJAX', 'true');
                     loading();
                 },
