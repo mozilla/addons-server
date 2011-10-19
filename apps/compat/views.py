@@ -76,7 +76,7 @@ def version_compat(qs, compat, app, binary):
     facets.append({'to': vint(compat['versions'][-1])})
     facet = {'range': {'support.%s.max' % app: facets}}
     if binary is not None:
-        facet['facet_filter'] = {'term': {'binary': binary}}
+        qs = qs.query(binary=binary)
     qs = qs.facet(by_status=facet)
     result = qs[:0].raw()
     total_addons = result['hits']['total']
