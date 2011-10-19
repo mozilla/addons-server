@@ -28,7 +28,6 @@ var webappButton = function() {
         manifestURL = $this.attr('data-manifest-url');
     if (manifestURL && navigator.mozApps && navigator.mozApps.install) {
         $this.find('.button')
-            .unbind('click')
             .removeClass('disabled')
             .click(function(e) {
                 e.preventDefault();
@@ -66,7 +65,7 @@ var installButton = function() {
         $this = $(this),
         $button = $this.find('.button');
 
-    if ($this.hasClass('webapp') && $this.attr('data-manifest-url')) {
+    if ($this.hasClass('webapp')) {
         return webappButton.call(this);
     }
 
@@ -381,7 +380,7 @@ jQuery.fn.addPaypal = function(html, allowClick) {
         // Focus on the username field if it exists.
         $('#id_username', $this).focus();
         if ($('#addon_info').exists()) {
-            purchases.reset(purchases.find_button($this));
+            purchases.reset(purchases.find_button($this.closest('body')), $this);
             purchases.trigger($this);
         }
     }
@@ -389,10 +388,12 @@ jQuery.fn.addPaypal = function(html, allowClick) {
         var $install = $(this).closest('.install'),
             url = $install.attr('data-start-purchase');
 
-        modalFromURL(url, {'callback': function(el) {
-            checkForAddon(this);
-            $(this).delegate('.ajax-submit', 'ajax-submit-loaded', function(){ checkForAddon(this); });
-        }, 'data': {'realurl': $install.find('a.premium').attr('data-realurl')}});
+        if (url) {
+            modalFromURL(url, {'callback': function(el) {
+                checkForAddon(this);
+                $(this).delegate('.ajax-submit', 'ajax-submit-loaded', function(){ checkForAddon(this); });
+            }, 'data': {'realurl': $install.find('a.premium').attr('data-realurl')}});
+        };
     }));
 }
 

@@ -51,7 +51,9 @@ var purchases = {
             if (top_dgFlow !== null) {
                 var thanks_url = $('#paypal-thanks').attr('href');
                 if(thanks_url) {
-                    top_opener.modalFromURL(thanks_url, {'callback': purchases.thanks});
+                    top_opener.modalFromURL(thanks_url, {'callback': function() {
+                        purchases.thanks(top_opener);
+                    }});
                 }
                 top_dgFlow.closeFlow();
 
@@ -61,40 +63,37 @@ var purchases = {
             }
         }
     },
-    reset: function(button) {
+    reset: function($button, $modalish) {
         /* This resets the button for this add-on to show that it's been
          * purchased and do the work for add-ons or web apps. */
-        var $button = $(button),
-            $install = $(button).closest('.install');
-        $install.removeClass('premium');
-        $button.find('.premium').removeClass('premium');
-        if ($install.hasClass('webapp')) {
-            $button.text(gettext('Install App')).attr('href', '#');
-            if (!$install.attr('data-manifest-url')) {
-                $.getJSON($install.attr('data-manifest-url-lookup'),
-                          function(json) {
-                            $.each(json, function() {
-                                $install.attr('data-manifest-url', this.manifest_url);
-                                $install.installButton();
-                            });
-                          });
+        var $install = $button.closest('.install');
+        /* Only do something if it's premium. */
+        if ($install.hasClass('premium')) {
+            $install.removeClass('premium');
+            $button.removeClass('premium');
+            if ($install.hasClass('webapp')) {
+                $button.unbind()
+                       .text(gettext('Install Web App'))
+                       .attr('href', '#');
+                $install.attr('data-manifest-url',
+                              $('.trigger_app_install', $modalish).attr('data-manifest-url'));
+                $install.removeAttr('data-start-purchase');
             }
+            $install.installButton();
         }
-        $install.installButton();
     },
-    find_button: function(win) {
+    find_button: function($body) {
         /* Find the relevant button to reset. */
         return $('.install[data-addon=' +
-                 $('#addon_info', win).attr('data-addon') +']:visible',
-                 win.closest('body')).find('a.button');
+                 $('#addon_info', $body).attr('data-addon') +']:visible',
+                 $body).find('a.button');
     },
-    thanks: function() {
+    thanks: function(win) {
         /* Process the thanks modal that we show. */
-        // This needs to be bound to this so that callback will get the
-        // correct window.
-        var $button = purchases.find_button($(this));
-        purchases.reset($button);
-        purchases.trigger(this);
+        var $body = $(win.document).find('body');
+        var $button = purchases.find_button($body);
+        purchases.reset($button, $body);
+        purchases.trigger($body);
     },
     trigger: function(modal) {
         /* Trigger the downloads or install when we show the thanks
@@ -103,9 +102,10 @@ var purchases = {
             z.installAddon($('.addon-title', modal).text(),
                            $('.trigger_download', modal).attr('href'));
         } else if ($('.trigger_app_install', modal).exists()) {
-            purchases.install_app($('.trigger_app_install', modal).attr('data-manifest-url'));
-            $('.trigger_app_install').click(_pd(function() {
-                purchases.install_app($(modal).attr('data-manifest-url'));
+            var dest = $('.trigger_app_install', modal).attr('data-manifest-url');
+            purchases.install_app(dest);
+            $('.trigger_app_install', modal).click(_pd(function() {
+                purchases.install_app(dest);
             }));
         }
     },
