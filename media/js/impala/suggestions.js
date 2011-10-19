@@ -3,6 +3,20 @@ $(document).ready(function() {
 });
 
 
+$.fn.highlightTerm = function(val) {
+    // If an item starts with `val`, wrap the matched text with boldness.
+    var pat = new RegExp(val, 'gi');
+    this.each(function() {
+        var $this = $(this),
+            txt = $this.text(),
+            matchedTxt = txt.replace(pat, '<b>$&</b>');
+        if (txt != matchedTxt) {
+            $this.html(matchedTxt);
+        }
+    });
+};
+
+
 $.fn.searchSuggestions = function(results) {
     var $self = this,
         $form = $self.closest('form'),
@@ -192,15 +206,7 @@ $.fn.searchSuggestions = function(results) {
 
     function highlight(val) {
         // If an item starts with `val`, wrap the matched text with boldness.
-        var pat = new RegExp('\\b' + val, 'gi');
-        $results.find('ul a').each(function() {
-            var $this = $(this),
-                txt = $this.text(),
-                matchedTxt = txt.replace(pat, '<b>$&</b>');
-            if (txt != matchedTxt) {
-                $this.html(matchedTxt);
-            }
-        });
+        $results.find('ul a').highlightTerm(val);
         $results.addClass('visible');
         if (!$results.find('.sel').length) {
             pageUp();

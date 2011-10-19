@@ -53,8 +53,6 @@ module('Search Suggestions', {
         } else {
             self.sandbox.bind('resultsUpdated', function(e, items) {
                 tests.equalObjects(items, self.jsonResults);
-                // Browser unescapes escaped apostrophes and quotation marks.
-                // If you can explain why, please contact cvan.
                 var expected = escape_(query).replace(/&#39;/g, "'")
                                              .replace(/&#34;/g, '"');
                 equal($results.find('.wrap p a.sel b').html(),
@@ -74,6 +72,32 @@ test('Generated HTML tags', function() {
     equal($sel.length, 1);
     equal($sel.find('b').length, 1);
     equal($results.find('.wrap ul').length, 1);
+});
+
+
+test('Highlight search terms', function() {
+    var items = [
+        // Input, highlighted output
+        ['', ''],
+        ['x xx', 'x xx'],
+        ['xxx', '<b>xxx</b>'],
+        [' XxX', ' <b>XxX</b>'],
+        ['XXX', '<b>XXX</b>'],
+        ['An XXX-rated add-on', 'An <b>XXX</b>-rated add-on'],
+        ['Myxxx', 'My<b>xxx</b>'],
+        ['XXX xxx XXX', '<b>XXX</b> <b>xxx</b> <b>XXX</b>']
+    ];
+
+    var $ul = $('<ul>');
+    _.each(items, function(element) {
+        $ul.append($('<li>', {'html': element[0]}));
+    });
+
+    $.when($ul.find('li').highlightTerm('xxx')).done(function() {
+        $ul.find('li').each(function(index) {
+            equal($(this).html(), items[index][1]);
+        });
+    });
 });
 
 
