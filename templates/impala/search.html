@@ -1,5 +1,10 @@
+{% if WEBAPPS %}
+  {% set search_url = url('apps.search') %}
+{% else %}
+  {% set search_url = url('search.search') %}
+{% endif %}
 {% set search_form = SimpleSearchForm(request, search_cat) %}
-<form id="search" action="{{ url('search.search') }}">
+<form id="search" action="{{ search_url }}">
   <input id="search-q" type="text" name="q" required autocomplete="off" title=""
          class="text {% if not search_form.q.data %}placeholder{% endif %}"
          placeholder="{{ search_form.placeholder() }}"

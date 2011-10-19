@@ -41,6 +41,11 @@ class TestLayout(WebappTest):
         response = self.client.get(self.url)
         eq_(pq(response.content)('#social-footer').length, 0)
 
+    def test_search_url(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        eq_(doc('#search').attr('action'), '/en-US/apps/search/')
+
 
 class TestListing(WebappTest):
 
