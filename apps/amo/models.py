@@ -189,7 +189,7 @@ class _NoChangeInstance(object):
         return self.__instance.update(*args, **kw)
 
 
-_on_change_callbacks = defaultdict(list)
+_on_change_callbacks = {}
 
 
 # @TODO(Kumar) liberate: move OnChangeMixin Model mixin to nuggets
@@ -230,7 +230,7 @@ class OnChangeMixin(object):
             will not trigger any change handlers.
 
         """
-        _on_change_callbacks[cls].append(callback)
+        _on_change_callbacks.setdefault(cls, []).append(callback)
         return callback
 
     def _send_changes(self, old_attr, new_attr_kw):
@@ -248,7 +248,7 @@ class OnChangeMixin(object):
         """
         signal = kw.pop('_signal', True)
         result = super(OnChangeMixin, self).save(*args, **kw)
-        if signal:
+        if signal and self.__class__ in _on_change_callbacks:
             self._send_changes(self._initial_attr, dict(self.__dict__))
         return result
 
@@ -261,7 +261,7 @@ class OnChangeMixin(object):
         signal = kw.pop('_signal', True)
         old_attr = dict(self.__dict__)
         result = super(OnChangeMixin, self).update(**kw)
-        if signal:
+        if signal and self.__class__ in _on_change_callbacks:
             self._send_changes(old_attr, kw)
         return result
 
