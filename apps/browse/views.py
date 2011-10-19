@@ -73,6 +73,7 @@ class ThemeFilter(AddonFilter):
 
 class ESAddonFilter(ESBaseFilter):
     opts = AddonFilter.opts
+    extras = AddonFilter.extras
 
 
 def addon_listing(request, addon_types, filter_=AddonFilter,

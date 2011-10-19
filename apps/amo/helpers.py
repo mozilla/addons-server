@@ -231,7 +231,7 @@ def login_link(context):
 def page_title(context, title, force_webapps=False):
     title = smart_unicode(title)
     if context.get('WEBAPPS') or force_webapps:
-        if getattr(context['request'], 'MOBILE', False):
+        if getattr(context['request'], 'MOBILE', False) == True:
             base_title = _('Apps for Mobile')
         else:
             base_title = _('Apps Marketplace')
