@@ -302,40 +302,39 @@ class TestBaseAjaxSearch(TestAjaxSearch):
             reverse('search.ajax'), params, addons)
 
     def test_ajax_search_by_id(self):
-        addon = Addon.objects.get(id=4)
-        self.search_addons('q=4', [addon])
+        addon = Addon.objects.reviewed().all()[0]
+        self.search_addons('q=%s' % addon.id, [addon])
 
     def test_ajax_search_by_bad_id(self):
         self.search_addons('q=999', [])
 
     def test_ajax_search_unreviewed_by_id(self):
-        addon = Addon.objects.get(id=4)
+        addon = Addon.objects.all()[3]
         addon.update(status=amo.STATUS_UNREVIEWED)
         self.search_addons('q=999', [])
 
     def test_ajax_search_lite_reviewed_by_id(self):
-        addon = Addon.objects.get(id=4)
+        addon = Addon.objects.all()[3]
         addon.update(status=amo.STATUS_LITE)
-        self.search_addons('q=4', [addon])
+        q = 'q=%s' % addon.id
+        self.search_addons(q, [addon])
 
         addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        self.search_addons('q=4', [addon])
+        self.search_addons(q, [addon])
 
     def test_ajax_search_user_disabled_by_id(self):
-        addon = Addon.objects.get(id=1)
-        eq_(addon.disabled_by_user, True)
-        self.search_addons('q=1', [])
+        addon = Addon.objects.filter(disabled_by_user=True)[0]
+        self.search_addons('q=%s' % addon.id, [])
 
     def test_ajax_search_admin_disabled_by_id(self):
-        addon = Addon.objects.get(id=2)
-        eq_(addon.status, amo.STATUS_DISABLED)
-        self.search_addons('q=1', [])
+        addon = Addon.objects.filter(status=amo.STATUS_DISABLED)[0]
+        self.search_addons('q=%s' % addon.id, [])
 
     def test_ajax_search_personas_by_id(self):
-        addon = Addon.objects.get(id=4)
+        addon = Addon.objects.all()[3]
         addon.update(type=amo.ADDON_PERSONA)
-        Persona.objects.create(persona_id=4, addon_id=4)
-        self.search_addons('q=4', [addon])
+        Persona.objects.create(persona_id=addon.id, addon_id=addon.id)
+        self.search_addons('q=%s' % addon.id, [addon])
 
     def test_ajax_search_char_limit(self):
         self.search_addons('q=ad', [])
