@@ -1788,8 +1788,8 @@ class TestSubmitStep6(TestSubmitBase):
                   else amo.STATUS_LITE)
         eq_(addon.status, status)
 
-        # Make sure the 7th step isn't shown
-        eq_(doc('.submit-addon-progress li').length, 6)
+        # Make sure steps 6 (license) and 7 (review process) aren't shown.
+        eq_(doc('.submit-addon-progress li').length, 5)
 
 
 class TestSubmitStep7(TestSubmitBase):
