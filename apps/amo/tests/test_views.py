@@ -1,5 +1,5 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime
-import sys
 import urllib
 
 from django import http, test
@@ -11,7 +11,6 @@ import commonware.log
 from lxml import etree
 import mock
 from mock import patch, Mock
-from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
@@ -306,7 +305,7 @@ class TestStuff(amo.tests.TestCase):
         eq_(item.attr('href'), reverse('devhub.submit.1'))
 
         item = nav.find('li.tools ul li a').eq(2)
-        eq_(item.text(), "Submit a New App")
+        eq_(item.text(), "Submit a New Web App")
         eq_(item.attr('href'), reverse('devhub.submit_apps.1'))
 
         item = nav.find('li.tools ul li a').eq(3)
@@ -528,8 +527,6 @@ class TestOtherStuff(amo.tests.TestCase):
         eq_(e.text, "Firefox Add-ons")
 
     def test_login_link(self):
-        if sys.version_info >= (2,7):
-            raise SkipTest
         # Test that the login link encodes parameters correctly.
         r = test.Client().get('/?your=mom', follow=True)
         doc = pq(r.content)
@@ -537,9 +534,7 @@ class TestOtherStuff(amo.tests.TestCase):
                 '?to=%2Fen-US%2Ffirefox%2F%3Fyour%3Dmom'), ("Got %s" %
                 doc('.account.anonymous a')[1].attrib['href'])
 
-        r = test.Client().get('/ar/firefox/?q=%B8+%EB%B2%88%EC%97%A')
+        r = test.Client().get(u'/ar/firefox/?q=འ')
         doc = pq(r.content)
         link = doc('.account.anonymous a')[1].attrib['href']
-        assert link.endswith('?to=%2Far%2Ffirefox%2F%3Fq%3D%25EF%25BF%25BD%2B'
-                             '%25EB%25B2%2588%25EF%25BF%25BDA'), link
-    test_login_link.py27unicode = True
+        assert link.endswith('?to=%2Far%2Ffirefox%2F%3Fq%3D%25E0%25BD%25A0')
