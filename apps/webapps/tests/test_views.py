@@ -147,6 +147,7 @@ class TestMobileDetail(amo.tests.MobileTest, WebappTest):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'addons/mobile/details.html')
+        eq_(pq(r.content)('title').text(), 'woo :: Apps for Mobile')
 
     def test_no_release_notes(self):
         r = self.client.get(self.url)

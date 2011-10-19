@@ -229,13 +229,15 @@ def login_link(context):
 @register.function
 @jinja2.contextfunction
 def page_title(context, title, force_webapps=False):
+    title = smart_unicode(title)
     if context.get('WEBAPPS') or force_webapps:
-        return u'%s :: %s' % (smart_unicode(title), _('Apps Marketplace'))
-    elif context['request'].MOBILE:
-        return u'%s :: %s' % (smart_unicode(title), _('Apps for Mobile'))
+        if getattr(context['request'], 'MOBILE', False):
+            base_title = _('Apps for Mobile')
+        else:
+            base_title = _('Apps Marketplace')
     else:
-        app = context['request'].APP
-        return u'%s :: %s' % (smart_unicode(title), page_name(app))
+        base_title = page_name(context['request'].APP)
+    return u'%s :: %s' % (title, base_title)
 
 
 @register.function
