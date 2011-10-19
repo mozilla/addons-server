@@ -42,7 +42,7 @@ $.fn.searchSuggestions = function(results) {
     var ignoreKeys = [
         $.ui.keyCode.SHIFT, $.ui.keyCode.CONTROL, $.ui.keyCode.ALT,
         19,  // pause
-        $.ui.keyCode.CAPS_LOCK, $.ui.keyCode.ESCAPE,
+        $.ui.keyCode.CAPS_LOCK, $.ui.keyCode.ESCAPE, $.ui.keyCode.ENTER,
         $.ui.keyCode.PAGE_UP, $.ui.keyCode.PAGE_DOWN,
         $.ui.keyCode.LEFT, $.ui.keyCode.UP,
         $.ui.keyCode.RIGHT, $.ui.keyCode.DOWN,
@@ -53,6 +53,12 @@ $.fn.searchSuggestions = function(results) {
         219,  // left windows key (Opera)
         220,  // right windows key (Opera)
         224   // apple key
+    ];
+
+    var gestureKeys = [
+        $.ui.keyCode.ESCAPE, $.ui.keyCode.UP, $.ui.keyCode.DOWN,
+        $.ui.keyCode.PAGE_UP, $.ui.keyCode.PAGE_DOWN,
+        $.ui.keyCode.HOME, $.ui.keyCode.END
     ];
 
     function pageUp() {
@@ -76,13 +82,20 @@ $.fn.searchSuggestions = function(results) {
         $results.find('.sel').removeClass('sel');
     }
 
-    function rowHandler(e) {
-        if (e.which == $.ui.keyCode.UP || e.which == $.ui.keyCode.DOWN) {
+    function gestureHandler(e) {
+        if (!$results.hasClass('visible')) {
+            return;
+        }
+        if ($.inArray(e.which, gestureKeys) >= 0) {
             e.preventDefault();
+        }
+        if (e.which == $.ui.keyCode.ESCAPE) {
+            dismissHandler();
+        }
+        if (e.which == $.ui.keyCode.UP || e.which == $.ui.keyCode.DOWN) {
             var $sel = $results.find('.sel'),
                 $elems = $results.find('a'),
                 i = $elems.index($sel.get(0));
-
             if ($sel.length && i >= 0) {
                 if (e.which == $.ui.keyCode.UP) {
                     // Clamp the value so it goes to the previous row
@@ -101,12 +114,10 @@ $.fn.searchSuggestions = function(results) {
             $results.addClass('sel').trigger('selectedRowUpdate', [i]);
         } else if (e.which == $.ui.keyCode.PAGE_UP ||
                    e.which == $.ui.keyCode.HOME) {
-            e.preventDefault();
             pageUp();
             $results.addClass('sel').trigger('selectedRowUpdate', [0]);
         } else if (e.which == $.ui.keyCode.PAGE_DOWN ||
                    e.which == $.ui.keyCode.END) {
-            e.preventDefault();
             pageDown();
             $results.addClass('sel').trigger('selectedRowUpdate',
                                              [$results.find('a').length - 1]);
@@ -120,7 +131,7 @@ $.fn.searchSuggestions = function(results) {
             return;
         }
 
-        if ($.inArray(e.which, ignoreKeys) !== -1) {
+        if (e.which == undefined || $.inArray(e.which, ignoreKeys) >= 0) {
             $results.trigger('inputIgnored');
         } else {
             // Update the 'Search add-ons for <b>"{addon}"</b>' text.
@@ -165,14 +176,10 @@ $.fn.searchSuggestions = function(results) {
                 }
             });
         }
-
-        if (e.which == $.ui.keyCode.ESCAPE) {
-            dismissHandler();
-        }
     }
 
     $self.blur(function() { _.delay(dismissHandler, 250); })
-         .keydown(rowHandler)
+         .keydown(gestureHandler)
          .bind('keyup input paste', _.throttle(inputHandler, 250));
 
     $results.delegate('li, p', 'hover', function() {
