@@ -1850,31 +1850,25 @@ class TestSubmitStep7(TestSubmitBase):
                     kwargs=dict(addon_id=addon.slug)))
 
     def test_finish_addon_for_prelim_review(self):
-        addon = Addon.objects.get(pk=3615)
-        addon.status = amo.STATUS_UNREVIEWED
-        addon.save()
+        self.get_addon().update(status=amo.STATUS_UNREVIEWED)
 
         response = self.client.get(reverse('devhub.submit.7', args=['a3615']))
         eq_(response.status_code, 200)
         doc = pq(response.content)
-        exp = 'Your add-on has been submitted to the Preliminary Review queue'
-        intro = doc('.addon-submission-process p').text()
-        assert exp in intro, ('Unexpected intro: %s' % intro.strip())
+        intro = doc('.addon-submission-process p').text().strip()
+        assert 'Preliminary Review' in intro, ('Unexpected intro: %s' % intro)
 
     def test_finish_addon_for_full_review(self):
-        addon = Addon.objects.get(pk=3615)
-        addon.status = amo.STATUS_NOMINATED
-        addon.save()
+        self.get_addon().update(status=amo.STATUS_NOMINATED)
 
         response = self.client.get(reverse('devhub.submit.7', args=['a3615']))
         eq_(response.status_code, 200)
         doc = pq(response.content)
-        exp = 'Your add-on has been submitted to the Full Review queue'
-        intro = doc('.addon-submission-process p').text()
-        assert exp in intro, ('Unexpected intro: %s' % intro.strip())
+        intro = doc('.addon-submission-process p').text().strip()
+        assert 'Full Review' in intro, ('Unexpected intro: %s' % intro)
 
     def test_incomplete_addon_no_versions(self):
-        addon = Addon.objects.get(pk=3615)
+        addon = self.get_addon()
         addon.update(status=amo.STATUS_NULL)
         addon.versions.all().delete()
         r = self.client.get(reverse('devhub.submit.7', args=['a3615']),
