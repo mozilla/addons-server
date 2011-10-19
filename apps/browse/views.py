@@ -15,7 +15,7 @@ import amo
 import amo.models
 from amo.models import manual_order
 from amo.urlresolvers import reverse
-from addons.models import Addon, Category, AddonCategory
+from addons.models import Addon, AddonCategory, Category, FrozenAddon
 from addons.utils import FeaturedManager, CreaturedManager
 from addons.views import BaseFilter, ESBaseFilter
 from translations.query import order_by_translation
@@ -310,8 +310,11 @@ def personas_listing(request, category=None):
                                 type=TYPE)
     categories = order_by_translation(q, 'name')
 
+    frozen = FrozenAddon.objects.values_list('addon', flat=True)
+
     base = (Addon.objects.public().filter(type=TYPE)
-            .extra(select={'_app': request.APP.id}))
+                 .exclude(id__in=frozen)
+                 .extra(select={'_app': request.APP.id}))
 
     if category is not None:
         category = get_object_or_404(q, slug=category)

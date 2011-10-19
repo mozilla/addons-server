@@ -21,7 +21,7 @@ from amo.urlresolvers import reverse
 from amo.helpers import absolutify, numberfmt, urlparams
 from addons.tests.test_views import TestMobile
 from addons.models import (Addon, AddonCategory, Category, AppSupport, Feature,
-                           Persona)
+                           FrozenAddon, Persona)
 from addons.utils import FeaturedManager
 from applications.models import Application
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
@@ -1322,6 +1322,24 @@ class TestPersonas(amo.tests.TestCase):
         category.save()
         r = self.client.get(category_url)
         self.assertTemplateUsed(r, landing)
+
+    def test_personas_category_landing_frozen(self):
+        # Check to make sure add-on is there.
+        category_url = reverse('browse.personas')
+        r = self.client.get(category_url)
+
+        personas = pq(r.content).find('.persona-preview')
+        eq_(personas.length, 2)
+        eq_(personas.eq(1).find('a').text(), "My Persona")
+
+        # Freeze the add-on
+        FrozenAddon.objects.create(addon_id=15663)
+
+        # Make sure it's not there anymore
+        res = self.client.get(category_url)
+
+        personas = pq(res.content).find('.persona-preview')
+        eq_(personas.length, 1)
 
 
 class TestMobileFeatured(TestMobile):
