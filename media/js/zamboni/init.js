@@ -112,6 +112,9 @@ jQuery.fn.hasattr = function(name) {
 
 
 var escape_ = function(s){
+    if (s === undefined) {
+        return;
+    }
     return s.replace(/&/g, '&amp;').replace(/>/g, '&gt;').replace(/</g, '&lt;')
             .replace(/'/g, '&#39;').replace(/"/g, '&#34;');
 };

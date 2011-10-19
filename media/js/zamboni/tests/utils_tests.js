@@ -15,6 +15,8 @@ test('Entity Escaping', function() {
     function check(s, expected) {
         equal(escape_(s), expected);
     }
+    check(undefined, undefined);
+    check('', '');
     check("&&<<>>''\"\"", "&amp;&amp;&lt;&lt;&gt;&gt;&#39;&#39;&#34;&#34;");
     check("<script>alert('\"xss\"')</script>&&",
           "&lt;script&gt;alert(&#39;&#34;xss&#34;&#39;)&lt;/script&gt;&amp;&amp;");
