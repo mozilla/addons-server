@@ -27,7 +27,11 @@
           </div>
         </form>
       </label>
-      <div class="upload-details">apps must start with a protocol (for example, http://) and end with either .webapp or .json.</div>
+      <div class="upload-details">
+        {% trans %}
+        App URLs must start with a protocol (for example, http://) and end with either .webapp or .json.
+        {% endtrans %}
+      </div>
     </div>
     <form method="post" id="upload-webapp" action="">
       {{ csrf() }}
