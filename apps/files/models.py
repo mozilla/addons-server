@@ -56,7 +56,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                                               default=amo.STATUS_UNREVIEWED)
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
     no_restart = models.BooleanField(default=False)
-
+    # The XPI contains JS that calls require("chrome").
+    requires_chrome = models.BooleanField(default=False)
     reviewed = models.DateTimeField(null=True)
 
     class Meta(amo.models.ModelBase.Meta):
@@ -154,6 +155,10 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         f.hash = (f.generate_hash(upload.path)
                   if waffle.switch_is_active('file-hash-paranoia')
                   else upload.hash)
+        if upload.validation:
+            validation = json.loads(upload.validation)
+            if validation['metadata'].get('requires_chrome'):
+                f.requires_chrome = True
         f.save()
         log.debug('New file: %r from %r' % (f, upload))
         # Move the uploaded file from the temp location.

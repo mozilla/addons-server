@@ -453,6 +453,8 @@ class TestParseAlternateXpi(amo.tests.TestCase, amo.tests.AMOPaths):
 
 
 class TestFileUpload(UploadTest):
+    fixtures = ['applications/all_apps.json', 'base/appversion',
+                'base/addon_3615']
 
     def setUp(self):
         super(TestFileUpload, self).setUp()
@@ -509,6 +511,28 @@ class TestFileUpload(UploadTest):
 
         fu = FileUpload.from_post('', u'\u05d0\u05d5\u05e1\u05e3.xpi', 0)
         assert 'xpi' in fu.name
+
+    def test_validator_sets_require_chrome(self):
+        validation = json.dumps({
+            "errors": 0,
+            "success": True,
+            "warnings": 0,
+            "notices": 0,
+            "message_tree": {},
+            "messages": [],
+            "metadata": {
+                "contains_binary_extension": True,
+                "version": "1.0",
+                "name": "gK0Bes Bot",
+                "id": "gkobes@gkobes",
+                "requires_chrome": True
+            }
+        })
+        upload = self.get_upload(filename='extension.xpi', validation=validation)
+        version = Version.objects.filter(addon__pk=3615)[0]
+        plat = Platform.objects.get(pk=amo.PLATFORM_LINUX.id)
+        file_ = File.from_upload(upload, version, plat)
+        eq_(file_.requires_chrome, True)
 
 
 class TestFileFromUpload(UploadTest):
