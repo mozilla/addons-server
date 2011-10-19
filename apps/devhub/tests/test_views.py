@@ -1368,7 +1368,7 @@ class TestSubmitStep3(amo.tests.TestCase):
 
         addon = self.get_addon()
         eq_(addon.name, 'Test name')
-        eq_(addon.slug, 'testname')
+        eq_(addon.app_slug, 'testname')
         eq_(addon.description, 'desc')
         eq_(addon.summary, 'Hello!')
 

@@ -111,6 +111,11 @@ class AddonFormBasic(AddonFormBase):
         fields = ('name', 'slug', 'summary', 'tags')
 
     def __init__(self, *args, **kw):
+        # Force the form to use app_slug if this is a webapp. We want to keep
+        # this under "slug" so all the js continues to work.
+        if kw['instance'].is_webapp():
+            kw.setdefault('initial', {})['slug'] = kw['instance'].app_slug
+
         super(AddonFormBasic, self).__init__(*args, **kw)
         self.fields['tags'].initial = ', '.join(self.get_tags(self.instance))
         # Do not simply append validators, as validators will persist between
@@ -145,15 +150,33 @@ class AddonFormBasic(AddonFormBase):
 
         return addonform
 
+    def _post_clean(self):
+        if self.instance.is_webapp():
+            # Switch slug to app_slug in cleaned_data and self._meta.fields so
+            # we can update the app_slug field for webapps.
+            try:
+                self._meta.fields = list(self._meta.fields)
+                slug_idx = self._meta.fields.index('slug')
+                data = self.cleaned_data
+                if 'slug' in data:
+                    data['app_slug'] = data.pop('slug')
+                self._meta.fields[slug_idx] = 'app_slug'
+                super(AddonFormBasic, self)._post_clean()
+            finally:
+                self._meta.fields[slug_idx] = 'slug'
+        else:
+            super(AddonFormBasic, self)._post_clean()
+
     def clean_tags(self):
         return clean_tags(self.request, self.cleaned_data['tags'])
 
     def clean_slug(self):
         target = self.cleaned_data['slug']
         slug_validator(target, lower=False)
+        slug_field = 'app_slug' if self.instance.is_webapp() else 'slug'
 
-        if target != self.instance.slug:
-            if Addon.objects.filter(slug=target).exists():
+        if target != getattr(self.instance, slug_field):
+            if Addon.objects.filter(**{slug_field: target}).exists():
                 raise forms.ValidationError(_('This slug is already in use.'))
 
             if BlacklistedSlug.blocked(target):

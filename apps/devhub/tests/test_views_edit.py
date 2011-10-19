@@ -27,6 +27,13 @@ from tags.models import Tag, AddonTag
 from users.models import UserProfile
 
 
+def get_section_url(addon, section, edit=False):
+    args = [addon.slug, section]
+    if edit:
+        args.append('edit')
+    return reverse('devhub.addons.section', args=args)
+
+
 class TestEdit(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615',
                 'base/addon_5579', 'base/addon_3615_categories']
@@ -56,10 +63,62 @@ class TestEdit(amo.tests.TestCase):
         return Addon.objects.no_cache().get(id=3615)
 
     def get_url(self, section, edit=False):
+        return get_section_url(self.addon, section, edit)
+
+    def get_dict(self, **kw):
+        fs = formset(self.cat_initial, initial_count=1)
+        result = {'name': 'new name', 'slug': 'test_slug',
+                  'summary': 'new summary',
+                  'tags': ', '.join(self.tags)}
+        result.update(**kw)
+        result.update(fs)
+        return result
+
+
+class TestEditBasicWebapp(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        self.addon = Addon.objects.create(type=amo.ADDON_WEBAPP, app_slug='ok')
+
+    def get_url(self, section, edit=False):
         args = [self.addon.slug, section]
         if edit:
             args.append('edit')
         return reverse('devhub.addons.section', args=args)
+
+    def get_dict(self, **kw):
+        result = {'name': 'new name', 'slug': 'test_slug',
+                  'summary': 'new summary'}
+        result.update(kw)
+        return result
+
+    def test_appslug_visible(self):
+        r = self.client.get(self.get_url('basic'))
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('#slug_edit').text(), u'/\u2026/ok View Listing')
+
+    def test_edit_slug_success(self):
+        addon = self.addon
+        data = self.get_dict()
+        r = self.client.post(self.get_url('basic', edit=True), data)
+        eq_(r.status_code, 200)
+        eq_(Addon.objects.get(id=addon.id).app_slug, data['slug'])
+        # Make sure only the app_slug changed.
+        eq_(Addon.objects.get(id=addon.id).slug, addon.slug)
+
+    def test_edit_slug_dupe(self):
+        addon = self.addon
+        Addon.objects.create(type=amo.ADDON_WEBAPP, app_slug='dupe')
+        data = self.get_dict(slug='dupe')
+        r = self.client.post(self.get_url('basic', edit=True), data)
+        self.assertFormError(r, 'form', 'slug',
+                             'This slug is already in use.')
+        # Nothing changed.
+        eq_(Addon.objects.get(id=addon.id).slug, addon.slug)
+        eq_(Addon.objects.get(id=addon.id).app_slug, addon.app_slug)
 
 
 class TestEditBasic(TestEdit):
@@ -75,15 +134,6 @@ class TestEditBasic(TestEdit):
         r = self.client.get('/en-US/developers/addon/3615/', follow=True)
         url = reverse('devhub.addons.edit', args=['a3615'])
         self.assertRedirects(r, url, 301)
-
-    def get_dict(self, **kw):
-        fs = formset(self.cat_initial, initial_count=1)
-        result = {'name': 'new name', 'slug': 'test_slug',
-                  'summary': 'new summary',
-                  'tags': ', '.join(self.tags)}
-        result.update(**kw)
-        result.update(fs)
-        return result
 
     def test_edit(self):
         old_name = self.addon.name

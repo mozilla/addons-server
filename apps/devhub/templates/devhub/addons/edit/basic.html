@@ -38,7 +38,7 @@
                 </div>
                 {{ form.slug.errors }}
               {% else %}
-                {{ settings.SITE_URL }}/&hellip;/{{ addon.slug }}
+                {{ settings.SITE_URL }}/&hellip;/{{ addon.app_slug if addon.is_webapp() else addon.slug }}
                 <a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
               {% endif %}
             </td>
