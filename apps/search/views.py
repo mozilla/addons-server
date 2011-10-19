@@ -295,7 +295,7 @@ class BaseAjaxSearch(object):
                                               disabled_by_user=False)
                 else:
                     # Oh, how I wish I could elastically exclude terms.
-                    qs = (Addon.search().query(or_=name_only_query(q))
+                    qs = (Addon.search().query(or_=name_only_query(q.lower()))
                           .filter(is_disabled=False))
                 results = qs.filter(type__in=self.types,
                                     status__in=amo.REVIEWED_STATUSES)

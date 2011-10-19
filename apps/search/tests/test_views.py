@@ -392,18 +392,22 @@ class TestSearchSuggestions(TestAjaxSearch):
     def test_personas(self):
         personas = (Addon.objects.reviewed()
                     .filter(type=amo.ADDON_PERSONA, disabled_by_user=False))
-        self.search_addons('q=add&cat=personas', list(personas),
-                               types=[amo.ADDON_PERSONA])
+        personas, types = list(personas), [amo.ADDON_PERSONA]
+        self.search_addons('q=add&cat=personas', personas, types)
+        self.search_addons('q=persona&cat=personas', personas, types)
+        self.search_addons('q=PERSONA&cat=personas', personas, types)
         self.search_addons('q=persona&cat=all', [])
 
     def test_webapps(self):
-        apps = (Addon.objects.reviewed()
-                .filter(type=amo.ADDON_WEBAPP, disabled_by_user=False))
-        self.search_addons('q=add&cat=apps', list(apps),
-                              types=[amo.ADDON_WEBAPP])
+        apps = list(Addon.objects.reviewed()
+                    .filter(type=amo.ADDON_WEBAPP, disabled_by_user=False))
+        types = [amo.ADDON_WEBAPP]
+        self.search_addons('q=add&cat=apps', apps, types)
+        self.search_addons('q=WEBAPP&cat=apps', apps, types)
 
     def test_applications(self):
         self.search_applications('', [])
+        self.search_applications('q=FIREFOX', [amo.FIREFOX])
         self.search_applications('q=firefox', [amo.FIREFOX])
         self.search_applications('q=thunder', [amo.THUNDERBIRD])
         self.search_applications('q=monkey', [amo.SEAMONKEY])
