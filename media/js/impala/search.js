@@ -4,7 +4,7 @@ $(function() {
         if ($this.hasClass('active')) {
             var $tgt = $(e.target);
             if ($tgt.is('a')) {
-                $tgt.closest('.facet').find('.selected').removeClass('selected');
+                $tgt.closest('ul').find('.selected').removeClass('selected');
                 $tgt.closest('li').addClass('selected');
                 return;
             }
@@ -44,7 +44,12 @@ function initSearchPjax(container) {
     }
 
     function hijackLink() {
-        pjaxOpen($(this).attr('href'));
+        var $this = $(this);
+        // Supress clicks on the currently selected sort filter.
+        if (!($this.parent('li.selected').length &&
+              $this.closest('#sorter').length)) {
+            pjaxOpen($(this).attr('href'));
+        }
     }
 
     function loading() {
@@ -67,7 +72,8 @@ function initSearchPjax(container) {
         var $wrapper = $container.closest('.results');
 
         // Initialize install buttons and compatibility checking.
-        $.when($container.find('.install:not(.triggered)').installButton()).done(function() {
+        $.when($container.find('.install:not(.triggered)')
+                         .installButton()).done(function() {
             $container.find('.install').addClass('triggered');
             initListingCompat();
         });
