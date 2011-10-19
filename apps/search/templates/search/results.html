@@ -1,4 +1,4 @@
-{% extends "base_ajax.html" if is_pjax else "impala/base.html" %}
+{% extends "base_ajax.html" if PJAX else "impala/base.html" %}
 
 {% block bodyclass %}
   {{ 'pjax' if waffle.switch('ajax-search') }} {{ super() }}
@@ -51,7 +51,7 @@
 {% endmacro %}
 
 {% block content %}
-  {% if is_pjax %}
+  {% if PJAX %}
     {% include "search/results_inner.html" %}
   {% else %}
     <section id="search-facets" class="secondary" role="complementary">

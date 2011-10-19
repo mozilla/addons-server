@@ -12,7 +12,7 @@ from pyquery import PyQuery as pq
 from test_utils import RequestFactory
 
 import amo.tests
-from amo.middleware import LazyPjaxMiddleware
+from amo.middleware import PjaxMiddleware, LazyPjaxMiddleware
 from amo.urlresolvers import reverse
 from zadmin.models import Config, _config_cache
 
@@ -22,11 +22,11 @@ class TestMiddleware(amo.tests.TestCase):
     def test_no_vary_cookie(self):
         # We don't break good usage of Vary.
         response = test.Client().get('/')
-        eq_(response['Vary'], 'Accept-Language, User-Agent, X-Mobile')
+        eq_(response['Vary'], 'Accept-Language, User-Agent, X-PJAX, X-Mobile')
 
         # But we do prevent Vary: Cookie.
         response = test.Client().get('/', follow=True)
-        eq_(response['Vary'], 'X-Mobile, User-Agent')
+        eq_(response['Vary'], 'X-PJAX, X-Mobile, User-Agent')
 
 
 def test_redirect_with_unicode_get():
@@ -74,6 +74,38 @@ def test_hide_password_middleware():
     eq_(request.POST['x'], '1')
     eq_(request.POST['password'], '******')
     eq_(request.POST['password2'], '******')
+
+
+class TestPjaxMiddleware(amo.tests.TestCase):
+
+    def setUp(self):
+        self.factory = RequestFactory()
+
+    def check(self, xpjax, pjax):
+        request = self.factory.get('/')
+        if xpjax:
+            request.META['HTTP_X_PJAX'] = xpjax
+        PjaxMiddleware().process_request(request)
+        eq_(request.PJAX, pjax)
+
+    def test_xpjax(self):
+        self.check(xpjax='true', pjax=True)
+        self.check(xpjax='1', pjax=True)
+        self.check(xpjax='0', pjax=True)
+
+    def test_no_xpjax(self):
+        self.check(xpjax=None, pjax=False)
+
+    def test_vary(self):
+        request = self.factory.get('/')
+        response = http.HttpResponse()
+        r = PjaxMiddleware().process_response(request, response)
+        assert r is response
+        eq_(response['Vary'], 'X-PJAX')
+
+        response['Vary'] = 'User-Agent'
+        PjaxMiddleware().process_response(request, response)
+        eq_(response['Vary'], 'User-Agent, X-PJAX')
 
 
 class TestLazyPjaxMiddleware(amo.tests.TestCase):

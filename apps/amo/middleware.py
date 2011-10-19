@@ -183,6 +183,16 @@ class TimingMiddleware(object):
 pjax_log = commonware.log.getLogger('z.timer')
 
 
+class PjaxMiddleware(object):
+
+    def process_request(self, request):
+        request.PJAX = bool(request.META.get('HTTP_X_PJAX'))
+
+    def process_response(self, request, response):
+        patch_vary_headers(response, ['X-PJAX'])
+        return response
+
+
 class LazyPjaxMiddleware(object):
 
     def process_request(self, request):

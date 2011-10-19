@@ -191,7 +191,6 @@ class TestESSearch(amo.tests.ESTestCase):
         for view in self.search_views:
             r = self.client.get(reverse(view))
             eq_(r.status_code, 200)
-            eq_(r.context['is_pjax'], None)
 
             for var in expected_context_vars[view]:
                 assert var in r.context, (
@@ -207,7 +206,6 @@ class TestESSearch(amo.tests.ESTestCase):
         for view in self.search_views:
             r = self.client.get(reverse(view), HTTP_X_PJAX=True)
             eq_(r.status_code, 200)
-            eq_(r.context['is_pjax'], True)
 
             doc = pq(r.content)
             eq_(doc('html').length, 0)

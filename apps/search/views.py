@@ -419,9 +419,10 @@ def app_search(request, template=None):
     query = form.cleaned_data
     qs = (Webapp.search().query(or_=name_query(query['q']))
           .filter(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
-                  is_disabled=False)
-          .facet(tags={'terms': {'field': 'tag'}},
-                 categories={'terms': {'field': 'category', 'size': 100}}))
+                  is_disabled=False))
+    if not request.PJAX:
+        qs = qs.facet(tags={'terms': {'field': 'tag'}},
+                      categories={'terms': {'field': 'category', 'size': 100}})
     if query.get('tag'):
         qs = qs.filter(tag=query['tag'])
     if query.get('cat'):
@@ -435,17 +436,15 @@ def app_search(request, template=None):
         qs = qs.order_by(mapping[query['sort']])
 
     pager = amo.utils.paginate(request, qs)
-    facets = pager.object_list.facets
 
     ctx = {
-        'is_pjax': request.META.get('HTTP_X_PJAX'),
         'pager': pager,
         'query': query,
-        'form': form,
         'sorting': sort_sidebar(request, query, form),
         'sort_opts': form.fields['sort'].choices,
     }
-    if not ctx['is_pjax']:
+    if not request.PJAX:
+        facets = pager.object_list.facets
         ctx.update({
             'categories': category_sidebar(request, query, facets),
             'tags': tag_sidebar(request, query, facets),
@@ -478,12 +477,13 @@ def search(request, tag_name=None, template=None):
 
     qs = (Addon.search()
           .filter(status__in=amo.REVIEWED_STATUSES, is_disabled=False,
-                  app=APP.id)
-          .facet(tags={'terms': {'field': 'tag'}},
-                 platforms={'terms': {'field': 'platform'}},
-                 appversions={'terms':
-                              {'field': 'appversion.%s.max' % APP.id}},
-                 categories={'terms': {'field': 'category', 'size': 100}}))
+                  app=APP.id))
+    if not request.PJAX:
+        qs = qs.facet(tags={'terms': {'field': 'tag'}},
+                      platforms={'terms': {'field': 'platform'}},
+                      appversions={'terms':
+                                   {'field': 'appversion.%s.max' % APP.id}},
+                      categories={'terms': {'field': 'category', 'size': 100}})
     if query.get('q'):
         qs = qs.query(or_=name_query(query['q']))
     if tag_name or query.get('tag'):
@@ -526,15 +526,13 @@ def search(request, tag_name=None, template=None):
     pager = amo.utils.paginate(request, qs)
 
     ctx = {
-        'is_pjax': request.META.get('HTTP_X_PJAX'),
         'pager': pager,
         'query': query,
-        'form': form,
         'sort_opts': sort,
         'extra_sort_opts': extra_sort,
         'sorting': sort_sidebar(request, query, form),
     }
-    if not ctx['is_pjax']:
+    if not request.PJAX:
         facets = pager.object_list.facets
         ctx.update({
             'categories': category_sidebar(request, query, facets),
