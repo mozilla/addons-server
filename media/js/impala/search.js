@@ -27,7 +27,19 @@ function initSearchPjax(container) {
     function pjaxOpen(url) {
         var urlBase = location.pathname + location.search;
         if (!!url && url != '#' && url != urlBase) {
-            $.pjax({'url': url, 'container': container});
+            $.pjax({
+                url: url,
+                container: container,
+                beforeSend: function(xhr) {
+                    this.trigger('end.pjax', [xhr, url, container]);
+                    xhr.setRequestHeader('X-PJAX', 'true');
+                    loading();
+                },
+                complete: function(xhr) {
+                    this.trigger('end.pjax', [xhr, url, container]);
+                    finished();
+                }
+            });
         }
     }
 
@@ -36,29 +48,27 @@ function initSearchPjax(container) {
     }
 
     function loading() {
-        var $this = $(this),
-            $wrapper = $this.closest('.results'),
+        var $wrapper = $container.closest('.results'),
             msg = gettext('Updating results&hellip;'),
             cls = 'updating';
         $wrapper.addClass('loading');
 
-        // The loading indicator is absolutely positioned atop the
+        // The loading throbber is absolutely positioned atop the
         // search results, so we do this to ensure a max-margin of sorts.
-        if ($this.outerHeight() > 300) {
+        if ($container.outerHeight() > 300) {
             cls += ' tall';
         }
 
-        // Insert the loading indicator.
-        $('<div>', {'class': cls, 'html': msg}).insertBefore($this);
+        // Insert the loading throbber.
+        $('<div>', {'class': cls, 'html': msg}).insertBefore($container);
     }
 
     function finished() {
-        var $this = $(this),
-            $wrapper = $this.closest('.results');
+        var $wrapper = $container.closest('.results');
 
         // Initialize install buttons and compatibility checking.
-        $.when($this.find('.install:not(.triggered)').installButton()).done(function() {
-            $this.find('.install').addClass('triggered');
+        $.when($container.find('.install:not(.triggered)').installButton()).done(function() {
+            $container.find('.install').addClass('triggered');
             initListingCompat();
         });
 
@@ -86,6 +96,5 @@ function initSearchPjax(container) {
     }
 
     $('.pjax-trigger a').live('click', _pd(hijackLink));
-    $container.bind('start.pjax', loading).bind('end.pjax', finished);
     $(document).keyup(_.throttle(turnPages, 300));
 }
