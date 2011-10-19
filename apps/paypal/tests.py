@@ -61,14 +61,53 @@ class TestPayKey(amo.tests.TestCase):
         qs = _call.call_args[0][1]['returnUrl'].split('?')[1]
         eq_(dict(urlparse.parse_qsl(qs))['foo'], 'bar')
 
+    @mock.patch.object(settings, 'SITE_URL', 'http://foo.com')
     def _test_no_mock(self):
         # Remove _ and run if you'd like to try unmocked.
-        return paypal.get_paykey(self.data)
+        data = self.data.copy()
+        data['email'] = 'andy_1318364497_biz@gmail.com'
+        #data['chains'] = ((13.4, 'wtf_1315341929_biz@gmail.com'),)
+        return paypal.get_paykey(data)
 
     def _test_check_purchase_no_mock(self):
         # Remove _ and run if you'd like to try this unmocked.
         key = paypal.get_paykey(self.data)
         eq_(paypal.check_purchase(key), 'CREATED')
+
+    def test_split(self):
+        chains = ((30, 'us@moz.com'),)
+        res = paypal.add_receivers(chains, 'a@a.com', 1.99, '123')
+        eq_(res['receiverList.receiver(1).amount'], '0.60')
+        eq_(res['receiverList.receiver(1).email'], 'us@moz.com')
+        eq_(res['receiverList.receiver(0).amount'], '1.39')
+        eq_(res['receiverList.receiver(0).email'], 'a@a.com')
+
+    def test_multiple_split(self):
+        chains = ((30, 'us@moz.com'), (10, 'me@moz.com'))
+        res = paypal.add_receivers(chains, 'a@a.com', 1.99, '123')
+        eq_(res['receiverList.receiver(2).amount'], '0.20')
+        eq_(res['receiverList.receiver(1).amount'], '0.60')
+        eq_(res['receiverList.receiver(0).amount'], '1.19')
+
+    def test_no_split(self):
+        res = paypal.add_receivers((), 'a@a.com', 1.99, '123')
+        eq_(res['receiverList.receiver(0).amount'], '1.99')
+
+    @mock.patch('paypal._call')
+    def test_dict_no_split(self, _call):
+        data = self.data.copy()
+        _call.return_value = {'payKey': '123'}
+        paypal.get_paykey(data)
+        eq_(_call.call_args[0][1]['receiverList.receiver(0).amount'], '10')
+
+    @mock.patch('paypal._call')
+    def test_dict_split(self, _call):
+        data = self.data.copy()
+        data['chains'] = ((13.4, 'us@moz.com'),)
+        _call.return_value = {'payKey': '123'}
+        paypal.get_paykey(data)
+        eq_(_call.call_args[0][1]['receiverList.receiver(0).amount'], '8.66')
+        eq_(_call.call_args[0][1]['receiverList.receiver(1).amount'], '1.34')
 
 
 class TestPurchase(amo.tests.TestCase):

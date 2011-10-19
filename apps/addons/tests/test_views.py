@@ -259,6 +259,14 @@ class TestContributeEmbedded(amo.tests.TestCase):
         doc = pq(self.client.get(url).content)
         eq_(len(doc('#paypal-thanks')), 0)
 
+    @patch('paypal.get_paykey')
+    def test_not_split(self, get_paykey):
+        get_paykey.return_value = None
+        self.client.get('%s?%s' % (
+                        reverse('addons.contribute', args=[self.addon.slug]),
+                        'result_type=json'))
+        assert 'chains' not in get_paykey.call_args_list[0][0][0].keys()
+
 
 class TestPurchaseEmbedded(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_592', 'base/users', 'prices']
@@ -409,6 +417,14 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         doc = pq(self.client.get(url).content)
         eq_(doc('.trigger_app_install').attr('data-manifest-url'),
             self.addon.manifest_url)
+
+    @patch('paypal.get_paykey')
+    def test_split(self, get_paykey):
+        get_paykey.return_value = None
+        self.client.get('%s?%s' % (
+                        reverse('addons.purchase', args=[self.addon.slug]),
+                        'result_type=json'))
+        assert 'chains' in get_paykey.call_args_list[0][0][0].keys()
 
 
 class TestDeveloperPages(amo.tests.TestCase):

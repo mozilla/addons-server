@@ -488,7 +488,8 @@ def purchase(request, addon):
                     amount=amount, memo=contrib_for, email=addon.paypal_id,
                     ip=request.META.get('REMOTE_ADDR'),
                     pattern='addons.purchase.finished',
-                    qs={'realurl': request.GET.get('realurl')}))
+                    qs={'realurl': request.GET.get('realurl')},
+                    chains=settings.PAYPAL_CHAINS))
     except:
         log.error('Error getting paykey, purchase of addon: %s' % addon.pk,
                   exc_info=True)

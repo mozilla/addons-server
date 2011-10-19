@@ -1,4 +1,5 @@
 import contextlib
+from decimal import Decimal
 import socket
 import urllib
 import urllib2
@@ -6,7 +7,7 @@ import urlparse
 import re
 
 from django.conf import settings
-from django.utils.http import urlencode
+from django.utils.http import urlencode, urlquote
 
 import commonware.log
 from statsd import statsd
@@ -35,6 +36,32 @@ def should_ignore_paypal():
     return settings.DEBUG and 'sandbox' not in settings.PAYPAL_PERMISSIONS_URL
 
 
+def add_receivers(chains, email, amount, uuid):
+    """
+    Split a payment down into multiple receivers using the chains passed in.
+    """
+    remainder = Decimal(str(amount))
+    amount = float(amount)
+    result = {}
+    for number, chain in enumerate(chains, 1):
+        percent, destination = chain
+        this = Decimal(amount * (percent / 100.0)).quantize(Decimal('.01'))
+        remainder = remainder - this
+        result.update({
+            'receiverList.receiver(%s).email' % number: destination,
+            'receiverList.receiver(%s).amount' % number: str(this),
+            'receiverList.receiver(%s).paymentType' % number: 'DIGITALGOODS',
+        })
+    result.update({
+        'receiverList.receiver(0).email': email,
+        'receiverList.receiver(0).amount': str(remainder),
+        'receiverList.receiver(0).invoiceID': 'mozilla-%s' % uuid,
+        'receiverList.receiver(0).primary': 'TRUE',
+        'receiverList.receiver(0).paymentType': 'DIGITALGOODS',
+    })
+    return result
+
+
 def get_paykey(data):
     """
     Gets a paykey from Paypal. Need to pass in the following in data:
@@ -56,17 +83,14 @@ def get_paykey(data):
 
     paypal_data = {
         'actionType': 'PAY',
-        'requestEnvelope.errorLanguage': 'US',
         'currencyCode': 'USD',
         'cancelUrl': absolutify('%s?%s' % (cancel, uuid_qs)),
         'returnUrl': absolutify('%s?%s' % (complete, uuid_qs)),
-        'receiverList.receiver(0).email': data['email'],
-        'receiverList.receiver(0).amount': data['amount'],
-        'receiverList.receiver(0).invoiceID': 'mozilla-%s' % data['uuid'],
-        'receiverList.receiver(0).primary': 'TRUE',
-        'receiverList.receiver(0).paymentType': 'DIGITALGOODS',
         'trackingId': data['uuid'],
         'ipnNotificationUrl': absolutify(reverse('amo.paypal'))}
+
+    paypal_data.update(add_receivers(data.get('chains', ()), data['email'],
+                                     data['amount'], data['uuid']))
 
     if data.get('memo'):
         paypal_data['memo'] = data['memo']
@@ -227,10 +251,15 @@ def _call(url, paypal_data, ip=None):
     if ip:
         request.add_header('X-PAYPAL-DEVICE-IPADDRESS', ip)
 
+
+    # Warning, a urlencode will not work with chained payments, it must
+    # be sorted and the key should not be escaped.
+    data = '&'.join(['%s=%s' % (k, urlquote(v))
+                     for k, v in sorted(paypal_data.items())])
     opener = urllib2.build_opener()
     try:
         with socket_timeout(10):
-            feeddata = opener.open(request, urlencode(paypal_data)).read()
+            feeddata = opener.open(request, data).read()
     except Exception, error:
         paypal_log.error('HTTP Error: %s' % error)
         raise

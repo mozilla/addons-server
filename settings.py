@@ -900,6 +900,10 @@ PAYPAL_JS_URL = 'https://www.paypalobjects.com/js/external/dg.js'
 PAYPAL_EMBEDDED_AUTH = {'USER': '', 'PASSWORD': '', 'SIGNATURE': ''}
 PAYPAL_EMAIL = ''
 
+# PayPal split for Adaptive Payments.
+# A tuple of lists of % and destination.
+PAYPAL_CHAINS = ()
+
 # Contribution limit, one time and monthly
 MAX_CONTRIBUTION = 1000
 
