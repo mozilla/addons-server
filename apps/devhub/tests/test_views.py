@@ -865,6 +865,7 @@ class TestMarketplace(amo.tests.TestCase):
         # They could hit this URL before anything else, we need to cope
         # with AddonPremium not being there.
         self.addon.premium.delete()
+        self.addon.update(premium_type=amo.ADDON_FREE)
         url = reverse('devhub.addons.acquire_refund_permission',
                       args=[self.addon.slug])
         data = {'request_token': 'foo', 'verification_code': 'bar'}

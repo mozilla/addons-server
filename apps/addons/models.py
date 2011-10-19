@@ -669,9 +669,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # Attach premium addons.
         qs = AddonPremium.objects.filter(addon__in=addons)
         for addon_p in qs:
-            addon_p.price = prices[addon_p.price_id]
-            addon_dict[addon_p.addon_id]._premium = addon_p
-
+            if addon_dict[addon_p.addon_id].is_premium():
+                addon_p.price = prices[addon_p.price_id]
+                addon_dict[addon_p.addon_id]._premium = addon_p
 
     @property
     def show_beta(self):

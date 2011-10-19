@@ -126,7 +126,7 @@ class TestPreviewForm(amo.tests.TestCase):
             lambda z: True)
 @mock.patch('devhub.forms.check_paypal_id', lambda z: True)
 class TestPremiumForm(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
+    fixtures = ['base/addon_3615', 'base/users', 'prices']
 
     def complete(self, data, exclude):
         return forms.PremiumForm(data, extra={
@@ -139,7 +139,7 @@ class TestPremiumForm(amo.tests.TestCase):
         addon = Addon.objects.get(pk=3615)
         addon.update(paypal_id='')
         ap = AddonPremium.objects.create(paypal_permissions_token='1',
-                                         addon=addon)
+                                         addon=addon, price_id=1)
         data = {'support_email': 'foo@bar.com', 'paypal_id': 'foo@bar.com'}
         form = self.complete(data, ['price'])
         assert form.is_valid()
