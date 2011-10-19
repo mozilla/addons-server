@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="{{ LANG }}" dir="{{ DIR }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1">
+
+    <title>{% block title %}{{ _('Mozilla Apps') }}{% endblock %}</title>
+
+    <link rel="shortcut icon" type="image/x-icon"
+          href="{{ media('img/favicon.ico') }}">
+
+    {% block rss_feed %}{% endblock %}
+
+    {# L10n: {0} is an application, like Firefox. #}
+    <link title="{{ _('Mobile Apps') }}"
+          rel="search" type="application/opensearchdescription+xml"
+          href="{{ url('amo.opensearch') }}" />
+
+    {% block site_css %}
+      {{ css('zamboni/mobile') }}
+    {% endblock %}
+
+    {% include "mobile/head_debug.html" %}
+
+    {% block extrahead %}{% endblock %}
+  </head>
+  <body class="html-{{ DIR }} {{ request.APP.short }} lang-{{ LANG }} {% block bodyclass %}{% endblock %}"
+        data-app="{{ request.APP.short }}"
+        data-appname="{{ request.APP.pretty }}"
+        data-appid="{{ request.APP.id }}"
+        data-min-beta-version="{{ settings.MIN_BETA_VERSION }}"
+        data-anonymous="{{ (not request.user.is_authenticated())|json }}"
+        data-readonly="{{ settings.READ_ONLY|json }}"
+        data-media-url="{{ MEDIA_URL }}"
+        {% if request.ALLOWS_PJAX %}
+          data-use-pjax="1"
+          data-pjax-container="{{ settings.PJAX_SELECTOR }}"
+        {% endif %}
+        {% block bodyattrs %}{% endblock %}>
+
+    <div id="page">
+      {% block header %}
+        <header class="mini-header">
+          {% include "mobile/header.html" %}
+          <hgroup>
+            <h1 class="site-title">
+              <a href="{{ url('apps.home') }}"
+                title="{{ _('Return to the Apps homepage') }}">
+                {{ _('Apps') }}
+              </a>
+            </h1>
+          </hgroup>
+          {% block back_link %}
+          <a href="{{ url('apps.home') }}" id="home">
+            <svg width="18" height="16"><polygon fill="#447BC4" points="9,0 18,9 15,9 15,16 11,16 11,11 7,11 7,18 3,16 3,9 0,9"/></svg>
+            {{ _('Mobile Apps Home') }}</a>
+          {% endblock %}
+        </header>
+      {% endblock %}
+
+      <section id="content" class="{% block contentclass %}{% endblock %}">
+        {% block page %}
+        {% endblock page %}
+      </section>
+      <footer>
+        {% include "includes/lang_switcher.html" %}
+        {% block footer %}
+          <a class="desktop-link" href="#">{{ _('View full site') }}</a>
+          <p id="footer-links">
+            <a href="http://mozilla.com/privacy-policy.html">{{ _('Privacy Policy') }}</a> &nbsp;|&nbsp;
+            <a href="http://mozilla.com/about/legal.html">{{ _('Legal Notices') }}</a>
+          </p>
+        {% endblock footer %}
+      </footer>
+    </div>
+    {% block staging %}
+    {% endblock %}
+    {# js #}
+    {% block site_js %}
+      <script src="{{ static(url('jsi18n')) }}"></script>
+      {{ js('zamboni/mobile') }}
+    {% endblock %}
+    {% block js %}{% endblock %}
+    {# Webtrends Stats Tracking #}
+    <script defer src="{{ media('js/webtrends/webtrends-v0.1.js') }}"></script>
+    <noscript>
+      <img id="DCSIMG" width="1" height="1"
+        src="https://statse.webtrendslive.com/dcso6de4r0000082npfcmh4rf_4b1e/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=8.6.2" />
+    </noscript>
+    {# End Webtrends #}
+  </body>
+</html>
