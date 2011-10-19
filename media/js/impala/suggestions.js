@@ -177,6 +177,8 @@ $.fn.searchSuggestions = function(results) {
             e.preventDefault();
             window.location = $sel.get(0).href;
         }
+        $results.removeClass('locked');
+        dismissHandler();
     });
 
     $(document).keyup(function(e) {
