@@ -17,7 +17,6 @@ from django.utils import translation
 
 from mock import patch, Mock
 from nose.tools import eq_, assert_not_equal
-from nose import SkipTest
 
 import amo
 import amo.tests
@@ -1664,11 +1663,9 @@ class TestMarketplace(amo.tests.TestCase):
         assert not getattr(Addon.objects.get(pk=other.pk), 'premium')
 
     def test_price_transformer(self):
-        raise SkipTest
-
         price = Price.objects.create(price='1.00')
         price.pricecurrency_set.create(currency='BRL', price='1.01')
-        self.addon.update(type=amo.ADDON_PREMIUM)
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
         AddonPremium.objects.create(addon=self.addon, price=price)
 
         addon = list(Addon.objects.filter(pk=self.addon.pk))
