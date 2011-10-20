@@ -37,7 +37,7 @@
 {% endmacro %}
 
 {% macro facet_links(links) %}
-  <ul>
+  <ul class="facet-group">
     {% for link in links recursive %}
     <li{% if link.selected %} class="selected"{% endif %}>
       <a href="{{ request.get_full_path()|urlparams(page=None, **link.urlparams) }}">

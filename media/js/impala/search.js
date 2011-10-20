@@ -4,7 +4,8 @@ $(function() {
         if ($this.hasClass('active')) {
             var $tgt = $(e.target);
             if ($tgt.is('a')) {
-                $tgt.closest('ul').find('.selected').removeClass('selected');
+                $tgt.closest('.facet-group').find('.selected')
+                    .removeClass('selected');
                 $tgt.closest('li').addClass('selected');
                 return;
             }
