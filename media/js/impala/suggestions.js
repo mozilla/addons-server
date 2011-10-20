@@ -27,8 +27,11 @@ $.fn.searchSuggestions = function(results) {
     }
 
     // Some base elements that we don't want to keep creating on the fly.
-    var msg;
-    if ($form.find('input[name=cat]').val() == 'apps') {
+    var cat = $form.find('input[name=cat]').val(),
+        msg;
+    if (cat == 'personas') {
+        msg = gettext('Search personas for <b>{0}</b>');
+    } else if (cat == 'apps') {
         msg = gettext('Search apps for <b>{0}</b>');
     } else {
         msg = gettext('Search add-ons for <b>{0}</b>');

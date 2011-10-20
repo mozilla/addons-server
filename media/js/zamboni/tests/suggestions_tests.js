@@ -75,6 +75,23 @@ test('Generated HTML tags', function() {
 });
 
 
+test('Default search label', function() {
+    var $sandbox = this.sandbox,
+        $results = this.results,
+        $input = this.input;
+    function check(cat, expected) {
+        $('input[name=cat]', $sandbox).val(cat);
+        $.when($input.searchSuggestions($results)).done(function() {
+            equal($results.find('p a.sel').text(), expected);
+        });
+    }
+    check('',         'Search add-ons for {0}');
+    check('all',      'Search add-ons for {0}');
+    check('personas', 'Search personas for {0}');
+    check('apps',     'Search apps for {0}');
+});
+
+
 test('Highlight search terms', function() {
     var items = [
         // Input, highlighted output
