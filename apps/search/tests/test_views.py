@@ -179,9 +179,13 @@ class TestESSearch(amo.tests.ESTestCase):
         self.check_appver_filters('5.0')
 
     def test_appver_oddballs(self):
-        self.check_appver_filters('3.6')           # 3.6 should stay the same.
-        self.check_appver_filters('5.0a2', '5.0')  # 5.0a2 should be 5.0.
-        self.check_appver_filters('8.0a2', '8.0')
+        self.check_appver_filters('3', '3.0')
+        self.check_appver_filters('3.6')
+        self.check_appver_filters('3.6.22', '3.6')
+        self.check_appver_filters('5.0a2', '5.0')
+        self.check_appver_filters('8.0')
+        self.check_appver_filters('8.0.10a', '8.0')
+        self.check_appver_filters('10.0b2pre', '10.0')
 
     def test_appver_bad(self):
         self.check_appver_filters('.')

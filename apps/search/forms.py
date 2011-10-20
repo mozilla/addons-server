@@ -8,6 +8,7 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 import amo
 from amo import helpers
 from applications.models import AppVersion
+from search.utils import floor_version
 
 sort_by = (
     ('', _lazy(u'Keyword Match')),
@@ -277,16 +278,7 @@ class ESSearchForm(forms.Form):
             self.fields['sort'].choices = APP_SORT_CHOICES
 
     def clean_appver(self):
-        appver = self.cleaned_data.get('appver')
-        if appver:
-            try:
-                major, _, minor = appver.partition('.')
-                # 10.0b2 is interpreted as 10.0, but 3.6 remains 3.0.
-                if major.isdigit() and minor.startswith('0'):
-                    appver = major + '.0'
-            except ValueError:
-                pass
-        return appver
+        return floor_version(self.cleaned_data.get('appver'))
 
     def clean_sort(self):
         sort = self.cleaned_data.get('sort')

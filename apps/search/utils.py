@@ -43,6 +43,17 @@ def stop_sphinx():
 pattern_plus = re.compile(r'((\d+)\+)')
 
 
+def floor_version(version_string):
+    result = version_string
+    if result:
+        match = re.match(version_re, version_string)
+        if match:
+            major, minor = match.groups()[:2]
+            major, minor = int(major), int(minor or 0)
+            result = '%s.%s' % (major, minor)
+    return result
+
+
 def convert_version(version_string):
     """
     This will enumerate a version so that it can be used for comparisons and
