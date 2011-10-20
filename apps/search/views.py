@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import redirect
 from django.utils.encoding import smart_str
+from django.views.decorators.vary import vary_on_headers
 
 import commonware.log
 import jingo
@@ -413,6 +414,7 @@ def name_query(q):
 
 
 @mobile_template('search/{mobile/}results.html')
+@vary_on_headers('X-PJAX')
 def app_search(request, template=None):
     form = ESSearchForm(request.GET or {}, type=amo.ADDON_WEBAPP)
     form.is_valid()  # Let the form try to clean data.
@@ -454,6 +456,7 @@ def app_search(request, template=None):
 
 
 @mobile_template('search/{mobile/}results.html')
+@vary_on_headers('X-PJAX')
 def search(request, tag_name=None, template=None):
     APP = request.APP
     types = (amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,

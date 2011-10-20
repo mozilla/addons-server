@@ -106,6 +106,13 @@ class TestESSearch(amo.tests.ESTestCase):
         self.url = reverse('search.search')
         self.search_views = ('search.search', 'apps.search')
 
+    def test_get(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        assert 'X-PJAX' in r['vary'].split(','), (
+            'Expected "Vary: X-PJAX" header')
+        self.assertTemplateUsed(r, 'search/results.html')
+
     @amo.tests.mobile_test
     def test_mobile_results(self):
         r = self.client.get(self.url)
@@ -257,6 +264,8 @@ class TestWebappSearch(amo.tests.ESTestCase):
     def test_get(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
+        assert 'X-PJAX' in r['vary'].split(','), (
+            'Expected "Vary: X-PJAX" header')
         self.assertTemplateUsed(r, 'search/results.html')
 
     @amo.tests.mobile_test
