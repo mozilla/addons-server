@@ -20,7 +20,6 @@
      data-max="{{ compat.max.version }}"
   {% endif %}
   {% if addon.is_webapp() %}
-     data-manifest-url-lookup="{{ url('api.market.urls')|urlparams(ids=addon.pk) }}"
      data-manifest-url="{% if (addon.is_premium() and addon.has_purchased(amo_user)) or (not addon.is_premium()) -%}
         {{ addon.manifest_url }}
      {%- endif %}"
