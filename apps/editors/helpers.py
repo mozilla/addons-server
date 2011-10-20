@@ -16,7 +16,7 @@ from amo.utils import send_mail as amo_send_mail
 
 import commonware.log
 from editors.models import (ViewPendingQueue, ViewFullReviewQueue,
-                            ViewPreliminaryQueue)
+                            ViewPreliminaryQueue, ViewFastTrackQueue)
 from editors.sql_table import SQLTable
 from webapps.models import Webapp
 
@@ -80,8 +80,12 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None):
             queue = 'apps'
         else:
             queue_id = addon_queue.status
-            queue_ids = {1: 'prelim', 3: 'nominated', 4: 'pending',
-                         8: 'prelim', 9: 'nominated', 2: 'pending'}
+            queue_ids = {amo.STATUS_UNREVIEWED: 'prelim',
+                         amo.STATUS_NOMINATED: 'nominated',
+                         amo.STATUS_PUBLIC: 'pending',
+                         amo.STATUS_LITE: 'prelim',
+                         amo.STATUS_LITE_AND_NOMINATED: 'nominated',
+                         amo.STATUS_PENDING: 'pending'}
 
             queue = queue_ids.get(queue_id, 'queue')
 
@@ -91,6 +95,7 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None):
                   'nominated': _("Full Reviews"),
                   'prelim': _("Preliminary Reviews"),
                   'moderated': _("Moderated Reviews"),
+                  'fast_track': _("Fast Track"),
                   'apps': _("Apps")}
 
         if items and not queue == 'queue':
@@ -114,7 +119,11 @@ def queue_tabnav(context):
     """
     from .views import queue_counts
     counts = queue_counts()
-    tabnav = [('nominated', 'queue_nominated',
+    tabnav = [('fast_track', 'queue_fast_track',
+               (ngettext('Fast Track ({0})', 'Fast Track ({0})',
+                         counts['fast_track'])
+                .format(counts['fast_track']))),
+              ('nominated', 'queue_nominated',
                (ngettext('Full Review ({0})', 'Full Reviews ({0})',
                          counts['nominated'])
                 .format(counts['nominated']))),
@@ -283,6 +292,12 @@ class ViewPreliminaryQueueTable(EditorQueueTable):
 
     class Meta(EditorQueueTable.Meta):
         model = ViewPreliminaryQueue
+
+
+class ViewFastTrackQueueTable(EditorQueueTable):
+
+    class Meta(EditorQueueTable.Meta):
+        model = ViewFastTrackQueue
 
 
 class WebappQueueTable(tables.ModelTable, ItemStateTable):

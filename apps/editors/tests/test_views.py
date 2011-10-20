@@ -525,7 +525,7 @@ class TestQueueBasics(QueueTest):
         eq_(r.status_code, 200)
         doc = pq(r.content)
         eq_(doc('#navbar li.top ul').eq(0).text(),
-            'Full Reviews (2) Pending Updates (2) '
+            'Fast Track (0) Full Reviews (2) Pending Updates (2) '
             'Preliminary Reviews (2) Moderated Reviews (0) Apps (2)')
 
     def test_legacy_queue_sort(self):
@@ -704,8 +704,8 @@ class TestPendingQueue(QueueTest):
         r = self.client.get(reverse('editors.queue_pending'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('.tabnav li a:eq(1)').text(), u'Pending Updates (2)')
-        eq_(doc('.tabnav li a:eq(1)').attr('href'),
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Pending Updates (2)')
+        eq_(doc('.tabnav li a:eq(2)').attr('href'),
             reverse('editors.queue_pending'))
 
     def test_breadcrumbs(self):
@@ -772,8 +772,8 @@ class TestNominatedQueue(QueueTest):
         r = self.client.get(reverse('editors.queue_nominated'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('.tabnav li a:eq(0)').text(), u'Full Reviews (2)')
-        eq_(doc('.tabnav li a:eq(0)').attr('href'),
+        eq_(doc('.tabnav li a:eq(1)').text(), u'Full Reviews (2)')
+        eq_(doc('.tabnav li a:eq(1)').attr('href'),
             reverse('editors.queue_nominated'))
 
     def test_get_queue(self):
@@ -802,8 +802,8 @@ class TestPreliminaryQueue(QueueTest):
         r = self.client.get(reverse('editors.queue_prelim'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Preliminary Reviews (2)')
-        eq_(doc('.tabnav li a:eq(2)').attr('href'),
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Preliminary Reviews (2)')
+        eq_(doc('.tabnav li a:eq(3)').attr('href'),
             reverse('editors.queue_prelim'))
 
     def test_breadcrumbs(self):
@@ -936,8 +936,8 @@ class TestModeratedQueue(QueueTest):
         r = self.client.get(reverse('editors.queue_moderated'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Review (1)')
-        eq_(doc('.tabnav li a:eq(3)').attr('href'),
+        eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Review (1)')
+        eq_(doc('.tabnav li a:eq(4)').attr('href'),
             reverse('editors.queue_moderated'))
 
     def test_breadcrumbs(self):
@@ -987,7 +987,7 @@ class TestAppQueue(QueueTest):
         r = self.client.get(reverse('editors.queue_apps'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('.tabnav li a:eq(4)').text(), u'Apps (2)')
+        eq_(doc('.tabnav li a:eq(5)').text(), u'Apps (2)')
 
     def test_sort(self):
         r = self.client.get(reverse('editors.queue_apps'), {'sort': '-name'})

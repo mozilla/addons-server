@@ -251,6 +251,21 @@ class ViewPreliminaryQueue(VersionSpecificQueue):
         return q
 
 
+class ViewFastTrackQueue(VersionSpecificQueue):
+
+    def base_query(self):
+        q = super(ViewFastTrackQueue, self).base_query()
+        q['where'].extend(['files.no_restart = 1',  # is jetpack
+                           'files.requires_chrome = 0',
+                           'files.status = %s' % amo.STATUS_UNREVIEWED,
+                           'addons.status IN (%s, %s, %s, %s)' % (
+                                            amo.STATUS_LITE,
+                                            amo.STATUS_UNREVIEWED,
+                                            amo.STATUS_NOMINATED,
+                                            amo.STATUS_LITE_AND_NOMINATED)])
+        return q
+
+
 class PerformanceGraph(ViewQueue):
     id = models.IntegerField()
     yearmonth = models.CharField(max_length=7)

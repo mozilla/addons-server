@@ -14,6 +14,8 @@ urlpatterns = (
         name='editors.queue_pending'),
     url(r'^queue/preliminary$', views.queue_prelim,
         name='editors.queue_prelim'),
+    url(r'^queue/fast$', views.queue_fast_track,
+        name='editors.queue_fast_track'),
     url(r'^queue/reviews$', views.queue_moderated,
         name='editors.queue_moderated'),
     url(r'^queue/apps$', views.queue_apps,

@@ -28,6 +28,8 @@
           {{ _('Queues') }}</a>
         <ul>
           {% if queue_counts %}
+          <li><a href="{{ url('editors.queue_fast_track') }}">
+                {{ _('Fast Track') }} ({{ queue_counts['fast_track'] }})</a></li>
           <li><a href="{{ url('editors.queue_nominated') }}">
                 {{ _('Full Reviews') }} ({{ queue_counts['nominated'] }})</a></li>
           <li><a href="{{ url('editors.queue_pending') }}">

@@ -27,9 +27,11 @@ from devhub.models import ActivityLog
 from editors import forms
 from editors.models import (EditorSubscription, ViewPendingQueue,
                             ViewFullReviewQueue, ViewPreliminaryQueue,
-                            EventLog, CannedResponse, PerformanceGraph)
+                            EventLog, CannedResponse, PerformanceGraph,
+                            ViewFastTrackQueue)
 from editors.helpers import (ViewPendingQueueTable, ViewFullReviewQueueTable,
-                             ViewPreliminaryQueueTable, WebappQueueTable)
+                             ViewPreliminaryQueueTable, WebappQueueTable,
+                             ViewFastTrackQueueTable)
 from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
@@ -304,6 +306,7 @@ def queue_counts(type=None, **kw):
     counts = {'pending': construct_query(ViewPendingQueue, **kw),
               'nominated': construct_query(ViewFullReviewQueue, **kw),
               'prelim': construct_query(ViewPreliminaryQueue, **kw),
+              'fast_track': construct_query(ViewFastTrackQueue, **kw),
               'moderated': Review.objects.filter(reviewflag__isnull=False,
                                                  editorreview=1).count,
               'apps': Webapp.pending().count}
@@ -334,6 +337,11 @@ def queue_pending(request):
 @editor_required
 def queue_prelim(request):
     return _queue(request, ViewPreliminaryQueueTable, 'prelim')
+
+
+@editor_required
+def queue_fast_track(request):
+    return _queue(request, ViewFastTrackQueueTable, 'fast_track')
 
 
 @editor_required

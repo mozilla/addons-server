@@ -13,7 +13,7 @@ from files.models import Platform, File
 from applications.models import Application, AppVersion
 from editors.models import (EditorSubscription, send_notifications,
                             ViewPendingQueue, ViewFullReviewQueue,
-                            ViewPreliminaryQueue)
+                            ViewPreliminaryQueue, ViewFastTrackQueue)
 from users.models import UserProfile
 
 
@@ -34,11 +34,11 @@ def create_addon_file(name, version_str, addon_status, file_status,
     vr, created = Version.objects.get_or_create(addon=ad, version=version_str)
     va, created = ApplicationsVersions.objects.get_or_create(
                         version=vr, application=app, min=app_vr, max=app_vr)
-    File.objects.create(version=vr, filename=u"%s.xpi" % name,
-                        platform=pl, status=file_status)
+    file_ = File.objects.create(version=vr, filename=u"%s.xpi" % name,
+                                platform=pl, status=file_status)
     # Update status *after* there are files:
     Addon.objects.get(pk=ad.id).update(status=addon_status)
-    return {'addon': ad, 'version': vr}
+    return {'addon': ad, 'version': vr, 'file': file_}
 
 
 def create_search_ext(name, version_str, addon_status, file_status):
@@ -207,6 +207,56 @@ class TestPreliminaryQueue(TestQueue):
         # Time zone might be off due to your MySQL install, hard to test this.
         assert row.waiting_time_min is not None
         assert row.waiting_time_hours is not None
+
+
+class TestFastTrackQueue(TestQueue):
+    __test__ = True
+    Queue = ViewFastTrackQueue
+
+    def query(self):
+        return sorted(list(q.addon_name for q in self.Queue.objects.all()))
+
+    def new_file(self, name=u'FastTrack', version=u'1.0', file_params=None,
+                 **kw):
+        res = create_addon_file(name, version,
+                                amo.STATUS_LITE, amo.STATUS_UNREVIEWED, **kw)
+        file_ = res['file']
+        params = dict(no_restart=True, requires_chrome=False)
+        if not file_params:
+            file_params = {}
+        params.update(file_params)
+        for k, v in params.items():
+            setattr(file_, k, v)
+        file_.save()
+        return res
+
+    def new_search_ext(self, name, version, **kw):
+        addon = create_search_ext(name, version,
+                                  amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
+                                  **kw)
+        file_ = addon.versions.get().files.get()
+        file_.no_restart = True
+        file_.requires_chrome = False
+        file_.save()
+        return addon
+
+    def test_include_jetpacks(self):
+        self.new_file(name='jetpack')
+        eq_(self.query(), ['jetpack'])
+
+    def test_ignore_non_jetpacks(self):
+        self.new_file(file_params=dict(no_restart=False))
+        eq_(self.query(), [])
+
+    def test_ignore_sneaky_jetpacks(self):
+        self.new_file(file_params=dict(requires_chrome=True))
+        eq_(self.query(), [])
+
+    def test_include_full_review(self):
+        ad = self.new_file(name='full')['addon']
+        ad.status = amo.STATUS_NOMINATED
+        ad.save()
+        eq_(self.query(), ['full'])
 
 
 class TestEditorSubscription(amo.tests.TestCase):
