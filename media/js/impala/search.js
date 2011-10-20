@@ -31,6 +31,7 @@ function initSearchPjax(container) {
             $.pjax({
                 url: url,
                 container: container,
+                timeout: 1500,
                 beforeSend: function(xhr) {
                     this.trigger('begin.pjax', [xhr, url, container]);
                     xhr.setRequestHeader('X-PJAX', 'true');
