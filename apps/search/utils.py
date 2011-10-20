@@ -43,10 +43,11 @@ def stop_sphinx():
 pattern_plus = re.compile(r'((\d+)\+)')
 
 
-def floor_version(version_string):
-    result = version_string
+def floor_version(s):
+    result = s
     if result:
-        match = re.match(version_re, version_string)
+        s = s.replace('.x', '.0').replace('.*', '.0').replace('*', '.0')
+        match = re.match(version_re, s)
         if match:
             major, minor = match.groups()[:2]
             major, minor = int(major), int(minor or 0)

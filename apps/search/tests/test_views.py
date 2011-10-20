@@ -186,6 +186,12 @@ class TestESSearch(amo.tests.ESTestCase):
         self.check_appver_filters('8.0')
         self.check_appver_filters('8.0.10a', '8.0')
         self.check_appver_filters('10.0b2pre', '10.0')
+        self.check_appver_filters('8.*', '8.0')
+        self.check_appver_filters('8.0*', '8.0')
+        self.check_appver_filters('8.0.*', '8.0')
+        self.check_appver_filters('8.x', '8.0')
+        self.check_appver_filters('8.0x', '8.0')
+        self.check_appver_filters('8.0.x', '8.0')
 
     def test_appver_bad(self):
         self.check_appver_filters('.')
