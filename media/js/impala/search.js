@@ -22,7 +22,8 @@ $(function() {
 
 
 function initSearchPjax(container) {
-    var $container = $(container);
+    var $container = $(container),
+        timeouts = 0;
 
     function pjaxOpen(url) {
         var urlBase = location.pathname + location.search;
@@ -34,6 +35,17 @@ function initSearchPjax(container) {
                     this.trigger('begin.pjax', [xhr, url, container]);
                     xhr.setRequestHeader('X-PJAX', 'true');
                     loading();
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    if (textStatus === 'timeout' && timeouts < 5) {
+                        // Retry up to five times.
+                        timeouts++;
+                        return pjaxOpen(url);
+                    }
+                    if (textStatus !== 'abort') {
+                        // Upon `error` or `parsererror`.
+                        window.location = url;
+                    }
                 },
                 complete: function(xhr) {
                     this.trigger('end.pjax', [xhr, url, container]);
