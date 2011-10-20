@@ -279,9 +279,13 @@ class ESSearchForm(forms.Form):
     def clean_appver(self):
         appver = self.cleaned_data.get('appver')
         if appver:
-            major = appver.split('.')[0]
-            if major.isdigit():
-                appver = major + '.0'
+            try:
+                major, _, minor = appver.partition('.')
+                # 10.0b2 is interpreted as 10.0, but 3.6 remains 3.0.
+                if major.isdigit() and minor.startswith('0'):
+                    appver = major + '.0'
+            except ValueError:
+                pass
         return appver
 
     def clean_sort(self):
