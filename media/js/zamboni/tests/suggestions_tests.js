@@ -102,7 +102,11 @@ test('Highlight search terms', function() {
         ['XXX', '<b>XXX</b>'],
         ['An XXX-rated add-on', 'An <b>XXX</b>-rated add-on'],
         ['Myxxx', 'My<b>xxx</b>'],
-        ['XXX xxx XXX', '<b>XXX</b> <b>xxx</b> <b>XXX</b>']
+        ['XXX xxx XXX', '<b>XXX</b> <b>xxx</b> <b>XXX</b>'],
+
+        // Ignore non-alphanumeric characters (i.e., regex chars).
+        ['xxx: xxx', '<b>xxx</b>: <b>xxx</b>'],
+        ['xxx (){}[]*+:=?!\|^$. xxx', '<b>xxx</b> (){}[]*+:=?!\|^$. <b>xxx</b>'],
     ];
 
     var $ul = $('<ul>');

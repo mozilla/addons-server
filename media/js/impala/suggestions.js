@@ -5,6 +5,7 @@ $(document).ready(function() {
 
 $.fn.highlightTerm = function(val) {
     // If an item starts with `val`, wrap the matched text with boldness.
+    val = val.replace(/[^\w\s]/gi, '');
     var pat = new RegExp(val, 'gi');
     this.each(function() {
         var $this = $(this),
