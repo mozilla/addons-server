@@ -96,15 +96,18 @@ function initSearchPjax(container) {
         $wrapper.removeClass('loading').find('.updating').remove();
 
         // Update # of results on sidebar.
-        var oldCount = $('#search-facets .cnt b').attr('data-count'),
+        var oldCount = $('#search-facets .cnt').attr('data-count'),
             numItems = $wrapper.find('.item').length.toString(10),
             newCount = ($wrapper.find('b.cnt').attr('data-count') || numItems),
             newCountFmt = ($wrapper.find('b.cnt').text() || numItems);
         if (oldCount != newCount) {
+            // Update old numeric count.
+            $('#search-facets .cnt').attr('data-count', newCount);
+
+            // Update old formatted count.
             var msg = ngettext('<b>{0}</b> matching result',
                                '<b>{0}</b> matching results',
                                parseInt(newCount, 10));
-            new_count_msg = format(msg, [newCountFmt]);
             $('#search-facets .cnt').html(format(msg, [newCountFmt]));
         }
 
