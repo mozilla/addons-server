@@ -34,8 +34,10 @@
       {# L10n: First and second arguments are the result range (e.g., 1-20);
                third argument is the number of total results (e.g., 1,000). #}
       {% trans begin=pager.start_index(), end=pager.end_index(),
+               cnt=pager.paginator.count,
                count=pager.paginator.count|numberfmt %}
-        Showing <b>{{ begin }}</b>&ndash;<b>{{ end }}</b> of <b>{{ count }}</b>
+        Showing <b>{{ begin }}</b>&ndash;<b>{{ end }}</b>
+        of <b class="cnt" data-count="{{ cnt }}">{{ count }}</b>
       {% endtrans %}
     </p>
   </nav>

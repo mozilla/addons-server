@@ -69,7 +69,13 @@
         </li>
         {{ facet(_('Tag'), tags) }}
       </ul>
-      <p>{{ _('{0} matching results')|f(pager.paginator.count|numberfmt) }}</p>
+      {% with cnt = pager.paginator.count %}
+        <p class="cnt" data-count="{{ cnt }}">
+            {{ ngettext('<b>{0}</b> matching result',
+                        '<b>{0}</b> matching results',
+                        cnt)|f(cnt|numberfmt)|safe }}
+        </p>
+      {% endwith %}
     </section>
 
     <section class="primary" role="main">
