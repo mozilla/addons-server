@@ -145,6 +145,11 @@ def _paypal(request):
         SubscriptionEvent.objects.create(post_data=php.serialize(post))
         return http.HttpResponse('Success!')
     payment_status = post.get('payment_status', '').lower()
+    if payment_status not in ('refunded', 'completed'):
+        # Skip processing for anything other than events that change
+        # payment status.
+        return http.HttpResponse('Payment not completed')
+
     # Fetch and update the contribution - item_number is the uuid we created.
     try:
         c = Contribution.objects.get(uuid=post['item_number'])
@@ -165,11 +170,8 @@ def _paypal(request):
         return http.HttpResponseServerError('Contribution not found')
     if payment_status == 'refunded':
         return paypal_refunded(request, post, c)
-    # Otherwise, we only care about completed transactions.
     elif payment_status == 'completed':
         return paypal_completed(request, post, c)
-
-    return http.HttpResponse('Payment not completed')
 
 
 def paypal_refunded(request, post, original):
