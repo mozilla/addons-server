@@ -1,5 +1,12 @@
 <div id="marketplace-confirm" class="hidden">
   <h3>{{ _('Mozilla Marketplace') }}</h3>
+  {% if addon.status == amo.STATUS_UNREVIEWED %}
+    <div class="notification-box warning">
+      {% trans %}Your add-on must have a full review to be in the Mozilla Marketplace.
+      This add-on is currently in the Preliminary Review Queue, so at the end of this wizard
+      we will move your add-on to the Full Review queue.{% endtrans %}
+    </div>
+  {% endif %}
   <p>{% trans doc_url=url('devhub.docs', doc_name='marketplace'),
               agree_url=url('devhub.docs', doc_name='policies', doc_page='agreement') %}
     Thanks for your interest in selling your add-on in the Mozilla Marketplace.

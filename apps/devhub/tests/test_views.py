@@ -736,6 +736,19 @@ class TestMarketplace(amo.tests.TestCase):
         eq_(len(doc('div.intro')), 2)
 
     @mock.patch('addons.models.Addon.can_become_premium')
+    def test_no_warning(self, can_become_premium):
+        can_become_premium.return_value = True
+        doc = pq(self.client.get(self.url).content)
+        eq_(len(doc('div.notification-box')), 0)
+
+    @mock.patch('addons.models.Addon.can_become_premium')
+    def test_warning(self, can_become_premium):
+        can_become_premium.return_value = True
+        self.addon.update(status=amo.STATUS_UNREVIEWED)
+        doc = pq(self.client.get(self.url).content)
+        eq_(len(doc('div.notification-box')), 1)
+
+    @mock.patch('addons.models.Addon.can_become_premium')
     def test_cant_become_premium(self, can_become_premium):
         can_become_premium.return_value = False
         res = self.client.get(self.url)
@@ -951,6 +964,14 @@ class TestMarketplace(amo.tests.TestCase):
         url = reverse('devhub.market.4', args=[self.addon.slug])
         eq_(self.client.post(url, {}).status_code, 302)
         assert self.get_addon().is_premium()
+
+    def test_wizard_step_4_status(self):
+        self.setup_premium()
+        self.addon.premium.update(paypal_permissions_token='foo')
+        self.addon.update(status=amo.STATUS_UNREVIEWED)
+        url = reverse('devhub.market.4', args=[self.addon.slug])
+        self.client.post(url, {})
+        eq_(self.get_addon().status, amo.STATUS_NOMINATED)
 
     def test_logs(self):
         self.setup_premium()

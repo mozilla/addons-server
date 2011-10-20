@@ -14,7 +14,6 @@ from django.conf import settings
 from django import forms as django_forms
 from django.db.models import Count
 from django.db.utils import IntegrityError
-from django.forms.models import modelformset_factory
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
 from django.utils.encoding import smart_unicode
@@ -1345,7 +1344,10 @@ def marketplace_confirm(request, addon_id, addon):
     if request.method == 'POST':
         if (addon.premium and addon.premium.is_complete()
             and addon.premium.has_permissions_token()):
-            addon.update(premium_type=amo.ADDON_PREMIUM)
+            if addon.status == amo.STATUS_UNREVIEWED:
+                addon.status = amo.STATUS_NOMINATED
+            addon.premium_type = amo.ADDON_PREMIUM
+            addon.save()
             amo.log(amo.LOG.MAKE_PREMIUM, addon)
             return redirect('devhub.addons.payments', addon.slug)
 
