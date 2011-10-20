@@ -998,6 +998,7 @@ LOGGING = {
         'suds': {'handlers': ['null']},
         'z.sphinx': {'level': logging.INFO},
         'z.task': {'level': logging.INFO},
+        'z.es': {'level': logging.INFO},
         'nose': {'level': logging.WARNING},
     },
 }
