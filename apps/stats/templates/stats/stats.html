@@ -90,6 +90,31 @@
     {% block stats %}
     {% endblock %}
     {% block csvtable %}
+      <div class="island">
+        {% block csvtitle %}{% endblock %}
+        <div class="tabular csv-table">
+          <div class="table-box">
+            <table>
+              <thead>
+              </thead>
+            </table>
+          </div>
+          <footer>
+            <nav class="paginator c">
+              <p class="range">
+              </p>
+              <p class="rel">
+                <a href="#"
+                   class="button prev disabled">
+                  &#x25C2; {{ _('Previous') }}</a>
+                <a href="#"
+                   class="button next">
+                  {{ _('Next') }} &#x25B8;</a>
+              </p>
+            </nav>
+          </footer>
+        </div>
+      </div>
     {% endblock %}
     <div class="hidden">
       <div id="fieldMenuPopup" class="popup">

@@ -1,35 +1,5 @@
 {% extends "stats/stats.html" %}
 
-{% block csvtable %}
-<h3>{{_('Application versions by Date')}}<a id="export_data" href=''>{{_('Export as CSV')}}</a></h3>
-<div class="statbox">
-  <div class="tabular">
-    <table class="csv-table">
-      <thead>
-        <tr>
-          <th 
-            data-field="date"
-            data-format="date">
-              {{_('Date')}}
-          </th>
-          <th 
-            data-field="versions|1.2"
-            data-format="number">
-              {{_('1.2')}}
-          </th>
-          <th 
-            data-field="versions|1.1"
-            data-format="number">
-              {{_('1.1')}}
-          </th>
-          <th 
-            data-field="versions|1.0"
-            data-format="number">
-              {{_('1.0')}}
-          </th>
-        </tr>
-      </thead>
-    </table>
-  </div>
-</div>
+{% block csvtitle %}
+<h2>{{_('Application versions by Date')}}<a id="export_data" href=''>{{_('Export as CSV')}}</a></h2>
 {% endblock %}

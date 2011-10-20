@@ -1,4 +1,10 @@
 var csv_keys = {
+    downloads: {
+        "count": gettext('Downloads')
+    },
+    usage: {
+        "count": gettext('Daily Users')
+    },
     sources: {
         "null": gettext('unknown')
     },
@@ -51,5 +57,9 @@ var csv_keys = {
             gettext("Download Sources, last {0}"),
             gettext("Download Sources from {0} to {1}")
         ]
+    },
+    aggregateLabel: {
+        "downloads" : gettext("<b>{0}</b> downloads from {1} to {2}"),
+        "usage"     : gettext("<b>{0}</b> users from {1} to {2}")
     }
 };

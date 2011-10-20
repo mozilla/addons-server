@@ -120,7 +120,7 @@ z.StatsManager = (function() {
             fields = {};
 
         // Non-breakdwon metrics only have one field.
-        if (!(metric in breakdownMetrics)) return false;
+        if (!(metric in breakdownMetrics)) return ["count"];
 
         ds = dataStore[metric];
         if (!ds) throw "Expected metric with valid data!";
@@ -164,21 +164,26 @@ z.StatsManager = (function() {
             $def = $.Deferred();
 
         function finished() {
-            var ret = {}, row,
+            var ret = {}, row, firstIndex,
                 step = z.date.millis("1 day");
             if (ds) {
                 for (var i=range.start; i<range.end; i+= step) {
                     if (ds[i]) {
+                        if (!firstIndex) firstIndex = i;
                         ret[i] = (metric == 'apps') ? collapseVersions(ds[i], 1) : ds[i];
                     }
                 }
-                ret = groupData(ret, view);
-                ret.metric = metric;
+                if (_.isEmpty(ret)) {
+                    ret.empty = true;
+                } else {
+                    ret = groupData(ret, view);
+                    ret.metric = metric;
+                    ret.firstIndex = firstIndex;
+                }
+                $def.resolve(ret);
+            } else {
+                $def.fail({ empty : true });
             }
-            if (_.isEmpty(ret)) {
-                ret.empty = true;
-            }
-            $def.resolve(ret);
         }
 
         if (ds) {
@@ -217,14 +222,15 @@ z.StatsManager = (function() {
             groupVal = {
                 date: z.date.date_string(new Date(groupKey), '-'),
                 count: 0,
-                data: {}
+                data: {},
+                empty: true
             };
         }
         
         function performAggregation() {
             // we drop the some days of data from the result set
             // if they are not a complete grouping.
-            if (groupKey && groupVal) {
+            if (groupKey && groupVal && !groupVal.empty) {
                 // average `count` for mean metrics
                 if (metricTypes[metric] == 'mean') {
                     groupVal.count /= groupCount;
@@ -260,11 +266,13 @@ z.StatsManager = (function() {
                 groupVal = {
                     date: z.date.date_string(new Date(groupKey), '-'),
                     count: 0,
-                    data: {}
+                    data: {},
+                    empty: true
                 };
             }
             // add the current row to our aggregates.
             if (row && groupVal) {
+                groupVal.empty = false;
                 groupVal.count += row.count;
                 if (metric in breakdownMetrics) {
                     _.each(row.data, function(val, field) {
@@ -422,6 +430,8 @@ z.StatsManager = (function() {
         'dataStore'         : dataStore,
         'getPrettyName'     : getPrettyName,
         'getField'          : getField,
-        'clearLocalStorage' : clearLocalStorage
+        'clearLocalStorage' : clearLocalStorage,
+        'getAvailableFields': getAvailableFields,
+        'getCurrentView'    : function() { return currentView; }
     };
 })();

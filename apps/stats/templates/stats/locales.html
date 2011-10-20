@@ -1,35 +1,5 @@
 {% extends "stats/stats.html" %}
 
-{% block csvtable %}
-<h3>{{_('User languages by Date')}}<a id="export_data" href=''>{{_('Export as CSV')}}</a></h3>
-<div class="statbox">
-  <div class="tabular">
-    <table class="csv-table">
-      <thead>
-        <tr>
-          <th 
-            data-field="date"
-            data-format="date">
-              {{_('Date')}}
-          </th>
-          <th 
-            data-field="en-US"
-            data-format="number">
-              {{_('English (US)')}}
-          </th>
-          <th 
-            data-field="es-ES"
-            data-format="number">
-              {{_('Spanish')}}
-          </th>
-          <th 
-            data-field="de"
-            data-format="number">
-              {{_('German')}}
-          </th>
-        </tr>
-      </thead>
-    </table>
-  </div>
-</div>
+{% block csvtitle %}
+<h2>{{_('User languages by Date')}}<a id="export_data" href=''>{{_('Export as CSV')}}</a></h2>
 {% endblock %}

@@ -759,6 +759,7 @@ MINIFY_BUNDLES = {
             'js/impala/stats/overview.js',
             'js/impala/stats/topchart.js',
             'js/impala/stats/chart.js',
+            'js/impala/stats/table.js',
             'js/impala/stats/stats.js',
         ),
         'zamboni/admin': (

@@ -1,35 +1,5 @@
 {% extends "stats/stats.html" %}
 
-{% block csvtable %}
-<h3>{{_('OS usage by Date')}}<a id="export_data" href=''>{{_('Export as CSV')}}</a></h3>
-<div class="statbox">
-  <div class="tabular">
-    <table class="csv-table">
-      <thead>
-        <tr>
-          <th
-            data-field="date"
-            data-format="date">
-              {{_('Date')}}
-          </th>
-          <th
-            data-field="oses|Windows"
-            data-format="number">
-              {{_('Windows')}}
-          </th>
-          <th
-            data-field="oses|Mac OS X"
-            data-format="number">
-              {{_('Mac')}}
-          </th>
-          <th
-            data-field="oses|Linux"
-            data-format="number">
-              {{_('Linux')}}
-          </th>
-        </tr>
-      </thead>
-    </table>
-  </div>
-</div>
+{% block csvtitle %}
+<h2>{{_('OS usage by Date')}}<a id="export_data" href=''>{{_('Export as CSV')}}</a></h2>
 {% endblock %}

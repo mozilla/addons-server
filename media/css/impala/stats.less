@@ -33,35 +33,6 @@
 }
 
 /**
- *  Undo default table style
-**/
-
-table, tbody, thead, th, tr, td,
-thead tr th, tbody tr td,
-thead th, tbody tr {
-    border: 0;
-}
-
-thead tr th, tbody tr td {
-    border-top: 0;
-}
-
-
-table {
-    margin-bottom: 0;
-}
-
-.tabular {
-    margin: 1em;
-    overflow-x: auto;
-}
-
-.csv-table td {
-    min-width: 100px;
-    white-space:nowrap;
-}
-
-/**
  *  common styles
 **/
 
@@ -120,12 +91,20 @@ table tbody tr {
 **/
 
 .two-up {
+    position: relative;
+    overflow: hidden;
     div {
+        .border-box();
         float: left;
         text-align: center;
+        text-align: left;
         width: 50%;
-        height: 48px;
         position: relative;
+        padding-left: 2em;
+        color: @dark-gray;
+        &:first-child {
+            padding-left: 1em;
+        }
         &:first-child:after {
             content: '';
             display: block;
@@ -135,12 +114,17 @@ table tbody tr {
             border-left: 1px dotted @medium-gray;
             height: 100%;
         }
+        b {
+            font-size: 150%;
+        }
         a {
+            line-height: 2rem;
             display: block;
             font-weight: bold;
             font-size: 140%;
         }
         small {
+            line-height: 2rem;
             font-size: 110%;
         }
     }
@@ -215,36 +199,42 @@ table tbody tr {
  *    bar-chart tables
 **/
 
-.csv-table tbody {
-    display: none;
-}
-.csv-table tbody.selected {
-    display: table-row-group;
+.csv-table {
+    .table-box {
+        width: 100%;
+        overflow: auto;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        white-space: nowrap;
+        padding: .5em 1em;
+        text-align: right;
+        &:first-child {
+            text-align: left;
+        }
+    }
+    th {
+        font-weight: bold;
+    }
+    tbody {
+        display: none;
+        tr {
+            &:nth-child(2n+1) {
+                background: fadeOut(@link, 80%);
+            }
+        }
+    }
+    .paginator {
+        float: none;
+        .rel {
+            width: 100%;
+        }
+    }
 }
 
-table.csv-table {
-    width: 100%;
-}
-table.csv-table td,
-table.csv-table th {
-    text-align: right;
-}
-table.csv-table td.bar div {
-    text-align: right;
-    margin: 8px 0;
-    line-height: 100%;
-    height: 100%;
-}
-
-table.csv-table td.bar,
-table.csv-table th.bar {
-    border-left: 1px solid #8db9c7;
-    padding: 0;
-}
-table.csv-table td:first-child,
-table.csv-table th:first-child {
-    text-align: left;
-}
 
 div.piechart {
     height: 200px;
@@ -334,6 +324,7 @@ table.stats-aggregate tbody span.change.minus {
     height: 100%;
     z-index: 1000;
     top: 0;
+    left: 0;
 }
 .loaded:after {
     opacity: 0;

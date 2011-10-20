@@ -1,40 +1,5 @@
 {% extends "stats/stats.html" %}
 
-{% block stats %}
-<h3>{{_('Add-on Status by Date')}}<a id="export_data" href=''>{{_('Export as CSV')}}</a></h3>
-<div class="statbox">
-  <div class="tabular">
-    <table class="csv-table">
-      <thead>
-        <tr>
-          <th 
-            data-field="date"
-            data-format="date">
-              {{_('Date')}}
-          </th>
-          <th 
-            data-field="statuses|userEnabled"
-            data-format="number">
-              {{_('Enabled')}}
-          </th>
-          <th 
-            data-field="statuses|userDisabled"
-            data-format="number">
-              {{_('Disabled')}}
-          </th>
-          <th 
-            data-field="statuses|userEnabled,incompatible"
-            data-format="number">
-              {{_('Enabled (incompatible)')}}
-          </th>
-          <th 
-            data-field="statuses|userDisabled,incompatible"
-            data-format="number">
-              {{_('Disabled (incompatible)')}}
-          </th>
-        </tr>
-      </thead>
-    </table>
-  </div>
-</div>
+{% block csvtitle %}
+<h2>{{_('Add-on Status by Date')}}<a id="export_data" href=''>{{_('Export as CSV')}}</a></h2>
 {% endblock %}

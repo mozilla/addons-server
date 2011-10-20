@@ -43,10 +43,11 @@
                 $table  = $self.find('table'),
                 metric  = $table.attr('data-metric'),
                 view    = {
-                        'metric': metric,
-                        'group' : 'all'
-                    };
+                    'metric': metric,
+                    'group' : 'all'
+                };
 
+            // reload the data when the view's range is modified.
             $win.bind('changeview', function(e, newView) {
                 // we only want to respond to changes in range.
                 if (!newView.range) return;
@@ -60,9 +61,10 @@
 
             // We take the data (aggregated to one row)
             function generateRankedList(data, done) {
-                var totalValue = data[view.range.start].count,
+                if (data.empty) return;
+                var totalValue = data[data.firstIndex].count,
                     otherValue = totalValue;
-                data = data[view.range.start].data;
+                data = data[data.firstIndex].data;
                 if (_.isEmpty(data)) return;
                 // Convert all fields to percentages and prettify names.
                 var rankedList = _.map(data, function(val, key) {
