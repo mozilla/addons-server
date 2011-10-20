@@ -233,6 +233,16 @@
         font-size: 10px;
         line-height: 12px;
     }
+    .vital .price {
+        color: @green;
+        &.premium {
+            color: @orange;
+        }
+        &:before {
+            color: @note-gray;
+            content: '\00B7';
+        }
+    }
 }
 .featured,
 .theme-grid {
