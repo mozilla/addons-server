@@ -25,7 +25,7 @@ import waffle
 
 import amo
 from amo import messages
-from amo.decorators import login_required
+from amo.decorators import login_required, write
 from amo.forms import AbuseForm
 from amo.utils import sorted_groupby, randslice
 from amo.models import manual_order
@@ -472,6 +472,7 @@ def developers(request, addon, page):
 @login_required
 @addon_view
 @can_be_purchased
+@write
 def purchase(request, addon):
     log.debug('Starting purchase of addon: %s by user: %s'
               % (addon.pk, request.amo_user.pk))
@@ -515,6 +516,7 @@ def purchase(request, addon):
 @login_required
 @addon_view
 @can_be_purchased
+@write
 def purchase_complete(request, addon, status):
     result = ''
     if status == 'complete':
