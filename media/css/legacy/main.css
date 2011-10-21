@@ -104,8 +104,7 @@ button.link:active span {
 body,
 #title,
 .item h3,
-.section-teaser .addon-view h3,
-div.header-search input.text {
+.section-teaser .addon-view h3 {
     font-family: "helvetica neue", arial, helvetica, sans-serif;
     font-style: normal;
 }
@@ -351,14 +350,6 @@ select {
     border-bottom-color: #ccc;
     border-right-color: #ccc;
     padding: 0 1px 1px 1px;
-}
-
-textarea:focus,
-input[type='text']:focus,
-input[type='password']:focus,
-select:focus {
-    border-color: #888;
-    outline: 1px solid #ffffaa;
 }
 
 input.short {
@@ -1042,119 +1033,6 @@ form.favorite {
     font-style: italic;
     font-weight: normal;
 }
-
-/* @end */
-
-/* @group Aux nav */
-
-#aux-nav {
-    font-size: 1em;
-    padding: 0;
-    text-align: right;
-    color: #757778;
-}
-
-#aux-nav p.context,
-#aux-nav ul {
-    float: right;
-    margin-bottom: 1em;
-    padding: 0.5em 1em 0 0;
-}
-
-#aux-nav a:link,
-#aux-nav a:visited,
-#aux-nav a:hover,
-#aux-nav a:focus,
-#aux-nav a:active {
-    color: #3d6db5;
-    white-space: nowrap;
-}
-
-/* @group Change */
-
-#aux-nav > ul {
-    margin: 0;
-    padding: 0;
-    border-right: 3px solid transparent;
-    position: relative;
-    z-index: 1;
-}
-
-#aux-nav p.tools a,
-#aux-nav ul.change a.return {
-    display: block;
-    padding: 0.5em 1em 0.5em;
-}
-
-#aux-nav > ul li ul li {
-    border-top: 1px solid #D0EBF4;
-    min-width: 11em;
-    text-align: left;
-    margin: 0;
-    padding: 0.3em 1em;
-}
-
-#aux-nav p.tools,
-#aux-nav > ul.change li ul li {
-    padding: 0;
-}
-
-#aux-nav > ul li ul li a {
-    background-repeat: no-repeat;
-    background-position: top left;
-    display: block;
-    margin: 0;
-}
-
-#aux-nav > ul.change li ul li a {
-    padding: 0.3em 0.3em 0.3em 45px;
-}
-
-#aux-nav > ul li ul li.mobile a,
-#aux-nav > ul li ul li.firefox a {
-    background: url(../../img/zamboni/app_icons/small.png) no-repeat 1em 0;
-}
-#aux-nav > ul li ul li.thunderbird a {
-    background: url(../../img/zamboni/app_icons/small.png) no-repeat 1em -50px;
-}
-#aux-nav > ul li ul li.sunbird a {
-    background: url(../../img/zamboni/app_icons/small.png) no-repeat 1em -100px;
-}
-#aux-nav > ul li ul li.seamonkey a {
-    background: url(../../img/zamboni/app_icons/small.png) no-repeat 1em -150px;
-}
-
-#aux-nav > ul a.controller:link,
-#aux-nav > ul a.controller:visited,
-#aux-nav > ul a.controller:focus,
-#aux-nav > ul a.controller:hover,
-#aux-nav > ul a.controller:active {
-    display: block;
-    padding: 0.5em 20px 0.5em 1em;
-    background: url(../../img/icons/arrows.gif) no-repeat;
-    background-position: 95% -65px;
-}
-
-#aux-nav > ul a.controller:focus,
-#aux-nav > ul a.controller:hover,
-#aux-nav > ul a.controller:active {
-    background-position: 95% -105px;
-}
-
-#aux-nav > ul ul {
-    display: none;
-    position: absolute;
-    right: -3px;
-    padding: 0;
-    border-right: 3px solid #A2C2D7;
-    border-bottom: 3px solid #A2C2D7;
-}
-
-#aux-nav ul.expanded {
-    border-right: 3px solid #A2C2D7;
-}
-
-/* @end */
 
 /* @end */
 
@@ -3072,18 +2950,6 @@ background-position:left -303px;
     background-position:left -50px;
     padding-right:0;
     padding-left:1em;
-}
-
-/* @end */
-
-/* @group Aux nav */
-
-.html-rtl #aux-nav {
-    right: auto;
-    left: 0;
-    margin: 0 100px 0 0;
-    text-align: left;
-    background-position: top left;
 }
 
 /* @end */

@@ -10,8 +10,16 @@ table tr:nth-child(odd) {
     background: #d9eff6;
 }
 
+#masthead h1 a {
+    text-decoration: none;
+}
+
 .amo-header {
-    height: 50px;
+    min-height: 50px;
+}
+
+.header-search {
+    display: none;
 }
 
 #header #title a {

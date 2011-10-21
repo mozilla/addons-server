@@ -1,9 +1,3 @@
-#aux-nav {
-    float:right;
-}
-#aux-nav ul:hover {
-    border-right: 3px solid #A2C2D7;
-}
 #aux-nav ul:hover ul {
     display: block;
 }

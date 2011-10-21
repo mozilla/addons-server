@@ -19,25 +19,23 @@
 {% endblock %}
 
 {% block site_header_title %}
-<h1 class="site-title">
+<h1 class="site-title prominent">
   <a title="{{ _('Return to the Add-on Developer Hub') }}"
      href="{{ url('devhub.index') }}">
      {# l10n: 'Developer Hub' is larger/emphasized and should appear in the <strong> tag' #}
-     {{ _('<small>Add-on</small> <strong>Developer Hub</strong>')|safe }}
+     {{ _('<small>Add-on</small> Developer Hub')|safe }}
   </a>
 </h1>
 {% endblock %}
 
 {% block aux_nav %}
-  <ul class="change">
-    <li><a class="return" href="{{ url('home') }}">
-      {{ _('Back to Add-ons') }}</a></li>
-  </ul>
+  <li class="nomenu"><a class="return" href="{{ url('home') }}">
+    {{ _('Back to Add-ons') }}</a></li>
 {% endblock %}
 
 {% block navbar %}
-<div id="navbar">
-  <ul class="top">
+<nav id="site-nav" class="menu-nav no-img c">
+  <ul>
     {% if request.user.is_authenticated() and request.amo_user.is_developer %}
       <li class="top">
         <a href="{{ url('devhub.addons') }}" class="controller">
@@ -53,12 +51,12 @@
                 {{ addon.name }}</a></li>
             {% endif %}
           {% endfor %}
-          <li><a href="{{ url('devhub.submit.1') }}">
-            {{ _('Submit a New Add-on') }}</a></li>
+          <li><em><a href="{{ url('devhub.submit.1') }}">
+              {{ _('Submit a New Add-on') }}</a></em></li>
         </ul>
       </li>
     {% endif %}
-    <li class="top">
+    <li>
       <a href="#" class="controller">{{ _('Documentation') }}</a>
       <ul>
         <li><a href="{{ remora_url('/developers/docs/getting-started') }}">
@@ -73,20 +71,18 @@
           {{ _('API & Language Reference') }}</a></li>
       </ul>
     </li>
-    <li class="top">
+    <li>
       <a href="#" class="controller">{{ _('Tools') }}</a>
       <ul>
         <li><a href="{{ url('devhub.package_addon') }}">
           {{ _('Add-on Packager') }}</a></li>
         <li><a href="{{ url('devhub.validate_addon') }}">
           {{ _('Add-on Validator') }}</a></li>
-        <li><a href="{{ url('devhub.check_addon_compatibility') }}">
-          {{ _('Add-on Compatibility Check') }}</a></li>
         <li><a href="{{ remora_url('/collection/devel-tools') }}">
           {{ _('Development Add-ons') }}</a></li>
       </ul>
     </li>
-    <li class="top">
+    <li>
       <a href="#" class="controller">{{ _('Community') }}</a>
       <ul>
         <li><a href="http://blog.mozilla.com/addons/">
@@ -98,7 +94,7 @@
       </ul>
     </li>
   </ul>
-</div>
+</nav>
 {% endblock %}
 
 {% block search_form %}

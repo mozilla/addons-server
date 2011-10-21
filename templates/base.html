@@ -61,45 +61,44 @@
     {% endif %}
     <div class="section">
       {% block site_header %}
-        {% if not hide_header and (request.APP == amo.FIREFOX or request.APP == amo.MOBILE) %}
-          {% include "amo_header.html" %}
-        {% else %}
-          <div id="minimal-header"><a class="mozilla" href="http://www.mozilla.org/">
-              {{ _('visit <span>mozilla.org</span>')|safe }}
-          </a></div>
-        {% endif %}
+        <div id="global-header-tab">
+          <a href="http://mozilla.org/"><img src="{{ media('img/zamboni/mozilla-tab.png') }}"></a>
+        </div>
         <div class="amo-header">
-          <div id="aux-nav" role="navigation">
-            {% block aux_nav %}
-            <ul id="other-apps" class="change"
-                title="{{ _('Find add-ons for other applications') }}">
-              <li>
-                <a href="#" class="controller">{{ _('Other Applications') }}</a>
-                <ul>
-                  {% for app in amo.APP_USAGE %}
-                    {% if app != request.APP %}
-                      <li id="app-{{ app.short }}" class="{{ app.short }}">
-                        <a href="{{ locale_url(app.short) }}">{{ app.pretty }}</a>
-                      </li>
-                    {% endif %}
-                  {% endfor %}
-                </ul>
-              </li>
+          <nav id="aux-nav" role="navigation" class="menu-nav">
+            <ul class="c">
+              {% if not settings.READ_ONLY %}
+                {% include "impala/user_login.html" %}
+              {% endif %}
+              {% block aux_nav %}
+                <li>
+                  <a href="#" id="other-apps"
+                     title="{{ _('Find add-ons for other applications') }}">
+                    {{ _('Other Applications') }}</a>
+                  <ul class="other-apps">
+                    {% for app in amo.APP_USAGE %}
+                      {% if app != request.APP %}
+                        <li id="app-{{ app.short }}" class="{{ app.short }}">
+                          <a href="{{ locale_url(app.short) }}">{{ app.pretty }}</a>
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                </li>
+              {% endblock aux_nav %}
             </ul>
-            {% endblock aux_nav %}
-            {% if not settings.READ_ONLY %}
-              {% include "user_login.html" %}
-            {% endif %}
-          </div>
+          </nav>
           <div class="header-search" role="search">
             {% block search_form %}
-            {% include 'search.html' %}
+            {% include 'impala/search.html' %}
             {% endblock %}
           </div>
           <div id="masthead">
             {% block site_header_title %}
-            {% include "header_title.html" %}
+            {% include "impala/header_title.html" %}
+            {{ site_nav() }}
             {% endblock %}
+            {% block navbar %}{% endblock %}
             {% block site_stats %}{% endblock %}
           </div>
         </div>
@@ -108,8 +107,6 @@
       {# Overridden in base_side_categories, which expands categories
          on the side of the page. #}
       {% block main_content %}
-        {% block navbar %}
-        {% endblock %}
         {# outer_content is for something you want above content on every page. #}
         {% block outer_content %}{% endblock %}
         {% block content %}{% endblock %}

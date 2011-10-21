@@ -1,12 +1,3 @@
-.amo-header:after,
-.header-search form:after {
-    content: ".";
-    display: block;
-    clear: both;
-    height: 0;
-    visibility: hidden;
-}
-
 
 @font-face {
     font-family: 'MetaBlack';
@@ -90,93 +81,10 @@ body {
     display: none;
 }
 
-.amo-header {
-    margin-top: 4px;
-    height: 128px;
-    font-family: Georgia;
-}
-
-.amo-header a {
-    color: #3d6db5;
-}
-
-/** Search */
-
-div.header-search {
-    position: relative;
-    margin: 0;
-    width: 380px;
-    clear: right;
-    float: right;
-}
-
-.html-rtl div.header-search {
-    clear: left;
-    float: left;
-}
-
-div.header-search span.wrap {
-    width: 288px;
-}
-
-div.header-search form {
-    margin: 0;
-    border-radius: 6px;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    padding: 6px;
-}
-
-div.header-search span.wrap {
-    background: #fff url(../../img/zamboni/global/icon-search.png) no-repeat 7px center;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    float: left;
-    padding: 2px 0 0 36px;
-}
-
-div.header-search input.text {
-    border: none;
-    outline: none;
-    box-shadow: none;
-    font-size: 16px;
-    width: 270px;
-    height: 26px;
-    line-height: 25px;
-}
-
-div.header-search input.submit {
-    box-shadow: none;
-    float: left;
-    height: 33px;
-    margin: 0 0 0 6px;
-    width: 37px;
-}
-
-#masthead {
-    position: absolute;
-}
-
 .site-title {
     padding-top: 16px;
     max-width: 512px;
     margin-bottom: 0;
-    display: inline-block;
-}
-
-.site-title a,
-.site-title a:visited,
-.site-title a:hover,
-.site-title a:focus {
-    font-family: MetaBlack, 'Trebuchet MS', sans-serif;
-    font-weight: bold;
-    color: #444;
-    font-size: 48px;
-    line-height: 60px;
-    text-decoration: none;
-    text-transform: uppercase;
-    vertical-align: top;
 }
 
 .developer-hub .site-title {
@@ -185,7 +93,6 @@ div.header-search input.submit {
 
 .developer-hub .site-title small {
     display: block;
-    padding-left: 3px;
 }
 
 .developer-hub .site-title small:first-child {
@@ -196,20 +103,6 @@ div.header-search input.submit {
     display: block;
     line-height: 40px;
     font-size: 48px;
-}
-
-.developer-hub .site-title a {
-    font-size: 32px;
-    line-height: 40px;
-}
-
-.developer-hub .header-search {
-    margin-top: 12px;
-}
-
-.developer-hub .site-title a {
-    font-size: 32px;
-    line-height: 40px;
 }
 
 html[lang=it] .site-title a {
