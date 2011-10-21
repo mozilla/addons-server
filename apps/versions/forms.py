@@ -13,8 +13,6 @@ from files.models import File
 from files.utils import parse_addon
 from versions.models import ApplicationsVersions, Version
 
-license_ids = dict((license.shortname, license.id) for license in amo.LICENSES)
-
 log = commonware.log.getLogger('z.addons')
 
 
