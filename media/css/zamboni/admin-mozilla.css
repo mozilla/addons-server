@@ -10,6 +10,10 @@ table tr:nth-child(odd) {
     background: #d9eff6;
 }
 
+.amo-header {
+    height: 50px;
+}
+
 #header #title a {
     color: #d64203;
 }
