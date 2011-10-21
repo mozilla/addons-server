@@ -132,7 +132,7 @@ urlpatterns = patterns('',
      lambda r, id: redirect('addons.versions.rss', id, permanent=True)),
 
     # Legacy redirect. Requires a view to get extra data not provided in URL.
-    ('^versions/updateInfo/(?P<version_id>\d+)$',
+    ('^versions/updateInfo/(?P<version_id>\d+)',
      'versions.views.update_info_redirect'),
 
     ('^addons/reviews/(\d+)/format:rss$',
