@@ -589,6 +589,21 @@ class TestEditPayments(amo.tests.TestCase):
         res = self.client.post(self.url, d)
         eq_('premium add-on' in res.content, True)
 
+    @mock.patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
+    def test_voluntary_contributions_addons(self):
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(doc('.intro').length, 2)
+        eq_(doc('.intro.full-intro').length, 0)
+
+    @mock.patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
+    def test_voluntary_contributions_apps(self):
+        self.addon.update(type=amo.ADDON_WEBAPP)
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(doc('.intro').length, 1)
+        eq_(doc('.intro.full-intro').length, 1)
+
 
 class TestDisablePayments(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']

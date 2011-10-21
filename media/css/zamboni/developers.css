@@ -973,6 +973,12 @@ input.valid {
     display: inline-block;
     vertical-align: top;
 }
+.payments .full-intro {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+}
 .payments .intro ul {
     list-style-type: disc;
     padding: 0 0 .5em 1em;

@@ -41,6 +41,7 @@
       learn about these programs.
       {% endtrans %}</p>
     {% endif %}
+    {% if not addon.is_webapp() %}
     <div class="intro">
       <h3>{{ _('Voluntary Contributions') }}</h3>
       <p>{{ _('Add-ons enrolled in our contributions program can request voluntary financial support from users.') }}</p>
@@ -81,8 +82,9 @@
         {% endif %}
       {% endif %}
     </div>
+    {% endif %}
     {% if waffle.switch('marketplace') %}
-    <div class="intro">
+    <div class="intro{% if addon.is_webapp() %} full-intro{% endif %}">
       <h3>{{ _('Mozilla Marketplace') }}</h3>
       <p>{{ _('Premium add-ons can be sold in our marketplace by themselves or as an upgrade to a free version of your add-on.') }}</p>
       <ul>
