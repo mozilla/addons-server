@@ -883,11 +883,13 @@ class TestPurchases(amo.tests.TestCase):
         for x in range(1, 5):
             price = Price.objects.create(price=10 - x)
             addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
-                                         name='t%s' % x)
+                                         name='t%s' % x,
+                                         guid='t%s' % x)
             AddonPremium.objects.create(price=price, addon=addon)
             con = Contribution.objects.create(user=self.user.get_profile(),
                                               addon=addon, amount='%s.00' % x,
-                                              type=amo.CONTRIB_PURCHASE)
+                                              type=amo.CONTRIB_PURCHASE,
+                                              created=datetime(2011, 10, 1))
             con.created = datetime.now() - timedelta(days=10 - x)
             con.save()
             if not self.addon and not self.con:
@@ -1088,3 +1090,42 @@ class TestPurchases(amo.tests.TestCase):
         res = self.client.get(self.url)
         addon_vitals = pq(res.content)('div.vitals').eq(0)
         eq_(len(addon_vitals('div.purchase-byline')), 2)
+
+    def make_contribution(self, addon, amt, type, day):
+        return Contribution.objects.create(
+            user=self.user.get_profile(), addon=addon,
+            amount=amt, type=type, created=datetime(2011, 10, day))
+
+    def test_refunded(self):
+        addon = Addon.objects.get(type=amo.ADDON_EXTENSION,
+                                  guid='t1')
+        self.make_contribution(addon, "-1.00", amo.CONTRIB_REFUND, 2)
+        doc = pq(self.client.get(self.url).content)
+        firstitem = doc('.items')[0][0]
+        assert 'refunded' in firstitem.get('class')
+        eq_(firstitem[0].get('class'), 'refund-notice')
+
+    def test_repurchased(self):
+        addon = Addon.objects.get(type=amo.ADDON_EXTENSION,
+                                  guid='t1')
+        self.make_contribution(addon, "-1.00", amo.CONTRIB_REFUND, 2)
+        self.make_contribution(addon, "1.00", amo.CONTRIB_PURCHASE, 3)
+        doc = pq(self.client.get(self.url).content)
+        firstitem = doc('.items')[0][0]
+        assert 'refunded' not in firstitem.get('class')
+        assert not doc('.items .refund-notice')
+        purchaselines = doc('.vitals')[0]
+        assert 'Request Support' in purchaselines.text_content()
+
+    def test_rerefunded(self):
+        addon = Addon.objects.get(type=amo.ADDON_EXTENSION,
+                                  guid='t1')
+        self.make_contribution(addon, "-1.00", amo.CONTRIB_REFUND, 2)
+        self.make_contribution(addon, "1.00", amo.CONTRIB_PURCHASE, 3)
+        self.make_contribution(addon, "-1.00", amo.CONTRIB_REFUND, 4)
+        doc = pq(self.client.get(self.url).content)
+        firstitem = doc('.items')[0][0]
+        assert 'refunded' in firstitem.get('class')
+        eq_(firstitem[0].get('class'), 'refund-notice')
+        purchaselines = doc('.vitals')[0]
+        assert 'Request Support' not in purchaselines.text_content()

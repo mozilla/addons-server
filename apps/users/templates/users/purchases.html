@@ -16,7 +16,12 @@
       {% endif %}
       <div class="items">
         {% for addon in addons.object_list %}
+        {% if is_refunded(addon) %}
+        <div class="item addon ignore-compatibility refunded">
+          <span class="refund-notice">{{ _('Purchase Refunded') }}</span>
+        {% else %}
           <div class="item addon ignore-compatibility">
+          {% endif %}
             <div class="info">
               <h3>
                 <a href="{{ addon.get_url_path() }}">
@@ -26,10 +31,18 @@
               <div class="vitals c">
                 {% for contribution in contributions.get(addon.pk, []) %}
                     <div class="purchase-byline">
+                      {% if contribution.type == amo.CONTRIB_PURCHASE %}
                         {% trans date=addon.created, amt=contribution.get_amount_locale() %}
                             Purchased {{ date }} for {{ amt }}
                         {% endtrans %}
+                        {% if not is_refunded(addon) %}
                         &middot; <a href="{{ url('users.support', contribution.pk) }}">{{ _('Request Support') }}</a>
+                        {% endif%}
+                      {% elif contribution.type == amo.CONTRIB_REFUND %}
+                        {% trans date=addon.created, amt=contribution.get_amount_locale() %}
+                            Refunded {{ date }} for {{ amt }}
+                        {% endtrans %}
+                      {% endif %}
                     </div>
                 {% endfor %}
               </div>

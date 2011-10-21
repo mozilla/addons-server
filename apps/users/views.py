@@ -598,17 +598,28 @@ def purchases(request, addon_id=None):
     """A list of purchases that a user has made through the marketplace."""
     if not waffle.switch_is_active('marketplace'):
         raise http.Http404
-
-    # First get all the contributions.
-    # TODO(ashort): this is where we'll need to get cunning about refunds.
     cs = Contribution.objects.filter(user=request.amo_user,
-                                     type=amo.CONTRIB_PURCHASE)
+                                     type__in=(amo.CONTRIB_PURCHASE,
+                                               amo.CONTRIB_REFUND),
+                                     ).order_by('created')
+
     if addon_id:
         cs = cs.filter(addon=addon_id)
 
     contributions = {}
     for c in cs:
         contributions.setdefault(c.addon_id, []).append(c)
+
+    def is_refunded(original):
+        """
+        Contributions are sorted by creation date; if the last one is
+        a refund, mark this addon as refunded.
+        """
+        txns = contributions.get(original.pk, None)
+        if txns:
+            return txns[-1].type == amo.CONTRIB_REFUND
+        else:
+            return False
 
     # If you are asking for a receipt for just one item, only show that.
     # Otherwise, we'll show all addons that have a contribution or are free.
@@ -630,6 +641,7 @@ def purchases(request, addon_id=None):
     return jingo.render(request, 'users/purchases.html',
                         {'addons': amo.utils.paginate(request, filter.qs,
                                                       count=len(ids)),
+                         'is_refunded': is_refunded,
                          'filter': filter,
                          'url_base': reverse('users.purchases'),
                          'contributions': contributions,
