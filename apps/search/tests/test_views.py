@@ -293,7 +293,7 @@ class TestAjaxSearch(amo.tests.ESTestCase):
         cls.setUpIndex()
 
     def search_addons(self, url, params, addons=[],
-                          types=amo.ADDON_SEARCH_TYPES):
+                      types=amo.ADDON_SEARCH_TYPES, src=None):
         r = self.client.get('?'.join([url, params]))
         eq_(r.status_code, 200)
         data = json.loads(r.content)
@@ -305,7 +305,10 @@ class TestAjaxSearch(amo.tests.ESTestCase):
         for got, expected in zip(data, addons):
             eq_(int(got['id']), expected.id)
             eq_(got['name'], unicode(expected.name))
-            eq_(got['url'], expected.get_url_path())
+            expected_url = expected.get_url_path()
+            if src:
+                expected_url += '?src=ss'
+            eq_(got['url'], expected_url)
             eq_(got['icon'], expected.icon_url)
 
             assert expected.status in amo.REVIEWED_STATUSES, (
@@ -382,7 +385,7 @@ class TestSearchSuggestions(TestAjaxSearch):
     def search_addons(self, params, addons=[],
                           types=views.AddonSuggestionsAjax.types):
         super(TestSearchSuggestions, self).search_addons(
-            self.url, params, addons, types)
+            self.url, params, addons, types, src='ss')
 
     def search_applications(self, params, apps=[]):
         r = self.client.get('?'.join([self.url, params]))

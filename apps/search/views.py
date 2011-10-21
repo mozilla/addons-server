@@ -271,6 +271,7 @@ class BaseAjaxSearch(object):
     def __init__(self, request, excluded_ids=[]):
         self.request = request
         self.excluded_ids = excluded_ids
+        self.src = getattr(self, 'src', None)
         self.types = getattr(self, 'types', amo.ADDON_SEARCH_TYPES)
         self.limit = 10
         self.key = 'q'  # Name of search field.
@@ -314,21 +315,27 @@ class BaseAjaxSearch(object):
                 if callable(val):
                     val = val()
                 d[key] = unicode(val)
+            if self.src and 'url' in d:
+                d['url'] = urlparams(d['url'], src=self.src)
             results.append(d)
         return results
 
 
-class AddonSuggestionsAjax(BaseAjaxSearch):
+class SearchSuggestionsAjax(BaseAjaxSearch):
+    src = 'ss'
+
+
+class AddonSuggestionsAjax(SearchSuggestionsAjax):
     # No personas. No webapps.
     types = [amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME,
              amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_LPAPP]
 
 
-class PersonaSuggestionsAjax(BaseAjaxSearch):
+class PersonaSuggestionsAjax(SearchSuggestionsAjax):
     types = [amo.ADDON_PERSONA]
 
 
-class WebappSuggestionsAjax(BaseAjaxSearch):
+class WebappSuggestionsAjax(SearchSuggestionsAjax):
     types = [amo.ADDON_WEBAPP]
 
 
