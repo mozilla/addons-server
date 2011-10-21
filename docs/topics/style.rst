@@ -1,4 +1,7 @@
-Zamboni Style Guide
+.. _style:
+
+===================
+Style Guide
 ===================
 
 Writing code for zamboni? Awesome! Please help keep our code readable by,

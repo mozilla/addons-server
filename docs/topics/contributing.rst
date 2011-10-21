@@ -9,6 +9,7 @@ request on github or in IRC.  Point us to a branch with your new code and we'll
 go from there.  You can attach a patch to a bug if you're more comfortable that
 way.
 
+Please read the :ref:`style`.
 
 The Perfect Git Configuration
 -----------------------------
