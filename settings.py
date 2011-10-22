@@ -662,6 +662,7 @@ MINIFY_BUNDLES = {
             'js/impala/users.js',
 
             # Search
+            'js/impala/serializers.js',
             'js/impala/search.js',
             'js/impala/suggestions.js',
 

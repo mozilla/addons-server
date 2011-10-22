@@ -20,16 +20,27 @@ $(function() {
         if ($this.html() != newCount.html()) {
             $this.replaceWith(newCount);
         }
+    }).delegate('a[data-params]', 'rebuild', function(e) {
+        var $this = $(this),
+            url = rebuildLink($this.attr('href'), $this.attr('data-params'));
+        $this.attr('href', url);
     });
-
-    if ($('body').hasClass('pjax') && $.support.pjax) {
-        initSearchPjax('#pjax-results');
+    if ($('body').hasClass('pjax') && $.support.pjax && z.capabilities.JSON) {
+        $('#pjax-results').initSearchPjax($('#search-facets'));
     }
 });
 
 
-function initSearchPjax(container) {
-    var $container = $(container),
+function rebuildLink(url, urlparams, qs) {
+    var params = JSON.parseNonNull(urlparams),
+        newVars = $.extend(z.getVars(qs), params);
+    return url.split('?')[0] + '?' + $.param(newVars);
+}
+
+
+$.fn.initSearchPjax = function($filters) {
+    var $container = $(this),
+        container = $container.selector,
         timeouts = 0;
 
     function pjaxOpen(url) {
@@ -72,6 +83,8 @@ function initSearchPjax(container) {
 
         // Insert the loading throbber.
         $('<div>', {'class': cls, 'html': msg}).insertBefore($container);
+
+        $container.trigger('search.loading');
     }
 
     function finished() {
@@ -84,14 +97,19 @@ function initSearchPjax(container) {
             initListingCompat();
         });
 
-        // Remove the loading indicator.
+        // Remove the loading throbber.
         $wrapper.removeClass('loading').find('.updating').remove();
 
         // Update the # of matching results on sidebar.
-        $('#search-facets .cnt').trigger('recount', [$wrapper.find('.cnt')]);
+        $filters.find('.cnt').trigger('recount', [$wrapper.find('.cnt')]);
 
-        // Scroll up.
+        // Update GET parameters of sidebar anchors.
+        $filters.find('a[data-params]').trigger('rebuild');
+
+        // Scroll up to top of page.
         $('html, body').animate({scrollTop: 0}, 200);
+
+        $container.trigger('search.finished');
     }
 
     function turnPages(e) {
@@ -113,4 +131,4 @@ function initSearchPjax(container) {
     $('.pjax-trigger a').live('click', _pd(hijackLink));
     $container.bind('start.pjax', loading).bind('end.pjax', finished);
     $(document).keyup(_.throttle(turnPages, 300));
-}
+};
