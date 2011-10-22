@@ -87,7 +87,6 @@
             {{ site_nav() }}
             {% endblock %}
           </div>
-          {% block balloons %}
           {% if ADMIN_MESSAGE or settings.READ_ONLY %}
             <div class="site-balloon" id="site-notice">
               {% if ADMIN_MESSAGE %}
@@ -101,6 +100,7 @@
               {% endif %}
             </div>
           {% endif %}
+          {% block amo_balloons %}
           <div class="site-balloon" id="site-nonfx">
             <p>
               {% trans url='http://mozilla.org/firefox/?src=amo' %}
