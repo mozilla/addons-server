@@ -2765,6 +2765,7 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
     def setUp(self):
         super(BaseWebAppTest, self).setUp()
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
         self.manifest = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
                                      'addons', 'mozball.webapp')
         self.upload = self.get_upload(abspath=self.manifest)
@@ -2772,9 +2773,6 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         self.client.post(reverse('devhub.submit_apps.1'))
-
-    def post(self, desktop_platforms=[], mobile_platforms=[], **kw):
-        return super(BaseWebAppTest, self).post(**kw)
 
     def post_addon(self):
         eq_(Addon.objects.count(), 0)
@@ -2784,11 +2782,7 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
 class TestCreateWebApp(BaseWebAppTest):
 
-    @mock.patch('devhub.tasks.fetch_icon')
-    @mock.patch.object(waffle, 'flag_is_active')
-    def test_post_app_redirect(self, fia, v):
-        fia.return_value = True
-        v.return_value = True
+    def test_post_app_redirect(self):
         r = self.post()
         addon = Addon.objects.get()
         self.assertRedirects(r, reverse('devhub.submit_apps.3',
