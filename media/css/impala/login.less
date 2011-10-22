@@ -43,4 +43,40 @@
         top: 0;
         font-size: 11px;
     }
+    .user-message {
+        display: none;
+    }
+    .browserid {
+        p {
+            padding: 1em;
+        }
+        #remember-me {
+            padding-left: 0;
+        }
+        .user-message {
+            display: block;
+            text-align: center;
+            color: @medium-gray;
+            margin-top: 1em;
+            a {
+                display: block;
+            }
+        }
+        #browserid-login {
+            text-align: center;
+        }
+        #normal-login {
+            display: none;
+        }
+        .login-option {
+            .border-box();
+            padding: 1em;
+            margin-bottom: 1em;
+            width: 50%;
+            float: left;
+            li {
+                margin-bottom: 1em;
+            }
+        }
+    }
 }

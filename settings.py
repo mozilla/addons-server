@@ -665,6 +665,9 @@ MINIFY_BUNDLES = {
             'js/impala/search.js',
             'js/impala/suggestions.js',
 
+            # Login
+            'js/impala/login.js',
+
             # Fix-up outgoing links
             'js/zamboni/outgoing_links.js',
         ),

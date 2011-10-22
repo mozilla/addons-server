@@ -10,32 +10,48 @@
         </ul>
       </div>
   {% endif %}
-  <fieldset>
-    <ul>
-      <li>
-      <label for="id_username">{{ _('Email address') }}</label>
-      {{ form.username }}
-      {{ form.username.errors }}
-      </li>
-      <li>
-      <label for="id_password">{{ _('Password') }}</label>
-      {{ form.password }}
-      {{ form.password.errors }}
-      </li>
-      <li id="remember-me">
-      <label for="id_rememberme" class="check">
-        {{ form.rememberme }}
-        {{ _('Remember me on this computer') }}
-      </label>
-      {{ form.rememberme.errors }}
-      </li>
-      {% if form.recaptcha %}
-      {{ form.recaptcha_shown }}
-      {{ recaptcha(form) }}
-      {% endif %}
-      <li class="footer-submit">
-        <button id="login-submit" type="submit">{{ _('Log in') }}</button>
-      </li>
-    </ul>
-  </fieldset>
+  {% if waffle.switch('browserid-login') %}
+    <div class="login-option">
+      <fieldset id="browserid-login">
+          <button class="browserid-login" type="submit"
+                  data-url="{{ url('users.browserid_login') }}">
+            {{ _('Log in with BrowserID') }}
+          </button>
+      </fieldset>
+    </div>
+  {% endif %}
+  <div class="login-option">
+    <div class="user-message">
+      <a href="#" id="show-normal-login">{{ _('Sign in with old system') }}</a>
+      {{ _('(required for admins and editors)') }}
+    </div>
+    <fieldset id="normal-login">
+      <ul>
+        <li>
+        <label for="id_username">{{ _('Email address') }}</label>
+        {{ form.username }}
+        {{ form.username.errors }}
+        </li>
+        <li>
+        <label for="id_password">{{ _('Password') }}</label>
+        {{ form.password }}
+        {{ form.password.errors }}
+        </li>
+        <li id="remember-me">
+        <label for="id_rememberme" class="check">
+          {{ form.rememberme }}
+          {{ _('Remember me on this computer') }}
+        </label>
+        {{ form.rememberme.errors }}
+        </li>
+        {% if form.recaptcha %}
+        {{ form.recaptcha_shown }}
+        {{ recaptcha(form) }}
+        {% endif %}
+        <li class="footer-submit">
+          <button id="login-submit" type="submit">{{ _('Log in') }}</button>
+        </li>
+      </ul>
+    </fieldset>
+  </div>
 </form>
