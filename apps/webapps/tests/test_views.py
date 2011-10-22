@@ -55,7 +55,7 @@ class TestListing(WebappTest):
 
     def test_search_url(self):
         for url in (self.url, self.webapp_url):
-            response = self.client.get(self.url)
+            response = self.client.get(url)
             doc = pq(response.content)
             eq_(doc('#search').attr('action'), '/en-US/apps/search/')
 
