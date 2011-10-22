@@ -24,10 +24,14 @@ class WebappTest(amo.tests.TestCase):
                                         .create(addon=self.webapp))
         self.webapp.save()
 
-        self.url = self.webapp.get_url_path()
+        self.webapp_url = self.url = self.webapp.get_url_path()
 
 
-class TestLayout(WebappTest):
+class TestListing(WebappTest):
+
+    def setUp(self):
+        super(TestListing, self).setUp()
+        self.url = reverse('apps.list')
 
     def test_header(self):
         response = self.client.get(self.url)
@@ -37,20 +41,23 @@ class TestLayout(WebappTest):
         eq_(doc('#search-q').attr('placeholder'), 'search for apps')
         eq_(doc('#id_cat').attr('value'), 'apps')
 
+    def test_header_links(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)('#site-nav')
+        eq_(doc('#most-popular-apps a').attr('href'),
+            self.url + '?sort=downloads')
+        eq_(doc('#featured-apps a').attr('href'), self.url + '?sort=featured')
+        eq_(doc('#submit-app a').attr('href'), reverse('devhub.submit_apps.1'))
+
     def test_footer(self):
         response = self.client.get(self.url)
         eq_(pq(response.content)('#social-footer').length, 0)
 
     def test_search_url(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        eq_(doc('#search').attr('action'), '/en-US/apps/search/')
-
-
-class TestListing(WebappTest):
-
-    def setUp(self):
-        self.url = reverse('apps.list')
+        for url in (self.url, self.webapp_url):
+            response = self.client.get(self.url)
+            doc = pq(response.content)
+            eq_(doc('#search').attr('action'), '/en-US/apps/search/')
 
     def test_default_sort(self):
         test_default_sort(self, 'downloads', 'weekly_downloads')

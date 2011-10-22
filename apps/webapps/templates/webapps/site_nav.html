@@ -14,10 +14,14 @@
 <nav id="site-nav" class="app-nav menu-nav c">
   {# TODO(cvan): Localize these titles and replace links with real URLs. #}
   <ul>
-    {{ section('featured-apps', _('Featured'), '#', featured_extras) }}
     <li class="slim" id="most-popular-apps">
-      <a href="#">{{ _('Most Popular') }}</a>
+      <a href="{{ url('apps.list')|urlparams(sort='downloads') }}">
+        {{ _('Most Popular') }}</a>
     </li>
+    {{ section('featured-apps',
+               _('Featured'),
+               url('apps.list')|urlparams(sort='featured'),
+               featured_extras) }}
     <li class="slim" id="my-apps">
       {# TODO(cvan): This will lead to the purchased collection if user is logged in. #}
       <a href="#">{{ _('My Apps') }}</a>
@@ -42,7 +46,9 @@
     <li id="more">
       <a href="#">{{ _('More&hellip;') }}</a>
       <ul>
-        <li><a href="#">Submit an App</a></li>
+        <li id="submit-app"><a href="{{ url('devhub.submit_apps.1') }}">
+          {{ _('Submit an App') }}</a></li>
+        {# TODO: Are these links finalized? #}
         <li><a href="#">How to use Apps</a></li>
         <li><a href="{{ url('home') }}">Firefox Add-ons</a></li>
       </ul>
