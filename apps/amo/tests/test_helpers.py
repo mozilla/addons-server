@@ -207,6 +207,31 @@ def test_urlparams_unicode():
     utils.urlparams(url)
 
 
+class TestAddonURL(amo.tests.TestCase):
+
+    def setUp(self):
+        self.webapp = Mock()
+        self.webapp.type = amo.ADDON_WEBAPP
+        self.webapp.app_slug = 'webapp'
+
+        self.addon = Mock()
+        self.addon.type = amo.ADDON_EXTENSION
+        self.addon.slug = 'addon'
+        self.addon.is_webapp.return_value = False
+
+    def test_appurl(self):
+        eq_(helpers.addon_url('addons.detail', self.webapp),
+            '/en-US/apps/app/webapp/')
+        eq_(helpers.addon_url('apps.detail', self.webapp),
+            '/en-US/apps/app/webapp/')
+
+    def test_addonurl(self):
+        eq_(helpers.addon_url('addons.detail', self.addon),
+            '/en-US/firefox/addon/addon/')
+        eq_(helpers.addon_url('apps.detail', self.addon),
+            '/en-US/firefox/addon/addon/')
+
+
 def test_isotime():
     time = datetime(2009, 12, 25, 10, 11, 12)
     s = render('{{ d|isotime }}', {'d': time})

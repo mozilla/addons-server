@@ -89,6 +89,23 @@ def url(viewname, *args, **kwargs):
 
 
 @register.function
+def addon_url(viewname, addon, *args, **kwargs):
+    """
+    Helper specifically for addons or apps to get urls. Requires
+    the viewname, addon (or app). It's assumed that we'll pass the
+    slug into the args and we'll look up the right slug (addon or app)
+    for you.
+
+    Viewname should be a normal view eg: addons.details or apps.details,
+    this will flip the first part for you. eg: addons.details > apps.details.
+    """
+    slug = addon.app_slug if addon.is_webapp() else addon.slug
+    prefix = 'apps' if addon.is_webapp() else 'addons'
+    viewname = '%s.%s' % (prefix, viewname.split('.', 1)[-1])
+    return url(viewname, *([slug] + list(args)), **kwargs)
+
+
+@register.function
 def services_url(viewname, *args, **kwargs):
     """Helper for ``url`` with host=SERVICES_URL."""
     kwargs.update({'host': settings.SERVICES_URL})

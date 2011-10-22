@@ -10,9 +10,11 @@ from addons.models import Addon
 
 def addon_view(f, qs=Addon.objects.all):
     @functools.wraps(f)
-    def wrapper(request, addon_id, *args, **kw):
+    def wrapper(request, addon_id=None, app_slug=None, *args, **kw):
+        """Provides an addon given either an addon_id or app_slug."""
+        assert addon_id or app_slug, 'Must provide addon_id or app_slug'
         get = lambda **kw: get_object_or_404(qs(), **kw)
-        if addon_id.isdigit():
+        if addon_id and addon_id.isdigit():
             addon = get(id=addon_id)
             # Don't get in an infinite loop if addon.slug.isdigit().
             if addon.slug != addon_id:
@@ -20,8 +22,10 @@ def addon_view(f, qs=Addon.objects.all):
                 if request.GET:
                     url += '?' + request.GET.urlencode()
                 return http.HttpResponsePermanentRedirect(url)
-        else:
+        elif addon_id:
             addon = get(slug=addon_id)
+        elif app_slug:
+            addon = get(app_slug=app_slug)
         return f(request, addon, *args, **kw)
     return wrapper
 

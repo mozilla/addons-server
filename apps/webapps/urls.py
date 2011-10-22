@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import include, patterns, url
 
 from . import views
+from addons import views as addons_views
 
 APP_SLUG = r"""(?P<app_slug>[^/<>"']+)"""
 
@@ -10,6 +11,7 @@ detail_patterns = patterns('',
     url('^$', views.app_detail, name='apps.detail'),
     url('^more$', views.app_detail, name='apps.detail_more'),
     url('^share$', views.share, name='apps.share'),
+    url('^abuse$', addons_views.report_abuse, name='apps.abuse')
 )
 
 

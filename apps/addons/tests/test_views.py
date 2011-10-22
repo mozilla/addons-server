@@ -1377,9 +1377,9 @@ class TestReportAbuse(amo.tests.TestCase):
         eq_(res.status_code, 200)
         doc = pq(res.content)
         eq_(doc('#abuse-modal form').attr('action'),
-            reverse('addons.abuse', args=['a15663']))
+            reverse('apps.abuse', args=['app-a15663']))
         self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.post(reverse('addons.abuse', args=['a15663']),
+        r = self.client.post(reverse('apps.abuse', args=['app-a15663']),
                              {'text': 'this app is porn'})
         self.assertRedirects(r, detail_url)
 
