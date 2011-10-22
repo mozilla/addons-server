@@ -9,3 +9,6 @@
 {% else %}
   {% include 'search/no_results.html' %}
 {% endif %}
+{% if is_pjax %}
+  {{ num_results() }}
+{% endif %}

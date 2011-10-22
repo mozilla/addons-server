@@ -50,6 +50,15 @@
   </ul>
 {% endmacro %}
 
+{% macro num_results() %}
+  {% set cnt = pager.paginator.count %}
+  <p class="cnt">
+    {{ ngettext('<b>{0}</b> matching result',
+                '<b>{0}</b> matching results',
+                cnt)|f(cnt|numberfmt)|safe }}
+  </p>
+{% endmacro %}
+
 {% block content %}
   {% if is_pjax %}
     {% include "search/results_inner.html" %}
@@ -69,13 +78,7 @@
         </li>
         {{ facet(_('Tag'), tags) }}
       </ul>
-      {% with cnt = pager.paginator.count %}
-        <p class="cnt" data-count="{{ cnt }}">
-            {{ ngettext('<b>{0}</b> matching result',
-                        '<b>{0}</b> matching results',
-                        cnt)|f(cnt|numberfmt)|safe }}
-        </p>
-      {% endwith %}
+      {{ num_results() }}
     </section>
 
     <section class="primary" role="main">
