@@ -269,6 +269,7 @@ class TestFetchIcon(BaseWebAppTest):
     def test_no_icons(self):
         path = self.apps_path / 'noicon.webapp'
         iconless_app = self.webapp_from_path(path)
+        tasks.fetch_icon(iconless_app)
         assert not self.urlopen_mock.called
 
     def check_icons(self, webapp):
