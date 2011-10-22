@@ -254,6 +254,9 @@ class TestFetchIcon(BaseWebAppTest):
         self.content_type = 'image/png'
         self.apps_path = (path.path(settings.ROOT) / 'apps'
                           / 'devhub' / 'tests' / 'addons')
+        patcher = mock.patch('devhub.tasks.urllib2.urlopen')
+        self.urlopen_mock = patcher.start()
+        self.addCleanup(patcher.stop)
 
     def webapp_from_path(self, path):
         self.upload = self.get_upload(abspath=path)
@@ -266,9 +269,7 @@ class TestFetchIcon(BaseWebAppTest):
     def test_no_icons(self):
         path = self.apps_path / 'noicon.webapp'
         iconless_app = self.webapp_from_path(path)
-        urllib2.urlopen = mock.Mock()
-        tasks.fetch_icon(iconless_app)
-        assert not urllib2.urlopen.called
+        assert not self.urlopen_mock.called
 
     def check_icons(self, webapp):
         manifest = webapp.get_manifest_json()
@@ -291,7 +292,7 @@ class TestFetchIcon(BaseWebAppTest):
 
         tasks.fetch_icon(webapp)
         eq_(webapp.icon_type, self.content_type)
-        
+
         self.check_icons(webapp)
 
     def test_hosted_icon(self):
