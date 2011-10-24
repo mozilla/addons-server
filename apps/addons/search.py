@@ -12,6 +12,7 @@ from bandwagon.models import Collection
 from compat.models import AppCompat
 from users.models import UserProfile
 from versions.compare import version_int
+from apps.search import ANALYZER_MAP
 
 
 log = logging.getLogger('z.es')
@@ -52,6 +53,22 @@ def extract(addon):
     # Double the boost if the add-on is public.
     if addon.status == amo.STATUS_PUBLIC:
         d['_boost'] = max(d['_boost'], 1) * 4
+
+    # Indices for each language
+    for analyzer, languages in ANALYZER_MAP.iteritems():
+        d['name_' + analyzer] = list(
+            set(string for locale, string
+                in translations[addon.name_id]
+                if locale.lower() in languages))
+        d['summary_' + analyzer] = list(
+            set(string for locale, string
+                in translations[addon.summary_id]
+                if locale.lower() in languages))
+        d['description_' + analyzer] = list(
+            set(string for locale, string
+                in translations[addon.description_id]
+                if locale.lower() in languages))
+
     return d
 
 
@@ -82,6 +99,20 @@ def setup_mapping():
                                               for app in amo.APP_USAGE)},
         },
     }
+    for analyzer in ANALYZER_MAP.iterkeys():
+        mapping['properties']['name_' + analyzer] = {
+            'type': 'string',
+            'analyzer': analyzer,
+        }
+        mapping['properties']['summary_' + analyzer] = {
+            'type': 'string',
+            'analyzer': analyzer,
+        }
+        mapping['properties']['description_' + analyzer] = {
+            'type': 'string',
+            'analyzer': analyzer,
+        }
+
     es = elasticutils.get_es()
     indexes = settings.ES_INDEXES
     # Adjust the mapping for all models at once because fields are shared

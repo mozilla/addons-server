@@ -12,6 +12,7 @@ from tower import ugettext as _
 from mobility.decorators import mobile_template
 
 import amo
+from search import LANGUAGE_TO_ANALYZER
 import bandwagon.views
 import browse.views
 from addons.models import Addon, Category
@@ -403,20 +404,48 @@ def ajax_search_suggestions(request):
     return results
 
 
+def _get_analyzer():
+    language = translation.get_language()
+    return LANGUAGE_TO_ANALYZER.get(language, 'standard')
+
+
 def name_only_query(q):
-    return dict(name__text={'query': q, 'boost': 3, 'analyzer': 'standard'},
-                name__fuzzy={'value': q, 'boost': 2, 'prefix_length': 4},
-                name__startswith={'value': q, 'boost': 1.5})
+    d = dict(name__text={'query': q, 'boost': 3, 'analyzer': 'standard'},
+             name__fuzzy={'value': q, 'boost': 2, 'prefix_length': 4},
+             name__startswith={'value': q, 'boost': 1.5})
+
+    analyzer = _get_analyzer()
+    if analyzer != 'standard':
+        d['name_' + analyzer + '__text'] = {'query': q,
+                                            'boost': 2.5,
+                                            'analyzer': analyzer}
+    return d
 
 
 def name_query(q):
     # 1. Prefer text matches first, using the standard text analyzer (boost=3).
-    # 2. Then try fuzzy matches ("fire bug" => firebug) (boost=2).
-    # 3. Then look for the query as a prefix of a name (boost=1.5).
-    # 4. Look for phrase matches inside the summary (boost=0.8).
-    # 5. Look for phrase matches inside the description (boost=0.3).
+    # 2. Then text matches, using language specific analyzer (boost=2.5).
+    # 3. Then try fuzzy matches ("fire bug" => firebug) (boost=2).
+    # 4. Then look for the query as a prefix of a name (boost=1.5).
+    # 5. Look for phrase matches inside the summary (boost=0.8).
+    # 6. Look for phrase matches inside the summary using language specific
+    #    analyzer (boost=0.6).
+    # 7. Look for phrase matches inside the description (boost=0.3).
+    # 8. Look for phrase matches inside the description using language
+    #    specific analyzer (boost=0.1).
     more = dict(summary__text={'query': q, 'boost': 0.8, 'type': 'phrase'},
                 description__text={'query': q, 'boost': 0.3, 'type': 'phrase'})
+
+    analyzer = _get_analyzer()
+    if analyzer != 'standard':
+        more['summary_' + analyzer + '__text'] = {'query': q,
+                                                  'boost': 0.6,
+                                                  'type': 'phrase',
+                                                  'analyzer': analyzer}
+        more['description_' + analyzer + '__text'] = {'query': q,
+                                                      'boost': 0.1,
+                                                      'type': 'phrase',
+                                                      'analyzer': analyzer}
     return dict(more, **name_only_query(q))
 
 
