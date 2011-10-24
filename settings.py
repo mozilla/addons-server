@@ -1198,7 +1198,7 @@ VALID_LOGIN_REDIRECTS = {
 BUILDER_SECRET_KEY = 'love will tear us apart'
 # The builder URL we hit to upgrade jetpacks.
 BUILDER_UPGRADE_URL = 'https://addons.mozilla.org/services/builder'
-BUILDER_VERSIONS_URL = ('https://builder.addons.mozilla.org/repackage/'
+BUILDER_VERSIONS_URL = ('https://builder.addons.mozilla.org/repackage/' +
                         'sdk-versions/')
 
 ## Elastic Search
