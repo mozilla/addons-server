@@ -39,6 +39,8 @@ urlpatterns = patterns('',
     url(r'^email_preview/(?P<topic>.*)\.csv$',
         views.email_preview_csv, name='zadmin.email_preview_csv'),
     url(r'^jetpack$', views.jetpack, name='zadmin.jetpack'),
+    url(r'^jetpack/resend/(?P<file_id>\d+)$', views.jetpack_resend,
+        name='zadmin.jetpack.resend'),
 
     url('^features$', views.features, name='zadmin.features'),
     url('^features/collections\.json$', views.es_collections_json,
