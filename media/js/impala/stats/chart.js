@@ -132,7 +132,8 @@
                 'type'  : 'line',
                 'name'  : z.StatsManager.getPrettyName(view.metric, id),
                 'id'    : id,
-                'data'  : series[field]
+                'data'  : series[field],
+                'visible' : !(metric == 'contributions' && id !='total')
             });
         }
 
@@ -147,15 +148,6 @@
             function downloadFormatter(n) { return Highcharts.numberFormat(n, 0) + ' downloads'; }
             function userFormatter(n) { return Highcharts.numberFormat(n, 0) + ' users'; }
             function currencyFormatter(n) { return '$' + Highcharts.numberFormat(n, 2); }
-            function contributionCountFormatter(n) {
-                return format(gettext('# of Contributions: {0}'), Highcharts.numberFormat(n, 0));
-            }
-            function averageContributionFormatter(n) {
-                return format(gettext('Average Contribution: {0}'), currencyFormatter(n));
-            }
-            function totalContributionFormatter(n) {
-                return format(gettext('Total: {0}'), currencyFormatter(n));
-            }
 
             // Determine x-axis formatter.
             if (group == "week") {
@@ -174,10 +166,18 @@
                 };
             } else if (metric == 'contributions') {
                 return function() {
-                    return "<b>" + xFormatter(this.x) + "</b><br>" +
-                           contributionCountFormatter(this.points[0].y || 'n/a') + "<br>" +
-                           totalContributionFormatter(this.points[1].y || 'n/a') + "<br>" +
-                           averageContributionFormatter(this.points[2].y || 'n/a');
+                    var ret = "<b>" + xFormatter(this.x) + "</b>",
+                        p;
+                    for (var i=0; i < this.points.length; i++) {
+                        p = this.points[i];
+                        ret += '<br>' + p.series.name + ': ';
+                        if (p.series.options.yAxis > 0) {
+                            ret += Highcharts.numberFormat(p.y, 0);
+                        } else {
+                            ret += currencyFormatter(p.y);
+                        }
+                    }
+                    return ret;
                 };
             } else {
                 // Determine y-axis formatter.
@@ -240,17 +240,7 @@
         if (metric == "contributions" && newConfig.series.length) {
             _.extend(newConfig, {
                 yAxis : [
-                    { // Downloads
-                        title: {
-                           text: gettext('Number of Contributions')
-                        },
-                        min: 0,
-                        labels: {
-                            formatter: function() {
-                                return Highcharts.numberFormat(this.value, 0);
-                            }
-                        }
-                    }, { // Daily Users
+                    { // Amount
                         title: {
                             text: gettext('Amount, in USD')
                         },
@@ -260,6 +250,17 @@
                             }
                         },
                         min: 0,
+                    },
+                    { // Number of Contributions
+                        title: {
+                           text: gettext('Number of Contributions')
+                        },
+                        min: 0,
+                        labels: {
+                            formatter: function() {
+                                return Highcharts.numberFormat(this.value, 0);
+                            }
+                        },
                         opposite: true
                     }
                 ],
@@ -269,14 +270,12 @@
                 }
             });
             // set Daily Users series to use the right yAxis.
-            newConfig.series[1].yAxis = 1;
-            newConfig.series[2].yAxis = 1;
+            newConfig.series[0].yAxis = 1;
         }
         newConfig.tooltip.formatter = tooltipFormatter;
 
         if (fields.length == 1) {
             newConfig.legend.enabled = false;
-            // newConfig.chart.margin = [50, 50, 50, 80];
         }
 
         // Generate a pretty title for the chart.
