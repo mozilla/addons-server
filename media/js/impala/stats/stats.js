@@ -24,7 +24,7 @@
         var initView = {
                 metric: $('.primary').attr('data-report'),
                 range: $('.primary').attr('data-range'),
-                group: 'week'
+                group: 'day'
             };
 
         $(window).trigger('changeview', initView);

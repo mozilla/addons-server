@@ -9,8 +9,9 @@ $(function() {
     });
     // Save some requests by waiting until the graph data is ready.
     $(window).bind("dataready", function(e, data) {
-        var view    = _.extend(data.view, {group: 'all'}),
-            range   = z.date.normalizeRange(view.range);
+        // return;
+        var view    = _.extend({}, data.view, {group: 'all'}),
+            range   = normalizeRange(view.range);
 
         // get aggregates for Daily Users and Downloads for the given time range.
         $.when(z.StatsManager.getDataRange(view)).then(function(data) {
@@ -21,8 +22,8 @@ $(function() {
                 var aggregateRow    = data[data.firstIndex].data,
                     totalDownloads  = Highcharts.numberFormat(aggregateRow.downloads, 0),
                     totalUsers      = Highcharts.numberFormat(aggregateRow.updates, 0),
-                    startString     = z.date.date_string(new Date(range.start), '-'),
-                    endString       = z.date.date_string(new Date(range.end), '-'),
+                    startString     = range.start.iso(),
+                    endString       = range.end.iso(),
                     downloadFormat  = csv_keys.aggregateLabel.downloads,
                     userFormat      = csv_keys.aggregateLabel.usage;
 
@@ -37,5 +38,5 @@ $(function() {
             }
             $('.two-up').removeClass('loading');
         });
-    })
+    });
 });

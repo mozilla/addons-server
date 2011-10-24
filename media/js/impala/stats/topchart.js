@@ -9,7 +9,7 @@
        },
        plotArea: {
           shadow: null,
-          borderWidth: null,
+          borderWidth: null
        },
        tooltip: {
           enabled: false
@@ -52,7 +52,7 @@
                 // we only want to respond to changes in range.
                 if (!newView.range) return;
                 $self.addClass('loading');
-                _.extend(view, {'range' : z.date.normalizeRange(newView.range)});
+                _.extend(view, {'range' : normalizeRange(newView.range)});
                 $.when(z.StatsManager.getDataRange(view))
                  .then(function(data) {
                     generateRankedList(data, render);

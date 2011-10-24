@@ -70,7 +70,13 @@
         "downloads" : "downloads",
         "sources"   : "downloads"
     };
-    
+
+    var acceptedGroups = {
+        'day'   : true,
+        'week'  : true,
+        'month' : true
+    };
+
     $win.bind("changeview", function() {
         $chart.addClass('loading');
     });
@@ -79,52 +85,42 @@
         var view    = obj.view,
             metric  = view.metric,
             group   = view.group,
-            range   = z.date.normalizeRange(view.range),
+            data    = obj.data,
+            range   = normalizeRange(view.range),
             start   = range.start,
             end     = range.end,
             fields  = obj.fields ? obj.fields.slice(0,5) : ['count'],
-            data    = obj.data,
             series  = {},
             chartRange = {},
             t, row, i, field, val;
+
+        if (!(group in acceptedGroups)) {
+            group = 'day';
+        }
+        if (obj.data.empty) {
+            // showNoDataOverlay();
+            $chart.removeClass('loading');
+            return;
+        }
 
         // Initialize the empty series object.
         _.each(fields, function(f) { series[f] = []; });
 
         // Transmute the data into something Highcharts understands.
-        if (group == 'month') {
-            _.each(data, function(row, t) {
-                for (i = 0; i < fields.length; i++) {
-                    field = fields[i];
-                    val = parseFloat(z.StatsManager.getField(row, field));
-                    if (val != val) val = null;
-                    series[field].push({
-                        'x' : parseInt(t, 10),
-                        'y' : val
-                    });
-                }
-            });
-        } else {
-            var step = z.date.millis('1 day');
-            if (group == 'week') {
-                step = z.date.millis('7 days');
-                while((new Date(start)).getDay() > 0) {
-                    start += z.date.millis('1 day');
-                }
+        start = Date.iso(data.firstIndex);
+        z.data = data;
+        var step = '1 ' + group;
+        forEachISODate({start: start, end: end}, '1 '+group, data, function(row, d) {
+            for (i = 0; i < fields.length; i++) {
+                field = fields[i];
+                val = parseFloat(z.StatsManager.getField(row, field));
+                if (val != val) val = null;
+                series[field].push({
+                    'x' : d.getTime(),
+                    'y' : val
+                });
             }
-            for (t = start; t < end; t += step) {
-                row = data[t];
-                for (i = 0; i < fields.length; i++) {
-                    field = fields[i];
-                    val = parseFloat(z.StatsManager.getField(row, field));
-                    if (val != val) val = null;
-                    series[field].push({
-                        'x' : t,
-                        'y' : val
-                    });
-                }
-            }
-        }
+        }, this);
 
         // Populate the chart config object.
         var chartData = [], id;
@@ -159,8 +155,8 @@
             if (metric == 'overview') {
                 return function() {
                     return "<b>" + xFormatter(this.x) + "</b><br>" +
-                           downloadFormatter(this.points[0].y) + "<br>" +
-                           userFormatter(this.points[1].y);
+                           downloadFormatter(this.points[0].y || 'n/a') + "<br>" +
+                           userFormatter(this.points[1].y || 'n/a');
                 };
             } else {
                 if (metricTypes[metric] == "users") {
@@ -225,8 +221,7 @@
         if (typeof obj.view.range == 'string') {
             title = format(csv_keys.chartTitle[metric][0], obj.view.range);
         } else {
-            title = format(csv_keys.chartTitle[metric][1], [z.date.date_string(new Date(start), '-'),
-                                                            z.date.date_string(new Date(end), '-')]);
+            title = format(csv_keys.chartTitle[metric][1], [start.iso(), end.iso()]);
         }
         newConfig.title = {
             text: title
@@ -237,7 +232,7 @@
         chartRange = chart.xAxis[0].getExtremes();
         $("h1").click(function() {
             chart.xAxis[0].setExtremes(chartRange.min, chartRange.max);
-        })
+        });
         $chart.removeClass('loading');
     });
 })();

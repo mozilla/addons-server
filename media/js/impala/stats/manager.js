@@ -7,11 +7,11 @@ function dbg() {
 z.hasPushState = (typeof history.replaceState === "function");
 
 z.StatsManager = (function() {
-    // "use strict";
+    "use strict";
 
     // The version of the stats localStorage we are using.
     // If you increment this number, you cache-bust everyone!
-    var STATS_VERSION = 1;
+    var STATS_VERSION = '2011-10-21-1';
 
     var storage         = z.Storage("stats"),
         storageCache    = z.Storage("statscache"),
@@ -66,13 +66,18 @@ z.StatsManager = (function() {
 
     function writeLocalStorage() {
         dbg("saving local data");
-        storageCache.set(addonId, JSON.stringify(dataStore));
-        storage.set("version", STATS_VERSION);
+        try {
+            storageCache.set(addonId, JSON.stringify(dataStore));
+            storage.set("version", STATS_VERSION);
+        } catch (e) {
+            console.log(e);
+        }
         dbg("saved local data");
     }
 
     function clearLocalStorage() {
         storageCache.remove(addonId);
+        storage.remove("version");
         dbg("cleared local data");
     }
 
@@ -93,15 +98,16 @@ z.StatsManager = (function() {
     function processView(e, newView) {
         // Update our internal view state.
         currentView = $.extend(currentView, newView);
-
         // Fetch the data from the server or storage, and notify other components.
         $.when( getDataRange(currentView) )
          .then( function(data) {
-            $(window).trigger("dataready", {
-                'view'  : currentView,
-                'fields': getAvailableFields(currentView),
-                'data'  : data
-            });
+            setTimeout(function() {
+                $(window).trigger("dataready", {
+                    'view'  : currentView,
+                    'fields': getAvailableFields(currentView),
+                    'data'  : data
+                });
+            }, 0);
         });
     }
     $(window).bind('changeview', processView);
@@ -110,13 +116,12 @@ z.StatsManager = (function() {
     // Returns a list of field names for a given data set.
     function getAvailableFields(view) {
         var metric = view.metric,
-            range = z.date.normalizeRange(view.range),
+            range = normalizeRange(view.range),
             start = range.start,
             end = range.end,
             ds,
             row,
             numRows = 0,
-            step = z.date.millis("1 day"),
             fields = {};
 
         // Non-breakdwon metrics only have one field.
@@ -126,15 +131,15 @@ z.StatsManager = (function() {
         if (!ds) throw "Expected metric with valid data!";
 
         // Locate all unique fields.
-        for (var i=start; i<end; i+= step) {
-            if (ds[i]) {
-                row = (metric == 'apps') ? collapseVersions(ds[i], 1) : ds[i];
+        forEachISODate(range, '1 day', ds, function(row) {
+            if (row) {
+                row = (metric == 'apps') ? collapseVersions(row, 1) : row;
                 _.each(row.data, function(v, k) {
                     fields[k] = fields[k] ? fields[k] + v : v;
                 });
                 _.extend(fields, row.data);
             }
-        }
+        }, this);
 
         // sort the fields, make them proper field identifiers, and return.
         return _.map(
@@ -157,28 +162,29 @@ z.StatsManager = (function() {
     // we move on.
     function getDataRange(view) {
         dbg("enter getDataRange", view.metric);
-        var range = z.date.normalizeRange(view.range),
+        var range = normalizeRange(view.range),
             metric = view.metric,
             ds = dataStore[metric],
             reqs = [],
             $def = $.Deferred();
 
         function finished() {
-            var ret = {}, row, firstIndex,
-                step = z.date.millis("1 day");
+            var ds = dataStore[metric],
+                ret = {}, row, firstIndex;
             if (ds) {
-                for (var i=range.start; i<range.end; i+= step) {
-                    if (ds[i]) {
-                        if (!firstIndex) firstIndex = i;
-                        ret[i] = (metric == 'apps') ? collapseVersions(ds[i], 1) : ds[i];
+                forEachISODate(range, '1 day', ds, function(row, date) {
+                    var d = date.iso();
+                    if (row) {
+                        if (!firstIndex) firstIndex = d;
+                        ret[d] = (metric == 'apps') ? collapseVersions(ds[d], 1) : ds[d];
                     }
-                }
+                }, this);
                 if (_.isEmpty(ret)) {
                     ret.empty = true;
                 } else {
+                    ret.firstIndex = firstIndex;
                     ret = groupData(ret, view);
                     ret.metric = metric;
-                    ret.firstIndex = firstIndex;
                 }
                 $def.resolve(ret);
             } else {
@@ -187,12 +193,12 @@ z.StatsManager = (function() {
         }
 
         if (ds) {
-            dbg("range", range.start, range.end);
-            if (ds.maxdate < range.end) {
-                reqs.push(fetchData(metric, ds.maxdate, range.end));
+            dbg("range", range.start.iso(), range.end.iso());
+            if (ds.maxdate < range.end.iso()) {
+                reqs.push(fetchData(metric, Date.iso(ds.maxdate), range.end));
             }
-            if (ds.mindate > range.start) {
-                reqs.push(fetchData(metric, range.start, ds.mindate));
+            if (ds.mindate > range.start.iso()) {
+                reqs.push(fetchData(metric, range.start, Date.iso(ds.mindate)));
             }
         } else {
             reqs.push(fetchData(metric, range.start, range.end));
@@ -206,7 +212,7 @@ z.StatsManager = (function() {
     // Aggregate data based on view's `group` setting.
     function groupData(data, view) {
         var metric = view.metric,
-            range = z.date.normalizeRange(view.range),
+            range = normalizeRange(view.range),
             group = view.group || 'day',
             groupedData = {};
         // if grouping is by day, do nothing.
@@ -214,13 +220,13 @@ z.StatsManager = (function() {
         var groupKey = false,
             groupVal = false,
             groupCount = 0,
-            d, row;
+            d, row, firstIndex;
 
         if (group == 'all') {
-            groupKey = range.start;
+            groupKey = firstIndex = range.start.iso();
             groupCount = 0;
             groupVal = {
-                date: z.date.date_string(new Date(groupKey), '-'),
+                date: groupKey,
                 count: 0,
                 data: {},
                 empty: true
@@ -235,6 +241,7 @@ z.StatsManager = (function() {
                 if (metricTypes[metric] == 'mean') {
                     groupVal.count /= groupCount;
                 }
+                if (!firstIndex) firstIndex = groupKey;
                 // overview gets special treatment. Only average ADUs.
                 if (metric == "overview") {
                     groupVal.data.updates /= groupCount;
@@ -251,20 +258,18 @@ z.StatsManager = (function() {
         }
 
         // big loop!
-        for (var i=range.start; i <= range.end; i+= z.date.millis('1 day')) {
-            d = new Date(i);
-            row = data[i];
+        forEachISODate(range, '1 day', data, function(row, d) {
             // Here's where grouping points are caluculated.
             if ((group == 'week' && d.getDay() === 0) ||
                 (group == 'month' && d.getDate() == 1)) {
 
                 performAggregation();
                 // set the new group date to the current iteration.
-                groupKey = i;
+                groupKey = d.iso();
                 // reset our aggregates.
                 groupCount = 0;
                 groupVal = {
-                    date: z.date.date_string(new Date(groupKey), '-'),
+                    date: groupKey,
                     count: 0,
                     data: {},
                     empty: true
@@ -284,8 +289,9 @@ z.StatsManager = (function() {
                 }
             }
             groupCount++;
-        }
+        }, this);
         if (group == 'all') performAggregation();
+        groupedData.firstIndex = firstIndex;
         return groupedData;
     }
 
@@ -312,15 +318,16 @@ z.StatsManager = (function() {
         }
 
         function fetchHandler(raw_data, status, xhr) {
-            var maxdate = 0,
-                mindate = z.date.today();
+            var maxdate = '1970-01-01',
+                mindate = (new Date()).iso();
 
             if (xhr.status == 200) {
 
                 if (!dataStore[metric]) {
-                    dataStore[metric] = {};
-                    dataStore[metric].mindate = z.date.today();
-                    dataStore[metric].maxdate = 0;
+                    dataStore[metric] = {
+                        mindate : (new Date()).iso(),
+                        maxdate : '1970-01-01'
+                    };
                 }
 
                 var ds = dataStore[metric],
@@ -328,13 +335,13 @@ z.StatsManager = (function() {
 
                 var i, datekey;
                 for (i=0; i<data.length; i++) {
-                    datekey = parseInt(Date.parse(data[i].date), 10);
-                    maxdate = Math.max(datekey, maxdate);
-                    mindate = Math.min(datekey, mindate);
+                    datekey = data[i].date;
+                    maxdate = String.max(datekey, maxdate);
+                    mindate = String.min(datekey, mindate);
                     ds[datekey] = data[i];
                 }
-                ds.maxdate = Math.max(parseInt(maxdate, 10), parseInt(ds.maxdate, 10));
-                ds.mindate = Math.min(parseInt(mindate, 10), parseInt(ds.mindate, 10));
+                ds.maxdate = String.max(maxdate, ds.maxdate);
+                ds.mindate = String.min(mindate, ds.mindate);
                 clearTimeout(writeInterval);
                 writeInterval = setTimeout(writeLocalStorage, 1000);
                 $def.resolve();

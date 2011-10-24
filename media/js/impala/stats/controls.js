@@ -9,12 +9,14 @@
     var $customModal = $("#custom-criteria").modal("#custom-date-range", { width: 520, hideme: false });
     var $startPicker = $("#start-date-picker").datepicker({
         maxDate: 0,
+        dateFormat: 'yy-mm-dd',
         onSelect: function(dateText) {
             $("#date-range-start").val(dateText);
         }
     });
     var $endPicker = $("#end-date-picker").datepicker({
         maxDate: 0,
+        dateFormat: 'yy-mm-dd',
         onSelect: function(dateText) {
             $("#date-range-end").val(dateText);
         }
@@ -41,9 +43,9 @@
     $(window).bind('changeview', function(e, newState) {
         if (!newState) return;
         function populateCustomRange() {
-            var nRange = z.date.normalizeRange(newState.range),
-                startStr = z.date.datepicker_format(new Date(nRange.start)),
-                endStr = z.date.datepicker_format(new Date(nRange.end));
+            var nRange = normalizeRange(newState.range),
+                startStr = nRange.start.iso(),
+                endStr = nRange.end.iso();
             $("#date-range-start").val(startStr);
             $startPicker.datepicker("setDate", startStr);
             $("#date-range-end").val(endStr);
@@ -73,12 +75,12 @@
     });
     
     $("#date-range-form").submit(_pd(function(e) {
-        var start = new Date($("#date-range-start").val()),
-            end = new Date($("#date-range-end").val()),
+        var start = Date.iso($("#date-range-start").val()),
+            end = Date.iso($("#date-range-end").val()),
             newRange = {
                 custom: true,
-                start: z.date.date(start),
-                end: z.date.date(end)
+                start: Date.iso(start),
+                end: Date.iso(end)
             };
         $rangeSelector.trigger('changeview', {range: newRange});
         $customModal.trigger('close');

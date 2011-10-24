@@ -10,7 +10,7 @@
                 pageSize    = 14,
                 pages       = {},
                 metric      = $('.primary').attr('data-report'),
-                currentPage = undefined;
+                currentPage;
 
             $(document).ready(init);
             function init() {
@@ -57,13 +57,14 @@
             function getPage(page) {
                 if (pages[page] || page < 0) return;
                 var $def = $.Deferred(),
+                    range = {
+                        end     : Date.ago(pageSize * page + 'days'),
+                        start   : Date.ago(pageSize * page + pageSize + 'days')
+                    },
                     view = {
                         metric  : metric,
                         group   : 'day',
-                        range   : {
-                            end     : z.date.ago('1 day', pageSize * page),
-                            start   : z.date.ago('1 day', pageSize * page + pageSize)
-                        }
+                        range   : range
                     };
                 $.when(z.StatsManager.getDataRange(view))
                  .then(function(data) {
@@ -71,9 +72,6 @@
                          newBody    = '<tbody>',
                          newPage    = {},
                          newHead    = '<tr><th>' + gettext('Date') + '</th>',
-                         start      = view.range.start,
-                         end        = view.range.end,
-                         step       = z.date.millis('1 day'),
                          row;
 
                      _.each(fields, function(f) {
@@ -83,17 +81,17 @@
                          newHead += '</th>';
                      });
 
-                     for (var i=end; i>start; i-=step) {
-                         row = data[i];
+                     var d = range.end.clone();
+                     for (; d.isAfter(range.start); d.backward('1 day')) {
+                         row = data[d.iso()] || {};
                          newBody += '<tr>';
-                         newBody += '<th>' + Highcharts.dateFormat('%a, %b %e, %Y', new Date(i)) + "</th>";
-                         if (!row) row = {};
+                         newBody += '<th>' + Highcharts.dateFormat('%a, %b %e, %Y', Date.iso(d)) + "</th>";
                          _.each(fields, function(f) {
                              newBody += '<td>';
                              newBody += Highcharts.numberFormat(z.StatsManager.getField(row, f),0);
                              newBody += '</td>';
-                         })
-                         newBody += '</tr>';
+                         });
+                        newBody += '</tr>';
                      }
                      newBody += '</tbody>';
 
