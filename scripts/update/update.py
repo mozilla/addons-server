@@ -68,9 +68,6 @@ def update_info(ctx, ref='origin/master'):
 @task
 def checkin_changes(ctx):
     ctx.local("/usr/bin/rsync -aq --exclude '.git*' --delete %s/ %s/" % (settings.SRC_DIR, settings.WWW_DIR))
-    with ctx.lcd(settings.WWW_DIR):
-        ctx.local('git add .')
-        ctx.local('git commit -q -a -m "push"')
 
 
 @task
