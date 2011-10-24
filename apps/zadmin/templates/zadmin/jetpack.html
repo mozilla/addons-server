@@ -15,17 +15,15 @@
 {% set repack_status = upgrader.files() %}
 
 {% block content %}
+{% include "messages.html" %}
 <h2>Jetpack</h2>
 <p>Jetpacks built with SDK versions <b>{{ minver }} &ndash; {{ maxver }}</b> will be upgraded.</p>
 <p>Should it be something different?</p>
 <form method="post" action="">
   {{ csrf() }}
-  <input name="minver" value="{{ minver }}">
-  to
-  <input name="maxver" value="{{ maxver }}">
+  {{ form.minver }} to {{ form.maxver }}
   <button>Hit it.</button>
 </form>
-<p>Make sure builder.amo knows about the max version! And ask someone to fix <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=658375">bug 658375</a>.</p>
 
 <h3>Jetpack Files ({{ jetpacks|length }})</h3>
 <p>These are all the jetpack files we know about. Disabled files and add-ons are excluded.</p>

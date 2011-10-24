@@ -47,7 +47,7 @@ from versions.models import Version
 from . import tasks
 from .forms import (BulkValidationForm, FeaturedCollectionFormSet, NotifyForm,
                     OAuthConsumerForm, MonthlyPickFormSet, AddonStatusForm,
-                    FileFormSet)
+                    FileFormSet, JetpackUpgradeForm)
 from .models import ValidationJob, EmailPreviewTopic, ValidationJobTally
 
 log = commonware.log.getLogger('z.zadmin')
@@ -329,22 +329,26 @@ def validation_tally_csv(request, job_id):
 def jetpack(request):
     upgrader = files.utils.JetpackUpgrader()
     minver, maxver = upgrader.jetpack_versions()
+    form = JetpackUpgradeForm(request.POST)
     if request.method == 'POST':
-        if 'minver' in request.POST:
-            upgrader.jetpack_versions(request.POST['minver'],
-                                      request.POST['maxver'])
-        elif 'upgrade' in request.POST:
-            if upgrader.version(maxver):
-                start_upgrade(minver, maxver)
-        elif 'cancel' in request.POST:
-            upgrader.cancel()
-        return redirect('zadmin.jetpack')
+        if form.is_valid():
+            if 'minver' in request.POST:
+                data = form.cleaned_data
+                upgrader.jetpack_versions(data['minver'], data['maxver'])
+            elif 'upgrade' in request.POST:
+                if upgrader.version(maxver):
+                    start_upgrade(minver, maxver)
+            elif 'cancel' in request.POST:
+                upgrader.cancel()
+            return redirect('zadmin.jetpack')
+        else:
+            messages.error(request, form.errors.as_text())
 
     jetpacks = files.utils.find_jetpacks(minver, maxver)
     groups = sorted_groupby(jetpacks, 'jetpack_version')
     by_version = dict((version, len(list(files))) for version, files in groups)
     return jingo.render(request, 'zadmin/jetpack.html',
-                        dict(jetpacks=jetpacks, upgrader=upgrader,
+                        dict(form=form, jetpacks=jetpacks, upgrader=upgrader,
                              by_version=by_version))
 
 

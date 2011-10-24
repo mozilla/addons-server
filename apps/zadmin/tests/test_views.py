@@ -16,7 +16,7 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from amo.tests import (formset, initial, close_to_now,
+from amo.tests import (formset, initial, close_to_now, assert_required,
                        assert_no_validation_errors)
 from amo.urlresolvers import reverse
 from addons.models import Addon
@@ -1325,3 +1325,106 @@ class TestAddonManagement(amo.tests.TestCase):
         assert file.size, 'File size should not be zero'
         assert file.hash, 'File hash should not be empty'
 
+
+class TestJetpack(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.url = reverse('zadmin.jetpack')
+        self.client.login(username='admin@mozilla.com', password='password')
+
+        self.versions = '["1.0", "1.1", "1.2", "1.2.1"]'
+        self.patcher = mock.patch('devhub.tasks.urllib2.urlopen')
+        self.urlopen_mock = self.patcher.start()
+        self.urlopen_mock.return_value = self.urlopener(self.versions)
+        self.addCleanup(self.patcher.stop)
+
+    def urlopener(self, content):
+        m = mock.Mock()
+        m.read.return_value = content
+        return m
+
+    def test_no_builder_versions(self):
+        self.urlopen_mock.return_value = self.urlopener('xxx')
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        for field in ('minver', 'maxver'):
+            eq_(doc('input[name=%s]' % field).length, 1)
+
+    def test_get_builder_versions(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        for field in ('minver', 'maxver'):
+            eq_(doc('select[name=%s]' % field).length, 1)
+            options = doc('select[name=%s] option' % field)
+            versions = [''] + json.loads(self.versions)
+            for option, version in zip(options, versions):
+                eq_(pq(option).attr('value'), version)
+
+    def test_change_range_optional(self):
+        r = self.client.post(self.url)
+        self.assertRedirects(r, self.url)
+
+    def test_change_range_max_required(self):
+        r = self.client.post(self.url, {'minver': '1.0'})
+        eq_(r.status_code, 200)
+        assert_required(r.context['form'].errors['maxver'][0])
+
+    def test_change_range_min_required(self):
+        r = self.client.post(self.url, {'maxver': '1.1'})
+        eq_(r.status_code, 200)
+        assert_required(r.context['form'].errors['minver'][0])
+
+    def test_change_range_bad(self):
+        r = self.client.post(self.url, {'minver': '1.1', 'maxver': '1.0'})
+        eq_(r.status_code, 200)
+        eq_(r.context['form'].non_field_errors(), ['Invalid version range.'])
+
+    def test_change_range_unknown(self):
+        r = self.client.post(self.url, {'minver': '9.0', 'maxver': '99.0'})
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'form', 'minver',
+            'Select a valid choice. 9.0 is not one of the available choices.')
+        self.assertFormError(r, 'form', 'maxver',
+            'Select a valid choice. 99.0 is not one of the available choices.')
+
+    def set_range(self, min_, max_):
+        r = self.client.post(self.url, {'minver': min_, 'maxver': max_})
+        self.assertRedirects(r, self.url)
+
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        minver, maxver = r.context['upgrader'].jetpack_versions()
+        eq_(minver, min_)
+        eq_(maxver, max_)
+        eq_(r.context['upgrader'].version(), None)
+        eq_(pq(r.content)('input[name=upgrade]').length, 1)
+
+    def test_change_range_success(self):
+        self.set_range('1.0', '1.1')
+
+    def test_upgrade(self):
+        self.set_range('1.2', '1.2.1')
+
+        r = self.client.post(self.url, {'upgrade': True})
+        self.assertRedirects(r, self.url)
+
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(r.context['upgrader'].version(), '1.2.1')
+        eq_(pq(r.content)('input[name=cancel]').length, 1)
+
+    def test_cancel(self):
+        self.set_range('1.2', '1.2.1')
+
+        r = self.client.post(self.url, {'upgrade': True})
+        self.assertRedirects(r, self.url)
+
+        r = self.client.post(self.url, {'cancel': True})
+        self.assertRedirects(r, self.url)
+
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(r.context['upgrader'].version(), None)
