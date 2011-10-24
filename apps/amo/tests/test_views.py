@@ -66,6 +66,22 @@ class TestHome(amo.tests.TestCase):
         nav = pq(r.content)('#aux-nav')
         eq_(nav.find('.tools').length, 0)
 
+    @mock.patch.object(settings, 'READ_ONLY', False)
+    def test_balloons_no_readonly(self):
+        response = self.client.get('/en-US/firefox/')
+        doc = pq(response.content)
+        eq_(doc('#site-notice').length, 0)
+        eq_(doc('#site-nonfx').length, 1)
+        eq_(doc('#site-welcome').length, 1)
+
+    @mock.patch.object(settings, 'READ_ONLY', True)
+    def test_balloons_readonly(self):
+        response = self.client.get('/en-US/firefox/')
+        doc = pq(response.content)
+        eq_(doc('#site-notice').length, 1)
+        eq_(doc('#site-nonfx').length, 1)
+        eq_(doc('#site-welcome').length, 1)
+
     def test_tools_regular_user(self):
         self.client.login(username='regular@mozilla.com', password='password')
         r = self.client.get(reverse('home'), follow=True)

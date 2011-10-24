@@ -1,6 +1,8 @@
+from django.conf import settings
+
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-
+from mock import patch
 from amo.helpers import absolutify, page_title
 import amo.tests
 from amo.urlresolvers import reverse
@@ -48,6 +50,22 @@ class TestListing(WebappTest):
             self.url + '?sort=downloads')
         eq_(doc('#featured-apps a').attr('href'), self.url + '?sort=featured')
         eq_(doc('#submit-app a').attr('href'), reverse('devhub.submit_apps.1'))
+        
+    @patch.object(settings, 'READ_ONLY', False)
+    def test_balloons_no_readonly(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        eq_(doc('#site-notice').length, 0)
+        eq_(doc('#site-nonfx').length, 0)
+        eq_(doc('#site-welcome').length, 0)
+        
+    @patch.object(settings, 'READ_ONLY', True)
+    def test_balloons_readonly(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        eq_(doc('#site-notice').length, 1)
+        eq_(doc('#site-nonfx').length, 0)
+        eq_(doc('#site-welcome').length, 0)
 
     def test_footer(self):
         response = self.client.get(self.url)
