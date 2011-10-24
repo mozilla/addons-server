@@ -81,8 +81,9 @@
                          newHead += '</th>';
                      });
 
-                     var d = range.end.clone();
-                     for (; d.isAfter(range.start); d.backward('1 day')) {
+                     var d = range.end.clone().backward('1 day'),
+                         lastRowDate = range.start.clone().backward('1 day');
+                     for (; lastRowDate.isBefore(d); d.backward('1 day')) {
                          row = data[d.iso()] || {};
                          newBody += '<tr>';
                          newBody += '<th>' + Highcharts.dateFormat('%a, %b %e, %Y', Date.iso(d)) + "</th>";
