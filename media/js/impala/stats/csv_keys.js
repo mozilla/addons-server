@@ -38,8 +38,8 @@ var csv_keys = {
             gettext("Applications from {0} to {1}")
         ],
         "os"  : [
-            gettext("Operating Systems, last {0}"),
-            gettext("Operating Systems from {0} to {1}")
+            gettext("Platforms, last {0}"),
+            gettext("Platforms from {0} to {1}")
         ],
         "locales"  : [
             gettext("Languages, last {0}"),

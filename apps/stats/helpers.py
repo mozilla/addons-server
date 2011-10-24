@@ -52,7 +52,7 @@ def report_menu(context, addon, report):
                 {
                     'name': 'os',
                     'url': '/usage/os/',
-                    'title': _('by Operating System')
+                    'title': _('by Platform')
                 },
                 {
                     'name': 'statuses',
