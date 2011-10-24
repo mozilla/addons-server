@@ -4,12 +4,13 @@ import jinja2
 
 from jingo import register, env
 from tower import ugettext as _
+from access import acl
 from amo.helpers import locale_url
 
 
 @register.inclusion_tag('stats/report_menu.html')
 @jinja2.contextfunction
-def report_menu(context, addon, report):
+def report_menu(context, request, addon, report):
 
     report_tree = [
         {
@@ -61,12 +62,16 @@ def report_menu(context, addon, report):
                 },
             ]
         },
-        {
+    ]
+
+    if (request.user.is_authenticated() and (
+            acl.action_allowed(request, 'Admin', 'ViewAnyStats') or
+            addon.has_author(request.amo_user))):
+        report_tree.append({
             'name': 'contributions',
             'url': '/contributions/',
             'title': _('Contributions')
-        },
-    ]
+        })
 
     base_url = '/addon/%d/statistics' % (addon.id)
 

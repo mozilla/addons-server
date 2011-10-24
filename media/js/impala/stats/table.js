@@ -89,7 +89,11 @@
                          newBody += '<th>' + Highcharts.dateFormat('%a, %b %e, %Y', Date.iso(d)) + "</th>";
                          _.each(fields, function(f) {
                              newBody += '<td>';
-                             newBody += Highcharts.numberFormat(z.StatsManager.getField(row, f),0);
+                             if (metric == 'contributions' && f != 'count') {
+                                 newBody += '$' + Highcharts.numberFormat(z.StatsManager.getField(row, f), 2);
+                             } else {
+                                 newBody += Highcharts.numberFormat(z.StatsManager.getField(row, f),0);
+                             }
                              newBody += '</td>';
                          });
                         newBody += '</tr>';

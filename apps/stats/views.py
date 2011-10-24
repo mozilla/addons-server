@@ -226,7 +226,8 @@ def check_stats_permission(request, addon, for_contributions=False):
 
 @addon_view_factory(Addon.objects.valid)
 def stats_report(request, addon, report):
-    check_stats_permission(request, addon)
+    check_stats_permission(request, addon,
+                           for_contributions=(report == 'contributions'))
     stats_base_url = reverse('stats.overview', args=[addon.slug])
     view = get_report_view(request)
     return jingo.render(request, 'stats/%s.html' % report,

@@ -8,6 +8,11 @@ var csv_keys = {
     sources: {
         "null": gettext('unknown')
     },
+    contributions: {
+        "count": gettext('Number of Contributions'),
+        "total": gettext('Total Amount Contributed'),
+        "average": gettext('Average Contribution')
+    },
     overview: {
         'downloads' : gettext('Downloads'),
         'updates'   : gettext('Daily Users')
@@ -56,6 +61,10 @@ var csv_keys = {
         "sources"  : [
             gettext("Download Sources, last {0}"),
             gettext("Download Sources from {0} to {1}")
+        ],
+        "contributions"  : [
+            gettext("Contributions, last {0}"),
+            gettext("Contributions from {0} to {1}")
         ]
     },
     aggregateLabel: {

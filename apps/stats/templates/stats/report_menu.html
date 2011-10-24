@@ -1,16 +1,13 @@
-{% set show_contributions = false %}
 <nav id='side-nav'>
   <ul>
     {% for item in report_tree %}
-      {% if item.name != 'contributions' or show_contributions %}
-        {% if item.name == report %}
-          <li class="selected">
-        {% else %}
-          <li>
-        {% endif %}
-          <a href="{{ base_url + item.url }}">{{ item.title }}</a>
-        </li>
+      {% if item.name == report %}
+        <li class="selected">
+      {% else %}
+        <li>
       {% endif %}
+        <a href="{{ base_url + item.url }}">{{ item.title }}</a>
+      </li>
       {% if item.children %}
         <ul>
           {% for child in item.children %}

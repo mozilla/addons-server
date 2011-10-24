@@ -61,14 +61,15 @@
     var chart;
     // which unit do we use for a given metric?
     var metricTypes = {
-        "usage"     : "users",
-        "apps"      : "users",
-        "locales"   : "users",
-        "os"        : "users",
-        "versions"  : "users",
-        "statuses"  : "users",
-        "downloads" : "downloads",
-        "sources"   : "downloads"
+        "usage"         : "users",
+        "apps"          : "users",
+        "locales"       : "users",
+        "os"            : "users",
+        "versions"      : "users",
+        "statuses"      : "users",
+        "downloads"     : "downloads",
+        "sources"       : "downloads",
+        "contributions" : "currency"
     };
 
     var acceptedGroups = {
@@ -145,6 +146,18 @@
             function monthFormatter(d) { return Highcharts.dateFormat('%B %Y', new Date(d)); }
             function downloadFormatter(n) { return Highcharts.numberFormat(n, 0) + ' downloads'; }
             function userFormatter(n) { return Highcharts.numberFormat(n, 0) + ' users'; }
+            function currencyFormatter(n) { return '$' + Highcharts.numberFormat(n, 2); }
+            function contributionCountFormatter(n) {
+                return format(gettext('# of Contributions: {0}'), Highcharts.numberFormat(n, 0));
+            }
+            function averageContributionFormatter(n) {
+                return format(gettext('Average Contribution: {0}'), currencyFormatter(n));
+            }
+            function totalContributionFormatter(n) {
+                return format(gettext('Total: {0}'), currencyFormatter(n));
+            }
+
+            // Determine x-axis formatter.
             if (group == "week") {
                 xFormatter = weekFormatter;
             } else if (group == "month") {
@@ -152,17 +165,32 @@
             } else {
                 xFormatter = dayFormatter;
             }
+
             if (metric == 'overview') {
                 return function() {
                     return "<b>" + xFormatter(this.x) + "</b><br>" +
                            downloadFormatter(this.points[0].y || 'n/a') + "<br>" +
                            userFormatter(this.points[1].y || 'n/a');
                 };
+            } else if (metric == 'contributions') {
+                return function() {
+                    return "<b>" + xFormatter(this.x) + "</b><br>" +
+                           contributionCountFormatter(this.points[0].y || 'n/a') + "<br>" +
+                           totalContributionFormatter(this.points[1].y || 'n/a') + "<br>" +
+                           averageContributionFormatter(this.points[2].y || 'n/a');
+                };
             } else {
-                if (metricTypes[metric] == "users") {
-                    yFormatter = userFormatter;
-                } else {
-                    yFormatter = downloadFormatter;
+                // Determine y-axis formatter.
+                switch (metricTypes[metric]) {
+                    case "users":
+                        yFormatter = userFormatter;
+                        break;
+                    case "downloads":
+                        yFormatter = downloadFormatter;
+                        break;
+                    case "currency":
+                        yFormatter = currencyFormatter;
+                        break;
                 }
                 return function() {
                     return "<b>" + this.series.name + "</b><br>" +
@@ -208,6 +236,41 @@
             });
             // set Daily Users series to use the right yAxis.
             newConfig.series[1].yAxis = 1;
+        }
+        if (metric == "contributions" && newConfig.series.length) {
+            _.extend(newConfig, {
+                yAxis : [
+                    { // Downloads
+                        title: {
+                           text: gettext('Number of Contributions')
+                        },
+                        min: 0,
+                        labels: {
+                            formatter: function() {
+                                return Highcharts.numberFormat(this.value, 0);
+                            }
+                        }
+                    }, { // Daily Users
+                        title: {
+                            text: gettext('Amount, in USD')
+                        },
+                        labels: {
+                            formatter: function() {
+                                return Highcharts.numberFormat(this.value, 2);
+                            }
+                        },
+                        min: 0,
+                        opposite: true
+                    }
+                ],
+                tooltip: {
+                    shared : true,
+                    crosshairs : true
+                }
+            });
+            // set Daily Users series to use the right yAxis.
+            newConfig.series[1].yAxis = 1;
+            newConfig.series[2].yAxis = 1;
         }
         newConfig.tooltip.formatter = tooltipFormatter;
 

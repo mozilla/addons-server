@@ -67,7 +67,7 @@
 {% block content %}
   <div id="lm" class="loadmessage"><span>{{ _('Loading the latest data&hellip;') }}</span></div>
   <div class="secondary">
-    {{ report_menu(addon, report) }}
+    {{ report_menu(request, addon, report) }}
     {% block stats_note %}
     {% endblock %}
     <pre id="dbgout"></pre>
