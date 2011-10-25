@@ -76,7 +76,7 @@ class TestPayKey(amo.tests.TestCase):
 
     def test_split(self):
         chains = ((30, 'us@moz.com'),)
-        res = paypal.add_receivers(chains, 'a@a.com', 1.99, '123')
+        res = paypal.add_receivers(chains, 'a@a.com', Decimal('1.99'), '123')
         eq_(res['receiverList.receiver(1).amount'], '0.60')
         eq_(res['receiverList.receiver(1).email'], 'us@moz.com')
         eq_(res['receiverList.receiver(0).amount'], '1.39')
@@ -84,13 +84,13 @@ class TestPayKey(amo.tests.TestCase):
 
     def test_multiple_split(self):
         chains = ((30, 'us@moz.com'), (10, 'me@moz.com'))
-        res = paypal.add_receivers(chains, 'a@a.com', 1.99, '123')
+        res = paypal.add_receivers(chains, 'a@a.com', Decimal('1.99'), '123')
         eq_(res['receiverList.receiver(2).amount'], '0.20')
         eq_(res['receiverList.receiver(1).amount'], '0.60')
         eq_(res['receiverList.receiver(0).amount'], '1.19')
 
     def test_no_split(self):
-        res = paypal.add_receivers((), 'a@a.com', 1.99, '123')
+        res = paypal.add_receivers((), 'a@a.com', Decimal('1.99'), '123')
         eq_(res['receiverList.receiver(0).amount'], '1.99')
 
     @mock.patch('paypal._call')
