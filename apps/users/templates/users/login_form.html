@@ -13,7 +13,7 @@
   {% if waffle.switch('browserid-login') %}
     <div class="login-option">
       <fieldset id="browserid-login">
-          <button class="browserid-login" type="submit"
+          <button class="browserid-login" type="button"
                   data-url="{{ url('users.browserid_login') }}">
             {{ _('Log in with BrowserID') }}
           </button>
