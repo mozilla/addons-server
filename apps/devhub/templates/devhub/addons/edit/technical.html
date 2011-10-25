@@ -104,6 +104,18 @@
                        _("No, this add-on's source code is not publicly viewable.")) }}
             </td>
           </tr>
+          <tr>
+            <th>
+              {{ tip(_("Public Stats?"),
+                     _("Whether the download and usage stats of your add-on can
+                        be displayed in our online viewer.")) }}
+            </th>
+            <td>
+              {{ flags(_("This add-on's stats are publicly viewable."),
+                       addon.public_stats if not editable else form.public_stats, editable,
+                       _("No, this add-on's stats are not publicly viewable.")) }}
+            </td>
+          </tr>
           {% if addon.current_version.is_jetpack %}
           <tr>
             <th>
