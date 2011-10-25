@@ -1,37 +1,40 @@
-{% extends "base.html" %}
+{% extends "impala/base.html" %}
 
-{% block title %}{{ page_title(_('Add-on Compatibility Reports')) }}{% endblock %}
+{% set title = _('Add-on Compatibility Reports') %}
+{% block title %}{{ page_title(title) }}{% endblock %}
+
+{% block bodyclass %}compat{% endblock %}
 
 {% block content %}
-<div class="primary">
-  <hgroup>
-    <h2>{{ _('Add-on Compatibility Reports') }}</h2>
-    <h4>{{ _("Enter the GUID of an add-on below to view any reports we've received.") }}</h4>
-  </hgroup>
-  <form action="">
-    <input name="guid" value="{{ query }}" id="compat-query">
-  </form>
-</div>
-<div class="secondary">
-  <div class="highlight">
-    {% trans url_ = '/en-US/firefox/addon/15003' %}<p>
+<section class="secondary">
+  <section>
+    {% trans url_ = url('addons.detail', '15003') %}<p>
     Reports submitted to us through the
     <a href="{{ url_ }}">Add-on Compatibility Reporter</a> are collected here
     for developers to view. These reports help us determine which add-ons will
     need help supporting an upcoming Firefox version.
     </p>{% endtrans %}
-  </div>
-  {% if addons %}
-  <div class="highlight">
-    <h4>{{ _('Reports for your Add-ons') }}</h4>
-    <ul>
-      {% for addon in addons %}
-      <li>
-        <a href="{{ url('compat.reporter_detail', addon.guid) }}">{{ addon.name }}</a>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
-  {% endif %}
-</div>
+    {% if addons %}
+      <h2>{{ _('Reports for your Add-ons') }}</h2>
+      <ul>
+        {% for addon in addons %}
+          <li><a href="{{ url('compat.reporter_detail', addon.guid) }}">
+            {{ addon.name }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </section>
+</section>
+<section class="primary">
+  <header>
+    {{ impala_breadcrumbs([(None, _('Add-on Compatibility Center'))]) }}
+    <h1>{{ title }}</h1>
+  </header>
+  <section class="island hero">
+    <p class="enter">{{ _("Enter the GUID of an add-on below to view any reports we've received.") }}</p>
+    <form action="">
+      <input name="guid" value="{{ query }}" id="compat-query">
+    </form>
+  </section>
+</section>
 {% endblock %}

@@ -1,27 +1,17 @@
-{% extends "base.html" %}
+{% extends "impala/base.html" %}
 
 {% set app = request.APP.pretty %}
 {% set title = _('Add-on Compatibility Report for {app} {version}')|f(app=app, version=version) %}
 {% block title %}{{ page_title(title) }}{% endblock %}
-{% block bodyclass %}inverse{% endblock %}
 
-{% block extrahead %}
-<style>
-  #compat-form ul {
-    margin-left: 2em;
-  }
-  #compat-form :-moz-any(ul, li) {
-    display: inline;
-  }
-</style>
-{% endblock %}
+{% block bodyclass %}compat{% endblock %}
 
 {% block content %}
 <header>
-  <h2>{{ title }}</h2>
-  {{ breadcrumbs([(None, _('{app} {version} Compatibility')|f(app=app, version=version))]) }}
+  {{ impala_breadcrumbs([(None, _('{app} {version} Compatibility')|f(app=app, version=version))]) }}
+  <h1>{{ title }}</h1>
 </header>
-
+<section class="island full c">
 {% set titles = {
   'prev': _('Top 95% compatible with previous version'),
   'top_95': _('Top 95% of all add-ons'),
@@ -61,7 +51,7 @@
 <ul>
 </ul>
 
-<h3>{{ _('Details for add-ons compatible with previous version:') }}</h3>
+<h2>{{ _('Details for add-ons compatible with previous version:') }}</h2>
 <table>
   <tbody>
     {% for addon in usage_addons.object_list %}
@@ -74,6 +64,7 @@
     {% endfor %}
   </tbody>
 </table>
-{{ usage_addons|paginator }}
 
+{{ usage_addons|impala_paginator }}
+</section>
 {% endblock %}

@@ -1,70 +1,66 @@
-{% extends "base.html" %}
+{% extends "impala/base.html" %}
 
 {% block title %}{{ page_title(_('{addon} Compatibility Reports')|f(addon=name)) }}{% endblock %}
 
-{% block bodyclass %}inverse{% endblock %}
+{% block bodyclass %}compat gutter{% endblock %}
 
 {% block content %}
-<div class="primary">
-  {{ breadcrumbs([(url('compat.reporter'), _('Add-on Compatibility Center')),
-                  (None, _('{addon} Compatibility Reports')|f(addon=name))]) }}
-  <h2>{{ _('{addon} Compatibility Reports')|f(addon=name) }}</h2>
-  {% trans url_ = '/en-US/firefox/addon/15003' %}<p>
-  Reports submitted to us through the
-  <a href="{{ url_ }}">Add-on Compatibility Reporter</a> are collected here
-  for developers to view. These reports help us determine which add-ons will
-  need help supporting an upcoming Firefox version.
-  </p>{% endtrans %}
-
-  {% if reports.object_list %}
-  <table class="compat-info">
-    <thead>
-      <th>{{ _('Report Type') }}</th>
-      <th>{{ _('Version') }}</th>
-      <th>{{ _('Application') }}</th>
-      <th>{{ _('Application Build') }}</th>
-      <th>{{ _('Operating System') }}</th>
-      <th>{{ _('Submitted') }}</th>
-    </thead>
-    <tbody>
-      {% for report in reports.object_list %}
-        {% set cls = 'success' if report.works_properly else 'problem' %}
-        <tr class="{{ cls }}">
-          <td>{{ _('Success') if report.works_properly else _('Problem') }}</td>
-          <td>{{ report.version }}</td>
-          <td>{{ amo.APP_GUIDS[report.app_guid].pretty }} {{ report.app_version }}</td>
-          <td>{{ report.app_build }}</td>
-          <td>{{ report.client_os }}</td>
-          <td>{{ report.created|datetime }}</td>
-        </tr>
-        {% if report.comments %}
-          <tr class="comments" class="{{ cls }}">
-            <td colspan="6">{{ report.comments }}</td>
-          </tr>
-        {% endif %}
-      {% endfor %}
-    </tbody>
-  </table>
-  {{ reports|paginator }}
-  {% else %}
-  <b>{{ _('No reports found.') }}</b>
-  {% endif %}
-</div>
-
-<div class="secondary">
-  <div class="highlight">
-    <ul>
-      <li>
-        <a href="{{ url('compat.reporter_detail', guid)|urlparams(works_properly=1) }}">
-          {{ ngettext('{0} success report', '{0} success reports',
-                      works['success'])|f(works['success']|numberfmt) }}</a>
-      </li>
-      <li>
-        <a href="{{ url('compat.reporter_detail', guid)|urlparams(works_properly=0) }}">
-          {{ ngettext('{0} problem report', '{0} problem reports',
-                      works['problem'])|f(works['failure']|numberfmt) }}</a>
-      </li>
-    </ul>
+  {% set detail_url = request.path %}
+  {{ impala_breadcrumbs([(url('compat.reporter'), _('Add-on Compatibility Center')),
+                         (works_properly and detail_url, _('{addon} Compatibility Reports')|f(addon=name))]) }}
+  <div id="reports">
+    <a href="{{ detail_url|urlparams(works_properly=1) }}" class="button">
+      {{ ngettext('{0} success report', '{0} success reports',
+                  works.success)|f(works.success|numberfmt) }}</a>
+    <a href="{{ detail_url|urlparams(works_properly=0) }}" class="button">
+      {{ ngettext('{0} problem report', '{0} problem reports',
+                  works.failure)|f(works.failure|numberfmt) }}</a>
+    {% if works_properly %}
+      <a href="{{ detail_url }}" class="button">{{ _('View all') }}</a>
+    {% endif %}
   </div>
-</div>
+  <h1>{{ _('{addon} Compatibility Reports')|f(addon=name) }}</h1>
+
+  <section class="island primary full c">
+    {% trans url_ = url('addons.detail', '15003') %}<p>
+    Reports submitted to us through the
+    <a href="{{ url_ }}">Add-on Compatibility Reporter</a> are collected here
+    for developers to view. These reports help us determine which add-ons will
+    need help supporting an upcoming Firefox version.
+    </p>{% endtrans %}
+
+    {% if reports.object_list %}
+    <table class="compat-info">
+      <thead>
+        <th>{{ _('Report Type') }}</th>
+        <th>{{ _('Version') }}</th>
+        <th>{{ _('Application') }}</th>
+        <th>{{ _('Application Build') }}</th>
+        <th>{{ _('Platform') }}</th>
+        <th>{{ _('Submitted') }}</th>
+      </thead>
+      <tbody>
+        {% for report in reports.object_list %}
+          {% set cls = 'success' if report.works_properly else 'problem' %}
+          <tr class="{{ cls }}">
+            <th>{{ _('Success') if report.works_properly else _('Problem') }}</th>
+            <td>{{ report.version }}</td>
+            <td>{{ amo.APP_GUIDS[report.app_guid].pretty }} {{ report.app_version }}</td>
+            <td>{{ report.app_build }}</td>
+            <td>{{ report.client_os }}</td>
+            <td>{{ report.created|datetime }}</td>
+          </tr>
+          {% if report.comments %}
+            <tr class="comments" class="{{ cls }}">
+              <td colspan="0">{{ report.comments }}</td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+    {{ reports|impala_paginator }}
+    {% else %}
+      <p class="no-results">{{ _('No reports found.') }}</p>
+    {% endif %}
+  </section>
 {% endblock %}

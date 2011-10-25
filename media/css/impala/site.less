@@ -72,13 +72,16 @@ header + .island {
     width: 500px;
 }
 
+.full {
+    .border-box;
+    float: none;
+    margin: 0;
+    width: 100%;
+}
+
 .primary {
     margin-left: 210px;
     position: relative;
-    &.full {
-        margin: 0;
-        width: 100%;
-    }
     .primary {
         margin-right: 210px;
         margin-left: 0;
@@ -180,7 +183,7 @@ header + .island {
             content: '\203a';
             position: absolute;
             right: 6px;
-            top: -2px;
+            top: 4px;
             font-family: Georgia;
             font-weight: normal;
             font-size: 18px;
@@ -195,6 +198,7 @@ header + .island {
     }
     h2 {
         font-size: 14px;
+        line-height: 16px;
         a {
             color: inherit;
         }
@@ -202,11 +206,9 @@ header + .island {
     li a,
     h2 {
         display: block;
+        padding: 6px;
         text-decoration: none;
-        line-height: 28px;
     }
-    li a,
-    h2,
     p {
         padding: 0 6px;
     }
@@ -235,7 +237,7 @@ header + .island {
 
 .html-rtl .secondary {
     nav li a {
-        padding: 0 6px 0 12px;
+        padding-left: 12px;
         &:after {
             position: absolute;
             right: auto;

@@ -151,7 +151,8 @@ def reporter_detail(request, guid):
     works_ = dict(qs.values_list('works_properly').annotate(Count('id')))
     works = {'success': works_.get(True, 0), 'failure': works_.get(False, 0)}
 
-    if 'works_properly' in request.GET:
+    works_properly = request.GET.get('works_properly')
+    if works_properly:
         qs = qs.filter(works_properly=request.GET['works_properly'])
     reports = amo.utils.paginate(request, qs.order_by('-created'), 100)
 
@@ -160,4 +161,5 @@ def reporter_detail(request, guid):
 
     return jingo.render(request, 'compat/reporter_detail.html',
                         dict(reports=reports, works=works,
+                             works_properly=works_properly,
                              name=name, guid=guid))
