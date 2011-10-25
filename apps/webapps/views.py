@@ -4,11 +4,13 @@ import jingo
 from tower import ugettext_lazy as _lazy
 
 import amo
+from amo.decorators import json_view, login_required, post_required
 from amo.utils import paginate
+from addons.decorators import addon_view
 import addons.views
 import search.views
 
-from addons.models import Addon, Category
+from addons.models import Category
 from browse.views import category_landing, CategoryLandingFilter
 from sharing.views import share as share_redirect
 from .models import Webapp
@@ -88,3 +90,13 @@ def app_detail(request, app_slug):
 def share(request, app_slug):
     webapp = get_object_or_404(Webapp, app_slug=app_slug)
     return share_redirect(request, webapp, webapp.name, webapp.summary)
+
+
+@json_view
+@addon_view
+@login_required
+@post_required
+def record(request, addon):
+    if not request.amo_user.installed_set.filter(addon=addon).exists():
+        request.amo_user.installed_set.create(addon=addon)
+    return {'addon': addon.pk}

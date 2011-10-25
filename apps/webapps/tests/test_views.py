@@ -50,7 +50,7 @@ class TestListing(WebappTest):
             self.url + '?sort=downloads')
         eq_(doc('#featured-apps a').attr('href'), self.url + '?sort=featured')
         eq_(doc('#submit-app a').attr('href'), reverse('devhub.submit_apps.1'))
-        
+
     @patch.object(settings, 'READ_ONLY', False)
     def test_balloons_no_readonly(self):
         response = self.client.get(self.url)
@@ -58,7 +58,7 @@ class TestListing(WebappTest):
         eq_(doc('#site-notice').length, 0)
         eq_(doc('#site-nonfx').length, 0)
         eq_(doc('#site-welcome').length, 0)
-        
+
     @patch.object(settings, 'READ_ONLY', True)
     def test_balloons_readonly(self):
         response = self.client.get(self.url)
@@ -197,3 +197,31 @@ class TestSharing(WebappTest):
         }
         url = iri_to_uri(SERVICES['delicious'].url.format(**d))
         self.assertRedirects(r, url, status_code=302, target_status_code=301)
+
+
+class TestInstall(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        self.addon.update(app_slug=self.addon.pk)
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.url = reverse('apps.record', args=[self.addon.app_slug])
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+
+    def test_record_logged_out(self):
+        self.client.logout()
+        res = self.client.post(self.url)
+        eq_(res.status_code, 302)
+
+    def test_record_install(self):
+        res = self.client.post(self.url)
+        eq_(res.status_code, 200)
+        eq_(self.user.installed_set.count(), 1)
+
+    def test_record_multiple_installs(self):
+        self.client.get(self.url)
+        res = self.client.post(self.url)
+        eq_(res.status_code, 200)
+        eq_(self.user.installed_set.count(), 1)

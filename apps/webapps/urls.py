@@ -11,7 +11,8 @@ detail_patterns = patterns('',
     url('^$', views.app_detail, name='apps.detail'),
     url('^more$', views.app_detail, name='apps.detail_more'),
     url('^share$', views.share, name='apps.share'),
-    url('^abuse$', addons_views.report_abuse, name='apps.abuse')
+    url('^abuse$', addons_views.report_abuse, name='apps.abuse'),
+    url('^record$', views.record, name='apps.record'),
 )
 
 

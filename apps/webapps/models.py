@@ -104,3 +104,13 @@ models.signals.post_save.connect(update_search_index, sender=Webapp,
                                  dispatch_uid='webapps.index')
 models.signals.post_delete.connect(delete_search_index, sender=Webapp,
                                    dispatch_uid='webapps.unindex')
+
+
+class Installed(amo.models.ModelBase):
+    """Track WebApp installations."""
+    addon = models.ForeignKey('addons.Addon')
+    user = models.ForeignKey('users.UserProfile')
+
+    class Meta:
+        db_table = 'users_install'
+        unique_together = ('addon', 'user')
