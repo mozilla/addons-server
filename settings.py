@@ -609,6 +609,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
             'js/lib/jquery.pjax.js',
+            'js/impala/footer.js',
 
             # jQuery UI
             'js/lib/jquery-ui/jquery.ui.core.js',

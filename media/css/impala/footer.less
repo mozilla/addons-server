@@ -18,10 +18,16 @@
     background: #33559b url(../../img/zamboni/global/bg-footer.png) repeat-x;
     line-height: 20px;
     padding: 123px 0 5px 0;
+    z-index: -1;
     .section {
         max-width: 960px;
         margin: 0 auto;
         position: relative;
+    }
+    &.sticky {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
     }
 }
 

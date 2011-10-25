@@ -48,7 +48,7 @@
         {% endif %}
         {% block bodyattrs %}{% endblock %}>
 
-    <div id="page">
+    <div id="page" class="c">
       {% block site_header %}
         {# Well that's an awful tiny mozilla header #}
         <div id="global-header-tab">
@@ -185,14 +185,6 @@
       {% block popups %}
       {% endblock %}
     </div>
-    {# js #}
-    {% block site_js %}
-      <script src="{{ static(url('jsi18n')) }}"></script>
-      {{ js('impala') }}
-      <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
-      <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
-    {% endblock %}
-    {% block js %}{% endblock %}
     {% block footer %}
       <div id="footer" role="contentinfo">
         <div class="section">
@@ -203,6 +195,14 @@
         </div> {# section #}
       </div> {# footer #}
     {% endblock %}
+    {# js #}
+    {% block site_js %}
+      <script src="{{ static(url('jsi18n')) }}"></script>
+      {{ js('impala') }}
+      <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
+      <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
+    {% endblock %}
+    {% block js %}{% endblock %}
     <div id="get-satisfaction"></div>
     {# Webtrends Stats Tracking #}
     <script defer src="{{ media('js/webtrends/webtrends-v0.1.js') }}"></script>
