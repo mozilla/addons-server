@@ -1443,6 +1443,14 @@ def submit_media(request, addon_id, addon, step, webapp=False):
             preview.save(addon)
 
         SubmitStep.objects.filter(addon=addon).update(step=5)
+
+        # Special handling for webapps, where this is jumping to the done step
+        if addon.is_webapp():
+            addon.update(status=amo.STATUS_PENDING if
+                         settings.WEBAPPS_RESTRICTED else amo.STATUS_LITE)
+            SubmitStep.objects.filter(addon=addon).delete()
+            signals.submission_done.send(sender=addon)
+
         return redirect(_step_url(5, webapp), addon.slug)
 
     return jingo.render(request, 'devhub/addons/submit/media.html',
@@ -1480,10 +1488,7 @@ def submit_select_review(request, addon_id, addon, step):
     review_type_form = forms.ReviewTypeForm(request.POST or None)
     updated_status = None
 
-    if addon.is_webapp():
-        updated_status = (amo.STATUS_PENDING if settings.WEBAPPS_RESTRICTED
-                          else amo.STATUS_LITE)
-    elif request.method == 'POST' and review_type_form.is_valid():
+    if request.method == 'POST' and review_type_form.is_valid():
         updated_status = review_type_form.cleaned_data['review_type']
 
     if updated_status:

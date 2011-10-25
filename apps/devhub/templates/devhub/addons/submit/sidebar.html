@@ -1,27 +1,37 @@
 {# Steps below HAS_ADDON don't have an addon associated.  Once we have an
    addon we can't go back below that line. #}
-{% set HAS_ADDON, MAX = 3, 7 %}
-
+{% set HAS_ADDON = 3 %}
+{% if webapp %}
+  {% set NAV = (_('Getting Started'),
+                _('Link your app'),
+                _('Describe your app'),
+                _('Add images'),
+                _("You're done!")) %}
+  {% set MAX = 5 %}
+  {% set BASE = 'devhub.submit_apps.%s' %}
+{% else %}
+  {% set NAV = (_('Getting Started'),
+                _('Upload your add-on'),
+                _('Describe your add-on'),
+                _('Add images'),
+                _('Select a license'),
+                _('Select a review process'),
+                _("You're done!")) %}
+  {% set MAX = 7 %}
+  {% set BASE = 'devhub.submit.%s' %}
+{% endif %}
 <div class="highlight">
   <hgroup>
     <h3>{{ _('Submission Process') }}</h3>
   </hgroup>
   <ol class="submit-addon-progress">
-    {% for text, show_for_webapp, alt_text
-           in (_('Getting Started'), True, None),
-              (_('Upload your add-on'), True, _('Link your app')),
-              (_('Describe your add-on'), True, _('Describe your app')),
-              (_('Add images'), True, None),
-              (_('Select a license'), False, None),
-              (_('Select a review process'), False, None),
-              (_("You're done!"), True, None): %}
-      {% if not webapp or show_for_webapp: %}
+    {% for text in NAV %}
       <li {% if step.current == loop.index %}class="current"{% endif %}>
         {% if step.current < HAS_ADDON %}
           {% if loop.index <= step.current %}
-            <a href="{{ url('devhub.submit.%s' % loop.index) }}">{{ alt_text if webapp and alt_text else text }}</a>
+            <a href="{{ url(BASE % loop.index) }}">{{ text }}</a>
           {% else %}
-            {{ alt_text if webapp and alt_text else text }}
+            {{ text }}
           {% endif %}
         {% else %}
           {# 1. We have an addon, so don't link to non-addon steps.
@@ -30,12 +40,10 @@
           {% if loop.index < HAS_ADDON or loop.index > step.max or step.max == MAX %}
             {{ text }}
           {% else %}
-            <a href="{{ url('devhub.submit.%s' % loop.index, addon.slug) }}">
-              {{ text }}</a>
+            <a href="{{ url(BASE % loop.index, addon.slug) }}">{{ text }}</a>
           {% endif %}
         {% endif %}
       </li>
-      {% endif %}
     {% endfor %}
   </ol>
 </div>

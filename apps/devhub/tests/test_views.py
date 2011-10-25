@@ -1545,9 +1545,11 @@ class TestSubmitStep4(TestSubmitBase):
         r = self.client.post(reverse('devhub.submit_apps.4', args=['a3615']),
                              data_formset)
         eq_(r.status_code, 302)
-        eq_(self.get_step().step, 5)
+        assert_raises(SubmitStep.DoesNotExist, self.get_step)
         self.assertRedirects(r, reverse('devhub.submit_apps.5',
                                         args=[self.get_addon().slug]))
+        eq_(self.get_addon().status, amo.STATUS_PENDING if
+            settings.WEBAPPS_RESTRICTED else amo.STATUS_LITE)
 
     def formset_new_form(self, *args, **kw):
         ctx = self.client.get(self.url).context
