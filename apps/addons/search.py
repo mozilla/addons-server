@@ -1,8 +1,6 @@
 import logging
 from operator import attrgetter
 
-from django.conf import settings
-
 import elasticutils
 import pyes.exceptions as pyes
 
@@ -54,19 +52,17 @@ def extract(addon):
     if addon.status == amo.STATUS_PUBLIC:
         d['_boost'] = max(d['_boost'], 1) * 4
 
-    # Indices for each language
+    # Indices for each language. languages is a list of locales we want to
+    # index with analyzer if the string's locale matches.
     for analyzer, languages in ANALYZER_MAP.iteritems():
         d['name_' + analyzer] = list(
-            set(string for locale, string
-                in translations[addon.name_id]
+            set(string for locale, string in translations[addon.name_id]
                 if locale.lower() in languages))
         d['summary_' + analyzer] = list(
-            set(string for locale, string
-                in translations[addon.summary_id]
+            set(string for locale, string in translations[addon.summary_id]
                 if locale.lower() in languages))
         d['description_' + analyzer] = list(
-            set(string for locale, string
-                in translations[addon.description_id]
+            set(string for locale, string in translations[addon.description_id]
                 if locale.lower() in languages))
 
     return d
@@ -99,7 +95,8 @@ def setup_mapping():
                                               for app in amo.APP_USAGE)},
         },
     }
-    for analyzer in ANALYZER_MAP.iterkeys():
+    # Add room for language-specific indexes.
+    for analyzer in ANALYZER_MAP:
         mapping['properties']['name_' + analyzer] = {
             'type': 'string',
             'analyzer': analyzer,
@@ -114,7 +111,6 @@ def setup_mapping():
         }
 
     es = elasticutils.get_es()
-    indexes = settings.ES_INDEXES
     # Adjust the mapping for all models at once because fields are shared
     # across all doc types in an index. If we forget to adjust one of them
     # we'll get burned later on.

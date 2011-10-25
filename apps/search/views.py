@@ -1,10 +1,10 @@
 from collections import defaultdict
 
-from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import redirect
 from django.utils.encoding import smart_str
 from django.views.decorators.vary import vary_on_headers
+from django.utils import translation
 
 import commonware.log
 import jingo
@@ -18,15 +18,13 @@ import browse.views
 from addons.models import Addon, Category
 from amo.decorators import json_view
 from amo.helpers import locale_url, urlparams
-from amo.urlresolvers import reverse
 from amo.utils import MenuItem, sorted_groupby
 from versions.compare import dict_from_int, version_int
 from webapps.models import Webapp
 
 from . import forms
-from .client import (Client as SearchClient, SearchError,
-                           CollectionsClient, PersonasClient, sphinx)
-from .forms import SearchForm, SecondarySearchForm, ESSearchForm
+from .client import SearchError, CollectionsClient, PersonasClient
+from .forms import SecondarySearchForm, ESSearchForm
 
 DEFAULT_NUM_RESULTS = 20
 
@@ -404,9 +402,8 @@ def ajax_search_suggestions(request):
     return results
 
 
-def _get_analyzer():
-    language = translation.get_language()
-    return LANGUAGE_TO_ANALYZER.get(language, 'standard')
+def _get_locale_analyzer():
+    return LANGUAGE_TO_ANALYZER.get(translation.get_language())
 
 
 def name_only_query(q):
@@ -414,38 +411,37 @@ def name_only_query(q):
              name__fuzzy={'value': q, 'boost': 2, 'prefix_length': 4},
              name__startswith={'value': q, 'boost': 1.5})
 
-    analyzer = _get_analyzer()
-    if analyzer != 'standard':
-        d['name_' + analyzer + '__text'] = {'query': q,
-                                            'boost': 2.5,
-                                            'analyzer': analyzer}
+    analyzer = _get_locale_analyzer()
+    if analyzer:
+        d['name_%s__text' % analyzer] = {'query': q, 'boost': 2.5,
+                                         'analyzer': analyzer}
     return d
 
 
 def name_query(q):
-    # 1. Prefer text matches first, using the standard text analyzer (boost=3).
-    # 2. Then text matches, using language specific analyzer (boost=2.5).
-    # 3. Then try fuzzy matches ("fire bug" => firebug) (boost=2).
-    # 4. Then look for the query as a prefix of a name (boost=1.5).
-    # 5. Look for phrase matches inside the summary (boost=0.8).
-    # 6. Look for phrase matches inside the summary using language specific
-    #    analyzer (boost=0.6).
-    # 7. Look for phrase matches inside the description (boost=0.3).
-    # 8. Look for phrase matches inside the description using language
-    #    specific analyzer (boost=0.1).
+    # * Prefer text matches first, using the standard text analyzer (boost=3).
+    # * Then text matches, using language-specific analyzer (boost=2.5).
+    # * Then try fuzzy matches ("fire bug" => firebug) (boost=2).
+    # * Then look for the query as a prefix of a name (boost=1.5).
+    # * Look for phrase matches inside the summary (boost=0.8).
+    # * Look for phrase matches inside the summary using language specific
+    #   analyzer (boost=0.6).
+    # * Look for phrase matches inside the description (boost=0.3).
+    # * Look for phrase matches inside the description using language
+    #   specific analyzer (boost=0.1).
     more = dict(summary__text={'query': q, 'boost': 0.8, 'type': 'phrase'},
                 description__text={'query': q, 'boost': 0.3, 'type': 'phrase'})
 
-    analyzer = _get_analyzer()
-    if analyzer != 'standard':
-        more['summary_' + analyzer + '__text'] = {'query': q,
-                                                  'boost': 0.6,
-                                                  'type': 'phrase',
-                                                  'analyzer': analyzer}
-        more['description_' + analyzer + '__text'] = {'query': q,
-                                                      'boost': 0.1,
-                                                      'type': 'phrase',
-                                                      'analyzer': analyzer}
+    analyzer = _get_locale_analyzer()
+    if analyzer:
+        more['summary_%s__test' % analyzer] = {'query': q,
+                                               'boost': 0.6,
+                                               'type': 'phrase',
+                                               'analyzer': analyzer}
+        more['description_%s__text' % analyzer] = {'query': q,
+                                                   'boost': 0.1,
+                                                   'type': 'phrase',
+                                                   'analyzer': analyzer}
     return dict(more, **name_only_query(q))
 
 

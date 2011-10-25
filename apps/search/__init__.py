@@ -1,8 +1,8 @@
 # These two dicts are mapping between language codes in zamboni and language
 # analyzers in elasticsearch.
 #
-# Each key value of ANALYZER_MAP is language analyzer supported by elasticsearch.
-# See
+# Each key value of ANALYZER_MAP is language analyzer supported by
+# elasticsearch.  See
 # http://www.elasticsearch.org/guide/reference/index-modules/analysis/lang-analyzer.html
 #
 # Each value of ANALYZER_MAP is a list which is supported by the key analyzer.
@@ -52,6 +52,6 @@ ANALYZER_MAP = {
 
 # This dict is an inverse mapping of ANALYZER_MAP.
 LANGUAGE_TO_ANALYZER = {}
-for analyzer, languages in ANALYZER_MAP.iteritems():
+for analyzer, languages in ANALYZER_MAP.items():
     for language in languages:
         LANGUAGE_TO_ANALYZER[language] = analyzer
