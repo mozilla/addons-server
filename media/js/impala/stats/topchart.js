@@ -52,6 +52,7 @@
                 // we only want to respond to changes in range.
                 if (!newView.range) return;
                 $self.addClass('loading');
+                $self.removeClass('nodata');
                 _.extend(view, {'range' : normalizeRange(newView.range)});
                 $.when(z.StatsManager.getDataRange(view))
                  .then(function(data) {
@@ -61,7 +62,11 @@
 
             // We take the data (aggregated to one row)
             function generateRankedList(data, done) {
-                if (data.empty) return;
+                if (data.empty) {
+                    $self.removeClass('loading');
+                    $self.addClass('nodata');
+                    return;
+                };
                 var totalValue = data[data.firstIndex].count,
                     otherValue = totalValue;
                 data = data[data.firstIndex].data;

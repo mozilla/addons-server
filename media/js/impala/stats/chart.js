@@ -78,7 +78,14 @@
         'month' : true
     };
 
+    function showNoDataOverlay() {
+        $chart.parent().addClass('nodata');
+        $chart.parent().removeClass('loading');
+        if (chart) chart.destroy();
+    }
+
     $win.bind("changeview", function() {
+        $chart.parent().removeClass('nodata');
         $chart.addClass('loading');
     });
 
@@ -99,7 +106,7 @@
             group = 'day';
         }
         if (obj.data.empty) {
-            // showNoDataOverlay();
+            showNoDataOverlay();
             $chart.removeClass('loading');
             return;
         }

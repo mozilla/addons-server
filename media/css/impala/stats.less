@@ -154,6 +154,7 @@ table tbody tr {
     overflow: hidden;
 }
 .toplist {
+    position: relative;
     overflow: hidden;
     float: left;
     width: 31%;
@@ -331,7 +332,7 @@ table.stats-aggregate tbody span.change.minus {
 }
 
 .chart {
-    width: 648px;
+    position: relative;
     padding: 0;
     width: 100%;
     overflow: hidden;
@@ -341,6 +342,26 @@ table.stats-aggregate tbody span.change.minus {
     background: #fff;
     overflow: hidden;
     height: 384px;
+}
+
+.no-data-overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    color: #fff;
+    p {
+        text-align: center;
+        position: relative;
+        top: 35%;
+        color: @light-gray;
+        font-size: 2em;
+    }
+}
+.nodata .no-data-overlay {
+    display: block;
 }
 
 .loadmessage {

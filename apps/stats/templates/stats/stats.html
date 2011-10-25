@@ -85,7 +85,11 @@
     {% endif %}
     data-base_url="{{ stats_base_url }}">
     <div class="island chart">
-      <div id="head-chart"></div>
+      <div id="head-chart">
+      </div>
+      <div class="no-data-overlay">
+        <p>{{ _('No data available.') }}</p>
+      </div>
     </div>
     {% block stats %}
     {% endblock %}
