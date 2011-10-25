@@ -16,7 +16,7 @@
        },
        plotOptions: {
           pie: {
-             allowPointSelect: true,
+             allowPointSelect: false,
              dataLabels: {
                 enabled: false,
                 color: '#333'
