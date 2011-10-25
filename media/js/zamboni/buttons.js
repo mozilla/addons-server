@@ -31,7 +31,8 @@ var webappButton = function() {
             .removeClass('disabled')
             .click(function(e) {
                 e.preventDefault();
-                navigator.mozApps.install(manifestURL);
+                purchases.record($this);
+                purchases.install_app(manifestURL);
                 // If this install fails would be nice to raise a message.
             });
     } else {

@@ -169,6 +169,11 @@ def create_addon_purchase(sender, instance, **kw):
         AddonPurchase.objects.get_or_create(addon=instance.addon,
                                             user=instance.user)
 
+        # When they've purchased, automatically create installed record
+        # without have to bother doing a post.
+        if not instance.addon.installed_set.filter(user=instance.user).exists():
+            instance.addon.installed_set.create(user=instance.user)
+
     elif instance.type in [amo.CONTRIB_REFUND, amo.CONTRIB_CHARGEBACK]:
         purchases = AddonPurchase.objects.filter(addon=instance.addon,
                                                  user=instance.user)

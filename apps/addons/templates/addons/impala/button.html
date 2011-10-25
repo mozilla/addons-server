@@ -23,6 +23,7 @@
      data-manifest-url="{% if (addon.is_premium() and addon.has_purchased(amo_user)) or (not addon.is_premium()) -%}
         {{ addon.manifest_url }}
      {%- endif %}"
+     data-record-url="{{ url('apps.record', addon.app_slug) }}"
   {% endif %}
   >
   <p class="install-button">

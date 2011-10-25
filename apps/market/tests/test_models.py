@@ -257,3 +257,7 @@ class TestContribution(amo.tests.TestCase):
         self.create(amo.CONTRIB_PURCHASE)
         self.create(amo.CONTRIB_REFUND)
         eq_(self.addon.addonpurchase_set.filter(user=other).count(), 1)
+
+    def test_user_installed(self):
+        self.create(amo.CONTRIB_PURCHASE)
+        eq_(self.user.installed_set.filter(addon=self.addon).count(), 1)

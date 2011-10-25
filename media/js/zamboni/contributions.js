@@ -38,6 +38,17 @@ var purchases = {
         });
         purchases.result();
     },
+    record: function($install) {
+        /* Record the install of the app. This is badly named because it
+         * is not necessarily related to a purchase. */
+        if ($install.attr('data-record-url')) {
+            $.ajax({
+                url: $install.attr('data-record-url'),
+                dataType: 'json',
+                type: 'POST'
+            });
+        }
+    },
     result: function() {
         /* Process the paypal result page. This is the complete or cancel
          * page. Its main job is to close and take us back to the modal */
@@ -90,8 +101,8 @@ var purchases = {
     },
     thanks: function(win) {
         /* Process the thanks modal that we show. */
-        var $body = $(win.document).find('body');
-        var $button = purchases.find_button($body);
+        var $body = $(win.document).find('body'),
+            $button = purchases.find_button($body);
         purchases.reset($button, $body);
         purchases.trigger($body);
     },
