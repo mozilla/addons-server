@@ -81,7 +81,7 @@
     function showNoDataOverlay() {
         $chart.parent().addClass('nodata');
         $chart.parent().removeClass('loading');
-        if (chart) chart.destroy();
+        if (chart && chart.destroy) chart.destroy();
     }
 
     $win.bind("changeview", function() {
@@ -296,7 +296,7 @@
             text: title
         };
 
-        if (chart) chart.destroy();
+        if (chart && chart.destroy) chart.destroy();
         chart = new Highcharts.Chart(newConfig);
         chartRange = chart.xAxis[0].getExtremes();
         $("h1").click(function() {
