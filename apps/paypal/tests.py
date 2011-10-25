@@ -1,4 +1,5 @@
 from cStringIO import StringIO
+from decimal import Decimal
 import urlparse
 
 from django.conf import settings

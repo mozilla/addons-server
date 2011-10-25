@@ -45,7 +45,8 @@ def add_receivers(chains, email, amount, uuid):
     result = {}
     for number, chain in enumerate(chains, 1):
         percent, destination = chain
-        this = Decimal(amount * (percent / 100.0)).quantize(Decimal('.01'))
+        this = (Decimal(str(amount * (percent / 100.0)))
+                .quantize(Decimal('.01')))
         remainder = remainder - this
         result.update({
             'receiverList.receiver(%s).email' % number: destination,
