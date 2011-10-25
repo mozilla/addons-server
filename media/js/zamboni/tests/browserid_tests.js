@@ -15,9 +15,9 @@ asyncTest('Login failure (error from server)', function() {
                status: 401});
     gotVerifiedEmail("browserid-assertion", "/", sandbox).fail(
         function() {
-            equal($(".primary .notification-box h2", sandbox).text(),
+            equal($(".primary .notification-box h2", sandbox).text().indexOf(
                   'BrowserID login failed. Maybe you don\'t have an account'
-                + ' under that email address?');
+                + ' under that email address?'), 0);
             $(".primary .notification-box", sandbox).remove();
             start();
         });

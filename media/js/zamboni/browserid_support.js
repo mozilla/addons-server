@@ -33,7 +33,9 @@ function gotVerifiedEmail(assertion, redirectTo, domContext) {
                        } else {
                            displayErrBox(gettext(
                                   "BrowserID login failed. Maybe you don't "
-                                + 'have an account under that email address?'));
+                                + 'have an account under that email address?') +
+                                " textStatus: " + textStatus + " errorThrown: " +
+                                errorThrown);
                        }
                    }
                    });
