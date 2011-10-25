@@ -12,7 +12,6 @@ from tower import ugettext as _
 from mobility.decorators import mobile_template
 
 import amo
-from search import LANGUAGE_TO_ANALYZER
 import bandwagon.views
 import browse.views
 from addons.models import Addon, Category
@@ -403,7 +402,7 @@ def ajax_search_suggestions(request):
 
 
 def _get_locale_analyzer():
-    return LANGUAGE_TO_ANALYZER.get(translation.get_language())
+    return amo.SEARCH_LANGUAGE_TO_ANALYZER.get(translation.get_language())
 
 
 def name_only_query(q):

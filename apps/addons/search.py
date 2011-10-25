@@ -10,7 +10,6 @@ from bandwagon.models import Collection
 from compat.models import AppCompat
 from users.models import UserProfile
 from versions.compare import version_int
-from apps.search import ANALYZER_MAP
 
 
 log = logging.getLogger('z.es')
@@ -54,7 +53,7 @@ def extract(addon):
 
     # Indices for each language. languages is a list of locales we want to
     # index with analyzer if the string's locale matches.
-    for analyzer, languages in ANALYZER_MAP.iteritems():
+    for analyzer, languages in amo.SEARCH_ANALYZER_MAP.iteritems():
         d['name_' + analyzer] = list(
             set(string for locale, string in translations[addon.name_id]
                 if locale.lower() in languages))
@@ -96,7 +95,7 @@ def setup_mapping():
         },
     }
     # Add room for language-specific indexes.
-    for analyzer in ANALYZER_MAP:
+    for analyzer in amo.SEARCH_ANALYZER_MAP:
         mapping['properties']['name_' + analyzer] = {
             'type': 'string',
             'analyzer': analyzer,
