@@ -65,8 +65,10 @@
                 if (data.empty) {
                     $self.removeClass('loading');
                     $self.addClass('nodata');
+                    if (hChart && hChart.destroy) hChart.destroy();
+                    $table.html('');
                     return;
-                };
+                }
                 var totalValue = data[data.firstIndex].count,
                     otherValue = totalValue;
                 data = data[data.firstIndex].data;
