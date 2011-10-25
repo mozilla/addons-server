@@ -10,7 +10,7 @@ from bandwagon.models import Collection
 from compat.models import AppCompat
 from users.models import UserProfile
 from versions.compare import version_int
-from apps.search import ANALYZER_MAP
+from search import ANALYZER_MAP
 
 
 log = logging.getLogger('z.es')
