@@ -265,7 +265,7 @@ def _clean_next_url(request):
 
 @anonymous_csrf
 @post_required
-@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
+#@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def browserid_login(request):
     if waffle.switch_is_active('browserid-login'):
         logout(request)
@@ -283,7 +283,7 @@ def browserid_login(request):
 @addon_view
 @can_be_purchased
 @anonymous_csrf
-@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
+#@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def paypal_start(request, addon=None):
     download = urlparse(request.GET.get('realurl', '')).path
     data = {'addon': addon, 'is_ajax': request.is_ajax(), 'download': download}
@@ -297,14 +297,14 @@ def paypal_start(request, addon=None):
 
 @anonymous_csrf
 @mobile_template('users/{mobile/}login_modal.html')
-@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
+#@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def login_modal(request, template=None):
     return _login(request, template=template)
 
 
 @anonymous_csrf
 @mobile_template('users/{mobile/}login.html')
-@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
+#@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def login(request, template=None):
     return _login(request, template=template)
 
