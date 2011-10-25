@@ -1,7 +1,16 @@
 {% extends "mobile/base.html" %}
 
 {% block title %}{{ page_title(_('User Login')) }}{% endblock %}
-{% block js %}{% if form.recaptcha %}{% include("amo/recaptcha_js.html") %}{% endif %}{% endblock %}
+
+{% block js %}
+  {% if waffle.switch('browserid-login') %}
+    <script src="https://browserid.org/include.js"></script>
+  {% endif %}
+  {% if form.recaptcha %}
+    {% include("amo/recaptcha_js.html") %}
+  {% endif %}
+  {{ js('zamboni/login') }}
+{% endblock %}
 
 {% block page %}
 
@@ -49,6 +58,18 @@
         <button id="login-submit" class="button" type="submit">{{ _('Log in') }}</button>
       </div>
     </form>
+
+  {% if waffle.switch('browserid-login') %}
+  <section id="browserid">
+    <div class="browserid-divider">
+      <span>{{ _('or') }}</span>
+    </div>
+    <button class="browserid-login button" type="submit"
+            data-url="{{ url('users.browserid_login') }}">
+      {{ _('Log in with BrowserID') }}
+    </button>
+  </section>
+  {% endif %}
   </section>
 
   <div id="login-help" class="article">

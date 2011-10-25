@@ -1671,6 +1671,31 @@ li.persona-previewer {
 }
 
 /************************************/
+/*               LOGIN              */
+/************************************/
+
+.browserid-divider {
+    text-align: center;
+    margin: 0em 1em 2em;
+    border-bottom: 1px dashed rgb(204, 204, 204);
+}
+
+.browserid-divider span {
+    background-color: #FFFFFF;
+    font-style: italic;
+    padding: 0 15px;
+    position: relative;
+    top: 0.4em;
+}
+
+#browserid {
+    margin-bottom: 2em;
+}
+#browserid .button {
+    margin: auto;
+}
+
+/************************************/
 /*              EXPANDO             */
 /************************************/
 
