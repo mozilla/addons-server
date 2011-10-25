@@ -17,7 +17,7 @@ $(function() {
     }).delegate('.cnt', 'recount', function(e, newCount) {
         // Update # of results on sidebar.
         var $this = $(this);
-        if ($this.html() != newCount.html()) {
+        if (newCount.length && $this.html() != newCount.html()) {
             $this.replaceWith(newCount);
         }
     }).delegate('a[data-params]', 'rebuild', function(e) {
@@ -66,6 +66,7 @@ $.fn.initSearchPjax = function($filters) {
     }
 
     function hijackLink() {
+        timeouts = 0;
         pjaxOpen($(this).attr('href'));
     }
 
