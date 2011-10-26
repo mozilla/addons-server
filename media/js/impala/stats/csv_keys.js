@@ -120,7 +120,13 @@ var csv_keys = {
         ]
     },
     aggregateLabel: {
-        "downloads" : gettext("<b>{0}</b> downloads from {1} to {2}"),
-        "usage"     : gettext("<b>{0}</b> users from {1} to {2}")
+        "downloads" : [
+            gettext("<b>{0}</b> in last {1}"),
+            gettext("<b>{0}</b> from {1} to {2}"),
+        ],
+        "usage"     : [
+            gettext("<b>{0}</b> average in last {1}"),
+            gettext("<b>{0}</b> from {1} to {2}"),
+        ]
     }
 };

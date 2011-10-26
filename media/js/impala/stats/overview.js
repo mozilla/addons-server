@@ -24,17 +24,30 @@ $(function() {
                     totalUsers      = Highcharts.numberFormat(aggregateRow.updates, 0),
                     startString     = range.start.iso(),
                     endString       = range.end.iso(),
-                    downloadFormat  = csv_keys.aggregateLabel.downloads,
-                    userFormat      = csv_keys.aggregateLabel.usage;
-
-                $("#downloads-in-range").html(format(downloadFormat,
-                                                     totalDownloads,
+                    downloadFormat,
+                    userFormat;
+                if (typeof view.range == 'string') {
+                    downloadFormat  = csv_keys.aggregateLabel.downloads[0],
+                    userFormat      = csv_keys.aggregateLabel.usage[0];
+                    $("#downloads-in-range").html(format(downloadFormat,
+                                                         totalDownloads,
+                                                         view.range));
+                    $("#users-in-range").html(format(userFormat,
+                                                     totalUsers,
+                                                     view.range));
+                } else {
+                    downloadFormat  = csv_keys.aggregateLabel.downloads[1],
+                    userFormat      = csv_keys.aggregateLabel.usage[1];
+                    $("#downloads-in-range").html(format(downloadFormat,
+                                                         totalDownloads,
+                                                         startString,
+                                                         endString));
+                    $("#users-in-range").html(format(userFormat,
+                                                     totalUsers,
                                                      startString,
                                                      endString));
-                $("#users-in-range").html(format(userFormat,
-                                                 totalUsers,
-                                                 startString,
-                                                 endString));
+                }
+
             }
             $('.two-up').removeClass('loading');
         });
