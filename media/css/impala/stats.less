@@ -207,13 +207,18 @@ table tbody tr {
     table {
         width: 100%;
         border-collapse: collapse;
+        table-layout: fixed;
+    }
+    thead th {
+        white-space: normal;
     }
     th, td {
-        white-space: nowrap;
+        width: 100px;
         padding: .5em 1em;
         text-align: right;
         &:first-child {
             text-align: left;
+            width: 200px;
         }
     }
     th {
