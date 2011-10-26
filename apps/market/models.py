@@ -160,8 +160,8 @@ def create_addon_purchase(sender, instance, **kw):
         return
 
     log.debug('Processing addon purchase type: %s, addon %s, user %s'
-              % (amo.CONTRIB_TYPES[instance.type], instance.addon.pk,
-                 instance.user.pk))
+              % (unicode(amo.CONTRIB_TYPES[instance.type]),
+                 instance.addon.pk, instance.user.pk))
 
     if instance.type == amo.CONTRIB_PURCHASE:
         log.debug('Creating addon purchase: addon %s, user %s'
