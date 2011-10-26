@@ -9,7 +9,7 @@ from tower import ugettext as _, ungettext as ngettext
 
 import amo
 from amo.urlresolvers import reverse
-from amo.helpers import breadcrumbs, impala_breadcrumbs, page_title
+from amo.helpers import breadcrumbs, page_title
 from access import acl
 from addons.helpers import new_context
 
@@ -46,8 +46,7 @@ def docs_page_title(context, title=None):
 
 @register.function
 @jinja2.contextfunction
-def dev_breadcrumbs(context, addon=None, items=None, add_default=False,
-                    impala=False):
+def dev_breadcrumbs(context, addon=None, items=None, add_default=False):
     """
     Wrapper function for ``breadcrumbs``. Prepends 'Developer Hub'
     breadcrumbs.
@@ -59,12 +58,10 @@ def dev_breadcrumbs(context, addon=None, items=None, add_default=False,
         specified then the Add-on will be linked.
     **add_default**
         Prepends trail back to home when True.  Default is False.
-    **impala**
-        Whether to use the impala_breadcrumbs helper. Default is False.
     """
     crumbs = [(reverse('devhub.index'), _('Developer Hub'))]
 
-    if context.get('webapp'):
+    if context.get('WEBAPPS'):
         title = _('My Apps')
     else:
         title = _('My Add-ons')
@@ -83,10 +80,7 @@ def dev_breadcrumbs(context, addon=None, items=None, add_default=False,
         crumbs.append((url, addon.name))
     if items:
         crumbs.extend(items)
-    if impala:
-        return impala_breadcrumbs(context, crumbs, add_default)
-    else:
-        return breadcrumbs(context, crumbs, add_default)
+    return breadcrumbs(context, crumbs, add_default)
 
 
 @register.function

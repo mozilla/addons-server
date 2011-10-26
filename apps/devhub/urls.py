@@ -178,7 +178,6 @@ urlpatterns = decorate(write, patterns('',
     # Redirect to /addons/ at the base.
     url('^addon$', lambda r: redirect('devhub.addons', permanent=True)),
     url('^addons$', views.dashboard, name='devhub.addons'),
-    url('^apps$', use_apps(views.dashboard), name='devhub.apps'),
     url('^feed$', views.feed, name='devhub.feed_all'),
     # TODO: not necessary when devhub homepage is moved out of remora
     url('^feed/all$', lambda r: redirect('devhub.feed_all', permanent=True)),
