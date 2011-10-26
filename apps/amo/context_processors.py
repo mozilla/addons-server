@@ -43,10 +43,10 @@ def global_settings(request):
     if request.user.is_authenticated() and hasattr(request, 'amo_user'):
         amo_user = request.amo_user
         account_links.append({
-            'text': _('View Profile'),
+            'text': _('My Profile'),
             'href': request.user.get_profile().get_url_path(),
         })
-        account_links.append({'text': _('Edit Profile'),
+        account_links.append({'text': _('Account Settings'),
                               'href': reverse('users.edit')})
         account_links.append({
             'text': _('My Collections'),

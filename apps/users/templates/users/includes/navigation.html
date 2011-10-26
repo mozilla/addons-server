@@ -1,8 +1,8 @@
 <div class="secondary">
   <h2>{{ _('My Account') }}</h2>
   <ul>
-    <li><a href="{{ request.user.get_profile().get_url_path() }}">{{ _('View Profile') }}</a></li>
-    <li><a href="{{ url('users.edit') }}">{{ _('Edit Profile') }}</a></li>
+    <li><a href="{{ request.user.get_profile().get_url_path() }}">{{ _('My Profile') }}</a></li>
+    <li><a href="{{ url('users.edit') }}">{{ _('Account Settings') }}</a></li>
     <li><a href="{{ url('collections.user', amo_user.username) }}">{{ _('My Collections') }}</a></li>
     {% if amo_user.favorite_addons %}
     <li><a href="{{ url('collections.detail', amo_user.username, 'favorites') }}">{{ _('My Favorites') }}</a></li>
