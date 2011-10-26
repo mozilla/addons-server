@@ -63,7 +63,7 @@
            href="{{ b.addon.get_url_path() }}"
            data-realurl="{{ link.url }}"
          {% elif waffle.switch('marketplace') and addon.can_be_purchased() %}
-           href="{{ url('addons.purchase', addon.slug) }}"
+           href="{{ addon_url('addons.purchase', addon) }}"
            {% if not addon.is_webapp() %}
              data-realurl="{{ link.url }}"
            {% endif %}

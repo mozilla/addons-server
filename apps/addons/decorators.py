@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404
 import waffle
 
 from addons.models import Addon
+import amo
 
 
 def addon_view(f, qs=Addon.objects.all):
@@ -25,7 +26,16 @@ def addon_view(f, qs=Addon.objects.all):
         elif addon_id:
             addon = get(slug=addon_id)
         elif app_slug:
-            addon = get(app_slug=app_slug)
+            # XXXXX
+            # TODO(andym): this is temporary. Apps do not have a current
+            # version. Aaaaargh!
+            try:
+                addon = get(app_slug=app_slug)
+            except Addon.DoesNotExist:
+                addon = get_object_or_404(type=addon.ADDON_WEBAPP,
+                                          app_slug=app_slug,
+                                          disabled_by_user=False,
+                                          status__in=amo.LISTED_STATUSES)
         return f(request, addon, *args, **kw)
     return wrapper
 
