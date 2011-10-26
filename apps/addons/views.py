@@ -485,6 +485,10 @@ def purchase(request, addon):
 
     paykey, error = '', ''
     try:
+        pattern = 'addons.purchase.finished'
+        if addon.is_webapp():
+            pattern = 'apps.purchase.finished'
+
         paykey = paypal.get_paykey(dict(uuid=uuid_, slug=addon.slug,
                     amount=amount, memo=contrib_for, email=addon.paypal_id,
                     ip=request.META.get('REMOTE_ADDR'),
