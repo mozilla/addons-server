@@ -23,9 +23,9 @@
 {% else %}
     <h4>{{ _('Payment completed') }}</h4>
     {% if addon.is_premium() %}
-      <a href="{{ url('addons.purchase.thanks', addon.slug)|urlparams(realurl=realurl) }}"
+      <a href="{{ addon_url('addons.purchase.thanks', addon)|urlparams(realurl=realurl) }}"
          id="paypal-thanks">{{ _('Thank you for purchasing the add-on') }}</a>
     {% endif %}
 {% endif %}
-<p><a id="paypal-result" target="_top" href="{{ url('addons.detail', addon.slug) }}">{{ _('Return to the addon.') }}</a></p>
+<p><a id="paypal-result" target="_top" href="{{ addon_url('addons.detail', addon) }}">{{ _('Return to the addon.') }}</a></p>
 {% endblock %}
