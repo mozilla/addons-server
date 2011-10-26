@@ -69,10 +69,14 @@
                     $table.html('');
                     return;
                 }
-                var totalValue = data[data.firstIndex].count,
-                    otherValue = totalValue;
+                var totalValue = 0,
+                    otherValue = 0;
                 data = data[data.firstIndex].data;
                 if (_.isEmpty(data)) return;
+                // Sum all fields.
+                _.each(data, function(val) {
+                    totalValue += val;
+                });
                 // Convert all fields to percentages and prettify names.
                 var rankedList = _.map(data, function(val, key) {
                     var field = key.split("|").slice(-1)[0];
@@ -84,8 +88,8 @@
                     return -a[1];
                 });
                 // Calculate the 'Other' percentage
-                for (var i=0; i<5; i++) {
-                    otherValue -= rankedList[i][1];
+                for (var i=5; i<rankedList.length; i++) {
+                    otherValue += rankedList[i][1];
                 }
                 // Take the top 5 values and append an 'Other' row.
                 rankedList = rankedList.slice(0,5);
