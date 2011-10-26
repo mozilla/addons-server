@@ -195,6 +195,7 @@
         </div> {# section #}
       </div> {# footer #}
     {% endblock %}
+    <div id="get-satisfaction"></div>
     {# js #}
     {% block site_js %}
       <script src="{{ static(url('jsi18n')) }}"></script>
@@ -203,7 +204,6 @@
       <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
     {% endblock %}
     {% block js %}{% endblock %}
-    <div id="get-satisfaction"></div>
     {# Webtrends Stats Tracking #}
     <script defer src="{{ media('js/webtrends/webtrends-v0.1.js') }}"></script>
     <noscript>

@@ -51,8 +51,7 @@ class PasswordMixin:
 
 
 class AuthenticationForm(auth_forms.AuthenticationForm):
-    username = forms.CharField(max_length=50,
-                               widget=forms.TextInput(attrs={'autofocus': ''}))
+    username = forms.CharField(max_length=50)
     rememberme = forms.BooleanField(required=False)
     recaptcha = captcha.fields.ReCaptchaField()
     recaptcha_shown = forms.BooleanField(widget=forms.HiddenInput,
