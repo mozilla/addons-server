@@ -12,6 +12,7 @@ z.StatsManager = (function() {
     // The version of the stats localStorage we are using.
     // If you increment this number, you cache-bust everyone!
     var STATS_VERSION = '2011-10-21-1';
+    var PRECISION = 2;
 
     var storage         = z.Storage("stats"),
         storageCache    = z.Storage("statscache"),
@@ -135,7 +136,12 @@ z.StatsManager = (function() {
         // Locate all unique fields.
         forEachISODate(range, '1 day', ds, function(row) {
             if (row) {
-                row = (metric == 'apps') ? collapseVersions(row, 1) : row;
+                if (metric == 'apps') {
+                    row = collapseVersions(row, PRECISION);
+                }
+                if (metric == 'sources') {
+                    row = collapseSources(row);
+                }
                 _.each(row.data, function(v, k) {
                     fields[k] = fields[k] ? fields[k] + v : v;
                 });
@@ -178,7 +184,13 @@ z.StatsManager = (function() {
                     var d = date.iso();
                     if (row) {
                         if (!firstIndex) firstIndex = d;
-                        ret[d] = (metric == 'apps') ? collapseVersions(ds[d], 1) : ds[d];
+                        if (metric == 'apps') {
+                            row = collapseVersions(row, PRECISION);
+                        }
+                        if (metric == 'sources') {
+                            row = collapseSources(row);
+                        }
+                        ret[d] = row;
                     }
                 }, this);
                 if (_.isEmpty(ret)) {
@@ -384,6 +396,31 @@ z.StatsManager = (function() {
     }
 
 
+    function collapseSources(row) {
+        var out = {
+                count   : row.count,
+                date    : row.date,
+                end     : row.end
+            },
+            data = row.data,
+            pretty, key,
+            lookup = {},
+            ret = {};
+
+        _.each(data, function(val, source) {
+            pretty = getPrettyName('sources', source);
+            if (!lookup[pretty]) {
+                lookup[pretty] = source;
+            }
+            key = lookup[pretty];
+            if (!ret[key]) ret[key] = 0;
+            ret[key] += parseFloat(val);
+        });
+        out.data = ret;
+        return out;
+    }
+
+
     // Rounds application version strings to a given precision.
     // Passing `0` will truncate versions entirely.
     function collapseVersions(row, precision) {
@@ -392,25 +429,19 @@ z.StatsManager = (function() {
                 date    : row.date,
                 end     : row.end
             },
-            set,
-            ver,
-            key,
             apps    = row.data,
+            key,
             ret     = {};
 
-        for (var i in apps) {
-            if (apps.hasOwnProperty(i)) {
-                set = apps[i];
-                for (ver in set) {
-                    key = i + '_' + ver.split('.').slice(0,precision).join('.');
-                    if (!(key in ret)) {
-                        ret[key] = 0;
-                    }
-                    var v = parseFloat(set[ver]);
-                    ret[key] += v;
+        _.each(apps, function(set, app) {
+            _.each(set, function(val, ver) {
+                key = app + '_' + ver.split('.').slice(0,precision).join('.');
+                if (!ret[key]) {
+                    ret[key] = 0;
                 }
-            }
-        }
+                ret[key] += parseFloat(val);
+            });
+        });
         out.data = ret;
         return out;
     }
