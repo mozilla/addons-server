@@ -3,19 +3,22 @@
 
     var $rangeSelector = $(".criteria.range ul"),
         $customRangeForm = $("div.custom.criteria"),
-        $groupSelector = $(".criteria.group ul");
+        $groupSelector = $(".criteria.group ul"),
+        minDate = Date.iso($('.primary').attr('data-min-date'));
 
     $.datepicker.setDefaults({showAnim: ''});
     var $customModal = $("#custom-criteria").modal("#custom-date-range", { width: 520, hideme: false });
     var $startPicker = $("#start-date-picker").datepicker({
-        maxDate: 0,
+        maxDate: 1,
+        minDate: minDate,
         dateFormat: 'yy-mm-dd',
         onSelect: function(dateText) {
             $("#date-range-start").val(dateText);
         }
     });
     var $endPicker = $("#end-date-picker").datepicker({
-        maxDate: 0,
+        maxDate: 1,
+        minDate: minDate,
         dateFormat: 'yy-mm-dd',
         onSelect: function(dateText) {
             $("#date-range-end").val(dateText);

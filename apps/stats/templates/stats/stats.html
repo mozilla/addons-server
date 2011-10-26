@@ -73,6 +73,7 @@
     <pre id="dbgout"></pre>
   </div>
   <div class="primary statistics"
+    data-min-date="{{ addon.created|isotime }}"
     data-report="{{ report }}"
     data-addon_id="{{ addon.id }}"
     {% if view.last %}
