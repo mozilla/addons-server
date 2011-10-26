@@ -86,12 +86,6 @@ class Webapp(Addon):
                       ' version %s: %s.' % (self.pk, cur, e.message))
             raise
 
-    def is_unreviewed(self):
-        return False
-
-    def can_be_purchased(self):
-        return self.is_premium()
-
     def share_url(self):
         return reverse('apps.share', args=[self.app_slug])
 
