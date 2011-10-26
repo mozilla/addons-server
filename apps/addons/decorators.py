@@ -35,7 +35,7 @@ def addon_view(f, qs=Addon.objects.all):
                 addon = get_object_or_404(Addon, type=amo.ADDON_WEBAPP,
                                           app_slug=app_slug,
                                           disabled_by_user=False,
-                                          status__in=amo.LISTED_STATUSES)
+                                          status__in=amo.VALID_STATUSES)
         return f(request, addon, *args, **kw)
     return wrapper
 
