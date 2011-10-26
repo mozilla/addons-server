@@ -433,7 +433,7 @@ def name_query(q):
 
     analyzer = _get_locale_analyzer()
     if analyzer:
-        more['summary_%s__test' % analyzer] = {'query': q,
+        more['summary_%s__text' % analyzer] = {'query': q,
                                                'boost': 0.6,
                                                'type': 'phrase',
                                                'analyzer': analyzer}
