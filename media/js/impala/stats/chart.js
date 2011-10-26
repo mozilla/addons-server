@@ -167,9 +167,14 @@
 
             if (metric == 'overview') {
                 return function() {
-                    return "<b>" + xFormatter(this.x) + "</b><br>" +
-                           downloadFormatter(this.points[0].y || 'n/a') + "<br>" +
-                           userFormatter(this.points[1].y || 'n/a');
+                    var ret = "<b>" + xFormatter(this.x) + "</b>",
+                        p;
+                    for (var i=0; i < this.points.length; i++) {
+                        p = this.points[i];
+                        ret += '<br>' + p.series.name + ': ';
+                        ret += Highcharts.numberFormat(p.y, 0);
+                    }
+                    return ret;
                 };
             } else if (metric == 'contributions') {
                 return function() {
