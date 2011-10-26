@@ -2,11 +2,7 @@ $(function() {
     $('#search-facets').delegate('li.facet', 'click', function(e) {
         var $this = $(this);
         if ($this.hasClass('active')) {
-            var $tgt = $(e.target);
-            if ($tgt.is('a')) {
-                $tgt.closest('.facet-group').find('.selected')
-                    .removeClass('selected');
-                $tgt.closest('li').addClass('selected');
+            if ($(e.target).is('a')) {
                 return;
             }
             $this.removeClass('active');
@@ -14,6 +10,11 @@ $(function() {
             $this.closest('ul').find('.active').removeClass('active');
             $this.addClass('active');
         }
+    }).delegate('a', 'highlight', function(e) {
+        // Highlight selection on sidebar.
+        var $this = $(this);
+        $this.closest('.facet-group').find('.selected').removeClass('selected');
+        $this.closest('li').addClass('selected');
     }).delegate('.cnt', 'recount', function(e, newCount) {
         // Update # of results on sidebar.
         var $this = $(this);
@@ -41,7 +42,8 @@ function rebuildLink(url, urlparams, qs) {
 $.fn.initSearchPjax = function($filters) {
     var $container = $(this),
         container = $container.selector,
-        timeouts = 0;
+        timeouts = 0,
+        $triggered;
 
     function pjaxOpen(url) {
         var urlBase = location.pathname + location.search;
@@ -66,8 +68,9 @@ $.fn.initSearchPjax = function($filters) {
     }
 
     function hijackLink() {
+        $triggered = $(this);
         timeouts = 0;
-        pjaxOpen($(this).attr('href'));
+        pjaxOpen($triggered.attr('href'));
     }
 
     function loading() {
@@ -106,6 +109,9 @@ $.fn.initSearchPjax = function($filters) {
 
         // Update GET parameters of sidebar anchors.
         $filters.find('a[data-params]').trigger('rebuild');
+
+        // Highlight selection on sidebar.
+        $triggered.trigger('highlight');
 
         // Scroll up to top of page.
         $('html, body').animate({scrollTop: 0}, 200);
