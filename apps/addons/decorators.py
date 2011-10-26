@@ -32,7 +32,7 @@ def addon_view(f, qs=Addon.objects.all):
             try:
                 addon = get(app_slug=app_slug)
             except http.Http404:
-                addon = get_object_or_404(type=amo.ADDON_WEBAPP,
+                addon = get_object_or_404(Addon, type=amo.ADDON_WEBAPP,
                                           app_slug=app_slug,
                                           disabled_by_user=False,
                                           status__in=amo.LISTED_STATUSES)
