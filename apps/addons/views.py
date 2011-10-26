@@ -500,7 +500,10 @@ def purchase(request, addon):
                                source=source, source_locale=request.LANG,
                                uuid=str(uuid_), type=amo.CONTRIB_PENDING,
                                paykey=paykey, user=request.amo_user)
+        log.debug('Storing contrib for uuid: %s' % uuid_)
         contrib.save()
+    else:
+        log.error('No paykey present for uuid: %s' % uuid_)
 
     log.debug('Got paykey for addon: %s by user: %s'
               % (addon.pk, request.amo_user.pk))
@@ -521,6 +524,7 @@ def purchase(request, addon):
 def purchase_complete(request, addon, status):
     result = ''
     if status == 'complete':
+        log.debug('Looking up contrib for uuid: %s' % uuid)
         con = Contribution.objects.get(uuid=request.GET.get('uuid'),
                                        type=amo.CONTRIB_PENDING)
         log.debug('Check purchase paypal addon: %s, user: %s, paykey: %s'
