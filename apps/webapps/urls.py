@@ -13,6 +13,15 @@ detail_patterns = patterns('',
     url('^share$', views.share, name='apps.share'),
     url('^abuse$', addons_views.report_abuse, name='apps.abuse'),
     url('^record$', views.record, name='apps.record'),
+
+    # TODO(andym): generate these instead of copying them around.
+    url('^purchase/$', addons_views.purchase, name='apps.purchase'),
+    url(r'purchase/start$', addons_views.paypal_start,
+        name='apps.purchase.start'),
+    url('^purchase/thanks/$', addons_views.purchase_thanks,
+        name='apps.purchase.thanks'),
+    url('^purchase/(?P<status>cancel|complete)$',
+        addons_views.purchase_complete, name='apps.purchase.finished'),
 )
 
 

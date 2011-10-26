@@ -57,8 +57,6 @@ users_patterns = patterns('',
     url(r'purchases/$', views.purchases, name='users.purchases'),
     url(r'purchases/(?P<addon_id>\d+)', views.purchases,
         name='users.purchases.receipt'),
-    url(r'purchase/start/%s$' % ADDON_ID, views.paypal_start,
-        name='users.purchase.start'),
     url(r'support/(?P<contribution_id>\d+)(?:/(?P<step>[\w-]+))?$',
         views.SupportWizard.as_view(),
         name='users.support')

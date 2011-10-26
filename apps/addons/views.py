@@ -37,6 +37,7 @@ from devhub.decorators import dev_required
 import paypal
 from reviews.forms import ReviewForm
 from reviews.models import Review, GroupedRating
+from session_csrf import anonymous_csrf
 from sharing.views import share as share_redirect
 from stats.models import Contribution
 from translations.query import order_by_translation
@@ -684,6 +685,21 @@ def paypal_result(request, addon, status):
                             {'addon': addon, 'status': status})
     response['x-frame-options'] = 'allow'
     return response
+
+
+@addon_view
+@can_be_purchased
+@anonymous_csrf
+def paypal_start(request, addon=None):
+    download = urlparse(request.GET.get('realurl', '')).path
+    data = {'addon': addon, 'is_ajax': request.is_ajax(), 'download': download}
+
+    if request.user.is_authenticated():
+        return jingo.render(request, 'addons/paypal_start.html', data)
+
+    from users.views import _login
+    return _login(request, data=data, template='addons/paypal_start.html',
+                  dont_redirect=True)
 
 
 @addon_view

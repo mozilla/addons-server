@@ -21,7 +21,7 @@ import waffle
 
 import amo
 import amo.tests
-from amo.helpers import absolutify, numberfmt, urlparams
+from amo.helpers import absolutify, numberfmt, urlparams, addon_url
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from abuse.models import AbuseReport
@@ -29,7 +29,7 @@ from addons import cron
 from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
                            Charity, Category)
 from files.models import File
-from market.models import AddonPremium, AddonPurchase
+from market.models import AddonPremium, AddonPurchase, Price
 from paypal.tests import other_error
 from stats.models import Contribution
 from translations.helpers import truncate
@@ -425,6 +425,85 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
                         reverse('addons.purchase', args=[self.addon.slug]),
                         'result_type=json'))
         assert 'chains' in get_paykey.call_args_list[0][0][0].keys()
+
+
+# TODO: remove when the marketplace is live.
+@patch.object(waffle, 'switch_is_active', lambda x: True)
+# TODO: figure out why this is being set
+@patch.object(settings, 'LOGIN_RATELIMIT_USER', 10)
+class TestPaypalStart(amo.tests.TestCase):
+    fixtures = ['users/test_backends', 'base/addon_3615']
+
+    def get_profile(self):
+        return UserProfile.objects.get(id=4043307)
+
+    def setUp(self):
+        self.client.get('/')
+        self.data = {'username': 'jbalogh@mozilla.com',
+                     'password': 'foo'}
+        self.addon = Addon.objects.all()[0]
+
+        self.url = addon_url('addons.purchase.start', self.addon)
+
+        self.price = Price.objects.create(price='0.99')
+        AddonPremium.objects.create(addon=self.addon, price=self.price)
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+
+    def test_loggedout_purchased(self):
+        # "Buy" the add-on
+        self.addon.addonpurchase_set.create(user=self.get_profile())
+
+        # Make sure we get a log in field
+        r = self.client.get_ajax(self.url)
+        eq_(r.status_code, 200)
+        assert pq(r.content).find('#id_username').length
+
+        # Now, let's log in.
+        res = self.client.post_ajax(self.url, data=self.data)
+        eq_(res.status_code, 200)
+
+        # Are we presented with a link to the download?
+        assert pq(res.content).find('.trigger_download').length
+
+    def test_loggedin_purchased(self):
+        # Log the user in
+        assert self.client.login(**self.data)
+
+        # "Buy" the add-on
+        self.addon.addonpurchase_set.create(user=self.get_profile())
+
+        r = self.client.get_ajax(self.url)
+        eq_(r.status_code, 200)
+
+        # This only happens if we've bought it.
+        assert pq(r.content).find('.trigger_download').length
+
+    def test_loggedout_notpurchased(self):
+        # We don't want any purchases.
+        AddonPurchase.objects.all().delete()
+
+        # Make sure we're presented with a log in form.
+        r = self.client.get_ajax(self.url)
+        eq_(r.status_code, 200)
+        assert pq(r.content).find('#id_username').length
+
+        # Now, let's log in.
+        res = self.client.post_ajax(self.url, data=self.data)
+        eq_(res.status_code, 200)
+
+        # Make sure we get a link to paypal
+        assert pq(res.content).find('.paypal.button').length
+
+    def test_loggedin_notpurchased(self):
+        # No purchases; logged in.
+        AddonPurchase.objects.all().delete()
+        assert self.client.login(**self.data)
+
+        r = self.client.get_ajax(self.url)
+        eq_(r.status_code, 200)
+
+        # Make sure we get a link to paypal.
+        assert pq(r.content).find('.paypal.button').length
 
 
 class TestDeveloperPages(amo.tests.TestCase):

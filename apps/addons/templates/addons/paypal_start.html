@@ -40,7 +40,7 @@
         {% endtrans %}
       </div>
       <button class="button prominent paypal"
-              href="{{ url('addons.purchase', addon.slug) }}?"
+              href="{{ addon_url('addons.purchase', addon) }}?"
               data-realurl="{{ download }}">
         {# The <small> makes it smaller, <em> makes it darker. Don't localize "PayPal". #}
             {{ _('Pay <small>with</small> Pay<em>Pal</em>') }}
@@ -48,7 +48,7 @@
       <p>{{ _('Complete your purchase with PayPal.  No account necessary.') }}</p>
       {% else %}
       <div class="paypal-user login">
-        {% with is_ajax=False, action="%s?realurl=%s" % (url('users.purchase.start', addon.slug), download) %}
+        {% with is_ajax=False, action="%s?realurl=%s" % (addon_url('addons.purchase.start', addon), download) %}
           {% include "users/login_form.html" %}
         {% endwith %}
       </div>

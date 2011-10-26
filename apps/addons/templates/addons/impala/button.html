@@ -10,8 +10,8 @@
      data-name="{{ addon.name }}"
      {{ b.attrs()|xmlattr }}
   {% if waffle.switch('marketplace') and addon.can_be_purchased() %}
-     data-purchase="{{ url('addons.purchase', addon.slug) }}?"
-     data-start-purchase="{{ url('users.purchase.start', addon.slug) }}"
+     data-purchase="{{ addon_url('addons.purchase', addon) }}?"
+     data-start-purchase="{{ addon_url('addons.purchase.start', addon) }}"
      data-cost="{{ addon.premium.get_price() }}"
      data-login-url="{{ url('users.login_modal') }}"
   {% endif %}

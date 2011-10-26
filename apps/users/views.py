@@ -280,21 +280,6 @@ def browserid_login(request):
     return http.HttpResponse(status=401)
 
 
-@addon_view
-@can_be_purchased
-@anonymous_csrf
-#@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
-def paypal_start(request, addon=None):
-    download = urlparse(request.GET.get('realurl', '')).path
-    data = {'addon': addon, 'is_ajax': request.is_ajax(), 'download': download}
-
-    if request.user.is_authenticated():
-        return jingo.render(request, 'addons/paypal_start.html', data)
-
-    return _login(request, data=data, template='addons/paypal_start.html',
-                  dont_redirect=True)
-
-
 @anonymous_csrf
 @mobile_template('users/{mobile/}login_modal.html')
 #@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)

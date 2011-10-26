@@ -313,83 +313,6 @@ class TestEmailChange(UserViewBase):
         self.assertEqual(u.email, 'nobody@mozilla.org')
 
 
-class TestPaypalStart(UserViewBase):
-    fixtures = ['users/test_backends', 'base/addon_3615']
-
-    def setUp(self):
-        super(TestPaypalStart, self).setUp()
-        self.data = {'username': 'jbalogh@mozilla.com', 'password': 'foo'}
-        self.addon = Addon.objects.all()[0]
-
-        self.url = reverse('users.purchase.start', args=[self.addon.slug])
-
-        self.price = Price.objects.create(price='0.99')
-        AddonPremium.objects.create(addon=self.addon, price=self.price)
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-
-        self.user = User.objects.filter(email=self.data['username'])[0]
-
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    def test_loggedout_purchased(self):
-        # "Buy" the add-on
-        self.addon.addonpurchase_set.create(user=self.user.get_profile())
-
-        # Make sure we get a log in field
-        r = self.client.get_ajax(self.url)
-        eq_(r.status_code, 200)
-        assert pq(r.content).find('#id_username').length
-
-        # Now, let's log in.
-        res = self.client.post_ajax(self.url, data=self.data)
-        eq_(res.status_code, 200)
-
-        # Are we presented with a link to the download?
-        assert pq(res.content).find('.trigger_download').length
-
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    def test_loggedin_purchased(self):
-        # Log the user in
-        assert self.client.login(**self.data)
-
-        # "Buy" the add-on
-        self.addon.addonpurchase_set.create(user=self.user.get_profile())
-
-        r = self.client.get_ajax(self.url)
-        eq_(r.status_code, 200)
-
-        # This only happens if we've bought it.
-        assert pq(r.content).find('.trigger_download').length
-
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    def test_loggedout_notpurchased(self):
-        # We don't want any purchases.
-        AddonPurchase.objects.all().delete()
-
-        # Make sure we're presented with a log in form.
-        r = self.client.get_ajax(self.url)
-        eq_(r.status_code, 200)
-        assert pq(r.content).find('#id_username').length
-
-        # Now, let's log in.
-        res = self.client.post_ajax(self.url, data=self.data)
-        eq_(res.status_code, 200)
-
-        # Make sure we get a link to paypal
-        assert pq(res.content).find('.paypal.button').length
-
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    def test_loggedin_notpurchased(self):
-        # No purchases; logged in.
-        AddonPurchase.objects.all().delete()
-        assert self.client.login(**self.data)
-
-        r = self.client.get_ajax(self.url)
-        eq_(r.status_code, 200)
-
-        # Make sure we get a link to paypal.
-        assert pq(r.content).find('.paypal.button').length
-
-
 class TestLogin(UserViewBase):
     fixtures = ['users/test_backends', 'base/addon_3615']
 
@@ -422,7 +345,7 @@ class TestLogin(UserViewBase):
         AddonPremium.objects.create(addon=addon, price=price)
         addon.update(premium_type=amo.ADDON_PREMIUM)
 
-        url = reverse('users.purchase.start', args=[addon.slug])
+        url = reverse('addons.purchase.start', args=[addon.slug])
         r = self.client.get_ajax(url)
         eq_(r.status_code, 200)
 
