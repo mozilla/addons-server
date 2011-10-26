@@ -268,7 +268,8 @@ def _clean_next_url(request):
 #@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def browserid_login(request):
     if waffle.switch_is_active('browserid-login'):
-        logout(request)
+        if request.user.is_authenticated():
+            return http.HttpResponse(status=200)
         user = auth.authenticate(assertion=request.POST['assertion'],
                                  host=request.POST['audience'])
         if user is not None:
@@ -299,10 +300,11 @@ def _login(request, template=None, data=None, dont_redirect=False):
     # In case we need it later.  See below.
     get_copy = request.GET.copy()
 
-    logout(request)
-
     if 'to' in request.GET:
         request = _clean_next_url(request)
+
+    if request.user.is_authenticated():
+        return redirect(request.GET.get('to', settings.LOGIN_REDIRECT_URL))
 
     limited = getattr(request, 'limited', 'recaptcha_shown' in request.POST)
     user = None
