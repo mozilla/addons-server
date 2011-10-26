@@ -5,7 +5,7 @@ import jinja2
 from jingo import register, env
 from tower import ugettext as _
 from access import acl
-from amo.helpers import locale_url
+from amo.urlresolvers import reverse
 
 
 @register.inclusion_tag('stats/report_menu.html')
@@ -73,10 +73,10 @@ def report_menu(context, request, addon, report):
             'title': _('Contributions')
         })
 
-    base_url = '/addon/%d/statistics' % (addon.id)
+    base_url = reverse('stats.overview', args=[addon.slug])
 
     """Reports Menu. navigation for the various statistic reports."""
     c = {'report': report,
-        'base_url': locale_url(base_url),
+        'base_url': base_url,
         'report_tree': report_tree}
     return c

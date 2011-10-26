@@ -66,9 +66,6 @@ class DownloadCount(SearchMixin, models.Model):
     class Meta:
         db_table = 'download_counts'
 
-    def flush_urls(self):
-        return ['*/addon/%d/statistics/downloads*' % self.addon_id, ]
-
 
 class UpdateCount(SearchMixin, models.Model):
     addon = models.ForeignKey('addons.Addon')
@@ -87,9 +84,6 @@ class UpdateCount(SearchMixin, models.Model):
 
     class Meta:
         db_table = 'update_counts'
-
-    def flush_urls(self):
-        return ['*/addon/%d/statistics/usage*' % self.addon_id, ]
 
 
 class AddonShareCount(caching.base.CachingMixin, models.Model):
@@ -183,9 +177,6 @@ class Contribution(caching.base.CachingMixin, models.Model):
 
     def __unicode__(self):
         return u'%s: %s' % (self.addon.name, self.amount)
-
-    def flush_urls(self):
-        return ['*/addon/%d/statistics/contributions*' % self.addon_id, ]
 
     @property
     def date(self):
