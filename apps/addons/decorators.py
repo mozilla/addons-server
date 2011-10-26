@@ -31,7 +31,7 @@ def addon_view(f, qs=Addon.objects.all):
             # version. Aaaaargh!
             try:
                 addon = get(app_slug=app_slug)
-            except Addon.DoesNotExist:
+            except http.Http404:
                 addon = get_object_or_404(type=addon.ADDON_WEBAPP,
                                           app_slug=app_slug,
                                           disabled_by_user=False,
