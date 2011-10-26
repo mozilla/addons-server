@@ -319,6 +319,8 @@ CONTRIB_TYPES = {
     CONTRIB_OTHER: _('Other'),
 }
 
+CONTRIB_NOT_PENDING = (CONTRIB_VOLUNTARY, CONTRIB_PURCHASE,
+                       CONTRIB_CHARGEBACK, CONTRIB_OTHER)
 CONTRIB_TYPE_DEFAULT = CONTRIB_VOLUNTARY
 
 # Used to watermark addons install.rdf and update.

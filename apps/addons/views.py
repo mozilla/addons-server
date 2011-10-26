@@ -524,9 +524,9 @@ def purchase(request, addon):
 def purchase_complete(request, addon, status):
     result = ''
     if status == 'complete':
-        log.debug('Looking up contrib for uuid: %s' % uuid)
-        con = Contribution.objects.get(uuid=request.GET.get('uuid'),
-                                       type=amo.CONTRIB_PENDING)
+        uuid_ = request.GET.get('uuid')
+        log.debug('Looking up contrib for uuid: %s' % uuid_)
+        con = Contribution.objects.get(uuid=uuid_, type=amo.CONTRIB_PENDING)
         log.debug('Check purchase paypal addon: %s, user: %s, paykey: %s'
                   % (addon.pk, request.amo_user.pk, con.paykey[:10]))
         try:

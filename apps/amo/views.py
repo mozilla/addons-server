@@ -152,7 +152,9 @@ def _paypal(request):
 
     # Fetch and update the contribution - item_number is the uuid we created.
     try:
-        c = Contribution.objects.get(uuid=post['item_number'])
+        # We don't want IPN's to interact with PENDING.
+        c = Contribution.objects.get(uuid=post['item_number'],
+                                     type__in=amo.CONTRIB_NOT_PENDING)
     except Contribution.DoesNotExist:
         key = "%s%s:%s" % (settings.CACHE_PREFIX, 'contrib',
                            post['item_number'])
