@@ -74,6 +74,7 @@ class TestHome(amo.tests.TestCase):
         eq_(doc('#site-notice').length, 0)
         eq_(doc('#site-nonfx').length, 1)
         eq_(doc('#site-welcome').length, 1)
+        eq_(doc('#site-noinstall-apps').length, 0)
 
     @mock.patch.object(settings, 'READ_ONLY', True)
     def test_balloons_readonly(self):
@@ -82,6 +83,7 @@ class TestHome(amo.tests.TestCase):
         eq_(doc('#site-notice').length, 1)
         eq_(doc('#site-nonfx').length, 1)
         eq_(doc('#site-welcome').length, 1)
+        eq_(doc('#site-noinstall-apps').length, 0)
 
     def test_tools_regular_user(self):
         self.client.login(username='regular@mozilla.com', password='password')
