@@ -17,6 +17,8 @@ $('html').ajaxSend(function(event, xhr, ajaxSettings) {
         }
         if (csrf) xhr.setRequestHeader("X-CSRFToken", csrf);
     }
+}).ajaxSuccess(function(event, xhr, ajaxSettings) {
+    $(window).trigger('resize'); // Redraw what needs to be redrawn.
 });
 
 // Tooltip display. If you give an element a class of 'tooltip', it will
