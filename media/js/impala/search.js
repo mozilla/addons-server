@@ -42,7 +42,6 @@ function rebuildLink(url, urlparams, qs) {
 $.fn.initSearchPjax = function($filters) {
     var $container = $(this),
         container = $container.selector,
-        timeouts = 0,
         $triggered;
 
     function pjaxOpen(url) {
@@ -51,25 +50,13 @@ $.fn.initSearchPjax = function($filters) {
             $.pjax({
                 url: url,
                 container: container,
-                timeout: 1500,
-                error: function(xhr, textStatus, errorThrown) {
-                    if (textStatus === 'timeout' && timeouts < 5) {
-                        // Retry up to five times.
-                        timeouts++;
-                        return pjaxOpen(url);
-                    }
-                    if (textStatus !== 'abort') {
-                        // Upon `error` or `parsererror`.
-                        window.location = url;
-                    }
-                }
+                timeout: 5000
             });
         }
     }
 
     function hijackLink() {
         $triggered = $(this);
-        timeouts = 0;
         pjaxOpen($triggered.attr('href'));
     }
 
