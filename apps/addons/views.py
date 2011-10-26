@@ -45,7 +45,8 @@ from versions.models import Version
 from webapps.models import Webapp
 from .models import Addon, Persona, FrozenAddon
 from .forms import NewPersonaForm
-from .decorators import addon_view_factory, can_be_purchased, has_purchased
+from .decorators import (addon_url, addon_view_factory,
+                         can_be_purchased, has_purchased)
 
 log = commonware.log.getLogger('z.addons')
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -486,8 +487,10 @@ def purchase(request, addon):
     paykey, error = '', ''
     try:
         pattern = 'addons.purchase.finished'
+        slug = addon.slug
         if addon.is_webapp():
             pattern = 'apps.purchase.finished'
+            slug = addon.app_slug
 
         paykey = paypal.get_paykey(dict(uuid=uuid_, slug=addon.slug,
                     amount=amount, memo=contrib_for, email=addon.paypal_id,
