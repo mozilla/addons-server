@@ -13,8 +13,9 @@ import amo
 import amo.tests
 from amo.helpers import locale_url
 from amo.urlresolvers import reverse
-from search.tests import SphinxTestCase
 from search import views
+from search.tests import SphinxTestCase
+from search.utils import floor_version
 from addons.models import Addon, Category, Persona
 from tags.models import Tag
 from versions.models import ApplicationsVersions
@@ -158,19 +159,75 @@ class TestESSearch(amo.tests.ESTestCase):
         r = self.client.get(self.url + '?sort=averagerating')
         self.assertRedirects(r, self.url + '?sort=rating', status_code=301)
 
-    def check_appver_filters(self, appver='', appver_min=''):
-        if not appver_min:
-            appver_min = appver
+    def check_platform_filters(self, platform, expected=None):
+        if not expected:
+            expected = platform
+        r = self.client.get('%s?platform=%s' % (self.url, platform),
+                            follow=True)
+        eq_(r.context['query'].get('platform'), expected)
+
+        # We default to show "Any System."
+        selected = amo.PLATFORM_DICT.get(expected, amo.PLATFORM_ANY)
+        if not platform:
+            selected = amo.PLATFORM_ALL
+        if selected == amo.PLATFORM_ANY:
+            expected = amo.PLATFORM_ANY.shortname
+        app_platforms = r.context['request'].APP.platforms.values()
+
+        plats = r.context['platforms']
+        all_ = plats.pop(0)
+        all_selected = selected == amo.PLATFORM_ALL
+        eq_(all_.text, u'All Systems')
+        eq_(all_.selected, all_selected)
+
+        if not all_selected:
+            label = plats[0]
+            if selected == amo.PLATFORM_ANY:
+                expected_name = u'Any System'
+            else:
+                expected_name = unicode(selected.name)
+            eq_(unicode(label.text), expected_name)
+            eq_(label.selected, expected == selected.shortname)
+
+    def test_platform_default(self):
+        self.check_platform_filters('')
+
+    def test_platform_known(self):
+        for platform in ('all', 'any', 'windows', 'mac', 'linux', 'maemo'):
+            self.check_platform_filters(platform)
+
+    def test_platform_legacy_params(self):
+        for idx, platform in amo.PLATFORMS.iteritems():
+            self.check_platform_filters(str(idx), platform.shortname)
+
+    def test_platform_bad(self):
+        self.check_platform_filters('xxx')
+        self.check_platform_filters('$$$')
+        self.check_platform_filters('!')
+        self.check_platform_filters(' ')
+
+    def check_appver_filters(self, appver='', expected=''):
+        if not expected:
+            expected = appver
         r = self.client.get('%s?appver=%s' % (self.url, appver))
-        av_max = ApplicationsVersions.objects.values_list(
-            'max__version', flat=True).distinct()
+
+        vs = list(ApplicationsVersions.objects.values_list(
+            'max__version', flat=True).distinct())
+        try:
+            if expected not in vs and float(floor_version(expected)):
+                vs.append(expected)
+        except ValueError:
+            pass
+        vs = [float(floor_version(v)) for v in vs]
+
         app = unicode(r.context['request'].APP.pretty)
-        eq_(r.context['query']['appver'], appver_min)
-        eq_(r.context['versions'][0].text, 'Any %s' % app)
-        eq_(r.context['versions'][0].selected, not appver_min)
-        for label, av in zip(r.context['versions'][1:], av_max):
-            eq_(label.text, ' '.join([app, av]))
-            eq_(label.selected, appver_min == av)
+        eq_(r.context['query']['appver'], expected)
+        all_ = r.context['versions'].pop(0)
+        eq_(all_.text, 'Any %s' % app)
+        eq_(all_.selected, not expected)
+        for label, av in zip(r.context['versions'], sorted(vs, reverse=True)):
+            eq_(label.text, '%s %s' % (app, av))
+            eq_(label.selected, expected == str(av))
 
     def test_appver_default(self):
         self.check_appver_filters()
@@ -197,6 +254,7 @@ class TestESSearch(amo.tests.ESTestCase):
         self.check_appver_filters('.')
         self.check_appver_filters('_')
         self.check_appver_filters('x.x')
+        self.check_appver_filters('y.y')
 
     def test_non_pjax_results(self):
         # These context variables should exist for normal requests.

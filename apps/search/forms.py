@@ -263,8 +263,7 @@ APP_SORT_CHOICES = (
 class ESSearchForm(forms.Form):
     q = forms.CharField(required=False)
     tag = forms.CharField(required=False)
-    platform = forms.ChoiceField(required=False,
-        choices=[(p.shortname, p.id) for p in amo.PLATFORMS.values()])
+    platform = forms.CharField(required=False)
     appver = forms.CharField(required=False)
     atype = forms.TypedChoiceField(required=False, coerce=int,
         choices=[(t, amo.ADDON_TYPE[t]) for t in amo.ADDON_SEARCH_TYPES])

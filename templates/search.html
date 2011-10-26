@@ -7,10 +7,8 @@
            placeholder="{{ search_form.placeholder() }}"
            value="{{ search_form.q.data or '' }}">
     {{ search_form.cat }}
-    {% if not skip_autofill %}
-      {{ search_form.appver }}
-      {{ search_form.platform }}
-    {% endif %}
+    {{ search_form.appver }}
+    {{ search_form.platform }}
   </span>
   <input id="search-button" type="image" class="submit search-button" title="{{ _('Search') }}"
          src="{{ media('img/zamboni/global/btn-search.png') }}">

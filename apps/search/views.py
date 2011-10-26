@@ -18,7 +18,7 @@ from addons.models import Addon, Category
 from amo.decorators import json_view
 from amo.helpers import locale_url, urlparams
 from amo.utils import MenuItem, sorted_groupby
-from versions.compare import dict_from_int, version_int
+from versions.compare import dict_from_int, version_int, version_dict
 from webapps.models import Webapp
 
 from . import forms
@@ -624,9 +624,15 @@ def version_sidebar(request, query, facets):
     # Firefox."
     rv = [FacetLink(_(u'Any {0}').format(app), dict(appver=None), not appver)]
     vs = [dict_from_int(f['term']) for f in facets['appversions']]
-    vs = set((v['major'], v['minor1'] if v['minor1'] != 99 else 0)
-             for v in vs)
+
+    # Insert the filtered app version even if it's not a facet.
+    av_dict = version_dict(appver)
+    if av_dict and av_dict not in vs and av_dict['major']:
+        vs.append(av_dict)
+
+    vs = set((v['major'], v['minor1'] if v['minor1'] != 99 else 0) for v in vs)
     versions = ['%s.%s' % v for v in sorted(vs, reverse=True)]
+
     for version, floated in zip(versions, map(float, versions)):
         if (floated not in exclude_versions
             and floated > request.APP.min_display_version):
@@ -638,17 +644,31 @@ def version_sidebar(request, query, facets):
 def platform_sidebar(request, query, facets):
     qplatform = query.get('platform')
     app_platforms = request.APP.platforms.values()
-    ALL = app_platforms[0]
-    platforms = [facet['term'] for facet in facets['platforms']
-                 if facet['term'] != ALL.id]
-    all_selected = not qplatform or qplatform == ALL.shortname
+    ALL = app_platforms.pop(0)
+    platforms = [amo.PLATFORMS[f['term']] for f in facets['platforms'] if
+                 f['term'] != ALL.id]
+
+    # If a platform is not recognized, we show "Any System."
+    selected = amo.PLATFORM_DICT.get(qplatform, amo.PLATFORM_ANY)
+
+    # The default is to show "All Systems."
+    if not qplatform:
+        selected = amo.PLATFORM_ALL
+
+    if selected != ALL and selected not in platforms:
+        # Insert the filtered platform even if it's not a facet.
+        platforms.append(selected)
+
+    # L10n: "All Systems" means list add-ons supported on every platform.
     rv = [FacetLink(_(u'All Systems'), dict(platform=ALL.shortname),
-                    all_selected)]
-    for platform in app_platforms[1:]:
-        if platform.id in platforms:
-            rv.append(FacetLink(platform.name,
-                                dict(platform=platform.shortname),
-                                platform.shortname == qplatform))
+                    selected == ALL)]
+    for platform in sorted(platforms):
+        if platform == amo.PLATFORM_ANY:
+            name = _(u'Any System')
+        else:
+            name = platform.name
+        rv.append(FacetLink(name, dict(platform=platform.shortname),
+                            platform == selected))
     return rv
 
 

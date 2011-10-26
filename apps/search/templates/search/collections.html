@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 
 {% block search_form %}
-  {% with skip_autofill=True %}
-    {% include "impala/search.html" %}
-  {% endwith %}
+  {% include "impala/search.html" %}
 {% endblock %}
 
 {% block title %}
