@@ -492,7 +492,7 @@ def purchase(request, addon):
         paykey = paypal.get_paykey(dict(uuid=uuid_, slug=addon.slug,
                     amount=amount, memo=contrib_for, email=addon.paypal_id,
                     ip=request.META.get('REMOTE_ADDR'),
-                    pattern='addons.purchase.finished',
+                    pattern=pattern,
                     qs={'realurl': request.GET.get('realurl')},
                     chains=settings.PAYPAL_CHAINS))
     except:
