@@ -41,23 +41,23 @@ def add_receivers(chains, email, amount, uuid):
     Split a payment down into multiple receivers using the chains passed in.
     """
     remainder = Decimal(str(amount))
-    amount = float(amount)
     result = {}
     for number, chain in enumerate(chains, 1):
         percent, destination = chain
-        this = (Decimal(str(amount * (percent / 100.0)))
+        this = (Decimal(str(float(amount) * (percent / 100.0)))
                 .quantize(Decimal('.01')))
         remainder = remainder - this
         result.update({
             'receiverList.receiver(%s).email' % number: destination,
             'receiverList.receiver(%s).amount' % number: str(this),
             'receiverList.receiver(%s).paymentType' % number: 'DIGITALGOODS',
+            'receiverList.receiver(%s).primary' % number: 'false',
         })
     result.update({
         'receiverList.receiver(0).email': email,
-        'receiverList.receiver(0).amount': str(remainder),
+        'receiverList.receiver(0).amount': str(amount),
         'receiverList.receiver(0).invoiceID': 'mozilla-%s' % uuid,
-        'receiverList.receiver(0).primary': 'TRUE',
+        'receiverList.receiver(0).primary': 'true',
         'receiverList.receiver(0).paymentType': 'DIGITALGOODS',
     })
     return result

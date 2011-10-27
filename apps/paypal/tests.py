@@ -80,7 +80,7 @@ class TestPayKey(amo.tests.TestCase):
         res = paypal.add_receivers(chains, 'a@a.com', Decimal('1.99'), '123')
         eq_(res['receiverList.receiver(1).amount'], '0.60')
         eq_(res['receiverList.receiver(1).email'], 'us@moz.com')
-        eq_(res['receiverList.receiver(0).amount'], '1.39')
+        eq_(res['receiverList.receiver(0).amount'], '1.99')
         eq_(res['receiverList.receiver(0).email'], 'a@a.com')
 
     def test_multiple_split(self):
@@ -88,7 +88,7 @@ class TestPayKey(amo.tests.TestCase):
         res = paypal.add_receivers(chains, 'a@a.com', Decimal('1.99'), '123')
         eq_(res['receiverList.receiver(2).amount'], '0.20')
         eq_(res['receiverList.receiver(1).amount'], '0.60')
-        eq_(res['receiverList.receiver(0).amount'], '1.19')
+        eq_(res['receiverList.receiver(0).amount'], '1.99')
 
     def test_no_split(self):
         res = paypal.add_receivers((), 'a@a.com', Decimal('1.99'), '123')
@@ -107,7 +107,7 @@ class TestPayKey(amo.tests.TestCase):
         data['chains'] = ((13.4, 'us@moz.com'),)
         _call.return_value = {'payKey': '123'}
         paypal.get_paykey(data)
-        eq_(_call.call_args[0][1]['receiverList.receiver(0).amount'], '8.66')
+        eq_(_call.call_args[0][1]['receiverList.receiver(0).amount'], '10')
         eq_(_call.call_args[0][1]['receiverList.receiver(1).amount'], '1.34')
 
 
