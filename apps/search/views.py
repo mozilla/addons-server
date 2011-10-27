@@ -653,7 +653,7 @@ def platform_sidebar(request, query, facets):
 
     # The default is to show "All Systems."
     if not qplatform:
-        selected = amo.PLATFORM_ALL
+        selected = ALL
 
     if selected != ALL and selected not in app_platforms:
         # Insert the filtered platform even if it's not a facet.
@@ -667,6 +667,8 @@ def platform_sidebar(request, query, facets):
     rv = [FacetLink(_(u'All Systems'), dict(platform=ALL.shortname),
                     selected == ALL)]
     for platform in app_platforms:
+        if platform == amo.PLATFORM_ALL:
+            continue
         if platform == amo.PLATFORM_ANY:
             name = _(u'Any System')
         else:
