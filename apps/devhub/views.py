@@ -858,7 +858,8 @@ def upload_validation_context(request, upload, addon_slug=None, addon=None,
     if not settings.VALIDATE_ADDONS:
         upload.task_error = ''
         upload.validation = json.dumps({'errors': 0, 'messages': [],
-                                        'notices': 0, 'warnings': 0})
+                                        'metadata': {}, 'notices': 0,
+                                        'warnings': 0})
         upload.save()
 
     validation = json.loads(upload.validation) if upload.validation else ""
