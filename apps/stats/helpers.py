@@ -25,7 +25,7 @@ def report_menu(context, request, addon, report):
             'children': [
                 {
                     'name': 'sources',
-                    'url': '/downloads/sources/',
+                    'url': 'downloads/sources/',
                     'title': _('by Source'),
                 },
             ]
