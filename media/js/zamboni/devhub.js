@@ -1074,8 +1074,7 @@ function initAuthorFields() {
 
 
 function initCompatibility() {
-    $('p.add-app a').live('click', function(e) {
-        e.preventDefault();
+    $('p.add-app a').live('click', _pd(function(e) {
         var outer = $(this).closest('form');
 
         $('tr.app-extra', outer).each(function() {
@@ -1084,31 +1083,30 @@ function initCompatibility() {
 
         $('.new-apps', outer).toggle();
 
-        $('.new-apps ul').delegate('a', 'click', function(e) {
-            e.preventDefault();
-            var extraAppRow = $('tr.app-extra td[class=' + $(this).attr('class') + ']', outer);
-            extraAppRow.parents('tr.app-extra').find('input:checkbox').removeAttr('checked')
-                       .closest('tr').removeClass('app-extra');
-
-            $(this).closest('li').remove();
-
-            if (!$('tr.app-extra', outer).length)
+        $('.new-apps ul').delegate('a', 'click', _pd(function(e) {
+            var $this = $(this),
+                sel = format('tr.app-extra td[class="{0}"]', [$this.attr('class')]),
+                $row = $(sel, outer);
+            $row.parents('tr.app-extra').find('input:checkbox')
+                .removeAttr('checked').closest('tr').removeClass('app-extra');
+            $this.closest('li').remove();
+            if (!$('tr.app-extra', outer).length) {
                 $('p.add-app', outer).hide();
-        });
-    });
+            }
+        }));
+    }));
 
-    $('.compat-versions .remove').live('click', function(e) {
-        e.preventDefault();
-        var appRow = $(this).closest('tr');
 
-        appRow.addClass('app-extra');
-
-        if (!appRow.hasClass('app-extra-orig'))
-            appRow.find('input:checkbox').attr('checked', true);
-
-        $('p.add-app:hidden', $(this).closest('form')).show();
-        addAppRow(appRow);
-    });
+    $('.compat-versions .remove').live('click', _pd(function(e) {
+        var $this = $(this),
+            $row = $this.closest('tr');
+        $row.addClass('app-extra');
+        if (!$row.hasClass('app-extra-orig')) {
+            $row.find('input:checkbox').attr('checked', true);
+        }
+        $('p.add-app:hidden', $this.closest('form')).show();
+        addAppRow($row);
+    }));
 
     $('.compat-update-modal').modal('a.compat-update', {
         delegate: $('.item-actions'),
@@ -1306,13 +1304,16 @@ function hideSameSizedIcons() {
 function addAppRow(obj) {
     var outer = $(obj).closest('form'),
         appClass = $('td.app', obj).attr('class');
-    if (!$('.new-apps ul', outer).length)
+    if (!$('.new-apps ul', outer).length) {
         $('.new-apps', outer).html('<ul></ul>');
-    if ($('.new-apps ul a[class=' + appClass + ']', outer).length)
-        return;
-    var appLabel = $('td.app', obj).text(),
-        appHTML = '<li><a href="#" class="' + appClass + '">' + appLabel + '</a></li>';
-    $('.new-apps ul', outer).append(appHTML);
+    }
+    var sel = format('.new-apps ul a[class="{0}"]', [appClass]);
+    if (!$(sel, outer).length) {
+        // Append app to <ul> if it's not already listed.
+        var appLabel = $('td.app', obj).text(),
+            appHTML = '<li><a href="#" class="' + appClass + '">' + appLabel + '</a></li>';
+        $('.new-apps ul', outer).append(appHTML);
+    }
 }
 
 
