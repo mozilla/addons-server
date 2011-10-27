@@ -249,7 +249,12 @@ def assert_no_validation_errors(validation):
 
 
 def addon_factory(version_kw={}, file_kw={}, **kw):
-    a = Addon.objects.create(type=amo.ADDON_EXTENSION)
+    type_ = kw.pop('type', amo.ADDON_EXTENSION)
+    if type_ == amo.ADDON_PERSONA:
+        # Personas need to start life as an extension for versioning
+        a = Addon.objects.create(type=amo.ADDON_EXTENSION)
+    else:
+        a = Addon.objects.create(type=type_)
     a.status = amo.STATUS_PUBLIC
     a.name = name = 'Addon %s' % a.id
     a.slug = name.replace(' ', '-').lower()
@@ -263,8 +268,9 @@ def addon_factory(version_kw={}, file_kw={}, **kw):
     a.status = amo.STATUS_PUBLIC
     for key, value in kw.items():
         setattr(a, key, value)
-        if key == 'type' and value == amo.ADDON_PERSONA:
-            Persona.objects.create(addon_id=a.id, persona_id=a.id)
+    if type_ == amo.ADDON_PERSONA:
+        a.update(type=type_)
+        Persona.objects.create(addon_id=a.id, persona_id=a.id)
     a.save()
     return a
 

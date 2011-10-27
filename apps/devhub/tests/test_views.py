@@ -1447,19 +1447,50 @@ class TestSubmitStep3(TestSubmitBase):
     def test_submit_name_unique(self):
         # Make sure name is unique.
         r = self.client.post(self.url, self.get_dict(name='Cooliris'))
-        error = 'This add-on name is already in use. Please choose another.'
+        error = 'This name is already in use. Please choose another.'
         self.assertFormError(r, 'form', 'name', error)
 
     def test_submit_name_unique_strip(self):
         # Make sure we can't sneak in a name by adding a space or two.
         r = self.client.post(self.url, self.get_dict(name='  Cooliris  '))
-        error = 'This add-on name is already in use. Please choose another.'
+        error = 'This name is already in use. Please choose another.'
         self.assertFormError(r, 'form', 'name', error)
 
     def test_submit_name_unique_case(self):
         # Make sure unique names aren't case sensitive.
         r = self.client.post(self.url, self.get_dict(name='cooliris'))
-        error = 'This add-on name is already in use. Please choose another.'
+        error = 'This name is already in use. Please choose another.'
+        self.assertFormError(r, 'form', 'name', error)
+
+    def _setup_webapp(self):
+        # Used unique name tests for webapps
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+        app = amo.tests.addon_factory(type=amo.ADDON_WEBAPP, name='Cool App')
+        self.assertTrue(app.is_webapp())
+        eq_(ReverseNameLookup(webapp=True).get(app.name), app.id)
+        self.get_addon().update(type=amo.ADDON_WEBAPP)
+
+    def test_submit_app_name_unique(self):
+        self._setup_webapp()
+        url = reverse('devhub.submit_apps.3', args=['a3615'])
+        r = self.client.post(url, self.get_dict(name='Cool App'))
+        error = 'This name is already in use. Please choose another.'
+        self.assertFormError(r, 'form', 'name', error)
+
+    def test_submit_app_name_unique_strip(self):
+        # Make sure we can't sneak in a name by adding a space or two.
+        self._setup_webapp()
+        url = reverse('devhub.submit_apps.3', args=['a3615'])
+        r = self.client.post(url, self.get_dict(name='  Cool App  '))
+        error = 'This name is already in use. Please choose another.'
+        self.assertFormError(r, 'form', 'name', error)
+
+    def test_submit_app_name_unique_case(self):
+        # Make sure unique names aren't case sensitive.
+        self._setup_webapp()
+        url = reverse('devhub.submit_apps.3', args=['a3615'])
+        r = self.client.post(url, self.get_dict(name='cool app'))
+        error = 'This name is already in use. Please choose another.'
         self.assertFormError(r, 'form', 'name', error)
 
     def test_submit_name_required(self):
@@ -2798,8 +2829,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         ReverseNameLookup().add('xpi name', 34)
         r = self.post(expect_errors=True)
         eq_(r.context['new_addon_form'].non_field_errors(),
-            ['This add-on name is already in use. '
-             'Please choose another.'])
+            ['This name is already in use. Please choose another.'])
 
     def test_success(self):
         eq_(Addon.objects.count(), 0)

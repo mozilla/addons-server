@@ -10,7 +10,8 @@ import amo
 import amo.models
 from amo.urlresolvers import reverse
 from addons import query
-from addons.models import Addon, update_search_index, delete_search_index
+from addons.models import (Addon, update_name_table, update_search_index,
+                           delete_search_index)
 
 
 log = commonware.log.getLogger('z.addons')
@@ -96,6 +97,8 @@ Webapp._meta.translated_fields = Addon._meta.translated_fields
 
 models.signals.post_save.connect(update_search_index, sender=Webapp,
                                  dispatch_uid='webapps.index')
+models.signals.post_save.connect(update_name_table, sender=Webapp,
+                                 dispatch_uid='webapps.update.name.table')
 models.signals.post_delete.connect(delete_search_index, sender=Webapp,
                                    dispatch_uid='webapps.unindex')
 

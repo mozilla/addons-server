@@ -31,3 +31,24 @@ class TestReverseNameLookup(amo.tests.TestCase):
 
     def test_get_case(self):
         eq_(ReverseNameLookup().get('delicious bookmarks'), 3615)
+
+    def test_addon_and_app_namespaces(self):
+        eq_(ReverseNameLookup(webapp=False).get('Delicious Bookmarks'), 3615)
+        eq_(ReverseNameLookup(webapp=True).get('Delicious Bookmarks'), None)
+
+        # Note: The factory creates the app which calls the ReverseNameLookup
+        # in a post_save signal, so no need to call it explicitly here.
+        app = amo.tests.addon_factory(type=amo.ADDON_WEBAPP)
+        self.assertTrue(app.is_webapp())
+
+        eq_(ReverseNameLookup(webapp=False).get(app.name), None)
+        eq_(ReverseNameLookup(webapp=True).get(app.name), app.id)
+
+        # Show we can also create an app with the same name as an addon
+        name = 'Delicious Bookmarks'
+        app = amo.tests.addon_factory(name=name, type=amo.ADDON_WEBAPP)
+        self.assertTrue(app.is_webapp())
+        eq_(ReverseNameLookup(webapp=False).get(name), 3615)
+        eq_(ReverseNameLookup(webapp=True).get(name), app.id)
+
+

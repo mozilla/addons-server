@@ -36,30 +36,32 @@ recs_log = logging.getLogger('z.recs')
 def build_reverse_name_lookup():
     """Builds a Reverse Name lookup table in REDIS."""
     ReverseNameLookup().clear()
+    ReverseNameLookup(webapp=True).clear()
 
     # Get all add-on name ids
     names = (Addon.objects.filter(
-        name__isnull=False, type__in=[amo.ADDON_EXTENSION, amo.ADDON_THEME])
-        .values_list('name_id', 'id'))
+        name__isnull=False, type__in=[amo.ADDON_EXTENSION, amo.ADDON_THEME,
+                                      amo.ADDON_WEBAPP])
+        .values('name_id', 'id', 'type'))
 
     for chunk in chunked(names, 100):
-        _build_reverse_name_lookup.delay(dict(chunk))
+        _build_reverse_name_lookup.delay(chunk)
 
 
 @task
-def _build_reverse_name_lookup(names, **kw):
+def _build_reverse_name_lookup(data, **kw):
     clear = kw.get('clear', False)
-    translations = (Translation.objects.filter(id__in=names)
-                    .values_list('id', 'localized_string'))
+    name_ids = [a['name_id'] for a in data]
+    translations = dict(Translation.objects.filter(id__in=name_ids)
+        .values_list('id', 'localized_string'))
 
-    if clear:
-        for addon_id in names.values():
-            ReverseNameLookup().delete(addon_id)
-
-    for t_id, string in translations:
-        if string:
-            ReverseNameLookup().add(string, names[t_id])
-
+    for addon in data:
+        webapp = addon['type'] == amo.ADDON_WEBAPP
+        if clear:
+            ReverseNameLookup(webapp).delete(addon['id'])
+        if translations.get(addon['name_id'], ''):
+            ReverseNameLookup(webapp).add(translations.get(addon['name_id']),
+                                          addon['id'])
 
 # TODO(jbalogh): removed from cron on 6/27/11. If the site doesn't break,
 # delete it.
