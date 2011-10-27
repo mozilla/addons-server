@@ -68,7 +68,7 @@
   <div id="lm" class="loadmessage"><span>{{ _('Loading the latest data&hellip;') }}</span></div>
   <div class="secondary">
     {{ report_menu(request, addon, report) }}
-    {% block stats_note %}
+    {% block stats_note_link %}
     {% endblock %}
     <pre id="dbgout"></pre>
   </div>
@@ -146,9 +146,14 @@
 {% endblock %}
 
 {% block popups %}
+  <div class="modal" id="stats-note">
+    <a class="close">{{ _('close') }}</a>
+    {% block stats_note %}
+    {% endblock %}
+  </div>
   <div class="modal" id="custom-criteria">
     <h2>{{ _('Custom Date Range') }}</h2>
-    <a class="close">close</a>
+    <a class="close">{{ _('close') }}</a>
     <form id="date-range-form">
       <fieldset>
         <p>

@@ -4,15 +4,17 @@
 <h2>{{_('Downloads by Date')}}<a id="export_data" href=''>{{_('Export as CSV')}}</a></h2>
 {% endblock %}
 
+{% block stats_note_link %}
+<a href="#" id="stats-note-link">{{ _('How are downloads counted?') }}</a>
+{% endblock %}
+
 {% block stats_note %}
-  <aside class="highlight">
-    {% trans %}
-      <h3>How are downloads counted?</h3>
-      <p>
-        Download counts are updated every evening and only include original add-on
-        downloads, not updates. Downloads can be broken down by the specific source
-        referring the download.
-      </p>
-    {% endtrans %}
-  </aside>
+  {% trans %}
+    <h2>How are downloads counted?</h2>
+    <p>
+      Download counts are updated every evening and only include original add-on
+      downloads, not updates. Downloads can be broken down by the specific source
+      referring the download.
+    </p>
+  {% endtrans %}
 {% endblock %}

@@ -4,26 +4,28 @@
 <h2>{{_('Download sources by Date')}}<a id="export_data" href=''>{{_('Export as CSV')}}</a></h2>
 {% endblock %}
 
+{% block stats_note_link %}
+<a href="#" id="stats-note-link">{{ _('About tracking external sources...') }}</a>
+{% endblock %}
+
 {% block stats_note %}
-  <aside class="highlight">
-    {% trans slug=addon.slug, id=addon.id %}
-      <h2>Tracking external sources</h2>
-      <p>
-        If you link to your add-on's details page or directly to its file from an
-        external site, such as your blog or website, you can append a parameter to be
-        tracked as an additional download source on this page. For example, the
-        following links would appear as sourced by your blog:
-      <dl>
-        <dt>Add-on Details Page</dt>
-        <dd>https://addons.mozilla.org/addon/{{ slug }}?src=<b>external-blog</b></dd>
-        <dt>Direct File Link</dt>
-        <dd>https://addons.mozilla.org/downloads/latest/{{ id }}/addon-{{ id }}-latest.xpi?src=<b>external-blog</b></dd>
-      </dl>
-      <p>
-        Only src parameters that begin with "external-" will be tracked, up to 61
-        additional characters. Any text after "external-" can be used to describe the
-        source, such as "external-blog", "external-sidebar", "external-campaign225",
-        etc. The following URL-safe characters are allowed: alphanumeric <code>- . _ ~ % +</code>
-    {% endtrans %}
-  </aside>
+  {% trans slug=addon.slug, id=addon.id %}
+    <h2>Tracking external sources</h2>
+    <p>
+      If you link to your add-on's details page or directly to its file from an
+      external site, such as your blog or website, you can append a parameter to be
+      tracked as an additional download source on this page. For example, the
+      following links would appear as sourced by your blog:
+    <dl>
+      <dt>Add-on Details Page</dt>
+      <dd>https://addons.mozilla.org/addon/{{ slug }}?src=<b>external-blog</b></dd>
+      <dt>Direct File Link</dt>
+      <dd>https://addons.mozilla.org/downloads/latest/{{ id }}/addon-{{ id }}-latest.xpi?src=<b>external-blog</b></dd>
+    </dl>
+    <p>
+      Only src parameters that begin with "external-" will be tracked, up to 61
+      additional characters. Any text after "external-" can be used to describe the
+      source, such as "external-blog", "external-sidebar", "external-campaign225",
+      etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ % +</code>
+  {% endtrans %}
 {% endblock %}

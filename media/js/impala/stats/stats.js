@@ -40,6 +40,10 @@
             });
         })();
 
+        // set up notes modal.
+        $('#stats-note').modal("#stats-note-link", { width: 520 });
+
+        // Trigger the initial data load.
         $(window).trigger('changeview', initView);
     });
 

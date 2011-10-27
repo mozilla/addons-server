@@ -4,16 +4,18 @@
   <h2>{{_('Daily Users by Date')}}<a id="export_data" href=''>{{_('Export as CSV')}}</a></h2>
 {% endblock %}
 
+{% block stats_note_link %}
+<a href="#" id="stats-note-link">{{ _('What are daily users?') }}</a>
+{% endblock %}
+
 {% block stats_note %}
-  <aside class="highlight">
-    {% trans %}
-      <h3>What are daily users?</h3>
-      <p>
-        Add-ons downloaded from this site check for updates once per day. The total
-        number of these update pings is known as Active Daily Users. Daily users can be
-        broken down by add-on version, operating system, add-on status, application,
-        and locale.
-      </p>
-    {% endtrans %}
-  </aside>
+  {% trans %}
+    <h2>What are daily users?</h2>
+    <p>
+      Add-ons downloaded from this site check for updates once per day. The total
+      number of these update pings is known as Active Daily Users. Daily users can be
+      broken down by add-on version, operating system, add-on status, application,
+      and locale.
+    </p>
+  {% endtrans %}
 {% endblock %}
