@@ -1,3 +1,5 @@
+import csv
+import cStringIO
 import itertools
 import time
 from types import GeneratorType
@@ -17,11 +19,10 @@ from addons.decorators import addon_view, addon_view_factory
 from addons.models import Addon
 from amo.urlresolvers import reverse
 
-import unicode_csv
 from .db import Avg
 from .decorators import allow_cross_site_request
 from .models import DownloadCount, UpdateCount, Contribution
-from .utils import csv_prep, csv_dynamic_prep
+from .utils import csv_prep
 
 
 SERIES_GROUPS = ('day', 'week', 'month')
@@ -48,8 +49,23 @@ def get_series(model, extra_field=None, **filters):
         rv = dict(count=val['count'], date=date_, end=date_)
         if extra_field:
             rv['data'] = extract(val[extra_field])
-        # TODO(jbalogh): can we get rid of end?
         yield rv
+
+
+def csv_fields(series):
+    """
+    Figure out all the keys in the `data` dict for csv columns.
+
+    Returns (series, fields). The series only contains the `data` dicts, plus
+    `count` and `date` from the top level.
+    """
+    rv = []
+    fields = set()
+    for row in series:
+        fields.update(row['data'])
+        rv.append(row['data'])
+        row['data'].update(count=row['count'], date=row['date'])
+    return rv, fields
 
 
 def extract(dicts):
@@ -76,8 +92,7 @@ def overview_series(request, addon, group, start, end, format):
 
     series = zip_overview(dls, updates)
 
-    if format == 'json':
-        return render_json(request, addon, series)
+    return render_json(request, addon, series)
 
 
 def zip_overview(downloads, updates):
@@ -120,8 +135,7 @@ def downloads_series(request, addon, group, start, end, format):
     series = get_series(DownloadCount, addon=addon.id, date__range=date_range)
 
     if format == 'csv':
-        series, headings = csv_prep(series, fields)
-        return render_csv(request, addon, series, headings)
+        return render_csv(request, addon, series, ['date', 'count'])
     elif format == 'json':
         return render_json(request, addon, series)
 
@@ -136,9 +150,9 @@ def sources_series(request, addon, group, start, end, format):
                         addon=addon.id, date__range=date_range)
 
     if format == 'csv':
-        series, headings = csv_dynamic_prep(series, qs, fields,
-                                            'count', 'sources')
-        return render_csv(request, addon, series, headings)
+        series, fields = csv_fields(series)
+        return render_csv(request, addon, series,
+                          ['date', 'count'] + list(fields))
     elif format == 'json':
         return render_json(request, addon, series)
 
@@ -152,8 +166,7 @@ def usage_series(request, addon, group, start, end, format):
     series = get_series(UpdateCount, addon=addon.id, date__range=date_range)
 
     if format == 'csv':
-        series, headings = csv_prep(series, fields)
-        return render_csv(request, addon, series, headings)
+        return render_csv(request, addon, series, ['date', 'count'])
     elif format == 'json':
         return render_json(request, addon, series)
 
@@ -178,9 +191,9 @@ def usage_breakdown_series(request, addon, group,
         series = process_locales(series)
 
     if format == 'csv':
-        series, headings = csv_dynamic_prep(series, qs, fields,
-                                            'count', field)
-        return render_csv(request, addon, series, headings)
+        series, fields = csv_fields(series)
+        return render_csv(request, addon, series,
+                          ['date', 'count'] + list(fields))
     elif format == 'json':
         return render_json(request, addon, series)
 
@@ -364,6 +377,36 @@ def fudge_headers(response, stats):
         patch_cache_control(response, max_age=seven_days)
 
 
+class UnicodeCSVDictWriter(csv.DictWriter):
+    """A DictWriter that writes a unicode stream."""
+
+    def __init__(self, stream, fields, **kw):
+        # We have the csv module write into our buffer as bytes and then we
+        # dump the buffer to the real stream as unicode.
+        self.buffer = cStringIO.StringIO()
+        csv.DictWriter.__init__(self, self.buffer, fields, **kw)
+        self.stream = stream
+
+    def writeheader(self):
+        self.writerow(dict(zip(self.fieldnames, self.fieldnames)))
+
+    def try_encode(self, obj):
+        return obj.encode('utf-8') if isinstance(obj, unicode) else obj
+
+    def writerow(self, rowdict):
+        row = self._dict_to_list(rowdict)
+        # Write to the buffer as ascii.
+        self.writer.writerow(map(self.try_encode, row))
+        # Dump the buffer to the real stream as utf-8.
+        self.stream.write(self.buffer.getvalue().decode('utf-8'))
+        # Clear the buffer.
+        self.buffer.truncate(0)
+
+    def writerows(self, rowdicts):
+        for rowdict in rowdicts:
+            self.writerow(rowdict)
+
+
 @allow_cross_site_request
 def render_csv(request, addon, stats, fields):
     """Render a stats series in CSV."""
@@ -372,18 +415,13 @@ def render_csv(request, addon, stats, fields):
     response = jingo.render(request, 'stats/csv_header.txt',
                             {'addon': addon, 'timestamp': ts})
 
-    # For remora compatibility, reverse the output so oldest data
-    # is first.
-    # XXX: The list() performance penalty here might be big enough to
-    # consider changing the sort order at lower levels.
-    writer = unicode_csv.UnicodeWriter(response)
-    writer.writerow(fields)
-    stats_list = list(stats)
-    for row in reversed(stats_list):
-        writer.writerow(row)
+    writer = UnicodeCSVDictWriter(response, fields, restval=0,
+                                  extrasaction='ignore')
+    writer.writeheader()
+    writer.writerows(stats)
 
-    fudge_headers(response, stats_list)
-    response['Content-Type'] = 'text/plain; charset=utf-8'
+    fudge_headers(response, list)
+    response['Content-Type'] = 'text/csv; charset=utf-8'
     return response
 
 

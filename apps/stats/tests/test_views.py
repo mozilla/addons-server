@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import csv
 import json
-from datetime import datetime
 
 from nose.tools import eq_
 
@@ -294,12 +293,19 @@ class TestCacheControl(TestSeriesBase):
             'Bad or no cache-control: %r' % response.get('cache-control', ''))
 
 
-class TestJSON(StatsTest, amo.tests.ESTestCase):
+class TestResponses(StatsTest, amo.tests.ESTestCase):
     es = True
 
     def setUp(self):
-        super(TestJSON, self).setUp()
+        super(TestResponses, self).setUp()
         self.index()
+
+    def csv_eq(self, response, expected):
+        # Drop the first 4 lines, which contain the header comment.
+        content = response.content.splitlines()[4:]
+        # Strip any extra spaces from the expected content.
+        expected = [line.strip() for line in expected.splitlines()]
+        self.assertListEqual(content, expected)
 
     def index(self):
         updates = UpdateCount.objects.values_list('id', flat=True)
@@ -308,7 +314,7 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
         tasks.index_download_counts(list(downloads))
         self.refresh('update_counts')
 
-    def test_usage(self):
+    def test_usage_json(self):
         r = self.get_view_response('stats.usage_series', group='day',
                                    format='json')
         eq_(r.status_code, 200)
@@ -317,7 +323,16 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
             {'count': 1000, 'date': '2009-06-01', 'end': '2009-06-01'},
         ])
 
-    def test_usage_by_app(self):
+    def test_usage_csv(self):
+        r = self.get_view_response('stats.usage_series', group='day',
+                                   format='csv')
+        eq_(r.status_code, 200)
+        self.csv_eq(r,
+                    """date,count
+                       2009-06-02,1500
+                       2009-06-01,1000""")
+
+    def test_usage_by_app_json(self):
         r = self.get_view_response('stats.apps_series', group='day',
                                    format='json')
         eq_(r.status_code, 200)
@@ -340,7 +355,15 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
             }
         ])
 
-    def test_usage_by_locale(self):
+    def test_usage_by_app_csv(self):
+        r = self.get_view_response('stats.apps_series', group='day',
+                                   format='csv')
+        eq_(r.status_code, 200)
+        self.csv_eq(r, """date,count,{ec8030f7-c20a-464f-9b0e-13a3a9e97384}
+                          2009-06-02,1500,{u'4.0': 1500}
+                          2009-06-01,1000,{u'4.0': 1000}""")
+
+    def test_usage_by_locale_json(self):
         r = self.get_view_response('stats.locales_series', group='day',
                                    format='json')
         eq_(r.status_code, 200)
@@ -365,7 +388,15 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
             }
         ])
 
-    def test_usage_by_os(self):
+    def test_usage_by_locale_csv(self):
+        r = self.get_view_response('stats.locales_series', group='day',
+                                   format='csv')
+        eq_(r.status_code, 200)
+        self.csv_eq(r, """date,count,English (US) (en-us),Ελληνικά (el)
+                          2009-06-02,1500,300,400
+                          2009-06-01,1000,300,400""")
+
+    def test_usage_by_os_json(self):
         r = self.get_view_response('stats.os_series', group='day',
                                    format='json')
         eq_(r.status_code, 200)
@@ -390,7 +421,12 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
             }
         ])
 
-    def test_usage_by_version(self):
+    def test_usage_by_os_csv(self):
+        r = self.get_view_response('stats.os_series', group='day',
+                                   format='csv')
+        eq_(r.status_code, 200)
+
+    def test_usage_by_version_json(self):
         r = self.get_view_response('stats.versions_series', group='day',
                                    format='json')
         eq_(r.status_code, 200)
@@ -415,7 +451,15 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
             }
         ])
 
-    def test_usage_by_status(self):
+    def test_usage_by_version_csv(self):
+        r = self.get_view_response('stats.versions_series', group='day',
+                                   format='csv')
+        eq_(r.status_code, 200)
+        self.csv_eq(r, """date,count,2.0,1.0
+                          2009-06-02,1500,950,550
+                          2009-06-01,1000,800,200""")
+
+    def test_usage_by_status_json(self):
         r = self.get_view_response('stats.statuses_series', group='day',
                                    format='json')
         eq_(r.status_code, 200)
@@ -439,6 +483,14 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
                 }
             }
         ])
+
+    def test_usage_by_status_csv(self):
+        r = self.get_view_response('stats.statuses_series', group='day',
+                                   format='csv')
+        eq_(r.status_code, 200)
+        self.csv_eq(r, """date,count,userEnabled,userDisabled
+                          2009-06-02,1500,1370,130
+                          2009-06-01,1000,950,50""")
 
     def test_overview(self):
         r = self.get_view_response('stats.overview_series', group='day',
@@ -523,8 +575,7 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
                                      {'downloads': 0, 'updates': 0})
                 next_actual = next(actual)
 
-
-    def test_downloads(self):
+    def test_downloads_json(self):
         r = self.get_view_response('stats.downloads_series', group='day',
                                    format='json')
         eq_(r.status_code, 200)
@@ -539,7 +590,21 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
             {"count": 10, "date": "2009-06-01", "end": "2009-06-01"},
         ])
 
-    def test_downloads_sources(self):
+    def test_downloads_csv(self):
+        r = self.get_view_response('stats.downloads_series', group='day',
+                                   format='csv')
+        eq_(r.status_code, 200)
+        self.csv_eq(r, """date,count
+                          2009-09-03,10
+                          2009-08-03,10
+                          2009-07-03,10
+                          2009-06-28,10
+                          2009-06-20,10
+                          2009-06-12,10
+                          2009-06-07,10
+                          2009-06-01,10""")
+
+    def test_downloads_sources_json(self):
         r = self.get_view_response('stats.sources_series', group='day',
                                    format='json')
         eq_(r.status_code, 200)
@@ -585,3 +650,17 @@ class TestJSON(StatsTest, amo.tests.ESTestCase):
              "data": {"api": 2, "search": 3}
             }
         ])
+
+    def test_downloads_sources_csv(self):
+        r = self.get_view_response('stats.sources_series', group='day',
+                                   format='csv')
+        eq_(r.status_code, 200)
+        self.csv_eq(r, """date,count,search,api
+                          2009-09-03,10,3,2
+                          2009-08-03,10,3,2
+                          2009-07-03,10,3,2
+                          2009-06-28,10,3,2
+                          2009-06-20,10,3,2
+                          2009-06-12,10,3,2
+                          2009-06-07,10,3,2
+                          2009-06-01,10,3,2""")

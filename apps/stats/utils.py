@@ -31,60 +31,6 @@ def csv_prep(stats, field_list, precision='1'):
     return (stats, fields)
 
 
-def csv_dynamic_prep(stats, queryset, field_list, total_key, dynamic_key):
-    """Prepare dynamic stats for CSV output.
-
-    This is suitable for stats containing breakdown values.
-    All Decimal values will be rounded and converted to integers.
-
-    Returns a tuple containing a row generator and a list of field
-    names suitable for the CSV header.
-    """
-    if not queryset:
-        return ([], [])
-
-    # Summarize entire queryset to get all dynamic field names and
-    # determine if we need to calculate 'unknown' values.
-    totals = queryset.summary(**dict(field_list))
-
-    # Since there may be averages in play, round all decimals to integers
-    totals = list(decimal_to_int_gen([totals]))[0]
-    stats = decimal_to_int_gen(stats)
-
-    # Perform 'unknown' calculations if there is a difference between
-    # dynamic field total and grand total.
-    dyn_sum = totals[dynamic_key].sum_reduce()
-    if dyn_sum < totals[total_key]:
-        totals[dynamic_key]['unknown'] = totals[total_key] - dyn_sum
-        stats = unknown_gen(stats, total_key, dynamic_key)
-
-    # Flatten the nested dynamic dictionary, grab all keys and sort them
-    # by their values.
-    d = flatten_dict({dynamic_key: totals[dynamic_key]})
-    dyn_keys = sorted(d, key=d.__getitem__, reverse=True)
-
-    # Build the final list of field keys, replacing dynamic_key with all its
-    # breakdown fields in dyn_keys.
-    dyn_index = zip(*field_list)[0].index(dynamic_key)
-    fields = [k for k, v in field_list[:dyn_index]]
-    fields.extend(k for k in dyn_keys)
-    fields.extend(k for k, v in field_list[dyn_index + 1:])
-
-    # For CSV headers, we trim the "dynamic_key/" portion from the start of all
-    # the dyn_keys.
-    headings = [k for k, v in field_list[:dyn_index]]
-    headings.extend(k[len(dynamic_key) + 1:] for k in dyn_keys)
-    headings.extend(k for k, v in field_list[dyn_index + 1:])
-
-    # Almost done...
-    # For each row: flatten the dynamic field dictionary, and turn the row
-    # into a list of values.
-    stats = flatten_gen(stats, flatten_key=dynamic_key)
-    stats = values_gen(stats, fields, zero_val=0)
-
-    return (stats, headings)
-
-
 def flatten_dict(d, key=None):
     """Flatten a nested dictionary.
 
