@@ -75,9 +75,10 @@
                          row;
 
                      _.each(fields, function(f) {
-                         newHead += '<th>';
-                         var id = f.split('|').pop();
-                         newHead += z.StatsManager.getPrettyName(metric, id);
+                         var id = f.split('|').pop(),
+                             prettyName = z.StatsManager.getPrettyName(metric, id);
+                         newHead += format('<th title="{0}">', prettyName);
+                         newHead += prettyName;
                          newHead += '</th>';
                      });
 
