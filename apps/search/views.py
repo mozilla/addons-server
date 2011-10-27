@@ -622,7 +622,7 @@ def version_sidebar(request, query, facets):
     exclude_versions = getattr(request.APP, 'exclude_versions', [])
     # L10n: {0} is an application, such as Firefox. This means "any version of
     # Firefox."
-    rv = [FacetLink(_(u'Any {0}').format(app), dict(appver=None), not appver)]
+    rv = [FacetLink(_(u'Any {0}').format(app), dict(appver=''), not appver)]
     vs = [dict_from_int(f['term']) for f in facets['appversions']]
 
     # Insert the filtered app version even if it's not a facet.

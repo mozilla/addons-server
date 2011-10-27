@@ -1,3 +1,16 @@
+if (z.browser.firefox) {
+    $('#search').bind('autofill', function(e) {
+        // Populate search form with browser version and OS.
+        var $this = $(this),
+            gv = z.getVars(location.search);
+        $this.find('#id_appver').val(typeof gv.appver === 'undefined' ?
+                                     z.browserVersion : gv.appver);
+        $this.find('#id_platform').val(typeof gv.platform === 'undefined' ?
+                                       z.platform : gv.platform);
+    }).trigger('autofill');
+}
+
+
 $(function() {
     $('#search-facets').delegate('li.facet', 'click', function(e) {
         var $this = $(this);
@@ -98,7 +111,12 @@ $.fn.initSearchPjax = function($filters) {
         $filters.find('a[data-params]').trigger('rebuild');
 
         // Highlight selection on sidebar.
-        $triggered.trigger('highlight');
+        if ($triggered) {
+            $triggered.trigger('highlight');
+        }
+
+        // Update auto-filled appver/platform if there's a user override.
+        $('#search').trigger('autofill');
 
         // Scroll up to top of page.
         $('html, body').animate({scrollTop: 0}, 200);

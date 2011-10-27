@@ -8,7 +8,7 @@ z.getVars = function(qs) {
             item;
         for (var i = 0; i < items.length; i++) {
             item = items[i].split('=');
-            if (!!item[1]) {
+            if (item[0] !== '' && typeof item[1] !== 'undefined') {
                 vars[escape_(unescape(item[0]))] = escape_(unescape(item[1]));
             }
         }
