@@ -247,7 +247,8 @@
                 }
             });
             // set Daily Users series to use the right yAxis.
-            newConfig.series[1].yAxis = 1;
+            _.find(newConfig.series,
+                   function(s) { return s.id == 'updates'; }).yAxis = 1;
         }
         if (metric == "contributions" && newConfig.series.length) {
             _.extend(newConfig, {
