@@ -171,6 +171,19 @@
                 0 0 100px rgba(255, 255, 255, 0.2) inset);
 }
 
+.install {
+  cursor: pointer;
+}
+
+.install.clickHijack * {
+  pointer-events: none;
+}
+
+.install.active {
+  padding-top: 2px;
+  margin-bottom: -2px;
+}
+
 .button:active,
 .button.selected {
     top: 2px;

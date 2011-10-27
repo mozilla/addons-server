@@ -151,7 +151,13 @@ var installButton = function() {
     var clickHijack = function() {
         if (!appSupported && !search || !("InstallTrigger" in window)) return;
 
-        $this.click(function(e) {
+        $this.addClass('clickHijack'); // So we can disable pointer events
+
+        $this.mousedown(function(e) {
+            $this.addClass('active');
+        }).mouseup(function(e) {
+            $this.removeClass('active');
+        }).click(function(e) {
             // If the click was on a.installer or a child, call the special
             // install method.  We can't bind this directly because we add
             // more .installers dynamically.
@@ -159,7 +165,7 @@ var installButton = function() {
             if ($target.hasClass('installer')) {
                 var installer = $target;
             } else {
-                var installer =  $target.parents('.installer').first();
+                var installer =  $target.find('.installer').first();
                 if (_.indexOf($this.find('.installer'), installer[0]) == -1) {
                     return;
                 }
