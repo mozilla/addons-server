@@ -19,8 +19,7 @@
         {{ _('View Add-on Listing') }}</a></li>
       <li><a href="{{ url('devhub.feed', addon.slug) }}">
         {{ _('View Recent Changes') }}</a></li>
-      <li><a href="{{ locale_url('/statistics/addon/{0}')|f(addon.id) }}">
-      {# <li><a href="{{ url('stats.overview', addon.slug) }}"> #}
+      <li><a href="{{ url('stats.overview', addon.slug) }}">
         {{ _('View Statistics Dashboard') }}</a></li>
     </ul>
   </div>

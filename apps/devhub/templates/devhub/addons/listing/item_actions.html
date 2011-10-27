@@ -40,8 +40,7 @@
   {% endif %}
   {% if not addon.disabled_by_user %}
     <li>
-      <a href="{{ locale_url('/statistics/addon/{0}')|f(addon.id) }}" class="tooltip"
-      {# <a href="{{ url('stats.overview', addon.slug) }}" class="tooltip" #}
+      <a href="{{ url('stats.overview', addon.slug) }}" class="tooltip"
          title="{{ _('Daily statistics on downloads and users.') }}">
         {{ _('Statistics') }}</a>
     </li>
