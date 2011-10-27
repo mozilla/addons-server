@@ -83,7 +83,8 @@
                   <strong class="downloads">{{
                     addon.total_downloads|numberfmt }}</strong>
                   {% if addon.public_stats %}
-                    <a href="{{ url('stats.overview', addon.slug) }}">
+                    {# TODO real reverse URL #}
+                    <a href="{{ locale_url('/statistics/addon/{0}'|f(addon.id)) }}">
                       {{ _('View Statistics') }}</a>
                   {% endif %}
                 </td>
@@ -95,7 +96,8 @@
                     <strong class="downloads">{{
                       addon.average_daily_users|numberfmt }}</strong>
                     {% if addon.public_stats %}
-                      <a href="{{ url('stats.overview', addon.slug) }}">
+                      {# TODO real reverse URL #}
+                      <a href="{{ locale_url('/statistics/addon/{0}'|f(addon.id)) }}">
                         {{ _('View Statistics') }}</a>
                     {% endif %}
                   </td>
