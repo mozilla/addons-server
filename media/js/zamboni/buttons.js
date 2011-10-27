@@ -162,10 +162,6 @@ var installButton = function() {
             // install method.  We can't bind this directly because we add
             // more .installers dynamically.
             var $target = $(e.target);
-            if($target.is(':not(a:visible)')) {
-                $target = $target.find('a:visible');
-            }
-
             if ($target.hasClass('installer')) {
                 var installer = $target;
             } else {
