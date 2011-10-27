@@ -1058,8 +1058,9 @@ def update_name_table(sender, **kw):
     from . import cron
     if not kw.get('raw'):
         addon = kw['instance']
-        cron._build_reverse_name_lookup.delay({addon.name_id: addon.id},
-                                              clear=True)
+        if addon.name:
+            cron._build_reverse_name_lookup.delay({addon.name_id: addon.id},
+                                                  clear=True)
 
 
 @receiver(dbsignals.pre_delete, sender=Addon,
@@ -1067,7 +1068,7 @@ def update_name_table(sender, **kw):
 def clear_name_table(sender, **kw):
     if not kw.get('raw'):
         addon = kw['instance']
-        ReverseNameLookup().delete(addon.id)
+        ReverseNameLookup(addon.is_webapp()).delete(addon.id)
 
 
 @receiver(signals.version_changed, dispatch_uid='version_changed')

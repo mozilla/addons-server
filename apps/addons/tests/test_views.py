@@ -1668,19 +1668,19 @@ class TestSubmitPersona(amo.tests.TestCase):
         """Make sure name is unique."""
         r = self.client.post(self.url, self.get_dict(name='Cooliris'))
         self.assertFormError(r, 'form', 'name',
-            'This add-on name is already in use. Please choose another.')
+            'This name is already in use. Please choose another.')
 
     def test_submit_name_unique_strip(self):
         """Make sure we can't sneak in a name by adding a space or two."""
         r = self.client.post(self.url, self.get_dict(name='  Cooliris  '))
         self.assertFormError(r, 'form', 'name',
-            'This add-on name is already in use. Please choose another.')
+            'This name is already in use. Please choose another.')
 
     def test_submit_name_unique_case(self):
         """Make sure unique names aren't case sensitive."""
         r = self.client.post(self.url, self.get_dict(name='cooliris'))
         self.assertFormError(r, 'form', 'name',
-            'This add-on name is already in use. Please choose another.')
+            'This name is already in use. Please choose another.')
 
     def test_submit_name_required(self):
         """Make sure name is required."""
