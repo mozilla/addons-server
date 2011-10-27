@@ -648,32 +648,18 @@ def platform_sidebar(request, query, facets):
     platforms = [amo.PLATFORMS[f['term']] for f in facets['platforms'] if
                  f['term'] != ALL.id]
 
-    # If a platform is not recognized, we show "Any System."
-    selected = amo.PLATFORM_DICT.get(qplatform, amo.PLATFORM_ANY)
-
     # The default is to show "All Systems."
-    if not qplatform:
-        selected = ALL
+    selected = amo.PLATFORM_DICT.get(qplatform, ALL)
 
     if selected != ALL and selected not in app_platforms:
         # Insert the filtered platform even if it's not a facet.
-        if selected == amo.PLATFORM_ANY:
-            # Insert after "All Systems."
-            app_platforms.insert(0, selected)
-        else:
-            app_platforms.append(selected)
+        app_platforms.append(selected)
 
-    # L10n: "All Systems" means list add-ons supported on every platform.
+    # L10n: "All Systems" means show everything regardless of platform.
     rv = [FacetLink(_(u'All Systems'), dict(platform=ALL.shortname),
                     selected == ALL)]
     for platform in app_platforms:
-        if platform == amo.PLATFORM_ALL:
-            continue
-        if platform == amo.PLATFORM_ANY:
-            name = _(u'Any System')
-        else:
-            name = platform.name
-        rv.append(FacetLink(name, dict(platform=platform.shortname),
+        rv.append(FacetLink(platform.name, dict(platform=platform.shortname),
                             platform == selected))
     return rv
 

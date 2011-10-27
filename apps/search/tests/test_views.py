@@ -160,55 +160,86 @@ class TestESSearch(amo.tests.ESTestCase):
         self.assertRedirects(r, self.url + '?sort=rating', status_code=301)
 
     def check_platform_filters(self, platform, expected=None):
-        if not expected:
-            expected = platform
         r = self.client.get('%s?platform=%s' % (self.url, platform),
                             follow=True)
-        eq_(r.context['query'].get('platform'), expected)
-
-        # We default to show "Any System."
-        selected = amo.PLATFORM_DICT.get(expected, amo.PLATFORM_ANY)
-        if not platform:
-            selected = amo.PLATFORM_ALL
-        app_platforms = r.context['request'].APP.platforms.values()
-
-        if selected == amo.PLATFORM_ANY:
-            # Insert after "All Systems."
-            app_platforms.insert(1, amo.PLATFORM_ANY)
-
         plats = r.context['platforms']
-
-        for idx, plat in enumerate(app_platforms):
-            facet_link = plats[idx]
-            if plat == amo.PLATFORM_ANY:
-                name = u'Any System'
-            elif plat == amo.PLATFORM_ALL:
-                name = u'All Systems'
-            else:
-                name = unicode(plat.name)
-            eq_(unicode(facet_link.text), name)
-            eq_(facet_link.selected, selected == plat)
+        for idx, plat in enumerate(plats):
+            name, selected = expected[idx]
+            label = unicode(plat.text)
+            assert label == name, (
+                '%r platform had the wrong label: %s' % (platform, label))
+            assert plat.selected == selected, (
+                '%r platform should have been selected' % platform)
 
     def test_platform_default(self):
-        self.check_platform_filters('')
+        expected = [
+            ('All Systems', True),
+            ('Linux', False),
+            ('Mac OS X', False),
+            ('Windows', False),
+        ]
+        self.check_platform_filters('', expected)
+        self.check_platform_filters('all', expected)
+        self.check_platform_filters('any', expected)
+        self.check_platform_filters('xxx', expected)
+        self.check_platform_filters('amiga', expected)
 
-    def test_platform_known(self):
-        self.check_platform_filters('all')
-        self.check_platform_filters('any')
-        self.check_platform_filters('windows')
-        self.check_platform_filters('mac')
-        self.check_platform_filters('linux')
-        self.check_platform_filters('maemo')
+    def test_platform_listed(self):
+        expected = [
+            ('All Systems', False),
+            ('Linux', True),
+            ('Mac OS X', False),
+            ('Windows', False),
+        ]
+        self.check_platform_filters('linux', expected)
+
+        expected = [
+            ('All Systems', False),
+            ('Linux', False),
+            ('Mac OS X', False),
+            ('Windows', True),
+        ]
+        self.check_platform_filters('windows', expected)
+
+        expected = [
+            ('All Systems', False),
+            ('Linux', False),
+            ('Mac OS X', True),
+            ('Windows', False),
+        ]
+        self.check_platform_filters('mac', expected)
+
+    def test_platform_incompatible(self):
+        expected = [
+            ('All Systems', True),
+            ('Linux', False),
+            ('Mac OS X', False),
+            ('Windows', False),
+        ]
+        self.check_platform_filters('any', expected)
+
+        expected = [
+            ('All Systems', False),
+            ('Linux', False),
+            ('Mac OS X', False),
+            ('Windows', False),
+            ('Maemo', True),
+        ]
+        self.check_platform_filters('maemo', expected)
 
     def test_platform_legacy_params(self):
+        ALL = (amo.PLATFORM_ALL, amo.PLATFORM_ANY, amo.PLATFORM_ALL_MOBILE)
+        listed = ALL + (amo.PLATFORM_LINUX, amo.PLATFORM_MAC, amo.PLATFORM_WIN)
         for idx, platform in amo.PLATFORMS.iteritems():
-            self.check_platform_filters(str(idx), platform.shortname)
-
-    def test_platform_bad(self):
-        self.check_platform_filters('xxx')
-        self.check_platform_filters('$$$')
-        self.check_platform_filters('!')
-        self.check_platform_filters(' ')
+            expected = [
+                ('All Systems', platform in ALL),
+                ('Linux', platform == amo.PLATFORM_LINUX),
+                ('Mac OS X', platform == amo.PLATFORM_MAC),
+                ('Windows', platform == amo.PLATFORM_WIN),
+            ]
+            if platform not in listed:
+                expected.append((platform.name, True))
+            self.check_platform_filters(str(idx), expected)
 
     def check_appver_filters(self, appver='', expected=''):
         if not expected:
