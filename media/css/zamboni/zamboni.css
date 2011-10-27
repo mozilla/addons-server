@@ -848,6 +848,10 @@ div.popup-shim {
     z-index: 2000;
 }
 
+.install a * {
+   pointer-events: none;
+}
+
 /* http://nicolasgallagher.com/demo/pure-css-speech-bubbles/bubbles.html */
 /* Creates the larger triangle. */
 .install-note:before,
