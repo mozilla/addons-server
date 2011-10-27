@@ -38,7 +38,7 @@ def global_settings(request):
     tools_links = []
     context = {}
 
-    tools_title = _('Developer')
+    tools_title = _('Tools')
 
     if request.user.is_authenticated() and hasattr(request, 'amo_user'):
         amo_user = request.amo_user
@@ -70,26 +70,23 @@ def global_settings(request):
             tools_links.append({'text': _('Manage My Add-ons'),
                                 'href': reverse('devhub.addons')})
 
-            tools_links.append({'text': _('Submit a New Add-on'),
-                                'href': reverse('devhub.submit.1')})
+        tools_links.append({'text': _('Submit a New Add-on'),
+                            'href': reverse('devhub.submit.1')})
 
-            if waffle.flag_is_active(request, 'accept-webapps'):
-                tools_links.append({'text': _('Submit a New App'),
-                                    'href': reverse('devhub.submit_apps.1')})
+        if waffle.flag_is_active(request, 'accept-webapps'):
+            tools_links.append({'text': _('Submit a New App'),
+                                'href': reverse('devhub.submit_apps.1')})
 
         tools_links.append({'text': _('Developer Hub'),
                             'href': reverse('devhub.index')})
 
         if acl.action_allowed(request, 'Editors', '%'):
-            tools_title = _('Tools')
             tools_links.append({'text': _('Editor Tools'),
                                 'href': reverse('editors.home')})
         if acl.action_allowed(request, 'Localizers', '%'):
-            tools_title = _('Tools')
             tools_links.append({'text': _('Localizer Tools'),
                                 'href': '/localizers'})
         if acl.action_allowed(request, 'Admin', '%'):
-            tools_title = _('Tools')
             tools_links.append({'text': _('Admin Tools'),
                                 'href': reverse('zadmin.home')})
 

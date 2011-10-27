@@ -58,14 +58,15 @@ def test_404_app_links():
         assert href.startswith('/en-US/thunderbird'), href
 
 
-class TestHome(amo.tests.TestCase):
+class TestCommon(amo.tests.TestCase):
     fixtures = ('base/users', 'base/global-stats', 'base/configs',
                 'base/addon_3615')
 
-    def test_tools_loggedout(self):
-        r = self.client.get(reverse('home'), follow=True)
-        nav = pq(r.content)('#aux-nav')
-        eq_(nav.find('.tools').length, 0)
+    def setUp(self):
+        # TODO: Remove when `accept-webapps` flag is gone.
+        self.patcher = mock.patch('waffle.flag_is_active')
+        self.patcher.start().return_value = True
+        self.addCleanup(self.patcher.stop)
 
     @mock.patch.object(settings, 'READ_ONLY', False)
     def test_balloons_no_readonly(self):
@@ -83,153 +84,128 @@ class TestHome(amo.tests.TestCase):
         eq_(doc('#site-nonfx').length, 1)
         eq_(doc('#site-welcome').length, 1)
 
+    def test_tools_loggedout(self):
+        r = self.client.get(reverse('home'), follow=True)
+        eq_(pq(r.content)('#aux-nav .tools').length, 0)
+
     def test_tools_regular_user(self):
         self.client.login(username='regular@mozilla.com', password='password')
         r = self.client.get(reverse('home'), follow=True)
-        nav = pq(r.content)('#aux-nav')
+        eq_(r.context['request'].amo_user.is_developer, False)
 
-        request = r.context['request']
+        expected = [
+            ('Tools', '#'),
+            ('Submit a New Add-on', reverse('devhub.submit.1')),
+            ('Submit a New App', reverse('devhub.submit_apps.1')),
+            ('Developer Hub', reverse('devhub.index')),
+        ]
+        check_links(expected, pq(r.content)('#aux-nav .tools a'))
 
-        eq_(request.amo_user.is_developer, False)
-        eq_(nav.find('.tools a').length, 1)
-        eq_(nav.find('.tools a').eq(0).text(), "Developer Hub")
-        eq_(nav.find('.tools a').eq(0).attr('href'), reverse('devhub.index'))
-
-    @mock.patch.object(waffle, 'flag_is_active')
-    def test_tools_developer(self, fia):
-        fia.return_value = True
-
-        # Make them a developer
+    def test_tools_developer(self):
+        # Make them a developer.
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        addon = Addon.objects.all()[0]
-        AddonUser.objects.create(user=user, addon=addon)
+        AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
 
         self.client.login(username='regular@mozilla.com', password='password')
         r = self.client.get(reverse('home'), follow=True)
-        nav = pq(r.content)('#aux-nav')
+        eq_(r.context['request'].amo_user.is_developer, True)
 
-        request = r.context['request']
+        expected = [
+            ('Tools', '#'),
+            ('Manage My Add-ons', reverse('devhub.addons')),
+            ('Submit a New Add-on', reverse('devhub.submit.1')),
+            # TODO(robhudson): Uncomment this when the apps dashboard is live.
+            #('Manage My Apps', reverse('devhub.apps')),
+            ('Submit a New App', reverse('devhub.submit_apps.1')),
+            ('Developer Hub', reverse('devhub.index')),
+        ]
+        check_links(expected, pq(r.content)('#aux-nav .tools a'))
 
-        eq_(request.amo_user.is_developer, True)
-
-        eq_(nav.find('.tools').length, 1)
-        eq_(nav.find('.tools li').length, 4)
-        eq_(nav.find('.tools > a').length, 1)
-        eq_(nav.find('.tools > a').text(), "Developer")
-
-        item = nav.find('.tools ul li a').eq(0)
-        eq_(item.text(), "Manage My Add-ons")
-        eq_(item.attr('href'), reverse('devhub.addons'))
-
-        item = nav.find('.tools ul li a').eq(1)
-        eq_(item.text(), "Submit a New Add-on")
-        eq_(item.attr('href'), reverse('devhub.submit.1'))
-
-        item = nav.find('.tools ul li a').eq(3)
-        eq_(item.text(), "Developer Hub")
-        eq_(item.attr('href'), reverse('devhub.index'))
-
-    @mock.patch.object(waffle, 'flag_is_active')
-    def test_tools_developer_and_editor(self, fia):
-        fia.return_value = True
-
-        # Make them a developer
-        user = UserProfile.objects.get(email='editor@mozilla.com')
-        addon = Addon.objects.all()[0]
-        AddonUser.objects.create(user=user, addon=addon)
-
+    def test_tools_editor(self):
         self.client.login(username='editor@mozilla.com', password='password')
         r = self.client.get(reverse('home'), follow=True)
-        nav = pq(r.content)('#aux-nav')
-
         request = r.context['request']
-
-        eq_(request.amo_user.is_developer, True)
-        eq_(acl.action_allowed(request, 'Editors', '%'), True)
-
-        eq_(nav.find('li.tools').length, 1)
-        eq_(nav.find('li.tools li').length, 5)
-        eq_(nav.find('li.tools > a').length, 1)
-        eq_(nav.find('li.tools > a').text(), "Tools")
-
-        item = nav.find('.tools ul li a').eq(0)
-        eq_(item.text(), "Manage My Add-ons")
-        eq_(item.attr('href'), reverse('devhub.addons'))
-
-        item = nav.find('.tools ul li a').eq(1)
-        eq_(item.text(), "Submit a New Add-on")
-        eq_(item.attr('href'), reverse('devhub.submit.1'))
-
-        item = nav.find('.tools ul li a').eq(3)
-        eq_(item.text(), "Developer Hub")
-        eq_(item.attr('href'), reverse('devhub.index'))
-
-        item = nav.find('.tools ul li a').eq(4)
-        eq_(item.text(), "Editor Tools")
-        eq_(item.attr('href'), reverse('editors.home'))
-
-    @mock.patch.object(waffle, 'flag_is_active')
-    def test_tools_editor(self, fia):
-        fia.return_value = True
-
-        self.client.login(username='editor@mozilla.com', password='password')
-        r = self.client.get(reverse('home'), follow=True)
-        nav = pq(r.content)('#aux-nav')
-
-        request = r.context['request']
-
         eq_(request.amo_user.is_developer, False)
         eq_(acl.action_allowed(request, 'Editors', '%'), True)
 
-        eq_(nav.find('li.tools').length, 1)
-        eq_(nav.find('li.tools li').length, 2)
-        eq_(nav.find('li.tools > a').length, 1)
-        eq_(nav.find('li.tools > a').text(), "Tools")
+        expected = [
+            ('Tools', '#'),
+            ('Submit a New Add-on', reverse('devhub.submit.1')),
+            ('Submit a New App', reverse('devhub.submit_apps.1')),
+            ('Developer Hub', reverse('devhub.index')),
+            ('Editor Tools', reverse('editors.home')),
+        ]
+        check_links(expected, pq(r.content)('#aux-nav .tools a'))
 
-        item = nav.find('.tools ul li a').eq(0)
-        eq_(item.text(), "Developer Hub")
-        eq_(item.attr('href'), reverse('devhub.index'))
+    def test_tools_developer_and_editor(self):
+        # Make them a developer.
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+        AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
 
-        item = nav.find('.tools ul li a').eq(1)
-        eq_(item.text(), "Editor Tools")
-        eq_(item.attr('href'), reverse('editors.home'))
+        self.client.login(username='editor@mozilla.com', password='password')
+        r = self.client.get(reverse('home'), follow=True)
+        request = r.context['request']
+        eq_(request.amo_user.is_developer, True)
+        eq_(acl.action_allowed(request, 'Editors', '%'), True)
 
+        expected = [
+            ('Tools', '#'),
+            ('Manage My Add-ons', reverse('devhub.addons')),
+            ('Submit a New Add-on', reverse('devhub.submit.1')),
+            # TODO(robhudson): Uncomment this when the apps dashboard is live.
+            #('Manage My Apps', reverse('devhub.apps')),
+            ('Submit a New App', reverse('devhub.submit_apps.1')),
+            ('Developer Hub', reverse('devhub.index')),
+            ('Editor Tools', reverse('editors.home')),
+        ]
+        check_links(expected, pq(r.content)('#aux-nav .tools a'))
 
-class TestStuff(amo.tests.TestCase):
-    fixtures = ('base/users', 'base/global-stats', 'base/configs',
-                'base/addon_3615')
-
-    def test_data_anonymous(self):
-        def check(expected):
-            response = self.client.get('/', follow=True)
-            anon = PyQuery(response.content)('body').attr('data-anonymous')
-            eq_(anon, expected)
-
-        check('true')
+    def test_tools_admin(self):
         self.client.login(username='admin@mozilla.com', password='password')
-        check('false')
+        r = self.client.get(reverse('home'), follow=True)
+        request = r.context['request']
+        eq_(request.amo_user.is_developer, False)
+        eq_(acl.action_allowed(request, 'Editors', '%'), True)
+        eq_(acl.action_allowed(request, 'Localizer', '%'), True)
+        eq_(acl.action_allowed(request, 'Admin', '%'), True)
 
-    def test_my_account_menu(self):
-        def get_homepage():
-            response = self.client.get('/', follow=True)
-            return PyQuery(response.content)
+        expected = [
+            ('Tools', '#'),
+            ('Submit a New Add-on', reverse('devhub.submit.1')),
+            ('Submit a New App', reverse('devhub.submit_apps.1')),
+            ('Developer Hub', reverse('devhub.index')),
+            ('Editor Tools', reverse('editors.home')),
+            ('Localizer Tools', '/localizers'),
+            ('Admin Tools', reverse('zadmin.home')),
+        ]
+        check_links(expected, pq(r.content)('#aux-nav .tools a'))
 
-        # Logged out
-        doc = get_homepage()
-        eq_(doc('#aux-nav .account.anonymous').length, 1)
-        eq_(doc('#aux-nav .tools').length, 0)
+    def test_tools_developer_and_admin(self):
+        # Make them a developer.
+        user = UserProfile.objects.get(email='admin@mozilla.com')
+        AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
 
-        # Logged in, regular user = one tools link
-        self.client.login(username='regular@mozilla.com', password='password')
-        doc = get_homepage()
-        eq_(doc('#aux-nav .account').length, 1)
-        eq_(doc('#aux-nav li.tools.nomenu').length, 1)
-
-        # Logged in, admin = multiple links
         self.client.login(username='admin@mozilla.com', password='password')
-        doc = get_homepage()
-        eq_(doc('#aux-nav .account').length, 1)
-        eq_(doc('#aux-nav li.tools').length, 1)
+        r = self.client.get(reverse('home'), follow=True)
+        request = r.context['request']
+        eq_(request.amo_user.is_developer, True)
+        eq_(acl.action_allowed(request, 'Editors', '%'), True)
+        eq_(acl.action_allowed(request, 'Localizer', '%'), True)
+        eq_(acl.action_allowed(request, 'Admin', '%'), True)
+
+        expected = [
+            ('Tools', '#'),
+            ('Manage My Add-ons', reverse('devhub.addons')),
+            ('Submit a New Add-on', reverse('devhub.submit.1')),
+            # TODO(robhudson): Uncomment this when the apps dashboard is live.
+            #('Manage My Apps', reverse('devhub.apps')),
+            ('Submit a New App', reverse('devhub.submit_apps.1')),
+            ('Developer Hub', reverse('devhub.index')),
+            ('Editor Tools', reverse('editors.home')),
+            ('Localizer Tools', '/localizers'),
+            ('Admin Tools', reverse('zadmin.home')),
+        ]
+        check_links(expected, pq(r.content)('#aux-nav .tools a'))
 
     def test_heading(self):
         def title_eq(url, alt, text):
@@ -241,118 +217,6 @@ class TestStuff(amo.tests.TestCase):
         title_eq('/firefox', 'Firefox', 'Add-ons')
         title_eq('/thunderbird', 'Thunderbird', 'Add-ons')
         title_eq('/mobile', 'Mobile', 'Mobile Add-ons')
-
-    def test_tools_loggedout(self):
-        r = self.client.get(reverse('home'), follow=True)
-        nav = pq(r.content)('#aux-nav')
-        eq_(nav.find('.tools').length, 0)
-
-    def test_tools_regular_user(self):
-        self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.get(reverse('home'), follow=True)
-        nav = pq(r.content)('#aux-nav')
-
-        request = r.context['request']
-
-        eq_(request.amo_user.is_developer, False)
-        eq_(nav.find('.tools a').length, 1)
-        eq_(nav.find('.tools a').eq(0).text(), "Developer Hub")
-        eq_(nav.find('.tools a').eq(0).attr('href'), reverse('devhub.index'))
-
-    @mock.patch.object(waffle, 'flag_is_active')
-    def test_tools_developer(self, fia):
-        fia.return_value = True
-
-        # Make them a developer
-        user = UserProfile.objects.get(email='regular@mozilla.com')
-        addon = Addon.objects.all()[0]
-        AddonUser.objects.create(user=user, addon=addon)
-
-        self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.get(reverse('home'), follow=True)
-        nav = pq(r.content)('#aux-nav')
-
-        request = r.context['request']
-
-        eq_(request.amo_user.is_developer, True)
-
-        eq_(nav.find('li.tools').length, 1)
-        eq_(nav.find('li.tools > a').text(), "Developer")
-        eq_(nav.find('li.tools li').length, 4)
-
-        item = nav.find('li.tools ul li a').eq(0)
-        eq_(item.text(), "Manage My Add-ons")
-        eq_(item.attr('href'), reverse('devhub.addons'))
-
-        item = nav.find('li.tools ul li a').eq(1)
-        eq_(item.text(), "Submit a New Add-on")
-        eq_(item.attr('href'), reverse('devhub.submit.1'))
-
-        item = nav.find('li.tools ul li a').eq(3)
-        eq_(item.text(), "Developer Hub")
-        eq_(item.attr('href'), reverse('devhub.index'))
-
-    @mock.patch.object(waffle, 'flag_is_active')
-    def test_tools_developer_and_editor(self, fia):
-        fia.return_value = True
-
-        # Make them a developer
-        user = UserProfile.objects.get(email='editor@mozilla.com')
-        addon = Addon.objects.all()[0]
-        AddonUser.objects.create(user=user, addon=addon)
-
-        self.client.login(username='editor@mozilla.com', password='password')
-        r = self.client.get(reverse('home'), follow=True)
-        nav = pq(r.content)('#aux-nav')
-
-        request = r.context['request']
-
-        eq_(request.amo_user.is_developer, True)
-        eq_(acl.action_allowed(request, 'Editors', '%'), True)
-
-        eq_(nav.find('li.tools').length, 1)
-        eq_(nav.find('li.tools li').length, 5)
-
-        item = nav.find('li.tools ul li a').eq(0)
-        eq_(item.text(), "Manage My Add-ons")
-        eq_(item.attr('href'), reverse('devhub.addons'))
-
-        item = nav.find('li.tools ul li a').eq(1)
-        eq_(item.text(), "Submit a New Add-on")
-        eq_(item.attr('href'), reverse('devhub.submit.1'))
-
-        item = nav.find('li.tools ul li a').eq(2)
-        eq_(item.text(), "Submit a New App")
-        eq_(item.attr('href'), reverse('devhub.submit_apps.1'))
-
-        item = nav.find('li.tools ul li a').eq(3)
-        eq_(item.text(), "Developer Hub")
-        eq_(item.attr('href'), reverse('devhub.index'))
-
-        item = nav.find('li.tools ul li a').eq(4)
-        eq_(item.text(), "Editor Tools")
-        eq_(item.attr('href'), reverse('editors.home'))
-
-    def test_tools_editor(self):
-        self.client.login(username='editor@mozilla.com', password='password')
-        r = self.client.get(reverse('home'), follow=True)
-        nav = pq(r.content)('#aux-nav')
-
-        request = r.context['request']
-
-        eq_(request.amo_user.is_developer, False)
-        eq_(acl.action_allowed(request, 'Editors', '%'), True)
-
-        eq_(nav.find('li.tools').length, 1)
-        eq_(nav.find('li.tools > a').text(), 'Tools')
-
-        item = nav.find('li.tools ul li a').eq(0)
-        eq_(item.text(), "Developer Hub")
-        eq_(item.attr('href'), reverse('devhub.index'))
-
-        item = nav.find('li.tools ul li a').eq(1)
-        eq_(item.text(), "Editor Tools")
-        eq_(item.attr('href'), reverse('editors.home'))
 
     def test_xenophobia(self):
         r = self.client.get(reverse('home'), follow=True)

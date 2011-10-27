@@ -15,8 +15,8 @@ from django.utils import translation
 import elasticutils
 import nose
 import mock
-from pyquery import PyQuery as pq
 from nose.tools import eq_, nottest
+from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
 import test_utils
 
