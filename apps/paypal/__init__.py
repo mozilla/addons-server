@@ -52,12 +52,14 @@ def add_receivers(chains, email, amount, uuid):
             'receiverList.receiver(%s).amount' % number: str(this),
             'receiverList.receiver(%s).paymentType' % number: 'DIGITALGOODS',
             'receiverList.receiver(%s).primary' % number: 'false',
+            # This is only done if there is a chained payment. Otherwise
+            # it does not need to be set.
+            'receiverList.receiver(0).primary': 'true',
         })
     result.update({
         'receiverList.receiver(0).email': email,
         'receiverList.receiver(0).amount': str(amount),
         'receiverList.receiver(0).invoiceID': 'mozilla-%s' % uuid,
-        'receiverList.receiver(0).primary': 'true',
         'receiverList.receiver(0).paymentType': 'DIGITALGOODS',
     })
     return result
