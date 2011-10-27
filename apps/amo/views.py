@@ -119,12 +119,14 @@ def _paypal(request):
 
     # raw_post_data has to be accessed before request.POST. wtf django?
     raw, post = request.raw_post_data, request.POST.copy()
+    paypal_log.info('IPN received: %s' % raw)
 
     # Check that the request is valid and coming from PayPal.
     # The order of the params has to match the original request.
     data = u'cmd=_notify-validate&' + raw
-    paypal_response = urllib2.urlopen(settings.PAYPAL_CGI_URL,
-                                      data, 20).readline()
+    with statsd.timer('paypal.validate-ipn'):
+        paypal_response = urllib2.urlopen(settings.PAYPAL_CGI_URL,
+                                          data, 20).readline()
 
     # List of (old, new) codes so we can transpose the data for
     # embedded payments.
@@ -143,12 +145,17 @@ def _paypal(request):
 
     if post.get('txn_type', '').startswith('subscr_'):
         SubscriptionEvent.objects.create(post_data=php.serialize(post))
+        paypal_log.info('Subscription created: %s' % post.get('txn_id', ''))
         return http.HttpResponse('Success!')
+
     payment_status = post.get('payment_status', '').lower()
     if payment_status not in ('refunded', 'completed'):
         # Skip processing for anything other than events that change
         # payment status.
-        return http.HttpResponse('Payment not completed')
+        paypal_log.info('Ignoring: %s, %s' %
+                        (payment_status, post.get('txn_id', '')))
+        return http.HttpResponse('Payment not completed %s'
+                                 % post.get('txn_id', ''))
 
     # Fetch and update the contribution - item_number is the uuid we created.
     try:
@@ -160,8 +167,10 @@ def _paypal(request):
                            post['item_number'])
         count = cache.get(key, 0) + 1
 
-        paypal_log.warning('Contribution (uuid=%s) not found for IPN request '
-                           '#%s.' % (post['item_number'], count))
+        paypal_log.warning('Contribution not found: %s, #%s, %s'
+                           % (post['item_number'], count,
+                              post.get('txn_id', '')))
+
         if count > 10:
             msg = ("PayPal sent a transaction that we don't know "
                    "about and we're giving up on it.")
@@ -170,9 +179,12 @@ def _paypal(request):
             return http.HttpResponse('Transaction not found; skipping.')
         cache.set(key, count, 1209600)  # This is 2 weeks.
         return http.HttpResponseServerError('Contribution not found')
+
     if payment_status == 'refunded':
+        paypal_log.info('Calling refunded: %s' % post.get('txn_id', ''))
         return paypal_refunded(request, post, c)
     elif payment_status == 'completed':
+        paypal_log.info('Calling completed: %s' % post.get('txn_id', ''))
         return paypal_completed(request, post, c)
 
 
