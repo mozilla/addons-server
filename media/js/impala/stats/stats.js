@@ -27,6 +27,19 @@
                 group: 'day'
             };
 
+        // Update the "Export as CSV" link when the view changes.
+        (function() {
+            var view = {},
+                baseURL = $(".primary").attr("data-base_url");
+            $(window).bind('changeview', function(e, newView) {
+                _.extend(view, newView);
+                var metric = view.metric,
+                    range = normalizeRange(view.range),
+                    url = baseURL + ([metric,'day',range.start.pretty(''),range.end.pretty('')]).join('-') + '.csv';
+                $('#export_data').attr('href', url);
+            });
+        })();
+
         $(window).trigger('changeview', initView);
     });
 

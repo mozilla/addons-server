@@ -43,7 +43,7 @@
             return this.forward(-by, unit);
         },
         pretty : function(del) {
-            del = del || '-';
+            del = del || '';
             return [this.getFullYear(), pad2(this.getMonth()+1), pad2(this.getDate())].join(del);
         },
         iso : function() {
