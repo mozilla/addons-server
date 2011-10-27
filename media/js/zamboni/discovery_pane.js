@@ -81,7 +81,7 @@ function initSidebar() {
 function hideInstalled() {
     // Do not show installed extensions in the promo modules or sidebar.
     $.each(z.guids, function(i, val) {
-        var $el = $('li[data-guid=' + val + ']');
+        var $el = $(format('li[data-guid="{0}"]', [val]));
         if ($el.length && $el.siblings().length) {
             $el.remove();
         }
@@ -98,7 +98,7 @@ function hideInstalled() {
                         guid = $el.attr('data-guid');
                     // Ensure that the add-on isn't already in the list and
                     // that it's not already installed by the user.
-                    if (!ul.find('li[data-guid=' + guid + ']').length &&
+                    if (!ul.find(format('li[data-guid="{0}"]', [guid])).length &&
                         $.inArray(guid, z.guids) === -1) {
                         ul.append($el);
                         // We're done if all spots have been filled.
