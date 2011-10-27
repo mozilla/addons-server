@@ -153,9 +153,9 @@ var installButton = function() {
 
         $this.addClass('clickHijack'); // So we can disable pointer events
 
-        $this.mousedown(function(e) {
+        $this.bind('mousedown focus', function(e) {
             $this.addClass('active');
-        }).mouseup(function(e) {
+        }).bind('mouseup blur', function(e) {
             $this.removeClass('active');
         }).click(function(e) {
             // If the click was on a.installer or a child, call the special
