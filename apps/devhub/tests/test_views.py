@@ -1432,12 +1432,30 @@ class TestSubmitStep3(TestSubmitBase):
         eq_(r.status_code, 200)
         self.assertFormError(r, 'form', 'name', 'This field is required.')
 
+    def test_submit_app_name_required(self):
+        # Make sure name is required.
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+        self.get_addon().update(type=amo.ADDON_WEBAPP)
+        r = self.client.post(reverse('devhub.submit_apps.3', args=['a3615']),
+                             self.get_dict(name=''))
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'form', 'name', 'This field is required.')
+
     def test_submit_name_length(self):
         # Make sure the name isn't too long.
         d = self.get_dict(name='a' * 51)
         r = self.client.post(self.url, d)
         eq_(r.status_code, 200)
         error = 'Ensure this value has at most 50 characters (it has 51).'
+        self.assertFormError(r, 'form', 'name', error)
+
+    def test_submit_app_name_length(self):
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+        self.get_addon().update(type=amo.ADDON_WEBAPP)
+        d = self.get_dict(name='a' * 129)
+        r = self.client.post(reverse('devhub.submit_apps.3', args=['a3615']), d)
+        eq_(r.status_code, 200)
+        error = 'Ensure this value has at most 128 characters (it has 129).'
         self.assertFormError(r, 'form', 'name', error)
 
     def test_submit_slug_invalid(self):

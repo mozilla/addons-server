@@ -613,6 +613,11 @@ class Step3Form(addons.forms.AddonFormBasic):
         fields = ('name', 'slug', 'summary', 'tags', 'description')
 
 
+class Step3WebappForm(Step3Form):
+    """Form to override name length for webapps"""
+    name = TransField(max_length=128)
+
+
 class PreviewForm(happyforms.ModelForm):
     caption = TransField(widget=TransTextarea, required=False)
     file_upload = forms.FileField(required=False)

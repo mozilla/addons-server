@@ -1413,8 +1413,8 @@ def submit_addon(request, step, webapp=False):
 @dev_required
 @submit_step(3)
 def submit_describe(request, addon_id, addon, step, webapp=False):
-    form = forms.Step3Form(request.POST or None, instance=addon,
-                           request=request)
+    form_cls = forms.Step3WebappForm if addon.is_webapp() else forms.Step3Form
+    form = form_cls(request.POST or None, instance=addon, request=request)
     cat_form = addon_forms.CategoryFormSet(request.POST or None, addon=addon,
                                            request=request)
     if request.method == 'POST' and form.is_valid() and cat_form.is_valid():

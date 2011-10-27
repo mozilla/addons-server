@@ -61,14 +61,16 @@
 {% endmacro %}
 
 {% macro select_cats(max, form) %}
-  <div class="addon-app-cats">
-    {# L10n: {0} is the maximum number of add-on categories allowed.
-             {1} is the application name. #}
-    <label>{{ ngettext('Select <b>up to {0}</b> {1} category for this add-on:',
-                       'Select <b>up to {0}</b> {1} categories for this add-on:',
-                       max)|f(max, form.app.pretty)|safe }}</label>
-    {{ form.application }}
-    {{ form.categories }}
-    {{ form.categories.errors }}
-  </div>
+  {% if form.app %}
+    <div class="addon-app-cats">
+      {# L10n: {0} is the maximum number of add-on categories allowed.
+               {1} is the application name. #}
+      <label>{{ ngettext('Select <b>up to {0}</b> {1} category for this add-on:',
+                         'Select <b>up to {0}</b> {1} categories for this add-on:',
+                         max)|f(max, form.app.pretty)|safe }}</label>
+      {{ form.application }}
+      {{ form.categories }}
+      {{ form.categories.errors }}
+    </div>
+  {% endif %}
 {% endmacro %}
