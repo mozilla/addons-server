@@ -15,9 +15,10 @@ from django.utils import translation
 import elasticutils
 import nose
 import mock
+from pyquery import PyQuery as pq
 from nose.tools import eq_, nottest
-import test_utils
 from redisutils import mock_redis, reset_redis
+import test_utils
 
 import amo
 from amo.urlresolvers import Prefixer, get_url_prefix, set_url_prefix
@@ -66,6 +67,28 @@ def initial(form):
 
 def assert_required(error_msg):
     eq_(error_msg, unicode(Field.default_error_messages['required']))
+
+
+def check_links(expected, elements, verify=True):
+    """Useful for comparing an `expected` list of links against PyQuery
+    `elements`. Expected format of links is a list of tuples, like so:
+
+    [
+        ('Home', '/'),
+        ('Extensions', reverse('browse.extensions')),
+        ...
+    ]
+
+    Links are verified by default.
+
+    """
+    for idx, element in enumerate(elements):
+        e = pq(element)
+        text, href = expected[idx]
+        eq_(e.text(), text)
+        eq_(e.attr('href'), href)
+        if verify and href != '#':
+            eq_(Client().head(href, follow=True).status_code, 200)
 
 
 class RedisTest(object):

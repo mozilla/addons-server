@@ -21,7 +21,12 @@
 <nav id="site-nav" class="menu-nav c">
   <ul>
     {{ section('extensions', _('Extensions'), url('browse.extensions'), extras, extensions) }}
-    {{ section('personas', _('Personas'), url('browse.personas'), extras, personas) }}
+    {% set persona_extras = (
+        ('popular', _('Most Popular')),
+        ('rating', _('Top Rated')),
+        ('created', _('Newest')),
+    ) %}
+    {{ section('personas', _('Personas'), url('browse.personas'), persona_extras, personas) }}
     {% if themes %}
       {% set theme_extras = (
           ('users', _('Most Popular')),
