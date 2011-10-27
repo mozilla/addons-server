@@ -161,11 +161,11 @@ var installButton = function() {
             // If the click was on a.installer or a child, call the special
             // install method.  We can't bind this directly because we add
             // more .installers dynamically.
-            var $target = $(e.target);
+            var $target = $(e.target).find('a:visible');
             if ($target.hasClass('installer')) {
                 var installer = $target;
             } else {
-                var installer =  $target.find('.installer').first();
+                var installer =  $target.parents('.installer').first();
                 if (_.indexOf($this.find('.installer'), installer[0]) == -1) {
                     return;
                 }
