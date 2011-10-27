@@ -569,19 +569,16 @@ def unsubscribe(request, hash=None, token=None, perm_setting=None):
             {'unsubscribed': unsubscribed, 'perm_settings': perm_settings})
 
 
-class ContributionsFilter(BaseFilter):
-    opts = (('date', _lazy(u'Purchase Date')),
-            ('price', _lazy(u'Price')),
+class AddonsFilter(BaseFilter):
+    opts = (('price', _lazy(u'Price')),
             ('name', _lazy(u'Name')))
 
     def filter(self, field):
         qs = self.base_queryset
-        if field == 'date':
-            return qs.order_by('-created')
-        elif field == 'price':
-            return qs.order_by('amount')
+        if field == 'price':
+            return qs.order_by('addonpremium__price')
         elif field == 'name':
-            return qs.order_by('addon__name')
+            return qs.order_by('name')
 
 
 @login_required
@@ -590,21 +587,39 @@ def purchases(request, addon_id=None):
     if not waffle.switch_is_active('marketplace'):
         raise http.Http404
 
+    # First get all the contributions.
     # TODO(ashort): this is where we'll need to get cunning about refunds.
     cs = Contribution.objects.filter(user=request.amo_user,
                                      type=amo.CONTRIB_PURCHASE)
     if addon_id:
         cs = cs.filter(addon=addon_id)
 
-    filter = ContributionsFilter(request, cs, key='sort', default='date')
-    purchases = amo.utils.paginate(request, filter.qs)
+    contributions = {}
+    for c in cs:
+        contributions.setdefault(c.addon_id, []).append(c)
 
-    if addon_id and not purchases.object_list:
+    # If you are asking for a receipt for just one item, only show that.
+    # Otherwise, we'll show all addons that have a contribution or are free.
+    if addon_id:
+        ids = [addon_id]
+    else:
+        free = (request.amo_user.installed_set
+                       .exclude(addon__in=contributions.keys())
+                       .values_list('addon_id', flat=True))
+        ids = contributions.keys() + list(free)
+
+    filter = AddonsFilter(request, Addon.objects.filter(id__in=ids),
+                          key='sort', default='name')
+
+    if addon_id and not filter.qs:
         # User has requested a receipt for an addon they don't have.
         raise http.Http404
+
     return jingo.render(request, 'users/purchases.html',
-                        {'purchases': purchases, 'filter': filter,
+                        {'addons': amo.utils.paginate(request, filter.qs),
+                         'filter': filter,
                          'url_base': reverse('users.purchases'),
+                         'contributions': contributions,
                          'single': bool(addon_id)})
 
 

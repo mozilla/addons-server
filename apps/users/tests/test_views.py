@@ -31,6 +31,7 @@ from stats.models import Contribution
 from users.models import BlacklistedPassword, UserProfile, UserNotification
 import users.notifications as email
 from users.utils import EmailResetCode, UnsubscribeCode
+from webapps.models import Installed
 
 
 class UserViewBase(amo.tests.TestCase):
@@ -879,6 +880,7 @@ class TestPurchases(amo.tests.TestCase):
         self.client.login(username='regular@mozilla.com', password='password')
         self.user = User.objects.get(email='regular@mozilla.com')
 
+        self.addon, self.con = None, None
         for x in range(1, 5):
             addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
                                          name='t%s' % x)
@@ -887,9 +889,8 @@ class TestPurchases(amo.tests.TestCase):
                                               type=amo.CONTRIB_PURCHASE)
             con.created = datetime.now() - timedelta(days=10 - x)
             con.save()
-
-        self.con = con
-        self.addon = addon
+            if not self.addon and not self.con:
+                self.addon, self.con = addon, con
 
     def test_in_menu(self):
         doc = pq(self.client.get(self.url).content)
@@ -912,31 +913,30 @@ class TestPurchases(amo.tests.TestCase):
     def test_purchase_list(self):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        eq_(len(res.context['purchases'].object_list), 4)
+        eq_(len(res.context['addons'].object_list), 4)
 
     def get_order(self, order):
         res = self.client.get('%s?sort=%s' % (self.url, order))
-        return [str(c.addon.name) for c in
-                res.context['purchases'].object_list]
+        return [str(c.name) for c in
+                res.context['addons'].object_list]
 
     def test_ordering(self):
         eq_(self.get_order('name'), ['t1', 't2', 't3', 't4'])
         eq_(self.get_order('price'), ['t1', 't2', 't3', 't4'])
-        eq_(self.get_order('date'), ['t4', 't3', 't2', 't1'])
 
     def test_price(self):
         res = self.client.get(self.url)
-        assert '$4.00' in pq(res.content)('div.vitals').eq(0).text()
+        assert '$1.00' in pq(res.content)('div.vitals').eq(0).text()
 
     def test_price_locale(self):
         res = self.client.get(self.url.replace('/en-US', '/fr'))
-        assert u'4,00' in pq(res.content)('div.vitals').eq(0).text()
+        assert u'1,00' in pq(res.content)('div.vitals').eq(0).text()
 
     def test_receipt(self):
         res = self.client.get(reverse('users.purchases.receipt',
                               args=[self.addon.pk]))
-        eq_(len(res.context['purchases'].object_list), 1)
-        eq_(res.context['purchases'].object_list[0].addon.pk, self.addon.pk)
+        eq_(len(res.context['addons'].object_list), 1)
+        eq_(res.context['addons'].object_list[0].pk, self.addon.pk)
 
     def test_receipt_404(self):
         url = reverse('users.purchases.receipt', args=[545])
@@ -1057,7 +1057,7 @@ class TestPurchases(amo.tests.TestCase):
         email = mail.outbox[0]
         eq_(email.to, ['a@a.com'])
         eq_(email.from_email, 'regular@mozilla.com')
-        assert '$4.00' in email.body
+        assert '$1.00' in email.body
 
     def test_request_fails(self):
         self.addon.support_email = 'a@a.com'
@@ -1066,3 +1066,23 @@ class TestPurchases(amo.tests.TestCase):
         self.client.post(self.get_url('request'), {'remove': 1})
         res = self.client.post(self.get_url('reason'), {})
         eq_(res.status_code, 200)
+
+    def test_free_shows_up(self):
+        Contribution.objects.all().delete()
+        res = self.client.get(self.url)
+        eq_(res.context['addons'][0].pk, self.addon.pk)
+
+    def test_others_free_dont(self):
+        Contribution.objects.all().delete()
+        other = UserProfile.objects.get(pk=10482)
+        Installed.objects.all()[0].update(user=other)
+        res = self.client.get(self.url)
+        eq_(len(res.context['addons']), 3)
+
+    def test_purchase_multiple(self):
+        Contribution.objects.create(user=self.user.get_profile(),
+                                    addon=self.addon, amount='1.00',
+                                    type=amo.CONTRIB_PURCHASE)
+        res = self.client.get(self.url)
+        addon_vitals = pq(res.content)('div.vitals').eq(0)
+        eq_(len(addon_vitals('div.purchase-byline')), 2)
