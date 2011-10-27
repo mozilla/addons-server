@@ -15,12 +15,12 @@ def report_menu(context, request, addon, report):
     report_tree = [
         {
             'name': 'overview',
-            'url': '/',
+            'url': '',
             'title': _('Overview'),
         },
         {
             'name': 'downloads',
-            'url': '/downloads/',
+            'url': 'downloads/',
             'title': _('Downloads'),
             'children': [
                 {
@@ -32,32 +32,32 @@ def report_menu(context, request, addon, report):
         },
         {
             'name': 'usage',
-            'url': '/usage/',
+            'url': 'usage/',
             'title': _('Daily Users'),
             'children': [
                 {
                     'name': 'versions',
-                    'url': '/usage/versions/',
+                    'url': 'usage/versions/',
                     'title': _('by Add-on Version')
                 },
                 {
                     'name': 'apps',
-                    'url': '/usage/applications/',
+                    'url': 'usage/applications/',
                     'title': _('by Application')
                 },
                 {
                     'name': 'locales',
-                    'url': '/usage/languages/',
+                    'url': 'usage/languages/',
                     'title': _('by Language')
                 },
                 {
                     'name': 'os',
-                    'url': '/usage/os/',
+                    'url': 'usage/os/',
                     'title': _('by Platform')
                 },
                 {
                     'name': 'statuses',
-                    'url': '/usage/status/',
+                    'url': 'usage/status/',
                     'title': _('by Add-on Status')
                 },
             ]
@@ -69,7 +69,7 @@ def report_menu(context, request, addon, report):
             addon.has_author(request.amo_user))):
         report_tree.append({
             'name': 'contributions',
-            'url': '/contributions/',
+            'url': 'contributions/',
             'title': _('Contributions')
         })
 
