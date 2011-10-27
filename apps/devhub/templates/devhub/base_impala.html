@@ -16,70 +16,40 @@
 {% endblock %}
 
 {% block aux_nav %}
-  <li class="nomenu">
-  {% if webapp %}
-    <a class="return" href="{{ url('apps.home') }}">{{ _('Back to Apps') }}</a>
-  {% else %}
-    <a class="return" href="{{ url('home') }}">{{ _('Back to Add-ons') }}</a>
-  {% endif %}
-  </li>
+  <li class="nomenu"><a class="return" href="{{ url('home') }}">
+      {{ _('Back to Add-ons') }}</a></li>
 {% endblock %}
 
 {% block site_header_title %}
 <h1 class="site-title prominent">
   <a href="{{ url('devhub.index') }}" title="{{ _('Return to the DevHub homepage')|f(request.APP.pretty) }}">
-    {% if webapp %}
-      {% trans %}App Developer Preview{% endtrans %}
-    {% else %}
-      {# L10n: Text in small tag is smaller and on its own line #}
-      {% trans %}
-      <small>Add-on</small> Developer Hub
-      {% endtrans %}
-    {% endif %}
+    {# L10n: Text in small tag is smaller and on it's own line #}
+    {% trans %}
+    <small>Add-on</small> Developer Hub
+    {% endtrans %}
   </a>
 </h1>
 <nav id="site-nav" class="menu-nav no-img c">
   <ul>
     {% if request.user.is_authenticated() and request.amo_user.is_developer %}
-      {% if webapp %}
-        <li class="top">
-          <a href="{{ url('devhub.apps') }}" class="controller">
-            {{ _('My Apps') }}</a>
-          <ul>
-            {% set my_addons = request.amo_user.my_apps() %}
-            {% for addon in my_addons %}
-              {% if loop.index == 8 %}
-                <li><a href="{{ url('devhub.apps') }}">
-                  {{ _('more apps...') }}</a></li>
-              {% else %}
-                <li><a href="{{ url('devhub.addons.edit', addon.slug) }}">
-                  {{ addon.name }}</a></li>
-              {% endif %}
-            {% endfor %}
-            <li><em><a href="{{ url('devhub.submit_apps.1') }}">
-                {{ _('Submit a New App') }}</a></em></li>
-          </ul>
-        </li>
-      {% else %}
-        <li class="top">
-          <a href="{{ url('devhub.addons') }}" class="controller">
-            {{ _('My Add-ons') }}</a>
-          <ul>
-            {% set my_addons = request.amo_user.my_addons() %}
-            {% for addon in my_addons %}
-              {% if loop.index == 8 %}
-                <li><a href="{{ url('devhub.addons') }}">
-                  {{ _('more add-ons...') }}</a></li>
-              {% else %}
-                <li><a href="{{ url('devhub.addons.edit', addon.slug) }}">
-                  {{ addon.name }}</a></li>
-              {% endif %}
-            {% endfor %}
-            <li><em><a href="{{ url('devhub.submit.1') }}">
-                {{ _('Submit a New Add-on') }}</a></em></li>
-          </ul>
-        </li>
-      {% endif %}
+      <li class="top">
+        <a href="{{ url('devhub.addons') }}" class="controller">
+          {{ _('My Add-ons') }}</a>
+        <ul>
+          {% set my_addons = request.amo_user.addons.all()[:8] %}
+          {% for addon in my_addons %}
+            {% if loop.index == 8 %}
+              <li><a href="{{ url('devhub.addons') }}">
+                {{ _('more add-ons...') }}</a></li>
+            {% else %}
+              <li><a href="{{ url('devhub.addons.edit', addon.slug) }}">
+                {{ addon.name }}</a></li>
+            {% endif %}
+          {% endfor %}
+          <li><em><a href="{{ url('devhub.submit.1') }}">
+              {{ _('Submit a New Add-on') }}</a></em></li>
+        </ul>
+      </li>
     {% endif %}
     <li>
       <a href="#" class="controller">{{ _('Documentation') }}</a>
