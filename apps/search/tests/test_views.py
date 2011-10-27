@@ -170,31 +170,35 @@ class TestESSearch(amo.tests.ESTestCase):
         selected = amo.PLATFORM_DICT.get(expected, amo.PLATFORM_ANY)
         if not platform:
             selected = amo.PLATFORM_ALL
-        if selected == amo.PLATFORM_ANY:
-            expected = amo.PLATFORM_ANY.shortname
         app_platforms = r.context['request'].APP.platforms.values()
 
-        plats = r.context['platforms']
-        all_ = plats.pop(0)
-        all_selected = selected == amo.PLATFORM_ALL
-        eq_(all_.text, u'All Systems')
-        eq_(all_.selected, all_selected)
+        if selected == amo.PLATFORM_ANY:
+            # Insert after "All Systems."
+            app_platforms.insert(1, amo.PLATFORM_ANY)
 
-        if not all_selected:
-            label = plats[0]
-            if selected == amo.PLATFORM_ANY:
-                expected_name = u'Any System'
+        plats = r.context['platforms']
+
+        for idx, plat in enumerate(app_platforms):
+            facet_link = plats[idx]
+            if plat == amo.PLATFORM_ANY:
+                name = u'Any System'
+            elif plat == amo.PLATFORM_ALL:
+                name = u'All Systems'
             else:
-                expected_name = unicode(selected.name)
-            eq_(unicode(label.text), expected_name)
-            eq_(label.selected, expected == selected.shortname)
+                name = unicode(plat.name)
+            eq_(unicode(facet_link.text), name)
+            eq_(facet_link.selected, selected == plat)
 
     def test_platform_default(self):
         self.check_platform_filters('')
 
     def test_platform_known(self):
-        for platform in ('all', 'any', 'windows', 'mac', 'linux', 'maemo'):
-            self.check_platform_filters(platform)
+        self.check_platform_filters('all')
+        self.check_platform_filters('any')
+        self.check_platform_filters('windows')
+        self.check_platform_filters('mac')
+        self.check_platform_filters('linux')
+        self.check_platform_filters('maemo')
 
     def test_platform_legacy_params(self):
         for idx, platform in amo.PLATFORMS.iteritems():
