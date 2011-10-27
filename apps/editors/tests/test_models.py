@@ -221,7 +221,8 @@ class TestFastTrackQueue(TestQueue):
         res = create_addon_file(name, version,
                                 amo.STATUS_LITE, amo.STATUS_UNREVIEWED, **kw)
         file_ = res['file']
-        params = dict(no_restart=True, requires_chrome=False)
+        params = dict(no_restart=True, requires_chrome=False,
+                      jetpack_version='1.1')
         if not file_params:
             file_params = {}
         params.update(file_params)
@@ -236,6 +237,7 @@ class TestFastTrackQueue(TestQueue):
                                   **kw)
         file_ = addon.versions.get().files.get()
         file_.no_restart = True
+        file_.jetpack_version = '1.1'
         file_.requires_chrome = False
         file_.save()
         return addon
@@ -246,6 +248,10 @@ class TestFastTrackQueue(TestQueue):
 
     def test_ignore_non_jetpacks(self):
         self.new_file(file_params=dict(no_restart=False))
+        eq_(self.query(), [])
+
+    def test_ignore_non_sdk_bootstrapped_addons(self):
+        self.new_file(file_params=dict(jetpack_version=None))
         eq_(self.query(), [])
 
     def test_ignore_sneaky_jetpacks(self):

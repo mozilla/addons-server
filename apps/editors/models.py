@@ -255,7 +255,9 @@ class ViewFastTrackQueue(VersionSpecificQueue):
 
     def base_query(self):
         q = super(ViewFastTrackQueue, self).base_query()
-        q['where'].extend(['files.no_restart = 1',  # is jetpack
+        # Fast track includes jetpack-based addons that do not require chrome.
+        q['where'].extend(['files.no_restart = 1',
+                           'files.jetpack_version IS NOT NULL',
                            'files.requires_chrome = 0',
                            'files.status = %s' % amo.STATUS_UNREVIEWED,
                            'addons.status IN (%s, %s, %s, %s)' % (
