@@ -62,7 +62,7 @@ cfg = {
         },
         'syslog_csp': {
             '()': logging.handlers.SysLogHandler,
-            'facility': logging.handlers.SysLogHandler.LOG_LOCAL4,
+            'facility': logging.handlers.SysLogHandler.LOG_LOCAL5,
             'formatter': 'csp',
         },
         'null': {
