@@ -9,7 +9,7 @@
     {{ impala_breadcrumbs([(None, _('Themes'))]) }}
   {% endif %}
     <h1>{{ title }}</h1>
-    <div id="themes-listing" class="island listing c">
+    <div id="themes-listing" class="island listing hero c">
       {{ impala_addon_listing_header(request.get_full_path(), search_filter=filter) }}
       <div class="items">
         {{ addons.object_list|theme_grid }}
