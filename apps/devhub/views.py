@@ -12,8 +12,8 @@ import operator
 from django import http
 from django.conf import settings
 from django import forms as django_forms
+from django.db import transaction
 from django.db.models import Count
-from django.db.utils import IntegrityError
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
 from django.utils.encoding import smart_unicode
@@ -453,16 +453,16 @@ def acquire_refund_permission(request, addon_id, addon):
                      (addon_id, token[:10]))
 
     # Sadly this is an update on a GET.
-    # Avoiding using get_or_create and adding far too much logging.
-    try:
-        addonpremium = AddonPremium.objects.get(addon=addon)
-        paypal_log.debug('AddonPremium updated id: %s' % addonpremium.pk)
-    except AddonPremium.DoesNotExist:
-        addonpremium = AddonPremium.objects.create(addon=addon)
-        paypal_log.debug('AddonPremium created for %s' % addon.pk)
+    with transaction.commit_on_success():
+        try:
+            addonpremium = AddonPremium.objects.get(addon=addon)
+            paypal_log.debug('AddonPremium updated id: %s' % addonpremium.pk)
+        except AddonPremium.DoesNotExist:
+            addonpremium = AddonPremium.objects.create(addon=addon)
+            paypal_log.debug('AddonPremium created for %s' % addon.pk)
 
-    addonpremium.paypal_permissions_token = token
-    addonpremium.save()
+        addonpremium.paypal_permissions_token = token
+        addonpremium.save()
 
     paypal_log.debug('AddonPremium saved with token: %s' % addonpremium.pk)
     amo.log(amo.LOG.EDIT_PROPERTIES, addon)
