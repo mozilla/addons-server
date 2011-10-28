@@ -493,7 +493,7 @@ function initCharCount() {
             $form = $(this).closest('form'),
             $el;
         if ($cc.attr('data-for-startswith') !== undefined) {
-            $el = $('textarea[id^=' + $cc.attr('data-for-startswith') + ']:visible', $form);
+            $el = $('textarea[id^="' + $cc.attr('data-for-startswith') + '"]:visible', $form);
         } else {
             $el = $('textarea#' + $cc.attr('data-for'), $form);
         }

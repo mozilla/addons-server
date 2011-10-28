@@ -212,7 +212,7 @@ $(document).ready(function() {
 
     // Jetpack
     if($('#jetpack').exists()) {
-        $('a[rel=video-lightbox]').click(_pd(function() {
+        $('a[rel="video-lightbox"]').click(_pd(function() {
             var $this = $(this),
                 text = gettext('Your browser does not support the video tag'),
                 $overlay = $('<div>', {id: 'jetpack-overlay'}),
@@ -584,7 +584,7 @@ function initUploadPreview() {
 
     function upload_success(e, file, upload_hash) {
         form = forms['form_' + file.instance];
-        form.find('[name$=upload_hash]').val(upload_hash);
+        form.find('[name$="upload_hash"]').val(upload_hash);
     }
 
     function upload_errors(e, file, errors) {
@@ -663,7 +663,7 @@ function initUploadIcon() {
             $('#icon_preview img').attr('src', file.dataURL);
 
             $('#icons_default input:checked').attr('checked', false);
-            $('input[name=icon_type][value='+file.type+']', $('#icons_default'))
+            $('input[name="icon_type"][value="'+file.type+'"]', $('#icons_default'))
                     .attr('checked', true);
         },
 
@@ -693,7 +693,7 @@ function initUploadIcon() {
 function fixPasswordField($context) {
     // This is a hack to prevent password managers from automatically
     // deleting add-ons.  See bug 630126.
-    $context.find('input[type=password]').each(function(){
+    $context.find('input[type="password"]').each(function(){
         var $this = $(this);
         if($this.attr('data-name')) {
             $this.attr('name', $this.attr('data-name'));
@@ -750,7 +750,7 @@ function initVersions() {
 
 function initSubmit() {
     var dl = $('body').attr('data-default-locale');
-    var el = format('#trans-name [lang={0}]', dl);
+    var el = format('#trans-name [lang="{0}"]', dl);
     $(el).attr('id', "id_name");
     $('#submit-describe').delegate(el, 'keyup', slugify)
         .delegate(el, 'blur', slugify)
@@ -858,7 +858,7 @@ function initPayments(delegate) {
         media_url = $("body").attr("data-media-url"),
         to = false,
         img = $("<img id='contribution-preview'/>");
-        moz = $("input[value=moz]");
+        moz = $("input[value='moz']");
     img.hide().appendTo($("body"));
     moz.parent().after(
         $("<a class='extra' target='_blank' href='http://www.mozilla.org/foundation/'>"+gettext('Learn more')+"</a>"));
@@ -1248,7 +1248,7 @@ function multipartUpload(form, onreadystatechange) {
     xhr.setRequestHeader("Content-Type", "multipart/form-data;" +
                                          "boundary=" + boundary);
 
-    $('input[type=file]', form).each(function(){
+    $('input[type="file"]', form).each(function(){
         var files = $(this)[0].files,
             file_field = $(this);
 
@@ -1370,7 +1370,7 @@ function initAddonCompatCheck($doc) {
         }
         $.post($sel.attr('data-url'),
                {application_id: appId,
-                csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]", $form).val()},
+                csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']", $form).val()},
             function(d) {
                 $('option', $appVer).remove();
                 $.each(d.choices, function(i, ch) {

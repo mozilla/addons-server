@@ -3,8 +3,8 @@
 (function() {
     var dl = $('body').attr("data-default-locale");
     if (dl) {
-        $(format(".trans>:not([lang={0}])", dl)).hide();
-        $(format(".trans [lang={0}]", dl)).show();
+        $(format(".trans>:not([lang='{0}'])", dl)).hide();
+        $(format(".trans [lang='{0}']", dl)).show();
     }
 })();
 
@@ -39,7 +39,7 @@ $(document).ready(function () {
         $el = $("#existing_locales").empty();
         $("#all_locales li").show();
         $.each(_.without(locales, dl), function() {
-            var locale_row = $(format("#all_locales a[href$={0}]",[this])).parent();
+            var locale_row = $(format("#all_locales a[href$='{0}']",[this])).parent();
             if (locale_row.length) {
                 $el.append(format("<li><a title='{msg}'class='remove' href='#'>x</a>{row}</li>",
                     {   msg: gettext('Remove this localization'),
@@ -51,10 +51,10 @@ $(document).ready(function () {
     }
 
     function checkTranslation(e, t) {
-        var $input = e.originalEvent ? $(this) : $(format("[lang={0}]", [e]), t),
+        var $input = e.originalEvent ? $(this) : $(format("[lang='{0}']", [e]), t),
             $trans = $input.closest(".trans"),
             lang = e.originalEvent ? $input.attr("lang") : e,
-            $dl = $(format("[lang={0}]", [dl]), $trans),
+            $dl = $(format("[lang='{0}']", [dl]), $trans),
             transKey = $trans.attr("data-name")+'_'+lang;
         if ($input.length == 0 || $input.is('span')) {
             // No translation of this element exists for the
@@ -88,7 +88,7 @@ $(document).ready(function () {
 
     $("#all_locales").delegate("a", "switch", switchLocale);
 
-    $(format("#all_locales a[href$={0}]",[$.cookie('current_locale')])).trigger("switch");
+    $(format("#all_locales a[href$='{0}']",[$.cookie('current_locale')])).trigger("switch");
 
     function switchLocale(e) {
         e.preventDefault();
@@ -126,7 +126,7 @@ $(document).ready(function () {
                             if ($resp.find(".errorlist").length) { //display errors if they occur
                                 $form.html($resp.html());
                                 updateLocale();
-                                if ($resp.find(format(".errorlist li[data-lang={0}]", currentLocale)).length) {
+                                if ($resp.find(format(".errorlist li[data-lang='{0}']", currentLocale)).length) {
                                     erroredForms++;
                                 }
                             } else { //clean up the errors we inserted
@@ -215,14 +215,14 @@ $(document).ready(function () {
         if (!_.include(locales,lang)) {
             locales.push(lang);
         }
-        var current = $(format("#locale-popup [href$={0}]", [lang])).first().clone();
+        var current = $(format("#locale-popup [href$='{0}']", [lang])).first().clone();
         current.find('em').remove();
         $("#change-locale").text(current.text());
         $(".trans").each(function () {
             var $el = $(this),
                 field = $el.attr('data-name'),
-                label = $(format("label[data-for={0}]",[field]));
-            if (!$el.find(format("[lang={0}]",[lang])).length) {
+                label = $(format("label[data-for='{0}']",[field]));
+            if (!$el.find(format("[lang='{0}']",[lang])).length) {
                 if ($el.children(".trans-init").length) {
                     var $ni = $el.children(".trans-init").clone();
                     $ni.attr({
@@ -230,11 +230,11 @@ $(document).ready(function () {
                         lang: lang,
                         id: format('id_{0}_{1}', field, lang),
                         name: [field,lang].join('_'),
-                        value: $el.find(format("[lang={0}]",[dl])).val()
+                        value: $el.find(format("[lang='{0}']",[dl])).val()
                     });
                     if (lang != dl) $ni.addClass("cloned");
                 } else {
-                    var $ni = $el.find(format("[lang={0}]",dl)).clone();
+                    var $ni = $el.find(format("[lang='{0}']",dl)).clone();
                     $ni.attr({
                         "class": "cloned",
                         lang: lang
@@ -246,13 +246,13 @@ $(document).ready(function () {
             if (label.length) {
                 label.children(".locale").remove();
                 label.append(format("<span class='locale'>{0}</span>",[$("#change-locale").text()]));
-                label_for = $el.children(format("[lang={0}]",[lang])).attr('id');
+                label_for = $el.children(format("[lang='{0}']",[lang])).attr('id');
                 label.attr('for', label_for);
             }
 
         });
-        $(format(".trans>:not([lang={0}])", currentLocale)).hide();
-        $(format(".trans [lang={0}]", currentLocale)).show();
+        $(format(".trans>:not([lang='{0}'])", currentLocale)).hide();
+        $(format(".trans [lang='{0}']", currentLocale)).show();
         initCharCount();
         $.cookie('current_locale', currentLocale, {expires: 0});
     }
@@ -275,7 +275,7 @@ function annotateLocalizedErrors($el) {
     $el.find(".errorlist li[data-lang]:not(.l10n)").each(function() {
         var err = $(this),
             t = err.text(),
-            l = $(format("#locale-popup [href$={0}]", [err.attr('data-lang')])).first().text();
+            l = $(format("#locale-popup [href$='{0}']", [err.attr('data-lang')])).first().text();
         err.text(format("{0}: ",[l])+t).addClass("l10n");
     });
 }

@@ -122,7 +122,7 @@ function initReviewActions() {
 
     $('.files .install').click(_pd(function(){
         var $this = $(this),
-            installer = $this.is('[data-type=search-tools]') ? z.installSearch : z.installAddon;
+            installer = $this.is('[data-type="search-tools"]') ? z.installSearch : z.installAddon;
         installer($this.text(), $this.attr('href'), "")
     }));
 
@@ -178,7 +178,7 @@ function initReviewActions() {
 
     function highlightHistory() {
         $('#history a').removeClass('on');
-        $(format('#history a[data-num={0}]', eh_setting)).addClass('on');
+        $(format('#history a[data-num="{0}"]', eh_setting)).addClass('on');
     }
     highlightHistory();
 }

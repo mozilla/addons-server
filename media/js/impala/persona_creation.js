@@ -60,7 +60,7 @@ function initLicense() {
                 var is_copyr = (v == 'copyr');
                 if (k == 'cc-attrib') {
                     // Hide the other radio buttons when copyright is selected.
-                    $('input[name=cc-noncom], input[name=cc-noderiv]').attr('disabled', is_copyr);
+                    $('input[name="cc-noncom"], input[name="cc-noderiv"]').attr('disabled', is_copyr);
                 }
                 if (license != ' copyr') {
                     license += ' ' + v;
@@ -82,11 +82,11 @@ function initLicense() {
         $p.find('#cc-license').html(license_txt).attr('class', 'license icon ' + license);
         $('#id_license').val(l['id']);
     }
-    $('input[name^=cc-]').change(licenseUpdate);
+    $('input[name^="cc-"]').change(licenseUpdate);
     licenseUpdate();
 
     function saveLicense() {
-        $('#persona-license-list input[value=' + $('#id_license').val() + ']').attr('checked', true);
+        $('#persona-license-list input[value="' + $('#id_license').val() + '"]').attr('checked', true);
     }
     $('#persona-license .select-license').click(_pd(function() {
         $('#persona-license-list').show();
@@ -98,7 +98,7 @@ function initLicense() {
 
 
 function initPreview() {
-    $('#submit-persona input[type=color]').miniColors({change: updatePersona});
+    $('#submit-persona input[type="color"]').miniColors({change: updatePersona});
 
     $('#submit-persona').delegate('#id_name', 'change keyup paste blur', function() {
         $('#persona-preview-name').text($(this).val() || gettext("Your Persona's Name"));
@@ -122,7 +122,7 @@ function initPreview() {
         },
         upload_success = function(e, file, upload_hash) {
             var $p = $(this).closest('.row');
-            $p.find('input[type=hidden]').val(upload_hash);
+            $p.find('input[type="hidden"]').val(upload_hash);
             $p.find('input[type=file], .note').hide();
             $p.find('.preview').attr('src', file.dataURL).addClass('loaded');
             updatePersona();
@@ -139,18 +139,18 @@ function initPreview() {
 
     $d.delegate('.reset', 'click', _pd(function() {
         var $p = $(this).closest('.row');
-        $p.find('input[type=hidden]').val('');
+        $p.find('input[type="hidden"]').val('');
         $p.find('input[type=file], .note').show();
         $p.find('.preview').removeAttr('src').removeClass('loaded');
         updatePersona();
         $(this).hide();
     }));
 
-    $d.delegate('input[type=file]', 'upload_finished', upload_finished)
-      .delegate('input[type=file]', 'upload_start', upload_start)
-      .delegate('input[type=file]', 'upload_success', upload_success)
-      .delegate('input[type=file]', 'upload_errors', upload_errors)
-      .delegate('input[type=file]', 'change', function(e) {
+    $d.delegate('input[type="file"]', 'upload_finished', upload_finished)
+      .delegate('input[type="file"]', 'upload_start', upload_start)
+      .delegate('input[type="file"]', 'upload_success', upload_success)
+      .delegate('input[type="file"]', 'upload_errors', upload_errors)
+      .delegate('input[type="file"]', 'change', function(e) {
         $(this).imageUploader();
     });
 
