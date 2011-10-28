@@ -1,7 +1,7 @@
 from django.http import HttpRequest
 
 import mock
-from nose.tools import assert_false
+from nose.tools import assert_false, eq_
 
 import amo
 from amo.tests import TestCase
@@ -53,24 +53,17 @@ def test_anonymous_user():
 
 
 class ACLTestCase(TestCase):
-    """
-    Test some basic ACLs by going to various locked pages on AMO.
-    """
-
+    """Test some basic ACLs by going to various locked pages on AMO."""
     fixtures = ['access/login.json']
 
     def test_admin_login_anon(self):
-        """
-        Login form for anonymous user on the admin page.
-        """
+        # Login form for anonymous user on the admin page.
         url = '/en-US/admin/models/'
         r = self.client.get(url)
         self.assertRedirects(r, '%s?to=%s' % (reverse('users.login'), url))
 
     def test_admin_login_adminuser(self):
-        """
-        No form should be present for an admin
-        """
+        # No form should be present for an admin
         c = self.client
         session = Session.objects.get(pk='1234')
         c.login(session=session)
@@ -79,14 +72,10 @@ class ACLTestCase(TestCase):
         self.assertNotContains(response, 'login-form')
 
     def test_admin_login(self):
-        """
-        Non admin user should see a login form.
-        """
+        # Non admin user should get a 403.
         session = Session.objects.get(pk='4567')
         self.client.login(session=session)
-        url = '/en-US/admin/models/'
-        r = self.client.get(url)
-        self.assertRedirects(r, '%s?to=%s' % (reverse('users.login'), url))
+        eq_(self.client.get('/en-US/admin/models/').status_code, 403)
 
 
 class TestHasPerm(TestCase):

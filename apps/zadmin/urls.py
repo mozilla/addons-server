@@ -1,3 +1,4 @@
+from django import http
 from django.conf.urls.defaults import patterns, url, include
 from django.contrib import admin
 from django.shortcuts import redirect
@@ -69,8 +70,12 @@ urlpatterns = patterns('',
 
 # Hijack the admin's login to use our pages.
 def login(request):
-    url = '%s?to=%s' % (reverse('users.login'), request.path)
-    return redirect(url)
+    # If someone is already auth'd then they're getting directed to login()
+    # because they don't have sufficient permissions.
+    if request.user.is_authenticated():
+        return http.HttpResponseForbidden()
+    else:
+        return redirect('%s?to=%s' % (reverse('users.login'), request.path))
 
 
 admin.site.login = login
