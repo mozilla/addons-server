@@ -1,4 +1,4 @@
-{% extends "impala/base.html" %}
+{% extends "impala/base_shared.html" %}
 {% from 'includes/forms.html' import pretty_field, required_note %}
 
 {% set title = _('Reply to review by {0}')|f(review.user.name) %}
@@ -22,7 +22,7 @@
   <div class="primary island hero" id="reviews">
     {% include "reviews/review.html" %}
     <form method="post" class="prettyform c"
-          action="{{ url('reviews.reply', addon.slug, review.id) }}">
+          action="{{ shared_url('reviews.reply', addon, review.id) }}">
       {{ csrf() }}
       <fieldset>
         <h2>{{ _('Write a Reply') }}</h2>

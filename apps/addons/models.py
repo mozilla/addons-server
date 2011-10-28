@@ -25,7 +25,7 @@ import amo.models
 import sharing.utils as sharing
 from amo.decorators import use_master
 from amo.fields import DecimalCharField
-from amo.helpers import absolutify
+from amo.helpers import absolutify, shared_url
 from amo.utils import (send_mail, urlparams, sorted_groupby, JSONEncoder,
                        slugify, to_language)
 from amo.urlresolvers import get_outgoing_url, reverse
@@ -408,7 +408,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def reviews_url(self):
-        return reverse('reviews.list', args=[self.slug])
+        return shared_url('reviews.list', self)
 
     def type_url(self):
         """The url for this add-on's AddonType."""

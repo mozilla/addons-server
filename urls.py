@@ -90,7 +90,7 @@ urlpatterns = patterns('',
     ('^compatibility/', include('compat.urls')),
 
     # Review spam.
-    url('^reviews/spam/$', 'reviews.views.spam', name='reviews.spam'),
+    url('^reviews/spam/$', 'reviews.views.spam', name='addons.reviews.spam'),
 
     # marketplace
     ('^market/', include('market.urls')),
@@ -100,10 +100,10 @@ urlpatterns = patterns('',
       lambda r: redirect('browse.extensions', 'bookmarks', permanent=True)),
 
     ('^reviews/display/(\d+)',
-      lambda r, id: redirect('reviews.list', id, permanent=True)),
+      lambda r, id: redirect('addons.reviews.list', id, permanent=True)),
 
     ('^reviews/add/(\d+)',
-      lambda r, id: redirect('reviews.add', id, permanent=True)),
+      lambda r, id: redirect('addons.reviews.add', id, permanent=True)),
 
     ('^users/info/(\d+)',
      lambda r, id: redirect('users.profile', id, permanent=True)),
@@ -136,7 +136,7 @@ urlpatterns = patterns('',
      'versions.views.update_info_redirect'),
 
     ('^addons/reviews/(\d+)/format:rss$',
-     lambda r, id: redirect('reviews.list.rss', id, permanent=True)),
+     lambda r, id: redirect('addons.reviews.list.rss', id, permanent=True)),
 
     ('^search-engines.*$',
      lambda r: redirect('browse.search-tools', permanent=True)),

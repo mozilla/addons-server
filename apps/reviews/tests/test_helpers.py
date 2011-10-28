@@ -54,7 +54,7 @@ def test_reviews_link():
     eq_(pq(s)('strong').text(), 'Not yet rated')
 
     # with link
-    u = reverse('reviews.list', args=['xx'])
+    u = reverse('addons.reviews.list', args=['xx'])
     s = render('{{ reviews_link(myaddon, link_to_list=True) }}',
                {'myaddon': a})
     eq_(pq(s)('a').attr('href'), u)
@@ -66,9 +66,9 @@ def test_mobile_reviews_link():
 
     a = Addon(total_reviews=0, id=1, type=1, slug='xx')
     doc = s(a)
-    eq_(doc('a').attr('href'), reverse('reviews.add', args=['xx']))
+    eq_(doc('a').attr('href'), reverse('addons.reviews.add', args=['xx']))
 
-    u = reverse('reviews.list', args=['xx'])
+    u = reverse('addons.reviews.list', args=['xx'])
 
     a = Addon(average_rating=4, total_reviews=37, id=1, type=1, slug='xx')
     doc = s(a)

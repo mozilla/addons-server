@@ -1,4 +1,4 @@
-{% extends "impala/base.html" %}
+{% extends "impala/base_shared.html" %}
 {% from 'includes/forms.html' import pretty_field, required_note %}
 
 {% set title = _('Add a review for {0}')|f(addon.name) %}
@@ -76,7 +76,7 @@
       {% endif %}
     </fieldset>
     <form method="post" class="review-form" id="review-form"
-          action="{{ url('reviews.add', addon.slug) }}">
+          action="{{ shared_url('reviews.add', addon) }}">
       {{ csrf() }}
       <fieldset>
         <ul>

@@ -1,7 +1,9 @@
 from django.conf.urls.defaults import include, patterns, url
+from django.shortcuts import redirect
 
 from . import views
 from addons import views as addons_views
+from reviews.urls import review_patterns
 
 APP_SLUG = r"""(?P<app_slug>[^/<>"']+)"""
 
@@ -22,12 +24,18 @@ detail_patterns = patterns('',
         name='apps.purchase.thanks'),
     url('^purchase/(?P<status>cancel|complete)$',
         addons_views.purchase_complete, name='apps.purchase.finished'),
+
+    ('^reviews/', include(review_patterns('apps'))),
 )
 
 
 urlpatterns = patterns('',
     url('^$', views.app_home, name='apps.home'),
     url('^search/$', 'search.views.app_search', name='apps.search'),
+
+    # Review spam.
+    url('^reviews/spam/$', 'reviews.views.spam', name='apps.reviews.spam'),
+
     url('^(?P<category>[^/]+)?$', views.app_list, name='apps.list'),
 
     # URLs for a single app.

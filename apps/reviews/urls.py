@@ -3,19 +3,23 @@ from reviews.feeds import ReviewsRss
 from . import views
 
 
-# These all start with /addon/:id/reviews/:review_id/.
-detail_patterns = patterns('',
-    url('^$', views.review_list, name='reviews.detail'),
-    url('^reply$', views.reply, name='reviews.reply'),
-    url('^flag$', views.flag, name='reviews.flag'),
-    url('^delete$', views.delete, name='reviews.delete'),
-    url('^edit$', views.edit, name='reviews.edit'),
-)
+def review_detail_patterns(prefix):
+    # These all start with /addon/:id/reviews/:review_id/.
+    return patterns('',
+        url('^$', views.review_list, name='%s.reviews.detail' % prefix),
+        url('^reply$', views.reply, name='%s.reviews.reply' % prefix),
+        url('^flag$', views.flag, name='%s.reviews.flag' % prefix),
+        url('^delete$', views.delete, name='%s.reviews.delete' % prefix),
+        url('^edit$', views.edit, name='%s.reviews.edit' % prefix),
+    )
 
-urlpatterns = patterns('',
-    url('^$', views.review_list, name='reviews.list'),
-    url('^add$', views.add, name='reviews.add'),
-    url('^(?P<review_id>\d+)/', include(detail_patterns)),
-    url('^format:rss$', ReviewsRss(), name='reviews.list.rss'),
-    url('^user:(?P<user_id>\d+)$', views.review_list, name='reviews.user'),
-)
+
+def review_patterns(prefix):
+    return patterns('',
+        url('^$', views.review_list, name='%s.reviews.list' % prefix),
+        url('^add$', views.add, name='%s.reviews.add' % prefix),
+        url('^(?P<review_id>\d+)/', include(review_detail_patterns(prefix))),
+        url('^format:rss$', ReviewsRss(), name='%s.reviews.list.rss' % prefix),
+        url('^user:(?P<user_id>\d+)$', views.review_list,
+            name='%s.reviews.user' % prefix),
+    )

@@ -1,4 +1,4 @@
-{% extends "impala/base.html" %}
+{% extends "impala/base_shared.html" %}
 {% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
 
 {# L10n: {0} is an add-on name. #}
@@ -73,7 +73,7 @@
     </section>
     <section>
       {% if amo_user and addon.can_review(amo_user) %}
-        <a class="button" id="add-review" href="{{ url('reviews.add', addon.slug) }}">
+        <a class="button" id="add-review" href="{{ shared_url('reviews.add', addon) }}">
           {{ _('Write a New Review') }}</a>
       {% endif %}
     </section>
@@ -82,7 +82,7 @@
     {% block review_list %}
     {% if not reviews.object_list %}
       {% if addon.can_review(amo_user) %}
-        <p id="add-first-review"><a href="{{ url('reviews.add', addon.slug) }}">
+        <p id="add-first-review"><a href="{{ shared_url('reviews.add', addon) }}">
           {{ _('Be the first to write a review.') }}</a><p>
       {% else %}
         <p id="no-add-first-review">

@@ -10,8 +10,8 @@
      data-name="{{ addon.name }}"
      {{ b.attrs()|xmlattr }}
   {% if waffle.switch('marketplace') and addon.can_be_purchased() %}
-     data-purchase="{{ addon_url('addons.purchase', addon) }}?"
-     data-start-purchase="{{ addon_url('addons.purchase.start', addon) }}"
+     data-purchase="{{ shared_url('addons.purchase', addon) }}?"
+     data-start-purchase="{{ shared_url('addons.purchase.start', addon) }}"
      data-cost="{{ addon.premium.get_price() }}"
      data-login-url="{{ url('users.login_modal') }}"
   {% endif %}
@@ -63,7 +63,7 @@
            href="{{ b.addon.get_url_path() }}"
            data-realurl="{{ link.url }}"
          {% elif waffle.switch('marketplace') and addon.can_be_purchased() %}
-           href="{{ addon_url('addons.purchase', addon) }}"
+           href="{{ shared_url('addons.purchase', addon) }}"
            {% if not addon.is_webapp() %}
              data-realurl="{{ link.url }}"
            {% endif %}

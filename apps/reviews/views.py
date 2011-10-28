@@ -7,9 +7,10 @@ import jingo
 from tower import ugettext as _
 from mobility.decorators import mobile_template
 
+import amo
 from amo import messages
 from amo.decorators import json_view, login_required, post_required
-from amo.helpers import absolutify
+from amo.helpers import absolutify, shared_url
 from amo.urlresolvers import reverse
 import amo.utils
 from access import acl
@@ -150,18 +151,18 @@ def reply(request, addon, review_id):
         log.debug('%s reply to %s: %s' % (action, review_id, reply.id))
 
         if new:
+            reply_url = shared_url('reviews.detail', addon, review.id,
+                                   add_prefix=False)
             data = {'name': addon.name,
                     'reply_title': reply.title,
                     'reply': reply.body,
-                    'reply_url': absolutify(reverse('reviews.detail',
-                            args=[addon.slug, review.id],
-                            add_prefix=False))}
+                    'reply_url': absolutify(reply_url)}
             emails = [review.user.email]
             sub = u'Mozilla Add-on Developer Reply: %s' % addon.name
             send_mail('reviews/emails/reply_review.ltxt',
                       sub, emails, Context(data), 'reply')
 
-        return redirect('reviews.detail', addon.slug, review_id)
+        return redirect(shared_url('reviews.detail', addon, review_id))
     ctx = dict(review=review, form=form, addon=addon)
     return jingo.render(request, 'reviews/reply.html', ctx)
 
@@ -180,18 +181,19 @@ def add(request, addon, template=None):
         amo.log(amo.LOG.ADD_REVIEW, addon, review)
         log.debug('New review: %s' % review.id)
 
+        reply_url = shared_url('reviews.reply', addon, review.id,
+                               add_prefix=False)
         data = {'name': addon.name,
                 'rating': '%s out of 5 stars' % details['rating'],
                 'review': details['body'],
-                'reply_url': absolutify(reverse('reviews.reply',
-                        args=[addon.slug, review.id], add_prefix=False))}
+                'reply_url': absolutify(reply_url)}
 
         emails = [a.email for a in addon.authors.all()]
         send_mail('reviews/emails/add_review.ltxt',
                   u'Mozilla Add-on User Review: %s' % addon.name,
                   emails, Context(data), 'new_review')
 
-        return redirect('reviews.list', addon.slug)
+        return redirect(shared_url('reviews.list', addon))
     return jingo.render(request, template, dict(addon=addon, form=form))
 
 
@@ -239,7 +241,7 @@ def spam(request):
 
         for reason in spam.reasons():
             spam.redis.srem(reason, review.id)
-        return redirect('reviews.spam')
+        return redirect(request.path)
 
     buckets = {}
     for reason in spam.reasons():

@@ -21,7 +21,7 @@ import waffle
 
 import amo
 import amo.tests
-from amo.helpers import absolutify, numberfmt, urlparams, addon_url
+from amo.helpers import absolutify, numberfmt, urlparams, shared_url
 from amo.tests import addon_factory
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
@@ -450,7 +450,7 @@ class TestPaypalStart(amo.tests.TestCase):
         self.data = {'username': 'jbalogh@mozilla.com',
                      'password': 'foo'}
         self.addon = Addon.objects.all()[0]
-        self.url = addon_url('addons.purchase.start', self.addon)
+        self.url = shared_url('addons.purchase.start', self.addon)
         self.addon, self.price = setup_premium(self.addon)
 
     def test_loggedout_purchased(self):
@@ -919,7 +919,8 @@ class TestDetailPage(amo.tests.TestCase):
         r = self.client.get(reverse('addons.detail', args=['a3615']))
         doc = pq(r.content)
         href = doc('#review-box a[href*="reviews/add"]').attr('href')
-        assert href.endswith(reverse('reviews.add', args=['a3615'])), href
+        assert href.endswith(reverse('addons.reviews.add', args=['a3615'])), (
+            href)
 
     def test_no_listed_authors(self):
         r = self.client.get(reverse('addons.detail', args=['a59']))
@@ -1520,8 +1521,8 @@ class TestReportAbuse(amo.tests.TestCase):
         assert AbuseReport.objects.get(addon=addon)
 
     def test_abuse_persona(self):
-        addon_url = reverse('addons.detail', args=['a15663'])
-        r = self.client.get(addon_url)
+        shared_url = reverse('addons.detail', args=['a15663'])
+        r = self.client.get(shared_url)
         doc = pq(r.content)
         assert doc("fieldset.abuse")
 
@@ -1529,7 +1530,7 @@ class TestReportAbuse(amo.tests.TestCase):
         self.client.login(username='regular@mozilla.com', password='password')
         r = self.client.post(reverse('addons.abuse', args=['a15663']),
                              {'text': 'spammy'})
-        self.assertRedirects(r, addon_url)
+        self.assertRedirects(r, shared_url)
         eq_(len(mail.outbox), 1)
         assert 'spammy' in mail.outbox[0].body
         assert AbuseReport.objects.get(addon=15663)

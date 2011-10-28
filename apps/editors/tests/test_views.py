@@ -825,7 +825,7 @@ class TestModeratedQueue(QueueTest):
 
     def setUp(self):
         self.url = reverse('editors.queue_moderated')
-        url_flag = reverse('reviews.flag', args=['a1865', 218468])
+        url_flag = reverse('addons.reviews.flag', args=['a1865', 218468])
 
         self.login_as_editor()
         response = self.client.post(url_flag, {'flag': ReviewFlag.SPAM})

@@ -5,6 +5,7 @@ from pyquery import PyQuery as pq
 
 import amo.tests
 from amo.urlresolvers import reverse
+from amo.helpers import shared_url
 from access.models import GroupUser
 from addons.models import Addon
 from devhub.models import ActivityLog
@@ -14,6 +15,9 @@ from users.models import UserProfile
 
 class ReviewTest(amo.tests.TestCase):
     fixtures = ['base/apps', 'reviews/dev-reply.json', 'base/admin']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=1865)
 
     def login_dev(self):
         self.client.login(username='trev@adblockplus.org', password='password')
@@ -30,34 +34,35 @@ class ReviewTest(amo.tests.TestCase):
 class TestViews(ReviewTest):
 
     def test_dev_reply(self):
-        url = reverse('reviews.detail', args=['a1865', 218468])
+        url = shared_url('reviews.detail', self.addon, 218468)
         r = self.client.get(url)
         eq_(r.status_code, 200)
 
     def test_404_user_page(self):
-        url = reverse('reviews.user', args=['a1865', 233452342])
+        url = shared_url('reviews.user', self.addon, 233452342)
         r = self.client.get(url)
         eq_(r.status_code, 404)
 
     def test_feed(self):
-        url = reverse('reviews.list.rss', args=['a1865'])
+        url = shared_url('reviews.list.rss', self.addon)
         r = self.client.get(url)
         eq_(r.status_code, 200)
 
     def test_abuse_form(self):
-        r = self.client.get(reverse('reviews.list', args=['a1865']))
+        r = self.client.get(shared_url('reviews.list', self.addon))
         self.assertTemplateUsed(r, 'reviews/report_review.html')
-        r = self.client.get(reverse('reviews.detail', args=['a1865', 218468]))
+        r = self.client.get(shared_url('reviews.detail', self.addon,
+                                       218468))
         self.assertTemplateUsed(r, 'reviews/report_review.html')
 
     def test_edit_review_form(self):
-        r = self.client.get(reverse('reviews.list', args=['a1865']))
+        r = self.client.get(shared_url('reviews.list', self.addon))
         self.assertTemplateUsed(r, 'reviews/edit_review.html')
-        r = self.client.get(reverse('reviews.detail', args=['a1865', 218468]))
+        r = self.client.get(shared_url('reviews.detail', self.addon, 218468))
         self.assertTemplateUsed(r, 'reviews/edit_review.html')
 
     def test_list(self):
-        r = self.client.get(reverse('reviews.list', args=['a1865']))
+        r = self.client.get(shared_url('reviews.list', self.addon))
         eq_(r.status_code, 200)
         doc = pq(r.content)
         reviews = doc('#reviews .item')
@@ -84,7 +89,7 @@ class TestViews(ReviewTest):
     def test_empty_list(self):
         Review.objects.all().delete()
         eq_(Review.objects.count(), 0)
-        r = self.client.get(reverse('reviews.list', args=['a1865']))
+        r = self.client.get(shared_url('reviews.list', self.addon))
         eq_(r.status_code, 200)
         doc = pq(r.content)
         eq_(doc('#reviews .item').length, 0)
@@ -95,7 +100,7 @@ class TestViews(ReviewTest):
     def test_list_item_actions(self):
         self.login_admin()
         self.make_it_my_review()
-        r = self.client.get(reverse('reviews.list', args=['a1865']))
+        r = self.client.get(shared_url('reviews.list', self.addon))
         reviews = pq(r.content)('#reviews .item')
 
         r = Review.objects.get(id=218207)
@@ -116,7 +121,8 @@ class TestViews(ReviewTest):
 class TestFlag(ReviewTest):
 
     def setUp(self):
-        self.url = reverse('reviews.flag', args=['a1865', 218468])
+        super(TestFlag, self).setUp()
+        self.url = shared_url('reviews.flag', self.addon, 218468)
         self.login_admin()
 
     def test_no_login(self):
@@ -168,7 +174,8 @@ class TestFlag(ReviewTest):
 class TestDelete(ReviewTest):
 
     def setUp(self):
-        self.url = reverse('reviews.delete', args=['a1865', 218207])
+        super(TestDelete, self).setUp()
+        self.url = shared_url('reviews.delete', self.addon, 218207)
         self.login_admin()
 
     def test_no_login(self):
@@ -182,7 +189,7 @@ class TestDelete(ReviewTest):
         eq_(response.status_code, 403)
 
     def test_404(self):
-        url = reverse('reviews.delete', args=['a1865', 0])
+        url = shared_url('reviews.delete', self.addon, 0)
         response = self.client.post(url)
         eq_(response.status_code, 404)
 
@@ -204,14 +211,14 @@ class TestDelete(ReviewTest):
 class TestCreate(ReviewTest):
 
     def setUp(self):
-        self.addon = Addon.objects.get(slug='a1865')
-        self.add = reverse('reviews.add', args=[self.addon.slug])
+        super(TestCreate, self).setUp()
+        self.add = shared_url('reviews.add', self.addon)
         self.client.login(username='root_x@ukr.net', password='password')
         self.user = UserProfile.objects.get(email='root_x@ukr.net')
         self.qs = Review.objects.filter(addon=1865)
         self.log_count = ActivityLog.objects.count
-        self.more = reverse('addons.detail_more', args=['a1865'])
-        self.list = reverse('reviews.list', args=['a1865'])
+        self.more = self.addon.get_url_path(more=True)
+        self.list = shared_url('reviews.list', self.addon)
 
     def test_add_logged(self):
         r = self.client.get(self.add)
@@ -242,7 +249,7 @@ class TestCreate(ReviewTest):
         old_cnt = self.qs.count()
         log_count = self.log_count()
         r = self.client.post(self.add, {'body': 'xx', 'rating': 3})
-        self.assertRedirects(r, reverse('reviews.list', args=['a1865']),
+        self.assertRedirects(r, shared_url('reviews.list', self.addon),
                              status_code=302)
         eq_(self.qs.count(), old_cnt + 1)
         # We should have an ADD_REVIEW entry now.
@@ -256,10 +263,10 @@ class TestCreate(ReviewTest):
     def test_new_reply(self):
         self.login_dev()
         Review.objects.filter(reply_to__isnull=False).delete()
-        url = reverse('reviews.reply', args=['a1865', 218207])
+        url = shared_url('reviews.reply', self.addon, 218207)
         r = self.client.post(url, {'body': 'unst unst'})
         self.assertRedirects(r,
-                             reverse('reviews.detail', args=['a1865', 218207]))
+            shared_url('reviews.detail', self.addon, 218207))
         eq_(self.qs.filter(reply_to=218207).count(), 1)
 
         eq_(len(mail.outbox), 1)
@@ -267,10 +274,10 @@ class TestCreate(ReviewTest):
 
     def test_double_reply(self):
         self.login_dev()
-        url = reverse('reviews.reply', args=['a1865', 218207])
+        url = shared_url('reviews.reply', self.addon, 218207)
         r = self.client.post(url, {'body': 'unst unst'})
         self.assertRedirects(r,
-                             reverse('reviews.detail', args=['a1865', 218207]))
+            shared_url('reviews.detail', self.addon, 218207))
         eq_(self.qs.filter(reply_to=218207).count(), 1)
         review = Review.objects.get(id=218468)
         eq_('%s' % review.body, 'unst unst')
@@ -296,7 +303,7 @@ class TestCreate(ReviewTest):
         self.client.logout()
         r = self.client.get_ajax(self.more)
         eq_(pq(r.content)('#add-review').length, 1)
-        r = self.client.get(reverse('reviews.list', args=['a1865']))
+        r = self.client.get(shared_url('reviews.list', self.addon))
         doc = pq(r.content)
         eq_(doc('#add-review').length, 0)
         eq_(doc('#add-first-review').length, 0)
@@ -315,7 +322,7 @@ class TestCreate(ReviewTest):
         self.login_dev()
         r = self.client.get_ajax(self.more)
         eq_(pq(r.content)('#add-review').length, 0)
-        r = self.client.get(reverse('reviews.list', args=['a1865']))
+        r = self.client.get(shared_url('reviews.list', self.addon))
         doc = pq(r.content)
         eq_(doc('#add-review').length, 0)
         eq_(doc('#add-first-review').length, 0)
@@ -421,24 +428,25 @@ class TestCreate(ReviewTest):
 class TestEdit(ReviewTest):
 
     def setUp(self):
+        super(TestEdit, self).setUp()
         self.client.login(username='root_x@ukr.net', password='password')
 
     def test_edit(self):
-        url = reverse('reviews.edit', args=['a1865', 218207])
+        url = shared_url('reviews.edit', self.addon, 218207)
         r = self.client.post(url, {'rating': 2, 'body': 'woo woo'},
                              X_REQUESTED_WITH='XMLHttpRequest')
         eq_(r.status_code, 200)
         eq_('%s' % Review.objects.get(id=218207).body, 'woo woo')
 
     def test_edit_not_owner(self):
-        url = reverse('reviews.edit', args=['a1865', 218468])
+        url = shared_url('reviews.edit', self.addon, 218468)
         r = self.client.post(url, {'rating': 2, 'body': 'woo woo'},
                              X_REQUESTED_WITH='XMLHttpRequest')
         eq_(r.status_code, 403)
 
     def test_edit_reply(self):
         self.login_dev()
-        url = reverse('reviews.edit', args=['a1865', 218468])
+        url = shared_url('reviews.edit', self.addon, 218468)
         r = self.client.post(url, {'title': 'fo', 'body': 'shizzle'},
                              X_REQUESTED_WITH='XMLHttpRequest')
         eq_(r.status_code, 200)
@@ -452,12 +460,11 @@ class TestMobileReviews(amo.tests.MobileTest, amo.tests.TestCase):
                 'base/users']
 
     def setUp(self):
-        super(TestMobileReviews, self).setUp()
         self.addon = Addon.objects.get(id=1865)
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.login_regular()
-        self.add = reverse('reviews.add', args=['a1865'])
-        self.list = reverse('reviews.list', args=['a1865'])
+        self.add = shared_url('reviews.add', self.addon)
+        self.list = shared_url('reviews.list', self.addon)
 
     def login_regular(self):
         self.client.login(username='regular@mozilla.com', password='password')
@@ -544,5 +551,5 @@ class TestMobileReviews(amo.tests.MobileTest, amo.tests.TestCase):
     def test_add_logged_out(self):
         self.client.logout()
         self.mobile_init()
-        r = self.client.get(reverse('reviews.add', args=['a1865']))
+        r = self.client.get(shared_url('reviews.add', self.addon))
         eq_(r.status_code, 302)

@@ -207,7 +207,7 @@ def test_urlparams_unicode():
     utils.urlparams(url)
 
 
-class TestAddonURL(amo.tests.TestCase):
+class TestSharedURL(amo.tests.TestCase):
 
     def setUp(self):
         self.webapp = Mock()
@@ -220,16 +220,26 @@ class TestAddonURL(amo.tests.TestCase):
         self.addon.is_webapp.return_value = False
 
     def test_appurl(self):
-        eq_(helpers.addon_url('addons.detail', self.webapp),
-            '/en-US/apps/app/webapp/')
-        eq_(helpers.addon_url('apps.detail', self.webapp),
-            '/en-US/apps/app/webapp/')
+        expected = '/en-US/apps/app/webapp/'
+        eq_(helpers.shared_url('addons.detail', self.webapp), expected)
+        eq_(helpers.shared_url('apps.detail', self.webapp), expected)
+        eq_(helpers.shared_url('detail', self.webapp), expected)
+        eq_(helpers.shared_url('detail', self.webapp, add_prefix=False),
+            '/apps/app/webapp/')
+        eq_(helpers.shared_url('reviews.detail', self.webapp, 1,
+                               add_prefix=False),
+            '/apps/app/webapp/reviews/1/')
 
     def test_addonurl(self):
-        eq_(helpers.addon_url('addons.detail', self.addon),
-            '/en-US/firefox/addon/addon/')
-        eq_(helpers.addon_url('apps.detail', self.addon),
-            '/en-US/firefox/addon/addon/')
+        expected = '/en-US/firefox/addon/addon/'
+        eq_(helpers.shared_url('addons.detail', self.addon), expected)
+        eq_(helpers.shared_url('apps.detail', self.addon), expected)
+        eq_(helpers.shared_url('detail', self.addon), expected)
+        eq_(helpers.shared_url('detail', self.addon, add_prefix=False),
+            '/addon/addon/')
+        eq_(helpers.shared_url('reviews.detail', self.addon, 1,
+                               add_prefix=False),
+            '/addon/addon/reviews/1/')
 
 
 def test_isotime():

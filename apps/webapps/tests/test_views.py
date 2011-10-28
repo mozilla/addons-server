@@ -130,9 +130,18 @@ class TestDetail(WebappTest):
         eq_(doc('#addon h1').text(), 'woo')
         eq_(doc('h2:first').text(), 'About this App')
 
-    def test_reviews(self):
-        eq_(self.get_more_pq()('#reviews h3').remove('a').text(),
+    def test_add_review_link_aside(self):
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#reviews-link').attr('href'),
+            reverse('apps.reviews.list', args=[self.webapp.app_slug]))
+
+    def test_add_review_link_more(self):
+        doc = self.get_more_pq()
+        add_url = reverse('apps.reviews.add', args=[self.webapp.app_slug])
+        eq_(doc.find('#reviews #add-first-review').attr('href'), add_url)
+        eq_(doc.find('#reviews h3').remove('a').text(),
             'This app has not yet been reviewed.')
+        eq_(doc.find('#add-review').attr('href'), add_url)
 
     def test_other_apps(self):
         """Ensure listed apps by the same author show up."""
