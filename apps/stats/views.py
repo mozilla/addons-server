@@ -339,41 +339,12 @@ def contributions_series(request, addon, group, start, end, format):
         return render_json(request, addon, gen)
 
 
-@addon_view
-def contributions_detail(request, addon, start, end, format):
-    """Generate detailed contributions in ``format``."""
-    # This view doesn't do grouping, but we can leverage our series parameter
-    # checker by passing in a valid group value.
-    date_range = check_series_params_or_404('day', start, end, format)
-    check_stats_permission(request, addon, for_contributions=True)
-    qs = addon_contributions_queryset(addon, *date_range)
-
-    def property_lookup_gen(qs, fields):
-        for obj in qs:
-            yield dict((k, getattr(obj, f, None)) for k, f in fields)
-
-    fields = [('date', 'date'), ('amount', 'amount'),
-              ('requested', 'suggested_amount'),
-              ('contributor', 'contributor'),
-              ('email', 'email'), ('comment', 'comment')]
-    gen = property_lookup_gen(qs, fields)
-
-    if format == 'csv':
-        gen, headings = csv_prep(gen, fields, precision='0.01')
-        return render_csv(request, addon, gen, headings)
-    elif format == 'json':
-        return render_json(request, addon, gen)
-
-
-# 7 days in seconds
-seven_days = 60 * 60 * 24 * 7
-
-
 def fudge_headers(response, stats):
     """Alter cache headers. Don't cache content where data could be missing."""
     if not stats:
         add_never_cache_headers(response)
     else:
+        seven_days = 60 * 60 * 24 * 7
         patch_cache_control(response, max_age=seven_days)
 
 

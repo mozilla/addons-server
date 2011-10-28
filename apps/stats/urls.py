@@ -33,7 +33,6 @@ urlpatterns = patterns('',
         kwargs={'report': 'contributions'}),
 
 
-
     # time series URLs following this pattern:
     # /addon/{addon_id}/statistics/{series}-{group}-{start}-{end}.{format}
     url(series['overview'], views.overview_series,
@@ -56,10 +55,4 @@ urlpatterns = patterns('',
         name='stats.versions_series', kwargs={'field': 'versions'}),
     url(series['apps'], views.usage_breakdown_series,
         name='stats.apps_series', kwargs={'field': 'applications'}),
-
-
-    # special case time series
-    url('^contributions-detail-%s\.%s$' % (range_re, format_re),
-        views.contributions_detail, name='stats.contributions_detail'),
-
 )
