@@ -16,10 +16,10 @@ from amo.models import ModelBase, SearchMixin
 from amo.fields import DecimalCharField
 from amo.utils import send_mail
 
-from .db import StatsDictField, StatsManager
+from .db import StatsDictField
 
 
-class AddonCollectionCount(caching.base.CachingMixin, models.Model):
+class AddonCollectionCount(models.Model):
     addon = models.ForeignKey('addons.Addon')
     collection = models.ForeignKey('bandwagon.Collection')
     count = models.PositiveIntegerField()
@@ -29,19 +29,16 @@ class AddonCollectionCount(caching.base.CachingMixin, models.Model):
         db_table = 'stats_addons_collections_counts'
 
 
-class CollectionCount(caching.base.CachingMixin, models.Model):
+class CollectionCount(models.Model):
     collection = models.ForeignKey('bandwagon.Collection')
     count = models.PositiveIntegerField()
     date = models.DateField()
-
-    objects = models.Manager()
-    stats = StatsManager('date')
 
     class Meta:
         db_table = 'stats_collections_counts'
 
 
-class CollectionStats(caching.base.CachingMixin, models.Model):
+class CollectionStats(models.Model):
     """In the running for worst-named model ever."""
     collection = models.ForeignKey('bandwagon.Collection')
     name = models.CharField(max_length=255, null=True)
@@ -56,12 +53,7 @@ class DownloadCount(SearchMixin, models.Model):
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     date = models.DateField()
-
-    # Leave this out of queries if you can.
     sources = StatsDictField(db_column='src', null=True)
-
-    objects = models.Manager()
-    stats = StatsManager('date')
 
     class Meta:
         db_table = 'download_counts'
@@ -71,53 +63,40 @@ class UpdateCount(SearchMixin, models.Model):
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     date = models.DateField()
-
-    # Leave these out of queries if you can.
     versions = StatsDictField(db_column='version', null=True)
     statuses = StatsDictField(db_column='status', null=True)
     applications = StatsDictField(db_column='application', null=True)
     oses = StatsDictField(db_column='os', null=True)
     locales = StatsDictField(db_column='locale', null=True)
 
-    objects = models.Manager()
-    stats = StatsManager('date')
-
     class Meta:
         db_table = 'update_counts'
 
 
-class AddonShareCount(caching.base.CachingMixin, models.Model):
+class AddonShareCount(models.Model):
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     service = models.CharField(max_length=255, null=True)
     date = models.DateField()
 
-    objects = models.Manager()
-    stats = StatsManager('date')
-
     class Meta:
         db_table = 'stats_share_counts'
 
 
-class AddonShareCountTotal(caching.base.CachingMixin, models.Model):
+class AddonShareCountTotal(models.Model):
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     service = models.CharField(max_length=255, null=True)
-
-    objects = caching.base.CachingManager()
-    stats = caching.base.CachingManager()
 
     class Meta:
         db_table = 'stats_share_counts_totals'
 
 
 # stats_collections_share_counts exists too, but we don't touch it.
-class CollectionShareCountTotal(caching.base.CachingMixin, models.Model):
+class CollectionShareCountTotal(models.Model):
     collection = models.ForeignKey('bandwagon.Collection')
     count = models.PositiveIntegerField()
     service = models.CharField(max_length=255, null=True)
-
-    objects = caching.base.CachingManager()
 
     class Meta:
         db_table = 'stats_collections_share_counts_totals'
@@ -132,7 +111,7 @@ class ContributionError(Exception):
         return repr(self.value)
 
 
-class Contribution(caching.base.CachingMixin, models.Model):
+class Contribution(models.Model):
     # TODO(addon): figure out what to do when we delete the add-on.
     addon = models.ForeignKey('addons.Addon')
     amount = DecimalCharField(max_digits=9, decimal_places=2,
@@ -168,9 +147,6 @@ class Contribution(caching.base.CachingMixin, models.Model):
     # If this is a refund or a chargeback, which charge did it relate to.
     related = models.ForeignKey('self', blank=True, null=True,
                                 on_delete=models.PROTECT)
-
-    objects = models.Manager()
-    stats = StatsManager('created')
 
     class Meta:
         db_table = 'stats_contributions'
@@ -303,7 +279,6 @@ class GlobalStat(caching.base.CachingMixin, models.Model):
     date = models.DateField()
 
     objects = caching.base.CachingManager()
-    stats = caching.base.CachingManager()
 
     class Meta:
         db_table = 'global_stats'

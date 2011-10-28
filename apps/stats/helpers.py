@@ -1,8 +1,6 @@
-from django.conf import settings
-
 import jinja2
 
-from jingo import register, env
+from jingo import register
 from tower import ugettext as _
 from access import acl
 from amo.urlresolvers import reverse

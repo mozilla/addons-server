@@ -3,7 +3,7 @@ import cStringIO
 import itertools
 import time
 from types import GeneratorType
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 
 from django import http
 from django.db.models import Avg, Count, Sum
@@ -22,7 +22,6 @@ from amo.urlresolvers import reverse
 
 from .decorators import allow_cross_site_request
 from .models import DownloadCount, UpdateCount, Contribution
-from .utils import csv_prep
 
 
 SERIES_GROUPS = ('day', 'week', 'month')
