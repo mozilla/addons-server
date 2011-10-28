@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404
 
 import jingo
+from mobility.decorators import mobile_template
 from tower import ugettext_lazy as _lazy
 
 import amo
@@ -53,9 +54,8 @@ def app_listing(request):
     return filter.qs, filter
 
 
-# TODO(cvan): Implement mobile pages.
-# @mobile_template('webapps/{mobile/}listing.html')
-def app_list(request, category=None):
+@mobile_template('browse/{mobile/}extensions.html')
+def app_list(request, category=None, template=None):
     if category is not None:
         q = Category.objects.filter(type=TYPE)
         category = get_object_or_404(q, slug=category)
@@ -78,7 +78,7 @@ def app_list(request, category=None):
            'category': category, 'addons': addons, 'filter': filter,
            'sorting': sorting, 'sort_opts': filter.opts, 'src': src,
            'dl_src': dl_src, 'search_cat': 'apps'}
-    return jingo.render(request, 'browse/extensions.html', ctx)
+    return jingo.render(request, template, ctx)
 
 
 def app_detail(request, app_slug):

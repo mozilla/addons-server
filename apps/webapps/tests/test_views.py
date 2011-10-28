@@ -173,6 +173,18 @@ class TestDetail(WebappTest):
         eq_(self.get_more_pq()('#author-addons').length, 0)
 
 
+class TestMobileListing(amo.tests.MobileTest, WebappTest):
+
+    def test_listing(self):
+        url = reverse('apps.home')
+        r = self.client.get(url)
+        eq_(r.status_code, 200)
+
+        self.assertTemplateUsed(r, 'browse/mobile/extensions.html')
+        assert pq(r.content)('.item').length, "no item found"
+        eq_(pq(r.content)('.item h3').text(), 'woo')
+
+
 class TestMobileDetail(amo.tests.MobileTest, WebappTest):
 
     def test_page(self):
