@@ -629,3 +629,32 @@ class TestResponses(StatsTest, amo.tests.ESTestCase):
                           2009-06-12,10,3,2
                           2009-06-07,10,3,2
                           2009-06-01,10,3,2""")
+
+    def test_contributions_series_json(self):
+        r = self.get_view_response('stats.contributions_series', group='day',
+                                   format='json')
+        eq_(r.status_code, 200)
+        self.assertListEqual(json.loads(r.content), [
+            {
+                "count": 2,
+                "date": "2009-06-02",
+                "average": 2.49,
+                "total": 4.98,
+                "end": "2009-06-02"
+            },
+            {
+                "count": 1,
+                "date": "2009-06-01",
+                "average": 5.0,
+                "total": 5.0,
+                "end": "2009-06-01"
+            }
+        ])
+
+    def test_contributions_series_csv(self):
+        r = self.get_view_response('stats.contributions_series', group='day',
+                                   format='csv')
+        eq_(r.status_code, 200)
+        self.csv_eq(r, """date,count,total,average
+                          2009-06-02,2,4.98,2.49
+                          2009-06-01,1,5.0,5.0""")
