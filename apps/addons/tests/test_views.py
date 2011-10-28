@@ -427,6 +427,13 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         assert 'chains' in get_paykey.call_args_list[0][0][0].keys()
 
 
+def setup_premium(addon):
+    price = Price.objects.create(price='0.99')
+    AddonPremium.objects.create(addon=addon, price=price)
+    addon.update(premium_type=amo.ADDON_PREMIUM)
+    return addon, price
+
+
 # TODO: remove when the marketplace is live.
 @patch.object(waffle, 'switch_is_active', lambda x: True)
 # TODO: figure out why this is being set
@@ -442,12 +449,8 @@ class TestPaypalStart(amo.tests.TestCase):
         self.data = {'username': 'jbalogh@mozilla.com',
                      'password': 'foo'}
         self.addon = Addon.objects.all()[0]
-
         self.url = addon_url('addons.purchase.start', self.addon)
-
-        self.price = Price.objects.create(price='0.99')
-        AddonPremium.objects.create(addon=self.addon, price=self.price)
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.addon, self.price = setup_premium(self.addon)
 
     def test_loggedout_purchased(self):
         # "Buy" the add-on
@@ -1159,6 +1162,26 @@ class TestImpalaDetailPage(amo.tests.TestCase):
 
     def test_other_addons_none(self):
         eq_(self.get_more_pq()('#author-addons').length, 0)
+
+    # TODO: remove when the marketplace is live.
+    @patch.object(waffle, 'switch_is_active', lambda x: True)
+    def test_author_watermarked(self):
+        # Test that an author can get a watermarked addon.
+        self.addon, self.price = setup_premium(self.addon)
+        assert self.client.login(username=self.addon.authors.all()[0].email,
+                                 password='password')
+        res = self.client.get(self.url)
+        eq_(pq(res.content)('.prominent').eq(1).attr('href'),
+            reverse('downloads.latest', args=[self.addon.slug]))
+
+    @patch.object(waffle, 'switch_is_active', lambda x: True)
+    def test_not_author(self):
+        # A non-author should not see the download link.
+        self.addon, self.price = setup_premium(self.addon)
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        res = self.client.get(self.url)
+        eq_(len(pq(res.content)('.prominent')), 1)
 
 
 class TestStatus(amo.tests.TestCase):

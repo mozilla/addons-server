@@ -489,6 +489,7 @@ class TestWatermarkedFile(amo.tests.TestCase, amo.tests.AMOPaths):
         self.xpi_copy_over(self.file, 'firefm')
         self.url = reverse('downloads.watermarked', args=[self.file.pk])
         self.user = UserProfile.objects.get(pk=999)
+        self.author = self.addon.authors.all()[0]
         self.purchase = AddonPurchase.objects.create(addon=self.addon,
                                                      user=self.user)
         self.client.login(username='regular@mozilla.com', password='password')
@@ -550,3 +551,14 @@ class TestWatermarkedFile(amo.tests.TestCase, amo.tests.AMOPaths):
         self.purchase.delete()
         res = self.client.get(self.url)
         eq_(res.status_code, 403)
+
+    def test_watermark_latest_redirects(self):
+        url = reverse('downloads.latest', args=[self.addon.slug])
+        res = self.client.get(url, follow=False)
+        self.assertRedirects(res, '%s/%s' % (self.url, self.file.filename))
+
+    def test_author_can_get(self):
+        self.client.logout()
+        self.client.login(username=self.author.email, password='password')
+        res = self.client.get(self.url)
+        assert os.path.exists(res['X-SENDFILE'])

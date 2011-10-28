@@ -80,27 +80,29 @@ def download_watermarked(request, file_id):
 
     file = get_object_or_404(File.objects, pk=file_id)
     addon = get_object_or_404(Addon.objects, pk=file.version.addon_id)
-
-    if (not addon.is_premium() or addon.is_disabled
-        or file.status == amo.STATUS_DISABLED):
-        raise http.Http404()
-
+    author = request.check_ownership(addon, require_owner=False)
     user = request.amo_user
-    if request.user.is_anonymous():
-        log.debug('Anonymous user, checking hash: %s' % file_id)
-        email = request.GET.get(amo.WATERMARK_KEY, None)
-        hsh = request.GET.get(amo.WATERMARK_KEY_HASH, None)
 
-        user = addon.get_user_from_hash(email, hsh)
-        if not user:
-            log.debug('Watermarking denied, no user: %s, %s, %s'
-                      % (file_id, email, hsh))
+    if not author:
+        if (not addon.is_premium() or addon.is_disabled
+            or file.status == amo.STATUS_DISABLED):
+            raise http.Http404()
+
+        if request.user.is_anonymous():
+            log.debug('Anonymous user, checking hash: %s' % file_id)
+            email = request.GET.get(amo.WATERMARK_KEY, None)
+            hsh = request.GET.get(amo.WATERMARK_KEY_HASH, None)
+
+            user = addon.get_user_from_hash(email, hsh)
+            if not user:
+                log.debug('Watermarking denied, no user: %s, %s, %s'
+                          % (file_id, email, hsh))
+                return http.HttpResponseForbidden()
+
+        if not addon.has_purchased(user):
+            log.debug('Watermarking denied, not purchased: %s, %s'
+                      % (file_id, user.id))
             return http.HttpResponseForbidden()
-
-    if not addon.has_purchased(user):
-        log.debug('Watermarking denied, not purchased: %s, %s'
-                  % (file_id, user.id))
-        return http.HttpResponseForbidden()
 
     dest = file.watermark(user)
     if not dest:
@@ -144,9 +146,6 @@ guard = lambda: Addon.objects.filter(_current_version__isnull=False)
 
 @addon_view_factory(guard)
 def download_latest(request, addon, type='xpi', platform=None):
-    if addon.is_premium():
-        return http.HttpResponseForbidden()
-
     platforms = [amo.PLATFORM_ALL.id]
     if platform is not None and int(platform) in amo.PLATFORMS:
         platforms.append(int(platform))
@@ -158,7 +157,9 @@ def download_latest(request, addon, type='xpi', platform=None):
     except IndexError:
         raise http.Http404()
     args = [file.id, type] if type else [file.id]
-    url = posixpath.join(reverse('downloads.file', args=args), file.filename)
+    pattern = ('downloads.watermarked' if addon.is_premium()
+               else 'downloads.file')
+    url = posixpath.join(reverse(pattern, args=args), file.filename)
     if request.GET:
         url += '?' + request.GET.urlencode()
     return redirect(url)
