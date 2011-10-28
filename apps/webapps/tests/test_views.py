@@ -58,6 +58,7 @@ class TestListing(WebappTest):
         eq_(doc('#site-notice').length, 0)
         eq_(doc('#site-nonfx').length, 0)
         eq_(doc('#site-welcome').length, 0)
+        eq_(doc('#site-noinstall-apps').length, 1)
 
     @patch.object(settings, 'READ_ONLY', True)
     def test_balloons_readonly(self):
@@ -66,6 +67,7 @@ class TestListing(WebappTest):
         eq_(doc('#site-notice').length, 1)
         eq_(doc('#site-nonfx').length, 0)
         eq_(doc('#site-welcome').length, 0)
+        eq_(doc('#site-noinstall-apps').length, 1)
 
     def test_footer(self):
         response = self.client.get(self.url)

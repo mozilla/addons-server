@@ -4,7 +4,8 @@ z.capabilities = {
     'debug_in_page': (('' + document.location).indexOf('dbginpage') >= 0),
     'console': window.console && (typeof window.console.log == 'function'),
     'replaceState': typeof history.replaceState === 'function',
-    'localStorage': false
+    'localStorage': false,
+    'webApps': !!(navigator.mozApps && navigator.mozApps.install)
 };
 
 
