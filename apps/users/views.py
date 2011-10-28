@@ -38,6 +38,7 @@ from addons.decorators import addon_view_factory, can_be_purchased
 from access import acl
 from bandwagon.models import Collection
 from stats.models import Contribution
+from translations.query import order_by_translation
 from users.models import UserNotification
 import users.notifications as notifications
 
@@ -578,7 +579,7 @@ class AddonsFilter(BaseFilter):
         if field == 'price':
             return qs.order_by('addonpremium__price')
         elif field == 'name':
-            return qs.order_by('name')
+            return order_by_translation(qs, 'name')
 
 
 @login_required
