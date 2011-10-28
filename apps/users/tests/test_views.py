@@ -331,21 +331,6 @@ class TestLogin(UserViewBase):
                                      password='wrong')
         assert self.client.login(**self.data)
 
-    def test_double_login(self):
-        r = self.client.post(self.url, self.data, follow=True)
-        self.assertRedirects(r, '/en-US/firefox/')
-
-        # If you go to the login page when you're already logged in we bounce
-        # you.
-        r = self.client.get(self.url, follow=True)
-        self.assertRedirects(r, '/en-US/firefox/')
-
-        r = self.client.get(self.url + '?to=/de/firefox/', follow=True)
-        self.assertRedirects(r, '/de/firefox/')
-
-        r = self.client.get(self.url + '?to=http://xx.com', follow=True)
-        self.assertRedirects(r, '/en-US/firefox/')
-
     def test_login_ajax(self):
         url = reverse('users.login_modal')
         r = self.client.get(url)
@@ -435,15 +420,12 @@ class TestLogin(UserViewBase):
         """
         A success response from BrowserID results in successful login.
         """
-        url = reverse('users.browserid_login')
         http_request.return_value = (200, json.dumps({'status': 'okay',
                                           'email': 'jbalogh@mozilla.com'}))
-        res = self.client.post(url, data=dict(assertion='fake-assertion',
-                                              audience='fakeamo.org'))
+        res = self.client.post(reverse('users.browserid_login'),
+                               data=dict(assertion='fake-assertion',
+                                         audience='fakeamo.org'))
         eq_(res.status_code, 200)
-
-        # If they're already logged in we return fast.
-        eq_(self.client.post(url).status_code, 200)
 
     def _make_admin_user(self, email):
         """
