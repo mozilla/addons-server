@@ -3,9 +3,10 @@ import cStringIO
 import itertools
 import time
 from types import GeneratorType
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 
 from django import http
+from django.db.models import Avg, Count, Sum
 from django.utils import simplejson
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.core.serializers.json import DjangoJSONEncoder
@@ -19,10 +20,8 @@ from addons.decorators import addon_view, addon_view_factory
 from addons.models import Addon
 from amo.urlresolvers import reverse
 
-from .db import Avg
 from .decorators import allow_cross_site_request
 from .models import DownloadCount, UpdateCount, Contribution
-from .utils import csv_prep
 
 
 SERIES_GROUPS = ('day', 'week', 'month')
@@ -305,68 +304,30 @@ def get_daterange_or_404(start, end):
     return (start_date, end_date)
 
 
-def addon_contributions_queryset(addon, start_date, end_date):
-    """Return a Contribution queryset common to all contribution views."""
-    # Contribution.created is a datetime.
-    # Make sure we include all on the last day of the range.
-    if not isinstance(end_date, datetime):
-        end_date = datetime(end_date.year, end_date.month,
-                            end_date.day, 23, 59, 59)
-
-    return Contribution.stats.filter(addon=addon,
-                                     transaction_id__isnull=False,
-                                     amount__gt=0,
-                                     created__range=(start_date, end_date))
-
-
 @addon_view
 def contributions_series(request, addon, group, start, end, format):
     """Generate summarized contributions grouped by ``group`` in ``format``."""
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon, for_contributions=True)
 
-    qs = addon_contributions_queryset(addon, *date_range)
+    # Beware: this needs to scan all the matching rows to do aggregates.
+    qs = (Contribution.objects.extra(select={'date_created': 'date(created)'})
+          .filter(addon=addon, amount__gt=0, transaction_id__isnull=False,
+                  created__range=date_range)
+          .values('date_created')
+          .annotate(count=Count('amount'), average=Avg('amount'),
+                    total=Sum('amount')))
 
-    # Note that average is per contribution and not per day
-    fields = [('date', 'start'), ('total', 'amount'), ('count', 'row_count'),
-              ('average', Avg('amount'))]
-    gen = qs.period_summary(group, **dict(fields))
-
-    if format == 'csv':
-        gen, headings = csv_prep(gen, fields, precision='0.01')
-        return render_csv(request, addon, gen, headings)
-    elif format == 'json':
-        return render_json(request, addon, gen)
-
-
-@addon_view
-def contributions_detail(request, addon, start, end, format):
-    """Generate detailed contributions in ``format``."""
-    # This view doesn't do grouping, but we can leverage our series parameter
-    # checker by passing in a valid group value.
-    date_range = check_series_params_or_404('day', start, end, format)
-    check_stats_permission(request, addon, for_contributions=True)
-    qs = addon_contributions_queryset(addon, *date_range)
-
-    def property_lookup_gen(qs, fields):
-        for obj in qs:
-            yield dict((k, getattr(obj, f, None)) for k, f in fields)
-
-    fields = [('date', 'date'), ('amount', 'amount'),
-              ('requested', 'suggested_amount'),
-              ('contributor', 'contributor'),
-              ('email', 'email'), ('comment', 'comment')]
-    gen = property_lookup_gen(qs, fields)
+    # Add `date` and `end` keys for legacy compat.
+    series = sorted(qs, key=lambda x: x['date_created'], reverse=True)
+    for row in series:
+        row['end'] = row['date'] = row.pop('date_created')
 
     if format == 'csv':
-        gen, headings = csv_prep(gen, fields, precision='0.01')
-        return render_csv(request, addon, gen, headings)
+        return render_csv(request, addon, series,
+                          ['date', 'count', 'total', 'average'])
     elif format == 'json':
-        return render_json(request, addon, gen)
-
-
-# 7 days in seconds
-seven_days = 60 * 60 * 24 * 7
+        return render_json(request, addon, series)
 
 
 def fudge_headers(response, stats):
@@ -374,6 +335,7 @@ def fudge_headers(response, stats):
     if not stats:
         add_never_cache_headers(response)
     else:
+        seven_days = 60 * 60 * 24 * 7
         patch_cache_control(response, max_age=seven_days)
 
 

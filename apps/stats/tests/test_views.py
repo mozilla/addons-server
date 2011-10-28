@@ -45,9 +45,6 @@ class StatsTest(object):
                 args['group'] = group
                 yield (view, args)
 
-        # special case views
-        yield ('stats.contributions_detail', kwargs)
-
     def public_views_gen(self, **kwargs):
         # all views are potentially public, except for contributions
         for view, args in self.views_gen(**kwargs):
@@ -226,38 +223,6 @@ class _TestCSVs(TestSeriesBase):
         eq_(date, '2009-06-01', 'unexpected date string: %s' % date)
         eq_(count, '83', 'unexpected count: %s' % count)
         eq_(app1, '83', 'unexpected app1 count: %s' % app1)
-
-    def test_contributions_detail(self):
-        response = self.get_view_response('stats.contributions_detail',
-                                          format='csv')
-
-        eq_(response.status_code, 200, 'unexpected http status')
-        rows = list(csv.reader(response.content.split('\n')))
-        row = rows[self.first_row]  # the first row of data after the header
-        eq_(len(row), 6, 'unexpected row length')
-        date, amount, requested, name, email, comment = row
-        eq_(date, '2009-06-02', 'unexpected date string: %s' % date)
-        eq_(amount, '1.99', 'unexpected amount: %s' % amount)
-        eq_(requested, '4.99', 'unexpected requested: %s' % requested)
-        eq_(name, 'First Last', 'unexpected contributor: %s' % name)
-        eq_(email, 'nobody@mozilla.com', 'unexpected email: %s' % email)
-        eq_(comment, 'thanks!', 'unexpected comment: %s' % comment)
-
-    def test_for_tests(self):
-        """Test to make sure we didn't miss testing a known series view."""
-        for view, kwargs in self.views_gen(format='csv'):
-            testname = 'test_%s' % view[6:]  # everything after 'stats.'
-            assert hasattr(self, testname), "no test for '%s'" % view
-
-    def test_cache(self):
-        """Test that the csv or json is sending a cache header of 7 days."""
-        response = self.get_view_response('stats.contributions_detail',
-                                          format='csv')
-        eq_(response["cache-control"], 'max-age=604800')
-
-        response = self.get_view_response('stats.contributions_detail',
-                                          format='json')
-        eq_(response["cache-control"], 'max-age=604800')
 
     def test_no_cache(self):
         """Test that the csv or json is not caching, due to lack of data."""
@@ -664,3 +629,32 @@ class TestResponses(StatsTest, amo.tests.ESTestCase):
                           2009-06-12,10,3,2
                           2009-06-07,10,3,2
                           2009-06-01,10,3,2""")
+
+    def test_contributions_series_json(self):
+        r = self.get_view_response('stats.contributions_series', group='day',
+                                   format='json')
+        eq_(r.status_code, 200)
+        self.assertListEqual(json.loads(r.content), [
+            {
+                "count": 2,
+                "date": "2009-06-02",
+                "average": 2.49,
+                "total": 4.98,
+                "end": "2009-06-02"
+            },
+            {
+                "count": 1,
+                "date": "2009-06-01",
+                "average": 5.0,
+                "total": 5.0,
+                "end": "2009-06-01"
+            }
+        ])
+
+    def test_contributions_series_csv(self):
+        r = self.get_view_response('stats.contributions_series', group='day',
+                                   format='csv')
+        eq_(r.status_code, 200)
+        self.csv_eq(r, """date,count,total,average
+                          2009-06-02,2,4.98,2.49
+                          2009-06-01,1,5.0,5.0""")

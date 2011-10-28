@@ -7,7 +7,6 @@ from nose.tools import eq_
 
 import amo.tests
 from addons.models import Addon
-from stats import tasks
 from stats.models import DownloadCount, UpdateCount, GlobalStat, Contribution
 from stats import tasks, cron
 

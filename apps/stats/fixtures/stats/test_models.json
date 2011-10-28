@@ -251,5 +251,22 @@
             "post_data": null,
             "created": "2009-06-02 17:55:23"
         }
+    },
+    {
+        "pk": 4,
+        "model": "stats.contribution",
+        "fields": {
+            "addon": 4,
+            "amount": "5.00",
+            "source": "addon-detail",
+            "annoying": 0,
+            "is_suggested": 1,
+            "suggested_amount": "4.99",
+            "comment": "",
+            "uuid": null,
+            "transaction_id": "0HY96990HR526938E",
+            "post_data": "a:1:{s:11:\"payer_email\";s:18:\"snowbody@mozilla.com\";}",
+            "created": "2009-06-01 18:55:23"
+        }
     }
 ]
