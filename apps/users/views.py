@@ -20,6 +20,7 @@ from radagast.wizard import Wizard
 from ratelimit.decorators import ratelimit
 from tower import ugettext as _, ugettext_lazy as _lazy
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
+from statsd import statsd
 from mobility.decorators import mobile_template
 import waffle
 
@@ -267,6 +268,7 @@ def _clean_next_url(request):
 @anonymous_csrf
 @post_required
 #@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
+@statsd.timer('auth.browserid.verify')
 def browserid_login(request):
     if waffle.switch_is_active('browserid-login'):
         logout(request)
