@@ -29,8 +29,8 @@
 <meta name="WT.oss_r" content="{{ pager.paginator.count }}">
 {% endblock %}
 
-{% macro facet(title, links) %}
-  <li class="facet">
+{% macro facet(title, id, links) %}
+  <li id="{{ id }}" class="facet">
     <h3>{{ title }}</h3>
     {{ facet_links(links) }}
   </li>
@@ -67,8 +67,8 @@
     <section id="search-facets" class="secondary" role="complementary">
       <h2>{{ _('Filter Results') }}</h2>
       <ul class="facets island pjax-trigger">
-        {{ facet(_('Category'), categories) }}
-        <li class="facet">
+        {{ facet(_('Category'), 'category-facets', categories) }}
+        <li id="compat-facets" class="facet">
           <h3>{{ _('Works with') }}</h3>
           {% if versions %}
             {{ facet_links(versions) }}
@@ -77,7 +77,7 @@
             {{ facet_links(platforms) }}
           {% endif %}
         </li>
-        {{ facet(_('Tag'), tags) }}
+        {{ facet(_('Tag'), 'tag-facets', tags) }}
       </ul>
       {{ num_results() }}
     </section>

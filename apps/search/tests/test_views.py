@@ -6,17 +6,17 @@ from django.http import QueryDict
 from django.test import client
 
 from mock import Mock
-from nose.tools import eq_, nottest
+from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from amo.helpers import locale_url
+from amo.helpers import locale_url, urlparams
 from amo.urlresolvers import reverse
+from addons.models import Addon, AddonCategory, Category, Persona
 from search import views
 from search.tests import SphinxTestCase
 from search.utils import floor_version
-from addons.models import Addon, Category, Persona
 from tags.models import Tag
 from versions.models import ApplicationsVersions
 
@@ -97,6 +97,7 @@ class TestSearchboxTarget(amo.tests.TestCase):
 
 
 class TestESSearch(amo.tests.ESTestCase):
+    fixtures = ['base/apps', 'base/category']
 
     @classmethod
     def setUpClass(cls):
@@ -106,6 +107,11 @@ class TestESSearch(amo.tests.ESTestCase):
     def setUp(self):
         self.url = reverse('search.search')
         self.search_views = ('search.search', 'apps.search')
+        addons = Addon.objects.filter(status=amo.STATUS_PUBLIC,
+                                      disabled_by_user=False)
+        for addon in addons:
+            AddonCategory.objects.create(addon=addon, category_id=1)
+        self.refresh()
 
     def test_get(self):
         r = self.client.get(self.url)
@@ -344,6 +350,47 @@ class TestESSearch(amo.tests.ESTestCase):
         a = pq(r.content)('#search-facets a[data-params]:first')
         eq_(json.loads(a.attr('data-params')),
             dict(atype=None, cat=None, page=None))
+
+    def check_cat_filters(self, params=None):
+        if not params:
+            params = {}
+
+        r = self.client.get(self.url)
+        pager = r.context['pager']
+
+        r = self.client.get(urlparams(self.url, **params))
+        a = pq(r.content)('#category-facets li.selected a')
+        eq_(a.length, 1)
+        eq_(a.text(), 'All Add-ons')
+        eq_(list(r.context['pager'].object_list), list(pager.object_list))
+
+    def test_defaults_atype_no_cat(self):
+        self.check_cat_filters(dict(atype=1))
+
+    def test_defaults_atype_unknown_cat(self):
+        self.check_cat_filters(dict(atype=1, cat=999))
+
+    def test_defaults_no_atype_unknown_cat(self):
+        self.check_cat_filters(dict(cat=999))
+
+    def test_defaults_atype_foreign_cat(self):
+        cat = Category.objects.create(application_id=amo.THUNDERBIRD.id,
+                                      type=amo.ADDON_EXTENSION)
+        self.check_cat_filters(dict(atype=1, cat=cat.id))
+
+    def test_no_tag_filter(self):
+        r = self.client.get(self.url)
+        a = pq(r.content)('#tag-facets li.selected a')
+        eq_(a.length, 1)
+        eq_(a.text(), 'All Tags')
+        assert list(r.context['pager'].object_list), 'Expected results'
+
+    def test_unknown_tag_filter(self):
+        r = self.client.get(urlparams(self.url, tag='xxx'))
+        a = pq(r.content)('#tag-facets li.selected a')
+        eq_(a.length, 1)
+        eq_(a.text(), 'xxx')
+        eq_(list(r.context['pager'].object_list), [])
 
 
 def test_search_redirects():

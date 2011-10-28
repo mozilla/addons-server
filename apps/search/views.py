@@ -542,7 +542,10 @@ def search(request, tag_name=None, template=None):
     else:
         qs = qs.filter(type__in=types)
     if query.get('cat'):
-        qs = qs.filter(category=query['cat'])
+        cat = (Category.objects.filter(id=query['cat'])
+               .filter(Q(application=APP.id) | Q(type=amo.ADDON_SEARCH)))
+        if cat.exists():
+            qs = qs.filter(category=query['cat'])
     if query.get('sort'):
         mapping = {'users': '-average_daily_users',
                    'rating': '-bayesian_rating',
@@ -603,6 +606,16 @@ def category_sidebar(request, query, facets):
                   .filter(Q(application=APP.id) | Q(type=amo.ADDON_SEARCH)))
     if qatype in amo.ADDON_TYPES:
         categories = categories.filter(type=qatype)
+
+    # If category is listed as a facet but type is not, then Show All.
+    if qcat in cats and not qatype:
+        qatype = True
+
+    # If category is not listed as a facet NOR available for this application,
+    # then Show All.
+    if qcat not in categories.values_list('id', flat=True):
+        qatype = qcat = None
+
     categories = [(atype, sorted(cats, key=lambda x: x.name))
                   for atype, cats in sorted_groupby(categories, 'type')]
     rv = [FacetLink(_(u'All Add-ons'), dict(atype=None, cat=None), not qatype)]
@@ -645,8 +658,6 @@ def platform_sidebar(request, query, facets):
     qplatform = query.get('platform')
     app_platforms = request.APP.platforms.values()
     ALL = app_platforms.pop(0)
-    platforms = [amo.PLATFORMS[f['term']] for f in facets['platforms'] if
-                 f['term'] != ALL.id]
 
     # The default is to show "All Systems."
     selected = amo.PLATFORM_DICT.get(qplatform, ALL)
@@ -666,9 +677,11 @@ def platform_sidebar(request, query, facets):
 
 def tag_sidebar(request, query, facets):
     qtag = query.get('tag')
-    rv = [FacetLink(_(u'All Tags'), dict(tag=None), not qtag)]
     tags = [facet['term'] for facet in facets['tags']]
+    rv = [FacetLink(_(u'All Tags'), dict(tag=None), not qtag)]
     rv += [FacetLink(tag, dict(tag=tag), tag == qtag) for tag in tags]
+    if qtag and qtag not in tags:
+        rv += [FacetLink(qtag, dict(tag=qtag), True)]
     return rv
 
 
