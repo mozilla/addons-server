@@ -453,27 +453,18 @@ def acquire_refund_permission(request, addon_id, addon):
                      (addon_id, token[:10]))
 
     # Sadly this is an update on a GET.
-    max_attempts = 5
-    for x in xrange(max_attempts):
-        # According to the wealth of all knowledge #django on IRC there's a
-        # race condition in get_or_create that can occur. Likely this is
-        # because the page is also being updated by the user.
-        try:
-            addonpremium, created = (AddonPremium.objects
-                                                 .get_or_create(addon=addon))
-            addonpremium.paypal_permissions_token = token
-            addonpremium.save()
-            continue
-        except IntegrityError:
-            paypal_log.debug('AddonPremium get_or_create failed try: %s' % x)
-            if x == (max_attempts - 1):
-                paypal_log.debug('AddonPremium giving up after: %d attempts'
-                                 % max_attempts)
-                raise
+    # Avoiding using get_or_create and adding far too much logging.
+    try:
+        addonpremium = AddonPremium.objects.get(addon=addon)
+        paypal_log.debug('AddonPremium updated id: %s' % addonpremium.pk)
+    except AddonPremium.DoesNotExist:
+        addonpremium = AddonPremium.objects.create(addon=addon)
+        paypal_log.debug('AddonPremium created for %s' % addon.pk)
 
-    paypal_log.debug('AddonPremium %s with id: %s' %
-                     ('created' if created else 'updated', addonpremium.pk))
+    addonpremium.paypal_permissions_token = token
+    addonpremium.save()
 
+    paypal_log.debug('AddonPremium saved with token: %s' % addonpremium.pk)
     amo.log(amo.LOG.EDIT_PROPERTIES, addon)
     return redirect('devhub.addons.payments', addon.slug)
 
