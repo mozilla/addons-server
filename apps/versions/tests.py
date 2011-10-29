@@ -594,9 +594,9 @@ class TestDownloadsLatest(TestDownloadsBase):
         eq_(r.status_code, 302)
         assert r['Location'].endswith('?src=xxx'), r['Location']
 
-    def test_no_premium(self):
+    def test_premium_redirects(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        eq_(self.client.get(self.latest_url).status_code, 403)
+        eq_(self.client.get(self.latest_url).status_code, 302)
 
 
 class TestVersionFromUpload(UploadTest, amo.tests.TestCase):

@@ -1171,7 +1171,7 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         assert self.client.login(username=self.addon.authors.all()[0].email,
                                  password='password')
         res = self.client.get(self.url)
-        eq_(pq(res.content)('.prominent').eq(1).attr('href'),
+        eq_(pq(res.content)('aside .prominent').eq(1).attr('href'),
             reverse('downloads.latest', args=[self.addon.slug]))
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)

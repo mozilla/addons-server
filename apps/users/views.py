@@ -1,5 +1,4 @@
 from functools import partial
-from urlparse import urlparse
 
 from django import http
 from django.conf import settings
@@ -35,7 +34,7 @@ from amo.utils import send_mail
 from abuse.models import send_abuse_report
 from addons.models import Addon
 from addons.views import BaseFilter
-from addons.decorators import addon_view_factory, can_be_purchased
+from addons.decorators import addon_view_factory
 from access import acl
 from bandwagon.models import Collection
 from stats.models import Contribution
@@ -579,7 +578,7 @@ class AddonsFilter(BaseFilter):
     def filter(self, field):
         qs = self.base_queryset
         if field == 'price':
-            return qs.order_by('addonpremium__price')
+            return qs.order_by('addonpremium__price__price')
         elif field == 'name':
             return order_by_translation(qs, 'name')
 

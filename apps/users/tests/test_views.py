@@ -7,7 +7,6 @@ from django.core.cache import cache
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.forms.models import model_to_dict
-from django.test.client import Client
 from django.utils.http import int_to_base36
 
 from mock import patch
@@ -25,7 +24,7 @@ from amo.pyquery_wrapper import PyQuery as pq
 from amo.urlresolvers import reverse
 from bandwagon.models import Collection, CollectionWatcher
 from devhub.models import ActivityLog
-from market.models import Price, AddonPurchase
+from market.models import Price
 from reviews.models import Review
 from stats.models import Contribution
 from users.models import BlacklistedPassword, UserProfile, UserNotification
@@ -882,8 +881,10 @@ class TestPurchases(amo.tests.TestCase):
 
         self.addon, self.con = None, None
         for x in range(1, 5):
+            price = Price.objects.create(price=10 - x)
             addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
                                          name='t%s' % x)
+            AddonPremium.objects.create(price=price, addon=addon)
             con = Contribution.objects.create(user=self.user.get_profile(),
                                               addon=addon, amount='%s.00' % x,
                                               type=amo.CONTRIB_PURCHASE)
@@ -922,7 +923,7 @@ class TestPurchases(amo.tests.TestCase):
 
     def test_ordering(self):
         eq_(self.get_order('name'), ['t1', 't2', 't3', 't4'])
-        eq_(self.get_order('price'), ['t1', 't2', 't3', 't4'])
+        eq_(self.get_order('price'), ['t4', 't3', 't2', 't1'])
 
     def test_price(self):
         res = self.client.get(self.url)
