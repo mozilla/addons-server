@@ -135,7 +135,7 @@ $.fn.searchSuggestions = function(results) {
             return;
         }
 
-        if ($.inArray(e.which, ignoreKeys) >= 0) {
+        if (e.which === undefined || $.inArray(e.which, ignoreKeys) >= 0) {
             $results.trigger('inputIgnored');
         } else {
             // Update the 'Search add-ons for <b>"{addon}"</b>' text.
@@ -184,7 +184,7 @@ $.fn.searchSuggestions = function(results) {
 
     $self.blur(function() { _.delay(dismissHandler, 250); })
          .keydown(gestureHandler)
-         .bind('keyup input paste', _.throttle(inputHandler, 250));
+         .bind('keyup paste', _.throttle(inputHandler, 250));
 
     $results.delegate('li, p', 'hover', function() {
         $results.find('.sel').removeClass('sel');
