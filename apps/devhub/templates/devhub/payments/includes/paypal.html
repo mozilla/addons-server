@@ -4,28 +4,6 @@
         <div>{{ form.paypal_id }}</div>
     </div>
     <div class="brform">
-      <label>{{ _('PayPal refund token') }}</label>
-      {{ form.non_field_errors() }}
-      <div class="extra">
-          {% trans url=url('devhub.docs', doc_name='marketplace') %}
-          In order to process refunds as described in our
-          <a href="{{ url }}">refund policy</a>, we require third-party
-          refund access to your PayPal account.
-          {% endtrans %}
-      </div>
-      <div class="extra">
-        {% if not premium or not premium.has_valid_permissions_token() %}
-          <strong>
-            {% trans %}You do not have refund permission setup,
-            <a href="{{ paypal_url }}">click here to set this up on PayPal</a>.
-            {% endtrans %}
-          </strong>
-        {% else %}
-          {% trans %}You have the refund permission setup.{% endtrans %}
-        {% endif %}
-      </div>
-    </div>
-    <div class="brform">
       <label for="id_support_email">{{ form.support_email.label }}</label>
       <div class="extra">
         {% trans %}The email address used by end users to contact you

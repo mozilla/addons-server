@@ -1,7 +1,9 @@
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 import path
 import re
 import socket
+
+from jinja2 import Markup
 
 from django import forms
 from django.conf import settings
@@ -10,6 +12,7 @@ from django.forms.models import modelformset_factory
 from django.forms.formsets import formset_factory, BaseFormSet
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_unicode
+from django.contrib import messages
 
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
@@ -947,6 +950,20 @@ class NewManifestForm(happyforms.Form):
         return manifest
 
 
+def _paypal_url(addon):
+    # If PayPal hates us, let's keep this empty.
+    url = ''
+    try:
+        url = paypal.refund_permission_url(addon)
+    except paypal.PaypalError, e:
+        # dev servers aren't always set up for paypal.
+        if paypal.should_ignore_paypal():
+            log.debug('Paypal error %r skipped due to dev mode' % (e,))
+        else:
+            raise
+    return url
+
+
 class PremiumForm(happyforms.Form):
     """
     The premium details for an addon, which is unfortunately
@@ -970,6 +987,7 @@ class PremiumForm(happyforms.Form):
 
     def __init__(self, *args, **kw):
         self.extra = kw.pop('extra')
+        self.request = kw.pop('request')
         self.addon = self.extra['addon']
         kw['initial'] = {
             'paypal_id': self.addon.paypal_id,
@@ -995,6 +1013,13 @@ class PremiumForm(happyforms.Form):
         for field in self.extra.get('exclude', []):
             del self.fields[field]
 
+    def _refundtoken_complain(self, message):
+        messages.error(self.request, message + Markup(
+                _(' <a href="%s">Visit PayPal to grant permission'
+                  ' for refunds on your behalf.</a>') %
+                _paypal_url(self.addon)))
+        raise forms.ValidationError(message)
+
     def clean_paypal_id(self):
         paypal_id = self.cleaned_data['paypal_id']
         # Check it's a valid paypal id.
@@ -1007,23 +1032,30 @@ class PremiumForm(happyforms.Form):
             # to nuke the token, but don't do this when it's is blank.
             self.addon.premium.paypal_permissions_token = ''
             self.addon.premium.save()
-            raise forms.ValidationError(_('The PayPal third-party refund '
-                                          'token has been removed.'))
+            self._refundtoken_complain(_('The PayPal third-party refund '
+                                         'token has been removed.'))
 
         return paypal_id
 
     def clean(self):
+        paypal_id = self.cleaned_data['paypal_id']
+        if paypal_id:
+            # If we're going to prompt for refund permission, we need to
+            # record the PayPal ID first.
+            self.addon.paypal_id = paypal_id
+            self.addon.save()
         if (not self.addon.premium or
             not self.addon.premium.has_permissions_token()):
             # L10n: We require PayPal users to have a third party token.
-            raise forms.ValidationError(
-                        _('No PayPal third-party refund token set up.'))
+            self._refundtoken_complain(
+                _('No PayPal third-party refund token set up.'))
         if (self.addon.premium and
             not self.addon.premium.has_valid_permissions_token()):
             # L10n: We require PayPal users to have a third party token.
-            raise forms.ValidationError(
-                        _('The PayPal third-party refund '
-                          'token on your account is invalid.'))
+
+            self._refundtoken_complain(
+                _('The PayPal third-party refund '
+                  'token on your account is invalid.'))
         return self.cleaned_data
 
     def clean_text(self):

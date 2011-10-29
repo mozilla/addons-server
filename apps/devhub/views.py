@@ -375,22 +375,9 @@ def payments(request, addon_id, addon):
     return _voluntary(request, addon_id, addon)
 
 
-def _paypal_url(addon):
-    # If PayPal hates us, let's keep this empty.
-    url = ''
-    try:
-        url = paypal.refund_permission_url(addon)
-    except paypal.PaypalError, e:
-        # dev servers aren't always set up for paypal.
-        if paypal.should_ignore_paypal():
-            log.debug('Paypal error %r skipped due to dev mode' % (e,))
-        else:
-            raise
-    return url
-
-
 def _premium(request, addon_id, addon):
     premium_form = forms.PremiumForm(request.POST or None,
+                                     request=request,
                                      extra={'addon': addon,
                                             'amo_user': request.amo_user})
     if request.method == 'POST' and premium_form.is_valid():
@@ -400,9 +387,7 @@ def _premium(request, addon_id, addon):
 
     return jingo.render(request, 'devhub/payments/premium.html',
                         dict(addon=addon, premium=addon.premium,
-                             form=premium_form,
-                             paypal_url=_paypal_url(addon)))
-
+                             form=premium_form))
 
 def _voluntary(request, addon_id, addon):
     charity = None if addon.charity_id == amo.FOUNDATION_ORG else addon.charity
@@ -1296,6 +1281,7 @@ def marketplace_paypal(request, addon_id, addon):
     so we'll need to cope with AddonPremium being incomplete.
     """
     form = forms.PremiumForm(request.POST or None,
+                             request=request,
                              extra={'addon': addon,
                                     'amo_user': request.amo_user,
                                     'exclude': ['price']})
@@ -1305,14 +1291,14 @@ def marketplace_paypal(request, addon_id, addon):
 
     return jingo.render(request, 'devhub/payments/paypal.html',
                         {'form': form, 'addon': addon,
-                         'premium': addon.premium,
-                         'paypal_url': _paypal_url(addon)})
+                         'premium': addon.premium})
 
 
 @dev_required
 @can_become_premium
 def marketplace_pricing(request, addon_id, addon):
     form = forms.PremiumForm(request.POST or None,
+                             request=request,
                              extra={'addon': addon,
                                     'amo_user': request.amo_user,
                                     'exclude': ['paypal_id',
@@ -1331,6 +1317,7 @@ def marketplace_pricing(request, addon_id, addon):
 @can_become_premium
 def marketplace_upsell(request, addon_id, addon):
     form = forms.PremiumForm(request.POST or None,
+                             request=request,
                              extra={'addon': addon,
                                     'amo_user': request.amo_user,
                                     'exclude': ['price', 'paypal_id',

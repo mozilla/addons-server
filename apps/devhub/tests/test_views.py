@@ -1,4 +1,4 @@
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 import json
 import os
 import socket
@@ -763,15 +763,7 @@ class TestPaymentsProfile(amo.tests.TestCase):
         eq_(self.get_addon().wants_contributions, False)
 
 
-# Mock out verfiying the paypal id has refund permissions with paypal and
-# that the account exists on paypal.
-#
-@mock.patch('devhub.forms.PremiumForm.clean_paypal_id',
-            new=lambda x: x.cleaned_data['paypal_id'])
-@mock.patch('devhub.forms.PremiumForm.clean', new=lambda x: x.cleaned_data)
-class TestMarketplace(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
-
+class MarketplaceMixin(object):
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)
         self.addon.update(status=amo.STATUS_NOMINATED,
@@ -787,6 +779,46 @@ class TestMarketplace(amo.tests.TestCase):
     def tearDown(self):
         self.marketplace.active = False
         self.marketplace.save()
+
+    def setup_premium(self):
+        self.price = Price.objects.create(price='0.99')
+        self.price_two = Price.objects.create(price='1.99')
+        self.other_addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
+                                                premium_type=amo.ADDON_FREE)
+        AddonUser.objects.create(addon=self.other_addon,
+                                 user=self.addon.authors.all()[0])
+        AddonPremium.objects.create(addon=self.addon, price_id=self.price.pk)
+        self.addon.update(premium_type=amo.ADDON_PREMIUM,
+                          paypal_id='a@a.com')
+
+
+class TestRefundToken(MarketplaceMixin, amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+
+    def test_no_token(self):
+        self.setup_premium()
+        res = self.client.post(self.url, {"paypal_id": "a@a.com",
+                                          "support_email": "dev@example.com"})
+        assert 'refund token' in pq(res.content)('.notification-box')[0].text
+
+    @mock.patch('paypal.check_refund_permission')
+    def test_with_token(self, crp):
+        crp.return_value = True
+        self.setup_premium()
+        self.addon.addonpremium.update(paypal_permissions_token='foo')
+        res = self.client.post(self.url, {"paypal_id": "a@a.com",
+                                          "support_email": "dev@example.com"})
+        assert not pq(res.content)('.notification-box')
+
+
+# Mock out verfiying the paypal id has refund permissions with paypal and
+# that the account exists on paypal.
+#
+@mock.patch('devhub.forms.PremiumForm.clean_paypal_id',
+            new=lambda x: x.cleaned_data['paypal_id'])
+@mock.patch('devhub.forms.PremiumForm.clean', new=lambda x: x.cleaned_data)
+class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     @mock.patch('addons.models.Addon.can_become_premium')
     def test_ask_page(self, can_become_premium):
@@ -816,17 +848,6 @@ class TestMarketplace(amo.tests.TestCase):
         eq_(res.status_code, 200)
         doc = pq(res.content)
         eq_(len(doc('.error')), 2)
-
-    def setup_premium(self):
-        self.price = Price.objects.create(price='0.99')
-        self.price_two = Price.objects.create(price='1.99')
-        self.other_addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
-                                                premium_type=amo.ADDON_FREE)
-        AddonUser.objects.create(addon=self.other_addon,
-                                 user=self.addon.authors.all()[0])
-        AddonPremium.objects.create(addon=self.addon, price_id=self.price.pk)
-        self.addon.update(premium_type=amo.ADDON_PREMIUM,
-                          paypal_id='a@a.com')
 
     def get_data(self):
         return {
@@ -910,17 +931,6 @@ class TestMarketplace(amo.tests.TestCase):
         self.other_addon.authors.clear()
         res = self.client.get(self.url)
         assert not pq(res.content)('#id_free')
-
-    def test_no_token(self):
-        self.setup_premium()
-        res = self.client.get(self.url)
-        assert 'You do not have' in res.content
-
-    def test_with_token(self):
-        self.setup_premium()
-        self.addon.addonpremium.update(paypal_permissions_token='foo')
-        res = self.client.get(self.url)
-        assert 'You have' in res.content
 
     @mock.patch('paypal.get_permissions_token', lambda x, y: x.upper())
     def test_permissions_token(self):
