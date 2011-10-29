@@ -255,14 +255,22 @@ class TestESSearch(amo.tests.ESTestCase):
             pass
         vs = [float(floor_version(v)) for v in vs]
 
+        ul = pq(r.content)('#search-facets ul.facet-group').eq(1)
+
         app = unicode(r.context['request'].APP.pretty)
         eq_(r.context['query']['appver'], expected)
         all_ = r.context['versions'].pop(0)
         eq_(all_.text, 'Any %s' % app)
         eq_(all_.selected, not expected)
+        eq_(json.loads(ul.find('a:first').attr('data-params')),
+            dict(appver='', page=None))
+
         for label, av in zip(r.context['versions'], sorted(vs, reverse=True)):
+            av = str(av)
             eq_(label.text, '%s %s' % (app, av))
-            eq_(label.selected, expected == str(av))
+            eq_(label.selected, expected == av)
+            a = ul.find('a').filter(lambda x: pq(this).text() == label.text)
+            eq_(json.loads(a.attr('data-params')), dict(appver=av, page=None))
 
     def test_appver_default(self):
         self.check_appver_filters()
@@ -324,6 +332,18 @@ class TestESSearch(amo.tests.ESTestCase):
             eq_(doc('#pjax-results').length, 0)
             eq_(doc('#search-facets .facets.pjax-trigger').length, 0)
             eq_(doc('#sorter.pjax-trigger').length, 1)
+
+    def test_facet_data_params_default(self):
+        r = self.client.get(self.url)
+        a = pq(r.content)('#search-facets a[data-params]:first')
+        eq_(json.loads(a.attr('data-params')),
+            dict(atype=None, cat=None, page=None))
+
+    def test_facet_data_params_filtered(self):
+        r = self.client.get(self.url + '?appver=3.6&platform=mac&page=3')
+        a = pq(r.content)('#search-facets a[data-params]:first')
+        eq_(json.loads(a.attr('data-params')),
+            dict(atype=None, cat=None, page=None))
 
 
 def test_search_redirects():

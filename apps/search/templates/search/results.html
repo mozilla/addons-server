@@ -41,7 +41,7 @@
     {% for link in links recursive %}
     <li{% if link.selected %} class="selected"{% endif %}>
       <a href="{{ request.get_full_path()|urlparams(page=None, **link.urlparams) }}"
-         data-params="{{ link.urlparams|json }}">
+         data-params="{{ dict(page=None, **link.urlparams)|json }}">
         {{ link.text }}</a>
       {% if link.children %}
         <ul>{{ loop(link.children) }}</ul>
