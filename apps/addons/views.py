@@ -173,18 +173,21 @@ def _category_personas(qs, limit):
 @mobile_template('addons/{mobile/}persona_detail.html')
 def persona_detail(request, addon, template=None):
     """Details page for Personas."""
+    if not addon.is_public():
+        raise http.Http404
+
     persona = addon.persona
 
     # this persona's categories
     categories = addon.categories.filter(application=request.APP.id)
     if categories:
-        qs = Addon.objects.valid().filter(categories=categories[0])
+        qs = Addon.objects.public().filter(categories=categories[0])
         category_personas = _category_personas(qs, limit=6)
     else:
         category_personas = None
 
     # other personas from the same author(s)
-    author_personas = Addon.objects.valid().filter(
+    author_personas = Addon.objects.public().filter(
         persona__author=persona.author,
         type=amo.ADDON_PERSONA).exclude(
             pk=addon.pk).select_related('persona')[:3]

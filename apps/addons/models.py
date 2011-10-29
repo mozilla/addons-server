@@ -778,6 +778,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def is_unreviewed(self):
         return self.status in amo.UNREVIEWED_STATUSES
 
+    def is_public(self):
+        return self.status == amo.STATUS_PUBLIC and not self.disabled_by_user
+
     def is_incomplete(self):
         return self.status == amo.STATUS_NULL
 

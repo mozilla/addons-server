@@ -22,6 +22,7 @@ import waffle
 import amo
 import amo.tests
 from amo.helpers import absolutify, numberfmt, urlparams, addon_url
+from amo.tests import addon_factory
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from abuse.models import AbuseReport
@@ -1027,12 +1028,16 @@ class TestDetailPage(amo.tests.TestCase):
 
 
 class TestImpalaDetailPage(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592', 'base/users']
+    fixtures = ['addons/persona', 'base/apps', 'base/addon_3615',
+                'base/addon_592', 'base/users']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)
         self.url = self.addon.get_url_path()
         self.more_url = self.addon.get_url_path(more=True)
+
+        self.persona = Addon.objects.get(id=15663)
+        self.persona_url = self.persona.get_url_path()
 
     def test_adu(self):
         doc = pq(self.client.get(self.url).content)
@@ -1135,8 +1140,30 @@ class TestImpalaDetailPage(amo.tests.TestCase):
 
         add_addon_author(other, self.addon)
         doc = self.get_more_pq()('#author-addons')
-        eq_(doc.length, 1)
         test_hovercards(self, doc, [other], src='dp-dl-othersby')
+
+    def test_other_personas(self):
+        """Ensure listed personas by the same author show up."""
+        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_NULL)
+        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_LITE)
+        addon_factory(type=amo.ADDON_PERSONA, disabled_by_user=True)
+
+        other = addon_factory(type=amo.ADDON_PERSONA)
+        other.persona.author = self.persona.persona.author
+        other.persona.save()
+        eq_(other.persona.author, self.persona.persona.author)
+        eq_(other.status, amo.STATUS_PUBLIC)
+        eq_(other.disabled_by_user, False)
+
+        # TODO(cvan): Uncomment this once Personas detail page is impalacized.
+        #doc = self.get_more_pq()('#author-addons')
+        #test_hovercards(self, doc, [other], src='dp-dl-othersby')
+
+        r = self.client.get(self.persona_url)
+        eq_(list(r.context['author_personas']), [other])
+        a = pq(r.content)('#more-artist a[data-browsertheme]')
+        eq_(a.length, 1)
+        eq_(a.attr('href'), other.get_url_path())
 
     def test_other_addons_no_webapps(self):
         """An app by the same author should not show up."""
@@ -1185,13 +1212,17 @@ class TestImpalaDetailPage(amo.tests.TestCase):
 
 
 class TestStatus(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615']
+    fixtures = ['base/apps', 'base/addon_3615', 'addons/persona']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
         assert self.addon.status == amo.STATUS_PUBLIC
-        self.url = reverse('addons.detail', args=[self.addon.slug])
+        self.url = self.addon.get_url_path()
+
+        self.persona = Addon.objects.get(id=15663)
+        assert self.persona.status == amo.STATUS_PUBLIC
+        self.persona_url = self.persona.get_url_path()
 
     def test_incomplete(self):
         self.addon.update(status=amo.STATUS_NULL)
@@ -1283,6 +1314,20 @@ class TestStatus(amo.tests.TestCase):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         v = self.new_version(amo.STATUS_PUBLIC)
         eq_(self.addon.get_version(), v)
+
+    def test_persona(self):
+        for status in amo.STATUS_CHOICES.keys():
+            self.persona.status = status
+            self.persona.save()
+            eq_(self.client.head(self.persona_url).status_code,
+                200 if status == amo.STATUS_PUBLIC else 404)
+
+    def test_persona_disabled(self):
+        for status in amo.STATUS_CHOICES.keys():
+            self.persona.status = status
+            self.persona.disabled_by_user = True
+            self.persona.save()
+            eq_(self.client.head(self.persona_url).status_code, 404)
 
 
 class TestTagsBox(amo.tests.TestCase):

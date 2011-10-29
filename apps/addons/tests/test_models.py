@@ -380,6 +380,31 @@ class TestAddonModels(amo.tests.TestCase):
         a.status = amo.STATUS_PENDING
         assert a.is_unreviewed(), 'pending add-on: is_unreviewed=True'
 
+    def test_is_public(self):
+        # Public add-on.
+        a = Addon.objects.get(pk=3615)
+        assert a.is_public(), 'public add-on should not be is_pulic()'
+
+        # Public, disabled add-on.
+        a.disabled_by_user = True
+        assert not a.is_public(), (
+            'public, disabled add-on should not be is_public()')
+
+        # Lite add-on.
+        a.status = amo.STATUS_LITE
+        a.disabled_by_user = False
+        assert not a.is_public(), 'lite add-on should not be is_public()'
+
+        # Unreviewed add-on.
+        a.status = amo.STATUS_UNREVIEWED
+        assert not a.is_public(), 'unreviewed add-on should not be is_public()'
+
+        # Unreviewed, disabled add-on.
+        a.status = amo.STATUS_UNREVIEWED
+        a.disabled_by_user = True
+        assert not a.is_public(), (
+            'unreviewed, disabled add-on should not be is_public()')
+
     def test_is_selfhosted(self):
         """Test if an add-on is listed or hosted"""
         # hosted
@@ -1783,7 +1808,7 @@ class TestCompatOverride(amo.tests.TestCase):
         c = CompatOverride.objects.create(guid='a')
         assert not c.is_hosted()
 
-        a = Addon.objects.create(type=1, guid='b')
+        Addon.objects.create(type=1, guid='b')
         c = CompatOverride.objects.create(guid='b')
         assert c.is_hosted()
 
@@ -1864,18 +1889,6 @@ class TestCompatOverride(amo.tests.TestCase):
         self.check(r[1], type='incompatible', min='*', max='*')
         eq_(len(r[1].apps), 1)
         self.check(r[1].apps[0], app=amo.FIREFOX, min='*', max='*')
-
-    def test_collapsed_ranges_multiple_apps(self):
-        c = CompatOverride.objects.get(guid='two')
-        r = c.collapsed_ranges()
-
-        eq_(len(r), 1)
-        compat_range = r[0]
-        self.check(compat_range, type='incompatible', min='1', max='2')
-
-        eq_(len(compat_range.apps), 2)
-        self.check(compat_range.apps[0], app=amo.FIREFOX, min='*', max='*')
-        self.check(compat_range.apps[1], app=amo.FIREFOX, min='3', max='4')
 
     def test_collapsed_ranges_multiple_apps(self):
         c = CompatOverride.objects.get(guid='two')
