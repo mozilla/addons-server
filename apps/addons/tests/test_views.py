@@ -1190,9 +1190,10 @@ class TestImpalaDetailPage(amo.tests.TestCase):
     def test_other_addons_none(self):
         eq_(self.get_more_pq()('#author-addons').length, 0)
 
-    # TODO: remove when the marketplace is live.
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
     def test_author_watermarked(self):
+        # TODO: remove when the marketplace is live.
+        waffle.models.Switch.objects.create(name='marketplace', active=True)
+
         # Test that an author can get a watermarked addon.
         self.addon, self.price = setup_premium(self.addon)
         assert self.client.login(username=self.addon.authors.all()[0].email,
@@ -1201,8 +1202,9 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         eq_(pq(res.content)('aside .prominent').eq(1).attr('href'),
             reverse('downloads.latest', args=[self.addon.slug]))
 
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
     def test_not_author(self):
+        waffle.models.Switch.objects.create(name='marketplace', active=True)
+
         # A non-author should not see the download link.
         self.addon, self.price = setup_premium(self.addon)
         assert self.client.login(username='regular@mozilla.com',
