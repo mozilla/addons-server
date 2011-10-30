@@ -1,12 +1,14 @@
-{% extends "base.html" %}
+{% extends "impala/base.html" %}
 
 {% block title %}{{ page_title(_('Password Reset')) }}{% endblock %}
 
 {% block content %}
 <div class="primary" role="main">
-  <h2>{{ _('Password Reset') }}</h2>
-  <div class="notification-box success">
-    <h2>{{ _('The password reset link was sent to your email address.') }}</h2>
+  <div class="primary island">
+    <h1>{{ _('Password Reset') }}</h1>
+    <div class="notification-box success">
+      <h2>{{ _('The password reset link was sent to your email address.') }}</h2>
+    </div>
   </div>
 </div>
 {% endblock content %}

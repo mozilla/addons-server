@@ -137,17 +137,17 @@ X    apps/search/templates/search/results.html
     apps/users/templates/admin/blacklisted_email_domain/add.html
     apps/users/templates/admin/blacklisted_username/add.html
 
-    apps/users/templates/users/delete.html
-    apps/users/templates/users/delete_photo.html
+√    apps/users/templates/users/delete.html
+√    apps/users/templates/users/delete_photo.html
 √    apps/users/templates/users/edit.html
 √    apps/users/templates/users/login.html
 √    apps/users/templates/users/profile.html
-    apps/users/templates/users/pwreset_complete.html
-    apps/users/templates/users/pwreset_confirm.html
-    apps/users/templates/users/pwreset_request.html
-    apps/users/templates/users/pwreset_sent.html
-    apps/users/templates/users/register.html
-    apps/users/templates/users/report_abuse_full.html
+√    apps/users/templates/users/pwreset_complete.html
+√    apps/users/templates/users/pwreset_confirm.html
+√    apps/users/templates/users/pwreset_request.html
+√    apps/users/templates/users/pwreset_sent.html
+√    apps/users/templates/users/register.html
+√    apps/users/templates/users/report_abuse_full.html
 
     apps/versions/templates/versions/version_list.html
     templates/amo_footer.html

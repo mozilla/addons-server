@@ -1,14 +1,14 @@
-{% extends "base.html" %}
+{% extends "impala/base.html" %}
 
 {% block title %}{{ page_title(_('Delete User Photo')) }}{% endblock %}
 
 {% block content %}
 
 <div class="primary" role="main">
-  <div class="primary">
-    <h2>{{ _('Delete User Photo') }}</h2>
+  <div class="primary island">
+    <h1>{{ _('Delete User Photo') }}</h1>
     <form method="post" action="{{ url('users.delete_photo') }}"
-          class="featured-inner object-lead user-input">
+          class="object-lead user-input">
       {{ csrf() }}
       <div class="fm-control">
         <button type="submit">{{ _('Delete my user picture now') }}</button>

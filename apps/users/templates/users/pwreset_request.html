@@ -1,13 +1,13 @@
-{% extends "base.html" %}
+{% extends "impala/base.html" %}
 {% from 'includes/forms.html' import required %}
 
 {% block title %}{{ page_title(_('Password Reset')) }}{% endblock %}
 
 {% block content %}
 <div class="primary" role="main">
-  <h2>{{ _('Password Reset') }}</h2>
-  <div class="primary featured">
-    <form method="post" action="" class="featured-inner object-lead user-input">
+  <div class="primary prettyform island">
+    <h1>{{ _('Password Reset') }}</h1>
+    <form method="post" action="" class="object-lead user-input">
       {{ csrf() }}
       <fieldset>
         <p class="instruct">
@@ -23,9 +23,9 @@
           </li>
         </ul>
       </fieldset>
-      <div class="fm-control">
+      <p class="footer-submit">
         <button type="submit">{{ _('Send password reset link') }}</button>
-      </div>
+      </p>
     </form>
   </div>
 </div>

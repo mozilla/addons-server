@@ -1,16 +1,38 @@
-{% extends "base.html" %}
+{% extends "impala/base.html" %}
 {% from 'includes/forms.html' import required %}
 
 {% block title %}{{ page_title(_('New User Registration')) }}{% endblock %}
 {% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}
+{% block bodyclass %}gutter register{% endblock %}
 {% block content %}
 
-<div class="primary" role="main">
-  <h2>{{ _('Register') }}</h2>
-  <div class="primary featured">
-    {% include "messages.html" %}
+{% include "messages.html" %}
+<div class="secondary" id="register-help">
+  <div class="article prose">
+    <h2>{{ _('Why register?') }}</h2>
+    {% trans legal="http://www.mozilla.com/about/legal.html",
+             privacy="http://www.mozilla.com/privacy-policy.html" %}
+        <p>Registration on AMO is <strong>not required</strong> if you
+        simply want to download and install public add-ons.</p>
+        <p>You only need to register if:</p>
+          <ul>
+            <li>You want to submit reviews for add-ons</li>
+            <li>You want to keep track of your favorite add-on collections or create one yourself</li>
+            <li>You are an add-on developer and want to upload your add-on for hosting on AMO</li>
+          </ul>
+        <p>Upon successful registration, you will be sent a confirmation
+        email to the address you provided. Please follow the instructions
+        there to confirm your account.</p><p>If you like, you can read our
+        <a href="{{ legal }}" title="Legal Notices">Legal Notices</a> and
+        <a href="{{ privacy }}" title="Privacy Policy">Privacy Policy</a>.</p>
+    {% endtrans %}
+  </div>
+</div>{# .secondary #}
+<div class="primary c">
+  <section class="island">
+    <h1>{{ _('Register') }}</h1>
     {% if form %}
-      <form method="post" action="" class="featured-inner object-lead user-input">
+      <form method="post" action="" class="prettyform grid user-input">
         {{ csrf() }}
         <fieldset>
           <ul>
@@ -35,6 +57,7 @@
               {{ form.email.errors }}
             </li>
             <li class="check">
+              <label>&nbsp;</label>
               <label for="id_emailhidden" class="check">
                 {{ form.emailhidden }}
                 {{ _('Hide email address from other users') }}
@@ -63,33 +86,13 @@
             </li>
           </ul>
         </fieldset>
-        <div class="fm-control">
+        <p class="footer-submit">
           <button type="submit">{{ _('Register') }}</button>
-        </div>
+        </p>
       </form>
     {% endif %}
-  </div>{# .primary #}
-  <div class="secondary" id="register-help">
-    <div class="article prose">
-      <h3>{{ _('Why register?') }}</h3>
-      {% trans legal="http://www.mozilla.com/about/legal.html",
-               privacy="http://www.mozilla.com/privacy-policy.html" %}
-          <p>Registration on AMO is <strong>not required</strong> if you
-          simply want to download and install public add-ons.</p>
-          <p>You only need to register if:</p>
-            <ul>
-              <li>You want to submit reviews for add-ons</li>
-              <li>You want to keep track of your favorite add-on collections or create one yourself</li>
-              <li>You are an add-on developer and want to upload your add-on for hosting on AMO</li>
-            </ul>
-          <p>Upon successful registration, you will be sent a confirmation
-          email to the address you provided. Please follow the instructions
-          there to confirm your account.</p><p>If you like, you can read our
-          <a href="{{ legal }}" title="Legal Notices">Legal Notices</a> and
-          <a href="{{ privacy }}" title="Privacy Policy">Privacy Policy</a>.</p>
-      {% endtrans %}
-    </div>
-</div>{# .secondary #}
+  </section>
 </div>{# .primary #}
+
 
 {% endblock content %}

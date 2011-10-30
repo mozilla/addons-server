@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "impala/base.html" %}
 {% from 'includes/forms.html' import required %}
 
 {% block title %}{{ page_title(_('Delete User Account')) }}{% endblock %}
@@ -6,8 +6,8 @@
 {% block content %}
 
 <div class="primary" role="main">
-  <div class="primary">
-    <h2>{{ _('Delete User Account') }}</h2>
+  <div class="primary island">
+    <h1>{{ _('Delete User Account') }}</h1>
 
     {% include "messages.html" %}
 
@@ -25,7 +25,7 @@
     {% else %}
 
       {% if form %}
-        <div class="notification-box info prose">
+        <div class="notification-box error prose">
           <p>
             {% trans site=settings.DOMAIN %}By clicking "delete" your account is going
              to be <strong>permanently removed</strong>. That means:
@@ -36,7 +36,7 @@
              {% endtrans %}
           </p>
         </div>
-        <form method="post" action="" class="featured-inner object-lead user-input">
+        <form method="post" action="" class="prettyform object-lead user-input">
           {{ csrf() }}
           <fieldset>
             <legend>{{ _('Confirm account deletion') }}</legend>
