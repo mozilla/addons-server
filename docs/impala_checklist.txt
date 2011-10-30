@@ -121,17 +121,17 @@ X    apps/browse/templates/browse/featured.html
     apps/search/templates/search/personas.html
 X    apps/search/templates/search/results.html
 
-    apps/stats/templates/stats/apps.html
-    apps/stats/templates/stats/contributions.html
-    apps/stats/templates/stats/downloads.html
-    apps/stats/templates/stats/locales.html
-    apps/stats/templates/stats/os.html
-    apps/stats/templates/stats/overview.html
-    apps/stats/templates/stats/sources.html
-    apps/stats/templates/stats/stats.html
-    apps/stats/templates/stats/statuses.html
-    apps/stats/templates/stats/usage.html
-    apps/stats/templates/stats/versions.html
+√    apps/stats/templates/stats/apps.html
+√    apps/stats/templates/stats/contributions.html
+√    apps/stats/templates/stats/downloads.html
+√    apps/stats/templates/stats/locales.html
+√    apps/stats/templates/stats/os.html
+√    apps/stats/templates/stats/overview.html
+√    apps/stats/templates/stats/sources.html
+√    apps/stats/templates/stats/stats.html
+√    apps/stats/templates/stats/statuses.html
+√    apps/stats/templates/stats/usage.html
+√    apps/stats/templates/stats/versions.html
 
     apps/tags/templates/tags/top_cloud.html
     apps/users/templates/admin/blacklisted_email_domain/add.html
