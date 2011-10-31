@@ -108,8 +108,9 @@ def repackage_jetpack(builder_data, **kw):
     redis_logger = RedisLogHandler(jp_log, upgrader, file_data)
     jp_log.addHandler(redis_logger)
     if file_data.get('uuid') != repack_data['uuid']:
-        return jp_log.warning(msg('Aborting repack. AMO<=>Builder tracking '
-                                  'number does not match.'))
+        _msg = ('Aborting repack. AMO<=>Builder tracking number mismatch '
+                '(%s) (%s)' % (file_data.get('uuid'), repack_data['uuid']))
+        return jp_log.warning(msg(_msg))
 
     if builder_data['result'] != 'success':
         return jp_log.warning(msg('Build not successful. {result}: {msg}'))
