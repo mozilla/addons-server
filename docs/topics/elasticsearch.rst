@@ -9,9 +9,12 @@ Installation::
 
     brew install elasticsearch  # or whatever your package manager is called.
 
+Launch elasticsearch.  If you used homebrew, `brew info elasticsearch`
+will show you the commands to launch.
+
 Indexing::
 
-    django cron reindex_addons  # Index all the add-ons.
+    ./manage.py cron reindex_addons  # Index all the add-ons.
 
 The reindex job uses celery to parallelize indexing. Running the job multiple
 times will replace old index items with a new document.
@@ -20,13 +23,13 @@ The index is maintained incrementally through post_save and post_delete hooks.
 
 Setting up other indexes::
 
-    django cron reindex_collections  # Index all the collections.
+    ./manage.py cron reindex_collections  # Index all the collections.
 
-    django cron reindex_users  # Index all the users.
+    ./manage.py cron reindex_users  # Index all the users.
 
-    django cron compatibility_report  # Set up the compatibility index.
+    ./manage.py cron compatibility_report  # Set up the compatibility index.
 
-    django index_stats  # Index all the update and download counts.
+    ./manage.py index_stats  # Index all the update and download counts.
 
 
 Settings
