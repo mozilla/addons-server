@@ -4,13 +4,13 @@ from django.utils.encoding import smart_unicode as u
 
 from amo.helpers import page_title
 
-from . import SERVICES
+from . import get_service
 from .forms import ShareForm
 
 
 def share(request, obj, name, description):
     try:
-        service = SERVICES[request.GET['service']]
+        service = get_service(request.GET['service'])
     except KeyError:
         raise http.Http404()
     is_webapp = hasattr(obj, 'is_webapp') and obj.is_webapp()

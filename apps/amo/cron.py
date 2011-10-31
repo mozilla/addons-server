@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from subprocess import Popen, PIPE
 
 from django.conf import settings
+from django.utils import translation
 
 import cronjobs
 import commonware.log
@@ -14,7 +15,7 @@ from bandwagon.models import Collection
 from cake.models import Session
 from devhub.models import ActivityLog, LegacyAddonLog
 from files.models import TestResultCache
-from sharing import SERVICES_LIST
+from sharing import SERVICES_LIST, LOCAL_SERVICES_LIST
 from stats.models import AddonShareCount, Contribution
 
 from . import tasks
@@ -55,8 +56,16 @@ def gc(test_result=True):
     # rejected during a review it is marked as incomplete. See bug 670295.
 
     log.debug('Cleaning up sharing services.')
-    AddonShareCount.objects.exclude(
-            service__in=[s.shortname for s in SERVICES_LIST]).delete()
+    service_names = [s.shortname for s in SERVICES_LIST]
+    # collect local service names
+    original_language = translation.get_language()
+    for language in settings.LANGUAGES:
+        translation.activate(language)
+        service_names.extend([unicode(s.shortname)
+                              for s in LOCAL_SERVICES_LIST])
+    translation.activate(original_language)
+
+    AddonShareCount.objects.exclude(service__in=set(service_names)).delete()
 
     log.debug('Cleaning up cake sessions.')
     # cake.Session uses Unix Timestamps

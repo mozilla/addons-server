@@ -1,8 +1,8 @@
-from jingo import register, env
+from jingo import register
 import jinja2
 
 import sharing
-from amo.helpers import login_link
+from django.utils import encoding
 
 
 @register.inclusion_tag('sharing/sharing_widget.html')
@@ -10,11 +10,11 @@ from amo.helpers import login_link
 def sharing_widget(context, obj, condensed=False):
     c = dict(context.items())
 
-    services = list(sharing.SERVICES_LIST)
+    services = sharing.get_services()
 
     counts = {}
     for service in services:
-        short = service.shortname
+        short = encoding.smart_str(service.shortname)
         counts[short] = service.count_term(obj.share_counts[short])
 
     c.update({
@@ -32,10 +32,12 @@ def sharing_widget(context, obj, condensed=False):
 def sharing_box(context):
     request = context['request']
 
+    services = sharing.get_services()
+
     c = dict(context.items())
     c.update({
         'request': request,
         'user': request.user,
-        'services': sharing.SERVICES_LIST,
+        'services': services
     })
     return c

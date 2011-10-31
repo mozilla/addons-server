@@ -70,5 +70,66 @@ class TWITTER(ServiceBase):
         return ngettext('{0} tweet', '{0} tweets', count).format(count)
 
 
+# These classes are place holders for localizers to add more locale-specific
+# sharing services that are more appropriate for thier audience.
+# For more information: https://wiki.mozilla.org/AMO:Localizers
+class LOCALSERVICE1(ServiceBase):
+    # L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
+    shortname = _('localservice1')
+    # L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
+    label = _(u'Post to localservice1')
+    # L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
+    url = _(u'http://localservice1/?url={url}&title={title}')
+
+    @staticmethod
+    def count_term(count):
+        # L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
+        return ngettext('{0} post on localservice1',
+                        '{0} posts on localservice1', count).format(count)
+
+
+class LOCALSERVICE2(ServiceBase):
+    # L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
+    shortname = _('localservice2')
+    # L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
+    label = _(u'Post to localservice2')
+    # L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
+    url = _(u'http://localservice2/?url={url}&title={title}')
+
+    @staticmethod
+    def count_term(count):
+        # L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
+        return ngettext('{0} post on localservice2',
+                        '{0} posts on localservice2', count).format(count)
+
+
+class LOCALSERVICE3(ServiceBase):
+    # L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
+    shortname = _('localservice3')
+    # L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
+    label = _(u'Post to localservice3')
+    # L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
+    url = _(u'http://localservice3/?url={url}&title={title}')
+
+    @staticmethod
+    def count_term(count):
+        # L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
+        return ngettext('{0} post on localservice3',
+                        '{0} posts on localservice3', count).format(count)
+
+
 SERVICES_LIST = [DIGG, FACEBOOK, DELICIOUS, MYSPACE, FRIENDFEED, TWITTER]
-SERVICES = dict((service.shortname, service) for service in SERVICES_LIST)
+LOCAL_SERVICES_LIST = [LOCALSERVICE1, LOCALSERVICE2, LOCALSERVICE3]
+
+
+def get_service(shortname):
+    for service in SERVICES_LIST + LOCAL_SERVICES_LIST:
+        if unicode(service.shortname) == shortname:
+            return service
+
+
+def get_services():
+    services = SERVICES_LIST
+    services.extend([s for s in LOCAL_SERVICES_LIST
+                     if not unicode(s.shortname).startswith(u'localservice')])
+    return services
