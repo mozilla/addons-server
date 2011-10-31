@@ -345,31 +345,11 @@ def jetpack(request):
             messages.error(request, form.errors.as_text())
 
     jetpacks = files.utils.find_jetpacks(minver, maxver)
-
-    need_upgrade = filter(lambda f: f.needs_upgrade, jetpacks)
-    archived = filter(lambda f: not f.needs_upgrade, jetpacks)
-    repacked = []
-
-    upgrading = upgrader.version()    # Current Jetpack version upgrading to.
-    repack_status = upgrader.files()  # The files being repacked.
-
-    if upgrading:
-        # Group the repacked files by status for this Jetpack upgrade.
-        grouped_files = sorted_groupby(repack_status.values(),
-                                       key=lambda f: f['status'])
-        for group, rows in grouped_files:
-            rows = sorted(list(rows), key=lambda f: f['file'])
-            for idx, row in enumerate(rows):
-                rows[idx]['file'] = File.objects.get(id=row['file'])
-            repacked.append((group, rows))
-
     groups = sorted_groupby(jetpacks, 'jetpack_version')
     by_version = dict((version, len(list(files))) for version, files in groups)
     return jingo.render(request, 'zadmin/jetpack.html',
-                        dict(form=form, upgrader=upgrader,
-                             by_version=by_version, upgrading=upgrading,
-                             need_upgrade=need_upgrade, archived=archived,
-                             repacked=repacked, repack_status=repack_status))
+                        dict(form=form, jetpacks=jetpacks, upgrader=upgrader,
+                             by_version=by_version))
 
 
 def start_upgrade(minver, maxver):
@@ -378,13 +358,6 @@ def start_upgrade(minver, maxver):
     log.info('Starting a jetpack upgrade to %s [%s files].'
              % (maxver, len(ids)))
     files.tasks.start_upgrade.delay(ids, sdk_version=maxver)
-
-
-def jetpack_resend(request, file_id):
-    maxver = files.utils.JetpackUpgrader().version()
-    log.info('Starting a jetpack upgrade to %s [1 file].' % maxver)
-    files.tasks.start_upgrade.delay([file_id], sdk_version=maxver)
-    return redirect('zadmin.jetpack')
 
 
 @login_required
