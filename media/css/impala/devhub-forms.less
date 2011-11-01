@@ -1,0 +1,58 @@
+@import 'lib';
+
+.devhub-form .tip,
+.addon-submission-process .tip,
+ul.errorlist li span.tip,
+a.remove,
+span.remove {
+    .border-radius(20px);
+    background-color: #ddd;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    height: 18px;
+    line-height: 1.3em;
+    margin-top: 0;
+    text-align: center;
+    text-decoration: none;
+    width: 18px;
+}
+.devhub-form .tip,
+.addon-submission-process .tip {
+    vertical-align: top;
+}
+a.remove {
+    cursor: pointer;
+    line-height: 16px;
+    float: right;
+    margin-top: 2px;
+}
+span.remove {
+    background-color: #eee;
+}
+
+.devhub-form .author:hover .remove,
+.devhub-form tr:hover .tip,
+.devhub-form tr:hover > td > a.remove,
+.addon-submission-process #icon_preview:hover .tip,
+.compat-versions tr:hover a.remove,
+#existing_locales li:hover a.remove,
+#required-addons ul.dependencies li:hover a.remove {
+    background-color: #ccc;
+}
+
+.devhub-form tr:hover .tip:hover,
+.addon-submission-process tr:hover .tip:hover {
+    cursor: help;
+}
+
+span.tip:hover,
+a.remove:hover {
+    background-color: #2A4364 !important;
+}
+
+.devhub-form .empty {
+    color: @note-gray;
+    font-style: italic;
+}

@@ -124,65 +124,6 @@ form .char-count:after,
     height: 75px;
 }
 
-.devhub-form .tip,
-.addon-submission-process .tip,
-ul.errorlist li span.tip,
-a.remove,
-span.remove {
-    -moz-border-radius: 20px;
-    -webkit-border-radius :20px;
-    border-radius: 20px;
-    background-color: #DDDDDD;
-    color: white;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: bold;
-    height: 18px;
-    line-height: 1.3em;
-    margin-top: 0;
-    text-align: center;
-    text-decoration :none;
-    width: 18px;
-}
-.devhub-form .tip,
-.addon-submission-process .tip {
-    vertical-align: top;
-}
-a.remove {
-    cursor: pointer;
-    line-height: 16px;
-    float: right;
-    margin-top: 2px;
-}
-span.remove {
-    background-color: #EEE;
-}
-
-.devhub-form .author:hover .remove,
-.devhub-form tr:hover .tip,
-.devhub-form tr:hover > td > a.remove,
-.addon-submission-process #icon_preview:hover .tip,
-.compat-versions tr:hover a.remove,
-#existing_locales li:hover a.remove,
-#required-addons ul.dependencies li:hover a.remove {
-    background-color: #CCC;
-}
-
-.devhub-form tr:hover .tip:hover,
-.addon-submission-process tr:hover .tip:hover {
-    cursor: help;
-}
-
-span.tip:hover,
-a.remove:hover {
-    background-color: #2A4364 !important;
-}
-
-.devhub-form .empty {
-    color: #999;
-    font-style: italic;
-}
-
 ul.refinements:last-child {
     border-bottom-width: 0;
     margin-bottom: 0;
@@ -558,119 +499,6 @@ form .char-count b {
 
 /* @end */
 
-/* @group Version Compatibility */
-
-.compat-update-modal {
-    min-height: 425px;
-}
-.compat-update-modal > :first-child {
-    margin-top: 0;
-}
-.compat-update-modal > :last-child {
-    margin-bottom: 0;
-}
-
-.compat-versions table {
-    width: 100%;
-}
-.compat-versions tbody {
-    border: 1px solid #000;
-    border-width: 1px 0;
-}
-.compat-versions thead th {
-    color: #888;
-}
-.compat-versions tbody tr:not(:last-child) {
-    border-bottom: 1px dotted #a5bfce;
-}
-
-.compat-versions td.app,
-.new-apps a.app {
-    font-weight: bold;
-    min-height: 24px;
-    padding-left: 35px;
-}
-.compat-versions td.app {
-    background-position: 0 0.5em;
-    -moz-background-size: auto 24px;
-    -wekbkit-background-size: auto 24px;
-    background-size: auto 24px;
-    line-height: 30px;
-    vertical-align: top;
-}
-.devhub-form .compat-versions td.app {
-    background-position: 0 12px;
-}
-.new-apps a.app {
-    background-position: 0 50%;
-    -moz-background-size: auto 16px;
-    -wekbkit-background-size: auto 16px;
-    background-size: auto 16px;
-    line-height: 24px;
-}
-
-.compat-versions p.add-app {
-    margin-top: -1em;
-}
-.compat-versions p.add-app a,
-.new-apps a.app {
-    display: block;
-}
-.compat-versions p.add-app + .new-apps {
-    margin: -1em 0 1em;
-}
-
-.compat-versions thead th,
-.compat-versions table + p,
-.compat-versions .errorlist {
-    font-size: 0.85em;
-}
-.compat-versions .errorlist {
-    margin-bottom: 0;
-}
-
-.compat-versions td.select {
-    display: table-row;
-}
-.compat-versions td.select div {
-    display: table-cell;
-    padding: 0 0.5em 0;
-}
-.compat-versions td.select div:first-child {
-    padding-left: 0;
-}
-.compat-versions td.select select {
-    width: 120px;
-}
-
-.compat-versions td label,
-.compat-versions td.remove input {
-    position: absolute;
-    left: -9999px;
-}
-.compat-versions td.remove div {
-    position: relative;
-    top: 0.308em;
-}
-
-.compat-versions tr.app-extra,
-.compat-versions .new-apps {
-    display: none;
-}
-
-.version-comments:first-child {
-    border-top: 0 none;
-    padding-top: 10px;
-}
-.version-comments {
-    border-top: 1px dotted #BBBBBB;
-    display: none;
-    margin: 0 10px;
-    padding: 6px;
-}
-
-/* @end */
-
 /* @group Dashboard */
 
 #dashboard .listing .item {
@@ -787,73 +615,7 @@ a.more-actions:after:hover {
     padding-bottom: 0.5em;
 }
 
-/* @group Compatibility */
 
-.compat-error {
-    background: url(../../img/zamboni/notifications.png) 0px -164px no-repeat;
-    padding-left: 15px;
-}
-#dashboard .item .item-actions a.compat-error {
-    color: #c00;
-}
-.tooltip.ajax-loading {
-    -moz-background-size: auto 12px;
-    -wekbkit-background-size: auto 12px;
-    background-size: auto 12px;
-}
-
-.compat-error-popup.popup {
-    padding: 15px;
-    min-height: 100px;
-}
-.compat-error-popup.popup .msg {
-    padding-left: 45px;
-}
-
-/* @end */
-
-#submit-addon {
-    margin-bottom: 3em;
-}
-
-.secondary .recent-activity>ul>li,
-.secondary .blog-posts>ul>li {
-    color: #555;
-    line-height: 1.2em;
-    margin-bottom: 0.75em;
-}
-.secondary .blog-posts>ul>li a,
-.secondary .recent-activity>ul>li a {
-    color: #333;
-}
-.activity-timestamp {
-    color: #aaa;
-    display: block;
-    font-size: 0.9em;
-    margin-top: 0.15em;
-}
-
-.older-activity {
-    font-size: 0.9em;
-}
-
-.older-activity a {
-    display: block;
-}
-
-h3 a.subscribe-feed {
-    background: url(../../img/zamboni/icons/subscribe-icons.png) no-repeat;
-    display: inline-block;
-    line-height: 16px;
-    height: 16px;
-    padding: 0;
-    margin-left: 0.2em;
-    text-indent: -9999px;
-    width: 16px;
-}
-h3 a.subscribe-feed:hover {
-    background-position: 0 -16px;
-}
 
 .addon-submission-process form div.addon-submission-field {
     margin-bottom: 1em;
@@ -878,8 +640,6 @@ h3 a.subscribe-feed:hover {
 .addon-submission-process {
     padding-top: 1em;
 }
-
-/* @end */
 
 /* @group Ownership */
 #author_list .email-autocomplete {
@@ -1605,14 +1365,6 @@ form.select-review .errorlist {
 #file-list { margin-bottom: 1em;}
 #file-list tr {
     border-bottom: 1px dotted #ADD0DC;
-}
-
-.devhub-form .compat-versions tbody {
-    border: 0;
-}
-
-.devhub-form .compat-versions p.add-app {
-    margin-top: 1em;
 }
 
 /* @group Add-on validator suite */

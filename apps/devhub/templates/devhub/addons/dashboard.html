@@ -57,7 +57,7 @@
     {% endif %}
   </div>
 {% else %}
-  <aside id="devhub-sidebar" class="secondary" role="complementary">
+  <section class="secondary devhub-sidebar">
     <p id="submit-addon" class="cta">
       {% if webapp %}
         <a href="{{ url('devhub.submit_apps.1') }}"
@@ -67,7 +67,7 @@
            class="button prominent">{{ _('Submit a New Add-on') }}</a>
        {% endif %}
     </p>
-    <div class="recent-activity">
+    <div class="item recent-activity">
       <h3>
         {{ _('Recent Activity') }}
         <a href="{{ rss }}" class="subscribe-feed" title="{{ _('Subscribe to this feed') }}">
@@ -99,8 +99,7 @@
     {% if not webapp %}
       {% include "devhub/includes/blog_posts.html" %}
     {% endif %}
-
-  </aside>
+  </section>
   <section id="dashboard" class="primary" role="main">
     <div class="listing island hero c">
       {% set url_base = url('devhub.apps') if webapp else url('devhub.addons') %}

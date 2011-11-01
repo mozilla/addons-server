@@ -1,0 +1,49 @@
+@import 'lib';
+
+#dashboard .island {
+    float: left;
+}
+
+#submit-addon {
+    margin-bottom: 1.5em;
+    padding: 0;
+    .button {
+        display: block;
+    }
+}
+
+.more-actions-popup {
+    ul:first-child {
+        border-bottom: 1px dotted @border-blue;
+        margin-bottom: 0.5em;
+        padding-bottom: 0.5em;
+    }
+    li a {
+        display: block;
+    }
+}
+
+.older-activity {
+    font-size: 0.9em;
+    a {
+        display: block;
+    }
+}
+
+h3 a.subscribe-feed {
+    background: url(../../img/zamboni/icons/subscribe-icons.png) no-repeat;
+    display: inline-block;
+    line-height: 16px;
+    height: 16px;
+    padding: 0;
+    margin-left: 0.2em;
+    text-indent: -9999px;
+    width: 16px;
+    &:hover {
+        background-position: 0 -16px;
+    }
+}
+
+.compat-error-popup.popup {
+    min-height: 80px;
+}

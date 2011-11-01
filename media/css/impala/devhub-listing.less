@@ -1,5 +1,11 @@
 @import 'lib';
 
+.items:first-child .item:first-child {
+    .info, .action {
+        border: 0;
+     }
+}
+
 .listing .item {
     .item-info {
         border-left: 1px dotted @border-blue;
@@ -7,11 +13,11 @@
         margin-left: 2%;
         padding-left: 2%;
         width: 15em;
-    }
-    .item-info > .downloads,
-    .item-info > .users {
-        color: @green;
-        margin-top: 0;
+        > .downloads,
+        > .users {
+            color: @green;
+            margin-top: 0;
+        }
     }
     .item-actions {
         float: none;
@@ -31,6 +37,9 @@
                     top: 0;
                     width: 0;
                 }
+                &:hover:after {
+                    border-top-color: #05e;
+                }
             }
         }
         h5 {
@@ -48,11 +57,11 @@
             display: inline-block;
             &:not(:last-child):after {
                 background-color: @note-gray;
-                border-radius: 5em 5em 5em 5em;
+                border-radius: 5em;
                 content: "";
                 display: inline-block;
                 height: 2px;
-                margin: 0 0 4px 1px;
+                margin: 0 2px 4px;
                 width: 2px;
             }
         }
@@ -65,8 +74,4 @@
             color: @dark-gray;
         }
     }
-}
-.secondary .recent-activity li a {
-    display: inline;
-    padding: 0;
 }
