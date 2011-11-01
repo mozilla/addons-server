@@ -1275,6 +1275,10 @@ PJAX_SELECTOR = '#page'
 # Testing responsiveness without rate limits.
 CELERY_DISABLE_RATE_LIMITS = True
 
+# Temporary variables for the app-preview server, set this to True
+# if you want to experience app-preview.mozilla.org.
+APP_PREVIEW = False
+
 # Specific view modules and methods that we don't want to force login on.
 NO_LOGIN_REQUIRED_MODULES = (
     'django.views.i18n.javascript_catalog',
