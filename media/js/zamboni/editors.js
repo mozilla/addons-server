@@ -31,7 +31,7 @@ $(function() {
         initReviewActions();
     }
 
-    if($('#monthly').exists()) {
+    if($('#monthly.highcharts-container').exists()) {
         initPerformanceStats();
     }
 

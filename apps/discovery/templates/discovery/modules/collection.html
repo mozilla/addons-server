@@ -26,8 +26,7 @@
           <a href="{{ services_url('discovery.addons.detail', addon.slug,
                                    src='discovery-promo') }}" target="_self">
           {% else %}
-          <a href="{{ url('addons.detail', addon.slug,
-                          src='hp-dl-promo') }}" target="_self">
+          <a href="{{ addon.get_url_path()|urlparams(src='hp-dl-promo') }}" target="_self">
           {% endif %}
             {% if addon.type == amo.ADDON_PERSONA %}
               <h3 class="htruncate">{{ addon.name }}</h3>

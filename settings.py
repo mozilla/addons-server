@@ -559,7 +559,6 @@ MINIFY_BUNDLES = {
             'js/amo2009/global.js',
             'js/impala/ratingwidget.js',
             'js/lib/jquery-ui/jqModal.js',
-            'js/amo2009/home.js',
             'js/zamboni/l10n.js',
             'js/zamboni/debouncer.js',
 
