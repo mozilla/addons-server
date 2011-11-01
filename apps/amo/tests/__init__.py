@@ -258,6 +258,8 @@ def addon_factory(version_kw={}, file_kw={}, **kw):
     a.weekly_downloads = random.randint(200, 2000)
     a.created = a.last_updated = datetime(2011, 6, 6, random.randint(0, 23),
                                           random.randint(0, 59))
+    version_factory(file_kw, addon=a, **version_kw)
+    a.update_version()
     a.status = amo.STATUS_PUBLIC
     for key, value in kw.items():
         setattr(a, key, value)
