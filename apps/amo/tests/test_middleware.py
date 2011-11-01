@@ -166,18 +166,20 @@ class TestLazyPjaxMiddleware(amo.tests.TestCase):
         eq_(json.loads(resp.content), {'foo': 1})
 
 
+def normal_view(request):
+    return ''
+
+
+@no_login_required
+def allowed_view(request):
+    return normal_view(request)
+
+
 class TestLoginRequiredMiddleware(amo.tests.TestCase):
-
-    def normal_view(self, request):
-        return ''
-
-    @no_login_required
-    def allowed_view(self, request):
-        return ''
 
     def process(self, authenticated, view=None):
         if not view:
-            view = self.normal_view
+            view = normal_view
         request = RequestFactory().get('/', HTTP_X_PJAX=True)
         request.user = Mock()
         request.user.is_authenticated.return_value = authenticated
@@ -189,16 +191,15 @@ class TestLoginRequiredMiddleware(amo.tests.TestCase):
         eq_(self.process(False).status_code, 302)
 
     def test_decorator_allowed(self):
-        assert not self.process(False, self.allowed_view)
-        assert not self.process(True, self.allowed_view)
+        assert not self.process(False, allowed_view)
+        assert not self.process(True, allowed_view)
 
     def test_decorator_normal(self):
-        eq_(self.process(False, self.normal_view).status_code, 302)
-        assert not self.process(True, self.normal_view)
+        eq_(self.process(False, normal_view).status_code, 302)
+        assert not self.process(True, normal_view)
 
     @patch.object(settings, 'NO_LOGIN_REQUIRED_MODULES',
-                  ['zamboni.apps.amo.tests.test_middleware.normal_view'])
+                  (LoginRequiredMiddleware().get_name(normal_view),))
     def test_modules(self):
         assert not self.process(False)
         assert not self.process(True)
-

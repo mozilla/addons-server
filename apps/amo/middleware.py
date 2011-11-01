@@ -234,11 +234,13 @@ class LoginRequiredMiddleware(object):
     in the NO_LOGIN_REQUIRED_MODULES tuple.
     """
 
+    def get_name(self, view_func):
+        return '%s.%s' % (view_func.__module__, view_func.__name__)
+
     def process_view(self, request, view_func, view_args, view_kwargs):
-        name = '%s.%s' % (view_func.__module__, view_func.__name__)
         if (request.user.is_authenticated() or
             getattr(view_func, '_no_login_required', False) or
-            name in settings.NO_LOGIN_REQUIRED_MODULES):
+            self.get_name(view_func) in settings.NO_LOGIN_REQUIRED_MODULES):
             return
 
         return redirect(settings.LOGIN_URL)
