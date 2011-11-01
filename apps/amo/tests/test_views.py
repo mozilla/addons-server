@@ -116,8 +116,7 @@ class TestCommon(amo.tests.TestCase):
             ('Tools', '#'),
             ('Manage My Add-ons', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            # TODO(robhudson): Uncomment this when the apps dashboard is live.
-            #('Manage My Apps', reverse('devhub.apps')),
+            ('Manage My Apps', reverse('devhub.apps')),
             ('Submit a New App', reverse('devhub.submit_apps.1')),
             ('Developer Hub', reverse('devhub.index')),
         ]
@@ -154,8 +153,7 @@ class TestCommon(amo.tests.TestCase):
             ('Tools', '#'),
             ('Manage My Add-ons', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            # TODO(robhudson): Uncomment this when the apps dashboard is live.
-            #('Manage My Apps', reverse('devhub.apps')),
+            ('Manage My Apps', reverse('devhub.apps')),
             ('Submit a New App', reverse('devhub.submit_apps.1')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
@@ -199,8 +197,7 @@ class TestCommon(amo.tests.TestCase):
             ('Tools', '#'),
             ('Manage My Add-ons', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            # TODO(robhudson): Uncomment this when the apps dashboard is live.
-            #('Manage My Apps', reverse('devhub.apps')),
+            ('Manage My Apps', reverse('devhub.apps')),
             ('Submit a New App', reverse('devhub.submit_apps.1')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),

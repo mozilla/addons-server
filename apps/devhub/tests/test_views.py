@@ -55,7 +55,8 @@ class MetaTests(amo.tests.TestCase):
 
 
 class HubTest(amo.tests.TestCase):
-    fixtures = ['browse/nameless-addon', 'base/users']
+    fixtures = ['browse/nameless-addon', 'base/users',
+                'webapps/337141-steamcube']
 
     def setUp(self):
         self.url = reverse('devhub.index')
@@ -68,13 +69,11 @@ class HubTest(amo.tests.TestCase):
         ids = []
         for i in range(num):
             addon = Addon.objects.get(id=addon_id)
-            addon.id = addon.guid = None
-            addon.save()
-            AddonUser.objects.create(user=self.user_profile, addon=addon)
-            new_addon = Addon.objects.get(id=addon.id)
-            new_addon.name = str(addon.id)
-            new_addon.save()
-            ids.append(addon.id)
+            data = dict(type=addon.type, status=addon.status,
+                        name='cloned-addon-%s-%s' % (addon_id, i))
+            new_addon = Addon.objects.create(**data)
+            AddonUser.objects.create(user=self.user_profile, addon=new_addon)
+            ids.append(new_addon.id)
         return ids
 
 
@@ -97,6 +96,8 @@ class TestNav(HubTest):
         """Check that the correct items are listed for the My Add-ons menu."""
         # Assign this add-on to the current user profile.
         addon = Addon.objects.get(id=57132)
+        addon.name = 'Test'
+        addon.save()
         AddonUser.objects.create(user=self.user_profile, addon=addon)
 
         r = self.client.get(self.url)
@@ -175,16 +176,14 @@ class TestDashboard(HubTest):
         r = self.client.get(self.url)
         doc = pq(r.content)
         eq_(len(doc('.item .item-info')), 10)
-        eq_(doc('#addon-list-options').length, 0)
-        eq_(doc('.listing-footer .pagination').length, 0)
+        eq_(doc('nav.paginator').length, 0)
 
         # Create 5 add-ons.
         self.clone_addon(5)
         r = self.client.get(self.url + '?page=2')
         doc = pq(r.content)
         eq_(len(doc('.item .item-info')), 5)
-        eq_(doc('#addon-list-options').length, 1)
-        eq_(doc('.listing-footer .pagination').length, 1)
+        eq_(doc('nav.paginator').length, 1)
 
     def test_show_hide_statistics(self):
         a_pk = self.clone_addon(1)[0]
@@ -208,8 +207,8 @@ class TestDashboard(HubTest):
         doc = pq(r.content)
         eq_(a.status, amo.STATUS_PUBLIC)
         assert doc('.item[data-addonid=%s] ul.item-details' % a_pk)
-        assert doc('.item[data-addonid=%s] h4 a' % a_pk)
-        assert not doc('.item[data-addonid=%s] > p' % a_pk)
+        assert doc('.item[data-addonid=%s] h3 a' % a_pk)
+        assert not doc('.item[data-addonid=%s] > div.info > p' % a_pk)
 
     def test_incomplete_addon_item(self):
         a_pk = self.clone_addon(1)[0]
@@ -217,8 +216,8 @@ class TestDashboard(HubTest):
         r = self.client.get(self.url)
         doc = pq(r.content)
         assert not doc('.item[data-addonid=%s] ul.item-details' % a_pk)
-        assert not doc('.item[data-addonid=%s] h4 a' % a_pk)
-        assert doc('.item[data-addonid=%s] > p' % a_pk)
+        assert not doc('.item[data-addonid=%s] h3 a' % a_pk)
+        assert doc('.item[data-addonid=%s] > div.info > p' % a_pk)
 
     def test_dev_news(self):
         self.clone_addon(1)  # We need one to see this module
@@ -233,6 +232,43 @@ class TestDashboard(HubTest):
         eq_(doc('.blog-posts li').length, 5)
         eq_(doc('.blog-posts li a').eq(0).text(), "hi 0")
         eq_(doc('.blog-posts li a').eq(4).text(), "hi 4")
+
+
+class TestAppDashboard(HubTest):
+
+    def setUp(self):
+        super(TestAppDashboard, self).setUp()
+        self.url = reverse('devhub.apps')
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+
+    def test_app_dashboard(self):
+        eq_(self.client.get(self.url).status_code, 200)
+
+    def test_no_apps(self):
+        """Check that no apps are displayed for this user."""
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(doc('.items .item').length, 0)
+
+    def test_app_pagination(self):
+        """Check that the correct info. is displayed for each app:
+        namely, that apps are paginated at 10 items per page, and that
+        when there is more than one page, the 'Sort by' header and pagination
+        footer appear.
+        """
+        # Create 10 add-ons.
+        self.clone_addon(10, addon_id=337141)
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(len(doc('.item .item-info')), 10)
+        eq_(doc('nav.paginator').length, 0)
+
+        # Create 5 add-ons.
+        self.clone_addon(5, addon_id=337141)
+        r = self.client.get(self.url + '?page=2')
+        doc = pq(r.content)
+        eq_(len(doc('.item .item-info')), 5)
+        eq_(doc('nav.paginator').length, 1)
 
 
 class TestUpdateCompatibility(amo.tests.TestCase):
