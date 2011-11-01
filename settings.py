@@ -1285,3 +1285,7 @@ NO_LOGIN_REQUIRED_MODULES = (
     'django.contrib.auth.views.password_reset',
     'django.contrib.auth.views.password_reset_done'
 )
+
+# Sets an upper limit on the number of users. If 0, it's ignored. If the
+# number of users meets or exceeds this, they can't register.
+REGISTER_USER_LIMIT = 0

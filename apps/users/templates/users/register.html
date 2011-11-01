@@ -29,9 +29,9 @@
   </div>
 </div>{# .secondary #}
 <div class="primary c">
-  <section class="island">
-    <h1>{{ _('Register') }}</h1>
-    {% if form %}
+  {% if form %}
+    <section class="island">
+      <h1>{{ _('Register') }}</h1>
       <form method="post" action="" class="prettyform grid user-input">
         {{ csrf() }}
         <fieldset>
@@ -90,8 +90,8 @@
           <button type="submit">{{ _('Register') }}</button>
         </p>
       </form>
-    {% endif %}
-  </section>
+    </section>
+  {% endif %}
 </div>{# .primary #}
 
 

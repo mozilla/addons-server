@@ -6,7 +6,7 @@ from django.core import mail
 from django.core.validators import validate_slug
 from django.utils.http import int_to_base36
 
-from manage import settings
+from django.conf import settings
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -428,16 +428,20 @@ class TestUserRegisterForm(UserFormBase):
         self.assertContains(r, "You are already logged in")
         self.assertNotContains(r, '<button type="submit">Register</button>')
 
+    def good_data(self):
+        return {
+            'email': 'john.connor@sky.net',
+            'password': 'carebears',
+            'password2': 'carebears',
+            'username': 'BigJC',
+            'homepage': ''
+        }
+
     @patch('captcha.fields.ReCaptchaField.clean')
     def test_success(self, clean):
         clean.return_value = ''
 
-        data = {'email': 'john.connor@sky.net',
-                'password': 'carebears',
-                'password2': 'carebears',
-                'username': 'BigJC',
-                'homepage': ''}
-        self.client.post('/en-US/firefox/users/register', data,
+        self.client.post('/en-US/firefox/users/register', self.good_data(),
                          follow=True)
         # TODO XXX POSTREMORA: uncomment when remora goes away
         #self.assertContains(r, "Congratulations!")
@@ -461,6 +465,29 @@ class TestUserRegisterForm(UserFormBase):
             r = self.client.post(reverse('users.register'), data, follow=True)
             err = u'Ensure this value has at most %s characters (it has %s).'
             self.assertFormError(r, 'form', field, err % (length, length + 1))
+
+    @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
+    def test_hit_limit_get(self):
+        res = self.client.get(reverse('users.register'))
+        doc = pq(res.content)
+        eq_(len(doc('.error')), 1)
+
+    @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
+    @patch('captcha.fields.ReCaptchaField.clean')
+    def test_hit_limit_post(self, clean):
+        clean.return_value = ''
+        res = self.client.get(reverse('users.register'),
+                              self.good_data())
+        doc = pq(res.content)
+        eq_(len(doc('.error')), 1)
+        eq_(UserProfile.objects.count(), 3)  # No user was created.
+
+    @patch.object(settings, 'REGISTER_USER_LIMIT', 0)
+    @patch('captcha.fields.ReCaptchaField.clean')
+    def test_no_limit_post(self, clean):
+        clean.return_value = ''
+        self.client.post(reverse('users.register'), self.good_data())
+        eq_(UserProfile.objects.count(), 4)  # One user was created.
 
 
 class TestBlacklistedUsernameAdminAddForm(UserFormBase):

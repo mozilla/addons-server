@@ -451,9 +451,15 @@ def profile(request, user_id):
 @anonymous_csrf
 @no_login_required
 def register(request):
-    if request.user.is_authenticated():
-        messages.info(request, _("You are already logged in to an account."))
+    if (settings.REGISTER_USER_LIMIT and
+        UserProfile.objects.count() > settings.REGISTER_USER_LIMIT):
+        messages.error(request, 'Sorry, no more registrations are allowed.')
         form = None
+
+    elif request.user.is_authenticated():
+        messages.info(request, _('You are already logged in to an account.'))
+        form = None
+
     elif request.method == 'POST':
 
         form = forms.UserRegisterForm(request.POST)
@@ -465,7 +471,7 @@ def register(request):
                 u.generate_confirmationcode()
                 u.save()
                 u.create_django_user()
-                log.info(u"Registered new account for user (%s)", u)
+                log.info(u'Registered new account for user (%s)', u)
 
                 u.email_confirmation_code()
 
@@ -484,7 +490,7 @@ def register(request):
                 # new info yet (total guess).  Anyway, I'm assuming the
                 # first one worked properly, so this is still a success
                 # case to tne end user so we just log it...
-                log.error("Failed to register new user (%s): %s" % (u, e))
+                log.error('Failed to register new user (%s): %s' % (u, e))
 
             return http.HttpResponseRedirect(reverse('users.login'))
 
