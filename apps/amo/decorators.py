@@ -128,3 +128,12 @@ def set_modified_on(f):
                                             countdown=settings.MODIFIED_DELAY)
         return result
     return wrapper
+
+
+def no_login_required(f):
+    """
+    If you are using the LoginRequiredMiddleware mark this view
+    as not needing any sort of login.
+    """
+    f._no_login_required = True
+    return f

@@ -6,13 +6,14 @@ from django.conf import settings
 from django import test
 
 from commonware.middleware import HidePasswordOnException
-from mock import patch
+from mock import Mock, patch
 from nose.tools import eq_, raises
 from pyquery import PyQuery as pq
 from test_utils import RequestFactory
 
 import amo.tests
-from amo.middleware import LazyPjaxMiddleware
+from amo.decorators import no_login_required
+from amo.middleware import LazyPjaxMiddleware, LoginRequiredMiddleware
 from amo.urlresolvers import reverse
 from zadmin.models import Config, _config_cache
 
@@ -163,3 +164,41 @@ class TestLazyPjaxMiddleware(amo.tests.TestCase):
                                  content_type='application/json')
         resp = self.process(response=resp)
         eq_(json.loads(resp.content), {'foo': 1})
+
+
+class TestLoginRequiredMiddleware(amo.tests.TestCase):
+
+    def normal_view(self, request):
+        return ''
+
+    @no_login_required
+    def allowed_view(self, request):
+        return ''
+
+    def process(self, authenticated, view=None):
+        if not view:
+            view = self.normal_view
+        request = RequestFactory().get('/', HTTP_X_PJAX=True)
+        request.user = Mock()
+        request.user.is_authenticated.return_value = authenticated
+        return LoginRequiredMiddleware().process_view(request, view, [], {})
+
+    def test_middleware(self):
+        # Middleware returns None if it doesn't need to redirect the user.
+        assert not self.process(True)
+        eq_(self.process(False).status_code, 302)
+
+    def test_decorator_allowed(self):
+        assert not self.process(False, self.allowed_view)
+        assert not self.process(True, self.allowed_view)
+
+    def test_decorator_normal(self):
+        eq_(self.process(False, self.normal_view).status_code, 302)
+        assert not self.process(True, self.normal_view)
+
+    @patch.object(settings, 'NO_LOGIN_REQUIRED_MODULES',
+                  ['zamboni.apps.amo.tests.test_middleware.normal_view'])
+    def test_modules(self):
+        assert not self.process(False)
+        assert not self.process(True)
+

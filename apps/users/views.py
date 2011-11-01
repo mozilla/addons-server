@@ -26,8 +26,8 @@ import waffle
 from access.middleware import ACLMiddleware
 import amo
 from amo import messages
-from amo.decorators import (json_view, login_required, permission_required,
-                            write, post_required)
+from amo.decorators import (json_view, login_required, no_login_required,
+                            permission_required, write, post_required)
 from amo.forms import AbuseForm
 from amo.urlresolvers import reverse
 from amo.utils import send_mail
@@ -266,6 +266,7 @@ def _clean_next_url(request):
 
 @anonymous_csrf
 @post_required
+@no_login_required
 #@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def browserid_login(request):
     if waffle.switch_is_active('browserid-login'):
@@ -285,6 +286,7 @@ def browserid_login(request):
 
 @anonymous_csrf
 @mobile_template('users/{mobile/}login_modal.html')
+@no_login_required
 #@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def login_modal(request, template=None):
     return _login(request, template=template)
@@ -292,6 +294,7 @@ def login_modal(request, template=None):
 
 @anonymous_csrf
 @mobile_template('users/{mobile/}login.html')
+@no_login_required
 #@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def login(request, template=None):
     return _login(request, template=template)
@@ -446,6 +449,7 @@ def profile(request, user_id):
 
 
 @anonymous_csrf
+@no_login_required
 def register(request):
     if request.user.is_authenticated():
         messages.info(request, _("You are already logged in to an account."))

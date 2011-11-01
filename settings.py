@@ -1274,3 +1274,10 @@ PJAX_SELECTOR = '#page'
 
 # Testing responsiveness without rate limits.
 CELERY_DISABLE_RATE_LIMITS = True
+
+# Specific view modules and methods that we don't want to force login on.
+NO_LOGIN_REQUIRED_MODULES = (
+    'django.views.i18n.javascript_catalog',
+    'django.contrib.auth.views.password_reset',
+    'django.contrib.auth.views.password_reset_done'
+)
