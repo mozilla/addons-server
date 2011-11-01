@@ -6,11 +6,12 @@
     'stage': 'Stage',
 }[site] %}
 
-{% set site_url = {
+{% set site_urls = {
     'addons': 'https://addons.mozilla.org',
     'dev': 'https://addons-dev.allizom.org',
     'stage': 'https://addons.allizom.org',
-}[site] %}
+} %}
+{% set site_url = site_urls[site] %}
 
 {% set site = {
   'addons': 'addons',
@@ -45,6 +46,12 @@
     <h1>Graphite for <a href="{{ site_url }}">{{ site_url }}</a></h1>
     <p>If you don't see pictures, you don't have LDAP authentication.</p>
     <p>Press <code>r</code> for faster updates.</p>
+    <p>See graphs for:</p>
+    <ul>
+      {% for k in site_urls.keys() %}
+      <li><a href="{{ url('amo.graphite', k) }}">{{ site_urls[k] }}</a></li>
+      {% endfor %}
+    </ul>
     <ul>
       <li><a href="#responses">All Responses</a></li>
       <li><a href="#perf">Site Performance</a></li>
