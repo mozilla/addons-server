@@ -100,7 +100,7 @@ class TestPackager(amo.tests.TestCase):
         data = self._form_data({'name': 'Delicious Bookmarks'})
         r = self.client.post(self.url, data)
         self.assertFormError(r, 'basic_form', 'name',
-            'This name is already in use. Please choose another.')
+            'This add-on name is already in use. Please choose another.')
 
     def test_name_minlength(self):
         data = self._form_data({'name': 'abcd'})

@@ -34,17 +34,12 @@ log = commonware.log.getLogger('z.addons')
 
 
 def clean_name(name, instance=None):
-    if not instance:
-        log.debug('clean_name called without an instance: %s' % name)
-    if instance:
-        id = ReverseNameLookup(instance.is_webapp()).get(name)
-    else:
-        id = ReverseNameLookup().get(name)
+    id = ReverseNameLookup().get(name)
 
     # If we get an id and either there's no instance or the instance.id != id.
     if id and (not instance or id != instance.id):
-        raise forms.ValidationError(_('This name is already in use. Please '
-                                      'choose another.'))
+        raise forms.ValidationError(_('This add-on name is already in use.  '
+                                      'Please choose another.'))
     return name
 
 

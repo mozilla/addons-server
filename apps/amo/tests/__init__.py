@@ -266,8 +266,6 @@ def addon_factory(version_kw={}, file_kw={}, **kw):
         if key == 'type' and value == amo.ADDON_PERSONA:
             Persona.objects.create(addon_id=a.id, persona_id=a.id)
     a.save()
-    version_factory(file_kw, addon=a, **version_kw)
-    a.update_version()
     return a
 
 

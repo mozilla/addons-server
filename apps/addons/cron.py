@@ -36,12 +36,10 @@ recs_log = logging.getLogger('z.recs')
 def build_reverse_name_lookup():
     """Builds a Reverse Name lookup table in REDIS."""
     ReverseNameLookup().clear()
-    ReverseNameLookup(webapp=True).clear()
 
     # Get all add-on name ids
     names = (Addon.objects.filter(
-        name__isnull=False, type__in=[amo.ADDON_EXTENSION, amo.ADDON_THEME,
-                                      amo.ADDON_WEBAPP ])
+        name__isnull=False, type__in=[amo.ADDON_EXTENSION, amo.ADDON_THEME])
         .values_list('name_id', 'id'))
 
     for chunk in chunked(names, 100):
@@ -54,17 +52,14 @@ def _build_reverse_name_lookup(names, **kw):
     translations = (Translation.objects.filter(id__in=names)
                     .values_list('id', 'localized_string'))
 
-    addons = dict([a.id, a] for a in
-                  Addon.objects.filter(id__in=names.values()))
-
     if clear:
         for addon_id in names.values():
-            ReverseNameLookup(addons[addon_id].is_webapp()).delete(addon_id)
+            ReverseNameLookup().delete(addon_id)
 
     for t_id, string in translations:
         if string:
-            (ReverseNameLookup(addons[names[t_id]].is_webapp())
-                .add(string, names[t_id]))
+            ReverseNameLookup().add(string, names[t_id])
+
 
 # TODO(jbalogh): removed from cron on 6/27/11. If the site doesn't break,
 # delete it.

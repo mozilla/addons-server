@@ -25,7 +25,8 @@ class FormsTest(amo.tests.TestCase):
         super(FormsTest, self).setUp()
         cron.build_reverse_name_lookup()
         self.existing_name = 'Delicious Bookmarks'
-        self.error_msg = 'This name is already in use. Please choose another.'
+        self.error_msg = ('This add-on name is already in use. '
+                          'Please choose another.')
 
     def test_new(self):
         """

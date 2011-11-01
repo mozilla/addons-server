@@ -20,22 +20,20 @@ rnlog = logging.getLogger('z.rn')
 
 
 class ReverseNameLookup(object):
+    prefix = 'amo:addon:name'
+    names = prefix + ':names'
+    addons = prefix + ':addons'
+    keys = prefix + ':keys'
 
-    def __init__(self, webapp=False):
+    def __init__(self):
         self.redis = redisutils.connections['master']
-        self.type = 'app' if webapp else 'addon'
-        self.prefix = 'amo:%s:name' % self.type
-        self.names = self.prefix + ':names'
-        self.addons = self.prefix + ':addons'
-        self.keys = self.prefix + ':keys'
 
     def add(self, name, addon_id):
         hash = safe_key(name)
         if not self.redis.hsetnx(self.names, hash, addon_id):
-            rnlog.warning('Duplicate %s name: %s (%s).' % (
-                self.type, name, addon_id))
+            rnlog.warning('Duplicate name: %s (%s).' % (name, addon_id))
             return
-        rnlog.info('[%s:%s] has a lock on "%s"' % (self.type, addon_id, name))
+        rnlog.info('[%s] has a lock on "%s"' % (addon_id, name))
         self.redis.sadd('%s:%s' % (self.addons, addon_id), hash)
         self.redis.sadd(self.keys, addon_id)
 
@@ -52,7 +50,7 @@ class ReverseNameLookup(object):
                 self.add(unicode(translation.localized_string), addon.id)
 
     def delete(self, addon_id):
-        rnlog.info('[%s:%s] Releasing locked names.' % (self.type, addon_id))
+        rnlog.info('[%s] Releasing locked names.' % addon_id)
         hashes = self.redis.smembers('%s:%s' % (self.addons, addon_id))
         for hash in hashes:
             self.redis.hdel(self.names, hash)
@@ -60,7 +58,7 @@ class ReverseNameLookup(object):
         self.redis.srem(self.keys, addon_id)
 
     def clear(self):
-        rnlog.info('Clearing the %s ReverseName table.' % self.type)
+        rnlog.info('Clearing the ReverseName table.')
         self.redis.delete(self.names)
         for key in self.redis.smembers(self.keys):
             self.redis.delete(key)
