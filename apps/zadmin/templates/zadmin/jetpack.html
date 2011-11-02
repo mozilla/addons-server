@@ -16,6 +16,7 @@
   .upgrade td { border-top: 1px solid #9c9 }
   table { margin: .5em 0 }
   tbody th { background: #fff; color: #000 }
+  th form { display: inline-block }
   tfoot th { background: #e1e1e1 }
   tfoot td { vertical-align: middle }
 </style>
@@ -147,19 +148,30 @@ $(function() {
   </tfoot>
 </table>
 
-{% if repacked %}
-  <h3>Jetpack Files</h3>
-  <p>These are all the Jetpack files we know about. Disabled files and add-ons are excluded.</p>
-  <table id="jetpacks">
-    {{ jetpack_head() }}
-    <tbody>
-      {% for status, files in repacked %}
-        <th colspan="0">{{ status }}</th>
-        {% for file in files %}
-          {{ jetpack_row(file.file, True) }}
-        {% endfor %}
+<h3>Jetpack Files</h3>
+<p>These are all the Jetpack files we know about. Disabled files and add-ons are excluded.</p>
+<table id="jetpacks">
+  {{ jetpack_head() }}
+  <tbody>
+    {% for status, files in repacked %}
+      <th colspan="0">{{ status }}</th>
+      {% for file in files %}
+        {{ jetpack_row(file.file, True) }}
       {% endfor %}
-    </tbody>
-  </table>
-{% endif %}
+    {% endfor %}
+    <th colspan="0">Show all repacked for version
+      <form action="" class="go">
+        <select name="show">
+          {% for version, _ in by_version.items()|sort %}
+            <option{% if version == show %} selected{% endif %}>
+              {{ version }}</option>
+          {% endfor %}
+        </select>
+      </form>
+    </th>
+    {% for file in subset %}
+      {{ jetpack_row(file) }}
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}
