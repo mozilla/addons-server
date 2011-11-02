@@ -502,6 +502,8 @@ def search(request, tag_name=None, template=None):
 
     category = request.GET.get('cat')
     query = form.cleaned_data
+    if tag_name:
+        query['tag'] = tag_name
 
     if category == 'collections':
         return _collections(request)
@@ -520,8 +522,8 @@ def search(request, tag_name=None, template=None):
                  categories={'terms': {'field': 'category', 'size': 100}}))
     if query.get('q'):
         qs = qs.query(or_=name_query(query['q']))
-    if tag_name or query.get('tag'):
-        qs = qs.filter(tag=tag_name or query['tag'])
+    if query.get('tag'):
+        qs = qs.filter(tag=query['tag'])
     if query.get('platform') and query['platform'] in amo.PLATFORM_DICT:
         ps = (amo.PLATFORM_DICT[query['platform']].id, amo.PLATFORM_ALL.id)
         qs = qs.filter(platform__in=ps)

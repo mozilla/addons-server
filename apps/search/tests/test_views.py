@@ -97,7 +97,7 @@ class TestSearchboxTarget(amo.tests.TestCase):
 
 
 class TestESSearch(amo.tests.ESTestCase):
-    fixtures = ['base/apps', 'base/category']
+    fixtures = ['base/apps', 'base/category', 'tags/tags']
 
     @classmethod
     def setUpClass(cls):
@@ -391,6 +391,13 @@ class TestESSearch(amo.tests.ESTestCase):
         eq_(a.length, 1)
         eq_(a.text(), 'xxx')
         eq_(list(r.context['pager'].object_list), [])
+
+    def test_known_tag_filter(self):
+        for url in (urlparams(self.url, tag='sky'),
+                    reverse('tags.detail', args=['sky'])):
+            r = self.client.get(url)
+            a = pq(r.content)('#tag-facets li.selected a[data-params]')
+            eq_(json.loads(a.attr('data-params')), dict(tag='sky', page=None))
 
 
 def test_search_redirects():
