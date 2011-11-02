@@ -1288,3 +1288,7 @@ NO_LOGIN_REQUIRED_MODULES = (
 # Sets an upper limit on the number of users. If 0, it's ignored. If the
 # number of users meets or exceeds this, they can't register.
 REGISTER_USER_LIMIT = 0
+
+# Cron jobs that aren't critical will check this flag and not run if this
+# is True.
+IGNORE_NON_CRITICAL_CRONS = False

@@ -1,5 +1,6 @@
 import datetime
 
+from django.conf import settings
 from django.core.management import call_command
 from django.db.models import Sum, Max
 
@@ -20,6 +21,8 @@ cron_log = commonware.log.getLogger('z.cron')
 @cronjobs.register
 def update_addons_collections_downloads():
     """Update addons+collections download totals."""
+    if settings.IGNORE_NON_CRITICAL_CRONS:
+        return
 
     d = (AddonCollectionCount.objects.values('addon', 'collection')
          .annotate(sum=Sum('count')))
@@ -44,6 +47,8 @@ def update_collections_total():
 @cronjobs.register
 def update_global_totals(date=None):
     """Update global statistics totals."""
+    if settings.IGNORE_NON_CRITICAL_CRONS:
+        return
 
     today = date or datetime.date.today()
     today_jobs = [dict(job=job, date=today) for job in
@@ -68,6 +73,9 @@ def addon_total_contributions():
 
 @cronjobs.register
 def index_latest_stats():
+    if settings.IGNORE_NON_CRITICAL_CRONS:
+        return
+
     latest = UpdateCount.search().order_by('-date').values_dict()[0]['date']
     fmt = lambda d: d.strftime('%Y-%m-%d')
     date_range = '%s:%s' % (fmt(latest), fmt(datetime.date.today()))
