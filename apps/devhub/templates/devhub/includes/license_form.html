@@ -7,7 +7,8 @@
     <td>
       {{ license_form.builtin.errors }}
       {{ license_form.builtin }}
-      <div class="license-other {{ 'js-hidden' if not (license_form.initial.builtin == license_other_val or license_form.errors) }}"
+      <div class="license-other {{ 'js-hidden' if not (license_form.initial.builtin == license_other_val or
+                                  (license_form.errors and not license_form.builtin.errors)) }}"
         data-val="{{ license_other_val }}">
         {{ license_form.non_field_errors() }}
         {{ license_form.name.errors }}
