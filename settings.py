@@ -1295,6 +1295,16 @@ NO_LOGIN_REQUIRED_MODULES = (
 # number of users meets or exceeds this, they can't register.
 REGISTER_USER_LIMIT = 0
 
+NO_ADDONS_MODULES = (
+    'addons.views',
+    'devhub.views.dashboard',  # The apps dashboard is a different view.
+    'devhub.views.submit',  # Addon submit not ok, app submit a-ok.
+    'browse.views.personas',
+    'browse.views.extensions',
+    'browse.views.language_tools',
+    'browse.views.themes',
+)
+
 # Cron jobs that aren't critical will check this flag and not run if this
 # is True.
 IGNORE_NON_CRITICAL_CRONS = False

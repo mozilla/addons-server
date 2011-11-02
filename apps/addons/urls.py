@@ -49,8 +49,6 @@ detail_patterns = patterns('',
 
 
 urlpatterns = patterns('',
-    # The homepage.
-    url('^$', views.home, name='home'),
     # Promo modules for the homepage
     url('^i/promos$', views.homepage_promos, name='addons.homepage_promos'),
 

@@ -16,6 +16,12 @@ admin.autodiscover()
 handler404 = 'amo.views.handler404'
 handler500 = 'amo.views.handler500'
 
+
+# Get the correct home for APP_PREVIEW, temporary.
+home = ('webapps.views.app_home' if settings.APP_PREVIEW
+                                 else 'addons.views.home')
+
+
 urlpatterns = patterns('',
     # Discovery pane is first for undetectable efficiency wins.
     ('^discovery/', include('discovery.urls')),
@@ -25,6 +31,8 @@ urlpatterns = patterns('',
     url('^blocklist/(?P<apiver>\d+)/(?P<app>[^/]+)/(?P<appver>[^/]+)/',
         blocklist.views.blocklist, name='blocklist'),
     ('^blocked/', include('blocklist.urls')),
+
+    url('$^', home, name='home'),
 
     # Add-ons.
     ('', include('addons.urls')),

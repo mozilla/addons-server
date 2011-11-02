@@ -2,6 +2,7 @@ from django import test, shortcuts
 from django.conf import settings
 from django.core.urlresolvers import set_script_prefix
 
+from mock import patch
 from nose.tools import eq_, assert_not_equal
 import test_utils
 
@@ -158,6 +159,19 @@ class TestPrefixer:
         urlresolvers.set_url_prefix(prefixer)
         set_script_prefix('/oremj')
         eq_(urlresolvers.reverse('home'), '/oremj/en-US/firefox/')
+
+    @patch.object(settings, 'APP_PREVIEW', True)
+    def test_app_preview(self):
+        rf = test_utils.RequestFactory()
+        request = rf.get('/')
+        prefixer = urlresolvers.Prefixer(request)
+        eq_(prefixer.fix(prefixer.shortened_path), '/en-US/apps/')
+
+    @patch.object(settings, 'APP_PREVIEW', True)
+    def test_home(self):
+        client = test.Client()
+        client.get('/')
+        eq_(urlresolvers.reverse('home'), '/en-US/apps/')
 
 
 def test_redirect():

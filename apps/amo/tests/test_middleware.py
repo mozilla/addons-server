@@ -13,7 +13,8 @@ from test_utils import RequestFactory
 
 import amo.tests
 from amo.decorators import no_login_required
-from amo.middleware import LazyPjaxMiddleware, LoginRequiredMiddleware
+from amo.middleware import (LazyPjaxMiddleware, LoginRequiredMiddleware,
+                            NoAddonsMiddleware)
 from amo.urlresolvers import reverse
 from zadmin.models import Config, _config_cache
 
@@ -203,3 +204,20 @@ class TestLoginRequiredMiddleware(amo.tests.TestCase):
     def test_modules(self):
         assert not self.process(False)
         assert not self.process(True)
+
+
+class TestNoAddonsMiddleware(amo.tests.TestCase):
+
+    @patch('amo.middleware.ViewMiddleware.get_name')
+    def process(self, name, get_name):
+        get_name.return_value = name
+        request = RequestFactory().get('/')
+        view = Mock()
+        return NoAddonsMiddleware().process_view(request, view, [], {})
+
+    @patch.object(settings, 'NO_ADDONS_MODULES',
+                  ('some.addons',))
+    def test_middleware(self):
+        self.assertRaises(http.Http404, self.process, 'some.addons')
+        self.assertRaises(http.Http404, self.process, 'some.addons.thingy')
+        assert not self.process('something.else')
