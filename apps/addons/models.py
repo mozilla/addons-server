@@ -242,6 +242,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                     default=amo.ADDON_FREE)
     manifest_url = models.URLField(max_length=255, blank=True, null=True,
                                    verify_exists=False)
+    app_domain = models.CharField(max_length=255, blank=True, null=True,
+                                  db_index=True)
 
     _current_version = models.ForeignKey(Version, related_name='___ignore',
             db_column='current_version', null=True, on_delete=models.SET_NULL)
@@ -369,6 +371,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             addon.default_locale = to_language(translation.get_language())
         if addon.is_webapp():
             addon.manifest_url = upload.name
+            addon.app_domain = addon.domain_from_url(addon.manifest_url)
         addon.save()
         Version.from_upload(upload, addon, platforms)
         amo.log(amo.LOG.CREATE_ADDON, addon)

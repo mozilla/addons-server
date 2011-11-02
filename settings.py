@@ -1255,6 +1255,8 @@ LOGIN_RATELIMIT_ALL_USERS = '15/m'
 WEBAPPS_RESTRICTED = True
 # The key we'll use to sign webapp receipts.
 WEBAPPS_RECEIPT_KEY = ''
+# If True, only allow one webapp per domain.
+WEBAPPS_UNIQUE_BY_DOMAIN = True
 
 # How long a watermarked addon should be re-used for, after this
 # time it will be regenerated.

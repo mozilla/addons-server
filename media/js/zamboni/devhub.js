@@ -151,7 +151,7 @@ $(document).ready(function() {
                 error_message = format(ngettext(
                     "Your app failed validation with {0} error.",
                     "Your app failed validation with {0} errors.",
-                    v.errors), [v.errors.length]);
+                    v.errors), [v.errors]);
 
             $(this).trigger('upload_finished', [false, r, error_message]);
             $('#validate_app').attr('disabled', false);

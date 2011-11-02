@@ -1,7 +1,8 @@
 import json
+import unittest
 
 import test_utils
-from nose.tools import eq_
+from nose.tools import eq_, raises
 
 import amo
 from addons.models import Addon, BlacklistedSlug
@@ -110,3 +111,35 @@ class TestManifest(BaseWebAppTest):
         with open(self.manifest, 'r') as mf:
             manifest_json = json.load(mf)
             eq_(webapp.get_manifest_json(), manifest_json)
+
+
+class TestDomainFromURL(unittest.TestCase):
+
+    def test_simple(self):
+        eq_(Webapp.domain_from_url('http://mozilla.com/'), 'mozilla.com')
+
+    def test_long_path(self):
+        eq_(Webapp.domain_from_url('http://mozilla.com/super/rad.webapp'),
+            'mozilla.com')
+
+    def test_normalize_www(self):
+        eq_(Webapp.domain_from_url('http://www.mozilla.com/super/rad.webapp'),
+            'mozilla.com')
+
+    def test_with_port(self):
+        eq_(Webapp.domain_from_url('http://mozilla.com:9000/'), 'mozilla.com')
+
+    def test_subdomains(self):
+        eq_(Webapp.domain_from_url('http://apps.mozilla.com/'),
+            'apps.mozilla.com')
+
+    def test_https(self):
+        eq_(Webapp.domain_from_url('https://mozilla.com/'), 'mozilla.com')
+
+    @raises(ValueError)
+    def test_none(self):
+        Webapp.domain_from_url(None)
+
+    @raises(ValueError)
+    def test_empty(self):
+        Webapp.domain_from_url('')

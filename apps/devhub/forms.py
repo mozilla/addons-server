@@ -34,6 +34,7 @@ from translations.fields import TransTextarea, TransField
 from translations.models import delete_translation, Translation
 from translations.forms import TranslationFormMixin
 from versions.models import License, Version, ApplicationsVersions
+from webapps.models import Webapp
 from . import tasks
 
 
@@ -432,11 +433,25 @@ CompatFormSet = modelformset_factory(
     form=CompatForm, can_delete=True, extra=0)
 
 
+def verify_app_domain(manifest_url):
+    if settings.WEBAPPS_UNIQUE_BY_DOMAIN:
+        domain = Webapp.domain_from_url(manifest_url)
+        if Addon.objects.filter(app_domain=domain).exists():
+            raise forms.ValidationError(
+                _('An app already exists on this domain, '
+                  'only one app per domain is allowed.'))
+
+
 class NewWebappForm(happyforms.Form):
     upload = forms.ModelChoiceField(widget=forms.HiddenInput,
         queryset=FileUpload.objects.filter(valid=True),
         error_messages={'invalid_choice': _lazy('There was an error with your '
                                                 'upload. Please try again.')})
+
+    def clean_upload(self):
+        upload = self.cleaned_data['upload']
+        verify_app_domain(upload.name)  # JS puts manifest URL here
+        return upload
 
 
 class NewAddonForm(happyforms.Form):
@@ -925,6 +940,11 @@ class CheckCompatibilityForm(happyforms.Form):
 
 class NewManifestForm(happyforms.Form):
     manifest = forms.URLField(verify_exists=False)
+
+    def clean_manifest(self):
+        manifest = self.cleaned_data['manifest']
+        verify_app_domain(manifest)
+        return manifest
 
 
 class PremiumForm(happyforms.Form):

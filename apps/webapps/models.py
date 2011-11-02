@@ -56,6 +56,17 @@ class Webapp(Addon):
         view = 'apps.detail_more' if more else 'apps.detail'
         return reverse(view, args=[self.app_slug])
 
+    @staticmethod
+    def domain_from_url(url):
+        if not url:
+            raise ValueError('URL was empty')
+        hostname = urlparse.urlparse(url).hostname
+        if hostname:
+            hostname = hostname.lower()
+            if hostname.startswith('www.'):
+                hostname = hostname[4:]
+        return hostname
+
     @classmethod
     def pending(cls):
         # - Holding

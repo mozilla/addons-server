@@ -2915,6 +2915,49 @@ class TestCreateWebApp(BaseWebAppTest):
         eq_(files[0].status, amo.STATUS_PUBLIC)
 
 
+class TestCreateWebAppFromManifest(BaseWebAppTest):
+
+    def setUp(self):
+        super(TestCreateWebAppFromManifest, self).setUp()
+        Addon.objects.create(type=amo.ADDON_WEBAPP,
+                             app_domain='existing-app.com')
+
+    def upload_webapp(self, manifest_url, **post_kw):
+        self.upload.update(name=manifest_url)  # simulate JS upload
+        return self.post(**post_kw)
+
+    def post_manifest(self, manifest_url):
+        rs = self.client.post(reverse('devhub.upload_manifest'),
+                              dict(manifest=manifest_url))
+        if 'json' in rs['content-type']:
+            rs = json.loads(rs.content)
+        return rs
+
+    def test_duplicate_domain(self):
+        rs = self.upload_webapp('http://existing-app.com/my.webapp',
+                                expect_errors=True)
+        eq_(rs.context['new_addon_form'].errors.as_text(),
+            '* upload\n  '
+            '* An app already exists on this domain, only one '
+            'app per domain is allowed.')
+
+    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', False)
+    def test_allow_duplicate_domains(self):
+        self.upload_webapp('http://existing-app.com/my.webapp')  # no errors
+
+    def test_duplicate_domain_from_js(self):
+        data = self.post_manifest('http://existing-app.com/my.webapp')
+        eq_(data['validation']['errors'], 1)
+        eq_(data['validation']['messages'][0]['message'],
+            'An app already exists on this domain, '
+            'only one app per domain is allowed.')
+
+    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', False)
+    def test_allow_duplicate_domains_from_js(self):
+        rs = self.post_manifest('http://existing-app.com/my.webapp')
+        eq_(rs.status_code, 302)
+
+
 class TestDeleteAddon(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 

@@ -1394,6 +1394,12 @@ class TestAddonFromUpload(UploadTest):
         assert addon.is_webapp()
         eq_(addon.manifest_url, upload.name)
 
+    def test_app_domain(self):
+        upload = self.get_upload(abspath=self.webapp())
+        upload.name = 'http://mozilla.com/my/rad/app.webapp'  # manifest URL
+        addon = Addon.from_upload(upload, [self.platform])
+        eq_(addon.app_domain, 'mozilla.com')
+
     def test_xpi_version(self):
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
                                   [self.platform])
