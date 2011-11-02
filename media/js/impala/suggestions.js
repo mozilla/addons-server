@@ -135,7 +135,8 @@ $.fn.searchSuggestions = function(results) {
             return;
         }
 
-        if (e.which === undefined || $.inArray(e.which, ignoreKeys) >= 0) {
+        if ((e.type === 'keyup' && typeof e.which === 'undefined') ||
+            $.inArray(e.which, ignoreKeys) >= 0) {
             $results.trigger('inputIgnored');
         } else {
             // Update the 'Search add-ons for <b>"{addon}"</b>' text.

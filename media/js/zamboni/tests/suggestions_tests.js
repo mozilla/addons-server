@@ -132,11 +132,6 @@ asyncTest('Results upon bad keyup', function() {
 });
 
 
-asyncTest('Results upon input', function() {
-    this.testInputEvent('input');
-});
-
-
 asyncTest('Results upon paste', function() {
     this.testInputEvent('paste');
 });
