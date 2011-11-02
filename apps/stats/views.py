@@ -298,9 +298,9 @@ def get_report_view(request):
     if 'last' in request.GET:
         daterange = request.GET.get('last')
 
-        return {'range': daterange, 'last': daterange}
+        return {'range': daterange, 'last': daterange + ' days'}
     else:
-        return {'range': '30', 'last': '30'}
+        return {}
 
 
 def get_daterange_or_404(start, end):

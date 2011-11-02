@@ -22,10 +22,30 @@
 
         // Set up initial default view.
         var initView = {
-                metric: $('.primary').attr('data-report'),
-                range: $('.primary').attr('data-range'),
-                group: 'day'
-            };
+            metric: $('.primary').attr('data-report'),
+            range: $('.primary').attr('data-range') || '30 days',
+            group: 'day'
+        }
+
+        // Restore any session view information from sessionStorage.
+        if (z.capabilities.localStorage && sessionStorage.getItem('stats_view')) {
+            var ssView = JSON.parse(sessionStorage.getItem('stats_view'));
+            initView.range = ssView.range || initView.range;
+            initView.group = ssView.group || initView.group;
+        }
+
+        // Update sessionStorage with our current view state.
+        (function() {
+            if (!z.capabilities.localStorage) return;
+            var ssView = _.clone(initView);
+            $(window).bind('changeview', function(e, newView) {
+                _.extend(ssView, newView);
+                sessionStorage.setItem('stats_view', JSON.stringify({
+                    'range': ssView.range,
+                    'group': ssView.group
+                }));
+            });
+        })();
 
         // Update the "Export as CSV" link when the view changes.
         (function() {
