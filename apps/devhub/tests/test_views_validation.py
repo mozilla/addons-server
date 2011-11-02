@@ -165,6 +165,29 @@ class TestFileValidation(amo.tests.TestCase):
         eq_(sorted(msg['context']),
             [[u'&lt;foo/&gt;'], u'&lt;em:description&gt;...'])
 
+    @mock.patch('files.models.File.has_been_validated')
+    def test_json_results_post(self, has_been_validated):
+        url = reverse('devhub.json_file_validation',
+                      args=[self.addon.slug, self.file.id])
+
+        has_been_validated.__ne__ = mock.Mock()
+        has_been_validated.__ne__.return_value = True
+        eq_(self.client.post(url).status_code, 200)
+        has_been_validated.__ne__.return_value = False
+        eq_(self.client.post(url).status_code, 200)
+
+    @mock.patch('files.models.File.has_been_validated')
+    def test_json_results_get(self, has_been_validated):
+        url = reverse('devhub.json_file_validation',
+                      args=[self.addon.slug, self.file.id])
+
+        has_been_validated.__eq__ = mock.Mock()
+        has_been_validated.__eq__.return_value = True
+        eq_(self.client.get(url).status_code, 200)
+        has_been_validated.__eq__.return_value = False
+        eq_(self.client.get(url).status_code, 405)
+
+
 
 class TestValidateAddon(amo.tests.TestCase):
     fixtures = ['base/users']

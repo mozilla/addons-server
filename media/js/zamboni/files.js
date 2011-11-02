@@ -680,11 +680,11 @@ function bind_viewer(nodes) {
         });
     }));
 
-    if ($('#metadata').attr('data-validate-url')) {
+    if ($('body').attr('data-validate-url')) {
         $('#validating').css('display', 'block');
 
-        $.ajax({type: 'POST',
-                url: $('#metadata').attr('data-validate-url'),
+        $.ajax({type: 'GET',
+                url: $('body').attr('data-validate-url'),
                 data: {},
                 success: function(data) {
                     viewer.update_validation(data);

@@ -20,7 +20,6 @@ log = commonware.log.getLogger('z.addons')
 
 def allowed(request, file):
     allowed = action_allowed(request, 'Editors', '%')
-
     if not allowed:
         try:
             addon = file.version.addon

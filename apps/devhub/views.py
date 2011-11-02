@@ -782,11 +782,13 @@ def _compat_result(request, revalidate_url, target_app, target_version,
 
 @json_view
 @csrf_view_exempt
-@post_required
 @dev_required(allow_editors=True)
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)
-    if not file.has_been_validated:
+    if not file.has_been_validated == True:
+        if request.method != 'POST':
+            return http.HttpResponseNotAllowed(['POST'])
+
         try:
             v_result = tasks.file_validator(file.id)
         except Exception, exc:

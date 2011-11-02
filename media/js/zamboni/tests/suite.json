@@ -3,6 +3,7 @@
     "extra_media_urls": [
         "js/lib/jstestnet.js",
         "js/zamboni/tests.js",
+        "js/zamboni/debouncer.js",
         "js/zamboni/devhub.js",
         "js/zamboni/validator.js",
         "js/zamboni/editors.js",
