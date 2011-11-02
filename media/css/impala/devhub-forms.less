@@ -56,3 +56,39 @@ a.remove:hover {
     color: @note-gray;
     font-style: italic;
 }
+
+.add-button,
+.remove-button,
+.edit-button,
+.action-button {
+    background: #fefefe url(../../img/developers/add.png) no-repeat 10px 50%;
+    border: 1px solid #ccc;
+    .border-radius(10px);
+    padding: 3px 15px 3px 35px;
+    white-space: nowrap;
+}
+
+.remove-button {
+    background-image: url(../../img/developers/delete.png);
+}
+
+.edit-button {
+    background-image: url(../../img/developers/edit.png);
+}
+
+.html-rtl {
+    .add-button,
+    .remove-button,
+    .edit-button,
+    .action-button {
+        background-position: 95% 50%;
+        padding: 3px 35px 3px 15px;
+    }
+}
+
+.undo {
+    float: right;
+}
+.html-rtl .undo {
+    float: left;
+}

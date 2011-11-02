@@ -28,8 +28,8 @@
 
 
 {% if not addons %}
-  <div class="action-needed">
-    <h3>{{ _('Welcome to the Developer Dashboard') }}</h3>
+  <div class="island action-needed">
+    <h2>{{ _('Welcome to the Developer Dashboard') }}</h2>
     {% if webapp %}
       <p>
       {% trans %}
@@ -37,10 +37,6 @@
         learn how the process works and submit your first app, click Get
         Started below.
       {% endtrans %}
-      </p>
-      <p class="button-wrapper">
-        <a href="{{ url('devhub.submit_apps.1') }}"
-           class="action-button rounded">{{ _('Get Started') }}</a>
       </p>
     {% else %}
       <p>
@@ -50,11 +46,12 @@
         below.
       {% endtrans %}
       </p>
-      <p class="button-wrapper">
-        <a href="{{ url('devhub.submit.1') }}"
-           class="action-button rounded">{{ _('Get Started') }}</a>
-      </p>
     {% endif %}
+    {% set submit_view = 'devhub.submit_apps.1' if webapp else 'devhub.submit.1' %}
+    <p class="button-wrapper">
+      <a href="{{ url(submit_view) }}" class="button prominent">
+        {{ _('Get Started') }}</a>
+    </p>
   </div>
 {% else %}
   <section class="secondary devhub-sidebar">
