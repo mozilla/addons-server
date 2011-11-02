@@ -39,7 +39,7 @@ def build_reverse_name_lookup():
     ReverseNameLookup(webapp=True).clear()
 
     # Get all add-on name ids
-    names = (Addon.objects.filter(
+    names = list(Addon.objects.filter(
         name__isnull=False, type__in=[amo.ADDON_EXTENSION, amo.ADDON_THEME,
                                       amo.ADDON_WEBAPP])
         .values('name_id', 'id', 'type'))
