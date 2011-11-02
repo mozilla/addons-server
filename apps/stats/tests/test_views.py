@@ -324,9 +324,9 @@ class TestResponses(StatsTest, amo.tests.ESTestCase):
         r = self.get_view_response('stats.apps_series', group='day',
                                    format='csv')
         eq_(r.status_code, 200)
-        self.csv_eq(r, """date,count,{ec8030f7-c20a-464f-9b0e-13a3a9e97384}
-                          2009-06-02,1500,{u'4.0': 1500}
-                          2009-06-01,1000,{u'4.0': 1000}""")
+        self.csv_eq(r, """date,count,Firefox 4.0
+                          2009-06-02,1500,1500
+                          2009-06-01,1000,1000""")
 
     def test_usage_by_locale_json(self):
         r = self.get_view_response('stats.locales_series', group='day',

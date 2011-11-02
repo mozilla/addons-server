@@ -18,6 +18,8 @@ from product_details import product_details
 from access import acl
 from addons.decorators import addon_view, addon_view_factory
 from addons.models import Addon
+
+import amo
 from amo.urlresolvers import reverse
 
 from .decorators import allow_cross_site_request
@@ -190,11 +192,28 @@ def usage_breakdown_series(request, addon, group,
         series = process_locales(series)
 
     if format == 'csv':
+        if field == 'applications':
+            series = flatten_applications(series)
         series, fields = csv_fields(series)
         return render_csv(request, addon, series,
                           ['date', 'count'] + list(fields))
     elif format == 'json':
         return render_json(request, addon, series)
+
+
+def flatten_applications(series):
+    """Convert app guids to pretty names, flatten count structure."""
+    for row in series:
+        if 'data' in row:
+            new = {}
+            for app, versions in row['data'].items():
+                # unicode() to decode the gettext proxy.
+                appname = unicode(amo.APP_GUIDS[app].pretty)
+                for ver, count in versions.items():
+                    key = ' '.join([appname, ver])
+                    new[key] = count
+            row['data'] = new
+        yield row
 
 
 def process_locales(series):
