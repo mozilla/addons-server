@@ -227,8 +227,10 @@
       {{ csrf() }}
       <input type="hidden" name="version_id" class="version_id">
       <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
-      <button type="submit">{{ _('Disable Add-on') }}</button>
-      {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
+      <p>
+        <button type="submit">{{ _('Disable Add-on') }}</button>
+        {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
+      </p>
     </form>
   </div>
   {% endif %}
