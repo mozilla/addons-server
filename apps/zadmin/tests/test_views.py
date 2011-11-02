@@ -1405,11 +1405,13 @@ class TestJetpack(amo.tests.TestCase):
     def test_change_range_success(self):
         self.set_range('1.0', '1.1')
 
-    def test_upgrade(self):
-        self.set_range('1.2', '1.2.1')
-
+    def submit_upgrade(self):
         r = self.client.post(self.url, {'upgrade': True})
         self.assertRedirects(r, self.url)
+
+    def test_upgrade(self):
+        self.set_range('1.2', '1.2.1')
+        self.submit_upgrade()
 
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
@@ -1418,9 +1420,7 @@ class TestJetpack(amo.tests.TestCase):
 
     def test_cancel(self):
         self.set_range('1.2', '1.2.1')
-
-        r = self.client.post(self.url, {'upgrade': True})
-        self.assertRedirects(r, self.url)
+        self.submit_upgrade()
 
         r = self.client.post(self.url, {'cancel': True})
         self.assertRedirects(r, self.url)
@@ -1428,3 +1428,12 @@ class TestJetpack(amo.tests.TestCase):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         eq_(r.context['upgrader'].version(), None)
+
+    @mock.patch('zadmin.views.files.tasks.start_upgrade.delay')
+    def test_resend(self, start_upgrade):
+        self.set_range('1.2', '1.2.1')
+        self.submit_upgrade()
+
+        file_id = str(5)
+        r = self.client.get(reverse('zadmin.jetpack.resend', args=[file_id]))
+        start_upgrade.assert_called_with([file_id], sdk_version='1.2.1')

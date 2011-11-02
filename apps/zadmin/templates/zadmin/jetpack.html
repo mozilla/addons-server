@@ -1,50 +1,128 @@
 {% extends "admin/base.html" %}
 
-{% block title %}{{ page_title('Jetpack') }}{% endblock %}
+{% set title = 'Jetpack' %}
+
+{% block title %}{{ page_title(title) }}{% endblock %}
 
 {% block extrahead %}
 <style>
-  .upgrade { color: green; }
-  #jetpacks tbody { font-family: monospace; }
+  .upgrade { color: green }
+  tr.upgrade { background-color: #efe }
+  #ranges { background: #cef }
+  td { font-family: monospace }
   .fail { color: red }
+  form.highlight { background: #eee; border: 1px solid #ccc }
+  form.upgrading, .upgrade td { background: #efe; border-color: #9c9 }
+  .upgrade td { border-top: 1px solid #9c9 }
+  table { margin: .5em 0 }
+  tbody th { background: #fff; color: #000 }
+  tfoot th { background: #e1e1e1 }
+  tfoot td { vertical-align: middle }
 </style>
 {% endblock %}
 
 {% set minver, maxver = upgrader.jetpack_versions() %}
-{% set upgrading = upgrader.version() %}
-{% set repack_status = upgrader.files() %}
+
+{% block js %}
+<script>
+$(function() {
+    $('#change-range, #cancel-range').click(_pd(function() {
+        $('#ranges, #proceed').toggleClass('hidden').slideDown();
+        $('#change-range').fadeToggle();
+    }));
+});
+</script>
+{% endblock %}
+
+{% macro jetpack_head() %}
+  <thead>
+    <tr>
+      <th>Add-on</th>
+      <th>Version</th>
+      <th>Status</th>
+      <th>Jetpack</th>
+      <th>File</th>
+      {% if upgrading %}
+        <th>Upgrade</th>
+        <th></th>
+      {% endif %}
+    </tr>
+  </thead>
+{% endmacro %}
+
+{% macro jetpack_row(file, is_upgraded=False) %}
+  <tr {% if is_upgraded or file.needs_upgrade %}class="upgrade"{% endif %}>
+    <td><a href="{{ url('devhub.versions', file.version.addon_id) }}">{{ file.version.addon_id }}</a></td>
+    <td><a href="{{ url('devhub.versions.edit', file.version.addon_id, file.version.id) }}">{{ file.version.version }}</a></td>
+    <td>{{ amo.STATUS_CHOICES[file.status] }}</td>
+    <td>{{ file.jetpack_version }}</td>
+    <td><a href="{{ file.get_url_path('') }}">{{ file.id }}</a></td>
+    {% if upgrading %}
+      {% if file.id|string in repack_status %}
+        {% with repack = repack_status[file.id|string] %}
+          {% if repack.status == 'failed' %}
+            <td class="fail"><pre>{{ repack.msg }}</pre></td>
+          {% else %}
+            <td>{{ repack.status }} {{ repack.time|timesince }}</td>
+          {% endif %}
+        {% endwith %}
+      {% else %}
+        <td></td>
+      {% endif %}
+      <td><a href="{{ url('zadmin.jetpack.resend', file.id) }}">Resend</a></td>
+    {% endif %}
+  </tr>
+{% endmacro %}
 
 {% block content %}
 {% include "messages.html" %}
-<h2>Jetpack</h2>
-<p>Jetpacks built with SDK versions <b>{{ minver }} &ndash; {{ maxver }}</b> will be upgraded.</p>
-<p>Should it be something different?</p>
-<form method="post" action="">
+<h2>{{ title }}</h2>
+<p>
+  Jetpacks built with SDK versions <b>{{ minver }} &ndash; {{ maxver }}</b>
+  {{ 'are being' if upgrading else 'will be' }} upgraded.
+  <a href="#" id="change-range">Select a different range.</a>
+</p>
+<form id="ranges" method="post" action=""
+      class="highlight{{ ' hidden' if not form.errors }}">
   {{ csrf() }}
   {{ form.minver }} to {{ form.maxver }}
-  <button>Hit it.</button>
+  <input type="submit" value="Update range">
+  or <a href="#" id="cancel-range">Cancel</a>
 </form>
 
-<h3>Jetpack Files ({{ jetpacks|length }})</h3>
-<p>These are all the jetpack files we know about. Disabled files and add-ons are excluded.</p>
-{% if upgrading %}
-  <p>We're running an upgrade to Jetpack <b>{{ upgrading }}</b> right now! Patience, my child.</p>
-{% else %}
-  <p>Files in green will be upgraded to <b>{{ maxver }}</b> when you press the button.</p>
-  {% if settings.SEND_REAL_EMAIL %}
-    <p>Note: upgrade emails <b>will be sent</b> to developers.</p>
-  {% else %}
-    <p>Upgrade emails <b>will not</b> be sent to developers. You can find the logged emails at <a href="{{ url('zadmin.mail') }}">admin/mail</a>.</p>
-  {% endif %}
-{% endif %}
-<form method="post" action="">
+<form id="proceed" method="post" action=""
+      class="highlight{{ ' upgrading' if upgrading }}{{ ' hidden' if form.errors }}">
   {{ csrf() }}
   {% if upgrading %}
-    <input type="submit" name="cancel" value="Cancel the upgrade">
+    <h3>Upgrade in progress&hellip;</h3>
+    <p>We're running an upgrade to Jetpack <b>{{ upgrading }}</b> right now! Patience, my child.</p>
   {% else %}
-    <input type="submit" name="upgrade" value="Upgrade to Jetpack {{ maxver }}">
+    <h3>Are you sure you want to upgrade?</h3>
+    <p>{{ need_upgrade|length }} file(s) below will be upgraded to <b>{{ maxver }}</b> when you press the button.</p>
+    <table>
+      {{ jetpack_head() }}
+      <tbody class="upgrade">
+        {% for file in need_upgrade %}
+          {{ jetpack_row(file) }}
+        {% endfor %}
+      </tbody>
+    </table>
+    {% if settings.SEND_REAL_EMAIL %}
+      <p>Note: upgrade emails <b>will be sent</b> to developers.</p>
+    {% else %}
+      <p>Upgrade emails <b>will not</b> be sent to developers. You can find the logged emails at <a href="{{ url('zadmin.mail') }}">admin/mail</a>.</p>
+    {% endif %}
   {% endif %}
+  <p>
+    {% if upgrading %}
+      <input type="submit" name="cancel" value="Cancel the upgrade">
+    {% else %}
+      <input type="submit" name="upgrade" value="Upgrade to Jetpack {{ maxver }}">
+    {% endif %}
+  </p>
 </form>
+
+<h3>Jetpack Tallies</h3>
 
 <table>
   <thead>
@@ -61,44 +139,32 @@
     </tr>
     {% endfor %}
   </tbody>
+  <tfoot>
+    <tr>
+      <th>Total</th>
+      <td>{{ jetpacks|length }}</td>
+    </tr>
+  </tfoot>
 </table>
 
+<h3>Jetpack Files</h3>
+<p>These are all the Jetpack files we know about. Disabled files and add-ons are excluded.</p>
+
 <table id="jetpacks">
-  <thead>
-    <tr>
-      <th>Add-on</th>
-      <th>Version</th>
-      <th>Status</th>
-      <th>Jetpack</th>
-      <th>File</th>
-      {% if upgrading %}
-        <th>Upgrade</th>
-      {% endif %}
-    </tr>
-  </thead>
+  {{ jetpack_head() }}
   <tbody>
-    {% for file in jetpacks %}
-    <tr {% if file.needs_upgrade %}class="upgrade"{% endif %}>
-      <td><a href="{{ url('devhub.versions', file.version.addon_id) }}">{{ file.version.addon_id }}</a></td>
-      <td><a href="{{ url('devhub.versions.edit', file.version.addon_id, file.version.id) }}">{{ file.version.version }}</a></td>
-      <td>{{ amo.STATUS_CHOICES[file.status] }}</td>
-      <td>{{ file.jetpack_version }}</td>
-      <td><a href="{{ file.get_url_path('') }}">{{ file.id }}</a></td>
-      {% if upgrading %}
-        {% if file.id|string in repack_status %}
-          {% with repack = repack_status[file.id|string] %}
-            {% if repack.status == 'failed' %}
-              <td class="fail"><pre>{{ repack.msg }}</pre></td>
-            {% else %}
-              <td>{{ repack.status }} {{ repack.time|timesince }}</td>
-            {% endif %}
-          {% endwith %}
-        {% else %}
-          <td></td>
-        {% endif %}
-      {% endif %}
-    </tr>
+    {% for status, files in repacked %}
+      <th colspan="0">{{ status }}</th>
+      {% for file in files %}
+        {{ jetpack_row(file.file, True) }}
+      {% endfor %}
     {% endfor %}
+    {% if not upgrading %}
+      <th colspan="0">Archived</th>
+      {% for file in archived %}
+        {{ jetpack_row(file) }}
+      {% endfor %}
+    {% endif %}
   </tbody>
 </table>
 {% endblock %}
