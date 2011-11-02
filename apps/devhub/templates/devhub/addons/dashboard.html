@@ -100,9 +100,7 @@
   <section id="dashboard" class="primary" role="main">
     <div class="listing island hero c">
       {% set url_base = url('devhub.apps') if webapp else url('devhub.addons') %}
-      {% if addons.paginator.num_pages > 1 %}
-        {{ impala_addon_listing_header(url_base, sort_opts, sorting) }}
-      {% endif %}
+      {{ impala_addon_listing_header(url_base, sort_opts, sorting) }}
       <div class="items">
         {{ dev_addon_listing_items(addons.object_list) }}
       </div>{# /items #}
