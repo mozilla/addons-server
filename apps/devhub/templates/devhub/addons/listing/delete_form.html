@@ -2,7 +2,7 @@
   {{ csrf() }}
   <h3>{{ _('Delete Add-on') }}</h3>
   {% if addon.highest_status or addon.status %}
-    <p>
+    <p class="warning">
       {% trans %}
         Deleting your add-on will permanently remove it from the site and
         prevent its GUID from being submitted ever again, even by you.  The

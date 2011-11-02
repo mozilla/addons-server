@@ -102,7 +102,7 @@ class TestVersion(amo.tests.TestCase):
         r = self.client.get(self.url)
         doc = pq(r.content)
         # Normally 2 paragraphs, one is the warning which we should take out.
-        eq_(len(doc('#modal-delete p')), 1, 'We might be lying to our users.')
+        eq_(doc('#modal-delete p.warning').length, 0)
 
     def test_delete_version(self):
         self.client.post(self.delete_url, self.delete_data)
