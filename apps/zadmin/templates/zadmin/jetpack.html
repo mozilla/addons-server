@@ -147,24 +147,19 @@ $(function() {
   </tfoot>
 </table>
 
-<h3>Jetpack Files</h3>
-<p>These are all the Jetpack files we know about. Disabled files and add-ons are excluded.</p>
-
-<table id="jetpacks">
-  {{ jetpack_head() }}
-  <tbody>
-    {% for status, files in repacked %}
-      <th colspan="0">{{ status }}</th>
-      {% for file in files %}
-        {{ jetpack_row(file.file, True) }}
+{% if repacked %}
+  <h3>Jetpack Files</h3>
+  <p>These are all the Jetpack files we know about. Disabled files and add-ons are excluded.</p>
+  <table id="jetpacks">
+    {{ jetpack_head() }}
+    <tbody>
+      {% for status, files in repacked %}
+        <th colspan="0">{{ status }}</th>
+        {% for file in files %}
+          {{ jetpack_row(file.file, True) }}
+        {% endfor %}
       {% endfor %}
-    {% endfor %}
-    {% if not upgrading %}
-      <th colspan="0">Archived</th>
-      {% for file in archived %}
-        {{ jetpack_row(file) }}
-      {% endfor %}
-    {% endif %}
-  </tbody>
-</table>
+    </tbody>
+  </table>
+{% endif %}
 {% endblock %}

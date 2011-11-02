@@ -347,7 +347,6 @@ def jetpack(request):
     jetpacks = files.utils.find_jetpacks(minver, maxver)
 
     need_upgrade = filter(lambda f: f.needs_upgrade, jetpacks)
-    archived = filter(lambda f: not f.needs_upgrade, jetpacks)
     repacked = []
 
     upgrading = upgrader.version()    # Current Jetpack version upgrading to.
@@ -368,7 +367,7 @@ def jetpack(request):
     return jingo.render(request, 'zadmin/jetpack.html',
                         dict(form=form, upgrader=upgrader,
                              by_version=by_version, upgrading=upgrading,
-                             need_upgrade=need_upgrade, archived=archived,
+                             need_upgrade=need_upgrade,
                              repacked=repacked, repack_status=repack_status))
 
 
