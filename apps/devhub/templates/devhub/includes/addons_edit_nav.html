@@ -3,7 +3,7 @@
   (url('devhub.addons.owner', addon.slug), _('Manage Authors & License')),
   (url('devhub.addons.profile', addon.slug), _('Manage Developer Profile')),
   (url('devhub.addons.payments', addon.slug), _('Manage Payments')),
-  (url('devhub.versions', addon.slug), _('Manage Status & Versions') if addon.is_webapp() else _('Manage App Status')),
+  (url('devhub.versions', addon.slug), _('Manage App Status') if addon.is_webapp() else _('Manage Status & Versions')),
 ) %}
 <section class="secondary" role="complementary">
   <div class="highlight" id="edit-addon-nav">
