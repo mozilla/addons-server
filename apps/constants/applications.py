@@ -76,7 +76,6 @@ class MOBILE:
              ADDON_LPAPP, ADDON_PERSONA]
     guid = '{a23983c0-fd0e-11dc-95ff-0800200c9a66}'
     min_display_version = 0.1
-    latest_version = None
     user_agent_string = 'Fennec'
     platforms = 'mobile'  # DESKTOP_PLATFORMS (set in constants.platforms)
 

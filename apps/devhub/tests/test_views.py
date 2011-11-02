@@ -276,16 +276,18 @@ class TestUpdateCompatibility(amo.tests.TestCase):
                 'base/addon_3615']
 
     def setUp(self):
+        assert self.client.login(username='del@icio.us', password='password')
         self.url = reverse('devhub.addons')
 
         # TODO(andym): use Mock appropriately here.
-        self.old_version = amo.FIREFOX.latest_version
-        amo.FIREFOX.latest_version = '3.6.15'
+        self._versions = amo.FIREFOX.latest_version, amo.MOBILE.latest_version
+        amo.FIREFOX.latest_version = amo.MOBILE.latest_version = '3.6.15'
 
     def tearDown(self):
-        amo.FIREFOX.latest_version = self.old_version
+        amo.FIREFOX.latest_version, amo.MOBILE.latest_version = self._versions
 
     def test_no_compat(self):
+        self.client.logout()
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         r = self.client.get(self.url)
@@ -301,7 +303,6 @@ class TestUpdateCompatibility(amo.tests.TestCase):
 
     def test_compat(self):
         a = Addon.objects.get(pk=3615)
-        assert self.client.login(username='del@icio.us', password='password')
 
         r = self.client.get(self.url)
         doc = pq(r.content)
@@ -318,13 +319,22 @@ class TestUpdateCompatibility(amo.tests.TestCase):
 
         assert doc('.item[data-addonid=3615] .compat-update-modal')
 
-    def test_incompat(self):
-        av = ApplicationsVersions.objects.get(pk=47881)
-        av.max = AppVersion.objects.get(pk=97)  # Firefox 2.0
+    def test_incompat_firefox(self):
+        versions = ApplicationsVersions.objects.all()[0]
+        versions.max = AppVersion.objects.get(version='2.0')
+        versions.save()
+        doc = pq(self.client.get(self.url).content)
+        assert doc('.item[data-addonid=3615] .tooltip.compat-error')
+
+    def test_incompat_mobile(self):
+        app = Application.objects.get(id=amo.MOBILE.id)
+        appver = AppVersion.objects.get(version='2.0')
+        appver.update(application=app)
+        av = ApplicationsVersions.objects.all()[0]
+        av.application = app
+        av.max = appver
         av.save()
-        assert self.client.login(username='del@icio.us', password='password')
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        doc = pq(self.client.get(self.url).content)
         assert doc('.item[data-addonid=3615] .tooltip.compat-error')
 
 
