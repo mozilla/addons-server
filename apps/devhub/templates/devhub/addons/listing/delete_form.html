@@ -19,6 +19,9 @@
     </label>
   </p>
   <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
-  <button class="delete-button" type="submit">{{ _('Delete Add-on') }}</button>
-  {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
+  <p>
+    <button class="delete-button" type="submit">{{ _('Delete Add-on') }}</button>
+    {{ _('or') }} <a href="#" class="close cancel">{{ _('Cancel') }}</a>
+  </p>
+  <a href="#" class="close">{{ _('Close') }}</a>
 </form>
