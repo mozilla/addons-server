@@ -66,14 +66,16 @@ def dev_breadcrumbs(context, addon=None, items=None, add_default=False,
 
     if context.get('webapp'):
         title = _('My Apps')
+        link = reverse('devhub.apps')
     else:
         title = _('My Add-ons')
+        link = reverse('devhub.addons')
 
     if not addon and not items:
         # We are at the end of the crumb trail.
         crumbs.append((None, title))
     else:
-        crumbs.append((reverse('devhub.addons'), title))
+        crumbs.append((link, title))
     if addon:
         if items:
             url = reverse('devhub.addons.edit', args=[addon.slug])

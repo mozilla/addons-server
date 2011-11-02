@@ -1316,6 +1316,8 @@ class TestSubmitStep1(TestSubmitBase):
         response = self.client.get(reverse('devhub.submit.1'))
         eq_(response.status_code, 200)
         doc = pq(response.content)
+        eq_(doc('.breadcrumbs li a').eq(1).attr('href'),
+            reverse('devhub.addons'))
         links = doc('#agreement-container a')
         assert len(links)
         for ln in links:
@@ -1331,6 +1333,8 @@ class TestSubmitStep1(TestSubmitBase):
         response = self.client.get(reverse('devhub.submit_apps.1'))
         eq_(response.status_code, 200)
         doc = pq(response.content)
+        eq_(doc('.breadcrumbs li a').eq(1).attr('href'),
+            reverse('devhub.apps'))
         links = doc('#agreement-container a')
         assert len(links)
         assert doc('h2.is_webapp'), "Webapp submit has add-on heading"
