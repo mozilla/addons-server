@@ -2943,6 +2943,7 @@ class TestCreateWebAppFromManifest(BaseWebAppTest):
             rs = json.loads(rs.content)
         return rs
 
+    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', True)
     def test_duplicate_domain(self):
         rs = self.upload_webapp('http://existing-app.com/my.webapp',
                                 expect_errors=True)
@@ -2955,6 +2956,7 @@ class TestCreateWebAppFromManifest(BaseWebAppTest):
     def test_allow_duplicate_domains(self):
         self.upload_webapp('http://existing-app.com/my.webapp')  # no errors
 
+    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', True)
     def test_duplicate_domain_from_js(self):
         data = self.post_manifest('http://existing-app.com/my.webapp')
         eq_(data['validation']['errors'], 1)
