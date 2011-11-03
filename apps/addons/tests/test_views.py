@@ -1251,6 +1251,13 @@ class TestStatus(amo.tests.TestCase):
         self.addon.update(status=amo.STATUS_DISABLED)
         eq_(self.client.get(self.url).status_code, 404)
 
+    def test_app_disabled(self):
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+        self.addon.update(type=amo.ADDON_WEBAPP, status=amo.STATUS_DISABLED)
+        # Pull webapp back out for class override to take effect
+        addon = Addon.objects.get(id=3615)
+        eq_(self.client.head(addon.get_url_path()).status_code, 404)
+
     def test_lite(self):
         self.addon.update(status=amo.STATUS_LITE)
         eq_(self.client.get(self.url).status_code, 200)
@@ -1266,6 +1273,13 @@ class TestStatus(amo.tests.TestCase):
     def test_disabled_by_user(self):
         self.addon.update(disabled_by_user=True)
         eq_(self.client.get(self.url).status_code, 404)
+
+    def test_app_disabled_by_user(self):
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+        self.addon.update(type=amo.ADDON_WEBAPP, disabled_by_user=True)
+        # Pull webapp back out for class override to take effect
+        addon = Addon.objects.get(id=3615)
+        eq_(self.client.head(addon.get_url_path()).status_code, 404)
 
     def new_version(self, status):
         v = Version.objects.create(addon=self.addon)

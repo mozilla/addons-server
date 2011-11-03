@@ -10,8 +10,8 @@ APP_SLUG = r"""(?P<app_slug>[^/<>"']+)"""
 
 # These will all start with /app/<app_slug>/
 detail_patterns = patterns('',
-    url('^$', views.app_detail, name='apps.detail'),
-    url('^more$', views.app_detail, name='apps.detail_more'),
+    url('^$', addons_views.addon_detail, name='apps.detail'),
+    url('^more$', addons_views.addon_detail, name='apps.detail_more'),
     url('^share$', views.share, name='apps.share'),
     url('^abuse$', addons_views.report_abuse, name='apps.abuse'),
     url('^record$', views.record, name='apps.record'),

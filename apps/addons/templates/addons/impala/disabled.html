@@ -13,10 +13,18 @@
 
 <div class="primary">
   <div class="notification-box error">
-    {% if addon.disabled_by_user %}
+    {% if addon.is_webapp() %}
+      {% if addon.disabled_by_user %}
+        {{ _('This app has been removed by its author.') }}
+      {% elif addon.status == amo.STATUS_DISABLED %}
+        {{ _('This app has been disabled by an administrator.') }}
+      {% endif %}
+    {% else %}
+      {% if addon.disabled_by_user %}
         {{ _('This add-on has been removed by its author.') }}
-    {% elif addon.status == amo.STATUS_DISABLED %}
+      {% elif addon.status == amo.STATUS_DISABLED %}
         {{ _('This add-on has been disabled by an administrator.') }}
+      {% endif %}
     {% endif %}
   </div>
 </div>

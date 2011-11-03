@@ -14,7 +14,6 @@ import search.views
 from addons.models import Category
 from browse.views import category_landing, CategoryLandingFilter
 from sharing.views import share as share_redirect
-from webapps.models import Installed
 from .models import Webapp
 
 TYPE = amo.ADDON_WEBAPP
@@ -80,12 +79,6 @@ def app_list(request, category=None, template=None):
            'sorting': sorting, 'sort_opts': filter.opts, 'src': src,
            'dl_src': dl_src, 'search_cat': 'apps'}
     return jingo.render(request, template, ctx)
-
-
-def app_detail(request, app_slug):
-    # TODO: check status.
-    webapp = get_object_or_404(Webapp, app_slug=app_slug)
-    return addons.views.extension_detail(request, webapp)
 
 
 def share(request, app_slug):
