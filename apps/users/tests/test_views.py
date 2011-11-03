@@ -908,6 +908,7 @@ class TestPurchases(amo.tests.TestCase):
 
     def test_no_purchases(self):
         Contribution.objects.all().delete()
+        Installed.objects.all().delete()
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
 

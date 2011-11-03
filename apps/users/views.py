@@ -628,7 +628,8 @@ def purchases(request, addon_id=None):
         raise http.Http404
 
     return jingo.render(request, 'users/purchases.html',
-                        {'addons': amo.utils.paginate(request, filter.qs),
+                        {'addons': amo.utils.paginate(request, filter.qs,
+                                                      count=len(ids)),
                          'filter': filter,
                          'url_base': reverse('users.purchases'),
                          'contributions': contributions,
