@@ -1077,7 +1077,7 @@ def update_name_table(sender, **kw):
             data = {'name_id': addon.name_id, 'id': addon.id,
                     'type': addon.type}
             log.debug('Build reverse name lookup with data: %s' % data)
-            cron._build_reverse_name_lookup.delay([data], clear=True)
+            cron._build_reverse_name_lookup([data], clear=True)
 
 
 @receiver(dbsignals.pre_delete, sender=Addon,
