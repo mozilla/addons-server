@@ -2,6 +2,8 @@ import json
 
 from django.conf import settings
 
+import mock
+
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 from mock import patch
@@ -17,6 +19,7 @@ from translations.helpers import truncate
 from users.models import UserProfile
 from versions.models import Version
 from webapps.models import Webapp
+from webapps.tests.test_models import key
 
 
 class WebappTest(amo.tests.TestCase):
@@ -248,6 +251,7 @@ class TestInstall(amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(self.user.installed_set.count(), 1)
 
+    @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY', key)
     def test_record_receipt(self):
         res = self.client.post(self.url)
         content = json.loads(res.content)
