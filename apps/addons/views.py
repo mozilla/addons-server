@@ -572,9 +572,15 @@ def purchase_complete(request, addon, status):
 @has_purchased
 def purchase_thanks(request, addon):
     download = urlparse(request.GET.get('realurl', '')).path
-    return jingo.render(request, 'addons/paypal_thanks.html',
-                        {'addon': addon, 'is_ajax': request.is_ajax(),
-                         'download': download})
+
+    data = {'addon': addon, 'is_ajax': request.is_ajax(),
+            'download': download}
+
+    if addon.is_webapp():
+        installed = addon.get_or_create_install(user=request.amo_user)
+        data['receipt'] = installed.receipt
+
+    return jingo.render(request, 'addons/paypal_thanks.html', data)
 
 
 @addon_view
@@ -701,6 +707,10 @@ def paypal_result(request, addon, status):
 def paypal_start(request, addon=None):
     download = urlparse(request.GET.get('realurl', '')).path
     data = {'addon': addon, 'is_ajax': request.is_ajax(), 'download': download}
+
+    if addon.is_webapp():
+        installed = addon.get_or_create_install(user=request.amo_user)
+        data['receipt'] = installed.receipt
 
     if request.user.is_authenticated():
         return jingo.render(request, 'addons/paypal_start.html', data)

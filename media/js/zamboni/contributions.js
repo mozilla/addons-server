@@ -38,14 +38,19 @@ var purchases = {
         });
         purchases.result();
     },
-    record: function($install) {
+    record: function($install, callback) {
         /* Record the install of the app. This is badly named because it
          * is not necessarily related to a purchase. */
         if ($install.attr('data-record-url')) {
             $.ajax({
                 url: $install.attr('data-record-url'),
                 dataType: 'json',
-                type: 'POST'
+                type: 'POST',
+                success: function(data) {
+                    if(callback) {
+                        callback.apply(this, [data.receipt]);
+                    }
+                }
             });
         }
     },
@@ -113,17 +118,22 @@ var purchases = {
             z.installAddon($('.addon-title', modal).text(),
                            $('.trigger_download', modal).attr('href'));
         } else if ($('.trigger_app_install', modal).exists()) {
-            var dest = $('.trigger_app_install', modal).attr('data-manifest-url');
-            purchases.install_app(dest);
+            var dest = $('.trigger_app_install', modal).attr('data-manifest-url'),
+                receipt = $('.trigger_app_install', modal).attr('data-receipt');
+            purchases.install_app(dest, receipt);
             $('.trigger_app_install', modal).click(_pd(function() {
-                purchases.install_app(dest);
+                purchases.install_app(dest, $(this).attr('data-receipt'));
             }));
         }
     },
-    install_app: function(url) {
+    install_app: function(url, receipt) {
         /* Try and install the app. */
         if (navigator.mozApps && navigator.mozApps.install) {
-            navigator.mozApps.install(url);
+            var data = {};
+            if(receipt) {
+                data['receipt'] = receipt;
+            }
+            navigator.mozApps.install(url, data);
         } else {
             // Notify that it can't be installed.
         }

@@ -31,8 +31,9 @@ var webappButton = function() {
             .removeClass('disabled')
             .click(function(e) {
                 e.preventDefault();
-                purchases.record($this);
-                purchases.install_app(manifestURL);
+                purchases.record($this, function(receipt) {
+                  purchases.install_app(manifestURL, receipt);
+                });
                 // If this install fails would be nice to raise a message.
             });
     } else {

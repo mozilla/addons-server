@@ -14,8 +14,9 @@
   {% endif %}
   {% trans manifest_url=addon.manifest_url if addon.is_webapp() else '',
           class='trigger_app_install' if addon.is_webapp() else 'trigger_download',
-          href='#' if addon.is_webapp() else download %}
-    <p>If installation does not automatically begin, please <a class="{{ class }}" data-manifest-url="{{ manifest_url }}" href="{{ href }}">click here</a>.</p>
+          receipt=receipt, href='#' if addon.is_webapp() else download %}
+          <p>If installation does not automatically begin, please <a class="{{ class }}" data-manifest-url="{{ manifest_url }}" href="{{ href }}"
+            data-receipt="{{ receipt }}">click here</a>.</p>
   {% endtrans %}
   </p>
 </section>
