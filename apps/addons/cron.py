@@ -50,6 +50,8 @@ def build_reverse_name_lookup():
 
 @task
 def _build_reverse_name_lookup(data, **kw):
+    task_log.debug('Updating reverse name lookup table for %s addons.' %
+                   len(data))
     clear = kw.get('clear', False)
     name_ids = [a['name_id'] for a in data]
     translations = dict(Translation.objects.filter(id__in=name_ids)
@@ -59,9 +61,12 @@ def _build_reverse_name_lookup(data, **kw):
         webapp = addon['type'] == amo.ADDON_WEBAPP
         if clear:
             ReverseNameLookup(webapp).delete(addon['id'])
+            task_log.debug('Clearing name for addon %s.' % addon['id'])
         if translations.get(addon['name_id'], ''):
             ReverseNameLookup(webapp).add(translations.get(addon['name_id']),
                                           addon['id'])
+            task_log.debug('Adding name_id %s for addon %s.' %
+                           (addon['name_id'], addon['id']))
 
 
 # TODO(jbalogh): removed from cron on 6/27/11. If the site doesn't break,
