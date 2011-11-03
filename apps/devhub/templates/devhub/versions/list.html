@@ -260,8 +260,11 @@
       </p>
       {{ csrf() }}
       <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
-      <button type="submit">{{ _('Cancel Review Request') }}</button>
-      {{ _('or') }} <a href="#" class="close">{{ _('Close') }}</a>
+      <p>
+        <button type="submit">{{ _('Cancel Review Request') }}</button>
+        {{ _('or') }} <a href="#" class="cancel close">{{ _('Close') }}</a>
+      </p>
+      <a href="#" class="close">{{ _('Close') }}</a>
     </form>
   </div>
   {% endif %}
