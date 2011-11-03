@@ -139,30 +139,29 @@ def reply(request, addon, review_id):
 
     review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
     form = forms.ReviewReplyForm(request.POST or None)
-    if request.method == 'POST':
-        if form.is_valid():
-            d = dict(reply_to=review, addon=addon,
-                     defaults=dict(user=request.amo_user))
-            reply, new = Review.objects.get_or_create(**d)
-            for key, val in _review_details(request, addon, form).items():
-                setattr(reply, key, val)
-            reply.save()
-            action = 'New' if new else 'Edited'
-            log.debug('%s reply to %s: %s' % (action, review_id, reply.id))
+    if request.method == 'POST' and form.is_valid():
+        d = dict(reply_to=review, addon=addon,
+                 defaults=dict(user=request.amo_user))
+        reply, new = Review.objects.get_or_create(**d)
+        for key, val in _review_details(request, addon, form).items():
+            setattr(reply, key, val)
+        reply.save()
+        action = 'New' if new else 'Edited'
+        log.debug('%s reply to %s: %s' % (action, review_id, reply.id))
 
-            if new:
-                data = {'name': addon.name,
-                        'reply_title': reply.title,
-                        'reply': reply.body,
-                        'reply_url': absolutify(reverse('reviews.detail',
-                                args=[addon.slug, review.id],
-                                add_prefix=False))}
-                emails = [review.user.email]
-                sub = u'Mozilla Add-on Developer Reply: %s' % addon.name
-                send_mail('reviews/emails/reply_review.ltxt',
-                        sub, emails, Context(data), 'reply')
+        if new:
+            data = {'name': addon.name,
+                    'reply_title': reply.title,
+                    'reply': reply.body,
+                    'reply_url': absolutify(reverse('reviews.detail',
+                            args=[addon.slug, review.id],
+                            add_prefix=False))}
+            emails = [review.user.email]
+            sub = u'Mozilla Add-on Developer Reply: %s' % addon.name
+            send_mail('reviews/emails/reply_review.ltxt',
+                      sub, emails, Context(data), 'reply')
 
-            return redirect('reviews.detail', addon.slug, review_id)
+        return redirect('reviews.detail', addon.slug, review_id)
     ctx = dict(review=review, form=form, addon=addon)
     return jingo.render(request, 'reviews/reply.html', ctx)
 
@@ -175,25 +174,24 @@ def add(request, addon, template=None):
     if addon.has_author(request.user):
         return http.HttpResponseForbidden()
     form = forms.ReviewForm(request.POST or None)
-    if request.method == 'POST':
-        if form.is_valid():
-            details = _review_details(request, addon, form)
-            review = Review.objects.create(**details)
-            amo.log(amo.LOG.ADD_REVIEW, addon, review)
-            log.debug('New review: %s' % review.id)
+    if request.method == 'POST' and form.is_valid():
+        details = _review_details(request, addon, form)
+        review = Review.objects.create(**details)
+        amo.log(amo.LOG.ADD_REVIEW, addon, review)
+        log.debug('New review: %s' % review.id)
 
-            data = {'name': addon.name,
-                    'rating': '%s out of 5 stars' % details['rating'],
-                    'review': details['body'],
-                    'reply_url': absolutify(reverse('reviews.reply',
-                            args=[addon.slug, review.id], add_prefix=False))}
+        data = {'name': addon.name,
+                'rating': '%s out of 5 stars' % details['rating'],
+                'review': details['body'],
+                'reply_url': absolutify(reverse('reviews.reply',
+                        args=[addon.slug, review.id], add_prefix=False))}
 
-            emails = [a.email for a in addon.authors.all()]
-            send_mail('reviews/emails/add_review.ltxt',
-                       u'Mozilla Add-on User Review: %s' % addon.name,
-                       emails, Context(data), 'new_review')
+        emails = [a.email for a in addon.authors.all()]
+        send_mail('reviews/emails/add_review.ltxt',
+                  u'Mozilla Add-on User Review: %s' % addon.name,
+                  emails, Context(data), 'new_review')
 
-            return redirect('reviews.list', addon.slug)
+        return redirect('reviews.list', addon.slug)
     return jingo.render(request, template, dict(addon=addon, form=form))
 
 
