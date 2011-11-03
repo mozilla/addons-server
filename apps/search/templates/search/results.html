@@ -15,6 +15,11 @@
   {% set title = _('{0} :: Search')|f(query.q) %}
   {# L10n: {0} is a search term, such as Firebug. #}
   {% set heading = _('Search Results for "{0}"')|f(query.q) %}
+{% elif tag %}
+  {# L10n: {0} is a tag, such as jetpack. #}
+  {% set title = _('{0} :: Tag')|f(tag) %}
+  {# L10n: {0} is a tag, such as jetpack. #}
+  {% set heading = _('Search Results for tag "{0}"')|f(tag) %}
 {% else %}
   {% set title = _('Search') %}
   {% set heading = title %}

@@ -576,6 +576,7 @@ def search(request, tag_name=None, template=None):
     if not ctx['is_pjax']:
         facets = pager.object_list.facets
         ctx.update({
+            'tag': tag_name,
             'categories': category_sidebar(request, query, facets),
             'platforms': platform_sidebar(request, query, facets),
             'versions': version_sidebar(request, query, facets),

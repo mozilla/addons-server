@@ -399,6 +399,31 @@ class TestESSearch(amo.tests.ESTestCase):
             a = pq(r.content)('#tag-facets li.selected a[data-params]')
             eq_(json.loads(a.attr('data-params')), dict(tag='sky', page=None))
 
+    def test_tag_titles(self):
+        tag_url = reverse('tags.detail', args=['sky'])
+
+        titles = {
+            tag_url: (
+                'sky :: Tag :: Add-ons for Firefox',
+                'Search Results for tag "sky"',
+            ),
+            urlparams(tag_url, q='sky'): (
+                'sky :: Search :: Add-ons for Firefox',
+                'Search Results for "sky"',
+            ),
+            urlparams(self.url, tag='sky'): (
+                'Search :: Add-ons for Firefox',
+                'Search',
+            )
+        }
+
+        for url, titles in titles.iteritems():
+            r = self.client.get(url)
+            doc = pq(r.content)
+            title, heading = titles
+            eq_(doc('title').text(), title)
+            eq_(doc('.primary h1').text(), heading)
+
 
 def test_search_redirects():
     changes = (
