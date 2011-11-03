@@ -1058,6 +1058,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 @receiver(dbsignals.post_save, sender=Addon,
           dispatch_uid='addons.update.name.table')
 def update_name_table(sender, **kw):
+    log.debug('post_save signal called to update name table.')
     from . import cron
     if not kw.get('raw'):
         addon = kw['instance']
@@ -1071,6 +1072,7 @@ def update_name_table(sender, **kw):
 @receiver(dbsignals.pre_delete, sender=Addon,
           dispatch_uid='addons.clear.name.table')
 def clear_name_table(sender, **kw):
+    log.debug('pre_delete signal called to update name table.')
     if not kw.get('raw'):
         addon = kw['instance']
         ReverseNameLookup(addon.is_webapp()).delete(addon.id)
