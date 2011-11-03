@@ -7,13 +7,18 @@
 {% block extrahead %}
 <style>
   .upgrade { color: green }
-  tr.upgrade { background-color: #efe }
-  #ranges { background: #cef }
-  td { font-family: monospace }
   .fail { color: red }
+  table tr.upgrade td { background: #efe }
+  table tr.upgrade:hover td { background: #cfc }
+  table tr.fail td { background: #fee }
+  table tr.fail:hover td { background: #fcc }
+  #ranges { background: #cef }
+  tr:first-child td { border-top: 1px solid }
+  td { font-family: monospace }
   form.highlight { background: #eee; border: 1px solid #ccc }
   form.upgrading, .upgrade td { background: #efe; border-color: #9c9 }
-  .upgrade td { border-top: 1px solid #9c9 }
+  .upgrade td { border-color: #9c9 !important }
+  .fail td { border-color: #c99 !important }
   table { margin: .5em 0 }
   tbody th { background: #fff; color: #000 }
   th form { display: inline-block }
@@ -53,21 +58,25 @@ $(function() {
 {% endmacro %}
 
 {% macro jetpack_row(file, is_upgraded=False) %}
-  <tr {% if is_upgraded or file.needs_upgrade %}class="upgrade"{% endif %}>
+{% if upgrading and file.id|string in repack_status %}
+  {% set repack = repack_status[file.id|string] %}
+  {% set failed = repack.status == 'failed' %}
+{% endif %}
+    <tr {% if is_upgraded or file.needs_upgrade %}
+          class="{{ 'fail' if failed else 'upgrade' }}"
+        {% endif %}>
     <td><a href="{{ url('devhub.versions', file.version.addon_id) }}">{{ file.version.addon_id }}</a></td>
     <td><a href="{{ url('devhub.versions.edit', file.version.addon_id, file.version.id) }}">{{ file.version.version }}</a></td>
     <td>{{ amo.STATUS_CHOICES[file.status] }}</td>
     <td>{{ file.jetpack_version }}</td>
     <td><a href="{{ file.get_url_path('') }}">{{ file.id }}</a></td>
     {% if upgrading %}
-      {% if file.id|string in repack_status %}
-        {% with repack = repack_status[file.id|string] %}
-          {% if repack.status == 'failed' %}
-            <td class="fail"><pre>{{ repack.msg }}</pre></td>
-          {% else %}
-            <td>{{ repack.status }} {{ repack.time|timesince }}</td>
-          {% endif %}
-        {% endwith %}
+      {% if repack %}
+        {% if failed %}
+          <td><pre>{{ repack.msg }}</pre></td>
+        {% else %}
+          <td>{{ repack.status }} {{ repack.time|timesince }}</td>
+        {% endif %}
       {% else %}
         <td></td>
       {% endif %}
