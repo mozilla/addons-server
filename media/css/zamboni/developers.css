@@ -1523,6 +1523,15 @@ button.search-button {
   -webkit-transform: scalex(-1);
 }
 
+.ajax-loading #upload-status-text {
+   background-image: url(../../img/zamboni/loading-white.gif);
+   background-repeat: no-repeat;
+   background-position: 100% 0;
+}
+.html-rtl .ajax-loading #upload-status-text {
+    background-position: 0 0;
+}
+
 #addon-compat-upload {
     margin: 1em 0;
 }
@@ -1531,8 +1540,18 @@ button.search-button {
     float: left;
 }
 #addon-compat-upload label {
-    margin-right: 0.3em;
+    margin-right: .3em;
 }
 #addon-compat-upload span {
     margin-right: 3em;
+}
+
+.html-rtl #addon-compat-upload label, .html-rtl #addon-compat-upload span {
+    float: right;
+}
+.html-rtl #addon-compat-upload label {
+    margin: 0 0 0 .3em;
+}
+.html-rtl #addon-compat-upload span {
+    margin: 0 0 0 3em;
 }
