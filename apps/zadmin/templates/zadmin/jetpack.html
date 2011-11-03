@@ -19,6 +19,7 @@
   th form { display: inline-block }
   tfoot th { background: #e1e1e1 }
   tfoot td { vertical-align: middle }
+  .scroller { max-height: 200px; overflow-y: scroll }
 </style>
 {% endblock %}
 
@@ -155,11 +156,20 @@ $(function() {
   <tbody>
     {% for status, files in repacked %}
       <th colspan="0">{{ status }}</th>
-      {% for file in files %}
-        {{ jetpack_row(file.file, True) }}
-      {% endfor %}
+      <tr>
+        <td colspan="0">
+          <div class="scroller">
+            <table>
+              {% for file in files %}
+                {{ jetpack_row(file.file, True) }}
+              {% endfor %}
+            </table>
+          </div>
+        </td>
+      </tr>
     {% endfor %}
-    <th colspan="0">Show all repacked for version
+    <th colspan="0">
+      Show all repacked for version
       <form action="" class="go">
         <select name="show">
           {% for version, _ in by_version.items()|sort %}
@@ -169,9 +179,25 @@ $(function() {
         </select>
       </form>
     </th>
-    {% for file in subset %}
-      {{ jetpack_row(file) }}
-    {% endfor %}
+    {% if subset %}
+      <tr>
+        <td colspan="0">
+          <div class="scroller">
+            <table>
+              {% for file in subset %}
+                {{ jetpack_row(file) }}
+              {% endfor %}
+            </table>
+          </div>
+        </td>
+      </tr>
+    {% else %}
+      <tr>
+        <td colspan="0">
+          <p class="no-results">No Jetpacks found.</p>
+        </td>
+      </tr>
+    {% endif %}
   </tbody>
 </table>
 {% endblock %}

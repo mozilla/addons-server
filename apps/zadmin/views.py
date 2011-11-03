@@ -349,11 +349,7 @@ def jetpack(request):
     upgrading = upgrader.version()    # Current Jetpack version upgrading to.
     repack_status = upgrader.files()  # The files being repacked.
 
-    show = request.GET.get('show')
-    if not show and upgrading:
-        show = upgrading
-    else:
-        show = minver
+    show = request.GET.get('show', upgrading or minver)
     subset = filter(lambda f: not f.needs_upgrade and
                               f.jetpack_version == show, jetpacks)
     need_upgrade = filter(lambda f: f.needs_upgrade, jetpacks)
@@ -375,7 +371,8 @@ def jetpack(request):
                         dict(form=form, upgrader=upgrader,
                              by_version=by_version, upgrading=upgrading,
                              need_upgrade=need_upgrade, subset=subset,
-                             repacked=repacked, repack_status=repack_status))
+                             show=show, repacked=repacked,
+                             repack_status=repack_status))
 
 
 def start_upgrade(minver, maxver):
