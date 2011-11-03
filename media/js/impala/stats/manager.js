@@ -323,6 +323,7 @@ z.StatsManager = (function() {
             groupCount++;
         }, this);
         if (group == 'all') performAggregation();
+        groupedData.empty = _.isEmpty(groupedData);
         groupedData.firstIndex = firstIndex;
         return groupedData;
     }

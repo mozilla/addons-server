@@ -105,7 +105,7 @@
         if (!(group in acceptedGroups)) {
             group = 'day';
         }
-        if (obj.data.empty) {
+        if (obj.data.empty || !data.firstIndex) {
             showNoDataOverlay();
             $chart.removeClass('loading');
             return;
