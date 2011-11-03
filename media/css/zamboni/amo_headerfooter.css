@@ -88,15 +88,11 @@ body {
 }
 
 .developer-hub .site-title {
-    padding-top:36px;
+    padding-top: 20px;
 }
 
 .developer-hub .site-title small {
     display: block;
-}
-
-.developer-hub .site-title small:first-child {
-    margin-top: -20px;
 }
 
 .developer-hub .site-title strong {
