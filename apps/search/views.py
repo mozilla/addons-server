@@ -202,7 +202,8 @@ def _get_sorts(request, sort):
 
 def _personas(request):
     """Handle the request for persona searches."""
-    form = SecondarySearchForm(request.GET)
+    form = SecondarySearchForm(request.GET or {})
+    form.is_valid()
 
     query = form.data.get('q', '')
 
