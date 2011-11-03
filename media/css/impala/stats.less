@@ -16,6 +16,9 @@
         float: none;
         margin-bottom: 2em;
     }
+    hgroup {
+        clear: both;
+    }
 }
 .html-rtl.statistics #page .header-search {
     right: auto;
@@ -84,6 +87,11 @@ table tbody tr {
             color:@orange;
         }
     }
+}
+.html-rtl .island.criteria {
+    float: left;
+    margin: 0 1em 0 0;
+    padding: 0 12px 0 0;
 }
 
 /**
@@ -450,10 +458,16 @@ table.stats-aggregate tbody span.change.minus {
         &:first-child {
             margin-right: 1em;
         }
+        p {
+            margin: 0 0 1em;
+        }
     }
     footer {
         clear: left;
     }
+}
+.html-rtl #custom-criteria fieldset:first-child {
+    margin: 0 0 0 1em;
 }
 
 #stats-permissions p {
