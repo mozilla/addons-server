@@ -508,6 +508,15 @@ class TestUploadCompatCheck(BaseUploadTest):
         res = self.client.get(reverse('devhub.check_addon_compatibility'))
         eq_(res.status_code, 200)
         doc = pq(res.content)
+
+        options = doc('#id_application option')
+        expected = [(str(a.id), unicode(a.pretty)) for a in amo.APP_USAGE]
+        for idx, element in enumerate(options):
+            e = pq(element)
+            val, text = expected[idx]
+            eq_(e.val(), val)
+            eq_(e.text(), text)
+
         eq_(doc('#upload-addon').attr('data-upload-url'), self.upload_url)
         # TODO(Kumar) actually check the form here after bug 671587
 

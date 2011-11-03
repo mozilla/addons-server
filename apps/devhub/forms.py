@@ -910,7 +910,7 @@ class PackagerFeaturesForm(forms.Form):
 class CheckCompatibilityForm(happyforms.Form):
     application = forms.ChoiceField(
                 label=_lazy(u'Application'),
-                choices=[(a.id, a.pretty) for a in amo.APPS_ALL.values()])
+                choices=[(a.id, a.pretty) for a in amo.APP_USAGE])
     app_version = forms.ChoiceField(
                 label=_lazy(u'Version'),
                 choices=[('', _lazy(u'Select an application first'))])
