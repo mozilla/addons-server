@@ -1,14 +1,22 @@
 import json
+import os
 import unittest
 
 import test_utils
+import mock
 from nose.tools import eq_, raises
+
+from django.conf import settings
 
 import amo
 from addons.models import Addon, BlacklistedSlug
 from devhub.tests.test_views import BaseWebAppTest
+from users.models import UserProfile
 from versions.models import Version
-from webapps.models import Webapp
+from webapps.models import Installed, Webapp, get_key
+
+
+key = os.path.join(os.path.dirname(__file__), 'sample.key')
 
 
 class TestWebapp(test_utils.TestCase):
@@ -143,3 +151,57 @@ class TestDomainFromURL(unittest.TestCase):
     @raises(ValueError)
     def test_empty(self):
         Webapp.domain_from_url('')
+
+
+class TestReceipt(amo.tests.TestCase):
+    fixtures = ['base/users.json']
+
+    def setUp(self):
+        self.webapp = Webapp.objects.create(type=amo.ADDON_WEBAPP)
+        self.user = UserProfile.objects.get(pk=999)
+        self.other_user = UserProfile.objects.exclude(pk=999)[0]
+
+    def test_no_receipt(self):
+        self.webapp.update(type=amo.ADDON_EXTENSION)
+        ap = Installed.objects.create(user=self.user, addon=self.webapp)
+        eq_(ap.receipt, '')
+
+    @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY', 'rubbish')
+    def test_get_key(self):
+        self.assertRaises(IOError, get_key)
+
+    @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY', key)
+    def create_install(self, user, webapp):
+        webapp.update(type=amo.ADDON_WEBAPP,
+                      manifest_url='http://somesite.com/')
+        return webapp.get_or_create_install(user)
+
+    def test_get_or_create(self):
+        install = self.create_install(self.user, self.webapp)
+        eq_(install, self.create_install(self.user, self.webapp))
+
+    def test_receipt(self):
+        ins = self.create_install(self.user, self.webapp)
+        assert ins.receipt.startswith('eyJhbGciOiAiSFMyNTY'), ins.receipt
+
+    def test_get_receipt(self):
+        ins = self.create_install(self.user, self.webapp)
+        assert self.webapp.get_receipt(self.user), ins
+
+    def test_no_receipt(self):
+        assert not self.webapp.get_receipt(self.user)
+
+    def test_receipt_different(self):
+        ins = self.create_install(self.user, self.webapp)
+        ins_other = self.create_install(self.other_user, self.webapp)
+        assert ins.receipt != ins_other.receipt
+
+    def test_addon_premium(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        self.create_install(self.user, self.webapp)
+        assert self.webapp.get_receipt(self.user)
+
+    def test_addon_free(self):
+        self.webapp.update(premium_type=amo.ADDON_FREE)
+        self.create_install(self.user, self.webapp)
+        assert self.webapp.get_receipt(self.user)

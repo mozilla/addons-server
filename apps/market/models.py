@@ -1,24 +1,18 @@
 # -*- coding: utf-8 -*-
-import time
-
-from django.conf import settings
 from django.db import models
 from django.dispatch import receiver
 from django.utils import translation
-from django.utils.http import urlencode
 
 from translations.fields import TranslatedField
 
 import amo
 import amo.models
-from amo.urlresolvers import reverse
 from stats.models import Contribution
 from users.models import UserProfile
 
 from babel import Locale, numbers
 import commonware.log
 from jinja2.filters import do_dictsort
-import jwt
 import paypal
 
 log = commonware.log.getLogger('z.market')
@@ -97,52 +91,12 @@ class PriceCurrency(amo.models.ModelBase):
 class AddonPurchase(amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon')
     user = models.ForeignKey(UserProfile)
-    receipt = models.TextField(default='')
 
     class Meta:
         db_table = 'addon_purchase'
 
     def __unicode__(self):
         return u'%s: %s' % (self.addon, self.user)
-
-    def create_receipt(self):
-        verify = reverse('api.market.verify', args=[self.addon.pk])
-        hsh = self.addon.get_watermark_hash(self.user)
-        url = urlencode({amo.WATERMARK_KEY: self.user.email,
-                         amo.WATERMARK_KEY_HASH: hsh})
-        verify = '%s?%s' % (verify, url)
-        receipt = dict(typ='purchase-receipt',
-                       product=self.addon.origin,
-                       user={'type': 'email',
-                             'value': self.user.email},
-                       iss=settings.SITE_URL,
-                       nbf=time.time(),
-                       iat=time.time(),
-                       detail=reverse('users.purchases.receipt',
-                                      args=[self.addon.pk]),
-                       verify=verify)
-        self.receipt = jwt.encode(receipt, get_key())
-
-
-def get_key():
-    """Return a key for using with encode."""
-    return jwt.rsa_load(settings.WEBAPPS_RECEIPT_KEY)
-
-
-@receiver(models.signals.post_save, sender=AddonPurchase,
-          dispatch_uid='create_receipt')
-def create_receipt(sender, instance, **kw):
-    """
-    When the AddonPurchase gets created, see if we need to create a receipt.
-    """
-    if (kw.get('raw') or instance.addon.type != amo.ADDON_WEBAPP
-        or instance.receipt):
-        return
-
-    log.debug('Creating receipt for: addon %s, user %s'
-              % (instance.addon.pk, instance.user.pk))
-    instance.create_receipt()
-    instance.save()
 
 
 @receiver(models.signals.post_save, sender=Contribution,
@@ -171,8 +125,7 @@ def create_addon_purchase(sender, instance, **kw):
 
         # When they've purchased, automatically create installed record
         # without have to bother doing a post.
-        if not instance.addon.installed_set.filter(user=instance.user).exists():
-            instance.addon.installed_set.create(user=instance.user)
+        instance.addon.get_or_create_install(user=instance.user)
 
     elif instance.type in [amo.CONTRIB_REFUND, amo.CONTRIB_CHARGEBACK]:
         purchases = AddonPurchase.objects.filter(addon=instance.addon,

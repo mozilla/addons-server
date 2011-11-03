@@ -1,8 +1,12 @@
+# -*- coding: utf-8 -*-
 import json
+import time
 import urlparse
 
 from django.conf import settings
 from django.db import models
+from django.dispatch import receiver
+from django.utils.http import urlencode
 
 import commonware.log
 
@@ -12,6 +16,8 @@ from amo.urlresolvers import reverse
 from addons import query
 from addons.models import (Addon, clear_name_table, delete_search_index,
                            update_name_table, update_search_index)
+
+import jwt
 
 
 log = commonware.log.getLogger('z.addons')
@@ -101,6 +107,13 @@ class Webapp(Addon):
     def share_url(self):
         return reverse('apps.share', args=[self.app_slug])
 
+    def get_receipt(self, user):
+        """Gets the receipt for the user for this webapp, or None."""
+        try:
+            return self.installed.get(user=user).receipt
+        except Installed.DoesNotExist:
+            return
+
 
 # Pull all translated_fields from Addon over to Webapp.
 Webapp._meta.translated_fields = Addon._meta.translated_fields
@@ -118,9 +131,49 @@ models.signals.pre_delete.connect(clear_name_table, sender=Webapp,
 
 class Installed(amo.models.ModelBase):
     """Track WebApp installations."""
-    addon = models.ForeignKey('addons.Addon')
+    addon = models.ForeignKey('addons.Addon', related_name='installed')
     user = models.ForeignKey('users.UserProfile')
+    receipt = models.TextField(default='')
 
     class Meta:
         db_table = 'users_install'
         unique_together = ('addon', 'user')
+
+    def create_receipt(self):
+        verify = reverse('api.market.verify', args=[self.addon.pk])
+        hsh = self.addon.get_watermark_hash(self.user)
+        url = urlencode({amo.WATERMARK_KEY: self.user.email,
+                         amo.WATERMARK_KEY_HASH: hsh})
+        verify = '%s?%s' % (verify, url)
+        receipt = dict(typ='purchase-receipt',
+                       product=self.addon.origin,
+                       user={'type': 'email',
+                             'value': self.user.email},
+                       iss=settings.SITE_URL,
+                       nbf=time.time(),
+                       iat=time.time(),
+                       detail=reverse('users.purchases.receipt',
+                                      args=[self.addon.pk]),
+                       verify=verify)
+        self.receipt = jwt.encode(receipt, get_key())
+
+
+def get_key():
+    """Return a key for using with encode."""
+    return jwt.rsa_load(settings.WEBAPPS_RECEIPT_KEY)
+
+
+@receiver(models.signals.post_save, sender=Installed,
+          dispatch_uid='create_receipt')
+def create_receipt(sender, instance, **kw):
+    """
+    When something gets installed, see if we need to create a receipt.
+    """
+    if (kw.get('raw') or instance.addon.type != amo.ADDON_WEBAPP
+        or instance.receipt):
+        return
+
+    log.debug('Creating receipt for: addon %s, user %s'
+              % (instance.addon.pk, instance.user.pk))
+    instance.create_receipt()
+    instance.save()

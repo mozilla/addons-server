@@ -9,6 +9,7 @@ import time
 from datetime import datetime, timedelta
 
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models, transaction
 from django.dispatch import receiver
 from django.db.models import Q, Max, signals as dbsignals
@@ -1053,6 +1054,16 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         for user in find_users(email):
             if hsh == self.get_watermark_hash(user):
                 return user
+
+    def get_or_create_install(self, user):
+        """
+        Gets or creates the install receipt.
+        Ignoring get_or_create until #13906 is fixed.
+        """
+        try:
+            return self.installed.get(user=user)
+        except ObjectDoesNotExist:
+            return self.installed.create(user=user)
 
 
 @receiver(dbsignals.post_save, sender=Addon,

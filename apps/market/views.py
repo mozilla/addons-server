@@ -18,5 +18,8 @@ def verify_receipt(request, addon):
             return http.HttpResponse(status=400)
         # If wanted we can use the watermark hash, however it's assumed the
         # users will be logged into AMO.
-        exists = addon.has_purchased(request.amo_user)
+        if addon.is_premium():
+            exists = addon.has_purchased(request.amo_user)
+        else:
+            exists = addon.installed.filter(user=request.amo_user).exists()
         return {'status': 'ok' if exists else 'invalid'}

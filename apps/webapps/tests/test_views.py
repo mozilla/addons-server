@@ -1,3 +1,5 @@
+import json
+
 from django.conf import settings
 
 from nose.tools import eq_
@@ -218,11 +220,17 @@ class TestInstall(amo.tests.TestCase):
 
     def setUp(self):
         self.addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
-        self.addon.update(app_slug=self.addon.pk)
+        self.addon.update(app_slug=self.addon.pk,
+                          manifest_url='http://cbc.ca/manifest')
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.url = reverse('apps.record', args=[self.addon.app_slug])
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
+
+    def test_not_record_addon(self):
+        self.addon.update(type=amo.ADDON_EXTENSION)
+        self.client.post(self.url)
+        eq_(self.user.installed_set.count(), 0)
 
     def test_record_logged_out(self):
         self.client.logout()
@@ -235,7 +243,12 @@ class TestInstall(amo.tests.TestCase):
         eq_(self.user.installed_set.count(), 1)
 
     def test_record_multiple_installs(self):
-        self.client.get(self.url)
+        self.client.post(self.url)
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
         eq_(self.user.installed_set.count(), 1)
+
+    def test_record_receipt(self):
+        res = self.client.post(self.url)
+        content = json.loads(res.content)
+        assert content.get('receipt'), content

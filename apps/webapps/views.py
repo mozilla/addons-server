@@ -14,6 +14,7 @@ import search.views
 from addons.models import Category
 from browse.views import category_landing, CategoryLandingFilter
 from sharing.views import share as share_redirect
+from webapps.models import Installed
 from .models import Webapp
 
 TYPE = amo.ADDON_WEBAPP
@@ -97,6 +98,7 @@ def share(request, app_slug):
 @login_required
 @post_required
 def record(request, addon):
-    if not request.amo_user.installed_set.filter(addon=addon).exists():
-        request.amo_user.installed_set.create(addon=addon)
-    return {'addon': addon.pk}
+    if addon.is_webapp():
+        installed = addon.get_or_create_install(user=request.amo_user)
+        return {'addon': addon.pk,
+                'receipt': installed.receipt if installed else ''}
