@@ -866,7 +866,7 @@ USERPICS_URL = STATIC_URL + '/img/uploads/userpics/%s/%s/%s.png?modified=%d'
 COLLECTION_ICON_URL = ('%s/images/collection_icon/%%s.png?modified=%%s' %
                        STATIC_URL)
 NEW_PERSONAS_IMAGE_URL = (STATIC_URL +
-                          '/img/uploads/personas/%(id)d/%(file)s.jpg')
+                          '/img/uploads/personas/%(id)d/%(file)s')
 PERSONAS_IMAGE_URL = ('http://www.getpersonas.com/static/'
                       '%(tens)d/%(units)d/%(id)d/%(file)s')
 PERSONAS_IMAGE_URL_SSL = ('https://www.getpersonas.com/static/'

@@ -1242,15 +1242,45 @@ class TestCategoryModel(amo.tests.TestCase):
 
 
 class TestPersonaModel(amo.tests.TestCase):
+    fixtures = ['addons/persona', 'base/apps']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=15663)
+        self.persona = self.addon.persona
+        self.persona.header = 'header.jpg'
+        self.persona.footer = 'footer.jpg'
+        self.persona.save()
 
     def test_image_urls(self):
-        mypersona = Persona(id=1234, persona_id=9876)
-        assert mypersona.thumb_url.endswith('/7/6/9876/preview.jpg')
-        assert mypersona.preview_url.endswith('/7/6/9876/preview_large.jpg')
+        self.persona.persona_id = 0
+        self.persona.save()
+        p = lambda x: '/15663/' + x
+        assert self.persona.thumb_url.endswith(p('thumb.jpg')), (
+            self.persona.thumb_url)
+        assert self.persona.icon_url.endswith(p('icon.jpg')), (
+            self.persona.icon_url)
+        assert self.persona.preview_url.endswith(p('preview.jpg')), (
+            self.persona.preview_url)
+        assert self.persona.header_url.endswith(p('header.jpg')), (
+            self.persona.header_url)
+        assert self.persona.footer_url.endswith(p('footer.jpg')), (
+            self.persona.footer_url)
+
+    def test_old_image_urls(self):
+        p = lambda x: '/1/3/813/' + x
+        assert self.persona.thumb_url.endswith(p('preview.jpg')), (
+            self.persona.thumb_url)
+        assert self.persona.icon_url.endswith(p('preview_small.jpg')), (
+            self.persona.icon_url)
+        assert self.persona.preview_url.endswith(p('preview_large.jpg')), (
+            self.persona.preview_url)
+        assert self.persona.header_url.endswith(p('header.jpg')), (
+            self.persona.header_url)
+        assert self.persona.footer_url.endswith(p('footer.jpg')), (
+            self.persona.footer_url)
 
     def test_update_url(self):
-        p = Persona(id=1234, persona_id=9876)
-        assert p.update_url.endswith('9876')
+        assert self.persona.update_url.endswith(str(self.persona.persona_id))
 
 
 class TestPreviewModel(amo.tests.TestCase):

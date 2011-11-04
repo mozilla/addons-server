@@ -535,8 +535,8 @@ class NewPersonaForm(AddonFormBase):
         p = Persona()
         p.persona_id = 0
         p.addon = addon
-        p.header = 'header.jpg'
-        p.footer = 'footer.jpg'
+        p.header = 'header'
+        p.footer = 'footer'
         if data['accentcolor']:
             p.accentcolor = data['accentcolor'].lstrip('#')
         if data['textcolor']:

@@ -179,7 +179,7 @@ class TestSubmitPersona(amo.tests.TestCase):
         data.update(footer_hash=json.loads(r_ajax.content)['upload_hash'])
 
         r = self.client.post(self.url, data)
-        addon = Addon.objects.exclude(id=5579)[0]
+        addon = Addon.objects.order_by('-id')[0]
         persona = addon.persona
 
         done_url = reverse('devhub.personas.submit.done', args=[addon.slug])
@@ -212,13 +212,13 @@ class TestSubmitPersona(amo.tests.TestCase):
         dst = os.path.join(settings.PERSONAS_PATH, str(addon.id))
 
         img = os.path.join(dst, 'header.jpg')
-        eq_(persona.header, 'header.jpg')
+        eq_(persona.header, 'header')
         eq_(os.path.exists(img), True)
         eq_(Image.open(img).size, (3000, 200))
         eq_(amo.PERSONA_IMAGE_SIZES['header'][1], (3000, 200))
 
         img = os.path.join(dst, 'footer.jpg')
-        eq_(persona.footer, 'footer.jpg')
+        eq_(persona.footer, 'footer')
         eq_(os.path.exists(img), True)
         eq_(Image.open(img).size, (3000, 100))
         eq_(amo.PERSONA_IMAGE_SIZES['footer'][1], (3000, 100))
