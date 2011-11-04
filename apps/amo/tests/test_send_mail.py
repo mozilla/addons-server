@@ -78,6 +78,24 @@ class SendMailTest(test.TestCase):
         assert success, "Email wasn't sent"
         eq_(len(mail.outbox), 1)
 
+    def test_user_mandatory(self):
+        """ Make sure there's no unsubscribe link in mandatory emails. """
+        user = UserProfile.objects.all()[0]
+        to = user.email
+        n = users.notifications.NOTIFICATIONS_BY_SHORT['individual_contact']
+
+        UserNotification.objects.get_or_create(notification_id=n.id,
+                user=user, enabled=True)
+
+        assert n.mandatory, "Notification isn't mandatory"
+
+        success = send_mail('test subject', 'test body', perm_setting=n,
+                            recipient_list=[to], fail_silently=False)
+
+        body = mail.outbox[0].body
+        assert "Unsubscribe:" not in body
+        assert "You can't unsubscribe from" in body
+
     def test_user_setting_unchecked(self):
         user = UserProfile.objects.all()[0]
         to = user.email

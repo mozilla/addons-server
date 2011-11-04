@@ -172,11 +172,15 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                     # Add unsubscribe link to footer
                     token, hash = UnsubscribeCode.create(recipient)
                     from amo.helpers import absolutify
-                    url = absolutify(reverse('users.unsubscribe',
+                    unsubscribe_url = absolutify(reverse('users.unsubscribe',
                             args=[token, hash, perm_setting.short]))
-                    context = {'message': message, 'unsubscribe': url,
+                    manage_url = ('%s#acct-notify' %
+                                  absolutify(reverse('users.edit')))
+                    context = {'message': message, 'manage_url': manage_url,
+                               'unsubscribe_url': unsubscribe_url,
                                'perm_setting': perm_setting.label,
-                               'SITE_URL': settings.SITE_URL}
+                               'SITE_URL': settings.SITE_URL,
+                               'mandatory': perm_setting.mandatory }
                     send_message = template.render(Context(context,
                                                            autoescape=False))
 
