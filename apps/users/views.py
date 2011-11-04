@@ -578,9 +578,11 @@ def unsubscribe(request, hash=None, token=None, perm_setting=None):
             perm_settings = [perm_setting]
     else:
         unsubscribed = False
+        email = ''
 
     return jingo.render(request, 'users/unsubscribe.html',
-            {'unsubscribed': unsubscribed, 'perm_settings': perm_settings})
+            {'unsubscribed': unsubscribed, 'email': email,
+             'perm_settings': perm_settings})
 
 
 class AddonsFilter(BaseFilter):
