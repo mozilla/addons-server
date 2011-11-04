@@ -19,7 +19,7 @@ from statsd import statsd
 
 import amo
 import files.tasks
-from amo.decorators import post_required
+from amo.decorators import no_login_required, post_required
 from stats.models import Contribution, ContributionError, SubscriptionEvent
 from . import monitors
 
@@ -30,6 +30,7 @@ jp_log = commonware.log.getLogger('z.jp.repack')
 
 
 @never_cache
+@no_login_required
 def monitor(request, format=None):
 
     # For each check, a boolean pass/fail status to show in the template
