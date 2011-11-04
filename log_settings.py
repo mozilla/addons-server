@@ -1,6 +1,3 @@
-import codecs
-import socket
-
 import logging
 import logging.handlers
 
@@ -16,45 +13,6 @@ class NullHandler(logging.Handler):
 
     def emit(self, record):
         pass
-
-
-class UTFFixedSysLogHandler(logging.handlers.SysLogHandler):
-    """
-    A bug-fix sub-class of SysLogHandler that fixes the UTF-8 BOM syslog
-    bug that caused UTF syslog entries to not go to the correct
-    facility.  This is fixed by over-riding the 'emit' definition
-    with one that puts the BOM in the right place (after prio, instead
-    of before it).
-
-    Based on Python 2.7 version of logging.handlers.SysLogHandler.
-
-    Bug Reference: http://bugs.python.org/issue7077
-    """
-
-    def emit(self, record):
-        msg = self.format(record) + '\000'
-        prio = '<%d>' % self.encodePriority(self.facility,
-                             self.mapPriority(record.levelname))
-        if isinstance(prio, unicode):
-            prio = prio.encode('utf-8')
-        if isinstance(msg, unicode):
-            msg = msg.encode('utf-8')
-        if codecs:
-            msg = codecs.BOM_UTF8 + msg
-        msg = prio + msg
-        try:
-            if self.unixsocket:
-                try:
-                    self.socket.send(msg)
-                except socket.error:
-                    self._connect_unixsocket(self.address)
-                    self.socket.send(msg)
-            else:
-                self.socket.sendto(msg, self.address)
-        except (KeyboardInterrupt, SystemExit):
-            raise
-        except:
-            self.handleError(record)
 
 
 base_fmt = ('%(name)s:%(levelname)s %(message)s '
@@ -93,18 +51,18 @@ cfg = {
             'formatter': 'debug',
         },
         'syslog': {
-            '()': UTFFixedSysLogHandler,
-            'facility': UTFFixedSysLogHandler.LOG_LOCAL7,
+            '()': logging.handlers.SysLogHandler,
+            'facility': logging.handlers.SysLogHandler.LOG_LOCAL7,
             'formatter': 'prod',
         },
         'syslog2': {
-            '()': UTFFixedSysLogHandler,
-            'facility': UTFFixedSysLogHandler.LOG_LOCAL7,
+            '()': logging.handlers.SysLogHandler,
+            'facility': logging.handlers.SysLogHandler.LOG_LOCAL7,
             'formatter': 'prod2',
         },
         'syslog_csp': {
-            '()': UTFFixedSysLogHandler,
-            'facility': UTFFixedSysLogHandler.LOG_LOCAL5,
+            '()': logging.handlers.SysLogHandler,
+            'facility': logging.handlers.SysLogHandler.LOG_LOCAL5,
             'formatter': 'csp',
         },
         'null': {
