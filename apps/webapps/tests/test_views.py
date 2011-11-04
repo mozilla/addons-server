@@ -128,7 +128,7 @@ class TestDetail(WebappTest):
         response = self.client.get(self.url)
         doc = pq(response.content)
         eq_(doc('#addon h1').text(), 'woo')
-        eq_(doc('h2:first').text(), 'About this App')
+        eq_(doc('section.primary.island.c h2:first').text(), 'About this App')
 
     def test_add_review_link_aside(self):
         r = self.client.get(self.url)
