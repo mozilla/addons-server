@@ -61,6 +61,7 @@ def ajax(request):
     return dict(id=u.id, name=u.name)
 
 
+@no_login_required
 def confirm(request, user_id, token):
     user = get_object_or_404(UserProfile, id=user_id)
 
@@ -79,6 +80,7 @@ def confirm(request, user_id, token):
     return http.HttpResponseRedirect(reverse('users.login'))
 
 
+@no_login_required
 def confirm_resend(request, user_id):
     user = get_object_or_404(UserProfile, id=user_id)
 
