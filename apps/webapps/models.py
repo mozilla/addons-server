@@ -11,6 +11,7 @@ from django.utils.http import urlencode
 import commonware.log
 
 import amo
+from amo.helpers import absolutify
 import amo.models
 from amo.urlresolvers import reverse
 from addons import query
@@ -141,6 +142,7 @@ class Installed(amo.models.ModelBase):
 
     def create_receipt(self):
         verify = reverse('api.market.verify', args=[self.addon.pk])
+        detail = reverse('users.purchases.receipt', args=[self.addon.pk])
         hsh = self.addon.get_watermark_hash(self.user)
         url = urlencode({amo.WATERMARK_KEY: self.user.email,
                          amo.WATERMARK_KEY_HASH: hsh})
@@ -152,9 +154,8 @@ class Installed(amo.models.ModelBase):
                        iss=settings.SITE_URL,
                        nbf=time.time(),
                        iat=time.time(),
-                       detail=reverse('users.purchases.receipt',
-                                      args=[self.addon.pk]),
-                       verify=verify)
+                       detail=absolutify(detail),
+                       verify=absolutify(verify))
         self.receipt = jwt.encode(receipt, get_key())
 
 
