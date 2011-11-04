@@ -14,15 +14,8 @@
     </p>
     {# TODO(cvan): The following is a lie. Personas cannot be installed before being reviewed - yet. #}
     <p>
-    {% trans %}
+      {# TODO(cvan)(fligtar): Finalize copy. #}
       You'll receive an email once your Persona has been reviewed by an editor.
-      In the meantime, you and your friends can install the Persona directly
-      from its details page:
-    {% endtrans %}
-    </p>
-    <p>
-      <a id="submitted-addon-url" href="{{ addon.get_url_path() }}">
-        {{ addon.get_url_path()|absolutify|display_url }}</a>
     </p>
     <h2>{{ _('Next steps:') }}</h2>
     <ul class="done-next-steps">

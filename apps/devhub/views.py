@@ -1550,6 +1550,30 @@ def submit_bump(request, addon_id, addon, webapp=False):
                         dict(addon=addon, step=step))
 
 
+@login_required
+def submit_persona(request):
+    if not waffle.flag_is_active(request, 'submit-personas'):
+        return http.HttpResponseForbidden()
+    form = addon_forms.NewPersonaForm(data=request.POST or None,
+                                      files=request.FILES or None,
+                                      request=request)
+    if request.method == 'POST' and form.is_valid():
+        addon = form.save()
+        return redirect('devhub.personas.submit.done', addon.slug)
+    return jingo.render(request, 'devhub/personas/submit.html',
+                        dict(form=form))
+
+
+@dev_required
+def submit_persona_done(request, addon_id, addon):
+    if not waffle.flag_is_active(request, 'submit-personas'):
+        return http.HttpResponseForbidden()
+    if addon.is_public():
+        return redirect(addon.get_url_path())
+    return jingo.render(request, 'devhub/personas/submit_done.html',
+                        dict(addon=addon))
+
+
 @dev_required
 @post_required
 def remove_locale(request, addon_id, addon):

@@ -80,6 +80,11 @@ def global_settings(request):
             tools_links.append({'text': _('Submit a New App'),
                                 'href': reverse('devhub.submit_apps.1')})
 
+        if waffle.flag_is_active(request, 'submit-personas'):
+            # TODO(cvan)(fligtar): Do we want this here?
+            tools_links.append({'text': 'Submit a New Persona',
+                                'href': reverse('devhub.personas.submit')})
+
         tools_links.append({'text': _('Developer Hub'),
                             'href': reverse('devhub.index')})
 

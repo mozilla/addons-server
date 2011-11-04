@@ -99,6 +99,7 @@ class TestCommon(amo.tests.TestCase):
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Submit a New App', reverse('devhub.submit_apps.1')),
+            ('Submit a New Persona', reverse('devhub.personas.submit')),
             ('Developer Hub', reverse('devhub.index')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
@@ -118,6 +119,7 @@ class TestCommon(amo.tests.TestCase):
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Manage My Apps', reverse('devhub.apps')),
             ('Submit a New App', reverse('devhub.submit_apps.1')),
+            ('Submit a New Persona', reverse('devhub.personas.submit')),
             ('Developer Hub', reverse('devhub.index')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
@@ -133,6 +135,7 @@ class TestCommon(amo.tests.TestCase):
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Submit a New App', reverse('devhub.submit_apps.1')),
+            ('Submit a New Persona', reverse('devhub.personas.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
         ]
@@ -155,6 +158,7 @@ class TestCommon(amo.tests.TestCase):
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Manage My Apps', reverse('devhub.apps')),
             ('Submit a New App', reverse('devhub.submit_apps.1')),
+            ('Submit a New Persona', reverse('devhub.personas.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
         ]
@@ -173,6 +177,7 @@ class TestCommon(amo.tests.TestCase):
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Submit a New App', reverse('devhub.submit_apps.1')),
+            ('Submit a New Persona', reverse('devhub.personas.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
             ('Localizer Tools', '/localizers'),
@@ -199,6 +204,7 @@ class TestCommon(amo.tests.TestCase):
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Manage My Apps', reverse('devhub.apps')),
             ('Submit a New App', reverse('devhub.submit_apps.1')),
+            ('Submit a New Persona', reverse('devhub.personas.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
             ('Localizer Tools', '/localizers'),

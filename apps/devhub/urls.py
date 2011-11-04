@@ -200,6 +200,15 @@ urlpatterns = decorate(write, patterns('',
 
     url('^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
 
+    # Personas submission.
+    url('^persona/submit$', views.submit_persona,
+        name='devhub.personas.submit'),
+    url('^persona/%s/submit/done$' % ADDON_ID, views.submit_persona_done,
+        name='devhub.personas.submit.done'),
+    url('^persona/submit/upload/'
+        '(?P<upload_type>persona_header|persona_footer)$',
+        views.ajax_upload_image, name='devhub.personas.upload_persona'),
+
     # Newsletter archive & signup
     url('community/newsletter', views.newsletter,
         name='devhub.community.newsletter'),

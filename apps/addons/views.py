@@ -44,7 +44,6 @@ from translations.query import order_by_translation
 from versions.models import Version
 from webapps.models import Webapp
 from .models import Addon, Persona, FrozenAddon
-from .forms import NewPersonaForm
 from .decorators import addon_view_factory, can_be_purchased, has_purchased
 
 log = commonware.log.getLogger('z.addons')
@@ -752,27 +751,3 @@ def report_abuse(request, addon):
 def persona_redirect(request, persona_id):
     persona = get_object_or_404(Persona, persona_id=persona_id)
     return redirect('addons.detail', persona.addon.slug, permanent=True)
-
-
-@login_required
-def submit_persona(request):
-    if not waffle.flag_is_active(request, 'submit-personas'):
-        return http.HttpResponseForbidden()
-    form = NewPersonaForm(data=request.POST or None,
-                          files=request.FILES or None, request=request)
-    if request.method == 'POST' and form.is_valid():
-        addon = form.save()
-        messages.success(request, _('Persona successfully added.'))
-        return redirect('personas.submit.done', addon.slug)
-    return jingo.render(request, 'addons/impala/personas/submit.html',
-                        dict(form=form))
-
-
-@dev_required
-def submit_persona_done(request, addon_id, addon):
-    if not waffle.flag_is_active(request, 'submit-personas'):
-        return http.HttpResponseForbidden()
-    if addon.status != amo.STATUS_UNREVIEWED:
-        return http.HttpResponseRedirect(addon.get_url_path())
-    return jingo.render(request, 'addons/impala/personas/submit_done.html',
-                        dict(addon=addon))

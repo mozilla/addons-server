@@ -488,9 +488,9 @@ class NewPersonaForm(AddonFormBase):
         cats = sorted(cats, key=lambda x: x.name)
         self.fields['category'].choices = [(c.id, c.name) for c in cats]
         self.fields['header'].widget.attrs['data-upload-url'] = reverse(
-            'personas.upload_persona', args=['persona_header'])
+            'devhub.personas.upload_persona', args=['persona_header'])
         self.fields['footer'].widget.attrs['data-upload-url'] = reverse(
-            'personas.upload_persona', args=['persona_footer'])
+            'devhub.personas.upload_persona', args=['persona_footer'])
 
     def clean_name(self):
         return clean_name(self.cleaned_data['name'])
