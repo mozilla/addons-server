@@ -120,3 +120,7 @@
   {% endif %}
 {% endif %}
 </div> {# install-shell #}
+
+{% if addon.is_webapp() %}
+  {% include 'addons/includes/apps_error_msg.html' %}
+{% endif %}

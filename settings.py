@@ -536,7 +536,7 @@ MINIFY_BUNDLES = {
         ),
     },
     'js': {
-        # JS files common to the entire site.
+        # JS files common to the entire site (pre-impala).
         'common': (
             'js/lib/jquery-1.6.4.js',
             'js/lib/underscore.js',
@@ -616,6 +616,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/format.js',
             'js/lib/jquery.cookie.js',
             'js/zamboni/storage.js',
+            'js/zamboni/apps.js',
             'js/zamboni/buttons.js',
             'js/lib/jquery.pjax.js',
             'js/impala/footer.js',
@@ -753,6 +754,7 @@ MINIFY_BUNDLES = {
             'js/lib/jquery.cookie.js',
             'js/lib/jquery.pjax.js',
             'js/impala/pjax.js',
+            'js/zamboni/apps.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
             'js/impala/capabilities.js',

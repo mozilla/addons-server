@@ -278,6 +278,10 @@
 
 
         function initWebapp() {
+            //
+            // TODO(Kumar) When this is fixed, integrate with
+            // apps.install(manifestURL). See bug 699828
+            //
             if (navigator.mozApps && navigator.mozApps.install) {
                 dom.self.find('.button')
                     .removeClass('disabled')

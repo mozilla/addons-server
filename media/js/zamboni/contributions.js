@@ -127,16 +127,11 @@ var purchases = {
         }
     },
     install_app: function(url, receipt) {
-        /* Try and install the app. */
-        if (navigator.mozApps && navigator.mozApps.install) {
-            var data = {};
-            if(receipt) {
-                data['receipt'] = receipt;
-            }
-            navigator.mozApps.install(url, data);
-        } else {
-            // Notify that it can't be installed.
+        var data = {};
+        if(receipt) {
+            data['receipt'] = receipt;
         }
+        apps.install(url, {data: data});
     }
 };
 
