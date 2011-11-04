@@ -49,10 +49,8 @@ class UTFFixedSysLogHandler(logging.handlers.SysLogHandler):
                 except socket.error:
                     self._connect_unixsocket(self.address)
                     self.socket.send(msg)
-            elif self.socktype == socket.SOCK_DGRAM:
-                self.socket.sendto(msg, self.address)
             else:
-                self.socket.sendall(msg)
+                self.socket.sendto(msg, self.address)
         except (KeyboardInterrupt, SystemExit):
             raise
         except:
