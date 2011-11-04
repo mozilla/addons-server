@@ -10,27 +10,32 @@
   <span class="optional">{{ _('(optional)') }}</span>
 {%- endmacro %}
 
-{% macro pretty_field(field, label=None, tooltip=None, tag='li', req=False,
-                      opt=False, class='row') %}
-  {% set req = field.field.required or req %}
-  {% set choice = field|is_choice_field %}
+{% macro pretty_field(field, label=None, tooltip=None, tag='li', req=None,
+                      opt=False, choice=None, class='row') %}
   {% if tag %}
     <{{ tag }} class="{{ class }}{{ ' error' if field.errors }}">
   {% endif %}
-    <label{% if choice %} class="choice {{ class }}"{% endif %} for="{{ field.auto_id }}">
+  {% if choice == None %}
+    {% set choice = field|is_choice_field %}
+  {% endif %}
+    <label class="{{ class }}{{ ' choice' if choice }}" for="{{ field.auto_id }}">
       {% if choice %}
-        {{ field.as_widget() }}
+        {{ field.as_widget() -}}
       {% endif %}
       {{- label or field.label }}
+
+      {% if req == None %}
+        {% set req = field.field.required %}
+      {% endif %}
       {% if req %}
         {{ required() -}}
       {% endif %}
+
       {% if opt %}
         {{ optional() -}}
       {% endif %}
-      {% if not tooltip %}
-        {% set tooltip = field.help_text %}
-      {% endif %}
+
+      {% set tooltip = tooltip or field.help_text %}
       {% if tooltip %}
         {{ tip(None, tooltip) }}
       {% endif %}

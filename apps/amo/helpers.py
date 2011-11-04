@@ -5,7 +5,7 @@ import re
 from operator import attrgetter
 
 from django.conf import settings
-from django.forms import CheckboxInput, RadioSelect
+from django.forms import CheckboxInput
 from django.utils import translation
 from django.utils.encoding import smart_unicode
 from django.template import defaultfilters
@@ -420,7 +420,7 @@ def recaptcha(context, form):
 @register.filter
 def is_choice_field(value):
     try:
-        return isinstance(value.field.widget, (CheckboxInput, RadioSelect))
+        return isinstance(value.field.widget, CheckboxInput)
     except AttributeError:
         pass
 

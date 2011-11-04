@@ -20,9 +20,9 @@
       <fieldset>
         <legend>{{ _('Persona Details') }}</legend>
         <ul>
-          {{ pretty_field(form.name, label=_('Give your Persona a name.'), req=True) }}
+          {{ pretty_field(form.name, label=_('Give your Persona a name.')) }}
           {{ pretty_field(form.category, label=_('Select the category that best describes your Persona.'),
-                          req=True, class='row radios addon-cats') }}
+                          class='row radios addon-cats') }}
           <li class="row">
             {{ pretty_field(form.tags, label=_('Add some tags to describe your Persona.'), tag=None, opt=True) }}
             <span class="note">
