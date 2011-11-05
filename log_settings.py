@@ -1,5 +1,6 @@
 import logging
 import logging.handlers
+import socket
 
 from django.conf import settings
 
@@ -13,6 +14,30 @@ class NullHandler(logging.Handler):
 
     def emit(self, record):
         pass
+
+
+class UnicodeLogger(logging.handlers.SysLogHandler):
+
+    def emit(self, record):
+        msg = self.format(record) + '\000'
+        prio = '<%d>' % self.encodePriority(self.facility,
+                                            self.mapPriority(record.levelname))
+        if type(msg) is unicode:
+            msg = msg.encode('utf-8')
+        msg = prio + msg
+        try:
+            if self.unixsocket:
+                try:
+                    self.socket.send(msg)
+                except socket.error:
+                    self._connect_unixsocket(self.address)
+                    self.socket.send(msg)
+            else:
+                self.socket.sendto(msg, self.address)
+        except (KeyboardInterrupt, SystemExit):
+            raise
+        except:
+            self.handleError(record)
 
 
 base_fmt = ('%(name)s:%(levelname)s %(message)s '
@@ -51,17 +76,17 @@ cfg = {
             'formatter': 'debug',
         },
         'syslog': {
-            '()': logging.handlers.SysLogHandler,
+            '()': UnicodeLogger,
             'facility': logging.handlers.SysLogHandler.LOG_LOCAL7,
             'formatter': 'prod',
         },
         'syslog2': {
-            '()': logging.handlers.SysLogHandler,
+            '()': UnicodeLogger,
             'facility': logging.handlers.SysLogHandler.LOG_LOCAL7,
             'formatter': 'prod2',
         },
         'syslog_csp': {
-            '()': logging.handlers.SysLogHandler,
+            '()': UnicodeLogger,
             'facility': logging.handlers.SysLogHandler.LOG_LOCAL5,
             'formatter': 'csp',
         },
