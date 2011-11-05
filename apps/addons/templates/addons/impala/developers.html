@@ -43,22 +43,20 @@
 
 {% block content %}
   {% if not addon.takes_contributions %}
-    <aside class="secondary c">
+    <aside id="addon-side" class="secondary c">
       {{ addon|sidebar_listing }}
     </aside>
   {% endif %}
-  <section class="primary">
-    <hgroup class="hero">
-      {% if page == 'installed' %}
-        <h1 class="addon"{{ addon.name|locale_html }}>{{ title }}</h1>
-      {% else %}
-        {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                               (addon.get_url_path(), addon.name),
-                               (None, title)]) }}
-        <h1>{{ title }}</h1>
-      {% endif %}
-    </hgroup>
-  </section>
+  <header class="hero c">
+    {% if page == 'installed' %}
+      <h1 class="addon"{{ addon.name|locale_html }}>{{ title }}</h1>
+    {% else %}
+      {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+                             (addon.get_url_path(), addon.name),
+                             (None, title)]) }}
+      <h1>{{ title }}</h1>
+    {% endif %}
+  </header>
 
   {% if addon.takes_contributions %}
     <aside class="secondary c">

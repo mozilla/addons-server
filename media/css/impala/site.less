@@ -19,9 +19,13 @@ body {
     margin: 0 auto;
     position: relative;
     min-height: @page-min-height;
-    header h2,
-    header h3 {
-        margin-bottom: 16px;
+    header {
+        &.hero {
+            width: 720px;
+        }
+        h2, h3 {
+            margin-bottom: 16px;
+        }
     }
 }
 
