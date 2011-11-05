@@ -1,18 +1,17 @@
-{% extends "base_side_categories.html" %}
+{% extends "impala/base_shared.html" %}
 
 {% set title = _('Report abuse for {0}')|f(addon.name) %}
 
 {% block title %}{{ page_title(title) }}{% endblock %}
 {% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}
 {% block content %}
-
 <header>
-  {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                  (addon.get_url_path(), addon.name),
-                  (None, _('Report Abuse'))]) }}
-  <h2>{{ title }}</h2>
+  {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+                         (addon.get_url_path(), addon.name),
+                         (None, _('Report Abuse'))]) }}
+  <h1>{{ title }}</h1>
 </header>
-
-{{ addon_report_abuse(hide=False, addon=addon) }}
-
+<section class="island full c">
+  {{ addon_report_abuse(hide=False, addon=addon) }}
+</section>
 {% endblock %}

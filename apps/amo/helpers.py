@@ -304,8 +304,11 @@ def impala_breadcrumbs(context, items=list(), add_default=True, crumb_size=40):
     """
     home = 'apps.home' if context.get('WEBAPPS') else 'home'
     if add_default:
-        app = context['request'].APP
-        crumbs = [(urlresolvers.reverse(home), page_name(app))]
+        if context.get('WEBAPPS'):
+            base_title = _('Apps Marketplace')
+        else:
+            base_title = page_name(context['request'].APP)
+        crumbs = [(urlresolvers.reverse(home), base_title)]
     else:
         crumbs = []
 
@@ -459,7 +462,6 @@ def media(context, url, key='MEDIA_URL'):
 def static(context, url):
     """Get a STATIC_URL link with a cache buster querystring."""
     return media(context, url, 'STATIC_URL')
-
 
 
 @register.function

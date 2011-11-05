@@ -2,11 +2,11 @@ import json
 
 from django.conf import settings
 
-import mock
-
+from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-from mock import patch
+
+import amo
 from amo.helpers import absolutify, page_title
 import amo.tests
 from amo.urlresolvers import reverse
@@ -227,6 +227,25 @@ class TestSharing(WebappTest):
         self.assertRedirects(r, url, status_code=302, target_status_code=301)
 
 
+class TestReportAbuse(WebappTest):
+
+    def setUp(self):
+        super(TestReportAbuse, self).setUp()
+        self.abuse_url = reverse('apps.abuse', args=[self.webapp.app_slug])
+
+    def test_page(self):
+        r = self.client.get(self.abuse_url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('title').text(), 'Report abuse for woo :: Apps Marketplace')
+        expected = [
+            ('Apps Marketplace', reverse('apps.home')),
+            ('Apps', reverse('apps.list')),
+            (unicode(self.webapp.name), self.url),
+        ]
+        amo.tests.check_links(expected, doc('#breadcrumbs a'))
+
+
 class TestInstall(amo.tests.TestCase):
     fixtures = ['base/users']
 
@@ -260,7 +279,7 @@ class TestInstall(amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(self.user.installed_set.count(), 1)
 
-    @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY', key)
+    @patch.object(settings, 'WEBAPPS_RECEIPT_KEY', key)
     def test_record_receipt(self):
         res = self.client.post(self.url)
         content = json.loads(res.content)
