@@ -37,8 +37,10 @@
             {{ mobile_persona_confirm(other.persona, size='small') }}
           </li>
         {% endfor %}
-        <li><a href="{{ author_gallery }}">
-          {{ _('See all Personas by this Artist') }}</a></li>
+        {% if author_gallery %}
+          <li><a href="{{ author_gallery }}" class="more-link">
+            {{ _('See all Personas by this Artist') }}</a></li>
+        {% endif %}
       </ul>
     </div>
     {% endif %}

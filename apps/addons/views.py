@@ -197,9 +197,10 @@ def persona_detail(request, addon, template=None):
         'categories': categories,
         'author_personas': author_personas,
         'category_personas': category_personas,
-        # Remora uses persona.author despite there being a display_username.
-        'author_gallery': settings.PERSONAS_USER_ROOT % persona.author,
     }
+    if not persona.is_new():
+        # Remora uses persona.author despite there being a display_username.
+        data['author_gallery'] = settings.PERSONAS_USER_ROOT % persona.author
     if not request.MOBILE:
         # tags
         dev_tags, user_tags = addon.tags_partitioned_by_developer

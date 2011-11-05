@@ -28,7 +28,7 @@ from amo.urlresolvers import reverse
 from abuse.models import AbuseReport
 from addons import cron
 from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
-                           Charity, Category)
+                           Charity, Category, Persona)
 from files.models import File
 from market.models import AddonPremium, AddonPurchase, Price
 from paypal.tests import other_error
@@ -1204,6 +1204,22 @@ class TestPersonaDetailPage(amo.tests.TestCase):
             'style attribute %s does not link to %s' % (
             style, self.persona.preview_url))
 
+    def test_more_personas(self):
+        other = addon_factory(type=amo.ADDON_PERSONA)
+        other.persona.author = self.persona.author
+        other.persona.save()
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#more-artist .more-link').length, 1)
+
+    def test_new_more_personas(self):
+        other = addon_factory(type=amo.ADDON_PERSONA)
+        other.persona.author = self.persona.author
+        other.persona.save()
+        self.persona.persona_id = 0
+        self.persona.save()
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#more-artist .more-link').length, 0)
+
     def test_other_personas(self):
         """Ensure listed personas by the same author show up."""
         addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_NULL)
@@ -1613,6 +1629,8 @@ class TestMobileDetails(TestMobile):
         super(TestMobileDetails, self).setUp()
         self.ext = Addon.objects.get(id=3615)
         self.url = reverse('addons.detail', args=[self.ext.slug])
+        self.persona = Addon.objects.get(id=15679)
+        self.persona_url = self.persona.get_url_path()
 
     def test_extension(self):
         r = self.client.get(self.url)
@@ -1620,13 +1638,28 @@ class TestMobileDetails(TestMobile):
         self.assertTemplateUsed(r, 'addons/mobile/details.html')
 
     def test_persona(self):
-        persona = Addon.objects.get(id=15679)
-        r = self.client.get(persona.get_url_path())
+        r = self.client.get(self.persona_url, follow=True)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'addons/mobile/persona_detail.html')
         assert 'review_form' not in r.context
         assert 'reviews' not in r.context
         assert 'get_replies' not in r.context
+
+    def test_more_personas(self):
+        other = addon_factory(type=amo.ADDON_PERSONA)
+        other.persona.author = self.persona.persona.author
+        other.persona.save()
+        r = self.client.get(self.persona_url, follow=True)
+        eq_(pq(r.content)('#more-artist .more-link').length, 1)
+
+    def test_new_more_personas(self):
+        other = addon_factory(type=amo.ADDON_PERSONA)
+        other.persona.author = self.persona.persona.author
+        other.persona.save()
+        self.persona.persona.persona_id = 0
+        self.persona.persona.save()
+        r = self.client.get(self.persona_url, follow=True)
+        eq_(pq(r.content)('#more-artist .more-link').length, 0)
 
     def test_persona_mobile_url(self):
         r = self.client.get('/en-US/mobile/addon/15679/')
