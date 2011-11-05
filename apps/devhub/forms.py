@@ -1038,7 +1038,7 @@ class PremiumForm(happyforms.Form):
         return paypal_id
 
     def clean(self):
-        paypal_id = self.cleaned_data['paypal_id']
+        paypal_id = self.cleaned_data.get('paypal_id', '')
         if paypal_id:
             # If we're going to prompt for refund permission, we need to
             # record the PayPal ID first.

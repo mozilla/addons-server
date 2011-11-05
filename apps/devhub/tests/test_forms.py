@@ -129,13 +129,14 @@ class TestPremiumForm(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users', 'prices']
 
     def complete(self, data, exclude):
-        return forms.PremiumForm(data, extra={
+        return forms.PremiumForm(data, request=None, extra={
             'addon': Addon.objects.get(pk=3615),
             'amo_user': UserProfile.objects.get(pk=999),
             'exclude': exclude})
 
     @mock.patch('devhub.forms.check_paypal_id', lambda z: True)
-    def test_remove_token(self):
+    @mock.patch('django.contrib.messages.error')
+    def test_remove_token(self, error):
         addon = Addon.objects.get(pk=3615)
         addon.update(paypal_id='')
         ap = AddonPremium.objects.create(paypal_permissions_token='1',
@@ -148,11 +149,13 @@ class TestPremiumForm(amo.tests.TestCase):
         assert AddonPremium.objects.get(pk=ap.pk).paypal_permissions_token
 
         data['paypal_id'] = 'fooa@bar.com'
+        errmsgs = []
+        error.side_effect = lambda req, msg: errmsgs.append(msg)
         form = self.complete(data, ['price'])
         # Remove the token and fail the form.
         assert not form.is_valid()
         assert not AddonPremium.objects.get(pk=ap.pk).paypal_permissions_token
-
+        assert 'token has been removed' in errmsgs[0]
         AddonPremium.objects.get(pk=ap.pk).update(paypal_permissions_token='a')
         data['paypal_id'] = 'foo@bar.com'
         form = self.complete(data, ['price'])
