@@ -17,7 +17,7 @@ task_log = commonware.log.getLogger('z.task')
 
 @task
 def delete_photo(dst, **kw):
-    task_log.info('[1@None] Deleting photo: %s.' % dst)
+    task_log.debug('[1@None] Deleting photo: %s.' % dst)
 
     if not dst.startswith(settings.USERPICS_PATH):
         task_log.error("Someone tried deleting something they shouldn't: %s"
@@ -34,7 +34,7 @@ def delete_photo(dst, **kw):
 @set_modified_on
 def resize_photo(src, dst, **kw):
     """Resizes userpics to 200x200"""
-    task_log.info('[1@None] Resizing photo: %s' % dst)
+    task_log.debug('[1@None] Resizing photo: %s' % dst)
 
     try:
         resize_image(src, dst, (200, 200))
@@ -45,10 +45,8 @@ def resize_photo(src, dst, **kw):
 
 @task
 def index_users(ids, **kw):
-    if not settings.USE_ELASTIC:
-        return
     es = elasticutils.get_es()
-    task_log.info('Indexing users %s-%s [%s].' % (ids[0], ids[-1], len(ids)))
+    task_log.debug('Indexing users %s-%s [%s].' % (ids[0], ids[-1], len(ids)))
     for c in UserProfile.objects.filter(id__in=ids):
         UserProfile.index(search.extract(c), bulk=True, id=c.id)
     es.flush_bulk(forced=True)
@@ -56,10 +54,8 @@ def index_users(ids, **kw):
 
 @task
 def unindex_users(ids, **kw):
-    if not settings.USE_ELASTIC:
-        return
     for id in ids:
-        task_log.info('Removing user [%s] from search index.' % id)
+        task_log.debug('Removing user [%s] from search index.' % id)
         UserProfile.unindex(id)
 
 

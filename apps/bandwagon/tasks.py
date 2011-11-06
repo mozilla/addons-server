@@ -108,10 +108,8 @@ def cron_collection_meta(*addons, **kw):
 
 @task
 def index_collections(ids, **kw):
-    if not settings.USE_ELASTIC:
-        return
     es = elasticutils.get_es()
-    log.info('Indexing collections %s-%s [%s].' % (ids[0], ids[-1], len(ids)))
+    log.debug('Indexing collections %s-%s [%s].' % (ids[0], ids[-1], len(ids)))
     for c in Collection.objects.filter(id__in=ids):
         Collection.index(search.extract(c), bulk=True, id=c.id)
     es.flush_bulk(forced=True)
@@ -119,8 +117,6 @@ def index_collections(ids, **kw):
 
 @task
 def unindex_collections(ids, **kw):
-    if not settings.USE_ELASTIC:
-        return
     for id in ids:
-        log.info('Removing collection [%s] from search index.' % id)
+        log.debug('Removing collection [%s] from search index.' % id)
         Collection.unindex(id)

@@ -1105,8 +1105,6 @@ def version_changed(sender, **kw):
           dispatch_uid='addons.search.index')
 def update_search_index(sender, instance, **kw):
     from . import tasks
-    if settings.SKIP_SEARCH_INDEX:
-        return
 
     if not kw.get('raw'):
         tasks.index_addons.delay([instance.id])
@@ -1116,8 +1114,6 @@ def update_search_index(sender, instance, **kw):
           dispatch_uid='addons.search.unindex')
 def delete_search_index(sender, instance, **kw):
     from . import tasks
-    if settings.SKIP_SEARCH_INDEX:
-        return
 
     if not kw.get('raw'):
         tasks.unindex_addons.delay([instance.id])

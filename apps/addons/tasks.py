@@ -92,8 +92,6 @@ def delete_preview_files(id, **kw):
 
 @task
 def index_addons(ids, **kw):
-    if not settings.USE_ELASTIC:
-        return
     es = elasticutils.get_es()
     log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
     qs = Addon.uncached.filter(id__in=ids)
@@ -141,8 +139,6 @@ def attach_tags(addons):
 
 @task
 def unindex_addons(ids, **kw):
-    if not settings.USE_ELASTIC:
-        return
     for addon in ids:
         log.info('Removing addon [%s] from search index.' % addon)
         Addon.unindex(addon)

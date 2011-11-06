@@ -37,9 +37,6 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 # then connect to <yourhost>:8080 to view
 REMOTE_JS_DEBUG = False
 
-# Skip indexing ES to speed things up?
-SKIP_SEARCH_INDEX = False
-
 # LESS CSS OPTIONS (Debug only)
 LESS_PREPROCESS = False  # Compile LESS with Node, rather than client-side JS?
 LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
@@ -1208,8 +1205,8 @@ ARECIBO_SETTINGS = {
 # successfully logging in or out.
 VALID_LOGIN_REDIRECTS = {
     'builder': 'https://builder.addons.mozilla.org',
-    'builderstage': 'https://builder-addons-next.allizom.org',
-    'buildertrunk': 'https://builder-addons.allizom.org',
+    'builderstage': 'https://builder-addons.allizom.org',
+    'buildertrunk': 'https://builder-addons-dev.allizom.org',
 }
 
 # Secret key we send to builder so we can trust responses from the builder.
@@ -1225,7 +1222,6 @@ ES_INDEXES = {'default': 'amo',
               'update_counts': 'amo_stats',
               'download_counts': 'amo_stats'}
 ES_TIMEOUT = 5
-USE_ELASTIC = True
 
 # Default AMO user id to use for tasks.
 TASK_USER_ID = 4757633

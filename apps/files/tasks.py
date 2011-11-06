@@ -37,7 +37,7 @@ def extract_file(viewer, **kw):
     msg.delete()
     # This flag is so that we can signal when the extraction is completed.
     flag = Message(viewer._extraction_cache_key())
-    task_log.info('[1@%s] Unzipping %s for file viewer.' % (
+    task_log.debug('[1@%s] Unzipping %s for file viewer.' % (
                   extract_file.rate_limit, viewer))
 
     try:
@@ -59,7 +59,7 @@ def migrate_jetpack_versions(ids, **kw):
     # TODO(jbalogh): kill in bug 656997
     for file_ in File.objects.filter(id__in=ids):
         file_.jetpack_version = File.get_jetpack_version(file_.file_path)
-        task_log.info('Setting jetpack version to %s for File %s.' %
+        task_log.debug('Setting jetpack version to %s for File %s.' %
                       (file_.jetpack_version, file_.id))
         file_.save()
 

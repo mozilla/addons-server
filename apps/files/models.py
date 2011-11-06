@@ -408,18 +408,18 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         with amo.utils.guard('marketplace.watermark.%s' % dest) as locked:
             if locked:
                 # The calling method will need to do something about this.
-                log.error('Watermarking in progress of: %s for %s' %
+                log.error('Watermarking collision: %s for %s' %
                           (self.pk, user.pk))
                 return
 
             if os.path.exists(dest):
                 age = time.time() - os.stat(dest)[stat.ST_ATIME]
                 if age > settings.WATERMARK_REUSE_SECONDS:
-                    log.info('Removing stale watermark %s for %s %dsecs.' %
+                    log.debug('Removing stale watermark %s for %s %dsecs.' %
                              (self.pk, user.pk, age))
                     os.remove(dest)
                 else:
-                    log.info('Already watermarked: %s for %s' %
+                    log.debug('Reusing existing watermarked file: %s for %s' %
                              (self.pk, user.pk))
                     # Touch the update time so that the cron job won't delete
                     # us too quickly.

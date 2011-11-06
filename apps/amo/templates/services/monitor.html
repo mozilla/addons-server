@@ -103,7 +103,6 @@
   </ul>
 </div>
 
-{% if settings.USE_ELASTIC %}
 <div class="notification-box {{ status(status_summary.elastic) }}">
   <h2>[Elastic Search] Health Check ({{ elastic_timer }}ms)</h2>
   <ul>
@@ -118,6 +117,5 @@
     {% endif %}
   </ul>
 </div>
-{% endif %}
 
 {% endblock main_content %}

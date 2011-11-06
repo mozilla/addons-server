@@ -88,15 +88,13 @@ def libraries():
 
 def elastic():
     elastic_results = None
-    status = True
-    if settings.USE_ELASTIC:
-        status = False
-        try:
-            health = elasticutils.get_es().cluster_health()
-            status = health['status'] != 'red'
-            elastic_results = health
-        except Exception:
-            elastic_results = traceback.format_exc()
+    status = False
+    try:
+        health = elasticutils.get_es().cluster_health()
+        status = health['status'] != 'red'
+        elastic_results = health
+    except Exception:
+        elastic_results = traceback.format_exc()
 
     return status, elastic_results
 

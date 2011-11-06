@@ -23,7 +23,7 @@ def cleanup_extracted_file():
         full = os.path.join(root, path)
         age = time.time() - os.stat(full)[stat.ST_ATIME]
         if (age) > (60 * 60):
-            log.info('Removing extracted files: %s, %dsecs old.' % (full, age))
+            log.debug('Removing extracted files: %s, %dsecs old.' % (full, age))
             shutil.rmtree(full)
             # Nuke out the file and diff caches when the file gets removed.
             id = os.path.basename(path)
@@ -36,7 +36,6 @@ def cleanup_extracted_file():
             key.update(str(id))
             cache.delete('%s:memoize:%s:%s' % (settings.CACHE_PREFIX,
                                                'file-viewer', key.hexdigest()))
-            log.info('Removing cache file-viewer cache entries for: %s' % id)
 
 
 @cronjobs.register
