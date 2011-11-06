@@ -10,6 +10,7 @@ from django.core.cache import cache
 import cronjobs
 import commonware.log
 
+from files.models import FileValidation
 
 log = commonware.log.getLogger('z.cron')
 
@@ -36,6 +37,15 @@ def cleanup_extracted_file():
             cache.delete('%s:memoize:%s:%s' % (settings.CACHE_PREFIX,
                                                'file-viewer', key.hexdigest()))
             log.info('Removing cache file-viewer cache entries for: %s' % id)
+
+
+@cronjobs.register
+def cleanup_validation_results():
+    """Will remove all validation results.  Used when the validator is
+    upgraded and results may no longer be relevant."""
+    all = FileValidation.objects.all()
+    log.info('Removing %s old validation results.' % (all.count()))
+    all.delete()
 
 
 @cronjobs.register
