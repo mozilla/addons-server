@@ -252,6 +252,35 @@ class APITest(TestCase):
                 """hash="sha256:3808b13ef8341378b9c8305ca64820095"""
                 '4ee7dcd8dce09fef55f2673458bc31f"')
 
+    def test_addon_license(self):
+        """Test for license information in response."""
+        addon = Addon.objects.get(id=3615)
+        license = addon.current_version.license
+        license.name = 'My License'
+        license.url = 'someurl'
+        license.save()
+        api_url = '/en-US/firefox/api/%.1f/addon/3615' % api.CURRENT_VERSION
+        response = self.client.get(api_url)
+        doc = pq(response.content)
+        eq_(doc('license').length, 1)
+        eq_(doc('license name').length, 1)
+        eq_(doc('license url').length, 1)
+        eq_(doc('license name').text(), unicode(license.name))
+        eq_(doc('license url').text(), helpers.absolutify(license.url))
+
+        license.url = ''
+        license.save()
+        addon.save()
+        response = self.client.get(api_url)
+        doc = pq(response.content)
+        license_url = addon.current_version.license_url()
+        eq_(doc('license url').text(), helpers.absolutify(license_url))
+
+        license.delete()
+        response = self.client.get(api_url)
+        doc = pq(response.content)
+        eq_(doc('license').length, 0)
+
     def test_whitespace(self):
         """Whitespace is apparently evil for learnmore and install."""
         r = make_call('addon/3615')
@@ -465,7 +494,7 @@ class APITest(TestCase):
                             '<thumbnail type="" width="200" height="150">')
 
     def test_performance_data(self):
-        with self.assertNumQueries(23):
+        with self.assertNumQueries(26):
             response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
                                        api.CURRENT_VERSION)
         doc = pq(response.content)

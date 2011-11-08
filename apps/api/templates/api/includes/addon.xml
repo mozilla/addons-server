@@ -22,9 +22,19 @@
     {% endif %}
   </authors>
   <summary>{{ addon.summary|strip_html(new_api) }}</summary>
-
   <description>{{ addon.description|strip_html(new_api) }}</description>
-
+  {%- if addon.current_version.license -%}
+  <license>
+    <name>{{ addon.current_version.license.name }}</name>
+    <url>
+      {%- if not addon.current_version.license.url -%}
+      {{ addon.current_version.license_url()|absolutify }}
+      {%- else -%}
+      {{ addon.current_version.license.url|absolutify }}
+      {%- endif -%}
+    </url>
+  </license>
+  {%- endif -%}
   <icon>{{ addon.get_icon_url(32, use_default=False) }}</icon>
   <compatible_applications>
     {%- if addon.current_version -%}
