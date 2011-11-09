@@ -180,6 +180,11 @@ class TestReceipt(amo.tests.TestCase):
         install = self.create_install(self.user, self.webapp)
         eq_(install, self.create_install(self.user, self.webapp))
 
+    def test_has_installed(self):
+        assert not self.webapp.has_installed(self.user)
+        self.create_install(self.user, self.webapp)
+        assert self.webapp.has_installed(self.user)
+
     def test_receipt(self):
         ins = self.create_install(self.user, self.webapp)
         assert ins.receipt.startswith('eyJhbGciOiAiSFMyNTY'), ins.receipt
@@ -188,7 +193,7 @@ class TestReceipt(amo.tests.TestCase):
         ins = self.create_install(self.user, self.webapp)
         assert self.webapp.get_receipt(self.user), ins
 
-    def test_no_receipt(self):
+    def test_no_receipt_second_try(self):
         assert not self.webapp.get_receipt(self.user)
 
     def test_receipt_different(self):

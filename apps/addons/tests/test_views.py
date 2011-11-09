@@ -3,7 +3,6 @@ from cStringIO import StringIO
 from datetime import datetime
 from decimal import Decimal
 import json
-import os
 import re
 
 from django import test
@@ -14,21 +13,17 @@ from django.utils.encoding import iri_to_uri
 
 from mock import patch
 from nose.tools import eq_, nottest
-from nose import SkipTest
 from pyquery import PyQuery as pq
-from PIL import Image
 import waffle
 
 import amo
 import amo.tests
 from amo.helpers import absolutify, numberfmt, urlparams, shared_url
 from amo.tests import addon_factory
-from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from abuse.models import AbuseReport
-from addons import cron
 from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
-                           Charity, Category, Persona)
+                           Charity)
 from files.models import File
 from market.models import AddonPremium, AddonPurchase, Price
 from paypal.tests import other_error
@@ -36,7 +31,8 @@ from stats.models import Contribution
 from translations.helpers import truncate
 from users.helpers import users_list
 from users.models import UserProfile
-from versions.models import License, Version
+from versions.models import Version
+from webapps.models import Installed
 
 
 def norm(s):
@@ -508,6 +504,11 @@ class TestPaypalStart(amo.tests.TestCase):
 
         # Make sure we get a link to paypal.
         assert pq(r.content).find('.paypal.button').length
+
+    def test_no_receipt_made_yet(self):
+        eq_(Installed.objects.count(), 0)
+        self.test_loggedin_notpurchased()
+        eq_(Installed.objects.count(), 0)
 
 
 class TestDeveloperPages(amo.tests.TestCase):

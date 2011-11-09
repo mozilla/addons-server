@@ -707,12 +707,13 @@ def paypal_result(request, addon, status):
 @anonymous_csrf
 def paypal_start(request, addon=None):
     download = urlparse(request.GET.get('realurl', '')).path
-    data = {'addon': addon, 'is_ajax': request.is_ajax(), 'download': download}
+    data = {'addon': addon, 'is_ajax': request.is_ajax(),
+            'download': download}
 
     if request.user.is_authenticated():
-        if addon.is_webapp():
-            installed = addon.get_or_create_install(user=request.amo_user)
-            data['receipt'] = installed.receipt
+        if addon.has_installed(request.amo_user):
+            data['receipt'] = (addon.installed
+                                    .get(user=request.amo_user).receipt)
         return jingo.render(request, 'addons/paypal_start.html', data)
 
     from users.views import _login

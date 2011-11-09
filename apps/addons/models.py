@@ -1055,6 +1055,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             if hsh == self.get_watermark_hash(user):
                 return user
 
+    def has_installed(self, user):
+        if not user or not isinstance(user, UserProfile):
+            return False
+
+        return self.installed.filter(user=user).exists()
+
     def get_or_create_install(self, user):
         """
         Gets or creates the install receipt.
@@ -1193,7 +1199,7 @@ class Persona(caching.CachingMixin, models.Model):
                 self.preview_url,
                 self.header_url,
                 self.footer_url,
-                self.update_url,]
+                self.update_url]
         return urls
 
     def _image_url(self, filename, ssl=True):
