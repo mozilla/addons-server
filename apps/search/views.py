@@ -478,6 +478,7 @@ def app_search(request, template=None):
         'form': form,
         'sorting': sort_sidebar(request, query, form),
         'sort_opts': form.fields['sort'].choices,
+        'search_cat': 'apps',
     }
     if not ctx['is_pjax']:
         ctx.update({

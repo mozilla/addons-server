@@ -72,10 +72,15 @@ class TestAdminDisabledAddons(SphinxTestCase):
         super(TestAdminDisabledAddons, self).setUp()
 
 
-class TestSearchboxTarget(amo.tests.TestCase):
-    # Check that we search within addons/personas/collections as appropriate.
+class TestSearchboxTarget(amo.tests.ESTestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        super(TestSearchboxTarget, cls).setUpClass()
+        cls.setUpIndex()
 
     def check(self, url, placeholder, cat):
+        # Checks that we search within addons, personas, collections, etc.
         doc = pq(self.client.get(url).content)('.header-search form')
         eq_(doc('input[name=q]').attr('placeholder'), placeholder)
         eq_(doc('input[name=cat]').val(), cat)
@@ -94,6 +99,15 @@ class TestSearchboxTarget(amo.tests.TestCase):
     def test_personas(self):
         self.check(reverse('browse.personas'), 'search for personas',
                    'personas')
+
+    def test_apps(self):
+        self.check(reverse('apps.list'), 'search for apps', 'apps')
+
+    def test_apps_search(self):
+        self.check(reverse('apps.search'), 'search for apps', 'apps')
+
+    def test_addons_search(self):
+        self.check(reverse('search.search'), 'search for add-ons', 'all')
 
 
 class TestESSearch(amo.tests.ESTestCase):

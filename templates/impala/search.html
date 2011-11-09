@@ -8,7 +8,7 @@
   <input id="search-q" type="text" name="q" autocomplete="off" title=""
          class="text {% if not search_form.q.data %}placeholder{% endif %}"
          placeholder="{{ search_form.placeholder() }}"
-         value="{{ search_form.q.data or '' }}">
+         value="{{ query.q if query else '' }}">
   {{ search_form.cat }}
   {{ search_form.appver }}
   {{ search_form.platform }}
