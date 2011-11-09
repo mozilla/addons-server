@@ -9,10 +9,10 @@
     </hgroup>
     <div class="wrap">
       <div>
-        {% if module_context == 'discovery' %}
+        {% if is_disco %}
           {% set addon_url = services_url('discovery.addons.detail', addon.slug or addon.id, src=src) %}
         {% else %}
-          {% set addon_url = addon.get_url_path() %}
+          {% set addon_url = addon.get_url_path()|urlparams(src=src) %}
         {% endif %}
         <div class="blurb">
           <h3><a href="{{ addon_url }}" target="_self">{{ addon.name }}</a></h3>
