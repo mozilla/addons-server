@@ -2,14 +2,17 @@
 API views
 """
 from datetime import date, timedelta
+import hashlib
 import itertools
 import json
 import random
 import urllib
 
+from django.core.cache import cache
 from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.template.context import get_standard_processors
 from django.utils import translation, encoding
+from django.utils.encoding import smart_str
 
 import jingo
 from tower import ugettext as _, ugettext_lazy
@@ -49,8 +52,7 @@ def partition(seq, key):
     return ((k, list(v)) for k, v in groups)
 
 
-def render_xml(request, template, context={}, **kwargs):
-    """Safely renders xml, stripping out nasty control characters."""
+def render_xml_to_string(request, template, context={}):
     if not jingo._helpers_loaded:
         jingo.load_helpers()
 
@@ -58,7 +60,12 @@ def render_xml(request, template, context={}, **kwargs):
         context.update(processor(request))
 
     template = xml_env.get_template(template)
-    rendered = template.render(**context)
+    return template.render(**context)
+
+
+def render_xml(request, template, context={}, **kwargs):
+    """Safely renders xml, stripping out nasty control characters."""
+    rendered = render_xml_to_string(request, template, context)
 
     if 'mimetype' not in kwargs:
         kwargs['mimetype'] = 'text/xml'
@@ -201,13 +208,44 @@ class AddonDetailView(APIView):
 
 
 def guid_search(request, api_version, guids):
+    def guid_search_cache_key(guid):
+        key = 'guid_search:%s:%s' % (api_version, guid)
+        return hashlib.md5(smart_str(key)).hexdigest()
+
     guids = [g.strip() for g in guids.split(',')] if guids else []
-    results = Addon.objects.filter(guid__in=guids, disabled_by_user=False,
-                                   status__in=SEARCHABLE_STATUSES)
+
+    addons_xml = cache.get_many([guid_search_cache_key(g) for g in guids])
+    dirty_keys = set()
+
+    for g in guids:
+        key = guid_search_cache_key(g)
+        if key not in addons_xml:
+            dirty_keys.add(key)
+            try:
+                addon = Addon.objects.get(guid=g, disabled_by_user=False,
+                                          status__in=SEARCHABLE_STATUSES)
+
+            except Addon.DoesNotExist:
+                addons_xml[key] = ''
+
+            else:
+                addon_xml = render_xml_to_string(request,
+                                                 'api/includes/addon.xml',
+                                                 {'addon': addon,
+                                                  'api_version': api_version,
+                                                  'api': api})
+                addons_xml[key] = addon_xml
+
+    cache.set_many(dict((k, v) for k, v in addons_xml.iteritems()
+                                                    if k in dirty_keys))
+
     compat = (CompatOverride.objects.filter(guid__in=guids)
               .transform(CompatOverride.transformer))
+
+    addons_xml = [v for v in addons_xml.values() if v]
     return render_xml(request, 'api/search.xml',
-                      {'results': results, 'total': len(results),
+                      {'addons_xml': addons_xml,
+                       'total': len(addons_xml),
                        'compat': compat,
                        'api_version': api_version, 'api': api})
 
