@@ -73,15 +73,17 @@
       <h2>{{ _('Filter Results') }}</h2>
       <ul class="facets island pjax-trigger">
         {{ facet(_('Category'), 'category-facets', categories) }}
-        <li id="compat-facets" class="facet">
-          <h3>{{ _('Works with') }}</h3>
-          {% if versions %}
-            {{ facet_links(versions) }}
-          {% endif %}
-          {% if platforms %}
-            {{ facet_links(platforms) }}
-          {% endif %}
-        </li>
+        {% if versions or platforms %}
+          <li id="compat-facets" class="facet">
+            <h3>{{ _('Works with') }}</h3>
+            {% if versions %}
+              {{ facet_links(versions) }}
+            {% endif %}
+            {% if platforms %}
+              {{ facet_links(platforms) }}
+            {% endif %}
+          </li>
+        {% endif %}
         {{ facet(_('Tag'), 'tag-facets', tags) }}
       </ul>
       {{ num_results() }}

@@ -476,6 +476,9 @@ class TestWebappSearch(amo.tests.ESTestCase):
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'search/mobile/results.html')
 
+    def test_no_compat_facets(self):
+        assert not pq(self.client.get(self.url).content)('#compat-facets')
+
 
 class TestAjaxSearch(amo.tests.ESTestCase):
 
