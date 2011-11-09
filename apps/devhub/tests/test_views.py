@@ -200,24 +200,47 @@ class TestDashboard(HubTest):
         links = self.get_action_links(a_pk)
         assert 'Statistics' not in links, ('Unexpected: %r' % links)
 
-    def test_complete_addon_item(self):
-        a_pk = self.clone_addon(1)[0]
-        a = Addon.objects.get(pk=a_pk)
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        eq_(a.status, amo.STATUS_PUBLIC)
-        assert doc('.item[data-addonid=%s] ul.item-details' % a_pk)
-        assert doc('.item[data-addonid=%s] h3 a' % a_pk)
-        assert not doc('.item[data-addonid=%s] > div.info > p' % a_pk)
+    def test_public_addon(self):
+        addon = Addon.objects.get(id=self.clone_addon(1)[0])
+        eq_(addon.status, amo.STATUS_PUBLIC)
+        doc = pq(self.client.get(self.url).content)
+        item = doc('.item[data-addonid=%s]' % addon.id)
+        assert item.find('h3 a'), 'Expected link to add-on'
+        assert item.find('p.downloads'), 'Expected weekly downloads'
+        assert item.find('p.users'), 'Expected ADU'
+        assert item.find('.item-details'), 'Expected item details'
+        assert not item.find('p.incomplete'), (
+            'Unexpected message about incomplete add-on')
 
-    def test_incomplete_addon_item(self):
-        a_pk = self.clone_addon(1)[0]
-        Addon.objects.get(pk=a_pk).update(status=amo.STATUS_NULL)
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        assert not doc('.item[data-addonid=%s] ul.item-details' % a_pk)
-        assert not doc('.item[data-addonid=%s] h3 a' % a_pk)
-        assert doc('.item[data-addonid=%s] > div.info > p' % a_pk)
+    def test_public_app(self):
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+        app = Addon.objects.get(id=self.clone_addon(1)[0])
+        app.update(type=amo.ADDON_WEBAPP)
+        doc = pq(self.client.get(reverse('devhub.apps')).content)
+        item = doc('.item[data-addonid=%s]' % app.id)
+        assert item.find('p.downloads'), 'Expected weekly downloads'
+        assert not item.find('p.users'), 'Unexpected ADU'
+        assert item.find('.item-details'), 'Expected item details'
+        assert not item.find('p.incomplete'), (
+            'Unexpected message about incomplete add-on')
+
+    def test_incomplete_addon(self):
+        addon = Addon.objects.get(id=self.clone_addon(1)[0])
+        addon.update(status=amo.STATUS_NULL)
+        doc = pq(self.client.get(self.url).content)
+        item = doc('.item[data-addonid=%s]' % addon.id)
+        assert not item.find('h3 a'), 'Unexpected link to add-on'
+        assert not item.find('.item-details'), 'Unexpected item details'
+        assert item.find('p.incomplete'), (
+            'Expected message about incompleted add-on')
+
+    def test_incomplete_app(self):
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+        app = Addon.objects.get(id=self.clone_addon(1)[0])
+        app.update(type=amo.ADDON_WEBAPP, status=amo.STATUS_NULL)
+        doc = pq(self.client.get(reverse('devhub.apps')).content)
+        assert doc('.item[data-addonid=%s] p.incomplete' % app.id), (
+            'Expected message about incompleted add-on')
 
     def test_dev_news(self):
         self.clone_addon(1)  # We need one to see this module
@@ -1544,7 +1567,8 @@ class TestSubmitStep3(TestSubmitBase):
         waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
         self.get_addon().update(type=amo.ADDON_WEBAPP)
         d = self.get_dict(name='a' * 129)
-        r = self.client.post(reverse('devhub.submit_apps.3', args=['a3615']), d)
+        r = self.client.post(reverse('devhub.submit_apps.3', args=['a3615']),
+                             d)
         eq_(r.status_code, 200)
         error = 'Ensure this value has at most 128 characters (it has 129).'
         self.assertFormError(r, 'form', 'name', error)
@@ -2071,7 +2095,8 @@ class TestSubmitBump(TestSubmitBase):
         eq_(r.status_code, 403)
 
     def test_apps_bump_acl(self):
-        r = self.client.post(reverse('devhub.submit_apps.bump', args=['a3615']))
+        r = self.client.post(reverse('devhub.submit_apps.bump',
+                                     args=['a3615']))
         eq_(r.status_code, 403)
 
     def test_bump_submit_and_redirect(self):
@@ -2087,7 +2112,8 @@ class TestSubmitBump(TestSubmitBase):
         self.get_addon().update(type=amo.ADDON_WEBAPP)
         url = reverse('devhub.submit_apps.bump', args=['a3615'])
         r = self.client.post(url, {'step': 4}, follow=True)
-        self.assertRedirects(r, reverse('devhub.submit_apps.4', args=['a3615']))
+        self.assertRedirects(r, reverse('devhub.submit_apps.4',
+                                        args=['a3615']))
         eq_(self.get_step().step, 4)
 
 
