@@ -140,10 +140,10 @@ $.fn.searchSuggestions = function(results) {
             $results.trigger('inputIgnored');
         } else {
             // Update the 'Search add-ons for <b>"{addon}"</b>' text.
-            $results.find('p b').html(format('"{0}"', [val]));
+            $results.find('p b').html(format('"{0}"', val));
 
             var li_item = template(
-                '<li><a href="{url}" {icon} {cls}>{name}</a></li>'
+                '<li><a href="{url}" {icon} {cls}><span>{name}</span>{subtitle}</a></li>'
             );
 
             $.ajaxCache({
@@ -157,16 +157,24 @@ $.fn.searchSuggestions = function(results) {
                             var d = {
                                 url: escape_(item.url) || '#',
                                 icon: '',
-                                cls: ''
+                                cls: '',
+                                subtitle: '',
                             };
                             if (item.icon) {
                                 d.icon = format(
                                     'style="background-image:url({0})"',
-                                    escape_(item.icon));
+                                    escape_(item.icon)
+                                );
                             }
                             if (item.cls) {
                                 d.cls = format('class="{0}"',
                                                escape_(item.cls));
+                                if (item.cls == 'cat') {
+                                    d.subtitle = format(
+                                        ' <em class="subtitle">{0}</em>',
+                                        gettext('Category')
+                                    );
+                                }
                             }
                             if (item.name) {
                                 d.name = escape_(item.name);
@@ -176,8 +184,8 @@ $.fn.searchSuggestions = function(results) {
                         });
                         $results.find('ul').html(ul);
                     }
-                    highlight(val);
-                    $results.trigger('resultsUpdated', [items]);
+                    $results.trigger('highlight', [val])
+                            .trigger('resultsUpdated', [items]);
                 }
             });
         }
@@ -195,6 +203,15 @@ $.fn.searchSuggestions = function(results) {
         $results.addClass('locked');
         $form.submit();
     }));
+
+    $results.bind('highlight', function(e, val) {
+        // If an item starts with `val`, wrap the matched text with boldness.
+        $results.find('ul a span').highlightTerm(val);
+        $results.addClass('visible');
+        if (!$results.find('.sel').length) {
+            pageUp();
+        }
+    });
 
     $form.submit(function(e) {
         var $sel = $results.find('.sel');
@@ -215,15 +232,6 @@ $.fn.searchSuggestions = function(results) {
             $self.focus();
         }
     });
-
-    function highlight(val) {
-        // If an item starts with `val`, wrap the matched text with boldness.
-        $results.find('ul a').highlightTerm(val);
-        $results.addClass('visible');
-        if (!$results.find('.sel').length) {
-            pageUp();
-        }
-    }
 
     return this;
 };

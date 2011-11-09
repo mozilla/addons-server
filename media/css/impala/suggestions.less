@@ -3,7 +3,7 @@
 #site-search-suggestions {
     .transition-property(~'bottom, opacity, visibility');
     .transition-duration(.3s);
-    font-size: 14px;
+    font: 13px/26px @sans-stack;
     height: 0;
     opacity: 0;
     position: absolute;
@@ -48,7 +48,6 @@
         background: no-repeat 3px 3px;
         .background-size(20px auto);
         display: block;
-        font: 13px/26px @sans-stack;
         overflow: hidden;
         padding: 0 4px 0 32px;
         text-decoration: none;
@@ -71,6 +70,11 @@
         }
         &.sunbird {
             background-position: 4px -103px;
+        }
+        .subtitle {
+            color: @note-gray;
+            font-size: 12px;
+            font-style: normal;
         }
     }
     a:hover,

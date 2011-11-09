@@ -357,7 +357,9 @@ def ajax_search_suggestions(request):
 
         # Applications.
         for a in amo.APP_USAGE:
-            if q_ in unicode(a.pretty).lower():
+            name_ = unicode(a.pretty).lower()
+            word_matches = [w for w in q_.split() if name_ in w]
+            if q_ in name_ or word_matches:
                 results.append({
                     'id': a.id,
                     'name': _(u'{0} Add-ons').format(a.pretty),
