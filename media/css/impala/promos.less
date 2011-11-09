@@ -28,13 +28,9 @@
         width: 60px;
         color: #ccc;
         text-indent: -1000em;
-        opacity: 0;
         z-index: 1;
-        -moz-transition-property: background-color, color, opacity;
+        -moz-transition-property: background-color, color;
         -moz-transition-duration: .2s;
-    }
-    &:hover .control {
-        opacity: 1;
     }
     .prev { left: -30px; }
     .next { right: -30px; }
@@ -58,8 +54,8 @@
         -moz-transition-duration: .2s;
     }
     .control:hover:after {
-        border-color: #D16B00;
-        color: #D16B00;
+        border-color: @orange;
+        color: @orange;
     }
     .prev:after {
         content: '\00ab';
