@@ -5,7 +5,7 @@
 {% endif %}
 {% set search_form = SimpleSearchForm(request, search_cat) %}
 <form id="search" action="{{ search_url }}">
-  <input id="search-q" type="text" name="q" required autocomplete="off" title=""
+  <input id="search-q" type="text" name="q" autocomplete="off" title=""
          class="text {% if not search_form.q.data %}placeholder{% endif %}"
          placeholder="{{ search_form.placeholder() }}"
          value="{{ search_form.q.data or '' }}">
