@@ -15,6 +15,7 @@ from django.utils import translation, encoding
 from django.utils.encoding import smart_str
 
 import jingo
+import waffle
 from tower import ugettext as _, ugettext_lazy
 from caching.base import cached_with
 
@@ -208,6 +209,25 @@ class AddonDetailView(APIView):
 
 
 def guid_search(request, api_version, guids):
+    if waffle.switch_is_active('new-guid-search'):
+        return _guid_search_caching(request, api_version, guids)
+    else:
+        return _guid_search_old(request, api_version, guids)
+
+
+def _guid_search_old(request, api_version, guids):
+    guids = [g.strip() for g in guids.split(',')] if guids else []
+    results = Addon.objects.filter(guid__in=guids, disabled_by_user=False,
+                                   status__in=SEARCHABLE_STATUSES)
+    compat = (CompatOverride.objects.filter(guid__in=guids)
+              .transform(CompatOverride.transformer))
+    return render_xml(request, 'api/search.xml',
+                      {'results': results, 'total': len(results),
+                       'compat': compat,
+                       'api_version': api_version, 'api': api})
+
+
+def _guid_search_caching(request, api_version, guids):
     def guid_search_cache_key(guid):
         key = 'guid_search:%s:%s' % (api_version, guid)
         return hashlib.md5(smart_str(key)).hexdigest()
