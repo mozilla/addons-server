@@ -1,0 +1,24 @@
+{# these are custom attributes on <div class="install ..."> found in 
+ # apps/addons/templates/addons/impala/button.html and 
+ # apps/addons/templates/addons/mobile/button.html #}
+  data-addon="{{ addon.id }}"
+  data-icon="{{ addon.icon_url }}"
+  data-developers="{{ addon.meet_the_dev_url() }}"
+  data-name="{{ addon.name }}"
+  {{ b.attrs()|xmlattr }}
+{% if waffle.switch('marketplace') and addon.can_be_purchased() %}
+  data-purchase="{{ shared_url('addons.purchase', addon) }}?"
+  data-start-purchase="{{ shared_url('addons.purchase.start', addon) }}"
+  data-cost="{{ addon.premium.get_price() }}"
+  data-login-url="{{ url('users.login_modal') }}"
+{% endif %}
+{% if compat %}
+  data-min="{{ compat.min.version }}"
+  data-max="{{ compat.max.version }}"
+{% endif %}
+{% if addon.is_webapp() %}
+  data-manifest-url="{% if (addon.is_premium() and addon.has_purchased(amo_user)) or (not addon.is_premium()) -%}
+    {{ addon.manifest_url }}
+  {%- endif %}"
+  data-record-url="{{ url('apps.record', addon.app_slug) }}"
+{% endif %}

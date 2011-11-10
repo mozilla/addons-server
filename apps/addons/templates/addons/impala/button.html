@@ -4,28 +4,7 @@
 
 <div class="install-shell">
 <div class="install {{ b.install_class|join(' ') }}"
-     data-addon="{{ addon.id }}"
-     data-icon="{{ addon.icon_url }}"
-     data-developers="{{ addon.meet_the_dev_url() }}"
-     data-name="{{ addon.name }}"
-     {{ b.attrs()|xmlattr }}
-  {% if waffle.switch('marketplace') and addon.can_be_purchased() %}
-     data-purchase="{{ shared_url('addons.purchase', addon) }}?"
-     data-start-purchase="{{ shared_url('addons.purchase.start', addon) }}"
-     data-cost="{{ addon.premium.get_price() }}"
-     data-login-url="{{ url('users.login_modal') }}"
-  {% endif %}
-  {% if compat %}
-     data-min="{{ compat.min.version }}"
-     data-max="{{ compat.max.version }}"
-  {% endif %}
-  {% if addon.is_webapp() %}
-     data-manifest-url="{% if (addon.is_premium() and addon.has_purchased(amo_user)) or (not addon.is_premium()) -%}
-        {{ addon.manifest_url }}
-     {%- endif %}"
-     data-record-url="{{ url('apps.record', addon.app_slug) }}"
-  {% endif %}
-  >
+     {% include 'addons/includes/button_data_attributes.html' %}>
   <p class="install-button">
     {% set links = b.links() %}
     {% if b.is_premium and not b.can_be_purchased %}
@@ -55,36 +34,7 @@
     {% endif %}
     {% for link in links %}
       {% set extra = "platform " + link.os.shortname if link.os else "" %}
-      <a class="button {{ b.button_class|join(' ') }} {{ extra }}"
-         {% if not addon.is_premium() and not addon.is_webapp() %}
-           data-hash="{{ link.file.hash }}"
-         {% endif %}
-         {% if b.show_warning and not addon.is_webapp() %}
-           href="{{ b.addon.get_url_path() }}"
-           data-realurl="{{ link.url }}"
-         {% elif waffle.switch('marketplace') and addon.can_be_purchased() %}
-           href="{{ shared_url('addons.purchase', addon) }}"
-           {% if not addon.is_webapp() %}
-             data-realurl="{{ link.url }}"
-           {% endif %}
-         {% elif addon.is_webapp() %}
-            href="#"
-         {% else %}
-            href="{{ link.url }}"
-         {% endif %}>
-        <b></b>
-        <span>
-          {{ link.text }}
-          {% if link.os %}
-            <span class="os" data-os="{{ link.os.name }}">
-              {% if not (b.show_eula or b.show_contrib) %}
-                {# L10n: {0} is a platform name like Windows or Mac OS X. #}
-                {{ _('for {0}')|f(link.os.name) }}
-              {% endif %}
-            </span>
-          {% endif %}
-        </span>
-      </a>
+      {% include 'addons/includes/install_button.html' %}
     {% endfor %}
   </p>
 </div> {# install #}

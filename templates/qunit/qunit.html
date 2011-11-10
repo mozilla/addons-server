@@ -234,4 +234,355 @@
     {% include 'addons/includes/apps_error_msg.html' %}
   </div>
 
+  <!-- Install button tests - it's possible not all combinations are being tested here -->
+  <!-- app, warning, mobile -->
+  <div id="install-button-warning">
+    {% with addon={'is_premium': Mock(return_value=False),
+                   'is_webapp': Mock(return_value=True),
+                   'can_be_purchased': Mock(return_value=False)},
+
+            b={'show_warning': True,
+               'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
+               'show_eula': False,
+               'show_contrib': False,
+               'xpiurl': 'http://xpiurl.com',
+               'button_class': ['download', 'prominent']},
+
+            link={'url': 'http://testurl.com',
+                  'os': {'name': 'windows'},
+                  'file': {'hash': '1337'}},
+
+            shared_url=Mock(return_value='http://sharedurl.com'),
+            waffle={'switch': Mock(return_value=False)},
+            request={'MOBILE': True} %}
+
+      {% include 'addons/includes/install_button.html' %}
+    {% endwith %}
+  </div>
+
+  <!-- app, eula, mobile -->
+  <div id="install-button-eula">
+    {% with addon={'is_premium': Mock(return_value=False),
+                   'is_webapp': Mock(return_value=True),
+                   'can_be_purchased': Mock(return_value=False)},
+
+            b={'show_warning': False,
+               'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
+               'show_eula': True,
+               'show_contrib': False,
+               'xpiurl': 'http://xpiurl.com',
+               'button_class': ['download', 'prominent']},
+
+            link={'url': 'http://testurl.com',
+                  'os': {'name': 'windows'},
+                  'file': {'hash': '1337'}},
+
+            shared_url=Mock(return_value='http://sharedurl.com'),
+            waffle={'switch': Mock(return_value=False)},
+            request={'MOBILE': True} %}
+
+      {% include 'addons/includes/install_button.html' %}
+    {% endwith %}
+  </div>
+
+  <!-- premium, mobile -->
+  <div id="install-button-premium">
+    {% with addon={'is_premium': Mock(return_value=True),
+                   'is_webapp': Mock(return_value=False),
+                   'can_be_purchased': Mock(return_value=False)},
+
+            b={'show_warning': False,
+               'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
+               'show_eula': False,
+               'show_contrib': False,
+               'xpiurl': 'http://xpiurl.com',
+               'button_class': ['download', 'prominent']},
+
+            link={'url': 'http://testurl.com',
+                  'os': {'name': 'windows'},
+                  'file': {'hash': '1337'}},
+
+            shared_url=Mock(return_value='http://sharedurl.com'),
+            waffle={'switch': Mock(return_value=False)},
+            request={'MOBILE': True} %}
+
+      {% include 'addons/includes/install_button.html' %}
+    {% endwith %}
+  </div>
+
+  <!-- contrib, mobile -->
+  <div id="install-button-contrib">
+    {% with addon={'is_premium': Mock(return_value=False),
+                   'is_webapp': Mock(return_value=False),
+                   'can_be_purchased': Mock(return_value=False)},
+
+            b={'show_warning': False,
+               'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
+               'show_eula': False,
+               'show_contrib': True,
+               'xpiurl': 'http://xpiurl.com',
+               'button_class': ['download', 'prominent']},
+
+            link={'url': 'http://testurl.com',
+                  'os': {'name': 'windows'},
+                  'file': {'hash': '1337'}},
+
+            shared_url=Mock(return_value='http://sharedurl.com'),
+            waffle={'switch': Mock(return_value=False)},
+            request={'MOBILE': True} %}
+
+      {% include 'addons/includes/install_button.html' %}
+    {% endwith %}
+  </div>
+
+  <!-- can be purchased, mobile -->
+  <div id="install-button-purchasable">
+    {% with addon={'is_premium': Mock(return_value=False),
+                   'is_webapp': Mock(return_value=False),
+                   'can_be_purchased': Mock(return_value=True)},
+
+            b={'show_warning': False,
+               'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
+               'show_eula': False,
+               'show_contrib': False,
+               'xpiurl': 'http://xpiurl.com',
+               'button_class': ['download', 'prominent']},
+
+            link={'url': 'http://testurl.com',
+                  'os': {'name': 'windows'},
+                  'file': {'hash': '1337'}},
+
+            shared_url=Mock(return_value='http://sharedurl.com'),
+            waffle={'switch': Mock(return_value=False)},
+            request={'MOBILE': True} %}
+
+      {% include 'addons/includes/install_button.html' %}
+    {% endwith %}
+  </div>
+
+  <!-- marketplace, mobile, can be purchased -->
+  <div id="install-button-marketplace">
+    {% with addon={'is_premium': Mock(return_value=False),
+                   'is_webapp': Mock(return_value=False),
+                   'can_be_purchased': Mock(return_value=True)},
+
+            b={'show_warning': False,
+               'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
+               'show_eula': False,
+               'show_contrib': False,
+               'xpiurl': 'http://xpiurl.com',
+               'button_class': ['download', 'prominent']},
+
+            link={'url': 'http://testurl.com',
+                  'os': {'name': 'windows'},
+                  'file': {'hash': '1337'}},
+
+            shared_url=Mock(return_value='http://sharedurl.com'),
+            waffle={'switch': Mock(return_value=True)},
+            request={'MOBILE': True} %}
+
+      {% include 'addons/includes/install_button.html' %}
+    {% endwith %}
+  </div>
+
+  <!-- app, marketplace, mobile, can be purchased -->
+  <div id="install-button-app-marketplace">
+    {% with addon={'is_premium': Mock(return_value=False),
+                   'is_webapp': Mock(return_value=True),
+                   'can_be_purchased': Mock(return_value=True)},
+
+            b={'show_warning': False,
+               'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
+               'show_eula': False,
+               'show_contrib': False,
+               'xpiurl': 'http://xpiurl.com',
+               'button_class': ['download', 'prominent']},
+
+            link={'url': 'http://testurl.com',
+                  'os': {'name': 'windows'},
+                  'file': {'hash': '1337'}},
+
+            shared_url=Mock(return_value='http://sharedurl.com'),
+            waffle={'switch': Mock(return_value=True)},
+            request={'MOBILE': True} %}
+
+      {% include 'addons/includes/install_button.html' %}
+    {% endwith %}
+  </div>
+
+  <!-- app, premium, mobile -->
+  <div id="install-button-app-premium">
+    {% with addon={'is_premium': Mock(return_value=True),
+                   'is_webapp': Mock(return_value=True),
+                   'can_be_purchased': Mock(return_value=False)},
+
+            b={'show_warning': False,
+               'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
+               'show_eula': False,
+               'show_contrib': False,
+               'xpiurl': 'http://xpiurl.com',
+               'button_class': ['download', 'prominent']},
+
+            link={'url': 'http://testurl.com',
+                  'os': {'name': 'windows'},
+                  'file': {'hash': '1337'}},
+
+            shared_url=Mock(return_value='http://sharedurl.com'),
+            waffle={'switch': Mock(return_value=False)},
+            request={'MOBILE': True} %}
+
+      {% include 'addons/includes/install_button.html' %}
+    {% endwith %}
+  </div>
+
+  <!-- app, contrib, mobile -->
+  <div id="install-button-app-contrib">
+    {% with addon={'is_premium': Mock(return_value=False),
+                   'is_webapp': Mock(return_value=True),
+                   'can_be_purchased': Mock(return_value=False)},
+
+            b={'show_warning': False,
+               'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
+               'show_eula': False,
+               'show_contrib': True,
+               'xpiurl': 'http://xpiurl.com',
+               'button_class': ['download', 'prominent']},
+
+            link={'url': 'http://testurl.com',
+                  'os': {'name': 'windows'},
+                  'file': {'hash': '1337'}},
+
+            shared_url=Mock(return_value='http://sharedurl.com'),
+            waffle={'switch': Mock(return_value=False)},
+            request={'MOBILE': True} %}
+
+      {% include 'addons/includes/install_button.html' %}
+    {% endwith %}
+  </div>
+
+  <!-- app, can be purchased, mobile -->
+  <div id="install-button-app-purchasable">
+    {% with addon={'is_premium': Mock(return_value=False),
+                   'is_webapp': Mock(return_value=True),
+                   'can_be_purchased': Mock(return_value=True)},
+
+            b={'show_warning': False,
+                'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
+                'show_eula': False,
+                'show_contrib': False,
+                'xpiurl': 'http://xpiurl.com',
+                'button_class': ['download', 'prominent']},
+
+            link={'url': 'http://testurl.com',
+                  'os': {'name': 'windows'},
+                  'file': {'hash': '1337'}},
+
+            shared_url=Mock(return_value='http://sharedurl.com'),
+            waffle={'switch': Mock(return_value=False)},
+            request={'MOBILE': True} %}
+
+      {% include 'addons/includes/install_button.html' %}
+    {% endwith %}
+  </div>
+
+  <!-- marketplace, app, warning, mobile -->
+  <div id="install-button-mp-warning">
+    {% with addon={'is_premium': Mock(return_value=False),
+                   'is_webapp': Mock(return_value=True),
+                   'can_be_purchased': Mock(return_value=False)},
+
+            b={'show_warning': True,
+               'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
+               'show_eula': False,
+               'show_contrib': False,
+               'xpiurl': 'http://xpiurl.com',
+               'button_class': ['download', 'prominent']},
+
+            link={'url': 'http://testurl.com',
+                  'os': {'name': 'windows'},
+                  'file': {'hash': '1337'}},
+
+            shared_url=Mock(return_value='http://sharedurl.com'),
+            waffle={'switch': Mock(return_value=True)},
+            request={'MOBILE': True} %}
+
+      {% include 'addons/includes/install_button.html' %}
+    {% endwith %}
+  </div>
+
+  <!-- marketplace, app, eula, mobile -->
+  <div id="install-button-mp-eula">
+    {% with addon={'is_premium': Mock(return_value=False),
+                   'is_webapp': Mock(return_value=True),
+                   'can_be_purchased': Mock(return_value=False)},
+
+            b={'show_warning': False,
+               'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
+               'show_eula': True,
+               'show_contrib': False,
+               'xpiurl': 'http://xpiurl.com',
+               'button_class': ['download', 'prominent']},
+
+            link={'url': 'http://testurl.com',
+                  'os': {'name': 'windows'},
+                  'file': {'hash': '1337'}},
+
+            shared_url=Mock(return_value='http://sharedurl.com'),
+            waffle={'switch': Mock(return_value=True)},
+            request={'MOBILE': True} %}
+
+      {% include 'addons/includes/install_button.html' %}
+    {% endwith %}
+  </div>
+
+  <!-- marketplace, premium, mobile -->
+  <div id="install-button-mp-premium">
+    {% with addon={'is_premium': Mock(return_value=True),
+                   'is_webapp': Mock(return_value=False),
+                   'can_be_purchased': Mock(return_value=False)},
+
+            b={'show_warning': False,
+               'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
+               'show_eula': False,
+               'show_contrib': False,
+               'xpiurl': 'http://xpiurl.com',
+               'button_class': ['download', 'prominent']},
+
+            link={'url': 'http://testurl.com',
+                  'os': {'name': 'windows'},
+                  'file': {'hash': '1337'}},
+
+            shared_url=Mock(return_value='http://sharedurl.com'),
+            waffle={'switch': Mock(return_value=True)},
+            request={'MOBILE': True} %}
+
+      {% include 'addons/includes/install_button.html' %}
+    {% endwith %}
+  </div>
+
+  <!-- marketplace, contrib, mobile -->
+  <div id="install-button-mp-contrib">
+    {% with addon={'is_premium': Mock(return_value=False),
+                   'is_webapp': Mock(return_value=False),
+                   'can_be_purchased': Mock(return_value=False)},
+
+            b={'show_warning': False,
+               'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
+               'show_eula': False,
+               'show_contrib': True,
+               'xpiurl': 'http://xpiurl.com',
+               'button_class': ['download', 'prominent']},
+
+            link={'url': 'http://testurl.com',
+                  'os': {'name': 'windows'},
+                  'file': {'hash': '1337'}},
+
+            shared_url=Mock(return_value='http://sharedurl.com'),
+            waffle={'switch': Mock(return_value=True)},
+            request={'MOBILE': True} %}
+
+      {% include 'addons/includes/install_button.html' %}
+    {% endwith %}
+  </div>
+
 {% endblock %}

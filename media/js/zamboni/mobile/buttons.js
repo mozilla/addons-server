@@ -287,7 +287,7 @@
                     .removeClass('disabled')
                     .click(function(e) {
                         e.preventDefault();
-                        navigator.mozApps.install(manifestURL);
+                        navigator.mozApps.install(self.attr.manifest_url);
                     });
             } else {
                 // Attach something that says you can't install apps.
