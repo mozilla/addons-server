@@ -53,6 +53,7 @@ from market.models import AddonPremium
 import paypal
 from product_details import product_details
 from search.views import BaseAjaxSearch
+from stats.models import Contribution
 from translations.models import delete_translation
 from users.models import UserProfile
 from versions.models import Version
@@ -478,6 +479,34 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
 
 
 @dev_required(webapp=True)
+def issue_refund(request, addon_id, addon):
+    if request.method == 'POST':
+        txn_id = request.POST.get('transaction_id', None)
+        if 'issue' in request.POST:
+            get_object_or_404(Contribution, transaction_id=txn_id,
+                              type=amo.CONTRIB_PURCHASE)
+            paypal.refund(txn_id)
+            paypal_log.error('Refund issued for transaction %r' % (txn_id,))
+            messages.success(request, 'Refund issued.')
+            return redirect('devhub.addons')
+        else:
+            paypal_log.error('Refund declined for transaction %r' % (txn_id,))
+            messages.success(request, 'Refund declined.')
+            return redirect('devhub.addons')
+    else:
+        txn_id = request.GET.get('transaction_id', None)
+        c = get_object_or_404(Contribution, transaction_id=txn_id,
+                              type=amo.CONTRIB_PURCHASE)
+        return jingo.render(request, 'devhub/payments/issue-refund.html',
+                            {'refund_issued': False,
+                             'user': c.user.display_name,
+                             'addon_name': addon.name,
+                             'price': c.amount,
+                             'transaction_id': txn_id,
+                             'purchase_date': c.created})
+
+
+@dev_required
 @post_required
 def disable_payments(request, addon_id, addon, webapp=False):
     addon.update(wants_contributions=False)

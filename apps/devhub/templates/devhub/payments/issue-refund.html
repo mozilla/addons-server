@@ -1,0 +1,36 @@
+{% extends "devhub/base.html" %}
+
+{% block title %}{{ dev_page_title(_('Issue Refund')) }}{% endblock %}
+
+{% block content %}
+<header>
+  <h1>{{ _('Issue Refund') }}</h1>
+</header>
+<form method="post" id="issue-refund" class="item" action="">
+{% if transaction_id %}
+  {{ csrf() }}
+  <p>
+    {% trans %}
+    A refund was requested by {{ user }} for {{ addon_name }}.
+    {% endtrans %}
+  </p><p>
+    {% trans %}
+    Price: {{ price }}
+    {% endtrans %}
+  </p><p>
+    {% trans %}
+    Purchase date: {{ purchase_date }}
+    {% endtrans %}
+  </p><p>
+    <button type="submit" name="issue">
+      {{ _('Issue Refund') }}
+    </button>
+    <button type="submit" name="decline">
+      {{ _('Decline Refund') }}
+    </button>
+    <input type="hidden" name="transaction_id" value="{{ transaction_id }}">
+    {% else %}
+  <p>{{ _('No refundable transaction found.') }}</p>
+{% endif %}
+</form>
+{% endblock content %}

@@ -6,4 +6,4 @@ Price: {{ contribution.get_amount_locale() }}
 Reason given:
 {{ form.cleaned_data.text }}
 
-To approve or deny this request, click here: ...
+To approve or deny this request, click here: {{ refund_url }}

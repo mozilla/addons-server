@@ -1,7 +1,4 @@
 from functools import partial
-import base64
-import hashlib
-
 from django import http
 from django.conf import settings
 from django.db import IntegrityError
@@ -34,7 +31,7 @@ from amo.decorators import (json_view, login_required, no_login_required,
                             permission_required, write, post_required)
 from amo.forms import AbuseForm
 from amo.urlresolvers import reverse
-from amo.utils import send_mail
+from amo.utils import send_mail, urlparams
 from abuse.models import send_abuse_report
 from addons.models import Addon
 from addons.views import BaseFilter
@@ -782,12 +779,17 @@ def refund_reason(request, contribution, wizard):
     if request.method == 'POST':
         if form.is_valid():
             # if under 30 minutes, refund
-            # TODO(ashort): add in the logic for under 30 minutes.
+            # TODO(ashort): add in the logic for under 30 minutes
+            refund_url = urlparams(
+                reverse('devhub.issue_refund', [addon.slug]),
+                {"transaction_id": contribution.transaction_id})
+
             template = jingo.render_to_string(request,
                                 wizard.tpl('emails/refund-request.txt'),
                                 context={'addon': addon, 'form': form,
                                          'user': request.amo_user,
-                                         'contribution': contribution})
+                                         'contribution': contribution,
+                                         'refund_url': refund_url})
             log.info('Refund request sent by user: %s for addon: %s' %
                      (request.amo_user.pk, addon.pk))
             # L10n: %s is the addon name.

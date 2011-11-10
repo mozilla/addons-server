@@ -5,6 +5,7 @@ import socket
 from datetime import datetime, timedelta
 from decimal import Decimal
 from collections import namedtuple
+import urllib
 
 from django.conf import settings
 from django.utils.http import urlencode
@@ -40,6 +41,7 @@ from files.models import File, FileUpload, Platform
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import AddonPremium, Price
 from reviews.models import Review
+from stats.models import Contribution
 from translations.models import Translation
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, License, Version
@@ -1154,6 +1156,64 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
                          {'password': 'password'})
         assert not Addon.objects.filter(pk=self.addon.id).exists(), (
             "Unexpected: Addon shouldn't exist")
+
+
+class TestIssueRefund(amo.tests.TestCase):
+    fixtures = ('base/apps', 'base/users', 'base/addon_3615')
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=3615)
+        self.transaction_id = 'fake-txn-id'
+        self.client.login(username='del@icio.us', password='password')
+        self.user = UserProfile.objects.get(username='clouserw')
+        self.url = reverse('devhub.issue_refund', args=[self.addon.slug])
+
+    def makePurchase(self, uuid='123456', type=amo.CONTRIB_PURCHASE):
+        return Contribution.objects.create(uuid=uuid, addon=self.addon,
+                                           transaction_id=self.transaction_id,
+                                        user=self.user,
+                                        type=type)
+
+    def test_request_issue(self):
+        c = self.makePurchase()
+        r = self.client.get(self.url,
+                            data={'transaction_id': c.transaction_id})
+        doc = pq(r.content)
+        eq_(doc('#issue-refund button')[0].text.strip(), 'Issue Refund')
+        eq_(doc('#issue-refund button')[1].text.strip(), 'Decline Refund')
+        eq_(doc('#issue-refund input[name=transaction_id]').val(),
+            self.transaction_id)
+
+    def test_nonexistent_txn(self):
+        r = self.client.get(self.url, data={'transaction_id': 'none'})
+        eq_(r.status_code, 404)
+
+    @mock.patch('paypal.refund')
+    def test_issue(self, refund):
+        c = self.makePurchase()
+        r = self.client.post(self.url,
+                             data={'transaction_id': c.transaction_id,
+                                   'issue': '1'})
+        eq_(r.status_code, 302)
+        refund.assert_called_with(self.transaction_id)
+
+    @mock.patch('paypal.refund')
+    def test_decline(self, refund):
+        c = self.makePurchase()
+        r = self.client.post(self.url,
+                             data={'transaction_id': c.transaction_id,
+                                   'decline': ''})
+        eq_(r.status_code, 302)
+        assert not refund.called
+
+    @mock.patch('paypal.refund')
+    def test_non_refundable_txn(self, refund):
+        c = self.makePurchase('56789', amo.CONTRIB_VOLUNTARY)
+        r = self.client.post(self.url,
+                             data={'transaction_id': c.transaction_id,
+                                   'issue': ''})
+        eq_(r.status_code, 404)
+        assert not refund.called
 
 
 class TestDelete(amo.tests.TestCase):
