@@ -1,17 +1,17 @@
 {% extends "impala/base.html" %}
 
 {% set title = _('Report user {0}')|f(profile.name) %}
-{% block bodyclass %}gutter{% endblock %}
+{% block bodyclass %}gutter abuse{% endblock %}
 {% block title %}{{ page_title(title) }}{% endblock %}
 {% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}
 {% block content %}
-
 <header>
   {{ impala_breadcrumbs([(profile.get_url_path(), profile.name),
                   (None, _('Report user'))]) }}
-</header>
-<section class='primary'>
   <h1>{{ title }}</h1>
+</header>
+
+<section class='primary island c prettyform'>
   {{ user_report_abuse(hide=False, profile=profile) }}
 </section>
 {% endblock %}

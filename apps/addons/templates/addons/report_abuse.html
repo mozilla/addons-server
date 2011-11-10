@@ -1,4 +1,5 @@
 <form method="post" action="{{ shared_url('addons.abuse', addon) }}">
+  {{ csrf() }}
   <fieldset class="abuse">
     {% if hide %}
     <legend><a href="{{ url('devhub.docs', 'policies', 'contact') }}"
@@ -19,14 +20,13 @@
         {% endif %}
       </li>
       <li>
-        {{ csrf() }}
-        {% if abuse_form.has_recaptcha %}
-          {{ recaptcha(abuse_form) }}
-        {% endif %}
         {{ abuse_form.text }}
         {{ abuse_form.text.errors }}
       </li>
-      <li>
+      {% if abuse_form.has_recaptcha %}
+        {{ recaptcha(abuse_form) }}
+      {% endif %}
+      <li class="footer-submit">
         <button type="submit">{{ _('Send Report') }}</button>
         {% if hide %}
         {{ _('or') }} <button type="reset" class="link">{{ _('Cancel') }}</button>

@@ -1,16 +1,22 @@
 <form id="report-user-form" method="post"
       action="{{ url('users.abuse', profile.pk) }}">
   {{ csrf() }}
-  <p>{% trans %}Please describe why you are reporting this user,
-  such as for spam or an inappropriate picture.{% endtrans %}</p>
-  {% if abuse_form.has_recaptcha %}
-    {{ recaptcha(abuse_form) }}
-  {% endif %}
-  <p>
-    {{ abuse_form.text }}
-    {{ abuse_form.text.errors }}
-  </p>
-  <p>
-    <button type="submit">{{ _('Send Report') }}</button>
-  </p>
+  <fieldset class="abuse">
+    <ol>
+      <li>
+        <p>{% trans %}Please describe why you are reporting this user,
+        such as for spam or an inappropriate picture.{% endtrans %}</p>
+      </li>
+      <li>
+        {{ abuse_form.text }}
+        {{ abuse_form.text.errors }}
+      </li>
+      {% if abuse_form.has_recaptcha %}
+        {{ recaptcha(abuse_form) }}
+      {% endif %}
+      <li class="footer-submit">
+        <button type="submit">{{ _('Send Report') }}</button>
+      </li>
+    </ol>
+  </fieldset>
 </form>
