@@ -369,7 +369,7 @@ def _login(request, template=None, data=None, dont_redirect=False):
                       'to your email address mentioned above.') % url
             messages.error(request, _('Activation Email Sent'),  msg1)
             messages.info(request, _('Having Trouble?'), msg2,
-                          title_safe=True)
+                          title_safe=True, message_safe=True)
             data.update({'form': partial_form()})
             return jingo.render(request, template, data)
 
