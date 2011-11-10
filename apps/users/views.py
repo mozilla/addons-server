@@ -518,6 +518,7 @@ def report_abuse(request, user_id):
 
 
 @never_cache
+@no_login_required
 def password_reset_confirm(request, uidb36=None, token=None):
     """
     Pulled from django contrib so that we can add user into the form
