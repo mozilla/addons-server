@@ -27,9 +27,9 @@
 
 {% block site_header_title %}
 <h1 class="site-title prominent">
-  <a href="{{ url('devhub.index') }}" title="{{ _('Return to the DevHub homepage')|f(request.APP.pretty) }}">
+  <a href="{{ url('devhub.index') }}" title="{{ _('Return to the DevHub homepage') }}">
     {% if webapp %}
-      {% trans %}App Developer Preview{% endtrans %}
+      Apps Developer Preview
     {% else %}
       {# L10n: Text in small tag is smaller and on its own line #}
       {% trans %}

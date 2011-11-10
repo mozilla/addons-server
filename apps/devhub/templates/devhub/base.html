@@ -20,17 +20,27 @@
 
 {% block site_header_title %}
 <h1 class="site-title prominent">
-  <a title="{{ _('Return to the Add-on Developer Hub') }}"
-     href="{{ url('devhub.index') }}">
-     {# l10n: 'Developer Hub' is larger/emphasized and should appear in the <strong> tag' #}
-     {{ _('<small>Add-on</small> Developer Hub')|safe }}
+  <a href="{{ url('devhub.index') }}" title="{{ _('Return to the DevHub homepage') }}">
+    {% if webapp %}
+      Apps Developer Preview
+    {% else %}
+      {# L10n: Text in small tag is smaller and on its own line. #}
+      {% trans %}
+      <small>Add-on</small> Developer Hub
+      {% endtrans %}
+    {% endif %}
   </a>
 </h1>
 {% endblock %}
 
 {% block aux_nav %}
-  <li class="nomenu"><a class="return" href="{{ url('home') }}">
-    {{ _('Back to Add-ons') }}</a></li>
+  <li class="nomenu">
+  {% if webapp %}
+    <a class="return" href="{{ url('apps.home') }}">{{ _('Back to Apps') }}</a>
+  {% else %}
+    <a class="return" href="{{ url('home') }}">{{ _('Back to Add-ons') }}</a>
+  {% endif %}
+  </li>
 {% endblock %}
 
 {% block navbar %}

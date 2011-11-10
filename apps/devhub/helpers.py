@@ -32,7 +32,7 @@ def dev_page_title(context, title=None, addon=None):
     else:
         devhub = _('Developer Hub')
         title = '%s :: %s' % (title, devhub) if title else devhub
-    return page_title(context, title)
+    return page_title(context, title, force_webapps=context.get('webapp'))
 
 
 @register.function

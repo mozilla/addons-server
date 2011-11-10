@@ -63,9 +63,9 @@
         <div id="global-header-tab">
           <a href="http://mozilla.org/"><img src="{{ media('img/zamboni/mozilla-tab.png') }}"></a>
         </div>
-        <div class="amo-header c">
-          <nav id="aux-nav" role="navigation" class="menu-nav">
-            <ul class="c">
+        <div class="amo-header">
+          <nav id="aux-nav" role="navigation" class="menu-nav c">
+            <ul>
               {% if not settings.READ_ONLY %}
                 {% include "impala/user_login.html" %}
               {% endif %}

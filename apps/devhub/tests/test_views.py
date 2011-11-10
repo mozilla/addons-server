@@ -149,7 +149,18 @@ class TestDashboard(HubTest):
     def setUp(self):
         super(TestDashboard, self).setUp()
         self.url = reverse('devhub.addons')
+        self.apps_url = reverse('devhub.apps')
         eq_(self.client.get(self.url).status_code, 200)
+
+    def test_addons_page_title(self):
+        eq_(pq(self.client.get(self.url).content)('title').text(),
+            'Manage My Add-ons :: Developer Hub :: Add-ons for Firefox')
+
+    @mock.patch.object(settings, 'APP_PREVIEW', False)
+    def test_apps_page_title(self):
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+        eq_(pq(self.client.get(self.apps_url).content)('title').text(),
+            'Manage My Apps :: Developer Hub :: Apps Marketplace')
 
     def get_action_links(self, addon_id):
         r = self.client.get(self.url)
@@ -216,7 +227,7 @@ class TestDashboard(HubTest):
         waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
         app = Addon.objects.get(id=self.clone_addon(1)[0])
         app.update(type=amo.ADDON_WEBAPP)
-        doc = pq(self.client.get(reverse('devhub.apps')).content)
+        doc = pq(self.client.get(self.apps_url).content)
         item = doc('.item[data-addonid=%s]' % app.id)
         assert item.find('p.downloads'), 'Expected weekly downloads'
         assert not item.find('p.users'), 'Unexpected ADU'
@@ -238,7 +249,7 @@ class TestDashboard(HubTest):
         waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
         app = Addon.objects.get(id=self.clone_addon(1)[0])
         app.update(type=amo.ADDON_WEBAPP, status=amo.STATUS_NULL)
-        doc = pq(self.client.get(reverse('devhub.apps')).content)
+        doc = pq(self.client.get(self.apps_url).content)
         assert doc('.item[data-addonid=%s] p.incomplete' % app.id), (
             'Expected message about incompleted add-on')
 
@@ -2932,6 +2943,11 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
 
 class TestCreateWebApp(BaseWebAppTest):
+
+    @mock.patch.object(settings, 'APP_PREVIEW', False)
+    def test_page_title(self):
+        eq_(pq(self.client.get(self.url).content)('title').text(),
+            'Step 2 :: Developer Hub :: Apps Marketplace')
 
     def test_post_app_redirect(self):
         r = self.post()

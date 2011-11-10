@@ -83,22 +83,8 @@ body {
 
 .site-title {
     padding-top: 16px;
-    max-width: 512px;
+    max-width: 600px;
     margin-bottom: 0;
-}
-
-.developer-hub .site-title {
-    padding-top: 20px;
-}
-
-.developer-hub .site-title small {
-    display: block;
-}
-
-.developer-hub .site-title strong {
-    display: block;
-    line-height: 40px;
-    font-size: 48px;
 }
 
 html[lang=it] .site-title a {
