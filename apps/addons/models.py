@@ -1636,7 +1636,7 @@ class CompatOverride(amo.models.ModelBase):
             item = Range(first.override_type(), first.min_version,
                          first.max_version, [])
             for compat in compats:
-                app = AppRange(amo.APP_IDS[compat.app_id],
+                app = AppRange(amo.APPS_ALL[compat.app_id],
                                compat.min_app_version, compat.max_app_version)
                 item.apps.append(app)
             rv.append(item)
