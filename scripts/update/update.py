@@ -103,7 +103,8 @@ def deploy(ctx):
     checkin_changes()
     deploy_app()
     update_celery()
-    ctx.local('python2.6 manage.py cron cleanup_validation_results')
+    with ctx.lcd(settings.SRC_DIR):
+        ctx.local('python2.6 manage.py cron cleanup_validation_results')
 
 
 @task
