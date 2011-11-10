@@ -636,6 +636,16 @@ class TestGuidSearch(TestCase):
         # Make sure the <addon_compatibility> blocks are there.
         eq_(['3615'], [a.attrib['id'] for a in dom('addon_compatibility')])
 
+
+    def test_xss(self):
+        Addon.objects.create(guid='test@xss', type=amo.ADDON_EXTENSION,
+                             status=amo.STATUS_PUBLIC,
+                             name='<script>alert("test");</script>')
+        r = make_call('search/guid:test@xss')
+        assert '<script>alert' not in r.content
+        assert '&lt;script&gt;alert' in r.content
+
+
     def test_block_inactive(self):
         Addon.objects.filter(id=6113).update(disabled_by_user=True)
         r = make_call('search/guid:{22870005-adef-4c9d-ae36-d0e1f2f27e5a},'
