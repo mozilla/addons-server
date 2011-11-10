@@ -1,1 +1,1 @@
-INSERT INTO waffle_switch (name, active) VALUES ('new-guid-search', 0)
+INSERT INTO waffle_switch (name, active) VALUES ('new-guid-search', 0);
