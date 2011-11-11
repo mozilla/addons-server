@@ -1,4 +1,6 @@
 from functools import partial
+import base64
+import hashlib
 
 from django import http
 from django.conf import settings
@@ -12,6 +14,8 @@ from django.utils.decorators import method_decorator
 from django.utils.encoding import smart_str
 from django.utils.http import base36_to_int
 from django.contrib.auth.tokens import default_token_generator
+
+from django_browserid.auth import BrowserIDBackend
 
 import commonware.log
 import jingo
@@ -266,6 +270,33 @@ def _clean_next_url(request):
     return request
 
 
+def browserid_authenticate(assertion):
+    """
+    Verify a BrowserID login attempt. If the BrowserID assertion is
+    good, but no account exists on AMO, create one.
+    """
+    backend = BrowserIDBackend()
+    result = backend.verify(assertion, settings.SITE_URL)
+    if not result:
+        return None
+    email = result['email']
+    users = UserProfile.objects.filter(email=email)
+    if len(users) == 1:
+        users[0].user.backend = 'django_browserid.auth.BrowserIDBackend'
+        return users[0]
+    # store the username as a base64 encoded sha1 of the email address
+    # this protects against data leakage because usernames are often
+    # treated as public identifiers (so we can't use the email address).
+    username = base64.urlsafe_b64encode(
+        hashlib.sha1(email).digest()).rstrip('=')
+    profile = UserProfile.objects.create(username=username, email=email)
+    user = profile.create_django_user()
+    profile.user.backend = 'django_browserid.auth.BrowserIDBackend'
+    profile.user.save()
+    profile.save()
+    return profile
+
+
 @anonymous_csrf
 @post_required
 @no_login_required
@@ -275,8 +306,7 @@ def browserid_login(request):
         if request.user.is_authenticated():
             return http.HttpResponse(status=200)
         with statsd.timer('auth.browserid.verify'):
-            user = auth.authenticate(assertion=request.POST['assertion'],
-                                     host=settings.SITE_URL)
+            user = auth.authenticate(assertion=request.POST['assertion'])
         if user is not None:
             profile = UserProfile.objects.get(user=user)
             if profile.needs_tougher_password:

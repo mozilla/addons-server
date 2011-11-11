@@ -473,6 +473,22 @@ class TestLogin(UserViewBase):
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('httplib2.Http.request')
+    def test_browserid_no_account(self, http_request):
+        """
+        BrowserID login for an email address with no account creates a
+        new account.
+        """
+        email = 'newuser@example.com'
+        http_request.return_value = (200, json.dumps({'status': 'okay',
+                                                      'email': email}))
+        res = self.client.post(reverse('users.browserid_login'),
+                               data=dict(assertion='fake-assertion',
+                                         audience='fakeamo.org'))
+        eq_(res.status_code, 200)
+        eq_(len(UserProfile.objects.filter(email=email)), 1)
+
+    @patch.object(waffle, 'switch_is_active', lambda x: True)
+    @patch('httplib2.Http.request')
     def test_browserid_login_failure(self, http_request):
         """
         A failure response from BrowserID results in login failure.
