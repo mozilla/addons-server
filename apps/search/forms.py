@@ -256,7 +256,6 @@ APP_SORT_CHOICES = (
     ('created', _lazy(u'Newest')),
     # --
     ('name', _lazy(u'Name')),
-    ('hotness', _lazy(u'Up & Coming')),
 )
 
 
