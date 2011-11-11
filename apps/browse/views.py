@@ -1,7 +1,5 @@
 import collections
 
-from django import http
-from django.db.models import Q
 from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import cache_page
@@ -15,6 +13,7 @@ import amo
 import amo.models
 from amo.models import manual_order
 from amo.urlresolvers import reverse
+from amo.utils import urlparams
 from addons.models import Addon, AddonCategory, Category, FrozenAddon
 from addons.utils import FeaturedManager, CreaturedManager
 from addons.views import BaseFilter, ESBaseFilter
@@ -159,12 +158,16 @@ def themes(request, category=None):
 
 
 @mobile_template('browse/{mobile/}extensions.html')
-def extensions(request, category=None, template=None):
+def extensions(request, category=None, creatured=False, template=None):
     TYPE = amo.ADDON_EXTENSION
 
     if category is not None:
         q = Category.objects.filter(application=request.APP.id, type=TYPE)
         category = get_object_or_404(q, slug=category)
+        if creatured:
+            dst = urlparams(reverse('browse.extensions', args=[category.slug]),
+                            sort='featured')
+            return HttpResponsePermanentRedirect(dst)
 
     sort = request.GET.get('sort')
     if not sort and not request.MOBILE and category and category.count > 4:
@@ -198,7 +201,6 @@ def es_extensions(request, category=None, template=None):
     if ('sort' not in request.GET and not request.MOBILE
         and category and category.count > 4):
         return category_landing(request, category)
-
 
     qs = (Addon.search().filter(type=TYPE, app=request.APP.id,
                                 is_disabled=False,
@@ -260,6 +262,7 @@ def category_landing(request, category, addon_type=amo.ADDON_EXTENSION,
 
 def es_category_landing(request, category):
     # TODO: Match CategoryLandingFilter.
+    TYPE = amo.ADDON_EXTENSION
     qs = (Addon.search().filter(type=TYPE, app=request.APP.id,
                                 is_disabled=False,
                                 status__in=amo.REVIEWED_STATUSES))
@@ -267,17 +270,6 @@ def es_category_landing(request, category):
     return jingo.render(request, 'browse/impala/category_landing.html',
                         {'category': category, 'filter': filter,
                          'search_cat': '%s,0' % category.type})
-
-
-def creatured(request, category):
-    TYPE = amo.ADDON_EXTENSION
-    q = Category.objects.filter(application=request.APP.id, type=TYPE)
-    category = get_object_or_404(q, slug=category)
-    ids = AddonCategory.creatured_random(category, request.LANG)
-    addons = manual_order(Addon.objects.public(), ids)
-    return jingo.render(request, 'browse/creatured.html',
-                        {'addons': addons, 'category': category,
-                         'sorting': 'featured'})
 
 
 class PersonasFilter(BaseFilter):

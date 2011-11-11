@@ -7,8 +7,6 @@ from . import views
 
 impala_patterns = patterns('',
     # TODO: Impalacize these views.
-    url('^extensions/(?P<category>[^/]+)/featured$', views.creatured,
-        name='i_browse.creatured'),
     url('^personas/(?P<category>[^ /]+)?$', views.personas,
         name='i_browse.personas'),
     url('^language-tools/(?P<category>[^/]+)?$', views.language_tools,
@@ -35,8 +33,9 @@ urlpatterns = patterns('',
     url('^es/extensions/(?:(?P<category>[^/]+)/)?$', views.es_extensions,
         name='browse.es.extensions'),
 
-    url('^extensions/(?P<category>[^/]+)/featured$',
-        views.creatured, name='browse.creatured'),
+    # Redirects for old creatured page.
+    url('^extensions/(?P<category>[^/]+)/featured$', views.extensions,
+        {'creatured': True}),
 
     url('^extensions/(?:(?P<category_name>[^/]+)/)?format:rss$',
         CategoriesRss(), name='browse.extensions.rss'),
