@@ -306,12 +306,12 @@ def browserid_login(request):
         if request.user.is_authenticated():
             return http.HttpResponse(status=200)
         with statsd.timer('auth.browserid.verify'):
-            user = auth.authenticate(assertion=request.POST['assertion'])
-        if user is not None:
-            profile = UserProfile.objects.get(user=user)
+            profile = browserid_authenticate(
+                assertion=request.POST['assertion'])
+        if profile is not None:
             if profile.needs_tougher_password:
                 return http.HttpResponse("", status=400)
-            auth.login(request, user)
+            auth.login(request, profile.user)
             return http.HttpResponse(status=200)
     return http.HttpResponse(status=401)
 
