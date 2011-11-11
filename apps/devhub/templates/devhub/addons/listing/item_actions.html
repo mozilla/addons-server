@@ -8,7 +8,7 @@
       {{ _('Resume') }}</a>
     </li>
   {% endif %}
-  {% if check_addon_ownership(request, addon) %}
+  {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
     <li>
       <a href="#" class="delete-addon tooltip"
          title="{{ _('Delete this add-on.') }}">{{ _('Delete') }}</a>

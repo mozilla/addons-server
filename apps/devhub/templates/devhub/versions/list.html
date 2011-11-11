@@ -80,11 +80,13 @@
         {% endif %}
         {% if check_addon_ownership(request, addon) %}
           {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
-            <a href="{{ url('devhub.addons.enable', addon.slug) }}" id="enable-addon">{{ _('Enable Add-on') }}</a> &middot;
+            <a href="{{ url('devhub.addons.enable', addon.slug) }}" id="enable-addon">{{ _('Enable Add-on') }}</a>
           {% elif not addon.is_disabled %}
-            <a href="#" id="disable-addon">{{ _('Disable Add-on') }}</a> &middot;
+            <a href="#" id="disable-addon">{{ _('Disable Add-on') }}</a>
           {% endif %}
-          <a href="#" id="delete-addon">{{ _('Delete Add-on') }}</a>
+          {% if addon.can_be_deleted() %}
+            &middot; <a href="#" id="delete-addon">{{ _('Delete Add-on') }}</a>
+          {% endif %}
         {% endif %}
         {% set current = addon.current_version %}
         {% if current %}

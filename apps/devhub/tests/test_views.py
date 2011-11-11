@@ -1109,6 +1109,45 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
             res = self.client.get(url)
             eq_(res.status_code, 403)
 
+    def test_no_delete_link_premium_addon(self):
+        self.setup_premium()
+        doc = pq(self.client.get(reverse('devhub.versions',
+                                      args=[self.addon.slug])).content)
+        eq_(len(doc('#delete-addon')), 0)
+
+    def test_no_delete_premium_addon(self):
+        self.setup_premium()
+        res = self.client.post(reverse('devhub.addons.delete',
+                                       args=[self.addon.slug]),
+                               {'password': 'password'})
+        eq_(res.status_code, 302)
+        assert Addon.objects.filter(pk=self.addon.id).exists(), (
+            "Unexpected: Addon should exist")
+
+    def test_no_delete_link_app(self):
+        self.addon.update(type=amo.ADDON_WEBAPP)
+        doc = pq(self.client.get(reverse('devhub.versions',
+                                      args=[self.addon.slug])).content)
+        eq_(len(doc('#delete-addon')), 0)
+
+    def test_no_delete_app(self):
+        self.addon.update(type=amo.ADDON_WEBAPP)
+        res = self.client.post(reverse('devhub.addons.delete',
+                                       args=[self.addon.slug]),
+                               {'password': 'password'})
+        eq_(res.status_code, 302)
+        assert Addon.objects.filter(pk=self.addon.id).exists(), (
+            "Unexpected: Addon should exist")
+
+    def test_incomplete_app_delete(self):
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+        self.addon.update(type=amo.ADDON_WEBAPP, status=amo.STATUS_NULL)
+        res = self.client.post(reverse('devhub.addons.delete',
+                                       args=[self.addon.slug]),
+                               {'password': 'password'})
+        assert not Addon.objects.filter(pk=self.addon.id).exists(), (
+            "Unexpected: Addon shouldn't exist")
+
 
 class TestDelete(amo.tests.TestCase):
     fixtures = ('base/apps', 'base/users', 'base/addon_3615',

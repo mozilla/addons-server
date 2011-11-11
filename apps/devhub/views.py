@@ -280,6 +280,12 @@ def edit(request, addon_id, addon):
 
 @dev_required(owner_for_post=True)
 def delete(request, addon_id, addon):
+    # Database deletes only allowed for free or incomplete addons.
+    if not addon.can_be_deleted():
+        messages.error(request, _(
+            'Add-on cannot be deleted. Disable this add-on instead.'))
+        return redirect('devhub.versions', addon.slug)
+
     form = forms.DeleteForm(request)
     if form.is_valid():
         addon.delete('Removed via devhub')

@@ -805,6 +805,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def can_be_purchased(self):
         return self.is_premium() and self.status in amo.REVIEWED_STATUSES
 
+    def can_be_deleted(self):
+        """Only incomplete or free addons can be deleted."""
+        return self.is_incomplete() or not (
+            self.is_premium() or self.is_webapp())
+
     @classmethod
     def featured_random(cls, app, lang):
         return FeaturedManager.featured_ids(app, lang)
