@@ -485,7 +485,9 @@ class TestLogin(UserViewBase):
                                data=dict(assertion='fake-assertion',
                                          audience='fakeamo.org'))
         eq_(res.status_code, 200)
-        eq_(len(UserProfile.objects.filter(email=email)), 1)
+        profiles = UserProfile.objects.filter(email=email)
+        eq_(len(profiles), 1)
+        eq_(profiles[0].username, 'newuser')
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('httplib2.Http.request')

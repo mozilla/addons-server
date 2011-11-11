@@ -284,13 +284,9 @@ def browserid_authenticate(assertion):
     if len(users) == 1:
         users[0].user.backend = 'django_browserid.auth.BrowserIDBackend'
         return users[0]
-    # store the username as a base64 encoded sha1 of the email address
-    # this protects against data leakage because usernames are often
-    # treated as public identifiers (so we can't use the email address).
-    username = base64.urlsafe_b64encode(
-        hashlib.sha1(email).digest()).rstrip('=')
+    username = email.partition('@')[0]
     profile = UserProfile.objects.create(username=username, email=email)
-    user = profile.create_django_user()
+    profile.create_django_user()
     profile.user.backend = 'django_browserid.auth.BrowserIDBackend'
     profile.user.save()
     profile.save()
