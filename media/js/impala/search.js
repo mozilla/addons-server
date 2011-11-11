@@ -1,7 +1,13 @@
 $('#search').bind('autofill', function(e) {
+    var $this = $(this);
+
+    // Bail if we're searching within apps.
+    if (!$this.find('#id_appver').length) {
+        return;
+    }
+
     // Populate search form with browser version and OS.
-    var $this = $(this),
-        gv = z.getVars(location.search),
+    var gv = z.getVars(location.search),
         appver = '',
         platform = '',
         appver_defined = typeof gv.appver !== 'undefined',

@@ -10,8 +10,10 @@
          placeholder="{{ search_form.placeholder() }}"
          value="{{ query.q if query else '' }}">
   {{ search_form.cat }}
-  {{ search_form.appver }}
-  {{ search_form.platform }}
+  {% if search_form.cat.value() != 'apps' %}
+    {{ search_form.appver }}
+    {{ search_form.platform }}
+  {% endif %}
   <button class="search-button" type="submit" title="{{ _('Search') }}"
          src="{{ media('img/zamboni/global/btn-search.png') }}"></button>
   {% if search_cat != 'collections' and waffle.switch('search-suggestions') %}
