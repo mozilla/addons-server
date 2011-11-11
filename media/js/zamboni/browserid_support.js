@@ -19,7 +19,6 @@ function gotVerifiedEmail(assertion, redirectTo, domContext) {
                    url: $('.browserid-login', domContext).attr('data-url'),
                    type: 'POST',
                    data: {
-                       'audience': document.location.host,
                        'assertion': assertion,
                        'csrfmiddlewaretoken':
                        $('input[name=csrfmiddlewaretoken]').val()

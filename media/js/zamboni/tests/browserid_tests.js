@@ -10,15 +10,16 @@ asyncTest('Login failure (error from server)', function() {
     $('.browserid-login', sandbox).attr('data-url', '/browserid-login-fail');
     equal($(".primary .notification-box", sandbox).length, 0);
     browserIDRedirect = function() { start();};
-    $.mockjax({url: '/browserid-login-fail',
-               response: function() {},
-               status: 401});
+    var i = $.mockjax({url: '/browserid-login-fail',
+                       response: function() {},
+                       status: 401});
     gotVerifiedEmail("browserid-assertion", "/", sandbox).fail(
         function() {
             equal($(".primary .notification-box h2", sandbox).text().indexOf(
                   'BrowserID login failed. Maybe you don\'t have an account'
                 + ' under that email address?'), 0);
             $(".primary .notification-box", sandbox).remove();
+            $.mockjaxClear(i);
             start();
         });
 });
@@ -26,12 +27,13 @@ asyncTest('Login failure (error from server)', function() {
 test('Login cancellation', function() {
     var sandbox = this.sandbox;
     $('.browserid-login', sandbox).attr('data-url', '/browserid-login-cancel');
-    $.mockjax({url: '/browserid-login-cancel',
+    var i = $.mockjax({url: '/browserid-login-cancel',
                response: function () {
                    ok(false, "XHR call made when user cancelled");
                }});
     equal(gotVerifiedEmail(null, "/", sandbox), null);
     equal($(".primary .notification-box", sandbox).length, 0);
+    $.mockjaxClear(i);
 });
 
 asyncTest('Login success', function() {
@@ -50,6 +52,7 @@ asyncTest('Login success', function() {
     gotVerifiedEmail("browserid-assertion", "/", sandbox).done(
         function() {
             ok(ajaxCalled);
+            $.mockjaxClear(i);
             start();
         });
     });
@@ -60,15 +63,16 @@ asyncTest('Admin login failure', function() {
     $('.browserid-login', sandbox).attr('data-url', '/browserid-login-fail');
     equal($(".primary .notification-box", sandbox).length, 0);
     browserIDRedirect = function() { start();};
-    $.mockjax({url: '/browserid-login-fail',
-               response: function() {},
-               status: 405});
+    var i = $.mockjax({url: '/browserid-login-fail',
+                       response: function() {},
+                       status: 400});
     gotVerifiedEmail('browserid-assertion', '/', sandbox).fail(
         function() {
             equal($('.primary .notification-box h2', sandbox).text(),
                   'Admins and editors must provide a password'
                 + ' to log in.');
             $(".primary .notification-box", sandbox).remove();
+            $.mockjaxClear(i);
             start();
         });
 });

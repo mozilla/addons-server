@@ -276,7 +276,7 @@ def browserid_login(request):
             return http.HttpResponse(status=200)
         with statsd.timer('auth.browserid.verify'):
             user = auth.authenticate(assertion=request.POST['assertion'],
-                                     host=request.POST['audience'])
+                                     host=settings.SITE_URL)
         if user is not None:
             profile = UserProfile.objects.get(user=user)
             if profile.needs_tougher_password:
