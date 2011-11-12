@@ -151,7 +151,7 @@ textarea {
     }
     fieldset {
         margin: 0 0 1em;
-        padding: 0 1em 1em;
+        padding: 1em;
         &.prose {
             h2, h3 {
                 margin-top: .5em;
@@ -308,10 +308,11 @@ textarea {
         }
     }
     .footer-submit {
-        // The bottom area of the form with the submit button
+        /* The bottom area of the form with the submit button. */
         border-top: 1px dotted #C9DDF2;
         display: block;
-        padding-top: 1em;
+        margin-top: 1em;
+        padding-top: 1.5em;
         text-align: right;
         width: 100%;
         button {
@@ -322,6 +323,10 @@ textarea {
     a.delete {
         color: @error-red;
     }
+}
+
+.prettyform form:only-child fieldset {
+    margin-bottom: 0;
 }
 
 .html-rtl .prettyform {
