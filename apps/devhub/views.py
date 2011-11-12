@@ -1441,7 +1441,7 @@ def submit_media(request, addon_id, addon, step, webapp=False):
         # Special handling for webapps, where this is jumping to the done step
         if addon.is_webapp():
             addon.update(status=amo.STATUS_PENDING if
-                         settings.WEBAPPS_RESTRICTED else amo.STATUS_LITE)
+                         settings.WEBAPPS_RESTRICTED else amo.STATUS_PUBLIC)
             SubmitStep.objects.filter(addon=addon).delete()
             signals.submission_done.send(sender=addon)
 

@@ -84,7 +84,7 @@ class Webapp(Addon):
         # ** Unreviewed -- LITE
         # ** Rejected   -- REJECTED
         status = (amo.STATUS_PENDING if settings.WEBAPPS_RESTRICTED
-                  else amo.STATUS_LITE)
+                  else amo.STATUS_PUBLIC)
         return cls.uncached.filter(status=status)
 
     @property

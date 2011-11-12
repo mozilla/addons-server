@@ -1747,7 +1747,7 @@ class TestSubmitStep4(TestSubmitBase):
         self.assertRedirects(r, reverse('devhub.submit_apps.5',
                                         args=[self.get_addon().slug]))
         eq_(self.get_addon().status, amo.STATUS_PENDING if
-            settings.WEBAPPS_RESTRICTED else amo.STATUS_LITE)
+            settings.WEBAPPS_RESTRICTED else amo.STATUS_PUBLIC)
 
     def formset_new_form(self, *args, **kw):
         ctx = self.client.get(self.url).context

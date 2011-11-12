@@ -19,7 +19,7 @@ def release_webapps():
     if settings.WEBAPPS_RESTRICTED:
         print 'You should set `WEBAPPS_RESTRICTED = False` first.'
         return
-    flip_webapp_status(amo.STATUS_PENDING, amo.STATUS_LITE)
+    flip_webapp_status(amo.STATUS_PENDING, amo.STATUS_PUBLIC)
 
 
 @cronjobs.register
@@ -32,7 +32,7 @@ def restrict_webapps():
     if not settings.WEBAPPS_RESTRICTED:
         print 'You should set `WEBAPPS_RESTRICTED = True` first.'
         return
-    flip_webapp_status(amo.STATUS_LITE, amo.STATUS_PENDING)
+    flip_webapp_status(amo.STATUS_PUBLIC, amo.STATUS_PENDING)
 
 
 def flip_webapp_status(from_, to):
