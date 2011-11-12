@@ -11,6 +11,7 @@ from django.utils.http import urlencode
 import commonware.log
 
 import amo
+from amo.decorators import skip_cache
 from amo.helpers import absolutify
 import amo.models
 from amo.urlresolvers import reverse
@@ -37,6 +38,19 @@ class WebappManager(amo.models.ManagerBase):
     def listed(self):
         return self.reviewed().filter(_current_version__isnull=False,
                                       disabled_by_user=False)
+
+    @skip_cache
+    def pending(self):
+        # - Holding
+        # ** Approved   -- PUBLIC
+        # ** Unapproved -- PENDING
+        # - Open
+        # ** Reviewed   -- PUBLIC
+        # ** Unreviewed -- LITE
+        # ** Rejected   -- REJECTED
+        status = (amo.STATUS_PENDING if settings.WEBAPPS_RESTRICTED
+                  else amo.STATUS_PUBLIC)
+        return self.filter(status=status)
 
 
 # We use super(Addon, self) on purpose to override expectations in Addon that
@@ -73,19 +87,6 @@ class Webapp(Addon):
             if hostname.startswith('www.'):
                 hostname = hostname[4:]
         return hostname
-
-    @classmethod
-    def pending(cls):
-        # - Holding
-        # ** Approved   -- PUBLIC
-        # ** Unapproved -- PENDING
-        # - Open
-        # ** Reviewed   -- PUBLIC
-        # ** Unreviewed -- LITE
-        # ** Rejected   -- REJECTED
-        status = (amo.STATUS_PENDING if settings.WEBAPPS_RESTRICTED
-                  else amo.STATUS_PUBLIC)
-        return cls.uncached.filter(status=status)
 
     @property
     def origin(self):

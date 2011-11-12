@@ -309,7 +309,7 @@ def queue_counts(type=None, **kw):
               'fast_track': construct_query(ViewFastTrackQueue, **kw),
               'moderated': Review.objects.filter(reviewflag__isnull=False,
                                                  editorreview=1).count,
-              'apps': Webapp.pending().count}
+              'apps': Webapp.objects.pending().count}
     rv = {}
     if isinstance(type, basestring):
         return counts[type]()
@@ -369,7 +369,7 @@ def queue_moderated(request):
 
 @permission_required('Editors', 'Apps')
 def queue_apps(request):
-    qs = Webapp.pending().annotate(Count('abuse_reports'))
+    qs = Webapp.objects.pending().annotate(Count('abuse_reports'))
     return _queue(request, WebappQueueTable, 'apps', qs=qs)
 
 

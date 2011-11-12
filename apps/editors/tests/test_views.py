@@ -16,7 +16,8 @@ from waffle.models import Switch
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from amo.tests import formset, initial
+from amo.utils import urlparams
+from amo.tests import addon_factory, check_links, formset, initial
 from abuse.models import AbuseReport
 from addons.models import Addon, AddonDependency, AddonUser
 from applications.models import Application
@@ -28,6 +29,7 @@ from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
 from versions.models import Version, AppVersion, ApplicationsVersions
 from zadmin.models import set_config
+from webapps.models import Webapp
 from . test_models import create_addon_file
 
 
@@ -427,12 +429,6 @@ class QueueTest(EditorTest):
                         amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED)
         self.addon_file(u'Public', u'0.1',
                         amo.STATUS_PUBLIC, amo.STATUS_LISTED)
-        self.addon_file(u'App One', u'1.0',
-                        amo.STATUS_PENDING, amo.STATUS_PENDING,
-                        addon_type=amo.ADDON_WEBAPP)
-        self.addon_file(u'App Two', u'1.0',
-                        amo.STATUS_PENDING, amo.STATUS_PENDING,
-                        addon_type=amo.ADDON_WEBAPP)
 
     def addon_file(self, *args, **kw):
         a = create_addon_file(*args, **kw)
@@ -526,7 +522,7 @@ class TestQueueBasics(QueueTest):
         doc = pq(r.content)
         eq_(doc('#navbar li.top ul').eq(0).text(),
             'Fast Track (0) Full Reviews (2) Pending Updates (2) '
-            'Preliminary Reviews (2) Moderated Reviews (0) Apps (2)')
+            'Preliminary Reviews (2) Moderated Reviews (0) Apps (0)')
 
     def test_legacy_queue_sort(self):
         sorts = (
@@ -964,43 +960,61 @@ class TestModeratedQueue(QueueTest):
         eq_(doc('.review-saved button').length, 1)  # Only show one button.
 
 
-class TestAppQueue(QueueTest):
+class TestAppQueue(EditorTest):
 
+    def setUp(self):
+        self.login_as_editor()
+        self.apps = [addon_factory(name='XXX', type=amo.ADDON_WEBAPP),
+                     addon_factory(name='YYY', type=amo.ADDON_WEBAPP)]
+
+    def review_url(self, app, num):
+        return urlparams(reverse('editors.app_review', args=[app.slug]),
+                         num=num)
+
+    @patch.object(settings, 'WEBAPPS_RESTRICTED', False)
     def test_results(self):
         r = self.client.get(reverse('editors.queue_apps'))
         eq_(r.status_code, 200)
-        doc = pq(r.content)
-        row = doc('table.data-grid tr:eq(1)')
-        eq_(doc('td:eq(1)', row).text(), u'App One')
-        slug_one = self.versions[u'App One'].addon.slug
-        eq_(doc('td a:eq(0)', row).attr('href'),
-            reverse('editors.app_review', args=[slug_one]) + '?num=1')
-        row = doc('table.data-grid tr:eq(2)')
-        eq_(doc('td:eq(1)', row).text(), u'App Two')
-        slug_two = self.versions[u'App Two'].addon.slug
-        eq_(doc('a:eq(0)', row).attr('href'),
-            reverse('editors.app_review', args=[slug_two]) + '?num=2')
+        links = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(2) a')
+        apps = Webapp.objects.pending().order_by('created')
+        expected = [
+            (unicode(apps[0].name), self.review_url(apps[0], '1')),
+            (unicode(apps[1].name), self.review_url(apps[1], '2')),
+        ]
+        check_links(expected, links, verify=False)
 
+    @patch.object(settings, 'WEBAPPS_RESTRICTED', True)
+    def test_restricted_results(self):
+        Webapp.objects.update(status=amo.STATUS_PENDING)
+        r = self.client.get(reverse('editors.queue_apps'))
+        eq_(r.status_code, 200)
+        links = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(2) a')
+        apps = Webapp.objects.pending().order_by('created')
+        expected = [
+            (unicode(apps[0].name), self.review_url(apps[0], '1')),
+            (unicode(apps[1].name), self.review_url(apps[1], '2')),
+        ]
+        check_links(expected, links, verify=False)
+
+    @patch.object(settings, 'WEBAPPS_RESTRICTED', False)
     @patch('waffle.flag_is_active')
     def test_queue_count(self, flag):
         flag.return_value = True
         r = self.client.get(reverse('editors.queue_apps'))
         eq_(r.status_code, 200)
-        doc = pq(r.content)
-        eq_(doc('.tabnav li a:eq(5)').text(), u'Apps (2)')
+        eq_(pq(r.content)('.tabnav li a:eq(5)').text(), u'Apps (2)')
 
+    @patch.object(settings, 'WEBAPPS_RESTRICTED', False)
     def test_sort(self):
         r = self.client.get(reverse('editors.queue_apps'), {'sort': '-name'})
         eq_(r.status_code, 200)
-        doc = pq(r.content)
-        row = doc('table.data-grid tr:eq(1)')
-        eq_(doc('td:eq(1)', row).text(), u'App Two')
+        eq_(pq(r.content)('#addon-queue tbody tr').eq(0).attr('data-addon'),
+            str(self.apps[1].id))
 
+    @patch.object(settings, 'WEBAPPS_RESTRICTED', False)
     def test_redirect_to_review(self):
         r = self.client.get(reverse('editors.queue_apps'), data={'num': 2})
-        slug = self.versions['App Two'].addon.slug
-        url = reverse('editors.app_review', args=[slug])
-        self.assertRedirects(r, url + '?num=2')
+        self.assertRedirects(r, self.review_url(self.apps[1], num=2))
 
 
 class TestPerformance(QueueTest):
