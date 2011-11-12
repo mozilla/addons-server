@@ -74,7 +74,7 @@ textarea {
 
 .notification-box {
     .border-radius(5px);
-    .box-shadow(0 -1px 0 #D7E1ED inset, 0 1px 0 rgba(0, 0, 0, 0.05));
+    .box-shadow(0 -1px 0 #ddd inset, 0 1px 0 rgba(0, 0, 0, 0.05));
     border: 1px solid #CCD6E3;
     padding: 14px;
     background: #E3EDFA;
@@ -86,11 +86,12 @@ textarea {
         color: #333;
     }
     h2 {
-       font-size: 1.3em;
-       font-style: normal;
-       font-weight: bold;
-       line-height: 1em;
-       margin: 0;
+        color: #458;
+        font-size: 1.3em;
+        font-style: normal;
+        font-weight: bold;
+        line-height: 1em;
+        margin: 0;
     }
     &.error {
         background: #FEE3E5;
@@ -98,6 +99,10 @@ textarea {
         h2 {
             color: #B14949;
         }
+    }
+    &.warning {
+        background: #fd9;
+        border: 1px solid darken(#fd9, 60%);
     }
 }
 
