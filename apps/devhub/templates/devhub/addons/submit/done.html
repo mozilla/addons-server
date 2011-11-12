@@ -43,9 +43,9 @@
     {% set profile_url = url('devhub.addons.profile', addon.slug) %}
     <li>{{ _('Tell your users why you created this in your <a href="{0}">Developer Profile</a>.')|f(profile_url)|safe }}</li>
     {% set feed_url = url('devhub.feed', addon.slug) %}
-    {% if webapp: %}
-      <li>{{ _('View and subscribe to your webapp\'s <a href="{0}">activity feed</a> to stay updated on reviews, collections, and more.')|f(feed_url)|safe }}</li>
-    {% else: %}
+    {% if webapp %}
+      <li>{{ _('View and subscribe to your app\'s <a href="{0}">activity feed</a> to stay updated on reviews, collections, and more.')|f(feed_url)|safe }}</li>
+    {% else %}
       <li>{{ _('View and subscribe to your add-on\'s <a href="{0}">activity feed</a> to stay updated on reviews, collections, and more.')|f(feed_url)|safe }}</li>
       <li>{{ _('View approximate review queue <a href="{0}">wait times</a>.')|f('https://forums.addons.mozilla.org/viewforum.php?f=21')|safe }}</li>
     {% endif %}
@@ -55,12 +55,26 @@
 {% if waffle.switch('marketplace') and addon.type in amo.ADDON_BECOME_PREMIUM %}
   <div class="action-needed">
     <h3>{{ _('Enrolling in Marketplace') }}</h3>
-    <p>{% trans doc_url=url('devhub.docs', doc_name='marketplace'),
-                payments_url=url('devhub.addons.payments', addon.slug) %}
-        If this is a premium add-on you wish to sell in our Marketplace, be sure to enroll
-        on the <a href="{{ payments_url }}">Manage Payments</a> page
-        <b>before</b> your add-on is reviewed by an editor. <a href="{{ doc_url }}">Learn more</a>.
-    {% endtrans %}</p>
+    {% with doc_url=url('devhub.docs', doc_name='marketplace'),
+            payments_url=url('devhub.addons.payments', addon.slug) %}
+      {% if webapp %}
+        <p>
+          {# TODO(apps): Finalize copy. #}
+          If this is a premium app you wish to sell in our Marketplace, be
+          sure to enroll on the <a href="{{ payments_url }}">Manage Payments</a>
+          page. {#<a href="{{ doc_url }}">Learn more</a>.#}
+        </p>
+      {% else %}
+        <p>
+          {% trans %}
+            If this is a premium add-on you wish to sell in our Marketplace, be
+            sure to enroll on the <a href="{{ payments_url }}">Manage Payments</a>
+            page <b>before</b> your add-on is reviewed by an editor.
+            <a href="{{ doc_url }}">Learn more</a>.
+          {% endtrans %}
+        </p>
+      {% endif %}
+    {% endwith %}
   </div>
 {% endif %}
 {% endblock %}
