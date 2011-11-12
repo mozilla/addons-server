@@ -1014,7 +1014,7 @@ class PremiumForm(happyforms.Form):
             del self.fields[field]
 
     def _refundtoken_complain(self, message):
-        messages.error(self.request, message + Markup(
+        messages.warning(self.request, message + ' ' + Markup(
                 _(' <a href="%s">Visit PayPal to grant permission'
                   ' for refunds on your behalf.</a>') %
                 _paypal_url(self.addon)))
