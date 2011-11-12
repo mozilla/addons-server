@@ -64,7 +64,7 @@
         </p>
       {% elif addon.upsell %}
         <p class="error">
-        {% trans upsell=addon.upsell.name,
+        {% trans upsell=addon.upsell.premium.name,
                  doc_url=url('devhub.docs', doc_name='marketplace', doc_page='voluntary')%}
           You cannot set up Contributions while your add-on is linked with a premium
           add-on enrolled in the Marketplace. To enable Contributions, please disassociate

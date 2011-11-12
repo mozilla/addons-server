@@ -633,15 +633,15 @@ class TestEditPayments(amo.tests.TestCase):
     def test_no_future(self):
         self.get_addon().update(the_future=None)
         res = self.client.get(self.url)
-        err = pq(res.content)('p.error')
-        eq_('completed developer profile' in err.text(), True)
+        err = pq(res.content)('p.error').text()
+        eq_('completed developer profile' in err, True)
 
-    @mock.patch('addons.models.Addon.upsell')
-    def test_with_upsell_no_contributions(self, upsell):
-        upsell.return_value = True
+    def test_with_upsell_no_contributions(self):
+        AddonUpsell.objects.create(free=self.addon, premium=self.addon)
         res = self.client.get(self.url)
-        error = pq(res.content)('p.error')
-        eq_('premium add-on enrolled' in error.text(), True)
+        error = pq(res.content)('p.error').text()
+        eq_('premium add-on enrolled' in error, True)
+        eq_(' %s' % self.addon.name in error, True)
 
     @mock.patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
     def test_addon_public(self):

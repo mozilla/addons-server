@@ -623,16 +623,26 @@ input.valid {
 }
 .payments .intro ul {
     list-style-type: disc;
-    padding: 0 0 .5em 1em;
-    margin-bottom: 1em;
+    padding: 0 0 1em 1em;
     border-bottom: 1px dotted #ADD0DC;
+}
+.html-rtl .payments .intro ul {
+    padding: 0 1em 1em 0;
 }
 .payments .intro h3 {
     margin-top: 0;
 }
 .payments .intro ul,
 .payments .intro p {
-    font-size: .9em;
+    font-size: 12px;
+    line-height: 16px;
+    margin-bottom: 1em;
+}
+.payments .intro ul li + li {
+    margin-top: .5em;
+}
+.payments .intro p.error {
+    margin: 0;
 }
 .payments .intro .button-wrapper,
 .payments .learn-more {
