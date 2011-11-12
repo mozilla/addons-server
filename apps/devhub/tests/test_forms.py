@@ -135,7 +135,7 @@ class TestPremiumForm(amo.tests.TestCase):
             'exclude': exclude})
 
     @mock.patch('devhub.forms.check_paypal_id', lambda z: True)
-    @mock.patch('django.contrib.messages.error')
+    @mock.patch('django.contrib.messages.warning')
     def test_remove_token(self, error):
         addon = Addon.objects.get(pk=3615)
         addon.update(paypal_id='')
