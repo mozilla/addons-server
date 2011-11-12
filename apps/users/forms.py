@@ -410,10 +410,8 @@ class BlacklistedEmailDomainAddForm(forms.Form):
 
 
 class ContactForm(happyforms.Form):
-    text = forms.CharField(widget=forms.Textarea(), required=True)
+    text = forms.CharField(widget=forms.Textarea())
 
 
 class RemoveForm(happyforms.Form):
-    remove = forms.BooleanField(required=True,
-                                label=_('I have removed this add-on from '
-                                        'all of my devices.'))
+    remove = forms.BooleanField()

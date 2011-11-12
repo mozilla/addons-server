@@ -1,17 +1,36 @@
 <h1>{{ _('Request Refund') }}</h1>
 <form method="POST">
     {{ csrf() }}
-    <p>{% trans url=url('users.support', contribution.pk, 'author') %}
-    If you are unsatisfied with your purchase, you may request
-    a refund from the developer for up to 60 days. Requests within 30 minutes
-    after purchase are automatically granted. If you are having difficulty
-    using the add-on, we encourage you to <a href="{{ url }}">ask the developer for
-    support</a> before requesting a refund.{% endtrans %}</p>
-    <p>{% trans name=addon.name %}In order to continue with the refund
-    process, <b>you must completely
-    remove the add-on from all of your devices</b>. Open Add-ons Manager,
-    select Remove next to {{ name }} and restart Firefox.{% endtrans %}</p>
+    {% if addon.is_webapp() %}
+      {# TODO(apps): Finalize copy. #}
+      <p>{% trans url=url('users.support', contribution.pk, 'author') %}
+      If you are unsatisfied with your purchase, you may request
+      a refund from the developer for up to 60 days. Requests within 30 minutes
+      after purchase are automatically granted. If you are having difficulty
+      using the add-on, we encourage you to <a href="{{ url }}">ask the developer for
+      support</a> before requesting a refund.{% endtrans %}</p>
+      <p>{% trans name=addon.name %}In order to continue with the refund
+      process, <b>you must completely
+      remove the add-on from all of your devices</b>. Open Add-ons Manager,
+      select Remove next to {{ name }} and restart Firefox.{% endtrans %}</p>
+    {% else %}
+      <p>{% trans url=url('users.support', contribution.pk, 'author') %}
+      If you are unsatisfied with your purchase, you may request
+      a refund from the developer for up to 60 days. Requests within 30 minutes
+      after purchase are automatically granted. If you are having difficulty
+      using the add-on, we encourage you to <a href="{{ url }}">ask the developer for
+      support</a> before requesting a refund.{% endtrans %}</p>
+      <p>{% trans name=addon.name %}In order to continue with the refund
+      process, <b>you must completely
+      remove the add-on from all of your devices</b>. Open Add-ons Manager,
+      select Remove next to {{ name }} and restart Firefox.{% endtrans %}</p>
+    {% endif %}
     {{ form.remove.errors }}
-    <p>{{ form.remove }} {{ form.remove.label }}</p>
-    <button type="submit">{{ _('Continue') }}</button>
+    {% if addon.is_webapp() %}
+      {% set label = _('I have removed this app from all of my devices.') %}
+    {% else %}
+      {% set label = _('I have removed this add-on from all of my devices.') %}
+    {% endif %}
+    <p>{{ form.remove }} {{ label }}</p>
+    <p><button type="submit">{{ _('Continue') }}</button></p>
 </form>
