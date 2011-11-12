@@ -8,4 +8,4 @@ if ($('.login .browserid').length) {
 }
 
 // The `autofocus` attribute is wonky, so we do this.
-$('#id_username:visible').focus();
+$('.login #id_username:visible').focus();
