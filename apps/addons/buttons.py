@@ -223,7 +223,7 @@ class InstallButton(object):
             url = urlparams(roadblock, eula='', version=self.version.version)
 
         if self.addon.is_webapp():
-            text = _(u'Install Web App')
+            text = _(u'Install App')
 
         if self.addon.is_premium() and self.can_be_purchased:
             # L10n: {0} is a price

@@ -89,7 +89,7 @@ var purchases = {
             $button.removeClass('premium');
             if ($install.hasClass('webapp')) {
                 $button.unbind()
-                       .text(gettext('Install Web App'))
+                       .text(gettext('Install App'))
                        .attr('href', '#');
                 $install.attr('data-manifest-url',
                               $('.trigger_app_install', $modalish).attr('data-manifest-url'));
