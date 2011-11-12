@@ -1,13 +1,12 @@
 {% extends "impala/base.html" %}
-{% from 'includes/forms.html' import required %}
+{% from 'includes/forms.html' import pretty_field %}
 
 {% block title %}{{ page_title(_('Password Reset')) }}{% endblock %}
 
 {% block content %}
-<div class="primary" role="main">
-  <div class="primary prettyform island">
+  <div class="primary full island prettyform">
     <h1>{{ _('Password Reset') }}</h1>
-    <form method="post" action="" class="object-lead user-input">
+    <form method="post" action="">
       {{ csrf() }}
       <fieldset>
         <p class="instruct">
@@ -16,11 +15,7 @@
           {% endtrans %}
         </p>
         <ul>
-          <li>
-            <label for="id_email">{{ _('Email Address') }} {{ required() }}</label>
-            {{ form.email }}
-            {{ form.email.errors }}
-          </li>
+          {{ pretty_field(form.email, _('Email Address')) }}
         </ul>
       </fieldset>
       <p class="footer-submit">
@@ -28,5 +23,4 @@
       </p>
     </form>
   </div>
-</div>
 {% endblock content %}
