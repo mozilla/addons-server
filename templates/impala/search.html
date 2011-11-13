@@ -7,10 +7,12 @@
 <form id="search" action="{{ search_url }}">
   <input id="search-q" type="text" name="q" autocomplete="off" title=""
          class="text {% if not search_form.q.data %}placeholder{% endif %}"
-         placeholder="{{ search_form.placeholder() }}"
+         placeholder="{{ search_form.placeholder(search_placeholder) }}"
          value="{{ query.q if query else '' }}">
-  {{ search_form.cat }}
-  {% if search_form.cat.value() != 'apps' %}
+  {% if search_form.cat.value() %}
+    {{ search_form.cat }}
+  {% endif %}
+  {% if not WEBAPPS %}
     {{ search_form.appver }}
     {{ search_form.platform }}
   {% endif %}

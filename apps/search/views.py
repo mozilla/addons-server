@@ -448,14 +448,14 @@ def name_query(q):
 @mobile_template('search/{mobile/}results.html')
 @vary_on_headers('X-PJAX')
 def app_search(request, template=None):
-    form = ESSearchForm(request.GET or {}, type=amo.ADDON_WEBAPP)
+    form = ESSearchForm(request.GET.copy() or {}, type=amo.ADDON_WEBAPP)
     form.is_valid()  # Let the form try to clean data.
     query = form.cleaned_data
     qs = (Webapp.search().query(or_=name_query(query['q']))
           .filter(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
                   is_disabled=False)
           .facet(tags={'terms': {'field': 'tag'}},
-                 categories={'terms': {'field': 'category', 'size': 100}}))
+                 categories={'terms': {'field': 'category', 'size': 200}}))
     if query.get('tag'):
         qs = qs.filter(tag=query['tag'])
     if query.get('cat'):
@@ -478,7 +478,7 @@ def app_search(request, template=None):
         'form': form,
         'sorting': sort_sidebar(request, query, form),
         'sort_opts': form.fields['sort'].choices,
-        'search_cat': 'apps',
+        'search_placeholder': 'apps',
     }
     if not ctx['is_pjax']:
         ctx.update({
@@ -605,30 +605,42 @@ def sort_sidebar(request, query, form):
 def category_sidebar(request, query, facets):
     APP = request.APP
     qatype, qcat = query.get('atype'), query.get('cat')
+    webapp = qatype == amo.ADDON_WEBAPP
     cats = [f['term'] for f in facets['categories']]
-    categories = (Category.objects.filter(id__in=cats)
-                  # Search categories don't have an application.
-                  .filter(Q(application=APP.id) | Q(type=amo.ADDON_SEARCH)))
+    categories = Category.objects.filter(id__in=cats)
     if qatype in amo.ADDON_TYPES:
         categories = categories.filter(type=qatype)
+    if not webapp:
+        # Search categories don't have an application.
+        categories = categories.filter(Q(application=APP.id) |
+                                       Q(type=amo.ADDON_SEARCH))
 
-    # If category is listed as a facet but type is not, then Show All.
+    # If category is listed as a facet but type is not, then show All.
     if qcat in cats and not qatype:
         qatype = True
 
     # If category is not listed as a facet NOR available for this application,
-    # then Show All.
+    # then show All.
     if qcat not in categories.values_list('id', flat=True):
         qatype = qcat = None
 
     categories = [(atype, sorted(cats, key=lambda x: x.name))
                   for atype, cats in sorted_groupby(categories, 'type')]
-    rv = [FacetLink(_(u'All Add-ons'), dict(atype=None, cat=None), not qatype)]
+
+    rv = []
+    cat_params = dict(cat=None)
+    all_label = _(u'All Apps') if webapp else _(u'All Add-ons')
+
+    if not webapp or (webapp and not categories):
+        rv = [FacetLink(all_label, dict(atype=None, cat=None), not qatype)]
+
     for addon_type, cats in categories:
-        link = FacetLink(amo.ADDON_TYPES[addon_type],
-                         dict(atype=addon_type, cat=None),
-                         addon_type == qatype and not qcat)
-        link.children = [FacetLink(c.name, dict(atype=addon_type, cat=c.id),
+        selected = (webapp and not qatype) or addon_type == qatype and not qcat
+        if not webapp:
+            cat_params.update(atype=addon_type)
+        link = FacetLink(all_label if webapp else amo.ADDON_TYPES[addon_type],
+                         cat_params, selected)
+        link.children = [FacetLink(c.name, dict(cat_params, **dict(cat=c.id)),
                                    c.id == qcat) for c in cats]
         rv.append(link)
     return rv

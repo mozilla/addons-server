@@ -21,7 +21,7 @@ TYPE = amo.ADDON_WEBAPP
 
 def es_app_list(request):
     ctx = search.views.app_search_query(request)
-    ctx['search_cat'] = 'apps'
+    ctx['search_placeholder'] = 'apps'
     return jingo.render(request, 'webapps/listing.html', ctx)
 
 
@@ -77,7 +77,7 @@ def app_list(request, category=None, template=None):
     ctx = {'section': amo.ADDON_SLUGS[TYPE], 'addon_type': TYPE,
            'category': category, 'addons': addons, 'filter': filter,
            'sorting': sorting, 'sort_opts': filter.opts, 'src': src,
-           'dl_src': dl_src, 'search_cat': 'apps'}
+           'dl_src': dl_src, 'search_placeholder': 'apps'}
     return jingo.render(request, template, ctx)
 
 

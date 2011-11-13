@@ -79,14 +79,16 @@ class TestSearchboxTarget(amo.tests.ESTestCase):
         super(TestSearchboxTarget, cls).setUpClass()
         cls.setUpIndex()
 
-    def check(self, url, placeholder, cat):
+    def check(self, url, placeholder, cat=None, action=None):
         # Checks that we search within addons, personas, collections, etc.
-        doc = pq(self.client.get(url).content)('.header-search form')
-        eq_(doc('input[name=q]').attr('placeholder'), placeholder)
-        eq_(doc('input[name=cat]').val(), cat)
+        form = pq(self.client.get(url).content)('.header-search form')
+        eq_(form.attr('action'), action or reverse('search.search'))
+        eq_(form('input[name=q]').attr('placeholder'), placeholder)
+        if cat:
+            eq_(form('input[name=cat]').val(), cat)
 
     def test_addons_is_default(self):
-        self.check(reverse('home'), 'search for add-ons', 'all')
+        self.check(reverse('home'), 'search for add-ons')
 
     def test_themes(self):
         self.check(reverse('browse.themes'), 'search for add-ons',
@@ -100,14 +102,16 @@ class TestSearchboxTarget(amo.tests.ESTestCase):
         self.check(reverse('browse.personas'), 'search for personas',
                    'personas')
 
+    def test_addons_search(self):
+        self.check(reverse('search.search'), 'search for add-ons')
+
     def test_apps(self):
-        self.check(reverse('apps.list'), 'search for apps', 'apps')
+        self.check(reverse('apps.list'), 'search for apps', None,
+                   reverse('apps.search'))
 
     def test_apps_search(self):
-        self.check(reverse('apps.search'), 'search for apps', 'apps')
-
-    def test_addons_search(self):
-        self.check(reverse('search.search'), 'search for add-ons', 'all')
+        self.check(reverse('apps.search'), 'search for apps', None,
+                   reverse('apps.search'))
 
 
 class TestESSearch(amo.tests.ESTestCase):
@@ -473,9 +477,17 @@ def test_search_redirects():
 
 
 class TestWebappSearch(amo.tests.ESTestCase):
+    fixtures = ['base/apps', 'webapps/337141-steamcube']
 
     def setUp(self):
         self.url = reverse('apps.search')
+        self.webapp = Addon.objects.get(id=337141)
+        self.cat = Category.objects.create(name='Games', type=amo.ADDON_WEBAPP,
+                                           application_id=amo.FIREFOX.id)
+        AddonCategory.objects.create(addon=self.webapp, category=self.cat)
+        # Emit post-save signal so the webapp gets reindexed.
+        self.webapp.save()
+        self.refresh()
 
     def test_get(self):
         r = self.client.get(self.url)
@@ -492,6 +504,58 @@ class TestWebappSearch(amo.tests.ESTestCase):
 
     def test_no_compat_facets(self):
         assert not pq(self.client.get(self.url).content)('#compat-facets')
+
+    def check_cat_filters(self, params, valid=False):
+        cat_selected = params.get('cat') == self.cat.id
+        r = self.client.get(self.url)
+        pager = r.context['pager']
+
+        r = self.client.get(urlparams(self.url, **params))
+        if valid:
+            eq_(list(r.context['pager'].object_list), list(pager.object_list),
+                '%s != %s' % (self.url, urlparams(self.url, **params or {})))
+
+        doc = pq(r.content)('#category-facets')
+        li = doc.children('li:first-child')
+        # Note: PyQuery's `hasClass` matches children's classes, so yeah.
+        eq_(li.attr('class'), 'selected' if not cat_selected else None,
+            "'All Apps' should be selected")
+        a = li.children('a')
+        eq_(a.length, 1)
+        eq_(a.text(), 'All Apps')
+
+        li = doc('li:last')
+        eq_(li.attr('class'), 'selected' if cat_selected else None,
+            '%r should be selected' % unicode(self.cat.name))
+        a = li.children('a')
+        eq_(a.text(), unicode(self.cat.name))
+        params.update(cat=self.cat.id)
+        eq_(a.attr('href'), urlparams(self.url, **params))
+        eq_(json.loads(a.attr('data-params')),
+            dict(cat=self.cat.id, page=None))
+
+    def test_defaults_atype_no_cat(self):
+        self.check_cat_filters(dict(), valid=True)
+
+    def test_defaults_atype_known_cat(self):
+        self.check_cat_filters(dict(cat=self.cat.id), valid=True)
+
+    def test_defaults_atype_unknown_cat(self):
+        self.check_cat_filters(dict(cat=999))
+
+    def test_defaults_bad_atype_unknown_cat(self):
+        self.check_cat_filters(dict(atype=amo.ADDON_EXTENSION, cat=999))
+
+    def test_defaults_no_atype_unknown_cat(self):
+        self.check_cat_filters(dict(cat=999))
+
+    def test_defaults_atype_foreign_cat(self):
+        ext_cat = Category.objects.create(application_id=amo.THUNDERBIRD.id,
+                                          type=amo.ADDON_EXTENSION)
+        app_cat = Category.objects.create(application_id=amo.THUNDERBIRD.id,
+                                          type=amo.ADDON_WEBAPP)
+        self.check_cat_filters(dict(atype=amo.ADDON_EXTENSION, cat=ext_cat.id))
+        self.check_cat_filters(dict(atype=amo.ADDON_EXTENSION, cat=app_cat.id))
 
 
 class TestAjaxSearch(amo.tests.ESTestCase):

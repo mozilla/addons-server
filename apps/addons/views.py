@@ -153,7 +153,7 @@ def extension_detail(request, addon):
         return jingo.render(request, 'addons/impala/details-more.html', ctx)
     else:
         if addon.is_webapp():
-            ctx['search_cat'] = 'apps'
+            ctx['search_placeholder'] = 'apps'
         return jingo.render(request, 'addons/impala/details.html', ctx)
 
 

@@ -486,7 +486,9 @@ def _side_nav(context, addon_type, cat):
     # Prevent helpers generating circular imports.
     from addons.models import Category, AddonType
     request = context['request']
-    qs = Category.objects.filter(application=request.APP.id, weight__gte=0)
+    qs = Category.objects.filter(weight__gte=0)
+    if addon_type != amo.ADDON_WEBAPP:
+        qs.filter(application=request.APP.id)
     sort_key = attrgetter('weight', 'name')
     categories = sorted(qs.filter(type=addon_type), key=sort_key)
     if cat:

@@ -94,12 +94,10 @@ class SimpleSearchForm(forms.Form):
     choices = dict(SEARCH_CHOICES)
 
     def clean_cat(self):
-        self.data = dict(self.data.items())
-        return self.data.setdefault('cat', 'all')
+        return self.data.get('cat', 'all')
 
-    def placeholder(self):
-        val = self.clean_cat()
-        return self.choices.get(val, self.choices['all'])
+    def placeholder(self, txt=None):
+        return self.choices.get(txt or self.clean_cat(), self.choices['all'])
 
 
 def SearchForm(request):
@@ -270,9 +268,13 @@ class ESSearchForm(forms.Form):
     sort = forms.ChoiceField(required=False, choices=SORT_CHOICES)
 
     def __init__(self, *args, **kw):
-        addon_type = kw.pop('type', None)
+        self.addon_type = kw.pop('type', None)
         super(ESSearchForm, self).__init__(*args, **kw)
-        if addon_type == amo.ADDON_WEBAPP:
+        if self.addon_type == amo.ADDON_WEBAPP:
+            self.fields['atype'].choices = [
+                (amo.ADDON_WEBAPP, amo.ADDON_TYPE[amo.ADDON_WEBAPP])
+            ]
+            self.data['atype'] = amo.ADDON_WEBAPP
             self.fields['sort'].choices = APP_SORT_CHOICES
 
     def clean_appver(self):
