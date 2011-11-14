@@ -162,12 +162,13 @@ class TestContributeEmbedded(amo.tests.TestCase):
 
     @patch('paypal.get_paykey')
     def test_charity_name(self, get_paykey):
-        self.addon.charity = Charity.objects.create(name='foo')
+        self.addon.charity = Charity.objects.create(name=u'foë')
+        self.addon.name = u'foë'
         self.addon.save()
         url = reverse('addons.contribute', args=['a592'])
         self.client.get(url)
         eq_(get_paykey.call_args[0][0]['memo'],
-            u'Contribution for Gmail S/MIME: foo')
+            u'Contribution for foë: foë')
 
     def test_params_common(self):
         """Test for the some of the common values"""

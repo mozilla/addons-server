@@ -600,7 +600,9 @@ def contribute(request, addon):
     contribution_uuid = hashlib.md5(str(uuid.uuid4())).hexdigest()
 
     if addon.charity:
-        name, paypal_id = ('%s: %s' % (addon.name, addon.charity.name),
+        # TODO(andym): Figure out how to get this in the addon authors
+        # locale, rather than the contributors locale.
+        name, paypal_id = (u'%s: %s' % (addon.name, addon.charity.name),
                            addon.charity.paypal)
     else:
         name, paypal_id = addon.name, addon.paypal_id
