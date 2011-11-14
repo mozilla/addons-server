@@ -5,6 +5,7 @@ import urlparse
 
 from django.conf import settings
 from django.db import models
+from django.dispatch import receiver
 
 import commonware.log
 
@@ -134,6 +135,15 @@ class Installed(amo.models.ModelBase):
     """Track WebApp installations."""
     addon = models.ForeignKey('addons.Addon', related_name='installed')
     user = models.ForeignKey('users.UserProfile')
+    # This is the email used by user at the time of installation.
+    # It might be the real email, or a pseudonym, this is what will be going
+    # into the receipt for verification later.
+    email = models.CharField(max_length=255)
+    # Because the addon could change between free and premium,
+    # we need to store the state at time of install here.
+    premium_type = models.PositiveIntegerField(
+                                    choices=amo.ADDON_PREMIUM_TYPES.items(),
+                                    null=True, default=None)
 
     class Meta:
         db_table = 'users_install'
@@ -146,6 +156,16 @@ class Installed(amo.models.ModelBase):
         return ''
 
 
+@receiver(models.signals.post_save, sender=Installed)
+def add_email(sender, **kw):
+    if not kw.get('raw'):
+        install = kw['instance']
+        if not install.email and install.premium_type == None:
+            install.email = install.user.email
+            install.premium_type = install.addon.premium_type
+            install.save()
+
+
 @memoize(prefix='create-receipt', time=60 * 10)
 def create_receipt(installed_pk):
     installed = Installed.objects.get(pk=installed_pk)
@@ -154,7 +174,7 @@ def create_receipt(installed_pk):
     receipt = dict(typ='purchase-receipt',
                    product=installed.addon.origin,
                    user={'type': 'email',
-                         'value': installed.user.email},
+                         'value': installed.email},
                    iss=settings.SITE_URL,
                    nbf=time.mktime(installed.created.timetuple()),
                    iat=time.time(),

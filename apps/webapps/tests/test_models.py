@@ -215,3 +215,16 @@ class TestReceipt(amo.tests.TestCase):
         receipt = self.create_install(self.user, self.webapp).receipt
         result = decode_receipt(receipt)
         eq_(result['typ'], u'purchase-receipt')
+
+    def test_install_has_email(self):
+        install = self.create_install(self.user, self.webapp)
+        eq_(install.email, u'regular@mozilla.com')
+
+    def test_install_not_premium(self):
+        install = self.create_install(self.user, self.webapp)
+        eq_(install.premium_type, amo.ADDON_FREE)
+
+    def test_install_premium(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        install = self.create_install(self.user, self.webapp)
+        eq_(install.premium_type, amo.ADDON_PREMIUM)
