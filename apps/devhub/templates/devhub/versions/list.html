@@ -88,16 +88,19 @@
             &middot; <a href="#" id="delete-addon">{{ _('Delete Add-on') }}</a>
           {% endif %}
         {% endif %}
-        {% set current = addon.current_version %}
-        {% if current %}
-          <span class="version-changed">
-          {{ _('Displayed version: {0}')|f(current.version) }}
-          </span>
+        {% if not addon.is_webapp() %}
+          {% set current = addon.current_version %}
+          {% if current %}
+            <span class="version-changed">
+            {{ _('Displayed version: {0}')|f(current.version) }}
+            </span>
+          {% endif %}
         {% endif %}
       </div>
     </div>
   </div>
 
+  {% if not addon.is_webapp() %}
   <h3>{{ _('Version History') }}</h3>
   <div class="item" id="version-list"
        data-stats="{{ url('devhub.versions.stats', addon.slug) }}">
@@ -179,6 +182,7 @@
       </div>
     {% endif %}
   </div>
+  {% endif %}
 
 </section>
 

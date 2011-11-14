@@ -311,6 +311,12 @@ class TestVersion(amo.tests.TestCase):
         eq_(set([i.attrib['type'] for i in doc('input.platform')]),
             set(['checkbox']))
 
+    def test_app_no_version_list(self):
+        self.addon.update(type=amo.ADDON_WEBAPP)
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(doc('#version-list').length, 0)
+
 
 class TestVersionEdit(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615',
