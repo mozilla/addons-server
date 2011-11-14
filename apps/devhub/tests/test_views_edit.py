@@ -15,7 +15,7 @@ from waffle.models import Flag
 
 import amo
 import amo.tests
-from amo.tests import formset, initial
+from amo.tests import assert_required, formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons.forms import AddonFormBasic
@@ -76,49 +76,92 @@ class TestEdit(amo.tests.TestCase):
 
 
 class TestEditBasicWebapp(amo.tests.TestCase):
-    fixtures = ['base/users']
+    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
-        self.addon = Addon.objects.create(type=amo.ADDON_WEBAPP, app_slug='ok')
+        self.webapp = self.get_webapp()
+        self.cat = Category.objects.create(name='Games', type=amo.ADDON_WEBAPP)
+        AddonCategory.objects.create(addon=self.webapp, category=self.cat)
+        self.url = get_section_url(self.webapp, 'basic')
+        self.edit_url = get_section_url(self.webapp, 'basic', edit=True)
+        ctx = self.client.get(self.edit_url).context
+        self.cat_initial = initial(ctx['cat_form'].initial_forms[0])
+        del self.cat_initial['application']
 
-    def get_url(self, section, edit=False):
-        args = [self.addon.slug, section]
-        if edit:
-            args.append('edit')
-        return reverse('devhub.addons.section', args=args)
+    def get_webapp(self):
+        return Addon.objects.get(id=337141)
 
     def get_dict(self, **kw):
+        fs = formset(self.cat_initial, initial_count=1)
         result = {'name': 'new name', 'slug': 'test_slug',
                   'summary': 'new summary'}
-        result.update(kw)
+        result.update(**kw)
+        result.update(fs)
         return result
 
     def test_appslug_visible(self):
-        r = self.client.get(self.get_url('basic'))
+        r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        eq_(pq(r.content)('#slug_edit').text(), u'/\u2026/ok View Listing')
+        eq_(pq(r.content)('#slug_edit').remove('a').text(),
+            u'/\u2026/%s' % self.webapp.app_slug)
 
     def test_edit_slug_success(self):
-        addon = self.addon
+        webapp = self.webapp
         data = self.get_dict()
-        r = self.client.post(self.get_url('basic', edit=True), data)
+        r = self.client.post(self.edit_url, data)
         eq_(r.status_code, 200)
-        eq_(Addon.objects.get(id=addon.id).app_slug, data['slug'])
+        eq_(self.get_webapp().app_slug, data['slug'])
         # Make sure only the app_slug changed.
-        eq_(Addon.objects.get(id=addon.id).slug, addon.slug)
+        eq_(self.get_webapp().slug, webapp.slug)
 
     def test_edit_slug_dupe(self):
-        addon = self.addon
+        webapp = self.webapp
         Addon.objects.create(type=amo.ADDON_WEBAPP, app_slug='dupe')
         data = self.get_dict(slug='dupe')
-        r = self.client.post(self.get_url('basic', edit=True), data)
+        r = self.client.post(self.edit_url, data)
         self.assertFormError(r, 'form', 'slug',
                              'This slug is already in use.')
         # Nothing changed.
-        eq_(Addon.objects.get(id=addon.id).slug, addon.slug)
-        eq_(Addon.objects.get(id=addon.id).app_slug, addon.app_slug)
+        eq_(self.get_webapp().slug, webapp.slug)
+        eq_(self.get_webapp().app_slug, webapp.app_slug)
+
+    def test_categories_listed(self):
+        r = self.client.post(self.url)
+        ul = pq(r.content)('#addon-categories-edit ul')
+        li = ul.find('li')
+        eq_(li.length, 1)
+        eq_(li.text(), unicode(self.cat.name))
+
+    def test_edit_categories_add(self):
+        new = Category.objects.create(name='Books', type=amo.ADDON_WEBAPP)
+        self.cat_initial['categories'] = [self.cat.id, new.id]
+        self.client.post(self.edit_url, self.get_dict())
+        app_cats = self.get_webapp().categories.values_list('id', flat=True)
+        eq_(sorted(app_cats), self.cat_initial['categories'])
+
+    def test_edit_categories_addandremove(self):
+        new = Category.objects.create(name='Books', type=amo.ADDON_WEBAPP)
+        self.cat_initial['categories'] = [new.id]
+        self.client.post(self.edit_url, self.get_dict())
+        app_cats = self.get_webapp().categories.values_list('id', flat=True)
+        eq_(sorted(app_cats), self.cat_initial['categories'])
+
+    def test_edit_categories_required(self):
+        del self.cat_initial['categories']
+        r = self.client.post(self.edit_url, formset(self.cat_initial,
+                                                    initial_count=1))
+        assert_required(r.context['cat_form'].errors[0]['categories'][0])
+
+    def test_edit_categories_max(self):
+        new1 = Category.objects.create(name='Books', type=amo.ADDON_WEBAPP)
+        new2 = Category.objects.create(name='Lifestyle', type=amo.ADDON_WEBAPP)
+        self.cat_initial['categories'] = [self.cat.id, new1.id, new2.id]
+        r = self.client.post(self.edit_url, formset(self.cat_initial,
+                                                    initial_count=1))
+        eq_(r.context['cat_form'].errors[0]['categories'],
+            ['You can have only 2 categories.'])
 
 
 class TestEditBasic(TestEdit):
@@ -450,7 +493,7 @@ class TestEditBasic(TestEdit):
 
         self.cat_initial['categories'] = [22, 24]
         r = self.client.post(self.basic_edit_url, formset(self.cat_initial,
-                                                     initial_count=1))
+                                                          initial_count=1))
 
         assert '<script>alert' not in r.content
         assert '&lt;script&gt;alert' in r.content
@@ -469,7 +512,7 @@ class TestEditBasic(TestEdit):
     def test_edit_categories_required(self):
         del self.cat_initial['categories']
         r = self.client.post(self.basic_edit_url, formset(self.cat_initial,
-                                                     initial_count=1))
+                                                          initial_count=1))
         eq_(r.context['cat_form'].errors[0]['categories'],
             ['This field is required.'])
 
@@ -477,7 +520,7 @@ class TestEditBasic(TestEdit):
         eq_(amo.MAX_CATEGORIES, 2)
         self.cat_initial['categories'] = [22, 23, 24]
         r = self.client.post(self.basic_edit_url, formset(self.cat_initial,
-                                                     initial_count=1))
+                                                          initial_count=1))
         eq_(r.context['cat_form'].errors[0]['categories'],
             ['You can have only 2 categories.'])
 
@@ -485,7 +528,7 @@ class TestEditBasic(TestEdit):
         Category.objects.get(id=22).update(misc=True)
         self.cat_initial['categories'] = [22, 23]
         r = self.client.post(self.basic_edit_url, formset(self.cat_initial,
-                                                     initial_count=1))
+                                                          initial_count=1))
         eq_(r.context['cat_form'].errors[0]['categories'],
             ['The miscellaneous category cannot be combined with additional '
              'categories.'])
@@ -493,7 +536,7 @@ class TestEditBasic(TestEdit):
     def test_edit_categories_nonexistent(self):
         self.cat_initial['categories'] = [100]
         r = self.client.post(self.basic_edit_url, formset(self.cat_initial,
-                                                     initial_count=1))
+                                                          initial_count=1))
         eq_(r.context['cat_form'].errors[0]['categories'],
             ['Select a valid choice. 100 is not one of the available '
              'choices.'])

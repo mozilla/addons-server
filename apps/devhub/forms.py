@@ -14,6 +14,7 @@ from django.utils.safestring import mark_safe
 from django.utils.encoding import force_unicode
 from django.contrib import messages
 
+import commonware
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 from quieter_formset.formset import BaseModelFormSet
@@ -39,6 +40,8 @@ from translations.forms import TranslationFormMixin
 from versions.models import License, Version, ApplicationsVersions
 from webapps.models import Webapp
 from . import tasks
+
+paypal_log = commonware.log.getLogger('z.paypal')
 
 
 class AuthorForm(happyforms.ModelForm):
@@ -958,7 +961,7 @@ def _paypal_url(addon):
     except paypal.PaypalError, e:
         # dev servers aren't always set up for paypal.
         if paypal.should_ignore_paypal():
-            log.debug('Paypal error %r skipped due to dev mode' % (e,))
+            paypal_log.debug('Paypal error %r skipped due to dev mode' % e)
         else:
             raise
     return url

@@ -1,0 +1,1 @@
+ALTER TABLE `categories` CHANGE COLUMN `application_id` `application_id` INT(11) UNSIGNED NULL;

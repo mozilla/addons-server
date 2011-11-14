@@ -94,20 +94,23 @@
                     {% endtrans %}
                     </p>
                   {% else %}
-                    {{ select_cats(amo.MAX_CATEGORIES, form) }}
+                    {{ select_cats(amo.MAX_CATEGORIES, form, addon.is_webapp()) }}
                   {% endif %}
                 {% endfor %}
               {% else %}
                 {% set categories = addon.app_categories %}
-                {% if categories %}
+                {% call empty_unless(categories) %}
                   <ul class="addon-app-cats-inline">
                     {% for app, cats in categories %}
                       <li>
-                        <b>{{ app.pretty }}:</b> {{ cats|join(' &middot; ')|safe }}
+                        {% if not addon.is_webapp() %}
+                          <b>{{ app.pretty }}:</b>
+                        {% endif %}
+                        {{ cats|join(' &middot; ')|safe }}
                       </li>
                     {% endfor %}
                   </ul>
-                {% endif %}
+                {% endcall %}
               {% endif %}
             </td>
           </tr>

@@ -934,7 +934,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                     key=lambda x: x.application_id)
         app_cats = []
         for app, cats in categories:
-            app_cats.append((amo.APP_IDS[app], list(cats)))
+            app_cats.append((amo.APP_IDS[app] if app else None, list(cats)))
         return app_cats
 
     def remove_locale(self, locale):
@@ -1392,7 +1392,8 @@ class Category(amo.models.ModelBase):
     slug = models.SlugField(max_length=50, help_text='Used in Category URLs.')
     description = TranslatedField()
     type = models.PositiveIntegerField(db_column='addontype_id')
-    application = models.ForeignKey('applications.Application')
+    application = models.ForeignKey('applications.Application', null=True,
+                                    blank=True)
     count = models.IntegerField('Addon count', default=0)
     weight = models.IntegerField(default=0,
         help_text='Category weight used in sort ordering')

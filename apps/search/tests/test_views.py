@@ -129,6 +129,7 @@ class TestESSearch(amo.tests.ESTestCase):
                                       disabled_by_user=False)
         for addon in addons:
             AddonCategory.objects.create(addon=addon, category_id=1)
+            addon.save()
         self.refresh()
 
     def test_get(self):
@@ -482,8 +483,7 @@ class TestWebappSearch(amo.tests.ESTestCase):
     def setUp(self):
         self.url = reverse('apps.search')
         self.webapp = Addon.objects.get(id=337141)
-        self.cat = Category.objects.create(name='Games', type=amo.ADDON_WEBAPP,
-                                           application_id=amo.FIREFOX.id)
+        self.cat = Category.objects.create(name='Games', type=amo.ADDON_WEBAPP)
         AddonCategory.objects.create(addon=self.webapp, category=self.cat)
         # Emit post-save signal so the webapp gets reindexed.
         self.webapp.save()

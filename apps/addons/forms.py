@@ -198,14 +198,17 @@ class ApplicationChoiceField(forms.ModelChoiceField):
 
 class CategoryForm(forms.Form):
     application = ApplicationChoiceField(Application.objects.all(),
-                                         widget=forms.HiddenInput)
+                                         widget=forms.HiddenInput,
+                                         required=False)
     categories = forms.ModelMultipleChoiceField(
         queryset=Category.objects.all(), widget=CategoriesSelectMultiple)
 
     def save(self, addon):
+        application = self.cleaned_data['application']
         categories_new = self.cleaned_data['categories']
         categories_old = [cats for app, cats in addon.app_categories
-                          if app.id == self.cleaned_data['application'].id]
+                          if (app and app.id == application.id) or
+                             (not app and not application)]
         if categories_old:
             categories_old = categories_old[0]
 
@@ -218,12 +221,16 @@ class CategoryForm(forms.Form):
             AddonCategory.objects.filter(addon=addon, category=c).delete()
 
     def clean_categories(self):
-        if getattr(self, 'disabled', False):
-            raise forms.ValidationError(_('Categories cannot be changed while '
-                'your add-on is featured for this application.'))
         categories = self.cleaned_data['categories']
         total = categories.count()
         max_cat = amo.MAX_CATEGORIES
+        if getattr(self, 'disabled', False) and total:
+            if categories[0].type == amo.ADDON_WEBAPP:
+                raise forms.ValidationError(_('Categories cannot be changed '
+                    'while your app is featured for this application.'))
+            else:
+                raise forms.ValidationError(_('Categories cannot be changed '
+                    'while your add-on is featured for this application.'))
         if total > max_cat:
             # L10n: {0} is the number of categories.
             raise forms.ValidationError(ngettext(
@@ -247,16 +254,23 @@ class BaseCategoryFormSet(BaseFormSet):
         self.request = kw.pop('request', None)
         super(BaseCategoryFormSet, self).__init__(*args, **kw)
         self.initial = []
-        apps = sorted(self.addon.compatible_apps.keys(), key=lambda x: x.id)
+        if self.addon.type == amo.ADDON_WEBAPP:
+            apps = [None]
+        else:
+            apps = sorted(self.addon.compatible_apps.keys(),
+                          key=lambda x: x.id)
 
         # Drop any apps that don't have appropriate categories.
-        qs = Category.objects.filter(type=self.addon.type,
-                                     application__in=[a.id for a in apps])
-        app_cats = dict((k, list(v))
-                        for k, v in sorted_groupby(qs, 'application_id'))
+        qs = Category.objects.filter(type=self.addon.type)
+        if self.addon.type != amo.ADDON_WEBAPP:
+            qs = qs.filter(application__in=[a.id for a in apps])
+        app_cats = dict((k, list(v)) for k, v in
+                        sorted_groupby(qs, 'application_id'))
         for app in list(apps):
-            if not app_cats.get(app.id):
+            if app and not app_cats.get(app.id):
                 apps.remove(app)
+        if not app_cats:
+            apps = []
 
         for app in apps:
             cats = dict(self.addon.app_categories).get(app, [])
@@ -266,10 +280,11 @@ class BaseCategoryFormSet(BaseFormSet):
         self._construct_forms()
 
         for app, form in zip(apps, self.forms):
+            key = app.id if app else None
             form.request = self.request
-            form.initial['application'] = app.id
+            form.initial['application'] = key
             form.app = app
-            cats = sorted(app_cats[app.id], key=lambda x: x.name)
+            cats = sorted(app_cats[key], key=lambda x: x.name)
             form.fields['categories'].choices = [(c.id, c.name) for c in cats]
 
             # If this add-on is featured for this application, category
