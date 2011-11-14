@@ -5,8 +5,6 @@ import urlparse
 
 from django.conf import settings
 from django.db import models
-from django.dispatch import receiver
-from django.utils.http import urlencode
 
 import commonware.log
 
@@ -15,6 +13,7 @@ from amo.decorators import skip_cache
 from amo.helpers import absolutify
 import amo.models
 from amo.urlresolvers import reverse
+from amo.utils import memoize
 from addons import query
 from addons.models import (Addon, clear_name_table, delete_search_index,
                            update_name_table, update_search_index)
@@ -135,29 +134,33 @@ class Installed(amo.models.ModelBase):
     """Track WebApp installations."""
     addon = models.ForeignKey('addons.Addon', related_name='installed')
     user = models.ForeignKey('users.UserProfile')
-    receipt = models.TextField(default='')
 
     class Meta:
         db_table = 'users_install'
         unique_together = ('addon', 'user')
 
-    def create_receipt(self):
-        verify = reverse('api.market.verify', args=[self.addon.pk])
-        detail = reverse('users.purchases.receipt', args=[self.addon.pk])
-        hsh = self.addon.get_watermark_hash(self.user)
-        url = urlencode({amo.WATERMARK_KEY: self.user.email,
-                         amo.WATERMARK_KEY_HASH: hsh})
-        verify = '%s?%s' % (verify, url)
-        receipt = dict(typ='purchase-receipt',
-                       product=self.addon.origin,
-                       user={'type': 'email',
-                             'value': self.user.email},
-                       iss=settings.SITE_URL,
-                       nbf=time.time(),
-                       iat=time.time(),
-                       detail=absolutify(detail),
-                       verify=absolutify(verify))
-        self.receipt = jwt.encode(receipt, get_key())
+    @property
+    def receipt(self):
+        if self.addon.is_webapp():
+            return create_receipt(self.pk)
+        return ''
+
+
+@memoize(prefix='create-receipt', time=60 * 10)
+def create_receipt(installed_pk):
+    installed = Installed.objects.get(pk=installed_pk)
+    verify = reverse('api.market.verify', args=[installed.addon.pk])
+    detail = reverse('users.purchases.receipt', args=[installed.addon.pk])
+    receipt = dict(typ='purchase-receipt',
+                   product=installed.addon.origin,
+                   user={'type': 'email',
+                         'value': installed.user.email},
+                   iss=settings.SITE_URL,
+                   nbf=time.mktime(installed.created.timetuple()),
+                   iat=time.time(),
+                   detail=absolutify(detail),
+                   verify=absolutify(verify))
+    return jwt.encode(receipt, get_key(), u'RS512')
 
 
 def get_key():
@@ -165,17 +168,9 @@ def get_key():
     return jwt.rsa_load(settings.WEBAPPS_RECEIPT_KEY)
 
 
-@receiver(models.signals.post_save, sender=Installed,
-          dispatch_uid='create_receipt')
-def create_receipt(sender, instance, **kw):
+def decode_receipt(receipt):
     """
-    When something gets installed, see if we need to create a receipt.
+    Cracks the receipt using the private key. This will probably change
+    to using the cert at some point, especially when we get the HSM.
     """
-    if (kw.get('raw') or instance.addon.type != amo.ADDON_WEBAPP
-        or instance.receipt):
-        return
-
-    log.debug('Creating receipt for: addon %s, user %s'
-              % (instance.addon.pk, instance.user.pk))
-    instance.create_receipt()
-    instance.save()
+    return jwt.decode(receipt, get_key())

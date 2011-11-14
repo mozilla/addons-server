@@ -13,7 +13,7 @@ from addons.models import Addon, BlacklistedSlug
 from devhub.tests.test_views import BaseWebAppTest
 from users.models import UserProfile
 from versions.models import Version
-from webapps.models import Installed, Webapp, get_key
+from webapps.models import Installed, Webapp, get_key, decode_receipt
 
 
 key = os.path.join(os.path.dirname(__file__), 'sample.key')
@@ -85,7 +85,7 @@ class TestWebappManager(test_utils.TestCase):
 
     def test_unreviewed(self):
         for status in amo.UNREVIEWED_STATUSES:
-            w = Webapp.objects.create(status=status)
+            Webapp.objects.create(status=status)
             self.reviewed_eq()
             Webapp.objects.all().delete()
 
@@ -187,7 +187,7 @@ class TestReceipt(amo.tests.TestCase):
 
     def test_receipt(self):
         ins = self.create_install(self.user, self.webapp)
-        assert ins.receipt.startswith('eyJhbGciOiAiSFMyNTY'), ins.receipt
+        assert ins.receipt.startswith('eyJhbGciOiAiUlM1MTIiLCA'), ins.receipt
 
     def test_get_receipt(self):
         ins = self.create_install(self.user, self.webapp)
@@ -210,3 +210,8 @@ class TestReceipt(amo.tests.TestCase):
         self.webapp.update(premium_type=amo.ADDON_FREE)
         self.create_install(self.user, self.webapp)
         assert self.webapp.get_receipt(self.user)
+
+    def test_crack_receipt(self):
+        receipt = self.create_install(self.user, self.webapp).receipt
+        result = decode_receipt(receipt)
+        eq_(result['typ'], u'purchase-receipt')
