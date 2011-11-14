@@ -3,6 +3,6 @@
     {{ csrf() }}
     <p>{% trans %} Please tell us why you are requesting a refund.{% endtrans %}</p>
     {{ form.text.errors }}
-    {{ form.text }}
-    <button type="submit">{{ _('Request Refund') }}</button>
+    <p>{{ form.text }}</p>
+    <p><button type="submit">{{ _('Request Refund') }}</button></p>
 </form>
