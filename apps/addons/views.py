@@ -350,7 +350,6 @@ def home(request):
 
 
 @mobilized(home)
-@cache_page(60 * 10)
 def home(request):
     # Shuffle the list and get 3 items.
     rand = lambda xs: random.shuffle(xs) or xs[:3]

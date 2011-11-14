@@ -6,10 +6,6 @@
   {% endif %}
 {% endblock %}
 
-{% block extra_footer_links %}
-&nbsp;|&nbsp;<a class="mobile-link" href="">{{ _('View Mobile Site') }}</a>
-{% endblock %}
-
 {% block lang_form %}
   <form class="languages go" id="lang_form" method="get" action="">
     <label for="language">{{ _('Other languages') }}</label>
@@ -22,4 +18,8 @@
     </select>
     <button type="submit">{{ _('Go') }}</button>
   </form>
+{% endblock %}
+
+{% block copyright %}
+  {% include 'copyright.html' %}
 {% endblock %}
