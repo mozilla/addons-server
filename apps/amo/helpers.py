@@ -488,7 +488,7 @@ def _side_nav(context, addon_type, cat):
     request = context['request']
     qs = Category.objects.filter(weight__gte=0)
     if addon_type != amo.ADDON_WEBAPP:
-        qs.filter(application=request.APP.id)
+        qs = qs.filter(application=request.APP.id)
     sort_key = attrgetter('weight', 'name')
     categories = sorted(qs.filter(type=addon_type), key=sort_key)
     if cat:

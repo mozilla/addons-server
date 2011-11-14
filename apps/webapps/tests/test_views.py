@@ -46,7 +46,6 @@ class TestListing(WebappTest):
         eq_(doc('h1.site-title').text(), 'Apps')
         eq_(doc('#site-nav.app-nav').length, 1)
         eq_(doc('#search-q').attr('placeholder'), 'search for apps')
-        eq_(doc('#id_cat').attr('value'), 'apps')
 
     def test_header_links(self):
         response = self.client.get(self.url)
