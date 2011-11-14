@@ -544,6 +544,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/format.js',
             'js/lib/jquery.cookie.js',
             'js/zamboni/storage.js',
+            'js/zamboni/apps.js',
             'js/zamboni/buttons.js',
             'js/zamboni/tabs.js',
 
