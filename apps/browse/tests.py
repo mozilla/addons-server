@@ -390,7 +390,7 @@ class TestCategoryPages(amo.tests.TestCase):
 
     def test_browsing_urls(self):
         """Every browse page URL exists."""
-        for slug in amo.ADDON_SLUGS.values():
+        for _, slug in amo.ADDON_SLUGS.items():
             view = 'apps.list' if slug == 'apps' else 'browse.%s' % slug
             assert reverse(view)
 
@@ -438,37 +438,33 @@ class TestCategoryPages(amo.tests.TestCase):
         creatured = response.context['filter'].all()['featured']
         eq_(len(creatured), 0)
 
+    def test_creatured_only_public(self):
+        """Make sure the creatured add-ons are all public."""
+        url = reverse('browse.creatured', args=['bookmarks'])
+        r = self.client.get(url, follow=True)
+        addons = r.context['addons']
+
+        for a in addons:
+            assert a.status == amo.STATUS_PUBLIC, "%s is not public" % a.name
+
+        old_count = len(addons)
+        addons[0].status = amo.STATUS_UNREVIEWED
+        addons[0].save()
+        r = self.client.get(url, follow=True)
+        addons = r.context['addons']
+
+        for a in addons:
+            assert a.status == amo.STATUS_PUBLIC, ("Altered %s is featured"
+                                                   % a.name)
+
+        eq_(len(addons), old_count - 1, "The number of addons is the same.")
+
     def test_sorting_nameless(self):
         """Nameless add-ons are dropped from the sort."""
         qs = Addon.objects.all()
         ids = order_by_translation(qs, 'name')
         assert 57132 in [a.id for a in qs]
         assert 57132 not in [a.id for a in ids]
-
-
-@mock.patch.object(settings, 'NEW_FEATURES', True)
-class TestNewCategoryPages(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/category', 'base/featured',
-                'addons/featured', 'addons/listed', 'base/collections',
-                'bandwagon/featured_collections']
-
-    def setUp(self):
-        self.reset_featured_addons()
-
-    def test_creatured(self):
-        AddonCategory.objects.create(addon_id=2464, category_id=22)
-        url = urlparams(reverse('browse.extensions', args=['bookmarks']),
-                        sort='featured')
-        r = self.client.get(url, follow=True)
-        addons = r.context['addons']
-        eq_(len(addons), 1)
-        eq_(addons[0].status, amo.STATUS_PUBLIC)
-
-        addons[0].update(status=amo.STATUS_UNREVIEWED)
-        eq_(addons[0].status, amo.STATUS_UNREVIEWED)
-        r = self.client.get(url, follow=True)
-        addons = r.context['addons']
-        eq_(len(addons), 0)
 
 
 class TestFeeds(amo.tests.TestCase):
@@ -1187,8 +1183,6 @@ class TestLegacyRedirects(amo.tests.TestCase):
         # redirects('/browse/type:7', '/plugins/')
         redirects('/recommended', '/extensions/?sort=featured')
         redirects('/featured', '/extensions/?sort=featured')
-        redirects('/extensions/alerts-updates/featured',
-                  '/extensions/alerts-updates/?sort=featured')
         redirects('/recommended/format:rss', '/featured/format:rss')
 
 
