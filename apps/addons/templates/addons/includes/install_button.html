@@ -1,4 +1,4 @@
-<a class="button {{ b.button_class|join(' ') }} {{ extra }}"
+<a class="button {% if request.MOBILE %}add{% endif %} {{ b.button_class|join(' ') }} {{ extra }}"
   {% if not addon.is_premium() and not addon.is_webapp() %}
     data-hash="{{ link.file.hash }}"
   {% endif %}
