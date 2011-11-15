@@ -1,4 +1,5 @@
 from django import test
+from django.conf import settings
 
 from nose.tools import eq_
 from mock import Mock
@@ -50,6 +51,7 @@ class TestHelpers(test.TestCase):
         c['request'].path = 'yermom'
         c['request'].GET.urlencode = lambda: ''
         c['request'].user.is_authenticated = lambda: False
+        c['settings'] = settings
         doc = pq(barometer(c, collection))
         eq_(doc('form')[0].action, '/en-US/firefox/users/login?to=yermom')
 

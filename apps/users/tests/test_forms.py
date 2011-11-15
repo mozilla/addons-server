@@ -303,13 +303,12 @@ class TestUserLoginForm(UserFormBase):
     @patch.object(settings, 'APP_PREVIEW', True)
     def test_no_register(self):
         res = self.client.get(self._get_login_url())
-        assert not res.content in 'A link to activate your user account'
+        assert not res.content in 'Create an Add-ons Account'
 
     @patch.object(settings, 'APP_PREVIEW', False)
     def test_yes_register(self):
         res = self.client.get(self._get_login_url())
-        self.assertContains(res.content,
-                            'A link to activate your user account')
+        self.assertContains(res, 'Create an Add-ons Account')
 
     def test_disabled_account(self):
         url = self._get_login_url()
