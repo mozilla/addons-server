@@ -290,7 +290,7 @@ class BaseCategoryFormSet(BaseFormSet):
             # If this add-on is featured for this application, category
             # changes are forbidden.
             if not acl.action_allowed(self.request, 'Admin', 'EditAnyAddon'):
-                form.disabled = (settings.NEW_FEATURES and
+                form.disabled = (settings.NEW_FEATURES and app and
                                  self.addon.is_featured(app))
 
     def save(self):

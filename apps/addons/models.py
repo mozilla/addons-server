@@ -821,7 +821,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def is_featured(self, app, lang=None):
         """Is add-on globally featured for this app and language?"""
-        return self.id in FeaturedManager.featured_ids(app, lang)
+        if app:
+            return self.id in FeaturedManager.featured_ids(app, lang)
 
     def has_full_profile(self):
         """Is developer profile public (completed)?"""
