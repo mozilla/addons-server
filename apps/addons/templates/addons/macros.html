@@ -45,13 +45,40 @@
 {% endmacro %}
 
 {% macro price(addon) %}
-    {% if waffle.switch('marketplace') %}
-        <span class="price {% if addon.is_premium() %}premium{% endif %}">
-        {% if addon.is_premium() %}
-            {{ addon.premium.get_price_locale() }}
-        {% else %}
-            {{ _('FREE') }}
+  {% if waffle.switch('marketplace') %}
+    <span class="vital price {% if addon.is_premium() %}premium{% endif %}">
+      {% if addon.is_premium() %}
+        {{ addon.premium.get_price_locale() }}
+      {% else %}
+        {{ _('FREE') }}
+      {% endif %}
+    </span>
+  {% endif %}
+{% endmacro %}
+
+{% macro refund_info(amo, addon, contributions, is_refunded) %}
+  {% for contribution in contributions.get(addon.pk, []) %}
+    <span class="vital purchase">
+      {% if contribution.type == amo.CONTRIB_PURCHASE %}
+        {% trans date=addon.created|datetime,
+                 amt=contribution.get_amount_locale() %}
+          Purchased {{ date }} for {{ amt }}
+        {% endtrans %}
+        {% if not is_refunded %}
+          <a href="{{ url('users.support', contribution.pk) }}">
+            {{ _('Request Support') }}</a>
         {% endif %}
-        </span>
-    {% endif %}
+      {% elif contribution.type == amo.CONTRIB_REFUND %}
+        {% trans date=addon.created|datetime,
+                 amt=contribution.get_amount_locale() %}
+          Refunded {{ date }} for {{ amt }}
+        {% endtrans %}
+      {% endif %}
+    </span>
+  {% endfor %}
+  {% if is_refunded %}
+    <span class="vital purchase refund-notice">
+      {{ _('Purchase Refunded') }}
+    </span>
+  {% endif %}
 {% endmacro %}

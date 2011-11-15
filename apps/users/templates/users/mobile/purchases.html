@@ -1,0 +1,30 @@
+{% if settings.APP_PREVIEW %}
+  {% set WEBAPPS = True %}
+{% endif %}
+{% extends "mobile/base.html" %}
+
+{% set title = _('My Purchases') %}
+{% block title %}{{ page_title(title) }}{% endblock %}
+
+{% block purchases_link %}{% endblock %}
+
+{% block contentclass %}purchases{% endblock %}
+
+{% block page %}
+  <h2>{{ title }}</h2>
+  {% if single %}
+    <div id="sort-menu">
+      <a class="label" href="{{ url('users.purchases') }}">
+        {{ _('Show all purchases') }}</a>
+    </div>
+  {% else %}
+    {{ mobile_sort_by(request.path, selected=sorting, search_filter=filter) }}
+  {% endif %}
+  <div class="addon-listing">
+    <ul class="listview">
+      {{ addon_listing_items_mobile(addons.object_list, src='category',
+                                    sort=sorting, show_refunds=True) }}
+    </ul>
+  </div>
+  {{ addons|mobile_paginator }}
+{% endblock %}

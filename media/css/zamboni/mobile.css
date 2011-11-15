@@ -99,7 +99,7 @@ a:link {
 .install-wrapper a,
 table,
 table a:link {
-    font-family: "Droid Sans", sans-serif;
+    font-family: "Droid Sans", Helvetica, sans-serif;
 }
 #content h2,
 #eula h2 {
@@ -211,7 +211,7 @@ table th {
     width: 100%;
     overflow: hidden;
     position: relative;
-    padding-bottom: 16px;
+    padding: 8px 0 16px;
 }
 
 #content > details,
@@ -225,9 +225,7 @@ table th {
     line-height: 1.2em;
 }
 
-.text-listing h2,
-#eula h2,
-.personas-grid h2 {
+#content h2 {
     padding-bottom: 4px;
     border-bottom: 1px solid #ccc;
     box-shadow: 0 1px #fff;
@@ -316,7 +314,7 @@ table th {
     padding: 0 14px;
 }
 .moz-menu .menu-items a {
-    font-family: "Trebuchet MS", "Droid Sans", sans-serif;
+    font-family: "Trebuchet MS", "Droid Sans", Helvetica, Arial, sans-serif;
     color: white;
     font-size: 17px;
     text-transform: uppercase;
@@ -352,7 +350,7 @@ table th {
 }
 
 header hgroup {
-    margin-top: 8px;
+    margin: 8px 0;
     position: relative;
     padding-left: 80px;
 }
@@ -363,27 +361,36 @@ header hgroup {
 .html-rtl .mini-header hgroup {
     padding-right: 0;
 }
-header #home, header .back-link {
-    clear: both;
-    color: #447BC4;
+header ul {
+    overflow: hidden;
+}
+header li {
     float: left;
+}
+header li.purchases {
+    float: right;
+}
+.html-rtl header li {
+    float: right;
+}
+.html-rtl header li.purchases {
+    float: left;
+}
+header ul a {
+    color: #447BC4;
+    display: block;
     padding: 14px 0;
     line-height: 14px;
 }
-.html-rtl header #home,
-.html-rtl header .back-link {
-    float: right;
-}
 .mini-header .site-title {
-    padding-right: 120px;
+    padding: 4px 120px 0 0;
 }
 .html-rtl .mini-header .site-title {
-    padding-right: 0;
-    padding-left: 120px;
+    padding: 4px 0 0 120px;
 }
 .mini-header .site-title a {
-    font-size: 22px;
-    line-height: 22px;
+    font-size: 28px;
+    line-height: 50px;
 }
 #home-header hgroup {
     min-height: 75px;
@@ -490,100 +497,6 @@ header #home, header .back-link {
     line-height: 1.1em;
     padding: 12px 12px 10px 56px;
 }
-/************************************/
-/*             LISTVIEWS            */
-/************************************/
-
-.listview,
-.infobox {
-    margin: 14px 14px 1em;
-    border-radius: 6px;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    border: 1px solid #ddd;
-    background-color: #f4f4f4;
-/*    background-image: -moz-linear-gradient(#fff, rgba(255,255,255,0) 12px);
-    -moz-box-shadow: 0 -3px rgba(0,0,0,.1) inset;
-    -webkit-box-shadow: 0 -3px rgba(0,0,0,.1) inset;*/
-    display: block;
-}
-.infobox {
-    padding: 10px;
-}
-.listview li {
-    border-top: 1px solid #ccc;
-    font-size: 1em;
-}
-.listview li:first-child {
-    border: 0;
-}
-.listview li > a,
-a.listview {
-    color: #444;
-    font-family: Georgia, serif;
-    font-size: 1.1em;
-    display: block;
-    overflow: hidden;
-    text-decoration: none;
-    padding: 10px;
-    position: relative;
-}
-.html-rtl li > a,
-.html-rtl a.listview {
-    padding-left: 34px;
-}
-.listview .item > a,
-.listview div.item {
-    padding: 10px;
-    font-size: 1em;
-}
-.listview li > a:before,
-a.listview:before {
-    content: " ";
-    display: block;
-    width: 10px;
-    height: 16px;
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    margin-top: -8px;
-    background: url(../../img/zamboni/mobile/arrow.svg) no-repeat center center;
-}
-.html-rtl .listview li > a:before,
-.html-rtl a.listview:before {
-    right: auto;
-    left: 10px;
-    background: url(../../img/zamboni/mobile/arrow.svg) no-repeat center center;
-    -moz-transform: scaleX(-1);
-}
-.icon {
-    float: left;
-    margin-right: 8px;
-}
-.html-rtl .icon {
-    float: right;
-    margin-left: 8px;
-    margin-right: 0;
-}
-
-.item {
-    line-height: 1.3em;
-}
-.item h3 {
-    font-size: 1.1em;
-}
-.item .desc {
-    white-space: nowrap;
-}
-.item details {
-    overflow: hidden;
-    margin-right: 12px;
-}
-
-.item .vital {
-    color: green;
-    font-size: .9em;
-}
 
 /************************************/
 /*              SEARCH              */
@@ -650,6 +563,19 @@ a.listview:before {
     display: none;
 }
 
+.no-results {
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background-color: #f4f4f4;
+    color: #999;
+    font: bold 18px Georgia, serif;
+    text-align: center;
+    margin: 14px 14px 1em;
+    padding: 14px;
+}
+
 /************************************/
 /*            SORT MENU             */
 /************************************/
@@ -672,6 +598,9 @@ a.listview:before {
 #sort-menu.expand ul {
     border-color: #a9badb;
     height: 254px;
+}
+.purchases #sort-menu.expand ul {
+    height: 100px;
 }
 
 #sort-menu li {
@@ -913,7 +842,7 @@ td .versions li:last-child a {
 
 .author,
 .author a {
-    font-family: "Droid Sans", sans-serif;
+    font-family: "Droid Sans", Helvetica, Arial, sans-serif;
     color: #888;
     font-size: 12px;
     line-height: 12px;
@@ -1136,7 +1065,7 @@ li.persona-previewer {
 
 .version time {
     display: block;
-    font-family: "Droid Sans", sans-serif;
+    font-family: "Droid Sans", Helvetica, Arial, sans-serif;
     margin: 10px 0;
 }
 
@@ -1153,7 +1082,7 @@ li.persona-previewer {
 
 .version .meta h4 {
     margin-top: 12px;
-    font-family: "Droid Sans", sans-serif;
+    font-family: "Droid Sans", Helvetica, Arial, sans-serif;
     font-weight: bold;
     color: #666;
 }
@@ -1211,14 +1140,7 @@ li.persona-previewer {
 .button, a.button {
     -moz-transition: -moz-box-shadow 0.3s ease 0s;
     background-color: #669BE1;
-/*    background-image: -moz-linear-gradient(#669BE1, #5784BF) repeat scroll 0 0 transparent;
-    background-image: -webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        from(#669BE1),
-        to(#5784BF)
-    );*/
+    border: 0;
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
     border-radius: 6px;
@@ -1489,7 +1411,6 @@ li.persona-previewer {
     background-image: url(../../img/icons/stars.png);
     background-position: 0 50%;
     background-repeat: no-repeat;
-    margin-right: 0.5em;
     width: 63px;
     display: block;
 }
@@ -1498,8 +1419,6 @@ li.persona-previewer {
 }
 .html-rtl .stars {
     float: right;
-    margin-left: 0.5em;
-    margin-right: 0;
 }
 
 .stars-4 {
@@ -1752,7 +1671,7 @@ footer:before {
     box-shadow: 0 -2px rgba(0,0,0,.1) inset;
 }
 footer {
-    font-family: "Droid Sans", sans-serif;
+    font-family: "Droid Sans", Helvetica, Arial, sans-serif;
     font-size: 1em;
     color: white;
     margin-top: 30px;
@@ -1783,7 +1702,7 @@ footer a.desktop-link {
     border-radius: 6px;
     color: #fff;
     display: block;
-    font-family: "Trebuchet MS", "Droid Sans", sans-serif;
+    font-family: "Trebuchet MS", "Droid Sans", Helvetica, Arial, sans-serif;
     font-size: 150%;
     font-weight: bold;
     line-height: 200%;

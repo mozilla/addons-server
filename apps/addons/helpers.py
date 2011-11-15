@@ -191,7 +191,8 @@ def addon_listing_items_compact(context, addons, show_date=False, src=None):
 
 @register.inclusion_tag('addons/listing/items_mobile.html')
 @jinja2.contextfunction
-def addon_listing_items_mobile(context, addons, sort=None, src=None):
+def addon_listing_items_mobile(context, addons, sort=None, src=None,
+                               show_refunds=False):
     return new_context(**locals())
 
 

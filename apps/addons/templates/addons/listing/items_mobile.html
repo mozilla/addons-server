@@ -1,5 +1,8 @@
+{% from "addons/macros.html" import price, refund_info %}
+{% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
 {% for addon in addons %}
-  <li class="item">
+  {% set is_refunded = show_refunds and addon.is_refunded(request.amo_user) %}
+  <li class="item{{ ' refunded' if is_refunded }}">
     <a href="{{ addon.get_url_path() }}">
       <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
       <h3>{{ addon.name }}</h3>
@@ -36,6 +39,12 @@
                 <i>{{ _('Not Yet Rated') }}</i>
               {% endif %}
             {% endwith %}
+          {% endif %}
+          {% if waffle.switch('marketplace') %}
+            {{ price(addon) }}
+            {% if show_refunds %}
+              {{ refund_info(amo, addon, contributions, is_refunded) }}
+            {% endif %}
           {% endif %}
         </div>
       </details>

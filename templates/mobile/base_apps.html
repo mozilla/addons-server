@@ -32,6 +32,9 @@
         data-anonymous="{{ (not request.user.is_authenticated())|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
+        {% if waffle.switch('marketplace') and request.amo_user %}
+          data-purchases="{{ request.amo_user.purchase_ids()|join(',') }}"
+        {% endif %}
         {% if request.ALLOWS_PJAX %}
           data-use-pjax="1"
           data-pjax-container="{{ settings.PJAX_SELECTOR }}"
@@ -50,11 +53,18 @@
               </a>
             </h1>
           </hgroup>
-          {% block back_link %}
-          <a href="{{ url('apps.home') }}" id="home">
-            <svg width="18" height="16"><polygon fill="#447BC4" points="9,0 18,9 15,9 15,16 11,16 11,11 7,11 7,18 3,16 3,9 0,9"/></svg>
-            {{ _('Mobile Apps Home') }}</a>
-          {% endblock %}
+          <ul>
+            {% block back_link %}
+              <li><a href="{{ url('apps.home') }}" id="home">
+                <svg width="18" height="16"><polygon fill="#447BC4" points="9,0 18,9 15,9 15,16 11,16 11,11 7,11 7,18 3,16 3,9 0,9"/></svg>
+                {{ _('Mobile Apps Home') }}</a></li>
+            {% endblock %}
+            {% block purchases_link %}
+              <li class="purchases"><a href="{{ url('users.purchases') }}">
+                {{ _('My Purchases') }}</a></li>
+            {% endblock %}
+          </ul>
+          {% block search %}{% endblock %}
         </header>
       {% endblock %}
 

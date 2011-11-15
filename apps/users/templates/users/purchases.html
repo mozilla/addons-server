@@ -1,6 +1,9 @@
+{% from "addons/macros.html" import price %}
 {% extends "impala/base.html" %}
+{% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
 
 {% block title %}{{ page_title('My Purchases') }}{% endblock %}
+
 {% block content %}
   {% include 'users/includes/navigation.html' %}
   <section class="primary">
@@ -16,12 +19,8 @@
       {% endif %}
       <div class="items">
         {% for addon in addons.object_list %}
-        {% if is_refunded(addon) %}
-        <div class="item addon ignore-compatibility refunded">
-          <span class="refund-notice">{{ _('Purchase Refunded') }}</span>
-        {% else %}
-          <div class="item addon ignore-compatibility">
-          {% endif %}
+          {% set is_refunded = addon.is_refunded(request.amo_user) %}
+          <div class="item addon ignore-compatibility {{ 'refunded' if is_refunded }}">
             <div class="info">
               <h3>
                 <a href="{{ addon.get_url_path() }}">
@@ -29,29 +28,39 @@
               </h3>
               <p class="desc">{{ addon.description|truncate(250)|nl2br }}</p>
               <div class="vitals c">
+                {{ price(addon) }}
                 {% for contribution in contributions.get(addon.pk, []) %}
-                    <div class="purchase-byline">
-                      {% if contribution.type == amo.CONTRIB_PURCHASE %}
-                        {% trans date=addon.created, amt=contribution.get_amount_locale() %}
-                            Purchased {{ date }} for {{ amt }}
-                        {% endtrans %}
-                        {% if not is_refunded(addon) %}
-                        &middot; <a href="{{ url('users.support', contribution.pk) }}">{{ _('Request Support') }}</a>
-                        {% endif%}
-                      {% elif contribution.type == amo.CONTRIB_REFUND %}
-                        {% trans date=addon.created, amt=contribution.get_amount_locale() %}
-                            Refunded {{ date }} for {{ amt }}
-                        {% endtrans %}
+                  <div class="purchase-byline">
+                    {% if contribution.type == amo.CONTRIB_PURCHASE %}
+                      {% trans date=addon.created|datetime,
+                               amt=contribution.get_amount_locale() %}
+                        Purchased {{ date }} for {{ amt }}
+                      {% endtrans %}
+                      {% if not is_refunded %}
+                        &middot; <a href="{{ url('users.support', contribution.pk) }}">
+                          {{ _('Request Support') }}</a>
                       {% endif %}
-                    </div>
+                    {% elif contribution.type == amo.CONTRIB_REFUND %}
+                      {% trans date=addon.created|datetime,
+                               amt=contribution.get_amount_locale() %}
+                        Refunded {{ date }} for {{ amt }}
+                      {% endtrans %}
+                    {% endif %}
+                  </div>
                 {% endfor %}
               </div>
+            </div>
+            {% if is_refunded %}
+              <div class="action">
+                <p class="refund-notice">{{ _('Purchase Refunded') }}</p>
+              </div>
+            {% endif %}
           </div>
-        </div>
-      {% else %}
-        {# TODO(apps): Finalize copy. #}
-        <p class="no-results">You have no purchases.</p>
-      {% endfor %}
+        {% else %}
+          {# TODO(apps): Finalize copy. #}
+          <p class="no-results">You have no purchases.</p>
+        {% endfor %}
+      </div>
     </div>
   </div>
 </section>

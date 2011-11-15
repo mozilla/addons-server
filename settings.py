@@ -525,6 +525,7 @@ MINIFY_BUNDLES = {
         'zamboni/mobile': (
             'css/zamboni/mobile.css',
             'css/zamboni/mobile-forms.less',
+            'css/mobile/listing.less',
         ),
         'zamboni/admin': (
             'css/zamboni/admin-django.css',

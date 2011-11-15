@@ -917,9 +917,8 @@ class TestPurchases(amo.tests.TestCase):
             AddonPremium.objects.create(price=price, addon=addon)
             con = Contribution.objects.create(user=self.user.get_profile(),
                                               addon=addon, amount='%s.00' % x,
-                                              type=amo.CONTRIB_PURCHASE,
-                                              created=datetime(2011, 10, 1))
-            con.created = datetime.now() - timedelta(days=10 - x)
+                                              type=amo.CONTRIB_PURCHASE)
+            con.created = datetime(2011, 11, 1)
             con.save()
             if not self.addon and not self.con:
                 self.addon, self.con = addon, con
@@ -948,6 +947,13 @@ class TestPurchases(amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(len(res.context['addons'].object_list), 4)
 
+    @amo.tests.mobile_test
+    def test_mobile_purchase_list(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(len(res.context['addons'].object_list), 4)
+        self.assertTemplateUsed(res, 'users/mobile/purchases.html')
+
     def get_order(self, order):
         res = self.client.get('%s?sort=%s' % (self.url, order))
         return [str(c.name) for c in
@@ -961,9 +967,19 @@ class TestPurchases(amo.tests.TestCase):
         res = self.client.get(self.url)
         assert '$1.00' in pq(res.content)('div.vitals').eq(0).text()
 
+    @amo.tests.mobile_test
+    def test_mobile_price(self):
+        res = self.client.get(self.url)
+        assert '$1.00' in pq(res.content)('.vital.purchase').eq(0).text()
+
     def test_price_locale(self):
         res = self.client.get(self.url.replace('/en-US', '/fr'))
         assert u'1,00' in pq(res.content)('div.vitals').eq(0).text()
+
+    @amo.tests.mobile_test
+    def test_mobile_price_locale(self):
+        res = self.client.get(self.url.replace('/en-US', '/fr'))
+        assert u'1,00' in pq(res.content)('.vital.purchase').eq(0).text()
 
     def test_receipt(self):
         res = self.client.get(reverse('users.purchases.receipt',
@@ -978,13 +994,28 @@ class TestPurchases(amo.tests.TestCase):
     def test_receipt_view(self):
         res = self.client.get(reverse('users.purchases.receipt',
                               args=[self.addon.pk]))
-        eq_(pq(res.content)('#sorter').text(), 'Show all purchases')
+        eq_(pq(res.content)('#sorter a').attr('href'),
+            reverse('users.purchases'))
 
-    def test_purchases_attribute(self):
+    @amo.tests.mobile_test
+    def test_mobile_receipt_view(self):
+        res = self.client.get(reverse('users.purchases.receipt',
+                              args=[self.addon.pk]))
+        eq_(pq(res.content)('#sort-menu a').attr('href'),
+            reverse('users.purchases'))
+
+    def _test_purchases_attribute(self):
         doc = pq(self.client.get(self.url).content)
         ids = list(Addon.objects.values_list('pk', flat=True).order_by('pk'))
         eq_(doc('body').attr('data-purchases'),
             ','.join([str(i) for i in ids]))
+
+    def test_purchases_attribute(self):
+        self._test_purchases_attribute()
+
+    @amo.tests.mobile_test
+    def test_mobile_purchases_attribute(self):
+        self._test_purchases_attribute()
 
     def test_no_purchases_attribute(self):
         self.user.get_profile().addonpurchase_set.all().delete()
@@ -993,8 +1024,13 @@ class TestPurchases(amo.tests.TestCase):
 
     def test_refund_link(self):
         doc = pq(self.client.get(self.url).content)
-        url = reverse('users.support', args=[self.con.pk])
-        eq_(doc('div.vitals a').eq(0).attr('href'), url)
+        eq_(doc('div.vitals a').eq(0).attr('href'), self.get_url())
+
+    @amo.tests.mobile_test
+    def test_mobile_refund_link(self):
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('#content .vital.purchase a').eq(0).attr('href'),
+            self.get_url())
 
     def get_url(self, *args):
         return reverse('users.support', args=[self.con.pk] + list(args))
@@ -1121,40 +1157,70 @@ class TestPurchases(amo.tests.TestCase):
         eq_(len(addon_vitals('div.purchase-byline')), 2)
 
     def make_contribution(self, addon, amt, type, day):
-        return Contribution.objects.create(
-            user=self.user.get_profile(), addon=addon,
-            amount=amt, type=type, created=datetime(2011, 10, day))
+        c = Contribution.objects.create(user=self.user.get_profile(),
+                                        addon=addon, amount=amt, type=type)
+        c.created = datetime(2011, 11, day)
+        c.save()
+        return c
+
+    def _test_refunded(self):
+        addon = Addon.objects.get(type=amo.ADDON_EXTENSION, guid='t1')
+        self.make_contribution(addon, '-1.00', amo.CONTRIB_REFUND, 2)
+        doc = pq(self.client.get(self.url).content)
+        item = doc('.item').eq(0)
+        assert item.hasClass('refunded'), (
+            "Expected '.item' to have 'refunded' class")
+        assert item.find('.refund-notice'), 'Expected refund message'
 
     def test_refunded(self):
-        addon = Addon.objects.get(type=amo.ADDON_EXTENSION,
-                                  guid='t1')
-        self.make_contribution(addon, "-1.00", amo.CONTRIB_REFUND, 2)
-        doc = pq(self.client.get(self.url).content)
-        firstitem = doc('.items')[0][0]
-        assert 'refunded' in firstitem.get('class')
-        eq_(firstitem[0].get('class'), 'refund-notice')
+        self._test_refunded()
+
+    @amo.tests.mobile_test
+    def test_mobile_refunded(self):
+        self._test_refunded()
+
+    def _test_repurchased(self):
+        addon = Addon.objects.get(type=amo.ADDON_EXTENSION, guid='t1')
+        c = [
+            self.make_contribution(addon, '-1.00', amo.CONTRIB_REFUND, 2),
+            self.make_contribution(addon, '1.00', amo.CONTRIB_PURCHASE, 3)
+        ]
+        item = pq(self.client.get(self.url).content)('.item').eq(0)
+        assert not item.hasClass('refunded'), (
+            "Unexpected 'refunded' class on '.item'")
+        assert not item.find('.refund-notice'), 'Unexpected refund message'
+        return c, item
 
     def test_repurchased(self):
-        addon = Addon.objects.get(type=amo.ADDON_EXTENSION,
-                                  guid='t1')
-        self.make_contribution(addon, "-1.00", amo.CONTRIB_REFUND, 2)
-        self.make_contribution(addon, "1.00", amo.CONTRIB_PURCHASE, 3)
+        c, item = self._test_repurchased()
+        eq_(item.find('.purchase-byline a:last').attr('href'),
+            reverse('users.support', args=[c[1].id]))
+
+    @amo.tests.mobile_test
+    def test_mobile_repurchased(self):
+        c, item = self._test_repurchased()
+        eq_(item.find('.vital.purchase a:last').attr('href'),
+            reverse('users.support', args=[c[1].id]))
+
+    def _test_rerefunded(self):
+        addon = Addon.objects.get(type=amo.ADDON_EXTENSION, guid='t1')
+        self.make_contribution(addon, '-1.00', amo.CONTRIB_REFUND, 2)
+        self.make_contribution(addon, '1.00', amo.CONTRIB_PURCHASE, 3)
+        self.make_contribution(addon, '-1.00', amo.CONTRIB_REFUND, 4)
         doc = pq(self.client.get(self.url).content)
-        firstitem = doc('.items')[0][0]
-        assert 'refunded' not in firstitem.get('class')
-        assert not doc('.items .refund-notice')
-        purchaselines = doc('.vitals')[0]
-        assert 'Request Support' in purchaselines.text_content()
+        item = doc('.item').eq(0)
+        assert item.hasClass('refunded'), (
+            "Unexpected 'refunded' class on '.item'")
+        assert item.find('.refund-notice'), 'Expected refund message'
+        return item
 
     def test_rerefunded(self):
-        addon = Addon.objects.get(type=amo.ADDON_EXTENSION,
-                                  guid='t1')
-        self.make_contribution(addon, "-1.00", amo.CONTRIB_REFUND, 2)
-        self.make_contribution(addon, "1.00", amo.CONTRIB_PURCHASE, 3)
-        self.make_contribution(addon, "-1.00", amo.CONTRIB_REFUND, 4)
-        doc = pq(self.client.get(self.url).content)
-        firstitem = doc('.items')[0][0]
-        assert 'refunded' in firstitem.get('class')
-        eq_(firstitem[0].get('class'), 'refund-notice')
-        purchaselines = doc('.vitals')[0]
-        assert 'Request Support' not in purchaselines.text_content()
+        item = self._test_rerefunded()
+        assert not item.find('.purchase-byline a'), (
+            "Unexpected 'Request Support' link")
+
+    @amo.tests.mobile_test
+    def test_mobile_rerefunded(self):
+        item = self._test_rerefunded()
+        assert not item.find('.vital.purchase a'), (
+            "Unexpected 'Request Support' link")

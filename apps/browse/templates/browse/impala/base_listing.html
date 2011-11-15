@@ -59,7 +59,11 @@
   {% endblock %}
 {% endif %}
 
-{% if not request.MOBILE %}
+{% if request.MOBILE %}
+  {% block search %}
+    {% include "search/mobile/search.html" %}
+  {% endblock %}
+{% else %}
   {% block bodyclass %}{{ section }} s-{{ sorting }}{% endblock %}
   {% block extrahead %}
     {% if category %}

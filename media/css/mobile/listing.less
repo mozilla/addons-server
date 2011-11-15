@@ -1,0 +1,129 @@
+@import '../impala/lib';
+
+/************************************/
+/*             LISTVIEWS            */
+/************************************/
+
+.listview,
+.infobox {
+    margin: 14px 14px 1em;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border: 1px solid #ddd;
+    background-color: #f4f4f4;
+    display: block;
+}
+.infobox {
+    padding: 10px;
+}
+.listview li {
+    border-top: 1px solid #ccc;
+    font-size: 1em;
+    &:first-child {
+        border: 0;
+    }
+}
+.listview li > a,
+a.listview {
+    color: #444;
+    font-family: @serif-stack;
+    font-size: 1.1em;
+    display: block;
+    overflow: hidden;
+    text-decoration: none;
+    padding: 10px;
+    position: relative;
+}
+.html-rtl li > a,
+.html-rtl a.listview {
+    padding-left: 34px;
+}
+.listview .item > a,
+.listview div.item {
+    padding: 10px;
+    font-size: 1em;
+}
+.listview li > a:before,
+a.listview:before {
+    content: " ";
+    display: block;
+    width: 10px;
+    height: 16px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -8px;
+    background: url(../../img/zamboni/mobile/arrow.svg) no-repeat center center;
+}
+.html-rtl .listview li > a:before,
+.html-rtl a.listview:before {
+    right: auto;
+    left: 10px;
+    background: url(../../img/zamboni/mobile/arrow.svg) no-repeat center center;
+    -moz-transform: scaleX(-1);
+}
+.icon {
+    float: left;
+    margin-right: 8px;
+}
+.html-rtl .icon {
+    float: right;
+    margin-left: 8px;
+    margin-right: 0;
+}
+
+.item {
+    line-height: 1.3em;
+    h3 {
+        font-size: 1.1em;
+    }
+    .desc {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    details {
+        overflow: hidden;
+        margin-right: 12px;
+        div {
+            font-size: .9em;
+        }
+    }
+    .vital {
+        color: green;
+        padding-left: .5em;
+        &:before {
+            color: #aaa;
+            content: "\B7";
+            padding-right: .25em;
+        }
+        &:first-child {
+            padding: 0;
+            &:before {
+                display: none;
+            }
+        }
+        &.purchase {
+            color: @note-gray;
+        }
+    }
+    .stars, i, .vital {
+        display: block;
+        float: left;
+    }
+}
+.html-rtl .item {
+    .stars, i, .vital {
+        float: right;
+    }
+    .vital {
+        padding: 0 .5em 0 0;
+        &:first-child {
+            padding: 0;
+        }
+    }
+    .price:before,
+    .purchase:before {
+        padding: 0 0 0 .25em;
+    }
+}

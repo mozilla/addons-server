@@ -33,7 +33,7 @@ from addons.utils import ReverseNameLookup, FeaturedManager, CreaturedManager
 from files.models import File
 from market.models import AddonPremium, Price
 from reviews.models import Review
-from stats.models import AddonShareCountTotal
+from stats.models import AddonShareCountTotal, Contribution
 from translations.fields import (TranslatedField, PurifiedField,
                                  LinkifiedField, Translation)
 from translations.query import order_by_translation
@@ -1014,6 +1014,19 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             return False
         return (self.is_premium() and
                 self.addonpurchase_set.filter(user=user).exists())
+
+    def is_refunded(self, user):
+        """
+        Contributions are sorted by creation date; if the most recent one is
+        a refund, mark this addon as refunded.
+        """
+        if not user or not isinstance(user, UserProfile):
+            return False
+        qs = (Contribution.objects
+              .filter(user=user, addon=self.id,
+                      type__in=[amo.CONTRIB_PURCHASE, amo.CONTRIB_REFUND])
+              .order_by('-created'))
+        return qs.exists() and qs[0].type == amo.CONTRIB_REFUND
 
     def can_review(self, user):
         if user and self.has_author(user):
