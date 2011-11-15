@@ -1,5 +1,6 @@
 # -*- coding: utf8 -*-
 from django.db import connection
+from django.conf import settings
 
 from nose.tools import eq_
 
@@ -7,6 +8,7 @@ import amo
 import amo.tests
 from addons.models import Addon
 from services import verify
+from services import utils
 from webapps.models import Installed
 from market.models import AddonPurchase
 from users.models import UserProfile
@@ -16,6 +18,12 @@ import json
 import mock
 
 
+# There are two "different" settings files that need to be patched,
+# even though they are the same file.
+@mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
+                   amo.tests.AMOPaths.sample_key())
+@mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
+                   amo.tests.AMOPaths.sample_key())
 class TestVerify(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 

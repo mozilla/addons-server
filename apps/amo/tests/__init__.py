@@ -216,6 +216,11 @@ class AMOPaths(object):
             os.makedirs(os.path.dirname(file.file_path))
         shutil.copyfile(self.xpi_path(name), file.file_path)
 
+    @staticmethod
+    def sample_key():
+        path = 'apps/webapps/tests/sample.key'
+        return os.path.join(settings.ROOT, path)
+
 
 def close_to_now(dt):
     """

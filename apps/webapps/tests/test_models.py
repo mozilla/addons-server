@@ -1,5 +1,4 @@
 import json
-import os
 import unittest
 
 import test_utils
@@ -14,9 +13,6 @@ from devhub.tests.test_views import BaseWebAppTest
 from users.models import UserProfile
 from versions.models import Version
 from webapps.models import Installed, Webapp, get_key
-
-
-key = os.path.join(os.path.dirname(__file__), 'sample.key')
 
 
 class TestWebapp(test_utils.TestCase):
@@ -153,6 +149,8 @@ class TestDomainFromURL(unittest.TestCase):
         Webapp.domain_from_url('')
 
 
+@mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
+                   amo.tests.AMOPaths.sample_key())
 class TestReceipt(amo.tests.TestCase):
     fixtures = ['base/users.json']
 
@@ -166,11 +164,6 @@ class TestReceipt(amo.tests.TestCase):
         ap = Installed.objects.create(user=self.user, addon=self.webapp)
         eq_(ap.receipt, '')
 
-    @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY', 'rubbish')
-    def test_get_key(self):
-        self.assertRaises(IOError, get_key)
-
-    @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY', key)
     def create_install(self, user, webapp):
         webapp.update(type=amo.ADDON_WEBAPP,
                       manifest_url='http://somesite.com/')
@@ -223,3 +216,10 @@ class TestReceipt(amo.tests.TestCase):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         install = self.create_install(self.user, self.webapp)
         eq_(install.premium_type, amo.ADDON_PREMIUM)
+
+
+@mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
+                   amo.tests.AMOPaths.sample_key() + '.foo')
+class TestBrokenReceipt(amo.tests.TestCase):
+    def test_get_key(self):
+        self.assertRaises(IOError, get_key)

@@ -408,6 +408,8 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         doc = pq(self.client.get('%s?uuid=1' % url).content)
         eq_(len(doc('#paypal-thanks')), 1)
 
+    @patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
+                  amo.tests.AMOPaths.sample_key())
     def test_trigger_webapp(self):
         url = reverse('addons.purchase.thanks', args=[self.addon.slug])
         self.make_contribution(type=amo.CONTRIB_PURCHASE)
