@@ -76,6 +76,7 @@ class Extractor(object):
             'homepage': self.find('homepageURL'),
             'summary': self.find('description'),
             'no_restart': self.find('bootstrap') == 'true',
+            'strict_compatibility': self.find('strictCompatibility') == 'true',
             'apps': self.apps(),
         }
 

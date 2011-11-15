@@ -357,6 +357,85 @@ class TestLookup(amo.tests.TestCase):
             eq_(version, self.version_1_2_1)
 
 
+class TestDefaultToCompat(amo.tests.TestCase):
+    """
+    This test adds a fixture with a version/file with strict compatibility
+    enabled.
+    """
+    fixtures = ['addons/update', 'base/platforms',
+                'addons/update-strict-compat-version']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=1865)
+        self.platform = None
+        self.version_int = 5000000200100
+
+        self.app = Application.objects.get(id=1)
+        self.version_1_0_2 = 66463
+        self.version_1_1_3 = 90149
+        self.version_1_2_0 = 105387
+        self.version_1_2_1 = 112396
+        self.version_1_2_2 = 115509
+        self.version_1_3_0 = 123456
+
+    def get(self, *args):
+        up = update.Update({
+            'id': self.addon.guid,
+            'version': args[0],
+            'appID': args[2].guid,
+            'appVersion': 1,  # this is going to be overridden
+            'appOS': args[3].api_name if args[3] else '',
+            'reqVersion': '',
+            })
+        up.cursor = connection.cursor()
+        assert up.is_valid()
+        up.data['version_int'] = args[1]
+        if len(args) == 5:
+            up.compat_mode = args[4]
+        up.get_update()
+        return (up.data['row'].get('version_id'),
+                up.data['row'].get('file_id'))
+
+    def test_strict_and_strict(self):
+        # File has strict_compatibility and compatMode is strict.
+        version, file = self.get('', self.version_int,
+                                 self.app, self.platform, 'strict')
+        eq_(version, None)
+
+    def test_strict_and_normal(self):
+        # File has strict_compatibility and compatMode is normal.
+        version, file = self.get('', self.version_int,
+                                 self.app, self.platform, 'normal')
+        eq_(version, self.version_1_2_2)
+
+    def test_strict_and_ignore(self):
+        # File has strict_compatibility and compatMode is ignore.
+        version, file = self.get('', self.version_int,
+                                 self.app, self.platform, 'ignore')
+        eq_(version, self.version_1_3_0)
+
+    def test_no_strict_and_strict(self):
+        # File has strict_compatibility off and compatMode is strict.
+        File.objects.get(pk=96878).update(strict_compatibility=False)
+        version, file = self.get('', self.version_int,
+                                 self.app, self.platform, 'strict')
+        eq_(version, None)
+
+    def test_no_strict_and_normal(self):
+        # File has strict_compatibility off and compatMode is normal.
+        File.objects.get(pk=96878).update(strict_compatibility=False)
+        version, file = self.get('', self.version_int,
+                                 self.app, self.platform, 'normal')
+        eq_(version, self.version_1_3_0)
+
+    def test_no_strict_and_ignore(self):
+        # File has strict_compatibility off and compatMode is ignore.
+        File.objects.get(pk=96878).update(strict_compatibility=False)
+        version, file = self.get('', self.version_int,
+                                 self.app, self.platform, 'ignore')
+        eq_(version, self.version_1_3_0)
+
+
 class TestResponse(amo.tests.TestCase):
     fixtures = ['base/addon_3615',
                 'base/platforms',

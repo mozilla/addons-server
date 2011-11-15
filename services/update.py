@@ -88,13 +88,14 @@ mypool = pool.QueuePool(getconn, max_overflow=10, pool_size=5, recycle=300)
 
 class Update(object):
 
-    def __init__(self, data):
+    def __init__(self, data, compat_mode='strict'):
         self.conn, self.cursor = None, None
         self.data = data.copy()
         self.data['row'] = {}
         self.flags = {'use_version': False, 'multiple_status': False}
         self.is_beta_version = False
         self.version_int = 0
+        self.compat_mode = compat_mode
 
     def is_valid(self):
         # If you accessing this from unit tests, then before calling
@@ -174,7 +175,7 @@ class Update(object):
         self.get_beta()
         data = self.data
 
-        sql = """
+        sql = ["""
             SELECT
                 addons.guid as guid, addons.addontype_id as type,
                 addons.inactive as disabled_by_user,
@@ -183,6 +184,7 @@ class Update(object):
                 files.status as file_status, files.hash,
                 files.filename, versions.id as version_id,
                 files.datestatuschanged as datestatuschanged,
+                files.strict_compatibility as strict_compat,
                 versions.releasenotes, versions.version as version,
                 addons.premium_type
             FROM versions
@@ -199,36 +201,48 @@ class Update(object):
                 ON appmax.id = applications_versions.max
             INNER JOIN files
                 ON files.version_id = versions.id AND (files.platform_id = 1
-            """
+            """]
         if data.get('appOS'):
-            sql += ' OR files.platform_id = %(appOS)s'
+            sql.append(' OR files.platform_id = %(appOS)s')
 
         if self.flags['use_version']:
-            sql += (') WHERE files.status > %(status)s AND '
+            sql.append(') WHERE files.status > %(status)s AND '
                     'versions.version = %(version)s ')
         else:
             if self.flags['multiple_status']:
                 # Note that getting this properly escaped is a pain.
                 # Suggestions for improvement welcome.
-                sql += (') WHERE files.status in (%(STATUS_PUBLIC)s,'
-                        '%(STATUS_LITE)s,%(STATUS_LITE_AND_NOMINATED)s)')
+                sql.append(') WHERE files.status in (%(STATUS_PUBLIC)s,'
+                        '%(STATUS_LITE)s,%(STATUS_LITE_AND_NOMINATED)s) ')
             else:
-                sql += ') WHERE files.status = %(status)s '
+                sql.append(') WHERE files.status = %(status)s ')
 
-        sql += """
-            AND (appmin.version_int <= %(version_int)s
-            AND appmax.version_int >= %(version_int)s)
-            ORDER BY versions.id DESC LIMIT 1;
-            """
+        sql.append('AND appmin.version_int <= %(version_int)s ')
 
-        self.cursor.execute(sql, data)
+        if self.compat_mode == 'ignore':
+            pass  # no further SQL modification required.
+
+        elif self.compat_mode == 'normal':
+            # normal checks the file's strict_compatibility flag
+            sql.append("""
+                AND (CASE WHEN files.strict_compatibility = 1 THEN
+                        appmax.version_int >= %(version_int)s ELSE 1 END)
+            """)
+
+        else:  # Not defined or 'strict'.
+            sql.append('AND appmax.version_int >= %(version_int)s ')
+
+        sql.append('ORDER BY versions.id DESC LIMIT 1;')
+
+        self.cursor.execute(''.join(sql), data)
         result = self.cursor.fetchone()
+
         if result:
             row = dict(zip([
                 'guid', 'type', 'disabled_by_user', 'appguid', 'min', 'max',
                 'file_id', 'file_status', 'hash', 'filename', 'version_id',
-                'datestatuschanged', 'releasenotes', 'version',
-                'premium_type'],
+                'datestatuschanged', 'strict_compat', 'releasenotes',
+                'version', 'premium_type'],
                 list(result)))
             row['type'] = base.ADDON_SLUGS_UPDATE[row['type']]
             if row['premium_type'] == base.ADDON_PREMIUM:
@@ -319,8 +333,9 @@ def application(environ, start_response):
               (environ['SCRIPT_NAME'], environ['QUERY_STRING']))
     with statsd.timer('services.update'):
         data = dict(parse_qsl(environ['QUERY_STRING']))
+        compat_mode = data.pop('compatMode', 'strict')
         try:
-            update = Update(data)
+            update = Update(data, compat_mode)
             output = update.get_rdf()
             start_response(status, update.get_headers(len(output)))
         except:

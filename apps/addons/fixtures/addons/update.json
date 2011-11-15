@@ -633,7 +633,29 @@
       "created": "2008-10-28 18:25:09"
     }
   },
-{
+  {
+    "pk": 411,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 5000000200100,
+      "application": 1,
+      "version": "5.0",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 364,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 4000000200100,
+      "application": 1,
+      "version": "4.0",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
     "pk": 350,
     "model": "applications.appversion",
     "fields": {

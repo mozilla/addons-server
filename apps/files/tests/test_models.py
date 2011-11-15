@@ -408,6 +408,14 @@ class TestParseXpi(amo.tests.TestCase):
         msg = e.exception.messages[0]
         eq_(msg, 'Version numbers should have fewer than 32 characters.')
 
+    def test_strict_compat_undefined(self):
+        result = self.parse()
+        eq_(result['strict_compatibility'], False)
+
+    def test_strict_compat_enabled(self):
+        result = self.parse(filename='strict-compat.xpi')
+        eq_(result['strict_compatibility'], True)
+
 
 class TestParseAlternateXpi(amo.tests.TestCase, amo.tests.AMOPaths):
     # This install.rdf is completely different from our other xpis.
@@ -693,6 +701,12 @@ class TestFileFromUpload(UploadTest):
         upload.hash = 'oops'
         f = File.from_upload(upload, self.version, self.platform)
         assert f.hash.startswith('oops')
+
+    def test_strict_compat(self):
+        upload = self.upload('strict-compat')
+        data = parse_addon(upload.path)
+        f = File.from_upload(upload, self.version, self.platform, data)
+        eq_(f.strict_compatibility, True)
 
 
 class TestZip(amo.tests.TestCase, amo.tests.AMOPaths):

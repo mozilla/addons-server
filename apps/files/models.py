@@ -56,6 +56,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                                               default=amo.STATUS_UNREVIEWED)
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
     no_restart = models.BooleanField(default=False)
+    strict_compatibility = models.BooleanField(default=False)
     # The XPI contains JS that calls require("chrome").
     requires_chrome = models.BooleanField(default=False)
     reviewed = models.DateTimeField(null=True)
@@ -141,6 +142,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         f.size = int(max(1, round(upload.path.size / 1024, 0)))  # Kilobytes.
         f.jetpack_version = cls.get_jetpack_version(upload.path)
         f.no_restart = parse_data.get('no_restart', False)
+        f.strict_compatibility = parse_data.get('strict_compatibility', False)
         if version.addon.status == amo.STATUS_PUBLIC:
             if amo.VERSION_BETA.search(parse_data.get('version', '')):
                 f.status = amo.STATUS_BETA
