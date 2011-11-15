@@ -1,3 +1,4 @@
+from email.Utils import formatdate
 import json
 import re
 
@@ -97,9 +98,14 @@ class Verify:
                 self.log('Valid receipt, but invalid contribution')
                 return self.invalid()
 
+    def format_date(self, secs):
+        return '%s GMT' % formatdate(time() + secs)[:25]
+
     def get_headers(self, length):
         return [('Content-Type', 'application/json'),
-                ('Content-Length', str(length))]
+                ('Content-Length', str(length)),
+                ('Cache-Control', 'no-cache'),
+                ('Last-Modified', self.format_date(0))]
 
     def invalid(self):
         return json.dumps({'status': 'invalid'})
