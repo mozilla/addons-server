@@ -300,6 +300,17 @@ class TestUserLoginForm(UserFormBase):
         self.assertContains(r, "A link to activate your user account")
         self.assertContains(r, "If you did not receive the confirmation")
 
+    @patch.object(settings, 'APP_PREVIEW', True)
+    def test_no_register(self):
+        res = self.client.get(self._get_login_url())
+        assert not res.content in 'A link to activate your user account'
+
+    @patch.object(settings, 'APP_PREVIEW', False)
+    def test_yes_register(self):
+        res = self.client.get(self._get_login_url())
+        self.assertContains(res.content,
+                            'A link to activate your user account')
+
     def test_disabled_account(self):
         url = self._get_login_url()
         self.user_profile.deleted = True
@@ -482,12 +493,19 @@ class TestUserRegisterForm(UserFormBase):
         eq_(len(doc('.error')), 1)
         eq_(UserProfile.objects.count(), 3)  # No user was created.
 
+    @patch.object(settings, 'APP_PREVIEW', False)
     @patch.object(settings, 'REGISTER_USER_LIMIT', 0)
     @patch('captcha.fields.ReCaptchaField.clean')
     def test_no_limit_post(self, clean):
         clean.return_value = ''
         self.client.post(reverse('users.register'), self.good_data())
         eq_(UserProfile.objects.count(), 4)  # One user was created.
+
+    @patch.object(settings, 'APP_PREVIEW', True)
+    def test_no_register(self):
+        res = self.client.post(reverse('users.register'), self.good_data())
+        eq_(res.status_code, 200)
+        eq_(len(pq(res.content)('div.error')), 1)
 
 
 class TestBlacklistedUsernameAdminAddForm(UserFormBase):

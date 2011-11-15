@@ -479,8 +479,13 @@ def profile(request, user_id):
 @anonymous_csrf
 @no_login_required
 def register(request):
-    if (settings.REGISTER_USER_LIMIT and
-        UserProfile.objects.count() > settings.REGISTER_USER_LIMIT):
+
+    if settings.APP_PREVIEW:
+        messages.error(request, 'Registrations must be through browserid.')
+        form = None
+
+    elif (settings.REGISTER_USER_LIMIT and
+          UserProfile.objects.count() > settings.REGISTER_USER_LIMIT):
         messages.error(request, 'Sorry, no more registrations are allowed.')
         form = None
 
