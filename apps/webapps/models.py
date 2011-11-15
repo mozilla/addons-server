@@ -138,7 +138,7 @@ class Installed(amo.models.ModelBase):
     # This is the email used by user at the time of installation.
     # It might be the real email, or a pseudonym, this is what will be going
     # into the receipt for verification later.
-    email = models.CharField(max_length=255)
+    email = models.CharField(max_length=255, db_index=True)
     # Because the addon could change between free and premium,
     # we need to store the state at time of install here.
     premium_type = models.PositiveIntegerField(
@@ -169,7 +169,7 @@ def add_email(sender, **kw):
 @memoize(prefix='create-receipt', time=60 * 10)
 def create_receipt(installed_pk):
     installed = Installed.objects.get(pk=installed_pk)
-    verify = reverse('api.market.verify', args=[installed.addon.pk])
+    verify = '%s%s' % (settings.WEBAPPS_RECEIPT_URL, installed.addon.pk)
     detail = reverse('users.purchases.receipt', args=[installed.addon.pk])
     receipt = dict(typ='purchase-receipt',
                    product=installed.addon.origin,
@@ -188,9 +188,3 @@ def get_key():
     return jwt.rsa_load(settings.WEBAPPS_RECEIPT_KEY)
 
 
-def decode_receipt(receipt):
-    """
-    Cracks the receipt using the private key. This will probably change
-    to using the cert at some point, especially when we get the HSM.
-    """
-    return jwt.decode(receipt, get_key())

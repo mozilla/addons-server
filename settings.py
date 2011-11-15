@@ -1257,6 +1257,10 @@ LOGIN_RATELIMIT_ALL_USERS = '15/m'
 # If this is true all new webapps go into an approval queue. If it's false then
 # they go public immediately.
 WEBAPPS_RESTRICTED = True
+# The verification URL, the addon id will be appended to this. This will
+# have to be altered to the right domain for each server, eg:
+# https://receiptcheck.addons.mozilla.org/verify/
+WEBAPPS_RECEIPT_URL = '%s/verify/' % SITE_URL
 # The key we'll use to sign webapp receipts.
 WEBAPPS_RECEIPT_KEY = ''
 # If True, only allow one webapp per domain.

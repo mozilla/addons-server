@@ -2,15 +2,28 @@ from datetime import datetime, timedelta
 import settings_local as settings
 import posixpath
 import re
+import sys
+
+import MySQLdb as mysql
+import sqlalchemy.pool as pool
+
+from django.core.management import setup_environ
+import commonware.log
+
+# Pyflakes will complain about these, but they are required for setup.
+import settings_local as settings
+setup_environ(settings)
+import log_settings
 
 # Ugh. But this avoids any zamboni or django imports at all.
 # Perhaps we can import these without any problems and we can
 # remove all this.
-
 from constants.applications import APPS_ALL
 from constants.platforms import PLATFORMS
 from constants.base import (STATUS_PUBLIC, STATUS_DISABLED, STATUS_BETA,
                             STATUS_LITE, STATUS_LITE_AND_NOMINATED)
+from constants.base import (CONTRIB_CHARGEBACK, CONTRIB_PURCHASE,
+                            CONTRIB_REFUND)
 
 APP_GUIDS = dict([(app.guid, app.id) for app in APPS_ALL.values()])
 PLATFORMS = dict([(plat.api_name, plat.id) for plat in PLATFORMS.values()])
@@ -59,3 +72,24 @@ def get_mirror(status, id, row):
         host = settings.LOCAL_MIRROR_URL
 
     return posixpath.join(host, str(id), row['filename'])
+
+
+def getconn():
+    db = settings.SERVICES_DATABASE
+    return mysql.connect(host=db['HOST'], user=db['USER'],
+                         passwd=db['PASSWORD'], db=db['NAME'])
+
+
+mypool = pool.QueuePool(getconn, max_overflow=10, pool_size=5, recycle=300)
+
+
+error_log = commonware.log.getLogger('z.services')
+
+
+def log_exception(data):
+    (typ, value, discard) = sys.exc_info()
+    error_log.error(u'Type: %s, %s. Data: %s' % (typ, value, data))
+
+
+def log_info(data, msg):
+    error_log.info(u'Msg: %s, Data: %s' % (msg, data))
