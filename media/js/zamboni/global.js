@@ -350,9 +350,16 @@ $.fn.modal = function(click_target, o) {
         var p = $modal.o;
         $modal.hider = makeBlurHideCallback($modal);
         if (p.hideme) {
-            setTimeout(function(){
-                $(document.body).bind('click modal', $modal.hider);
-            }, 0);
+            try {
+                setTimeout(function(){
+                    $(document.body).bind('click modal', $modal.hider);
+                }, 0);
+            } catch (err) {
+                // TODO(Kumar) handle this more gracefully. See bug 701221.
+                if (typeof console !== 'undefined') {
+                    console.error('Could not close modal:', err);
+                }
+            }
         }
         if (p.close) {
             var close = $("<a>", {'class': 'close', 'text': 'X'});
