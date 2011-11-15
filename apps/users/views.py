@@ -154,6 +154,14 @@ def edit(request):
         if form.is_valid():
             messages.success(request, _('Profile Updated'))
             if amouser.email != original_email:
+                # Temporarily block email changes.
+                if settings.APP_PREVIEW:
+                    messages.error(request, 'Error',
+                                   'You cannot change your email on the '
+                                   'developer preview site.')
+                    return jingo.render(request, 'users/edit.html',
+                                        {'form': form, 'amouser': amouser})
+
                 l = {'user': amouser,
                      'mail1': original_email,
                      'mail2': amouser.email}

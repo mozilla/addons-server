@@ -126,6 +126,17 @@ class TestEdit(UserViewBase):
         assert mail.outbox[0].subject.find('Please confirm your email') == 0
         assert mail.outbox[0].body.find('%s/emailchange/' % self.user.id) > 0
 
+    @patch.object(settings, 'APP_PREVIEW', True)
+    def test_email_cant_change(self):
+        data = {'username': 'jbalogh',
+                'email': 'jbalogh.changed@mozilla.com',
+                'display_name': 'DJ SurfNTurf', }
+
+        res = self.client.post(self.url, data, follow=True)
+        eq_(res.status_code, 200)
+        eq_(len(pq(res.content)('div.error')), 1)
+        eq_(len(mail.outbox), 0)
+
     def test_edit_bio(self):
         eq_(self.get_profile().bio, None)
 
