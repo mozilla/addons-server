@@ -90,6 +90,8 @@ class TestVerify(amo.tests.TestCase):
             eq_(res['status'], 'refunded')
 
     def test_crack_receipt(self):
+        # Check that we can decode our receipt and get a dictionary back.
+        self.addon.update(type=amo.ADDON_WEBAPP, manifest_url='http://a.com')
         receipt = self.make_install().receipt
         result = verify.decode_receipt(receipt)
         eq_(result['typ'], u'purchase-receipt')
