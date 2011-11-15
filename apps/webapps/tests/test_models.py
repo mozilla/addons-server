@@ -85,7 +85,7 @@ class TestWebappManager(test_utils.TestCase):
 
     def test_unreviewed(self):
         for status in amo.UNREVIEWED_STATUSES:
-            w = Webapp.objects.create(status=status)
+            Webapp.objects.create(status=status)
             self.reviewed_eq()
             Webapp.objects.all().delete()
 
@@ -187,7 +187,7 @@ class TestReceipt(amo.tests.TestCase):
 
     def test_receipt(self):
         ins = self.create_install(self.user, self.webapp)
-        assert ins.receipt.startswith('eyJhbGciOiAiSFMyNTY'), ins.receipt
+        assert ins.receipt.startswith('eyJhbGciOiAiUlM1MTIiLCA'), ins.receipt
 
     def test_get_receipt(self):
         ins = self.create_install(self.user, self.webapp)
@@ -210,3 +210,16 @@ class TestReceipt(amo.tests.TestCase):
         self.webapp.update(premium_type=amo.ADDON_FREE)
         self.create_install(self.user, self.webapp)
         assert self.webapp.get_receipt(self.user)
+
+    def test_install_has_email(self):
+        install = self.create_install(self.user, self.webapp)
+        eq_(install.email, u'regular@mozilla.com')
+
+    def test_install_not_premium(self):
+        install = self.create_install(self.user, self.webapp)
+        eq_(install.premium_type, amo.ADDON_FREE)
+
+    def test_install_premium(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        install = self.create_install(self.user, self.webapp)
+        eq_(install.premium_type, amo.ADDON_PREMIUM)
