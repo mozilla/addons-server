@@ -1,5 +1,8 @@
+{% if settings.APP_PREVIEW %}
+  {% set WEBAPPS = True %}
+{% endif %}
+{% extends "impala/base_shared.html" %}
 {% from "addons/macros.html" import price %}
-{% extends "impala/base.html" %}
 {% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
 
 {% block title %}{{ page_title('My Purchases') }}{% endblock %}

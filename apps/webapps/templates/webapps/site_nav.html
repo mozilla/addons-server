@@ -23,8 +23,7 @@
                url('apps.list')|urlparams(sort='featured'),
                featured_extras) }}
     <li class="slim" id="my-apps">
-      {# TODO(cvan): This will lead to the purchased collection if user is logged in. #}
-      <a href="#">{{ _('My Apps') }}</a>
+      <a href="{{ url('users.purchases') }}">{{ _('My Purchases') }}</a>
     </li>
     <li id="collections">
     {% with base_url = url('collections.list') %}

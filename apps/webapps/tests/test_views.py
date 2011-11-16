@@ -53,6 +53,7 @@ class TestListing(WebappTest):
             self.url + '?sort=downloads')
         eq_(doc('#featured-apps a').attr('href'), self.url + '?sort=featured')
         eq_(doc('#submit-app a').attr('href'), reverse('devhub.submit_apps.1'))
+        eq_(doc('#my-apps a').attr('href'), reverse('users.purchases'))
 
     @patch.object(settings, 'READ_ONLY', False)
     def test_balloons_no_readonly(self):
@@ -113,6 +114,7 @@ class TestDetail(WebappTest):
         more_url = self.webapp.get_url_path(more=True)
         return pq(self.client.get_ajax(more_url).content.decode('utf-8'))
 
+    @patch.object(settings, 'APP_PREVIEW', False)
     def test_title(self):
         response = self.client.get(self.url)
         eq_(pq(response.content)('title').text(), 'woo :: Apps Marketplace')
@@ -199,6 +201,7 @@ class TestMobileListing(amo.tests.MobileTest, WebappTest):
 
 class TestMobileDetail(amo.tests.MobileTest, WebappTest):
 
+    @patch.object(settings, 'APP_PREVIEW', False)
     def test_page(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
@@ -231,6 +234,7 @@ class TestReportAbuse(WebappTest):
         super(TestReportAbuse, self).setUp()
         self.abuse_url = reverse('apps.abuse', args=[self.webapp.app_slug])
 
+    @patch.object(settings, 'APP_PREVIEW', False)
     def test_page(self):
         r = self.client.get(self.abuse_url)
         eq_(r.status_code, 200)
@@ -244,8 +248,7 @@ class TestReportAbuse(WebappTest):
         amo.tests.check_links(expected, doc('#breadcrumbs a'))
 
 
-@patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
-              amo.tests.AMOPaths.sample_key())
+@patch.object(settings, 'WEBAPPS_RECEIPT_KEY', amo.tests.AMOPaths.sample_key())
 class TestInstall(amo.tests.TestCase):
     fixtures = ['base/users']
 
