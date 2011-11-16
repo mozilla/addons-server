@@ -478,6 +478,7 @@ def app_search(request, template=None):
         'form': form,
         'sorting': sort_sidebar(request, query, form),
         'sort_opts': form.fields['sort'].choices,
+        'sort': query.get('sort'),
         'search_placeholder': 'apps',
     }
     if not ctx['is_pjax']:
@@ -574,6 +575,7 @@ def search(request, tag_name=None, template=None):
         'sort_opts': sort,
         'extra_sort_opts': extra_sort,
         'sorting': sort_sidebar(request, query, form),
+        'sort': query.get('sort'),
     }
     if not ctx['is_pjax']:
         facets = pager.object_list.facets

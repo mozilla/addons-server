@@ -11,7 +11,7 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from amo.helpers import locale_url, urlparams
+from amo.helpers import locale_url, numberfmt, urlparams
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonCategory, Category, Persona
 from search import views
@@ -125,9 +125,9 @@ class TestESSearch(amo.tests.ESTestCase):
     def setUp(self):
         self.url = reverse('search.search')
         self.search_views = ('search.search', 'apps.search')
-        addons = Addon.objects.filter(status=amo.STATUS_PUBLIC,
-                                      disabled_by_user=False)
-        for addon in addons:
+        self.addons = Addon.objects.filter(status=amo.STATUS_PUBLIC,
+                                           disabled_by_user=False)
+        for addon in self.addons:
             AddonCategory.objects.create(addon=addon, category_id=1)
             addon.save()
         self.refresh()
@@ -140,10 +140,22 @@ class TestESSearch(amo.tests.ESTestCase):
         self.assertTemplateUsed(r, 'search/results.html')
 
     @amo.tests.mobile_test
-    def test_mobile_results(self):
+    def test_get_mobile(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'search/mobile/results.html')
+
+    @amo.tests.mobile_test
+    def test_mobile_results(self):
+        r = self.client.get(self.url)
+        eq_(sorted(list(r.context['addons'])), sorted(self.addons))
+
+    @amo.tests.mobile_test
+    def test_mobile_results_downloads(self):
+        for sort in ('', 'downloads'):
+            r = self.client.get(urlparams(self.url, sort=sort))
+            assert pq(r.content)('#content .item .vital.downloads'), (
+                'Expected weekly downloads')
 
     def check_sort_links(self, key, title, sort_by=None, reverse=True):
         r = self.client.get('%s?sort=%s' % (self.url, key))
@@ -501,6 +513,21 @@ class TestWebappSearch(amo.tests.ESTestCase):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'search/mobile/results.html')
+
+    @amo.tests.mobile_test
+    def test_mobile_results(self):
+        r = self.client.get(self.url)
+        item = pq(r.content)('#content .item')
+        eq_(item.length, 1)
+        eq_(item.find('h3').text(), unicode(self.webapp.name))
+        eq_(item.children('a').attr('href'), self.webapp.get_url_path())
+
+    @amo.tests.mobile_test
+    def test_mobile_results_downloads(self):
+        for sort in ('', 'downloads'):
+            r = self.client.get(urlparams(self.url, sort=sort))
+            dls = pq(r.content)('#content .item .vital.downloads')
+            eq_(dls.text().split()[0], numberfmt(self.webapp.weekly_downloads))
 
     def test_no_compat_facets(self):
         assert not pq(self.client.get(self.url).content)('#compat-facets')

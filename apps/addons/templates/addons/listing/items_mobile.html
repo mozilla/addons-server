@@ -17,10 +17,14 @@
             {% endif %}
           {% endwith %}
           {% if sort in ('newest', 'created') %}
-            <span class="vital">{{ _('Added {0}')|f(addon.created|datetime) }}</span>
+            <span class="vital">
+              {{ _('Added {0}')|f(addon.created|datetime) }}
+            </span>
           {% elif sort == 'updated' %}
-            <span class="vital">{{ _('Updated {0}')|f(addon.last_updated|datetime) }}<span>
-          {% elif sort in ('downloads', 'popular') %}
+            <span class="vital">
+              {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
+            <span>
+          {% elif sort in ('downloads', 'popular', None) %}
             <span class="vital downloads">
               {% with num=addon.weekly_downloads %}
                 {# L10n: {0} is the number of downloads. #}
