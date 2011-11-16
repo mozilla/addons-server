@@ -116,6 +116,7 @@ class TestPaypal(amo.tests.TestCase):
 @patch('paypal.views.urllib2.urlopen')
 class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
+    uuid = 'e76059abcf747f5b4e838bf47822e6b2'
 
     def setUp(self):
         self.url = reverse('amo.paypal')
@@ -127,31 +128,29 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
         return m
 
     def test_success(self, urlopen):
-        uuid = 'e76059abcf747f5b4e838bf47822e6b2'
-        Contribution.objects.create(uuid=uuid, addon=self.addon)
-        data = {'tracking_id': uuid, 'payment_status': 'Completed'}
+        Contribution.objects.create(uuid=self.uuid, addon=self.addon)
+        data = {'tracking_id': self.uuid, 'payment_status': 'Completed'}
         urlopen.return_value = self.urlopener('VERIFIED')
 
         response = self.client.post(self.url, data)
         eq_(response.content, 'Success!')
 
     def test_wrong_uuid(self, urlopen):
-        uuid = 'e76059abcf747f5b4e838bf47822e6b2'
-        Contribution.objects.create(uuid=uuid, addon=self.addon)
+        Contribution.objects.create(uuid=self.uuid, addon=self.addon)
         data = {'tracking_id': 'sdf', 'payment_status': 'Completed'}
         urlopen.return_value = self.urlopener('VERIFIED')
 
         response = self.client.post(self.url, data)
         eq_(response.content, 'Contribution not found')
 
-    def _receive_refund_ipn(self, uuid, urlopen):
+    def _receive_ipn(self, uuid, urlopen, action):
         """
-        Create and post a refund IPN.
+        Create and post an IPN.
         """
         urlopen.return_value = self.urlopener('VERIFIED')
         response = self.client.post(self.url, {u'action_type': u'PAY',
                                                u'sender_email': u'a@a.com',
-                                               u'status': u'REFUNDED',
+                                               u'status': action,
                                                u'tracking_id': u'123',
                                                u'mc_gross': u'12.34',
                                                u'mc_currency': u'US',
@@ -163,12 +162,11 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
         Receipt of an IPN for a refund results in a Contribution
         object recording its relation to the original payment.
         """
-        uuid = 'e76059abcf747f5b4e838bf47822e6b2'
         user = UserProfile.objects.get(pk=999)
-        original = Contribution.objects.create(uuid=uuid, user=user,
+        original = Contribution.objects.create(uuid=self.uuid, user=user,
                                                addon=self.addon)
 
-        response = self._receive_refund_ipn(uuid, urlopen)
+        response = self._receive_ipn(self.uuid, urlopen, 'Refunded')
         eq_(response.content, 'Success!')
         refunds = Contribution.objects.filter(related=original)
         eq_(len(refunds), 1)
@@ -182,8 +180,27 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
         Receipt of an IPN for a refund for a payment we haven't
         recorded results in an error.
         """
-        uuid = 'e76059abcf747f5b4e838bf47822e6b2'
-        response = self._receive_refund_ipn(uuid, urlopen)
+        response = self._receive_ipn(self.uuid, urlopen, 'Refunded')
         eq_(response.content, 'Contribution not found')
         refunds = Contribution.objects.filter(type=amo.CONTRIB_REFUND)
         eq_(len(refunds), 0)
+
+    def reversal(self, urlopen):
+        user = UserProfile.objects.get(pk=999)
+        Contribution.objects.create(uuid=self.uuid, user=user,
+                                    addon=self.addon)
+        response = self._receive_ipn(self.uuid, urlopen, 'Reversal')
+        eq_(response.content, 'Success!')
+
+    def test_related(self, urlopen):
+        self.reversal(urlopen)
+        eq_(Contribution.objects.all()[1].related.pk,
+            Contribution.objects.all()[0].pk)
+
+    def test_chargeback(self, urlopen):
+        self.reversal(urlopen)
+        eq_(Contribution.objects.all()[1].type, amo.CONTRIB_CHARGEBACK)
+
+    def test_email(self, urlopen):
+        self.reversal(urlopen)
+        eq_(len(mail.outbox), 1)

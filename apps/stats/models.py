@@ -7,6 +7,7 @@ from django.utils import translation
 
 from babel import Locale, numbers
 import caching.base
+from jingo import env
 from jinja2.filters import do_dictsort
 import tower
 from tower import ugettext as _
@@ -180,6 +181,31 @@ class Contribution(models.Model):
             # post_data may be None or missing a key
             return None
 
+    def _switch_locale(self):
+        if self.source_locale:
+            lang = self.source_locale
+        else:
+            lang = self.addon.default_locale
+        tower.activate(lang)
+        return Locale(translation.to_locale(lang))
+
+
+    def mail_chargeback(self):
+        """
+        Send a mail to the purchaser of an add-on about the reversal from
+        Paypal.
+        """
+        locale = self._switch_locale()
+        t = env.get_template('users/support/emails/chargeback.txt')
+        amt = numbers.format_currency(abs(self.amount), self.currency,
+                                      locale=locale)
+        body = t.render({'name': self.addon.name, 'amount': amt})
+        # L10n: the adddon name.
+        subject = _(u'%s payment reversal' % self.addon.name)
+        send_mail(subject, body, settings.MARKETPLACE_EMAIL,
+                  [self.user.email], fail_silently=True)
+
+
     def mail_thankyou(self, request=None):
         """
         Mail a thankyou note for a completed contribution.
@@ -187,13 +213,7 @@ class Contribution(models.Model):
         Raises a ``ContributionError`` exception when the contribution
         is not complete or email addresses are not found.
         """
-
-        # Setup l10n before loading addon.
-        if self.source_locale:
-            lang = self.source_locale
-        else:
-            lang = self.addon.default_locale
-        tower.activate(lang)
+        self._switch_locale()
 
         # Thankyous must be enabled.
         if not self.addon.enable_thankyou:

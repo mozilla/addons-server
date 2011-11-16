@@ -72,7 +72,6 @@ def _paypal(request):
     with statsd.timer('paypal.validate-ipn'):
         paypal_response = urllib2.urlopen(settings.PAYPAL_CGI_URL,
                                           data, 20).readline()
-
     # List of (old, new) codes so we can transpose the data for
     # embedded payments.
     for old, new in [('payment_status', 'status'),
@@ -94,7 +93,10 @@ def _paypal(request):
         return http.HttpResponse('Success!')
 
     payment_status = post.get('payment_status', '').lower()
-    if payment_status not in ('refunded', 'completed'):
+    methods = {'refunded': paypal_refunded,
+               'completed': paypal_completed,
+               'reversal': paypal_reversal}
+    if payment_status not in methods:
         # Skip processing for anything other than events that change
         # payment status.
         paypal_log.info('Ignoring: %s, %s' %
@@ -125,22 +127,20 @@ def _paypal(request):
         cache.set(key, count, 1209600)  # This is 2 weeks.
         return http.HttpResponseServerError('Contribution not found')
 
-    if payment_status == 'refunded':
-        paypal_log.info('Calling refunded: %s' % post.get('txn_id', ''))
-        return paypal_refunded(request, post, c)
-    elif payment_status == 'completed':
-        paypal_log.info('Calling completed: %s' % post.get('txn_id', ''))
-        return paypal_completed(request, post, c)
+    paypal_log.info('Calling %s: %s' % (payment_status,
+                                        post.get('txn_id', '')))
+    return methods[payment_status](request, post, c)
 
 
 def paypal_refunded(request, post, original):
-
     # Make sure transaction has not yet been processed.
-    if (Contribution.objects
-        .filter(transaction_id=post['txn_id'],
-                type=amo.CONTRIB_REFUND).count()) > 0:
+    if (Contribution.objects.filter(transaction_id=post['txn_id'],
+                                    type=amo.CONTRIB_REFUND)
+                            .exists()):
+        paypal_log.info('Refund IPN already processed')
         return http.HttpResponse('Transaction already processed')
-    paypal_log.info('Refund IPN received for transaction %s' % post['txn_id'])
+
+    paypal_log.info('Refund IPN received: %s' % post['txn_id'])
     refund = Contribution.objects.create(
         addon=original.addon, related=original,
         user=original.user, type=amo.CONTRIB_REFUND,
@@ -150,15 +150,38 @@ def paypal_refunded(request, post, original):
     refund.uuid = None
     refund.post_data = php.serialize(post)
     refund.save()
+    # TODO: Send the refund email to let them know.
+    return http.HttpResponse('Success!')
+
+
+def paypal_reversal(request, post, original):
+    if (Contribution.objects.filter(transaction_id=post['txn_id'],
+                                    type=amo.CONTRIB_CHARGEBACK)
+                            .exists()):
+        paypal_log.info('Reversal IPN already processed')
+        return http.HttpResponse('Transaction already processed')
+
+    paypal_log.info('Reversal IPN received: %s' % post['txn_id'])
+    refund = Contribution.objects.create(
+        addon=original.addon, related=original,
+        user=original.user, type=amo.CONTRIB_CHARGEBACK,
+        amount=post['mc_gross'], currency=post['mc_currency'],
+        post_data=php.serialize(post)
+        )
+    # Send an email to the end user.
+    refund.mail_chargeback()
     return http.HttpResponse('Success!')
 
 
 def paypal_completed(request, post, c):
     # Make sure transaction has not yet been processed.
-    if (Contribution.objects
-        .filter(transaction_id=post['txn_id'],
-                type=amo.CONTRIB_PURCHASE).count()) > 0:
+    if (Contribution.objects.filter(transaction_id=post['txn_id'],
+                                    type=amo.CONTRIB_PURCHASE)
+                            .exists()):
+        paypal_log.info('Completed IPN already processed')
         return http.HttpResponse('Transaction already processed')
+
+    paypal_log.info('Completed IPN received: %s' % post['txn_id'])
     c.transaction_id = post['txn_id']
     # Embedded payments does not send an mc_gross.
     if 'mc_gross' in post:

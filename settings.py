@@ -50,6 +50,7 @@ MANAGERS = ADMINS
 FLIGTAR = 'amo-admins@mozilla.org'
 EDITORS_EMAIL = 'amo-editors@mozilla.org'
 SENIOR_EDITORS_EMAIL = 'amo-admin-reviews@mozilla.org'
+MARKETPLACE_EMAIL = 'amo-marketplace@mozilla.org'
 
 DATABASES = {
     'default': {
