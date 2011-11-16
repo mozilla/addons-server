@@ -10,7 +10,7 @@ try out selling / buying an app or add-on.
 PayPal Sandbox Settings
 =======================
 
-Add these URLs to your settings to use the sandbox::
+Add these URLs to your local settings to use the sandbox::
 
   PAYPAL_API_URL = 'https://api-3t.sandbox.paypal.com/nvp'
   PAYPAL_FLOW_URL = 'https://sandbox.paypal.com/webapps/adaptivepayment/flow/pay'
@@ -25,7 +25,7 @@ and add the API credentials to your settings file::
   PAYPAL_CGI_AUTH = {'USER': 'yourname._1318455663_biz_api1.domain.com',
                      'PASSWORD': '<the password>',
                      'SIGNATURE': '<signature>'}
-  PAYPAL_EMAIL = 'yourname._1318455663_biz.domain.com'
+  PAYPAL_EMAIL = 'yourname._1318455663_biz@domain.com'
   PAYPAL_EMBEDDED_AUTH = PAYPAL_CGI_AUTH
 
 Set ``PAYPAL_APP_ID`` to the registered marketplace app; ask someone in
