@@ -368,6 +368,9 @@ def recs():
     recs_log.info('%.2fs (groupby) : %s addons' %
                   ((time.time() - start), len(addons)))
 
+    if not len(addons):
+        return
+
     # Check our memory usage.
     try:
         p = subprocess.Popen('%s -p%s -o rss' % (settings.PS_BIN, os.getpid()),
