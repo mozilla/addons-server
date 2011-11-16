@@ -193,10 +193,13 @@ class TestMobileListing(amo.tests.MobileTest, WebappTest):
         url = reverse('apps.home')
         r = self.client.get(url)
         eq_(r.status_code, 200)
-
         self.assertTemplateUsed(r, 'browse/mobile/extensions.html')
-        assert pq(r.content)('.item').length, "no item found"
-        eq_(pq(r.content)('.item h3').text(), 'woo')
+        item = pq(r.content)('.item')
+        eq_(item.length, 1)
+        eq_(item.find('h3').text(), 'woo')
+        dls = item.find('details .vital.downloads')
+        eq_(dls.length, 1)
+        eq_(dls.text(), '0 weekly downloads')
 
 
 class TestMobileDetail(amo.tests.MobileTest, WebappTest):

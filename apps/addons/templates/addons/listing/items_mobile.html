@@ -9,12 +9,19 @@
       <details>
         <span class="desc">{{ addon.summary|strip_html()|truncate(250) }}</span>
         <div>
+          {% with num=addon.total_reviews %}
+            {% if num %}
+              {{ addon.average_rating|float|stars }}
+            {% else %}
+              <i>{{ _('Not Yet Rated') }}</i>
+            {% endif %}
+          {% endwith %}
           {% if sort in ('newest', 'created') %}
             <span class="vital">{{ _('Added {0}')|f(addon.created|datetime) }}</span>
           {% elif sort == 'updated' %}
             <span class="vital">{{ _('Updated {0}')|f(addon.last_updated|datetime) }}<span>
-          {% elif sort in ('weeklydownloads', 'popular') %}
-            <span class="vital">
+          {% elif sort in ('downloads', 'popular') %}
+            <span class="vital downloads">
               {% with num=addon.weekly_downloads %}
                 {# L10n: {0} is the number of downloads. #}
                 {{ ngettext("<strong>{0}</strong> weekly download",
@@ -23,7 +30,7 @@
               {% endwith %}
             </span>
           {% elif sort == 'users' %}
-            <span class="vital">
+            <span class="vital adu">
               {% with num=addon.average_daily_users %}
                 {# L10n: {0} is the number of users. #}
                 {{ ngettext("<strong>{0}</strong> user",
@@ -31,14 +38,6 @@
                             num)|f(num|numberfmt)|safe }}
               {% endwith %}
             </span>
-          {% else %}
-            {% with num=addon.total_reviews %}
-              {% if num %}
-                {{ addon.average_rating|float|stars }}
-              {% else %}
-                <i>{{ _('Not Yet Rated') }}</i>
-              {% endif %}
-            {% endwith %}
           {% endif %}
           {% if waffle.switch('marketplace') %}
             {{ price(addon) }}
