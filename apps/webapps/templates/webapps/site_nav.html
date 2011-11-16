@@ -49,7 +49,9 @@
           {{ _('Submit an App') }}</a></li>
         {# TODO: Are these links finalized? #}
         <li><a href="#">How to use Apps</a></li>
-        <li><a href="{{ url('home') }}">Firefox Add-ons</a></li>
+        {% if settings.APP_PREVIEW %}
+          <li><a href="https://addons.mozilla.org">Firefox Add-ons</a></li>
+        {% endif %}
       </ul>
     </li>
   </ul>
