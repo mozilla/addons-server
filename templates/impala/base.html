@@ -101,53 +101,66 @@
             </div>
           {% endif %}
           {% block amo_balloons %}
-          <div class="site-balloon" id="site-nonfx">
-            <p>
-              {% trans url='http://mozilla.org/firefox/?src=amo' %}
-                To try the thousands of add-ons available here, download
-                <a href="{{ url }}">Mozilla Firefox</a>,
-                a fast, free way to surf the Web!
-              {% endtrans %}
-            </p>
-            <a href="#" class="close">{{ _('Close') }}</a>
-          </div>
-          <div class="site-balloon" id="site-welcome">
-            {# L10n: {0} is an application, such as Firefox. #}
-            <h3>{{ _('Welcome to {0} Add-ons.')|f(APP.pretty) }}</h3>
-            <p>
-              {% if APP == amo.FIREFOX %}
-                {% trans %}
-                  Choose from thousands of extra features and styles to make
-                  Firefox your own.
-                {% endtrans %}
-              {% else %}
-                {% trans app=APP.pretty %}
-                  Add extra features and styles to make {{ app }} your own.
-                {% endtrans %}
-              {% endif %}
-            </p>
-            <a href="#" class="close">{{ _('Close') }}</a>
-          </div>
-          <div class="site-balloon" id="mobile-banner">
-            <h3>{{ _('On the go?') }}</h3>
-            <p>
-              {% trans %}
-                Check out our
-                <a class="mobile-link" href="#">Mobile Add-ons site</a>.
-              {% endtrans %}
-            </p>
-            <a href="#" class="close">{{ _('Close') }}</a>
-          </div>
-          <div class="site-tip" id="acr-pitch">
-            <p>
-              {% trans url=url('addons.detail', 'add-on-compatibility-reporter')|urlparams(src='prerelease-banner') %}
-                Thanks for testing a pre-release version of Firefox! To try out
-                add-ons not yet compatible, grab the
-                <a href="{{ url }}">Add-on Compatibility Reporter</a>.
-              {% endtrans %}
-            </p>
-            <a href="#" class="close">{{ _('Close') }}</a>
-          </div>
+            {% if WEBAPPS %}
+              <div class="site-balloon" id="site-noinstall-apps">
+                <p>
+                  {% trans url='http://mozilla.org/firefox/?src=amo' %}
+                    It seems your browser does not support Apps. Consider
+                    downloading <a href="{{ url }}">Mozilla Firefox</a>,
+                    a fast, free way to surf the Web!
+                  {% endtrans %}
+                </p>
+                <a href="#" class="close">{{ _('Close') }}</a>
+              </div>
+            {% else %}
+              <div class="site-balloon" id="site-nonfx">
+                <p>
+                  {% trans url='http://mozilla.org/firefox/?src=amo' %}
+                    To try the thousands of add-ons available here, download
+                    <a href="{{ url }}">Mozilla Firefox</a>,
+                    a fast, free way to surf the Web!
+                  {% endtrans %}
+                </p>
+                <a href="#" class="close">{{ _('Close') }}</a>
+              </div>
+              <div class="site-balloon" id="site-welcome">
+                {# L10n: {0} is an application, such as Firefox. #}
+                <h3>{{ _('Welcome to {0} Add-ons.')|f(APP.pretty) }}</h3>
+                <p>
+                  {% if APP == amo.FIREFOX %}
+                    {% trans %}
+                      Choose from thousands of extra features and styles to make
+                      Firefox your own.
+                    {% endtrans %}
+                  {% else %}
+                    {% trans app=APP.pretty %}
+                      Add extra features and styles to make {{ app }} your own.
+                    {% endtrans %}
+                  {% endif %}
+                </p>
+                <a href="#" class="close">{{ _('Close') }}</a>
+              </div>
+              <div class="site-balloon" id="mobile-banner">
+                <h3>{{ _('On the go?') }}</h3>
+                <p>
+                  {% trans %}
+                    Check out our
+                    <a class="mobile-link" href="#">Mobile Add-ons site</a>.
+                  {% endtrans %}
+                </p>
+                <a href="#" class="close">{{ _('Close') }}</a>
+              </div>
+              <div class="site-tip" id="acr-pitch">
+                <p>
+                  {% trans url=url('addons.detail', 'add-on-compatibility-reporter')|urlparams(src='prerelease-banner') %}
+                    Thanks for testing a pre-release version of Firefox! To try out
+                    add-ons not yet compatible, grab the
+                    <a href="{{ url }}">Add-on Compatibility Reporter</a>.
+                  {% endtrans %}
+                </p>
+                <a href="#" class="close">{{ _('Close') }}</a>
+              </div>
+            {% endif %}
           {% endblock %}
         </div>
       {% endblock site_header %}
