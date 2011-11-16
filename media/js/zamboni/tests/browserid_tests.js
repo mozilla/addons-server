@@ -1,9 +1,71 @@
 $(document).ready(function(){
+module('browserid setup', {
+        setup: function() {
+          this.sandbox = tests.createSandbox("#browserid-test");
+          this.originalGVE = gotVerifiedEmail;
+          this.originalID = navigator.id;
+          var that = this;
+          gotVerifiedEmail = function(x, y){
+            that.assertion = x;
+            that.to = y;
+          };
+        },
+        teardown: function() {
+          gotVerifiedEmail = this.originalGVE;
+          navigator.id = this.originaID;
+          this.sandbox.remove();
+        }
+});
+test('Setup with redirect', function() {
+       var win = {
+         "location": {"href": "/users/login?to=/en-US/firefox/"}
+       };
+       navigator.id = {
+         "getVerifiedEmail": function (f) {
+          f("fake-assertion");
+         }
+       };
+       initBrowserID(win, this.sandbox);
+       $('.browserid-login', this.sandbox).click();
+       equal(this.to, "/en-US/firefox/");
+       equal(this.assertion, "fake-assertion");
+     });
+
+test('Setup with absolute redirect', function() {
+       var win = {
+         "location": {"href": "http://evilsite.com/badnews/"}
+       };
+       navigator.id = {
+         "getVerifiedEmail": function (f) {
+          f("fake-assertion");
+         }
+       };
+       initBrowserID(win, this.sandbox);
+       $('.browserid-login').click();
+       equal(this.to, "/");
+       equal(this.assertion, "fake-assertion");
+     });
+
+test('Setup with no redirect', function() {
+       var win = {
+         "location": {"href": "/users/login"}
+       };
+       navigator.id = {
+         "getVerifiedEmail": function (f) {
+          f("fake-assertion");
+         }
+       };
+       initBrowserID(win, this.sandbox);
+       $('.browserid-login').click();
+       equal(this.to, "/");
+       equal(this.assertion, "fake-assertion");
+     });
 
 module('browserid login', {
-           setup: function() {this.sandbox = tests.createSandbox("#browserid-test");},
-           teardown: function() {this.sandbox.remove();}
+         setup: function() {this.sandbox = tests.createSandbox("#browserid-test");},
+         teardown: function() {this.sandbox.remove();}
        });
+
 
 asyncTest('Login failure (error from server)', function() {
     var sandbox = this.sandbox;

@@ -44,20 +44,24 @@ function gotVerifiedEmail(assertion, redirectTo, domContext) {
         return null;
     };
 }
-
-$(document).ready(function(){
+function initBrowserID(win, ctx) {
     // Initialize BrowserID login.
-    $('.browserid-login').each(function() {
-            var to = decodeURIComponent(window.location.href.split('?to=')[1]);
+    $('.browserid-login', ctx).each(function() {
+            var toArg = win.location.href.split('?to=')[1];
+            var to = "/";
+            if (toArg) {
+              to = decodeURIComponent(toArg);
+            }
             if (to.indexOf("://") > -1) {
                 to = "/";
             };
             $(this).click(
                 function (e) {
-                    $('.primary .notification-box').remove();
+                    $('.primary .notification-box', ctx).remove();
                     navigator.id.getVerifiedEmail(
                         function(assertion) {
                             gotVerifiedEmail(assertion, to);
                 });
         });});
-});
+}
+$(document).ready(function () {initBrowserID(window);});
