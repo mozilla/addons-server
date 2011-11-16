@@ -121,7 +121,12 @@ class TestContribution(amo.tests.TestCase):
                                     user=self.user)
 
     def purchased(self):
-        return self.addon.addonpurchase_set.filter(user=self.user).exists()
+        return (self.addon.addonpurchase_set
+                          .filter(user=self.user, type=amo.CONTRIB_PURCHASE)
+                          .exists())
+
+    def type(self):
+        return self.addon.addonpurchase_set.get(user=self.user).type
 
     def test_purchase(self):
         self.create(amo.CONTRIB_PURCHASE)
@@ -135,12 +140,14 @@ class TestContribution(amo.tests.TestCase):
         self.create(amo.CONTRIB_PURCHASE)
         self.create(amo.CONTRIB_REFUND)
         assert not self.purchased()
+        eq_(self.type(), amo.CONTRIB_REFUND)
 
     def test_refund_and_purchase(self):
         # This refund does nothing, there was nothing there to refund.
         self.create(amo.CONTRIB_REFUND)
         self.create(amo.CONTRIB_PURCHASE)
         assert self.purchased()
+        eq_(self.type(), amo.CONTRIB_PURCHASE)
 
     def test_really_cant_decide(self):
         self.create(amo.CONTRIB_PURCHASE)
@@ -149,11 +156,13 @@ class TestContribution(amo.tests.TestCase):
         self.create(amo.CONTRIB_REFUND)
         self.create(amo.CONTRIB_PURCHASE)
         assert self.purchased()
+        eq_(self.type(), amo.CONTRIB_PURCHASE)
 
     def test_purchase_and_chargeback(self):
         self.create(amo.CONTRIB_PURCHASE)
         self.create(amo.CONTRIB_CHARGEBACK)
         assert not self.purchased()
+        eq_(self.type(), amo.CONTRIB_CHARGEBACK)
 
     def test_other_user(self):
         other = UserProfile.objects.get(email='admin@mozilla.com')

@@ -91,7 +91,9 @@ class PriceCurrency(amo.models.ModelBase):
 class AddonPurchase(amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon')
     user = models.ForeignKey(UserProfile)
-
+    type = models.PositiveIntegerField(default=amo.CONTRIB_PURCHASE,
+                                       choices=do_dictsort(amo.CONTRIB_TYPES),
+                                       db_index=True)
     class Meta:
         db_table = 'addon_purchase'
 
@@ -120,20 +122,23 @@ def create_addon_purchase(sender, instance, **kw):
     if instance.type == amo.CONTRIB_PURCHASE:
         log.debug('Creating addon purchase: addon %s, user %s'
                   % (instance.addon.pk, instance.user.pk))
-        AddonPurchase.objects.get_or_create(addon=instance.addon,
-                                            user=instance.user)
+        try:
+            purchase = AddonPurchase.objects.get(addon=instance.addon,
+                                                 user=instance.user)
+        except AddonPurchase.DoesNotExist:
+            purchase = AddonPurchase.objects.create(addon=instance.addon,
+                                                    user=instance.user)
 
-        # When they've purchased, automatically create installed record
-        # without have to bother doing a post.
+        purchase.update(type=amo.CONTRIB_PURCHASE)
         instance.addon.get_or_create_install(user=instance.user)
 
     elif instance.type in [amo.CONTRIB_REFUND, amo.CONTRIB_CHARGEBACK]:
         purchases = AddonPurchase.objects.filter(addon=instance.addon,
                                                  user=instance.user)
         for p in purchases:
-            log.debug('Deleting addon purchase: %s, addon %s, user %s'
+            log.debug('Changing addon purchase: %s, addon %s, user %s'
                       % (p.pk, instance.addon.pk, instance.user.pk))
-            p.delete()
+            p.update(type=instance.type)
 
 
 class AddonPremium(amo.models.ModelBase):

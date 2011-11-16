@@ -33,7 +33,7 @@ from addons.utils import ReverseNameLookup, FeaturedManager, CreaturedManager
 from files.models import File
 from market.models import AddonPremium, Price
 from reviews.models import Review
-from stats.models import AddonShareCountTotal, Contribution
+from stats.models import AddonShareCountTotal
 from translations.fields import (TranslatedField, PurifiedField,
                                  LinkifiedField, Translation)
 from translations.query import order_by_translation
@@ -1009,24 +1009,21 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         except IndexError:
             pass
 
+    def get_purchase_type(self, user):
+        if user and isinstance(user, UserProfile):
+            try:
+                return self.addonpurchase_set.get(user=user).type
+            except models.ObjectDoesNotExist:
+                pass
+
     def has_purchased(self, user):
-        if not user or not isinstance(user, UserProfile):
-            return False
-        return (self.is_premium() and
-                self.addonpurchase_set.filter(user=user).exists())
+        return self.get_purchase_type(user) == amo.CONTRIB_PURCHASE
 
     def is_refunded(self, user):
-        """
-        Contributions are sorted by creation date; if the most recent one is
-        a refund, mark this addon as refunded.
-        """
-        if not user or not isinstance(user, UserProfile):
-            return False
-        qs = (Contribution.objects
-              .filter(user=user, addon=self.id,
-                      type__in=[amo.CONTRIB_PURCHASE, amo.CONTRIB_REFUND])
-              .order_by('-created'))
-        return qs.exists() and qs[0].type == amo.CONTRIB_REFUND
+        return self.get_purchase_type(user) == amo.CONTRIB_REFUND
+
+    def is_chargeback(self, user):
+        return self.get_purchase_type(user) == amo.CONTRIB_CHARGEBACK
 
     def can_review(self, user):
         if user and self.has_author(user):

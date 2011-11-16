@@ -1761,9 +1761,11 @@ class TestAddonPurchase(amo.tests.TestCase):
                                           name='premium')
 
     def test_no_premium(self):
+        # If you've purchased something, the fact that its now free
+        # doesn't change the fact that you purchased it.
         self.addon.addonpurchase_set.create(user=self.user)
         self.addon.update(premium_type=amo.ADDON_FREE)
-        assert not self.addon.has_purchased(self.user)
+        assert self.addon.has_purchased(self.user)
 
     def test_has_purchased(self):
         self.addon.addonpurchase_set.create(user=self.user)
@@ -1775,6 +1777,23 @@ class TestAddonPurchase(amo.tests.TestCase):
     def test_anonymous(self):
         assert not self.addon.has_purchased(None)
         assert not self.addon.has_purchased(AnonymousUser)
+
+    def test_is_refunded(self):
+        self.addon.addonpurchase_set.create(user=self.user,
+                                            type=amo.CONTRIB_REFUND)
+        assert self.addon.is_refunded(self.user)
+
+    def test_is_chargeback(self):
+        self.addon.addonpurchase_set.create(user=self.user,
+                                            type=amo.CONTRIB_CHARGEBACK)
+        assert self.addon.is_chargeback(self.user)
+
+    def test_purchase_state(self):
+        purchase = self.addon.addonpurchase_set.create(user=self.user)
+        for state in [amo.CONTRIB_PURCHASE, amo.CONTRIB_REFUND,
+                      amo.CONTRIB_CHARGEBACK]:
+            purchase.update(type=state)
+            eq_(state, self.addon.get_purchase_type(self.user))
 
 
 class TestWatermarkHash(amo.tests.TestCase):
