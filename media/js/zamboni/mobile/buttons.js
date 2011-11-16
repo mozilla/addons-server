@@ -211,7 +211,7 @@
                     if (self.tooOld) errors.push("tooOld");
                     if (self.tooNew) errors.push("tooNew");
                 } else {
-                    if (!z.appMatchesUserAgent && !z.badBrowser) {
+                    if (!z.appMatchesUserAgent && !(z.badBrowser || !(z.capabilities.webApps && self.classes.webapp))) {
                         errors.push("badApp");
                         canInstall = false;
                     }
@@ -259,7 +259,7 @@
                 }
             }
 
-            if (z.badBrowser) {
+            if (z.badBrowser && !(z.capabilities.webApps && self.classes.webapp)) {
                 canInstall = false;
             }
 
@@ -282,7 +282,7 @@
             // TODO(Kumar) When this is fixed, integrate with
             // apps.install(manifestURL). See bug 699828
             //
-            if (navigator.mozApps && navigator.mozApps.install) {
+            if (z.capabilities.webApps) {
                 dom.self.find('.button')
                     .removeClass('disabled')
                     .click(function(e) {
@@ -293,7 +293,6 @@
                 // Attach something that says you can't install apps.
             }
         }
-
 
         //and of course, initialize the button.
         this.init();

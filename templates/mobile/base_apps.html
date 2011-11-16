@@ -88,7 +88,9 @@
     {# js #}
     {% block site_js %}
       <script src="{{ static(url('jsi18n')) }}"></script>
-      <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script>
+      {% if settings.APP_PREVIEW %}
+        <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script>
+      {% endif %}
       {{ js('zamboni/mobile') }}
     {% endblock %}
     {% block js %}{% endblock %}

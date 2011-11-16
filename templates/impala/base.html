@@ -199,7 +199,9 @@
     {# js #}
     {% block site_js %}
       <script src="{{ static(url('jsi18n')) }}"></script>
-      <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script>
+      {% if settings.APP_PREVIEW %}
+        <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script>
+      {% endif %}
       {{ js('impala') }}
       <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
       <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>

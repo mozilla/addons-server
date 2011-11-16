@@ -137,7 +137,6 @@
     {# js #}
     {% block site_js %}
       <script src="{{ static(url('jsi18n')) }}"></script>
-      <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script>
       {{ js('common') }}
       <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
       <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
