@@ -149,6 +149,7 @@ def paypal_refunded(request, post, original):
     refund.currency = post['mc_currency']
     refund.uuid = None
     refund.post_data = php.serialize(post)
+    refund.save()
     return http.HttpResponse('Success!')
 
 

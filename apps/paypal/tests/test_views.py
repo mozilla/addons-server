@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from decimal import Decimal
 import urllib
 
 from django import http, test
@@ -174,6 +175,7 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
         eq_(refunds[0].addon, self.addon)
         eq_(refunds[0].user, user)
         eq_(refunds[0].type, amo.CONTRIB_REFUND)
+        eq_(refunds[0].amount, Decimal('12.34'))
 
     def test_orphanedRefund(self, urlopen):
         """
