@@ -26,7 +26,7 @@ from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
                            Charity)
 from files.models import File
 from market.models import AddonPremium, AddonPurchase, Price
-from paypal.tests import other_error
+from paypal.tests.test import other_error
 from stats.models import Contribution
 from translations.helpers import truncate
 from users.helpers import users_list
