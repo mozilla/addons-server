@@ -7,7 +7,7 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo
-from amo.helpers import absolutify, page_title
+from amo.helpers import absolutify, numberfmt, page_title
 import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
@@ -25,7 +25,7 @@ class WebappTest(amo.tests.TestCase):
 
     def setUp(self):
         self.webapp = Webapp.objects.create(name='woo', app_slug='yeah',
-                                            status=amo.STATUS_PUBLIC)
+            weekly_downloads=9999, status=amo.STATUS_PUBLIC)
         self.webapp._current_version = (Version.objects
                                         .create(addon=self.webapp))
         self.webapp.save()
@@ -119,6 +119,14 @@ class TestDetail(WebappTest):
         response = self.client.get(self.url)
         eq_(pq(response.content)('title').text(), 'woo :: Apps Marketplace')
 
+    def test_downloads(self):
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('#weekly-downloads').text().split()[0],
+            numberfmt(self.webapp.weekly_downloads))
+        self.webapp.update(weekly_downloads=0)
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('#weekly-downloads').length, 0)
+
     def test_more_url(self):
         response = self.client.get(self.url)
         eq_(pq(response.content)('#more-webpage').attr('data-more-url'),
@@ -190,16 +198,17 @@ class TestDetail(WebappTest):
 class TestMobileListing(amo.tests.MobileTest, WebappTest):
 
     def test_listing(self):
-        url = reverse('apps.home')
-        r = self.client.get(url)
+        r = self.client.get(reverse('apps.list'))
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'browse/mobile/extensions.html')
         item = pq(r.content)('.item')
         eq_(item.length, 1)
         eq_(item.find('h3').text(), 'woo')
-        dls = item.find('details .vital.downloads')
-        eq_(dls.length, 1)
-        eq_(dls.text(), '0 weekly downloads')
+
+    def test_listing_downloads(self):
+        r = self.client.get(reverse('apps.list'))
+        dls = pq(r.content)('.item').find('details .vital.downloads')
+        eq_(dls.text().split()[0], numberfmt(self.webapp.weekly_downloads))
 
 
 class TestMobileDetail(amo.tests.MobileTest, WebappTest):
@@ -209,7 +218,18 @@ class TestMobileDetail(amo.tests.MobileTest, WebappTest):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'addons/mobile/details.html')
-        eq_(pq(r.content)('title').text(), 'woo :: Apps for Mobile')
+        doc = pq(r.content)
+        eq_(doc('title').text(), '%s :: Apps for Mobile' % self.webapp.name)
+        eq_(doc('h3').text(), unicode(self.webapp.name))
+
+    def test_downloads(self):
+        doc = pq(self.client.get(self.url).content)('table')
+        eq_(doc('.adu').length, 0)
+        eq_(doc('.downloads td').text(),
+            numberfmt(self.webapp.weekly_downloads))
+        self.webapp.update(weekly_downloads=0)
+        doc = pq(self.client.get(self.url).content)('table')
+        eq_(doc('.downloads').length, 0)
 
     def test_no_release_notes(self):
         r = self.client.get(self.url)

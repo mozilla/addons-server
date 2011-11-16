@@ -60,16 +60,26 @@
           </td>
         </tr>
       {% endif %}
-      {% if addon.compatible_apps[APP] %}
-        <tr>
-          <th>{{ _('Works with') }}</th>
-          <td>{{ addon.compatible_apps[APP] }}</td>
+      {% if not addon.is_webapp() %}
+        {% if addon.compatible_apps[APP] %}
+          <tr>
+            <th>{{ _('Works with') }}</th>
+            <td>{{ addon.compatible_apps[APP] }}</td>
+          </tr>
+        {% endif %}
+        {% if addon.average_daily_users %}
+          <tr class="adu">
+            <th>{{ _('Users') }}</th>
+            <td>{{ addon.average_daily_users|numberfmt }}</td>
+          </tr>
+        {% endif %}
+      {% endif %}
+      {% if addon.weekly_downloads %}
+        <tr class="downloads">
+          <th>{{ _('Weekly Downloads') }}</th>
+          <td>{{ addon.weekly_downloads|numberfmt }}</td>
         </tr>
       {% endif %}
-      <tr class="adu">
-        <th>{{ _('Users') }}</th>
-        <td>{{ addon.average_daily_users|numberfmt }}</td>
-      </tr>
       {% set version = addon.current_version if not addon.is_webapp() else None %}
       {% if version %}
         <tr>

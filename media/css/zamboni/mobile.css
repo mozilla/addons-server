@@ -193,19 +193,27 @@ html {
 table {
     width: 100%;
 }
+table tr {
+    border: 1px solid #ddd;
+}
 table th,
 table td {
+    padding: 4px 8px 4px 4px;
     vertical-align: top;
 }
+.html-rtl table th,
+.html-rtl table td {
+    padding: 4px 4px 4px 8px;
+}
 table th {
-    text-align: right;
-    padding: 0 8px 8px 0;
-    font-weight: bold;
+    background: #f4f4f4;
     color: #666;
+    text-align: right;
+    font-weight: bold;
+    width: 50%;
 }
 .html-rtl table th {
     text-align: left;
-    padding: 0 0 8px 8px;
 }
 #content {
     width: 100%;

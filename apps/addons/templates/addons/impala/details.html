@@ -26,17 +26,34 @@
     {% endtrans %}
   </a></div>
 
-  {% set adu = addon.average_daily_users %}
-  {% if adu %}
-    <div id="daily-users">
-      {% with num_users = ngettext('{0} user', '{0} users', adu)|f(adu|numberfmt) %}
-        {% if addon.public_stats %}
-          <a class="stats" title="{{ _('View statistics') }}" href="{{ url('stats.overview', addon.slug) }}">{{ num_users }}</a>
-        {% else %}
-          {{ num_users }}
-        {% endif %}
-      {% endwith %}
-    </div>
+  {% if addon.is_webapp() %}
+    {% set dls = addon.weekly_downloads %}
+    {% if dls %}
+      <div id="weekly-downloads">
+        {% with num_dls = _('{0} weekly downloads')|f(dls|numberfmt) %}
+          {% if addon.public_stats %}
+            <a class="stats" title="{{ _('View statistics') }}"
+               href="{{ url('stats.overview', addon.slug) }}">{{ num_dls }}</a>
+          {% else %}
+            {{ num_dls }}
+          {% endif %}
+        {% endwith %}
+      </div>
+    {% endif %}
+  {% else %}
+    {% set adu = addon.average_daily_users %}
+    {% if adu %}
+      <div id="daily-users">
+        {% with num_users = _('{0} users')|f(adu|numberfmt) %}
+          {% if addon.public_stats %}
+            <a class="stats" title="{{ _('View statistics') }}"
+               href="{{ url('stats.overview', addon.slug) }}">{{ num_users }}</a>
+          {% else %}
+            {{ num_users }}
+          {% endif %}
+        {% endwith %}
+      </div>
+    {% endif %}
   {% endif %}
 
   <div class="widgets">

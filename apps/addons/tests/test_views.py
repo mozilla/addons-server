@@ -1680,8 +1680,18 @@ class TestMobileDetails(TestMobile):
         eq_(r.status_code, 200)
 
     def test_extension_adu(self):
-        doc = pq(self.client.get(self.url).content)
+        doc = pq(self.client.get(self.url).content)('table')
         eq_(doc('.adu td').text(), numberfmt(self.ext.average_daily_users))
+        self.ext.update(average_daily_users=0)
+        doc = pq(self.client.get(self.url).content)('table')
+        eq_(doc('.adu').length, 0)
+
+    def test_extension_downloads(self):
+        doc = pq(self.client.get(self.url).content)('table')
+        eq_(doc('.downloads td').text(), numberfmt(self.ext.weekly_downloads))
+        self.ext.update(weekly_downloads=0)
+        doc = pq(self.client.get(self.url).content)('table')
+        eq_(doc('.downloads').length, 0)
 
     def test_button_caching(self):
         """The button popups should be cached for a long time."""
