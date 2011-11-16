@@ -29,7 +29,7 @@ class Client(test.Client):
         return super(Client, self).post(url, data, **kw)
 
 
-@patch('market.views.urllib2.urlopen')
+@patch('paypal.views.urllib2.urlopen')
 class TestPaypal(amo.tests.TestCase):
 
     def setUp(self):
@@ -112,7 +112,7 @@ class TestPaypal(amo.tests.TestCase):
         eq_(response.content, 'Unknown error.')
 
 
-@patch('market.views.urllib2.urlopen')
+@patch('paypal.views.urllib2.urlopen')
 class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
