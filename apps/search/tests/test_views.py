@@ -146,11 +146,6 @@ class TestESSearch(amo.tests.ESTestCase):
         self.assertTemplateUsed(r, 'search/mobile/results.html')
 
     @amo.tests.mobile_test
-    def test_mobile_results(self):
-        r = self.client.get(self.url)
-        eq_(sorted(list(r.context['addons'])), sorted(self.addons))
-
-    @amo.tests.mobile_test
     def test_mobile_results_downloads(self):
         for sort in ('', 'downloads'):
             r = self.client.get(urlparams(self.url, sort=sort))
