@@ -82,6 +82,9 @@ urlpatterns = patterns('',
     # Services
     ('', include('amo.urls')),
 
+    # Paypal
+    ('', include('paypal.urls')),
+
     # Search
     ('^search/', include('search.urls')),
 
