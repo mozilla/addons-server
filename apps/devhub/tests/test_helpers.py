@@ -94,6 +94,8 @@ class TestDevBreadcrumbs(unittest.TestCase):
         addon.name = 'Firebug'
         addon.id = 1843
         addon.slug = 'fbug'
+        addon.get_edit_url.return_value = reverse('devhub.addons.edit',
+                                                   args=[addon.slug])
         s = render("""{{ dev_breadcrumbs(addon,
                                          items=[('/foo', 'foo'),
                                                 ('/bar', 'bar')]) }}""",
@@ -102,8 +104,7 @@ class TestDevBreadcrumbs(unittest.TestCase):
         crumbs = doc('li')
         eq_(len(crumbs), 5)
         eq_(crumbs.eq(2).text(), 'Firebug')
-        eq_(crumbs.eq(2).children('a').attr('href'),
-            reverse('devhub.addons.edit', args=[addon.slug]))
+        eq_(crumbs.eq(2).children('a').attr('href'), addon.get_edit_url())
         eq_(crumbs.eq(3).text(), 'foo')
         eq_(crumbs.eq(3).children('a').attr('href'), '/foo')
         eq_(crumbs.eq(4).text(), 'bar')
