@@ -7,23 +7,38 @@
 <div class="item">
   <div class="item_wrapper">
     <table>
-      <caption>{{ _('Add-on Media for {0}')|f(addon.name) }}</caption>
+      {% if not webapp %}
+        <caption>{{ _('Add-on Media for {0}')|f(addon.name) }}</caption>
+      {% endif %}
       <tbody>
         <tr>
-          {% if context == 'edit': %}
+          {% if context == 'edit' %}
           <th>
-            {{ tip(_("Add-on icon"),
-                   _("Upload an icon for your add-on or choose from one of ours. The
-                      icon is displayed nearly everywhere your add-on is. Uploaded images
-                      must be one of the following image types: .png, .jpg")) }}
+            {% if webapp %}
+              {# TODO(apps): Finalize copy. #}
+              {{ tip('App icon',
+                     "Upload an icon for your app or choose from one of ours. The
+                      icon is displayed nearly everywhere your app is. Uploaded images
+                      must be one of the following image types: .png, .jpg") }}
+            {% else %}
+              {{ tip(_("Add-on icon"),
+                     _("Upload an icon for your add-on or choose from one of ours. The
+                        icon is displayed nearly everywhere your add-on is. Uploaded images
+                        must be one of the following image types: .png, .jpg")) }}
+            {% endif %}
           </th>
           {% endif %}
           <td>
-          {% if context == 'submit': %}
+          {% if context == 'submit' %}
             <label>
-              {% trans %}
-              Select an icon for your add-on:
-              {% endtrans %}
+              {% if webapp %}
+                {# TODO(apps): Finalize copy. #}
+                  Select an icon for your app:
+              {% else %}
+                {% trans %}
+                  Select an icon for your add-on:
+                {% endtrans %}
+              {% endif %}
             </label>
             {% endif %}
             {% if editable %}
@@ -34,9 +49,16 @@
                 <div class="edit-media-details">
                   {# L10n: The size of the icon #}
                   {{ _('32x32px') }}
-                  {{ tip(None,
-                         _("Used in listings of add-ons, like search results
-                            and featured add-ons.")) }}
+                  {% if webapp %}
+                    {# TODO(apps): Finalize copy. #}
+                    {{ tip(None,
+                           'Used in listings of apps, like search results
+                            and featured apps.') }}
+                  {% else %}
+                    {{ tip(None,
+                           _("Used in listings of add-ons, like search results
+                              and featured add-ons.")) }}
+                  {% endif %}
                 </div>
 
                 <div class="icon_preview" id="icon_preview_64">
@@ -45,8 +67,12 @@
                 <div class="edit-media-details">
                   {# L10n: The size of the icon #}
                   {{ _('64x64px') }}
-                  {{ tip(None,
-                         _("Used in add-on detail pages.")) }}
+                  {% if webapp %}
+                    {# TODO(apps): Finalize copy. #}
+                    {{ tip(None, 'Used in app detail pages.') }}
+                  {% else %}
+                    {{ tip(None, _("Used in add-on detail pages.")) }}
+                  {% endif %}
                 </div>
               </div>
               <ul id="icons_default">
@@ -77,23 +103,28 @@
           </td>
         </tr>
         <tr>
-          {% if context == 'edit': %}
+          {% if context == 'edit' %}
           <th>
             <label>{{ _("Screenshots") }}</label>
           </th>
           {% endif %}
           <td class="edit-previews-readonly">
-            {% if context == 'submit': %}
+            {% if context == 'submit' %}
             <label>
-              {% trans %}
-              Please provide at least one screen shot of your add-on:
-              {% endtrans %}
+              {% if webapp %}
+                {# TODO(apps): Finalize copy. #}
+                Please provide at least one screen shot of your app:
+              {% else %}
+                {% trans %}
+                  Please provide at least one screen shot of your add-on:
+                {% endtrans %}
+              {% endif %}
             </label>
             {% endif %}
 
-            <div class="{{ "edit-previews-submit" if context == 'submit' }}">
+            <div class="{{ 'edit-previews-submit' if context == 'submit' }}">
             {% if editable %}
-              {% if preview_form: %}
+              {% if preview_form %}
                 {{ preview_form.management_form }}
                 {{ preview_form.non_form_errors() }}
                 <div id="file-list">
@@ -142,14 +173,14 @@
       </tbody>
     </table>
   </div>
-  {% if editable and context == 'edit': %}
+  {% if editable and context == 'edit' %}
   <div class="edit-media-button listing-footer">
     <button>{{ _('Save Changes') }}</button> {{ _('or') }}
       <a href="{{ url('devhub.addons.section', addon.slug, 'media') }}"
         class="addon-edit-cancel">
         {{ _('Cancel') }}</a>
     </div>
-  {% elif context == 'submit': %}
+  {% elif context == 'submit' %}
   <div class="edit-media-button addon-submission-field">
     <button type="submit">
       {{ _('Continue') }}

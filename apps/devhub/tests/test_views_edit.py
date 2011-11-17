@@ -50,7 +50,7 @@ class TestEdit(amo.tests.TestCase):
             category__id__in=[23, 24]).delete()
         cache.clear()
 
-        self.url = reverse('devhub.addons.edit', args=[addon.slug])
+        self.url = addon.get_edit_url()
         self.user = UserProfile.objects.get(pk=55021)
 
         self.tags = ['tag3', 'tag2', 'tag1']
@@ -73,6 +73,23 @@ class TestEdit(amo.tests.TestCase):
         result.update(**kw)
         result.update(fs)
         return result
+
+
+class TestEditListingWebapp(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        self.webapp = Addon.objects.get(id=337141)
+        self.url = self.webapp.get_edit_url()
+
+    @mock.patch.object(settings, 'APP_PREVIEW', False)
+    def test_apps_context(self):
+        r = self.client.get(self.url)
+        eq_(r.context['webapp'], True)
+        eq_(pq(r.content)('title').text(),
+            'Edit Listing :: %s :: Apps Marketplace' % self.webapp.name)
 
 
 class TestEditBasicWebapp(amo.tests.TestCase):
@@ -100,6 +117,11 @@ class TestEditBasicWebapp(amo.tests.TestCase):
         result.update(**kw)
         result.update(fs)
         return result
+
+    @mock.patch.object(settings, 'APP_PREVIEW', False)
+    def test_apps_context(self):
+        r = self.client.get(self.url)
+        eq_(r.context['webapp'], True)
 
     def test_appslug_visible(self):
         r = self.client.get(self.url)
@@ -175,8 +197,11 @@ class TestEditBasic(TestEdit):
     def test_redirect(self):
         # /addon/:id => /addon/:id/edit
         r = self.client.get('/en-US/developers/addon/3615/', follow=True)
-        url = reverse('devhub.addons.edit', args=['a3615'])
-        self.assertRedirects(r, url, 301)
+        self.assertRedirects(r, self.url, 301)
+
+    def test_addons_context(self):
+        for url in (self.url, self.basic_edit_url):
+            eq_(self.client.get(url).context['webapp'], False)
 
     def test_edit(self):
         old_name = self.addon.name
@@ -575,8 +600,7 @@ class TestEditBasic(TestEdit):
 
     def test_text_not_none_when_has_flags(self):
         addon = self.get_addon()
-        r = self.client.get(reverse('devhub.addons.edit',
-                            kwargs=dict(addon_id=addon.slug)))
+        r = self.client.get(self.url)
         doc = pq(r.content)
         eq_(doc('#addon-flags').text(), 'This is a site-specific add-on.')
 
@@ -584,15 +608,13 @@ class TestEditBasic(TestEdit):
         addon = self.get_addon()
         addon.update(external_software=False, site_specific=False,
                      binary=False)
-        r = self.client.get(reverse('devhub.addons.edit',
-                kwargs=dict(addon_id=addon.slug)))
+        r = self.client.get(self.url)
         doc = pq(r.content)
         eq_(doc('#addon-flags').text(), 'None')
 
     def test_nav_links(self):
-        url = reverse('devhub.addons.edit', args=['a3615'])
         activity_url = reverse('devhub.feed', args=['a3615'])
-        r = self.client.get(url)
+        r = self.client.get(self.url)
         doc = pq(r.content)
         eq_(doc('#edit-addon-nav ul:last').find('li a').eq(1).attr('href'),
             activity_url)
@@ -965,8 +987,7 @@ class TestEditDetails(TestEdit):
         self.addon.description = ("This\n<b>IS</b>"
                                   "<script>alert('awesome')</script>")
         self.addon.save()
-        r = self.client.get(reverse('devhub.addons.edit',
-                                    args=[self.addon.slug]))
+        r = self.client.get(self.url)
         doc = pq(r.content)
         eq_(doc('#edit-addon-details span[lang]').html(),
                 "This<br/><b>IS</b>&lt;script&gt;alert('awesome')"

@@ -9,7 +9,7 @@ from addons.decorators import addon_view
 from devhub.models import SubmitStep
 
 
-def dev_required(owner_for_post=False, allow_editors=False):
+def dev_required(owner_for_post=False, allow_editors=False, webapp=False):
     """Requires user to be add-on owner or admin.
 
     When allow_editors is True, an editor can view the page.
@@ -20,8 +20,10 @@ def dev_required(owner_for_post=False, allow_editors=False):
         @functools.wraps(f)
         def wrapper(request, addon, *args, **kw):
             from devhub.views import _resume
-            fun = lambda: f(request, addon_id=addon.id, addon=addon, *args,
-                            **kw)
+            if webapp:
+                kw['webapp'] = addon.is_webapp()
+            fun = lambda: f(request, addon_id=addon.id, addon=addon,
+                            *args, **kw)
             if allow_editors:
                 if acl.action_allowed(request, 'Editors', '%'):
                     return fun()
@@ -57,4 +59,3 @@ def use_apps(f):
         show_webapp = waffle.flag_is_active(request, 'accept-webapps')
         return f(request, *args, webapp=show_webapp, **kwargs)
     return wrapper
-

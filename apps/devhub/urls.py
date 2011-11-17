@@ -6,6 +6,7 @@ from urlconf_decorator import decorate
 from addons.urls import ADDON_ID
 from amo.decorators import write
 from devhub.decorators import use_apps
+from webapps.urls import APP_SLUG
 from . import views
 
 PACKAGE_NAME = '(?P<package_name>[_\w]+)'
@@ -34,6 +35,11 @@ marketplace_patterns = patterns('',
     url('^2$', views.marketplace_pricing, name='devhub.market.2'),
     url('^3$', views.marketplace_upsell, name='devhub.market.3'),
     url('^4$', views.marketplace_confirm, name='devhub.market.4')
+)
+
+# These will all start with /app/<app_slug>/
+app_detail_patterns = patterns('',
+    url('^edit$', views.edit, name='devhub.apps.edit'),
 )
 
 # These will all start with /addon/<addon_id>/
@@ -196,6 +202,7 @@ urlpatterns = decorate(write, patterns('',
 
     # URLs for a single add-on.
     url('^addon/%s/' % ADDON_ID, include(detail_patterns)),
+    url('^app/%s/' % APP_SLUG, include(app_detail_patterns)),
     url('^app/%s/submit/' % ADDON_ID, include(submit_apps_patterns)),
 
     url('^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),

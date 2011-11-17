@@ -1,7 +1,9 @@
 {% from "devhub/includes/macros.html" import tip, empty_unless, select_cats, trans_readonly %}
 
 <form method="post" action="{{ url('devhub.addons.section', valid_slug, 'basic', 'edit') }}"
-      id="addon-edit-basic" data-baseurl="{{ url('devhub.addons.edit', valid_slug) }}">
+      id="addon-edit-basic"
+      data-baseurl="{{ url('devhub.%s.edit' % ('apps' if addon.is_webapp() else 'addons'),
+                           valid_slug) }}">
   <h3>
     {{ _('Basic Information') }}
     {% if not editable %}
@@ -28,8 +30,14 @@
           </tr>
           <tr>
             <th>
-              {{ tip(_("Add-on URL"),
-                 _("Choose a short, unique URL slug for your add-on.")) }}
+              {% if webapp %}
+                {# TODO(apps): Finalize copy. #}
+                {{ tip('App URL',
+                       'Choose a short, unique URL slug for your app.') }}
+              {% else %}
+                {{ tip(_("Add-on URL"),
+                   _("Choose a short, unique URL slug for your add-on.")) }}
+              {% endif %}
             </th>
             <td id="slug_edit">
               {% if editable %}
@@ -38,7 +46,7 @@
                 </div>
                 {{ form.slug.errors }}
               {% else %}
-                {{ settings.SITE_URL }}/&hellip;/{{ addon.app_slug if addon.is_webapp() else addon.slug }}
+                {{ settings.SITE_URL }}/&hellip;/{{ addon.app_slug if webapp else addon.slug }}
                 <a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
               {% endif %}
             </td>
@@ -47,11 +55,20 @@
             <th>
               <label data-for="summary">
                 {{ _("Summary") }}
-                {{ tip(None,
-                       _("A short explanation of your add-on's basic
+                {% if webapp %}
+                  {# TODO(apps): Finalize copy. #}
+                  {{ tip(None,
+                         "A short explanation of your app's basic
                           functionality that is displayed in search and browse
-                          listings, as well as at the top of your add-on's
-                          details page.")) }}
+                          listings, as well as at the top of your app's
+                          details page.") }}
+                {% else %}
+                  {{ tip(None,
+                         _("A short explanation of your add-on's basic
+                            functionality that is displayed in search and browse
+                            listings, as well as at the top of your add-on's
+                            details page.")) }}
+                {% endif %}
               </label>
             </th>
             <td>
@@ -68,10 +85,18 @@
           </tr>
           <tr>
             <th>
-              {{ tip(_("Categories"),
-                     _("Categories are the primary way users browse through add-ons.
-                        Choose any that fit your add-on's functionality for the most
-                        exposure.")) }}
+              {% if webapp %}
+                {# TODO(apps): Finalize copy. #}
+                {{ tip('Categories',
+                       "Categories are the primary way users browse through apps.
+                        Choose any that fit your app's functionality for the
+                        most exposure.") }}
+              {% else %}
+                {{ tip(_("Categories"),
+                       _("Categories are the primary way users browse through add-ons.
+                          Choose any that fit your add-on's functionality for the most
+                          exposure.")) }}
+              {% endif %}
             </th>
             <td id="addon-categories-edit"
                 data-max-categories="{{ amo.MAX_CATEGORIES }}">
@@ -86,15 +111,25 @@
                       {{ cats|join(' &middot; ')|safe }}
                     </p>
                     <p>
-                    {% trans email='amo-editors@mozilla.org' %}
-                      Categories cannot be changed while your add-on is
-                      featured for this application. Please email
-                      <a href="mailto:{{ email }}">{{ email }}</a> if there is
-                      a reason you need to modify your categories.
-                    {% endtrans %}
+                      {% if webapp %}
+                        {# TODO(apps): Finalize copy. #}
+                        {% with email='amo-editors@mozilla.org' %}
+                          Categories cannot be changed while your app is
+                          featured. Please email
+                          <a href="mailto:{{ email }}">{{ email }}</a> if there
+                          is a reason you need to modify your categories.
+                        {% endwith %}
+                      {% else %}
+                        {% trans email='amo-editors@mozilla.org' %}
+                          Categories cannot be changed while your add-on is
+                          featured for this application. Please email
+                          <a href="mailto:{{ email }}">{{ email }}</a> if there is
+                          a reason you need to modify your categories.
+                        {% endtrans %}
+                      {% endif %}
                     </p>
                   {% else %}
-                    {{ select_cats(amo.MAX_CATEGORIES, form, addon.is_webapp()) }}
+                    {{ select_cats(amo.MAX_CATEGORIES, form, webapp) }}
                   {% endif %}
                 {% endfor %}
               {% else %}
@@ -103,7 +138,7 @@
                   <ul class="addon-app-cats-inline">
                     {% for app, cats in categories %}
                       <li>
-                        {% if not addon.is_webapp() %}
+                        {% if not webapp %}
                           <b>{{ app.pretty }}:</b>
                         {% endif %}
                         {{ cats|join(' &middot; ')|safe }}
@@ -116,10 +151,18 @@
           </tr>
           <tr>
             <th>
-              {{ tip(_("Tags"),
-                     _("Tags help users find your add-on and should be short
-                        descriptors such as tabs, toolbar, or twitter.  You
-                        may have a maximum of {0} tags.").format(amo.MAX_TAGS)) }}
+              {% if webapp %}
+                {# TODO(apps): Finalize copy. #}
+                {{ tip('Tags',
+                       "Tags help users find your app and should be short
+                        descriptors such as tabs, toolbar, or twitter. You
+                        may have a maximum of {0} tags.".format(amo.MAX_TAGS)) }}
+              {% else %}
+                {{ tip(_("Tags"),
+                       _("Tags help users find your add-on and should be short
+                          descriptors such as tabs, toolbar, or twitter.  You
+                          may have a maximum of {0} tags.").format(amo.MAX_TAGS)) }}
+              {% endif %}
             </th>
             <td id="addon_tags_edit">
               {% if editable %}

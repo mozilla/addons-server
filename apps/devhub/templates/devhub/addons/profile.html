@@ -42,7 +42,7 @@
 
     <p class="item-group">
       <button>{{ button_label }}</button> {{ _('or') }}
-      <a href="{{ url('devhub.addons.edit', addon.slug) }}">
+      <a href="{{ addon.get_edit_url() }}">
         {{ _('Cancel') }}</a>
     </p>
   </form>

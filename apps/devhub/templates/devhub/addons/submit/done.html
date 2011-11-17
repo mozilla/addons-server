@@ -38,7 +38,7 @@
                               addon.slug, addon.current_version.id) %}
       <li>{{ _('<a href="{0}">Upload</a> another platform-specific file to this version.')|f(files_url)|xssafe }}</li>
     {% endif %}
-    {% set edit_url = url('devhub.addons.edit', addon.slug) %}
+    {% set edit_url = addon.get_edit_url() %}
     <li>{{ _('Provide more details by <a href="{0}">editing its listing</a>.')|f(edit_url)|safe }}</li>
     {% set profile_url = url('devhub.addons.profile', addon.slug) %}
     <li>{{ _('Tell your users why you created this in your <a href="{0}">Developer Profile</a>.')|f(profile_url)|safe }}</li>

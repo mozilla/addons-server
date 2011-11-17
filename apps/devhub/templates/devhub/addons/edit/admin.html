@@ -21,8 +21,13 @@
             <th>
               <label data-for="trusted">
                 Trusted?
-                {{ tip(None,
-                       "Trusted add-ons can become public without editor review.") }}
+                {% if webapp %}
+                  {{ tip(None,
+                         'Trusted apps can become public without editor review.') }}
+                {% else %}
+                  {{ tip(None,
+                         'Trusted add-ons can become public without editor review.') }}
+                {% endif %}
               </label>
             </th>
             <td>
@@ -36,7 +41,11 @@
           <tr>
             <th>
               <label data-for="type">
-                Add-on Type
+                {% if webapp %}
+                  App Type
+                {% else %}
+                  Add-on Type
+                {% endif %}
               </label>
             </th>
             <td>
@@ -50,7 +59,11 @@
           <tr>
             <th>
               <label data-for="guid">
-                Add-on GUID
+                {% if webapp %}
+                  App GUID
+                {% else %}
+                  Add-on GUID
+                {% endif %}
                 {{ tip(None,
                        "Only change if you understand all of the consequences.") }}
               </label>
@@ -65,7 +78,10 @@
               <label data-for="target_locale">
                 Target Locale
                 {{ tip(None,
-                       "Only applicable to dictionaries and language packs, this identifies the language and, optionally, region that this add-on is written for. Examples: en-US, fr, and de-AT") }}
+                       "Only applicable to dictionaries and language packs,
+                        this identifies the language and, optionally, region
+                        that this add-on is written for. Examples: en-US, fr,
+                        and de-AT") }}
               </label>
             </th>
             <td>
@@ -77,7 +93,12 @@
               <label data-for="locale_disambiguation">
                 Additional Locale Info
                 {{ tip(None,
-                       "Only applicable to dictionaries and language packs, this is a short identifier to differentiate this add-on from other similar add-ons (for example, different dialects). This field is not required. Please limit the length of the field to a few short words.") }}
+                       "Only applicable to dictionaries and language packs,
+                        this is a short identifier to differentiate this
+                        add-on from other similar add-ons (for example,
+                        different dialects). This field is not required.
+                        Please limit the length of the field to a few short
+                        words.") }}
               </label>
             </th>
             <td>

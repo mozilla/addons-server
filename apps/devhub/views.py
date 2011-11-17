@@ -262,12 +262,12 @@ def feed(request, addon_id=None):
     return jingo.render(request, 'devhub/addons/activity.html', data)
 
 
-@dev_required
-def edit(request, addon_id, addon):
-
+@dev_required(webapp=True)
+def edit(request, addon_id, addon, webapp=False):
     data = {
        'page': 'edit',
        'addon': addon,
+       'webapp': webapp,
        'valid_slug': addon.slug,
        'tags': addon.tags.not_blacklisted().values_list('tag_text', flat=True),
        'previews': addon.previews.all()}
@@ -916,8 +916,9 @@ def ajax_dependencies(request, addon_id, addon):
     return s(request, excluded_ids=[addon_id]).items
 
 
-@dev_required
-def addons_section(request, addon_id, addon, section, editable=False):
+@dev_required(webapp=True)
+def addons_section(request, addon_id, addon, section, editable=False,
+                   webapp=False):
     models = {'basic': addon_forms.AddonFormBasic,
               'media': addon_forms.AddonFormMedia,
               'details': addon_forms.AddonFormDetails,
@@ -982,7 +983,9 @@ def addons_section(request, addon_id, addon, section, editable=False):
     else:
         form = False
 
+    #import pdb; pdb.set_trace()
     data = {'addon': addon,
+            'webapp': webapp,
             'form': form,
             'editable': editable,
             'tags': tags,

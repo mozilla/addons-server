@@ -131,7 +131,7 @@
         <p>{{ _('This dashboard is currently <b>private</b>.') }}</p>
       {% endif %}
       {% if request.check_ownership(addon) %}
-        <p><a href="{{ url('devhub.addons.edit', addon.slug) }}#edit-addon-technical">{{ _('Change settings.') }}</a></p>
+        <p><a href="{{ addon.get_edit_url() }}#edit-addon-technical">{{ _('Change settings.') }}</a></p>
       {% endif %}
     </div>
     <div class="hidden">

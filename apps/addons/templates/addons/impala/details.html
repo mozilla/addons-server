@@ -62,7 +62,7 @@
     {{ sharing_widget(addon) }}
   </div>
   {% if request.check_ownership(addon, require_owner=False) %}
-    <p><a href="{{ url('devhub.addons.edit', addon.slug) }}" class="button developer prominent"><span>{{ _('Manage') }}</span></a></p>
+    <p><a href="{{ addon.get_edit_url() }}" class="button developer prominent"><span>{{ _('Manage') }}</span></a></p>
     {% if waffle.switch('marketplace') and addon.is_premium() and not addon.is_webapp() %}
         <p><a href="{{ url('downloads.latest', addon.slug) }}" class="button developer prominent"><span>{{ _('Download') }}</span></a></p>
     {% endif %}

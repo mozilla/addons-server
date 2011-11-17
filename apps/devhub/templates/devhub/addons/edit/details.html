@@ -2,7 +2,12 @@
 
 <form method="post" action="{{ url('devhub.addons.section', addon.slug, 'details', 'edit') }}">
   <h3>
-    {{ _('Add-on Details') }}
+    {% if webapp %}
+      {# TODO(apps): Finalize copy. #}
+      App Details
+    {% else %}
+      {{ _('Add-on Details') }}
+    {% endif %}
     {% if not editable %}
       <a href="#" data-editurl="{{ url('devhub.addons.section', addon.slug, 'details', 'edit') }}" class="button">
       {{ _('Edit') }}</a>
@@ -12,18 +17,28 @@
     <div class="item_wrapper">
       {% if editable %}{{ form.non_field_errors() }}{% endif %}
       <table>
-        <caption>{{ _('Add-on Details for {0}')|f(addon.name) }}</caption>
+        {% if not webapp %}
+          <caption>{{ _('Add-on Details for {0}')|f(addon.name) }}</caption>
+        {% endif %}
         <tbody>
           <tr>
             <th>
               <label data-for="description">
                 {{ _('Description') }}
-                {{ tip(None,
-                       _("A longer explanation of features,
-                          functionality, and other relevant information. This
-                          field is only displayed on the add-on's details
-                          page.")) }}
-            </label>
+                {% if webapp %}
+                  {# TODO(apps): Finalize copy. #}
+                  {{ tip(None,
+                         "A longer explanation of features, functionality, and
+                          other relevant information. This field is displayed
+                          only on the app's details page.") }}
+                {% else %}
+                  {{ tip(None,
+                         _("A longer explanation of features,
+                            functionality, and other relevant information. This
+                            field is only displayed on the add-on's details
+                            page.")) }}
+                {% endif %}
+              </label>
             </th>
             <td>
               {% if editable %}
@@ -41,9 +56,16 @@
           </tr>
           <tr>
             <th>
-              {{ tip(_("Default Locale"),
-                     _("Information about your add-on is displayed in this locale
-                        unless you override it with a locale-specific translation.")) }}
+              {% if webapp %}
+                {# TODO(apps): Finalize copy. #}
+                {{ tip(_("Default Locale"),
+                       "Information about your app is displayed in this locale
+                        unless you override it with a locale-specific translation.") }}
+              {% else %}
+                {{ tip(_("Default Locale"),
+                       _("Information about your add-on is displayed in this locale
+                          unless you override it with a locale-specific translation.")) }}
+              {% endif %}
             </th>
             <td class="addon_edit_locale">
               {% if editable %}
@@ -58,11 +80,20 @@
             <th>
               <label data-for="homepage">
                 {{ _("Homepage") }}
-                {{ tip(None,
-                       _("If your add-on has another homepage, enter its
+                {% if webapp %}
+                  {# TODO(apps): Finalize copy. #}
+                  {{ tip(None,
+                         "If your app has another homepage, enter its
                           address here. If your website is localized into other
                           languages multiple translations of this field can be
-                          added.")) }}
+                          added.") }}
+                {% else %}
+                  {{ tip(None,
+                         _("If your add-on has another homepage, enter its
+                            address here. If your website is localized into other
+                            languages multiple translations of this field can be
+                            added.")) }}
+                {% endif %}
               </label>
             </th>
             <td>

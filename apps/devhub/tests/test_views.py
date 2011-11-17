@@ -107,8 +107,8 @@ class TestNav(HubTest):
         eq_(doc('#site-nav ul li.top a').eq(0).text(), 'My Add-ons')
 
         # Check the anchor for the single add-on.
-        edit_url = reverse('devhub.addons.edit', args=[addon.slug])
-        eq_(doc('#site-nav ul li.top li a').eq(0).attr('href'), edit_url)
+        eq_(doc('#site-nav ul li.top li a').eq(0).attr('href'),
+            addon.get_edit_url())
 
         # Create 6 add-ons.
         self.clone_addon(6)
@@ -2014,9 +2014,7 @@ class TestSubmitStep7(TestSubmitBase):
         next_steps = doc(".done-next-steps li a")
 
         # edit listing of freshly submitted add-on...
-        eq_(next_steps[0].attrib['href'],
-            reverse('devhub.addons.edit',
-                    kwargs=dict(addon_id=addon.slug)))
+        eq_(next_steps[0].attrib['href'], addon.get_edit_url())
 
         # edit your developer profile...
         eq_(next_steps[1].attrib['href'],
@@ -2044,9 +2042,7 @@ class TestSubmitStep7(TestSubmitBase):
                                 version_id=addon.current_version.id)))
 
         # edit listing of freshly submitted add-on...
-        eq_(next_steps[1].attrib['href'],
-            reverse('devhub.addons.edit',
-                    kwargs=dict(addon_id=addon.slug)))
+        eq_(next_steps[1].attrib['href'], addon.get_edit_url())
 
     def test_finish_addon_for_prelim_review(self):
         self.get_addon().update(status=amo.STATUS_UNREVIEWED)

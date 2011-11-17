@@ -20,7 +20,7 @@
 {% else %}
   {% if check_addon_ownership(request, addon, dev=True) %}
     <li>
-      <a href="{{ url('devhub.addons.edit', addon.slug) }}" class="tooltip"
+      <a href="{{ addon.get_edit_url() }}" class="tooltip"
          title="{{ _("Edit details about this app's listing.") }}">
         {{ _('Edit Listing') }}</a>
     </li>
