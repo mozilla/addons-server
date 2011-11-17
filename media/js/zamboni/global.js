@@ -289,10 +289,6 @@ $.fn.modal = function(click_target, o) {
     var $ct         = $(click_target),
         $modal      = this;
 
-    if (!$ct.length && !$modal.o.delegate) {
-        return false;
-    }
-
     $modal.o = $.extend({
         delegate:   false,
         callback:   false,
@@ -303,6 +299,10 @@ $.fn.modal = function(click_target, o) {
         offset:     {},
         width:      450
     }, o);
+
+    if (!$ct.length && !$modal.o.delegate) {
+        return false;
+    }
 
     $modal.setWidth = function(w) {
         $modal.css({width: w});
