@@ -684,9 +684,6 @@ MINIFY_BUNDLES = {
 
             # Fix-up outgoing links
             'js/zamboni/outgoing_links.js',
-
-            # SOPA
-            'js/impala/sopa.js'
         ),
         'zamboni/discovery': (
             'js/lib/jquery-1.6.4.js',
