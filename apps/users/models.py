@@ -336,6 +336,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def purchase_ids(self):
         return (self.addonpurchase_set.values_list('addon_id', flat=True)
+                                      .filter(type=amo.CONTRIB_PURCHASE)
                                       .order_by('pk'))
 
 

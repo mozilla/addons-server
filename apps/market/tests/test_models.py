@@ -184,3 +184,9 @@ class TestContribution(amo.tests.TestCase):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         self.addon.addonpurchase_set.create(user=self.user)
         eq_(list(self.user.purchase_ids()), [3615L])
+
+    def test_user_refunded(self):
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.addon.addonpurchase_set.create(user=self.user,
+                                            type=amo.CONTRIB_REFUND)
+        eq_(list(self.user.purchase_ids()), [])
