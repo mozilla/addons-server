@@ -704,6 +704,7 @@ MINIFY_BUNDLES = {
         'zamboni/discovery': (
             'js/lib/jquery-1.6.4.js',
             'js/lib/underscore.js',
+            'js/lib/popcorn-1.0.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
             'js/impala/capabilities.js',

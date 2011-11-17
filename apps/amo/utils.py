@@ -176,8 +176,8 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                     from amo.helpers import absolutify
                     unsubscribe_url = absolutify(reverse('users.unsubscribe',
                             args=[token, hash, perm_setting.short]))
-                    manage_url = ('%s#acct-notify' %
-                                  absolutify(reverse('users.edit')))
+                    manage_url = urlparams(absolutify(reverse('users.edit')),
+                                           'acct-notify')
                     context = {'message': message, 'manage_url': manage_url,
                                'unsubscribe_url': unsubscribe_url,
                                'perm_setting': perm_setting.label,

@@ -525,7 +525,7 @@ section#featured-addons {
     margin: 0 -10px;
     clear: both;
 }
-#featured-personas li {
+.featured-personas li {
     border-bottom-color: #666;
 }
 #sub li:last-child {
@@ -533,7 +533,7 @@ section#featured-addons {
 }
 
 #sub .featured li,
-#featured-personas li h6,
+.featured-personas li h6,
 #more-ways li {
     font-size: 13px;
 }
@@ -548,34 +548,34 @@ section#featured-addons {
     overflow: hidden;
 }
 
-#up-and-coming a.addon-title .htruncate {
+.featured .featured-addons a.addon-title .htruncate {
     line-height: 32px;
     display: inline-block;
     width: -moz-calc(100% - 48px);
 }
 
-#up-and-coming a.addon-title,
-#featured-personas span.addon-title {
+.featured .featured-addons a.addon-title,
+.featured .featured-personas span.addon-title {
     display: block;
     background: rgba(255,255,255,0.35) url("../../img/zamboni/discovery_pane/arrow-right.png") 95% 50% no-repeat;
     color: #333;
     overflow: hidden;
 }
-#featured-personas span.addon-title {
+.featured .featured-personas span.addon-title {
     pointer-events: none;
 }
 
-#up-and-coming a.addon-title,
-#featured-personas span.addon-title b {
+.featured .featured-addons a.addon-title,
+.featured .featured-personas span.addon-title b {
     padding: 0.5em 30px 0.5em 10px;
 }
 
-#featured-personas span.addon-title b {
+.featured .featured-personas span.addon-title b {
     display: block;
     font-weight: normal;
 }
 
-#featured-personas span.addon-title {
+.featured .featured-personas span.addon-title {
     background-color: rgba(255,255,255,0.65);
     border-top: 1px solid rgba(255,255,255,0.35);
     text-decoration: none;
@@ -584,12 +584,12 @@ section#featured-addons {
     width: 100%;
 }
 
-#up-and-coming a.addon-title:hover,
-#up-and-coming a.addon-title:focus,
-#up-and-coming a.addon-title:active,
-#featured-personas a:hover span.addon-title,
-#featured-personas a:focus span.addon-title,
-#featured-personas a:active span.addon-title {
+.featured .featured-addons a.addon-title:hover,
+.featured .featured-addons a.addon-title:focus,
+.featured .featured-addons a.addon-title:active,
+.featured .featured-personas a:hover span.addon-title,
+.featured .featured-personas a:focus span.addon-title,
+.featured .featured-personas a:active span.addon-title {
     background-color: rgba(255,255,255,0.65);
     background-position: 96% 50%;
     -moz-transition-property: background-color, background-position;
@@ -598,23 +598,24 @@ section#featured-addons {
     color: #083681;
 }
 
-#featured-personas a:hover span.addon-title,
-#featured-personas a:focus span.addon-title,
-#featured-personas a:active span.addon-title {
+.featured .featured-personas a:hover span.addon-title,
+.featured .featured-personas a:focus span.addon-title,
+.featured .featured-personas a:active span.addon-title {
     background-color: rgba(255,255,255,0.8);
 }
 
 #sub .featured li:last-child a,
-#featured-personas ul li:last-child a span.addon-title {
+.featured .featured-personas ul li:last-child a span.addon-title {
     border-radius: 0 0 8px 8px;
 }
 
-#up-and-coming img {
+.featured .featured-addons img {
     display: block;
     float: left;
     vertical-align: middle;
     margin: 0 8px 0 0;
 }
+
 
 #sub .all,
 #recs .header h2 a {
@@ -807,8 +808,8 @@ section#featured-addons {
         float: none;
     }
 
-    #sub #up-and-coming,
-    #sub #featured-personas,
+    #sub .featured.featured-addons,
+    #sub .featured.featured-personas,
     #sub #more-ways {
         float: left;
         margin-right: 1%;
@@ -818,6 +819,10 @@ section#featured-addons {
     #sub #more-ways {
         margin-right: 0;
         width: -moz-calc(100% / 3 - 22px - 1%);
+    }
+
+    #promo-video-addons {
+        display: none !important; /* Due to $.show() */
     }
 }
 
@@ -1602,3 +1607,66 @@ body.eula #main {
     /* Hide this for SeaMonkey as it has no content */
     display: none !important;
 }
+
+/* Add-on Video */
+#intro #learn-more.video {
+    background-color: #FFFFFF;
+    background-image: url("../../img/zamboni/discovery_pane/video.png");
+    background-position: 6px center;
+    background-repeat: no-repeat;
+    box-shadow: 0 -2px rgba(0, 0, 0, 0.1) inset;
+    padding-left: 47px;
+}
+#main #promos.js.show-video {
+    height: auto;
+    /* -moz-transition: height 1s ease; */
+}
+
+#main #promos.show-video .slider,
+#main #promos.show-video #nav-features {
+    display: none;
+}
+
+.promo-video {
+    border-radius: 8px;
+    /* border: 1px solid rgb(168, 184, 209); */ /* Clean this up before using */
+}
+.promo-video video {
+    width: 100%;
+    display: block;
+}
+
+#video-details {
+    background-image: url("../../img/illustrations/hug.png");
+    background-position: center 12px;
+    background-repeat: no-repeat;
+    color: #666;
+    line-height: 1.6em;
+    padding: 115px 1em 1em;
+}
+
+#promo-video-addons {
+    display: none;
+}
+
+#promo-video-addons li {
+    display: none;
+}
+
+#promo-video-addons li.show {
+    display: block;
+}
+
+#featured-addons li.flutter {
+    -moz-animation-duration: 1s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-name: flutter;
+    -moz-animation-timing-function: linear;
+}
+
+@-moz-keyframes flutter {
+    0% { -moz-transform: matrix(1, 0, 0.3, 1, -10px, 0); }
+    50% { -moz-transform: matrix(1, 0, 0.4, 1, -20px, 0); }
+    100% { -moz-transform: matrix(1, 0, 0.3, 1, -10px, 0); }
+}
+

@@ -27,6 +27,7 @@ from addons.models import Addon, AddonRecommendation
 from addons.utils import FeaturedManager
 from browse.views import personas_listing
 from bandwagon.models import Collection, SyncedCollection
+from discovery.modules import PromoVideoCollection
 from reviews.models import Review
 from stats.models import GlobalStat
 
@@ -44,12 +45,15 @@ def pane(request, version, platform, compat_mode='strict'):
     def from_api(list_type):
         return api_view(request, platform, version, list_type)
 
+    promovideo = PromoVideoCollection().get_items()
+
     return jingo.render(request, 'discovery/pane.html',
                         {'modules': get_modules(request, platform, version),
                          'up_and_coming': from_api('hotness'),
                          'featured_addons': from_api('featured'),
                          'featured_personas': get_featured_personas(request),
-                         'version': version, 'platform': platform})
+                         'version': version, 'platform': platform,
+                         'promovideo': promovideo})
 
 
 def pane_account(request):

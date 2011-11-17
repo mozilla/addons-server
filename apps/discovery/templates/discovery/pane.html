@@ -16,15 +16,21 @@ data-upandcoming-url="{{ services_url('discovery.pane.more_addons', 'up-and-comi
 {% block content %}
   <header{% if user.is_authenticated() %} class="auth"{% endif %}>
     <section id="intro">
-      <h1><img src="{{ media('img/zamboni/discovery_pane/logo-addons.png') }}"
-               width="87" height="82">{{ _('What are Add-ons?') }}</h1>
+      <h1>
+        <img src="{{ media('img/zamboni/discovery_pane/logo-addons.png') }}" width="87" height="82">
+        <span class="translate" data-trans="title">
+          {{ _('What are Add-ons?') }}
+        </span>
+      </h1>
       <p>
-        {% trans %}
-        Add-ons are applications that let you personalize {{ app }} with
-        extra functionality or style. Try a time-saving sidebar, a weather
-        notifier, or a themed look to make {{ app }} your own.
-        {% endtrans %}
-        <a href="{{ url('home') }}" id="learn-more" class="button">{{ _('Learn More') }}</a>
+        <span class="translate" data-trans="intro">
+          {% trans %}
+          Add-ons are applications that let you personalize {{ app }} with
+          extra functionality or style. Try a time-saving sidebar, a weather
+          notifier, or a themed look to make {{ app }} your own.
+          {% endtrans %}
+        </span>
+        <a href="{{ url('home') }}" id="learn-more" class="button translate" data-trans="learn">{{ _('Learn More') }}</a>
       </p>
     </section>
     <section id="right-module"></section>
@@ -43,7 +49,7 @@ data-upandcoming-url="{{ services_url('discovery.pane.more_addons', 'up-and-comi
     </section>
 
     <section id="featured-addons">
-      <h2>{{ _('Featured Add-ons') }}</h2>
+      <h2 class="translate" data-trans="featured">{{ _('Featured Add-ons') }}</h2>
       <div class="addons">
         {{ addon_list(featured_addons, limit=6) }}
       </div>
@@ -75,7 +81,7 @@ data-upandcoming-url="{{ services_url('discovery.pane.more_addons', 'up-and-comi
 
   <section id="sub">
     {% if up_and_coming %}
-      <section class="featured" id="up-and-coming">
+      <section class="featured featured-addons" id="up-and-coming">
         <h2><a class="all" href="{{ url('browse.extensions')|urlparams(sort='hotness') }}">{{ _('See all') }}</a>
           {{ _('Up & Coming') }}</h2>
         {{ addon_list(up_and_coming, sidebar=True) }}
@@ -99,6 +105,14 @@ data-upandcoming-url="{{ services_url('discovery.pane.more_addons', 'up-and-comi
             {{ _('See all themes and Personas') }}</a>
         </li>
       </ul>
+    </section>
+    <section class="featured" id="promo-video-addons">
+      <h2>
+        <a id="video-close" class="all" href="#">{{ _('Close Video') }}</a>
+        <span class="translate" data-trans="addons">{{ _('Add-ons') }}</span>
+      </h2>
+      <div id="video-details">{{ _('While the video plays, the add-ons being mentioned will appear here.') }}</div>
+      {{ addon_list(promovideo, limit=50, sidebar=True, amo=amo) }}
     </section>
   </section>
 {% endblock %}

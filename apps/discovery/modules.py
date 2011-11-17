@@ -4,6 +4,7 @@ import jinja2
 from tower import ugettext_lazy as _
 
 import amo
+from addons.models import Addon
 from api.views import addon_filter
 from bandwagon.models import Collection, MonthlyPick as MP
 from .models import BlogCacheRyf
@@ -234,3 +235,16 @@ class SchoolCollection(CollectionPromo):
             2410: _(u'Xmarks is the #1 bookmarking add-on.'),
             2444: _(u'Web page and text translator, dictionary, and more!')
         }
+
+
+# The add-ons that go with the promo modal. Not an actual PromoModule
+class PromoVideoCollection():
+    items = (349111, 349155, 349157, 52659, 5579, 252539, 11377, 2257)
+    items_full = None
+
+    def get_items(self):
+        if not self.items_full:
+            items = Addon.objects.in_bulk(self.items)
+            self.items_full = tuple(items[i] for i in self.items if i in items)
+        return self.items_full
+

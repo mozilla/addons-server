@@ -1,20 +1,24 @@
-{% macro addon_list(list, limit=5, sidebar=False) %}
+{% macro addon_list(list, limit=5, sidebar=False, amo=None) %}
 <ul>
 {% set src = 'discovery-upandcoming' if sidebar else 'discovery-featured' %}
 {# These are JSON add-ons from the API, not Addon objects. #}
 {% for addon in list[:limit] %}
-  <li data-guid="{{ addon.guid }}">
-    <a href="{{ services_url('discovery.addons.detail', addon.id, src=src) }}"
-       target="_self" class="addon-title">
-      <img src="{{ addon.icon }}" width="32" height="32">
-      {% if sidebar %}
-        <span class="htruncate">{{ addon.name }}</span>
-      {% else %}
-        <h3 class="htruncate">{{ addon.name }}</h3>
-        <p class="desc vtruncate">{{ addon.summary }}</p>
-      {% endif %}
-    </a>
-  </li>
+  {% if amo and addon.type == amo.ADDON_PERSONA %}
+    <li class="featured-personas">{{ disco_persona_preview(addon.persona, title=True, src='discovery-featured') }}</li>
+  {% else %}
+    <li class="featured-addons" data-guid="{{ addon.guid }}">
+      <a href="{{ services_url('discovery.addons.detail', addon.id, src=src) }}"
+         target="_self" class="addon-title">
+        <img src="{{ addon.icon }}" width="32" height="32">
+        {% if sidebar %}
+          <span class="htruncate">{{ addon.name }}</span>
+        {% else %}
+          <h3 class="htruncate">{{ addon.name }}</h3>
+          <p class="desc vtruncate">{{ addon.summary }}</p>
+        {% endif %}
+      </a>
+    </li>
+  {% endif %}
 {% endfor %}
 </ul>
 {% endmacro %}
@@ -22,7 +26,7 @@
 {% macro persona_list(list, limit=5) %}
 <ul class="persona-list">
 {% for addon in list[:limit] %}
-  <li>{{ disco_persona_preview(addon.persona, title=True, src='discovery-featured') }}</li>
+  <li class="featured-personas">{{ disco_persona_preview(addon.persona, title=True, src='discovery-featured') }}</li>
 {% endfor %}
 </ul>
 {% endmacro %}
