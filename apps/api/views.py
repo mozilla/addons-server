@@ -228,8 +228,10 @@ def _guid_search_old(request, api_version, guids):
 
 
 def _guid_search_caching(request, api_version, guids):
+    lang = request.LANG
+
     def guid_search_cache_key(guid):
-        key = 'guid_search:%s:%s' % (api_version, guid)
+        key = 'guid_search:%s:%s:%s' % (api_version, lang, guid)
         return hashlib.md5(smart_str(key)).hexdigest()
 
     guids = [g.strip() for g in guids.split(',')] if guids else []

@@ -619,6 +619,9 @@ class SeamonkeyFeaturedTest(TestCase):
 
 class TestGuidSearch(TestCase):
     fixtures = ('base/apps', 'base/addon_6113', 'base/addon_3615')
+    # These are the guids for addon 6113 and 3615.
+    good = ('search/guid:{22870005-adef-4c9d-ae36-d0e1f2f27e5a},'
+            '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}')
 
     def setUp(self):
         addon = Addon.objects.get(id=3615)
@@ -627,8 +630,7 @@ class TestGuidSearch(TestCase):
         CompatOverrideRange.objects.create(compat=c, app_id=app.id)
 
     def test_success(self):
-        r = make_call('search/guid:{22870005-adef-4c9d-ae36-d0e1f2f27e5a},'
-                      '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}')
+        r = make_call(self.good)
         dom = pq(r.content)
         eq_(set(['3615', '6113']),
             set([a.attrib['id'] for a in dom('addon')]))
@@ -636,6 +638,19 @@ class TestGuidSearch(TestCase):
         # Make sure the <addon_compatibility> blocks are there.
         eq_(['3615'], [a.attrib['id'] for a in dom('addon_compatibility')])
 
+    @patch('waffle.switch_is_active', lambda x: True)
+    def test_api_caching_locale(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.summary = {'en-US': 'Delicious', 'fr': 'Francais'}
+        addon.save()
+
+        # This will prime the cache with the en-US version.
+        response = make_call(self.good)
+        self.assertContains(response, '<summary>Delicious')
+
+        # We should get back the fr version, not the en-US one.
+        response = make_call(self.good, lang='fr')
+        self.assertContains(response, '<summary>Francais')
 
     def test_xss(self):
         Addon.objects.create(guid='test@xss', type=amo.ADDON_EXTENSION,
@@ -644,7 +659,6 @@ class TestGuidSearch(TestCase):
         r = make_call('search/guid:test@xss')
         assert '<script>alert' not in r.content
         assert '&lt;script&gt;alert' in r.content
-
 
     def test_block_inactive(self):
         Addon.objects.filter(id=6113).update(disabled_by_user=True)
