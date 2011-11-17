@@ -1395,9 +1395,9 @@ class TestAddonFromUpload(UploadTest):
             AppVersion.objects.create(application_id=1, version=version)
         self.addCleanup(translation.deactivate)
 
-    def webapp(self):
-        return os.path.join(settings.ROOT,
-                            'apps/devhub/tests/addons/mozball.webapp')
+    def manifest(self, basename):
+        return os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
+                            'addons', basename)
 
     def test_blacklisted_guid(self):
         BlacklistedGuid.objects.create(guid='guid@xpi')
@@ -1419,16 +1419,24 @@ class TestAddonFromUpload(UploadTest):
         eq_(addon.slug, 'xpi-name')
 
     def test_manifest_url(self):
-        upload = self.get_upload(abspath=self.webapp())
+        upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
         addon = Addon.from_upload(upload, [self.platform])
         assert addon.is_webapp()
         eq_(addon.manifest_url, upload.name)
 
     def test_app_domain(self):
-        upload = self.get_upload(abspath=self.webapp())
+        upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
         upload.name = 'http://mozilla.com/my/rad/app.webapp'  # manifest URL
         addon = Addon.from_upload(upload, [self.platform])
         eq_(addon.app_domain, 'mozilla.com')
+
+    def test_non_english_app(self):
+        upload = self.get_upload(abspath=self.manifest('non-english.webapp'))
+        upload.name = 'http://mozilla.com/my/rad/app.webapp'  # manifest URL
+        addon = Addon.from_upload(upload, [self.platform])
+        eq_(addon.default_locale, 'it')
+        eq_(unicode(addon.name), 'ItalianMozBall')
+        eq_(addon.name.locale, 'it')
 
     def test_xpi_version(self):
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
@@ -1485,7 +1493,7 @@ class TestAddonFromUpload(UploadTest):
 
     def test_webapp_default_locale_override(self):
         with nested(tempfile.NamedTemporaryFile('w', suffix='.webapp'),
-                    open(self.webapp())) as (tmp, mf):
+                    open(self.manifest('mozball.webapp'))) as (tmp, mf):
             mf = json.load(mf)
             mf['default_locale'] = 'gb'
             tmp.write(json.dumps(mf))
@@ -1496,7 +1504,8 @@ class TestAddonFromUpload(UploadTest):
 
     def test_browsing_locale_does_not_override(self):
         translation.activate('gb')
-        upload = self.get_upload(abspath=self.webapp())  # en-US default
+        # Upload app with en-US as default.
+        upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
         addon = Addon.from_upload(upload, [self.platform])
         eq_(addon.default_locale, 'en-US')  # not gb
 
