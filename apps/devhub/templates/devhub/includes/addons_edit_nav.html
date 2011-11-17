@@ -22,8 +22,10 @@
         {{ _('View Listing') }}</a></li>
       <li><a href="{{ url('devhub.feed', addon.slug) }}">
         {{ _('View Recent Changes') }}</a></li>
-      <li><a href="{{ url('stats.overview', addon.slug) }}">
-        {{ _('View Statistics Dashboard') }}</a></li>
+      {% if not addon.is_webapp() %}
+        <li class="stats"><a href="{{ url('stats.overview', addon.slug) }}">
+          {{ _('View Statistics Dashboard') }}</a></li>
+      {% endif %}
     </ul>
   </div>
 </section>

@@ -79,8 +79,7 @@ class TestEditListingWebapp(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        self.client.login(username='admin@mozilla.com', password='password')
         self.webapp = Addon.objects.get(id=337141)
         self.url = self.webapp.get_edit_url()
 
@@ -90,6 +89,12 @@ class TestEditListingWebapp(amo.tests.TestCase):
         eq_(r.context['webapp'], True)
         eq_(pq(r.content)('title').text(),
             'Edit Listing :: %s :: Apps Marketplace' % self.webapp.name)
+
+    def test_nav_links(self):
+        r = self.client.get(self.url)
+        doc = pq(r.content)('#edit-addon-nav')
+        eq_(doc.length, 1)
+        eq_(doc('.stats').length, 0)
 
 
 class TestEditBasicWebapp(amo.tests.TestCase):
@@ -615,9 +620,10 @@ class TestEditBasic(TestEdit):
     def test_nav_links(self):
         activity_url = reverse('devhub.feed', args=['a3615'])
         r = self.client.get(self.url)
-        doc = pq(r.content)
-        eq_(doc('#edit-addon-nav ul:last').find('li a').eq(1).attr('href'),
+        doc = pq(r.content)('#edit-addon-nav')
+        eq_(doc('ul:last').find('li a').eq(1).attr('href'),
             activity_url)
+        eq_(doc('.stats').length, 1)
 
     def get_l10n_urls(self):
         paths = ('devhub.addons.edit', 'devhub.addons.profile',

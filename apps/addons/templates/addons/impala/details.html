@@ -30,14 +30,7 @@
     {% set dls = addon.weekly_downloads %}
     {% if dls %}
       <div id="weekly-downloads">
-        {% with num_dls = _('{0} weekly downloads')|f(dls|numberfmt) %}
-          {% if addon.public_stats %}
-            <a class="stats" title="{{ _('View statistics') }}"
-               href="{{ url('stats.overview', addon.slug) }}">{{ num_dls }}</a>
-          {% else %}
-            {{ num_dls }}
-          {% endif %}
-        {% endwith %}
+        {{ _('{0} weekly downloads')|f(dls|numberfmt) }}
       </div>
     {% endif %}
   {% else %}
