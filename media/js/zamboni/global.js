@@ -289,6 +289,10 @@ $.fn.modal = function(click_target, o) {
     var $ct         = $(click_target),
         $modal      = this;
 
+    if (!$ct.length) {
+        return false;
+    }
+
     $modal.o = $.extend({
         delegate:   false,
         callback:   false,

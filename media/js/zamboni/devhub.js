@@ -260,6 +260,23 @@ $(document).ready(function() {
     $('#edit-addon-media').bind('click', function() {
         imageStatus.cancel();
     });
+
+    // hook up various links related to current version status
+    $('#modal-cancel').modal('#cancel-review', {width: 400});
+    $('#modal-delete').modal('#delete-addon', {
+        width: 400,
+        callback: function(obj) {
+            return fixPasswordField(this);
+        }
+    });
+    $('#modal-disable').modal('#disable-addon', {
+        width: 400,
+        callback: function(d){
+            $('.version_id', this).val($(d.click_target).attr('data-version'));
+            return true;
+        }
+    });
+
 });
 
 function initUploadControls() {
@@ -726,18 +743,6 @@ function initVersions() {
             $('.version_id', this).val(version.id);
             return true;
         }});
-
-    $('#modal-cancel').modal('#cancel-review', {width: 400});
-    $('#modal-delete').modal('#delete-addon', {width: 400,
-                                callback: function(obj) {
-                                    return fixPasswordField(this);
-                                }});
-    $('#modal-disable').modal('#disable-addon',
-        {width: 400,
-         callback: function(d){
-               $('.version_id', this).val($(d.click_target).attr('data-version'));
-                return true;
-         }});
 
     $('#upload-file-finish').click(function() {
         var $button = $(this);
