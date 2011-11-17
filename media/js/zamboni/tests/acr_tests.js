@@ -36,13 +36,13 @@ $(document).ready(function() {
                 tests.hasClass($body, 'acr-pitch');
                 equals($('#acr-pitch:visible', this.sandbox).length, 1);
                 $.when($('#acr-pitch .close', this.sandbox).click()).done(function() {
-                    equal(z.Storage('visitor').get('seen_acr_pitch'), '1');
+                    equal(z.Storage('visitor').get('seen_acr_pitch'), '1', 'settings.APP_PREVIEW must be False');
                 });
             } else {
                 equal(z.Storage('visitor').get('seen_acr_pitch'), undefined);
                 equals(newerBrowser, false);
                 tests.lacksClass($body, 'acr-pitch');
-                equals($('#acr-pitch:hidden', this.sandbox).length, 1);
+                equals($('#acr-pitch:hidden', this.sandbox).length, 1, 'settings.APP_PREVIEW must be False');
             }
         }
     };

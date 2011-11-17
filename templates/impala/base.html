@@ -101,7 +101,7 @@
             </div>
           {% endif %}
           {% block amo_balloons %}
-            {% if WEBAPPS %}
+            {% if WEBAPPS or settings.APP_PREVIEW %}
               <div class="site-balloon" id="site-noinstall-apps">
                 <p>
                   {% trans url='http://mozilla.org/firefox/?src=amo' %}
