@@ -9,6 +9,7 @@ function browserIDRedirect(to) {
 
 function gotVerifiedEmail(assertion, redirectTo, domContext) {
     function displayErrBox(errmsg) {
+        $('.loading-submit').removeClass('loading-submit');
 
         $('section.primary', domContext).prepend(
             format('<div class="notification-box error">'
@@ -41,6 +42,7 @@ function gotVerifiedEmail(assertion, redirectTo, domContext) {
         return a;
     } else {
         // user clicked 'cancel', don't do anything
+        $('.loading-submit').removeClass('loading-submit');
         return null;
     };
 }
@@ -57,6 +59,7 @@ function initBrowserID(win, ctx) {
             };
             $(this).click(
                 function (e) {
+                    $(this).addClass('loading-submit');
                     $('.primary .notification-box', ctx).remove();
                     navigator.id.getVerifiedEmail(
                         function(assertion) {
