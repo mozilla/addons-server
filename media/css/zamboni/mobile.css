@@ -1603,7 +1603,7 @@ li.persona-previewer {
 
 .browserid-divider {
     text-align: center;
-    margin: 0em 1em 2em;
+    margin: 2em 1em 0;
     border-bottom: 1px dashed rgb(204, 204, 204);
 }
 

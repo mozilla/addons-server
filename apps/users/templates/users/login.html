@@ -17,6 +17,7 @@
 {% block content %}
 
 <div class="primary">
+  {% if not settings.APP_PREVIEW: %}
   <div class="secondary">
       <div id="login-help" class="article">
           <h2>{{ _('Login Problems?') }}</h2>
@@ -26,6 +27,7 @@
           </ul>
       </div>
   </div>
+  {% endif %}
   <section class="island hero primary grid {{ 'browserid' if waffle.switch('browserid-login') else 'prettyform' }}">
     <h1>{{ _('Log In') }}</h1>
     {% if waffle.switch('browserid-login') %}

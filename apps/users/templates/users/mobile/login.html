@@ -27,6 +27,18 @@
   {% endif %}
   <h2>{{ _('Log In') }}</h2>
   <section id="content">
+    {% if waffle.switch('browserid-login') %}
+    <section id="browserid">
+      <button class="browserid-login button" type="submit"
+              data-url="{{ url('users.browserid_login') }}">
+        {{ _('Log in with BrowserID') }}
+      </button>
+      <div class="browserid-divider">
+        <span>{{ _('or') }}</span>
+      </div>
+    </section>
+    {% endif %}
+
     <form method="post" action="" class="form-mobile featured-inner object-lead user-input">
       {{ csrf() }}
       <fieldset>
@@ -59,19 +71,10 @@
       </div>
     </form>
 
-  {% if waffle.switch('browserid-login') %}
-  <section id="browserid">
-    <div class="browserid-divider">
-      <span>{{ _('or') }}</span>
-    </div>
-    <button class="browserid-login button" type="submit"
-            data-url="{{ url('users.browserid_login') }}">
-      {{ _('Log in with BrowserID') }}
-    </button>
-  </section>
-  {% endif %}
   </section>
 
+  {# TODO(gkoberger): This is a temp change; fix properly #}
+  {% if not settings.APP_PREVIEW %}
   <div id="login-help" class="article">
     <h2>{{ _('Login Problems?') }}</h2>
     <ul class="listview">
@@ -79,6 +82,7 @@
       <li><a href="{{ url('users.pwreset') }}">{{ _("I forgot my password.") }}</a></li>
     </ul>
   </div>
+  {% endif %}
 
 </div>{# .primary #}
 
