@@ -248,7 +248,8 @@ class LoginRequiredMiddleware(ViewMiddleware):
             name.startswith(settings.NO_LOGIN_REQUIRED_MODULES)):
             return
 
-        return redirect(settings.LOGIN_URL)
+        return redirect('/%s/%s%s' % (request.LANG, request.APP.short,
+                                      settings.LOGIN_URL))
 
 
 class NoAddonsMiddleware(ViewMiddleware):

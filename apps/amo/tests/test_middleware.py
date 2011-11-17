@@ -178,11 +178,13 @@ def allowed_view(request):
 
 class TestLoginRequiredMiddleware(amo.tests.TestCase):
 
-    def process(self, authenticated, view=None):
+    def process(self, authenticated, view=None, lang='en-US', app='firefox'):
         if not view:
             view = normal_view
         request = RequestFactory().get('/', HTTP_X_PJAX=True)
         request.user = Mock()
+        request.APP = amo.APPS[app]
+        request.LANG = lang
         request.user.is_authenticated.return_value = authenticated
         return LoginRequiredMiddleware().process_view(request, view, [], {})
 
@@ -190,6 +192,13 @@ class TestLoginRequiredMiddleware(amo.tests.TestCase):
         # Middleware returns None if it doesn't need to redirect the user.
         assert not self.process(True)
         eq_(self.process(False).status_code, 302)
+
+    def test_locale(self):
+        eq_(self.process(False)['Location'], '/en-US/firefox/users/login')
+        eq_(self.process(False, lang='fr')['Location'],
+            '/fr/firefox/users/login')
+        eq_(self.process(False, app='thunderbird')['Location'],
+            '/en-US/thunderbird/users/login')
 
     def test_decorator_allowed(self):
         assert not self.process(False, allowed_view)
