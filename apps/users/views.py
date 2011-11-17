@@ -650,7 +650,8 @@ def purchases(request, addon_id=None, template=None):
         raise http.Http404
     cs = (Contribution.objects
           .filter(user=request.amo_user,
-                  type__in=[amo.CONTRIB_PURCHASE, amo.CONTRIB_REFUND])
+                  type__in=[amo.CONTRIB_PURCHASE, amo.CONTRIB_REFUND,
+                            amo.CONTRIB_CHARGEBACK])
           .order_by('created'))
     if addon_id:
         cs = cs.filter(addon=addon_id)
@@ -660,7 +661,8 @@ def purchases(request, addon_id=None, template=None):
     # Otherwise, we'll show all addons that have a contribution or are free.
     if not addon_id:
         ids += list(request.amo_user.installed_set
-                    .exclude(addon__in=ids).values_list('addon_id', flat=True))
+                    .exclude(addon__in=ids)
+                    .values_list('addon_id', flat=True))
 
     contributions = {}
     for c in cs:

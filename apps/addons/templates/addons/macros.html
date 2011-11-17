@@ -56,15 +56,15 @@
   {% endif %}
 {% endmacro %}
 
-{% macro refund_info(amo, addon, contributions, is_refunded) %}
+{% macro refund_info(amo, addon, contributions, is_refunded, is_chargeback) %}
   {% for contribution in contributions.get(addon.pk, []) %}
     <span class="vital purchase">
       {% if contribution.type == amo.CONTRIB_PURCHASE %}
         {% trans date=addon.created|datetime,
                  amt=contribution.get_amount_locale() %}
           Purchased {{ date }} for {{ amt }}
-        {% endtrans %}
-        {% if not is_refunded %}
+          {% endtrans %}
+        {% if not is_refunded and not is_chargeback %}
           <a href="{{ url('users.support', contribution.pk) }}">
             {{ _('Request Support') }}</a>
         {% endif %}
@@ -73,12 +73,21 @@
                  amt=contribution.get_amount_locale() %}
           Refunded {{ date }} for {{ amt }}
         {% endtrans %}
+      {% elif contribution.type == amo.CONTRIB_CHARGEBACK %}
+        {% trans date=addon.created|datetime,
+                 amt=contribution.get_amount_locale() %}
+          Reversed {{ date }} for {{ amt }}
+        {% endtrans %}
       {% endif %}
     </span>
   {% endfor %}
   {% if is_refunded %}
     <span class="vital purchase refund-notice">
       {{ _('Purchase Refunded') }}
+    </span>
+  {% elif is_chargeback %}
+    <span class="vital purchase refund-notice">
+      {{ _('Purchase Reversed') }}
     </span>
   {% endif %}
 {% endmacro %}

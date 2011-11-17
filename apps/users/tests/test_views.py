@@ -1196,7 +1196,7 @@ class TestPurchases(amo.tests.TestCase):
                                     type=amo.CONTRIB_PURCHASE)
         res = self.client.get(self.url)
         addon_vitals = pq(res.content)('div.vitals').eq(0)
-        eq_(len(addon_vitals('div.purchase-byline')), 2)
+        eq_(len(addon_vitals('span.purchase')), 2)
 
     def make_contribution(self, addon, amt, type, day):
         c = Contribution.objects.create(user=self.user.get_profile(),
@@ -1231,18 +1231,15 @@ class TestPurchases(amo.tests.TestCase):
         assert not item.hasClass('refunded'), (
             "Unexpected 'refunded' class on '.item'")
         assert not item.find('.refund-notice'), 'Unexpected refund message'
-        return c, item
+        eq_(item.find('.purchase a:last').attr('href'),
+            reverse('users.support', args=[c[1].id]))
 
     def test_repurchased(self):
-        c, item = self._test_repurchased()
-        eq_(item.find('.purchase-byline a:last').attr('href'),
-            reverse('users.support', args=[c[1].id]))
+        self._test_repurchased()
 
     @amo.tests.mobile_test
     def test_mobile_repurchased(self):
-        c, item = self._test_repurchased()
-        eq_(item.find('.vital.purchase a:last').attr('href'),
-            reverse('users.support', args=[c[1].id]))
+        self._test_repurchased()
 
     def _test_rerefunded(self):
         addon = Addon.objects.get(type=amo.ADDON_EXTENSION, guid='t1')
@@ -1254,15 +1251,30 @@ class TestPurchases(amo.tests.TestCase):
         assert item.hasClass('refunded'), (
             "Unexpected 'refunded' class on '.item'")
         assert item.find('.refund-notice'), 'Expected refund message'
-        return item
+        assert not item.find('.purchase a'), (
+            "Unexpected 'Request Support' link")
 
     def test_rerefunded(self):
-        item = self._test_rerefunded()
-        assert not item.find('.purchase-byline a'), (
-            "Unexpected 'Request Support' link")
+        self._test_rerefunded()
 
     @amo.tests.mobile_test
     def test_mobile_rerefunded(self):
-        item = self._test_rerefunded()
-        assert not item.find('.vital.purchase a'), (
+        self._test_rerefunded()
+
+    def _test_chargeback(self):
+        addon = Addon.objects.get(type=amo.ADDON_EXTENSION, guid='t1')
+        self.make_contribution(addon, '-1.00', amo.CONTRIB_CHARGEBACK, 2)
+        doc = pq(self.client.get(self.url).content)
+        item = doc('.item').eq(0)
+        assert item.hasClass('refunded'), (
+            "Expected '.item' to have 'refunded' class")
+        assert item.find('.refund-notice'), 'Expected refund message'
+        assert not item.find('.purchase a'), (
             "Unexpected 'Request Support' link")
+
+    def test_chargeback(self):
+        self._test_chargeback()
+
+    @amo.tests.mobile_test
+    def test_mobile_chargeback(self):
+        self._test_chargeback()
