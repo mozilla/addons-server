@@ -1,4 +1,7 @@
 """Tests related to the ``devhub.addons.owner`` view."""
+from django.conf import settings
+
+import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -9,6 +12,7 @@ from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
 from devhub.forms import LicenseForm
 from devhub.models import ActivityLog
+from users.models import UserProfile
 from versions.models import License, Version
 
 
@@ -16,10 +20,10 @@ class TestOwnership(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
-        self.url = reverse('devhub.addons.owner', args=['a3615'])
-        assert self.client.login(username='del@icio.us', password='password')
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
+        self.url = self.addon.get_edit_url('owner')
+        assert self.client.login(username='del@icio.us', password='password')
 
     def formset(self, *args, **kw):
         defaults = {'builtin': License.OTHER, 'text': 'filler'}
@@ -185,6 +189,11 @@ class TestEditLicense(TestOwnership):
 
 
 class TestEditAuthor(TestOwnership):
+
+    def test_addons_context(self):
+        r = self.client.get(self.url)
+        eq_(r.context['webapp'], False)
+
     def test_reorder_authors(self):
         """
         Re-ordering authors should not generate role changes in the
@@ -206,7 +215,7 @@ class TestEditAuthor(TestOwnership):
 
         orig = ActivityLog.objects.all().count()
         r = self.client.post(self.url, data)
-        eq_(r.status_code, 302)
+        self.assertRedirects(r, self.url, 302)
         eq_(ActivityLog.objects.all().count(), orig)
 
     def test_success_add_user(self):
@@ -219,7 +228,7 @@ class TestEditAuthor(TestOwnership):
                  role=amo.AUTHOR_ROLE_DEV, position=0)
         data = self.formset(f.initial, u, initial_count=1)
         r = self.client.post(self.url, data)
-        eq_(r.status_code, 302)
+        self.assertRedirects(r, self.url, 302)
         eq_(list(q.all()), [55021, 999])
 
     def test_success_edit_user(self):
@@ -238,7 +247,7 @@ class TestEditAuthor(TestOwnership):
         empty = dict(user='', listed=True, role=5, position=0)
         data = self.formset(one.initial, two.initial, empty, initial_count=2)
         r = self.client.post(self.url, data)
-        eq_(r.status_code, 302)
+        self.assertRedirects(r, self.url, 302)
         eq_(AddonUser.objects.no_cache().get(addon=3615, user=999).listed,
             False)
 
@@ -320,3 +329,31 @@ class TestEditAuthor(TestOwnership):
         r = self.client.post(self.url, data)
         eq_(r.context['user_form'].non_form_errors(),
             ['Must have at least one owner.'])
+
+
+class TestEditWebappAuthors(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        self.client.login(username='admin@mozilla.com', password='password')
+        self.webapp = Addon.objects.get(id=337141)
+        self.url = self.webapp.get_edit_url('owner')
+
+    def test_apps_context(self):
+        r = self.client.get(self.url)
+        eq_(r.context['webapp'], True)
+        assert 'license_form' not in r.context, 'Unexpected license form'
+        assert 'policy_form' not in r.context, 'Unexpected policy form'
+        doc = pq(r.content)
+        eq_(doc('#edit-addon-nav ul').eq(0).find('a').eq(1).attr('href'),
+            self.url)
+
+    def test_success_add_owner(self):
+        u = UserProfile.objects.get(id=999)
+        u = dict(user=u.email, listed=True, role=amo.AUTHOR_ROLE_OWNER,
+                 position=0)
+        r = self.client.post(self.url, formset(u, initial_count=0))
+        self.assertRedirects(r, self.url, 302)
+        owners = (AddonUser.objects.filter(addon=self.webapp.id)
+                  .values_list('user', flat=True))
+        eq_(list(owners), [999])

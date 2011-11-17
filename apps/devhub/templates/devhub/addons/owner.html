@@ -1,6 +1,12 @@
 {% extends "devhub/base.html" %}
 
-{% set title = _('Manage Authors & License') %}
+{% if webapp %}
+  {# TODO(apps): Finalize copy. #}
+  {% set title = 'Manage Authors' %}
+{% else %}
+  {% set title = _('Manage Authors & License') %}
+{% endif %}
+
 {% block title %}
 {{ dev_page_title(title, addon) }}
 {% endblock %}
@@ -13,7 +19,9 @@
 {% block content %}
 <header>
   {{ dev_breadcrumbs(addon, items=[(None, title)]) }}
-  {{ l10n_menu(addon.default_locale) }}
+  {% if not webapp %}
+    {{ l10n_menu(addon.default_locale) }}
+  {% endif %}
   <h2>{{ title }}</h2>
 </header>
 <section id="edit-addon" class="primary devhub-form" role="main">
@@ -49,7 +57,9 @@
       {% if license_form %}
         {% include "devhub/includes/license_form.html" %}
       {% endif %}
-      {% include "devhub/includes/policy_form.html" %}
+      {% if policy_form %}
+        {% include "devhub/includes/policy_form.html" %}
+      {% endif %}
     </table>
   </div>
   <div class="listing-footer"><button type="submit">{{ _('Save Changes') }}</button></div>
@@ -71,14 +81,24 @@
 {% include "devhub/includes/addons_edit_nav.html" %}
 
 <div id="author-roles-help" class="popup">
-{% trans %}
-<p>Add-ons can have any number of authors with 3 possible roles:</p>
-<ul>
-  <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li>
-  <li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li>
-  <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot make any changes</li>
-</ul>
-{% endtrans %}
-<p><a href="#" class="cancel close">{{ _('Close') }}</a></p>
+  {% if webapp %}
+    {# TODO(apps): Finalize copy. #}
+    <p>Apps can have any number of authors with 3 possible roles:</p>
+    <ul>
+      <li><b>Owner:</b> Can manage all aspects of the app's listing, including adding and removing other authors</li>
+      <li><b>Developer:</b> Can manage all aspects of the app's listing, except for adding and removing other authors and managing payments</li>
+      <li><b>Viewer:</b> Can view the app's settings and statistics, but cannot make any changes</li>
+    </ul>
+  {% else %}
+    {% trans %}
+    <p>Add-ons can have any number of authors with 3 possible roles:</p>
+    <ul>
+      <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li>
+      <li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li>
+      <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot make any changes</li>
+    </ul>
+    {% endtrans %}
+  {% endif %}
+  <p><a href="#" class="cancel close">{{ _('Close') }}</a></p>
 </div>
 {% endblock %}

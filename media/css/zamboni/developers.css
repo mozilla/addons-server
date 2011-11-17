@@ -105,6 +105,10 @@ form .char-count:after,
     border-top: 1px dotted #ADD0DC;
 }
 
+.devhub-form table ul {
+    margin: 0;
+}
+
 .devhub-form table table td {
     border-top-width: 0;
 }

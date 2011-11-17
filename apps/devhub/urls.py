@@ -40,6 +40,7 @@ marketplace_patterns = patterns('',
 # These will all start with /app/<app_slug>/
 app_detail_patterns = patterns('',
     url('^edit$', views.edit, name='devhub.apps.edit'),
+    url('^ownership$', views.ownership, name='devhub.apps.owner'),
 )
 
 # These will all start with /addon/<addon_id>/

@@ -44,8 +44,9 @@
   <li>
     <a href="#" class="more-actions">{{ _('More') }}</a>
     <div class="more-actions-popup popup hidden">
+      {# TODO(apps): Finalize copy. #}
       {% set manage_urls = (
-        (url('devhub.addons.owner', addon.slug), _('Manage Authors & License')),
+        (addon.get_edit_url('owner'), 'Manage Authors'),
         (url('devhub.addons.profile', addon.slug), _('Manage Developer Profile')),
         (url('devhub.addons.payments', addon.slug), _('Manage Payments')),
         (url('devhub.versions', addon.slug), _('Manage Status'))) %}

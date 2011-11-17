@@ -323,8 +323,8 @@ def disable(request, addon_id, addon):
     return redirect('devhub.versions', addon.slug)
 
 
-@dev_required(owner_for_post=True)
-def ownership(request, addon_id, addon):
+@dev_required(owner_for_post=True, webapp=True)
+def ownership(request, addon_id, addon, webapp=False):
     fs, ctx = [], {}
     # Authors.
     qs = AddonUser.objects.filter(addon=addon).order_by('position')
@@ -338,7 +338,9 @@ def ownership(request, addon_id, addon):
             fs.append(ctx['license_form'])
     # Policy.
     policy_form = forms.PolicyForm(request.POST or None, addon=addon)
-    fs.append(policy_form)
+    if not addon.is_webapp():
+        ctx.update(policy_form=policy_form)
+        fs.append(policy_form)
 
     if request.method == 'POST' and all([form.is_valid() for form in fs]):
         # Authors.
@@ -366,11 +368,13 @@ def ownership(request, addon_id, addon):
 
         if license_form in fs:
             license_form.save()
-        policy_form.save()
+        if policy_form in fs:
+            policy_form.save()
         messages.success(request, _('Changes successfully saved.'))
-        return redirect('devhub.addons.owner', addon.slug)
 
-    ctx.update(addon=addon, user_form=user_form, policy_form=policy_form)
+        return redirect(addon.get_edit_url('owner'))
+
+    ctx.update(addon=addon, webapp=webapp, user_form=user_form)
     return jingo.render(request, 'devhub/addons/owner.html', ctx)
 
 
