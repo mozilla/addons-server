@@ -10,6 +10,8 @@
     'addons': 'https://addons.mozilla.org',
     'dev': 'https://addons-dev.allizom.org',
     'stage': 'https://addons.allizom.org',
+    'apps-preview': 'https://apps-preview.mozilla.org',
+    'apps-preview-dev': 'https://apps-preview-dev.allizom.org'
 } %}
 {% set site_url = site_urls[site] %}
 
@@ -17,6 +19,8 @@
   'addons': 'addons',
   'dev': 'addons-dev',
   'stage': 'addons-stage',
+  'apps-preview': 'addons-appspreview'
+  'apps-preview-dev': 'addons-appspreviewdev',
 }[site] %}
 {% set ns = "stats." + site %}
 
