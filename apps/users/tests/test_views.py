@@ -433,7 +433,7 @@ class TestLogin(UserViewBase):
         eq_(res.status_code, 302)
 
     def test_login_fails_increment(self):
-        # It increment even when the form is wrong.
+        # It increments even when the form is wrong.
         user = UserProfile.objects.filter(email=self.data['username'])
         eq_(user.get().failed_login_attempts, 3)
         self.client.post(self.url, data={'username': self.data['username']})
@@ -511,6 +511,48 @@ class TestLogin(UserViewBase):
                                data=dict(assertion='fake-assertion',
                                          audience='fakeamo.org'))
         eq_(res.status_code, 401)
+
+
+@patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', '')
+@patch('users.models.UserProfile.log_login_attempt')
+class TestFailedCount(UserViewBase):
+    fixtures = ['users/test_backends', 'base/addon_3615']
+
+    def setUp(self):
+        super(TestFailedCount, self).setUp()
+        self.url = reverse('users.login')
+        self.data = {'username': 'jbalogh@mozilla.com', 'password': 'foo'}
+
+    def log_calls(self, obj):
+        return [ call[0][1] for call in obj.call_args_list ]
+
+    def test_login_passes(self, log_login_attempt):
+        self.client.post(self.url, data=self.data)
+        eq_(self.log_calls(log_login_attempt), [True])
+
+    def test_login_fails(self, log_login_attempt):
+        self.client.post(self.url, data={'username': self.data['username']})
+        eq_(self.log_calls(log_login_attempt), [False])
+
+    def test_login_deleted(self, log_login_attempt):
+        (UserProfile.objects.get(email=self.data['username'])
+                            .update(deleted=True))
+        self.client.post(self.url, data={'username': self.data['username']})
+        eq_(self.log_calls(log_login_attempt), [False])
+
+    def test_login_confirmation(self, log_login_attempt):
+        (UserProfile.objects.get(email=self.data['username'])
+                            .update(confirmationcode='123'))
+        self.client.post(self.url, data={'username': self.data['username']})
+        eq_(self.log_calls(log_login_attempt), [False])
+
+    def test_login_get(self, log_login_attempt):
+        self.client.get(self.url, data={'username': self.data['username']})
+        eq_(log_login_attempt.called, False)
+
+    def test_login_get_no_data(self, log_login_attempt):
+        self.client.get(self.url)
+        eq_(log_login_attempt.called, False)
 
 
 class TestUnsubscribe(UserViewBase):

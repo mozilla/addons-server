@@ -349,13 +349,14 @@ def _login(request, template=None, data=None, dont_redirect=False):
 
     limited = getattr(request, 'limited', 'recaptcha_shown' in request.POST)
     user = None
+    login_status = None
     if 'username' in request.POST:
         try:
             # We are doing all this before we try and validate the form.
             user = UserProfile.objects.get(email=request.POST['username'])
             limited = ((user.failed_login_attempts >=
                         settings.LOGIN_RATELIMIT_USER) or limited)
-            user.log_login_attempt(request, False)
+            login_status = False
         except UserProfile.DoesNotExist:
             pass
 
@@ -386,6 +387,7 @@ def _login(request, template=None, data=None, dont_redirect=False):
             log.warning(u'Attempt to log in with deleted account (%s)' % user)
             messages.error(request, _('Wrong email address or password!'))
             data.update({'form': partial_form()})
+            user.log_login_attempt(request, False)
             return jingo.render(request, template, data)
 
         if user.confirmationcode:
@@ -405,6 +407,7 @@ def _login(request, template=None, data=None, dont_redirect=False):
             messages.info(request, _('Having Trouble?'), msg2,
                           title_safe=True, message_safe=True)
             data.update({'form': partial_form()})
+            user.log_login_attempt(request, False)
             return jingo.render(request, template, data)
 
         rememberme = request.POST.get('rememberme', None)
@@ -412,14 +415,16 @@ def _login(request, template=None, data=None, dont_redirect=False):
             request.session.set_expiry(settings.SESSION_COOKIE_AGE)
             log.debug((u'User (%s) logged in successfully with '
                                         '"remember me" set') % user)
-        else:
-            user.log_login_attempt(request, True)
+
+        login_status = True
 
         if dont_redirect:
             # We're recalling the middleware to re-initialize amo_user
             ACLMiddleware().process_request(request)
             r = jingo.render(request, template, data)
 
+    if login_status is not None:
+        user.log_login_attempt(request, login_status)
     return r
 
 
