@@ -173,7 +173,7 @@ class AddonPremium(amo.models.ModelBase):
 
     def has_valid_permissions_token(self):
         """
-        Have we got a valid permissions token by ping paypal. If you've got
+        Have we got a valid permissions token by pinging PayPal. If you've got
         'should_ignore_paypal', then it will just happily return True.
         """
         if paypal.should_ignore_paypal():

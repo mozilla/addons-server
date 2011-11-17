@@ -19,6 +19,7 @@ from users.models import UserProfile
 from versions.models import ApplicationsVersions
 
 from nose.tools import eq_
+from pyquery import PyQuery as pq
 
 
 class TestNewAddonForm(amo.tests.TestCase):
@@ -128,11 +129,12 @@ class TestPreviewForm(amo.tests.TestCase):
 class TestPremiumForm(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users', 'prices']
 
-    def complete(self, data, exclude):
+    def complete(self, data, exclude, dest='payment'):
         return forms.PremiumForm(data, request=None, extra={
             'addon': Addon.objects.get(pk=3615),
             'amo_user': UserProfile.objects.get(pk=999),
-            'exclude': exclude})
+            'exclude': exclude,
+            'dest': dest})
 
     @mock.patch('devhub.forms.check_paypal_id', lambda z: True)
     @mock.patch('django.contrib.messages.warning')

@@ -980,6 +980,22 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         eq_(self.addon.premium.paypal_permissions_token, 'FOO')
 
     @mock.patch('paypal.get_permissions_token', lambda x, y: x.upper())
+    def test_permissions_token_redirect(self):
+        self.setup_premium()
+        eq_(self.addon.premium.paypal_permissions_token, '')
+        url = reverse('devhub.addons.acquire_refund_permission',
+                      args=[self.addon.slug])
+        data = {'request_token': 'foo', 'verification_code': 'bar'}
+        res = self.client.get(url, data=data)
+        assert res['Location'].endswith(reverse('devhub.addons.payments',
+                                                args=[self.addon.slug]))
+
+        data['dest'] = 'wizard'
+        res = self.client.get(url, data=data)
+        assert res['Location'].endswith(reverse('devhub.addons.market.1',
+                                                args=[self.addon.slug]))
+
+    @mock.patch('paypal.get_permissions_token', lambda x, y: x.upper())
     def test_permissions_token_no_premium(self):
         self.setup_premium()
         # They could hit this URL before anything else, we need to cope

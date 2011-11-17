@@ -12,7 +12,7 @@ from django.utils.http import urlencode, urlquote
 import commonware.log
 from statsd import statsd
 
-from amo.helpers import absolutify
+from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 
 
@@ -190,7 +190,7 @@ def check_refund_permission(token):
                         if k.startswith('scope')]
 
 
-def refund_permission_url(addon):
+def refund_permission_url(addon, dest='payments'):
     """
     Send permissions request to PayPal for refund privileges on
     this addon's paypal account. Returns URL on PayPal site to visit.
@@ -202,8 +202,9 @@ def refund_permission_url(addon):
     paypal_log.debug('Getting refund permission URL for addon: %s' % addon.pk)
 
     with statsd.timer('paypal.permissions.url'):
-        url = reverse('devhub.addons.acquire_refund_permission',
-                      args=[addon.slug])
+        url = urlparams(reverse('devhub.addons.acquire_refund_permission',
+                                args=[addon.slug]),
+                        dest=dest)
         try:
             r = _call(settings.PAYPAL_PERMISSIONS_URL + 'RequestPermissions',
                       {'scope': 'REFUND', 'callback': absolutify(url)})

@@ -388,7 +388,8 @@ def _premium(request, addon_id, addon, webapp=False):
     premium_form = forms.PremiumForm(request.POST or None,
                                      request=request,
                                      extra={'addon': addon,
-                                            'amo_user': request.amo_user})
+                                            'amo_user': request.amo_user,
+                                            'dest': 'payment'})
     if request.method == 'POST' and premium_form.is_valid():
         premium_form.save()
         messages.success(request, _('Changes successfully saved.'))
@@ -469,7 +470,11 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
 
     paypal_log.debug('AddonPremium saved with token: %s' % addonpremium.pk)
     amo.log(amo.LOG.EDIT_PROPERTIES, addon)
-    return redirect(addon.get_dev_url('payments'))
+
+    dest = 'payments'
+    if request.GET.get('dest') == 'wizard':
+        dest = 'market.1'
+    return redirect(addon.get_dev_url(dest))
 
 
 @dev_required(webapp=True)
@@ -1301,6 +1306,7 @@ def marketplace_paypal(request, addon_id, addon, webapp=False):
                              request=request,
                              extra={'addon': addon,
                                     'amo_user': request.amo_user,
+                                    'dest': 'wizard',
                                     'exclude': ['price']})
     if form.is_valid():
         form.save()
@@ -1318,6 +1324,7 @@ def marketplace_pricing(request, addon_id, addon, webapp=False):
                              request=request,
                              extra={'addon': addon,
                                     'amo_user': request.amo_user,
+                                    'dest': 'wizard',
                                     'exclude': ['paypal_id',
                                                 'support_email']})
     if form.is_valid():
@@ -1337,6 +1344,7 @@ def marketplace_upsell(request, addon_id, addon, webapp=False):
                              request=request,
                              extra={'addon': addon,
                                     'amo_user': request.amo_user,
+                                    'dest': 'wizard',
                                     'exclude': ['price', 'paypal_id',
                                                 'support_email']})
     if form.is_valid():

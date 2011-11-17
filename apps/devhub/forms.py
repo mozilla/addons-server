@@ -961,20 +961,6 @@ class NewManifestForm(happyforms.Form):
         return manifest
 
 
-def _paypal_url(addon):
-    # If PayPal hates us, let's keep this empty.
-    url = ''
-    try:
-        url = paypal.refund_permission_url(addon)
-    except paypal.PaypalError, e:
-        # dev servers aren't always set up for paypal.
-        if paypal.should_ignore_paypal():
-            paypal_log.debug('Paypal error %r skipped due to dev mode' % e)
-        else:
-            raise
-    return url
-
-
 UPSELL_CHOICES = (
     (0, _("I don't have a free add-on to associate.")),
     (1, _('This is a premium upgrade to:')),
@@ -1035,10 +1021,11 @@ class PremiumForm(happyforms.Form):
             del self.fields[field]
 
     def _refundtoken_complain(self, message):
+        url = paypal.refund_permission_url(self.addon,
+                                           self.extra.get('dest', 'payment'))
         messages.warning(self.request, message + ' ' + Markup(
                 _(' <a href="%s">Visit PayPal to grant permission'
-                  ' for refunds on your behalf.</a>') %
-                _paypal_url(self.addon)))
+                  ' for refunds on your behalf.</a>') % url))
         raise forms.ValidationError(message)
 
     def clean_paypal_id(self):
