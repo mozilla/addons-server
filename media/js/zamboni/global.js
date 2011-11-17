@@ -289,7 +289,7 @@ $.fn.modal = function(click_target, o) {
     var $ct         = $(click_target),
         $modal      = this;
 
-    if (!$ct.length) {
+    if (!$ct.length && !$modal.o.delegate) {
         return false;
     }
 
