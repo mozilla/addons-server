@@ -1,4 +1,4 @@
-{% extends "impala/base.html" %}
+{% extends "webapps/base.html" if settings.APP_PREVIEW else "impala/base.html" %}
 
 {% block title %}{{ page_title(_('User Login')) }}{% endblock %}
 
