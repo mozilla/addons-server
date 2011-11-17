@@ -95,8 +95,7 @@ class TestFileValidation(amo.tests.TestCase):
         self.addon = self.file.version.addon
 
     def test_version_list(self):
-        r = self.client.get(reverse('devhub.versions',
-                            args=[self.addon.slug]))
+        r = self.client.get(self.addon.get_dev_url('versions'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
         eq_(doc('td.file-validation a').text(),

@@ -8,7 +8,7 @@
 
 {% block content %}
 <header>
-  {{ dev_breadcrumbs(addon, items=[(url('devhub.versions', addon.slug),
+  {{ dev_breadcrumbs(addon, items=[(addon.get_dev_url('versions'),
                                     _('Status & Versions')),
                                    (None, title)]) }}
   {# L10n: {0} is an add-on name. #}
@@ -125,7 +125,7 @@
       </div>
       <div class="listing-footer">
         <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
-        <a href="{{ url('devhub.versions', addon.slug) }}">{{ _('Cancel') }}</a>
+        <a href="{{ addon.get_dev_url('versions') }}">{{ _('Cancel') }}</a>
       </div>
     </div>
   </form>

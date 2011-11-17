@@ -20,12 +20,12 @@
 {% else %}
   {% if check_addon_ownership(request, addon, dev=True) %}
     <li>
-      <a href="{{ addon.get_edit_url() }}" class="tooltip"
+      <a href="{{ addon.get_dev_url() }}" class="tooltip"
          title="{{ _("Edit details about this add-on's listing.") }}">
         {{ _('Edit Listing') }}</a>
     </li>
     <li>
-      <a href="{{ url('devhub.versions', addon.slug) }}#version-upload" class="tooltip"
+      <a href="{{ addon.get_dev_url('versions') }}#version-upload" class="tooltip"
          title="{{ _('Upload a new version of this add-on.') }}">
         {{ _('New Version') }}</a>
     </li>
@@ -49,10 +49,10 @@
     <a href="#" class="more-actions">{{ _('More') }}</a>
     <div class="more-actions-popup popup hidden">
       {% set manage_urls = (
-        (addon.get_edit_url('owner'), _('Manage Authors & License')),
+        (addon.get_dev_url('owner'), _('Manage Authors & License')),
         (url('devhub.addons.profile', addon.slug), _('Manage Developer Profile')),
         (url('devhub.addons.payments', addon.slug), _('Manage Payments')),
-        (url('devhub.versions', addon.slug), _('Manage Status & Versions'))) %}
+        (addon.get_dev_url('versions'), _('Manage Status & Versions'))) %}
       <ul>
         {% for url, title in manage_urls %}
           <li><a href="{{ url }}">{{ title }}</a></li>

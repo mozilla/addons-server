@@ -403,7 +403,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # Used by Piston in output.
         return absolutify(self.get_url_path())
 
-    def get_edit_url(self, action='edit'):
+    def get_dev_url(self, action='edit'):
         if self.is_webapp():
             return reverse('devhub.apps.%s' % action, args=[self.app_slug])
         else:

@@ -50,7 +50,7 @@ class TestEdit(amo.tests.TestCase):
             category__id__in=[23, 24]).delete()
         cache.clear()
 
-        self.url = addon.get_edit_url()
+        self.url = addon.get_dev_url()
         self.user = UserProfile.objects.get(pk=55021)
 
         self.tags = ['tag3', 'tag2', 'tag1']
@@ -81,7 +81,7 @@ class TestEditListingWebapp(amo.tests.TestCase):
     def setUp(self):
         self.client.login(username='admin@mozilla.com', password='password')
         self.webapp = Addon.objects.get(id=337141)
-        self.url = self.webapp.get_edit_url()
+        self.url = self.webapp.get_dev_url()
 
     @mock.patch.object(settings, 'APP_PREVIEW', False)
     def test_apps_context(self):

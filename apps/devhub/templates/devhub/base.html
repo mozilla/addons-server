@@ -58,7 +58,7 @@
                 <li><a href="{{ url('devhub.apps') }}">
                   {{ _('more apps...') }}</a></li>
               {% else %}
-                <li><a href="{{ addon.get_edit_url() }}">
+                <li><a href="{{ addon.get_dev_url() }}">
                   {{ addon.name }}</a></li>
               {% endif %}
             {% endfor %}
@@ -77,7 +77,7 @@
                 <li><a href="{{ url('devhub.addons') }}">
                   {{ _('more add-ons...') }}</a></li>
               {% else %}
-                <li><a href="{{ addon.get_edit_url() }}">
+                <li><a href="{{ addon.get_dev_url() }}">
                   {{ addon.name }}</a></li>
               {% endif %}
             {% endfor %}

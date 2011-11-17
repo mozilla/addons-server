@@ -78,7 +78,7 @@ def dev_breadcrumbs(context, addon=None, items=None, add_default=False,
         crumbs.append((link, title))
     if addon:
         if items:
-            url = addon.get_edit_url()
+            url = addon.get_dev_url()
         else:
             # The Addon is the end of the trail.
             url = None

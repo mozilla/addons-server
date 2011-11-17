@@ -1,6 +1,10 @@
 {% extends "devhub/base.html" %}
 
-{% set title = _('Status & Versions') %}
+{% if webapp %}
+  {% set title = loc('Manage App Status') %}
+{% else %}
+  {% set title = _('Status & Versions') %}
+{% endif %}
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
 
 {% macro status(msg) %}
@@ -17,78 +21,135 @@
   <div class="item" id="version-status">
     <div>
       {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
-        {{ status(_('You have <b>disabled</b> this add-on.')|safe) }}
-        {{ _("Your add-on's listing is disabled and is not showing anywhere in our gallery or update service. You may re-enable it at any time below.") }}
+        {% if webapp %}
+          {{ status(loc('You have <b>disabled</b> this app.')|safe) }}
+          {{ loc("Your app's listing is disabled and is not showing anywhere in
+                  our gallery. You may re-enable it at any time below.") }}
+        {% else %}
+          {{ status(_('You have <b>disabled</b> this add-on.')|safe) }}
+          {{ _("Your add-on's listing is disabled and is not showing anywhere in our gallery or update service. You may re-enable it at any time below.") }}
+        {% endif %}
       {% elif addon.status == amo.STATUS_NULL %}
-        {{ status(_('This add-on is <b>incomplete</b>.')|safe) }}
-        {{ _('Please complete your add-on.') }}
+        {% if webapp %}
+          {{ status(loc('This app is <b>incomplete</b>.')|safe) }}
+        {% else %}
+          {{ status(_('This add-on is <b>incomplete</b>.')|safe) }}
+        {% endif %}
+        <a href="{{ url('devhub.submit.resume', addon.slug) }}">
+          {% if webapp %}
+            {{ _('Please complete your app.') -}}
+          {% else %}
+            {{ _('Please complete your add-on.') -}}
+          {% endif %}</a>
       {% elif addon.status == amo.STATUS_UNREVIEWED %}
-        {{ status( _('This add-on is <b>awaiting preliminary review</b>.')|safe) }}
-        {{ _("You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page.") }}
+        {% if webapp %}
+          {{ status(loc('This app is <b>awaiting preliminary review</b>.')|safe) }}
+          {{ loc("You will receive an email when the review is complete. Until
+                  then, your app is not listed in our gallery but can be
+                  accessed directly from its details page.") }}
+        {% else %}
+          {{ status( _('This add-on is <b>awaiting preliminary review</b>.')|safe) }}
+          {{ _("You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page.") }}
+        {% endif %}
       {% elif addon.status == amo.STATUS_NOMINATED %}
         {{ status(_('This add-on is <b>awaiting full review</b>.')|safe) }}
         {{ _("You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. ") }}
       {% elif addon.status == amo.STATUS_PUBLIC %}
-        {{ status(_('This add-on has been <b>fully reviewed</b>.')|safe) }}
-        {{ _("Your add-on is displayed in our gallery and users are receiving automatic updates.") }}
+        {% if webapp %}
+          {{ status(loc('This app is <b>public</b>.')|safe) }}
+          {{ loc('Your app is displayed in our gallery.') }}
+        {% else %}
+          {{ status(_('This add-on has been <b>fully reviewed</b>.')|safe) }}
+          {{ _("Your add-on is displayed in our gallery and users are receiving automatic updates.") }}
+        {% endif %}
       {% elif addon.status == amo.STATUS_DISABLED %}
-        {{ status(_('This add-on has been <b>disabled by Mozilla</b>.')|safe) }}
-        {{ _("Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org.") }}
-      {% elif addon.status == amo.STATUS_LITE %}
-        {{ status(_('This add-on has been <b>preliminarily reviewed</b>.')|safe) }}
-        {{ _("Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on.") }}
-      {% elif addon.status == amo.STATUS_LITE_AND_NOMINATED %}
-        {{ status(_('This add-on has been <b>preliminarily reviewed</b> and is <i>awaiting full review</i>.')|safe) }}
-        {{ _("You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on.") }}
-      {% elif addon.status == amo.STATUS_PURGATORY %}
-        {{ status(_('Please select a review option.')) }}
-        {{ _("All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please select a review process from the choices below.") }}
+        {% if webapp %}
+          {{ status(loc('This app has been <b>disabled by Mozilla</b>.')|safe) }}
+          {{ loc("Your app was disabled by a site administrator and is no
+                  longer shown in our gallery. If you have any questions,
+                  please email amo-admins@mozilla.org.") }}
+        {% else %}
+          {{ status(_('This add-on has been <b>disabled by Mozilla</b>.')|safe) }}
+          {{ _("Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org.") }}
+        {% endif %}
       {% endif %}
-      {% if not (addon.is_disabled or addon.is_incomplete()) %}
-        <a href="{{ remora_url('developers/docs/policies/reviews#selection') }}">
-          {{ _('Learn more') }}</a>
+      {% if webapp %}
+        {# TODO(apps): Enable link when marketplace docs are done.
+          {% if not (addon.is_disabled or addon.is_incomplete()) %}
+            <a href="{{ url('devhub.docs', doc_name='marketplace') }}">
+              {{ _('Learn more') }}</a>
+          {% endif %}
+        #}
+      {% else %}
+        {% if addon.status == amo.STATUS_LITE %}
+          {{ status(_('This add-on has been <b>preliminarily reviewed</b>.')|safe) }}
+          {{ _("Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on.") }}
+        {% elif addon.status == amo.STATUS_LITE_AND_NOMINATED %}
+          {% if webapp %}
+            {{ status(loc('This app has been <b>preliminarily reviewed</b> and is <i>awaiting full review</i>.')|safe) }}
+            {{ loc("You will receive an email when the full review is complete.
+                    Until then, your app is displayed in our gallery as
+                    experimental and users are receiving automatic updates. Some
+                    features are unavailable to your app.") }}
+          {% else %}
+            {{ status(_('This add-on has been <b>preliminarily reviewed</b> and is <i>awaiting full review</i>.')|safe) }}
+            {{ _("You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on.") }}
+          {% endif %}
+        {% elif addon.status == amo.STATUS_PURGATORY %}
+          {{ status(_('Please select a review option.')) }}
+          {{ _("All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please select a review process from the choices below.") }}
+        {% endif %}
+        {% if not (addon.is_disabled or addon.is_incomplete()) %}
+          <a href="{{ remora_url('developers/docs/policies/reviews#selection') }}">
+            {{ _('Learn more') }}</a>
+        {% endif %}
       {% endif %}
 
       <div class="version-status-actions item-actions">
-        {% if position %}
-          <span class="dark" title="{{ _('Queues are not reviewed strictly in order.') }}">
-            {% trans pos=position['pos'], total=position['total'] %}
-            Queue Position: {{ pos }} of {{ total }}
-            {% endtrans %}
-            &middot;
-          </span>
-        {% endif %}
-        {% if check_addon_ownership(request, addon, dev=True) %}
-          {% set req = {amo.STATUS_PUBLIC: _('Request Full Review'),
-                        amo.STATUS_LITE: _('Request Preliminary Review')} %}
-          {% for status in addon.can_request_review() %}
-            <form method="post"
-                  action="{{ url('devhub.request-review', addon.slug, status) }}">
-              {{ csrf() }}
-              <button class="link" type="submit">{{ req[status] }}</button> &middot;
-            </form>
-          {% endfor %}
-          {% set days = addon.days_until_full_nomination() %}
-          {% if days != 0 %}
-            <span class="warning">{{ ngettext('Full nomination will be available in {0} day',
-                                              'Full nomination will be available in {0} days',
-                                              days)|f(days) }}</span>
+        {% if not webapp %}
+          {% if position %}
+            <span class="dark" title="{{ _('Queues are not reviewed strictly in order.') }}">
+              {% trans pos=position['pos'], total=position['total'] %}
+              Queue Position: {{ pos }} of {{ total }}
+              {% endtrans %}
+              &middot;
+            </span>
           {% endif %}
-          {% if not addon.is_disabled and addon.is_under_review %}
-            <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a> &middot;
+          {% if check_addon_ownership(request, addon, dev=True) %}
+            {% set req = {amo.STATUS_PUBLIC: _('Request Full Review'),
+                          amo.STATUS_LITE: _('Request Preliminary Review')} %}
+            {% for status in addon.can_request_review() %}
+              <form method="post"
+                    action="{{ url('devhub.request-review', addon.slug, status) }}">
+                {{ csrf() }}
+                <button class="link" type="submit">{{ req[status] }}</button> &middot;
+              </form>
+            {% endfor %}
+            {% set days = addon.days_until_full_nomination() %}
+            {% if days != 0 %}
+              <span class="warning">{{ ngettext('Full nomination will be available in {0} day',
+                                                'Full nomination will be available in {0} days',
+                                                days)|f(days) }}</span>
+            {% endif %}
+            {% if not addon.is_disabled and addon.is_under_review %}
+              <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a> &middot;
+            {% endif %}
           {% endif %}
         {% endif %}
         {% if check_addon_ownership(request, addon) %}
           {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
-            <a href="{{ url('devhub.addons.enable', addon.slug) }}" id="enable-addon">{{ _('Enable Add-on') }}</a>
+            <a href="{{ addon.get_dev_url('enable') }}" id="enable-addon">
+              {{ loc('Enable App') if webapp else _('Enable Add-on') }}</a>
           {% elif not addon.is_disabled %}
-            <a href="#" id="disable-addon">{{ _('Disable Add-on') }}</a>
+            <a href="#" id="disable-addon">
+              {{ loc('Disable App') if webapp else _('Disable Add-on') }}</a>
           {% endif %}
           {% if addon.can_be_deleted() %}
-            &middot; <a href="#" id="delete-addon">{{ _('Delete Add-on') }}</a>
+            &middot; <a href="#" id="delete-addon">
+              {{ loc('Delete App') if webapp else _('Delete Add-on') }}</a>
           {% endif %}
         {% endif %}
-        {% if not addon.is_webapp() %}
+        {% if not webapp %}
           {% set current = addon.current_version %}
           {% if current %}
             <span class="version-changed">
@@ -100,7 +161,7 @@
     </div>
   </div>
 
-  {% if not addon.is_webapp() %}
+  {% if not webapp %}
   <h3>{{ _('Version History') }}</h3>
   <div class="item" id="version-list"
        data-stats="{{ url('devhub.versions.stats', addon.slug) }}">
@@ -188,60 +249,77 @@
 
 <div id="modals">
 
-  <div id="modal-delete" class="modal modal-delete">
-    {% include "devhub/addons/listing/delete_form.html" %}
-  </div>
+  {% if addon.can_be_deleted() %}
+    <div id="modal-delete" class="modal modal-delete">
+      {% include "devhub/addons/listing/delete_form.html" %}
+    </div>
+  {% endif %}
 
-  <div id="modal-delete-version" class="modal modal-delete">
-    <form method="post" action="{{ url('devhub.versions.delete', addon.slug) }}">
-      <h3 data-tmpl="{{ _('Delete Version {version}') }}"></h3>
-      <p>{{ _('Deleting this version will permanently delete:') }}</p>
-      <ul>
-        <li id="del-files"></li>
-        <li id="del-reviews"></li>
-      </ul>
-      <p>{{ _('Are you sure you wish to delete this version?') }}</p>
-      {{ csrf() }}
-      <div class="modal-actions">
-        <input type="hidden" name="version_id" class="version_id">
-        <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
-        <button type="submit" class="delete-button">{{ _('Delete Version') }}</button>
-        {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
-      </div>
-    </form>
-  </div>
+  {% if not webapp %}
+    <div id="modal-delete-version" class="modal modal-delete">
+      <form method="post" action="{{ url('devhub.versions.delete', addon.slug) }}">
+        <h3 data-tmpl="{{ _('Delete Version {version}') }}"></h3>
+        <p>{{ _('Deleting this version will permanently delete:') }}</p>
+        <ul>
+          <li id="del-files"></li>
+          <li id="del-reviews"></li>
+        </ul>
+        <p>{{ _('Are you sure you wish to delete this version?') }}</p>
+        {{ csrf() }}
+        <div class="modal-actions">
+          <input type="hidden" name="version_id" class="version_id">
+          <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
+          <button type="submit" class="delete-button">{{ _('Delete Version') }}</button>
+          {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
+        </div>
+      </form>
+    </div>
 
-  {{ add_version_modal(_("Add a new Version"),
-                       url('devhub.versions.add', addon.slug),
-                       url('devhub.upload_for_addon', addon.slug), _("Add Version") )}}
+    {{ add_version_modal(_("Add a new Version"),
+                         url('devhub.versions.add', addon.slug),
+                         url('devhub.upload_for_addon', addon.slug), _("Add Version") )}}
+  {% endif %}
 
   {% if not addon.disabled_by_user and not addon.is_disabled %}
   <div id="modal-disable" class="modal">
-    <form method="post" action="{{ url('devhub.addons.disable', addon.slug) }}">
-      <h3>{{ _('Disable Add-on') }}</h3>
+    <form method="post" action="{{ addon.get_dev_url('disable') }}">
+      <h3>
+        {{ loc('Disable App') if webapp else _('Disable Add-on') }}
+      </h3>
       <p>
-        {% trans %}
-          Disabling your add-on will prevent it from appearing anywhere in our
-          gallery and will stop users from receiving automatic updates.
-        {% endtrans %}
+        {% if webapp %}
+          {{ loc('Disabling your app will prevent it from appearing anywhere
+                  in our gallery.') }}
+        {% else %}
+          {% trans %}
+            Disabling your add-on will prevent it from appearing anywhere in our
+            gallery and will stop users from receiving automatic updates.
+          {% endtrans %}
+        {% endif %}
       </p>
       <p>
-        {% trans %}
-          Are you sure you wish to disable your add-on?
-        {% endtrans %}
+        {% if webapp %}
+          {{ loc('Are you sure you wish to disable your app?') }}
+        {% else %}
+          {% trans %}
+            Are you sure you wish to disable your add-on?
+          {% endtrans %}
+        {% endif %}
       </p>
       {{ csrf() }}
       <input type="hidden" name="version_id" class="version_id">
       <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
       <p>
-        <button type="submit">{{ _('Disable Add-on') }}</button>
+        <button type="submit">
+          {{ loc('Disable App') if webapp else _('Disable Add-on') }}
+        </button>
         {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
       </p>
     </form>
   </div>
   {% endif %}
 
-  {% if not addon.is_disabled and addon.is_under_review %}
+  {% if not webapp and not addon.is_disabled and addon.is_under_review %}
   <div id="modal-cancel" class="modal">
     <form method="post" action="{{ url('devhub.addons.cancel', addon.slug) }}">
       <h3>{{ _('Cancel Review Request') }}</h3>

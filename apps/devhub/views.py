@@ -95,7 +95,6 @@ def index(request):
 
 @login_required
 def dashboard(request, webapp=False):
-    addon_type = amo.ADDON_WEBAPP if webapp else amo.ADDON_ANY
     addons, filter = addon_listing(request, webapp=webapp)
     addons = amo.utils.paginate(request, addons, per_page=10)
     blog_posts = _get_posts()
@@ -278,30 +277,30 @@ def edit(request, addon_id, addon, webapp=False):
     return jingo.render(request, 'devhub/addons/edit.html', data)
 
 
-@dev_required(owner_for_post=True)
-def delete(request, addon_id, addon):
+@dev_required(owner_for_post=True, webapp=True)
+def delete(request, addon_id, addon, webapp=False):
     # Database deletes only allowed for free or incomplete addons.
     if not addon.can_be_deleted():
         messages.error(request, _(
             'Add-on cannot be deleted. Disable this add-on instead.'))
-        return redirect('devhub.versions', addon.slug)
+        return redirect(addon.get_dev_url('versions'))
 
     form = forms.DeleteForm(request)
     if form.is_valid():
         addon.delete('Removed via devhub')
         messages.success(request, _('Add-on deleted.'))
-        return redirect('devhub.addons')
+        return redirect('devhub.%s' % ('apps' if webapp else 'addons'))
     else:
         messages.error(request,
                        _('Password was incorrect.  Add-on was not deleted.'))
-        return redirect('devhub.versions', addon.slug)
+        return redirect(addon.get_dev_url('versions'))
 
 
 @dev_required
 def enable(request, addon_id, addon):
     addon.update(disabled_by_user=False)
     amo.log(amo.LOG.USER_ENABLE, addon)
-    return redirect('devhub.versions', addon.slug)
+    return redirect(addon.get_dev_url('versions'))
 
 
 @dev_required(owner_for_post=True)
@@ -312,7 +311,7 @@ def cancel(request, addon_id, addon):
         else:
             addon.update(status=amo.STATUS_NULL)
         amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
-    return redirect('devhub.versions', addon.slug)
+    return redirect(addon.get_dev_url('versions'))
 
 
 @dev_required
@@ -320,7 +319,7 @@ def cancel(request, addon_id, addon):
 def disable(request, addon_id, addon):
     addon.update(disabled_by_user=True)
     amo.log(amo.LOG.USER_DISABLE, addon)
-    return redirect('devhub.versions', addon.slug)
+    return redirect(addon.get_dev_url('versions'))
 
 
 @dev_required(owner_for_post=True, webapp=True)
@@ -372,7 +371,7 @@ def ownership(request, addon_id, addon, webapp=False):
             policy_form.save()
         messages.success(request, _('Changes successfully saved.'))
 
-        return redirect(addon.get_edit_url('owner'))
+        return redirect(addon.get_dev_url('owner'))
 
     ctx.update(addon=addon, webapp=webapp, user_form=user_form)
     return jingo.render(request, 'devhub/addons/owner.html', ctx)
@@ -398,6 +397,7 @@ def _premium(request, addon_id, addon):
     return jingo.render(request, 'devhub/payments/premium.html',
                         dict(addon=addon, premium=addon.premium,
                              form=premium_form))
+
 
 def _voluntary(request, addon_id, addon):
     charity = None if addon.charity_id == amo.FOUNDATION_ORG else addon.charity
@@ -426,7 +426,7 @@ def _voluntary(request, addon_id, addon):
     if errors:
         messages.error(request, _('There were errors in your submission.'))
     return jingo.render(request, 'devhub/payments/payments.html',
-        dict(addon=addon, charity_form=charity_form, errors=errors,
+        dict(addon=addon, errors=errors, charity_form=charity_form,
              contrib_form=contrib_form, profile_form=profile_form))
 
 
@@ -1174,7 +1174,7 @@ def version_delete(request, addon_id, addon):
     version = get_object_or_404(Version, pk=version_id, addon=addon)
     messages.success(request, _('Version %s deleted.') % version.version)
     version.delete()
-    return redirect('devhub.versions', addon.slug)
+    return redirect(addon.get_dev_url('versions'))
 
 
 @json_view
@@ -1211,13 +1211,14 @@ def version_add_file(request, addon_id, addon, version_id):
                         {'form': form[0], 'addon': addon})
 
 
-@dev_required
-def version_list(request, addon_id, addon):
+@dev_required(webapp=True)
+def version_list(request, addon_id, addon, webapp=False):
     qs = addon.versions.order_by('-created').transform(Version.transformer)
     versions = amo.utils.paginate(request, qs)
     new_file_form = forms.NewVersionForm(None, addon=addon)
 
     data = {'addon': addon,
+            'webapp': webapp,
             'versions': versions,
             'new_file_form': new_file_form,
             'position': get_position(addon),
@@ -1271,7 +1272,8 @@ def submit_step(outer_step):
                     max_step = on_step[0].step
                     if max_step < step:
                         # The step was too high, so bounce to the saved step.
-                        return redirect(_step_url(max_step, webapp), addon.slug)
+                        return redirect(_step_url(max_step, webapp),
+                                        addon.slug)
                 elif step != max_step:
                     # We couldn't find a step, so we must be done.
                     return redirect(_step_url(7, webapp), addon.slug)
@@ -1508,7 +1510,7 @@ def submit_select_review(request, addon_id, addon, step):
 def submit_done(request, addon_id, addon, step, webapp=False):
     # Bounce to the versions page if they don't have any versions.
     if not addon.versions.exists():
-        return redirect('devhub.versions', addon.slug)
+        return redirect(addon.get_dev_url('versions'))
     sp = addon.current_version.supported_platforms
     is_platform_specific = sp != [amo.PLATFORM_ALL]
 
@@ -1528,7 +1530,7 @@ def _resume(addon, step):
     if step:
         return redirect(_step_url(step[0].step, addon.is_webapp()), addon.slug)
 
-    return redirect('devhub.versions', addon.slug)
+    return redirect(addon.get_dev_url('versions'))
 
 
 @login_required
@@ -1610,13 +1612,13 @@ def request_review(request, addon_id, addon, status):
            amo.STATUS_PUBLIC: _('Full Review Requested.')}
     messages.success(request, msg[status_req])
     amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
-    return redirect('devhub.versions', addon.slug)
+    return redirect(addon.get_dev_url('versions'))
 
 
 # TODO(kumar): Remove when the editor tools are in zamboni.
 def validator_redirect(request, version_id):
     v = get_object_or_404(Version, id=version_id)
-    return redirect('devhub.versions', v.addon_id, permanent=True)
+    return redirect('devhub.addons.versions', v.addon_id, permanent=True)
 
 
 @post_required

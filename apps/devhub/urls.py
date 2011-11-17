@@ -41,6 +41,10 @@ marketplace_patterns = patterns('',
 app_detail_patterns = patterns('',
     url('^edit$', views.edit, name='devhub.apps.edit'),
     url('^ownership$', views.ownership, name='devhub.apps.owner'),
+    url('^enable$', views.enable, name='devhub.apps.enable'),
+    url('^delete$', views.delete, name='devhub.apps.delete'),
+    url('^disable$', views.disable, name='devhub.apps.disable'),
+    url('^versions$', views.version_list, name='devhub.apps.versions'),
 )
 
 # These will all start with /addon/<addon_id>/
@@ -76,7 +80,7 @@ detail_patterns = patterns('',
     url('^upload/(?P<uuid>[^/]+)$', views.upload_detail_for_addon,
         name='devhub.upload_detail_for_addon'),
 
-    url('^versions/$', views.version_list, name='devhub.versions'),
+    url('^versions$', views.version_list, name='devhub.addons.versions'),
     url('^versions/delete$', views.version_delete,
         name='devhub.versions.delete'),
     url('^versions/add$', views.version_add, name='devhub.versions.add'),
@@ -140,9 +144,9 @@ redirect_patterns = patterns('',
     ('^addon/edit/(\d+)',
      lambda r, id: redirect('devhub.addons.edit', id, permanent=True)),
     ('^addon/status/(\d+)',
-     lambda r, id: redirect('devhub.versions', id, permanent=True)),
+     lambda r, id: redirect('devhub.addons.versions', id, permanent=True)),
     ('^versions/(\d+)',
-     lambda r, id: redirect('devhub.versions', id, permanent=True)),
+     lambda r, id: redirect('devhub.addons.versions', id, permanent=True)),
     ('^versions/validate/(\d+)', views.validator_redirect),
 )
 

@@ -1,6 +1,8 @@
 import re
 from datetime import datetime, timedelta
 
+from django.conf import settings
+
 import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -23,20 +25,28 @@ class TestVersion(amo.tests.TestCase):
     def setUp(self):
         assert self.client.login(username='del@icio.us', password='password')
         self.user = UserProfile.objects.get(email='del@icio.us')
-        self.addon = Addon.objects.get(id=3615)
+        self.addon = self.get_addon()
         self.version = Version.objects.get(id=81551)
-        self.url = reverse('devhub.versions', args=['a3615'])
+        self.url = self.addon.get_dev_url('versions')
 
-        self.disable_url = reverse('devhub.addons.disable', args=['a3615'])
-        self.enable_url = reverse('devhub.addons.enable', args=['a3615'])
+        self.disable_url = self.addon.get_dev_url('disable')
+        self.enable_url = self.addon.get_dev_url('enable')
         self.delete_url = reverse('devhub.versions.delete', args=['a3615'])
         self.delete_data = {'addon_id': self.addon.pk,
                             'version_id': self.version.pk}
+
+    def get_addon(self):
+        return Addon.objects.get(id=3615)
 
     def get_doc(self):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         return pq(res.content)
+
+    def get_addons_context(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.context['webapp'], False)
 
     def test_version_status_public(self):
         doc = self.get_doc()
@@ -173,11 +183,10 @@ class TestVersion(amo.tests.TestCase):
         assert self.addon.name.__unicode__() in msg, ("Unexpected: %r" % msg)
 
     def test_user_can_enable_addon(self):
-        self.addon.update(status=amo.STATUS_PUBLIC,
-                          disabled_by_user=True)
+        self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
         res = self.client.get(self.enable_url)
-        eq_(res.status_code, 302)
-        addon = Addon.objects.get(id=3615)
+        self.assertRedirects(res, self.url, 302)
+        addon = self.get_addon()
         eq_(addon.disabled_by_user, False)
         eq_(addon.status, amo.STATUS_PUBLIC)
 
@@ -316,6 +325,45 @@ class TestVersion(amo.tests.TestCase):
         r = self.client.get(self.url)
         doc = pq(r.content)
         eq_(doc('#version-list').length, 0)
+
+
+class TestAppStatus(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        self.client.login(username='admin@mozilla.com', password='password')
+        self.webapp = Addon.objects.get(id=337141)
+        self.url = self.webapp.get_dev_url('versions')
+
+    @mock.patch.object(settings, 'APP_PREVIEW', False)
+    def test_apps_context(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(r.context['webapp'], True)
+        title = 'Manage App Status'
+        doc = pq(r.content)
+        eq_(doc('title').text(),
+            '%s :: %s :: Apps Marketplace' % (title, self.webapp.name))
+        eq_(doc('h2').text(), title)
+
+    def test_nav_link(self):
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#edit-addon-nav li.selected a').attr('href'),
+            self.url)
+
+    def test_items(self):
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('#version-status').length, 1)
+        eq_(doc('#version-list').length, 0)
+        eq_(doc('#delete-addon').length, 0)
+        eq_(doc('#modal-delete').length, 0)
+        eq_(doc('#modal-disable').length, 1)
+
+    def test_delete_link(self):
+        self.webapp.update(status=amo.STATUS_NULL)
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('#delete-addon').length, 1)
+        eq_(doc('#modal-delete').length, 1)
 
 
 class TestVersionEdit(amo.tests.TestCase):

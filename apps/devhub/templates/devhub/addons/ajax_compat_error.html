@@ -12,7 +12,7 @@
       {% endtrans %}
     </p>
     <p>
-      {% trans update_url=update_url, version_url=url('devhub.versions', addon.slug) %}
+      {% trans update_url=update_url, version_url=addon.get_dev_url('versions') %}
         <a href="#" class="button compat-update"
            data-updateurl="{{ update_url }}">Update Compatibility</a>
         <a href="{{ version_url }}" class="button">Upload New Version</a>

@@ -108,7 +108,7 @@ class TestNav(HubTest):
 
         # Check the anchor for the single add-on.
         eq_(doc('#site-nav ul li.top li a').eq(0).attr('href'),
-            addon.get_edit_url())
+            addon.get_dev_url())
 
         # Create 6 add-ons.
         self.clone_addon(6)
@@ -376,11 +376,10 @@ class TestDevRequired(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
-        self.get_url = reverse('devhub.addons.payments', args=['a3615'])
-        self.post_url = reverse('devhub.addons.payments.disable',
-                                args=['a3615'])
-        assert self.client.login(username='del@icio.us', password='password')
         self.addon = Addon.objects.get(id=3615)
+        self.get_url = self.addon.get_dev_url('payments')
+        self.post_url = self.addon.get_dev_url('payments.disable')
+        assert self.client.login(username='del@icio.us', password='password')
         self.au = AddonUser.objects.get(user__email='del@icio.us',
                                         addon=self.addon)
         eq_(self.au.role, amo.AUTHOR_ROLE_OWNER)
@@ -450,7 +449,7 @@ class TestEditPayments(amo.tests.TestCase):
         self.addon.save()
         self.foundation = Charity.objects.create(
             id=amo.FOUNDATION_ORG, name='moz', url='$$.moz', paypal='moz.pal')
-        self.url = reverse('devhub.addons.payments', args=[self.addon.slug])
+        self.url = self.addon.get_dev_url('payments')
         assert self.client.login(username='del@icio.us', password='password')
         self.paypal_mock = mock.Mock()
         self.paypal_mock.return_value = (True, None)
@@ -693,10 +692,8 @@ class TestDisablePayments(amo.tests.TestCase):
         self.addon.the_reason = self.addon.the_future = '...'
         self.addon.save()
         self.addon.update(wants_contributions=True, paypal_id='woohoo')
-        self.pay_url = reverse('devhub.addons.payments',
-                               args=[self.addon.slug])
-        self.disable_url = reverse('devhub.addons.payments.disable',
-                                   args=[self.addon.slug])
+        self.pay_url = self.addon.get_dev_url('payments')
+        self.disable_url = self.addon.get_dev_url('payments.disable')
         assert self.client.login(username='del@icio.us', password='password')
 
     def test_statusbar_visible(self):
@@ -719,7 +716,7 @@ class TestPaymentsProfile(amo.tests.TestCase):
 
     def setUp(self):
         self.addon = a = self.get_addon()
-        self.url = reverse('devhub.addons.payments', args=[self.addon.slug])
+        self.url = self.addon.get_dev_url('payments')
         # Make sure all the payment/profile data is clear.
         assert not (a.wants_contributions or a.paypal_id or a.the_reason
                     or a.the_future or a.takes_contributions)
@@ -802,7 +799,7 @@ class MarketplaceMixin(object):
         self.addon = Addon.objects.get(id=3615)
         self.addon.update(status=amo.STATUS_NOMINATED,
                           highest_status=amo.STATUS_NOMINATED)
-        self.url = reverse('devhub.addons.payments', args=[self.addon.slug])
+        self.url = self.addon.get_dev_url('payments')
         assert self.client.login(username='del@icio.us', password='password')
 
         self.marketplace = (waffle.models.Switch.objects
@@ -970,8 +967,7 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
     def test_permissions_token(self):
         self.setup_premium()
         eq_(self.addon.premium.paypal_permissions_token, '')
-        url = reverse('devhub.addons.acquire_refund_permission',
-                      args=[self.addon.slug])
+        url = self.addon.get_dev_url('acquire_refund_permission')
         data = {'request_token': 'foo', 'verification_code': 'bar'}
         self.client.get('%s?%s' % (url, urlencode(data)))
         self.addon = Addon.objects.get(pk=self.addon.pk)
@@ -984,8 +980,7 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         # with AddonPremium not being there.
         self.addon.premium.delete()
         self.addon.update(premium_type=amo.ADDON_FREE)
-        url = reverse('devhub.addons.acquire_refund_permission',
-                      args=[self.addon.slug])
+        url = self.addon.get_dev_url('acquire_refund_permission')
         data = {'request_token': 'foo', 'verification_code': 'bar'}
         self.client.get('%s?%s' % (url, urlencode(data)))
         self.addon = Addon.objects.get(pk=self.addon.pk)
@@ -1111,29 +1106,20 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
 
     def test_no_delete_link_premium_addon(self):
         self.setup_premium()
-        doc = pq(self.client.get(reverse('devhub.versions',
-                                      args=[self.addon.slug])).content)
+        doc = pq(self.client.get(self.addon.get_dev_url('versions')).content)
         eq_(len(doc('#delete-addon')), 0)
 
     def test_no_delete_premium_addon(self):
         self.setup_premium()
-        res = self.client.post(reverse('devhub.addons.delete',
-                                       args=[self.addon.slug]),
+        res = self.client.post(self.addon.get_dev_url('delete'),
                                {'password': 'password'})
         eq_(res.status_code, 302)
         assert Addon.objects.filter(pk=self.addon.id).exists(), (
             "Unexpected: Addon should exist")
 
-    def test_no_delete_link_app(self):
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        doc = pq(self.client.get(reverse('devhub.versions',
-                                      args=[self.addon.slug])).content)
-        eq_(len(doc('#delete-addon')), 0)
-
     def test_no_delete_app(self):
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        res = self.client.post(reverse('devhub.addons.delete',
-                                       args=[self.addon.slug]),
+        self.addon.update(type=amo.ADDON_WEBAPP, app_slug='xxx')
+        res = self.client.post(self.addon.get_dev_url('delete'),
                                {'password': 'password'})
         eq_(res.status_code, 302)
         assert Addon.objects.filter(pk=self.addon.id).exists(), (
@@ -1141,10 +1127,10 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
 
     def test_incomplete_app_delete(self):
         waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-        self.addon.update(type=amo.ADDON_WEBAPP, status=amo.STATUS_NULL)
-        res = self.client.post(reverse('devhub.addons.delete',
-                                       args=[self.addon.slug]),
-                               {'password': 'password'})
+        self.addon.update(type=amo.ADDON_WEBAPP, app_slug='xxx',
+                          status=amo.STATUS_NULL)
+        self.client.post(self.addon.get_dev_url('delete'),
+                         {'password': 'password'})
         assert not Addon.objects.filter(pk=self.addon.id).exists(), (
             "Unexpected: Addon shouldn't exist")
 
@@ -1156,7 +1142,7 @@ class TestDelete(amo.tests.TestCase):
     def setUp(self):
         self.addon = self.get_addon()
         assert self.client.login(username='del@icio.us', password='password')
-        self.url = reverse('devhub.addons.delete', args=[self.addon.slug])
+        self.url = self.addon.get_dev_url('delete')
 
     def get_addon(self):
         return Addon.objects.no_cache().get(id=3615)
@@ -1347,10 +1333,10 @@ class TestProfile(TestProfileBase):
         self.enable_addon_contributions()
         r = self.client.get(self.url)
         doc = pq(r.content)
-        assert doc('label[for=the_reason] .req').length, \
-               'the_reason field should be required.'
-        assert doc('label[for=the_future] .req').length, \
-               'the_future field should be required.'
+        assert doc('label[for=the_reason] .req').length, (
+               'the_reason field should be required.')
+        assert doc('label[for=the_future] .req').length, (
+               'the_future field should be required.')
 
     def test_log(self):
         self.enable_addon_contributions()
@@ -1392,6 +1378,7 @@ class TestSubmitBase(amo.tests.TestCase):
 
     def setUp(self):
         assert self.client.login(username='del@icio.us', password='password')
+        self.addon = self.get_addon()
 
     def get_addon(self):
         return Addon.objects.no_cache().get(pk=3615)
@@ -1478,7 +1465,6 @@ class TestSubmitStep3(TestSubmitBase):
 
     def setUp(self):
         super(TestSubmitStep3, self).setUp()
-        self.addon = self.get_addon()
         self.url = reverse('devhub.submit.3', args=['a3615'])
         SubmitStep.objects.create(addon_id=3615, step=3)
         cron.build_reverse_name_lookup()
@@ -1517,8 +1503,8 @@ class TestSubmitStep3(TestSubmitBase):
         eq_(addon.summary, 'Hello!')
         # Test add-on log activity.
         log_items = ActivityLog.objects.for_addons(addon)
-        assert not log_items.filter(action=amo.LOG.EDIT_DESCRIPTIONS.id), \
-                "Creating a description needn't be logged."
+        assert not log_items.filter(action=amo.LOG.EDIT_DESCRIPTIONS.id), (
+                "Creating a description needn't be logged.")
 
     @mock.patch.object(waffle, 'flag_is_active')
     def test_submit_apps_success(self, fia):
@@ -1886,7 +1872,6 @@ class Step5TestBase(TestSubmitBase):
 
     def setUp(self):
         super(Step5TestBase, self).setUp()
-        self.addon = Addon.objects.get(pk=3615)
         SubmitStep.objects.create(addon_id=self.addon.id, step=5)
         self.url = reverse('devhub.submit.5', args=['a3615'])
         self.next_step = reverse('devhub.submit.6', args=['a3615'])
@@ -1905,8 +1890,8 @@ class TestSubmitStep5(Step5TestBase):
         eq_(self.get_addon().current_version.license.builtin, 3)
         eq_(self.get_step().step, 6)
         log_items = ActivityLog.objects.for_addons(self.get_addon())
-        assert not log_items.filter(action=amo.LOG.CHANGE_LICENSE.id), \
-                "Initial license choice:6 needn't be logged."
+        assert not log_items.filter(action=amo.LOG.CHANGE_LICENSE.id), (
+                "Initial license choice:6 needn't be logged.")
 
     def test_license_error(self):
         r = self.client.post(self.url, {'builtin': 4})
@@ -1994,9 +1979,7 @@ class TestSubmitStep6(TestSubmitBase):
 class TestSubmitStep7(TestSubmitBase):
 
     def test_finish_submitting_addon(self):
-        addon = Addon.objects.get(
-                        name__localized_string='Delicious Bookmarks')
-        eq_(addon.current_version.supported_platforms, [amo.PLATFORM_ALL])
+        eq_(self.addon.current_version.supported_platforms, [amo.PLATFORM_ALL])
 
         response = self.client.get(reverse('devhub.submit.7', args=['a3615']))
         eq_(response.status_code, 200)
@@ -2014,11 +1997,11 @@ class TestSubmitStep7(TestSubmitBase):
         next_steps = doc(".done-next-steps li a")
 
         # edit listing of freshly submitted add-on...
-        eq_(next_steps[0].attrib['href'], addon.get_edit_url())
+        eq_(next_steps[0].attrib['href'], self.addon.get_dev_url())
 
         # edit your developer profile...
         eq_(next_steps[1].attrib['href'],
-            reverse('devhub.addons.profile', args=[addon.slug]))
+            reverse('devhub.addons.profile', args=[self.addon.slug]))
 
         # view wait times:
         eq_(next_steps[3].attrib['href'],
@@ -2042,7 +2025,7 @@ class TestSubmitStep7(TestSubmitBase):
                                 version_id=addon.current_version.id)))
 
         # edit listing of freshly submitted add-on...
-        eq_(next_steps[1].attrib['href'], addon.get_edit_url())
+        eq_(next_steps[1].attrib['href'], addon.get_dev_url())
 
     def test_finish_addon_for_prelim_review(self):
         self.get_addon().update(status=amo.STATUS_UNREVIEWED)
@@ -2068,7 +2051,7 @@ class TestSubmitStep7(TestSubmitBase):
         addon.versions.all().delete()
         r = self.client.get(reverse('devhub.submit.7', args=['a3615']),
                                    follow=True)
-        self.assertRedirects(r, reverse('devhub.versions', args=['a3615']))
+        self.assertRedirects(r, self.addon.get_dev_url('versions'), 302)
 
     def test_link_to_activityfeed(self):
         addon = Addon.objects.get(pk=3615)
@@ -2112,8 +2095,7 @@ class TestResumeStep(TestSubmitBase):
 
     def test_no_step_redirect(self):
         r = self.client.get(self.url, follow=True)
-        self.assertRedirects(r, reverse('devhub.versions', args=['a3615']),
-                             302)
+        self.assertRedirects(r, self.addon.get_dev_url('versions'), 302)
 
     def test_step_redirects(self):
         SubmitStep.objects.create(addon_id=3615, step=1)
@@ -2487,7 +2469,7 @@ class TestQueuePosition(UploadTest):
         version_files.save()
 
     def test_not_in_queue(self):
-        r = self.client.get(reverse('devhub.versions', args=[self.addon.slug]))
+        r = self.client.get(self.addon.get_dev_url('versions'))
 
         eq_(self.addon.status, amo.STATUS_PUBLIC)
         eq_(pq(r.content)('.version-status-actions .dark').length, 0)
@@ -2505,8 +2487,7 @@ class TestQueuePosition(UploadTest):
             file.status = addon_status[1]
             file.save()
 
-            r = self.client.get(reverse('devhub.versions',
-                                        args=[self.addon.slug]))
+            r = self.client.get(self.addon.get_dev_url('versions'))
             doc = pq(r.content)
 
             span = doc('.version-status-actions .dark')
@@ -2784,8 +2765,7 @@ class TestUploadErrors(UploadTest):
         flag_is_active.return_value = True
 
         # Load the versions page:
-        res = self.client.get(reverse('devhub.versions',
-                                      args=[self.addon.slug]))
+        res = self.client.get(self.addon.get_dev_url('versions'))
         eq_(res.status_code, 200)
         doc = pq(res.content)
 
@@ -2931,11 +2911,10 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         eq_(Addon.objects.count(), 0)
         r = self.post()
         addon = Addon.objects.get()
-        self.assertRedirects(r, reverse('devhub.submit.3',
-                                        args=[addon.slug]))
+        self.assertRedirects(r, reverse('devhub.submit.3', args=[addon.slug]))
         log_items = ActivityLog.objects.for_addons(addon)
-        assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), \
-                'New add-on creation never logged.'
+        assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
+            'New add-on creation never logged.')
 
     def test_missing_platforms(self):
         r = self.client.post(self.url, dict(upload=self.upload.pk))
@@ -3062,9 +3041,9 @@ class TestDeleteAddon(amo.tests.TestCase):
 
     def setUp(self):
         super(TestDeleteAddon, self).setUp()
-        self.url = reverse('devhub.addons.delete', args=['a3615'])
-        assert self.client.login(username='del@icio.us', password='password')
         self.addon = Addon.objects.get(id=3615)
+        self.url = self.addon.get_dev_url('delete')
+        assert self.client.login(username='del@icio.us', password='password')
 
     def post(self, *args, **kw):
         r = self.client.post(self.url, dict(*args, **kw))
@@ -3092,7 +3071,7 @@ class TestRequestReview(amo.tests.TestCase):
         self.version = Version.objects.create(addon=self.addon)
         self.file = File.objects.create(version=self.version,
                                         platform_id=amo.PLATFORM_ALL.id)
-        self.redirect_url = reverse('devhub.versions', args=[self.addon.slug])
+        self.redirect_url = self.addon.get_dev_url('versions')
         self.lite_url = reverse('devhub.request-review',
                                 args=[self.addon.slug, amo.STATUS_LITE])
         self.public_url = reverse('devhub.request-review',
@@ -3209,14 +3188,14 @@ class TestRedirects(amo.tests.TestCase):
     def test_status(self):
         url = self.base + 'addon/status/3615'
         r = self.client.get(url, follow=True)
-        self.assertRedirects(r, reverse('devhub.versions', args=['a3615']),
-                             301)
+        self.assertRedirects(r, reverse('devhub.addons.versions',
+                                        args=['a3615']), 301)
 
     def test_versions(self):
         url = self.base + 'versions/3615'
         r = self.client.get(url, follow=True)
-        self.assertRedirects(r, reverse('devhub.versions', args=['a3615']),
-                             301)
+        self.assertRedirects(r, reverse('devhub.addons.versions',
+                                        args=['a3615']), 301)
 
 
 class TestNewsletter(amo.tests.TestCase):

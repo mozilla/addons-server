@@ -30,7 +30,7 @@
           {% endif %}
           <li id="version-status-item">
             <strong>{{ _('Status:') }}</strong>
-            <a href="{{ url('devhub.versions', addon.slug) }}">
+            <a href="{{ addon.get_dev_url('versions') }}">
               {% if addon.disabled_by_user %}
                 <span class="{{ status_class(addon) }}"><b>{{ _('Disabled') }}</b></span>
               {% else %}

@@ -15,7 +15,7 @@ from babel.support import Format
 import caching.base as caching
 import jinja2
 from jingo import register, env
-from tower import ugettext as _
+from tower import ugettext as _, strip_whitespace
 
 import amo
 from amo import utils, urlresolvers
@@ -527,3 +527,9 @@ def _site_nav(context):
 @register.filter
 def premium_text(type):
     return amo.ADDON_PREMIUM_TYPES[type]
+
+
+@register.function
+def loc(s):
+    """A noop function for strings that are not ready to be localized."""
+    return strip_whitespace(s)

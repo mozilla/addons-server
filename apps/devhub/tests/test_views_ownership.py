@@ -22,7 +22,7 @@ class TestOwnership(amo.tests.TestCase):
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
-        self.url = self.addon.get_edit_url('owner')
+        self.url = self.addon.get_dev_url('owner')
         assert self.client.login(username='del@icio.us', password='password')
 
     def formset(self, *args, **kw):
@@ -337,7 +337,7 @@ class TestEditWebappAuthors(amo.tests.TestCase):
     def setUp(self):
         self.client.login(username='admin@mozilla.com', password='password')
         self.webapp = Addon.objects.get(id=337141)
-        self.url = self.webapp.get_edit_url('owner')
+        self.url = self.webapp.get_dev_url('owner')
 
     def test_apps_context(self):
         r = self.client.get(self.url)

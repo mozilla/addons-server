@@ -1,12 +1,11 @@
-{# TODO(apps): Finalize copy. #}
 {% set urls = (
-  (addon.get_edit_url(), _('Edit Listing')),
-  (addon.get_edit_url('owner'), 'Manage Authors' if addon.is_webapp()
-                                else _('Manage Authors & License')),
+  (addon.get_dev_url(), _('Edit Listing')),
+  (addon.get_dev_url('owner'), loc('Manage Authors') if addon.is_webapp()
+                               else _('Manage Authors & License')),
   (url('devhub.addons.profile', addon.slug), _('Manage Developer Profile')),
   (url('devhub.addons.payments', addon.slug), _('Manage Payments')),
-  (url('devhub.versions', addon.slug), 'Manage App Status' if addon.is_webapp()
-                                        else _('Manage Status & Versions')),
+  (addon.get_dev_url('versions'), loc('Manage App Status') if addon.is_webapp()
+                                  else _('Manage Status & Versions')),
 ) %}
 <section class="secondary" role="complementary">
   <div class="highlight" id="edit-addon-nav">

@@ -20,14 +20,14 @@
 {% else %}
   {% if check_addon_ownership(request, addon, dev=True) %}
     <li>
-      <a href="{{ addon.get_edit_url() }}" class="tooltip"
+      <a href="{{ addon.get_dev_url() }}" class="tooltip"
          title="{{ _("Edit details about this app's listing.") }}">
         {{ _('Edit Listing') }}</a>
     </li>
   {% endif %}
   <li>
     {# TODO(apps): Finalize copy. #}
-    <a href="{{ addon.get_edit_url('owner') }}">Manage Authors</a>
+    <a href="{{ addon.get_dev_url('owner') }}">Manage Authors</a>
   </li>
   <li>
     <a href="{{ url('devhub.addons.payments', addon.slug) }}">
@@ -38,7 +38,7 @@
     <div class="more-actions-popup popup hidden">
       {% set manage_urls = (
         (url('devhub.addons.profile', addon.slug), _('Manage Developer Profile')),
-        (url('devhub.versions', addon.slug), _('Manage Status'))) %}
+        (addon.get_dev_url('versions'), _('Manage Status'))) %}
       <ul>
         {% for url, title in manage_urls %}
           <li><a href="{{ url }}">{{ title }}</a></li>
