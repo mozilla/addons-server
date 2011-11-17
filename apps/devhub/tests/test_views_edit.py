@@ -94,7 +94,7 @@ class TestEditListingWebapp(amo.tests.TestCase):
         r = self.client.get(self.url)
         doc = pq(r.content)('#edit-addon-nav')
         eq_(doc.length, 1)
-        eq_(doc('.stats').length, 0)
+        eq_(doc('.view-stats').length, 0)
 
 
 class TestEditBasicWebapp(amo.tests.TestCase):
@@ -623,7 +623,7 @@ class TestEditBasic(TestEdit):
         doc = pq(r.content)('#edit-addon-nav')
         eq_(doc('ul:last').find('li a').eq(1).attr('href'),
             activity_url)
-        eq_(doc('.stats').length, 1)
+        eq_(doc('.view-stats').length, 1)
 
     def get_l10n_urls(self):
         paths = ('devhub.addons.edit', 'devhub.addons.profile',
