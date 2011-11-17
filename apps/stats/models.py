@@ -213,7 +213,7 @@ class Contribution(models.Model):
         Raises a ``ContributionError`` exception when the contribution
         is not complete or email addresses are not found.
         """
-        self._switch_locale()
+        locale = self._switch_locale()
 
         # Thankyous must be enabled.
         if not self.addon.enable_thankyou:
@@ -245,7 +245,7 @@ class Contribution(models.Model):
         # Make sure the url uses the right language.
         # Setting a prefixer would be nicer, but that requires a request.
         url_parts = self.addon.meet_the_dev_url().split('/')
-        url_parts[1] = lang
+        url_parts[1] = locale.language
 
         # Buildup the email components.
         t = loader.get_template('stats/contribution-thankyou-email.ltxt')
