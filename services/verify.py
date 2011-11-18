@@ -1,7 +1,7 @@
 from email.Utils import formatdate
 import json
 import re
-import time
+from time import time
 
 from utils import (log_exception, log_info, mypool, settings,
                    CONTRIB_CHARGEBACK, CONTRIB_PURCHASE, CONTRIB_REFUND)
@@ -146,8 +146,10 @@ def application(environ, start_response):
             addon_id = id_re.search(environ['PATH_INFO']).group('addon_id')
         except AttributeError:
             output = ''
-            log_exception({'receipt': '%s...' % data[:10], 'addon': 'empty'})
+            log_info({'receipt': '%s...' % data[:10], 'addon': 'empty'},
+                     'Wrong url %s' % environ['PATH_INFO'][:20])
             start_response('500 Internal Server Error', [])
+            return [output]
 
         try:
             verify = Verify(addon_id, data)
