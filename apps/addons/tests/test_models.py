@@ -16,7 +16,7 @@ from django.db import IntegrityError
 from django.utils import translation
 
 from mock import patch, Mock
-from nose.tools import eq_, assert_not_equal
+from nose.tools import eq_, assert_not_equal, raises
 
 import amo
 import amo.tests
@@ -1508,6 +1508,12 @@ class TestAddonFromUpload(UploadTest):
         upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
         addon = Addon.from_upload(upload, [self.platform])
         eq_(addon.default_locale, 'en-US')  # not gb
+
+    @raises(forms.ValidationError)
+    def test_malformed_locales(self):
+        manifest = self.manifest('malformed-locales.webapp')
+        upload = self.get_upload(abspath=manifest)
+        Addon.from_upload(upload, [self.platform])
 
 
 REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'

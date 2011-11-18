@@ -194,6 +194,9 @@ class WebAppParser(object):
                                 _('Could not parse webapp manifest file.'))
         loc = data.get('default_locale', translation.get_language())
         default_locale = self.trans_locale(loc)
+        if type(data.get('locales')) == list:
+            raise forms.ValidationError(
+                _('Your specified app locales are not in the correct format.'))
         localized_descr = self.extract_locale(data.get('locales', {}),
                                               'description', default='')
         if 'description' in data:
