@@ -1,11 +1,14 @@
 {% from "addons/macros.html" import price, refund_info %}
 {% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
 {% for addon in addons %}
-
-{% set is_refunded = show_refunds and addon.is_refunded(request.amo_user) %}
-{% set is_chargeback = show_refunds and addon.is_chargeback(request.amo_user) %}
+  {% set is_refunded = show_refunds and addon.is_refunded(request.amo_user) %}
+  {% set is_chargeback = show_refunds and addon.is_chargeback(request.amo_user) %}
   <li class="item{{ ' refunded' if is_refunded or is_chargeback }}">
-    <a href="{{ addon.get_url_path() }}">
+    {% set dl_url = addon.get_url_path() %}
+    {% if src %}
+      {% set dl_url = dl_url|urlparams(src=src) %}
+    {% endif %}
+    <a href="{{ dl_url }}">
       <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
       <h3>{{ addon.name }}</h3>
       <details>
@@ -18,15 +21,8 @@
               <i>{{ _('Not Yet Rated') }}</i>
             {% endif %}
           {% endwith %}
-          {% if sort in ('newest', 'created') %}
-            <span class="vital">
-              {{ _('Added {0}')|f(addon.created|datetime) }}
-            </span>
-          {% elif sort == 'updated' %}
-            <span class="vital">
-              {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
-            <span>
-          {% elif sort in ('downloads', 'popular', None) %}
+          {{ price(addon) }}
+          {% if sort in ('downloads', 'popular') or not addon.show_adu() %}
             <span class="vital downloads">
               {% with num=addon.weekly_downloads %}
                 {# L10n: {0} is the number of downloads. #}
@@ -35,7 +31,7 @@
                             num)|f(num|numberfmt)|safe }}
               {% endwith %}
             </span>
-          {% elif sort == 'users' %}
+          {% elif sort == 'users' or addon.show_adu() %}
             <span class="vital adu">
               {% with num=addon.average_daily_users %}
                 {# L10n: {0} is the number of users. #}
@@ -45,8 +41,16 @@
               {% endwith %}
             </span>
           {% endif %}
+          {% if sort in ('newest', 'created') %}
+            <span class="vital">
+              {{ _('Added {0}')|f(addon.created|datetime) }}
+            </span>
+          {% elif sort == 'updated' %}
+            <span class="vital">
+              {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
+            <span>
+          {% endif %}
           {% if waffle.switch('marketplace') %}
-            {{ price(addon) }}
             {% if show_refunds %}
               {{ refund_info(amo, addon, contributions, is_refunded, is_chargeback) }}
             {% endif %}

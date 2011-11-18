@@ -147,10 +147,9 @@ class TestESSearch(amo.tests.ESTestCase):
 
     @amo.tests.mobile_test
     def test_mobile_results_downloads(self):
-        for sort in ('', 'downloads'):
-            r = self.client.get(urlparams(self.url, sort=sort))
-            assert pq(r.content)('#content .item .vital.downloads'), (
-                'Expected weekly downloads')
+        r = self.client.get(urlparams(self.url, sort='downloads'))
+        assert pq(r.content)('#content .item .vital.downloads'), (
+            'Expected weekly downloads')
 
     def check_sort_links(self, key, title, sort_by=None, reverse=True):
         r = self.client.get('%s?sort=%s' % (self.url, key))
@@ -509,17 +508,33 @@ class TestWebappSearch(amo.tests.ESTestCase):
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'search/mobile/results.html')
 
+    def test_results(self):
+        r = self.client.get(self.url)
+        item = pq(r.content)('.items .item')
+        eq_(item.length, 1)
+        a = item.find('h3 a')
+        eq_(a.text(), unicode(self.webapp.name))
+        eq_(a.attr('href'),
+            urlparams(self.webapp.get_url_path(), src='search'))
+
     @amo.tests.mobile_test
     def test_mobile_results(self):
         r = self.client.get(self.url)
         item = pq(r.content)('#content .item')
         eq_(item.length, 1)
         eq_(item.find('h3').text(), unicode(self.webapp.name))
-        eq_(item.children('a').attr('href'), self.webapp.get_url_path())
+        eq_(item.children('a').attr('href'),
+            urlparams(self.webapp.get_url_path(), src='search'))
+
+    def test_results_downloads(self):
+        for sort in ('', 'downloads', 'rating', 'created'):
+            r = self.client.get(urlparams(self.url, sort=sort))
+            dls = pq(r.content)('.item .vitals .downloads')
+            eq_(dls.text().split()[0], numberfmt(self.webapp.weekly_downloads))
 
     @amo.tests.mobile_test
     def test_mobile_results_downloads(self):
-        for sort in ('', 'downloads'):
+        for sort in ('', 'downloads', 'rating', 'created'):
             r = self.client.get(urlparams(self.url, sort=sort))
             dls = pq(r.content)('#content .item .vital.downloads')
             eq_(dls.text().split()[0], numberfmt(self.webapp.weekly_downloads))

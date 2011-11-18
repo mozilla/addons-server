@@ -67,14 +67,14 @@
             <td>{{ addon.compatible_apps[APP] }}</td>
           </tr>
         {% endif %}
-        {% if addon.average_daily_users %}
-          <tr class="adu">
-            <th>{{ _('Users') }}</th>
-            <td>{{ addon.average_daily_users|numberfmt }}</td>
-          </tr>
-        {% endif %}
       {% endif %}
-      {% if addon.weekly_downloads %}
+      {% if addon.show_adu() and addon.average_daily_users %}
+        <tr class="adu">
+          <th>{{ _('Users') }}</th>
+          <td>{{ addon.average_daily_users|numberfmt }}</td>
+        </tr>
+      {% endif %}
+      {% if not addon.show_adu() or addon.weekly_downloads %}
         <tr class="downloads">
           <th>{{ _('Weekly Downloads') }}</th>
           <td>{{ addon.weekly_downloads|numberfmt }}</td>

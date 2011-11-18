@@ -689,6 +689,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def show_beta(self):
         return self.status == amo.STATUS_PUBLIC and self.current_beta_version
 
+    def show_adu(self):
+        return self.type not in (amo.ADDON_SEARCH, amo.ADDON_WEBAPP)
+
     @amo.cached_property
     def current_beta_version(self):
         """Retrieves the latest version of an addon, in the beta channel."""

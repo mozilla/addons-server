@@ -26,14 +26,7 @@
     {% endtrans %}
   </a></div>
 
-  {% if addon.is_webapp() %}
-    {% set dls = addon.weekly_downloads %}
-    {% if dls %}
-      <div id="weekly-downloads">
-        {{ _('{0} weekly downloads')|f(dls|numberfmt) }}
-      </div>
-    {% endif %}
-  {% else %}
+  {% if addon.show_adu() %}
     {% set adu = addon.average_daily_users %}
     {% if adu %}
       <div id="daily-users">
@@ -45,6 +38,13 @@
             {{ num_users }}
           {% endif %}
         {% endwith %}
+      </div>
+    {% endif %}
+  {% else %}
+    {% set dls = addon.weekly_downloads %}
+    {% if dls %}
+      <div id="weekly-downloads">
+        {{ _('{0} weekly downloads')|f(dls|numberfmt) }}
       </div>
     {% endif %}
   {% endif %}
