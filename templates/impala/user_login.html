@@ -17,10 +17,14 @@
     <a href="{{ url('users.logout') }}">{{ _('Log out') }}</a>
   </li>
 {% else %}
-  <li class="account anonymous nomenu logout">
-    {% trans reg=url('users.register'), login=login_link() %}
-      <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>
-    {% endtrans %}
+<li class="account anonymous nomenu logout">
+    {% if settings.APP_PREVIEW %}
+        <a href="{{ login_link() }}">Log in</a>
+    {% else %}
+        {% trans reg=url('users.register'), login=login_link() %}
+            <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>
+        {% endtrans %}
+    {% endif %}
   </li>
 {% endif %}
 
