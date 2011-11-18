@@ -370,10 +370,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                          addon.default_locale != settings.LANGUAGE_CODE)
         if not locale_is_set:
             addon.default_locale = to_language(translation.get_language())
-        # If default locale was set from parsed data, ensure locale is
-        # passed down.
-        if addon.name:
-            addon.name.locale = addon.default_locale
         if addon.is_webapp():
             addon.manifest_url = upload.name
             addon.app_domain = addon.domain_from_url(addon.manifest_url)

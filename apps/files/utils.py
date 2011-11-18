@@ -203,7 +203,7 @@ class WebAppParser(object):
             localized_descr.update({default_locale: data['description']})
         return {'guid': None,
                 'type': amo.ADDON_WEBAPP,
-                'name': data['name'],
+                'name': {default_locale: data['name']},
                 'summary': self.trans_all_locales(localized_descr),
                 'version': '1.0',
                 'default_locale': default_locale}
