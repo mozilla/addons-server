@@ -103,3 +103,5 @@ database:
             random_email: email
         versions:
             nullify: approvalnotes
+        users_install:
+            random_email: email
