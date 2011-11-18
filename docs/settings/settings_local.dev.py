@@ -72,3 +72,5 @@ STATIC_URL = ''
 # The user id to use when logging in tasks. You should set this to a user that
 # exists in your site.
 # TASK_USER_ID = 1
+
+WEBAPPS_RECEIPT_KEY = os.path.join(ROOT, 'apps/webapps/tests/sample.key')
