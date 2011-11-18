@@ -11,7 +11,9 @@
 {% block content %}
 <header>
   {{ dev_breadcrumbs(addon, items=[(None, title)]) }}
-  {# l10n_menu(addon.default_locale) #}
+  {% if not settings.APP_PREVIEW %}
+    {{ l10n_menu(addon.default_locale) }}
+  {% endif %}
   <h2>{{ title }}</h2>
 </header>
 <section class="primary payments devhub-form" role="main">

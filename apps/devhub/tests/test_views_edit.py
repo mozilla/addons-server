@@ -627,7 +627,7 @@ class TestEditBasic(TestEdit):
 
     def get_l10n_urls(self):
         paths = ('devhub.addons.edit', 'devhub.addons.profile',
-                 'devhub.addons.payments', 'devhub.addons.owner')
+                 'devhub.addons.owner')
         return [reverse(p, args=['a3615']) for p in paths]
 
     def test_l10n(self):
