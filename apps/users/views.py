@@ -278,7 +278,7 @@ def _clean_next_url(request):
     return request
 
 
-def browserid_authenticate(assertion):
+def browserid_authenticate(request, assertion):
     """
     Verify a BrowserID login attempt. If the BrowserID assertion is
     good, but no account exists on AMO, create one.
@@ -286,19 +286,22 @@ def browserid_authenticate(assertion):
     backend = BrowserIDBackend()
     result = backend.verify(assertion, settings.SITE_URL)
     if not result:
-        return None
+        return (None, None)
     email = result['email']
     users = UserProfile.objects.filter(email=email)
     if len(users) == 1:
         users[0].user.backend = 'django_browserid.auth.BrowserIDBackend'
-        return users[0]
+        return (users[0], None)
     username = email.partition('@')[0]
+    if (settings.REGISTER_USER_LIMIT and
+        UserProfile.objects.count() > settings.REGISTER_USER_LIMIT):
+        return (None, 'Sorry, no more registrations are allowed.')
     profile = UserProfile.objects.create(username=username, email=email)
     profile.create_django_user()
     profile.user.backend = 'django_browserid.auth.BrowserIDBackend'
     profile.user.save()
     profile.save()
-    return profile
+    return (profile, None)
 
 
 @anonymous_csrf
@@ -310,14 +313,15 @@ def browserid_login(request):
         if request.user.is_authenticated():
             return http.HttpResponse(status=200)
         with statsd.timer('auth.browserid.verify'):
-            profile = browserid_authenticate(
+            profile, msg = browserid_authenticate(
+                request,
                 assertion=request.POST['assertion'])
         if profile is not None:
             if profile.needs_tougher_password:
                 return http.HttpResponse("", status=400)
             auth.login(request, profile.user)
             return http.HttpResponse(status=200)
-    return http.HttpResponse(status=401)
+    return http.HttpResponse(msg, status=401)
 
 
 @anonymous_csrf

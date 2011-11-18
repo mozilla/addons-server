@@ -500,6 +500,27 @@ class TestLogin(UserViewBase):
         eq_(len(profiles), 1)
         eq_(profiles[0].username, 'newuser')
 
+    @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
+    @patch.object(waffle, 'switch_is_active', lambda x: True)
+    @patch('httplib2.Http.request')
+    def test_browserid_register_limit(self, http_request):
+        """
+        Account creation via BrowserID respects
+        settings.REGISTER_USER_LIMIT.
+        """
+
+        http_request.return_value = (200, json.dumps(
+                {'status': 'okay',
+                 'email': 'extrauser@example.com'}))
+        res = self.client.post(reverse('users.browserid_login'),
+                               data=dict(assertion='fake-assertion',
+                                         audience='fakeamo.org'))
+        eq_(res.status_code, 401)
+        eq_(res.content, 'Sorry, no more registrations are allowed.')
+
+        profile_count = UserProfile.objects.count()
+        eq_(profile_count, 4)
+
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('httplib2.Http.request')
     def test_browserid_login_failure(self, http_request):

@@ -31,11 +31,15 @@ function gotVerifiedEmail(assertion, redirectTo, domContext) {
                                   'Admins and editors must provide'
                                 + ' a password to log in.'));
                        } else {
-                           displayErrBox(gettext(
-                                  "BrowserID login failed. Maybe you don't "
-                                + 'have an account under that email address?') +
-                                " textStatus: " + textStatus + " errorThrown: " +
-                                errorThrown);
+                         var msg = jqXHR.responseText;
+                         if (!msg) {
+                           msg = gettext(
+                             "BrowserID login failed. Maybe you don't" +
+                               " have an account under that email address?") +
+                             " textStatus: " + textStatus + " errorThrown: " +
+                             errorThrown;
+                         }
+                         displayErrBox(msg);
                        }
                    }
                    });
@@ -68,3 +72,4 @@ function initBrowserID(win, ctx) {
         });});
 }
 $(document).ready(function () {initBrowserID(window);});
+
