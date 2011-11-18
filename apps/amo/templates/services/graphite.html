@@ -65,6 +65,7 @@
       <li><a href="#celery">Celery</a></li>
       <li><a href="#guid-search">GUID Search Perf</a></li>
       <li><a href="#update">Update</a></li>
+      <li><a href="#verify">Verify</a></li>
       <li><a href="#homepage">Homepage</a></li>
       <li><a href="#search">Search</a></li>
       <li><a href="#search-suggestions">Search Suggestions</a></li>
@@ -112,6 +113,11 @@
     <h2 id="update">Update</h2>
     {% call grid() %}
       target=stats.timers.{{ site }}.services.update.lower&target=stats.timers.{{ site }}.services.update.mean&target=stats.timers.{{ site }}.services.update.upper_90&target=scale(stats.timers.{{ site }}.services.update.count%2C%200.01)
+    {% endcall %}
+
+    <h2 id="verify">Verify</h2>
+    {% call grid() %}
+      target=stats.timers.{{ site }}.services.verify.lower&target=stats.timers.{{ site }}.services.verify.mean&target=stats.timers.{{ site }}.services.verify.upper_90&target=scale(stats.timers.{{ site }}.services.verify.count%2C%200.01)
     {% endcall %}
 
     <h2 id="homepage">Homepage</h2>
