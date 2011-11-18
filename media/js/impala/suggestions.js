@@ -228,7 +228,7 @@ $.fn.searchSuggestions = function(results) {
         if (fieldFocused(e)) {
             return;
         }
-        if (e.which == 16 || e.which == 83) {
+        if (e.which == 83) {
             $self.focus();
         }
     });
