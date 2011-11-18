@@ -1,7 +1,6 @@
-{% if WEBAPPS %}
-  {% set search_url = url('apps.search') %}
-{% else %}
-  {% set search_url = url('search.search') %}
+{% set search_url = url('apps.search' if WEBAPPS else 'search.search') %}
+{% if not search_placeholder and not search_cat %}
+  {% set search_placeholder = 'apps' if WEBAPPS else 'all' %}
 {% endif %}
 {% set search_form = SimpleSearchForm(request, search_cat) %}
 <form id="search" action="{{ search_url }}">

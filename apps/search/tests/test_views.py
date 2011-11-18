@@ -2,10 +2,11 @@
 import json
 import urlparse
 
+from django.conf import settings
 from django.http import QueryDict
 from django.test import client
 
-from mock import Mock
+from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -484,7 +485,7 @@ def test_search_redirects():
 
 
 class TestWebappSearch(amo.tests.ESTestCase):
-    fixtures = ['base/apps', 'webapps/337141-steamcube']
+    fixtures = ['base/apps', 'webapps/337141-steamcube', 'tags/tags']
 
     def setUp(self):
         self.url = reverse('apps.search')
@@ -593,6 +594,22 @@ class TestWebappSearch(amo.tests.ESTestCase):
                                           type=amo.ADDON_WEBAPP)
         self.check_cat_filters(dict(atype=amo.ADDON_EXTENSION, cat=ext_cat.id))
         self.check_cat_filters(dict(atype=amo.ADDON_EXTENSION, cat=app_cat.id))
+
+    @patch.object(settings, 'APP_PREVIEW', True)
+    def test_tags(self):
+        # TODO(apps): Kill this test when we deal with app tags.
+        for url in (urlparams(self.url, tag='sky'),
+                    reverse('tags.detail', args=['sky'])):
+            r = self.client.get(url)
+            doc = pq(r.content)
+            assert doc('#site-nav').hasClass('app-nav'), (
+                'Expected apps header for %s' % url)
+            eq_(doc('#category-facets li.selected > a').text(), 'All Apps')
+            assert not doc('#compat-facets'), (
+                'Unexpected compatibility facets for %s' % url)
+            attrs = doc('#tag-facets li.selected > a').attr('data-params')
+            eq_(json.loads(attrs), dict(tag='sky', page=None),
+                'Invalid data-params on tag links for %s: %s' % (url, attrs))
 
 
 class TestAjaxSearch(amo.tests.ESTestCase):

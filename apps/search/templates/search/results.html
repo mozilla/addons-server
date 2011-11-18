@@ -4,12 +4,6 @@
   {{ 'pjax' if waffle.switch('ajax-search') }} {{ super() }}
 {% endblock %}
 
-{% block search_form %}
-  {% with skip_autofill=True %}
-    {% include 'impala/search.html' %}
-  {% endwith %}
-{% endblock %}
-
 {% if query.q %}
   {# L10n: {0} is a search term, such as Firebug. #}
   {% set title = _('{0} :: Search')|f(query.q) %}

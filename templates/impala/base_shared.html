@@ -1,1 +1,4 @@
+{% if webapp %}
+  {% set WEBAPPS = True %}
+{% endif %}
 {% extends "webapps/base.html" if WEBAPPS else "impala/base.html" %}

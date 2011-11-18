@@ -447,10 +447,13 @@ def name_query(q):
 
 @mobile_template('search/{mobile/}results.html')
 @vary_on_headers('X-PJAX')
-def app_search(request, template=None):
+def app_search(request, tag_name=None, template=None):
     form = ESSearchForm(request.GET.copy() or {}, type=amo.ADDON_WEBAPP)
     form.is_valid()  # Let the form try to clean data.
     query = form.cleaned_data
+    # TODO(apps): We should figure out if we really want tags for apps.
+    if tag_name:
+        query['tag'] = tag_name
     qs = (Webapp.search().query(or_=name_query(query['q']))
           .filter(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
                   is_disabled=False)
@@ -479,7 +482,7 @@ def app_search(request, template=None):
         'sorting': sort_sidebar(request, query, form),
         'sort_opts': form.fields['sort'].choices,
         'sort': query.get('sort'),
-        'search_placeholder': 'apps',
+        'webapp': True,
     }
     if not ctx['is_pjax']:
         ctx.update({

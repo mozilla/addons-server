@@ -78,7 +78,10 @@
           </nav>
           <div class="header-search" role="search">
             {% block search_form %}
-            {% include 'impala/search.html' %}
+              {# Get this in scope. #}
+              {% with WEBAPPS=WEBAPPS %}
+                {% include 'impala/search.html' %}
+              {% endwith %}
             {% endblock %}
           </div>
           <div id="masthead">
