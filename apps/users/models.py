@@ -146,8 +146,17 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
     @amo.cached_property
     def addons_listed(self):
         """Public add-ons this user is listed as author of."""
-        return self.addons.reviewed().filter(addonuser__user=self,
-                                             addonuser__listed=True)
+        addons = self.addons.reviewed().filter(addonuser__user=self,
+                                               addonuser__listed=True)
+        if settings.APP_PREVIEW:
+            addons = addons.exclude(type=amo.ADDON_WEBAPP)
+        return addons
+
+    @amo.cached_property
+    def apps_listed(self):
+        """Public apps this user is listed as author of."""
+        return self.addons.reviewed().filter(
+            addonuser__user=self, addonuser__listed=True, type=amo.ADDON_WEBAPP)
 
     def my_addons(self, n=8):
         """Returns n addons (anything not a webapp)"""

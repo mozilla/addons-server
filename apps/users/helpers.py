@@ -61,8 +61,10 @@ def _user_link(user):
 
 
 @register.filter
-def user_vcard(user, table_class='person-info', is_profile=False):
-    c = {'profile': user, 'table_class': table_class, 'is_profile': is_profile}
+def user_vcard(user, table_class='person-info', is_profile=False,
+               webapp=False):
+    c = {'profile': user, 'table_class': table_class, 'is_profile': is_profile,
+         'webapp': webapp}
     t = env.get_template('users/vcard.html').render(**c)
     return jinja2.Markup(t)
 

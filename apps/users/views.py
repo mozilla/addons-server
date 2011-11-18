@@ -447,27 +447,29 @@ def logout(request):
 
 
 def profile(request, user_id):
+    webapp = settings.APP_PREVIEW
     user = get_object_or_404(UserProfile, id=user_id)
 
     # Get user's own and favorite collections, if they allowed that.
-    if user.display_collections:
-        own_coll = (Collection.objects.listed().filter(author=user)
-                    .order_by('-created'))[:10]
-    else:
-        own_coll = []
-    if user.display_collections_fav:
-        fav_coll = (Collection.objects.listed().filter(following__user=user)
-                    .order_by('-following__created'))[:10]
-    else:
-        fav_coll = []
+    own_coll = fav_coll = []
+    if not webapp:
+        if user.display_collections:
+            own_coll = (Collection.objects.listed().filter(author=user)
+                        .order_by('-created'))[:10]
+        if user.display_collections_fav:
+            fav_coll = (Collection.objects.listed()
+                        .filter(following__user=user)
+                        .order_by('-following__created'))[:10]
+
 
     edit_any_user = acl.action_allowed(request, 'Admin', 'EditAnyUser')
     own_profile = (request.user.is_authenticated() and
                    request.amo_user.id == user.id)
 
     if user.is_developer:
+        items = user.apps_listed if webapp else user.addons_listed
         addons = amo.utils.paginate(request,
-            user.addons_listed.order_by('-weekly_downloads'))
+                                    items.order_by('-weekly_downloads'))
     else:
         addons = []
 
@@ -482,7 +484,8 @@ def profile(request, user_id):
 
     data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
             'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
-            'addons': addons, 'own_profile': own_profile}
+            'addons': addons, 'own_profile': own_profile,
+            'webapp': webapp}
     if not own_profile:
         data['abuse_form'] = AbuseForm(request=request)
 

@@ -30,13 +30,15 @@
     <img class="avatar" src="{{ profile.picture_url }}"
          {% if not profile.picture_type %}alt="{{ _('No Photo') }}"{% endif %}>
     {% if profile.is_developer %}
-      <div class="user-role"><p>{{ _('Add-ons Developer') }}</p></div>
+      <div class="user-role"><p>
+        {{ loc('Apps Developer') if webapp else _('Add-ons Developer') }}
+      </p></div>
     {% endif %}
   </aside>
   <section class="primary">
     <h2>{{ _('About me') }}</h2>
     <div class="vcard">
-      {{ profile|user_vcard(is_profile=True) }}
+      {{ profile|user_vcard(is_profile=True, webapp=webapp) }}
     </div>
     <div class="prose">
       {% if profile.bio %}
@@ -49,7 +51,7 @@
 
 {% if addons.object_list %}
   <div id="my-addons" class="island primary listing c">
-    <h2>{{ _("Add-ons I've created") }}</h2>
+    <h2>{{ loc("Apps I've created") if webapp else _("Add-ons I've created") }}</h2>
     {% cache addons.object_list %}
       <div class="items">
         {{ impala_addon_listing_items(addons.object_list, field=sorting, src='userprofile') }}
@@ -85,7 +87,9 @@
       {% endfor %}
       {{ edit_review_form() }}
     {% else %}
-      <p class="no-reviews">{{ _('No add-on reviews yet.') }}</p>
+      <p class="no-reviews no-results">
+        {{ loc('No app reviews yet.') if webapp else _('No add-on reviews yet.') }}
+      </p>
     {% endif %}
   </div>
 {% endcache %}

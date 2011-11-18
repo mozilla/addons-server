@@ -35,19 +35,41 @@
       <td>{{ profile.created|datetime }}</td>
     </tr>
     <tr>
-      <th>{{ _('Number of add-ons developed') }}</th>
+      <th>
+        {% if webapp %}
+          {{ _('Number of apps developed') }}
+        {% else %}
+          {{ _('Number of add-ons developed') }}
+        {% endif %}
+      </th>
       <td class="num-addons">
         <a href="{{ '#my-addons' if is_profile else profile.get_url_path() }}">
-          {% trans num=profile.addons_listed|length %}
-            {{ num }} add-on
-          {% pluralize %}
-            {{ num }} add-ons
-          {% endtrans -%}
+          {% if webapp %}
+            {% with num=profile.apps_listed|length %}
+              {% if num == 1 %}
+                {{ loc('{0} app')|f(num) }}
+              {% else %}
+                {{ loc('{0} apps')|f(num) }}
+              {% endif %}
+            {% endwith %}
+          {% else %}
+            {% trans num=profile.addons_listed|length %}
+              {{ num }} add-on
+            {% pluralize %}
+              {{ num }} add-ons
+            {% endtrans -%}
+          {% endif %}
         </a>
       </td>
     </tr>
     <tr>
-      <th>{{ _('Average rating for their add-ons') }}</th>
+      <th>
+        {% if webapp %}
+          {{ _('Average rating for their apps') }}
+        {% else %}
+          {{ _('Average rating for their add-ons') }}
+        {% endif %}
+      </th>
       <td>{{ profile.averagerating|float|stars }}</td>
     </tr>
   </tbody>
