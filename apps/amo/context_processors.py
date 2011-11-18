@@ -66,12 +66,12 @@ def global_settings(request):
             'href': remora_url('/users/logout?to=' + urlquote(request.path)),
         })
 
-        if request.amo_user.is_developer:
-            tools_links.append({'text': _('Manage My Add-ons'),
-                                'href': reverse('devhub.addons')})
-
-        tools_links.append({'text': _('Submit a New Add-on'),
-                            'href': reverse('devhub.submit.1')})
+        if not settings.APP_PREVIEW:
+            if request.amo_user.is_developer:
+                tools_links.append({'text': _('Manage My Add-ons'),
+                                    'href': reverse('devhub.addons')})
+            tools_links.append({'text': _('Submit a New Add-on'),
+                                'href': reverse('devhub.submit.1')})
 
         if waffle.flag_is_active(request, 'accept-webapps'):
             if request.amo_user.is_developer:
