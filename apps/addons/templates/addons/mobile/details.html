@@ -74,7 +74,7 @@
           <td>{{ addon.average_daily_users|numberfmt }}</td>
         </tr>
       {% endif %}
-      {% if not addon.show_adu() or addon.weekly_downloads %}
+      {% if addon.weekly_downloads %}
         <tr class="downloads">
           <th>{{ _('Weekly Downloads') }}</th>
           <td>{{ addon.weekly_downloads|numberfmt }}</td>
