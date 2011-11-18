@@ -3,7 +3,7 @@ WWW_DIR = "/data/addons-dev/www/addons-dev.allizom.org/zamboni"
 
 REMORA_DIR = "/data/addons-dev/src/addons-dev.allizom.org-remora"
 
-REMOTE_WSGI = "/data/www/addons-dev.allizom.org/zamboni/wsgi/zamboni.wsgi"
+REMOTE_APP = "/data/www/addons-dev.allizom.org/zamboni"
 REMOTE_UPDATE_SCRIPT = "/data/bin/update-www.sh"
 
 CELERY_SERVICE_PREFIX = "celeryd-dev"
