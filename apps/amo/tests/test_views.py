@@ -52,10 +52,16 @@ class TestCommon(amo.tests.TestCase):
                 'base/addon_3615')
 
     def setUp(self):
+        self.url = reverse('home')
         # TODO: Remove when `accept-webapps` flag is gone.
         self.patcher = mock.patch('waffle.flag_is_active')
         self.patcher.start().return_value = True
         self.addCleanup(self.patcher.stop)
+
+    def login(self, user):
+        user = UserProfile.objects.get(email='%s@mozilla.com' % user)
+        self.client.login(username=user.email, password='password')
+        return user
 
     @mock.patch.object(settings, 'READ_ONLY', False)
     def test_balloons_no_readonly(self):
@@ -76,12 +82,12 @@ class TestCommon(amo.tests.TestCase):
         eq_(doc('#site-noinstall-apps').length, 0)
 
     def test_tools_loggedout(self):
-        r = self.client.get(reverse('home'), follow=True)
+        r = self.client.get(self.url, follow=True)
         eq_(pq(r.content)('#aux-nav .tools').length, 0)
 
     def test_tools_regular_user(self):
-        self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.get(reverse('home'), follow=True)
+        self.login('regular')
+        r = self.client.get(self.url, follow=True)
         eq_(r.context['request'].amo_user.is_developer, False)
 
         expected = [
@@ -95,11 +101,10 @@ class TestCommon(amo.tests.TestCase):
 
     def test_tools_developer(self):
         # Make them a developer.
-        user = UserProfile.objects.get(email='regular@mozilla.com')
+        user = self.login('regular')
         AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
 
-        self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.get(reverse('home'), follow=True)
+        r = self.client.get(self.url, follow=True)
         eq_(r.context['request'].amo_user.is_developer, True)
 
         expected = [
@@ -114,8 +119,8 @@ class TestCommon(amo.tests.TestCase):
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
 
     def test_tools_editor(self):
-        self.client.login(username='editor@mozilla.com', password='password')
-        r = self.client.get(reverse('home'), follow=True)
+        self.login('editor')
+        r = self.client.get(self.url, follow=True)
         request = r.context['request']
         eq_(request.amo_user.is_developer, False)
         eq_(acl.action_allowed(request, 'Editors', '%'), True)
@@ -132,11 +137,10 @@ class TestCommon(amo.tests.TestCase):
 
     def test_tools_developer_and_editor(self):
         # Make them a developer.
-        user = UserProfile.objects.get(email='editor@mozilla.com')
+        user = self.login('editor')
         AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
 
-        self.client.login(username='editor@mozilla.com', password='password')
-        r = self.client.get(reverse('home'), follow=True)
+        r = self.client.get(self.url, follow=True)
         request = r.context['request']
         eq_(request.amo_user.is_developer, True)
         eq_(acl.action_allowed(request, 'Editors', '%'), True)
@@ -154,8 +158,8 @@ class TestCommon(amo.tests.TestCase):
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
 
     def test_tools_admin(self):
-        self.client.login(username='admin@mozilla.com', password='password')
-        r = self.client.get(reverse('home'), follow=True)
+        self.login('admin')
+        r = self.client.get(self.url, follow=True)
         request = r.context['request']
         eq_(request.amo_user.is_developer, False)
         eq_(acl.action_allowed(request, 'Editors', '%'), True)
@@ -176,11 +180,10 @@ class TestCommon(amo.tests.TestCase):
 
     def test_tools_developer_and_admin(self):
         # Make them a developer.
-        user = UserProfile.objects.get(email='admin@mozilla.com')
+        user = self.login('admin')
         AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
 
-        self.client.login(username='admin@mozilla.com', password='password')
-        r = self.client.get(reverse('home'), follow=True)
+        r = self.client.get(self.url, follow=True)
         request = r.context['request']
         eq_(request.amo_user.is_developer, True)
         eq_(acl.action_allowed(request, 'Editors', '%'), True)
@@ -213,11 +216,11 @@ class TestCommon(amo.tests.TestCase):
         title_eq('/mobile', 'Mobile', 'Mobile Add-ons')
 
     def test_xenophobia(self):
-        r = self.client.get(reverse('home'), follow=True)
+        r = self.client.get(self.url, follow=True)
         self.assertNotContains(r, 'show only English (US) add-ons')
 
     def test_login_link(self):
-        r = self.client.get(reverse('home'), follow=True)
+        r = self.client.get(self.url, follow=True)
         doc = PyQuery(r.content)
         next = urllib.urlencode({'to': '/en-US/firefox/'})
         eq_('/en-US/firefox/users/login?%s' % next,

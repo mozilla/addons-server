@@ -83,13 +83,10 @@ section:after,
 /*             TYPOGRAPHY           */
 /************************************/
 
-h1, h2, h3,
-.copy, .paginator,
-.moz-menu {
+body {
     font-family: Georgia, serif;
 }
 a:link {
-    font-family: Georgia, serif;
     color: #447bc4;
     text-decoration: none;
 }
@@ -263,254 +260,13 @@ table th {
 .paginator .prev a:before {
     content: ' \00ab';
 }
-/************************************/
-/*              HEADER              */
-/************************************/
-#home-header,
-.mini-header {
-    margin: 0 14px;
-}
-.moz-menu {
-    -moz-transition: .5s top ease;
-    -webkit-transition: .5s top ease;
-    position: relative;
-    top: 0;
-    z-index: 100;
-}
-.moz-menu .tab {
-    border-radius: 0 0 6px 6px;
-    -moz-border-radius: 0 0 6px 6px;
-    -webkit-border-radius: 0 0 6px 6px;
-    box-shadow: 0 -3px rgba(0,0,0,.2) inset;
-    -moz-box-shadow: 0 -3px rgba(0,0,0,.2) inset;
-    -webkit-box-shadow: 0 -3px rgba(0,0,0,.2) inset;
-}
-.moz-menu .tab a {
-    background: url(../../img/zamboni/global/wordmark.png) no-repeat 8px 6px;
-    display: block;
-    height: 30px;
-    line-height: 22px;
-    text-align: right;
-    color: white;
-    font-style: italic;
-    padding: 8px 25px;
-}
-.mini-header .moz-menu .tab {
-    width: 104px;
-    float: right;
-    overflow: hidden;
-    position: relative;
-}
-.html-rtl .mini-header .moz-menu .tab {
-    float: left;
-}
-.mini-header .moz-menu .tab a {
-    text-indent: -9999px;
-    text-align: left;
-}
-.html-rtl .mini-header .moz-menu .tab a {
-    text-indent: 9999px;
-}
-.moz-menu .menu-items li {
-    border-bottom: 1px solid #294976;
-    border-top: 1px solid #537ab4;
-    background-color: #3a67af;
-/*    background-image: -moz-linear-gradient(#3a67af, #385eaa);
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#3a67af), to(#385eaa));
-*/    height: 50px;
-    width: 100%;
-    padding: 0 14px;
-}
-.moz-menu .menu-items a {
-    font-family: "Trebuchet MS", "Droid Sans", Helvetica, Arial, sans-serif;
-    color: white;
-    font-size: 17px;
-    text-transform: uppercase;
-    font-weight: bold;
-    display: block;
-    height: 26px;
-    line-height: 26px;
-    padding: 12px 0;
-}
-.moz-menu .menu-items {
-    position: absolute;
-    width: 100%;
-    left: -14px;
-    right: -14px;
-    bottom: 46px;
-}
-.mini-header .moz-menu .menu-items {
-    bottom: 0;
-}
-
-.moz-menu .tab a:after {
-    top: 18px;
-    border: 6px solid transparent;
-    border-top-color: white;
-}
-
-.moz-menu.expand .tab a:after {
-    -moz-transform: rotate(180deg);
-    -webkit-transform: rotate(180deg);
-}
-.moz-menu.expand {
-    top: 312px;
-}
-
-header hgroup {
-    margin: 8px 0;
-    position: relative;
-    padding-left: 80px;
-}
-.html-rtl header hgroup {
-    padding-left: 0;
-    padding-right: 80px;
-}
-.html-rtl .mini-header hgroup {
-    padding-right: 0;
-}
-header ul {
-    overflow: hidden;
-}
-header li {
-    float: left;
-}
-header li.purchases {
-    float: right;
-}
-.html-rtl header li {
-    float: right;
-}
-.html-rtl header li.purchases {
-    float: left;
-}
-header ul a {
-    color: #447BC4;
-    display: block;
-    padding: 14px 0;
-    line-height: 14px;
-}
-.mini-header .site-title {
-    padding: 4px 120px 0 0;
-}
-.html-rtl .mini-header .site-title {
-    padding: 4px 0 0 120px;
-}
-.mini-header .site-title a {
-    font-size: 28px;
-    line-height: 50px;
-}
-#home-header hgroup {
-    min-height: 75px;
-    margin-bottom: 8px;
-}
-.mini-header hgroup {
-    margin-top: 0;
-    padding: 2px 0 0;
-}
-#home-header h1 {
-    padding-top: 4px;
-}
-#home-header h2 {
-    margin: 4px 0;
-    color: #666;
-}
-#home-header .site-title img {
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-.html-rtl #home-header .site-title img {
-    left: auto;
-    right: 0;
-}
-.site-title a {
-    text-decoration: none;
-    color: black;
-    font-family: Georgia, serif;
-    text-transform: uppercase;
-    font-size: 36px;
-    line-height: 32px;
-}
-.site-title span {
-    display: block;
-}
-.mini-header .site-title img {
-    float: left;
-    height: 50px;
-    margin-right: 6px;
-}
-.html-rtl .mini-header .site-title img {
-    float: right;
-    margin: 0 0 0 6px;
-}
-#home-header #search {
-    margin: 0;
-}
-#learnmore-msg {
-    position: absolute;
-    left: 0;
-    margin: 12px 14px 0;
-    max-width: 260px;
-    color: white;
-    font-family: sans-serif;
-    line-height: 1.2em;
-    font-size: 14px;
-    padding: 14px;
-    z-index: 100;
-    -moz-border-radius: 1em;
-    -webkit-border-radius: 1em;
-    border-radius: 1em;
-    background: #444;
-    opacity: 0;
-    pointer-events: none;
-    -moz-transition: .3s opacity ease;
-    -webkit-transition: .3s opacity ease;
-    box-shadow: 0 0 3px #000;
-    -moz-box-shadow: 0 0 3px #000;
-    -webkit-box-shadow: 0 0 3px #000;
-}
-#learnmore-msg.show {
-    opacity: 1;
-    pointer-events: auto;
-}
-#learnmore {
-    color: #447BC4;
-    padding: 4px 0;
-}
-#learnmore-msg:after {
-    content: "\00a0";
-    display: block;
-    position: absolute;
-    z-index: 100;
-    top: -28px;
-    left: 94px;
-    width: 0;
-    height: 0;
-    border: 15px solid transparent;
-    border-bottom-color: #444;
-    pointer-events: none;
-}
-
-.get-fx-message {
-    border: 1px solid #e3873b;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    border-radius: 6px;
-    background: #fcefb7 url(../../img/zamboni/icons/alert-32x32.png) 11px center no-repeat;
-    margin-top: 12px;
-    font-size: 105%;
-    clear: both;
-    display: none;
-    line-height: 1.1em;
-    padding: 12px 12px 10px 56px;
-}
 
 /************************************/
 /*              SEARCH              */
 /************************************/
 
 #search {
+    clear: both;
     margin-bottom: 14px;
     width: 100%;
     position: relative;
@@ -590,6 +346,7 @@ header ul a {
 
 #sort-menu {
     -moz-box-align: center;
+    padding: 0 14px;
 }
 
 #sort-menu ul {
@@ -626,8 +383,8 @@ header ul a {
 
 #sort-menu .label {
     color: #888;
-    padding-left: 14px;
 }
+
 #sort-menu .label span {
     position: relative;
     display: inline-block;

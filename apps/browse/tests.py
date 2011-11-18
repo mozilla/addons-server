@@ -29,6 +29,7 @@ from browse import views, feeds
 from browse.views import locale_display_name, AddonFilter, ThemeFilter
 from translations.models import Translation
 from translations.query import order_by_translation
+from users.models import UserProfile
 from versions.models import Version
 
 
@@ -1369,6 +1370,43 @@ class TestMobileExtensions(TestMobile):
         self.assertTemplateUsed(r, 'addons/listing/items_mobile.html')
         eq_(r.context['category'], cat)
         eq_(pq(r.content)('.addon-listing .listview').length, 1)
+
+
+class TestMobileHeader(amo.tests.MobileTest, amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.url = reverse('browse.extensions')
+
+    def get_pq(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        return pq(r.content.decode('utf-8'))
+
+    def test_header(self):
+        nav = self.get_pq()('#auth-nav')
+        eq_(nav.length, 1)
+        eq_(nav.find('li.purchases').length, 0)
+        eq_(nav.find('li.register').length, 1)
+        eq_(nav.find('li.login').length, 1)
+
+    def test_header_logged(self):
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.client.login(username=user.email, password='password')
+        nav = self.get_pq()('#auth-nav')
+        eq_(nav.length, 1)
+
+        li = nav.find('li.user')
+        eq_(li.length, 1)
+        eq_(li.text(), user.welcome_name)
+
+        li = nav.find('li.purchases')
+        eq_(li.length, 1)
+        eq_(li.find('a').attr('href'), reverse('users.purchases'))
+
+        li = nav.find('li.logout')
+        eq_(li.length, 1)
+        eq_(li.find('a').attr('href'), reverse('users.logout'))
 
 
 class TestMobilePersonas(TestMobile):

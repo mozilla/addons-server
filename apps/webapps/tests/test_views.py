@@ -12,7 +12,7 @@ import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
 from addons.tests.test_views import add_addon_author, test_hovercards
-from browse.tests import test_listing_sort, test_default_sort
+from browse.tests import test_listing_sort, test_default_sort, TestMobileHeader
 from django.utils.encoding import iri_to_uri
 from sharing import SERVICES
 from translations.helpers import truncate
@@ -197,18 +197,29 @@ class TestDetail(WebappTest):
 
 class TestMobileListing(amo.tests.MobileTest, WebappTest):
 
-    def test_listing(self):
+    def get_res(self):
         r = self.client.get(reverse('apps.list'))
         eq_(r.status_code, 200)
+        return r, pq(r.content)
+
+    def test_listing(self):
+        r, doc = self.get_res()
         self.assertTemplateUsed(r, 'browse/mobile/extensions.html')
-        item = pq(r.content)('.item')
+        item = doc('.item')
         eq_(item.length, 1)
         eq_(item.find('h3').text(), 'woo')
 
     def test_listing_downloads(self):
-        r = self.client.get(reverse('apps.list'))
-        dls = pq(r.content)('.item').find('details .vital.downloads')
+        r, doc = self.get_res()
+        dls = doc('.item').find('details .vital.downloads')
         eq_(dls.text().split()[0], numberfmt(self.webapp.weekly_downloads))
+
+
+class TestMobileAppHeader(TestMobileHeader):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.url = reverse('apps.list')
 
 
 class TestMobileDetail(amo.tests.MobileTest, WebappTest):
