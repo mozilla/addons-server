@@ -712,9 +712,6 @@ def paypal_start(request, addon=None):
             'download': download}
 
     if request.user.is_authenticated():
-        if addon.has_installed(request.amo_user):
-            data['receipt'] = (addon.installed
-                                    .get(user=request.amo_user).receipt)
         return jingo.render(request, 'addons/paypal_start.html', data)
 
     from users.views import _login

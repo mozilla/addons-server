@@ -347,3 +347,14 @@ def theme_grid(context, themes, src=None, dl_src=None):
 @jinja2.contextfunction
 def addon_report_abuse(context, hide, addon):
     return new_context(**locals())
+
+
+@register.function
+def addon_receipt(request, addon):
+    amo_user, user = request.amo_user, request.user
+    if user.is_authenticated():
+        if addon.has_installed(amo_user):
+            if ((addon.is_premium() and addon.has_purchased(amo_user))
+                or not addon.is_premium()):
+                return addon.installed.get(user=amo_user).receipt
+    return ''

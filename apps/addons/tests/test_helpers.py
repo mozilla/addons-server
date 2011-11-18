@@ -6,7 +6,7 @@ import amo
 import amo.tests
 from addons.helpers import (statusflags, flag, support_addon, contribution,
                             performance_note, mobile_persona_preview,
-                            mobile_persona_confirm)
+                            mobile_persona_confirm, addon_receipt)
 from addons.models import Addon
 
 
@@ -155,3 +155,32 @@ class TestPerformanceNote(amo.tests.TestCase):
         self.ctx['request'].APP = amo.THUNDERBIRD
         r = performance_note(self.ctx, 30)
         eq_(r.strip(), '')
+
+
+class TestAddonReceipt(amo.tests.TestCase):
+
+    def setUp(self):
+        self.request = Mock()
+        self.addon = Mock()
+        self.request.user.is_authenticated.return_value = True
+
+    def test_not_auth(self):
+        self.request.user.is_authenticated.return_value = False
+        eq_(addon_receipt(self.request, self.addon), '')
+
+    def test_auth_premium_not_purchased(self):
+        self.addon.is_premium.return_value = True
+        self.addon.has_installed.return_value = True
+        self.addon.has_purchased.return_value = False
+        eq_(addon_receipt(self.request, self.addon), '')
+
+    def test_auth_not_premium(self):
+        self.addon.is_premium.return_value = False
+        self.addon.has_installed.return_value = True
+        assert addon_receipt(self.request, self.addon)
+
+    def test_auth_premium_purchased(self):
+        self.addon.is_premium.return_value = True
+        self.addon.has_installed.return_value = True
+        self.addon.has_purchased.return_value = True
+        assert addon_receipt(self.request, self.addon)

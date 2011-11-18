@@ -434,11 +434,7 @@ def setup_premium(addon):
     return addon, price
 
 
-# TODO: remove when the marketplace is live.
-@patch.object(waffle, 'switch_is_active', lambda x: True)
-# TODO: figure out why this is being set
-@patch.object(settings, 'LOGIN_RATELIMIT_USER', 10)
-class TestPaypalStart(amo.tests.TestCase):
+class PaypalStart(amo.tests.TestCase):
     fixtures = ['users/test_backends', 'base/addon_3615']
 
     def get_profile(self):
@@ -451,6 +447,11 @@ class TestPaypalStart(amo.tests.TestCase):
         self.addon = Addon.objects.all()[0]
         self.url = shared_url('addons.purchase.start', self.addon)
         self.addon, self.price = setup_premium(self.addon)
+
+
+@patch.object(waffle, 'switch_is_active', lambda x: True)
+@patch.object(settings, 'LOGIN_RATELIMIT_USER', 10)
+class TestPaypalStart(PaypalStart):
 
     def test_loggedout_purchased(self):
         # "Buy" the add-on
@@ -474,6 +475,7 @@ class TestPaypalStart(amo.tests.TestCase):
 
         # "Buy" the add-on
         self.addon.addonpurchase_set.create(user=self.get_profile())
+        self.addon.installed.create(user=self.get_profile())
 
         r = self.client.get_ajax(self.url)
         eq_(r.status_code, 200)
@@ -512,6 +514,50 @@ class TestPaypalStart(amo.tests.TestCase):
         eq_(Installed.objects.count(), 0)
         self.test_loggedin_notpurchased()
         eq_(Installed.objects.count(), 0)
+
+
+@patch.object(waffle, 'switch_is_active', lambda x: True)
+@patch.object(settings, 'LOGIN_RATELIMIT_USER', 10)
+@patch('webapps.models.create_receipt', lambda x: 'receipt')
+class TestPaypalStartReceipt(PaypalStart):
+
+    def setUp(self):
+        super(TestPaypalStartReceipt, self).setUp()
+        self.addon.update(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
+                          premium_type=amo.ADDON_PREMIUM,
+                          app_slug='foo', manifest_url='http://fooy.com')
+
+    def test_loggedout_purchased(self):
+        self.addon.addonpurchase_set.create(user=self.get_profile())
+        self.addon.installed.create(user=self.get_profile())
+
+        # Make sure we get a log in field
+        r = self.client.get_ajax(self.url)
+        eq_(r.status_code, 200)
+        assert pq(r.content).find('#id_username').length
+
+        # Now, let's log in.
+        res = self.client.post_ajax(self.url, data=self.data)
+        eq_(res.status_code, 200)
+
+        # Are we presented with a link to the download?
+        link = pq(res.content).find('.trigger_app_install')
+        eq_(link.attr('data-receipt'), 'receipt')
+
+    def test_loggedin_purchased(self):
+        # Log the user in
+        assert self.client.login(**self.data)
+
+        # "Buy" the add-on
+        self.addon.addonpurchase_set.create(user=self.get_profile())
+        self.addon.installed.create(user=self.get_profile())
+
+        res = self.client.get_ajax(self.url)
+        eq_(res.status_code, 200)
+
+        # This only happens if we've bought it.
+        link = pq(res.content).find('.trigger_app_install')
+        eq_(link.attr('data-receipt'), 'receipt')
 
 
 class TestDeveloperPages(amo.tests.TestCase):
