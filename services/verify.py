@@ -7,6 +7,7 @@ from utils import (log_exception, log_info, mypool, settings,
                    CONTRIB_CHARGEBACK, CONTRIB_PURCHASE, CONTRIB_REFUND)
 
 import jwt
+import M2Crypto
 # This has to be imported after the settings (utils).
 from statsd import statsd
 
@@ -29,8 +30,8 @@ class Verify:
         # information.
         try:
             receipt = decode_receipt(self.receipt)
-        except jwt.DecodeError:
-            self.log('Error decoding receipt')
+        except (jwt.DecodeError, M2Crypto.RSA.RSAError), e:
+            self.log('Error decoding receipt: %s' % e)
             return self.invalid()
 
         # 2. Get the addon and user information from the

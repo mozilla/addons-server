@@ -15,6 +15,8 @@ from users.models import UserProfile
 from stats.models import Contribution
 
 import json
+import jwt
+import M2Crypto
 import mock
 
 
@@ -55,6 +57,9 @@ class TestVerify(amo.tests.TestCase):
 
     def test_invalid_receipt(self):
         eq_(self.get_decode(1, 'blah')['status'], 'invalid')
+
+    def test_invalid_signature(self):
+        eq_(self.get_decode(1, 'blah.blah.blah')['status'], 'invalid')
 
     def test_no_user(self):
         eq_(self.get(1, {})['status'], 'invalid')
@@ -103,3 +108,9 @@ class TestVerify(amo.tests.TestCase):
         receipt = self.make_install().receipt
         result = verify.decode_receipt(receipt)
         eq_(result['typ'], u'purchase-receipt')
+
+    def test_crack_borked_receipt(self):
+        self.addon.update(type=amo.ADDON_WEBAPP, manifest_url='http://a.com')
+        receipt = self.make_install().receipt
+        self.assertRaises(M2Crypto.RSA.RSAError, verify.decode_receipt,
+                          receipt + 'x')
