@@ -24,6 +24,7 @@ import addons.forms
 import paypal
 from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
                            BlacklistedSlug, Charity, Preview)
+from amo.helpers import loc
 from amo.forms import AMOModelForm
 from amo.urlresolvers import reverse
 from amo.utils import raise_required, slugify
@@ -967,6 +968,15 @@ def _paypal_url(addon):
     return url
 
 
+UPSELL_CHOICES = (
+    (0, _("I don't have a free add-on to associate.")),
+    (1, _('This is a premium upgrade to:')),
+)
+APP_UPSELL_CHOICES = (
+    (0, _("I don't have a free app to associate.")),
+    (1, _('This is a premium upgrade to:')),
+)
+
 class PremiumForm(happyforms.Form):
     """
     The premium details for an addon, which is unfortunately
@@ -977,9 +987,7 @@ class PremiumForm(happyforms.Form):
                                    label=_('Add-on price'),
                                    empty_label=None)
     do_upsell = forms.TypedChoiceField(coerce=lambda x: bool(int(x)),
-                                       choices=(
-                        (0, _("I don't have a free add-on to associate.")),
-                        (1, _('This is a premium upgrade to:'))),
+                                       choices=UPSELL_CHOICES,
                                        widget=forms.RadioSelect(),
                                        required=False)
     free = forms.ModelChoiceField(queryset=Addon.objects.none(),
@@ -1009,6 +1017,9 @@ class PremiumForm(happyforms.Form):
             })
 
         super(PremiumForm, self).__init__(*args, **kw)
+        if self.addon.is_webapp():
+            self.fields['price'].label = loc('App price')
+            self.fields['do_upsell'].choices = APP_UPSELL_CHOICES
         self.fields['free'].queryset = (self.extra['amo_user'].addons
                                         .exclude(pk=self.addon.pk)
                                         .filter(premium_type=amo.ADDON_FREE))

@@ -6,8 +6,10 @@
     <div class="brform">
       <label for="id_support_email">{{ form.support_email.label }}</label>
       <div class="extra">
-        {% trans %}The email address used by end users to contact you
-        with support issues and refund requests.{% endtrans %}
+        <p>
+          {% trans %}The email address used by end users to contact you
+          with support issues and refund requests.{% endtrans %}
+        </p>
       </div>
       {{ form.support_email.errors }}
       <div>{{ form.support_email }}</div>

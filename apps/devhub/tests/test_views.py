@@ -987,7 +987,7 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         eq_(self.addon.addonpremium.paypal_permissions_token, 'FOO')
 
     def test_wizard_step_1(self):
-        url = reverse('devhub.market.1', args=[self.addon.slug])
+        url = self.addon.get_dev_url('market.1')
         data = {'paypal_id': 'some@paypal.com', 'support_email': 'a@a.com'}
         eq_(self.client.post(url, data).status_code, 302)
         addon = Addon.objects.get(pk=self.addon.pk)
@@ -995,20 +995,20 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         eq_(addon.support_email, data['support_email'])
 
     def test_wizard_step_1_required_paypal(self):
-        url = reverse('devhub.market.1', args=[self.addon.slug])
+        url = self.addon.get_dev_url('market.1')
         data = {'paypal_id': '', 'support_email': 'a@a.com'}
         eq_(self.client.post(url, data).status_code, 200)
 
     @mock.patch('devhub.forms.PremiumForm.clean_paypal_id')
     def test_wizard_step_1_required_email(self, clean_paypal_id):
-        url = reverse('devhub.market.1', args=[self.addon.slug])
+        url = self.addon.get_dev_url('market.1')
         data = {'paypal_id': 'a@a.com', 'support_email': ''}
         clean_paypal_id.return_value = data['support_email']
         eq_(self.client.post(url, data).status_code, 200)
 
     def test_wizard_step_2(self):
         self.price = Price.objects.create(price='0.99')
-        url = reverse('devhub.market.2', args=[self.addon.slug])
+        url = self.addon.get_dev_url('market.2')
         eq_(self.client.post(url, {'price': self.price.pk}).status_code, 302)
         eq_(Addon.objects.get(pk=self.addon.pk).premium.price.pk,
             self.price.pk)
@@ -1025,7 +1025,7 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
 
     def test_wizard_step_3(self):
         self.setup_premium()
-        url = reverse('devhub.market.3', args=[self.addon.slug])
+        url = self.addon.get_dev_url('market.3')
         self.other_addon = self.add_addon_author(amo.ADDON_FREE)
         data = {
             'free': self.other_addon.pk,
@@ -1038,7 +1038,7 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
     def test_form_only_free(self):
         self.premium = self.add_addon_author(amo.ADDON_PREMIUM)
         self.free = self.add_addon_author(amo.ADDON_FREE)
-        url = reverse('devhub.market.3', args=[self.addon.slug])
+        url = self.addon.get_dev_url('market.3')
         res = self.client.get(url)
         upsell = res.context['form'].fields['free'].queryset.all()
         assert self.free in upsell
@@ -1046,13 +1046,12 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
 
     def test_wizard_no_free(self):
         self.price = Price.objects.create(price='0.99')
-        url = reverse('devhub.market.2', args=[self.addon.slug])
+        url = self.addon.get_dev_url('market.2')
         res = self.client.post(url, {'price': self.price.pk})
-        self.assertRedirects(res, reverse('devhub.market.4',
-                                          args=[self.addon.slug]))
+        self.assertRedirects(res, self.addon.get_dev_url('market.4'))
 
     def test_wizard_step_4_failed(self):
-        url = reverse('devhub.market.4', args=[self.addon.slug])
+        url = self.addon.get_dev_url('market.4')
         assert not self.get_addon().is_premium()
         eq_(self.client.post(url, {}).status_code, 302)
         assert not self.get_addon().is_premium()
@@ -1061,7 +1060,7 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         self.setup_premium()
         self.addon.premium.update(paypal_permissions_token='foo')
         self.addon.update(premium_type=amo.ADDON_FREE)
-        url = reverse('devhub.market.4', args=[self.addon.slug])
+        url = self.addon.get_dev_url('market.4')
         eq_(self.client.post(url, {}).status_code, 302)
         assert self.get_addon().is_premium()
 
@@ -1069,14 +1068,14 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         self.setup_premium()
         self.addon.premium.update(paypal_permissions_token='foo')
         self.addon.update(status=amo.STATUS_UNREVIEWED)
-        url = reverse('devhub.market.4', args=[self.addon.slug])
+        url = self.addon.get_dev_url('market.4')
         self.client.post(url, {})
         eq_(self.get_addon().status, amo.STATUS_NOMINATED)
 
     def test_logs(self):
         self.setup_premium()
         self.addon.premium.update(paypal_permissions_token='foo')
-        url = reverse('devhub.market.4', args=[self.addon.slug])
+        url = self.addon.get_dev_url('market.4')
         eq_(self.client.post(url, {}).status_code, 302)
         eq_(ActivityLog.objects.for_addons(self.addon)[0].action,
             amo.LOG.MAKE_PREMIUM.id)
@@ -1100,8 +1099,7 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
     def test_wizard_denied(self):
         self.addon.update(status=amo.STATUS_PUBLIC)
         for x in xrange(1, 5):
-            url = reverse('devhub.market.%s' % x, args=[self.addon.slug])
-            res = self.client.get(url)
+            res = self.client.get(self.addon.get_dev_url('market.%s' % x))
             eq_(res.status_code, 403)
 
     def test_no_delete_link_premium_addon(self):

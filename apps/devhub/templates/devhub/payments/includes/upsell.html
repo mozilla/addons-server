@@ -2,28 +2,41 @@
 <div class="brform">
   {% if form.fields['free'].queryset.count() %}
     {{ form.do_upsell.errors }}
-    <div>{{ form.do_upsell }}</div>
+    {{ form.do_upsell }}
     <div class="indent">
       {{ form.free.errors }}
-      <div>{{ form.free }}</div>
+      <p>{{ form.free }}</p>
       <div class="extra">
-        {% trans %}
-          Pitch your premium add-on, describing the added benefits
-          and functionality over the free version. This will appear
-          on the free add-on's details page.
-        {% endtrans %}
+        {% if webapp %}
+          {{ loc("Pitch your premium app, describing the added benefits
+                  and functionality over the free version. This will appear
+                  on the free app's details page.") }}
+        {% else %}
+          {% trans %}
+            Pitch your premium add-on, describing the added benefits
+            and functionality over the free version. This will appear
+            on the free add-on's details page.
+          {% endtrans %}
+        {% endif %}
       </div>
       {{ form.text.errors }}
-      <div>{{ form.text }}</div>
+      {{ form.text }}
       {{ some_html_tip() }}
     </div>
   {% else %}
-    <label>{{ _('Add-on upsell') }}</label>
+    <label>{{ loc('App upsell') if webapp else _('Add-on upsell') }}</label>
     <div class="extra">
-      {% trans %}
-        If you have a free add-on, you can pitch your premium add-on
-        on that free add-on. Currently you have no free add-ons.
-      {% endtrans %}
+      {% if webapp %}
+        {% trans %}
+          If you have a free app, you can pitch your premium app
+          on that free app. Currently you have no free apps.
+        {% endtrans %}
+      {% else %}
+        {% trans %}
+          If you have a free add-on, you can pitch your premium add-on
+          on that free add-on. Currently you have no free add-ons.
+        {% endtrans %}
+      {% endif %}
     </div>
   {% endif %}
 </div>

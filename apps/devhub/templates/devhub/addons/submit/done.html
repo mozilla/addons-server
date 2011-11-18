@@ -56,7 +56,7 @@
   <div class="action-needed">
     <h3>{{ _('Enrolling in Marketplace') }}</h3>
     {% with doc_url=url('devhub.docs', doc_name='marketplace'),
-            payments_url=url('devhub.addons.payments', addon.slug) %}
+            payments_url=addon.get_dev_url('payments') %}
       {% if webapp %}
         <p>
           {# TODO(apps): Finalize copy. #}

@@ -30,12 +30,17 @@ submit_apps_patterns = patterns('',
     url('^bump$', use_apps(views.submit_bump), name='devhub.submit_apps.bump'),
 )
 
-marketplace_patterns = patterns('',
-    url('^1$', views.marketplace_paypal, name='devhub.market.1'),
-    url('^2$', views.marketplace_pricing, name='devhub.market.2'),
-    url('^3$', views.marketplace_upsell, name='devhub.market.3'),
-    url('^4$', views.marketplace_confirm, name='devhub.market.4')
-)
+def marketplace_patterns(prefix):
+    return patterns('',
+        url('^1$', views.marketplace_paypal,
+            name='devhub.%s.market.1' % prefix),
+        url('^2$', views.marketplace_pricing,
+            name='devhub.%s.market.2' % prefix),
+        url('^3$', views.marketplace_upsell,
+            name='devhub.%s.market.3' % prefix),
+        url('^4$', views.marketplace_confirm,
+            name='devhub.%s.market.4' % prefix),
+    )
 
 # These will all start with /app/<app_slug>/
 app_detail_patterns = patterns('',
@@ -45,6 +50,12 @@ app_detail_patterns = patterns('',
     url('^delete$', views.delete, name='devhub.apps.delete'),
     url('^disable$', views.disable, name='devhub.apps.disable'),
     url('^versions$', views.version_list, name='devhub.apps.versions'),
+    url('^payments$', views.payments, name='devhub.apps.payments'),
+    url('^payments/disable$', views.disable_payments,
+        name='devhub.apps.payments.disable'),
+    url('^payments/permission/refund$', views.acquire_refund_permission,
+        name='devhub.apps.acquire_refund_permission'),
+    url('^payments/', include(marketplace_patterns('apps'))),
 )
 
 # These will all start with /addon/<addon_id>/
@@ -64,7 +75,7 @@ detail_patterns = patterns('',
         name='devhub.addons.payments.disable'),
     url('^payments/permission/refund$', views.acquire_refund_permission,
         name='devhub.addons.acquire_refund_permission'),
-    url('^payments/', include(marketplace_patterns)),
+    url('^payments/', include(marketplace_patterns('addons'))),
     url('^profile$', views.profile, name='devhub.addons.profile'),
     url('^profile/remove$', views.remove_profile,
         name='devhub.addons.profile.remove'),

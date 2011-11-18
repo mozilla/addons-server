@@ -1,13 +1,22 @@
-    <div class="brform">
-        <label for="id_price">{{ form.price.label }}</label>
-        <div class="extra">
-            {% trans doc_url=url('devhub.docs', doc_name='marketplace') %}
-                Select a price tier for your add-on below. Price tiers
-                are based on US Dollars and are fixed for all supported countries. For more
-                information, <a href="{{ doc_url }}">view our pricing matrix</a>.
-            {% endtrans %}
-        </div>
-        {{ form.price.errors }}
-        <div>{{ form.price }}</div>
-    </div>
-
+<div class="brform">
+  <label for="id_price">{{ form.price.label }}</label>
+  <div class="extra">
+    <p>
+      {% if webapp %}
+        {% trans doc_url=url('devhub.docs', doc_name='marketplace') %}
+          Select a price tier for your app below. Price tiers are based on
+          US Dollars and are fixed for all supported countries. For more
+          information, <a href="{{ doc_url }}">view our pricing matrix</a>.
+        {% endtrans %}
+      {% else %}
+        {% trans doc_url=url('devhub.docs', doc_name='marketplace') %}
+          Select a price tier for your add-on below. Price tiers
+          are based on US Dollars and are fixed for all supported countries. For more
+          information, <a href="{{ doc_url }}">view our pricing matrix</a>.
+        {% endtrans %}
+      {% endif %}
+    </p>
+  </div>
+  {{ form.price.errors }}
+  <div>{{ form.price }}</div>
+</div>

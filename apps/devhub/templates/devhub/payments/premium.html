@@ -11,11 +11,11 @@
 {% block content %}
 <header>
   {{ dev_breadcrumbs(addon, items=[(None, title)]) }}
-  {{ l10n_menu(addon.default_locale) }}
+  {# l10n_menu(addon.default_locale) #}
   <h2>{{ title }}</h2>
 </header>
 <section class="primary payments devhub-form" role="main">
-<form method="post" action="{{ url('devhub.addons.payments', addon.slug) }}">
+<form method="post" action="{{ addon.get_dev_url('payments') }}">
     {{ csrf() }}
     {% include "devhub/payments/includes/paypal.html" %}
     {% include "devhub/payments/includes/tier.html" %}

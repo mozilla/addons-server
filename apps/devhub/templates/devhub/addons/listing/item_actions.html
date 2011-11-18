@@ -51,7 +51,7 @@
       {% set manage_urls = (
         (addon.get_dev_url('owner'), _('Manage Authors & License')),
         (url('devhub.addons.profile', addon.slug), _('Manage Developer Profile')),
-        (url('devhub.addons.payments', addon.slug), _('Manage Payments')),
+        (addon.get_dev_url('payments'), _('Manage Payments')),
         (addon.get_dev_url('versions'), _('Manage Status & Versions'))) %}
       <ul>
         {% for url, title in manage_urls %}
