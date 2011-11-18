@@ -22,7 +22,7 @@
       {# TODO(cvan): This should lead to the Persona Edit page. #}
       {% set edit_url = url('devhub.addons.edit', addon.slug) %}
       <li>{{ _('Provide more details about your Persona by <a href="{0}">editing its listing</a>.')|f(edit_url)|safe }}</li>
-      {% set profile_url = url('devhub.addons.profile', addon.slug) %}
+      {% set profile_url = addon.get_dev_url('profile') %}
       <li>{{ _('Tell your users why you created this Persona in your <a href="{0}">Developer Profile</a>.')|f(profile_url)|safe }}</li>
       {% set feed_url = url('devhub.feed', addon.slug) %}
       <li>{{ _('View and subscribe to your Persona\'s <a href="{0}">activity feed</a> to stay updated on reviews, collections, and more.')|f(feed_url)|safe }}</li>

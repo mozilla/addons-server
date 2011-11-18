@@ -252,17 +252,24 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
 
 
 def ProfileForm(*args, **kw):
-     # If the add-on takes contributions, then both fields are required.
-    fields_required = bool(kw['instance'].takes_contributions)
-    fields_required = kw.pop('required', False) or fields_required
+    # If the add-on takes contributions, then both fields are required.
+    addon = kw['instance']
+    fields_required = (kw.pop('required', False) or
+                       bool(addon.takes_contributions))
+    if addon.is_webapp():
+        the_reason_label = _('Why did you make this app?')
+        the_future_label = _("What's next for this app?")
+    else:
+        the_reason_label = _('Why did you make this add-on?')
+        the_future_label = _("What's next for this add-on?")
 
     class _Form(TranslationFormMixin, happyforms.ModelForm):
         the_reason = TransField(widget=TransTextarea(),
                                      required=fields_required,
-                                     label=_("Why did you make this add-on?"))
+                                     label=the_reason_label)
         the_future = TransField(widget=TransTextarea(),
                                      required=fields_required,
-                                     label=_("What's next for this add-on?"))
+                                     label=the_future_label)
 
         class Meta:
             model = Addon

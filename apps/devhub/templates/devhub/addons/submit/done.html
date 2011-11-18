@@ -40,7 +40,7 @@
     {% endif %}
     {% set edit_url = addon.get_dev_url() %}
     <li>{{ _('Provide more details by <a href="{0}">editing its listing</a>.')|f(edit_url)|safe }}</li>
-    {% set profile_url = url('devhub.addons.profile', addon.slug) %}
+    {% set profile_url = addon.get_dev_url('profile') %}
     <li>{{ _('Tell your users why you created this in your <a href="{0}">Developer Profile</a>.')|f(profile_url)|safe }}</li>
     {% set feed_url = url('devhub.feed', addon.slug) %}
     {% if webapp %}

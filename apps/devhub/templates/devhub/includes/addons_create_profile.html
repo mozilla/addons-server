@@ -1,4 +1,4 @@
-{% from 'includes/forms.html' import required %}
+{% from 'includes/forms.html' import required, optional %}
 {% from 'devhub/includes/macros.html' import some_html_tip %}
 
 {% macro maybe_required() %}
@@ -6,10 +6,14 @@
     {% if addon.takes_contributions %}
       {{ required() }}
       <span class="req">
-        {{ _('(required since this add-on accepts contributions)') }}
+        {% if webapp %}
+          {{ loc('(required since this app accepts contributions)') }}
+        {% else %}
+          {{ _('(required since this add-on accepts contributions)') }}
+        {% endif %}
       </span>
     {% else %}
-      <span class="optional">{{ _('(optional)') }}</span>
+      {{ optional() }}
     {% endif %}
   {% endif %}
 {% endmacro %}
@@ -21,12 +25,19 @@
 {% endif %}
 
 <p>
-  {% trans %}
-    Your developer profile will tell users about you, why you made this
-    add-on, and what's next for the add-on. This profile is required for
-    add-ons requesting contributions, but can be useful for any developer
-    interested in connecting with users.
-  {% endtrans %}
+  {% if webapp %}
+    {{ loc("Your developer profile will tell users about you, why you made this
+            app, and what's next for the app. This profile is required for
+            apps requesting contributions, but can be useful for any developer
+            interested in connecting with users.") }}
+  {% else %}
+    {% trans %}
+      Your developer profile will tell users about you, why you made this
+      add-on, and what's next for the add-on. This profile is required for
+      add-ons requesting contributions, but can be useful for any developer
+      interested in connecting with users.
+    {% endtrans %}
+  {% endif %}
 </p>
 
 <h4>{{ _('Make sure your user profile is up to date.') }}</h4>

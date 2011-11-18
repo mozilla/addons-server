@@ -479,28 +479,29 @@ def disable_payments(request, addon_id, addon, webapp=False):
     return redirect(addon.get_dev_url('payments'))
 
 
-@dev_required
+@dev_required(webapp=True)
 @post_required
-def remove_profile(request, addon_id, addon):
+def remove_profile(request, addon_id, addon, webapp=False):
     delete_translation(addon, 'the_reason')
     delete_translation(addon, 'the_future')
     if addon.wants_contributions:
         addon.update(wants_contributions=False)
-    return redirect('devhub.addons.profile', addon.slug)
+    return redirect(addon.get_dev_url('profile'))
 
 
-@dev_required
-def profile(request, addon_id, addon):
+@dev_required(webapp=True)
+def profile(request, addon_id, addon, webapp=False):
     profile_form = forms.ProfileForm(request.POST or None, instance=addon)
 
     if request.method == 'POST' and profile_form.is_valid():
         profile_form.save()
         amo.log(amo.LOG.EDIT_PROPERTIES, addon)
         messages.success(request, _('Changes successfully saved.'))
-        return redirect('devhub.addons.profile', addon.slug)
+        return redirect(addon.get_dev_url('profile'))
 
     return jingo.render(request, 'devhub/addons/profile.html',
-                        dict(addon=addon, profile_form=profile_form))
+                        dict(addon=addon, webapp=webapp,
+                             profile_form=profile_form))
 
 
 @login_required

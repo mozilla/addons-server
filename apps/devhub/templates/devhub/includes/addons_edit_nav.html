@@ -2,7 +2,7 @@
   (addon.get_dev_url(), _('Edit Listing')),
   (addon.get_dev_url('owner'), loc('Manage Authors') if addon.is_webapp()
                                else _('Manage Authors & License')),
-  (url('devhub.addons.profile', addon.slug), _('Manage Developer Profile')),
+  (addon.get_dev_url('profile'), _('Manage Developer Profile')),
   (addon.get_dev_url('payments'), _('Manage Payments')),
   (addon.get_dev_url('versions'), loc('Manage App Status') if addon.is_webapp()
                                   else _('Manage Status & Versions')),

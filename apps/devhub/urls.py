@@ -45,6 +45,8 @@ def marketplace_patterns(prefix):
 # These will all start with /app/<app_slug>/
 app_detail_patterns = patterns('',
     url('^edit$', views.edit, name='devhub.apps.edit'),
+    url('^edit_(?P<section>[^/]+)(?:/(?P<editable>[^/]+))?$',
+        views.addons_section, name='devhub.apps.section'),
     url('^ownership$', views.ownership, name='devhub.apps.owner'),
     url('^enable$', views.enable, name='devhub.apps.enable'),
     url('^delete$', views.delete, name='devhub.apps.delete'),
@@ -56,6 +58,9 @@ app_detail_patterns = patterns('',
     url('^payments/permission/refund$', views.acquire_refund_permission,
         name='devhub.apps.acquire_refund_permission'),
     url('^payments/', include(marketplace_patterns('apps'))),
+    url('^profile$', views.profile, name='devhub.apps.profile'),
+    url('^profile/remove$', views.remove_profile,
+        name='devhub.apps.profile.remove'),
 )
 
 # These will all start with /addon/<addon_id>/

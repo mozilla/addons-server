@@ -61,7 +61,7 @@
       </ul>
       {% if not addon.has_full_profile() %}
         <p class="error">
-        {% trans url=url('devhub.addons.profile', addon.slug) %}
+        {% trans url=addon.get_dev_url('profile') %}
           Contributions are only available for add-ons with a <a href="{{ url }}">completed developer profile</a>.
         {% endtrans %}
         </p>
@@ -121,14 +121,14 @@
       {% if not addon.can_become_premium() %}
         <p class="error">
           {% if webapp %}
-            {% with url=url('devhub.addons.profile', addon.slug),
+            {% with url=addon.get_dev_url('profile'),
                     doc_url=url('devhub.docs', doc_name='marketplace') %}
               You cannot enroll in the Marketplace once your app has been
               reviewed and downloaded. Please submit a new app to enroll.
               <a href="{{ doc_url }}">Learn more</a>.
             {% endwith %}
           {% else %}
-            {% trans url=url('devhub.addons.profile', addon.slug),
+            {% trans url=addon.get_dev_url('profile'),
                      doc_url=url('devhub.docs', doc_name='marketplace') %}
               You cannot enroll in the Marketplace once your add-on has been
               reviewed and downloaded. Please submit a new add-on to enroll.

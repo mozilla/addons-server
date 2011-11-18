@@ -22,7 +22,7 @@ from waffle import helpers
 import amo
 import amo.tests
 import paypal
-from amo.helpers import url as url_reverse
+from amo.helpers import url as url_reverse, absolutify
 from amo.tests import (formset, initial, close_to_now,
                        assert_no_validation_errors)
 from amo.tests.test_helpers import get_image_path
@@ -1219,10 +1219,10 @@ class TestProfileBase(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
-        self.url = reverse('devhub.addons.profile', args=['a3615'])
-        assert self.client.login(username='del@icio.us', password='password')
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
+        self.url = self.addon.get_dev_url('profile')
+        assert self.client.login(username='del@icio.us', password='password')
 
     def get_addon(self):
         return Addon.objects.no_cache().get(id=self.addon.id)
@@ -1249,8 +1249,7 @@ class TestProfileStatusBar(TestProfileBase):
 
     def setUp(self):
         super(TestProfileStatusBar, self).setUp()
-        self.remove_url = reverse('devhub.addons.profile.remove',
-                                  args=[self.addon.slug])
+        self.remove_url = self.addon.get_dev_url('profile.remove')
 
     def test_no_status_bar(self):
         self.addon.the_reason = self.addon.the_future = None
@@ -1310,6 +1309,8 @@ class TestProfile(TestProfileBase):
 
     def test_without_contributions_labels(self):
         r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(r.context['webapp'], False)
         doc = pq(r.content)
         eq_(doc('label[for=the_reason] .optional').length, 1)
         eq_(doc('label[for=the_future] .optional').length, 1)
@@ -1369,6 +1370,28 @@ class TestProfile(TestProfileBase):
 
         self.post(the_reason='to be hot', the_future='cold stuff')
         self.check(the_reason='to be hot', the_future='cold stuff')
+
+
+class TestAppProfile(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        self.client.login(username='admin@mozilla.com', password='password')
+        self.webapp = Addon.objects.get(id=337141)
+        self.url = self.webapp.get_dev_url('profile')
+
+    def test_nav_link(self):
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#edit-addon-nav li.selected a').attr('href'),
+            self.url)
+
+    def test_labels(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(r.context['webapp'], True)
+        doc = pq(r.content)
+        eq_(doc('label[for=the_reason] .optional').length, 1)
+        eq_(doc('label[for=the_future] .optional').length, 1)
 
 
 class TestSubmitBase(amo.tests.TestCase):
@@ -1979,51 +2002,40 @@ class TestSubmitStep7(TestSubmitBase):
     def test_finish_submitting_addon(self):
         eq_(self.addon.current_version.supported_platforms, [amo.PLATFORM_ALL])
 
-        response = self.client.get(reverse('devhub.submit.7', args=['a3615']))
-        eq_(response.status_code, 200)
-        doc = pq(response.content)
+        r = self.client.get(reverse('devhub.submit.7', args=[self.addon.slug]))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
 
-        eq_(response.status_code, 200)
-        eq_(response.context['addon'].name.localized_string,
-            u"Delicious Bookmarks")
+        a = doc('a#submitted-addon-url')
+        url = self.addon.get_url_path()
+        eq_(a.attr('href'), url)
+        eq_(a.text(), absolutify(url))
 
-        abs_url = settings.SITE_URL + "/en-US/firefox/addon/a3615/"
-        eq_(doc("a#submitted-addon-url").text().strip(), abs_url)
-        eq_(doc("a#submitted-addon-url").attr('href'),
-            "/en-US/firefox/addon/a3615/")
-
-        next_steps = doc(".done-next-steps li a")
+        next_steps = doc('.done-next-steps li a')
 
         # edit listing of freshly submitted add-on...
-        eq_(next_steps[0].attrib['href'], self.addon.get_dev_url())
+        eq_(next_steps.eq(0).attr('href'), self.addon.get_dev_url())
 
         # edit your developer profile...
-        eq_(next_steps[1].attrib['href'],
-            reverse('devhub.addons.profile', args=[self.addon.slug]))
-
-        # view wait times:
-        eq_(next_steps[3].attrib['href'],
-            "https://forums.addons.mozilla.org/viewforum.php?f=21")
+        eq_(next_steps.eq(1).attr('href'), self.addon.get_dev_url('profile'))
 
     def test_finish_submitting_platform_specific_addon(self):
         # mac-only Add-on:
         addon = Addon.objects.get(name__localized_string='Cooliris')
         AddonUser.objects.create(user=UserProfile.objects.get(pk=55021),
                                  addon=addon)
-        response = self.client.get(reverse('devhub.submit.7',
-                                   args=['cooliris']))
-        eq_(response.status_code, 200)
-        doc = pq(response.content)
-        next_steps = doc(".done-next-steps li a")
+        r = self.client.get(reverse('devhub.submit.7', args=[addon.slug]))
+        eq_(r.status_code, 200)
+        next_steps = pq(r.content)('.done-next-steps li a')
 
         # upload more platform specific files...
-        eq_(next_steps[0].attrib['href'],
-            reverse('devhub.versions.edit', kwargs=dict(
-                                addon_id=addon.slug,
+        eq_(next_steps.eq(0).attr('href'),
+            reverse('devhub.versions.edit',
+                    kwargs=dict(addon_id=addon.slug,
                                 version_id=addon.current_version.id)))
 
         # edit listing of freshly submitted add-on...
-        eq_(next_steps[1].attrib['href'], addon.get_dev_url())
+        eq_(next_steps.eq(1).attr('href'), addon.get_dev_url())
 
     def test_finish_addon_for_prelim_review(self):
         self.get_addon().update(status=amo.STATUS_UNREVIEWED)

@@ -50,7 +50,7 @@
     <div class="more-actions-popup popup hidden">
       {% set manage_urls = (
         (addon.get_dev_url('owner'), _('Manage Authors & License')),
-        (url('devhub.addons.profile', addon.slug), _('Manage Developer Profile')),
+        (addon.get_dev_url('profile'), _('Manage Developer Profile')),
         (addon.get_dev_url('payments'), _('Manage Payments')),
         (addon.get_dev_url('versions'), _('Manage Status & Versions'))) %}
       <ul>
