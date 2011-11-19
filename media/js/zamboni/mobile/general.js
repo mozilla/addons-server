@@ -236,7 +236,7 @@ $(function() {
 });
 
 $(".desktop-link").attr("href", window.location).click(function() {
-    $.cookie("mamo", "off", {expires:30});
+    $.cookie("mamo", "off", {expires:30, path: '/'});
 });
 
 $(".moz-menu .tab a").click(_pd(function() {
