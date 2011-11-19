@@ -1,5 +1,6 @@
 from inspect import isclass
 
+from amo.helpers import loc
 from celery.datastructures import AttributeDict
 from tower import ugettext_lazy as _
 
@@ -24,6 +25,11 @@ class reply(_NOTIFICATION):
     label = _('an add-on developer replies to my review')
     mandatory = False
     default_checked = True
+
+
+class app_reply(reply):
+    app = True
+    label = loc('an app developer replies to my review')
 
 
 class new_features(_NOTIFICATION):
@@ -60,6 +66,11 @@ class new_review(_NOTIFICATION):
     label = _("someone writes a review of my add-on")
     mandatory = False
     default_checked = True
+
+
+class app_new_review(new_review):
+    app = True
+    label = loc('someone writes a review of my app')
 
 
 class announcements(_NOTIFICATION):
@@ -107,23 +118,28 @@ class individual_contact(_NOTIFICATION):
     default_checked = True
 
 
+class app_individual_contact(individual_contact):
+    app = True
+    label = loc('Mozilla needs to contact me about my individual app')
+
 
 NOTIFICATION_GROUPS = {'dev': _('Developer'),
                        'user': _('User Notifications')}
 
 NOTIFICATIONS = [x for x in vars().values()
                  if isclass(x) and issubclass(x, _NOTIFICATION)
-                 and x != _NOTIFICATION]
-
+                 and x != _NOTIFICATION and not getattr(x, 'app', False)]
 NOTIFICATIONS_BY_ID = dict((l.id, l) for l in NOTIFICATIONS)
 NOTIFICATIONS_BY_SHORT = dict((l.short, l) for l in NOTIFICATIONS)
 NOTIFICATION = AttributeDict((l.__name__, l) for l in NOTIFICATIONS)
-NOTIFICATIONS_DEV = [l.id for l in NOTIFICATIONS if l.group == 'dev']
-NOTIFICATIONS_USER = [l.id for l in NOTIFICATIONS if l.group == 'user']
 
 NOTIFICATIONS_DEFAULT = [l.id for l in NOTIFICATIONS if l.default_checked]
-
 NOTIFICATIONS_CHOICES = [(l.id, l.label) for l in NOTIFICATIONS]
 NOTIFICATIONS_CHOICES_NOT_DEV = [(l.id, l.label) for l in NOTIFICATIONS
                                  if l.group != 'dev']
 
+APP_NOTIFICATIONS = [app_reply, app_new_review, app_individual_contact]
+APP_NOTIFICATIONS_DEFAULT = [l.id for l in APP_NOTIFICATIONS]
+APP_NOTIFICATIONS_CHOICES = [(l.id, l.label) for l in APP_NOTIFICATIONS]
+APP_NOTIFICATIONS_CHOICES_NOT_DEV = [(l.id, l.label) for l in APP_NOTIFICATIONS
+                                     if l.group != 'dev']

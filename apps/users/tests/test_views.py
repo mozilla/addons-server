@@ -69,12 +69,12 @@ class TestEdit(UserViewBase):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
         self.user = UserProfile.objects.get(username='jbalogh')
         self.url = reverse('users.edit')
-        self.correct = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
-                        'oldpassword': 'foo', 'password': 'longenough',
-                        'password2': 'longenough'}
+        self.data = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
+                     'oldpassword': 'foo', 'password': 'longenough',
+                     'password2': 'longenough'}
 
     def test_password_logs(self):
-        res = self.client.post(self.url, self.correct)
+        res = self.client.post(self.url, self.data)
         eq_(res.status_code, 302)
         eq_(self.user.userlog_set
                 .filter(activity_log__action=amo.LOG.CHANGE_PASSWORD.id)
@@ -91,7 +91,7 @@ class TestEdit(UserViewBase):
 
     def test_password_blacklisted(self):
         BlacklistedPassword.objects.create(password='password')
-        bad = self.correct.copy()
+        bad = self.data.copy()
         bad['password'] = 'password'
         res = self.client.post(self.url, bad)
         eq_(res.status_code, 200)
@@ -100,7 +100,7 @@ class TestEdit(UserViewBase):
             [u'That password is not allowed.'])
 
     def test_password_short(self):
-        bad = self.correct.copy()
+        bad = self.data.copy()
         bad['password'] = 'short'
         res = self.client.post(self.url, bad)
         eq_(res.status_code, 200)
@@ -155,35 +155,79 @@ class TestEdit(UserViewBase):
         self.assertContains(r, data['bio'])
         eq_(unicode(self.get_profile().bio), data['bio'])
 
+    def check_default_choices(self, choices, checked=True):
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('input[name=notifications]:checkbox').length, len(choices))
+        for id, label in choices:
+            box = doc('input[name=notifications][value=%s]' % id)
+            if checked:
+                eq_(box.filter(':checked').length, 1)
+            else:
+                eq_(box.length, 1)
+            parent = box.parent('label')
+            if checked:
+                eq_(parent.find('.msg').length, 1)  # Check for "NEW" message.
+            eq_(parent.remove('.msg, .req').text(), label)
+
+    def post_notifications(self, choices):
+        self.check_default_choices(choices)
+
+        self.data['notifications'] = []
+        r = self.client.post(self.url, self.data)
+        self.assertRedirects(r, self.url, 302)
+
+        eq_(UserNotification.objects.count(), len(email.NOTIFICATION))
+        eq_(UserNotification.objects.filter(enabled=True).count(),
+            len(filter(lambda x: x.mandatory, email.NOTIFICATIONS)))
+        self.check_default_choices(choices, checked=False)
+
     def test_edit_notifications(self):
-        post = self.correct.copy()
-        post['notifications'] = [2, 4, 6]
+        # Make jbalogh a developer.
+        AddonUser.objects.create(user=self.user,
+            addon=Addon.objects.create(type=amo.ADDON_EXTENSION))
 
-        # Make jbalogh a developer
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        AddonUser.objects.create(user=self.user, addon=addon)
+        choices = email.NOTIFICATIONS_CHOICES
+        self.check_default_choices(choices)
 
-        res = self.client.post(self.url, post)
-        eq_(res.status_code, 302)
+        self.data['notifications'] = [2, 4, 6]
+        r = self.client.post(self.url, self.data)
+        self.assertRedirects(r, self.url, 302)
 
         mandatory = [n.id for n in email.NOTIFICATIONS if n.mandatory]
-        total = len(post['notifications'] + mandatory)
+        total = len(self.data['notifications'] + mandatory)
         eq_(UserNotification.objects.count(), len(email.NOTIFICATION))
         eq_(UserNotification.objects.filter(enabled=True).count(), total)
 
-        res = self.client.get(self.url, post)
-        doc = pq(res.content)
-        eq_(doc('[name=notifications]:checked').length, total)
+        doc = pq(self.client.get(self.url, self.data).content)
+        eq_(doc('input[name=notifications]:checked').length, total)
 
         eq_(doc('.more-none').length, len(email.NOTIFICATION_GROUPS))
         eq_(doc('.more-all').length, len(email.NOTIFICATION_GROUPS))
 
-    def test_edit_notifications_non_dev(self):
-        post = self.correct.copy()
-        post['notifications'] = [2, 4, 6]
+    @patch.object(settings, 'APP_PREVIEW', True)
+    def test_edit_app_notifications(self):
+        AddonUser.objects.create(user=self.user,
+            addon=Addon.objects.create(type=amo.ADDON_EXTENSION))
+        self.post_notifications(email.APP_NOTIFICATIONS_CHOICES)
 
-        res = self.client.post(self.url, post)
-        assert len(res.context['form'].errors['notifications'])
+    def test_edit_notifications_non_dev(self):
+        self.post_notifications(email.NOTIFICATIONS_CHOICES_NOT_DEV)
+
+    @patch.object(settings, 'APP_PREVIEW', True)
+    def test_edit_app_notifications_non_dev(self):
+        self.post_notifications(email.APP_NOTIFICATIONS_CHOICES_NOT_DEV)
+
+    def _test_edit_notifications_non_dev_error(self):
+        self.data['notifications'] = [2, 4, 6]
+        r = self.client.post(self.url, self.data)
+        assert r.context['form'].errors['notifications']
+
+    def test_edit_notifications_non_dev_error(self):
+        self._test_edit_notifications_non_dev_error()
+
+    @patch.object(settings, 'APP_PREVIEW', True)
+    def test_edit_app_notifications_non_dev_error(self):
+        self._test_edit_notifications_non_dev_error()
 
 
 class TestEditAdmin(UserViewBase):

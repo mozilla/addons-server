@@ -143,6 +143,7 @@ def delete_photo(request):
 @write
 @login_required
 def edit(request):
+    webapp = settings.APP_PREVIEW
     # Don't use request.amo_user since it has too much caching.
     amouser = UserProfile.objects.get(pk=request.user.id)
     if request.method == 'POST':
@@ -150,7 +151,7 @@ def edit(request):
         # around in case we need to use it below (to email the user)
         original_email = amouser.email
         form = forms.UserEditForm(request.POST, request.FILES, request=request,
-                                  instance=amouser)
+                                  instance=amouser, webapp=webapp)
         if form.is_valid():
             messages.success(request, _('Profile Updated'))
             if amouser.email != original_email:
@@ -180,9 +181,9 @@ def edit(request):
                                 reverse('users.emailchange', args=[amouser.id,
                                                                 token, hash]))
                 t = loader.get_template('users/email/emailchange.ltxt')
-                c = {'domain': domain, 'url': url, }
-                send_mail(_(("Please confirm your email address "
-                             "change at %s") % domain),
+                c = {'domain': domain, 'url': url}
+                send_mail(_('Please confirm your email address '
+                            'change at %s' % domain),
                     t.render(Context(c)), None, [amouser.email],
                     use_blacklist=False)
 
@@ -190,7 +191,7 @@ def edit(request):
                 # address until they confirm the new one
                 amouser.email = original_email
             form.save()
-            return http.HttpResponseRedirect(reverse('users.edit'))
+            return redirect('users.edit')
         else:
 
             messages.error(request, _('Errors Found'),
@@ -198,10 +199,10 @@ def edit(request):
                                       'you made. Please correct them and '
                                       'resubmit.'))
     else:
-        form = forms.UserEditForm(instance=amouser)
+        form = forms.UserEditForm(instance=amouser, webapp=webapp)
 
     return jingo.render(request, 'users/edit.html',
-                        {'form': form, 'amouser': amouser})
+                        {'form': form, 'amouser': amouser, 'webapp': webapp})
 
 
 @write

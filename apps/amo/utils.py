@@ -38,7 +38,6 @@ from amo import ADDON_ICON_SIZES
 from amo.urlresolvers import reverse
 from translations.models import Translation
 from users.models import UserNotification
-import users.notifications as notifications
 from users.utils import UnsubscribeCode
 
 from . import logger_log as log
@@ -134,6 +133,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 
     Adds blacklist checking and error logging.
     """
+    import users.notifications as notifications
     if not recipient_list:
         return True
 

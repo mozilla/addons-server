@@ -1,4 +1,4 @@
-{% extends "impala/base.html" %}
+{% extends "impala/base_shared.html" %}
 {% from 'includes/forms.html' import pretty_field, required %}
 {% from 'devhub/includes/macros.html' import some_html_tip %}
 
@@ -10,7 +10,6 @@
 
 {% block content %}
 {% include 'users/includes/navigation.html' %}
-
 <div id="user_edit" class="primary prettyform grid" role="main">
   {% include "messages.html" %}
   <form method="post" action="" class="user-input island"
@@ -168,20 +167,30 @@
         <fieldset id="acct-notify">
           <legend>{{ _('Notifications') }}</legend>
           <p class="sub_legend">
-            {% trans %}
-            From time to time, Mozilla may send you email about upcoming
-            releases and add-on events. Please select the topics you are
-            interested in.
-            {% endtrans %}
+            {% if webapp %}
+              {{ loc('From time to time, Mozilla may send you email. Please
+                      select the topics you are interested in.') }}
+            {% else %}
+              {% trans %}
+              From time to time, Mozilla may send you email about upcoming
+              releases and add-on events. Please select the topics you are
+              interested in.
+              {% endtrans %}
+            {% endif %}
           </p>
           <div class="user-notifications formfields">
             {{ form.notifications }}
 
             <p class="note">
-              {% trans %}
-                Mozilla reserves the right to contact you individually about
-                specific concerns with your hosted add-ons.
-              {% endtrans %}
+              {% if webapp %}
+                {{ loc('Mozilla reserves the right to contact you individually
+                        about specific concerns with your apps.') }}
+              {% else %}
+                {% trans %}
+                  Mozilla reserves the right to contact you individually about
+                  specific concerns with your hosted add-ons.
+                {% endtrans %}
+              {% endif %}
             </p>
           </div>
         </fieldset>

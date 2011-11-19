@@ -20,27 +20,27 @@ class NotificationsSelectMultiple(forms.CheckboxSelectMultiple):
         final_attrs = self.build_attrs(attrs, name=name)
         groups = {}
 
-        for c in sorted(self.choices):
-            notification = email.NOTIFICATIONS_BY_ID[c[0]]
-            cb_attrs = dict(final_attrs, id='%s_%s' % (attrs['id'], c[0]))
+        for idx, label in sorted(self.choices):
+            notification = email.NOTIFICATIONS_BY_ID[idx]
+            cb_attrs = dict(final_attrs, id='%s_%s' % (attrs['id'], idx))
             notes = []
 
             if notification.mandatory:
                 cb_attrs = dict(cb_attrs, disabled=1)
                 notes.append(u'<span title="required" class="req">*</span>')
 
-            if c[1].new:
+            if self.form_instance.choices_status.get(idx):
                 notes.append(u'<sup class="msg">%s</sup>' % _('new'))
 
             cb = forms.CheckboxInput(
                 cb_attrs, check_test=lambda value: value in str_values)
 
-            rendered_cb = cb.render(name, c[0])
+            rendered_cb = cb.render(name, idx)
             label_for = u' for="%s"' % cb_attrs['id']
 
             groups.setdefault(notification.group, []).append(
                     u'<li><label class="check" %s>%s %s %s</label></li>' % (
-                    label_for, rendered_cb, c[1], ''.join(notes)
+                    label_for, rendered_cb, label, ''.join(notes)
                 ))
 
         output = []

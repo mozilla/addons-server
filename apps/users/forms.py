@@ -222,6 +222,7 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
+        self.webapp = kwargs.pop('webapp', False)
         super(UserEditForm, self).__init__(*args, **kwargs)
 
         if self.instance:
@@ -231,20 +232,27 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
                         in self.instance.notifications.all())
             default.update(user)
 
-            # Add choices to Notification
-            choices = email.NOTIFICATIONS_CHOICES
-            if not self.instance.is_developer:
-                choices = email.NOTIFICATIONS_CHOICES_NOT_DEV
+            # Add choices to Notification.
+            if self.webapp:
+                choices = email.APP_NOTIFICATIONS_CHOICES
+                if not self.instance.is_developer:
+                    choices = email.APP_NOTIFICATIONS_CHOICES_NOT_DEV
+            else:
+                choices = email.NOTIFICATIONS_CHOICES
+                if not self.instance.is_developer:
+                    choices = email.NOTIFICATIONS_CHOICES_NOT_DEV
+
+            # Append a "NEW" message to new notification options.
+            saved = self.instance.notifications.values_list('notification_id',
+                                                            flat=True)
+            self.choices_status = {}
+            for idx, label in choices:
+                self.choices_status[idx] = idx not in saved
 
             self.fields['notifications'].choices = choices
             self.fields['notifications'].initial = [i for i, v
                                                     in default.items() if v]
-
-            # Mark unsaved options as "new"
-            user = (self.instance.notifications
-                        .values_list('notification_id', flat=True))
-            for c in self.fields['notifications'].choices:
-                c[1].new = c[0] not in user
+            self.fields['notifications'].widget.form_instance = self
 
         # TODO: We should inherit from a base form not UserRegisterForm
         if self.fields.get('recaptcha'):
