@@ -11,9 +11,10 @@
     <a href="{{ dl_url }}">
       <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
       <h3>{{ addon.name }}</h3>
+      <span class="desc">{{ addon.summary|truncate(250)|nl2br }}</span>
+    </a>
       <details>
-        <span class="desc">{{ addon.summary|strip_html()|truncate(250) }}</span>
-        <div>
+        <div class="vitals">
           {% with num=addon.total_reviews %}
             {% if num %}
               {{ addon.average_rating|float|stars }}
@@ -50,16 +51,15 @@
               {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
             <span>
           {% endif %}
-          {% if waffle.switch('marketplace') %}
-            {% if show_refunds %}
-              {{ refund_info(amo, addon, contributions, is_refunded, is_chargeback) }}
-            {% endif %}
-          {% endif %}
         </div>
+        {% if waffle.switch('marketplace') and show_refunds and contributions.get(addon.pk) %}
+          <div class="action">
+            {{ refund_info(amo, addon, contributions, is_refunded, is_chargeback) }}
+          </div>
+        {% endif %}
       </details>
       {% if src == 'search' %}
         {{ mobile_install_button(addon, show_warning=False) }}
       {% endif %}
-    </a>
   </li>
 {% endfor %}

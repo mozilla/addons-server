@@ -1,8 +1,5 @@
-{% if settings.APP_PREVIEW %}
-  {% set WEBAPPS = True %}
-{% endif %}
 {% extends "impala/base_shared.html" %}
-{% from "addons/macros.html" import price, refund_info %}
+{% from "addons/macros.html" import price, sort_vital, refund_info %}
 {% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
 
 {% block title %}{{ page_title('My Purchases') }}{% endblock %}
@@ -12,10 +9,11 @@
   <section class="primary">
     {{ impala_breadcrumbs([(None, _('My Purchases'))]) }}
     <h1>{{ _('My Purchases') }}</h1>
-    <div class="island hero c listing">
+    <div id="purchases" class="island hero c listing">
       {% if single %}
         <div id="sorter" class="c">
-          <ul><li><a class="opt" href="{{ url('users.purchases') }}">{{ _('Show all purchases') }}</a></li></ul>
+          <ul><li><a class="opt" href="{{ url('users.purchases') }}">
+            {{ _('Show all purchases') }}</a></li></ul>
         </div>
       {% else %}
         {{ impala_addon_listing_header(url_base, filter.opts, sorting, filter.extras) }}
@@ -32,18 +30,19 @@
                 </h3>
                 <p class="desc">{{ addon.description|truncate(250)|nl2br }}</p>
                 <div class="vitals c">
+                  {{ impala_reviews_link(addon) }}
                   {{ price(addon) }}
-                  {{ refund_info(amo, addon, contributions,
-                                 is_refunded, is_chargeback) }}
+                  {{ sort_vital(addon) }}
                 </div>
+              </div>
+              <div class="action">
+                {{ refund_info(amo, addon, contributions, is_refunded, is_chargeback) }}
               </div>
             </div>
         {% else %}
-          {# TODO(apps): Finalize copy. #}
-          <p class="no-results">You have no purchases.</p>
+          <p class="no-results">{{ loc('You have no purchases.') }}</p>
         {% endfor %}
       </div>
     </div>
-  </div>
-</section>
+  </section>
 {% endblock %}

@@ -656,6 +656,7 @@ def purchases(request, addon_id=None, template=None):
     """A list of purchases that a user has made through the marketplace."""
     if not waffle.switch_is_active('marketplace'):
         raise http.Http404
+    webapp = settings.APP_PREVIEW
     cs = (Contribution.objects
           .filter(user=request.amo_user,
                   type__in=[amo.CONTRIB_PURCHASE, amo.CONTRIB_REFUND,
@@ -677,8 +678,10 @@ def purchases(request, addon_id=None, template=None):
         contributions.setdefault(c.addon_id, []).append(c)
 
     ids = list(set(ids))
-    filter = AddonsFilter(request, Addon.objects.filter(id__in=ids),
-                          key='sort', default='name')
+    addons = Addon.objects.filter(id__in=ids)
+    if webapp:
+        addons = addons.filter(type=amo.ADDON_WEBAPP)
+    filter = AddonsFilter(request, addons, key='sort', default='name')
 
     if addon_id and not filter.qs:
         # User has requested a receipt for an addon they don't have.
@@ -687,6 +690,7 @@ def purchases(request, addon_id=None, template=None):
     return jingo.render(request, template,
                         {'addons': amo.utils.paginate(request, filter.qs,
                                                       count=len(ids)),
+                         'webapp': webapp,
                          'filter': filter,
                          'url_base': reverse('users.purchases'),
                          'contributions': contributions,

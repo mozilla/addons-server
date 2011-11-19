@@ -61,7 +61,7 @@ i {
 }
 
 /** Clearfix */
-.listview li a:after,
+.item details .vitals:after,
 header:after,
 header nav:after,
 section:after,

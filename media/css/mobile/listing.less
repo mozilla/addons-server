@@ -44,6 +44,9 @@ a.listview {
     padding: 10px;
     font-size: 1em;
 }
+.listview li.item a {
+    padding: 10px 10px 0;
+}
 .listview li > a:before,
 a.listview:before {
     content: " ";
@@ -83,11 +86,9 @@ a.listview:before {
         white-space: nowrap;
     }
     details {
-        overflow: hidden;
-        margin-right: 12px;
-        div {
-            font-size: .9em;
-        }
+        font-size: .9em;
+        margin: 0 12px 10px 36px;
+        padding: 0 14px;
     }
     .vital {
         color: green;
@@ -113,6 +114,9 @@ a.listview:before {
     }
 }
 .html-rtl .item {
+    details {
+        margin: 0 36px 10px 12px;
+    }
     .stars, i, .vital {
         float: right;
     }
@@ -125,5 +129,48 @@ a.listview:before {
     .price:before,
     .purchase:before {
         padding: 0 0 0 .25em;
+    }
+}
+
+#purchases .item {
+    &.refunded {
+        opacity: .6;
+        .refund-notice {
+            font-weight: bold;
+            margin: 0;
+            padding: 10px 11px;
+            text-align: right;
+        }
+    }
+    .action {
+        font: 11px/13px @sans-stack;
+        padding-top: 10px;
+        .refund-notice + ul {
+            margin-top: 10px;
+        }
+        ul {
+            border-left: 1px dotted fadeOut(@green, 60%);
+            color: @green;
+            font-size: 11px;
+            padding-left: 10px;
+            li {
+                border: 0;
+            }
+            a {
+                font-weight: bold;
+                padding: 0 .5em;
+            }
+        }
+    }
+}
+
+.html-rtl #purchases .item {
+    .refund-notice {
+        text-align: left;
+    }
+    .action ul {
+        border: 0;
+        border-right: 1px dotted fadeOut(@green, 60%);
+        padding: 0 10px 0 0;
     }
 }

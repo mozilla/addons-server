@@ -57,37 +57,74 @@
 {% endmacro %}
 
 {% macro refund_info(amo, addon, contributions, is_refunded, is_chargeback) %}
-  {% for contribution in contributions.get(addon.pk, []) %}
-    <span class="vital purchase">
-      {% if contribution.type == amo.CONTRIB_PURCHASE %}
-        {% trans date=addon.created|datetime,
-                 amt=contribution.get_amount_locale() %}
-          Purchased {{ date }} for {{ amt }}
-          {% endtrans %}
-        {% if not is_refunded and not is_chargeback %}
-          <a href="{{ url('users.support', contribution.pk) }}">
-            {{ _('Request Support') }}</a>
-        {% endif %}
-      {% elif contribution.type == amo.CONTRIB_REFUND %}
-        {% trans date=addon.created|datetime,
-                 amt=contribution.get_amount_locale() %}
-          Refunded {{ date }} for {{ amt }}
-        {% endtrans %}
-      {% elif contribution.type == amo.CONTRIB_CHARGEBACK %}
-        {% trans date=addon.created|datetime,
-                 amt=contribution.get_amount_locale() %}
-          Reversed {{ date }} for {{ amt }}
-        {% endtrans %}
+  {% set contributions = contributions.get(addon.pk, []) %}
+  {% if contributions %}
+    {% if is_refunded %}
+      <span class="purchase refund-notice">
+        {{ _('Purchase Refunded') }}
+      </span>
+    {% elif is_chargeback %}
+      <span class="purchase refund-notice">
+        {{ _('Purchase Reversed') }}
+      </span>
+    {% endif %}
+    <ul>
+      {% for contribution in contributions %}
+        <li>
+          <span class="purchase">
+            {% if contribution.type == amo.CONTRIB_PURCHASE %}
+              {% trans date=addon.created|datetime,
+                       amt=contribution.get_amount_locale() %}
+                Purchased {{ date }} for {{ amt }}
+                {% endtrans %}
+              {% if not is_refunded and not is_chargeback %}
+                <a href="{{ url('users.support', contribution.pk) }}">
+                  {{ _('Request Support') }}</a>
+              {% endif %}
+            {% elif contribution.type == amo.CONTRIB_REFUND %}
+              {% trans date=addon.created|datetime,
+                       amt=contribution.get_amount_locale() %}
+                Refunded {{ date }} for {{ amt }}
+              {% endtrans %}
+            {% elif contribution.type == amo.CONTRIB_CHARGEBACK %}
+              {% trans date=addon.created|datetime,
+                       amt=contribution.get_amount_locale() %}
+                Reversed {{ date }} for {{ amt }}
+              {% endtrans %}
+            {% endif %}
+          </span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}
+
+{% macro sort_vital(addon) %}
+  {% if field in ('popular', 'downloads') or not addon.show_adu() %}
+    <div class="adu downloads">
+      {% with num=addon.weekly_downloads %}
+        {# L10n: {0} is the number of downloads. #}
+        {{ ngettext('{0} weekly download', '{0} weekly downloads',
+                    num)|f(num|numberfmt) }}
+      {% endwith %}
+    </div>
+  {% else %}
+    <div class="adu">
+      {% with num=addon.average_daily_users %}
+        {# L10n: {0} is the number of users. #}
+        {{ ngettext('{0} user', '{0} users', num)|f(num|numberfmt) }}
+      {% endwith %}
+    </div>
+  {% endif %}
+  {% if field in ('created', 'updated') %}
+    <div class="updated">
+      {% if field == 'created' %}
+        {# L10n: {0} is a date. #}
+        {{ _('Added {0}')|f(addon.created|datetime) }}
+      {% elif field == 'updated' %}
+        {# L10n: {0} is a date. #}
+        {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
       {% endif %}
-    </span>
-  {% endfor %}
-  {% if is_refunded %}
-    <span class="vital purchase refund-notice">
-      {{ _('Purchase Refunded') }}
-    </span>
-  {% elif is_chargeback %}
-    <span class="vital purchase refund-notice">
-      {{ _('Purchase Reversed') }}
-    </span>
+    </div>
   {% endif %}
 {% endmacro %}
