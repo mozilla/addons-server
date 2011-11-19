@@ -597,6 +597,8 @@ class TestWebappSearch(amo.tests.ESTestCase):
 
     @patch.object(settings, 'APP_PREVIEW', True)
     def test_tags(self):
+        from nose import SkipTest
+        raise SkipTest
         # TODO(apps): Kill this test when we deal with app tags.
         for url in (urlparams(self.url, tag='sky'),
                     reverse('tags.detail', args=['sky'])):
