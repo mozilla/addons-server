@@ -47,7 +47,7 @@ class TestRecs(amo.tests.TestCase):
         # The view is limited to returning 9 add-ons.
         self.expected_recs = Recs.expected_recs()[:9]
 
-        self.min_id, self.max_id = 1, 313  # see test_min_max_appversion
+        self.min_id, self.max_id = 1, 364  # see test_min_max_appversion
         for addon in Addon.objects.all():
             v = Version.objects.create(addon=addon)
             File.objects.create(version=v, status=amo.STATUS_PUBLIC)
