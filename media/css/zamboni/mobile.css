@@ -63,6 +63,7 @@ i {
 /** Clearfix */
 .listview li a:after,
 header:after,
+header nav:after,
 section:after,
 .menu:after,
 .grouped_ratings:after,
@@ -82,6 +83,10 @@ section:after,
 /************************************/
 /*             TYPOGRAPHY           */
 /************************************/
+
+html, body {
+    height: 100%;
+}
 
 body {
     font-family: Georgia, serif;
@@ -146,12 +151,12 @@ footer:before,
                       -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcedfd));
 }
 
-html {
+#page {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
                       -moz-linear-gradient(#dcedfd 0, #fff 200px);
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
                       -webkit-gradient(linear, left top, left 200, from(#dcedfd), to(#fff));
-
+    margin-bottom: 30px;
 }
 
 
@@ -266,7 +271,6 @@ table th {
 /************************************/
 
 #search {
-    clear: both;
     margin-bottom: 14px;
     width: 100%;
     position: relative;
@@ -1419,59 +1423,4 @@ a.expando {
     color: #447BC4;
     text-align: right;
     display: none;
-}
-
-/************************************/
-/*              FOOTER              */
-/************************************/
-
-footer:before {
-    content: " ";
-    display: block;
-    position: absolute;
-    top: -30px;
-    left: 0;
-    width: 100%;
-    height: 30px;
-    box-shadow: 0 -2px rgba(0,0,0,.1) inset;
-}
-footer {
-    font-family: "Droid Sans", Helvetica, Arial, sans-serif;
-    font-size: 1em;
-    color: white;
-    margin-top: 30px;
-    padding: 14px;
-    position: relative;
-    min-height: 200px;
-    box-shadow: 0 2px rgba(0,0,0,.1) inset;
-    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAFElEQVQIHWO0DZ3xnwELYOXgYwAAOHwCRjqu6SgAAAAASUVORK5CYII=');
-}
-footer select {
-    margin-top: 4px;
-    display: block;
-    width: 100%;
-    padding-top: 4px;
-    height: 30px;
-}
-#footer-links, #footer-links a {
-    color: #5f92ce;
-    text-align:center;
-    font-size: 14px;
-    padding: 4px;
-}
-
-footer a.desktop-link {
-    background: #5f92ce;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border-radius: 6px;
-    color: #fff;
-    display: block;
-    font-family: "Trebuchet MS", "Droid Sans", Helvetica, Arial, sans-serif;
-    font-size: 150%;
-    font-weight: bold;
-    line-height: 200%;
-    margin: 1em 0;
-    text-align: center;
-    text-transform: uppercase;
 }

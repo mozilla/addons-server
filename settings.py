@@ -528,6 +528,7 @@ MINIFY_BUNDLES = {
             'css/zamboni/mobile-forms.less',
             'css/mobile/header.less',
             'css/mobile/listing.less',
+            'css/mobile/footer.less',
         ),
         'zamboni/admin': (
             'css/zamboni/admin-django.css',
@@ -751,6 +752,7 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/mobile': (
             'js/lib/jquery-1.6.4.js',
+            'js/lib/underscore.js',
             'js/lib/jqmobile.js',
             'js/lib/jquery.cookie.js',
             'js/lib/jquery.pjax.js',
@@ -762,6 +764,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/format.js',
             'js/zamboni/mobile/buttons.js',
             'js/zamboni/truncation.js',
+            'js/impala/footer.js',
             'js/zamboni/personas_core.js',
             'js/zamboni/mobile/personas.js',
             'js/zamboni/mobile/general.js',
