@@ -702,7 +702,9 @@ def purchases(request, addon_id=None, template=None):
 def plain(request, contribution, wizard):
     # Simple view that just shows a template matching the step.
     tpl = wizard.tpl('%s.html' % wizard.step)
-    return wizard.render(request, tpl, {'addon': contribution.addon,
+    addon = contribution.addon
+    return wizard.render(request, tpl, {'addon': addon,
+                                        'webapp': addon.is_webapp(),
                                         'contribution': contribution})
 
 
@@ -726,7 +728,8 @@ def support_author(request, contribution, wizard):
                                     args=[contribution.pk, 'author-sent']))
 
     return wizard.render(request, wizard.tpl('author.html'),
-                         {'addon': addon, 'form': form})
+                         {'addon': addon, 'webapp': addon.is_webapp(),
+                          'form': form})
 
 
 def support_mozilla(request, contribution, wizard):
@@ -760,8 +763,8 @@ def refund_request(request, contribution, wizard):
                                     args=[contribution.pk, 'reason']))
 
     return wizard.render(request, wizard.tpl('request.html'),
-                         {'addon': addon, 'form': form,
-                          'contribution': contribution})
+                         {'addon': addon, 'webapp': addon.is_webapp(),
+                          'form': form, 'contribution': contribution})
 
 
 def refund_reason(request, contribution, wizard):
@@ -820,3 +823,7 @@ class SupportWizard(Wizard):
             raise http.Http404
         args = [contribution] + list(args)
         return super(SupportWizard, self).dispatch(request, step, *args, **kw)
+
+    def render(self, request, template, context):
+        context.update(webapp=settings.APP_PREVIEW)
+        return super(SupportWizard, self).render(request, template, context)
