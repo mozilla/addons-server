@@ -1,19 +1,21 @@
 import json
 
 from django.conf import settings
+from django.utils.encoding import iri_to_uri
 
 from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
+import waffle
 
 import amo
 from amo.helpers import absolutify, numberfmt, page_title
 import amo.tests
 from amo.urlresolvers import reverse
-from addons.models import Addon, AddonUser
+from addons.models import Addon, AddonUser, AddonPremium
 from addons.tests.test_views import add_addon_author, test_hovercards
 from browse.tests import test_listing_sort, test_default_sort, TestMobileHeader
-from django.utils.encoding import iri_to_uri
+from market.models import Price
 from sharing import SERVICES
 from translations.helpers import truncate
 from users.models import UserProfile
@@ -33,18 +35,73 @@ class WebappTest(amo.tests.TestCase):
         self.webapp_url = self.url = self.webapp.get_url_path()
 
 
-class TestListing(WebappTest):
+class TestPremium(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
-        super(TestListing, self).setUp()
+        waffle.models.Switch.objects.create(name='marketplace', active=True)
+        self.url = reverse('apps.home')
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.free = [
+            Webapp.objects.get(id=337141),
+            amo.tests.addon_factory(type=amo.ADDON_WEBAPP),
+        ]
+        self.paid = []
+        for x in xrange(1, 3):
+            price = Price.objects.create(price=x)
+            addon = amo.tests.addon_factory(type=amo.ADDON_WEBAPP,
+                                            weekly_downloads=x * 100)
+            AddonPremium.objects.create(price=price, addon=addon)
+            addon.update(premium_type=amo.ADDON_PREMIUM)
+            self.paid.append(addon)
+        self.free = sorted(self.free, key=lambda x: x.weekly_downloads,
+                           reverse=True)
+        self.paid = sorted(self.paid, key=lambda x: x.weekly_downloads,
+                           reverse=True)
+
+
+class TestHome(TestPremium):
+
+    def test_free(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(list(r.context['free']), self.free)
+        for idx, element in enumerate(doc('#top-free .item')):
+            item = pq(element)
+            webapp = self.free[idx]
+            eq_(item.find('.price').text(), 'FREE')
+            eq_(item.find('.downloads').split()[0],
+                numberfmt(webapp.weekly_downloads))
+
+    def test_paid(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(list(r.context['paid']), self.paid)
+        for idx, element in enumerate(doc('#top-paid .item')):
+            item = pq(element)
+            webapp = self.paid[idx]
+            eq_(item.find('.price').text(), webapp.premium.get_price_locale())
+            eq_(item.find('.downloads').split()[0],
+                numberfmt(webapp.weekly_downloads))
+
+
+class TestHeader(WebappTest):
+
+    def setUp(self):
+        super(TestHeader, self).setUp()
+        self.home = reverse('apps.home')
         self.url = reverse('apps.list')
 
     def test_header(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        eq_(doc('h1.site-title').text(), 'Apps')
-        eq_(doc('#site-nav.app-nav').length, 1)
-        eq_(doc('#search-q').attr('placeholder'), 'search for apps')
+        for url in (self.url, self.home):
+            r = self.client.get(url)
+            eq_(r.status_code, 200)
+            doc = pq(r.content)
+            eq_(doc('h1.site-title').text(), 'Apps')
+            eq_(doc('#site-nav.app-nav').length, 1)
+            eq_(doc('#search-q').attr('placeholder'), 'search for apps')
 
     def test_header_links(self):
         response = self.client.get(self.url)
@@ -85,21 +142,40 @@ class TestListing(WebappTest):
             doc = pq(response.content)
             eq_(doc('#search').attr('action'), '/en-US/apps/search/')
 
+
+class TestListing(TestPremium):
+
+    def setUp(self):
+        super(TestListing, self).setUp()
+        self.url = reverse('apps.list')
+
     def test_default_sort(self):
         test_default_sort(self, 'downloads', 'weekly_downloads')
+
+    def test_free_sort(self):
+        apps = test_listing_sort(self, 'free', 'weekly_downloads')
+        for a in apps:
+            eq_(a.is_premium(), False)
+
+    def test_paid_sort(self):
+        apps = test_listing_sort(self, 'paid', 'weekly_downloads')
+        for a in apps:
+            eq_(a.is_premium(), True)
+
+    def test_price_sort(self):
+        apps = test_listing_sort(self, 'price', None, reverse=False,
+                                 sel_class='extra-opt')
+        eq_(apps, list(Webapp.objects.order_by('addonpremium__price__price')))
 
     def test_rating_sort(self):
         test_listing_sort(self, 'rating', 'bayesian_rating')
 
     def test_newest_sort(self):
-        test_listing_sort(self, 'created', 'created')
+        test_listing_sort(self, 'created', 'created', sel_class='extra-opt')
 
     def test_name_sort(self):
         test_listing_sort(self, 'name', 'name', reverse=False,
                           sel_class='extra-opt')
-
-    def test_featured_sort(self):
-        test_listing_sort(self, 'featured', sel_class='extra-opt')
 
     def test_updated_sort(self):
         test_listing_sort(self, 'updated', 'last_updated',
@@ -116,7 +192,6 @@ class TestDetail(WebappTest):
         more_url = self.webapp.get_url_path(more=True)
         return pq(self.client.get_ajax(more_url).content.decode('utf-8'))
 
-    @patch.object(settings, 'APP_PREVIEW', False)
     def test_title(self):
         response = self.client.get(self.url)
         eq_(pq(response.content)('title').text(), 'woo :: Apps Marketplace')
@@ -226,7 +301,6 @@ class TestMobileAppHeader(TestMobileHeader):
 
 class TestMobileDetail(amo.tests.MobileTest, WebappTest):
 
-    @patch.object(settings, 'APP_PREVIEW', False)
     def test_page(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
@@ -270,7 +344,6 @@ class TestReportAbuse(WebappTest):
         super(TestReportAbuse, self).setUp()
         self.abuse_url = reverse('apps.abuse', args=[self.webapp.app_slug])
 
-    @patch.object(settings, 'APP_PREVIEW', False)
     def test_page(self):
         r = self.client.get(self.abuse_url)
         eq_(r.status_code, 200)

@@ -14,23 +14,25 @@
       {{ impala_reviews_link(addon) }}
       {{ price(addon) }}
     {% elif type in ('downloads', 'adu') %}
-      <span class="adu">
-        {% if type == 'downloads' %}
+      {% if type == 'downloads' %}
+        <span class="downloads adu">
           {% trans cnt=addon.weekly_downloads,
                    num=addon.weekly_downloads|numberfmt %}
             {{ num }} weekly download
           {% pluralize %}
             {{ num }} weekly downloads
           {% endtrans %}
-        {% else %}
+        </span>
+      {% else %}
+        <span class="adu">
           {% trans cnt=addon.average_daily_users,
                    num=addon.average_daily_users|numberfmt %}
             {{ num }} user
           {% pluralize %}
             {{ num }} users
           {% endtrans %}
-        {% endif %}
-      </span>
+        </span>
+      {% endif %}
     {% endif %}
   </div>
 {% endmacro %}

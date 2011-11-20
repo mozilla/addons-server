@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 
 import jingo
 from mobility.decorators import mobile_template
@@ -6,6 +6,7 @@ from tower import ugettext_lazy as _lazy
 
 import amo
 from amo.decorators import json_view, login_required, post_required
+from amo.helpers import loc
 from amo.utils import paginate
 from addons.decorators import addon_view
 import addons.views
@@ -21,13 +22,33 @@ TYPE = amo.ADDON_WEBAPP
 
 def es_app_list(request):
     ctx = search.views.app_search_query(request)
-    ctx['search_placeholder'] = 'apps'
     return jingo.render(request, 'webapps/listing.html', ctx)
 
 
+# TODO(cvan): Make a mobile apps homepage when we know what we want.
+#@mobile_template('webapps/{mobile/}home.html')
 def app_home(request):
-    # TODO: This will someday no longer be the listing page.
-    return app_list(request)
+    if request.MOBILE:
+        return redirect('apps.list')
+
+    src = 'cb-btn-home'
+    dl_src = 'cb-dl-home'
+
+    base = Webapp.objects.reviewed()
+    free = (base.filter(addonpremium__price__price__isnull=True)
+            .order_by('-weekly_downloads'))[:18]
+    paid = (base.filter(addonpremium__price__price__isnull=False)
+            .order_by('-weekly_downloads'))[:18]
+
+    ctx = {
+        'section': amo.ADDON_SLUGS[TYPE],
+        'addon_type': TYPE,
+        'free': free,
+        'paid': paid,
+        'src': src,
+        'dl_src': dl_src,
+    }
+    return jingo.render(request, 'webapps/home.html', ctx)
 
 
 class AppCategoryLandingFilter(CategoryLandingFilter):
@@ -40,10 +61,12 @@ class AppCategoryLandingFilter(CategoryLandingFilter):
 
 class AppFilter(addons.views.BaseFilter):
     opts = (('downloads', _lazy(u'Weekly Downloads')),
-            ('rating', _lazy(u'Top Rated')),
-            ('created', _lazy(u'Newest')))
-    extras = (('name', _lazy(u'Name')),
-              ('featured', _lazy(u'Featured')),
+            ('free', loc(u'Top Free')),
+            ('paid', loc(u'Top Paid')),
+            ('rating', _lazy(u'Top Rated')))
+    extras = (('created', _lazy(u'Newest')),
+              ('name', _lazy(u'Name')),
+              ('price', loc(u'Price')),
               ('updated', _lazy(u'Recently Updated')),
               ('hotness', _lazy(u'Up & Coming')))
 
@@ -77,7 +100,7 @@ def app_list(request, category=None, template=None):
     ctx = {'section': amo.ADDON_SLUGS[TYPE], 'addon_type': TYPE,
            'category': category, 'addons': addons, 'filter': filter,
            'sorting': sorting, 'sort_opts': filter.opts, 'src': src,
-           'dl_src': dl_src, 'search_placeholder': 'apps'}
+           'dl_src': dl_src}
     return jingo.render(request, template, ctx)
 
 

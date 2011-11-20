@@ -17,6 +17,9 @@
         {% endif %}
       {% endwith %}
       {{ vital(addon, vital_summary) }}
+      {% if vital_summary == 'downloads' %}
+        {{ vital(addon, 'rating') }}
+      {% endif %}
     </div>
   </a>
   <div class="more">
@@ -27,8 +30,10 @@
         by {{ users }}
       {% endtrans %}
     </div>
-    <div class="vitals">
-      {{ vital(addon, vital_more) }}
-    </div>
+    {% if vital_more %}
+      <div class="vitals">
+        {{ vital(addon, vital_more) }}
+      </div>
+    {% endif %}
   </div>
 </div>

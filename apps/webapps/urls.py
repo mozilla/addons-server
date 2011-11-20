@@ -36,7 +36,7 @@ urlpatterns = patterns('',
     # Review spam.
     url('^reviews/spam/$', 'reviews.views.spam', name='apps.reviews.spam'),
 
-    url('^(?P<category>[^/]+)?$', views.app_list, name='apps.list'),
+    url('^apps/(?P<category>[^/]+)?$', views.app_list, name='apps.list'),
 
     # URLs for a single app.
     ('^app/%s/' % APP_SLUG, include(detail_patterns)),

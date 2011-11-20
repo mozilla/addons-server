@@ -1,0 +1,99 @@
+{% extends "impala/base_side_categories.html" %}
+
+{% block title %}{{ loc('Apps Developer Preview' if settings.APP_PREVIEW else 'Apps Marketplace') }}{% endblock %}
+
+{% set list_url = url('apps.list') %}
+
+{% block primary %}
+<section id="homepage" class="primary">
+  <div id="apps-promo" class="island">
+    <h2>{{ loc('What Are Apps?') }}</h2>
+    <p class="intro">
+      {{ loc('Apps are applications that run on any device and can be
+              distributed through any store or directly by the developer.') }}
+    </p>
+    <p><a href="{{ url('devhub.submit_apps.1') }}" class="button prominent">
+      {{ loc('Submit an App') }}</a></p>
+  </div>
+  <div id="apps-learn">
+    <div class="user">
+      <div class="copy">
+        <h3>For Users</h3>
+        <p>
+          Web browsers are adding capabilities that allow web applications
+          to create richer, more integrated experiences.
+        </p>
+        <p>
+          Mozilla has created a <a href="https://apps.mozillalabs.com/gallery/">
+          gallery of user-interface concepts</a> to show how apps can enhance
+          your web environment.
+        </p>
+        <ul>
+          <li class="lab"><a href="https://apps.mozillalabs.com/appdir/">
+            Browse a collection of awesome apps written by our friends</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="dev">
+      <div class="copy">
+      <h3>For Developers</h3>
+        <p>
+          Web Applications are built using HTML5, and can run in any modern
+          browser or mobile OS. Read on to learn how to build them.
+        </p>
+        <ul>
+          <li><a href="https://developer.mozilla.org/Apps">
+            How to create a web application</a></li>
+          <li><a href="https://developer.mozilla.org/en/Apps/Creating_a_store">
+            How to create a web application directory or store</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="adventure">
+      <div class="copy">
+      <h3>For the Adventurous</h3>
+        <p>
+          For users who don't mind running beta-quality code, we have a
+          number of prototypes that you can try out.
+        </p>
+        <p>
+          These extensions add application management and launch features to
+          your browser:
+        </p>
+        <ul>
+          <li>
+            <a href="https://apps.mozillalabs.com/addons/firefox.html">
+              Firefox extension</a>
+          </li>
+          <li>
+            <a href="https://apps.mozillalabs.com/addons/chrome.html">
+              Chrome extension</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  {% if free %}
+    <div id="top-free" class="island c">
+      <h2>
+        {{ loc('Top Free') }}
+        <a class="seeall" href="{{ list_url|urlparams(sort='free') }}">
+          {{ _('See all »') }}</a>
+      </h2>
+      {# If we want download sources for the apps preview, file a bug for cvan. #}
+      {{ free|addon_grid(cols=3, vital_summary='downloads', vital_more=None) }}
+    </div>
+  {% endif %}
+  {% if paid %}
+    <div id="top-paid" class="island c">
+      <h2>
+        {{ loc('Top Paid') }}
+        <a class="seeall" href="{{ list_url|urlparams(sort='paid') }}">
+          {{ _('See all »') }}</a>
+      </h2>
+      {# If we want download sources for the apps preview, file a bug for cvan. #}
+      {{ paid|addon_grid(cols=3, vital_summary='downloads', vital_more=None) }}
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

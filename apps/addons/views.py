@@ -272,6 +272,17 @@ class BaseFilter(object):
         ids = self.model.featured_random(self.request.APP, self.request.LANG)
         return manual_order(self.model.objects, ids, 'addons.id')
 
+    def filter_price(self):
+        return self.model.objects.order_by('addonpremium__price__price')
+
+    def filter_free(self):
+        q = self.model.objects.filter(addonpremium__price__price__isnull=True)
+        return q & self.filter_popular()
+
+    def filter_paid(self):
+        q = self.model.objects.filter(addonpremium__price__price__isnull=False)
+        return q & self.filter_popular()
+
     def filter_popular(self):
         return (self.model.objects.order_by('-weekly_downloads')
                 .with_index(addons='downloads_type_idx'))

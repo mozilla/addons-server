@@ -11,3 +11,84 @@
         }
     }
 }
+
+#apps-promo {
+    background: #fff no-repeat 95% 100%;
+    background-image: url(../../img/apps/promo.png),
+                      -moz-linear-gradient(#e4f5fb, #fff 50px);
+    background-image: url(../../img/apps/promo.png),
+                      -webkit-linear-gradient(#e4f5fb, #fff 50px);
+    .background-size(45% auto, auto);
+    float: none;
+    .intro {
+        font-size: 16px;
+        width: 60%;
+    }
+    h2 {
+        font: 32px/32px MetaBlack;
+        text-transform: uppercase;
+    }
+}
+
+#apps-learn {
+    border: 1px solid @border-blue;
+    .border-radius(5px);
+    .border-box;
+    .box-shadow(0 0 1px rgba(0, 0, 0, .1));
+    display: table;
+    margin-bottom: 15px;
+    padding: 0;
+    h3 {
+        color: @orange;
+        font: italic 18px @serif-stack;
+    }
+    .copy {
+        min-height: 240px;
+        padding: 14px;
+    }
+    ul {
+        margin-top: 1em;
+    }
+    h3 + p {
+        margin-top: .5em;
+    }
+    li {
+        background: url(../../img/apps/lab.png) 0 1px no-repeat;
+        padding-left: 20px;
+    }
+    li + li {
+        margin-top: 7px;
+    }
+    .user, .dev, .adventure {
+        background-position: 50px 150%;
+        background-repeat: no-repeat;
+        .border-box;
+        display: table-cell;
+    }
+    .dev, .adventure {
+        border-left: 1px solid #ccc;
+    }
+    .user {
+        background-image: url(../../img/apps/user.jpg);
+        .border-radius(5px 0 0 5px);
+        .copy {
+            background-color: rgba(221,238,255,.9);  /* #def */
+        }
+    }
+    .dev {
+        background-image: url(../../img/apps/dev.jpg);
+        .copy {
+            background-color: rgba(255,255,238,.9);  /* #ffe */
+        }
+        li {
+            background-image: url(../../img/apps/wrench.png);
+        }
+    }
+    .adventure {
+        background-image: url(../../img/apps/adventure.jpg);
+        .border-radius(0 5px 5px 0);
+        .copy {
+            background-color: rgba(255,238,238,.9);  /* #fee */
+        }
+    }
+}

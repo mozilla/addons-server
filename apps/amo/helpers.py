@@ -260,9 +260,9 @@ def login_link(context):
 def page_title(context, title, force_webapps=False):
     title = smart_unicode(title)
     if settings.APP_PREVIEW:
-        base_title = 'Apps Developer Preview'
+        base_title = loc('Apps Developer Preview')
     elif context.get('WEBAPPS') or force_webapps:
-        base_title = _('Apps Marketplace')
+        base_title = loc('Apps Marketplace')
     else:
         base_title = page_name(context['request'].APP)
     return u'%s :: %s' % (title, base_title)

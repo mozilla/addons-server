@@ -26,7 +26,7 @@ from addons.utils import FeaturedManager
 from applications.models import Application
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from browse import views, feeds
-from browse.views import locale_display_name, AddonFilter, ThemeFilter
+from browse.views import locale_display_name, AddonFilter
 from translations.models import Translation
 from translations.query import order_by_translation
 from users.models import UserProfile
@@ -40,9 +40,10 @@ def test_listing_sort(self, sort, key=None, reverse=True, sel_class='opt'):
     sel = pq(r.content)('#sorter ul > li.selected')
     eq_(sel.find('a').attr('class'), sel_class)
     eq_(r.context['sorting'], sort)
+    a = list(r.context['addons'].object_list)
     if key:
-        a = r.context['addons'].object_list
-        eq_(list(a), sorted(a, key=lambda x: getattr(x, key), reverse=reverse))
+        eq_(a, sorted(a, key=lambda x: getattr(x, key), reverse=reverse))
+    return a
 
 
 @nottest

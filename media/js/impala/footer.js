@@ -9,3 +9,7 @@
     stickyFooter();
     $win.resize(_.debounce(stickyFooter, 200));
 })();
+
+$(document).ready(function() {
+    $(window).trigger('resize');
+});
