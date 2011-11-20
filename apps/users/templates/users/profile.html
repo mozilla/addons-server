@@ -50,7 +50,7 @@
 </div>
 
 {% if addons.object_list %}
-  <div id="my-addons" class="island primary listing c">
+  <div id="my-{{ 'apps' if webapp else 'addons' }}" class="island primary listing c">
     <h2>{{ loc("Apps I've created") if webapp else _("Add-ons I've created") }}</h2>
     {% cache addons.object_list %}
       <div class="items">

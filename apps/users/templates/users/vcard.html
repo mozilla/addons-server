@@ -43,7 +43,8 @@
         {% endif %}
       </th>
       <td class="num-addons">
-        <a href="{{ '#my-addons' if is_profile else profile.get_url_path() }}">
+        <a href="{{ '#my-%s' % ('apps' if webapp else 'addons') if is_profile
+                               else profile.get_url_path() }}">
           {% if webapp %}
             {% with num=profile.apps_listed|length %}
               {% if num == 1 %}
