@@ -436,14 +436,12 @@ function bind_viewer(nodes) {
                 this.compute_messages($('#content-wrapper'));
             }
 
-            var error = data.error || typeof data == "string" && data ||
-                        data && typeof data != "object";
-            if (error) {
+            if (data.error) {
                 $('#validating').after(
                     $('<div>', { 'class': 'notification-box error',
-                                 'text': format('{1} {2}',
+                                 'text': format('{0} {1}',
                                                 $("#metadata").attr('data-validation-failed'),
-                                                error) }));
+                                                data.error) }));
             }
         };
         this.updateViewport = function(resize) {
@@ -683,14 +681,16 @@ function bind_viewer(nodes) {
     if ($('body').attr('data-validate-url')) {
         $('#validating').css('display', 'block');
 
-        $.ajax({type: 'GET',
+        $.ajax({type: 'POST',
                 url: $('body').attr('data-validate-url'),
                 data: {},
                 success: function(data) {
+                    if (typeof data != "object")
+                        data = { error: data };
                     viewer.update_validation(data);
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    viewer.update_validation(textStatus);
+                    viewer.update_validation({ error: errorThrown });
                 },
                 dataType: 'json'
         });
