@@ -232,7 +232,7 @@ class TestMobileDetail(amo.tests.MobileTest, WebappTest):
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'addons/mobile/details.html')
         doc = pq(r.content)
-        eq_(doc('title').text(), '%s :: Apps for Mobile' % self.webapp.name)
+        eq_(doc('title').text(), '%s :: Apps Marketplace' % self.webapp.name)
         eq_(doc('h3').text(), unicode(self.webapp.name))
 
     def test_downloads(self):

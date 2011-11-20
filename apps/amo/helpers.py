@@ -262,10 +262,7 @@ def page_title(context, title, force_webapps=False):
     if settings.APP_PREVIEW:
         base_title = 'Apps Developer Preview'
     elif context.get('WEBAPPS') or force_webapps:
-        if getattr(context['request'], 'MOBILE', False) == True:
-            base_title = _('Apps for Mobile')
-        else:
-            base_title = _('Apps Marketplace')
+        base_title = _('Apps Marketplace')
     else:
         base_title = page_name(context['request'].APP)
     return u'%s :: %s' % (title, base_title)

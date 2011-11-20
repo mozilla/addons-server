@@ -4,17 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1">
 
-    <title>{% block title %}{{ _('Mozilla Apps') }}{% endblock %}</title>
-
-    <link rel="shortcut icon" type="image/x-icon"
-          href="{{ media('img/favicon.ico') }}">
+    <title>{% block title %}{{ loc('Apps Developer Preview') if settings.APP_PREVIEW else loc('Mozilla Apps') }}{% endblock %}</title>
 
     {% block rss_feed %}{% endblock %}
 
-    {# L10n: {0} is an application, like Firefox. #}
-    <link title="{{ _('Mobile Apps') }}"
-          rel="search" type="application/opensearchdescription+xml"
-          href="{{ url('amo.opensearch') }}" />
+    <link title="{{ loc('Apps') }}" href="{{ url('amo.opensearch') }}"
+          rel="search" type="application/opensearchdescription+xml">
 
     {% block site_css %}
       {{ css('zamboni/mobile') }}
@@ -44,7 +39,6 @@
     <div id="page">
       {% block header %}
         <header class="mini-header">
-          {% include "mobile/header.html" %}
           <hgroup>
             <h1 class="site-title">
               <a href="{{ url('apps.home') }}"
@@ -58,7 +52,7 @@
               {% block back_link %}
                 <li><a href="{{ url('apps.home') }}" id="home">
                   <svg width="18" height="16"><polygon fill="#447BC4" points="9,0 18,9 15,9 15,16 11,16 11,11 7,11 7,18 3,16 3,9 0,9"/></svg>
-                  {{ _('Mobile Apps Home') }}</a></li>
+                  {{ loc('Home') }}</a></li>
               {% endblock %}
             </ul>
             {% include "mobile/header_auth.html" %}
