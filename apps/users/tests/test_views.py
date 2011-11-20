@@ -853,6 +853,8 @@ class TestProfileSections(amo.tests.TestCase):
         self.url = reverse('users.profile', args=[self.user.id])
 
     def test_my_addons(self):
+        eq_(pq(self.client.get(self.url).content)('.num-addons a').length, 0)
+
         AddonUser.objects.create(user=self.user, addon_id=3615)
         AddonUser.objects.create(user=self.user, addon_id=5299)
 
