@@ -99,7 +99,7 @@
   {% endif %}
 {% endmacro %}
 
-{% macro sort_vital(addon) %}
+{% macro sort_vital(addon, field) %}
   {% if field in ('popular', 'downloads') or not addon.show_adu() %}
     <div class="adu downloads">
       {% with num=addon.weekly_downloads %}
@@ -121,7 +121,7 @@
       {% if field == 'created' %}
         {# L10n: {0} is a date. #}
         {{ _('Added {0}')|f(addon.created|datetime) }}
-      {% elif field == 'updated' %}
+      {% else %}
         {# L10n: {0} is a date. #}
         {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
       {% endif %}
