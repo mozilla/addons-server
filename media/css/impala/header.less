@@ -244,9 +244,12 @@
                 }
             }
             &.logout {
-                &.anonymous {
-                    a:first-child {
+                &.anonymous a {
+                    &:first-child {
                         padding-right: 4px;
+                    }
+                    &:only-child {
+                        padding-right: 12px;
                     }
                 }
                 &:before {
@@ -278,10 +281,23 @@
     }
 }
 .html-rtl {
-    #aux-nav > ul > li > a:after {
-        margin: 0 4px 0 0;
-        right: 4px;
-        left: auto;
+    #aux-nav > ul > li {
+        &:last-child {
+            border: 0;
+        }
+        &.anonymous {
+            a:first-child {
+                padding: 0 0 0 4px;
+            }
+            a:only-child {
+                padding: 0 0 0 12px;
+            }
+        }
+        > a:after {
+            margin: 0 4px 0 0;
+            right: 4px;
+            left: auto;
+        }
     }
 }
 /** search box */
