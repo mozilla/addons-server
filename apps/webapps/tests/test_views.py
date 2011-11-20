@@ -74,8 +74,10 @@ class TestListing(WebappTest):
         eq_(doc('#site-noinstall-apps').length, 1)
 
     def test_footer(self):
-        response = self.client.get(self.url)
-        eq_(pq(response.content)('#social-footer').length, 0)
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('#social-footer').length, 0)
+        eq_(doc('#copyright').length, 1)
+        eq_(doc('#footer-links .mobile-link').length, 1)
 
     def test_search_url(self):
         for url in (self.url, self.webapp_url):

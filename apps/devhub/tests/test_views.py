@@ -152,21 +152,22 @@ class TestDashboard(HubTest):
         self.apps_url = reverse('devhub.apps')
         eq_(self.client.get(self.url).status_code, 200)
 
-    def test_addons_page_title(self):
+    def test_addons_layout(self):
         doc = pq(self.client.get(self.url).content)
         eq_(doc('title').text(),
             'Manage My Add-ons :: Developer Hub :: Add-ons for Firefox')
         eq_(doc('#social-footer').length, 1)
         eq_(doc('#copyright').length, 1)
+        eq_(doc('#footer-links .mobile-link').length, 0)
 
-    @mock.patch.object(settings, 'APP_PREVIEW', False)
-    def test_apps_page_title(self):
+    def test_apps_layout(self):
         waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
         doc = pq(self.client.get(self.apps_url).content)
         eq_(doc('title').text(),
             'Manage My Apps :: Developer Hub :: Apps Marketplace')
         eq_(doc('#social-footer').length, 0)
         eq_(doc('#copyright').length, 1)
+        eq_(doc('#footer-links .mobile-link').length, 0)
 
     def get_action_links(self, addon_id):
         r = self.client.get(self.url)

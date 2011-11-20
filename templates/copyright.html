@@ -1,5 +1,7 @@
 {% extends 'global/copyright.html' %}
 
 {% block extra_footer_links %}
-&nbsp;|&nbsp;<a class="mobile-link" href="#">{{ _('View Mobile Site') }}</a>
+  {% if not hide_mobile_link %}
+    &nbsp;|&nbsp;<a class="mobile-link" href="#">{{ _('View Mobile Site') }}</a>
+  {% endif %}
 {% endblock %}

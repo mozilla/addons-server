@@ -207,7 +207,9 @@
           {% block footer_extras %}
             <img class="footerlogo" src="{{ media('img/zamboni/footer-logo-med.png') }}" alt="">
           {% endblock %}
-          {% include "footer.html" %}
+          {% with hide_mobile_link=hide_mobile_link %}
+            {% include 'footer.html' %}
+          {% endwith %}
         </div> {# section #}
       </div> {# footer #}
     {% endblock %}

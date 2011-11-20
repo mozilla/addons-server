@@ -142,7 +142,9 @@
 
 {% block footer %}
   {% if webapp %}
-    {% include "amo_footer_small.html" %}
+    {% with hide_mobile_link=hide_mobile_link %}
+      {% include "amo_footer_small.html" %}
+    {% endwith %}
   {% else %}
     {{ super() }}
   {% endif %}
