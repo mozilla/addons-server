@@ -512,7 +512,6 @@ def register(request):
           UserProfile.objects.count() > settings.REGISTER_USER_LIMIT):
         _m = ('Sorry, no more registrations are allowed. '
               '<a href="https://developer.mozilla.org/en/Apps">Learn more</a>')
-        return (None, _m)
         messages.error(request, _m)
         form = None
 
