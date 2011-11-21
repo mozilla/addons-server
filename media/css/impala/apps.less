@@ -20,13 +20,21 @@
                       -webkit-linear-gradient(#e4f5fb, #fff 50px);
     .background-size(45% auto, auto);
     float: none;
-    .intro {
+    p {
+        .border-box;
         font-size: 16px;
         width: 60%;
     }
     h2 {
         font: 32px/32px MetaBlack;
         text-transform: uppercase;
+    }
+}
+
+.html-rtl #apps-promo {
+    background-position: 0 100%;
+    p {
+        width: 50%;
     }
 }
 
@@ -90,5 +98,14 @@
         .copy {
             background-color: rgba(255,238,238,.9);  /* #fee */
         }
+    }
+}
+
+.html-rtl #apps-learn {
+    .adventure {
+        border: 0;
+    }
+    .dev {
+        border-right: 1px solid #ccc;
     }
 }
