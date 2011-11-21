@@ -560,7 +560,9 @@ class TestLogin(UserViewBase):
                                data=dict(assertion='fake-assertion',
                                          audience='fakeamo.org'))
         eq_(res.status_code, 401)
-        eq_(res.content, 'Sorry, no more registrations are allowed.')
+        _m = ('Sorry, no more registrations are allowed. '
+              '<a href="https://developer.mozilla.org/en/Apps">Learn more</a>')
+        eq_(res.content, _m)
 
         profile_count = UserProfile.objects.count()
         eq_(profile_count, 4)
