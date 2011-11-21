@@ -20,9 +20,14 @@
 .listview li {
     border-top: 1px solid #ccc;
     font-size: 1em;
+    white-space: normal;
     &:first-child {
         border: 0;
     }
+}
+.listview li,
+a.listview {
+    position: relative;
 }
 .listview li > a,
 a.listview {
@@ -33,7 +38,6 @@ a.listview {
     overflow: hidden;
     text-decoration: none;
     padding: 10px;
-    position: relative;
 }
 .html-rtl .listview li > a,
 .html-rtl a.listview {
@@ -66,29 +70,24 @@ a.listview:before {
     background: url(../../img/zamboni/mobile/arrow.svg) no-repeat center center;
     -moz-transform: scaleX(-1);
 }
-.icon {
-    float: left;
-    margin-right: 8px;
-}
-.html-rtl .icon {
-    float: right;
-    margin-left: 8px;
-    margin-right: 0;
-}
 
 .item {
     line-height: 1.3em;
+    padding-left: 42px;
+    .icon {
+        position: absolute;
+        left: 10px;
+    }
     h3 {
         font-size: 1.1em;
     }
     .desc {
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        color: @medium-gray;
     }
     details {
         font-size: .9em;
-        margin: 0 12px 10px 36px;
-        padding: 0 14px;
+        margin: 0 0 10px;
+        padding: 0 10px;
     }
     .vital {
         color: green;
@@ -114,8 +113,10 @@ a.listview:before {
     }
 }
 .html-rtl .item {
-    details {
-        margin: 0 36px 10px 12px;
+    padding: 0 42px 0 14px;
+    .icon {
+        left: auto;
+        right: 10px;
     }
     .stars, i, .vital {
         float: right;
