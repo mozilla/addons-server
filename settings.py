@@ -623,6 +623,9 @@ MINIFY_BUNDLES = {
             'js/lib/jquery.pjax.js',
             'js/impala/footer.js',
 
+            # BrowserID
+            'js/zamboni/browserid_support.js',
+
             # jQuery UI
             'js/lib/jquery-ui/jquery.ui.core.js',
             'js/lib/jquery-ui/jquery.ui.position.js',
@@ -791,9 +794,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/admin.js',
             'js/zamboni/admin_features.js',
             'js/zamboni/admin_validation.js',
-        ),
-        'zamboni/login': (
-            'js/zamboni/browserid_support.js',
         ),
         # This is included when DEBUG is True.  Bundle in <head>.
         'debug': (

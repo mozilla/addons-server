@@ -53,23 +53,35 @@ function gotVerifiedEmail(assertion, redirectTo, domContext) {
 function initBrowserID(win, ctx) {
     // Initialize BrowserID login.
     $('.browserid-login', ctx).each(function() {
-            var toArg = win.location.href.split('?to=')[1];
-            var to = "/";
-            if (toArg) {
-              to = decodeURIComponent(toArg);
+        var toArg = win.location.href.split('?to=')[1],
+            to = "/",
+            script_loaded = false;
+
+        if (toArg) {
+            to = decodeURIComponent(toArg);
+        }
+        if (to.indexOf("://") > -1) {
+            to = "/";
+        };
+        $(this).click(function(e) {
+            e.preventDefault();
+            $(this).addClass('loading-submit');
+
+            if(script_loaded) {
+                startBrowserID();
+            } else {
+                $.getScript('https://browserid.org/include.js', startBrowserID);
             }
-            if (to.indexOf("://") > -1) {
-                to = "/";
-            };
-            $(this).click(
-                function (e) {
-                    $(this).addClass('loading-submit');
-                    $('.primary .notification-box', ctx).remove();
-                    navigator.id.getVerifiedEmail(
-                        function(assertion) {
-                            gotVerifiedEmail(assertion, to);
+
+            function startBrowserID() {
+                script_loaded = true;
+                $('.primary .notification-box', ctx).remove();
+                navigator.id.getVerifiedEmail(function(assertion) {
+                    gotVerifiedEmail(assertion, to);
                 });
-        });});
+            }
+        });
+    });
 }
 $(document).ready(function () {initBrowserID(window);});
 

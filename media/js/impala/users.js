@@ -48,3 +48,8 @@ $(function() {
         }
     });
 });
+
+$('#admin-login').click(function() {
+  window.location = $(this).attr('data-login');
+});
+

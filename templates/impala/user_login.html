@@ -18,8 +18,14 @@
   </li>
 {% else %}
   <li class="account anonymous nomenu logout">
-    {% if settings.APP_PREVIEW %}
-      <a href="{{ login_link() }}">Log in</a>
+    {% if waffle.switch('browserid-login') %}
+    <a contextmenu="login" href="{{ login_link() }}" data-login="{{ login }}"
+       data-url="{{ url('users.browserid_login') }}" class="browserid-login">
+       {{ _('Log in / Register') }}</a>
+
+    <menu type="context" id="login">
+      <menuitem label="{{ _('Admin / Editor Login') }}" id="admin-login"></menuitem>
+    </menu>
     {% else %}
         {% trans reg=url('users.register'), login=login_link() %}
             <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>
