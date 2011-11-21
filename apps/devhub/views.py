@@ -272,7 +272,8 @@ def edit(request, addon_id, addon, webapp=False):
        'tags': addon.tags.not_blacklisted().values_list('tag_text', flat=True),
        'previews': addon.previews.all()}
 
-    if acl.action_allowed(request, 'Admin', 'ConfigureAnyAddon'):
+    if (not webapp and
+        acl.action_allowed(request, 'Admin', 'ConfigureAnyAddon')):
         data['admin_form'] = forms.AdminForm(instance=addon)
 
     return jingo.render(request, 'devhub/addons/edit.html', data)
