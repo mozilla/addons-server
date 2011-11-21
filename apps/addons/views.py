@@ -561,10 +561,9 @@ def purchase_complete(request, addon, status):
         log.debug('Paypal returned: %s for paykey: %s'
                   % (result, con.paykey[:10]))
         if result == 'COMPLETED':
-            # Markup the contribution suitably
-            con.type = amo.CONTRIB_PURCHASE
-            con.uuid = None
-            con.save()
+            status = 'complete'
+        else:
+            status = 'error'
 
     response = jingo.render(request, 'addons/paypal_result.html',
                             {'addon': addon,
