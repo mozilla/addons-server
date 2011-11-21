@@ -479,7 +479,7 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
 
 
 @dev_required(webapp=True)
-def issue_refund(request, addon_id, addon, webapp=None):
+def issue_refund(request, addon_id, addon, webapp=False):
     if request.method == 'POST':
         txn_id = request.POST.get('transaction_id', None)
         if 'issue' in request.POST:
@@ -501,6 +501,7 @@ def issue_refund(request, addon_id, addon, webapp=None):
                             {'refund_issued': False,
                              'user': c.user.display_name,
                              'addon_name': addon.name,
+                             'webapp': webapp,
                              'price': c.amount,
                              'transaction_id': txn_id,
                              'purchase_date': c.created})
@@ -508,7 +509,7 @@ def issue_refund(request, addon_id, addon, webapp=None):
 
 @dev_required
 @post_required
-def disable_payments(request, addon_id, addon, webapp=False):
+def disable_payments(request, addon_id, addon):
     addon.update(wants_contributions=False)
     return redirect(addon.get_dev_url('payments'))
 
