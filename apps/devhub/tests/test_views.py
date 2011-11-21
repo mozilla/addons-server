@@ -8,6 +8,7 @@ from collections import namedtuple
 import urllib
 
 from django.conf import settings
+from django.core import mail
 from django.utils.http import urlencode
 
 import jingo
@@ -1171,8 +1172,8 @@ class TestIssueRefund(amo.tests.TestCase):
     def makePurchase(self, uuid='123456', type=amo.CONTRIB_PURCHASE):
         return Contribution.objects.create(uuid=uuid, addon=self.addon,
                                            transaction_id=self.transaction_id,
-                                        user=self.user,
-                                        type=type)
+                                           user=self.user,
+                                           amount=Decimal('10'), type=type)
 
     def test_request_issue(self):
         c = self.makePurchase()
@@ -1188,6 +1189,10 @@ class TestIssueRefund(amo.tests.TestCase):
         r = self.client.get(self.url, data={'transaction_id': 'none'})
         eq_(r.status_code, 404)
 
+    def test_nonexistent_txn_no_really(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 404)
+
     @mock.patch('paypal.refund')
     def test_issue(self, refund):
         c = self.makePurchase()
@@ -1196,6 +1201,8 @@ class TestIssueRefund(amo.tests.TestCase):
                                    'issue': '1'})
         eq_(r.status_code, 302)
         refund.assert_called_with(self.transaction_id)
+        eq_(len(mail.outbox), 1)
+        assert 'approved' in mail.outbox[0].subject
 
     @mock.patch('paypal.refund')
     def test_decline(self, refund):
@@ -1205,6 +1212,8 @@ class TestIssueRefund(amo.tests.TestCase):
                                    'decline': ''})
         eq_(r.status_code, 302)
         assert not refund.called
+        eq_(len(mail.outbox), 1)
+        assert 'declined' in mail.outbox[0].subject
 
     @mock.patch('paypal.refund')
     def test_non_refundable_txn(self, refund):

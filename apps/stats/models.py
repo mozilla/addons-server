@@ -189,22 +189,39 @@ class Contribution(models.Model):
         tower.activate(lang)
         return Locale(translation.to_locale(lang))
 
-
-    def mail_chargeback(self):
-        """
-        Send a mail to the purchaser of an add-on about the reversal from
-        Paypal.
-        """
-        locale = self._switch_locale()
-        t = env.get_template('users/support/emails/chargeback.txt')
-        amt = numbers.format_currency(abs(self.amount), self.currency,
-                                      locale=locale)
-        body = t.render({'name': self.addon.name, 'amount': amt})
-        # L10n: the adddon name.
-        subject = _(u'%s payment reversal' % self.addon.name)
+    def _mail(self, template, subject, context):
+        template = env.get_template(template)
+        body = template.render(context)
         send_mail(subject, body, settings.MARKETPLACE_EMAIL,
                   [self.user.email], fail_silently=True)
 
+    def mail_chargeback(self):
+        """Send to the purchaser of an add-on about reversal from Paypal."""
+        locale = self._switch_locale()
+        amt = numbers.format_currency(abs(self.amount), self.currency,
+                                      locale=locale)
+        self._mail('users/support/emails/chargeback.txt',
+                   # L10n: the adddon name.
+                   _(u'%s payment reversal' % self.addon.name),
+                   {'name': self.addon.name, 'amount': amt})
+
+    def mail_approved(self):
+        """The developer has approved a refund."""
+        locale = self._switch_locale()
+        amt = numbers.format_currency(abs(self.amount), self.currency,
+                                      locale=locale)
+        self._mail('users/support/emails/refund-approved.txt',
+                   # L10n: the adddon name.
+                   _(u'%s refund approved' % self.addon.name),
+                   {'name': self.addon.name, 'amount': amt})
+
+    def mail_declined(self):
+        """The developer has declined a refund."""
+        self._switch_locale()
+        self._mail('users/support/emails/refund-declined.txt',
+                   # L10n: the adddon name.
+                   _(u'%s refund declined' % self.addon.name),
+                   {'name': self.addon.name})
 
     def mail_thankyou(self, request=None):
         """

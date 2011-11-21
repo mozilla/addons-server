@@ -481,31 +481,32 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
 
 @dev_required(webapp=True)
 def issue_refund(request, addon_id, addon, webapp=False):
+    txn_id = request.REQUEST.get('transaction_id', None)
+    if not txn_id:
+        raise http.Http404
+    contribution = get_object_or_404(Contribution, transaction_id=txn_id,
+                                     type=amo.CONTRIB_PURCHASE)
     if request.method == 'POST':
-        txn_id = request.POST.get('transaction_id', None)
         if 'issue' in request.POST:
-            get_object_or_404(Contribution, transaction_id=txn_id,
-                              type=amo.CONTRIB_PURCHASE)
             paypal.refund(txn_id)
+            contribution.mail_approved()
             paypal_log.error('Refund issued for transaction %r' % (txn_id,))
             messages.success(request, 'Refund issued.')
             return redirect('devhub.addons')
         else:
+            contribution.mail_declined()
             paypal_log.error('Refund declined for transaction %r' % (txn_id,))
             messages.success(request, 'Refund declined.')
             return redirect('devhub.addons')
     else:
-        txn_id = request.GET.get('transaction_id', None)
-        c = get_object_or_404(Contribution, transaction_id=txn_id,
-                              type=amo.CONTRIB_PURCHASE)
         return jingo.render(request, 'devhub/payments/issue-refund.html',
                             {'refund_issued': False,
-                             'user': c.user.display_name,
+                             'user': contribution.user.display_name,
                              'addon_name': addon.name,
                              'webapp': webapp,
-                             'price': c.amount,
+                             'price': contribution.amount,
                              'transaction_id': txn_id,
-                             'purchase_date': c.created})
+                             'purchase_date': contribution.created})
 
 
 @dev_required
