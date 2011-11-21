@@ -1367,9 +1367,11 @@ class TestMobileExtensions(TestMobile):
         r = self.client.get(reverse('browse.extensions', args=[cat.slug]))
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'browse/mobile/extensions.html')
-        self.assertTemplateUsed(r, 'addons/listing/items_mobile.html')
+        self.assertTemplateNotUsed(r, 'addons/listing/items_mobile.html')
         eq_(r.context['category'], cat)
-        eq_(pq(r.content)('.addon-listing .listview').length, 1)
+        doc = pq(r.content)
+        eq_(doc('.addon-listing .listview').length, 0)
+        eq_(doc('.no-results').length, 1)
 
 
 class TestMobileHeader(amo.tests.MobileTest, amo.tests.TestCase):
