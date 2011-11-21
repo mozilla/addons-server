@@ -1318,3 +1318,7 @@ NO_ADDONS_MODULES = (
 # Cron jobs that aren't critical will check this flag and not run if this
 # is True.
 IGNORE_NON_CRITICAL_CRONS = False
+
+# To enable new default to compatible checks in services/update.py set to True.
+# Set to False in case of emergency to switch back to old code.
+DEFAULT_TO_COMPATIBLE = True
