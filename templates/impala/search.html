@@ -19,6 +19,7 @@
          src="{{ media('img/zamboni/global/btn-search.png') }}"></button>
   {% if search_cat != 'collections' and waffle.switch('search-suggestions') %}
     <div id="site-search-suggestions"
+         data-cat="{{ search_placeholder or search_cat }}"
          data-src="{{ url('search.suggestions') }}"></div>
   {% endif %}
 </form>

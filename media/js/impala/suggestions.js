@@ -18,17 +18,16 @@ $.fn.highlightTerm = function(val) {
 };
 
 
-$.fn.searchSuggestions = function(results) {
+$.fn.searchSuggestions = function($results) {
     var $self = this,
-        $form = $self.closest('form'),
-        $results = results;
+        $form = $self.closest('form');
 
     if (!$results.length) {
         return;
     }
 
     // Some base elements that we don't want to keep creating on the fly.
-    var cat = $form.find('input[name=cat]').val(),
+    var cat = $results.attr('data-cat'),
         msg;
     if (cat == 'personas') {
         msg = gettext('Search personas for <b>{0}</b>');
@@ -147,8 +146,8 @@ $.fn.searchSuggestions = function(results) {
             );
 
             $.ajaxCache({
-                url: $results.attr('data-src'),
-                data: $form.serialize(),
+                url: $form.serialize() + '&cat=' + cat,
+                data: fields,
                 newItems: function(formdata, items) {
                     var eventName;
                     if (items !== undefined) {

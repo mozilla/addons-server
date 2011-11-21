@@ -368,15 +368,17 @@ def ajax_search_suggestions(request):
                 })
 
         # Categories.
-        cats = (Category.objects
-                .filter(Q(application=request.APP.id) |
-                        Q(type=amo.ADDON_SEARCH)))
-        if cat == 'personas':
-            cats = cats.filter(type=amo.ADDON_PERSONA)
-        elif cat == 'apps':
+        cats = Category.objects
+        if cat == 'apps':
             cats = cats.filter(type=amo.ADDON_WEBAPP)
         else:
-            cats = cats.exclude(type__in=[amo.ADDON_PERSONA, amo.ADDON_WEBAPP])
+            cats = cats.filter(Q(application=request.APP.id) |
+                               Q(type=amo.ADDON_SEARCH))
+            if cat == 'personas':
+                cats = cats.filter(type=amo.ADDON_PERSONA)
+            else:
+                cats = cats.exclude(type__in=[amo.ADDON_PERSONA,
+                                              amo.ADDON_WEBAPP])
 
         for c in cats:
             if not c.name:
