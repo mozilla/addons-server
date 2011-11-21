@@ -343,6 +343,7 @@ def login(request, template=None):
 
 def _login(request, template=None, data=None, dont_redirect=False):
     data = data or {}
+    data.update(webapp=settings.APP_PREVIEW)
     # In case we need it later.  See below.
     get_copy = request.GET.copy()
 
