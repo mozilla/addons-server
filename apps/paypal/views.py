@@ -11,12 +11,14 @@ import phpserialize as php
 from statsd import statsd
 
 import amo
+from amo.decorators import no_login_required
 from stats.models import Contribution, ContributionError, SubscriptionEvent
 
 paypal_log = commonware.log.getLogger('z.paypal')
 
 
 @csrf_exempt
+@no_login_required
 def paypal(request):
     """
     Handle PayPal IPN post-back for contribution transactions.
