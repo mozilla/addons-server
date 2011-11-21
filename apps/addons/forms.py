@@ -206,9 +206,9 @@ class CategoryForm(forms.Form):
     def save(self, addon):
         application = self.cleaned_data['application']
         categories_new = self.cleaned_data['categories']
-        categories_old = [cats for app, cats in addon.app_categories
-                          if (app and app.id == application.id) or
-                             (not app and not application)]
+        categories_old = [cats for app, cats in addon.app_categories if
+                          (app and application and app.id == application.id) or
+                          (not app and not application)]
         if categories_old:
             categories_old = categories_old[0]
 
