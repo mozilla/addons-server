@@ -50,8 +50,10 @@
   {% endif %}
 
   <div class="widgets">
-    {{ favorites_widget(addon) }}
-    {% include 'addons/includes/collection_add_widget.html' %}
+    {% if not settings.APP_PREVIEW %}
+      {{ favorites_widget(addon) }}
+      {% include 'addons/includes/collection_add_widget.html' %}
+    {% endif %}
     {{ sharing_widget(addon) }}
   </div>
   {% if request.check_ownership(addon, require_owner=False) %}

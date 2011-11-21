@@ -1,4 +1,4 @@
-{% extends "impala/base.html" %}
+{% extends "impala/base_shared.html" %}
 
 {% block title %}{{ page_title(_('User Info for {0}')|f(profile.name)) }}{% endblock %}
 {% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}

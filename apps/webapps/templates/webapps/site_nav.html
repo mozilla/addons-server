@@ -1,8 +1,8 @@
 {% from "amo/site_nav.html" import section %}
 
 {% set featured_extras = (
-    ('paid', _('Top Paid')),
-    ('popular', _('Top Free')),
+    ('paid', loc('Top Paid')),
+    ('free', loc('Top Free')),
 ) %}
 
 {% set collection_extras = (
@@ -12,19 +12,18 @@
 ) %}
 
 <nav id="site-nav" class="app-nav menu-nav c">
-  {# TODO(cvan): Localize these titles and replace links with real URLs. #}
+  {# TODO(apps): Finalize these links. #}
   <ul>
     <li class="slim" id="most-popular-apps">
       <a href="{{ url('apps.list')|urlparams(sort='downloads') }}">
         {{ _('Most Popular') }}</a>
     </li>
-    {{ section('featured-apps',
-               _('Featured'),
-               url('apps.list')|urlparams(sort='featured'),
-               featured_extras) }}
+    {{ section('featured-apps', _('Featured'),
+               url('apps.list')|urlparams(sort='featured'), featured_extras) }}
     <li class="slim" id="my-apps">
       <a href="{{ url('users.purchases') }}">{{ _('My Purchases') }}</a>
     </li>
+{#
     <li id="collections">
     {% with base_url = url('collections.list') %}
       <a href="{{ base_url }}">{{ _('Collections') }}</a>
@@ -42,13 +41,13 @@
       </ul>
     {% endwith %}
     </li>
+#}
     <li id="more">
       <a href="#">{{ _('More&hellip;') }}</a>
       <ul>
         <li id="submit-app"><a href="{{ url('devhub.submit_apps.1') }}">
           {{ _('Submit an App') }}</a></li>
-        {# TODO: Are these links finalized? #}
-        <li><a href="#">How to use Apps</a></li>
+        {#<li><a href="#">How to use Apps</a></li>#}
         {% if settings.APP_PREVIEW %}
           <li><a href="https://addons.mozilla.org">Firefox Add-ons</a></li>
         {% endif %}
