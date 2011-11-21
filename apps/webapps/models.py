@@ -39,6 +39,20 @@ class WebappManager(amo.models.ManagerBase):
         return self.reviewed().filter(_current_version__isnull=False,
                                       disabled_by_user=False)
 
+    def popular(self):
+        return self.order_by('-weekly_downloads').with_index(
+            addons='downloads_type_idx')
+
+    def top_free(self):
+        qs = self.exclude(premium_type=amo.ADDON_PREMIUM).filter(
+            addonpremium__price__price__isnull=True)
+        return qs & self.popular()
+
+    def top_paid(self):
+        qs = self.filter(premium_type=amo.ADDON_PREMIUM,
+                         addonpremium__price__price__isnull=False)
+        return qs & self.popular()
+
     @skip_cache
     def pending(self):
         # - Holding
@@ -186,5 +200,3 @@ def create_receipt(installed_pk):
 def get_key():
     """Return a key for using with encode."""
     return jwt.rsa_load(settings.WEBAPPS_RECEIPT_KEY)
-
-

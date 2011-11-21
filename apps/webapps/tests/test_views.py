@@ -42,10 +42,12 @@ class TestPremium(amo.tests.TestCase):
         waffle.models.Switch.objects.create(name='marketplace', active=True)
         self.url = reverse('apps.home')
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
+
         self.free = [
             Webapp.objects.get(id=337141),
             amo.tests.addon_factory(type=amo.ADDON_WEBAPP),
         ]
+
         self.paid = []
         for x in xrange(1, 3):
             price = Price.objects.create(price=x)
@@ -54,10 +56,17 @@ class TestPremium(amo.tests.TestCase):
             AddonPremium.objects.create(price=price, addon=addon)
             addon.update(premium_type=amo.ADDON_PREMIUM)
             self.paid.append(addon)
+
+        # For measure add a free app but don't set the premium_type.
+        AddonPremium.objects.create(price=price,
+            addon=amo.tests.addon_factory(type=amo.ADDON_WEBAPP))
+
         self.free = sorted(self.free, key=lambda x: x.weekly_downloads,
                            reverse=True)
+        eq_(self.free, list(Webapp.objects.top_free()))
         self.paid = sorted(self.paid, key=lambda x: x.weekly_downloads,
                            reverse=True)
+        eq_(self.paid, list(Webapp.objects.top_paid()))
 
 
 class TestHome(TestPremium):
@@ -165,7 +174,8 @@ class TestListing(TestPremium):
     def test_price_sort(self):
         apps = test_listing_sort(self, 'price', None, reverse=False,
                                  sel_class='extra-opt')
-        eq_(apps, list(Webapp.objects.order_by('addonpremium__price__price')))
+        eq_(apps, list(Webapp.objects.filter(premium_type=amo.ADDON_PREMIUM)
+                       .order_by('addonpremium__price__price')))
 
     def test_rating_sort(self):
         test_listing_sort(self, 'rating', 'bayesian_rating')

@@ -11,7 +11,7 @@ from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.translation import trans_real as translation
-from django.views.decorators.cache import cache_page, cache_control
+from django.views.decorators.cache import cache_control
 from django.views.decorators.vary import vary_on_headers
 
 import caching.base as caching
@@ -273,15 +273,14 @@ class BaseFilter(object):
         return manual_order(self.model.objects, ids, 'addons.id')
 
     def filter_price(self):
-        return self.model.objects.order_by('addonpremium__price__price')
+        return (self.model.objects.filter(premium_type=amo.ADDON_PREMIUM)
+                .order_by('addonpremium__price__price'))
 
     def filter_free(self):
-        q = self.model.objects.filter(addonpremium__price__price__isnull=True)
-        return q & self.filter_popular()
+        return Webapp.objects.top_free()
 
     def filter_paid(self):
-        q = self.model.objects.filter(addonpremium__price__price__isnull=False)
-        return q & self.filter_popular()
+        return Webapp.objects.top_paid()
 
     def filter_popular(self):
         return (self.model.objects.order_by('-weekly_downloads')

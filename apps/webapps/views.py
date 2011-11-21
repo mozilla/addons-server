@@ -34,17 +34,11 @@ def app_home(request):
     src = 'cb-btn-home'
     dl_src = 'cb-dl-home'
 
-    base = Webapp.objects.reviewed()
-    free = (base.filter(addonpremium__price__price__isnull=True)
-            .order_by('-weekly_downloads'))[:18]
-    paid = (base.filter(addonpremium__price__price__isnull=False)
-            .order_by('-weekly_downloads'))[:18]
-
     ctx = {
         'section': amo.ADDON_SLUGS[TYPE],
         'addon_type': TYPE,
-        'free': free,
-        'paid': paid,
+        'free': Webapp.objects.top_free()[:18],
+        'paid': Webapp.objects.top_paid()[:18],
         'src': src,
         'dl_src': dl_src,
     }
