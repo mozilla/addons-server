@@ -1,5 +1,6 @@
 $(function() {
-    $(window).bind("orientationchange", function(e) {
+    var $window = $(window);
+    $window.bind('orientationchange', function(e) {
         setTimeout(function() {
             $("details").truncate({textEl: ".desc"});
         }, 100);
@@ -104,6 +105,7 @@ $(function() {
                     $managed.css("height", $pane.outerHeight() + "px");
                 }
             }
+            $window.trigger('resize');
         });
     });
     (function() {
@@ -131,7 +133,7 @@ $(function() {
             });
         }
         $document.scroll(posLightbox);
-        $(window).bind("orientationchange", posLightbox);
+        $window.bind('orientationchange', posLightbox);
         function showLightbox() {
             $lightbox.show();
             showImage(this);
