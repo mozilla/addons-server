@@ -1,6 +1,7 @@
 import collections
 
 from django import forms
+from django.conf import settings
 from django.forms.util import ErrorDict
 
 from tower import ugettext as _, ugettext_lazy as _lazy
@@ -97,6 +98,8 @@ class SimpleSearchForm(forms.Form):
         return self.data.get('cat', 'all')
 
     def placeholder(self, txt=None):
+        if settings.APP_PREVIEW:
+            return self.choices['apps']
         return self.choices.get(txt or self.clean_cat(), self.choices['all'])
 
 
