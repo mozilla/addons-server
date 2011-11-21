@@ -17,9 +17,4 @@
     {{ field(form.body, _('Review:')) }}
     <input type="submit" value="{{ _('Submit review') }}" class="button">
   </form>
-  <section class="copy">
-    {% trans username=amo_user.username, logout=url('users.logout') %}
-    Logged in as <strong>{{ username }}</strong> (<a href="{{ logout }}">Log out</a>)
-    {% endtrans %}
-  </section>
 {% endif %}
