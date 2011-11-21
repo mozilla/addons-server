@@ -781,8 +781,8 @@ def refund_reason(request, contribution, wizard):
             # if under 30 minutes, refund
             # TODO(ashort): add in the logic for under 30 minutes
             refund_url = urlparams(
-                reverse('devhub.issue_refund', [addon.slug]),
-                {"transaction_id": contribution.transaction_id})
+                reverse('devhub.issue_refund', args=[addon.slug]),
+                transaction_id=contribution.transaction_id)
 
             template = jingo.render_to_string(request,
                                 wizard.tpl('emails/refund-request.txt'),
