@@ -479,7 +479,7 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
 
 
 @dev_required(webapp=True)
-def issue_refund(request, addon_id, addon):
+def issue_refund(request, addon_id, addon, webapp=None):
     if request.method == 'POST':
         txn_id = request.POST.get('transaction_id', None)
         if 'issue' in request.POST:
