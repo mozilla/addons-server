@@ -71,10 +71,23 @@ a.listview:before {
     -moz-transform: scaleX(-1);
 }
 
-.item {
+.icon {
+    float: left;
+    margin-right: 8px;
+}
+.html-rtl .icon {
+    float: right;
+    margin-left: 8px;
+    margin-right: 0;
+}
+
+
+li.item {
     line-height: 1.3em;
     padding-left: 42px;
     .icon {
+        float: none;
+        margin: 0;
         position: absolute;
         left: 10px;
     }
