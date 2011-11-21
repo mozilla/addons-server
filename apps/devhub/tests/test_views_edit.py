@@ -123,7 +123,6 @@ class TestEditBasicWebapp(amo.tests.TestCase):
         result.update(fs)
         return result
 
-    @mock.patch.object(settings, 'APP_PREVIEW', False)
     def test_apps_context(self):
         r = self.client.get(self.url)
         eq_(r.context['webapp'], True)
