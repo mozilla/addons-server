@@ -875,6 +875,17 @@ li.persona-previewer {
 .message.warning {
     background: #fff0a6;
 }
+.apps-error-msg {
+    text-align: left;
+    display: none;
+}
+#content .apps-error-msg h2 {
+    font-style: normal;
+}
+#content .apps-error-msg p {
+    margin-bottom: 1em;
+    margin-left: 1em;
+}
 /************************************/
 /*              BUTTONS             */
 /************************************/

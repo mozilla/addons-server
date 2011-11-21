@@ -40,6 +40,33 @@
         }
     };
 
+    var data_purchases = $('body').attr('data-purchases') || "",
+        addons_purchased = $.map(data_purchases.split(','),
+                                 function(v) { return parseInt(v, 10) });
+
+    z.startPurchase = function(manifest_url, opt) {
+        $.ajax({
+            url: opt.url,
+            dataType: 'json',
+            /* false so that the action is considered within bounds of
+             * user interaction and does not trigger the Firefox popup blocker.
+             */
+            async: false,
+            success: function(json) {
+                console.log(json);
+                $('.modal').trigger('close'); // Hide all modals
+                if (json.paykey) {
+                    /* This is supposed to be a global */
+                    //dgFlow = new PAYPAL.apps.DGFlow({expType:'mini'});
+                    dgFlow = new PAYPAL.apps.DGFlow({clicked: opt.el.id});
+                    dgFlow.startFlow(json.url);
+                } else {
+                    $('.apps-error-msg').text(json.error).show();
+                }
+            }
+        });
+    };
+
     var messages = {
         'tooNew': format(gettext("Not Updated for {0} {1}"), z.appName, z.browserVersion),
         'tooOld': format(gettext("Requires Newer Version of {0}"), z.appName),
@@ -85,10 +112,6 @@
             initFromDom();
             collectHashes();
 
-            if (self.classes.webapp) {
-                initWebapp();
-            }
-
             versionPlatformCheck();
 
             this.actionQueue.push([0, function() {
@@ -98,8 +121,27 @@
                 var href = activeInstaller.attr('href'),
                     hash = hashes[href],
                     attr = self.attr,
-                    install = attr.search ? z.installSearch : z.installAddon;
-                install(attr.name, href, attr.icon, hash);
+                    classes = self.classes,
+                    install;
+                if (attr.search) {
+                    install = z.installSearch();
+                } else if (classes.webapp) {
+                    if (classes.premium && !attr.purchased) {
+                        install = z.startPurchase;
+                    } else {
+                        install = apps.install;
+                    }
+                } else {
+                    install = z.installAddon
+                }
+                if (self.classes.webapp) {
+                    install(attr.manifest_url, {
+                        url: href,
+                        el: activeInstaller[0]
+                    });
+                } else {
+                    install(attr.name, href, attr.icon, hash);
+                }
                 return true;
             }]);
 
@@ -167,6 +209,8 @@
                 'manifest_url': b.attr('data-manifest-url')
             };
 
+            self.attr.purchased = $.inArray(parseInt(self.attr.addon, 10), addons_purchased) >= 0;
+
             self.classes = {
                 'selfhosted'  : b.hasClass('selfhosted'),
                 'beta'        : b.hasClass('beta'),
@@ -176,7 +220,8 @@
                 'contrib'     : b.hasClass('contrib'),
                 'search'      : b.hasattr('data-search'),
                 'eula'        : b.hasClass('eula'),
-                'webapp'      : b.hasClass('webapp')
+                'webapp'      : b.hasClass('webapp'),
+                'premium'     : b.hasClass('premium')
             };
 
             dom.buttons.each(function() {
@@ -273,24 +318,6 @@
                 });
             } else {
                 dom.buttons.click(startInstall);
-            }
-        }
-
-
-        function initWebapp() {
-            //
-            // TODO(Kumar) When this is fixed, integrate with
-            // apps.install(manifestURL). See bug 699828
-            //
-            if (z.capabilities.webApps) {
-                dom.self.find('.button')
-                    .removeClass('disabled')
-                    .click(function(e) {
-                        e.preventDefault();
-                        navigator.mozApps.install(self.attr.manifest_url);
-                    });
-            } else {
-                // Attach something that says you can't install apps.
             }
         }
 

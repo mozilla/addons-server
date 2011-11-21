@@ -20,7 +20,11 @@
   {% endif %}>
   {% if request.MOBILE %}
     {% if addon.is_webapp() %}
-      {{ _('Install') }}
+      {% if (addon.is_premium() and addon.has_purchased(amo_user)) or (not addon.is_premium()) %}
+        {{ _('Install') }}
+      {% else %}
+        {{ _('Purchase for {0}')|f(addon.premium.get_price_locale()) }}
+      {% endif %}
     {% else %}
       {{ _('Add to Firefox') }}
     {% endif %}
