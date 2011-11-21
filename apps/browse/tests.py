@@ -1393,6 +1393,14 @@ class TestMobileHeader(amo.tests.MobileTest, amo.tests.TestCase):
         eq_(nav.find('li.register').length, 1)
         eq_(nav.find('li.login').length, 1)
 
+    @mock.patch.object(settings, 'APP_PREVIEW', True)
+    def test_apps_preview_header(self):
+        nav = self.get_pq()('#auth-nav')
+        eq_(nav.length, 1)
+        eq_(nav.find('li.purchases').length, 0)
+        eq_(nav.find('li.register').length, 0)
+        eq_(nav.find('li.login').length, 1)
+
     def test_header_logged(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         self.client.login(username=user.email, password='password')

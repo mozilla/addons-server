@@ -6,8 +6,10 @@
     <li class="logout"><a href="{{ url('users.logout') }}">
       {{ _('Log out') }}</a></li>
   {% else %}
-    <li class="register"><a href="{{ url('users.register') }}">
-      {{ _('Register') }}</a></li>
+    {% if not settings.APP_PREVIEW %}
+      <li class="register"><a href="{{ url('users.register') }}">
+        {{ _('Register') }}</a></li>
+    {% endif %}
     <li class="login"><a href="{{ login_link() }}">{{ _('Log in')  }}</a></li>
   {% endif %}
 </ul>
