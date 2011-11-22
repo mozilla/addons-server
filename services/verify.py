@@ -64,37 +64,23 @@ class Verify:
             return self.ok(receipt)
 
         else:
-            sql = """SELECT id FROM addon_purchase
+            sql = """SELECT id, type FROM addon_purchase
                      WHERE addon_id = %(addon_id)s
                      AND user_id = %(user_id)s LIMIT 1;"""
             self.cursor.execute(sql, {'addon_id': self.addon_id,
                                       'user_id': user_id})
             result = self.cursor.fetchone()
-            if result:
-                self.log('Valid receipt, premium')
-                return self.ok(receipt)
-
-            # 4. We've got no record of this sale, has this been
-            # refunded?
-            sql = """SELECT type FROM stats_contributions
-                     WHERE addon_id = %(addon_id)s
-                     AND user_id = %(user_id)s
-                     ORDER BY created DESC LIMIT 1;"""
-            self.cursor.execute(sql, {'addon_id': self.addon_id,
-                                      'user_id': user_id})
-            result = self.cursor.fetchone()
             if not result:
-                # We've got no contributions for this addon. Ouch.
-                self.log('Valid receipt, no contributions for premium')
+                self.log('Invalid receipt, no purchase')
                 return self.invalid()
 
-            if result[0] in [CONTRIB_REFUND, CONTRIB_CHARGEBACK]:
-                self.log('Valid receipt, refunded')
+            if result[-1] in [CONTRIB_REFUND, CONTRIB_CHARGEBACK]:
+                self.log('Valid receipt, but refunded')
                 return self.refund()
 
-            elif result[0] == CONTRIB_PURCHASE:
-                self.log('Valid receipt, valid contribution')
-                return self.ok()
+            elif result[-1] == CONTRIB_PURCHASE:
+                self.log('Valid receipt')
+                return self.ok(receipt)
 
             else:
                 self.log('Valid receipt, but invalid contribution')

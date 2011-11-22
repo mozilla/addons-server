@@ -97,8 +97,9 @@ class TestVerify(amo.tests.TestCase):
     def test_premium_addon_refund(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         self.make_install()
+        purchase = self.make_purchase()
         for type in [amo.CONTRIB_REFUND, amo.CONTRIB_CHARGEBACK]:
-            self.make_contribution(type=type)
+            purchase.update(type=type)
             res = self.get(3615, self.user_data)
             eq_(res['status'], 'refunded')
 
