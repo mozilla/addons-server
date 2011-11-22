@@ -50,6 +50,6 @@ $(function() {
 });
 
 $('#admin-login').click(function() {
-  window.location = $(this).attr('data-login');
+  window.location = $(this).attr('data-url');
 });
 
