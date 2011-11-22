@@ -146,8 +146,8 @@ $.fn.searchSuggestions = function($results) {
             );
 
             $.ajaxCache({
-                url: $form.serialize() + '&cat=' + cat,
-                data: fields,
+                url: $results.attr('data-src'),
+                data: $form.serialize() + '&cat=' + cat,
                 newItems: function(formdata, items) {
                     var eventName;
                     if (items !== undefined) {
