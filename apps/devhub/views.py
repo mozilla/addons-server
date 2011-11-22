@@ -90,8 +90,14 @@ def addon_listing(request, default='name', webapp=False):
 
 
 def index(request):
-    posts = _get_posts()
-    return jingo.render(request, 'devhub/index.html', {'blog_posts': posts})
+    webapp = settings.APP_PREVIEW
+    ctx = {}
+    if webapp:
+        ctx.update(webapp=webapp)
+    else:
+        ctx.update(blog_posts=_get_posts())
+    template = 'devhub/index%s.html' % ('_apps' if webapp else '')
+    return jingo.render(request, template, ctx)
 
 
 @login_required
