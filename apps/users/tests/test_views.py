@@ -561,7 +561,7 @@ class TestLogin(UserViewBase):
                                          audience='fakeamo.org'))
         eq_(res.status_code, 401)
         _m = ('Sorry, no more registrations are allowed. '
-              '<a href="https://developer.mozilla.org/en/Apps">Learn more</a>')
+              '<a href="https://developer.mozilla.org/apps">Learn more</a>')
         eq_(res.content, _m)
 
         profile_count = UserProfile.objects.count()
