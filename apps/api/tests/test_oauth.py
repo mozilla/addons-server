@@ -748,57 +748,98 @@ class TestAddon(BaseOAuth):
         eq_(json.loads(r.content)['count'], 0)
 
 
-class TestPerformance(BaseOAuth):
-    fixtures = BaseOAuth.fixtures + ['base/addon_3615']
+class TestPerformanceAPI(BaseOAuth):
+    fixtures = ['base/users']
 
-    def setUp(self):
-        super(TestPerformance, self).setUp()
-        self.app = PerformanceAppVersions.objects.create(app='1', version='1')
-        self.os = PerformanceOSVersion.objects.create(os='l', version='1',
-                                                      name='l')
-        self.data = {'addon': '3615', 'average': 0.1,
-                     'appversion': self.app.pk, 'osversion': self.os.pk,
-                     'test': 'ts'}
+    def get_data(self):
+        return {
+            'os': 'WINNT',
+            'version': '123',
+            'platform': 'x86',
+            'product': 'fx',
+            'product_version': 'x.y.z',
+            'average': '1.25',
+            'test': 'ts'
+        }
 
-    def test_create_perf(self):
-        res = client.post('api.performance', self.accepted_consumer,
-                          self.token, data=self.data)
-        assert 'id' in json.loads(res.content)
-        assert res.status_code == 200, res.status_code
-        eq_(Performance.objects.count(), 1)
-        eq_(Performance.objects.all()[0].average, 0.1)
+    def make_create_request(self, data):
+        return client.post('api.performance.add', self.accepted_consumer,
+                           self.token, data=data)
 
-    def test_update_perf(self):
-        client.post('api.performance', self.accepted_consumer,
-                    self.token, data=self.data)
-        data = self.data.copy()
-        data['average'] = 0.2
-        pk = Performance.objects.all()[0].pk
-        res = client.put(('api.performance', pk), self.accepted_consumer,
-                         self.token, data=data)
-        assert res.status_code == 200, res.status_code
-        eq_(Performance.objects.count(), 1)
-        eq_(Performance.objects.all()[0].average, 0.2)
+    def test_form_fails(self):
+        res = self.make_create_request({})
+        eq_(res.status_code, 400)
 
-    def test_delete_perf(self):
-        client.post('api.performance', self.accepted_consumer,
-                    self.token, data=self.data)
-        pk = Performance.objects.all()[0].pk
-        client.delete(('api.performance', pk),
-                      self.accepted_consumer, self.token)
-        eq_(Performance.objects.count(), 0)
+    def test_not_allowed(self):
+        res = self.client.post(reverse('api.performance.add'), {})
+        eq_(res.status_code, 401)
 
-    def test_paginate(self):
-        for x in range(0, 25):
-            PerformanceAppVersions.objects.create(app='1', version=x)
-        res = client.get('api.performance.app', self.accepted_consumer,
-                         self.token)
-        data = json.loads(res.content)
-        eq_(data['objects'][0]['version'], '24')
-        eq_(data['count'], 26)
-        eq_(data['num_pages'], 2)
+    def test_form_incomplete(self):
+        data = self.get_data()
+        del data['test']
+        res = self.make_create_request(data)
+        eq_(res.status_code, 400)
+        assert 'This field is required. (test)' in res.content
 
-        res = client.get('api.performance.app', self.accepted_consumer,
-                         self.token, params={'page': 2})
-        data = json.loads(res.content)
-        eq_(data['objects'][0]['version'], '4')
+    def test_form_validate(self):
+        data = self.get_data()
+        data['os'] = 'WebOS hotness'
+        res = self.make_create_request(data)
+        eq_(res.status_code, 400)
+        assert 'WebOS hotness' in res.content
+
+    def test_no_addon(self):
+        data = self.get_data()
+        data['addon_id'] = '123'
+        res = self.make_create_request(data)
+        eq_(res.status_code, 400)
+        assert 'Add-on not found' in res.content
+
+    def test_addon(self):
+        data = self.get_data()
+        data['addon_id'] = Addon.objects.create(type=amo.ADDON_EXTENSION).pk
+        res = self.make_create_request(data)
+        eq_(res.status_code, 200)
+        perfs = Performance.objects.all()
+        eq_(perfs[0].addon_id, data['addon_id'])
+
+    def test_form_data(self):
+        res = self.make_create_request(self.get_data())
+        eq_(res.status_code, 200)
+        perfs = Performance.objects.all()
+        eq_(perfs.count(), 1)
+        eq_(perfs[0].average, 1.25)
+
+    def test_form_updates(self):
+        self.test_form_data()
+        data = self.get_data()
+        data['average'] = 1.3
+        self.make_create_request(data)
+        perfs = Performance.objects.all()
+        eq_(len(perfs), 1)
+        eq_(perfs[0].average, 1.3)
+
+    def test_creates_app_version(self):
+        self.test_form_data()
+        apps = PerformanceAppVersions.objects.all()
+        eq_(len(apps), 1)
+        eq_(apps[0].app, 'fx')
+        eq_(apps[0].version, 'x.y.z')
+
+    def test_gets_app_version(self):
+        self.test_form_data()
+        eq_(PerformanceAppVersions.objects.all().count(), 1)
+        self.test_form_data()
+        eq_(PerformanceAppVersions.objects.all().count(), 1)
+
+    def test_creates_os_version(self):
+        self.test_form_data()
+        apps = PerformanceOSVersion.objects.all()
+        eq_(apps.count(), 1)
+        eq_(apps[0].os, 'WINNT')
+
+    def test_gets_os_version(self):
+        self.test_form_data()
+        eq_(PerformanceOSVersion.objects.all().count(), 1)
+        self.test_form_data()
+        eq_(PerformanceOSVersion.objects.all().count(), 1)

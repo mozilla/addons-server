@@ -14,8 +14,6 @@ from addons.forms import AddonForm
 from addons.models import Addon, AddonUser
 from amo.utils import paginate
 from devhub.forms import LicenseForm
-from perf.models import (Performance, PerformanceAppVersions,
-                         PerformanceOSVersion)
 from users.models import UserProfile
 from versions.forms import XPIForm
 from versions.models import Version, ApplicationsVersions
@@ -309,21 +307,3 @@ class AMOBaseHandler(BaseHandler):
             form.save()
             return rc.ALL_OK
         return _form_error(form)
-
-
-class PerformanceHandler(AMOBaseHandler):
-    allowed_methods = ('DELETE', 'GET', 'POST', 'PUT')
-    model = Performance
-    fields = ('id', 'addon', 'average', 'appversion', 'osversion', 'test')
-
-
-class PerformanceAppHandler(AMOBaseHandler):
-    allowed_methods = ('DELETE', 'GET', 'POST', 'PUT')
-    model = PerformanceAppVersions
-    fields = ('id', 'app', 'version')
-
-
-class PerformanceOSHandler(AMOBaseHandler):
-    allowed_methods = ('DELETE', 'GET', 'POST', 'PUT')
-    model = PerformanceOSVersion
-    fields = ('id', 'os', 'version', 'name')

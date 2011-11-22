@@ -68,18 +68,6 @@ ad = {'authentication': authentication.AMOOAuthAuthentication(two_legged=True)}
 user_resource = Resource(handler=handlers.UserHandler, **ad)
 addons_resource = Resource(handler=handlers.AddonsHandler, **ad)
 version_resource = Resource(handler=handlers.VersionsHandler, **ad)
-performance_resource = Resource(handler=handlers.PerformanceHandler, **ad)
-app_resource = Resource(handler=handlers.PerformanceAppHandler, **ad)
-os_resource = Resource(handler=handlers.PerformanceOSHandler, **ad)
-
-performance_patterns = patterns('',
-    url(r'^$', performance_resource, name='api.performance'),
-    url(r'^(?P<id>\d+)$', performance_resource, name='api.performance'),
-    url(r'^app/$', app_resource, name='api.performance.app'),
-    url(r'^app/(?P<id>\d+)$', app_resource, name='api.performance.app'),
-    url(r'^os/$', os_resource, name='api.performance.os'),
-    url(r'^os/(?P<id>\d+)$', os_resource, name='api.performance.os'),
-)
 
 piston_patterns = patterns('',
     url(r'^user/$', user_resource, name='api.user'),
@@ -88,8 +76,7 @@ piston_patterns = patterns('',
     url(r'^addon/%s/versions$' % ADDON_ID, version_resource,
         name='api.versions'),
     url(r'^addon/%s/version/(?P<version_id>\d+)$' % ADDON_ID,
-        version_resource, name='api.version'),
-    url(r'^performance/', include(performance_patterns)),
+        version_resource, name='api.version')
 )
 
 urlpatterns = patterns('',
@@ -98,10 +85,11 @@ urlpatterns = patterns('',
 
     # Piston
     url(r'^2/', include(piston_patterns)),
+    url(r'^2/performance/add$', views.performance_add,
+        name='api.performance.add'),
 
     # Append api_version to the real api views
     url(r'^(?P<api_version>\d+|\d+.\d+)/search/guid:(?P<guids>.*)',
         views.guid_search),
     url(r'^(?P<api_version>\d+|\d+.\d+)/', include(api_patterns)),
-
 )

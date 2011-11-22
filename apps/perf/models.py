@@ -32,6 +32,7 @@ class PerformanceOSVersion(amo.models.ModelBase):
     os = models.CharField(max_length=255)
     version = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
+    platform = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
         db_table = 'perf_osversions'

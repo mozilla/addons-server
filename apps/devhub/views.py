@@ -465,16 +465,12 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
                      (addon_id, token[:10]))
 
     # Sadly this is an update on a GET.
-    with transaction.commit_on_success():
-        try:
-            addonpremium = AddonPremium.objects.get(addon=addon)
-            paypal_log.debug('AddonPremium updated id: %s' % addonpremium.pk)
-        except AddonPremium.DoesNotExist:
-            addonpremium = AddonPremium.objects.create(addon=addon)
-            paypal_log.debug('AddonPremium created for %s' % addon.pk)
+    addonpremium, created = (AddonPremium.objects
+                                         .safer_get_or_create(addon=addon))
 
-        addonpremium.paypal_permissions_token = token
-        addonpremium.save()
+    paypal_log.debug('AddonPremium %s for: %s' %
+                     ('created' if created else 'updated', addon.pk))
+    addonpremium.update(paypal_permissions_token=token)
 
     paypal_log.debug('AddonPremium saved with token: %s' % addonpremium.pk)
     amo.log(amo.LOG.EDIT_PROPERTIES, addon)

@@ -106,3 +106,11 @@ class TestModelBase(TestCase):
         addon.save()
         assert fn.called
         # No exception = pass
+
+    def test_safer_get_or_create(self):
+        data = {'guid': '123', 'type': amo.ADDON_EXTENSION}
+        a, c = Addon.objects.safer_get_or_create(**data)
+        assert c
+        b, c = Addon.objects.safer_get_or_create(**data)
+        assert not c
+        eq_(a, b)
