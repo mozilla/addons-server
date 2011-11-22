@@ -185,21 +185,24 @@ def paypal_refunded(request, post, transaction):
         pass
 
     paypal_log.info('Refund IPN received: %s' % post['txn_id'])
-    refund = Contribution.objects.create(
+    amount = _parse_currency(transaction['amount'])
+
+    Contribution.objects.create(
         addon=original.addon, related=original,
         user=original.user, type=amo.CONTRIB_REFUND,
-        )
-    amount = _parse_currency(transaction['amount'])
-    refund.amount = -amount['amount']
-    refund.currency = amount['currency']
-    refund.uuid = None
-    refund.post_data = php.serialize(post)
-    refund.save()
+        amount=-amount['amount'], currency=amount['currency'],
+        post_data=php.serialize(post)
+    )
     paypal_log.info('Refund successfully processed')
     return http.HttpResponse('Success!')
 
 
-def paypal_reversal(request, post, original):
+def paypal_reversal(request, post, transaction):
+    try:
+        original = Contribution.objects.get(transaction_id=post['txn_id'])
+    except Contribution.DoesNotExist:
+        return None
+
     if (Contribution.objects.filter(transaction_id=post['txn_id'],
                                     type=amo.CONTRIB_CHARGEBACK)
                             .exists()):
@@ -207,13 +210,13 @@ def paypal_reversal(request, post, original):
         return http.HttpResponse('Transaction already processed')
 
     paypal_log.info('Reversal IPN received: %s' % post['txn_id'])
+    amount = _parse_currency(transaction['amount'])
     refund = Contribution.objects.create(
         addon=original.addon, related=original,
         user=original.user, type=amo.CONTRIB_CHARGEBACK,
-        amount=post['mc_gross'], currency=post['mc_currency'],
+        amount=-amount['amount'], currency=amount['currency'],
         post_data=php.serialize(post)
-        )
-    # Send an email to the end user.
+    )
     refund.mail_chargeback()
     return http.HttpResponse('Success!')
 

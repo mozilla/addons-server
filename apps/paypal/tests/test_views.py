@@ -123,6 +123,9 @@ sample_contribution = {
     'verify_sign': 'ZZ'
 }
 
+sample_reversal = sample_refund.copy()
+sample_reversal['transaction[0].status'] = 'reversal'
+
 
 @patch('paypal.views.urllib2.urlopen')
 class TestPaypal(amo.tests.TestCase):
@@ -293,17 +296,16 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
 
     def reversal(self, urlopen):
         user = UserProfile.objects.get(pk=999)
-        Contribution.objects.create(uuid=self.uuid, user=user,
-                                    addon=self.addon)
-        response = self._receive_ipn(self.uuid, urlopen, 'Reversal')
+        Contribution.objects.create(
+                transaction_id=sample_reversal['tracking_id'],
+                user=user, addon=self.addon)
+        response = self._receive_ipn(urlopen, sample_reversal)
         eq_(response.content, 'Success!')
 
     def test_chargeback(self, urlopen):
-        raise SkipTest
         self.reversal(urlopen)
         eq_(Contribution.objects.all()[1].type, amo.CONTRIB_CHARGEBACK)
 
     def test_email(self, urlopen):
-        raise SkipTest
         self.reversal(urlopen)
         eq_(len(mail.outbox), 1)
