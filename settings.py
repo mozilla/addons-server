@@ -773,6 +773,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/mobile/personas.js',
             'js/zamboni/mobile/general.js',
             'js/impala/ratingwidget.js',
+            'js/zamboni/browserid_support.js',
         ),
         'zamboni/stats': (
             'js/lib/jquery-datepicker.js',
