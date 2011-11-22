@@ -1,4 +1,4 @@
-{% extends "impala/base.html" %}
+{% extends "base_modal.html" if request.is_ajax() else "impala/base.html" %}
 
 {% block title %}{{ _('Oops') }}{% endblock %}
 
