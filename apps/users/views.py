@@ -305,7 +305,7 @@ def browserid_authenticate(request, assertion):
     return (profile, None)
 
 
-@anonymous_csrf
+@anonymous_csrf_exempt
 @post_required
 @no_login_required
 #@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
