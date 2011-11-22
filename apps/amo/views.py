@@ -67,19 +67,26 @@ def robots(request):
 
 
 def handler404(request):
-    return jingo.render(request, 'amo/404.html', status=404)
+    webapp = settings.APP_PREVIEW
+    template = 'amo/404%s.html' % ('_apps' if webapp else '')
+    return jingo.render(request, template, {'webapp': webapp}, status=404)
 
 
 def handler500(request):
+    webapp = settings.APP_PREVIEW
+    template = 'amo/500%s.html' % ('_apps' if webapp else '')
     arecibo = getattr(settings, 'ARECIBO_SERVER_URL', '')
     if arecibo:
         post(request, 500)
-    return jingo.render(request, 'amo/500.html', status=500)
+    return jingo.render(request, template, {'webapp': webapp}, status=500)
 
 
 def csrf_failure(request, reason=''):
-    return jingo.render(request, 'amo/403.html',
-                        {'csrf': 'CSRF' in reason}, status=403)
+    webapp = settings.APP_PREVIEW
+    template = 'amo/403%s.html' % ('_apps' if webapp else '')
+    return jingo.render(request, template,
+                        {'csrf': 'CSRF' in reason, 'webapp': webapp},
+                        status=403)
 
 
 def loaded(request):

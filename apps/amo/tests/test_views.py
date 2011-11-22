@@ -28,23 +28,31 @@ from stats.models import SubscriptionEvent, Contribution
 from users.models import UserProfile
 
 
+class Test404(amo.tests.TestCase):
 
-def test_404_no_app():
-    """Make sure a 404 without an app doesn't turn into a 500."""
-    # That could happen if helpers or templates expect APP to be defined.
-    url = reverse('amo.monitor')
-    response = test.Client().get(url + 'nonsense')
-    eq_(response.status_code, 404)
+    def test_404_no_app(self):
+        """Make sure a 404 without an app doesn't turn into a 500."""
+        # That could happen if helpers or templates expect APP to be defined.
+        url = reverse('amo.monitor')
+        response = self.client.get(url + 'nonsense')
+        eq_(response.status_code, 404)
+        self.assertTemplateUsed(response, 'amo/404.html')
 
+    def test_404_app_links(self):
+        response = self.client.get('/en-US/thunderbird/xxxxxxx')
+        eq_(response.status_code, 404)
+        self.assertTemplateUsed(response, 'amo/404.html')
+        links = pq(response.content)('[role=main] ul li a:not([href^=mailto])')
+        eq_(len(links), 4)
+        for link in links:
+            href = link.attrib['href']
+            assert href.startswith('/en-US/thunderbird'), href
 
-def test_404_app_links():
-    response = test.Client().get('/en-US/thunderbird/xxxxxxx')
-    eq_(response.status_code, 404)
-    links = pq(response.content)('[role=main] ul li a:not([href^=mailto])')
-    eq_(len(links), 4)
-    for link in links:
-        href = link.attrib['href']
-        assert href.startswith('/en-US/thunderbird'), href
+    @patch.object(settings, 'APP_PREVIEW', True)
+    def test_404_webapps(self):
+        response = self.client.get('/xxx', follow=True)
+        eq_(response.status_code, 404)
+        self.assertTemplateUsed(response, 'amo/404_apps.html')
 
 
 class TestCommon(amo.tests.TestCase):
