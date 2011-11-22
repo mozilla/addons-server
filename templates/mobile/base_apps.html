@@ -55,7 +55,9 @@
                   {{ loc('Home') }}</a></li>
               {% endblock %}
             </ul>
-            {% include "mobile/header_auth.html" %}
+            {% block aux_nav %}
+              {% include "mobile/header_auth.html" %}
+            {% endblock %}
           </nav>
           {% block search %}{% endblock %}
         </header>

@@ -2,6 +2,8 @@
 
 {% block title %}{{ page_title(_('User Login')) }}{% endblock %}
 
+{% block aux_nav %}{% endblock %}
+
 {% block js %}
   {% if form.recaptcha %}
     {% include("amo/recaptcha_js.html") %}

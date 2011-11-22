@@ -74,7 +74,9 @@
                 </li>
               {% endblock %}
             </ul>
-            {% include "mobile/header_auth.html" %}
+            {% block aux_nav %}
+              {% include "mobile/header_auth.html" %}
+            {% endblock %}
           </nav>
         </header>
       {% endblock %}
