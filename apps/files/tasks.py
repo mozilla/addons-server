@@ -54,16 +54,6 @@ def extract_file(viewer, **kw):
     flag.delete()
 
 
-@task
-def migrate_jetpack_versions(ids, **kw):
-    # TODO(jbalogh): kill in bug 656997
-    for file_ in File.objects.filter(id__in=ids):
-        file_.jetpack_version = File.get_jetpack_version(file_.file_path)
-        task_log.debug('Setting jetpack version to %s for File %s.' %
-                      (file_.jetpack_version, file_.id))
-        file_.save()
-
-
 # The version/file creation methods expect a files.FileUpload object.
 class FakeUpload(object):
 
