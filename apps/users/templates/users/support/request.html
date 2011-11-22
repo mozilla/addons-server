@@ -27,12 +27,12 @@
     remove the add-on from all of your devices</b>. Open Add-ons Manager,
     select Remove next to {{ name }} and restart Firefox.{% endtrans %}</p>
   {% endif %}
-  {{ form.remove.errors }}
   {% if webapp %}
     {% set label = _('I have removed this app from all of my devices.') %}
   {% else %}
     {% set label = _('I have removed this add-on from all of my devices.') %}
   {% endif %}
   <p>{{ form.remove }} {{ label }}</p>
+  {{ form.remove.errors }}
   <p><button type="submit">{{ _('Continue') }}</button></p>
 </form>

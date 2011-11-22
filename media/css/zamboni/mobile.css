@@ -81,43 +81,6 @@ section:after,
 }
 
 /************************************/
-/*             TYPOGRAPHY           */
-/************************************/
-
-html, body {
-    height: 100%;
-}
-
-body {
-    font-family: Georgia, serif;
-}
-a:link {
-    color: #447bc4;
-    text-decoration: none;
-}
-.num_ratings,
-.review .old-version,
-.install-wrapper,
-.install-wrapper a,
-table,
-table a:link {
-    font-family: "Droid Sans", Helvetica, sans-serif;
-}
-#content h2,
-#eula h2 {
-    font-style: italic;
-    margin: 0 14px 14px;
-    font-size: 1.4em;
-}
-#content h3 {
-    font-size: 1.2em;
-    padding-bottom: 2px;
-}
-.copy p {
-    color: #444;
-}
-
-/************************************/
 /*             GRADIENTS            */
 /************************************/
 
@@ -157,8 +120,8 @@ footer:before,
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
                       -webkit-gradient(linear, left top, left 200, from(#dcedfd), to(#fff));
     margin-bottom: 30px;
+    min-height: 430px;
 }
-
 
 /************************************/
 /*            FANCY ARROW           */
@@ -187,9 +150,8 @@ footer:before,
 /*              GENERAL             */
 /************************************/
 
-.htruncate {
-    white-space: nowrap;
-    overflow: hidden;
+html, body {
+    height: 100%;
 }
 
 table {
@@ -222,23 +184,6 @@ table th {
     overflow: hidden;
     position: relative;
     padding: 8px 0 16px;
-}
-
-#content > details,
-#content > p,
-#content > .copy,
-#content > .menu {
-    margin: 0 14px;
-}
-
-.copy {
-    line-height: 1.2em;
-}
-
-#content h2 {
-    padding-bottom: 4px;
-    border-bottom: 1px solid #ccc;
-    box-shadow: 0 1px #fff;
 }
 
 .paginator {
@@ -297,7 +242,7 @@ table th {
     background-position: -moz-calc(100% - 10px) center;
 }
 
-#search button[type=submit] {
+#search button {
     height: 45px;
     width: 56px;
     background-color: #83c53c;
@@ -310,11 +255,13 @@ table th {
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
+    display: inline-block;
+    padding: 0;
 }
-.noInlineSVG #search button[type=submit] {
+.noInlineSVG #search button {
     background: #83c53c url(../../img/zamboni/mobile/arrow.png) center no-repeat;
 }
-.html-rtl #search button[type=submit] {
+.html-rtl #search button {
     -moz-transform: scaleX(-1);
     -webkit-transform: scaleX(-1);
 }
@@ -917,7 +864,7 @@ li.persona-previewer {
     box-shadow: none;
 }
 
-.button, a.button {
+button, .button, a.button {
     -moz-transition: -moz-box-shadow 0.3s ease 0s;
     background-color: #669BE1;
     border: 0;
@@ -928,8 +875,7 @@ li.persona-previewer {
     -moz-box-shadow: 0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset;
     -webkit-box-shadow: 0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset;
     color: #FFFFFF;
-    display: inline-block;
-    font-family: "Droid Sans", "Trebuchet MS", sans-serif;
+    font-family: "Trebuchet MS", sans-serif;
     font-size: 20px;
     font-weight: bold;
     line-height: 1;
@@ -941,6 +887,7 @@ li.persona-previewer {
     text-decoration: none;
 }
 
+button:active,
 .button:active,
 .button.selected {
     top: 2px;

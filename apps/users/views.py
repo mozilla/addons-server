@@ -822,7 +822,7 @@ class SupportWizard(Wizard):
 
     @property
     def wrapper(self):
-        return self.tpl('wrapper.html')
+        return self.tpl('{mobile/}wrapper.html')
 
     @method_decorator(login_required)
     def dispatch(self, request, contribution_id, step='', *args, **kw):
@@ -833,5 +833,10 @@ class SupportWizard(Wizard):
         return super(SupportWizard, self).dispatch(request, step, *args, **kw)
 
     def render(self, request, template, context):
-        context.update(webapp=settings.APP_PREVIEW)
-        return super(SupportWizard, self).render(request, template, context)
+        fmt = {'mobile/': 'mobile/' if request.MOBILE else ''}
+        wrapper = self.wrapper.format(**fmt)
+        context.update(webapp=settings.APP_PREVIEW, wizard=self)
+        if request.is_ajax():
+            return jingo.render(request, template, context)
+        context['content'] = template
+        return jingo.render(request, wrapper, context)

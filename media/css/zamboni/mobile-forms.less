@@ -1,19 +1,46 @@
 @import '../impala/lib';
 
-.form-mobile {
+.req,
+.errorlist,
+.error {
+    color: @error-red !important;
+}
+
+.form-mobile,
+#full form {
     padding: 1em;
+    &.form-mobile {
+        label, .errorlist {
+            font-family: @sans-stack;
+        }
+    }
     label {
         color: @medium-gray;
-        font-family: @sans-stack;
         display: block;
         padding-bottom: 6px;
         &.check {
             margin-bottom: 1em;
         }
     }
+    .errorlist {
+        font-weight: bold;
+        margin: 0 0 1em;
+        + p {
+            input, textarea {
+                border-color: red;
+                background-color: #FFEBEB;
+            }
+        }
+    }
+    input[type=checkbox] {
+        margin-bottom: .5em;
+    }
     input[type=text], input[type=password], select, textarea {
         margin-bottom: 1em;
         font-size: 1.3em;
+        + .errorlist {
+            margin-top: -.5em;
+        }
     }
     textarea, input[type=text], input[type=password] {
         border: 1px solid #ccc;
@@ -21,18 +48,6 @@
         .border-radius(5px);
         .border-box;
         width: 100%;
-    }
-    .errorlist {
-        color: @red;
-        font-family: @sans-stack;
-        font-weight: bold;
-        margin: -.5em 0 1em;
-        + p {
-            input, textarea {
-                border-color: red;
-                background-color: #FFEBEB;
-            }
-        }
     }
     .stars {
         background-image: url("../../img/icons/stars-big.png");
@@ -77,13 +92,13 @@
 }
 
 .loading-submit:after {
-  background-image: url("../../img/zamboni/loading-white.gif");
-  content: "";
-  display: block;
-  height: 16px;
-  margin-left: 10px;
-  position: absolute;
-  right: -10px;
-  top: 0;
-  width: 16px;
+    background-image: url("../../img/zamboni/loading-white.gif");
+    content: "";
+    display: block;
+    height: 16px;
+    margin-left: 10px;
+    position: absolute;
+    right: -10px;
+    top: 0;
+    width: 16px;
 }
