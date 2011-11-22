@@ -133,6 +133,16 @@ class TestEditBasicWebapp(amo.tests.TestCase):
         eq_(pq(r.content)('#slug_edit').remove('a').text(),
             u'/\u2026/%s' % self.webapp.app_slug)
 
+    def test_edit_name_required(self):
+        r = self.client.post(self.edit_url, self.get_dict(name=''))
+        self.assertFormError(r, 'form', 'name', 'This field is required.')
+
+    def test_edit_name_max_length(self):
+        r = self.client.post(self.edit_url, self.get_dict(name='x' * 129))
+        self.assertFormError(r, 'form', 'name',
+                             'Ensure this value has at most 128 characters '
+                             '(it has 129).')
+
     def test_edit_slug_success(self):
         webapp = self.webapp
         data = self.get_dict()

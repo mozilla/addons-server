@@ -190,6 +190,11 @@ class AddonFormBasic(AddonFormBase):
         return target
 
 
+class AppFormBasic(AddonFormBasic):
+    """Form to override name length for apps."""
+    name = TransField(max_length=128)
+
+
 class ApplicationChoiceField(forms.ModelChoiceField):
 
     def label_from_instance(self, obj):

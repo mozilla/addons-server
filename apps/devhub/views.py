@@ -968,7 +968,8 @@ def ajax_dependencies(request, addon_id, addon):
 @dev_required(webapp=True)
 def addons_section(request, addon_id, addon, section, editable=False,
                    webapp=False):
-    models = {'basic': addon_forms.AddonFormBasic,
+    basic = addon_forms.AppFormBasic if webapp else addon_forms.AddonFormBasic
+    models = {'basic': basic,
               'media': addon_forms.AddonFormMedia,
               'details': addon_forms.AddonFormDetails,
               'support': addon_forms.AddonFormSupport,
