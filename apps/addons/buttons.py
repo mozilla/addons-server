@@ -7,6 +7,7 @@ import jinja2
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
+from amo.decorators import no_login_required
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from addons.models import Addon
@@ -289,6 +290,7 @@ class Link(object):
 
 # Cache it for a year.
 @cache_page(60 * 60 * 24 * 365)
+@no_login_required
 def js(request):
     return jingo.render(request, 'addons/popups.html',
                         content_type='text/javascript')
