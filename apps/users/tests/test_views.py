@@ -400,6 +400,25 @@ class TestLogin(UserViewBase):
         r = self.client.get(self.url + '?to=http://xx.com', follow=True)
         self.assertRedirects(r, '/en-US/firefox/')
 
+    @amo.tests.mobile_test
+    def test_mobile_login(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)('header')
+        eq_(doc('nav').length, 1)
+        eq_(doc('#home').length, 1)
+        eq_(doc('#auth-nav li.login').length, 0)
+
+    @amo.tests.mobile_test
+    @patch.object(settings, 'APP_PREVIEW', True)
+    def test_mobile_login_apps_preview(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)('header')
+        eq_(doc('nav').length, 1)
+        eq_(doc('#home').length, 0)
+        eq_(doc('#auth-nav li.login').length, 0)
+
     def test_login_ajax(self):
         url = reverse('users.login_modal')
         r = self.client.get(url)

@@ -10,6 +10,13 @@
   {% endif %}
 {% endblock %}
 
+{% block back_link %}
+  {# Hide the "Home" button on Apps Preview, since login is required. #}
+  {% if not settings.APP_PREVIEW %}
+    {{ super() }}
+  {% endif %}
+{% endblock %}
+
 {% block page %}
 
 <div class="primary" role="main">
