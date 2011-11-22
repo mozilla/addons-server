@@ -106,11 +106,17 @@ def _paypal(request):
         return http.HttpResponse('Payment not completed %s'
                                  % post.get('txn_id', ''))
 
+    # Looking up in our table will depend upon the type of payment.
+    methods_lookup = {'refunded': 'transaction_id',
+                      'completed': 'uuid',
+                      'reversal': 'uuid'}
+    lookup = {'type__in': amo.CONTRIB_NOT_PENDING,
+              methods_lookup[payment_status]: post['item_number']}
+
     # Fetch and update the contribution - item_number is the uuid we created.
     try:
         # We don't want IPN's to interact with PENDING.
-        c = Contribution.objects.get(uuid=post['item_number'],
-                                     type__in=amo.CONTRIB_NOT_PENDING)
+        c = Contribution.objects.get(**lookup)
     except Contribution.DoesNotExist:
         key = "%s%s:%s" % (settings.CACHE_PREFIX, 'contrib',
                            post['item_number'])
