@@ -86,6 +86,9 @@
       {% if settings.APP_PREVIEW %}
         <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script>
       {% endif %}
+      {% if waffle.switch('browserid-login') %}
+        <script async defer src="https://browserid.org/include.js"></script>
+      {% endif %}
       {{ js('zamboni/mobile') }}
     {% endblock %}
     {% block js %}{% endblock %}

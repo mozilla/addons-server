@@ -54,8 +54,7 @@ function initBrowserID(win, ctx) {
     // Initialize BrowserID login.
     $('.browserid-login', ctx).each(function() {
         var toArg = win.location.href.split('?to=')[1],
-            to = "/",
-            script_loaded = false;
+            to = "/";
 
         if (toArg) {
             to = decodeURIComponent(toArg);
@@ -66,20 +65,10 @@ function initBrowserID(win, ctx) {
         $(this).click(function(e) {
             e.preventDefault();
             $(this).addClass('loading-submit');
-
-            if(script_loaded) {
-                startBrowserID();
-            } else {
-                $.getScript('https://browserid.org/include.js', startBrowserID);
-            }
-
-            function startBrowserID() {
-                script_loaded = true;
-                $('.primary .notification-box', ctx).remove();
-                navigator.id.getVerifiedEmail(function(assertion) {
-                    gotVerifiedEmail(assertion, to);
-                });
-            }
+            $('.primary .notification-box', ctx).remove();
+            navigator.id.getVerifiedEmail(function(assertion) {
+                gotVerifiedEmail(assertion, to);
+            });
         });
     });
 }

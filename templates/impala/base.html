@@ -220,6 +220,9 @@
       {% if settings.APP_PREVIEW %}
         <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script>
       {% endif %}
+      {% if waffle.switch('browserid-login') %}
+        <script async defer src="https://browserid.org/include.js"></script>
+      {% endif %}
       {{ js('impala') }}
       <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
       <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>

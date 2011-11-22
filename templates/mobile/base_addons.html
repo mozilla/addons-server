@@ -102,6 +102,9 @@
     {% block site_js %}
       <script src="{{ static(url('jsi18n')) }}"></script>
       {{ js('zamboni/mobile') }}
+      {% if waffle.switch('browserid-login') %}
+        <script async defer src="https://browserid.org/include.js"></script>
+      {% endif %}
     {% endblock %}
     {% block js %}{% endblock %}
     {# Webtrends Stats Tracking #}
