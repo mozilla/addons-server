@@ -56,18 +56,16 @@ a.listview:before {
     content: " ";
     display: block;
     width: 10px;
-    height: 16px;
+    height: 100%;
     position: absolute;
     right: 10px;
-    top: 50%;
-    margin-top: -8px;
-    background: url(../../img/zamboni/mobile/arrow.svg) no-repeat center center;
+    top: 0;
+    background: url(../../img/zamboni/mobile/arrow.svg) no-repeat center 12px;
 }
 .html-rtl .listview li > a:before,
 .html-rtl a.listview:before {
     right: auto;
     left: 10px;
-    background: url(../../img/zamboni/mobile/arrow.svg) no-repeat center center;
     -moz-transform: scaleX(-1);
 }
 
