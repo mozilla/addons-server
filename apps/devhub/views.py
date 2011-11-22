@@ -481,7 +481,7 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
 
 @dev_required(webapp=True)
 def issue_refund(request, addon_id, addon, webapp=False):
-    txn_id = request.REQUEST.get('transaction_id', None)
+    txn_id = request.REQUEST.get('transaction_id')
     if not txn_id:
         raise http.Http404
     contribution = get_object_or_404(Contribution, transaction_id=txn_id,

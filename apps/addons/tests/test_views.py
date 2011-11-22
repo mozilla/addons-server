@@ -335,7 +335,7 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         cons = Contribution.objects.all()
         eq_(cons.count(), 1)
         eq_(cons[0].type, amo.CONTRIB_PURCHASE)
-        eq_(cons[0].uuid, None)
+        assert cons[0].uuid
 
     @patch('paypal.check_purchase')
     def test_check_addon_purchase(self, check_purchase):
