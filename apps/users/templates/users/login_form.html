@@ -11,20 +11,20 @@
       </div>
   {% endif %}
   {% if waffle.switch('browserid-login') %}
-    <div class="login-option">
-      <fieldset id="browserid-login">
-          <button class="browserid-login" type="button"
-                  data-url="{{ url('users.browserid_login') }}">
-            {{ _('Log in with BrowserID') }}
-          </button>
-      </fieldset>
-    </div>
-  {% endif %}
-  <div class="login-option">
+  <fieldset id="browserid-login">
+    <button class="browserid-login" type="button"
+      data-url="{{ url('users.browserid_login') }}">
+      {{ _('Log in with BrowserID') }}
+    </button>
     <div class="user-message">
-      <a href="#" id="show-normal-login">{{ _('Sign in with old system') }}</a>
-      {{ _('(required for admins and editors)') }}
-    </div>
+      {% trans %}
+      Are you an <a href="#" id="show-normal-login">admin or editor</a>?
+      {% endtrans %}
+    </di5>
+
+  </fieldset>
+  {% endif %}
+  <div class="login-option grid prettyform">
     <fieldset id="normal-login">
       <ul>
         <li>
