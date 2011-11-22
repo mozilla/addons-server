@@ -494,7 +494,7 @@ def issue_refund(request, addon_id, addon, webapp=False):
                                      type=amo.CONTRIB_PURCHASE)
     if request.method == 'POST':
         if 'issue' in request.POST:
-            paypal.refund(txn_id)
+            paypal.refund(txn_id, contribution.paykey)
             contribution.mail_approved()
             paypal_log.error('Refund issued for transaction %r' % (txn_id,))
             messages.success(request, 'Refund issued.')

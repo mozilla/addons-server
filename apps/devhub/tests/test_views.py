@@ -1164,7 +1164,8 @@ class TestIssueRefund(amo.tests.TestCase):
 
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)
-        self.transaction_id = 'fake-txn-id'
+        self.transaction_id = u'fake-txn-id'
+        self.paykey = u'fake-paykey'
         self.client.login(username='del@icio.us', password='password')
         self.user = UserProfile.objects.get(username='clouserw')
         self.url = reverse('devhub.issue_refund', args=[self.addon.slug])
@@ -1172,7 +1173,7 @@ class TestIssueRefund(amo.tests.TestCase):
     def makePurchase(self, uuid='123456', type=amo.CONTRIB_PURCHASE):
         return Contribution.objects.create(uuid=uuid, addon=self.addon,
                                            transaction_id=self.transaction_id,
-                                           user=self.user,
+                                           user=self.user, paykey=self.paykey,
                                            amount=Decimal('10'), type=type)
 
     def test_request_issue(self):
@@ -1200,7 +1201,7 @@ class TestIssueRefund(amo.tests.TestCase):
                              data={'transaction_id': c.transaction_id,
                                    'issue': '1'})
         eq_(r.status_code, 302)
-        refund.assert_called_with(self.transaction_id)
+        refund.assert_called_with(self.transaction_id, self.paykey)
         eq_(len(mail.outbox), 1)
         assert 'approved' in mail.outbox[0].subject
 

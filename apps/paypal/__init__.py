@@ -123,7 +123,8 @@ def check_purchase(paykey):
 
     return response['status']
 
-def refund(txnid):
+
+def refund(txnid, paykey):
     """
     Refund a payment.
 
@@ -136,7 +137,7 @@ def refund(txnid):
     with statsd.timer('paypal.payment.refund'):
         try:
             response = _call(settings.PAYPAL_PAY_URL + 'Refund',
-                             {'transactionID': txnid})
+                             {'payKey': paykey})
         except PaypalError:
             paypal_log.error('Refund error', exc_info=True)
             raise
@@ -154,11 +155,9 @@ def refund(txnid):
                 raise PaypalError('Bad refund status for %s: %s'
                                   % (d['receiver.email'],
                                      d['refundStatus']))
-            paypal_log.debug('Refund successful for transaction %s.'
-                             ' Statuses: %r'
-                             % (txnid, [(d['receiver.email'], d['refundStatus'])
-                                        for d in responses]))
-
+            paypal_log.debug('Refund successful for: %s, %s, %s, %s' %
+                             (txnid, paykey, d['receiver.email'],
+                              d['refundStatus']))
 
         return responses
 
@@ -254,7 +253,6 @@ def _call(url, paypal_data, ip=None):
 
     if ip:
         request.add_header('X-PAYPAL-DEVICE-IPADDRESS', ip)
-
 
     # Warning, a urlencode will not work with chained payments, it must
     # be sorted and the key should not be escaped.
