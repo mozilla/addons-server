@@ -1,4 +1,6 @@
+from decimal import Decimal
 import random
+import re
 import urllib2
 
 from django import http
@@ -59,6 +61,61 @@ def _log_error_with_data(msg, post):
     paypal_log.error("[%s] PayPal Data: %s" % (id, logme))
 
 
+def _log_unmatched(post):
+    key = "%s%s:%s" % (settings.CACHE_PREFIX, 'contrib',
+                       post['item_number'])
+    count = cache.get(key, 0) + 1
+
+    paypal_log.warning('Contribution not found: %s, #%s, %s'
+                       % (post['item_number'], count,
+                          post.get('txn_id', '')))
+
+    if count > 10:
+        msg = ("PayPal sent a transaction that we don't know "
+                   "about and we're giving up on it.")
+        _log_error_with_data(msg, post)
+        cache.delete(key)
+        return http.HttpResponse('Transaction not found; skipping.')
+
+    cache.set(key, count, 1209600)  # This is 2 weeks.
+    return http.HttpResponseServerError('Contribution not found')
+
+
+number = re.compile('transaction\[(?P<number>\d+)\]\.(?P<name>\w+)')
+currency = re.compile('(?P<currency>\w+) (?P<amount>[\d.,]+)')
+
+
+def _parse(post):
+    """
+    List of (old, new) codes so we can transpose the data for
+    embedded payments.
+    """
+    for old, new in [('payment_status', 'status'),
+                     ('item_number', 'tracking_id'),
+                     ('txn_id', 'tracking_id'),
+                     ('payer_email', 'sender_email')]:
+        if old not in post and new in post:
+            post[old] = post[new]
+
+    transactions = {}
+    for k, v in post.items():
+        match = number.match(k)
+        if match:
+            data = match.groupdict()
+            transactions.setdefault(data['number'], {})
+            transactions[data['number']][data['name']] = v
+
+    return post, transactions
+
+
+def _parse_currency(amount):
+    """Parse USD 10.00 into a dictionary of currency and amount as Decimal."""
+    res = currency.match(amount).groupdict()
+    if 'amount' in res:
+        res['amount'] = Decimal(res['amount'])
+    return res
+
+
 def _paypal(request):
 
     if request.method != 'POST':
@@ -74,91 +131,71 @@ def _paypal(request):
     with statsd.timer('paypal.validate-ipn'):
         paypal_response = urllib2.urlopen(settings.PAYPAL_CGI_URL,
                                           data, 20).readline()
-    # List of (old, new) codes so we can transpose the data for
-    # embedded payments.
-    for old, new in [('payment_status', 'status'),
-                     ('item_number', 'tracking_id'),
-                     ('txn_id', 'tracking_id'),
-                     ('payer_email', 'sender_email')]:
-        if old not in post and new in post:
-            post[old] = post[new]
 
+    post, transactions = _parse(post)
+
+    # If paypal doesn't like us, fail.
     if paypal_response != 'VERIFIED':
         msg = ("Expecting 'VERIFIED' from PayPal, got '%s'. "
                "Failing." % paypal_response)
         _log_error_with_data(msg, post)
         return http.HttpResponseForbidden('Invalid confirmation')
 
+    # Cope with subscription events.
     if post.get('txn_type', '').startswith('subscr_'):
         SubscriptionEvent.objects.create(post_data=php.serialize(post))
         paypal_log.info('Subscription created: %s' % post.get('txn_id', ''))
         return http.HttpResponse('Success!')
 
     payment_status = post.get('payment_status', '').lower()
-    methods = {'refunded': paypal_refunded,
-               'completed': paypal_completed,
-               'reversal': paypal_reversal}
-    if payment_status not in methods:
-        # Skip processing for anything other than events that change
-        # payment status.
+    if payment_status != 'completed':
         paypal_log.info('Ignoring: %s, %s' %
                         (payment_status, post.get('txn_id', '')))
         return http.HttpResponse('Payment not completed %s'
                                  % post.get('txn_id', ''))
 
-    # Looking up in our table will depend upon the type of payment.
-    methods_lookup = {'refunded': 'transaction_id',
-                      'completed': 'uuid',
-                      'reversal': 'uuid'}
-    lookup = {'type__in': amo.CONTRIB_NOT_PENDING,
-              methods_lookup[payment_status]: post['item_number']}
+    methods = {'refunded': paypal_refunded,
+               'completed': paypal_completed,
+               'reversal': paypal_reversal}
 
-    # Fetch and update the contribution - item_number is the uuid we created.
+    result = None
+    for key, value in transactions.items():
+        status = value['status'].lower()
+        result = methods[status](request, post, value)
+
+    if not result:
+        return _log_unmatched(post)
+
+    return result
+
+
+def paypal_refunded(request, post, transaction):
     try:
-        # We don't want IPN's to interact with PENDING.
-        c = Contribution.objects.get(**lookup)
+        original = Contribution.objects.get(transaction_id=post['txn_id'])
     except Contribution.DoesNotExist:
-        key = "%s%s:%s" % (settings.CACHE_PREFIX, 'contrib',
-                           post['item_number'])
-        count = cache.get(key, 0) + 1
+        return None
 
-        paypal_log.warning('Contribution not found: %s, #%s, %s'
-                           % (post['item_number'], count,
-                              post.get('txn_id', '')))
-
-        if count > 10:
-            msg = ("PayPal sent a transaction that we don't know "
-                   "about and we're giving up on it.")
-            _log_error_with_data(msg, post)
-            cache.delete(key)
-            return http.HttpResponse('Transaction not found; skipping.')
-        cache.set(key, count, 1209600)  # This is 2 weeks.
-        return http.HttpResponseServerError('Contribution not found')
-
-    paypal_log.info('Calling %s: %s' % (payment_status,
-                                        post.get('txn_id', '')))
-    return methods[payment_status](request, post, c)
-
-
-def paypal_refunded(request, post, original):
-    # Make sure transaction has not yet been processed.
-    if (Contribution.objects.filter(transaction_id=post['txn_id'],
-                                    type=amo.CONTRIB_REFUND)
-                            .exists()):
-        paypal_log.info('Refund IPN already processed')
+    # If the contribution has a related contribution we've processed it.
+    try:
+        original = Contribution.objects.get(related=original)
+        paypal_log.info('Related contribution, state: %s, pk: %s' %
+                        (original.related.type, original.related.pk))
         return http.HttpResponse('Transaction already processed')
+    except Contribution.DoesNotExist:
+        pass
 
     paypal_log.info('Refund IPN received: %s' % post['txn_id'])
     refund = Contribution.objects.create(
         addon=original.addon, related=original,
         user=original.user, type=amo.CONTRIB_REFUND,
         )
-    refund.amount = post['mc_gross']
-    refund.currency = post['mc_currency']
+    amount = _parse_currency(transaction['amount'])
+    refund.amount = -amount['amount']
+    refund.currency = amount['currency']
     refund.uuid = None
     refund.post_data = php.serialize(post)
     refund.save()
-    # TODO: Send the refund email to let them know.
+    paypal_log.info('Refund successfully processed')
     return http.HttpResponse('Success!')
 
 
@@ -181,7 +218,13 @@ def paypal_reversal(request, post, original):
     return http.HttpResponse('Success!')
 
 
-def paypal_completed(request, post, c):
+def paypal_completed(request, post, transaction):
+    # Note that when this completes the uuid is moved over to transaction_id.
+    try:
+        original = Contribution.objects.get(uuid=post['txn_id'])
+    except Contribution.DoesNotExist:
+        return None
+
     # Make sure transaction has not yet been processed.
     if (Contribution.objects.filter(transaction_id=post['txn_id'],
                                     type=amo.CONTRIB_PURCHASE)
@@ -190,18 +233,19 @@ def paypal_completed(request, post, c):
         return http.HttpResponse('Transaction already processed')
 
     paypal_log.info('Completed IPN received: %s' % post['txn_id'])
-    c.transaction_id = post['txn_id']
+    original.transaction_id = post['txn_id']
     # Embedded payments does not send an mc_gross.
     if 'mc_gross' in post:
-        c.amount = post['mc_gross']
-    c.uuid = None
-    c.post_data = php.serialize(post)
-    c.save()
+        original.amount = post['mc_gross']
+    original.uuid = None
+    original.post_data = php.serialize(post)
+    original.save()
 
     # Send thankyou email.
     try:
-        c.mail_thankyou(request)
+        original.mail_thankyou(request)
     except ContributionError as e:
         # A failed thankyou email is not a show stopper, but is good to know.
         paypal_log.error('Thankyou note email failed with error: %s' % e)
+    paypal_log.info('Completed successfully processed')
     return http.HttpResponse('Success!')
