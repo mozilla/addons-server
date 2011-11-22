@@ -768,3 +768,7 @@ class TestSearchSuggestions(TestAjaxSearch):
         self.search_applications('q=bird', [amo.THUNDERBIRD, amo.SUNBIRD])
         self.search_applications('q=mobile', [amo.MOBILE])
         self.search_applications('q=mozilla', [])
+
+    def test_webapp_applications(self):
+        self.search_applications('q=firefox&cat=apps', [])
+        self.search_applications('q=bird&cat=apps', [])

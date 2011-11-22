@@ -355,17 +355,18 @@ def ajax_search_suggestions(request):
 
         cat = request.GET.get('cat', 'all')
 
-        # Applications.
-        for a in amo.APP_USAGE:
-            name_ = unicode(a.pretty).lower()
-            word_matches = [w for w in q_.split() if name_ in w]
-            if q_ in name_ or word_matches:
-                results.append({
-                    'id': a.id,
-                    'name': _(u'{0} Add-ons').format(a.pretty),
-                    'url': locale_url(a.short),
-                    'cls': 'app ' + a.short
-                })
+        if cat != 'apps':
+            # Applications.
+            for a in amo.APP_USAGE:
+                name_ = unicode(a.pretty).lower()
+                word_matches = [w for w in q_.split() if name_ in w]
+                if q_ in name_ or word_matches:
+                    results.append({
+                        'id': a.id,
+                        'name': _(u'{0} Add-ons').format(a.pretty),
+                        'url': locale_url(a.short),
+                        'cls': 'app ' + a.short
+                    })
 
         # Categories.
         cats = Category.objects
