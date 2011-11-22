@@ -568,7 +568,22 @@ class TestFileFromUpload(UploadTest):
     def test_jetpack_version(self):
         upload = self.upload('jetpack')
         f = File.from_upload(upload, self.version, self.platform)
-        eq_(File.objects.get(id=f.id).jetpack_version, '1.0b4')
+        file_ = File.objects.get(id=f.id)
+        eq_(file_.jetpack_version, '1.0b4')
+        eq_(file_.builder_version, None)
+
+    def test_jetpack_builder_version(self):
+        upload = self.upload('jetpack_builder')
+        f = File.from_upload(upload, self.version, self.platform)
+        file_ = File.objects.get(id=f.id)
+        eq_(file_.builder_version, '1.1.1.1')
+
+    def test_jetpack_with_invalid_json(self):
+        upload = self.upload('jetpack_invalid')
+        f = File.from_upload(upload, self.version, self.platform)
+        file_ = File.objects.get(id=f.id)
+        eq_(file_.jetpack_version, None)
+        eq_(file_.builder_version, None)
 
     def test_filename(self):
         upload = self.upload('jetpack')

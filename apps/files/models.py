@@ -52,6 +52,9 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     # TODO: delete this column
     codereview = models.BooleanField(default=False)
     jetpack_version = models.CharField(max_length=10, null=True)
+    # The jetpack builder version, if applicable.
+    builder_version = models.CharField(max_length=10, null=True,
+                                       db_index=True)
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES,
                                               default=amo.STATUS_UNREVIEWED)
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
@@ -140,7 +143,9 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         upload.path = path.path(amo.utils.smart_path(nfd_str(upload.path)))
         f.filename = f.generate_filename(extension=upload.path.ext or '.xpi')
         f.size = int(max(1, round(upload.path.size / 1024, 0)))  # Kilobytes.
-        f.jetpack_version = cls.get_jetpack_version(upload.path)
+        data = cls.get_jetpack_metadata(upload.path)
+        f.jetpack_version = data['sdkVersion']
+        f.builder_version = data['builderVersion']
         f.no_restart = parse_data.get('no_restart', False)
         f.strict_compatibility = parse_data.get('strict_compatibility', False)
         if version.addon.status == amo.STATUS_PUBLIC:
@@ -176,14 +181,20 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         return f
 
     @classmethod
-    def get_jetpack_version(cls, path):
-        try:
-            zip_, name = zipfile.ZipFile(path), 'harness-options.json'
-            if name in zip_.namelist():
+    def get_jetpack_metadata(cls, path):
+        data = {'sdkVersion': None, 'builderVersion': None}
+        zip_ = zipfile.ZipFile(path)
+        name = 'harness-options.json'
+        if name in zip_.namelist():
+            try:
                 opts = json.load(zip_.open(name))
-                return opts['sdkVersion']
-        except Exception:
-            return None
+            except ValueError, exc:
+                log.info('Could not parse harness-options.json in %r: %s' %
+                         (path, exc))
+            else:
+                data['sdkVersion'] = opts.get('sdkVersion')
+                data['builderVersion'] = opts.get('builderVersion')
+        return data
 
     def generate_hash(self, filename=None):
         """Generate a hash for a file."""
