@@ -823,8 +823,8 @@ li.persona-previewer {
     background: #fff0a6;
 }
 .apps-error-msg {
-    text-align: left;
     display: none;
+    padding: 1em 0;
 }
 #content .apps-error-msg h2 {
     font-style: normal;

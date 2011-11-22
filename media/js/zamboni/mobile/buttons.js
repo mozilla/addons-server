@@ -42,7 +42,7 @@
 
     var data_purchases = $('body').attr('data-purchases') || "",
         addons_purchased = $.map(data_purchases.split(','),
-                                 function(v) { return parseInt(v, 10) });
+                                 function(v) { return parseInt(v, 10); });
 
     z.startPurchase = function(manifest_url, opt) {
         $.ajax({
@@ -53,7 +53,6 @@
              */
             async: false,
             success: function(json) {
-                console.log(json);
                 $('.modal').trigger('close'); // Hide all modals
                 if (json.paykey) {
                     /* This is supposed to be a global */
@@ -124,7 +123,7 @@
                     classes = self.classes,
                     install;
                 if (attr.search) {
-                    install = z.installSearch();
+                    install = z.installSearch;
                 } else if (classes.webapp) {
                     if (classes.premium && !attr.purchased) {
                         install = z.startPurchase;
@@ -132,9 +131,9 @@
                         install = apps.install;
                     }
                 } else {
-                    install = z.installAddon
+                    install = z.installAddon;
                 }
-                if (self.classes.webapp) {
+                if (classes.webapp) {
                     install(attr.manifest_url, {
                         url: href,
                         el: activeInstaller[0]
