@@ -7,7 +7,7 @@ from api.handlers import _form_error
 
 OS = ['WINNT', 'Darwin', 'Linux']
 PLATFORMS = ['x86', 'x86_64']
-PRODUCTS = ['fx']
+PRODUCTS = ['firefox']
 TESTS = ['ts']
 
 choices = lambda x: [(c, c) for c in x]

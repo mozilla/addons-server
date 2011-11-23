@@ -18,7 +18,7 @@ class PerformanceAppVersions(amo.models.ModelBase):
     much time on their hands, consider merging the two.
     """
 
-    APP_CHOICES = [('fx', 'Firefox')]
+    APP_CHOICES = [('firefox', 'Firefox')]
 
     app = models.CharField(max_length=255, choices=APP_CHOICES)
     version = models.CharField(max_length=255, db_index=True)

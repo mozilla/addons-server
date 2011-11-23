@@ -756,7 +756,7 @@ class TestPerformanceAPI(BaseOAuth):
             'os': 'WINNT',
             'version': '123',
             'platform': 'x86',
-            'product': 'fx',
+            'product': 'firefox',
             'product_version': 'x.y.z',
             'average': '1.25',
             'test': 'ts'
@@ -823,7 +823,7 @@ class TestPerformanceAPI(BaseOAuth):
         self.test_form_data()
         apps = PerformanceAppVersions.objects.all()
         eq_(len(apps), 1)
-        eq_(apps[0].app, 'fx')
+        eq_(apps[0].app, 'firefox')
         eq_(apps[0].version, 'x.y.z')
 
     def test_gets_app_version(self):
