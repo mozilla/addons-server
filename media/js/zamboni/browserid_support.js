@@ -23,9 +23,7 @@ function gotVerifiedEmail(assertion, redirectTo, domContext) {
                    url: $('.browserid-login', domContext).attr('data-url'),
                    type: 'POST',
                    data: {
-                       'assertion': assertion,
-                       'csrfmiddlewaretoken':
-                       $('input[name=csrfmiddlewaretoken]').val()
+                       'assertion': assertion
                    },
                    success: browserIDRedirect(redirectTo),
                    error: function(jqXHR, textStatus, errorThrown) {
