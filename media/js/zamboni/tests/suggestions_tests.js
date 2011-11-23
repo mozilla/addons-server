@@ -80,7 +80,7 @@ test('Default search label', function() {
         $results = this.results,
         $input = this.input;
     function check(cat, expected) {
-        $('input[name=cat]', $sandbox).val(cat);
+        $results.attr('data-cat', cat);
         $.when($input.searchSuggestions($results)).done(function() {
             equal($results.find('p a.sel').text(), expected);
         });
@@ -164,7 +164,8 @@ asyncTest('Cached results do not change', function() {
                 return z._AjaxCache;
             }).thenDo(function() {
                 var cache = z.AjaxCache(self.url + ':get'),
-                    args = JSON.stringify(self.sandbox.find('form').serialize());
+                    fields = self.sandbox.find('form').serialize(),
+                    args = JSON.stringify(fields + '&cat=' + $results.attr('data-cat'));
                 tests.equalObjects(cache.items[args], items);
                 tests.equalObjects(cache.previous.data, items);
                 equal(cache.previous.args, args);
