@@ -36,9 +36,11 @@
 
     {% elif waffle.switch('browserid-login') %}
       <p>
-        {% trans url='https://browserid.org/' %}
-          The Add-ons website is in the process of switching to <a href="{{ url }}">BrowserID</a> for sign in.
-        {% endtrans %}
+        {# TODO: Localize! #}
+        {% with url='https://browserid.org/' %}
+        The Add-ons website is now using <a href="{{ url }}">BrowserID</a> for sign in. If you already have an account here, just use the
+        same email when signing in to BrowserID.
+        {% endwith %}
       </p>
     {% endif %}
     {% include "users/login_form.html" %}
