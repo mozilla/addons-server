@@ -441,11 +441,17 @@ def get_md5(filename, block_size=2 ** 20):
     return md5.hexdigest()
 
 
-def find_jetpacks(minver, maxver):
+def find_jetpacks(minver, maxver, from_builder_only=False):
     """
     Find all jetpack files that aren't disabled.
 
     Files that should be upgraded will have needs_upgrade=True.
+
+    Keyword Args
+
+    from_builder_only=False
+        If True, the jetpacks returned are only those that were created
+        and packaged by the builder.
     """
     from .models import File
     statuses = amo.VALID_STATUSES
@@ -455,6 +461,8 @@ def find_jetpacks(minver, maxver):
                                  version__addon__disabled_by_user=False)
              .exclude(status=amo.STATUS_DISABLED).no_cache()
              .select_related('version'))
+    if from_builder_only:
+        files = files.exclude(builder_version=None)
     files = sorted(files, key=lambda f: (f.version.addon_id, f.version.id))
 
     # Figure out which files need to be upgraded.

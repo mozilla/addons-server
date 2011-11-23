@@ -344,7 +344,8 @@ def jetpack(request):
         else:
             messages.error(request, form.errors.as_text())
 
-    jetpacks = files.utils.find_jetpacks(minver, maxver)
+    jetpacks = files.utils.find_jetpacks(minver, maxver,
+                                         from_builder_only=True)
 
     upgrading = upgrader.version()    # Current Jetpack version upgrading to.
     repack_status = upgrader.files()  # The files being repacked.
@@ -376,7 +377,8 @@ def jetpack(request):
 
 
 def start_upgrade(minver, maxver):
-    jetpacks = files.utils.find_jetpacks(minver, maxver)
+    jetpacks = files.utils.find_jetpacks(minver, maxver,
+                                         from_builder_only=True)
     ids = [f.id for f in jetpacks if f.needs_upgrade]
     log.info('Starting a jetpack upgrade to %s [%s files].'
              % (maxver, len(ids)))
