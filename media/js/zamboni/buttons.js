@@ -29,6 +29,7 @@ var webappButton = function() {
     if (manifestURL && navigator.mozApps && navigator.mozApps.install) {
         $this.find('.button')
             .removeClass('disabled')
+            .addClass('add')
             .click(function(e) {
                 e.preventDefault();
                 purchases.record($this, function(receipt) {
