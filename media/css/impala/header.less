@@ -248,8 +248,15 @@
                     background: 0;
                 }
                 a {
-                    padding-left: 4px;
                     font-weight: normal;
+                }
+                &.legacy {
+                    a {
+                        padding-left: .5em;
+                    }
+                    a:first-child {
+                        padding-right: .5em;
+                    }
                 }
             }
         }
@@ -274,8 +281,13 @@
 }
 .html-rtl {
     #aux-nav > ul > li {
-        &:last-child {
-            border: 0;
+        &.legacy {
+            a {
+                padding: 0 .5em 0 1em;
+            }
+            a:first-child {
+                padding: 0 1em 0 .5em;
+            }
         }
         > a:after {
             margin: 0 4px 0 0;

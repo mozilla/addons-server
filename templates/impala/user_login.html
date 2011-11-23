@@ -17,7 +17,7 @@
     <a href="{{ url('users.logout') }}">{{ _('Log out') }}</a>
   </li>
 {% else %}
-  <li class="account anonymous nomenu logout">
+  <li class="account anonymous nomenu logout{{ ' legacy' if not waffle.switch('browserid-login') }}">
     {% if waffle.switch('browserid-login') %}
     <a contextmenu="login" href="{{ login_link() }}" class="browserid-login"
        data-url="{{ url('users.browserid_login') }}">
