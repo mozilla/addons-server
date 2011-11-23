@@ -183,7 +183,11 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     @classmethod
     def get_jetpack_metadata(cls, path):
         data = {'sdkVersion': None, 'builderVersion': None}
-        zip_ = zipfile.ZipFile(path)
+        try:
+            zip_ = zipfile.ZipFile(path)
+        except zipfile.BadZipfile:
+            # This path is not an XPI. It's probably an app manifest.
+            return data
         name = 'harness-options.json'
         if name in zip_.namelist():
             try:
