@@ -26,7 +26,7 @@ var webappButton = function() {
     var $this = $(this),
         premium = $this.hasClass('premium'),
         manifestURL = $this.attr('data-manifest-url');
-    if (manifestURL && navigator.mozApps && navigator.mozApps.install) {
+    if (manifestURL) {
         $this.find('.button')
             .removeClass('disabled')
             .addClass('add')
@@ -35,10 +35,7 @@ var webappButton = function() {
                 purchases.record($this, function(receipt) {
                   purchases.install_app(manifestURL, receipt);
                 });
-                // If this install fails would be nice to raise a message.
             });
-    } else {
-        // Attach something that says you can't install apps.
     }
     if (premium) {
         return premiumButton.call($this);
