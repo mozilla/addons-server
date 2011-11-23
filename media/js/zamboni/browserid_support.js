@@ -20,30 +20,29 @@ function gotVerifiedEmail(assertion, redirectTo, domContext) {
     }
     if (assertion) {
         var a = $.ajax({
-                   url: $('.browserid-login', domContext).attr('data-url'),
-                   type: 'POST',
-                   data: {
-                       'assertion': assertion
-                   },
-                   success: browserIDRedirect(redirectTo),
-                   error: function(jqXHR, textStatus, errorThrown) {
-                       if (jqXHR.status == 400) {
-                           displayErrBox(gettext(
-                                  'Admins and editors must provide'
-                                + ' a password to log in.'));
-                       } else {
-                         var msg = jqXHR.responseText;
-                         if (!msg) {
-                           msg = gettext(
-                             "BrowserID login failed. Maybe you don't" +
-                               " have an account under that email address?") +
-                             " textStatus: " + textStatus + " errorThrown: " +
-                             errorThrown;
-                         }
-                         displayErrBox(msg);
-                       }
-                   }
-                   });
+            url: $('.browserid-login', domContext).attr('data-url'),
+            type: 'POST',
+            data: {
+                'assertion': assertion
+            },
+            success: browserIDRedirect(redirectTo),
+            error: function(jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 400) {
+                    displayErrBox(gettext('Admins and editors must ' +
+                                          'provide a password to log in.'));
+                } else {
+                    var msg = jqXHR.responseText;
+                    if (!msg) {
+                        msg = gettext(
+                            "BrowserID login failed. Maybe you don't" +
+                            " have an account under that email address?") +
+                            " textStatus: " + textStatus + " errorThrown: " +
+                            errorThrown;
+                    }
+                    displayErrBox(msg);
+                }
+            }
+        });
         return a;
     } else {
         // user clicked 'cancel', don't do anything
