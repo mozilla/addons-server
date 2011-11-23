@@ -295,6 +295,28 @@ class TestDetail(WebappTest):
     def test_other_apps_none(self):
         eq_(self.get_more_pq()('#author-addons').length, 0)
 
+    def test_disabled_user_message(self):
+        self.webapp.update(disabled_by_user=True)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 404)
+        doc = pq(r.content)
+        h1 = doc('h1.addon')
+        eq_(h1.length, 1)
+        eq_(h1.find('a').length, 0)
+        assert pq(r.content)('.removed'), (
+          'Expected message indicating that app was removed by its author')
+
+    def test_disabled_status_message(self):
+        self.webapp.update(status=amo.STATUS_DISABLED)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 404)
+        doc = pq(r.content)
+        h1 = doc('h1.addon')
+        eq_(h1.length, 1)
+        eq_(h1.find('a').length, 0)
+        assert pq(r.content)('.disabled'), (
+          'Expected message indicating that app was disabled by administrator')
+
 
 class TestMobileListing(amo.tests.MobileTest, WebappTest):
 

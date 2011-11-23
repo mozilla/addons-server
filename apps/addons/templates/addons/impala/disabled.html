@@ -1,18 +1,18 @@
-{% extends "impala/base.html" %}
+{% extends "impala/base_shared.html" %}
 
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
 {% block bodyclass %}gutter{% endblock %}
 
 {% block content %}
 {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                (None, addon.name)]) }}
+                       (None, addon.name)]) }}
 
 <aside class="secondary">
   {{ addon|sidebar_listing }}
 </aside>
 
 <div class="primary">
-  <div class="notification-box error">
+  <div class="notification-box error {{ 'removed' if addon.disabled_by_user else 'disabled' }}">
     {% if addon.is_webapp() %}
       {% if addon.disabled_by_user %}
         {{ _('This app has been removed by its author.') }}
@@ -28,5 +28,4 @@
     {% endif %}
   </div>
 </div>
-
 {% endblock content %}
