@@ -40,7 +40,7 @@ class WebappManager(amo.models.ManagerBase):
                                       disabled_by_user=False)
 
     def popular(self):
-        return self.order_by('-weekly_downloads').with_index(
+        return self.listed().order_by('-weekly_downloads').with_index(
             addons='downloads_type_idx')
 
     def top_free(self):

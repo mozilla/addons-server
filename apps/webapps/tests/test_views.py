@@ -48,6 +48,10 @@ class TestPremium(amo.tests.TestCase):
             amo.tests.addon_factory(type=amo.ADDON_WEBAPP),
         ]
 
+        # For measure add some disabled apps.
+        amo.tests.addon_factory(type=amo.ADDON_WEBAPP, disabled_by_user=True)
+        amo.tests.addon_factory(type=amo.ADDON_WEBAPP, status=amo.STATUS_NULL)
+
         self.paid = []
         for x in xrange(1, 3):
             price = Price.objects.create(price=x)
@@ -57,7 +61,16 @@ class TestPremium(amo.tests.TestCase):
             addon.update(premium_type=amo.ADDON_PREMIUM)
             self.paid.append(addon)
 
-        # For measure add a free app but don't set the premium_type.
+        # For measure add some disabled apps.
+        addon = amo.tests.addon_factory(type=amo.ADDON_WEBAPP,
+            disabled_by_user=True, premium_type=amo.ADDON_PREMIUM)
+        AddonPremium.objects.create(price=price, addon=addon)
+        addon = amo.tests.addon_factory(type=amo.ADDON_WEBAPP,
+            status=amo.STATUS_NULL, premium_type=amo.ADDON_PREMIUM)
+        AddonPremium.objects.create(price=price, addon=addon)
+
+        # For measure add a free app but don't set the premium_type
+        # (i.e., an app that started but did not complete Marketplace process).
         AddonPremium.objects.create(price=price,
             addon=amo.tests.addon_factory(type=amo.ADDON_WEBAPP))
 
@@ -174,7 +187,8 @@ class TestListing(TestPremium):
     def test_price_sort(self):
         apps = test_listing_sort(self, 'price', None, reverse=False,
                                  sel_class='extra-opt')
-        eq_(apps, list(Webapp.objects.filter(premium_type=amo.ADDON_PREMIUM)
+        eq_(apps, list(Webapp.objects.listed()
+                       .filter(premium_type=amo.ADDON_PREMIUM)
                        .order_by('addonpremium__price__price')))
 
     def test_rating_sort(self):
