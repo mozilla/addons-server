@@ -35,10 +35,15 @@ class TestUpgradeJetpacks(amo.tests.TestCase):
         self.addCleanup(urllib2_patch.stop)
         JetpackUpgrader().jetpack_versions('0.9', '1.0')
 
-    def test_send_request(self):
+    def file(self, **file_values):
+        file_values.setdefault('jetpack_version', '0.9')
         addon = Addon.objects.get(id=3615)
-        File.objects.all().update(jetpack_version='0.9')
         file_ = addon.current_version.all_files[0]
+        file_.update(**file_values)
+        return file_
+
+    def test_send_request(self):
+        file_ = self.file(builder_version='1234500')
         tasks.start_upgrade([file_.id], sdk_version='1.2')
         assert self.urllib2.urlopen.called
         url, args = self.urllib2.urlopen.call_args[0]
@@ -48,12 +53,21 @@ class TestUpgradeJetpacks(amo.tests.TestCase):
             'file_id': str(file_.id),
             'priority': 'low',
             'secret': settings.BUILDER_SECRET_KEY,
-            'location': file_.get_url_path('builder'),
+            'package_key': file_.builder_version,
             'uuid': args['uuid'],  # uuid is random so steal from args.
             'pingback': absolutify(reverse('amo.builder-pingback')),
             'sdk_version': '1.2',
         })
         eq_(url, settings.BUILDER_UPGRADE_URL)
+
+    def test_jetpack_with_older_harness_opt(self):
+        file_ = self.file(builder_version=None)  # old harness options
+        tasks.start_upgrade([file_.id], sdk_version='1.2')
+        url, args = self.urllib2.urlopen.call_args[0]
+        args = dict(urlparse.parse_qsl(args))
+        eq_(args['location'], file_.get_url_path('builder'))
+        assert 'package_key' not in args, (
+                                    'Unexpected keys: %s' % args.keys())
 
 
 class TestRepackageJetpack(amo.tests.TestCase):

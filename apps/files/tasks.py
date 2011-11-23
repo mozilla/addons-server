@@ -238,9 +238,13 @@ def start_upgrade(file_ids, sdk_version=None, priority='low', **kw):
                 'file_id': file_.id,
                 'priority': priority,
                 'secret': settings.BUILDER_SECRET_KEY,
-                'location': file_.get_url_path('builder'),
                 'uuid': data['uuid'],
                 'pingback': absolutify(reverse('amo.builder-pingback'))}
+        if file_.builder_version:
+            post['package_key'] = file_.builder_version
+        else:
+            # Older jetpacks might not have builderVersion in their harness.
+            post['location'] = file_.get_url_path('builder')
         if sdk_version:
             post['sdk_version'] = sdk_version
         try:
