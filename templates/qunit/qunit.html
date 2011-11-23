@@ -414,7 +414,9 @@
   <div id="install-button-app-premium">
     {% with addon={'is_premium': Mock(return_value=True),
                    'is_webapp': Mock(return_value=True),
-                   'can_be_purchased': Mock(return_value=False)},
+                   'can_be_purchased': Mock(return_value=False),
+                   'has_purchased': Mock(return_value=False),
+                   'premium': Mock(return_value=False)},
 
             b={'show_warning': False,
                'addon': {'get_url_path': Mock(return_value='http://testurl.com')},
