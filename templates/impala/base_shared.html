@@ -1,4 +1,4 @@
-{% if webapp %}
+{% if webapp or settings.APP_PREVIEW %}
   {% set WEBAPPS = True %}
 {% endif %}
 {% extends "webapps/base.html" if WEBAPPS else "impala/base.html" %}
