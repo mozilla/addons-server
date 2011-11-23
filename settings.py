@@ -528,6 +528,7 @@ MINIFY_BUNDLES = {
             'css/mobile/typography.less',
             'css/zamboni/mobile-forms.less',
             'css/mobile/header.less',
+            'css/mobile/search.less',
             'css/mobile/listing.less',
             'css/mobile/footer.less',
         ),
