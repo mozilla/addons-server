@@ -65,11 +65,17 @@
     font-size: 12px;
     margin-left: 64px;
     z-index: 50;
-
     &.no-img {
         margin-left: 0;
     }
-
+    li.slim:hover {
+        &:after {
+            display: none;
+        }
+        > a {
+            .border-radius(3px);
+        }
+    }
     > ul {
         > li {
             float: left;
