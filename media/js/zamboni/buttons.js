@@ -395,9 +395,16 @@ jQuery.fn.addPaypal = function(html, allowClick) {
             url = $install.attr('data-start-purchase');
 
         if (url) {
-            modalFromURL(url, {'callback': function(el) {
+            modalFromURL(url, {'callback': function() {
+                var $modal = $(this);
                 checkForAddon(this);
-                $(this).delegate('.ajax-submit', 'ajax-submit-loaded', function(){ checkForAddon(this); });
+
+                $('.browserid-login', this).bind('login-complete', function(){
+                    $(this).addClass('loading-submit');
+                    $('.ajax-submit', $modal).load(url, function() {
+                        checkForAddon(this);
+                    });
+                });
             }, 'data': {'realurl': $install.find('a.premium').attr('data-realurl')}});
         };
     }));

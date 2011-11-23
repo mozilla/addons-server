@@ -47,14 +47,17 @@
         {# The <small> makes it smaller, <em> makes it darker. Don't localize "PayPal". #}
             {{ _('Pay <small>with</small> Pay<em>Pal</em>') }}
       </button>
-      <p>{{ _('Complete your purchase with PayPal.  No account necessary.') }}</p>
+      {# TODO(l10n) #}
+      <p>Complete your purchase with PayPal.  No PayPal account is necessary.</p>
       {% else %}
       <div class="paypal-user login">
-        {% with is_ajax=False, action="%s?realurl=%s" % (shared_url('addons.purchase.start', addon), download) %}
-          {% include "users/login_form.html" %}
-        {% endwith %}
+        <button class="browserid-login button prominent" type="button"
+          data-url="{{ url('users.browserid_login') }}" data-event="login-complete">
+          {{ _('Log in / Register') }}
+        </button>
       </div>
-      <p>{{ _('For now, you need to have an addons.mozilla.org account.') }}</p>
+      {# TODO(l10n) #}
+      <p>You need to be logged in to download and install apps to your browser.</p>
       {% endif %}
     </div>
   </div>

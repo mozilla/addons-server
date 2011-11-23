@@ -1,8 +1,11 @@
-
 function browserIDRedirect(to) {
     return function(data, textStatus, jqXHR) {
         if (to) {
-            window.location = to;
+            if(typeof to == "object") {
+                to['on'].removeClass('loading-submit').trigger(to['fire']);
+            } else {
+                window.location = to;
+            }
         }
     };
 }
@@ -52,25 +55,33 @@ function gotVerifiedEmail(assertion, redirectTo, domContext) {
 }
 function initBrowserID(win, ctx) {
     // Initialize BrowserID login.
-    $('.browserid-login', ctx).each(function() {
-        var toArg = win.location.href.split('?to=')[1],
-            to = "/";
+    var toArg = win.location.href.split('?to=')[1],
+        to = "/";
 
-        if (toArg) {
-            to = decodeURIComponent(toArg);
-        }
-        if (to.indexOf("://") > -1) {
-            to = "/";
-        };
-        $(this).click(function(e) {
-            e.preventDefault();
-            $(this).addClass('loading-submit');
-            $('.primary .notification-box', ctx).remove();
-            navigator.id.getVerifiedEmail(function(assertion) {
-                gotVerifiedEmail(assertion, to);
-            });
+    if (toArg) {
+        to = decodeURIComponent(toArg);
+        // Don't redirect to external sites
+        if (to.indexOf("://") > -1) to = "/";
+    } else if(win.location.href.indexOf('://') == -1 && win.location.href.indexOf('users/login') == -1) {
+        // No 'to' and not a log in page; redirect to the current page
+        to = win.location.href;
+    }
+
+    $(ctx || win).delegate('.browserid-login', 'click', function(e) {
+        var $el = $(this),
+            // If there's a data-event on the login button, fire that event
+            // instead of redirecting the browser.
+            event = $el.attr('data-event'),
+            redirectTo = event ? {'fire': event, 'on': $el} : to;
+
+        e.preventDefault();
+        $el.addClass('loading-submit');
+        $('.primary .notification-box', ctx).remove();
+        navigator.id.getVerifiedEmail(function(assertion) {
+            gotVerifiedEmail(assertion, redirectTo);
         });
     });
 }
+
 $(document).ready(function () {initBrowserID(window);});
 

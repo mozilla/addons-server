@@ -1,6 +1,7 @@
 $(document).ready(function(){
 module('browserid setup', {
         setup: function() {
+          $(window).undelegate('.browserid-login', 'click');
           this.sandbox = tests.createSandbox('#browserid-test');
           this.originalGVE = gotVerifiedEmail;
           this.originalID = navigator.id;
@@ -26,7 +27,7 @@ test('Setup with redirect', function() {
          }
        };
        initBrowserID(win, this.sandbox);
-       $('.browserid-login', this.sandbox).click();
+       $('.browserid-login', this.sandbox).eq(0).click();
        equal(this.to, '/en-US/firefox/');
        equal(this.assertion, 'fake-assertion');
      });
@@ -58,6 +59,21 @@ test('Setup with no redirect', function() {
        initBrowserID(win, this.sandbox);
        $('.browserid-login').click();
        equal(this.to, '/');
+       equal(this.assertion, 'fake-assertion');
+     });
+
+test('Setup with no redirect from non login page', function() {
+       var win = {
+         'location': {'href': '/users/test'}
+       };
+       navigator.id = {
+         'getVerifiedEmail': function (f) {
+          f('fake-assertion');
+         }
+       };
+       initBrowserID(win, this.sandbox);
+       $('.browserid-login').click();
+       equal(this.to, '/users/test');
        equal(this.assertion, 'fake-assertion');
      });
 
