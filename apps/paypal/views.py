@@ -14,6 +14,7 @@ from statsd import statsd
 
 import amo
 from amo.decorators import no_login_required, write
+from stats.db import StatsDictField
 from stats.models import Contribution, ContributionError, SubscriptionEvent
 
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -237,14 +238,12 @@ def paypal_completed(request, post, transaction):
         return http.HttpResponse('Transaction already processed')
 
     paypal_log.info('Completed IPN received: %s' % post['txn_id'])
-    original.transaction_id = post['txn_id']
-    # Embedded payments does not send an mc_gross.
+    data = StatsDictField().to_python(php.serialize(post))
+    original.update(transaction_id=post['txn_id'], uuid=None, post_data=data)
     if 'mc_gross' in post:
-        original.amount = post['mc_gross']
-    original.uuid = None
-    original.post_data = php.serialize(post)
-    original.save()
+        original.update(amount=post['mc_gross'])
 
+    original = Contribution.objects.get(pk=original.pk)
     # Send thankyou email.
     try:
         original.mail_thankyou(request)

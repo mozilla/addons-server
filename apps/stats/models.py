@@ -298,6 +298,10 @@ class Contribution(models.Model):
                                        self.currency or 'USD',
                                        locale=locale)
 
+    def update(self, **kw):
+        """Temp testing"""
+        self.__class__.objects.filter(pk=self.pk).update(**kw)
+
 
 models.signals.post_save.connect(Contribution.post_save, sender=Contribution)
 
