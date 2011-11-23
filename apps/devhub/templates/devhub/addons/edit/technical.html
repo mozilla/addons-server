@@ -49,7 +49,7 @@
               {% endif %}
             </td>
           </tr>
-          {% if not webapp %}
+          {% if dependency_form %}
             <tr>
               <th>
                 {{ _('Required Add-ons') }}
@@ -74,6 +74,8 @@
                 {% endif %}
               </td>
             </tr>
+          {% endif %}
+          {% if not webapp %}
             <tr>
               <th>
                 {{ tip(_("Add-on Flags"),

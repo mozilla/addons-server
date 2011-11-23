@@ -989,7 +989,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
             prefix='files', queryset=addon.previews.all())
 
     elif section == 'technical':
-        if waffle.flag_is_active(request, 'edit-dependencies'):
+        if not webapp:
             dependency_form = forms.DependencyFormSet(request.POST or None,
                 queryset=addon.addons_dependencies.all(), addon=addon,
                 prefix='dependencies')

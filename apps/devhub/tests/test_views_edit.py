@@ -1149,7 +1149,6 @@ class TestEditTechnical(TestEdit):
     def setUp(self):
         super(TestEditTechnical, self).setUp()
         self.dependent_addon = Addon.objects.get(id=5579)
-        Flag.objects.create(name='edit-dependencies', everyone=True)
         AddonDependency.objects.create(addon=self.addon,
                                        dependent_addon=self.dependent_addon)
         self.technical_url = self.get_url('technical')
@@ -1290,12 +1289,6 @@ class TestEditTechnical(TestEdit):
         eq_(r.context['dependency_form'].non_form_errors(),
             ['There cannot be more than 3 required add-ons.'])
 
-        # Check error message for apps.
-        Addon.objects.all().update(type=amo.ADDON_WEBAPP)
-        r = self.client.post(self.technical_edit_url, d)
-        eq_(r.context['dependency_form'].non_form_errors(),
-            ['There cannot be more than 3 required apps.'])
-
     def test_dependencies_limit_with_deleted_form(self):
         deps = Addon.objects.reviewed().exclude(
             Q(id__in=[self.addon.id, self.dependent_addon.id]) |
@@ -1367,28 +1360,18 @@ class TestEditTechnical(TestEdit):
         r = self.client.post(self.technical_edit_url, d)
         self.check_bad_dep(r)
 
-    def test_edit_app_dependencies(self):
+    def test_edit_no_app_dependencies(self):
         """Apps should be able to add app dependencies."""
         Addon.objects.all().update(type=amo.ADDON_WEBAPP)
         addon = Addon.objects.get(id=5299)
-        d = self.dep_formset({'dependent_addon': addon.id})
-        r = self.client.post(self.technical_edit_url, d)
-        eq_(any(r.context['dependency_form'].errors), False)
-        self.check_dep_ids([self.dependent_addon.id, addon.id])
+        r = self.client.get(self.technical_edit_url)
+        eq_(r.context['dependency_form'], None)
 
     def test_edit_addon_dependencies_no_add_apps(self):
         """Add-ons should not be able to add app dependencies."""
         addon = Addon.objects.get(id=5299)
         addon.update(type=amo.ADDON_WEBAPP)
         d = self.dep_formset({'dependent_addon': addon.id})
-        r = self.client.post(self.technical_edit_url, d)
-        self.check_bad_dep(r)
-
-    def test_edit_app_dependencies_no_add_addons(self):
-        """Apps should not be able to add add-on dependencies."""
-        addon = Addon.objects.get(id=5299)
-        addon.update
-        d = self.dep_formset({'dependent_addon': True})
         r = self.client.post(self.technical_edit_url, d)
         self.check_bad_dep(r)
 
