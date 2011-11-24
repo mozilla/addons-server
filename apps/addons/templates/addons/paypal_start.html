@@ -45,19 +45,17 @@
               href="{{ shared_url('addons.purchase', addon) }}?"
               data-realurl="{{ download }}">
         {# The <small> makes it smaller, <em> makes it darker. Don't localize "PayPal". #}
-            {{ _('Pay <small>with</small> Pay<em>Pal</em>') }}
+            {{ loc('Pay <small>with</small> Pay<em>Pal</em>') }}
       </button>
-      {# TODO(l10n) #}
-      <p>Complete your purchase with PayPal.  No PayPal account is necessary.</p>
+      <p>{{ loc('Complete your purchase with PayPal.  No PayPal account is necessary.') }}</p>
       {% else %}
       <div class="paypal-user login">
         <button class="browserid-login button prominent" type="button"
           data-url="{{ url('users.browserid_login') }}" data-event="login-complete">
-          {{ _('Log in / Register') }}
+          {{ loc('Log in / Register') }}
         </button>
       </div>
-      {# TODO(l10n) #}
-      <p>You need to be logged in to download and install apps to your browser.</p>
+      <p>{{ loc('You need to be logged in to download and install apps to your browser.') }}}</p>
       {% endif %}
     </div>
   </div>
