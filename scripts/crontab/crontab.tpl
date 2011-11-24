@@ -57,6 +57,7 @@ HOME=/tmp
 40 23 * * * {{ z_cron }} update_compat_info_for_fx4
 45 23 * * * {{ django }} dump_apps
 50 23 * * * {{ z_cron }} migrate_admin_logs
+55 23 * * * {{ z_cron }} clean_out_addonpremium
 
 #Once per day after 2100 PST (after metrics is done)
 35 21 * * * {{ z_cron }} update_addon_download_totals
