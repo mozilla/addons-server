@@ -357,9 +357,9 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
     def test_check_wrong_uuid(self, check_purchase):
         check_purchase.return_value = 'COMPLETED'
         self.make_contribution()
-        self.assertRaises(Contribution.DoesNotExist,
-                          self.client.get_ajax,
-                          '%s?uuid=%s' % (self.get_url('complete'), 'foo'))
+        res = self.client.get_ajax('%s?uuid=%s' %
+                                   (self.get_url('complete'), 'foo'))
+        eq_(res.status_code, 404)
 
     @patch('paypal.check_purchase')
     def test_check_pending(self, check_purchase):

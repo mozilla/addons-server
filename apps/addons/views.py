@@ -21,7 +21,6 @@ import commonware.log
 import session_csrf
 from tower import ugettext as _, ugettext_lazy as _lazy
 from mobility.decorators import mobilized, mobile_template
-import waffle
 
 import amo
 from amo import messages
@@ -33,7 +32,6 @@ from amo import urlresolvers
 from amo.urlresolvers import reverse
 from abuse.models import send_abuse_report
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
-from devhub.decorators import dev_required
 import paypal
 from reviews.forms import ReviewForm
 from reviews.models import Review, GroupedRating
@@ -545,7 +543,14 @@ def purchase_complete(request, addon, status):
     if status == 'complete':
         uuid_ = request.GET.get('uuid')
         log.debug('Looking up contrib for uuid: %s' % uuid_)
-        con = Contribution.objects.get(uuid=uuid_, type=amo.CONTRIB_PENDING)
+
+        # The IPN may, or may not have come through. Which means looking for
+        # a for pre or post IPN contributions. If both fail, then we've not
+        # got a matching contribution.
+        lookup = (Q(uuid=uuid_, type=amo.CONTRIB_PENDING) |
+                  Q(transaction_id=uuid_, type=amo.CONTRIB_PURCHASE))
+        con = get_object_or_404(Contribution, lookup)
+
         log.debug('Check purchase paypal addon: %s, user: %s, paykey: %s'
                   % (addon.pk, request.amo_user.pk, con.paykey[:10]))
         try:
@@ -559,9 +564,8 @@ def purchase_complete(request, addon, status):
 
         log.debug('Paypal returned: %s for paykey: %s'
                   % (result, con.paykey[:10]))
-        if result == 'COMPLETED':
-            con.type = amo.CONTRIB_PURCHASE
-            con.save()
+        if result == 'COMPLETED' and con.type == amo.CONTRIB_PENDING:
+            con.update(type=amo.CONTRIB_PURCHASE)
 
     response = jingo.render(request, 'addons/paypal_result.html',
                             {'addon': addon,

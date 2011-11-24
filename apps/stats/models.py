@@ -112,7 +112,7 @@ class ContributionError(Exception):
         return repr(self.value)
 
 
-class Contribution(models.Model):
+class Contribution(amo.models.ModelBase):
     # TODO(addon): figure out what to do when we delete the add-on.
     addon = models.ForeignKey('addons.Addon')
     amount = DecimalCharField(max_digits=9, decimal_places=2,
@@ -123,7 +123,6 @@ class Contribution(models.Model):
     source = models.CharField(max_length=255, null=True)
     source_locale = models.CharField(max_length=10, null=True)
 
-    created = models.DateTimeField(auto_now_add=True)
     uuid = models.CharField(max_length=255, null=True)
     comment = models.CharField(max_length=255)
     transaction_id = models.CharField(max_length=255, null=True)
@@ -297,10 +296,6 @@ class Contribution(models.Model):
         return numbers.format_currency(self.amount or 0,
                                        self.currency or 'USD',
                                        locale=locale)
-
-    def update(self, **kw):
-        """Temp testing"""
-        self.__class__.objects.filter(pk=self.pk).update(**kw)
 
 
 models.signals.post_save.connect(Contribution.post_save, sender=Contribution)

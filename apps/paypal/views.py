@@ -239,16 +239,24 @@ def paypal_completed(request, post, transaction):
 
     paypal_log.info('Completed IPN received: %s' % post['txn_id'])
     data = StatsDictField().to_python(php.serialize(post))
-    original.update(transaction_id=post['txn_id'], uuid=None, post_data=data)
-    if 'mc_gross' in post:
-        original.update(amount=post['mc_gross'])
+    update = {'transaction_id': post['txn_id'],
+              'uuid': None, 'post_data': data}
 
-    original = Contribution.objects.get(pk=original.pk)
+    if original.type == amo.CONTRIB_PENDING:
+        # This is a purchase that has failed to hit the completed page.
+        # But this ok, this IPN means that it all went through.
+        update['type'] = amo.CONTRIB_PURCHASE
+
+    if 'mc_gross' in post:
+        update['amount'] = post['mc_gross']
+
+    original.update(**update)
     # Send thankyou email.
     try:
         original.mail_thankyou(request)
     except ContributionError as e:
         # A failed thankyou email is not a show stopper, but is good to know.
         paypal_log.error('Thankyou note email failed with error: %s' % e)
+
     paypal_log.info('Completed successfully processed')
     return http.HttpResponse('Success!')
