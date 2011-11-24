@@ -16,13 +16,13 @@ choices = lambda x: [(c, c) for c in x]
 class PerformanceForm(happyforms.Form):
 
     addon_id = forms.IntegerField(required=False)
-    os = forms.ChoiceField(choices=choices(OS), required=True)
-    version = forms.CharField(max_length=255, required=True)
-    platform = forms.ChoiceField(choices=choices(PLATFORMS), required=True)
-    product = forms.ChoiceField(choices=choices(PRODUCTS), required=True)
-    product_version = forms.CharField(max_length=255, required=True)
-    average = forms.FloatField(required=True)
-    test = forms.ChoiceField(choices=choices(TESTS), required=True)
+    os = forms.ChoiceField(choices=choices(OS))
+    version = forms.CharField(max_length=255)
+    platform = forms.ChoiceField(choices=choices(PLATFORMS))
+    product = forms.ChoiceField(choices=choices(PRODUCTS))
+    product_version = forms.CharField(max_length=255)
+    average = forms.FloatField()
+    test = forms.ChoiceField(choices=choices(TESTS))
 
     def show_error(self):
         return _form_error(self)
