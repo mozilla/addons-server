@@ -34,11 +34,6 @@ z.visitor = z.Storage('visitor');
     // Show the bad-browser message if it has not been dismissed
     if (!z.visitor.get('seen_badbrowser_warning') && $('body').hasClass('badbrowser')) {
         $('#site-nonfx').show();
-    } else if (!z.capabilities.webApps) {
-        // show lack of open web apps support warning balloon
-        if (!z.visitor.get('seen_noinstall_apps_warning')) {
-            $('#site-noinstall-apps').show();
-        }
     }
 })();
 
@@ -166,8 +161,6 @@ function initBanners(delegate) {
             z.visitor.set('seen_badbrowser_warning', 1);
         } else if ($parent.is('#acr-pitch')) {
             z.visitor.set('seen_acr_pitch', 1);
-        } else if ($parent.is('#site-noinstall-apps')) {
-            z.visitor.set('seen_noinstall_apps_warning', 1);
         }
     }));
 }

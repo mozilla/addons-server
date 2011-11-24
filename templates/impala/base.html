@@ -104,7 +104,7 @@
             </div>
           {% endif %}
           {% block amo_balloons %}
-            {% if WEBAPPS or settings.APP_PREVIEW %}
+            {% if WEBAPPS %}
               <div class="site-balloon" id="site-noinstall-apps">
                 <p>
                   {% trans url='http://mozilla.org/firefox/?src=amo' %}
@@ -113,7 +113,6 @@
                     a fast, free way to surf the Web!
                   {% endtrans %}
                 </p>
-                <a href="#" class="close">{{ _('Close') }}</a>
               </div>
             {% else %}
               <div class="site-balloon" id="site-nonfx">
