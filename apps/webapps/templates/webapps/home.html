@@ -74,7 +74,7 @@
     </div>
   </div>
   {% if free %}
-    <div id="top-free" class="island c">
+    <div id="top-free" class="island hero c">
       <h2>
         {{ loc('Top Free') }}
         <a class="seeall" href="{{ list_url|urlparams(sort='free') }}">
@@ -85,7 +85,7 @@
     </div>
   {% endif %}
   {% if paid %}
-    <div id="top-paid" class="island c">
+    <div id="top-paid" class="island hero c">
       <h2>
         {{ loc('Top Paid') }}
         <a class="seeall" href="{{ list_url|urlparams(sort='paid') }}">
