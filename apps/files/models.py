@@ -185,7 +185,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         data = {'sdkVersion': None, 'builderVersion': None}
         try:
             zip_ = zipfile.ZipFile(path)
-        except zipfile.BadZipfile:
+        except (zipfile.BadZipfile, IOError):
             # This path is not an XPI. It's probably an app manifest.
             return data
         name = 'harness-options.json'
