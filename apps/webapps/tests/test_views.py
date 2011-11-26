@@ -12,10 +12,10 @@ import amo
 from amo.helpers import absolutify, numberfmt, page_title
 import amo.tests
 from amo.urlresolvers import reverse
-from addons.models import Addon, AddonUser, AddonPremium
+from addons.models import Addon, AddonUser
 from addons.tests.test_views import add_addon_author, test_hovercards
 from browse.tests import test_listing_sort, test_default_sort, TestMobileHeader
-from market.models import Price
+from market.models import AddonPremium, Price
 from sharing import SERVICES
 from translations.helpers import truncate
 from users.models import UserProfile
@@ -175,20 +175,17 @@ class TestListing(TestPremium):
         test_default_sort(self, 'downloads', 'weekly_downloads')
 
     def test_free_sort(self):
-        apps = test_listing_sort(self, 'free', 'weekly_downloads')
-        for a in apps:
-            eq_(a.is_premium(), False)
+        for app in test_listing_sort(self, 'free', 'weekly_downloads'):
+            eq_(app.is_premium(), False)
 
     def test_paid_sort(self):
-        apps = test_listing_sort(self, 'paid', 'weekly_downloads')
-        for a in apps:
-            eq_(a.is_premium(), True)
+        for app in test_listing_sort(self, 'paid', 'weekly_downloads'):
+            eq_(app.is_premium(), True)
 
     def test_price_sort(self):
         apps = test_listing_sort(self, 'price', None, reverse=False,
                                  sel_class='extra-opt')
         eq_(apps, list(Webapp.objects.listed()
-                       .filter(premium_type=amo.ADDON_PREMIUM)
                        .order_by('addonpremium__price__price')))
 
     def test_rating_sort(self):
@@ -204,9 +201,6 @@ class TestListing(TestPremium):
     def test_updated_sort(self):
         test_listing_sort(self, 'updated', 'last_updated',
                           sel_class='extra-opt')
-
-    def test_upandcoming_sort(self):
-        test_listing_sort(self, 'hotness', 'hotness', sel_class='extra-opt')
 
 
 class TestDetail(WebappTest):

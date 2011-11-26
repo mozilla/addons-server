@@ -39,19 +39,19 @@ class WebappManager(amo.models.ManagerBase):
         return self.reviewed().filter(_current_version__isnull=False,
                                       disabled_by_user=False)
 
-    def popular(self):
-        return self.listed().order_by('-weekly_downloads').with_index(
-            addons='downloads_type_idx')
+    def top_free(self, listed=True):
+        qs = self.listed() if listed else self
+        return (qs.exclude(premium_type=amo.ADDON_PREMIUM)
+                .exclude(addonpremium__price__price__isnull=False)
+                .order_by('-weekly_downloads')
+                .with_index(addons='downloads_type_idx'))
 
-    def top_free(self):
-        qs = self.exclude(premium_type=amo.ADDON_PREMIUM).filter(
-            addonpremium__price__price__isnull=True)
-        return qs & self.popular()
-
-    def top_paid(self):
-        qs = self.filter(premium_type=amo.ADDON_PREMIUM,
-                         addonpremium__price__price__isnull=False)
-        return qs & self.popular()
+    def top_paid(self, listed=True):
+        qs = self.listed() if listed else self
+        return (qs.filter(premium_type=amo.ADDON_PREMIUM,
+                          addonpremium__price__price__isnull=False)
+                .order_by('-weekly_downloads')
+                .with_index(addons='downloads_type_idx'))
 
     @skip_cache
     def pending(self):

@@ -34,6 +34,7 @@ from addons.models import (Addon, AddonCategory, AddonUpsell, AddonUser,
                            Category, Charity)
 from addons.utils import ReverseNameLookup
 from applications.models import Application, AppVersion
+from browse.tests import test_listing_sort, test_default_sort
 from devhub.forms import ContribForm
 from devhub.models import ActivityLog, BlogPost, SubmitStep
 from devhub import tasks
@@ -46,6 +47,7 @@ from stats.models import Contribution
 from translations.models import Translation
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, License, Version
+from webapps.models import Webapp
 
 
 class MetaTests(amo.tests.TestCase):
@@ -136,15 +138,11 @@ class TestNav(HubTest):
     def test_only_one_header(self):
         # For bug 682359.
         # Remove this test when we switch to Impala in the devhub!
-        url = reverse('devhub.addons')
-        r = self.client.get(url)
-        doc = pq(r.content)
-
-        # Make sure we're on a non-impala page
-        error = "This test should be run on a non-impala page"
-        assert doc('.is-impala').length == 0, error
-
-        assert doc('#header').length == 0, "Uh oh, there's two headers!"
+        doc = pq(self.client.get(reverse('devhub.addons')).content)
+        # Make sure we're on a non-impala page.
+        eq_(doc('.is-impala').length, 0,
+            'This test should be run on a non-impala page.')
+        eq_(doc('#header').length, 0, 'Uh oh, there are two headers!')
 
 
 class TestDashboard(HubTest):
@@ -201,7 +199,7 @@ class TestDashboard(HubTest):
 
         # Create 5 add-ons.
         self.clone_addon(5)
-        r = self.client.get(self.url + '?page=2')
+        r = self.client.get(self.url, dict(page=2))
         doc = pq(r.content)
         eq_(len(doc('.item .item-info')), 5)
         eq_(doc('nav.paginator').length, 1)
@@ -285,34 +283,80 @@ class TestAppDashboard(HubTest):
         self.url = reverse('devhub.apps')
         waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
 
-    def test_app_dashboard(self):
+    def test_dashboard(self):
         eq_(self.client.get(self.url).status_code, 200)
 
     def test_no_apps(self):
-        """Check that no apps are displayed for this user."""
         r = self.client.get(self.url)
-        doc = pq(r.content)
-        eq_(doc('.items .item').length, 0)
+        eq_(pq(r.content)('#dashboard .item').length, 0)
 
-    def test_app_pagination(self):
-        """Check that the correct info. is displayed for each app:
-        namely, that apps are paginated at 10 items per page, and that
-        when there is more than one page, the 'Sort by' header and pagination
-        footer appear.
-        """
+    def test_pagination(self):
         # Create 10 add-ons.
         self.clone_addon(10, addon_id=337141)
         r = self.client.get(self.url)
-        doc = pq(r.content)
-        eq_(len(doc('.item .item-info')), 10)
-        eq_(doc('nav.paginator').length, 0)
+        doc = pq(r.content)('#dashboard')
+        eq_(doc('.item').length, 10)
+        eq_(doc('#sorter').length, 0)
+        eq_(doc('.paginator').length, 0)
 
-        # Create 5 add-ons.
-        self.clone_addon(5, addon_id=337141)
-        r = self.client.get(self.url + '?page=2')
-        doc = pq(r.content)
-        eq_(len(doc('.item .item-info')), 5)
-        eq_(doc('nav.paginator').length, 1)
+
+class TestAppDashboardSorting(HubTest):
+
+    def setUp(self):
+        super(TestAppDashboardSorting, self).setUp()
+        self.clone_addon(11, addon_id=337141)
+        self.my_apps = self.user_profile.addons
+        self.url = reverse('devhub.apps')
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+
+    def test_pagination(self):
+        doc = pq(self.client.get(self.url).content)('#dashboard')
+        eq_(doc('.item').length, 10)
+        eq_(doc('#sorter').length, 1)
+        eq_(doc('.paginator').length, 1)
+
+        doc = pq(self.client.get(self.url, dict(page=2)).content)('#dashboard')
+        eq_(doc('.item').length, 1)
+        eq_(doc('#sorter').length, 1)
+        eq_(doc('.paginator').length, 1)
+
+    def test_default_sort(self):
+        test_default_sort(self, 'name', 'name', reverse=False,
+                          sel_class='extra-opt')
+
+    def test_free_sort(self):
+        for app in test_listing_sort(self, 'free', 'weekly_downloads'):
+            eq_(app.is_premium(), False)
+
+    def test_paid_sort(self):
+        apps = list(self.my_apps.all()[:3])
+        price = Price.objects.create(price='1.00')
+        for app in apps:
+            app.update(premium_type=amo.ADDON_PREMIUM)
+            AddonPremium.objects.create(addon=app, price=price)
+
+        for app in test_listing_sort(self, 'paid', 'weekly_downloads'):
+            eq_(app.is_premium(), True)
+
+    def test_price_sort(self):
+        apps = test_listing_sort(self, 'price', None, reverse=False,
+                                 sel_class='extra-opt')
+        eq_(apps,
+            list(self.my_apps.order_by('addonpremium__price__price')[:10]))
+
+    def test_rating_sort(self):
+        test_listing_sort(self, 'rating', 'bayesian_rating')
+
+    def test_newest_sort(self):
+        test_listing_sort(self, 'created', 'created', sel_class='extra-opt')
+
+    def test_name_sort(self):
+        test_listing_sort(self, 'name', 'name', reverse=False,
+                          sel_class='extra-opt')
+
+    def test_updated_sort(self):
+        test_listing_sort(self, 'updated', 'last_updated',
+                          sel_class='extra-opt')
 
 
 class TestUpdateCompatibility(amo.tests.TestCase):

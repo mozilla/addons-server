@@ -271,14 +271,19 @@ class BaseFilter(object):
         return manual_order(self.model.objects, ids, 'addons.id')
 
     def filter_price(self):
-        return (self.model.objects.filter(premium_type=amo.ADDON_PREMIUM)
-                .order_by('addonpremium__price__price'))
+        return self.model.objects.order_by('addonpremium__price__price')
 
     def filter_free(self):
-        return Webapp.objects.top_free()
+        if self.model == Addon:
+            return self.model.objects.top_free(self.request.APP, listed=False)
+        else:
+            return self.model.objects.top_free(listed=False)
 
     def filter_paid(self):
-        return Webapp.objects.top_paid()
+        if self.model == Addon:
+            return self.model.objects.top_paid(self.request.APP, listed=False)
+        else:
+            return self.model.objects.top_paid(listed=False)
 
     def filter_popular(self):
         return (self.model.objects.order_by('-weekly_downloads')

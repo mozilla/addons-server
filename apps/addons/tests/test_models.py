@@ -132,6 +132,42 @@ class TestAddonManager(amo.tests.TestCase):
         addon.update(status=amo.STATUS_DISABLED)
         eq_(Addon.objects.valid_and_disabled().count(), before)
 
+    def test_top_free_public(self):
+        addons = list(Addon.objects.listed(amo.FIREFOX))
+        eq_(list(Addon.objects.top_free(amo.FIREFOX)),
+            sorted(addons, key=lambda x: x.weekly_downloads, reverse=True))
+        eq_(list(Addon.objects.top_free(amo.THUNDERBIRD)), [])
+
+    def test_top_free_all(self):
+        addons = list(Addon.objects.filter(appsupport__app=amo.FIREFOX.id)
+                     .exclude(premium_type=amo.ADDON_PREMIUM)
+                     .exclude(addonpremium__price__price__isnull=False))
+        eq_(list(Addon.objects.top_free(amo.FIREFOX, listed=False)),
+            sorted(addons, key=lambda x: x.weekly_downloads, reverse=True))
+        eq_(list(Addon.objects.top_free(amo.THUNDERBIRD, listed=False)), [])
+
+    def make_paid(self, addons):
+        price = Price.objects.create(price='1.00')
+        for addon in addons:
+            addon.update(premium_type=amo.ADDON_PREMIUM)
+            AddonPremium.objects.create(addon=addon, price=price)
+
+    def test_top_paid_public(self):
+        addons = list(Addon.objects.listed(amo.FIREFOX)[:3])
+        self.make_paid(addons)
+        eq_(list(Addon.objects.top_paid(amo.FIREFOX)),
+            sorted(addons, key=lambda x: x.weekly_downloads, reverse=True))
+        eq_(list(Addon.objects.top_paid(amo.THUNDERBIRD)), [])
+
+    def test_top_paid_all(self):
+        addons = list(Addon.objects.listed(amo.FIREFOX)[:3])
+        for addon in addons:
+            addon.update(status=amo.STATUS_LITE)
+        self.make_paid(addons)
+        eq_(list(Addon.objects.top_paid(amo.FIREFOX, listed=False)),
+            sorted(addons, key=lambda x: x.weekly_downloads, reverse=True))
+        eq_(list(Addon.objects.top_paid(amo.THUNDERBIRD, listed=False)), [])
+
 
 class TestAddonManagerFeatured(amo.tests.TestCase):
     # TODO(cvan): Merge with above once new featured add-ons are enabled.

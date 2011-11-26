@@ -97,6 +97,22 @@ class AddonManager(amo.models.ManagerBase):
             status = [amo.STATUS_PUBLIC]
         return self.filter(self.valid_q(status), appsupport__app=app.id)
 
+    def top_free(self, app, listed=True):
+        qs = (self.listed(app) if listed else
+              self.filter(appsupport__app=app.id))
+        return (qs.exclude(premium_type=amo.ADDON_PREMIUM)
+                .exclude(addonpremium__price__price__isnull=False)
+                .order_by('-weekly_downloads')
+                .with_index(addons='downloads_type_idx'))
+
+    def top_paid(self, app, listed=True):
+        qs = (self.listed(app) if listed else
+              self.filter(appsupport__app=app.id))
+        return (qs.filter(premium_type=amo.ADDON_PREMIUM,
+                          addonpremium__price__price__isnull=False)
+                .order_by('-weekly_downloads')
+                .with_index(addons='downloads_type_idx'))
+
     def valid_q(self, status=[], prefix=''):
         """
         Return a Q object that selects a valid Addon with the given statuses.

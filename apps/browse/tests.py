@@ -35,7 +35,7 @@ from versions.models import Version
 
 @nottest
 def test_listing_sort(self, sort, key=None, reverse=True, sel_class='opt'):
-    r = self.client.get(urlparams(self.url, sort=sort))
+    r = self.client.get(self.url, dict(sort=sort))
     eq_(r.status_code, 200)
     sel = pq(r.content)('#sorter ul > li.selected')
     eq_(sel.find('a').attr('class'), sel_class)
@@ -47,15 +47,15 @@ def test_listing_sort(self, sort, key=None, reverse=True, sel_class='opt'):
 
 
 @nottest
-def test_default_sort(self, sort, key=None):
+def test_default_sort(self, sort, key=None, reverse=True, sel_class='opt'):
     r = self.client.get(self.url)
     eq_(r.status_code, 200)
     eq_(r.context['sorting'], sort)
 
-    r = self.client.get(urlparams(self.url, sort='xxx'))
+    r = self.client.get(self.url, dict(sort='xxx'))
     eq_(r.status_code, 200)
     eq_(r.context['sorting'], sort)
-    test_listing_sort(self, sort, key)
+    test_listing_sort(self, sort, key, reverse, sel_class)
 
 
 class ExtensionTestCase(amo.tests.ESTestCase):

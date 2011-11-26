@@ -57,6 +57,7 @@ from stats.models import Contribution
 from translations.models import delete_translation
 from users.models import UserProfile
 from versions.models import Version
+from webapps.models import Webapp
 from webapps.views import AppFilter
 from zadmin.models import ValidationResult
 
@@ -82,10 +83,13 @@ def addon_listing(request, default='name', webapp=False):
     """Set up the queryset and filtering for addon listing for Dashboard."""
     Filter = AppFilter if webapp else AddonFilter
     if webapp:
-        qs = request.amo_user.addons.filter(type=amo.ADDON_WEBAPP)
+        qs = Webapp.objects.filter(
+            id__in=request.amo_user.addons.filter(type=amo.ADDON_WEBAPP))
+        model = Webapp
     else:
         qs = request.amo_user.addons.exclude(type=amo.ADDON_WEBAPP)
-    filter = Filter(request, qs, 'sort', default)
+        model = Addon
+    filter = Filter(request, qs, 'sort', default, model=model)
     return filter.qs, filter
 
 
@@ -105,7 +109,7 @@ def dashboard(request, webapp=False):
     addons, filter = addon_listing(request, webapp=webapp)
     addons = amo.utils.paginate(request, addons, per_page=10)
     blog_posts = _get_posts()
-    data = dict(addons=addons, sorting=filter.field,
+    data = dict(addons=addons, sorting=filter.field, filter=filter,
                 items=_get_items(None, request.amo_user.addons.all())[:4],
                 sort_opts=filter.opts, rss=_get_rss_feed(request),
                 blog_posts=blog_posts, timestamp=int(time.time()),

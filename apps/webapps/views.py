@@ -61,8 +61,7 @@ class AppFilter(addons.views.BaseFilter):
     extras = (('created', _lazy(u'Newest')),
               ('name', _lazy(u'Name')),
               ('price', loc(u'Price')),
-              ('updated', _lazy(u'Recently Updated')),
-              ('hotness', _lazy(u'Up & Coming')))
+              ('updated', _lazy(u'Recently Updated')))
 
 
 def app_listing(request):
