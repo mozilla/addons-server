@@ -42,7 +42,8 @@ from translations.query import order_by_translation
 from versions.models import Version
 from webapps.models import Webapp
 from .models import Addon, Persona, FrozenAddon
-from .decorators import addon_view_factory, can_be_purchased, has_purchased
+from .decorators import (addon_view_factory, can_be_purchased, has_purchased,
+                         has_not_purchased)
 
 log = commonware.log.getLogger('z.addons')
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -488,6 +489,7 @@ def developers(request, addon, page):
 @login_required
 @addon_view
 @can_be_purchased
+@has_not_purchased
 @write
 def purchase(request, addon):
     log.debug('Starting purchase of addon: %s by user: %s'
@@ -538,10 +540,11 @@ def purchase(request, addon):
     return http.HttpResponseRedirect(url)
 
 
-# TODO(andym): again, remove this onece we figure out logged out flow.
+# TODO(andym): again, remove this once we figure out logged out flow.
 @login_required
 @addon_view
 @can_be_purchased
+@has_not_purchased
 @write
 def purchase_complete(request, addon, status):
     result = ''

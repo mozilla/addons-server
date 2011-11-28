@@ -6,7 +6,6 @@ from django.shortcuts import get_object_or_404
 import waffle
 
 from addons.models import Addon
-import amo
 
 
 def addon_view(f, qs=Addon.objects.all):
@@ -64,6 +63,16 @@ def has_purchased(f):
     @functools.wraps(f)
     def wrapper(request, addon, *args, **kw):
         if addon.is_premium() and not addon.has_purchased(request.amo_user):
+            return http.HttpResponseForbidden()
+        return f(request, addon, *args, **kw)
+    return wrapper
+
+
+def has_not_purchased(f):
+    """ The opposite of has_purchased. """
+    @functools.wraps(f)
+    def wrapper(request, addon, *args, **kw):
+        if addon.is_premium() and addon.has_purchased(request.amo_user):
             return http.HttpResponseForbidden()
         return f(request, addon, *args, **kw)
     return wrapper

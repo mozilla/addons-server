@@ -318,6 +318,18 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         eq_(cons.count(), 1)
         eq_(cons[0].amount, Decimal('0.99'))
 
+    @patch('addons.models.Addon.has_purchased')
+    def test_has_purchased(self, has_purchased):
+        has_purchased.return_value = True
+        res = self.client.get(self.purchase_url)
+        eq_(res.status_code, 403)
+
+    @patch('addons.models.Addon.has_purchased')
+    def test_not_has_purchased(self, has_purchased):
+        has_purchased.return_value = False
+        res = self.client.get(self.purchase_url)
+        eq_(res.status_code, 200)
+
     def make_contribution(self, type=amo.CONTRIB_PENDING):
         return Contribution.objects.create(type=type,
                                            uuid='123', addon=self.addon,
@@ -375,6 +387,22 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         url = '%s?uuid=%s' % (self.get_url('complete'), '123')
         res = self.client.get_ajax(url)
         eq_(res.context['result'], 'ERROR')
+
+    @patch('addons.models.Addon.has_purchased')
+    def test_complete_has_purchased(self, has_purchased):
+        has_purchased.return_value = True
+        self.make_contribution()
+        url = '%s?uuid=%s' % (self.get_url('complete'), '123')
+        res = self.client.get(url)
+        eq_(res.status_code, 403)
+
+    @patch('addons.models.Addon.has_purchased')
+    def test_complete_not_has_purchased(self, has_purchased):
+        has_purchased.return_value = False
+        self.make_contribution()
+        url = '%s?uuid=%s' % (self.get_url('complete'), '123')
+        res = self.client.get(url)
+        eq_(res.status_code, 200)
 
     def test_check_thankyou(self):
         url = reverse('addons.purchase.thanks', args=[self.addon.slug])
