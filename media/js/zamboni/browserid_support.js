@@ -14,7 +14,7 @@ function gotVerifiedEmail(assertion, redirectTo, domContext) {
     function displayErrBox(errmsg) {
         $('.loading-submit').removeClass('loading-submit');
 
-        $('section.primary', domContext).prepend(
+        $('section.primary', domContext).eq(0).prepend(
             format('<div class="notification-box error">'
                    + '<ul><h2>{0}</h2></ul></div>', [errmsg]));
     }
