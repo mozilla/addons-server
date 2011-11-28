@@ -689,9 +689,6 @@ class TestBaseAjaxSearch(TestAjaxSearch):
         Persona.objects.create(persona_id=addon.id, addon_id=addon.id)
         self.search_addons('q=%s' % addon.id, [addon])
 
-    def test_ajax_search_char_limit(self):
-        self.search_addons('q=ad', [])
-
     def test_ajax_search_by_name(self):
         from nose import SkipTest
         raise SkipTest
@@ -741,6 +738,9 @@ class TestSearchSuggestions(TestAjaxSearch):
                           type__in=views.AddonSuggestionsAjax.types))
         self.search_addons('q=add', list(addons))
         self.search_addons('q=add&cat=all', list(addons))
+
+    def test_unicode(self):
+        self.search_addons('q=%C2%B2%C2%B2', [])
 
     def test_personas(self):
         personas = (Addon.objects.reviewed()

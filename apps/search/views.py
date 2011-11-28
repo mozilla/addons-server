@@ -286,16 +286,21 @@ class BaseAjaxSearch(object):
     def queryset(self):
         """Get items based on ID or search by name."""
         results = []
-        if self.key in self.request.GET:
-            q = self.request.GET[self.key]
-            if q.isdigit() or (not q.isdigit() and len(q) > 2):
-                if q.isdigit():
-                    qs = Addon.objects.filter(id=int(q),
-                                              disabled_by_user=False)
-                else:
-                    # Oh, how I wish I could elastically exclude terms.
-                    qs = (Addon.search().query(or_=name_only_query(q.lower()))
-                          .filter(is_disabled=False))
+        q = self.request.GET.get(self.key)
+        if q:
+            pk = None
+            try:
+                pk = int(q)
+            except ValueError:
+                pass
+            qs = None
+            if pk:
+                qs = Addon.objects.filter(id=int(q), disabled_by_user=False)
+            elif len(q) > 2:
+                # Oh, how I wish I could elastically exclude terms.
+                qs = (Addon.search().query(or_=name_only_query(q.lower()))
+                      .filter(is_disabled=False))
+            if qs:
                 results = qs.filter(type__in=self.types,
                                     status__in=amo.REVIEWED_STATUSES)
         return results
