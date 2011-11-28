@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 import json
 
 from django.conf import settings
@@ -9,6 +9,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.forms.models import model_to_dict
 from django.utils.http import int_to_base36
 
+from jingo.helpers import datetime as datetime_filter
 from mock import patch
 from nose.tools import eq_
 from nose import SkipTest
@@ -1083,6 +1084,15 @@ class TestPurchases(amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(len(res.context['addons'].object_list), 4)
         self.assertTemplateUsed(res, 'users/mobile/purchases.html')
+
+    def test_purchase_date(self):
+        # Some date that's not the same as the contribution.
+        self.addon.update(created=datetime(2011, 10, 15))
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        node = pq(res.content)('.purchase').eq(0).text()
+        assert datetime_filter(self.con.created) in node, ('%s not found'
+               % datetime_filter(self.con.created))
 
     def get_order(self, order):
         res = self.client.get('%s?sort=%s' % (self.url, order))

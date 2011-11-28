@@ -75,7 +75,7 @@
         <li>
           <span class="purchase">
             {% if contribution.type == amo.CONTRIB_PURCHASE %}
-              {% trans date=addon.created|datetime,
+              {% trans date=contribution.created|datetime,
                        amt=contribution.get_amount_locale() %}
                 Purchased {{ date }} for {{ amt }}
                 {% endtrans %}
@@ -84,12 +84,12 @@
                   {{ _('Request Support') }}</a>
               {% endif %}
             {% elif contribution.type == amo.CONTRIB_REFUND %}
-              {% trans date=addon.created|datetime,
+              {% trans date=contribution.created|datetime,
                        amt=contribution.get_amount_locale() %}
                 Refunded {{ date }} for {{ amt }}
               {% endtrans %}
             {% elif contribution.type == amo.CONTRIB_CHARGEBACK %}
-              {% trans date=addon.created|datetime,
+              {% trans date=contribution.created|datetime,
                        amt=contribution.get_amount_locale() %}
                 Reversed {{ date }} for {{ amt }}
               {% endtrans %}
