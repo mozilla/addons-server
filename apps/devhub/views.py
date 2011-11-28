@@ -1372,7 +1372,7 @@ def marketplace_pricing(request, addon_id, addon, webapp=False):
                          'premium': addon.premium})
 
 
-@dev_required
+@dev_required(webapp=True)
 @can_become_premium
 def marketplace_upsell(request, addon_id, addon, webapp=False):
     form = forms.PremiumForm(request.POST or None,

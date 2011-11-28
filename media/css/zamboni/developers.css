@@ -671,6 +671,7 @@ input.valid {
 }
 .extra {
     font-size: .9em;
+    line-height: 1.4em;
 }
 a.extra {
     margin-left: .5em;

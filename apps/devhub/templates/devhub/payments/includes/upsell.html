@@ -6,7 +6,7 @@
     <div class="indent">
       {{ form.free.errors }}
       <p>{{ form.free }}</p>
-      <div class="extra">
+      <p class="extra">
         {% if webapp %}
           {{ loc("Pitch your premium app, describing the added benefits
                   and functionality over the free version. This will appear
@@ -18,7 +18,7 @@
             on the free add-on's details page.
           {% endtrans %}
         {% endif %}
-      </div>
+      </p>
       {{ form.text.errors }}
       {{ form.text }}
       {{ some_html_tip() }}
