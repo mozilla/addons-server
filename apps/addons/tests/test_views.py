@@ -460,7 +460,7 @@ class TestPaypalStart(PaypalStart):
         # Make sure we get a log in field
         r = self.client.get_ajax(self.url)
         eq_(r.status_code, 200)
-        assert pq(r.content).find('#id_username').length
+        assert pq(r.content).find('div.login').length
 
         # Now, let's log in.
         res = self.client.post_ajax(self.url, data=self.data)
@@ -490,7 +490,7 @@ class TestPaypalStart(PaypalStart):
         # Make sure we're presented with a log in form.
         r = self.client.get_ajax(self.url)
         eq_(r.status_code, 200)
-        assert pq(r.content).find('#id_username').length
+        assert pq(r.content).find('div.login').length
 
         # Now, let's log in.
         res = self.client.post_ajax(self.url, data=self.data)
@@ -534,7 +534,7 @@ class TestPaypalStartReceipt(PaypalStart):
         # Make sure we get a log in field
         r = self.client.get_ajax(self.url)
         eq_(r.status_code, 200)
-        assert pq(r.content).find('#id_username').length
+        assert pq(r.content).find('div.login').length
 
         # Now, let's log in.
         res = self.client.post_ajax(self.url, data=self.data)
