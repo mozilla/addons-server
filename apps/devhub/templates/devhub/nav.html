@@ -10,7 +10,7 @@
     {% endif %}
   </a>
 </h1>
-<nav id="site-nav" class="menu-nav no-img c">
+<nav id="site-nav" class="menu-nav{{ ' app-nav' if webapp }} no-img c">
   <ul>
     {% if request.user.is_authenticated() and request.amo_user.is_developer %}
       {% if webapp %}

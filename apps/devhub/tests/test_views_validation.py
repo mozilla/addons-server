@@ -84,8 +84,8 @@ class TestUploadErrors(BaseUploadTest):
 
 
 class TestFileValidation(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users',
-                'devhub/addon-validation-1', 'base/platforms']
+    fixtures = ['base/apps', 'base/users', 'base/platforms',
+                'devhub/addon-validation-1']
 
     def setUp(self):
         assert self.client.login(username='del@icio.us', password='password')
@@ -93,70 +93,64 @@ class TestFileValidation(amo.tests.TestCase):
         self.file_validation = FileValidation.objects.get(pk=1)
         self.file = self.file_validation.file
         self.addon = self.file.version.addon
+        args = [self.addon.slug, self.file.id]
+        self.url = reverse('devhub.file_validation', args=args)
+        self.json_url = reverse('devhub.json_file_validation', args=args)
 
     def test_version_list(self):
         r = self.client.get(self.addon.get_dev_url('versions'))
         eq_(r.status_code, 200)
-        doc = pq(r.content)
-        eq_(doc('td.file-validation a').text(),
-            '0 errors, 0 warnings')
-        eq_(doc('td.file-validation a').attr('href'),
-            reverse('devhub.file_validation',
-                    args=[self.addon.slug, self.file.id]))
+        a = pq(r.content)('td.file-validation a')
+        eq_(a.text(), '0 errors, 0 warnings')
+        eq_(a.attr('href'), self.url)
 
     def test_results_page(self):
-        r = self.client.get(reverse('devhub.file_validation',
-                                    args=[self.addon.slug, self.file.id]),
-                            follow=True)
+        r = self.client.get(self.url, follow=True)
         eq_(r.status_code, 200)
         eq_(r.context['addon'], self.addon)
         doc = pq(r.content)
+        assert not doc('#site-nav').hasClass('app-nav'), (
+            'Expected add-ons devhub nav')
         eq_(doc('header h2').text(),
             u'Validation Results for searchaddon11102010-20101217.xml')
         eq_(doc('#addon-validator-suite').attr('data-validateurl'),
-            reverse('devhub.json_file_validation',
-                    args=[self.addon.slug, self.file.id]))
+            self.json_url)
+
+    @mock.patch.object(settings, 'APP_PREVIEW', True)
+    def test_app_results_page(self):
+        r = self.client.get(self.url, follow=True)
+        eq_(r.status_code, 200)
+        eq_(r.context['addon'], self.addon)
+        doc = pq(r.content)
+        assert doc('#site-nav').hasClass('app-nav'), 'Expected apps devhub nav'
+        eq_(doc('.breadcrumbs a').eq(1).attr('href'), reverse('devhub.apps'))
 
     def test_only_dev_can_see_results(self):
         self.client.logout()
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
-        r = self.client.get(reverse('devhub.file_validation',
-                                    args=[self.addon.slug, self.file.id]),
-                            follow=True)
-        eq_(r.status_code, 403)
+        eq_(self.client.head(self.url, follow=True).status_code, 403)
 
     def test_only_dev_can_see_json_results(self):
         self.client.logout()
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
-        r = self.client.post(reverse('devhub.json_file_validation',
-                                    args=[self.addon.slug, self.file.id]),
-                             follow=True)
-        eq_(r.status_code, 403)
+        eq_(self.client.head(self.json_url, follow=True).status_code, 403)
 
     def test_editor_can_see_results(self):
         self.client.logout()
         assert self.client.login(username='editor@mozilla.com',
                                  password='password')
-        r = self.client.get(reverse('devhub.file_validation',
-                                    args=[self.addon.slug, self.file.id]),
-                            follow=True)
-        eq_(r.status_code, 200)
+        eq_(self.client.head(self.url, follow=True).status_code, 200)
 
     def test_editor_can_see_json_results(self):
         self.client.logout()
         assert self.client.login(username='editor@mozilla.com',
                                  password='password')
-        r = self.client.post(reverse('devhub.json_file_validation',
-                                    args=[self.addon.slug, self.file.id]),
-                             follow=True)
-        eq_(r.status_code, 200)
+        eq_(self.client.head(self.json_url, follow=True).status_code, 200)
 
     def test_no_html_in_messages(self):
-        r = self.client.post(reverse('devhub.json_file_validation',
-                                     args=[self.addon.slug, self.file.id]),
-                             follow=True)
+        r = self.client.post(self.json_url, follow=True)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
         msg = data['validation']['messages'][0]
@@ -166,26 +160,19 @@ class TestFileValidation(amo.tests.TestCase):
 
     @mock.patch('files.models.File.has_been_validated')
     def test_json_results_post(self, has_been_validated):
-        url = reverse('devhub.json_file_validation',
-                      args=[self.addon.slug, self.file.id])
-
         has_been_validated.__ne__ = mock.Mock()
         has_been_validated.__ne__.return_value = True
-        eq_(self.client.post(url).status_code, 200)
+        eq_(self.client.post(self.json_url).status_code, 200)
         has_been_validated.__ne__.return_value = False
-        eq_(self.client.post(url).status_code, 200)
+        eq_(self.client.post(self.json_url).status_code, 200)
 
     @mock.patch('files.models.File.has_been_validated')
     def test_json_results_get(self, has_been_validated):
-        url = reverse('devhub.json_file_validation',
-                      args=[self.addon.slug, self.file.id])
-
         has_been_validated.__eq__ = mock.Mock()
         has_been_validated.__eq__.return_value = True
-        eq_(self.client.get(url).status_code, 200)
+        eq_(self.client.get(self.json_url).status_code, 200)
         has_been_validated.__eq__.return_value = False
-        eq_(self.client.get(url).status_code, 405)
-
+        eq_(self.client.get(self.json_url).status_code, 405)
 
 
 class TestValidateAddon(amo.tests.TestCase):

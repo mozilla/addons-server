@@ -321,10 +321,18 @@ function initValidator() {
         });
         vis.finish();
 
-        if (validation.errors > 0) {
-            summaryTxt = gettext('Add-on failed validation.');
+        if (z.apps) {
+            if (validation.errors > 0) {
+                summaryTxt = loc('App failed validation.');
+            } else {
+                summaryTxt = loc('App passed validation.');
+            }
         } else {
-            summaryTxt = gettext('Add-on passed validation.');
+            if (validation.errors > 0) {
+                summaryTxt = gettext('Add-on failed validation.');
+            } else {
+                summaryTxt = gettext('Add-on passed validation.');
+            }
         }
         $('.suite-summary span', suite).text(summaryTxt);
         $('.suite-summary', suite).show();

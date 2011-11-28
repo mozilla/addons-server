@@ -271,6 +271,7 @@ $(document).ready(function () {
     updateLocale();
 });
 
+
 function annotateLocalizedErrors($el) {
     $el.find(".errorlist li[data-lang]:not(.l10n)").each(function() {
         var err = $(this),
@@ -278,4 +279,10 @@ function annotateLocalizedErrors($el) {
             l = $(format("#locale-popup [href$='{0}']", [err.attr('data-lang')])).first().text();
         err.text(format("{0}: ",[l])+t).addClass("l10n");
     });
+}
+
+
+function loc(s) {
+    // A noop function for strings that are not ready to be localized.
+    return s;
 }

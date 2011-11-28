@@ -1,4 +1,6 @@
-{% set hide_mobile_link = True %}
+{% if webapp or settings.APP_PREVIEW %}
+  {% set WEBAPPS, webapp = True, True %}
+{% endif %}
 
 {% extends "impala/base.html" %}
 
@@ -28,7 +30,9 @@
 {% endblock %}
 
 {% block site_header_title %}
-  {% include "devhub/nav.html" %}
+  {% with webapp=webapp %}
+    {% include "devhub/nav.html" %}
+  {% endwith %}
 {% endblock %}
 
 {% block search_form %}
@@ -41,7 +45,7 @@
 
 {% block footer %}
   {% if webapp %}
-    {% with hide_mobile_link=hide_mobile_link %}
+    {% with hide_mobile_link=True %}
       {% include "amo_footer_small.html" %}
     {% endwith %}
   {% else %}

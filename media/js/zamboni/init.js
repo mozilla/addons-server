@@ -161,3 +161,5 @@ if (z.browser.firefox) {
 if (z.badBrowser) {
     $(".get-fx-message").show();
 }
+
+z.apps = $(document.body).hasClass('apps');

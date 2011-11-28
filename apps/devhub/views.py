@@ -12,7 +12,6 @@ import operator
 from django import http
 from django.conf import settings
 from django import forms as django_forms
-from django.db import transaction
 from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
@@ -663,7 +662,7 @@ def upload(request, addon_slug=None, is_standalone=False):
     if request.user.is_authenticated():
         fu.user = request.amo_user
         fu.save()
-    if (request.POST.get('app_id') and request.POST.get('version_id')):
+    if request.POST.get('app_id') and request.POST.get('version_id'):
         app = get_object_or_404(Application, pk=request.POST['app_id'])
         ver = get_object_or_404(AppVersion, pk=request.POST['version_id'])
         tasks.compatibility_check.delay(fu.pk, app.guid, ver.version)
@@ -943,8 +942,7 @@ def upload_detail(request, uuid, format='html'):
                               upload.compat_with_appver)
     return jingo.render(request, 'devhub/validation.html',
                         dict(validate_url=validate_url, filename=upload.name,
-                             timestamp=upload.created,
-                             addon=None))
+                             timestamp=upload.created))
 
 
 class AddonDependencySearch(BaseAjaxSearch):
