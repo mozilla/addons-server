@@ -1174,6 +1174,12 @@ class TestAddonModels(amo.tests.TestCase):
         names = [c.name for c in cats]
         assert addon.get_category(amo.FIREFOX.id).name in names
 
+    def test_binary_property(self):
+        addon = Addon.objects.get(id=3615)
+        file = addon.current_version.files.all()[0]
+        file.update(binary=True)
+        eq_(addon.binary, True)
+
 
 class TestAddonGetURLPath(amo.tests.TestCase):
 

@@ -424,8 +424,7 @@ class AddonFormTechnical(AddonFormBase):
     class Meta:
         model = Addon
         fields = ('developer_comments', 'view_source', 'site_specific',
-                  'external_software', 'binary', 'auto_repackage',
-                  'public_stats')
+                  'external_software', 'auto_repackage', 'public_stats')
 
 
 class AddonForm(happyforms.ModelForm):
@@ -444,9 +443,8 @@ class AddonForm(happyforms.ModelForm):
         fields = ('name', 'homepage', 'default_locale', 'support_email',
                   'support_url', 'description', 'summary',
                   'developer_comments', 'eula', 'privacy_policy', 'the_reason',
-                  'the_future', 'view_source', 'prerelease', 'binary',
-                  'site_specific', 'get_satisfaction_company',
-                  'get_satisfaction_product',)
+                  'the_future', 'view_source', 'prerelease', 'site_specific',
+                  'get_satisfaction_company', 'get_satisfaction_product',)
 
         exclude = ('status', )
 

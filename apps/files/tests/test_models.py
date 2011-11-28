@@ -541,6 +541,7 @@ class TestFileUpload(UploadTest):
         plat = Platform.objects.get(pk=amo.PLATFORM_LINUX.id)
         file_ = File.from_upload(upload, version, plat)
         eq_(file_.requires_chrome, True)
+        eq_(file_.binary, True)
 
 
 class TestFileFromUpload(UploadTest):

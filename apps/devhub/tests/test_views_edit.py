@@ -620,8 +620,7 @@ class TestEditBasic(TestEdit):
 
     def test_text_none_when_no_flags(self):
         addon = self.get_addon()
-        addon.update(external_software=False, site_specific=False,
-                     binary=False)
+        addon.update(external_software=False, site_specific=False)
         r = self.client.get(self.url)
         doc = pq(r.content)
         eq_(doc('#addon-flags').text(), 'None')
@@ -1177,7 +1176,6 @@ class TestEditTechnical(TestEdit):
     def test_technical_on(self):
         # Turn everything on
         data = dict(developer_comments='Test comment!',
-                    binary='on',
                     external_software='on',
                     site_specific='on',
                     view_source='on')
@@ -1197,14 +1195,12 @@ class TestEditTechnical(TestEdit):
         r = self.client.post(self.technical_edit_url, self.formset(data))
         addon = self.get_addon()
 
-        eq_(addon.binary, False)
         eq_(addon.external_software, False)
         eq_(addon.site_specific, False)
         eq_(addon.view_source, False)
 
     def test_technical_devcomment_notrequired(self):
         data = dict(developer_comments='',
-                    binary='on',
                     external_software='on',
                     site_specific='on',
                     view_source='on')

@@ -369,6 +369,7 @@ class TestDefaultToCompat(amo.tests.TestCase):
         self.addon = Addon.objects.get(id=1865)
         self.platform = None
         self.version_int = 5000000200100
+        self.file = File.objects.get(pk=96878)
 
         self.app = Application.objects.get(id=1)
         self.version_1_0_2 = 66463
@@ -416,23 +417,39 @@ class TestDefaultToCompat(amo.tests.TestCase):
 
     def test_no_strict_and_strict(self):
         # File has strict_compatibility off and compatMode is strict.
-        File.objects.get(pk=96878).update(strict_compatibility=False)
+        self.file.update(strict_compatibility=False)
         version, file = self.get('', self.version_int,
                                  self.app, self.platform, 'strict')
         eq_(version, None)
 
     def test_no_strict_and_normal(self):
         # File has strict_compatibility off and compatMode is normal.
-        File.objects.get(pk=96878).update(strict_compatibility=False)
+        self.file.update(strict_compatibility=False)
         version, file = self.get('', self.version_int,
                                  self.app, self.platform, 'normal')
         eq_(version, self.version_1_3_0)
 
     def test_no_strict_and_ignore(self):
         # File has strict_compatibility off and compatMode is ignore.
-        File.objects.get(pk=96878).update(strict_compatibility=False)
+        self.file.update(strict_compatibility=False)
         version, file = self.get('', self.version_int,
                                  self.app, self.platform, 'ignore')
+        eq_(version, self.version_1_3_0)
+
+    def test_no_strict_w_binary_and_normal(self):
+        # File has strict_compatibility off and has binary compoments,
+        # compatMode is normal.
+        self.file.update(strict_compatibility=False, binary=True)
+        version, file = self.get('', self.version_int,
+                                 self.app, self.platform, 'normal')
+        eq_(version, self.version_1_2_2)
+
+    def test_addon_removed_binary(self):
+        # Addon had binary components but removed them in the latest version.
+        File.objects.get(pk=96877).update(binary=True)
+        self.file.update(strict_compatibility=False)
+        version, file = self.get('', self.version_int,
+                                 self.app, self.platform, 'normal')
         eq_(version, self.version_1_3_0)
 
 

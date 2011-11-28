@@ -128,7 +128,6 @@ class TestFlagBinary(amo.tests.TestCase):
 
     def setUp(self):
         self.addon = Addon.objects.get(pk=3615)
-        self.addon.update(binary=False)
 
     @mock.patch('devhub.tasks.run_validator')
     def test_flag_binary(self, _mock):

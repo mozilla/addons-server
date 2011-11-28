@@ -168,7 +168,7 @@ def flag_binary(ids, **kw):
                           .get('contains_binary_extension', False))
             log.info('Setting binary for addon with id: %s to %s'
                      % (addon.pk, binary))
-            addon.update(binary=binary)
+            file.update(binary=binary)
         except Exception, err:
             log.error('Failed to run validation on addon id: %s, %s'
                       % (addon.pk, err))

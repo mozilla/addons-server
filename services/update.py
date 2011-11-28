@@ -223,10 +223,11 @@ class Update(object):
             pass  # no further SQL modification required.
 
         elif self.compat_mode == 'normal':
-            # normal checks the file's strict_compatibility flag
-            sql.append("""
-                AND (CASE WHEN files.strict_compatibility = 1 THEN
-                        appmax.version_int >= %(version_int)s ELSE 1 END)
+            # When file has strict_compatibility enabled, or file has binary
+            # components, default to compatible is disabled.
+            sql.append("""AND (
+                CASE WHEN files.strict_compatibility = 1 OR files.binary = 1
+                THEN appmax.version_int >= %(version_int)s ELSE 1 END)
             """)
 
         else:  # Not defined or 'strict'.

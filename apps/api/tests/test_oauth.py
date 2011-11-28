@@ -421,7 +421,7 @@ class TestAddon(BaseOAuth):
                 the_future='is gone',
                 view_source=1,
                 prerelease=1,
-                binary=1,
+                binary=False,
                 site_specific=1,
                 get_satisfaction_company='yermom',
                 get_satisfaction_product='yer face',

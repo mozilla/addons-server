@@ -206,8 +206,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                         db_column='sitespecific')
     external_software = models.BooleanField(default=False,
                                             db_column='externalsoftware')
-    binary = models.BooleanField(default=False,
-                            help_text="Does the add-on contain a binary?")
     dev_agreement = models.BooleanField(default=False,
                             help_text="Has the dev agreement been signed?")
     auto_repackage = models.BooleanField(default=True,
@@ -562,6 +560,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if not self._current_version:
             self.update_version()
         return self._current_version
+
+    @amo.cached_property
+    def binary(self):
+        """Returns if the current version has binary files."""
+        return self.current_version.files.filter(binary=True).exists()
 
     @property
     def backup_version(self):

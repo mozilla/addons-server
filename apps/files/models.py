@@ -63,6 +63,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     # The XPI contains JS that calls require("chrome").
     requires_chrome = models.BooleanField(default=False)
     reviewed = models.DateTimeField(null=True)
+    binary = models.BooleanField(default=False)
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'files'
@@ -634,7 +635,7 @@ class FileValidation(amo.models.ModelBase):
         new.valid = new.errors == 0
         if ('metadata' in js and
             js['metadata'].get('contains_binary_extension', False)):
-            file.version.addon.update(binary=True)
+            file.update(binary=True)
         new.save()
         return new
 

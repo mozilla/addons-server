@@ -100,7 +100,7 @@ class ViewQueue(RawSQLModel):
                 ('admin_review', 'addons.adminreview'),
                 ('is_site_specific', 'addons.sitespecific'),
                 ('external_software', 'addons.externalsoftware'),
-                ('binary', 'addons.binary'),
+                ('binary', 'files.binary'),
                 ('premium_type', 'addons.premium_type'),
                 ('_latest_version_ids', """GROUP_CONCAT(versions.id
                                            ORDER BY versions.created DESC)"""),
