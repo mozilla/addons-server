@@ -269,7 +269,8 @@ header + .island {
 }
 
 .cols {
-    .width-calc(~'100% + 1em');
+    /* Compensate for issues with clean-css minifier. */
+    .width-calc(~'100% - -1em');
     overflow: auto;
     div.col-2, div.col-3 {
         .border-box;
