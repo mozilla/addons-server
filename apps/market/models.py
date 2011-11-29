@@ -95,8 +95,10 @@ class AddonPurchase(amo.models.ModelBase):
     type = models.PositiveIntegerField(default=amo.CONTRIB_PURCHASE,
                                        choices=do_dictsort(amo.CONTRIB_TYPES),
                                        db_index=True)
+
     class Meta:
         db_table = 'addon_purchase'
+        unique_together = ('addon', 'user')
 
     def __unicode__(self):
         return u'%s: %s' % (self.addon, self.user)
