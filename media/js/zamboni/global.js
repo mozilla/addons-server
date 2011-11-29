@@ -586,8 +586,14 @@ function initCharCount() {
 // .exists()
 // This returns true if length > 0.
 
-$.fn.exists = function(){
-  return $(this).length > 0;
+$.fn.exists = function(callback, args){
+    var $this = $(this),
+        len = $this.length;
+
+    if(len && callback) {
+        callback.apply(null, args);
+    }
+    return len > 0;
 };
 
 

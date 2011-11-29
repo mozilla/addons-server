@@ -1,60 +1,45 @@
 $(document).ready(function() {
     // Edit Add-on
-    if($("#edit-addon").length){
-        initEditAddon();
-    }
+    $("#edit-addon").exists(initEditAddon);
 
     //Ownership
-    if ($("#author_list").length) {
+    $("#author_list").exists(function() {
         initAuthorFields();
         initLicenseFields();
-    }
+    });
 
     //Payments
-    if ($('.payments').length) {
-        initPayments();
-    }
+    $('.payments').exists(initPayments);
 
     // Edit Versions
-    if($('.edit-version').length) {
-        initEditVersions();
-    }
+    $('.edit-version').exists(initEditVersions);
 
     // View versions
-    if($('#version-list').length) {
-        initVersions();
-    }
+    $('#version-list').exists(initVersions);
 
     // Submission process
-    if($('.addon-submission-process').length) {
+    $('.addon-submission-process').exists(function(){
         initLicenseFields();
         initCharCount();
         initSubmit();
-    }
+    });
 
     // Validate addon (standalone)
-    if($('.validate-addon').length) {
-        initSubmit();
-    }
+    $('.validate-addon').exists(initSubmit);
+
     // Add-on Compatibility Check
-    if ($('#addon-compat-upload').length) {
-        initAddonCompatCheck($('#addon-compat-upload'));
-    }
+    $('#addon-compat-upload').exists(initAddonCompatCheck, [$('#addon-compat-upload')]);
 
     // Submission > Describe
-    if ($("#submit-describe").length) {
-        initCatFields();
-    }
+    $("#submit-describe").exists(initCatFields);
 
     // Submission > Media
-    if($('#submit-media').length) {
+    $('#submit-media').exists(function() {
         initUploadIcon();
         initUploadPreview();
-    }
+    });
 
-    if ($('.perf-tests').length) {
-        initPerfTests(window.document);
-    }
+    $('.perf-tests').exists(initPerfTests, [window.document]);
 
     // Add-on uploader
     if($('#upload-addon').length) {
