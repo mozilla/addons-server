@@ -43,6 +43,7 @@
   {{ js('zamboni/devhub') }}
 {% endblock %}
 
+{% set hide_mobile_link=True %}
 {% block footer %}
   {% if webapp %}
     {% with hide_mobile_link=True %}
