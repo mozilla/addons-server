@@ -62,12 +62,12 @@ def dev_breadcrumbs(context, addon=None, items=None, add_default=False,
     **impala**
         Whether to use the impala_breadcrumbs helper. Default is False.
     """
-    crumbs = [(reverse('devhub.index'), _('Developer Hub'))]
-
     if context.get('webapp'):
+        crumbs = []
         title = _('My Apps')
         link = reverse('devhub.apps')
     else:
+        crumbs = [(reverse('devhub.index'), _('Developer Hub'))]
         title = _('My Add-ons')
         link = reverse('devhub.addons')
 
@@ -85,6 +85,10 @@ def dev_breadcrumbs(context, addon=None, items=None, add_default=False,
         crumbs.append((url, addon.name))
     if items:
         crumbs.extend(items)
+
+    if len(crumbs) == 1:
+        crumbs = []
+
     if impala:
         return impala_breadcrumbs(context, crumbs, add_default)
     else:

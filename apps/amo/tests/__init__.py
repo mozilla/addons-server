@@ -84,11 +84,16 @@ def check_links(expected, elements, verify=True):
     """
     for idx, element in enumerate(elements):
         e = pq(element)
-        text, href = expected[idx]
-        eq_(e.text(), text)
-        eq_(e.attr('href'), href)
-        if verify and href != '#':
-            eq_(Client().head(href, follow=True).status_code, 200)
+        text, link = expected[idx]
+        if text is not None:
+            eq_(e.text(), text)
+        if link is not None:
+            # If we passed an <li>, try to find an <a>.
+            if not e.filter('a'):
+                e = e.find('a')
+            eq_(e.attr('href'), link)
+            if verify and link != '#':
+                eq_(Client().head(link, follow=True).status_code, 200)
 
 
 class RedisTest(object):

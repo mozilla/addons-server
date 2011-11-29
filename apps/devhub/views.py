@@ -93,14 +93,11 @@ def addon_listing(request, default='name', webapp=False):
 
 
 def index(request):
-    webapp = settings.APP_PREVIEW
-    ctx = {}
-    if webapp:
-        ctx.update(webapp=webapp)
-    else:
-        ctx.update(blog_posts=_get_posts())
-    template = 'devhub/index%s.html' % ('_apps' if webapp else '')
-    return jingo.render(request, template, ctx)
+    if settings.APP_PREVIEW:
+        # This can be a permanent redirect when we finalize devhub for apps.
+        return redirect('devhub.apps')
+    return jingo.render(request, 'devhub/index.html',
+                        {'blog_posts': _get_posts()})
 
 
 @login_required

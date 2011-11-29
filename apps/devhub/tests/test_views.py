@@ -82,6 +82,46 @@ class HubTest(amo.tests.TestCase):
         return ids
 
 
+class TestHome(HubTest):
+
+    def test_addons(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'devhub/index.html')
+
+    @mock.patch.object(settings, 'APP_PREVIEW', True)
+    def test_apps(self):
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+        r = self.client.get(self.url, follow=True)
+        self.assertRedirects(r, reverse('devhub.apps'), 302)
+        self.assertTemplateUsed(r, 'devhub/addons/dashboard.html')
+
+
+class TestBreadcrumbs(HubTest):
+
+    def setUp(self):
+        super(TestBreadcrumbs, self).setUp()
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+
+    @mock.patch.object(settings, 'APP_PREVIEW', True)
+    def test_impala_breadcrumbs(self):
+        r = self.client.get(reverse('devhub.apps'))
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('#breadcrumbs').length, 0)
+
+    @mock.patch.object(settings, 'APP_PREVIEW', True)
+    def test_legacy_breadcrumbs(self):
+        webapp = Webapp.objects.get(id=337141)
+        AddonUser.objects.create(user=self.user_profile, addon=webapp)
+        r = self.client.get(webapp.get_dev_url('edit'))
+        eq_(r.status_code, 200)
+        expected = [
+            ('My Apps', reverse('devhub.apps')),
+            (unicode(webapp.name), None),
+        ]
+        amo.tests.check_links(expected, pq(r.content)('#breadcrumbs li'))
+
+
 class TestNav(HubTest):
 
     def test_navbar(self):
@@ -1312,10 +1352,8 @@ class TestActivityFeed(amo.tests.TestCase):
         r = self.client.get(reverse('devhub.feed_all'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('header h2').text(),
-            'Recent Activity for My Add-ons')
-        eq_(doc('.breadcrumbs li:eq(2)').text(),
-            'Recent Activity')
+        eq_(doc('header h2').text(), 'Recent Activity for My Add-ons')
+        eq_(doc('#breadcrumbs li:eq(2)').text(), 'Recent Activity')
 
     def test_feed_for_addon(self):
         addon = Addon.objects.no_cache().get(id=3615)
@@ -1324,7 +1362,7 @@ class TestActivityFeed(amo.tests.TestCase):
         doc = pq(r.content)
         eq_(doc('header h2').text(),
             'Recent Activity for %s' % addon.name)
-        eq_(doc('.breadcrumbs li:eq(3)').text(),
+        eq_(doc('#breadcrumbs li:eq(3)').text(),
             addon.slug)
 
     def test_feed_disabled(self):
@@ -1562,7 +1600,7 @@ class TestSubmitStep1(TestSubmitBase):
         response = self.client.get(reverse('devhub.submit.1'))
         eq_(response.status_code, 200)
         doc = pq(response.content)
-        eq_(doc('.breadcrumbs li a').eq(1).attr('href'),
+        eq_(doc('#breadcrumbs li a').eq(1).attr('href'),
             reverse('devhub.addons'))
         links = doc('#agreement-container a')
         assert len(links)
@@ -1579,7 +1617,7 @@ class TestSubmitStep1(TestSubmitBase):
         response = self.client.get(reverse('devhub.submit_apps.1'))
         eq_(response.status_code, 200)
         doc = pq(response.content)
-        eq_(doc('.breadcrumbs li a').eq(1).attr('href'),
+        eq_(doc('#breadcrumbs li a').eq(1).attr('href'),
             reverse('devhub.apps'))
         links = doc('#agreement-container a')
         assert len(links)
@@ -3113,7 +3151,6 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
 class TestCreateWebApp(BaseWebAppTest):
 
-    @mock.patch.object(settings, 'APP_PREVIEW', False)
     def test_page_title(self):
         eq_(pq(self.client.get(self.url).content)('title').text(),
             'Step 2 :: Developer Hub :: Apps Marketplace')

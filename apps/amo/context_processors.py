@@ -75,7 +75,7 @@ def global_settings(request):
                                 'href': reverse('devhub.submit.1')})
 
         if waffle.flag_is_active(request, 'accept-webapps'):
-            if request.amo_user.is_developer:
+            if settings.APP_PREVIEW or request.amo_user.is_developer:
                 tools_links.append({'text': _('Manage My Apps'),
                                     'href': reverse('devhub.apps')})
             tools_links.append({'text': _('Submit a New App'),
@@ -86,8 +86,9 @@ def global_settings(request):
             tools_links.append({'text': 'Submit a New Persona',
                                 'href': reverse('devhub.personas.submit')})
 
-        tools_links.append({'text': _('Developer Hub'),
-                            'href': reverse('devhub.index')})
+        if not settings.APP_PREVIEW:
+            tools_links.append({'text': _('Developer Hub'),
+                                'href': reverse('devhub.index')})
 
         if acl.action_allowed(request, 'Editors', '%'):
             tools_links.append({'text': _('Editor Tools'),

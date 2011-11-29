@@ -295,7 +295,7 @@ def browserid_authenticate(request, assertion):
     if (settings.REGISTER_USER_LIMIT and
         UserProfile.objects.count() > settings.REGISTER_USER_LIMIT):
         _m = ('Sorry, no more registrations are allowed. '
-              '<a href="https://developer.mozilla.org/apps">Learn more</a>')
+              '<a href="https://developer.mozilla.org/en/apps">Learn more</a>')
         return (None, _m)
     profile = UserProfile.objects.create(username=username, email=email)
     profile.create_django_user()
@@ -509,7 +509,7 @@ def register(request):
     elif (settings.REGISTER_USER_LIMIT and
           UserProfile.objects.count() > settings.REGISTER_USER_LIMIT):
         _m = ('Sorry, no more registrations are allowed. '
-              '<a href="https://developer.mozilla.org/apps">Learn more</a>')
+              '<a href="https://developer.mozilla.org/en/apps">Learn more</a>')
         messages.error(request, _m)
         form = None
 

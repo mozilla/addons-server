@@ -35,7 +35,7 @@
 {% endif %}
 
 {% if user.is_authenticated() %}
-  {% if tools_links and tools_links|count > 1 %}
+  {% if tools_links|count > 1 %}
     <li class="tools">
       <a href="#">{{ tools_title }}</a>
       <ul>
@@ -44,7 +44,7 @@
         {% endfor %}
       </ul>
     </li>
-  {% else %}
+  {% elif tools_links %}
     <li class="context tools nomenu">
       <a href="{{ tools_links[0].href }}">{{ tools_links[0].text }}</a>
     </li>

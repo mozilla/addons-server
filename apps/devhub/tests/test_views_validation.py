@@ -118,12 +118,13 @@ class TestFileValidation(amo.tests.TestCase):
 
     @mock.patch.object(settings, 'APP_PREVIEW', True)
     def test_app_results_page(self):
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
         r = self.client.get(self.url, follow=True)
         eq_(r.status_code, 200)
         eq_(r.context['addon'], self.addon)
         doc = pq(r.content)
         assert doc('#site-nav').hasClass('app-nav'), 'Expected apps devhub nav'
-        eq_(doc('.breadcrumbs a').eq(1).attr('href'), reverse('devhub.apps'))
+        eq_(doc('#breadcrumbs a').eq(0).attr('href'), reverse('devhub.apps'))
 
     def test_only_dev_can_see_results(self):
         self.client.logout()

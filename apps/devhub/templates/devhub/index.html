@@ -1,5 +1,21 @@
 {% extends "devhub/base_impala.html" %}
 
+{% macro docs_ul(docs) %}
+  <ul class="listing-list">
+    {% for icon, link, heading, desc in docs %}
+      <li class="devhub-icon-{{ icon }}">
+        <a href="{{ link }}">
+          <div class="icon"></div>
+          <div class="summary">
+            <h3>{{ heading }}</h3>
+            <p class="desc">{{ desc }}</p>
+          </div>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
 {% block content %}
 <section class="secondary devhub-sidebar">
   <div class="item">
