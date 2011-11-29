@@ -11,3 +11,7 @@
 #site-noinstall-apps {
     display: block;
 }
+
+form.go button {
+    display: inherit;
+}
