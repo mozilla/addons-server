@@ -1600,32 +1600,31 @@ class TestSubmitStep1(TestSubmitBase):
         response = self.client.get(reverse('devhub.submit.1'))
         eq_(response.status_code, 200)
         doc = pq(response.content)
-        eq_(doc('#breadcrumbs li a').eq(1).attr('href'),
-            reverse('devhub.addons'))
+        assert not doc('#site-nav').hasClass('app-nav'), (
+            'Expected add-ons devhub nav')
+        eq_(doc('#breadcrumbs a').eq(1).attr('href'), reverse('devhub.addons'))
         links = doc('#agreement-container a')
-        assert len(links)
+        assert links
         for ln in links:
             href = ln.attrib['href']
             assert not href.startswith('%'), (
                 "Looks like link %r to %r is still a placeholder" %
                 (href, ln.text))
 
-    @mock.patch.object(waffle, 'flag_is_active')
-    def test_step1_apps_submit(self, fia):
-        fia.return_value = True
-
+    def test_step1_apps_submit(self):
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
         response = self.client.get(reverse('devhub.submit_apps.1'))
         eq_(response.status_code, 200)
         doc = pq(response.content)
-        eq_(doc('#breadcrumbs li a').eq(1).attr('href'),
-            reverse('devhub.apps'))
+        assert doc('#site-nav').hasClass('app-nav'), 'Expected apps devhub nav'
+        eq_(doc('#breadcrumbs a').eq(0).attr('href'), reverse('devhub.apps'))
+        assert doc('h2.is_webapp'), 'Webapp submit has add-on heading'
         links = doc('#agreement-container a')
-        assert len(links)
-        assert doc('h2.is_webapp'), "Webapp submit has add-on heading"
+        assert links
         for ln in links:
             href = ln.attrib['href']
             assert not href.startswith('%'), (
-                "Looks like link %r to %r is still a placeholder" %
+                'Looks like link %r to %r is still a placeholder' %
                 (href, ln.text))
 
 
