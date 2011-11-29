@@ -296,7 +296,7 @@ class TestAppDashboard(HubTest):
         r = self.client.get(self.url)
         doc = pq(r.content)('#dashboard')
         eq_(doc('.item').length, 10)
-        eq_(doc('#sorter').length, 0)
+        eq_(doc('#sorter').length, 1)
         eq_(doc('.paginator').length, 0)
 
 
@@ -304,12 +304,19 @@ class TestAppDashboardSorting(HubTest):
 
     def setUp(self):
         super(TestAppDashboardSorting, self).setUp()
-        self.clone_addon(11, addon_id=337141)
+        self.clone_addon(3, addon_id=337141)
         self.my_apps = self.user_profile.addons
         self.url = reverse('devhub.apps')
         waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
 
     def test_pagination(self):
+        doc = pq(self.client.get(self.url).content)('#dashboard')
+        eq_(doc('.item').length, 3)
+        eq_(doc('#sorter').length, 1)
+        eq_(doc('.paginator').length, 0)
+
+        # We want more than 10 apps so that the paginator shows up.
+        self.clone_addon(8, addon_id=337141)
         doc = pq(self.client.get(self.url).content)('#dashboard')
         eq_(doc('.item').length, 10)
         eq_(doc('#sorter').length, 1)
@@ -328,21 +335,22 @@ class TestAppDashboardSorting(HubTest):
         for app in test_listing_sort(self, 'free', 'weekly_downloads'):
             eq_(app.is_premium(), False)
 
-    def test_paid_sort(self):
-        apps = list(self.my_apps.all()[:3])
+    def make_paid(self, apps):
         price = Price.objects.create(price='1.00')
         for app in apps:
             app.update(premium_type=amo.ADDON_PREMIUM)
             AddonPremium.objects.create(addon=app, price=price)
 
+    def test_paid_sort(self):
+        self.make_paid(list(self.my_apps.all()[:3]))
         for app in test_listing_sort(self, 'paid', 'weekly_downloads'):
             eq_(app.is_premium(), True)
 
     def test_price_sort(self):
+        self.make_paid(list(self.my_apps.all()[:3]))
         apps = test_listing_sort(self, 'price', None, reverse=False,
                                  sel_class='extra-opt')
-        eq_(apps,
-            list(self.my_apps.order_by('addonpremium__price__price')[:10]))
+        eq_(apps, list(self.my_apps.order_by('addonpremium__price__price')))
 
     def test_rating_sort(self):
         test_listing_sort(self, 'rating', 'bayesian_rating')
