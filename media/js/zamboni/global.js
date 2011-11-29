@@ -300,10 +300,6 @@ $.fn.modal = function(click_target, o) {
         width:      450
     }, o);
 
-    if (!$ct.length && !$modal.o.delegate) {
-        return false;
-    }
-
     $modal.setWidth = function(w) {
         $modal.css({width: w});
         return $modal;
