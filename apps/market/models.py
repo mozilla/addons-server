@@ -6,6 +6,7 @@ from django.utils import translation
 from translations.fields import TranslatedField
 
 import amo
+from amo.decorators import write
 import amo.models
 from stats.models import Contribution
 from users.models import UserProfile
@@ -101,6 +102,7 @@ class AddonPurchase(amo.models.ModelBase):
         return u'%s: %s' % (self.addon, self.user)
 
 
+@write
 @receiver(models.signals.post_save, sender=Contribution,
           dispatch_uid='create_addon_purchase')
 def create_addon_purchase(sender, instance, **kw):
@@ -122,13 +124,9 @@ def create_addon_purchase(sender, instance, **kw):
     if instance.type == amo.CONTRIB_PURCHASE:
         log.debug('Creating addon purchase: addon %s, user %s'
                   % (instance.addon.pk, instance.user.pk))
-        try:
-            purchase = AddonPurchase.objects.get(addon=instance.addon,
-                                                 user=instance.user)
-        except AddonPurchase.DoesNotExist:
-            purchase = AddonPurchase.objects.create(addon=instance.addon,
-                                                    user=instance.user)
 
+        data = {'addon': instance.addon, 'user': instance.user}
+        purchase, created = AddonPurchase.objects.safer_get_or_create(**data)
         purchase.update(type=amo.CONTRIB_PURCHASE)
         instance.addon.get_or_create_install(user=instance.user)
 

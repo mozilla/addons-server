@@ -544,7 +544,6 @@ def purchase(request, addon):
 @login_required
 @addon_view
 @can_be_purchased
-@has_not_purchased
 @write
 def purchase_complete(request, addon, status):
     result = ''
