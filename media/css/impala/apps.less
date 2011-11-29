@@ -31,7 +31,7 @@
 }
 
 #apps-learn {
-    border: 1px solid @border-blue;
+    border: 1px solid @light-gray;
     .border-radius(5px);
     .border-box;
     .box-shadow(0 0 1px rgba(0, 0, 0, .1));
@@ -39,58 +39,56 @@
     margin-bottom: 15px;
     padding: 0;
     h3 {
-        color: @orange;
         font: italic 18px @serif-stack;
-    }
-    .copy {
-        padding: 14px;
-    }
-    ul {
-        margin-top: 1em;
     }
     h3 + p {
         margin-top: .5em;
     }
-    li {
-        background: url(../../img/apps/lab.png) 0 1px no-repeat;
-        padding-left: 20px;
-    }
-    li + li {
-        margin-top: 7px;
-    }
-    .user, .dev, .adventure {
+    div {
         .border-box;
         display: table-cell;
         min-width: 33%;
+        padding: 14px;
         width: 33%;
     }
     .dev, .adventure {
-        border-left: 1px solid #ccc;
+        border-left: 1px solid @light-gray;
+        .box-shadow(0 0 1px rgba(0, 0, 0, .1));
     }
     .user {
+        background: #def;
+        .gradient-two-color(#def, #fff);
         .border-radius(5px 0 0 5px);
-        .copy {
-            background-color: rgba(221,238,255,.9);  /* #def */
+        h3 {
+            color: darken(#def, 70%);
         }
     }
     .dev {
-        .copy {
-            background-color: rgba(255,255,238,.9);  /* #ffe */
+        background: #ffe;
+        .gradient-two-color(#ffe, #fff);
+        h3 {
+            color: darken(#ffe, 70%);
         }
     }
     .adventure {
+        background: #fee;
+        .gradient-two-color(#fee, #fff);
         .border-radius(0 5px 5px 0);
-        .copy {
-            background-color: rgba(255,238,238,.9);  /* #fee */
+        h3 {
+            color: darken(#fee, 70%);
         }
     }
 }
 
 .html-rtl #apps-learn {
+    .user {
+        .border-radius(0 5px 5px 0);
+    }
     .adventure {
+        .border-radius(5px 0 0 5px);
         border: 0;
     }
     .dev {
-        border-right: 1px solid #ccc;
+        border-right: 1px solid @light-gray;
     }
 }
