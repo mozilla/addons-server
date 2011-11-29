@@ -23,7 +23,7 @@ from addons.models import Addon, AddonUser, AddonPremium
 from amo.helpers import urlparams
 from amo.pyquery_wrapper import PyQuery as pq
 from amo.urlresolvers import reverse
-from bandwagon.models import Collection, CollectionWatcher
+from bandwagon.models import Collection, CollectionAddon, CollectionWatcher
 from devhub.models import ActivityLog
 from market.models import Price
 from reviews.models import Review
@@ -611,7 +611,7 @@ class TestFailedCount(UserViewBase):
         self.data = {'username': 'jbalogh@mozilla.com', 'password': 'foo'}
 
     def log_calls(self, obj):
-        return [ call[0][1] for call in obj.call_args_list ]
+        return [call[0][1] for call in obj.call_args_list]
 
     def test_login_passes(self, log_login_attempt):
         self.client.post(self.url, data=self.data)
@@ -1058,10 +1058,38 @@ class TestPurchases(amo.tests.TestCase):
         doc = pq(self.client.get(self.url).content)
         assert 'My Purchases' in doc('li.account li').text()
 
-    def test_in_side_menu(self):
-        raise SkipTest
-        doc = pq(self.client.get(self.url).content)
-        assert 'My Purchases' in doc('div.secondary li').text()
+    def check_sidebar_links(self, expected):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        links = pq(r.content)('#secondary-nav ul a')
+        amo.tests.check_links(expected, links)
+        eq_(links.filter('.selected').attr('href'), self.url,
+            '"My Purchases" link should be selected.')
+
+    def test_in_sidebar(self):
+        # Populate this user's favorites.
+        c = Collection.objects.create(type=amo.COLLECTION_FAVORITES,
+                                      author=self.user.get_profile())
+        CollectionAddon.objects.create(addon=Addon.objects.all()[0],
+                                       collection=c)
+
+        expected = [
+            ('My Profile', self.user.get_profile().get_url_path()),
+            ('Account Settings', reverse('users.edit')),
+            ('My Collections', reverse('collections.mine')),
+            ('My Favorites', reverse('collections.mine', args=['favorites'])),
+            ('My Purchases', self.url),
+        ]
+        self.check_sidebar_links(expected)
+
+    @patch.object(settings, 'APP_PREVIEW', True)
+    def test_in_apps_sidebar(self):
+        expected = [
+            ('My Profile', self.user.get_profile().get_url_path()),
+            ('Account Settings', reverse('users.edit')),
+            ('My Purchases', self.url),
+        ]
+        self.check_sidebar_links(expected)
 
     def test_not_purchase(self):
         self.client.logout()
