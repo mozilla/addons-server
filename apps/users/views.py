@@ -833,7 +833,7 @@ def refund_reason(request, contribution, wizard):
                  (request.amo_user.pk, addon.pk))
         # L10n: %s is the addon name.
         send_mail(_(u'New Refund Request for %s' % addon.name),
-                  template, request.amo_user.email,
+                  template, settings.NOBODY_EMAIL,
                   [smart_str(addon.support_email)])
         return redirect(reverse('users.support',
                                 args=[contribution.pk, 'refund-sent']))

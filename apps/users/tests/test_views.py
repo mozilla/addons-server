@@ -1409,7 +1409,7 @@ class TestPurchases(amo.tests.TestCase):
         eq_(len(mail.outbox), 1)
         email = mail.outbox[0]
         eq_(email.to, ['a@a.com'])
-        eq_(email.from_email, 'regular@mozilla.com')
+        eq_(email.from_email, 'nobody@mozilla.org')
         assert '$1.00' in email.body
 
     @patch('stats.models.Contribution.is_instant_refund')

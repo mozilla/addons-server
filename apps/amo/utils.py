@@ -20,7 +20,7 @@ from django.core import paginator
 from django.core.cache import cache
 from django.core.serializers import json
 from django.core.validators import ValidationError, validate_slug
-from django.core.mail import send_mail as django_send_mail
+from django.core.mail import EmailMessage
 from django.forms.fields import Field
 from django.template import Context, loader
 from django.utils.translation import trans_real
@@ -127,9 +127,9 @@ def paginate(request, queryset, per_page=20, count=None):
 
 def send_mail(subject, message, from_email=None, recipient_list=None,
               fail_silently=False, use_blacklist=True, perm_setting=None,
-              connection=None):
+              headers=None, connection=None):
     """
-    A wrapper around django.core.mail.send_mail.
+    A wrapper around django.core.mail.EmailMessage.
 
     Adds blacklist checking and error logging.
     """
@@ -184,14 +184,17 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                     send_message = template.render(Context(context,
                                                            autoescape=False))
 
-                    result = django_send_mail(subject, send_message,
-                                              from_email, [recipient],
-                                              fail_silently=False,
-                                              connection=connection)
+                    result = EmailMessage(subject, send_message,
+                                          from_email, [recipient],
+                                          connection=connection,
+                                          headers=headers or {},
+                                          ).send(fail_silently=False)
             else:
-                result = django_send_mail(subject, message, from_email,
-                                          white_list, fail_silently=False,
-                                          connection=connection)
+                result = EmailMessage(subject, message, from_email,
+                                      white_list,
+                                      connection=connection,
+                                      headers=headers or {},
+                                      ).send(fail_silently=False)
         else:
             result = True
     except Exception as e:
