@@ -1146,6 +1146,7 @@ asyncTest('Test 500 error', function() {
 });
 
 
+// TODO(Kumar) uncomment when bug 706602 is fixed
 // module('Validator: Timeout', validatorFixtures);
 // 
 // asyncTest('Test timeout', function() {
