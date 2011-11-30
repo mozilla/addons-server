@@ -58,11 +58,12 @@ var purchases = {
         /* Process the paypal result page. This is the complete or cancel
          * page. Its main job is to close and take us back to the modal */
         if ($('#paypal-result').length) {
-            var top_opener = top;
-            if (top.opener && top.opener.top.dgFlow) {
+            var top_opener = window.top,
+                top_dgFlow = top_opener.dgFlow;
+            if (!top_dgFlow && top.opener && top.opener.top.dgFlow) {
                 top_opener = top.opener.top;
+                top_dgFlow = top_opener.dgFlow;
             }
-            top_dgFlow = top_opener.dgFlow;
 
             if (top_dgFlow !== null) {
                 var thanks_url = $('#paypal-thanks').attr('href');
