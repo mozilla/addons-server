@@ -39,6 +39,7 @@ from addons.views import BaseFilter
 from addons.decorators import addon_view_factory
 from access import acl
 from bandwagon.models import Collection
+import paypal
 from stats.models import Contribution
 from translations.query import order_by_translation
 from users.models import UserNotification
@@ -51,6 +52,8 @@ from .utils import EmailResetCode, UnsubscribeCode
 import tasks
 
 log = commonware.log.getLogger('z.users')
+paypal_log = commonware.log.getLogger('z.paypal')
+
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 
 
@@ -761,6 +764,7 @@ def refund_request(request, contribution, wizard):
     form = forms.RemoveForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         return redirect('users.support', contribution.pk, 'reason')
+
     return wizard.render(request, wizard.tpl('request.html'),
                          {'addon': addon, 'webapp': addon.is_webapp(),
                           'form': form, 'contribution': contribution})
@@ -771,9 +775,16 @@ def refund_reason(request, contribution, wizard):
     if not 'request' in wizard.get_progress():
         return redirect('users.support', contribution.pk, 'request')
 
+    if contribution.is_instant_refund():
+        paypal.refund(contribution.paykey)
+        paypal_log.info('Refund issued for contribution %r' % contribution.pk)
+        # Note: we have to wait for PayPal to issue an IPN before it's
+        # completely refunded.
+        messages.success(request, _('Refund is being processed.'))
+        return redirect('users.purchases')
+
     form = forms.ContactForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
-        # TODO(ashort): Reject refund if purchase was more than 30 minutes ago.
         url = absolutify(urlparams(addon.get_dev_url('issue_refund'),
                                    transaction_id=contribution.transaction_id))
         template = jingo.render_to_string(request,

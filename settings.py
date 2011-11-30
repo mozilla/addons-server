@@ -926,6 +926,9 @@ PAYPAL_EMAIL = ''
 # A tuple of lists of % and destination.
 PAYPAL_CHAINS = ()
 
+# If the refund request is under this amount of seconds, it will be instant.
+PAYPAL_REFUND_INSTANT = 30 * 60
+
 # Contribution limit, one time and monthly
 MAX_CONTRIBUTION = 1000
 

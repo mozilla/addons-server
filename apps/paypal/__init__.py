@@ -124,7 +124,7 @@ def check_purchase(paykey):
     return response['status']
 
 
-def refund(txnid, paykey):
+def refund(paykey):
     """
     Refund a payment.
 
@@ -155,9 +155,8 @@ def refund(txnid, paykey):
                 raise PaypalError('Bad refund status for %s: %s'
                                   % (d['receiver.email'],
                                      d['refundStatus']))
-            paypal_log.debug('Refund successful for: %s, %s, %s, %s' %
-                             (txnid, paykey, d['receiver.email'],
-                              d['refundStatus']))
+            paypal_log.debug('Refund successful for: %s, %s, %s' %
+                             (paykey, d['receiver.email'], d['refundStatus']))
 
         return responses
 

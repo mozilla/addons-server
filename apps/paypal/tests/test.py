@@ -210,10 +210,10 @@ class TestRefund(amo.tests.TestCase):
         Making refund requests returns the refund info.
         """
         opener.return_value = StringIO(good_refund_string)
-        eq_(paypal.refund('fake-txnid', 'fake-paykey'), good_refund_data)
+        eq_(paypal.refund('fake-paykey'), good_refund_data)
 
     @mock.patch('urllib2.OpenerDirector.open')
     def test_refundFailure(self, opener):
         opener.return_value = StringIO(error_refund_string)
         with self.assertRaises(paypal.PaypalError):
-            paypal.refund('fake-txnid', 'fake-paykey')
+            paypal.refund('fake-paykey')

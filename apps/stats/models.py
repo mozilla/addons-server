@@ -297,6 +297,10 @@ class Contribution(amo.models.ModelBase):
                                        self.currency or 'USD',
                                        locale=locale)
 
+    def is_instant_refund(self):
+        limit = datetime.timedelta(seconds=settings.PAYPAL_REFUND_INSTANT)
+        return datetime.datetime.now() < (self.created + limit)
+
 
 models.signals.post_save.connect(Contribution.post_save, sender=Contribution)
 

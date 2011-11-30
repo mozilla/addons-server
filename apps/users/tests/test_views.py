@@ -1289,7 +1289,9 @@ class TestPurchases(amo.tests.TestCase):
         res = self.client.post(self.get_url('reason'), {'text': 'something'})
         eq_(res.status_code, 302)
 
-    def test_request_mails(self):
+    @patch('stats.models.Contribution.is_instant_refund')
+    def test_request_mails(self, is_instant_refund):
+        is_instant_refund.return_value = False
         self.addon.support_email = 'a@a.com'
         self.addon.save()
 
@@ -1301,13 +1303,24 @@ class TestPurchases(amo.tests.TestCase):
         eq_(email.from_email, 'regular@mozilla.com')
         assert '$1.00' in email.body
 
-    def test_request_fails(self):
+    @patch('stats.models.Contribution.is_instant_refund')
+    def test_request_fails(self, is_instant_refund):
+        is_instant_refund.return_value = False
         self.addon.support_email = 'a@a.com'
         self.addon.save()
 
         self.client.post(self.get_url('request'), {'remove': 1})
         res = self.client.post(self.get_url('reason'), {})
         eq_(res.status_code, 200)
+
+    @patch('stats.models.Contribution.is_instant_refund')
+    @patch('paypal.refund')
+    def test_request_instant(self, is_instant_refund, refund):
+        is_instant_refund.return_value = True
+        self.client.post(self.get_url('request'), {'remove': 1})
+        res = self.client.post(self.get_url('reason'), {})
+        assert refund.called
+        eq_(res.status_code, 302)
 
     def test_free_shows_up(self):
         Contribution.objects.all().delete()

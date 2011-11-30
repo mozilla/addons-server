@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime, timedelta
 import json
 
+from django.conf import settings
 from django.core import mail
 from django.db import models
 from django.utils import translation
@@ -36,6 +38,9 @@ class TestStatsDictField(amo.tests.TestCase):
 class TestContributionModel(amo.tests.TestCase):
     fixtures = ['stats/test_models.json']
 
+    def setUp(self):
+        self.con = Contribution.objects.get(pk=1)
+
     def test_related_protected(self):
         user = UserProfile.objects.create(username='foo@bar.com')
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
@@ -48,6 +53,15 @@ class TestContributionModel(amo.tests.TestCase):
         eq_(Contribution.objects.all()[0].get_amount_locale(), u'$1.99')
         translation.activate('fr')
         eq_(Contribution.objects.all()[0].get_amount_locale(), u'1,99\xa0$US')
+
+    def test_instant_refund(self):
+        self.con.update(created=datetime.now())
+        assert self.con.is_instant_refund(), 'Refund should be instant'
+
+    def test_not_instant_refund(self):
+        diff = timedelta(seconds=settings.PAYPAL_REFUND_INSTANT + 10)
+        self.con.update(created=datetime.now() - diff)
+        assert not self.con.is_instant_refund(), "Refund shouldn't be instant"
 
 
 class TestEmail(amo.tests.TestCase):

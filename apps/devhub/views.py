@@ -497,13 +497,15 @@ def issue_refund(request, addon_id, addon, webapp=False):
                                      type=amo.CONTRIB_PURCHASE)
     if request.method == 'POST':
         if 'issue' in request.POST:
-            paypal.refund(txn_id, contribution.paykey)
+            paypal.refund(contribution.paykey)
             contribution.mail_approved()
-            paypal_log.error('Refund issued for transaction %r' % txn_id)
+            paypal_log.info('Refund issued for contribution %r' %
+                            contribution.pk)
             messages.success(request, 'Refund issued.')
         else:
             contribution.mail_declined()
-            paypal_log.error('Refund declined for transaction %r' % txn_id)
+            paypal_log.info('Refund declined for contribution %r' %
+                            contribution.pk)
             messages.success(request, 'Refund declined.')
         return redirect('devhub.%s' % ('apps' if webapp else 'addons'))
     else:
