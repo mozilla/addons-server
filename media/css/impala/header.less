@@ -197,7 +197,7 @@
             left: -1px;
             width: 1px;
             height: 32px;
-            background: -moz-linear-gradient(#9FA7AF, fadeout(#9FA7AF, 100%)) no-repeat left top;
+            background: -moz-linear-gradient(#9FA7AF, transparent);
             background-size: 1px 100%;
         }
         > li {
@@ -308,8 +308,7 @@
     position: absolute;
     top: 63px;
     right: 0;
-    background: #1B5898;
-    .gradient-two-color(#2E89CA, #1B5898);
+    .gradient-two-color(#2E89CA, #1B5898, #1B5898);
     .border-radius(5px);
     .box-shadow(0 -2px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 0 rgba(0, 0, 0, 0.1));
     padding: 5px 7px 7px;
@@ -330,9 +329,8 @@ button.search-button {
     float: right;
     vertical-align: bottom;
     cursor: pointer;
-    height: 30px;
+    padding: 14px 6px;
     width: 36px;
-
     .border-radius(6px);
     .box-shadow(0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset);
 }
@@ -343,21 +341,21 @@ button.search-button {
 }
 
 .header-search input {
-    background: url(../../img/icons/search.png) no-repeat scroll 8px center #fff;
-    float: left;
-    border: 0 none;
+    .border-box;
+    background: url(../../img/icons/search.png) no-repeat 8px center #fff;
+    border: 0;
     .border-radius(4px);
     .box-shadow(0 0 2px rgba(0, 0, 0, 0.4) inset);
-    font-family: "Trebuchet MS";
-    font-size: 14px;
-    height: 30px;
-    padding: 0 0 0 32px;
-    width: 206px;
+    float: left;
+    font: 14px @head-sans;
+    padding: 6px 6px 6px 32px;
+    width: 232px;
+    .width-calc(~'100% - 42px');
 }
 .html-rtl .header-search input {
+    background-position: 96% center;
     float: right;
-    padding: 0 32px 0 0;
-    background-position: 212px center;
+    padding: 6px 32px 6px 6px;
 }
 
 .site-tip, .site-balloon {

@@ -115,6 +115,11 @@
     background-image: -webkit-linear-gradient(@color1, @color2);
 }
 
+.gradient-two-color(@color1, @color2, @fallback) {
+    background: @fallback;
+    .gradient-two-color(@color1, @color2);
+}
+
 // Vertical sprite
 .sprite(@url, @pos, @spacing, @offset:0) {
     background: ~'url(@{url}) no-repeat';
