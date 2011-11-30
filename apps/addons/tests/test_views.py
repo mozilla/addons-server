@@ -252,10 +252,18 @@ class TestContributeEmbedded(amo.tests.TestCase):
                         'result_type=json'))
         assert not json.loads(res.content)['paykey']
 
-    def test_result_page(self):
-        url = reverse('addons.paypal', args=[self.addon.slug, 'complete'])
-        doc = pq(self.client.get(url).content)
-        eq_(len(doc('#paypal-thanks')), 0)
+    def _test_result_page(self):
+        url = self.addon.get_detail_url('paypal', ['complete'])
+        doc = pq(self.client.get(url, {'uuid': 'ballin'}).content)
+        eq_(doc('#paypal-result').length, 1)
+        eq_(doc('#paypal-thanks').length, 0)
+
+    def test_addons_result_page(self):
+        self._test_result_page()
+
+    def test_apps_result_page(self):
+        self.addon.update(type=amo.ADDON_WEBAPP, app_slug='xxx')
+        self._test_result_page()
 
     @patch('paypal.get_paykey')
     def test_not_split(self, get_paykey):

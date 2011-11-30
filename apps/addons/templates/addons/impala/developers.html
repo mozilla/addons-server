@@ -13,7 +13,7 @@
 {% set authors = addon.listed_authors %}
 
 {% block bodyclass %}
-  meet gutter {% if page == 'installed' %}about{% endif %}
+  meet gutter {% if page == 'installed' %}about bare{% endif %}
 {% endblock %}
 
 {% if page == 'roadblock' %}
@@ -87,7 +87,7 @@
 
   {% for author in authors %}
     <section class="island c">
-      <aside class="secondary">
+      <aside class="secondary user-avatar">
         <img class="avatar" src="{{ author.picture_url }}"
              {% if not author.picture_type %}alt="{{ _('No Photo') }}"{% endif %}>
       </aside>

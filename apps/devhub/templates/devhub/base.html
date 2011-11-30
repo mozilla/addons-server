@@ -1,5 +1,5 @@
-{% if webapp or settings.APP_PREVIEW %}
-  {% set WEBAPPS, webapp = True, True %}
+{% if webapp or WEBAPPS %}
+  {% set webapp, WEBAPPS = True, True %}
 {% endif %}
 
 {% extends "base.html" %}

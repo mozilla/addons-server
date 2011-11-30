@@ -419,11 +419,19 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # Used by Piston in output.
         return absolutify(self.get_url_path())
 
-    def get_dev_url(self, action='edit'):
+    def get_dev_url(self, action='edit', args=[]):
         if self.is_webapp():
-            return reverse('devhub.apps.%s' % action, args=[self.app_slug])
+            return reverse('devhub.apps.%s' % action,
+                           args=[self.app_slug] + args)
         else:
-            return reverse('devhub.addons.%s' % action, args=[self.slug])
+            return reverse('devhub.addons.%s' % action,
+                           args=[self.slug] + args)
+
+    def get_detail_url(self, action='detail', args=[]):
+        if self.is_webapp():
+            return reverse('apps.%s' % action, args=[self.app_slug] + args)
+        else:
+            return reverse('addons.%s' % action, args=[self.slug] + args)
 
     def meet_the_dev_url(self):
         return reverse('addons.meet', args=[self.slug])

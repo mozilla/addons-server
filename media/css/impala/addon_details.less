@@ -92,9 +92,12 @@ h1.addon,
     }
     p {
         margin-top: .5em;
+        &:first-child {
+            margin: 0;
+        }
     }
     b {
-        color: #333;
+        color: @dark-gray;
     }
     .prose {
         color: @medium-gray;
@@ -200,14 +203,14 @@ h1.addon,
         margin: 23px 0 8px;
         font-size: 14px;
         .widget {
-            color: #999;
+            color: @note-gray;
             display: block;
         }
     }
     .stats {
         padding-right: 20px;
         b {
-            color: #333;
+            color: @dark-gray;
         }
         color: @medium-gray;
         background: url("../../img/impala/stats.png") no-repeat right top;

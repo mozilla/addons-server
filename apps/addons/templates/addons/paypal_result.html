@@ -1,31 +1,42 @@
-{% extends "base.html" %}
+{% extends 'impala/base_shared.html' %}
 
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
-{% block bodyclass %}inverse{% endblock %}
+{% block bodyclass %}bare gutter {{ super() }}{% endblock %}
 
-{% block site_header %}
-{% endblock %}
+{% block site_header %}{% endblock %}
 
 {% block content %}
-<hgroup>
-  <h2 class="addon"{{ addon.name|locale_html }}>
-    <img src="{{ addon.icon_url }}" class="icon"/>
-    <span>
-      {{ addon.name }}
-    </span>
-    {% if version and not addon.is_selfhosted() %}
-      <span class="version">{{ version.version }}</span>
+<header class="hero">
+  <h1>
+    {% if status == 'cancel' %}
+      {{ _('Payment cancelled') }}
+    {% else %}
+      {{ _('Payment completed') }}
     {% endif %}
-  </h2>
-</hgroup>
-{% if status == 'cancel' %}
-    <h4>{{ _('Payment cancelled') }}</h4>
-{% else %}
-    <h4>{{ _('Payment completed') }}</h4>
+  </h1>
+</header>
+<aside class="secondary">
+  {{ addon|sidebar_listing }}
+</aside>
+<section class="primary island c">
+  {% if status != 'cancel' %}
     {% if addon.is_premium() %}
       <a href="{{ shared_url('addons.purchase.thanks', addon)|urlparams(realurl=realurl) }}"
-         id="paypal-thanks">{{ _('Thank you for purchasing the add-on') }}</a>
+         id="paypal-thanks">
+        {% if webapp %}
+          {{ loc('Thank you for purchasing the app') -}}
+        {% else %}
+          {{ _('Thank you for purchasing the add-on') -}}
+        {% endif %}</a>
     {% endif %}
-{% endif %}
-<p><a id="paypal-result" target="_top" href="{{ shared_url('addons.detail', addon) }}">{{ _('Return to the addon.') }}</a></p>
+  {% endif %}
+  <p>
+    <a id="paypal-result" target="_top" href="{{ addon.get_url_path() }}">
+      {% if webapp %}
+        {{ _('Return to the app.') -}}
+      {% else %}
+        {{ _('Return to the addon.') -}}
+      {% endif %}</a>
+  </p>
+</section>
 {% endblock %}

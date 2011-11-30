@@ -15,6 +15,9 @@ detail_patterns = patterns('',
     url('^share$', views.share, name='apps.share'),
     url('^abuse$', addons_views.report_abuse, name='apps.abuse'),
     url('^record$', views.record, name='apps.record'),
+    url('^contribute/$', addons_views.contribute, name='apps.contribute'),
+    url('^contribute/(?P<status>cancel|complete)$', addons_views.paypal_result,
+        name='apps.paypal'),
 
     # TODO(andym): generate these instead of copying them around.
     url('^purchase/$', addons_views.purchase, name='apps.purchase'),

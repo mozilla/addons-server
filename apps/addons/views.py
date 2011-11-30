@@ -604,6 +604,7 @@ def purchase_thanks(request, addon):
 
 @addon_view
 def contribute(request, addon):
+    webapp = addon.is_webapp()
     contrib_type = request.GET.get('type', 'suggested')
     is_suggested = contrib_type == 'suggested'
     source = request.GET.get('source', '')
@@ -632,7 +633,7 @@ def contribute(request, addon):
         paykey = paypal.get_paykey(dict(uuid=contribution_uuid,
                     slug=addon.slug, amount=amount, email=paypal_id,
                     memo=contrib_for, ip=request.META.get('REMOTE_ADDR'),
-                    pattern='addons.paypal'))
+                    pattern='%s.paypal' % ('apps' if webapp else 'addons')))
     except:
         log.error('Error getting paykey, contribution for addon: %s'
                   % addon.pk, exc_info=True)

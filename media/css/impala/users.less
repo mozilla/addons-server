@@ -83,6 +83,12 @@ table.person-info {
     }
 }
 
+.html-rtl table.person-info {
+    ol {
+        margin: 0 1.5em 0 0;
+    }
+}
+
 img.avatar {
     border: 3px solid #fff;
 }
@@ -91,12 +97,13 @@ img.icon {
     padding: 4px;
 }
 
-.meet {
-    &.about {
-        .hero h1 {
-            margin: 1em 0;
-        }
+.bare {
+    .hero h1 {
+        margin: 1em 0;
     }
+}
+
+.meet {
     #addon-side {
         padding-top: 2.5em;
         img {
@@ -156,6 +163,9 @@ img.icon {
         margin: 0 0 15px;
     }
     .secondary {
+        width: 198px;
+    }
+    .user-avatar {
         width: 208px;
     }
 }
