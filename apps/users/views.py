@@ -467,7 +467,6 @@ def profile(request, user_id):
                         .filter(following__user=user)
                         .order_by('-following__created'))[:10]
 
-
     edit_any_user = acl.action_allowed(request, 'Admin', 'EditAnyUser')
     own_profile = (request.user.is_authenticated() and
                    request.amo_user.id == user.id)
@@ -760,11 +759,8 @@ def support_mozilla(request, contribution, wizard):
 def refund_request(request, contribution, wizard):
     addon = contribution.addon
     form = forms.RemoveForm(request.POST or None)
-    if request.method == 'POST':
-        if form.is_valid():
-            return redirect(reverse('users.support',
-                                    args=[contribution.pk, 'reason']))
-
+    if request.method == 'POST' and form.is_valid():
+        return redirect('users.support', contribution.pk, 'reason')
     return wizard.render(request, wizard.tpl('request.html'),
                          {'addon': addon, 'webapp': addon.is_webapp(),
                           'form': form, 'contribution': contribution})
@@ -773,35 +769,30 @@ def refund_request(request, contribution, wizard):
 def refund_reason(request, contribution, wizard):
     addon = contribution.addon
     if not 'request' in wizard.get_progress():
-        return redirect(reverse('users.support',
-                                args=[contribution.pk, 'request']))
+        return redirect('users.support', contribution.pk, 'request')
 
     form = forms.ContactForm(request.POST or None)
-    if request.method == 'POST':
-        if form.is_valid():
-            # if under 30 minutes, refund
-            # TODO(ashort): add in the logic for under 30 minutes
-            refund_url = absolutify(urlparams(
-                    reverse('devhub.issue_refund', args=[addon.slug]),
-                    transaction_id=contribution.transaction_id))
+    if request.method == 'POST' and form.is_valid():
+        # TODO(ashort): Reject refund if purchase was more than 30 minutes ago.
+        url = absolutify(urlparams(addon.get_dev_url('issue_refund'),
+                                   transaction_id=contribution.transaction_id))
+        template = jingo.render_to_string(request,
+            wizard.tpl('emails/refund-request.txt'),
+            context={'addon': addon,
+                     'form': form,
+                     'user': request.amo_user,
+                     'contribution': contribution,
+                     'refund_url': url})
+        log.info('Refund request sent by user: %s for addon: %s' %
+                 (request.amo_user.pk, addon.pk))
+        # L10n: %s is the addon name.
+        send_mail(_(u'New Refund Request for %s' % addon.name),
+                  template, request.amo_user.email,
+                  [smart_str(addon.support_email)])
+        return redirect(reverse('users.support',
+                                args=[contribution.pk, 'refund-sent']))
 
-            template = jingo.render_to_string(request,
-                                wizard.tpl('emails/refund-request.txt'),
-                                context={'addon': addon, 'form': form,
-                                         'user': request.amo_user,
-                                         'contribution': contribution,
-                                         'refund_url': refund_url})
-            log.info('Refund request sent by user: %s for addon: %s' %
-                     (request.amo_user.pk, addon.pk))
-            # L10n: %s is the addon name.
-            send_mail(_(u'New Refund Request for %s' % addon.name),
-                      template, request.amo_user.email,
-                      [smart_str(addon.support_email)])
-            return redirect(reverse('users.support',
-                                    args=[contribution.pk, 'refund-sent']))
-
-    return wizard.render(request, wizard.tpl('refund.html'),
-                         {'contribut': addon, 'form': form})
+    return wizard.render(request, wizard.tpl('refund.html'), {'form': form})
 
 
 class SupportWizard(Wizard):

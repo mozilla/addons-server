@@ -1,36 +1,49 @@
-{% extends "devhub/base.html" %}
+{% extends 'devhub/base_impala.html' %}
 
-{% block title %}{{ dev_page_title(_('Issue Refund')) }}{% endblock %}
+{% set title = _('Issue Refund') %}
+{% block title %}{{ dev_page_title(title) }}{% endblock %}
+
+{# TODO(apps): Finalize copy. #}
 
 {% block content %}
 <header>
-  <h1>{{ _('Issue Refund') }}</h1>
+  {{ dev_breadcrumbs(addon) }}
+  <h1>{{ title }}</h1>
 </header>
-<form method="post" id="issue-refund" class="item" action="">
-{% if transaction_id %}
-  {{ csrf() }}
-  <p>
-    {% trans %}
-    A refund was requested by {{ user }} for {{ addon_name }}.
-    {% endtrans %}
-  </p><p>
-    {% trans %}
-    Price: {{ price }}
-    {% endtrans %}
-  </p><p>
-    {% trans %}
-    Purchase date: {{ purchase_date }}
-    {% endtrans %}
-  </p><p>
-    <button type="submit" name="issue">
-      {{ _('Issue Refund') }}
-    </button>
-    <button type="submit" name="decline">
-      {{ _('Decline Refund') }}
-    </button>
-    <input type="hidden" name="transaction_id" value="{{ transaction_id }}">
-    {% else %}
-  <p>{{ _('No refundable transaction found.') }}</p>
-{% endif %}
+<form method="post" action="" id="issue-refund" class="primary island full c">
+  {% if transaction_id %}
+    {{ csrf() }}
+    <p>
+      {% with user=contribution.user.display_name,
+              user_url=contribution.user.get_url_path(),
+              addon_url=addon.get_url_path(),
+              addon_name=addon.name %}
+        A refund was requested by
+        <a href="{{ user_url }}" target="_blank">{{ user }}</a> for
+        <a href="{{ addon_url }}" target="_blank">{{ addon_name }}</a>.
+      {% endwith %}
+    </p>
+    <p>
+      {% with price=contribution.get_amount_locale() %}
+        <b>Price:</b> {{ price }}
+      {% endwith %}
+    </p>
+    <p>
+      {% with purchase_date=contribution.created|datetime %}
+        <b>Purchase date:</b> {{ purchase_date }}
+      {% endwith %}
+    </p>
+    <p>
+      <button type="submit" class="good" name="issue">
+        {{ _('Issue Refund') }}
+      </button>
+      <button type="submit" class="bad" name="decline">
+        {{ _('Decline Refund') }}
+      </button>
+      <input type="hidden" name="transaction_id" value="{{ transaction_id }}">
+    </p>
+  {% else %}
+    <p>{{ loc('No refundable transaction found.') }}</p>
+  {% endif %}
 </form>
-{% endblock content %}
+{% endblock %}

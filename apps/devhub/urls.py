@@ -61,6 +61,7 @@ app_detail_patterns = patterns('',
     url('^profile$', views.profile, name='devhub.apps.profile'),
     url('^profile/remove$', views.remove_profile,
         name='devhub.apps.profile.remove'),
+    url('^issue_refund$', views.issue_refund, name='devhub.apps.issue_refund'),
 )
 
 # These will all start with /addon/<addon_id>/
@@ -81,7 +82,8 @@ detail_patterns = patterns('',
     url('^payments/permission/refund$', views.acquire_refund_permission,
         name='devhub.addons.acquire_refund_permission'),
     url('^payments/', include(marketplace_patterns('addons'))),
-    url('^issue_refund$', views.issue_refund, name='devhub.issue_refund'),
+    url('^issue_refund$', views.issue_refund,
+        name='devhub.addons.issue_refund'),
     url('^profile$', views.profile, name='devhub.addons.profile'),
     url('^profile/remove$', views.remove_profile,
         name='devhub.addons.profile.remove'),

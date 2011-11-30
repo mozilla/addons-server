@@ -492,23 +492,19 @@ def issue_refund(request, addon_id, addon, webapp=False):
         if 'issue' in request.POST:
             paypal.refund(txn_id, contribution.paykey)
             contribution.mail_approved()
-            paypal_log.error('Refund issued for transaction %r' % (txn_id,))
+            paypal_log.error('Refund issued for transaction %r' % txn_id)
             messages.success(request, 'Refund issued.')
-            return redirect('devhub.addons')
         else:
             contribution.mail_declined()
-            paypal_log.error('Refund declined for transaction %r' % (txn_id,))
+            paypal_log.error('Refund declined for transaction %r' % txn_id)
             messages.success(request, 'Refund declined.')
-            return redirect('devhub.addons')
+        return redirect('devhub.%s' % ('apps' if webapp else 'addons'))
     else:
         return jingo.render(request, 'devhub/payments/issue-refund.html',
-                            {'refund_issued': False,
-                             'user': contribution.user.display_name,
-                             'addon_name': addon.name,
+                            {'contribution': contribution,
+                             'addon': addon,
                              'webapp': webapp,
-                             'price': contribution.amount,
-                             'transaction_id': txn_id,
-                             'purchase_date': contribution.created})
+                             'transaction_id': txn_id})
 
 
 @dev_required
@@ -1028,7 +1024,6 @@ def addons_section(request, addon_id, addon, section, editable=False,
     else:
         form = False
 
-    #import pdb; pdb.set_trace()
     data = {'addon': addon,
             'webapp': webapp,
             'form': form,

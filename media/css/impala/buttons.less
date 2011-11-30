@@ -15,6 +15,17 @@
     .box-shadow(0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset);
     border: 0;
 }
+
+button.good, .button.add { // Green
+    background: #489615;
+    .gradient-two-color(#84C63C, #489615);
+}
+
+button.bad, .button.developer, .button.scary { // Red
+    background: #bc2b1a;
+    .gradient-two-color(#f84b4e, #bc2b1a);
+}
+
 .button {
     display: inline-block;
     &.prominent {
@@ -23,9 +34,6 @@
         .box-shadow(0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset);
     }
     &.add { // Green
-        background: #489615;
-        .gradient-two-color(#84C63C, #489615);
-        color: #fff;
         span {
             padding-left: 16px;
             background: url(../../img/impala/button-icons.png) no-repeat 0 3px;
@@ -93,9 +101,6 @@
         }
     }
     &.developer, &.scary { // Red
-        background: #bc2b1a;
-        .gradient-two-color(#f84b4e, #bc2b1a);
-        color: #fff;
         span {
             margin-left: -4px;
             padding-left: 24px;
@@ -106,7 +111,6 @@
     &.watch:not(.watching) { // Orange
         background: #ea0;
         .gradient-two-color(#ea0, darken(#ea0, 10%));
-        color: #fff;
     }
     &.platform {
         display: none;

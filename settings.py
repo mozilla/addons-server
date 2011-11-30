@@ -506,7 +506,7 @@ MINIFY_BUNDLES = {
             'css/impala/devhub-popups.less',
             'css/impala/devhub-compat.less',
             'css/impala/formset.less',
-            'css/impala/devhub-forms.less',
+            'css/devhub/forms.less',
         ),
         'zamboni/devhub_impala': (
             'css/impala/developers.less',
@@ -514,7 +514,7 @@ MINIFY_BUNDLES = {
             'css/impala/devhub-popups.less',
             'css/impala/devhub-compat.less',
             'css/impala/devhub-dashboard.less',
-            'css/impala/devhub-forms.less',
+            'css/devhub/forms.less',
         ),
         'zamboni/editors': (
             'css/zamboni/editors.css',

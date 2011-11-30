@@ -1260,60 +1260,71 @@ class TestIssueRefund(amo.tests.TestCase):
         self.paykey = u'fake-paykey'
         self.client.login(username='del@icio.us', password='password')
         self.user = UserProfile.objects.get(username='clouserw')
-        self.url = reverse('devhub.issue_refund', args=[self.addon.slug])
+        self.url = self.addon.get_dev_url('issue_refund')
 
-    def makePurchase(self, uuid='123456', type=amo.CONTRIB_PURCHASE):
+    def make_purchase(self, uuid='123456', type=amo.CONTRIB_PURCHASE):
         return Contribution.objects.create(uuid=uuid, addon=self.addon,
                                            transaction_id=self.transaction_id,
                                            user=self.user, paykey=self.paykey,
                                            amount=Decimal('10'), type=type)
 
     def test_request_issue(self):
-        c = self.makePurchase()
-        r = self.client.get(self.url,
-                            data={'transaction_id': c.transaction_id})
+        c = self.make_purchase()
+        r = self.client.get(self.url, {'transaction_id': c.transaction_id})
         doc = pq(r.content)
-        eq_(doc('#issue-refund button')[0].text.strip(), 'Issue Refund')
-        eq_(doc('#issue-refund button')[1].text.strip(), 'Decline Refund')
+        eq_(doc('#issue-refund button').length, 2)
         eq_(doc('#issue-refund input[name=transaction_id]').val(),
             self.transaction_id)
 
     def test_nonexistent_txn(self):
-        r = self.client.get(self.url, data={'transaction_id': 'none'})
+        r = self.client.get(self.url, {'transaction_id': 'none'})
         eq_(r.status_code, 404)
 
     def test_nonexistent_txn_no_really(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 404)
 
-    @mock.patch('paypal.refund')
-    def test_issue(self, refund):
-        c = self.makePurchase()
-        r = self.client.post(self.url,
-                             data={'transaction_id': c.transaction_id,
-                                   'issue': '1'})
-        eq_(r.status_code, 302)
+    def _test_issue(self, refund, destination):
+        c = self.make_purchase()
+        r = self.client.post(self.url, {'transaction_id': c.transaction_id,
+                                        'issue': '1'})
+        self.assertRedirects(r, reverse(destination), 302)
         refund.assert_called_with(self.transaction_id, self.paykey)
         eq_(len(mail.outbox), 1)
         assert 'approved' in mail.outbox[0].subject
 
     @mock.patch('paypal.refund')
-    def test_decline(self, refund):
-        c = self.makePurchase()
-        r = self.client.post(self.url,
-                             data={'transaction_id': c.transaction_id,
-                                   'decline': ''})
-        eq_(r.status_code, 302)
+    def test_addons_issue(self, refund):
+        self._test_issue(refund, 'devhub.addons')
+
+    @mock.patch('paypal.refund')
+    def test_apps_issue(self, refund):
+        self.addon.update(type=amo.ADDON_WEBAPP)
+        self._test_issue(refund, 'devhub.apps')
+
+    def _test_decline(self, refund, destination):
+        c = self.make_purchase()
+        r = self.client.post(self.url, {'transaction_id': c.transaction_id,
+                                        'decline': ''})
+        self.assertRedirects(r, reverse(destination), 302)
         assert not refund.called
         eq_(len(mail.outbox), 1)
         assert 'declined' in mail.outbox[0].subject
 
     @mock.patch('paypal.refund')
+    def test_addons_decline(self, refund):
+        self._test_decline(refund, 'devhub.addons')
+
+    @mock.patch('paypal.refund')
+    def test_apps_decline(self, refund):
+        self.addon.update(type=amo.ADDON_WEBAPP)
+        self._test_decline(refund, 'devhub.apps')
+
+    @mock.patch('paypal.refund')
     def test_non_refundable_txn(self, refund):
-        c = self.makePurchase('56789', amo.CONTRIB_VOLUNTARY)
-        r = self.client.post(self.url,
-                             data={'transaction_id': c.transaction_id,
-                                   'issue': ''})
+        c = self.make_purchase('56789', amo.CONTRIB_VOLUNTARY)
+        r = self.client.post(self.url, {'transaction_id': c.transaction_id,
+                                        'issue': ''})
         eq_(r.status_code, 404)
         assert not refund.called
 
