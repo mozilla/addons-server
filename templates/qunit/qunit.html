@@ -1,6 +1,7 @@
 {% extends "qunit/base.html" %}
 
 {% block init_scripts %}
+  {{ js('preload') }}
   {{ js('impala') }}
   {{ js('zamboni/devhub') }}
 {% endblock %}

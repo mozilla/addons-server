@@ -2,9 +2,10 @@
 var z = {};
 
 $(document).ready(function(){
-
     // Initialize install buttons.
     $('.install').installButton();
+    $(window).trigger('buttons_loaded');
+
     if ($('.backup-button').length) {
         $('.backup-button').showBackupButton();
     }

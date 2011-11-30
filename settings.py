@@ -610,8 +610,14 @@ MINIFY_BUNDLES = {
             'js/impala/ajaxcache.js',
             'js/impala/suggestions.js',
         ),
-        'impala': (
+
+        # Impala: Things to be loaded at the top of the page
+        'preload': (
             'js/lib/jquery-1.6.4.js',
+            'js/impala/preloaded.js'
+        ),
+        # Impala: Things to be loaded at the bottom
+        'impala': (
             'js/lib/underscore.js',
             'js/impala/carousel.js',
             'js/zamboni/browser.js',
