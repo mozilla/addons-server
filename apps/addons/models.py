@@ -1110,16 +1110,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         return self.installed.filter(user=user).exists()
 
-    def get_or_create_install(self, user):
-        """
-        Gets or creates the install receipt.
-        Ignoring get_or_create until #13906 is fixed.
-        """
-        try:
-            return self.installed.get(user=user)
-        except ObjectDoesNotExist:
-            return self.installed.create(user=user)
-
 
 @receiver(dbsignals.post_save, sender=Addon,
           dispatch_uid='addons.update.name.table')

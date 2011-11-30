@@ -167,7 +167,8 @@ class TestReceipt(amo.tests.TestCase):
     def create_install(self, user, webapp):
         webapp.update(type=amo.ADDON_WEBAPP,
                       manifest_url='http://somesite.com/')
-        return webapp.get_or_create_install(user)
+        return Installed.objects.safer_get_or_create(user=user,
+                                                     addon=webapp)[0]
 
     def test_get_or_create(self):
         install = self.create_install(self.user, self.webapp)

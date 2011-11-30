@@ -130,7 +130,9 @@ def create_addon_purchase(sender, instance, **kw):
         data = {'addon': instance.addon, 'user': instance.user}
         purchase, created = AddonPurchase.objects.safer_get_or_create(**data)
         purchase.update(type=amo.CONTRIB_PURCHASE)
-        instance.addon.get_or_create_install(user=instance.user)
+        from webapps.models import Installed  # Circular import.
+        Installed.objects.safer_get_or_create(user=instance.user,
+                                              addon=instance.addon)
 
     elif instance.type in [amo.CONTRIB_REFUND, amo.CONTRIB_CHARGEBACK]:
         purchases = AddonPurchase.objects.filter(addon=instance.addon,

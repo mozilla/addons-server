@@ -10,6 +10,7 @@ from amo.helpers import loc
 from amo.utils import paginate
 from addons.decorators import addon_view
 import addons.views
+from webapps.models import Installed
 import search.views
 
 from addons.models import Category
@@ -108,6 +109,7 @@ def share(request, app_slug):
 @post_required
 def record(request, addon):
     if addon.is_webapp():
-        installed = addon.get_or_create_install(user=request.amo_user)
+        installed, c = Installed.objects.safer_get_or_create(addon=addon,
+                                                    user=request.amo_user)
         return {'addon': addon.pk,
                 'receipt': installed.receipt if installed else ''}
