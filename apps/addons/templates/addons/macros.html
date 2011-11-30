@@ -61,40 +61,37 @@
 {% macro refund_info(amo, addon, contributions, is_refunded, is_chargeback) %}
   {% set contributions = contributions.get(addon.pk, []) %}
   {% if contributions %}
-    {% if is_refunded %}
-      <span class="purchase refund-notice">
-        {{ _('Purchase Refunded') }}
-      </span>
-    {% elif is_chargeback %}
-      <span class="purchase refund-notice">
-        {{ _('Purchase Reversed') }}
-      </span>
-    {% endif %}
-    <ul>
+    {% set get_support = not is_refunded and not is_chargeback %}
+    <ul class="contributions">
       {% for contribution in contributions %}
         <li>
-          <span class="purchase">
             {% if contribution.type == amo.CONTRIB_PURCHASE %}
-              {% trans date=contribution.created|datetime,
-                       amt=contribution.get_amount_locale() %}
-                Purchased {{ date }} for {{ amt }}
+              <span class="purchase{{ ' supportable' if get_support }}">
+                {% trans date=contribution.created|datetime,
+                         amt=contribution.get_amount_locale() %}
+                  Purchased {{ date }} for {{ amt }}
                 {% endtrans %}
-              {% if not is_refunded and not is_chargeback %}
-                <a href="{{ url('users.support', contribution.pk) }}">
+              </span>
+              {% if get_support %}
+                <a class="request-support"
+                   href="{{ url('users.support', contribution.pk) }}">
                   {{ _('Request Support') }}</a>
               {% endif %}
             {% elif contribution.type == amo.CONTRIB_REFUND %}
-              {% trans date=contribution.created|datetime,
-                       amt=contribution.get_amount_locale() %}
-                Refunded {{ date }} for {{ amt }}
-              {% endtrans %}
+              <span class="purchase refund">
+                {% trans date=contribution.created|datetime,
+                         amt=contribution.get_amount_locale() %}
+                  Refunded {{ date }} for {{ amt }}
+                {% endtrans %}
+              </span>
             {% elif contribution.type == amo.CONTRIB_CHARGEBACK %}
-              {% trans date=contribution.created|datetime,
-                       amt=contribution.get_amount_locale() %}
-                Reversed {{ date }} for {{ amt }}
-              {% endtrans %}
+              <span class="purchase reverse">
+                {% trans date=contribution.created|datetime,
+                         amt=contribution.get_amount_locale() %}
+                  Reversed {{ date }} for {{ amt }}
+                {% endtrans %}
+              </span>
             {% endif %}
-          </span>
         </li>
       {% endfor %}
     </ul>

@@ -1195,8 +1195,9 @@ class TestPurchases(amo.tests.TestCase):
         eq_(doc('body').attr('data-purchases'), '')
 
     def _test_refund_link(self):
-        doc = pq(self.client.get(self.url).content)
-        eq_(doc('#purchases .purchase a').eq(0).attr('href'), self.get_url())
+        doc = pq(self.client.get(self.url).content)('#purchases')
+        eq_(doc('.supportable + a.request-support').eq(0).attr('href'),
+            self.get_url())
 
     def test_refund_link(self):
         self._test_refund_link()
@@ -1344,8 +1345,8 @@ class TestPurchases(amo.tests.TestCase):
                                     addon=self.addon, amount='1.00',
                                     type=amo.CONTRIB_PURCHASE)
         res = self.client.get(self.url)
-        addon_vitals = pq(res.content)('#purchases .action').eq(0)
-        eq_(len(addon_vitals('span.purchase')), 2)
+        addon_vitals = pq(res.content)('#purchases .vitals').eq(0)
+        eq_(addon_vitals('.purchase').length, 2)
 
     def make_contribution(self, addon, amt, type, day):
         c = Contribution.objects.create(user=self.user.get_profile(),
@@ -1377,10 +1378,10 @@ class TestPurchases(amo.tests.TestCase):
             self.make_contribution(addon, '1.00', amo.CONTRIB_PURCHASE, 3)
         ]
         item = pq(self.client.get(self.url).content)('#purchases .item').eq(0)
-        assert not item.hasClass('refunded'), (
+        assert not item.hasClass('reversed'), (
             "Unexpected 'refunded' class on '.item'")
         assert not item.find('.refund-notice'), 'Unexpected refund message'
-        eq_(item.find('.purchase a:last').attr('href'),
+        eq_(item.find('.purchase').eq(2).siblings('a').attr('href'),
             reverse('users.support', args=[c[1].id]))
 
     def test_repurchased(self):
@@ -1399,7 +1400,7 @@ class TestPurchases(amo.tests.TestCase):
         assert item.hasClass('refunded'), (
             "Unexpected 'refunded' class on '.item'")
         assert item.find('.refund-notice'), 'Expected refund message'
-        assert not item.find('.purchase a'), (
+        assert not item.find('a.request-support'), (
             "Unexpected 'Request Support' link")
 
     def test_rerefunded(self):
@@ -1413,10 +1414,9 @@ class TestPurchases(amo.tests.TestCase):
         addon = Addon.objects.get(type=amo.ADDON_EXTENSION, guid='t1')
         self.make_contribution(addon, '-1.00', amo.CONTRIB_CHARGEBACK, 2)
         item = pq(self.client.get(self.url).content)('#purchases .item').eq(0)
-        assert item.hasClass('refunded'), (
-            "Expected '.item' to have 'refunded' class")
-        assert item.find('.refund-notice'), 'Expected refund message'
-        assert not item.find('.purchase a'), (
+        assert item.hasClass('reversed'), (
+            "Expected '.item' to have 'reversed' class")
+        assert not item.find('a.request-support'), (
             "Unexpected 'Request Support' link")
 
     def test_chargeback(self):

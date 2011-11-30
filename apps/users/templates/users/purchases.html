@@ -21,23 +21,29 @@
       {% endif %}
       <div class="items">
         {% for addon in addons.object_list %}
-          {% set is_refunded = addon.is_refunded(request.amo_user) %}
-          {% set is_chargeback = addon.is_chargeback(request.amo_user) %}
-            <div class="item addon ignore-compatibility {{ 'refunded' if is_refunded or is_chargeback }}">
+          {% set is_refunded = addon.is_refunded(amo_user) %}
+          {% set is_chargeback = addon.is_chargeback(amo_user) %}
+            <div class="item addon ignore-compatibility{{ ' refunded' if is_refunded }}{{ ' reversed' if is_chargeback }}">
               <div class="info">
                 <h3>
                   <a href="{{ addon.get_url_path() }}">
                     <img src="{{ addon.icon_url }}">{{ addon.name }}</a>
                 </h3>
-                <p class="desc">{{ addon.description|truncate(250)|nl2br }}</p>
-                <div class="vitals c">
+                <p class="desc">{{ addon.summary|truncate(250)|nl2br }}</p>
+                <div class="vitals">
                   {{ impala_reviews_link(addon) }}
                   {{ price(addon) }}
                   {{ sort_vital(addon) }}
+                  {{ refund_info(amo, addon, contributions, is_refunded, is_chargeback) }}
                 </div>
               </div>
               <div class="action">
-                {{ refund_info(amo, addon, contributions, is_refunded, is_chargeback) }}
+                {% if is_refunded %}
+                  <div class="purchase refund-notice">
+                    {{ _('Purchase Refunded') }}
+                  </div>
+                {% endif %}
+                {{ install_button(addon, impala=True, collection=collection) }}
               </div>
             </div>
         {% else %}

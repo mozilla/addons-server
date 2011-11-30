@@ -17,7 +17,7 @@
 .infobox {
     padding: 10px;
 }
-.listview li {
+.listview > li {
     border-top: 1px solid #ccc;
     font-size: 1em;
     white-space: normal;
@@ -25,11 +25,12 @@
         border: 0;
     }
 }
-.listview li,
+.listview > li,
 a.listview {
     position: relative;
 }
-.listview li > a,
+.listview > li > a,
+.listview > li > .info > a,
 a.listview {
     color: #444;
     font-family: @serif-stack;
@@ -39,19 +40,25 @@ a.listview {
     text-decoration: none;
     padding: 10px;
 }
-.html-rtl .listview li > a,
-.html-rtl a.listview {
-    padding-left: 34px;
+.html-rtl {
+    .listview > li > a,
+    .listview > li > .info > a,
+    a.listview {
+        padding-left: 34px;
+    }
 }
 .listview .item > a,
+.listview > li > .info > a,
 .listview div.item {
     padding: 10px;
     font-size: 1em;
 }
-.listview li.item a {
+.listview li.item > a,
+.listview > li > .info > a {
     padding: 10px 10px 0;
 }
-.listview li > a:before,
+.listview > li > a:before,
+.listview > li > .info > a:before,
 a.listview:before {
     content: " ";
     display: block;
@@ -62,11 +69,14 @@ a.listview:before {
     top: 0;
     background: url(../../img/zamboni/mobile/arrow.svg) no-repeat center 12px;
 }
-.html-rtl .listview li > a:before,
-.html-rtl a.listview:before {
-    right: auto;
-    left: 10px;
-    -moz-transform: scaleX(-1);
+.html-rtl {
+    .listview > li > a:before,
+    .listview > li > .info > a:before,
+    a.listview:before {
+        right: auto;
+        left: 10px;
+        -moz-transform: scaleX(-1);
+    }
 }
 
 .icon {
@@ -82,6 +92,7 @@ a.listview:before {
 
 li.item {
     line-height: 1.3em;
+    overflow: hidden;
     padding-left: 42px;
     .icon {
         float: none;
@@ -114,17 +125,45 @@ li.item {
                 display: none;
             }
         }
-        &.purchase {
-            color: @note-gray;
-        }
     }
     .stars, i, .vital {
         display: block;
         float: left;
     }
+    .info,
+    .action {
+        .border-box;
+    }
+    .info {
+        float: left;
+        width: 80%;
+    }
+    .action {
+        float: right;
+        padding: 14px 34px 14px 14px;
+        text-align: right;
+        width: 20%;
+    }
+    .action,
+    .contributions {
+        color: @note-gray;
+        font-size: 13px;
+        line-height: 15px;
+    }
+    &.refunded {
+        opacity: .6;
+    }
+    .contributions {
+        clear: both;
+        margin-top: .5em;
+        .supportable:after {
+            content: '\00B7';
+            padding: 0 .25em;
+        }
+    }
 }
 .html-rtl li.item {
-    padding: 0 42px 0 14px;
+    padding: 0 42px 0 0;
     .icon {
         left: auto;
         right: 10px;
@@ -138,51 +177,16 @@ li.item {
             padding: 0;
         }
     }
-    .price:before,
-    .purchase:before {
+    .price:before {
         padding: 0 0 0 .25em;
     }
-}
-
-#purchases .item {
-    &.refunded {
-        opacity: .6;
-        .refund-notice {
-            font-weight: bold;
-            margin: 0;
-            padding: 10px 11px;
-            text-align: right;
-        }
+    .info {
+        float: right;
     }
     .action {
-        font: 11px/13px @sans-stack;
-        padding-top: 10px;
-        .refund-notice + ul {
-            margin-top: 10px;
-        }
-        ul {
-            border-left: 1px dotted fadeOut(@green, 60%);
-            color: @green;
-            font-size: 11px;
-            padding-left: 10px;
-            li {
-                border: 0;
-            }
-            a {
-                font-weight: bold;
-                padding: 0 .5em;
-            }
-        }
-    }
-}
-
-.html-rtl #purchases .item {
-    .refund-notice {
+        float: left;
+        margin: 0;
+        padding: 14px 14px 14px 34px;
         text-align: left;
-    }
-    .action ul {
-        border: 0;
-        border-right: 1px dotted fadeOut(@green, 60%);
-        padding: 0 10px 0 0;
     }
 }

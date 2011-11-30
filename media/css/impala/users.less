@@ -286,42 +286,28 @@ img.icon {
     margin: 0 20px 0 0;
 }
 
-
 #purchases {
     .items .refunded {
         opacity: .6;
         .refund-notice {
-            font: bold 11px/13px @sans-stack;
+            font: 11px/13px @sans-stack;
             margin: 0;
-            padding: 10px 11px;
+            padding: 0 10px 10px 10px;
             text-align: right;
         }
     }
-    .item .action {
-        padding: 20px 10px;
-        .refund-notice + ul {
-            margin-top: 10px;
-        }
-        ul {
-            border-left: 1px dotted fadeOut(@green, 60%);
-            color: green;
-            font-size: 11px;
-            padding-left: 10px;
-            a {
-                font-weight: bold;
-                padding: 0 .5em;
-            }
+    .contributions {
+        color: @note-gray;
+        line-height: 13px;
+        margin-top: .5em;
+        .supportable:after {
+            content: '\00B7';
         }
     }
 }
 
 .html-rtl #purchases {
-    .items .refund-notice {
+    .items .refunded .refund-notice {
         text-align: left;
-    }
-    .item .action ul {
-        border: 0;
-        border-right: 1px dotted fadeOut(@green, 60%);
-        padding: 0 10px 0 0;
     }
 }

@@ -1,18 +1,22 @@
 {% from "addons/macros.html" import price, refund_info %}
 {% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
 {% for addon in addons %}
-  {% set is_refunded = show_refunds and addon.is_refunded(request.amo_user) %}
-  {% set is_chargeback = show_refunds and addon.is_chargeback(request.amo_user) %}
-  <li class="item{{ ' refunded' if is_refunded or is_chargeback }}">
-    {% set dl_url = addon.get_url_path() %}
-    {% if src %}
-      {% set dl_url = dl_url|urlparams(src=src) %}
-    {% endif %}
-    <a href="{{ dl_url }}">
-      <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
-      <h3>{{ addon.name }}</h3>
-      <span class="desc">{{ addon.summary|truncate(100)|nl2br }}</span>
-    </a>
+  {% if show_refunds %}
+    {% set contribs = waffle.switch('marketplace') and contributions.get(addon.pk) %}
+  {% endif %}
+  {% set is_refunded = contribs and addon.is_refunded(request.amo_user) %}
+  {% set is_chargeback = contribs and addon.is_chargeback(request.amo_user) %}
+  <li class="item{{ ' refunded' if is_refunded }}{{ ' reversed' if is_chargeback }}">
+    <div class="info">
+      {% set dl_url = addon.get_url_path() %}
+      {% if src %}
+        {% set dl_url = dl_url|urlparams(src=src) %}
+      {% endif %}
+      <a href="{{ dl_url }}">
+        <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
+        <h3>{{ addon.name }}</h3>
+        <span class="desc">{{ addon.summary|truncate(100)|nl2br }}</span>
+      </a>
       <details>
         <div class="vitals">
           {% with num=addon.total_reviews %}
@@ -51,15 +55,23 @@
               {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
             <span>
           {% endif %}
-        </div>
-        {% if waffle.switch('marketplace') and show_refunds and contributions.get(addon.pk) %}
-          <div class="action">
+          {% if contribs %}
             {{ refund_info(amo, addon, contributions, is_refunded, is_chargeback) }}
-          </div>
-        {% endif %}
+          {% endif %}
+        </div>
       </details>
-      {% if src == 'search' %}
-        {{ mobile_install_button(addon, show_warning=False) }}
-      {% endif %}
+    </div>
+    {% if is_refunded %}
+      <div class="action">
+        {% if is_refunded %}
+          <span class="purchase refund-notice">
+            {{ _('Purchase Refunded') }}
+          </span>
+        {% endif %}
+      </div>
+    {% endif %}
+    {% if src == 'search' %}
+      {{ mobile_install_button(addon, show_warning=False) }}
+    {% endif %}
   </li>
 {% endfor %}
