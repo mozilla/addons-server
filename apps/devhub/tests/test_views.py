@@ -5,7 +5,6 @@ import socket
 from datetime import datetime, timedelta
 from decimal import Decimal
 from collections import namedtuple
-import urllib
 
 from django.conf import settings
 from django.core import mail
@@ -1232,23 +1231,6 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         eq_(res.status_code, 302)
         assert Addon.objects.filter(pk=self.addon.id).exists(), (
             "Unexpected: Addon should exist")
-
-    def test_no_delete_app(self):
-        self.addon.update(type=amo.ADDON_WEBAPP, app_slug='xxx')
-        res = self.client.post(self.addon.get_dev_url('delete'),
-                               {'password': 'password'})
-        eq_(res.status_code, 302)
-        assert Addon.objects.filter(pk=self.addon.id).exists(), (
-            "Unexpected: Addon should exist")
-
-    def test_incomplete_app_delete(self):
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-        self.addon.update(type=amo.ADDON_WEBAPP, app_slug='xxx',
-                          status=amo.STATUS_NULL)
-        self.client.post(self.addon.get_dev_url('delete'),
-                         {'password': 'password'})
-        assert not Addon.objects.filter(pk=self.addon.id).exists(), (
-            "Unexpected: Addon shouldn't exist")
 
 
 class TestIssueRefund(amo.tests.TestCase):
@@ -3242,27 +3224,50 @@ class TestDeleteAddon(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
-        super(TestDeleteAddon, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.url = self.addon.get_dev_url('delete')
-        assert self.client.login(username='del@icio.us', password='password')
-
-    def post(self, *args, **kw):
-        r = self.client.post(self.url, dict(*args, **kw))
-        eq_(r.status_code, 302)
-        return r
+        self.client.login(username='admin@mozilla.com', password='password')
 
     def test_bad_password(self):
-        r = self.post(password='turd')
+        r = self.client.post(self.url, dict(password='turd'))
+        self.assertRedirects(r, self.addon.get_dev_url('versions'))
         eq_(r.context['title'],
             'Password was incorrect. Add-on was not deleted.')
         eq_(Addon.objects.count(), 1)
 
     def test_success(self):
-        r = self.post(password='password')
+        r = self.client.post(self.url, dict(password='password'))
+        self.assertRedirects(r, reverse('devhub.addons'))
         eq_(r.context['title'], 'Add-on deleted.')
         eq_(Addon.objects.count(), 0)
-        self.assertRedirects(r, reverse('devhub.addons'))
+
+
+class TestDeleteApp(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        self.webapp = Webapp.objects.get(id=337141)
+        self.url = self.webapp.get_dev_url('delete')
+        self.versions_url = self.webapp.get_dev_url('versions')
+        self.client.login(username='admin@mozilla.com', password='password')
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+
+    def test_delete_nonincomplete(self):
+        r = self.client.post(self.url, dict(password='password'))
+        self.assertRedirects(r, self.versions_url)
+        eq_(Addon.objects.count(), 1, 'App should not have been deleted.')
+
+    def test_bad_password_incomplete(self):
+        self.webapp.update(status=amo.STATUS_NULL)
+        r = self.client.post(self.url, dict(password='turd'))
+        self.assertRedirects(r, self.versions_url)
+        eq_(Addon.objects.count(), 1, 'App should not have been deleted.')
+
+    def test_delete_incomplete(self):
+        self.webapp.update(status=amo.STATUS_NULL)
+        r = self.client.post(self.url, dict(password='password'))
+        self.assertRedirects(r, reverse('devhub.apps'))
+        eq_(Addon.objects.count(), 0, 'App should have been deleted.')
 
 
 class TestRequestReview(amo.tests.TestCase):

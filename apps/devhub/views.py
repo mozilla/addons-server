@@ -33,7 +33,7 @@ import amo
 import amo.utils
 from amo import messages, urlresolvers
 from amo.decorators import json_view, login_required, post_required, write
-from amo.helpers import urlparams
+from amo.helpers import loc, urlparams
 from amo.utils import HttpResponseSendFile, MenuItem
 from amo.urlresolvers import reverse
 from access import acl
@@ -289,18 +289,25 @@ def edit(request, addon_id, addon, webapp=False):
 def delete(request, addon_id, addon, webapp=False):
     # Database deletes only allowed for free or incomplete addons.
     if not addon.can_be_deleted():
-        messages.error(request, _(
-            'Add-on cannot be deleted. Disable this add-on instead.'))
+        if webapp:
+            msg = loc('App cannot be deleted. Disable this app instead.')
+        else:
+            msg = _('Add-on cannot be deleted. Disable this add-on instead.')
+        messages.error(request, msg)
         return redirect(addon.get_dev_url('versions'))
 
     form = forms.DeleteForm(request)
     if form.is_valid():
         addon.delete('Removed via devhub')
-        messages.success(request, _('Add-on deleted.'))
+        messages.success(request,
+            loc('App deleted.') if webapp else _('Add-on deleted.'))
         return redirect('devhub.%s' % ('apps' if webapp else 'addons'))
     else:
-        messages.error(request,
-                       _('Password was incorrect.  Add-on was not deleted.'))
+        if webapp:
+            msg = loc('Password was incorrect. App was not deleted.')
+        else:
+            msg = _('Password was incorrect.  Add-on was not deleted.')
+        messages.error(request, msg)
         return redirect(addon.get_dev_url('versions'))
 
 
