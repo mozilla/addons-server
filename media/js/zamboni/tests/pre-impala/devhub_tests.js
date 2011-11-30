@@ -311,7 +311,7 @@ test('Clicking delete screenshot marks checkbox.', function() {
     // $.fx.off sets all animation durations to 0
     $.fx.off = true;
     $(".edit-previews-text a.remove", this.sandbox).trigger('click');
-    equals($(".delete input", this.sandbox).attr("checked"), true);
+    equals($(".delete input", this.sandbox).attr("checked"), 'checked');
     equals($(".preview:visible", this.sandbox).length, 0);
     $.fx.off = false;
 });
@@ -325,7 +325,7 @@ module('addon platform chooser', {
         this.sandbox.remove();
     },
     check: function(sel) {
-        $(sel, this.sandbox).attr('checked',true);
+        $(sel, this.sandbox).attr('checked', 'checked');
         $(sel, this.sandbox).trigger('change');
     }
 });
@@ -336,8 +336,8 @@ test('platforms > ALL', function() {
     this.check('input[value="3"]');
     // Check ALL platforms:
     this.check('input[value="1"]');
-    equals($('input[value="2"]', this.sandbox).attr('checked'), false);
-    equals($('input[value="3"]', this.sandbox).attr('checked'), false);
+    equals($('input[value="2"]', this.sandbox).attr('checked'), undefined);
+    equals($('input[value="3"]', this.sandbox).attr('checked'), undefined);
 });
 
 test('ALL > platforms', function() {
@@ -345,7 +345,7 @@ test('ALL > platforms', function() {
     this.check('input[value="1"]');
     // Check any other platform:
     this.check('input[value="2"]');
-    equals($('input[value="1"]', this.sandbox).attr('checked'), false);
+    equals($('input[value="1"]', this.sandbox).attr('checked'), undefined);
 });
 
 test('mobile / desktop', function() {
@@ -354,7 +354,7 @@ test('mobile / desktop', function() {
     // Check ALL mobile platforms:
     this.check('input[value="9"]');
     // desktop platforms are still checked:
-    equals($('input[value="1"]', this.sandbox).attr('checked'), true);
+    equals($('input[value="1"]', this.sandbox).attr('checked'), 'checked');
 });
 
 test('mobile > ALL', function() {
@@ -363,7 +363,7 @@ test('mobile > ALL', function() {
     // Check Android:
     this.check('input[value="7"]');
     // ALL mobile is no longer checked:
-    equals($('input[value="9"]', this.sandbox).attr('checked'), false);
+    equals($('input[value="9"]', this.sandbox).attr('checked'), undefined);
 });
 
 test('ALL > mobile', function() {
@@ -373,8 +373,8 @@ test('ALL > mobile', function() {
     // Check ALL mobile platforms:
     this.check('input[value="9"]');
     // Specific platforms are no longer checked:
-    equals($('input[value="7"]', this.sandbox).attr('checked'), false);
-    equals($('input[value="8"]', this.sandbox).attr('checked'), false);
+    equals($('input[value="7"]', this.sandbox).attr('checked'), undefined);
+    equals($('input[value="8"]', this.sandbox).attr('checked'), undefined);
 });
 
 
@@ -466,19 +466,19 @@ test('mobile', function() {
                        [{name: 'somefile.txt'}, results]);
 
     // All desktop platforms disabled:
-    equals($('.desktop-platforms input:eq(0)', sb).attr('disabled'), true);
-    equals($('.desktop-platforms input:eq(1)', sb).attr('disabled'), true);
-    equals($('.desktop-platforms input:eq(2)', sb).attr('disabled'), true);
-    equals($('.desktop-platforms input:eq(3)', sb).attr('disabled'), true);
+    equals($('.desktop-platforms input:eq(0)', sb).attr('disabled'), 'disabled');
+    equals($('.desktop-platforms input:eq(1)', sb).attr('disabled'), 'disabled');
+    equals($('.desktop-platforms input:eq(2)', sb).attr('disabled'), 'disabled');
+    equals($('.desktop-platforms input:eq(3)', sb).attr('disabled'), 'disabled');
     equals($('.desktop-platforms label:eq(0)', sb).hasClass('platform-disabled'),
            true);
 
     ok($('.platform ul.errorlist', sb).length > 0, 'Message shown to user');
 
     // All mobile platforms not disabled:
-    equals($('.mobile-platforms input:eq(0)', sb).attr('disabled'), false);
-    equals($('.mobile-platforms input:eq(1)', sb).attr('disabled'), false);
-    equals($('.mobile-platforms input:eq(2)', sb).attr('disabled'), false);
+    equals($('.mobile-platforms input:eq(0)', sb).attr('disabled'), undefined);
+    equals($('.mobile-platforms input:eq(1)', sb).attr('disabled'), undefined);
+    equals($('.mobile-platforms input:eq(2)', sb).attr('disabled'), undefined);
 });
 
 test('existing platforms', function() {
@@ -501,8 +501,8 @@ test('existing platforms', function() {
     $(this.el).trigger("upload_success_results",
                        [{name: 'somefile.txt'}, results]);
 
-    equals($('.desktop-platforms input:eq(0)', sb).attr('disabled'), false);
-    equals($('.desktop-platforms input:eq(1)', sb).attr('disabled'), true);
+    equals($('.desktop-platforms input:eq(0)', sb).attr('disabled'), undefined);
+    equals($('.desktop-platforms input:eq(1)', sb).attr('disabled'), 'disabled');
     equals($('.desktop-platforms label:eq(0)', sb).hasClass('platform-disabled'),
            false);
 });
