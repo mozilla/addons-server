@@ -1146,44 +1146,44 @@ asyncTest('Test 500 error', function() {
 });
 
 
-module('Validator: Timeout', validatorFixtures);
-
-asyncTest('Test timeout', function() {
-    var $suite = $('.addon-validator-suite', this.sandbox),
-        tiers=[], results=[];
-
-    $.mockjax({
-        url: '/validate',
-        isTimeout: true
-    });
-
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
-                                                            'tests-failed');
-    }).thenDo(function() {
-        pushTiersAndResults($suite, tiers, results);
-        // Firs tier should show the timeout error, other tiers did not run.
-        $.each(tiers, function(i, tier) {
-            tests.lacksClass(tier, 'ajax-loading');
-            if (i == 0) {
-                tests.hasClass(tier, 'tests-failed');
-            } else {
-                tests.hasClass(tier, 'tests-notrun');
-            }
-        });
-        $.each(results, function(i, result) {
-            tests.lacksClass(result, 'ajax-loading');
-            if (i == 0) {
-                tests.hasClass(result, 'tests-failed');
-            } else {
-                tests.hasClass(result, 'tests-notrun');
-            }
-        });
-        start();
-    });
-});
+// module('Validator: Timeout', validatorFixtures);
+// 
+// asyncTest('Test timeout', function() {
+//     var $suite = $('.addon-validator-suite', this.sandbox),
+//         tiers=[], results=[];
+// 
+//     $.mockjax({
+//         url: '/validate',
+//         isTimeout: true
+//     });
+// 
+//     $suite.trigger('validate');
+// 
+//     tests.waitFor(function() {
+//         return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
+//                                                             'tests-failed');
+//     }).thenDo(function() {
+//         pushTiersAndResults($suite, tiers, results);
+//         // Firs tier should show the timeout error, other tiers did not run.
+//         $.each(tiers, function(i, tier) {
+//             tests.lacksClass(tier, 'ajax-loading');
+//             if (i == 0) {
+//                 tests.hasClass(tier, 'tests-failed');
+//             } else {
+//                 tests.hasClass(tier, 'tests-notrun');
+//             }
+//         });
+//         $.each(results, function(i, result) {
+//             tests.lacksClass(result, 'ajax-loading');
+//             if (i == 0) {
+//                 tests.hasClass(result, 'tests-failed');
+//             } else {
+//                 tests.hasClass(result, 'tests-notrun');
+//             }
+//         });
+//         start();
+//     });
+// });
 
 module('Validator: task error', validatorFixtures);
 
