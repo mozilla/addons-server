@@ -11,10 +11,6 @@
               <a href="{url}">ask the developer for support</a> before
               requesting a refund.')|f(url=support_url)|safe }}
     </p>
-    <p>
-      {{ loc('In order to continue with the refund process, <b>you must
-              completely remove {name} from all of your devices</b>.')|f(name=addon.name)|safe }}
-    </p>
   {% else %}
     <p>{% trans url=support_url %}
     If you are unsatisfied with your purchase, you may request

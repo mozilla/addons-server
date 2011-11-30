@@ -1280,6 +1280,11 @@ class TestPurchases(amo.tests.TestCase):
         res = self.client.post(self.get_url('request'), {})
         eq_(res.status_code, 200)
 
+    def test_refund_webapp_passes(self):
+        self.addon.update(type=amo.ADDON_WEBAPP)
+        res = self.client.post(self.get_url('request'), {})
+        eq_(res.status_code, 302)
+
     def test_skip_fails(self):
         res = self.client.post(self.get_url('reason'), {})
         self.assertRedirects(res, self.get_url('request'))

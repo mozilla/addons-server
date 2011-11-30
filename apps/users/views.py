@@ -761,12 +761,13 @@ def support_mozilla(request, contribution, wizard):
 
 def refund_request(request, contribution, wizard):
     addon = contribution.addon
+    webapp = addon.is_webapp()
     form = forms.RemoveForm(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
+    if request.method == 'POST' and (webapp or form.is_valid()):
         return redirect('users.support', contribution.pk, 'reason')
 
     return wizard.render(request, wizard.tpl('request.html'),
-                         {'addon': addon, 'webapp': addon.is_webapp(),
+                         {'addon': addon, 'webapp': webapp,
                           'form': form, 'contribution': contribution})
 
 
