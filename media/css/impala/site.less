@@ -1,7 +1,7 @@
 @import 'lib';
 
 html, body {
-    height: 100%;
+    .height-calc(~'100% - 2px', 100%);
 }
 
 html {
@@ -270,7 +270,7 @@ header + .island {
 
 .cols {
     /* Compensate for issues with clean-css minifier. */
-    .width-calc(~'100% - -1em');
+    .width-calc(~'100% - -1em', 100%);
     overflow: auto;
     div.col-2, div.col-3 {
         .border-box;

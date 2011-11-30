@@ -95,11 +95,20 @@
     -webkit-column-gap: @gap;
 }
 
-.width-calc(@calc) {
-	width: -moz-calc(@calc);
-	width: -webkit-calc(@calc);
-	width: -o-calc(@calc);
-	width: calc(@calc);
+.height-calc(@calc, @fallback) {
+    height: @fallback;
+    height: -moz-calc(@calc);
+    height: -webkit-calc(@calc);
+    height: -o-calc(@calc);
+    height: calc(@calc);
+}
+
+.width-calc(@calc, @fallback) {
+    width: @fallback;
+    width: -moz-calc(@calc);
+    width: -webkit-calc(@calc);
+    width: -o-calc(@calc);
+    width: calc(@calc);
 }
 
 .border-box() {
