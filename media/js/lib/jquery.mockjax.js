@@ -1,22 +1,20 @@
 /*!
  * MockJax - jQuery Plugin to Mock Ajax requests
  *
- * Version:  1.4.0
- * Released: 2011-02-04
- * Source:   http://github.com/appendto/jquery-mockjax
- * Docs:     http://enterprisejquery.com/2010/07/mock-your-ajax-requests-with-mockjax-for-rapid-development
- * Plugin:   mockjax
+ * Version:  1.5.0pre
+ * Released:
+ * Home:   http://github.com/appendto/jquery-mockjax
  * Author:   Jonathan Sharp (http://jdsharp.com)
  * License:  MIT,GPL
- * 
- * Copyright (c) 2010 appendTo LLC.
+ *
+ * Copyright (c) 2011 appendTo LLC.
  * Dual licensed under the MIT or GPL licenses.
  * http://appendto.com/open-source-licenses
  */
 (function($) {
 	var _ajax = $.ajax,
 		mockHandlers = [];
-	
+
 	function parseXML(xml) {
 		if ( window['DOMParser'] == undefined && window.ActiveXObject ) {
 			DOMParser = function() { };
@@ -27,7 +25,7 @@
 				return doc;
 			};
 		}
-		
+
 		try {
 			var xmlDoc 	= ( new DOMParser() ).parseFromString( xml, 'text/xml' );
 			if ( $.isXMLDoc( xmlDoc ) ) {
@@ -45,9 +43,17 @@
 		}
 		return xmlDoc;
 	}
-	
+
 	$.extend({
-		ajax: function(origSettings) {
+		ajax: function(url, origSettings) {
+			// If url is an object, simulate pre-1.5 signature
+			if ( typeof url === "object" ) {
+				origSettings = url;
+				url = undefined;
+			} else {
+				// work around to support 1.5 signature
+				origSettings.url = url;
+			}
 			var s = jQuery.extend(true, {}, jQuery.ajaxSettings, origSettings),
 			    mock = false;
 			// Iterate over our mock handlers (in registration order) until we find
@@ -57,13 +63,13 @@
 					return;
 				}
 				var m = null;
-				// If the mock was registered with a function, let the function decide if we 
+				// If the mock was registered with a function, let the function decide if we
 				// want to mock this request
 				if ( $.isFunction(mockHandlers[k]) ) {
 					m = mockHandlers[k](s);
 				} else {
 					m = mockHandlers[k];
-					// Inspect the URL of the request and check if the mock handler's url 
+					// Inspect the URL of the request and check if the mock handler's url
 					// matches the url for this ajax request
 					if ( $.isFunction(m.url.test) ) {
 						// The user provided a regex for the url, test it
@@ -116,7 +122,7 @@
 							}
 						}
 						// Inspect the request type
-						if ( m && m.type && m.type != s.type ) {
+						if ( m && m.type && m.type.toLowerCase() != s.type.toLowerCase() ) {
 							// The request type doesn't match (GET vs. POST)
 							m = null;
 						}
@@ -130,7 +136,7 @@
 					if ( c.log && $.isFunction(c.log) ) {
 						c.log('MOCK ' + s.type.toUpperCase() + ': ' + s.url, $.extend({}, s));
 					}
-					
+
 					var jsre = /=\?(&|$)/, jsc = (new Date()).getTime();
 
 					// Handle JSONP Parameter Callbacks, we need to replicate some of the jQuery core here
@@ -145,22 +151,22 @@
 						}
 						s.dataType = "json";
 					}
-			
+
 					// Build temporary JSONP function
 					if ( s.dataType === "json" && (s.data && jsre.test(s.data) || jsre.test(s.url)) ) {
 						jsonp = s.jsonpCallback || ("jsonp" + jsc++);
-			
+
 						// Replace the =? sequence both in the query string and the data
 						if ( s.data ) {
 							s.data = (s.data + "").replace(jsre, "=" + jsonp + "$1");
 						}
-			
+
 						s.url = s.url.replace(jsre, "=" + jsonp + "$1");
-			
+
 						// We need to make sure
 						// that a JSONP style response is executed properly
 						s.dataType = "script";
-			
+
 						// Handle JSONP-style loading
 						window[ jsonp ] = window[ jsonp ] || function( tmp ) {
 							data = tmp;
@@ -168,59 +174,59 @@
 							complete();
 							// Garbage collect
 							window[ jsonp ] = undefined;
-			
+
 							try {
 								delete window[ jsonp ];
 							} catch(e) {}
-			
+
 							if ( head ) {
 								head.removeChild( script );
 							}
 						};
 					}
-					
+
 					var rurl = /^(\w+:)?\/\/([^\/?#]+)/,
 						parts = rurl.exec( s.url ),
 						remote = parts && (parts[1] && parts[1] !== location.protocol || parts[2] !== location.host);
-					
+
 					// Test if we are going to create a script tag (if so, intercept & mock)
 					if ( s.dataType === "script" && s.type.toUpperCase() === "GET" && remote ) {
 						// Synthesize the mock request for adding a script tag
 						var callbackContext = origSettings && origSettings.context || s;
-						
+
 						function success() {
 							// If a local callback was specified, fire it and pass it the data
 							if ( s.success ) {
 								s.success.call( callbackContext, ( m.response ? m.response.toString() : m.responseText || ''), status, {} );
 							}
-				
+
 							// Fire the global callback
 							if ( s.global ) {
 								trigger( "ajaxSuccess", [{}, s] );
 							}
 						}
-				
+
 						function complete() {
 							// Process result
 							if ( s.complete ) {
 								s.complete.call( callbackContext, {} , status );
 							}
-				
+
 							// The request was completed
 							if ( s.global ) {
 								trigger( "ajaxComplete", [{}, s] );
 							}
-				
+
 							// Handle the global AJAX counter
 							if ( s.global && ! --jQuery.active ) {
 								jQuery.event.trigger( "ajaxStop" );
 							}
 						}
-						
+
 						function trigger(type, args) {
 							(s.context ? jQuery(s.context) : jQuery.event).trigger(type, args);
 						}
-						
+
 						if ( m.response && $.isFunction(m.response) ) {
 							m.response(origSettings);
 						} else {
@@ -256,13 +262,13 @@
 												// The request has returned
 											 	this.status 		= m.status;
 												this.readyState 	= 4;
-										
-												// We have an executable function, call it to give 
+
+												// We have an executable function, call it to give
 												// the mock handler a chance to update it's data
 												if ( $.isFunction(m.response) ) {
 													m.response(origSettings);
 												}
-												// Copy over our mock to our xhr object before passing control back to 
+												// Copy over our mock to our xhr object before passing control back to
 												// jQuery's onreadystatechange callback
 												if ( s.dataType == 'json' && ( typeof m.responseText == 'object' ) ) {
 													this.responseText = JSON.stringify(m.responseText);
@@ -275,6 +281,9 @@
 												} else {
 													this.responseText = m.responseText;
 												}
+                        if( typeof m.status == 'number' || typeof m.status == 'string' ) {
+                          this.status = m.status;
+                        }
 												// jQuery < 1.4 doesn't have onreadystate change for xhr
 												if ( $.isFunction(this.onreadystatechange) ) {
 													this.onreadystatechange( m.isTimeout ? 'timeout' : undefined );
@@ -294,6 +303,7 @@
 											complete: function(xhr, txt) {
 												m.responseXML = xhr.responseXML;
 												m.responseText = xhr.responseText;
+												m.status = xhr.status;
 												this.responseTimer = setTimeout(process, m.responseTime || 0);
 											}
 										});
@@ -311,7 +321,7 @@
 									clearTimeout(this.responseTimer);
 								},
 								setRequestHeader: function(header, value) {
-								    m.headers[header] = value;
+									m.headers[header] = value;
 								},
 								getResponseHeader: function(header) {
 									// 'Last-modified', 'Etag', 'content-type' are all checked by jQuery
@@ -358,12 +368,12 @@
 		responseTime: 500,
 		isTimeout:    false,
 		contentType:  'text/plain',
-		response:     '', 
+		response:     '',
 		responseText: '',
 		responseXML:  '',
 		proxy:        '',
 		proxyType:    'GET',
-		
+
 		lastModified: null,
 		etag:         '',
 		headers: {
