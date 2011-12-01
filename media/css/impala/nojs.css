@@ -8,7 +8,7 @@
     display: none;
 }
 /* we want to show the no-apps balloon when JS is disabled. */
-#site-noinstall-apps {
+#site-nojs-apps {
     display: block;
 }
 
