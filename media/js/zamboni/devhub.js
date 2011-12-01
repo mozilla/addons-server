@@ -391,7 +391,7 @@ function truncateFields() {
     // as per Bug 622030...
     return;
     // var els = [
-    //         "#addon_description",
+    //         "#addon-description",
     //         "#developer_comments"
     //     ];
     // $(els.join(', ')).each(function(i,el) {
