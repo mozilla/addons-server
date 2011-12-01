@@ -84,15 +84,10 @@ var purchases = {
          * purchased and do the work for add-ons or web apps. */
         var $install = $button.closest('.install');
         /* Only do something if it's premium. */
-        console.log("Looks like we bought ", $install.attr('data-addon'), $install);
-
-        console.dirxml($install[0])
         if ($install.hasClass('premium')) {
-            console.log(1);
             $install.removeClass('premium');
             $button.removeClass('premium');
             if ($install.hasClass('webapp')) {
-            console.log(2);
                 $button.unbind()
                        .text(gettext('Install App'))
                        .attr('href', '#');
@@ -100,13 +95,9 @@ var purchases = {
                               $('.trigger_app_install', $modalish).attr('data-manifest-url'));
                 $install.removeAttr('data-start-purchase');
             }
+            //
             // Testing race condition
-            console.log(3);
-            setTimeout(function() {
-                $install.installButton();
-                console.log("Done with ", $install.attr('data-addon'));
-                console.dirxml($install[0])
-            }, 1000);
+            $install.installButton();
         }
     },
     find_button: function($body) {
