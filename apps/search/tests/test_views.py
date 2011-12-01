@@ -524,7 +524,7 @@ class TestWebappSearch(amo.tests.ESTestCase):
         item = pq(r.content)('#content .item')
         eq_(item.length, 1)
         eq_(item.find('h3').text(), unicode(self.webapp.name))
-        eq_(item.children('a').attr('href'),
+        eq_(item.find('.info').children('a').attr('href'),
             urlparams(self.webapp.get_url_path(), src='search'))
 
     def test_results_downloads(self):
