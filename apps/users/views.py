@@ -1,4 +1,6 @@
+from datetime import datetime, timedelta
 from functools import partial
+
 from django import http
 from django.conf import settings
 from django.db import IntegrityError
@@ -295,9 +297,11 @@ def browserid_authenticate(request, assertion):
         return (users[0], None)
     username = email.partition('@')[0]
     if (settings.REGISTER_USER_LIMIT and
-        UserProfile.objects.count() > settings.REGISTER_USER_LIMIT):
+        UserProfile.objects.count() > settings.REGISTER_USER_LIMIT
+        and not can_override_reg_limit(request)):
         _m = ('Sorry, no more registrations are allowed. '
-              '<a href="https://developer.mozilla.org/en/apps">Learn more</a>')
+              '<a href="https://developer.mozilla.org/en/apps">'
+              'Learn more</a>')
         return (None, _m)
     profile = UserProfile.objects.create(username=username, email=email)
     profile.create_django_user()
@@ -436,6 +440,13 @@ def _login(request, template=None, data=None, dont_redirect=False):
 
     if login_status is not None:
         user.log_login_attempt(request, login_status)
+
+    if (settings.REGISTER_OVERRIDE_TOKEN
+        and request.GET.get('ro') == settings.REGISTER_OVERRIDE_TOKEN):
+        # This allows the browser ID registration to see the token.
+        r.set_cookie('reg_override_token',
+                     value=settings.REGISTER_OVERRIDE_TOKEN,
+                     expires=datetime.utcnow() + timedelta(weeks=1))
     return r
 
 
@@ -506,7 +517,8 @@ def can_override_reg_limit(request):
     """True if user can override the registration limit."""
     if not settings.REGISTER_OVERRIDE_TOKEN:
         return False
-    return request.GET.get('ro') == settings.REGISTER_OVERRIDE_TOKEN
+    token = request.GET.get('ro', request.COOKIES.get('reg_override_token'))
+    return token == settings.REGISTER_OVERRIDE_TOKEN
 
 
 @anonymous_csrf

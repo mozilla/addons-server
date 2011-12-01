@@ -582,11 +582,49 @@ class TestLogin(UserViewBase):
                                          audience='fakeamo.org'))
         eq_(res.status_code, 401)
         _m = ('Sorry, no more registrations are allowed. '
-              '<a href="https://developer.mozilla.org/en/apps">Learn more</a>')
+              '<a href="https://developer.mozilla.org/en/apps">'
+              'Learn more</a>')
         eq_(res.content, _m)
 
         profile_count = UserProfile.objects.count()
         eq_(profile_count, 4)
+
+    @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
+    @patch.object(settings, 'REGISTER_OVERRIDE_TOKEN', 'mozilla')
+    @patch.object(waffle, 'switch_is_active', lambda x: True)
+    @patch('httplib2.Http.request')
+    def test_override_browserid_register_limit(self, http_request):
+        email = 'override-user@example.com'
+        http_request.return_value = (200, json.dumps({'status': 'okay',
+                                                      'email': email}))
+        self.client.cookies['reg_override_token'] = 'mozilla'
+        res = self.client.post(reverse('users.browserid_login'),
+                               data=dict(assertion='fake-assertion',
+                                         audience='fakeamo.org'))
+        eq_(res.status_code, 200)
+        profiles = UserProfile.objects.filter(email=email)
+        eq_(len(profiles), 1)
+        eq_(profiles[0].username, 'override-user')
+
+    @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
+    @patch.object(settings, 'REGISTER_OVERRIDE_TOKEN', 'mozilla')
+    @patch.object(waffle, 'switch_is_active', lambda x: True)
+    @patch('httplib2.Http.request')
+    def test_override_browserid_register_wrong_token(self, http_request):
+        email = 'override-user@example.com'
+        http_request.return_value = (200, json.dumps({'status': 'okay',
+                                                      'email': email}))
+        self.client.cookies['reg_override_token'] = 'netscape'
+        res = self.client.post(reverse('users.browserid_login'),
+                               data=dict(assertion='fake-assertion',
+                                         audience='fakeamo.org'))
+        eq_(res.status_code, 401)
+
+    @patch.object(settings, 'REGISTER_OVERRIDE_TOKEN', 'letmein')
+    def test_override_token_sets_cookie(self):
+        res = self.client.get(self.url + '?ro=letmein')
+        eq_(res.status_code, 200)
+        eq_(self.client.cookies['reg_override_token'].value, 'letmein')
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('httplib2.Http.request')
