@@ -66,7 +66,8 @@ var installButton = function() {
         $button = $this.find('.button');
 
     if ($this.hasClass('webapp')) {
-        return webappButton.call(this);
+         webappButton.call(this);
+         return;
     }
 
     // Unreviewed and self-hosted buttons point to the add-on detail page for
