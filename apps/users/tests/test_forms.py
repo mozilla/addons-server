@@ -492,6 +492,29 @@ class TestUserRegisterForm(UserFormBase):
         eq_(len(doc('.error')), 1)
         eq_(UserProfile.objects.count(), 3)  # No user was created.
 
+    @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
+    @patch.object(settings, 'REGISTER_OVERRIDE_TOKEN', 'mozilla')
+    def test_override_user_limit(self):
+        self.client.post(reverse('users.register') + '?ro=mozilla',
+                         self.good_data())
+        eq_(UserProfile.objects.count(), 4)  # One user was created.
+
+    @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
+    @patch.object(settings, 'REGISTER_OVERRIDE_TOKEN', 'mozilla')
+    def test_override_with_wrong_token(self):
+        res = self.client.post(reverse('users.register') + '?ro=netscape',
+                               self.good_data())
+        doc = pq(res.content)
+        eq_(len(doc('.error')), 1)
+        eq_(UserProfile.objects.count(), 3)  # No user was created.
+
+    @patch.object(settings, 'REGISTER_OVERRIDE_TOKEN', 'mozilla')
+    def test_pass_through_reg_override_token(self):
+        res = self.client.get(reverse('users.register') + '?ro=mozilla')
+        doc = pq(res.content)
+        eq_(doc('form.user-input').attr('action'),
+            reverse('users.register') + '?ro=mozilla')
+
     @patch.object(settings, 'APP_PREVIEW', False)
     @patch.object(settings, 'REGISTER_USER_LIMIT', 0)
     @patch('captcha.fields.ReCaptchaField.clean')

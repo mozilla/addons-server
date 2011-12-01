@@ -32,7 +32,7 @@
   {% if form %}
     <section class="island">
       <h1>{{ _('Register') }}</h1>
-      <form method="post" action="" class="prettyform grid user-input">
+      <form method="post" action="{{ register_action }}" class="prettyform grid user-input">
         {{ csrf() }}
         <fieldset>
           <ul>

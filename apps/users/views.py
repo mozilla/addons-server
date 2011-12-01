@@ -17,7 +17,6 @@ from django_browserid.auth import BrowserIDBackend
 import commonware.log
 import jingo
 from radagast.wizard import Wizard
-from ratelimit.decorators import ratelimit
 from tower import ugettext as _, ugettext_lazy as _lazy
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 from statsd import statsd
@@ -500,6 +499,13 @@ def profile(request, user_id):
     return jingo.render(request, 'users/profile.html', data)
 
 
+def can_override_reg_limit(request):
+    """True if user can override the registration limit."""
+    if not settings.REGISTER_OVERRIDE_TOKEN:
+        return False
+    return request.GET.get('ro') == settings.REGISTER_OVERRIDE_TOKEN
+
+
 @anonymous_csrf
 @no_login_required
 def register(request):
@@ -509,10 +515,12 @@ def register(request):
         form = None
 
     elif (settings.REGISTER_USER_LIMIT and
-          UserProfile.objects.count() > settings.REGISTER_USER_LIMIT):
+          UserProfile.objects.count() > settings.REGISTER_USER_LIMIT
+          and not can_override_reg_limit(request)):
         _m = ('Sorry, no more registrations are allowed. '
-              '<a href="https://developer.mozilla.org/en/apps">Learn more</a>')
-        messages.error(request, _m)
+              '<a href="https://developer.mozilla.org/en/apps">'
+              'Learn more</a>')
+        messages.error(request, _m, title_safe=True, message_safe=True)
         form = None
 
     elif request.user.is_authenticated():
@@ -558,7 +566,13 @@ def register(request):
                             _('Please correct them and resubmit.'))
     else:
         form = forms.UserRegisterForm()
-    return jingo.render(request, 'users/register.html', {'form': form, })
+
+    reg_action = reverse('users.register')
+    if request.GET.get('ro'):
+        # Let the registration override token pass through for a POST.
+        reg_action = urlparams(reg_action, ro=request.GET.get('ro'))
+    return jingo.render(request, 'users/register.html',
+                        {'form': form, 'register_action': reg_action})
 
 
 @anonymous_csrf_exempt
