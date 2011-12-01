@@ -94,8 +94,6 @@ var purchases = {
                               $('.trigger_app_install', $modalish).attr('data-manifest-url'));
                 $install.removeAttr('data-start-purchase');
             }
-            //
-            // Testing race condition
             $install.installButton();
         }
     },
