@@ -596,7 +596,7 @@ def purchase_thanks(request, addon):
             'download': download}
 
     if addon.is_webapp():
-        installed, c = Installed.objects.safe_get_or_create(addon=addon,
+        installed, c = Installed.objects.safer_get_or_create(addon=addon,
                                                     user=request.amo_user)
         data['receipt'] = installed.receipt
 
