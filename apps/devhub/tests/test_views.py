@@ -1277,7 +1277,7 @@ class TestIssueRefund(amo.tests.TestCase):
         r = self.client.post(self.url, {'transaction_id': c.transaction_id,
                                         'issue': '1'})
         self.assertRedirects(r, reverse(destination), 302)
-        refund.assert_called_with(self.transaction_id, self.paykey)
+        refund.assert_called_with(self.paykey)
         eq_(len(mail.outbox), 1)
         assert 'approved' in mail.outbox[0].subject
 
