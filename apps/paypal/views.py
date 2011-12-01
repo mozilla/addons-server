@@ -148,24 +148,39 @@ def _paypal(request):
 
     payment_status = post.get('payment_status', '').lower()
     if payment_status != 'completed':
-        paypal_log.info('Ignoring: %s, %s' %
-                        (payment_status, post.get('txn_id', '')))
-        return http.HttpResponse('Payment not completed %s'
-                                 % post.get('txn_id', ''))
+        return paypal_ignore(request, post)
 
+    # There could be multiple transactions on the IPN. This will deal
+    # with them appropriately or cope if we don't know how to deal with
+    # any of them.
     methods = {'refunded': paypal_refunded,
                'completed': paypal_completed,
                'reversal': paypal_reversal}
-
     result = None
+    called = False
     for key, value in transactions.items():
-        status = value['status'].lower()
+        status = value.get('status', '').lower()
+        if status not in methods:
+            paypal_log.info('Unknown status: %s' % status)
+            continue
         result = methods[status](request, post, value)
+        called = True
+
+    if not called:
+        # Whilst the payment status was completed, it contained
+        # no transactions with status, which means we don't know
+        # how to process it. Hence it's being ignored.
+        return paypal_ignore(request, post)
 
     if not result:
         return _log_unmatched(post)
 
     return result
+
+
+def paypal_ignore(request, post):
+    paypal_log.info('Ignoring: %s' % post.get('txn_id', ''))
+    return http.HttpResponse('Ignoring %s' % post.get('txn_id', ''))
 
 
 def paypal_refunded(request, post, transaction):

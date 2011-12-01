@@ -200,6 +200,27 @@ class TestPaypal(amo.tests.TestCase):
         eq_(response.status_code, 500)
         eq_(response.content, 'Unknown error.')
 
+    def test_no_status(self, urlopen):
+        # An IPN with status_for_sender_txn: Pending, will not have a status.
+        urlopen.return_value = self.urlopener('VERIFIED')
+
+        ipn = sample_contribution.copy()
+        del ipn['transaction[0].status']
+
+        response = self.client.post(self.url, ipn)
+        eq_(response.status_code, 200)
+        eq_(response.content, 'Ignoring %s' % ipn['tracking_id'])
+
+    def test_wrong_status(self, urlopen):
+        urlopen.return_value = self.urlopener('VERIFIED')
+
+        ipn = sample_contribution.copy()
+        ipn['transaction[0].status'] = 'blah!'
+
+        response = self.client.post(self.url, ipn)
+        eq_(response.status_code, 200)
+        eq_(response.content, 'Ignoring %s' % ipn['tracking_id'])
+
 
 @patch('paypal.views.urllib2.urlopen')
 class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
