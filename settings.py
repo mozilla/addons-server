@@ -1302,6 +1302,8 @@ APP_PREVIEW = False
 
 # Specific view modules and methods that we don't want to force login on.
 NO_LOGIN_REQUIRED_MODULES = (
+    'csp.views.policy',
+    'csp.views.report',
     'django.views.i18n.javascript_catalog',
     'django.contrib.auth.views.password_reset',
     'django.contrib.auth.views.password_reset_done'
