@@ -27,6 +27,7 @@ from django.utils.translation import trans_real
 from django.utils.functional import Promise
 from django.utils.encoding import smart_str, smart_unicode
 
+from cef import log_cef as _log_cef
 from easy_thumbnails import processors
 import html5lib
 from html5lib.serializer.htmlserializer import HTMLSerializer
@@ -180,7 +181,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                                'unsubscribe_url': unsubscribe_url,
                                'perm_setting': perm_setting.label,
                                'SITE_URL': settings.SITE_URL,
-                               'mandatory': perm_setting.mandatory }
+                               'mandatory': perm_setting.mandatory}
                     send_message = template.render(Context(context,
                                                            autoescape=False))
 
@@ -660,3 +661,29 @@ def smart_path(string):
     if os.path.supports_unicode_filenames:
         return smart_unicode(string)
     return smart_str(string)
+
+
+def log_cef(name, severity, request, *args, **kwargs):
+    """Simply wraps the cef_log function so we don't need to pass in the config
+    dictionary every time.  See bug 707060."""
+
+    c = {'cef.product': getattr(settings, 'CEF_PRODUCT', 'AMO'),
+         'cef.vendor': getattr(settings, 'CEF_VENDOR', 'Mozilla'),
+         'cef.version': getattr(settings, 'CEF_VERSION', '0'),
+         'cef.device_version': getattr(settings, 'CEF_DEVICE_VERSION', '0'),
+         'cef.file': getattr(settings, 'CEF_FILE', 'syslog'), }
+
+    # The CEF library looks for some things in the request object like
+    # REQUEST_METHOD and any REMOTE_ADDR stuff.  Django not only doesn't send
+    # half the stuff you'd expect, but it specifically doesn't implement
+    # readline on its FakePayload object so these things fail.  I have no idea
+    # if that's outdated code in Django or not, but andym made this
+    # <strike>awesome</strike> less crappy so the tests will actually pass.
+    # In theory, the second half of this if() will never be hit except in the
+    # test runner.  Good luck with that.
+    if request:
+        r = request.META.copy()
+    else:
+        r = {}
+
+    return _log_cef(name, severity, r, *args, config=c, **kwargs)

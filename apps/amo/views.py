@@ -16,10 +16,10 @@ from statsd import statsd
 import amo
 import files.tasks
 from amo.decorators import no_login_required, post_required
+from amo.utils import log_cef
 from . import monitors
 
 monitor_log = commonware.log.getLogger('z.monitor')
-csp_log = commonware.log.getLogger('z.csp')
 jp_log = commonware.log.getLogger('z.jp.repack')
 
 
@@ -111,11 +111,10 @@ def cspreport(request):
         method, url = v['request'].split(' ', 1)
         meta.update({'REQUEST_METHOD': method, 'PATH_INFO': url})
         v = [(k, v[k]) for k in report if k in v]
-        # This requires you to use the cef.formatter to get something nice out.
-        csp_log.warning('Violation', dict(environ=meta,
-                                          product='addons',
-                                          username=request.user,
-                                          data=v))
+        log_cef('CSP Violation', 5, meta, username=request.user,
+                signature='CSPREPORT',
+                msg='A client reported a CSP violation',
+                cs7=v, cs7Label='ContentPolicy')
     except Exception:
         return HttpResponseBadRequest()
 

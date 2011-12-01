@@ -273,6 +273,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def set_password(self, raw_password, algorithm='sha512'):
         self.password = create_password(algorithm, raw_password)
+        # Can't do CEF logging here because we don't have a request object.
 
     def email_confirmation_code(self):
         from amo.utils import send_mail
@@ -288,7 +289,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
                   t.render(Context(c)), None, [self.email],
                   use_blacklist=False)
 
-    def log_login_attempt(self, request, successful):
+    def log_login_attempt(self, successful):
         """Log a user's login attempt"""
         self.last_login_attempt = datetime.now()
         self.last_login_attempt_ip = commonware.log.get_remote_addr()

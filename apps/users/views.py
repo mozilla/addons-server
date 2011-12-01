@@ -33,7 +33,7 @@ from amo.decorators import (json_view, login_required, no_login_required,
 from amo.forms import AbuseForm
 from amo.urlresolvers import reverse
 from amo.helpers import absolutify, loc
-from amo.utils import send_mail, urlparams
+from amo.utils import log_cef, send_mail, urlparams
 from abuse.models import send_abuse_report
 from addons.models import Addon
 from addons.views import BaseFilter
@@ -285,6 +285,8 @@ def browserid_authenticate(request, assertion):
     """
     Verify a BrowserID login attempt. If the BrowserID assertion is
     good, but no account exists on AMO, create one.
+
+    Request is only needed for logging. :(
     """
     backend = BrowserIDBackend()
     result = backend.verify(assertion, settings.SITE_URL)
@@ -308,6 +310,9 @@ def browserid_authenticate(request, assertion):
     profile.user.backend = 'django_browserid.auth.BrowserIDBackend'
     profile.user.save()
     profile.save()
+    log_cef('New Account', 5, request, username=username,
+            signature='AUTHNOTICE',
+            msg='User created a new account (from BrowserID)')
     return (profile, None)
 
 
@@ -374,6 +379,10 @@ def _login(request, template=None, data=None, dont_redirect=False):
                         settings.LOGIN_RATELIMIT_USER) or limited)
             login_status = False
         except UserProfile.DoesNotExist:
+            log_cef('Authentication Failure', 5, request,
+                    username=request.POST['username'],
+                    signature='AUTHFAIL',
+                    msg='The username was invalid')
             pass
 
     partial_form = partial(forms.AuthenticationForm, use_recaptcha=limited)
@@ -403,7 +412,11 @@ def _login(request, template=None, data=None, dont_redirect=False):
             log.warning(u'Attempt to log in with deleted account (%s)' % user)
             messages.error(request, _('Wrong email address or password!'))
             data.update({'form': partial_form()})
-            user.log_login_attempt(request, False)
+            user.log_login_attempt(False)
+            log_cef('Authentication Failure', 5, request,
+                    username=request.user,
+                    signature='AUTHFAIL',
+                    msg='Account is deactivated')
             return jingo.render(request, template, data)
 
         if user.confirmationcode:
@@ -423,7 +436,7 @@ def _login(request, template=None, data=None, dont_redirect=False):
             messages.info(request, _('Having Trouble?'), msg2,
                           title_safe=True, message_safe=True)
             data.update({'form': partial_form()})
-            user.log_login_attempt(request, False)
+            user.log_login_attempt(False)
             return jingo.render(request, template, data)
 
         rememberme = request.POST.get('rememberme', None)
@@ -440,7 +453,11 @@ def _login(request, template=None, data=None, dont_redirect=False):
             r = jingo.render(request, template, data)
 
     if login_status is not None:
-        user.log_login_attempt(request, login_status)
+        user.log_login_attempt(login_status)
+        log_cef('Authentication Failure', 5, request,
+                username=request.POST['username'],
+                signature='AUTHFAIL',
+                msg='The password was incorrect')
 
     if (settings.REGISTER_OVERRIDE_TOKEN
         and request.GET.get('ro') == settings.REGISTER_OVERRIDE_TOKEN):
@@ -555,6 +572,9 @@ def register(request):
                 u.save()
                 u.create_django_user()
                 log.info(u'Registered new account for user (%s)', u)
+                log_cef('New Account', 5, request, username=u.username,
+                        signature='AUTHNOTICE',
+                        msg='User created a new account')
 
                 u.email_confirmation_code()
 
@@ -625,6 +645,10 @@ def password_reset_confirm(request, uidb36=None, token=None):
             form = forms.SetPasswordForm(user, request.POST)
             if form.is_valid():
                 form.save()
+                log_cef('Password Changed', 5, request,
+                        username=user.username,
+                        signature='PASSWORDCHANGED',
+                        msg='User changed password')
                 return redirect(reverse('django.contrib.auth.'
                                         'views.password_reset_complete'))
         else:

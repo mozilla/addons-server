@@ -696,7 +696,7 @@ class TestFailedCount(UserViewBase):
         self.data = {'username': 'jbalogh@mozilla.com', 'password': 'foo'}
 
     def log_calls(self, obj):
-        return [call[0][1] for call in obj.call_args_list]
+        return [call[0][0] for call in obj.call_args_list]
 
     def test_login_passes(self, log_login_attempt):
         self.client.post(self.url, data=self.data)

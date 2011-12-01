@@ -7,8 +7,6 @@ from django.conf import settings
 import commonware.log
 import dictconfig
 
-from cef import cef
-
 
 class NullHandler(logging.Handler):
 
@@ -64,11 +62,6 @@ cfg = {
             'format': ('%s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
                        % (settings.SYSLOG_TAG2, base_fmt)),
         },
-        'csp': {
-            '()': cef.SysLogFormatter,
-            'datefmt': '%H:%M:%S',
-            'format': '%s: %s' % (settings.SYSLOG_CSP, base_fmt),
-        },
     },
     'handlers': {
         'console': {
@@ -84,11 +77,6 @@ cfg = {
             '()': UnicodeLogger,
             'facility': logging.handlers.SysLogHandler.LOG_LOCAL7,
             'formatter': 'prod2',
-        },
-        'syslog_csp': {
-            '()': UnicodeLogger,
-            'facility': logging.handlers.SysLogHandler.LOG_LOCAL5,
-            'formatter': 'csp',
         },
         'null': {
             '()': NullHandler,
@@ -118,7 +106,6 @@ USE_SYSLOG = settings.HAS_SYSLOG and not settings.DEBUG
 
 if USE_SYSLOG:
     cfg['loggers']['z.timer'] = {'handlers': ['syslog2']}
-    cfg['loggers']['z.csp'] = {'handlers': ['syslog_csp'], 'level':'WARNING'}
 
 # Set the level and handlers for all loggers.
 for logger in cfg['loggers'].values() + [cfg['root']]:

@@ -13,7 +13,7 @@ import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
-from amo.utils import slug_validator
+from amo.utils import log_cef, slug_validator
 from .models import (UserProfile, UserNotification, BlacklistedUsername,
                      BlacklistedEmailDomain, BlacklistedPassword, DjangoUser)
 from .widgets import NotificationsSelectMultiple
@@ -65,6 +65,10 @@ class AuthenticationForm(auth_forms.AuthenticationForm):
 
 class PasswordResetForm(auth_forms.PasswordResetForm):
 
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(PasswordResetForm, self).__init__(*args, **kwargs)
+
     def clean_email(self):
         email = self.cleaned_data['email']
         self.users_cache = UserProfile.objects.filter(email__iexact=email)
@@ -79,6 +83,16 @@ class PasswordResetForm(auth_forms.PasswordResetForm):
     def save(self, **kw):
         for user in self.users_cache:
             log.info(u'Password reset email sent for user (%s)' % user)
+            if user.needs_tougher_password:
+                log_cef('Password Reset', 5, self.request,
+                        username=user,
+                        signature='PASSWORDRESET',
+                        msg='Privileged user requested password reset')
+            else:
+                log_cef('Password Reset', 5, self.request,
+                        username=user,
+                        signature='PASSWORDRESET',
+                        msg='User requested password reset')
         try:
             # Django calls send_mail() directly and has no option to pass
             # in fail_silently, so we have to catch the SMTP error ourselves
@@ -94,6 +108,7 @@ class SetPasswordForm(auth_forms.SetPasswordForm, PasswordMixin):
                                     widget=PasswordMixin.widget())
 
     def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
         super(SetPasswordForm, self).__init__(*args, **kwargs)
         # We store our password in the users table, not auth_user like
         # Django expects.
@@ -104,8 +119,12 @@ class SetPasswordForm(auth_forms.SetPasswordForm, PasswordMixin):
         return self.clean_password(field='new_password1', instance='user')
 
     def save(self, **kw):
+        # Three different loggers? :(
         amo.log(amo.LOG.CHANGE_PASSWORD, user=self.user)
         log.info(u'User (%s) changed password with reset form' % self.user)
+        log_cef('Password Changed', 5, self.request,
+                username=self.user.username, signature='PASSWORDCHANGED',
+                msg='User changed password')
         super(SetPasswordForm, self).save(**kw)
 
 
@@ -318,6 +337,8 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
 
         if data['password']:
             u.set_password(data['password'])
+            log_cef('Password Changed', 5, self.request, username=u.username,
+                    signature='PASSWORDCHANGED', msg='User changed password')
             if log_for_developer:
                 amo.log(amo.LOG.CHANGE_PASSWORD)
                 log.info(u'User (%s) changed their password' % u)
@@ -374,6 +395,13 @@ class AdminUserEditForm(UserEditForm):
                     self.cleaned_data['admin_log'], details=self.changes())
             log.info('Admin edit user: %s changed fields: %s' %
                      (self.instance, self.changed_fields()))
+            if 'password' in self.changes():
+                log_cef('Password Changed', 5, self.request,
+                        username=self.instance.username,
+                        signature='PASSWORDRESET',
+                        msg='Admin requested password reset',
+                        cs1=self.request.amo_user.username,
+                        cs1Label='AdminName')
         return profile
 
 
