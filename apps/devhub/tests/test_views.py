@@ -259,6 +259,7 @@ class TestDashboard(HubTest):
         assert 'Statistics' not in links, ('Unexpected: %r' % links)
 
     def test_public_addon(self):
+        waffle.models.Switch.objects.create(name='marketplace', active=True)
         addon = Addon.objects.get(id=self.clone_addon(1)[0])
         eq_(addon.status, amo.STATUS_PUBLIC)
         doc = pq(self.client.get(self.url).content)
@@ -266,11 +267,13 @@ class TestDashboard(HubTest):
         assert item.find('h3 a'), 'Expected link to add-on'
         assert item.find('p.downloads'), 'Expected weekly downloads'
         assert item.find('p.users'), 'Expected ADU'
+        assert item.find('.price'), 'Expected price'
         assert item.find('.item-details'), 'Expected item details'
         assert not item.find('p.incomplete'), (
             'Unexpected message about incomplete add-on')
 
     def test_public_app(self):
+        waffle.models.Switch.objects.create(name='marketplace', active=True)
         waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
         app = Addon.objects.get(id=self.clone_addon(1)[0])
         app.update(type=amo.ADDON_WEBAPP)
@@ -278,17 +281,20 @@ class TestDashboard(HubTest):
         item = doc('.item[data-addonid=%s]' % app.id)
         assert item.find('p.downloads'), 'Expected weekly downloads'
         assert not item.find('p.users'), 'Unexpected ADU'
+        assert item.find('.price'), 'Expected price'
         assert item.find('.item-details'), 'Expected item details'
         assert not item.find('p.incomplete'), (
             'Unexpected message about incomplete add-on')
 
     def test_incomplete_addon(self):
+        waffle.models.Switch.objects.create(name='marketplace', active=True)
         addon = Addon.objects.get(id=self.clone_addon(1)[0])
         addon.update(status=amo.STATUS_NULL)
         doc = pq(self.client.get(self.url).content)
         item = doc('.item[data-addonid=%s]' % addon.id)
         assert not item.find('h3 a'), 'Unexpected link to add-on'
         assert not item.find('.item-details'), 'Unexpected item details'
+        assert not item.find('.price'), 'Expected price'
         assert item.find('p.incomplete'), (
             'Expected message about incompleted add-on')
 

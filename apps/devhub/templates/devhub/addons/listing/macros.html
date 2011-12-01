@@ -1,3 +1,5 @@
+{% from 'addons/macros.html' import price %}
+
 {% macro dev_heading(addon, amo) %}
   <h3>
     {% set is_complete = not addon.is_incomplete() %}
@@ -26,5 +28,8 @@
                     num)|f(num|numberfmt)|safe }}
       {% endwith %}
     </p>
+  {% endif %}
+  {% if waffle.switch('marketplace') %}
+    <p>{{ price(addon) }}</p>
   {% endif %}
 {% endmacro %}

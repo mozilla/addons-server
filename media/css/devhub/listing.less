@@ -1,4 +1,4 @@
-@import 'lib';
+@import '../impala/lib';
 
 .items:first-child .item:first-child {
     .info, .action {
@@ -25,8 +25,13 @@
         padding-left: 2%;
         width: 30%;
         .downloads,
-        .users {
+        .users,
+        .price {
             color: @green;
+        }
+        .price {
+            font-size: 11px;
+            line-height: 13px;
         }
         p {
             font-size: 13px;
