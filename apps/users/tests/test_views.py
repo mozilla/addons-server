@@ -3,6 +3,7 @@ import json
 
 from django.conf import settings
 from django.core import mail
+from django import http
 from django.core.cache import cache
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
@@ -599,6 +600,25 @@ class TestLogin(UserViewBase):
                                          audience='fakeamo.org'))
         eq_(res.status_code, 401)
 
+    @patch.object(settings, 'REGISTER_USER_LIMIT', 100)
+    @patch('django.contrib.auth.views.login')
+    def test_registration_open(self, login):
+        def assert_registration_open(request, extra_context=None, **kwargs):
+            assert not extra_context['registration_closed']
+            return http.HttpResponse(200)
+        login.side_effect = assert_registration_open
+        self.client.get(self.url)
+        assert login.called
+
+    @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
+    @patch('django.contrib.auth.views.login')
+    def test_registration_closed(self, login):
+        def assert_registration_open(request, extra_context=None, **kwargs):
+            assert extra_context['registration_closed']
+            return http.HttpResponse(200)
+        login.side_effect = assert_registration_open
+        self.client.get(self.url)
+        assert login.called
 
 @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', '')
 @patch('users.models.UserProfile.log_login_attempt')
