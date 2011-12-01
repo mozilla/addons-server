@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 
 from django.conf import settings
@@ -42,7 +42,7 @@ class UserViewBase(amo.tests.TestCase):
         self.client = amo.tests.TestClient()
         self.client.get('/')
         self.user = User.objects.get(id='4043307')
-        self.user_profile = self.get_profile()
+        self.user_profile = self.user.get_profile()
 
     def get_profile(self):
         return UserProfile.objects.get(id=self.user.id)
@@ -1096,6 +1096,7 @@ class TestPurchases(amo.tests.TestCase):
         self.url = reverse('users.purchases')
         self.client.login(username='regular@mozilla.com', password='password')
         self.user = User.objects.get(email='regular@mozilla.com')
+        self.user_profile = self.user.get_profile()
 
         self.addon, self.con = None, None
         for x in range(1, 5):
@@ -1104,7 +1105,7 @@ class TestPurchases(amo.tests.TestCase):
                                          name='t%s' % x,
                                          guid='t%s' % x)
             AddonPremium.objects.create(price=price, addon=addon)
-            con = Contribution.objects.create(user=self.user.get_profile(),
+            con = Contribution.objects.create(user=self.user_profile,
                                               addon=addon, amount='%s.00' % x,
                                               type=amo.CONTRIB_PURCHASE)
             con.created = datetime(2011, 11, 1)
@@ -1127,12 +1128,12 @@ class TestPurchases(amo.tests.TestCase):
     def test_in_sidebar(self):
         # Populate this user's favorites.
         c = Collection.objects.create(type=amo.COLLECTION_FAVORITES,
-                                      author=self.user.get_profile())
+                                      author=self.user_profile)
         CollectionAddon.objects.create(addon=Addon.objects.all()[0],
                                        collection=c)
 
         expected = [
-            ('My Profile', self.user.get_profile().get_url_path()),
+            ('My Profile', self.user_profile.get_url_path()),
             ('Account Settings', reverse('users.edit')),
             ('My Collections', reverse('collections.mine')),
             ('My Favorites', reverse('collections.mine', args=['favorites'])),
@@ -1143,7 +1144,7 @@ class TestPurchases(amo.tests.TestCase):
     @patch.object(settings, 'APP_PREVIEW', True)
     def test_in_apps_sidebar(self):
         expected = [
-            ('My Profile', self.user.get_profile().get_url_path()),
+            ('My Profile', self.user_profile.get_url_path()),
             ('Account Settings', reverse('users.edit')),
             ('My Purchases', self.url),
         ]
@@ -1182,16 +1183,30 @@ class TestPurchases(amo.tests.TestCase):
 
     def get_order(self, order):
         res = self.client.get('%s?sort=%s' % (self.url, order))
-        return [str(c.name) for c in
-                res.context['addons'].object_list]
+        return [str(c.name) for c in res.context['addons'].object_list]
 
     def test_ordering(self):
         eq_(self.get_order('name'), ['t1', 't2', 't3', 't4'])
         eq_(self.get_order('price'), ['t4', 't3', 't2', 't1'])
 
+    def test_ordering_purchased(self):
+        for addon in Addon.objects.all():
+            purchase = addon.addonpurchase_set.all()[0]
+            purchase.update(created=datetime.now() + timedelta(days=addon.id))
+        eq_(self.get_order(''), ['t4', 't3', 't2', 't1'])
+        eq_(self.get_order('purchased'), ['t4', 't3', 't2', 't1'])
+
+        Addon.objects.get(guid='t2').addonpurchase_set.all()[0].update(
+            created=datetime.now() + timedelta(days=999))
+        eq_(self.get_order('purchased'), ['t2', 't4', 't3', 't1'])
+
+    def get_pq(self):
+        r = self.client.get(self.url, dict(sort='name'))
+        eq_(r.status_code, 200)
+        return pq(r.content)('#purchases')
+
     def _test_price(self):
-        res = self.client.get(self.url)
-        assert '$1.00' in pq(res.content)('#purchases .purchase').eq(0).text()
+        assert '$1.00' in self.get_pq()('.purchase').eq(0).text()
 
     def test_price(self):
         self._test_price()
@@ -1201,8 +1216,8 @@ class TestPurchases(amo.tests.TestCase):
         self._test_price()
 
     def _test_price_locale(self):
-        res = self.client.get(self.url.replace('/en-US', '/fr'))
-        assert u'1,00' in pq(res.content)('#purchases .purchase').eq(0).text()
+        self.url = self.url.replace('/en-US', '/fr')
+        assert u'1,00' in self.get_pq()('.purchase').eq(0).text()
 
     def test_price_locale(self):
         self._test_price_locale()
@@ -1213,9 +1228,8 @@ class TestPurchases(amo.tests.TestCase):
 
     def test_receipt(self):
         res = self.client.get(reverse('users.purchases.receipt',
-                              args=[self.addon.pk]))
-        eq_(len(res.context['addons'].object_list), 1)
-        eq_(res.context['addons'].object_list[0].pk, self.addon.pk)
+                                      args=[self.addon.pk]))
+        eq_([a.pk for a in res.context['addons'].object_list], [self.addon.pk])
 
     def test_receipt_404(self):
         url = reverse('users.purchases.receipt', args=[545])
@@ -1223,14 +1237,14 @@ class TestPurchases(amo.tests.TestCase):
 
     def test_receipt_view(self):
         res = self.client.get(reverse('users.purchases.receipt',
-                              args=[self.addon.pk]))
+                                      args=[self.addon.pk]))
         eq_(pq(res.content)('#sorter a').attr('href'),
             reverse('users.purchases'))
 
     @amo.tests.mobile_test
     def test_mobile_receipt_view(self):
         res = self.client.get(reverse('users.purchases.receipt',
-                              args=[self.addon.pk]))
+                                      args=[self.addon.pk]))
         eq_(pq(res.content)('#sort-menu a').attr('href'),
             reverse('users.purchases'))
 
@@ -1248,13 +1262,12 @@ class TestPurchases(amo.tests.TestCase):
         self._test_purchases_attribute()
 
     def test_no_purchases_attribute(self):
-        self.user.get_profile().addonpurchase_set.all().delete()
+        self.user_profile.addonpurchase_set.all().delete()
         doc = pq(self.client.get(self.url).content)
         eq_(doc('body').attr('data-purchases'), '')
 
     def _test_refund_link(self):
-        doc = pq(self.client.get(self.url).content)('#purchases')
-        eq_(doc('.supportable + a.request-support').eq(0).attr('href'),
+        eq_(self.get_pq()('a.request-support').eq(0).attr('href'),
             self.get_url())
 
     def test_refund_link(self):
@@ -1399,15 +1412,13 @@ class TestPurchases(amo.tests.TestCase):
         eq_(len(res.context['addons']), 3)
 
     def test_purchase_multiple(self):
-        Contribution.objects.create(user=self.user.get_profile(),
+        Contribution.objects.create(user=self.user_profile,
                                     addon=self.addon, amount='1.00',
                                     type=amo.CONTRIB_PURCHASE)
-        res = self.client.get(self.url)
-        addon_vitals = pq(res.content)('#purchases .vitals').eq(0)
-        eq_(addon_vitals('.purchase').length, 2)
+        eq_(self.get_pq()('.vitals').eq(0)('.purchase').length, 2)
 
     def make_contribution(self, addon, amt, type, day):
-        c = Contribution.objects.create(user=self.user.get_profile(),
+        c = Contribution.objects.create(user=self.user_profile,
                                         addon=addon, amount=amt, type=type)
         c.created = datetime(2011, 11, day)
         c.save()
@@ -1416,8 +1427,8 @@ class TestPurchases(amo.tests.TestCase):
     def _test_refunded(self):
         addon = Addon.objects.get(type=amo.ADDON_EXTENSION, guid='t1')
         self.make_contribution(addon, '-1.00', amo.CONTRIB_REFUND, 2)
-        doc = pq(self.client.get(self.url).content)
-        item = doc('#purchases .item').eq(0)
+        doc = pq(self.client.get(self.url, {'sort': 'name'}).content)
+        item = self.get_pq()('.item').eq(0)
         assert item.hasClass('refunded'), (
             "Expected '.item' to have 'refunded' class")
         assert item.find('.refund-notice'), 'Expected refund message'
@@ -1435,7 +1446,7 @@ class TestPurchases(amo.tests.TestCase):
             self.make_contribution(addon, '-1.00', amo.CONTRIB_REFUND, 2),
             self.make_contribution(addon, '1.00', amo.CONTRIB_PURCHASE, 3)
         ]
-        item = pq(self.client.get(self.url).content)('#purchases .item').eq(0)
+        item = self.get_pq()('.item').eq(0)
         assert not item.hasClass('reversed'), (
             "Unexpected 'refunded' class on '.item'")
         assert not item.find('.refund-notice'), 'Unexpected refund message'
@@ -1454,7 +1465,8 @@ class TestPurchases(amo.tests.TestCase):
         self.make_contribution(addon, '-1.00', amo.CONTRIB_REFUND, 2)
         self.make_contribution(addon, '1.00', amo.CONTRIB_PURCHASE, 3)
         self.make_contribution(addon, '-1.00', amo.CONTRIB_REFUND, 4)
-        item = pq(self.client.get(self.url).content)('#purchases .item').eq(0)
+        r = self.client.get(self.url, {'sort': 'name'})
+        item = self.get_pq()('.item').eq(0)
         assert item.hasClass('refunded'), (
             "Unexpected 'refunded' class on '.item'")
         assert item.find('.refund-notice'), 'Expected refund message'
@@ -1471,7 +1483,8 @@ class TestPurchases(amo.tests.TestCase):
     def _test_chargeback(self):
         addon = Addon.objects.get(type=amo.ADDON_EXTENSION, guid='t1')
         self.make_contribution(addon, '-1.00', amo.CONTRIB_CHARGEBACK, 2)
-        item = pq(self.client.get(self.url).content)('#purchases .item').eq(0)
+        r = self.client.get(self.url, {'sort': 'name'})
+        item = self.get_pq()('.item').eq(0)
         assert item.hasClass('reversed'), (
             "Expected '.item' to have 'reversed' class")
         assert not item.find('a.request-support'), (

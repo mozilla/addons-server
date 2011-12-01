@@ -17,7 +17,7 @@
             {{ _('Show all purchases') }}</a></li></ul>
         </div>
       {% else %}
-        {{ impala_addon_listing_header(url_base, filter.opts, sorting, filter.extras) }}
+        {{ impala_addon_listing_header(request.get_full_path(), search_filter=filter) }}
       {% endif %}
       <div class="items">
         {% for addon in addons.object_list %}
