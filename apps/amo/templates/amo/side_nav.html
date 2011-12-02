@@ -7,8 +7,9 @@
 {% elif addon_type == amo.ADDON_WEBAPP %}
   {% set extras = (
       ('downloads', _('Most Popular')),
-      ('rating', _('Top Rated')),
-      ('created', _('Newest')),
+      ('free', loc('Top Free')),
+      ('paid', loc('Top Paid')),
+      ('rating', _('Highest Rated')),
   ) %}
 {% else %}
   {% set extras = (

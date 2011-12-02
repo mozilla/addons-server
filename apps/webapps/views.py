@@ -49,7 +49,7 @@ def app_home(request):
 class AppCategoryLandingFilter(CategoryLandingFilter):
 
     opts = (('downloads', _lazy(u'Most Popular')),
-            ('rating', _lazy(u'Top Rated')),
+            ('rating', _lazy(u'Highest Rated')),
             ('created', _lazy(u'Recently Added')),
             ('featured', _lazy(u'Featured')))
 
@@ -58,7 +58,7 @@ class AppFilter(addons.views.BaseFilter):
     opts = (('downloads', _lazy(u'Weekly Downloads')),
             ('free', loc(u'Top Free')),
             ('paid', loc(u'Top Paid')),
-            ('rating', _lazy(u'Top Rated')))
+            ('rating', _lazy(u'Highest Rated')))
     extras = (('created', _lazy(u'Newest')),
               ('name', _lazy(u'Name')),
               ('price', loc(u'Price')),

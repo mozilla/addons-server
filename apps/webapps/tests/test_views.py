@@ -12,6 +12,7 @@ import amo
 from amo.helpers import absolutify, numberfmt, page_title
 import amo.tests
 from amo.urlresolvers import reverse
+from amo.utils import urlparams
 from addons.models import Addon, AddonCategory, AddonUser, Category
 from addons.tests.test_views import add_addon_author, test_hovercards
 from browse.tests import test_listing_sort, test_default_sort, TestMobileHeader
@@ -114,11 +115,10 @@ class TestHeader(WebappTest):
 
     def setUp(self):
         super(TestHeader, self).setUp()
-        self.home = reverse('apps.home')
-        self.url = reverse('apps.list')
+        self.url = reverse('apps.home')
 
     def test_header(self):
-        for url in (self.url, self.home):
+        for url in (self.url, reverse('apps.list')):
             r = self.client.get(url)
             eq_(r.status_code, 200)
             doc = pq(r.content)
@@ -127,13 +127,23 @@ class TestHeader(WebappTest):
             eq_(doc('#search-q').attr('placeholder'), 'search for apps')
 
     def test_header_links(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)('#site-nav')
-        eq_(doc('#most-popular-apps a').attr('href'),
-            self.url + '?sort=downloads')
-        eq_(doc('#featured-apps a').attr('href'), self.url + '?sort=featured')
-        eq_(doc('#submit-app a').attr('href'), reverse('devhub.submit_apps.1'))
+        browse = reverse('apps.list')
+        cat = Category.objects.create(name='Games', slug='games',
+                                      type=amo.ADDON_WEBAPP)
+        expected = [
+            ('Most Popular', urlparams(browse, sort='downloads')),
+            ('Top Free', urlparams(browse, sort='free')),
+            ('Top Paid', urlparams(browse, sort='paid')),
+            ('Highest Rated', urlparams(browse, sort='rating')),
+            ('Games', cat.get_url_path()),
+        ]
+
+        r = self.client.get(self.url)
+        doc = pq(r.content)('#site-nav')
+
+        amo.tests.check_links(expected, doc('#explore-cats li a'))
         eq_(doc('#my-apps a').attr('href'), reverse('users.purchases'))
+        eq_(doc('#submit-app a').attr('href'), reverse('devhub.submit_apps.1'))
 
     @patch.object(settings, 'READ_ONLY', False)
     def test_balloons_no_readonly(self):

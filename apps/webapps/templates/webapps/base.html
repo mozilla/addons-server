@@ -6,7 +6,7 @@
   <h1 class="site-title">
     <a href="{{ url('apps.home') }}">{{ _('Apps') }}</a>
   </h1>
-  {% include "webapps/site_nav.html" %}
+  {{ apps_site_nav() }}
 {% endblock %}
 
 {% block aux_nav %}{% endblock %}
