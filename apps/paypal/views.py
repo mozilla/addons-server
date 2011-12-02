@@ -13,7 +13,7 @@ import phpserialize as php
 from statsd import statsd
 
 import amo
-from amo.decorators import no_login_required, write
+from amo.decorators import no_login_required, post_required, write
 from stats.db import StatsDictField
 from stats.models import Contribution, ContributionError, SubscriptionEvent
 
@@ -23,6 +23,7 @@ paypal_log = commonware.log.getLogger('z.paypal')
 @write
 @csrf_exempt
 @no_login_required
+@post_required
 def paypal(request):
     """
     Handle PayPal IPN post-back for contribution transactions.
@@ -119,10 +120,6 @@ def _parse_currency(amount):
 
 
 def _paypal(request):
-
-    if request.method != 'POST':
-        return http.HttpResponseNotAllowed(['POST'])
-
     # raw_post_data has to be accessed before request.POST. wtf django?
     raw, post = request.raw_post_data, request.POST.copy()
     paypal_log.info('IPN received: %s' % raw)
