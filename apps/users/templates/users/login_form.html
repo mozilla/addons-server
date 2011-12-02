@@ -1,6 +1,5 @@
 <form method="post" action="{{ action }}" class="{% if is_ajax %}ajax-submit {% endif %}featured-inner object-lead user-input">
   {{ csrf() }}
-  {% include "messages.html" %}
   {% if form.non_field_errors() %}
       <div class="notification-box error">
         <ul>

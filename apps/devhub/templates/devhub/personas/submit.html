@@ -13,7 +13,6 @@
   {{ impala_breadcrumbs([(url('browse.personas'), _('Personas')),
                          (None, _('Create'))]) }}
   <h1>{{ title }}</h1>
-  {% include "messages.html" %}
   <div class="island hero prettyform" id="submit-persona">
     <form action="" method="post">
       {{ csrf() }}

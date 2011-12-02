@@ -1098,6 +1098,9 @@ class TestReportAbuse(amo.tests.TestCase):
         eq_(report.message, 'spammy')
         eq_(report.reporter.email, 'regular@mozilla.com')
 
+        r = self.client.get(self.full_page)
+        eq_(pq(r.content)('.notification-box h2').length, 1)
+
 
 class TestPurchases(amo.tests.TestCase):
     fixtures = ['base/users']

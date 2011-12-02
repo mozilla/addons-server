@@ -61,18 +61,9 @@ def test_hovercards(self, doc, addons, src=''):
 
 
 class TestHomepage(amo.tests.TestCase):
-    fixtures = ['base/apps',
-                'base/users',
-                'base/addon_3615',
-                'base/collections',
-                'base/global-stats',
-                'base/featured',
-                'base/collections',
-                'addons/featured',
-                'bandwagon/featured_collections']
+    fixtures = ['base/apps']
 
     def setUp(self):
-        super(TestHomepage, self).setUp()
         self.base_url = reverse('home')
 
     def test_thunderbird(self):
@@ -93,8 +84,19 @@ class TestHomepage(amo.tests.TestCase):
             'Welcome to Thunderbird Add-ons. Add extra features and styles to '
             'make Thunderbird your own.')
 
+
+class TestHomepageFeatures(amo.tests.TestCase):
+    fixtures = ['base/users',
+                'base/addon_3615',
+                'base/collections',
+                'base/global-stats',
+                'base/featured',
+                'base/collections',
+                'addons/featured',
+                'bandwagon/featured_collections']
+
     def test_no_unreviewed(self):
-        response = self.client.get(self.base_url)
+        response = self.client.get(reverse('home'))
         addon_lists = 'popular featured hotness personas'.split()
         for key in addon_lists:
             for addon in response.context[key]:

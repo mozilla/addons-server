@@ -107,7 +107,7 @@
          on the side of the page. #}
       {% block main_content %}
         {# outer_content is for something you want above content on every page. #}
-        {% block outer_content %}{% endblock %}
+        {% block outer_content %}{% include "messages.html" %}{% endblock %}
         {% block content %}{% endblock %}
       {% endblock %}
     </div>

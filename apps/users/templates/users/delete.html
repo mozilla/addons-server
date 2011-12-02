@@ -9,8 +9,6 @@
   <div class="primary island">
     <h1>{{ _('Delete User Account') }}</h1>
 
-    {% include "messages.html" %}
-
     {% if amouser.is_developer %}
       <div class="notification-box info">
       {% trans link=url('users.profile', amouser.id) %}

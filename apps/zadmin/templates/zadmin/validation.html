@@ -7,7 +7,6 @@
 <section id="admin-validation"
          data-status-url="{{ url('zadmin.job_status') }}">
   <h2>{{ title }}</h2>
-  {% include "messages.html" %}
   {{ form.errors }}
   <form action="{{ url('zadmin.start_validation') }}" method="post">
   {{ csrf() }}

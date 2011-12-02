@@ -48,7 +48,6 @@ data-featured-collection-url="{{ url('zadmin.featured_collection') }}"
 {% endif %}
 <form action="" method="post">
   {{ csrf() }}
-  {% include "messages.html" %}
   {{ form.non_form_errors() }}
   {{ form.management_form }}
   <table>
