@@ -62,7 +62,7 @@
           <div><strong>{{ _('Files in this version:') }}</strong></div>
           <ul>
           {% for file in version.all_files %}
-          <li>
+          <li class="file-info">
             <span class="light">
               <strong><a href="{{ file.get_url_path('editor') }}" class="install"
                   data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ file.platform }}</a></strong>
@@ -74,7 +74,7 @@
               <a href="{{ url('files.list', file.id) }}">{{ _('Contents') }}</a>
               {% if show_diff %}
               &middot;
-              <a href="{{ url('files.compare', file.id, file_compare(file, show_diff)) }}">{{ _('Compare') }}</a>
+              <a class="compare" href="{{ url('files.compare', file.id, file_compare(file, show_diff)) }}">{{ _('Compare') }}</a>
               {% endif %}
             </span>
           </li>

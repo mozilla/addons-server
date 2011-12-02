@@ -84,7 +84,14 @@ def check_links(expected, elements, selected=None, verify=True):
     Links are verified by default.
 
     """
-    for idx, (text, link) in enumerate(expected):
+    for idx, item in enumerate(expected):
+        # List item could be `(text, link)`.
+        if isinstance(item, tuple):
+            text, link = item
+        # Or list item could be `link`.
+        elif isinstance(item, basestring):
+            text, link = None, item
+
         e = elements.eq(idx)
         if text is not None:
             eq_(e.text(), text)
@@ -94,7 +101,8 @@ def check_links(expected, elements, selected=None, verify=True):
                 e = e.find('a')
             eq_(e.attr('href'), link)
             if verify and link != '#':
-                eq_(Client().head(link, follow=True).status_code, 200)
+                eq_(Client().head(link, follow=True).status_code, 200,
+                    '%r is dead' % link)
         if text is not None and selected is not None:
             e = e.filter('.selected') or e.parents('.selected')
             eq_(e.length, text == selected)

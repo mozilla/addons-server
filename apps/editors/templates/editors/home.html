@@ -33,8 +33,8 @@
         {% for type in ('nominated', 'pending', 'prelim'): %}
           <div class="editor-stats-table">
             <div>
-              {{ ngettext("{c} submission in the past 7 days.",
-                          "{c} submissions in the past 7 days.",
+              {{ ngettext("{c} unreviewed submissions.",
+                          "{c} unreviewed submissions.",
                           progress['week'][type])|f(c=progress['week'][type]) }}
             </div>
             <div class="editor-stats-dark">

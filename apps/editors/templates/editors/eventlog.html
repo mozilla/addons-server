@@ -39,7 +39,8 @@
             <td>
               {{ item.to_string('editor') }}
               {% if item.details %}
-              <a href="{{ url('editors.eventlog.detail', item.id) }}">
+              <a class="more-details"
+                 href="{{ url('editors.eventlog.detail', item.id) }}">
                 {{ _('More details.') }}
               </a>
               {% endif %}
@@ -49,7 +50,7 @@
         </tbody>
       </table>
     {% else %}
-      <p>{{ _('No events found for this period.') }}</p>
+      <p class="no-results">{{ _('No events found for this period.') }}</p>
     {% endif %}
   </div>
 
