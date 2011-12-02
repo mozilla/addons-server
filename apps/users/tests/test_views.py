@@ -658,6 +658,17 @@ class TestLogin(UserViewBase):
         self.client.get(self.url)
         assert login.called
 
+    @patch.object(settings, 'REGISTER_USER_LIMIT', 0)
+    @patch('django.contrib.auth.views.login')
+    def test_registration_open_when_no_limit_set(self, login):
+        def assert_registration_open(request, extra_context=None, **kwargs):
+            assert not extra_context['registration_closed'], (
+                                        'Expected registration to be open')
+            return http.HttpResponse(200)
+        login.side_effect = assert_registration_open
+        self.client.get(self.url)
+        assert login.called
+
 
 @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', '')
 @patch('users.models.UserProfile.log_login_attempt')
