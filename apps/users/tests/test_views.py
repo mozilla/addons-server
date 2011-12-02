@@ -658,6 +658,7 @@ class TestLogin(UserViewBase):
         self.client.get(self.url)
         assert login.called
 
+
 @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', '')
 @patch('users.models.UserProfile.log_login_attempt')
 class TestFailedCount(UserViewBase):
@@ -1427,7 +1428,6 @@ class TestPurchases(amo.tests.TestCase):
     def _test_refunded(self):
         addon = Addon.objects.get(type=amo.ADDON_EXTENSION, guid='t1')
         self.make_contribution(addon, '-1.00', amo.CONTRIB_REFUND, 2)
-        doc = pq(self.client.get(self.url, {'sort': 'name'}).content)
         item = self.get_pq()('.item').eq(0)
         assert item.hasClass('refunded'), (
             "Expected '.item' to have 'refunded' class")
@@ -1465,7 +1465,6 @@ class TestPurchases(amo.tests.TestCase):
         self.make_contribution(addon, '-1.00', amo.CONTRIB_REFUND, 2)
         self.make_contribution(addon, '1.00', amo.CONTRIB_PURCHASE, 3)
         self.make_contribution(addon, '-1.00', amo.CONTRIB_REFUND, 4)
-        r = self.client.get(self.url, {'sort': 'name'})
         item = self.get_pq()('.item').eq(0)
         assert item.hasClass('refunded'), (
             "Unexpected 'refunded' class on '.item'")
@@ -1483,7 +1482,6 @@ class TestPurchases(amo.tests.TestCase):
     def _test_chargeback(self):
         addon = Addon.objects.get(type=amo.ADDON_EXTENSION, guid='t1')
         self.make_contribution(addon, '-1.00', amo.CONTRIB_CHARGEBACK, 2)
-        r = self.client.get(self.url, {'sort': 'name'})
         item = self.get_pq()('.item').eq(0)
         assert item.hasClass('reversed'), (
             "Expected '.item' to have 'reversed' class")
