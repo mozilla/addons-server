@@ -381,21 +381,28 @@ class TestAppDashboardSorting(HubTest):
             eq_(app.is_premium(), False)
 
     def make_paid(self, apps):
-        price = Price.objects.create(price='1.00')
-        for app in apps:
+        for idx, app in enumerate(apps):
             app.update(premium_type=amo.ADDON_PREMIUM)
-            AddonPremium.objects.create(addon=app, price=price)
+            AddonPremium.objects.create(addon=app,
+                price=Price.objects.create(price=idx))
 
     def test_paid_sort(self):
-        self.make_paid(list(self.my_apps.all()[:3]))
+        self.make_paid(self.my_apps.all()[:3])
         for app in test_listing_sort(self, 'paid', 'weekly_downloads'):
             eq_(app.is_premium(), True)
 
     def test_price_sort(self):
-        self.make_paid(list(self.my_apps.all()[:3]))
+        self.make_paid(self.my_apps.all()[:3])
         apps = test_listing_sort(self, 'price', None, reverse=False,
                                  sel_class='extra-opt')
         eq_(apps, list(self.my_apps.order_by('addonpremium__price__price')))
+
+        # Sort by PK if apps have the same price.
+        price = Price.objects.all()[0]
+        apps = test_listing_sort(self, 'price', None, reverse=False,
+                                 sel_class='extra-opt')
+        eq_(apps,
+            list(self.my_apps.order_by('addonpremium__price__price', 'id')))
 
     def test_rating_sort(self):
         test_listing_sort(self, 'rating', 'bayesian_rating')

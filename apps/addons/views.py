@@ -272,7 +272,7 @@ class BaseFilter(object):
         return manual_order(self.model.objects, ids, 'addons.id')
 
     def filter_price(self):
-        return self.model.objects.order_by('addonpremium__price__price')
+        return self.model.objects.order_by('addonpremium__price__price', 'id')
 
     def filter_free(self):
         if self.model == Addon:

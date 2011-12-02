@@ -683,7 +683,7 @@ class AddonsFilter(BaseFilter):
         if field == 'purchased':
             return qs.order_by('-addonpurchase__created')
         elif field == 'price':
-            return qs.order_by('addonpremium__price__price')
+            return qs.order_by('addonpremium__price__price', 'id')
         elif field == 'name':
             return order_by_translation(qs, 'name')
 
