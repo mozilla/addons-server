@@ -673,7 +673,7 @@ def unsubscribe(request, hash=None, token=None, perm_setting=None):
              'perm_settings': perm_settings})
 
 
-class AddonsFilter(BaseFilter):
+class PurchasesFilter(BaseFilter):
     opts = (('purchased', loc('Purchase Date')),
             ('price', _lazy(u'Price')),
             ('name', _lazy(u'Name')))
@@ -681,7 +681,8 @@ class AddonsFilter(BaseFilter):
     def filter(self, field):
         qs = self.base_queryset
         if field == 'purchased':
-            return qs.order_by('-addonpurchase__created')
+            return (qs.filter(addonpurchase__user=self.request.amo_user)
+                    .order_by('-addonpurchase__created'))
         elif field == 'price':
             return qs.order_by('addonpremium__price__price', 'id')
         elif field == 'name':
@@ -719,7 +720,8 @@ def purchases(request, addon_id=None, template=None):
     addons = Addon.objects.filter(id__in=ids)
     if webapp:
         addons = addons.filter(type=amo.ADDON_WEBAPP)
-    filter = AddonsFilter(request, addons, key='sort', default='purchased')
+
+    filter = PurchasesFilter(request, addons, key='sort', default='purchased')
 
     if addon_id and not filter.qs:
         # User has requested a receipt for an addon they don't have.

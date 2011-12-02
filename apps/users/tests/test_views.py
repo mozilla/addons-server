@@ -1111,6 +1111,7 @@ class TestPurchases(amo.tests.TestCase):
         self.user_profile = self.user.get_profile()
 
         self.addon, self.con = None, None
+        self.addons = []
         for x in range(1, 5):
             price = Price.objects.create(price=10 - x)
             addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
@@ -1124,6 +1125,16 @@ class TestPurchases(amo.tests.TestCase):
             con.save()
             if not self.addon and not self.con:
                 self.addon, self.con = addon, con
+            self.addons.append(addon)
+
+    def make_contribution(self, addon, amt, type, day, user=None):
+        c = Contribution.objects.create(user=user or self.user_profile,
+                                        addon=addon, amount=amt, type=type)
+        # This needs to be a date in the past for contribution sorting
+        # to work, so don't change this - or get scared by this.
+        c.created = datetime(2011, 11, day)
+        c.save()
+        return c
 
     def test_in_menu(self):
         doc = pq(self.client.get(self.url).content)
@@ -1202,9 +1213,18 @@ class TestPurchases(amo.tests.TestCase):
         eq_(self.get_order('price'), ['t4', 't3', 't2', 't1'])
 
     def test_ordering_purchased(self):
-        for addon in Addon.objects.all():
-            purchase = addon.addonpurchase_set.all()[0]
+        for addon in self.addons:
+            purchase = addon.addonpurchase_set.get(user=self.user_profile)
             purchase.update(created=datetime.now() + timedelta(days=addon.id))
+
+        # Purchase an app on behalf of a different user, which shouldn't
+        # affect the ordering of my purchases.
+        clouserw = User.objects.get(email='clouserw@gmail.com').get_profile()
+        self.make_contribution(self.addons[2], '1.00', amo.CONTRIB_PURCHASE, 5,
+                               user=clouserw)
+        self.addons[2].addonpurchase_set.get(user=clouserw).update(
+            created=datetime.now() + timedelta(days=999))
+
         eq_(self.get_order(''), ['t4', 't3', 't2', 't1'])
         eq_(self.get_order('purchased'), ['t4', 't3', 't2', 't1'])
 
@@ -1414,7 +1434,8 @@ class TestPurchases(amo.tests.TestCase):
     def test_free_shows_up(self):
         Contribution.objects.all().delete()
         res = self.client.get(self.url)
-        eq_(res.context['addons'][0].pk, self.addon.pk)
+        eq_(sorted(a.guid for a in res.context['addons']),
+            ['t1', 't2', 't3', 't4'])
 
     def test_others_free_dont(self):
         Contribution.objects.all().delete()
@@ -1429,16 +1450,9 @@ class TestPurchases(amo.tests.TestCase):
                                     type=amo.CONTRIB_PURCHASE)
         eq_(self.get_pq()('.vitals').eq(0)('.purchase').length, 2)
 
-    def make_contribution(self, addon, amt, type, day):
-        c = Contribution.objects.create(user=self.user_profile,
-                                        addon=addon, amount=amt, type=type)
-        c.created = datetime(2011, 11, day)
-        c.save()
-        return c
-
     def _test_refunded(self):
-        addon = Addon.objects.get(type=amo.ADDON_EXTENSION, guid='t1')
-        self.make_contribution(addon, '-1.00', amo.CONTRIB_REFUND, 2)
+        self.make_contribution(Addon.objects.get(guid='t1'), '-1.00',
+                               amo.CONTRIB_REFUND, 2)
         item = self.get_pq()('.item').eq(0)
         assert item.hasClass('refunded'), (
             "Expected '.item' to have 'refunded' class")
@@ -1452,7 +1466,7 @@ class TestPurchases(amo.tests.TestCase):
         self._test_refunded()
 
     def _test_repurchased(self):
-        addon = Addon.objects.get(type=amo.ADDON_EXTENSION, guid='t1')
+        addon = Addon.objects.get(guid='t1')
         c = [
             self.make_contribution(addon, '-1.00', amo.CONTRIB_REFUND, 2),
             self.make_contribution(addon, '1.00', amo.CONTRIB_PURCHASE, 3)
@@ -1472,7 +1486,7 @@ class TestPurchases(amo.tests.TestCase):
         self._test_repurchased()
 
     def _test_rerefunded(self):
-        addon = Addon.objects.get(type=amo.ADDON_EXTENSION, guid='t1')
+        addon = Addon.objects.get(guid='t1')
         self.make_contribution(addon, '-1.00', amo.CONTRIB_REFUND, 2)
         self.make_contribution(addon, '1.00', amo.CONTRIB_PURCHASE, 3)
         self.make_contribution(addon, '-1.00', amo.CONTRIB_REFUND, 4)
@@ -1491,7 +1505,7 @@ class TestPurchases(amo.tests.TestCase):
         self._test_rerefunded()
 
     def _test_chargeback(self):
-        addon = Addon.objects.get(type=amo.ADDON_EXTENSION, guid='t1')
+        addon = Addon.objects.get(guid='t1')
         self.make_contribution(addon, '-1.00', amo.CONTRIB_CHARGEBACK, 2)
         item = self.get_pq()('.item').eq(0)
         assert item.hasClass('reversed'), (
