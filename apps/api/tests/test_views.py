@@ -691,15 +691,13 @@ class TestGuidSearch(TestCase):
 
     def test_block_inactive(self):
         Addon.objects.filter(id=6113).update(disabled_by_user=True)
-        r = make_call('search/guid:{22870005-adef-4c9d-ae36-d0e1f2f27e5a},'
-                      '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}')
+        r = make_call(self.good)
         eq_(set(['3615']),
             set([a.attrib['id'] for a in pq(r.content)('addon')]))
 
     def test_block_nonpublic(self):
         Addon.objects.filter(id=6113).update(status=amo.STATUS_UNREVIEWED)
-        r = make_call('search/guid:{22870005-adef-4c9d-ae36-d0e1f2f27e5a},'
-                      '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}')
+        r = make_call(self.good)
         eq_(set(['3615']),
             set([a.attrib['id'] for a in pq(r.content)('addon')]))
 

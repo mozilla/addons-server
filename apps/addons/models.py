@@ -9,7 +9,6 @@ import time
 from datetime import datetime, timedelta
 
 from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
 from django.db import models, transaction
 from django.dispatch import receiver
 from django.db.models import Q, Max, signals as dbsignals
@@ -21,25 +20,25 @@ import commonware.log
 import json_field
 from tower import ugettext_lazy as _
 
+from addons.utils import ReverseNameLookup, FeaturedManager, CreaturedManager
 import amo.models
-import sharing.utils as sharing
 from amo.decorators import use_master
 from amo.fields import DecimalCharField
 from amo.helpers import absolutify, shared_url
 from amo.utils import (send_mail, urlparams, sorted_groupby, JSONEncoder,
                        slugify, to_language)
 from amo.urlresolvers import get_outgoing_url, reverse
-from addons.utils import ReverseNameLookup, FeaturedManager, CreaturedManager
 from files.models import File
 from market.models import AddonPremium, Price
 from reviews.models import Review
+import sharing.utils as sharing
 from stats.models import AddonShareCountTotal
 from translations.fields import (TranslatedField, PurifiedField,
                                  LinkifiedField, Translation)
 from translations.query import order_by_translation
 from users.models import UserProfile, PersonaAuthor, UserForeignKey
 from users.utils import find_users
-from versions.compare import version_int
+from versions.compare import version_int, version_re
 from versions.models import Version
 
 from . import query, signals
@@ -1669,7 +1668,8 @@ class CompatOverride(amo.models.ModelBase):
 
     def collapsed_ranges(self):
         """Collapse identical version ranges into one entity."""
-        Range = collections.namedtuple('Range', 'type min max apps')
+        Range = collections.namedtuple('Range', 'type min max min_int max_int '
+                                                'apps')
         AppRange = collections.namedtuple('AppRange', 'app min max')
         rv = []
         sort_key = lambda x: (x.min_version, x.max_version, x.type)
@@ -1677,7 +1677,8 @@ class CompatOverride(amo.models.ModelBase):
             compats = list(compats)
             first = compats[0]
             item = Range(first.override_type(), first.min_version,
-                         first.max_version, [])
+                         first.max_version, first.min_version_int,
+                         first.max_version_int, [])
             for compat in compats:
                 app = AppRange(amo.APPS_ALL[compat.app_id],
                                compat.min_app_version, compat.max_app_version)
@@ -1696,18 +1697,100 @@ class CompatOverrideRange(amo.models.ModelBase):
     """App compatibility for a certain version range of a RemoteAddon."""
     compat = models.ForeignKey(CompatOverride, related_name='_compat_ranges')
     type = models.SmallIntegerField(choices=OVERRIDE_TYPES, default=1)
-    min_version = models.CharField(max_length=255, blank=True, default='*')
+    min_version = models.CharField(max_length=255, blank=True, default='0')
     max_version = models.CharField(max_length=255, blank=True, default='*')
+    # Using a char field in case addon version is bigger than a big int.
+    min_version_int = models.CharField(max_length=50, blank=True,
+                                       editable=False)
+    max_version_int = models.CharField(max_length=50, blank=True,
+                                       editable=False)
     app = models.ForeignKey('applications.Application')
-    min_app_version = models.CharField(max_length=255, blank=True, default='*')
+    min_app_version = models.CharField(max_length=255, blank=True, default='0')
     max_app_version = models.CharField(max_length=255, blank=True, default='*')
 
     class Meta:
         db_table = 'compat_override_range'
 
+    def save(self, *args, **kw):
+        # Handle all the edge cases of addon versions: min=0 or max=*, version
+        # is an invalid version number, and when to create a version_int for
+        # range comparisons.
+        if self.min_version == '0':
+            if self.max_version == '*':
+                pass  # Don't set _int fields.
+            elif version_re.match(self.max_version):
+                self.min_version_int = '0'
+                self.max_version_int = str(version_int(self.max_version))
+            else:  # Can't filter by range.
+                self.min_version = self.max_version
+        elif version_re.match(self.min_version):
+            if self.max_version == '*':
+                self.min_version_int = str(version_int(self.min_version))
+                self.max_version_int = str(version_int('99999'))
+            elif version_re.match(self.max_version):
+                self.min_version_int = str(version_int(self.min_version))
+                self.max_version_int = str(version_int(self.max_version))
+            else:  # Can't filter by range.
+                self.max_version = self.min_version
+        else:
+            if self.max_version == '*':
+                self.max_version = self.min_version
+            elif version_re.match(self.max_version):
+                self.min_version = self.max_version
+            else:
+                self.max_version = self.min_version
+
+        return super(CompatOverrideRange, self).save(*args, **kw)
+
     def override_type(self):
         """This is what Firefox wants to see in the XML output."""
         return {0: 'compatible', 1: 'incompatible'}[self.type]
+
+
+class IncompatibleVersions(amo.models.ModelBase):
+    """
+    Denormalized table to join against for fast compat override filtering.
+
+    This was created to be able to join against a specific version record since
+    the CompatOverrideRange can be wildcarded (e.g. 0 to *, or 1.0 to 1.*), and
+    addon versioning isn't as consistent as Firefox versioning to trust
+    `version_int` in all cases.  So extra logic needed to be provided for when
+    a particular version falls within the range of a compatibility override.
+    """
+    version = models.ForeignKey(Version, related_name='+')
+    app = models.ForeignKey('applications.Application', related_name='+')
+    min_app_version = models.CharField(max_length=255, blank=True, default='0')
+    max_app_version = models.CharField(max_length=255, blank=True, default='*')
+    min_app_version_int = models.BigIntegerField(blank=True, null=True,
+                                                 editable=False, db_index=True)
+    max_app_version_int = models.BigIntegerField(blank=True, null=True,
+                                                 editable=False, db_index=True)
+
+    class Meta:
+        db_table = 'incompatible_versions'
+
+    def save(self, *args, **kw):
+        self.min_app_version_int = version_int(self.min_app_version)
+        self.max_app_version_int = version_int(self.max_app_version)
+        return super(IncompatibleVersions, self).save(*args, **kw)
+
+
+def update_incompatible_versions(sender, instance, **kw):
+    if not instance.compat.addon_id:
+        return
+
+    from . import tasks
+    versions = instance.compat.addon.versions.values_list('id', flat=True)
+    for version_id in versions:
+        tasks.update_incompatible_appversions.delay(version_id)
+
+
+models.signals.post_save.connect(update_incompatible_versions,
+                                 sender=CompatOverrideRange,
+                                 dispatch_uid='cor_update_incompatible')
+models.signals.post_delete.connect(update_incompatible_versions,
+                                   sender=CompatOverrideRange,
+                                   dispatch_uid='cor_update_incompatible')
 
 
 # webapps.models imports addons.models to get Addon, so we need to keep the

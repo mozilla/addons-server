@@ -225,10 +225,21 @@ class Update(object):
         elif self.compat_mode == 'normal':
             # When file has strict_compatibility enabled, or file has binary
             # components, default to compatible is disabled.
-            sql.append("""AND (
+            sql.append("""AND
                 CASE WHEN files.strict_compatibility = 1 OR files.binary = 1
-                THEN appmax.version_int >= %(version_int)s ELSE 1 END)
+                THEN appmax.version_int >= %(version_int)s ELSE 1 END
             """)
+            # Filter out versions found in compat overrides
+            sql.append("""AND
+                NOT versions.id IN (
+                SELECT version_id FROM incompatible_versions
+                WHERE app_id=%(app_id)s AND
+                  (min_app_version='0' AND
+                       max_app_version_int >= %(version_int)s) OR
+                  (min_app_version_int <= %(version_int)s AND
+                       max_app_version='*') OR
+                  (min_app_version_int <= %(version_int)s AND
+                       max_app_version_int >= %(version_int)s)) """)
 
         else:  # Not defined or 'strict'.
             sql.append('AND appmax.version_int >= %(version_int)s ')

@@ -27,7 +27,8 @@ from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonCategory, AddonDependency,
                            AddonRecommendation, AddonType, AddonUpsell,
                            BlacklistedGuid, Category, Charity, CompatOverride,
-                           CompatOverrideRange, FrozenAddon, Persona, Preview)
+                           CompatOverrideRange, FrozenAddon,
+                           IncompatibleVersions, Preview)
 from applications.models import Application, AppVersion
 from devhub.models import ActivityLog
 from files.models import File, Platform
@@ -1897,15 +1898,15 @@ class TestWatermarkHash(amo.tests.TestCase):
 class TestCompatOverride(amo.tests.TestCase):
 
     def setUp(self):
-        app = Application.objects.create(id=1)
+        self.app = Application.objects.create(id=1)
 
         one = CompatOverride.objects.create(guid='one')
-        CompatOverrideRange.objects.create(compat=one, app=app)
+        CompatOverrideRange.objects.create(compat=one, app=self.app)
 
         two = CompatOverride.objects.create(guid='two')
-        CompatOverrideRange.objects.create(compat=two, app=app,
+        CompatOverrideRange.objects.create(compat=two, app=self.app,
                                            min_version='1', max_version='2')
-        CompatOverrideRange.objects.create(compat=two, app=app,
+        CompatOverrideRange.objects.create(compat=two, app=self.app,
                                            min_version='1', max_version='2',
                                            min_app_version='3',
                                            max_app_version='4')
@@ -1960,10 +1961,10 @@ class TestCompatOverride(amo.tests.TestCase):
 
         eq_(len(r), 1)
         compat_range = r[0]
-        self.check(compat_range, type='incompatible', min='*', max='*')
+        self.check(compat_range, type='incompatible', min='0', max='*')
 
         eq_(len(compat_range.apps), 1)
-        self.check(compat_range.apps[0], app=amo.FIREFOX, min='*', max='*')
+        self.check(compat_range.apps[0], app=amo.FIREFOX, min='0', max='*')
 
     def test_collapsed_ranges_multiple_versions(self):
         c = CompatOverride.objects.get(guid='one')
@@ -1975,9 +1976,9 @@ class TestCompatOverride(amo.tests.TestCase):
 
         eq_(len(r), 2)
 
-        self.check(r[0], type='incompatible', min='*', max='*')
+        self.check(r[0], type='incompatible', min='0', max='*')
         eq_(len(r[0].apps), 1)
-        self.check(r[0].apps[0], app=amo.FIREFOX, min='*', max='*')
+        self.check(r[0].apps[0], app=amo.FIREFOX, min='0', max='*')
 
         self.check(r[1], type='incompatible', min='1', max='2')
         eq_(len(r[1].apps), 1)
@@ -1994,13 +1995,13 @@ class TestCompatOverride(amo.tests.TestCase):
 
         eq_(len(r), 2)
 
-        self.check(r[0], type='compatible', min='*', max='*')
+        self.check(r[0], type='compatible', min='0', max='*')
         eq_(len(r[0].apps), 1)
         self.check(r[0].apps[0], app=amo.FIREFOX, min='3', max='3.*')
 
-        self.check(r[1], type='incompatible', min='*', max='*')
+        self.check(r[1], type='incompatible', min='0', max='*')
         eq_(len(r[1].apps), 1)
-        self.check(r[1].apps[0], app=amo.FIREFOX, min='*', max='*')
+        self.check(r[1].apps[0], app=amo.FIREFOX, min='0', max='*')
 
     def test_collapsed_ranges_multiple_apps(self):
         c = CompatOverride.objects.get(guid='two')
@@ -2011,7 +2012,7 @@ class TestCompatOverride(amo.tests.TestCase):
         self.check(compat_range, type='incompatible', min='1', max='2')
 
         eq_(len(compat_range.apps), 2)
-        self.check(compat_range.apps[0], app=amo.FIREFOX, min='*', max='*')
+        self.check(compat_range.apps[0], app=amo.FIREFOX, min='0', max='*')
         self.check(compat_range.apps[1], app=amo.FIREFOX, min='3', max='4')
 
     def test_collapsed_ranges_multiple_versions_and_apps(self):
@@ -2024,9 +2025,117 @@ class TestCompatOverride(amo.tests.TestCase):
         self.check(r[0], type='incompatible', min='1', max='2')
 
         eq_(len(r[0].apps), 2)
-        self.check(r[0].apps[0], app=amo.FIREFOX, min='*', max='*')
+        self.check(r[0].apps[0], app=amo.FIREFOX, min='0', max='*')
         self.check(r[0].apps[1], app=amo.FIREFOX, min='3', max='4')
 
         self.check(r[1], type='incompatible', min='5', max='6')
         eq_(len(r[1].apps), 1)
-        self.check(r[1].apps[0], app=amo.FIREFOX, min='*', max='*')
+        self.check(r[1].apps[0], app=amo.FIREFOX, min='0', max='*')
+
+    def test_addon_version_ints(self):
+        # Test that the `version_int`s are created on save.
+        one = CompatOverride.objects.get(guid='one')
+        cr = CompatOverrideRange.objects.create(compat=one, app=self.app,
+                                                min_version='1.0',
+                                                max_version='1.1')
+        c = CompatOverrideRange.objects.get(pk=cr.id)
+        eq_(c.min_version_int, str(version_int(c.min_version)))
+        eq_(c.max_version_int, str(version_int(c.max_version)))
+
+        # Test that the `version_int`s are not created for wildcards.
+        cr = CompatOverrideRange.objects.create(compat=one, app=self.app,
+                                                min_version='0',
+                                                max_version='*')
+        c = CompatOverrideRange.objects.get(pk=cr.id)
+        eq_(c.min_version_int, '')
+        eq_(c.max_version_int, '')
+
+        # Test one sided wildcards are handled correctly.
+        cr = CompatOverrideRange.objects.create(compat=one, app=self.app,
+                                                min_version='0',
+                                                max_version='1.1')
+        c = CompatOverrideRange.objects.get(pk=cr.id)
+        eq_(c.min_version_int, '0')
+        eq_(c.max_version_int, str(version_int(c.max_version)))
+        cr = CompatOverrideRange.objects.create(compat=one, app=self.app,
+                                                min_version='1.0',
+                                                max_version='*')
+        c = CompatOverrideRange.objects.get(pk=cr.id)
+        eq_(c.min_version_int, str(version_int(c.min_version)))
+        eq_(c.max_version_int, str(version_int('99999')))
+
+    def test_invalid_addon_versions(self):
+        # Test how we handle addon versions that aren't compliant:
+        # https://developer.mozilla.org/en/Extension_Versioning%2C_Update_and_Compatibility
+        one = CompatOverride.objects.get(guid='one')
+
+        # If both invalid, set max to min.
+        cr = CompatOverrideRange.objects.create(compat=one, app=self.app,
+                                                min_version='ver1',
+                                                max_version='ver2')
+        c = CompatOverrideRange.objects.get(pk=cr.id)
+        eq_(c.min_version, 'ver1')
+        eq_(c.max_version, 'ver1')
+
+        # If min invalid, set min to max.
+        cr = CompatOverrideRange.objects.create(compat=one, app=self.app,
+                                                min_version='ver1',
+                                                max_version='1.1')
+        c = CompatOverrideRange.objects.get(pk=cr.id)
+        eq_(c.min_version, '1.1')
+        eq_(c.max_version, '1.1')
+
+        # If max invalid, set max to min.
+        cr = CompatOverrideRange.objects.create(compat=one, app=self.app,
+                                                min_version='1.0',
+                                                max_version='ver2')
+        c = CompatOverrideRange.objects.get(pk=cr.id)
+        eq_(c.min_version, '1.0')
+        eq_(c.max_version, '1.0')
+
+        # If min invalid and max is wildcard, set max to min.
+        cr = CompatOverrideRange.objects.create(compat=one, app=self.app,
+                                                min_version='ver1',
+                                                max_version='*')
+        c = CompatOverrideRange.objects.get(pk=cr.id)
+        eq_(c.min_version, 'ver1')
+        eq_(c.max_version, 'ver1')
+
+        # If max invalid and min is wildcard, set min to max.
+        cr = CompatOverrideRange.objects.create(compat=one, app=self.app,
+                                                min_version='0',
+                                                max_version='ver2')
+        c = CompatOverrideRange.objects.get(pk=cr.id)
+        eq_(c.min_version, 'ver2')
+        eq_(c.max_version, 'ver2')
+
+
+class TestIncompatibleVersions(amo.tests.TestCase):
+
+    def setUp(self):
+        self.app = Application.objects.create(id=amo.FIREFOX.id)
+        self.addon = Addon.objects.create(guid='r@b', type=amo.ADDON_EXTENSION)
+
+    def test_signals(self):
+        eq_(IncompatibleVersions.objects.count(), 0)
+
+        c = CompatOverride.objects.create(guid='r@b')
+        CompatOverrideRange.objects.create(compat=c, app=self.app,
+                                           min_version='1.0',
+                                           max_version='1.*')
+
+        # Test the min_version matched.
+        version = Version.objects.create(addon=self.addon, version='1.0')
+        eq_(IncompatibleVersions.objects.filter(version=version).count(), 1)
+        eq_(IncompatibleVersions.objects.count(), 1)
+
+        # Test the max_version wildcard matched.
+        version = Version.objects.create(addon=self.addon, version='1.3')
+        eq_(IncompatibleVersions.objects.filter(version=version).count(), 1)
+        eq_(IncompatibleVersions.objects.count(), 2)
+
+        version.delete()
+        eq_(IncompatibleVersions.objects.count(), 1)
+
+        Version.objects.all().delete()
+        eq_(IncompatibleVersions.objects.count(), 0)

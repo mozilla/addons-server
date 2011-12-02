@@ -15,9 +15,11 @@ from amo.utils import sorted_groupby
 from market.models import AddonPremium
 from tags.models import Tag
 from translations.models import Translation
+from versions.models import Version
 from . import cron, search  # Pull in tasks from cron.
 from .forms import get_satisfaction
-from .models import Addon, Category, Preview
+from .models import (Addon, Category, CompatOverride, IncompatibleVersions,
+                     Preview)
 
 log = logging.getLogger('z.task')
 
@@ -203,3 +205,46 @@ def save_persona_image(src, dst, img_basename, **kw):
         return True
     except Exception, e:
         log.error('Error saving persona image: %s' % e)
+
+
+@task
+def update_incompatible_appversions(version_id, **kw):
+    """Updates the incompatible_versions table for this version."""
+
+    log.info('Updating incompatible_versions for version ID: %d' % version_id)
+
+    # This is here to handle both post_save and post_delete hooks.
+    IncompatibleVersions.objects.filter(version=version_id).delete()
+
+    try:
+        version = Version.objects.get(pk=version_id)
+    except Version.DoesNotExist:
+        log.info('Version ID [%d] not found. Exiting.' % version_id)
+        return
+
+    try:
+        compat = CompatOverride.objects.get(addon=version.addon)
+    except CompatOverride.DoesNotExist:
+        log.info('Compat override for addon with version ID [%d] not found.'
+                 ' Exiting.' % version_id)
+        return
+
+    app_ranges = []
+    ranges = compat.collapsed_ranges()
+
+    for range in ranges:
+        if range.min == '0' and range.max == '*':
+            # Wildcard range, add all app ranges
+            app_ranges.extend(range.apps)
+        elif not range.min_int or not range.max_int:
+            if range.min == version.version:
+                app_ranges.extend(range.apps)
+        else:
+            if int(range.min_int) <= version.version_int <= int(range.max_int):
+                app_ranges.extend(range.apps)
+
+    for range in app_ranges:
+        IncompatibleVersions.objects.create(version=version,
+                                            app_id=range.app.id,
+                                            min_app_version=range.min,
+                                            max_app_version=range.max)

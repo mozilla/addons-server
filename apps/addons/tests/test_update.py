@@ -11,7 +11,7 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from addons.models import Addon
+from addons.models import Addon, CompatOverride, CompatOverrideRange
 from applications.models import Application, AppVersion
 from files.models import File
 from services import update
@@ -359,98 +359,179 @@ class TestLookup(amo.tests.TestCase):
 
 class TestDefaultToCompat(amo.tests.TestCase):
     """
-    This test adds a fixture with a version/file with strict compatibility
-    enabled.
+    Test default to compatible with all the various combinations of input.
     """
-    fixtures = ['addons/update', 'base/platforms',
-                'addons/update-strict-compat-version']
+    fixtures = ['addons/default-to-compat']
 
     def setUp(self):
-        self.addon = Addon.objects.get(id=1865)
+        self.addon = Addon.objects.get(id=337203)
         self.platform = None
-        self.version_int = 5000000200100
-        self.file = File.objects.get(pk=96878)
-
         self.app = Application.objects.get(id=1)
-        self.version_1_0_2 = 66463
-        self.version_1_1_3 = 90149
-        self.version_1_2_0 = 105387
-        self.version_1_2_1 = 112396
-        self.version_1_2_2 = 115509
-        self.version_1_3_0 = 123456
+        self.app_version_int_3_0 = 3000000200100
+        self.app_version_int_4_0 = 4000000200100
+        self.app_version_int_5_0 = 5000000200100
+        self.app_version_int_6_0 = 6000000200100
+        self.app_version_int_7_0 = 7000000200100
+        self.app_version_int_8_0 = 8000000200100
+        self.ver_1_0 = 1268881
+        self.ver_1_1 = 1268882
+        self.ver_1_2 = 1268883
+        self.ver_1_3 = 1268884
 
-    def get(self, *args):
+        self.expected = {
+            '3.0-strict': None, '3.0-normal': None, '3.0-ignore': None,
+            '4.0-strict': self.ver_1_0,
+            '4.0-normal': self.ver_1_0,
+            '4.0-ignore': self.ver_1_0,
+            '5.0-strict': self.ver_1_2,
+            '5.0-normal': self.ver_1_2,
+            '5.0-ignore': self.ver_1_2,
+            '6.0-strict': self.ver_1_3,
+            '6.0-normal': self.ver_1_3,
+            '6.0-ignore': self.ver_1_3,
+            '7.0-strict': self.ver_1_3,
+            '7.0-normal': self.ver_1_3,
+            '7.0-ignore': self.ver_1_3,
+            '8.0-strict': None,
+            '8.0-normal': self.ver_1_3,
+            '8.0-ignore': self.ver_1_3,
+        }
+
+    def create_override(self, **kw):
+        co = CompatOverride.objects.create(
+            name='test', guid=self.addon.guid, addon=self.addon
+        )
+        default = dict(compat=co, app=self.app, min_version='0',
+                       max_version='*', min_app_version='0',
+                       max_app_version='*')
+        default.update(kw)
+        CompatOverrideRange.objects.create(**default)
+
+    def update_files(self, **kw):
+        for version in self.addon.versions.all():
+            for file in version.files.all():
+                file.update(**kw)
+
+    def get(self, **kw):
         up = update.Update({
+            'reqVersion': 1,
             'id': self.addon.guid,
-            'version': args[0],
-            'appID': args[2].guid,
-            'appVersion': 1,  # this is going to be overridden
-            'appOS': args[3].api_name if args[3] else '',
-            'reqVersion': '',
-            })
+            'version': kw.get('item_version', '1.0'),
+            'appID': self.app.guid,
+            'appVersion': kw.get('app_version', '3.0'),
+        })
         up.cursor = connection.cursor()
         assert up.is_valid()
-        up.data['version_int'] = args[1]
-        if len(args) == 5:
-            up.compat_mode = args[4]
+        up.compat_mode = kw.get('compat_mode', 'strict')
         up.get_update()
-        return (up.data['row'].get('version_id'),
-                up.data['row'].get('file_id'))
+        return up.data['row'].get('version_id')
 
-    def test_strict_and_strict(self):
-        # File has strict_compatibility and compatMode is strict.
-        version, file = self.get('', self.version_int,
-                                 self.app, self.platform, 'strict')
-        eq_(version, None)
+    def check(self, expected):
+        """
+        Checks Firefox versions 3.0 to 8.0 in each compat mode and compares it
+        to the expected version.
+        """
+        versions = ['3.0', '4.0', '5.0', '6.0', '7.0', '8.0']
+        modes = ['strict', 'normal', 'ignore']
 
-    def test_strict_and_normal(self):
-        # File has strict_compatibility and compatMode is normal.
-        version, file = self.get('', self.version_int,
-                                 self.app, self.platform, 'normal')
-        eq_(version, self.version_1_2_2)
+        for version in versions:
+            for mode in modes:
+                eq_(self.get(app_version=version, compat_mode=mode),
+                    expected['-'.join([version, mode])])
 
-    def test_strict_and_ignore(self):
-        # File has strict_compatibility and compatMode is ignore.
-        version, file = self.get('', self.version_int,
-                                 self.app, self.platform, 'ignore')
-        eq_(version, self.version_1_3_0)
+    def test_extension(self):
+        # Tests simple add-on (non-binary, non-strict).
+        self.check(self.expected)
 
-    def test_no_strict_and_strict(self):
-        # File has strict_compatibility off and compatMode is strict.
-        self.file.update(strict_compatibility=False)
-        version, file = self.get('', self.version_int,
-                                 self.app, self.platform, 'strict')
-        eq_(version, None)
+    def test_binary_extension(self):
+        # Tests add-on with binary flag.
 
-    def test_no_strict_and_normal(self):
-        # File has strict_compatibility off and compatMode is normal.
-        self.file.update(strict_compatibility=False)
-        version, file = self.get('', self.version_int,
-                                 self.app, self.platform, 'normal')
-        eq_(version, self.version_1_3_0)
+        self.update_files(binary=True)
+        self.expected.update({
+            '8.0-normal': None,
+        })
+        self.check(self.expected)
 
-    def test_no_strict_and_ignore(self):
-        # File has strict_compatibility off and compatMode is ignore.
-        self.file.update(strict_compatibility=False)
-        version, file = self.get('', self.version_int,
-                                 self.app, self.platform, 'ignore')
-        eq_(version, self.version_1_3_0)
+    def test_extension_compat_override(self):
+        # Tests simple add-on (non-binary, non-strict) with a compat override.
 
-    def test_no_strict_w_binary_and_normal(self):
-        # File has strict_compatibility off and has binary compoments,
-        # compatMode is normal.
-        self.file.update(strict_compatibility=False, binary=True)
-        version, file = self.get('', self.version_int,
-                                 self.app, self.platform, 'normal')
-        eq_(version, self.version_1_2_2)
+        self.create_override(min_version='1.3', max_version='1.4')
+        self.expected.update({
+            '6.0-normal': self.ver_1_2,
+            '7.0-normal': self.ver_1_2,
+            '8.0-normal': self.ver_1_2,
+        })
+        self.check(self.expected)
 
-    def test_addon_removed_binary(self):
-        # Addon had binary components but removed them in the latest version.
-        File.objects.get(pk=96877).update(binary=True)
-        self.file.update(strict_compatibility=False)
-        version, file = self.get('', self.version_int,
-                                 self.app, self.platform, 'normal')
-        eq_(version, self.version_1_3_0)
+    def test_binary_extension_compat_override(self):
+        # Tests simple add-on (non-binary, non-strict) with a compat override.
+
+        self.update_files(binary=True)
+        self.create_override(min_version='1.3', max_version='1.4')
+        self.expected.update({
+            '6.0-normal': self.ver_1_2,
+            '7.0-normal': self.ver_1_2,
+            '8.0-normal': None,
+        })
+        self.check(self.expected)
+
+    def test_strict_extension(self):
+        # Tests add-on with opt-in strict compatibility
+
+        self.update_files(strict_compatibility=True)
+        self.expected.update({
+            '8.0-normal': None,
+        })
+        self.check(self.expected)
+
+    def test_compat_override_max_addon_wildcard(self):
+        # Tests simple add-on (non-binary, non-strict) with a compat override
+        # that contains a max wildcard.
+
+        self.create_override(min_version='1.2', max_version='1.*',
+                             min_app_version='5.0', max_app_version='6.*')
+        self.expected.update({
+            '5.0-normal': self.ver_1_1,
+            '6.0-normal': self.ver_1_1,
+        })
+        self.check(self.expected)
+
+    def test_compat_override_max_app_wildcard(self):
+        # Tests simple add-on (non-binary, non-strict) with a compat override
+        # that contains a min/max wildcard for the app.
+
+        self.create_override(min_version='1.2', max_version='1.3')
+        self.expected.update({
+            '5.0-normal': self.ver_1_1,
+            '6.0-normal': self.ver_1_1,
+            '7.0-normal': self.ver_1_1,
+            '8.0-normal': self.ver_1_1,
+        })
+        self.check(self.expected)
+
+    def test_compat_override_both_wildcards(self):
+        # Tests simple add-on (non-binary, non-strict) with a compat override
+        # that contains a wildcard for both addon version and app version.
+
+        self.create_override(min_app_version='7.0', max_app_version='*')
+        self.expected.update({
+            '7.0-normal': None,
+            '8.0-normal': None,
+        })
+        self.check(self.expected)
+
+    def test_compat_override_invalid_version(self):
+        # Tests compat override range where version doesn't match our
+        # versioning scheme. This results in the version_int fields to not be
+        # populated and the underlying SQL needs to accomodate.
+
+        self.create_override(min_version='ver1', max_version='ver2')
+        cr = CompatOverrideRange.objects.all()[0]
+        eq_(cr.min_version, 'ver1')
+        # Max is set to min since we can't calculate a range
+        eq_(cr.max_version, 'ver1')
+        eq_(cr.min_version_int, '')
+        eq_(cr.max_version_int, '')
 
 
 class TestResponse(amo.tests.TestCase):
