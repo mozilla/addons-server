@@ -313,6 +313,10 @@
     .box-shadow(0 -2px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 0 rgba(0, 0, 0, 0.1));
     padding: 5px 7px 7px;
     width: 280px;
+    #search-q,
+    .search-button {
+        height: 30px;
+    }
 }
 .html-rtl .header-search {
     left: 0;
@@ -320,16 +324,14 @@
 }
 
 button.search-button {
-    background: #84C63C url("../../img/icons/go-arrow.png") center no-repeat;
-    background-image: url("../../img/icons/go-arrow.png"),
+    background: #84C63C url(../../img/icons/go-arrow.png) center no-repeat;
+    background-image: url(../../img/icons/go-arrow.png),
                       -moz-linear-gradient(#84C63C, #489615);
-    background-image: url("../../img/icons/go-arrow.png"),
+    background-image: url(../../img/icons/go-arrow.png),
                       -webkit-linear-gradient(#84C63C, #489615);
     border: 0;
     float: right;
-    vertical-align: bottom;
     cursor: pointer;
-    padding: 14px 6px;
     width: 36px;
     .border-radius(6px);
     .box-shadow(0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset);
@@ -342,17 +344,17 @@ button.search-button {
 
 .header-search input {
     .border-box;
-    background: url(../../img/icons/search.png) no-repeat 8px center #fff;
+    background: url(../../img/icons/search.png) no-repeat 8px 50% #fff;
     border: 0;
     .border-radius(4px);
     .box-shadow(0 0 2px rgba(0, 0, 0, 0.4) inset);
     float: left;
     font: 14px @head-sans;
     padding: 6px 6px 6px 32px;
-    .width-calc(~'100% - 42px', 232px);
+    .width-calc(~'100% - 42px', 238px);
 }
 .html-rtl .header-search input {
-    background-position: 96% center;
+    background-position: 96% 50%;
     float: right;
     padding: 6px 32px 6px 6px;
 }
