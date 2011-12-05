@@ -294,7 +294,8 @@
         // Generate a pretty title for the chart.
         var title;
         if (typeof obj.view.range == 'string') {
-            title = format(csv_keys.chartTitle[metric][0], obj.view.range);
+            var numDays = parseInt(obj.view.range, 10);
+            title = format(csv_keys.chartTitle[metric][0], numDays);
         } else {
             title = format(csv_keys.chartTitle[metric][1], [start.iso(), end.iso()]);
         }

@@ -79,53 +79,77 @@ var csv_keys = {
     },
     chartTitle: {
         "overview"  : [
-            gettext("Downloads and Daily Users, last {0}"),
+            // L10n: {0} is an integer.
+            gettext("Downloads and Daily Users, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Downloads and Daily Users from {0} to {1}")
         ],
         "downloads" : [
-            gettext("Downloads, last {0}"),
+            // L10n: {0} is an integer.
+            gettext("Downloads, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Downloads from {0} to {1}")
         ],
         "usage"  : [
-            gettext("Daily Users, last {0}"),
+            // L10n: {0} is an integer.
+            gettext("Daily Users, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Daily Users from {0} to {1}")
         ],
         "apps"  : [
-            gettext("Applications, last {0}"),
+            // L10n: {0} is an integer.
+            gettext("Applications, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Applications from {0} to {1}")
         ],
         "os"  : [
-            gettext("Platforms, last {0}"),
+            // L10n: {0} is an integer.
+            gettext("Platforms, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Platforms from {0} to {1}")
         ],
         "locales"  : [
-            gettext("Languages, last {0}"),
+            // L10n: {0} is an integer.
+            gettext("Languages, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Languages from {0} to {1}")
         ],
         "versions"  : [
-            gettext("Add-on Versions, last {0}"),
+            // L10n: {0} is an integer.
+            gettext("Add-on Versions, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Add-on Versions from {0} to {1}")
         ],
         "statuses"  : [
-            gettext("Add-on Status, last {0}"),
+            // L10n: {0} is an integer.
+            gettext("Add-on Status, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Add-on Status from {0} to {1}")
         ],
         "sources"  : [
-            gettext("Download Sources, last {0}"),
+            // L10n: {0} is an integer.
+            gettext("Download Sources, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Download Sources from {0} to {1}")
         ],
         "contributions"  : [
-            gettext("Contributions, last {0}"),
+            // L10n: {0} is an integer.
+            gettext("Contributions, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Contributions from {0} to {1}")
         ]
     },
     aggregateLabel: {
         "downloads" : [
-            gettext("<b>{0}</b> in last {1}"),
+            // L10n: {0} and {1} are integers.
+            gettext("<b>{0}</b> in last {1} days"),
+            // L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
             gettext("<b>{0}</b> from {1} to {2}"),
         ],
         "usage"     : [
-            gettext("<b>{0}</b> average in last {1}"),
+            // L10n: {0} and {1} are integers.
+            gettext("<b>{0}</b> average in last {1} days"),
+            // L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
             gettext("<b>{0}</b> from {1} to {2}"),
         ]
     }
