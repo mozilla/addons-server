@@ -806,6 +806,17 @@ class SearchTest(SphinxTestCase):
         self.assertContains(response, """<searchresults total_results="2">""")
         self.assertContains(response, "</addon>", 1)
 
+    def test_compat_mode_url(self):
+        """
+        Test the compatMode paramenter in the URL is optional and only accepts
+        values of: strict, normal, and ignore.
+        """
+        base = '/en-US/firefox/api/1.5/search/firefox/all/1/Linux/3.0'
+        eq_(self.client.head(base).status_code, 200)
+        eq_(self.client.head(base + '/strict').status_code, 200)
+        eq_(self.client.head(base + '/normal').status_code, 200)
+        eq_(self.client.head(base + '/ignore').status_code, 200)
+        eq_(self.client.head(base + '/junk').status_code, 404)
 
 class LanguagePacks(UploadTest):
     fixtures = ['addons/listed', 'base/apps', 'base/platforms']

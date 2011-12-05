@@ -99,7 +99,7 @@ def validate_api_version(version):
 
 
 def addon_filter(addons, addon_type, limit, app, platform, version,
-                 shuffle=True):
+                 compat_mode='strict', shuffle=True):
     """
     Filter addons by type, application, app version, and platform.
 
@@ -285,7 +285,7 @@ def _guid_search_caching(request, api_version, guids):
 class SearchView(APIView):
 
     def process_request(self, query, addon_type='ALL', limit=10,
-                        platform='ALL', version=None):
+                        platform='ALL', version=None, compat_mode='strict'):
         """
         This queries sphinx with `query` and serves the results in xml.
         """
@@ -330,7 +330,8 @@ class SearchView(APIView):
 class ListView(APIView):
 
     def process_request(self, list_type='recommended', addon_type='ALL',
-                        limit=10, platform='ALL', version=None):
+                        limit=10, platform='ALL', version=None,
+                        compat_mode='strict'):
         """
         Find a list of new or featured add-ons.  Filtering is done in Python
         for cache-friendliness and to avoid heavy queries.
@@ -361,7 +362,7 @@ class ListView(APIView):
             addons = manual_order(qs, ids[:limit + BUFFER], 'addons.id')
             shuffle = False
 
-        args = (addon_type, limit, APP, platform, version, shuffle)
+        args = (addon_type, limit, APP, platform, version, compat_mode, shuffle)
         f = lambda: self._process(addons, *args)
         return cached_with(addons, f, map(encoding.smart_str, args))
 

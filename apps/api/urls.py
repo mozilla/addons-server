@@ -21,6 +21,7 @@ type_regexp = '/(?P<addon_type>[^/]*)'
 limit_regexp = '/(?P<limit>\d*)'
 platform_regexp = '/(?P<platform>\w*)'
 version_regexp = '/(?P<version>[^/]*)'
+compat_mode = '(?:/(?P<compat_mode>(?:strict|normal|ignore)))?'
 
 
 def build_urls(base, appendages):
@@ -32,6 +33,7 @@ def build_urls(base, appendages):
     .
     .
     /search/:query/:type/:limit/:platform/:version
+    /search/:query/:type/:limit/:platform/:version/:compatMode
     """
     urls = [base]
     for i in range(len(appendages)):
@@ -41,7 +43,8 @@ def build_urls(base, appendages):
 
 
 base_search_regexp = r'search/(?P<query>[^/]+)'
-appendages = [type_regexp, limit_regexp, platform_regexp, version_regexp]
+appendages = [type_regexp, limit_regexp, platform_regexp, version_regexp,
+              compat_mode]
 search_regexps = build_urls(base_search_regexp, appendages)
 
 base_list_regexp = r'list'
