@@ -149,7 +149,8 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
                     determined=test_all_tiers,
                     approved_applications=apps,
                     spidermonkey=settings.SPIDERMONKEY,
-                    overrides=overrides)
+                    overrides=overrides,
+                    timeout=settings.VALIDATOR_TIMEOUT)
 
 
 @task(rate_limit='4/m')
