@@ -1,12 +1,22 @@
+from datetime import datetime, timedelta
+
 from django.conf import settings
+from django.db.models import Count
+import logging
 
 import cronjobs
 from celery.task.sets import TaskSet
+from celeryutils import task
 
+import amo
 from amo.utils import chunked
 from addons.tasks import index_addons
+from webapps.models import Installed
 
 from .models import Webapp
+
+
+task_log = logging.getLogger('z.task')
 
 
 @cronjobs.register
@@ -44,3 +54,27 @@ def flip_webapp_status(from_, to):
           for chunk in chunked(ids, 150)]
     # Delay these tasks to avoid slave lag.
     TaskSet(ts).apply_async(countdown=30)
+
+
+@cronjobs.register
+def update_weekly_downloads():
+    """Update the weekly "downloads" from the users_install table."""
+    interval = datetime.today() - timedelta(days=7)
+    counts = (Installed.objects.values('addon')
+                               .filter(created__gte=interval,
+                                       addon__type=amo.ADDON_WEBAPP)
+                               .annotate(count=Count('addon')))
+
+    ts = [_update_weekly_downloads.subtask(args=[chunk])
+          for chunk in chunked(counts, 1000)]
+    TaskSet(ts).apply_async()
+
+
+@task(rate_limit='15/m')
+def _update_weekly_downloads(data, **kw):
+    task_log.info("[%s@%s] Update weekly downloads." %
+                   (len(data), _update_weekly_downloads.rate_limit))
+
+    for line in data:
+        webapp = Webapp.objects.get(pk=line['addon'])
+        webapp.update(weekly_downloads=line['count'])

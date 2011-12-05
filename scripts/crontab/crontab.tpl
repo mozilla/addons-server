@@ -43,6 +43,7 @@ HOME=/tmp
 
 #once per day
 30 1 * * * {{ z_cron }} update_user_ratings
+40 1 * * * {{ z_cron }} update_weekly_downloads
 50 1 * * * {{ z_cron }} gc
 30 3 * * * {{ django }} cleanup
 30 4 * * * {{ z_cron }} cleanup_synced_collections
