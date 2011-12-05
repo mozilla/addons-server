@@ -1256,6 +1256,15 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         res = self.client.get(self.url)
         eq_(len(pq(res.content)('.prominent')), 1)
 
+    def test_categories(self):
+        c = self.addon.all_categories[0]
+        c.application_id = amo.THUNDERBIRD.id
+        c.save()
+        links = self.get_more_pq()('#related ul:first').find('a')
+        expected = [(unicode(c.name), c.get_url_path()) for c in
+                    self.addon.categories.filter(application=amo.FIREFOX.id)]
+        amo.tests.check_links(expected, links)
+
 
 class TestPersonaDetailPage(amo.tests.TestCase):
     fixtures = ['addons/persona', 'base/apps', 'base/users']

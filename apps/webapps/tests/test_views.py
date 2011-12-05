@@ -12,11 +12,12 @@ import amo
 from amo.helpers import absolutify, numberfmt, page_title
 import amo.tests
 from amo.urlresolvers import reverse
-from addons.models import Addon, AddonUser
+from addons.models import Addon, AddonCategory, AddonUser, Category
 from addons.tests.test_views import add_addon_author, test_hovercards
 from browse.tests import test_listing_sort, test_default_sort, TestMobileHeader
 from market.models import AddonPremium, Price
 from sharing import SERVICES
+from tags.models import AddonTag, Tag
 from translations.helpers import truncate
 from users.models import UserProfile
 from versions.models import Version
@@ -310,6 +311,21 @@ class TestDetail(WebappTest):
         eq_(h1.find('a').length, 0)
         assert pq(r.content)('.disabled'), (
           'Expected message indicating that app was disabled by administrator')
+
+    def test_categories(self):
+        c = Category.objects.all()[0]
+        c.application = None
+        c.type = amo.ADDON_WEBAPP
+        c.save()
+        AddonCategory.objects.create(addon=self.webapp, category=c)
+        links = self.get_more_pq()('#related ul:first').find('a')
+        amo.tests.check_links([(unicode(c.name), c.get_url_path())], links)
+
+    def test_tags(self):
+        t = Tag.objects.create(tag_text='ballin')
+        AddonTag.objects.create(tag=t, addon=self.webapp)
+        links = self.get_more_pq()('#related #tagbox ul a')
+        amo.tests.check_links([(t.tag_text, t.get_url_path())], links)
 
 
 class TestMobileListing(amo.tests.MobileTest, WebappTest):
