@@ -231,6 +231,21 @@ class TestEdit(UserViewBase):
     def test_edit_app_notifications_non_dev_error(self):
         self._test_edit_notifications_non_dev_error()
 
+    def test_collections_toggles(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('#profile-misc').length, 1,
+            'Collections options should be visible.')
+
+    @patch.object(settings, 'APP_PREVIEW', True)
+    def test_apps_collections_toggles(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('#profile-misc').length, 0,
+            'Collections options should not be visible.')
+
 
 class TestEditAdmin(UserViewBase):
     fixtures = ['base/users']

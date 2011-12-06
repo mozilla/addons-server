@@ -138,6 +138,8 @@
           {{ form.bio.errors }}
           </div>
         </fieldset> {# /.profile-detail #}
+        {# TODO(apps): Revert this when we have collections for apps. #}
+        {% if not webapp %}
         <fieldset id="profile-misc" class="c">
           <legend>{{ _('Miscellaneous') }}</legend>
           <p class="sub_legend">
@@ -162,6 +164,7 @@
             </li>
           </ul>
         </fieldset>
+        {% endif %}
 
         <fieldset id="acct-notify">
           <legend>{{ _('Notifications') }}</legend>
