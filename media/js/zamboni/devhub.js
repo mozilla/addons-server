@@ -24,6 +24,9 @@ $(document).ready(function() {
         initSubmit();
     });
 
+    // Merchant Account Setup
+    $('#id_paypal_id').exists(initMerchantAccount);
+
     // Validate addon (standalone)
     $('.validate-addon').exists(initSubmit);
 
@@ -1404,3 +1407,54 @@ function initPerfTests(doc) {
                 dataType: 'json'});
     });
 }
+
+function initMerchantAccount() {
+    var ajax = false,
+        $paypal_field = $('#id_paypal_id'),
+        $paypal_verify = $('#paypal-id-verify'),
+        current = $paypal_field.val(),
+        keyup = true;
+
+    $paypal_field.bind('keyup', function(e) {
+        if($paypal_field.val() != current) {
+            if(ajax) {
+                ajax.abort();
+            }
+            $paypal_verify.attr('class', '');
+            keyup = true;
+        }
+        current = $paypal_field.val();
+    }).blur(function() {
+        // `keyup` makes sure we don't re-fetch without changes.
+        if(! keyup || current == "") return;
+        keyup = false;
+
+        if(ajax) {
+            ajax.abort();
+            $paypal_verify.attr('class', 'pp-unknown');
+        }
+
+        if(!$paypal_field.val().match(/.+@.+\..+/)) {
+            $paypal_verify.attr('class', 'pp-error');
+            $('#paypal-id-error').text(gettext('Must be a valid e-mail address'));
+            return;
+        }
+
+        // Update support email to match
+        if(!$('#id_support_email').val() || $('#id_support_email').data('auto')) {
+          $('#id_support_email').val($('#id_paypal_id').val());
+          $('#id_support_email').data('auto', true);
+        }
+
+        ajax = $.post('/en-US/developers/check_paypal', {'email': $('#id_paypal_id').val()}, function(d) {
+            $paypal_verify.attr('class', d.valid ? 'p-success' : 'pp-error');
+            $('#paypal-id-error').text(d.message);
+        });
+    }).trigger('blur');
+
+    // If support has been changed, don't auto-fill
+    $('#id_support_email').change(function() {
+      $('#id_support_email').data('auto', false);
+    });
+}
+

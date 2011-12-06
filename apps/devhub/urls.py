@@ -252,4 +252,8 @@ urlpatterns = decorate(write, patterns('',
         views.docs, name='devhub.docs'),
     url('docs/(?P<doc_name>[-_\w]+)/(?P<doc_page>[-_\w]+)',
         views.docs, name='devhub.docs'),
+
+    # PayPal Checker
+    url('^check_paypal$', views.check_paypal, name='devhub.check_paypal'),
+
 ))
