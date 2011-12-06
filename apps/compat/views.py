@@ -62,7 +62,8 @@ def index(request, version=None):
                          'usage_addons': usage_addons,
                          'usage_total': usage_total,
                          'compat_levels': compat_levels,
-                         'form': form})
+                         'form': form,
+                         'show_previous': request.GET.get('previous')})
 
 
 def version_compat(qs, compat, app, binary):
@@ -89,8 +90,10 @@ def version_compat(qs, compat, app, binary):
 def usage_stats(request, compat, app, binary=None):
     # Get the list of add-ons for usage stats.
     redis = redisutils.connections['master']
-    qs = (AppCompat.search().order_by('-usage.%s' % app).values_dict()
-          .filter(**{'support.%s.max__gte' % app: vint(compat['previous'])}))
+    qs = AppCompat.search().order_by('-usage.%s' % app).values_dict()
+    if request.GET.get('previous'):
+        qs = qs.filter(**{
+            'support.%s.max__gte' % app: vint(compat['previous'])})
     if binary is not None:
         qs = qs.filter(binary=binary)
     addons = amo.utils.paginate(request, qs)
