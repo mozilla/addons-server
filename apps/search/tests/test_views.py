@@ -377,7 +377,7 @@ class TestESSearch(amo.tests.ESTestCase):
         eq_(json.loads(a.attr('data-params')),
             dict(atype=None, cat=None, page=None))
 
-    def check_cat_filters(self, params=None):
+    def check_cat_filters(self, params=None, selected='All Add-ons'):
         if not params:
             params = {}
 
@@ -385,16 +385,28 @@ class TestESSearch(amo.tests.ESTestCase):
         pager = r.context['pager']
 
         r = self.client.get(urlparams(self.url, **params))
-        a = pq(r.content)('#category-facets li.selected a')
-        eq_(a.length, 1)
-        eq_(a.text(), 'All Add-ons')
         eq_(list(r.context['pager'].object_list), list(pager.object_list))
+
+        cat = self.addons[0].all_categories[0]
+        links = pq(r.content)('#category-facets li a')
+        expected = [
+            ('All Add-ons', self.url),
+            ('Extensions', urlparams(self.url, atype=amo.ADDON_EXTENSION)),
+            (unicode(cat.name), urlparams(self.url, atype=amo.ADDON_EXTENSION,
+                                          cat=cat.id)),
+        ]
+
+        for idx, (text, link) in enumerate(expected):
+            e = links.eq(idx)
+            eq_(e.attr('href'), link)
+            eq_(e.text(), text)
+            eq_(e.parents('.selected').length, text == selected)
 
     def test_defaults_atype_no_cat(self):
         self.check_cat_filters(dict(atype=1))
 
     def test_defaults_atype_unknown_cat(self):
-        self.check_cat_filters(dict(atype=1, cat=999))
+        self.check_cat_filters(dict(atype=amo.ADDON_EXTENSION, cat=999))
 
     def test_defaults_no_atype_unknown_cat(self):
         self.check_cat_filters(dict(cat=999))
@@ -402,7 +414,12 @@ class TestESSearch(amo.tests.ESTestCase):
     def test_defaults_atype_foreign_cat(self):
         cat = Category.objects.create(application_id=amo.THUNDERBIRD.id,
                                       type=amo.ADDON_EXTENSION)
-        self.check_cat_filters(dict(atype=1, cat=cat.id))
+        self.check_cat_filters(dict(atype=amo.ADDON_EXTENSION, cat=cat.id))
+
+    def test_listed_cat(self):
+        cat = self.addons[0].all_categories[0]
+        self.check_cat_filters(dict(atype=amo.ADDON_EXTENSION, cat=cat.id),
+                               selected=unicode(cat.name))
 
     def test_no_tag_filter(self):
         r = self.client.get(self.url)

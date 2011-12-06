@@ -649,8 +649,12 @@ def category_sidebar(request, query, facets):
 
     for addon_type, cats in categories:
         selected = (webapp and not qatype) or addon_type == qatype and not qcat
+
+        # Build the linkparams.
+        cat_params = cat_params.copy()
         if not webapp:
             cat_params.update(atype=addon_type)
+
         link = FacetLink(all_label if webapp else amo.ADDON_TYPES[addon_type],
                          cat_params, selected)
         link.children = [FacetLink(c.name, dict(cat_params, **dict(cat=c.id)),
