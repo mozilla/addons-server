@@ -1020,13 +1020,22 @@ class PremiumForm(happyforms.Form):
         for field in self.extra.get('exclude', []):
             del self.fields[field]
 
-    def _refundtoken_complain(self, message):
+        # Keep a list of the warnings about PayPal refund tokens.
+        self.paypal_messages = []
+
+    def _add_refundtoken_msg(self, message):
+        self.paypal_messages.append(message)
+
+    def _show_refundtoken_msgs(self):
+        if not self.paypal_messages:
+            return
         url = paypal.refund_permission_url(self.addon,
                                            self.extra.get('dest', 'payment'))
-        messages.warning(self.request, message + ' ' + Markup(
-                _(' <a href="%s">Visit PayPal to grant permission'
-                  ' for refunds on your behalf.</a>') % url))
-        raise forms.ValidationError(message)
+        msg = _(' <a href="%s">Visit PayPal to grant permission'
+                ' for refunds on your behalf.</a>') % url
+        paypal_msgs = ' '.join(self.paypal_messages)
+        messages.warning(self.request, '%s %s' % (paypal_msgs, Markup(msg)))
+        raise forms.ValidationError(paypal_msgs)
 
     def clean_paypal_id(self):
         paypal_id = self.cleaned_data['paypal_id']
@@ -1040,8 +1049,10 @@ class PremiumForm(happyforms.Form):
             # to nuke the token, but don't do this when it's is blank.
             self.addon.premium.paypal_permissions_token = ''
             self.addon.premium.save()
-            self._refundtoken_complain(_('The PayPal third-party refund '
-                                         'token has been removed.'))
+            # L10n: We require PayPal users to have a third party token.
+            self._add_refundtoken_msg(
+                _('The PayPal third-party refund token has been removed.'))
+            self._show_refundtoken_msgs()
 
         return paypal_id
 
@@ -1055,15 +1066,16 @@ class PremiumForm(happyforms.Form):
         if (not self.addon.premium or
             not self.addon.premium.has_permissions_token()):
             # L10n: We require PayPal users to have a third party token.
-            self._refundtoken_complain(
+            self._add_refundtoken_msg(
                 _('No PayPal third-party refund token set up.'))
         if (self.addon.premium and
             not self.addon.premium.has_valid_permissions_token()):
-            # L10n: We require PayPal users to have a third party token.
+            # L10n: We require PayPal users to have a valid third party token.
+            self._add_refundtoken_msg(
+                _('The PayPal third-party refund token on your account is '
+                  'invalid.'))
+        self._show_refundtoken_msgs()
 
-            self._refundtoken_complain(
-                _('The PayPal third-party refund '
-                  'token on your account is invalid.'))
         return self.cleaned_data
 
     def clean_text(self):
@@ -1134,7 +1146,7 @@ def DependencyFormSet(*args, **kw):
                               if not f.cleaned_data.get('DELETE', False)])
             if form_count > 3:
                 if addon_parent.is_webapp():
-                    error = _('There cannot be more than 3 required apps.')
+                    error = loc('There cannot be more than 3 required apps.')
                 else:
                     error = _('There cannot be more than 3 required add-ons.')
                 raise forms.ValidationError(error)
