@@ -1446,7 +1446,7 @@ function initMerchantAccount() {
           $('#id_support_email').data('auto', true);
         }
 
-        ajax = $.post('/en-US/developers/check_paypal', {'email': $('#id_paypal_id').val()}, function(d) {
+        ajax = $.post($('#paypal-id-verify').attr('data-url'), {'email': $('#id_paypal_id').val()}, function(d) {
             $paypal_verify.attr('class', d.valid ? 'p-success' : 'pp-error');
             $('#paypal-id-error').text(d.message);
         });
