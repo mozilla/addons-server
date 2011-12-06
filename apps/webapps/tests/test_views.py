@@ -209,10 +209,6 @@ class TestListing(TestPremium):
         test_listing_sort(self, 'name', 'name', reverse=False,
                           sel_class='extra-opt')
 
-    def test_updated_sort(self):
-        test_listing_sort(self, 'updated', 'last_updated',
-                          sel_class='extra-opt')
-
 
 class TestDetail(WebappTest):
     fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592', 'base/users']

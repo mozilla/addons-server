@@ -50,7 +50,6 @@ class AppCategoryLandingFilter(CategoryLandingFilter):
 
     opts = (('downloads', _lazy(u'Most Popular')),
             ('rating', _lazy(u'Highest Rated')),
-            ('created', _lazy(u'Recently Added')),
             ('featured', _lazy(u'Featured')))
 
 
@@ -61,8 +60,7 @@ class AppFilter(addons.views.BaseFilter):
             ('rating', _lazy(u'Highest Rated')))
     extras = (('created', _lazy(u'Newest')),
               ('name', _lazy(u'Name')),
-              ('price', loc(u'Price')),
-              ('updated', _lazy(u'Recently Updated')))
+              ('price', loc(u'Price')))
 
 
 def app_listing(request):
@@ -78,9 +76,10 @@ def app_list(request, category=None, template=None):
         category = get_object_or_404(q, slug=category)
 
     sort = request.GET.get('sort')
-    if not sort and not request.MOBILE and category and category.count > 4:
-        return category_landing(request, category, TYPE,
-                                AppCategoryLandingFilter)
+    # TODO: Uncomment this when we have apps category landing pages.
+    #if not sort and not request.MOBILE and category and category.count > 4:
+    #    return category_landing(request, category, TYPE,
+    #                            AppCategoryLandingFilter)
 
     addons, filter = app_listing(request)
     sorting = filter.field

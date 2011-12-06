@@ -414,10 +414,6 @@ class TestAppDashboardSorting(HubTest):
         test_listing_sort(self, 'name', 'name', reverse=False,
                           sel_class='extra-opt')
 
-    def test_updated_sort(self):
-        test_listing_sort(self, 'updated', 'last_updated',
-                          sel_class='extra-opt')
-
 
 class TestUpdateCompatibility(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_4594_a9',
