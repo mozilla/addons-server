@@ -989,6 +989,10 @@ CELERY_ROUTES = {
 # When testing, we always want tasks to raise exceptions. Good for sanity.
 CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
 
+# Time in seconds before celery.exceptions.SoftTimeLimitExceeded is raised.
+# The task can catch that and recover but should exit ASAP. Note that there is
+# a separate, shorter timeout for validation tasks.
+CELERYD_TASK_SOFT_TIME_LIMIT = 60 * 2
 
 ## Fixture Magic
 CUSTOM_DUMPS = {
