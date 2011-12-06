@@ -204,6 +204,15 @@
         </label>
         {{ form.notify.errors }}
       </div>
+      {% if addon.admin_review and is_admin %}
+      <div class="review-actions-section">
+        {{ form.adminflag }}
+        <label for="{{ form.adminflag.auto_id }}">
+          {{ form.adminflag.label }}
+        </label>
+        {{ form.adminflag.errors }}
+      </div>
+      {% endif %}
       <div class="review-actions-section review-actions-save">
         <span class="currently_viewing_warning">
           {% trans %}

@@ -250,6 +250,8 @@ class ReviewAddonForm(happyforms.Form):
                                             'add-on is updated. (Subsequent '
                                             'updates will not generate an '
                                             'email)'))
+    adminflag = forms.BooleanField(required=False,
+                                   label=_lazy('Clear Admin Review Flag'))
 
     def is_valid(self):
         result = super(ReviewAddonForm, self).is_valid()

@@ -433,16 +433,19 @@ def _review(request, addon):
                   'prev_url': '%s?num=%s' % (redirect_url, num - 1),
                   'next_url': '%s?num=%s' % (redirect_url, num + 1)}
 
+    is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
+
     if request.method == 'POST' and form.is_valid():
         form.helper.process()
         if form.cleaned_data.get('notify'):
             EditorSubscription.objects.get_or_create(user=request.amo_user,
                                                      addon=addon)
+        if form.cleaned_data.get('adminflag') and is_admin:
+            addon.update(admin_review=False)
         amo.messages.success(request, _('Review successfully processed.'))
         return redirect(redirect_url)
 
     canned = CannedResponse.objects.all()
-    is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
     actions = form.helper.actions.items()
 
     statuses = [amo.STATUS_PUBLIC, amo.STATUS_LITE,

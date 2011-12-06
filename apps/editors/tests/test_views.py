@@ -1668,6 +1668,87 @@ class TestReview(ReviewBase):
         ]
         check_links(expected, pq(r.content)('#actions-addon a'), verify=False)
 
+    def test_admin_links_as_non_admin(self):
+        self.login_as_editor()
+        response = self.client.get(self.url)
+
+        doc = pq(response.content)
+        admin = doc('#actions-addon li')
+        eq_(admin.length, 1)
+
+    def test_unflag_option_forflagged_as_admin(self):
+        self.login_as_admin()
+        self.addon.update(admin_review=True)
+        response = self.client.get(self.url)
+
+        doc = pq(response.content)
+        eq_(doc('#id_adminflag').length, 1)
+
+    def test_unflag_option_forflagged_as_editor(self):
+        self.login_as_editor()
+        self.addon.update(admin_review=True)
+        response = self.client.get(self.url)
+
+        doc = pq(response.content)
+        eq_(doc('#id_adminflag').length, 0)
+
+    def test_unflag_option_notflagged_as_admin(self):
+        self.login_as_admin()
+        self.addon.update(admin_review=False)
+        response = self.client.get(self.url)
+
+        doc = pq(response.content)
+        eq_(doc('#id_adminflag').length, 0)
+
+    def test_unadmin_flag_as_admin(self):
+        self.addon.update(admin_review=True)
+        self.login_as_admin()
+        response = self.client.post(self.url, {'action': 'info',
+                                               'comments': 'hello sailor',
+                                               'adminflag': True})
+        eq_(response.status_code, 302,
+            "Review should be processed as normal and redirect")
+        self.assertRedirects(response, reverse('editors.queue_pending'),
+                             status_code=302)
+        eq_(Addon.objects.get(pk=self.addon.pk).admin_review, False,
+            "Admin flag should still be removed if admin")
+
+    def test_unadmin_flag_as_editor(self):
+        self.addon.update(admin_review=True)
+        self.login_as_editor()
+        response = self.client.post(self.url, {'action': 'info',
+                                               'comments': 'hello sailor',
+                                               'adminflag': True})
+        eq_(response.status_code, 302,
+            "Review should be processed as normal and redirect")
+        # Should silently fail to set adminflag but work otherwise.
+        self.assertRedirects(response, reverse('editors.queue_pending'),
+                             status_code=302)
+        eq_(Addon.objects.get(pk=self.addon.pk).admin_review, True,
+            "Admin flag should still be in place if editor")
+
+    def test_no_public(self):
+        s = amo.STATUS_PUBLIC
+
+        has_public = self.version.files.filter(status=s).exists()
+        assert not has_public
+
+        for version_file in self.version.files.all():
+            version_file.status = amo.STATUS_PUBLIC
+            version_file.save()
+
+        has_public = self.version.files.filter(status=s).exists()
+        assert has_public
+
+        response = self.client.get(self.url)
+
+        validation = pq(response.content).find('.files')
+        eq_(validation.find('a').eq(1).text(), "Validation")
+        eq_(validation.find('a').eq(2).text(), "Contents")
+
+        eq_(validation.find('a').length, 3)
+>>>>>>> a027a2f... Implementation of bug 699043
+
     def test_public_search(self):
         self.version.files.update(status=amo.STATUS_PUBLIC)
         self.addon.update(type=amo.ADDON_SEARCH)
