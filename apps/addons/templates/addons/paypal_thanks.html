@@ -5,27 +5,29 @@
 {% block content %}
 <section class="paypal-parent" id="addon_info" data-addon="{{ addon.id }}">
   {% if addon.is_webapp() %}
-    <h2>{{ _('Purchase App') }}</h2>
+    <h2>{{ loc('Purchase App') }}</h2>
   {% else %}
-    <h2>{{ _('Purchase Add-on') }}</h2>
+    <h2>{{ loc('Purchase Add-on') }}</h2>
   {% endif %}
-  <h5>{{ _('Thank you!') }}</h5>
-  {% trans addon_name=addon.name, manifest_url=addon.manifest_url if addon.is_webapp() else '',
+  <h5>{{ loc('Thank you!') }}</h5>
+  {# TODO(apps): Finalize copy. #}
+  {% with addon_name=addon.name, manifest_url=addon.manifest_url if addon.is_webapp() else '',
           receipt=receipt, href='#' if addon.is_webapp() else download,
           class='trigger_app_install' if addon.is_webapp() else 'trigger_download' %}
     Your purchase of <strong class='addon-title'>{{ addon_name }}</strong> is complete.
     <p>If installation does not automatically begin, please <a class="{{ class }}"
       data-receipt="{{ receipt }}" data-manifest-url="{{ manifest_url }}" href="{{ href }}">click here</a>.</p>
-  {% endtrans %}
+  {% endwith %}
   <p class="mozilla-mission">
-  {% trans learn_more='http://www.mozilla.org/causes' %}
-  Your purchase helps support Mozilla's mission. <a href="{{ learn_more }}" target="_blank">Learn more</a>
-  {% endtrans %}
+  {% with learn_more='http://www.mozilla.org/causes' %}
+    Your purchase helps support Mozilla's mission.
+    <a href="{{ learn_more }}" target="_blank">Learn more</a>
+  {% endwith %}
   </p>
 </section>
 <section class="paypal-parent">
-  <a href="{{ url('users.purchases') }}">{{ _('My Purchases') }}</a>
+  <a href="{{ url('users.purchases') }}">{{ loc('My Purchases') }}</a>
   &middot;
-  <a href="{{ url('devhub.docs', doc_name='marketplace') }}">{{ _('Marketplace Support') }}</a>
+  <a href="{{ url('devhub.docs', doc_name='marketplace') }}">{{ loc('Marketplace Support') }}</a>
 </section>
 {% endblock %}

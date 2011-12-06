@@ -1,10 +1,11 @@
+{# TODO(apps): Finalize copy. #}
 <div id="marketplace-confirm" class="hidden">
-  <h3>{{ _('Mozilla Marketplace') }}</h3>
+  <h3>{{ loc('Marketplace') }}</h3>
   {% if not webapp and addon.status == amo.STATUS_UNREVIEWED %}
     <div class="notification-box warning">
-      {% trans %}Your add-on must have a full review to be in the Mozilla Marketplace.
+      {{ loc('Your add-on must have a full review to be in the Mozilla Marketplace.
       This add-on is currently in the Preliminary Review Queue, so at the end of this wizard
-      we will move your add-on to the Full Review queue.{% endtrans %}
+      we will move your add-on to the Full Review queue.') }}
     </div>
   {% endif %}
   {% if webapp %}
@@ -21,28 +22,26 @@
     </p>
     <p>{{ loc('Please confirm this is the premium app you wish to sell.') }}</p>
   {% else %}
-    <p>{% trans doc_url=url('devhub.docs', doc_name='marketplace'),
+    <p>{% with doc_url=url('devhub.docs', doc_name='marketplace'),
                 agree_url=url('devhub.docs', doc_name='policies', doc_page='agreement') %}
       Thanks for your interest in selling your add-on in the Mozilla Marketplace.
       Please be sure to read our <a href="{{ doc_url }}">Marketplace Documentation and Policies</a>
       before continuing, as well as the <a href="{{ agree_url }}">Developer Agreement</a> you agreed
       to when first submitting this add-on.
-    {% endtrans %}</p>
-    <p>{% trans %}Please confirm this is the premium add-on you wish to sell.{% endtrans %}</p>
+    {% endwith %}</p>
+    <p>{{ loc('Please confirm this is the premium add-on you wish to sell.') }}</p>
   {% endif %}
   <div class="indent">
     <h4>{{ addon.name }}</h4>
     <p>{{ addon.guid }}</p>
   </div>
   {% if not webapp %}
-    <p>{% trans %}If this is the free version of your add-on, please create a new UUID
-      for your premium add-on and submit it separately before enrolling in Mozilla Marketplace.
-    {% endtrans %}</p>
+    <p>{{ loc('If this is the free version of your add-on, please create a new UUID
+      for your premium add-on and submit it separately before enrolling in Mozilla Marketplace.') }}
+    </p>
   {% endif %}
   <a class="button" href="{{ addon.get_dev_url('market.1') }}"
      id="marketplace-submit" type="submit">
-     {{ loc('Sell this App') if webapp else _('Sell this Add-on') }}</a>
-  {% trans %}
-    or <a id="marketplace-cancel" href="#">Cancel</a>
-  {% endtrans %}
+     {{ loc('Sell this App') if webapp else loc('Sell this Add-on') }}</a>
+  {{ loc('or <a id="marketplace-cancel" href="#">Cancel</a>')|safe }}
 </div>

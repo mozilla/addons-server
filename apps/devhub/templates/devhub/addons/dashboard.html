@@ -1,7 +1,7 @@
 {% extends "devhub/base_impala.html" %}
 
 {% if webapp %}
-  {% set title = _('Manage My Apps') %}
+  {% set title = loc('Manage My Apps') %}
 {% else %}
   {% set title = _('Manage My Add-ons') %}
 {% endif %}
@@ -31,11 +31,9 @@
     <h2>{{ _('Welcome to the Developer Dashboard') }}</h2>
     {% if webapp %}
       <p>
-      {% trans %}
-        You don't currently have any apps hosted on Mozilla Marketplace. To
-        learn how the process works and submit your first app, click Get
-        Started below.
-      {% endtrans %}
+        {{ loc("You don't currently have any apps hosted on Mozilla Marketplace. To
+                learn how the process works and submit your first app, click Get
+                Started below.") }}
       </p>
     {% else %}
       <p>
@@ -85,7 +83,7 @@
       {% endif %}
       {% if webapp %}
         <p class="older-activity"><a href="{{ url('devhub.feed_all') }}">
-          {{ _('Older activity for My Apps') }} &#9658;</a></p>
+          {{ loc('Older activity for My Apps') }} &#9658;</a></p>
       {% else %}
         <p class="older-activity"><a href="{{ url('devhub.feed_all') }}">
           {{ _('Older activity for My Add-ons') }} &#9658;</a></p>
