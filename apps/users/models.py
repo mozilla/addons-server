@@ -349,6 +349,14 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
                                       .filter(type=amo.CONTRIB_PURCHASE)
                                       .order_by('pk'))
 
+    def needs_completion(self):
+        """True if user needs to complete her profile.
+
+        A profile is incomplete without a username and display name
+        since that's used for collections and other display items.
+        """
+        return not self.username or not self.display_name
+
 
 @dispatch.receiver(models.signals.post_save, sender=UserProfile,
                    dispatch_uid='user.post_save')

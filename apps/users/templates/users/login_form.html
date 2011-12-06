@@ -12,7 +12,8 @@
   {% if waffle.switch('browserid-login') %}
   <fieldset id="browserid-login">
     <button class="browserid-login" type="button"
-      data-url="{{ url('users.browserid_login') }}">
+      data-url="{{ url('users.browserid_login') }}"
+      data-profile-form-url="{{ url('users.complete_profile_form') }}">
       {{ loc('Log in / Register') }}
     </button>
     <div class="user-message">
@@ -54,3 +55,6 @@
     </fieldset>
   </div>
 </form>
+{% if waffle.switch('browserid-login') %}
+  <div id="login-complete-profile"></div>
+{% endif %}

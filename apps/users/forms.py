@@ -153,7 +153,27 @@ class UserDeleteForm(forms.Form):
             raise forms.ValidationError("")
 
 
-class UserRegisterForm(happyforms.ModelForm, PasswordMixin):
+class UsernameMixin:
+
+    def clean_username(self):
+        name = self.cleaned_data['username']
+        slug_validator(name, lower=False)
+        if BlacklistedUsername.blocked(name):
+            raise forms.ValidationError(_('This username cannot be used.'))
+        return name
+
+
+class MinimalProfileForm(happyforms.ModelForm, UsernameMixin):
+    """Form to create a minimal profile.
+
+    This is just enough info to make the site usable. It was originally
+    intended to complete profiles after registering through Browser ID
+    """
+    username = forms.CharField(max_length=50)
+    display_name = forms.CharField(max_length=50)
+
+
+class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
     """
     For registering users.  We're not building off
     d.contrib.auth.forms.UserCreationForm because it doesn't do a lot of the
@@ -193,13 +213,6 @@ class UserRegisterForm(happyforms.ModelForm, PasswordMixin):
                                           'different provider to complete '
                                           'your registration.'))
         return self.cleaned_data['email']
-
-    def clean_username(self):
-        name = self.cleaned_data['username']
-        slug_validator(name, lower=False)
-        if BlacklistedUsername.blocked(name):
-            raise forms.ValidationError(_('This username is invalid.'))
-        return name
 
     def clean(self):
         super(UserRegisterForm, self).clean()

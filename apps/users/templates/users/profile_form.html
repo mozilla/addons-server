@@ -1,0 +1,20 @@
+{% from "includes/forms.html" import pretty_field %}
+<p class="notification-box warning">
+  {# TODO(apps): Finalize copy. #}
+  You have successfully registered for an account but please take a minute to complete your profile.
+</p>
+<p class="notification-box error"></p>
+<form method="post" action="{{ url('users.complete_profile') }}"
+      data-post-login-url="{{ post_login_url }}"
+      class="prettyform grid user-input">
+  {{ csrf() }}
+  <fieldset>
+    <ul>
+      {{ pretty_field(profile_form.username, _('Username'), req=True) }}
+      {{ pretty_field(profile_form.display_name, _('Display name'), req=True) }}
+    </ul>
+  </fieldset>
+  <p class="footer-submit">
+    <button type="submit">{{ _('Complete Profile') }}</button>
+  </p>
+</form>

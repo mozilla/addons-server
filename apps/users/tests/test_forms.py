@@ -393,7 +393,7 @@ class TestUserRegisterForm(UserFormBase):
                 'username': 'IE6Fan', }
         r = self.client.post('/en-US/firefox/users/register', data)
         self.assertFormError(r, 'form', 'username',
-                             'This username is invalid.')
+                             'This username cannot be used.')
 
     def test_blacklisted_password(self):
         BlacklistedPassword.objects.create(password='password')
@@ -485,28 +485,33 @@ class TestUserRegisterForm(UserFormBase):
     @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
     @patch('captcha.fields.ReCaptchaField.clean')
     def test_hit_limit_post(self, clean):
+        before = UserProfile.objects.count()
         clean.return_value = ''
         res = self.client.get(reverse('users.register'),
                               self.good_data())
         doc = pq(res.content)
         eq_(len(doc('.error')), 1)
-        eq_(UserProfile.objects.count(), 3)  # No user was created.
+        eq_(UserProfile.objects.count(), before)  # No user was created.
 
     @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
     @patch.object(settings, 'REGISTER_OVERRIDE_TOKEN', 'mozilla')
-    def test_override_user_limit(self):
+    @patch('captcha.fields.ReCaptchaField.clean')
+    def test_override_user_limit(self, clean):
+        clean.return_value = ''
+        before = UserProfile.objects.count()
         self.client.post(reverse('users.register') + '?ro=mozilla',
                          self.good_data())
-        eq_(UserProfile.objects.count(), 4)  # One user was created.
+        eq_(UserProfile.objects.count(), before + 1)
 
     @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
     @patch.object(settings, 'REGISTER_OVERRIDE_TOKEN', 'mozilla')
     def test_override_with_wrong_token(self):
+        before = UserProfile.objects.count()
         res = self.client.post(reverse('users.register') + '?ro=netscape',
                                self.good_data())
         doc = pq(res.content)
         eq_(len(doc('.error')), 1)
-        eq_(UserProfile.objects.count(), 3)  # No user was created.
+        eq_(UserProfile.objects.count(), before)  # No user was created.
 
     @patch.object(settings, 'REGISTER_OVERRIDE_TOKEN', 'mozilla')
     def test_pass_through_reg_override_token(self):
@@ -519,9 +524,10 @@ class TestUserRegisterForm(UserFormBase):
     @patch.object(settings, 'REGISTER_USER_LIMIT', 0)
     @patch('captcha.fields.ReCaptchaField.clean')
     def test_no_limit_post(self, clean):
+        before = UserProfile.objects.count()
         clean.return_value = ''
         self.client.post(reverse('users.register'), self.good_data())
-        eq_(UserProfile.objects.count(), 4)  # One user was created.
+        eq_(UserProfile.objects.count(), before + 1)
 
     @patch.object(settings, 'APP_PREVIEW', True)
     def test_no_register(self):

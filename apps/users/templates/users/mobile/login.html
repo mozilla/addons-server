@@ -34,7 +34,8 @@
     {% if waffle.switch('browserid-login') %}
       <section id="browserid">
         <button class="browserid-login button" type="submit"
-                data-url="{{ url('users.browserid_login') }}">
+                data-url="{{ url('users.browserid_login') }}"
+                data-profile-form-url="{{ url('users.complete_profile_form') }}">
           {{ _('Log in with BrowserID') }}
         </button>
       </section>

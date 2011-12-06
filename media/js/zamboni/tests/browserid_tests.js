@@ -78,8 +78,14 @@ test('Setup with no redirect from non login page', function() {
      });
 
 module('browserid login', {
-         setup: function() {this.sandbox = tests.createSandbox('#browserid-test');},
-         teardown: function() {this.sandbox.remove();}
+         setup: function() {
+             this.origRedirect = browserIDRedirect;
+             this.sandbox = tests.createSandbox('#browserid-test');
+         },
+         teardown: function() {
+             this.sandbox.remove();
+             browserIDRedirect = this.origRedirect;
+         }
        });
 
 

@@ -40,6 +40,16 @@ class TestUserProfile(amo.tests.TestCase):
         u.save()
         eq_(len(User.objects.filter(id='4043307')), 0)
 
+    def test_needs_completion(self):
+        pr = User.objects.get(id='4043307').get_profile()
+        pr.update(username='', display_name='')
+        eq_(pr.needs_completion(), True)
+
+    def test_does_not_need_completion(self):
+        pr = User.objects.get(id='4043307').get_profile()
+        pr.update(username='someusername', display_name='Bob Hope')
+        eq_(pr.needs_completion(), False)
+
     def test_email_confirmation_code(self):
         u = User.objects.get(id='4043307').get_profile()
         u.confirmationcode = 'blah'

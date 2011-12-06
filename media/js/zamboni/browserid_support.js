@@ -1,5 +1,17 @@
-function browserIDRedirect(to) {
+function browserIDRedirect(to, options) {
+    if (!options) options = {};
     return function(data, textStatus, jqXHR) {
+        if (data.profile_needs_completion) {
+            // Ask registrant to complete her profile before redirecting.
+            var def = completeUserProfile($.extend({}, options, {to: to}))
+                        .done(function() {
+                            $('.loading-submit').removeClass('loading-submit');
+                            if(typeof to == "object") {
+                                to['on'].removeClass('loading-submit');
+                            }
+                        });
+            return def;
+        }
         if (to) {
             if(typeof to == "object") {
                 to['on'].removeClass('loading-submit').trigger(to['fire']);
@@ -33,11 +45,8 @@ function gotVerifiedEmail(assertion, redirectTo, domContext) {
                 } else {
                     var msg = jqXHR.responseText;
                     if (!msg) {
-                        msg = gettext(
-                            "BrowserID login failed. Maybe you don't" +
-                            " have an account under that email address?") +
-                            " textStatus: " + textStatus + " errorThrown: " +
-                            errorThrown;
+                        msg = gettext("BrowserID login failed. Maybe you don't have an account under that email address?") +
+                                      " textStatus: " + textStatus + " errorThrown: " + errorThrown;
                     }
                     displayErrBox(msg);
                 }
@@ -77,6 +86,94 @@ function initBrowserID(win, ctx) {
         navigator.id.getVerifiedEmail(function(assertion) {
             gotVerifiedEmail(assertion, redirectTo);
         });
+    });
+}
+
+function completeUserProfile(options) {
+    if (!options) options = {};
+    var $doc = options.doc || $(document),
+        $root = $('#login-complete-profile', $doc),
+        profileFormUrl = $('.browserid-login', $doc).attr('data-profile-form-url');
+    if (!profileFormUrl) {
+        throw new Error('misconfiguration: could not find data-profile-form-url');
+    }
+    if (!$root.length) {
+        // Complete profile via modal since we are probably not on the login page.
+        var def = $.Deferred();
+        modalFromURL(profileFormUrl, {callback: function() {
+            def.resolve();
+            var $box = $(this);
+            $box.attr('id', 'login-complete-profile');  // for styles
+            loadProfileCompletionForm($box, options);
+        }});
+        return def;
+    }
+    $root.empty();
+    // Load form HTML via Ajax to get a unique CSRF token.
+    return $.ajax({url: profileFormUrl, type: 'GET', dataType: 'html'})
+                  .done(function(html) {
+                       $root.html(html);
+                       loadProfileCompletionForm($root, options);
+                  })
+                  .fail(function(xhr, textStatus, errorThrown) {
+                       if (typeof console !== 'undefined') {
+                           console.log('error:', xhr);
+                       }
+                  });
+}
+
+function loadProfileCompletionForm($root, options) {
+    if (!options) options = {};
+    var $doc = options.doc || $(document),
+        $error = $('.notification-box.error', $root),
+        win = options.window || window;
+    $root.slideDown();
+    $('input[type="text"]', $root).eq(0).focus();
+    $('form', $root).submit(function(evt) {
+        var $form = $(this);
+        evt.preventDefault();
+        $error.hide();
+        $('button[type="submit"]', $form).addClass('loading-submit');
+        $.ajax({url: $form.attr('action'),
+                type: 'POST',
+                data: $form.serialize(),
+                dataType: 'json'})
+               .always(function() {
+                   $('button[type="submit"]', $form).removeClass('loading-submit');
+               })
+               .done(function(data) {
+                   if (options.to) {
+                       if (typeof options.to === 'object') {
+                           options.to['on'].trigger(options.to['fire']);
+                       } else {
+                           win.location = options.to;
+                       }
+                   } else {
+                       win.location = $form.attr('data-post-login-url');
+                   }
+                   $form.trigger('success.profile_completion');
+               })
+               .fail(function(xhr, textStatus, errorThrown) {
+                   var msg = [], data, ul = $('<ul></ul>');
+                   try {
+                       data = $.parseJSON(xhr.responseText);
+                   } catch (err) {}
+                   if (data) {
+                       // {username: ['already exists']...}
+                       $.each(data, function(field, errors) {
+                           $.each(errors, function(i, m) {
+                               msg.push(field + ': ' + m);
+                           });
+                       });
+                   } else {
+                       msg = [gettext('Internal server error')];
+                   }
+                   $.each(msg, function(i, m) {
+                       ul.append('<li>' + m + '</li>');
+                   });
+                   $error.html(ul).show();
+                   $form.trigger('error.profile_completion');
+               });
     });
 }
 
