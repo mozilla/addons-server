@@ -17,7 +17,7 @@ from addons.models import Addon, AddonCategory, AddonUser, Category
 from addons.tests.test_views import add_addon_author, test_hovercards
 from browse.tests import test_listing_sort, test_default_sort, TestMobileHeader
 from market.models import AddonPremium, Price
-from sharing import SERVICES
+from sharing import get_service
 from tags.models import AddonTag, Tag
 from translations.helpers import truncate
 from users.models import UserProfile
@@ -396,7 +396,7 @@ class TestSharing(WebappTest):
             'description': truncate(self.webapp.summary, length=250),
             'url': absolutify(self.webapp.get_url_path()),
         }
-        url = iri_to_uri(SERVICES['delicious'].url.format(**d))
+        url = iri_to_uri(get_service('delicious').url.format(**d))
         self.assertRedirects(r, url, status_code=302, target_status_code=301)
 
 
