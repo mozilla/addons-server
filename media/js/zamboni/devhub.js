@@ -152,7 +152,7 @@ $(document).ready(function() {
                     v.errors), [v.errors]);
 
             $(this).trigger('upload_finished', [false, r, error_message]);
-            $('#validate_app').attr('disabled', false);
+            $('#validate_app').removeClass('disabled');
         })
         .bind('upload_success', function(e, r) {
             var message = "",
@@ -180,9 +180,9 @@ $(document).ready(function() {
         }));
 
         $('#validate-field').submit(function() {
-            if($('#validate_app').attr('disabled')) return false;
+            if($('#validate_app').hasClass('disabled')) return false;
 
-            $('#validate_app').attr('disabled', true);
+            $('#validate_app').addClass('disabled');
             $.post($('#upload-webapp-url').attr('data-upload-url'), {'manifest': $('#upload-webapp-url').val()}, check_webapp_validation);
             $('#upload-webapp-url').addClass('loading');
             return false;
