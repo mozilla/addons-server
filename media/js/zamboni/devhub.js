@@ -97,15 +97,23 @@ $(document).ready(function() {
         $('#upload-webapp-url').bind("keyup change blur", function(e) {
             var $this = $(this),
                 $button = $('#validate_app'),
-                // Ensure it's at least "something.tld/something.(webapp/json)"
-                match = $this.val().match(/(.*)\.(.*)\/(.*)\.(webapp|json)$/);
+                // Ensure it's at least "protocol://something.tld/something.(webapp/json)"
+                match = $this.val().match(/^(.+):\/\/(.+)\.(.+)\/(.+)\.(webapp|json)$/);
 
-          if($this.attr('data-input') != $this.val()) {
-              $button.attr('disabled', !match);
-              $this.attr('data-input', $this.val());
-              $('#upload-status-results').remove();
-              $('#upload-file button.upload-file-submit').attr('disabled', true);
-          }
+            if($this.attr('data-input') != $this.val()) {
+                // Show warning if 8+ characters have been typed but there's no protocol.
+                if($this.val().length >= 8 && !$this.val().match(/^(.+):\/\//)) {
+                    $('#validate-error-protocol').fadeIn();
+                } else {
+                    $('#validate-error-protocol').hide();
+                }
+
+                // Show the button if valid
+                $button.toggleClass('disabled', !match);
+                $this.attr('data-input', $this.val());
+                $('#upload-status-results').remove();
+                $('#upload-file button.upload-file-submit').attr('disabled', true);
+            }
         })
         .trigger('keyup')
         .bind('upload_finished', function(e, success, r, message) {
@@ -163,6 +171,13 @@ $(document).ready(function() {
             $(this).trigger('upload_finished', [true, r, message]);
             $('#upload-file button.upload-file-submit').attr('disabled', false);
         });
+
+        // Add protocol if needed
+        $('#validate-error-protocol a').click(_pd(function() {
+            var $webapp_url = $('#upload-webapp-url');
+            $webapp_url.val($(this).text() + $webapp_url.val());
+            $webapp_url.focus().trigger('keyup');
+        }));
 
         $('#validate-field').submit(function() {
             if($('#validate_app').attr('disabled')) return false;

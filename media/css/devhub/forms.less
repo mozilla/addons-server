@@ -96,3 +96,30 @@ a.remove:hover {
 #issue-refund {
     font-size: 14px;
 }
+
+/* Tooltips: A half-baked tooltip implementation */
+.tooltip {
+    background-color: #888;
+    border-radius: 4px;
+    color: #fff;
+    display: inline-block;
+    padding: 5px 8px;
+    position: relative;
+    a {
+      color: #eee;
+      text-decoration: underline;
+    }
+    &.tl:before {
+        border-bottom: 6px solid #888888;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        bottom: 0;
+        content: " ";
+        display: block;
+        height: 0;
+        left: 10px;
+        position: absolute;
+        top: -6px;
+        width: 0;
+    }
+}

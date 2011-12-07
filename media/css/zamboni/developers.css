@@ -866,7 +866,7 @@ a.extra {
     margin-top: 0;
 }
 
-#upload-file .upload-status strong {
+#upload-file .upload-status #upload-status-results strong {
     display: block;
 }
 
