@@ -6,14 +6,20 @@
         {% trans doc_url=url('devhub.docs', doc_name='marketplace') %}
           Select a price tier for your app below. Price tiers are based on
           US Dollars and are fixed for all supported countries. For more
-          information, <a href="{{ doc_url }}">view our pricing matrix</a>.
+          information.
         {% endtrans %}
+        {# TODO(marketplace-docs):
+          <a href="{{ doc_url }}">view our pricing matrix</a>.
+        #}
       {% else %}
         {% trans doc_url=url('devhub.docs', doc_name='marketplace') %}
           Select a price tier for your add-on below. Price tiers
           are based on US Dollars and are fixed for all supported countries. For more
-          information, <a href="{{ doc_url }}">view our pricing matrix</a>.
+          information.
         {% endtrans %}
+        {# TODO(marketplace-docs):
+          <a href="{{ doc_url }}">view our pricing matrix</a>.
+        #}
       {% endif %}
     </p>
   </div>

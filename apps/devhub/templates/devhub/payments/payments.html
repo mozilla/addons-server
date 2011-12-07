@@ -76,8 +76,11 @@
                  doc_url=url('devhub.docs', doc_name='marketplace', doc_page='voluntary') %}
           You cannot set up Contributions while your add-on is linked with a premium
           add-on enrolled in the Marketplace. To enable Contributions, please disassociate
-          your add-on from {{ upsell }}. <a href="{{ doc_url }}">Learn more</a>.
+          your add-on from {{ upsell }}.
         {% endtrans %}
+        {# TODO(marketplace-docs):
+           <a href="{{ doc_url }}">Learn more</a>.
+        #}
         </p>
       {% else %}
         <div class="button-wrapper">
@@ -124,15 +127,19 @@
                     doc_url=url('devhub.docs', doc_name='marketplace') %}
               You cannot enroll in the Marketplace once your app has been
               reviewed and downloaded. Please submit a new app to enroll.
-              <a href="{{ doc_url }}">Learn more</a>.
             {% endwith %}
+            {# TODO(marketplace-docs):
+              <a href="{{ doc_url }}">Learn more</a>.
+            #}
           {% else %}
             {% trans url=addon.get_dev_url('profile'),
                      doc_url=url('devhub.docs', doc_name='marketplace') %}
               You cannot enroll in the Marketplace once your add-on has been
               reviewed and downloaded. Please submit a new add-on to enroll.
-              <a href="{{ doc_url }}">Learn more</a>.
             {% endtrans %}
+            {# TODO(marketplace-docs):
+              <a href="{{ doc_url }}">Learn more</a>.
+            #}
           {% endif %}
         </p>
       {% else %}

@@ -13,11 +13,14 @@
       {% with doc_url=url('devhub.docs', doc_name='marketplace'),
               agree_url=url('devhub.docs', doc_name='policies', doc_page='agreement') %}
         {{ loc('Thanks for your interest in selling your app in the Mozilla
-                Marketplace. Please be sure to read our
+                Marketplace.') }}
+                {# TODO(marketplace-docs):
+                Please be sure to read our
                 <a href="{0}">Marketplace Documentation and Policies</a>
                 before continuing, as well as the <a href="{1}">
                 Developer Agreement</a> you agreed to when first submitting
-                this app.')|f(doc_url, agree_url)|safe }}
+                this app.')|f(doc_url, agree_url)|safe
+                #}
       {% endwith %}
     </p>
     <p>{{ loc('Please confirm this is the premium app you wish to sell.') }}</p>
@@ -25,9 +28,11 @@
     <p>{% with doc_url=url('devhub.docs', doc_name='marketplace'),
                 agree_url=url('devhub.docs', doc_name='policies', doc_page='agreement') %}
       Thanks for your interest in selling your add-on in the Mozilla Marketplace.
+      {# TODO(marketplace-docs):
       Please be sure to read our <a href="{{ doc_url }}">Marketplace Documentation and Policies</a>
       before continuing, as well as the <a href="{{ agree_url }}">Developer Agreement</a> you agreed
       to when first submitting this add-on.
+      #}
     {% endwith %}</p>
     <p>{{ loc('Please confirm this is the premium add-on you wish to sell.') }}</p>
   {% endif %}
