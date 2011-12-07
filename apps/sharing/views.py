@@ -13,6 +13,10 @@ def share(request, obj, name, description):
         service = get_service(request.GET['service'])
     except KeyError:
         raise http.Http404()
+
+    if not service:
+        raise http.Http404()
+
     is_webapp = hasattr(obj, 'is_webapp') and obj.is_webapp()
 
     form = ShareForm({
