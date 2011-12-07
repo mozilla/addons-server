@@ -162,26 +162,6 @@ class ReadOnlyMiddleware(object):
             return jingo.render(request, 'amo/read-only.html', status=503)
 
 
-timing_log = commonware.log.getLogger('z.timer')
-
-
-class TimingMiddleware(object):
-
-    def process_request(self, request):
-        request._start = time.time()
-
-    def process_response(self, request, response):
-        auth = 'ANON'
-        if hasattr(request, 'user') and request.user.is_authenticated():
-            auth = 'AUTH'
-        d = {'method': request.method, 'time': time.time() - request._start,
-             'code': response.status_code, 'auth': auth,
-             'url': smart_str(request.path_info)}
-        msg = '{method} "{url}" ({code}) {time:.2f} [{auth}]'.format(**d)
-        timing_log.info(msg)
-        return response
-
-
 pjax_log = commonware.log.getLogger('z.timer')
 
 
