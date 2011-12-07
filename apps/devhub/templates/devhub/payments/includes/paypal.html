@@ -1,5 +1,5 @@
     <div id="org-dev" class="brform paypal">
-        <label for="id_paypal_id">{{ _('What is your PayPal email address?') }}</label>
+        <label for="id_paypal_id">{{ loc('What is your PayPal email address?') }}</label>
         {{ form.paypal_id.errors }}
         <div>
           {{ form.paypal_id }}<div id="paypal-id-verify" data-url="{{ url('devhub.check_paypal') }}"></div>

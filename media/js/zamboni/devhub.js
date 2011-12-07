@@ -1412,6 +1412,7 @@ function initMerchantAccount() {
     var ajax = false,
         $paypal_field = $('#id_paypal_id'),
         $paypal_verify = $('#paypal-id-verify'),
+        $paypal_support = $('#id_support_email'),
         current = $paypal_field.val(),
         keyup = true;
 
@@ -1420,7 +1421,7 @@ function initMerchantAccount() {
             if(ajax) {
                 ajax.abort();
             }
-            $paypal_verify.attr('class', '');
+            $paypal_verify.removeAttr('class');
             keyup = true;
         }
         current = $paypal_field.val();
@@ -1436,18 +1437,18 @@ function initMerchantAccount() {
 
         if(!$paypal_field.val().match(/.+@.+\..+/)) {
             $paypal_verify.attr('class', 'pp-error');
-            $('#paypal-id-error').text(gettext('Must be a valid e-mail address'));
+            $('#paypal-id-error').text(gettext('Must be a valid e-mail address.'));
             return;
         }
 
         // Update support email to match
-        if(!$('#id_support_email').val() || $('#id_support_email').data('auto')) {
-          $('#id_support_email').val($('#id_paypal_id').val());
-          $('#id_support_email').data('auto', true);
+        if(!$paypal_support.val() || $paypal_support.data('auto')) {
+          $paypal_support.val($paypal_field.val());
+          $paypal_support.data('auto', true);
         }
 
-        ajax = $.post($('#paypal-id-verify').attr('data-url'), {'email': $('#id_paypal_id').val()}, function(d) {
-            $paypal_verify.attr('class', d.valid ? 'p-success' : 'pp-error');
+        ajax = $.post($paypal_verify.attr('data-url'), {'email': $paypal_field.val()}, function(d) {
+            $paypal_verify.attr('class', d.valid ? 'pp-success' : 'pp-error');
             $('#paypal-id-error').text(d.message);
         });
     }).trigger('blur');

@@ -1734,8 +1734,13 @@ def newsletter(request):
     return jingo.render(request, 'devhub/newsletter.html',
                         {'newsletter_form': form})
 
+
 @json_view
+@post_required
 def check_paypal(request):
+    if 'email' not in request:
+        raise http.Http404()
+
     d = {'uuid': hashlib.md5(str(uuid.uuid4())).hexdigest(),
          'slug': 'testing',
          'amount': 1.00,
@@ -1752,7 +1757,7 @@ def check_paypal(request):
 
     message = ''
     if not valid_paypal:
-        message = _("You don't seem to have a PayPal account")
+        message = loc("You don't seem to have a PayPal account.")
     else:
         # Next, check for a paykey
         try:
@@ -1761,7 +1766,7 @@ def check_paypal(request):
             pass # paykey is already None
 
         if not paykey:
-            message = _("Your account is not set up to accept payments")
+            message = loc("Your account is not set up to accept payments.")
 
     return {'valid': bool(paykey and valid_paypal), 'message': message}
 
