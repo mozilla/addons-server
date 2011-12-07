@@ -1049,10 +1049,6 @@ class PremiumForm(happyforms.Form):
             # to nuke the token, but don't do this when it's is blank.
             self.addon.premium.paypal_permissions_token = ''
             self.addon.premium.save()
-            # L10n: We require PayPal users to have a third party token.
-            self._add_refundtoken_msg(
-                _('The PayPal third-party refund token has been removed.'))
-            self._show_refundtoken_msgs()
 
         return paypal_id
 

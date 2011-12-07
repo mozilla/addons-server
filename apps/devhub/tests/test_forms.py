@@ -157,11 +157,11 @@ class TestPremiumForm(amo.tests.TestCase):
         # Remove the token and fail the form.
         assert not form.is_valid()
         assert not AddonPremium.objects.get(pk=ap.pk).paypal_permissions_token
-        assert 'token has been removed' in errmsgs[0]
+        assert 'refund token' in errmsgs[0]
+        eq_(len(errmsgs), 1)
         AddonPremium.objects.get(pk=ap.pk).update(paypal_permissions_token='a')
-        data['paypal_id'] = 'foo@bar.com'
         form = self.complete(data, ['price'])
-        # Do not remove the token the token.
+        # Do not remove the token if the paypal_id hasn't changed.
         assert form.is_valid()
         assert AddonPremium.objects.get(pk=ap.pk).paypal_permissions_token
 
