@@ -34,9 +34,22 @@ var purchases = {
                     }
                 }
             });
+            setTimeout(purchases.waiting_thanks, 1000);
             return false;
         });
         purchases.result();
+    },
+    waiting_thanks: function() {
+        /* This is a workaround for
+         * https://bugzilla.mozilla.org/show_bug.cgi?id=704534
+         * placing a callback on modalFromURL results in an error
+         * inside install.js. Instead we need trigger this from the
+         * window before PayPal starts making iframes. */
+        if ($('.paypal-thank-you').length) {
+            purchases.thanks(window);
+        } else {
+            setTimeout(purchases.waiting_thanks, 1000);
+        }
     },
     record: function($install, callback) {
         /* Record the install of the app. This is badly named because it
@@ -68,9 +81,7 @@ var purchases = {
             if (top_dgFlow !== null) {
                 var thanks_url = $('#paypal-thanks').attr('href');
                 if(thanks_url) {
-                    top_opener.modalFromURL(thanks_url, {'callback': function() {
-                        purchases.thanks(top_opener);
-                    }});
+                    top_opener.modalFromURL(thanks_url);
                 }
                 top_dgFlow.closeFlow();
 

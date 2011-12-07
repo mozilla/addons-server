@@ -3,7 +3,7 @@
 {% block classes %}paypal-modal{% endblock %}
 
 {% block content %}
-<section class="paypal-parent" id="addon_info" data-addon="{{ addon.id }}">
+<section class="paypal-parent paypal-thank-you" id="addon_info" data-addon="{{ addon.id }}">
   {% if addon.is_webapp() %}
     <h2>{{ loc('Purchase App') }}</h2>
   {% else %}
