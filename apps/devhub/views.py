@@ -58,7 +58,6 @@ from translations.models import delete_translation
 from users.models import UserProfile
 from versions.models import Version
 from webapps.models import Webapp
-from webapps.views import AppFilter
 from zadmin.models import ValidationResult
 
 from . import forms, tasks, feeds, signals
@@ -76,6 +75,13 @@ class AddonFilter(BaseFilter):
             ('updated', _lazy(u'Updated')),
             ('created', _lazy(u'Created')),
             ('popular', _lazy(u'Downloads')),
+            ('rating', _lazy(u'Rating')))
+
+
+class AppFilter(BaseFilter):
+    opts = (('name', _lazy(u'Name')),
+            ('created', _lazy(u'Created')),
+            ('downloads', loc(u'Weekly Downloads')),
             ('rating', _lazy(u'Rating')))
 
 

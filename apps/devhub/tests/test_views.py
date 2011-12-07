@@ -59,8 +59,7 @@ class MetaTests(amo.tests.TestCase):
 
 
 class HubTest(amo.tests.TestCase):
-    fixtures = ['browse/nameless-addon', 'base/users',
-                'webapps/337141-steamcube']
+    fixtures = ['browse/nameless-addon', 'base/users']
 
     def setUp(self):
         self.url = reverse('devhub.index')
@@ -81,6 +80,10 @@ class HubTest(amo.tests.TestCase):
         return ids
 
 
+class AppHubTest(HubTest):
+    fixtures = ['webapps/337141-steamcube', 'base/users']
+
+
 class TestHome(HubTest):
 
     def test_addons(self):
@@ -96,10 +99,10 @@ class TestHome(HubTest):
         self.assertTemplateUsed(r, 'devhub/addons/dashboard.html')
 
 
-class TestBreadcrumbs(HubTest):
+class TestAppBreadcrumbs(AppHubTest):
 
     def setUp(self):
-        super(TestBreadcrumbs, self).setUp()
+        super(TestAppBreadcrumbs, self).setUp()
         waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
 
     @mock.patch.object(settings, 'APP_PREVIEW', True)
@@ -321,7 +324,7 @@ class TestDashboard(HubTest):
         eq_(doc('.blog-posts li a').eq(4).text(), "hi 4")
 
 
-class TestAppDashboard(HubTest):
+class TestAppDashboard(AppHubTest):
 
     def setUp(self):
         super(TestAppDashboard, self).setUp()
@@ -345,7 +348,7 @@ class TestAppDashboard(HubTest):
         eq_(doc('.paginator').length, 0)
 
 
-class TestAppDashboardSorting(HubTest):
+class TestAppDashboardSorting(AppHubTest):
 
     def setUp(self):
         super(TestAppDashboardSorting, self).setUp()
@@ -373,46 +376,16 @@ class TestAppDashboardSorting(HubTest):
         eq_(doc('.paginator').length, 1)
 
     def test_default_sort(self):
-        test_default_sort(self, 'name', 'name', reverse=False,
-                          sel_class='extra-opt')
+        test_default_sort(self, 'name', 'name', reverse=False)
 
-    def test_free_sort(self):
-        for app in test_listing_sort(self, 'free', 'weekly_downloads'):
-            eq_(app.is_premium(), False)
+    def test_newest_sort(self):
+        test_listing_sort(self, 'created', 'created')
 
-    def make_paid(self, apps):
-        for idx, app in enumerate(apps):
-            app.update(premium_type=amo.ADDON_PREMIUM)
-            AddonPremium.objects.create(addon=app,
-                price=Price.objects.create(price=idx))
-
-    def test_paid_sort(self):
-        self.make_paid(self.my_apps.all()[:3])
-        for app in test_listing_sort(self, 'paid', 'weekly_downloads'):
-            eq_(app.is_premium(), True)
-
-    def test_price_sort(self):
-        self.make_paid(self.my_apps.all()[:3])
-        apps = test_listing_sort(self, 'price', None, reverse=False,
-                                 sel_class='extra-opt')
-        eq_(apps, list(self.my_apps.order_by('addonpremium__price__price')))
-
-        # Sort by PK if apps have the same price.
-        price = Price.objects.all()[0]
-        apps = test_listing_sort(self, 'price', None, reverse=False,
-                                 sel_class='extra-opt')
-        eq_(apps,
-            list(self.my_apps.order_by('addonpremium__price__price', 'id')))
+    def test_downloads_sort(self):
+        test_listing_sort(self, 'downloads', 'weekly_downloads')
 
     def test_rating_sort(self):
         test_listing_sort(self, 'rating', 'bayesian_rating')
-
-    def test_newest_sort(self):
-        test_listing_sort(self, 'created', 'created', sel_class='extra-opt')
-
-    def test_name_sort(self):
-        test_listing_sort(self, 'name', 'name', reverse=False,
-                          sel_class='extra-opt')
 
 
 class TestUpdateCompatibility(amo.tests.TestCase):
