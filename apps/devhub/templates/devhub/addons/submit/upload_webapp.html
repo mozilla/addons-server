@@ -27,13 +27,11 @@
         </form>
       </label>
       <div class="upload-details">
-        <div id="validate-error-protocol" class="tooltip tl">
+        <div id="validate-error-protocol" class="pretty-tooltip tl">
           <strong>Don't forget a protocol!</strong> Try adding either <a href="#">http://</a> or <a href="#">https://</a>.
         </div>
         <div>
-        {% trans %}
-        App URLs must start with a protocol (for example, http:// or https://) and end with either .webapp or .json.
-        {% endtrans %}
+          {{ loc('App URLs must start with a protocol (for example, http:// or https://) and end with either .webapp or .json.') }}
         </div>
       </div>
     </div>

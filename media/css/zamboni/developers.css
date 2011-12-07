@@ -676,8 +676,7 @@ input.valid {
 .brform > input,
 .brform > div,
 .brform > ul {
-    float: left;
-    clear: left;
+    display: block;
 }
 .payments form > div {
     margin-bottom: 2em;

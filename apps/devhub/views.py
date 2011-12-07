@@ -1744,7 +1744,7 @@ def newsletter(request):
 @json_view
 @post_required
 def check_paypal(request):
-    if 'email' not in request:
+    if 'email' not in request.POST:
         raise http.Http404()
 
     d = {'uuid': hashlib.md5(str(uuid.uuid4())).hexdigest(),

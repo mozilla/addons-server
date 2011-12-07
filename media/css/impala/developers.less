@@ -387,6 +387,12 @@
         }
     }
 }
+
+.html-rtl #paypal-id-verify {
+    left: auto;
+    right: -19px;
+}
+
 #paypal-id-error {
     background-color: #888;
     border-radius: 4px;
@@ -406,5 +412,15 @@
         position: absolute;
         top: 5px;
         width: 0;
+    }
+}
+
+.html-rtl #paypal-id-error {
+    margin: 0 -7px 0 0;
+    &:before {
+        border: 6px solid transparent;
+        border-left-color: #888;
+        left: auto;
+        right: -11px;
     }
 }
