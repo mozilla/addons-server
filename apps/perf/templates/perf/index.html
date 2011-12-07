@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% set title = _('Slow Performing Add-ons') %}
-{% set worst = addons[0].ts_slowness %}
 {% set app = APP.pretty %}
 
 {% block title %}{{ page_title(title) }}{% endblock %}
@@ -20,6 +19,8 @@
 </header>
 
 <div class="primary" role="main">
+{% if addons %}
+  {% set worst = addons[0].ts_slowness %}
   <p>{% trans %}
     Add-ons provide many useful features and functions, but they can also cause
     {{ app }} to become slower. Some add-ons can even slow {{ app }} to a crawl
@@ -104,6 +105,9 @@
       {% endif %}
     </div>
   </div>
+{% else %}
+  <p class="no-results">{{ _('No results found.') }}</p>
+{% endif %}
 </div>
 
 <div class="secondary">

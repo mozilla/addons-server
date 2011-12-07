@@ -12,6 +12,7 @@
   <h1>{{ title }}</h1>
 </header>
 <section class="island full c">
+{% if results %}
 {% set titles = {
   'prev': _('Top 95% compatible with previous version'),
   'top_95': _('Top 95% of all add-ons'),
@@ -76,5 +77,9 @@
 </table>
 
 {{ usage_addons|impala_paginator }}
+
+{% else %}
+  <p class="no-results">{{ _('No results found.') }}</p>
+{% endif %}
 </section>
 {% endblock %}

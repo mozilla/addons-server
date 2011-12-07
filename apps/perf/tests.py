@@ -2,6 +2,7 @@ from django.conf import settings
 
 from mock import patch
 from nose.tools import eq_
+from pyquery import PyQuery as pq
 
 import amo.tests
 from amo.urlresolvers import reverse
@@ -46,7 +47,8 @@ class TestPerfIndex(amo.tests.TestCase):
     def test_empty_perf_table(self):
         Addon.objects.update(ts_slowness=None)
         r = self.client.get(self.url)
-        eq_(r.status_code, 404)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('.no-results').length, 1)
 
 
 class TestModels(amo.tests.TestCase):

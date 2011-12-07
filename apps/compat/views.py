@@ -22,10 +22,11 @@ from .forms import CompatForm
 
 
 def index(request, version=None):
+    template = 'compat/index.html'
     COMPAT = [v for v in settings.COMPAT if v['app'] == request.APP.id]
     compat_dict = dict((v['main'], v) for v in COMPAT)
     if not COMPAT:
-        raise http.Http404()
+        return jingo.render(request, template, {'results': False})
     if version not in compat_dict:
         return redirect('compat.index', COMPAT[0]['main'])
     qs = AppCompat.search()
@@ -57,12 +58,13 @@ def index(request, version=None):
     compat_levels = [(key, version_compat(qs, compat, app, binary))
                      for key, qs in compat_queries]
     usage_addons, usage_total = usage_stats(request, compat, app, binary)
-    return jingo.render(request, 'compat/index.html',
+    return jingo.render(request, template,
                         {'version': version,
                          'usage_addons': usage_addons,
                          'usage_total': usage_total,
                          'compat_levels': compat_levels,
                          'form': form,
+                         'results': True,
                          'show_previous': request.GET.get('previous')})
 
 

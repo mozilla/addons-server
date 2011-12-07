@@ -19,14 +19,21 @@ def index(request):
     threshold = Performance.get_threshold()
 
     addons = (Addon.objects.listed(request.APP, *amo.MIRROR_STATUSES)
-              .filter(ts_slowness__gte=threshold).order_by('-ts_slowness'))
-    addons = get_list_or_404(addons[:50])
+              .filter(ts_slowness__gte=threshold)
+              .order_by('-ts_slowness')[:50])
 
-    ids = [a.id for a in addons]
-    redis = redisutils.connections['master']
-    os_perf = dict(zip(ids, redis.hmget(Performance.ALL_PLATFORMS, ids)))
-    platforms = dict((unicode(p), p.id)
-                     for p in PerformanceOSVersion.uncached.all())
-    return jingo.render(request, 'perf/index.html',
-        dict(addons=addons, os_perf=os_perf, platforms=platforms,
-             show_os=any(os_perf.values())))
+    ctx = {'addons': addons}
+
+    if addons:
+        ids = [a.id for a in addons]
+        redis = redisutils.connections['master']
+        os_perf = dict(zip(ids, redis.hmget(Performance.ALL_PLATFORMS, ids)))
+        platforms = dict((unicode(p), p.id)
+                         for p in PerformanceOSVersion.uncached.all())
+        ctx.update(
+            os_perf=os_perf,
+            platforms=platforms,
+            show_os=any(os_perf.values()),
+        )
+
+    return jingo.render(request, 'perf/index.html', ctx)
