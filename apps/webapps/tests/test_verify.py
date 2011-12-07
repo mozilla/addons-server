@@ -15,7 +15,6 @@ from users.models import UserProfile
 from stats.models import Contribution
 
 import json
-import jwt
 import M2Crypto
 import mock
 
@@ -115,3 +114,19 @@ class TestVerify(amo.tests.TestCase):
         receipt = self.make_install().receipt
         self.assertRaises(M2Crypto.RSA.RSAError, verify.decode_receipt,
                           receipt + 'x')
+
+    @mock.patch.object(verify, 'decode_receipt')
+    def get_headers(self, decode_receipt):
+        decode_receipt.return_value = ''
+        return verify.Verify(3615, '').get_headers(1)
+
+    def test_cross_domain(self):
+        hdrs = self.get_headers()
+        assert ('Access-Control-Allow-Origin', '*') in hdrs, (
+                'No cross domain headers')
+        assert ('Access-Control-Allow-Methods', 'POST') in hdrs, (
+                'Allow POST only')
+
+    def test_no_cache(self):
+        hdrs = self.get_headers()
+        assert ('Cache-Control', 'no-cache') in hdrs, 'No cache header needed'

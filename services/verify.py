@@ -90,7 +90,9 @@ class Verify:
         return '%s GMT' % formatdate(time() + secs)[:25]
 
     def get_headers(self, length):
-        return [('Content-Type', 'application/json'),
+        return [('Access-Control-Allow-Origin', '*'),
+                ('Access-Control-Allow-Methods', 'POST'),
+                ('Content-Type', 'application/json'),
                 ('Content-Length', str(length)),
                 ('Cache-Control', 'no-cache'),
                 ('Last-Modified', self.format_date(0))]
