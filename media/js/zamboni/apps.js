@@ -44,6 +44,7 @@ exports.install = function(manifestUrl, opt) {
         showError = true;
     /* Try and install the app. */
     if (opt.navigator.mozApps && opt.navigator.mozApps.install) {
+        $('.modal').trigger('close');
         opt.navigator.mozApps.install(manifestUrl, opt.data, opt.success, function(errorOb) {
             switch (errorOb.code) {
                 case 'denied':
