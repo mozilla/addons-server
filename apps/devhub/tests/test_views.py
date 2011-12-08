@@ -1621,13 +1621,6 @@ class TestSubmitStep1(TestSubmitBase):
         assert doc('#site-nav').hasClass('app-nav'), 'Expected apps devhub nav'
         eq_(doc('#breadcrumbs a').eq(0).attr('href'), reverse('devhub.apps'))
         assert doc('h2.is_webapp'), 'Webapp submit has add-on heading'
-        links = doc('#agreement-container a')
-        assert links
-        for ln in links:
-            href = ln.attrib['href']
-            assert not href.startswith('%'), (
-                'Looks like link %r to %r is still a placeholder' %
-                (href, ln.text))
 
 
 class TestSubmitStep2(amo.tests.TestCase):
