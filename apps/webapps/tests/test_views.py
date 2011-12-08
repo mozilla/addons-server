@@ -197,7 +197,7 @@ class TestListing(TestPremium):
         apps = test_listing_sort(self, 'price', None, reverse=False,
                                  sel_class='extra-opt')
         eq_(apps, list(Webapp.objects.listed()
-                       .order_by('addonpremium__price__price')))
+                       .order_by('addonpremium__price__price', 'id')))
 
     def test_rating_sort(self):
         test_listing_sort(self, 'rating', 'bayesian_rating')
