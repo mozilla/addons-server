@@ -99,12 +99,9 @@ def get_paykey(data):
         paypal_data['memo'] = data['memo']
 
     with statsd.timer('paypal.paykey.retrieval'):
-        try:
-            response = _call(settings.PAYPAL_PAY_URL + 'Pay', paypal_data,
-                             ip=data['ip'])
-        except AuthError, error:
-            paypal_log.error('Authentication error: %s' % error)
-            raise
+        response = _call(settings.PAYPAL_PAY_URL + 'Pay', paypal_data,
+                         ip=data['ip'])
+
     return response['payKey']
 
 
@@ -261,6 +258,9 @@ def _call(url, paypal_data, ip=None):
     try:
         with socket_timeout(10):
             feeddata = opener.open(request, data).read()
+    except AuthError, error:
+        paypal_log.error('Authentication error: %s' % error)
+        raise
     except Exception, error:
         paypal_log.error('HTTP Error: %s' % error)
         raise
