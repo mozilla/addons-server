@@ -1007,6 +1007,14 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         eq_(res.status_code, 302)
         eq_(len(self.addon._upsell_to.all()), 1)
 
+    def test_set_upsell_wrong_type(self):
+        self.setup_premium()
+        self.other_addon.update(type=amo.ADDON_WEBAPP)
+        res = self.client.post(self.url, data=self.get_data())
+        eq_(res.status_code, 200)
+        eq_(len(res.context['form'].errors['free']), 1)
+        eq_(len(self.addon._upsell_to.all()), 0)
+
     def test_set_upsell_required(self):
         self.setup_premium()
         data = self.get_data()
@@ -1039,6 +1047,25 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         data['text'] = 'bar'
         self.client.post(self.url, data=data)
         eq_(self.addon._upsell_to.all()[0].text, 'bar')
+
+    def test_replace_upsell(self):
+        self.setup_premium()
+        # Make this add-on an upsell of some free add-on.
+        AddonUpsell.objects.create(free=self.other_addon,
+                                   premium=self.addon, text='foo')
+        # And this will become our new upsell, replacing the one above.
+        new = Addon.objects.create(type=amo.ADDON_EXTENSION,
+                                   premium_type=amo.ADDON_FREE)
+        AddonUser.objects.create(addon=new, user=self.addon.authors.all()[0])
+
+        eq_(self.addon._upsell_to.all()[0].text, 'foo')
+        data = self.get_data().copy()
+        data.update(free=new.id, text='bar')
+        self.client.post(self.url, data=data)
+        upsell = self.addon._upsell_to.all()
+        eq_(len(upsell), 1)
+        eq_(upsell[0].free, new)
+        eq_(upsell[0].text, 'bar')
 
     def test_no_free(self):
         self.setup_premium()

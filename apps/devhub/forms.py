@@ -970,6 +970,7 @@ APP_UPSELL_CHOICES = (
     (1, _('This is a premium upgrade to:')),
 )
 
+
 class PremiumForm(happyforms.Form):
     """
     The premium details for an addon, which is unfortunately
@@ -1015,7 +1016,9 @@ class PremiumForm(happyforms.Form):
             self.fields['do_upsell'].choices = APP_UPSELL_CHOICES
         self.fields['free'].queryset = (self.extra['amo_user'].addons
                                         .exclude(pk=self.addon.pk)
-                                        .filter(premium_type=amo.ADDON_FREE))
+                                        .filter(premium_type=amo.ADDON_FREE,
+                                                type=self.addon.type))
+
         # For the wizard, we need to remove some fields.
         for field in self.extra.get('exclude', []):
             del self.fields[field]
@@ -1101,6 +1104,10 @@ class PremiumForm(happyforms.Form):
         upsell = self.addon.upsold
         if (self.cleaned_data['do_upsell'] and
             self.cleaned_data['text'] and self.cleaned_data['free']):
+
+            # Check if this app was already a premium version for another app.
+            if upsell and upsell.free != self.cleaned_data['free']:
+                upsell.delete()
 
             if not upsell:
                 upsell = AddonUpsell(premium=self.addon)
