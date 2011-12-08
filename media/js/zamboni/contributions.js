@@ -79,9 +79,13 @@ var purchases = {
             }
 
             if (top_dgFlow !== null) {
-                var thanks_url = $('#paypal-thanks').attr('href');
+                var thanks_url = $('#paypal-thanks').attr('href'),
+                    error_url = $('#paypal-error').attr('href');
+
                 if(thanks_url) {
                     top_opener.modalFromURL(thanks_url);
+                } else if(error_url) {
+                    top_opener.modalFromURL(error_url);
                 }
                 top_dgFlow.closeFlow();
 

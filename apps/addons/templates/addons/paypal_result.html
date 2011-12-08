@@ -19,7 +19,10 @@
   {{ addon|sidebar_listing }}
 </aside>
 <section class="primary island c">
-  {% if status != 'cancel' %}
+  {% if status == 'error' %}
+      <a href="{{ shared_url('addons.purchase.error', addon)|urlparams(realurl=realurl) }}"
+         id="paypal-error">Error</a>
+  {% elif status != 'cancel' %}
     {% if addon.is_premium() %}
       <a href="{{ shared_url('addons.purchase.thanks', addon)|urlparams(realurl=realurl) }}"
          id="paypal-thanks">

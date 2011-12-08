@@ -562,6 +562,8 @@ def purchase_complete(request, addon, status):
                   % (addon.pk, request.amo_user.pk, con.paykey[:10]))
         try:
             result = paypal.check_purchase(con.paykey)
+            if result == 'ERROR':
+                raise
         except:
             log.error('Check purchase paypal addon: %s, user: %s, paykey: %s'
                       % (addon.pk, request.amo_user.pk, con.paykey[:10]),
@@ -601,6 +603,14 @@ def purchase_thanks(request, addon):
         data['receipt'] = installed.receipt
 
     return jingo.render(request, 'addons/paypal_thanks.html', data)
+
+
+@login_required
+@addon_view
+@can_be_purchased
+def purchase_error(request, addon):
+    data = {'addon': addon, 'is_ajax': request.is_ajax()}
+    return jingo.render(request, 'addons/paypal_error.html', data)
 
 
 @addon_view

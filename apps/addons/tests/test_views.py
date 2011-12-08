@@ -360,6 +360,17 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         assert cons[0].uuid
 
     @patch('paypal.check_purchase')
+    def test_check_addon_purchase_error(self, check_purchase):
+        check_purchase.return_value = 'ERROR'
+        self.make_contribution()
+        res = self.client.get_ajax('%s?uuid=%s' %
+                                   (self.get_url('complete'), '123'))
+
+        doc = pq(res.content)
+        eq_(doc('#paypal-error').length, 1)
+        eq_(res.context['status'], 'error')
+
+    @patch('paypal.check_purchase')
     def test_check_addon_purchase(self, check_purchase):
         check_purchase.return_value = 'COMPLETED'
         self.make_contribution()
