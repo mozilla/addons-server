@@ -661,6 +661,7 @@ function initUploadIcon() {
         $(this).addClass('active');
 
         $("#id_icon_upload").val("");
+        $('#icon_preview').show();
 
         $('#icon_preview_32 img').attr('src', $('img', $parent).attr('src'));
         $('#icon_preview_64 img').attr('src', $('img',
@@ -682,7 +683,12 @@ function initUploadIcon() {
         upload_success = function(e, file, upload_hash) {
             $('#id_icon_upload_hash').val(upload_hash)
             $('#icons_default a.active').removeClass('active');
-            $('#icon_preview img').attr('src', file.dataURL);
+
+            if (file.dataURL) {
+                $('#icon_preview img').attr('src', file.dataURL);
+            } else {
+                $('#icon_preview').hide();
+            }
 
             $('#icons_default input:checked').attr('checked', false);
             $('input[name="icon_type"][value="'+file.type+'"]', $('#icons_default'))
