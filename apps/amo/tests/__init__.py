@@ -69,7 +69,7 @@ def assert_required(error_msg):
     eq_(error_msg, unicode(Field.default_error_messages['required']))
 
 
-def check_links(expected, elements, verify=True):
+def check_links(expected, elements, selected=None, verify=True):
     """Useful for comparing an `expected` list of links against PyQuery
     `elements`. Expected format of links is a list of tuples, like so:
 
@@ -79,12 +79,14 @@ def check_links(expected, elements, verify=True):
         ...
     ]
 
+    If you'd like to check if a particular item in the list is selected,
+    pass as `selected` the title of the link.
+
     Links are verified by default.
 
     """
-    for idx, element in enumerate(elements):
-        e = pq(element)
-        text, link = expected[idx]
+    for idx, (text, link) in enumerate(expected):
+        e = elements.eq(idx)
         if text is not None:
             eq_(e.text(), text)
         if link is not None:
@@ -94,6 +96,13 @@ def check_links(expected, elements, verify=True):
             eq_(e.attr('href'), link)
             if verify and link != '#':
                 eq_(Client().head(link, follow=True).status_code, 200)
+        if text is not None and selected is not None:
+            e = e.filter('.selected') or e.parents('.selected')
+            eq_(e.length, text == selected)
+
+
+def check_selected(expected, links, selected):
+    check_links(expected, links, verify=True, selected=selected)
 
 
 class RedisTest(object):
@@ -124,7 +133,7 @@ class MobileTest(object):
         self.client.cookies['mamo'] = 'on'
         self.client.defaults['SERVER_NAME'] = settings.MOBILE_DOMAIN
         self.request = mock.Mock()
-        self.request.MOBILE = True
+        self.MOBILE = self.request.MOBILE = True
 
 
 @nottest

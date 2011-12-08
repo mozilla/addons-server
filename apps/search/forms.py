@@ -246,6 +246,7 @@ SORT_CHOICES = (
     # --
     ('name', _lazy(u'Name')),
     ('downloads', _lazy(u'Weekly Downloads')),
+    ('price', helpers.loc(u'Price')),
     ('updated', _lazy(u'Recently Updated')),
     ('hotness', _lazy(u'Up & Coming')),
 )
@@ -254,9 +255,10 @@ APP_SORT_CHOICES = (
     (None, _lazy(u'Relevance')),
     ('downloads', _lazy(u'Weekly Downloads')),
     ('rating', _lazy(u'Top Rated')),
-    ('created', _lazy(u'Newest')),
+    ('price', helpers.loc(u'Price')),
     # --
     ('name', _lazy(u'Name')),
+    ('created', _lazy(u'Newest')),
 )
 
 
@@ -268,24 +270,27 @@ class ESSearchForm(forms.Form):
     atype = forms.TypedChoiceField(required=False, coerce=int,
         choices=[(t, amo.ADDON_TYPE[t]) for t in amo.ADDON_SEARCH_TYPES])
     cat = forms.CharField(required=False)
-    sort = forms.ChoiceField(required=False, choices=SORT_CHOICES)
+    price = forms.CharField(required=False)
+    sort = forms.CharField(required=False)
 
     def __init__(self, *args, **kw):
         self.addon_type = kw.pop('type', None)
         super(ESSearchForm, self).__init__(*args, **kw)
-        if self.addon_type == amo.ADDON_WEBAPP:
+        self.sort_choices = SORT_CHOICES
+        self.webapp = self.addon_type == amo.ADDON_WEBAPP
+        if self.webapp:
             self.fields['atype'].choices = [
                 (amo.ADDON_WEBAPP, amo.ADDON_TYPE[amo.ADDON_WEBAPP])
             ]
             self.data['atype'] = amo.ADDON_WEBAPP
-            self.fields['sort'].choices = APP_SORT_CHOICES
+            self.sort_choices = APP_SORT_CHOICES
 
     def clean_appver(self):
         return floor_version(self.cleaned_data.get('appver'))
 
     def clean_sort(self):
         sort = self.cleaned_data.get('sort')
-        return sort if sort in dict(SORT_CHOICES) else None
+        return sort if sort in dict(self.sort_choices) else None
 
     def clean_cat(self):
         cat = self.cleaned_data.get('cat')

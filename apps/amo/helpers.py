@@ -436,7 +436,10 @@ def mobile_sort_by(base_url, options=None, selected=None, extra_sort_opts=None,
         options = search_filter.opts
         if hasattr(search_filter, 'extras'):
             options += search_filter.extras
-    options_dict = dict(options)
+    if extra_sort_opts:
+        options_dict = dict(options + extra_sort_opts)
+    else:
+        options_dict = dict(options)
     if selected in options_dict:
         current = options_dict[selected]
     else:

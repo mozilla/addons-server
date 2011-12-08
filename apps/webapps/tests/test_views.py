@@ -37,22 +37,13 @@ class WebappTest(amo.tests.TestCase):
         self.webapp_url = self.url = self.webapp.get_url_path()
 
 
-class TestPremium(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+class PaidAppMixin(object):
 
-    def setUp(self):
-        waffle.models.Switch.objects.create(name='marketplace', active=True)
-        self.url = reverse('apps.home')
-        self.user = UserProfile.objects.get(email='regular@mozilla.com')
-
+    def setup_paid(self):
         self.free = [
             Webapp.objects.get(id=337141),
             amo.tests.addon_factory(type=amo.ADDON_WEBAPP),
         ]
-
-        # For measure add some disabled apps.
-        amo.tests.addon_factory(type=amo.ADDON_WEBAPP, disabled_by_user=True)
-        amo.tests.addon_factory(type=amo.ADDON_WEBAPP, status=amo.STATUS_NULL)
 
         self.paid = []
         for x in xrange(1, 3):
@@ -63,7 +54,11 @@ class TestPremium(amo.tests.TestCase):
             addon.update(premium_type=amo.ADDON_PREMIUM)
             self.paid.append(addon)
 
-        # For measure add some disabled apps.
+        # For measure add some disabled free apps ...
+        amo.tests.addon_factory(type=amo.ADDON_WEBAPP, disabled_by_user=True)
+        amo.tests.addon_factory(type=amo.ADDON_WEBAPP, status=amo.STATUS_NULL)
+
+        # ... and some disabled paid apps.
         addon = amo.tests.addon_factory(type=amo.ADDON_WEBAPP,
             disabled_by_user=True, premium_type=amo.ADDON_PREMIUM)
         AddonPremium.objects.create(price=price, addon=addon)
@@ -71,16 +66,23 @@ class TestPremium(amo.tests.TestCase):
             status=amo.STATUS_NULL, premium_type=amo.ADDON_PREMIUM)
         AddonPremium.objects.create(price=price, addon=addon)
 
-        # For measure add a free app but don't set the premium_type
-        # (i.e., an app that started but did not complete Marketplace process).
-        AddonPremium.objects.create(price=price,
-            addon=amo.tests.addon_factory(type=amo.ADDON_WEBAPP))
-
+        self.both = sorted(self.free + self.paid,
+                           key=lambda x: x.weekly_downloads, reverse=True)
         self.free = sorted(self.free, key=lambda x: x.weekly_downloads,
                            reverse=True)
-        eq_(self.free, list(Webapp.objects.top_free()))
         self.paid = sorted(self.paid, key=lambda x: x.weekly_downloads,
                            reverse=True)
+
+
+class TestPremium(PaidAppMixin, amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        waffle.models.Switch.objects.create(name='marketplace', active=True)
+        self.url = reverse('apps.home')
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.setup_paid()
+        eq_(self.free, list(Webapp.objects.top_free()))
         eq_(self.paid, list(Webapp.objects.top_paid()))
 
 

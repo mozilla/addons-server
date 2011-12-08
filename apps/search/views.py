@@ -16,7 +16,7 @@ import bandwagon.views
 import browse.views
 from addons.models import Addon, Category
 from amo.decorators import json_view
-from amo.helpers import locale_url, urlparams
+from amo.helpers import loc, locale_url, urlparams
 from amo.utils import MenuItem, sorted_groupby
 from versions.compare import dict_from_int, version_int, version_dict
 from webapps.models import Webapp
@@ -453,6 +453,52 @@ def name_query(q):
     return dict(more, **name_only_query(q))
 
 
+def _filter_search(request, qs, query, filters, sorting, types):
+    """Filter an ES queryset based on a list of filters."""
+    APP = request.APP
+    # Intersection of the form fields present and the filters we want to apply.
+    show = [f for f in filters if query.get(f)]
+
+    if query.get('q'):
+        qs = qs.query(or_=name_query(query['q']))
+    if 'platform' in show and query['platform'] in amo.PLATFORM_DICT:
+        ps = (amo.PLATFORM_DICT[query['platform']].id, amo.PLATFORM_ALL.id)
+        qs = qs.filter(platform__in=ps)
+    if 'appver' in show:
+        # Get a min version less than X.0.
+        low = version_int(query['appver'])
+        # Get a max version greater than X.0a.
+        high = version_int(query['appver'] + 'a')
+        qs = qs.filter(**{'appversion.%s.max__gte' % APP.id: high,
+                          'appversion.%s.min__lte' % APP.id: low})
+    if 'atype' in show and query['atype'] in amo.ADDON_TYPES:
+        qs = qs.filter(type=query['atype'])
+    else:
+        qs = qs.filter(type__in=types)
+    if 'cat' in show:
+        if amo.ADDON_WEBAPP not in types:
+            cat = (Category.objects.filter(id=query['cat'])
+                   .filter(Q(application=APP.id) | Q(type=amo.ADDON_SEARCH)))
+            if not cat.exists():
+                show.remove('cat')
+        if 'cat' in show:
+            qs = qs.filter(category=query['cat'])
+    if 'price' in show:
+        if query['price'] == 'paid':
+            qs = qs.filter(premium_type=amo.ADDON_PREMIUM, price__gt=0)
+        elif query['price'] == 'free':
+            qs = qs.filter(premium_type=amo.ADDON_FREE, price=0)
+    if 'tag' in show:
+        qs = qs.filter(tag=query['tag'])
+    if 'sort' in show:
+        qs = qs.order_by(sorting[query['sort']])
+    elif not query.get('q'):
+        # Sort by weekly downloads if there was no query so we get predictable
+        # results.
+        qs = qs.order_by('-weekly_downloads')
+    return qs
+
+
 @mobile_template('search/{mobile/}results.html')
 @vary_on_headers('X-PJAX')
 def app_search(request, tag_name=None, template=None):
@@ -462,25 +508,27 @@ def app_search(request, tag_name=None, template=None):
     # TODO(apps): We should figure out if we really want tags for apps.
     if tag_name:
         query['tag'] = tag_name
-    qs = (Webapp.search().query(or_=name_query(query['q']))
+
+    qs = (Webapp.search()
           .filter(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
                   is_disabled=False)
           .facet(tags={'terms': {'field': 'tag'}},
                  categories={'terms': {'field': 'category', 'size': 200}}))
-    if query.get('tag'):
-        qs = qs.filter(tag=query['tag'])
-    if query.get('cat'):
-        qs = qs.filter(category=query['cat'])
-    if query.get('sort'):
-        mapping = {'downloads': '-weekly_downloads',
-                   'rating': '-bayesian_rating',
-                   'created': '-created',
-                   'name': '-name_sort',
-                   'hotness': '-hotness'}
-        qs = qs.order_by(mapping[query['sort']])
+
+    filters = ['cat', 'price', 'sort', 'tag']
+    mapping = {'downloads': '-weekly_downloads',
+               'rating': '-bayesian_rating',
+               'created': '-created',
+               'name': 'name_sort',
+               'hotness': '-hotness',
+               'price': 'price'}
+    qs = _filter_search(request, qs, query, filters, mapping,
+                        [amo.ADDON_WEBAPP])
 
     pager = amo.utils.paginate(request, qs)
     facets = pager.object_list.facets
+
+    sort, extra_sort = split_choices(form.sort_choices, 'price')
 
     ctx = {
         'is_pjax': request.META.get('HTTP_X_PJAX'),
@@ -488,12 +536,14 @@ def app_search(request, tag_name=None, template=None):
         'query': query,
         'form': form,
         'sorting': sort_sidebar(request, query, form),
-        'sort_opts': form.fields['sort'].choices,
+        'sort_opts': sort,
+        'extra_sort_opts': extra_sort,
         'sort': query.get('sort'),
         'webapp': True,
     }
     if not ctx['is_pjax']:
         ctx.update({
+            'prices': price_sidebar(request, query, facets),
             'categories': category_sidebar(request, query, facets),
             'tags': tag_sidebar(request, query, facets),
         })
@@ -524,7 +574,12 @@ def search(request, tag_name=None, template=None):
     elif category == 'personas' or query.get('atype') == amo.ADDON_PERSONA:
         return _personas(request)
 
-    sort, extra_sort = split_choices(form.fields['sort'].choices, 'created')
+    sort, extra_sort = split_choices(form.sort_choices, 'created')
+    if query.get('atype') == amo.ADDON_SEARCH:
+        # Search add-ons should not be searched by ADU, so replace 'Users'
+        # sort with 'Weekly Downloads'.
+        sort[1] = extra_sort[1]
+        del extra_sort[1]
 
     qs = (Addon.search()
           .filter(status__in=amo.REVIEWED_STATUSES, is_disabled=False,
@@ -533,48 +588,18 @@ def search(request, tag_name=None, template=None):
                  platforms={'terms': {'field': 'platform'}},
                  appversions={'terms':
                               {'field': 'appversion.%s.max' % APP.id}},
-                 categories={'terms': {'field': 'category', 'size': 100}}))
-    if query.get('q'):
-        qs = qs.query(or_=name_query(query['q']))
-    if query.get('tag'):
-        qs = qs.filter(tag=query['tag'])
-    if query.get('platform') and query['platform'] in amo.PLATFORM_DICT:
-        ps = (amo.PLATFORM_DICT[query['platform']].id, amo.PLATFORM_ALL.id)
-        qs = qs.filter(platform__in=ps)
-    if query.get('appver'):
-        # Get a min version less than X.0.
-        low = version_int(query['appver'])
-        # Get a max version greater than X.0a.
-        high = version_int(query['appver'] + 'a')
-        qs = qs.filter(**{'appversion.%s.max__gte' % APP.id: high,
-                          'appversion.%s.min__lte' % APP.id: low})
-    if query.get('atype') and query['atype'] in amo.ADDON_TYPES:
-        qs = qs.filter(type=query['atype'])
-        if query['atype'] == amo.ADDON_SEARCH:
-            # Search add-ons should not be searched by ADU, so replace 'Users'
-            # sort with 'Weekly Downloads'.
-            sort[1] = extra_sort[1]
-            del extra_sort[1]
-    else:
-        qs = qs.filter(type__in=types)
-    if query.get('cat'):
-        cat = (Category.objects.filter(id=query['cat'])
-               .filter(Q(application=APP.id) | Q(type=amo.ADDON_SEARCH)))
-        if cat.exists():
-            qs = qs.filter(category=query['cat'])
-    if query.get('sort'):
-        mapping = {'users': '-average_daily_users',
-                   'rating': '-bayesian_rating',
-                   'created': '-created',
-                   'name': 'name_sort',
-                   'downloads': '-weekly_downloads',
-                   'updated': '-last_updated',
-                   'hotness': '-hotness'}
-        qs = qs.order_by(mapping[query['sort']])
-    elif not query.get('q'):
-        # Sort by weekly downloads if there was no query so we get predictable
-        # results.
-        qs = qs.order_by('-weekly_downloads')
+                 categories={'terms': {'field': 'category', 'size': 200}}))
+
+    filters = ['appver', 'cat', 'price', 'sort', 'tag', 'platform']
+    mapping = {'users': '-average_daily_users',
+               'rating': '-bayesian_rating',
+               'created': '-created',
+               'name': 'name_sort',
+               'downloads': '-weekly_downloads',
+               'updated': '-last_updated',
+               'hotness': '-hotness',
+               'price': 'price'}
+    qs = _filter_search(request, qs, query, filters, mapping, types)
 
     pager = amo.utils.paginate(request, qs)
 
@@ -592,6 +617,7 @@ def search(request, tag_name=None, template=None):
         facets = pager.object_list.facets
         ctx.update({
             'tag': tag_name,
+            'prices': price_sidebar(request, query, facets),
             'categories': category_sidebar(request, query, facets),
             'platforms': platform_sidebar(request, query, facets),
             'versions': version_sidebar(request, query, facets),
@@ -612,7 +638,18 @@ class FacetLink(object):
 def sort_sidebar(request, query, form):
     sort = query.get('sort')
     return [FacetLink(text, dict(sort=key), key == sort)
-            for key, text in form.fields['sort'].choices]
+            for key, text in form.sort_choices]
+
+
+def price_sidebar(request, query, facets):
+    qprice = query.get('price')
+    free = qprice == 'free'
+    paid = qprice == 'paid'
+    return [
+        FacetLink(loc('Free & Premium'), dict(price=None), not (paid or free)),
+        FacetLink(loc('Free Only'), dict(price='free'), free),
+        FacetLink(loc('Premium Only'), dict(price='paid'), paid),
+    ]
 
 
 def category_sidebar(request, query, facets):

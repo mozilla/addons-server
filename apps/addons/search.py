@@ -32,6 +32,7 @@ def extract(addon):
     # This is an extra query, not good for perf.
     d['category'] = getattr(addon, 'category_ids', [])
     d['tags'] = getattr(addon, 'tag_list', [])
+    d['price'] = getattr(addon, 'price', 0.0)
     if addon.current_version:
         d['platforms'] = [p.id for p in
                           addon.current_version.supported_platforms]

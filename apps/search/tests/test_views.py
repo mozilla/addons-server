@@ -9,6 +9,7 @@ from django.test import client
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
+import waffle
 
 import amo
 import amo.tests
@@ -20,6 +21,7 @@ from search.tests import SphinxTestCase
 from search.utils import floor_version
 from tags.models import Tag
 from versions.models import ApplicationsVersions
+from webapps.tests.test_views import PaidAppMixin
 
 
 def test_parse_bad_type():
@@ -153,23 +155,55 @@ class TestESSearch(amo.tests.ESTestCase):
             'Expected weekly downloads')
 
     def check_sort_links(self, key, title, sort_by=None, reverse=True):
-        r = self.client.get('%s?sort=%s' % (self.url, key))
+        r = self.client.get(self.url, dict(sort=key))
         eq_(r.status_code, 200)
-        menu = pq(r.content)('#sort-menu')
-        eq_(menu.find('span').text(), title)
-        eq_(menu.find('li.selected').text(), title)
+        doc = pq(r.content)
+        if hasattr(self, 'MOBILE'):
+            menu = doc('#sort-menu')
+            eq_(menu.find('span').text(), title)
+            eq_(menu.find('.selected').text(), title)
+        else:
+            eq_(doc('#sorter .selected').text(), title)
         if sort_by:
             a = r.context['pager'].object_list
-            eq_(list(a),
-                sorted(a, key=lambda x: getattr(x, sort_by), reverse=reverse))
+            eq_(list(a), sorted(a, key=lambda x: getattr(x, sort_by),
+                                reverse=reverse))
+
+    def test_results_sort_default(self):
+        self.check_sort_links(None, 'Relevance', 'weekly_downloads')
+
+    def test_results_sort_unknown(self):
+        self.check_sort_links('xxx', 'Relevance')
+
+    def test_results_sort_users(self):
+        self.check_sort_links('users', 'Most Users', 'average_daily_users')
+
+    def test_results_sort_rating(self):
+        self.check_sort_links('rating', 'Top Rated', 'bayesian_rating')
+
+    def test_results_sort_newest(self):
+        self.check_sort_links('created', 'Newest', 'created')
+
+    def test_results_sort_price(self):
+        self.check_sort_links('price', 'Price')
+
+    def test_results_sort_updated(self):
+        self.check_sort_links('updated', 'Recently Updated')
+
+    def test_results_sort_downloads(self):
+        self.check_sort_links('downloads', 'Weekly Downloads',
+                              'weekly_downloads')
+
+    def test_mobile_results_sort_name(self):
+        self.check_sort_links('name', 'Name', 'name', reverse=False)
 
     @amo.tests.mobile_test
     def test_mobile_results_sort_default(self):
-        self.check_sort_links('relevance', 'Relevance', 'weekly_downloads')
+        self.check_sort_links(None, 'Relevance', 'weekly_downloads')
 
     @amo.tests.mobile_test
-    def test_mobile_results_sort_relevance(self):
-        self.check_sort_links('relevance', 'Relevance')
+    def test_mobile_results_sort_unknown(self):
+        self.check_sort_links('xxx', 'Relevance')
 
     @amo.tests.mobile_test
     def test_mobile_results_sort_users(self):
@@ -182,10 +216,6 @@ class TestESSearch(amo.tests.ESTestCase):
     @amo.tests.mobile_test
     def test_mobile_results_sort_newest(self):
         self.check_sort_links('created', 'Newest', 'created')
-
-    @amo.tests.mobile_test
-    def test_mobile_results_sort_unknown(self):
-        self.check_sort_links('updated', 'Relevance')
 
     def test_legacy_redirects(self):
         r = self.client.get(self.url + '?sort=averagerating')
@@ -395,12 +425,7 @@ class TestESSearch(amo.tests.ESTestCase):
             (unicode(cat.name), urlparams(self.url, atype=amo.ADDON_EXTENSION,
                                           cat=cat.id)),
         ]
-
-        for idx, (text, link) in enumerate(expected):
-            e = links.eq(idx)
-            eq_(e.attr('href'), link)
-            eq_(e.text(), text)
-            eq_(e.parents('.selected').length, text == selected)
+        amo.tests.check_links(expected, links, selected)
 
     def test_defaults_atype_no_cat(self):
         self.check_cat_filters(dict(atype=1))
@@ -501,7 +526,7 @@ def test_search_redirects():
         yield same, qs
 
 
-class TestWebappSearch(amo.tests.ESTestCase):
+class TestWebappSearch(PaidAppMixin, amo.tests.ESTestCase):
     fixtures = ['base/apps', 'webapps/337141-steamcube', 'tags/tags']
 
     def setUp(self):
@@ -629,6 +654,32 @@ class TestWebappSearch(amo.tests.ESTestCase):
             attrs = doc('#tag-facets li.selected > a').attr('data-params')
             eq_(json.loads(attrs), dict(tag='sky', page=None),
                 'Invalid data-params on tag links for %s: %s' % (url, attrs))
+
+    def _test_price_filter(self, price, selected):
+        waffle.models.Switch.objects.create(name='marketplace', active=True)
+
+        self.setup_paid()
+        self.refresh()
+
+        r = self.client.get(self.url, {'price': price})
+        eq_(r.status_code, 200)
+        links = pq(r.content)('#price-facets a')
+        expected = [
+            ('Free & Premium', self.url),
+            ('Free Only', urlparams(self.url, price='free')),
+            ('Premium Only', urlparams(self.url, price='paid')),
+        ]
+        amo.tests.check_links(expected, links, selected)
+        return list(r.context['pager'].object_list)
+
+    def test_free_and_premium(self):
+        eq_(self._test_price_filter('', 'Free & Premium'), self.both)
+
+    def test_free_only(self):
+        eq_(self._test_price_filter('free', 'Free Only'), self.free)
+
+    def test_premium_only(self):
+        eq_(self._test_price_filter('paid', 'Premium Only'), self.paid)
 
 
 class TestAjaxSearch(amo.tests.ESTestCase):

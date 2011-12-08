@@ -64,6 +64,9 @@
     <section id="search-facets" class="secondary" role="complementary">
       <h2>{{ _('Filter Results') }}</h2>
       <ul class="facets island pjax-trigger">
+        {% if waffle.switch('marketplace') %}
+          {{ facet(_('Price'), 'price-facets', prices) }}
+        {% endif %}
         {{ facet(_('Category'), 'category-facets', categories) }}
         {% if versions or platforms %}
           <li id="compat-facets" class="facet">

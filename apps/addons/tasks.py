@@ -12,6 +12,7 @@ from PIL import Image
 import amo
 from amo.decorators import set_modified_on, write
 from amo.utils import sorted_groupby
+from market.models import AddonPremium
 from tags.models import Tag
 from translations.models import Translation
 from . import cron, search  # Pull in tasks from cron.
@@ -95,12 +96,23 @@ def index_addons(ids, **kw):
     es = elasticutils.get_es()
     log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
     qs = Addon.uncached.filter(id__in=ids)
-    transforms = attach_categories, attach_tags, attach_translations
+    transforms = (attach_categories, attach_prices, attach_tags,
+                  attach_translations)
     for t in transforms:
         qs = qs.transform(t)
     for addon in qs:
         Addon.index(search.extract(addon), bulk=True, id=addon.id)
     es.flush_bulk(forced=True)
+
+
+def attach_prices(addons):
+    addon_dict = dict((a.id, a) for a in addons)
+    prices = (AddonPremium.objects
+              .filter(addon__in=addon_dict,
+                      addon__premium_type=amo.ADDON_PREMIUM)
+              .values_list('addon', 'price__price'))
+    for addon, price in prices:
+        addon_dict[addon].price = price
 
 
 def attach_categories(addons):

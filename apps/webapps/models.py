@@ -41,7 +41,7 @@ class WebappManager(amo.models.ManagerBase):
 
     def top_free(self, listed=True):
         qs = self.listed() if listed else self
-        return (qs.exclude(premium_type=amo.ADDON_PREMIUM)
+        return (qs.filter(premium_type=amo.ADDON_FREE)
                 .exclude(addonpremium__price__price__isnull=False)
                 .order_by('-weekly_downloads')
                 .with_index(addons='downloads_type_idx'))
@@ -49,7 +49,7 @@ class WebappManager(amo.models.ManagerBase):
     def top_paid(self, listed=True):
         qs = self.listed() if listed else self
         return (qs.filter(premium_type=amo.ADDON_PREMIUM,
-                          addonpremium__price__price__isnull=False)
+                          addonpremium__price__price__gt=0)
                 .order_by('-weekly_downloads')
                 .with_index(addons='downloads_type_idx'))
 
