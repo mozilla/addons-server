@@ -124,8 +124,7 @@ function completeUserProfile(options) {
 
 function loadProfileCompletionForm($root, options) {
     if (!options) options = {};
-    var $doc = options.doc || $(document),
-        $error = $('.notification-box.error', $root),
+    var $error = $('.notification-box.error', $root),
         win = options.window || window;
     $root.slideDown();
     $('input[type="text"]', $root).eq(0).focus();
