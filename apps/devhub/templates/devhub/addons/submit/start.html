@@ -35,7 +35,11 @@
 {% endtrans %}
 </p>
 <div id="agreement-container">
-  {% include 'amo/developer_agreement.html' %}
+  {% if webapp %}
+    {% include 'amo/developer_webapp_agreement.html' %}
+  {% else %}
+    {% include 'amo/developer_agreement.html' %}
+  {% endif %}
 </div>
 <div id="agreement-extra-links">
   <a href="{{ url('devhub.docs', 'policies', 'agreement') }}">
