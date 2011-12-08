@@ -19,7 +19,7 @@ asyncTest('success -> redirect', function() {
                                 status: 200,
                                 responseText: {}});
     loadProfileCompletionForm(sb, {'window': mockWindow});
-    $form.bind('success.profile_completion', function() {
+    $form.one('success.profile_completion', function() {
         equals(mockWindow.location, '/elsewhere');
         $.mockjaxClear(resultMock);
         start();
@@ -54,7 +54,7 @@ asyncTest('success -> object redirect', function() {
         mock = $.mockjax({url: '/complete-profile-cb-to',
                           status: 200,
                           responseText: {}});
-    $form.bind('success.profile_completion', function() {
+    $form.one('success.profile_completion', function() {
         $.mockjaxClear(mock);
         equals(mockWindow.location, '/to-elsewhere');
         start();
@@ -73,7 +73,7 @@ asyncTest('form error', function() {
                                 status: 400,
                                 responseText: {username: ['invalid characters']}});
     loadProfileCompletionForm(sb, {'window': mockWindow});
-    $form.bind('error.profile_completion', function() {
+    $form.one('error.profile_completion', function() {
         equals($('.notification-box', sb).text(),
                'username: invalid characters');
         $.mockjaxClear(resultMock);
@@ -90,7 +90,7 @@ asyncTest('internal error', function() {
     var resultMock = $.mockjax({url: '/complete-server-error',
                                 status: 500});
     loadProfileCompletionForm(sb, {'window': mockWindow});
-    $form.bind('error.profile_completion', function() {
+    $form.one('error.profile_completion', function() {
         equals($('.notification-box', sb).text(), 'Internal server error');
         $.mockjaxClear(resultMock);
         start();
