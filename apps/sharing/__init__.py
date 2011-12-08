@@ -129,7 +129,7 @@ def get_service(shortname):
 
 
 def get_services():
-    services = SERVICES_LIST
+    services = SERVICES_LIST[:]
     services.extend([s for s in LOCAL_SERVICES_LIST
                      if not unicode(s.shortname).startswith(u'localservice')])
     return services
