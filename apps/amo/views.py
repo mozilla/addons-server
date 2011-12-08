@@ -19,6 +19,7 @@ from amo.decorators import no_login_required, post_required
 from amo.utils import log_cef
 from . import monitors
 
+log = commonware.log.getLogger('z.amo')
 monitor_log = commonware.log.getLogger('z.monitor')
 jp_log = commonware.log.getLogger('z.jp.repack')
 
@@ -106,7 +107,8 @@ def cspreport(request):
     try:
         v = json.loads(request.raw_post_data)['csp-report']
         # CEF module wants a dictionary of environ, we want request
-        # to be the page with error on it, that's contained in the csp-report.
+        # to be the page with error on it, that's contained in the csp-report
+        # so we need to modify the meta before we pass in to the logger
         meta = request.META.copy()
         method, url = v['request'].split(' ', 1)
         meta.update({'REQUEST_METHOD': method, 'PATH_INFO': url})
@@ -115,7 +117,8 @@ def cspreport(request):
                 signature='CSPREPORT',
                 msg='A client reported a CSP violation',
                 cs7=v, cs7Label='ContentPolicy')
-    except Exception:
+    except Exception, e:
+        log.debug('Exception in CSP report: %s' % e, exc_info=True)
         return HttpResponseBadRequest()
 
     return HttpResponse()

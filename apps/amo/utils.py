@@ -22,6 +22,7 @@ from django.core.serializers import json
 from django.core.validators import ValidationError, validate_slug
 from django.core.mail import EmailMessage
 from django.forms.fields import Field
+from django.http import HttpRequest
 from django.template import Context, loader
 from django.utils.translation import trans_real
 from django.utils.functional import Promise
@@ -663,9 +664,10 @@ def smart_path(string):
     return smart_str(string)
 
 
-def log_cef(name, severity, request, *args, **kwargs):
+def log_cef(name, severity, env, *args, **kwargs):
     """Simply wraps the cef_log function so we don't need to pass in the config
-    dictionary every time.  See bug 707060."""
+    dictionary every time.  See bug 707060.  env can be either a request
+    object or just the request.META dictionary"""
 
     c = {'cef.product': getattr(settings, 'CEF_PRODUCT', 'AMO'),
          'cef.vendor': getattr(settings, 'CEF_VENDOR', 'Mozilla'),
@@ -673,16 +675,18 @@ def log_cef(name, severity, request, *args, **kwargs):
          'cef.device_version': getattr(settings, 'CEF_DEVICE_VERSION', '0'),
          'cef.file': getattr(settings, 'CEF_FILE', 'syslog'), }
 
-    # The CEF library looks for some things in the request object like
+    # The CEF library looks for some things in the env object like
     # REQUEST_METHOD and any REMOTE_ADDR stuff.  Django not only doesn't send
     # half the stuff you'd expect, but it specifically doesn't implement
     # readline on its FakePayload object so these things fail.  I have no idea
     # if that's outdated code in Django or not, but andym made this
     # <strike>awesome</strike> less crappy so the tests will actually pass.
-    # In theory, the second half of this if() will never be hit except in the
+    # In theory, the last part of this if() will never be hit except in the
     # test runner.  Good luck with that.
-    if request:
-        r = request.META.copy()
+    if isinstance(env, HttpRequest):
+        r = env.META.copy()
+    elif isinstance(env, dict):
+        r = env
     else:
         r = {}
 
