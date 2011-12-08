@@ -32,7 +32,9 @@
     <span class="price">{{ addon.premium.get_price_locale() }}</span>
     <h5>{{ addon.name }}</h5>
     <div class="paypal-links">
-      <a>{{ _('Learn about purchases') }}</a>
+      {# TODO(apps): Add a link to purchase info.
+        <a>{{ _('Learn about purchases') }}</a>
+      #}
     </div>
     <div class="paypal-parent">
       {% if user.is_authenticated() %}
