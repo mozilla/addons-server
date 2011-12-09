@@ -55,14 +55,12 @@ def extract_update_count(update, all_apps=None):
 
     # Only count app/version combos we know about.
     if update.applications:
-        print "in apps loop: %s" % str(update.date)
         apps = collections.defaultdict(dict)
         for guid, version_counts in update.applications.items():
             if guid not in amo.APP_GUIDS:
                 continue
             app = amo.APP_GUIDS[guid]
             for version, count in version_counts.items():
-                print version
                 try:
                     apps[app.guid][version] = int(count)
                 except ValueError:
