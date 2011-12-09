@@ -1,5 +1,5 @@
 <h1>{{ _('Request Refund') }}</h1>
-<form class="prettyform" method="POST">
+<form method="POST">
   {% set support_url = url('users.support', contribution.pk, 'author') %}
   {{ csrf() }}
   {% if webapp %}
