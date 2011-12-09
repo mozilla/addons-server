@@ -18,9 +18,9 @@ var validatorFixtures = {
             contentType: 'text/json',
             dataType: 'json'
         };
+        initValidator(this.sandbox);
     },
     teardown: function() {
-        $.mockjaxClear();
         this.sandbox.remove();
     }
 };
@@ -32,7 +32,7 @@ asyncTest('Test passing', function() {
     var $suite = $('.addon-validator-suite', this.sandbox),
         tiers=[], results=[];
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         response: function(settings) {
             this.responseText = {
@@ -55,12 +55,7 @@ asyncTest('Test passing', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
-                                                            'tests-passed');
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         pushTiersAndResults($suite, tiers, results);
         $.each(tiers, function(i, tier) {
             var tierN = i+1;
@@ -84,8 +79,11 @@ asyncTest('Test passing', function() {
         });
         equals($('.suite-summary span', $suite).text(),
                'Add-on passed validation.');
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 
@@ -95,7 +93,7 @@ asyncTest('Test failing', function() {
     var $suite = $('.addon-validator-suite', this.sandbox),
         tiers=[], results=[];
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         response: function(settings) {
             this.responseText = {
@@ -168,12 +166,7 @@ asyncTest('Test failing', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
-                                                            'tests-failed');
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         var missingInstall, invalidVer;
         pushTiersAndResults($suite, tiers, results);
         $.each(tiers, function(i, tier) {
@@ -239,14 +232,17 @@ asyncTest('Test failing', function() {
                'Add-on failed validation.');
         equals($('#suite-results-tier-4 .tier-results span').text(),
                'All tests passed successfully.');
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 asyncTest('Test error/warning prefix', function() {
     var $suite = $('.addon-validator-suite', this.sandbox);
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         response: function(settings) {
             this.responseText = {
@@ -302,20 +298,18 @@ asyncTest('Test error/warning prefix', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
-                                                            'tests-failed');
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         equals( $('#v-msg-afdc9924ec4c11df991a001cc4d80ee4 p', $suite).text(),
                'Warning: warning');
         equals( $('#v-msg-96dca428ec4c11df991a001cc4d80ee4 p', $suite).text(),
                'Error: error');
         equals( $('#v-msg-dddca428ec4c11df991a001cc4d80eb1 p', $suite).text(),
                'Warning: notice');
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 
@@ -328,9 +322,9 @@ var compatibilityFixtures = {
             contentType: 'text/json',
             dataType: 'json'
         };
+        initValidator(this.sandbox);
     },
     teardown: function() {
-        $.mockjaxClear();
         this.sandbox.remove();
     }
 };
@@ -341,7 +335,7 @@ asyncTest('Test basic', function() {
     var $suite = $('.addon-validator-suite', this.sandbox),
         tiers=[], results=[];
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         responseText: {
             "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
@@ -434,12 +428,7 @@ asyncTest('Test basic', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        // Wait until last app/version section was created.
-        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-6', $suite).length;
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         equals($('#suite-results-tier-errors', $suite).length, 0);
         equals($('.result-header h4:visible', $suite).eq(0).text(),
                'General Tests');
@@ -456,14 +445,17 @@ asyncTest('Test basic', function() {
         equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-60a2 .version-change-link', $suite).length, 0);
         equals($('#suite-results-tier-1 .result-summary', $suite).text(),
                '1 error, 0 warnings');
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
-asyncTest('Test all passing', function() {
+asyncTest('Test all passing ok', function() {
     var $suite = $('.addon-validator-suite', this.sandbox);
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         responseText: {
             "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
@@ -484,24 +476,22 @@ asyncTest('Test all passing', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        // Wait until last app/version section was created.
-        return $('#suite-results-tier-1:visible', $suite).length;
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         equals($('.result-header h4:visible', $suite).eq(0).text(),
                'Compatibility Tests');
         tests.hasClass($('#suite-results-tier-1 .tier-results', $suite),
                        'tests-passed');
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 asyncTest('Test all passing with warnings', function() {
     var $suite = $('.addon-validator-suite', this.sandbox);
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         responseText: {
             "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
@@ -542,22 +532,21 @@ asyncTest('Test all passing with warnings', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-60a1:visible', $suite).length;
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         // 'Compatibility Tests' should be hidden:
         equals($('#suite-results-tier-1:visible', $suite).length, 0);
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 asyncTest('Test task error', function() {
     var $suite = $('.addon-validator-suite', this.sandbox),
         tiers=[], results=[];
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         responseText: {
             "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
@@ -568,23 +557,22 @@ asyncTest('Test task error', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('#suite-results-tier-1 .msg', $suite).length > 0;
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         equals($('.msg', $suite).text(),
                'ErrorError: Validation task could not complete or ' +
                'completed with errors');
         equals($('.msg:visible', $suite).length, 1);
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 asyncTest('Test no tests section', function() {
     var $suite = $('.addon-validator-suite', this.sandbox);
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         responseText: {
             "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
@@ -619,26 +607,24 @@ asyncTest('Test no tests section', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        // Wait until last app/version section was created.
-        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-6', $suite).length;
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         equals($('#suite-results-tier-1:visible', $suite).length, 0);
         equals($('#suite-results-tier-2:visible', $suite).length, 0);
         equals($('#suite-results-tier-3:visible', $suite).length, 0);
         equals($('#suite-results-tier-4:visible', $suite).length, 0);
         equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-6 .msg', $suite).length, 1);
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 asyncTest('Test compat error override', function() {
     var $suite = $('.addon-validator-suite', this.sandbox),
         tiers=[], results=[];
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         responseText: {
             "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
@@ -675,24 +661,22 @@ asyncTest('Test compat error override', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        // Wait until last app/version section was created.
-        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-6', $suite).length;
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         var $msg = $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-6 .msg', $suite);
         ok($msg.hasClass('msg-error'),
            'Expected msg-error, got: ' + $msg.attr('class'));
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 asyncTest('Test basic error override', function() {
     var $suite = $('.addon-validator-suite', this.sandbox),
         tiers=[], results=[];
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         responseText: {
             "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
@@ -727,23 +711,22 @@ asyncTest('Test basic error override', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('#suite-results-tier-1 .msg', $suite).length;
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         var $msg = $('#suite-results-tier-1 .msg', $suite);
         ok($msg.hasClass('msg-error'),
            'Expected msg-error, got: ' + $msg.attr('class'));
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 asyncTest('Test single tier', function() {
     var $suite = $('.addon-validator-suite', this.sandbox),
         tiers=[], results=[];
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         responseText: {
             "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
@@ -784,23 +767,21 @@ asyncTest('Test single tier', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        // Wait until last app/version section was created.
-        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-6', $suite).length;
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         // This was failing with tier not found
         equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-6 .msg', $suite).length, 1);
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 asyncTest('Test no compat tests', function() {
     var $suite = $('.addon-validator-suite', this.sandbox),
         tiers=[], results=[];
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         responseText: {
             "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
@@ -838,23 +819,22 @@ asyncTest('Test no compat tests', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('#suite-results-tier-1 .msg', $suite).length;
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         // template is hidden
         equals($('.template .result:visible', $suite).length, 0);
         // The non-compat error exists
         equals($('#v-msg-6fd1f5c74c4445f79a1919c8480e4e72', $suite).length, 1);
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 asyncTest('Test compat ignores non-compat warnings and notices', function() {
     var $suite = $('.addon-validator-suite', this.sandbox);
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         responseText: {
             "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
@@ -945,11 +925,7 @@ asyncTest('Test compat ignores non-compat warnings and notices', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-6', $suite).length;
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         // Compat error:
         equals($('#v-msg-2a96f7faee7a41cca4d6ead26dddc6b3', $suite).length, 1);
         // Compat warning:
@@ -963,15 +939,18 @@ asyncTest('Test compat ignores non-compat warnings and notices', function() {
                '1 error, 1 warning');
         equals($('#suite-results-tier-3 .result-summary', $suite).text(),
                '1 error, 0 warnings');
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 asyncTest('Test only show errors for targeted app/version', function() {
     var $suite = $('.addon-validator-suite', this.sandbox),
         tiers=[], results=[];
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         responseText: {
             "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
@@ -1008,15 +987,14 @@ asyncTest('Test only show errors for targeted app/version', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-60a1', $suite).length;
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         equals($('.result-header h4:visible', $suite).eq(0).text(),
                'Firefox 6.0a1 Tests');
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 
@@ -1026,7 +1004,7 @@ asyncTest('Test incomplete validation', function() {
     var $suite = $('.addon-validator-suite', this.sandbox),
         tiers=[], results=[];
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         response: function(settings) {
             this.responseText = {
@@ -1061,12 +1039,7 @@ asyncTest('Test incomplete validation', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
-                                                            'tests-failed');
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         var missingInstall, invalidVer;
         pushTiersAndResults($suite, tiers, results);
         $.each(tiers, function(i, tier) {
@@ -1097,8 +1070,11 @@ asyncTest('Test incomplete validation', function() {
                '1 error, 0 warnings');
         equals($('#suite-results-tier-2 .result-summary', $suite).html(),
                '&nbsp;');
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 
@@ -1108,18 +1084,13 @@ asyncTest('Test 500 error', function() {
     var $suite = $('.addon-validator-suite', this.sandbox),
         tiers=[], results=[];
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         status: 500,
         responseText: '500 Internal Error'
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
-                                                            'tests-failed');
-    }).thenDo(function() {
+    $suite.bind('error.validation', function() {
         pushTiersAndResults($suite, tiers, results);
         // First tier should have an internal server error,
         // the other tiers should not have run.
@@ -1141,29 +1112,27 @@ asyncTest('Test 500 error', function() {
                 tests.hasClass(result, 'tests-notrun');
             }
         });
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 
 // TODO(Kumar) uncomment when bug 706602 is fixed
 // module('Validator: Timeout', validatorFixtures);
-// 
+//
 // asyncTest('Test timeout', function() {
 //     var $suite = $('.addon-validator-suite', this.sandbox),
 //         tiers=[], results=[];
-// 
-//     $.mockjax({
+//
+//     var mock = $.mockjax({
 //         url: '/validate',
 //         isTimeout: true
 //     });
-// 
-//     $suite.trigger('validate');
-// 
-//     tests.waitFor(function() {
-//         return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
-//                                                             'tests-failed');
-//     }).thenDo(function() {
+//
+//     $suite.bind('error.validation', function() {
 //         pushTiersAndResults($suite, tiers, results);
 //         // Firs tier should show the timeout error, other tiers did not run.
 //         $.each(tiers, function(i, tier) {
@@ -1182,8 +1151,11 @@ asyncTest('Test 500 error', function() {
 //                 tests.hasClass(result, 'tests-notrun');
 //             }
 //         });
+//         $.mockjaxClear(mock);
 //         start();
 //     });
+//
+//     $suite.trigger('validate');
 // });
 
 module('Validator: task error', validatorFixtures);
@@ -1192,7 +1164,7 @@ asyncTest('Test task error', function() {
     var $suite = $('.addon-validator-suite', this.sandbox),
         tiers=[], results=[];
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         status: 200,
         responseText: {
@@ -1202,12 +1174,7 @@ asyncTest('Test task error', function() {
             "error": "Traceback (most recent call last):\n  File \"/Users/kumar/dev/zamboni/apps/devhub/tasks.py\", line 23, in validator\n    result = _validator(upload)\n  File \"/Users/kumar/dev/zamboni/apps/devhub/tasks.py\", line 49, in _validator\n    import validator.main as addon_validator\n  File \"/Users/kumar/dev/zamboni/vendor/src/amo-validator/validator/main.py\", line 17, in <module>\n    import validator.testcases.l10ncompleteness\n  File \"/Users/kumar/dev/zamboni/vendor/src/amo-validator/validator/testcases/l10ncompleteness.py\", line 3, in <module>\n    import chardet\nImportError: No module named chardet\n"}
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
-                                                            'tests-failed');
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         pushTiersAndResults($suite, tiers, results);
         // First tier should show internal error, other tiers should not run.
         $.each(tiers, function(i, tier) {
@@ -1226,16 +1193,19 @@ asyncTest('Test task error', function() {
                 tests.hasClass(result, 'tests-notrun');
             }
         });
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
-module('Validator: suport html', validatorFixtures);
+module('Validator: support html', validatorFixtures);
 
 asyncTest('Test html', function() {
     var $suite = $('.addon-validator-suite', this.sandbox), err;
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         status: 200,
         response: function(settings) {
@@ -1270,19 +1240,17 @@ asyncTest('Test html', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
-                                                            'tests-failed');
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         err = $('#v-msg-3793e550026111e082c3c42c0301fe38', $suite);
         equals($('h5', err).text(),
                'The value of <em:id> is invalid.');
         equals($('p', err).text(),
                'Error: The values supplied for <em:id> in the install.rdf file is not a valid UUID string.');
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 module('Validator: error summaries', validatorFixtures);
@@ -1290,7 +1258,7 @@ module('Validator: error summaries', validatorFixtures);
 asyncTest('Test errors are brief', function() {
     var $suite = $('.addon-validator-suite', this.sandbox);
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         status: 200,
         response: function(settings) {
@@ -1322,17 +1290,15 @@ asyncTest('Test errors are brief', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
-                                                            'tests-failed');
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         equals($('[class~="msg-error"] h5', $suite).text(),
                'Unable to open XPI.');
         equals($('[class~="msg-error"] p', $suite).html(), '&nbsp;');
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 module('Validator: code context', validatorFixtures);
@@ -1340,7 +1306,7 @@ module('Validator: code context', validatorFixtures);
 asyncTest('Test code context', function() {
     var $suite = $('.addon-validator-suite', this.sandbox);
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         status: 200,
         response: function(settings) {
@@ -1378,12 +1344,7 @@ asyncTest('Test code context', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
-                                                            'tests-passed');
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         equals($('.context .file', $suite).text(),
                'chrome/content/down.html');
         equals($('.context .lines div:eq(0)', $suite).text(), '1');
@@ -1394,14 +1355,17 @@ asyncTest('Test code context', function() {
         equals($('.context .inner-code div:eq(1)', $suite).html(),
                '&lt;foozer&gt;');
         equals($('.context .inner-code div:eq(2)', $suite).html(), null);
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 asyncTest('Test code context (single line)', function() {
     var $suite = $('.addon-validator-suite', this.sandbox);
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         status: 200,
         response: function(settings) {
@@ -1436,20 +1400,18 @@ asyncTest('Test code context (single line)', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
-                                                            'tests-passed');
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         equals($('.context .file', $suite).text(),
                'chrome/content/down.html');
         equals($('.context .lines div:eq(0)', $suite).text(), '1');
         equals($('.context .lines div:eq(1)', $suite).text(), '');
         equals($('.context .inner-code div:eq(0)', $suite).html(), 'foo');
         equals($('.context .inner-code div:eq(1)', $suite).html(), null);
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 
@@ -1458,7 +1420,7 @@ module('Validator: minimal code context', validatorFixtures);
 asyncTest('Test code context', function() {
     var $suite = $('.addon-validator-suite', this.sandbox);
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         status: 200,
         response: function(settings) {
@@ -1494,16 +1456,14 @@ asyncTest('Test code context', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
-                                                            'tests-passed');
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         equals($('.context .file', $suite).text(),
                'silvermelxt_1.3.5.xpi/chrome/silvermelxt.jar/install.rdf');
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 
@@ -1512,7 +1472,7 @@ module('Validator: code indentation', validatorFixtures);
 asyncTest('Test code indentation', function() {
     var $suite = $('.addon-validator-suite', this.sandbox);
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         status: 200,
         response: function(settings) {
@@ -1562,12 +1522,7 @@ asyncTest('Test code indentation', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
-                                                            'tests-passed');
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         equals($('.context .file:eq(0)', $suite).text(),
                'silvermelxt_1.3.5.xpi/chrome/silvermelxt.jar/somefile.js');
         equals($('.context .inner-code div:eq(0)', $suite).html(),
@@ -1576,17 +1531,20 @@ asyncTest('Test code indentation', function() {
                '&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(blah);');
         equals($('.context .file:eq(1)', $suite).text(),
                'silvermelxt_1.3.5.xpi/path/to/somefile.js');
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 
-module('validation counts', validatorFixtures);
+module('Validator: counts', validatorFixtures);
 
 asyncTest('error/warning count', function() {
     var $suite = $('.addon-validator-suite', this.sandbox);
 
-    $.mockjax({
+    var mock = $.mockjax({
         url: '/validate',
         status: 200,
         response: function(settings) {
@@ -1608,18 +1566,16 @@ asyncTest('error/warning count', function() {
         }
     });
 
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
-                                                            'tests-passed');
-    }).thenDo(function() {
+    $suite.bind('success.validation', function() {
         equals($('[class~="test-tier"][data-tier="1"] .tier-summary').text(),
                '0 errors, 3 warnings');
         equals($('#suite-results-tier-1 .result-summary').text(),
                '0 errors, 3 warnings.');
+        $.mockjaxClear(mock);
         start();
     });
+
+    $suite.trigger('validate');
 });
 
 });

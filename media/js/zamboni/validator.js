@@ -6,7 +6,8 @@ $(document).ready(function() {
 
 });
 
-function initValidator() {
+function initValidator($doc) {
+    $doc = $doc || $(document);
 
     function inherit(OtherClass, constructor) {
         var NewClass = function() {
@@ -420,7 +421,7 @@ function initValidator() {
         return lines;
     }
 
-    $('.addon-validator-suite').live('validate', function(e) {
+    $('.addon-validator-suite', $doc).bind('validate', function(e) {
         var el = $(this),
             url = el.attr('data-validateurl');
 
@@ -447,6 +448,7 @@ function initValidator() {
                         };
                     }
                     buildResults(el, data);
+                    el.trigger('success.validation');
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     buildResults(el, {
@@ -461,6 +463,7 @@ function initValidator() {
                             }]
                         }
                     });
+                    el.trigger('error.validation');
                 },
                 dataType: 'json'
         });

@@ -188,12 +188,7 @@ if 'django_qunit' in settings.INSTALLED_APPS:
     def zamboni_qunit(request, path):
         return _zamboni_qunit(request, path, 'qunit/qunit.html')
 
-    def zamboni_pre_impala_qunit(request, path):
-        return _zamboni_qunit(request, os.path.join(path, 'pre-impala/'),
-                              'qunit/pre_impala.html')
-
     urlpatterns += patterns('',
-        url(r'^qunit/pre-impala/(?P<path>.*)', zamboni_pre_impala_qunit),
         url(r'^qunit/(?P<path>.*)', zamboni_qunit),
         url(r'^_qunit/', include('django_qunit.urls')),
     )
