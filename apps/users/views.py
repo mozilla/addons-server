@@ -797,7 +797,7 @@ def plain(request, contribution, wizard):
 
 def support_author(request, contribution, wizard):
     addon = contribution.addon
-    form = forms.ContactForm(request.POST)
+    form = forms.ContactForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
             template = jingo.render_to_string(request,
@@ -821,7 +821,7 @@ def support_author(request, contribution, wizard):
 
 def support_mozilla(request, contribution, wizard):
     addon = contribution.addon
-    form = forms.ContactForm(request.POST)
+    form = forms.ContactForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
             template = jingo.render_to_string(request,
@@ -833,7 +833,8 @@ def support_mozilla(request, contribution, wizard):
                      (request.amo_user.pk, addon.pk))
             # L10n: %s is the addon name.
             send_mail(_(u'New Support Request for %s' % addon.name),
-                      template, request.amo_user.email, [settings.FLIGTAR])
+                      template, request.amo_user.email,
+                      [settings.MARKETPLACE_EMAIL])
             return redirect(reverse('users.support',
                                     args=[contribution.pk, 'mozilla-sent']))
 
@@ -920,7 +921,7 @@ class SupportWizard(Wizard):
     def render(self, request, template, context):
         fmt = {'mobile/': 'mobile/' if request.MOBILE else ''}
         wrapper = self.wrapper.format(**fmt)
-        context.update(webapp=settings.APP_PREVIEW, wizard=self)
+        context.update(wizard=self)
         if request.is_ajax():
             return jingo.render(request, template, context)
         context['content'] = template

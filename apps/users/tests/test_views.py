@@ -1427,7 +1427,7 @@ class TestPurchases(amo.tests.TestCase):
         self.client.post(self.get_url('mozilla'), data)
         eq_(len(mail.outbox), 1)
         email = mail.outbox[0]
-        eq_(email.to, [settings.FLIGTAR])
+        eq_(email.to, [settings.MARKETPLACE_EMAIL])
         eq_(email.from_email, 'regular@mozilla.com')
         assert 'Lorem' in email.body
 
@@ -1442,6 +1442,12 @@ class TestPurchases(amo.tests.TestCase):
     def test_refund_remove_fails(self):
         res = self.client.post(self.get_url('request'), {})
         eq_(res.status_code, 200)
+
+    def test_refund_webapp_no_form(self):
+        self.addon.update(type=amo.ADDON_WEBAPP)
+        res = self.client.get(self.get_url('request'), {})
+        assert 'remove' not in str(pq(res.content)('input')), (
+                'There should be no input asking to remove the app.')
 
     def test_refund_webapp_passes(self):
         self.addon.update(type=amo.ADDON_WEBAPP)

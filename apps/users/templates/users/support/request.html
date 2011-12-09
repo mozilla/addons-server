@@ -1,5 +1,5 @@
 <h1>{{ _('Request Refund') }}</h1>
-<form method="POST">
+<form class="prettyform" method="POST">
   {% set support_url = url('users.support', contribution.pk, 'author') %}
   {{ csrf() }}
   {% if webapp %}
@@ -23,12 +23,12 @@
     remove the add-on from all of your devices</b>. Open Add-ons Manager,
     select Remove next to {{ name }} and restart Firefox.{% endtrans %}</p>
   {% endif %}
-  {% if webapp %}
-    {% set label = _('I have removed this app from all of my devices.') %}
-  {% else %}
-    {% set label = _('I have removed this add-on from all of my devices.') %}
+  {% if not webapp %}
+    <p>{{ form.remove }} {{ _('I have removed this add-on from all of my devices.') }}</p>
   {% endif %}
-  <p>{{ form.remove }} {{ label }}</p>
   {{ form.remove.errors }}
-  <p><button type="submit">{{ _('Continue') }}</button></p>
+  <p>
+    <button>{{ _('Continue') }}</button> {{ _('or') }}
+    <a href="{{ url('users.purchases') }}">{{ _('Cancel') }}</a>
+  </p>
 </form>

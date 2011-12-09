@@ -18,5 +18,8 @@
     <p>{% trans %}Your email address will be made available to the
        add-on author for replies.{% endtrans %}</p>
   {% endif %}
-  <p><button type="submit">{{ _('Send Request') }}</button></p>
+  <p>
+    <button>{{ _('Send Request') }}</button> {{ _('or') }}
+    <a href="{{ url('users.purchases') }}">{{ _('Cancel') }}</a>
+  </p>
 </form>
