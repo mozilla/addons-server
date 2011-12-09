@@ -11,11 +11,11 @@
   {% endif %}
   {% if waffle.switch('browserid-login') %}
   <fieldset id="browserid-login">
-    <button class="browserid-login" type="button"
+    <a class="browserid-login button"
       data-url="{{ url('users.browserid_login') }}"
       data-profile-form-url="{{ url('users.complete_profile_form') }}">
       {{ loc('Log in / Register') }}
-    </button>
+    </a>
     <div class="user-message">
       {% trans %}
       Are you an <a href="#" id="show-normal-login">admin or editor</a>?

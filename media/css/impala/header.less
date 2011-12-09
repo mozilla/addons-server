@@ -3,6 +3,20 @@
 .amo-header {
     font-family: @head-sans;
     margin-bottom: 25px;
+
+    /* Log in link loader */
+    a.loading-submit:before {
+        background-image: url("../../img/zamboni/loading-white.gif");
+        content: "";
+        display: block;
+        height: 16px;
+        left: -20px;
+        margin-right: 10px;
+        margin-top: -8px;
+        position: absolute;
+        top: 50%;
+        width: 16px;
+    }
 }
 
 #masthead {
@@ -495,18 +509,4 @@ button.search-button {
 .developer-hub .site-balloon,
 .developer-hub .site-tip {
     display: none !important;
-}
-
-/* Log in link loader */
-a.loading-submit:before {
-    background-image: url("../../img/zamboni/loading-white.gif");
-    content: "";
-    display: block;
-    height: 16px;
-    left: -20px;
-    margin-right: 10px;
-    margin-top: -8px;
-    position: absolute;
-    top: 50%;
-    width: 16px;
 }

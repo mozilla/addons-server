@@ -1262,9 +1262,11 @@ button:active,
 
 #browserid {
     margin-bottom: 2em;
+    text-align: center;
 }
 #browserid .button {
     margin: auto;
+    display: inline-block;
 }
 
 /************************************/
