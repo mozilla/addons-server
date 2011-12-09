@@ -51,6 +51,4 @@ JavaScript
       }
   });
 
-- Write `JavaScript`_ tests whenever possible
-
-.. _`JavaScript`: http://mozilla.github.com/zamboni/topics/testing/#javascript-tests
+- Write :ref:`JavaScript tests <javascript-testing>` whenever possible

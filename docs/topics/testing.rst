@@ -99,6 +99,7 @@ need to recompile the .mo files manually, for example::
 
     msgfmt --check-format -o django.mo django.po
 
+.. _`javascript-testing`:
 
 JavaScript Tests
 ----------------
