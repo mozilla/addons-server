@@ -171,7 +171,7 @@ function loadProfileCompletionForm($root, options) {
                        ul.append('<li>' + m + '</li>');
                    });
                    $error.html(ul).show();
-                   $form.trigger('error.profile_completion');
+                   $form.trigger('badresponse.profile_completion');
                });
     });
 }

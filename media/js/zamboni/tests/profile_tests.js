@@ -64,41 +64,39 @@ asyncTest('success -> object redirect', function() {
     $form.trigger('submit');
 });
 
-// These are throwing an unknown exception in CI only for some reason.
+asyncTest('form error', function() {
+    var sb = this.sandbox,
+        mockWindow = {},
+        $form = $('form', sb);
+    $form.attr('action', '/complete-profile-error');
+    var resultMock = $.mockjax({url: '/complete-profile-error',
+                                status: 400,
+                                responseText: {username: ['invalid characters']}});
+    loadProfileCompletionForm(sb, {'window': mockWindow});
+    $form.one('badresponse.profile_completion', function() {
+        equals($('.notification-box', sb).text(),
+               'username: invalid characters');
+        $.mockjaxClear(resultMock);
+        start();
+    });
+    $form.trigger('submit');
+});
 
-// asyncTest('form error', function() {
-//     var sb = this.sandbox,
-//         mockWindow = {},
-//         $form = $('form', sb);
-//     $form.attr('action', '/complete-profile-error');
-//     var resultMock = $.mockjax({url: '/complete-profile-error',
-//                                 status: 400,
-//                                 responseText: {username: ['invalid characters']}});
-//     loadProfileCompletionForm(sb, {'window': mockWindow});
-//     $form.one('error.profile_completion', function() {
-//         equals($('.notification-box', sb).text(),
-//                'username: invalid characters');
-//         $.mockjaxClear(resultMock);
-//         start();
-//     });
-//     $form.trigger('submit');
-// });
-// 
-// asyncTest('internal error', function() {
-//     var sb = this.sandbox,
-//         mockWindow = {},
-//         $form = $('form', sb);
-//     $form.attr('action', '/complete-server-error');
-//     var resultMock = $.mockjax({url: '/complete-server-error',
-//                                 status: 500});
-//     loadProfileCompletionForm(sb, {'window': mockWindow});
-//     $form.one('error.profile_completion', function() {
-//         equals($('.notification-box', sb).text(), 'Internal server error');
-//         $.mockjaxClear(resultMock);
-//         start();
-//     });
-//     $form.trigger('submit');
-// });
+asyncTest('internal error', function() {
+    var sb = this.sandbox,
+        mockWindow = {},
+        $form = $('form', sb);
+    $form.attr('action', '/complete-server-error');
+    var resultMock = $.mockjax({url: '/complete-server-error',
+                                status: 500});
+    loadProfileCompletionForm(sb, {'window': mockWindow});
+    $form.one('badresponse.profile_completion', function() {
+        equals($('.notification-box', sb).text(), 'Internal server error');
+        $.mockjaxClear(resultMock);
+        start();
+    });
+    $form.trigger('submit');
+});
 
 module('profile form load', {
     setup: function() {

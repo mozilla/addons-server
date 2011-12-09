@@ -1090,7 +1090,7 @@ asyncTest('Test 500 error', function() {
         responseText: '500 Internal Error'
     });
 
-    $suite.bind('error.validation', function() {
+    $suite.bind('badresponse.validation', function() {
         pushTiersAndResults($suite, tiers, results);
         // First tier should have an internal server error,
         // the other tiers should not have run.
@@ -1132,7 +1132,7 @@ asyncTest('Test 500 error', function() {
 //         isTimeout: true
 //     });
 //
-//     $suite.bind('error.validation', function() {
+//     $suite.bind('badresponse.validation', function() {
 //         pushTiersAndResults($suite, tiers, results);
 //         // Firs tier should show the timeout error, other tiers did not run.
 //         $.each(tiers, function(i, tier) {

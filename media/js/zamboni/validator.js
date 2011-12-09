@@ -463,7 +463,7 @@ function initValidator($doc) {
                             }]
                         }
                     });
-                    el.trigger('error.validation');
+                    el.trigger('badresponse.validation');
                 },
                 dataType: 'json'
         });
