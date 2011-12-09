@@ -183,3 +183,13 @@ class AddonPremium(amo.models.ModelBase):
         if not self.paypal_permissions_token:
             return False
         return paypal.check_refund_permission(self.paypal_permissions_token)
+
+
+class PreApprovalUser(amo.models.ModelBase):
+
+    user = models.OneToOneField('users.UserProfile')
+    paypal_key = models.CharField(max_length=255, blank=True, null=True)
+    paypal_expiry = models.DateField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'users_preapproval'
