@@ -27,14 +27,12 @@
         window.top.postMessage(msg, '*');
     }
 
-    window.onerror = function(errorMsg, url, lineNumber) {
+    window.onerror = function(error, url, lineNumber) {
         var msg = {
             action: 'log',
             result: false, // failure
-            message: 'Exception: ' + errorMsg + ' at ' + url + ':' + lineNumber,
-            // TODO(Kumar) add stacktrace on platforms that support it
-            // (like Firefox)
-            stacktrace: null
+            message: 'Exception: ' + error.toString() + ' at ' + url + ':' + lineNumber,
+            stacktrace: (typeof printStackTrace !== 'undefined') ? printStackTrace({e: error}): null
         };
         postMsg(msg);
     };

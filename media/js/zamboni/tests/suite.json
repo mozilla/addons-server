@@ -2,6 +2,7 @@
     "name": "Main Test Suite",
     "extra_media_urls": [
         "js/lib/jstestnet.js",
+        "js/lib/stacktrace.js",
         "js/zamboni/tests.js",
         "js/zamboni/debouncer.js",
         "js/zamboni/devhub.js",
