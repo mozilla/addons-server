@@ -55,6 +55,8 @@ def add_receivers(chains, email, amount, uuid):
             # This is only done if there is a chained payment. Otherwise
             # it does not need to be set.
             'receiverList.receiver(0).primary': 'true',
+            # Mozilla pays the fees, because we've got a special rate.
+            'feesPayer': 'SECONDARYONLY'
         })
     result.update({
         'receiverList.receiver(0).email': email,

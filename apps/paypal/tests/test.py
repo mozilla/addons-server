@@ -110,6 +110,15 @@ class TestPayKey(amo.tests.TestCase):
         eq_(_call.call_args[0][1]['receiverList.receiver(0).amount'], '10')
         eq_(_call.call_args[0][1]['receiverList.receiver(1).amount'], '1.34')
 
+    def test_primary_fees(self):
+        res = paypal.add_receivers((), 'a@a.com', Decimal('1.99'), '123')
+        assert 'feesPayer' not in res
+
+    def test_split_fees(self):
+        chains = ((30, 'us@moz.com'),)
+        res = paypal.add_receivers(chains, 'a@a.com', Decimal('1.99'), '123')
+        eq_(res['feesPayer'], 'SECONDARYONLY')
+
 
 class TestPurchase(amo.tests.TestCase):
 
