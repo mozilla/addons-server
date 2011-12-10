@@ -226,7 +226,11 @@
         {% endif %}
       </div>{# /#user-profile #}
       <p class="footer-submit">
+        {% if 'admin_log' in form.fields %}
+        <a href="{{ url('admin:users_userprofile_delete', amouser.id) }}" class="delete">Delete Account</a>
+        {% else %}
         <a href="{{ url('users.delete') }}" class="delete">{{ _('Delete Account') }}</a>
+        {% endif %}
         <button type="submit" class="button prominent">{{ _('Update Account') }}</button>
       </p>
     </div>{# /.tab-wrapper #}

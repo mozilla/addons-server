@@ -152,6 +152,7 @@ class TestUserDeleteForm(UserFormBase):
 
 
 class TestUserEditForm(UserFormBase):
+    fixtures = ['users/test_backends', 'base/users']
 
     def setUp(self):
         super(TestUserEditForm, self).setUp()
@@ -187,6 +188,17 @@ class TestUserEditForm(UserFormBase):
         r = self.client.post(self.url, data)
         self.assertFormError(r, 'form', 'password2',
                              'The passwords did not match.')
+
+    def test_admin_correct_delete_link(self):
+        self.client.logout()
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+
+        user = UserProfile.objects.all()[0]
+        r = self.client.get(reverse('users.admin_edit', args=[user.id]))
+        doc = pq(r.content)
+
+        eq_(doc('a.delete').attr('href'), reverse('admin:users_userprofile_delete', args=[user.id]))
 
     def test_set_new_passwords(self):
         data = {'username': 'jbalogh',
