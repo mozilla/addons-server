@@ -198,7 +198,8 @@ class TestUserEditForm(UserFormBase):
         r = self.client.get(reverse('users.admin_edit', args=[user.id]))
         doc = pq(r.content)
 
-        eq_(doc('a.delete').attr('href'), reverse('admin:users_userprofile_delete', args=[user.id]))
+        eq_(doc('a.delete').attr('href'),
+            reverse('admin:users_userprofile_delete', args=[user.id]))
 
     def test_set_new_passwords(self):
         data = {'username': 'jbalogh',
