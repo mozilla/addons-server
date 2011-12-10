@@ -175,7 +175,8 @@ def add(request, addon, template=None):
     if addon.has_author(request.user):
         return http.HttpResponseForbidden()
     form = forms.ReviewForm(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
+    if (request.method == 'POST' and form.is_valid() and
+        not request.POST.get('detailed')):
         details = _review_details(request, addon, form)
         review = Review.objects.create(**details)
         amo.log(amo.LOG.ADD_REVIEW, addon, review)

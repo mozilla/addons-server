@@ -13,6 +13,11 @@ $.fn.ratingwidget = function() {
                     "<input type='radio' name='rating' value='", i, "'></label>");
         }
         var rating = 0;
+        // Existing rating found so initialize the widget.
+        if ($('option[selected]', $el).length) {
+            rating = $el.val();
+            showStars(rating);
+        }
         $widget.click(function(evt) {
             var t = $(evt.target);
             if (t.val()) {

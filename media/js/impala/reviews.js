@@ -128,4 +128,9 @@ $(document).ready(function() {
     });
 
     $('select[name="rating"]').ratingwidget();
+
+    $('#detail-review-link').click(_pd(function(e) {
+        $('#review-add-box form')
+            .append('<input type="hidden" name="detailed" value="1">').submit();
+    }));
 });
