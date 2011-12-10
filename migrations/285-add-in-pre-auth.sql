@@ -1,6 +1,6 @@
-INSERT INTO `waffle_flag`
+INSERT IGNORE INTO `waffle_flag`
     (name, everyone, percent, superusers, staff, authenticated, rollout, note) VALUES
-    ('allow-pre-auth',0,NULL,0,0,0,0, 'Allow pre-auth of paypal payments');
+    ('allow-pre-auth',0,NULL,0,0,0,0, 'Allow pre-auth of paypal payments') ON DUPLICATE KEY UPDATE;
 
 CREATE TABLE `users_preapproval` (
     `id` int(11) unsigned AUTO_INCREMENT NOT NULL PRIMARY KEY,
