@@ -211,7 +211,12 @@ class LazyPjaxMiddleware(object):
 class ViewMiddleware(object):
 
     def get_name(self, view_func):
-        return '%s.%s' % (view_func.__module__, view_func.__name__)
+        # Find a function name or used the class based view class name.
+        if not hasattr(view_func, '__name__'):
+            name = view_func.__class__.__name__
+        else:
+            name = view_func.__name__
+        return '%s.%s' % (view_func.__module__, name)
 
 
 class LoginRequiredMiddleware(ViewMiddleware):

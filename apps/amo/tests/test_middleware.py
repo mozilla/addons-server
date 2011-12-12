@@ -16,6 +16,7 @@ from amo.decorators import no_login_required
 from amo.middleware import (LazyPjaxMiddleware, LoginRequiredMiddleware,
                             NoAddonsMiddleware)
 from amo.urlresolvers import reverse
+from reviews.feeds import ReviewsRss
 from zadmin.models import Config, _config_cache
 
 
@@ -213,6 +214,10 @@ class TestLoginRequiredMiddleware(amo.tests.TestCase):
     def test_modules(self):
         assert not self.process(False)
         assert not self.process(True)
+
+    def test_class(self):
+        eq_(LoginRequiredMiddleware().get_name(ReviewsRss),
+            'reviews.feeds.ReviewsRss')
 
 
 class TestNoAddonsMiddleware(amo.tests.TestCase):
