@@ -36,6 +36,9 @@ $(document).ready(function() {
     // Submission > Describe
     $("#submit-describe").exists(initCatFields);
 
+    // Submission > Descript > Summary
+    $('.addon-submission-process #submit-describe').exists(initTruncateSummary);
+
     // Submission > Media
     $('#submit-media').exists(function() {
         initUploadIcon();
@@ -1480,3 +1483,26 @@ function initMerchantAccount() {
     });
 }
 
+function initTruncateSummary() {
+    // If the summary from a manifest is too long, truncate it!
+    // EN-US only, since it'll be way too hard to accomodate all languages properly.
+    var $summary = $('[name=summary_en-us]'),
+        $desc = $('[name=description_en-us]'),
+        max_length = parseInt($('#submit-describe .char-count').attr('data-maxlength')),
+        text = $summary.val(),
+        submitted = ($('#submit-describe').find('.errorlist li').length > 0);
+
+    if($summary.length && $desc.length && $desc.val() == "" && text.length > max_length && !submitted) {
+        var new_text = text.substr(0, max_length),
+            punctuation = new_text.match(/[.?!]\s/g);
+
+        if(punctuation.length) {
+            new_text = new_text.substr(0, new_text.lastIndexOf(punctuation[punctuation.length - 1])+1);
+            if(new_text.length > 0) {
+                $desc.val(text);
+                $summary.val(new_text).trigger('keyup');
+            }
+        }
+    }
+
+}
