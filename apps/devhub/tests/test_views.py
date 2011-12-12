@@ -876,6 +876,50 @@ class TestPaymentsProfile(amo.tests.TestCase):
         check_page(r)
         eq_(self.get_addon().wants_contributions, False)
 
+    def test_checker_no_email(self):
+        url = reverse('devhub.check_paypal')
+        r = self.client.post(url)
+        eq_(r.status_code, 404)
+
+    @mock.patch('paypal.check_paypal_id')
+    @mock.patch('paypal.get_paykey')
+    def test_checker_valid_email(self, gp, cpi):
+        cpi.return_value = (True, "")
+        gp.return_value = "123abc"
+
+        url = reverse('devhub.check_paypal')
+        r = self.client.post(url, {'email': 'test@test.com'})
+        eq_(r.status_code, 200)
+        result = json.loads(r.content)
+
+    @mock.patch('paypal.check_paypal_id')
+    @mock.patch('paypal.get_paykey')
+    def test_checker_invalid_email(self, gp, cpi):
+        cpi.return_value = (False, "Oh no you didn't")
+        gp.return_value = "123abc"
+
+        url = reverse('devhub.check_paypal')
+        r = self.client.post(url, {'email': 'test.com'})
+        eq_(r.status_code, 200)
+        result = json.loads(r.content)
+
+        eq_(result[u'valid'], False)
+        assert len(result[u'message']) > 0, "No error on invalid email"
+
+    @mock.patch('paypal.check_paypal_id')
+    @mock.patch('paypal.get_paykey')
+    def test_checker_no_paykey(self, gp, cpi):
+        cpi.return_value = (True, "")
+        gp.return_value = None
+
+        url = reverse('devhub.check_paypal')
+        r = self.client.post(url, {'email': 'test@test.com'})
+        eq_(r.status_code, 200)
+        result = json.loads(r.content)
+
+        eq_(result[u'valid'], False)
+        assert len(result[u'message']) > 0, "No error on missing paykey"
+
 
 class MarketplaceMixin(object):
     def setUp(self):
