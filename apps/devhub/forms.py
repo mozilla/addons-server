@@ -1023,22 +1023,14 @@ class PremiumForm(happyforms.Form):
         for field in self.extra.get('exclude', []):
             del self.fields[field]
 
-        # Keep a list of the warnings about PayPal refund tokens.
-        self.paypal_messages = []
-
-    def _add_refundtoken_msg(self, message):
-        self.paypal_messages.append(message)
-
-    def _show_refundtoken_msgs(self):
-        if not self.paypal_messages:
-            return
+    def _show_token_msg(self, message):
+        """Display warning for an invalid PayPal refund token."""
         url = paypal.refund_permission_url(self.addon,
                                            self.extra.get('dest', 'payment'))
         msg = _(' <a href="%s">Visit PayPal to grant permission'
                 ' for refunds on your behalf.</a>') % url
-        paypal_msgs = ' '.join(self.paypal_messages)
-        messages.warning(self.request, '%s %s' % (paypal_msgs, Markup(msg)))
-        raise forms.ValidationError(paypal_msgs)
+        messages.warning(self.request, '%s %s' % (message, Markup(msg)))
+        raise forms.ValidationError(message)
 
     def clean_paypal_id(self):
         paypal_id = self.cleaned_data['paypal_id']
@@ -1062,19 +1054,15 @@ class PremiumForm(happyforms.Form):
             # record the PayPal ID first.
             self.addon.paypal_id = paypal_id
             self.addon.save()
-        if (not self.addon.premium or
-            not self.addon.premium.has_permissions_token()):
-            # L10n: We require PayPal users to have a third party token.
-            self._add_refundtoken_msg(
-                _('No PayPal third-party refund token set up.'))
-        if (self.addon.premium and
-            not self.addon.premium.has_valid_permissions_token()):
-            # L10n: We require PayPal users to have a valid third party token.
-            self._add_refundtoken_msg(
-                _('The PayPal third-party refund token on your account is '
-                  'invalid.'))
-        self._show_refundtoken_msgs()
-
+        # Check if third-party refund token is properly set up.
+        no_token = (not self.addon.premium or
+                    not self.addon.premium.has_permissions_token())
+        invalid_token = (self.addon.premium and
+                         not self.addon.premium.has_valid_permissions_token())
+        if no_token or invalid_token:
+            # L10n: We require PayPal users to have a third-party token set up.
+            self._show_token_msg(loc('PayPal third-party refund token has not '
+                                     'been set up or has recently expired.'))
         return self.cleaned_data
 
     def clean_text(self):
