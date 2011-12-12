@@ -1453,8 +1453,8 @@ function initMerchantAccount() {
 
         if(ajax) {
             ajax.abort();
-            $paypal_verify.attr('class', 'pp-unknown');
         }
+        $paypal_verify.attr('class', 'pp-unknown');
 
         if(!$paypal_field.val().match(/.+@.+\..+/)) {
             $paypal_verify.attr('class', 'pp-error');
