@@ -105,7 +105,7 @@ function completeUserProfile(options) {
             var $box = $(this);
             $box.attr('id', 'login-complete-profile');  // for styles
             loadProfileCompletionForm($box, options);
-        }});
+        }, 'deleteme': false, 'close': false, 'hideme': false});
         return def;
     }
     $root.empty();
