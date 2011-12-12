@@ -23,8 +23,9 @@
   <div id="reviews" class="primary island hero prettyform c">
     <fieldset class="prose">
       {% if addon.is_webapp() %}
-        {% trans support=addon.get_url_path() + "#support",
-                 guide=remora_url('pages/review_guide') %}
+        {# TODO(apps): Finalize copy. #}
+        {% with support=addon.get_url_path() + "#support",
+                guide=remora_url('pages/review_guide') %}
         <h2>Keep these tips in mind:</h2>
         <ul>
           <li>
@@ -44,9 +45,9 @@
               post any personal information.
           </li>
         </ul>
-        <p>Please read the <a href="{{ guide }}" target="_blank">Review Guidelines</a> for more detail
-        about user app reviews.</p>
-        {% endtrans %}
+        {#<p>Please read the <a href="{{ guide }}" target="_blank">Review Guidelines</a> for more detail
+        about user app reviews.</p>#}
+        {% endwith %}
       {% else %}
         {# Text for add-ons: #}
         {% trans support=addon.get_url_path() + "#support",
