@@ -1144,7 +1144,7 @@ QUNIT_TEST_DIRECTORY = os.path.join(MEDIA_ROOT, 'js', 'zamboni', 'tests')
 SPIDERMONKEY = None
 VALIDATE_ADDONS = True
 # Number of seconds before celery tasks will abort addon validation:
-VALIDATOR_TIMEOUT = 30
+VALIDATOR_TIMEOUT = 90
 
 # When True include full tracebacks in JSON. This is useful for QA on preview.
 EXPOSE_VALIDATOR_TRACEBACKS = False
