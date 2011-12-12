@@ -491,6 +491,7 @@ function initEditAddon() {
                     initRequiredAddons();
                 }
                 $(this).each(addonFormSubmit);
+                initInvisibleUploads();
             });
         })(parent_div, a);
 
@@ -634,15 +635,17 @@ function initUploadPreview() {
         renumberPreviews();
     }
 
-    $f.delegate('#screenshot_upload', "upload_finished", upload_finished)
-      .delegate('#screenshot_upload', "upload_success", upload_success)
-      .delegate('#screenshot_upload', "upload_start", upload_start)
-      .delegate('#screenshot_upload', "upload_errors", upload_errors)
-      .delegate('#screenshot_upload', "upload_start_all", upload_start_all)
-      .delegate('#screenshot_upload', "upload_finished_all", upload_finished_all)
-      .delegate('#screenshot_upload', 'change', function(e){
-        $(this).imageUploader();
-      });
+    if (z.capabilities.fileAPI) {
+        $f.delegate('#screenshot_upload', "upload_finished", upload_finished)
+          .delegate('#screenshot_upload', "upload_success", upload_success)
+          .delegate('#screenshot_upload', "upload_start", upload_start)
+          .delegate('#screenshot_upload', "upload_errors", upload_errors)
+          .delegate('#screenshot_upload', "upload_start_all", upload_start_all)
+          .delegate('#screenshot_upload', "upload_finished_all", upload_finished_all)
+          .delegate('#screenshot_upload', 'change', function(e){
+                $(this).imageUploader();
+          });
+    }
 
     $("#edit-addon-media, #submit-media").delegate("#file-list .remove", "click", function(e){
         e.preventDefault();
@@ -652,7 +655,15 @@ function initUploadPreview() {
     });
 }
 
+function initInvisibleUploads() {
+    if (z.capabilities.fileAPI) {
+        $('.invisible-upload').addClass('modern');
+    }
+}
+
 function initUploadIcon() {
+    initInvisibleUploads();
+
     $('#edit-addon-media, #submit-media').delegate('#icons_default a', 'click', function(e){
         e.preventDefault();
 
@@ -687,11 +698,7 @@ function initUploadIcon() {
             $('#id_icon_upload_hash').val(upload_hash)
             $('#icons_default a.active').removeClass('active');
 
-            if (file.dataURL) {
-                $('#icon_preview img').attr('src', file.dataURL);
-            } else {
-                $('#icon_preview').hide();
-            }
+            $('#icon_preview img').attr('src', file.dataURL);
 
             $('#icons_default input:checked').attr('checked', false);
             $('input[name="icon_type"][value="'+file.type+'"]', $('#icons_default'))
@@ -716,8 +723,12 @@ function initUploadIcon() {
       .delegate('#id_icon_upload', "upload_start", upload_start)
       .delegate('#id_icon_upload', "upload_finished", upload_finished)
       .delegate('#id_icon_upload', "upload_errors", upload_errors)
-      .delegate('#id_icon_upload', 'change', function(e){
-        $(this).imageUploader();
+      .delegate('#id_icon_upload', 'change', function(e) {
+        if (z.capabilities.fileAPI) {
+            $(this).imageUploader();
+        } else {
+            $('#icon_preview').hide();
+        }
       });
 }
 

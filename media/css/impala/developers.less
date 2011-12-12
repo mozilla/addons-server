@@ -424,3 +424,104 @@
         right: -11px;
     }
 }
+
+#icon_preview {
+    float: right;
+    margin-left: 10px;
+    width: 76px;
+    .icon_preview {
+        border: 1px solid #6A89AC;
+        text-align: center;
+        padding: 5px;
+        background-color: #fff;
+        img {
+            vertical-align: middle;
+        }
+    }
+}
+.html-rtl #icon_preview {
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+#icon_preview_32 {
+    line-height: 32px;
+    width: 32px;
+    height: 32px;
+    img {
+        max-width: 32px;
+        max-height: 32px;
+    }
+}
+
+#icon_preview_48 {
+    line-height: 48px;
+    width: 48px;
+    height: 48px;
+    img {
+        max-width: 48px;
+        max-height: 48px;
+    }
+}
+
+#icon_preview_64 {
+    line-height: 64px;
+    width: 64px;
+    height: 64px;
+    img {
+        max-width: 64px;
+        max-height: 64px;
+    }
+}
+
+/* Invisible file inputs */
+.invisible-upload {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    cursor: pointer;
+    input {
+        display: block;
+        right: 0;
+        bottom: 0;
+        width: auto;
+        height: 110%;
+        cursor: pointer;
+        /* stack this below the navbar: */
+        z-index: 0;
+        outline: none;
+    }
+    a.button {
+        display: none;
+    }
+    &.modern {
+        input {
+            opacity: 0;
+            position: absolute;
+        }
+        &:hover {
+            input {
+                // Large target fix so the input is always clickable.
+                font-size: 1000px;
+            }
+        }
+        a.button {
+            position: relative;
+            display: inline-block;
+        }
+        &:hover a.button, &:focus a.button {
+            border-color: #25f;
+            .box-shadow(inset 0 0 2px #fff);
+        }
+    }
+    a.link {
+        text-decoration: none;
+        color: #05e;
+    }
+    &:hover a.link, &:focus a.link {
+        text-decoration: underline;
+    }
+}
+.edit-addon-section #icons_default {
+    margin-bottom: 1em;
+}

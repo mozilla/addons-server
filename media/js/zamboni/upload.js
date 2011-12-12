@@ -512,8 +512,8 @@
             url = $upload_field.attr('data-upload-url'),
             csrf = $upload_field.closest('form').find('input[name^=csrf]').val();
 
-        // No files? We do nothing.
-        if(files.length === 0) {
+        // No files? No API support? No shirt? No service.
+        if (!z.capabilities.fileAPI || files.length === 0) {
             return false;
         }
 

@@ -10,6 +10,7 @@ z.capabilities = {
         navigator.mozApps &&
         typeof navigator.mozApps.html5Implementation === 'undefined'
     ),
+    'fileAPI': !!window.FileReader,
 };
 
 

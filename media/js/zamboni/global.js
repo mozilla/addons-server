@@ -52,7 +52,7 @@ jQuery.fn.tooltip = function(tip_el) {
 
         delay = $title.is('[data-delay]') ? $title.attr('data-delay') : 300;
 
-        if(!html && title.indexOf('::') > 0) {
+        if (!html && title.indexOf('::') > 0) {
             var title_split = title.split('::');
             $msg.text("");
             $msg.append($("<strong>", {'text': title_split[0].trim()}));
@@ -450,7 +450,7 @@ function load_unicode() {
 }
 
 function makeslug(s, delimiter) {
-    if(! s) return "";
+    if (!s) return "";
     var re = new RegExp("[^\\w" + z.unicode_letters + "\\s-]+","g");
     s = $.trim(s.replace(re, ' '));
     s = s.replace(/[-\s]+/g, delimiter || '-').toLowerCase();
@@ -533,14 +533,14 @@ function initCharCount() {
         this.xhr = new XMLHttpRequest();
         this.boundary = "z" + (new Date().getTime()) + "" + Math.floor(Math.random() * 10000000);
 
-        if(hasFormData) {
+        if (hasFormData) {
             this.formData = new FormData();
         } else {
             this.output = "";
         }
 
         this.append = function(name, val) {
-            if(hasFormData) {
+            if (hasFormData) {
                 this.formData.append(name, val);
             } else {
                 if(typeof val == "object" && "fileName" in val) {
@@ -570,7 +570,7 @@ function initCharCount() {
         }
 
         this.send = function() {
-            if(hasFormData) {
+            if (hasFormData) {
                 this.xhr.send(this.formData);
             } else {
                 content_type = "multipart/form-data;boundary=" + this.boundary;
@@ -590,7 +590,7 @@ $.fn.exists = function(callback, args){
     var $this = $(this),
         len = $this.length;
 
-    if(len && callback) {
+    if (len && callback) {
         callback.apply(null, args);
     }
     return len > 0;
@@ -602,10 +602,10 @@ $.fn.objectUrl = function(offset) {
     var files = $(this)[0].files,
         url = false;
 
-    offset = offset || 0;
-
-    if(files.length) {
+    if (z.capabilities.fileAPI && files.length) {
+        offset = offset || 0;
         var f = files[offset];
+
         if (typeof window.URL == 'object') {
             url = window.URL.createObjectURL(f);
         } else if (typeof window.webkitURL == 'object') {
