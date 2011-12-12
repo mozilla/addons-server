@@ -141,16 +141,17 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
     if not os.path.exists(apps):
         call_command('dump_apps')
 
-    return validate(file_path,
-                    for_appversions=for_appversions,
-                    format='json',
-                    # When False, this flag says to stop testing after one
-                    # tier fails.
-                    determined=test_all_tiers,
-                    approved_applications=apps,
-                    spidermonkey=settings.SPIDERMONKEY,
-                    overrides=overrides,
-                    timeout=settings.VALIDATOR_TIMEOUT)
+    with statsd.timer('devhub.validator'):
+        return validate(file_path,
+                        for_appversions=for_appversions,
+                        format='json',
+                        # When False, this flag says to stop testing after one
+                        # tier fails.
+                        determined=test_all_tiers,
+                        approved_applications=apps,
+                        spidermonkey=settings.SPIDERMONKEY,
+                        overrides=overrides,
+                        timeout=settings.VALIDATOR_TIMEOUT)
 
 
 @task(rate_limit='4/m')
