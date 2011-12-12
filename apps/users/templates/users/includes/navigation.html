@@ -12,6 +12,11 @@
 {% if waffle.switch('marketplace') %}
   {% do links.append((_('My Purchases'), url('users.purchases'))) %}
 {% endif %}
+
+{% if waffle.flag('allow-pre-auth') %}
+  {% do links.append((loc('Payment Profile'), url('users.payments'))) %}
+{% endif %}
+
 <div id="secondary-nav" class="secondary">
   <h2>{{ _('My Account') }}</h2>
   <ul>

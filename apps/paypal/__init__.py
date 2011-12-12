@@ -234,6 +234,35 @@ def get_permissions_token(request_token, verification_code):
     return r['token']
 
 
+def get_preapproval_key(data):
+    """
+    Get a preapproval key from PayPal. If this passes, you get a key that
+    you can use in a redirect to PayPal.
+    """
+    paypal_data = {
+        'currencyCode': 'USD',
+        'startingDate': data['startDate'].strftime('%Y-%m-%d'),
+        'endingDate': data['endDate'].strftime('%Y-%m-%d'),
+        'maxTotalAmountOfAllPayments': str(data.get('maxAmount', '2000')),
+        'returnUrl': absolutify(reverse(data['pattern'], args=['complete'])),
+        'cancelUrl': absolutify(reverse(data['pattern'], args=['cancel'])),
+    }
+    with statsd.timer('paypal.preapproval.token'):
+        response = _call(settings.PAYPAL_PAY_URL + 'Preapproval', paypal_data,
+                         ip=data.get('ip'))
+
+    return response
+
+
+def get_preapproval_url(key):
+    """
+    Returns the URL that you need to bounce user to in order to set up
+    pre-approval.
+    """
+    return urlparams(settings.PAYPAL_CGI_URL, cmd='_ap-preapproval',
+                     preapprovalkey=key)
+
+
 def _call(url, paypal_data, ip=None):
     request = urllib2.Request(url)
 

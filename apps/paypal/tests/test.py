@@ -1,4 +1,5 @@
 from cStringIO import StringIO
+from datetime import datetime, timedelta
 from decimal import Decimal
 import urlparse
 
@@ -9,6 +10,8 @@ from nose.tools import eq_
 import time
 
 from addons.models import Addon
+from amo.helpers import absolutify
+from amo.urlresolvers import reverse
 import amo.tests
 import paypal
 
@@ -226,3 +229,56 @@ class TestRefund(amo.tests.TestCase):
         opener.return_value = StringIO(error_refund_string)
         with self.assertRaises(paypal.PaypalError):
             paypal.refund('fake-paykey')
+
+
+# TODO: would be nice to see if we could get some more errors out of PayPal
+# but it looks like anything else just raises an error.
+good_preapproval_string = {
+    'responseEnvelope.build': '2279004',
+    'responseEnvelope.ack': 'Success',
+    'responseEnvelope.timestamp': '2011-12-13T16:11:34.567-08:00',
+    'responseEnvelope.correlationId': '56aaa9b53b12f',
+    'preapprovalKey': 'PA-2L635945UC9045439'
+}
+
+
+@mock.patch('paypal._call')
+class TestPreApproval(amo.tests.TestCase):
+
+    def get_data(self):
+        return {'startDate': datetime.today(),
+                'endDate': datetime.today() + timedelta(days=365),
+                'pattern': 'users.payments',
+                }
+
+    def test_preapproval_works(self, _call):
+        _call.return_value = good_preapproval_string
+        eq_(paypal.get_preapproval_key(self.get_data()),
+            good_preapproval_string)
+
+    def test_preapproval_no_data(self, _call):
+        self.assertRaises(KeyError, paypal.get_preapproval_key, {})
+
+    def test_preapproval_amount(self, _call):
+        _call.return_value = good_preapproval_string
+        data = self.get_data()
+        paypal.get_preapproval_key(data)
+        eq_(_call.call_args[0][1]['maxTotalAmountOfAllPayments'], '2000')
+
+        data['maxAmount'] = 1000
+        paypal.get_preapproval_key(data)
+        eq_(_call.call_args[0][1]['maxTotalAmountOfAllPayments'], '1000')
+
+    def test_preapproval_patterns(self, _call):
+        _call.return_value = good_preapproval_string
+        data = self.get_data()
+        paypal.get_preapproval_key(data)
+        eq_(_call.call_args[0][1]['cancelUrl'],
+            absolutify(reverse(data['pattern'], args=['cancel'])))
+        eq_(_call.call_args[0][1]['returnUrl'],
+            absolutify(reverse(data['pattern'], args=['complete'])))
+
+    def test_preapproval_url(self, _call):
+        url = paypal.get_preapproval_url('foo')
+        assert (url.startswith(settings.PAYPAL_CGI_URL) and
+                url.endswith('foo')), 'Incorrect URL returned'

@@ -7,6 +7,7 @@ from tower import ugettext as _
 import waffle
 
 import amo
+from amo.helpers import loc
 from amo.urlresolvers import reverse
 from access import acl
 from cake.urlresolvers import remora_url
@@ -62,6 +63,11 @@ def global_settings(request):
         if waffle.switch_is_active('marketplace'):
             account_links.append({'text': _('My Purchases'),
                                   'href': reverse('users.purchases')})
+
+        if waffle.flag_is_active(request, 'allow-pre-auth'):
+            account_links.append({'text': loc('Payment Profile'),
+                                  'href': reverse('users.payments')})
+
         account_links.append({
             'text': _('Log out'),
             'href': remora_url('/users/logout?to=' + urlquote(request.path)),

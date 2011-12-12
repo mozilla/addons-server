@@ -16,6 +16,7 @@ from django.utils.http import base36_to_int
 from django.contrib.auth.tokens import default_token_generator
 
 from django_browserid.auth import BrowserIDBackend
+from waffle.decorators import waffle_flag
 
 import commonware.log
 import jingo
@@ -41,6 +42,7 @@ from addons.views import BaseFilter
 from addons.decorators import addon_view_factory
 from access import acl
 from bandwagon.models import Collection
+from market.models import PreApprovalUser
 import paypal
 from stats.models import Contribution
 from translations.query import order_by_translation
@@ -930,3 +932,62 @@ class SupportWizard(Wizard):
             return jingo.render(request, template, context)
         context['content'] = template
         return jingo.render(request, wrapper, context)
+
+
+@login_required
+@waffle_flag('allow-pre-auth')
+def payments(request, status=None):
+    # Note this is not post required, because PayPal does not reply with a
+    # POST but a GET, that's a sad face.
+    if status:
+        pre, created = (PreApprovalUser.objects
+                        .safer_get_or_create(user=request.amo_user))
+
+        if status == 'complete':
+            # The user has completed the setup at PayPal and bounced back.
+            messages.success(request, loc('Pre-approval setup.'))
+            paypal_log.info(u'Preapproval key created for user: %s'
+                            % request.amo_user)
+            data = request.session.get('setup-preapproval', {})
+            pre.update(paypal_key=data.get('key'),
+                       paypal_expiry=data.get('expiry'))
+            del request.session['setup-preapproval']
+
+        elif status == 'cancel':
+            # The user has chosen to cancel out of PayPal. Nothing really
+            # to do here, PayPal just bounces to this page.
+            messages.success(request, loc('Pre-approval changes cancelled.'))
+
+        elif status == 'remove':
+            # The user has an pre approval key set and chooses to remove it
+            if pre.paypal_key:
+                pre.update(paypal_key='')
+                messages.success(request, loc('Pre-approval removed.'))
+                paypal_log.info(u'Preapproval key removed for user: %s'
+                                % request.amo_user)
+
+    context = {'preapproval': request.amo_user.get_preapproval()}
+    return jingo.render(request, 'users/payments.html', context)
+
+
+@post_required
+@login_required
+@waffle_flag('allow-pre-auth')
+def preapproval(request):
+    today = datetime.today()
+    data = {'startDate': today,
+            'endDate': today + timedelta(days=365),
+            'pattern': 'users.payments',
+            }
+    try:
+        result = paypal.get_preapproval_key(data)
+    except paypal.PaypalError, e:
+        paypal_log.error(u'Preapproval key: %s' % e, exc_info=True)
+        raise
+
+    paypal_log.info(u'Got preapproval key for user: %s' % request.amo_user.pk)
+    request.session['setup-preapproval'] = {
+            'key': result['preapprovalKey'],
+            'expiry': data['endDate'],
+            }
+    return redirect(paypal.get_preapproval_url(result['preapprovalKey']))

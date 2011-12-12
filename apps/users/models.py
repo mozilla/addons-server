@@ -10,6 +10,7 @@ from django import forms, dispatch
 from django.conf import settings
 from django.contrib.auth.models import User as DjangoUser
 from django.core import validators
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.template import Context, loader
 from django.utils.encoding import smart_str, smart_unicode
@@ -356,6 +357,16 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         since that's used for collections and other display items.
         """
         return not self.username or not self.display_name
+
+    def get_preapproval(self):
+        """
+        Returns the pre approval object for this user, or None if it does
+        not exist
+        """
+        try:
+            return self.preapprovaluser
+        except ObjectDoesNotExist:
+            pass
 
 
 @dispatch.receiver(models.signals.post_save, sender=UserProfile,

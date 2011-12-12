@@ -29,7 +29,8 @@ from amo.pyquery_wrapper import PyQuery as pq
 from amo.urlresolvers import reverse
 from bandwagon.models import Collection, CollectionAddon, CollectionWatcher
 from devhub.models import ActivityLog
-from market.models import Price
+from market.models import PreApprovalUser, Price
+import paypal
 from reviews.models import Review
 from stats.models import Contribution
 from users.models import BlacklistedPassword, UserProfile, UserNotification
@@ -1620,3 +1621,67 @@ class TestPurchases(amo.tests.TestCase):
     @amo.tests.mobile_test
     def test_mobile_chargeback(self):
         self._test_chargeback()
+
+
+# Turning on the allow-pre-auth flag.
+@patch.object(waffle, 'flag_is_active', lambda x, y: True)
+class TestPreapproval(amo.tests.TestCase):
+    fixtures = ['base/users.json']
+
+    def setUp(self):
+        self.user = UserProfile.objects.get(pk=999)
+        assert self.client.login(username=self.user.email,
+                                 password='password')
+
+    def get_url(self, status=None):
+        if status:
+            return reverse('users.payments', args=[status])
+        return reverse('users.payments')
+
+    def test_preapproval_denied(self):
+        self.client.logout()
+        eq_(self.client.get(self.get_url()).status_code, 302)
+
+    def test_preapproval_allowed(self):
+        eq_(self.client.get(self.get_url()).status_code, 200)
+
+    def test_preapproval_setup(self):
+        doc = pq(self.client.get(self.get_url()).content)
+        eq_(doc('#preapproval').attr('action'),
+            reverse('users.payments.preapproval'))
+
+    @patch('paypal.get_preapproval_key')
+    def test_fake_preapproval(self, get_preapproval_key):
+        get_preapproval_key.return_value = {'preapprovalKey': 'xyz'}
+        res = self.client.post(reverse('users.payments.preapproval'))
+        ssn = self.client.session['setup-preapproval']
+        eq_(ssn['key'], 'xyz')
+        # Checking it's in the future at least 353 just so this test will work
+        # on leap years at 11:59pm.
+        assert (ssn['expiry'] - datetime.today()).days > 353
+        eq_(res['Location'], paypal.get_preapproval_url('xyz'))
+
+    def test_preapproval_complete(self):
+        ssn = self.client.session
+        ssn['setup-preapproval'] = {'key': 'xyz'}
+        ssn.save()
+        res = self.client.post(self.get_url('complete'))
+        eq_(res.status_code, 200)
+        eq_(self.user.preapprovaluser.paypal_key, 'xyz')
+
+    def test_preapproval_cancel(self):
+        PreApprovalUser.objects.create(user=self.user, paypal_key='xyz')
+        res = self.client.post(self.get_url('cancel'))
+        eq_(res.status_code, 200)
+        eq_(self.user.preapprovaluser.paypal_key, 'xyz')
+        eq_(pq('#preapproval').attr('action'),
+            self.get_url('remove'))
+
+    def test_preapproval_remove(self):
+        PreApprovalUser.objects.create(user=self.user, paypal_key='xyz')
+        res = self.client.post(self.get_url('remove'))
+        eq_(res.status_code, 200)
+        eq_(self.user.preapprovaluser.paypal_key, '')
+        eq_(pq(res.content)('form').eq(1).attr('action'),
+            reverse('users.payments.preapproval'))
+

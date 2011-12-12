@@ -9,7 +9,7 @@ from addons.models import Addon
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from market.models import AddonPremium, Price
+from market.models import AddonPremium, PreApprovalUser, Price
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -190,3 +190,15 @@ class TestContribution(amo.tests.TestCase):
         self.addon.addonpurchase_set.create(user=self.user,
                                             type=amo.CONTRIB_REFUND)
         eq_(list(self.user.purchase_ids()), [])
+
+
+class TestUserPreApproval(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.user = UserProfile.objects.get(pk=999)
+
+    def test_get_preapproval(self):
+        eq_(self.user.get_preapproval(), None)
+        pre = PreApprovalUser.objects.create(user=self.user)
+        eq_(self.user.get_preapproval(), pre)

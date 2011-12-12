@@ -62,7 +62,11 @@ users_patterns = patterns('',
         name='users.purchases.receipt'),
     url(r'support/(?P<contribution_id>\d+)(?:/(?P<step>[\w-]+))?$',
         views.SupportWizard.as_view(),
-        name='users.support')
+        name='users.support'),
+    url(r'payments(?:/(?P<status>cancel|complete|remove))?$', views.payments,
+        name='users.payments'),
+    url(r'payments/preapproval$', views.preapproval,
+        name='users.payments.preapproval'),
 )
 
 urlpatterns = patterns('',
