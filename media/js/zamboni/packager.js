@@ -24,7 +24,7 @@ $(document).ready(function() {
                 $.getJSON(url, function(json) {
                     if (json !== null && 'download_url' in json) {
                         var a = template(
-                            '<a href="{url}">{text}<b>{size} kB</b></a>'
+                            '<a href="{url}">{text}<b>{size} KB</b></a>'
                         );
                         $this.html(a({
                             // L10n: {0} is a filename, such as `addon.zip`.
