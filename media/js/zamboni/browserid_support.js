@@ -125,17 +125,17 @@ function completeUserProfile(options) {
 function loadProfileCompletionForm($root, options) {
     if (!options) options = {};
     var $error = $('.notification-box.error', $root),
-        win = options.window || window;
-
+        win = options.window || window,
+        $form = $('form', $root),
+        handler;
     $('#browserid-login').hide(); // Don't let people log in twice; will cause error
+    $root.slideDown();
     $(window).trigger('resize'); // I hate this so much. I vow to someday fix this properly.
-
     $('input[type="text"]', $root).eq(0).focus();
-    $('form', $root).submit(function(evt) {
-        var $form = $(this);
+    function handler(evt) {
         evt.preventDefault();
         $error.hide();
-        $('button[type="submit"]', $form).addClass('loading-submit');
+        $('a.complete-profile', $form).addClass('loading-submit');
         $.ajax({url: $form.attr('action'),
                 type: 'POST',
                 data: $form.serialize(),
@@ -176,7 +176,9 @@ function loadProfileCompletionForm($root, options) {
                    $error.html(ul).show();
                    $form.trigger('badresponse.profile_completion');
                });
-    });
+    }
+    $('a.complete-profile', $root).click(handler);
+    $form.submit(handler);
 }
 
 $(document).ready(function () {initBrowserID(window);});

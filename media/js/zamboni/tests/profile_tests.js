@@ -24,7 +24,7 @@ asyncTest('success -> redirect', function() {
         $.mockjaxClear(resultMock);
         start();
     });
-    $form.trigger('submit');
+    $('.complete-profile', sb).trigger('click');
 });
 
 asyncTest('success -> callback', function() {
@@ -43,7 +43,7 @@ asyncTest('success -> callback', function() {
     $form.attr('action', '/complete-profile-cb');
     loadProfileCompletionForm(sb, {'window': mockWindow,
                                    to: {on: redirectOb, fire: 'finish'}});
-    $form.trigger('submit');
+    $('.complete-profile', sb).trigger('click');
 });
 
 asyncTest('success -> object redirect', function() {
@@ -61,7 +61,7 @@ asyncTest('success -> object redirect', function() {
     });
     $form.attr('action', '/complete-profile-cb-to');
     loadProfileCompletionForm(sb, {'window': mockWindow, to: '/to-elsewhere'});
-    $form.trigger('submit');
+    $('.complete-profile', sb).trigger('click');
 });
 
 asyncTest('form error', function() {
@@ -79,7 +79,7 @@ asyncTest('form error', function() {
         $.mockjaxClear(resultMock);
         start();
     });
-    $form.trigger('submit');
+    $('.complete-profile', sb).trigger('click');
 });
 
 asyncTest('internal error', function() {
@@ -95,7 +95,7 @@ asyncTest('internal error', function() {
         $.mockjaxClear(resultMock);
         start();
     });
-    $form.trigger('submit');
+    $('.complete-profile', sb).trigger('click');
 });
 
 module('profile form load', {
