@@ -15,3 +15,31 @@
 form.go button {
     display: inherit;
 }
+
+#search-facets .facets .facet:after {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.html-rtl #search-facets .facets .facet:after {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+#search-facets .facets .facet:hover {
+    cursor: inherit;
+}
+
+#search-facets .facets .facet:hover li a {
+    pointer-events: auto;
+}
+
+#search-facets .facets .facet li a {
+    display: block;
+}
+
+#search-facets ul + ul {
+    margin-top: 1em;
+}
