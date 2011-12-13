@@ -3,7 +3,6 @@ from django.shortcuts import get_object_or_404
 
 from tower import ugettext as _
 
-from amo.urlresolvers import reverse
 from amo.helpers import absolutify, shared_url, url
 
 from addons.models import Addon, Review
@@ -15,10 +14,13 @@ class ReviewsRss(Feed):
 
     addon = None
 
-    def get_object(self, request, addon_id):
+    def get_object(self, request, addon_id=None, app_slug=None):
         """Get the Addon for which we are about to output
            the RSS feed of it Review"""
-        self.addon = get_object_or_404(Addon.objects.id_or_slug(addon_id))
+        if app_slug:
+            self.addon = get_object_or_404(Addon, app_slug=app_slug)
+        else:
+            self.addon = get_object_or_404(Addon.objects.id_or_slug(addon_id))
         return self.addon
 
     def title(self, addon):
