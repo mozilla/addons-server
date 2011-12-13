@@ -1486,23 +1486,28 @@ function initMerchantAccount() {
 function initTruncateSummary() {
     // If the summary from a manifest is too long, truncate it!
     // EN-US only, since it'll be way too hard to accomodate all languages properly.
-    var $summary = $('[name=summary_en-us]'),
-        $desc = $('[name=description_en-us]'),
-        max_length = parseInt($('#submit-describe .char-count').attr('data-maxlength')),
-        text = $summary.val(),
-        submitted = ($('#submit-describe').find('.errorlist li').length > 0);
+    var $submit_describe = $('#submit-describe'),
+        $summary = $('textarea[name=summary_en-us]', $submit_describe),
+        $desc = $('textarea[name=description_en-us]', $submit_describe);
 
-    if($summary.length && $desc.length && $desc.val() == "" && text.length > max_length && !submitted) {
-        var new_text = text.substr(0, max_length),
-            punctuation = new_text.match(/[.?!]\s/g);
+    if($summary.length && $desc.length) {
+        var max_length = parseInt($('.char-count', $submit_describe).attr('data-maxlength')),
+            text = $summary.val(),
+            submitted = ($('.errorlist li', $submit_describe).length > 0);
 
-        if(punctuation.length) {
-            new_text = new_text.substr(0, new_text.lastIndexOf(punctuation[punctuation.length - 1])+1);
-            if(new_text.length > 0) {
-                $desc.val(text);
-                $summary.val(new_text).trigger('keyup');
+        if($desc.val() == "" && text.length > max_length && !submitted) {
+            var new_text = text.substr(0, max_length),
+                // New line or punctuation followed by a space
+                punctuation = new_text.match(/\n|[.?!]\s/g);
+
+            if(punctuation.length) {
+                var d = punctuation[punctuation.length - 1];
+                new_text = new_text.substr(0, new_text.lastIndexOf(d)+1).trim();
+                if(new_text.length > 0) {
+                    $desc.val(text);
+                    $summary.val(new_text).trigger('keyup');
+                }
             }
         }
     }
-
 }
