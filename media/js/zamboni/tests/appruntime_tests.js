@@ -6,6 +6,9 @@ var runtimePitchFixture = {
         this._key = 'seen_appruntime_pitch';
         this._seen_pitch = this.visitor.get(this._key);
 
+        // The style="display: none" is getting destroyed in the sandbox. WTH.
+        $('#appruntime-pitch', this.sandbox).hide();
+
         // Mock whether Firefox is installed.
         z.browser.firefox = !not_firefox;
 
