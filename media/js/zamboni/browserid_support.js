@@ -126,7 +126,10 @@ function loadProfileCompletionForm($root, options) {
     if (!options) options = {};
     var $error = $('.notification-box.error', $root),
         win = options.window || window;
-    $root.slideDown();
+
+    $('#browserid-login').hide(); // Don't let people log in twice; will cause error
+    $(window).trigger('resize'); // I hate this so much. I vow to someday fix this properly.
+
     $('input[type="text"]', $root).eq(0).focus();
     $('form', $root).submit(function(evt) {
         var $form = $(this);
