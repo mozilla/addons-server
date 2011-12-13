@@ -546,7 +546,7 @@ function create_new_preview_field() {
         });
     });
     $(last).after(last_clone);
-    $('#id_files-TOTAL_FORMS').val(parseInt(forms_count) + 1);
+    $('#id_files-TOTAL_FORMS').val(parseInt(forms_count, 10) + 1);
 
     return last;
 }
@@ -1491,7 +1491,7 @@ function initTruncateSummary() {
         $desc = $('textarea[name=description_en-us]', $submit_describe);
 
     if($summary.length && $desc.length) {
-        var max_length = parseInt($('.char-count', $submit_describe).attr('data-maxlength')),
+        var max_length = parseInt($('.char-count', $submit_describe).attr('data-maxlength'), 10),
             text = $summary.val(),
             submitted = ($('.errorlist li', $submit_describe).length > 0);
 
