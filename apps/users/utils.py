@@ -1,13 +1,15 @@
 import base64
+from functools import partial
 import hashlib
 import time
+import uuid
 
 from django.conf import settings
 from django.db.models import Q
 
 import commonware.log
 
-from users.models import UserProfile
+from users.models import UserProfile, BlacklistedUsername
 
 log = commonware.log.getLogger('z.users')
 
@@ -100,3 +102,22 @@ def find_users(email):
     """
     return UserProfile.objects.filter(Q(email=email) |
                                       Q(history__email=email)).distinct()
+
+
+def autocreate_username(candidate, tries=1):
+    """Returns a unique valid username."""
+    max_tries = settings.MAX_GEN_USERNAME_TRIES
+    from amo.utils import slugify, SLUG_OK
+    make_u = partial(slugify, ok=SLUG_OK, lower=True, spaces=False,
+                     delimiter='-')
+    adjusted_u = make_u(candidate)
+    if tries > 1:
+        adjusted_u = '%s%s' % (adjusted_u, tries)
+    if (BlacklistedUsername.blocked(adjusted_u)
+        or tries > max_tries or len(adjusted_u) > 255):
+        log.info('username blocked, max tries reached, or too long;'
+                 ' username=%s; max=%s' % (adjusted_u, max_tries))
+        return autocreate_username(uuid.uuid4().hex[0:15])
+    if UserProfile.objects.filter(username=adjusted_u).count():
+        return autocreate_username(candidate, tries=tries + 1)
+    return adjusted_u

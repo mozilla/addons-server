@@ -698,6 +698,21 @@ class TestLogin(UserViewBase):
         self.client.get(self.url)
         assert login.called
 
+    @patch.object(waffle, 'switch_is_active', lambda x: True)
+    @patch('httplib2.Http.request')
+    def test_browserid_duplicate_username(self, http_request):
+        email = 'jbalogh@example.com'  # existing
+        http_request.return_value = (200, json.dumps({'status': 'okay',
+                                                      'email': email}))
+        res = self.client.post(reverse('users.browserid_login'),
+                               data=dict(assertion='fake-assertion',
+                                         audience='fakeamo.org'))
+        eq_(res.status_code, 200)
+        profiles = UserProfile.objects.filter(email=email)
+        eq_(profiles[0].username, 'jbalogh2')
+        # Note: lower level unit tests for this functionality are in
+        # TestAutoCreateUsername()
+
 
 class TestProfileCompletion(UserViewBase):
     fixtures = ['users/test_backends', 'base/addon_3615']

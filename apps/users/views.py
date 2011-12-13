@@ -50,7 +50,7 @@ import users.notifications as notifications
 from .models import UserProfile
 from .signals import logged_out
 from . import forms
-from .utils import EmailResetCode, UnsubscribeCode
+from .utils import EmailResetCode, UnsubscribeCode, autocreate_username
 import tasks
 
 log = commonware.log.getLogger('z.users')
@@ -298,7 +298,7 @@ def browserid_authenticate(request, assertion):
     if len(users) == 1:
         users[0].user.backend = 'django_browserid.auth.BrowserIDBackend'
         return (users[0], None)
-    username = email.partition('@')[0]
+    username = autocreate_username(email.partition('@')[0])
     if (settings.REGISTER_USER_LIMIT and
         UserProfile.objects.count() > settings.REGISTER_USER_LIMIT
         and not can_override_reg_limit(request)):
