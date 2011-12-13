@@ -594,6 +594,20 @@ class TestLogin(UserViewBase):
         data = json.loads(res.content)
         eq_(data['profile_needs_completion'], True)
 
+    @patch.object(waffle, 'switch_is_active', lambda x: True)
+    @patch.object(settings, 'FORCE_PROFILE_COMPLETION', False)
+    @patch('httplib2.Http.request')
+    def test_disable_profile_completion(self, http_request):
+        email = 'newuser@example.com'
+        http_request.return_value = (200, json.dumps({'status': 'okay',
+                                                      'email': email}))
+        res = self.client.post(reverse('users.browserid_login'),
+                               data=dict(assertion='fake-assertion',
+                                         audience='fakeamo.org'))
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['profile_needs_completion'], False)
+
     @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('httplib2.Http.request')

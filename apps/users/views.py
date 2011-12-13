@@ -356,7 +356,9 @@ def browserid_login(request):
             if profile.needs_tougher_password:
                 return http.HttpResponse("", status=400)
             auth.login(request, profile.user)
-            return dict(profile_needs_completion=profile.needs_completion())
+            comp = (profile.needs_completion()
+                    if settings.FORCE_PROFILE_COMPLETION else False)
+            return dict(profile_needs_completion=comp)
     return http.HttpResponse(msg, status=401)
 
 
