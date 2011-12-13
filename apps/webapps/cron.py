@@ -1,12 +1,11 @@
 from datetime import datetime, timedelta
+import logging
 
 from django.conf import settings
 from django.db.models import Count
-import logging
 
 import cronjobs
 from celery.task.sets import TaskSet
-from celeryutils import task
 
 import amo
 from amo.utils import chunked
@@ -14,7 +13,7 @@ from addons.tasks import index_addons
 from webapps.models import Installed
 
 from .models import Webapp
-
+from .tasks import webapp_update_weekly_downloads
 
 task_log = logging.getLogger('z.task')
 
@@ -65,16 +64,6 @@ def update_weekly_downloads():
                                        addon__type=amo.ADDON_WEBAPP)
                                .annotate(count=Count('addon')))
 
-    ts = [_update_weekly_downloads.subtask(args=[chunk])
+    ts = [webapp_update_weekly_downloads.subtask(args=[chunk])
           for chunk in chunked(counts, 1000)]
     TaskSet(ts).apply_async()
-
-
-@task(rate_limit='15/m')
-def _update_weekly_downloads(data, **kw):
-    task_log.info("[%s@%s] Update weekly downloads." %
-                   (len(data), _update_weekly_downloads.rate_limit))
-
-    for line in data:
-        webapp = Webapp.objects.get(pk=line['addon'])
-        webapp.update(weekly_downloads=line['count'])
