@@ -129,7 +129,7 @@ function loadProfileCompletionForm($root, options) {
         $form = $('form', $root),
         handler;
     $('#browserid-login').hide(); // Don't let people log in twice; will cause error
-    $root.slideDown();
+    $('#login-complete-profile').show();
     $(window).trigger('resize'); // I hate this so much. I vow to someday fix this properly.
     $('input[type="text"]', $root).eq(0).focus();
     function handler(evt) {
@@ -175,6 +175,8 @@ function loadProfileCompletionForm($root, options) {
                    });
                    $error.html(ul).show();
                    $form.trigger('badresponse.profile_completion');
+
+                   $(window).trigger('resize');
                });
     }
     $('a.complete-profile', $root).click(handler);
