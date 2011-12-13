@@ -75,7 +75,7 @@ asyncTest('form error', function() {
     loadProfileCompletionForm(sb, {'window': mockWindow});
     $form.one('badresponse.profile_completion', function() {
         equals($('.notification-box', sb).text(),
-               'username: invalid characters');
+               'User name: invalid characters');
         $.mockjaxClear(resultMock);
         start();
     });

@@ -182,8 +182,10 @@
       <p class="notification-box error"></p>
       <form method="post" action="/complete-profile"
             data-post-login-url="/elsewhere">
-        <input type="text" name="username">
-        <input type="text" name="display_name">
+        <label for="id_username">User name</label>
+        <input type="text" name="username" id="id_username">
+        <label for="id_display_name">Display Name</label>
+        <input type="text" name="display_name" id="id_display_name">
         <button type="submit">Complete Profile</button>
       </form>
     </div>

@@ -161,7 +161,7 @@ function loadProfileCompletionForm($root, options) {
                        // {username: ['already exists']...}
                        $.each(data, function(field, errors) {
                            $.each(errors, function(i, m) {
-                               msg.push(field + ': ' + m);
+                               msg.push($form.find('label[for="id_' + field + '"]').text() + ': ' + m);
                            });
                        });
                    } else {
