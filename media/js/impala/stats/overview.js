@@ -31,10 +31,10 @@ $(function() {
                     userFormat      = csv_keys.aggregateLabel.usage[0];
                     $("#downloads-in-range").html(format(downloadFormat,
                                                          totalDownloads,
-                                                         view.range));
+                                                         parseInt(view.range, 10)));
                     $("#users-in-range").html(format(userFormat,
                                                      totalUsers,
-                                                     view.range));
+                                                     parseInt(view.range, 10)));
                 } else {
                     downloadFormat  = csv_keys.aggregateLabel.downloads[1],
                     userFormat      = csv_keys.aggregateLabel.usage[1];
