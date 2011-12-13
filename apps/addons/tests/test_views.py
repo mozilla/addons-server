@@ -1119,56 +1119,107 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         self.url = self.addon.get_url_path()
         self.more_url = self.addon.get_url_path(more=True)
 
-    def test_adu(self):
-        doc = pq(self.client.get(self.url).content)
-        eq_(doc('#daily-users').text().split()[0],
-            numberfmt(self.addon.average_daily_users))
+    def get_pq(self):
+        return pq(self.client.get(self.url).content)
+
+    def test_extension_adu(self):
+        doc = self.get_pq()
+        eq_(self.addon.show_adu(), True)
+        eq_(doc('#weekly-downloads').length, 0)
+
+        # Check that ADU links to statistics dashboard.
+        adu = doc('#daily-users a')
+        eq_(adu.attr('href'),
+            reverse('stats.overview', args=[self.addon.slug]))
+
+        # Check formatted count.
+        eq_(adu.text().split()[0], numberfmt(self.addon.average_daily_users))
+
+        # Check if we hide when no ADU.
+        self.addon.update(average_daily_users=0)
+        eq_(self.get_pq()('#daily-users').length, 0)
+
+    def test_search_tool_downloads(self):
+        self.addon.update(type=amo.ADDON_SEARCH)
+        doc = self.get_pq()
+        eq_(self.addon.show_adu(), False)
+        eq_(doc('#daily-users').length, 0)
+
+        # Check that weekly downloads links to statistics dashboard.
+        dls = doc('#weekly-downloads a')
+        eq_(dls.attr('href'),
+            reverse('stats.overview', args=[self.addon.slug]))
+
+        # Check formatted count.
+        eq_(dls.text().split()[0], numberfmt(self.addon.weekly_downloads))
+
+        # Check if we hide when no weekly downloads.
+        self.addon.update(weekly_downloads=0)
+        eq_(self.get_pq()('#weekly-downloads').length, 0)
 
     def test_perf_warning(self):
         eq_(self.addon.ts_slowness, None)
-        doc = pq(self.client.get(self.url).content)
-        eq_(doc('.performance-note').length, 0)
+        eq_(self.get_pq()('.performance-note').length, 0)
         self.addon.update(ts_slowness=100)
-        doc = pq(self.client.get(self.url).content)
-        eq_(doc('.performance-note').length, 1)
+        eq_(self.get_pq()('.performance-note').length, 1)
 
     def test_dependencies(self):
-        doc = pq(self.client.get(self.url).content)
-        eq_(doc('.dependencies').length, 0)
+        eq_(self.get_pq()('.dependencies').length, 0)
         req = Addon.objects.get(id=592)
         AddonDependency.objects.create(addon=self.addon, dependent_addon=req)
         eq_(self.addon.all_dependencies, [req])
         cache.clear()
-        d = pq(self.client.get(self.url).content)('.dependencies')
+        d = self.get_pq()('.dependencies .hovercard')
         eq_(d.length, 1)
-        eq_(d.find('.hovercard h3').text(), unicode(req.name))
-        eq_(d.find('.hovercard > a').attr('href')
+        eq_(d.find('h3').text(), unicode(req.name))
+        eq_(d.children('a').attr('href')
             .endswith('?src=dp-dl-dependencies'), True)
-        eq_(d.find('.hovercard .install-button a').attr('href')
+        eq_(d.find('.install-button a').attr('href')
             .endswith('?src=dp-hc-dependencies'), True)
 
     def test_upsell(self):
-        doc = pq(self.client.get(self.url).content)
-        eq_(doc('.upsell').length, 0)
+        eq_(self.get_pq()('.upsell').length, 0)
         premie = Addon.objects.get(id=592)
         AddonUpsell.objects.create(free=self.addon, premium=premie, text='XXX')
-        upsell = pq(self.client.get(self.url).content)('.upsell')
+        upsell = self.get_pq()('.upsell')
         eq_(upsell.length, 1)
         eq_(upsell.find('.prose').text(), 'XXX')
-        eq_(upsell.find('.hovercard h3').text(), unicode(premie.name))
-        eq_(upsell.find('.hovercard > a').attr('href')
-            .endswith('?src=dp-dl-upsell'), True)
-        eq_(upsell.find('.hovercard .install-button a').attr('href')
+        hc = upsell.find('.hovercard')
+        eq_(hc.length, 1)
+        eq_(hc.find('h3').text(), unicode(premie.name))
+        eq_(hc.children('a').attr('href').endswith('?src=dp-dl-upsell'), True)
+        eq_(hc.find('.install-button a').attr('href')
             .endswith('?src=dp-hc-upsell'), True)
 
     def test_no_restart(self):
         f = self.addon.current_version.all_files[0]
         eq_(f.no_restart, False)
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('.no-restart').length, 0)
+        eq_(self.get_pq()('.no-restart').length, 0)
         f.update(no_restart=True)
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('.no-restart').length, 1)
+        eq_(self.get_pq()('.no-restart').length, 1)
+
+    def test_license_link_builtin(self):
+        g = 'http://google.com'
+        version = self.addon._current_version
+        license = version.license
+        license.builtin = 1
+        license.name = 'License to Kill'
+        license.url = g
+        license.save()
+        eq_(license.builtin, 1)
+        eq_(license.url, g)
+        a = self.get_pq()('.secondary.metadata .source-license a')
+        eq_(a.attr('href'), g)
+        eq_(a.attr('target'), '_blank')
+        eq_(a.text(), 'License to Kill')
+
+    def test_license_link_custom(self):
+        version = self.addon._current_version
+        eq_(version.license.url, None)
+        a = self.get_pq()('.secondary.metadata .source-license a')
+        eq_(a.attr('href'), version.license_url())
+        eq_(a.attr('target'), None)
+        eq_(a.text(), 'Custom License')
 
     def get_more_pq(self):
         return pq(self.client.get_ajax(self.more_url).content)
@@ -1186,31 +1237,6 @@ class TestImpalaDetailPage(amo.tests.TestCase):
     def test_not_review_premium(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         eq_(len(self.get_more_pq()('#add-review')), 0)
-
-    def test_license_link_builtin(self):
-        g = 'http://google.com'
-        version = self.addon._current_version
-        license = version.license
-        license.builtin = 1
-        license.name = 'License to Kill'
-        license.url = g
-        license.save()
-        eq_(license.builtin, 1)
-        eq_(license.url, g)
-        r = self.client.get(self.url)
-        a = pq(r.content)('.secondary.metadata .source-license a')
-        eq_(a.attr('href'), g)
-        eq_(a.attr('target'), '_blank')
-        eq_(a.text(), 'License to Kill')
-
-    def test_license_link_custom(self):
-        version = self.addon._current_version
-        eq_(version.license.url, None)
-        r = self.client.get(self.url)
-        a = pq(r.content)('.secondary.metadata .source-license a')
-        eq_(a.attr('href'), version.license_url())
-        eq_(a.attr('target'), None)
-        eq_(a.text(), 'Custom License')
 
     def test_other_addons(self):
         """Ensure listed add-ons by the same author show up."""
@@ -1255,8 +1281,7 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         self.addon, self.price = setup_premium(self.addon)
         assert self.client.login(username=self.addon.authors.all()[0].email,
                                  password='password')
-        res = self.client.get(self.url)
-        eq_(pq(res.content)('aside .prominent').eq(1).attr('href'),
+        eq_(self.get_pq()('aside .prominent').eq(1).attr('href'),
             reverse('downloads.latest', args=[self.addon.slug]))
 
     def test_not_author(self):
@@ -1266,8 +1291,7 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         self.addon, self.price = setup_premium(self.addon)
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
-        res = self.client.get(self.url)
-        eq_(len(pq(res.content)('.prominent')), 1)
+        eq_(self.get_pq()('.prominent').length, 1)
 
     def test_categories(self):
         c = self.addon.all_categories[0]

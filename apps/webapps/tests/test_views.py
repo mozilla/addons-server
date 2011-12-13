@@ -215,36 +215,34 @@ class TestListing(TestPremium):
 class TestDetail(WebappTest):
     fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592', 'base/users']
 
+    def get_pq(self):
+        return pq(self.client.get(self.url).content.decode('utf-8'))
+
     def get_more_pq(self):
         more_url = self.webapp.get_url_path(more=True)
         return pq(self.client.get_ajax(more_url).content.decode('utf-8'))
 
     def test_title(self):
-        response = self.client.get(self.url)
-        eq_(pq(response.content)('title').text(), 'woo :: Apps Marketplace')
+        eq_(self.get_pq()('title').text(), 'woo :: Apps Marketplace')
 
     def test_downloads(self):
-        doc = pq(self.client.get(self.url).content)
-        eq_(doc('#weekly-downloads').text().split()[0],
-            numberfmt(self.webapp.weekly_downloads))
+        dls = self.get_pq()('#weekly-downloads')
+        eq_(dls.find('a').length, 0)
+        eq_(dls.text().split()[0], numberfmt(self.webapp.weekly_downloads))
         self.webapp.update(weekly_downloads=0)
-        doc = pq(self.client.get(self.url).content)
-        eq_(doc('#weekly-downloads').length, 0)
+        eq_(self.get_pq()('#weekly-downloads').length, 0)
 
     def test_more_url(self):
-        response = self.client.get(self.url)
-        eq_(pq(response.content)('#more-webpage').attr('data-more-url'),
+        eq_(self.get_pq()('#more-webpage').attr('data-more-url'),
             self.webapp.get_url_path(more=True))
 
     def test_headings(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
+        doc = self.get_pq()
         eq_(doc('#addon h1').text(), 'woo')
         eq_(doc('section.primary.island.c h2:first').text(), 'About this App')
 
     def test_add_review_link_aside(self):
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('#reviews-link').attr('href'),
+        eq_(self.get_pq()('#reviews-link').attr('href'),
             reverse('apps.reviews.list', args=[self.webapp.app_slug]))
 
     def test_add_review_link_more(self):
