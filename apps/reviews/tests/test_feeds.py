@@ -74,7 +74,7 @@ class TestAppsFeed(amo.tests.TestCase):
     @mock.patch.object(settings, 'SITE_URL', 'http://test.com')
     def test_link(self):
         url = self.get_pq()('atom_link').attr('href')
-        assert url.endswith(self.url),
+        assert url.endswith(self.url), (
             'Unexpected URL for <atom:link>: %r' % url)
 
     @mock.patch.object(settings, 'APP_PREVIEW', True)
