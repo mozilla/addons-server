@@ -139,9 +139,8 @@ $(function() {
 
 
 function initBanners(delegate) {
-    if (!delegate) {
-        delegate = document.body;
-    }
+    var $delegate = $(delegate || document.body);
+
     // Show the first visit banner.
     if (!z.visitor.get('seen_impala_first_visit')) {
         $('body').addClass('firstvisit');
@@ -150,17 +149,25 @@ function initBanners(delegate) {
 
     // Show the ACR pitch if it has not been dismissed.
     if (!z.visitor.get('seen_acr_pitch') && $('body').hasClass('acr-pitch')) {
-        $(delegate).find('#acr-pitch').show();
+        $delegate.find('#acr-pitch').show();
+    }
+
+    // Show the pitch for App Runtime Firefox extension if not installed.
+    if (z.browser.firefox && !z.visitor.get('seen_appruntime_pitch') &&
+        !z.capabilities.app_runtime) {
+        $delegate.find('#appruntime-pitch').show();
     }
 
     // Allow dismissal of site-balloons.
-    $(delegate).delegate('.site-balloon .close, .site-tip .close', 'click', _pd(function() {
+    $delegate.delegate('.site-balloon .close, .site-tip .close', 'click', _pd(function() {
         var $parent = $(this).closest('.site-balloon, .site-tip');
         $parent.fadeOut();
         if ($parent.is('#site-nonfx')) {
             z.visitor.set('seen_badbrowser_warning', 1);
         } else if ($parent.is('#acr-pitch')) {
             z.visitor.set('seen_acr_pitch', 1);
+        } else if ($parent.is('#appruntime-pitch')) {
+            z.visitor.set('seen_appruntime_pitch', 1);
         }
     }));
 }

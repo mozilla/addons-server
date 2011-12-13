@@ -107,14 +107,15 @@
           {% endif %}
           {% block amo_balloons %}
             {% if WEBAPPS %}
-              <div class="site-balloon" id="site-noinstall-apps">
+              <div class="site-tip" id="appruntime-pitch">
                 <p>
-                  {% trans url='http://mozilla.org/firefox/?src=amo' %}
-                    It seems your browser does not support Apps. Consider
-                    downloading <a href="{{ url }}">Mozilla Firefox</a>,
-                    a fast, free way to surf the Web!
-                  {% endtrans %}
+                  {% with url='https://addons.mozilla.org/en-US/firefox/addon/app-runtime/?src=apps-preview' %}
+                    To easily install and manage Apps in Firefox with a
+                    tightly integrated experience, check out the experimental
+                    <a href="{{ url }}">App Runtime extension</a>.
+                  {% endwith %}
                 </p>
+                <a href="#" class="close">{{ _('Close') }}</a>
               </div>
               <div class="site-balloon" id="site-nojs-apps">
                 <p>{{ loc('To use Apps, you must enable JavaScript.') }}</p>

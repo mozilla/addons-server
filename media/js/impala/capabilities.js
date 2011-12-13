@@ -5,7 +5,11 @@ z.capabilities = {
     'console': window.console && (typeof window.console.log == 'function'),
     'replaceState': typeof history.replaceState === 'function',
     'localStorage': false,
-    'webApps': !!(navigator.mozApps && navigator.mozApps.install)
+    'webApps': !!(navigator.mozApps && navigator.mozApps.install),
+    'app_runtime': !!(
+        navigator.mozApps &&
+        typeof navigator.mozApps.html5Implementation === 'undefined'
+    ),
 };
 
 
