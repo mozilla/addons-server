@@ -1272,6 +1272,12 @@ class TestPurchases(amo.tests.TestCase):
         eq_(self.get_order('price'), ['t4', 't3', 't2', 't1'])
 
     def test_ordering_purchased(self):
+        # Create some free add-ons/apps to make sure those are also listed.
+        for x in xrange(1, 3):
+            addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
+                                         name='f%s' % x, guid='f%s' % x)
+            Installed.objects.create(addon=addon, user=self.user_profile)
+
         for addon in self.addons:
             purchase = addon.addonpurchase_set.get(user=self.user_profile)
             purchase.update(created=datetime.now() + timedelta(days=addon.id))
@@ -1284,12 +1290,13 @@ class TestPurchases(amo.tests.TestCase):
         self.addons[2].addonpurchase_set.get(user=clouserw).update(
             created=datetime.now() + timedelta(days=999))
 
-        eq_(self.get_order(''), ['t4', 't3', 't2', 't1'])
-        eq_(self.get_order('purchased'), ['t4', 't3', 't2', 't1'])
+        default = ['t4', 't3', 't2', 't1', 'f1', 'f2']
+        eq_(self.get_order(''), default)
+        eq_(self.get_order('purchased'), default)
 
         Addon.objects.get(guid='t2').addonpurchase_set.all()[0].update(
             created=datetime.now() + timedelta(days=999))
-        eq_(self.get_order('purchased'), ['t2', 't4', 't3', 't1'])
+        eq_(self.get_order('purchased'), ['t2', 't4', 't3', 't1', 'f1', 'f2'])
 
     def get_pq(self):
         r = self.client.get(self.url, dict(sort='name'))

@@ -4,6 +4,7 @@ from functools import partial
 from django import http
 from django.conf import settings
 from django.db import IntegrityError
+from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib import auth
 from django.template import Context, loader
@@ -729,8 +730,9 @@ class PurchasesFilter(BaseFilter):
     def filter(self, field):
         qs = self.base_queryset
         if field == 'purchased':
-            return (qs.filter(addonpurchase__user=self.request.amo_user)
-                    .order_by('-addonpurchase__created'))
+            return (qs.filter(Q(addonpurchase__user=self.request.amo_user) |
+                              Q(addonpurchase__isnull=True))
+                    .order_by('-addonpurchase__created', 'id'))
         elif field == 'price':
             return qs.order_by('addonpremium__price__price', 'id')
         elif field == 'name':
