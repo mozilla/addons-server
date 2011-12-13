@@ -908,6 +908,10 @@ LOGIN_URL = "/users/login"
 LOGOUT_URL = "/users/logout"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
+# When logging in with browser ID, a username is created automatically.
+# In the case of duplicates, the process is recursive up to this number
+# of times.
+MAX_GEN_USERNAME_TRIES = 50
 
 # Legacy Settings
 # used by old-style CSRF token
