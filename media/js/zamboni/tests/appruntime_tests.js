@@ -4,6 +4,7 @@ var runtimePitchFixture = {
         this.visitor = z.Storage('visitor');
         this._firefox = z.browser.firefox;
         this._key = 'seen_appruntime_pitch';
+        this._app_runtime = z.capabilities.app_runtime;
         this._seen_pitch = this.visitor.get(this._key);
 
         // The style="display: none" is getting destroyed in the sandbox. WTH.
@@ -25,7 +26,8 @@ var runtimePitchFixture = {
         initBanners(this.sandbox);
     },
     teardown: function() {
-        this._firefox = z.browser.firefox;
+        z.browser.firefox = this._firefox;
+        z.capabilities.app_runtime = this._app_runtime;
         this.visitor.set(this._key, this._seen_pitch);
         this.sandbox.remove();
     },
