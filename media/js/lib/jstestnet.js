@@ -28,17 +28,19 @@
     }
 
     window.onerror = function(error, url, lineNumber) {
+        var errorMsg = error.toString();
+        if (typeof error === 'object') {
+            // Trying to figure out what this mystery object is...
+            $.each(error, function(k, v) {
+                errorMsg += '; ' + k.toString() + '=' + v.toString();
+            });
+        }
         var msg = {
             action: 'log',
             result: false, // failure
-            message: 'Exception: ' + error.toString() + ' at ' + url + ':' + lineNumber,
+            message: 'Exception: ' + errorMsg + ' at ' + url + ':' + lineNumber,
             stacktrace: (typeof printStackTrace !== 'undefined') ? printStackTrace({e: error}): null
         };
-        if (typeof console !== 'undefined') {
-            // Get notified of exceptions during local development.
-            console.error('Exception:');
-            console.log(error);
-        }
         postMsg(msg);
     };
 

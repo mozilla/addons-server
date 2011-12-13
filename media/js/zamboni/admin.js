@@ -34,21 +34,5 @@
                 // to your page. TODO: do something clever with this.
             }));
         });
-
-        // Recalculate Hash
-        $('.recalc').click(_pd(function() {
-            var $this = $(this);
-            $this.html('Recalcing&hellip;');
-            $.post($this.attr('href'), function(d) {
-                if(d.success) {
-                    $this.text('Done!');
-                } else {
-                    $this.text('Error :(');
-                }
-                setTimeout(function() {
-                    $this.text('Recalc Hash');
-                }, 2000);
-            });
-        }));
     });
 })();

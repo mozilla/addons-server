@@ -44,7 +44,7 @@
                     {{ hidden }}
                   {% endfor %}
                 </td>
-                <td><a href="{{ url('zadmin.recalc_hash', file.id)|urlparams(page=pager.number) }}" class="recalc" title="{{ file.hash }}">Recalc Hash</a></td>
+                <td><a href="{{ url('zadmin.recalc_hash', file.id)|urlparams(page=pager.number) }}" title="{{ file.hash }}">Recalc Hash</a></td>
                 <td>
                   {% if file.is_mirrorable() %}
                     {{ "Copied" if file.has_been_copied() else "Not Copied" }}

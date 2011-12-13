@@ -628,8 +628,6 @@ def addon_manage(request, addon):
 
 
 @admin.site.admin_view
-@post_required
-@json_view
 def recalc_hash(request, file_id):
 
     file = get_object_or_404(File, pk=file_id)
@@ -640,4 +638,8 @@ def recalc_hash(request, file_id):
     log.info('Recalculated hash for file ID %d' % file.id)
     messages.success(request,
                      'File hash and size recalculated for file %d.' % file.id)
-    return {'success': 1}
+
+    redirect_url = reverse('zadmin.addon_manage',
+                           args=[file.version.addon.slug])
+    page = request.GET.get('page', 1)
+    return redirect(urlparams(redirect_url, page=page))
