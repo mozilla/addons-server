@@ -611,7 +611,7 @@ class TestLogin(UserViewBase):
                                          audience='fakeamo.org'))
         eq_(res.status_code, 401)
         _m = ('Sorry, no more registrations are allowed. '
-              '<a href="https://developer.mozilla.org/en/apps">'
+              '<a href="https://developer.mozilla.org/en-US/apps">'
               'Learn more</a>')
         eq_(res.content, _m)
 

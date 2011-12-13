@@ -302,7 +302,7 @@ def browserid_authenticate(request, assertion):
         UserProfile.objects.count() > settings.REGISTER_USER_LIMIT
         and not can_override_reg_limit(request)):
         _m = ('Sorry, no more registrations are allowed. '
-              '<a href="https://developer.mozilla.org/en/apps">'
+              '<a href="https://developer.mozilla.org/en-US/apps">'
               'Learn more</a>')
         return (None, _m)
     profile = UserProfile.objects.create(username=username, email=email)
@@ -575,7 +575,7 @@ def register(request):
           UserProfile.objects.count() > settings.REGISTER_USER_LIMIT
           and not can_override_reg_limit(request)):
         _m = loc('Sorry, no more registrations are allowed. '
-                 '<a href="https://developer.mozilla.org/en/apps">'
+                 '<a href="https://developer.mozilla.org/en-US/apps">'
                  'Learn more</a>')
         messages.error(request, _m, title_safe=True, message_safe=True)
         form = None
