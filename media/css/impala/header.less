@@ -106,7 +106,7 @@
             &:hover {
                 > a {
                     background: #fff;
-                    border-color: #98B2C9 #98B2C9 #fff;
+                    border-color: @shadow-blue @shadow-blue #fff;
                     .box-shadow(0 0 4px rgba(0, 0, 0, 0.4));
                 }
                 > ul {
@@ -131,9 +131,10 @@
                 padding: 8px;
                 display: none;
                 background: #fff;
-                border: 1px solid #98B2C9;
+                border: 1px solid @shadow-blue;
                 .border-radius(0 3px 3px);
-                .box-shadow(0 0 4px rgba(0, 0, 0, 0.4));
+                .box-shadow(0 0 4px rgba(0, 0, 0, 0.4),
+                            0 -2px 0 @inset-blue inset);
                 a {
                     text-decoration: none;
                     display: block;
