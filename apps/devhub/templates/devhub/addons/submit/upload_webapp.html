@@ -3,19 +3,18 @@
 {% block title %}{{ dev_page_title(_('Step 2'), addon) }}{% endblock %}
 
 {% block primary %}
-
-{# TODO(gkoberger): Localize this page when we nail down the copy #}
-
+  {# TODO(apps): Finalize copy. #}
   <h3>{{ _('Step 2. Link to Your App') }}</h3>
   <p>
-  {% trans url="https://developer.mozilla.org/en/OpenWebApps/The_Manifest" %}
-  You're about to submit your app for all the world to see. All you need to complete
-  this process is a working <a href="{{ url }}">manifest</a> for your app.
-  {% endtrans %}
+    {% with url="https://developer.mozilla.org/en/apps/Manifest" %}
+      {{ loc('You\'re about to submit your app for all the world to see. All
+              you need to complete this process is a working
+              <a href="{url}">manifest</a> for your app.')|f(url=url)|safe }}
+    {% endwith %}
   </p>
   <section id="upload-file">
     <div class="upload-status">
-      <label>{{ _('Submit your app manifest by URL:') }}
+      <label>{{ loc('Submit your app manifest by URL:') }}
         <form id="validate-field">
           <div class="vf-text">
             <input id="upload-webapp-url" name="manifest" class="large"
@@ -43,8 +42,4 @@
       <button class="upload-file-submit" type="submit">{{ _('Continue') }}</button>
     </form>
   </section>
-</form>
-<style>
-
-</style>
 {% endblock primary %}

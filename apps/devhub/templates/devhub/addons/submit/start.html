@@ -6,10 +6,10 @@
 <h3>{{ _('Step 1. Getting Started') }}</h3>
 {% if webapp %}
 <p>
-  {% trans url="https://developer.mozilla.org/en/OpenWebApps/The_Manifest" %}
-  To list your app, we need to know where to find it. Give us the URL to
-  your <a href="{{ url }}">manifest</a> below.</a>
-  {% endtrans %}
+  {% with url="https://developer.mozilla.org/en/apps/Manifest" %}
+    {{ loc('To list your app, we need to know where to find it. Give us the URL
+            to your <a href="{url}">manifest</a> below.</a>')|f(url=url)|safe }}
+  {% endwith %}
 </p>
 {% else %}
   <p>
