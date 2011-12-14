@@ -8,7 +8,6 @@ from django.core.cache import cache
 from django.core import mail
 
 from mock import patch, Mock
-from nose import SkipTest
 from nose.tools import eq_
 
 import amo.tests
@@ -221,6 +220,18 @@ class TestPaypal(amo.tests.TestCase):
         eq_(response.status_code, 200)
         eq_(response.content, 'Ignoring %s' % ipn['tracking_id'])
 
+    def test_duplicate_complete(self, urlopen):
+        urlopen.return_value = self.urlopener('VERIFIED')
+        add = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        con = Contribution.objects.create(addon_id=add.pk,
+                         transaction_id=sample_contribution['tracking_id'])
+
+        for type_ in [amo.CONTRIB_VOLUNTARY, amo.CONTRIB_PURCHASE]:
+            con.update(type=type_)
+            response = self.client.post(self.url, sample_contribution)
+            eq_(response.status_code, 200)
+            eq_(response.content, 'Transaction already processed')
+
 
 @patch('paypal.views.urllib2.urlopen')
 class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
@@ -326,6 +337,11 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
     def test_chargeback(self, urlopen):
         self.reversal(urlopen)
         eq_(Contribution.objects.all()[1].type, amo.CONTRIB_CHARGEBACK)
+
+    def test_chargeback_twice(self, urlopen):
+        self.reversal(urlopen)
+        response = self._receive_ipn(urlopen, sample_reversal)
+        eq_(response.content, 'Transaction already processed')
 
     def test_email(self, urlopen):
         self.reversal(urlopen)

@@ -217,11 +217,14 @@ def paypal_reversal(request, post, transaction):
     except Contribution.DoesNotExist:
         return None
 
-    if (Contribution.objects.filter(transaction_id=post['txn_id'],
-                                    type=amo.CONTRIB_CHARGEBACK)
-                            .exists()):
-        paypal_log.info('Reversal IPN already processed')
+    # If the contribution has a related contribution we've processed it.
+    try:
+        original = Contribution.objects.get(related=original)
+        paypal_log.info('Related contribution, state: %s, pk: %s' %
+                        (original.related.type, original.related.pk))
         return http.HttpResponse('Transaction already processed')
+    except Contribution.DoesNotExist:
+        pass
 
     paypal_log.info('Reversal IPN received: %s' % post['txn_id'])
     amount = _parse_currency(transaction['amount'])
@@ -236,18 +239,16 @@ def paypal_reversal(request, post, transaction):
 
 
 def paypal_completed(request, post, transaction):
+    # Make sure transaction has not yet been processed.
+    if Contribution.objects.filter(transaction_id=post['txn_id']).exists():
+        paypal_log.info('Completed IPN already processed')
+        return http.HttpResponse('Transaction already processed')
+
     # Note that when this completes the uuid is moved over to transaction_id.
     try:
         original = Contribution.objects.get(uuid=post['txn_id'])
     except Contribution.DoesNotExist:
         return None
-
-    # Make sure transaction has not yet been processed.
-    if (Contribution.objects.filter(transaction_id=post['txn_id'],
-                                    type=amo.CONTRIB_PURCHASE)
-                            .exists()):
-        paypal_log.info('Completed IPN already processed')
-        return http.HttpResponse('Transaction already processed')
 
     paypal_log.info('Completed IPN received: %s' % post['txn_id'])
     data = StatsDictField().to_python(php.serialize(post))
