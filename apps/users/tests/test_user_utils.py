@@ -31,6 +31,10 @@ class TestAutoCreateUsername(amo.tests.TestCase):
         eq_(autocreate_username('testaccount+slug'),
             'testaccountslug')
 
+    def test_empty_username_is_a_random_hash(self):
+        un = autocreate_username('.+')  # this shouldn't happen but it could!
+        assert len(un) and not un.startswith('.+'), 'Unexpected: %s' % un
+
     def test_blacklisted(self):
         BlacklistedUsername.objects.create(username='firefox')
         un = autocreate_username('firefox')

@@ -113,9 +113,9 @@ def autocreate_username(candidate, tries=1):
     adjusted_u = make_u(candidate)
     if tries > 1:
         adjusted_u = '%s%s' % (adjusted_u, tries)
-    if (BlacklistedUsername.blocked(adjusted_u)
+    if (BlacklistedUsername.blocked(adjusted_u) or adjusted_u == ''
         or tries > max_tries or len(adjusted_u) > 255):
-        log.info('username blocked, max tries reached, or too long;'
+        log.info('username blocked, empty, max tries reached, or too long;'
                  ' username=%s; max=%s' % (adjusted_u, max_tries))
         return autocreate_username(uuid.uuid4().hex[0:15])
     if UserProfile.objects.filter(username=adjusted_u).count():
