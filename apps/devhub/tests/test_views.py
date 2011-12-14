@@ -267,7 +267,7 @@ class TestDashboard(HubTest):
         eq_(addon.status, amo.STATUS_PUBLIC)
         doc = pq(self.client.get(self.url).content)
         item = doc('.item[data-addonid=%s]' % addon.id)
-        assert item.find('h3 a'), 'Expected link to add-on'
+        eq_(item.find('h3 a').attr('href'), addon.get_dev_url())
         assert item.find('p.downloads'), 'Expected weekly downloads'
         assert item.find('p.users'), 'Expected ADU'
         assert item.find('.price'), 'Expected price'
