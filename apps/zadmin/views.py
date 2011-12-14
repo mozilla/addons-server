@@ -21,6 +21,7 @@ import jinja2
 import jingo
 from hera.contrib.django_forms import FlushForm
 from hera.contrib.django_utils import get_hera, flush_urls
+import redisutils
 from tower import ugettext as _
 
 import amo.mail
@@ -35,13 +36,16 @@ import users.cron
 from amo import messages, get_user
 from amo.decorators import login_required, json_view, post_required
 from amo.urlresolvers import reverse
-from amo.utils import chunked, sorted_groupby, urlparams
+from amo.utils import chunked, sorted_groupby
 from addons.decorators import addon_view
-from addons.models import Addon
+from addons.models import Addon, CompatOverride
 from addons.utils import ReverseNameLookup
 from bandwagon.models import Collection
+from compat.models import AppCompat
+from compat.forms import CompatForm
 from devhub.models import ActivityLog
 from files.models import Approval, File
+from versions.compare import version_int as vint
 from versions.models import Version
 
 from . import tasks
@@ -392,6 +396,66 @@ def jetpack_resend(request, file_id):
     log.info('Starting a jetpack upgrade to %s [1 file].' % maxver)
     files.tasks.start_upgrade.delay([file_id], sdk_version=maxver)
     return redirect('zadmin.jetpack')
+
+
+@admin.site.admin_view
+def compat(request):
+    APP = amo.FIREFOX
+    VER = site_settings.COMPAT[0]['main']  # Default: latest Firefox version.
+    binary = None
+
+    # Expected usage:
+    #     For Firefox 8.0 reports: ?appver=1-8.0
+    #     For binary-only add-ons: ?appver=1-8.0&type=binary
+    initial = {'appver': '%s-%s' % (APP.id, VER), 'type': 'all'}
+    initial.update(request.GET.items())
+
+    form = CompatForm(initial)
+    if request.GET and form.is_valid():
+        APP, VER = form.cleaned_data['appver'].split('-')
+        APP = amo.APP_IDS[int(APP)]
+        if form.cleaned_data['type'] == 'binary':
+            binary = True
+
+    app, ver = str(APP.id), str(vint(VER))
+    usage_addons, usage_total = compat_stats(request, app, ver, binary)
+
+    return jingo.render(request, 'zadmin/compat.html', {
+        'app': APP,
+        'version': VER,
+        'form': form,
+        'usage_addons': usage_addons,
+        'usage_total': usage_total,
+    })
+
+
+def compat_stats(request, app, ver, binary):
+    # Get the list of add-ons for usage stats.
+    redis = redisutils.connections['master']
+    # Show add-ons marked as incompatible with this current version having
+    # greater than 10 incompatible reports and whose average exceeds 80%.
+    prefix = 'works.%s.%s' % (app, ver)
+    qs = (AppCompat.search()
+          .filter(**{'%s.failure__gt' % prefix: 10,
+                     '%s.failure_ratio__gt' % prefix: .8,
+                     'support.%s.max__gte' % app: 0})
+          .order_by('-%s.failure_ratio' % prefix,
+                    '-%s.total' % prefix)
+          .values_dict())
+    if binary is not None:
+        qs = qs.filter(binary=binary)
+    addons = amo.utils.paginate(request, qs)
+    for obj in addons.object_list:
+        obj['usage'] = obj['usage'][app]
+        obj['max_version'] = obj['max_version'][app]
+        obj['works'] = obj['works'][app].get(ver, {})
+        # Get all overrides for this add-on.
+        obj['overrides'] = CompatOverride.objects.filter(addon__id=obj['id'])
+        # Determine if there is an override for this current app version.
+        obj['has_override'] = obj['overrides'].filter(
+            _compat_ranges__min_app_version=ver + 'a1').exists()
+    total = int(redis.hget('compat:%s' % app, 'total'))
+    return addons, total
 
 
 @login_required

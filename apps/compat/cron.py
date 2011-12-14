@@ -2,7 +2,7 @@ import logging
 from collections import defaultdict
 
 from django.conf import settings
-from django.db.models import Max
+from django.db.models import Count, Max
 
 import cronjobs
 import elasticutils
@@ -11,10 +11,11 @@ import redisutils
 import amo
 import amo.utils
 from addons.models import Addon
+from search.utils import floor_version
 from stats.models import UpdateCount
 from versions.compare import version_int as vint
 
-from .models import AppCompat
+from .models import AppCompat, CompatReport
 
 log = logging.getLogger('z.compat')
 
@@ -26,6 +27,8 @@ def compatibility_report():
 
     # Gather all the data for the index.
     for app in amo.APP_USAGE:
+        versions = [c for c in settings.COMPAT if c['app'] == app.id]
+
         log.info(u'Making compat report for %s.' % app.pretty)
         latest = UpdateCount.objects.aggregate(d=Max('date'))['d']
         qs = UpdateCount.objects.filter(addon__appsupport__app=app.id,
@@ -39,13 +42,44 @@ def compatibility_report():
             chunk = dict(chunk)
             for addon in Addon.objects.filter(id__in=chunk):
                 doc = docs[addon.id]
-                doc.update(id=addon.id, slug=addon.slug, binary=addon.binary,
-                           name=unicode(addon.name), created=addon.created)
+                doc.update(id=addon.id, slug=addon.slug, guid=addon.guid,
+                           self_hosted=addon.is_selfhosted(),
+                           binary=addon.binary, name=unicode(addon.name),
+                           created=addon.created,
+                           current_version=addon.current_version.version,
+                           current_version_id=addon.current_version.pk)
                 doc['count'] = chunk[addon.id]
                 doc.setdefault('top_95',
                                defaultdict(lambda: defaultdict(dict)))
                 doc.setdefault('top_95_all', {})
                 doc.setdefault('usage', {})[app.id] = updates[addon.id]
+                doc.setdefault('works', {}).setdefault(app.id, {})
+
+                # Populate with default counts for all app versions.
+                for ver in versions:
+                    doc['works'][app.id][vint(ver['main'])] = {
+                        'success': 0,
+                        'failure': 0,
+                        'total': 0,
+                        'failure_ratio': 0.0,
+                    }
+
+                # Group reports by `major`.`minor` app version.
+                reports = (CompatReport.objects
+                           .filter(guid=addon.guid, app_guid=app.guid)
+                           .values_list('app_version', 'works_properly')
+                           .annotate(Count('id')))
+                for ver, works_properly, cnt in reports:
+                    ver = vint(floor_version(ver))
+                    major = [v['main'] for v in versions
+                             if vint(v['previous']) < ver <= vint(v['main'])]
+                    if major:
+                        w = doc['works'][app.id][vint(major[0])]
+                        # Tally number of success and failure reports.
+                        w['success' if works_properly else 'failure'] = cnt
+                        w['total'] += cnt
+                        # Calculate % of incompatibility reports.
+                        w['failure_ratio'] = w['failure'] / float(w['total'])
 
                 if app not in addon.compatible_apps:
                     continue

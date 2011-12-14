@@ -22,8 +22,11 @@ from amo.urlresolvers import reverse
 from addons.models import Addon
 from applications.models import AppVersion
 from bandwagon.models import FeaturedCollection, MonthlyPick
+from compat.cron import compatibility_report
+from compat.models import CompatReport
 from devhub.models import ActivityLog
 from files.models import Approval, File
+from stats.models import UpdateCount
 from users.models import UserProfile
 from users.utils import get_task_user
 from versions.models import ApplicationsVersions, Version
@@ -1457,5 +1460,144 @@ class TestJetpack(amo.tests.TestCase):
         self.submit_upgrade()
 
         file_id = str(5)
-        r = self.client.get(reverse('zadmin.jetpack.resend', args=[file_id]))
+        self.client.get(reverse('zadmin.jetpack.resend', args=[file_id]))
         start_upgrade.assert_called_with([file_id], sdk_version='1.2.1')
+
+
+class TestCompat(amo.tests.ESTestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.url = reverse('zadmin.compat')
+        self.client.login(username='admin@mozilla.com', password='password')
+        self.app = amo.FIREFOX
+        self.app_version = settings.COMPAT[0]['main']
+        self.addon = self.populate(guid='xxx')
+        self.generate_reports(self.addon, good=0, bad=10, app=self.app,
+                              app_version=self.app_version)
+        self.update()
+
+    def update(self):
+        compatibility_report()
+        self.refresh()
+
+    def populate(self, **kw):
+        now = datetime.now()
+        addon = amo.tests.addon_factory(name='Addon %s' % now, **kw)
+        UpdateCount.objects.create(addon=addon, count=10, date=now)
+        return addon
+
+    def generate_reports(self, addon, good, bad, app, app_version):
+        defaults = dict(guid=addon.guid, app_guid=app.guid,
+                        app_version=app_version)
+        for x in xrange(good):
+            CompatReport.objects.create(works_properly=True, **defaults)
+        for x in xrange(bad):
+            CompatReport.objects.create(works_properly=False, **defaults)
+
+    def test_defaults(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(r.context['app'], self.app)
+        eq_(r.context['version'], self.app_version)
+        table = pq(r.content)('#compat-results')
+        eq_(table.length, 1)
+        eq_(table.find('.no-results').length, 1)
+
+    def check_row(self, tr, addon, good, bad, percentage, app, app_version):
+        eq_(tr.length, 1)
+        version = addon.current_version.version
+
+        name = tr.find('.name')
+        eq_(name.find('.version').text(), 'v' + version)
+        eq_(name.remove('.version').text(), unicode(addon.name))
+        eq_(name.find('a').attr('href'), addon.get_url_path())
+
+        eq_(tr.find('.maxver').text(), addon.compatible_apps[app].max.version)
+
+        incompat = tr.find('.incompat')
+        eq_(incompat.find('.bad').text(), str(bad))
+        eq_(incompat.find('.total').text(), str(good + bad))
+        percentage += '%'
+        assert percentage in incompat.text(), (
+            'Expected incompatibility to be %r' % percentage)
+
+        eq_(tr.find('.version a').attr('href'),
+            reverse('devhub.versions.edit',
+                    args=[addon.slug, addon.current_version.id]))
+        eq_(tr.find('.reports a').attr('href'),
+            reverse('compat.reporter_detail', args=[addon.guid]))
+
+        form = tr.find('.overrides form')
+        eq_(form.attr('action'), reverse('admin:addons_compatoverride_add'))
+        self.check_field(form, '_compat_ranges-TOTAL_FORMS', '1')
+        self.check_field(form, '_compat_ranges-INITIAL_FORMS', '0')
+        self.check_field(form, 'addon', str(addon.id))
+        self.check_field(form, 'guid', addon.guid)
+
+        compat_field = '_compat_ranges-0-%s'
+        self.check_field(form, compat_field % 'min_version', '0')
+        self.check_field(form, compat_field % 'max_version', version)
+        self.check_field(form, compat_field % 'app', str(app.id))
+        self.check_field(form, compat_field % 'min_app_version',
+                         app_version + 'a1')
+        self.check_field(form, compat_field % 'max_app_version', '*')
+
+    def check_field(self, form, name, val):
+        eq_(form.find('input[name="%s"]' % name).val(), val)
+
+    def test_firefox_hosted(self):
+        addon = self.populate(guid='www')
+        self.generate_reports(addon, good=0, bad=11, app=self.app,
+                              app_version=self.app_version)
+        self.update()
+
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        table = pq(r.content)('#compat-results tbody')
+        tr = table.find('tr[data-addonid=%s]' % addon.id)
+        self.check_row(tr, addon, good=0, bad=11, percentage='100.0',
+                       app=self.app, app_version=self.app_version)
+
+    def test_self_hosted(self):
+        addon = self.populate(guid='yyy', status=amo.STATUS_LISTED)
+        self.generate_reports(addon, good=2, bad=18, app=self.app,
+                              app_version=self.app_version)
+        self.update()
+
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        table = pq(r.content)('#compat-results tbody')
+        tr = table.find('tr[data-addonid=%s]' % addon.id)
+        eq_(tr.length, 1)
+
+        eq_(tr.find('.maxver').text(), 'Self Hosted')
+
+        incompat = tr.find('.incompat')
+        eq_(incompat.find('.bad').text(), '18')
+        eq_(incompat.find('.total').text(), '20')
+        assert '90.0%' in incompat.text(), (
+            'Expected incompatibility to be "90.0%"')
+
+        eq_(tr.find('.version a').length, 0)
+        eq_(tr.find('form input[name=addon]').length, 0)
+
+    def test_non_default_version(self):
+        app_version = settings.COMPAT[2]['main']
+        addon = self.populate(guid='zzz')
+        self.generate_reports(addon, good=0, bad=11, app=self.app,
+                              app_version=app_version)
+        self.update()
+
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        table = pq(r.content)('#compat-results tbody')
+        eq_(table.find('tr[data-addonid=%s]' % addon.id).length, 0)
+
+        r = self.client.get(self.url,
+                            {'appver': '%s-%s' % (self.app.id, app_version)})
+        eq_(r.status_code, 200)
+        table = pq(r.content)('#compat-results tbody')
+        tr = table.find('tr[data-addonid=%s]' % addon.id)
+        self.check_row(tr, addon, good=0, bad=11, percentage='100.0',
+                       app=self.app, app_version=app_version)
