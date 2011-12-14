@@ -8,9 +8,9 @@
 {% endblock %}
 
 {% block site_css %}
-    {{ css('zamboni/css') }}
-    {{ css('zamboni/devhub') }}
-    {{ css('zamboni/admin') }}
+  {{ css('zamboni/css') }}
+  {{ css('zamboni/devhub') }}
+  {{ css('zamboni/admin') }}
 {% endblock %}
 
 {% block js %}
@@ -20,46 +20,65 @@
 {% block search_form %}
 {% endblock %}
 
+{% set links = {
+    'addons': [
+        ('Search for add-ons by name or id', url('zadmin.addon-search')),
+        ('Featured add-ons', url('zadmin.features')),
+        ('Discovery Pane promo modules', url('discovery.module_admin')),
+        ('Monthly Pick', url('zadmin.monthly_pick')),
+        ('Upgrade jetpack add-ons', url('zadmin.jetpack')),
+        ('Name blocklist', url('zadmin.addon-name-blocklist')),
+        ('Bulk add-on validation', url('zadmin.validation')),
+        ('Fake mail', url('zadmin.mail')),
+        ('Flagged reviews', url('zadmin.flagged')),
+        ('Review spam', url('addons.reviews.spam')),
+    ],
+    'users': [
+        ('Configure groups', url('admin:access_group_changelist')),
+    ],
+    'settings': [
+        ('View site settings', url('zadmin.settings')),
+        ('Django admin pages', url('zadmin.home')),
+    ],
+    'tools': [
+        ('View request environment', url('amo.env')),
+        ('Manage elasticsearch', url('zadmin.elastic')),
+        ('View celery stats', url('zadmin.celery')),
+        ('Purge pages from zeus', url('zadmin.hera')),
+        ('View graphite trends', url('amo.graphite', 'addons')),
+        ('Create a new OAuth Consumer', url('zadmin.oauth-consumer-create')),
+    ],
+} %}
+
+{% macro ul(links, section) %}
+  <ul>
+    {% for title, link in links[section] %}
+      <li><a href="{{ link }}">{{ title }}</a></li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
 {% block navbar %}
 <div id="navbar">
   <ul class="top">
-      <li class="top"><a href="" class="controller">Manage Add-ons</a>
-      <ul>
-        <li><a href="{{ url('zadmin.addon-search') }}">Search for add-ons by name or id</a></li>
-        <li><a href="{{ url('zadmin.features') }}">Featured add-ons</a></li>
-        <li><a href="{{ url('zadmin.monthly_pick') }}">Monthly Pick</a></li>
-        <li><a href="{{ url('zadmin.jetpack') }}">Upgrade jetpack add-ons</a></li>
-        <li><a href="{{ url('zadmin.addon-name-blocklist') }}">Name blocklist</a></li>
-        <li><a href="{{ url('zadmin.validation') }}">Bulk add-on validation</a></li>
-        <li><a href="{{ url('zadmin.mail') }}">Fake mail</a></li>
-        <li><a href="{{ url('zadmin.flagged') }}">Flagged reviews</a></li>
-      </ul>
-      </li>
-      <li class="top"><a href="" class="controller">Manage Users</a>
-      <ul>
-        <li><a href="{{ url('admin:access_group_changelist') }}">Configure groups</a></li>
-      </ul>
-      </li>
-      <li class="top"><a href="" class="controller">Site Settings</a>
-      <ul>
-        <li><a href="{{ url('zadmin.settings') }}">See the site settings</a></li>
-        <li><a href="{{ url('zadmin.home') }}">Django admin pages</a></li>
-      </ul>
-      </li>
-      <li class="top"><a href="" class="controller">Server Tools</a>
-      <ul>
-        <li><a href="{{ url('amo.env') }}">See the request environment</a></li>
-        <li><a href="{{ url('zadmin.elastic') }}">Manage elasticsearch</a></li>
-        <li><a href="{{ url('zadmin.celery') }}">See celery stats</a></li>
-        <li><a href="{{ url('zadmin.hera') }}">Purge pages from zeus</a></li>
-        <li><a href="{{ url('amo.graphite', 'addons') }}">See graphite trends</a></li>
-        <li><a href="{{ url('zadmin.oauth-consumer-create') }}">Create a new OAuth Consumer</a></li>
-      </ul>
-      </li>
+    <li class="top">
+      <a href="" class="controller">Manage Add-ons</a>
+      {{ ul(links, 'addons') }}
+    </li>
+    <li class="top">
+      <a href="" class="controller">Manage Users</a>
+      {{ ul(links, 'users') }}
+    </li>
+    <li class="top">
+      <a href="" class="controller">Site Settings</a>
+      {{ ul(links, 'settings') }}
+    </li>
+    <li class="top">
+      <a href="" class="controller">Server Tools</a>
+      {{ ul(links, 'tools') }}
+    </li>
   </ul>
 </div>
 {% endblock %}
 
-{% block footer %}
-  {% include "amo_footer_small.html" %}
-{% endblock %}
+{% block footer %}{% endblock %}
