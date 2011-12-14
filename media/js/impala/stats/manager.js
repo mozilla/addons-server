@@ -11,11 +11,11 @@ z.StatsManager = (function() {
 
     // The version of the stats localStorage we are using.
     // If you increment this number, you cache-bust everyone!
-    var STATS_VERSION = '2011-10-21-1';
+    var STATS_VERSION = '2011-12-12';
     var PRECISION = 2;
 
     var storage         = z.Storage("stats"),
-        storageCache    = z.Storage("statscache"),
+        storageCache    = z.SessionStorage("statscache"),
         dataStore       = {},
         currentView     = {},
         addonId         = parseInt($(".primary").attr("data-addon_id"), 10),

@@ -44,3 +44,32 @@ z.Storage = (function() {
         };
     };
 })();
+
+z.SessionStorage = (function() {
+    var cookieStorage = {
+        getItem: function(key) {
+            return $.cookie(key);
+        },
+        setItem: function(key, value) {
+            return $.cookie(key, value, {path: '/'});
+        },
+        removeItem: function(key) {
+            return $.cookie(key, null);
+        }
+    };
+    var engine = z.capabilities.localStorage ? sessionStorage : cookieStorage;
+    return function(namespace) {
+        namespace = namespace ? namespace + '-' : '';
+        return {
+            get: function(key) {
+                return engine.getItem(namespace + key);
+            },
+            set: function(key, value) {
+                return engine.setItem(namespace + key, value);
+            },
+            remove: function(key) {
+                return engine.removeItem(namespace + key);
+            }
+        };
+    };
+})();
