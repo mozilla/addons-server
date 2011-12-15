@@ -6,6 +6,7 @@ import urlparse
 from django.conf import settings
 
 import mock
+from mock import Mock
 from nose.tools import eq_
 import time
 
@@ -14,7 +15,6 @@ from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 import amo.tests
 import paypal
-
 
 good_response = ('responseEnvelope.timestamp='
             '2011-01-28T06%3A16%3A33.259-08%3A00&responseEnvelope.ack=Success'
@@ -26,8 +26,7 @@ auth_error = ('error(0).errorId=520003'
             '&error(0).message=Authentication+failed.+API+'
             'credentials+are+incorrect.')
 
-other_error = ('error(0).errorId=520001'
-            '&error(0).message=Foo')
+other_error = ('error(0).errorId=520001&error(0).message=Foo')
 
 good_check_purchase = ('status=CREATED')  # There is more, but I trimmed it.
 
@@ -40,6 +39,13 @@ class TestPayKey(amo.tests.TestCase):
                      'uuid': time.time(),
                      'ip': '127.0.0.1',
                      'pattern': 'addons.purchase.finished'}
+        self.pre = Mock()
+        self.pre.paypal_key = 'xyz'
+
+    def get_pre_data(self):
+        data = self.data.copy()
+        data['preapproval'] = self.pre
+        return data
 
     @mock.patch('urllib2.OpenerDirector.open')
     def test_auth_fails(self, opener):
@@ -49,7 +55,7 @@ class TestPayKey(amo.tests.TestCase):
     @mock.patch('urllib2.OpenerDirector.open')
     def test_get_key(self, opener):
         opener.return_value = StringIO(good_response)
-        eq_(paypal.get_paykey(self.data), 'AP-9GD76073HJ780401K')
+        eq_(paypal.get_paykey(self.data), ('AP-9GD76073HJ780401K', 'CREATED'))
 
     @mock.patch('urllib2.OpenerDirector.open')
     def test_other_fails(self, opener):
@@ -60,7 +66,7 @@ class TestPayKey(amo.tests.TestCase):
     def test_qs_passed(self, _call):
         data = self.data.copy()
         data['qs'] = {'foo': 'bar'}
-        _call.return_value = {'payKey': '123'}
+        _call.return_value = {'payKey': '123', 'paymentExecStatus': ''}
         paypal.get_paykey(data)
         qs = _call.call_args[0][1]['returnUrl'].split('?')[1]
         eq_(dict(urlparse.parse_qsl(qs))['foo'], 'bar')
@@ -100,7 +106,7 @@ class TestPayKey(amo.tests.TestCase):
     @mock.patch('paypal._call')
     def test_dict_no_split(self, _call):
         data = self.data.copy()
-        _call.return_value = {'payKey': '123'}
+        _call.return_value = {'payKey': '123', 'paymentExecStatus': ''}
         paypal.get_paykey(data)
         eq_(_call.call_args[0][1]['receiverList.receiver(0).amount'], '10')
 
@@ -108,7 +114,7 @@ class TestPayKey(amo.tests.TestCase):
     def test_dict_split(self, _call):
         data = self.data.copy()
         data['chains'] = ((13.4, 'us@moz.com'),)
-        _call.return_value = {'payKey': '123'}
+        _call.return_value = {'payKey': '123', 'paymentExecStatus': ''}
         paypal.get_paykey(data)
         eq_(_call.call_args[0][1]['receiverList.receiver(0).amount'], '10')
         eq_(_call.call_args[0][1]['receiverList.receiver(1).amount'], '1.34')
@@ -121,6 +127,55 @@ class TestPayKey(amo.tests.TestCase):
         chains = ((30, 'us@moz.com'),)
         res = paypal.add_receivers(chains, 'a@a.com', Decimal('1.99'), '123')
         eq_(res['feesPayer'], 'SECONDARYONLY')
+
+    @mock.patch('paypal._call')
+    def test_not_preapproval_key(self, _call):
+        _call.return_value = {'payKey': '123', 'paymentExecStatus': ''}
+        paypal.get_paykey(self.data)
+        assert 'preapprovalKey' not in _call.call_args[0][1]
+
+    @mock.patch('paypal._call')
+    def test_preapproval_key(self, _call):
+        _call.return_value = {'payKey': '123', 'paymentExecStatus': ''}
+        paypal.get_paykey(self.get_pre_data())
+
+        called = _call.call_args[0][1]
+        eq_(called['preapprovalKey'], 'xyz')
+        assert 'receiverList.receiver(0).paymentType' not in called
+
+    @mock.patch('paypal._call')
+    def test_preapproval_key_split(self, _call):
+        _call.return_value = {'payKey': '123', 'paymentExecStatus': ''}
+        data = self.get_pre_data()
+        data['chains'] = ((13.4, 'us@moz.com'),)
+        paypal.get_paykey(data)
+
+        called = _call.call_args[0][1]
+        assert 'receiverList.receiver(0).paymentType' not in called
+        assert 'receiverList.receiver(1).paymentType' not in called
+
+    @mock.patch('paypal._call')
+    def test_preapproval_retry(self, _call):
+        # Trigger an error on the preapproval and then pass.
+        def error_if(*args, **kw):
+            if 'preapprovalKey' in args[1]:
+                raise paypal.PreApprovalError('some error')
+            return {'payKey': '123', 'paymentExecStatus': ''}
+        _call.side_effect = error_if
+        res = paypal.get_paykey(self.get_pre_data())
+        eq_(_call.call_count, 2)
+        eq_(res[0], '123')
+
+    @mock.patch('paypal._call')
+    def test_preapproval_both_fail(self, _call):
+        # Trigger an error on the preapproval and then fail again.
+        def error_if(*args, **kw):
+            if 'preapprovalKey' in args[1]:
+                raise paypal.PreApprovalError('some error')
+            raise paypal.PaypalError('other error')
+        _call.side_effect = error_if
+        self.assertRaises(paypal.PaypalError, paypal.get_paykey,
+                          self.get_pre_data())
 
 
 class TestPurchase(amo.tests.TestCase):

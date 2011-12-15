@@ -21,7 +21,9 @@ var purchases = {
                 success: function(json) {
                     $(el).removeClass(classes);
                     $('.modal').trigger('close'); // Hide all modals
-                    if (json.paykey) {
+                    if (json.status == 'COMPLETED') {
+                        modalFromURL($(el).attr('data-thanksurl'));
+                    } else if (json.paykey) {
                         /* This is supposed to be a global */
                         //dgFlow = new PAYPAL.apps.DGFlow({expType:'mini'});
                         dgFlow = new PAYPAL.apps.DGFlow({clicked: el.id});

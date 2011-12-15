@@ -20,12 +20,14 @@ import jinja2
 import commonware.log
 import session_csrf
 from tower import ugettext as _, ugettext_lazy as _lazy
+import waffle
 from mobility.decorators import mobilized, mobile_template
 
 import amo
 from amo import messages
 from amo.decorators import login_required, write
 from amo.forms import AbuseForm
+from amo.helpers import shared_url
 from amo.utils import sorted_groupby, randslice
 from amo.models import manual_order
 from amo import urlresolvers
@@ -499,8 +501,12 @@ def purchase(request, addon):
     uuid_ = hashlib.md5(str(uuid.uuid4())).hexdigest()
     # l10n: {0} is the addon name
     contrib_for = _(u'Purchase of {0}').format(jinja2.escape(addon.name))
+    paykey, status, error = '', '', ''
 
-    paykey, error = '', ''
+    preapproval = None
+    if waffle.flag_is_active(request, 'allow-pre-auth') and request.amo_user:
+        preapproval = request.amo_user.get_preapproval()
+
     try:
         pattern = 'addons.purchase.finished'
         slug = addon.slug
@@ -508,12 +514,17 @@ def purchase(request, addon):
             pattern = 'apps.purchase.finished'
             slug = addon.app_slug
 
-        paykey = paypal.get_paykey(dict(uuid=uuid_, slug=slug,
-                    amount=amount, memo=contrib_for, email=addon.paypal_id,
+        paykey, status = paypal.get_paykey(dict(
+                    amount=amount,
+                    chains=settings.PAYPAL_CHAINS,
+                    email=addon.paypal_id,
                     ip=request.META.get('REMOTE_ADDR'),
+                    memo=contrib_for,
                     pattern=pattern,
+                    preapproval=preapproval,
                     qs={'realurl': request.GET.get('realurl')},
-                    chains=settings.PAYPAL_CHAINS))
+                    slug=slug,
+                    uuid=uuid_))
     except:
         log.error('Error getting paykey, purchase of addon: %s' % addon.pk,
                   exc_info=True)
@@ -525,7 +536,22 @@ def purchase(request, addon):
                                uuid=str(uuid_), type=amo.CONTRIB_PENDING,
                                paykey=paykey, user=request.amo_user)
         log.debug('Storing contrib for uuid: %s' % uuid_)
+
+        # If this was a pre-approval, it's completed already, we'll
+        # double check this with PayPal, just to be sure nothing went wrong.
+        if status == 'COMPLETED':
+            log.debug('Status is completed for uuid: %s' % uuid_)
+            if paypal.check_purchase(paykey) == 'COMPLETED':
+                log.debug('Check purchase is completed for uuid: %s' % uuid_)
+                contrib.type = amo.CONTRIB_PURCHASE
+            else:
+                # In this case PayPal disagreed, we should not be trusting
+                # what get_paykey said. Which is a worry.
+                log.error('Check purchase failed on uuid: %s' % uuid_)
+                status = 'NOT-COMPLETED'
+
         contrib.save()
+
     else:
         log.error('No paykey present for uuid: %s' % uuid_)
 
@@ -535,9 +561,16 @@ def purchase(request, addon):
     if request.GET.get('result_type') == 'json' or request.is_ajax():
         return http.HttpResponse(json.dumps({'url': url,
                                              'paykey': paykey,
-                                             'error': error}),
+                                             'error': error,
+                                             'status': status}),
                                  content_type='application/json')
-    return http.HttpResponseRedirect(url)
+
+    # This is the non-Ajax fallback.
+    if status != 'COMPLETED':
+        return redirect(url)
+
+    messages.success(request, _('Purchase complete'))
+    return redirect(shared_url('addons.detail', addon))
 
 
 # TODO(andym): again, remove this once we figure out logged out flow.
@@ -639,12 +672,17 @@ def contribute(request, addon):
     # l10n: {0} is the addon name
     contrib_for = _(u'Contribution for {0}').format(jinja2.escape(name))
 
-    paykey, error = '', ''
+    paykey, error, status = '', '', ''
     try:
-        paykey = paypal.get_paykey(dict(uuid=contribution_uuid,
-                    slug=addon.slug, amount=amount, email=paypal_id,
-                    memo=contrib_for, ip=request.META.get('REMOTE_ADDR'),
-                    pattern='%s.paypal' % ('apps' if webapp else 'addons')))
+        paykey, status = paypal.get_paykey(dict(
+                            amount=amount,
+                            email=paypal_id,
+                            ip=request.META.get('REMOTE_ADDR'),
+                            memo=contrib_for,
+                            pattern='%s.paypal' %
+                                ('apps' if webapp else 'addons'),
+                            slug=addon.slug,
+                            uuid=contribution_uuid))
     except:
         log.error('Error getting paykey, contribution for addon: %s'
                   % addon.pk, exc_info=True)
@@ -672,7 +710,8 @@ def contribute(request, addon):
         # not have a paykey and the JS can cope appropriately.
         return http.HttpResponse(json.dumps({'url': url,
                                              'paykey': paykey,
-                                             'error': error}),
+                                             'error': error,
+                                             'status': status}),
                                  content_type='application/json')
     return http.HttpResponseRedirect(url)
 

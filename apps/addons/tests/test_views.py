@@ -25,7 +25,7 @@ from abuse.models import AbuseReport
 from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
                            Charity)
 from files.models import File
-from market.models import AddonPremium, AddonPurchase, Price
+from market.models import AddonPremium, AddonPurchase, PreApprovalUser, Price
 from paypal.tests.test import other_error
 from stats.models import Contribution
 from translations.helpers import truncate
@@ -151,7 +151,7 @@ class TestContributeEmbedded(amo.tests.TestCase):
 
     @patch('paypal.get_paykey')
     def client_get(self, get_paykey, **kwargs):
-        get_paykey.return_value = 'abc'
+        get_paykey.return_value = ['abc', '']
         url = reverse('addons.contribute', args=kwargs.pop('rev'))
         if 'qs' in kwargs:
             url = url + kwargs.pop('qs')
@@ -296,20 +296,20 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
 
     @patch('paypal.get_paykey')
     def test_redirect(self, get_paykey):
-        get_paykey.return_value = 'some-pay-key'
+        get_paykey.return_value = ['some-pay-key', '']
         res = self.client.get(self.purchase_url)
         assert 'some-pay-key' in res['Location']
 
     @patch('paypal.get_paykey')
     def test_ajax(self, get_paykey):
-        get_paykey.return_value = 'some-pay-key'
+        get_paykey.return_value = ['some-pay-key', '']
         res = self.client.get_ajax(self.purchase_url)
-        assert json.loads(res.content)['paykey'] == 'some-pay-key'
+        eq_(json.loads(res.content)['paykey'], 'some-pay-key')
 
     @patch('paypal.get_paykey')
     def test_paykey_amount(self, get_paykey):
         # Test the amount the paykey for is the price.
-        get_paykey.return_value = 'some-pay-key'
+        get_paykey.return_value = ['some-pay-key', '']
         self.client.get_ajax(self.purchase_url)
         # wtf? Can we get any more [0]'s there?
         eq_(get_paykey.call_args_list[0][0][0]['amount'], Decimal('0.99'))
@@ -322,11 +322,53 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
 
     @patch('paypal.get_paykey')
     def test_paykey_contribution(self, get_paykey):
-        get_paykey.return_value = 'some-pay-key'
+        get_paykey.return_value = ['some-pay-key', '']
         self.client.get_ajax(self.purchase_url)
         cons = Contribution.objects.filter(type=amo.CONTRIB_PENDING)
         eq_(cons.count(), 1)
         eq_(cons[0].amount, Decimal('0.99'))
+
+    def check_contribution(self, state):
+        cons = Contribution.objects.all()
+        eq_(cons.count(), 1)
+        eq_(cons[0].type, state)
+
+    @patch('paypal.check_purchase')
+    @patch('paypal.get_paykey')
+    def get_with_preapproval(self, get_paykey, check_purchase,
+                             check_purchase_result=None):
+        get_paykey.return_value = ['some-pay-key', 'COMPLETED']
+        check_purchase.return_value = check_purchase_result
+        return self.client.get_ajax(self.purchase_url)
+
+    def test_paykey_pre_approval(self):
+        res = self.get_with_preapproval(check_purchase_result='COMPLETED')
+        eq_(json.loads(res.content)['status'], 'COMPLETED')
+        self.check_contribution(amo.CONTRIB_PURCHASE)
+
+    def test_paykey_pre_approval_disagree(self):
+        res = self.get_with_preapproval(check_purchase_result='No!!!')
+        eq_(json.loads(res.content)['status'], 'NOT-COMPLETED')
+        self.check_contribution(amo.CONTRIB_PENDING)
+
+    @patch('paypal.check_purchase')
+    @patch('paypal.get_paykey')
+    def test_paykey_pre_approval_no_ajax(self, get_paykey, check_purchase):
+        get_paykey.return_value = ['some-pay-key', 'COMPLETED']
+        check_purchase.return_value = 'COMPLETED'
+        res = self.client.get(self.purchase_url)
+        self.assertRedirects(res, shared_url('addons.detail', self.addon))
+
+    @patch('paypal.check_purchase')
+    @patch('paypal.get_paykey')
+    # Turning on the allow-pre-auth flag.
+    @patch.object(waffle, 'flag_is_active', lambda x, y: True)
+    def test_paykey_pre_approval_used(self, get_paykey, check_purchase):
+        get_paykey.return_value = ['some-pay-key', 'COMPLETED']
+        check_purchase.return_value = 'COMPLETED'
+        pre = PreApprovalUser.objects.create(user=self.user, paypal_key='xyz')
+        self.client.get_ajax(self.purchase_url)
+        eq_(get_paykey.call_args[0][0]['preapproval'], pre)
 
     @patch('addons.models.Addon.has_purchased')
     def test_has_purchased(self, has_purchased):
@@ -547,6 +589,13 @@ class TestPaypalStart(PaypalStart):
         eq_(Installed.objects.count(), 0)
         self.test_loggedin_notpurchased()
         eq_(Installed.objects.count(), 0)
+
+    def test_has_thanksurl(self):
+        assert self.client.login(**self.data)
+        res = self.client.get_ajax(self.url)
+        eq_(pq(res.content).find('button.paypal').attr('data-thanksurl'),
+            shared_url('addons.purchase.thanks', self.addon))
+
 
 
 @patch.object(waffle, 'switch_is_active', lambda x: True)

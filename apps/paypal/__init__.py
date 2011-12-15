@@ -24,7 +24,18 @@ class AuthError(PaypalError):
     pass
 
 
+class PreApprovalError(PaypalError):
+    pass
+
+
 errors = {'520003': AuthError}
+# See http://bit.ly/vWV525 for information on these values.
+# Note that if you have and invalid preapproval key you get 580022, but this
+# also occurs in other cases so don't assume its preapproval only.
+for number in ['579024', '579025', '579026', '579027', '579028',
+               '579030', '579031']:
+    errors[number] = PreApprovalError
+
 paypal_log = commonware.log.getLogger('z.paypal')
 
 
@@ -36,7 +47,7 @@ def should_ignore_paypal():
     return settings.DEBUG and 'sandbox' not in settings.PAYPAL_PERMISSIONS_URL
 
 
-def add_receivers(chains, email, amount, uuid):
+def add_receivers(chains, email, amount, uuid, preapproval=False):
     """
     Split a payment down into multiple receivers using the chains passed in.
     """
@@ -47,23 +58,30 @@ def add_receivers(chains, email, amount, uuid):
         this = (Decimal(str(float(amount) * (percent / 100.0)))
                 .quantize(Decimal('.01')))
         remainder = remainder - this
+        key = 'receiverList.receiver(%s)' % number
         result.update({
-            'receiverList.receiver(%s).email' % number: destination,
-            'receiverList.receiver(%s).amount' % number: str(this),
-            'receiverList.receiver(%s).paymentType' % number: 'DIGITALGOODS',
-            'receiverList.receiver(%s).primary' % number: 'false',
+            '%s.email' % key: destination,
+            '%s.amount' % key: str(this),
+            '%s.primary' % key: 'false',
             # This is only done if there is a chained payment. Otherwise
             # it does not need to be set.
             'receiverList.receiver(0).primary': 'true',
             # Mozilla pays the fees, because we've got a special rate.
             'feesPayer': 'SECONDARYONLY'
         })
+        if not preapproval:
+            result['%s.paymentType' % key] = 'DIGITALGOODS'
+
     result.update({
         'receiverList.receiver(0).email': email,
         'receiverList.receiver(0).amount': str(amount),
-        'receiverList.receiver(0).invoiceID': 'mozilla-%s' % uuid,
-        'receiverList.receiver(0).paymentType': 'DIGITALGOODS',
+        'receiverList.receiver(0).invoiceID': 'mozilla-%s' % uuid
     })
+
+    # Adding DIGITALGOODS to a pre-approval triggers an error in PayPal.
+    if not preapproval:
+        result['receiverList.receiver(0).paymentType'] = 'DIGITALGOODS'
+
     return result
 
 
@@ -94,17 +112,39 @@ def get_paykey(data):
         'trackingId': data['uuid'],
         'ipnNotificationUrl': absolutify(reverse('amo.paypal'))}
 
-    paypal_data.update(add_receivers(data.get('chains', ()), data['email'],
-                                     data['amount'], data['uuid']))
+    receivers = (data.get('chains', ()), data['email'], data['amount'],
+                 data['uuid'])
+
+    if 'preapproval' in data:
+        # The paypal_key might be empty if they have removed it.
+        key = data['preapproval'].paypal_key
+        if key:
+            paypal_log.info('Using preapproval: %s' % data['preapproval'].pk)
+            paypal_data['preapprovalKey'] = key
+            paypal_data.update(add_receivers(*receivers, preapproval=True))
+    else:
+        paypal_data.update(add_receivers(*receivers))
 
     if data.get('memo'):
         paypal_data['memo'] = data['memo']
 
-    with statsd.timer('paypal.paykey.retrieval'):
-        response = _call(settings.PAYPAL_PAY_URL + 'Pay', paypal_data,
-                         ip=data['ip'])
+    try:
+        with statsd.timer('paypal.paykey.retrieval'):
+            response = _call(settings.PAYPAL_PAY_URL + 'Pay', paypal_data,
+                             ip=data['ip'])
+    except PreApprovalError, e:
+        # Let's retry just once without preapproval.
+        paypal_log.error('Failed using preapproval, reason: %s' % e)
+        # Now it's not a pre-approval, make sure we get the
+        # DIGITALGOODS setting back in there.
+        del paypal_data['preapprovalKey']
+        paypal_data.update(add_receivers(*receivers))
+        # If this fails, we won't try again, just fail.
+        with statsd.timer('paypal.paykey.retrieval'):
+            response = _call(settings.PAYPAL_PAY_URL + 'Pay', paypal_data,
+                             ip=data['ip'])
 
-    return response['payKey']
+    return response['payKey'], response['paymentExecStatus']
 
 
 def check_purchase(paykey):
