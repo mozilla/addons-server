@@ -16,6 +16,7 @@ from access import acl
 import amo
 import captcha.fields
 from amo.fields import ColorField
+from amo.helpers import loc
 from amo.urlresolvers import reverse
 from amo.utils import slug_validator, slugify, sorted_groupby, remove_icons
 from addons.models import (Addon, AddonCategory, AddonUser, BlacklistedSlug,
@@ -231,7 +232,7 @@ class CategoryForm(forms.Form):
         max_cat = amo.MAX_CATEGORIES
         if getattr(self, 'disabled', False) and total:
             if categories[0].type == amo.ADDON_WEBAPP:
-                raise forms.ValidationError(_('Categories cannot be changed '
+                raise forms.ValidationError(loc('Categories cannot be changed '
                     'while your app is featured for this application.'))
             else:
                 raise forms.ValidationError(_('Categories cannot be changed '
