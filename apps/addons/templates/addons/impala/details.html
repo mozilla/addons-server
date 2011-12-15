@@ -1,4 +1,5 @@
 {% extends "impala/base_shared.html" %}
+{% set is_author = request.check_ownership(addon, require_owner=False) %}
 
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
 {% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}
@@ -44,11 +45,11 @@
   {% endif %}
   {% if cnt %}
     <div id="{{ cnt_id }}">
-      {% if webapp %}
-        {{ cnt_pretty }}
-      {% else %}
+      {% if not webapp and is_author %}
         <a class="stats" title="{{ _('View statistics') }}"
            href="{{ url('stats.overview', addon.slug) }}">{{ cnt_pretty }}</a>
+      {% else %}
+        {{ cnt_pretty }}
       {% endif %}
     </div>
   {% endif %}
@@ -60,7 +61,7 @@
       {{ sharing_widget(addon) }}
     {% endif %}
   </div>
-  {% if request.check_ownership(addon, require_owner=False) %}
+  {% if is_author %}
     <p><a href="{{ addon.get_dev_url() }}" class="button developer prominent"><span>{{ _('Manage') }}</span></a></p>
     {% if waffle.switch('marketplace') and addon.is_premium() and not addon.is_webapp() %}
         <p><a href="{{ url('downloads.latest', addon.slug) }}" class="button developer prominent"><span>{{ _('Download') }}</span></a></p>
