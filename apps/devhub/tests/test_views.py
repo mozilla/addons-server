@@ -2240,10 +2240,14 @@ class TestSubmitStep6(TestSubmitBase):
 
 class TestSubmitStep7(TestSubmitBase):
 
+    def setUp(self):
+        super(TestSubmitStep7, self).setUp()
+        self.url = reverse('devhub.submit.7', args=[self.addon.slug])
+
     def test_finish_submitting_addon(self):
         eq_(self.addon.current_version.supported_platforms, [amo.PLATFORM_ALL])
 
-        r = self.client.get(reverse('devhub.submit.7', args=[self.addon.slug]))
+        r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
 
@@ -2279,43 +2283,38 @@ class TestSubmitStep7(TestSubmitBase):
         eq_(next_steps.eq(1).attr('href'), addon.get_dev_url())
 
     def test_finish_addon_for_prelim_review(self):
-        self.get_addon().update(status=amo.STATUS_UNREVIEWED)
+        self.addon.update(status=amo.STATUS_UNREVIEWED)
 
-        response = self.client.get(reverse('devhub.submit.7', args=['a3615']))
+        response = self.client.get(self.url)
         eq_(response.status_code, 200)
         doc = pq(response.content)
         intro = doc('.addon-submission-process p').text().strip()
         assert 'Preliminary Review' in intro, ('Unexpected intro: %s' % intro)
 
     def test_finish_addon_for_full_review(self):
-        self.get_addon().update(status=amo.STATUS_NOMINATED)
+        self.addon.update(status=amo.STATUS_NOMINATED)
 
-        response = self.client.get(reverse('devhub.submit.7', args=['a3615']))
+        response = self.client.get(self.url)
         eq_(response.status_code, 200)
         doc = pq(response.content)
         intro = doc('.addon-submission-process p').text().strip()
         assert 'Full Review' in intro, ('Unexpected intro: %s' % intro)
 
     def test_incomplete_addon_no_versions(self):
-        addon = self.get_addon()
-        addon.update(status=amo.STATUS_NULL)
-        addon.versions.all().delete()
-        r = self.client.get(reverse('devhub.submit.7', args=['a3615']),
-                                   follow=True)
+        self.addon.update(status=amo.STATUS_NULL)
+        self.addon.versions.all().delete()
+        r = self.client.get(self.url, follow=True)
         self.assertRedirects(r, self.addon.get_dev_url('versions'), 302)
 
     def test_link_to_activityfeed(self):
-        addon = Addon.objects.get(pk=3615)
-        r = self.client.get(reverse('devhub.submit.7', args=['a3615']),
-                                   follow=True)
+        r = self.client.get(self.url, follow=True)
         doc = pq(r.content)
         eq_(doc('.done-next-steps a').eq(2).attr('href'),
-            reverse('devhub.feed', args=[addon.slug]))
+            reverse('devhub.feed', args=[self.addon.slug]))
 
     def test_display_non_ascii_url(self):
-        addon = Addon.objects.get(pk=3615)
         u = 'フォクすけといっしょ'
-        addon.update(slug=u)
+        self.addon.update(slug=u)
         r = self.client.get(reverse('devhub.submit.7', args=[u]))
         eq_(r.status_code, 200)
         # The meta charset will always be utf-8.
@@ -2326,16 +2325,14 @@ class TestSubmitStep7(TestSubmitBase):
 
     @mock.patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
     def test_marketplace(self):
-        addon = Addon.objects.get(pk=3615)
-        res = self.client.get(reverse('devhub.submit.7', args=[addon.slug]))
-        eq_(pq(res.content)('.action-needed').length, 1)
+        res = self.client.get(self.url)
+        eq_(pq(res.content)('.action-needed').length, 2)
 
     @mock.patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
     def test_marketplace_not(self):
-        addon = Addon.objects.get(pk=3615)
-        addon.update(type=amo.ADDON_SEARCH)
-        res = self.client.get(reverse('devhub.submit.7', args=[addon.slug]))
-        eq_(pq(res.content)('.action_needed').length, 0)
+        self.addon.update(type=amo.ADDON_SEARCH)
+        res = self.client.get(self.url)
+        eq_(pq(res.content)('.action-needed').length, 1)
 
 
 class TestResumeStep(TestSubmitBase):
