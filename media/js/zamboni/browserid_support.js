@@ -128,7 +128,10 @@ function loadProfileCompletionForm($root, options) {
         win = options.window || window,
         $form = $('form', $root),
         handler;
-    $('#browserid-login').hide(); // Don't let people log in twice; will cause error
+
+    // Don't let people log in twice; will cause error
+    $('#browserid-login, .browserid-login').hide();
+
     $root.show();
     $(win).trigger('resize'); // I hate this so much. I vow to someday fix this properly.
     $('input[type="text"]', $root).eq(0).focus();
