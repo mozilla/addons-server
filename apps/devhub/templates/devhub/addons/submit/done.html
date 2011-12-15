@@ -52,6 +52,15 @@
   </ul>
 </div>
 
+<div class="action-needed">
+  <h3>{{ _('Get Ahead in the Review Queue!') }}</h3>
+  <p>
+    {{ _('Become an AMO Editor today and get your add-ons reviewed faster.') }}
+    <a class="button" href="https://wiki.mozilla.org/AMO:Editors">
+      {{ _('Learn More') }}</a>
+  </p>
+</div>
+
 {% if waffle.switch('marketplace') and addon.type in amo.ADDON_BECOME_PREMIUM %}
   <div class="action-needed">
     <h3>{{ _('Enrolling in Marketplace') }}</h3>
