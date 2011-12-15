@@ -23,7 +23,7 @@
   </authors>
   <summary>{{ addon.summary|strip_html(new_api) }}</summary>
   <description>{{ addon.description|strip_html(new_api) }}</description>
-  {%- if addon.current_version.license -%}
+  {%- if addon.current_version and addon.current_version.license -%}
   <license>
     <name>{{ addon.current_version.license.name }}</name>
     <url>
