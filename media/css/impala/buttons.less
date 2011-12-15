@@ -191,15 +191,16 @@ button.bad, .button.developer, .button.scary { // Red
 .button.selected,
 .button.prominent:active,
 .button.prominent.selected {
+    top: 2px;
     &:before {
         /* `top: 2px` creates a 2px "deadzone" making the link unclickable.
-            This effectively pushes the button down 2px. See bug 710284. */
+            This effectively fills the deadzone. See bug 710284. */
         content: "";
         display: block;
         height: 2px;
+        position: absolute;
         top: -2px;
         left: 0;
-        position: absolute;
         width: 100%;
     }
 }
