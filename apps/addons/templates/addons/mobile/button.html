@@ -18,7 +18,7 @@
     {% for link in links %}
       {% set extra = "platform " + link.os.shortname if link.os else "" %}
       <!-- install error messages -->
-      <div class="apps-error-msg"></div>
+      <div class="apps-error-msg"><h2></h2><p></p></div>
       {% include 'addons/includes/install_button.html' %}
     {% endfor %}
   </div>

@@ -39,7 +39,7 @@ exports.install = function(manifestUrl, opt) {
                     'success': undefined,
                     'error': undefined,
                     'errModalCallback': undefined}, opt || {});
-    var self = this,
+    var self = apps,
         errSummary,
         showError = true;
     /* Try and install the app. */
@@ -84,15 +84,24 @@ exports.install = function(manifestUrl, opt) {
 };
 
 exports._showError = function(errSummary, errMessage, opt) {
-    var $errTarget = $('<a>'),
-        $modal = $('.apps-error-msg:first', opt.domContext).modal(
-                                            $errTarget,
-                                            {width: '400px', close: true,
-                                             callback: opt.errModalCallback});
-    $errTarget.trigger('click');  // show the modal
-    $('.apps-error-msg h2', opt.domContext).text(errSummary);
-    $('.apps-error-msg p', opt.domContext).text(errMessage);
-    $(opt.domContext).trigger('error_shown.apps');
+    var $errTarget = $('<a>');
+    if (opt.mobile) {
+        var $errBox = $('.apps-error-msg h2', opt.domContext);
+        $('.apps-error-msg h2', opt.domContext).text(errSummary);
+        $('.apps-error-msg p', opt.domContext).text(errMessage);
+        $('.apps-error-msg').show();
+    } else {
+        var $modal = $('.apps-error-msg:first', opt.domContext).modal(
+                                                $errTarget,
+                                                {width: '400px', close: true,
+                                                 callback: opt.errModalCallback
+                                             });
+        $errTarget.trigger('click');  // show the modal
+        $('.apps-error-msg h2', opt.domContext).text(errSummary);
+        $('.apps-error-msg p', opt.domContext).text(errMessage);
+        $(opt.domContext).trigger('error_shown.apps');
+    }
+
 };
 
 })(typeof exports === 'undefined' ? (this.apps = {}) : exports);

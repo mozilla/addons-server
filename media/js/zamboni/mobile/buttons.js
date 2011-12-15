@@ -136,7 +136,8 @@
                 if (classes.webapp) {
                     install(attr.manifest_url, {
                         url: href,
-                        el: activeInstaller[0]
+                        el: el,
+                        mobile: true
                     });
                 } else {
                     install(attr.name, href, attr.icon, hash);
