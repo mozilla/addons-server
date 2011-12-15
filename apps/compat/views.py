@@ -96,6 +96,8 @@ def usage_stats(request, compat, app, binary=None):
     if request.GET.get('previous'):
         qs = qs.filter(**{
             'support.%s.max__gte' % app: vint(compat['previous'])})
+    else:
+        qs = qs.filter(**{'support.%s.max__gte' % app: 0})
     if binary is not None:
         qs = qs.filter(binary=binary)
     addons = amo.utils.paginate(request, qs)
