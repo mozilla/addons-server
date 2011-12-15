@@ -182,10 +182,26 @@ button.bad, .button.developer, .button.scary { // Red
 
 .button:active,
 .button.selected {
-    top: 2px;
     .box-shadow(0 0px rgba(0, 0, 0, 0.1),
                 0 -2px rgba(0, 0, 0, 0.1) inset,
                 0 0 100px rgba(255, 255, 255, 0.2) inset);
+}
+
+.button:active,
+.button.selected,
+.button.prominent:active,
+.button.prominent.selected {
+    &:before {
+        /* `top: 2px` creates a 2px "deadzone" making the link unclickable.
+            This effectively pushes the button down 2px. See bug 710284. */
+        content: "";
+        display: block;
+        height: 2px;
+        top: -2px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+    }
 }
 
 .button.prominent:hover,
@@ -199,7 +215,6 @@ button.bad, .button.developer, .button.scary { // Red
 
 .button.prominent:active,
 .button.prominent.selected {
-    top: 2px;
     .box-shadow(0 1px rgba(0, 0, 0, 0.1),
                 0 -4px rgba(0, 0, 0, 0.1) inset,
                 0 0 100px rgba(255, 255, 255, 0.2) inset);
