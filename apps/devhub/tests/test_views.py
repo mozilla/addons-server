@@ -1365,8 +1365,7 @@ class TestIssueRefund(amo.tests.TestCase):
 
 
 class TestDelete(amo.tests.TestCase):
-    fixtures = ('base/apps', 'base/users', 'base/addon_3615',
-                'base/addon_5579',)
+    fixtures = ['base/addon_3615']
 
     def setUp(self):
         self.addon = self.get_addon()
@@ -1385,6 +1384,27 @@ class TestDelete(amo.tests.TestCase):
         r = self.client.post(self.url, dict(password='password'), follow=True)
         eq_(pq(r.content)('.notification-box').text(), 'Add-on deleted.')
         self.assertRaises(Addon.DoesNotExist, self.get_addon)
+
+
+class TestHome(amo.tests.TestCase):
+    fixtures = ['base/addon_3615']
+
+    def setUp(self):
+        assert self.client.login(username='del@icio.us', password='password')
+        self.url = reverse('devhub.index')
+
+    def get_pq(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        return pq(r.content)
+
+    def test_editor_promo(self):
+        eq_(self.get_pq()('#devhub-sidebar #editor-promo').length, 1)
+
+    def test_no_editor_promo(self):
+        Addon.objects.all().delete()
+        # Regular users (non-devs) should not see this promo.
+        eq_(self.get_pq()('#devhub-sidebar #editor-promo').length, 0)
 
 
 class TestActivityFeed(amo.tests.TestCase):
