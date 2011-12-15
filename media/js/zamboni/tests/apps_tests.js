@@ -117,6 +117,18 @@ asyncTest('success callback', function() {
 });
 
 
+asyncTest('install error: system unsupported', function() {
+    var sb = this.sandbox,
+        nav = {};
+    $(sb).one('mobile_error_shown.apps', function() {
+        equal($('.apps-error-msg h2', sb).text(), 'App installation failed');
+        equal($('.apps-error-msg p', sb).text(), 'This system does not support installing apps');
+        start();
+    });
+    apps.install('http://nice.com/nice.webapp', {domContext: sb, navigator: nav, mobile: true});
+});
+
+
 asyncTest('data', function() {
     var sb = this.sandbox,
         nav = {},

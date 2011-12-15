@@ -89,7 +89,8 @@ exports._showError = function(errSummary, errMessage, opt) {
         var $errBox = $('.apps-error-msg h2', opt.domContext);
         $('.apps-error-msg h2', opt.domContext).text(errSummary);
         $('.apps-error-msg p', opt.domContext).text(errMessage);
-        $('.apps-error-msg').show();
+        $('.apps-error-msg', opt.domContext).show();
+        $(opt.domContext).trigger('mobile_error_shown.apps');
     } else {
         var $modal = $('.apps-error-msg:first', opt.domContext).modal(
                                                 $errTarget,
