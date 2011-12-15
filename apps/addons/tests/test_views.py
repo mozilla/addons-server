@@ -1127,10 +1127,10 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         eq_(self.addon.show_adu(), True)
         eq_(doc('#weekly-downloads').length, 0)
 
-        # Check that ADU links to statistics dashboard.
-        adu = doc('#daily-users a')
-        eq_(adu.attr('href'),
-            reverse('stats.overview', args=[self.addon.slug]))
+        adu = doc('#daily-users')
+
+        # Check that ADU does not link to statistics dashboard.
+        eq_(adu.find('a').length, 0)
 
         # Check formatted count.
         eq_(adu.text().split()[0], numberfmt(self.addon.average_daily_users))
@@ -1139,16 +1139,25 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         self.addon.update(average_daily_users=0)
         eq_(self.get_pq()('#daily-users').length, 0)
 
+    def test_extension_stats(self):
+        self.client.login(username='del@icio.us', password='password')
+        # Check link to statistics dashboard for add-on authors.
+        eq_(self.get_pq()('#daily-users a.stats').attr('href'),
+            reverse('stats.overview', args=[self.addon.slug]))
+
     def test_search_tool_downloads(self):
         self.addon.update(type=amo.ADDON_SEARCH)
         doc = self.get_pq()
         eq_(self.addon.show_adu(), False)
         eq_(doc('#daily-users').length, 0)
 
+        adu = doc('#daily-users')
+
+        # Check that ADU does not link to statistics dashboard.
+        eq_(adu.find('a').length, 0)
+
         # Check that weekly downloads links to statistics dashboard.
-        dls = doc('#weekly-downloads a')
-        eq_(dls.attr('href'),
-            reverse('stats.overview', args=[self.addon.slug]))
+        dls = doc('#weekly-downloads')
 
         # Check formatted count.
         eq_(dls.text().split()[0], numberfmt(self.addon.weekly_downloads))
@@ -1156,6 +1165,12 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         # Check if we hide when no weekly downloads.
         self.addon.update(weekly_downloads=0)
         eq_(self.get_pq()('#weekly-downloads').length, 0)
+
+    def test_search_tool_stats(self):
+        self.client.login(username='del@icio.us', password='password')
+        # Check link to statistics dashboard for add-on authors.
+        eq_(self.get_pq()('#daily-users a.stats').attr('href'),
+            reverse('stats.overview', args=[self.addon.slug]))
 
     def test_perf_warning(self):
         eq_(self.addon.ts_slowness, None)
