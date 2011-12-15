@@ -1674,7 +1674,7 @@ class TestPreapproval(amo.tests.TestCase):
         res = self.client.post(self.get_url('cancel'))
         eq_(res.status_code, 200)
         eq_(self.user.preapprovaluser.paypal_key, 'xyz')
-        eq_(pq('#preapproval').attr('action'),
+        eq_(pq(res.content)('#preapproval').attr('action'),
             self.get_url('remove'))
 
     def test_preapproval_remove(self):
