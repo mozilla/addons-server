@@ -484,42 +484,40 @@
 
 /* Invisible file inputs */
 .invisible-upload {
-    position: relative;
+    cursor: pointer;
     display: inline-block;
     overflow: hidden;
-    cursor: pointer;
+    position: relative;
     input {
         display: block;
+        cursor: pointer;
+        height: 110%;
+        opacity: 0;
+        outline: none;
+        position: absolute;
         right: 0;
         bottom: 0;
         width: auto;
-        height: 110%;
-        cursor: pointer;
-        /* stack this below the navbar: */
+        /* Stack this below the navbar. */
         z-index: 0;
-        outline: none;
     }
-    a.button {
-        display: none;
-    }
-    &.modern {
+    &:hover {
         input {
-            opacity: 0;
-            position: absolute;
+            // Large target fix so the input is always clickable.
+            font-size: 1000px;
         }
-        &:hover {
-            input {
-                // Large target fix so the input is always clickable.
-                font-size: 1000px;
-            }
+    }
+    &:hover a.button, &:focus a.button {
+        border-color: #25f;
+        .box-shadow(inset 0 0 2px #fff);
+    }
+    &.legacy {
+        input {
+            opacity: 1;
+            position: static;
         }
         a.button {
-            position: relative;
-            display: inline-block;
-        }
-        &:hover a.button, &:focus a.button {
-            border-color: #25f;
-            .box-shadow(inset 0 0 2px #fff);
+            display: none;
         }
     }
     a.link {

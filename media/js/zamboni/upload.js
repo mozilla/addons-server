@@ -163,6 +163,10 @@
             $upload_field.before(ui_link);
             $upload_field.parent().after(ui_details);
 
+            if (!z.capabilities.fileAPI) {
+                $('.invisible-upload').addClass('legacy');
+            }
+
             /* Get things started */
 
             var upload_box, upload_title, upload_progress_outside, upload_progress_inside,

@@ -656,8 +656,8 @@ function initUploadPreview() {
 }
 
 function initInvisibleUploads() {
-    if (z.capabilities.fileAPI) {
-        $('.invisible-upload').addClass('modern');
+    if (!z.capabilities.fileAPI) {
+        $('.invisible-upload').addClass('legacy');
     }
 }
 
