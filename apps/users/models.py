@@ -1,4 +1,3 @@
-import base64
 from datetime import datetime
 import hashlib
 import os
@@ -6,9 +5,6 @@ import random
 import re
 import string
 import time
-import hmac
-
-import bcrypt
 
 from django import forms, dispatch
 from django.conf import settings
@@ -32,21 +28,6 @@ from translations.query import order_by_translation
 log = commonware.log.getLogger('z.users')
 
 
-def _hmac_create(userpwd, shared_key):
-    """Create HMAC value based on pwd and system-local and per-user salt."""
-    hmac_value = base64.b64encode(hmac.new(
-        smart_str(shared_key), smart_str(userpwd), hashlib.sha512).digest())
-    return hmac_value
-
-
-def _bcrypt_create(hmac_value):
-    """Create bcrypt hash."""
-    rounds = getattr(settings, 'BCRYPT_ROUNDS', 12)
-    # No need for us to create a user salt, bcrypt creates its own.
-    bcrypt_value = bcrypt.hashpw(hmac_value, bcrypt.gensalt(int(rounds)))
-    return bcrypt_value
-
-
 def get_hexdigest(algorithm, salt, raw_password):
     return hashlib.new(algorithm, smart_str(salt + raw_password)).hexdigest()
 
@@ -56,21 +37,9 @@ def rand_string(length):
 
 
 def create_password(algorithm, raw_password):
-    if algorithm == 'bcrypt':
-        try:
-            latest_key_id = max(settings.HMAC_KEYS.keys())
-        except (AttributeError, ValueError):
-            raise ValueError('settings.HMAC_KEYS must be set to a dict whose'
-                             'values are secret keys.')
-        shared_key = settings.HMAC_KEYS[latest_key_id]
-        hmac_value = _hmac_create(raw_password, shared_key)
-        return ''.join((
-                'bcrypt', _bcrypt_create(hmac_value),
-                '$', latest_key_id))
-    else:
-        salt = get_hexdigest(algorithm, rand_string(12), rand_string(12))[:64]
-        hsh = get_hexdigest(algorithm, salt, raw_password)
-        return '$'.join([algorithm, salt, hsh])
+    salt = get_hexdigest(algorithm, rand_string(12), rand_string(12))[:64]
+    hsh = get_hexdigest(algorithm, salt, raw_password)
+    return '$'.join([algorithm, salt, hsh])
 
 
 class UserForeignKey(models.ForeignKey):
@@ -291,46 +260,20 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
             delete_user.delete()
 
     def check_password(self, raw_password):
-        def passwords_match(algo_and_hash, key_ver, hmac_input):
-            shared_key = settings.HMAC_KEYS.get(key_ver, None)
-            if not shared_key:
-                log.info('Invalid shared key version "{0}"'.format(key_ver))
-                return False
-            bcrypt_value = algo_and_hash[6:]
-            hmac_value = _hmac_create(hmac_input, shared_key)
-            return bcrypt.hashpw(hmac_value, bcrypt_value) == bcrypt_value
-
-        if self.password.startswith('bcrypt'):
-            algo_and_hash, key_ver = self.password.rsplit('$', 1)
-            return passwords_match(algo_and_hash, key_ver, raw_password)
-        elif self.password.startswith('hh'):
-            alg, salt, bc_pwd = self.password.split('$', 3)[1:]
-            hsh = get_hexdigest(alg, salt, raw_password)
-            algo_and_hash, key_ver = bc_pwd.rsplit('$', 1)
-            if passwords_match(algo_and_hash, key_ver,
-                               '$'.join((alg, salt, hsh))):
-                #convert to bcrypt format
+        if '$' not in self.password:
+            valid = (get_hexdigest('md5', '', raw_password) == self.password)
+            if valid:
+                # Upgrade an old password.
                 self.set_password(raw_password)
                 self.save()
-                return True
-        else:
-            algo, salt, hsh = self.password.split('$')
-            return hsh == get_hexdigest(algo, salt, raw_password)
+            return valid
 
-    def set_password(self, raw_password, algorithm=None):
-        if algorithm is None:
-            algorithm = settings.PWD_ALGORITHM
+        algo, salt, hsh = self.password.split('$')
+        return hsh == get_hexdigest(algo, salt, raw_password)
+
+    def set_password(self, raw_password, algorithm='sha512'):
         self.password = create_password(algorithm, raw_password)
         # Can't do CEF logging here because we don't have a request object.
-
-    def upgrade_password_to(self, algorithm):
-        if (not self.password or
-            self.password.startswith(('hh', 'bcrypt'))):
-            return
-        algo, salt, hsh = self.password.split('$')
-        bc_value = create_password('bcrypt', self.password)
-        self.password = u'$'.join(['hh', algo, salt, bc_value])
-        self.save()
 
     def email_confirmation_code(self):
         from amo.utils import send_mail

@@ -1356,17 +1356,3 @@ IGNORE_NON_CRITICAL_CRONS = False
 # To enable new default to compatible checks in services/update.py set to True.
 # Set to False in case of emergency to switch back to old code.
 DEFAULT_TO_COMPATIBLE = True
-
-
-# Use bcrypt for new passwords, and enable upgrade of old ones.
-PWD_ALGORITHM = 'bcrypt'
-
-# Add an HMAC_KEYS dict in your local settings, containing identifiers
-# as keys and secrets as values. The largest key will be put as
-# plaintext into the hashed password field, and the corresponding
-# value will be used as the secret for HMAC hashing in passwords. For
-# example:
-
-# HMAC_KEYS = {'2011-12-01': 'ChristmasIsMagic',
-#              '2012-01-01': 'PotchHasAUnicornRanch',
-#             }

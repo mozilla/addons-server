@@ -6,7 +6,6 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core import mail
 from django.utils import encoding
-from django.conf import settings
 
 from mock import patch
 from nose.tools import eq_
@@ -183,70 +182,28 @@ class TestUserProfile(amo.tests.TestCase):
 class TestPasswords(amo.tests.TestCase):
     utf = u'\u0627\u0644\u062a\u0637\u0628'
 
-    def test_invalid_sha512_password(self):
-        u = UserProfile()
-        u.set_password(self.utf, algorithm='sha512')
-        assert not u.check_password('wrong')
+    def test_invalid_old_password(self):
+        u = UserProfile(password=self.utf)
+        assert u.check_password(self.utf) is False
 
-    def test_valid_sha512_password(self):
-        u = UserProfile()
-        u.set_password(self.utf, algorithm='sha512')
-        assert u.check_password(self.utf)
-
-    def test_valid_bcrypt_password(self):
-        u = UserProfile()
-        u.set_password(self.utf, algorithm='bcrypt')
-        assert u.password.startswith('bcrypt')
-        assert u.check_password(self.utf)
-
-    def test_bcrypt_is_default(self):
+    def test_invalid_new_password(self):
         u = UserProfile()
         u.set_password(self.utf)
-        assert u.password.startswith('bcrypt')
-        assert u.check_password(self.utf)
+        assert u.check_password('wrong') is False
 
-    def test_invalid_bcrypt_password(self):
-        u = UserProfile()
-        u.set_password(self.utf, algorithm='bcrypt')
-        assert not u.check_password('wrong')
+    def test_valid_old_password(self):
+        hsh = hashlib.md5(encoding.smart_str(self.utf)).hexdigest()
+        u = UserProfile(password=hsh)
+        assert u.check_password(self.utf) is True
+        # Make sure we updated the old password.
+        algo, salt, hsh = u.password.split('$')
+        eq_(algo, 'sha512')
+        eq_(hsh, get_hexdigest(algo, salt, self.utf))
 
-    def test_valid_hh_password(self):
+    def test_valid_new_password(self):
         u = UserProfile()
-        u.set_password(self.utf, algorithm='sha512')
-        u.upgrade_password_to(algorithm='bcrypt')
-        assert u.password.startswith('hh$')
-        assert u.check_password(self.utf)
-
-    def test_already_bcrypt(self):
-        u = UserProfile()
-        u.set_password(self.utf, algorithm='bcrypt')
-        old_password = u.password
-        u.upgrade_password_to(algorithm='bcrypt')
-        eq_(old_password, u.password)
-
-    @patch.object(settings, 'HMAC_KEYS', {})
-    def test_no_hmac_key(self):
-        u = UserProfile()
-        with self.assertRaises(ValueError) as a:
-            u.set_password(self.utf, algorithm='bcrypt')
-        assert 'HMAC_KEYS' in a.exception.message
-
-    @patch.object(settings, 'HMAC_KEYS',
-                  {'2011-12-01': 'secret1'})
-    def test_stale_hmac_key_bcrypt(self):
-        u = UserProfile()
-        u.set_password(self.utf, algorithm='bcrypt')
-        settings.HMAC_KEYS = {'2011-12-02': 'secret2'}
-        assert not u.check_password(self.utf)
-
-    @patch.object(settings, 'HMAC_KEYS',
-                  {'2011-12-01': 'secret1'})
-    def test_stale_hmac_key_hh(self):
-        u = UserProfile()
-        u.set_password(self.utf, algorithm='sha512')
-        u.upgrade_password_to(algorithm='bcrypt')
-        settings.HMAC_KEYS = {'2011-12-02': 'secret2'}
-        assert not u.check_password(self.utf)
+        u.set_password(self.utf)
+        assert u.check_password(self.utf) is True
 
 
 class TestBlacklistedUsername(amo.tests.TestCase):
