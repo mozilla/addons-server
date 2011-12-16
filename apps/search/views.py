@@ -578,6 +578,7 @@ def search(request, tag_name=None, template=None):
     if query.get('atype') == amo.ADDON_SEARCH:
         # Search add-ons should not be searched by ADU, so replace 'Users'
         # sort with 'Weekly Downloads'.
+        sort, extra_sort = list(sort), list(extra_sort)
         sort[1] = extra_sort[1]
         del extra_sort[1]
 
