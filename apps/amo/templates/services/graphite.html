@@ -63,6 +63,7 @@
       <li><a href="#perf">Site Performance</a></li>
       <li><a href="#errors">Redirects and Errors</a></li>
       <li><a href="#celery">Celery</a></li>
+      <li><a href="#validation">Validation Time</a></li>
       <li><a href="#guid-search">GUID Search Perf</a></li>
       <li><a href="#update">Update</a></li>
       <li><a href="#verify">Verify</a></li>
@@ -103,6 +104,11 @@
     <h2 id="celery">Celery (<a href="{{ url('zadmin.celery') }}">details</a>)</h2>
     {% call grid() %}
       target=sumSeries({{ site }}.celery.tasks.pending.*.*.*)&target=nonNegativeDerivative(sumSeries({{ site }}.celery.tasks.total.*.*.*))&target=nonNegativeDerivative(sumSeries({{ site }}.celery.tasks.failed.*.*.*))
+    {% endcall %}
+
+    <h2 id="validation">Validation Time</h2>
+    {% call grid() %}
+      target=stats.timers.{{ site }}.devhub.validator.lower&target=stats.timers.{{ site }}.devhub.validator.mean&target=stats.timers.{{ site }}.devhub.validator.upper_90
     {% endcall %}
 
     <h2 id="guid-search">GUID Search Perf</h2>
