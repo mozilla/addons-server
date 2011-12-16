@@ -25,8 +25,8 @@ import amo.models
 from amo.decorators import use_master
 from amo.fields import DecimalCharField
 from amo.helpers import absolutify, shared_url
-from amo.utils import (send_mail, urlparams, sorted_groupby, JSONEncoder,
-                       slugify, to_language)
+from amo.utils import (chunked, JSONEncoder, send_mail, slugify,
+                       sorted_groupby, to_language, urlparams)
 from amo.urlresolvers import get_outgoing_url, reverse
 from files.models import File
 from market.models import AddonPremium, Price
@@ -1781,8 +1781,8 @@ def update_incompatible_versions(sender, instance, **kw):
 
     from . import tasks
     versions = instance.compat.addon.versions.values_list('id', flat=True)
-    for version_id in versions:
-        tasks.update_incompatible_appversions.delay(version_id)
+    for chunk in chunked(versions, 50):
+        tasks.update_incompatible_appversions.delay(chunk)
 
 
 models.signals.post_save.connect(update_incompatible_versions,

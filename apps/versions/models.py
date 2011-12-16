@@ -358,7 +358,7 @@ def update_incompatible_versions(sender, instance, **kw):
     matches any compat overrides.
     """
     from addons import tasks
-    tasks.update_incompatible_appversions.delay(instance.id)
+    tasks.update_incompatible_appversions.delay([instance.id])
 
 
 version_uploaded = django.dispatch.Signal()
