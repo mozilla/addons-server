@@ -788,7 +788,6 @@ def paypal_result(request, addon, status):
 
 
 @addon_view
-@can_be_purchased
 @anonymous_csrf
 def paypal_start(request, addon=None):
     download = urlparse(request.GET.get('realurl', '')).path

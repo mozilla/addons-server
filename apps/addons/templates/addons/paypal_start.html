@@ -29,13 +29,15 @@
   <h2>{{ _('Purchase Add-on') }}</h2>
   {% endif %}
   <div class="paypal-content">
-    <span class="price">{{ addon.premium.get_price_locale() }}</span>
-    <h5>{{ addon.name }}</h5>
-    <div class="paypal-links">
-      {# TODO(apps): Add a link to purchase info.
-        <a>{{ _('Learn about purchases') }}</a>
-      #}
-    </div>
+    {% if addon.can_be_purchased() %}
+      <span class="price">{{ addon.premium.get_price_locale() }}</span>
+      <h5>{{ addon.name }}</h5>
+      <div class="paypal-links">
+        {# TODO(apps): Add a link to purchase info.
+          <a>{{ _('Learn about purchases') }}</a>
+        #}
+      </div>
+    {% endif %}
     <div class="paypal-parent">
       {% if user.is_authenticated() %}
       <div class="paypal-user">

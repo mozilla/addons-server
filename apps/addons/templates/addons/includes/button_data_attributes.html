@@ -8,9 +8,11 @@
   {{ b.attrs()|xmlattr }}
 {% if waffle.switch('marketplace') and addon.can_be_purchased() %}
   data-purchase="{{ shared_url('addons.purchase', addon) }}?"
-  data-start-purchase="{{ shared_url('addons.purchase.start', addon) }}"
   data-cost="{{ addon.premium.get_price() }}"
   data-login-url="{{ url('users.login_modal') }}"
+{% endif %}
+{% if addon.is_webapp() %}
+  data-start-purchase="{{ shared_url('addons.purchase.start', addon) }}"
 {% endif %}
 {% if compat %}
   data-min="{{ compat.min.version }}"

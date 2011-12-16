@@ -30,12 +30,36 @@ var webappButton = function() {
         $this.find('.button')
             .removeClass('disabled')
             .addClass('add')
-            .click(function(e) {
-                e.preventDefault();
-                purchases.record($this, function(receipt) {
-                  purchases.install_app(manifestURL, receipt);
-                });
-            });
+            .click(_pd(function(e) {
+                if($('body').attr('data-anonymous') == "true") {
+                    var $install = $(this).closest('.install'),
+                    url = $install.attr('data-start-purchase');
+                        console.log('1');
+                    if (url) {
+                        // Extract this!
+                        console.log('0');
+                        modalFromURL(url, {'callback': function() {
+                            var $modal = $(this);
+                            checkForAddon(this);
+                                console.log('a');
+
+                            $('.browserid-login', this).bind('login-complete', function(){
+                                console.log('b');
+                                $(this).addClass('loading-submit');
+                                $('.ajax-submit', $modal).load(url, function() {
+                                console.log('c');
+                                    checkForAddon(this);
+                                });
+                            });
+                        }, 'data': {'realurl': $install.find('a.premium').attr('data-realurl')}});
+                    };
+                   alert('you need to log in!');
+                } else {
+                    purchases.record($this, function(receipt) {
+                        purchases.install_app(manifestURL, receipt);
+                    });
+                }
+            }));
     }
     if (premium) {
         return premiumButton.call($this);
