@@ -1122,50 +1122,77 @@ class TestImpalaDetailPage(amo.tests.TestCase):
     def get_pq(self):
         return pq(self.client.get(self.url).content)
 
-    def test_extension_adu(self):
-        doc = self.get_pq()
-        eq_(self.addon.show_adu(), True)
-        eq_(doc('#weekly-downloads').length, 0)
-
-        adu = doc('#daily-users')
-
-        # Check that ADU does not link to statistics dashboard.
+    def test_adu_stats_private(self):
+        eq_(self.addon.public_stats, False)
+        adu = self.get_pq()('#daily-users')
+        eq_(adu.length, 1)
         eq_(adu.find('a').length, 0)
+
+    def test_adu_stats_public(self):
+        self.addon.update(public_stats=True)
+        eq_(self.addon.show_adu(), True)
+        adu = self.get_pq()('#daily-users')
+
+        # Check that ADU does link to public statistics dashboard.
+        eq_(adu.find('a').attr('href'),
+            reverse('stats.overview', args=[self.addon.slug]))
 
         # Check formatted count.
         eq_(adu.text().split()[0], numberfmt(self.addon.average_daily_users))
 
-        # Check if we hide when no ADU.
+        # Check if we hide link when there are no ADU.
         self.addon.update(average_daily_users=0)
         eq_(self.get_pq()('#daily-users').length, 0)
 
-    def test_extension_stats(self):
+    def test_adu_stats_regular(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        # Should not be a link to statistics dashboard for regular users.
+        adu = self.get_pq()('#daily-users')
+        eq_(adu.length, 1)
+        eq_(adu.find('a').length, 0)
+
+    def test_adu_stats_admin(self):
         self.client.login(username='del@icio.us', password='password')
         # Check link to statistics dashboard for add-on authors.
         eq_(self.get_pq()('#daily-users a.stats').attr('href'),
             reverse('stats.overview', args=[self.addon.slug]))
 
-    def test_search_tool_downloads(self):
+    def test_downloads_stats_private(self):
         self.addon.update(type=amo.ADDON_SEARCH)
-        doc = self.get_pq()
+        eq_(self.addon.public_stats, False)
+        adu = self.get_pq()('#weekly-downloads')
+        eq_(adu.length, 1)
+        eq_(adu.find('a').length, 0)
+
+    def test_downloads_stats_public(self):
+        self.addon.update(public_stats=True, type=amo.ADDON_SEARCH)
         eq_(self.addon.show_adu(), False)
-        eq_(doc('#daily-users').length, 0)
+        dls = self.get_pq()('#weekly-downloads')
 
         # Check that weekly downloads links to statistics dashboard.
-        dls = doc('#weekly-downloads')
-        eq_(dls.find('a').length, 0)
+        eq_(dls.find('a').attr('href'),
+            reverse('stats.overview', args=[self.addon.slug]))
 
         # Check formatted count.
         eq_(dls.text().split()[0], numberfmt(self.addon.weekly_downloads))
 
-        # Check if we hide when no weekly downloads.
+        # Check if we hide link when there are no weekly downloads.
         self.addon.update(weekly_downloads=0)
         eq_(self.get_pq()('#weekly-downloads').length, 0)
 
-    def test_search_tool_stats(self):
+    def test_downloads_stats_regular(self):
+        self.addon.update(type=amo.ADDON_SEARCH)
+        self.client.login(username='regular@mozilla.com', password='password')
+        # Should not be a link to statistics dashboard for regular users.
+        dls = self.get_pq()('#weekly-downloads')
+        eq_(dls.length, 1)
+        eq_(dls.find('a').length, 0)
+
+    def test_downloads_stats_admin(self):
+        self.addon.update(public_stats=True, type=amo.ADDON_SEARCH)
         self.client.login(username='del@icio.us', password='password')
         # Check link to statistics dashboard for add-on authors.
-        eq_(self.get_pq()('#daily-users a.stats').attr('href'),
+        eq_(self.get_pq()('#weekly-downloads a.stats').attr('href'),
             reverse('stats.overview', args=[self.addon.slug]))
 
     def test_perf_warning(self):
