@@ -45,7 +45,7 @@
   {% endif %}
   {% if cnt %}
     <div id="{{ cnt_id }}">
-      {% if not webapp and is_author %}
+      {% if not webapp and (addon.public_stats or is_author) %}
         <a class="stats" title="{{ _('View statistics') }}"
            href="{{ url('stats.overview', addon.slug) }}">{{ cnt_pretty }}</a>
       {% else %}
