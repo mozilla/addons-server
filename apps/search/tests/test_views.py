@@ -159,7 +159,7 @@ class TestESSearch(amo.tests.ESTestCase):
         eq_(r.status_code, 200)
         sorter = pq(r.content)('#sorter')
         eq_(sorter.length, 1)
-        assert 'sort=users' not in sorter, (
+        assert 'sort=users' not in sorter.text(), (
             'Sort by "Most Users" should not appear for search tools.')
 
     def check_sort_links(self, key, title, sort_by=None, reverse=True):

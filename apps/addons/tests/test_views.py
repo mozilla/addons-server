@@ -1151,13 +1151,9 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         eq_(self.addon.show_adu(), False)
         eq_(doc('#daily-users').length, 0)
 
-        adu = doc('#daily-users')
-
-        # Check that ADU does not link to statistics dashboard.
-        eq_(adu.find('a').length, 0)
-
         # Check that weekly downloads links to statistics dashboard.
         dls = doc('#weekly-downloads')
+        eq_(dls.find('a').length, 0)
 
         # Check formatted count.
         eq_(dls.text().split()[0], numberfmt(self.addon.weekly_downloads))

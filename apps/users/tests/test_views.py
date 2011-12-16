@@ -1682,6 +1682,5 @@ class TestPreapproval(amo.tests.TestCase):
         res = self.client.post(self.get_url('remove'))
         eq_(res.status_code, 200)
         eq_(self.user.preapprovaluser.paypal_key, '')
-        eq_(pq(res.content)('form').eq(1).attr('action'),
+        eq_(pq(res.content)('#preapproval').attr('action'),
             reverse('users.payments.preapproval'))
-
