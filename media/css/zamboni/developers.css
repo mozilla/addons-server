@@ -1051,7 +1051,7 @@ form.select-review .errorlist {
     margin-right: 0.5em;
 }
 .review-type + .review-type .highlight {
-    margin: 0 0 0 0.5em;
+    margin: 0 0 0 .5em;
 }
 
 .review-type h4 {
