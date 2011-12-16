@@ -154,6 +154,14 @@ class TestESSearch(amo.tests.ESTestCase):
         assert pq(r.content)('#content .item .vital.downloads'), (
             'Expected weekly downloads')
 
+    def test_search_tools_omit_users(self):
+        r = self.client.get(self.url, dict(cat='%s,5' % amo.ADDON_SEARCH))
+        eq_(r.status_code, 200)
+        sorter = pq(r.content)('#sorter')
+        eq_(sorter.length, 1)
+        assert 'sort=users' not in sorter, (
+            'Sort by "Most Users" should not appear for search tools.')
+
     def check_sort_links(self, key, title, sort_by=None, reverse=True):
         r = self.client.get(self.url, dict(sort=key))
         eq_(r.status_code, 200)
