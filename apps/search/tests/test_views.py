@@ -192,8 +192,11 @@ class TestESSearch(amo.tests.ESTestCase):
     def test_results_sort_newest(self):
         self.check_sort_links('created', 'Newest', 'created')
 
-    def test_results_sort_price(self):
-        self.check_sort_links('price', 'Price')
+    def test_results_no_sort_price(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        sorter = pq(r.content)('#sorter').html()
+        assert 'sort=price' not in sorter, ('Should not be showing Price sort')
 
     def test_results_sort_updated(self):
         self.check_sort_links('updated', 'Recently Updated')
