@@ -1643,7 +1643,7 @@ html[xmlns] .clearfix {
 
 .html-rtl .barometer .upvotes {
     padding: 0 1.2em 0 0; /* Space for the image. */
-    margin: 0 0 0 0.2em; /* Space between number and bar. */
+    margin: 0 0 0 .2em; /* Space between number and bar. */
     background-position: right 32.5%;
 }
 
