@@ -1,54 +1,18 @@
-{% extends "base_side_categories.html" %}
+{% extends "impala/base_shared.html" %}
 
 {% block title %}{{ _('Add-ons for {0}')|f(request.APP.pretty) }}{% endblock %}
 
 {% block bodyclass %}home{% endblock %}
 
-{% macro stats_text() %}
-  {% trans plural=downloads.count, count=downloads.count|numberfmt %}
-    <strong>{{ count }}</strong><span>add-on downloaded</span>
-  {% pluralize %}
-    <strong>{{ count }}</strong><span>add-ons downloaded</span>
-  {% endtrans %}
-{% endmacro %}
-
-{% block site_stats %}
-{% if downloads %}
-  {% if downloads.count > 0 %}
-    <div class="stats">
-      {% if settings.UNLINK_SITE_STATS %}
-          {{ stats_text() }}
-      {% else %}
-        <a href="{{ url('statistics.dashboard') }}">
-          {{ stats_text() }}
-        </a>
-      {% endif %}
-    </div>
-  {% endif %}
-{% endif %}
-{% endblock %}
-
 {% set ext, extrss = url('browse.extensions'), url('browse.extensions.rss') %}
 {% set view_all = {
   'featured': {
-    'text': _('View all featured add-ons'),
-    'link': url('browse.extensions')|urlparams(sort='featured'),
+    'text': _('Featured Extensions'),
     'feed': url('browse.featured.rss'),
   },
   'popular': {
-    'text': _('View all popular add-ons'),
-    'link': ext|urlparams(sort='popular'),
-    'feed': extrss|urlparams(sort='popular'),
-  },
-  'new': {
-    'text': _('View all newly created add-ons'),
-    'link': ext|urlparams(sort='created'),
-    'feed': extrss|urlparams(sort='created'),
-  },
-  'updated': {
-    'text': _('View all recently updated add-ons'),
-    'link': ext|urlparams(sort='updated'),
-    'feed': extrss|urlparams(sort='updated'),
+    'text': _('Popular Extensions'),
+    'feed': extrss|urlparams(sort='users'),
   }
 }
 %}
@@ -58,66 +22,67 @@
 {# IT looks for this comment with nagios, don't remove it. #}
 <!-- aww yeah -->
 
-{% include "addons/collections_teaser.html" %}
+<section class="secondary">
+  {{ side_nav(amo.ADDON_EXTENSION) }}
+</section>
 
-{% if is_mobile(request.APP) %}
-<h2>{{ _('Browse Mobile Add-ons') }}</h2>
-{% else %}
-<h2>{{ _('Browse Add-ons') }}</h2>
-{% endif %}
-
-<div class="primary" id="homepage">
-  <div class="featured listing compact">
-    <div class="featured-inner">
-      <div class="listing-header">
-        <ul>
-          {% for value, title in filter.opts %}
-          <li {{ value|class_selected(filter.field) }} id="{{ value }}">
-          <a href="{{ url('home')|urlparams(browse=value) }}" data-target="{{ value }}">
-            {{ title }}</a>
-          </li>
-          {% endfor %}
+<section class="primary" id="homepage">
+  {% if request.APP == amo.FIREFOX %}
+    <section class="island" id="promos" data-promo-url="{{ url('addons.homepage_promos') }}">
+      <div>
+        <ul class="slider">
         </ul>
       </div>
-      <div class="addon-listing addon-listing-{{ filter.field }}">
-        {% for key, addons in addon_sets.items() %}
-          <div id="list-{{ key }}">
-            {{ addon_listing_items_compact(addons, show_date=key, src='homepagebrowse') }}
-            <div class="listing-footer">
-              <a class="subscribe" href="{{ view_all[key]['feed'] }}">
-                {{ _('Subscribe', 'addons_home_browse_subscribe') }}</a>
-              <a class="more-info" href="{{ view_all[key]['link'] }}">
-                {{ view_all[key]['text'] }}</a>
-            </div>
-          </div> {# listing-{{ key }} #}
-        {% endfor %}
-      </div> {# addon-listing #}
-    </div> {# featured-inner #}
-  </div>
-</div>
+    </section>
+  {% endif %}
 
-<div class="secondary collections-sidebar">
-  <img alt="" width="100" height="125"
-       src="{{ media('img/illustrations/logo-collections-100x125.png') }}">
-   <h3><a href="{{ url('collections.list') }}">{{ _('Collections', 'addons_home_collections') }}</a></h3>
-   <p>
-     {% trans %}
-     Collections are groups of related add-ons that anyone can create and share.
-     {% endtrans %}
-   </p>
-   <h4>{{ _('Popular Collections') }}</h4>
-   {% include "addons/collections_sidebar.html" %}
-</div>
+  {# Cache everything in one block since changes in each block are rare. #}
+  {% cache popular %}
+    <section class="secondary">
+      <h2>{{ _('Most Popular') }}
+        <a class="seeall" href="{{ url('browse.extensions')|urlparams(sort='users') }}">{{ _('All »') }}</a>
+      </h2>
+      {{ popular|addon_toplist(src='hp-dl-mostpopular') }}
+    </section>
+
+    <section class="primary">
+      {% if featured %}
+        <div id="featured-extensions" class="island">
+          <h2>{{ _('Featured Extensions') }}
+            <a class="seeall" href="{{ url('browse.extensions')|urlparams(sort='featured') }}">{{ _('See all »') }}</a>
+          </h2>
+          {{ featured|addon_grid(src='hp-hc-featured',
+                                 dl_src='hp-dl-featured') }}
+        </div>
+      {% endif %}
+      {% if hotness %}
+        <div id="upandcoming" class="island">
+          <h2>{{ _('Up &amp; Coming Extensions') }}</h2>
+          {{ hotness|addon_grid(src='hp-hc-upandcoming',
+                                dl_src='hp-dl-upandcoming') }}
+        </div>
+      {% endif %}
+      {% if personas %}
+        <div id="featured-personas" class="island">
+          <h2>{{ _('Featured Personas') }}
+            <a class="seeall" href="{{ url('browse.personas') }}">{{ _('See all »') }}</a>
+          </h2>
+          {{ personas|impala_persona_grid }}
+        </div>
+      {% endif %}
+      {% if collections %}
+        <div id="featured-collections" class="island">
+          <h2>{{ _('Featured Collections') }}
+            <a class="seeall" href="{{ url('collections.list')|urlparams(sort='featured') }}">{{ _('See all »') }}</a>
+          </h2>
+          {{ collections|collection_grid }}
+        </div>
+      {% endif %}
+    </section>
+  {% endcache %}
+</section>
+
 {% endblock content %}
-
-{% block under_categories %}
-
-<div class="highlight">
-  <h3>{{ _('Build a {0} Add-on')|f(request.APP.pretty) }}</h3>
-  <p>{{ _('Find all the tools and resources you need to make your first add-on.') }}</p>
-  <p><strong><a href="{{ remora_url('/developers') }}">{{ _('Visit the Developer Hub') }}</a></strong></p>
-</div>
-{% endblock %}
 
 {% block extrahead %}
 {% for feed in view_all.itervalues() %}

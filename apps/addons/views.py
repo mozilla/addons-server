@@ -357,7 +357,7 @@ def home(request):
     hotness = base.exclude(id__in=frozen).order_by('-hotness')[:18]
     personas = Addon.objects.featured(request.APP, request.LANG,
                                       amo.ADDON_PERSONA)[:18]
-    return jingo.render(request, 'addons/impala/home.html',
+    return jingo.render(request, 'addons/home.html',
                         {'popular': popular, 'featured': featured,
                          'hotness': hotness, 'personas': personas,
                          'src': 'homepage', 'collections': collections})
