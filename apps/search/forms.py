@@ -246,7 +246,7 @@ SORT_CHOICES = (
     # --
     ('name', _lazy(u'Name')),
     ('downloads', _lazy(u'Weekly Downloads')),
-    ('price', helpers.loc(u'Price')),
+    #('price', helpers.loc(u'Price')),
     ('updated', _lazy(u'Recently Updated')),
     ('hotness', _lazy(u'Up & Coming')),
 )
