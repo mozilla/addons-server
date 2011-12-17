@@ -105,6 +105,7 @@
 }
 
 .collapsed-files .command,
+.collapsed-files #toggle-known-container,
 .collapsed-files #tab-stops-container {
     display: none !important;
 }
@@ -194,6 +195,10 @@ a.diff > span {
 
 a.known > span {
     color: #bbb;
+}
+
+.hide-known-files .known {
+    display: none !important;
 }
 
 #files a.notice > span, #files a.warning > span, #files a.error > span {
@@ -443,3 +448,8 @@ td.gutter, td.code {
     display: none;
     margin: 1ex 0;
 }
+
+#toggle-known-container {
+    margin-top: .3em;
+}
+

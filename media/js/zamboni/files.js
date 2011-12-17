@@ -599,6 +599,15 @@ function bind_viewer(nodes) {
             $('#file-viewer').toggleClass('collapsed-files', collapse);
             this.size_line_numbers($('#content-wrapper'), false);
         };
+        this.toggle_known = function(hide) {
+            if (hide == null)
+                hide = storage.get('files/hide-known');
+            else
+                storage.set('files/hide-known', hide ? "true" : "");
+
+            $('#file-viewer').toggleClass('hide-known-files', !!hide);
+            $('#toggle-known')[0].checked = !!hide;
+        };
         this.next_changed = function(offset) {
             var $files = this.nodes.$files.find('a.file'),
                 selected = $files[this.get_selected()],
@@ -661,7 +670,8 @@ function bind_viewer(nodes) {
         };
     }
 
-    var viewer = new Viewer();
+    var viewer = new Viewer(),
+        storage = z.Storage();
 
     if (viewer.nodes.$files.find('li').length == 1) {
         viewer.toggle_files('hide');
@@ -674,6 +684,9 @@ function bind_viewer(nodes) {
 
     $(window).resize(debounce(function() { viewer.update_viewport(true); }))
              .scroll(debounce(function() { viewer.update_viewport(false); }));
+
+    $('#toggle-known').change(function () { viewer.toggle_known(this.checked); });
+    viewer.toggle_known();
 
     $('#files-up').click(_pd(function() {
         viewer.next_changed(-1);
@@ -777,8 +790,7 @@ function bind_viewer(nodes) {
 
         var rule = stylesheet.cssRules[0],
             tabstopsKey = 'apps/files/tabstops',
-            localTabstopsKey = tabstopsKey + ':' + $('#metadata').attr('data-slug'),
-            storage = z.Storage();
+            localTabstopsKey = tabstopsKey + ':' + $('#metadata').attr('data-slug');
 
         $("#tab-stops-container").show();
 
