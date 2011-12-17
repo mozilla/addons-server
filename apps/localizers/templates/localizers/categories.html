@@ -9,18 +9,37 @@
 
 <header>
   {{ impala_breadcrumbs([(url('localizers.dashboard'), _('Localization Dashboard'))]) }}
-
   <h1>{{ _('Category Localization for {0}')|f(userlang.native) }}</h1>
-
   {{ locale_switcher(current_locale=locale_code) }}
 </header>
 
-{{ localizers_sidebar(locale_code=locale_code) }}
-<div class="primary c">
-
-  <section class="hero island c">
-    Future home of category L10n
-  </section>
-</div>{# /#primary #}
+<section class="hero island c full">
+  <form method="POST" action="">
+    {% if formset.errors %}<p class="notification-box.error">{{ _('There are errors in this form.  Please correct them below.') }}</p>{% endif %}
+    <table>
+      <tbody>
+        <tr>
+          <th width="50%">en-US</th>
+          <th width="45%">{{ locale_code }}</th>
+        </tr>
+        {% for id, form in form_map|dictsort %}
+          {% if form.errors %}
+            <tr><td colspan="0">{% for errors in form.errors.values() %}{{ errors }}{% endfor %}</td></tr>
+          {% endif %}
+          <tr>
+            <td class="enus">{{ categories_en[id].name }}</td>
+            <td class="localized">{{ form.name }}</td>
+          </tr>
+          {% for hidden in form.hidden_fields() -%}
+            {{ hidden }}
+          {% endfor %}
+        {% endfor %}
+      </tbody>
+    </table>
+    {{ formset.management_form }}
+    {{ csrf() }}
+    <p><input type="submit" value="{{ _('Update') }}"></p>
+  </form>
+</section>
 
 {% endblock content %}
