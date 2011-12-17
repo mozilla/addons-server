@@ -201,24 +201,39 @@ a.known > span {
     display: none !important;
 }
 
-#files a.notice > span, #files a.warning > span, #files a.error > span {
-    margin: -1px;
+#files a.notice, #files a.warning, #files a.error {
+    font-weight: bold;
 }
 
-#files a.notice > span {
-    border: 1px dotted blue;
+#files a.notice > span:after,
+#files a.warning > span:after,
+#files a.error > span:after {
+    display: inline-block;
+    background: url(../../img/zamboni/notifications.png) no-repeat;
+    width: 16px;
+    height: 18px;
+    margin-left: 4px;
+    vertical-align: middle;
+    content: "\00a0";
 }
 
-#files a.warning.warning > span {
-    border: 1px dotted red;
+#files a.notice > span:after {
+    background-position: 0px -516px;
+    width: 18px;
+    margin-left: 8px;
 }
 
-#files a.error.error.error > span {
-    border: 1px solid red;
+#files a.warning > span:after {
+    background-position: 2px -304px;
+}
+
+#files a.error > span:after {
+    background-position: 2px -162px;
 }
 
 a.selected > span {
-    background-color: #ddf8dd;
+    background-color: #3D6DB5;
+    color: white;
 }
 
 .gutter a.notice, .gutter a.warning, .gutter a.error {
@@ -226,30 +241,34 @@ a.selected > span {
     -moz-border-radius: 3px;
     border-radius: 3px;
     border: 1px solid #000;
+    font-weight: bold;
 }
 .code .notice, .code .warning, .code .error {
     margin: -1px;
 }
 
-.gutter a.notice, .diff-bar .notice.notice {
-    background-color: yellow;
+.gutter a.notice, .diff-bar .notice {
+    background-color: #1A81FE;
+    color: white;
 }
 .code .notice {
-    border: 1px dotted yellow;
+    border: 1px dotted #1A81FE;
 }
 
-.gutter a.warning.warning, .diff-bar .warning.warning.warning {
-    background-color: orange;
+.gutter a.warning, .diff-bar .warning {
+    background-color: #F0B500;
+    color: white;
 }
-.code .warning.warning {
-    border: 1px dotted orange;
+.code .warning {
+    border: 1px dotted #F0B500;
 }
 
-.gutter a.error.error.error, .diff-bar .error.error.error.error {
-    background-color: red;
+.gutter a.error, .diff-bar .error {
+    background-color: #D81E00;
+    color: white;
 }
-.code .error.error.error {
-    border: 1px dotted red;
+.code .error {
+    border: 1px dotted #D81E00;
 }
 
 div.diff-bar {
@@ -396,7 +415,7 @@ td.gutter, td.code {
     margin: 1em 0;
 }
 
-.message-inner::before {
+.message-inner:before {
     content: "\00a0";
     display: block; /* reduce the damage in FF3.0 */
     position: absolute;

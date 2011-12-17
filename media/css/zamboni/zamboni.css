@@ -943,7 +943,7 @@ div.popup-shim {
     line-height: 1.2em;
 }
 
-#tooltip::before {
+#tooltip:before {
     content: "\00a0";
     display: block; /* reduce the damage in FF3.0 */
     position: absolute;
@@ -957,7 +957,7 @@ div.popup-shim {
     border-top-color: #2A4364;
     pointer-events: none;
 }
-#tooltip.error::before {
+#tooltip.error:before {
     border-top-color: #6c1a1a;
 }
 
