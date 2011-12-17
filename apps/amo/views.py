@@ -14,6 +14,7 @@ from django_arecibo.tasks import post
 from statsd import statsd
 
 import amo
+import api
 import files.tasks
 from amo.decorators import no_login_required, post_required
 from amo.utils import log_cef
@@ -70,7 +71,11 @@ def robots(request):
 def handler404(request):
     webapp = settings.APP_PREVIEW
     template = 'amo/404%s.html' % ('_apps' if webapp else '')
-    return jingo.render(request, template, {'webapp': webapp}, status=404)
+    if request.path_info.startswith('/api/'):
+        # Pass over to handler404 view in api if api was targeted
+        return api.views.handler404(request)
+    else:
+        return jingo.render(request, template, {'webapp': webapp}, status=404)
 
 
 def handler500(request):
@@ -79,7 +84,10 @@ def handler500(request):
     arecibo = getattr(settings, 'ARECIBO_SERVER_URL', '')
     if arecibo:
         post(request, 500)
-    return jingo.render(request, template, {'webapp': webapp}, status=500)
+    if request.path_info.startswith('/api/'):
+        return api.views.handler500(request)
+    else:
+        return jingo.render(request, template, {'webapp': webapp}, status=500)
 
 
 def csrf_failure(request, reason=''):

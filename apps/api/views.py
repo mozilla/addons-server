@@ -84,6 +84,16 @@ def render_xml(request, template, context={}, **kwargs):
     return HttpResponse(rendered, **kwargs)
 
 
+def handler404(request):
+    context = {'error_level': ERROR, 'msg': 'Not Found'}
+    return render_xml(request, 'api/message.xml', context, status=404)
+
+
+def handler500(request):
+    context = {'error_level': ERROR, 'msg': 'Server Error'}
+    return render_xml(request, 'api/message.xml', context, status=500)
+
+
 def validate_api_version(version):
     """
     We want to be able to deprecate old versions of the API, therefore we check

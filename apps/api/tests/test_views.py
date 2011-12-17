@@ -19,6 +19,7 @@ import api.utils
 from amo import helpers
 from amo.tests import TestCase
 from amo.urlresolvers import reverse
+from amo.views import handler500
 from addons.cron import reset_featured_addons
 from addons.models import (Addon, AppSupport, CompatOverride,
                            CompatOverrideRange, Feature, Preview)
@@ -191,6 +192,33 @@ class APITest(TestCase):
             api.CURRENT_VERSION)
 
         self.assertContains(response, 'Add-on not found!', status_code=404)
+
+    def test_handler404(self):
+        """
+        Check separate handler404 response for API.
+        """
+        response = self.client.get('/en-us/firefox/api/nonsense')
+        doc = pq(response.content)
+        eq_(response.status_code, 404)
+        d = doc('error')
+        self.assertTemplateUsed(response, 'api/message.xml')
+        eq_(d.length, 1)
+        eq_(d.text(), 'Not Found')
+
+    def test_handler500(self):
+        """
+        Check separate handler500 response for API.
+        """
+        req = self.client.get('/en-US/firefox/api/').context['request']
+        try:
+            raise NameError('an error')
+        except NameError:
+            r = handler500(req)
+            eq_(r.status_code, 500)
+            doc = pq(r.content)
+            d = doc('error')
+            eq_(d.length, 1)
+            eq_(d.text(), 'Server Error')
 
     def test_addon_detail_appid(self):
         """
