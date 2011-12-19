@@ -218,16 +218,38 @@ class TestModuleAdmin(amo.tests.TestCase):
 class TestUrls(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_3615']
 
+    def test_reverse(self):
+        eq_('/en-US/firefox/discovery/pane/10.0/WINNT',
+            reverse('discovery.pane', kwargs=dict(version='10.0',
+                                                  platform='WINNT')))
+        eq_('/en-US/firefox/discovery/pane/10.0/WINNT/strict',
+            reverse('discovery.pane', args=('10.0', 'WINNT', 'strict')))
+
     def test_resolve_addon_view(self):
         r = self.client.get('/en-US/firefox/discovery/addon/3615', follow=True)
         url = reverse('discovery.addons.detail', args=['a3615'])
         self.assertRedirects(r, url, 301)
 
     def test_resolve_disco_pane(self):
+        # Redirect adds default 'strict' if not supplied
         r = self.client.get('/en-US/firefox/discovery/4.0b8/Darwin',
                             follow=True)
-        url = reverse('discovery.pane', args=['4.0b8', 'Darwin'])
+        url = reverse('discovery.pane', args=['4.0b8', 'Darwin', 'strict'])
         self.assertRedirects(r, url, 301)
+
+    def test_no_compat_mode(self):
+        r = self.client.head('/en-US/firefox/discovery/pane/10.0/WINNT')
+        eq_(r.status_code, 200)
+
+    def test_with_compat_mode(self):
+        r = self.client.head('/en-US/firefox/discovery/pane/10.0/WINNT/strict')
+        eq_(r.status_code, 200)
+        r = self.client.head('/en-US/firefox/discovery/pane/10.0/WINNT/normal')
+        eq_(r.status_code, 200)
+        r = self.client.head('/en-US/firefox/discovery/pane/10.0/WINNT/ignore')
+        eq_(r.status_code, 200)
+        r = self.client.head('/en-US/firefox/discovery/pane/10.0/WINNT/blargh')
+        eq_(r.status_code, 404)
 
 
 class TestPane(amo.tests.TestCase):

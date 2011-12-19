@@ -39,7 +39,7 @@ addon_view = addon_view_factory(Addon.objects.valid)
 log = commonware.log.getLogger('z.disco')
 
 
-def pane(request, version, platform):
+def pane(request, version, platform, compat_mode='strict'):
 
     def from_api(list_type):
         return api_view(request, platform, version, list_type)

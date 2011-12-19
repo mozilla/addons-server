@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import patterns, url, include
+from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 
 from addons.urls import ADDON_ID
@@ -13,6 +14,14 @@ addon_patterns = patterns('',
 )
 
 browser_re = '(?P<version>[^/]+)/(?P<platform>[^/]+)'
+compat_mode_re = '(?:/(?P<compat_mode>strict|normal|ignore))?'
+
+
+def pane_redirect(req, **kw):
+    if not kw.get('compat_mode'):
+        kw['compat_mode'] = 'strict'
+    return redirect(reverse('discovery.pane', kwargs=kw), permanent=True)
+
 
 urlpatterns = patterns('',
     # Force the match so this doesn't get picked up by the wide open
@@ -27,9 +36,9 @@ urlpatterns = patterns('',
         views.pane_more_addons, name='discovery.pane.more_addons'),
     url('^recs/%s$' % browser_re,
         views.recommendations, name='discovery.recs'),
-    url('^%s$' % browser_re,
-        lambda r, **kw: redirect('discovery.pane', permanent=True, **kw)),
-    url('^pane/%s$' % browser_re, views.pane, name='discovery.pane'),
+    url('^%s$' % (browser_re + compat_mode_re), pane_redirect),
+    url('^pane/%s$' % (browser_re + compat_mode_re), views.pane,
+        name='discovery.pane'),
     url('^modules$', views.module_admin, name='discovery.module_admin'),
     url('^what-the-rec$', views.recs_debug, name='discovery.recs.debug'),
 )
