@@ -155,23 +155,17 @@ class SearchTest(SphinxTestCase):
         eq_(len(query("Delicious version:10.2.152")), 0)
 
     def test_sorts(self):
-        """
-        This tests the various sorting.
-
-        Note: These change if you change the fixtures.
-        """
-        # I don't know why this started failing in
-        # https://jenkins.mozilla.org/job/amo-master/3744/ and I don't care
-        # because it's sphinx.
-        import nose
-        raise nose.SkipTest()
-        eq_(query("", limit=1, sort='newest')[0].id, 5369)
-        eq_(query("", limit=1, sort='updated')[0].id, 592,
-            'Sort by updated is incorrect.')
-        eq_(query("", limit=1, sort='name')[0].id, 11399)
-        eq_(query("", limit=1, sort='averagerating')[0].id, 11399,
-            'Sort by average rating is incorrect.')
-        eq_(query("", limit=1, sort='weeklydownloads')[0].id, 5579)
+        eq_(query("", limit=1, sort='newest')[0].slug,
+            Addon.objects.order_by('-created')[0].slug)
+        eq_(query("", limit=1, sort='updated')[0].slug,
+            Addon.objects.order_by('-modified')[0].slug)
+        eq_(query("", limit=1, sort='name')[0].slug,
+            sorted(Addon.objects.all(),
+                   key=lambda a: unicode(a.name))[-1].slug)
+        eq_(query("", limit=1, sort='averagerating')[0].slug,
+            Addon.objects.order_by('-average_rating')[0].slug)
+        eq_(query("", limit=1, sort='weeklydownloads')[0].slug,
+            Addon.objects.order_by('-weekly_downloads')[0].slug)
 
     def test_app_filter(self):
         """
