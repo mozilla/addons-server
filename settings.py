@@ -517,6 +517,7 @@ MINIFY_BUNDLES = {
             'css/devhub/dashboard.less',
             'css/devhub/forms.less',
             'css/devhub/submission.less',
+            'css/devhub/search.less',
         ),
         'zamboni/editors': (
             'css/zamboni/editors.css',

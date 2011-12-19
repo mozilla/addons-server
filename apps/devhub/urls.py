@@ -169,6 +169,7 @@ redirect_patterns = patterns('',
     ('^versions/validate/(\d+)', views.validator_redirect),
 )
 
+
 urlpatterns = decorate(write, patterns('',
     url('^$', views.index, name='devhub.index'),
     url('', include(redirect_patterns)),
@@ -256,4 +257,6 @@ urlpatterns = decorate(write, patterns('',
     # PayPal Checker
     url('^check_paypal$', views.check_paypal, name='devhub.check_paypal'),
 
+    # Search
+    url(r'^search$', views.search, name='devhub.search'),
 ))

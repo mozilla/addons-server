@@ -1776,3 +1776,8 @@ def check_paypal(request):
 
     return {'valid': bool(paykey and valid_paypal), 'message': message}
 
+
+def search(request):
+    query = request.GET.get('q', '')
+    return jingo.render(request, 'devhub/devhub_search.html', {'query': query})
+

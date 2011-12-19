@@ -3573,3 +3573,16 @@ class TestRemoveLocale(amo.tests.TestCase):
         doc = pq(res.content)
         # There's 2 fields, one for en-us, one for init.
         eq_(len(doc('div.trans textarea')), 2)
+
+
+class TestSearch(amo.tests.TestCase):
+
+    def test_search_titles(self):
+        r = self.client.get(reverse('devhub.search'), {'q': 'davor'})
+        self.assertContains(r, '&#34;davor&#34;</h1>')
+        self.assertContains(r, '<title>davor :: Search ::')
+
+    def test_search_titles_default(self):
+        r = self.client.get(reverse('devhub.search'))
+        self.assertContains(r, '<title>Search ::')
+        self.assertContains(r, '<h1>Search Results</h1>')
