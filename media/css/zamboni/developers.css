@@ -563,8 +563,7 @@ input.valid {
     display: none;
 }
 #what-are-roles {
-    clear: left;
-    float: left;
+    display: block;
     font-size: .9em;
     font-weight: normal;
 }
