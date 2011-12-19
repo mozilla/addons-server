@@ -167,7 +167,6 @@ def sidebar(app):
         amo.ADDON_PERSONA: urlresolvers.reverse('browse.personas'),
         amo.ADDON_DICT: urlresolvers.reverse('browse.language-tools'),
         amo.ADDON_SEARCH: urlresolvers.reverse('browse.search-tools'),
-        amo.ADDON_PLUGIN: base + 'browse/type:7',
         amo.ADDON_THEME: urlresolvers.reverse('browse.themes'),
     }
     titles = dict(amo.ADDON_TYPES,
