@@ -242,6 +242,13 @@ class TestOtherStuff(amo.tests.TestCase):
         doc = pq(test.Client().get('/en-US/firefox/').content)
         eq_(doc('form.languages option[selected]').attr('value'), 'en-us')
 
+    def test_language_selector_variables(self):
+        r = self.client.get('/en-US/firefox/?foo=fooval&bar=barval')
+        doc = pq(r.content)('form.languages')
+
+        eq_(doc('input[type=hidden][name=foo]').attr('value'), 'fooval')
+        eq_(doc('input[type=hidden][name=bar]').attr('value'), 'barval')
+
     @patch.object(settings, 'KNOWN_PROXIES', ['127.0.0.1'])
     def test_remote_addr(self):
         """Make sure we're setting REMOTE_ADDR from X_FORWARDED_FOR."""

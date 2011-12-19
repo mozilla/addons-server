@@ -16,6 +16,9 @@
         </option>
       {%- endfor %}
     </select>
+    {% for key, value in request.GET.items() %}
+      <input type="hidden" name="{{ key }}" value="{{ value }}">
+    {% endfor %}
     <noscript><button type="submit">{{ _('Go') }}</button></noscript>
   </form>
 {% endblock %}

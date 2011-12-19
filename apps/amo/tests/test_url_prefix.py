@@ -90,6 +90,8 @@ class MiddlewareTest(test.TestCase):
         check('/en-US/firefox/?lang=fake', '/en-US/firefox/')
         check('/firefox/?lang=fr', '/fr/firefox/')
         check('/firefox/?lang=fake', '/en-US/firefox/')
+        check('/en-US/extensions/?foo=fooval&bar=barval&lang=fr',
+              '/fr/firefox/extensions/?foo=fooval&bar=barval')
 
 
 class TestPrefixer:
