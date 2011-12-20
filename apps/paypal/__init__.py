@@ -14,6 +14,7 @@ from statsd import statsd
 
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
+from amo.utils import log_cef
 
 
 class PaypalError(Exception):
@@ -384,3 +385,11 @@ def socket_timeout(timeout):
         yield
     finally:
         socket.setdefaulttimeout(old)
+
+
+def paypal_log_cef(request, addon, uuid, msg, caps, longer):
+    log_cef('Paypal %s' % msg, 5, request,
+            username=request.amo_user,
+            signature='PAYPAL%s' % caps,
+            msg=longer, cs2=addon.name, cs2Label='PaypalTransaction',
+            cs4=uuid, cs4Label='TxID')

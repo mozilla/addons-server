@@ -526,6 +526,9 @@ def purchase(request, addon):
                     slug=slug,
                     uuid=uuid_))
     except:
+        paypal.paypal_log_cef(request, addon, uuid_,
+                              'PayKey Failure', 'PAYKEYFAIL',
+                              'There was an error getting the paykey')
         log.error('Error getting paykey, purchase of addon: %s' % addon.pk,
                   exc_info=True)
         error = _('There was an error communicating with PayPal.')
@@ -540,6 +543,10 @@ def purchase(request, addon):
         # If this was a pre-approval, it's completed already, we'll
         # double check this with PayPal, just to be sure nothing went wrong.
         if status == 'COMPLETED':
+            paypal.paypal_log_cef(request, addon, uuid_,
+                                  'Purchase', 'PURCHASE',
+                                  'A user purchased using pre-approval')
+
             log.debug('Status is completed for uuid: %s' % uuid_)
             if paypal.check_purchase(paykey) == 'COMPLETED':
                 log.debug('Check purchase is completed for uuid: %s' % uuid_)
@@ -596,8 +603,14 @@ def purchase_complete(request, addon, status):
         try:
             result = paypal.check_purchase(con.paykey)
             if result == 'ERROR':
+                paypal.paypal_log_cef(request, addon, uuid_,
+                              'Purchase Fail', 'PURCHASEFAIL',
+                              'Checking purchase state returned error')
                 raise
         except:
+            paypal.paypal_log_cef(request, addon, uuid_,
+                              'Purchase Fail', 'PURCHASEFAIL',
+                              'There was an error checking purchase state')
             log.error('Check purchase paypal addon: %s, user: %s, paykey: %s'
                       % (addon.pk, request.amo_user.pk, con.paykey[:10]),
                       exc_info=True)
@@ -684,6 +697,9 @@ def contribute(request, addon):
                             slug=addon.slug,
                             uuid=contribution_uuid))
     except:
+        paypal.paypal_log_cef(request, addon, contribution_uuid,
+                              'PayKey Failure', 'PAYKEYFAIL',
+                              'There was an error getting the paykey')
         log.error('Error getting paykey, contribution for addon: %s'
                   % addon.pk, exc_info=True)
         error = _('There was an error communicating with PayPal.')
@@ -701,8 +717,6 @@ def contribute(request, addon):
                            comment=comment,
                            paykey=paykey)
         contrib.save()
-
-    assert settings.PAYPAL_FLOW_URL, 'settings.PAYPAL_FLOW_URL is not defined'
 
     url = '%s?paykey=%s' % (settings.PAYPAL_FLOW_URL, paykey)
     if request.GET.get('result_type') == 'json' or request.is_ajax():

@@ -14,6 +14,7 @@ from statsd import statsd
 
 import amo
 from amo.decorators import no_login_required, post_required, write
+from paypal import paypal_log_cef
 from stats.db import StatsDictField
 from stats.models import Contribution, ContributionError, SubscriptionEvent
 
@@ -208,6 +209,11 @@ def paypal_refunded(request, post, transaction):
         post_data=php.serialize(post)
     )
     paypal_log.info('Refund successfully processed')
+
+    paypal_log_cef(request, original.addon, post['txn_id'],
+                   'Refund', 'REFUND',
+                   'A paypal refund was processed')
+
     return http.HttpResponse('Success!')
 
 
@@ -235,6 +241,11 @@ def paypal_reversal(request, post, transaction):
         post_data=php.serialize(post)
     )
     refund.mail_chargeback()
+
+    paypal_log_cef(request, original.addon, post['txn_id'],
+                   'Chargeback', 'CHARGEBACK',
+                   'A paypal chargeback was processed')
+
     return http.HttpResponse('Success!')
 
 
@@ -271,5 +282,8 @@ def paypal_completed(request, post, transaction):
         # A failed thankyou email is not a show stopper, but is good to know.
         paypal_log.error('Thankyou note email failed with error: %s' % e)
 
+    paypal_log_cef(request, original.addon, post['txn_id'],
+                   'Purchase', 'PURCHASE',
+                   'A user purchased or contributed to an addon')
     paypal_log.info('Completed successfully processed')
     return http.HttpResponse('Success!')
