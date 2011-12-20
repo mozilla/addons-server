@@ -457,6 +457,25 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         self.make_contribution(type=amo.CONTRIB_PURCHASE)
         eq_(self.client.get(url).status_code, 200)
 
+    @patch.object(waffle, 'flag_is_active', lambda x, y: True)
+    @patch('users.models.UserProfile.has_preapproval_key')
+    def test_prompt_preapproval(self, has_preapproval_key):
+        url = reverse('addons.purchase.thanks', args=[self.addon.slug])
+        self.make_contribution(type=amo.CONTRIB_PURCHASE)
+        has_preapproval_key.return_value = False
+        res = self.client.get(url)
+        eq_(pq(res.content)('#preapproval').attr('action'),
+            reverse('users.payments.preapproval'))
+
+    @patch.object(waffle, 'flag_is_active', lambda x, y: True)
+    @patch('users.models.UserProfile.has_preapproval_key')
+    def test_already_preapproved(self, has_preapproval_key):
+        url = reverse('addons.purchase.thanks', args=[self.addon.slug])
+        self.make_contribution(type=amo.CONTRIB_PURCHASE)
+        has_preapproval_key.return_value = True
+        res = self.client.get(url)
+        eq_(len(pq(res.content)('#preapproval')), 0)
+
     def test_trigger(self):
         url = reverse('addons.purchase.thanks', args=[self.addon.slug])
         self.make_contribution(type=amo.CONTRIB_PURCHASE)

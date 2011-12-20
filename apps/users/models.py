@@ -368,6 +368,13 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         except ObjectDoesNotExist:
             pass
 
+    def has_preapproval_key(self):
+        """
+        Returns the pre approval paypal key for this user, or '' if the
+        pre_approval doesn't exist or the key is blank.
+        """
+        return bool(getattr(self.get_preapproval(), 'paypal_key', ''))
+
 
 @dispatch.receiver(models.signals.post_save, sender=UserProfile,
                    dispatch_uid='user.post_save')

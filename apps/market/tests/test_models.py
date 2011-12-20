@@ -202,3 +202,10 @@ class TestUserPreApproval(amo.tests.TestCase):
         eq_(self.user.get_preapproval(), None)
         pre = PreApprovalUser.objects.create(user=self.user)
         eq_(self.user.get_preapproval(), pre)
+
+    def test_has_key(self):
+        assert not self.user.has_preapproval_key()
+        pre = PreApprovalUser.objects.create(user=self.user, paypal_key='')
+        assert not self.user.has_preapproval_key()
+        pre.update(paypal_key='123')
+        assert UserProfile.objects.get(pk=self.user.pk).has_preapproval_key()

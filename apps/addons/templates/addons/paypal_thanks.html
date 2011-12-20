@@ -25,6 +25,18 @@
   {% endwith %}
   </p>
 </section>
+
+{% if waffle.flag('allow-pre-auth') and not amo_user.has_preapproval_key() %}
+  <section class="paypal-parent">
+    <form form id="preapproval" method="post" action="{{ url('users.payments.preapproval') }}">
+      {{ csrf() }}
+      <p>{{ loc('Want to do this faster next time?') }}</p>
+      <p>{{ loc('Setting up PayPal pre-approval allows you to buy apps quickly on this site. They also allow you to use in-app purchases that go through this site.') }}</p>
+      <p><button>{{ loc('Set up pre-approval') }}</button></p>
+    </form>
+  </section>
+{% endif %}
+
 <section class="paypal-parent">
   <a href="{{ url('users.purchases') }}">{{ loc('My Purchases') }}</a>
   {# TODO(marketplace-docs)

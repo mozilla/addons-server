@@ -945,13 +945,14 @@ def payments(request, status=None):
 
         if status == 'complete':
             # The user has completed the setup at PayPal and bounced back.
-            messages.success(request, loc('Pre-approval setup.'))
-            paypal_log.info(u'Preapproval key created for user: %s'
-                            % request.amo_user)
-            data = request.session.get('setup-preapproval', {})
-            pre.update(paypal_key=data.get('key'),
-                       paypal_expiry=data.get('expiry'))
-            del request.session['setup-preapproval']
+            if 'setup-preapproval' in request.session:
+                messages.success(request, loc('Pre-approval setup.'))
+                paypal_log.info(u'Preapproval key created for user: %s'
+                                % request.amo_user)
+                data = request.session.get('setup-preapproval', {})
+                pre.update(paypal_key=data.get('key'),
+                           paypal_expiry=data.get('expiry'))
+                del request.session['setup-preapproval']
 
         elif status == 'cancel':
             # The user has chosen to cancel out of PayPal. Nothing really

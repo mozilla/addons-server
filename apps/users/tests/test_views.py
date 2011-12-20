@@ -1668,6 +1668,9 @@ class TestPreapproval(amo.tests.TestCase):
         res = self.client.post(self.get_url('complete'))
         eq_(res.status_code, 200)
         eq_(self.user.preapprovaluser.paypal_key, 'xyz')
+        # Check that re-loading doesn't error.
+        res = self.client.post(self.get_url('complete'))
+        eq_(res.status_code, 200)
 
     def test_preapproval_cancel(self):
         PreApprovalUser.objects.create(user=self.user, paypal_key='xyz')
