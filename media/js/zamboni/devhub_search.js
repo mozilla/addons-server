@@ -26,6 +26,7 @@ google.setOnLoadCallback(function() {
 
     $('#cse').hide();
     sc.draw('cse', opt);
+    sc.execute();
 
     if (!qry.val()) {
         $('#resultcount').show();
