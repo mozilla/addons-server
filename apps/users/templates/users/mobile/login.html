@@ -33,7 +33,7 @@
   <section id="content">
     {% if waffle.switch('browserid-login') %}
       <section id="browserid">
-        <a class="browserid-login button"
+        <a href="#" class="browserid-login button"
                 data-url="{{ url('users.browserid_login') }}"
                 data-profile-form-url="{{ url('users.complete_profile_form') }}">
           {{ _('Log in with BrowserID') }}

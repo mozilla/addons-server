@@ -790,7 +790,7 @@ button {
     margin: 0;
 }
 
-button, .button, a.button {
+button, .button, a.button, a.button:link {
     -moz-transition: -moz-box-shadow 0.3s ease 0s;
     background-color: #669BE1;
     border: 0;
