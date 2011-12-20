@@ -471,12 +471,15 @@ class TestESSearch(amo.tests.ESTestCase):
         eq_(a.text(), 'xxx')
         eq_(list(r.context['pager'].object_list), [])
 
-    def test_known_tag_filter(self):
-        for url in (urlparams(self.url, tag='sky'),
-                    reverse('tags.detail', args=['sky'])):
-            r = self.client.get(url)
-            a = pq(r.content)('#tag-facets li.selected a[data-params]')
-            eq_(json.loads(a.attr('data-params')), dict(tag='sky', page=None))
+    def test_tag_filters_on_search_page(self):
+        r = self.client.get(self.url, dict(tag='sky'))
+        a = pq(r.content)('#tag-facets li.selected a[data-params]')
+        eq_(json.loads(a.attr('data-params')), dict(tag='sky', page=None))
+
+    def test_no_tag_filters_on_tags_page(self):
+        r = self.client.get(reverse('tags.detail', args=['sky']))
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('#tag-facets').length, 0)
 
     def test_tag_titles(self):
         tag_url = reverse('tags.detail', args=['sky'])

@@ -79,7 +79,11 @@
             {% endif %}
           </li>
         {% endif %}
-        {{ facet(_('Tag'), 'tag-facets', tags) }}
+        {% if not tag %}
+          {# Listing "All Tags" and other tags does not make sense on a
+             Tag results page since there is no search term, only a tag. #}
+          {{ facet(_('Tag'), 'tag-facets', tags) }}
+        {% endif %}
       </ul>
       {{ num_results() }}
     </section>
