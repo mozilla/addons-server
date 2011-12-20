@@ -941,6 +941,12 @@ class TestPaymentsProfile(amo.tests.TestCase):
         eq_(result[u'valid'], False)
         assert len(result[u'message']) > 0, "No error on missing paykey"
 
+    @mock.patch('paypal.get_paykey')
+    def test_checker_no_pre_approval(self, get_paykey):
+        self.client.post(reverse('devhub.check_paypal'),
+                         {'email': 'test@test.com'})
+        assert 'preapprovalKey' not in get_paykey.call_args[0][0]
+
 
 class MarketplaceMixin(object):
     def setUp(self):

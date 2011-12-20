@@ -1756,7 +1756,7 @@ def check_paypal(request):
          'ip': request.META.get('REMOTE_ADDR'),
          'chains': settings.PAYPAL_CHAINS}
 
-    # First, check their paypal id
+    # First, check their paypal id.
     valid_paypal, msg = paypal.check_paypal_id(request.POST['email'])
 
     paykey = None
@@ -1765,11 +1765,11 @@ def check_paypal(request):
     if not valid_paypal:
         message = loc("You don't seem to have a PayPal account.")
     else:
-        # Next, check for a paykey
+        # Next, check for a paykey.
         try:
             paykey = paypal.get_paykey(d)
-        except: # Andy and I have no clue what this may return
-            pass # paykey is already None
+        except paypal.PaypalError:
+            pass  # paykey is already None.
 
         if not paykey:
             message = loc("Your account is not set up to accept payments.")
@@ -1780,4 +1780,3 @@ def check_paypal(request):
 def search(request):
     query = request.GET.get('q', '')
     return jingo.render(request, 'devhub/devhub_search.html', {'query': query})
-
