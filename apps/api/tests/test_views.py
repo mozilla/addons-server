@@ -1,5 +1,4 @@
 # -*- coding: utf8 -*-
-from datetime import datetime, timedelta
 from decimal import Decimal
 import json
 import os
@@ -12,25 +11,26 @@ import jingo
 from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
+import waffle
 
 import amo
 import api
 import api.utils
 from amo import helpers
-from amo.tests import TestCase
+from amo.tests import ESTestCase, TestCase
 from amo.urlresolvers import reverse
 from amo.views import handler500
 from addons.cron import reset_featured_addons
 from addons.models import (Addon, AppSupport, CompatOverride,
-                           CompatOverrideRange, Feature, Preview)
+                           CompatOverrideRange, Preview)
 from addons.utils import FeaturedManager
 from applications.models import Application
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from files.models import File
 from files.tests.test_models import UploadTest
 from market.models import AddonPremium, Price
-from search.tests import SphinxTestCase
 from search.utils import stop_sphinx
+from tags.models import AddonTag, Tag
 
 
 def api_url(x, app='firefox', lang='en-US', version=1.2):
@@ -743,12 +743,25 @@ class TestGuidSearch(TestCase):
         eq_(dom('application max_version').text(), cr.max_app_version)
 
 
-class SearchTest(SphinxTestCase):
+class SearchTest(ESTestCase):
     fixtures = ('base/apps', 'base/addon_6113', 'base/addon_40',
                 'base/addon_3615', 'base/addon_6704_grapple',
                 'base/addon_4664_twitterbar', 'base/addon_10423_youtubesearch')
 
     no_results = """<searchresults total_results="0">"""
+
+    def setUp(self):
+        self.addons = Addon.objects.filter(status=amo.STATUS_PUBLIC,
+                                           disabled_by_user=False)
+        t = Tag.objects.create(tag_text='ballin')
+        a = Addon.objects.get(pk=3615)
+        AddonTag.objects.create(tag=t, addon=a)
+
+        [addon.save() for addon in self.addons]
+        self.refresh()
+
+        # TODO(robhudson): Remove when we officially switch.
+        waffle.models.Switch.objects.create(name='new-api-search', active=True)
 
     def test_double_escaping(self):
         """
@@ -764,18 +777,26 @@ class SearchTest(SphinxTestCase):
         """
         # The following URLs should yield zero results.
         zeros = (
-                 "/en-US/sunbird/api/1.2/search/yslow",
-                 "yslow category:alerts",
-                 "jsonview version:1.0",
-                 "firebug type:dictionary",
-                 "grapple platform:linux",
-                 "firebug/3",
-                 "grapple/all/10/Linux",
-                 "jsonview/all/10/Darwin/1.0",)
+            '/en-US/sunbird/api/1.2/search/yslow',
+            'yslow category:alerts',
+            'jsonview version:1.0',
+            'firebug type:dictionary',
+            'grapple platform:linux',
+            'firebug/3',
+            'grapple/all/10/Linux',
+            'jsonview/all/10/Darwin/1.0',
+        )
 
         for url in zeros:
             if not url.startswith('/'):
                 url = '/en-US/firefox/api/1.2/search/' + url
+
+            response = self.client.get(url)
+            self.assertContains(response, self.no_results, msg_prefix=url)
+
+        for url in zeros:
+            if not url.startswith('/'):
+                url = '/en-US/firefox/api/1.5/search/' + url
 
             response = self.client.get(url)
             self.assertContains(response, self.no_results, msg_prefix=url)
@@ -785,17 +806,18 @@ class SearchTest(SphinxTestCase):
         Tests that the search API correctly returns specific results.
         """
         expect = {
-                  'delicious': 'Delicious Bookmarks',
-                  'delicious category:feeds': 'Delicious Bookmarks',
-                  'delicious version:3.6': 'Delicious Bookmarks',
-                  'delicious type:extension': 'Delicious Bookmarks',
-                  'grapple platform:mac': 'GrApple',
-                  'delicious/1': 'Delicious Bookmarks',
-                  'grapple/all/10/Darwin': 'GrApple',
-                  'delicious/all/10/Darwin/3.5': 'Delicious Bookmarks',
-                  '/en-US/mobile/api/1.2/search/twitter/all/10/Linux/1.0':
-                  'TwitterBar',
-                  }
+            'delicious': 'Delicious Bookmarks',
+            'delicious category:feeds': 'Delicious Bookmarks',
+            'delicious version:3.6': 'Delicious Bookmarks',
+            'delicious type:extension': 'Delicious Bookmarks',
+            'delicious tag:ballin': 'Delicious Bookmarks',
+            'grapple platform:mac': 'GrApple',
+            'delicious/1': 'Delicious Bookmarks',
+            'grapple/all/10/Darwin': 'GrApple',
+            'delicious/all/10/Darwin/3.5': 'Delicious Bookmarks',
+            '/en-US/mobile/api/1.2/search/twitter/all/10/Linux/1.0':
+                'TwitterBar',
+        }
 
         for url, text in expect.iteritems():
             if not url.startswith('/'):
@@ -833,6 +855,7 @@ class SearchTest(SphinxTestCase):
         eq_(self.client.head(base + '/normal').status_code, 200)
         eq_(self.client.head(base + '/ignore').status_code, 200)
         eq_(self.client.head(base + '/junk').status_code, 404)
+
 
 class LanguagePacks(UploadTest):
     fixtures = ['addons/listed', 'base/apps', 'base/platforms']

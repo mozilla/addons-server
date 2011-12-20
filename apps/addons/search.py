@@ -44,6 +44,7 @@ def extract(addon):
             # Fake wide compatibility for search tools and personas.
             min_, max_ = 0, version_int('9999')
         d['appversion'][app.id] = dict(min=min_, max=max_)
+    d['has_version'] = addon._current_version != None
     d['app'] = [app.id for app in addon.compatible_apps.keys()]
     # Boost by the number of users on a logarithmic scale. The maximum boost
     # (11,000,000 users for adblock) is about 5x.

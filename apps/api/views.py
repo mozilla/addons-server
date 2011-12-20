@@ -27,7 +27,7 @@ import api
 from amo.decorators import post_required
 from api.authentication import AMOOAuthAuthentication
 from api.forms import PerformanceForm
-from api.utils import addon_to_dict
+from api.utils import addon_to_dict, extract_filters
 from amo.models import manual_order
 from amo.urlresolvers import get_url_prefix
 from amo.utils import JSONEncoder
@@ -36,7 +36,9 @@ from perf.models import (Performance, PerformanceAppVersions,
                          PerformanceOSVersion)
 from search.client import (Client as SearchClient, SearchError,
                            SEARCHABLE_STATUSES)
+from search.views import name_query
 from search import utils as search_utils
+
 
 ERROR = 'error'
 OUT_OF_DATE = ugettext_lazy(
@@ -297,6 +299,53 @@ class SearchView(APIView):
     def process_request(self, query, addon_type='ALL', limit=10,
                         platform='ALL', version=None, compat_mode='strict'):
         """
+        Query the search backend and serve up the XML.
+        """
+        if not waffle.switch_is_active('new-api-search'):
+            return self._sphinx_api_search(query, addon_type, limit, platform,
+                                           version, compat_mode)
+
+        limit = min(MAX_LIMIT, int(limit))
+
+        filters = {
+            'app': self.request.APP.id,
+            'status__in': amo.REVIEWED_STATUSES,
+            'is_disabled': False,
+            'has_version': True,
+        }
+
+        # Opts may get overridden by query string filters.
+        opts = {
+            'addon_type': addon_type,
+            'platform': platform,
+            'version': version,
+        }
+
+        if self.version < 1.5:
+            # By default we show public addons only for api_version < 1.5.
+            filters['status__in'] = [amo.STATUS_PUBLIC]
+
+            # Fix doubly encoded query strings.
+            try:
+                query = urllib.unquote(query.encode('ascii'))
+            except UnicodeEncodeError:
+                # This fails if the string is already UTF-8.
+                pass
+
+        query, qs_filters = extract_filters(query, filters['app'], opts)
+
+        qs = Addon.search().query(or_=name_query(query))
+        filters.update(qs_filters)
+        qs = qs.filter(**filters)
+
+        return self.render('api/search.xml', {
+            'results': qs[:limit],
+            'total': qs.count(),
+        })
+
+    def _sphinx_api_search(self, query, addon_type='ALL', limit=10,
+                           platform='ALL', version=None, compat_mode='strict'):
+        """
         This queries sphinx with `query` and serves the results in xml.
         """
         sc = SearchClient()
@@ -308,7 +357,7 @@ class SearchView(APIView):
             try:
                 opts['type'] = int(addon_type)
             except ValueError:
-                # `addon_type` is ALL or a type id.  Otherwise we ignore it.
+                # `addon_type` is ALL or a type id. Otherwise we ignore it.
                 pass
 
         if version:

@@ -16,14 +16,13 @@ import elasticutils
 import nose
 import mock
 from nose.tools import eq_, nottest
-from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
 import test_utils
 
 import amo
 from amo.urlresolvers import Prefixer, get_url_prefix, set_url_prefix
 import addons.search
-from addons.models import Addon, Persona
+from addons.models import Addon, Category, Persona
 from applications.models import Application, AppVersion
 from files.models import File, Platform
 from translations.models import Translation
@@ -355,8 +354,8 @@ class ESTestCase(TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        # Delete everything in reverse-order of the foriegn key dependencies.
-        models = (Platform, File, ApplicationsVersions, Version,
+        # Delete everything in reverse-order of the foreign key dependencies.
+        models = (Platform, Category, File, ApplicationsVersions, Version,
                   Translation, Addon, AppVersion, Application)
         for model in models:
             model.objects.all().delete()

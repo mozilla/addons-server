@@ -1,6 +1,9 @@
 import re
 
+from django.conf import settings
+
 from tower import ugettext_lazy as _
+
 
 # Add-on and File statuses.
 STATUS_NULL = 0
@@ -120,8 +123,9 @@ ADDON_SEARCH_TYPES = [
     ADDON_DICT,
     ADDON_SEARCH,
     ADDON_LPAPP,
-    ADDON_PERSONA,
 ]
+if not settings.SEARCH_EXCLUDE_PERSONAS:
+    ADDON_SEARCH_TYPES.append(ADDON_PERSONA)
 
 # Icons
 ADDON_ICONS = {
@@ -151,6 +155,18 @@ ADDON_SLUGS_UPDATE = {
     ADDON_PERSONA: 'persona',
     ADDON_PLUGIN: 'plugin',
     ADDON_WEBAPP: 'app',
+}
+
+# A slug to ID map for the search API. Included are all ADDON_TYPES that are
+# found in ADDON_SEARCH_TYPES.
+ADDON_SEARCH_SLUGS = {
+    'any': ADDON_ANY,
+    'extension': ADDON_EXTENSION,
+    'theme': ADDON_THEME,
+    'dictionary': ADDON_DICT,
+    'search': ADDON_SEARCH,
+    'language': ADDON_LPAPP,
+    'persona': ADDON_PERSONA,
 }
 
 ADDON_FREE = 0
