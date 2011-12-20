@@ -1,0 +1,12 @@
+{% set title = _('Rated {0} out of 5 stars')|f(rating) %}
+{% if detailpage %}
+  <span class="stars large stars-{{ rating }}" title="{{ title }}">
+    <meta itemprop="worstRating" content="1">
+    {% trans %}
+      Rated <span itemprop="ratingValue">{{ rating }}</span> out of
+      <span itemprop="bestRating">5</span> stars
+    {% endtrans %}
+  </span>
+{% else %}
+  <span class="stars stars-{{ rating }}" title="{{ title }}">{{ title }}</span>
+{% endif %}
