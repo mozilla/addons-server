@@ -116,7 +116,7 @@ def get_paykey(data):
     receivers = (data.get('chains', ()), data['email'], data['amount'],
                  data['uuid'])
 
-    if 'preapproval' in data:
+    if data.get('preapproval'):
         # The paypal_key might be empty if they have removed it.
         key = data['preapproval'].paypal_key
         if key:

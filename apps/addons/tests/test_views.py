@@ -597,7 +597,6 @@ class TestPaypalStart(PaypalStart):
             shared_url('addons.purchase.thanks', self.addon))
 
 
-
 @patch.object(waffle, 'switch_is_active', lambda x: True)
 @patch.object(settings, 'LOGIN_RATELIMIT_USER', 10)
 @patch('webapps.models.create_receipt', lambda x: 'receipt')
