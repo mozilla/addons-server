@@ -6,7 +6,7 @@
 {# These are JSON add-ons from the API, not Addon objects. #}
 {% for addon in list[:limit] %}
   {% if amo and addon.type == amo.ADDON_PERSONA %}
-    <li class="featured-personas">{{ disco_persona_preview(addon.persona, title=True, src='discovery-featured') }}</li>
+    <li class="featured-personas">{{ disco_persona_preview(addon.persona, title=True, src=src) }}</li>
   {% else %}
     <li class="featured-addons" data-guid="{{ addon.guid }}">
       <a href="{{ services_url('discovery.addons.detail', addon.id, src=src) }}"
