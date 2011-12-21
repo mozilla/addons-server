@@ -11,7 +11,7 @@
   {% endif %}
   {% if waffle.switch('browserid-login') %}
   <fieldset id="browserid-login">
-    <a class="browserid-login button"
+    <a href="#" class="browserid-login button"
       data-url="{{ url('users.browserid_login') }}"
       data-profile-form-url="{{ url('users.complete_profile_form') }}">
       {{ loc('Log in / Register') }}

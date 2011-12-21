@@ -53,7 +53,7 @@
       <p>{{ loc('Complete your purchase with PayPal.  No PayPal account is necessary.') }}</p>
       {% else %}
       <div class="paypal-user login">
-        <a class="browserid-login button prominent"
+        <a href="#" class="browserid-login button prominent"
           data-url="{{ url('users.browserid_login') }}" data-event="login-complete"
           data-profile-form-url="{{ url('users.complete_profile_form') }}">
           {{ loc('Log in / Register') }}
