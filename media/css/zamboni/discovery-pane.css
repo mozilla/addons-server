@@ -814,8 +814,8 @@ section#featured-addons {
         float: none;
     }
 
-    #sub .featured.featured-addons,
-    #sub .featured.featured-personas,
+    #sub #up-and-coming,
+    #sub #featured-personas,
     #sub #more-ways {
         float: left;
         margin-right: 1%;
