@@ -5,6 +5,7 @@ from tower import ugettext_lazy as _
 
 import amo
 from addons.models import Addon
+from api.utils import addon_to_dict
 from api.views import addon_filter
 from bandwagon.models import Collection, MonthlyPick as MP
 from .models import BlogCacheRyf
@@ -243,8 +244,5 @@ class PromoVideoCollection():
     items_full = None
 
     def get_items(self):
-        if not self.items_full:
-            items = Addon.objects.in_bulk(self.items)
-            self.items_full = tuple(items[i] for i in self.items if i in items)
-        return self.items_full
-
+        return [addon_to_dict(a) for a in
+                Addon.objects.filter(id__in=self.items)]
