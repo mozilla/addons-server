@@ -1624,12 +1624,12 @@ class TestPurchases(amo.tests.TestCase):
         self._test_chargeback()
 
 
-# Turning on the allow-pre-auth flag.
-@patch.object(waffle, 'flag_is_active', lambda x, y: True)
 class TestPreapproval(amo.tests.TestCase):
     fixtures = ['base/users.json']
 
     def setUp(self):
+        waffle.models.Flag.objects.create(name='allow-pre-auth',
+                                          everyone=True)
         self.user = UserProfile.objects.get(pk=999)
         assert self.client.login(username=self.user.email,
                                  password='password')
