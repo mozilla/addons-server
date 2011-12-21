@@ -1615,13 +1615,22 @@ body.eula #main {
 }
 
 /* Add-on Video */
-#intro #learn-more.video {
+#intro #learn-more.video,
+#main .watch-video a {
     background-color: #FFFFFF;
     background-image: url("../../img/zamboni/discovery_pane/video.png");
     background-position: 6px center;
     background-repeat: no-repeat;
     box-shadow: 0 -2px rgba(0, 0, 0, 0.1) inset;
     padding-left: 47px;
+}
+.watch-video {
+    display: none;
+    padding: 10px;
+    text-align: center;
+}
+.watch-video a {
+    padding: 8px 10px 8px 50px;
 }
 #main #promos.js.show-video {
     height: auto;

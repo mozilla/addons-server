@@ -279,7 +279,7 @@ $(function() {
 
     // Hijack the learn more button, why don't we?
     var $learn = $('#learn-more');
-    $learn.addClass('video').click(_pd(function() {
+    $('#learn-more, .watch-video').show().addClass('video').click(_pd(function() {
         if ($('#main .promo-video:visible').length) {
             cleanupVideo();
             $learn.text($learn.attr('data-oldtext'));
@@ -457,5 +457,9 @@ $(function() {
                 }
             });
         }
+    }));
+
+    $('.watch-video').click(_pd(function(){
+        $('body, html').animate({'scrollTop': 0});
     }));
 });
