@@ -24,9 +24,15 @@
               <li>{{ _('<strong>Latest version:</strong> <a href="{0}">{1}</a>'|
                        f(link, addon.current_version))|xssafe }}</li>
             {% endif %}
-            {# L10n: {0} is a date. #}
-            <li>{{ _('<strong>Last updated:</strong> {0}'|
+            {% if sorting == 'created' %}
+              {# L10n: {0} is a date. #}
+              <li class="date-created">{{ _('<strong>Created:</strong> {0}'|
+                     f(addon.created|datetime))|safe }}</li>
+            {% else %}
+              {# L10n: {0} is a date. #}
+              <li class="date-updated">{{ _('<strong>Last updated:</strong> {0}'|
                      f(addon.last_updated|datetime))|safe }}</li>
+            {% endif %}
           {% endif %}
           <li id="version-status-item">
             <strong>{{ _('Status:') }}</strong>

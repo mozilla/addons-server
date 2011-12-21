@@ -11,6 +11,7 @@ from django.core import mail
 from django.utils.http import urlencode
 
 import jingo
+from jingo.helpers import datetime as datetime_filter
 import mock
 from nose.tools import eq_, assert_not_equal, assert_raises
 from nose.plugins.attrib import attr
@@ -322,6 +323,26 @@ class TestDashboard(HubTest):
         eq_(doc('.blog-posts li').length, 5)
         eq_(doc('.blog-posts li a').eq(0).text(), "hi 0")
         eq_(doc('.blog-posts li a').eq(4).text(), "hi 4")
+
+    def test_sort_created_filter(self):
+        a_pk = self.clone_addon(1)[0]
+        addon = Addon.objects.get(pk=a_pk)
+        response = self.client.get(self.url + '?sort=created')
+        doc = pq(response.content)
+        eq_(doc('.item-details').length, 1)
+        d = doc('.item-details .date-created')
+        eq_(d.length, 1)
+        eq_(d.remove('strong').text(), datetime_filter(addon.created))
+
+    def test_sort_updated_filter(self):
+        a_pk = self.clone_addon(1)[0]
+        addon = Addon.objects.get(pk=a_pk)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        eq_(doc('.item-details').length, 1)
+        d = doc('.item-details .date-updated')
+        eq_(d.length, 1)
+        eq_(d.remove('strong').text(), datetime_filter(addon.last_updated))
 
 
 class TestAppDashboard(AppHubTest):
