@@ -241,8 +241,7 @@ class SchoolCollection(CollectionPromo):
 # The add-ons that go with the promo modal. Not an actual PromoModule
 class PromoVideoCollection():
     items = (292878, 210145, 21771, 52659, 5579, 252539, 11377, 2257)
-    items_full = None
 
     def get_items(self):
-        return [addon_to_dict(a) for a in
-                Addon.objects.filter(id__in=self.items)]
+        items = Addon.objects.in_bulk(self.items)
+        return [addon_to_dict(items[i]) for i in self.items if i in items]
