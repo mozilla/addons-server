@@ -6,7 +6,7 @@
   data-developers="{{ addon.meet_the_dev_url() }}"
   data-name="{{ addon.name }}"
   {{ b.attrs()|xmlattr }}
-{% if waffle.switch('marketplace') and addon.can_be_purchased() %}
+{% if waffle.switch('marketplace') and addon.can_be_purchased() and addon.premium %}
   data-purchase="{{ shared_url('addons.purchase', addon) }}?"
   data-cost="{{ addon.premium.get_price() }}"
   data-login-url="{{ url('users.login_modal') }}"
