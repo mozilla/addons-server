@@ -253,9 +253,14 @@ function initRecs() {
 $(function() {
     if(!location.href.match(/en-US/)) return; // US only!
 
+    var $learn = $('#learn-more'),
+        $watch = $('.watch-video'),
+        $watch_link = $watch.find('a');
+
     // Make the video clean up after itself.
     $('#video-close').click(_pd(cleanupVideo));
     function cleanupVideo() {
+        $('.watch-video').show();
         $('#sub > section').show();
         $('#promo-video-addons').hide();
         $('.promo-video, #preload-personas').remove();
@@ -279,20 +284,23 @@ $(function() {
                            'close': 'Cerrar Vídeo'}};
 
     // Hijack the learn more button, why don't we?
-    var $learn = $('#learn-more');
-    if (z.has_addons) {
-        $('.watch-video').show();
+    if ($('#intro').is(':hidden')) {
+        $watch.show();
     }
-    $('#learn-more, .watch-video:visible').show().addClass('video').click(_pd(function() {
+
+    $('#learn-more, .watch-video:visible a').show().addClass('video').click(_pd(function() {
         if ($('#main .promo-video:visible').length) {
             cleanupVideo();
             $learn.text($learn.attr('data-oldtext'));
+            $watch_link.text($watch_link.attr('data-oldtext'));
             return;
         }
 
         $learn.attr('data-oldtext', $learn.text());
+        $watch_link.attr('data-oldtext', $watch_link.text());
         // English only.
         $learn.text('Close Video');
+        $watch_link.text('Close Video');
 
         // Make #featured-addons able to handle the animations within it
         $('#featured-addons').css('overflow', 'hidden');
