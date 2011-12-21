@@ -1,7 +1,7 @@
 function browserIDRedirect(to, options) {
     if (!options) options = {};
     return function(data, textStatus, jqXHR) {
-        if (data.profile_needs_completion) {
+        if (data.profile_needs_completion && canCompleteProfile()) {
             // Ask registrant to complete her profile before redirecting.
             var def = completeUserProfile($.extend({}, options, {to: to}))
                         .done(function() {
@@ -87,6 +87,13 @@ function initBrowserID(win, ctx) {
             gotVerifiedEmail(assertion, redirectTo);
         });
     });
+}
+
+function canCompleteProfile() {
+    return (typeof modalFromURL !== 'undefined');
+    // When modalFromURL is undefined, we are in the mobile site.
+    // For now, defer profile completion until he/she logs in on desktop.
+    // TODO(Kumar) Support profile completion on mobile. bug 712494
 }
 
 function completeUserProfile(options) {
