@@ -239,7 +239,7 @@ class SchoolCollection(CollectionPromo):
 
 # The add-ons that go with the promo modal. Not an actual PromoModule
 class PromoVideoCollection():
-    items = (292878, 210145, 21771, 52659, 5579, 252539, 11377, 2257)
+    items = (349111, 349155, 349157, 52659, 5579, 252539, 11377, 2257)
 
     def get_items(self):
         items = Addon.objects.in_bulk(self.items)
