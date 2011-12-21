@@ -1,6 +1,8 @@
-{% macro addon_list(list, limit=5, sidebar=False, amo=None) %}
+{% macro addon_list(list, limit=5, sidebar=False, amo=None, src=None) %}
 <ul>
-{% set src = 'discovery-upandcoming' if sidebar else 'discovery-featured' %}
+  {% if not src %}
+    {% set src = 'discovery-upandcoming' if sidebar else 'discovery-featured' %}
+  {% endif %}
 {# These are JSON add-ons from the API, not Addon objects. #}
 {% for addon in list[:limit] %}
   {% if amo and addon.type == amo.ADDON_PERSONA %}

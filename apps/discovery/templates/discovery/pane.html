@@ -112,7 +112,7 @@ data-upandcoming-url="{{ services_url('discovery.pane.more_addons', 'up-and-comi
         <span class="translate" data-trans="addons">{{ _('Add-ons') }}</span>
       </h2>
       <div id="video-details">{{ _('While the video plays, the add-ons being mentioned will appear here.') }}</div>
-      {{ addon_list(promovideo, limit=50, sidebar=True, amo=amo) }}
+      {{ addon_list(promovideo, limit=50, sidebar=True, amo=amo, src='discovery-video') }}
     </section>
   </section>
 {% endblock %}
