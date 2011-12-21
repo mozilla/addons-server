@@ -268,14 +268,14 @@ $(function() {
                                      'イプミスしたり、ページがビジー状態で読み込めないときに、ブラ' +
                                      'ウジングをより快適にするためのアドオンがあります。',
                             'featured': '注目のアドオン',
-                            'learn': '詳細を確認'},
+                            'close': '近いビデオ'},
                     'es': {'title': '¿Qué son los complementos?',
                            'intro': 'Los complementos son aplicaciones que te permiten personalizar ' +
                                     'Firefox con funcionalidad y estilos adicionales. Si te equivocas ' +
                                     'al escribir el nombre de un sitio web o no puedes leer una página' +
                                     'ocupada, hay un complemento para mejorar tu navegación.',
                            'featured': 'Complementos destacados',
-                           'learn': 'Saber más'}};
+                           'close': 'Cerrar Vídeo'}};
 
     // Hijack the learn more button, why don't we?
     var $learn = $('#learn-more');
