@@ -28,6 +28,7 @@ from PIL import Image
 from session_csrf import anonymous_csrf
 from tower import ugettext_lazy as _lazy, ugettext as _
 import waffle
+from waffle.decorators import waffle_flag
 
 from applications.models import Application, AppVersion
 import amo
@@ -495,6 +496,7 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
     return redirect(addon.get_dev_url(dest))
 
 
+@waffle_flag('allow-refund')
 @dev_required(webapp=True)
 def issue_refund(request, addon_id, addon, webapp=False):
     txn_id = request.REQUEST.get('transaction_id')

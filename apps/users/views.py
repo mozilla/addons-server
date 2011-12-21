@@ -16,7 +16,7 @@ from django.utils.http import base36_to_int
 from django.contrib.auth.tokens import default_token_generator
 
 from django_browserid.auth import BrowserIDBackend
-from waffle.decorators import waffle_flag
+from waffle.decorators import waffle_flag, waffle_switch
 
 import commonware.log
 import jingo
@@ -745,10 +745,9 @@ class PurchasesFilter(BaseFilter):
 
 @login_required
 @mobile_template('users/{mobile/}purchases.html')
+@waffle_switch('marketplace')
 def purchases(request, addon_id=None, template=None):
     """A list of purchases that a user has made through the marketplace."""
-    if not waffle.switch_is_active('marketplace'):
-        raise http.Http404
     webapp = settings.APP_PREVIEW
     cs = (Contribution.objects
           .filter(user=request.amo_user,
@@ -848,6 +847,7 @@ def support_mozilla(request, contribution, wizard):
                          {'addon': addon, 'form': form})
 
 
+@waffle_flag('allow-refund')
 def refund_request(request, contribution, wizard):
     addon = contribution.addon
     webapp = addon.is_webapp()
@@ -860,6 +860,7 @@ def refund_request(request, contribution, wizard):
                           'form': form, 'contribution': contribution})
 
 
+@waffle_flag('allow-refund')
 def refund_reason(request, contribution, wizard):
     addon = contribution.addon
     if not 'request' in wizard.get_progress():
