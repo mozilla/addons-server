@@ -10,6 +10,7 @@ z.MAX_UPANDCOMING = 5;
 
 // Parse GUIDS of installed extensions from JSON fragment.
 z.guids = getGuids();
+z.has_addons = z.guids.length >= z.MIN_EXTENSIONS;
 
 z.discoStorage = z.Storage("discopane");
 
@@ -24,7 +25,7 @@ $(document).ready(function(){
         hideInstalled();
 
         // Show "Starter Pack" panel only if user has fewer than three extensions.
-        if (z.guids.length >= z.MIN_EXTENSIONS) {
+        if (z.has_addons) {
             $("#starter").closest(".panel").remove();
         }
 
@@ -279,7 +280,10 @@ $(function() {
 
     // Hijack the learn more button, why don't we?
     var $learn = $('#learn-more');
-    $('#learn-more, .watch-video').show().addClass('video').click(_pd(function() {
+    if (z.has_addons) {
+        $('.watch-video').show();
+    }
+    $('#learn-more, .watch-video:visible').show().addClass('video').click(_pd(function() {
         if ($('#main .promo-video:visible').length) {
             cleanupVideo();
             $learn.text($learn.attr('data-oldtext'));
