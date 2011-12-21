@@ -278,9 +278,17 @@ $(function() {
                            'learn': 'Saber más'}};
 
     // Hijack the learn more button, why don't we?
-    $('#learn-more').addClass('video').click(_pd(function() {
-        // Clean up the video
-        cleanupVideo();
+    var $learn = $('#learn-more');
+    $learn.addClass('video').click(_pd(function() {
+        if ($('#main .promo-video:visible').length) {
+            cleanupVideo();
+            $learn.text($learn.attr('data-oldtext'));
+            return;
+        }
+
+        $learn.attr('data-oldtext', $learn.text());
+        // English only.
+        $learn.text('Close Video');
 
         // Make #featured-addons able to handle the animations within it
         $('#featured-addons').css('overflow', 'hidden');
