@@ -525,7 +525,7 @@ section#featured-addons {
     margin: 0 -10px;
     clear: both;
 }
-#sub li.show {
+#promo-video-addons li.show {
     border-bottom: 0;
     border-top: 1px solid #cdd4de;
 }
@@ -533,7 +533,7 @@ section#featured-addons {
     border-bottom-color: #666;
 }
 #sub li:last-child {
-    border-bottom-width: 0;
+    border-bottom: 0;
 }
 
 #sub .featured li,
@@ -609,7 +609,9 @@ section#featured-addons {
 }
 
 #sub .featured li:last-child a,
-.featured .featured-personas ul li:last-child a span.addon-title {
+.featured .featured-personas ul li:last-child a span.addon-title,
+#promo-video-addons .show.last a,
+#promo-video-addons .show.last a span.addon-title {
     border-radius: 0 0 8px 8px;
 }
 

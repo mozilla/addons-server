@@ -357,6 +357,9 @@ $(function() {
                 onStart: function() {
                     $video_details.hide();
                     addon.addClass('show');
+                    $addons.removeClass('last');
+                    // So we can do a nice border-radius on the last visible.
+                    $addons.filter(':visible:last').addClass('last');
                 },
                 onEnd: function() {
                     addon.removeClass('show');
