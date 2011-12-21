@@ -260,7 +260,11 @@ $(function() {
     // Make the video clean up after itself.
     $('#video-close').click(_pd(cleanupVideo));
     function cleanupVideo() {
-        $('.watch-video').show();
+        $learn.text($learn.attr('data-oldtext'));
+        $watch_link.text($watch_link.attr('data-oldtext'));
+        if ($('#intro').is(':hidden')) {
+            $('.watch-video').show();
+        }
         $('#sub > section').show();
         $('#promo-video-addons').hide();
         $('.promo-video, #preload-personas').remove();
@@ -291,8 +295,6 @@ $(function() {
     $('#learn-more, .watch-video:visible a').show().addClass('video').click(_pd(function() {
         if ($('#main .promo-video:visible').length) {
             cleanupVideo();
-            $learn.text($learn.attr('data-oldtext'));
-            $watch_link.text($watch_link.attr('data-oldtext'));
             return;
         }
 
