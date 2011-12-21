@@ -525,6 +525,10 @@ section#featured-addons {
     margin: 0 -10px;
     clear: both;
 }
+#sub li.show {
+    border-bottom: 0;
+    border-top: 1px solid #cdd4de;
+}
 .featured-personas li {
     border-bottom-color: #666;
 }
