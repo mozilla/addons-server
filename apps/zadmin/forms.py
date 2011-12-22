@@ -177,6 +177,7 @@ class OAuthConsumerForm(happyforms.ModelForm):
 
 
 class MonthlyPickForm(happyforms.ModelForm):
+    image = forms.CharField(required=False)
 
     class Meta:
         model = MonthlyPick

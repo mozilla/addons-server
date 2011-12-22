@@ -13,7 +13,7 @@ import amo
 import amo.tests
 import addons.signals
 from amo.urlresolvers import reverse
-from addons.models import Addon, AddonDependency, AddonUpsell
+from addons.models import Addon, AddonDependency, AddonUpsell, Preview
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection, MonthlyPick
 from bandwagon.tests.test_models import TestRecommendations as Recs
@@ -491,6 +491,23 @@ class TestMonthlyPick(amo.tests.TestCase):
         eq_(pick.find('.wrap > div > div > p').text(), 'BOOP')
         eq_(pick.find('p.install-button a').attr('href')
                 .endswith('?src=discovery-promo'), True)
+
+    def test_monthlypick_no_image(self):
+        mp = MonthlyPick.objects.create(addon=self.addon, blurb='BOOP',
+                                        locale='', image='')
+
+        # Tests for no image when screenshot not set.
+        r = self.client.get(self.url)
+        pick = pq(r.content)('#monthly')
+        eq_(pick.length, 1)
+        eq_(pick.find('img').length, 0)
+
+        # Tests for screenshot image when set.
+        p = Preview.objects.create(addon=self.addon)
+        r = self.client.get(self.url)
+        pick = pq(r.content)('#monthly')
+        eq_(pick.length, 1)
+        eq_(pick.find('img').attr('src'), self.addon.all_previews[0].image_url)
 
     def test_no_monthlypick(self):
         r = self.client.get(self.url)

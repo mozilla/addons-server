@@ -19,8 +19,11 @@
           <p>{{ pick.blurb }}</p>
           {{ install_button(addon, impala=not is_disco) }}
         </div>
-        <a href="{{ addon_url }}" target="_self" class="thumb">
-          <img src="{{ pick.image }}"></a>
+        {% if pick.image or addon.all_previews[0] %}
+          <a href="{{ addon_url }}" target="_self" class="thumb">
+            <img src="{{ pick.image or addon.all_previews[0].image_url }}">
+          </a>
+        {% endif %}
       </div>
     </div>
   </div>
