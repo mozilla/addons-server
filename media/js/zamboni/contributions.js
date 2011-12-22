@@ -214,7 +214,11 @@ var contributions = {
                 /* So popup blocker doesn't fire */
                 async: false,
                 success: function(json) {
-                    if (json.paykey) {
+                    if (json.status == 'COMPLETED') {
+                        /* If pre approval returns, close show a thank you. */
+                        $self.find('#paypal-complete').show()
+                        $self.find('#contribute-actions').hide()
+                    } else if (json.paykey) {
                         /* This is supposed to be a global */
                         //dgFlow = new PAYPAL.apps.DGFlow({expType:'mini'});
                         dgFlow = new PAYPAL.apps.DGFlow({clicked: 'contribute-box'});
@@ -254,8 +258,10 @@ var contributions = {
                     if ($.browser.opera) {
                         this.inputs.css('visibility', 'visible');
                     }
-                    hash.w.find('.error').hide();
                     hash.w.fadeOut();
+                    hash.w.find('#paypal-complete').hide().end()
+                          .find('#contribute-actions').show().end()
+                          .find('.error').hide();
                     hash.o.remove();
                 },
                 trigger: '#contribute-button',

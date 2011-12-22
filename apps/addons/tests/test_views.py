@@ -143,7 +143,8 @@ class TestContributeInstalled(amo.tests.TestCase):
 
 
 class TestContributeEmbedded(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592']
+    fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592',
+                'base/users']
 
     def setUp(self):
         self.addon = Addon.objects.get(pk=592)
@@ -241,17 +242,13 @@ class TestContributeEmbedded(amo.tests.TestCase):
     @patch('paypal.get_paykey')
     def test_paypal_error_json(self, get_paykey, **kwargs):
         get_paykey.return_value = None
-        res = self.client.get('%s?%s' % (
-                        reverse('addons.contribute', args=[self.addon.slug]),
-                        'result_type=json'))
+        res = self.contribute()
         assert not json.loads(res.content)['paykey']
 
     @patch('urllib2.OpenerDirector.open')
     def test_paypal_other_error_json(self, opener, **kwargs):
         opener.return_value = StringIO(other_error)
-        res = self.client.get('%s?%s' % (
-                        reverse('addons.contribute', args=[self.addon.slug]),
-                        'result_type=json'))
+        res = self.contribute()
         assert not json.loads(res.content)['paykey']
 
     def _test_result_page(self):
@@ -270,10 +267,25 @@ class TestContributeEmbedded(amo.tests.TestCase):
     @patch('paypal.get_paykey')
     def test_not_split(self, get_paykey):
         get_paykey.return_value = None
-        self.client.get('%s?%s' % (
-                        reverse('addons.contribute', args=[self.addon.slug]),
-                        'result_type=json'))
+        self.contribute()
         assert 'chains' not in get_paykey.call_args_list[0][0][0].keys()
+
+    def contribute(self):
+        url = reverse('addons.contribute', args=[self.addon.slug])
+        return self.client.get(urlparams(url, result_type='json'))
+
+    @patch('paypal.get_paykey')
+    def test_pre_approval(self, get_paykey):
+        get_paykey.return_value = None
+        waffle.models.Flag.objects.create(name='allow-pre-auth',
+                                          everyone=True)
+
+        user = UserProfile.objects.get(pk=999)
+        pre = PreApprovalUser.objects.create(user=user)
+        self.client.login(username=user.email, password='password')
+
+        self.contribute()
+        eq_(get_paykey.call_args_list[0][0][0]['preapproval'], pre)
 
 
 class TestPurchaseEmbedded(amo.tests.TestCase):
