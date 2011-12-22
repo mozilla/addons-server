@@ -281,6 +281,8 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
 
     def setUp(self):
         waffle.models.Switch.objects.create(name='marketplace', active=True)
+        waffle.models.Flag.objects.create(name='allow-pre-auth',
+                                          everyone=True)
         self.addon = Addon.objects.get(pk=592)
         self.addon.update(premium_type=amo.ADDON_PREMIUM,
                           status=amo.STATUS_PUBLIC)
@@ -457,7 +459,6 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         self.make_contribution(type=amo.CONTRIB_PURCHASE)
         eq_(self.client.get(url).status_code, 200)
 
-    @patch.object(waffle, 'flag_is_active', lambda x, y: True)
     @patch('users.models.UserProfile.has_preapproval_key')
     def test_prompt_preapproval(self, has_preapproval_key):
         url = reverse('addons.purchase.thanks', args=[self.addon.slug])
@@ -467,7 +468,6 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         eq_(pq(res.content)('#preapproval').attr('action'),
             reverse('users.payments.preapproval'))
 
-    @patch.object(waffle, 'flag_is_active', lambda x, y: True)
     @patch('users.models.UserProfile.has_preapproval_key')
     def test_already_preapproved(self, has_preapproval_key):
         url = reverse('addons.purchase.thanks', args=[self.addon.slug])
