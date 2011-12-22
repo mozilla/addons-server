@@ -256,10 +256,13 @@ $(function() {
 
     var $learn = $('#intro #learn-more'),
         $watch = $('#watch-video'),
-        $watch_link = $watch.find('a');
+        $watch_link = $watch.find('a'),
+        $video_close = $('#video-close'),
+        $promos = $('#promos'),
+        $promo_addons = $('#promo-video-addons');
 
     // Make the video clean up after itself.
-    $('#video-close').click(_pd(cleanupVideo));
+    $video_close.click(_pd(cleanupVideo));
     function cleanupVideo() {
         $learn.text($learn.attr('data-oldtext'));
         $watch_link.text($watch_link.attr('data-oldtext'));
@@ -267,9 +270,9 @@ $(function() {
             $watch.show();
         }
         $('#sub > section').show();
-        $('#promo-video-addons').hide();
+        $promo_addons.hide();
         $('.promo-video, #preload-personas').remove();
-        $('#promos').removeClass('show-video');
+        $promos.removeClass('show-video');
     }
 
     // Load up the locale stuff.
@@ -309,7 +312,7 @@ $(function() {
         $('#featured-addons').css('overflow', 'hidden');
 
         // Let's show the video!
-        $('#promos').addClass('show-video');
+        $promos.addClass('show-video');
         var video = $('<div>', {'class': 'promo-video'});
         var video_el = $('<video>', {'controls': 'controls', 'tabindex': 0, 'id': 'promo-video', 'text': gettext('Your browser does not support the video tag')});
         var video_el_mp4  = $('<source>', {'type': 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"', 'src': 'https://static.addons.mozilla.net/media/videos/fds0fo.mov'});
@@ -322,11 +325,11 @@ $(function() {
         video_el.append(video_el_ogv);
         video.append(video_el);
 
-        $('#promos').append(video);
+        $promos.append(video);
 
         // Preload persona images
         var preload = $('<div>', {'id': 'preload-personas', 'css': {'display': 'none'}}).appendTo('body');
-        $('#promo-video-addons').find('a[data-browsertheme]').each(function() {
+        $promo_addons.find('a[data-browsertheme]').each(function() {
             var theme = $.parseJSON($(this).attr('data-browsertheme'));
             preload.append($('<img>', {'src': theme['headerURL']}));
             preload.append($('<img>', {'src': theme['footerURL']}));
@@ -334,11 +337,18 @@ $(function() {
 
         // Move some stuff around
         $('#sub > section').hide();
-        $('#promo-video-addons').fadeIn();
+        $promo_addons.fadeIn();
+
+        // If we don't have the "What Are Add-ons?" banner, we show the
+        // "Learn More"/"Close Video" button above the add-ons list, so this
+        // gets rid of the redundant one below.
+        if ($watch_link.is(':visible')) {
+            $video_close.remove();
+        }
 
         // Set up Popcorn
         var pop = Popcorn('#promo-video'),
-            $addons = $('#promo-video-addons ul li'),
+            $addons = $promo_addons.find('ul li'),
             $toFlash = $('#promo-video-addons, header, #featured-addons'),
             $featured = $('#featured-addons li'),
             $trans = $('.translate');

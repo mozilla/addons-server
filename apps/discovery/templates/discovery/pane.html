@@ -76,13 +76,12 @@ data-upandcoming-url="{{ services_url('discovery.pane.more_addons', 'up-and-comi
         </div>
       </div>
     </section>
-
-    <div id="watch-video">
-      <a href="{{ url('home') }}" class="video button">{{ _('Learn More About Add-ons') }}</a>
-    </div>
   </section>
 
   <section id="sub">
+    <div id="watch-video">
+      <a href="{{ url('home') }}" class="video button">{{ _('Learn More About Add-ons') }}</a>
+    </div>
     {% if up_and_coming %}
       <section class="featured featured-addons" id="up-and-coming">
         <h2><a class="all" href="{{ url('browse.extensions')|urlparams(sort='hotness') }}">{{ _('See all') }}</a>

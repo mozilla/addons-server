@@ -1618,18 +1618,18 @@ body.eula #main {
 
 /* Add-on Video */
 #intro #learn-more.video,
-#main #watch-video a {
+#watch-video a {
     background: #fff url(../../img/zamboni/discovery_pane/video.png) 6px 50% no-repeat;
     box-shadow: 0 -2px rgba(0,0,0,0.1) inset;
     padding-left: 47px;
 }
 #watch-video {
     display: none;
-    margin-bottom: 8px;
-    padding: 10px;
+    margin: 0 0 8px;
     text-align: center;
 }
 #watch-video a {
+    display: block;
     padding: 8px 10px 8px 50px;
 }
 #main #promos.js.show-video {
