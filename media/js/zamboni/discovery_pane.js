@@ -253,8 +253,8 @@ function initRecs() {
 $(function() {
     if(!location.href.match(/en-US/)) return; // US only!
 
-    var $learn = $('#learn-more'),
-        $watch = $('.watch-video'),
+    var $learn = $('#intro #learn-more'),
+        $watch = $('#watch-video'),
         $watch_link = $watch.find('a');
 
     // Make the video clean up after itself.
@@ -263,7 +263,7 @@ $(function() {
         $learn.text($learn.attr('data-oldtext'));
         $watch_link.text($watch_link.attr('data-oldtext'));
         if ($('#intro').is(':hidden')) {
-            $('.watch-video').show();
+            $watch.show();
         }
         $('#sub > section').show();
         $('#promo-video-addons').hide();
@@ -292,7 +292,7 @@ $(function() {
         $watch.show();
     }
 
-    $('#learn-more, .watch-video:visible a').show().addClass('video').click(_pd(function() {
+    $('#intro #learn-more, #watch-video:visible a').show().addClass('video').click(_pd(function() {
         if ($('#main .promo-video:visible').length) {
             cleanupVideo();
             return;
@@ -473,7 +473,7 @@ $(function() {
         }
     }));
 
-    $('.watch-video').click(_pd(function(){
+    $watch.click(_pd(function(){
         $('body, html').animate({'scrollTop': 0});
     }));
 });
