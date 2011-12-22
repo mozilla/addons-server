@@ -609,7 +609,7 @@ section#featured-addons {
 }
 
 #sub .featured li:last-child a,
-.featured .featured-personas ul li:last-child a span.addon-title,
+#sub .featured-personas:last-child a span.addon-title,
 #promo-video-addons .show.last a,
 #promo-video-addons .show.last a span.addon-title {
     border-radius: 0 0 8px 8px;
