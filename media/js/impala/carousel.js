@@ -19,7 +19,7 @@ $.fn.zCarousel = function(o) {
         $lis = $strip.find(".panel"),
         $prev = $(o.btnPrev),
         $next = $(o.btnNext),
-        prop = $("body").hasClass("html-rtl") ? "right" : "left",
+        prop = o.prop || ($("body").hasClass("html-rtl") ? "right" : "left"),
         currentPos = 0,
         maxPos = Math.ceil($lis.length / o.itemsPerPage);
 

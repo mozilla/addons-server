@@ -232,23 +232,17 @@
 }
 
 .addons li {
-    float: left;
     width: 30%;
     position: relative;
     margin-right: 5%;
     margin-bottom: 5%;
 }
 
-.html-rtl .addons li {
-    float: right;
-}
-
-.addons li:nth-child(3n),
-.html-rtl .addons li:nth-child(3n + 1) {
+.addons li:nth-child(3n) {
     margin-right: 0;
 }
 .html-rtl .addons li:nth-child(3n) {
-    margin-right: 5%;
+    margin-right: 0;
 }
 
 .addons li > a,
@@ -260,12 +254,18 @@
     .box-shadow(0 -2px 0 rgba(58,78,103,0.08) inset, 0 2px 0 rgba(190,210,230,0.5);
 }
 
+#featured-addons .addons li {
+    float: left;
+    > a {
+        width: 84%;
+    }
+}
+
 .addons li > a {
     display: block;
     position: relative;
     text-align: center;
     height: 120px;
-    width: 84%;
     padding: 10px 8%;
     -moz-transition-property: border-color, box-shadow;
     -moz-transition-duration: 0.5s;

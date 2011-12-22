@@ -173,7 +173,8 @@ function initRecs() {
             $("#recs .gallery").fadeIn("slow").addClass("js").zCarousel({
                 btnNext: "#recs .nav-next a",
                 btnPrev: "#recs .nav-prev a",
-                itemsPerPage: 3
+                itemsPerPage: 3,
+                prop: "left"  // LTR looks better even for RTL.
             });
             $("#recs #nav-recs").fadeIn("slow").addClass("js");
             initTrunc();

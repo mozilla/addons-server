@@ -1513,10 +1513,12 @@ a#lightbox-secNav-btnClose {
 
 #recs .panel {
     margin: 20px 5% 20px 0;
-    width: 30%;
 }
 #recs .panel:nth-child(3n) {
     margin-right: 0;
+}
+.html-rtl #recs .gallery {
+    direction: ltr;
 }
 
 #screenshot img,
