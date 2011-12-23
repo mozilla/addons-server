@@ -1,4 +1,5 @@
 # -*- coding: utf8 -*-
+import codecs
 import json
 import os
 import shutil
@@ -630,6 +631,8 @@ class TestWebApps(amo.tests.TestCase):
         self.webapp_path = os.path.join(os.path.dirname(__file__),
                                         'addons', 'mozball.webapp')
         self.tmp_files = []
+        self.manifest = dict(name=u'Ivan Krsti\u0107', version=u'1.0',
+                             description=u'summary')
 
     def tearDown(self):
         for tmp in self.tmp_files:
@@ -648,7 +651,7 @@ class TestWebApps(amo.tests.TestCase):
         eq_(wp['type'], amo.ADDON_WEBAPP)
         eq_(wp['summary']['en-US'], u'Exciting Open Web development action!')
         eq_(wp['summary']['es'],
-            u'¡Acción abierta emocionante del desarrollo del Web!')
+            u'\u9686Acci\u8d38n abierta emocionante del desarrollo del Web!')
         eq_(wp['summary']['it'],
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
         eq_(wp['version'], '1.0')
@@ -660,7 +663,8 @@ class TestWebApps(amo.tests.TestCase):
         eq_(wp['summary']['en-US'], u'summary')
 
     def test_no_description(self):
-        wp = WebAppParser().parse(self.webapp(dict(name='foo', version='1.0')))
+        wp = WebAppParser().parse(self.webapp(dict(name='foo',
+                                                   version='1.0')))
         eq_(wp['summary'], {})
 
     def test_syntax_error(self):
@@ -669,3 +673,26 @@ class TestWebApps(amo.tests.TestCase):
         m = exc.exception.messages[0]
         assert m.startswith('Could not parse webapp manifest'), (
                                                     'Unexpected: %s' % m)
+
+    def test_utf8_bom(self):
+        wm = codecs.BOM_UTF8 + json.dumps(self.manifest, encoding='utf8')
+        wp = WebAppParser().parse(self.webapp(contents=wm))
+        eq_(wp['version'], '1.0')
+
+    def test_utf16_bom(self):
+        data = json.dumps(self.manifest, encoding='utf8')
+        wm = data.decode('utf8').encode('utf16')  # BOM added automatically
+        wp = WebAppParser().parse(self.webapp(contents=wm))
+        eq_(wp['version'], '1.0')
+
+    def test_utf32_bom(self):
+        data = json.dumps(self.manifest, encoding='utf8')
+        wm = data.decode('utf8').encode('utf32')  # BOM added automatically
+        wp = WebAppParser().parse(self.webapp(contents=wm))
+        eq_(wp['version'], '1.0')
+
+    def test_non_ascii(self):
+        wm = json.dumps({'name': u'まつもとゆきひろ', 'version': '1.0'},
+                        encoding='shift-jis')
+        wp = WebAppParser().parse(self.webapp(contents=wm))
+        eq_(wp['name'], {'en-US': u'まつもとゆきひろ'})

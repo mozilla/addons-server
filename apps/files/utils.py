@@ -1,3 +1,4 @@
+import codecs
 import collections
 import cPickle as pickle
 import glob
@@ -21,6 +22,7 @@ from django.conf import settings
 from django.utils.http import urlencode
 from django.utils.translation import trans_real as translation
 
+import chardet
 import rdflib
 import redisutils
 from tower import ugettext as _
@@ -187,12 +189,26 @@ class WebAppParser(object):
 
     def parse(self, fileorpath, addon=None):
         filename = get_filepath(fileorpath)
-        with open(filename) as f:
-            try:
-                data = json.load(f)
-            except ValueError:
-                raise forms.ValidationError(
-                                _('Could not parse webapp manifest file.'))
+        with open(filename, 'rb') as f:
+            data = f.read()
+            enc_guess = chardet.detect(data)
+            for bom in (codecs.BOM_UTF32_BE,
+                        codecs.BOM_UTF32_LE,
+                        codecs.BOM_UTF16_BE,
+                        codecs.BOM_UTF16_LE,
+                        codecs.BOM_UTF8):
+                if data.startswith(bom):
+                    data = data[len(bom):]
+                    break
+        try:
+            data = json.loads(data.decode(enc_guess['encoding']))
+        except (ValueError, UnicodeDecodeError), exc:
+            msg = 'Error parsing webapp %r (encoding: %r %.2f%% sure): %s: %s'
+            log.error(msg % (filename, enc_guess['encoding'],
+                             enc_guess['confidence'] * 100.0,
+                             exc.__class__.__name__, exc))
+            raise forms.ValidationError(
+                            _('Could not parse webapp manifest file.'))
         loc = data.get('default_locale', translation.get_language())
         default_locale = self.trans_locale(loc)
         if type(data.get('locales')) == list:
