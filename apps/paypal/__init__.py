@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import contextlib
 from decimal import Decimal
 import socket
@@ -12,20 +13,32 @@ from django.utils.http import urlencode, urlquote
 import commonware.log
 from statsd import statsd
 
-from amo.helpers import absolutify, urlparams
+from amo.helpers import absolutify, loc, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import log_cef
+from tower import ugettext as _
 
 
 class PaypalError(Exception):
-    id = None
+    # The generic Paypal error and message.
+    def __init__(self, id=None):
+        super(PaypalError, self).__init__('')
+        self.id = id
+
+    def __str__(self):
+        default = _('There was an error communicating with PayPal. '
+                    'Please try again later.')
+        return messages.get(self.id, default)
 
 
 class AuthError(PaypalError):
+    # We've got the settings wrong on our end.
     pass
 
 
 class PreApprovalError(PaypalError):
+    # Something went wrong in pre approval, there's usually not much
+    # we can do about this.
     pass
 
 
@@ -36,6 +49,12 @@ errors = {'520003': AuthError}
 for number in ['579024', '579025', '579026', '579027', '579028',
                '579030', '579031']:
     errors[number] = PreApprovalError
+
+# Here you can map PayPal error messages into hopefully more useful
+# error messages.
+messages = {'589023': loc('The amount is too small for conversion '
+                          'into the receviers currency.')}
+
 
 paypal_log = commonware.log.getLogger('z.paypal')
 
@@ -335,14 +354,18 @@ def _call(url, paypal_data, ip=None):
         raise
     except Exception, error:
         paypal_log.error('HTTP Error: %s' % error)
-        raise
+        # We'll log the actual error and then raise a Paypal error.
+        # That way all the calling methods only have catch a Paypal error,
+        # the fact that there may be say, a http error, is internal to this
+        # method.
+        raise PaypalError
 
     response = dict(urlparse.parse_qsl(feeddata))
 
     if 'error(0).errorId' in response:
-        error = errors.get(response['error(0).errorId'], PaypalError)
-        paypal_log.error('Paypal Error: %s' % response['error(0).message'])
-        raise error(response['error(0).message'])
+        id_, msg = response['error(0).errorId'], response['error(0).message']
+        paypal_log.error('Paypal Error (%s): %s' % (id_, msg))
+        raise errors.get(id_, PaypalError)(id_)
 
     return response
 

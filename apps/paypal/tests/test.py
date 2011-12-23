@@ -58,6 +58,22 @@ class TestPayKey(amo.tests.TestCase):
         eq_(paypal.get_paykey(self.data), ('AP-9GD76073HJ780401K', 'CREATED'))
 
     @mock.patch('urllib2.OpenerDirector.open')
+    def test_error_is_paypal(self, opener):
+        opener.side_effect = ZeroDivisionError
+        self.assertRaises(paypal.PaypalError, paypal.get_paykey, self.data)
+
+    @mock.patch('urllib2.OpenerDirector.open')
+    def test_error_raised(self, opener):
+        opener.return_value = StringIO(other_error.replace('520001', '589023'))
+        try:
+            paypal.get_paykey(self.data)
+        except paypal.PaypalError as error:
+            eq_(error.id, '589023')
+            assert 'The amount is too small' in str(error)
+        else:
+            raise ValueError('No PaypalError was raised')
+
+    @mock.patch('urllib2.OpenerDirector.open')
     def test_other_fails(self, opener):
         opener.return_value = StringIO(other_error)
         self.assertRaises(paypal.PaypalError, paypal.get_paykey, self.data)

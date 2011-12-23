@@ -525,13 +525,12 @@ def purchase(request, addon):
                     qs={'realurl': request.GET.get('realurl')},
                     slug=slug,
                     uuid=uuid_))
-    except:
+    except paypal.PaypalError as error:
         paypal.paypal_log_cef(request, addon, uuid_,
                               'PayKey Failure', 'PAYKEYFAIL',
                               'There was an error getting the paykey')
         log.error('Error getting paykey, purchase of addon: %s' % addon.pk,
                   exc_info=True)
-        error = _('There was an error communicating with PayPal.')
 
     if paykey:
         contrib = Contribution(addon_id=addon.id, amount=amount,
@@ -701,13 +700,12 @@ def contribute(request, addon):
                             preapproval=preapproval,
                             slug=addon.slug,
                             uuid=contribution_uuid))
-    except:
+    except paypal.PaypalError as error:
         paypal.paypal_log_cef(request, addon, contribution_uuid,
                               'PayKey Failure', 'PAYKEYFAIL',
                               'There was an error getting the paykey')
         log.error('Error getting paykey, contribution for addon: %s'
                   % addon.pk, exc_info=True)
-        error = _('There was an error communicating with PayPal.')
 
     if paykey:
         contrib = Contribution(addon_id=addon.id,
@@ -729,7 +727,7 @@ def contribute(request, addon):
         # not have a paykey and the JS can cope appropriately.
         return http.HttpResponse(json.dumps({'url': url,
                                              'paykey': paykey,
-                                             'error': error,
+                                             'error': str(error),
                                              'status': status}),
                                  content_type='application/json')
     return http.HttpResponseRedirect(url)
