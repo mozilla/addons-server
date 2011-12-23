@@ -1034,6 +1034,13 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         doc = pq(res.content)
         eq_(len(doc('.error')), 2)
 
+    @mock.patch('addons.models.Addon.upsell')
+    def test_addon_upsell(self, upsell):
+        upsell.return_value = True
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        assert 'You cannot enroll in the Marketplace' in doc('p.error').text()
+
     def get_data(self):
         return {
             'paypal_id': 'a@a.com',
@@ -1260,6 +1267,13 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         url = self.addon.get_dev_url('market.4')
         eq_(self.client.post(url, {}).status_code, 302)
         assert self.get_addon().is_premium()
+
+    @mock.patch('addons.models.Addon.upsell')
+    def test_wizard_step_4_fails(self, upsell):
+        upsell.return_value = True
+        url = self.addon.get_dev_url('market.4')
+        eq_(self.client.post(url, {}).status_code, 403)
+        assert not self.get_addon().is_premium()
 
     def test_wizard_step_4_status(self):
         self.setup_premium()

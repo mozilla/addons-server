@@ -1735,6 +1735,13 @@ class TestMarketplace(amo.tests.TestCase):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         assert self.addon.is_premium()
 
+    def test_can_be_premium_upsell(self):
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        free = Addon.objects.create(type=amo.ADDON_EXTENSION)
+
+        AddonUpsell.objects.create(free=free, premium=self.addon)
+        assert not free.can_become_premium()
+
     def test_can_be_premium_status(self):
         for status in amo.STATUS_CHOICES.keys():
             self.addon.update(status=status)

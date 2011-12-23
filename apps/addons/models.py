@@ -828,6 +828,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         Not all addons can become premium and those that can only at
         certain times. Webapps can become premium at any time.
         """
+        if self.upsell:
+            return False
         if self.type == amo.ADDON_WEBAPP and not self.is_premium():
             return True
         return (self.status in amo.PREMIUM_STATUSES
