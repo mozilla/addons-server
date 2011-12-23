@@ -353,6 +353,15 @@ class TestCRUD(amo.tests.TestCase):
         r = self.client.get(self.add_url)
         eq_(r.status_code, 200)
 
+    def test_breadcrumbs(self):
+        r = self.client.get(self.add_url)
+        expected = [
+            ('Add-ons for Firefox', reverse('home')),
+            ('Collections', reverse('collections.list')),
+            ('Create', None)
+        ]
+        amo.tests.check_links(expected, pq(r.content)('#breadcrumbs li'))
+
     def test_submit(self):
         """Test submission of addons."""
         # TODO(davedash): Test file uploads, test multiple addons.
