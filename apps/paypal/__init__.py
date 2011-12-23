@@ -358,17 +358,9 @@ def check_paypal_id(name):
              buttontype='donate',
              method='BMCreateButton',
              l_buttonvar0='business=%s' % name)
-    # TODO(andym): remove this once this is all live and settled down.
-    if hasattr(settings, 'PAYPAL_CGI_AUTH'):
-        d['user'] = settings.PAYPAL_CGI_AUTH['USER']
-        d['pwd'] = settings.PAYPAL_CGI_AUTH['PASSWORD']
-        d['signature'] = settings.PAYPAL_CGI_AUTH['SIGNATURE']
-    else:
-        # In production if PAYPAL_CGI_AUTH doesn't get defined yet,
-        # fall back to the existing values.
-        d.update(dict(user=settings.PAYPAL_USER,
-                      pwd=settings.PAYPAL_PASSWORD,
-                      signature=settings.PAYPAL_SIGNATURE))
+    d['user'] = settings.PAYPAL_EMBEDDED_AUTH['USER']
+    d['pwd'] = settings.PAYPAL_EMBEDDED_AUTH['PASSWORD']
+    d['signature'] = settings.PAYPAL_EMBEDDED_AUTH['SIGNATURE']
     with socket_timeout(10):
         r = urllib.urlopen(settings.PAYPAL_API_URL, urlencode(d))
     response = dict(urlparse.parse_qsl(r.read()))

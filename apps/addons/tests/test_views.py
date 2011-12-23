@@ -1723,21 +1723,6 @@ class TestPrivacyPolicy(amo.tests.TestCase):
         self.assertRedirects(r, reverse('addons.detail', args=['a11730']))
 
 
-# When Embedded Payments support this, we can worry about it.
-#def test_paypal_language_code():
-#    def check(lc):
-#        d = views.contribute_url_params('bz', 32, 'name', 'url')
-#        eq_(d['lc'], lc)
-#
-#    check('US')
-#
-#    translation.activate('it')
-#    check('IT')
-#
-#    translation.activate('ru-DE')
-#    check('RU')
-
-
 class TestAddonSharing(amo.tests.TestCase):
     fixtures = ['base/apps',
                 'base/addon_3615']

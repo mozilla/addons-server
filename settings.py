@@ -928,19 +928,19 @@ FORCE_PROFILE_COMPLETION = True
 CAKE_SESSION_TIMEOUT = 8640
 
 # PayPal Settings
-PAYPAL_API_URL = 'https://api-3t.paypal.com/nvp'
 PAYPAL_API_VERSION = '78'
 PAYPAL_APP_ID = ''
-PAYPAL_BN = ''
-PAYPAL_CGI_URL = 'https://www.paypal.com/cgi-bin/webscr'
-PAYPAL_CGI_AUTH = {'USER': '', 'PASSWORD': '', 'SIGNATURE': ''}
 
+# URLs for various calls.
+PAYPAL_API_URL = 'https://api-3t.paypal.com/nvp'
+PAYPAL_CGI_URL = 'https://www.paypal.com/cgi-bin/webscr'
 PAYPAL_PAY_URL = 'https://svcs.paypal.com/AdaptivePayments/'
 PAYPAL_FLOW_URL = 'https://paypal.com/webapps/adaptivepayment/flow/pay'
 PAYPAL_PERMISSIONS_URL = 'https://svcs.paypal.com/Permissions/'
 PAYPAL_JS_URL = 'https://www.paypalobjects.com/js/external/dg.js'
+
+# Permissions for the live or sandbox servers
 PAYPAL_EMBEDDED_AUTH = {'USER': '', 'PASSWORD': '', 'SIGNATURE': ''}
-PAYPAL_EMAIL = ''
 
 # PayPal split for Adaptive Payments.
 # A tuple of lists of % and destination.

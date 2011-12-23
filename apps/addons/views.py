@@ -735,48 +735,6 @@ def contribute(request, addon):
     return http.HttpResponseRedirect(url)
 
 
-def contribute_url_params(business, addon_id, item_name, return_url,
-                          amount='', item_number='',
-                          monthly=False, comment=''):
-
-    lang = translation.get_language()
-    try:
-        paypal_lang = amo.PAYPAL_COUNTRYMAP[lang]
-    except KeyError:
-        lang = lang.split('-')[0]
-        paypal_lang = amo.PAYPAL_COUNTRYMAP.get(lang, 'US')
-
-    # Get all the data elements that will be URL params
-    # on the Paypal redirect URL.
-    data = {'business': business,
-            'item_name': item_name,
-            'item_number': item_number,
-            'bn': settings.PAYPAL_BN + '-AddonID' + str(addon_id),
-            'no_shipping': '1',
-            'return': return_url,
-            'charset': 'utf-8',
-            'lc': paypal_lang,
-            'notify_url': "%s%s" % (settings.SERVICES_URL,
-                                    reverse('amo.paypal'))}
-
-    if not monthly:
-        data['cmd'] = '_donations'
-        if amount:
-            data['amount'] = amount
-    else:
-        data.update({
-            'cmd': '_xclick-subscriptions',
-            'p3': '12',  # duration: for 12 months
-            't3': 'M',  # time unit, 'M' for month
-            'a3': amount,  # recurring contribution amount
-            'no_note': '1'})  # required: no "note" text field for user
-
-    if comment:
-        data['custom'] = comment
-
-    return data
-
-
 @addon_view
 def paypal_result(request, addon, status):
     uuid = request.GET.get('uuid')

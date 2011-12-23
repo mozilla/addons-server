@@ -138,6 +138,8 @@ def settings(request):
     for i in site_settings.HERA:
         settings_dict['HERA'].append(debug.cleanse_setting('HERA', i))
 
+    # Retain this so that legacy PAYPAL_CGI_AUTH variables in settings_local
+    # are not exposed.
     for i in ['PAYPAL_EMBEDDED_AUTH', 'PAYPAL_CGI_AUTH']:
         settings_dict[i] = debug.cleanse_setting(i, getattr(site_settings, i))
 
