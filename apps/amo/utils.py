@@ -178,19 +178,24 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                             args=[token, hash, perm_setting.short]))
                     manage_url = urlparams(absolutify(reverse('users.edit')),
                                            'acct-notify')
-                    context = {'message': message, 'manage_url': manage_url,
+
+                    context = {'message': message,
+                               'manage_url': manage_url,
                                'unsubscribe_url': unsubscribe_url,
                                'perm_setting': perm_setting.label,
                                'SITE_URL': settings.SITE_URL,
                                'mandatory': perm_setting.mandatory}
-                    send_message = template.render(Context(context,
-                                                           autoescape=False))
+                    # Render this template in the default locale until
+                    # bug 635840 is fixed.
+                    with no_translation():
+                        send_message = template.render(
+                            Context(context, autoescape=False))
 
-                    result = EmailMessage(subject, send_message,
-                                          from_email, [recipient],
-                                          connection=connection,
-                                          headers=headers or {},
-                                          ).send(fail_silently=False)
+                        result = EmailMessage(subject, send_message,
+                                              from_email, [recipient],
+                                              connection=connection,
+                                              headers=headers or {},
+                                              ).send(fail_silently=False)
             else:
                 result = EmailMessage(subject, message, from_email,
                                       white_list,
@@ -691,3 +696,11 @@ def log_cef(name, severity, env, *args, **kwargs):
         r = {}
 
     return _log_cef(name, severity, r, *args, config=c, **kwargs)
+
+
+@contextlib.contextmanager
+def no_translation():
+    lang = trans_real.get_language()
+    trans_real.deactivate()
+    yield
+    trans_real.activate(lang)

@@ -1,7 +1,10 @@
 from django import test
 from django.conf import settings
 from django.core import mail
+from django.template import Context as TemplateContext
+from django.utils import translation
 
+import mock
 from nose.tools import eq_
 
 from amo.utils import send_mail
@@ -123,3 +126,17 @@ class SendMailTest(test.TestCase):
         assert mail.outbox[0].subject.find('test subject') == 0
         assert mail.outbox[0].body.find('test body') == 0
 
+    @mock.patch('amo.utils.Context')
+    def test_dont_localize(self, fake_Context):
+        perm_setting = []
+
+        def ctx(d, autoescape):
+            perm_setting.append(unicode(d['perm_setting']))
+            return TemplateContext(d, autoescape=autoescape)
+        fake_Context.side_effect = ctx
+        user = UserProfile.objects.all()[0]
+        to = user.email
+        translation.activate('zh_TW')
+        send_mail('test subject', 'test body', perm_setting='reply',
+                             recipient_list=[to], fail_silently=False)
+        eq_(perm_setting[0], u'an add-on developer replies to my review')

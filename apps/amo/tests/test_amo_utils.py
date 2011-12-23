@@ -4,11 +4,14 @@ import tempfile
 
 from django.conf import settings
 from django.core.validators import ValidationError
+from django.utils import translation
 
 from nose.tools import eq_, assert_raises
 
-from amo.utils import slug_validator, slugify, resize_image, to_language
+from amo.utils import (slug_validator, slugify, resize_image, to_language,
+                       no_translation)
 from product_details import product_details
+
 
 u = u'Ελληνικά'
 
@@ -85,3 +88,18 @@ def test_spotcheck():
     eq_(languages['el']['native'], u'Ελληνικά')
 
     eq_(product_details.firefox_history_major_releases['1.0'], '2004-11-09')
+
+
+def test_no_translation():
+    """
+    `no_translation` provides a context where only the default
+    language is active.
+    """
+    lang = translation.get_language()
+    translation.activate('pt-br')
+    with no_translation():
+        eq_(translation.get_language(),
+            settings.LANGUAGE_CODE)
+    eq_(translation.get_language(),
+        'pt-br')
+    translation.activate(lang)
