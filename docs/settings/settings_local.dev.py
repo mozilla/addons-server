@@ -69,6 +69,10 @@ CELERY_ROUTES = {}
 # paths for images, not necessary for dev
 STATIC_URL = ''
 
+# Disable timeout code during development because it uses the signal module
+# which can only run in the main thread. Celery uses threads in dev.
+VALIDATOR_TIMEOUT = -1
+
 # The user id to use when logging in tasks. You should set this to a user that
 # exists in your site.
 # TASK_USER_ID = 1
