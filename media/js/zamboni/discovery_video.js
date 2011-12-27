@@ -62,9 +62,9 @@ $(function() {
         $promos.addClass('show-video');
         var video = $('<div>', {'class': 'promo-video'});
         var video_el = $('<video>', {'controls': 'controls', 'tabindex': 0, 'id': 'promo-video', 'text': gettext('Your browser does not support the video tag')});
-        var video_el_mp4  = $('<source>', {'type': 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"', 'src': '//static.addons.mozilla.net/media/videos/fds0fo.mov'});
-        var video_el_webm = $('<source>', {'type': 'video/webm; codecs="vp8, vorbis"', 'src': '//static.addons.mozilla.net/media/videos/vuue2y.webm'});
-        var video_el_ogv = $('<source>', {'type': 'video/ogv; codecs="theora, vorbis";', 'src': '//static.addons.mozilla.net/media/videos/b85p03.ogv'});
+        var video_el_mp4  = $('<source>', {'type': 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"', 'src': 'https://static.addons.mozilla.net/media/videos/fds0fo.mov'});
+        var video_el_webm = $('<source>', {'type': 'video/webm; codecs="vp8, vorbis"', 'src': 'https://static.addons.mozilla.net/media/videos/vuue2y.webm'});
+        var video_el_ogv = $('<source>', {'type': 'video/ogv; codecs="theora, vorbis";', 'src': 'https://static.addons.mozilla.net/media/videos/b85p03.ogv'});
         var $video_details = $('#video-details');
 
         video_el.append(video_el_mp4);
