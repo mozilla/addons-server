@@ -45,6 +45,7 @@ fi
 
 # Update the vendor lib.
 echo "Updating vendor..."
+git submodule --quiet foreach 'git submodule --quiet sync'
 git submodule --quiet sync && git submodule update --init --recursive
 
 cat > settings_local.py <<SETTINGS
