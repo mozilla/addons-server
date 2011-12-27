@@ -62,9 +62,9 @@ $(function() {
         $promos.addClass('show-video');
         var video = $('<div>', {'class': 'promo-video'});
         var video_el = $('<video>', {'controls': 'controls', 'tabindex': 0, 'id': 'promo-video', 'text': gettext('Your browser does not support the video tag')});
-        var video_el_mp4  = $('<source>', {'type': 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"', 'src': 'https://static.addons.mozilla.net/media/videos/fds0fo.mov'});
-        var video_el_webm = $('<source>', {'type': 'video/webm; codecs="vp8, vorbis"', 'src': 'https://static.addons.mozilla.net/media/videos/vuue2y.webm'});
-        var video_el_ogv = $('<source>', {'type': 'video/ogv; codecs="theora, vorbis";', 'src': 'https://static.addons.mozilla.net/media/videos/b85p03.ogv'});
+        var video_el_mp4  = $('<source>', {'type': 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"', 'src': '//static.addons.mozilla.net/media/videos/fds0fo.mov'});
+        var video_el_webm = $('<source>', {'type': 'video/webm; codecs="vp8, vorbis"', 'src': '//static.addons.mozilla.net/media/videos/vuue2y.webm'});
+        var video_el_ogv = $('<source>', {'type': 'video/ogv; codecs="theora, vorbis";', 'src': '//static.addons.mozilla.net/media/videos/b85p03.ogv'});
         var $video_details = $('#video-details');
 
         video_el.append(video_el_mp4);
@@ -78,8 +78,8 @@ $(function() {
         var preload = $('<div>', {'id': 'preload-personas', 'css': {'display': 'none'}}).appendTo('body');
         $promo_addons.find('a[data-browsertheme]').each(function() {
             var theme = $.parseJSON($(this).attr('data-browsertheme'));
-            preload.append($('<img>', {'src': theme['headerURL']}));
-            preload.append($('<img>', {'src': theme['footerURL']}));
+            preload.append($('<img>', {'src': theme['headerURL'].replace(/http:\/\//, 'https://')}));
+            preload.append($('<img>', {'src': theme['footerURL'].replace(/http:\/\//, 'https://')}));
         });
 
         // Move some stuff around
@@ -154,7 +154,7 @@ $(function() {
                     start: time,
                     end: end,
                     onStart: function() {
-                        dispatchPersonaEvent('PreviewPersona', $addon_a[0]);
+                        dispatchPersonaEvent('PreviewPersona', $addon_a[0], false, true);
                     },
                     onEnd: function() {
                         dispatchPersonaEvent('ResetPersona', $addon_a[0]);

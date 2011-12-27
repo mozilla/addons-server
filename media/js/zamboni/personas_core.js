@@ -1,7 +1,7 @@
 /**
  * Bubbles up persona event to tell Firefox to load a persona
  **/
-function dispatchPersonaEvent(aType, aNode, callback)
+function dispatchPersonaEvent(aType, aNode, callback, forceHttps)
 {
     var aliases = {'PreviewPersona': 'PreviewBrowserTheme',
                    'ResetPersona': 'ResetBrowserThemePreview',
@@ -10,7 +10,13 @@ function dispatchPersonaEvent(aType, aNode, callback)
         if (!aNode.hasAttribute("data-browsertheme"))
             return;
 
-        $(aNode).attr("persona", $(aNode).attr("data-browsertheme"));
+        var browsertheme = $(aNode).attr("data-browsertheme");
+
+        if(forceHttps) {
+            browsertheme = browsertheme.replace(/http:\/\//g, 'https://')
+        }
+
+        $(aNode).attr("persona", browsertheme);
 
         var aliasEvent = aliases[aType];
         var events = [aType, aliasEvent];
