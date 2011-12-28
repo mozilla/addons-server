@@ -567,7 +567,7 @@ def purchase(request, addon):
     if request.GET.get('result_type') == 'json' or request.is_ajax():
         return http.HttpResponse(json.dumps({'url': url,
                                              'paykey': paykey,
-                                             'error': error,
+                                             'error': str(error),
                                              'status': status}),
                                  content_type='application/json')
 

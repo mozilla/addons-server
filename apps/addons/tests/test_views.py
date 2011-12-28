@@ -11,6 +11,7 @@ from django.core import mail
 from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 
+import fudge
 from mock import patch
 from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
@@ -26,6 +27,7 @@ from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
                            Charity)
 from files.models import File
 from market.models import AddonPremium, AddonPurchase, PreApprovalUser, Price
+from paypal import PaypalError
 from paypal.tests.test import other_error
 from stats.models import Contribution
 from translations.helpers import truncate
@@ -163,15 +165,16 @@ class TestContributeEmbedded(amo.tests.TestCase):
         response = self.client_get(rev=[1])
         eq_(response.status_code, 404)
 
-    @patch('paypal.get_paykey')
+    @fudge.patch('paypal.get_paykey')
     def test_charity_name(self, get_paykey):
+        (get_paykey.expects_call()
+                   .with_matching_args(memo=u'Contribution for foë: foë')
+                   .returns(('payKey', 'paymentExecStatus')))
         self.addon.charity = Charity.objects.create(name=u'foë')
         self.addon.name = u'foë'
         self.addon.save()
         url = reverse('addons.contribute', args=['a592'])
         self.client.get(url)
-        eq_(get_paykey.call_args[0][0]['memo'],
-            u'Contribution for foë: foë')
 
     def test_params_common(self):
         """Test for the some of the common values"""
@@ -239,9 +242,9 @@ class TestContributeEmbedded(amo.tests.TestCase):
         doc = pq(res.content)
         eq_(len(doc('#contribute-box input')), 3)
 
-    @patch('paypal.get_paykey')
+    @fudge.patch('paypal.get_paykey')
     def test_paypal_error_json(self, get_paykey, **kwargs):
-        get_paykey.return_value = None
+        get_paykey.expects_call().returns((None, None))
         res = self.contribute()
         assert not json.loads(res.content)['paykey']
 
@@ -264,19 +267,21 @@ class TestContributeEmbedded(amo.tests.TestCase):
         self.addon.update(type=amo.ADDON_WEBAPP, app_slug='xxx')
         self._test_result_page()
 
-    @patch('paypal.get_paykey')
+    @fudge.patch('paypal.get_paykey')
     def test_not_split(self, get_paykey):
-        get_paykey.return_value = None
+        def check_call(*args, **kw):
+            assert 'chains' not in kw
+        (get_paykey.expects_call()
+                   .calls(check_call)
+                   .returns(('payKey', 'paymentExecStatus')))
         self.contribute()
-        assert 'chains' not in get_paykey.call_args_list[0][0][0].keys()
 
     def contribute(self):
         url = reverse('addons.contribute', args=[self.addon.slug])
         return self.client.get(urlparams(url, result_type='json'))
 
-    @patch('paypal.get_paykey')
+    @fudge.patch('paypal.get_paykey')
     def test_pre_approval(self, get_paykey):
-        get_paykey.return_value = None
         waffle.models.Flag.objects.create(name='allow-pre-auth',
                                           everyone=True)
 
@@ -284,8 +289,10 @@ class TestContributeEmbedded(amo.tests.TestCase):
         pre = PreApprovalUser.objects.create(user=user)
         self.client.login(username=user.email, password='password')
 
+        (get_paykey.expects_call()
+                   .with_matching_args(preapproval=pre)
+                   .returns((None, None)))
         self.contribute()
-        eq_(get_paykey.call_args_list[0][0][0]['preapproval'], pre)
 
 
 class TestPurchaseEmbedded(amo.tests.TestCase):
@@ -320,17 +327,16 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         res = self.client.get_ajax(self.purchase_url)
         eq_(json.loads(res.content)['paykey'], 'some-pay-key')
 
-    @patch('paypal.get_paykey')
+    @fudge.patch('paypal.get_paykey')
     def test_paykey_amount(self, get_paykey):
-        # Test the amount the paykey for is the price.
-        get_paykey.return_value = ['some-pay-key', '']
+        (get_paykey.expects_call()
+                   .with_matching_args(amount=Decimal('0.99'))
+                   .returns(('some-pay-key', '')))
         self.client.get_ajax(self.purchase_url)
-        # wtf? Can we get any more [0]'s there?
-        eq_(get_paykey.call_args_list[0][0][0]['amount'], Decimal('0.99'))
 
-    @patch('paypal.get_paykey')
+    @fudge.patch('paypal.get_paykey')
     def test_paykey_error(self, get_paykey):
-        get_paykey.side_effect = Exception('woah')
+        get_paykey.expects_call().raises(PaypalError('woah'))
         res = self.client.get_ajax(self.purchase_url)
         assert json.loads(res.content)['error'].startswith('There was an')
 
@@ -374,15 +380,16 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         self.assertRedirects(res, shared_url('addons.detail', self.addon))
 
     @patch('paypal.check_purchase')
-    @patch('paypal.get_paykey')
+    @fudge.patch('paypal.get_paykey')
     # Turning on the allow-pre-auth flag.
     @patch.object(waffle, 'flag_is_active', lambda x, y: True)
     def test_paykey_pre_approval_used(self, get_paykey, check_purchase):
-        get_paykey.return_value = ['some-pay-key', 'COMPLETED']
         check_purchase.return_value = 'COMPLETED'
         pre = PreApprovalUser.objects.create(user=self.user, paypal_key='xyz')
+        (get_paykey.expects_call()
+                   .with_matching_args(preapproval=pre)
+                   .returns(('some-pay-key', 'COMPLETED')))
         self.client.get_ajax(self.purchase_url)
-        eq_(get_paykey.call_args[0][0]['preapproval'], pre)
 
     @patch('addons.models.Addon.has_purchased')
     def test_has_purchased(self, has_purchased):
@@ -524,13 +531,16 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         eq_(doc('.trigger_app_install').attr('data-manifest-url'),
             self.addon.manifest_url)
 
-    @patch('paypal.get_paykey')
+    @fudge.patch('paypal.get_paykey')
     def test_split(self, get_paykey):
-        get_paykey.return_value = None
+        def check_call(*args, **kw):
+            assert 'chains' not in kw
+        (get_paykey.expects_call()
+                   .calls(check_call)
+                   .returns(('payKey', 'paymentExecStatus')))
         self.client.get('%s?%s' % (
                         reverse('addons.purchase', args=[self.addon.slug]),
                         'result_type=json'))
-        assert 'chains' in get_paykey.call_args_list[0][0][0].keys()
 
 
 def setup_premium(addon):
