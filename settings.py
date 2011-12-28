@@ -1285,7 +1285,7 @@ GRAPHITE_TIMEOUT = 1
 
 # URL to the service that triggers addon performance tests.  See devhub.perf.
 PERF_TEST_URL = 'http://areweperftestingyet.com/trigger.cgi'
-PERF_TEST_TIMEOUT = 1  # seconds
+PERF_TEST_TIMEOUT = 5  # seconds
 
 # IP addresses of servers we use as proxies.
 KNOWN_PROXIES = []
