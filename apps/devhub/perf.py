@@ -50,7 +50,8 @@ def start_perf_test(file_, os_name, firefox):
     https://intranet.mozilla.org/Anodelman:doc:TriggerSendchange
     """
     params = dict(os=os_name, firefox=firefox,
-                  url=file_.get_url_path('perftest'))
+                  url=file_.get_url_path('perftest'),
+                  addon=file_.version.addon_id)
     url = '%s?%s' % (settings.PERF_TEST_URL, urllib.urlencode(params))
     res = None
     try:
