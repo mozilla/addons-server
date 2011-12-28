@@ -31,9 +31,9 @@
       {{ version.releasenotes|nl2br }}
     </div>
 
+    <ul class="source">
     {% if version.license %}
       {% set license = version.license %}
-      <ul class="source">
         <li>
           {% if license.url %}
             {% trans url = license.url,
@@ -51,16 +51,16 @@
           <a class="license-faq" href="{{ url('pages.faq')|urlparams('license') }}">
             {{ _("What's this?", 'addons_display_a_license_what') }}</a>
         </li>
-        {% if addon.view_source and version.has_files and
-              addon.status in amo.REVIEWED_STATUSES %}
-          <li>
-            <a class="source-code"
-               href="{{ url('files.list', version.all_files[0].pk) }}">
-              {{ _('View the source') }}</a>
-          </li>
-        {% endif %}
-      </ul>
     {% endif %}
+    {% if addon.view_source and version.has_files and
+          addon.status in amo.REVIEWED_STATUSES %}
+      <li>
+        <a class="source-code"
+           href="{{ url('files.list', version.all_files[0].pk) }}">
+          {{ _('View the source') }}</a>
+      </li>
+    {% endif %}
+    </ul>
 
   </div>
   <div class="action">
