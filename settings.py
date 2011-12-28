@@ -18,6 +18,9 @@ try:
 except ImportError:
     build_id = ""
 
+# jingo-minify: Style sheet media attribute default
+CSS_MEDIA_DEFAULT = 'all'
+
 # Make filepaths relative to settings.
 ROOT = os.path.dirname(os.path.abspath(__file__))
 path = lambda *a: os.path.join(ROOT, *a)
