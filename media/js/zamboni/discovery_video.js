@@ -1,28 +1,20 @@
 // Popcorn Stuff
 
-$(function() {
+function PopcornObj() {
     var $learn = $('#intro #learn-more'),
         $watch = $('#watch-video'),
         $watch_link = $watch.find('a'),
         $video_close = $('#video-close'),
         $promos = $('#promos'),
-        $promo_addons = $('#promo-video-addons');
+        $promo_addons = $('#promo-video-addons'),
+        $addons = $promo_addons.find('ul li'),
+        $toFlash = $('#promo-video-addons, header, #featured-addons'),
+        $featured = $('#featured-addons li'),
+        $trans = $('.translate'),
+        pop = false;
 
-    // Make the video clean up after itself.
-    $video_close.click(_pd(cleanupVideo));
-    function cleanupVideo() {
-        $learn.text($learn.attr('data-oldtext'));
-        $watch_link.text($watch_link.attr('data-oldtext'));
-        if ($('#intro').is(':hidden')) {
-            $watch.show();
-        }
-        $('#sub > section').show();
-        $promo_addons.hide();
-        $('.promo-video, #preload-personas').remove();
-        $promos.removeClass('show-video');
-    }
+    var video, video_el, video_el_mp4, video_el_webm, video_el_ogv, $video_details;
 
-    // Load up the locale stuff.
     var translate = {'ja': {'title': 'アドオンとは？',
                             'intro': 'アドオンとは、追加の機能やスタイルで Firefox をカスタマイズ' +
                                      'するアプリケーションのことです。例えば、Web サイトの名前をタ' +
@@ -38,54 +30,9 @@ $(function() {
                            'featured': 'Complementos destacados',
                            'close': 'Cerrar Vídeo'}};
 
-    // Hijack the learn more button, why don't we?
-    if ($('#intro').is(':hidden')) {
-        $watch.show();
-    }
+    var p = this;
 
-    $('#intro #learn-more, #watch-video:visible a').show().addClass('video').click(_pd(function() {
-        if ($('#main .promo-video:visible').length) {
-            cleanupVideo();
-            return;
-        }
-
-        $learn.attr('data-oldtext', $learn.text());
-        $watch_link.attr('data-oldtext', $watch_link.text());
-        // English only.
-        $learn.text('Close Video');
-        $watch_link.text('Close Video');
-
-        // Make #featured-addons able to handle the animations within it
-        $('#featured-addons').css('overflow', 'hidden');
-
-        // Let's show the video!
-        $promos.addClass('show-video');
-        var video = $('<div>', {'class': 'promo-video'});
-        var video_el = $('<video>', {'controls': 'controls', 'tabindex': 0, 'id': 'promo-video', 'text': gettext('Your browser does not support the video tag')});
-        var video_el_mp4  = $('<source>', {'type': 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"', 'src': 'https://static.addons.mozilla.net/media/videos/fds0fo.mov'});
-        var video_el_webm = $('<source>', {'type': 'video/webm; codecs="vp8, vorbis"', 'src': 'https://static.addons.mozilla.net/media/videos/vuue2y.webm'});
-        var video_el_ogv = $('<source>', {'type': 'video/ogv; codecs="theora, vorbis";', 'src': 'https://static.addons.mozilla.net/media/videos/b85p03.ogv'});
-        var $video_details = $('#video-details');
-
-        video_el.append(video_el_mp4);
-        video_el.append(video_el_webm);
-        video_el.append(video_el_ogv);
-        video.append(video_el);
-
-        $promos.append(video);
-
-        // Preload persona images
-        var preload = $('<div>', {'id': 'preload-personas', 'css': {'display': 'none'}}).appendTo('body');
-        $promo_addons.find('a[data-browsertheme]').each(function() {
-            var theme = $.parseJSON($(this).attr('data-browsertheme'));
-            preload.append($('<img>', {'src': theme['headerURL'].replace(/http:\/\//, 'https://')}));
-            preload.append($('<img>', {'src': theme['footerURL'].replace(/http:\/\//, 'https://')}));
-        });
-
-        // Move some stuff around
-        $('#sub > section').hide();
-        $promo_addons.fadeIn();
-
+    this.init = function() {
         // If we don't have the "What Are Add-ons?" banner, we show the
         // "Learn More"/"Close Video" button above the add-ons list, so this
         // gets rid of the redundant one below.
@@ -93,145 +40,224 @@ $(function() {
             $video_close.remove();
         }
 
-        // Set up Popcorn
-        var pop = Popcorn('#promo-video'),
-            $addons = $promo_addons.find('ul li'),
-            $toFlash = $('#promo-video-addons, header, #featured-addons'),
-            $featured = $('#featured-addons li'),
-            $trans = $('.translate');
+        if ($('#intro').is(':hidden')) {
+            $watch.show();
+        }
+    }
+    this.init();
 
-        // Save the original translation text
-        $trans.each(function() {
-            $this = $(this);
-            $this.attr('data-original', $this.text());
+    this.start = function() {
+        if($('.promo-video').length) { // Video has already been created
+            $('.promo-video').show();
+            $promos.addClass('show-video');
+            pop.currentTime(0).play();
+        } else {
+            $promos.addClass('show-video');
+            video = $('<div>', {'class': 'promo-video'});
+            video_el = $('<video>', {'controls': 'controls', 'tabindex': 0, 'id': 'promo-video', 'text': gettext('Your browser does not support the video tag')});
+            video_el_mp4  = $('<source>', {'type': 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"', 'src': 'https://static.addons.mozilla.net/media/videos/fds0fo.mov'});
+            video_el_webm = $('<source>', {'type': 'video/webm; codecs="vp8, vorbis"', 'src': 'https://static.addons.mozilla.net/media/videos/vuue2y.webm'});
+            video_el_ogv = $('<source>', {'type': 'video/ogv; codecs="theora, vorbis";', 'src': 'https://static.addons.mozilla.net/media/videos/b85p03.ogv'});
+            $video_details = $('#video-details');
+
+            video_el.append(video_el_mp4);
+            video_el.append(video_el_webm);
+            video_el.append(video_el_ogv);
+            video.append(video_el);
+
+            $promos.append(video);
+
+            // Preload persona images
+            var preload = $('<div>', {'id': 'preload-personas', 'css': {'display': 'none'}}).appendTo('body');
+            $promo_addons.find('a[data-browsertheme]').each(function() {
+                var theme = $.parseJSON($(this).attr('data-browsertheme'));
+                preload.append($('<img>', {'src': theme['headerURL'].replace(/http:\/\//, 'https://')}));
+                preload.append($('<img>', {'src': theme['footerURL'].replace(/http:\/\//, 'https://')}));
+            });
+
+            // Save the original translation text
+            $trans.each(function() {
+                $this = $(this);
+                $this.attr('data-original', $this.text());
+            });
+
+            pop = Popcorn('#promo-video');
+
+            p.showAddon(0, 20, 24.5);
+            p.showAddon(1, 24.5, 26.5);
+            p.showAddon(2, 26.5, 29.5);
+            p.showAddon(3, 32);
+            p.showFlash(33.5, 34.7);
+            p.showFlash(34.7, 36);
+            p.showAddon(4, 37);
+            p.showAddon(5, 40);
+            p.showFlutter(48, 56);
+            p.showAddon(6, 53);
+            p.showDrop(54.8, 56);
+            p.showAddon(7, 57);
+            p.showTrans('ja', 59, 59.8);
+            p.showTrans('es', 59.8, 60.8);
+        }
+
+        // Move some stuff around.
+        $('#sub > section').hide();
+        $promo_addons.fadeIn();
+
+        // Scroll to the top of the page!
+        $watch.click(_pd(function(){
+            $('body, html').animate({'scrollTop': 0});
+        }));
+
+        // Create a close button
+        this.setup_close_button();
+
+        /* Andddd go! */
+        pop.play();
+    };
+
+    this.setup_close_button = function() {
+        $learn.attr('data-oldtext', $learn.text());
+        $watch_link.attr('data-oldtext', $watch_link.text());
+        $learn.add($watch_link).addClass('close').text('Close Video'); // English only, so we're good.
+
+        $video_close.click(_pd(function(){ p.stop(); }));
+    };
+
+    this.stop = function(e) {
+        if(pop) {
+            pop.pause();
+        }
+        $('#promo-video').trigger('close');
+        $learn.text($learn.attr('data-oldtext'));
+        $watch_link.text($watch_link.attr('data-oldtext'));
+
+        $learn.add($watch_link).removeClass('close');
+
+        if ($('#intro').is(':hidden')) {
+            $watch.show();
+        }
+        $('#sub > section').show();
+        $promo_addons.hide();
+        $('.promo-video').hide();
+        $promos.removeClass('show-video');
+    };
+
+    this.code = function(options){
+        if(options['onEnd']) {
+            $('#promo-video').bind('close', options['onEnd']);
+        }
+        pop.code(options);
+    }
+
+    this.showAddon = function(i, time, end) {
+        var addon = $addons.eq(i),
+            $addon_a = addon.find('a');
+
+        p.code({
+            start: time,
+            end: 100000,
+            onStart: function() {
+                $video_details.hide();
+                addon.addClass('show');
+                $addons.removeClass('last');
+                // So we can do a nice border-radius on the last visible.
+                $addons.filter(':visible:last').addClass('last');
+            },
+            onEnd: function() {
+                addon.removeClass('show');
+                if($addons.filter('.show').length == 0) {
+                    $video_details.show();
+                }
+            }
         });
 
-        // The actions
-        showAddon(0, 20, 24.5);
-        showAddon(1, 24.5, 26.5);
-        showAddon(2, 26.5, 29.5);
-        showAddon(3, 32);
-        showFlash(33.5, 34.7);
-        showFlash(34.7, 36);
-        showAddon(4, 37);
-        showAddon(5, 40);
-        showFlutter(48, 56);
-        showAddon(6, 53);
-        showDrop(54.8, 56);
-        showAddon(7, 57);
-        showTrans('ja', 59, 59.8);
-        showTrans('es', 59.8, 60.8);
-
-         // Play the video after one second.
-         setTimeout(function() {
-             pop.play();
-         }, 1000);
-
-        // The action functions
-        function showAddon(i, time, end) {
-            var addon = $addons.eq(i),
-                $addon_a = addon.find('a');
-            pop.code({
+        // Personas!
+        if($addon_a.attr('data-browsertheme')) {
+            p.code({
                 start: time,
-                end: 100000,
+                end: end,
                 onStart: function() {
-                    $video_details.hide();
-                    addon.addClass('show');
-                    $addons.removeClass('last');
-                    // So we can do a nice border-radius on the last visible.
-                    $addons.filter(':visible:last').addClass('last');
+                    dispatchPersonaEvent('PreviewPersona', $addon_a[0], false, true);
                 },
                 onEnd: function() {
-                    addon.removeClass('show');
-                    if($addons.filter('.show').length == 0) {
-                        $video_details.show();
-                    }
+                    dispatchPersonaEvent('ResetPersona', $addon_a[0]);
                 }
             });
+        }
+    }
 
-            if($addon_a.attr('data-browsertheme')) {
-                pop.code({
-                    start: time,
-                    end: end,
-                    onStart: function() {
-                        dispatchPersonaEvent('PreviewPersona', $addon_a[0], false, true);
-                    },
-                    onEnd: function() {
-                        dispatchPersonaEvent('ResetPersona', $addon_a[0]);
-                    }
+    this.showFlash = function(start, end) {
+        p.code({
+            start: start,
+            end: end,
+            onStart: function() {
+                $toFlash.css({'opacity': 0}).animate({'opacity': 1});
+            }
+        });
+    }
+
+    this.showFlutter = function(start, end) {
+        p.code({
+            start: start,
+            end: end,
+            onStart: function() {
+                // Only do this if we can see the featured add-ons
+                if($(window).scrollTop() + $(window).height() > $('#featured-addons').position()['top'] + 80) {
+                    $featured.each(function() {
+                        var $this = $(this);
+
+                        setTimeout(function() {
+                            $this.addClass('flutter');
+                        }, 300 * Math.random());
+
+                        setTimeout(function() {
+                            $this.animate({'top': 400, 'left': -400}, function() {
+                                $this.removeClass('flutter');
+                            });
+                        }, 3000 * Math.random());
+                    });
+                }
+            },
+            onEnd: function() {
+                $featured.css({'top': 0, 'left': 0}).removeClass('flutter');
+            }
+        });
+    }
+
+    this.showDrop = function(start, end) {
+        p.code({
+            start: start,
+            end: end,
+            onStart: function() {
+                $featured.removeClass('flutter').css({'top': -400, 'left': 0}).animate({'top': 0});
+            }
+        });
+    }
+
+    this.showTrans = function(locale, start, end) {
+        p.code({
+            start: start,
+            end: end,
+            onStart: function() {
+                $trans.each(function() {
+                    var $this = $(this);
+                    $this.text(translate[locale][$this.attr('data-trans')]);
+                });
+            },
+            onEnd: function() {
+                $trans.each(function() {
+                    var $this = $(this);
+                    $this.text($this.attr('data-original'));
                 });
             }
-        }
+        });
+    }
+};
 
-        function showFlash(start, end) {
-            pop.code({
-                start: start,
-                end: end,
-                onStart: function() {
-                    $toFlash.css({'opacity': 0}).animate({'opacity': 1});
-                }
-            });
-        }
-
-        function showFlutter(start, end) {
-            pop.code({
-                start: start,
-                end: end,
-                onStart: function() {
-                    // Only do this if we can see the featured add-ons
-                    if($(window).scrollTop() + $(window).height() > $('#featured-addons').position()['top'] + 80) {
-                        $featured.each(function() {
-                            var $this = $(this);
-
-                            setTimeout(function() {
-                                $this.addClass('flutter');
-                            }, 300 * Math.random());
-
-                            setTimeout(function() {
-                                $this.animate({'top': 400, 'left': -400}, function() {
-                                    $this.removeClass('flutter');
-                                });
-                            }, 3000 * Math.random());
-                        });
-                    }
-                },
-                onEnd: function() {
-                    $featured.css({'top': 0, 'left': 0}).removeClass('flutter');
-                }
-            });
-        }
-
-        function showDrop(start, end) {
-            pop.code({
-                start: start,
-                end: end,
-                onStart: function() {
-                    $featured.removeClass('flutter').css({'top': -400, 'left': 0}).animate({'top': 0});
-                }
-            });
-        }
-
-        function showTrans(locale, start, end) {
-            pop.code({
-                start: start,
-                end: end,
-                onStart: function() {
-                    $trans.each(function() {
-                        var $this = $(this);
-                        $this.text(translate[locale][$this.attr('data-trans')]);
-                    });
-                },
-                onEnd: function() {
-                    $trans.each(function() {
-                        var $this = $(this);
-                        $this.text($this.attr('data-original'));
-                    });
-                }
-            });
-        }
-    }));
-
-    $watch.click(_pd(function(){
-        $('body, html').animate({'scrollTop': 0});
+$(function() {
+    var popcorn = new PopcornObj();
+    $('#intro #learn-more, #watch-video:visible a').show().addClass('video').click(_pd(function() {
+        if($(this).hasClass('close')) return popcorn.stop();
+        popcorn.start();
     }));
 });
