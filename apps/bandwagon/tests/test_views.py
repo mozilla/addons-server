@@ -410,6 +410,22 @@ class TestCRUD(amo.tests.TestCase):
         r = self.client.get(url, follow=True)
         eq_(r.status_code, 200)
 
+    def test_edit_breadcrumbs(self):
+        c = Collection.objects.all()[0]
+        r = self.client.get(reverse('collections.edit',
+                                    args=[c.author.username, c.slug]))
+        links = pq(r.content.decode('utf-8'))('#breadcrumbs li')
+        expected = [
+            ('Add-ons for Firefox', reverse('home')),
+            ('Collections', reverse('collections.list')),
+            (c.author.name, reverse('collections.user',
+                                    args=[c.author.username])),
+            (c.name, reverse('collections.detail',
+                             args=[c.author.username, c.slug])),
+            ('Edit', None),
+        ]
+        amo.tests.check_links(expected, links)
+
     def test_edit_post(self):
         """Test edit of collection."""
         self.create_collection()
@@ -508,6 +524,22 @@ class TestCRUD(amo.tests.TestCase):
         eq_(len(Collection.objects.filter(slug=self.slug)), 1)
         self.client.post(url, dict(sure='1'))
         eq_(len(Collection.objects.filter(slug=self.slug)), 0)
+
+    def test_delete_breadcrumbs(self):
+        c = Collection.objects.all()[0]
+        r = self.client.get(reverse('collections.delete',
+                                    args=[c.author.username, c.slug]))
+        links = pq(r.content.decode('utf-8'))('#breadcrumbs li')
+        expected = [
+            ('Add-ons for Firefox', reverse('home')),
+            ('Collections', reverse('collections.list')),
+            (c.author.name, reverse('collections.user',
+                                    args=[c.author.username])),
+            (c.name, reverse('collections.detail',
+                             args=[c.author.username, c.slug])),
+            ('Delete', None),
+        ]
+        amo.tests.check_links(expected, links)
 
     @patch('access.acl.action_allowed')
     def test_admin(self, f):
