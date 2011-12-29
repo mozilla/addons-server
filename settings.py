@@ -1367,3 +1367,6 @@ IGNORE_NON_CRITICAL_CRONS = False
 # To enable new default to compatible checks in services/update.py set to True.
 # Set to False in case of emergency to switch back to old code.
 DEFAULT_TO_COMPATIBLE = True
+
+# How long to delay sending traceback emails for, see django-delayed-mailer.
+DELAYED_MAILER_WAIT = 60
