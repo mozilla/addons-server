@@ -1,3 +1,4 @@
+from django import forms
 from django.contrib import admin
 
 from . import models
@@ -64,9 +65,18 @@ class CompatOverrideRangeInline(admin.TabularInline):
     exclude = ('type',)
 
 
+class CompatOverrideAdminForm(forms.ModelForm):
+
+    def clean(self):
+        if '_confirm' in self.data:
+            raise forms.ValidationError('Click "Save" to confirm changes.')
+        return self.cleaned_data
+
+
 class CompatOverrideAdmin(admin.ModelAdmin):
     raw_id_fields = ('addon',)
     inlines = [CompatOverrideRangeInline]
+    form = CompatOverrideAdminForm
 
 
 admin.site.register(models.BlacklistedGuid)

@@ -42,7 +42,7 @@ from addons.models import Addon, CompatOverride
 from addons.utils import ReverseNameLookup
 from bandwagon.models import Collection
 from compat.models import AppCompat
-from compat.forms import CompatForm
+from compat.forms import AdminCompatForm
 from devhub.models import ActivityLog
 from files.models import Approval, File
 from versions.compare import version_int as vint
@@ -402,23 +402,28 @@ def jetpack_resend(request, file_id):
 def compat(request):
     APP = amo.FIREFOX
     VER = site_settings.COMPAT[0]['main']  # Default: latest Firefox version.
+    ratio = .8
     binary = None
 
     # Expected usage:
-    #     For Firefox 8.0 reports: ?appver=1-8.0
-    #     For binary-only add-ons: ?appver=1-8.0&type=binary
-    initial = {'appver': '%s-%s' % (APP.id, VER), 'type': 'all'}
+    #     For Firefox 8.0 reports:      ?appver=1-8.0
+    #     For over 70% incompatibility: ?appver=1-8.0&ratio=0.7
+    #     For binary-only add-ons:      ?appver=1-8.0&type=binary
+    initial = {'appver': '%s-%s' % (APP.id, VER), 'ratio': ratio,
+               'type': 'all'}
     initial.update(request.GET.items())
 
-    form = CompatForm(initial)
+    form = AdminCompatForm(initial)
     if request.GET and form.is_valid():
         APP, VER = form.cleaned_data['appver'].split('-')
         APP = amo.APP_IDS[int(APP)]
+        if form.cleaned_data['ratio']:
+            ratio = float(form.cleaned_data['ratio'])
         if form.cleaned_data['type'] == 'binary':
             binary = True
 
-    app, ver = str(APP.id), str(vint(VER))
-    usage_addons, usage_total = compat_stats(request, app, ver, binary)
+    app, ver = str(APP.id), VER
+    usage_addons, usage_total = compat_stats(request, app, ver, ratio, binary)
 
     return jingo.render(request, 'zadmin/compat.html', {
         'app': APP,
@@ -429,15 +434,16 @@ def compat(request):
     })
 
 
-def compat_stats(request, app, ver, binary):
+def compat_stats(request, app, ver, ratio, binary):
     # Get the list of add-ons for usage stats.
     redis = redisutils.connections['master']
     # Show add-ons marked as incompatible with this current version having
     # greater than 10 incompatible reports and whose average exceeds 80%.
-    prefix = 'works.%s.%s' % (app, ver)
+    ver_int = str(vint(ver))
+    prefix = 'works.%s.%s' % (app, ver_int)
     qs = (AppCompat.search()
           .filter(**{'%s.failure__gt' % prefix: 10,
-                     '%s.failure_ratio__gt' % prefix: .8,
+                     '%s.failure_ratio__gt' % prefix: ratio,
                      'support.%s.max__gte' % app: 0})
           .order_by('-%s.failure_ratio' % prefix,
                     '-%s.total' % prefix)
@@ -448,7 +454,7 @@ def compat_stats(request, app, ver, binary):
     for obj in addons.object_list:
         obj['usage'] = obj['usage'][app]
         obj['max_version'] = obj['max_version'][app]
-        obj['works'] = obj['works'][app].get(ver, {})
+        obj['works'] = obj['works'][app].get(ver_int, {})
         # Get all overrides for this add-on.
         obj['overrides'] = CompatOverride.objects.filter(addon__id=obj['id'])
         # Determine if there is an override for this current app version.

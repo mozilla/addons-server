@@ -8,6 +8,7 @@
 <style>
 #compat-form, #compat-form ul, #compat-form li { display: inline }
 #compat-form li { display: inline-block; margin-left: 1em }
+#compat-form label + label { margin-left: 1em }
 .bad { color: #800 }
 em.version { color: #888 }
 td, th { border-bottom-color: #ccc }
@@ -27,7 +28,7 @@ button { margin: 4px; padding: 0 2px }
 <h2>{{ title }}</h2>
 <form class="go" action="" id="compat-form">
   <label>App: {{ form.appver }}</label>
-  {{ form.version }}
+  <label>Show reports over {{ form.ratio }} incompatibility</label>
   {{ form.type }}
   <noscript><button type="submit">Go</button></noscript>
 </form>
@@ -96,6 +97,8 @@ button { margin: 4px; padding: 0 2px }
               {{ csrf() }}
               <input type="hidden" name="_compat_ranges-TOTAL_FORMS" value="{{ initial + 1 }}">
               <input type="hidden" name="_compat_ranges-INITIAL_FORMS" value="{{ initial }}">
+              <input type="hidden" name="_continue" value="1">
+              <input type="hidden" name="_confirm" value="1">
               {% if not addon.self_hosted %}
                 <input type="hidden" name="addon" value="{{ addon.id }}">
               {% endif %}
@@ -116,8 +119,7 @@ button { margin: 4px; padding: 0 2px }
               <input type="hidden" name="_compat_ranges-{{ initial }}-max_version" value="{{ addon.current_version }}">
               <input type="hidden" name="_compat_ranges-{{ initial }}-app" value="{{ app.id }}">
               <input type="hidden" name="_compat_ranges-{{ initial }}-min_app_version" value="{{ version }}a1">
-              <input type="hidden" name="_compat_ranges-{{ initial }}-max_app_version" value="*">
-              <input type="hidden" name="_continue" value="1">
+              <input type="hidden" name="_compat_ranges-{{ initial }}-max_app_version" value="{{ version }}*">
               <button>Override Compat</button>
             </form>
           {% endif %}
