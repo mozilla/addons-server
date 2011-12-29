@@ -84,22 +84,35 @@ exports.install = function(manifestUrl, opt) {
 };
 
 exports._showError = function(errSummary, errMessage, opt) {
-    var $errTarget = $('<a>');
+    var $errTarget = $('<a>'),
+        $visibleModals,
+        $innerErr,
+        win = opt.window || window;
     if (opt.mobile) {
-        var $errBox = $('.apps-error-msg h2', opt.domContext);
         $('.apps-error-msg h2', opt.domContext).text(errSummary);
         $('.apps-error-msg p', opt.domContext).text(errMessage);
         $('.apps-error-msg', opt.domContext).show();
         $(opt.domContext).trigger('mobile_error_shown.apps');
     } else {
-        var $modal = $('.apps-error-msg:first', opt.domContext).modal(
-                                                $errTarget,
-                                                {width: '400px', close: true,
-                                                 callback: opt.errModalCallback
-                                             });
-        $errTarget.trigger('click');  // show the modal
-        $('.apps-error-msg h2', opt.domContext).text(errSummary);
-        $('.apps-error-msg p', opt.domContext).text(errMessage);
+        $visibleModals = $('.modal:visible', opt.domContext);
+        if ($visibleModals.length) {
+            $innerErr = $('.inner-modal-error', $visibleModals);
+            if (!$innerErr.length) {
+                $innerErr = $('<div class="inner-modal-error"><h2></h2><p></p></div>');
+                $('.modal-inside', $visibleModals).prepend($innerErr);
+            }
+            $('h2', $innerErr).text(errSummary);
+            $('p', $innerErr).text(errMessage);
+            $(win).trigger('resize');
+        } else {
+            // Create a new modal:
+            $('.apps-error-msg:first', opt.domContext).modal($errTarget,
+                                                             {width: '400px', close: true,
+                                                              callback: opt.errModalCallback});
+            $errTarget.trigger('click');  // show the modal
+            $('.apps-error-msg h2', opt.domContext).text(errSummary);
+            $('.apps-error-msg p', opt.domContext).text(errMessage);
+        }
         $(opt.domContext).trigger('error_shown.apps');
     }
 
