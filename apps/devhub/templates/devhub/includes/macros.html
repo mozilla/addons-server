@@ -64,10 +64,7 @@
   <div class="addon-app-cats">
     <label>
     {% if webapp %}
-      {# L10n: {0} is the maximum number of app categories allowed. #}
-      {{ ngettext('Select <b>up to {0}</b> category for this app:',
-                  'Select <b>up to {0}</b> categories for this app:',
-                  max)|f(max)|safe }}
+      {{ loc('Select <b>up to {0}</b> category for this app:')|f(max)|safe }}
     {% else %}
       {# L10n: {0} is the maximum number of add-on categories allowed.
                {1} is the application name. #}
