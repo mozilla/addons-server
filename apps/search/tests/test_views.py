@@ -75,6 +75,24 @@ class TestAdminDisabledAddons(SphinxTestCase):
         super(TestAdminDisabledAddons, self).setUp()
 
 
+class TestSphinxSearchboxTarget(SphinxTestCase):
+    fixtures = ['base/addon_3615']
+
+    def check(self, cat):
+        url = reverse('search.search')
+        r = self.client.get(url, dict(cat=cat))
+        form = pq(r.content)('#search')
+        eq_(form.attr('action'), url)
+        eq_(form('input[name=q]').attr('placeholder'), 'search for %s' % cat)
+        eq_(form('input[name=cat]').val(), cat)
+
+    def test_collections(self):
+        self.check('collections')
+
+    def test_personas(self):
+        self.check('personas')
+
+
 class TestSearchboxTarget(amo.tests.ESTestCase):
 
     @classmethod
