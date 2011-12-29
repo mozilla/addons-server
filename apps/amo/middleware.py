@@ -38,6 +38,9 @@ class LocaleAndAppURLMiddleware(object):
     def process_request(self, request):
         # Find locale, app
         prefixer = urlresolvers.Prefixer(request)
+        # Force en-US until we localize Marketplace.
+        if settings.APP_PREVIEW:
+            prefixer.locale = 'en-US'
         urlresolvers.set_url_prefix(prefixer)
         full_path = prefixer.fix(prefixer.shortened_path)
 

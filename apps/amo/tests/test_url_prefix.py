@@ -39,6 +39,20 @@ class MiddlewareTest(test.TestCase):
             eq_(response.status_code, 301)
             eq_(response['Location'], location)
 
+    @patch.object(settings, 'APP_PREVIEW', True)
+    def test_app_redirection(self):
+        # We're forcing en-US since Marketplace isn't localized yet.
+        redirections = {
+            '/': '/en-US/apps/',
+            '/en-US/': '/en-US/apps/',
+            '/fr/': '/en-US/apps/',
+            '/fr/developers': '/en-US/developers',
+        }
+        for path, location in redirections.items():
+            response = self.middleware.process_request(self.rf.get(path))
+            eq_(response.status_code, 301)
+            eq_(response['Location'], location)
+
     def process(self, *args, **kwargs):
         request = self.rf.get(*args, **kwargs)
         return self.middleware.process_request(request)
