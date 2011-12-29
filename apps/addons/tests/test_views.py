@@ -57,7 +57,7 @@ def test_hovercards(self, doc, addons, src=''):
         btn = doc.find('.install[data-addon=%s]' % addon.id)
         eq_(btn.length, 1)
         hc = btn.parents('.addon.hovercard')
-        eq_(hc.children('a').attr('href'),
+        eq_(hc.find('a').attr('href'),
             urlparams(addon.get_url_path(), src=src))
         eq_(hc.find('h3').text(), unicode(addon.name))
 
@@ -1299,7 +1299,7 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         d = self.get_pq()('.dependencies .hovercard')
         eq_(d.length, 1)
         eq_(d.find('h3').text(), unicode(req.name))
-        eq_(d.children('a').attr('href')
+        eq_(d.find('a').attr('href')
             .endswith('?src=dp-dl-dependencies'), True)
         eq_(d.find('.install-button a').attr('href')
             .endswith('?src=dp-hc-dependencies'), True)
@@ -1314,7 +1314,7 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         hc = upsell.find('.hovercard')
         eq_(hc.length, 1)
         eq_(hc.find('h3').text(), unicode(premie.name))
-        eq_(hc.children('a').attr('href').endswith('?src=dp-dl-upsell'), True)
+        eq_(hc.find('a').attr('href').endswith('?src=dp-dl-upsell'), True)
         eq_(hc.find('.install-button a').attr('href')
             .endswith('?src=dp-hc-upsell'), True)
 
