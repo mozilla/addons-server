@@ -36,12 +36,17 @@ from django.core.management import (call_command, execute_manager,
                                     setup_environ)
 
 try:
+    # Do not import settings_local when running tests.
+    # (See https://github.com/mozilla/playdoh/issues/71)
+    has_settings_local = True
+    if 'test' in sys.argv[:2]:
+        has_settings_local = False
+        raise ImportError
     import settings_local as settings
 except ImportError:
     try:
         import settings
     except ImportError:
-        import sys
         sys.stderr.write(
             "Error: Tried importing 'settings_local.py' and 'settings.py' "
             "but neither could be found (or they're throwing an ImportError)."
