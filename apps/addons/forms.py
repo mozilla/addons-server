@@ -230,6 +230,7 @@ class CategoryForm(forms.Form):
         categories = self.cleaned_data['categories']
         total = categories.count()
         max_cat = amo.MAX_CATEGORIES
+
         if getattr(self, 'disabled', False) and total:
             if categories[0].type == amo.ADDON_WEBAPP:
                 raise forms.ValidationError(loc('Categories cannot be changed '
@@ -296,8 +297,7 @@ class BaseCategoryFormSet(BaseFormSet):
             # If this add-on is featured for this application, category
             # changes are forbidden.
             if not acl.action_allowed(self.request, 'Admin', 'EditAnyAddon'):
-                form.disabled = (settings.NEW_FEATURES and app and
-                                 self.addon.is_featured(app))
+                form.disabled = (app and self.addon.is_featured(app))
 
     def save(self):
         for f in self.forms:

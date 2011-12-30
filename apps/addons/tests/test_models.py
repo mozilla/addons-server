@@ -50,18 +50,7 @@ class TestAddonManager(amo.tests.TestCase):
     def setUp(self):
         set_user(None)
 
-    @patch.object(settings, 'NEW_FEATURES', False)
     def test_featured(self):
-        eq_(Addon.objects.featured(amo.FIREFOX).count(),
-            Addon.objects.listed(amo.FIREFOX)
-            .filter(feature__application=amo.FIREFOX.id).count())
-
-    @patch.object(settings, 'NEW_FEATURES', True)
-    def test_new_featured(self):
-        # TODO: remove this when NEW_FEATURES goes away. It's here because
-        # build() was already called in setUp().
-        from addons.cron import reset_featured_addons
-        reset_featured_addons()
         eq_(Addon.objects.featured(amo.FIREFOX).count(), 3)
 
     def test_listed(self):
@@ -169,13 +158,6 @@ class TestAddonManager(amo.tests.TestCase):
             sorted(addons, key=lambda x: x.weekly_downloads, reverse=True))
         eq_(list(Addon.objects.top_paid(amo.THUNDERBIRD, listed=False)), [])
 
-
-class TestAddonManagerFeatured(amo.tests.TestCase):
-    # TODO(cvan): Merge with above once new featured add-ons are enabled.
-    fixtures = ['addons/featured', 'bandwagon/featured_collections',
-                'base/collections', 'base/featured']
-
-    @patch.object(settings, 'NEW_FEATURES', True)
     def test_new_featured(self):
         f = Addon.objects.featured(amo.FIREFOX)
         eq_(f.count(), 3)
@@ -276,25 +258,6 @@ class TestAddonModels(amo.tests.TestCase):
     def test_current_beta_version(self):
         a = Addon.objects.get(pk=5299)
         eq_(a.current_beta_version.id, 50000)
-
-    @patch.object(settings, 'NEW_FEATURES', False)
-    def test_current_version_mixed_statuses(self):
-        """Mixed file statuses are evil (bug 558237)."""
-        a = Addon.objects.get(pk=3895)
-        # Last version has pending files, so second to last version is
-        # considered "current".
-        eq_(a.current_version.id, 78829)
-
-        # Fix file statuses on last version.
-        v = Version.objects.get(pk=98217)
-        v.files.update(status=amo.STATUS_PUBLIC)
-
-        # Wipe caches.
-        cache.clear()
-        a.update_version()
-
-        # Make sure the updated version is now considered current.
-        eq_(a.current_version.id, v.id)
 
     def test_delete(self):
         """Test deleting add-ons."""
@@ -1210,12 +1173,7 @@ class TestAddonModelsFeatured(amo.tests.TestCase):
         f = Addon.featured_random(amo.SUNBIRD, 'en-US')
         eq_(f, [])
 
-    @patch.object(settings, 'NEW_FEATURES', False)
     def test_featured_random(self):
-        self._test_featured_random()
-
-    @patch.object(settings, 'NEW_FEATURES', True)
-    def test_new_featured_random(self):
         self._test_featured_random()
 
 

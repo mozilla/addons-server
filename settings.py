@@ -1171,9 +1171,6 @@ EXPOSE_VALIDATOR_TRACEBACKS = False
 SEARCH_EXCLUDE_PERSONAS = True
 UNLINK_SITE_STATS = True
 
-# Use the new featured add-ons system which makes use of featured collections.
-NEW_FEATURES = False
-
 # Impala flags.
 
 # Set to True if we're allowed to use X-SENDFILE.
@@ -1370,3 +1367,4 @@ DEFAULT_TO_COMPATIBLE = True
 
 # How long to delay sending traceback emails for, see django-delayed-mailer.
 DELAYED_MAILER_WAIT = 60
+

@@ -55,6 +55,3 @@ SITE_URL = ''
 MOBILE_SITE_URL = ''
 
 CACHE_BACKEND = 'caching.backends.locmem://'
-
-# These are not on by default yet or are toggled on directly in tests.
-NEW_FEATURES = False

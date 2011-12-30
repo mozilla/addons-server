@@ -149,11 +149,6 @@ class APITest(TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/addon_4664_twitterbar',
                 'base/addon_5299_gcal', 'perf/index']
 
-    def setUp(self):
-        patcher = patch.object(settings, 'NEW_FEATURES', False)
-        patcher.start()
-        self.addCleanup(patcher.stop)
-
     def test_api_caching(self):
         response = self.client.get('/en-US/firefox/api/1.5/addon/3615')
         eq_(response.status_code, 200)
@@ -470,25 +465,7 @@ class APITest(TestCase):
                             '<slug>%s</slug>' %
                             Addon.objects.get(pk=5299).slug)
 
-    @patch.object(settings, 'NEW_FEATURES', False)
     def test_is_featured(self):
-        self.assertContains(make_call('addon/5299', version=1.5),
-                            '<featured>0</featured>')
-        Feature.objects.create(addon_id=5299,
-                               start=datetime.now() - timedelta(days=10),
-                               end=datetime.now() + timedelta(days=10),
-                               application_id=amo.FIREFOX.id,
-                               locale='ja')
-        reset_featured_addons()
-        for lang, app, result in [('ja', 'firefox', 1),
-                                  ('en-US', 'firefox', 0),
-                                  ('ja', 'seamonkey', 0)]:
-            self.assertContains(make_call('addon/5299', version=1.5,
-                                          lang=lang, app=app),
-                                '<featured>%s</featured>' % result)
-
-    @patch.object(settings, 'NEW_FEATURES', True)
-    def test_new_is_featured(self):
         self.assertContains(make_call('addon/5299', version=1.5),
                             '<featured>0</featured>')
         c = CollectionAddon.objects.create(
@@ -555,13 +532,9 @@ class APITest(TestCase):
 
 class ListTest(TestCase):
     """Tests the list view with various urls."""
-    fixtures = ['base/apps', 'base/addon_3615', 'base/featured']
-
-    def setUp(self):
-        # TODO(cvan): Remove this once featured collections are enabled.
-        patcher = patch.object(settings, 'NEW_FEATURES', False)
-        patcher.start()
-        self.addCleanup(patcher.stop)
+    fixtures = ['base/apps', 'base/addon_3615', 'base/featured',
+                'addons/featured', 'bandwagon/featured_collections',
+                'base/collections']
 
     def test_defaults(self):
         """
@@ -610,6 +583,7 @@ class ListTest(TestCase):
         self.assertContains(response, "<addon id", 3)
 
         response = make_call('list', lang='he')
+
         self.assertContains(response, "<addon id", 3)
 
     def test_browser_featured_list(self):
@@ -647,19 +621,6 @@ class ListTest(TestCase):
 
     def test_unicode(self):
         make_call(u'list/featured/all/10/Linux/3.7a2prexec\xb6\u0153\xec\xb2')
-
-
-class NewListTest(ListTest):
-    """Tests the list view with various urls."""
-    fixtures = ListTest.fixtures + ['addons/featured',
-                                    'bandwagon/featured_collections',
-                                    'base/collections']
-
-    def setUp(self):
-        # TODO(cvan): Remove this once featured collections are enabled.
-        patcher = patch.object(settings, 'NEW_FEATURES', True)
-        patcher.start()
-        self.addCleanup(patcher.stop)
 
 
 class SeamonkeyFeaturedTest(TestCase):

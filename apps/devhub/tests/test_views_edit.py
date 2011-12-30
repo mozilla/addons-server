@@ -428,35 +428,20 @@ class TestEditBasic(TestEdit):
         FeaturedCollection.objects.create(collection=c.collection,
                                           application_id=amo.FIREFOX.id)
 
-    @mock.patch.object(settings, 'NEW_FEATURES', False)
-    def test_edit_categories_add_old_creatured(self):
-        """Using the old features, categories should be able to be changed."""
-        self._feature_addon()
-        self.cat_initial['categories'] = [22, 23]
-        self.client.post(self.basic_edit_url, self.get_dict())
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
-
-        # This add-on's categories should change.
-        eq_(sorted(addon_cats), [22, 23])
-
-    @mock.patch.object(settings, 'NEW_FEATURES', True)
-    def test_edit_categories_add_new_creatured(self):
+    def test_edit_categories_add_creatured(self):
         """Ensure that categories cannot be changed for creatured add-ons."""
         self._feature_addon()
-        # TODO: remove this when NEW_FEATURES goes away. It's here because
-        # build() was already called in setUp().
-        from addons.cron import reset_featured_addons
-        reset_featured_addons()
+
         self.cat_initial['categories'] = [22, 23]
         r = self.client.post(self.basic_edit_url, self.get_dict())
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
+
         eq_(r.context['cat_form'].errors[0]['categories'],
             ['Categories cannot be changed while your add-on is featured for '
              'this application.'])
         # This add-on's categories should not change.
         eq_(sorted(addon_cats), [22])
 
-    @mock.patch.object(settings, 'NEW_FEATURES', True)
     def test_edit_categories_add_new_creatured_admin(self):
         """Ensure that admins can change categories for creatured add-ons."""
         assert self.client.login(username='admin@mozilla.com',
@@ -475,8 +460,7 @@ class TestEditBasic(TestEdit):
         # This add-on's categories should change.
         eq_(sorted(addon_cats), [22, 23])
 
-    @mock.patch.object(settings, 'NEW_FEATURES', True)
-    def test_edit_categories_disable_new_creatured(self):
+    def test_edit_categories_disable_creatured(self):
         """Ensure that other forms are okay when disabling category changes."""
         self._feature_addon()
         self.cat_initial['categories'] = [22, 23]
@@ -484,37 +468,12 @@ class TestEditBasic(TestEdit):
         self.client.post(self.basic_edit_url, data)
         eq_(unicode(self.get_addon().name), data['name'])
 
-    @mock.patch.object(settings, 'NEW_FEATURES', False)
-    def test_edit_categories_no_disclaimer_old(self):
-        """With old features enabled, there should never be a disclaimer."""
-        self._feature_addon()
-        r = self.client.get(self.basic_edit_url)
-        doc = pq(r.content)
-        eq_(doc('#addon-categories-edit div.addon-app-cats').length, 1)
-        eq_(doc('#addon-categories-edit > p').length, 0)
-
-    @mock.patch.object(settings, 'NEW_FEATURES', True)
-    def test_edit_categories_no_disclaimer_new(self):
+    def test_edit_categories_no_disclaimer(self):
         """Ensure that there is a not disclaimer for non-creatured add-ons."""
         r = self.client.get(self.basic_edit_url)
         doc = pq(r.content)
         eq_(doc('#addon-categories-edit div.addon-app-cats').length, 1)
         eq_(doc('#addon-categories-edit > p').length, 0)
-
-    @mock.patch.object(settings, 'NEW_FEATURES', True)
-    def test_edit_categories_disclaimer(self):
-        """Ensure that there is a disclaimer for creatured add-ons."""
-        self._feature_addon()
-        # TODO: remove this when NEW_FEATURES goes away. It's here because
-        # build() was already called in setUp().
-        from addons.cron import reset_featured_addons
-        reset_featured_addons()
-        r = self.client.get(self.basic_edit_url)
-        doc = pq(r.content)
-        eq_(doc('#addon-categories-edit div.addon-app-cats').length, 0)
-        eq_(doc('#addon-categories-edit > p').length, 2)
-        eq_(doc('#addon-categories-edit p.addon-app-cats').text(),
-            'Firefox: %s' % unicode(Category.objects.get(id=22).name))
 
     def test_edit_categories_addandremove(self):
         AddonCategory(addon=self.addon, category_id=23).save()

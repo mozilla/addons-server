@@ -381,94 +381,6 @@ class TestThemes(amo.tests.TestCase):
             eq_(doc('#side-categories #c-%s' % id).length, 1)
 
 
-class TestCategoryPages(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/category', 'base/addon_3615',
-                'base/featured', 'addons/featured', 'browse/nameless-addon']
-
-    def setUp(self):
-        patcher = mock.patch.object(settings, 'NEW_FEATURES', False)
-        patcher.start()
-        self.addCleanup(patcher.stop)
-
-    def test_browsing_urls(self):
-        """Every browse page URL exists."""
-        for _, slug in amo.ADDON_SLUGS.items():
-            view = 'apps.list' if slug == 'apps' else 'browse.%s' % slug
-            assert reverse(view)
-
-    def test_matching_opts(self):
-        """Every filter on landing pages is available on listing pages."""
-        for key, _ in views.CategoryLandingFilter.opts:
-            if key != 'featured':
-                assert key in dict(views.AddonFilter.opts)
-
-    @mock.patch('browse.views.category_landing')
-    def test_goto_category_landing(self, landing_mock):
-        """We hit a landing page if there's a category and no sorting."""
-        landing_mock.return_value = http.HttpResponse()
-
-        self.client.get(reverse('browse.extensions'))
-        assert not landing_mock.called
-
-        category = Category.objects.all()[0]
-        category_url = reverse('browse.extensions', args=[category.slug])
-
-        self.client.get('%s?sort=created' % category_url)
-        assert not landing_mock.called
-
-        self.client.get(category_url)
-        assert landing_mock.called
-
-        # Category with fewer than 5 add-ons bypasses landing page.
-        category.count = 4
-        category.save()
-        self.client.get(category_url)
-        eq_(landing_mock.call_count, 1)
-
-    def test_creatured_addons(self):
-        """Make sure the creatured add-ons are for the right category."""
-        # Featured in bookmarks.
-        url = reverse('browse.extensions', args=['bookmarks'])
-        response = self.client.get(url, follow=True)
-        creatured = response.context['filter'].all()['featured']
-        eq_(len(creatured), 1)
-        eq_(creatured[0].id, 3615)
-
-        # Not featured in search-tools.
-        url = reverse('browse.extensions', args=['search-tools'])
-        response = self.client.get(url, follow=True)
-        creatured = response.context['filter'].all()['featured']
-        eq_(len(creatured), 0)
-
-    def test_creatured_only_public(self):
-        """Make sure the creatured add-ons are all public."""
-        url = reverse('browse.creatured', args=['bookmarks'])
-        r = self.client.get(url, follow=True)
-        addons = r.context['addons']
-
-        for a in addons:
-            assert a.status == amo.STATUS_PUBLIC, "%s is not public" % a.name
-
-        old_count = len(addons)
-        addons[0].status = amo.STATUS_UNREVIEWED
-        addons[0].save()
-        r = self.client.get(url, follow=True)
-        addons = r.context['addons']
-
-        for a in addons:
-            assert a.status == amo.STATUS_PUBLIC, ("Altered %s is featured"
-                                                   % a.name)
-
-        eq_(len(addons), old_count - 1, "The number of addons is the same.")
-
-    def test_sorting_nameless(self):
-        """Nameless add-ons are dropped from the sort."""
-        qs = Addon.objects.all()
-        ids = order_by_translation(qs, 'name')
-        assert 57132 in [a.id for a in qs]
-        assert 57132 not in [a.id for a in ids]
-
-
 class TestFeeds(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/category', 'base/featured',
                 'addons/featured', 'addons/listed', 'base/collections',
@@ -536,32 +448,20 @@ class TestFeeds(amo.tests.TestCase):
 
 class TestFeaturedLocale(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/category', 'base/addon_3615',
-                'base/featured', 'addons/featured', 'browse/nameless-addon']
+                'base/featured', 'addons/featured', 'browse/nameless-addon',
+                'base/collections', 'bandwagon/featured_collections',
+                'base/addon_3615_featuredcollection']
 
     def setUp(self):
-        patcher = mock.patch.object(settings, 'NEW_FEATURES', False)
-        patcher.start()
-        self.addCleanup(patcher.stop)
-
         self.addon = Addon.objects.get(pk=3615)
         self.persona = Addon.objects.get(pk=15679)
         self.extension = Addon.objects.get(pk=2464)
         self.category = Category.objects.get(slug='bookmarks')
 
+        self.reset_featured_addons()
+
         self.url = reverse('browse.creatured', args=['bookmarks'])
         cache.clear()
-
-    def change_addoncategory(self, addon, locale='es-ES'):
-        ac = addon.addoncategory_set.all()[0]
-        ac.feature_locales = locale
-        ac.save()
-        self.reset()
-
-    def change_addon(self, addon, locale='es-ES'):
-        feature = addon.feature_set.all()[0]
-        feature.locale = locale
-        feature.save()
-        self.reset()
 
     def reset(self):
         cache.clear()
@@ -581,23 +481,14 @@ class TestFeaturedLocale(amo.tests.TestCase):
             if mtch:
                 print mtch.group(2)
 
-    def test_creatured_random_caching(self):
-        rnd = AddonCategory.creatured_random
-        cat = Category.objects.get(pk=22)
-        self.assertNumQueries(0, rnd, cat, 'en-US')
-        self.assertNumQueries(0, rnd, cat, 'en-US')
-        self.assertNumQueries(0, rnd, cat, 'es-ES')
-
-    def test_featured_random_caching(self):
-        rnd = Addon.featured_random
-        self.assertNumQueries(0, rnd, amo.FIREFOX, 'en-US')
-        self.assertNumQueries(0, rnd, amo.FIREFOX, 'es-ES')
-        self.assertNumQueries(0, rnd, amo.THUNDERBIRD, 'es-ES')
-        self.assertNumQueries(0, rnd, amo.THUNDERBIRD, 'en-US')
-
     def test_creatured_locale_en_US(self):
         res = self.client.get(self.url)
         assert self.addon in res.context['addons']
+
+    def test_creatured_locale_es_ES(self):
+        """Ensure 'en-US'-creatured add-ons do not exist for other locales."""
+        res = self.client.get(self.url.replace('en-US', 'es-ES'))
+        assert self.addon not in res.context['addons']
 
     def test_creatured_locale_nones(self):
         self.change_addoncategory(self.addon, '')
@@ -620,10 +511,6 @@ class TestFeaturedLocale(amo.tests.TestCase):
         self.change_addoncategory(self.addon, 'es-ES')
         res = self.client.get(self.url)
         assert self.addon not in res.context['addons']
-
-    def test_creatured_locale_es_ES(self):
-        res = self.client.get(self.url.replace('en-US', 'es-ES'))
-        assert self.addon in res.context['addons']
 
     def test_featured_locale_en_US(self):
         res = self.client.get(reverse('browse.extensions') + '?sort=featured')
@@ -725,6 +612,8 @@ class TestFeaturedLocale(amo.tests.TestCase):
         eq_(listed.count(7661), 1)
 
     def test_homepage_order(self):
+        FeaturedCollection.objects.filter(collection__addons=3615)[0].delete()
+
         # Make these apps listed.
         for pk in [1003, 3481]:
             addon = Addon.objects.get(pk=pk)
@@ -757,6 +646,8 @@ class TestFeaturedLocale(amo.tests.TestCase):
         eq_([1003, 2464, 7661], sorted([i.pk for i in items]))
 
     def test_featured_ids(self):
+        FeaturedCollection.objects.filter(collection__addons=3615)[0].delete()
+
         another = Addon.objects.get(id=1003)
         self.change_addon(another, 'en-US')
         items = Addon.featured_random(amo.FIREFOX, 'en-US')
@@ -773,27 +664,6 @@ class TestFeaturedLocale(amo.tests.TestCase):
                                    start=datetime.today(),
                                    end=datetime.today())
         eq_(Addon.featured_random(amo.FIREFOX, 'en-US').count(1003), 1)
-
-
-class TestNewFeaturedLocale(TestFeaturedLocale):
-    fixtures = (TestFeaturedLocale.fixtures +
-                ['base/collections', 'addons/featured', 'base/featured',
-                 'bandwagon/featured_collections',
-                 'base/addon_3615_featuredcollection'])
-
-    # TODO(cvan): Merge with above once new featured add-ons are enabled.
-    def setUp(self):
-        super(TestNewFeaturedLocale, self).setUp()
-        patcher = mock.patch.object(settings, 'NEW_FEATURES', True)
-        patcher.start()
-        self.reset_featured_addons()
-        self.addCleanup(patcher.stop)
-
-    def test_featured_random_caching(self):
-        raise SkipTest()  # We're no longer caching `featured_random`.
-
-    def test_creatured_random_caching(self):
-        raise SkipTest()  # We're no longer caching `creatured_random`.
 
     def change_addon(self, addon, locale='es-ES'):
         fc = FeaturedCollection.objects.filter(collection__addons=addon.id)[0]
@@ -816,23 +686,6 @@ class TestNewFeaturedLocale(TestFeaturedLocale):
                 application=Application.objects.get(id=amo.FIREFOX.id),
                 collection=c.collection)
         self.reset()
-
-    def test_featured_ids(self):
-        # TODO(cvan): Change the TestFeaturedLocale test
-        # accordingly after we switch over to the new features.
-        FeaturedCollection.objects.filter(collection__addons=3615)[0].delete()
-        super(TestNewFeaturedLocale, self).test_featured_ids()
-
-    def test_homepage_order(self):
-        # TODO(cvan): Change the TestFeaturedLocale test
-        # accordingly after we switch over to the new features.
-        FeaturedCollection.objects.filter(collection__addons=3615)[0].delete()
-        super(TestNewFeaturedLocale, self).test_homepage_order()
-
-    def test_creatured_locale_es_ES(self):
-        """Ensure 'en-US'-creatured add-ons do not exist for other locales."""
-        res = self.client.get(self.url.replace('en-US', 'es-ES'))
-        assert self.addon not in res.context['addons']
 
 
 class TestListingByStatus(amo.tests.TestCase):
@@ -1188,22 +1041,6 @@ class TestLegacyRedirects(amo.tests.TestCase):
         redirects('/recommended/format:rss', '/featured/format:rss')
 
 
-class TestFeaturedPage(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/featured', 'addons/featured']
-
-    @mock.patch.object(settings, 'NEW_FEATURES', False)
-    def test_featured_addons(self):
-        """Make sure that only featured extensions are shown."""
-        url = reverse('browse.extensions') + '?sort=featured'
-        response = self.client.get(url)
-        # But not in the content.
-        featured = (Addon.objects.listed(amo.FIREFOX)
-                    .filter(type=amo.ADDON_EXTENSION)
-                    .values_list('id', flat=True))
-        eq_(sorted(featured),
-            sorted(a.id for a in response.context['addons']))
-
-
 class TestCategoriesFeed(amo.tests.TestCase):
 
     def setUp(self):
@@ -1236,12 +1073,8 @@ class TestCategoriesFeed(amo.tests.TestCase):
 
 class TestFeaturedFeed(amo.tests.TestCase):
     fixtures = ['addons/featured', 'base/addon_3615', 'base/apps',
-                'base/collections', 'base/featured', 'base/users']
-
-    def setUp(self):
-        patcher = mock.patch.object(settings, 'NEW_FEATURES', False)
-        patcher.start()
-        self.addCleanup(patcher.stop)
+                'base/collections', 'base/featured', 'base/users',
+                'bandwagon/featured_collections']
 
     def test_feed_elements_present(self):
         url = reverse('browse.featured.rss')
@@ -1255,15 +1088,6 @@ class TestFeaturedFeed(amo.tests.TestCase):
                 "started customizing Firefox.")
         eq_(len(doc('rss channel item')),
             Addon.objects.featured(amo.FIREFOX).count())
-
-
-class TestNewFeaturedFeed(TestFeaturedFeed):
-    fixtures = TestFeaturedFeed.fixtures + ['bandwagon/featured_collections']
-
-    def setUp(self):
-        patcher = mock.patch.object(settings, 'NEW_FEATURES', True)
-        patcher.start()
-        self.addCleanup(patcher.stop)
 
 
 class TestPersonas(amo.tests.TestCase):

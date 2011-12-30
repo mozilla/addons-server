@@ -289,7 +289,7 @@ class TestPane(amo.tests.TestCase):
         r = self.client.get(self.url)
         eq_(pq(r.content)('#featured-addons h2').text(), 'Featured Add-ons')
 
-    def _test_featured_addons(self):
+    def test_featured_addons(self):
         r = self.client.get(self.url)
         p = pq(r.content)('#featured-addons')
 
@@ -312,21 +312,13 @@ class TestPane(amo.tests.TestCase):
         eq_(li.find('h3').text(), unicode(addon.name))
         eq_(li.find('img').attr('src'), addon.icon_url)
 
-    @mock.patch.object(settings, 'NEW_FEATURES', False)
-    def test_featured_addons(self):
-        self._test_featured_addons()
-
-    @mock.patch.object(settings, 'NEW_FEATURES', True)
-    def test_new_featured_addons(self):
-        self._test_featured_addons()
-
     def test_featured_personas_section(self):
         r = self.client.get(self.url)
         h2 = pq(r.content)('#featured-personas h2')
         eq_(h2.text(), 'See all Featured Personas')
         eq_(h2.find('a.all').attr('href'), reverse('browse.personas'))
 
-    def _test_featured_personas(self):
+    def test_featured_personas(self):
         addon = Addon.objects.get(id=15679)
         r = self.client.get(self.url)
         p = pq(r.content)('#featured-personas')
@@ -336,14 +328,6 @@ class TestPane(amo.tests.TestCase):
             'Unexpected add-on details URL')
         eq_(a.attr('target'), '_self')
         eq_(p.find('.addon-title').text(), unicode(addon.name))
-
-    @mock.patch.object(settings, 'NEW_FEATURES', False)
-    def test_featured_personas(self):
-        self._test_featured_personas()
-
-    @mock.patch.object(settings, 'NEW_FEATURES', True)
-    def test_new_featured_personas(self):
-        self._test_featured_personas()
 
 
 class TestDetails(amo.tests.TestCase):

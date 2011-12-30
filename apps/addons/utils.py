@@ -118,18 +118,12 @@ class FeaturedManager(object):
     @classmethod
     def _get_objects(cls):
         fields = ['addon', 'type', 'locale', 'application']
-        if settings.NEW_FEATURES:
-            from bandwagon.models import FeaturedCollection
-            vals = (FeaturedCollection.objects
-                    .filter(collection__addons__isnull=False)
-                    .values_list('collection__addons',
-                                 'collection__addons__type', 'locale',
-                                 'application'))
-        else:
-            from addons.models import Addon
-            vals = (Addon.objects.valid().filter(feature__isnull=False)
-                    .values_list('id', 'type', 'feature__locale',
-                                 'feature__application'))
+        from bandwagon.models import FeaturedCollection
+        vals = (FeaturedCollection.objects
+                .filter(collection__addons__isnull=False)
+                .values_list('collection__addons',
+                             'collection__addons__type', 'locale',
+                             'application'))
         return [dict(zip(fields, val)) for val in vals]
 
     @classmethod
@@ -207,18 +201,12 @@ class CreaturedManager(object):
     @classmethod
     def _get_objects(cls):
         fields = ['category', 'addon', 'locales', 'app']
-        if settings.NEW_FEATURES:
-            from bandwagon.models import FeaturedCollection
-            vals = (FeaturedCollection.objects
-                    .filter(collection__addons__isnull=False)
-                    .values_list('collection__addons__category',
-                                 'collection__addons', 'locale',
-                                 'application'))
-        else:
-            from addons.models import AddonCategory
-            vals = (AddonCategory.objects.filter(feature=True)
-                    .values_list('category', 'addon', 'feature_locales',
-                                 'category__application'))
+        from bandwagon.models import FeaturedCollection
+        vals = (FeaturedCollection.objects
+                .filter(collection__addons__isnull=False)
+                .values_list('collection__addons__category',
+                             'collection__addons', 'locale',
+                             'application'))
         return [dict(zip(fields, val)) for val in vals]
 
     @classmethod
