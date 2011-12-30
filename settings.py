@@ -977,7 +977,7 @@ BROKER_VHOST = 'zamboni'
 BROKER_CONNECTION_TIMEOUT = 0.1
 CELERY_RESULT_BACKEND = 'amqp'
 CELERY_IGNORE_RESULT = True
-CELERY_IMPORTS = ('django_arecibo.tasks',)
+CELERY_IMPORTS = ('django_arecibo.tasks', 'delayed_mailer.tasks')
 # We have separate celeryds for processing devhub & images as fast as possible
 # Some notes:
 # - always add routes here instead of @task(queue=<name>)
