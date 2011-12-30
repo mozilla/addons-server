@@ -748,7 +748,6 @@ class PurchasesFilter(BaseFilter):
 @waffle_switch('marketplace')
 def purchases(request, addon_id=None, template=None):
     """A list of purchases that a user has made through the marketplace."""
-    1/0
     webapp = settings.APP_PREVIEW
     cs = (Contribution.objects
           .filter(user=request.amo_user,

@@ -83,7 +83,7 @@ cfg = {
         },
         'mail_admins': {
             'level': 'ERROR',
-            'class': 'delayed_mailer.log.DelayedEmailHandler'
+            'class': 'admin_log.AdminEmailHandler'
         },
     },
     'loggers': {
