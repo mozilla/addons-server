@@ -741,6 +741,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
             'js/zamboni/packager.js',
+            'js/lib/stick.js',
         ),
         'zamboni/editors': (
             'js/zamboni/editors.js',

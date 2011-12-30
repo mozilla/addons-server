@@ -285,6 +285,10 @@ $(document).ready(function() {
         }
     });
 
+    var timings_url = $('body').attr('data-collect-timings');
+    if (timings_url) {
+        stick.send(timings_url);
+    }
 });
 
 function initUploadControls() {

@@ -4,6 +4,8 @@ from waffle.views import wafflejs
 from django.conf.urls.defaults import patterns, url, include
 from django.views.decorators.cache import never_cache
 
+from django_statsd.urls import urlpatterns as statsd_patterns
+
 from . import views
 
 services_patterns = patterns('',
@@ -16,6 +18,7 @@ services_patterns = patterns('',
         name='amo.builder-pingback'),
     url('^graphite/(addons|dev|stage|apps-preview|apps-preview-dev)$',
         views.graphite, name='amo.graphite'),
+    url('^timing/', include(statsd_patterns)),
 )
 
 urlpatterns = patterns('',
