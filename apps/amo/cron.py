@@ -4,6 +4,7 @@ from subprocess import Popen, PIPE
 
 from django.conf import settings
 from django.utils import translation
+from django.db import connection, transaction
 
 import cronjobs
 import commonware.log
@@ -13,6 +14,7 @@ from amo.utils import chunked
 from addons.utils import AdminActivityLogMigrationTracker
 from bandwagon.models import Collection
 from cake.models import Session
+from constants.base import VALID_STATUSES
 from devhub.models import ActivityLog, LegacyAddonLog
 from files.models import TestResultCache
 from sharing import SERVICES_LIST, LOCAL_SERVICES_LIST
@@ -136,3 +138,196 @@ def migrate_admin_logs():
     for chunk in chunked(items, 100):
         tasks.migrate_admin_logs.delay(chunk)
         a.set(chunk[-1])
+
+
+@cronjobs.register
+def expired_resetcode():
+    """
+    Delete password reset codes that have expired.
+    """
+    log.debug('Removing reset codes that have expired...')
+    cursor = connection.cursor()
+    cursor.execute("""
+    UPDATE users SET resetcode=DEFAULT,
+                     resetcode_expires=DEFAULT
+    WHERE resetcode_expires < NOW()
+    """)
+    transaction.commit_unless_managed()
+
+
+@cronjobs.register
+def category_totals():
+    """
+    Update category counts for sidebar navigation.
+    """
+    log.debug('Starting category counts update...')
+    p = ",".join(['%s'] * len(VALID_STATUSES))
+    cursor = connection.cursor()
+    cursor.execute("""
+    UPDATE categories AS t INNER JOIN (
+     SELECT at.category_id, COUNT(DISTINCT Addon.id) AS ct
+      FROM addons AS Addon
+      INNER JOIN versions AS Version ON (Addon.id = Version.addon_id)
+      INNER JOIN applications_versions AS av ON (av.version_id = Version.id)
+      INNER JOIN addons_categories AS at ON (at.addon_id = Addon.id)
+      INNER JOIN files AS File ON (Version.id = File.version_id
+                                   AND File.status IN (%s))
+      WHERE Addon.status IN (%s) AND Addon.inactive = 0
+      GROUP BY at.category_id)
+    AS j ON (t.id = j.category_id)
+    SET t.count = j.ct
+    """ % (p, p), VALID_STATUSES * 2)
+    transaction.commit_unless_managed()
+
+
+@cronjobs.register
+def collection_subscribers():
+    """
+    Collection weekly and monthly subscriber counts.
+    """
+    log.debug('Starting collection subscriber update...')
+    cursor = connection.cursor()
+    cursor.execute("""
+        UPDATE collections SET weekly_subscribers = 0, monthly_subscribers = 0
+    """)
+    cursor.execute("""
+        UPDATE collections AS c
+        INNER JOIN (
+            SELECT
+                COUNT(collection_id) AS count,
+                collection_id
+            FROM collection_subscriptions
+            WHERE created >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+            GROUP BY collection_id
+        ) AS weekly ON (c.id = weekly.collection_id)
+        INNER JOIN (
+            SELECT
+                COUNT(collection_id) AS count,
+                collection_id
+            FROM collection_subscriptions
+            WHERE created >= DATE_SUB(CURDATE(), INTERVAL 31 DAY)
+            GROUP BY collection_id
+        ) AS monthly ON (c.id = monthly.collection_id)
+        SET c.weekly_subscribers = weekly.count,
+            c.monthly_subscribers = monthly.count
+    """)
+    transaction.commit_unless_managed()
+
+
+@cronjobs.register
+def unconfirmed():
+    """
+    Delete user accounts that have not been confirmed for two weeks.
+    """
+    log.debug("Removing user accounts that haven't been confirmed "
+              "for two weeks...")
+    cursor = connection.cursor()
+    cursor.execute("""
+        DELETE users
+        FROM users
+        LEFT JOIN addons_users on users.id = addons_users.user_id
+        LEFT JOIN addons_collections ON users.id=addons_collections.user_id
+        LEFT JOIN collections_users ON users.id=collections_users.user_id
+        LEFT JOIN api_auth_tokens ON users.id=api_auth_tokens.user_id
+        WHERE users.created < DATE_SUB(CURDATE(), INTERVAL 2 WEEK)
+        AND users.confirmationcode != ''
+        AND addons_users.user_id IS NULL
+        AND addons_collections.user_id IS NULL
+        AND collections_users.user_id IS NULL
+        AND api_auth_tokens.user_id IS NULL
+    """)
+    transaction.commit_unless_managed()
+
+
+@cronjobs.register
+def share_count_totals():
+    """
+    Sum share counts for each addon & service.
+    """
+    cursor = connection.cursor()
+    cursor.execute("""
+            REPLACE INTO stats_share_counts_totals (addon_id, service, count)
+                (SELECT addon_id, service, SUM(count)
+                 FROM stats_share_counts
+                 RIGHT JOIN addons ON addon_id = addons.id
+                 WHERE service IN (%s)
+                 GROUP BY addon_id, service)
+            """ % ','.join(['%s'] * len(SERVICES_LIST)),
+                   [s.shortname for s in SERVICES_LIST])
+    transaction.commit_unless_managed()
+
+
+@cronjobs.register
+def weekly_downloads():
+    """
+    Update 7-day add-on download counts.
+    """
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT addon_id, SUM(count) AS weekly_count
+        FROM download_counts
+        WHERE `date` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+        GROUP BY addon_id
+        ORDER BY addon_id""")
+    counts = cursor.fetchall()
+    addon_ids = [r[0] for r in counts]
+    if not addon_ids:
+        return
+    cursor.execute("""
+        SELECT id, 0
+        FROM addons
+        WHERE id NOT IN %s""", (addon_ids,))
+    counts += cursor.fetchall()
+
+    cursor.execute("""
+        CREATE TEMPORARY TABLE tmp
+        (addon_id INT PRIMARY KEY, count INT)""")
+    cursor.execute('INSERT INTO tmp VALUES %s' %
+                   ','.join(['(%s,%s)'] * len(counts)),
+                   counts)
+
+    cursor.execute("""
+        UPDATE addons INNER JOIN tmp
+            ON addons.id = tmp.addon_id
+        SET weeklydownloads = tmp.count""")
+    transaction.commit_unless_managed()
+
+
+@cronjobs.register
+def personas_adu():
+    """
+    Update average_daily_users from the personas database.
+    """
+    cursor = connection.cursor()
+    # Get all the persona that AMO knows about.
+
+    cursor.execute('SELECT persona_id from personas')
+    persona_ids = [str(x[0]) for x in cursor.fetchall()]
+
+    if not len(persona_ids):
+        return 0
+
+    # Get popularity numbers from the personas db.
+    p = ','.join(['%s'] * len(persona_ids))
+    cursor.execute("""
+                   SELECT id, IFNULL(popularity, 0) FROM personas
+                   WHERE id IN (%s)
+                   """ % p, persona_ids)
+    stats = cursor.fetchall()
+
+    cursor.execute("""
+                   CREATE TEMPORARY TABLE tmp
+                   (persona_id INT PRIMARY KEY, popularity INT)
+                   """)
+    cursor.execute('INSERT INTO tmp VALUES %s' %
+                   ','.join(['(%s,%s)'] * len(stats)),
+                   stats)
+
+    cursor.execute("""
+        UPDATE addons
+        INNER JOIN personas ON (addons.id = personas.addon_id)
+        INNER JOIN tmp ON (tmp.persona_id = personas.persona_id)
+        SET addons.average_daily_users = tmp.popularity
+        """)
+
+    transaction.commit_unless_managed()

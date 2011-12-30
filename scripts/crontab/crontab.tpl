@@ -18,8 +18,6 @@ HOME=/tmp
 15 * * * * {{ remora }}; php -f update-search-views.php
 20 * * * * {{ z_cron }} addon_last_updated
 25 * * * * {{ z_cron }} update_collections_votes
-# 30 * * * * {{ remora }}; php -f maintenance.php l10n_stats
-# 35 * * * * {{ remora }}; php -f maintenance.php l10n_rss
 40 * * * * {{ z_cron }} fetch_ryf_blog
 45 * * * * {{ z_cron }} update_addon_appsupport
 50 * * * * {{ z_cron }} cleanup_extracted_file
@@ -47,11 +45,11 @@ HOME=/tmp
 50 1 * * * {{ z_cron }} gc
 30 3 * * * {{ django }} cleanup
 30 4 * * * {{ z_cron }} cleanup_synced_collections
-30 5 * * * {{ remora }}; php -f maintenance.php expired_resetcode
-30 6 * * * {{ remora }}; php -f maintenance.php category_totals
-30 7 * * * {{ remora }}; php -f maintenance.php collection_subscribers
-30 8 * * * {{ remora }}; {{ python }} maintenance.py personas_adu
-30 9 * * * {{ remora }}; {{ python }} maintenance.py share_count_totals
+30 5 * * * {{ z_cron }} expired_resetcode
+30 6 * * * {{ z_cron }} category_totals
+30 7 * * * {{ z_cron }} collection_subscribers
+30 8 * * * {{ z_cron }} personas_adu
+30 9 * * * {{ z_cron }} share_count_totals
 30 10 * * * {{ z_cron }} recs
 30 20 * * * {{ z_cron }} update_perf
 30 22 * * * {{ z_cron }} deliver_hotness
@@ -62,13 +60,13 @@ HOME=/tmp
 
 #Once per day after 2100 PST (after metrics is done)
 35 21 * * * {{ z_cron }} update_addon_download_totals
-40 21 * * * {{ remora }}; {{ python }} maintenance.py weekly
+40 21 * * * {{ z_cron }} weekly_downloads
 35 22 * * * {{ z_cron }} update_global_totals
 40 22 * * * {{ z_cron }} update_addon_average_daily_users
 30 23 * * * {{ z_cron }} index_latest_stats
 45 23 * * * {{ z_cron }} update_addons_collections_downloads
 
 # Once per week
-45 23 * * 4 {{ remora }}; php -f maintenance.php unconfirmed
+45 23 * * 4 {{ z_cron }} unconfirmed
 
 MAILTO=root
