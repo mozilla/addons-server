@@ -55,3 +55,6 @@ SITE_URL = ''
 MOBILE_SITE_URL = ''
 
 CACHE_BACKEND = 'caching.backends.locmem://'
+
+# No more failures!
+APP_PREVIEW = False
