@@ -47,22 +47,20 @@ function PopcornObj() {
     this.init();
 
     this.start = function() {
-        if($('.promo-video').length) { // Video has already been created
-            $('.promo-video').show();
+        if(video) { // Video has already been created
+            video.show();
             $promos.addClass('show-video');
             pop.currentTime(0).play();
         } else {
             $promos.addClass('show-video');
             video = $('<div>', {'class': 'promo-video'});
-            video_el = $('<video>', {'controls': 'controls', 'tabindex': 0, 'id': 'promo-video', 'text': gettext('Your browser does not support the video tag')});
+            video_el = $('<video>', {'controls': 'controls', 'tabindex': 0, 'id': 'promo-video', 'text': 'Your browser does not support the video tag'});
             video_el_mp4  = $('<source>', {'type': 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"', 'src': 'https://static.addons.mozilla.net/media/videos/fds0fo.mov'});
             video_el_webm = $('<source>', {'type': 'video/webm; codecs="vp8, vorbis"', 'src': 'https://static.addons.mozilla.net/media/videos/vuue2y.webm'});
-            video_el_ogv = $('<source>', {'type': 'video/ogv; codecs="theora, vorbis";', 'src': 'https://static.addons.mozilla.net/media/videos/b85p03.ogv'});
+            video_el_ogv = $('<source>', {'type': 'video/ogv; codecs="theora, vorbis"', 'src': 'https://static.addons.mozilla.net/media/videos/b85p03.ogv'});
             $video_details = $('#video-details');
 
-            video_el.append(video_el_mp4);
-            video_el.append(video_el_webm);
-            video_el.append(video_el_ogv);
+            video_el.append(video_el_mp4, video_el_webm, video_el_ogv);
             video.append(video_el);
 
             $promos.append(video);
@@ -77,7 +75,7 @@ function PopcornObj() {
 
             // Save the original translation text
             $trans.each(function() {
-                $this = $(this);
+                var $this = $(this);
                 $this.attr('data-original', $this.text());
             });
 
@@ -133,12 +131,11 @@ function PopcornObj() {
 
         $learn.add($watch_link).removeClass('close');
 
-        if ($('#intro').is(':hidden')) {
-            $watch.show();
-        }
         $('#sub > section').show();
         $promo_addons.hide();
-        $('.promo-video').hide();
+        if(video) {
+            video.hide();
+        }
         $promos.removeClass('show-video');
     };
 
@@ -191,7 +188,7 @@ function PopcornObj() {
             start: start,
             end: end,
             onStart: function() {
-                $toFlash.css({'opacity': 0}).animate({'opacity': 1});
+                $toFlash.css('opacity', 0).animate({'opacity': 1});
             }
         });
     }
@@ -202,7 +199,8 @@ function PopcornObj() {
             end: end,
             onStart: function() {
                 // Only do this if we can see the featured add-ons
-                if($(window).scrollTop() + $(window).height() > $('#featured-addons').position()['top'] + 80) {
+                var $window = $(window);
+                if($window.scrollTop() + $window.height() > $('#featured-addons').position()['top'] + 80) {
                     $featured.each(function() {
                         var $this = $(this);
 
