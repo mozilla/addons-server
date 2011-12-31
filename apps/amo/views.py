@@ -10,7 +10,9 @@ from django.views.decorators.http import require_POST
 import commonware.log
 import jingo
 import waffle
+from waffle.decorators import waffle_flag
 from django_arecibo.tasks import post
+from django_statsd.views import record as django_statsd_record
 from statsd import statsd
 
 import amo
@@ -156,3 +158,10 @@ def graphite(request, site):
     ctx.update(request.GET.items())
     ctx['site'] = site
     return jingo.render(request, 'services/graphite.html', ctx)
+
+
+@csrf_exempt
+@post_required
+@waffle_flag('collect-timings')
+def record(request):
+    return django_statsd_record(request)
