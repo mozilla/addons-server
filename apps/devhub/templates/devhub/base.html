@@ -14,7 +14,7 @@
 
 {% block bodyattrs %}
 {% if addon %}data-default-locale="{{ addon.default_locale|lower }}"{% endif %}
-{% if waffle.flag('collect-timings') %}data-collect-timings="{{ url('django_statsd.views.record') }}"{% endif %}
+{% if waffle.flag('collect-timings') %}data-collect-timings="{% if not settings.DEBUG %}/z{% endif %}{{ url('django_statsd.views.record') }}"{% endif %}
 {% endblock %}
 
 {% block title %}{{ dev_page_title() }}{% endblock %}
