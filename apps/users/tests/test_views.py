@@ -55,17 +55,38 @@ class UserViewBase(amo.tests.TestCase):
 
 class TestAjax(UserViewBase):
 
-    def test_ajax(self):
-        url = reverse('users.ajax') + '?q=fligtar@gmail.com'
+    def setUp(self):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
-        r = self.client.get(url, follow=True)
+
+    def test_ajax_404(self):
+        r = self.client.get(reverse('users.ajax'), follow=True)
+        eq_(r.status_code, 404)
+
+    def test_ajax_success(self):
+        r = self.client.get(reverse('users.ajax'), {'q': 'fligtar@gmail.com'},
+                            follow=True)
         data = json.loads(r.content)
-        eq_(data['id'], 9945)
-        eq_(data['name'], u'Justin Scott \u0627\u0644\u062a\u0637\u0628')
+        eq_(data, {'status': 1, 'message': '', 'id': 9945,
+                   'name': u'Justin Scott \u0627\u0644\u062a\u0637\u0628'})
+
+    def test_ajax_failure_incorrect_email(self):
+        r = self.client.get(reverse('users.ajax'), {'q': 'incorrect'},
+                            follow=True)
+        data = json.loads(r.content)
+        eq_(data,
+            {'status': 0,
+             'message': 'A user with that email address does not exist.'})
+
+    def test_ajax_failure_no_email(self):
+        r = self.client.get(reverse('users.ajax'), {'q': ''}, follow=True)
+        data = json.loads(r.content)
+        eq_(data,
+            {'status': 0,
+             'message': 'An email address is required.'})
 
     def test_forbidden(self):
-        url = reverse('users.ajax')
-        r = self.client.get(url)
+        self.client.logout()
+        r = self.client.get(reverse('users.ajax'))
         eq_(r.status_code, 401)
 
 

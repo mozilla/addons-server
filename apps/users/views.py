@@ -65,9 +65,26 @@ addon_view = addon_view_factory(qs=Addon.objects.valid)
 @json_view
 def ajax(request):
     """Query for a user matching a given email."""
+
+    if 'q' not in request.GET:
+        raise http.Http404()
+
+    data = {'status': 0, 'message': ''}
+
     email = request.GET.get('q', '').strip()
-    u = get_object_or_404(UserProfile, email=email)
-    return dict(id=u.id, name=u.name)
+
+    if not email:
+        data.update(message=_('An email address is required.'))
+        return data
+
+    u = UserProfile.objects.filter(email=email)
+
+    if u:
+        data.update(status=1, id=u[0].id, name=u[0].name)
+    else:
+        data.update(message=_('A user with that email address does not exist.'))
+
+    return data
 
 
 @no_login_required

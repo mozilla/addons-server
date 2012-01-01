@@ -470,17 +470,31 @@ if ($('body.collections-contributors')) {
         var email = $('#contributor-ac').val();
         var src = $('#contributor-ac').attr('data-src');
         var my_id = $('#contributor-ac').attr('data-owner');
+
+        var $contributor_error = $('#contributor-ac-error');
+        if (!email) {
+            $contributor_error.html(gettext('An email address is required.')).addClass('error');
+            return;
+        }
+
         $('#contributor-ac').addClass("ui-autocomplete-loading");
         // TODO(potch): Add a fancy failure case.
         $.get(src, {q: email}, function(d) {
 
             $('#contributor-ac').removeClass("ui-autocomplete-loading");
 
-            // TODO(potch): gently yell at user if they add someone twice.
-            if ($('input[name=contributor][value='+d.id+']').length == 0 &&
-                my_id != d.id) {
-                var str = user_row({id: d.id, name: d.name, email: email});
-                $('#contributor-ac-button').closest('tbody').append(str);
+            if (d.status) {
+                if ($('input[name=contributor][value='+d.id+']').length == 0 &&
+                    my_id != d.id) {
+                    var str = user_row({id: d.id, name: d.name, email: email});
+                    $('#contributor-ac-button').closest('tbody').append(str);
+
+                    $contributor_error.html('').removeClass('error');
+                } else {
+                    $contributor_error.html(gettext('You have already added that user.')).addClass('error');
+                }
+            } else {
+                $contributor_error.html(d.message).addClass('error');
             }
 
             $('#contributor-ac').val('');
