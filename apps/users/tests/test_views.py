@@ -15,6 +15,7 @@ from jingo.helpers import datetime as datetime_filter
 from mock import patch
 from nose.tools import eq_
 from nose import SkipTest
+from tower import strip_whitespace
 import waffle
 # Unused, but needed so that we can patch jingo.
 from waffle import helpers
@@ -1291,8 +1292,8 @@ class TestPurchases(amo.tests.TestCase):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         node = pq(res.content)('.purchase').eq(0).text()
-        assert datetime_filter(self.con.created) in node, ('%s not found'
-               % datetime_filter(self.con.created))
+        ts = datetime_filter(self.con.created)
+        assert ts in node, '%s not found' % ts
 
     def get_order(self, order):
         res = self.client.get('%s?sort=%s' % (self.url, order))

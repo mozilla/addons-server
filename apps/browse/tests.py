@@ -14,6 +14,7 @@ import mock
 from nose import SkipTest
 from nose.tools import eq_, assert_raises, nottest
 from pyquery import PyQuery as pq
+from tower import strip_whitespace
 
 import amo
 import amo.tests
@@ -237,7 +238,8 @@ class TestListing(amo.tests.TestCase):
             item = pq(item)
             addon_id = item('.install').attr('data-addon')
             ts = Addon.objects.get(id=addon_id).created
-            eq_(item('.updated').text(), 'Added %s' % datetime_filter(ts))
+            eq_(item('.updated').text(),
+                'Added %s' % strip_whitespace(datetime_filter(ts)))
 
     def test_updated_date(self):
         doc = pq(self.client.get(urlparams(self.url, sort='updated')).content)
@@ -245,7 +247,8 @@ class TestListing(amo.tests.TestCase):
             item = pq(item)
             addon_id = item('.install').attr('data-addon')
             ts = Addon.objects.get(id=addon_id).last_updated
-            eq_(item('.updated').text(), 'Updated %s' % datetime_filter(ts))
+            eq_(item('.updated').text(),
+                'Updated %s' % strip_whitespace(datetime_filter(ts)))
 
     def test_users_adu_unit(self):
         doc = pq(self.client.get(urlparams(self.url, sort='users')).content)
