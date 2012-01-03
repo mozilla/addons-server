@@ -978,7 +978,7 @@ def payments(request, status=None):
 def preapproval(request):
     today = datetime.today()
     data = {'startDate': today,
-            'endDate': today + timedelta(days=365),
+            'endDate': today + timedelta(days=365 * 2),
             'pattern': 'users.payments',
             }
     try:
