@@ -8,6 +8,7 @@ from django.core.cache import cache
 from django.db.models import Q
 
 import mock
+from nose import SkipTest
 from nose.tools import eq_
 from PIL import Image
 from pyquery import PyQuery as pq
@@ -429,6 +430,7 @@ class TestEditBasic(TestEdit):
                                           application_id=amo.FIREFOX.id)
 
     def test_edit_categories_add_creatured(self):
+        raise SkipTest()
         """Ensure that categories cannot be changed for creatured add-ons."""
         self._feature_addon()
 
