@@ -1616,6 +1616,10 @@ body.eula #main {
     /* Hide this for SeaMonkey as it has no content */
     display: none !important;
 }
+.seamonkey #promos.show-video {
+    /* Yucky */
+    display: block !important;
+}
 
 /* Add-on Video */
 #intro #learn-more.video,
