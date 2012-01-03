@@ -9,6 +9,7 @@ from django import http
 # I'm so glad we named a function in here settings...
 from django.conf import settings as site_settings
 from django.contrib import admin
+from django.core.cache import cache
 from django.db.models.loading import cache as app_cache
 from django.shortcuts import redirect, get_object_or_404
 from django.utils.encoding import smart_str
@@ -51,7 +52,7 @@ from versions.models import Version
 from . import tasks
 from .forms import (BulkValidationForm, FeaturedCollectionFormSet, NotifyForm,
                     OAuthConsumerForm, MonthlyPickFormSet, AddonStatusForm,
-                    FileFormSet, JetpackUpgradeForm)
+                    FileFormSet, JetpackUpgradeForm, YesImSure)
 from .models import ValidationJob, EmailPreviewTopic, ValidationJobTally
 
 log = commonware.log.getLogger('z.zadmin')
@@ -713,3 +714,14 @@ def recalc_hash(request, file_id):
     messages.success(request,
                      'File hash and size recalculated for file %d.' % file.id)
     return {'success': 1}
+
+
+@admin.site.admin_view
+def memcache(request):
+    form = YesImSure(request.POST or None)
+    if form.is_valid():
+        cache.clear()
+        form = YesImSure()
+        messages.success(request, 'Cache cleared')
+    return jingo.render(request, 'zadmin/memcache.html',
+                        {'form': form, 'stats': cache._cache.get_stats()})

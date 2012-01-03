@@ -234,3 +234,7 @@ class JetpackUpgradeForm(happyforms.Form):
             if minver and maxver and minver >= maxver:
                 raise forms.ValidationError('Invalid version range.')
         return self.cleaned_data
+
+
+class YesImSure(happyforms.Form):
+    yes = forms.BooleanField(required=True, label="Yes, I'm sure")

@@ -7,6 +7,7 @@ import json
 from django import test
 from django.conf import settings
 from django.core import mail
+from django.core.cache import cache
 
 import mock
 from nose.plugins.attrib import attr
@@ -1629,3 +1630,24 @@ class TestCompat(amo.tests.ESTestCase):
         # Should show up for > 40%.
         tr = self.get_pq(ratio=.4).find('tr[data-addonid=%s]' % addon.id)
         eq_(tr.length, 1)
+
+
+class TestMemcache(amo.tests.TestCase):
+    fixtures = ['base/addon_3615', 'base/users']
+
+    def setUp(self):
+        self.url = reverse('zadmin.memcache')
+        cache.set('foo', 'bar')
+        self.client.login(username='admin@mozilla.com', password='password')
+
+    def test_login(self):
+        self.client.logout()
+        eq_(self.client.get(self.url).status_code, 302)
+
+    def test_can_clear(self):
+        self.client.post(self.url, {'yes': 1})
+        eq_(cache.get('foo'), None)
+
+    def test_cant_clear(self):
+        self.client.post(self.url, {'yes': 0})
+        eq_(cache.get('foo'), 'bar')
