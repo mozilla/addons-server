@@ -1556,6 +1556,31 @@ class TestReview(ReviewBase):
         eq_(tds.eq(1).find('th').text(), "Preliminarily approved")
         eq_(tds.eq(1).find('td a').text(), "An editor")
 
+    def test_item_history_compat_ordered(self):
+        """ Make sure that apps in compatibility are ordered. """
+        self.addon_file(u'something', u'0.2', amo.STATUS_PUBLIC,
+                        amo.STATUS_UNREVIEWED)
+
+        a1, c = Application.objects.get_or_create(id=amo.THUNDERBIRD.id)
+        a2, c = Application.objects.get_or_create(id=amo.SEAMONKEY.id)
+        av = AppVersion.objects.all()[0]
+        v = self.addon.versions.all()[0]
+
+        ApplicationsVersions.objects.create(version=v,
+                application=a1, min=av, max=av)
+
+        ApplicationsVersions.objects.create(version=v,
+                application=a2, min=av, max=av)
+
+        eq_(self.addon.versions.count(), 1)
+        url = reverse('editors.review', args=[self.addon.slug])
+
+        doc = pq(self.client.get(url).content)
+        icons = doc('.listing-body .app-icon')
+        eq_(icons.eq(0).attr('title'), "Firefox")
+        eq_(icons.eq(1).attr('title'), "SeaMonkey")
+        eq_(icons.eq(2).attr('title'), "Thunderbird")
+
     def test_item_history_notes(self):
         v = self.addon.versions.all()[0]
         v.releasenotes = 'hi'

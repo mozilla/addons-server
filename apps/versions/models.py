@@ -184,6 +184,11 @@ class Version(amo.models.ModelBase):
         avs = self.apps.select_related(depth=1)
         return self._compat_map(avs)
 
+    @amo.cached_property(writable=True)
+    def compatible_apps_ordered(self):
+        apps = self.compatible_apps.items()
+        return sorted(apps, key=lambda v: v[0].short)
+
     def compatible_platforms(self):
         """Returns a dict of compatible file platforms for this version.
 

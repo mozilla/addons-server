@@ -90,7 +90,7 @@
           </ul>
           <div><strong>{{ _('Compatibility:') }}</strong></div>
           <ul>
-            {% for app, compat in version.compatible_apps.items() %}
+            {% for app, compat in version.compatible_apps_ordered %}
             <li>
               <div class="app-icon ed-sprite-{{ app.short }}" title="{{ app.pretty }}"></div>
               {{ compat }}
