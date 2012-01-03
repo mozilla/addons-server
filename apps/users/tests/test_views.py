@@ -1579,7 +1579,9 @@ class TestPurchases(amo.tests.TestCase):
         assert not item.hasClass('reversed'), (
             "Unexpected 'refunded' class on '.item'")
         assert not item.find('.refund-notice'), 'Unexpected refund message'
-        eq_(item.find('.purchase').eq(2).siblings('a').attr('href'),
+        purchases = item.find('.contributions')
+        eq_(purchases.find('.request-support').length, 1)
+        eq_(purchases.find('li').eq(2).find('.request-support').attr('href'),
             reverse('users.support', args=[c[1].id]))
 
     def test_repurchased(self):

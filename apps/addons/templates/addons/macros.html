@@ -58,12 +58,16 @@
   {% endif %}
 {% endmacro %}
 
-{% macro refund_info(amo, addon, contributions, is_refunded, is_chargeback) %}
+{% macro refund_info(amo, addon, contributions) %}
   {% set contributions = contributions.get(addon.pk, []) %}
   {% if contributions %}
-    {% set get_support = not is_refunded and not is_chargeback %}
     <ul class="contributions">
+      {% set last_contrib = contributions[-1].type == amo.CONTRIB_PURCHASE
+                            and contributions[-1].id %}
       {% for contribution in contributions %}
+        {# Show "Request Support" link if this is the last contribution
+           and is a purchase. #}
+        {% set get_support = contribution.id == last_contrib %}
         <li>
             {% if contribution.type == amo.CONTRIB_PURCHASE %}
               <span class="purchase{{ ' supportable' if get_support }}">
