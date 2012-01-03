@@ -9,3 +9,6 @@ psutil>=0.2.0
 
 # For JWT to sign App receipts:
 M2Crypto>=0.20.0
+
+# For the addon validator, including C speedups.
+simplejson==2.3.2
