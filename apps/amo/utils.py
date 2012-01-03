@@ -197,7 +197,6 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                                               headers=headers or {},
                                               ).send(fail_silently=False)
             else:
-                log.info('Email w/o perm setting: %s' % subject)
                 result = EmailMessage(subject, message, from_email,
                                       white_list,
                                       connection=connection,
