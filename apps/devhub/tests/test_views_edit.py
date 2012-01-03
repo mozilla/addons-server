@@ -1189,10 +1189,16 @@ class TestEditTechnical(TestEdit):
         r = self.client.get(self.technical_edit_url)
         self.assertContains(r, 'Upgrade SDK?')
 
+    def test_dependencies_none(self):
+        AddonDependency.objects.all().delete()
+        eq_(list(self.addon.all_dependencies), [])
+        r = self.client.get(self.technical_url)
+        eq_(pq(r.content)('#required-addons .empty').length, 1)
+
     def test_dependencies_overview(self):
         eq_([d.id for d in self.addon.all_dependencies], [5579])
         r = self.client.get(self.technical_url)
-        req = pq(r.content)('td#required-addons')
+        req = pq(r.content)('#required-addons')
         eq_(req.length, 1)
         eq_(req.attr('data-src'),
             reverse('devhub.ajax.dependencies', args=[self.addon.slug]))
@@ -1322,7 +1328,6 @@ class TestEditTechnical(TestEdit):
         Addon.objects.all().update(type=amo.ADDON_WEBAPP)
         addon = Addon.objects.get(id=5299)
         r = self.client.get(self.technical_edit_url)
-        eq_(r.context['dependency_form'], None)
 
     def test_edit_addon_dependencies_no_add_apps(self):
         """Add-ons should not be able to add app dependencies."""
