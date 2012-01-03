@@ -184,7 +184,7 @@ class Version(amo.models.ModelBase):
         avs = self.apps.select_related(depth=1)
         return self._compat_map(avs)
 
-    @amo.cached_property(writable=True)
+    @amo.cached_property
     def compatible_apps_ordered(self):
         apps = self.compatible_apps.items()
         return sorted(apps, key=lambda v: v[0].short)
