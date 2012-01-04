@@ -10,7 +10,6 @@ from django.views.decorators.http import require_POST
 import commonware.log
 import jingo
 import waffle
-from waffle.decorators import waffle_flag
 from django_arecibo.tasks import post
 from django_statsd.views import record as django_statsd_record
 from statsd import statsd
@@ -162,6 +161,10 @@ def graphite(request, site):
 
 @csrf_exempt
 @post_required
-@waffle_flag('collect-timings')
 def record(request):
-    return django_statsd_record(request)
+    flag = waffle.models.Flag.objects.get(name='collect-timings')
+    # The rate limiting is done up on the client, but if things go wrong
+    # we can just turn this off here.
+    if flag.everyone:
+        return django_statsd_record(request)
+    return http.HttpResponseForbidden()

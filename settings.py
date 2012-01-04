@@ -704,6 +704,7 @@ MINIFY_BUNDLES = {
 
             # Fix-up outgoing links
             'js/zamboni/outgoing_links.js',
+            'js/lib/stick.js',
         ),
         'zamboni/discovery': (
             'js/lib/jquery-1.6.4.js',
@@ -741,7 +742,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
             'js/zamboni/packager.js',
-            'js/lib/stick.js',
         ),
         'zamboni/editors': (
             'js/zamboni/editors.js',

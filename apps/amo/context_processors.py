@@ -110,9 +110,16 @@ def global_settings(request):
     else:
         context['amo_user'] = AnonymousUser()
 
+    # The flag has to be enabled for everyone and then we'll use that
+    # percentage in the pages.
+    flag = waffle.models.Flag.objects.get(name='collect-timings')
+    percent = 0
+    if flag.everyone and flag.percent:
+        percent = float(flag.percent) / 100.0
     context.update({'account_links': account_links,
                     'settings': settings, 'amo': amo,
                     'tools_links': tools_links,
                     'tools_title': tools_title,
-                    'ADMIN_MESSAGE': get_config('site_notice')})
+                    'ADMIN_MESSAGE': get_config('site_notice'),
+                    'collect_timings_percent': percent})
     return context

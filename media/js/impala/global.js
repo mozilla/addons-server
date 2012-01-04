@@ -190,3 +190,17 @@ $(function() {
       return false;
   });
 });
+
+$(function() {
+    "use strict";
+
+    $(document).ready(function() {
+        var timings = $('body').attr('data-collect-timings');
+        if (timings) {
+            timings = timings.split(':', 2);
+            if (Math.random() < parseFloat(timings[1])) {
+                stick.send(timings[0]);
+            }
+        }
+    });
+});
