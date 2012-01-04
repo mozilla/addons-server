@@ -88,13 +88,17 @@ $(function () {
         function showNext() {
             if (current < $strip.length-1) {
                 showImage($strip.eq(current+1).find("a"));
-                $(this).blur();
+                if (!this.window) {
+                    $(this).blur();
+                }
             }
         }
         function showPrev() {
             if (current > 0) {
                 showImage($strip.eq(current-1).find("a"));
-                $(this).blur();
+                if (!this.window) {
+                    $(this).blur();
+                }
             }
         }
         $("#lightbox .next").click(_pd(showNext));
