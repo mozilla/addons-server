@@ -142,8 +142,8 @@ def get_paykey(data):
             paypal_log.info('Using preapproval: %s' % data['preapproval'].pk)
             paypal_data['preapprovalKey'] = key
 
-    paypal_data.update(add_receivers(*receivers),
-                       preapproval='preapprovalKey' in paypal_data)
+    paypal_data.update(add_receivers(*receivers,
+                                preapproval='preapprovalKey' in paypal_data))
 
     if data.get('memo'):
         paypal_data['memo'] = data['memo']
