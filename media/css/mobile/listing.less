@@ -114,7 +114,7 @@ li.item {
         padding: 0 10px;
     }
     .vital {
-        color: green;
+        color: @green;
         padding-left: .5em;
         &:before {
             color: #aaa;
@@ -126,6 +126,9 @@ li.item {
             &:before {
                 display: none;
             }
+        }
+        &.premium {
+            color: @orange;
         }
     }
     .stars, i, .vital {
