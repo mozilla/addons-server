@@ -3,15 +3,16 @@ var purchases = {
         $("#contribute-why").popup("#contribute-more-info", {
             pointTo: "#contribute-more-info"
         });
-        $('div.contribute a.suggested-amount,button.paypal').live('click', function(event) {
+        $('button.paypal').live('click', function(event) {
             var el = this,
-                url = $(el).attr('href') + '&result_type=json',
+                url = $(el).closest('form').attr('action') + '&result_type=json',
                 classes = 'ajax-loading loading-submit disabled';
             if ($(el).attr('data-realurl')) {
                 url += '&realurl=' + encodeURIComponent($(el).attr('data-realurl'));
             }
             $(el).addClass(classes);
             $.ajax({
+                type: 'POST',
                 url: url,
                 dataType: 'json',
                 /* false so that the action is considered within bounds of
@@ -208,7 +209,7 @@ var contributions = {
             }
             var $self = $(this);
             $self.find('#contribute-actions').children().toggleClass('js-hidden');
-            $.ajax({type: 'GET',
+            $.ajax({type: 'POST',
                 url: $(this).attr('action') + '?result_type=json',
                 data: $(this).serialize(),
                 /* So popup blocker doesn't fire */

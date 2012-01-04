@@ -25,7 +25,7 @@ from mobility.decorators import mobilized, mobile_template
 
 import amo
 from amo import messages
-from amo.decorators import login_required, write
+from amo.decorators import login_required, post_required, write
 from amo.forms import AbuseForm
 from amo.helpers import shared_url
 from amo.utils import sorted_groupby, randslice
@@ -493,11 +493,12 @@ def developers(request, addon, page):
 @can_be_purchased
 @has_not_purchased
 @write
+@post_required
 def purchase(request, addon):
     log.debug('Starting purchase of addon: %s by user: %s'
               % (addon.pk, request.amo_user.pk))
     amount = addon.premium.get_price()
-    source = request.GET.get('source', '')
+    source = request.POST.get('source', '')
     uuid_ = hashlib.md5(str(uuid.uuid4())).hexdigest()
     # l10n: {0} is the addon name
     contrib_for = _(u'Purchase of {0}').format(jinja2.escape(addon.name))
@@ -522,7 +523,7 @@ def purchase(request, addon):
                     memo=contrib_for,
                     pattern=pattern,
                     preapproval=preapproval,
-                    qs={'realurl': request.GET.get('realurl')},
+                    qs={'realurl': request.POST.get('realurl')},
                     slug=slug,
                     uuid=uuid_))
     except paypal.PaypalError as error:
@@ -564,7 +565,7 @@ def purchase(request, addon):
     log.debug('Got paykey for addon: %s by user: %s'
               % (addon.pk, request.amo_user.pk))
     url = '%s?paykey=%s' % (settings.PAYPAL_FLOW_URL, paykey)
-    if request.GET.get('result_type') == 'json' or request.is_ajax():
+    if request.POST.get('result_type') == 'json' or request.is_ajax():
         return http.HttpResponse(json.dumps({'url': url,
                                              'paykey': paykey,
                                              'error': str(error),
@@ -659,16 +660,17 @@ def purchase_error(request, addon):
 
 
 @addon_view
+@post_required
 def contribute(request, addon):
     webapp = addon.is_webapp()
-    contrib_type = request.GET.get('type', 'suggested')
+    contrib_type = request.POST.get('type', 'suggested')
     is_suggested = contrib_type == 'suggested'
-    source = request.GET.get('source', '')
-    comment = request.GET.get('comment', '')
+    source = request.POST.get('source', '')
+    comment = request.POST.get('comment', '')
 
     amount = {
         'suggested': addon.suggested_amount,
-        'onetime': request.GET.get('onetime-amount', '')}.get(contrib_type, '')
+        'onetime': request.POST.get('onetime-amount', '')}.get(contrib_type, '')
     if not amount:
         amount = settings.DEFAULT_SUGGESTED_CONTRIBUTION
 

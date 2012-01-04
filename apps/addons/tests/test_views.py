@@ -154,16 +154,20 @@ class TestContributeEmbedded(amo.tests.TestCase):
         self.detail_url = reverse('addons.detail', args=[self.addon.slug])
 
     @patch('paypal.get_paykey')
-    def client_get(self, get_paykey, **kwargs):
+    def client_post(self, get_paykey, **kwargs):
         get_paykey.return_value = ['abc', '']
         url = reverse('addons.contribute', args=kwargs.pop('rev'))
         if 'qs' in kwargs:
             url = url + kwargs.pop('qs')
-        return self.client.get(url, kwargs.get('data', {}))
+        return self.client.post(url, kwargs.get('data', {}))
+
+    def test_client_get(self):
+        url = reverse('addons.contribute', args=[self.addon.slug])
+        eq_(self.client.get(url, {}).status_code, 405)
 
     def test_invalid_is_404(self):
         """we get a 404 in case of invalid addon id"""
-        response = self.client_get(rev=[1])
+        response = self.client_post(rev=[1])
         eq_(response.status_code, 404)
 
     @fudge.patch('paypal.get_paykey')
@@ -175,11 +179,11 @@ class TestContributeEmbedded(amo.tests.TestCase):
         self.addon.name = u'foë'
         self.addon.save()
         url = reverse('addons.contribute', args=['a592'])
-        self.client.get(url)
+        self.client.post(url)
 
     def test_params_common(self):
         """Test for the some of the common values"""
-        response = self.client_get(rev=['a592'])
+        response = self.client_post(rev=['a592'])
         eq_(response.status_code, 302)
         con = Contribution.objects.all()[0]
         eq_(con.charity_id, None)
@@ -188,23 +192,23 @@ class TestContributeEmbedded(amo.tests.TestCase):
 
     def test_custom_amount(self):
         """Test that we have the custom amount when given."""
-        request_params = '?type=onetime&onetime-amount=42'
-        response = self.client_get(rev=['a592'], qs=request_params)
+        response = self.client_post(rev=['a592'], data={'onetime-amount': 42,
+                                                        'type': 'onetime'})
         eq_(response.status_code, 302)
         eq_(Contribution.objects.all()[0].amount, Decimal('42.00'))
 
     def test_ppal_json_switch(self):
-        response = self.client_get(rev=['a592'], qs='?result_type=json')
+        response = self.client_post(rev=['a592'], qs='?result_type=json')
         eq_(response.status_code, 200)
-        response = self.client_get(rev=['a592'])
+        response = self.client_post(rev=['a592'])
         eq_(response.status_code, 302)
 
     def test_ppal_return_url_not_relative(self):
-        response = self.client_get(rev=['a592'], qs='?result_type=json')
+        response = self.client_post(rev=['a592'], qs='?result_type=json')
         assert json.loads(response.content)['url'].startswith('http')
 
     def test_unicode_comment(self):
-        res = self.client_get(rev=['a592'],
+        res = self.client_post(rev=['a592'],
                             data={'comment': u'版本历史记录'})
         eq_(res.status_code, 302)
         assert settings.PAYPAL_FLOW_URL in res._headers['location'][1]
@@ -215,19 +219,19 @@ class TestContributeEmbedded(amo.tests.TestCase):
                                    paypal='test@moz.com')
         self.addon.update(charity=c)
 
-        r = self.client_get(rev=['a592'])
+        r = self.client_post(rev=['a592'])
         eq_(r.status_code, 302)
         eq_(self.addon.charity_id,
             self.addon.contribution_set.all()[0].charity_id)
 
     def test_no_org(self):
-        r = self.client_get(rev=['a592'])
+        r = self.client_post(rev=['a592'])
         eq_(r.status_code, 302)
         eq_(self.addon.contribution_set.all()[0].charity_id, None)
 
     def test_no_suggested_amount(self):
         self.addon.update(suggested_amount=None)
-        res = self.client_get(rev=['a592'])
+        res = self.client_post(rev=['a592'])
         eq_(res.status_code, 302)
         eq_(settings.DEFAULT_SUGGESTED_CONTRIBUTION,
             self.addon.contribution_set.all()[0].amount)
@@ -279,7 +283,7 @@ class TestContributeEmbedded(amo.tests.TestCase):
 
     def contribute(self):
         url = reverse('addons.contribute', args=[self.addon.slug])
-        return self.client.get(urlparams(url, result_type='json'))
+        return self.client.post(urlparams(url, result_type='json'))
 
     @fudge.patch('paypal.get_paykey')
     def test_pre_approval(self, get_paykey):
@@ -314,18 +318,21 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
 
     def test_premium_only(self):
         self.addon.update(premium_type=amo.ADDON_FREE)
-        eq_(self.client.get(self.purchase_url).status_code, 403)
+        eq_(self.client.post(self.purchase_url).status_code, 403)
+
+    def test_get(self):
+        eq_(self.client.get(self.purchase_url).status_code, 405)
 
     @patch('paypal.get_paykey')
     def test_redirect(self, get_paykey):
         get_paykey.return_value = ['some-pay-key', '']
-        res = self.client.get(self.purchase_url)
+        res = self.client.post(self.purchase_url)
         assert 'some-pay-key' in res['Location']
 
     @patch('paypal.get_paykey')
     def test_ajax(self, get_paykey):
         get_paykey.return_value = ['some-pay-key', '']
-        res = self.client.get_ajax(self.purchase_url)
+        res = self.client.post_ajax(self.purchase_url)
         eq_(json.loads(res.content)['paykey'], 'some-pay-key')
 
     @fudge.patch('paypal.get_paykey')
@@ -333,18 +340,18 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         (get_paykey.expects_call()
                    .with_matching_args(amount=Decimal('0.99'))
                    .returns(('some-pay-key', '')))
-        self.client.get_ajax(self.purchase_url)
+        self.client.post_ajax(self.purchase_url)
 
     @fudge.patch('paypal.get_paykey')
     def test_paykey_error(self, get_paykey):
         get_paykey.expects_call().raises(PaypalError('woah'))
-        res = self.client.get_ajax(self.purchase_url)
+        res = self.client.post_ajax(self.purchase_url)
         assert json.loads(res.content)['error'].startswith('There was an')
 
     @patch('paypal.get_paykey')
     def test_paykey_contribution(self, get_paykey):
         get_paykey.return_value = ['some-pay-key', '']
-        self.client.get_ajax(self.purchase_url)
+        self.client.post_ajax(self.purchase_url)
         cons = Contribution.objects.filter(type=amo.CONTRIB_PENDING)
         eq_(cons.count(), 1)
         eq_(cons[0].amount, Decimal('0.99'))
@@ -356,19 +363,19 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
 
     @patch('paypal.check_purchase')
     @patch('paypal.get_paykey')
-    def get_with_preapproval(self, get_paykey, check_purchase,
+    def post_with_preapproval(self, get_paykey, check_purchase,
                              check_purchase_result=None):
         get_paykey.return_value = ['some-pay-key', 'COMPLETED']
         check_purchase.return_value = check_purchase_result
-        return self.client.get_ajax(self.purchase_url)
+        return self.client.post_ajax(self.purchase_url)
 
     def test_paykey_pre_approval(self):
-        res = self.get_with_preapproval(check_purchase_result='COMPLETED')
+        res = self.post_with_preapproval(check_purchase_result='COMPLETED')
         eq_(json.loads(res.content)['status'], 'COMPLETED')
         self.check_contribution(amo.CONTRIB_PURCHASE)
 
     def test_paykey_pre_approval_disagree(self):
-        res = self.get_with_preapproval(check_purchase_result='No!!!')
+        res = self.post_with_preapproval(check_purchase_result='No!!!')
         eq_(json.loads(res.content)['status'], 'NOT-COMPLETED')
         self.check_contribution(amo.CONTRIB_PENDING)
 
@@ -377,7 +384,7 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
     def test_paykey_pre_approval_no_ajax(self, get_paykey, check_purchase):
         get_paykey.return_value = ['some-pay-key', 'COMPLETED']
         check_purchase.return_value = 'COMPLETED'
-        res = self.client.get(self.purchase_url)
+        res = self.client.post(self.purchase_url)
         self.assertRedirects(res, shared_url('addons.detail', self.addon))
 
     @patch('paypal.check_purchase')
@@ -390,7 +397,7 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         (get_paykey.expects_call()
                    .with_matching_args(preapproval=pre)
                    .returns(('some-pay-key', 'COMPLETED')))
-        self.client.get_ajax(self.purchase_url)
+        self.client.post_ajax(self.purchase_url)
 
     @patch('paypal.check_purchase')
     @fudge.patch('paypal._call')
@@ -404,18 +411,18 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
               .with_matching_args(arg.any(), arg.passes_test(r))
               .returns({'payKey':'some-pay-key',
                         'paymentExecStatus':'COMPLETED'}))
-        self.client.get_ajax(self.purchase_url)
+        self.client.post_ajax(self.purchase_url)
 
     @patch('addons.models.Addon.has_purchased')
     def test_has_purchased(self, has_purchased):
         has_purchased.return_value = True
-        res = self.client.get(self.purchase_url)
+        res = self.client.post(self.purchase_url)
         eq_(res.status_code, 403)
 
     @patch('addons.models.Addon.has_purchased')
     def test_not_has_purchased(self, has_purchased):
         has_purchased.return_value = False
-        res = self.client.get_ajax(self.purchase_url)
+        res = self.client.post_ajax(self.purchase_url)
         eq_(res.status_code, 200)
 
     def make_contribution(self, type=amo.CONTRIB_PENDING):
@@ -553,7 +560,7 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         (get_paykey.expects_call()
                    .calls(check_call)
                    .returns(('payKey', 'paymentExecStatus')))
-        self.client.get('%s?%s' % (
+        self.client.post('%s?%s' % (
                         reverse('addons.purchase', args=[self.addon.slug]),
                         'result_type=json'))
 

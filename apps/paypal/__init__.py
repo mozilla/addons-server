@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import contextlib
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 import socket
 import urllib
 import urllib2
@@ -28,8 +28,18 @@ class PaypalError(Exception):
     def __str__(self):
         default = _('There was an error communicating with PayPal. '
                     'Please try again later.')
+        msg = getattr(self, 'msg')
+        if msg:
+            return msg
         return messages.get(self.id, default)
 
+
+class PaypalDataError(PaypalError):
+    # Some of the data passed to Paypal was incorrect. We'll catch them and
+    # re-raise as a PaypalError so they can be easily caught.
+
+    def __init__(self, msg):
+        self.msg = msg
 
 class AuthError(PaypalError):
     # We've got the settings wrong on our end.
@@ -71,7 +81,11 @@ def add_receivers(chains, email, amount, uuid, preapproval=False):
     """
     Split a payment down into multiple receivers using the chains passed in.
     """
-    remainder = Decimal(str(amount))
+    try:
+        remainder = Decimal(str(amount))
+    except InvalidOperation, msg:
+        raise PaypalDataError(msg)
+
     result = {}
     for number, chain in enumerate(chains, 1):
         percent, destination = chain

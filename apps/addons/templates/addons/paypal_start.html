@@ -43,13 +43,15 @@
         You are logged in as <strong>{{ user_email }}</strong>!
         {% endtrans %}
       </div>
-      <button class="button prominent paypal"
-              href="{{ shared_url('addons.purchase', addon) }}?"
-              data-realurl="{{ download }}"
-              data-thanksurl="{{ shared_url('addons.purchase.thanks', addon) }}">
-        {# The <small> makes it smaller, <em> makes it darker. Don't localize "PayPal". #}
-        {{ loc('Pay <small>with</small> Pay<em>Pal</em>')|xssafe }}
-      </button>
+      <form method="post" action="{{ shared_url('addons.purchase', addon) }}?">
+        {{ csrf() }}
+        <button class="button prominent paypal"
+                data-realurl="{{ download }}"
+                data-thanksurl="{{ shared_url('addons.purchase.thanks', addon) }}">
+          {# The <small> makes it smaller, <em> makes it darker. Don't localize "PayPal". #}
+          {{ loc('Pay <small>with</small> Pay<em>Pal</em>')|xssafe }}
+        </button>
+      </form>
       <p>{{ loc('Complete your purchase with PayPal.  No PayPal account is necessary.') }}</p>
       {% else %}
       <div class="paypal-user login">

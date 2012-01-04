@@ -47,6 +47,11 @@ class TestPayKey(amo.tests.TestCase):
         data['preapproval'] = self.pre
         return data
 
+    def test_data_fails(self):
+        data = self.data.copy()
+        data['amount'] = 'some random text'
+        self.assertRaises(paypal.PaypalDataError, paypal.get_paykey, data)
+
     @mock.patch('urllib2.OpenerDirector.open')
     def test_auth_fails(self, opener):
         opener.return_value = StringIO(auth_error)
