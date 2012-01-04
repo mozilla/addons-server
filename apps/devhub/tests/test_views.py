@@ -2369,16 +2369,25 @@ class TestSubmitStep7(TestSubmitBase):
             u'%s/en-US/firefox/addon/%s/' % (
                 settings.SITE_URL, u.decode('utf8')))
 
+    def test_addon_editor_pitch(self):
+        res = self.client.get(self.url)
+        eq_(pq(res.content)('#editor-pitch').length, 1)
+
+    def test_app_editor_pitch(self):
+        self.addon.update(type=amo.ADDON_WEBAPP)
+        res = self.client.get(self.url)
+        eq_(pq(res.content)('#editor-pitch').length, 0)
+
     @mock.patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
     def test_marketplace(self):
         res = self.client.get(self.url)
-        eq_(pq(res.content)('.action-needed').length, 2)
+        eq_(pq(res.content)('#marketplace-enroll').length, 1)
 
     @mock.patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
     def test_marketplace_not(self):
         self.addon.update(type=amo.ADDON_SEARCH)
         res = self.client.get(self.url)
-        eq_(pq(res.content)('.action-needed').length, 1)
+        eq_(pq(res.content)('#marketplace-enroll').length, 0)
 
 
 class TestResumeStep(TestSubmitBase):

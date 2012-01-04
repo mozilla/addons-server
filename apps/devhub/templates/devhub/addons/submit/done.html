@@ -52,17 +52,19 @@
   </ul>
 </div>
 
-<div class="action-needed">
-  <h3>{{ _('Get Ahead in the Review Queue!') }}</h3>
-  <p>
-    {{ _('Become an AMO Editor today and get your add-ons reviewed faster.') }}
-    <a class="button learn-more" href="https://wiki.mozilla.org/AMO:Editors">
-      {{ _('Learn More') }}</a>
-  </p>
-</div>
+{% if not webapp %}
+  <div id="editor-pitch" class="action-needed">
+    <h3>{{ _('Get Ahead in the Review Queue!') }}</h3>
+    <p>
+      {{ _('Become an AMO Editor today and get your add-ons reviewed faster.') }}
+      <a class="button learn-more" href="https://wiki.mozilla.org/AMO:Editors">
+        {{ _('Learn More') }}</a>
+    </p>
+  </div>
+{% endif %}
 
 {% if waffle.switch('marketplace') and addon.type in amo.ADDON_BECOME_PREMIUM %}
-  <div class="action-needed">
+  <div id="marketplace-enroll" class="action-needed">
     <h3>{{ _('Enrolling in Marketplace') }}</h3>
     {% with doc_url=url('devhub.docs', doc_name='marketplace'),
             payments_url=addon.get_dev_url('payments') %}
