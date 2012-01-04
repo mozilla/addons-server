@@ -932,40 +932,59 @@ class TestLogout(UserViewBase):
 
 class TestRegistration(UserViewBase):
 
-    def test_confirm(self):
-        # User doesn't have a confirmation code
+    def test_new_confirm(self):
+        waffle.models.Switch.objects.create(name='zamboni-login', active=True)
+
+        # User doesn't have a confirmation code.
         url = reverse('users.confirm', args=[self.user.id, 'code'])
         r = self.client.get(url, follow=True)
-        anon = pq(r.content)('body').attr('data-anonymous')
-        self.assertTrue(anon)
+        is_anonymous = pq(r.content)('body').attr('data-anonymous')
+        eq_(json.loads(is_anonymous), True)
 
-        self.user_profile.confirmationcode = "code"
-        self.user_profile.save()
+        self.user_profile.update(confirmationcode='code')
 
-        # URL has the wrong confirmation code
+        # URL has the wrong confirmation code.
         url = reverse('users.confirm', args=[self.user.id, 'blah'])
         r = self.client.get(url, follow=True)
         self.assertContains(r, 'Invalid confirmation code!')
 
-        # URL has the right confirmation code
+        # URL has the right confirmation code.
         url = reverse('users.confirm', args=[self.user.id, 'code'])
         r = self.client.get(url, follow=True)
         self.assertContains(r, 'Successfully verified!')
 
-    def test_confirm_resend(self):
-        # User doesn't have a confirmation code
+    def test_legacy_confirm(self):
+        # User doesn't have a valid confirmation code.
+        url = reverse('users.confirm', args=[self.user.id, 'blah'])
+        r = self.client.get(url, follow=True)
+        # Ensure we don't show django messages for registrations via Remora.
+        eq_(pq(r.content)('.notification-box').length, 0)
+
+        self.user_profile.update(confirmationcode='code')
+
+        url = reverse('users.confirm', args=[self.user.id, 'code'])
+        r = self.client.get(url, follow=True)
+        eq_(pq(r.content)('.notification-box').length, 0)
+
+    def test_new_confirm_resend(self):
+        waffle.models.Switch.objects.create(name='zamboni-login', active=True)
+
+        # User doesn't have a confirmation code.
         url = reverse('users.confirm.resend', args=[self.user.id])
         r = self.client.get(url, follow=True)
-        anon = pq(r.content)('body').attr('data-anonymous')
-        self.assertTrue(anon)
 
-        self.user_profile.confirmationcode = "code"
-        self.user_profile.save()
+        self.user_profile.update(confirmationcode='code')
 
-        # URL has the wrong confirmation code
-        url = reverse('users.confirm.resend', args=[self.user.id])
+        # URL has the right confirmation code now.
         r = self.client.get(url, follow=True)
         self.assertContains(r, 'An email has been sent to your address')
+
+    def test_legacy_confirm_resend(self):
+        self.user_profile.update(confirmationcode='code')
+        url = reverse('users.confirm.resend', args=[self.user.id])
+        r = self.client.get(url, follow=True)
+        # Ensure we don't show django messages for Remora.
+        eq_(pq(r.content)('.notification-box').length, 0)
 
 
 class TestProfileLinks(UserViewBase):

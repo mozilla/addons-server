@@ -75,18 +75,20 @@ def confirm(request, user_id, token):
     user = get_object_or_404(UserProfile, id=user_id)
 
     if not user.confirmationcode:
-        return http.HttpResponseRedirect(reverse('users.login'))
+        return redirect('users.login')
 
     if user.confirmationcode != token:
         log.info(u"Account confirmation failed for user (%s)", user)
-        messages.error(request, _('Invalid confirmation code!'))
-        return http.HttpResponseRedirect(reverse('users.login'))
+        if waffle.switch_is_active('zamboni-login'):
+            messages.error(request, _('Invalid confirmation code!'))
+        return redirect('users.login')
 
     user.confirmationcode = ''
     user.save()
-    messages.success(request, _('Successfully verified!'))
+    if waffle.switch_is_active('zamboni-login'):
+        messages.success(request, _('Successfully verified!'))
     log.info(u"Account confirmed for user (%s)", user)
-    return http.HttpResponseRedirect(reverse('users.login'))
+    return redirect('users.login')
 
 
 @no_login_required
@@ -94,7 +96,7 @@ def confirm_resend(request, user_id):
     user = get_object_or_404(UserProfile, id=user_id)
 
     if not user.confirmationcode:
-        return http.HttpResponseRedirect(reverse('users.login'))
+        return redirect('users.login')
 
     # Potential for flood here if someone requests a confirmationcode and then
     # re-requests confirmations.  We may need to track requests in the future.
@@ -102,13 +104,14 @@ def confirm_resend(request, user_id):
 
     user.email_confirmation_code()
 
-    msg = _(u'An email has been sent to your address {0} to confirm '
-             'your account. Before you can log in, you have to activate '
-             'your account by clicking on the link provided in this '
-             'email.').format(user.email)
-    messages.info(request, _('Confirmation Email Sent'), msg)
+    if waffle.switch_is_active('zamboni-login'):
+        msg = _(u'An email has been sent to your address {0} to confirm '
+                 'your account. Before you can log in, you have to activate '
+                 'your account by clicking on the link provided in this '
+                 'email.').format(user.email)
+        messages.info(request, _('Confirmation Email Sent'), msg)
 
-    return http.HttpResponseRedirect(reverse('users.login'))
+    return redirect('users.login')
 
 
 @login_required
@@ -607,21 +610,25 @@ def register(request):
 
                 u.email_confirmation_code()
 
-                msg = _('Congratulations! Your user account was successfully '
-                        'created.')
-                messages.success(request, msg)
+                if waffle.switch_is_active('zamboni-login'):
+                    # Hide these messages since prod still uses remora for
+                    # authentication, so django messages won't be displayed
+                    # until post-login.
+                    msg = _('Congratulations! Your user account was '
+                            'successfully created.')
+                    messages.success(request, msg)
 
-                msg = _(u'An email has been sent to your address {0} to '
-                         'confirm your account. Before you can log in, you '
-                         'have to activate your account by clicking on the '
-                         'link provided in this email.').format(u.email)
-                messages.info(request, _('Confirmation Email Sent'), msg)
+                    msg = _(u'An email has been sent to your address {0} to '
+                            'confirm your account. Before you can log in, you '
+                            'have to activate your account by clicking on the '
+                            'link provided in this email.').format(u.email)
+                    messages.info(request, _('Confirmation Email Sent'), msg)
             except IntegrityError, e:
                 # I was unable to reproduce this, but I suspect it happens
                 # when they POST twice quickly and the slaves don't have the
                 # new info yet (total guess).  Anyway, I'm assuming the
                 # first one worked properly, so this is still a success
-                # case to tne end user so we just log it...
+                # case to the end user so we just log it...
                 log.error('Failed to register new user (%s): %s' % (u, e))
 
             return http.HttpResponseRedirect(reverse('users.login'))

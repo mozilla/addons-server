@@ -1172,8 +1172,6 @@ EXPOSE_VALIDATOR_TRACEBACKS = False
 SEARCH_EXCLUDE_PERSONAS = True
 UNLINK_SITE_STATS = True
 
-# Impala flags.
-
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = True
 
