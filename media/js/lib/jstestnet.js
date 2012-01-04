@@ -86,6 +86,12 @@
                 if (typeof(details.source) !== 'undefined') {
                     msg.stacktrace = details.source;
                 }
+                if (typeof(details.expected) !== 'undefined') {
+                    msg.message += '; Expected: "' + details.expected + '"';
+                }
+                if (typeof(details.actual) !== 'undefined') {
+                    msg.message += '; Actual: "' + details.actual + '"';
+                }
             }
             postMsg(msg);
         };
