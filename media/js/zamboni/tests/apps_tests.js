@@ -25,9 +25,9 @@ module('apps errors', {
                 return false;
             };
         }
-        apps.install('http://nice.com/nice.webapp', {domContext: sb,
-                                                     navigator: nav,
-                                                     errModalCallback: errModalCallback});
+        apps.install(manifestUrl, {domContext: sb,
+                                   navigator: nav,
+                                   errModalCallback: errModalCallback});
     }
 });
 
@@ -94,10 +94,9 @@ asyncTest('test append to visible modal', function() {
     // Simulate a popup:
     $sb.append('<div class="existing modal"><div class="modal-inside"></div></div>');
     $sb.one('error_shown.apps', function() {
-        // This fails but only in CI. *shrug*
-        // equals($('.existing .inner-modal-error h2', $sb).text(),
-        //        'App installation not allowed');
-        equals($('.existing .inner-modal-error p', $sb).text(),
+        equals($('.existing h2', $sb).text(),
+               'App installation not allowed');
+        equals($('.existing p', $sb).text(),
                'detailed message');
         start();
     });
