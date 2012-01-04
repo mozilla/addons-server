@@ -947,7 +947,7 @@ def payments(request, status=None):
         if status == 'complete':
             # The user has completed the setup at PayPal and bounced back.
             if 'setup-preapproval' in request.session:
-                messages.success(request, loc('Pre-approval setup.'))
+                messages.success(request, loc('Pre-approval set up.'))
                 paypal_log.info(u'Preapproval key created for user: %s'
                                 % request.amo_user)
                 data = request.session.get('setup-preapproval', {})
