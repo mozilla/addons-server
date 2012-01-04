@@ -19,11 +19,11 @@ from django_browserid.auth import BrowserIDBackend
 from waffle.decorators import waffle_flag, waffle_switch
 
 import commonware.log
+from django_statsd.clients import statsd
 import jingo
 from radagast.wizard import Wizard
 from tower import ugettext as _, ugettext_lazy as _lazy
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
-from statsd import statsd
 from mobility.decorators import mobile_template
 import waffle
 

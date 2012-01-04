@@ -20,8 +20,8 @@ from django.template.defaultfilters import slugify
 from django.utils.encoding import smart_str
 
 import commonware
+from django_statsd.clients import statsd
 import path
-from statsd import statsd
 from uuidfield.fields import UUIDField
 import waffle
 

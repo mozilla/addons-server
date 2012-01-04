@@ -16,7 +16,7 @@ from django.core.management import call_command
 from django.utils.http import urlencode
 
 from celeryutils import task
-from statsd import statsd
+from django_statsd.clients import statsd
 from tower import ugettext as _
 
 import amo

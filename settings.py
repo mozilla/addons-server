@@ -277,8 +277,8 @@ def JINJA_CONFIG():
 
 MIDDLEWARE_CLASSES = (
     # AMO URL middleware comes first so everyone else sees nice URLs.
-    'commonware.response.middleware.GraphiteRequestTimingMiddleware',
-    'commonware.response.middleware.GraphiteMiddleware',
+    'django_statsd.middleware.GraphiteRequestTimingMiddleware',
+    'django_statsd.middleware.GraphiteMiddleware',
     'amo.middleware.LocaleAndAppURLMiddleware',
     # Mobile detection should happen in Zeus.
     'mobility.middleware.DetectMobileMiddleware',
@@ -380,6 +380,7 @@ INSTALLED_APPS = (
 
     # Has to load after auth
     'django_browserid',
+    'django_statsd',
     'radagast',
 )
 

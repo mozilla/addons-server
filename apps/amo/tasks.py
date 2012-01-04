@@ -9,7 +9,7 @@ import redisutils
 import phpserialize
 from celeryutils import task
 from hera.contrib.django_utils import flush_urls
-from statsd import statsd
+from django_statsd.clients import statsd
 
 import amo
 from addons.models import Addon

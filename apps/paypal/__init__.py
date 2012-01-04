@@ -11,7 +11,7 @@ from django.conf import settings
 from django.utils.http import urlencode, urlquote
 
 import commonware.log
-from statsd import statsd
+from django_statsd.clients import statsd
 
 from amo.helpers import absolutify, loc, urlparams
 from amo.urlresolvers import reverse

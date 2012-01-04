@@ -20,7 +20,7 @@ import lxml.html
 import MySQLdb as mysql
 import tower
 import jingo
-from statsd import statsd
+from django_statsd.clients import statsd
 
 import amo
 from . import urlresolvers

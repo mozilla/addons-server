@@ -12,7 +12,7 @@ import jingo
 import waffle
 from django_arecibo.tasks import post
 from django_statsd.views import record as django_statsd_record
-from statsd import statsd
+from django_statsd.clients import statsd
 
 import amo
 import api

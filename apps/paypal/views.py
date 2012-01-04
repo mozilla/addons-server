@@ -9,8 +9,8 @@ from django.core.cache import cache
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
+from django_statsd.clients import statsd
 import phpserialize as php
-from statsd import statsd
 
 import amo
 from amo.decorators import no_login_required, post_required, write
