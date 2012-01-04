@@ -723,5 +723,9 @@ def memcache(request):
         cache.clear()
         form = YesImSure()
         messages.success(request, 'Cache cleared')
+    if cache._cache and hasattr(cache._cache, 'get_stats'):
+        stats = cache._cache.get_stats()
+    else:
+        stats = {}
     return jingo.render(request, 'zadmin/memcache.html',
-                        {'form': form, 'stats': cache._cache.get_stats()})
+                        {'form': form, 'stats': stats})
