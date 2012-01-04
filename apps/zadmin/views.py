@@ -726,6 +726,6 @@ def memcache(request):
     if cache._cache and hasattr(cache._cache, 'get_stats'):
         stats = cache._cache.get_stats()
     else:
-        stats = {}
+        stats = []
     return jingo.render(request, 'zadmin/memcache.html',
                         {'form': form, 'stats': stats})
