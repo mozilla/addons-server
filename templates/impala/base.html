@@ -82,7 +82,7 @@
           <div class="header-search" role="search">
             {% block search_form %}
               {# Get this in scope. #}
-              {% with WEBAPPS=WEBAPPS %}
+              {% with WEBAPPS=WEBAPPS, query_term=query_term %}
                 {% include 'impala/search.html' %}
               {% endwith %}
             {% endblock %}

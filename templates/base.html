@@ -89,7 +89,9 @@
           </nav>
           <div class="header-search" role="search">
             {% block search_form %}
-            {% include 'impala/search.html' %}
+              {% with query_term=query_term %}
+                {% include 'impala/search.html' %}
+              {% endwith %}
             {% endblock %}
           </div>
           <div id="masthead">

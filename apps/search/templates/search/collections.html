@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 
-{% block search_form %}
-  {% include "impala/search.html" %}
-{% endblock %}
+{% set query_term = query %}
 
 {% block title %}
   {% if query %}
