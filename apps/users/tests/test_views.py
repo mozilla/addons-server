@@ -56,6 +56,7 @@ class UserViewBase(amo.tests.TestCase):
 class TestAjax(UserViewBase):
 
     def setUp(self):
+        super(TestAjax, self).setUp()
         self.client.login(username='jbalogh@mozilla.com', password='foo')
 
     def test_ajax_404(self):
@@ -68,6 +69,17 @@ class TestAjax(UserViewBase):
         data = json.loads(r.content)
         eq_(data, {'status': 1, 'message': '', 'id': 9945,
                    'name': u'Justin Scott \u0627\u0644\u062a\u0637\u0628'})
+
+    def test_ajax_xss(self):
+       self.user_profile.display_name = '<script>alert("xss")</script>'
+       self.user_profile.save()
+       assert '<script>' in self.user_profile.display_name, (
+           'Expected <script> to be in display name')
+       r = self.client.get(reverse('users.ajax'),
+                           {'q': self.user_profile.email})
+       data = json.loads(r.content)
+       assert '<script>' not in data
+       assert '&lt;script&gt;' not in data
 
     def test_ajax_failure_incorrect_email(self):
         r = self.client.get(reverse('users.ajax'), {'q': 'incorrect'},

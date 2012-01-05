@@ -35,7 +35,7 @@ from amo.decorators import (json_view, login_required, no_login_required,
 from amo.forms import AbuseForm
 from amo.urlresolvers import reverse
 from amo.helpers import absolutify, loc
-from amo.utils import log_cef, send_mail, urlparams
+from amo.utils import escape_all, log_cef, send_mail, urlparams
 from abuse.models import send_abuse_report
 from addons.models import Addon
 from addons.views import BaseFilter
@@ -82,9 +82,9 @@ def ajax(request):
     if u:
         data.update(status=1, id=u[0].id, name=u[0].name)
     else:
-        data.update(message=_('A user with that email address does not exist.'))
+        data['message'] = _('A user with that email address does not exist.')
 
-    return data
+    return escape_all(data)
 
 
 @no_login_required
