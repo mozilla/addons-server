@@ -15,7 +15,7 @@ from addons.models import Addon, CompatOverride, CompatOverrideRange
 from applications.models import Application, AppVersion
 from files.models import File
 from services import update
-import settings_local as settings
+import settings_local
 from versions.models import ApplicationsVersions, Version
 
 
@@ -552,13 +552,13 @@ class TestResponse(amo.tests.TestCase):
         self.mac = amo.PLATFORM_MAC
         self.win = amo.PLATFORM_WIN
 
-        self.old_mirror_url = settings.MIRROR_URL
-        self.old_local_url = settings.LOCAL_MIRROR_URL
-        self.old_debug = settings.DEBUG
+        self.old_mirror_url = settings_local.MIRROR_URL
+        self.old_local_url = settings_local.LOCAL_MIRROR_URL
+        self.old_debug = settings_local.DEBUG
 
-        settings.MIRROR_URL = 'http://releases.m.o/'
-        settings.LOCAL_MIRROR_URL = 'http://addons.m.o/'
-        settings.DEBUG = False
+        settings_local.MIRROR_URL = 'http://releases.m.o/'
+        settings_local.LOCAL_MIRROR_URL = 'http://addons.m.o/'
+        settings_local.DEBUG = False
 
     def get(self, data):
         up = update.Update(data)
@@ -566,9 +566,9 @@ class TestResponse(amo.tests.TestCase):
         return up
 
     def tearDown(self):
-        settings.MIRROR_URL = self.old_mirror_url
-        settings.LOCAL_MIRROR_URL = self.old_local_url
-        settings.DEBUG = self.old_debug
+        settings_local.MIRROR_URL = self.old_mirror_url
+        settings_local.LOCAL_MIRROR_URL = self.old_local_url
+        settings_local.DEBUG = self.old_debug
 
     def test_bad_guid(self):
         data = self.good_data.copy()
@@ -692,14 +692,14 @@ class TestResponse(amo.tests.TestCase):
     def test_url(self):
         up = self.get(self.good_data)
         up.get_rdf()
-        assert settings.MIRROR_URL in up.data['row']['url']
+        assert settings_local.MIRROR_URL in up.data['row']['url']
 
     def test_url_local_recent(self):
         a_bit_ago = datetime.now() - timedelta(seconds=60)
         File.objects.get(pk=67442).update(datestatuschanged=a_bit_ago)
         up = self.get(self.good_data)
         up.get_rdf()
-        assert settings.LOCAL_MIRROR_URL in up.data['row']['url']
+        assert settings_local.LOCAL_MIRROR_URL in up.data['row']['url']
 
     def test_url_remote_beta(self):
         file = File.objects.get(pk=67442)
@@ -716,13 +716,13 @@ class TestResponse(amo.tests.TestCase):
         self.addon_one.save()
         up.get_rdf()
         eq_(up.data['row']['file_id'], file.pk)
-        assert settings.MIRROR_URL in up.data['row']['url']
+        assert settings_local.MIRROR_URL in up.data['row']['url']
 
     def test_url_premium(self):
         self.addon_one.update(premium_type=amo.ADDON_PREMIUM)
         up = self.get(self.good_data.copy())
         up.get_rdf()
-        target = settings.SITE_URL + '/downloads/watermarked/67442'
+        target = settings_local.SITE_URL + '/downloads/watermarked/67442'
         assert up.data['row']['url'].startswith(target)
 
     def test_url_premium_gets(self):

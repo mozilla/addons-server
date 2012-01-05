@@ -1,7 +1,6 @@
 import atexit
 import tempfile
 
-from settings import *
 
 _tmpdirs = set()
 
