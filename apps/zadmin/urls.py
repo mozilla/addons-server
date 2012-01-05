@@ -56,6 +56,7 @@ urlpatterns = patterns('',
 
     url('^elastic$', views.elastic, name='zadmin.elastic'),
     url('^mail$', views.mail, name='zadmin.mail'),
+    url('^email-devs$', views.email_devs, name='zadmin.email_devs'),
     url('^celery$', views.celery, name='zadmin.celery'),
     url('^addon-name-blocklist$', views.addon_name_blocklist,
         name='zadmin.addon-name-blocklist'),

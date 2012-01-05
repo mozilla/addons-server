@@ -39,7 +39,7 @@ from amo.decorators import login_required, json_view, post_required
 from amo.urlresolvers import reverse
 from amo.utils import chunked, sorted_groupby
 from addons.decorators import addon_view
-from addons.models import Addon, CompatOverride
+from addons.models import Addon, CompatOverride, AddonUser
 from addons.utils import ReverseNameLookup
 from bandwagon.models import Collection
 from compat.models import AppCompat
@@ -52,7 +52,7 @@ from versions.models import Version
 from . import tasks
 from .forms import (BulkValidationForm, FeaturedCollectionFormSet, NotifyForm,
                     OAuthConsumerForm, MonthlyPickFormSet, AddonStatusForm,
-                    FileFormSet, JetpackUpgradeForm, YesImSure)
+                    FileFormSet, JetpackUpgradeForm, YesImSure, DevMailerForm)
 from .models import ValidationJob, EmailPreviewTopic, ValidationJobTally
 
 log = commonware.log.getLogger('z.zadmin')
@@ -564,6 +564,44 @@ def mail(request):
         return redirect('zadmin.mail')
     return jingo.render(request, 'zadmin/mail.html',
                         dict(mail=backend.view_all()))
+
+
+@admin.site.admin_view
+def email_devs(request):
+    form = DevMailerForm(request.POST or None)
+    preview = EmailPreviewTopic(topic='email-devs')
+    if preview.filter().count():
+        preview_csv = reverse('zadmin.email_preview_csv',
+                              args=[preview.topic])
+    else:
+        preview_csv = None
+    if request.method == 'POST' and form.is_valid():
+        data = form.cleaned_data
+        if data['recipients'] == 'eula':
+            qs = (AddonUser.objects.filter(role__in=(amo.AUTHOR_ROLE_DEV,
+                                                     amo.AUTHOR_ROLE_OWNER))
+                                   .exclude(addon__eula=None)
+                                   .exclude(user__email=None)
+                                   .distinct(['user__email']))
+        else:
+            raise NotImplementedError('If you want to support emailing other '
+                                      'types of developers, do it here!')
+        if data['preview_only']:
+            # Clear out the last batch of previewed emails.
+            preview.filter().delete()
+        total = 0
+        for emails in chunked(qs.values_list('user__email', flat=True), 100):
+            total += len(emails)
+            tasks.admin_email.delay(emails, data['subject'], data['message'],
+                                    preview_only=data['preview_only'],
+                                    preview_topic=preview.topic)
+        msg = 'Emails queued for delivery: %s' % total
+        if data['preview_only']:
+            msg = '%s (for preview only, emails not sent!)' % msg
+        messages.success(request, msg)
+        return redirect('zadmin.email_devs')
+    return jingo.render(request, 'zadmin/email-devs.html',
+                        dict(form=form, preview_csv=preview_csv))
 
 
 @admin.site.admin_view

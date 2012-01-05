@@ -24,9 +24,24 @@ from amo.utils import send_mail
 from devhub.tasks import run_validator
 from users.utils import get_task_user
 from versions.models import Version
-from zadmin.models import ValidationResult, ValidationJob, ValidationJobTally
+from zadmin.models import (EmailPreviewTopic, ValidationResult, ValidationJob,
+                           ValidationJobTally)
 
 log = logging.getLogger('z.task')
+
+
+@task(rate_limit='3/s')
+def admin_email(all_recipients, subject, body, preview_only=False,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                preview_topic='admin_email', **kw):
+    log.info('[%s@%s] admin_email about %r'
+             % (len(all_recipients), admin_email.rate_limit, subject))
+    if preview_only:
+        send = EmailPreviewTopic(topic=preview_topic).send_mail
+    else:
+        send = send_mail
+    for recipient in all_recipients:
+        send(subject, body, recipient_list=[recipient], from_email=from_email)
 
 
 def tally_job_results(job_id, **kw):
