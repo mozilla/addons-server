@@ -6,7 +6,7 @@ from nose import SkipTest
 from test_utils import FastFixtureTestCase
 
 import amo.tests
-from manage import settings
+import settings_local as settings
 from search.utils import start_sphinx, stop_sphinx, reindex
 
 
