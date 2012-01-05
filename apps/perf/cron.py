@@ -1,5 +1,6 @@
 from datetime import date
 from itertools import groupby
+import logging
 
 from django.db.models import Max
 
@@ -11,12 +12,19 @@ from .models import Performance
 from . import tasks
 
 
+task_log = logging.getLogger('z.task')
+
+
 @cronjobs.register
 def update_perf():
     # The baseline is where addon_id is null. Find the latest test run so we
     # can update from all the latest perf results.
     last_update = (Performance.objects.filter(addon=None)
                    .aggregate(max=Max('created'))['max'])
+    if not last_update:
+        task_log.error('update_perf aborted, no last_update')
+        return
+
     last_update = date(*last_update.timetuple()[:3])
 
     qs = (Performance.objects.filter(created__gte=last_update)
