@@ -15,27 +15,45 @@
 
 <section class="hero island c full">
   <form method="POST" action="">
-    {% if formset.errors %}<p class="notification-box.error">{{ _('There are errors in this form.  Please correct them below.') }}</p>{% endif %}
-    <table>
-      <tbody>
-        <tr>
-          <th width="50%">en-US</th>
-          <th width="45%">{{ locale_code }}</th>
-        </tr>
-        {% for id, form in form_map|dictsort %}
-          {% if form.errors %}
-            <tr><td colspan="0">{% for errors in form.errors.values() %}{{ errors }}{% endfor %}</td></tr>
+    {% if formset.errors %}<p class="notification-box error">
+      {{ _('There are errors in this form.  Please correct them below.') }}</p>
+    {% endif %}
+    {% for group in categories|groupby('application') %}
+      <div class="appversion prose">
+        <h2>
+          {% if group.grouper %}
+            {% set app = apps[group.grouper] %}
+            <img src="{{ media('img/app-icons/small/' + app.short + '.png') }}">
+            {{ app.pretty }}
+          {% else %}
+            Other
           {% endif %}
+        </h2>
+      </div>
+      <table>
+        <tbody>
           <tr>
-            <td class="enus">{{ categories_en[id].name }}</td>
-            <td class="localized">{{ form.name }}</td>
+            <th width="40%">en-US</th>
+            <th width="40%">{{ locale_code }}</th>
+            <th width="20%">Type</th>
           </tr>
-          {% for hidden in form.hidden_fields() -%}
-            {{ hidden }}
+          {% for cat in group.list %}
+            {% set form = form_map[cat.id] %}
+            {% if form.errors %}
+              <tr><td colspan="0">
+                {% for errors in form.errors.values() %}{{ errors }}{% endfor %}
+              </td></tr>
+            {% endif %}
+            <tr>
+              <td class="enus">{{ categories_en[cat.id].name }}</td>
+              <td class="localized">{{ form.name }}</td>
+              <td class="type">{{ types[categories_en[cat.id].type] }}</td>
+              {% for hidden in form.hidden_fields() %}{{ hidden }}{% endfor %}
+            </tr>
           {% endfor %}
-        {% endfor %}
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    {% endfor %}
     {{ formset.management_form }}
     {{ csrf() }}
     <p><input type="submit" value="{{ _('Update') }}"></p>

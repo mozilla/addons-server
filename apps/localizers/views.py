@@ -7,6 +7,7 @@ import commonware.log
 import jingo
 from product_details import product_details
 
+import amo
 from access.models import Group
 from addons.models import Category
 from amo.decorators import json_view, login_required, post_required, write
@@ -107,7 +108,7 @@ def categories(request, locale_code):
     categories_en = dict([(c.id, c) for c in Category.objects.all()])
 
     translation.activate(locale_code)
-    categories_qs = Category.objects.values('id', 'name')
+    categories_qs = Category.objects.values('id', 'name', 'application')
 
     formset = CategoryFormSet(request.POST or None, initial=categories_qs)
 
@@ -131,8 +132,11 @@ def categories(request, locale_code):
         'locale_code': locale_code,
         'userlang': product_details.languages[locale_code],
         'categories_en': categories_en,
+        'categories': categories_qs,
         'formset': formset,
         'form_map': form_map,
+        'apps': amo.APP_IDS,
+        'types': amo.ADDON_TYPE,
     }
 
     return jingo.render(request, 'localizers/categories.html', data)
