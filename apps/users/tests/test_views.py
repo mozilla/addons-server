@@ -77,9 +77,9 @@ class TestAjax(UserViewBase):
            'Expected <script> to be in display name')
        r = self.client.get(reverse('users.ajax'),
                            {'q': self.user_profile.email})
-       data = json.loads(r.content)
+       data = r.content
        assert '<script>' not in data
-       assert '&lt;script&gt;' not in data
+       assert '&lt;script&gt;' in data
 
     def test_ajax_failure_incorrect_email(self):
         r = self.client.get(reverse('users.ajax'), {'q': 'incorrect'},
