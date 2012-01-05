@@ -13,7 +13,7 @@
       </p>
     {% endif %}
 
-    <form disabled method="post" action="{{ shared_url('reviews.add', addon) }}">
+    <form method="post" action="{{ shared_url('reviews.add', addon) }}">
       {% set attrs = {} if user.is_authenticated() else {'disabled': 'disabled'} %}
       {{ csrf() }}
       {{ field(review_form.body, _('Review:'), **attrs) }}
