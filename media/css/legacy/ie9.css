@@ -1,0 +1,5 @@
+.listing .item .info > * {
+    max-width: 420px;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}

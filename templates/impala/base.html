@@ -23,6 +23,9 @@
       <!--[if lt IE 9]>
         <script src="{{ media('js/lib/iepp.min.js') }}"></script>
       <![endif]-->
+      <!--[if lte IE 9]>
+        <link rel="stylesheet" href="{{ media('css/legacy/ie9.css') }}">
+      <![endif]-->
     {% endblock %}
 
     {% block extrahead %}{% endblock %}
