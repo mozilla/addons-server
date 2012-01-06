@@ -83,6 +83,7 @@ $(document).ready(function() {
         $review.hide();
         $form.show();
         location.hash = '#review-edit-form';
+        $(window).resize();
 
         function done_edit() {
             clearErrors($form);
