@@ -76,3 +76,7 @@ form fieldset .container {
     background-image: url(../../img/illustrations/logo-collections-220x270.png);
     background-position: 95% 30px;
 }
+
+.invisible-upload input {
+    font-size: 14px !important; /* !important overrides normal and :hover */
+}
