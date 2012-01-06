@@ -189,12 +189,14 @@ class OAuthConsumerForm(happyforms.ModelForm):
 
 class MonthlyPickForm(happyforms.ModelForm):
     image = forms.CharField(required=False)
+    blurb = forms.CharField(max_length=200,
+                            widget=forms.Textarea(attrs={'cols': 20,
+                                                         'rows': 2}))
 
     class Meta:
         model = MonthlyPick
         widgets = {
             'addon': forms.TextInput(),
-            'blurb': forms.Textarea(attrs={'cols': 20, 'rows': 2})
         }
 
 

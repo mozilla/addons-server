@@ -1121,6 +1121,14 @@ class TestMonthlyPick(amo.tests.TestCase):
         eq_(MonthlyPick.objects.count(), 2)
         eq_(MonthlyPick.objects.all()[1].locale, '')
 
+    def test_insert_long_blurb(self):
+        dupe = initial(self.f)
+        dupe.update(id='', blurb='x' * 201, locale='en-US')
+        data = formset(initial(self.f), dupe, initial_count=1)
+        r = self.client.post(self.url, data)
+        eq_(r.context['form'].errors[1]['blurb'][0],
+            'Ensure this value has at most 200 characters (it has 201).')
+
     def test_success_update(self):
         d = initial(self.f)
         d.update(locale='fr')

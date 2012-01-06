@@ -61,6 +61,7 @@ function initTrunc() {
     // Trim the add-on title and description text to fit.
     $('.htruncate').truncate({dir: 'h'});
     $('.vtruncate').truncate({dir: 'v'});
+    $('#monthly .blurb > p').truncate({dir: 'v'});
     $(window).resize(debounce(function() {
         $('.htruncate').truncate({dir: 'h'});
         $('.vtruncate').truncate({dir: 'v'});
