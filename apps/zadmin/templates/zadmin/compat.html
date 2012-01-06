@@ -12,13 +12,13 @@
 .bad { color: #800 }
 em.version { color: #888 }
 td, th { border-bottom-color: #ccc }
-td:nth-of-type(6), td:nth-of-type(7), td:nth-of-type(8) { padding: 0; text-align: center }
+td:nth-of-type(6), td:nth-of-type(7), td:nth-of-type(8) { padding: 0; text-align: center; white-space: nowrap }
 td:nth-of-type(6) a, td:nth-of-type(7) a, td:nth-of-type(8) a { display: block; padding: 5px }
 #compat-results th:first-child, td:first-child { border-left: 1px solid #ccc !important }
 #compat-results { border: 1px solid #ccc; margin: .5em 0 }
 #compat-results thead th { border: 1px solid #ccc }
 td { border-right: 1px solid #ccc; vertical-align: middle }
-td.users { border-right: 0 }
+td.users { border-right: 0; white-space: nowrap }
 button { margin: 4px; padding: 0 2px }
 .no-results { color: #999; padding: 1em 0 }
 </style>
@@ -28,15 +28,17 @@ button { margin: 4px; padding: 0 2px }
 <h2>{{ title }}</h2>
 <form class="go" action="" id="compat-form">
   <label>App: {{ form.appver }}</label>
-  <label>Show reports over {{ form.ratio }} incompatibility</label>
   {{ form.type }}
+  <br>
+  <label>Show reports over {{ form.ratio }} incompatibility</label>
+  <label>Minimum incompatible reports: {{ form.minimum }}</label>
   <noscript><button type="submit">Go</button></noscript>
 </form>
 <table id="compat-results">
   <thead>
     <tr>
       <th>Add-on</th>
-      <th>Max Compatible Version</th>
+      <th>Max Version</th>
       <th>Incompatibility</th>
       <th colspan="2">Usage</th>
       <th colspan="3">Manage</th>
@@ -44,7 +46,7 @@ button { margin: 4px; padding: 0 2px }
   </thead>
   <tbody>
     {% for addon in usage_addons.object_list %}
-      <tr data-addonid="{{ addon.id }}">
+      <tr data-guid="{{ addon.guid }}">
         <td class="name">
           {% if addon.self_hosted %}
             {{ addon.name }}

@@ -76,7 +76,7 @@ def compatibility_report():
                     if major:
                         w = doc['works'][app.id][vint(major[0])]
                         # Tally number of success and failure reports.
-                        w['success' if works_properly else 'failure'] = cnt
+                        w['success' if works_properly else 'failure'] += cnt
                         w['total'] += cnt
                         # Calculate % of incompatibility reports.
                         w['failure_ratio'] = w['failure'] / float(w['total'])

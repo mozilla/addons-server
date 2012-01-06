@@ -1474,9 +1474,8 @@ class TestCompat(amo.tests.ESTestCase):
         self.app = amo.FIREFOX
         self.app_version = settings.COMPAT[0]['main']
         self.addon = self.populate(guid='xxx')
-        self.generate_reports(self.addon, good=0, bad=10, app=self.app,
+        self.generate_reports(self.addon, good=0, bad=0, app=self.app,
                               app_version=self.app_version)
-        self.update()
 
     def update(self):
         compatibility_report()
@@ -1484,7 +1483,9 @@ class TestCompat(amo.tests.ESTestCase):
 
     def populate(self, **kw):
         now = datetime.now()
-        addon = amo.tests.addon_factory(name='Addon %s' % now, **kw)
+        name = 'Addon %s' % now
+        kw.update(guid=name)
+        addon = amo.tests.addon_factory(name=name, **kw)
         UpdateCount.objects.create(addon=addon, count=10, date=now)
         return addon
 
@@ -1495,6 +1496,7 @@ class TestCompat(amo.tests.ESTestCase):
             CompatReport.objects.create(works_properly=True, **defaults)
         for x in xrange(bad):
             CompatReport.objects.create(works_properly=False, **defaults)
+        self.update()
 
     def get_pq(self, **kw):
         r = self.client.get(self.url, kw)
@@ -1556,12 +1558,11 @@ class TestCompat(amo.tests.ESTestCase):
         eq_(form.find('input[name="%s"]' % name).val(), val)
 
     def test_firefox_hosted(self):
-        addon = self.populate(guid='www')
+        addon = self.populate()
         self.generate_reports(addon, good=0, bad=11, app=self.app,
                               app_version=self.app_version)
-        self.update()
 
-        tr = self.get_pq().find('tr[data-addonid=%s]' % addon.id)
+        tr = self.get_pq().find('tr[data-guid="%s"]' % addon.guid)
         self.check_row(tr, addon, good=0, bad=11, percentage='100.0',
                        app=self.app, app_version=self.app_version)
 
@@ -1572,17 +1573,16 @@ class TestCompat(amo.tests.ESTestCase):
             max_app_version=self.app_version + '*')
 
         # Check that there is an override for this current app version.
-        tr = self.get_pq().find('tr[data-addonid=%s]' % addon.id)
+        tr = self.get_pq().find('tr[data-guid="%s"]' % addon.guid)
         eq_(tr.find('.overrides a').attr('href'),
             reverse('admin:addons_compatoverride_change', args=[compat.id]))
 
     def test_self_hosted(self):
-        addon = self.populate(guid='yyy', status=amo.STATUS_LISTED)
+        addon = self.populate(status=amo.STATUS_LISTED)
         self.generate_reports(addon, good=2, bad=18, app=self.app,
                               app_version=self.app_version)
-        self.update()
 
-        tr = self.get_pq().find('tr[data-addonid=%s]' % addon.id)
+        tr = self.get_pq().find('tr[data-guid="%s"]' % addon.guid)
         eq_(tr.length, 1)
 
         eq_(tr.find('.maxver').text(), 'Self Hosted')
@@ -1598,38 +1598,60 @@ class TestCompat(amo.tests.ESTestCase):
 
     def test_non_default_version(self):
         app_version = settings.COMPAT[2]['main']
-        addon = self.populate(guid='zzz')
+        addon = self.populate()
         self.generate_reports(addon, good=0, bad=11, app=self.app,
                               app_version=app_version)
-        self.update()
 
-        table = self.get_pq()
-        eq_(table.find('tr[data-addonid=%s]' % addon.id).length, 0)
+        eq_(self.get_pq().find('tr[data-guid="%s"]' % addon.guid).length, 0)
 
-        r = self.client.get(self.url,
-                            {'appver': '%s-%s' % (self.app.id, app_version)})
-        eq_(r.status_code, 200)
-        table = pq(r.content)('#compat-results tbody')
-        tr = table.find('tr[data-addonid=%s]' % addon.id)
+        appver = '%s-%s' % (self.app.id, app_version)
+        tr = self.get_pq(appver=appver)('tr[data-guid="%s"]' % addon.guid)
         self.check_row(tr, addon, good=0, bad=11, percentage='100.0',
                        app=self.app, app_version=app_version)
 
+    def test_minor_versions(self):
+       addon = self.populate()
+       self.generate_reports(addon, good=0, bad=1, app=self.app,
+                             app_version=self.app_version)
+       self.generate_reports(addon, good=1, bad=2, app=self.app,
+                             app_version=self.app_version + 'a2')
+
+       tr = self.get_pq(ratio=0.0, minimum=0).find('tr[data-guid="%s"]' %
+                                                   addon.guid)
+       self.check_row(tr, addon, good=1, bad=3, percentage='75.0',
+                      app=self.app, app_version=self.app_version)
+
     def test_ratio(self):
-        addon = self.populate(guid='aaa')
+        addon = self.populate()
         self.generate_reports(addon, good=11, bad=11, app=self.app,
                               app_version=self.app_version)
-        self.update()
 
         # Should not show up for > 80%.
-        eq_(self.get_pq().find('tr[data-addonid=%s]' % addon.id).length, 0)
+        eq_(self.get_pq().find('tr[data-guid="%s"]' % addon.guid).length, 0)
 
         # Should not show up for > 50%.
-        tr = self.get_pq(ratio=.5).find('tr[data-addonid=%s]' % addon.id)
+        tr = self.get_pq(ratio=.5).find('tr[data-guid="%s"]' % addon.guid)
         eq_(tr.length, 0)
 
         # Should show up for > 40%.
-        tr = self.get_pq(ratio=.4).find('tr[data-addonid=%s]' % addon.id)
+        tr = self.get_pq(ratio=.4).find('tr[data-guid="%s"]' % addon.guid)
         eq_(tr.length, 1)
+
+    def test_min_incompatible(self):
+        addon = self.populate()
+        self.generate_reports(addon, good=0, bad=11, app=self.app,
+                              app_version=self.app_version)
+
+        # Should show up for >= 10.
+        eq_(self.get_pq().find('tr[data-guid="%s"]' % addon.guid).length, 1)
+
+        # Should show up for >= 0.
+        tr = self.get_pq(minimum=0).find('tr[data-guid="%s"]' % addon.guid)
+        eq_(tr.length, 1)
+
+        # Should not show up for >= 20.
+        tr = self.get_pq(minimum=20).find('tr[data-guid="%s"]' % addon.guid)
+        eq_(tr.length, 0)
 
 
 class TestMemcache(amo.tests.TestCase):

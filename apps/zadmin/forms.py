@@ -21,6 +21,7 @@ from addons.models import Addon
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection, FeaturedCollection, MonthlyPick
+from compat.forms import CompatForm as BaseCompatForm
 from files.models import File
 from zadmin.models import ValidationJob
 
@@ -248,3 +249,12 @@ class JetpackUpgradeForm(happyforms.Form):
 
 class YesImSure(happyforms.Form):
     yes = forms.BooleanField(required=True, label="Yes, I'm sure")
+
+
+class CompatForm(BaseCompatForm):
+    _minimum_choices = [(x, x) for x in xrange(100, -10, -10)]
+    minimum = forms.TypedChoiceField(choices=_minimum_choices, coerce=int,
+                                     required=False)
+    _ratio_choices = [('%.1f' % (x / 10.0), '%.0f%%' % (x * 10))
+                      for x in xrange(9, -1, -1)]
+    ratio = forms.ChoiceField(choices=_ratio_choices, required=False)

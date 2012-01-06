@@ -43,7 +43,6 @@ from addons.models import Addon, CompatOverride, AddonUser
 from addons.utils import ReverseNameLookup
 from bandwagon.models import Collection
 from compat.models import AppCompat
-from compat.forms import AdminCompatForm
 from devhub.models import ActivityLog
 from files.models import Approval, File
 from versions.compare import version_int as vint
@@ -52,7 +51,8 @@ from versions.models import Version
 from . import tasks
 from .forms import (BulkValidationForm, FeaturedCollectionFormSet, NotifyForm,
                     OAuthConsumerForm, MonthlyPickFormSet, AddonStatusForm,
-                    FileFormSet, JetpackUpgradeForm, YesImSure, DevMailerForm)
+                    FileFormSet, JetpackUpgradeForm, YesImSure, DevMailerForm,
+                    CompatForm)
 from .models import ValidationJob, EmailPreviewTopic, ValidationJobTally
 
 log = commonware.log.getLogger('z.zadmin')
@@ -403,6 +403,7 @@ def jetpack_resend(request, file_id):
 def compat(request):
     APP = amo.FIREFOX
     VER = site_settings.COMPAT[0]['main']  # Default: latest Firefox version.
+    minimum = 10
     ratio = .8
     binary = None
 
@@ -410,21 +411,24 @@ def compat(request):
     #     For Firefox 8.0 reports:      ?appver=1-8.0
     #     For over 70% incompatibility: ?appver=1-8.0&ratio=0.7
     #     For binary-only add-ons:      ?appver=1-8.0&type=binary
-    initial = {'appver': '%s-%s' % (APP.id, VER), 'ratio': ratio,
-               'type': 'all'}
+    initial = {'appver': '%s-%s' % (APP.id, VER), 'minimum': minimum,
+               'ratio': ratio, 'type': 'all'}
     initial.update(request.GET.items())
 
-    form = AdminCompatForm(initial)
+    form = CompatForm(initial)
     if request.GET and form.is_valid():
         APP, VER = form.cleaned_data['appver'].split('-')
         APP = amo.APP_IDS[int(APP)]
-        if form.cleaned_data['ratio']:
+        if form.cleaned_data['ratio'] is not None:
             ratio = float(form.cleaned_data['ratio'])
+        if form.cleaned_data['minimum'] is not None:
+            minimum = int(form.cleaned_data['minimum'])
         if form.cleaned_data['type'] == 'binary':
             binary = True
 
     app, ver = str(APP.id), VER
-    usage_addons, usage_total = compat_stats(request, app, ver, ratio, binary)
+    usage_addons, usage_total = compat_stats(request, app, ver, minimum, ratio,
+                                             binary)
 
     return jingo.render(request, 'zadmin/compat.html', {
         'app': APP,
@@ -435,7 +439,7 @@ def compat(request):
     })
 
 
-def compat_stats(request, app, ver, ratio, binary):
+def compat_stats(request, app, ver, minimum, ratio, binary):
     # Get the list of add-ons for usage stats.
     redis = redisutils.connections['master']
     # Show add-ons marked as incompatible with this current version having
@@ -443,7 +447,7 @@ def compat_stats(request, app, ver, ratio, binary):
     ver_int = str(vint(ver))
     prefix = 'works.%s.%s' % (app, ver_int)
     qs = (AppCompat.search()
-          .filter(**{'%s.failure__gt' % prefix: 10,
+          .filter(**{'%s.failure__gt' % prefix: minimum,
                      '%s.failure_ratio__gt' % prefix: ratio,
                      'support.%s.max__gte' % app: 0})
           .order_by('-%s.failure_ratio' % prefix,
