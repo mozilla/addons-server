@@ -49,6 +49,13 @@ The following packages will get you set for zamboni::
 .. _Homebrew: http://github.com/mxcl/homebrew#readme
 
 
+MySQL
+~~~~~
+
+You'll probably need to :ref:`configure MySQL after install <configure-mysql>`
+(especially on Mac OS X) according to advanced installation.
+
+
 Use the Source
 --------------
 
