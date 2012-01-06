@@ -2,6 +2,7 @@
 <li>
 <label for="recaptcha_response_field">
   {{ _('Are you human?') }} {{ required() }}
+  <a href="#" id="recaptcha_help">{{ _("What's this?") }}</a>
 </label>
 <div class="recaptcha-container">
   {% trans %}
@@ -20,7 +21,7 @@
     <input type="text" name="recaptcha_response_field"
            id="recaptcha_response_field" size="30" />
   </p>
-  <p><a href="#" id="recaptcha_help">{{ _("What's this?") }}</a></p>
+  
 </div>
 </li>
 {{ form.recaptcha.errors }}
