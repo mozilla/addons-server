@@ -268,7 +268,7 @@ def refund_permission_url(addon, dest='payments'):
         except PaypalError, e:
             paypal_log.debug('Error on refund permission URL addon: %s, %s' %
                              (addon.pk, e))
-            if 'malformed' in str(e):
+            if e.id == '580028':
                 # PayPal is very picky about where they redirect users to.
                 # If you try and create a PayPal permissions URL on a
                 # zamboni that has a non-standard port number or a

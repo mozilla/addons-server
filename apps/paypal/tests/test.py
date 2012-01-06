@@ -218,6 +218,9 @@ def test_check_paypal_id(urlopen_mock):
 @mock.patch.object(settings, 'PAYPAL_PERMISSIONS_URL', 'something')
 class TestRefundPermissions(amo.tests.TestCase):
 
+    def setUp(self):
+        self.addon = Addon(type=amo.ADDON_EXTENSION, slug='foo')
+
     def test_refund_permissions_url(self, _call):
         """
         `paypal_refund_permission_url` returns an URL for PayPal's
@@ -225,8 +228,20 @@ class TestRefundPermissions(amo.tests.TestCase):
         us.
         """
         _call.return_value = {'token': 'foo'}
-        addon = Addon(type=amo.ADDON_EXTENSION, slug='foo')
-        assert 'foo' in paypal.refund_permission_url(addon)
+        assert 'foo' in paypal.refund_permission_url(self.addon)
+
+    def test_refund_permissions_url_settings(self, _call):
+        settings.PAYPAL_PERMISSIONS_URL = ''
+        assert not paypal.refund_permission_url(self.addon)
+
+    def test_refund_permissions_url_malformed(self, _call):
+        _call.side_effect = paypal.PaypalError('580028')
+        assert 'wont-work' in paypal.refund_permission_url(self.addon)
+
+    def test_refund_permissions_url_error(self, _call):
+        _call.side_effect = paypal.PaypalError
+        with self.assertRaises(paypal.PaypalError):
+            paypal.refund_permission_url(self.addon)
 
     def test_check_refund_permission_fail(self, _call):
         """
@@ -243,6 +258,14 @@ class TestRefundPermissions(amo.tests.TestCase):
         """
         _call.return_value = {'scope(0)': 'REFUND'}
         eq_(paypal.check_refund_permission('foo'), True)
+
+    def test_check_refund_permission_fail(self, _call):
+        _call.side_effect = paypal.PaypalError
+        assert not paypal.check_refund_permission('oh-noes')
+
+    def test_check_refund_permission_settings(self, _call):
+        settings.PAYPAL_PERMISSIONS_URL = ''
+        assert not paypal.check_refund_permission('oh-noes')
 
     def test_get_permissions_token(self, _call):
         _call.return_value = {'token': 'FOO'}
@@ -288,7 +311,7 @@ class TestRefund(amo.tests.TestCase):
     """
 
     @mock.patch('urllib2.OpenerDirector.open')
-    def test_refundSuccess(self, opener):
+    def test_refund_success(self, opener):
         """
         Making refund requests returns the refund info.
         """
@@ -296,8 +319,14 @@ class TestRefund(amo.tests.TestCase):
         eq_(paypal.refund('fake-paykey'), good_refund_data)
 
     @mock.patch('urllib2.OpenerDirector.open')
-    def test_refundFailure(self, opener):
+    def test_refund_wrong_status(self, opener):
         opener.return_value = StringIO(error_refund_string)
+        with self.assertRaises(paypal.PaypalError):
+            paypal.refund('fake-paykey')
+
+    @mock.patch('paypal._call')
+    def test_refund_error(self, _call):
+        _call.side_effect = paypal.PaypalError
         with self.assertRaises(paypal.PaypalError):
             paypal.refund('fake-paykey')
 
