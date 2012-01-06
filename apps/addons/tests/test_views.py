@@ -12,6 +12,7 @@ from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 
 import fudge
+from fudge.inspector import arg
 from mock import patch
 from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
@@ -389,6 +390,20 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         (get_paykey.expects_call()
                    .with_matching_args(preapproval=pre)
                    .returns(('some-pay-key', 'COMPLETED')))
+        self.client.get_ajax(self.purchase_url)
+
+    @patch('paypal.check_purchase')
+    @fudge.patch('paypal._call')
+    # Turning on the allow-pre-auth flag.
+    @patch.object(waffle, 'flag_is_active', lambda x, y: True)
+    def test_paykey_pre_approval_empty(self, _call, check_purchase):
+        check_purchase.return_value = 'COMPLETED'
+        PreApprovalUser.objects.create(user=self.user, paypal_key='')
+        r = lambda s: 'receiverList.receiver(0).email' in s
+        (_call.expects_call()
+              .with_matching_args(arg.any(), arg.passes_test(r))
+              .returns({'payKey':'some-pay-key',
+                        'paymentExecStatus':'COMPLETED'}))
         self.client.get_ajax(self.purchase_url)
 
     @patch('addons.models.Addon.has_purchased')

@@ -4,6 +4,35 @@
 Getting Fancy
 =============
 
+.. _configure-mysql:
+
+-----
+MySQL
+-----
+
+On your dev machine, MySQL probably needs some tweaks. Locate your my.cnf (or
+create one) then, at the very least, make UTF8 the default encoding::
+
+    [mysqld]
+    character-set-server=utf8
+
+Here are some other helpful settings::
+
+    [mysqld]
+    default-storage-engine=innodb
+    transaction-isolation=READ-COMMITTED
+    character-set-server=utf8
+    skip-sync-frm=OFF
+    innodb_file_per_table
+
+On Mac OS X with homebrew, put my.cnf in ``/usr/local/Cellar/mysql/5.5.15/my.cnf`` then restart like::
+
+    launchctl unload -w ~/Library/LaunchAgents/com.mysql.mysqld.plist
+    launchctl load -w ~/Library/LaunchAgents/com.mysql.mysqld.plist
+
+.. note:: some of the options above were renamed between MySQL versions
+
+Here are `more tips for optimizing MySQL <http://bonesmoses.org/2011/02/28/mysql-isnt-yoursql/>`_ on your dev machine.
 
 ---------
 Memcached

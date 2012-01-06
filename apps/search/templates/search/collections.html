@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 
-{% block search_form %}
-  {% include "impala/search.html" %}
-{% endblock %}
+{% set query_term = query %}
 
 {% block title %}
   {% if query %}
@@ -16,7 +14,7 @@
 <div class="primary" role="main">
   <header class="results-head">
     {{ breadcrumbs([(None, _('Search'))]) }}
-    <h2>{{ _('Collection Search Results') }}</h2>
+    <h2>{{ _('Search Results') }}</h2>
     <h3 class="results-count">{{ showing(query, tag, pager) }}</h3>
   </header>
   <div class="featured listing">

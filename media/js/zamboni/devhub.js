@@ -284,11 +284,6 @@ $(document).ready(function() {
             return true;
         }
     });
-
-    var timings_url = $('body').attr('data-collect-timings');
-    if (timings_url) {
-        stick.send(timings_url);
-    }
 });
 
 function initUploadControls() {

@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 {% from "browse/macros.html" import secondary_categories %}
 
-{% block search_form %}
-  {% include "impala/search.html" %}
-{% endblock %}
+{% set query_term = query %}
 
 {% block title %}
 {% if query %}
@@ -18,7 +16,7 @@
   <header class="results-head">
     {{ breadcrumbs([(None, _('Search'))]) }}
     <hgroup>
-      <h2>{{ _('Browse Personas') }}</h2>
+      <h2>{{ _('Search Results') }}</h2>
       <h3 class="results-count">{{ showing(query, tag, pager) }}</h3>
     </hgroup>
   </header>

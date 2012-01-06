@@ -11,11 +11,6 @@ form fieldset .container {
     top: -0.692em; /* fudge to deal with IE fieldset margin/padding */
 }
 
-.button /* fixes buttons looking squiffy in IE7 */ {
-    display: block;
-    float: left;
-}
-
 #footer .secondary img {
     width: auto;
 }

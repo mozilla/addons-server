@@ -75,6 +75,34 @@ class TestAdminDisabledAddons(SphinxTestCase):
         super(TestAdminDisabledAddons, self).setUp()
 
 
+class TestSphinxSearchboxTarget(SphinxTestCase):
+    fixtures = ['base/addon_3615']
+
+    def check(self, params):
+        r = self.client.get(reverse('search.search'), params, follow=True)
+        form = pq(r.content)('#search')
+
+        cat = params['cat']
+        eq_(form('input[name=cat]').val(), cat)
+
+        q_field = form('input[name=q]')
+        eq_(q_field.attr('placeholder'), 'search for %s' % cat)
+        if 'q' in params:
+            eq_(q_field.val(), params['q'])
+
+    def test_collections_default(self):
+        self.check({'cat': 'collections'})
+
+    def test_collections_term(self):
+        self.check({'cat': 'collections', 'q': 'harry'})
+
+    def test_personas(self):
+        self.check({'cat': 'personas'})
+
+    def test_personas_term(self):
+        self.check({'cat': 'personas', 'q': 'harry'})
+
+
 class TestSearchboxTarget(amo.tests.ESTestCase):
 
     @classmethod
@@ -82,13 +110,16 @@ class TestSearchboxTarget(amo.tests.ESTestCase):
         super(TestSearchboxTarget, cls).setUpClass()
         cls.setUpIndex()
 
-    def check(self, url, placeholder, cat=None, action=None):
+    def check(self, url, placeholder, cat=None, action=None, q=None):
         # Checks that we search within addons, personas, collections, etc.
         form = pq(self.client.get(url).content)('.header-search form')
         eq_(form.attr('action'), action or reverse('search.search'))
-        eq_(form('input[name=q]').attr('placeholder'), placeholder)
         if cat:
             eq_(form('input[name=cat]').val(), cat)
+        q_field = form('input[name=q]')
+        eq_(q_field.attr('placeholder'), placeholder)
+        if q:
+            eq_(q_field.val(), q)
 
     def test_addons_is_default(self):
         self.check(reverse('home'), 'search for add-ons')
@@ -107,6 +138,10 @@ class TestSearchboxTarget(amo.tests.ESTestCase):
 
     def test_addons_search(self):
         self.check(reverse('search.search'), 'search for add-ons')
+
+    def test_addons_search_term(self):
+        self.check(reverse('search.search') + '?q=ballin',
+                   'search for add-ons', q='ballin')
 
     def test_apps(self):
         self.check(reverse('apps.list'), 'search for apps', None,

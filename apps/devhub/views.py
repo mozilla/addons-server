@@ -20,10 +20,8 @@ from django.utils.encoding import smart_unicode
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_view_exempt
 
-import bleach
 import commonware.log
 import jingo
-import jinja2
 from PIL import Image
 from session_csrf import anonymous_csrf
 from tower import ugettext_lazy as _lazy, ugettext as _
@@ -33,10 +31,10 @@ from waffle.decorators import waffle_flag
 from applications.models import Application, AppVersion
 import amo
 import amo.utils
-from amo import messages, urlresolvers
+from amo import messages
 from amo.decorators import json_view, login_required, post_required, write
 from amo.helpers import loc, urlparams
-from amo.utils import HttpResponseSendFile, MenuItem
+from amo.utils import escape_all, HttpResponseSendFile, MenuItem
 from amo.urlresolvers import reverse
 from access import acl
 from addons import forms as addon_forms
@@ -733,20 +731,6 @@ def upload_for_addon(request, addon_id, addon):
 def upload_detail_for_addon(request, addon_id, addon, uuid):
     upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
     return json_upload_detail(request, upload, addon_slug=addon.slug)
-
-
-def escape_all(v):
-    """Escape html in JSON value, including nested list items."""
-    if isinstance(v, basestring):
-        v = jinja2.escape(v)
-        v = bleach.linkify(v, nofollow=True,
-                           filter_url=urlresolvers.get_outgoing_url)
-        return v
-    elif isinstance(v, list):
-        for i, lv in enumerate(v):
-            v[i] = escape_all(lv)
-
-    return v
 
 
 def make_validation_result(data, is_compatibility=False):

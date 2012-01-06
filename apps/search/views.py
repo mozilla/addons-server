@@ -220,7 +220,7 @@ def _personas(request):
     pager = amo.utils.paginate(request, results, search_opts['limit'])
     categories, filter, _, _ = browse.views.personas_listing(request)
     c = dict(pager=pager, form=form, categories=categories, query=query,
-             filter=filter)
+             filter=filter, search_placeholder='personas')
     return jingo.render(request, 'search/personas.html', c)
 
 
@@ -244,7 +244,8 @@ def _collections(request):
 
     pager = amo.utils.paginate(request, results, search_opts['limit'])
     c = dict(pager=pager, form=form, query=query, opts=search_opts,
-             filter=bandwagon.views.get_filter(request))
+             filter=bandwagon.views.get_filter(request),
+             search_placeholder='collections')
     return jingo.render(request, 'search/collections.html', c)
 
 

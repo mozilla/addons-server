@@ -4,7 +4,7 @@ from operator import itemgetter
 from django.conf import settings
 
 import elasticutils
-from statsd import statsd
+from django_statsd.clients import statsd
 
 log = logging.getLogger('z.es')
 

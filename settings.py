@@ -54,6 +54,7 @@ FLIGTAR = 'amo-admins@mozilla.org'
 EDITORS_EMAIL = 'amo-editors@mozilla.org'
 SENIOR_EDITORS_EMAIL = 'amo-admin-reviews@mozilla.org'
 MARKETPLACE_EMAIL = 'amo-marketplace@mozilla.org'
+ABUSE_EMAIL = 'marketplace-abuse@mozilla.org'
 NOBODY_EMAIL = 'nobody@mozilla.org'
 
 DATABASES = {
@@ -277,8 +278,8 @@ def JINJA_CONFIG():
 
 MIDDLEWARE_CLASSES = (
     # AMO URL middleware comes first so everyone else sees nice URLs.
-    'commonware.response.middleware.GraphiteRequestTimingMiddleware',
-    'commonware.response.middleware.GraphiteMiddleware',
+    'django_statsd.middleware.GraphiteRequestTimingMiddleware',
+    'django_statsd.middleware.GraphiteMiddleware',
     'amo.middleware.LocaleAndAppURLMiddleware',
     # Mobile detection should happen in Zeus.
     'mobility.middleware.DetectMobileMiddleware',
@@ -380,8 +381,8 @@ INSTALLED_APPS = (
 
     # Has to load after auth
     'django_browserid',
+    'django_statsd',
     'radagast',
-    'delayed_mailer'
 )
 
 # These apps will be removed from INSTALLED_APPS in a production environment.
@@ -704,6 +705,7 @@ MINIFY_BUNDLES = {
 
             # Fix-up outgoing links
             'js/zamboni/outgoing_links.js',
+            'js/lib/stick.js',
         ),
         'zamboni/discovery': (
             'js/lib/jquery-1.6.4.js',
@@ -741,7 +743,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
             'js/zamboni/packager.js',
-            'js/lib/stick.js',
         ),
         'zamboni/editors': (
             'js/zamboni/editors.js',
@@ -1171,8 +1172,6 @@ EXPOSE_VALIDATOR_TRACEBACKS = False
 # Feature flags
 SEARCH_EXCLUDE_PERSONAS = True
 UNLINK_SITE_STATS = True
-
-# Impala flags.
 
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = True

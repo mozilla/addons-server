@@ -27,6 +27,16 @@ from zadmin.models import ValidationJob
 log = commonware.log.getLogger('z.zadmin')
 
 
+class DevMailerForm(happyforms.Form):
+    _choices = [('eula', 'Developers who have set up EULAs')]
+    recipients = forms.ChoiceField(choices=_choices, required=True)
+    subject = forms.CharField(widget=forms.TextInput(attrs=dict(size='100')),
+                              required=True)
+    preview_only = forms.BooleanField(initial=True, required=False,
+                                      label=u'Log emails instead of sending')
+    message = forms.CharField(widget=forms.Textarea, required=True)
+
+
 class BulkValidationForm(happyforms.ModelForm):
     application = forms.ChoiceField(
                 label=_lazy(u'Application'),

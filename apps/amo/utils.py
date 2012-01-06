@@ -28,16 +28,18 @@ from django.utils.translation import trans_real
 from django.utils.functional import Promise
 from django.utils.encoding import smart_str, smart_unicode
 
+import bleach
 from cef import log_cef as _log_cef
 from easy_thumbnails import processors
 import html5lib
 from html5lib.serializer.htmlserializer import HTMLSerializer
+import jinja2
 import pytz
 from PIL import Image, ImageFile, PngImagePlugin
 
 import amo.search
 from amo import ADDON_ICON_SIZES
-from amo.urlresolvers import reverse
+from amo.urlresolvers import get_outgoing_url, reverse
 from translations.models import Translation
 from users.models import UserNotification
 from users.utils import UnsubscribeCode
@@ -704,3 +706,18 @@ def no_translation():
     trans_real.deactivate()
     yield
     trans_real.activate(lang)
+
+
+def escape_all(v):
+    """Escape html in JSON value, including nested items."""
+    if isinstance(v, basestring):
+        v = jinja2.escape(v)
+        v = bleach.linkify(v, nofollow=True, filter_url=get_outgoing_url)
+        return v
+    elif isinstance(v, list):
+        for i, lv in enumerate(v):
+            v[i] = escape_all(lv)
+    elif isinstance(v, dict):
+        for k, lv in v.iteritems():
+            v[k] = escape_all(lv)
+    return v

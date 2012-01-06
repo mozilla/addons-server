@@ -44,9 +44,16 @@ The best solution for installing UNIX tools on OSX is Homebrew_.
 
 The following packages will get you set for zamboni::
 
-    brew install python libxml2 mysql libmemcached
+    brew install python libxml2 mysql libmemcached swig
 
 .. _Homebrew: http://github.com/mxcl/homebrew#readme
+
+
+MySQL
+~~~~~
+
+You'll probably need to :ref:`configure MySQL after install <configure-mysql>`
+(especially on Mac OS X) according to advanced installation.
 
 
 Use the Source

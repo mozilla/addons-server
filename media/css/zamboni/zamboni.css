@@ -3201,6 +3201,9 @@ td.input {
 .contributor span {
     position: relative;
 }
+#contributor-ac-error {
+    margin: 0;
+}
 .make-owner {
     margin-left: 1em;
 }

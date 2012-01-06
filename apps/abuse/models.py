@@ -2,6 +2,7 @@ import logging
 
 from django.conf import settings
 from django.db import models
+from django.utils.translation import gettext
 
 import amo.models
 import amo.utils
@@ -33,11 +34,17 @@ class AbuseReport(amo.models.ModelBase):
             user_name = '%s (%s)' % (self.reporter.name, self.reporter.email)
         else:
             user_name = 'An anonymous user'
-        subject = 'Abuse Report for %s' % obj.name
+
+        with amo.utils.no_translation():
+            type_ = (gettext(amo.ADDON_TYPE[self.addon.type])
+                     if self.addon else 'User')
+
+        subject = u'[%s] Abuse Report for %s' % (type_, obj.name)
         msg = u'%s reported abuse for %s (%s%s).\n\n%s' % (
             user_name, obj.name, settings.SITE_URL, obj.get_url_path(),
             self.message)
-        amo.utils.send_mail(subject, msg, recipient_list=(settings.FLIGTAR,))
+        amo.utils.send_mail(subject, msg,
+                            recipient_list=(settings.ABUSE_EMAIL,))
 
 
 def send_abuse_report(request, obj, message):

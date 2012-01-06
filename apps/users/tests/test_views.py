@@ -55,17 +55,50 @@ class UserViewBase(amo.tests.TestCase):
 
 class TestAjax(UserViewBase):
 
-    def test_ajax(self):
-        url = reverse('users.ajax') + '?q=fligtar@gmail.com'
+    def setUp(self):
+        super(TestAjax, self).setUp()
         self.client.login(username='jbalogh@mozilla.com', password='foo')
-        r = self.client.get(url, follow=True)
+
+    def test_ajax_404(self):
+        r = self.client.get(reverse('users.ajax'), follow=True)
+        eq_(r.status_code, 404)
+
+    def test_ajax_success(self):
+        r = self.client.get(reverse('users.ajax'), {'q': 'fligtar@gmail.com'},
+                            follow=True)
         data = json.loads(r.content)
-        eq_(data['id'], 9945)
-        eq_(data['name'], u'Justin Scott \u0627\u0644\u062a\u0637\u0628')
+        eq_(data, {'status': 1, 'message': '', 'id': 9945,
+                   'name': u'Justin Scott \u0627\u0644\u062a\u0637\u0628'})
+
+    def test_ajax_xss(self):
+       self.user_profile.display_name = '<script>alert("xss")</script>'
+       self.user_profile.save()
+       assert '<script>' in self.user_profile.display_name, (
+           'Expected <script> to be in display name')
+       r = self.client.get(reverse('users.ajax'),
+                           {'q': self.user_profile.email})
+       data = r.content
+       assert '<script>' not in data
+       assert '&lt;script&gt;' in data
+
+    def test_ajax_failure_incorrect_email(self):
+        r = self.client.get(reverse('users.ajax'), {'q': 'incorrect'},
+                            follow=True)
+        data = json.loads(r.content)
+        eq_(data,
+            {'status': 0,
+             'message': 'A user with that email address does not exist.'})
+
+    def test_ajax_failure_no_email(self):
+        r = self.client.get(reverse('users.ajax'), {'q': ''}, follow=True)
+        data = json.loads(r.content)
+        eq_(data,
+            {'status': 0,
+             'message': 'An email address is required.'})
 
     def test_forbidden(self):
-        url = reverse('users.ajax')
-        r = self.client.get(url)
+        self.client.logout()
+        r = self.client.get(reverse('users.ajax'))
         eq_(r.status_code, 401)
 
 
@@ -932,40 +965,59 @@ class TestLogout(UserViewBase):
 
 class TestRegistration(UserViewBase):
 
-    def test_confirm(self):
-        # User doesn't have a confirmation code
+    def test_new_confirm(self):
+        waffle.models.Switch.objects.create(name='zamboni-login', active=True)
+
+        # User doesn't have a confirmation code.
         url = reverse('users.confirm', args=[self.user.id, 'code'])
         r = self.client.get(url, follow=True)
-        anon = pq(r.content)('body').attr('data-anonymous')
-        self.assertTrue(anon)
+        is_anonymous = pq(r.content)('body').attr('data-anonymous')
+        eq_(json.loads(is_anonymous), True)
 
-        self.user_profile.confirmationcode = "code"
-        self.user_profile.save()
+        self.user_profile.update(confirmationcode='code')
 
-        # URL has the wrong confirmation code
+        # URL has the wrong confirmation code.
         url = reverse('users.confirm', args=[self.user.id, 'blah'])
         r = self.client.get(url, follow=True)
         self.assertContains(r, 'Invalid confirmation code!')
 
-        # URL has the right confirmation code
+        # URL has the right confirmation code.
         url = reverse('users.confirm', args=[self.user.id, 'code'])
         r = self.client.get(url, follow=True)
         self.assertContains(r, 'Successfully verified!')
 
-    def test_confirm_resend(self):
-        # User doesn't have a confirmation code
+    def test_legacy_confirm(self):
+        # User doesn't have a valid confirmation code.
+        url = reverse('users.confirm', args=[self.user.id, 'blah'])
+        r = self.client.get(url, follow=True)
+        # Ensure we don't show django messages for registrations via Remora.
+        eq_(pq(r.content)('.notification-box').length, 0)
+
+        self.user_profile.update(confirmationcode='code')
+
+        url = reverse('users.confirm', args=[self.user.id, 'code'])
+        r = self.client.get(url, follow=True)
+        eq_(pq(r.content)('.notification-box').length, 0)
+
+    def test_new_confirm_resend(self):
+        waffle.models.Switch.objects.create(name='zamboni-login', active=True)
+
+        # User doesn't have a confirmation code.
         url = reverse('users.confirm.resend', args=[self.user.id])
         r = self.client.get(url, follow=True)
-        anon = pq(r.content)('body').attr('data-anonymous')
-        self.assertTrue(anon)
 
-        self.user_profile.confirmationcode = "code"
-        self.user_profile.save()
+        self.user_profile.update(confirmationcode='code')
 
-        # URL has the wrong confirmation code
-        url = reverse('users.confirm.resend', args=[self.user.id])
+        # URL has the right confirmation code now.
         r = self.client.get(url, follow=True)
         self.assertContains(r, 'An email has been sent to your address')
+
+    def test_legacy_confirm_resend(self):
+        self.user_profile.update(confirmationcode='code')
+        url = reverse('users.confirm.resend', args=[self.user.id])
+        r = self.client.get(url, follow=True)
+        # Ensure we don't show django messages for Remora.
+        eq_(pq(r.content)('.notification-box').length, 0)
 
 
 class TestProfileLinks(UserViewBase):

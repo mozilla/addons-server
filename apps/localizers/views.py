@@ -1,18 +1,26 @@
 from django import http
 from django.conf import settings
+from django.shortcuts import redirect
+from django.utils import translation
 
 import commonware.log
 import jingo
 from product_details import product_details
 
+import amo
 from access.models import Group
+from addons.models import Category
 from amo.decorators import json_view, login_required, post_required, write
 from amo.urlresolvers import reverse
 
+from .decorators import locale_switcher, valid_locale
+from .forms import CategoryFormSet
 from .helpers import _permission_to_edit_locale
 from .models import L10nSettings
 
+
 log = commonware.log.getLogger('z.l10n')
+
 
 @write
 @login_required
@@ -46,6 +54,7 @@ def set_motd(request):
 
     return data
 
+
 def summary(request):
     """global L10n dashboard"""
 
@@ -57,30 +66,6 @@ def summary(request):
     }
 
     return jingo.render(request, 'localizers/summary.html', data)
-
-
-def locale_switcher(f):
-    """Decorator redirecting clicks on the locale switcher dropdown."""
-    def decorated(request, *args, **kwargs):
-        new_userlang = request.GET.get('userlang')
-        if (new_userlang and new_userlang in settings.AMO_LANGUAGES or
-            new_userlang in settings.HIDDEN_LANGUAGES):
-            kwargs['locale_code'] = new_userlang
-            return http.HttpResponsePermanentRedirect(reverse(
-                decorated, args=args, kwargs=kwargs))
-        else:
-            return f(request, *args, **kwargs)
-    return decorated
-
-
-def valid_locale(f):
-    """Decorator validating locale code for per-language pages."""
-    def decorated(request, locale_code, *args, **kwargs):
-        if locale_code not in (settings.AMO_LANGUAGES +
-                               settings.HIDDEN_LANGUAGES):
-            raise http.Http404
-        return f(request, locale_code, *args, **kwargs)
-    return decorated
 
 
 @locale_switcher
@@ -112,16 +97,46 @@ def locale_dashboard(request, locale_code):
     return jingo.render(request, 'localizers/dashboard.html', data)
 
 
-@login_required
 @locale_switcher
 @valid_locale
+@login_required
 def categories(request, locale_code):
-    if _permission_to_edit_locale(request, locale_code):
+    if not _permission_to_edit_locale(request, locale_code):
         return http.HttpResponseForbidden()
+
+    translation.activate('en-US')
+    categories_en = dict([(c.id, c) for c in Category.objects.all()])
+
+    translation.activate(locale_code)
+    categories_qs = Category.objects.values('id', 'name', 'application')
+
+    formset = CategoryFormSet(request.POST or None, initial=categories_qs)
+
+    # Build a map from category.id to form in formset for precise form display.
+    form_map = dict((form.initial['id'], form) for form in formset.forms)
+
+    if request.method == 'POST' and formset.is_valid():
+        for form in formset:
+            pk = form.cleaned_data.get('id')
+            cat = categories_en.get(pk)
+            if not cat:
+                continue
+
+            cat.name = {locale_code: form.cleaned_data.get('name')}
+            cat.save()
+
+        return redirect(reverse('localizers.categories',
+                                kwargs=dict(locale_code=locale_code)))
 
     data = {
         'locale_code': locale_code,
         'userlang': product_details.languages[locale_code],
+        'categories_en': categories_en,
+        'categories': categories_qs,
+        'formset': formset,
+        'form_map': form_map,
+        'apps': amo.APP_IDS,
+        'types': amo.ADDON_TYPE,
     }
 
     return jingo.render(request, 'localizers/categories.html', data)

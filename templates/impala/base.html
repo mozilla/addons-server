@@ -23,6 +23,9 @@
       <!--[if lt IE 9]>
         <script src="{{ media('js/lib/iepp.min.js') }}"></script>
       <![endif]-->
+      <!--[if lte IE 9]>
+        <link rel="stylesheet" href="{{ media('css/legacy/ie9.css') }}">
+      <![endif]-->
     {% endblock %}
 
     {% block extrahead %}{% endblock %}
@@ -48,6 +51,7 @@
         {% if waffle.switch('marketplace') and request.amo_user %}
         data-purchases="{{ request.amo_user.purchase_ids()|join(",") }}"
         {% endif %}
+        data-collect-timings="{{ url('amo.timing.record') }}:{{ collect_timings_percent }}"
         {% block bodyattrs %}{% endblock %}>
 
     <div id="page" class="c">
@@ -81,7 +85,7 @@
           <div class="header-search" role="search">
             {% block search_form %}
               {# Get this in scope. #}
-              {% with WEBAPPS=WEBAPPS %}
+              {% with WEBAPPS=WEBAPPS, query_term=query_term %}
                 {% include 'impala/search.html' %}
               {% endwith %}
             {% endblock %}

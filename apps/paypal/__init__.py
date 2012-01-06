@@ -11,7 +11,7 @@ from django.conf import settings
 from django.utils.http import urlencode, urlquote
 
 import commonware.log
-from statsd import statsd
+from django_statsd.clients import statsd
 
 from amo.helpers import absolutify, loc, urlparams
 from amo.urlresolvers import reverse
@@ -141,9 +141,9 @@ def get_paykey(data):
         if key:
             paypal_log.info('Using preapproval: %s' % data['preapproval'].pk)
             paypal_data['preapprovalKey'] = key
-            paypal_data.update(add_receivers(*receivers, preapproval=True))
-    else:
-        paypal_data.update(add_receivers(*receivers))
+
+    paypal_data.update(add_receivers(*receivers,
+                                preapproval='preapprovalKey' in paypal_data))
 
     if data.get('memo'):
         paypal_data['memo'] = data['memo']
@@ -268,7 +268,7 @@ def refund_permission_url(addon, dest='payments'):
         except PaypalError, e:
             paypal_log.debug('Error on refund permission URL addon: %s, %s' %
                              (addon.pk, e))
-            if 'malformed' in str(e):
+            if e.id == '580028':
                 # PayPal is very picky about where they redirect users to.
                 # If you try and create a PayPal permissions URL on a
                 # zamboni that has a non-standard port number or a

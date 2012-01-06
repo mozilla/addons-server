@@ -50,6 +50,12 @@ class TestPerfIndex(amo.tests.TestCase):
         eq_(r.status_code, 200)
         eq_(pq(r.content)('.no-results').length, 1)
 
+    @patch('perf.tasks.update_perf.subtask')
+    def test_last_update_none(self, subtask):
+        Performance.objects.all().delete()
+        update_perf()
+        assert not subtask.called
+
 
 class TestModels(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/addon_5299_gcal',

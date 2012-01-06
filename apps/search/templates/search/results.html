@@ -1,12 +1,14 @@
 {% extends "base_ajax.html" if is_pjax else "impala/base_shared.html" %}
 
+{% set query_term = query.q %}
+
 {% block bodyclass %}pjax {{ super() }}{% endblock %}
 
-{% if query.q %}
+{% if query_term %}
   {# L10n: {0} is a search term, such as Firebug. #}
-  {% set title = _('{0} :: Search')|f(query.q) %}
+  {% set title = _('{0} :: Search')|f(query_term) %}
   {# L10n: {0} is a search term, such as Firebug. #}
-  {% set heading = _('Search Results for "{0}"')|f(query.q) %}
+  {% set heading = _('Search Results for "{0}"')|f(query_term) %}
 {% elif tag %}
   {# L10n: {0} is a tag, such as jetpack. #}
   {% set title = _('{0} :: Tag')|f(tag) %}
@@ -22,7 +24,7 @@
 {% endblock %}
 
 {% block extrahead %}
-<meta name="WT.oss" content="{{ query.q }}">
+<meta name="WT.oss" content="{{ query_term }}">
 <meta name="WT.oss_r" content="{{ pager.paginator.count }}">
 {% endblock %}
 
