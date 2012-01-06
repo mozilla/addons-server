@@ -193,6 +193,25 @@ configured your settings and database, you're good to go.  Run the server::
     ./manage.py runserver 0.0.0.0:8000
 
 
+Create a user
+-------------
+
+To log into your dev site, you can click the login / register link and login
+with Browser ID just like on the live site. However, if you want to grant
+yourself admin privileges there are some additional steps. After registering,
+find your user record::
+
+    mysql> select * from auth_user order by date_joined desc limit 1\G
+
+Then make yourself a superuser like this::
+
+    mysql> update auth_user set is_superuser=1, is_staff=1 where id=<id from above>;
+
+Next, you'll need to set a password. Do that by clicking "I forgot my password"
+on the login screen then go back to the shell you started your dev server in.
+You'll see the email message with the password reset link in stdout.
+
+
 Contact
 -------
 
