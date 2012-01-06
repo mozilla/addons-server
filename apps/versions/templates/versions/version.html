@@ -19,7 +19,11 @@
         <span class="meta compat">
           {# L10n: This refers to this version's compatible applications, such as Firefox 8.0 #}
           {{ _('Works with') }}
-          {{ version.compatible_apps.values()|join(', ') }}
+          {% set is_first = True %}
+          {% for app, compat in version.compatible_apps_ordered -%}
+          {% if not is_first %}, {% endif %}
+            {{ compat }}{% set is_first = False %}
+          {%- endfor %}
         </span>
       {% endif %}
     </h3>
