@@ -308,7 +308,8 @@ function initQueueSearch(doc) {
 
 
 function initScrollingSidebar() {
-    var $sb = $('#scroll_sidebar'),
+    var $window = $(window),
+        $sb = $('#scroll_sidebar'),
         $sb_parent = $sb.parent(),
         sb_top = $sb_parent.offset().top,
         sb_height = $sb.height(),
@@ -329,8 +330,8 @@ function initScrollingSidebar() {
         }
     }
 
-    $(window).scroll(debounce(function(){
-        var scroll_top = $(window).scrollTop(),
+    $window.scroll(debounce(function(){
+        var scroll_top = $window.scrollTop(),
             addon_height = $addon.height();
 
         if(addon_height_current != addon_height) {
@@ -345,7 +346,7 @@ function initScrollingSidebar() {
         } else {
             updateState('top');
         }
-    }), 200);
+    }, 200));
 }
 
 
