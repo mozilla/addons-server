@@ -748,8 +748,8 @@ class TestAjaxSearch(amo.tests.ESTestCase):
         super(TestAjaxSearch, cls).setUpClass()
         cls.setUpIndex()
 
-    def search_addons(self, url, params, addons=[],
-                      types=amo.ADDON_SEARCH_TYPES, src=None):
+    def search_addons(self, url, params, addons=[], types=amo.ADDON_TYPES,
+                      src=None):
         r = self.client.get('?'.join([url, params]))
         eq_(r.status_code, 200)
         data = json.loads(r.content)

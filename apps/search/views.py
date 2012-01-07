@@ -270,7 +270,7 @@ class BaseAjaxSearch(object):
         self.request = request
         self.excluded_ids = excluded_ids
         self.src = getattr(self, 'src', None)
-        self.types = getattr(self, 'types', amo.ADDON_SEARCH_TYPES)
+        self.types = getattr(self, 'types', amo.ADDON_TYPES)
         self.limit = 10
         self.key = 'q'  # Name of search field.
 
