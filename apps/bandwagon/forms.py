@@ -145,9 +145,6 @@ class CollectionForm(ModelForm):
 
     def clean_description(self):
         description = self.cleaned_data['description']
-        if description.strip() == '':
-            description = None
-
         return description
 
     def clean_slug(self):
@@ -188,6 +185,7 @@ class CollectionForm(ModelForm):
 
         if icon:
             c.icontype = 'image/png'
+
         c.save()
 
         if icon:

@@ -291,7 +291,8 @@ class TestCRUD(amo.tests.TestCase):
         assert self.client.login(username='regular@mozilla.com',
                                   password='password')
 
-    def create_collection(self):
+    def create_collection(self, **kw):
+        self.data.update(kw)
         r = self.client.post(self.add_url, self.data, follow=True)
         eq_(r.status_code, 200)
         return r
@@ -370,7 +371,7 @@ class TestCRUD(amo.tests.TestCase):
             '/en-US/firefox/collections/admin/%s/' % self.slug)
         c = Collection.objects.get(slug=self.slug)
         eq_(unicode(c.name), self.data['name'])
-        eq_(c.description, None)
+        eq_(c.description, '')
         eq_(c.addons.all()[0].id, 3615)
 
     def test_duplicate_slug(self):
@@ -443,6 +444,29 @@ class TestCRUD(amo.tests.TestCase):
         eq_(r.status_code, 200)
         c = Collection.objects.get(slug='halp')
         eq_(unicode(c.name), 'HALP')
+
+    def test_edit_description(self):
+        self.create_collection()
+
+        url = reverse('collections.edit', args=['admin', self.slug])
+        self.data['description'] = 'abc'
+        edit_url = Collection.objects.get(slug=self.slug).edit_url()
+        r = self.client.post(url, self.data)
+        self.assertRedirects(r, edit_url, 302)
+        eq_(unicode(Collection.objects.get(slug=self.slug).description),
+            'abc')
+
+    def test_edit_no_description(self):
+        self.create_collection(description='abc')
+        eq_(Collection.objects.get(slug=self.slug).description, 'abc')
+
+        url = reverse('collections.edit', args=['admin', self.slug])
+        self.data['description'] = ''
+        edit_url = Collection.objects.get(slug=self.slug).edit_url()
+        r = self.client.post(url, self.data)
+        self.assertRedirects(r, edit_url, 302)
+        eq_(unicode(Collection.objects.get(slug=self.slug).description),
+            '')
 
     def test_edit_spaces(self):
         """Let's put lots of spaces and see if they show up."""
