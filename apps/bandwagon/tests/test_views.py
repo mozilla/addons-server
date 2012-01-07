@@ -410,6 +410,13 @@ class TestCRUD(amo.tests.TestCase):
         r = self.client.get(url, follow=True)
         eq_(r.status_code, 200)
 
+    def test_edit_contributors_form(self):
+        self.create_collection()
+        url = reverse('collections.edit', args=['admin', self.slug])
+        r = self.client.get(url, follow=True)
+        eq_(Collection.objects.get(slug=self.slug).author_id,
+            long(pq(r.content)('#contributor-ac').attr('data-owner')))
+
     def test_edit_breadcrumbs(self):
         c = Collection.objects.all()[0]
         r = self.client.get(reverse('collections.edit',

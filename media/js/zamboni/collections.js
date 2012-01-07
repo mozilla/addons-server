@@ -490,6 +490,8 @@ if ($('body.collections-contributors')) {
                     $('#contributor-ac-button').closest('tbody').append(str);
 
                     $contributor_error.html('').removeClass('error');
+                } else if (d.id == my_id) {
+                    $contributor_error.html(gettext('You cannot add yourself as a contributor.')).addClass('error');
                 } else {
                     $contributor_error.html(gettext('You have already added that user.')).addClass('error');
                 }
