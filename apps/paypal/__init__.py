@@ -28,7 +28,7 @@ class PaypalError(Exception):
     def __str__(self):
         default = _('There was an error communicating with PayPal. '
                     'Please try again later.')
-        msg = getattr(self, 'msg')
+        msg = getattr(self, 'msg', None)
         if msg:
             return msg
         return messages.get(self.id, default)
