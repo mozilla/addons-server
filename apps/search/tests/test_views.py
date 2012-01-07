@@ -1,5 +1,6 @@
 # -*- coding: utf8 -*-
 import json
+import sys
 import urlparse
 
 from django.conf import settings
@@ -20,6 +21,7 @@ from search import views
 from search.tests import SphinxTestCase
 from search.utils import floor_version
 from tags.models import Tag
+from versions.compare import num as vnum, version_int as vint
 from versions.models import ApplicationsVersions
 from webapps.tests.test_views import PaidAppMixin
 
@@ -352,7 +354,8 @@ class TestESSearch(amo.tests.ESTestCase):
     def check_appver_filters(self, appver='', expected=''):
         if not expected:
             expected = appver
-        r = self.client.get('%s?appver=%s' % (self.url, appver))
+        r = self.client.get(self.url, dict(appver=appver))
+        eq_(r.status_code, 200)
 
         vs = list(ApplicationsVersions.objects.values_list(
             'max__version', flat=True).distinct())
@@ -400,6 +403,13 @@ class TestESSearch(amo.tests.ESTestCase):
         self.check_appver_filters('8.x', '8.0')
         self.check_appver_filters('8.0x', '8.0')
         self.check_appver_filters('8.0.x', '8.0')
+
+    def test_appver_long(self):
+        too_big = vnum(vint(sys.maxint + 1))
+        just_right = vnum(vint(sys.maxint))
+        self.check_appver_filters(too_big, floor_version(just_right))
+        self.check_appver_filters('9999999', '9999999.0')
+        self.check_appver_filters('99999999', '99999999.0')
 
     def test_appver_bad(self):
         self.check_appver_filters('.')

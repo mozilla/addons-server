@@ -1,4 +1,5 @@
 import re
+import sys
 
 from django.utils.encoding import smart_str
 
@@ -10,7 +11,8 @@ version_re = re.compile(r"""(?P<major>\d+)         # major (x in x.y)
                             (?P<alpha>[a|b]?)      # alpha/beta
                             (?P<alpha_ver>\d*)     # alpha/beta version
                             (?P<pre>pre)?          # pre release
-                            (?P<pre_ver>\d)?       # pre release version""",
+                            (?P<pre_ver>\d)?       # pre release version
+                        """,
                         re.VERBOSE)
 
 
@@ -70,4 +72,4 @@ def version_int(version):
     v = "%d%02d%02d%02d%d%02d%d%02d" % (d['major'], d['minor1'],
             d['minor2'], d['minor3'], d['alpha'], d['alpha_ver'], d['pre'],
             d['pre_ver'])
-    return int(v)
+    return min(int(v), sys.maxint)

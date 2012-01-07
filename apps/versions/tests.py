@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import hashlib
 import os
+import sys
 
 from datetime import datetime, timedelta
 from django.conf import settings
@@ -26,8 +27,11 @@ from versions.compare import version_int, dict_from_int, version_dict
 
 def test_version_int():
     """Tests that version_int. Corrects our versions."""
-    eq_(version_int("3.5.0a1pre2"), 3050000001002)
-    eq_(version_int(""), 200100)
+    eq_(version_int('3.5.0a1pre2'), 3050000001002)
+    eq_(version_int(''), 200100)
+    eq_(version_int(sys.maxint), sys.maxint)
+    eq_(version_int(sys.maxint + 1), sys.maxint)
+    eq_(version_int('9999999'), sys.maxint)
 
 
 def test_version_int_compare():
