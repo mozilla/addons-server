@@ -251,12 +251,12 @@ function initQueue() {
                 pop.html('');
                 var empty = true;
                 if(data.releasenotes) {
-                    pop.append($('<strong>', {'text': gettext('Release Notes')}));
+                    pop.append($('<strong>', {'text': gettext('Version Notes')}));
                     pop.append($('<div>', {'class': 'version-notes', 'text': data.releasenotes}));
                     empty = false;
                 }
                 if(data.approvalnotes) {
-                    pop.append($('<strong>', {'text': gettext('Approval Notes')}));
+                    pop.append($('<strong>', {'text': gettext('Notes for Reviewers')}));
                     pop.append($('<div>', {'class': 'version-notes', 'text': data.approvalnotes}));
                     empty = false;
                 }
