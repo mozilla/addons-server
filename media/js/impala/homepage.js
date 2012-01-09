@@ -33,6 +33,7 @@ function initPromos($context) {
         $('.addons .desc', $promos).truncate({dir: 'v'});
         $('#monthly .blurb > p').truncate({dir: 'v'});
         $('.install', $promos).installButton();
+        $('#monthly .blurb > p').lineclamp(4);
     });
     $('.toplist .name').truncate({showTitle: true});
 }

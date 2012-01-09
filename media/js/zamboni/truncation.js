@@ -64,3 +64,21 @@ $.fn.untruncate = function() {
     });
     return this;
 };
+$.fn.lineclamp = function(lines) {
+    // This function limits the number of visible `lines` of text.
+    // Overflown text is gracefully ellipsed.
+    return this.each(function() {
+        if (!lines) {
+            return;
+        }
+        var $this = $(this),
+            lh = $this.css('line-height');
+        if (lh.substr(-2) == 'px') {
+            lh = parseFloat(lh.replace('px', ''));
+            $this.css({'max-height': Math.ceil(lh) * lines,
+                       'overflow': 'hidden',
+                       'text-overflow': 'ellipsis'})
+                 .truncate({dir: 'v'});
+        }
+    });
+};
