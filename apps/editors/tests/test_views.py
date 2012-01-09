@@ -1868,7 +1868,6 @@ class TestReview(ReviewBase):
         doc(len('.files a'), 3)
 
     def test_compare_link(self):
-        Switch.objects.create(name='zamboni-file-viewer', active=1)
         version = Version.objects.create(addon=self.addon, version='0.2')
         version.created = datetime.today() + timedelta(days=1)
         version.save()
