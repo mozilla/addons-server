@@ -189,7 +189,7 @@ def _get_metrics_jobs(date=None):
 
 
 @task
-def index_update_counts(ids):
+def index_update_counts(ids, **kw):
     es = elasticutils.get_es()
     qs = list(UpdateCount.objects.filter(id__in=ids))
     if qs:
@@ -206,7 +206,7 @@ def index_update_counts(ids):
 
 
 @task
-def index_download_counts(ids):
+def index_download_counts(ids, **kw):
     es = elasticutils.get_es()
     qs = DownloadCount.objects.filter(id__in=ids)
     if qs:
