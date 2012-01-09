@@ -1,7 +1,8 @@
+from itertools import groupby
+
 from django import http
 from django.conf import settings
 from django.shortcuts import redirect
-from django.utils import translation
 
 import commonware.log
 import jingo
@@ -12,6 +13,7 @@ from access.models import Group
 from addons.models import Category
 from amo.decorators import json_view, login_required, post_required, write
 from amo.urlresolvers import reverse
+from translations.models import Translation
 
 from .decorators import locale_switcher, valid_locale
 from .forms import CategoryFormSet
@@ -104,26 +106,45 @@ def categories(request, locale_code):
     if not _permission_to_edit_locale(request, locale_code):
         return http.HttpResponseForbidden()
 
-    translation.activate('en-US')
-    categories_en = dict([(c.id, c) for c in Category.objects.all()])
+    cats = list(Category.objects.order_by('application'))
+    strings = dict(Translation.objects.filter(
+        id__in=[c.name_id for c in cats], locale=locale_code)
+        .values_list('id', 'localized_string'))
 
-    translation.activate(locale_code)
-    categories_qs = Category.objects.values('id', 'name', 'application')
+    # Category ID to localized string map for checking for changes.
+    category_names = dict([(c.id, strings.get(c.name_id)) for c in cats])
+    # Category ID to model object to avoid extra SQL lookups on POST.
+    category_objects = dict([(c.id, c) for c in cats])
+    # Initial data to pre-populate forms.
+    initial = [dict(id=c.id, name=strings.get(c.name_id),
+                    application=c.application_id) for c in cats]
+    # Group categories by application, and sort by name within app groups.
+    categories = []
+    category_no_app = None
+    for key, group in groupby(cats, lambda c: c.application_id):
+        sorted_cats = sorted(group, key=lambda c: c.name)
+        if key:
+            categories.append((key, sorted_cats))
+        else:
+            category_no_app = (key, sorted_cats)
+    if category_no_app:  # Put app-less categories at the bottom.
+        categories.append(category_no_app)
 
-    formset = CategoryFormSet(request.POST or None, initial=categories_qs)
-
-    # Build a map from category.id to form in formset for precise form display.
+    formset = CategoryFormSet(request.POST or None, initial=initial)
+    # Category ID to form mapping.
     form_map = dict((form.initial['id'], form) for form in formset.forms)
 
     if request.method == 'POST' and formset.is_valid():
         for form in formset:
             pk = form.cleaned_data.get('id')
-            cat = categories_en.get(pk)
-            if not cat:
-                continue
-
-            cat.name = {locale_code: form.cleaned_data.get('name')}
-            cat.save()
+            name = form.cleaned_data.get('name')
+            if category_names.get(pk) and name != category_names[pk]:
+                # Name changed, let's save it.
+                cat = category_objects.get(pk)
+                if not cat:
+                    continue
+                cat.name = {locale_code: name}
+                cat.save()
 
         return redirect(reverse('localizers.categories',
                                 kwargs=dict(locale_code=locale_code)))
@@ -131,8 +152,7 @@ def categories(request, locale_code):
     data = {
         'locale_code': locale_code,
         'userlang': product_details.languages[locale_code],
-        'categories_en': categories_en,
-        'categories': categories_qs,
+        'categories': categories,
         'formset': formset,
         'form_map': form_map,
         'apps': amo.APP_IDS,

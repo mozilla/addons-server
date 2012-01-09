@@ -18,15 +18,15 @@
     {% if formset.errors %}<p class="notification-box error">
       {{ _('There are errors in this form.  Please correct them below.') }}</p>
     {% endif %}
-    {% for group in categories|groupby('application') %}
+    {% for app_id, cats in categories %}
       <div class="appversion prose">
         <h2>
-          {% if group.grouper %}
-            {% set app = apps[group.grouper] %}
+          {% if app_id %}
+            {% set app = apps[app_id] %}
             <img src="{{ media('img/app-icons/small/' + app.short + '.png') }}">
             {{ app.pretty }}
           {% else %}
-            Other
+            None
           {% endif %}
         </h2>
       </div>
@@ -37,7 +37,7 @@
             <th width="40%">{{ locale_code }}</th>
             <th width="20%">Type</th>
           </tr>
-          {% for cat in group.list %}
+          {% for cat in cats %}
             {% set form = form_map[cat.id] %}
             {% if form.errors %}
               <tr><td colspan="0">
@@ -45,9 +45,9 @@
               </td></tr>
             {% endif %}
             <tr>
-              <td class="enus">{{ categories_en[cat.id].name }}</td>
+              <td class="enus">{{ cat.name }}</td>
               <td class="localized">{{ form.name }}</td>
-              <td class="type">{{ types[categories_en[cat.id].type] }}</td>
+              <td class="type">{{ types[cat.type] }}</td>
               {% for hidden in form.hidden_fields() %}{{ hidden }}{% endfor %}
             </tr>
           {% endfor %}

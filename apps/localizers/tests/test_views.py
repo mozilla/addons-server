@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
+from django.utils import translation
 
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -104,5 +105,7 @@ class TestCategory(amo.tests.TestCase):
         doc = pq(res.content.decode('utf-8'))
         eq_(doc('#id_form-0-name').val(), u'Nada')
         eq_(doc('#id_form-1-name').val(), u'Amigo')
+        translation.activate('es-ES')
         cat = Category.objects.get(pk=self.cat1.id)
-        trans_eq(cat.name, u'Nada', 'es-ES')
+        eq_(cat.name, u'Nada')
+        translation.deactivate()
