@@ -105,3 +105,5 @@ database:
             nullify: approvalnotes
         users_install:
             random_email: email
+        users_preapproval:
+            nullify: paypal_key
