@@ -30,7 +30,7 @@ class PaypalError(Exception):
                     'Please try again later.')
         msg = getattr(self, 'msg', None)
         if msg:
-            return msg
+            return msg.encode('utf8') if isinstance(msg, unicode) else msg
         return messages.get(self.id, default)
 
 
@@ -40,6 +40,7 @@ class PaypalDataError(PaypalError):
 
     def __init__(self, msg):
         self.msg = msg
+
 
 class AuthError(PaypalError):
     # We've got the settings wrong on our end.

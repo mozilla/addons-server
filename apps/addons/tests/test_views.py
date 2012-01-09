@@ -28,7 +28,7 @@ from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
                            Charity)
 from files.models import File
 from market.models import AddonPremium, AddonPurchase, PreApprovalUser, Price
-from paypal import PaypalError
+from paypal import PaypalError, PaypalDataError
 from paypal.tests.test import other_error
 from stats.models import Contribution
 from translations.helpers import truncate
@@ -347,6 +347,12 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         get_paykey.expects_call().raises(PaypalError('woah'))
         res = self.client.post_ajax(self.purchase_url)
         assert json.loads(res.content)['error'].startswith('There was an')
+
+    @fudge.patch('paypal.get_paykey')
+    def test_paykey_unicode_error(self, get_paykey):
+        get_paykey.expects_call().raises(PaypalDataError(u'Азәрбајҹан'))
+        res = self.client.post_ajax(self.purchase_url)
+        assert json.loads(res.content)['error'].startswith(u'Азәрбајҹан')
 
     @patch('paypal.get_paykey')
     def test_paykey_contribution(self, get_paykey):
