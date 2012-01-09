@@ -1,34 +1,38 @@
-$('#search').bind('autofill', function(e) {
-    var $this = $(this);
+function autofillPlatform(context) {
+    var $context = $(context || document.body);
+    $('#search', $context).bind('autofill', function(e) {
+        var $this = $(this);
 
-    // Bail if we're searching within apps.
-    if (!$this.find('#id_appver').length) {
-        return;
-    }
+        // Bail if we're searching within apps.
+        if (!$this.find('#id_appver').length) {
+            return;
+        }
 
-    // Populate search form with browser version and OS.
-    var gv = z.getVars(location.search),
-        appver = '',
-        platform = '',
-        appver_defined = typeof gv.appver !== 'undefined',
-        platform_defined = typeof gv.platform !== 'undefined';
-    if (appver_defined) {
-        appver = gv.appver;
-    }
-    if (platform_defined) {
-        platform = gv.platform;
-    }
-    if (z.browser.firefox) {
-        if (!appver_defined) {
-            appver = z.browserVersion;
+        // Populate search form with browser version and OS.
+        var gv = z.getVars(location.search),
+            appver = '',
+            platform = '',
+            appver_defined = typeof gv.appver !== 'undefined',
+            platform_defined = typeof gv.platform !== 'undefined';
+        if (appver_defined) {
+            appver = gv.appver;
         }
-        if (!platform_defined) {
-            platform = z.platform;
+        if (platform_defined) {
+            platform = gv.platform;
         }
-    }
-    $this.find('#id_appver').val(appver);
-    $this.find('#id_platform').val(platform);
-}).trigger('autofill');
+        if (z.appMatchesUserAgent) {
+            if (!appver_defined) {
+                appver = z.browserVersion;
+            }
+            if (!platform_defined) {
+                platform = z.platform;
+            }
+        }
+        $this.find('#id_appver').val(appver);
+        $this.find('#id_platform').val(platform);
+    }).trigger('autofill');
+}
+autofillPlatform();
 
 
 $(function() {

@@ -1,3 +1,50 @@
+module('Autofill Platform for Search', {
+    setup: function() {
+        this._z = z;
+        this.sandbox = tests.createSandbox('#search-box');
+    },
+    teardown: function() {
+        z = this._z;
+    }
+});
+
+
+test('Firefox using Firefox', function() {
+    z.appMatchesUserAgent = true;
+    z.appName = 'firefox';
+    z.browser.firefox = true;
+    z.browserVersion = '10.0';
+    z.platform = 'mac';
+    autofillPlatform(this.sandbox);
+    equal($('input[name=appver]', this.sandbox).val(), z.browserVersion);
+    equal($('input[name=platform]', this.sandbox).val(), z.platform);
+});
+
+
+test('Thunderbird using Firefox', function() {
+    z.appMatchesUserAgent = false;
+    z.appName = 'thunderbird';
+    z.browser.firefox = true;
+    z.browserVersion = '10.0';
+    z.platform = 'mac';
+    autofillPlatform(this.sandbox);
+    equal($('input[name=appver]', this.sandbox).val(), '');
+    equal($('input[name=platform]', this.sandbox).val(), '');
+});
+
+
+test('Thunderbird using Thunderbird', function() {
+    z.appMatchesUserAgent = true;
+    z.appName = 'thunderbird';
+    z.browser.thunderbird = true;
+    z.browserVersion = '10.0';
+    z.platform = 'mac';
+    autofillPlatform(this.sandbox);
+    equal($('input[name=appver]', this.sandbox).val(), z.browserVersion);
+    equal($('input[name=platform]', this.sandbox).val(), z.platform);
+});
+
+
 module('Pjax Search', {
     setup: function() {
         this.container = $('#pjax-results', this.sandbox);
