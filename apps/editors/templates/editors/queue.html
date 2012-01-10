@@ -131,7 +131,7 @@
                 {% endif %}
                 <th class="{{ cls }}">
                   {% if column.sortable %}
-                    <a href="?sort={{ column.name_toggled }}" class="sort-icon ed-sprite-sort-{{ sprite }}">
+                    <a href="{{ request.get_full_path()|urlparams(sort=column.name_toggled) }}" class="sort-icon ed-sprite-sort-{{ sprite }}">
                       {{ column }}
                     </a>
                   {% else %}

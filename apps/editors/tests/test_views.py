@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 import json
 import re
 import time
+import urlparse
 
 from django.conf import settings
 from django.core import mail
@@ -480,13 +481,46 @@ class TestQueueBasics(QueueTest):
         r = self.client.get(reverse('editors.queue_pending'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('table.data-grid tr th:eq(1)').text(), u'Addon')
-        eq_(doc('table.data-grid tr th:eq(2)').text(), u'Type')
-        eq_(doc('table.data-grid tr th:eq(3)').text(), u'Waiting Time')
-        eq_(doc('table.data-grid tr th:eq(4)').text(), u'Flags')
-        eq_(doc('table.data-grid tr th:eq(5)').text(), u'Applications')
-        eq_(doc('table.data-grid tr th:eq(6)').text(), u'Platforms')
-        eq_(doc('table.data-grid tr th:eq(7)').text(), u'Additional')
+        tr = doc('table.data-grid tr')
+        eq_(tr('th:eq(1)').text(), u'Addon')
+        eq_(tr('th:eq(2)').text(), u'Type')
+        eq_(tr('th:eq(3)').text(), u'Waiting Time')
+        eq_(tr('th:eq(4)').text(), u'Flags')
+        eq_(tr('th:eq(5)').text(), u'Applications')
+        eq_(tr('th:eq(6)').text(), u'Platforms')
+        eq_(tr('th:eq(7)').text(), u'Additional')
+
+    def test_grid_headers_sort_after_search(self):
+        params = dict(searching=['True'],
+                      text_query=['abc'],
+                      addon_type_ids=['2'],
+                      sort=['addon_type_id'])
+        r = self.client.get(reverse('editors.queue_pending'),
+                            data=params)
+        eq_(r.status_code, 200)
+
+        doc = pq(r.content)
+        tr = doc('table.data-grid tr')
+
+        eq_(tr('th:eq(1)').text(), u'Addon')
+        params.update(sort=['addon_name'])
+        eq_(urlparse.parse_qs(tr('th a:eq(0)').attr('href').split('?')[1]),
+            params)
+
+        eq_(tr('th:eq(2)').text(), u'Type')
+        params.update(sort=['-addon_type_id'])
+        eq_(urlparse.parse_qs(tr('th a:eq(1)').attr('href')[1:].split('?')[1]),
+            params)
+
+        eq_(tr('th:eq(3)').text(), u'Waiting Time')
+        params.update(sort=['waiting_time_min'])
+        eq_(urlparse.parse_qs(tr('th a:eq(2)').attr('href')[1:].split('?')[1]),
+            params)
+
+        eq_(tr('th:eq(4)').text(), u'Flags')
+        eq_(tr('th:eq(5)').text(), u'Applications')
+        eq_(tr('th:eq(6)').text(), u'Platforms')
+        eq_(tr('th:eq(7)').text(), u'Additional')
 
     def test_no_results(self):
         File.objects.all().delete()

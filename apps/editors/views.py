@@ -22,6 +22,7 @@ from addons.models import Addon, Version
 from amo.decorators import (login_required, json_view, post_required,
                             permission_required)
 from amo.utils import paginate
+from amo.utils import urlencode
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from editors import forms
