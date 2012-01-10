@@ -65,12 +65,12 @@ $.fn.untruncate = function() {
     return this;
 };
 $.fn.lineclamp = function(lines) {
-    // This function limits the number of visible `lines` of text.
-    // Overflown text is gracefully ellipsed.
+    // This function limits the number of visible `lines` of text. Overflown
+    // text is gracefully ellipsed: http://en.wiktionary.org/wiki/ellipse#Verb.
+    if (!lines) {
+        return this;
+    }
     return this.each(function() {
-        if (!lines) {
-            return;
-        }
         var $this = $(this),
             lh = $this.css('line-height');
         if (lh.substr(-2) == 'px') {

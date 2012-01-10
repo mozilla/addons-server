@@ -32,6 +32,8 @@ function autofillPlatform(context) {
         $this.find('#id_platform').val(platform);
     }).trigger('autofill');
 }
+
+
 autofillPlatform();
 
 
