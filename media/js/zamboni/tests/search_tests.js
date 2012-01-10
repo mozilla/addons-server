@@ -1,6 +1,6 @@
 module('Autofill Platform for Search', {
     setup: function() {
-        this._z = z;
+        this._z = $.extend(true, {}, z);  // Deep copy `z` so we can patch.
         this.sandbox = tests.createSandbox('#search-box');
     },
     teardown: function() {
@@ -11,7 +11,7 @@ module('Autofill Platform for Search', {
 
 test('Firefox using Firefox', function() {
     z.appMatchesUserAgent = true;
-    z.appName = 'firefox';
+    z.app = 'firefox';
     z.browser.firefox = true;
     z.browserVersion = '10.0';
     z.platform = 'mac';
@@ -23,7 +23,7 @@ test('Firefox using Firefox', function() {
 
 test('Thunderbird using Firefox', function() {
     z.appMatchesUserAgent = false;
-    z.appName = 'thunderbird';
+    z.app = 'thunderbird';
     z.browser.firefox = true;
     z.browserVersion = '10.0';
     z.platform = 'mac';
@@ -35,7 +35,7 @@ test('Thunderbird using Firefox', function() {
 
 test('Thunderbird using Thunderbird', function() {
     z.appMatchesUserAgent = true;
-    z.appName = 'thunderbird';
+    z.app = 'thunderbird';
     z.browser.thunderbird = true;
     z.browserVersion = '10.0';
     z.platform = 'mac';
