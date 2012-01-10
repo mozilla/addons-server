@@ -9,6 +9,7 @@ import waffle
 import amo
 from amo.helpers import loc
 from amo.urlresolvers import reverse
+from amo.utils import memoize
 from access import acl
 from cake.urlresolvers import remora_url
 from zadmin.models import get_config
@@ -28,6 +29,20 @@ def i18n(request):
                     or translation.get_language(),
             'DIR': 'rtl' if translation.get_language_bidi() else 'ltr',
             }
+
+
+@memoize('collect-timings')
+def get_collect_timings():
+    # The flag has to be enabled for everyone and then we'll use that
+    # percentage in the pages.
+    percent = 0
+    try:
+        flag = waffle.models.Flag.objects.get(name='collect-timings')
+        if flag.everyone and flag.percent:
+            percent = float(flag.percent) / 100.0
+    except waffle.models.Flag.DoesNotExist:
+        pass
+    return percent
 
 
 def global_settings(request):
@@ -110,20 +125,10 @@ def global_settings(request):
     else:
         context['amo_user'] = AnonymousUser()
 
-    # The flag has to be enabled for everyone and then we'll use that
-    # percentage in the pages.
-    percent = 0
-    try:
-        flag = waffle.models.Flag.objects.get(name='collect-timings')
-        if flag.everyone and flag.percent:
-            percent = float(flag.percent) / 100.0
-    except waffle.models.Flag.DoesNotExist:
-        pass
-
     context.update({'account_links': account_links,
                     'settings': settings, 'amo': amo,
                     'tools_links': tools_links,
                     'tools_title': tools_title,
                     'ADMIN_MESSAGE': get_config('site_notice'),
-                    'collect_timings_percent': percent})
+                    'collect_timings_percent': get_collect_timings()})
     return context
