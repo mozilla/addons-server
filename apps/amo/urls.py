@@ -16,7 +16,8 @@ services_patterns = patterns('',
         name='amo.builder-pingback'),
     url('^graphite/(addons|dev|stage|apps-preview|apps-preview-dev)$',
         views.graphite, name='amo.graphite'),
-    url('^timing/record$', views.record, name='amo.timing.record')
+    url('^timing/record$', views.record, name='amo.timing.record'),
+    url('^pfs.php$', views.plugin_check, name='api.plugincheck'),
 )
 
 urlpatterns = patterns('',
