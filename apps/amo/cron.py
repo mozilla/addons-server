@@ -1,3 +1,4 @@
+import itertools
 import calendar
 from datetime import datetime, timedelta
 from subprocess import Popen, PIPE
@@ -321,7 +322,7 @@ def personas_adu():
                    """)
     cursor.execute('INSERT INTO tmp VALUES %s' %
                    ','.join(['(%s,%s)'] * len(stats)),
-                   stats)
+                   list(itertools.chain(*stats)))
 
     cursor.execute("""
         UPDATE addons
