@@ -40,6 +40,14 @@ from users.utils import EmailResetCode, UnsubscribeCode
 from webapps.models import Installed
 
 
+def check_sidebar_links(self, expected):
+    r = self.client.get(self.url)
+    eq_(r.status_code, 200)
+    links = pq(r.content)('#secondary-nav ul a')
+    amo.tests.check_links(expected, links)
+    eq_(links.filter('.selected').attr('href'), self.url)
+
+
 class UserViewBase(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
@@ -1283,14 +1291,6 @@ class TestPurchases(amo.tests.TestCase):
         doc = pq(self.client.get(self.url).content)
         assert 'My Purchases' in doc('li.account li').text()
 
-    def check_sidebar_links(self, expected):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        links = pq(r.content)('#secondary-nav ul a')
-        amo.tests.check_links(expected, links)
-        eq_(links.filter('.selected').attr('href'), self.url,
-            '"My Purchases" link should be selected.')
-
     def test_in_sidebar(self):
         # Populate this user's favorites.
         c = Collection.objects.create(type=amo.COLLECTION_FAVORITES,
@@ -1305,7 +1305,7 @@ class TestPurchases(amo.tests.TestCase):
             ('My Favorites', reverse('collections.mine', args=['favorites'])),
             ('My Purchases', self.url),
         ]
-        self.check_sidebar_links(expected)
+        check_sidebar_links(self, expected)
 
     @patch.object(settings, 'APP_PREVIEW', True)
     def test_in_apps_sidebar(self):
@@ -1314,7 +1314,7 @@ class TestPurchases(amo.tests.TestCase):
             ('Account Settings', reverse('users.edit')),
             ('My Purchases', self.url),
         ]
-        self.check_sidebar_links(expected)
+        check_sidebar_links(self, expected)
 
     def test_not_purchase(self):
         self.client.logout()
@@ -1705,6 +1705,18 @@ class TestPreapproval(amo.tests.TestCase):
         doc = pq(self.client.get(self.get_url()).content)
         eq_(doc('#preapproval').attr('action'),
             reverse('users.payments.preapproval'))
+
+    @patch.object(settings, 'APP_PREVIEW', True)
+    def test_sidebar(self):
+        waffle.models.Switch.objects.create(name='marketplace', active=True)
+        self.url = self.get_url()
+        expected = [
+            ('My Profile', self.user.get_url_path()),
+            ('Account Settings', reverse('users.edit')),
+            ('My Purchases', reverse('users.purchases')),
+            ('Payment Profile', self.url),
+        ]
+        check_sidebar_links(self, expected)
 
     @patch('paypal.get_preapproval_key')
     def test_fake_preapproval(self, get_preapproval_key):

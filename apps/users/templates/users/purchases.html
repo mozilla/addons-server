@@ -5,7 +5,9 @@
 {% block title %}{{ page_title('My Purchases') }}{% endblock %}
 
 {% block content %}
-  {% include 'users/includes/navigation.html' %}
+  {% with webapp=webapp %}
+    {% include 'users/includes/navigation.html' %}
+  {% endwith %}
   <section class="primary">
     {{ impala_breadcrumbs([(None, _('My Purchases'))]) }}
     <h1>{{ _('My Purchases') }}</h1>

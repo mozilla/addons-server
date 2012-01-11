@@ -2,7 +2,9 @@
 {% block title %}{{ page_title('Payment Profile') }}{% endblock %}
 
 {% block content %}
-  {% include 'users/includes/navigation.html' %}
+  {% with webapp=webapp %}
+    {% include 'users/includes/navigation.html' %}
+  {% endwith %}
   <section class="primary">
     {{ impala_breadcrumbs([(None, loc('Payment Profile'))]) }}
     <h1>{{ loc('Payment Profile') }}</h1>
