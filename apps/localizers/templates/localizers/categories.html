@@ -13,30 +13,29 @@
   {{ locale_switcher(current_locale=locale_code) }}
 </header>
 
-<section class="hero island c full">
+<section id="localizers" class="hero island c full">
   <form method="POST" action="">
     {% if formset.errors %}<p class="notification-box error">
       {{ _('There are errors in this form.  Please correct them below.') }}</p>
     {% endif %}
     {% for app_id, cats in categories %}
-      <div class="appversion prose">
-        <h2>
-          {% if app_id %}
-            {% set app = apps[app_id] %}
-            <img src="{{ media('img/app-icons/small/' + app.short + '.png') }}">
-            {{ app.pretty }}
-          {% else %}
-            None
-          {% endif %}
-        </h2>
-      </div>
+      {% set app = apps[app_id] if app_id or None %}
+      <h2 class="prose {{ (' app ' + app.short) if app }}">
+        {% if app %}
+          {{ app.pretty }}
+        {% else %}
+          {{ _('None') }}
+        {% endif %}
+      </h2>
       <table>
-        <tbody>
+        <thead>
           <tr>
             <th width="40%">en-US</th>
             <th width="40%">{{ locale_code }}</th>
-            <th width="20%">Type</th>
+            <th width="20%">{{ _('Type') }}</th>
           </tr>
+        </thead>
+        <tbody>
           {% for cat in cats %}
             {% set form = form_map[cat.id] %}
             {% if form.errors %}
@@ -56,7 +55,7 @@
     {% endfor %}
     {{ formset.management_form }}
     {{ csrf() }}
-    <p><input type="submit" value="{{ _('Update') }}"></p>
+    <footer><input type="submit" value="{{ _('Update') }}"></footer>
   </form>
 </section>
 

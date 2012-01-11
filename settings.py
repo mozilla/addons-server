@@ -492,6 +492,7 @@ MINIFY_BUNDLES = {
             'css/impala/formset.less',
             'css/impala/tables.less',
             'css/impala/compat.less',
+            'css/impala/localizers.less',
         ),
         'zamboni/stats': (
             'css/impala/stats.less',
