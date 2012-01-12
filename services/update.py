@@ -105,8 +105,9 @@ class Update(object):
             self.cursor = self.conn.cursor()
 
         data = self.data
-
-        for field in ['reqVersion', 'id', 'version', 'appID', 'appVersion']:
+        # Version can be blank.
+        data['version'] = data.get('version', '')
+        for field in ['reqVersion', 'id', 'appID', 'appVersion']:
             if field not in data:
                 return False
 
@@ -132,8 +133,7 @@ class Update(object):
             else:
                 data['appOS'] = None
 
-        self.is_beta_version = base.VERSION_BETA.search(data.get('version',
-                                                                 ''))
+        self.is_beta_version = base.VERSION_BETA.search(data['version'])
         return True
 
     def get_beta(self):
@@ -336,8 +336,9 @@ class OldUpdate(object):
             self.cursor = self.conn.cursor()
 
         data = self.data
-
-        for field in ['reqVersion', 'id', 'version', 'appID', 'appVersion']:
+        # Version can be blank.
+        data['version'] = data.get('version', '')
+        for field in ['reqVersion', 'id', 'appID', 'appVersion']:
             if field not in data:
                 return False
 
@@ -363,8 +364,7 @@ class OldUpdate(object):
             else:
                 data['appOS'] = None
 
-        self.is_beta_version = base.VERSION_BETA.search(data.get('version',
-                                                                 ''))
+        self.is_beta_version = base.VERSION_BETA.search(data['version'])
         return True
 
     def get_beta(self):

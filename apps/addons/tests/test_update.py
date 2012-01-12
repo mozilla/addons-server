@@ -93,6 +93,12 @@ class TestDataValidate(amo.tests.TestCase):
         up = self.get(self.good_data)
         assert not up.is_valid()
 
+    def test_no_version(self):
+        data = self.good_data.copy()
+        del data['version']
+        up = self.get(data)
+        assert up.is_valid()
+
 
 class TestLookup(amo.tests.TestCase):
     fixtures = ['addons/update',
@@ -111,14 +117,17 @@ class TestLookup(amo.tests.TestCase):
         self.version_1_2_2 = 115509
 
     def get(self, *args):
-        up = update.Update({
+        data = {
             'id': self.addon.guid,
-            'version': args[0],
             'appID': args[2].guid,
             'appVersion': 1,  # this is going to be overridden
             'appOS': args[3].api_name if args[3] else '',
             'reqVersion': '',
-            })
+        }
+        # Allow version to be optional.
+        if args[0]:
+            data['version'] = args[0]
+        up = update.Update(data)
         up.cursor = connection.cursor()
         assert up.is_valid()
         up.data['version_int'] = args[1]
