@@ -302,7 +302,7 @@ class BaseAjaxSearch(object):
                 qs = (Addon.search().query(or_=name_only_query(q.lower()))
                       .filter(is_disabled=False))
             if qs:
-                results = qs.filter(type__in=self.types,
+                results = qs.filter(type__in=self.types.keys(),
                                     status__in=amo.REVIEWED_STATUSES)
         return results
 

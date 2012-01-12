@@ -774,11 +774,12 @@ class TestAjaxSearch(amo.tests.ESTestCase):
                 'Add-on type %s should not be searchable.' % expected.type)
 
 
-class TestBaseAjaxSearch(TestAjaxSearch):
+class TestGenericAjaxSearch(TestAjaxSearch):
 
     def search_addons(self, params, addons=[]):
+        [a.save() for a in Addon.objects.all()]
         self.refresh()
-        super(TestBaseAjaxSearch, self).search_addons(
+        super(TestGenericAjaxSearch, self).search_addons(
             reverse('search.ajax'), params, addons)
 
     def test_ajax_search_by_id(self):
@@ -817,8 +818,6 @@ class TestBaseAjaxSearch(TestAjaxSearch):
         self.search_addons('q=%s' % addon.id, [addon])
 
     def test_ajax_search_by_name(self):
-        from nose import SkipTest
-        raise SkipTest
         self.search_addons('q=add', list(Addon.objects.reviewed()))
 
     def test_ajax_search_by_bad_name(self):
