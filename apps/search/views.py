@@ -270,7 +270,7 @@ class BaseAjaxSearch(object):
         self.request = request
         self.excluded_ids = excluded_ids
         self.src = getattr(self, 'src', None)
-        self.types = getattr(self, 'types', amo.ADDON_TYPES)
+        self.types = getattr(self, 'types', amo.ADDON_TYPES.keys())
         self.limit = 10
         self.key = 'q'  # Name of search field.
 
@@ -302,7 +302,7 @@ class BaseAjaxSearch(object):
                 qs = (Addon.search().query(or_=name_only_query(q.lower()))
                       .filter(is_disabled=False))
             if qs:
-                results = qs.filter(type__in=self.types.keys(),
+                results = qs.filter(type__in=self.types,
                                     status__in=amo.REVIEWED_STATUSES)
         return results
 
