@@ -312,7 +312,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
             os.path.exists(smart_str(self.mirror_file_path))):
             log.info('Unmirroring disabled file: %s'
                      % self.mirror_file_path)
-            os.remove(self.mirror_file_path)
+            os.remove(smart_str(self.mirror_file_path))
 
     def unhide_disabled_file(self):
         if not self.filename:
