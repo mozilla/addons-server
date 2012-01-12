@@ -6,6 +6,7 @@ from nose.tools import eq_
 import amo.tests
 import amo.utils
 from addons.models import Addon
+import addons.tasks
 
 
 class TestESIndexing(amo.tests.ESTestCase):
@@ -22,6 +23,32 @@ class TestESIndexing(amo.tests.ESTestCase):
         eq_(Addon.search().filter(type=1, is_disabled=False).count(),
             Addon.objects.filter(disabled_by_user=False,
                                  status__in=amo.VALID_STATUSES).count())
+
+    def test_real_indexing(self):
+        def check(s):
+            assert callable(s) and not isinstance(s, mock.Mock)
+        check(addons.tasks.index_addons)
+        check(addons.tasks.unindex_addons)
+        check(amo.models.SearchMixin)
+
+
+class TestNoESIndexing(amo.tests.TestCase):
+
+    def test_no_es(self):
+        assert not getattr(self, 'es', False), (
+            'TestCase should not have "es" attribute')
+
+    def test_mocked_indexing(self):
+        def check(s):
+            assert callable(s) and isinstance(s, mock.Mock)
+        check(addons.tasks.index_addons)
+        check(addons.tasks.unindex_addons)
+        check(amo.models.SearchMixin)
+
+    def test_not_indexed(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
+                                     status=amo.STATUS_PUBLIC)
+        eq_(Addon.search().filter(id__in=addon.id).count(), 0)
 
 
 class TestES(amo.tests.ESTestCase):

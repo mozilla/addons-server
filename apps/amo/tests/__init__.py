@@ -21,8 +21,8 @@ import test_utils
 
 import amo
 from amo.urlresolvers import Prefixer, get_url_prefix, set_url_prefix
-import addons.search
 from addons.models import Addon, Category, Persona
+import addons.search
 from applications.models import Application, AppVersion
 from files.models import File, Platform
 from translations.models import Translation
@@ -166,6 +166,14 @@ class TestCase(RedisTest, test_utils.TestCase):
     def _pre_setup(self):
         super(TestCase, self)._pre_setup()
         self.reset_featured_addons()
+        # Mock out ES indexing for non-ES tests.
+        if not getattr(self, 'es', False):
+            for p in ['addons.tasks.index_addons',
+                      'addons.tasks.unindex_addons',
+                      'amo.models.SearchMixin']:
+                patcher = mock.patch(p)
+                patcher.start()
+                self.addCleanup(patcher.stop)
 
     def reset_featured_addons(self):
         from addons.cron import reset_featured_addons
