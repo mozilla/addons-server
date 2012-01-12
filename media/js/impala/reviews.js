@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
-    var report = $('.review-reason').html();
+    var report = $('.review-reason').html(),
+        $window = $(window);
 
     $('.review-reason').popup('.flag-review', {
         delegate: $(document.body),
@@ -82,14 +83,15 @@ $(document).ready(function() {
         $form.find('#id_body').val($review.children('p.description').html().replace("<br>", "\n", "g"));
         $review.hide();
         $form.show();
+        $window.resize();
         location.hash = '#review-edit-form';
-        $(window).resize();
 
         function done_edit() {
             clearErrors($form);
             $form.unbind().hide();
             $review.show();
             $cancel.unbind();
+            $window.resize();
         }
 
         $cancel.click(_pd(done_edit));
