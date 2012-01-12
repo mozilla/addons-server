@@ -1718,6 +1718,13 @@ class TestPreapproval(amo.tests.TestCase):
         ]
         check_sidebar_links(self, expected)
 
+    @patch.object(settings, 'APP_PREVIEW', True)
+    def test_sidebar_complete(self):
+        r = self.client.get(self.get_url('complete'))
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('#secondary-nav .selected').attr('href'),
+            self.get_url())
+
     @patch('paypal.get_preapproval_key')
     def test_fake_preapproval(self, get_preapproval_key):
         get_preapproval_key.return_value = {'preapprovalKey': 'xyz'}
