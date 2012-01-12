@@ -333,7 +333,8 @@ class TestDetail(WebappTest):
         t = Tag.objects.create(tag_text='ballin')
         AddonTag.objects.create(tag=t, addon=self.webapp)
         links = self.get_more_pq()('#related #tagbox ul a')
-        amo.tests.check_links([(t.tag_text, t.get_url_path())], links)
+        amo.tests.check_links([(t.tag_text, t.get_url_path())], links,
+                              verify=False)
 
 
 class TestMobileListing(amo.tests.MobileTest, WebappTest):
