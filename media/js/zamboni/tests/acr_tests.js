@@ -59,26 +59,29 @@ $(document).ready(function() {
         this.check(true);
     });
 
-    module('ACR nightly compatible', $.extend({}, acrFixture, {
-        setup: function() {
-            var nightlyVer = $(document.body).attr('data-nightly-version');
-            // We're running Nightly, and we're going to pretend all the
-            // add-ons are compatible with 8.0.
-            acrFixture.setup.call(this, nightlyVer, true, nightlyVer);
-        }
-    }));
-    test('No pitch balloon', function() {
-        this.check(false);
-    });
+    // These tests are flaky.
+    // See https://ci.mozilla.org/job/amo-master-js/2168/console
 
-    module('ACR non-nightly compatible', $.extend({}, acrFixture, {
-        setup: function() {
-            acrFixture.setup.call(this, '4.0', false);
-        }
-    }));
-    test('No pitch balloon', function() {
-        this.check(false);
-    });
+    // module('ACR nightly compatible', $.extend({}, acrFixture, {
+    //     setup: function() {
+    //         var nightlyVer = $(document.body).attr('data-nightly-version');
+    //         // We're running Nightly, and we're going to pretend all the
+    //         // add-ons are compatible with 8.0.
+    //         acrFixture.setup.call(this, nightlyVer, true, nightlyVer);
+    //     }
+    // }));
+    // test('No pitch balloon', function() {
+    //     this.check(false);
+    // });
+    //
+    // module('ACR non-nightly compatible', $.extend({}, acrFixture, {
+    //     setup: function() {
+    //         acrFixture.setup.call(this, '4.0', false);
+    //     }
+    // }));
+    // test('No pitch balloon', function() {
+    //     this.check(false);
+    // });
 
 
     var acrOverrideFixture = {
