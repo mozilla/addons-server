@@ -1,3 +1,4 @@
+import os.path 
 from nose.tools import eq_
 import mock
 
@@ -148,6 +149,8 @@ class TestHideDisabledFiles(amo.tests.TestCase):
         Addon.objects.filter(id=self.addon.id).update(
             status=amo.STATUS_PUBLIC, disabled_by_user=True)
         File.objects.update(status=amo.STATUS_PUBLIC)
+        #really only want to mock os.remove, so stick real os.path.join back in
+        os_mock.path.join.side_effect = os.path.join
         cron.hide_disabled_files()
         # Check that f2 was moved.
         f2 = self.f2
@@ -171,6 +174,8 @@ class TestHideDisabledFiles(amo.tests.TestCase):
         Addon.objects.filter(id=self.addon.id).update(
             status=amo.STATUS_DISABLED)
         File.objects.update(status=amo.STATUS_PUBLIC)
+        #really only want to mock os.remove, so stick real os.path.join back in
+        os_mock.path.join.side_effect = os.path.join
         cron.hide_disabled_files()
         # Check that f2 was moved.
         f2 = self.f2
@@ -194,6 +199,8 @@ class TestHideDisabledFiles(amo.tests.TestCase):
         Addon.objects.filter(id=self.addon.id).update(status=amo.STATUS_LITE)
         File.objects.filter(id=self.f1.id).update(status=amo.STATUS_DISABLED)
         File.objects.filter(id=self.f2.id).update(status=amo.STATUS_UNREVIEWED)
+        #really only want to mock os.remove, so stick real os.path.join back in
+        os_mock.path.join.side_effect = os.path.join
         cron.hide_disabled_files()
         # Only f1 should have been moved.
         f1 = self.f1
