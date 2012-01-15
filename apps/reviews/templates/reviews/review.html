@@ -82,7 +82,7 @@
           {{ _('Edit review') }}</a>
       </li>
     {% endif %}
-    {% if perms.can_delete %}
+    {% if perms.can_delete or edit_any_user %}
       <li>
         <a class="delete-review" href="{{ shared_url('reviews.delete', addon, review.id) }}">
           {{ _('Delete review') }}</a>

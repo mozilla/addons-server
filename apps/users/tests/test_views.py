@@ -1125,6 +1125,37 @@ class TestProfileSections(amo.tests.TestCase):
         # Edit Review form should be present.
         self.assertTemplateUsed(r, 'reviews/edit_review.html')
 
+    def test_my_reviews_delete_link(self):
+        review = Review.objects.filter(reply_to=None)[0]
+        review.user_id = 999
+        review.save()
+        cache.clear()
+        slug = Addon.objects.get(id=review.addon_id).slug
+        delete_url = reverse('addons.reviews.delete', args=[slug, review.pk])
+
+        # Admins get the Delete Review link.
+        self.client.login(username='admin@mozilla.com', password='password')
+        r = self.client.get(reverse('users.profile', args=[999]))
+        doc = pq(r.content)('#reviews')
+        r = doc('#review-218207 .item-actions a.delete-review')
+        eq_(r.length, 1)
+        eq_(r.attr('href'), delete_url)
+
+        # Editors get the Delete Review link.
+        self.client.login(username='editor@mozilla.com')
+        r = self.client.get(reverse('users.profile', args=[999]))
+        doc = pq(r.content)('#reviews')
+        r = doc('#review-218207 .item-actions a.delete-review')
+        eq_(r.length, 1)
+        eq_(r.attr('href'), delete_url)
+
+        # Author does not get Delete Review link.
+        self.client.login(username='regular@mozilla.com', password='password')
+        r = self.client.get(self.url)
+        doc = pq(r.content)('#reviews')
+        r = doc('#review-218207 .item-actions a.delete-review')
+        eq_(r.length, 0)
+
     def test_my_reviews_no_pagination(self):
         r = self.client.get(self.url)
         assert len(self.user.addons_listed) <= 10, (
