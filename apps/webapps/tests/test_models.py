@@ -218,6 +218,15 @@ class TestReceipt(amo.tests.TestCase):
         install = self.create_install(self.user, self.webapp)
         eq_(install.premium_type, amo.ADDON_PREMIUM)
 
+    @mock.patch('jwt.encode')
+    def test_receipt_data(self, encode):
+        encode.return_value = 'tmp-to-keep-memoize-happy'
+        ins = self.create_install(self.user, self.webapp)
+        assert ins.receipt
+        product = encode.call_args[0][0]['product']
+        eq_(product['url'], self.webapp.manifest_url[:-1])
+        eq_(product['storedata'], 'id=%s' % int(ins.addon.pk))
+
 
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
                    amo.tests.AMOPaths.sample_key() + '.foo')

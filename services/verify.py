@@ -2,6 +2,7 @@ from email.Utils import formatdate
 import json
 import re
 from time import time
+from urlparse import parse_qsl
 
 from utils import (log_exception, log_info, mypool, settings,
                    CONTRIB_CHARGEBACK, CONTRIB_PURCHASE, CONTRIB_REFUND)
@@ -25,7 +26,7 @@ class Verify:
             self.conn = mypool.connect()
             self.cursor = self.conn.cursor()
 
-        # 1. Try and decode the receipt data.
+        # Try and decode the receipt data.
         # If its invalid, then just return invalid rather than give out any
         # information.
         try:
@@ -34,14 +35,36 @@ class Verify:
             self.log('Error decoding receipt: %s' % e)
             return self.invalid()
 
-        # 2. Get the addon and user information from the
-        # installed table.
+        # Get the addon and user information from the installed table.
         try:
             email = receipt['user']['value']
         except KeyError:
             # If somehow we got a valid receipt without an email,
             # that's a problem. Log here.
             self.log('No user in receipt')
+            return self.invalid()
+
+        # Newer receipts have the addon_id in the storedata,
+        # if it doesn't match the URL, then it's wrong.
+        receipt_addon_id = None
+        try:
+            storedata = receipt['product']['storedata']
+            receipt_addon_id = int(dict(parse_qsl(storedata)).get('id', ''))
+        except (KeyError, TypeError):
+            # At some point, we'll want to make this a hard failure,
+            # before the beta of apps store. But doing so now will break
+            # all of the existing receipts.
+            if settings.WEBAPPS_RECEIPT_REQUIRE_STOREDATA:
+                self.log('Invalid required store data')
+                return self.invalid()
+        except:
+            # There was some value for storedata but it was invalid.
+            self.log('Invalid store data')
+            return self.invalid()
+
+        # The addon_id in the URL and the receipt did not match, fail.
+        if receipt_addon_id and receipt_addon_id != self.addon_id:
+            self.log('The addon_id in the receipt and the URL did not match.')
             return self.invalid()
 
         sql = """SELECT id, user_id, premium_type FROM users_install
@@ -57,7 +80,7 @@ class Verify:
 
         rid, user_id, premium = result
 
-        # 3. If it's a premium addon, then we need to get that the purchase
+        # If it's a premium addon, then we need to get that the purchase
         # information.
         if not premium:
             self.log('Valid receipt, not premium')

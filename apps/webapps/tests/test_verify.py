@@ -1,6 +1,7 @@
 # -*- coding: utf8 -*-
 from django.db import connection
 from django.conf import settings
+from urllib import urlencode
 
 from nose.tools import eq_
 
@@ -101,6 +102,35 @@ class TestVerify(amo.tests.TestCase):
             purchase.update(type=type)
             res = self.get(3615, self.user_data)
             eq_(res['status'], 'refunded')
+
+    def test_product_wrong_store_data(self):
+        self.make_install()
+        data = self.user_data.copy()
+        data['product'] = {'url': 'http://f.com',
+                           'storedata': urlencode({'id': 123})}
+        eq_(self.get(3615, data)['status'], 'invalid')
+
+    def test_product_ok_store_data(self):
+        self.make_install()
+        data = self.user_data.copy()
+        data['product'] = {'url': 'http://f.com',
+                           'storedata': urlencode({'id': 3615})}
+        eq_(self.get(3615, data)['status'], 'ok')
+
+    def test_product_barf_store_data(self):
+        self.make_install()
+        for storedata in (urlencode({'id': 'NaN'}), 'NaN'):
+            data = self.user_data.copy()
+            data['product'] = {'url': 'http://f.com', 'storedata': storedata}
+            eq_(self.get(3615, data)['status'], 'invalid')
+
+    @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_REQUIRE_STOREDATA',
+                       True)
+    def test_product_old_store_data_fails(self):
+        self.make_install()
+        data = self.user_data.copy()
+        data['product'] = 'http://f.com'
+        eq_(self.get(3615, data)['status'], 'invalid')
 
     def test_crack_receipt(self):
         # Check that we can decode our receipt and get a dictionary back.

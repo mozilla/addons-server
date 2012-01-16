@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 import time
+from urllib import urlencode
 import urlparse
 
 from django.conf import settings
@@ -183,10 +184,12 @@ def add_email(sender, **kw):
 @memoize(prefix='create-receipt', time=60 * 10)
 def create_receipt(installed_pk):
     installed = Installed.objects.get(pk=installed_pk)
-    verify = '%s%s' % (settings.WEBAPPS_RECEIPT_URL, installed.addon.pk)
-    detail = reverse('users.purchases.receipt', args=[installed.addon.pk])
+    addon_pk = installed.addon.pk
+    verify = '%s%s' % (settings.WEBAPPS_RECEIPT_URL, addon_pk)
+    detail = reverse('users.purchases.receipt', args=[addon_pk])
     receipt = dict(typ='purchase-receipt',
-                   product=installed.addon.origin,
+                   product={'url': installed.addon.origin,
+                            'storedata': urlencode({'id': int(addon_pk)})},
                    user={'type': 'email',
                          'value': installed.email},
                    iss=settings.SITE_URL,

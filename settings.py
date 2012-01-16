@@ -1312,6 +1312,10 @@ WEBAPPS_RESTRICTED = True
 WEBAPPS_RECEIPT_URL = '%s/verify/' % SITE_URL
 # The key we'll use to sign webapp receipts.
 WEBAPPS_RECEIPT_KEY = ''
+# If True, we'll only accept receipts containing store data. This should
+# be removed after apps-preview is completed. See
+# https://bugzilla.mozilla.org/show_bug.cgi?id=705814
+WEBAPPS_RECEIPT_REQUIRE_STOREDATA = False
 # If True, only allow one webapp per domain.
 WEBAPPS_UNIQUE_BY_DOMAIN = True
 
