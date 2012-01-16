@@ -1333,19 +1333,17 @@ html[xmlns] .clearfix {
     padding-right: 20px;
 }
 
-.addon-collections li .collectionitem,
-.collection-add > span,
-#addons-edit p strong {
-	padding-left: 22px;
-	background-image: url(../../img/icons/icons.png);
-	background-repeat: no-repeat;
-	background-position: 0px -300px;
+.collectionitem,
+.collection-add strong {
+    padding-left: 22px;
+    background: url(../../img/icons/icons.png) no-repeat 0 -300px;
 }
 
-.html-rtl .addon-collections li .collectionitem {
-	padding-right: 20px;
-	padding-left: 0;
-	background-position: 100% -300px;
+.html-rtl .collectionitem,
+.html-rtl .collection-add strong {
+    background-position: 100% -300px;
+    display: inline-block;
+    padding: 0 20px 0 0;
 }
 
 .addon-otheraddons li .addonitem {

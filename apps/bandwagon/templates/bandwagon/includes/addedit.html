@@ -1,8 +1,5 @@
 {{ csrf() }}
 
-<div class="content">
-  <h3>{{ _('Collection Description') }}</h3>
-</div>
 <fieldset>
   {{ field(form.name, _('Name:'), class='long') }}
   {% if form.slug %}
