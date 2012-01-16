@@ -257,6 +257,22 @@ def initial_data_from_request(request):
     return dict(author=request.amo_user, application_id=request.APP.id)
 
 
+def collection_message(request, collection, option):
+    if option == 'add':
+        title = _('Collection created!')
+        msg = _("""Your new collection is shown below. You can <a
+                   href="%(url)s">edit additional settings</a> if you'd
+                   like.""") % {'url': collection.edit_url()}
+    elif option == 'update':
+        title = _('Collection updated!')
+        msg = _("""<a href="%(url)s">View your collection</a> to see the
+                   changes.""") % {'url': collection.get_url_path()}
+    else:
+        raise ValueError('Incorrect option "%s",'
+                         ' takes only "add" or "update".' % option)
+    messages.success(request, title, msg, message_safe=True)
+
+
 @write
 @login_required
 def add(request):
@@ -272,13 +288,7 @@ def add(request):
             collection.save()
             if aform.is_valid():
                 aform.save(collection)
-
-            title = _("Collection created!")
-            msg = _("""Your new collection is shown below. You can <a
-                       href="%(url)s">edit additional settings</a> if you'd
-                       like.""") % {'url': collection.edit_url()}
-            messages.success(request, title, msg, extra_tags='collection',
-                             message_safe=True)
+            collection_message(request, collection, 'add')
             log.info('Created collection %s' % collection.id)
             return http.HttpResponseRedirect(collection.get_url_path())
         else:
@@ -386,11 +396,7 @@ def edit(request, collection, username, slug):
                                     instance=collection)
         if form.is_valid():
             collection = form.save()
-            title = _("Collection updated!")
-            msg = _(("""<a href="%(url)s">View your collection</a> to see the
-                        changes.""")) % {'url': collection.get_url_path()}
-            messages.success(request, title, msg, extra_tags='collection',
-                             message_safe=True)
+            collection_message(request, collection, 'update')
             log.info(u'%s edited collection %s' %
                      (request.amo_user, collection.id))
             return http.HttpResponseRedirect(collection.edit_url())
@@ -433,7 +439,7 @@ def edit_addons(request, collection, username, slug):
         form = forms.AddonsForm(request.POST)
         if form.is_valid():
             form.save(collection)
-            messages.success(request, _('Your collection has been updated.'))
+            collection_message(request, collection, 'update')
             log.info(u'%s added add-ons to %s' %
                      (request.amo_user, collection.id))
 
@@ -456,7 +462,7 @@ def edit_contributors(request, collection, username, slug):
 
     if form.is_valid():
         form.save(collection)
-        messages.success(request, _('Your collection has been updated.'))
+        collection_message(request, collection, 'update')
         if form.cleaned_data['new_owner']:
             return http.HttpResponseRedirect(collection.get_url_path())
 

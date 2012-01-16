@@ -514,6 +514,18 @@ class TestCRUD(amo.tests.TestCase):
         eq_(doc('.tab-nav li a[href$=users-edit]').length, 1)
         eq_(doc('#users-edit').length, 1)
 
+    def test_edit_contrib_success_message(self):
+        self.create_collection()
+        url = reverse('collections.edit_contributors',
+                      args=['admin', self.slug])
+        r = self.client.post(url, {'contributor': 999,
+                                   'application_id': 1,
+                                   'type': 1},
+                             follow=True)
+        doc = pq(r.content)('.success')
+        eq_(doc('h2').text(), 'Collection updated!')
+        eq_(doc('p').text(), 'View your collection to see the changes.')
+
     def test_edit_no_contrib_tab(self):
         self.create_collection()
         c = Collection.uncached.get(slug=self.slug)
@@ -541,9 +553,12 @@ class TestCRUD(amo.tests.TestCase):
         self.create_collection()
         url = reverse('collections.edit_addons',
                       args=['admin', self.slug])
-        self.client.post(url, {'addon': 3615}, follow=True)
+        r = self.client.post(url, {'addon': 3615}, follow=True)
         addon = Collection.objects.filter(slug=self.slug)[0].addons.all()[0]
         eq_(addon.id, 3615)
+        doc = pq(r.content)('.success')
+        eq_(doc('h2').text(), 'Collection updated!')
+        eq_(doc('p').text(), 'View your collection to see the changes.')
 
     def test_delete(self):
         self.create_collection()
