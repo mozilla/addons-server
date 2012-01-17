@@ -33,7 +33,7 @@ The following command will install the required development files on Ubuntu or,
 if you're running a recent version, you can `install them automatically
 <apt:python-dev,python-virtualenv,libxml2-dev,libxslt1-dev,libmysqlclient-dev,libmemcached-dev>`_::
 
-    sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev libmemcached-dev
+    sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev libmemcached-dev libssl-dev swig
 
 
 .. _osx-packages:
@@ -44,7 +44,7 @@ The best solution for installing UNIX tools on OSX is Homebrew_.
 
 The following packages will get you set for zamboni::
 
-    brew install python libxml2 mysql libmemcached swig
+    brew install python libxml2 mysql libmemcached openssl swig
 
 .. _Homebrew: http://github.com/mxcl/homebrew#readme
 
