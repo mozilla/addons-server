@@ -83,16 +83,24 @@ var purchases = {
 
             if (top_dgFlow !== null) {
                 var thanks_url = $('#paypal-thanks').attr('href'),
-                    error_url = $('#paypal-error').attr('href');
+                    error_url = $('#paypal-error').attr('href'),
+                    frame_elm = window.frameElement;
 
-                if(thanks_url) {
+                if (thanks_url) {
                     top_opener.modalFromURL(thanks_url);
-                } else if(error_url) {
+                } else if (error_url) {
                     top_opener.modalFromURL(error_url);
                 }
                 top_dgFlow.closeFlow();
 
-                if (top !== null) {
+                /* Close this popup/lightbox.
+                 * The PP flow has a return_url which points back to our site
+                 * and gets opened in an iframe. That is what the logic below
+                 * should close.
+                 */
+                if (frame_elm) {
+                    frame_elm.close();
+                } else {
                     top.close();
                 }
             }
