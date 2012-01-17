@@ -502,6 +502,25 @@ class TestESSearch(amo.tests.ESTestCase):
         self.check_cat_filters(dict(atype=amo.ADDON_EXTENSION, cat=cat.id),
                                selected=unicode(cat.name))
 
+    def test_cat_facet_stale(self):
+        AddonCategory.objects.all().delete()
+
+        r = self.client.get(self.url)
+        expected = [
+            ('All Add-ons', self.url),
+            ('Extensions', urlparams(self.url, atype=amo.ADDON_EXTENSION)),
+        ]
+        amo.tests.check_links(expected, pq(r.content)('#category-facets li a'))
+
+    def test_cat_facet_fresh(self):
+        AddonCategory.objects.all().delete()
+        # Save to reindex with new categories.
+        [a.save() for a in Addon.objects.all()]
+
+        r = self.client.get(self.url)
+        amo.tests.check_links([('All Add-ons', self.url)],
+                              pq(r.content)('#category-facets li a'))
+
     def test_no_tag_filter(self):
         r = self.client.get(self.url)
         a = pq(r.content)('#tag-facets li.selected a')
