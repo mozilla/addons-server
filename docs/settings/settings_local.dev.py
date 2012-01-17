@@ -33,8 +33,8 @@ DATABASES = {
     'default': {
         'NAME': 'zamboni',
         'ENGINE': 'django.db.backends.mysql',
-        'USER': 'jbalogh',
-        'PASSWORD': 'xxx',
+        'USER': 'root',
+        'PASSWORD': '',
         'OPTIONS':  {'init_command': 'SET storage_engine=InnoDB'},
         'TEST_CHARSET': 'utf8',
         'TEST_COLLATION': 'utf8_general_ci',
