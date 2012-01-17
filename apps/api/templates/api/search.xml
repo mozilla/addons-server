@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
+{% if using_ES %}<!-- Using elasticsearch. Hi Krupa! -->{% endif %}
 <searchresults total_results="{{ total }}">
   {% if addons_xml %}
       {% for xml in addons_xml %}

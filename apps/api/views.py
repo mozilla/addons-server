@@ -339,6 +339,7 @@ class SearchView(APIView):
         qs = qs.filter(**filters)
 
         return self.render('api/search.xml', {
+            'using_ES': True,
             'results': qs[:limit],
             'total': qs.count(),
         })
