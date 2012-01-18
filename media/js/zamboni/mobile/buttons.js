@@ -47,11 +47,13 @@
     z.startPurchase = function(manifest_url, opt) {
         $.ajax({
             url: opt.url,
+            type: 'post',
             dataType: 'json',
             /* false so that the action is considered within bounds of
              * user interaction and does not trigger the Firefox popup blocker.
              */
             async: false,
+            data: {'result_type': 'json'},
             success: function(json) {
                 $('.modal').trigger('close'); // Hide all modals
                 if (json.paykey) {

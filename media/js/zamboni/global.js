@@ -1,26 +1,6 @@
 // Things global to the site should go here, such as re-usable helper
 // functions and common ui components.
 
-// CSRF Tokens
-// Hijack the AJAX requests, and insert a CSRF token as a header.
-
-$('html').ajaxSend(function(event, xhr, ajaxSettings) {
-    var csrf, $meta;
-    // Block anything that starts with "http:", "https:", "://" or "//"
-    if (!/^((https?:)|:?[/]{2})/.test(ajaxSettings.url)) {
-        // Only send the token to relative URLs i.e. locally.
-        $meta = $('meta[name=csrf]');
-        if (!z.anonymous && $meta.exists()) {
-            csrf = $meta.attr('content');
-        } else {
-            csrf = $("#csrfmiddlewaretoken").val();
-        }
-        if (csrf) xhr.setRequestHeader("X-CSRFToken", csrf);
-    }
-}).ajaxSuccess(function(event, xhr, ajaxSettings) {
-    $(window).trigger('resize'); // Redraw what needs to be redrawn.
-});
-
 // Tooltip display. If you give an element a class of 'tooltip', it will
 // display a tooltip on hover. The contents of the tip will be the element's
 // title attribute OR the first title attribute in its children. Titles are

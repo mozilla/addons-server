@@ -572,6 +572,7 @@ MINIFY_BUNDLES = {
             'js/lib/jquery-ui/jquery.ui.datepicker.js',
             'js/lib/jquery-ui/jquery.ui.sortable.js',
 
+            'js/zamboni/helpers.js',
             'js/zamboni/global.js',
             'js/amo2009/global.js',
             'js/impala/ratingwidget.js',
@@ -654,6 +655,7 @@ MINIFY_BUNDLES = {
 
             'js/zamboni/truncation.js',
             'js/impala/ajaxcache.js',
+            'js/zamboni/helpers.js',
             'js/zamboni/global.js',
             'js/impala/global.js',
             'js/impala/ratingwidget.js',
@@ -792,6 +794,7 @@ MINIFY_BUNDLES = {
             'js/impala/footer.js',
             'js/zamboni/personas_core.js',
             'js/zamboni/mobile/personas.js',
+            'js/zamboni/helpers.js',
             'js/zamboni/mobile/general.js',
             'js/impala/ratingwidget.js',
             'js/zamboni/browserid_support.js',

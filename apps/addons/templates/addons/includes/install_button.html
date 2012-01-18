@@ -18,6 +18,7 @@
   {% else %}
     href="{{ link.url }}"
   {% endif %}>
+  {{ csrf() }}
   {% if request.MOBILE %}
     {% if addon.is_webapp() %}
       {% if (addon.is_premium() and addon.has_purchased(amo_user)) or (not addon.is_premium()) %}
