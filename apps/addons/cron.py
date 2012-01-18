@@ -13,7 +13,7 @@ from django.db.models import Q, F, Avg
 
 import multidb
 import path
-import recommend
+from lib import recommend
 from celery.task.sets import TaskSet
 from celeryutils import task
 
