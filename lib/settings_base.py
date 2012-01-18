@@ -21,8 +21,8 @@ except ImportError:
 # jingo-minify: Style sheet media attribute default
 CSS_MEDIA_DEFAULT = 'all'
 
-# Make filepaths relative to settings.
-ROOT = os.path.dirname(os.path.abspath(__file__))
+# Make filepaths relative to the root of zamboni.
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 path = lambda *a: os.path.join(ROOT, *a)
 
 # We need to track this because hudson can't just call its checkout "zamboni".
@@ -334,7 +334,8 @@ AUTHENTICATION_BACKENDS = (
 )
 AUTH_PROFILE_MODULE = 'users.UserProfile'
 
-ROOT_URLCONF = '%s.urls' % ROOT_PACKAGE
+# Override this in the site settings.
+ROOT_URLCONF = 'lib.urls_base'
 
 INSTALLED_APPS = (
     'amo',  # amo comes first so it always takes precedence.
@@ -373,10 +374,6 @@ INSTALLED_APPS = (
     'versions',
     'webapps',
     'zadmin',
-
-    # We need this so the jsi18n view will pick up our locale directory.
-    ROOT_PACKAGE,
-
     'cake',
 
     # Third party apps

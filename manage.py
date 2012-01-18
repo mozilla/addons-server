@@ -1,10 +1,10 @@
 #!/usr/bin/env python
+import getopt
 import logging
 import os
 import site
 import sys
-import warnings
-
+import imp
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 if os.path.splitext(os.path.basename(__file__))[0] == 'cProfile':
@@ -34,21 +34,34 @@ sys.path[:0] = new_sys_path
 from django.core.management import (call_command, execute_manager,
                                     setup_environ)
 
+# Figuring out what settings file to use.
+# 1. Look first for the command line setting.
+setting = None
+found, rest = getopt.getopt(sys.argv[1:], 's:', 'settings=')
 try:
-    import settings_local as settings
-except ImportError:
-    try:
-        import settings
-    except ImportError:
-        import sys
-        sys.stderr.write(
-            "Error: Tried importing 'settings_local.py' and 'settings.py' "
-            "but neither could be found (or they're throwing an ImportError)."
-            " Please come back and try again later.")
-        raise
+    setting = dict(found).values()[0]
+except IndexError:
+    pass
 
-if not settings.DEBUG:
-    warnings.simplefilter('ignore')
+# 2. If not, find the env variable.
+if not setting:
+    setting = os.environ.get('DJANGO_SETTINGS_MODULE', '')
+
+# The average Django user will have DJANGO_SETTINGS_MODULE set to settings
+# for our purposes that means, load the default site, so if nothing is
+# specified by now, use the default.
+if setting in ('settings', ''):
+    setting = 'settings_local'
+
+# Django runserver does that double reload of installed settings, settings
+# setting to zamboni.settings. We don't want to have zamboni on the path.
+if setting.startswith('zamboni'):
+    setting = setting[len('zamboni.'):]
+
+# Finally load the settings file that was specified.
+res = imp.find_module(setting)
+settings = imp.load_module(setting, *res)
+os.environ['DJANGO_SETTINGS_MODULE'] = setting
 
 # The first thing execute_manager does is call `setup_environ`.  Logging config
 # needs to access settings, so we'll setup the environ early.
@@ -79,7 +92,7 @@ Markup.__mod__ = new
 
 # Import for side-effect: configures our logging handlers.
 # pylint: disable-msg=W0611
-import log_settings
+from lib import log_settings_base
 
 import djcelery
 djcelery.setup_loader()
@@ -97,3 +110,4 @@ if __name__ == "__main__":
         product_details.__init__()  # reload the product details
 
     execute_manager(settings)
+
