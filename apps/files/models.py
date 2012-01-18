@@ -63,7 +63,14 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     # The XPI contains JS that calls require("chrome").
     requires_chrome = models.BooleanField(default=False)
     reviewed = models.DateTimeField(null=True)
+    # The `binary` field is used to store the flags from amo-validator when it
+    # files files with binary extensions or files that may contain binary
+    # content.
     binary = models.BooleanField(default=False)
+    # The `binary_components` field is used to store the flag from
+    # amo-validator when it finds "binary-components" in the chrome manifest
+    # file, used for default to compatible.
+    binary_components = models.BooleanField(default=False, db_index=True)
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'files'
@@ -637,6 +644,8 @@ class FileValidation(amo.models.ModelBase):
             js['metadata'].get('contains_binary_extension', False) or
             js['metadata'].get('contains_binary_content', False))):
             file.update(binary=True)
+        if 'metadata' in js and js['metadata'].get('binary_components', False):
+            file.update(binary_components=True)
         new.save()
         return new
 

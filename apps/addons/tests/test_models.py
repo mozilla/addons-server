@@ -1144,6 +1144,12 @@ class TestAddonModels(amo.tests.TestCase):
         file.update(binary=True)
         eq_(addon.binary, True)
 
+    def test_binary_components_property(self):
+        addon = Addon.objects.get(id=3615)
+        file = addon.current_version.files.all()[0]
+        file.update(binary_components=True)
+        eq_(addon.binary_components, True)
+
 
 class TestAddonGetURLPath(amo.tests.TestCase):
 

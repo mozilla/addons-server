@@ -73,6 +73,7 @@ class ViewQueue(RawSQLModel):
     is_site_specific = models.BooleanField()
     external_software = models.BooleanField()
     binary = models.BooleanField()
+    binary_components = models.BooleanField()
     premium_type = models.IntegerField()
     _no_restart = models.CharField(max_length=255)
     _jetpack_versions = models.CharField(max_length=255)
@@ -101,6 +102,7 @@ class ViewQueue(RawSQLModel):
                 ('is_site_specific', 'addons.sitespecific'),
                 ('external_software', 'addons.externalsoftware'),
                 ('binary', 'files.binary'),
+                ('binary_components', 'files.binary_components'),
                 ('premium_type', 'addons.premium_type'),
                 ('_latest_version_ids', """GROUP_CONCAT(versions.id
                                            ORDER BY versions.created DESC)"""),

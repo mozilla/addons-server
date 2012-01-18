@@ -162,6 +162,7 @@ class TestAdditionalInfoInQueue(amo.tests.TestCase):
         self.row.file_platform_vers = [self.platform_id(amo.PLATFORM_ALL.id)]
         self.row.external_software = False
         self.row.binary = False
+        self.row.binary_components = False
 
     def platform_id(self, platform):
         return '%s-%s' % (platform, self.row.latest_version_id)

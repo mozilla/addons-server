@@ -449,20 +449,21 @@ class TestDefaultToCompat(amo.tests.TestCase):
                     expected['-'.join([version, mode])])
 
     def test_extension(self):
-        # Tests simple add-on (non-binary, non-strict).
+        # Tests simple add-on (non-binary-components, non-strict).
         self.check(self.expected)
 
     def test_binary_extension(self):
         # Tests add-on with binary flag.
 
-        self.update_files(binary=True)
+        self.update_files(binary_components=True)
         self.expected.update({
             '8.0-normal': None,
         })
         self.check(self.expected)
 
     def test_extension_compat_override(self):
-        # Tests simple add-on (non-binary, non-strict) with a compat override.
+        # Tests simple add-on (non-binary-components, non-strict) with a compat
+        # override.
 
         self.create_override(min_version='1.3', max_version='1.4')
         self.expected.update({
@@ -473,9 +474,10 @@ class TestDefaultToCompat(amo.tests.TestCase):
         self.check(self.expected)
 
     def test_binary_extension_compat_override(self):
-        # Tests simple add-on (non-binary, non-strict) with a compat override.
+        # Tests simple add-on (non-binary-components, non-strict) with a compat
+        # override.
 
-        self.update_files(binary=True)
+        self.update_files(binary_components=True)
         self.create_override(min_version='1.3', max_version='1.4')
         self.expected.update({
             '6.0-normal': self.ver_1_2,
@@ -494,8 +496,8 @@ class TestDefaultToCompat(amo.tests.TestCase):
         self.check(self.expected)
 
     def test_compat_override_max_addon_wildcard(self):
-        # Tests simple add-on (non-binary, non-strict) with a compat override
-        # that contains a max wildcard.
+        # Tests simple add-on (non-binary-components, non-strict) with a compat
+        # override that contains a max wildcard.
 
         self.create_override(min_version='1.2', max_version='1.*',
                              min_app_version='5.0', max_app_version='6.*')
@@ -506,8 +508,8 @@ class TestDefaultToCompat(amo.tests.TestCase):
         self.check(self.expected)
 
     def test_compat_override_max_app_wildcard(self):
-        # Tests simple add-on (non-binary, non-strict) with a compat override
-        # that contains a min/max wildcard for the app.
+        # Tests simple add-on (non-binary-components, non-strict) with a compat
+        # override that contains a min/max wildcard for the app.
 
         self.create_override(min_version='1.2', max_version='1.3')
         self.expected.update({
@@ -519,8 +521,9 @@ class TestDefaultToCompat(amo.tests.TestCase):
         self.check(self.expected)
 
     def test_compat_override_both_wildcards(self):
-        # Tests simple add-on (non-binary, non-strict) with a compat override
-        # that contains a wildcard for both addon version and app version.
+        # Tests simple add-on (non-binary-components, non-strict) with a compat
+        # override that contains a wildcard for both addon version and app
+        # version.
 
         self.create_override(min_app_version='7.0', max_app_version='*')
         self.expected.update({

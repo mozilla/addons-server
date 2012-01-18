@@ -187,7 +187,7 @@ class EditorQueueTable(SQLTable, ItemStateTable):
             info.append(_lazy(u'Site Specific'))
         if row.external_software:
             info.append(_lazy(u'Requires External Software'))
-        if row.binary:
+        if row.binary or row.binary_components:
             info.append(_lazy(u'Binary Components'))
         return u', '.join([jinja2.escape(i) for i in info])
 

@@ -161,17 +161,24 @@ def flag_binary(ids, **kw):
              % (len(ids), flag_binary.rate_limit, ids[0]))
     addons = Addon.objects.filter(pk__in=ids).no_transforms()
 
+    latest = kw.pop('latest', True)
+
     for addon in addons:
         try:
             log.info('Validating addon with id: %s' % addon.pk)
-            file = File.objects.filter(version__addon=addon).latest('created')
-            result = json.loads(run_validator(file.file_path))
-            metadata = result['metadata']
-            binary = (metadata.get('contains_binary_extension', False) or
-                      metadata.get('contains_binary_content', False))
-            log.info('Setting binary for addon with id: %s to %s'
-                     % (addon.pk, binary))
-            file.update(binary=binary)
+            files = (File.objects.filter(version__addon=addon)
+                                 .order_by('-created'))
+            if latest:
+                files = [files[0]]
+            for file in files:
+                result = json.loads(run_validator(file.file_path))
+                metadata = result['metadata']
+                binary = (metadata.get('contains_binary_extension', False) or
+                          metadata.get('contains_binary_content', False))
+                binary_components = metadata.get('binary_components', False)
+                log.info('Setting binary for addon with id: %s to %s'
+                         % (addon.pk, binary))
+                file.update(binary=binary, binary_components=binary_components)
         except Exception, err:
             log.error('Failed to run validation on addon id: %s, %s'
                       % (addon.pk, err))

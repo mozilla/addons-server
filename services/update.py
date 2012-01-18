@@ -226,7 +226,8 @@ class Update(object):
             # When file has strict_compatibility enabled, or file has binary
             # components, default to compatible is disabled.
             sql.append("""AND
-                CASE WHEN files.strict_compatibility = 1 OR files.binary = 1
+                CASE WHEN files.strict_compatibility = 1 OR
+                          files.binary_components = 1
                 THEN appmax.version_int >= %(version_int)s ELSE 1 END
             """)
             # Filter out versions found in compat overrides

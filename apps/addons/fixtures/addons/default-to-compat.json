@@ -307,6 +307,7 @@
             "datestatuschanged": "2011-12-05 14:46:43",
             "no_restart": false,
             "binary": false,
+            "binary_components": false,
             "size": 0
         }
     },
@@ -330,6 +331,7 @@
             "datestatuschanged": "2011-12-05 14:46:43",
             "no_restart": false,
             "binary": false,
+            "binary_components": false,
             "size": 0
         }
     },
@@ -353,6 +355,7 @@
             "datestatuschanged": "2011-12-05 14:46:43",
             "no_restart": false,
             "binary": false,
+            "binary_components": false,
             "size": 0
         }
     },
@@ -376,6 +379,7 @@
             "datestatuschanged": "2011-12-05 14:46:43",
             "no_restart": false,
             "binary": false,
+            "binary_components": false,
             "size": 0
         }
     }

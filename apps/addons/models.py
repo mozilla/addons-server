@@ -563,7 +563,18 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     @amo.cached_property
     def binary(self):
         """Returns if the current version has binary files."""
-        return self.current_version.files.filter(binary=True).exists()
+        version = self.current_version
+        if version:
+            return version.files.filter(binary=True).exists()
+        return False
+
+    @amo.cached_property
+    def binary_components(self):
+        """Returns if the current version has files with binary_components."""
+        version = self.current_version
+        if version:
+            return version.files.filter(binary_components=True).exists()
+        return False
 
     @property
     def backup_version(self):

@@ -8,6 +8,8 @@ from devhub.tasks import convert_purified, flag_binary, get_preview_sizes
 
 
 tasks = {
+    'flag_binary_components': {'method': flag_binary, 'qs': [],
+                               'kwargs': dict(latest=False)},
     'flag_binary': {'method': flag_binary, 'qs': []},
     'get_preview_sizes': {'method': get_preview_sizes, 'qs': []},
     'convert_purified': {'method': convert_purified, 'qs': []}
@@ -33,4 +35,7 @@ class Command(BaseCommand):
                             .values_list('pk', flat=True)
                             .order_by('id'))
         for chunk in chunked(pks, 100):
-            task['method'].delay(chunk)
+            if task.get('kwargs'):
+                task['method'].delay(chunk, **task.get('kwargs'))
+            else:
+                task['method'].delay(chunk)
