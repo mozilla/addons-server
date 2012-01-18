@@ -7,6 +7,11 @@ Installing Zamboni
 We're going to use all the hottest tools to set up a nice environment.  Skip
 steps at your own peril. Here we go!
 
+.. note::
+
+    For less manual work, you can build Zamboni in a
+    :doc:`virtual machine using vagrant <install-with-vagrant>`.
+
 
 Requirements
 ------------
