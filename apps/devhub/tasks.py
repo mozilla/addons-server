@@ -165,9 +165,10 @@ def flag_binary(ids, **kw):
         try:
             log.info('Validating addon with id: %s' % addon.pk)
             file = File.objects.filter(version__addon=addon).latest('created')
-            result = run_validator(file.file_path)
-            binary = (json.loads(result)['metadata']
-                          .get('contains_binary_extension', False))
+            result = json.loads(run_validator(file.file_path))
+            metadata = result['metadata']
+            binary = (metadata.get('contains_binary_extension', False) or
+                      metadata.get('contains_binary_content', False))
             log.info('Setting binary for addon with id: %s to %s'
                      % (addon.pk, binary))
             file.update(binary=binary)

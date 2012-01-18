@@ -131,13 +131,19 @@ class TestFlagBinary(amo.tests.TestCase):
 
     @mock.patch('devhub.tasks.run_validator')
     def test_flag_binary(self, _mock):
-        _mock.return_value = '{"metadata":{"contains_binary_extension": 1}}'
+        _mock.return_value = ('{"metadata":{"contains_binary_extension": 1, '
+                              '"contains_binary_content": 0}}')
+        tasks.flag_binary([self.addon.pk])
+        eq_(Addon.objects.get(pk=self.addon.pk).binary, True)
+        _mock.return_value = ('{"metadata":{"contains_binary_extension": 0, '
+                              '"contains_binary_content": 1}}')
         tasks.flag_binary([self.addon.pk])
         eq_(Addon.objects.get(pk=self.addon.pk).binary, True)
 
     @mock.patch('devhub.tasks.run_validator')
     def test_flag_not_binary(self, _mock):
-        _mock.return_value = '{"metadata":{"contains_binary_extension": 0}}'
+        _mock.return_value = ('{"metadata":{"contains_binary_extension": 0, '
+                              '"contains_binary_content": 0}}')
         tasks.flag_binary([self.addon.pk])
         eq_(Addon.objects.get(pk=self.addon.pk).binary, False)
 

@@ -520,7 +520,7 @@ class TestFileUpload(UploadTest):
         fu = FileUpload.from_post('', u'\u05d0\u05d5\u05e1\u05e3.xpi', 0)
         assert 'xpi' in fu.name
 
-    def test_validator_sets_require_chrome(self):
+    def test_validator_sets_binary_via_extensions(self):
         validation = json.dumps({
             "errors": 0,
             "success": True,
@@ -533,6 +533,47 @@ class TestFileUpload(UploadTest):
                 "version": "1.0",
                 "name": "gK0Bes Bot",
                 "id": "gkobes@gkobes",
+            }
+        })
+        upload = self.get_upload(filename='extension.xpi', validation=validation)
+        version = Version.objects.filter(addon__pk=3615)[0]
+        plat = Platform.objects.get(pk=amo.PLATFORM_LINUX.id)
+        file_ = File.from_upload(upload, version, plat)
+        eq_(file_.binary, True)
+
+    def test_validator_sets_binary_via_content(self):
+        validation = json.dumps({
+            "errors": 0,
+            "success": True,
+            "warnings": 0,
+            "notices": 0,
+            "message_tree": {},
+            "messages": [],
+            "metadata": {
+                "contains_binary_content": True,
+                "version": "1.0",
+                "name": "gK0Bes Bot",
+                "id": "gkobes@gkobes",
+            }
+        })
+        upload = self.get_upload(filename='extension.xpi', validation=validation)
+        version = Version.objects.filter(addon__pk=3615)[0]
+        plat = Platform.objects.get(pk=amo.PLATFORM_LINUX.id)
+        file_ = File.from_upload(upload, version, plat)
+        eq_(file_.binary, True)
+
+    def test_validator_sets_require_chrome(self):
+        validation = json.dumps({
+            "errors": 0,
+            "success": True,
+            "warnings": 0,
+            "notices": 0,
+            "message_tree": {},
+            "messages": [],
+            "metadata": {
+                "version": "1.0",
+                "name": "gK0Bes Bot",
+                "id": "gkobes@gkobes",
                 "requires_chrome": True
             }
         })
@@ -541,7 +582,6 @@ class TestFileUpload(UploadTest):
         plat = Platform.objects.get(pk=amo.PLATFORM_LINUX.id)
         file_ = File.from_upload(upload, version, plat)
         eq_(file_.requires_chrome, True)
-        eq_(file_.binary, True)
 
 
 class TestFileFromUpload(UploadTest):

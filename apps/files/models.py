@@ -633,8 +633,9 @@ class FileValidation(amo.models.ModelBase):
         new = cls(file=file, validation=validation, errors=js['errors'],
                   warnings=js['warnings'], notices=js['notices'])
         new.valid = new.errors == 0
-        if ('metadata' in js and
-            js['metadata'].get('contains_binary_extension', False)):
+        if ('metadata' in js and (
+            js['metadata'].get('contains_binary_extension', False) or
+            js['metadata'].get('contains_binary_content', False))):
             file.update(binary=True)
         new.save()
         return new
