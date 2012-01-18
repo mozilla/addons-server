@@ -1,3 +1,4 @@
+{{ csrf() }}
 <a class="button {% if request.MOBILE %}add{% endif %} {{ b.button_class|join(' ') }} {{ extra }}"
   {% if not addon.is_premium() and not addon.is_webapp() %}
     data-hash="{{ link.file.hash }}"
@@ -18,7 +19,6 @@
   {% else %}
     href="{{ link.url }}"
   {% endif %}>
-  {{ csrf() }}
   {% if request.MOBILE %}
     {% if addon.is_webapp() %}
       {% if (addon.is_premium() and addon.has_purchased(amo_user)) or (not addon.is_premium()) %}
