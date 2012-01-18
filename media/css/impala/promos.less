@@ -42,7 +42,7 @@
         width: 38px;
         height: 38px;
         border: 2px solid #ccc;
-        font-family: Georgia;
+        font-family: @serif-stack;
         margin: auto;
         font-size: 44px;
         line-height: 30px;
@@ -79,9 +79,6 @@
             overflow: hidden;
             padding: 20px 10% 0 270px;
             background: url(../../img/zamboni/discovery_pane/promos/ryff-bg.png) no-repeat;
-            h2 {
-                white-space: nowrap;
-            }
             h3 {
                 margin-bottom: 10px;
                 a {
@@ -120,7 +117,6 @@
     }
     h2 {
         text-shadow: 0 1px 0 rgba(255,255,255,0.5);
-        white-space: nowrap;
     }
     hgroup {
         margin: 10px auto 20px;
@@ -206,7 +202,6 @@
 }
 
 #travel {
-    background: none;
     background-image:
         url(../../img/zamboni/discovery_pane/promos/travel-bg-left.png),
         url(../../img/zamboni/discovery_pane/promos/travel-bg-right.png),
@@ -219,7 +214,6 @@
 }
 
 #school {
-    background: none;
     background-image:
         url(../../img/zamboni/discovery_pane/promos/school-bg-left.png),
         url(../../img/zamboni/discovery_pane/promos/school-bg-right.png),
@@ -228,6 +222,16 @@
     background-repeat: no-repeat, no-repeat, no-repeat;
     h2 {
         color: #933;
+    }
+}
+
+#promos #new-year {
+    background: url(../../img/zamboni/discovery_pane/promos/new-year.jpg) 50% 50% no-repeat;
+    h2 {
+        color: #ffc;
+        font-size: 28px;
+        margin: 30px 0;
+        text-shadow: 0 1px 0 rgba(0,0,0,.5);
     }
 }
 
@@ -240,9 +244,6 @@
 }
 
 .addons li:nth-child(3n) {
-    margin-right: 0;
-}
-.html-rtl .addons li:nth-child(3n) {
     margin-right: 0;
 }
 

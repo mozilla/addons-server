@@ -91,15 +91,26 @@ class CollectionPromo(PromoModule):
     template = 'discovery/modules/collection.html'
     title = None
     subtitle = None
+    cls = 'promo'
     limit = 3
     linkify_title = False
 
     def __init__(self, *args, **kw):
         super(CollectionPromo, self).__init__(*args, **kw)
-        try:
-            self.collection = Collection.objects.get(pk=self.pk)
-        except Collection.DoesNotExist:
-            self.collection = None
+        self.collection = None
+        if hasattr(self, 'pk'):
+            try:
+                self.collection = Collection.objects.get(pk=self.pk)
+            except Collection.DoesNotExist:
+                pass
+        elif (hasattr(self, 'collection_author') and
+              hasattr(self, 'collection_slug')):
+            try:
+                self.collection = Collection.objects.get(
+                    author__username=self.collection_author,
+                    slug=self.collection_slug)
+            except Collection.DoesNotExist:
+                pass
 
     def get_descriptions(self):
         return {}
@@ -244,3 +255,11 @@ class PromoVideoCollection():
     def get_items(self):
         items = Addon.objects.in_bulk(self.items)
         return [items[i] for i in self.items if i in items]
+
+
+class NewYearCollection(CollectionPromo):
+    slug = 'New Year'
+    # TODO: Change to 'newyear_2012' when fligtar adds the collection to -dev.
+    collection_author, collection_slug = 'mozilla', 'webdeveloper'
+    id = 'new-year'
+    title = _(u'Add-ons to help you on your way in 2012')

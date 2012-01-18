@@ -37,6 +37,7 @@ function initPromos($context) {
         $('.addons .desc', $promos).truncate({dir: 'v'});
         $('.install', $promos).installButton();
         $('#monthly .blurb > p').lineclamp(4);
+        $('h2', $promos).linefit();
     });
     $('.toplist .name').truncate({showTitle: true});
 }
