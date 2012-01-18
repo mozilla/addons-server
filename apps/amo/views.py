@@ -66,6 +66,7 @@ def monitor(request, format=None):
 
 def robots(request):
     """Generate a robots.txt"""
+    1/0
     _service = (request.META['SERVER_NAME'] == settings.SERVICES_DOMAIN)
     if _service or not settings.ENGAGE_ROBOTS:
         template = "User-agent: *\nDisallow: /"
