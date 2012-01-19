@@ -65,7 +65,7 @@ class TestCategory(amo.tests.TestCase):
 
         self.cat2 = Category.objects.create(name='Music',
                                             type=amo.ADDON_EXTENSION)
-        self.cat2.name = {'es-ES': u'Música', 'zh-CN': u'音乐'}
+        self.cat2.name = {'zh-CN': u'音乐'}
         self.cat2.save()
 
         assert self.client.login(username='admin@mozilla.com',
@@ -98,14 +98,18 @@ class TestCategory(amo.tests.TestCase):
             'form-0-id': self.cat1.id,
             'form-0-name': u'Nada',
             'form-1-id': self.cat2.id,
-            'form-1-name': u'Amigo',
+            'form-1-name': u'Música',
         }
         res = self.client.post(url, data, follow=True)
         self.assertRedirects(res, url, status_code=302)
         doc = pq(res.content.decode('utf-8'))
         eq_(doc('#id_form-0-name').val(), u'Nada')
-        eq_(doc('#id_form-1-name').val(), u'Amigo')
+        eq_(doc('#id_form-1-name').val(), u'Música')
         translation.activate('es-ES')
+        # Test translation change.
         cat = Category.objects.get(pk=self.cat1.id)
         eq_(cat.name, u'Nada')
+        # Test new translation.
+        cat = Category.objects.get(pk=self.cat2.id)
+        eq_(cat.name, u'Música')
         translation.deactivate()
