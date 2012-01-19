@@ -40,10 +40,9 @@ def test_parse_bad_type():
                        "nonexistent addon type.")
 
 
-class ViewTest(amo.tests.TestCase):
+class TestSphinx(amo.tests.TestCase):
     """Tests some of the functions used in building the view."""
-
-    fixtures = ('base/category',)
+    fixtures = ['base/category']
 
     def setUp(self):
         self.fake_request = Mock()
@@ -56,17 +55,23 @@ class ViewTest(amo.tests.TestCase):
         # Select a category.
         items = views._get_categories(self.fake_request, cats, category=cat)
         eq_(len(cats), len(items[1].children))
-        assert any((i.selected for i in items[1].children))
+        assert any(i.selected for i in items[1].children)
 
         # Select an addon type.
         atype = cats[0].type
         items = views._get_categories(self.fake_request, cats,
                                       addon_type=atype)
-        assert any((i.selected for i in items))
+        assert any(i.selected for i in items)
 
     def test_get_tags(self):
         t = Tag(tag_text='yermom')
         assert views._get_tags(self.fake_request, tags=[t], selected='yermom')
+
+    def test_personas(self):
+        # ES doesn't serve Personas results (yet).
+        r = self.client.get(reverse('search.search'), dict(atype=9))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'search/personas.html')
 
 
 class TestAdminDisabledAddons(SphinxTestCase):
@@ -188,11 +193,6 @@ class TestESSearch(amo.tests.ESTestCase):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'search/mobile/results.html')
-
-    def test_personas(self):
-        r = self.client.get(self.url, dict(atype=9))
-        print r
-        self.assertTemplateUsed(r, 'search/personas.html')
 
     @amo.tests.mobile_test
     def test_mobile_results_downloads(self):
