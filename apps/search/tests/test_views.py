@@ -172,6 +172,10 @@ class TestESSearch(amo.tests.ESTestCase):
             addon.save()
         self.refresh()
 
+    def refresh_addons(self):
+        [a.save() for a in self.addons]
+        self.refresh()
+
     def test_get(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
@@ -184,6 +188,11 @@ class TestESSearch(amo.tests.ESTestCase):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'search/mobile/results.html')
+
+    def test_personas(self):
+        r = self.client.get(self.url, dict(atype=9))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'search/personas.html')
 
     @amo.tests.mobile_test
     def test_mobile_results_downloads(self):
@@ -515,7 +524,7 @@ class TestESSearch(amo.tests.ESTestCase):
     def test_cat_facet_fresh(self):
         AddonCategory.objects.all().delete()
         # Save to reindex with new categories.
-        [a.save() for a in Addon.objects.all()]
+        self.refresh_addons()
 
         r = self.client.get(self.url)
         amo.tests.check_links([('All Add-ons', self.url)],
@@ -569,6 +578,35 @@ class TestESSearch(amo.tests.ESTestCase):
             title, heading = titles
             eq_(doc('title').text(), title)
             eq_(doc('.primary h1').text(), heading)
+
+    def get_results(self, r):
+        """Return pks of add-ons shown on search results page."""
+        pks = pq(r.content)('#pjax-results div[data-addon]')
+        return sorted(int(pq(a).attr('data-addon')) for a in pks)
+
+    def test_results_filtered_atype(self):
+        theme = self.addons[0]
+        theme.type = amo.ADDON_THEME
+        theme.save()
+        self.refresh_addons()
+
+        themes = sorted(self.addons.filter(type=amo.ADDON_THEME)
+                        .values_list('id', flat=True))
+        eq_(themes, [theme.id])
+
+        extensions = sorted(self.addons.filter(type=amo.ADDON_EXTENSION)
+                            .values_list('id', flat=True))
+        eq_(extensions, sorted(a.id for a in self.addons[1:]))
+
+        # Extensions should show only extensions.
+        r = self.client.get(self.url, dict(atype=amo.ADDON_EXTENSION))
+        eq_(r.status_code, 200)
+        eq_(self.get_results(r), extensions)
+
+        # Themes should show only themes.
+        r = self.client.get(self.url, dict(atype=amo.ADDON_THEME))
+        eq_(r.status_code, 200)
+        eq_(self.get_results(r), themes)
 
 
 def test_search_redirects():

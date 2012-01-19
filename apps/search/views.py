@@ -592,7 +592,7 @@ def search(request, tag_name=None, template=None):
                               {'field': 'appversion.%s.max' % APP.id}},
                  categories={'terms': {'field': 'category', 'size': 200}}))
 
-    filters = ['appver', 'cat', 'price', 'sort', 'tag', 'platform']
+    filters = ['atype', 'appver', 'cat', 'price', 'sort', 'tag', 'platform']
     mapping = {'users': '-average_daily_users',
                'rating': '-bayesian_rating',
                'created': '-created',

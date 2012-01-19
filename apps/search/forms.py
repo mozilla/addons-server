@@ -268,7 +268,7 @@ class ESSearchForm(forms.Form):
     platform = forms.CharField(required=False)
     appver = forms.CharField(required=False)
     atype = forms.TypedChoiceField(required=False, coerce=int,
-        choices=[(t, amo.ADDON_TYPE[t]) for t in amo.ADDON_SEARCH_TYPES])
+                                   choices=amo.ADDON_TYPES.iteritems())
     cat = forms.CharField(required=False)
     price = forms.CharField(required=False)
     sort = forms.CharField(required=False)
