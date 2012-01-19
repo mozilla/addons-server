@@ -21,7 +21,7 @@ Vagrant::Config.run do |config|
 
     # TODO(Kumar) figure out a way to forward port 80, as requested from the
     # guest, to 8000 on the host. This apparently doesn't do that :/
-    config.vm.forward_port("web", 80, 8000)
+    # config.vm.forward_port(80, 8000)
 
     # Increase vagrant's patience during hang-y CentOS bootup
     # see: https://github.com/jedi4ever/veewee/issues/14
@@ -36,7 +36,7 @@ Vagrant::Config.run do |config|
     end
 
     # For convenience add something like this to /etc/hosts: 33.33.33.24 z.local
-    config.vm.network "33.33.33.24"
+    config.vm.network :hostonly, "33.33.33.24"
 
     config.vm.provision :puppet do |puppet|
         puppet.manifests_path = "vagrant/manifests"
