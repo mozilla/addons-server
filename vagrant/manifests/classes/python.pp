@@ -15,6 +15,8 @@ class python {
 
     exec { "pip-install-compiled":
         command => "sudo pip install -r $PROJ_DIR/requirements/compiled.txt",
+        # Set timeout to 10 min just in case
+        timeout => 600,
         require => [
             Exec["upgrade_pip"],
             Package["python2.6", "libxml2-dev", "libxslt1-dev", "libssl-dev", "swig"]
