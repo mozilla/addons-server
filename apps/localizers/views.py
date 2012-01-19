@@ -138,7 +138,7 @@ def categories(request, locale_code):
         for form in formset:
             pk = form.cleaned_data.get('id')
             name = form.cleaned_data.get('name')
-            if category_names.get(pk) != None and name != category_names[pk]:
+            if name != category_names.get(pk):
                 # Name changed, let's save it.
                 cat = category_objects.get(pk)
                 if not cat:
