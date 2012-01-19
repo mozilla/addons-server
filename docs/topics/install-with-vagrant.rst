@@ -82,6 +82,9 @@ Then when you want to use it again just type::
 
     vagrant resume
 
+This boots up the VM in the state it was left in but you still have to SSH in
+and start up the dev server with the command above.
+
 Updating Zamboni Code
 ---------------------
 
