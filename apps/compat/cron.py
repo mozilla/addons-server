@@ -44,8 +44,8 @@ def compatibility_report():
                 doc = docs[addon.id]
                 doc.update(id=addon.id, slug=addon.slug, guid=addon.guid,
                            self_hosted=addon.is_selfhosted(),
-                           binary=addon.binary, name=unicode(addon.name),
-                           created=addon.created,
+                           binary=addon.binary_components,
+                           name=unicode(addon.name), created=addon.created,
                            current_version=addon.current_version.version,
                            current_version_id=addon.current_version.pk)
                 doc['count'] = chunk[addon.id]

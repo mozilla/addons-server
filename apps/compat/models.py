@@ -32,7 +32,7 @@ class AppCompat(amo.models.ModelBase):
          self_hosted: addon.is_selfhosted,
          current_version: version string,
          current_version_id: version int,
-         binary: addon.binary,
+         binary: addon.binary_components,
          count: total # of update counts,
          top_95_all: {APP.id: bool},
          top_95: {APP.id: {version int: bool}},
