@@ -40,7 +40,7 @@ def test_parse_bad_type():
                        "nonexistent addon type.")
 
 
-class TestSphinx(amo.tests.TestCase):
+class TestSphinxFunctions(amo.tests.TestCase):
     """Tests some of the functions used in building the view."""
     fixtures = ['base/category']
 
@@ -66,6 +66,9 @@ class TestSphinx(amo.tests.TestCase):
     def test_get_tags(self):
         t = Tag(tag_text='yermom')
         assert views._get_tags(self.fake_request, tags=[t], selected='yermom')
+
+
+class TestSphinxResults(SphinxTestCase):
 
     def test_personas(self):
         # ES doesn't serve Personas results (yet).
