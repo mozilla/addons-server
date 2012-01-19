@@ -5,7 +5,7 @@ from mobility.decorators import mobile_template
 from tower import ugettext_lazy as _lazy
 
 import amo
-from amo.decorators import json_view, login_required, post_required
+from amo.decorators import json_view, login_required, post_required, write
 from amo.helpers import loc
 from amo.utils import paginate
 from addons.decorators import addon_view
@@ -14,7 +14,7 @@ from webapps.models import Installed
 import search.views
 
 from addons.models import Category
-from browse.views import category_landing, CategoryLandingFilter
+from browse.views import CategoryLandingFilter
 from sharing.views import share as share_redirect
 from .models import Webapp
 
@@ -75,7 +75,7 @@ def app_list(request, category=None, template=None):
         q = Category.objects.filter(type=TYPE)
         category = get_object_or_404(q, slug=category)
 
-    sort = request.GET.get('sort')
+    #sort = request.GET.get('sort')
     # TODO: Uncomment this when we have apps category landing pages.
     #if not sort and not request.MOBILE and category and category.count > 4:
     #    return category_landing(request, category, TYPE,
@@ -106,6 +106,7 @@ def share(request, app_slug):
 @addon_view
 @login_required
 @post_required
+@write
 def record(request, addon):
     if addon.is_webapp():
         installed, c = Installed.objects.safer_get_or_create(addon=addon,
