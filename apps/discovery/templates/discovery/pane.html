@@ -38,6 +38,8 @@ data-upandcoming-url="{{ services_url('discovery.pane.more_addons', 'up-and-comi
 
   <section id="main">
 
+    {% if modules %}
+    {# TODO: Lazy-load promo modules. #}
     <section id="promos">
       <ul id="nav-features">
         <li class="nav-prev"><a href="#" class="prev">{{ _('Previous') }}</a></li>
@@ -47,6 +49,7 @@ data-upandcoming-url="{{ services_url('discovery.pane.more_addons', 'up-and-comi
       {% for module in modules %}{{ module.render() }}{% endfor %}
       </ul>
     </section>
+    {% endif %}
 
     <section id="featured-addons">
       <h2 class="translate" data-trans="featured">{{ _('Featured Add-ons') }}</h2>

@@ -8,7 +8,7 @@ function initPromos($context) {
         $context = $(document.body);
     }
     var $promos = $('#promos[data-promo-url]', $context);
-    if (!$promos.length) {
+    if (!$promos.find('.panel').length) {
         return;
     }
     $promos.show();
@@ -31,7 +31,6 @@ function initPromos($context) {
         });
         $('.addons h3', $promos).truncate({dir: 'h'});
         $('.addons .desc', $promos).truncate({dir: 'v'});
-        $('#monthly .blurb > p').truncate({dir: 'v'});
         $('.install', $promos).installButton();
         $('#monthly .blurb > p').lineclamp(4);
     });

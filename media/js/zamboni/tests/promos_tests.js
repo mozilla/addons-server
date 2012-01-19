@@ -19,6 +19,12 @@ module('Homepage promos', {
     }
 });
 
+test('No promos visible', function() {
+    $('.panel', this.sandbox).remove('.panel');
+    initPromos(this.sandbox);
+    equal($('.slider:hidden', this.sandbox).length, 1);
+});
+
 test('Home promo visible', function() {
     this.check(true, 1);
 });

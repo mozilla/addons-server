@@ -252,6 +252,22 @@ class TestUrls(amo.tests.TestCase):
         eq_(r.status_code, 404)
 
 
+class TestPromos(amo.tests.TestCase):
+    fixtures = ['discovery/discoverymodules']
+
+    def setUp(self):
+        self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
+
+    def test_promos_visible(self):
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#promos').length, 1)
+
+    def test_promos_hidden(self):
+        DiscoveryModule.objects.all().delete()
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#promos').length, 0)
+
+
 class TestPane(amo.tests.TestCase):
     fixtures = ['addons/featured', 'base/addon_3615', 'base/apps',
                 'base/collections', 'base/featured', 'base/users',
