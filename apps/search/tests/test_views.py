@@ -191,7 +191,7 @@ class TestESSearch(amo.tests.ESTestCase):
 
     def test_personas(self):
         r = self.client.get(self.url, dict(atype=9))
-        eq_(r.status_code, 200)
+        print r
         self.assertTemplateUsed(r, 'search/personas.html')
 
     @amo.tests.mobile_test
