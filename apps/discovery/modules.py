@@ -259,7 +259,6 @@ class PromoVideoCollection():
 
 class NewYearCollection(CollectionPromo):
     slug = 'New Year'
-    # TODO: Change to 'newyear_2012' when fligtar adds the collection to -dev.
-    collection_author, collection_slug = 'mozilla', 'webdeveloper'
+    collection_author, collection_slug = 'mozilla', 'newyear_2012'
     id = 'new-year'
     title = _(u'Add-ons to help you on your way in 2012')
