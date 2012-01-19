@@ -1,3 +1,5 @@
+from urlparse import urljoin
+
 from django import http
 from django.conf import settings
 from django.views.decorators.cache import never_cache
@@ -10,7 +12,7 @@ import waffle
 from access import acl
 from amo.decorators import json_view
 from amo.urlresolvers import reverse
-from amo.utils import HttpResponseSendFile, Message, Token
+from amo.utils import HttpResponseSendFile, Message, Token, urlparams
 from files.decorators import (etag, file_view, compare_file_view,
                               file_view_token, last_modified)
 from files.tasks import extract_file
@@ -138,9 +140,9 @@ def compare(request, diff, key=None, type='file'):
 def redirect(request, viewer, key):
     new = Token(data=[viewer.file.id, key])
     new.save()
-    url = '%s%s?token=%s' % (settings.STATIC_URL,
-                             reverse('files.serve', args=[viewer, key]),
-                             new.token)
+    url = urljoin(settings.STATIC_URL,
+                  reverse('files.serve', args=[viewer, key]))
+    url = urlparams(url, token=new.token)
     return http.HttpResponseRedirect(url)
 
 
