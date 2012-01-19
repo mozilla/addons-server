@@ -1,14 +1,23 @@
 from optparse import make_option
 
 from django.core.management.base import BaseCommand
+from django.db.models import Q
 
+import amo
 from addons.models import Addon
 from amo.utils import chunked
 from devhub.tasks import convert_purified, flag_binary, get_preview_sizes
 
 
 tasks = {
-    'flag_binary_components': {'method': flag_binary, 'qs': [],
+    # binary-components depend on having a chrome manifest.
+    'flag_binary_components': {'method': flag_binary,
+                               'qs': [Q(type__in=[amo.ADDON_EXTENSION,
+                                                  amo.ADDON_DICT,
+                                                  amo.ADDON_LPADDON,
+                                                  amo.ADDON_PLUGIN,
+                                                  amo.ADDON_API]),
+                                      Q(disabled_by_user=False)],
                                'kwargs': dict(latest=False)},
     'flag_binary': {'method': flag_binary, 'qs': []},
     'get_preview_sizes': {'method': get_preview_sizes, 'qs': []},
@@ -33,7 +42,7 @@ class Command(BaseCommand):
             raise ValueError('Unknown task: %s' % ', '.join(tasks.keys()))
         pks = (Addon.objects.filter(*task['qs'])
                             .values_list('pk', flat=True)
-                            .order_by('id'))
+                            .order_by('-last_updated'))
         for chunk in chunked(pks, 100):
             if task.get('kwargs'):
                 task['method'].delay(chunk, **task.get('kwargs'))
