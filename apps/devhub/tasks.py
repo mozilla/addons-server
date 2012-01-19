@@ -177,8 +177,9 @@ def flag_binary(ids, **kw):
                 binary = (metadata.get('contains_binary_extension', False) or
                           metadata.get('contains_binary_content', False))
                 binary_components = metadata.get('binary_components', False)
-                log.info('Setting binary for addon with id: %s to %s'
-                         % (addon.pk, binary))
+                log.info('Updating binary flags for addon with id=%s: '
+                         'binary -> %s, binary_components -> %s' % (
+                             addon.pk, binary, binary_components))
                 file.update(binary=binary, binary_components=binary_components)
         except Exception, err:
             log.error('Failed to run validation on addon id: %s, %s'
