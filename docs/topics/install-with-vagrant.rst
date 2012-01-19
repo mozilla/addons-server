@@ -88,7 +88,7 @@ Updating Zamboni Code
 To sync your repository with upstream changes, just update the code using git::
 
     cd zamboni
-    git pull && git submodule --quiet && git submodule update --init --recursive
+    git pull && git submodule sync --quiet && git submodule update --init --recursive
 
 Next, rebuild your VM so that any new requirements are installed and any new
 DB migration scripts are run.
