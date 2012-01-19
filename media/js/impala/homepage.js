@@ -8,10 +8,9 @@ function initPromos($context) {
         $context = $(document.body);
     }
     var $promos = $('#promos[data-promo-url]', $context);
-    if (!$promos.find('.panel').length) {
+    if (!$promos.length) {
         return;
     }
-    $promos.show();
     var promos_base = $promos.attr('data-promo-url'),
         promos_url = format('{0}?version={1}&platform={2}',
                             promos_base, z.browserVersion, z.platform);
@@ -24,11 +23,16 @@ function initPromos($context) {
         hideHomePromo();
         $promos.append('<a href="#" class="control prev">&laquo;</a>\
                         <a href="#" class="control next">&raquo;</a>');
-        var $q = $('div', $promos).zCarousel({
-            circular: true,
-            btnPrev: $('.prev', $promos),
-            btnNext: $('.next', $promos)
-        });
+        var $panels = $('.panel', $promos);
+        if ($panels.length) {
+            // Show promo module only if we have at least panel.
+            $promos.show();
+            $('div', $promos).zCarousel({
+                circular: true,
+                btnPrev: $('.prev', $promos),
+                btnNext: $('.next', $promos)
+            });
+        }
         $('.addons h3', $promos).truncate({dir: 'h'});
         $('.addons .desc', $promos).truncate({dir: 'v'});
         $('.install', $promos).installButton();
