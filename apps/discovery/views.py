@@ -48,8 +48,7 @@ def pane(request, version, platform, compat_mode='strict'):
     promovideo = PromoVideoCollection().get_items()
 
     return jingo.render(request, 'discovery/pane.html',
-                        {'modules': get_modules(request, platform, version),
-                         'up_and_coming': from_api('hotness'),
+                        {'up_and_coming': from_api('hotness'),
                          'featured_addons': from_api('featured'),
                          'featured_personas': get_featured_personas(request),
                          'version': version, 'platform': platform,

@@ -16,30 +16,31 @@ z.discoStorage = z.Storage("discopane");
 
 
 $(document).ready(function(){
-    if ($(".pane").length) {
-        initSidebar();
+    if (!$('.pane').length) {
+        return;
+    }
 
-        // Store the pane URL so we can link back from the add-on detail pages.
-        z.discoStorage.set("url", location);
+    initSidebar();
+    // Store the pane URL so we can link back from the add-on detail pages.
+    z.discoStorage.set('url', location);
+    hideInstalled();
+    initRecs();
 
-        hideInstalled();
-
-        // Show "Starter Pack" panel only if user has fewer than three extensions.
+    var $body = $(document.body);
+    initPromos($body, $body.attr('data-version'), $body.attr('data-platform'));
+    $(this).bind('promos_shown', function(e, $promos) {
+        // Show "Starter Pack" panel only if user has fewer than 3 extensions.
         if (z.has_addons) {
-            $("#starter").closest(".panel").remove();
+            $('#starter').closest('.panel').remove();
         }
-
-        initRecs();
-
         // Set up the promo carousel.
-        $("#promos").fadeIn("slow").addClass("js").zCarousel({
-            btnNext: "#promos .nav-next a",
-            btnPrev: "#promos .nav-prev a",
+        $promos.fadeIn('slow').addClass('js').zCarousel({
+            btnNext: '#promos .nav-next a',
+            btnPrev: '#promos .nav-prev a',
             circular: true
         });
-
         initTrunc();
-    }
+    });
 });
 
 
