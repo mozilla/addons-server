@@ -1,4 +1,4 @@
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 from decimal import Decimal
 import json
 import os
@@ -528,6 +528,14 @@ class APITest(TestCase):
         doc = pq(response.content)
         result = doc('performance application platform result').eq(0)
         eq_(result.attr('above_threshold'), 'true')
+
+    @patch.object(Addon, 'is_disabled', lambda self: True)
+    def test_disabled_addon(self):
+        response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
+                                   api.CURRENT_VERSION)
+        doc = pq(response.content)
+        eq_(doc[0].tag, 'error')
+        eq_(response.status_code, 404)
 
 
 class ListTest(TestCase):

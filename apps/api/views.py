@@ -224,6 +224,9 @@ class AddonDetailView(APIView):
             return self.render_msg('Add-on not found!', ERROR, status=404,
                 mimetype=self.mimetype)
 
+        if addon.is_disabled:
+            return self.render_msg('Add-on disabled.', ERROR, status=404,
+                                   mimetype=self.mimetype)
         return self.render_addon(addon)
 
     def render_addon(self, addon):
