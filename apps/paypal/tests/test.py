@@ -198,6 +198,27 @@ class TestPayKey(amo.tests.TestCase):
         self.assertRaises(paypal.PaypalError, paypal.get_paykey,
                           self.get_pre_data())
 
+    @mock.patch('paypal._call')
+    def test_usd_default(self, _call):
+        _call.return_value = {'payKey': '', 'paymentExecStatus': ''}
+        paypal.get_paykey(self.data)
+        eq_(_call.call_args[0][1]['currencyCode'], 'USD')
+
+    @mock.patch('paypal._call')
+    def test_other_currency(self, _call):
+        _call.return_value = {'payKey': '', 'paymentExecStatus': ''}
+        data = self.data.copy()
+        data['currency'] = 'EUR'
+        paypal.get_paykey(data)
+        eq_(_call.call_args[0][1]['currencyCode'], 'EUR')
+
+    @mock.patch('paypal._call')
+    def test_error_currency(self, _call):
+        _call.side_effect = paypal.CurrencyError()
+        data = self.data.copy()
+        data['currency'] = 'xxx'
+        self.assertRaises(paypal.CurrencyError, paypal.get_paykey, data)
+
 
 class TestPurchase(amo.tests.TestCase):
 

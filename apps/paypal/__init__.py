@@ -13,6 +13,7 @@ from django.utils.http import urlencode, urlquote
 import commonware.log
 from django_statsd.clients import statsd
 
+import amo
 from amo.helpers import absolutify, loc, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import log_cef
@@ -53,6 +54,11 @@ class PreApprovalError(PaypalError):
     pass
 
 
+class CurrencyError(PaypalError):
+    # This currency was bad.
+    pass
+
+
 errors = {'520003': AuthError}
 # See http://bit.ly/vWV525 for information on these values.
 # Note that if you have and invalid preapproval key you get 580022, but this
@@ -60,6 +66,8 @@ errors = {'520003': AuthError}
 for number in ['579024', '579025', '579026', '579027', '579028',
                '579030', '579031']:
     errors[number] = PreApprovalError
+for number in ['580027', '580022']:
+    errors[number] = CurrencyError
 
 # Here you can map PayPal error messages into hopefully more useful
 # error messages.
@@ -128,8 +136,9 @@ def get_paykey(data):
     amount: the amount of money (required)
     ip: ip address of end user (required)
     uuid: contribution_uuid (required)
-    memo: any nice message
-    qs: anything you want to append to the complete or cancel(optional)
+    memo: any nice message (optional)
+    qs: anything you want to append to the complete or cancel (optional)
+    currency: valid paypal currency, defaults to USD (optional)
     """
     complete = reverse(data['pattern'], args=[data['slug'], 'complete'])
     cancel = reverse(data['pattern'], args=[data['slug'], 'cancel'])
@@ -141,7 +150,7 @@ def get_paykey(data):
 
     paypal_data = {
         'actionType': 'PAY',
-        'currencyCode': 'USD',
+        'currencyCode': data.get('currency', 'USD'),
         'cancelUrl': absolutify('%s?%s' % (cancel, uuid_qs)),
         'returnUrl': absolutify('%s?%s' % (complete, uuid_qs)),
         'trackingId': data['uuid'],
