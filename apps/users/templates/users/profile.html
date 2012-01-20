@@ -14,7 +14,7 @@
   {% if edit_any_user %}
     {# TODO XXX Once zamboni can delete users, uncomment this line.  bug 595035 #}
     {# <a href="{{ url("admin:users_userprofile_change", profile.id) }}">{{ _('Manage user') }}</a> #}
-    <a id="manage-user" class="button" href="{{ remora_url("/admin/users/%s" % profile.id) }}">{{ _('Manage user') }}</a>
+    <a id="manage-user" class="button" href="{{ remora_url("/users/edit/%s" % profile.id) }}">{{ _('Manage user') }}</a>
   {% endif %}
   {% if abuse_form %}
     <a id="report-user-abuse" class="button" href="{{ url('users.abuse', profile.id) }}">
