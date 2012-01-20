@@ -182,7 +182,7 @@ class TestESSearch(amo.tests.ESTestCase):
         self.refresh()
 
     def refresh_addons(self):
-        [a.save() for a in self.addons]
+        [a.save() for a in Addon.objects.all()]
         self.refresh()
 
     def test_get(self):
