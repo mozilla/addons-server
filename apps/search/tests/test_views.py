@@ -72,7 +72,8 @@ class TestSphinxResults(SphinxTestCase):
 
     def test_personas(self):
         # ES doesn't serve Personas results (yet).
-        r = self.client.get(reverse('search.search'), dict(atype=9))
+        r = self.client.get(reverse('search.search'), dict(atype=9),
+                            follow=True)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'search/personas.html')
 
