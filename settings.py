@@ -83,6 +83,13 @@ SERVICES_DATABASE = {
 
 DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
 
+# For use django-mysql-pool backend.
+DATABASE_POOL_ARGS = {
+    'max_overflow': 10,
+    'pool_size':5,
+    'recycle':300
+}
+
 # Put the aliases for your slave databases in this list.
 SLAVE_DATABASES = []
 
