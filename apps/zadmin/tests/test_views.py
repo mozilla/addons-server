@@ -82,7 +82,7 @@ class TestSiteEvents(amo.tests.TestCase):
 
     def test_delete(self):
         url = reverse('zadmin.site_events.delete', args=[1])
-        response = self.client.get(url)
+        response = self.client.get(url, follow=True)
         eq_(response.status_code, 200)
         events = response.context['events']
         eq_(len(events), 0)
