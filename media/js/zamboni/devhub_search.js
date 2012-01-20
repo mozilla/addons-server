@@ -21,7 +21,9 @@ google.setOnLoadCallback(function() {
             }
         } else {
             $('#resultcount').hide();
+            $('#no-devsearch-results').show();
         }
+        $(window).resize();
     });
 
     $('#cse').hide();
