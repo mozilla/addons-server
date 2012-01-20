@@ -47,6 +47,9 @@ from devhub.models import ActivityLog
 from files.models import Approval, File
 from versions.compare import version_int as vint
 from versions.models import Version
+from zadmin.forms import SiteEventForm
+from zadmin.models import SiteEvent
+
 
 from . import tasks
 from .forms import (BulkValidationForm, FeaturedCollectionFormSet, NotifyForm,
@@ -771,3 +774,31 @@ def memcache(request):
         stats = []
     return jingo.render(request, 'zadmin/memcache.html',
                         {'form': form, 'stats': stats})
+
+
+@admin.site.admin_view
+def site_events(request, event_id=None):
+    event = get_object_or_404(SiteEvent, pk=event_id) if event_id else None
+    data = request.POST or None
+
+    if event:
+        form = SiteEventForm(data, instance=event)
+    else:
+        form = SiteEventForm(data)
+
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('zadmin.site_events')
+    pager = amo.utils.paginate(request, SiteEvent.objects.all(), 30)
+    events = pager.object_list
+    return jingo.render(request, 'zadmin/site_events.html', {
+        'form': form,
+        'events': events,
+    })
+
+
+@admin.site.admin_view
+def delete_site_event(request, event_id):
+    event = get_object_or_404(SiteEvent, pk=event_id)
+    event.delete()
+    return redirect('zadmin.site_events')

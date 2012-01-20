@@ -6,7 +6,7 @@ from types import GeneratorType
 from datetime import date, timedelta
 
 from django import http
-from django.db.models import Avg, Count, Sum
+from django.db.models import Avg, Count, Sum, Q
 from django.utils import simplejson
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.core.serializers.json import DjangoJSONEncoder
@@ -18,8 +18,10 @@ from product_details import product_details
 from access import acl
 from addons.decorators import addon_view, addon_view_factory
 from addons.models import Addon
+from zadmin.models import SiteEvent
 
 import amo
+from amo.decorators import json_view
 from amo.urlresolvers import reverse
 
 from .decorators import allow_cross_site_request
@@ -321,6 +323,42 @@ def get_daterange_or_404(start, end):
     except (AssertionError, ValueError):
         raise http.Http404
     return (start_date, end_date)
+
+
+@json_view
+def site_events(request, start, end):
+    """Return site events in the given timeframe."""
+    start, end = get_daterange_or_404(start, end)
+    qs = SiteEvent.objects.filter(
+        Q(start__gte=start, start__lte=end) |
+        Q(end__gte=start, end__lte=end))
+
+    events = list(site_event_format(request, qs))
+
+    type_pretty = unicode(amo.SITE_EVENT_CHOICES[amo.SITE_EVENT_RELEASE])
+
+    releases = product_details.firefox_history_major_releases
+
+    for version, date in releases.items():
+        events.append({
+            'start':       date,
+            'type_pretty': type_pretty,
+            'type':        amo.SITE_EVENT_RELEASE,
+            'description': 'Firefox %s released' % version,
+        })
+    return events
+
+
+def site_event_format(request, events):
+    for e in events:
+        yield {
+            'start':        e.start.isoformat(),
+            'end':          e.end.isoformat() if e.end else None,
+            'type_pretty':  unicode(amo.SITE_EVENT_CHOICES[e.event_type]),
+            'type':         e.event_type,
+            'description':  e.description,
+            'url':          e.more_info_url,
+        }
 
 
 @addon_view

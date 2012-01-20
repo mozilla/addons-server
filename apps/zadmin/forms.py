@@ -23,7 +23,7 @@ from applications.models import Application, AppVersion
 from bandwagon.models import Collection, FeaturedCollection, MonthlyPick
 from compat.forms import CompatForm as BaseCompatForm
 from files.models import File
-from zadmin.models import ValidationJob
+from zadmin.models import SiteEvent, ValidationJob
 
 log = commonware.log.getLogger('z.zadmin')
 
@@ -247,6 +247,11 @@ class JetpackUpgradeForm(happyforms.Form):
             if minver and maxver and minver >= maxver:
                 raise forms.ValidationError('Invalid version range.')
         return self.cleaned_data
+
+
+class SiteEventForm(ModelForm):
+    class Meta:
+        model = SiteEvent
 
 
 class YesImSure(happyforms.Form):

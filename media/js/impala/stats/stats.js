@@ -5,13 +5,13 @@
 
         // Modify the URL when the page state changes, if the browser supports pushSate.
         if (z.capabilities.replaceState) {
-            $(window).bind("changeview", function(e, view) {
+            $(window).bind('changeview', function(e, view) {
                 var queryParams = {},
                     range = view.range;
                 if (range) {
-                    if (typeof range == "string") {
+                    if (typeof range == 'string') {
                         queryParams.last = range.split(/\s+/)[0];
-                    } else if (typeof range == "object") {
+                    } else if (typeof range == 'object') {
                         // queryParams.start = z.date.date_string(new Date(range.start), '');
                         // queryParams.end = z.date.date_string(new Date(range.end), '');
                     }
@@ -28,7 +28,7 @@
             metric: $('.primary').attr('data-report'),
             range: $('.primary').attr('data-range') || '30 days',
             group: 'day'
-        }
+        };
 
         // Restore any session view information from sessionStorage.
         if (z.capabilities.localStorage && sessionStorage.getItem('stats_view')) {
@@ -53,7 +53,7 @@
         // Update the "Export as CSV" link when the view changes.
         (function() {
             var view = {},
-                baseURL = $(".primary").attr("data-base_url");
+                baseURL = $('.primary').attr('data-base_url');
             $(window).bind('changeview', function(e, newView) {
                 _.extend(view, newView);
                 var metric = view.metric,
@@ -64,7 +64,13 @@
         })();
 
         // set up notes modal.
-        $('#stats-note').modal("#stats-note-link", { width: 520 });
+        $('#stats-note').modal('#stats-note-link', { width: 520 });
+
+        // set up stats exception modal.
+        var $exceptionModal = $('#exception-note').modal('', { width: 250 });
+        $(window).bind('explain-exception', function() {
+            $exceptionModal.render();
+        });
 
         // Trigger the initial data load.
         $(window).trigger('changeview', initView);

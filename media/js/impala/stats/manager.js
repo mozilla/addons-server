@@ -18,6 +18,7 @@ z.StatsManager = (function() {
         storageCache    = z.SessionStorage("statscache"),
         dataStore       = {},
         currentView     = {},
+        siteEvents      = [],
         addonId         = parseInt($(".primary").attr("data-addon_id"), 10),
         baseURL         = $(".primary").attr("data-base_url"),
         pendingFetches  = 0,
@@ -101,18 +102,55 @@ z.StatsManager = (function() {
         // Update our internal view state.
         currentView = $.extend(currentView, newView);
         // Fetch the data from the server or storage, and notify other components.
-        $.when( getDataRange(currentView) )
-         .then( function(data) {
+        $.when( getDataRange(currentView), getSiteEvents(currentView) )
+         .then( function(data, events) {
             setTimeout(function() {
                 $(window).trigger("dataready", {
                     'view'  : currentView,
                     'fields': getAvailableFields(currentView),
-                    'data'  : data
+                    'data'  : annotateData(data, events),
+                    'events': events
                 });
             }, 0);
         });
     }
     $(window).bind('changeview', processView);
+
+
+    // Retrieves a list of site-wide events that may impact statistics data.
+    function getSiteEvents(view) {
+        var range = normalizeRange(view.range),
+            urlStart = Highcharts.dateFormat('%Y%m%d', range.start),
+            urlEnd = Highcharts.dateFormat('%Y%m%d', range.end),
+            url = format('/en-US/firefox/events-{0}-{1}.json', urlStart, urlEnd),
+            $def = $.Deferred();
+        $.getJSON(url, function(data) {
+            $def.resolve(data);
+        });
+        return $def;
+    }
+
+
+    function annotateData(data, events) {
+        var i, ev, sd, ed;
+        for (i=0; i < events.length; i++) {
+            ev = events[i];
+            if (ev.end) {
+                sd = Date.iso(ev.start);
+                ed = Date.iso(ev.end);
+                forEachISODate({start: sd, end: ed}, '1 day', data, function(row) {
+                    if (row) {
+                        row.event = ev;
+                    }
+                });
+            } else {
+                if (data[ev.start]) {
+                    data[ev.start].event = ev;
+                }
+            }
+        }
+        return data;
+    }
 
 
     // Returns a list of field names for a given data set.
@@ -252,7 +290,7 @@ z.StatsManager = (function() {
                 });
             }
         }
-        
+
         function performAggregation() {
             // we drop the some days of data from the result set
             // if they are not a complete grouping.

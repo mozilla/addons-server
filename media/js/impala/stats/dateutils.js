@@ -19,6 +19,9 @@
             }
             unit = unit || 'd';
             switch (unit[0]) {
+                case 'h':
+                    this.setHours(this.getHours()+by);
+                    break;
                 case 'd':
                     this.setDate(this.getDate()+by);
                     break;

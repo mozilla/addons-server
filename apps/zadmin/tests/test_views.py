@@ -32,7 +32,8 @@ from users.models import UserProfile
 from users.utils import get_task_user
 from versions.models import ApplicationsVersions, Version
 from zadmin import forms
-from zadmin.models import ValidationJob, ValidationResult, EmailPreviewTopic
+from zadmin.models import (EmailPreviewTopic, SiteEvent, ValidationJob,
+                           ValidationResult)
 from zadmin.views import completed_versions_dirty, find_files
 from zadmin import tasks
 
@@ -40,6 +41,51 @@ from zadmin import tasks
 no_op_validation = dict(errors=0, warnings=0, notices=0, messages=[],
                         compatibility_summary=dict(errors=0, warnings=0,
                                                    notices=0))
+
+
+class TestSiteEvents(amo.tests.TestCase):
+    fixtures = ['base/users', 'zadmin/tests/siteevents']
+
+    def setUp(self):
+        self.client.login(username='admin@mozilla.com', password='password')
+
+    def test_get(self):
+        url = reverse('zadmin.site_events')
+        response = self.client.get(url)
+        eq_(response.status_code, 200)
+        events = response.context['events']
+        eq_(len(events), 1)
+
+    def test_add(self):
+        url = reverse('zadmin.site_events')
+        new_event = {
+            'event_type': 2,
+            'start': '2012-01-01',
+            'description': 'foo',
+        }
+        response = self.client.post(url, new_event, follow=True)
+        eq_(response.status_code, 200)
+        events = response.context['events']
+        eq_(len(events), 2)
+
+    def test_edit(self):
+        url = reverse('zadmin.site_events', args=[1])
+        modified_event = {
+            'event_type': 2,
+            'start': '2012-01-01',
+            'description': 'bar',
+        }
+        response = self.client.post(url, modified_event, follow=True)
+        eq_(response.status_code, 200)
+        events = response.context['events']
+        eq_(events[0].description, 'bar')
+
+    def test_delete(self):
+        url = reverse('zadmin.site_events.delete', args=[1])
+        response = self.client.get(url)
+        eq_(response.status_code, 200)
+        events = response.context['events']
+        eq_(len(events), 0)
 
 
 class TestFlagged(amo.tests.TestCase):

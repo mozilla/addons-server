@@ -51,4 +51,5 @@
             });
         }));
     });
+    $('#id_start, #id_end').datepicker({ dateFormat: 'yy-mm-dd' });
 })();

@@ -532,3 +532,8 @@ def premium_text(type):
 def loc(s):
     """A noop function for strings that are not ready to be localized."""
     return strip_whitespace(s)
+
+
+@register.function
+def site_event_type(type):
+    return amo.SITE_EVENT_CHOICES[type]

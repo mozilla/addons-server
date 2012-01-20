@@ -41,17 +41,18 @@
                     animation: false,
                     shadow: false,
                     marker: {
-                        enabled: false,
+                        enabled: true,
+                        radius: 0,
                         states: {
                            hover: {
                               enabled: true,
                               radius: 5
                            }
                         }
-                     },
-                 states: {
-                    hover: {
-                       lineWidth: 2
+                    },
+                    states: {
+                        hover: {
+                        lineWidth: 2
                     }
                  }
               }
@@ -99,6 +100,7 @@
             end     = range.end,
             fields  = obj.fields ? obj.fields.slice(0,5) : ['count'],
             series  = {},
+            events  = obj.events,
             chartRange = {},
             t, row, i, field, val;
 
@@ -117,18 +119,21 @@
         // Transmute the data into something Highcharts understands.
         start = Date.iso(data.firstIndex);
         z.data = data;
-        var step = '1 ' + group;
+        var step = '1 ' + group,
+            point;
         forEachISODate({start: start, end: end}, '1 '+group, data, function(row, d) {
             for (i = 0; i < fields.length; i++) {
                 field = fields[i];
                 val = parseFloat(z.StatsManager.getField(row, field));
                 if (val != val) val = null;
-                series[field].push({
+                point = {
                     'x' : d.getTime(),
                     'y' : val
-                });
+                };
+                series[field].push(point);
             }
         }, this);
+
 
         // Populate the chart config object.
         var chartData = [], id;
@@ -155,6 +160,13 @@
             function downloadFormatter(n) { return Highcharts.numberFormat(n, 0) + ' downloads'; }
             function userFormatter(n) { return Highcharts.numberFormat(n, 0) + ' users'; }
             function currencyFormatter(n) { return '$' + Highcharts.numberFormat(n, 2); }
+            function addEventData(s, date) {
+                var e = events[date];
+                if (e) {
+                    s += format('<br><br><b>{type_pretty}</b>', e);
+                }
+                return s;
+            }
 
             // Determine x-axis formatter.
             if (group == "week") {
@@ -174,7 +186,7 @@
                         ret += '<br>' + p.series.name + ': ';
                         ret += Highcharts.numberFormat(p.y, 0);
                     }
-                    return ret;
+                    return addEventData(ret, this.x);
                 };
             } else if (metric == 'contributions') {
                 return function() {
@@ -189,7 +201,7 @@
                             ret += currencyFormatter(p.y);
                         }
                     }
-                    return ret;
+                    return addEventData(ret, this.x);
                 };
             } else {
                 // Determine y-axis formatter.
@@ -205,9 +217,10 @@
                         break;
                 }
                 return function() {
-                    return "<b>" + this.series.name + "</b><br>" +
-                           xFormatter(this.x) + "<br>" +
-                           yFormatter(this.y);
+                    var ret = "<b>" + this.series.name + "</b><br>" +
+                              xFormatter(this.x) + "<br>" +
+                              yFormatter(this.y);
+                    return addEventData(ret, this.x);
                 };
             }
         })();
@@ -222,7 +235,7 @@
                         title: {
                            text: gettext('Downloads')
                         },
-                        // min: 0,
+                        min: 0,
                         labels: {
                             formatter: function() {
                                 return Highcharts.numberFormat(this.value, 0);
@@ -237,7 +250,7 @@
                                 return Highcharts.numberFormat(this.value, 0);
                             }
                         },
-                        // min: 0,
+                        min: 0,
                         opposite: true
                     }
                 ],
@@ -262,7 +275,7 @@
                                 return Highcharts.numberFormat(this.value, 2);
                             }
                         },
-                        min: 0,
+                        min: 0
                     },
                     { // Number of Contributions
                         title: {
@@ -287,6 +300,39 @@
         }
         newConfig.tooltip.formatter = tooltipFormatter;
 
+
+        function makeSiteEventHandler(e) {
+            return function() {
+                var s = format('<h3>{type_pretty}</h3><p>{description}</p>', e);
+                if (e.url) {
+                    s += format('<p><a href="{0}" target="_blank">{1}</a></p>', [e.url, gettext('More Info...')]);
+                }
+                $('#exception-note h2').html(format(
+                    // L10n: {0} is an ISO-formatted date.
+                    gettext('Details for {0}'),
+                    e.start
+                ));
+                $('#exception-note div').html(s);
+                $chart.trigger('explain-exception');
+            };
+        }
+
+        var pb = [], pl = [];
+        eventColors = ['#DDD','#DDD','#FDFFD0','#D0FFD8'];
+        _.forEach(events, function(e) {
+            pb.push({
+                color: eventColors[e.type],
+                from: Date.iso(e.start).backward('12h'),
+                to: Date.iso(e.end || e.start).forward('12h'),
+                events: {
+                    click: makeSiteEventHandler(e)
+                }
+            });
+        });
+        newConfig.xAxis.plotBands = pb;
+        newConfig.xAxis.plotLines = pl;
+
+
         if (fields.length == 1) {
             newConfig.legend.enabled = false;
         }
@@ -305,6 +351,7 @@
 
         if (chart && chart.destroy) chart.destroy();
         chart = new Highcharts.Chart(newConfig);
+
         chartRange = chart.xAxis[0].getExtremes();
         // $("h1").click(function() {
         //     chart.xAxis[0].setExtremes(chartRange.min, chartRange.max);

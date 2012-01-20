@@ -101,6 +101,10 @@ urlpatterns = patterns('',
 
     ('^compatibility/', include('compat.urls')),
 
+    # Site events data.
+    url('^events-(?P<start>\d{8})-(?P<end>\d{8}).json$',
+        'stats.views.site_events', name='amo.site_events'),
+
     # Review spam.
     url('^reviews/spam/$', 'reviews.views.spam', name='addons.reviews.spam'),
 
