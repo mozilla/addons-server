@@ -113,3 +113,29 @@ class TestCategory(amo.tests.TestCase):
         cat = Category.objects.get(pk=self.cat2.id)
         eq_(cat.name, u'Música')
         translation.deactivate()
+
+    def test_post_with_empty_translations(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        url = reverse('localizers.categories', kwargs=dict(locale_code='es-ES'))
+        data = {
+            'form-TOTAL_FORMS': 2,
+            'form-INITIAL_FORMS': 2,
+            'form-0-id': self.cat1.id,
+            'form-0-name': u'Campañas',  # Didn't change.
+            'form-1-id': self.cat2.id,
+            'form-1-name': u'',  # Did not enter translation.
+        }
+        res = self.client.post(url, data, follow=True)
+        self.assertRedirects(res, url, status_code=302)
+        doc = pq(res.content.decode('utf-8'))
+        eq_(doc('#id_form-0-name').val(), u'Campañas')
+        eq_(doc('#id_form-1-name').val(), None)
+        translation.activate('es-ES')
+        # Test translation change.
+        cat = Category.objects.get(pk=self.cat1.id)
+        eq_(cat.name, u'Campañas')
+        # Test new translation.
+        cat = Category.objects.get(pk=self.cat2.id)
+        eq_(cat.name.localized_string, u'Music')  # en-US fallback.
+        translation.deactivate()

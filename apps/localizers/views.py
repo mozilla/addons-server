@@ -139,12 +139,33 @@ def categories(request, locale_code):
             pk = form.cleaned_data.get('id')
             name = form.cleaned_data.get('name')
             if name != category_names.get(pk):
-                # Name changed, let's save it.
                 cat = category_objects.get(pk)
                 if not cat:
                     continue
-                cat.name = {locale_code: name}
-                cat.save()
+                # The localized string has changed.
+                # Make sure we don't save an empty string value.
+                if name == '' and category_names.get(pk) == None:
+                    # If the form field was left blank and there was no
+                    # previous translation, do nothing.
+                    continue
+                elif name == '' and category_names.get(pk) != None:
+                    # If the name is blank and there was a prior translation,
+                    # assume they want to remove this translation.
+                    #
+                    # TODO(robhudson): Figure out how to delete a single
+                    # translation properly. Calling...
+                    #
+                    #   Translation.objects.filter(id=cat.name.id,
+                    #                              locale=locale_code).delete()
+                    #
+                    # ...results in some crazy db traversal that tries to
+                    # delete all kinds of things.
+                    pass
+                else:
+                    # Otherwise, name is not empty and it had a prior
+                    # translation so update it.
+                    cat.name = {locale_code: name}
+                    cat.save()
 
         return redirect(reverse('localizers.categories',
                                 kwargs=dict(locale_code=locale_code)))
