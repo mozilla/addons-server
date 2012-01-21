@@ -1893,7 +1893,7 @@ class TestReview(ReviewBase):
                              {'addon_ids': self.addon.id})
         data = json.loads(r.content)
 
-        eq_(data[u'%s' % self.addon.id], self.editor.id)
+        eq_(data[u'%s' % self.addon.id], self.editor.display_name)
 
     def test_no_compare_link(self):
         r = self.client.get(self.url)
