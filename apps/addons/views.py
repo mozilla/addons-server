@@ -37,7 +37,7 @@ from bandwagon.models import Collection, CollectionFeature, CollectionPromo
 import paypal
 from reviews.forms import ReviewForm
 from reviews.models import Review, GroupedRating
-from session_csrf import anonymous_csrf
+from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 from sharing.views import share as share_redirect
 from stats.models import Contribution
 from translations.query import order_by_translation
@@ -661,6 +661,7 @@ def purchase_error(request, addon):
 
 
 @addon_view
+@anonymous_csrf_exempt
 @post_required
 def contribute(request, addon):
     webapp = addon.is_webapp()
