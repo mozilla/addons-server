@@ -54,6 +54,7 @@ class zamboni {
     exec { "sql_migrate":
         cwd => "$PROJ_DIR",
         command => "python ./vendor/src/schematic/schematic migrations/",
+        logoutput => true,
         require => [
             Service["mysql"],
             Package["python2.6"],

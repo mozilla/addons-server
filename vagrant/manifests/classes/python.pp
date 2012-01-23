@@ -14,7 +14,7 @@ class python {
     }
 
     exec { "pip-install-compiled":
-        command => "sudo pip install --build=/tmp/pip-build -r $PROJ_DIR/requirements/compiled.txt",
+        command => "sudo pip install -v --build=/tmp/pip-build -r $PROJ_DIR/requirements/compiled.txt",
         # Set timeout to 10 min just in case
         # timeout => 600,
         logoutput => true,
