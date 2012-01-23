@@ -239,13 +239,13 @@ class TestContributeEmbedded(amo.tests.TestCase):
     def test_form_suggested_amount(self):
         res = self.client.get(self.detail_url)
         doc = pq(res.content)
-        eq_(len(doc('#contribute-box input')), 4)
+        eq_(len(doc('#contribute-box input')), 5)
 
     def test_form_no_suggested_amount(self):
         self.addon.update(suggested_amount=None)
         res = self.client.get(self.detail_url)
         doc = pq(res.content)
-        eq_(len(doc('#contribute-box input')), 3)
+        eq_(len(doc('#contribute-box input')), 4)
 
     @fudge.patch('paypal.get_paykey')
     def test_paypal_error_json(self, get_paykey, **kwargs):
