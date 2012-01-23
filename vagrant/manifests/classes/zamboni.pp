@@ -47,7 +47,7 @@ class zamboni {
     # Skip this migration because it won't succeed without indexes but you
     # can't build indexes without running migrations :(
     file { "$PROJ_DIR/migrations/264-locale-indexes.py":
-        content => "#",
+        content => "def run(): pass",
         replace => true
     }
 
