@@ -101,6 +101,7 @@ def addon_detail(request, addon):
                 'addons.detail', args=[addon.slug]))
 
 
+@anonymous_csrf
 @vary_on_headers('X-Requested-With')
 def extension_detail(request, addon):
     """Extensions details page."""
@@ -460,6 +461,7 @@ def privacy(request, addon):
     return jingo.render(request, 'addons/privacy.html', {'addon': addon})
 
 
+@anonymous_csrf
 @addon_view
 def developers(request, addon, page):
     if addon.is_persona():
