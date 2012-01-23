@@ -22,6 +22,7 @@ from api.views import render_xml
 import files.tasks
 from amo.decorators import no_login_required, post_required
 from amo.utils import log_cef
+from amo.context_processors import get_collect_timings
 from . import monitors
 
 log = commonware.log.getLogger('z.amo')
@@ -169,10 +170,9 @@ def graphite(request, site):
 @csrf_exempt
 @post_required
 def record(request):
-    flag = waffle.models.Flag.objects.get(name='collect-timings')
     # The rate limiting is done up on the client, but if things go wrong
-    # we can just turn this off here.
-    if flag.everyone:
+    # we can just turn the percentage down to zero.
+    if get_collect_timings():
         return django_statsd_record(request)
     return http.HttpResponseForbidden()
 
