@@ -37,7 +37,7 @@ from bandwagon.models import Collection, CollectionFeature, CollectionPromo
 import paypal
 from reviews.forms import ReviewForm
 from reviews.models import Review, GroupedRating
-from session_csrf import anonymous_csrf, anonymous_csrf_exempt
+from session_csrf import anonymous_csrf
 from sharing.views import share as share_redirect
 from stats.models import Contribution
 from translations.query import order_by_translation
@@ -101,6 +101,7 @@ def addon_detail(request, addon):
                 'addons.detail', args=[addon.slug]))
 
 
+@anonymous_csrf
 @vary_on_headers('X-Requested-With')
 def extension_detail(request, addon):
     """Extensions details page."""
@@ -461,6 +462,7 @@ def privacy(request, addon):
     return jingo.render(request, 'addons/privacy.html', {'addon': addon})
 
 
+@anonymous_csrf
 @addon_view
 def developers(request, addon, page):
     if addon.is_persona():
@@ -661,7 +663,6 @@ def purchase_error(request, addon):
 
 
 @addon_view
-@anonymous_csrf_exempt
 @post_required
 def contribute(request, addon):
     webapp = addon.is_webapp()
