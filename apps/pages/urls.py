@@ -8,4 +8,6 @@ urlpatterns = patterns('',
         name='pages.about'),
     url('^faq$', direct_to_template, {'template': 'pages/faq.html'},
         name='pages.faq'),
+    url('^compatibility_firstrun$', direct_to_template,
+        {'template': 'pages/acr_firstrun.html'}, name='pages.acr_firstrun'),
 )
