@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 import hashlib
 import urllib
 from threading import local
@@ -106,7 +106,7 @@ class Prefixer(object):
         ua = self.request.META.get('HTTP_USER_AGENT')
         if ua:
             for app in amo.APP_DETECT:
-                if app.user_agent_string in ua:
+                if app.matches_user_agent(ua):
                     return app.short
 
         return settings.DEFAULT_APP

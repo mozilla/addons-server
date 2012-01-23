@@ -32,6 +32,8 @@ class MiddlewareTest(test.TestCase):
 
             # /admin doesn't get an app.
             '/developers': '/en-US/developers',
+
+            '/android': '/en-US/android/',
         }
 
         for path, location in redirections.items():
@@ -92,6 +94,11 @@ class MiddlewareTest(test.TestCase):
 
         # SeaMonkey gets priority because it has both strings in its UA...
         check('/en-US/', '/en-US/seamonkey/', 'Firefox SeaMonkey')
+
+        # Android can found by its user agent.
+        check('/en-US/', '/en-US/android/', 'Fennec/12')
+        check('/en-US/', '/en-US/android/', 'Fennec/11.0')
+        check('/en-US/', '/en-US/mobile/', 'Fennec/10.9')
 
     def test_get_lang(self):
         def check(url, expected):

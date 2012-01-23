@@ -4,8 +4,14 @@ from tower import ugettext_lazy as _
 from base import *
 
 
+class App:
+    @classmethod
+    def matches_user_agent(cls, user_agent):
+        return cls.user_agent_string in user_agent
+
+
 # Applications
-class FIREFOX:
+class FIREFOX(App):
     id = 1
     shortername = 'fx'
     short = 'firefox'
@@ -22,7 +28,7 @@ class FIREFOX:
     platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
 
-class THUNDERBIRD:
+class THUNDERBIRD(App):
     id = 18
     short = 'thunderbird'
     shortername = 'tb'
@@ -36,7 +42,7 @@ class THUNDERBIRD:
     platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
 
-class SEAMONKEY:
+class SEAMONKEY(App):
     id = 59
     short = 'seamonkey'
     shortername = 'sm'
@@ -52,7 +58,7 @@ class SEAMONKEY:
     platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
 
-class SUNBIRD:
+class SUNBIRD(App):
     id = 52
     short = 'sunbird'
     shortername = 'sb'
@@ -66,7 +72,7 @@ class SUNBIRD:
     platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
 
-class MOBILE:
+class MOBILE(App):
     id = 60
     short = 'mobile'
     shortername = 'fn'
@@ -80,7 +86,31 @@ class MOBILE:
     platforms = 'mobile'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
 
-class MOZILLA:
+class ANDROID(App):
+    # This is for the Android native Firefox.
+    id = 61
+    short = 'android'
+    shortername = 'an'
+    pretty = _(u'Android')
+    browser = True
+    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH,
+             ADDON_LPAPP, ADDON_PERSONA]
+    guid = '{aa3c5121-dab2-40e2-81ca-7ea25febc110}'
+    min_display_version = 11.0
+    user_agent_string = 'Fennec'
+    # Mobile and Android have the same user agent. The only way to distinguish
+    # is by the version number.
+    user_agent_re = re.compile('Fennec/([\d.]+)')
+    platforms = 'mobile'
+
+    @classmethod
+    def matches_user_agent(cls, user_agent):
+        match = cls.user_agent_re.search(user_agent)
+        if match:
+            return cls.min_display_version <= float(match.groups()[0])
+
+
+class MOZILLA(App):
     """Mozilla exists for completeness and historical purposes.
 
     Stats and other modules may reference this for history.
@@ -97,8 +127,9 @@ class MOZILLA:
     platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
 # UAs will attempt to match in this order
-APP_DETECT = (MOBILE, THUNDERBIRD, SEAMONKEY, SUNBIRD, FIREFOX)
-APP_USAGE = _apps = (FIREFOX, THUNDERBIRD, MOBILE, SEAMONKEY, SUNBIRD)
+APP_DETECT = (ANDROID, MOBILE, THUNDERBIRD, SEAMONKEY, SUNBIRD, FIREFOX)
+APP_USAGE = _apps = (FIREFOX, THUNDERBIRD, ANDROID,
+                     MOBILE, SEAMONKEY, SUNBIRD)
 APPS = dict((app.short, app) for app in _apps)
 APP_IDS = dict((app.id, app) for app in _apps)
 APP_GUIDS = dict((app.guid, app) for app in _apps)
