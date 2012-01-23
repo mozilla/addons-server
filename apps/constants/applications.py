@@ -102,6 +102,7 @@ class ANDROID(App):
     # is by the version number.
     user_agent_re = re.compile('Fennec/([\d.]+)')
     platforms = 'mobile'
+    latest_version = None
 
     @classmethod
     def matches_user_agent(cls, user_agent):
