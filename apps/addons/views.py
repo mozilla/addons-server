@@ -393,8 +393,9 @@ def homepage_promos(request):
         raise http.Http404
     platform = amo.PLATFORM_DICT.get(version.lower(), amo.PLATFORM_ALL)
     modules = get_modules(request, platform.api_name, version)
+    module_context = request.GET.get('context', 'home')
     return jingo.render(request, 'addons/impala/homepage_promos.html',
-                        {'modules': modules})
+                        {'modules': modules, 'module_context': module_context})
 
 
 class CollectionPromoBox(object):

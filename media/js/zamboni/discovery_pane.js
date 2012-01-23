@@ -27,7 +27,8 @@ $(document).ready(function(){
     initRecs();
 
     var $body = $(document.body);
-    initPromos($body, $body.attr('data-version'), $body.attr('data-platform'));
+    initPromos($body, $body.attr('data-version'), $body.attr('data-platform'),
+               'discovery');
     $(this).bind('promos_shown', function(e, $promos) {
         // Show "Starter Pack" panel only if user has fewer than 3 extensions.
         if (z.has_addons) {

@@ -490,7 +490,8 @@ class TestMonthlyPick(amo.tests.TestCase):
 
     def setUp(self):
         self.url = reverse('addons.homepage_promos')
-        self.vars = {'version': '5.0', 'platform': 'mac'}
+        self.vars = {'version': '5.0', 'platform': 'mac',
+                     'context': 'discovery'}
         self.addon = Addon.objects.get(id=3615)
         DiscoveryModule.objects.create(
             app=Application.objects.get(id=amo.FIREFOX.id), ordering=4,
@@ -503,13 +504,13 @@ class TestMonthlyPick(amo.tests.TestCase):
         eq_(pq(r.content)('#monthly').length, 0)
         mp.update(locale='')
 
-        r = self.client.get(self.url)
+        r = self.client.get(self.url, self.vars)
         pick = pq(r.content)('#monthly')
         eq_(pick.length, 1)
         a = pick.find('h3 a')
         url = reverse('discovery.addons.detail', args=['a3615'])
         assert a.attr('href').endswith(url + '?src=discovery-promo'), (
-            'Unexpected add-on details URL')
+            'Unexpected add-on details URL: %s' % url)
         eq_(a.attr('target'), '_self')
         eq_(a.text(), unicode(self.addon.name))
         eq_(pick.find('img').attr('src'), 'http://mozilla.com')

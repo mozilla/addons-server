@@ -1,4 +1,4 @@
-function initPromos($context, version, platform) {
+function initPromos($context, version, platform, context) {
     if (typeof $context === 'undefined') {
         $context = $(document.body);
     }
@@ -17,7 +17,11 @@ function initPromos($context, version, platform) {
         version = '5.0';
         platform = 'mac';
     }
-    $.get(promos_base, {version: version, platform: platform}, function(resp) {
+    var data = {version: version, platform: platform};
+    if (context) {
+        data['context'] = context;
+    }
+    $.get(promos_base, data, function(resp) {
         $('.slider', $promos).append($(resp));
         if ($('.panel', $promos).length) {
             // Show promo module only if we have at least panel.
