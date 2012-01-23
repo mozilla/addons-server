@@ -24,4 +24,3 @@ tmp/*
 tags
 vagrantconfig_local.yaml
 vagrant/manifests/classes/custom.pp
-vagrant/manifests/build
