@@ -467,7 +467,7 @@ class TestVersionEditDetails(TestVersionEdit):
 
     def test_add_not(self):
         Application(id=52).save()
-        for id in [18, 52, 59, 60]:
+        for id in [18, 52, 59, 60, 61]:
             av = AppVersion(application_id=id, version='1')
             av.save()
             ApplicationsVersions(application_id=id, min=av, max=av,

@@ -18,6 +18,15 @@
         }
     },
     {
+        "pk": 61,
+        "model": "applications.application",
+        "fields": {
+            "guid": "{aa3c5121-dab2-40e2-81ca-7ea25febc110}",
+            "modified": "2008-10-28 18:25:09",
+            "created": "2008-10-28 18:25:09"
+        }
+    },
+    {
         "pk": 59,
         "model": "applications.application",
         "fields": {
