@@ -11,13 +11,14 @@ from PIL import Image
 
 import amo
 from amo.decorators import set_modified_on, write
-from amo.utils import attach_trans_dict, sorted_groupby
+from amo.utils import attach_trans_dict, cache_ns_key, sorted_groupby
 from market.models import AddonPremium
 from tags.models import Tag
 from versions.models import Version
 from . import cron, search  # Pull in tasks from cron.
 from .models import (Addon, Category, CompatOverride, DeviceType,
                      IncompatibleVersions, Preview)
+
 
 log = logging.getLogger('z.task')
 
@@ -206,6 +207,8 @@ def update_incompatible_appversions(data, **kw):
     """Updates the incompatible_versions table for this version."""
     log.info('Updating incompatible_versions for %s versions.' % len(data))
 
+    addon_ids = set()
+
     for version_id in data:
         # This is here to handle both post_save and post_delete hooks.
         IncompatibleVersions.objects.filter(version=version_id).delete()
@@ -216,6 +219,8 @@ def update_incompatible_appversions(data, **kw):
             log.info('Version ID [%d] not found. Incompatible versions were '
                      'cleared.' % version_id)
             return
+
+        addon_ids.add(version.addon_id)
 
         try:
             compat = CompatOverride.objects.get(addon=version.addon)
@@ -247,3 +252,7 @@ def update_incompatible_appversions(data, **kw):
             log.info('Added incompatible version for version ID [%d]: '
                      'app:%d, %s -> %s' % (version_id, range.app.id, range.min,
                                            range.max))
+
+    # Increment namespace cache of compat versions.
+    for addon_id in addon_ids:
+        cache_ns_key('d2c-versions:%s' % addon_id, increment=True)

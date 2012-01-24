@@ -367,6 +367,18 @@ class TestVersion(amo.tests.TestCase):
                                            max_app_version='10.*')
         eq_(version.compat_override_app_versions(), [('10.0a1', '10.*')])
 
+    @mock.patch('addons.models.Addon.invalidate_d2c_versions')
+    def test_invalidate_d2c_version_signals_on_delete(self, inv_mock):
+        version = Addon.objects.get(pk=3615).current_version
+        version.delete()
+        assert inv_mock.called
+
+    @mock.patch('addons.models.Addon.invalidate_d2c_versions')
+    def test_invalidate_d2c_version_signals_on_save(self, inv_mock):
+        addon = Addon.objects.get(pk=3615)
+        amo.tests.version_factory(addon=addon)
+        assert inv_mock.called
+
 
 class TestViews(amo.tests.TestCase):
     fixtures = ['addons/eula+contrib-addon', 'base/apps']

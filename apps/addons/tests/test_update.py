@@ -455,13 +455,12 @@ class TestDefaultToCompat(amo.tests.TestCase):
                 eq_(self.get(app_version=version, compat_mode=mode),
                     expected['-'.join([version, mode])])
 
-    def test_extension(self):
+    def test_baseline(self):
         # Tests simple add-on (non-binary-components, non-strict).
         self.check(self.expected)
 
-    def test_binary_extension(self):
-        # Tests add-on with binary flag.
-
+    def test_binary_components(self):
+        # Tests add-on with binary_components flag.
         self.update_files(binary_components=True)
         self.expected.update({
             '8.0-normal': None,
@@ -471,7 +470,6 @@ class TestDefaultToCompat(amo.tests.TestCase):
     def test_extension_compat_override(self):
         # Tests simple add-on (non-binary-components, non-strict) with a compat
         # override.
-
         self.create_override(min_version='1.3', max_version='1.4')
         self.expected.update({
             '6.0-normal': self.ver_1_2,
@@ -480,10 +478,9 @@ class TestDefaultToCompat(amo.tests.TestCase):
         })
         self.check(self.expected)
 
-    def test_binary_extension_compat_override(self):
+    def test_binary_component_compat_override(self):
         # Tests simple add-on (non-binary-components, non-strict) with a compat
         # override.
-
         self.update_files(binary_components=True)
         self.create_override(min_version='1.3', max_version='1.4')
         self.expected.update({
@@ -493,9 +490,8 @@ class TestDefaultToCompat(amo.tests.TestCase):
         })
         self.check(self.expected)
 
-    def test_strict_extension(self):
+    def test_strict_opt_in(self):
         # Tests add-on with opt-in strict compatibility
-
         self.update_files(strict_compatibility=True)
         self.expected.update({
             '8.0-normal': None,
@@ -505,7 +501,6 @@ class TestDefaultToCompat(amo.tests.TestCase):
     def test_compat_override_max_addon_wildcard(self):
         # Tests simple add-on (non-binary-components, non-strict) with a compat
         # override that contains a max wildcard.
-
         self.create_override(min_version='1.2', max_version='1.*',
                              min_app_version='5.0', max_app_version='6.*')
         self.expected.update({

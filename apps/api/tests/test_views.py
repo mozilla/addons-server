@@ -28,6 +28,7 @@ from files.models import File
 from files.tests.test_models import UploadTest
 from market.models import AddonPremium, Price
 from tags.models import AddonTag, Tag
+import waffle
 
 
 def api_url(x, app='firefox', lang='en-US', version=1.2):
@@ -778,6 +779,18 @@ class SearchTest(ESTestCase):
         [addon.save() for addon in self.addons]
         self.refresh()
 
+        self.url = ('/en-US/firefox/api/%(api_version)s/search/%(query)s/'
+                    '%(type)s/%(limit)s/%(platform)s/%(app_version)s/'
+                    '%(compat_mode)s')
+        self.defaults = {
+            'api_version': '1.5',
+            'type': 'all',
+            'limit': '30',
+            'platform': 'Linux',
+            'app_version': '4.0',
+            'compat_mode': 'strict',
+        }
+
     def test_double_escaping(self):
         """
         For API < 1.5 we use double escaping in search.
@@ -875,6 +888,109 @@ class SearchTest(ESTestCase):
         eq_(self.client.head(base + '/normal').status_code, 200)
         eq_(self.client.head(base + '/ignore').status_code, 200)
         eq_(self.client.head(base + '/junk').status_code, 404)
+
+    def test_compat_mode_ignore(self):
+        waffle.models.Switch.objects.create(name='d2c-api-search', active=True)
+        # Delicious currently supports Firefox 2.0 - 3.7a1pre. Strict mode will
+        # not find it. Ignore mode should include it if the appversion is
+        # specified as higher.
+        self.defaults.update(query='delicious')  # Defaults to strict.
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, self.no_results)
+        self.defaults.update(query='delicious', compat_mode='ignore')
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, 'Delicious Bookmarks')
+
+    def test_compat_mode_normal_and_strict_opt_in(self):
+        waffle.models.Switch.objects.create(name='d2c-api-search', active=True)
+        # Under normal compat mode we ignore max version unless the add-on has
+        # opted into strict mode. Test before and after search queries.
+        addon = Addon.objects.get(pk=3615)
+        self.defaults.update(query='delicious', compat_mode='normal')
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, 'Delicious Bookmarks')
+
+        # Make add-on opt into strict compatibility.
+        file = addon.current_version.files.all()[0]
+        file.update(strict_compatibility=True)
+        eq_(File.objects.get(pk=file.id).strict_compatibility, True)
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, self.no_results)
+
+        # Make sure compat_mode=strict also doesn't find it.
+        self.defaults.update(compat_mode='strict')
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, self.no_results)
+
+        # Make sure we find it with compat_mode=ignore
+        self.defaults.update(compat_mode='ignore')
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, 'Delicious Bookmarks')
+
+    def test_compat_mode_normal_and_binary_components(self):
+        waffle.models.Switch.objects.create(name='d2c-api-search', active=True)
+        # We ignore max version as long as the add-on has no binary components.
+        # Test before and after search queries.
+        addon = Addon.objects.get(pk=3615)
+        self.defaults.update(query='delicious', compat_mode='normal')
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, 'Delicious Bookmarks')
+
+        # Make add-on contain binary components.
+        file = addon.current_version.files.all()[0]
+        file.update(binary_components=True)
+        eq_(File.objects.get(pk=file.id).binary_components, True)
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, self.no_results)
+
+        # Make sure compat_mode=strict also doesn't find it.
+        self.defaults.update(compat_mode='strict')
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, self.no_results)
+
+        # Make sure we find it with compat_mode=ignore
+        self.defaults.update(compat_mode='ignore')
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, 'Delicious Bookmarks')
+
+    def test_compat_override(self):
+        waffle.models.Switch.objects.create(name='d2c-api-search', active=True)
+        # Under normal compat mode we ignore add-ons with a compat override.
+        addon = Addon.objects.get(pk=3615)
+        self.defaults.update(query='delicious', compat_mode='normal')
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, 'Delicious Bookmarks')
+
+        # Make add-on have a compat override.
+        app = Application.objects.get(id=1)
+        co = CompatOverride.objects.create(name='test', guid=addon.guid,
+                                           addon=addon)
+        CompatOverrideRange.objects.create(compat=co, app=app,
+                                           min_version='0',
+                                           max_version='*',
+                                           min_app_version='0',
+                                           max_app_version='*')
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, self.no_results)
+
+        # Make sure compat_mode=strict also doesn't find it.
+        self.defaults.update(compat_mode='strict')
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, self.no_results)
+
+        # Make sure we find it with compat_mode=ignore
+        self.defaults.update(compat_mode='ignore')
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, 'Delicious Bookmarks')
+
+    def test_cache(self):
+        addon = Addon.objects.get(pk=3615)
+        with self.assertNumQueries(1):
+            addon.compatible_version(amo.FIREFOX.id, '4.0', 'strict')
+        # 2nd call to this should hit cache and not perform any queries since
+        # we stored that there are no compatible versions.
+        with self.assertNumQueries(0):
+            addon.compatible_version(amo.FIREFOX.id, '4.0', 'strict')
 
 
 class LanguagePacks(UploadTest):

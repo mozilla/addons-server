@@ -1,11 +1,16 @@
-{% cache addon, extra=[api_version] %}
+{% cache addon, extra=[api_version, version, compat_mode] %}
 {% set new_api = (api_version >= 1.5) %}
+{% if is_d2c %}
+  {% set version = addon.compat_version %}
+{% else %}
+  {% set version = addon.current_version %}
+{% endif %}
 <addon id="{{ addon.id }}">
   <name>{{ addon.name }}</name>
   <type id="{{ addon.type }}">{{ amo.ADDON_TYPE[addon.type] }}</type>
   <guid>{{ addon.guid }}</guid>
   <slug>{{ addon.slug }}</slug>
-  <version>{{ addon.current_version.version }}</version>
+  <version>{{ version.version }}</version>
   <status id="{{ addon.status }}">{{ amo.STATUS_CHOICES[addon.status] }}</status>
   <authors>
     {% if not addon.is_persona() %}
@@ -23,22 +28,22 @@
   </authors>
   <summary>{{ addon.summary|strip_html(new_api) }}</summary>
   <description>{{ addon.description|strip_html(new_api) }}</description>
-  {%- if addon.current_version and addon.current_version.license -%}
+  {%- if version and version.license -%}
   <license>
-    <name>{{ addon.current_version.license.name }}</name>
+    <name>{{ version.license.name }}</name>
     <url>
-      {%- if not addon.current_version.license.url -%}
-      {{ addon.current_version.license_url()|absolutify }}
+      {%- if not version.license.url -%}
+      {{ version.license_url()|absolutify }}
       {%- else -%}
-      {{ addon.current_version.license.url|absolutify }}
+      {{ version.license.url|absolutify }}
       {%- endif -%}
     </url>
   </license>
   {%- endif -%}
   <icon>{{ addon.get_icon_url(32, use_default=False) }}</icon>
   <compatible_applications>
-    {%- if addon.current_version -%}
-    {%- for app in addon.current_version.compatible_apps.values() %}
+    {%- if version -%}
+    {%- for app in version.compatible_apps.values() %}
     {%- if amo.APP_IDS.get(app.application_id) -%}
     <application>
       <name>{{ amo.APP_IDS[app.application_id].pretty }}</name>
@@ -52,8 +57,8 @@
     {%- endif -%}
   </compatible_applications>
   <all_compatible_os>
-    {%- if addon.current_version -%}
-    {% for os in addon.current_version.supported_platforms -%}
+    {%- if version -%}
+    {% for os in version.supported_platforms -%}
     <os>{{ os.api_name }}</os>
     {%- endfor -%}
     {%- endif -%}
@@ -80,8 +85,8 @@
   {%- endif -%}
   <rating>{{ addon.average_rating|round|int }}</rating>
   <learnmore>{{ addon.get_url_path()|absolutify|urlparams(src='api') }}</learnmore>
-  {%- if addon.current_version -%}
-  {%- for file in addon.current_version.all_files -%}
+  {%- if version -%}
+  {%- for file in version.all_files -%}
   <install hash="{{ file.hash }}"
     os="{{ amo.PLATFORMS[file.platform_id].api_name }}"
     size="{{ file.size * 1024 }}">{{ file.get_url_path('api', addon) }}</install>

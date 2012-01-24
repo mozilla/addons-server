@@ -9,7 +9,6 @@ import jinja2
 
 import commonware.log
 import caching.base
-import path
 import waffle
 
 import amo
@@ -437,6 +436,18 @@ def cleanup_version(sender, instance, **kw):
         cleanup_file(file_.__class__, file_)
 
 
+def clear_compatversion_cache_on_save(sender, instance, created, **kw):
+    """Clears compatversion cache if new Version created."""
+    if not kw.get('raw') and created:
+        instance.addon.invalidate_d2c_versions()
+
+
+def clear_compatversion_cache_on_delete(sender, instance, **kw):
+    """Clears compatversion cache when Version deleted."""
+    if not kw.get('raw'):
+        instance.addon.invalidate_d2c_versions()
+
+
 version_uploaded = django.dispatch.Signal()
 models.signals.post_save.connect(update_status, sender=Version,
                                  dispatch_uid='version_update_status')
@@ -450,7 +461,13 @@ models.signals.post_delete.connect(update_incompatible_versions,
                                    sender=Version,
                                    dispatch_uid='version_update_incompat')
 models.signals.pre_delete.connect(cleanup_version, sender=Version,
-                                   dispatch_uid='cleanup_version')
+                                  dispatch_uid='cleanup_version')
+models.signals.post_save.connect(clear_compatversion_cache_on_save,
+                                 sender=Version,
+                                 dispatch_uid='clear_compatversion_cache_save')
+models.signals.post_delete.connect(clear_compatversion_cache_on_delete,
+                                   sender=Version,
+                                   dispatch_uid='clear_compatversion_cache_del')
 
 
 class LicenseManager(amo.models.ManagerBase):

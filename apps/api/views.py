@@ -20,6 +20,7 @@ import commonware.log
 import jingo
 from piston.utils import rc
 from tower import ugettext as _, ugettext_lazy
+import waffle
 
 import amo
 import api
@@ -293,9 +294,10 @@ class SearchView(APIView):
         Query the search backend and serve up the XML.
         """
         limit = min(MAX_LIMIT, int(limit))
+        app_id = self.request.APP.id
 
         filters = {
-            'app': self.request.APP.id,
+            'app': app_id,
             'status__in': amo.REVIEWED_STATUSES,
             'is_disabled': False,
             'has_version': True,
@@ -328,9 +330,33 @@ class SearchView(APIView):
             filters['type__in'] = list(amo.ADDON_SEARCH_TYPES)
         qs = qs.filter(**filters)
 
+        addons = qs[:limit]
+        total = qs.count()
+
+        if waffle.switch_is_active('d2c-api-search'):
+            is_d2c = True
+            results = []
+            for addon in addons:
+                compat_version = addon.compatible_version(app_id, version,
+                                                          compat_mode)
+                if compat_version:
+                    addon.compat_version = compat_version
+                    results.append(addon)
+                else:
+                    # We're excluding this addon because there are no compatible
+                    # versions. Decrement the total.
+                    total -= 1
+        else:
+            is_d2c = False
+            results = addons
+
         return self.render('api/search.xml', {
-            'results': qs[:limit],
-            'total': qs.count(),
+            'is_d2c': is_d2c,
+            'results': results,
+            'total': total,
+            # For caching
+            'version': version,
+            'compat_mode': compat_mode,
         })
 
 

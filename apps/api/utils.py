@@ -101,13 +101,14 @@ def extract_from_query(term, filter, regexp, end_of_word_boundary=True):
     return (term, value)
 
 
-def extract_filters(term, app_id=amo.FIREFOX.id, opts={}):
+def extract_filters(term, app_id=amo.FIREFOX.id, opts=None):
     """
     Pulls all the filtering options out of the term and returns a cleaned term
     and a dictionary of filter names and filter values. Term filters override
     filters found in opts.
     """
 
+    opts = opts or {}
     filters = {}
 
     # Type filters.
@@ -168,14 +169,4 @@ def filter_version(version, app_id):
     Otherwise it will query where max >= M.Na and min <= M.N.
     """
     low = version_int(version)
-    # Get a max version greater than X.0a, but only append the 'a' if we know
-    # we have a major.minor number. Otherwise it does an exact match.
-    if m_dot_n_re.match(version):
-        high = version_int(version + 'a')
-    else:
-        high = version_int(version)
-
-    return {
-        'appversion.%s.max__gte' % app_id: high,
-        'appversion.%s.min__lte' % app_id: low
-    }
+    return {'appversion.%s.min__lte' % app_id: low}
