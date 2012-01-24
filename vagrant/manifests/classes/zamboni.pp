@@ -7,12 +7,6 @@ class zamboni {
         ensure => installed;
     }
 
-    file { "$PROJ_DIR/settings_local.py":
-        ensure => file,
-        source => "$PROJ_DIR/docs/settings/settings_local.dev.py",
-        replace => false;
-    }
-
     exec { "create_mysql_database":
         command => "mysqladmin -uroot create $DB_NAME",
         unless  => "mysql -uroot -B --skip-column-names -e 'show databases' | /bin/grep '$DB_NAME'",
