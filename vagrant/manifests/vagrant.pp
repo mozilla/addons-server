@@ -32,7 +32,7 @@ class dev {
         # elasticsearch: before => Class[zamboni];
         settings_local: ;
         # zamboni: before => Class[migrate];
-        migrate: before => Class[custom];
+        # migrate: before => Class[custom];
         custom: ;
     }
 }
