@@ -3,7 +3,6 @@
 # version control.
 class custom {
     # exec { "install-nosenicedots":
-    #     command => "sudo pip install nosenicedots",
-    #     require => Package['python-pip']
+    #     command => "sudo pip install nosenicedots"
     # }
 }
