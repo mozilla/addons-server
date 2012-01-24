@@ -3331,6 +3331,7 @@ background-position:left -303px;
 
 .mobile #header #title strong,
 .developer-hub #header #title strong,
+.android #header #title strong,
 .firefox #header #title strong {
     color: #D64203;
 }
@@ -3360,6 +3361,10 @@ background-position:left -303px;
     color: #1408E5;
 }
 .seamonkey #aux-nav .change li.seamonkey {
+    display: none;
+}
+
+.android #aux-nav .change li.android {
     display: none;
 }
 

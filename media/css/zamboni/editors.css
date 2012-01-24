@@ -33,6 +33,7 @@
 .ed-sprite-editor { background-position: 0 -893px; }
 .ed-sprite-info { background-position: 0 -959px; }
 .ed-sprite-premium { background-position: 0 -1026px; }
+.ed-sprite-android { background-position: 0 -1093px; }
 
 .platform-icon {
     background: url(../../img/developers/platforms.png?6) no-repeat top left;
