@@ -76,7 +76,7 @@
                     {{ _('Other Applications') }}</a>
                   <ul class="other-apps">
                     {% for app in amo.APP_USAGE %}
-                      {% if app != request.APP %}
+                      {% if app != request.APP and app != amo.ANDROID %}
                         <li id="app-{{ app.short }}" class="{{ app.short }}">
                           <a href="{{ locale_url(app.short) }}">{{ app.pretty }}</a>
                         </li>
