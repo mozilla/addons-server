@@ -69,7 +69,10 @@
       </section>
     </div>
     <footer id="footer">
-      {% include "includes/lang_switcher.html" %}
+      {% if not settings.APP_PREVIEW %}
+        {# TODO(apps): When Marketplace is localized, show language switcher. #}
+        {% include "includes/lang_switcher.html" %}
+      {% endif %}
       {% block footer %}
         <a class="desktop-link" href="#">{{ _('View full site') }}</a>
         <p id="footer-links">

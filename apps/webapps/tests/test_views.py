@@ -113,10 +113,10 @@ class TestHome(TestPremium):
                 numberfmt(webapp.weekly_downloads))
 
 
-class TestHeader(WebappTest):
+class TestLayout(WebappTest):
 
     def setUp(self):
-        super(TestHeader, self).setUp()
+        super(TestLayout, self).setUp()
         self.url = reverse('apps.home')
 
     def test_header(self):
@@ -357,11 +357,23 @@ class TestMobileListing(amo.tests.MobileTest, WebappTest):
         eq_(dls.text().split()[0], numberfmt(self.webapp.weekly_downloads))
 
 
-class TestMobileAppHeader(TestMobileHeader):
+class TestMobileLayout(TestMobileHeader):
     fixtures = ['base/users']
 
     def setUp(self):
         self.url = reverse('apps.list')
+
+    @patch.object(settings, 'APP_PREVIEW', True)
+    def test_no_language_selector(self):
+        # When Marketplace is localized, remove this test.
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('#lang_form').length, 0)
+
+    def test_language_selector(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('#lang_form').length, 1)
 
 
 class TestMobileDetail(amo.tests.MobileTest, WebappTest):
