@@ -100,8 +100,8 @@ $(document).ready(function() {
         $('#upload-webapp-url').bind("keyup change blur", function(e) {
             var $this = $(this),
                 $button = $('#validate_app'),
-                // Ensure it's at least "protocol://something.tld/something.(webapp/json)"
-                match = $this.val().match(/^(.+):\/\/(.+)\.(.+)\/(.+)\.(webapp|json)$/);
+                // Ensure it's at least "protocol://host/something.(webapp/json)"
+                match = $this.val().match(/^(.+):\/\/(.+)\/(.+)\.(webapp|json)$/);
 
             if($this.attr('data-input') != $this.val()) {
                 // Show warning if 8+ characters have been typed but there's no protocol.
