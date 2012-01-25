@@ -1,4 +1,4 @@
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 import collections
 import hashlib
 import hmac
@@ -209,6 +209,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                             help_text="Has the dev agreement been signed?")
     auto_repackage = models.BooleanField(default=True,
         help_text='Automatically upgrade jetpack add-on to a new sdk version?')
+    outstanding = models.BooleanField(default=False)
 
     nomination_message = models.TextField(null=True,
                                           db_column='nominationmessage')

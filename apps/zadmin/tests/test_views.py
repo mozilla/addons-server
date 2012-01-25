@@ -1354,6 +1354,7 @@ class TestAddonManagement(amo.tests.TestCase):
         initial_data = {
             'status': '4',
             'highest_status': '4',
+            'outstanding': '0',
             'form-0-status': '4',
             'form-0-id': '67442',
             'form-TOTAL_FORMS': '1',
@@ -1369,6 +1370,13 @@ class TestAddonManagement(amo.tests.TestCase):
         eq_(r.status_code, 200)
         addon = Addon.objects.get(pk=3615)
         eq_(addon.status, 2)
+
+    def test_outstanding_change(self):
+        data = self._form_data({'outstanding': '1'})
+        r = self.client.post(self.url, data, follow=True)
+        eq_(r.status_code, 200)
+        addon = Addon.objects.get(pk=3615)
+        eq_(addon.outstanding, 1)
 
     def test_addon_file_status_change(self):
         data = self._form_data({'form-0-status': '2'})
