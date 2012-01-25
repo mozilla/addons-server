@@ -34,6 +34,7 @@ class dev {
         # zamboni: before => Class[migrate];
         # migrate: before => Class[custom];
         custom: ;
+        fix_ssh: ;
     }
 }
 
