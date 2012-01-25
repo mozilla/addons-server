@@ -7,11 +7,20 @@ from tower import ugettext_lazy as _
 import amo
 
 
+appvers = [(amo.APP_IDS[d['app']], d['main']) for d in settings.COMPAT]
+APPVER_CHOICES = [
+    ('%s-%s' % (app.id, ver), '%s %s' % (unicode(app.pretty), ver))
+    for app, ver in appvers
+]
+
+
+class AppVerForm(forms.Form):
+    appver = forms.ChoiceField(choices=[('', _('All'))] + APPVER_CHOICES,
+                               required=False)
+
+
 class CompatForm(forms.Form):
-    appvers = [(amo.APP_IDS[d['app']], d['main']) for d in settings.COMPAT]
-    _choices = [('%s-%s' % (app.id, ver), '%s %s' % (unicode(app.pretty), ver))
-                for app, ver in appvers]
-    appver = forms.ChoiceField(choices=_choices, required=False)
+    appver = forms.ChoiceField(choices=APPVER_CHOICES, required=False)
     type = forms.ChoiceField(choices=(('all', _('All Add-ons')),
                                       ('binary', _('Binary')),
                                       ('non-binary', _('Non-binary'))),

@@ -16,9 +16,10 @@ from amo.decorators import post_required
 from amo.utils import urlparams
 from amo.urlresolvers import reverse
 from addons.models import Addon
-from versions.compare import version_int as vint
+from search.utils import floor_version
+from versions.compare import version_dict as vdict, version_int as vint
 from .models import CompatReport, AppCompat
-from .forms import CompatForm
+from .forms import AppVerForm, CompatForm
 
 
 def index(request, version=None):
@@ -155,12 +156,24 @@ def reporter(request):
 def reporter_detail(request, guid):
     qs = CompatReport.objects.filter(guid=guid)
 
+    form = AppVerForm(request.GET)
+    if request.GET and form.is_valid() and form.cleaned_data['appver']:
+        # Apply filters only if we have a good app/version combination.
+        app, ver = form.cleaned_data['appver'].split('-')
+        app = amo.APP_IDS[int(app)]
+        ver = vdict(floor_version(ver))['major']  # 3.6 => 3
+
+        # Ideally we'd have a `version_int` column to do strict version
+        # comparing, but that's overkill for basic version filtering here.
+        qs = qs.filter(app_guid=app.guid,
+                       app_version__startswith=str(ver) + '.')
+
     works_ = dict(qs.values_list('works_properly').annotate(Count('id')))
     works = {'success': works_.get(True, 0), 'failure': works_.get(False, 0)}
 
     works_properly = request.GET.get('works_properly')
     if works_properly:
-        qs = qs.filter(works_properly=request.GET['works_properly'])
+        qs = qs.filter(works_properly=works_properly)
     reports = amo.utils.paginate(request, qs.order_by('-created'), 100)
 
     addon = Addon.objects.filter(guid=guid)
@@ -169,4 +182,4 @@ def reporter_detail(request, guid):
     return jingo.render(request, 'compat/reporter_detail.html',
                         dict(reports=reports, works=works,
                              works_properly=works_properly,
-                             name=name, guid=guid))
+                             name=name, guid=guid, form=form))

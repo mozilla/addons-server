@@ -9,17 +9,27 @@
   {{ impala_breadcrumbs([(url('compat.reporter'), _('Add-on Compatibility Center')),
                          (works_properly and detail_url, _('{addon} Compatibility Reports')|f(addon=name))]) }}
   <div id="reports">
-    <a href="{{ detail_url|urlparams(works_properly=1) }}" class="button">
-      {{ ngettext('{0} success report', '{0} success reports',
-                  works.success)|f(works.success|numberfmt) }}</a>
-    <a href="{{ detail_url|urlparams(works_properly=0) }}" class="button">
-      {{ ngettext('{0} problem report', '{0} problem reports',
-                  works.failure)|f(works.failure|numberfmt) }}</a>
+    {% if works.success or works.failure %}
+      <a href="{{ detail_url|urlparams(works_properly=1) }}" class="button good">
+        {{ ngettext('{0} success report', '{0} success reports',
+                    works.success)|f(works.success|numberfmt) }}</a>
+      <a href="{{ detail_url|urlparams(works_properly=0) }}" class="button bad">
+        {{ ngettext('{0} problem report', '{0} problem reports',
+                    works.failure)|f(works.failure|numberfmt) }}</a>
+    {% endif %}
     {% if works_properly %}
       <a href="{{ detail_url }}" class="button">{{ _('View all') }}</a>
     {% endif %}
   </div>
-  <h1>{{ _('{addon} Compatibility Reports')|f(addon=name) }}</h1>
+  <header>
+    <h1>{{ _('{addon} Compatibility Reports')|f(addon=name) }}</h1>
+    {% if reports.object_list %}
+      <form class="go" action="" id="compat-form">
+        <label>{{ _('Filter by Application') }}: {{ form.appver }}</label>
+        <noscript><button type="submit">{{ _('Go') }}</button></noscript>
+      </form>
+    {% endif %}
+  </header>
 
   <section class="island primary full c">
     {% trans url_ = url('addons.detail', '15003') %}<p>
