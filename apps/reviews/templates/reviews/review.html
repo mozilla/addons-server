@@ -35,8 +35,9 @@
           and review.ip_address != '0.0.0.0' %}
       <span>[{{ review.ip_address }}]</span>
     {% endif %}
+    &middot;
     <a class="permalink"
-       href="{{ shared_url('reviews.detail', addon, review.id) }}">#</a>
+      href="{{ shared_url('reviews.detail', addon, review.id) }}">{{ _('permalink') }}</a>
   </p>
   <p class="description">{{ review.body|nl2br }}</p>
   {% if outdated and not is_reply %}
