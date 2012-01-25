@@ -49,6 +49,7 @@ from editors.helpers import get_position
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
 from market.models import AddonPremium
+from paypal.check import Check
 import paypal
 from product_details import product_details
 from search.views import BaseAjaxSearch
@@ -1734,34 +1735,12 @@ def check_paypal(request):
     if 'email' not in request.POST:
         raise http.Http404()
 
-    d = {'uuid': hashlib.md5(str(uuid.uuid4())).hexdigest(),
-         'slug': 'testing',
-         'amount': 1.00,
-         'memo': 'testing',
-         'email': request.POST['email'],
-         'pattern': 'apps.purchase.finished',
-         'ip': request.META.get('REMOTE_ADDR'),
-         'chains': settings.PAYPAL_CHAINS}
-
-    # First, check their paypal id.
-    valid_paypal, msg = paypal.check_paypal_id(request.POST['email'])
-
-    paykey = None
-
-    message = ''
-    if not valid_paypal:
-        message = loc("You don't seem to have a PayPal account.")
-    else:
-        # Next, check for a paykey.
-        try:
-            paykey = paypal.get_paykey(d)
-        except paypal.PaypalError:
-            pass  # paykey is already None.
-
-        if not paykey:
-            message = loc("Your account is not set up to accept payments.")
-
-    return {'valid': bool(paykey and valid_paypal), 'message': message}
+    check = Check(paypal_id=request.POST['email'])
+    check.all()
+    # TODO(andym): we will want to l10n these messages at some point and
+    # we'll need to change this to give more detail back to the user than
+    # a tooltip at a later date.
+    return {'valid': check.passed, 'message': ' '.join(check.errors)}
 
 
 def search(request):

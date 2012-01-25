@@ -934,7 +934,7 @@ class TestPaymentsProfile(amo.tests.TestCase):
     @mock.patch('paypal.get_paykey')
     def test_checker_no_paykey(self, gp, cpi):
         cpi.return_value = (True, "")
-        gp.return_value = None
+        gp.side_effect = paypal.PaypalError()
 
         url = reverse('devhub.check_paypal')
         r = self.client.post(url, {'email': 'test@test.com'})
