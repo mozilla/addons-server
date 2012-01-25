@@ -49,8 +49,9 @@ Change into the source code directory and start the VM with vagrant::
     cd zamboni
     vagrant up
 
-After about 5-10 minutes, depending on your Internet connection, vagrant boots
-an Ubuntu VM, installs required packages, and runs initialization scripts.
+After about 5-10 minutes, depending on your Internet connection, vagrant
+downloads the base VM image, boots an Ubuntu VM, installs required packages, and
+runs initialization scripts.
 
 Start The Dev Server
 --------------------
@@ -58,9 +59,11 @@ Start The Dev Server
 Now that your VM is running, SSH in and start the server::
 
     vagrant ssh
-    cd ~/project/ && python manage.py runserver 0.0.0.0:8000
+    ./project/vagrant/bin/start.sh
 
-After about a minute your server will be running on a special IP address created
+On your first run, this will take several minutes because it pulls down some
+JSON data files. On subsequent runs it should start up within a minute.
+Your development server will then be running on a special IP address created
 by vagrant. Yay. To access it, open a web browser to http://33.33.33.24:8000/
 
 You can make an alias to this IP address by adding the following line to your
@@ -127,7 +130,7 @@ add puppet commands like
     cp vagrant/manifests/classes/custom-dist.pp vagrant/manifests/classes/custom.pp
 
 For example, if your ``settings_local.py`` file requires additional packages or
-Python modules, you'll need to add ``pip install ...``.
+Python modules, you'll need to add ``sudo pip install <package>``.
 Your ``custom.pp`` file is ignored by git.
 
 Troubleshooting
