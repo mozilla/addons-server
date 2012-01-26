@@ -723,6 +723,7 @@ class TestLogin(UserViewBase):
                                data=dict(assertion='fake-assertion',
                                          audience='fakeamo.org'))
         eq_(res.status_code, 401)
+        assert 'BrowserID authentication failure' in res.content
 
     @patch.object(settings, 'REGISTER_USER_LIMIT', 100)
     @patch('django.contrib.auth.views.login')

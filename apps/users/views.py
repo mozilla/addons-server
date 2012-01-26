@@ -314,7 +314,7 @@ def browserid_authenticate(request, assertion):
     backend = BrowserIDBackend()
     result = backend.verify(assertion, settings.SITE_URL)
     if not result:
-        return (None, None)
+        return (None, "BrowserID authentication failure.")
     email = result['email']
     users = UserProfile.objects.filter(email=email)
     if len(users) == 1:
