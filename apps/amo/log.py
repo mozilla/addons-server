@@ -387,6 +387,12 @@ class MAKE_PREMIUM(_LOG):
     format = _(u'{addon} changed to premium.')
 
 
+class PAYPAL_FAILED(_LOG):
+    id = 51
+    action_class = None
+    format = _(u'{addon} failed checks with PayPal.')
+
+
 class CUSTOM_TEXT(_LOG):
     id = 98
     action_class = None

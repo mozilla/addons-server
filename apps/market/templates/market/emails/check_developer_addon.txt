@@ -1,0 +1,16 @@
+Dear Developer,
+
+Your add-on {{ addon.name }} has been disabled on the Mozilla Market. We
+checked the paypal account of {{ addon.paypal_id }} and found the following
+errors:
+
+{% for error in errors %}
+    {{ error }}
+{% endfor %}
+
+If you correct these errors on PayPal, you can submit your add-on to the Market
+again:
+
+    {{ url }}
+
+Thank you.

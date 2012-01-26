@@ -7,7 +7,7 @@ import amo
 from addons.models import Addon
 from amo.utils import chunked
 from devhub.tasks import convert_purified, flag_binary, get_preview_sizes
-
+from market.tasks import check_paypal, check_paypal_multiple
 
 tasks = {
     # binary-components depend on having a chrome manifest.
@@ -21,7 +21,12 @@ tasks = {
                                'kwargs': dict(latest=False)},
     'flag_binary': {'method': flag_binary, 'qs': []},
     'get_preview_sizes': {'method': get_preview_sizes, 'qs': []},
-    'convert_purified': {'method': convert_purified, 'qs': []}
+    'convert_purified': {'method': convert_purified, 'qs': []},
+    'check_paypal': {'pre': check_paypal_multiple,
+                     'method': check_paypal,
+                     'qs': [Q(premium_type=amo.ADDON_PREMIUM,
+                              disabled_by_user=False),
+                            ~Q(status=amo.STATUS_DISABLED)]}
 }
 
 
@@ -30,6 +35,11 @@ class Command(BaseCommand):
     A generic command to run a task on addons.
     Add tasks to the tasks dictionary, providing a list of Q objects if you'd
     like to filter the list down.
+
+    method: the method to delay
+    pre: a method to further pre process the pks, must return the pks (opt.)
+    qs: a list of Q objects to apply to the method
+    kwargs: any extra kwargs you want to apply to the delay method (optional)
     """
     option_list = BaseCommand.option_list + (
         make_option('--task', action='store', type='string',
@@ -43,8 +53,8 @@ class Command(BaseCommand):
         pks = (Addon.objects.filter(*task['qs'])
                             .values_list('pk', flat=True)
                             .order_by('-last_updated'))
-        for chunk in chunked(pks, 100):
-            if task.get('kwargs'):
-                task['method'].delay(chunk, **task.get('kwargs'))
-            else:
-                task['method'].delay(chunk)
+        if 'pre' in task:
+            pks = task['pre'](pks)
+        if pks:
+            for chunk in chunked(pks, 100):
+                task['method'].delay(chunk, **task.get('kwargs', {}))
