@@ -2,7 +2,10 @@
 
 {% set range = view.range %}
 
-{% block bodyclass %}statistics{% endblock %}
+{% block bodyclass %}
+  statistics
+  {{ 'waffle-site-events' if waffle.switch('site-events') else '' }}
+{% endblock %}
 
 {% block extrahead %}
   {{ css('zamboni/stats') }}

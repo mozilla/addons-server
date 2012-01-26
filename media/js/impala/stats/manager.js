@@ -22,6 +22,7 @@ z.StatsManager = (function() {
         addonId         = parseInt($(".primary").attr("data-addon_id"), 10),
         baseURL         = $(".primary").attr("data-base_url"),
         pendingFetches  = 0,
+        siteEventsEnabled = $('body').hasClass('waffle-site-events'),
         writeInterval   = false;
 
     // It's a bummer, but we need to know which metrics have breakdown fields.
@@ -102,14 +103,14 @@ z.StatsManager = (function() {
         // Update our internal view state.
         currentView = $.extend(currentView, newView);
         // Fetch the data from the server or storage, and notify other components.
-        $.when( getDataRange(currentView) )
+        $.when( getDataRange(currentView), getSiteEvents(currentView) )
          .then( function(data, events) {
             setTimeout(function() {
                 $(window).trigger("dataready", {
                     'view'  : currentView,
                     'fields': getAvailableFields(currentView),
                     'data'  : data,
-                    'events': [] //TODO potch fix this when site events are re-enabled.
+                    'events': events
                 });
             }, 0);
         });
@@ -119,6 +120,7 @@ z.StatsManager = (function() {
 
     // Retrieves a list of site-wide events that may impact statistics data.
     function getSiteEvents(view) {
+        if (!siteEventsEnabled) return [];
         var range = normalizeRange(view.range),
             urlStart = Highcharts.dateFormat('%Y%m%d', range.start),
             urlEnd = Highcharts.dateFormat('%Y%m%d', range.end),
