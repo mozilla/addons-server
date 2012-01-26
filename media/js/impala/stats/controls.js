@@ -76,7 +76,11 @@
             $('li[data-group="' + newState.group + '"]').addClass('selected');
         }
     });
-    
+
+    $("#chart-zoomout").click(_pd(function(e) {
+        $(this).trigger('zoomout');
+    }));
+
     $("#date-range-form").submit(_pd(function(e) {
         var start = Date.iso($("#date-range-start").val()),
             end = Date.iso($("#date-range-end").val()),

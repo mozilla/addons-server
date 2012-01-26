@@ -348,14 +348,15 @@
         newConfig.title = {
             text: title
         };
-
         if (chart && chart.destroy) chart.destroy();
         chart = new Highcharts.Chart(newConfig);
 
         chartRange = chart.xAxis[0].getExtremes();
-        // $("h1").click(function() {
-        //     chart.xAxis[0].setExtremes(chartRange.min, chartRange.max);
-        // });
+
+        $win.bind('zoomout', function() {
+            chart.xAxis[0].setExtremes(chartRange.min, chartRange.max);
+        });
+
         $chart.removeClass('loading');
     });
 })();
