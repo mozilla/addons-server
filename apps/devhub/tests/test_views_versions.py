@@ -320,12 +320,6 @@ class TestVersion(amo.tests.TestCase):
         eq_(set([i.attrib['type'] for i in doc('input.platform')]),
             set(['checkbox']))
 
-    def test_app_no_version_list(self):
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        eq_(doc('#version-list').length, 0)
-
 
 class TestAppStatus(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
@@ -360,10 +354,30 @@ class TestAppStatus(amo.tests.TestCase):
         eq_(doc('#modal-disable').length, 1)
 
     def test_delete_link(self):
+        # Delete link is visible for only incomplete apps.
         self.webapp.update(status=amo.STATUS_NULL)
         doc = pq(self.client.get(self.url).content)
         eq_(doc('#delete-addon').length, 1)
         eq_(doc('#modal-delete').length, 1)
+
+    def test_no_version_list(self):
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(doc('#version-list').length, 0)
+
+    def test_pending(self):
+        # If settings.WEBAPPS_RESTRICTED = True, apps begin life as pending.
+        self.webapp.update(status=amo.STATUS_PENDING)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('#version-status .status-none').length, 1)
+
+    def test_public(self):
+        # If settings.WEBAPPS_RESTRICTED = False, apps begin life as public.
+        eq_(self.webapp.status, amo.STATUS_PUBLIC)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('#version-status .status-fully-approved').length, 1)
 
 
 class TestVersionEdit(amo.tests.TestCase):
