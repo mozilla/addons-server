@@ -12,7 +12,7 @@ class AddonAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': ('name', 'guid', 'default_locale', 'type', 'status',
-                       'highest_status'),
+                       'highest_status', 'outstanding'),
         }),
         ('Details', {
             'fields': ('summary', 'description', 'homepage', 'eula',
