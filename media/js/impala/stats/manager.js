@@ -102,14 +102,14 @@ z.StatsManager = (function() {
         // Update our internal view state.
         currentView = $.extend(currentView, newView);
         // Fetch the data from the server or storage, and notify other components.
-        $.when( getDataRange(currentView), getSiteEvents(currentView) )
+        $.when( getDataRange(currentView) )
          .then( function(data, events) {
             setTimeout(function() {
                 $(window).trigger("dataready", {
                     'view'  : currentView,
                     'fields': getAvailableFields(currentView),
-                    'data'  : annotateData(data, events),
-                    'events': events
+                    'data'  : data,
+                    'events': [] //TODO potch fix this when site events are re-enabled.
                 });
             }, 0);
         });
