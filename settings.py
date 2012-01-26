@@ -112,8 +112,8 @@ AMO_LANGUAGES = (
     'uk', 'vi', 'zh-CN', 'zh-TW',
 )
 
-# Not shown on the site, but .po files exist and these are available on the
-# L10n dashboard.  Generally languages start here and move into AMO_LANGUAGES.
+# Not shown on the site, but .po files exist and these are available on the L10n
+# dashboard.  Generally languages start here and move into AMO_LANGUAGES.
 HIDDEN_LANGUAGES = ('cy', 'sr', 'sr-Latn', 'tr')
 
 
@@ -588,7 +588,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/debouncer.js',
 
             # Homepage
-            'js/impala/promos.js',
             'js/zamboni/homepage.js',
 
             # Add-ons details page
@@ -672,7 +671,6 @@ MINIFY_BUNDLES = {
             'js/impala/forms.js',
 
             # Homepage
-            'js/impala/promos.js',
             'js/impala/homepage.js',
 
             # Add-ons details page
@@ -741,8 +739,6 @@ MINIFY_BUNDLES = {
 
             'js/zamboni/debouncer.js',
             'js/zamboni/truncation.js',
-
-            'js/impala/promos.js',
             'js/zamboni/discovery_addons.js',
             'js/zamboni/discovery_pane.js',
         ),

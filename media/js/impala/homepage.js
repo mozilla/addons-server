@@ -1,23 +1,46 @@
 (function () {
-    $('.toplist .name').truncate({showTitle: true});
-
     initPromos();
-    $(document).bind('promos_shown', function(e, $promos) {
-        $promos.slideDown('slow')
-               .append('<a href="#" class="control prev">&laquo;</a>\
+})();
+
+
+function initPromos($context) {
+    if (typeof $context === 'undefined') {
+        $context = $(document.body);
+    }
+    var $promos = $('#promos[data-promo-url]', $context);
+    if (!$promos.length) {
+        return;
+    }
+    var promos_base = $promos.attr('data-promo-url'),
+        promos_url = format('{0}?version={1}&platform={2}',
+                            promos_base, z.browserVersion, z.platform);
+    if (z.badBrowser) {
+        promos_url = format('{0}?version={1}&platform={2}',
+                            promos_base, '5.0', 'mac');
+    }
+    $.get(promos_url, function(resp) {
+        $('ul', $promos).append($(resp));
+        hideHomePromo();
+        $promos.append('<a href="#" class="control prev">&laquo;</a>\
                         <a href="#" class="control next">&raquo;</a>');
-        $('div', $promos).zCarousel({
-            circular: true,
-            btnPrev: $('.prev', $promos),
-            btnNext: $('.next', $promos)
-        });
+        var $panels = $('.panel', $promos);
+        if ($panels.length) {
+            // Show promo module only if we have at least panel.
+            $promos.show();
+            $('div', $promos).zCarousel({
+                circular: true,
+                btnPrev: $('.prev', $promos),
+                btnNext: $('.next', $promos)
+            });
+        }
         $('.addons h3', $promos).truncate({dir: 'h'});
         $('.addons .desc', $promos).truncate({dir: 'v'});
         $('.install', $promos).installButton();
         $('#monthly .blurb > p').lineclamp(4);
         $('h2', $promos).linefit();
     });
-})();
+    $('.toplist .name').truncate({showTitle: true});
+}
 
 
 function hideHomePromo($context) {
