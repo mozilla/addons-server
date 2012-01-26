@@ -49,7 +49,14 @@
         {{ recaptcha(form) }}
         {% endif %}
         <li class="footer-submit">
-          <button id="login-submit" type="submit">{{ _('Log in') }}</button>
+        {% if waffle.switch('browserid-login') %}
+          <a href="#" class="browserid-login browserid-login-alt"
+             data-url="{{ url('users.browserid_login') }}"
+             data-profile-form-url="{{ url('users.complete_profile_form') }}">
+            {{ loc('Use BrowserID') }}
+          </a>
+        {% endif %}
+        <button id="login-submit" type="submit">{{ _('Log in') }}</button>
         </li>
       </ul>
     </fieldset>

@@ -25,7 +25,7 @@
        {{ _('Log in / Register') }}</a>
 
     <menu type="context" id="login">
-      <menuitem data-url="{{ login_link() }}" label="{{ _('Admin / Editor Log in') }}" id="admin-login"></menuitem>
+      <menuitem data-url="{{ login_link() }}#open" label="{{ _('Admin / Editor Log in') }}" id="admin-login"></menuitem>
     </menu>
     {% else %}
         {% trans reg=url('users.register'), login=login_link() %}

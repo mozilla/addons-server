@@ -7,6 +7,9 @@ if ($('.login .browserid').length) {
         $('#id_username').focus();
         $(window).trigger('resize');
     }));
+    if($('form .notification-box, form .errorlist li').exists() || window.location.hash == "#open") {
+      $('#show-normal-login').trigger('click');
+    }
 }
 
 // The `autofocus` attribute is wonky, so we do this.
