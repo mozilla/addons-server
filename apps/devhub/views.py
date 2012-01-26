@@ -1,6 +1,5 @@
 import collections
 import functools
-import hashlib
 import json
 import os
 import path
@@ -867,9 +866,10 @@ def json_upload_detail(request, upload, addon_slug=None):
                 pkg = parse_addon(upload, addon=addon)
                 app_ids = set([a.id for a in pkg.get('apps', [])])
                 supported_platforms = []
-                if amo.MOBILE.id in app_ids:
-                    supported_platforms.extend(amo.MOBILE_PLATFORMS.keys())
-                    app_ids.remove(amo.MOBILE.id)
+                for app in (amo.MOBILE, amo.ANDROID):
+                    if app.id in app_ids:
+                        supported_platforms.extend(amo.MOBILE_PLATFORMS.keys())
+                        app_ids.remove(app.id)
                 if len(app_ids):
                     # Targets any other non-mobile app:
                     supported_platforms.extend(amo.DESKTOP_PLATFORMS.keys())
