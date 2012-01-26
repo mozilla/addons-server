@@ -10,4 +10,6 @@ urlpatterns = patterns('',
         name='pages.faq'),
     url('^compatibility_firstrun$', direct_to_template,
         {'template': 'pages/acr_firstrun.html'}, name='pages.acr_firstrun'),
+    url('^developer_faq$', direct_to_template,
+        {'template': 'pages/dev_faq.html'}, name='pages.dev_faq'),
 )
