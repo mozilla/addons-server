@@ -31,7 +31,11 @@ Host *
 #   BatchMode no
 #   CheckHostIP yes
 #   AddressFamily any
-   ConnectTimeout 0
+#   ConnectTimeout 0
+   ServerAliveInterval 100
+   TCPKeepAlive yes
+   ClientAliveInterval 30
+   ClientAliveCountMax 999999
 #   StrictHostKeyChecking ask
 #   IdentityFile ~/.ssh/identity
 #   IdentityFile ~/.ssh/id_rsa
