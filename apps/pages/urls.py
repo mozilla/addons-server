@@ -12,4 +12,6 @@ urlpatterns = patterns('',
         {'template': 'pages/acr_firstrun.html'}, name='pages.acr_firstrun'),
     url('^developer_faq$', direct_to_template,
         {'template': 'pages/dev_faq.html'}, name='pages.dev_faq'),
+    url('^review_guide$', direct_to_template,
+        {'template': 'pages/review_guide.html'}, name='pages.review_guide'),
 )
