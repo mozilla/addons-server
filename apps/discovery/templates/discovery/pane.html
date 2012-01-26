@@ -6,8 +6,6 @@
 {% block bodyclass %}pane no-recs{% endblock %}
 
 {% block bodyattrs %}
-data-version="{{ version }}"
-data-platform="{{ platform }}"
 data-services-url="{{ settings.SERVICES_URL }}"
 data-recs-url="{{ services_url('discovery.recs', version, platform) }}"
 data-account-url="{{ services_url('discovery.pane.account') }}"
@@ -40,23 +38,25 @@ data-upandcoming-url="{{ services_url('discovery.pane.more_addons', 'up-and-comi
 
   <section id="main">
 
-    <section id="promos" data-promo-url="{{ static(url('addons.homepage_promos')) }}">
+    {% if modules %}
+    {# TODO: Lazy-load promo modules. #}
+    <section id="promos">
       <ul id="nav-features">
         <li class="nav-prev"><a href="#" class="prev">{{ _('Previous') }}</a></li>
         <li class="nav-next"><a href="#" class="next">{{ _('Next') }}</a></li>
       </ul>
       <ul class="slider">
+      {% for module in modules %}{{ module.render() }}{% endfor %}
       </ul>
     </section>
+    {% endif %}
 
-    {% if featured_addons %}
     <section id="featured-addons">
       <h2 class="translate" data-trans="featured">{{ _('Featured Add-ons') }}</h2>
       <div class="addons">
         {{ addon_list(featured_addons, limit=6) }}
       </div>
     </section>
-    {% endif %}
 
     <section id="recs">
       <div class="header">

@@ -388,10 +388,9 @@ def home(request):
 
 def homepage_promos(request):
     from discovery.views import get_modules
-    platform, version = request.GET.get('platform'), request.GET.get('version')
-    if not (platform or version):
-        raise http.Http404
-    platform = amo.PLATFORM_DICT.get(version.lower(), amo.PLATFORM_ALL)
+    platform = amo.PLATFORM_DICT.get(request.GET.get('platform'),
+                                     amo.PLATFORM_ALL)
+    version = request.GET.get('version')
     modules = get_modules(request, platform.api_name, version)
     module_context = request.GET.get('context', 'home')
     return jingo.render(request, 'addons/impala/homepage_promos.html',
@@ -674,8 +673,7 @@ def contribute(request, addon):
 
     amount = {
         'suggested': addon.suggested_amount,
-        'onetime': request.POST.get('onetime-amount', '')
-    }.get(contrib_type, '')
+        'onetime': request.POST.get('onetime-amount', '')}.get(contrib_type, '')
     if not amount:
         amount = settings.DEFAULT_SUGGESTED_CONTRIBUTION
 
