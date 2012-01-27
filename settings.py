@@ -354,6 +354,7 @@ INSTALLED_APPS = (
     'marketplace-experiments',
     'localizers',
     'pages',
+    'payments',
     'perf',
     'product_details',
     'reviews',
