@@ -8,7 +8,7 @@ if ($('.login .browserid').length) {
         $(window).trigger('resize');
     }));
     if($('form .notification-box, form .errorlist li').exists() || window.location.hash == "#open") {
-      $('#show-normal-login').trigger('click');
+        $('#show-normal-login').trigger('click');
     }
 }
 
