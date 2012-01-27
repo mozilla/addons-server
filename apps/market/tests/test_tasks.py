@@ -1,4 +1,4 @@
-from mock import Mock, patch
+from decimal import Decimal
 
 from django.conf import settings
 from django.core import mail
@@ -11,6 +11,7 @@ from apps.market.tasks import (check_paypal, check_paypal_multiple,
                                _check_paypal_completed)
 from devhub.models import ActivityLog
 
+from mock import Mock, patch
 from nose.tools import eq_
 from waffle import Sample, Switch
 
@@ -23,7 +24,8 @@ class TestCheckPaypal(amo.tests.TestCase):
         self.addon = Addon.objects.get(pk=3615)
         self.addon.update(slug='test', status=amo.STATUS_PUBLIC)
         self.pks = ['3615']
-        Sample.objects.create(name='paypal-disabled-limit', percent=10.0)
+        Sample.objects.create(name='paypal-disabled-limit',
+                              percent=Decimal('10.0'))
         Switch.objects.create(name='paypal-disable', active=1)
 
     def get_check(self, passed, errors=[]):
