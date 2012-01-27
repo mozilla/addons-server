@@ -16,6 +16,12 @@ $(function() {
           $(this).closest('li').hide();
     }));
 
+    // Show password box if there's an error in it.
+    $('#acct-password .errorlist li').exists(function() {
+        $('#acct-password').show();
+        $('#change-acct-password').closest('li').hide();
+    });
+
     // Display image inline
     var $avatar = $('.profile-photo .avatar'),
         $a = $('<a>', {'text': gettext('use original'), 'class': 'use-original delete', 'href': '#'}).hide();
