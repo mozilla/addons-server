@@ -30,11 +30,10 @@ class dev {
         # # apache: before => Class[zamboni];
         # redis: before => Class[zamboni];
         # elasticsearch: before => Class[zamboni];
-        settings_local: ;
         # zamboni: before => Class[migrate];
+        zamboni_plus: ;
         # migrate: before => Class[custom];
         custom: ;
-        fix_ssh: ;
     }
 }
 
