@@ -11,7 +11,7 @@ $(function() {
     // Hide change password box
     $('#acct-password').hide();
     $('#change-acct-password').click(_pd(function() {
-          $('#acct-password').show();
+          $('#acct-password').fadeIn();
           $('#id_oldpassword').focus();
           $(this).closest('li').hide();
     }));
