@@ -43,10 +43,11 @@ def update_code(ctx, ref='origin/master'):
         ctx.local("git fetch && git fetch -t")
         ctx.local("git checkout -f %s" % ref)
         ctx.local("git submodule sync")
-        # submodule sync doesn't do --recursive yet.
-        with ctx.lcd("vendor"):
-            ctx.local("git submodule sync")
-        ctx.local("git submodule update --init --recursive")
+        # `submodule sync` doesn't do `--recursive` yet. (P.S. We `sync` twice
+        # to git around a git bug. I have kumar's blessing.)
+        ctx.local("git submodule --quiet foreach 'git submodule --quiet sync "
+                  "&& git submodule --quiet sync "
+                  "&& git submodule update --init --recursive'")
 
 
 @task
