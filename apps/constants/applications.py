@@ -1,4 +1,4 @@
-from versions.compare import version_int
+from versions.compare import version_int as vint
 from tower import ugettext_lazy as _
 
 from base import *
@@ -23,7 +23,7 @@ class FIREFOX(App):
     min_display_version = 3.0
     # These versions were relabeled and should not be displayed.
     exclude_versions = (3.1, 3.7, 4.2)
-    backup_version = version_int('3.7.*')
+    backup_version = vint('3.7.*')
     user_agent_string = 'Firefox'
     platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
@@ -108,7 +108,7 @@ class ANDROID(App):
     def matches_user_agent(cls, user_agent):
         match = cls.user_agent_re.search(user_agent)
         if match:
-            return cls.min_display_version <= float(match.groups()[0])
+            return vint(cls.min_display_version) <= vint(match.groups()[0])
 
 
 class MOZILLA(App):

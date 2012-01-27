@@ -96,8 +96,10 @@ class MiddlewareTest(test.TestCase):
         check('/en-US/', '/en-US/seamonkey/', 'Firefox SeaMonkey')
 
         # Android can found by its user agent.
+        check('/en-US/', '/en-US/android/', 'Fennec/12.0.1')
         check('/en-US/', '/en-US/android/', 'Fennec/12')
         check('/en-US/', '/en-US/android/', 'Fennec/11.0')
+        check('/en-US/', '/en-US/mobile/', 'Fennec/10.9.1')
         check('/en-US/', '/en-US/mobile/', 'Fennec/10.9')
 
     def test_get_lang(self):
