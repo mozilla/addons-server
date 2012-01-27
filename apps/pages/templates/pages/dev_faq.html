@@ -32,7 +32,7 @@
     <ul>
       <li><a href="#developing">{{ _('Developing an Add-on') }}</a></li>
       <li><a href="#support-resources">{{ _('Support Resources') }}</a></li>
-      <li><a href="#contributing">{{ _('Contributing your Addon') }}</a></li>
+      <li><a href="#contributing">{{ _('Contributing your Add-on') }}</a></li>
       <li><a href="#review-process">{{ _('Add-on Review Process') }}</a></li>
       <li><a href="#managing">{{ _('Managing Your Add-on') }}</a></li>
       <li><a href="#recommended-status">{{ _('Recommended Status') }}</a></li>
@@ -117,11 +117,12 @@
 
     <h3>{{ _('Where can I find documentation on building add-ons?') }}</h3>
     {# L10n: update the links to point to your locale if available #}
-    {% trans %}
-      <p>
+    <p>
+      {% trans %}
         All Mozilla documentation on add-on development including tutorials
         and APIs can be found via the <a href="https://developer.mozilla.org/En">Mozilla Developer Center</a>.
-    {% endtrans %}
+      {% endtrans %}
+    </p>
 
     <h3>{{ _('What is a ".xpi" file?') }}</h3>
     <p>
@@ -193,9 +194,9 @@
     <p>
       {# L10n: update the links to point to your locale if available #}
       {% trans %}
-        Details on testing your add-on are provided in the 
-        <a href="https://developer.mozilla.org/en/Building_an_Extension#Test">Testing</a> &amp; 
-        <a href="https://developer.mozilla.org/en/Building_an_Extension#Debugging_Extensions">Debugging Extensions</a> sections of the 
+        Details on testing your add-on are provided in the
+        <a href="https://developer.mozilla.org/en/Building_an_Extension#Test">Testing</a> &amp;
+        <a href="https://developer.mozilla.org/en/Building_an_Extension#Debugging_Extensions">Debugging Extensions</a> sections of the
         <a href="https://developer.mozilla.org/en/Building_an_Extension">Building an Extension tutorial</a>.
       {% endtrans %}
     </p>
@@ -227,7 +228,7 @@
         it once the application has finished. Leak testing allows you to
         pinpoint which bit of code is causing the memory leak. The following
         is a good <a href="https://wiki.mozilla.org/Performance:Leak_Tools">guide to
-        finding tools and strategies</a> that help manage leak testing. 
+        finding tools and strategies</a> that help manage leak testing.
         Mozilla's Carsten Book has also written an excellent HOW-TO article
         on the subject of <a href="https://wiki.mozilla.org/QA:Home_Page:Firefox_3.0_TestPlan:Leaks:LeakTesting-How-To">leak
         testing in Firefox</a>.
@@ -239,7 +240,7 @@
       {# L10n: update the links to point to your locale if available #}
       {% trans %}
         Yes. Details on localizing your add-on can be found in the
-        <a href="https://developer.mozilla.org/en/Building_an_Extension#Localization">Building an Extension</a> 
+        <a href="https://developer.mozilla.org/en/Building_an_Extension#Localization">Building an Extension</a>
         tutorial as well as the
         <a href="https://developer.mozilla.org/en/Localization">Mozilla Developer Center Localization page</a>.
         <a href="http://www.babelzilla.org/">The BabelZilla project</a>
@@ -277,19 +278,19 @@
     </ul>
 
     <h3>{{ _('Does Mozilla offer development services?') }}</h3>
-    {{ _('No.') }}
-    
+    <p>{{ _('No.') }}</p>
+
     <h3>{{ _('Are there 3rd party developers that I can hire to build my add-on?') }}</h3>
     <p>
       {% trans %}
         Yes. You may find 3rd party developers via the <a href="http://www.mozilla.org/community/developer-forums.html#projectwide-forums">mozilla.jobs
         list</a>, <a href="http://forums.mozillazine.org/">mozillaZine
         forums</a> or <a href="http://consultants.mozdev.org/">MozDev</a>.
-        Please note that Mozilla does not offer developer recommendations
+        Please note that Mozilla does not offer developer recommendations.
       {% endtrans %}
     </p>
 
-    <h2 id="contributing">Contributing your Addon</h2>
+    <h2 id="contributing">Contributing your Add-on</h2>
 
     <h3>{{ _('Can I host my own add-on?') }}</h3>
     <p>
@@ -303,7 +304,7 @@
         and documentation.
       {% endtrans %}
     </p>
-    
+
     <h3>{{ _('Can Mozilla host my add-on?') }}</h3>
     <p>
       {% trans %}
@@ -312,7 +313,7 @@
         website.
       {% endtrans %}
     </p>
-    
+
     <h3>{{ _('What is AMO?') }}</h3>
     <p>
       {% trans %}
@@ -323,10 +324,15 @@
         add-on to a massive base of Mozilla users.
       {% endtrans %}
     </p>
-    
+
     <h3>{{ _('Does Mozilla keep my account information private?') }}</h3>
-    Yes. Our <a href="https://addons.mozilla.org/en-US/firefox/pages/privacy">Privacy Policy</a> describes how your information is managed by Mozilla.
-    
+    <p>
+      {% trans %}
+        Yes. Our <a href="https://addons.mozilla.org/en-US/firefox/pages/privacy">Privacy
+        Policy</a> describes how your information is managed by Mozilla.
+      {% endtrans %}
+    </p>
+
     <h3>{{ _('What are the "developer tools" listed on AMO?') }}</h3>
     <p>
       {% trans %}
@@ -336,7 +342,7 @@
         information, and review statistics.
       {% endtrans %}
     </p>
-    
+
     <h3>{{ _('Does Mozilla have a policy in place as to what is an acceptable submission?') }}</h3>
     <p>
       {% trans %}
@@ -357,11 +363,10 @@
         submit an add-on. Before submitting your add-on be sure to you have
         read the AMO <a href="https://wiki.mozilla.org/AMO:Editors/ReviewingGuide">Editors
         Reviewing Guide</a> to ensure that your add-on has met the guidelines
-        used by editors to review add-ons
-
+        used by editors to review add-ons.
       {% endtrans %}
     </p>
-    
+
     <h3>{{ _('What operating system do I choose for my add-on?') }}</h3>
     <p>
       {% trans %}
@@ -377,7 +382,7 @@
         targeting and the functionality of your add-on. If you're unsure of
         which category your add-on falls into, please choose "Other". The AMO
         team may re-categorize your add-on if it's determined that it's
-        better suited in a different category
+        better suited in a different category.
       {% endtrans %}
     </p>
 
@@ -411,25 +416,25 @@
 
     <h3>{{ _('Why must my add-on be reviewed?') }}</h3>
     <p>
-      {% trans %}
+      {% trans url='https://wiki.mozilla.org/AMO:Editors/ReviewingGuide' %}
         All add-ons submitted, whether new or updated, are reviewed to ensure
         that Mozilla users have a stable and safe experience. All add-ons
         submissions are reviewed using the guidelines outlined in the
-        <a href="https://wiki.mozilla.org/AMO:Editors/ReviewingGuide">Editors
+        <a href="{{ url }}">Editors
         Reviewing Guide</a>.
       {% endtrans %}
     </p>
 
     <h3>{{ _('Who reviews my add-on?') }}</h3>
     <p>
-      {% trans %}
+      {% trans url='https://wiki.mozilla.org/AMO:Editors/ReviewingGuide' %}
         Add-ons are reviewed by the AMO Editors, a group of talented
         developers that volunteer to help the Mozilla project by reviewing
-        add-ons to ensure a stable and safe experience for Mozilla users. 
+        add-ons to ensure a stable and safe experience for Mozilla users.
         When communicating with editors, please be courteous, patient and
         respectful as they are working hard to ensure that you're add-on is
-        setup correctly and follows the guidelines outlined in the <a href="https://wiki.mozilla.org/AMO:Editors/ReviewingGuide">Editors
-        Reviewing Guide</a>
+        setup correctly and follows the guidelines outlined in the <a href="{{ url }}">Editors
+        Reviewing Guide</a>.
       {% endtrans %}
     </p>
 
@@ -437,7 +442,7 @@
     <p>
       {% trans %}
         A complete explanation of the <a href="https://addons.mozilla.org/en-US/firefox/pages/sandbox">AMO
-        Sandbox</a> can be found <a href="https://addons.mozilla.org/en-US/firefox/pages/sandbox">here</a>
+        Sandbox</a> can be found <a href="https://addons.mozilla.org/en-US/firefox/pages/sandbox">here</a>.
       {% endtrans %}
     </p>
 
@@ -482,11 +487,11 @@
         Reviewing Guide</a> to ensure that your add-on is setup as expected.
         It's also a good idea to read the blog post, <a
         href="http://blog.mozilla.com/addons/2009/01/14/successfully-getting-your-addon-reviewed/">Successfully
-        Getting your Addon Reviewed</a> which provides excellent insight into
+        Getting your Add-on Reviewed</a> which provides excellent insight into
         ensuring a smooth review of your add-on.
       {% endtrans %}
     </p>
-    
+
     <h2 id="managing">{{ _('Managing Your Add-on') }}</h2>
 
     <h3>{{ _('How can I see how many times my add-on has been downloaded?') }}</h3>
