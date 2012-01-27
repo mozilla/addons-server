@@ -55,7 +55,8 @@ $(function() {
     });
 });
 
-$('#admin-login').click(function() {
-  window.location = $(this).attr('data-url');
-});
 
+// Hijack "Admin / Editor Log in" context menuitem.
+$('#admin-login').click(function() {
+    window.location = $(this).attr('data-url');
+});

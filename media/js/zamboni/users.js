@@ -1,3 +1,9 @@
+// Hijack "Admin / Editor Log in" context menuitem.
+$('#admin-login').click(function() {
+    window.location = $(this).attr('data-url');
+});
+
+
 // Recaptcha
 var RecaptchaOptions = { theme : 'custom' };
 
@@ -15,4 +21,3 @@ $('#recaptcha_help').click(function(e) {
     e.preventDefault();
     Recaptcha.showhelp();
 });
-
