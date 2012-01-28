@@ -3,17 +3,32 @@ var purchases = {
         $("#contribute-why").popup("#contribute-more-info", {
             pointTo: "#contribute-more-info"
         });
+        $('.price-wrapper a').live('click', _pd(function(event) {
+            /* Update the currency from the drop down. */
+            var $w = $('.price-wrapper');
+            $(this).hide().next().show();
+            $w.find('select').live('change', _pd(function(event) {
+                $w.find('.price').text(
+                    $w.find('option:selected').attr('data-display')
+                );
+            }));
+        }));
         $('button.paypal').live('click', function(event) {
             var el = this,
-                url = $(el).closest('form').attr('action') + '&result_type=json',
-                classes = 'ajax-loading loading-submit disabled';
+                classes = 'ajax-loading loading-submit disabled',
+                url = $(el).closest('form').attr('action'),
+                data = { result_type: 'json' };
+            if ($('.price-wrapper option:selected').length) {
+                data.currency = $('.price-wrapper option:selected').val();
+            }
             if ($(el).attr('data-realurl')) {
-                url += '&realurl=' + encodeURIComponent($(el).attr('data-realurl'));
+                data.realurl = encodeURIComponent($(el).attr('data-realurl'));
             }
             $(el).addClass(classes);
             $.ajax({
                 type: 'POST',
                 url: url,
+                data: data,
                 dataType: 'json',
                 /* false so that the action is considered within bounds of
                  * user interaction and does not trigger the Firefox popup blocker.
@@ -155,7 +170,7 @@ var purchases = {
     install_app: function(url, receipt) {
         var data = {};
         if(receipt) {
-            data['receipt'] = receipt;
+            data.receipt = receipt;
         }
         apps.install(url, {data: data});
     }
@@ -225,8 +240,8 @@ var contributions = {
                 success: function(json) {
                     if (json.status == 'COMPLETED') {
                         /* If pre approval returns, close show a thank you. */
-                        $self.find('#paypal-complete').show()
-                        $self.find('#contribute-actions').hide()
+                        $self.find('#paypal-complete').show();
+                        $self.find('#contribute-actions').hide();
                     } else if (json.paykey) {
                         /* This is supposed to be a global */
                         //dgFlow = new PAYPAL.apps.DGFlow({expType:'mini'});

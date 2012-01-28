@@ -1,5 +1,4 @@
 from decimal import Decimal
-import json
 
 
 import mock
@@ -8,8 +7,7 @@ from nose.tools import eq_
 from addons.models import Addon
 import amo
 import amo.tests
-from amo.urlresolvers import reverse
-from market.models import AddonPremium, PreApprovalUser, Price
+from market.models import AddonPremium, PreApprovalUser, Price, PriceCurrency
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -107,6 +105,15 @@ class TestPrice(amo.tests.TestCase):
         prices = list(Price.objects.filter(pk=1))
         with self.assertNumQueries(0):
             eq_(prices[0].get_price_locale(), u'$0.99')
+
+    def test_get_tier_price(self):
+        eq_(PriceCurrency.objects.get(pk=3).get_price_locale(), 'R$1.01')
+
+    def test_currencies(self):
+        currencies = Price.objects.get(pk=1).currencies()
+        eq_(len(currencies), 3)
+        eq_(currencies[0][0], '')  # This is USD.
+        eq_(currencies[1][1].currency, 'CAD')
 
 
 class TestContribution(amo.tests.TestCase):

@@ -27,7 +27,8 @@ from abuse.models import AbuseReport
 from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
                            Charity)
 from files.models import File
-from market.models import AddonPremium, AddonPurchase, PreApprovalUser, Price
+from market.models import (AddonPremium, AddonPurchase, PreApprovalUser,
+                           Price, PriceCurrency)
 from paypal import PaypalError, PaypalDataError
 from paypal.tests.test import other_error
 from stats.models import Contribution
@@ -315,6 +316,9 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         AddonPremium.objects.create(addon=self.addon, price_id=1)
         self.purchase_url = reverse('addons.purchase', args=[self.addon.slug])
         self.client.login(username='regular@mozilla.com', password='password')
+        self.brl = PriceCurrency.objects.create(currency='BRL',
+                                                price=Decimal('0.5'),
+                                                tier_id=1)
 
     def test_premium_only(self):
         self.addon.update(premium_type=amo.ADDON_FREE)
@@ -337,10 +341,32 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
 
     @fudge.patch('paypal.get_paykey')
     def test_paykey_amount(self, get_paykey):
+        def check(*args, **kw):
+            return args[0]['amount'] == Decimal('0.99')
         (get_paykey.expects_call()
-                   .with_matching_args(amount=Decimal('0.99'))
+                   .with_args(arg.passes_test(check))
                    .returns(('some-pay-key', '')))
         self.client.post_ajax(self.purchase_url)
+
+    @fudge.patch('paypal.get_paykey')
+    def test_paykey_currency(self, get_paykey):
+        def check(*args, **kw):
+            return (args[0]['currency'] == 'BRL' and
+                    args[0]['amount'] == Decimal('0.50'))
+        (get_paykey.expects_call()
+                   .with_args(arg.passes_test(check))
+                   .returns(('some-pay-key', '')))
+        self.client.post_ajax(self.purchase_url, data={'currency': 'BRL'})
+
+    @fudge.patch('paypal.get_paykey')
+    def test_paykey_invalid_currency(self, get_paykey):
+        def check(*args, **kw):
+            return (args[0]['currency'] == 'USD' and
+                    args[0]['amount'] == Decimal('0.99'))
+        (get_paykey.expects_call()
+                   .with_args(arg.passes_test(check))
+                   .returns(('some-pay-key', '')))
+        self.client.post_ajax(self.purchase_url, data={'tier': 0})
 
     @fudge.patch('paypal.get_paykey')
     def test_paykey_error(self, get_paykey):
@@ -415,8 +441,8 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         r = lambda s: 'receiverList.receiver(0).email' in s
         (_call.expects_call()
               .with_matching_args(arg.any(), arg.passes_test(r))
-              .returns({'payKey':'some-pay-key',
-                        'paymentExecStatus':'COMPLETED'}))
+              .returns({'payKey': 'some-pay-key',
+                        'paymentExecStatus': 'COMPLETED'}))
         self.client.post_ajax(self.purchase_url)
 
     @patch('addons.models.Addon.has_purchased')
@@ -664,6 +690,17 @@ class TestPaypalStart(PaypalStart):
         res = self.client.get_ajax(self.url)
         eq_(pq(res.content).find('button.paypal').attr('data-thanksurl'),
             shared_url('addons.purchase.thanks', self.addon))
+
+    def test_no_currency(self):
+        res = self.client.get_ajax(self.url)
+        eq_(pq(res.content).find('option').length, 0)
+
+    def test_currency(self):
+        self.brl = PriceCurrency.objects.create(currency='BRL',
+                                                price=Decimal('0.5'),
+                                                tier_id=self.price.pk)
+        res = self.client.get_ajax(self.url)
+        eq_(pq(res.content).find('option').length, 2)
 
 
 @patch.object(waffle, 'switch_is_active', lambda x: True)

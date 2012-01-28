@@ -51,7 +51,11 @@ class Price(amo.models.ModelBase):
                                  for p in PriceCurrency.objects.all())
 
     def _price(self):
-        """Return the price and currency for the current locale."""
+        """
+        Return the price and currency for the current locale.
+        This will take the locale and find the tier, should one
+        exist.
+        """
         if not hasattr(self, '_currencies'):
             Price.transformer([])
 
@@ -74,6 +78,17 @@ class Price(amo.models.ModelBase):
         price, currency, locale = self._price()
         return numbers.format_currency(price, currency, locale=locale)
 
+    def currencies(self):
+        """A listing of all the currency objects for this tier."""
+        if not hasattr(self, '_currencies'):
+            Price.transformer([])
+
+        currencies = [('', self)]  # This is USD, which is the default.
+        currencies.extend([(c.currency, c)
+                           for c in self._currencies.values()
+                           if c.tier_id == self.pk])
+        return currencies
+
 
 class PriceCurrency(amo.models.ModelBase):
     currency = models.CharField(max_length=10,
@@ -84,6 +99,13 @@ class PriceCurrency(amo.models.ModelBase):
     class Meta:
         db_table = 'price_currency'
         verbose_name = 'Price currencies'
+
+    def get_price_locale(self):
+        """Return the price as a nicely localised string for the locale."""
+        lang = translation.get_language()
+        locale = Locale(translation.to_locale(lang))
+        return numbers.format_currency(self.price, self.currency,
+                                       locale=locale)
 
     def __unicode__(self):
         return u'%s, %s: %s' % (self.tier, self.currency, self.price)

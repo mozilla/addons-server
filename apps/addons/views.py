@@ -34,6 +34,7 @@ from amo import urlresolvers
 from amo.urlresolvers import reverse
 from abuse.models import send_abuse_report
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
+from market.forms import PriceCurrencyForm
 import paypal
 from reviews.forms import ReviewForm
 from reviews.models import Review, GroupedRating
@@ -500,8 +501,18 @@ def purchase(request, addon):
     uuid_ = hashlib.md5(str(uuid.uuid4())).hexdigest()
     # l10n: {0} is the addon name
     contrib_for = _(u'Purchase of {0}').format(jinja2.escape(addon.name))
-    paykey, status, error = '', '', ''
 
+    # Default is USD.
+    amount, currency = addon.premium.get_price(), 'USD'
+
+    # If tier is specified, then let's look it up.
+    form = PriceCurrencyForm(data=request.POST, price=addon.premium.price)
+    if form.is_valid():
+        tier = form.get_tier()
+        if tier:
+            amount, currency = tier.price, tier.currency
+
+    paykey, status, error = '', '', ''
     preapproval = None
     if waffle.flag_is_active(request, 'allow-pre-auth') and request.amo_user:
         preapproval = request.amo_user.get_preapproval()
@@ -516,6 +527,7 @@ def purchase(request, addon):
         paykey, status = paypal.get_paykey(dict(
                     amount=amount,
                     chains=settings.PAYPAL_CHAINS,
+                    currency=currency,
                     email=addon.paypal_id,
                     ip=request.META.get('REMOTE_ADDR'),
                     memo=contrib_for,
@@ -756,7 +768,8 @@ def paypal_result(request, addon, status):
 def paypal_start(request, addon=None):
     download = urlparse(request.GET.get('realurl', '')).path
     data = {'addon': addon, 'is_ajax': request.is_ajax(),
-            'download': download}
+            'download': download,
+            'currencies': addon.premium.price.currencies()}
 
     if request.user.is_authenticated():
         return jingo.render(request, 'addons/paypal_start.html', data)

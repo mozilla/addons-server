@@ -29,7 +29,19 @@
   <h2>{{ _('Purchase Add-on') }}</h2>
   {% endif %}
   <div class="paypal-content">
-    <span class="price">{{ addon.premium.get_price_locale() }}</span>
+    <div class="price-wrapper">
+      <span class="price">{{ addon.premium.get_price_locale() }}</span>
+      {% if currencies|length > 1 %}
+        <br />
+        <a href="#">change currency</a>
+        <select name="currency" class="js-hidden">
+          {% for pk, currency in currencies %}
+          <option value="{{ pk }}" data-display="{{ currency.get_price_locale() }}">{{ amo.PAYPAL_CURRENCIES[currency.currency] }}</option>
+          {% endfor %}
+        </select>
+      </span>
+      {% endif %}
+    </div>
     <h5>{{ addon.name }}</h5>
     <div class="paypal-links">
       {# TODO(apps): Add a link to purchase info.
