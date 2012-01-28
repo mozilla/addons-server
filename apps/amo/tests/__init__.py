@@ -374,6 +374,12 @@ class ESTestCase(TestCase):
         cls.es.refresh(settings.ES_INDEXES[index], timesleep=0)
 
     @classmethod
+    def reindex(cls, model):
+        # Emit post-save signal so all of the objects get reindexed.
+        [o.save() for o in model.objects.all()]
+        cls.refresh()
+
+    @classmethod
     def add_addons(cls):
         addon_factory(name='user-disabled', disabled_by_user=True)
         addon_factory(name='admin-disabled', status=amo.STATUS_DISABLED)

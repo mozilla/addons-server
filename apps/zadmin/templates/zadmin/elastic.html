@@ -2,6 +2,10 @@
 
 {% block title %}Elastic Search {{ super() }}{% endblock %}
 
+{% block extrahead %}
+<style>form { margin-bottom: 1em }</style>
+{% endblock %}
+
 {% block content %}
 <ul>
   <li><a href="#mapping">Mappings</a></li>
@@ -12,8 +16,7 @@
 <h3 id="mapping">Mappings</h3>
 <form method="post" action="">
   {{ csrf() }}
-  <input name="reset" placeholder="mapping name">
-  <button>Reset</button>
+  <button name="recreate" value="1">Recreate {{ index }} index</button>
 </form>
 <form method="post" action="">
   {{ csrf() }}

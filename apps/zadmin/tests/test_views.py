@@ -1672,16 +1672,16 @@ class TestCompat(amo.tests.ESTestCase):
                        app=self.app, app_version=app_version)
 
     def test_minor_versions(self):
-       addon = self.populate()
-       self.generate_reports(addon, good=0, bad=1, app=self.app,
-                             app_version=self.app_version)
-       self.generate_reports(addon, good=1, bad=2, app=self.app,
-                             app_version=self.app_version + 'a2')
+        addon = self.populate()
+        self.generate_reports(addon, good=0, bad=1, app=self.app,
+                              app_version=self.app_version)
+        self.generate_reports(addon, good=1, bad=2, app=self.app,
+                              app_version=self.app_version + 'a2')
 
-       tr = self.get_pq(ratio=0.0, minimum=0).find('tr[data-guid="%s"]' %
-                                                   addon.guid)
-       self.check_row(tr, addon, good=1, bad=3, percentage='75.0',
-                      app=self.app, app_version=self.app_version)
+        tr = self.get_pq(ratio=0.0, minimum=0).find('tr[data-guid="%s"]' %
+                                                    addon.guid)
+        self.check_row(tr, addon, good=1, bad=3, percentage='75.0',
+                       app=self.app, app_version=self.app_version)
 
     def test_ratio(self):
         addon = self.populate()
@@ -1735,6 +1735,34 @@ class TestMemcache(amo.tests.TestCase):
     def test_cant_clear(self):
         self.client.post(self.url, {'yes': 0})
         eq_(cache.get('foo'), 'bar')
+
+
+class TestElastic(amo.tests.ESTestCase):
+    fixtures = ['base/addon_3615', 'base/users']
+
+    def setUp(self):
+        self.url = reverse('zadmin.elastic')
+        self.client.login(username='admin@mozilla.com', password='password')
+
+    def test_login(self):
+        self.client.logout()
+        self.assertRedirects(self.client.get(self.url),
+            reverse('users.login') + '?to=/en-US/admin/elastic')
+
+    @mock.patch('zadmin.views.elasticutils')
+    @mock.patch('zadmin.views.addons.search')
+    def test_recreate_index(self, search, es):
+        self.client.post(self.url, {'recreate': 1})
+        index = settings.ES_INDEXES['default']
+        index in es.get_es().delete_index_if_exists.call_args_list[0][0]
+        assert search.setup_mapping.called
+        index in es.get_es().create_index_if_missing.call_args_list[0][0]
+
+    def test_reindex_addons(self):
+        eq_(list(Addon.search()), [])
+        self.client.post(self.url, {'reindex': 'addons'})
+        self.refresh()
+        eq_(list(Addon.search()), list(Addon.objects.all()))
 
 
 class TestEmailDevs(amo.tests.TestCase):

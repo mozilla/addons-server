@@ -531,30 +531,30 @@ def monthly_pick(request):
 def elastic(request):
     INDEX = site_settings.ES_INDEXES['default']
     es = elasticutils.get_es()
-    mappings = {'addons': (addons.search.setup_mapping,
-                           addons.cron.reindex_addons),
-                'collections': (addons.search.setup_mapping,
-                                bandwagon.cron.reindex_collections),
-                'compat': (addons.search.setup_mapping, None),
-                'users': (addons.search.setup_mapping,
-                          users.cron.reindex_users),
+    mappings = {'addons': addons.cron.reindex_addons,
+                'collections': bandwagon.cron.reindex_collections,
+                'compat': None,
+                'users': users.cron.reindex_users,
                }
     if request.method == 'POST':
-        if request.POST.get('reset') in mappings:
-            name = request.POST['reset']
-            es.delete_mapping(INDEX, name)
-            if mappings[name][0]:
-                mappings[name][0]()
-            messages.info(request, 'Resetting %s.' % name)
+        if request.POST.get('recreate'):
+            es.delete_index_if_exists(INDEX)
+            # We must set up the mappings before we create the index again.
+            addons.search.setup_mapping()
+            es.create_index_if_missing(INDEX)
+            messages.info(request, 'Deleting %s index.' % INDEX)
         if request.POST.get('reindex') in mappings:
             name = request.POST['reindex']
-            mappings[name][1]()
+            # Reindex.
+            if mappings.get(name):
+                mappings[name]()
             messages.info(request, 'Reindexing %s.' % name)
         return redirect('zadmin.elastic')
 
     indexes = set(site_settings.ES_INDEXES.values())
     mappings = es.get_mapping(None, indexes)
     ctx = {
+        'index': INDEX,
         'nodes': es.cluster_nodes(),
         'health': es.cluster_health(),
         'state': es.cluster_state(),
