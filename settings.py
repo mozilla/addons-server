@@ -86,8 +86,8 @@ DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
 # For use django-mysql-pool backend.
 DATABASE_POOL_ARGS = {
     'max_overflow': 10,
-    'pool_size':5,
-    'recycle':300
+    'pool_size': 5,
+    'recycle': 300
 }
 
 # Put the aliases for your slave databases in this list.
@@ -112,8 +112,8 @@ AMO_LANGUAGES = (
     'uk', 'vi', 'zh-CN', 'zh-TW',
 )
 
-# Not shown on the site, but .po files exist and these are available on the L10n
-# dashboard.  Generally languages start here and move into AMO_LANGUAGES.
+# Not shown on the site, but .po files exist and these are available on the
+# L10n dashboard.  Generally languages start here and move into AMO_LANGUAGES.
 HIDDEN_LANGUAGES = ('cy', 'sr', 'sr-Latn', 'tr')
 
 
@@ -1189,6 +1189,7 @@ EXPOSE_VALIDATOR_TRACEBACKS = False
 # Feature flags
 SEARCH_EXCLUDE_PERSONAS = True
 UNLINK_SITE_STATS = True
+POTCH_MARKETPLACE_EXPERIMENTS = False
 
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = True
