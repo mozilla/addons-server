@@ -13,3 +13,6 @@
 [submodule "vendor"]
 	path = vendor
 	url = git://github.com/mozilla/zamboni-lib.git
+[submodule "media/marketplace-experiments/bootstrap"]
+	path = media/marketplace-experiments/bootstrap
+	url = git://github.com/mozilla/bootstrap.git

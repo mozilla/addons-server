@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="{{ LANG }}" dir="{{ DIR }}">
+  <head>
+    <meta charset="utf-8">
+    {% if not settings.ENGAGE_ROBOTS %}
+      <meta name="robots" content="noindex">
+    {% endif %}
+    {% block extrameta %}{% endblock %}
+    <title>{% block title %}{{ _('Mozilla Marketplace') }}{% endblock %}</title>
+
+    <link rel="shortcut icon" type="image/x-icon"
+          href="{{ MEDIA_URL}}img/favicon.ico">
+
+    {# L10n: {0} is an application, like Firefox. #}
+    <link title="{{ _('{0} Add-ons')|f(APP.pretty) }}"
+          rel="search" type="application/opensearchdescription+xml"
+          href="{{ url('amo.opensearch') }}" />
+
+    {% block site_css %}
+      {{ css('marketplace-experiments') }}
+      <!--[if lt IE 9]>
+        <script src="{{ media('js/lib/iepp.min.js') }}"></script>
+      <![endif]-->
+      <!--[if lte IE 9]>
+        <link rel="stylesheet" href="{{ media('css/legacy/ie9.css') }}">
+      <![endif]-->
+    {% endblock %}
+
+    {% block extrahead %}{% endblock %}
+
+    {% if request.user.is_authenticated() %}
+      <meta name="csrf" content="{{ csrf_token }}">
+    {% endif %}
+  </head>
+  <body class="html-{{ DIR }} {% block bodyclass %}{% endblock %}"
+        data-anonymous="{{ (not request.user.is_authenticated())|json }}"
+        data-readonly="{{ settings.READ_ONLY|json }}"
+        data-media-url="{{ MEDIA_URL }}"
+        {% if waffle.switch('marketplace') and request.amo_user %}
+        data-purchases="{{ request.amo_user.purchase_ids()|join(",") }}"
+        {% endif %}
+        data-collect-timings="{{ url('amo.timing.record') }}:{{ collect_timings_percent }}"
+        {% block bodyattrs %}{% endblock %}>
+
+    <header id="#site-header">
+    </header>
+
+    <div id="page" class="c">
+    </div>
+
+    <footer>
+    </footer>
+
+    {# js #}
+    {% block site_js %}
+      <script src="{{ static(url('jsi18n')) }}"></script>
+      {% if settings.APP_PREVIEW %}
+        <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script>
+      {% endif %}
+      {% if waffle.switch('browserid-login') %}
+        <script async defer src="https://browserid.org/include.js"></script>
+      {% endif %}
+      {{ js('marketplace-experiments') }}
+      <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
+      <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
+    {% endblock %}
+  </body>
+</html>

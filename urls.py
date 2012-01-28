@@ -166,6 +166,13 @@ urlpatterns = patterns('',
 
 )
 
+# Marketplace UI Experiments
+if settings.POTCH_MARKETPLACE_EXPERIMENTS:
+    urlpatterns += patterns('',
+        ('^marketplace-experiments/', include('marketplace-experiments.urls'))
+    )
+
+
 urlpatterns += patterns('piston.authentication.oauth.views',
     url(r'^oauth/request_token/$', 'get_request_token',
         name='oauth.request_token'),

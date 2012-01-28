@@ -221,8 +221,9 @@ ADMIN_MEDIA_PREFIX = '/admin-media/'
 
 # paths that don't require an app prefix
 SUPPORTED_NONAPPS = ('admin', 'apps', 'blocklist', 'developers', 'editors',
-                     'img', 'jsi18n', 'localizers', 'media', 'robots.txt',
-                     'statistics', 'services')
+                     'img', 'jsi18n', 'localizers', 'media',
+                     'marketplace-experiments', 'robots.txt', 'statistics',
+                     'services')
 DEFAULT_APP = 'firefox'
 
 # paths that don't require a locale prefix
@@ -350,6 +351,7 @@ INSTALLED_APPS = (
     'files',
     'jingo_minify',
     'market',
+    'marketplace-experiments',
     'localizers',
     'pages',
     'perf',
@@ -552,6 +554,8 @@ MINIFY_BUNDLES = {
             'css/zamboni/admin-django.css',
             'css/zamboni/admin-mozilla.css',
             'css/zamboni/admin_features.css'
+        ),
+        'marketplace-experiments': (
         ),
     },
     'js': {
@@ -833,6 +837,8 @@ MINIFY_BUNDLES = {
             'js/debug/less_setup.js',
             'js/lib/less-1.1.4.js',
             'js/debug/less_live.js',
+        ),
+        'marketplace-experiments': (
         ),
     }
 }
