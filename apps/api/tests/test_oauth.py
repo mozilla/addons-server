@@ -227,6 +227,36 @@ class TestBaseOAuth(BaseOAuth):
         r = client.get('oauth.request_token', c, callback=True)
         eq_(r.content, 'Invalid Consumer.')
 
+    def test_user(self):
+        r = client.get('api.user', self.accepted_consumer, self.token)
+        eq_(json.loads(r.content), {'email': 'editor@mozilla.com'})
+
+    def test_user_lookup(self):
+        partner = User.objects.get(email='partner@mozilla.com')
+        c = Consumer(name='p', status='accepted',
+                     user=partner)
+        c.generate_random_codes()
+        c.save()
+        r = client.get('api.user', c, None,
+                       params={'email': 'admin@mozilla.com'})
+        eq_(r.status_code, 200)
+        eq_(json.loads(r.content), {'email': 'admin@mozilla.com'})
+
+    def test_failed_user_lookup(self):
+        partner = User.objects.get(email='partner@mozilla.com')
+        c = Consumer(name='p', status='accepted',
+                     user=partner)
+        c.generate_random_codes()
+        c.save()
+        r = client.get('api.user', c, None,
+                       params={'email': 'not_a_user@mozilla.com'})
+        eq_(r.status_code, 404)
+
+    def test_forbidden_user_lookup(self):
+        r = client.get('api.user', self.accepted_consumer, self.token,
+                       params={'email': 'admin@mozilla.com'})
+        eq_(r.status_code, 401)
+
     @patch('piston.authentication.oauth.OAuthAuthentication.is_authenticated')
     def _test_auth(self, pk, is_authenticated, two_legged=True):
         request = RequestFactory().get('/en-US/firefox/2/api/2/user/',

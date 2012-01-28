@@ -79,6 +79,16 @@ class UserHandler(BaseHandler):
     fields = ('email',)
 
     def read(self, request):
+        email = request.GET.get('email')
+        if email:
+            if acl.action_allowed(request, 'Partners', 'UserLookup'):
+                try:
+                    return UserProfile.objects.get(email=email)
+                except UserProfile.DoesNotExist:
+                    return rc.NOT_FOUND
+            else:
+                return rc.FORBIDDEN
+
         return request.amo_user
 
 
