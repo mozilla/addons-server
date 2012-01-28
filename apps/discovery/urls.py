@@ -39,6 +39,8 @@ urlpatterns = patterns('',
     url('^%s$' % (browser_re + compat_mode_re), pane_redirect),
     url('^pane/%s$' % (browser_re + compat_mode_re), views.pane,
         name='discovery.pane'),
+    url('^pane/promos/%s$' % (browser_re + compat_mode_re), views.pane_promos,
+        name='discovery.pane.promos'),
     url('^modules$', views.module_admin, name='discovery.module_admin'),
     url('^what-the-rec$', views.recs_debug, name='discovery.recs.debug'),
 )

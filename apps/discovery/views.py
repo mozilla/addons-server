@@ -48,8 +48,7 @@ def pane(request, version, platform, compat_mode='strict'):
     promovideo = PromoVideoCollection().get_items()
 
     return jingo.render(request, 'discovery/pane.html',
-                        {'modules': get_modules(request, platform, version),
-                         'up_and_coming': from_api('hotness'),
+                        {'up_and_coming': from_api('hotness'),
                          'featured_addons': from_api('featured'),
                          'featured_personas': get_featured_personas(request),
                          'version': version, 'platform': platform,
@@ -65,6 +64,17 @@ def pane_account(request):
 
     return jingo.render(request, 'discovery/pane_account.html',
                         {'addon_downloads': addon_downloads})
+
+
+def promos(request, context, version, platform, compat_mode='strict'):
+    platform = amo.PLATFORM_DICT.get(version.lower(), amo.PLATFORM_ALL)
+    modules = get_modules(request, platform.api_name, version)
+    return jingo.render(request, 'addons/impala/homepage_promos.html',
+                        {'modules': modules, 'module_context': context})
+
+
+def pane_promos(request, version, platform, compat_mode='strict'):
+    return promos(request, 'discovery', version, platform, compat_mode)
 
 
 def pane_more_addons(request, section, version, platform):

@@ -1,7 +1,6 @@
 import json
 
 from django import test
-from django.conf import settings
 from django.core.cache import cache
 
 import mock
@@ -177,7 +176,6 @@ class TestRecs(amo.tests.TestCase):
         eq_(one['token2'], two['token2'])
         # assert one['recommendations'] != two['recommendations']
         assert one['addons'] != two['addons']
-        eq_(CollectionToken.objects.count(), 1)
         eq_(len(Collection.objects.filter(type=amo.COLLECTION_SYNCHRONIZED)),
             2)
 
@@ -255,17 +253,44 @@ class TestUrls(amo.tests.TestCase):
 class TestPromos(amo.tests.TestCase):
     fixtures = ['discovery/discoverymodules']
 
-    def setUp(self):
-        self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
+    def get_disco_url(self, platform, version):
+        return reverse('discovery.pane.promos', args=[platform, version])
 
-    def test_promos_visible(self):
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('#promos').length, 1)
+    def get_home_url(self):
+        return reverse('addons.homepage_promos')
 
-    def test_promos_hidden(self):
+    def test_no_params(self):
+        r = self.client.get(self.get_home_url())
+        eq_(r.status_code, 404)
+
+    def test_mac(self):
+        # Ensure that we get the same thing for the homepage promos.
+        r_mac = self.client.get(self.get_home_url(),
+                                {'version': '10.0', 'platform': 'mac'})
+        r_darwin = self.client.get(self.get_disco_url('10.0', 'Darwin'))
+        eq_(r_mac.status_code, 200)
+        eq_(r_darwin.status_code, 200)
+        eq_(r_mac.content, r_darwin.content)
+        panels = pq(r_mac.content)('.panel')
+        eq_(panels.length, 1)
+        eq_(panels.find('.ryff').length, 1)
+
+    def test_win(self):
+        r_win = self.client.get(self.get_home_url(),
+                                {'version': '10.0', 'platform': 'win'})
+        r_winnt = self.client.get(self.get_disco_url('10.0', 'WINNT'))
+        eq_(r_win.status_code, 200)
+        eq_(r_winnt.status_code, 200)
+        eq_(r_win.content, r_winnt.content)
+        panels = pq(r_win.content)('.panel')
+        eq_(panels.length, 1)
+        eq_(panels.find('.ryff').length, 1)
+
+    def test_hidden(self):
         DiscoveryModule.objects.all().delete()
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('#promos').length, 0)
+        r = self.client.get(self.get_disco_url('10.0', 'Darwin'))
+        eq_(r.status_code, 200)
+        eq_(r.content, '')
 
 
 class TestPane(amo.tests.TestCase):
@@ -466,7 +491,9 @@ class TestMonthlyPick(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'discovery/discoverymodules']
 
     def setUp(self):
-        self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
+        self.url = reverse('addons.homepage_promos')
+        self.vars = {'version': '5.0', 'platform': 'mac',
+                     'context': 'discovery'}
         self.addon = Addon.objects.get(id=3615)
         DiscoveryModule.objects.create(
             app=Application.objects.get(id=amo.FIREFOX.id), ordering=4,
@@ -475,10 +502,11 @@ class TestMonthlyPick(amo.tests.TestCase):
     def test_monthlypick(self):
         mp = MonthlyPick.objects.create(addon=self.addon, blurb='BOOP',
                                         image='http://mozilla.com')
-        r = self.client.get(self.url)
+        r = self.client.get(self.url, self.vars)
         eq_(pq(r.content)('#monthly').length, 0)
         mp.update(locale='')
-        r = self.client.get(self.url)
+
+        r = self.client.get(self.url, self.vars)
         pick = pq(r.content)('#monthly')
         eq_(pick.length, 1)
         a = pick.find('h3 a')
@@ -493,22 +521,22 @@ class TestMonthlyPick(amo.tests.TestCase):
                 .endswith('?src=discovery-promo'), True)
 
     def test_monthlypick_no_image(self):
-        mp = MonthlyPick.objects.create(addon=self.addon, blurb='BOOP',
-                                        locale='', image='')
+        MonthlyPick.objects.create(addon=self.addon, blurb='BOOP', locale='',
+                                   image='')
 
         # Tests for no image when screenshot not set.
-        r = self.client.get(self.url)
+        r = self.client.get(self.url, self.vars)
         pick = pq(r.content)('#monthly')
         eq_(pick.length, 1)
         eq_(pick.find('img').length, 0)
 
         # Tests for screenshot image when set.
-        p = Preview.objects.create(addon=self.addon)
-        r = self.client.get(self.url)
+        Preview.objects.create(addon=self.addon)
+        r = self.client.get(self.url, self.vars)
         pick = pq(r.content)('#monthly')
         eq_(pick.length, 1)
         eq_(pick.find('img').attr('src'), self.addon.all_previews[0].image_url)
 
     def test_no_monthlypick(self):
-        r = self.client.get(self.url)
+        r = self.client.get(self.url, self.vars)
         eq_(pq(r.content)('#monthly').length, 0)
