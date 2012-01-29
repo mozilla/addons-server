@@ -3,9 +3,11 @@
 # https://github.com/mitchellh/vagrant/issues/516
 echo "Running ./project/vagrant/bin/start.sh"
 cd ~/project
+echo "Seeding product details JSON..."
+./scripts/seed-prod-details.sh
 echo 'Checking for DB migrations...'
 python ./vendor/src/schematic/schematic migrations/
 if [ $? -eq 0 ]; then
-    echo 'Starting the server...'
+    echo "Running python manage.py runserver 0.0.0.0:8000"
     python manage.py runserver 0.0.0.0:8000
 fi

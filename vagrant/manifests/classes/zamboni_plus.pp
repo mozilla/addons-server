@@ -23,7 +23,7 @@ class zamboni_plus {
         require => File["/etc/ssh/ssh_config"]
     }
 
-    package { "screen":
+    package { ["screen", "subversion"]:
         ensure => installed
     }
 
