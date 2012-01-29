@@ -5,6 +5,7 @@ settings_local.py*
 .vagrant
 pip-log.txt
 docs/_gh-pages
+lib/product_json/.gitignore
 lib/product_json/*.json
 lib/product_json/.last_update
 lib/product_json/regions/*.json
