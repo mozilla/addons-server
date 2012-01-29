@@ -447,5 +447,27 @@
             "modified": null,
             "created": "2007-03-05 13:09:25"
         }
+    },
+    {
+        "pk": 403,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 10000000001100,
+            "application": 61,
+            "version": "10.0a1",
+            "modified": null,
+            "created": null
+        }
+    },
+    {
+        "pk": 404,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 12990000200100,
+            "application": 61,
+            "version": "12.*",
+            "modified": null,
+            "created": null
+        }
     }
 ]

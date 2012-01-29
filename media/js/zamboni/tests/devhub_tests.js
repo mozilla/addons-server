@@ -325,8 +325,7 @@ module('addon platform chooser', {
         this.sandbox.remove();
     },
     check: function(sel) {
-        $(sel, this.sandbox).attr('checked', 'checked');
-        $(sel, this.sandbox).trigger('change');
+        $(sel, this.sandbox).attr('checked', 'checked').trigger('change');
     }
 });
 
@@ -445,7 +444,7 @@ module('exclude platforms', {
     }
 });
 
-test('mobile', function() {
+test('mobile / android', function() {
     var sb = this.sandbox;
     results = {
         validation: {
@@ -466,19 +465,13 @@ test('mobile', function() {
                        [{name: 'somefile.txt'}, results]);
 
     // All desktop platforms disabled:
-    equals($('.desktop-platforms input:eq(0)', sb).attr('disabled'), 'disabled');
-    equals($('.desktop-platforms input:eq(1)', sb).attr('disabled'), 'disabled');
-    equals($('.desktop-platforms input:eq(2)', sb).attr('disabled'), 'disabled');
-    equals($('.desktop-platforms input:eq(3)', sb).attr('disabled'), 'disabled');
-    equals($('.desktop-platforms label:eq(0)', sb).hasClass('platform-disabled'),
-           true);
+    equal($('.desktop-platforms input:disabled', sb).length, 4);
+    ok($('.desktop-platforms label:eq(0)', sb).hasClass('platform-disabled'));
 
     ok($('.platform ul.errorlist', sb).length > 0, 'Message shown to user');
 
     // All mobile platforms not disabled:
-    equals($('.mobile-platforms input:eq(0)', sb).attr('disabled'), undefined);
-    equals($('.mobile-platforms input:eq(1)', sb).attr('disabled'), undefined);
-    equals($('.mobile-platforms input:eq(2)', sb).attr('disabled'), undefined);
+    equal($('.mobile-platforms input:disabled', sb).length, 0);
 });
 
 test('existing platforms', function() {

@@ -915,6 +915,7 @@ class TestPaymentsProfile(amo.tests.TestCase):
         r = self.client.post(url, {'email': 'test@test.com'})
         eq_(r.status_code, 200)
         result = json.loads(r.content)
+        eq_(result['valid'], True)
 
     @mock.patch('paypal.check_paypal_id')
     @mock.patch('paypal.get_paykey')
@@ -2665,51 +2666,35 @@ class TestUploadDetail(BaseUploadTest):
             reverse('devhub.standalone_upload_detail', args=[upload.uuid]))
 
     @mock.patch('devhub.tasks.run_validator')
-    def test_multi_app_addon_can_have_all_platforms(self, v):
+    def check_excluded_platforms(self, xpi, platforms, v):
         v.return_value = json.dumps(self.validation_ok())
-        self.upload_file('mobile-2.9.10-fx+fn.xpi')
+        self.upload_file(xpi)
         upload = FileUpload.objects.get()
         r = self.client.get(reverse('devhub.upload_detail',
                                     args=[upload.uuid, 'json']))
         eq_(r.status_code, 200)
         data = json.loads(r.content)
-        eq_(data['platforms_to_exclude'], [])
+        eq_(sorted(data['platforms_to_exclude']), sorted(platforms))
 
-    @mock.patch('devhub.tasks.run_validator')
-    def test_mobile_excludes_desktop_platforms(self, v):
-        v.return_value = json.dumps(self.validation_ok())
-        self.upload_file('mobile-0.1-fn.xpi')
-        upload = FileUpload.objects.get()
-        r = self.client.get(reverse('devhub.upload_detail',
-                                    args=[upload.uuid, 'json']))
-        eq_(r.status_code, 200)
-        data = json.loads(r.content)
-        eq_(sorted(data['platforms_to_exclude']),
-            sorted([str(p) for p in amo.DESKTOP_PLATFORMS]))
+    def test_multi_app_addon_can_have_all_platforms(self):
+        self.check_excluded_platforms('mobile-2.9.10-fx+fn.xpi', [])
 
-    @mock.patch('devhub.tasks.run_validator')
-    def test_search_tool_excludes_all_platforms(self, v):
-        v.return_value = json.dumps(self.validation_ok())
-        self.upload_file('searchgeek-20090701.xml')
-        upload = FileUpload.objects.get()
-        r = self.client.get(reverse('devhub.upload_detail',
-                                    args=[upload.uuid, 'json']))
-        eq_(r.status_code, 200)
-        data = json.loads(r.content)
-        eq_(sorted(data['platforms_to_exclude']),
-            sorted([str(p) for p in amo.SUPPORTED_PLATFORMS]))
+    def test_mobile_excludes_desktop_platforms(self):
+        self.check_excluded_platforms('mobile-0.1-fn.xpi',
+            [str(p) for p in amo.DESKTOP_PLATFORMS])
 
-    @mock.patch('devhub.tasks.run_validator')
-    def test_desktop_excludes_mobile(self, v):
-        v.return_value = json.dumps(self.validation_ok())
-        self.upload_file('desktop.xpi')
-        upload = FileUpload.objects.get()
-        r = self.client.get(reverse('devhub.upload_detail',
-                                    args=[upload.uuid, 'json']))
-        eq_(r.status_code, 200)
-        data = json.loads(r.content)
-        eq_(sorted(data['platforms_to_exclude']),
-            sorted([str(p) for p in amo.MOBILE_PLATFORMS]))
+    def test_android_excludes_desktop_platforms(self):
+        # Test native Fennec.
+        self.check_excluded_platforms('android-phone.xpi',
+            [str(p) for p in amo.DESKTOP_PLATFORMS])
+
+    def test_search_tool_excludes_all_platforms(self):
+        self.check_excluded_platforms('searchgeek-20090701.xml',
+            [str(p) for p in amo.SUPPORTED_PLATFORMS])
+
+    def test_desktop_excludes_mobile(self):
+        self.check_excluded_platforms('desktop.xpi',
+            [str(p) for p in amo.MOBILE_PLATFORMS])
 
     @mock.patch('devhub.tasks.run_validator')
     @mock.patch.object(waffle, 'flag_is_active')
