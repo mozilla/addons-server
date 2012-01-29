@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # this is a hack to work around how django-mozilla-product-details
 # takes too long and always kills the vagrant VM on startup
 
@@ -11,5 +11,8 @@ if [ ! -d $dest ]; then
 fi
 svn export --force http://svn.mozilla.org/libs/product-details/json/ $dest
 if [ $? -eq 0 ]; then
-    date "+%a, %d %b %Y %H:%M:%S %Z" > $dest/.last_update
+    # Bah. This isn't supported for some reason: date "+%a, %d %b %Y %H:%M:%S %Z"
+    dd=`python -c 'import datetime,sys; sys.stdout.write(datetime.datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S GMT"))'`
+    echo -n $dd > $dest/.last_update
+    echo -n $dd > $dest/regions/.last_update
 fi
