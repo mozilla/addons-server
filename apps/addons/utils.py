@@ -7,7 +7,7 @@ from django.conf import settings
 from django.utils.encoding import smart_str
 
 import commonware.log
-import lib.misc.lru_cache as lru_cache
+import lru_cache
 import redisutils
 
 from amo.utils import sorted_groupby, memoize

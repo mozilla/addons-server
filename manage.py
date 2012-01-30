@@ -1,10 +1,9 @@
 #!/usr/bin/env python
-import getopt
-import importlib
 import logging
 import os
 import site
 import sys
+import warnings
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -19,8 +18,8 @@ path = lambda *a: os.path.join(ROOT, *a)
 
 prev_sys_path = list(sys.path)
 
-# Boo, path manipulation we need to stop these.
 site.addsitedir(path('apps'))
+site.addsitedir(path('lib'))
 site.addsitedir(path('vendor'))
 site.addsitedir(path('vendor/lib/python'))
 
@@ -36,31 +35,24 @@ sys.path[:0] = new_sys_path
 from django.core.management import (call_command, execute_manager,
                                     setup_environ)
 
-# Allow a user to pass in settings into manage.py and use that for our
-# own purposes. If you don't use that we'll fall back to whatever is
-# defined for DJANGO_SETTINGS_MODULE.
-found, sys.argv[1:] = getopt.getopt(sys.argv[1:], 's:', 'settings=')
 try:
-    setting = dict(found).values()[0]
-    if setting:
-        os.environ['DJANGO_SETTINGS_MODULE'] = setting
-except IndexError:
-    pass
+    import settings_local as settings
+except ImportError:
+    try:
+        import settings
+    except ImportError:
+        import sys
+        sys.stderr.write(
+            "Error: Tried importing 'settings_local.py' and 'settings.py' "
+            "but neither could be found (or they're throwing an ImportError)."
+            " Please come back and try again later.")
+        raise
 
-setting = os.environ.get('DJANGO_SETTINGS_MODULE', '')
+if not settings.DEBUG:
+    warnings.simplefilter('ignore')
 
-# The average Django user will have DJANGO_SETTINGS_MODULE set to settings
-# for our purposes that means, load the default site, so if nothing is
-# specified by now, use the default.
-if setting in ('settings', ''):
-    setting = 'default'
-
-# Because I'm lazy and want to type less characters, let's assume
-# settings_local if not specified.
-if not setting.endswith(('.settings_local', '.settings')):
-    setting = setting + '.settings_local'
-
-settings = importlib.import_module(setting)
+# The first thing execute_manager does is call `setup_environ`.  Logging config
+# needs to access settings, so we'll setup the environ early.
 setup_environ(settings)
 
 # Hardcore monkeypatching action.
@@ -86,14 +78,14 @@ def new(self, arg):
 
 Markup.__mod__ = new
 
-logging = getattr(settings, 'ZAMBONI_LOGGING_FILE', None)
-if logging:
-    importlib.import_module(logging)
+# Import for side-effect: configures our logging handlers.
+# pylint: disable-msg=W0611
+import log_settings
 
 import djcelery
 djcelery.setup_loader()
 
-from lib.misc import safe_signals
+import safe_signals
 safe_signals.start_the_machine()
 
 

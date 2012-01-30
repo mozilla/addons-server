@@ -3,7 +3,7 @@ from django.db import models
 from django.utils import importlib
 
 import MySQLdb as mysql
-import lib.misc.safe_signals as safe_signals
+import safe_signals
 from nose.tools import assert_raises, eq_
 from pyquery import PyQuery as pq
 
