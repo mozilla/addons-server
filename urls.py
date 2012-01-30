@@ -92,9 +92,6 @@ urlpatterns = patterns('',
     # Search
     ('^search/', include('search.urls')),
 
-    # Global stats dashboard.
-    url('^statistics/', lambda r: redirect('/'), name='statistics.dashboard'),
-
     # Javascript translations.
     url('^jsi18n.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
         {'domain': 'javascript', 'packages': ['zamboni']}, name='jsi18n'),
@@ -107,6 +104,9 @@ urlpatterns = patterns('',
     # Site events data.
     url('^statistics/events-(?P<start>\d{8})-(?P<end>\d{8}).json$',
         'stats.views.site_events', name='amo.site_events'),
+
+    # Global stats dashboard.
+    url('^statistics/', lambda r: redirect('/'), name='statistics.dashboard'),
 
     # Review spam.
     url('^reviews/spam/$', 'reviews.views.spam', name='addons.reviews.spam'),
