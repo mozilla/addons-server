@@ -53,7 +53,7 @@ HOME=/tmp
 30 10 * * * {{ z_cron }} recs
 30 20 * * * {{ z_cron }} update_perf
 30 22 * * * {{ z_cron }} deliver_hotness
-35 22 * * * {{ z_cron }} process_addons check_paypal
+35 22 * * * {{ django }} process_addons --task=check_paypal
 40 23 * * * {{ z_cron }} update_compat_info_for_fx4
 45 23 * * * {{ django }} dump_apps
 50 23 * * * {{ z_cron }} migrate_admin_logs

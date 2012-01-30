@@ -131,7 +131,7 @@ def _notify(redis, context):
 
 @task(rate_limit='4/m')
 @redis
-def check_paypal(redis, ids, check=None):
+def check_paypal(redis, ids, check=None, **kw):
     """
     Checks an addon against PayPal for the following things:
     - that the refund token is still there
