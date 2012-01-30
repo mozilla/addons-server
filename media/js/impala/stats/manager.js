@@ -124,7 +124,7 @@ z.StatsManager = (function() {
         var range = normalizeRange(view.range),
             urlStart = Highcharts.dateFormat('%Y%m%d', range.start),
             urlEnd = Highcharts.dateFormat('%Y%m%d', range.end),
-            url = format('/en-US/firefox/events-{0}-{1}.json', urlStart, urlEnd),
+            url = format('/en-US/firefox/statistics/events-{0}-{1}.json', urlStart, urlEnd),
             $def = $.Deferred();
         $.getJSON(url, function(data) {
             $def.resolve(data);
