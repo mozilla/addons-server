@@ -17,7 +17,7 @@ var server;
 
 
 exports.buy = function(signedRequest, onPaySuccess, onPayFailure, options) {
-    modalFromURL(server + '/en-US/firefox/payments/pay_start',
+    modalFromURL(server + '/payments/pay_start',
                  {data: {req: signedRequest}});
 };
 
@@ -33,7 +33,7 @@ setTimeout(function() {
         }
     });
     $.ajax({type: 'GET',
-            url: server + '/en-US/firefox/payments/inject_styles',
+            url: server + '/payments/inject_styles',
             dataType: 'jsonp',
             success: function(html) {
                 $('body').append(html);
