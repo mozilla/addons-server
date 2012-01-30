@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import getopt
+import importlib
 import logging
 import os
 import site
@@ -34,7 +35,6 @@ sys.path[:0] = new_sys_path
 # No third-party imports until we've added all our sitedirs!
 from django.core.management import (call_command, execute_manager,
                                     setup_environ)
-from django.utils import importlib
 
 # Allow a user to pass in settings into manage.py and use that for our
 # own purposes. If you don't use that we'll fall back to whatever is
