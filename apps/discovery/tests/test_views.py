@@ -491,9 +491,7 @@ class TestMonthlyPick(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'discovery/discoverymodules']
 
     def setUp(self):
-        self.url = reverse('addons.homepage_promos')
-        self.vars = {'version': '5.0', 'platform': 'mac',
-                     'context': 'discovery'}
+        self.url = reverse('discovery.pane.promos', args=['Darwin', '10.0'])
         self.addon = Addon.objects.get(id=3615)
         DiscoveryModule.objects.create(
             app=Application.objects.get(id=amo.FIREFOX.id), ordering=4,
@@ -502,11 +500,11 @@ class TestMonthlyPick(amo.tests.TestCase):
     def test_monthlypick(self):
         mp = MonthlyPick.objects.create(addon=self.addon, blurb='BOOP',
                                         image='http://mozilla.com')
-        r = self.client.get(self.url, self.vars)
+        r = self.client.get(self.url)
         eq_(pq(r.content)('#monthly').length, 0)
         mp.update(locale='')
 
-        r = self.client.get(self.url, self.vars)
+        r = self.client.get(self.url)
         pick = pq(r.content)('#monthly')
         eq_(pick.length, 1)
         a = pick.find('h3 a')
@@ -525,18 +523,18 @@ class TestMonthlyPick(amo.tests.TestCase):
                                    image='')
 
         # Tests for no image when screenshot not set.
-        r = self.client.get(self.url, self.vars)
+        r = self.client.get(self.url)
         pick = pq(r.content)('#monthly')
         eq_(pick.length, 1)
         eq_(pick.find('img').length, 0)
 
         # Tests for screenshot image when set.
         Preview.objects.create(addon=self.addon)
-        r = self.client.get(self.url, self.vars)
+        r = self.client.get(self.url)
         pick = pq(r.content)('#monthly')
         eq_(pick.length, 1)
         eq_(pick.find('img').attr('src'), self.addon.all_previews[0].image_url)
 
     def test_no_monthlypick(self):
-        r = self.client.get(self.url, self.vars)
+        r = self.client.get(self.url)
         eq_(pq(r.content)('#monthly').length, 0)
