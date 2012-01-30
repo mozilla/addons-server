@@ -17,7 +17,7 @@
           href="{{ url('amo.opensearch') }}" />
 
     {% block site_css %}
-      {{ css('marketplace-experiments') }}
+      {# css('marketplace-experiments') #}
       <!--[if lt IE 9]>
         <script src="{{ media('js/lib/iepp.min.js') }}"></script>
       <![endif]-->
@@ -60,7 +60,7 @@
       {% if waffle.switch('browserid-login') %}
         <script async defer src="https://browserid.org/include.js"></script>
       {% endif %}
-      {{ js('marketplace-experiments') }}
+      {# js('marketplace-experiments') #}
       <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
       <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
     {% endblock %}
