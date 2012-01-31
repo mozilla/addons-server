@@ -20,7 +20,6 @@ Here are some other helpful settings::
 
     [mysqld]
     default-storage-engine=innodb
-    transaction-isolation=READ-COMMITTED
     character-set-server=utf8
     skip-sync-frm=OFF
     innodb_file_per_table
