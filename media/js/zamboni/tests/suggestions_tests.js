@@ -62,6 +62,59 @@ module('Search Suggestions', {
         }
         $input.val(query);
         $input.triggerHandler(eventType);
+    },
+    testRowSelector: function(eventWhich, rowIndex) {
+        var $input = this.input,
+            $results = this.results,
+            expected = null;
+
+        this.sandbox.bind('selectedRowUpdate', function(e, row) {
+            expected = row;
+        });
+
+        tests.waitFor(function() {
+            return expected !== null;
+        }).thenDo(function() {
+           // Row index is zero-based. There are four rows: one for the
+           // placeholder and three results.
+           equal(expected, rowIndex,
+                 'Expected row ' + rowIndex + ' to be highlighted');
+           start();
+        });
+
+        // Let's pretend we made a query. Generate three result rows.
+        for (var i = 0; i < 3; i++) {
+            $results.append('<li><a></li>');
+        }
+
+        // Initialize highlighting.
+        $results.trigger('highlight', ['xxx']);
+
+        // Simulate keystrokes.
+        $input.val('xxx');
+        $input.triggerHandler({type: 'keydown', which: eventWhich});
+    },
+    testKeyIgnored: function(event) {
+        var $input = this.input,
+            $results = this.results,
+            expected = null;
+
+        this.sandbox.bind('keyIgnored', function(e) {
+            expected = true;
+        });
+
+        tests.waitFor(function() {
+            return expected !== null;
+        }).thenDo(function() {
+           ok(expected, 'Key binding should have been ignored');
+           start();
+        });
+
+        // Initialize highlighting.
+        $results.trigger('highlight', ['xxx']);
+
+        // Simulate keystrokes.
+        $input.val('xxx').triggerHandler(event);
     }
 });
 
@@ -76,8 +129,7 @@ test('Generated HTML tags', function() {
 
 
 test('Default search label', function() {
-    var $sandbox = this.sandbox,
-        $results = this.results,
+    var $results = this.results,
         $input = this.input;
     function check(cat, expected) {
         $results.attr('data-cat', cat);
@@ -138,13 +190,109 @@ asyncTest('Results upon paste', function() {
 
 
 asyncTest('Hide results upon escape/blur', function() {
-    var self = this,
-        $input = self.input,
-        $results = self.results;
-    $input.val('xxx');
-    $input.triggerHandler('blur');
+    var $input = this.input,
+        $results = this.results;
+    $input.val('xxx').triggerHandler('blur');
     tests.lacksClass($results, 'visible');
     start();
+});
+
+
+asyncTest('Key bindings: Hijacked: page up', function() {
+    this.testRowSelector($.ui.keyCode.PAGE_UP, 0);
+});
+asyncTest('Key bindings: Hijacked: arrow up', function() {
+    this.testRowSelector($.ui.keyCode.UP, 0);
+});
+asyncTest('Key bindings: Hijacked: arrow down', function() {
+    this.testRowSelector($.ui.keyCode.DOWN, 1);
+});
+asyncTest('Key bindings: Hijacked: page down', function() {
+    this.testRowSelector($.ui.keyCode.PAGE_DOWN, 3);
+});
+
+
+asyncTest('Key bindings: Ignored: home', function() {
+    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.HOME});
+});
+asyncTest('Key bindings: Ignored: end', function() {
+    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.END});
+});
+
+
+asyncTest('Key bindings: Ignored: alt + home', function() {
+    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.HOME,
+                         altKey: true});
+});
+asyncTest('Key bindings: Ignored: ctrl + home', function() {
+    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.HOME,
+                         ctrlKey: true});
+});
+asyncTest('Key bindings: Ignored: meta + home', function() {
+    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.HOME,
+                         metaKey: true});
+});
+asyncTest('Key bindings: Ignored: shift + home', function() {
+    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.HOME,
+                         shiftKey: true});
+});
+
+
+asyncTest('Key bindings: Ignored: alt + end', function() {
+    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.END,
+                         altKey: true});
+});
+asyncTest('Key bindings: Ignored: ctrl + end', function() {
+    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.END,
+                         ctrlKey: true});
+});
+asyncTest('Key bindings: Ignored: meta + end', function() {
+    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.END,
+                         metaKey: true});
+});
+asyncTest('Key bindings: Ignored: shift + end', function() {
+    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.END,
+                         shiftKey: true});
+});
+
+
+asyncTest('Key bindings: Ignored: alt + left', function() {
+    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.LEFT,
+                         altKey: true});
+});
+asyncTest('Key bindings: Ignored: alt + right', function() {
+    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.RIGHT,
+                         altKey: true});
+});
+
+
+asyncTest('Key bindings: Ignored: ctrl + left', function() {
+    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.LEFT,
+                         ctrlKey: true});
+});
+asyncTest('Key bindings: Ignored: ctrl + right', function() {
+    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.RIGHT,
+                         ctrlKey: true});
+});
+
+
+asyncTest('Key bindings: Ignored: meta + left', function() {
+    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.LEFT,
+                         metaKey: true});
+});
+asyncTest('Key bindings: Ignored: meta + right', function() {
+    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.RIGHT,
+                         metaKey: true});
+});
+
+
+asyncTest('Key bindings: Ignored: shift + left', function() {
+    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.LEFT,
+                         shiftKey: true});
+});
+asyncTest('Key bindings: Ignored: shift + right', function() {
+    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.RIGHT,
+                         shiftKey: true});
 });
 
 

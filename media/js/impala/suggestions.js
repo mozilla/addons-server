@@ -60,8 +60,7 @@ $.fn.searchSuggestions = function($results) {
 
     var gestureKeys = [
         $.ui.keyCode.ESCAPE, $.ui.keyCode.UP, $.ui.keyCode.DOWN,
-        $.ui.keyCode.PAGE_UP, $.ui.keyCode.PAGE_DOWN,
-        $.ui.keyCode.HOME, $.ui.keyCode.END
+        $.ui.keyCode.PAGE_UP, $.ui.keyCode.PAGE_DOWN
     ];
 
     function pageUp() {
@@ -86,16 +85,18 @@ $.fn.searchSuggestions = function($results) {
     }
 
     function gestureHandler(e) {
-        if (!$results.hasClass('visible')) {
+        // Bail if the results are hidden or if we have a non-gesture key
+        // or if we have a alt/ctrl/meta/shift keybinding.
+        if (!$results.hasClass('visible') ||
+            $.inArray(e.which, gestureKeys) < 0 ||
+            e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
+            $results.trigger('keyIgnored');
             return;
         }
-        if ($.inArray(e.which, gestureKeys) >= 0) {
-            e.preventDefault();
-        }
+        e.preventDefault();
         if (e.which == $.ui.keyCode.ESCAPE) {
             dismissHandler();
-        }
-        if (e.which == $.ui.keyCode.UP || e.which == $.ui.keyCode.DOWN) {
+        } else if (e.which == $.ui.keyCode.UP || e.which == $.ui.keyCode.DOWN) {
             var $sel = $results.find('.sel'),
                 $elems = $results.find('a'),
                 i = $elems.index($sel.get(0));
@@ -115,12 +116,10 @@ $.fn.searchSuggestions = function($results) {
             $sel.removeClass('sel');
             $elems.eq(i).addClass('sel');
             $results.addClass('sel').trigger('selectedRowUpdate', [i]);
-        } else if (e.which == $.ui.keyCode.PAGE_UP ||
-                   e.which == $.ui.keyCode.HOME) {
+        } else if (e.which == $.ui.keyCode.PAGE_UP) {
             pageUp();
             $results.addClass('sel').trigger('selectedRowUpdate', [0]);
-        } else if (e.which == $.ui.keyCode.PAGE_DOWN ||
-                   e.which == $.ui.keyCode.END) {
+        } else if (e.which == $.ui.keyCode.PAGE_DOWN) {
             pageDown();
             $results.addClass('sel').trigger('selectedRowUpdate',
                                              [$results.find('a').length - 1]);
