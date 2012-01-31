@@ -190,6 +190,11 @@ MEDIA_URL = '/media/'
 # Absolute path to a temporary storage area
 TMP_PATH = path('tmp')
 
+# When True, create a URL root /tmp that serves files in your temp path.
+# This is useful for development to view upload pics, etc.
+# NOTE: This only works when DEBUG is also True.
+SERVE_TMP_PATH = False
+
 # Absolute path to a writable directory shared by all servers. No trailing
 # slash.  Example: /data/
 NETAPP_STORAGE = TMP_PATH

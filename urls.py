@@ -230,3 +230,9 @@ if settings.TEMPLATE_DEBUG:
         (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
          {'document_root': settings.MEDIA_ROOT}),
     )
+
+if settings.SERVE_TMP_PATH and settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^tmp/(?P<path>.*)$', 'django.views.static.serve',
+         {'document_root': settings.TMP_PATH}),
+    )
