@@ -50,7 +50,7 @@ git submodule --quiet sync && git submodule update --init --recursive
 
 cat > settings_local.py <<SETTINGS
 from lib.settings_base import *
-ROOT_URLCONF = '%s.urls' % ROOT_PACKAGE
+ROOT_URLCONF = 'lib.urls_base'
 LOG_LEVEL = logging.ERROR
 # Database name has to be set because of sphinx
 DATABASES['default']['NAME'] = 'zamboni_$1'
