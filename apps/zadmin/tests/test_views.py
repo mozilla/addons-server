@@ -1334,7 +1334,7 @@ class TestLookup(amo.tests.TestCase):
         eq_(self.client.get('%s?q=admin' % self.url).status_code, 403)
 
     def test_search(self):
-        for q, c in [('', 3), ('admin@mozilla.com', 1)]:
+        for q, c in [('', 4), ('admin@mozilla.com', 1)]:
             res = self.client.get('%s?q=%s' % (self.url, q))
             eq_(res.status_code, 200)
             content = json.loads(res.content)
