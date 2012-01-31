@@ -49,7 +49,7 @@ git submodule --quiet foreach 'git submodule --quiet sync'
 git submodule --quiet sync && git submodule update --init --recursive
 
 cat > settings_local.py <<SETTINGS
-from settings import *
+from lib.settings_base import *
 ROOT_URLCONF = '%s.urls' % ROOT_PACKAGE
 LOG_LEVEL = logging.ERROR
 # Database name has to be set because of sphinx
