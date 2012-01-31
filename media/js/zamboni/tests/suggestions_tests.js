@@ -47,8 +47,8 @@ module('Search Suggestions', {
             tests.waitFor(function() {
                 return inputIgnored;
             }).thenDo(function() {
-               ok(inputIgnored);
-               start();
+                ok(inputIgnored);
+                start();
             });
         } else {
             self.sandbox.bind('resultsUpdated', function(e, items) {
@@ -106,8 +106,8 @@ module('Search Suggestions', {
         tests.waitFor(function() {
             return expected !== null;
         }).thenDo(function() {
-           ok(expected, 'Key binding should have been ignored');
-           start();
+            ok(expected, 'Key binding should have been ignored');
+            start();
         });
 
         // Initialize highlighting.
@@ -158,7 +158,7 @@ test('Highlight search terms', function() {
 
         // Ignore non-alphanumeric characters (i.e., regex chars).
         ['xxx: xxx', '<b>xxx</b>: <b>xxx</b>'],
-        ['xxx (){}[]*+:=?!\|^$. xxx', '<b>xxx</b> (){}[]*+:=?!\|^$. <b>xxx</b>'],
+        ['xxx (){}[]*+:=?!\|^$. xxx', '<b>xxx</b> (){}[]*+:=?!\|^$. <b>xxx</b>']
     ];
 
     var $ul = $('<ul>');
