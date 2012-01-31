@@ -83,7 +83,7 @@ cfg = {
         },
         'mail_admins': {
             'level': 'ERROR',
-            'class': 'admin_log.AdminEmailHandler'
+            'class': 'lib.misc.admin_log.AdminEmailHandler'
         },
     },
     'loggers': {

@@ -19,7 +19,6 @@ path = lambda *a: os.path.join(ROOT, *a)
 prev_sys_path = list(sys.path)
 
 site.addsitedir(path('apps'))
-site.addsitedir(path('lib'))
 site.addsitedir(path('vendor'))
 site.addsitedir(path('vendor/lib/python'))
 
@@ -85,7 +84,7 @@ import log_settings
 import djcelery
 djcelery.setup_loader()
 
-import safe_signals
+from lib.misc import safe_signals
 safe_signals.start_the_machine()
 
 

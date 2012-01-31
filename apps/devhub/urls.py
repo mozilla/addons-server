@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import patterns, url, include
 from django.shortcuts import redirect
 
-from urlconf_decorator import decorate
+from lib.misc.urlconf_decorator import decorate
 
 from addons.urls import ADDON_ID
 from amo.decorators import write
