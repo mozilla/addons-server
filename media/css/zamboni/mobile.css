@@ -790,7 +790,7 @@ button {
     margin: 0;
 }
 
-button, .button, a.button, a.button:link {
+button, .button, a.button {
     -moz-transition: -moz-box-shadow 0.3s ease 0s;
     background-color: #669BE1;
     border: 0;
@@ -800,17 +800,17 @@ button, .button, a.button, a.button:link {
     box-shadow: 0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset;
     -moz-box-shadow: 0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset;
     -webkit-box-shadow: 0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset;
-    color: #FFFFFF;
-    font-family: "Trebuchet MS", sans-serif;
-    font-size: 20px;
-    font-weight: bold;
-    line-height: 1;
+    color: #fff;
+    font: bold 20px/1 "Trebuchet MS", sans-serif;
     padding: 12px 16px 14px;
     position: relative;
     text-align: center;
     display: block;
-    font-weight: bold;
     text-decoration: none;
+}
+
+a.button:link {
+    color: #fff;
 }
 
 button:active,
@@ -861,6 +861,10 @@ button:active,
         to(#489615)
     );*/
     color: #fff;
+}
+/* We're getting rid of orange install buttons someday. Today's not that day. */
+.button.premium {
+    background: #da6;
 }
 .button.negative {
     background-color: #84C63C;
