@@ -1000,7 +1000,7 @@ a.extra {
 #navbar li.top ul {
     display: none;
     position: absolute;
-    z-index: 1;
+    z-index: 1001;
     top: auto;
     margin-left: -1px;
 }
