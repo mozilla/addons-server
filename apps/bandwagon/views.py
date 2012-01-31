@@ -185,8 +185,7 @@ def collection_detail(request, username, slug):
     count = CollectionAddon.objects.filter(
         Addon.objects.valid_q(amo.VALID_STATUSES, prefix='addon__'),
         collection=c.id)
-    addons = paginate(request, filter.qs, per_page=15,
-                                count=count.count())
+    addons = paginate(request, filter.qs, per_page=15, count=count.count())
 
     # The add-on query is not related to the collection, so we need to manually
     # hook them up for invalidation.  Bonus: count invalidation.
@@ -200,7 +199,8 @@ def collection_detail(request, username, slug):
     else:
         others = []
 
-    perms = {
+    # `perms` is defined in django.contrib.auth.context_processors. Gotcha!
+    user_perms = {
         'view_stats': acl.check_ownership(request, c, require_owner=False),
     }
 
@@ -208,7 +208,7 @@ def collection_detail(request, username, slug):
     return render(request, 'bandwagon/collection_detail.html',
                   {'collection': c, 'filter': filter, 'addons': addons,
                    'notes': notes, 'author_collections': others, 'tags': tags,
-                   'perms': perms})
+                   'user_perms': user_perms})
 
 
 def get_notes(collection, raw=False):

@@ -75,13 +75,13 @@ class HappyUnicodeClient(django.test.Client):
     it's interpreted completely different.  I don't even know.
     """
 
-    def get(self, path, *args, **kw):
-        path = encoding.smart_str(path)
-        return super(HappyUnicodeClient, self).get(path, *args, **kw)
+    def get(self, path_, *args, **kw):
+        path_ = encoding.smart_str(path_)
+        return super(HappyUnicodeClient, self).get(path_, *args, **kw)
 
-    def post(self, path, *args, **kw):
-        path = encoding.smart_str(path)
-        return super(HappyUnicodeClient, self).post(path, *args, **kw)
+    def post(self, path_, *args, **kw):
+        path_ = encoding.smart_str(path_)
+        return super(HappyUnicodeClient, self).post(path_, *args, **kw)
 
     # Add head, put, options, delete if you need them.
 
@@ -173,7 +173,10 @@ class TestPrivacy(amo.tests.TestCase):
 
     def test_owner(self):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
-        eq_(self.client.get(self.url).status_code, 200)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('.meta .stats').length, 1,
+            'Add-on authors should be able to view stats')
 
     def test_private(self):
         self.client.logout()
@@ -185,7 +188,10 @@ class TestPrivacy(amo.tests.TestCase):
         eq_(self.client.get(self.url).status_code, 403)
         self.c.listed = True
         self.c.save()
-        eq_(self.client.get(self.url).status_code, 200)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('.meta .stats').length, 0,
+            'Only add-on authors can view stats')
 
     def test_publisher(self):
         self.c.listed = False
@@ -194,7 +200,10 @@ class TestPrivacy(amo.tests.TestCase):
         u = UserProfile.objects.get(email='fligtar@gmail.com')
         CollectionUser.objects.create(collection=self.c, user=u)
         self.client.login(username='fligtar@gmail.com', password='foo')
-        eq_(self.client.get(self.url).status_code, 200)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('.meta .stats').length, 1,
+            'Add-on authors (not just owners) should be able to view stats')
 
 
 class TestVotes(amo.tests.TestCase):
@@ -767,8 +776,7 @@ class TestChangeAddon(amo.tests.TestCase):
 
 class AjaxTest(amo.tests.TestCase):
     fixtures = ('base/apps', 'base/users', 'base/addon_3615',
-                'base/addon_5299_gcal',
-                'base/collections')
+                'base/addon_5299_gcal', 'base/collections')
 
     def setUp(self):
         assert self.client.login(username='clouserw@gmail.com',

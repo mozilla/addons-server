@@ -48,8 +48,8 @@
           </li>
         {% endif %}
         <li>{{ _('Updated {0}')|f(c.modified|datetime) }}</li>
-        {% if perms.view_stats %}
-        <li>
+        {% if user_perms.view_stats %}
+        <li class="stats">
           <a href="{{ remora_url('/statistics/collection/' + c.uuid) }}">
             {{ _('View Statistics') }}</a>
         </li>
