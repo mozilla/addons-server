@@ -76,14 +76,15 @@ def _xpi_form_error(f, request):
 class UserHandler(BaseHandler):
     allowed_methods = ('GET',)
     model = UserProfile
-    fields = ('email',)
+    fields = ('email', 'id', 'username', 'display_name', 'homepage',
+              'created', 'modified', 'location', 'occupation')
 
     def read(self, request):
         email = request.GET.get('email')
         if email:
             if acl.action_allowed(request, 'Partners', 'UserLookup'):
                 try:
-                    return UserProfile.objects.get(email=email)
+                    return UserProfile.objects.get(email=email, deleted=False)
                 except UserProfile.DoesNotExist:
                     return rc.NOT_FOUND
             else:
