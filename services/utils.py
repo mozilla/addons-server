@@ -13,7 +13,7 @@ import commonware.log
 # Pyflakes will complain about these, but they are required for setup.
 import settings_local as settings
 setup_environ(settings)
-import log_settings
+from lib import log_settings_base
 
 # Ugh. But this avoids any zamboni or django imports at all.
 # Perhaps we can import these without any problems and we can

@@ -15,7 +15,7 @@ from django.utils.http import urlencode
 
 import settings_local as settings
 setup_environ(settings)
-import log_settings
+from lib import log_settings_base
 # This has to be imported after the settings so statsd knows where to log to.
 from statsd import statsd
 
