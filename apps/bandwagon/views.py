@@ -219,7 +219,7 @@ def collection_detail_json(request, username, slug):
     if not (c.listed or acl.check_collection_ownership(request, c)):
         return http.HttpResponseForbidden()
 
-    addons = Addon.objects.valid() & c.addons.all()
+    addons = c.addons.valid()
     addons_dict = [addon_to_dict(a) for a in addons]
     d = {'name': c.name,
          'url': c.get_abs_url(),
