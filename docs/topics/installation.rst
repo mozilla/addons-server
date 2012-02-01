@@ -169,7 +169,7 @@ Most of zamboni is already configured in ``settings.py``, but there's some
 things you need to configure locally.  All your local settings go into
 ``settings_local.py``. Make sure you have ::
 
-    from settings import *
+    from lib.settings_base import *
 
 at the top of your ``settings_local.py``.  The settings template for
 developers, included below, is at :src:`docs/settings/settings_local.dev.py`.
@@ -181,6 +181,34 @@ I'm overriding the database parameters from ``settings.py`` and then extending
 Toolbar <http://github.com/robhudson/django-debug-toolbar>`_.  It's awesome,
 you want it.
 
+Multiple sites
+--------------
+
+We now run multiple sites off the zamboni code base. The current sites are:
+
+- *default* the current add-ons site
+
+- *mkt* the Mozilla Marketplace
+
+There are directories in zamboni for each of these. Each contains
+settings, url, templates and so on. That means if you want to run the market
+tests you should alter your `settings_local.py` to read::
+
+    from lib.settings_base import *
+    from mkt.settings import *
+
+You might get a bit bored of flipping this around, so you might want to create
+multiple settings files, for example my `settings_local_mkt.py` which contains
+the above.
+
+To choose which settings file you are using, use the `settings` command line
+argument, for example::
+
+    manage.py runserver --settings=mkt 0.0.0.0:8000
+
+Or for tests::
+
+    manage.py test --settings=mkt
 
 Database
 --------
