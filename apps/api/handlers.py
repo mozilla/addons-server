@@ -82,7 +82,7 @@ class UserHandler(BaseHandler):
     def read(self, request):
         email = request.GET.get('email')
         if email:
-            if acl.action_allowed(request, 'Partners', 'UserLookup'):
+            if acl.action_allowed(request, 'API.Users', 'View'):
                 try:
                     return UserProfile.objects.get(email=email, deleted=False)
                 except UserProfile.DoesNotExist:

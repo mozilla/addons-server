@@ -253,7 +253,7 @@
         "fields": {
             "rules": "*:*",
             "modified": "2012-01-27 13:32:08",
-            "name": "Partners",
+            "name": "API.Users",
             "created": "2012-01-27 12:41:00"
         }
     },
