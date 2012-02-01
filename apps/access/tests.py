@@ -39,7 +39,10 @@ def test_match_rules():
     for rule in rules:
         assert match_rules(rule, 'Admin', '%'), "%s != Admin:%%" % rule
 
-    rules = ('Doctors:*',)
+    rules = ('Doctors:*',
+        'Stats:View',
+        'CollectionStats:View',
+        )
 
     for rule in rules:
         assert not match_rules(rule, 'Admin', '%'), \

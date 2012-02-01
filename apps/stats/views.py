@@ -248,8 +248,8 @@ def check_stats_permission(request, addon, for_contributions=False):
     if for_contributions or not addon.public_stats:
         # only authenticated admins and authors
         if (request.user.is_authenticated() and (
-                acl.action_allowed(request, 'Admin', 'ViewAnyStats') or
-                addon.has_author(request.amo_user))):
+            acl.action_allowed(request, 'Stats', 'View') or
+            addon.has_author(request.amo_user))):
             return
     elif addon.public_stats:
         # non-contributions, public: everybody can view

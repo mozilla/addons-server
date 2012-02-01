@@ -6,8 +6,10 @@ from nose.tools import eq_
 
 import amo.tests
 from amo.urlresolvers import reverse
+from access.models import Group, GroupUser
 from stats import views, tasks
 from stats.models import DownloadCount, UpdateCount
+from users.models import UserProfile
 
 
 class StatsTest(object):
@@ -83,6 +85,15 @@ class TestSeriesSecurity(ESStatsTest):
         for view, kwargs in self.views_gen(format='json'):
             response = self.get_view_response(view, **kwargs)
             eq_(response.status_code, 403,
+                'unexpected http status for %s' % view)
+
+        # Test view when user added to appropriate group.
+        user = UserProfile.objects.get(email='nobodyspecial@mozilla.com')
+        group = Group.objects.create(name='Stats', rules='Stats:View')
+        GroupUser.objects.create(user=user, group=group)
+        for view, kwargs in self.views_gen(format='json'):
+            response = self.get_view_response(view, **kwargs)
+            eq_(response.status_code, 200,
                 'unexpected http status for %s' % view)
 
         # Again as an unauthenticated user

@@ -1,6 +1,11 @@
+import logging
+
 import amo
 from addons.models import Addon
 from bandwagon.models import Collection
+
+
+log = logging.getLogger('z.access')
 
 
 def match_rules(rules, app, action):
@@ -24,15 +29,22 @@ def action_allowed(request, app, action):
     'Admin:%' is true if the user has any of:
     ('Admin:*', 'Admin:%s'%whatever, '*:*',) as rules.
     """
-
-    return any(match_rules(group.rules, app, action)
-        for group in getattr(request, 'groups', ()))
+    allowed = any(match_rules(group.rules, app, action) for group in
+                  getattr(request, 'groups', ()))
+    user = (hasattr(request, 'amo_user') and request.amo_user and
+            request.amo_user.id or 'Anonymous')
+    log.info('User %s %s %s:%s' % (user, 'allowed' if allowed else 'denied',
+                                   app, action))
+    return allowed
 
 
 def action_allowed_user(user, app, action):
     """Similar to action_allowed, but takes user instead of request."""
-    return any(match_rules(group.rules, app, action)
-        for group in user.groups.all())
+    allowed =  any(match_rules(group.rules, app, action) for group in
+                   user.groups.all())
+    log.info('User %d %s %s:%s' % (user.id, 'allowed' if allowed else 'denied',
+                                   app, action))
+    return allowed
 
 
 def check_ownership(request, obj, require_owner=False):

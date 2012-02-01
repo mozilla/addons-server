@@ -63,7 +63,7 @@ def report_menu(context, request, addon, report):
     ]
 
     if (request.user.is_authenticated() and (
-            acl.action_allowed(request, 'Admin', 'ViewAnyStats') or
+            acl.action_allowed(request, 'Stats', 'View') or
             addon.has_author(request.amo_user))):
         report_tree.append({
             'name': 'contributions',
