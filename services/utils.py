@@ -22,8 +22,8 @@ from constants.applications import APPS_ALL
 from constants.platforms import PLATFORMS
 from constants.base import (STATUS_PUBLIC, STATUS_DISABLED, STATUS_BETA,
                             STATUS_LITE, STATUS_LITE_AND_NOMINATED)
-from constants.base import (CONTRIB_CHARGEBACK, CONTRIB_PURCHASE,
-                            CONTRIB_REFUND)
+from constants.payments import (CONTRIB_CHARGEBACK, CONTRIB_PURCHASE,
+                                CONTRIB_REFUND)
 
 APP_GUIDS = dict([(app.guid, app.id) for app in APPS_ALL.values()])
 PLATFORMS = dict([(plat.api_name, plat.id) for plat in PLATFORMS.values()])
