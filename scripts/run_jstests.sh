@@ -52,7 +52,7 @@ git submodule --quiet sync && git submodule update --init --recursive
 cp -f docs/settings/settings_local.dev.py settings_local.py
 cat >> settings_local.py <<SETTINGS
 
-ROOT_URLCONF = '%s.urls' % ROOT_PACKAGE
+ROOT_URLCONF = 'lib.urls_base'
 LOG_LEVEL = logging.ERROR
 
 DATABASES = {
