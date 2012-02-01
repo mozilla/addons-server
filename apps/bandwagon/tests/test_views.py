@@ -175,7 +175,7 @@ class TestPrivacy(amo.tests.TestCase):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        eq_(pq(r.content)('.meta .stats').length, 1,
+        eq_(pq(r.content)('.meta .view-stats').length, 1,
             'Add-on authors should be able to view stats')
 
     def test_private(self):
@@ -190,7 +190,7 @@ class TestPrivacy(amo.tests.TestCase):
         self.c.save()
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        eq_(pq(r.content)('.meta .stats').length, 0,
+        eq_(pq(r.content)('.meta .view-stats').length, 0,
             'Only add-on authors can view stats')
 
     def test_publisher(self):
@@ -202,7 +202,7 @@ class TestPrivacy(amo.tests.TestCase):
         self.client.login(username='fligtar@gmail.com', password='foo')
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        eq_(pq(r.content)('.meta .stats').length, 1,
+        eq_(pq(r.content)('.meta .view-stats').length, 1,
             'Add-on authors (not just owners) should be able to view stats')
 
 

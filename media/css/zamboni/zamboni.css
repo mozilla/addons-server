@@ -3063,8 +3063,12 @@ label > .optional {
     clear:both;
 }
 
-.featured div.meta {
+.featured .meta {
     margin-top: 0;
+}
+
+.featured .meta ul {
+    margin: 0;
 }
 
 .meta li {
