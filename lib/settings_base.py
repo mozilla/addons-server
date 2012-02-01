@@ -1003,7 +1003,7 @@ BROKER_VHOST = 'zamboni'
 BROKER_CONNECTION_TIMEOUT = 0.1
 CELERY_RESULT_BACKEND = 'amqp'
 CELERY_IGNORE_RESULT = True
-CELERY_IMPORTS = ('django_arecibo.tasks', 'delayed_mailer.tasks')
+CELERY_IMPORTS = ('django_arecibo.tasks',)
 # We have separate celeryds for processing devhub & images as fast as possible
 # Some notes:
 # - always add routes here instead of @task(queue=<name>)
@@ -1392,6 +1392,3 @@ NO_ADDONS_MODULES = (
 # Cron jobs that aren't critical will check this flag and not run if this
 # is True.
 IGNORE_NON_CRITICAL_CRONS = False
-
-# How long to delay sending traceback emails for, see django-delayed-mailer.
-DELAYED_MAILER_WAIT = 60
