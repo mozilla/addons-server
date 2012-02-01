@@ -4,9 +4,9 @@ from pyquery import PyQuery
 
 import amo
 import amo.tests
-from addons.helpers import (statusflags, flag, support_addon, contribution,
-                            performance_note, mobile_persona_preview,
-                            mobile_persona_confirm, addon_receipt)
+from addons.helpers import (statusflags, flag, contribution, performance_note,
+                            mobile_persona_preview, mobile_persona_confirm,
+                            addon_receipt)
 from addons.models import Addon
 
 
@@ -43,19 +43,6 @@ class TestHelpers(amo.tests.TestCase):
         # category featured
         featured = Addon.objects.get(pk=1001)
         eq_(flag(ctx, featured), '<h5 class="flag">Featured</h5>')
-
-    def test_support_addon(self):
-        a = Addon(id=12, type=1)
-        eq_(support_addon(a), '')
-
-        a.wants_contributions = a.paypal_id = True
-        a.status = amo.STATUS_PUBLIC
-        eq_(PyQuery(support_addon(a))('a').text(), 'Support this add-on')
-
-        a.suggested_amount = '12'
-        doc = PyQuery(support_addon(a))
-        eq_(doc('.contribute').text(),
-            'Support this add-on: Contribute $12.00')
 
     def test_contribution_box(self):
         a = Addon.objects.get(pk=7661)

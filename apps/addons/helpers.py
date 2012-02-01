@@ -42,12 +42,6 @@ def flag(context, addon):
         return ''
 
 
-@register.function
-def support_addon(addon):
-    t = env.get_template('addons/support_addon.html')
-    return jinja2.Markup(t.render(addon=addon, amo=amo))
-
-
 @register.inclusion_tag('addons/performance_note.html')
 @jinja2.contextfunction
 def performance_note(context, amount, listing=False):
