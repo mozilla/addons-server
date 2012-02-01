@@ -1,9 +1,9 @@
+from nose.tools import eq_
+
 import amo
 import amo.tests
 from payments.models import InappConfig
 from webapps.models import Webapp
-
-from nose.tools import eq_
 
 
 class TestInapp(amo.tests.TestCase):

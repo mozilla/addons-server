@@ -1,5 +1,6 @@
-import amo
 from django.db import models
+
+import amo
 
 
 class InappConfig(amo.models.ModelBase):
@@ -26,7 +27,7 @@ class InappConfig(amo.models.ModelBase):
         """Tells you if there are any active keys for this addon."""
         return (cls.objects.filter(addon=addon,
                                    status=amo.INAPP_STATUS_ACTIVE)
-                          .exists())
+                           .exists())
 
     def save(self, *args, **kw):
         current = InappConfig.any_active(self.addon)
