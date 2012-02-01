@@ -12,6 +12,8 @@ edit_urls = patterns('',
 
 detail_urls = patterns('',
     url('^$', views.collection_detail, name='collections.detail'),
+    url('^format:json$', views.collection_detail_json,
+        name='collections.detail.json'),
     url('^vote/(?P<direction>up|down)$', views.collection_vote,
         name='collections.vote'),
     url('^edit/', include(edit_urls)),

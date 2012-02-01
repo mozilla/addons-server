@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404, redirect
 
 import commonware.log
 import jingo
+import json
 import caching.base as caching
 from tower import ugettext_lazy as _lazy, ugettext as _
 
@@ -15,10 +16,11 @@ from amo import messages
 import sharing.views
 from amo.decorators import login_required, post_required, json_view, write
 from amo.urlresolvers import reverse
-from amo.utils import urlparams, paginate
+from amo.utils import JSONEncoder, paginate, urlparams
 from access import acl
 from addons.models import Addon
 from addons.views import BaseFilter
+from api.utils import addon_to_dict
 from tags.models import Tag
 from translations.query import order_by_translation
 from users.models import UserProfile
@@ -209,6 +211,21 @@ def collection_detail(request, username, slug):
                   {'collection': c, 'filter': filter, 'addons': addons,
                    'notes': notes, 'author_collections': others, 'tags': tags,
                    'user_perms': user_perms})
+
+
+def collection_detail_json(request, username, slug):
+    c = get_collection(request, username, slug)
+    if not (c.listed or acl.check_collection_ownership(request, c)):
+        return http.HttpResponseForbidden()
+
+    addons = Addon.objects.valid() & c.addons.all()
+    addons_dict = [addon_to_dict(a) for a in addons]
+    d = {'name': c.name,
+         'url': c.get_abs_url(),
+         'iconUrl': c.icon_url,
+         'addons': addons_dict, }
+    return http.HttpResponse(json.dumps(d, cls=JSONEncoder),
+                             content_type="application/json")
 
 
 def get_notes(collection, raw=False):

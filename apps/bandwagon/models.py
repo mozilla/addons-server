@@ -15,6 +15,7 @@ import caching.base as caching
 import amo
 import amo.models
 import sharing.utils as sharing
+from amo.helpers import absolutify
 from amo.utils import sorted_groupby
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonRecommendation
@@ -192,6 +193,9 @@ class Collection(CollectionBase, amo.models.ModelBase):
     def get_url_path(self):
         return reverse('collections.detail',
                         args=[self.author_username, self.slug])
+
+    def get_abs_url(self):
+        return absolutify(self.get_url_path())
 
     def get_img_dir(self):
         return os.path.join(settings.COLLECTIONS_ICON_PATH,
