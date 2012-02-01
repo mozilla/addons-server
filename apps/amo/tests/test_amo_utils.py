@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
+import shutil
 import tempfile
+import unittest
 
 from django.conf import settings
 from django.core.validators import ValidationError
@@ -9,7 +11,7 @@ from django.utils import translation
 from nose.tools import eq_, assert_raises
 
 from amo.utils import (slug_validator, slugify, resize_image, to_language,
-                       no_translation)
+                       no_translation, LocalFileStorage)
 from product_details import product_details
 
 
@@ -40,8 +42,8 @@ def test_slugify():
          ('tags/', 'tags'),
          ('holy_wars', 'holy_wars'),
          # I don't really care what slugify returns.  Just don't crash.
-         (u'x𘍿', u'x'),
-         (u'ϧ΃𘒬𘓣',  u'\u03e7'),
+         (u'x荿', u'x\u837f'),
+         (u'ϧ΃蒬蓣',  u'\u03e7\u84ac\u84e3'),
          (u'¿x', u'x'),
     ]
     for val, expected in s:
@@ -103,3 +105,57 @@ def test_no_translation():
     eq_(translation.get_language(),
         'pt-br')
     translation.activate(lang)
+
+
+class TestLocalFileStorage(unittest.TestCase):
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp()
+        self.stor = LocalFileStorage()
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp)
+
+    def test_read_write(self):
+        fn = os.path.join(self.tmp, 'somefile.txt')
+        with self.stor.open(fn, 'w') as fd:
+            fd.write('stuff')
+        with self.stor.open(fn, 'r') as fd:
+            eq_(fd.read(), 'stuff')
+
+    def test_non_ascii_filename(self):
+        fn = os.path.join(self.tmp, u'Ivan Krsti\u0107.txt')
+        with self.stor.open(fn, 'w') as fd:
+            fd.write('stuff')
+        with self.stor.open(fn, 'r') as fd:
+            eq_(fd.read(), 'stuff')
+
+    def test_non_ascii_content(self):
+        fn = os.path.join(self.tmp, 'somefile.txt')
+        with self.stor.open(fn, 'w') as fd:
+            fd.write(u'Ivan Krsti\u0107.txt'.encode('utf8'))
+        with self.stor.open(fn, 'r') as fd:
+            eq_(fd.read().decode('utf8'), u'Ivan Krsti\u0107.txt')
+
+    def test_make_file_dirs(self):
+        dp = os.path.join(self.tmp, 'path', 'to')
+        self.stor.open(os.path.join(dp, 'file.txt'), 'w').close()
+        assert os.path.exists(self.stor.path(dp)), (
+                                        'Directory not created: %r' % dp)
+
+    def test_do_not_make_file_dirs_when_reading(self):
+        fpath = os.path.join(self.tmp, 'file.txt')
+        with open(fpath, 'w') as fp:
+            fp.write('content')
+        # Make sure this doesn't raise an exception.
+        self.stor.open(fpath, 'r').close()
+
+    def test_make_dirs_only_once(self):
+        dp = os.path.join(self.tmp, 'path', 'to')
+        with self.stor.open(os.path.join(dp, 'file.txt'), 'w') as fd:
+            fd.write('stuff')
+        # Make sure it doesn't try to make the dir twice
+        with self.stor.open(os.path.join(dp, 'file.txt'), 'w') as fd:
+            fd.write('stuff')
+        with self.stor.open(os.path.join(dp, 'file.txt'), 'r') as fd:
+            eq_(fd.read(), 'stuff')

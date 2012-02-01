@@ -18,6 +18,8 @@ from django.conf import settings
 from django.contrib import messages
 from django.core import paginator
 from django.core.cache import cache
+from django.core.files.storage import (FileSystemStorage,
+                                       default_storage as storage)
 from django.core.serializers import json
 from django.core.validators import ValidationError, validate_slug
 from django.core.mail import EmailMessage
@@ -721,3 +723,35 @@ def escape_all(v):
         for k, lv in v.iteritems():
             v[k] = escape_all(lv)
     return v
+
+
+class LocalFileStorage(FileSystemStorage):
+    """Local storage to an unregulated absolute file path.
+
+    Unregulated means that, unlike the default file storage, you can write to
+    any path on the system if you have access.
+
+    Unlike Django's default FileSystemStorage, this class behaves more like a
+    "cloud" storage system. Specifically, you never have to write defensive
+    code that prepares for leading directory paths to exist.
+    """
+
+    def __init__(self, base_url=None):
+        super(LocalFileStorage, self).__init__(location='/', base_url=base_url)
+
+    def _open(self, name, mode='rb'):
+        if mode.startswith('w'):
+            parent = os.path.dirname(self.path(name))
+            if not os.path.exists(parent):
+                os.makedirs(parent)
+        return super(LocalFileStorage, self)._open(name, mode=mode)
+
+    def path(self, name):
+        """Actual file system path to name without any safety checks."""
+        return os.path.normpath(os.path.join(self.location,
+                                             self._smart_path(name)))
+
+    def _smart_path(self, string):
+        if os.path.supports_unicode_filenames:
+            return smart_unicode(string)
+        return smart_str(string)

@@ -58,3 +58,6 @@ CACHE_BACKEND = 'caching.backends.locmem://'
 
 # No more failures!
 APP_PREVIEW = False
+
+# Overrides whatever storage you might have put in local settings.
+DEFAULT_FILE_STORAGE = 'amo.utils.LocalFileStorage'
