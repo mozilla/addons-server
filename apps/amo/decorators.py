@@ -12,8 +12,9 @@ from .urlresolvers import reverse
 
 import redisutils
 
-
 task_log = commonware.log.getLogger('z.task')
+
+from amo.utils import JSONEncoder
 
 
 def login_required(f=None, redirect=True):
@@ -81,6 +82,19 @@ def json_view(f):
             return response
         else:
             return http.HttpResponse(json.dumps(response),
+                                     content_type='application/json')
+    return wrapper
+
+
+# a version of json_view that understands translated strings.
+def happy_json_view(f):
+    @functools.wraps(f)
+    def wrapper(*args, **kw):
+        response = f(*args, **kw)
+        if isinstance(response, http.HttpResponse):
+            return response
+        else:
+            return http.HttpResponse(json.dumps(response, cls=JSONEncoder),
                                      content_type='application/json')
     return wrapper
 

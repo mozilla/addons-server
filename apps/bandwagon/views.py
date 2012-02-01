@@ -7,16 +7,16 @@ from django.shortcuts import get_object_or_404, redirect
 
 import commonware.log
 import jingo
-import json
 import caching.base as caching
 from tower import ugettext_lazy as _lazy, ugettext as _
 
 import amo
 from amo import messages
 import sharing.views
-from amo.decorators import login_required, post_required, json_view, write
+from amo.decorators import (happy_json_view, json_view, login_required,
+                            post_required, write)
 from amo.urlresolvers import reverse
-from amo.utils import JSONEncoder, paginate, urlparams
+from amo.utils import paginate, urlparams
 from access import acl
 from addons.models import Addon
 from addons.views import BaseFilter
@@ -213,6 +213,7 @@ def collection_detail(request, username, slug):
                    'user_perms': user_perms})
 
 
+@happy_json_view
 def collection_detail_json(request, username, slug):
     c = get_collection(request, username, slug)
     if not (c.listed or acl.check_collection_ownership(request, c)):
@@ -224,8 +225,7 @@ def collection_detail_json(request, username, slug):
          'url': c.get_abs_url(),
          'iconUrl': c.icon_url,
          'addons': addons_dict, }
-    return http.HttpResponse(json.dumps(d, cls=JSONEncoder),
-                             content_type="application/json")
+    return d
 
 
 def get_notes(collection, raw=False):
