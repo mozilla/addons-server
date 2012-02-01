@@ -13,8 +13,9 @@ from django.utils.http import urlencode
 import jingo
 from jingo.helpers import datetime as datetime_filter
 import mock
-from nose.tools import eq_, assert_not_equal, assert_raises
 from nose.plugins.attrib import attr
+from nose.plugins.skip import SkipTest
+from nose.tools import eq_, assert_not_equal, assert_raises
 from PIL import Image
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
@@ -3356,6 +3357,7 @@ class TestDeleteApp(amo.tests.TestCase):
         waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
 
     def test_delete_nonincomplete(self):
+        # When soft deletes work, this test should be killed.
         r = self.client.post(self.url, dict(password='password'))
         self.assertRedirects(r, self.versions_url)
         eq_(Addon.objects.count(), 1, 'App should not have been deleted.')
@@ -3367,6 +3369,9 @@ class TestDeleteApp(amo.tests.TestCase):
         eq_(Addon.objects.count(), 1, 'App should not have been deleted.')
 
     def test_delete_incomplete(self):
+        # When we can reauth with Persona, incomplete apps will be deletable.
+        # (Future cvan: Pour some out for BrowserID.)
+        raise SkipTest
         self.webapp.update(status=amo.STATUS_NULL)
         r = self.client.post(self.url, dict(password='password'))
         self.assertRedirects(r, reverse('devhub.apps'))

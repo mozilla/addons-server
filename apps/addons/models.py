@@ -856,6 +856,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def can_be_deleted(self):
         """Only incomplete or free addons can be deleted."""
+        # TODO(apps): We can enable this when (incomplete) apps can actually
+        # be soft-deleted and when reauth is a thing.
+        if self.is_webapp():
+            return False
         return self.is_incomplete() or not (
             self.is_premium() or self.is_webapp())
 
