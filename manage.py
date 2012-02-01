@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 import getopt
+import imp
 import logging
 import os
 import site
 import sys
-import imp
+import warnings
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 if os.path.splitext(os.path.basename(__file__))[0] == 'cProfile':
@@ -62,6 +63,9 @@ if setting.startswith('zamboni'):
 res = imp.find_module(setting)
 settings = imp.load_module(setting, *res)
 os.environ['DJANGO_SETTINGS_MODULE'] = setting
+
+if not settings.DEBUG:
+    warnings.simplefilter('ignore')
 
 # The first thing execute_manager does is call `setup_environ`.  Logging config
 # needs to access settings, so we'll setup the environ early.
