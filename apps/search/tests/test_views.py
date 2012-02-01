@@ -872,6 +872,12 @@ class TestGenericAjaxSearch(TestAjaxSearch):
         addon = Addon.objects.filter(status=amo.STATUS_DISABLED)[0]
         self.search_addons('q=%s' % addon.id, [])
 
+    def test_ajax_search_admin_deleted_by_id(self):
+        amo.tests.addon_factory(status=amo.STATUS_DELETED)
+        self.refresh()
+        addon = Addon.with_deleted.filter(status=amo.STATUS_DELETED)[0]
+        self.search_addons('q=%s' % addon.id, [])
+
     def test_ajax_search_personas_by_id(self):
         addon = Addon.objects.all()[3]
         addon.update(type=amo.ADDON_PERSONA)

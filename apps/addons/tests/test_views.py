@@ -1259,6 +1259,13 @@ class TestDetailPage(amo.tests.TestCase):
         eq_(res.status_code, 404)
         assert 'disabled by an administrator' in res.content
 
+    def test_deleted_status_message(self):
+        addon = Addon.objects.get(id=3615)
+        addon.update(status=amo.STATUS_DELETED)
+        url = reverse('addons.detail', args=[addon.slug])
+        res = self.client.get(url)
+        eq_(res.status_code, 404)
+
     @patch('addons.models.Addon.premium')
     def test_ready_to_buy(self, premium):
         self.addon.update(premium_type=amo.ADDON_PREMIUM,
@@ -1600,6 +1607,10 @@ class TestStatus(amo.tests.TestCase):
         self.addon.update(status=amo.STATUS_PUBLIC)
         eq_(self.client.get(self.url).status_code, 200)
 
+    def test_deleted(self):
+        self.addon.update(status=amo.STATUS_DELETED)
+        eq_(self.client.get(self.url).status_code, 404)
+
     def test_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         eq_(self.client.get(self.url).status_code, 404)
@@ -1609,6 +1620,13 @@ class TestStatus(amo.tests.TestCase):
         self.addon.update(type=amo.ADDON_WEBAPP, status=amo.STATUS_DISABLED)
         # Pull webapp back out for class override to take effect
         addon = Addon.objects.get(id=3615)
+        eq_(self.client.head(addon.get_url_path()).status_code, 404)
+
+    def test_app_deleted(self):
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+        addon = Addon.objects.get(id=3615)
+        self.addon.update(type=amo.ADDON_WEBAPP, status=amo.STATUS_DELETED)
+        # Pull webapp back out for class override to take effect
         eq_(self.client.head(addon.get_url_path()).status_code, 404)
 
     def test_lite(self):

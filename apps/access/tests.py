@@ -115,6 +115,13 @@ class TestHasPerm(TestCase):
         assert not check_addon_ownership(self.request, self.addon)
         self.test_admin()
 
+    def test_deleted(self):
+        self.addon.update(status=amo.STATUS_DELETED)
+        assert not check_addon_ownership(self.request, self.addon)
+        self.request.amo_user = self.login_admin()
+        self.request.groups = self.request.amo_user.groups.all()
+        assert not check_addon_ownership(self.request, self.addon)
+
     def test_ignore_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         assert check_addon_ownership(self.request, self.addon,

@@ -298,6 +298,11 @@ class TestDetail(WebappTest):
     def test_other_apps_none(self):
         eq_(self.get_more_pq()('#author-addons').length, 0)
 
+    def test_deleted(self):
+        self.webapp.update(status=amo.STATUS_DELETED)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 404)
+
     def test_disabled_user_message(self):
         self.webapp.update(disabled_by_user=True)
         r = self.client.get(self.url)

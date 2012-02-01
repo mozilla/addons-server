@@ -7,6 +7,7 @@ import mock
 from nose.plugins.skip import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
+import waffle
 
 import amo
 import amo.tests
@@ -352,6 +353,15 @@ class TestAppStatus(amo.tests.TestCase):
         eq_(doc('#version-list').length, 0)
         eq_(doc('#delete-addon').length, 0)
         eq_(doc('#modal-delete').length, 0)
+        eq_(doc('#modal-disable').length, 1)
+
+    def test_soft_delete_items(self):
+        waffle.models.Switch.objects.create(name='soft_delete', active=True)
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('#version-status').length, 1)
+        eq_(doc('#version-list').length, 0)
+        eq_(doc('#delete-addon').length, 1)
+        eq_(doc('#modal-delete').length, 1)
         eq_(doc('#modal-disable').length, 1)
 
     def test_delete_link(self):

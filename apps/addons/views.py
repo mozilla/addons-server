@@ -74,6 +74,8 @@ def author_addon_clicked(f):
 @addon_disabled_view
 def addon_detail(request, addon):
     """Add-ons details page dispatcher."""
+    if addon.is_deleted:
+        raise http.Http404
     if addon.is_disabled:
         return jingo.render(request, 'addons/impala/disabled.html',
                             {'addon': addon}, status=404)

@@ -1,4 +1,4 @@
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 """Tests for SQL Model.
 
 Currently these tests are coupled tighly with MySQL

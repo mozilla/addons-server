@@ -17,6 +17,7 @@ from django.utils import translation
 
 from mock import patch, Mock
 from nose.tools import eq_, assert_not_equal, raises
+import waffle
 
 import amo
 import amo.tests
@@ -121,6 +122,12 @@ class TestAddonManager(amo.tests.TestCase):
         addon = Addon.objects.get(pk=5299)
         addon.update(status=amo.STATUS_DISABLED)
         eq_(Addon.objects.valid_and_disabled().count(), before)
+
+    def test_invalid_deleted(self):
+        before = Addon.objects.valid_and_disabled().count()
+        addon = Addon.objects.get(pk=5299)
+        addon.update(status=amo.STATUS_DELETED)
+        eq_(Addon.objects.valid_and_disabled().count(), before - 1)
 
     def test_top_free_public(self):
         addons = list(Addon.objects.listed(amo.FIREFOX))
@@ -259,7 +266,7 @@ class TestAddonModels(amo.tests.TestCase):
         a = Addon.objects.get(pk=5299)
         eq_(a.current_beta_version.id, 50000)
 
-    def test_delete(self):
+    def _delete(self):
         """Test deleting add-ons."""
         a = Addon.objects.get(pk=3615)
         a.name = u'é'
@@ -267,22 +274,36 @@ class TestAddonModels(amo.tests.TestCase):
         eq_(len(mail.outbox), 1)
         assert BlacklistedGuid.objects.filter(guid=a.guid)
 
-    def test_delete_url(self):
+    def test_delete_hard(self):
+        deleted_count = Addon.with_deleted.count()
+        self._delete()
+        eq_(deleted_count, Addon.with_deleted.count() + 1)
+
+    def test_delete_soft(self):
+        waffle.models.Switch.objects.create(name='soft_delete', active=True)
+        deleted_count = Addon.with_deleted.count()
+        self._delete()
+        eq_(deleted_count, Addon.with_deleted.count())
+
+    def _delete_url(self):
         """Test deleting addon has URL in the email."""
         a = Addon.objects.get(pk=4594)
+        url = a.get_url_path()
         a.delete('bye')
-        assert absolutify(a.get_url_path()) in mail.outbox[0].body
+        assert absolutify(url) in mail.outbox[0].body
 
-    def test_delete_searchengine(self):
-        """
-        Test deleting searchengines (which have no guids) should not barf up
-        the deletion machine.
-        """
-        a = Addon.objects.get(pk=4594)
-        a.delete('bye')
-        eq_(len(mail.outbox), 1)
+    def test_delete_url_hard(self):
+        count = Addon.with_deleted.count()
+        self._delete_url()
+        eq_(count, Addon.with_deleted.count() + 1)
 
-    def test_delete_status_gone_wild(self):
+    def test_delete_url_soft(self):
+        waffle.models.Switch.objects.create(name='soft_delete', active=True)
+        count = Addon.with_deleted.count()
+        self._delete_url()
+        eq_(count, Addon.with_deleted.count())
+
+    def _delete_status_gone_wild(self):
         """
         Test deleting add-ons where the higheststatus is zero, but there's a
         non-zero status.
@@ -294,8 +315,20 @@ class TestAddonModels(amo.tests.TestCase):
         eq_(len(mail.outbox), 1)
         assert BlacklistedGuid.objects.filter(guid=a.guid)
 
+    def test_delete_status_gone_wild_hard(self):
+        count = Addon.objects.count()
+        self._delete_status_gone_wild()
+        eq_(count, Addon.with_deleted.count() + 1)
+
+    def test_delete_status_gone_wild_soft(self):
+        waffle.models.Switch.objects.create(name='soft_delete', active=True)
+        count = Addon.objects.count()
+        self._delete_status_gone_wild()
+        eq_(count, Addon.with_deleted.count())
+
     def test_delete_incomplete(self):
         """Test deleting incomplete add-ons."""
+        count = Addon.with_deleted.count()
         a = Addon.objects.get(pk=3615)
         a.status = 0
         a.highest_status = 0
@@ -303,6 +336,16 @@ class TestAddonModels(amo.tests.TestCase):
         a.delete(None)
         eq_(len(mail.outbox), 0)
         assert not BlacklistedGuid.objects.filter(guid=a.guid)
+        eq_(Addon.with_deleted.count(), count - 1)
+
+    def test_delete_searchengine(self):
+        """
+        Test deleting searchengines (which have no guids) should not barf up
+        the deletion machine.
+        """
+        a = Addon.objects.get(pk=4594)
+        a.delete('bye')
+        eq_(len(mail.outbox), 1)
 
     def test_incompatible_latest_apps(self):
         a = Addon.objects.get(pk=3615)
@@ -944,6 +987,14 @@ class TestAddonModels(amo.tests.TestCase):
         eq_(addon.status, amo.STATUS_DISABLED)
         assert addon.is_disabled
 
+    def test_no_change_deleted(self):
+        addon = Addon.objects.create(type=1)
+        version = Version.objects.create(addon=addon)
+        addon.update(status=amo.STATUS_DELETED)
+        version.save()
+        eq_(addon.status, amo.STATUS_DELETED)
+        assert addon.is_deleted
+
     def test_can_alter_in_prelim(self):
         addon, version = self.setup_files(amo.STATUS_LITE)
         addon.update(status=amo.STATUS_LITE)
@@ -991,6 +1042,9 @@ class TestAddonModels(amo.tests.TestCase):
 
     def test_can_request_review_disabled(self):
         self.check(amo.STATUS_DISABLED, ())
+
+    def test_can_request_review_deleted(self):
+        self.check(amo.STATUS_DELETED, ())
 
     def test_can_request_review_lite(self):
         self.check(amo.STATUS_LITE, (amo.STATUS_PUBLIC,))

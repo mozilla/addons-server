@@ -17,8 +17,7 @@ import amo.models
 from amo.urlresolvers import reverse
 from amo.utils import memoize
 from addons import query
-from addons.models import (Addon, clear_name_table, delete_search_index,
-                           update_name_table, update_search_index)
+from addons.models import (Addon, update_name_table, update_search_index)
 from files.models import FileUpload, Platform
 from versions.models import Version
 
@@ -163,10 +162,6 @@ models.signals.post_save.connect(update_search_index, sender=Webapp,
                                  dispatch_uid='webapps.index')
 models.signals.post_save.connect(update_name_table, sender=Webapp,
                                  dispatch_uid='webapps.update.name.table')
-models.signals.post_delete.connect(delete_search_index, sender=Webapp,
-                                   dispatch_uid='webapps.unindex')
-models.signals.pre_delete.connect(clear_name_table, sender=Webapp,
-                                  dispatch_uid='webapps.clear.name.table')
 
 
 class Installed(amo.models.ModelBase):

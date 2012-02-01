@@ -110,3 +110,8 @@ class TestCheckPaypal(amo.tests.TestCase):
         self.addon.update(status=amo.STATUS_DISABLED)
         call_command('process_addons', task='check_paypal')
         assert not self.check.call_args[0][0]
+
+    def test_ignore_deleted(self):
+        self.addon.update(status=amo.STATUS_DELETED)
+        call_command('process_addons', task='check_paypal')
+        assert not self.check.call_args[0][0]

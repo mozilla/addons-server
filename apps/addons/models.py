@@ -19,6 +19,7 @@ import caching.base as caching
 import commonware.log
 import json_field
 from tower import ugettext_lazy as _
+import waffle
 
 from addons.utils import ReverseNameLookup, FeaturedManager, CreaturedManager
 import amo.models
@@ -48,9 +49,15 @@ log = commonware.log.getLogger('z.addons')
 
 class AddonManager(amo.models.ManagerBase):
 
+    def __init__(self, include_deleted=False):
+        amo.models.ManagerBase.__init__(self)
+        self.include_deleted = include_deleted
+
     def get_query_set(self):
         qs = super(AddonManager, self).get_query_set()
         qs = qs._clone(klass=query.IndexQuerySet)
+        if not self.include_deleted:
+            qs = qs.exclude(status=amo.STATUS_DELETED)
         return qs.transform(Addon.transformer)
 
     def id_or_slug(self, val):
@@ -271,6 +278,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     share_counts = collections.defaultdict(int)
 
     objects = AddonManager()
+    with_deleted = AddonManager(include_deleted=True)
 
     class Meta:
         db_table = 'addons'
@@ -335,8 +343,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @transaction.commit_on_success
     def delete(self, msg):
-        delete_harder = self.highest_status or self.status
-        if delete_harder:
+        id = self.id
+        if self.highest_status or self.status:
             if self.guid:
                 log.debug('Adding guid to blacklist: %s' % self.guid)
                 BlacklistedGuid(guid=self.guid, comments=msg).save()
@@ -364,14 +372,20 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                    self.average_daily_users, msg)
             log.debug('Sending delete email for add-on %s' % self.id)
             subject = 'Deleting add-on %s (%d)' % (self.slug, self.id)
-
-        rv = super(Addon, self).delete()
-
-        # We want to ensure deletion before notification.
-        if delete_harder:
+            if waffle.switch_is_active('soft_delete'):
+                self.status = amo.STATUS_DELETED
+                self.slug = self.app_slug = None
+                self.save()
+            else:
+                super(Addon, self).delete()
             send_mail(subject, email_msg, recipient_list=to)
-
-        return rv
+        else:
+            super(Addon, self).delete()
+        ReverseNameLookup(self.is_webapp()).delete(id)
+        from . import tasks
+        tasks.delete_preview_files.delay(id)
+        tasks.unindex_addons.delay([id])
+        return True
 
     @classmethod
     def from_upload(cls, upload, platforms):
@@ -627,7 +641,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                     self.id, size, int(time.mktime(self.modified.timetuple())))
 
     def update_status(self, using=None):
-        if (self.status == amo.STATUS_NULL or self.is_disabled
+        if (self.status in [amo.STATUS_NULL, amo.STATUS_DELETED]
+            or self.is_disabled
             or self.is_webapp() or self.is_persona()):
             return
 
@@ -772,7 +787,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if not File.objects.filter(version__addon=self):
             return ()
         if self.is_disabled or self.status in (amo.STATUS_PUBLIC,
-                                               amo.STATUS_LITE_AND_NOMINATED):
+                                               amo.STATUS_LITE_AND_NOMINATED,
+                                               amo.STATUS_DELETED):
             return ()
         elif self.status == amo.STATUS_NOMINATED:
             return (amo.STATUS_LITE,)
@@ -819,6 +835,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         """
         return self.status == amo.STATUS_DISABLED or self.disabled_by_user
 
+    @property
+    def is_deleted(self):
+        return self.status == amo.STATUS_DELETED
+
     def is_selfhosted(self):
         return self.status == amo.STATUS_LISTED
 
@@ -856,8 +876,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def can_be_deleted(self):
         """Only incomplete or free addons can be deleted."""
-        # TODO(apps): We can enable this when (incomplete) apps can actually
-        # be soft-deleted and when reauth is a thing.
+        if waffle.switch_is_active('soft_delete'):
+            return not self.is_deleted
         if self.is_webapp():
             return False
         return self.is_incomplete() or not (
@@ -1144,16 +1164,6 @@ def update_name_table(sender, **kw):
             log.debug('Build reverse name lookup with data: %s' % data)
             cron._build_reverse_name_lookup([data], clear=True)
 
-
-@receiver(dbsignals.pre_delete, sender=Addon,
-          dispatch_uid='addons.clear.name.table')
-def clear_name_table(sender, **kw):
-    log.debug('pre_delete signal called to update name table.')
-    if not kw.get('raw'):
-        addon = kw['instance']
-        ReverseNameLookup(addon.is_webapp()).delete(addon.id)
-
-
 @receiver(signals.version_changed, dispatch_uid='version_changed')
 def version_changed(sender, **kw):
     from . import tasks
@@ -1167,15 +1177,6 @@ def update_search_index(sender, instance, **kw):
 
     if not kw.get('raw'):
         tasks.index_addons.delay([instance.id])
-
-
-@receiver(dbsignals.post_delete, sender=Addon,
-          dispatch_uid='addons.search.unindex')
-def delete_search_index(sender, instance, **kw):
-    from . import tasks
-
-    if not kw.get('raw'):
-        tasks.unindex_addons.delay([instance.id])
 
 
 @Addon.on_change
@@ -1558,13 +1559,6 @@ class Preview(amo.models.ModelBase):
     @property
     def image_size(self):
         return self.sizes.get('image', []) if self.sizes else []
-
-
-# Use pre_delete since we need to know what we want to delete in the fs.
-@receiver(dbsignals.pre_delete, sender=Preview)
-def delete_preview_handler(sender, instance, **kwargs):
-    from . import tasks
-    tasks.delete_preview_files.delay(instance.id)
 
 
 class AppSupport(amo.models.ModelBase):
