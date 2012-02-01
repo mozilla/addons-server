@@ -13,8 +13,7 @@ from tower import ugettext_lazy as _lazy, ugettext as _
 import amo
 from amo import messages
 import sharing.views
-from amo.decorators import (happy_json_view, json_view, login_required,
-                            post_required, write)
+from amo.decorators import json_view, login_required, post_required, write
 from amo.urlresolvers import reverse
 from amo.utils import paginate, urlparams
 from access import acl
@@ -213,7 +212,7 @@ def collection_detail(request, username, slug):
                    'user_perms': user_perms})
 
 
-@happy_json_view
+@json_view(has_trans=True)
 def collection_detail_json(request, username, slug):
     c = get_collection(request, username, slug)
     if not (c.listed or acl.check_collection_ownership(request, c)):

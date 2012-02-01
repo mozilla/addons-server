@@ -1,20 +1,18 @@
 import functools
 import json
 
-import commonware.log
-
 from django import http
 from django.conf import settings
 from django.utils.http import urlquote
 
-from . import models as context
-from .urlresolvers import reverse
-
+import commonware.log
 import redisutils
 
-task_log = commonware.log.getLogger('z.task')
+from . import models as context
+from .urlresolvers import reverse
+from .utils import JSONEncoder
 
-from amo.utils import JSONEncoder
+task_log = commonware.log.getLogger('z.task')
 
 
 def login_required(f=None, redirect=True):
@@ -74,29 +72,25 @@ def modal_view(f):
     return wrapper
 
 
-def json_view(f):
-    @functools.wraps(f)
-    def wrapper(*args, **kw):
-        response = f(*args, **kw)
-        if isinstance(response, http.HttpResponse):
-            return response
-        else:
-            return http.HttpResponse(json.dumps(response),
-                                     content_type='application/json')
-    return wrapper
-
-
-# a version of json_view that understands translated strings.
-def happy_json_view(f):
-    @functools.wraps(f)
-    def wrapper(*args, **kw):
-        response = f(*args, **kw)
-        if isinstance(response, http.HttpResponse):
-            return response
-        else:
-            return http.HttpResponse(json.dumps(response, cls=JSONEncoder),
-                                     content_type='application/json')
-    return wrapper
+def json_view(f=None, has_trans=False):
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kw):
+            response = func(*args, **kw)
+            if isinstance(response, http.HttpResponse):
+                return response
+            else:
+                if has_trans:
+                    response = json.dumps(response, cls=JSONEncoder)
+                else:
+                    response = json.dumps(response)
+                return http.HttpResponse(response,
+                                         content_type='application/json')
+        return wrapper
+    if f:
+        return decorator(f)
+    else:
+        return decorator
 
 
 json_view.error = lambda s: http.HttpResponseBadRequest(
