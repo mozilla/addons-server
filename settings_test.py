@@ -53,6 +53,17 @@ PAYPAL_PERMISSIONS_URL = ''
 STATIC_URL = ''
 SITE_URL = ''
 MOBILE_SITE_URL = ''
+MEDIA_URL = '/media/'
+# Reset these URLs to the defaults so your settings_local doesn't clobber them:
+ADDON_ICONS_DEFAULT_URL = MEDIA_URL + '/img/addon-icons'
+ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
+ADDON_ICON_URL = ('%s/images/addon_icon/%%d-%%d.png?modified=%%s' %
+                  STATIC_URL)
+PREVIEW_THUMBNAIL_URL = (STATIC_URL +
+        '/img/uploads/previews/thumbs/%s/%d.png?modified=%d')
+PREVIEW_FULL_URL = (STATIC_URL +
+        '/img/uploads/previews/full/%s/%d.png?modified=%d')
+USERPICS_URL = STATIC_URL + '/img/uploads/userpics/%s/%s/%s.png?modified=%d'
 
 CACHE_BACKEND = 'caching.backends.locmem://'
 

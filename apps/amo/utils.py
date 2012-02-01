@@ -410,17 +410,15 @@ def resize_image(src, dst, size, remove_src=True):
     if src == dst:
         raise Exception("src and dst can't be the same: %s" % src)
 
-    dirname = os.path.dirname(dst)
-    if not os.path.exists(dirname):
-        os.makedirs(dirname)
-
-    im = Image.open(src)
-    im = im.convert('RGBA')
-    im = processors.scale_and_crop(im, size)
-    im.save(dst, 'png')
+    with storage.open(src, 'rb') as fp:
+        im = Image.open(fp)
+        im = im.convert('RGBA')
+        im = processors.scale_and_crop(im, size)
+    with storage.open(dst, 'wb') as fp:
+        im.save(fp, 'png')
 
     if remove_src:
-        os.remove(src)
+        storage.delete(src)
 
     return im.size
 
@@ -428,8 +426,8 @@ def resize_image(src, dst, size, remove_src=True):
 def remove_icons(destination):
     for size in ADDON_ICON_SIZES:
         filename = '%s-%s.png' % (destination, size)
-        if os.path.exists(filename):
-            os.remove(filename)
+        if storage.exists(filename):
+            storage.delete(filename)
 
 
 class ImageCheck(object):

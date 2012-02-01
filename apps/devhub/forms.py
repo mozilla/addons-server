@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import path
+import os
 import re
 import socket
 
@@ -665,10 +665,10 @@ class PreviewForm(happyforms.ModelForm):
             super(PreviewForm, self).save(commit=commit)
             if self.cleaned_data['upload_hash']:
                 upload_hash = self.cleaned_data['upload_hash']
-                upload_path = (path.path(settings.TMP_PATH) / 'preview' /
-                               upload_hash)
-                tasks.resize_preview.delay(str(upload_path),
-                                self.instance, set_modified_on=[self.instance])
+                upload_path = os.path.join(settings.TMP_PATH, 'preview',
+                                           upload_hash)
+                tasks.resize_preview.delay(upload_path, self.instance,
+                                           set_modified_on=[self.instance])
 
     class Meta:
         model = Preview

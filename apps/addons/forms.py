@@ -1,6 +1,5 @@
 from datetime import datetime
 import os
-import path
 import re
 
 from django import forms
@@ -341,7 +340,7 @@ class AddonFormMedia(AddonFormBase):
     def save(self, addon, commit=True):
         if self.cleaned_data['icon_upload_hash']:
             upload_hash = self.cleaned_data['icon_upload_hash']
-            upload_path = path.path(settings.TMP_PATH) / 'icon' / upload_hash
+            upload_path = os.path.join(settings.TMP_PATH, 'icon', upload_hash)
 
             dirname = addon.get_icon_dir()
             destination = os.path.join(dirname, '%s' % addon.id)

@@ -1,9 +1,9 @@
 import os
 import shutil
 
-import path
 import mock
 
+from django.core.files.storage import default_storage as storage
 from django.conf import settings
 
 import amo
@@ -94,16 +94,18 @@ class TestCompatForm(amo.tests.TestCase):
 class TestPreviewForm(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
+    def setUp(self):
+        self.dest = os.path.join(settings.TMP_PATH, 'preview')
+        if not os.path.exists(self.dest):
+            os.makedirs(self.dest)
+
     @mock.patch('amo.models.ModelBase.update')
     def test_preview_modified(self, update_mock):
         addon = Addon.objects.get(pk=3615)
         name = 'transparent.png'
         form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
                                   'position': 1})
-        dest = path.path(settings.TMP_PATH) / 'preview'
-        if not os.path.exists(dest):
-            os.makedirs(dest)
-        shutil.copyfile(get_image_path(name), dest / name)
+        shutil.copyfile(get_image_path(name), os.path.join(self.dest, name))
         assert form.is_valid()
         form.save(addon)
         assert update_mock.called
@@ -113,10 +115,7 @@ class TestPreviewForm(amo.tests.TestCase):
         name = 'non-animated.gif'
         form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
                                   'position': 1})
-        dest = path.path(settings.TMP_PATH) / 'preview'
-        if not os.path.exists(dest):
-            os.makedirs(dest)
-        shutil.copyfile(get_image_path(name), dest / name)
+        shutil.copyfile(get_image_path(name), os.path.join(self.dest, name))
         assert form.is_valid()
         form.save(addon)
         eq_(addon.previews.all()[0].sizes,

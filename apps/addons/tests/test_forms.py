@@ -5,8 +5,8 @@ import tempfile
 
 from mock import patch
 from nose.tools import eq_
-import path
 
+from django.core.files.storage import default_storage as storage
 from django.conf import settings
 
 import amo
@@ -209,13 +209,9 @@ class TestIconForm(amo.tests.TestCase):
         class DummyRequest:
             FILES = None
         self.request = DummyRequest()
-
-        self.paths = [path.path(settings.TMP_PATH) / 'uploads' /
-                      'addon_icons' / str(self.addon.pk)[0],
-                      path.path(settings.TMP_PATH) / 'icon']
-        for p in self.paths:
-            if not os.path.exists(p):
-                os.makedirs(p)
+        self.icon_path = os.path.join(settings.TMP_PATH, 'icon')
+        if not os.path.exists(self.icon_path):
+            os.makedirs(self.icon_path)
 
     def tearDown(self):
         shutil.rmtree(self.temp_dir)
@@ -254,7 +250,7 @@ class TestIconForm(amo.tests.TestCase):
                                     request=self.request,
                                     instance=self.addon)
 
-        dest = self.paths[1] / name
+        dest = os.path.join(self.icon_path, name)
         shutil.copyfile(get_image_path(name), dest)
 
         assert form.is_valid()
