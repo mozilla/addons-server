@@ -1,5 +1,5 @@
 from django.contrib import admin
 
-from .models import Inapp
+from .models import InappConfig
 
-admin.site.register(Inapp)
+admin.site.register(InappConfig)
