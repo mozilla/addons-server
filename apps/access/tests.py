@@ -131,10 +131,6 @@ class TestHasPerm(TestCase):
         self.au.save()
         assert not check_addon_ownership(self.request, self.addon)
 
-        self.au.role = amo.AUTHOR_ROLE_SUPPORT
-        self.au.save()
-        assert not check_addon_ownership(self.request, self.addon)
-
     def test_dev(self):
         assert check_addon_ownership(self.request, self.addon, dev=True)
 
@@ -143,10 +139,6 @@ class TestHasPerm(TestCase):
         assert check_addon_ownership(self.request, self.addon, dev=True)
 
         self.au.role = amo.AUTHOR_ROLE_VIEWER
-        self.au.save()
-        assert not check_addon_ownership(self.request, self.addon, dev=True)
-
-        self.au.role = amo.AUTHOR_ROLE_SUPPORT
         self.au.save()
         assert not check_addon_ownership(self.request, self.addon, dev=True)
 
@@ -160,22 +152,3 @@ class TestHasPerm(TestCase):
         self.au.role = amo.AUTHOR_ROLE_VIEWER
         self.au.save()
         assert check_addon_ownership(self.request, self.addon, viewer=True)
-
-        self.au.role = amo.AUTHOR_ROLE_SUPPORT
-        self.au.save()
-        assert check_addon_ownership(self.request, self.addon, viewer=True)
-
-    def test_support(self):
-        assert check_addon_ownership(self.request, self.addon, viewer=True)
-
-        self.au.role = amo.AUTHOR_ROLE_DEV
-        self.au.save()
-        assert not check_addon_ownership(self.request, self.addon, support=True)
-
-        self.au.role = amo.AUTHOR_ROLE_VIEWER
-        self.au.save()
-        assert not check_addon_ownership(self.request, self.addon, support=True)
-
-        self.au.role = amo.AUTHOR_ROLE_SUPPORT
-        self.au.save()
-        assert check_addon_ownership(self.request, self.addon, support=True)
