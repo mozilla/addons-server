@@ -24,6 +24,6 @@ class TestAbuse(amo.tests.TestCase):
 
     def test_addon_fr(self):
         abuse = AbuseReport.objects.create(addon_id=3615)
-        with self.activate('fr'):
+        with self.activate(locale='fr'):
             abuse.send()
         assert mail.outbox[0].subject.startswith('[Extension]')

@@ -276,7 +276,7 @@ class TestVersion(amo.tests.TestCase):
         eq_(doc('p').html(), 'Fix for an important bug')
 
         # Test update info in another language.
-        with self.activate('fr'):
+        with self.activate(locale='fr'):
             r = self.client.get(reverse('addons.versions.update_info',
                                         args=(addon.id, self.version.version)))
             eq_(r.status_code, 200)

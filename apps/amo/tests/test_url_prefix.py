@@ -6,6 +6,7 @@ from mock import patch
 from nose.tools import eq_, assert_not_equal
 import test_utils
 
+import amo.tests
 from amo import urlresolvers
 from amo.middleware import LocaleAndAppURLMiddleware
 
@@ -197,6 +198,24 @@ class TestPrefixer:
         client = test.Client()
         client.get('/')
         eq_(urlresolvers.reverse('home'), '/en-US/apps/')
+
+
+class TestPrefixerActivate(amo.tests.TestCase):
+
+    def test_activate_locale(self):
+        with self.activate(locale='fr'):
+            eq_(urlresolvers.reverse('home'), '/fr/firefox/')
+        eq_(urlresolvers.reverse('home'), '/en-US/firefox/')
+
+    def test_activate_app(self):
+        with self.activate(app='mobile'):
+            eq_(urlresolvers.reverse('home'), '/en-US/mobile/')
+        eq_(urlresolvers.reverse('home'), '/en-US/firefox/')
+
+    def test_activate_app_locale(self):
+        with self.activate(locale='de', app='thunderbird'):
+            eq_(urlresolvers.reverse('home'), '/de/thunderbird/')
+        eq_(urlresolvers.reverse('home'), '/en-US/firefox/')
 
 
 def test_redirect():

@@ -184,13 +184,20 @@ class TestCase(RedisTest, test_utils.TestCase):
         CreaturedManager.creatured_ids.clear()
 
     @contextmanager
-    def activate(self, locale):
-        old_prefix = get_url_prefix()
+    def activate(self, locale=None, app=None):
+        """Active an app or a locale."""
+        prefixer = old_prefix = get_url_prefix()
+        old_app = old_prefix.app
         old_locale = translation.get_language()
-        rf = test_utils.RequestFactory()
-        set_url_prefix(Prefixer(rf.get('/%s/' % (locale,))))
-        translation.activate(locale)
+        if locale:
+            rf = test_utils.RequestFactory()
+            prefixer = Prefixer(rf.get('/%s/' % (locale,)))
+            translation.activate(locale)
+        if app:
+            prefixer.app = app
+        set_url_prefix(prefixer)
         yield
+        old_prefix.app = old_app
         set_url_prefix(old_prefix)
         translation.activate(old_locale)
 
