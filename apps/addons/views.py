@@ -28,7 +28,7 @@ from amo import messages
 from amo.decorators import login_required, post_required, write
 from amo.forms import AbuseForm
 from amo.helpers import shared_url
-from amo.utils import sorted_groupby, randslice
+from amo.utils import randslice, sorted_groupby, urlparams
 from amo.models import manual_order
 from amo import urlresolvers
 from amo.urlresolvers import reverse
@@ -632,13 +632,16 @@ def purchase_complete(request, addon, status):
         if result == 'COMPLETED' and con.type == amo.CONTRIB_PENDING:
             con.update(type=amo.CONTRIB_PURCHASE)
 
-    response = jingo.render(request, 'addons/paypal_result.html',
-                            {'addon': addon,
-                             'realurl': request.GET.get('realurl', ''),
-                             # What the client claimed they did.
-                             'status': status,
-                             # And what paypal thought of that claim.
-                             'result': result})
+    context = {'realurl': request.GET.get('realurl', ''),
+               'status': status, 'result': result}
+
+    # For mobile, bounce back to the details page.
+    if request.MOBILE:
+        url = urlparams(shared_url('detail', addon), **context)
+        return redirect(url)
+
+    context.update({'addon': addon})
+    response = jingo.render(request, 'addons/paypal_result.html', context)
     response['x-frame-options'] = 'allow'
     return response
 

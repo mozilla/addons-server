@@ -54,7 +54,9 @@ table {
     -moz-transition: none !important;
 }
 */
-
+.js-hidden {
+    display: none;
+}
 i {
     font-style: italic;
     color: #838382;

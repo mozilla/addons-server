@@ -3,6 +3,19 @@
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
 
 {% block page %}
+  {% if request.GET.get('status') == 'complete' %}
+    <div class="purchase-result purchase-complete">
+      {% with addon_name=addon.name %}
+        <h2>{{ loc('Thank you') }}</h2>
+        <p>Your purchase of <strong class='addon-title'>{{ addon_name }}</strong> is complete.</p>
+      {% endwith %}
+    </div>
+  {% elif request.GET.get('status') %}
+    <div class="purchase-result purchase-cancel">
+      <p>Your purchase was cancelled.</p>
+    </div>
+  {% endif %}
+
   <div class="infobox item">
     <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
     <h3>{{ addon.name }}</h3>

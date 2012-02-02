@@ -496,6 +496,37 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         eq_(AddonPurchase.objects.filter(addon=self.addon).count(), 1)
         eq_(res.context['status'], 'complete')
 
+    @amo.tests.mobile_test
+    @patch('paypal.check_purchase')
+    def test_check_addon_purchase_mobile(self, check_purchase):
+        with self.activate(app='mobile'):
+            check_purchase.return_value = 'COMPLETED'
+            self.make_contribution()
+            res = self.client.get_ajax('%s?uuid=%s' %
+                                   (self.get_url('complete'), '123'))
+            url = shared_url('detail', self.addon)
+            target = res._headers['location'][1]
+            # TODO: clean up amo.tests.mobile_test and so on so that
+            # self.assertRedirects will work.
+            assert url in target
+            assert 'complete' in target
+
+    @amo.tests.mobile_test
+    def test_check_addon_details_purchase_claimed(self):
+        with self.activate(app='mobile'):
+            url = urlparams(shared_url('detail', self.addon),
+                            status='complete')
+            res = self.client.get(url)
+            eq_(pq(res.content)('div.purchase-complete').length, 1)
+
+    @amo.tests.mobile_test
+    def test_check_addon_details_cancel_claimed(self):
+        with self.activate(app='mobile'):
+            url = urlparams(shared_url('detail', self.addon),
+                            status='cancel')
+            res = self.client.get(url)
+            eq_(pq(res.content)('div.purchase-cancel').length, 1)
+
     def test_check_cancel(self):
         self.make_contribution()
         res = self.client.get_ajax('%s?uuid=%s' %
