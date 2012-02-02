@@ -4,19 +4,19 @@ $(function() {
     }
 
     var show_comments = function(e) {
-        e.preventDefault()
-        var me = e.target;
-        $(me).hide()
-        $(me).next().show()
-        $(me).parents('tr').next().show()
+        e.preventDefault();
+        var $me = $(e.target);
+        $me.hide();
+        $me.next().show();
+        $me.parents('tr').next().show();
     }
 
     var hide_comments = function(e) {
         e.preventDefault();
-        var me = e.target;
-        $(me).hide();
-        $(me).prev().show()
-        $(me).parents('tr').next().hide()
+        var $me = $(e.target);
+        $me.hide();
+        $me.prev().show();
+        $me.parents('tr').next().hide();
     }
 
 
@@ -215,8 +215,9 @@ function initDailyMessage(doc) {
         return;
     }
     $motd.find('.close').show();
-    if (storage.get('motd_closed') == $('p', $motd).text()) {
-        $motd.hide();
+    if (storage.get('motd_closed') != $('p', $motd).text()) {
+        // You haven't read this spam yet? Here, I have something to show you.
+        $motd.slideDown();
     }
     $motd.find('.close').click(function(e) {
         e.stopPropagation();

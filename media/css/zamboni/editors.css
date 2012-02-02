@@ -309,6 +309,7 @@ ul.tabnav a:hover {
 }
 
 .daily-message {
+    display: none;
     position: relative;
 }
 
