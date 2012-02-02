@@ -58,11 +58,22 @@ class StatsTest(object):
                 yield (view, args)
 
 
-class TestSeriesBase(StatsTest, amo.tests.TestCase):
-    pass
+class ESStatsTest(StatsTest, amo.tests.ESTestCase):
+    """Test class with some ES setup."""
+
+    def setUp(self):
+        super(ESStatsTest, self).setUp()
+        self.index()
+
+    def index(self):
+        updates = UpdateCount.objects.values_list('id', flat=True)
+        tasks.index_update_counts(list(updates))
+        downloads = DownloadCount.objects.values_list('id', flat=True)
+        tasks.index_download_counts(list(downloads))
+        self.refresh('update_counts')
 
 
-class TestSeriesSecurity(TestSeriesBase):
+class TestSeriesSecurity(ESStatsTest):
     """Tests to make sure all restricted data remains restricted."""
 
     def test_private_addon(self):
@@ -98,7 +109,7 @@ class TestSeriesSecurity(TestSeriesBase):
                 'unexpected http status for %s' % view)
 
 
-class _TestCSVs(TestSeriesBase):
+class _TestCSVs(StatsTest, amo.tests.TestCase):
     """Tests for CSV output of all known series views."""
     first_row = 5
 
@@ -248,7 +259,7 @@ class _TestCSVs(TestSeriesBase):
         eq_(rows[self.first_row], [])  # There is no data
 
 
-class TestCacheControl(TestSeriesBase):
+class TestCacheControl(StatsTest, amo.tests.TestCase):
     """Tests we set cache control headers"""
 
     def _test_cache_control(self):
@@ -258,12 +269,8 @@ class TestCacheControl(TestSeriesBase):
             'Bad or no cache-control: %r' % response.get('cache-control', ''))
 
 
-class TestResponses(StatsTest, amo.tests.ESTestCase):
+class TestResponses(ESStatsTest):
     es = True
-
-    def setUp(self):
-        super(TestResponses, self).setUp()
-        self.index()
 
     def csv_eq(self, response, expected):
         # Drop the first 4 lines, which contain the header comment.
@@ -271,13 +278,6 @@ class TestResponses(StatsTest, amo.tests.ESTestCase):
         # Strip any extra spaces from the expected content.
         expected = [line.strip() for line in expected.splitlines()]
         self.assertListEqual(content, expected)
-
-    def index(self):
-        updates = UpdateCount.objects.values_list('id', flat=True)
-        tasks.index_update_counts(list(updates))
-        downloads = DownloadCount.objects.values_list('id', flat=True)
-        tasks.index_download_counts(list(downloads))
-        self.refresh('update_counts')
 
     def test_usage_json(self):
         r = self.get_view_response('stats.usage_series', group='day',
