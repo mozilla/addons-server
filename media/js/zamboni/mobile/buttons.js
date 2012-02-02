@@ -56,7 +56,10 @@
             data: {'result_type': 'json'},
             success: function(json) {
                 $('.modal').trigger('close'); // Hide all modals
-                if (json.paykey) {
+                if (json.status == 'COMPLETED') {
+                    // Bounce back to the details page.
+                    window.location = window.location.pathname + '?status=complete';
+                } else if (json.paykey) {
                     /* This is supposed to be a global */
                     //dgFlow = new PAYPAL.apps.DGFlow({expType:'mini'});
                     dgFlow = new PAYPAL.apps.DGFlow({clicked: opt.el.id});
