@@ -56,7 +56,7 @@ if setting in ('settings', ''):
 
 # Django runserver does that double reload of installed settings, settings
 # setting to zamboni.settings. We don't want to have zamboni on the path.
-if setting.startswith(('zamboni', 'workspace')):
+if setting.startswith(('zamboni', 'workspace', 'freddo')):
     setting = setting.split('.', 1)[1]
 
 
