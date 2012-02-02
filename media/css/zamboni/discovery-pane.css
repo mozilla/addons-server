@@ -346,7 +346,7 @@ header:after,
 }
 
 #main #featured-addons {
-    margin-top: 293px;
+    margin-top: 283px;
 }
 #main #promos.js + #featured-addons {
     margin-top: 0;
@@ -806,6 +806,10 @@ section#featured-addons {
 
     .feature {
         height: 270px;
+    }
+
+    #main #featured-addons {
+        margin-top: 293px;
     }
 
     #intro {
