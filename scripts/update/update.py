@@ -121,7 +121,7 @@ def pre_update(ctx, ref=settings.UPDATE_REF):
 @task
 def update(ctx):
     update_locales()
-    #update_products()
+    update_products()
     compress_assets()
     schematic()
     with ctx.lcd(settings.SRC_DIR):
