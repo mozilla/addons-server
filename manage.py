@@ -48,17 +48,16 @@ except IndexError:
 if not setting:
     setting = os.environ.get('DJANGO_SETTINGS_MODULE', '')
 
-# The average Django user will have DJANGO_SETTINGS_MODULE set to settings
-# for our purposes that means, load the default site, so if nothing is
-# specified by now, use the default.
-if setting in ('settings', ''):
-    setting = 'settings_local'
-
 # Django runserver does that double reload of installed settings, settings
 # setting to zamboni.settings. We don't want to have zamboni on the path.
 if setting.startswith(('zamboni', 'workspace', 'freddo')):
     setting = setting.split('.', 1)[1]
 
+# The average Django user will have DJANGO_SETTINGS_MODULE set to settings
+# for our purposes that means, load the default site, so if nothing is
+# specified by now, use the default.
+if setting in ('settings', ''):
+    setting = 'settings_local'
 
 # Finally load the settings file that was specified.
 res = imp.find_module(setting)
