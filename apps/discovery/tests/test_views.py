@@ -507,6 +507,7 @@ class TestMonthlyPick(amo.tests.TestCase):
         r = self.client.get(self.url)
         pick = pq(r.content)('#monthly')
         eq_(pick.length, 1)
+        eq_(pick.parents('.panel').attr('data-addonguid'), self.addon.guid)
         a = pick.find('h3 a')
         url = reverse('discovery.addons.detail', args=['a3615'])
         assert a.attr('href').endswith(url + '?src=discovery-promo'), (
