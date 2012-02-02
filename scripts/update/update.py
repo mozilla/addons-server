@@ -48,6 +48,7 @@ def update_code(ctx, ref='origin/master'):
         ctx.local("git submodule --quiet foreach 'git submodule --quiet sync "
                   "&& git submodule --quiet sync "
                   "&& git submodule update --init --recursive'")
+        ctx.local("git submodule update --init --recursive")  # at the top
 
 
 @task
