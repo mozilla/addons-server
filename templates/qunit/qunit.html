@@ -821,6 +821,10 @@
   </div>
 
   <div id="editors-motd-template">
+    <style>
+      /* We hide the message by default, and show it only if we're s'posed to. */
+      .daily-message { display: none }
+    </style>
     {% with motd='This is an announcement' %}
       {% include "editors/includes/daily-message.html" %}
     {% endwith %}
