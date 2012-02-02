@@ -68,7 +68,10 @@ a {
 .secondary + .primary .island {
     /* Make islands on homepage, category-landing pages, etc. span 100%. */
     .border-box;
-    width: 100% !important;
+    width: 100%;
+    &.hero {
+        width: 750px;
+    }
 }
 
 header + .island {
