@@ -3,7 +3,6 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.core import mail
-from django.core.validators import validate_slug
 from django.utils.http import int_to_base36
 
 from django.conf import settings
@@ -399,7 +398,9 @@ class TestUserRegisterForm(UserFormBase):
                 'password2': 'xxxlonger',
                 'username': 'Todd/Rochelle', }
         r = self.client.post('/en-US/firefox/users/register', data)
-        self.assertFormError(r, 'form', 'username', validate_slug.message)
+        self.assertFormError(r, 'form', 'username',
+            'Enter a valid username consisting of letters, numbers, '
+            'underscores or hyphens.')
 
     def test_blacklisted_username(self):
         data = {'email': 'testo@example.com',

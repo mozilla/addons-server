@@ -298,7 +298,8 @@ def slugify(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-'):
     return new.lower() if lower else new
 
 
-def slug_validator(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-'):
+def slug_validator(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-',
+                   message=validate_slug.message, code=validate_slug.code):
     """
     Raise an error if the string has any punctuation characters.
 
@@ -306,8 +307,7 @@ def slug_validator(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-'):
     locale.
     """
     if not (s and slugify(s, ok, lower, spaces, delimiter) == s):
-        raise ValidationError(validate_slug.message,
-                              code=validate_slug.code)
+        raise ValidationError(message, code=code)
 
 
 def raise_required():

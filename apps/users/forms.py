@@ -157,7 +157,9 @@ class UsernameMixin:
 
     def clean_username(self):
         name = self.cleaned_data['username']
-        slug_validator(name, lower=False)
+        slug_validator(name, lower=False,
+            message=_('Enter a valid username consisting of letters, numbers, '
+                      'underscores or hyphens.'))
         if BlacklistedUsername.blocked(name):
             raise forms.ValidationError(_('This username cannot be used.'))
         return name
