@@ -871,7 +871,7 @@ def support_mozilla(request, contribution, wizard):
                          {'addon': addon, 'form': form})
 
 
-@waffle_flag('allow-refund')
+@waffle_switch('allow-refund')
 def refund_request(request, contribution, wizard):
     addon = contribution.addon
     webapp = addon.is_webapp()
@@ -884,7 +884,7 @@ def refund_request(request, contribution, wizard):
                           'form': form, 'contribution': contribution})
 
 
-@waffle_flag('allow-refund')
+@waffle_switch('allow-refund')
 def refund_reason(request, contribution, wizard):
     addon = contribution.addon
     if not 'request' in wizard.get_progress():

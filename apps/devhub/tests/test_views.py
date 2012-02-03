@@ -1336,7 +1336,7 @@ class TestIssueRefund(amo.tests.TestCase):
     fixtures = ('base/apps', 'base/users', 'base/addon_3615')
 
     def setUp(self):
-        waffle.models.Flag.objects.create(name='allow-refund', everyone=True)
+        waffle.models.Switch.objects.create(name='allow-refund', active=True)
 
         self.addon = Addon.objects.get(id=3615)
         self.transaction_id = u'fake-txn-id'

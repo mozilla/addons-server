@@ -1286,7 +1286,7 @@ class TestPurchases(amo.tests.TestCase):
 
     def setUp(self):
         waffle.models.Switch.objects.create(name='marketplace', active=True)
-        waffle.models.Flag.objects.create(name='allow-refund', everyone=True)
+        waffle.models.Switch.objects.create(name='allow-refund', active=True)
 
         self.url = reverse('users.purchases')
         self.client.login(username='regular@mozilla.com', password='password')
