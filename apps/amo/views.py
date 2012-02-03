@@ -12,7 +12,6 @@ from django.views.decorators.http import require_POST
 import commonware.log
 import jingo
 import waffle
-from django_arecibo.tasks import post
 from django_statsd.views import record as django_statsd_record
 from django_statsd.clients import statsd
 
@@ -90,9 +89,6 @@ def handler404(request):
 def handler500(request):
     webapp = settings.APP_PREVIEW
     template = 'amo/500%s.html' % ('_apps' if webapp else '')
-    arecibo = getattr(settings, 'ARECIBO_SERVER_URL', '')
-    if arecibo:
-        post(request, 500)
     if request.path_info.startswith('/api/'):
         return api.views.handler500(request)
     else:

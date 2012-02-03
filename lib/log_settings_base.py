@@ -1,42 +1,10 @@
 import logging
 import logging.handlers
-import socket
 
 from django.conf import settings
 
 import commonware.log
 import dictconfig
-
-
-class NullHandler(logging.Handler):
-
-    def emit(self, record):
-        pass
-
-
-class UnicodeLogger(logging.handlers.SysLogHandler):
-
-    def emit(self, record):
-        msg = self.format(record) + '\000'
-        prio = '<%d>' % self.encodePriority(self.facility,
-                                            self.mapPriority(record.levelname))
-        if type(msg) is unicode:
-            msg = msg.encode('utf-8')
-        msg = prio + msg
-        try:
-            if self.unixsocket:
-                try:
-                    self.socket.send(msg)
-                except socket.error:
-                    self._connect_unixsocket(self.address)
-                    self.socket.send(msg)
-            else:
-                self.socket.sendto(msg, self.address)
-        except (KeyboardInterrupt, SystemExit):
-            raise
-        except:
-            self.handleError(record)
-
 
 base_fmt = ('%(name)s:%(levelname)s %(message)s '
             ':%(pathname)s:%(lineno)s')
@@ -69,29 +37,44 @@ cfg = {
             'formatter': 'debug',
         },
         'syslog': {
-            '()': UnicodeLogger,
+            'class': 'lib.misc.admin_log.UnicodeHandler',
             'facility': logging.handlers.SysLogHandler.LOG_LOCAL7,
             'formatter': 'prod',
         },
         'syslog2': {
-            '()': UnicodeLogger,
+            'class': 'lib.misc.admin_log.UnicodeHandler',
             'facility': logging.handlers.SysLogHandler.LOG_LOCAL7,
             'formatter': 'prod2',
         },
         'null': {
-            '()': NullHandler,
+            'class': 'lib.misc.admin_log.NullHandler',
         },
         'mail_admins': {
             'level': 'ERROR',
             'class': 'lib.misc.admin_log.AdminEmailHandler'
         },
+        'statsd': {
+            'level': 'ERROR',
+            'class': 'lib.misc.admin_log.StatsdHandler',
+        },
+        'arecibo': {
+            'level': 'ERROR',
+            'class': 'lib.misc.admin_log.AreciboHandler',
+        },
+        'errortype_syslog': {
+            'class': 'lib.misc.admin_log.ErrorSyslogHandler',
+            'facility': logging.handlers.SysLogHandler.LOG_LOCAL7,
+            'formatter': 'prod',
+        },
     },
     'loggers': {
         'z': {},
         'django.request': {
-            'handlers': ['mail_admins'],
+            # Note these handlers will choose what they want to emit and when.
+            'handlers': ['mail_admins', 'errortype_syslog',
+                         'statsd', 'arecibo'],
             'level': 'ERROR',
-            'propagate': False,
+            'propagate': True,
         },
     },
     'root': {},
