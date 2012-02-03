@@ -211,7 +211,7 @@ def refund(paykey):
     """
     Refund a payment.
 
-    Arguments: transaction id of payment to refund
+    Arguments: paykey of payment to refund
 
     Returns: A list of dicts containing the refund info for each
     receiver of the original payment.
