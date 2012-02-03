@@ -322,6 +322,11 @@
                     this.removeAttribute("href");
                 });
             } else {
+                // If app has already been purchased the "Install" button
+                // should be green.
+                if (self.attr.purchased && classes.premium) {
+                    dom.buttons.removeClass('premium');
+                }
                 dom.buttons.click(startInstall);
             }
         }
