@@ -26,8 +26,7 @@
     </li>
   {% endif %}
   <li>
-    {# TODO(apps): Finalize copy. #}
-    <a href="{{ addon.get_dev_url('owner') }}">Manage Authors</a>
+    <a href="{{ addon.get_dev_url('owner') }}">{{ loc('Manage Authors') }}</a>
   </li>
   <li>
     <a href="{{ addon.get_dev_url('payments') }}">
@@ -36,9 +35,15 @@
   <li>
     <a href="#" class="more-actions">{{ _('More') }}</a>
     <div class="more-actions-popup popup hidden">
-      {% set manage_urls = (
+      {% set manage_urls = [
         (addon.get_dev_url('profile'), _('Manage Developer Profile')),
-        (addon.get_dev_url('versions'), _('Manage Status'))) %}
+        (addon.get_dev_url('versions'), _('Manage Status')),
+      ] %}
+      {% if addon.is_premium() and waffle.switch('allow-refund') %}
+        {% do manage_urls.insert(1,
+          (addon.get_dev_url('refunds'), loc('Manage Refunds'))
+        ) %}
+      {% endif %}
       <ul>
         {% for url, title in manage_urls %}
           <li><a href="{{ url }}">{{ title }}</a></li>

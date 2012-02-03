@@ -216,3 +216,50 @@ class PreApprovalUser(amo.models.ModelBase):
 
     class Meta:
         db_table = 'users_preapproval'
+
+
+class RefundManager(amo.models.ManagerBase):
+
+    def by_addon(self, addon):
+        return self.filter(contribution__addon=addon)
+
+    def pending(self, addon=None):
+        return self.by_addon(addon).filter(status=amo.REFUND_PENDING)
+
+    def approved(self, addon):
+        return self.by_addon(addon).filter(status=amo.REFUND_APPROVED)
+
+    def instant(self, addon):
+        return self.by_addon(addon).filter(status=amo.REFUND_APPROVED_INSTANT)
+
+    def declined(self, addon):
+        return self.by_addon(addon).filter(status=amo.REFUND_DECLINED)
+
+
+class Refund(amo.models.ModelBase):
+    # This refers to the original object with `type=amo.CONTRIB_PURCHASE`.
+    contribution = models.OneToOneField('stats.Contribution')
+
+    # Pending => 0
+    # Approved => 1
+    # Instantly Approved => 2
+    # Declined => 3
+    status = models.PositiveIntegerField(default=amo.REFUND_PENDING,
+        choices=do_dictsort(amo.REFUND_STATUSES), db_index=True)
+
+    refund_reason = models.TextField(default='', blank=True)
+    rejection_reason = models.TextField(default='', blank=True)
+
+    # Date `created` should always be date `requested` for pending refunds,
+    # but let's just stay on the safe side. We might change our minds.
+    requested = models.DateTimeField(null=True, db_index=True)
+    approved = models.DateTimeField(null=True, db_index=True)
+    declined = models.DateTimeField(null=True, db_index=True)
+
+    objects = RefundManager()
+
+    class Meta:
+        db_table = 'refunds'
+
+    def __unicode__(self):
+        return u'%s (%s)' % (self.contribution, self.get_status_display())

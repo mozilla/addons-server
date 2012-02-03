@@ -43,7 +43,7 @@ from devhub import tasks
 import files
 from files.models import File, FileUpload, Platform
 from files.tests.test_models import UploadTest as BaseUploadTest
-from market.models import AddonPremium, Price
+from market.models import AddonPremium, Price, Refund
 from reviews.models import Review
 from stats.models import Contribution
 from translations.models import Translation
@@ -1333,7 +1333,7 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
 
 
 class TestIssueRefund(amo.tests.TestCase):
-    fixtures = ('base/apps', 'base/users', 'base/addon_3615')
+    fixtures = ('base/users', 'base/addon_3615')
 
     def setUp(self):
         waffle.models.Switch.objects.create(name='allow-refund', active=True)
@@ -1367,49 +1367,146 @@ class TestIssueRefund(amo.tests.TestCase):
         r = self.client.get(self.url)
         eq_(r.status_code, 404)
 
-    def _test_issue(self, refund, destination):
+    def _test_issue(self, refund, enqueue_refund):
         c = self.make_purchase()
         r = self.client.post(self.url, {'transaction_id': c.transaction_id,
                                         'issue': '1'})
-        self.assertRedirects(r, reverse(destination), 302)
+        self.assertRedirects(r, self.addon.get_dev_url('refunds'), 302)
         refund.assert_called_with(self.paykey)
         eq_(len(mail.outbox), 1)
         assert 'approved' in mail.outbox[0].subject
+        # There should be one approved refund added.
+        eq_(enqueue_refund.call_args_list[0][0], (amo.REFUND_APPROVED,))
 
+    @mock.patch('stats.models.Contribution.enqueue_refund')
     @mock.patch('paypal.refund')
-    def test_addons_issue(self, refund):
-        self._test_issue(refund, 'devhub.addons')
+    def test_addons_issue(self, refund, enqueue_refund):
+        self._test_issue(refund, enqueue_refund)
 
+    @mock.patch('stats.models.Contribution.enqueue_refund')
     @mock.patch('paypal.refund')
-    def test_apps_issue(self, refund):
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        self._test_issue(refund, 'devhub.apps')
+    def test_apps_issue(self, refund, enqueue_refund):
+        self.addon.update(type=amo.ADDON_WEBAPP, app_slug='ballin')
+        self._test_issue(refund, enqueue_refund)
 
-    def _test_decline(self, refund, destination):
+    def _test_decline(self, refund, enqueue_refund):
         c = self.make_purchase()
         r = self.client.post(self.url, {'transaction_id': c.transaction_id,
                                         'decline': ''})
-        self.assertRedirects(r, reverse(destination), 302)
+        self.assertRedirects(r, self.addon.get_dev_url('refunds'), 302)
         assert not refund.called
         eq_(len(mail.outbox), 1)
         assert 'declined' in mail.outbox[0].subject
+        # There should be one declined refund added.
+        eq_(enqueue_refund.call_args_list[0][0], (amo.REFUND_DECLINED,))
 
+    @mock.patch('stats.models.Contribution.enqueue_refund')
     @mock.patch('paypal.refund')
-    def test_addons_decline(self, refund):
-        self._test_decline(refund, 'devhub.addons')
+    def test_addons_decline(self, refund, enqueue_refund):
+        self._test_decline(refund, enqueue_refund)
 
+    @mock.patch('stats.models.Contribution.enqueue_refund')
     @mock.patch('paypal.refund')
-    def test_apps_decline(self, refund):
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        self._test_decline(refund, 'devhub.apps')
+    def test_apps_decline(self, refund, enqueue_refund):
+        self.addon.update(type=amo.ADDON_WEBAPP, app_slug='ballin')
+        self._test_decline(refund, enqueue_refund)
 
+    @mock.patch('stats.models.Contribution.enqueue_refund')
     @mock.patch('paypal.refund')
-    def test_non_refundable_txn(self, refund):
+    def test_non_refundable_txn(self, refund, enqueue_refund):
         c = self.make_purchase('56789', amo.CONTRIB_VOLUNTARY)
         r = self.client.post(self.url, {'transaction_id': c.transaction_id,
                                         'issue': ''})
         eq_(r.status_code, 404)
-        assert not refund.called
+        assert not refund.called, '`paypal.refund` should not have been called'
+        assert not enqueue_refund.called, (
+            '`Contribution.enqueue_refund` should not have been called')
+
+
+class TestRefunds(amo.tests.TestCase):
+    fixtures = ['base/addon_3615', 'base/users']
+
+    def setUp(self):
+        waffle.models.Switch.objects.create(name='allow-refund', active=True)
+        self.addon = Addon.objects.get(id=3615)
+        self.addon.premium_type = amo.ADDON_PREMIUM
+        self.addon.save()
+        self.user = UserProfile.objects.get(email='del@icio.us')
+        self.url = self.addon.get_dev_url('refunds')
+        self.client.login(username='del@icio.us', password='password')
+        self.queues = {
+            'pending': amo.REFUND_PENDING,
+            'approved': amo.REFUND_APPROVED,
+            'instant': amo.REFUND_APPROVED_INSTANT,
+            'declined': amo.REFUND_DECLINED,
+        }
+
+    def generate_refunds(self):
+        self.expected = {}
+        for status in amo.REFUND_STATUSES.keys():
+            for x in xrange(status + 1):
+                c = Contribution.objects.create(addon=self.addon,
+                    user=self.user, type=amo.CONTRIB_PURCHASE)
+                r = Refund.objects.create(contribution=c, status=status)
+                self.expected.setdefault(status, []).append(r)
+
+    def test_anonymous(self):
+        self.client.logout()
+        r = self.client.get(self.url, follow=True)
+        self.assertRedirects(r,
+            '%s?to=%s' % (reverse('users.login'), self.url))
+
+    def test_bad_owner(self):
+        self.client.logout()
+        self.client.login(username='regular@mozilla.com', password='password')
+        r = self.client.get(self.url)
+        eq_(r.status_code, 403)
+
+    def test_owner(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+
+    def test_admin(self):
+        self.client.logout()
+        self.client.login(username='admin@mozilla.com', password='password')
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+
+    def test_not_premium(self):
+        self.addon.premium_type = amo.ADDON_FREE
+        self.addon.save()
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('#enable-payments').length, 1)
+
+    def test_empty_queues(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        for key, status in self.queues.iteritems():
+            eq_(list(r.context[key]), [])
+
+    def test_queues(self):
+        self.generate_refunds()
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        for key, status in self.queues.iteritems():
+            eq_(list(r.context[key]), list(self.expected[status]))
+
+    def test_empty_tables(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        for key in self.queues.keys():
+            eq_(doc('.no-results#queue-%s' % key).length, 1)
+
+    def test_tables(self):
+        self.generate_refunds()
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('#enable-payments').length, 0)
+        for key in self.queues.keys():
+            eq_(doc('#queue-%s' % key).length, 1)
 
 
 class TestDelete(amo.tests.TestCase):

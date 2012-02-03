@@ -46,7 +46,7 @@ from devhub import perf
 from editors.helpers import get_position
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
-from market.models import AddonPremium
+from market.models import AddonPremium, Refund
 from paypal.check import Check
 import paypal
 from product_details import product_details
@@ -79,7 +79,7 @@ class AddonFilter(BaseFilter):
 class AppFilter(BaseFilter):
     opts = (('name', _lazy(u'Name')),
             ('created', _lazy(u'Created')),
-            ('downloads', loc(u'Weekly Downloads')),
+            ('downloads', _lazy(u'Weekly Downloads')),
             ('rating', _lazy(u'Rating')))
 
 
@@ -505,21 +505,41 @@ def issue_refund(request, addon_id, addon, webapp=False):
         if 'issue' in request.POST:
             paypal.refund(contribution.paykey)
             contribution.mail_approved()
-            paypal_log.info('Refund issued for contribution %r' %
-                            contribution.pk)
-            messages.success(request, 'Refund issued.')
+            refund = contribution.enqueue_refund(amo.REFUND_APPROVED)
+            paypal_log.info('Refund %r issued for contribution %r' %
+                            (refund.pk, contribution.pk))
+            messages.success(request, _('Refund issued.'))
         else:
             contribution.mail_declined()
-            paypal_log.info('Refund declined for contribution %r' %
-                            contribution.pk)
-            messages.success(request, 'Refund declined.')
-        return redirect('devhub.%s' % ('apps' if webapp else 'addons'))
+            # TODO: Consider requiring a rejection reason for declined refunds.
+            refund = contribution.enqueue_refund(amo.REFUND_DECLINED)
+            paypal_log.info('Refund %r declined for contribution %r' %
+                            (refund.pk, contribution.pk))
+            messages.success(request, _('Refund declined.'))
+        return redirect(addon.get_dev_url('refunds'))
     else:
         return jingo.render(request, 'devhub/payments/issue-refund.html',
                             {'contribution': contribution,
                              'addon': addon,
                              'webapp': webapp,
                              'transaction_id': txn_id})
+
+
+@waffle_switch('allow-refund')
+@dev_required(webapp=True)
+# TODO: Make sure 'Support' staff can access this.
+def refunds(request, addon_id, addon, webapp=False):
+    ctx = {'addon': addon, 'webapp': webapp}
+    queues = {
+        'pending': Refund.objects.pending(addon),
+        'approved': Refund.objects.approved(addon),
+        'instant': Refund.objects.instant(addon),
+        'declined': Refund.objects.declined(addon),
+    }
+    # For now set the limit to something stupid so this is stupid easy to QA.
+    for status, refunds in queues.iteritems():
+        ctx[status] = amo.utils.paginate(request, refunds, per_page=5)
+    return jingo.render(request, 'devhub/payments/refunds.html', ctx)
 
 
 @dev_required

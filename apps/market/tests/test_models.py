@@ -1,17 +1,18 @@
+import datetime
 from decimal import Decimal
 
+from django.utils import translation
 
 import mock
 from nose.tools import eq_
 
-from addons.models import Addon
 import amo
 import amo.tests
-from market.models import AddonPremium, PreApprovalUser, Price, PriceCurrency
+from addons.models import Addon
+from market.models import (AddonPremium, PreApprovalUser, Price, PriceCurrency,
+                           Refund)
 from stats.models import Contribution
 from users.models import UserProfile
-
-from django.utils import translation
 
 
 class TestPremium(amo.tests.TestCase):
@@ -116,16 +117,15 @@ class TestPrice(amo.tests.TestCase):
         eq_(currencies[1][1].currency, 'CAD')
 
 
-class TestContribution(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
+class ContributionMixin(object):
 
     def setUp(self):
         self.addon = Addon.objects.get(pk=3615)
         self.user = UserProfile.objects.get(pk=999)
 
     def create(self, type):
-        Contribution.objects.create(type=type, addon=self.addon,
-                                    user=self.user)
+        return Contribution.objects.create(type=type, addon=self.addon,
+                                           user=self.user)
 
     def purchased(self):
         return (self.addon.addonpurchase_set
@@ -134,6 +134,10 @@ class TestContribution(amo.tests.TestCase):
 
     def type(self):
         return self.addon.addonpurchase_set.get(user=self.user).type
+
+
+class TestContribution(ContributionMixin, amo.tests.TestCase):
+    fixtures = ['base/addon_3615', 'base/users']
 
     def test_purchase(self):
         self.create(amo.CONTRIB_PURCHASE)
@@ -197,6 +201,148 @@ class TestContribution(amo.tests.TestCase):
         self.addon.addonpurchase_set.create(user=self.user,
                                             type=amo.CONTRIB_REFUND)
         eq_(list(self.user.purchase_ids()), [])
+
+
+class TestRefundContribution(ContributionMixin, amo.tests.TestCase):
+    fixtures = ['base/addon_3615', 'base/users']
+
+    def setUp(self):
+        super(TestRefundContribution, self).setUp()
+        self.contribution = self.create(amo.CONTRIB_PURCHASE)
+
+    def do_refund(self, expected, status, refund_reason=None,
+                  rejection_reason=None):
+        """Checks that a refund is enqueued and contains the correct values."""
+        self.contribution.enqueue_refund(status, refund_reason,
+                                         rejection_reason)
+        expected.update(contribution=self.contribution, status=status)
+        eq_(Refund.objects.count(), 1)
+        refund = Refund.objects.filter(**expected)
+        eq_(refund.exists(), True)
+        return refund[0]
+
+    def test_pending(self):
+        reason = 'this is bloody bullocks, mate'
+        expected = dict(refund_reason=reason,
+                        requested__isnull=False,
+                        approved=None,
+                        declined=None)
+        refund = self.do_refund(expected, amo.REFUND_PENDING, reason)
+        assert amo.tests.close_to_now(refund.requested), (
+            'Expected date `requested` to be now. Got %r.' % refund.requested)
+
+    def test_pending_to_approved(self):
+        reason = 'this is bloody bullocks, mate'
+        expected = dict(refund_reason=reason,
+                        requested__isnull=False,
+                        approved=None,
+                        declined=None)
+        refund = self.do_refund(expected, amo.REFUND_PENDING, reason)
+        assert amo.tests.close_to_now(refund.requested), (
+            'Expected date `requested` to be now. Got %r.' % refund.requested)
+
+        # Change `requested` date to some date in the past.
+        requested_date = refund.requested - datetime.timedelta(hours=1)
+        refund.requested = requested_date
+        refund.save()
+
+        expected = dict(refund_reason=reason,
+                        requested__isnull=False,
+                        approved__isnull=False,
+                        declined=None)
+        refund = self.do_refund(expected, amo.REFUND_APPROVED)
+        eq_(refund.requested, requested_date,
+            'Expected date `requested` to remain unchanged.')
+        assert amo.tests.close_to_now(refund.approved), (
+            'Expected date `approved` to be now. Got %r.' % refund.approved)
+
+    def test_approved_instant(self):
+        expected = dict(refund_reason='',
+                        requested__isnull=False,
+                        approved__isnull=False,
+                        declined=None)
+        refund = self.do_refund(expected, amo.REFUND_APPROVED_INSTANT)
+        assert amo.tests.close_to_now(refund.requested), (
+            'Expected date `requested` to be now. Got %r.' % refund.requested)
+        assert amo.tests.close_to_now(refund.approved), (
+            'Expected date `approved` to be now. Got %r.' % refund.approved)
+
+    def test_pending_to_declined(self):
+        refund_reason = 'please, bro'
+        rejection_reason = 'sorry, brah'
+
+        expected = dict(refund_reason=refund_reason,
+                        rejection_reason='',
+                        requested__isnull=False,
+                        approved=None,
+                        declined=None)
+        refund = self.do_refund(expected, amo.REFUND_PENDING, refund_reason)
+        assert amo.tests.close_to_now(refund.requested), (
+            'Expected date `requested` to be now. Got %r.' % refund.requested)
+
+        requested_date = refund.requested - datetime.timedelta(hours=1)
+        refund.requested = requested_date
+        refund.save()
+
+        expected = dict(refund_reason=refund_reason,
+                        rejection_reason=rejection_reason,
+                        requested__isnull=False,
+                        approved=None,
+                        declined__isnull=False)
+        refund = self.do_refund(expected, amo.REFUND_DECLINED,
+                                rejection_reason=rejection_reason)
+        eq_(refund.requested, requested_date,
+            'Expected date `requested` to remain unchanged.')
+        assert amo.tests.close_to_now(refund.declined), (
+            'Expected date `declined` to be now. Got %r.' % refund.declined)
+
+
+class TestRefundManager(amo.tests.TestCase):
+    fixtures = ['base/addon_3615', 'base/users']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=3615)
+        self.user = UserProfile.objects.get(email='del@icio.us')
+        self.expected = {}
+        for status in amo.REFUND_STATUSES.keys():
+            c = Contribution.objects.create(addon=self.addon, user=self.user,
+                                            type=amo.CONTRIB_PURCHASE)
+            self.expected[status] = Refund.objects.create(contribution=c,
+                                                          status=status)
+
+    def test_all(self):
+        eq_(sorted(Refund.objects.values_list('id', flat=True)),
+            sorted(e.id for e in self.expected.values()))
+
+    def test_pending(self):
+        eq_(list(Refund.objects.pending(self.addon)),
+            [self.expected[amo.REFUND_PENDING]])
+
+    def test_approved(self):
+        eq_(list(Refund.objects.approved(self.addon)),
+            [self.expected[amo.REFUND_APPROVED]])
+
+    def test_instant(self):
+        eq_(list(Refund.objects.instant(self.addon)),
+            [self.expected[amo.REFUND_APPROVED_INSTANT]])
+
+    def test_declined(self):
+        eq_(list(Refund.objects.declined(self.addon)),
+            [self.expected[amo.REFUND_DECLINED]])
+
+    def test_by_addon(self):
+        other = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        c = Contribution.objects.create(addon=other, user=self.user,
+                                        type=amo.CONTRIB_PURCHASE)
+        ref = Refund.objects.create(contribution=c, status=amo.REFUND_DECLINED)
+
+        declined = Refund.objects.filter(status=amo.REFUND_DECLINED)
+        eq_(sorted(r.id for r in declined),
+            sorted(r.id for r in [self.expected[amo.REFUND_DECLINED], ref]))
+
+        eq_(sorted(r.id for r in Refund.objects.by_addon(addon=self.addon)),
+            sorted(r.id for r in self.expected.values()))
+        eq_(list(Refund.objects.by_addon(addon=other)), [ref])
 
 
 class TestUserPreApproval(amo.tests.TestCase):

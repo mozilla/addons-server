@@ -1,5 +1,72 @@
 @import '../impala/lib';
 
+.devhub-form {
+    position: relative;
+    table {
+        margin: 0;
+        width: 100%;
+        th, td {
+            border-top: 1px dotted #add0dc;
+            padding: 8px 0;
+        }
+        tr:first-child {
+            td, th {
+                border-top: medium none;
+            }
+        }
+        th {
+            padding-right: 20px;
+            vertical-align: top;
+            width: 130px;
+        }
+        ul {
+            margin: 0;
+        }
+        table td {
+            border-top-width: 0;
+        }
+        .screenshot.thumbnail {
+            width: 100px;
+            height: 75px;
+        }
+    }
+    table, tbody {
+        border-top: medium none;
+        border-bottom: medium none;
+    }
+}
+
+.html-rtl .devhub-form table th {
+    padding: 8px 0 8px 20px;
+}
+
+.devhub-form .tip,
+.addon-submission-process .tip {
+    margin-left: 3px;
+}
+
+.devhub-form .item {
+    .border-radius(8px);
+    background: #fff;
+    border: 1px solid @border-blue;
+    clear: both;
+    margin: 0 0 1em;
+    position: relative;
+    + h3 {
+        margin-top: 1.5em;
+    }
+}
+
+.devhub-form .listing-footer {
+    .border-radius(0 0 8px 8px);
+    border-top: 1px solid @border-blue;
+    padding: 9px;
+}
+
+.devhub-form .item_wrapper {
+    padding: 5px 13px;
+}
+
 .devhub-form .tip,
 .addon-submission-process .tip,
 ul.errorlist li span.tip,

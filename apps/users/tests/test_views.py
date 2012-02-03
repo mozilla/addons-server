@@ -1622,14 +1622,18 @@ class TestPurchases(amo.tests.TestCase):
         res = self.client.post(self.get_url('reason'), {})
         eq_(res.status_code, 200)
 
+    @patch('stats.models.Contribution.enqueue_refund')
     @patch('stats.models.Contribution.is_instant_refund')
     @patch('paypal.refund')
-    def test_request_instant(self, is_instant_refund, refund):
+    def test_request_instant(self, refund, is_instant_refund, enqueue_refund):
         is_instant_refund.return_value = True
         self.client.post(self.get_url('request'), {'remove': 1})
         res = self.client.post(self.get_url('reason'), {})
         assert refund.called
         eq_(res.status_code, 302)
+        # There should be one instant refund added.
+        eq_(enqueue_refund.call_args_list[0][0],
+            (amo.REFUND_APPROVED_INSTANT,))
 
     def test_free_shows_up(self):
         Contribution.objects.all().delete()

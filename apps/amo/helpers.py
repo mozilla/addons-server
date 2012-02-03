@@ -53,7 +53,7 @@ def xssafe(value):
 
 @register.filter
 def babel_datetime(t, format='medium'):
-    return _get_format().datetime(t, format=format)
+    return _get_format().datetime(t, format=format) if t else ''
 
 
 @register.function

@@ -12,15 +12,6 @@ form .char-count:after,
     visibility: hidden;
 }
 /* @group Edit addon */
-.devhub-form {
-    position: relative;
-}
-
-.devhub-form .tip,
-.addon-submission-process .tip {
-    margin-left: 3px;
-}
-
 #edit-addon .edit-addon-section {
     margin-bottom:3em;
     width: 100%;
@@ -66,74 +57,7 @@ form .char-count:after,
     padding-top: 0;
 }
 
-.devhub-form .item {
-    background-color: #FFFFFF;
-    background-position: left bottom;
-    background-repeat: repeat-x;
-    clear: both;
-    position: relative;
-    border: 1px solid #C9E8F3;
-    margin: 0 0 1em;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
-}
 
-.devhub-form .listing-footer {
-    -moz-border-radius: 0 0 8px 8px;
-    -webkit-border-radius: 0 0 8px 8px;
-    border-radius: 0 0 8px 8px;
-    border-top: 1px solid #C9E8F3;
-    padding: 9px;
-}
-
-.devhub-form .item_wrapper {
-    padding: 5px 13px;
-}
-
-.devhub-form table {
-    margin: 0;
-    width: 100%;
-}
-
-.devhub-form table th {
-    width: 130px;
-    vertical-align: top;
-    padding: 8px 20px 8px 0;
-    border-top: 1px dotted #ADD0DC;
-}
-
-.html-rtl .devhub-form table th {
-    padding: 8px 0 8px 20px;
-}
-
-.devhub-form table td {
-    padding: 8px 0;
-    border-top: 1px dotted #ADD0DC;
-}
-
-.devhub-form table ul {
-    margin: 0;
-}
-
-.devhub-form table table td {
-    border-top-width: 0;
-}
-
-.devhub-form table, .devhub-form tbody {
-    border-top: medium none;
-    border-bottom: medium none;
-}
-
-.devhub-form table tr:first-child td,
-.devhub-form table tr:first-child th {
-    border-top: medium none;
-}
-
-.devhub-form table .screenshot.thumbnail {
-    width: 100px;
-    height: 75px;
-}
 
 ul.refinements:last-child {
     border-bottom-width: 0;

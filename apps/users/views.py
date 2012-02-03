@@ -34,7 +34,7 @@ from amo.decorators import (json_view, login_required, no_login_required,
                             permission_required, write, post_required)
 from amo.forms import AbuseForm
 from amo.urlresolvers import reverse
-from amo.helpers import absolutify, loc
+from amo.helpers import loc
 from amo.utils import escape_all, log_cef, send_mail, urlparams
 from abuse.models import send_abuse_report
 from addons.models import Addon
@@ -897,7 +897,10 @@ def refund_reason(request, contribution, wizard):
 
     if contribution.is_instant_refund():
         paypal.refund(contribution.paykey)
-        paypal_log.info('Refund issued for contribution %r' % contribution.pk)
+        # TODO: Consider requiring a refund reason for instant refunds.
+        refund = contribution.enqueue_refund(amo.REFUND_APPROVED_INSTANT)
+        paypal_log.info('Refund %r issued for contribution %r' %
+                        (refund.pk, contribution.pk))
         # Note: we have to wait for PayPal to issue an IPN before it's
         # completely refunded.
         messages.success(request, _('Refund is being processed.'))
@@ -905,21 +908,23 @@ def refund_reason(request, contribution, wizard):
 
     form = forms.ContactForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
-        url = absolutify(urlparams(addon.get_dev_url('issue_refund'),
-                                   transaction_id=contribution.transaction_id))
+        reason = form.cleaned_data['text']
         template = jingo.render_to_string(request,
             wizard.tpl('emails/refund-request.txt'),
             context={'addon': addon,
                      'form': form,
                      'user': request.amo_user,
                      'contribution': contribution,
-                     'refund_url': url})
+                     'refund_url': contribution.get_absolute_refund_url(),
+                     'refund_reason': reason})
         log.info('Refund request sent by user: %s for addon: %s' %
                  (request.amo_user.pk, addon.pk))
         # L10n: %s is the addon name.
         send_mail(_(u'New Refund Request for %s' % addon.name),
                   template, settings.NOBODY_EMAIL,
                   [smart_str(addon.support_email)])
+        # Add this refund request to the queue.
+        contribution.enqueue_refund(amo.REFUND_PENDING, reason)
         return redirect(reverse('users.support',
                                 args=[contribution.pk, 'refund-sent']))
 

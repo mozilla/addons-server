@@ -13,6 +13,7 @@ import tower
 from tower import ugettext as _
 
 import amo
+from amo.helpers import absolutify, urlparams
 from amo.models import ModelBase, SearchMixin
 from amo.fields import DecimalCharField
 from amo.utils import send_mail
@@ -283,6 +284,31 @@ class Contribution(amo.models.ModelBase):
             del(self.post_data['payer_email'])
             self.save()
 
+    def enqueue_refund(self, status, refund_reason=None,
+                       rejection_reason=None):
+        """Keep track of a contribution's refund status."""
+        from market.models import Refund
+        refund, c = Refund.objects.safer_get_or_create(contribution=self)
+        refund.status = status
+
+        # Determine which timestamps to update.
+        timestamps = []
+        if status in (amo.REFUND_PENDING, amo.REFUND_APPROVED_INSTANT):
+            timestamps.append('requested')
+        if status in (amo.REFUND_APPROVED, amo.REFUND_APPROVED_INSTANT):
+            timestamps.append('approved')
+        elif status == amo.REFUND_DECLINED:
+            timestamps.append('declined')
+        for ts in timestamps:
+            setattr(refund, ts, datetime.datetime.now())
+
+        if refund_reason:
+            refund.refund_reason = refund_reason
+        if rejection_reason:
+            refund.rejection_reason = rejection_reason
+        refund.save()
+        return refund
+
     @staticmethod
     def post_save(sender, instance, **kwargs):
         from . import tasks
@@ -296,6 +322,13 @@ class Contribution(amo.models.ModelBase):
         return numbers.format_currency(self.amount or 0,
                                        self.currency or 'USD',
                                        locale=locale)
+
+    def get_refund_url(self):
+        return urlparams(self.addon.get_dev_url('issue_refund'),
+                         transaction_id=self.transaction_id)
+
+    def get_absolute_refund_url(self):
+        return absolutify(self.get_refund_url())
 
     def is_instant_refund(self):
         limit = datetime.timedelta(seconds=settings.PAYPAL_REFUND_INSTANT)
