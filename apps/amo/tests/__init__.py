@@ -218,8 +218,14 @@ class TestCase(RedisTest, test_utils.TestCase):
             tpl = response.context
         for ctx in tpl:
             for k, v in ctx.iteritems():
-                if isinstance(v, forms.BaseForm):
-                    msg = v.errors.as_text()
+                if (isinstance(v, forms.BaseForm) or
+                    isinstance(v, forms.formsets.BaseFormSet)):
+                    if isinstance(v, forms.formsets.BaseFormSet):
+                        # Concatenate errors from each form in the formset.
+                        msg = '\n'.join(f.errors.as_text() for f in v.forms)
+                    else:
+                        # Otherwise, just return the errors for this form.
+                        msg = v.errors.as_text()
                     if msg != '':
                         self.fail('form %r had the following error(s):\n%s'
                                   % (k, msg))
