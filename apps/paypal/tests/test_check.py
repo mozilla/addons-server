@@ -45,15 +45,15 @@ class TestCheck(amo.tests.TestCase):
         self.check.check_id()
         assert not self.check.passed, self.check.state
 
-    @patch('paypal.check_refund_permission')
-    def test_check_refund(self, check_refund_permission):
-        check_refund_permission.return_value = True
+    @patch('paypal.check_permission')
+    def test_check_refund(self, check_permission):
+        check_permission.return_value = True
         self.check.check_refund()
         assert self.check.passed, self.check.state
 
-    @patch('paypal.check_refund_permission')
-    def test_check_refund_fails(self, check_refund_permission):
-        check_refund_permission.return_value = False
+    @patch('paypal.check_permission')
+    def test_check_refund_fails(self, check_permission):
+        check_permission.return_value = False
         self.check.check_refund()
         assert not self.check.passed, self.check.state
 

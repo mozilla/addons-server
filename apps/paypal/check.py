@@ -73,7 +73,7 @@ class Check(object):
             return
 
         try:
-            status = paypal.check_refund_permission(token)
+            status = paypal.check_permission(token, ['REFUND'])
             if not status:
                 self.failure(test_id, loc('No permission to do refunds.'))
             else:

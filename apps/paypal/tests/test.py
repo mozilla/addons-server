@@ -1,4 +1,4 @@
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 from cStringIO import StringIO
 from datetime import datetime, timedelta
 from decimal import Decimal
@@ -247,6 +247,13 @@ def test_check_paypal_id(urlopen_mock):
     eq_(val, (True, None))
 
 
+def test_nvp():
+    eq_(paypal._nvp_dump({'foo': 'bar'}), 'foo=bar')
+    eq_(paypal._nvp_dump({'foo': 'ba r'}), 'foo=ba%20r')
+    eq_(paypal._nvp_dump({'foo': 'bar', 'bar': 'foo'}), 'bar=foo&foo=bar')
+    eq_(paypal._nvp_dump({'foo': ['bar', 'baa']}), 'foo(0)=bar&foo(1)=baa')
+
+
 @mock.patch('paypal._call')
 @mock.patch.object(settings, 'PAYPAL_PERMISSIONS_URL', 'something')
 class TestRefundPermissions(amo.tests.TestCase):
@@ -254,55 +261,66 @@ class TestRefundPermissions(amo.tests.TestCase):
     def setUp(self):
         self.addon = Addon(type=amo.ADDON_EXTENSION, slug='foo')
 
-    def test_refund_permissions_url(self, _call):
+    def test_get_permissions_url(self, _call):
         """
-        `paypal_refund_permission_url` returns an URL for PayPal's
+        `paypal_get_permission_url` returns an URL for PayPal's
         permissions request service containing the token PayPal gives
         us.
         """
         _call.return_value = {'token': 'foo'}
-        assert 'foo' in paypal.refund_permission_url(self.addon)
+        assert 'foo' in paypal.get_permission_url(self.addon, '', [])
 
-    def test_refund_permissions_url_settings(self, _call):
+    def test_get_permissions_url_settings(self, _call):
         settings.PAYPAL_PERMISSIONS_URL = ''
-        assert not paypal.refund_permission_url(self.addon)
+        assert not paypal.get_permission_url(self.addon, '', [])
 
-    def test_refund_permissions_url_malformed(self, _call):
+    def test_get_permissions_url_malformed(self, _call):
         _call.side_effect = paypal.PaypalError(id='580028')
-        assert 'wont-work' in paypal.refund_permission_url(self.addon)
+        assert 'wont-work' in paypal.get_permission_url(self.addon)
 
-    def test_refund_permissions_url_error(self, _call):
+    def test_get_permissions_url_error(self, _call):
         _call.side_effect = paypal.PaypalError
         with self.assertRaises(paypal.PaypalError):
-            paypal.refund_permission_url(self.addon)
+            paypal.get_permission_url(self.addon, '', [])
 
-    def test_check_refund_permission_fail(self, _call):
+    def test_get_permissions_url_scope(self, _call):
+        _call.return_value = {'token': 'foo'}
+        paypal.get_permission_url(self.addon, '', ['REFUND', 'FOO'])
+        eq_(_call.call_args[0][1]['scope'], ['REFUND', 'FOO'])
+
+    def test_check_permission_fail(self, _call):
         """
         `check_paypal_refund_permission` returns False if PayPal
         doesn't put 'REFUND' in the permissions response.
         """
         _call.return_value = {'scope(0)': 'HAM_SANDWICH'}
-        assert not paypal.check_refund_permission('foo')
+        assert not paypal.check_permission('foo', ['REFUND'])
 
-    def test_check_refund_permission(self, _call):
+    def test_check_permission(self, _call):
         """
         `check_paypal_refund_permission` returns True if PayPal
         puts 'REFUND' in the permissions response.
         """
         _call.return_value = {'scope(0)': 'REFUND'}
-        eq_(paypal.check_refund_permission('foo'), True)
+        eq_(paypal.check_permission('foo', ['REFUND']), True)
 
-    def test_check_refund_permission_error(self, _call):
+    def test_check_permission_error(self, _call):
         _call.side_effect = paypal.PaypalError
-        assert not paypal.check_refund_permission('oh-noes')
+        assert not paypal.check_permission('oh-noes', ['REFUND'])
 
-    def test_check_refund_permission_settings(self, _call):
+    def test_check_permission_settings(self, _call):
         settings.PAYPAL_PERMISSIONS_URL = ''
-        assert not paypal.check_refund_permission('oh-noes')
+        assert not paypal.check_permission('oh-noes', ['REFUND'])
 
     def test_get_permissions_token(self, _call):
         _call.return_value = {'token': 'FOO'}
         eq_(paypal.get_permissions_token('foo', ''), 'FOO')
+
+    def test_get_permissions_subset(self, _call):
+        _call.return_value = {'scope(0)': 'REFUND', 'scope(1)': 'HAM'}
+        eq_(paypal.check_permission('foo', ['REFUND', 'HAM']), True)
+        eq_(paypal.check_permission('foo', ['REFUND', 'JAM']), False)
+        eq_(paypal.check_permission('foo', ['REFUND']), True)
 
 
 good_refund_string = (
@@ -415,3 +433,55 @@ class TestPreApproval(amo.tests.TestCase):
         url = paypal.get_preapproval_url('foo')
         assert (url.startswith(settings.PAYPAL_CGI_URL) and
                 url.endswith('foo')), 'Incorrect URL returned'
+
+
+# This data is truncated
+good_personal_basic = {
+        'response.personalData(0).personalDataKey':
+            'http://axschema.org/contact/country/home',
+        'response.personalData(0).personalDataValue': 'US',
+        'response.personalData(1).personalDataValue': 'batman@gmail.com',
+        'response.personalData(1).personalDataKey':
+            'http://axschema.org/contact/email',
+        'response.personalData(2).personalDataValue': 'man'}
+
+good_personal_advanced = {
+        'response.personalData(0).personalDataKey':
+            'http://schema.openid.net/contact/street1',
+        'response.personalData(0).personalDataValue': '1 Main St',
+        'response.personalData(1).personalDataKey':
+            'http://schema.openid.net/contact/street2',
+        'response.personalData(2).personalDataValue': 'San Jose',
+        'response.personalData(2).personalDataKey':
+            'http://axschema.org/contact/city/home'}
+
+
+@mock.patch('paypal._call')
+class TestPersonalLookup(amo.tests.TestCase):
+
+    def setUp(self):
+        self.data = {'GetBasicPersonalData': good_personal_basic,
+                     'GetAdvancedPersonalData': good_personal_advanced}
+
+    def _call(self, *args, **kw):
+        return self.data[args[0]]
+
+    def test_preapproval_works(self, _call):
+        _call.side_effect = self._call
+        eq_(paypal.get_personal_data('foo')['email'], 'batman@gmail.com')
+        eq_(_call.call_count, 2)
+
+    def test_preapproval_absent(self, _call):
+        _call.side_effect = self._call
+        eq_(paypal.get_personal_data('foo')['street2'], '')
+
+    def test_preapproval_unicode(self, _call):
+        key = 'response.personalData(2).personalDataValue'
+        value = u'Österreich'
+        self.data['GetAdvancedPersonalData'][key] = value
+        _call.side_effect = self._call
+        eq_(paypal.get_personal_data('foo')['city'], value)
+
+    def test_preapproval_error(self, _call):
+        _call.side_effect = paypal.PaypalError
+        self.assertRaises(paypal.PaypalError, paypal.get_personal_data, 'foo')

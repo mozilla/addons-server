@@ -1034,8 +1034,9 @@ class PremiumForm(happyforms.Form):
 
     def _show_token_msg(self, message):
         """Display warning for an invalid PayPal refund token."""
-        url = paypal.refund_permission_url(self.addon,
-                                           self.extra.get('dest', 'payment'))
+        url = paypal.get_permission_url(self.addon,
+                                        self.extra.get('dest', 'payment'),
+                                        ['REFUND'])
         msg = _(' <a href="%s">Visit PayPal to grant permission'
                 ' for refunds on your behalf.</a>') % url
         messages.warning(self.request, '%s %s' % (message, Markup(msg)))

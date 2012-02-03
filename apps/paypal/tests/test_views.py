@@ -248,12 +248,10 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
         return m
 
     def test_parse_post(self, urlopen):
-        # TODO(andym): flesh this out and conflate with ashort code.
         junk, transactions = views._parse(sample_refund)
         eq_(transactions['0']['status'], 'Refunded')
 
     def test_parse_currency(self, urlopen):
-        # TODO(andym): flesh this out and conflate with ashort code.
         res = views._parse_currency(sample_refund['transaction[0].amount'])
         eq_(res['amount'], Decimal('0.01'))
         eq_(res['currency'], 'USD')

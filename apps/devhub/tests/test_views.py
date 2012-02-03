@@ -991,9 +991,9 @@ class TestRefundToken(MarketplaceMixin, amo.tests.TestCase):
                                           "support_email": "dev@example.com"})
         assert 'refund token' in pq(res.content)('.notification-box')[0].text
 
-    @mock.patch('paypal.check_refund_permission')
-    def test_with_token(self, crp):
-        crp.return_value = True
+    @mock.patch('paypal.check_permission')
+    def test_with_token(self, cp):
+        cp.return_value = True
         self.setup_premium()
         self.addon.addonpremium.update(paypal_permissions_token='foo')
         res = self.client.post(self.url, {"paypal_id": "a@a.com",

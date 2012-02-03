@@ -204,7 +204,8 @@ class AddonPremium(amo.models.ModelBase):
             return True
         if not self.paypal_permissions_token:
             return False
-        return paypal.check_refund_permission(self.paypal_permissions_token)
+        return paypal.check_permission(self.paypal_permissions_token,
+                                       ['REFUND'])
 
 
 class PreApprovalUser(amo.models.ModelBase):

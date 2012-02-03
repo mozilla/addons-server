@@ -44,11 +44,11 @@ class TestPremium(amo.tests.TestCase):
         assert ap.has_permissions_token()
 
     @mock.patch('paypal.should_ignore_paypal', lambda: False)
-    @mock.patch('paypal.check_refund_permission')
-    def test_has_valid_permissions_token(self, check_refund_permission):
+    @mock.patch('paypal.check_permission')
+    def test_has_valid_permissions_token(self, check_permission):
         ap = AddonPremium.objects.create(addon=self.addon)
         assert not ap.has_valid_permissions_token()
-        check_refund_permission.return_value = True
+        check_permission.return_value = True
         ap.paypal_permissions_token = 'some_token'
         assert ap.has_valid_permissions_token()
 

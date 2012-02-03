@@ -82,3 +82,22 @@ INAPP_STATUS_CHOICES = (
     (INAPP_STATUS_INACTIVE, _('Inactive')),
     (INAPP_STATUS_REVOKED, _('Revoked'))
 )
+
+PAYPAL_PERSONAL = {
+    'first': 'http://axschema.org/namePerson/first',
+    'last': 'http://axschema.org/namePerson/last',
+    'email': 'http://axschema.org/contact/email',
+    'fullname': 'http://schema.openid.net/contact/fullname',
+    'company': 'http://openid.net/schema/company/name',
+    'country': 'http://axschema.org/contact/country/home',
+    'payerID': 'https://www.paypal.com/webapps/auth/schema/payerID',
+    'birthDate': 'http://axschema.org/birthDate',
+    'home': 'http://axschema.org/contact/postalCode/home',
+    'street1': 'http://schema.openid.net/contact/street1',
+    'street2': 'http://schema.openid.net/contact/street2',
+    'city': 'http://axschema.org/contact/city/home',
+    'state': 'http://axschema.org/contact/state/home',
+    'phone': 'http://axschema.org/contact/phone/default'
+}
+PAYPAL_PERSONAL_LOOKUP = dict([(v, k) for k, v
+                                      in PAYPAL_PERSONAL.iteritems()])

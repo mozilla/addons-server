@@ -13,6 +13,7 @@ from django.utils.http import urlencode, urlquote
 import commonware.log
 from django_statsd.clients import statsd
 
+import amo
 from amo.helpers import absolutify, loc, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import log_cef
@@ -241,10 +242,58 @@ def refund(paykey):
         return responses
 
 
-def check_refund_permission(token):
+def get_personal_data(token):
+    """
+    Ask PayPal for personal data based on the token. This makes two API
+    calls to PayPal. It's assumed you've already done the check_permission
+    call below.
+    Documentation: http://bit.ly/xy5BTs and http://bit.ly/yRYbRx
+    """
+    def call(api, data):
+        try:
+            with statsd.timer('paypal.get.personal'):
+                r = _call(settings.PAYPAL_PERMISSIONS_URL + api, data)
+        except PaypalError, error:
+            paypal_log.debug('Paypal returned an error when getting personal'
+                             'data for token: %s... error: %s'
+                             % (token[:10], error))
+            raise
+        return r
+
+    # A mapping fo the api and the values passed to the API.
+    calls = {
+        'GetBasicPersonalData':
+            {'attributeList.attribute':
+                [amo.PAYPAL_PERSONAL[k] for k in
+                    ['first', 'last', 'email', 'fullname',
+                     'company', 'country', 'payerID']]},
+        'GetAdvancedPersonalData':
+            {'attributeList.attribute':
+                [amo.PAYPAL_PERSONAL[k] for k in
+                    ['birthDate', 'home', 'street1',
+                     'street2', 'city', 'state', 'phone']]}
+        }
+
+    result = {}
+    for url, data in calls.items():
+        data = call(url, data)
+        for k, v in data.items():
+            if k.endswith('personalDataKey'):
+                k_ = k.rsplit('.', 1)[0]
+                v_ = amo.PAYPAL_PERSONAL_LOOKUP[v]
+                # If the value isn't present the value won't be there.
+                result[v_] = data.get(k_ + '.personalDataValue', '')
+
+    return result
+
+
+def check_permission(token, permissions):
     """
     Asks PayPal whether the PayPal ID for this account has granted
-    refund permission to us.
+    the permissions requested to us. Permissions are strings from the
+    PayPal documentation.
+    Documentation: http://bit.ly/zlhXlT
+
     """
     # This is set in settings_test so we don't start calling PayPal
     # by accident. Explicitly set this in your tests.
@@ -264,19 +313,21 @@ def check_refund_permission(token):
     # make sure REFUND is one of them.
     paypal_log.debug('Paypal returned permissions for token: %s.. perms: %s'
                      % (token[:10], r))
-    return 'REFUND' in [v for (k, v) in r.iteritems()
-                        if k.startswith('scope')]
+    result = [v for (k, v) in r.iteritems() if k.startswith('scope')]
+    return set(permissions).issubset(set(result))
 
 
-def refund_permission_url(addon, dest='payments'):
+def get_permission_url(addon, dest, scope):
     """
-    Send permissions request to PayPal for refund privileges on
-    this addon's paypal account. Returns URL on PayPal site to visit.
+    Send permissions request to PayPal for privileges on
+    this PayPal account. Returns URL on PayPal site to visit.
+    Documentation: http://bit.ly/zlhXlT
     """
     # This is set in settings_test so we don't start calling PayPal
     # by accident. Explicitly set this in your tests.
     if not settings.PAYPAL_PERMISSIONS_URL:
         return ''
+
     paypal_log.debug('Getting refund permission URL for addon: %s' % addon.pk)
 
     with statsd.timer('paypal.permissions.url'):
@@ -285,7 +336,7 @@ def refund_permission_url(addon, dest='payments'):
                         dest=dest)
         try:
             r = _call(settings.PAYPAL_PERMISSIONS_URL + 'RequestPermissions',
-                      {'scope': 'REFUND', 'callback': absolutify(url)})
+                      {'scope': scope, 'callback': absolutify(url)})
         except PaypalError, e:
             paypal_log.debug('Error on refund permission URL addon: %s, %s' %
                              (addon.pk, e))
@@ -344,6 +395,23 @@ def get_preapproval_url(key):
                      preapprovalkey=key)
 
 
+def _nvp_dump(data):
+    """
+    Dumps a dict out into NVP pairs suitable for PayPal to consume.
+    """
+    out = []
+    escape = lambda k, v: '%s=%s' % (k, urlquote(v))
+    # This must be sorted for chained payments to work correctly.
+    for k, v in sorted(data.items()):
+        if isinstance(v, (list, tuple)):
+            out.extend([escape('%s(%s)' % (k, x), v_)
+                        for x, v_ in enumerate(v)])
+        else:
+            out.append(escape(k, v))
+
+    return '&'.join(out)
+
+
 def _call(url, paypal_data, ip=None):
     request = urllib2.Request(url)
 
@@ -364,12 +432,10 @@ def _call(url, paypal_data, ip=None):
 
     # Warning, a urlencode will not work with chained payments, it must
     # be sorted and the key should not be escaped.
-    data = '&'.join(['%s=%s' % (k, urlquote(v))
-                     for k, v in sorted(paypal_data.items())])
     opener = urllib2.build_opener()
     try:
         with socket_timeout(10):
-            feeddata = opener.open(request, data).read()
+            feeddata = opener.open(request, _nvp_dump(paypal_data)).read()
     except AuthError, error:
         paypal_log.error('Authentication error: %s' % error)
         raise
