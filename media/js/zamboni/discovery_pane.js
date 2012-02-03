@@ -39,6 +39,8 @@ $(document).ready(function(){
             circular: true
         });
         initTrunc();
+        // Initialize install button.
+        $('.install', $promos).installButton();
     });
 });
 
