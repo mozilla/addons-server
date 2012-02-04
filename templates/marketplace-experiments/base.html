@@ -5,6 +5,7 @@
     {% if not settings.ENGAGE_ROBOTS %}
       <meta name="robots" content="noindex">
     {% endif %}
+    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1">
     {% block extrameta %}{% endblock %}
     <title>{% block title %}{{ _('Mozilla Marketplace') }}{% endblock %}</title>
 
@@ -17,7 +18,7 @@
           href="{{ url('amo.opensearch') }}" />
 
     {% block site_css %}
-      {# css('marketplace-experiments') #}
+      {{ css('marketplace-experiments') }}
       <!--[if lt IE 9]>
         <script src="{{ media('js/lib/iepp.min.js') }}"></script>
       <![endif]-->
@@ -46,6 +47,8 @@
     </header>
 
     <div id="page" class="c">
+      {% block content %}
+      {% endblock %}
     </div>
 
     <footer>

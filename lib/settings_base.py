@@ -558,8 +558,11 @@ MINIFY_BUNDLES = {
             'css/zamboni/admin-mozilla.css',
             'css/zamboni/admin_features.css'
         ),
-       # 'marketplace-experiments': (
-       # ),
+        'marketplace-experiments': (
+            'marketplace-experiments/bootstrap/docs/assets/css/bootstrap.css',
+            'marketplace-experiments/bootstrap/docs/assets/css/bootstrap-responsive.css',
+            'marketplace-experiments/site.less',
+        ),
     },
     'js': {
         # JS files common to the entire site (pre-impala).
