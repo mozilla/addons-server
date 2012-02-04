@@ -1,0 +1,43 @@
+{% extends 'marketplace-experiments/base.html' %}
+
+{% block content %}
+  <div class="row">
+    <div class="span12">
+      <div class="row">
+        <div class="pull-left span3">
+            <img class="app-icon" alt="" src="http://placehold.it/210x150" />
+            <p class="compatibility-header">
+              Designed for:
+            </p>
+            <ul class="unstyled compatibility-list">
+              <li><span class="label">Phones</span></li>
+              <li><span class="label">Tablets</span></li>
+            </ul>
+        </div>
+
+        <div class="pull-right span9">
+          <div class="app-info-section">
+            <h2>{{ addon.name }}</h2>
+            <p class="dev-name">{{ users_list(addon.listed_authors) }}</p>
+            <p>
+              <span class="rating positive">1876</span>
+              <span class="rating negative">485</span>
+            </p>
+            <p>
+              <a id="purchase" class="btn btn-large btn-primary" data-purchasing-text="purchasing..." data-purchased-text="Install" data-installing-text="installing..." data-installed-text="installed">FREE</a>
+              <a id="share" class="btn btn-large" data-loading-text="sharing..." >Share</a>
+            </p>
+          </div>
+          <div class="app-description">
+            {{ addon.summary }}
+            <p class="more">
+              {{ addon.description }}
+            </p>
+            <p class="pull-right"><a class="btn more" href="#">Read More &raquo;</a></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+{% endblock %}
