@@ -357,7 +357,6 @@ INSTALLED_APPS = (
     'files',
     'jingo_minify',
     'market',
-    'marketplace-experiments',
     'localizers',
     'pages',
     'payments',
@@ -1199,7 +1198,6 @@ EXPOSE_VALIDATOR_TRACEBACKS = False
 # Feature flags
 SEARCH_EXCLUDE_PERSONAS = True
 UNLINK_SITE_STATS = True
-POTCH_MARKETPLACE_EXPERIMENTS = False
 
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = True
