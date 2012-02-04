@@ -88,6 +88,18 @@ class TestCategory(amo.tests.TestCase):
         doc = pq(res.content.decode('utf-8'))
         eq_(doc('#id_form-0-name').val(), u'Campañas')
 
+    def test_other_local(self):
+        # Test that somethign other than /en-US/ as the site locale doesn't
+        # affect the left hand column category names.
+        with self.activate(locale='es-ES'):
+            url = reverse('localizers.categories',
+                          kwargs=dict(locale_code='es-ES'))
+            res = self.client.get(url)
+            eq_(res.status_code, 200)
+            doc = pq(res.content.decode('utf-8'))
+            eq_(doc('#id_form-0-name').val(), u'Campañas')
+            eq_(doc('td.enus').eq(0).text(), u'Causes')
+
     def test_post(self):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
