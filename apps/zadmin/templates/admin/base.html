@@ -13,6 +13,10 @@
   {{ css('zamboni/admin') }}
 {% endblock %}
 
+{% block bodyattrs %}
+data-default-locale="en-us"
+{% endblock %}
+
 {% block js %}
     {{ js('zamboni/admin') }}
 {% endblock %}
