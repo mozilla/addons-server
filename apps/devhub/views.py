@@ -2,7 +2,6 @@ import collections
 import functools
 import json
 import os
-import path
 import sys
 import time
 import traceback
@@ -10,12 +9,12 @@ import uuid
 import operator
 
 from django import http
+from django.core.files.storage import default_storage as storage
 from django.conf import settings
 from django import forms as django_forms
 from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
-from django.utils.encoding import smart_unicode
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_view_exempt
 
@@ -1073,12 +1072,9 @@ def ajax_upload_image(request, upload_type):
         upload_preview.seek(0)
 
         upload_hash = uuid.uuid4().hex
-        loc = (path.path(smart_unicode(settings.TMP_PATH))
-               / upload_type / upload_hash)
-        if not loc.dirname().exists():
-            loc.dirname().makedirs()
+        loc = os.path.join(settings.TMP_PATH, upload_type, upload_hash)
 
-        with open(loc, 'wb') as fd:
+        with storage.open(loc, 'wb') as fd:
             for chunk in upload_preview:
                 fd.write(chunk)
 
@@ -1116,7 +1112,8 @@ def ajax_upload_image(request, upload_type):
         if check.is_image() and is_persona:
             persona, img_type = upload_type.split('_')  # 'header' or 'footer'
             expected_size = amo.PERSONA_IMAGE_SIZES.get(img_type)[1]
-            actual_size = Image.open(loc).size
+            with storage.open(loc, 'rb') as fp:
+                actual_size = Image.open(fp).size
             if actual_size != expected_size:
                 # L10n: {0} is an image width (in pixels), {1} is a height.
                 errors.append(_('Image must be exactly {0} pixels wide '

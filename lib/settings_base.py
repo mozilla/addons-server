@@ -1393,3 +1393,6 @@ NO_ADDONS_MODULES = (
 # Cron jobs that aren't critical will check this flag and not run if this
 # is True.
 IGNORE_NON_CRITICAL_CRONS = False
+
+# Default file storage mechanism that holds media.
+DEFAULT_FILE_STORAGE = 'amo.utils.LocalFileStorage'

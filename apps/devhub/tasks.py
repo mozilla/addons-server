@@ -4,7 +4,6 @@ from datetime import date
 import json
 import logging
 import os
-import path
 import socket
 import sys
 import traceback
@@ -12,6 +11,7 @@ import urllib2
 import uuid
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 from django.utils.http import urlencode
 
@@ -337,11 +337,8 @@ def get_content_and_check_size(response, max_size, error_message):
 
 
 def save_icon(webapp, content):
-    tmp_path = path.path(settings.TMP_PATH) / 'icon'
-    if not os.path.exists(tmp_path):
-        os.makedirs(tmp_path)
-    tmp_dst = tmp_path / uuid.uuid4().hex
-    with open(tmp_dst, 'wb') as fd:
+    tmp_dst = os.path.join(settings.TMP_PATH, 'icon', uuid.uuid4().hex)
+    with storage.open(tmp_dst, 'wb') as fd:
         fd.write(content)
 
     dirname = webapp.get_icon_dir()
