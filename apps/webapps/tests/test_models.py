@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 import json
 import unittest
 
@@ -10,6 +11,7 @@ from django.conf import settings
 import amo
 from addons.models import Addon, BlacklistedSlug
 from devhub.tests.test_views import BaseWebAppTest
+from files.models import File
 from users.models import UserProfile
 from versions.models import Version
 from webapps.models import Installed, Webapp, get_key
@@ -64,6 +66,27 @@ class TestWebapp(test_utils.TestCase):
     def can_be_purchased(self):
         assert Webapp(premium_type=True).can_be_purchased()
         assert not Webapp(premium_type=False).can_be_purchased()
+
+
+class TestWebappVersion(amo.tests.TestCase):
+    fixtures = ['base/platforms']
+
+    def test_no_version(self):
+        eq_(Webapp().get_latest_file(), None)
+
+    def test_no_file(self):
+        webapp = Webapp.objects.create(manifest_url='http://foo.com')
+        webapp._current_version = Version.objects.create(addon=webapp)
+        eq_(webapp.get_latest_file(), None)
+
+    def test_right_file(self):
+        webapp = Webapp.objects.create(manifest_url='http://foo.com')
+        version = Version.objects.create(addon=webapp)
+        old_file = File.objects.create(version=version, platform_id=1)
+        old_file.update(created=datetime.now() - timedelta(days=1))
+        new_file = File.objects.create(version=version, platform_id=1)
+        webapp._current_version = version
+        eq_(webapp.get_latest_file().pk, new_file.pk)
 
 
 class TestWebappManager(test_utils.TestCase):

@@ -19,6 +19,8 @@ from amo.utils import memoize
 from addons import query
 from addons.models import (Addon, clear_name_table, delete_search_index,
                            update_name_table, update_search_index)
+from files.models import FileUpload, Platform
+from versions.models import Version
 
 import jwt
 
@@ -108,17 +110,23 @@ class Webapp(Addon):
         parsed = urlparse.urlparse(self.manifest_url)
         return '%s://%s' % (parsed.scheme, parsed.netloc)
 
-    def get_manifest_json(self):
+    def get_latest_file(self):
+        """Get the latest file from the current version."""
         cur = self.current_version
+        if cur:
+            res = cur.files.order_by('-created')
+            if res:
+                return res[0]
+
+    def get_manifest_json(self):
         try:
             # The first file created for each version of the web app
             # is the manifest.
-            manifest = cur.files.order_by('created')[0]
-            with open(manifest.file_path, 'r') as mf:
+            with open(self.get_latest_file().file_path, 'r') as mf:
                 return json.load(mf)
         except Exception, e:
-            log.error('Failed to open the manifest for webapp %s,'
-                      ' version %s: %s.' % (self.pk, cur, e.message))
+            log.error('Failed to open the manifest for webapp %s, %s.'
+                      % (self.pk, e))
             raise
 
     def share_url(self):
@@ -130,6 +138,21 @@ class Webapp(Addon):
             return self.installed.get(user=user).receipt
         except Installed.DoesNotExist:
             return
+
+    def manifest_updated(self, manifest):
+        """The manifest has updated, create a version and file."""
+        with open(manifest) as fh:
+            chunks = fh.read()
+
+        # We'll only create a file upload when we detect that the manifest
+        # has changed, otherwise we'll be creating an awful lot of these.
+        upload = FileUpload.from_post(chunks, manifest, len(chunks))
+        # This does most of the heavy work.
+        Version.from_upload(upload, self,
+                            [Platform.objects.get(id=amo.PLATFORM_ALL.id)])
+        # Triggering this ensures that the current_version gets updated.
+        self.update_version()
+        amo.log(amo.LOG.MANIFEST_UPDATED, self)
 
 
 # Pull all translated_fields from Addon over to Webapp.

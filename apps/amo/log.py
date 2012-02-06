@@ -7,7 +7,7 @@ __all__ = ('LOG', 'LOG_BY_ID', 'LOG_KEEP',)
 
 
 class _LOG(object):
-    pass
+    action_class = None
 
 
 class CREATE_ADDON(_LOG):
@@ -60,14 +60,12 @@ class EDIT_CONTRIBUTIONS(_LOG):
 
 class USER_DISABLE(_LOG):
     id = 8
-    action_class = None
     format = _(u'{addon} disabled.')
     keep = True
 
 
 class USER_ENABLE(_LOG):
     id = 9
-    action_class = None
     format = _(u'{addon} enabled.')
     keep = True
 
@@ -75,7 +73,6 @@ class USER_ENABLE(_LOG):
 # TODO(davedash): Log these types when pages are present
 class SET_PUBLIC_STATS(_LOG):
     id = 10
-    action_class = None
     format = _(u'Stats set public for {addon}.')
     keep = True
 
@@ -83,7 +80,6 @@ class SET_PUBLIC_STATS(_LOG):
 # TODO(davedash): Log these types when pages are present
 class UNSET_PUBLIC_STATS(_LOG):
     id = 11
-    action_class = None
     format = _(u'{addon} stats set to private.')
     keep = True
 
@@ -91,7 +87,6 @@ class UNSET_PUBLIC_STATS(_LOG):
 # TODO(gkoberger): Log these types when editing statuses
 class CHANGE_STATUS(_LOG):
     id = 12
-    action_class = None
     # L10n: {0} is the status
     format = _(u'{addon} status changed to {0}.')
     keep = True
@@ -191,7 +186,6 @@ class REJECT_VERSION(_LOG):
 class RETAIN_VERSION(_LOG):
     # takes add-on, version, reviewtype
     id = 22
-    action_class = None
     format = _(u'{addon} {version} retained.')
     short = _(u'Retained')
     keep = True
@@ -202,7 +196,6 @@ class RETAIN_VERSION(_LOG):
 class ESCALATE_VERSION(_LOG):
     # takes add-on, version, reviewtype
     id = 23
-    action_class = None
     format = _(u'{addon} {version} escalated.')
     short = _(u'Escalated')
     keep = True
@@ -213,7 +206,6 @@ class ESCALATE_VERSION(_LOG):
 class REQUEST_VERSION(_LOG):
     # takes add-on, version, reviewtype
     id = 24
-    action_class = None
     format = _(u'{addon} {version} review requested.')
     short = _(u'Review requested')
     keep = True
@@ -223,7 +215,6 @@ class REQUEST_VERSION(_LOG):
 
 class REQUEST_INFORMATION(_LOG):
     id = 44
-    action_class = None
     format = _(u'{addon} {version} more information requested.')
     short = _(u'More information requested')
     keep = True
@@ -233,7 +224,6 @@ class REQUEST_INFORMATION(_LOG):
 
 class REQUEST_SUPER_REVIEW(_LOG):
     id = 45
-    action_class = None
     format = _(u'{addon} {version} super review requested.')
     short = _(u'Super review requested')
     keep = True
@@ -242,7 +232,6 @@ class REQUEST_SUPER_REVIEW(_LOG):
 
 class COMMENT_VERSION(_LOG):
     id = 49
-    action_class = None
     format = _(u'Comment on {addon} {version}.')
     short = _(u'Comment')
     keep = True
@@ -297,14 +286,12 @@ class REMOVE_RECOMMENDED_CATEGORY(_LOG):
 
 class ADD_RECOMMENDED(_LOG):
     id = 33
-    action_class = None
     format = _(u'{addon} is now featured.')
     keep = True
 
 
 class REMOVE_RECOMMENDED(_LOG):
     id = 34
-    action_class = None
     format = _(u'{addon} is no longer featured.')
     keep = True
 
@@ -319,7 +306,6 @@ class ADD_APPVERSION(_LOG):
 class CHANGE_USER_WITH_ROLE(_LOG):
     """ Expects: author.user, role, addon """
     id = 36
-    action_class = None
     # L10n: {0} is a user, {1} is their role
     format = _(u'{0.name} role changed to {1} for {addon}.')
     keep = True
@@ -365,43 +351,41 @@ class DELETE_REVIEW(_LOG):
 
 class MAX_APPVERSION_UPDATED(_LOG):
     id = 46
-    action_class = None
     format = _(u'Application max version for {version} updated.')
 
 
 class BULK_VALIDATION_EMAILED(_LOG):
     id = 47
-    action_class = None
     format = _(u'Authors emailed about compatibility of {version}.')
 
 
 class CHANGE_PASSWORD(_LOG):
     id = 48
-    action_class = None
     format = _(u'Password changed.')
 
 
 class MAKE_PREMIUM(_LOG):
     id = 50
-    action_class = None
     format = _(u'{addon} changed to premium.')
 
 
 class PAYPAL_FAILED(_LOG):
     id = 51
-    action_class = None
     format = _(u'{addon} failed checks with PayPal.')
+
+
+class MANIFEST_UPDATED(_LOG):
+    id = 52
+    format = _(u'{addon} manifest updated.')
 
 
 class CUSTOM_TEXT(_LOG):
     id = 98
-    action_class = None
     format = '{0}'
 
 
 class CUSTOM_HTML(_LOG):
     id = 99
-    action_class = None
     format = '{0}'
 
 
@@ -409,35 +393,30 @@ class OBJECT_ADDED(_LOG):
     id = 100
     format = _(u'Created: {0}.')
     admin_event = True
-    action_class = None
 
 
 class OBJECT_EDITED(_LOG):
     id = 101
     format = _(u'Edited field: {2} set to: {0}.')
     admin_event = True
-    action_class = None
 
 
 class OBJECT_DELETED(_LOG):
     id = 102
     format = _(u'Deleted: {1}.')
     admin_event = True
-    action_class = None
 
 
 class ADMIN_USER_EDITED(_LOG):
     id = 103
     format = _(u'User {user} edited, reason: {1}')
     admin_event = True
-    action_class = None
 
 
 class ADMIN_USER_ANONYMIZED(_LOG):
     id = 104
     format = _(u'User {user} anonymized.')
     admin_event = True
-    action_class = None
 
 
 LOGS = [x for x in vars().values()

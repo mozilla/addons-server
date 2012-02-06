@@ -8,6 +8,7 @@ from addons.models import Addon
 from amo.utils import chunked
 from devhub.tasks import convert_purified, flag_binary, get_preview_sizes
 from market.tasks import check_paypal, check_paypal_multiple
+from webapps.tasks import update_manifests
 
 tasks = {
     # binary-components depend on having a chrome manifest.
@@ -26,7 +27,11 @@ tasks = {
                      'method': check_paypal,
                      'qs': [Q(premium_type=amo.ADDON_PREMIUM,
                               disabled_by_user=False),
-                            ~Q(status=amo.STATUS_DISABLED)]}
+                            ~Q(status=amo.STATUS_DISABLED)]},
+    'update_manifests': {'method': update_manifests,
+                         'qs': [Q(type=amo.ADDON_WEBAPP,
+                                  disabled_by_user=False),
+                                ~Q(status=amo.STATUS_DISABLED)]},
 }
 
 

@@ -445,16 +445,24 @@ def parse_addon(pkg, addon=None):
     return parsed
 
 
-def get_md5(filename, block_size=2 ** 20):
+def _get_hash(filename, block_size=2 ** 20, hash=hashlib.md5):
     """Returns an MD5 hash for a filename."""
     f = open(filename, 'rb')
-    md5 = hashlib.md5()
+    hash_ = hash()
     while True:
         data = f.read(block_size)
         if not data:
             break
-        md5.update(data)
-    return md5.hexdigest()
+        hash_.update(data)
+    return hash_.hexdigest()
+
+
+def get_md5(filename, **kw):
+    return _get_hash(filename, **kw)
+
+
+def get_sha256(filename, **kw):
+    return _get_hash(filename, hash=hashlib.sha256, **kw)
 
 
 def find_jetpacks(minver, maxver, from_builder_only=False):
