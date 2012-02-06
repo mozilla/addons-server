@@ -219,6 +219,12 @@ class TestPayKey(amo.tests.TestCase):
         data['currency'] = 'xxx'
         self.assertRaises(paypal.CurrencyError, paypal.get_paykey, data)
 
+    def test_error_currency_junk(self):
+        for v in [u'\u30ec\u30b9', 'xysxdfsfd']:
+            self.assertRaises(paypal.PaypalDataError,
+                              paypal.add_receivers,
+                              [], 'f@foo.com', v, '')
+
 
 class TestPurchase(amo.tests.TestCase):
 

@@ -92,7 +92,7 @@ def add_receivers(chains, email, amount, uuid, preapproval=False):
     """
     try:
         remainder = Decimal(str(amount))
-    except InvalidOperation, msg:
+    except (UnicodeEncodeError, InvalidOperation), msg:
         raise PaypalDataError(msg)
 
     result = {}
