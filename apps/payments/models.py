@@ -32,5 +32,5 @@ class InappConfig(amo.models.ModelBase):
     def save(self, *args, **kw):
         current = InappConfig.any_active(self.addon)
         if current:
-            raise ValueError, 'You can only have one active config'
+            raise ValueError('You can only have one active config')
         super(InappConfig, self).save(*args, **kw)
