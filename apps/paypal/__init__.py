@@ -25,21 +25,22 @@ class PaypalError(Exception):
     def __init__(self, id=None):
         super(PaypalError, self).__init__('')
         self.id = id
+        self.default = _('There was an error communicating with PayPal. '
+                         'Please try again later.')
 
     def __str__(self):
-        default = _('There was an error communicating with PayPal. '
-                    'Please try again later.')
         msg = getattr(self, 'msg', None)
-        if msg:
-            return msg.encode('utf8') if isinstance(msg, unicode) else msg
-        return messages.get(self.id, default)
+        if not msg:
+            msg = messages.get(self.id, self.default)
+        return msg.encode('utf8') if isinstance(msg, unicode) else msg
 
 
 class PaypalDataError(PaypalError):
     # Some of the data passed to Paypal was incorrect. We'll catch them and
     # re-raise as a PaypalError so they can be easily caught.
 
-    def __init__(self, msg):
+    def __init__(self, msg=''):
+        super(PaypalDataError, self).__init__('')
         self.msg = msg
 
 

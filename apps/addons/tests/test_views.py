@@ -380,6 +380,14 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         res = self.client.post_ajax(self.purchase_url)
         assert json.loads(res.content)['error'].startswith(u'Азәрбајҹан')
 
+    @fudge.patch('paypal.get_paykey')
+    def test_paykey_unicode_default(self, get_paykey):
+        pde = PaypalDataError()
+        pde.default = u'\xe9'
+        get_paykey.expects_call().raises(pde)
+        res = self.client.post_ajax(self.purchase_url)
+        eq_(json.loads(res.content)['error'], u'\xe9')
+
     @patch('paypal.get_paykey')
     def test_paykey_contribution(self, get_paykey):
         get_paykey.return_value = ['some-pay-key', '']
