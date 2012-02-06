@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 from cStringIO import StringIO
 from datetime import datetime, timedelta
 from decimal import Decimal
@@ -220,7 +221,7 @@ class TestPayKey(amo.tests.TestCase):
         self.assertRaises(paypal.CurrencyError, paypal.get_paykey, data)
 
     def test_error_currency_junk(self):
-        for v in [u'\u30ec\u30b9', 'xysxdfsfd']:
+        for v in [u'\u30ec\u30b9', 'xysxdfsfd', '¹'.decode('utf8')]:
             self.assertRaises(paypal.PaypalDataError,
                               paypal.add_receivers,
                               [], 'f@foo.com', v, '')
