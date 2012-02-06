@@ -13,7 +13,6 @@ from django.utils.http import urlencode, urlquote
 import commonware.log
 from django_statsd.clients import statsd
 
-import amo
 from amo.helpers import absolutify, loc, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import log_cef
@@ -22,14 +21,14 @@ from tower import ugettext as _
 
 class PaypalError(Exception):
     # The generic Paypal error and message.
-    def __init__(self, id=None):
-        super(PaypalError, self).__init__('')
+    def __init__(self, message='', id=None):
+        super(PaypalError, self).__init__(message)
         self.id = id
         self.default = _('There was an error communicating with PayPal. '
                          'Please try again later.')
 
     def __str__(self):
-        msg = getattr(self, 'msg', None)
+        msg = self.message
         if not msg:
             msg = messages.get(self.id, self.default)
         return msg.encode('utf8') if isinstance(msg, unicode) else msg
@@ -38,10 +37,7 @@ class PaypalError(Exception):
 class PaypalDataError(PaypalError):
     # Some of the data passed to Paypal was incorrect. We'll catch them and
     # re-raise as a PaypalError so they can be easily caught.
-
-    def __init__(self, msg=''):
-        super(PaypalDataError, self).__init__('')
-        self.msg = msg
+    pass
 
 
 class AuthError(PaypalError):
@@ -390,7 +386,7 @@ def _call(url, paypal_data, ip=None):
     if 'error(0).errorId' in response:
         id_, msg = response['error(0).errorId'], response['error(0).message']
         paypal_log.error('Paypal Error (%s): %s' % (id_, msg))
-        raise errors.get(id_, PaypalError)(id_)
+        raise errors.get(id_, PaypalError)(id=id_)
 
     return response
 

@@ -267,7 +267,7 @@ class TestRefundPermissions(amo.tests.TestCase):
         assert not paypal.refund_permission_url(self.addon)
 
     def test_refund_permissions_url_malformed(self, _call):
-        _call.side_effect = paypal.PaypalError('580028')
+        _call.side_effect = paypal.PaypalError(id='580028')
         assert 'wont-work' in paypal.refund_permission_url(self.addon)
 
     def test_refund_permissions_url_error(self, _call):
@@ -291,7 +291,7 @@ class TestRefundPermissions(amo.tests.TestCase):
         _call.return_value = {'scope(0)': 'REFUND'}
         eq_(paypal.check_refund_permission('foo'), True)
 
-    def test_check_refund_permission_fail(self, _call):
+    def test_check_refund_permission_error(self, _call):
         _call.side_effect = paypal.PaypalError
         assert not paypal.check_refund_permission('oh-noes')
 

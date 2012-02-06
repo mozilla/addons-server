@@ -370,7 +370,7 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
 
     @fudge.patch('paypal.get_paykey')
     def test_paykey_error(self, get_paykey):
-        get_paykey.expects_call().raises(PaypalError('woah'))
+        get_paykey.expects_call().raises(PaypalError())
         res = self.client.post_ajax(self.purchase_url)
         assert json.loads(res.content)['error'].startswith('There was an')
 
