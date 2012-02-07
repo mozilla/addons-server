@@ -16,7 +16,8 @@ from statsd import statsd
 class Verify:
 
     def __init__(self, addon_id, receipt):
-        self.addon_id = addon_id
+        # The regex should ensure that only sane ints get to this point.
+        self.addon_id = int(addon_id)
         self.receipt = receipt
         # This is so the unit tests can override the connection.
         self.conn, self.cursor = None, None
@@ -153,7 +154,7 @@ def application(environ, start_response):
     status = '200 OK'
     with statsd.timer('services.verify'):
 
-        data = environ['wsgi.input'].read()
+        data = environ['wsgi.input'].read(int(environ['CONTENT_LENGTH']))
         try:
             addon_id = id_re.search(environ['PATH_INFO']).group('addon_id')
         except AttributeError:

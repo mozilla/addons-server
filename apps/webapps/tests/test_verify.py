@@ -110,6 +110,13 @@ class TestVerify(amo.tests.TestCase):
                            'storedata': urlencode({'id': 123})}
         eq_(self.get(3615, data)['status'], 'invalid')
 
+    def test_product_wrong_type(self):
+        self.make_install()
+        data = self.user_data.copy()
+        data['product'] = {'url': 'http://f.com',
+                           'storedata': urlencode({'id': 3615})}
+        eq_(self.get('3615', data)['status'], 'ok')
+
     def test_product_ok_store_data(self):
         self.make_install()
         data = self.user_data.copy()
