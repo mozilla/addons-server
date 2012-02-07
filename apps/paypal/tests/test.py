@@ -276,7 +276,7 @@ class TestRefundPermissions(amo.tests.TestCase):
 
     def test_get_permissions_url_malformed(self, _call):
         _call.side_effect = paypal.PaypalError(id='580028')
-        assert 'wont-work' in paypal.get_permission_url(self.addon)
+        assert 'wont-work' in paypal.get_permission_url(self.addon, '', [])
 
     def test_get_permissions_url_error(self, _call):
         _call.side_effect = paypal.PaypalError
