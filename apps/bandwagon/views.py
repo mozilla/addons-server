@@ -145,14 +145,18 @@ def user_listing(request, username):
     author = get_object_or_404(UserProfile, username=username)
     qs = (Collection.objects.filter(author__username=username)
           .order_by('-created'))
-    if not (request.user.is_authenticated() and
-            request.amo_user.username == username):
+    mine = (request.user.is_authenticated() and
+            request.amo_user.username == username)
+    if mine:
+        page = 'mine'
+    else:
+        page = 'user'
         qs = qs.filter(listed=True)
     collections = paginate(request, qs)
     votes = get_votes(request, collections.object_list)
     return render(request, 'bandwagon/user_listing.html',
                   dict(collections=collections, collection_votes=votes,
-                       page='mine', author=author, filter=get_filter(request)))
+                       page=page, author=author, filter=get_filter(request)))
 
 
 class CollectionAddonFilter(BaseFilter):

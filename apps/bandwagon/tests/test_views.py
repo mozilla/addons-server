@@ -1031,7 +1031,7 @@ class TestMobileCollections(TestMobile):
         self.assertTemplateUsed(r, 'bandwagon/impala/collection_listing.html')
 
 
-class TestMine(amo.tests.TestCase):
+class TestUserListing(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -1041,6 +1041,16 @@ class TestMine(amo.tests.TestCase):
     def test_mine(self):
         r = self.client.get(reverse('collections.mine'), follow=True)
         self.assertRedirects(r, reverse('collections.user', args=['admin']))
+        eq_(r.context['page'], 'mine')
+        assert '#p-mine' in pq(r.content)('style').text(), (
+            "'Collections I've Made' sidebar link should be highlighted.")
+
+    def test_not_mine(self):
+        self.client.logout()
+        r = self.client.get(reverse('collections.user', args=['admin']))
+        eq_(r.context['page'], 'user')
+        assert '#p-mine' not in pq(r.content)('style').text(), (
+            "'Collections I've Made' sidebar link shouldn't be highlighted.")
 
     def test_favorites(self):
         r = self.client.get(reverse('collections.mine', args=['favorites']),
