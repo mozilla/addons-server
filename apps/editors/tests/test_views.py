@@ -1883,7 +1883,7 @@ class TestReviewPreliminary(ReviewBase):
         data = self.prelim_dict()
         f = self.version.files.all()[0]
 
-        statuses = amo.STATUS_CHOICES
+        statuses = dict(amo.STATUS_CHOICES)  # Deep copy.
         del statuses[amo.STATUS_BETA], statuses[amo.STATUS_UNREVIEWED]
         for status in statuses:
             f.update(status=status)
