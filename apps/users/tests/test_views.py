@@ -15,7 +15,6 @@ from jingo.helpers import datetime as datetime_filter
 from mock import patch
 from nose.tools import eq_
 from nose import SkipTest
-from tower import strip_whitespace
 import waffle
 # Unused, but needed so that we can patch jingo.
 from waffle import helpers
@@ -79,15 +78,14 @@ class TestAjax(UserViewBase):
                    'name': u'Justin Scott \u0627\u0644\u062a\u0637\u0628'})
 
     def test_ajax_xss(self):
-       self.user_profile.display_name = '<script>alert("xss")</script>'
-       self.user_profile.save()
-       assert '<script>' in self.user_profile.display_name, (
-           'Expected <script> to be in display name')
-       r = self.client.get(reverse('users.ajax'),
-                           {'q': self.user_profile.email})
-       data = r.content
-       assert '<script>' not in data
-       assert '&lt;script&gt;' in data
+        self.user_profile.display_name = '<script>alert("xss")</script>'
+        self.user_profile.save()
+        assert '<script>' in self.user_profile.display_name, (
+            'Expected <script> to be in display name')
+        r = self.client.get(reverse('users.ajax'),
+                            {'q': self.user_profile.email})
+        assert '<script>' not in r.content
+        assert '&lt;script&gt;' in r.content
 
     def test_ajax_failure_incorrect_email(self):
         r = self.client.get(reverse('users.ajax'), {'q': 'incorrect'},
