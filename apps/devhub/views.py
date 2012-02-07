@@ -283,7 +283,12 @@ def edit(request, addon_id, addon, webapp=False):
        'webapp': webapp,
        'valid_slug': addon.slug,
        'tags': addon.tags.not_blacklisted().values_list('tag_text', flat=True),
-       'previews': addon.previews.all()}
+       'previews': addon.previews.all(),
+    }
+
+    if webapp and waffle.switch_is_active('marketplace'):
+        data['device_type_form'] = addon_forms.DeviceTypeForm(
+            request.POST or None, addon=addon)
 
     if (not webapp and
         acl.action_allowed(request, 'Admin', 'ConfigureAnyAddon')):
@@ -1051,13 +1056,16 @@ def addons_section(request, addon_id, addon, section, editable=False,
         raise http.Http404()
 
     tags = previews = restricted_tags = []
-    cat_form = dependency_form = None
+    cat_form = dependency_form = device_type_form = None
 
     if section == 'basic':
         tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
         cat_form = addon_forms.CategoryFormSet(request.POST or None,
                                                addon=addon, request=request)
         restricted_tags = addon.tags.filter(restricted=True)
+        if webapp and waffle.switch_is_active('marketplace'):
+            device_type_form = addon_forms.DeviceTypeForm(request.POST or None,
+                                                          addon=addon)
 
     elif section == 'media':
         previews = forms.PreviewFormSet(request.POST or None,
@@ -1095,6 +1103,12 @@ def addons_section(request, addon_id, addon, section, editable=False,
                     addon.save()
                 else:
                     editable = True
+            if device_type_form:
+                if device_type_form.is_valid():
+                    device_type_form.save(addon)
+                    addon.save()
+                else:
+                    editable = True
             if dependency_form:
                 if dependency_form.is_valid():
                     dependency_form.save()
@@ -1114,7 +1128,8 @@ def addons_section(request, addon_id, addon, section, editable=False,
             'cat_form': cat_form,
             'preview_form': previews,
             'dependency_form': dependency_form,
-            'valid_slug': valid_slug}
+            'valid_slug': valid_slug,
+            'device_type_form': device_type_form}
 
     return jingo.render(request,
                         'devhub/addons/edit/%s.html' % section, data)
@@ -1531,24 +1546,33 @@ def submit_addon(request, step, webapp=False):
             {'step': step, 'webapp': webapp, 'new_addon_form': form})
 
 
-@dev_required
+@dev_required(webapp=True)
 @submit_step(3)
 def submit_describe(request, addon_id, addon, step, webapp=False):
     form_cls = forms.Step3WebappForm if addon.is_webapp() else forms.Step3Form
     form = form_cls(request.POST or None, instance=addon, request=request)
     cat_form = addon_forms.CategoryFormSet(request.POST or None, addon=addon,
                                            request=request)
+    device_form = None
+    if webapp and waffle.switch_is_active('marketplace'):
+        device_form = addon_forms.DeviceTypeForm(request.POST or None,
+                                                 addon=addon)
+
     if request.method == 'POST' and form.is_valid() and cat_form.is_valid():
-        addon = form.save(addon)
-        cat_form.save()
-        SubmitStep.objects.filter(addon=addon).update(step=4)
-        return redirect(_step_url(4, webapp), addon.slug)
+        if not device_form or device_form.is_valid():
+            addon = form.save(addon)
+            cat_form.save()
+            if device_form:
+                device_form.save(addon)
+            SubmitStep.objects.filter(addon=addon).update(step=4)
+            return redirect(_step_url(4, webapp), addon.slug)
     return jingo.render(request, 'devhub/addons/submit/describe.html',
                         {'form': form, 'cat_form': cat_form, 'addon': addon,
-                         'step': step, 'webapp': addon.is_webapp()})
+                         'step': step, 'webapp': addon.is_webapp(),
+                         'device_form': device_form})
 
 
-@dev_required
+@dev_required(webapp=True)
 @submit_step(4)
 def submit_media(request, addon_id, addon, step, webapp=False):
     form_icon = addon_forms.AddonFormMedia(request.POST or None,
@@ -1580,7 +1604,7 @@ def submit_media(request, addon_id, addon, step, webapp=False):
                          'webapp': addon.is_webapp()})
 
 
-@dev_required
+@dev_required(webapp=True)
 @submit_step(5)
 def submit_license(request, addon_id, addon, step, webapp=False):
     fs, ctx = [], {}
@@ -1603,7 +1627,7 @@ def submit_license(request, addon_id, addon, step, webapp=False):
     return jingo.render(request, 'devhub/addons/submit/license.html', ctx)
 
 
-@dev_required
+@dev_required(webapp=True)
 @submit_step(6)
 def submit_select_review(request, addon_id, addon, step):
     review_type_form = forms.ReviewTypeForm(request.POST or None)
@@ -1623,7 +1647,7 @@ def submit_select_review(request, addon_id, addon, step):
                          'step': step})
 
 
-@dev_required
+@dev_required(webapp=True)
 @submit_step(7)
 def submit_done(request, addon_id, addon, step, webapp=False):
     # Bounce to the versions page if they don't have any versions.
@@ -1638,7 +1662,7 @@ def submit_done(request, addon_id, addon, step, webapp=False):
                          'is_platform_specific': is_platform_specific})
 
 
-@dev_required
+@dev_required(webapp=True)
 def submit_resume(request, addon_id, addon):
     step = SubmitStep.objects.filter(addon=addon)
     return _resume(addon, step)

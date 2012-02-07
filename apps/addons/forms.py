@@ -18,8 +18,9 @@ from amo.fields import ColorField
 from amo.helpers import loc
 from amo.urlresolvers import reverse
 from amo.utils import slug_validator, slugify, sorted_groupby, remove_icons
-from addons.models import (Addon, AddonCategory, AddonUser, BlacklistedSlug,
-                           Category, Persona, ReverseNameLookup)
+from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
+                           BlacklistedSlug, Category, DeviceType, Persona,
+                           ReverseNameLookup)
 from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from applications.models import Application
 from devhub import tasks as devhub_tasks
@@ -199,6 +200,30 @@ class ApplicationChoiceField(forms.ModelChoiceField):
 
     def label_from_instance(self, obj):
         return obj.id
+
+
+class DeviceTypeForm(forms.Form):
+    device_types = forms.ModelMultipleChoiceField(
+        queryset=DeviceType.objects.all(), widget=forms.CheckboxSelectMultiple,
+        required=True)
+
+    def __init__(self, *args, **kwargs):
+        self.addon = kwargs.pop('addon')
+        super(DeviceTypeForm, self).__init__(*args, **kwargs)
+        self.initial['device_types'] = AddonDeviceType.objects.filter(
+            addon=self.addon).values_list('device_type__id', flat=True)
+
+    def save(self, addon):
+        new_types = self.cleaned_data['device_types']
+        old_types = addon.device_types
+
+        # Add new AddonDeviceTypes.
+        for d in set(new_types) - set(old_types):
+            AddonDeviceType(addon=addon, device_type=d).save()
+
+        # Remove old AddonDeviceTypes.
+        for d in set(old_types) - set(new_types):
+            AddonDeviceType.objects.filter(addon=addon, device_type=d).delete()
 
 
 class CategoryForm(forms.Form):

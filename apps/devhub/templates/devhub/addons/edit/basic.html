@@ -149,6 +149,32 @@
               {% endif %}
             </td>
           </tr>
+          {% if webapp and waffle.switch('marketplace') %}
+          <tr>
+            <th>
+              {{ tip(loc('Device Types'),
+                     loc('Indicate support for desktop, mobile and tablet
+                          devices.')) }}
+            </th>
+            <td id="addon-device-types-edit">
+              {% if editable %}
+                {{ device_type_form.device_types.errors }}
+                {{ device_type_form.device_types }}
+              {% else %}
+                {% set device_types = addon.device_types %}
+                {% call empty_unless(device_types) %}
+                  <ul>
+                    {% for device in device_types %}
+                      <li class="{{ device.class_name }}">
+                        {{ device.name }}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endcall %}
+              {% endif %}
+            </td>
+          </tr>
+          {% endif %}
           <tr>
             <th>
               {% if webapp %}

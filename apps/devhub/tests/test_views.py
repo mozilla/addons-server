@@ -33,8 +33,8 @@ from amo.tests import (formset, initial, close_to_now,
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons import cron
-from addons.models import (Addon, AddonCategory, AddonUpsell, AddonUser,
-                           Category, Charity)
+from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUpsell, AddonUser,
+                           Category, Charity, DeviceType)
 from addons.utils import ReverseNameLookup
 from applications.models import Application, AppVersion
 from browse.tests import test_listing_sort, test_default_sort
@@ -518,10 +518,6 @@ class TestDevRequired(amo.tests.TestCase):
     def test_disabled_post_dev(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         eq_(self.client.post(self.get_url).status_code, 403)
-
-    def test_deleted_post_dev(self):
-        self.addon.update(status=amo.STATUS_DELETED)
-        eq_(self.client.post(self.get_url).status_code, 404)
 
     def test_disabled_post_admin(self):
         self.addon.update(status=amo.STATUS_DISABLED)
@@ -1328,12 +1324,6 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         doc = pq(self.client.get(self.addon.get_dev_url('versions')).content)
         eq_(len(doc('#delete-addon')), 0)
 
-    @mock.patch('waffle.switch_is_active', lambda x: True)
-    def test_soft_delete_link_premium_addon(self):
-        self.setup_premium()
-        doc = pq(self.client.get(self.addon.get_dev_url('versions')).content)
-        eq_(len(doc('#delete-addon')), 1)
-
     def test_no_delete_premium_addon(self):
         self.setup_premium()
         res = self.client.post(self.addon.get_dev_url('delete'),
@@ -1342,14 +1332,6 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         assert Addon.objects.filter(pk=self.addon.id).exists(), (
             "Unexpected: Addon should exist")
 
-    @mock.patch('waffle.switch_is_active', lambda x: True)
-    def test_soft_delete_premium_addon(self):
-        self.setup_premium()
-        res = self.client.post(self.addon.get_dev_url('delete'),
-                               {'password': 'password'})
-        eq_(res.status_code, 302)
-        assert not Addon.objects.filter(pk=self.addon.id).exists()
-        assert Addon.with_deleted.filter(pk=self.addon.id).exists()
 
 
 class TestIssueRefund(amo.tests.TestCase):
@@ -1683,12 +1665,6 @@ class TestActivityFeed(amo.tests.TestCase):
         addon.update(status=amo.STATUS_DISABLED)
         r = self.client.get(reverse('devhub.feed', args=[addon.slug]))
         eq_(r.status_code, 200)
-
-    def test_feed_deleted(self):
-        addon = Addon.objects.no_cache().get(id=3615)
-        addon.update(status=amo.STATUS_DELETED)
-        r = self.client.get(reverse('devhub.feed', args=[addon.slug]))
-        eq_(r.status_code, 404)
 
     def test_feed_disabled_anon(self):
         self.client.logout()
@@ -2195,13 +2171,42 @@ class TestSubmitStep3(TestSubmitBase):
         eq_(category_ids_new, [22])
 
     def test_check_version(self):
-        addon = Addon.objects.get(pk=3615)
-
         r = self.client.get(self.url)
         doc = pq(r.content)
         version = doc("#current_version").val()
 
-        eq_(version, addon.current_version.version)
+        eq_(version, self.addon.current_version.version)
+
+    def test_homepage_url_invalid(self):
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+        self.addon.update(type=amo.ADDON_WEBAPP)
+        d = self.get_dict(homepage='a')
+        r = self.client.post(self.url, d)
+        self.assertFormError(r, 'form', 'homepage', 'Enter a valid URL.')
+
+    def test_support_url_invalid(self):
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+        self.addon.update(type=amo.ADDON_WEBAPP)
+        d = self.get_dict(support_url='a')
+        r = self.client.post(self.url, d)
+        self.assertFormError(r, 'form', 'support_url', 'Enter a valid URL.')
+
+    def test_support_email_url_invalid(self):
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+        self.addon.update(type=amo.ADDON_WEBAPP)
+        d = self.get_dict(support_email='a')
+        r = self.client.post(self.url, d)
+        self.assertFormError(r, 'form', 'support_email',
+                             'Enter a valid e-mail address.')
+
+    def test_device_type_invalid(self):
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+        waffle.models.Switch.objects.create(name='marketplace', active=True)
+        self.addon.update(type=amo.ADDON_WEBAPP)
+        d = self.get_dict(device_types=666)
+        res = self.client.post(self.url, d)
+        self.assertFormError(res, 'device_form', 'device_types',
+            'Select a valid choice. 666 is not one of the available choices.')
 
 
 class TestSubmitStep4(TestSubmitBase):
@@ -3567,13 +3572,6 @@ class TestDeleteApp(amo.tests.TestCase):
         self.assertRedirects(r, self.versions_url)
         eq_(Addon.objects.count(), 1, 'App should not have been deleted.')
 
-    @mock.patch('waffle.switch_is_active', lambda x: True)
-    def test_soft_delete_nonincomplete(self):
-        r = self.client.post(self.url, dict(password='password'))
-        self.assertRedirects(r, reverse('devhub.apps'))
-        eq_(Addon.objects.count(), 0, 'App should be soft deleted.')
-        eq_(Addon.with_deleted.count(), 1, 'App should be soft deleted.')
-
     def test_bad_password_incomplete(self):
         self.webapp.update(status=amo.STATUS_NULL)
         r = self.client.post(self.url, dict(password='turd'))
@@ -3588,7 +3586,6 @@ class TestDeleteApp(amo.tests.TestCase):
         r = self.client.post(self.url, dict(password='password'))
         self.assertRedirects(r, reverse('devhub.apps'))
         eq_(Addon.objects.count(), 0, 'App should have been deleted.')
-        eq_(Addon.with_deleted.count(), 0, 'App should have been deleted.')
 
 
 class TestRequestReview(amo.tests.TestCase):
@@ -3639,11 +3636,6 @@ class TestRequestReview(amo.tests.TestCase):
     def test_disabled_by_admin(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         self.check_400(self.lite_url)
-
-    def test_deleted(self):
-        self.addon.update(status=amo.STATUS_DELETED)
-        r = self.client.post(self.lite_url)
-        eq_(r.status_code, 404)
 
     def test_lite_to_lite(self):
         self.addon.update(status=amo.STATUS_LITE)

@@ -105,6 +105,10 @@ class Webapp(Addon):
         return hostname
 
     @property
+    def device_types(self):
+        return [d.device_type for d in self.addondevicetype_set.all()]
+
+    @property
     def origin(self):
         parsed = urlparse.urlparse(self.manifest_url)
         return '%s://%s' % (parsed.scheme, parsed.netloc)

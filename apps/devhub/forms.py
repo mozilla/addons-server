@@ -670,12 +670,18 @@ class Step3Form(addons.forms.AddonFormBasic):
 
     class Meta:
         model = Addon
-        fields = ('name', 'slug', 'summary', 'tags', 'description')
+        fields = ('name', 'slug', 'summary', 'tags', 'description',
+                  'homepage', 'support_email', 'support_url')
 
 
 class Step3WebappForm(Step3Form):
-    """Form to override name length for webapps"""
+    """Form to override certain fields for webapps"""
     name = TransField(max_length=128)
+    homepage = TransField.adapt(forms.URLField)(required=False,
+                                                verify_exists=False)
+    support_url = TransField.adapt(forms.URLField)(required=False,
+                                                   verify_exists=False)
+    support_email = TransField.adapt(forms.EmailField)(required=False)
 
 
 class PreviewForm(happyforms.ModelForm):

@@ -12,7 +12,7 @@ from nose import SkipTest
 from nose.tools import eq_
 from PIL import Image
 from pyquery import PyQuery as pq
-from waffle.models import Flag
+from waffle.models import Flag, Switch
 
 import amo
 import amo.tests
@@ -20,8 +20,8 @@ from amo.tests import assert_required, formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons.forms import AddonFormBasic
-from addons.models import (Addon, AddonCategory, AddonDependency, AddonUser,
-                           Category)
+from addons.models import (Addon, AddonCategory, AddonDependency,
+                           AddonDeviceType, AddonUser, Category, DeviceType)
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from devhub.models import ActivityLog
 from tags.models import Tag, AddonTag
@@ -104,9 +104,14 @@ class TestEditBasicWebapp(amo.tests.TestCase):
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
+        Switch.objects.create(name='marketplace', active=True)
         self.webapp = self.get_webapp()
         self.cat = Category.objects.create(name='Games', type=amo.ADDON_WEBAPP)
+        self.dtype = DeviceType.objects.create(name='fligphone',
+                                               class_name='phone')
         AddonCategory.objects.create(addon=self.webapp, category=self.cat)
+        AddonDeviceType.objects.create(addon=self.webapp,
+                                       device_type=self.dtype)
         self.url = get_section_url(self.webapp, 'basic')
         self.edit_url = get_section_url(self.webapp, 'basic', edit=True)
         ctx = self.client.get(self.edit_url).context
@@ -118,8 +123,8 @@ class TestEditBasicWebapp(amo.tests.TestCase):
 
     def get_dict(self, **kw):
         fs = formset(self.cat_initial, initial_count=1)
-        result = {'name': 'new name', 'slug': 'test_slug',
-                  'summary': 'new summary'}
+        result = {'device_types': self.dtype, 'name': 'new name',
+                  'slug': 'test_slug', 'summary': 'new summary'}
         result.update(**kw)
         result.update(fs)
         return result
@@ -199,6 +204,36 @@ class TestEditBasicWebapp(amo.tests.TestCase):
                                                     initial_count=1))
         eq_(r.context['cat_form'].errors[0]['categories'],
             ['You can have only 2 categories.'])
+
+    def test_devices_listed(self):
+        r = self.client.post(self.url, self.get_dict())
+        ul = pq(r.content)('#addon-device-types-edit ul')
+        li = ul.find('li')
+        eq_(li.length, 1)
+        eq_(li.text(), self.dtype.name)
+
+    def _test_edit_devices_add(self):
+        new = DeviceType.objects.create(name='iSlate', class_name='slate')
+        data = self.get_dict()
+        data['device_types'] = [self.dtype.id, new.id]
+        self.client.post(self.edit_url, data)
+        devicetypes = self.get_webapp().device_types
+        eq_([d.id for d in devicetypes], list(data['device_types']))
+
+    def test_edit_devices_addandremove(self):
+        new = DeviceType.objects.create(name='iSlate', class_name='slate')
+        data = self.get_dict()
+        data['device_types'] = [new.id]
+        self.client.post(self.edit_url, data)
+        devicetypes = self.get_webapp().device_types
+        eq_([d.id for d in devicetypes], list(data['device_types']))
+
+    def test_edit_devices_add_required(self):
+        data = self.get_dict()
+        data['device_types'] = []
+        r = self.client.post(self.edit_url, data)
+        self.assertFormError(r, 'device_type_form', 'device_types',
+                             'This field is required.')
 
 
 class TestEditBasic(TestEdit):

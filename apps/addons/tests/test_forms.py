@@ -13,8 +13,9 @@ import amo
 import amo.tests
 from amo.tests.test_helpers import get_image_path
 from addons import forms, cron
-from addons.models import Addon, Category
+from addons.models import Addon, AddonDeviceType, Category, DeviceType, Webapp
 from tags.models import Tag, AddonTag
+from addons.forms import DeviceTypeForm
 
 
 class FormsTest(amo.tests.TestCase):
@@ -268,3 +269,17 @@ class TestCategoryForm(amo.tests.TestCase):
         form = forms.CategoryFormSet(addon=addon)
         apps = [f.app for f in form.forms]
         eq_(apps, [amo.FIREFOX])
+
+
+class TestDeviceTypeForm(amo.tests.TestCase):
+    fixtures = ['webapps/337141-steamcube']
+
+    def test_device_types(self):
+        dtype = DeviceType.objects.create(name='fligphone', class_name='phone')
+        webapp = Webapp.objects.get(id=337141)
+        addondt = AddonDeviceType.objects.create(addon=webapp,
+                                                 device_type=dtype)
+        types = DeviceType.objects.values_list('id', flat=True)
+        form = DeviceTypeForm(addon=webapp)
+        eq_(webapp.device_types, [addondt.device_type])
+        eq_(list(form.initial['device_types']), list(types))
