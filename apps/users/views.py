@@ -553,8 +553,13 @@ def profile(request, user_id):
     own_profile = (request.user.is_authenticated() and
                    request.amo_user.id == user.id)
 
+    personas = []
     if user.is_developer:
-        items = user.apps_listed if webapp else user.addons_listed
+        if webapp:
+            items = user.apps_listed
+        else:
+            items = user.addons_listed.exclude(type=amo.ADDON_PERSONA)
+            personas = user.addons_listed.filter(type=amo.ADDON_PERSONA)
         addons = amo.utils.paginate(request,
                                     items.order_by('-weekly_downloads'))
     else:
@@ -572,7 +577,7 @@ def profile(request, user_id):
     data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
             'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
             'addons': addons, 'own_profile': own_profile,
-            'webapp': webapp}
+            'webapp': webapp, 'personas': personas}
     if not own_profile:
         data['abuse_form'] = AbuseForm(request=request)
 

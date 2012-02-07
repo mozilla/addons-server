@@ -1,5 +1,5 @@
 {% cache personas %}
-<ul class="listing-grid personas cols-3 c">
+<ul class="listing-grid personas {{ columns }} c">
 {% for page in pages %}
   {% set first_page = loop.first %}
   <section>

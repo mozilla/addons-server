@@ -1109,6 +1109,20 @@ class TestProfileSections(amo.tests.TestCase):
         eq_(items('.install[data-addon=3615]').length, 1)
         eq_(items('.install[data-addon=5299]').length, 1)
 
+    def test_my_personas(self):
+        eq_(pq(self.client.get(self.url).content)('.num-addons a').length, 0)
+
+        a = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
+
+        AddonUser.objects.create(user=self.user, addon=a)
+
+        r = self.client.get(self.url)
+
+        doc = pq(r.content)
+        items = doc('#my-personas .persona')
+        eq_(items.length, 1)
+        eq_(items('a[href="%s"]' % a.get_url_path()).length, 1)
+
     def test_my_reviews(self):
         r = Review.objects.filter(reply_to=None)[0]
         r.user_id = self.user.id

@@ -196,6 +196,12 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         return self.addonuser_set.exists()
 
     @amo.cached_property
+    def is_artist(self):
+        """Is this user a Personas Artist?"""
+        return self.addonuser_set.filter(
+            addon__type=amo.ADDON_PERSONA).exists()
+
+    @amo.cached_property
     def needs_tougher_password(user):
         from access.acl import action_allowed_user
         return (action_allowed_user(user, 'Editors', '%')

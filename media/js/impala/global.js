@@ -3,7 +3,7 @@ $('.island .listing-grid').bind('grid.init', function(e, data) {
     var $grid = data.self,
         numPages = data.maxPage;
 
-    if (numPages > 1) {
+    if (numPages > 0) {
         var $nav = $('<nav class="pager">');
         $nav.append('<a href="#" class="prev">&laquo;</a>');
         for (var i=0; i<=numPages; i++) {

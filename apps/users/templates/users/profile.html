@@ -32,6 +32,11 @@
         {{ loc('Apps Developer') if webapp else _('Add-ons Developer') }}
       </p></div>
     {% endif %}
+    {% if profile.is_artist %}
+      <div class="user-role"><p class="personas">
+        {{ loc('Personas Artist') }}
+      </p></div>
+    {% endif %}
   </aside>
   <section class="primary">
     <h2>{{ _('About me') }}</h2>
@@ -55,6 +60,16 @@
         {{ impala_addon_listing_items(addons.object_list, field=sorting, src='userprofile') }}
       </div>
       {{ addons|impala_paginator }}
+    {% endcache %}
+  </div>
+{% endif %}
+
+
+{% if personas %}
+  <div id="my-personas" class="island c">
+    <h2>{{ loc("Personas I've created") }}</h2>
+    {% cache personas %}
+      {{ personas|impala_persona_grid(cols=5, pagesize=15) }}
     {% endcache %}
   </div>
 {% endif %}
