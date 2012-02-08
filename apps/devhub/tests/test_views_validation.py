@@ -82,6 +82,7 @@ class TestUploadErrors(BaseUploadTest):
         eq_(data['validation']['messages'],
             [{'tier': 1, 'message': 'Duplicate UUID found.',
               'type': 'error'}])
+        eq_(data['validation']['ending_tier'], 1)
 
 
 class TestFileValidation(amo.tests.TestCase):

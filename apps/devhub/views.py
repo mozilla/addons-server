@@ -814,7 +814,10 @@ def make_validation_result(data, is_compatibility=False):
             # Just expose the message, not the traceback
             data['error'] = data['error'].strip().split('\n')[-1].strip()
     if data['validation']:
+        ending_tier = 0
         for msg in data['validation']['messages']:
+            if msg['tier'] > ending_tier:
+                ending_tier = msg['tier']
             if msg['tier'] == 0:
                 # We can't display a message if it's on tier 0.
                 # Should get fixed soon in bug 617481
@@ -828,6 +831,7 @@ def make_validation_result(data, is_compatibility=False):
             for msg in data['validation']['messages']:
                 if msg['compatibility_type']:
                     msg['type'] = msg['compatibility_type']
+        data['validation']['ending_tier'] = ending_tier
     return data
 
 
