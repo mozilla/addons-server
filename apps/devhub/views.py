@@ -503,7 +503,15 @@ def issue_refund(request, addon_id, addon, webapp=False):
                                      type=amo.CONTRIB_PURCHASE)
     if request.method == 'POST':
         if 'issue' in request.POST:
-            paypal.refund(contribution.paykey)
+            results = paypal.refund(contribution.paykey)
+            for res in results:
+                if res['refundStatus'] == 'ALREADY_REVERSED_OR_REFUNDED':
+                    paypal_log.debug(
+                        'Refund attempt for already-refunded paykey: %s, %s' %
+                        (contribution.paykey, res['receiver.email']))
+                    messages.error(request, _('Refund was previously issued; '
+                                              'no action taken.'))
+                    return redirect(addon.get_dev_url('refunds'))
             contribution.mail_approved()
             refund = contribution.enqueue_refund(amo.REFUND_APPROVED)
             paypal_log.info('Refund %r issued for contribution %r' %

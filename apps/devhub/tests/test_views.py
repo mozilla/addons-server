@@ -1422,6 +1422,17 @@ class TestIssueRefund(amo.tests.TestCase):
         assert not enqueue_refund.called, (
             '`Contribution.enqueue_refund` should not have been called')
 
+    @mock.patch('paypal.refund')
+    def test_already_refunded(self, refund):
+        refund.return_value = [{'refundStatus': 'ALREADY_REVERSED_OR_REFUNDED',
+                                'receiver.email': self.user.email}]
+        c = self.make_purchase()
+        r = self.client.post(self.url, {'transaction_id': c.transaction_id,
+                                        'issue': '1'})
+        self.assertRedirects(r, self.addon.get_dev_url('refunds'), 302)
+        eq_(len(mail.outbox), 0)
+        assert 'previously issued' in r.cookies['messages'].value
+
 
 class TestRefunds(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']

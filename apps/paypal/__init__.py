@@ -70,7 +70,7 @@ for number in ['580027', '580022']:
 # Here you can map PayPal error messages into hopefully more useful
 # error messages.
 messages = {'589023': loc('The amount is too small for conversion '
-                          'into the receviers currency.')}
+                          "into the receiver's currency.")}
 
 
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -214,7 +214,7 @@ def refund(paykey):
     Returns: A list of dicts containing the refund info for each
     receiver of the original payment.
     """
-    OK_STATUSES = ['REFUNDED', 'REFUNDED_PENDING']
+    OK_STATUSES = ['REFUNDED', 'REFUNDED_PENDING', 'ALREADY_REVERSED_OR_REFUNDED']
     with statsd.timer('paypal.payment.refund'):
         try:
             response = _call(settings.PAYPAL_PAY_URL + 'Refund',

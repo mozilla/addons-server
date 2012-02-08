@@ -355,6 +355,11 @@ error_refund_string = (
     '&refundInfoList.refundInfo(0).receiver.email=bob@example.com'
     '&refundInfoList.refundInfo(0).refundStatus=NO_API_ACCESS_TO_RECEIVER')
 
+already_refunded_string = (
+    'refundInfoList.refundInfo(0).receiver.amount=123.45'
+    '&refundInfoList.refundInfo(0).receiver.email=bob@example.com'
+    '&refundInfoList.refundInfo(0).refundStatus=ALREADY_REVERSED_OR_REFUNDED')
+
 
 class TestRefund(amo.tests.TestCase):
     """
@@ -381,6 +386,11 @@ class TestRefund(amo.tests.TestCase):
         with self.assertRaises(paypal.PaypalError):
             paypal.refund('fake-paykey')
 
+    @mock.patch('urllib2.OpenerDirector.open')
+    def test_refunded_already(self, opener):
+        opener.return_value = StringIO(already_refunded_string)
+        eq_(paypal.refund('fake-paykey')[0]['refundStatus'],
+            'ALREADY_REVERSED_OR_REFUNDED')
 
 # TODO: would be nice to see if we could get some more errors out of PayPal
 # but it looks like anything else just raises an error.
