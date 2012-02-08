@@ -894,6 +894,14 @@ def refund_reason(request, contribution, wizard):
     addon = contribution.addon
     if not 'request' in wizard.get_progress():
         return redirect('users.support', contribution.pk, 'request')
+    if contribution.transaction_id is None:
+        messages.error(request,
+                       _('A refund cannot be applied for yet. Please try again'
+                         ' later. If this error persists contact '
+                         'apps-marketplace@mozilla.org.'))
+        paypal_log.info('Refund requested for contribution with no '
+                        'transaction_id: %r' % (contribution.pk,))
+        return redirect('users.purchases')
 
     if contribution.is_instant_refund():
         paypal.refund(contribution.paykey)

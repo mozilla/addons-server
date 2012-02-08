@@ -1317,6 +1317,7 @@ class TestPurchases(amo.tests.TestCase):
                                               addon=addon, amount='%s.00' % x,
                                               type=amo.CONTRIB_PURCHASE)
             con.created = datetime(2011, 11, 1)
+            con.transaction_id = "txn-%d" % (x,)
             con.save()
             if not self.addon and not self.con:
                 self.addon, self.con = addon, con
@@ -1597,6 +1598,15 @@ class TestPurchases(amo.tests.TestCase):
         self.client.post(self.get_url('request'), {'remove': 1})
         res = self.client.post(self.get_url('reason'), {'text': 'something'})
         eq_(res.status_code, 302)
+
+    def test_no_txnid_request(self):
+        self.con.transaction_id = None
+        self.con.save()
+        self.client.post(self.get_url('request'), {'remove': 1})
+        res = self.client.post(self.get_url('reason'), {'text': 'something'})
+        assert 'cannot be applied for yet' in res.cookies['messages'].value
+        eq_(len(mail.outbox), 0)
+        self.assertRedirects(res, reverse('users.purchases'), 302)
 
     @patch('stats.models.Contribution.is_instant_refund')
     def test_request_mails(self, is_instant_refund):
