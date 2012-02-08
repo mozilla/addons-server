@@ -30,6 +30,7 @@ submit_apps_patterns = patterns('',
     url('^bump$', use_apps(views.submit_bump), name='devhub.submit_apps.bump'),
 )
 
+
 def marketplace_patterns(prefix):
     return patterns('',
         url('^1$', views.marketplace_paypal,
@@ -53,6 +54,10 @@ app_detail_patterns = patterns('',
     url('^disable$', views.disable, name='devhub.apps.disable'),
     url('^status$', views.version_list, name='devhub.apps.versions'),
     url('^payments$', views.payments, name='devhub.apps.payments'),
+    url('^in-app-config$', views.in_app_config,
+        name='devhub.apps.in_app_config'),
+    url('^in-app-secret$', views.in_app_secret,
+        name='devhub.apps.in_app_secret'),
     url('^payments/disable$', views.disable_payments,
         name='devhub.apps.payments.disable'),
     url('^payments/permission/refund$', views.acquire_refund_permission,

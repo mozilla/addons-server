@@ -284,6 +284,11 @@ $(document).ready(function() {
             return true;
         }
     });
+
+    // In-app payments config.
+    if ($('#in-app-config').length) {
+        initInAppConfig($('#in-app-config'));
+    }
 });
 
 function initUploadControls() {
@@ -1520,4 +1525,29 @@ function initTruncateSummary() {
             }
         }
     }
+}
+
+function initInAppConfig($dom) {
+    $('#in-app-private-key .generator', $dom).click(_pd(function() {
+        var $generator = $(this),
+            url = $generator.attr('data-url'),
+            $secret = $('#in-app-private-key .secret', $dom);
+        $.ajax({type: 'GET',
+                url: url,
+                success: function(privateKey) {
+                    $generator.hide();
+                    $secret.show().val(privateKey);
+                    // Hide the secret key after 2 minutes.
+                    setTimeout(function() {
+                        $secret.val('').hide();
+                        $generator.show();
+                    }, 1000 * 60 * 2);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    if (typeof console !== 'undefined') {
+                        console.log(XMLHttpRequest, textStatus, errorThrown);
+                    }
+                },
+                dataType: 'text'});
+    }));
 }
