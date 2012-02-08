@@ -1369,6 +1369,7 @@ class TestIssueRefund(amo.tests.TestCase):
         eq_(r.status_code, 404)
 
     def _test_issue(self, refund, enqueue_refund):
+        refund.return_value = []
         c = self.make_purchase()
         r = self.client.post(self.url, {'transaction_id': c.transaction_id,
                                         'issue': '1'})
