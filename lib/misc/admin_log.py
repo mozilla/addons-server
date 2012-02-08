@@ -119,7 +119,7 @@ class ErrorSyslogHandler(UnicodeHandler, ErrorTypeHandler):
         if self.should_email(record):
             return
 
-        super(ErrorSyslogHandler, self).emit(record)
+        UnicodeHandler.emit(self, record)
         self.emitted(self.__class__.__name__.lower())
 
 

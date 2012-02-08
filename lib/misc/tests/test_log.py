@@ -67,18 +67,6 @@ class TestErrorLog(amo.tests.TestCase):
         record.should_email = None
         return record
 
-    def test_email(self):
-        self.log.error('blargh!',
-                       exc_info=self.division_error(),
-                       extra={'request': RequestFactory().get('/')})
-        eq_(len(mail.outbox), 1)
-
-    def test_no_email(self):
-        self.log.error('blargh!',
-                       exc_info=self.io_error(),
-                       extra={'request': RequestFactory().get('/')})
-        eq_(len(mail.outbox), 0)
-
     def test_should_email(self):
         et = ErrorTypeHandler()
         assert et.should_email(self.fake_record(self.division_error()))
