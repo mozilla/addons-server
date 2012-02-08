@@ -4,6 +4,6 @@ Purchased on {{ contribution.date|datetime }}
 Price: {{ contribution.get_amount_locale() }}
 
 Reason given:
-{{ reason }}
+{{ refund_reason }}
 
 To approve or deny this request, click here: {{ refund_url }}

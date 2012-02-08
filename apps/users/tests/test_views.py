@@ -1604,13 +1604,15 @@ class TestPurchases(amo.tests.TestCase):
         self.addon.support_email = 'a@a.com'
         self.addon.save()
 
+        reason = 'something'
         self.client.post(self.get_url('request'), {'remove': 1})
-        self.client.post(self.get_url('reason'), {'text': 'something'})
+        self.client.post(self.get_url('reason'), {'text': reason})
         eq_(len(mail.outbox), 1)
-        email = mail.outbox[0]
-        eq_(email.to, ['a@a.com'])
-        eq_(email.from_email, 'nobody@mozilla.org')
-        assert '$1.00' in email.body
+        msg = mail.outbox[0]
+        eq_(msg.to, ['a@a.com'])
+        eq_(msg.from_email, 'nobody@mozilla.org')
+        assert '$1.00' in msg.body, 'Missing refund reason in %s' % email.body
+        assert reason in msg.body, 'Missing refund reason in %s' % email.body
 
     @patch('stats.models.Contribution.is_instant_refund')
     def test_request_fails(self, is_instant_refund):
