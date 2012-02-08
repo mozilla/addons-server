@@ -26,7 +26,8 @@ from waffle import helpers
 import amo
 import amo.tests
 import paypal
-from amo.helpers import url as url_reverse, absolutify
+from amo.helpers import (absolutify, babel_datetime, url as url_reverse,
+                         timesince)
 from amo.tests import (formset, initial, close_to_now,
                        assert_no_validation_errors)
 from amo.tests.test_helpers import get_image_path
@@ -1517,7 +1518,41 @@ class TestRefunds(amo.tests.TestCase):
         doc = pq(r.content)
         eq_(doc('#enable-payments').length, 0)
         for key in self.queues.keys():
-            eq_(doc('#queue-%s' % key).length, 1)
+            table = doc('#queue-%s' % key)
+            eq_(table.length, 1)
+
+    def test_timestamps(self):
+        self.generate_refunds()
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+
+        # Pending timestamps should be relative.
+        table = doc('#queue-pending')
+        for refund in self.expected[amo.REFUND_PENDING]:
+            tr = table.find('.refund[data-refundid=%s]' % refund.id)
+            purchased = tr.find('.purchased-date')
+            requested = tr.find('.requested-date')
+            eq_(purchased.text(),
+                timesince(refund.contribution.created).strip())
+            eq_(requested.text(),
+                timesince(refund.requested).strip())
+            eq_(purchased.attr('title'),
+                babel_datetime(refund.contribution.created).strip())
+            eq_(requested.attr('title'),
+                babel_datetime(refund.requested).strip())
+        # Remove pending table.
+        table.remove()
+
+        # All other timestamps should be absolute.
+        table = doc('table')
+        others = Refund.objects.exclude(status=amo.REFUND_PENDING)
+        for refund in others:
+            tr = table.find('.refund[data-refundid=%s]' % refund.id)
+            eq_(tr.find('.purchased-date').text(),
+                babel_datetime(refund.contribution.created).strip())
+            eq_(tr.find('.requested-date').text(),
+                babel_datetime(refund.requested).strip())
 
 
 class TestDelete(amo.tests.TestCase):

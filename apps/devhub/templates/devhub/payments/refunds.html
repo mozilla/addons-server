@@ -23,15 +23,15 @@
   <td class="price">{{ c.get_amount_locale() }}</td>
   {# Fligtar wants relative timestamps for pending refunds only. #}
   {% if refund.status == amo.REFUND_PENDING %}
-    <td class="long purchased-date" title="{{ refund.created|babel_datetime }}">
-      {{ refund.created|timesince }}
+    <td class="long purchased-date" title="{{ c.created|babel_datetime }}">
+      {{ c.created|timesince }}
     </td>
     <td class="long requested-date" title="{{ refund.requested|babel_datetime }}">
       {{ refund.requested|timesince }}
     </td>
   {% else %}
     <td class="long purchased-date">
-      {{ refund.created|babel_datetime }}
+      {{ c.created|babel_datetime }}
     </td>
     <td class="long requested-date">
       {{ refund.requested|babel_datetime }}
@@ -53,12 +53,12 @@
 {% endmacro %}
 
 {% macro approved_row(refund) %}
-  <tr class="refund">
+  <tr data-refundid="{{ refund.id }}" class="refund">
     {{ base_td(refund, amo) }}
     <td class="long approved-date">{{ refund.approved|babel_datetime }}</td>
   </tr>
   {% if refund.refund_reason %}
-    <tr class="reason">
+    <tr data-refundid="{{ refund.id }}" class="reason">
       <td colspan="0">
         <b>{{ _('Refund Reason:') }}</b>
         {{ refund.refund_reason }}
@@ -101,14 +101,14 @@
             </thead>
             <tbody>
               {% for refund in pending.object_list %}
-                <tr class="refund">
+                <tr data-refundid="{{ refund.id }}" class="refund">
                   {{ base_td(refund, amo) }}
                   <td rowspan="2" class="action">
                     {{ action_form(refund) }}
                   </td>
                 </tr>
                 {% if refund.refund_reason %}
-                  <tr class="reason">
+                  <tr data-refundid="{{ refund.id }}" class="reason">
                     <td colspan="5">
                       <b>{{ _('Refund Reason:') }}</b>
                       {{ refund.refund_reason }}
@@ -195,14 +195,14 @@
             </thead>
             <tbody>
               {% for refund in declined.object_list %}
-                <tr class="refund">
+                <tr data-refundid="{{ refund.id }}" class="refund">
                   {{ base_td(refund, amo) }}
                   <td class="long declined-date">
                     {{ refund.declined|babel_datetime }}
                   </td>
                 </tr>
                 {% if refund.rejection_reason %}
-                  <tr class="reason">
+                  <tr data-refundid="{{ refund.id }}" class="reason">
                     <td colspan="0">
                       <b>{{ _('Rejection Reason:') }}</b>
                       {{ refund.rejection_reason }}
