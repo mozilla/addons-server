@@ -1446,7 +1446,7 @@ class Category(amo.models.ModelBase):
     slug = models.SlugField(max_length=50, help_text='Used in Category URLs.')
     description = TranslatedField()
     type = models.PositiveIntegerField(db_column='addontype_id',
-                                       choices=tuple(amo.ADDON_TYPE.iteritems()))
+                                       choices=do_dictsort(amo.ADDON_TYPE))
     application = models.ForeignKey('applications.Application', null=True,
                                     blank=True)
     count = models.IntegerField('Addon count', default=0)
