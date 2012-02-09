@@ -304,7 +304,7 @@ class SearchView(APIView):
         """
         Query the search backend and serve up the XML.
         """
-        if not waffle.switch_is_active('new-api-search'):
+        if not waffle.flag_is_active(self.request, 'new-api-search'):
             return self._sphinx_api_search(query, addon_type, limit, platform,
                                            version, compat_mode)
 
@@ -342,7 +342,6 @@ class SearchView(APIView):
         qs = qs.filter(**filters)
 
         return self.render('api/search.xml', {
-            'using_ES': True,
             'results': qs[:limit],
             'total': qs.count(),
         })

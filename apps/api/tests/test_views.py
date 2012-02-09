@@ -769,7 +769,7 @@ class SearchTest(ESTestCase):
         self.refresh()
 
         # TODO(robhudson): Remove when we officially switch.
-        waffle.models.Switch.objects.create(name='new-api-search', active=True)
+        waffle.models.Flag.objects.create(name='new-api-search', everyone=True)
 
     def test_double_escaping(self):
         """

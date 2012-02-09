@@ -307,6 +307,7 @@ MIDDLEWARE_CLASSES = (
     'commonware.middleware.FrameOptionsHeader',
     'commonware.middleware.StrictTransportMiddleware',
     'multidb.middleware.PinningRouterMiddleware',
+    'waffle.middleware.WaffleMiddleware',
 
     'csp.middleware.CSPMiddleware',
 
