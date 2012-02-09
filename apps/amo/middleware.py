@@ -240,6 +240,20 @@ class LoginRequiredMiddleware(ViewMiddleware):
                                       settings.LOGIN_URL))
 
 
+class NoConsumerMiddleware(ViewMiddleware):
+    """
+    Suprisingly similar to the other middleware, except on finding a match
+    it renders a page and has a bigger list of things we don't like.
+    Even more temporary. Maybe even more dragons.
+    """
+
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        name = self.get_name(view_func)
+        if name.startswith(settings.NO_ADDONS_MODULES +
+                           settings.NO_CONSUMER_MODULES):
+            return jingo.render(request, 'site/no_consumer.html')
+
+
 class NoAddonsMiddleware(ViewMiddleware):
     """
     If enabled will try and stop any requests to addons by 404'ing them.

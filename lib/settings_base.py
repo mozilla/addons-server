@@ -1363,15 +1363,6 @@ CELERY_DISABLE_RATE_LIMITS = True
 # if you want to experience app-preview.mozilla.org.
 APP_PREVIEW = False
 
-# Specific view modules and methods that we don't want to force login on.
-NO_LOGIN_REQUIRED_MODULES = (
-    'csp.views.policy',
-    'csp.views.report',
-    'django.views.i18n.javascript_catalog',
-    'django.contrib.auth.views.password_reset',
-    'django.contrib.auth.views.password_reset_done'
-)
-
 # Sets an upper limit on the number of users. If 0, it's ignored. If the
 # number of users meets or exceeds this, they can't register.
 REGISTER_USER_LIMIT = 0
@@ -1379,16 +1370,6 @@ REGISTER_USER_LIMIT = 0
 # registration limit. For example, with a token of 'mozillians' anyone can
 # bypass the limit by adding ?ro=mozillians to the URL.
 REGISTER_OVERRIDE_TOKEN = None
-
-NO_ADDONS_MODULES = (
-    'addons.views',
-    'devhub.views.dashboard',  # The apps dashboard is a different view.
-    'devhub.views.submit',  # Addon submit not ok, app submit a-ok.
-    'browse.views.personas',
-    'browse.views.extensions',
-    'browse.views.language_tools',
-    'browse.views.themes',
-)
 
 # Cron jobs that aren't critical will check this flag and not run if this
 # is True.
