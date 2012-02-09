@@ -9,14 +9,25 @@ from mock import Mock, patch
 from nose.tools import eq_
 
 import amo.tests
+import commonware.log
 from lib.misc.admin_log import ErrorTypeHandler
+from lib.log_settings_base import error_fmt
 from test_utils import RequestFactory
 
 cfg = {
     'version': 1,
+    'formatters': {
+        'error': {
+            '()': commonware.log.Formatter,
+            'datefmt': '%H:%M:%S',
+            'format': ('%s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
+                       % (settings.SYSLOG_TAG, error_fmt)),
+        },
+    },
     'handlers': {
         'test_syslog': {
             'class': 'lib.misc.admin_log.ErrorSyslogHandler',
+            'formatter': 'error',
         },
         'test_mail_admins': {
             'class': 'lib.misc.admin_log.AdminEmailHandler'
@@ -46,6 +57,7 @@ class TestErrorLog(amo.tests.TestCase):
     def setUp(self):
         dictconfig.dictConfig(cfg)
         self.log = logging.getLogger('test.lib.misc.logging')
+        self.request = RequestFactory().get('http://foo.com/blargh')
 
     def division_error(self):
         try:
@@ -80,7 +92,7 @@ class TestErrorLog(amo.tests.TestCase):
     def test_called_email(self, emitted):
         self.log.error('blargh!',
                        exc_info=self.division_error(),
-                       extra={'request': RequestFactory().get('/')})
+                       extra={'request': self.request})
         eq_(set([n[0][0] for n in emitted.call_args_list]),
             set(['adminemailhandler', 'statsdhandler', 'arecibohandler']))
 
@@ -89,6 +101,13 @@ class TestErrorLog(amo.tests.TestCase):
     def test_called_no_email(self, emitted):
         self.log.error('blargh!',
                        exc_info=self.io_error(),
-                       extra={'request': RequestFactory().get('/')})
+                       extra={'request': self.request})
         eq_(set([n[0][0] for n in emitted.call_args_list]),
             set(['errorsysloghandler', 'statsdhandler']))
+
+    @patch('lib.misc.admin_log.ErrorTypeHandler.emitted')
+    @patch.object(settings, 'ARECIBO_SERVER_URL', 'something')
+    def test_no_exc_info_request(self, emitted):
+        self.log.error('blargh!')
+        eq_(set([n[0][0] for n in emitted.call_args_list]),
+            set([]))

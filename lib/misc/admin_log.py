@@ -77,6 +77,12 @@ class ErrorTypeHandler(logging.Handler):
         # Examines the record and adds an attribute to see if the
         # error should be mailed or not. Only does this once. It's up to
         # other handlers to decide to use this information.
+
+        # If this has no exc_info or request, fail fast.
+        if not record.exc_info or not record.request:
+            record.should_email = False
+            return record.should_email
+
         if getattr(record, 'should_email', None) is None:
             tb = '\n'.join(traceback.format_exception(*record.exc_info))
             record.should_email = True
@@ -96,6 +102,9 @@ class StatsdHandler(ErrorTypeHandler):
     """Send error to statsd, we'll send this every time."""
 
     def emit(self, record):
+        if not record.exc_info:
+            return
+
         statsd.incr('error.%s' % record.exc_info[0].__name__.lower())
         self.emitted(self.__class__.__name__.lower())
 
@@ -113,12 +122,17 @@ class AreciboHandler(ErrorTypeHandler):
 
 
 class ErrorSyslogHandler(UnicodeHandler, ErrorTypeHandler):
-    """Send error to syslog, only if we aren't mailing it."""
+    """
+    Send error to syslog, only if we aren't mailing it. This should only
+    be used for errors that a request attached, for example django.request.
+    """
 
     def emit(self, record):
-        if self.should_email(record):
-            return
+        if self.should_email(record) or not getattr(record, 'request', None):
+           return
 
+        # Make the path available.
+        record.request_path = record.request.path
         UnicodeHandler.emit(self, record)
         self.emitted(self.__class__.__name__.lower())
 

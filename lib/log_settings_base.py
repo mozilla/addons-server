@@ -8,6 +8,9 @@ import dictconfig
 
 base_fmt = ('%(name)s:%(levelname)s %(message)s '
             ':%(pathname)s:%(lineno)s')
+error_fmt = ('%(name)s:%(levelname)s %(request_path)s %(message)s '
+            ':%(pathname)s:%(lineno)s')
+
 
 cfg = {
     'version': 1,
@@ -29,6 +32,12 @@ cfg = {
             'datefmt': '%H:%M:%S',
             'format': ('%s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
                        % (settings.SYSLOG_TAG2, base_fmt)),
+        },
+        'error': {
+            '()': commonware.log.Formatter,
+            'datefmt': '%H:%M:%S',
+            'format': ('%s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
+                       % (settings.SYSLOG_TAG, error_fmt)),
         },
     },
     'handlers': {
@@ -64,7 +73,7 @@ cfg = {
         'errortype_syslog': {
             'class': 'lib.misc.admin_log.ErrorSyslogHandler',
             'facility': logging.handlers.SysLogHandler.LOG_LOCAL7,
-            'formatter': 'prod',
+            'formatter': 'error',
         },
     },
     'loggers': {
