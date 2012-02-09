@@ -5,6 +5,7 @@
   {{ page_title(_('Source Code License for {addon}'))|f(addon=addon.name) }}
 {% endblock %}
 
+{% set addon_type = addon.type %}
 {% set license = version.license %}
 
 {% block primary %}

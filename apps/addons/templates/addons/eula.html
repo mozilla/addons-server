@@ -6,6 +6,7 @@
   {{ page_title(_('End-User License Agreement for {0}')|f(addon.name)) }}
 {% endblock %}
 
+{% set addon_type = addon.type %}
 {% set detail_url = addon.get_url_path() %}
 
 {% block primary %}
