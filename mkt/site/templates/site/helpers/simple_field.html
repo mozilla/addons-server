@@ -1,0 +1,22 @@
+{% from 'includes/forms.html' import required, optional, tip %}
+{% if tag %}
+  <{{ tag }} class="{{ class }}{{ ' error' if field.errors }}">
+{% endif %}
+{% set choice = field|is_choice_field %}
+  <label class="{{ class }}{{ ' choice' if choice }}" for="{{ field.auto_id }}">
+    {% if choice %}{{ field.as_widget() }}{% endif %}
+    {{ label or field.label }}
+
+    {% if field.field.required and req != False %}{{ required() -}}{% endif %}
+    {% if opt %}{{ optional() -}}{% endif %}
+
+    {% if not tooltip %}{% set tooltip = field.help_text %}{% endif %}
+    {% if tooltip %}{{ tip(None, tooltip) }}{% endif %}
+  </label>
+  {% if not choice %}
+    {{ field.as_widget(attrs=attrs) }}
+  {% endif %}
+  {{ field.errors }}
+{% if tag %}
+  </{{ tag }}>
+{% endif %}

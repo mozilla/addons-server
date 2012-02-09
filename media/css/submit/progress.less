@@ -1,0 +1,43 @@
+@import '../hub/lib';
+
+#submission-progress {
+    .border-box;
+    border-bottom: #eee 1px dotted;
+    display: table;
+    margin-bottom: 1.5em;
+    width: 100%;
+    ol {
+        display: table-row;
+        counter-reset: item;
+    }
+    li {
+        color: @light-gray;
+        display: table-cell;
+        counter-increment: item;
+        font: 16px @open-stack;
+        padding-bottom: 1.5em;
+        text-align: center;
+        width: 20%;
+        &:before {
+            .border-radius(30px);
+            background: #eee;
+            display: block;
+            content: counter(item);
+            font-size: 18px;
+            height: 30px;
+            line-height: 30px;
+            margin: 5px auto 0;
+            text-align: center;
+            width: 30px;
+        }
+        &.active {
+            color: @dark-gray;
+            font-weight: bold;
+            &:before {
+                background: transparent;
+                border: 1px solid #000;
+                color: #000;
+            }
+        }
+    }
+}

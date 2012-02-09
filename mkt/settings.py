@@ -2,9 +2,32 @@ from lib.settings_base import *
 
 APP_PREVIEW = True
 ROOT_URLCONF = 'mkt.urls'
-TEMPLATE_DIRS = (path('mkt/templates'),) + TEMPLATE_DIRS
-POTCH_MARKETPLACE_EXPERIMENTS = False
-INSTALLED_APPS += ('mkt.experiments', 'mkt.site')
+TEMPLATE_DIRS += (path('mkt/templates'),)
+INSTALLED_APPS += (
+    'mkt.site',
+    'mkt.hub',
+    'mkt.submit',
+    'mkt.experiments',
+)
+SUPPORTED_NONAPPS += (
+    'hub',
+    'submit',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.media',
+    'django.core.context_processors.request',
+    'session_csrf.context_processor',
+
+    'django.contrib.messages.context_processors.messages',
+
+    'mkt.site.context_processors.i18n',
+    'mkt.site.context_processors.global_settings',
+    'mkt.site.context_processors.static_url',
+    'jingo_minify.helpers.build_ids',
+)
 
 TEMPLATE_CONTEXT_PROCESSORS += ('mkt.experiments.context_processors.fragment',)
 
@@ -48,8 +71,15 @@ NO_LOGIN_REQUIRED_MODULES = (
     'django.contrib.auth.views.password_reset_done'
 )
 
-
+# Extend the bundles.
 MINIFY_BUNDLES['css'].update({
+    'hub': (
+        'css/impala/base.css',
+        'css/hub/base.less',
+        'css/hub/forms.less',
+        'css/submit/progress.less',
+        'css/submit/terms.less',
+    ),
     'marketplace-experiments': (
         'marketplace-experiments/css/reset.less',
         'marketplace-experiments/css/site.less',
@@ -60,9 +90,13 @@ MINIFY_BUNDLES['css'].update({
     ),
 })
 MINIFY_BUNDLES['js'].update({
+    'hub': (
+    ),
     'marketplace-experiments': (
         'js/marketplace-experiments/jquery-1.7.1.min.js',
         'js/marketplace-experiments/slider.js',
     ),
 })
 
+# Feature flags.
+POTCH_MARKETPLACE_EXPERIMENTS = False

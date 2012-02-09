@@ -1,0 +1,53 @@
+@import '../hub/lib';
+
+#terms {
+    #agreement-container {
+        border: 1px solid @light-gray;
+        margin-bottom: .5em;
+        max-height: 300px;
+        overflow: auto;
+        padding: 1em;
+        #dev-agreement {
+            ul, ol {
+                list-style: decimal outside;
+                margin-left: 4ex;
+                .loud-noises {
+                    text-transform: uppercase;
+                }
+                li {
+                    margin-bottom: .5em;
+                }
+                ul {
+                    list-style: circle outside;
+                    margin: 1em 2em;
+                }
+            }
+        }
+    }
+    #agreement-extra-links {
+        float: right;
+        font-size: 11px;
+    }
+    #agreement-form {
+        margin: 2.5em 0 1em;
+        label {
+            cursor: pointer;
+        }
+        p {
+            margin: 0 0 .25em;
+        }
+        button {
+            color: darken(#ccc, 5%);
+            float: right;
+            b {
+                color: darken(#def, 5%);
+            }
+            &:hover {
+                color: #ccc;
+                b {
+                    color: #def;
+                }
+            }
+        }
+    }
+}

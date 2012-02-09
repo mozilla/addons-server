@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="{{ LANG }}" dir="{{ DIR }}">
+  <head>
+    <meta charset="utf-8">
+    {% if not settings.ENGAGE_ROBOTS %}
+      <meta name="robots" content="noindex">
+    {% endif %}
+    {% block extrameta %}{% endblock %}
+    <title>
+      {% block title %}Developer Hub | {{ _('Mozilla Marketplace') }}{% endblock %}
+    </title>
+    {% block site_css %}{{ css('hub') }}{% endblock %}
+    {% if settings.DEBUG %}
+      {% if settings.LESS_LIVE_REFRESH %}
+        <meta id="live_refresh" name="live_refresh" value="1">
+      {% endif %}
+    {% endif %}
+    {% if request.user.is_authenticated() %}
+      <meta name="csrf" content="{{ csrf_token }}">
+    {% endif %}
+  </head>
+  <body class="html-{{ DIR }} {% block bodyclass %}{% endblock %}"
+        data-anonymous="{{ (not request.user.is_authenticated())|json }}"
+        data-readonly="{{ settings.READ_ONLY|json }}"
+        data-media-url="{{ MEDIA_URL }}"
+        data-collect-timings="{{ url('amo.timing.record') }}:{{ collect_timings_percent }}"
+        {% block bodyattrs %}{% endblock %}>
+    <div id="tabzilla-wrapper">
+      <a id="tabzilla" href="http://mozilla.org/">mozilla</a>
+    </div>
+    <nav id="aux-nav" role="navigation" class="menu-nav c">
+      <ul>
+        {% if not settings.READ_ONLY %}
+          {% include 'impala/user_login.html' %}
+        {% endif %}
+        {% block aux_nav %}{% endblock aux_nav %}
+      </ul>
+    </nav>
+    <nav id="site-nav">
+      <h1 class="site-title">
+        <a href="{{ url('hub.index') }}">
+          <small>Marketplace</small> Developer Hub
+        </a>
+      </h1>
+      <ul>
+        <li><a href="{{ url('hub.index') }}">My Submissions</a></li>
+        <li><a href="">Documentation</a></li>
+        <li><a href="{{ url('submit.apps.1') }}">Upload an App</a></li>
+      </ul>
+    </nav>
+    <div id="page">
+      {% block content %}{% endblock %}
+    </div>
+    <footer class="c" id="footer">
+      <h1 id="footzilla">mozilla</h1>
+      <p>
+        {% trans %}
+          Except where otherwise
+          <a href="http://mozilla.com/about/legal.html#site">noted</a>,
+          content on this site is licensed under the <br />
+          <a href="http://creativecommons.org/licenses/by-sa/3.0/">
+            Creative Commons Attribution Share-Alike License v3.0
+          </a> or any later version.
+        {% endtrans %}
+      </p>
+      <ul>
+        <li><a href="http://mozilla.com/privacy-policy.html">
+          {{ _('Privacy Policy') }}</a></li>
+        <li><a href="http://mozilla.com/about/legal.html">
+          {{ _('Legal Notices') }}</a></li>
+        <li><a href="http://mozilla.com/legal/fraud-report/index.html">
+          {{ _('Report Trademark Abuse') }}</a></li>
+      </ul>
+    </footer>
+    {# js #}
+    {% block site_js %}
+      <script src="{{ static(url('jsi18n')) }}"></script>
+      {% if waffle.switch('browserid-login') %}
+        <script async defer src="https://browserid.org/include.js"></script>
+      {% endif %}
+      {{ js('hub') }}
+      <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
+    {% endblock %}
+    {% block js %}{% endblock %}
+    {# Webtrends Stats Tracking #}
+    <script defer src="{{ media('js/webtrends/webtrends-v0.1.js') }}"></script>
+    {% block js_extras %}{% endblock %}
+    <noscript>
+      <img class="hidden" id="DCSIMG" width="1" height="1"
+        src="https://statse.webtrendslive.com/dcso6de4r0000082npfcmh4rf_4b1e/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=8.6.2" />
+    </noscript>
+    {# End Webtrends #}
+  </body>
+</html>
