@@ -62,14 +62,14 @@ cfg = {
             'level': 'ERROR',
             'class': 'lib.misc.admin_log.AdminEmailHandler'
         },
-        'statsd': {
-            'level': 'ERROR',
-            'class': 'lib.misc.admin_log.StatsdHandler',
-        },
-        'arecibo': {
-            'level': 'ERROR',
-            'class': 'lib.misc.admin_log.AreciboHandler',
-        },
+#        'statsd': {
+#            'level': 'ERROR',
+#            'class': 'lib.misc.admin_log.StatsdHandler',
+#        },
+#        'arecibo': {
+#            'level': 'ERROR',
+#            'class': 'lib.misc.admin_log.AreciboHandler',
+#        },
         'errortype_syslog': {
             'class': 'lib.misc.admin_log.ErrorSyslogHandler',
             'facility': logging.handlers.SysLogHandler.LOG_LOCAL7,
@@ -80,8 +80,8 @@ cfg = {
         'z': {},
         'django.request': {
             # Note these handlers will choose what they want to emit and when.
-            'handlers': ['mail_admins', 'errortype_syslog',
-                         'statsd', 'arecibo'],
+            'handlers': ['mail_admins', 'errortype_syslog'],#,
+#                         'statsd', 'arecibo'],
             'level': 'ERROR',
             'propagate': True,
         },

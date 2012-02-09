@@ -26,8 +26,8 @@ import traceback
 from django.conf import settings
 from django.core import mail
 
-from django_arecibo.tasks import post
-from django_statsd.clients import statsd
+#from django_arecibo.tasks import post
+#from django_statsd.clients import statsd
 
 
 getLogger = logging.getLogger
@@ -98,27 +98,27 @@ class ErrorTypeHandler(logging.Handler):
         pass
 
 
-class StatsdHandler(ErrorTypeHandler):
-    """Send error to statsd, we'll send this every time."""
-
-    def emit(self, record):
-        if not record.exc_info:
-            return
-
-        statsd.incr('error.%s' % record.exc_info[0].__name__.lower())
-        self.emitted(self.__class__.__name__.lower())
-
-
-class AreciboHandler(ErrorTypeHandler):
-    """Send error to Arecibo, only if we are also emailing it."""
-
-    def emit(self, record):
-        arecibo = getattr(settings, 'ARECIBO_SERVER_URL', '')
-        if not self.should_email(record) or not arecibo:
-            return
-
-        post(record.request, 500)
-        self.emitted(self.__class__.__name__.lower())
+#class StatsdHandler(ErrorTypeHandler):
+#    """Send error to statsd, we'll send this every time."""
+#
+#    def emit(self, record):
+#        if not record.exc_info:
+#            return
+#
+#        statsd.incr('error.%s' % record.exc_info[0].__name__.lower())
+#        self.emitted(self.__class__.__name__.lower())
+#
+#
+#class AreciboHandler(ErrorTypeHandler):
+#    """Send error to Arecibo, only if we are also emailing it."""
+#
+#    def emit(self, record):
+#        arecibo = getattr(settings, 'ARECIBO_SERVER_URL', '')
+#        if not self.should_email(record) or not arecibo:
+#            return
+#
+#        post(record.request, 500)
+#        self.emitted(self.__class__.__name__.lower())
 
 
 class ErrorSyslogHandler(UnicodeHandler, ErrorTypeHandler):
