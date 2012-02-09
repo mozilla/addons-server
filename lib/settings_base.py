@@ -1377,3 +1377,8 @@ IGNORE_NON_CRITICAL_CRONS = False
 
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'amo.utils.LocalFileStorage'
+
+# Defined in the site, this is to allow settings patch to work for tests.
+NO_LOGIN_REQUIRED_MODULES = ()
+NO_ADDONS_MODULES = ()
+NO_CONSUMER_MODULES = ()
