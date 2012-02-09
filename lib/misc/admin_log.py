@@ -4,19 +4,19 @@ NO_EMAIL_PATTERNS = {
     'IOError': re.compile(r'IOError: request data read error'),
     'TimeoutError':
         re.compile(r'TimeoutError: Request timed out after 5.000000 seconds'),
-    'OperationError':
-        re.compile(r'''OperationalError: (2006, 'MySQL server '''
-                    '''has gone away')'''),
-    'OperationError':
-        re.compile(r'''OperationalError: (2013, 'Lost connection to '''
-                    '''MySQL server during query')'''),
-    'OperationError':
-        re.compile(r'''OperationalError: (2013, "Lost connection to '''
-                    '''MySQL server at 'reading initial communication '''
-                    '''packet', system error: 0")'''),
-    'OperationError':
-        re.compile(r'''OperationalError: (1205, 'Lock wait timeout '''
-                    '''exceeded; try restarting transaction')'''),
+#    'OperationError':
+#        re.compile(r'''OperationalError: (2006, 'MySQL server '''
+#                    '''has gone away')'''),
+#    'OperationError':
+#        re.compile(r'''OperationalError: (2013, 'Lost connection to '''
+#                    '''MySQL server during query')'''),
+#    'OperationError':
+#        re.compile(r'''OperationalError: (2013, "Lost connection to '''
+#                    '''MySQL server at 'reading initial communication '''
+#                    '''packet', system error: 0")'''),
+#    'OperationError':
+#        re.compile(r'''OperationalError: (1205, 'Lock wait timeout '''
+#                    '''exceeded; try restarting transaction')'''),
 }
 
 import logging
