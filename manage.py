@@ -38,11 +38,12 @@ from django.core.management import (call_command, execute_manager,
 # Figuring out what settings file to use.
 # 1. Look first for the command line setting.
 setting = None
-found, rest = getopt.getopt(sys.argv[1:], 's:', 'settings=')
-try:
-    setting = dict(found).values()[0]
-except IndexError:
-    pass
+if __name__ == '__main__':
+    found, rest = getopt.getopt(sys.argv[1:], 's:', 'settings=')
+    try:
+        setting = dict(found).values()[0]
+    except IndexError:
+        pass
 
 # 2. If not, find the env variable.
 if not setting:
