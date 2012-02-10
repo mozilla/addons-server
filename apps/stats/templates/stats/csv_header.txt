@@ -1,5 +1,13 @@
+{% if title %}
+#    {{ title }}
+{% else %}
 #    addons.mozilla.org Statistics for add-on {{ addon.name }}
+{% endif %}
 #
 #    Generated {{ timestamp }}
 #    from {{ request.build_absolute_uri() }}
-
+{% if show_disclaimer %}
+#
+#    This data is provided "AS IS" and is subject to Mozilla's Legal Disclaimers
+#    and Limitations policy, available at http://www.mozilla.com/en-US/about/legal.html
+{% endif %}

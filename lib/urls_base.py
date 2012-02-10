@@ -105,7 +105,10 @@ urlpatterns = patterns('',
     url('^statistics/events-(?P<start>\d{8})-(?P<end>\d{8}).json$',
         'stats.views.site_events', name='amo.site_events'),
 
-    # Global stats dashboard.
+    # Site statistics that we are going to catch, the rest will fall through.
+    url('^statistics/', include('stats.urls')),
+
+    # Fall through for any URLs not matched above stats dashboard.
     url('^statistics/', lambda r: redirect('/'), name='statistics.dashboard'),
 
     # Review spam.

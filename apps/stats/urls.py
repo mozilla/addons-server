@@ -2,14 +2,20 @@ from django.conf.urls.defaults import patterns, url
 
 from . import views
 
-
 group_re = '(?P<group>' + '|'.join(views.SERIES_GROUPS) + ')'
+group_date_re = '(?P<group>' + '|'.join(views.SERIES_GROUPS_DATE) + ')'
 range_re = '(?P<start>\d{8})-(?P<end>\d{8})'
 format_re = '(?P<format>' + '|'.join(views.SERIES_FORMATS) + ')'
 series = dict((type, '^%s-%s-%s\.%s$' % (type, group_re, range_re, format_re))
               for type in views.SERIES)
 
 urlpatterns = patterns('',
+    url('^site%s/%s$' % (format_re, group_date_re),
+        views.site, name='stats.site')
+)
+
+# Addon specific stats.
+stats_patterns = patterns('',
     # page URLs
     url('^$', views.stats_report, name='stats.overview',
         kwargs={'report': 'overview'}),

@@ -6,9 +6,11 @@ from types import GeneratorType
 from datetime import date, timedelta
 
 from django import http
+from django.db import connection
 from django.db.models import Avg, Count, Sum, Q
 from django.utils import simplejson
 from django.utils.cache import add_never_cache_headers, patch_cache_control
+from django.utils.datastructures import SortedDict
 from django.core.serializers.json import DjangoJSONEncoder
 from django.core.exceptions import PermissionDenied
 
@@ -23,12 +25,14 @@ from zadmin.models import SiteEvent
 import amo
 from amo.decorators import json_view
 from amo.urlresolvers import reverse
+from amo.utils import memoize
 
 from .decorators import allow_cross_site_request
 from .models import DownloadCount, UpdateCount, Contribution
 
 
 SERIES_GROUPS = ('day', 'week', 'month')
+SERIES_GROUPS_DATE = ('date', 'week', 'month')  # Backwards compat.
 SERIES_FORMATS = ('json', 'csv')
 SERIES = ('downloads', 'usage', 'contributions', 'overview',
           'sources', 'os', 'locales', 'statuses', 'versions', 'apps')
@@ -387,6 +391,56 @@ def contributions_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
+@memoize('site-csv')
+def _site_query(period):
+    # Cached lookup of the keys and the SQL.
+    # Taken from remora, a mapping of the old values.
+    keys = {
+        'addon_downloads_new': 'addons_downloaded',
+        'addon_total_updatepings': 'addons_in_use',
+        'addon_count_new': 'addons_created',
+        'version_count_new': 'addons_updated',
+        'user_count_new': 'users_created',
+        'review_count_new': 'reviews_created',
+        'collection_count_new': 'collections_created'
+    }
+    cursor = connection.cursor()
+    # Let MySQL make this fast. Make sure we prevent SQL injection with the
+    # assert.
+    assert period in SERIES_GROUPS_DATE, '%s period is not valid.'
+    sql = ("SELECT name, MIN(date), SUM(count) "
+           "FROM global_stats "
+           "WHERE date > DATE_SUB(CURDATE(), INTERVAL 1 YEAR) "
+           "AND name IN (%s) "
+           "GROUP BY %s(date), name "
+           "ORDER BY %s(date) DESC;"
+           % (', '.join(['%s' for key in keys.keys()]), period, period))
+    cursor.execute(sql, keys.keys())
+
+    # Process the results into a format that is friendly for render_*.
+    default = dict([(k, 0) for k in keys.values()])
+    result = SortedDict()
+    for name, date, count in cursor.fetchall():
+        date = date.strftime('%Y-%m-%d')
+        if date not in result:
+            result[date] = default.copy()
+            result[date]['date'] = date
+        result[date][keys[name]] = count
+
+    return result.values(), sorted(keys.values())
+
+
+def site(request, format, group):
+    """Site data from the global_stats table."""
+    series, keys = _site_query(group)
+    if format == 'csv':
+        return render_csv(request, None, series, ['date'] + keys,
+                          title='addons.mozilla.org week Site Statistics',
+                          show_disclaimer=True)
+
+    return render_json(request, None, series)
+
+
 def fudge_headers(response, stats):
     """Alter cache headers. Don't cache content where data could be missing."""
     if not stats:
@@ -427,12 +481,14 @@ class UnicodeCSVDictWriter(csv.DictWriter):
 
 
 @allow_cross_site_request
-def render_csv(request, addon, stats, fields):
+def render_csv(request, addon, stats, fields,
+               title=None, show_disclaimer=None):
     """Render a stats series in CSV."""
     # Start with a header from the template.
     ts = time.strftime('%c %z')
-    response = jingo.render(request, 'stats/csv_header.txt',
-                            {'addon': addon, 'timestamp': ts})
+    context = {'addon': addon, 'timestamp': ts, 'title': title,
+               'show_disclaimer': show_disclaimer}
+    response = jingo.render(request, 'stats/csv_header.txt', context)
 
     writer = UnicodeCSVDictWriter(response, fields, restval=0,
                                   extrasaction='ignore')

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import csv
+import datetime
 import json
 
 from nose.tools import eq_
@@ -8,7 +9,7 @@ import amo.tests
 from amo.urlresolvers import reverse
 from access.models import Group, GroupUser
 from stats import views, tasks
-from stats.models import DownloadCount, UpdateCount
+from stats.models import DownloadCount, GlobalStat, UpdateCount
 from users.models import UserProfile
 
 
@@ -669,3 +670,41 @@ class TestResponses(ESStatsTest):
         self.csv_eq(r, """date,count,total,average
                           2009-06-02,2,4.98,2.49
                           2009-06-01,1,5.0,5.0""")
+
+
+class TestSite(amo.tests.TestCase):
+
+    def setUp(self):
+        self.today = datetime.datetime.today()
+        for k in xrange(1, 15):
+            for name in ['addon_count_new', 'version_count_new']:
+                date = datetime.date(self.today.year, self.today.month, k)
+                GlobalStat.objects.create(date=date, name=name, count=k)
+
+    def tests_week(self):
+        res = self.client.get(reverse('stats.site', args=['json', 'week']))
+        eq_(res.status_code, 200)
+        content = json.loads(res.content)
+        assert len(content) < 14
+
+    def tests_month(self):
+        res = self.client.get(reverse('stats.site', args=['json', 'month']))
+        content = json.loads(res.content)
+        eq_(len(content), 1)
+        # Magic number alert: 1+2+3... == 105.
+        eq_(content[0]['addons_created'], (14 * (14 + 1)) / 2)
+
+    def tests_date(self):
+        res = self.client.get(reverse('stats.site', args=['json', 'date']))
+        content = json.loads(res.content)
+        eq_(len(content), 14)
+        eq_(content[0]['addons_created'], 14)
+
+    def test_site_query(self):
+        self.assertRaises(AssertionError, views._site_query, "DELETE ...")
+
+    def tests_week_csv(self):
+        res = self.client.get(reverse('stats.site', args=['csv', 'week']))
+        eq_(res.status_code, 200)
+        date = '%s-%02d-%02d' % (self.today.year, self.today.month, 1)
+        assert '%s,10,0,0,10,0,0,0' % date in res.content
