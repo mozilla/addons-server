@@ -29,6 +29,7 @@ function initPromos($context, module_context, version, platform) {
         if ($('.panel', $promos).length) {
             // Show promo module only if we have at least panel.
             $promos.trigger('promos_shown', [$promos]);
+            $('.persona-preview', $promos).previewPersona(true);
         }
     });
 }
