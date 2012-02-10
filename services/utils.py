@@ -1,4 +1,6 @@
 from datetime import datetime, timedelta
+import dictconfig
+import logging
 import settings_local as settings
 import posixpath
 import re
@@ -13,7 +15,7 @@ import commonware.log
 # Pyflakes will complain about these, but they are required for setup.
 import settings_local as settings
 setup_environ(settings)
-from lib import log_settings_base
+from lib.log_settings_base import formatters, handlers, loggers
 
 # Ugh. But this avoids any zamboni or django imports at all.
 # Perhaps we can import these without any problems and we can
@@ -83,13 +85,25 @@ def getconn():
 mypool = pool.QueuePool(getconn, max_overflow=10, pool_size=5, recycle=300)
 
 
-error_log = commonware.log.getLogger('z.services')
+def log_configure():
+    """You have to call this to explicity configure logging."""
+    cfg = {
+        'version': 1,
+        'filters': {},
+        'formatters': dict(prod2=formatters['prod2']),
+        'handlers': dict(syslog2=handlers['syslog2']),
+        'loggers': {},
+        'root': {},
+    }
+    dictconfig.dictConfig(cfg)
 
 
 def log_exception(data):
     (typ, value, discard) = sys.exc_info()
+    error_log = logging.getLogger('z.services')
     error_log.error(u'Type: %s, %s. Data: %s' % (typ, value, data))
 
 
 def log_info(data, msg):
+    error_log = logging.getLogger('z.services')
     error_log.info(u'Msg: %s, Data: %s' % (msg, data))

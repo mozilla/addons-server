@@ -4,8 +4,11 @@ import re
 from time import time
 from urlparse import parse_qsl
 
-from utils import (log_exception, log_info, mypool, settings,
+from utils import (log_configure, log_exception, log_info, mypool, settings,
                    CONTRIB_CHARGEBACK, CONTRIB_PURCHASE, CONTRIB_REFUND)
+
+# Go configure the log.
+log_configure()
 
 import jwt
 import M2Crypto

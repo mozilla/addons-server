@@ -15,7 +15,6 @@ from django.utils.http import urlencode
 
 import settings_local as settings
 setup_environ(settings)
-from lib import log_settings_base
 # This has to be imported after the settings so statsd knows where to log to.
 from statsd import statsd
 
@@ -25,8 +24,11 @@ except ImportError:
     from apps.versions.compare import version_int
 
 from constants import base
-from utils import get_mirror, APP_GUIDS, PLATFORMS, STATUSES_PUBLIC
+from utils import (get_mirror, log_configure, APP_GUIDS, PLATFORMS,
+                   STATUSES_PUBLIC)
 
+# Go configure the log.
+log_configure()
 
 good_rdf = """<?xml version="1.0"?>
 <RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"

@@ -20,15 +20,14 @@ NO_EMAIL_PATTERNS = {
 }
 
 import logging
-import socket
 import traceback
 
 from django.conf import settings
 from django.core import mail
 
-#from django_arecibo.tasks import post
-#from django_statsd.clients import statsd
-
+from django_arecibo.tasks import post
+from django_statsd.clients import statsd
+from unicode_log import UnicodeHandler
 
 getLogger = logging.getLogger
 
@@ -44,30 +43,6 @@ class NullHandler(logging.Handler):
 logger = getLogger('django')
 if not logger.handlers:
     logger.addHandler(NullHandler())
-
-
-class UnicodeHandler(logging.handlers.SysLogHandler):
-
-    def emit(self, record):
-        msg = self.format(record) + '\000'
-        prio = '<%d>' % self.encodePriority(self.facility,
-                                            self.mapPriority(record.levelname))
-        if type(msg) is unicode:
-            msg = msg.encode('utf-8')
-        msg = prio + msg
-        try:
-            if self.unixsocket:
-                try:
-                    self.socket.send(msg)
-                except socket.error:
-                    self._connect_unixsocket(self.address)
-                    self.socket.send(msg)
-            else:
-                self.socket.sendto(msg, self.address)
-        except (KeyboardInterrupt, SystemExit):
-            raise
-        except:
-            self.handleError(record)
 
 
 class ErrorTypeHandler(logging.Handler):
@@ -98,27 +73,27 @@ class ErrorTypeHandler(logging.Handler):
         pass
 
 
-#class StatsdHandler(ErrorTypeHandler):
-#    """Send error to statsd, we'll send this every time."""
-#
-#    def emit(self, record):
-#        if not record.exc_info:
-#            return
-#
-#        statsd.incr('error.%s' % record.exc_info[0].__name__.lower())
-#        self.emitted(self.__class__.__name__.lower())
-#
-#
-#class AreciboHandler(ErrorTypeHandler):
-#    """Send error to Arecibo, only if we are also emailing it."""
-#
-#    def emit(self, record):
-#        arecibo = getattr(settings, 'ARECIBO_SERVER_URL', '')
-#        if not self.should_email(record) or not arecibo:
-#            return
-#
-#        post(record.request, 500)
-#        self.emitted(self.__class__.__name__.lower())
+class StatsdHandler(ErrorTypeHandler):
+    """Send error to statsd, we'll send this every time."""
+
+    def emit(self, record):
+        if not record.exc_info:
+            return
+
+        statsd.incr('error.%s' % record.exc_info[0].__name__.lower())
+        self.emitted(self.__class__.__name__.lower())
+
+
+class AreciboHandler(ErrorTypeHandler):
+    """Send error to Arecibo, only if we are also emailing it."""
+
+    def emit(self, record):
+        arecibo = getattr(settings, 'ARECIBO_SERVER_URL', '')
+        if not self.should_email(record) or not arecibo:
+            return
+
+        post(record.request, 500)
+        self.emitted(self.__class__.__name__.lower())
 
 
 class ErrorSyslogHandler(UnicodeHandler, ErrorTypeHandler):

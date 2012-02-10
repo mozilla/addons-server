@@ -100,7 +100,8 @@ djcelery.setup_loader()
 
 # Import for side-effect: configures our logging handlers.
 # pylint: disable-msg=W0611
-from lib import log_settings_base
+from lib.log_settings_base import log_configure
+log_configure()
 
 from lib.misc import safe_signals
 safe_signals.start_the_machine()
