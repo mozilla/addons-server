@@ -479,32 +479,6 @@ class TestLogin(UserViewBase):
         eq_(doc('#home').length, 1)
         eq_(doc('#auth-nav li.login').length, 0)
 
-    def _test_auth_nav(self, expected):
-        assert self.client.login(**self.data)
-        self.url = reverse('browse.extensions')
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        doc = pq(r.content.decode('utf-8'))
-        amo.tests.check_links(expected, doc('#auth-nav li'))
-
-    @amo.tests.mobile_test
-    def test_mobile_auth_nav(self):
-        expected = [
-            (UserProfile.objects.get(username='jbalogh').welcome_name, None),
-            ('Log out', reverse('users.logout')),
-        ]
-        self._test_auth_nav(expected)
-
-    @amo.tests.mobile_test
-    def test_apps_mobile_auth_nav(self):
-        waffle.models.Switch.objects.create(name='marketplace', active=True)
-        expected = [
-            (UserProfile.objects.get(username='jbalogh').welcome_name, None),
-            ('My Purchases', reverse('users.purchases')),
-            ('Log out', reverse('users.logout')),
-        ]
-        self._test_auth_nav(expected)
-
     @amo.tests.mobile_test
     @patch.object(settings, 'APP_PREVIEW', True)
     def test_mobile_login_apps_preview(self):

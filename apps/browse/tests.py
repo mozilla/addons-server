@@ -15,6 +15,7 @@ from nose import SkipTest
 from nose.tools import eq_, assert_raises, nottest
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
+import waffle
 
 import amo
 import amo.tests
@@ -1230,23 +1231,33 @@ class TestMobileHeader(amo.tests.MobileTest, amo.tests.TestCase):
         eq_(nav.find('li.register').length, 0)
         eq_(nav.find('li.login').length, 1)
 
-    def test_header_logged(self):
-        user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.client.login(username=user.email, password='password')
-        nav = self.get_pq()('#auth-nav')
-        eq_(nav.length, 1)
+    def _test_auth_nav(self, expected):
+        self.client.login(username='regular@mozilla.com', password='password')
+        self.url = reverse('browse.extensions')
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content.decode('utf-8'))
+        amo.tests.check_links(expected, doc('#auth-nav li'))
 
-        li = nav.find('li.user')
-        eq_(li.length, 1)
-        eq_(li.text(), user.welcome_name)
+    @amo.tests.mobile_test
+    def test_mobile_auth_nav(self):
+        expected = [
+            (UserProfile.objects.get(username='regularuser').welcome_name,
+             None),
+            ('Log out', reverse('users.logout')),
+        ]
+        self._test_auth_nav(expected)
 
-        li = nav.find('li.purchases')
-        eq_(li.length, 1)
-        eq_(li.find('a').attr('href'), reverse('users.purchases'))
-
-        li = nav.find('li.logout')
-        eq_(li.length, 1)
-        eq_(li.find('a').attr('href'), reverse('users.logout'))
+    @amo.tests.mobile_test
+    def test_apps_mobile_auth_nav(self):
+        waffle.models.Switch.objects.create(name='marketplace', active=True)
+        expected = [
+            (UserProfile.objects.get(username='regularuser').welcome_name,
+             None),
+            ('My Purchases', reverse('users.purchases')),
+            ('Log out', reverse('users.logout')),
+        ]
+        self._test_auth_nav(expected)
 
 
 class TestMobilePersonas(TestMobile):
