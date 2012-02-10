@@ -1,8 +1,8 @@
 import re
-import sys
 
 from django.utils.encoding import smart_str
 
+MAXVERSION = 2 ** 63
 
 version_re = re.compile(r"""(?P<major>\d+)         # major (x in x.y)
                             \.?(?P<minor1>\d+|\*)? # minor1 (y in x.y)
@@ -72,4 +72,4 @@ def version_int(version):
     v = "%d%02d%02d%02d%d%02d%d%02d" % (d['major'], d['minor1'],
             d['minor2'], d['minor3'], d['alpha'], d['alpha_ver'], d['pre'],
             d['pre_ver'])
-    return min(int(v), sys.maxint)
+    return min(int(v), MAXVERSION)

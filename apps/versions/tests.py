@@ -22,16 +22,16 @@ from files.tests.test_models import UploadTest
 from users.models import UserProfile
 from versions import views
 from versions.models import Version, ApplicationsVersions
-from versions.compare import version_int, dict_from_int, version_dict
+from versions.compare import version_int, dict_from_int, version_dict, MAXVERSION
 
 
 def test_version_int():
     """Tests that version_int. Corrects our versions."""
     eq_(version_int('3.5.0a1pre2'), 3050000001002)
     eq_(version_int(''), 200100)
-    eq_(version_int(sys.maxint), sys.maxint)
-    eq_(version_int(sys.maxint + 1), sys.maxint)
-    eq_(version_int('9999999'), sys.maxint)
+    eq_(version_int(MAXVERSION), MAXVERSION)
+    eq_(version_int(MAXVERSION + 1), MAXVERSION)
+    eq_(version_int('9999999'), MAXVERSION)
 
 
 def test_version_int_compare():

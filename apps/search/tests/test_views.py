@@ -1,4 +1,4 @@
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 import json
 import sys
 import urlparse
@@ -21,7 +21,7 @@ from search import views
 from search.tests import SphinxTestCase
 from search.utils import floor_version
 from tags.models import Tag
-from versions.compare import num as vnum, version_int as vint
+from versions.compare import num as vnum, version_int as vint, MAXVERSION
 from versions.models import ApplicationsVersions
 from webapps.tests.test_views import PaidAppMixin
 
@@ -418,8 +418,8 @@ class TestESSearch(amo.tests.ESTestCase):
         self.check_appver_filters('8.0.x', '8.0')
 
     def test_appver_long(self):
-        too_big = vnum(vint(sys.maxint + 1))
-        just_right = vnum(vint(sys.maxint))
+        too_big = vnum(vint(MAXVERSION + 1))
+        just_right = vnum(vint(MAXVERSION))
         self.check_appver_filters(too_big, floor_version(just_right))
         self.check_appver_filters('9999999', '9999999.0')
         self.check_appver_filters('99999999', '99999999.0')
