@@ -3,7 +3,6 @@ from itertools import groupby
 from django import http
 from django.conf import settings
 from django.shortcuts import redirect
-from django.utils import translation
 
 import commonware.log
 import jingo
@@ -14,6 +13,7 @@ from access.models import Group
 from addons.models import Category
 from amo.decorators import json_view, login_required, post_required, write
 from amo.urlresolvers import reverse
+from amo.utils import no_translation
 from translations.models import Translation
 
 from .decorators import locale_switcher, valid_locale
@@ -107,9 +107,8 @@ def categories(request, locale_code):
     if not _permission_to_edit_locale(request, locale_code):
         return http.HttpResponseForbidden()
 
-    translation.activate('en-US')
-    cats = list(Category.objects.order_by('application'))
-    translation.deactivate()
+    with no_translation():
+        cats = list(Category.objects.order_by('application'))
 
     strings = dict(Translation.objects.filter(
         id__in=[c.name_id for c in cats], locale=locale_code)

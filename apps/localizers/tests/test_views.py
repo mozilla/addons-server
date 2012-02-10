@@ -88,6 +88,23 @@ class TestCategory(amo.tests.TestCase):
         doc = pq(res.content.decode('utf-8'))
         eq_(doc('#id_form-0-name').val(), u'Campañas')
 
+    def test_the_basics_other_locale(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        # Test page loads and the page UI remains in the user's locale.
+        with self.activate(locale='de'):
+            url = reverse('localizers.categories',
+                          kwargs=dict(locale_code='es-ES'))
+            res = self.client.get(url)
+            eq_(res.status_code, 200)
+            doc = pq(res.content.decode('utf-8'))
+            # Site UI (logout link) is in German.
+            eq_(doc('.nomenu a').text(), u'Abmelden')
+            # Form fields are in Spanish.
+            eq_(doc('#id_form-0-name').val(), u'Campañas')
+            # en-us column is in English.
+            eq_(doc('td.enus').eq(0).text(), u'Causes')
+
     def test_other_local(self):
         # Test that somethign other than /en-US/ as the site locale doesn't
         # affect the left hand column category names.
