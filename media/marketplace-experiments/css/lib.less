@@ -1,0 +1,142 @@
+// Columnar layout system.
+// Adaped from Frameless by Joni Korpi <http://framelessgrid.com/>
+// licensed under CC0 <http://creativecommons.org/publicdomain/zero/1.0/>
+
+@column: 72;    // The column-width of your grid in pixels
+@gutter: 36;    // The gutter-width of your grid in pixels
+@px: 1px;       // Multiply by this to make a number in px.
+
+.width(@cols:1) {
+    width: (@cols * (@column + @gutter) - @gutter) * @px;
+}
+
+//Breakpoints
+@3col: 440px;
+@4col: 720px;
+@7col: 1024px;
+
+
+// Colors
+@gray: #888;
+@darkgray: #333;
+@text: @darkgray;
+
+@green: #090;
+
+
+
+// Font Stacks
+@sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+
+// Mixins
+.border-radius(@radius) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -ms-border-radius: @radius;
+    -o-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.transform(@tform) {
+    -webkit-transform: @tform;
+    -moz-transform: @tform;
+    -ms-transform: @tform;
+    -o-transform: @tform;
+    transform: @tform;
+}
+
+.transition(@property) {
+    -moz-transition: @property;
+    -webkit-transition: @property;
+    transition: @property;
+}
+
+.transition-property(@property) {
+    -moz-transition-property: @property;
+    -webkit-transition-property: @property;
+    transition-property: @property;
+}
+
+.transition-duration(@duration:2s) {
+    -moz-transition-duration: @duration;
+    -webkit-transition-duration: @duration;
+    transition-duration: @duration;
+}
+
+.background-size(@size) {
+    -moz-background-size: @size;
+    -wekbkit-background-size: @size;
+    background-size: @size;
+}
+.background-size(@size, @size2) {
+    -moz-background-size: @size, @size2;
+    -wekbkit-background-size: @size, @size2;
+    background-size: @size, @size2;
+}
+
+.box-shadow(@shadow) {
+    box-shadow: @shadow;
+    -moz-box-shadow: @shadow;
+    -webkit-box-shadow: @shadow;
+}
+.box-shadow(@shadow, @shadow2) {
+    box-shadow: @shadow, @shadow2;
+    -moz-box-shadow: @shadow, @shadow2;
+    -webkit-box-shadow: @shadow, @shadow2;
+}
+.box-shadow(@shadow, @shadow2, @shadow3) {
+    box-shadow: @shadow, @shadow2, @shadow3;
+    -moz-box-shadow: @shadow, @shadow2, @shadow3;
+    -webkit-box-shadow: @shadow, @shadow2, @shadow3;
+}
+
+.text-columns(@count, @gap: 1em) {
+    column-count: @count;
+    -moz-column-count: @count;
+    -webkit-column-count: @count;
+    column-gap: @gap;
+    -moz-column-gap: @gap;
+    -webkit-column-gap: @gap;
+}
+
+.border-box() {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.ellipsis() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.gradient-two-color(@color1, @color2) {
+    background-color: @color2;
+    background-image: -webkit-gradient(linear, left bottom, left top, from(@color1), to(@color2));
+    background-image: linear-gradient(@color1, @color2);
+    background-image: -moz-linear-gradient(@color1, @color2);
+    background-image: -webkit-linear-gradient(@color1, @color2);
+}
+
+// Vertical sprite
+.vsprite(@url, @pos, @spacing, @offset:0) {
+    background: ~'url(@{url}) no-repeat';
+    background-position: 0 (@spacing * @pos * -1 + @offset) + 0px;
+}
+.vsprite-pos(@pos, @spacing, @offset:0) {
+    background-position: 0 (@spacing * @pos * -1 + @offset) + 0px;
+}
+.vsprite-pos-right(@pos, @spacing, @offset:0) {
+    background-position: right (@spacing * @pos * -1 + @offset) + 0px;
+}
+
+// Horizontal sprite
+.hsprite(@url, @pos, @spacing, @offset:0) {
+    background: ~'url(@{url}) no-repeat';
+    background-position: (@spacing * @pos * -1 + @offset) + 0px 0;
+}
+.hsprite-pos(@pos, @spacing, @offset:0) {
+    background-position: (@spacing * @pos * -1 + @offset) + 0px 0;
+}

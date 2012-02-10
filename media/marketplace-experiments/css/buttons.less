@@ -1,0 +1,27 @@
+@import 'lib';
+
+.button, button, input[type=submit] {
+    display: inline-block;
+    padding: 4px 8px;
+
+    cursor: pointer;
+
+    .border-radius(4px);
+    border: 1px solid @darkgray;
+    background: @gray;
+
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+
+    &.prominent {
+        font-weight: bold;
+    }
+    &.large {
+        padding: 8px 12px;
+    }
+    &.install {
+        background: @green;
+        border-color: darken(@green, 50%);
+    }
+}

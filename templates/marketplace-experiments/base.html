@@ -5,7 +5,7 @@
     {% if not settings.ENGAGE_ROBOTS %}
       <meta name="robots" content="noindex">
     {% endif %}
-    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
     {% block extrameta %}{% endblock %}
     <title>{% block title %}{{ _('Mozilla Marketplace') }}{% endblock %}</title>
 
@@ -29,6 +29,8 @@
 
     {% block extrahead %}{% endblock %}
 
+    {% include "mobile/head_debug.html" %}
+
     {% if request.user.is_authenticated() %}
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
@@ -43,8 +45,9 @@
         data-collect-timings="{{ url('amo.timing.record') }}:{{ collect_timings_percent }}"
         {% block bodyattrs %}{% endblock %}>
 
-    <header id="#site-header">
-    </header>
+    {% block siteheader %}
+      {% include 'marketplace-experiments/header.html' %}
+    {% endblock %}
 
     <div id="page" class="c">
       {% block content %}
@@ -56,16 +59,50 @@
 
     {# js #}
     {% block site_js %}
-      <script src="{{ static(url('jsi18n')) }}"></script>
       {% if settings.APP_PREVIEW %}
         <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script>
       {% endif %}
       {% if waffle.switch('browserid-login') %}
         <script async defer src="https://browserid.org/include.js"></script>
       {% endif %}
-      {# js('marketplace-experiments') #}
-      <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
+      {{ js('marketplace-experiments') }}
       <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
+      <script>
+        (function() {
+          var it = false;
+          function resizeHandler() {
+            clearTimeout(it);
+            it = setTimeout(trigger, 200);
+          }
+          function trigger() {
+            $(window).trigger('saferesize');
+          }
+          window.addEventListener('resize', resizeHandler, false);
+        })();
+        (function() {
+          var t = 'init',
+              b = document.body;
+          if (!b.classList) return;
+          d = document.createElement('div');
+          b.appendChild(d);
+          d.setAttribute('style', 'position:fixed;bottom:0;left:0;font:normal 11px monospace;background:rgba(0,0,0,.8);padding:4px;color:#fff;');
+          window.dbg = function(m) {
+            d.innerHTML = m;
+          };
+          function calcColumns() {
+            var w = b.clientWidth;
+            c = ~~((w+36)/108);
+            if (c % 2) {
+              b.classList.remove('cols-even');
+            } else {
+              b.classList.add('cols-even');
+            }
+            d.innerHTML = "viewport:" + w + " cols:" + c;
+          }
+          $(window).bind('saferesize', calcColumns);
+          calcColumns();
+        })();
+      </script>
     {% endblock %}
   </body>
 </html>

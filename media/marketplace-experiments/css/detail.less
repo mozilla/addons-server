@@ -1,0 +1,95 @@
+@import 'lib';
+
+.product-details {
+    padding: 1em 0;
+    .app-icon {
+        .width(2);
+        float:left;
+        img {
+            max-width: 100%;
+        }
+    }
+    .vitals {
+        .width(6);
+        float: left;
+    }
+    .actions {
+        float: right;
+        text-align: right;
+        .width(2);
+    }
+    .app-info {
+        float: right;
+        .width(8);
+    }
+    .compatibility {
+        .width(2);
+        float: left;
+    }
+    .description {
+        clear: both;
+    }
+}
+
+// 7 columns
+@media (max-width: @7col) {
+    .product-details {
+        .app-icon,
+        .compatibility {
+            .width(2);
+        }
+        .app-info {
+            .width(5);
+        }
+    }
+}
+
+//4 columns
+@media (max-width: @4col) {
+    .product-details {
+        .vitals {
+            float: none;
+            width: auto;
+        }
+        .app-icon {
+            .width(1);
+        }
+        .app-info {
+            .width(4);
+            float: none;
+        }
+        .ratings {
+            float: left;
+        }
+        .actions {
+            float: right;
+            width: auto;
+        }
+    }
+}
+
+// 3 columns
+@media (max-width: @3col) {
+    .product-details {
+        .app-icon {
+            .width(1);
+            float: left;
+            margin: 0 1em 1em 0;
+        }
+        .ratings {
+            float: none;
+        }
+        .app-info {
+            .width(3);
+            float: none;
+        }
+        .actions {
+            float: none;
+        }
+        .actions .button {
+            .border-box;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+    }
+}

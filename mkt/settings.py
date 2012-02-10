@@ -44,3 +44,22 @@ NO_LOGIN_REQUIRED_MODULES = (
     'django.contrib.auth.views.password_reset',
     'django.contrib.auth.views.password_reset_done'
 )
+
+
+MINIFY_BUNDLES['css'].update({
+    'marketplace-experiments': (
+        'marketplace-experiments/css/reset.less',
+        'marketplace-experiments/css/site.less',
+        'marketplace-experiments/css/header.less',
+        'marketplace-experiments/css/detail.less',
+        'marketplace-experiments/css/buttons.less',
+        'marketplace-experiments/css/slider.less',
+    ),
+})
+MINIFY_BUNDLES['js'].update({
+    'marketplace-experiments': (
+        'js/marketplace-experiments/jquery-1.7.1.min.js',
+        'js/marketplace-experiments/slider.js',
+    ),
+})
+
