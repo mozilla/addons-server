@@ -262,3 +262,13 @@ class NewYearCollection(CollectionPromo):
     collection_author, collection_slug = 'mozilla', 'newyear_2012'
     id = 'new-year'
     title = _(u'Add-ons to help you on your way in 2012')
+
+
+class ValentinesDay(CollectionPromo):
+    slug = 'Valentines Day'
+    collection_author, collection_slug = 'amoteam', 'va'
+    id = 'valentines'
+    cls = 'promo'
+    title = _(u'Love is in the Air')
+    subtitle = _(u'Add some romance to your Firefox.')
+
