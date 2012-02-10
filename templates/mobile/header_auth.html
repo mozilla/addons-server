@@ -1,8 +1,10 @@
 <ul id="auth-nav">
   {% if user.is_authenticated() %}
     <li class="user">{{ (request.amo_user.welcome_name) }}</li>
-    <li class="purchases"><a href="{{ url('users.purchases') }}">
-      {{ _('My Purchases') }}</a></li>
+    {% if waffle.switch('marketplace') %}
+      <li class="purchases"><a href="{{ url('users.purchases') }}">
+        {{ _('My Purchases') }}</a></li>
+    {% endif %}
     <li class="logout"><a href="{{ url('users.logout') }}">
       {{ _('Log out') }}</a></li>
   {% else %}
@@ -16,6 +18,5 @@
       {% endif %}
       <li class="login"><a href="{{ login_link() }}">{{ _('Log in')  }}</a></li>
     {% endif %}
-
   {% endif %}
 </ul>
