@@ -650,7 +650,7 @@ class ReviewAddon(ReviewBase):
 
         self.log_action(amo.LOG.REJECT_VERSION)
         self.notify_email('%s_to_sandbox' % self.review_type,
-                          u'Mozilla Add-ons: %s %s Reviewed')
+                          u'Mozilla Add-ons: %s %s Rejected')
 
         log.info(u'Making %s disabled' % (self.addon))
         log.info(u'Sending email for %s' % (self.addon))
@@ -723,7 +723,7 @@ class ReviewFiles(ReviewBase):
 
         self.log_action(amo.LOG.REJECT_VERSION)
         self.notify_email('%s_to_sandbox' % self.review_type,
-                          u'Mozilla Add-ons: %s %s Reviewed')
+                          u'Mozilla Add-ons: %s %s Rejected')
 
         log.info(u'Making %s files %s disabled' %
                  (self.addon,

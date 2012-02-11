@@ -507,7 +507,7 @@ class TestReviewHelper(amo.tests.TestCase):
                 amo.STATUS_DISABLED)
 
             eq_(len(mail.outbox), 1)
-            eq_(mail.outbox[0].subject, '%s Reviewed' % self.preamble)
+            eq_(mail.outbox[0].subject, '%s Rejected' % self.preamble)
 
             assert not os.path.exists(self.file.mirror_file_path)
             eq_(self.check_log_count(amo.LOG.REJECT_VERSION.id), 1)
@@ -577,7 +577,7 @@ class TestReviewHelper(amo.tests.TestCase):
                 eq_(file.status, amo.STATUS_DISABLED)
 
             eq_(len(mail.outbox), 1)
-            eq_(mail.outbox[0].subject, '%s Reviewed' % self.preamble)
+            eq_(mail.outbox[0].subject, '%s Rejected' % self.preamble)
 
             assert not os.path.exists(self.file.mirror_file_path)
             eq_(self.check_log_count(amo.LOG.REJECT_VERSION.id), 1)
