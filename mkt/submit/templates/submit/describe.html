@@ -1,0 +1,30 @@
+{% extends 'base_ajax.html' if is_pjax else 'hub/base.html' %}
+
+{% block title %}Submit an App | Mozilla Marketplace{% endblock %}
+
+{% block content %}
+  {% if not is_pjax %}
+    <ol id="submission-progress" class="c"
+        data-current-step="2" data-max-step="5">
+      <li class="active">Developer Account</li>
+      <li class="active">App Details</li>
+      <li>Manifest</li>
+      <li>Payments</li>
+      <li>Finished!</li>
+    </ol>
+    <section id="content" class="primary pjax-container"
+             data-post-url="{{ url('submit.describe') }}">
+  {% endif %}
+    <div id="describe">
+      <h1>Describe Your App</h1>
+      <form class="c" method="post">
+        <h2>Name</h2>
+        <p><label><input type="text" name="name" class="large"></label></p>
+        <h2>Description</h2>
+        <p><label><textarea name="description" class="large" rows="4" cols="50"></textarea></label></p>
+      </form>
+    </div>
+  {% if not is_pjax %}
+    </section>
+  {% endif %}
+{% endblock %}

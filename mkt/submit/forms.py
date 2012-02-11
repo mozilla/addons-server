@@ -8,10 +8,10 @@ from users.models import UserProfile
 
 
 class DevAgreementForm(happyforms.ModelForm):
-    yes = forms.BooleanField(
+    read_dev_agreement = forms.BooleanField(
         label=mark_safe(_lazy('<b>Agree</b> and Continue')),
         widget=forms.HiddenInput)
 
     class Meta:
         model = UserProfile
-        exclude = ('read_dev_agreement',)
+        fields = ('read_dev_agreement',)

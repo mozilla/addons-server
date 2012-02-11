@@ -84,6 +84,7 @@ body {
         }
         a {
             color: @teal; /*@dark-gray*/
+            display: block;
             &:hover {
                 color: darken(@teal, 10%);
                 text-decoration: none;
@@ -156,7 +157,7 @@ button.good, .button.good, .button.add {
 #footer {
     border-top: #ccc 1px dotted;
     color: @note-gray;
-    margin: 1em 10% 0;
+    margin: 2em 10% 0;
     padding-top: 2em;
     #footzilla {
         background: url(../../../media/img/hub/footzilla.png) no-repeat;
@@ -185,7 +186,6 @@ button.good, .button.good, .button.add {
         width: 60%;
     }
 }
-
 
 .menu-nav {
     font-size: 12px;
@@ -298,8 +298,8 @@ button.good, .button.good, .button.add {
 #aux-nav {
     position: absolute;
     top: 0;
-    right: -moz-calc(10%);
-    margin-right: 150px;
+    right: 10%;
+    margin-right: 150px;  /* BBL, RTL! */
 }
 
 /* Toggle this for alternative aux nav at the top. */

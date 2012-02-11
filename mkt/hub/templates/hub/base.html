@@ -43,9 +43,12 @@
         </a>
       </h1>
       <ul>
-        <li><a href="{{ url('hub.index') }}">My Submissions</a></li>
-        <li><a href="">Documentation</a></li>
-        <li><a href="{{ url('submit.apps.1') }}">Upload an App</a></li>
+        <li><a href="{{ url('hub.index') }}">
+          {{ _('My Submissions') }}</a></li>
+        <li><a href="https://developer.mozilla.org/apps">
+          {{ _('Documentation') }}</a></li>
+        <li><a href="{{ url('submit') }}">
+          {{ _('Upload an App') }}</a></li>
       </ul>
     </nav>
     <div id="page">

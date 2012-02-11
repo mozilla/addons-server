@@ -1,36 +1,53 @@
-from django.conf import settings
+from django.shortcuts import redirect
+from django.views.decorators.vary import vary_on_headers
 
 import jingo
 
-import amo
+from users.models import UserProfile
 from . import forms
 
 
 def submit(request):
-    #if settings.APP_PREVIEW:
-    #    # This can be a permanent redirect when we finalize devhub for apps.
-    #    return redirect('devhub.submit_apps.1')
-    return jingo.render(request, 'hub/submit.html')
+    """Determine which step to redirect user to."""
+    # If dev has already agreed, continue to next step.
+    user = UserProfile.objects.get(pk=request.user.id)
+    if user.read_dev_agreement:
+        return redirect('submit.describe')
+    else:
+        return redirect('submit.terms')
 
 
+@vary_on_headers('X-PJAX')
 def terms(request):
-    agreement_form = forms.DevAgreementForm(request.POST or None,
+    # If dev has already agreed, continue to next step.
+    user = UserProfile.objects.get(pk=request.user.id)
+    if user.read_dev_agreement:
+        return redirect('submit.describe')
+    agreement_form = forms.DevAgreementForm({'read_dev_agreement': True},
                                             instance=request.amo_user)
-    if agreement_form.is_valid():
-        agreement_form.save()
-        return redirect('hub.index')
-    return jingo.render(request, 'submit/terms.html', {
+    ctx = {
+        'is_pjax': request.META.get('HTTP_X_PJAX'),
         'agreement_form': agreement_form,
+    }
+    if request.POST and agreement_form.is_valid():
+        agreement_form.save()
+        if ctx['is_pjax']:
+            return describe(request)
+        else:
+            return redirect('submit.describe', HTTP_X_PJAX=True)
+    return jingo.render(request, 'submit/terms.html', ctx)
+
+
+@vary_on_headers('X-PJAX')
+def describe(request):
+    return jingo.render(request, 'submit/describe.html', {
+        'is_pjax': request.META.get('HTTP_X_PJAX'),
     })
 
 
-def describe(request):
-    return jingo.render(request, 'hub/describe.html')
-
-
 def media(request):
-    return jingo.render(request, 'hub/media.html')
+    return jingo.render(request, 'submit/media.html')
 
 
 def done(request):
-    return jingo.render(request, 'hub/done.html')
+    return jingo.render(request, 'submit/done.html')

@@ -77,7 +77,7 @@ MINIFY_BUNDLES['css'].update({
         'css/impala/base.css',
         'css/hub/base.less',
         'css/hub/forms.less',
-        'css/submit/progress.less',
+        'css/submit/flow.less',
         'css/submit/terms.less',
     ),
     'marketplace-experiments': (
@@ -91,6 +91,18 @@ MINIFY_BUNDLES['css'].update({
 })
 MINIFY_BUNDLES['js'].update({
     'hub': (
+        'js/lib/underscore.js',
+        'js/marketplace-experiments/jquery-1.7.1.min.js',
+        'js/zamboni/browser.js',
+        'js/hub/init.js',
+        'js/impala/capabilities.js',
+        'js/lib/jquery.pjax.js',
+        'js/lib/jquery.cookie.js',
+        'js/zamboni/storage.js',
+        'js/impala/serializers.js',
+
+        # Developer Hub-specific stuff.
+        'js/submit/flow.js',
     ),
     'marketplace-experiments': (
         'js/marketplace-experiments/jquery-1.7.1.min.js',

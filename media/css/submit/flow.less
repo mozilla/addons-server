@@ -1,0 +1,86 @@
+@import '../hub/lib';
+
+#content {
+    &.loading {
+        opacity: 0;
+    }
+    &.loaded {
+        opacity: 1;
+        .transition(opacity 1s ease-in-out);
+    }
+}
+
+#submission-progress {
+    /*border-bottom: 1px dotted #eee;*/
+    display: table;
+    margin-top: 1em;
+    padding-bottom: 1em;
+    table-layout: fixed;
+    width: 100%;
+    ol {
+        display: table-row;
+        counter-reset: item;
+    }
+    li {
+        color: @light-gray;
+        display: table-cell;
+        counter-increment: item;
+        font: 16px @open-stack;
+        padding-bottom: 38px;
+        text-align: center;
+        white-space: nowrap;
+        width: 100%;
+        &:before {
+            .border-radius(30px);
+            background: #eee;
+            display: block;
+            content: counter(item);
+            font-size: 18px;
+            height: 30px;
+            line-height: 30px;
+            margin: 0 auto;
+            text-align: center;
+            width: 30px;
+            z-index: 20;
+            position: relative;
+        }
+        &:after {
+            content: "";
+            display: block;
+            margin-top: -38px;
+            width: 100%;
+            border-top: 1px solid #eee;
+            z-index: 10;
+            position: relative;
+        }
+        &.active {
+            color: @dark-gray;
+            font-weight: bold;
+            &:before {
+                background: #fff;
+                border: 1px solid #000;
+                color: #000;
+                z-index: 20;
+            }
+            &:after {
+                border-color: #666;
+                margin-top: -39px;
+            }
+        }
+    }
+    li, li.active, li.active:before {
+        .transition(~'1s color ease-in-out, 1s border linear');
+    }
+}
+
+/* Toggle for no more lines. */
+/*
+#submission-progress {
+    border-bottom: 1px dotted #eee;
+    margin: 0;
+    padding-bottom: 2em;
+    li:after {
+        border-top: 0;
+    }
+}
+*/
