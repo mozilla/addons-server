@@ -15,7 +15,6 @@ HOME=/tmp
 #once per hour
 5 * * * * {{ z_cron }} update_collections_subscribers
 10 * * * * {{ z_cron }} update_blog_posts
-15 * * * * {{ remora }}; php -f update-search-views.php
 20 * * * * {{ z_cron }} addon_last_updated
 25 * * * * {{ z_cron }} update_collections_votes
 40 * * * * {{ z_cron }} fetch_ryf_blog
