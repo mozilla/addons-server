@@ -68,6 +68,7 @@ def _notify(redis, context):
     check in case something went wrong.
     """
     log.info('Completed run of paypal addon checks: %s' % context['checked'])
+    failure_list = []
 
     if context['limit'] and context['rate'] > context['limit']:
         # This is too cope with something horrible going wrong like, paypal
@@ -76,6 +77,12 @@ def _notify(redis, context):
         #
         # It would really suck if one errant current job disabled every app
         # on the marketplace. So this is an attempt to sanity check this.
+        for k in xrange(context['failed']):
+            data = json.loads(redis.lindex(failures, k))
+            addon = Addon.objects.get(pk=data[0])
+            failure_list.append(absolutify(shared_url('detail', addon)))
+
+        context['failure_list'] = failure_list
         log.info('Too many failed: %s%%, aborting.' % context['limit'])
         template = 'market/emails/check_error.txt'
         send_mail('Cron job error on checking addons',
@@ -87,7 +94,6 @@ def _notify(redis, context):
         if not context['failed']:
             return
 
-        failure_list = []
         for k in xrange(context['failed']):
             data = json.loads(redis.lindex(failures, k))
             addon = Addon.objects.get(pk=data[0])
