@@ -916,7 +916,8 @@ button:active,
 .button.add.warning:before {
     background: url(../../img/zamboni/mobile/install.svg) no-repeat 0 -50px;
 }
-.button.disabled {
+.button.disabled,
+.button.waiting {
     background-color: #d1d4d7;
 /*    background-image: -moz-linear-gradient(#d1d4d7, #c1c5ca);*/
     color: #fff;

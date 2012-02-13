@@ -125,6 +125,7 @@
                 var href = activeInstaller.attr('href'),
                     hash = hashes[href],
                     attr = self.attr,
+                    processing_text = gettext('Installing...'),
                     classes = self.classes,
                     install;
                 if (attr.search) {
@@ -132,6 +133,7 @@
                 } else if (classes.webapp) {
                     if (classes.premium && !attr.purchased) {
                         install = z.startPurchase;
+                        processing_text = gettext('Purchasing...');
                     } else {
                         install = apps.install;
                     }
@@ -139,6 +141,8 @@
                     install = z.installAddon;
                 }
                 if (classes.webapp) {
+                    dom.buttons.addClass('waiting');
+                    dom.buttons.text(processing_text);
                     install(attr.manifest_url, {
                         url: href,
                         el: el,
