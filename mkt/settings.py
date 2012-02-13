@@ -23,6 +23,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
     'django.contrib.messages.context_processors.messages',
 
+    'mkt.site.context_processors.app',
     'mkt.site.context_processors.i18n',
     'mkt.site.context_processors.global_settings',
     'mkt.site.context_processors.static_url',

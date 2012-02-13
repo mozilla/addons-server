@@ -13,6 +13,11 @@ from cake.urlresolvers import remora_url
 from zadmin.models import get_config
 
 
+def app(request):
+    # We shouldn't need this for Marketplace, but for legacy purposes keep it.
+    return {'APP': request.APP}
+
+
 def static_url(request):
     return {'STATIC_URL': settings.STATIC_URL}
 
@@ -49,7 +54,7 @@ def global_settings(request):
         amo_user = request.amo_user
         account_links += [
             {'text': _('My Profile'),
-             'href': request.user.get_profile().get_url_path()},
+             'href': amo_user.get_url_path()},
             {'text': _('Account Settings'), 'href': reverse('users.edit')},
             {'text': _('Log Out'),
              'href': remora_url('/users/logout?to=' + urlquote(request.path))},
