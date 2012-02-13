@@ -1,0 +1,109 @@
+@import 'lib';
+
+#site-nav {
+    background: rgb(215,210,195);
+    overflow: hidden;
+    padding: 2em 0 0;
+    z-index: 10;
+    h1, ul {
+        padding-left: 205px;
+        position: relative;
+        z-index: 10;
+    }
+    h1 {
+        text-shadow: 0 1px 1px rgba(255,255,255,.75);
+        font-size: 250% !important;
+        margin: 0;
+        small {
+            text-shadow: 0 1px 1px #eee;
+        }
+    }
+    .site-title {
+        margin-bottom: .4em;
+        a {
+            color: darken(@red, 10%);
+            &:hover {
+                color: darken(@red, 20%);
+            }
+        }
+    }
+    ul {
+/*        background: rgba(255,255,255,.8);*/
+        background: #fff;
+        border-bottom: 1px solid #ddd;
+    }
+    &:before {
+        background: url(../../img/developers/hub-logo-footer.png) 10% 0 no-repeat;
+        content: "";
+        display: block;
+        overflow: hidden;
+        position: absolute;
+        height: 180px;
+        margin: 0 6%;
+        top: 0;
+        z-index: 1000;
+        width: 245px;
+    }
+}
+
+#page, #submission-progress li.active:before {
+    background: rgb(248,248,248) !important;
+}
+
+#footer {
+    .border-box;
+    border-top: 1px solid #eee;
+    margin: 0;
+    padding: 2em 10% 0;
+    width: 100%;
+}
+
+
+/* Toggle to hide logo. */
+/*
+#site-nav {
+    h1, ul {
+        padding-left: 0;
+    }
+    &:before {
+        display: none;
+    }
+}
+*/
+
+/* Toggle for huge version. */
+#site-nav {
+    h1 {
+        font-size: 375% !important;
+        padding-top: .25em;
+        padding-top: 0;
+        &.site-title small {
+            font-size: 15px;
+        }
+    }
+    &:before {
+        top: 2em;
+        top: 1em;
+    }
+}
+
+/* Toggle for huge version with flush-left nav. */
+/*
+#site-nav {
+    h1 {
+        font-size: 350% !important;
+        margin-bottom: .1em !important;
+        padding-top: 1em;
+        &.site-title small {
+            font-size: 15px;
+        }
+    }
+    ul {
+        margin-top: 1.5em;
+        padding-left: 0;
+    }
+    &:before {
+        top: 1em;
+    }
+}
+*/
