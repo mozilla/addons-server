@@ -37,6 +37,7 @@ $(function() {
             //history.state.step = stepCur;
         }
 
+        // TODO: Figure out a reasonable solution for handling "redirects".
         if (options.type.toLowerCase() == 'post') {
             window.history.pushState({
                 //pjax: $container.selector,

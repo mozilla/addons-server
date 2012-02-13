@@ -64,8 +64,7 @@ body {
 }
 
 #page {
-    margin-top: 3em;  /* hack */
-    padding: 0 10%;
+    padding: 3em 10% 2em;  /* hack to compensate for header */
 }
 
 #site-nav {
@@ -104,13 +103,17 @@ body {
 }
 
 #page {
+    h1, h2, h3 {
+        font-family: @open-stack;
+        margin-bottom: 10px;
+    }
     h1 {
         color: @red;
-        font: 32px @open-stack;
+        font-size: 32px;
+        margin: 20px 0 30px;
     }
     h2 {
-        font: 16px @open-stack;
-        margin-bottom: 10px;
+        font-size: 16px;
     }
     p, ul, li {
         color: @dark-gray;
@@ -157,7 +160,7 @@ button.good, .button.good, .button.add {
 #footer {
     border-top: #ccc 1px dotted;
     color: @note-gray;
-    margin: 2em 10% 0;
+    margin: 0 10%;
     padding-top: 2em;
     #footzilla {
         background: url(../../../media/img/hub/footzilla.png) no-repeat;

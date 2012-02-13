@@ -36,13 +36,15 @@
         {% block aux_nav %}{% endblock aux_nav %}
       </ul>
     </nav>
-    <nav id="site-nav">
+    <nav id="site-nav" class="c">
       <h1 class="site-title">
         <a href="{{ url('hub.index') }}">
           <small>Marketplace</small> Developer Hub
         </a>
       </h1>
       <ul>
+        <li><a href="{{ url('hub.index') }}">
+          {{ _('Launchpad') }}</a></li>
         <li><a href="{{ url('hub.index') }}">
           {{ _('My Submissions') }}</a></li>
         <li><a href="https://developer.mozilla.org/apps">

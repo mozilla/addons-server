@@ -76,6 +76,7 @@ MINIFY_BUNDLES['css'].update({
     'hub': (
         'css/impala/base.css',
         'css/hub/base.less',
+        'css/hub/header.less',
         'css/hub/forms.less',
         'css/submit/flow.less',
         'css/submit/terms.less',
