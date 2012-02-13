@@ -97,12 +97,14 @@ MINIFY_BUNDLES['js'].update({
         'js/zamboni/browser.js',
         'js/hub/init.js',
         'js/impala/capabilities.js',
-        'js/lib/jquery.pjax.js',
+        # PJAX is not ready.
+        #'js/lib/jquery.pjax.js',
         'js/lib/jquery.cookie.js',
         'js/zamboni/storage.js',
         'js/impala/serializers.js',
 
         # Developer Hub-specific stuff.
+        #'js/submit/flow-pjax.js',
         'js/submit/flow.js',
     ),
     'marketplace-experiments': (
