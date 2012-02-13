@@ -2,7 +2,7 @@ import re
 
 from django.utils.encoding import smart_str
 
-MAXVERSION = 2 ** 63
+MAXVERSION = 2 ** 63 - 1
 
 version_re = re.compile(r"""(?P<major>\d+)         # major (x in x.y)
                             \.?(?P<minor1>\d+|\*)? # minor1 (y in x.y)
