@@ -610,10 +610,6 @@ a.extra {
     font-size: 11px;
 }
 
-#version-list .file-status {
-    text-transform: lowercase;
-}
-
 #version-list table {
     width: 100%;
 }
