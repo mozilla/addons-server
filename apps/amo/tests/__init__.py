@@ -20,7 +20,7 @@ from redisutils import mock_redis, reset_redis
 import test_utils
 
 import amo
-from amo.urlresolvers import Prefixer, get_url_prefix, set_url_prefix
+from amo.urlresolvers import Prefixer, get_url_prefix, reverse, set_url_prefix
 from addons.models import Addon, Category, Persona
 import addons.search
 from applications.models import Application, AppVersion
@@ -238,6 +238,10 @@ class TestCase(RedisTest, test_utils.TestCase):
                         self.fail('form %r had the following error(s):\n%s'
                                   % (k, msg))
                     self.assertEquals(v.non_field_errors(), [])
+
+    def assertLoginRedirects(self, response, to):
+        self.assertRedirects(response,
+                             '%s?to=%s' % (reverse('users.login'), to), 302)
 
 
 class AMOPaths(object):

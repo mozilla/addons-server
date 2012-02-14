@@ -14,23 +14,14 @@ SUPPORTED_NONAPPS += (
     'submit',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.media',
-    'django.core.context_processors.request',
-    'session_csrf.context_processor',
-
-    'django.contrib.messages.context_processors.messages',
-
-    'mkt.site.context_processors.app',
-    'mkt.site.context_processors.i18n',
+# Until there are enough context processors to warrant replacing the existing
+# ones, let's just override them.
+TEMPLATE_CONTEXT_PROCESSORS = list(TEMPLATE_CONTEXT_PROCESSORS)
+TEMPLATE_CONTEXT_PROCESSORS.remove('amo.context_processors.global_settings')
+TEMPLATE_CONTEXT_PROCESSORS += [
     'mkt.site.context_processors.global_settings',
-    'mkt.site.context_processors.static_url',
-    'jingo_minify.helpers.build_ids',
-)
-
-TEMPLATE_CONTEXT_PROCESSORS += ('mkt.experiments.context_processors.fragment',)
+    'mkt.experiments.context_processors.fragment',
+]
 
 
 NO_ADDONS_MODULES = (

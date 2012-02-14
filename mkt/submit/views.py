@@ -2,10 +2,12 @@ from django.shortcuts import redirect
 
 import jingo
 
+from amo.decorators import login_required
 from users.models import UserProfile
 from . import forms
 
 
+@login_required
 def submit(request):
     """Determine which step to redirect user to."""
     # If dev has already agreed, continue to next step.
@@ -16,13 +18,15 @@ def submit(request):
         return redirect('submit.terms')
 
 
+@login_required
 def terms(request):
     # If dev has already agreed, continue to next step.
+    # TODO: When this code is finalized, use request.amo_user instead.
     user = UserProfile.objects.get(pk=request.user.id)
     if user.read_dev_agreement:
         return redirect('submit.describe')
     agreement_form = forms.DevAgreementForm({'read_dev_agreement': True},
-                                            instance=request.amo_user)
+                                            instance=user)
     if request.POST and agreement_form.is_valid():
         agreement_form.save()
         return redirect('submit.describe')

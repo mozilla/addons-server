@@ -7,7 +7,7 @@ urlpatterns += patterns('',
 
 
 # Marketplace UI Experiments
-if settings.POTCH_MARKETPLACE_EXPERIMENTS:
+if getattr(settings, 'POTCH_MARKETPLACE_EXPERIMENTS', False):
     urlpatterns += patterns('',
         ('^marketplace-experiments/', include('mkt.experiments.urls'))
     )
