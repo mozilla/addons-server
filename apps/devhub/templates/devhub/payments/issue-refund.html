@@ -11,7 +11,7 @@
   <h1>{{ title }}</h1>
 </header>
 <form method="post" action="" id="issue-refund" class="primary island full c">
-  {% if transaction_id %}
+  {% if transaction_id and enabled %}
     {{ csrf() }}
     <p>
       {% with user=contribution.user.display_name,

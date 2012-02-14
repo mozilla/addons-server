@@ -1351,6 +1351,7 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         assert not Addon.objects.filter(pk=self.addon.id).exists()
         assert Addon.with_deleted.filter(pk=self.addon.id).exists()
 
+
 class TestIssueRefund(amo.tests.TestCase):
     fixtures = ('base/users', 'base/addon_3615')
 
@@ -1408,6 +1409,42 @@ class TestIssueRefund(amo.tests.TestCase):
     def test_apps_issue(self, refund, enqueue_refund):
         self.addon.update(type=amo.ADDON_WEBAPP, app_slug='ballin')
         self._test_issue(refund, enqueue_refund)
+
+    @mock.patch('amo.messages.error')
+    @mock.patch('paypal.refund')
+    def test_only_one_issue(self, refund, error):
+        refund.return_value = []
+        c = self.make_purchase()
+        self.client.post(self.url,
+                         {'transaction_id': c.transaction_id,
+                          'issue': '1'})
+        r = self.client.get(self.url, {'transaction_id': c.transaction_id})
+        assert 'Decline Refund' not in r.content
+        assert 'Refund already processed' in error.call_args[0][1]
+
+        self.client.post(self.url,
+                         {'transaction_id': c.transaction_id,
+                          'issue': '1'})
+        eq_(Refund.objects.count(), 1)
+
+    @mock.patch('amo.messages.error')
+    @mock.patch('paypal.refund')
+    def test_no_issue_after_decline(self, refund, error):
+        refund.return_value = []
+        c = self.make_purchase()
+        self.client.post(self.url,
+                         {'transaction_id': c.transaction_id,
+                          'decline': ''})
+        del self.client.cookies['messages']
+        r = self.client.get(self.url, {'transaction_id': c.transaction_id})
+        eq_(pq(r.content)('#issue-refund button').length, 0)
+        assert 'Refund already processed' in error.call_args[0][1]
+
+        self.client.post(self.url,
+                         {'transaction_id': c.transaction_id,
+                          'issue': '1'})
+        eq_(Refund.objects.count(), 1)
+        eq_(Refund.objects.get(contribution=c).status, amo.REFUND_DECLINED)
 
     def _test_decline(self, refund, enqueue_refund):
         c = self.make_purchase()

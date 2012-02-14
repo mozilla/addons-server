@@ -539,9 +539,14 @@ def issue_refund(request, addon_id, addon, webapp=False):
     txn_id = request.REQUEST.get('transaction_id')
     if not txn_id:
         raise http.Http404
+    form_enabled = True
     contribution = get_object_or_404(Contribution, transaction_id=txn_id,
                                      type=amo.CONTRIB_PURCHASE)
-    if request.method == 'POST':
+    if Refund.objects.filter(contribution=contribution).exists():
+        messages.error(request, _('Refund already processed.'))
+        form_enabled = False
+
+    elif request.method == 'POST':
         if 'issue' in request.POST:
             results = paypal.refund(contribution.paykey)
             for res in results:
@@ -565,12 +570,13 @@ def issue_refund(request, addon_id, addon, webapp=False):
                             (refund.pk, contribution.pk))
             messages.success(request, _('Refund declined.'))
         return redirect(addon.get_dev_url('refunds'))
-    else:
-        return jingo.render(request, 'devhub/payments/issue-refund.html',
-                            {'contribution': contribution,
-                             'addon': addon,
-                             'webapp': webapp,
-                             'transaction_id': txn_id})
+
+    return jingo.render(request, 'devhub/payments/issue-refund.html',
+                        {'enabled': form_enabled,
+                         'contribution': contribution,
+                         'addon': addon,
+                         'webapp': webapp,
+                         'transaction_id': txn_id})
 
 
 @waffle_switch('allow-refund')
