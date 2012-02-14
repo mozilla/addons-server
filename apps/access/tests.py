@@ -42,6 +42,9 @@ def test_match_rules():
     rules = ('Doctors:*',
         'Stats:View',
         'CollectionStats:View',
+        'Addons:Review',
+        'Apps:Review',
+        'Personas:Review',
         )
 
     for rule in rules:

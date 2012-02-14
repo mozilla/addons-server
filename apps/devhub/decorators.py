@@ -25,7 +25,7 @@ def dev_required(owner_for_post=False, allow_editors=False, webapp=False):
             fun = lambda: f(request, addon_id=addon.id, addon=addon,
                             *args, **kw)
             if allow_editors:
-                if acl.action_allowed(request, 'Editors', '%'):
+                if acl.check_reviewer(request):
                     return fun()
             # Require an owner or dev for POST requests.
             if request.method == 'POST':

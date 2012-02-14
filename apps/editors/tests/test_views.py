@@ -1397,7 +1397,7 @@ class ReviewBase(QueueTest):
 
 class TestReview(ReviewBase):
 
-    def test_editor_required(self):
+    def test_reviewer_required(self):
         eq_(self.client.head(self.url).status_code, 200)
 
     def test_not_anonymous(self):

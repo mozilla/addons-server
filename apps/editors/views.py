@@ -22,7 +22,6 @@ from addons.models import Addon, Version
 from amo.decorators import (login_required, json_view, post_required,
                             permission_required)
 from amo.utils import paginate
-from amo.utils import urlencode
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from editors import forms
@@ -40,12 +39,23 @@ from webapps.models import Webapp
 from zadmin.models import get_config, set_config
 
 
-def editor_required(func):
-    """Requires the user to be logged in as an editor or admin."""
+def reviewer_required(func):
+    """Requires the user to be logged in as a reviewer or admin.
+
+    Reviewer is someone who is in one of the groups with the following
+    permissions:
+
+        Addons:Review
+        Apps:Review
+        Personas:Review
+
+    For finer grained access control, use one of the above rather than this
+    decorator.
+    """
     @functools.wraps(func)
     @login_required
     def wrapper(request, *args, **kw):
-        if acl.action_allowed(request, 'Editors', '%'):
+        if acl.check_reviewer(request):
             return func(request, *args, **kw)
         else:
             return http.HttpResponseForbidden()
@@ -59,7 +69,7 @@ def context(**kw):
     return ctx
 
 
-@editor_required
+@reviewer_required
 def eventlog(request):
     form = forms.EventLogForm(request.GET)
     eventlog = ActivityLog.objects.editor_events()
@@ -78,14 +88,14 @@ def eventlog(request):
     return jingo.render(request, 'editors/eventlog.html', data)
 
 
-@editor_required
+@reviewer_required
 def eventlog_detail(request, id):
     log = get_object_or_404(ActivityLog.objects.editor_events(), pk=id)
     data = context(log=log)
     return jingo.render(request, 'editors/eventlog_detail.html', data)
 
 
-@editor_required
+@reviewer_required
 def home(request):
     durations = (('new', _('New Add-ons (Under 5 days)')),
                  ('med', _('Passable (5 to 10 days)')),
@@ -126,7 +136,7 @@ def _editor_progress():
     return (progress, percentage)
 
 
-@editor_required
+@reviewer_required
 def performance(request, user_id=False):
     user = request.amo_user
     editors = _recent_editors()
@@ -224,7 +234,7 @@ def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
     return monthly_data
 
 
-@editor_required
+@reviewer_required
 def motd(request):
     form = None
     if acl.action_allowed(request, 'Admin', 'EditorsMOTD'):
@@ -233,7 +243,7 @@ def motd(request):
     return jingo.render(request, 'editors/motd.html', data)
 
 
-@editor_required
+@reviewer_required
 @post_required
 def save_motd(request):
     if not acl.action_allowed(request, 'Admin', 'EditorsMOTD'):
@@ -320,32 +330,32 @@ def queue_counts(type=None, **kw):
     return rv
 
 
-@editor_required
+@reviewer_required
 def queue(request):
     return redirect(reverse('editors.queue_pending'))
 
 
-@editor_required
+@reviewer_required
 def queue_nominated(request):
     return _queue(request, ViewFullReviewQueueTable, 'nominated')
 
 
-@editor_required
+@reviewer_required
 def queue_pending(request):
     return _queue(request, ViewPendingQueueTable, 'pending')
 
 
-@editor_required
+@reviewer_required
 def queue_prelim(request):
     return _queue(request, ViewPreliminaryQueueTable, 'prelim')
 
 
-@editor_required
+@reviewer_required
 def queue_fast_track(request):
     return _queue(request, ViewFastTrackQueueTable, 'fast_track')
 
 
-@editor_required
+@reviewer_required
 def queue_moderated(request):
     rf = (Review.objects.filter(editorreview=1, reviewflag__isnull=False,
                                 addon__isnull=False)
@@ -368,13 +378,13 @@ def queue_moderated(request):
                                 search_form=None))
 
 
-@permission_required('Editors', 'Apps')
+@permission_required('Apps', 'Review')
 def queue_apps(request):
     qs = Webapp.objects.pending().annotate(Count('abuse_reports'))
     return _queue(request, WebappQueueTable, 'apps', qs=qs)
 
 
-@editor_required
+@reviewer_required
 @post_required
 @json_view
 def application_versions_json(request):
@@ -383,13 +393,13 @@ def application_versions_json(request):
     return {'choices': f.version_choices_for_app_id(app_id)}
 
 
-@editor_required
+@reviewer_required
 @addon_view
 def review(request, addon):
     return _review(request, addon)
 
 
-@permission_required('Editors', 'Apps')
+@permission_required('Apps', 'Review')
 @addon_view
 def app_review(request, addon):
     return _review(request, addon)
@@ -477,7 +487,7 @@ def _review(request, addon):
 
 @never_cache
 @json_view
-@editor_required
+@reviewer_required
 def review_viewing(request):
     if 'addon_id' not in request.POST:
         return {}
@@ -509,7 +519,7 @@ def review_viewing(request):
 
 @never_cache
 @json_view
-@editor_required
+@reviewer_required
 def queue_viewing(request):
     if 'addon_ids' not in request.POST:
         return {}
@@ -530,7 +540,7 @@ def queue_viewing(request):
 
 
 @json_view
-@editor_required
+@reviewer_required
 def queue_version_notes(request, addon_id):
     addon = get_object_or_404(Addon, pk=addon_id)
     version = addon.latest_version
@@ -538,7 +548,7 @@ def queue_version_notes(request, addon_id):
             'approvalnotes': version.approvalnotes}
 
 
-@editor_required
+@reviewer_required
 def reviewlog(request):
     data = request.GET.copy()
 
@@ -578,7 +588,7 @@ def reviewlog(request):
     return jingo.render(request, 'editors/reviewlog.html', data)
 
 
-@editor_required
+@reviewer_required
 @addon_view
 def abuse_reports(request, addon):
     reports = AbuseReport.objects.filter(addon=addon).order_by('-created')

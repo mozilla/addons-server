@@ -111,7 +111,7 @@ def global_settings(request):
             tools_links.append({'text': _('Developer Hub'),
                                 'href': reverse('devhub.index')})
 
-        if acl.action_allowed(request, 'Editors', '%'):
+        if acl.check_reviewer(request):
             tools_links.append({'text': _('Editor Tools'),
                                 'href': reverse('editors.home')})
         if acl.action_allowed(request, 'Localizers', '%'):

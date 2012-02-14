@@ -10,7 +10,7 @@ from django.utils.http import http_date
 
 import amo
 from amo.utils import Token
-from access.acl import check_addon_ownership, action_allowed
+from access import acl
 from files.helpers import DiffHelper, FileViewer
 from files.models import File
 
@@ -19,7 +19,7 @@ log = commonware.log.getLogger('z.addons')
 
 
 def allowed(request, file):
-    allowed = action_allowed(request, 'Editors', '%')
+    allowed = acl.check_reviewer(request)
     if not allowed:
         try:
             addon = file.version.addon
@@ -29,8 +29,8 @@ def allowed(request, file):
         if addon.view_source and addon.status in amo.REVIEWED_STATUSES:
             allowed = True
         else:
-            allowed = check_addon_ownership(request, addon,
-                                            viewer=True, dev=True)
+            allowed = acl.check_addon_ownership(request, addon, viewer=True,
+                                                dev=True)
     if not allowed:
         return http.HttpResponseForbidden()
     return True

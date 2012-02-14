@@ -251,9 +251,29 @@
         "pk": 3,
         "model": "access.group",
         "fields": {
-            "rules": "*:*",
+            "rules": "API.Users:View",
             "modified": "2012-01-27 13:32:08",
             "name": "API.Users",
+            "created": "2012-01-27 12:41:00"
+        }
+    },
+    {
+        "pk": 50002,
+        "model": "access.group",
+        "fields": {
+            "rules": "Addons:Review",
+            "modified": "2012-01-27 13:32:08",
+            "name": "Add-on Reviewers",
+            "created": "2012-01-27 12:41:00"
+        }
+    },
+    {
+        "pk": 50003,
+        "model": "access.group",
+        "fields": {
+            "rules": "Apps:Review",
+            "modified": "2012-01-27 13:32:08",
+            "name": "App Reviewers",
             "created": "2012-01-27 12:41:00"
         }
     },
@@ -274,10 +294,18 @@
         }
     },
     {
-        "pk": 258,
+        "pk": 259,
         "model": "access.groupuser",
         "fields": {
-            "group": 2,
+            "group": 50002,
+            "user": 5497308
+        }
+    },
+    {
+        "pk": 260,
+        "model": "access.groupuser",
+        "fields": {
+            "group": 50003,
             "user": 5497308
         }
     }

@@ -450,6 +450,7 @@ class TestCompatibilityResults(amo.tests.TestCase):
         r = self.client.post(reverse('devhub.bulk_compat_result',
                                      args=[self.addon.slug, self.result.id]),
                              follow=True)
+        eq_(r.status_code, 200)
         doc = pq(r.content)
         assert doc('time').text()
         eq_(doc('table tr td:eq(1)').text(), 'Firefox 4.0.*')

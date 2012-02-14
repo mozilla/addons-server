@@ -11,7 +11,6 @@ import amo
 from amo import messages
 from amo.decorators import json_view, login_required, post_required
 from amo.helpers import absolutify, shared_url
-from amo.urlresolvers import reverse
 import amo.utils
 from access import acl
 from addons.decorators import addon_view_factory, has_purchased
@@ -66,7 +65,7 @@ def review_list(request, addon, review_id=None, user_id=None, template=None):
     if request.user.is_authenticated():
         ctx['review_perms'] = {
             'is_admin': acl.action_allowed(request, 'Admin', 'EditAnyAddon'),
-            'is_editor': acl.action_allowed(request, 'Editor', '%'),
+            'is_editor': acl.check_reviewer(request),
             'is_author': acl.check_addon_ownership(request, addon, dev=True),
             'can_delete': acl.action_allowed(request, 'Editors',
                                              'DeleteReview'),

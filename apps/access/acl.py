@@ -110,3 +110,9 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
         roles += (amo.AUTHOR_ROLE_SUPPORT,)
     return addon.authors.filter(user=request.amo_user,
                                 addonuser__role__in=roles).exists()
+
+
+def check_reviewer(request):
+    return (action_allowed(request, 'Addons', 'Review') or
+            action_allowed(request, 'Apps', 'Review') or
+            action_allowed(request, 'Personas', 'Review'))
