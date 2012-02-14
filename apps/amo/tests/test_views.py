@@ -2,15 +2,13 @@
 from datetime import datetime
 import urllib
 
-from django import http, test
+from django import test
 from django.conf import settings
-from django.core.cache import cache
-from django.core import mail
 
 import commonware.log
 from lxml import etree
 import mock
-from mock import patch, Mock
+from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
@@ -24,7 +22,6 @@ from amo.helpers import locale_url, urlparams
 from amo.pyquery_wrapper import PyQuery
 from amo.tests import check_links
 from amo.urlresolvers import reverse
-from stats.models import SubscriptionEvent, Contribution
 from users.models import UserProfile
 
 
@@ -131,7 +128,7 @@ class TestCommon(amo.tests.TestCase):
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
         eq_(request.amo_user.is_developer, False)
-        eq_(acl.action_allowed(request, 'Editors', '%'), True)
+        eq_(acl.action_allowed(request, 'Addons', 'Review'), True)
 
         expected = [
             ('Tools', '#'),
@@ -151,7 +148,7 @@ class TestCommon(amo.tests.TestCase):
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
         eq_(request.amo_user.is_developer, True)
-        eq_(acl.action_allowed(request, 'Editors', '%'), True)
+        eq_(acl.action_allowed(request, 'Addons', 'Review'), True)
 
         expected = [
             ('Tools', '#'),
@@ -170,7 +167,7 @@ class TestCommon(amo.tests.TestCase):
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
         eq_(request.amo_user.is_developer, False)
-        eq_(acl.action_allowed(request, 'Editors', '%'), True)
+        eq_(acl.action_allowed(request, 'Addons', 'Review'), True)
         eq_(acl.action_allowed(request, 'Localizer', '%'), True)
         eq_(acl.action_allowed(request, 'Admin', '%'), True)
 
@@ -194,7 +191,7 @@ class TestCommon(amo.tests.TestCase):
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
         eq_(request.amo_user.is_developer, True)
-        eq_(acl.action_allowed(request, 'Editors', '%'), True)
+        eq_(acl.action_allowed(request, 'Addons', 'Review'), True)
         eq_(acl.action_allowed(request, 'Localizer', '%'), True)
         eq_(acl.action_allowed(request, 'Admin', '%'), True)
 
