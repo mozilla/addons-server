@@ -1,3 +1,6 @@
+{% if VIEW_FRAGMENT %}
+  {% extends 'marketplace-experiments/fragment.html' %}
+{% endif %}
 <!DOCTYPE html>
 <html lang="{{ LANG }}" dir="{{ DIR }}">
   <head>
@@ -29,7 +32,9 @@
 
     {% block extrahead %}{% endblock %}
 
-    {% include "mobile/head_debug.html" %}
+    {% block debug %}
+      {% include "mobile/head_debug.html" %}
+    {% endblock %}
 
     {% if request.user.is_authenticated() %}
       <meta name="csrf" content="{{ csrf_token }}">

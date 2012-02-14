@@ -6,6 +6,9 @@ TEMPLATE_DIRS = (path('mkt/templates'),) + TEMPLATE_DIRS
 POTCH_MARKETPLACE_EXPERIMENTS = False
 INSTALLED_APPS += ('mkt.experiments', 'mkt.site')
 
+TEMPLATE_CONTEXT_PROCESSORS += ('mkt.experiments.context_processors.fragment',)
+
+
 NO_ADDONS_MODULES = (
     'addons.views',
     'devhub.views.dashboard',  # The apps dashboard is a different view.
