@@ -39,7 +39,7 @@ from django.core.management import (call_command, execute_manager,
 # 1. Look first for the command line setting.
 setting = None
 if __name__ == '__main__':
-    found, rest = getopt.getopt(sys.argv[1:], 's:', 'settings=')
+    found, rest = getopt.getopt(sys.argv[2:], 's:', 'settings=')
     try:
         setting = dict(found).values()[0]
     except IndexError:
@@ -116,4 +116,3 @@ if __name__ == "__main__":
         product_details.__init__()  # reload the product details
 
     execute_manager(settings)
-
