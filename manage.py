@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import getopt
 import imp
 import logging
 import os
@@ -39,11 +38,16 @@ from django.core.management import (call_command, execute_manager,
 # 1. Look first for the command line setting.
 setting = None
 if __name__ == '__main__':
-    found, rest = getopt.getopt(sys.argv[2:], 's:', 'settings=')
-    try:
-        setting = dict(found).values()[0]
-    except IndexError:
-        pass
+    for k, v in enumerate(sys.argv):
+        if v.startswith('--settings'):
+            setting = v.split('=')[1]
+            del sys.argv[k]
+            break
+        if v.startswith('-s'):
+            settings = sys.argv[k+1]
+            del sys.argv[k]  # Delete the -s, everything will move down one.
+            del sys.argv[k]
+            break
 
 # 2. If not, find the env variable.
 if not setting:
