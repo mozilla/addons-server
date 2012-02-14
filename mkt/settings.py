@@ -23,6 +23,11 @@ TEMPLATE_CONTEXT_PROCESSORS += [
     'mkt.experiments.context_processors.fragment',
 ]
 
+# Tests.
+NOSE_ARGS = [
+    '--with-fixture-bundling',
+    '--exclude=default/*',
+]
 
 NO_ADDONS_MODULES = (
     'addons.views',

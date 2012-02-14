@@ -406,6 +406,7 @@ DEV_APPS = (
 TEST_RUNNER = 'test_utils.runner.RadicalTestSuiteRunner'
 NOSE_ARGS = [
     '--with-fixture-bundling',
+    '--exclude=mkt/*',
 ]
 
 # If you want to run Selenium tests, you'll need to have a server running.
