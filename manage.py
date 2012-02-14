@@ -43,11 +43,6 @@ if __name__ == '__main__':
             setting = v.split('=')[1]
             del sys.argv[k]
             break
-        if v.startswith('-s'):
-            settings = sys.argv[k+1]
-            del sys.argv[k]  # Delete the -s, everything will move down one.
-            del sys.argv[k]
-            break
 
 # 2. If not, find the env variable.
 if not setting:
