@@ -1283,7 +1283,8 @@ BUILDER_VERSIONS_URL = ('https://builder.addons.mozilla.org/repackage/' +
 ES_HOSTS = ['127.0.0.1:9200']
 ES_INDEXES = {'default': 'amo',
               'update_counts': 'amo_stats',
-              'download_counts': 'amo_stats'}
+              'download_counts': 'amo_stats',
+              'stats_collections_counts': 'amo_stats'}
 ES_TIMEOUT = 5
 
 # Default AMO user id to use for tasks.
