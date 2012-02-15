@@ -124,7 +124,11 @@ def update(ctx):
     update_locales()
     update_products()
     compress_assets()
-    compress_assets(arg='--settings=settings_local_mkt')
+    #TODO(andym): remove this check (but not the compress_assets) once
+    # apps-preview is dead.
+    with ctx.lcd(settings.SRC_DIR):
+        if not ctx.local('test -e settings_local_mkt.py').code:
+            compress_assets(arg='--settings=settings_local_mkt')
     schematic()
     with ctx.lcd(settings.SRC_DIR):
         ctx.local('python2.6 manage.py dump_apps')
