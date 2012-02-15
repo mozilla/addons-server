@@ -20,6 +20,7 @@ from users.models import (UserProfile, get_hexdigest, BlacklistedEmailDomain,
                           BlacklistedPassword, BlacklistedUsername,
                           UserEmailField)
 from users.utils import find_users
+from access.models import GroupUser, Group
 
 
 class TestUserProfile(amo.tests.TestCase):
@@ -67,6 +68,35 @@ class TestUserProfile(amo.tests.TestCase):
         eq_(u1.welcome_name, 'sc')
         eq_(u2.welcome_name, 'Sarah Connor')
         eq_(u3.welcome_name, '')
+
+    def test_add_admin_powers(self):
+        Group.objects.create(name='Admins', rules='*:*')
+        u = UserProfile.objects.get(username='jbalogh')
+
+        assert not u.user.is_staff
+        assert not u.user.is_superuser
+        GroupUser.objects.create(group=Group.objects.get(name='Admins'),
+                                 user=u)
+        assert u.user.is_staff
+        assert u.user.is_superuser
+
+    def test_dont_add_admin_powers(self):
+        Group.objects.create(name='API', rules='API.Users:*')
+        u = UserProfile.objects.get(username='jbalogh')
+
+        GroupUser.objects.create(group=Group.objects.get(name='API'),
+                                 user=u)
+        assert not u.user.is_staff
+        assert not u.user.is_superuser
+
+    def test_remove_admin_powers(self):
+        Group.objects.create(name='Admins', rules='*:*')
+        u = UserProfile.objects.get(username='jbalogh')
+        g = GroupUser.objects.create(group=Group.objects.get(name='Admins'),
+                                     user=u)
+        g.delete()
+        assert not u.user.is_staff
+        assert not u.user.is_superuser
 
     def test_empty_username(self):
         u = UserProfile.objects.create(email='yoyoyo@yo.yo', username='yoyo')
