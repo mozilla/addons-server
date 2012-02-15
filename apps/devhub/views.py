@@ -1627,7 +1627,7 @@ def submit_license(request, addon_id, addon, step, webapp=False):
     return jingo.render(request, 'devhub/addons/submit/license.html', ctx)
 
 
-@dev_required(webapp=True)
+@dev_required
 @submit_step(6)
 def submit_select_review(request, addon_id, addon, step):
     review_type_form = forms.ReviewTypeForm(request.POST or None)
@@ -1662,7 +1662,7 @@ def submit_done(request, addon_id, addon, step, webapp=False):
                          'is_platform_specific': is_platform_specific})
 
 
-@dev_required(webapp=True)
+@dev_required
 def submit_resume(request, addon_id, addon):
     step = SubmitStep.objects.filter(addon=addon)
     return _resume(addon, step)
