@@ -8,6 +8,7 @@ import operator
 import os
 import random
 import re
+import shutil
 import time
 import unicodedata
 import urllib
@@ -753,6 +754,19 @@ class LocalFileStorage(FileSystemStorage):
     def __init__(self, base_url=None):
         super(LocalFileStorage, self).__init__(location='/', base_url=base_url)
 
+    def delete(self, name):
+        """Delete a file or empty directory path.
+
+        Unlike the default file system storage this will also delete an empty
+        directory path. This behavior is more in line with other storage
+        systems like S3.
+        """
+        full_path = self.path(name)
+        if os.path.isdir(full_path):
+            os.rmdir(full_path)
+        else:
+            return super(LocalFileStorage, self).delete(name)
+
     def _open(self, name, mode='rb'):
         if mode.startswith('w'):
             parent = os.path.dirname(self.path(name))
@@ -803,3 +817,21 @@ def attach_trans_dict(model, addons):
     for id, translations in sorted_groupby(qs, lambda x: x[0]):
         ids[id].translations[id] = [(locale, string)
                                     for id, locale, string in translations]
+def rm_local_tmp_dir(path):
+    """Remove a local temp directory.
+
+    This is just a wrapper around shutil.rmtree(). Use it to indicate you are
+    certain that your executing code is operating on a local temp dir, not a
+    directory managed by the Django Storage API.
+    """
+    return shutil.rmtree(path)
+
+
+def rm_local_tmp_file(path):
+    """Remove a local temp file.
+
+    This is just a wrapper around os.unlink(). Use it to indicate you are
+    certain that your executing code is operating on a local temp file, not a
+    path managed by the Django Storage API.
+    """
+    return os.unlink(path)

@@ -8,10 +8,10 @@ from django.conf import settings
 from django.core.validators import ValidationError
 from django.utils import translation
 
-from nose.tools import eq_, assert_raises
+from nose.tools import eq_, assert_raises, raises
 
 from amo.utils import (slug_validator, slugify, resize_image, to_language,
-                       no_translation, LocalFileStorage)
+                       no_translation, LocalFileStorage, rm_local_tmp_dir)
 from product_details import product_details
 
 
@@ -114,7 +114,7 @@ class TestLocalFileStorage(unittest.TestCase):
         self.stor = LocalFileStorage()
 
     def tearDown(self):
-        shutil.rmtree(self.tmp)
+        rm_local_tmp_dir(self.tmp)
 
     def test_read_write(self):
         fn = os.path.join(self.tmp, 'somefile.txt')
@@ -159,3 +159,25 @@ class TestLocalFileStorage(unittest.TestCase):
             fd.write('stuff')
         with self.stor.open(os.path.join(dp, 'file.txt'), 'r') as fd:
             eq_(fd.read(), 'stuff')
+
+    def test_delete_empty_dir(self):
+        dp = os.path.join(self.tmp, 'path')
+        os.mkdir(dp)
+        self.stor.delete(dp)
+        eq_(os.path.exists(dp), False)
+
+    @raises(OSError)
+    def test_cannot_delete_non_empty_dir(self):
+        dp = os.path.join(self.tmp, 'path')
+        with self.stor.open(os.path.join(dp, 'file.txt'), 'w') as fp:
+            fp.write('stuff')
+        self.stor.delete(dp)
+
+    def test_delete_file(self):
+        dp = os.path.join(self.tmp, 'path')
+        fn = os.path.join(dp, 'file.txt')
+        with self.stor.open(fn, 'w') as fp:
+            fp.write('stuff')
+        self.stor.delete(fn)
+        eq_(os.path.exists(fn), False)
+        eq_(os.path.exists(dp), True)
