@@ -229,13 +229,13 @@ def plugin_check(request):
 
             if re.match(r'^(?!.*(Win64|x64))Win.*$', g['clientOS']):
                 plugin.update(
-                    version='11.0.1.152',
-                    InstallerHash='sha256:de413e759589b387bfa17852a91e752e0318104998e0e4bbddacd9972483ec12',
+                    version='11.1.102.62',
+                    InstallerHash='sha256:02e42d4272ec2404b6063b67bfa851cc667826ae7ee8d2c69139e42fb48139bb',
                     InstallerLocation='http://download.macromedia.com/pub/flashplayer/current/FP_PL_PFS_INSTALLER_32bit.exe')
             else:
                 plugin.update(
-                    version='11.0.1.152 64-bit',
-                    InstallerHash='sha256:c31e5238b00b284e64969262161fd170a3288e34d3ddcc95b50b558de7a74744',
+                    version='11.1.102.62 64-bit',
+                    InstallerHash='sha256:6183182fa16b15b02950b2c6dc559cb54740958d662f98c1cc1128cff76dbf20',
                     InstallerLocation='http://download.macromedia.com/pub/flashplayer/current/FP_PL_PFS_INSTALLER_64bit.exe')
 
     elif (g['mimetype'] == 'application/x-director' and
@@ -256,8 +256,8 @@ def plugin_check(request):
         plugin.update(
             guid='{45f2a22c-4029-4209-8b3d-1421b989633f}',
             XPILocation=None,
-            version='11.6.3.633',
-            InstallerHash='sha256:c0096c13456f112516542a5fc568fd904839ffcad9d6b7c741f1528fb4e93ca5',
+            version='11.6.3.634',
+            InstallerHash='sha256:5eeaa6969ad812a827b827b0357dc32bcb8ca77757528cf44631b290cfcb4117',
             InstallerLocation='http://fpdownload.macromedia.com/pub/shockwave/default/english/win95nt/latest/Shockwave_Installer_FF.exe',
             needsRestart='false',
             InstallerShowsUI='false')
