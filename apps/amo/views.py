@@ -256,7 +256,7 @@ def plugin_check(request):
         plugin.update(
             guid='{45f2a22c-4029-4209-8b3d-1421b989633f}',
             XPILocation=None,
-            version='11.6.3.634',
+            version='11.6.4.634',
             InstallerHash='sha256:5eeaa6969ad812a827b827b0357dc32bcb8ca77757528cf44631b290cfcb4117',
             InstallerLocation='http://fpdownload.macromedia.com/pub/shockwave/default/english/win95nt/latest/Shockwave_Installer_FF.exe',
             needsRestart='false',
