@@ -13,10 +13,18 @@ class HubEventAdmin(admin.ModelAdmin):
 
 
 class HubNewsAdmin(admin.ModelAdmin):
-    list_display = ('user', 'action', 'arguments')
+    list_display = ('created', 'user', 'action', 'arguments')
     raw_id_fields = ('user',)
     list_filter = ('action',)
+    readonly_fields = ('created', 'user', 'action', '_arguments', '_details')
+    date_hierarchy = 'created'
+    raw_id_fields = ('user',)
 
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 admin.site.register(HubPromo, HubPromoAdmin)
 admin.site.register(HubEvent, HubEventAdmin)
