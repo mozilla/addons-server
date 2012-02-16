@@ -54,8 +54,8 @@
     {% if device_types %}
       <ul class="device-list">
         {% for device in device_types %}
-          <li class="{{ device.device_type.class_name }}">
-            {{ device.device_type.name }}
+          <li class="{{ device.class_name }}">
+            {{ device.name }}
           </li>
         {% endfor %}
       </ul>
