@@ -1,0 +1,228 @@
+{% from "developers/includes/macros.html" import tip, empty_unless, select_cats, trans_readonly %}
+
+<form method="post" action="{{ url('mkt.developers.addons.section', valid_slug, 'basic', 'edit') }}"
+      id="addon-edit-basic"
+      data-baseurl="{{ url('mkt.developers.%s.edit' % ('apps' if addon.is_webapp() else 'addons'),
+                           valid_slug) }}">
+  <h3>
+    {{ _('Basic Information') }}
+    {% if not editable %}
+      <a href="#" data-editurl="{{ url('mkt.developers.addons.section', valid_slug, 'basic', 'edit') }}" class="button">
+        {{ _('Edit') }}</a>
+    {% endif %}
+  </h3>
+  <div class="item">
+    <div class="item_wrapper">
+      <table>
+        {# L10n: {0} is the addon name #}
+        <caption>{{ _('Basic Information for {0}')|f(addon.name) }}</caption>
+        <tbody>
+          <tr>
+            <th><label data-for="name">{{ _("Name") }}</label></th>
+            <td>
+              {% if editable %}
+                {{ form.name }}
+                {{ form.name.errors }}
+              {% else %}
+                {{ addon|all_locales('name') }}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              {% if webapp %}
+                {# TODO(apps): Finalize copy. #}
+                {{ tip('App URL',
+                       'Choose a short, unique URL slug for your app.') }}
+              {% else %}
+                {{ tip(_("Add-on URL"),
+                   _("Choose a short, unique URL slug for your add-on.")) }}
+              {% endif %}
+            </th>
+            <td id="slug_edit">
+              {% if editable %}
+                <div class="edit_with_prefix">
+                  <span>{{ settings.SITE_URL }}/&hellip;/</span>{{ form.slug }}
+                </div>
+                {{ form.slug.errors }}
+              {% else %}
+                {{ settings.SITE_URL }}/&hellip;/{{ addon.app_slug if webapp else addon.slug }}
+                <a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label data-for="summary">
+                {{ _("Summary") }}
+                {% if webapp %}
+                  {# TODO(apps): Finalize copy. #}
+                  {{ tip(None,
+                         "A short explanation of your app's basic
+                          functionality that is displayed in search and browse
+                          listings, as well as at the top of your app's
+                          details page.") }}
+                {% else %}
+                  {{ tip(None,
+                         _("A short explanation of your add-on's basic
+                            functionality that is displayed in search and browse
+                            listings, as well as at the top of your add-on's
+                            details page.")) }}
+                {% endif %}
+              </label>
+            </th>
+            <td>
+              {% if editable %}
+                {{ form.summary }}
+                {{ form.summary.errors }}
+                <div class="char-count"
+                     data-for-startswith="{{ form.summary.auto_id }}_"
+                     data-maxlength="{{ form.summary.field.max_length }}"></div>
+              {% else %}
+                {{ addon|all_locales('summary') }}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              {% if webapp %}
+                {# TODO(apps): Finalize copy. #}
+                {{ tip('Categories',
+                       "Categories are the primary way users browse through apps.
+                        Choose any that fit your app's functionality for the
+                        most exposure.") }}
+              {% else %}
+                {{ tip(_("Categories"),
+                       _("Categories are the primary way users browse through add-ons.
+                          Choose any that fit your add-on's functionality for the most
+                          exposure.")) }}
+              {% endif %}
+            </th>
+            <td id="addon-categories-edit"
+                data-max-categories="{{ amo.MAX_CATEGORIES }}">
+              {% if editable %}
+                {{ cat_form.non_form_errors() }}
+                {{ cat_form.management_form }}
+                {% for form in cat_form.initial_forms %}
+                  {% if form.disabled %}
+                    <p class="addon-app-cats addon-app-cats-inline">
+                      <b>{{ form.app.pretty }}:</b>
+                      {% set cats = dict(addon.app_categories).get(form.app, []) %}
+                      {{ cats|join(' &middot; ')|safe }}
+                    </p>
+                    <p>
+                      {% if webapp %}
+                        {# TODO(apps): Finalize copy. #}
+                        {% with email='amo-editors@mozilla.org' %}
+                          Categories cannot be changed while your app is
+                          featured. Please email
+                          <a href="mailto:{{ email }}">{{ email }}</a> if there
+                          is a reason you need to modify your categories.
+                        {% endwith %}
+                      {% else %}
+                        {% trans email='amo-editors@mozilla.org' %}
+                          Categories cannot be changed while your add-on is
+                          featured for this application. Please email
+                          <a href="mailto:{{ email }}">{{ email }}</a> if there is
+                          a reason you need to modify your categories.
+                        {% endtrans %}
+                      {% endif %}
+                    </p>
+                  {% else %}
+                    {{ select_cats(amo.MAX_CATEGORIES, form, webapp) }}
+                  {% endif %}
+                {% endfor %}
+              {% else %}
+                {% set categories = addon.app_categories %}
+                {% call empty_unless(categories) %}
+                  <ul class="addon-app-cats-inline">
+                    {% for app, cats in categories %}
+                      <li>
+                        {% if not webapp %}
+                          <b>{{ app.pretty }}:</b>
+                        {% endif %}
+                        {{ cats|join(' &middot; ')|safe }}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endcall %}
+              {% endif %}
+            </td>
+          </tr>
+          {% if webapp and waffle.switch('marketplace') %}
+          <tr>
+            <th>
+              {{ tip(loc('Device Types'),
+                     loc('Indicate support for desktop, mobile and tablet
+                          devices.')) }}
+            </th>
+            <td id="addon-device-types-edit">
+              {% if editable %}
+                {{ device_type_form.device_types.errors }}
+                {{ device_type_form.device_types }}
+              {% else %}
+                {% set device_types = addon.device_types %}
+                {% call empty_unless(device_types) %}
+                  <ul>
+                    {% for device in device_types %}
+                      <li class="{{ device.class_name }}">
+                        {{ device.name }}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endcall %}
+              {% endif %}
+            </td>
+          </tr>
+          {% endif %}
+          <tr>
+            <th>
+              {% if webapp %}
+                {# TODO(apps): Finalize copy. #}
+                {{ tip('Tags',
+                       "Tags help users find your app and should be short
+                        descriptors such as tabs, toolbar, or twitter. You
+                        may have a maximum of {0} tags.".format(amo.MAX_TAGS)) }}
+              {% else %}
+                {{ tip(_("Tags"),
+                       _("Tags help users find your add-on and should be short
+                          descriptors such as tabs, toolbar, or twitter.  You
+                          may have a maximum of {0} tags.").format(amo.MAX_TAGS)) }}
+              {% endif %}
+            </th>
+            <td id="addon_tags_edit">
+              {% if editable %}
+                {{ form.tags }}
+                {{ form.tags.errors }}
+                <div class="edit-addon-details">
+                  {{ ngettext('Comma-separated, minimum of {0} character.',
+                              'Comma-separated, minimum of {0} characters.',
+                              amo.MIN_TAG_LENGTH)|f(amo.MIN_TAG_LENGTH) }}
+                  {{ _('Example: pop, hen, yum.  Limit 20.') }}
+                </div>
+                {% if restricted_tags %}
+                <div class="edit-addon-details">
+                    {{ ngettext('Reserved tag:', 'Reserved tags:', restricted_tags|length) }}
+                    {{ restricted_tags|join(', ') }}
+                </div>
+                {% endif %}
+              {% else %}
+                {% call empty_unless(tags) %}
+                  {{ tags|join(', ') }}
+                {% endcall %}
+              {% endif %}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    {% if editable %}
+    <div class="listing-footer">
+      <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
+      <a href="{{ url('mkt.developers.addons.section', addon.slug, 'basic') }}"
+        class="addon-edit-cancel">
+        {{ _('Cancel') }}</a>
+    </div>
+    {% endif %}
+  </div>
+</form>

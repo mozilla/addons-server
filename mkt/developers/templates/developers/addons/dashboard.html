@@ -1,0 +1,71 @@
+{% extends "developers/base_impala.html" %}
+
+{% set title = loc('Manage My Submissions') %}
+
+{% block title %}{{ hub_page_title(title) }}{% endblock %}
+
+{% block content %}
+  <section class="primary">
+    <header class="hero">
+      {{ hub_breadcrumbs(impala=True) }}
+      <h1>{{ title }}</h1>
+      {% if addons %}
+        {% set cnt = addons.paginator.count %}
+        {% if webapp %}
+          {# L10n: {0} is an integer. #}
+          <h2>{{ ngettext('<b>{0}</b> app', '<b>{0}</b> apps', cnt)|f(cnt|numberfmt)|safe }}</h2>
+        {% else %}
+          {# L10n: {0} is an integer. #}
+          <h2>{{ ngettext('<b>{0}</b> add-on', '<b>{0}</b> add-ons', cnt)|f(cnt|numberfmt)|safe }}</h2>
+        {% endif %}
+      {% endif %}
+    </header>
+  </section>
+
+{% if not addons %}
+  <div class="island action-needed">
+    <h2>{{ _('Welcome to the Developer Dashboard') }}</h2>
+    {% if webapp %}
+      <p>
+        {{ loc("You don't currently have any apps hosted on Mozilla Marketplace. To
+                learn how the process works and submit your first app, click Get
+                Started below.") }}
+      </p>
+    {% else %}
+      <p>
+      {% trans %}
+        You don't currently have any add-ons hosted on Mozilla Add-ons. To learn
+        how the process works and submit your first add-on, click Get Started
+        below.
+      {% endtrans %}
+      </p>
+    {% endif %}
+    {% set submit_view = 'mkt.developers.submit_apps.1' if webapp else 'mkt.developers.submit.1' %}
+    <p class="button-wrapper">
+      <a href="{{ url(submit_view) }}" class="button prominent">
+        {{ _('Get Started') }}</a>
+    </p>
+  </div>
+{% else %}
+  <section class="secondary devhub-sidebar">
+    <p id="submit-addon" class="cta">
+      {% if webapp %}
+        <a href="{{ url('mkt.developers.submit_apps.1') }}"
+           class="button prominent">{{ _('Submit a New App') }}</a>
+      {% else %}
+        <a href="{{ url('mkt.developers.submit.1') }}"
+           class="button prominent">{{ _('Submit a New Add-on') }}</a>
+       {% endif %}
+    </p>
+  </section>
+  <section id="dashboard" class="primary" role="main">
+    <div class="listing island hero c">
+      {{ impala_addon_listing_header(request.get_full_path(), search_filter=filter) }}
+      <div class="items">
+        {{ dev_addon_listing_items(addons.object_list) }}
+      </div>
+      {{ addons|impala_paginator }}
+    </div>
+  </section>
+{% endif %}
+{% endblock %}

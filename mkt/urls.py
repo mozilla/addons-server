@@ -2,6 +2,10 @@ from lib.urls_base import *
 
 
 urlpatterns += patterns('',
+    # The old-but-new Marketplace.
+    ('^dev/', include('mkt.developers.urls')),
+
+    # The new hotness.
     ('^hub/', include('mkt.hub.urls')),
 )
 

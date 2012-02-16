@@ -1,0 +1,63 @@
+{% extends "developers/addons/submit/base.html" %}
+
+{% block title %}{{ hub_page_title(_('Step 1'), addon) }}{% endblock %}
+
+{% block primary %}
+<h3>{{ _('Step 1. Getting Started') }}</h3>
+{% if webapp %}
+<p>
+  {% with url="https://developer.mozilla.org/en/apps/Manifest" %}
+    {{ loc('To list your app, we need to know where to find it. Give us the URL
+            to your <a href="{url}">manifest</a> below.</a>')|f(url=url)|safe }}
+  {% endwith %}
+</p>
+{% else %}
+  <p>
+  {% trans %}
+    Hosting your add-on in our gallery is the best way to expose your work
+    to millions of Firefox users. We'll provide everything you need to
+    distribute and update your add-on for free.
+  {% endtrans %}
+  </p>
+  <p>
+  {% trans %}
+    To complete this submission process you'll need your add-on
+    package (.xpi, .jar, or .xml) and at least one screenshot of
+    your add-on in action.
+  {% endtrans %}
+  </p>
+{% endif %}
+
+<p>
+{% trans %}
+  When you're ready to begin, please read and accept our
+  <strong>Developer Agreement</strong>:
+{% endtrans %}
+</p>
+<div id="agreement-container">
+  {% if webapp %}
+    {% include 'amo/developer_webapp_agreement.html' %}
+  {% else %}
+    {% include 'amo/developer_agreement.html' %}
+  {% endif %}
+</div>
+<div id="agreement-extra-links">
+  <a href="{{ url('mkt.developers.docs', 'policies', 'agreement') }}">
+    {{ _('Printable Version') }}</a>
+{# TODO: Add link to "App Policies" once fligtar authors it (bug 699882). #}
+{% if not webapp %}
+  <span>&bull;</span>
+  <a href="{{ url('mkt.developers.docs', 'policies') }}">
+    {{ _('Additional Add-on Policies') }}</a>
+{% endif %}
+</div>
+<div class="submit-buttons">
+  <form method="post" action="">
+    {{ csrf() }}
+    <button id="accept-agreement" type="submit">
+      {{ _('I Accept this Agreement') }}
+    </button>
+  {{ _('or <a href="{0}">Cancel</a>')|f(url('mkt.developers.index'))|safe }}
+  </form>
+</div>
+{% endblock %}

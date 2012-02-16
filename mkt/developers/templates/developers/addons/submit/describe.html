@@ -1,0 +1,101 @@
+{% from "developers/includes/macros.html" import some_html_tip, select_cats %}
+{% extends "developers/addons/submit/base.html" %}
+
+{% block title %}{{ hub_page_title(_('Step 3'), addon) }}{% endblock %}
+
+{% block primary %}
+  <h3>{{ _('Step 3. Describe') }}</h3>
+  <form method="post" id="submit-describe" class="item" action="">
+    {{ csrf() }}
+    <div class="addon-submission-field">
+      <label for="id_name">{{ _("Name and version:") }}</label>
+      {{ form.name }}
+
+      {% set version = addon.current_version %}
+      <input type="text" disabled id="current_version"
+             value="{{ version.version }}" size="6">
+      {{ form.name.errors }}
+    </div>
+    {% if addon.is_webapp() and waffle.switch('marketplace') %}
+      <div class="addon-submission-field">
+        <label for="{{ form.homepage.auto_id }}">
+          {{ _('Homepage URL:') }}
+        </label>
+        {{ form.homepage }}
+        {{ form.homepage.errors }}
+      </div>
+    {% endif %}
+    <div class="addon-submission-field">
+      <label>{{ _("The detail page will be:") }}</label>
+      <div id="slug_edit" class="edit_with_prefix edit_initially_hidden">
+        <span>{{ settings.SITE_URL }}</span>{{ form.slug }}
+        <div class="edit-addon-details">
+          {{ _('Please use only letters, numbers, and dashes in your URL.') }}
+        </div>
+      </div>
+      <span id="slug_readonly">
+        {{ settings.SITE_URL }}/&hellip;/<span id="slug_value"></span>
+        <a id="edit_slug" href="#">{{ _('Edit') }}</a>
+      </span>
+      {{ form.slug.errors }}
+    </div>
+    {% if addon.is_webapp() and waffle.switch('marketplace') %}
+      <div class="addon-submission-field device-types">
+        <p><strong>{{ loc('Device Support:') }}</strong></p>
+        {{ device_form.device_types }}
+        {{ device_form.device_types.errors }}
+      </div>
+    {% endif %}
+    <div class="addon-submission-field">
+      <label>{{ _('Provide a brief summary:') }}</label>
+      {{ form.summary }}
+      {{ form.summary.errors }}
+      <div class="edit-addon-details">
+        {% trans %}
+          This summary will be shown in listings and searches.
+        {% endtrans %}
+        <div class="char-count"
+             data-for-startswith="{{ form.summary.auto_id }}_"
+             data-maxlength="{{ form.summary.field.max_length }}"></div>
+      </div>
+    </div>
+    <div id="addon-categories-edit" class="addon-submission-field"
+         data-max-categories="{{ amo.MAX_CATEGORIES }}">
+      {{ cat_form.non_form_errors() }}
+      {{ cat_form.management_form }}
+      {% for form in cat_form.initial_forms %}
+        {{ select_cats(amo.MAX_CATEGORIES, form, webapp) }}
+      {% endfor %}
+    </div>
+    <div class="addon-submission-field">
+      <label>{{ _('Provide a more detailed description:') }}</label>
+      {{ form.description }}
+      {{ form.description.errors }}
+      <div class="edit-addon-details">
+        {{ _("The description will appear on the detail page.") }}
+        {{ some_html_tip() }}
+      </div>
+    </div>
+    {% if addon.is_webapp() and waffle.switch('marketplace') %}
+      <div class="addon-submission-field">
+        <label for="{{ form.support_email.auto_id }}">
+          {{ _('Support Email:') }}
+        </label>
+        {{ form.support_email }}
+        {{ form.support_email.errors }}
+      </div>
+      <div class="addon-submission-field">
+        <label for="{{ form.support_url.auto_id }}">
+          {{ _('Support URL:') }}
+        </label>
+        {{ form.support_url }}
+        {{ form.support_url.errors }}
+      </div>
+    {% endif %}
+    <div class="submission-buttons addon-submission-field">
+      <button type="submit">
+        {{ _('Continue') }}
+      </button>
+    </div>
+  </form>
+{% endblock primary %}

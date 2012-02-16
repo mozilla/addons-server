@@ -1,0 +1,24 @@
+{% extends "developers/base.html" %}
+{% from 'developers/includes/macros.html' import some_html_tip %}
+
+{% set title = _('Manage Payments') %}
+{% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
+
+{% block content %}
+<header>
+  {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
+  <h2>{{ title }}</h2>
+</header>
+<section class="primary payments devhub-form" role="main">
+    <h3>{{ _('Step 1. Merchant Account') }}</h3>
+    <form method="post">
+        {{ csrf() }}
+        {% include "developers/payments/includes/paypal.html" %}
+        <button type="submit">{{ _('Continue') }}</button>
+        {% trans cancel=addon.get_dev_url('payments') %}
+            or <a href="{{ cancel }}">Cancel</a>
+        {% endtrans %}
+    </form>
+</section>
+{% include "developers/includes/addons_edit_nav.html" %}
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends "developers/base.html" %}
+
+{% if webapp %}
+  {# TODO(apps): Finalize copy. #}
+  {% set title = 'Manage Authors' %}
+{% else %}
+  {% set title = _('Manage Authors & License') %}
+{% endif %}
+
+{% block title %}
+{{ hub_page_title(title, addon) }}
+{% endblock %}
+
+{% block bodyclass %}
+{{ super() }}
+{% if not check_addon_ownership(request, addon) %} no-edit{% endif %}
+{% endblock %}
+
+{% block content %}
+<header>
+  {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
+  {% if not webapp %}
+    {{ l10n_menu(addon.default_locale) }}
+  {% endif %}
+  <h2>{{ title }}</h2>
+</header>
+<section id="edit-addon" class="primary devhub-form" role="main">
+<form method="post" class="item" action="">
+  {{ csrf() }}
+  {{ user_form.management_form }}
+  <div class="item_wrapper">
+    <table>
+      <tr>
+        <th>
+          {{ _('Authors') }}
+          <a id="what-are-roles" href="#">{{ _('About author roles') }}</a>
+        </th>
+        <td>
+          {{ user_form.non_form_errors() }}
+          <ul id="author_list">
+          {% for form in user_form.forms %}
+            <li class="author {{ 'initial' if not form.user.errors }}">
+              <span class="handle">&nbsp;</span>
+              {{ form.user.errors }}
+              {{ form.user }}
+              {{ form.role }}
+              {{ form.listed }}{{ form.listed.label_tag() }}
+              {{ form.id }}
+              <span class="js-hidden delete">{{ form.DELETE }}{{ form.DELETE.label_tag() }}</span>
+              <span class="js-hidden position">{{ form.position }}</span>
+              <a href="#" class="remove">x</a>
+            </li>
+          {% endfor %}
+          </ul>
+        </td>
+      </tr>
+      {% if license_form %}
+        {% include "developers/includes/license_form.html" %}
+      {% endif %}
+      {% if policy_form %}
+        {% include "developers/includes/policy_form.html" %}
+      {% endif %}
+    </table>
+  </div>
+  <div class="listing-footer"><button type="submit">{{ _('Save Changes') }}</button></div>
+</form>
+{% with form=user_form.empty_form %}
+<ul id="user-form-template" class="hidden">
+  <li class="blank">
+    <span class="handle">&nbsp;</span>
+    {{ form.user }}
+    {{ form.role }}
+    {{ form.listed }}{{ form.listed.label_tag() }}
+    <span class="js-hidden">{{ form.DELETE }}{{ form.DELETE.label_tag() }}</span>
+    <span class="js-hidden position">{{ form.position }}</span>
+    <a href="#" class="remove">x</a>
+  </li>
+</ul>
+{% endwith %}
+</section>
+{% include "developers/includes/addons_edit_nav.html" %}
+
+<div id="author-roles-help" class="popup">
+  {% if webapp %}
+    {# TODO(apps): Finalize copy. #}
+    <p>Apps can have any number of authors with 3 possible roles:</p>
+    <ul>
+      <li><b>Owner:</b> Can manage all aspects of the app's listing, including adding and removing other authors</li>
+      <li><b>Developer:</b> Can manage all aspects of the app's listing, except for adding and removing other authors and managing payments</li>
+      <li><b>Viewer:</b> Can view the app's settings, but cannot make any changes</li>
+    </ul>
+  {% else %}
+    {% trans %}
+    <p>Add-ons can have any number of authors with 3 possible roles:</p>
+    <ul>
+      <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li>
+      <li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li>
+      <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot make any changes</li>
+    </ul>
+    {% endtrans %}
+  {% endif %}
+  <p><a href="#" class="cancel close">{{ _('Close') }}</a></p>
+</div>
+{% endblock %}

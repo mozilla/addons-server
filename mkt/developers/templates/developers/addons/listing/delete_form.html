@@ -1,0 +1,38 @@
+<form method="post" action="{{ addon.get_dev_url('delete') }}">
+  {{ csrf() }}
+  <h3>
+    {% if webapp %}
+      {{ loc('Delete App') }}
+    {% else %}
+      {{ _('Delete Add-on') }}
+    {% endif %}
+  </h3>
+  {% if addon.highest_status or addon.status %}
+    <p class="warning">
+      {% if webapp %}
+        {{ loc('Deleting your app will permanently remove it from the site.') }}
+      {% else %}
+        {% trans %}
+          Deleting your add-on will permanently remove it from the site and
+          prevent its GUID from being submitted ever again, even by you.  The
+          existing users of your add-on will remain on this update channel and
+          never receive updates again.
+        {% endtrans %}
+      {% endif %}
+    </p>
+  {% endif %}
+  <p>
+    <label>
+      {{ _('Enter your password to confirm your decision:') }}
+      {# see bug 630126 for why this is called 'password-timestamp' #}
+      <input type="password" name="password-{{ timestamp }}" data-name="password" autocomplete="off">
+    </label>
+  </p>
+  <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
+  <p>
+    <button class="delete-button" type="submit">
+      {{ loc('Delete App') if webapp else _('Delete Add-on') }}</button>
+    {{ _('or') }} <a href="#" class="close cancel">{{ _('Cancel') }}</a>
+  </p>
+  <a href="#" class="close">{{ _('Close') }}</a>
+</form>

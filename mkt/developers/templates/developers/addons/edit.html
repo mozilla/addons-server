@@ -1,0 +1,60 @@
+{% extends "developers/base.html" %}
+
+{% set title = _('Edit Listing') %}
+
+{% block title %}
+{{ hub_page_title(title, addon) }}
+{% endblock %}
+
+{% macro empty_unless(truthy) %}
+    {% if truthy %}
+        {{ caller() }}
+    {% else %}
+        <span class="empty">{{ _('None') }}</span>
+    {% endif %}
+{% endmacro %}
+
+
+{% block content %}
+<header>
+  {{ hub_breadcrumbs(addon) }}
+  {{ l10n_menu(addon.default_locale) }}
+  <h2>{{ title }}</h2>
+</header>
+
+<section class="primary" role="main">
+<div id="edit-addon" class="devhub-form">
+
+  <div class="edit-addon-section" id="edit-addon-basic">
+    {% include 'developers/addons/edit/basic.html' %}
+  </div>
+
+  <div class="edit-addon-section" id="edit-addon-media"
+       data-checkurl="{{ url('mkt.developers.ajax.image.status', addon.slug) }}">
+    {% include 'developers/addons/edit/media.html' %}
+  </div>
+
+  <div class="edit-addon-section" id="edit-addon-details">
+    {% include 'developers/addons/edit/details.html' %}
+  </div>
+
+  <div class="edit-addon-section" id="edit-addon-support">
+    {% include 'developers/addons/edit/support.html' %}
+  </div>
+
+  <div class="edit-addon-section" id="edit-addon-technical">
+    {% include 'developers/addons/edit/technical.html' %}
+  </div>
+
+  {% if admin_form %}
+    <div class="edit-addon-section" id="edit-addon-admin">
+      {% include 'developers/addons/edit/admin.html' %}
+    </div>
+  {% endif %}
+
+</div>
+</section>
+
+{% include 'developers/includes/addons_edit_nav.html' %}
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "developers/base_impala.html" %}
+
+{% block content %}
+  <section id="homepage" class="primary full">
+    <div id="devhub-promo" class="island">
+      <div class="promo-container">
+        <h2>
+          {{ loc('What Are Apps?') }}
+        </h2>
+      <p>
+      <p class="intro">
+        {{ loc('The Mozilla Labs Apps project is an initiative to bring
+        HTML5 app experiences built using Web standards and open technologies
+        to all your devices, wherever you are.') }}
+        <a href="https://developer.mozilla.org/en-US/apps">Learn more</a>
+      </p>
+      <p><a href="{{ url('mkt.developers.submit_apps.1') }}"
+            class="button prominent">{{ loc('Submit an App') }}</a></p>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col-2">
+        <div class="island">
+          <h2>{{ _('Learn &amp; Explore') }}</h2>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="island">
+          <h2>{{ _('Create &amp; Connect') }}</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

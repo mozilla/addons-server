@@ -1,0 +1,80 @@
+{% extends "includes/forms.html" %}
+
+{% macro some_html_tip() %}
+<p class="html-support">
+{# L10n: {0} is a list of HTML tags. #}
+<span class="tooltip" title="{{ _('Allowed HTML: {0}')|f('<a href title> <abbr title>
+                                   <acronym title> <b> <blockquote> <code>
+                                   <em> <i> <li> <ol> <strong> <ul>')|e }}">{{ _('Some HTML supported.') }}</span>
+</p>
+{% endmacro %}
+
+{% macro empty_unless(truthy) %}
+  {% if truthy %}
+    {{ caller() }}
+  {% else %}
+    <span class="empty">{{ _('None') }}</span>
+  {% endif %}
+{% endmacro %}
+
+{% macro flags(text, element, editable, alt_text=False) %}
+  {% if editable %}
+    <div>
+      {{ element }}
+      {{ element.errors }}
+      <label for="id_{{ element.html_name }}">{{ text }}
+    </div>
+  {% elif element %}
+    {{ text }}
+  {% elif alt_text %}
+    {# This is what's shown if the element is false #}
+    {# Defaults to nothing #}
+    {{ alt_text }}
+  {% endif %}
+{% endmacro %}
+
+{% macro compat(form, is_extra_form=False) %}
+  <tr{% if is_extra_form %} class="app-extra-orig{{ ' app-extra' if not form.errors }}"{% endif %}>
+    <td class="app {{ form.app.short }}">{{ form.app.pretty }}</td>
+    <td class="select">
+      <div>
+        <label>{{ form.min.label }}</label> {{ form.min }}
+        {{ form.non_field_errors() }}
+        {{ form.min.errors }}
+      </div>
+      <div><span class="range">&ndash;</span></div>
+      <div>
+        <label>{{ form.max.label }}</label> {{ form.max }}
+        {{ form.max.errors }}
+      </div>
+    </td>
+    <td class="remove">
+      <div>
+        <label>{{ form.DELETE.label }} {{ form.DELETE }}</label>
+        {{ form.application }}
+        {{ form.id }}
+        <a href="#" class="remove"
+           title="{{ _('Remove this application') }}">x</a>
+      </div>
+    </td>
+  </tr>
+{% endmacro %}
+
+{% macro select_cats(max, form, webapp=False) %}
+  <div class="addon-app-cats">
+    <label>
+    {% if webapp %}
+      {{ loc('Select <b>up to {0}</b> categories for this app:')|f(max)|safe }}
+    {% else %}
+      {# L10n: {0} is the maximum number of add-on categories allowed.
+               {1} is the application name. #}
+      {{ ngettext('Select <b>up to {0}</b> {1} category for this add-on:',
+                  'Select <b>up to {0}</b> {1} categories for this add-on:',
+                  max)|f(max, form.app.pretty if form.app else '')|safe }}
+    {% endif %}
+    </label>
+    {{ form.application }}
+    {{ form.categories }}
+    {{ form.categories.errors }}
+  </div>
+{% endmacro %}

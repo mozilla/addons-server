@@ -432,11 +432,14 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return absolutify(self.get_url_path())
 
     def get_dev_url(self, action='edit', args=[]):
+        # Either link to the "new" Marketplace Developer Hub or the old one.
+        prefix = ('mkt.developers' if getattr(settings, 'MARKETPLACE', False)
+                  else 'devhub')
         if self.is_webapp():
-            return reverse('devhub.apps.%s' % action,
+            return reverse('%s.apps.%s' % (prefix, action),
                            args=[self.app_slug] + args)
         else:
-            return reverse('devhub.addons.%s' % action,
+            return reverse('%s.addons.%s' % (prefix, action),
                            args=[self.slug] + args)
 
     def get_detail_url(self, action='detail', args=[]):
@@ -1185,6 +1188,7 @@ def update_name_table(sender, **kw):
                     'type': addon.type}
             log.debug('Build reverse name lookup with data: %s' % data)
             cron._build_reverse_name_lookup([data], clear=True)
+
 
 @receiver(signals.version_changed, dispatch_uid='version_changed')
 def version_changed(sender, **kw):

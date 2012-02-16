@@ -1,0 +1,76 @@
+<h1 class="site-title prominent">
+  <a href="{{ url('mkt.developers.index') }}"
+     title="{{ _('Return to the DevHub homepage') }}">
+    <small>Marketplace</small> Developer Hub
+  </a>
+</h1>
+<nav id="site-nav" class="menu-nav{{ ' app-nav' if webapp }} no-img c">
+  <ul>
+    {% if request.user.is_authenticated() and request.amo_user.is_developer %}
+      <li class="top">
+        <a href="{{ url('mkt.developers.apps') }}" class="controller">
+          {{ _('My Submissions') }}</a>
+        <ul>
+          {% set my_apps = request.amo_user.my_apps() %}
+          {% for addon in my_apps %}
+            {% if loop.index == 8 %}
+              <li><a href="{{ url('mkt.developers.apps') }}">
+                {{ _('more apps...') }}</a></li>
+            {% else %}
+              <li><a href="{{ addon.get_dev_url() }}">
+                {{ addon.name }}</a></li>
+            {% endif %}
+          {% endfor %}
+          <li><em><a href="{{ url('mkt.developers.submit_apps.1') }}">
+            {{ _('Submit a New App') }}</a></em></li>
+        </ul>
+      </li>
+    {% endif %}
+    {% if webapp %}
+      <li class="slim">
+        <a href="http://developer.mozilla.org/en-US/apps" class="controller">
+          {{ _('Documentation') }}</a>
+      </li>
+    {% else %}
+      <li>
+        <a href="#" class="controller">{{ _('Documentation') }}</a>
+        <ul>
+          <li><a href="{{ remora_url('/developers/docs/getting-started') }}">
+            {{ _('Getting Started') }}</a></li>
+          <li><a href="{{ remora_url('/developers/docs/policies') }}">
+            {{ _('Add-on Policies') }}</a></li>
+          <li><a href="{{ remora_url('/developers/docs/case-studies') }}">
+            {{ _('Case Studies') }}</a></li>
+          <li><a href="{{ remora_url('/developers/docs/how-to') }}">
+            {{ _('How-to Library') }}</a></li>
+          <li><a href="{{ remora_url('/developers/docs/reference') }}">
+            {{ _('API & Language Reference') }}</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" class="controller">{{ _('Tools') }}</a>
+        <ul>
+          <li><a href="{{ url('mkt.developers.package_addon') }}">
+            {{ _('Add-on Packager') }}</a></li>
+          <li><a href="{{ url('mkt.developers.validate_addon') }}">
+            {{ _('Add-on Validator') }}</a></li>
+          <li><a href="{{ url('mkt.developers.check_addon_compatibility') }}">
+            {{ _('Add-on Compatibility Checker') }}</a></li>
+          <li><a href="{{ remora_url('/collection/devel-tools') }}">
+            {{ _('Development Add-ons') }}</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" class="controller">{{ _('Community') }}</a>
+        <ul>
+          <li><a href="http://blog.mozilla.com/addons/">
+            {{ _('Add-ons Blog') }}</a></li>
+          <li><a href="https://forums.addons.mozilla.org">
+            {{ _('Add-ons Forum') }}</a></li>
+          <li><a href="{{ remora_url('/developers/community/newsletter') }}">
+            {{ _('about:addons Newsletter') }}</a></li>
+        </ul>
+      </li>
+    {% endif %}
+  </ul>
+</nav>

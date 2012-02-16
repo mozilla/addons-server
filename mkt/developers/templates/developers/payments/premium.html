@@ -1,0 +1,29 @@
+{% extends "developers/base.html" %}
+
+{% set title = _('Manage Payments') %}
+{% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
+
+{% set can_edit = check_addon_ownership(request, addon) %}
+{% block bodyclass %}
+  {{ super() }}{% if not can_edit %} no-edit{% endif %}
+{% endblock %}
+
+{% block content %}
+<header>
+  {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
+  {% if not settings.APP_PREVIEW %}
+    {{ l10n_menu(addon.default_locale) }}
+  {% endif %}
+  <h2>{{ title }}</h2>
+</header>
+<section class="primary payments devhub-form" role="main">
+<form method="post" action="{{ addon.get_dev_url('payments') }}">
+    {{ csrf() }}
+    {% include "developers/payments/includes/paypal.html" %}
+    {% include "developers/payments/includes/tier.html" %}
+    {% include "developers/payments/includes/upsell.html" %}
+    <button type="submit">{{ _('Save Changes') }}</button>
+</form>
+</section>
+{% include "developers/includes/addons_edit_nav.html" %}
+{% endblock %}

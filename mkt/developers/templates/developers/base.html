@@ -1,0 +1,64 @@
+{% if webapp or WEBAPPS %}
+  {% set webapp, WEBAPPS = True, True %}
+{% endif %}
+
+{% extends "base.html" %}
+
+{% if addon %}
+  {% set editable = "no-edit" if not check_addon_ownership(request, addon, dev=True) %}
+{% endif %}
+{% block bodyclass %}developer-hub{{ ' apps' if webapp }} {{ editable }}{% endblock %}
+
+{# Don't show the amo header on devhub pages #}
+{% set hide_header = True %}
+
+{% block bodyattrs %}
+{% if addon %}data-default-locale="{{ addon.default_locale|lower }}"{% endif %}
+{% endblock %}
+
+{% block title %}{{ hub_page_title() }}{% endblock %}
+
+{% block extrahead %}
+  {{ css('zamboni/devhub') }}
+{% endblock %}
+
+{% block aux_nav %}
+  <li class="nomenu">
+  {% if webapp %}
+    <a class="return" href="{{ url('apps.home') }}">{{ _('Back to Apps') }}</a>
+  {% else %}
+    <a class="return" href="{{ url('home') }}">{{ _('Back to Add-ons') }}</a>
+  {% endif %}
+  </li>
+{% endblock %}
+
+{% block site_header_title %}
+  {% with webapp=webapp %}
+    {% include "developers/nav.html" %}
+  {% endwith %}
+{% endblock %}
+
+{# TODO: Disable developer search. #}
+{% block search_form %}{% include "devhub/search.html" %}{% endblock %}
+
+{% block js %}
+  {# TODO(Kumar) move to base template? #}
+  <script src="{{ url('wafflejs') }}"></script>
+  {{ js('zamboni/devhub') }}
+{% endblock %}
+
+{% set hide_mobile_link=True %}
+{% block footer %}
+  {% if webapp %}
+    {% with hide_mobile_link=True %}
+      {% include "amo_footer_small.html" %}
+    {% endwith %}
+  {% else %}
+    {{ super() }}
+  {% endif %}
+{% endblock %}
+
+{% block footer_extras %}
+  <img class="footerlogo" src="{{ media('img/developers/hub-logo-footer.png') }}" alt="">
+{% endblock %}
+

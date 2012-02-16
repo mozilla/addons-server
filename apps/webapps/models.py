@@ -93,6 +93,13 @@ class Webapp(Addon):
         view = 'apps.detail_more' if more else 'apps.detail'
         return reverse(view, args=[self.app_slug])
 
+    def get_dev_url(self, action='edit', args=[]):
+        # Either link to the "new" Marketplace Developer Hub or the old one.
+        prefix = ('mkt.developers' if getattr(settings, 'MARKETPLACE', False)
+                  else 'devhub')
+        return reverse('%s.apps.%s' % (prefix, action),
+                       args=[self.app_slug] + args)
+
     @staticmethod
     def domain_from_url(url):
         if not url:

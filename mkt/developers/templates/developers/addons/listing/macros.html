@@ -1,0 +1,35 @@
+{% from 'addons/macros.html' import price %}
+
+{% macro dev_heading(addon, amo) %}
+  <h3>
+    {% set is_complete = not addon.is_incomplete() %}
+    {% if is_complete %}<a href="{{ addon.get_dev_url() }}">{% endif %}
+    <img class="icon" src="{{ addon.get_icon_url(64) }}">
+    {{ addon.name }}{% if is_complete %}</a>{% endif %}
+  </h3>
+{% endmacro %}
+
+{% macro dev_item_info(addon, amo) %}
+  {{ reviews_link(addon) }}
+  <p class="downloads">
+    {% with num=addon.weekly_downloads %}
+      {# L10n: {0} is the number of downloads. #}
+      {{ ngettext("<strong>{0}</strong> weekly download",
+                  "<strong>{0}</strong> weekly downloads",
+                  num)|f(num|numberfmt)|safe }}
+    {% endwith %}
+  </p>
+  {% if not addon.is_webapp() %}
+    <p class="users">
+      {% with num=addon.average_daily_users %}
+        {# L10n: {0} is the number of active users. #}
+        {{ ngettext("<strong>{0}</strong> active user",
+                    "<strong>{0}</strong> active users",
+                    num)|f(num|numberfmt)|safe }}
+      {% endwith %}
+    </p>
+  {% endif %}
+  {% if waffle.switch('marketplace') %}
+    <p>{{ price(addon) }}</p>
+  {% endif %}
+{% endmacro %}

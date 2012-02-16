@@ -1,0 +1,33 @@
+{% set urls = [
+  (addon.get_dev_url(), _('Edit Listing')),
+  (addon.get_dev_url('owner'), loc('Manage Authors') if webapp
+                               else _('Manage Authors & License')),
+  (addon.get_dev_url('profile'), _('Manage Developer Profile')),
+  (addon.get_dev_url('payments'), _('Manage Payments')),
+  (addon.get_dev_url('versions'), loc('Manage App Status') if webapp
+                                  else _('Manage Status & Versions')),
+] %}
+{% if addon.is_premium() and waffle.switch('allow-refund') %}
+  {% do urls.insert(4, (addon.get_dev_url('refunds'), loc('Manage Refunds'))) %}
+{% endif %}
+{% if addon.is_webapp() and waffle.switch('in-app-payments') %}
+  {% do urls.insert(4,
+    (addon.get_dev_url('in_app_config'), _('Manage In-App Payments'))
+  ) %}
+{% endif %}
+
+<section class="secondary" role="complementary">
+  <div class="highlight" id="edit-addon-nav">
+    <h3>{{ addon.name }}</h3>
+    <ul class="refinements">
+      {% for url, title in urls %}
+        <li {% if url in request.path %}class="selected"{% endif %}>
+          <a href="{{ url }}">{{ title }}</a></li>
+      {% endfor %}
+    </ul>
+    <ul class="refinements">
+      <li><a href="{{ addon.get_url_path() }}">
+        {{ _('View Listing') }}</a></li>
+    </ul>
+  </div>
+</section>

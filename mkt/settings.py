@@ -1,27 +1,37 @@
 from lib.settings_base import *
 
+# We'll soon need a `settings_test_mkt` to override this.
 APP_PREVIEW = True
+
+# So temporary. Allow us to link to new devhub URLs from `Addon.get_dev_url()`.
+MARKETPLACE = True
+
 ROOT_URLCONF = 'mkt.urls'
 TEMPLATE_DIRS += (path('mkt/templates'),)
 INSTALLED_APPS += (
     'mkt.site',
+    'mkt.developers',
     'mkt.hub',
     'mkt.submit',
     'mkt.experiments',
 )
 SUPPORTED_NONAPPS += (
+    'dev',
     'hub',
     'submit',
 )
 
-# Until there are enough context processors to warrant replacing the existing
-# ones, let's just override them.
-TEMPLATE_CONTEXT_PROCESSORS = list(TEMPLATE_CONTEXT_PROCESSORS)
-TEMPLATE_CONTEXT_PROCESSORS.remove('amo.context_processors.global_settings')
-TEMPLATE_CONTEXT_PROCESSORS += [
-    'mkt.site.context_processors.global_settings',
+# Uncomment for new hotness:
+#TEMPLATE_CONTEXT_PROCESSORS = list(TEMPLATE_CONTEXT_PROCESSORS)
+#TEMPLATE_CONTEXT_PROCESSORS.remove('amo.context_processors.global_settings')
+#TEMPLATE_CONTEXT_PROCESSORS += [
+#    'mkt.site.context_processors.global_settings',
+#    'mkt.experiments.context_processors.fragment',
+#]
+
+TEMPLATE_CONTEXT_PROCESSORS += (
     'mkt.experiments.context_processors.fragment',
-]
+)
 
 # Tests.
 NOSE_ARGS = [

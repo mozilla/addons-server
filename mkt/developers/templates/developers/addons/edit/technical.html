@@ -1,0 +1,161 @@
+{% from "developers/includes/macros.html" import tip, some_html_tip, empty_unless, flags %}
+
+<form method="post"
+      action="{{ url('mkt.developers.addons.section', addon.slug, 'technical', 'edit') }}">
+  <h3>
+    {{ _('Technical Details') }}
+    {% if not editable %}
+      <a href="#" data-editurl="{{ url('mkt.developers.addons.section', addon.slug, 'technical', 'edit') }}" class="button">
+        {{ _('Edit') }}</a>
+    {% endif %}
+  </h3>
+  <div class="item">
+    <div class="item_wrapper">
+      <table>
+        {# L10n: {0} is an addon name #}
+        <caption>{{ _('Technical Details for {0}')|f(addon.name) }}</caption>
+        <tbody>
+          <tr>
+            <th>
+              <label data-for="developer_comments">
+                {{ _("Developer Comments") }}
+                {% if webapp %}
+                  {# TODO(apps): Finalize copy. #}
+                  {{ tip(None,
+                         "Any information end users may want to know that isn't
+                          necessarily applicable to the app summary or description.
+                          Common uses include listing known major bugs, information on
+                          how to report bugs, anticipated release date of a new version,
+                          etc.") }}
+                {% else %}
+                  {{ tip(None,
+                         _("Any information end users may want to know that isn't
+                            necessarily applicable to the add-on summary or description.
+                            Common uses include listing known major bugs, information on
+                            how to report bugs, anticipated release date of a new version,
+                            etc.")) }}
+                {% endif %}
+              </label>
+            </th>
+            <td>
+              {% if editable %}
+                {{ form.developer_comments }}
+                {{ form.developer_comments.errors }}
+                {{ some_html_tip() }}
+              {% else %}
+                {% call empty_unless(addon.developer_comments) %}
+                  <div id="developer_comments">{{ addon|all_locales('developer_comments') }}</div>
+                {% endcall %}
+              {% endif %}
+            </td>
+          </tr>
+          {% if not webapp %}
+            <tr>
+              <th>
+                {{ _('Required Add-ons') }}
+                {% if editable %}
+                  <span class="hint">{{ _('Limit 3') }}</span>
+                {% endif %}
+              </th>
+              <td id="required-addons"
+                  data-src="{{ url('mkt.developers.ajax.dependencies', addon.slug) }}">
+                {% if editable %}
+                  {% include "developers/addons/edit/technical_dependencies.html" %}
+                {% else %}
+                  {% set deps = addon.all_dependencies %}
+                  {% call empty_unless(deps) %}
+                    <ul>
+                      {% for d in deps %}
+                        <li><a href="{{ d.get_url_path() }}" target="_blank">
+                          {{ d.name }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  {% endcall %}
+                {% endif %}
+              </td>
+            </tr>
+            <tr>
+              <th>
+                {{ tip(_("Add-on Flags"),
+                       _("These flags are used to classify add-ons.")) }}
+              </th>
+              <td>
+                <div id="addon-flags">
+                {{ flags(_("This is a site-specific add-on."),
+                         form.site_specific if editable else addon.site_specific, editable) }}
+
+                {{ flags(_("This add-on requires external software."),
+                         form.external_software if editable else addon.external_software,
+                         editable) }}
+
+                {% if not editable %}
+                  {% call empty_unless(addon.site_specific or addon.external_software) %}{% endcall %}
+                {% endif %}
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                {{ tip(_("View Source?"),
+                       _("Whether the source of your add-on can be displayed in our
+                          online viewer.")) }}
+              </th>
+              <td>
+                {{ flags(_("This add-on's source code is publicly viewable."),
+                         addon.view_source if not editable else form.view_source, editable,
+                         _("No, this add-on's source code is not publicly viewable.")) }}
+              </td>
+            </tr>
+            <tr>
+              <th>
+                {{ tip(_("Public Stats?"),
+                       _("Whether the download and usage stats of your add-on can
+                          be displayed in our online viewer.")) }}
+              </th>
+              <td>
+                {{ flags(_("This add-on's stats are publicly viewable."),
+                         addon.public_stats if not editable else form.public_stats, editable,
+                         _("No, this add-on's stats are not publicly viewable.")) }}
+              </td>
+            </tr>
+            {% if addon.current_version.is_jetpack %}
+            <tr>
+              <th>
+                {{ tip(_('Upgrade SDK?'),
+                       _('If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released.')) }}
+              </th>
+              <td>
+                {{ flags(_('This add-on will be automatically upgraded to new versions of the Add-on SDK.'),
+                         form.auto_repackage if editable else addon.auto_repackage, editable,
+                         _('No, this add-on will be upgraded manually.')) }}
+              </td>
+            </tr>
+            {% endif %}
+            <tr>
+              <th>
+                <abbr title="{{ _('Universally unique identifier') }}" class="label">
+                  {{ _('UUID') }}
+                </abbr>
+                <span class="tip tooltip" title="{% trans -%}The UUID of your
+                  add-on is specified in its install manifest and uniquely
+                  identifies it. You cannot change your UUID once it has been
+                  submitted.{%- endtrans %}">?</span>
+              </th>
+              <td>
+                {{ addon.guid }}
+              </td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+    {% if editable %}
+    <div class="listing-footer">
+      <button>{{ _('Save Changes') }}</button> {{ _('or') }}
+      <a href="{{ url('mkt.developers.addons.section', addon.slug, 'technical') }}"
+        class="addon-edit-cancel">
+        {{ _('Cancel') }}</a>
+    </div>
+    {% endif %}
+  </div>
+</form>
