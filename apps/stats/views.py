@@ -310,7 +310,7 @@ def get_report_view(request):
 
 
 def get_daterange_or_404(start, end):
-    """Parse and validate a pair of YYYMMDD date strings."""
+    """Parse and validate a pair of YYYYMMDD date strings."""
     try:
         assert len(start) == 8
         assert len(end) == 8
@@ -391,8 +391,8 @@ def contributions_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-@memoize('site-csv')
-def _site_query(period):
+@memoize(prefix='global_stats', time=60 * 60)
+def _site_query(period, start, end):
     # Cached lookup of the keys and the SQL.
     # Taken from remora, a mapping of the old values.
     keys = {
@@ -410,12 +410,12 @@ def _site_query(period):
     assert period in SERIES_GROUPS_DATE, '%s period is not valid.'
     sql = ("SELECT name, MIN(date), SUM(count) "
            "FROM global_stats "
-           "WHERE date > DATE_SUB(CURDATE(), INTERVAL 1 YEAR) "
+           "WHERE date > %%s AND date < %%s "
            "AND name IN (%s) "
            "GROUP BY %s(date), name "
            "ORDER BY %s(date) DESC;"
            % (', '.join(['%s' for key in keys.keys()]), period, period))
-    cursor.execute(sql, keys.keys())
+    cursor.execute(sql, [start, end] + keys.keys())
 
     # Process the results into a format that is friendly for render_*.
     default = dict([(k, 0) for k in keys.values()])
@@ -430,9 +430,16 @@ def _site_query(period):
     return result.values(), sorted(keys.values())
 
 
-def site(request, format, group):
+def site(request, format, group, start=None, end=None):
     """Site data from the global_stats table."""
-    series, keys = _site_query(group)
+    if not start and not end:
+        start = (date.today() - timedelta(days=365)).strftime('%Y%m%d')
+        end = date.today().strftime('%Y%m%d')
+
+    group = 'date' if group == 'day' else group
+    start, end = get_daterange_or_404(start, end)
+    series, keys = _site_query(group, start, end)
+
     if format == 'csv':
         return render_csv(request, None, series, ['date'] + keys,
                           title='addons.mozilla.org week Site Statistics',

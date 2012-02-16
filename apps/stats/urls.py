@@ -6,12 +6,14 @@ group_re = '(?P<group>' + '|'.join(views.SERIES_GROUPS) + ')'
 group_date_re = '(?P<group>' + '|'.join(views.SERIES_GROUPS_DATE) + ')'
 range_re = '(?P<start>\d{8})-(?P<end>\d{8})'
 format_re = '(?P<format>' + '|'.join(views.SERIES_FORMATS) + ')'
-series = dict((type, '^%s-%s-%s\.%s$' % (type, group_re, range_re, format_re))
-              for type in views.SERIES)
+series_re = '%s-%s\.%s$' % (group_re, range_re, format_re)
+series = dict((type, '%s-%s' % (type, series_re)) for type in views.SERIES)
+
 
 urlpatterns = patterns('',
     url('^site%s/%s$' % (format_re, group_date_re),
-        views.site, name='stats.site')
+        views.site, name='stats.site'),
+    url('^site-%s' % series_re, views.site, name='stats.site.new')
 )
 
 # Addon specific stats.

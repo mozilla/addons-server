@@ -701,10 +701,20 @@ class TestSite(amo.tests.TestCase):
         eq_(content[0]['addons_created'], 14)
 
     def test_site_query(self):
-        self.assertRaises(AssertionError, views._site_query, "DELETE ...")
+        self.assertRaises(AssertionError, views._site_query, "DELETE ...",
+                          None, None)
 
     def tests_week_csv(self):
         res = self.client.get(reverse('stats.site', args=['csv', 'week']))
         eq_(res.status_code, 200)
         date = '%s-%02d-%02d' % (self.today.year, self.today.month, 1)
         assert '%s,10,0,0,10,0,0,0' % date in res.content
+
+    def test_date_range(self):
+        end = self.today.strftime('%Y%m%d')
+        start = (self.today - datetime.timedelta(days=365)).strftime('%Y%m%d')
+        res = self.client.get(reverse('stats.site.new',
+                                      args=['day', start, end, 'json']))
+        content = json.loads(res.content)
+        eq_(len(content), 14)
+        eq_(content[0]['addons_created'], 14)
