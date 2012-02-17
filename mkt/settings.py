@@ -5,6 +5,8 @@ from lib.settings_base import *
 # We'll soon need a `settings_test_mkt` to override this.
 APP_PREVIEW = True
 
+WAFFLE_TABLE_SUFFIX = 'mkt'
+
 # So temporary. Allow us to link to new devhub URLs from `Addon.get_dev_url()`.
 MARKETPLACE = True
 
