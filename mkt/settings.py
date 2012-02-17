@@ -31,7 +31,9 @@ TEMPLATE_CONTEXT_PROCESSORS += [
 # Tests.
 NOSE_ARGS = [
     '--with-fixture-bundling',
-    '--exclude=default/*',
+    # exclude is a regex that operates on the basename of the test file (or
+    # directory) or the class / method name of the test.
+    '--exclude=devhub',  # replaced by mkt.developers
 ]
 
 NO_ADDONS_MODULES = (
