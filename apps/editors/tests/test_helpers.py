@@ -329,9 +329,10 @@ class TestReviewHelper(amo.tests.TestCase):
             'to appear on the public side.')
 
     def test_action_premium(self):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        self.assertRaises(KeyError, self.get_action,
-                          amo.STATUS_NOMINATED, 'prelim')
+        for type_ in amo.ADDON_PREMIUMS:
+            self.addon.update(premium_type=type_)
+            self.assertRaises(KeyError, self.get_action,
+                              amo.STATUS_NOMINATED, 'prelim')
 
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
@@ -468,11 +469,12 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
 
     def to_preliminary_premium(self, statuses):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        for status in helpers.NOMINATED_STATUSES:
-            self.setup_data(status)
-            self.assertRaises(AssertionError,
-                              self.helper.handler.process_preliminary)
+        for type_ in amo.ADDON_PREMIUMS:
+            self.addon.update(premium_type=type_)
+            for status in helpers.NOMINATED_STATUSES:
+                self.setup_data(status)
+                self.assertRaises(AssertionError,
+                                  self.helper.handler.process_preliminary)
 
     def test_nomination_to_preliminary_premium(self):
         self.to_preliminary_premium(helpers.NOMINATED_STATUSES)

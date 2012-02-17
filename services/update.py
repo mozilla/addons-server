@@ -260,7 +260,7 @@ class Update(object):
                 'version', 'premium_type'],
                 list(result)))
             row['type'] = base.ADDON_SLUGS_UPDATE[row['type']]
-            if row['premium_type'] == base.ADDON_PREMIUM:
+            if row['premium_type'] in base.ADDON_PREMIUMS:
                 qs = urlencode(dict((k, data.get(k, ''))
                                for k in base.WATERMARK_KEYS))
                 row['url'] = (u'%s/downloads/watermarked/%s?%s' %

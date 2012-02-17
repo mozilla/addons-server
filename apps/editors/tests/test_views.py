@@ -678,15 +678,16 @@ class TestQueueBasics(QueueTest):
     def test_flags_premium(self):
         ad = create_addon_file('Premium add-on', '0.1', amo.STATUS_NOMINATED,
                                amo.STATUS_UNREVIEWED)
-        ad['addon'].update(premium_type=amo.ADDON_PREMIUM)
+        for type_ in amo.ADDON_PREMIUMS:
+            ad['addon'].update(premium_type=type_)
 
-        r = self.client.get(reverse('editors.queue_nominated'))
+            r = self.client.get(reverse('editors.queue_nominated'))
 
-        rows = pq(r.content)('#addon-queue tr.addon-row')
-        eq_(rows.length, 1)
-        eq_(rows.attr('data-addon'), str(ad['addon'].id))
-        eq_(rows.find('td').eq(1).text(), 'Premium add-on 0.1')
-        eq_(rows.find('.ed-sprite-premium').length, 1)
+            rows = pq(r.content)('#addon-queue tr.addon-row')
+            eq_(rows.length, 1)
+            eq_(rows.attr('data-addon'), str(ad['addon'].id))
+            eq_(rows.find('td').eq(1).text(), 'Premium add-on 0.1')
+            eq_(rows.find('.ed-sprite-premium').length, 1)
 
 
 class TestPendingQueue(QueueTest):
@@ -1826,19 +1827,21 @@ class TestReview(ReviewBase):
     # TODO: Remove 'marketplace' switch.
     @patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
     def test_show_premium(self):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.get(self.url)
-        premium = pq(res.content)('#premium-type')
-        eq_(premium.length, 1)
-        eq_(premium.text(), 'Premium')
+        for type_ in amo.ADDON_PREMIUMS:
+            self.addon.update(premium_type=type_)
+            res = self.client.get(self.url)
+            premium = pq(res.content)('#premium-type')
+            eq_(premium.length, 1)
+            assert premium.text().startswith('Premium')
 
     def test_download_watermarked(self):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.get(self.url)
-        doc = pq(res.content)
-        url = doc('#review-files .file-info .install').attr('href')
-        assert 'watermarked' in url, (
-            'Expected XPI URL to be watermarked: %r' % url)
+        for type_ in amo.ADDON_PREMIUMS:
+            self.addon.update(premium_type=type_)
+            res = self.client.get(self.url)
+            doc = pq(res.content)
+            url = doc('#review-files .file-info .install').attr('href')
+            assert 'watermarked' in url, (
+                'Expected XPI URL to be watermarked: %r' % url)
 
 
 class TestReviewPreliminary(ReviewBase):

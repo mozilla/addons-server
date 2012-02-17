@@ -775,10 +775,10 @@ class TestWebappSearch(PaidAppMixin, amo.tests.ESTestCase):
             eq_(json.loads(attrs), dict(tag='sky', page=None),
                 'Invalid data-params on tag links for %s: %s' % (url, attrs))
 
-    def _test_price_filter(self, price, selected):
+    def _test_price_filter(self, price, selected, type_=None):
         waffle.models.Switch.objects.create(name='marketplace', active=True)
 
-        self.setup_paid()
+        self.setup_paid(type_=type_)
         self.refresh()
 
         r = self.client.get(self.url, {'price': price})
@@ -795,11 +795,21 @@ class TestWebappSearch(PaidAppMixin, amo.tests.ESTestCase):
     def test_free_and_premium(self):
         eq_(self._test_price_filter('', 'Free & Premium'), self.both)
 
-    def test_free_only(self):
-        eq_(self._test_price_filter('free', 'Free Only'), self.free)
+    def test_free_and_premium_inapp(self):
+        eq_(self._test_price_filter('', 'Free & Premium',
+                                    amo.ADDON_PREMIUM_INAPP),
+            self.both)
+
+    def test_free_and_inapp_only(self):
+        eq_(self._test_price_filter('free', 'Free Only',
+                                    amo.ADDON_FREE_INAPP), self.free)
 
     def test_premium_only(self):
         eq_(self._test_price_filter('paid', 'Premium Only'), self.paid)
+
+    def test_premium_inapp_only(self):
+        eq_(self._test_price_filter('paid', 'Premium Only',
+                                    amo.ADDON_PREMIUM_INAPP), self.paid)
 
 
 class TestAjaxSearch(amo.tests.ESTestCase):

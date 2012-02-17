@@ -219,27 +219,35 @@ class TestReceipt(amo.tests.TestCase):
         assert ins.receipt != ins_other.receipt
 
     def test_addon_premium(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        self.create_install(self.user, self.webapp)
-        assert self.webapp.get_receipt(self.user)
+        for type_ in amo.ADDON_PREMIUMS:
+            self.webapp.update(premium_type=type_)
+            self.create_install(self.user, self.webapp)
+            assert self.webapp.get_receipt(self.user)
 
     def test_addon_free(self):
-        self.webapp.update(premium_type=amo.ADDON_FREE)
-        self.create_install(self.user, self.webapp)
-        assert self.webapp.get_receipt(self.user)
+        for type_ in amo.ADDON_FREES:
+            self.webapp.update(premium_type=amo.ADDON_FREE)
+            self.create_install(self.user, self.webapp)
+            assert self.webapp.get_receipt(self.user)
 
     def test_install_has_email(self):
         install = self.create_install(self.user, self.webapp)
         eq_(install.email, u'regular@mozilla.com')
 
     def test_install_not_premium(self):
-        install = self.create_install(self.user, self.webapp)
-        eq_(install.premium_type, amo.ADDON_FREE)
+        for type_ in amo.ADDON_FREES:
+            self.webapp.update(premium_type=type_)
+            Installed.objects.all().delete()
+            install = self.create_install(self.user,
+                            Webapp.objects.get(pk=self.webapp.pk))
+            eq_(install.premium_type, type_)
 
     def test_install_premium(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        install = self.create_install(self.user, self.webapp)
-        eq_(install.premium_type, amo.ADDON_PREMIUM)
+        for type_ in amo.ADDON_PREMIUMS:
+            self.webapp.update(premium_type=type_)
+            Installed.objects.all().delete()
+            install = self.create_install(self.user, self.webapp)
+            eq_(install.premium_type, type_)
 
     @mock.patch('jwt.encode')
     def test_receipt_data(self, encode):

@@ -167,7 +167,7 @@ class ViewQueue(RawSQLModel):
 
     @property
     def is_premium(self):
-        return self.premium_type == amo.ADDON_PREMIUM
+        return self.premium_type in amo.ADDON_PREMIUMS
 
     @property
     def file_platform_vers(self):

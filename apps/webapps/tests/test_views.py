@@ -39,7 +39,8 @@ class WebappTest(amo.tests.TestCase):
 
 class PaidAppMixin(object):
 
-    def setup_paid(self):
+    def setup_paid(self, type_=None):
+        type_ = amo.ADDON_PREMIUM if type_ is None else type_
         self.free = [
             Webapp.objects.get(id=337141),
             amo.tests.addon_factory(type=amo.ADDON_WEBAPP),
@@ -51,7 +52,7 @@ class PaidAppMixin(object):
             addon = amo.tests.addon_factory(type=amo.ADDON_WEBAPP,
                                             weekly_downloads=x * 100)
             AddonPremium.objects.create(price=price, addon=addon)
-            addon.update(premium_type=amo.ADDON_PREMIUM)
+            addon.update(premium_type=type_)
             self.paid.append(addon)
 
         # For measure add some disabled free apps ...

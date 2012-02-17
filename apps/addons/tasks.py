@@ -111,7 +111,7 @@ def attach_prices(addons):
     addon_dict = dict((a.id, a) for a in addons)
     prices = (AddonPremium.objects
               .filter(addon__in=addon_dict,
-                      addon__premium_type=amo.ADDON_PREMIUM)
+                      addon__premium_type__in=amo.ADDON_PREMIUMS)
               .values_list('addon', 'price__price'))
     for addon, price in prices:
         addon_dict[addon].price = price

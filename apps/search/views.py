@@ -486,7 +486,7 @@ def _filter_search(request, qs, query, filters, sorting, types):
             qs = qs.filter(category=query['cat'])
     if 'price' in show:
         if query['price'] == 'paid':
-            qs = qs.filter(premium_type=amo.ADDON_PREMIUM, price__gt=0)
+            qs = qs.filter(premium_type__in=amo.ADDON_PREMIUMS, price__gt=0)
         elif query['price'] == 'free':
             qs = qs.filter(premium_type=amo.ADDON_FREE, price=0)
     if 'tag' in show:

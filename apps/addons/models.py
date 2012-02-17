@@ -106,7 +106,7 @@ class AddonManager(amo.models.ManagerBase):
     def top_free(self, app, listed=True):
         qs = (self.listed(app) if listed else
               self.filter(appsupport__app=app.id))
-        return (qs.exclude(premium_type=amo.ADDON_PREMIUM)
+        return (qs.exclude(premium_type__in=amo.ADDON_PREMIUMS)
                 .exclude(addonpremium__price__price__isnull=False)
                 .order_by('-weekly_downloads')
                 .with_index(addons='downloads_type_idx'))
@@ -114,7 +114,7 @@ class AddonManager(amo.models.ManagerBase):
     def top_paid(self, app, listed=True):
         qs = (self.listed(app) if listed else
               self.filter(appsupport__app=app.id))
-        return (qs.filter(premium_type=amo.ADDON_PREMIUM,
+        return (qs.filter(premium_type__in=amo.ADDON_PREMIUMS,
                           addonpremium__price__price__isnull=False)
                 .order_by('-weekly_downloads')
                 .with_index(addons='downloads_type_idx'))
@@ -872,7 +872,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 and self.type in amo.ADDON_BECOME_PREMIUM)
 
     def is_premium(self):
-        return self.premium_type == amo.ADDON_PREMIUM
+        return self.premium_type in amo.ADDON_PREMIUMS
 
     def can_be_purchased(self):
         return self.is_premium() and self.status in amo.REVIEWED_STATUSES

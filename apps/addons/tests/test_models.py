@@ -137,16 +137,16 @@ class TestAddonManager(amo.tests.TestCase):
 
     def test_top_free_all(self):
         addons = list(Addon.objects.filter(appsupport__app=amo.FIREFOX.id)
-                     .exclude(premium_type=amo.ADDON_PREMIUM)
+                     .exclude(premium_type__in=amo.ADDON_PREMIUMS)
                      .exclude(addonpremium__price__price__isnull=False))
         eq_(list(Addon.objects.top_free(amo.FIREFOX, listed=False)),
             sorted(addons, key=lambda x: x.weekly_downloads, reverse=True))
         eq_(list(Addon.objects.top_free(amo.THUNDERBIRD, listed=False)), [])
 
-    def make_paid(self, addons):
+    def make_paid(self, addons, type=amo.ADDON_PREMIUM):
         price = Price.objects.create(price='1.00')
         for addon in addons:
-            addon.update(premium_type=amo.ADDON_PREMIUM)
+            addon.update(premium_type=type)
             AddonPremium.objects.create(addon=addon, price=price)
 
     def test_top_paid_public(self):
@@ -161,6 +161,15 @@ class TestAddonManager(amo.tests.TestCase):
         for addon in addons:
             addon.update(status=amo.STATUS_LITE)
         self.make_paid(addons)
+        eq_(list(Addon.objects.top_paid(amo.FIREFOX, listed=False)),
+            sorted(addons, key=lambda x: x.weekly_downloads, reverse=True))
+        eq_(list(Addon.objects.top_paid(amo.THUNDERBIRD, listed=False)), [])
+
+    def test_top_paid_in_app_all(self):
+        addons = list(Addon.objects.listed(amo.FIREFOX)[:3])
+        for addon in addons:
+            addon.update(status=amo.STATUS_LITE)
+        self.make_paid(addons, amo.ADDON_PREMIUM_INAPP)
         eq_(list(Addon.objects.top_paid(amo.FIREFOX, listed=False)),
             sorted(addons, key=lambda x: x.weekly_downloads, reverse=True))
         eq_(list(Addon.objects.top_paid(amo.THUNDERBIRD, listed=False)), [])
@@ -1752,6 +1761,16 @@ class TestMarketplace(amo.tests.TestCase):
         assert not self.addon.is_premium()
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         assert self.addon.is_premium()
+
+    def test_is_premium_inapp(self):
+        assert not self.addon.is_premium()
+        self.addon.update(premium_type=amo.ADDON_PREMIUM_INAPP)
+        assert self.addon.is_premium()
+
+    def test_is_premium_free(self):
+        assert not self.addon.is_premium()
+        self.addon.update(premium_type=amo.ADDON_FREE_INAPP)
+        assert not self.addon.is_premium()
 
     def test_can_be_premium_upsell(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
