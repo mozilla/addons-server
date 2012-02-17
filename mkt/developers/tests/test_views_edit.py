@@ -239,7 +239,7 @@ class TestEditBasic(TestEdit):
 
     def test_redirect(self):
         # /addon/:id => /addon/:id/edit
-        r = self.client.get('/en-US/dev/addon/3615/', follow=True)
+        r = self.client.get('/en-US/developers/addon/3615/', follow=True)
         self.assertRedirects(r, self.url, 301)
 
     def test_addons_context(self):

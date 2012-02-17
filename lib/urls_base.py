@@ -18,11 +18,6 @@ handler404 = 'amo.views.handler404'
 handler500 = 'amo.views.handler500'
 
 
-# Get the correct home for APP_PREVIEW, temporary.
-home = ('webapps.views.app_home' if settings.APP_PREVIEW
-                                 else 'addons.views.home')
-
-
 urlpatterns = patterns('',
     # Discovery pane is first for undetectable efficiency wins.
     ('^discovery/', include('discovery.urls')),
@@ -33,7 +28,8 @@ urlpatterns = patterns('',
         blocklist.views.blocklist, name='blocklist'),
     ('^blocked/', include('blocklist.urls')),
 
-    url('$^', home, name='home'),
+    # AMO homepage or Marketplace Developer Hub? Choose your destiny.
+    url('$^', settings.HOME, name='home'),
 
     # Add-ons.
     ('', include('addons.urls')),
@@ -193,6 +189,7 @@ if 'django_qunit' in settings.INSTALLED_APPS:
         # (This will be fixed in `jingo-minify` with bug 717094.)
         from jingo_minify.helpers import _build_html
         import jinja2
+
         def js(bundle, defer=False, async=False):
             items = settings.MINIFY_BUNDLES['js'][bundle]
             attrs = ['src="%s?v=%s"' % ('%s', time())]

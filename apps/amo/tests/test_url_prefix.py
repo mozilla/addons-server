@@ -42,19 +42,21 @@ class MiddlewareTest(test.TestCase):
             eq_(response.status_code, 301)
             eq_(response['Location'], location)
 
-    @patch.object(settings, 'APP_PREVIEW', True)
-    def test_app_redirection(self):
+    @patch.object(settings, 'APP_PREVIEW', True)  # To disable L10n detection.
+    @patch.object(settings, 'MARKETPLACE', True)  # For /developers/ redirect.
+    def test_marketplace_redirection(self):
         # We're forcing en-US since Marketplace isn't localized yet.
         redirections = {
-            '/': '/en-US/apps/',
-            '/en-US/': '/en-US/apps/',
-            '/fr/': '/en-US/apps/',
+            '/': '/en-US/developers',
+            '/en-US/': '/en-US/developers',
+            '/fr/': '/en-US/developers',
             '/fr/developers': '/en-US/developers',
         }
         for path, location in redirections.items():
             response = self.middleware.process_request(self.rf.get(path))
-            eq_(response.status_code, 301)
-            eq_(response['Location'], location)
+            eq_(response.status_code, 301, 'Expected a 301 for %s' % path)
+            eq_(response['Location'], location,
+                '%s -> %s went to %s' % (path, location, response['Location']))
 
     def process(self, *args, **kwargs):
         request = self.rf.get(*args, **kwargs)
@@ -185,19 +187,6 @@ class TestPrefixer:
         urlresolvers.set_url_prefix(prefixer)
         set_script_prefix('/oremj')
         eq_(urlresolvers.reverse('home'), '/oremj/en-US/firefox/')
-
-    @patch.object(settings, 'APP_PREVIEW', True)
-    def test_app_preview(self):
-        rf = test_utils.RequestFactory()
-        request = rf.get('/')
-        prefixer = urlresolvers.Prefixer(request)
-        eq_(prefixer.fix(prefixer.shortened_path), '/en-US/apps/')
-
-    @patch.object(settings, 'APP_PREVIEW', True)
-    def test_home(self):
-        client = test.Client()
-        client.get('/')
-        eq_(urlresolvers.reverse('home'), '/en-US/apps/')
 
 
 class TestPrefixerActivate(amo.tests.TestCase):

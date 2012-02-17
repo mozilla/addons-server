@@ -1357,6 +1357,12 @@ CELERY_DISABLE_RATE_LIMITS = True
 # if you want to experience app-preview.mozilla.org.
 APP_PREVIEW = False
 
+# Super temporary.
+MARKETPLACE = False
+
+# Name of view to use for homepage. AMO uses this. Marketplace has its own.
+HOME = 'addons.views.home'
+
 # Sets an upper limit on the number of users. If 0, it's ignored. If the
 # number of users meets or exceeds this, they can't register.
 REGISTER_USER_LIMIT = 0

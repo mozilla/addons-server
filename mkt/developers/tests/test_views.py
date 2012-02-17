@@ -88,9 +88,10 @@ class AppHubTest(HubTest):
 class TestHome(HubTest):
 
     def test_home(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'developers/index.html')
+        for url in [self.url, reverse('home')]:
+            r = self.client.get(self.url, follow=True)
+            eq_(r.status_code, 200)
+            self.assertTemplateUsed(r, 'developers/index.html')
 
 
 class TestAppBreadcrumbs(AppHubTest):
