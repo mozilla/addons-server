@@ -46,7 +46,7 @@ from mkt.developers import perf
 from editors.helpers import get_position
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
-from market.models import AddonPremium, Refund
+from market.models import AddonPremium, Refund, AddonPaymentData
 from payments.models import InappConfig
 from paypal.check import Check
 import paypal
@@ -247,6 +247,118 @@ def payments(request, addon_id, addon, webapp=False):
     return _voluntary(request, addon_id, addon, webapp)
 
 
+# PayPal config, the next generation.
+@dev_required(owner_for_post=True, webapp=True)
+def paypal_setup(request, addon_id, addon, webapp):
+    form = forms.PaypalSetupForm(request.POST or None)
+    context = {'addon': addon, 'form': form}
+    if form.is_valid():
+        existing = form.cleaned_data['business_account']
+        if not existing:
+            # Go create an account.
+            # TODO: this will either become the API or something some better
+            # URL for the future.
+            return redirect(settings.PAYPAL_CGI_URL)
+        else:
+            # Go setup your details on paypal.
+            addon.update(paypal_id=form.cleaned_data['email'])
+            if addon.premium and addon.premium.paypal_permissions_token:
+                addon.premium.update(paypal_permissions_token='')
+            return redirect(addon.get_dev_url('paypal_setup_bounce'))
+
+    return jingo.render(request, 'developers/payments/paypal-setup.html',
+                        context)
+
+
+@dev_required(owner_for_post=True, webapp=True)
+def paypal_setup_check(request, addon_id, addon, webapp):
+    assert addon.paypal_id
+    check = Check(addon)
+    check.all()
+    return jingo.render(request,
+                        'developers/payments/paypal-check.html',
+                        {'addon': addon, 'check': check})
+
+
+@dev_required(owner_for_post=True, webapp=True)
+def paypal_setup_bounce(request, addon_id, addon, webapp):
+    assert addon.paypal_id
+    paypal_url = paypal.get_permission_url(addon, 'payments',
+                                        ['REFUND',
+                                         'ACCESS_BASIC_PERSONAL_DATA',
+                                         'ACCESS_ADVANCED_PERSONAL_DATA'])
+
+    return jingo.render(request,
+                    'developers/payments/paypal-details-request.html',
+                    {'paypal_url': paypal_url, 'addon': addon})
+
+
+@dev_required(owner_for_post=True, webapp=True)
+def paypal_setup_confirm(request, addon_id, addon, webapp):
+    adp, created = AddonPaymentData.objects.safer_get_or_create(addon=addon)
+    form = forms.PaypalPaymentData(request.POST or None, instance=adp)
+    if request.method == 'POST' and form.is_valid():
+        adp.update(**form.cleaned_data)
+        messages.success(request, 'PayPal set up complete.')
+        return redirect(addon.get_dev_url('paypal_setup'))
+
+    return jingo.render(request,
+                    'developers/payments/paypal-details-confirm.html',
+                    {'form': form, 'addon': addon})
+
+
+@write
+@dev_required(webapp=True)
+def acquire_refund_permission(request, addon_id, addon, webapp=False):
+    """This is the callback from Paypal."""
+    if 'request_token' not in request.GET:
+        paypal_log.debug('User did not approve permissions for'
+                         ' addon: %s' % addon_id)
+        messages.error(request, 'You will need to accept the permissions '
+                                'to continue.')
+        return redirect(addon.get_dev_url('paypal_setup_bounce'))
+
+    paypal_log.debug('User approved permissions for addon: %s' % addon_id)
+
+    token = paypal.get_permissions_token(request.GET['request_token'],
+                                         request.GET['verification_code'])
+    paypal_log.debug('Got refund token for addon: %s, token: %s....' %
+                     (addon_id, token[:10]))
+
+    # Sadly this is an update on a GET.
+    addonpremium, created = (AddonPremium.objects
+                                         .safer_get_or_create(addon=addon))
+
+    paypal_log.debug('AddonPremium %s for: %s' %
+                     ('created' if created else 'updated', addon.pk))
+    addonpremium.update(paypal_permissions_token=token)
+    paypal_log.debug('AddonPremium saved with token: %s' % addonpremium.pk)
+
+    paypal_log.debug('Getting personal data for token: %s' % addonpremium.pk)
+    apd, created = AddonPaymentData.objects.safer_get_or_create(addon=addon)
+
+    # A sanity check, I'm not sure if this should be fatal and will
+    # occur on the prod server or it's just sandbox wierdness.
+    data = paypal.get_personal_data(token)
+    if data['email'] != addon.paypal_id:
+        paypal_log.debug('Addon paypal_id and personal data differ: '
+                         '%s vs %s' % (data['email'], addon.paypal_id))
+        messages.warning(request, 'Warning the email returned by Paypal (%s) '
+                         'did not match the PayPal email you entered (%s), '
+                         'please be sure that you have the correct account.'
+                         % (data['email'], addon.paypal_id))
+    apd.update(**data)
+    paypal_log.debug('Updating personal data for: %s' % apd.pk)
+
+    paypal_log.debug('AddonPremium saved with token: %s' % addonpremium.pk)
+    amo.log(amo.LOG.EDIT_PROPERTIES, addon)
+
+    messages.success(request, 'Please confirm the data we '
+                              'received from PayPal.')
+    return redirect(addon.get_dev_url('paypal_setup_confirm'))
+# End of new paypal stuff.
+
+
 @waffle_switch('in-app-payments')
 @dev_required(owner_for_post=True, webapp=True)
 @transaction.commit_on_success
@@ -345,33 +457,6 @@ def _save_charity(addon, contrib_form, charity_form):
         else:
             return False
     return True
-
-
-@write
-@dev_required(webapp=True)
-def acquire_refund_permission(request, addon_id, addon, webapp=False):
-    """This is the callback from Paypal."""
-    paypal_log.debug('User approved refund for addon: %s' % addon_id)
-    token = paypal.get_permissions_token(request.GET['request_token'],
-                                         request.GET['verification_code'])
-    paypal_log.debug('Got refund token for addon: %s, token: %s....' %
-                     (addon_id, token[:10]))
-
-    # Sadly this is an update on a GET.
-    addonpremium, created = (AddonPremium.objects
-                                         .safer_get_or_create(addon=addon))
-
-    paypal_log.debug('AddonPremium %s for: %s' %
-                     ('created' if created else 'updated', addon.pk))
-    addonpremium.update(paypal_permissions_token=token)
-
-    paypal_log.debug('AddonPremium saved with token: %s' % addonpremium.pk)
-    amo.log(amo.LOG.EDIT_PROPERTIES, addon)
-
-    dest = 'payments'
-    if request.GET.get('dest') == 'wizard':
-        dest = 'market.1'
-    return redirect(addon.get_dev_url(dest))
 
 
 @waffle_switch('allow-refund')

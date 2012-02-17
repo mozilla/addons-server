@@ -84,17 +84,17 @@ INAPP_STATUS_CHOICES = (
 )
 
 PAYPAL_PERSONAL = {
-    'first': 'http://axschema.org/namePerson/first',
-    'last': 'http://axschema.org/namePerson/last',
+    'first_name': 'http://axschema.org/namePerson/first',
+    'last_name': 'http://axschema.org/namePerson/last',
     'email': 'http://axschema.org/contact/email',
-    'fullname': 'http://schema.openid.net/contact/fullname',
+    'full_name': 'http://schema.openid.net/contact/fullname',
     'company': 'http://openid.net/schema/company/name',
     'country': 'http://axschema.org/contact/country/home',
     'payerID': 'https://www.paypal.com/webapps/auth/schema/payerID',
-    'birthDate': 'http://axschema.org/birthDate',
-    'home': 'http://axschema.org/contact/postalCode/home',
-    'street1': 'http://schema.openid.net/contact/street1',
-    'street2': 'http://schema.openid.net/contact/street2',
+    'date_of_birth': 'http://axschema.org/birthDate',
+    'post_code': 'http://axschema.org/contact/postalCode/home',
+    'address_one': 'http://schema.openid.net/contact/street1',
+    'address_two': 'http://schema.openid.net/contact/street2',
     'city': 'http://axschema.org/contact/city/home',
     'state': 'http://axschema.org/contact/state/home',
     'phone': 'http://axschema.org/contact/phone/default'

@@ -58,7 +58,40 @@ app_detail_patterns = patterns('',
     url('^delete$', views.delete, name='mkt.developers.apps.delete'),
     url('^disable$', views.disable, name='mkt.developers.apps.disable'),
     url('^status$', views.version_list, name='mkt.developers.apps.versions'),
+
     url('^payments$', views.payments, name='mkt.developers.apps.payments'),
+    # PayPal specific stuff.
+    url('^payments/paypal$', views.paypal_setup,
+        name='mkt.developers.apps.paypal_setup'),
+    url('^payments/paypal/confirm$', views.paypal_setup_confirm,
+        name='mkt.developers.apps.paypal_setup_confirm'),
+    url('^payments/paypal/bounce$', views.paypal_setup_bounce,
+        name='mkt.developers.apps.paypal_setup_bounce'),
+    url('^payments/paypal/check$', views.paypal_setup_check,
+        name='mkt.developers.apps.paypal_setup_check'),
+    # PayPal in-app stuff.
+    url('^in-app-config$', views.in_app_config,
+        name='mkt.developers.apps.in_app_config'),
+    url('^in-app-secret$', views.in_app_secret,
+        name='mkt.developers.apps.in_app_secret'),
+    # Response from paypal.
+    url('^payments/disable$', views.disable_payments,
+        name='mkt.developers.apps.payments.disable'),
+    url('^payments/permission/refund$', views.acquire_refund_permission,
+        name='mkt.developers.apps.acquire_refund_permission'),
+    # Old stuff.
+    #url('^payments/', include(marketplace_patterns('apps'))),
+
+    url('^profile$', views.profile, name='mkt.developers.apps.profile'),
+    url('^profile/remove$', views.remove_profile,
+        name='mkt.developers.apps.profile.remove'),
+    url('^issue_refund$', views.issue_refund,
+        name='mkt.developers.apps.issue_refund'),
+    url('^refunds$', views.refunds, name='mkt.developers.apps.refunds'),
+)
+
+# These will all start with /addon/<addon_id>/
+detail_patterns = patterns('',
     url('^in-app-config$', views.in_app_config,
         name='mkt.developers.apps.in_app_config'),
     url('^in-app-secret$', views.in_app_secret,
@@ -68,6 +101,7 @@ app_detail_patterns = patterns('',
     url('^payments/permission/refund$', views.acquire_refund_permission,
         name='mkt.developers.apps.acquire_refund_permission'),
     url('^payments/', include(marketplace_patterns('apps'))),
+
     url('^profile$', views.profile, name='mkt.developers.apps.profile'),
     url('^profile/remove$', views.remove_profile,
         name='mkt.developers.apps.profile.remove'),

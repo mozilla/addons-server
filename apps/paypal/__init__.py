@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import contextlib
+from datetime import date
 from decimal import Decimal, InvalidOperation
 import socket
 import urllib
@@ -265,13 +266,13 @@ def get_personal_data(token):
         'GetBasicPersonalData':
             {'attributeList.attribute':
                 [amo.PAYPAL_PERSONAL[k] for k in
-                    ['first', 'last', 'email', 'fullname',
+                    ['first_name', 'last_name', 'email', 'full_name',
                      'company', 'country', 'payerID']]},
         'GetAdvancedPersonalData':
             {'attributeList.attribute':
                 [amo.PAYPAL_PERSONAL[k] for k in
-                    ['birthDate', 'home', 'street1',
-                     'street2', 'city', 'state', 'phone']]}
+                    ['date_of_birth', 'post_code', 'address_one',
+                     'address_two', 'city', 'state', 'phone']]}
         }
 
     result = {}
@@ -283,6 +284,15 @@ def get_personal_data(token):
                 v_ = amo.PAYPAL_PERSONAL_LOOKUP[v]
                 # If the value isn't present the value won't be there.
                 result[v_] = data.get(k_ + '.personalDataValue', '')
+
+    if result.get('date_of_birth'):
+        dob = result['date_of_birth']
+        try:
+            result['date_of_birth'] = date(int(dob[0:4]), int(dob[7:8]),
+                                           int(dob[5:6]))
+        except (TypeError, ValueError):
+            paypal_log.debug('Could not parse date_of_birth: %s' % dob)
+            del result['date_of_birth']
 
     return result
 
@@ -331,8 +341,7 @@ def get_permission_url(addon, dest, scope):
     paypal_log.debug('Getting refund permission URL for addon: %s' % addon.pk)
 
     with statsd.timer('paypal.permissions.url'):
-        url = urlparams(reverse('devhub.addons.acquire_refund_permission',
-                                args=[addon.slug]),
+        url = urlparams(addon.get_dev_url('acquire_refund_permission'),
                         dest=dest)
         try:
             r = _call(settings.PAYPAL_PERMISSIONS_URL + 'RequestPermissions',

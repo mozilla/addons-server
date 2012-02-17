@@ -34,7 +34,7 @@ from amo.utils import raise_required, slugify
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon, VERSION_RE
-from market.models import AddonPremium, Price
+from market.models import AddonPremium, Price, AddonPaymentData
 from payments.models import InappConfig
 from translations.widgets import TranslationTextarea, TranslationTextInput
 from translations.fields import TransTextarea, TransField
@@ -1230,3 +1230,28 @@ class AppFormBasic(addons.forms.AddonFormBase):
         addonform.save()
 
         return addonform
+
+
+class PaypalSetupForm(happyforms.Form):
+    business_account = forms.ChoiceField(widget=forms.RadioSelect,
+                                          required=False,
+                                          choices=(('1', _('No')),
+                                                   ('2', _('Yes'))))
+    email = forms.EmailField(required=False)
+
+    def clean(self):
+        data = self.cleaned_data
+        if data.get('business_account') and not data.get('email'):
+            raise forms.ValidationError('The PayPal email is required.')
+
+        return data
+
+
+class PaypalPaymentData(happyforms.ModelForm):
+
+    class Meta:
+        model = AddonPaymentData
+        fields = ['first_name', 'last_name', 'full_name',
+                  'business_name', 'country', 'date_of_birth',
+                  'address_one', 'address_two',
+                  'post_code', 'state', 'phone']

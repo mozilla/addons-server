@@ -285,10 +285,10 @@ class AddonPaymentData(amo.models.ModelBase):
     payerID = models.CharField(max_length=255, blank=True)
     # Advanced.
     date_of_birth = models.DateField(blank=True, null=True)
-    post_code = models.CharField(max_length=128)
     address_one = models.CharField(max_length=255)
     address_two = models.CharField(max_length=255, blank=True)
     post_code = models.CharField(max_length=128, blank=True)
+    city = models.CharField(max_length=128, blank=True)
     state = models.CharField(max_length=64, blank=True)
     phone = models.CharField(max_length=32, blank=True)
 

@@ -153,3 +153,26 @@ class TestPremiumForm(amo.tests.TestCase):
         form = self.complete({}, ['paypal_id', 'support_email'])
         assert not form.is_valid()
         eq_(['price'], form.errors.keys())
+
+
+class TestPaypalSetupForm(amo.tests.TestCase):
+
+    def test_email_not_required(self):
+        data = {'business_account': False,
+                'email': ''}
+        assert forms.PaypalSetupForm(data=data).is_valid()
+
+    def test_email_required(self):
+        data = {'business_account': True,
+                'email': ''}
+        assert not forms.PaypalSetupForm(data=data).is_valid()
+
+    def test_email_gotten(self):
+        data = {'business_account': True,
+                'email': 'foo@bar.com'}
+        assert forms.PaypalSetupForm(data=data).is_valid()
+
+    def test_email_malformed(self):
+        data = {'business_account': True,
+                'email': 'foo'}
+        assert not forms.PaypalSetupForm(data=data).is_valid()
