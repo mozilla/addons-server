@@ -78,14 +78,14 @@ NO_LOGIN_REQUIRED_MODULES = (
 
 # Extend the bundles.
 MINIFY_BUNDLES['css'].update({
-    'devreg': (
+    'mkt/devreg': (
         # Popups, Modals, Tooltips.
         'css/devreg/devhub-popups.less',
 
         # Manage Authors.
         'css/devreg/authors.less',
     ),
-    'devreg-legacy': (
+    'mkt/devreg-legacy': (
         'css/devreg-legacy/main.css',
         'css/devreg-legacy/main-mozilla.css',
         'css/devreg-legacy/headerfooter.css',  # Potch, Remove.
@@ -108,7 +108,7 @@ MINIFY_BUNDLES['css'].update({
         'css/devreg-legacy/devhub-buttons.less',
         'css/devreg-legacy/in-app-config.less',
     ),
-    'devreg-impala': (
+    'mkt/devreg-impala': (
         'css/devreg-impala/base.css',
         'css/devreg-impala/site.less',
         'css/devreg-impala/typography.less',
@@ -162,7 +162,7 @@ MINIFY_BUNDLES['css'].update({
     ),
 })
 MINIFY_BUNDLES['js'].update({
-    'devreg-legacy': (
+    'mkt/devreg-legacy': (
         'js/lib/jquery-1.6.4.js',
         'js/lib/underscore.js',
         'js/zamboni/browser.js',
