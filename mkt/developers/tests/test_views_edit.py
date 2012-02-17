@@ -621,28 +621,30 @@ class TestEditBasic(TestEdit):
         eq_(doc('#addon-flags').text(), 'None')
 
     def get_l10n_urls(self):
-        paths = ('mkt.developers.addons.edit', 'mkt.developers.addons.profile',
-                 'mkt.developers.addons.owner')
+        paths = ('mkt.developers.addons.edit', 'mkt.developers.addons.profile')
         return [reverse(p, args=['a3615']) for p in paths]
 
     def test_l10n(self):
         Addon.objects.get(id=3615).update(default_locale='en-US')
         for url in self.get_l10n_urls():
             r = self.client.get(url)
-            eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'en-us')
+            eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'en-us',
+                'l10n menu not visible for %s' % url)
 
     def test_l10n_not_us(self):
         Addon.objects.get(id=3615).update(default_locale='fr')
         for url in self.get_l10n_urls():
             r = self.client.get(url)
-            eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'fr')
+            eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'fr',
+                'l10n menu not visible for %s' % url)
 
     def test_l10n_not_us_id_url(self):
         Addon.objects.get(id=3615).update(default_locale='fr')
         for url in self.get_l10n_urls():
             url = '/id' + url[6:]
             r = self.client.get(url)
-            eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'fr')
+            eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'fr',
+                'l10n menu not visible for %s' % url)
 
 
 class TestEditMedia(TestEdit):
