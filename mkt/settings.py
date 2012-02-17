@@ -1,3 +1,5 @@
+import os
+
 from lib.settings_base import *
 
 # We'll soon need a `settings_test_mkt` to override this.
@@ -31,9 +33,7 @@ TEMPLATE_CONTEXT_PROCESSORS += [
 # Tests.
 NOSE_ARGS = [
     '--with-fixture-bundling',
-    # exclude is a regex that operates on the basename of the test file (or
-    # directory) or the class / method name of the test.
-    '--exclude=devhub',  # replaced by mkt.developers
+    '--where=%s' % os.path.join(ROOT, 'mkt')
 ]
 
 NO_ADDONS_MODULES = (
