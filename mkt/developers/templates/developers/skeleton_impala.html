@@ -19,35 +19,29 @@
       <![endif]-->
     {% endblock %}
 
-    {% block extrahead %}{% endblock %}
-    <noscript><link rel="stylesheet" href="{{ media('css/impala/nojs.css') }}"></noscript>
+    {% block extrahead %}
+      <noscript>
+        <link rel="stylesheet" href="{{ media('css/impala/nojs.css') }}">
+      </noscript>
+    {% endblock %}
 
-    {% include "mobile/head_debug.html" %}
+    {% include 'mobile/head_debug.html' %}
 
     {% if request.user.is_authenticated() %}
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
-
-    {{ js('preload') }}
   </head>
-  <body class="html-{{ DIR }} {{ request.APP.short }} moz-header-slim {% block bodyclass %}{% endblock %} is-impala"
+  <body class="html-{{ DIR }} {{ request.APP.short }} moz-header-slim {% block bodyclass %}{% endblock %} is-impala developer-hub"
         data-app="{{ request.APP.short }}"
         data-appname="{{ request.APP.pretty }}"
         data-appid="{{ request.APP.id }}"
-        data-min-beta-version="{{ settings.MIN_BETA_VERSION }}"
-        data-nightly-version="{{ settings.NIGHTLY_VERSION }}"
         data-anonymous="{{ (not request.user.is_authenticated())|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
-        {% if waffle.switch('marketplace') and request.amo_user %}
-        data-purchases="{{ request.amo_user.purchase_ids()|join(",") }}"
-        {% endif %}
         data-collect-timings="{{ url('amo.timing.record') }}:{{ collect_timings_percent }}"
         {% block bodyattrs %}{% endblock %}>
-
-    <div id="page" class="c">
+    <div id="page" class="section c">
       {% block site_header %}
-        {# Well that's an awful tiny mozilla header #}
         <div id="global-header-tab">
           <a href="http://mozilla.org/"><img src="{{ media('img/zamboni/mozilla-tab.png') }}"></a>
         </div>
@@ -55,28 +49,13 @@
           <nav id="aux-nav" role="navigation" class="menu-nav c">
             <ul>
               {% if not settings.READ_ONLY %}
-                {% include "impala/user_login.html" %}
+                {% include 'impala/user_login.html' %}
               {% endif %}
-              {% block aux_nav %}
-                <li>
-                  <a href="#" id="other-apps" title="{{ _('Find add-ons for other applications') }}">{{ _('Other Applications') }}</a>
-                  <ul class="other-apps">
-                    {% for app in amo.APP_USAGE %}
-                      {% if app != request.APP and app != amo.ANDROID %}
-                        <li id="app-{{ app.short }}" class="{{ app.short }}">
-                          <a href="{{ locale_url(app.short) }}">{{ app.pretty }}</a>
-                        </li>
-                      {% endif %}
-                    {% endfor %}
-                  </ul>
-                </li>
-              {% endblock aux_nav %}
             </ul>
           </nav>
           <div id="masthead">
             {% block site_header_title %}
-            {% include "impala/header_title.html" %}
-            {{ site_nav() }}
+              {% include 'developers/nav.html' %}
             {% endblock %}
           </div>
           {% if ADMIN_MESSAGE or settings.READ_ONLY %}
@@ -92,79 +71,12 @@
               {% endif %}
             </div>
           {% endif %}
-          {% block amo_balloons %}
-            {% if WEBAPPS %}
-              <div class="site-tip" id="appruntime-pitch">
-                <p>
-                  {% with url='https://addons.mozilla.org/en-US/firefox/addon/app-runtime/?src=apps-preview' %}
-                    To easily install and manage Apps in Firefox with a
-                    tightly integrated experience, check out the experimental
-                    <a href="{{ url }}">App Runtime extension</a>.
-                  {% endwith %}
-                </p>
-                <a href="#" class="close">{{ _('Close') }}</a>
-              </div>
-              <div class="site-balloon" id="site-nojs-apps">
-                <p>{{ loc('To use Apps, you must enable JavaScript.') }}</p>
-              </div>
-            {% else %}
-              <div class="site-balloon" id="site-nonfx">
-                <p>
-                  {% trans url='http://mozilla.org/firefox/?src=amo' %}
-                    To try the thousands of add-ons available here, download
-                    <a href="{{ url }}">Mozilla Firefox</a>,
-                    a fast, free way to surf the Web!
-                  {% endtrans %}
-                </p>
-                <a href="#" class="close">{{ _('Close') }}</a>
-              </div>
-              <div class="site-balloon" id="site-welcome">
-                {# L10n: {0} is an application, such as Firefox. #}
-                <h3>{{ _('Welcome to {0} Add-ons.')|f(APP.pretty) }}</h3>
-                <p>
-                  {% if APP == amo.FIREFOX %}
-                    {% trans %}
-                      Choose from thousands of extra features and styles to make
-                      Firefox your own.
-                    {% endtrans %}
-                  {% else %}
-                    {% trans app=APP.pretty %}
-                      Add extra features and styles to make {{ app }} your own.
-                    {% endtrans %}
-                  {% endif %}
-                </p>
-                <a href="#" class="close">{{ _('Close') }}</a>
-              </div>
-              <div class="site-balloon" id="mobile-banner">
-                <h3>{{ _('On the go?') }}</h3>
-                <p>
-                  {% trans %}
-                    Check out our
-                    <a class="mobile-link" href="#">Mobile Add-ons site</a>.
-                  {% endtrans %}
-                </p>
-                <a href="#" class="close">{{ _('Close') }}</a>
-              </div>
-              <div class="site-tip" id="acr-pitch">
-                <p>
-                  {% trans url=url('addons.detail', 'add-on-compatibility-reporter')|urlparams(src='prerelease-banner') %}
-                    Thanks for testing a pre-release version of Firefox! To try out
-                    add-ons not yet compatible, grab the
-                    <a href="{{ url }}">Add-on Compatibility Reporter</a>.
-                  {% endtrans %}
-                </p>
-                <a href="#" class="close">{{ _('Close') }}</a>
-              </div>
-            {% endif %}
-          {% endblock %}
         </div>
       {% endblock site_header %}
 
       {# Overridden in base_side_categories, which expands categories
          on the side of the page. #}
       {% block main_content %}
-        {% block navbar %}
-        {% endblock %}
         {# outer_content is for something you want above content on every page. #}
         {% block outer_content %}{% include "messages.html" %}{% endblock %}
         {% block content %}{% endblock %}
@@ -173,39 +85,11 @@
     <div id="tooltip">
       <span></span>
     </div>
-    <div id="popup-staging">
-      {{ sharing_box() }}
-      <div id="add-to-collection" class="popup">
-        <div class="collection-add-login">
-          <p>{% trans %}
-            To create your own collections, you must have a Mozilla Add-ons account.
-          {% endtrans %}</p>
-          <p class="register-button">
-            <a class="button" href="{{ remora_url('users/register') }}">{{ _('Create an Add-ons Account') }}</a>
-          </p>
-          <p>
-            {% trans login=login_link() %}
-              or <a href="{{ login }}">log in to your current account</a>
-            {% endtrans %}
-          </p>
-        </div>
-      </div>
-      {% block popups %}
-      {% endblock %}
-    </div>
     {% block footer %}
-      <div id="footer" role="contentinfo">
-        <div class="section">
-          {% block footer_extras %}
-            <img class="footerlogo" src="{{ media('img/zamboni/footer-logo-med.png') }}" alt="">
-          {% endblock %}
-          {% with hide_mobile_link=hide_mobile_link %}
-            {% include 'footer.html' %}
-          {% endwith %}
-        </div> {# section #}
-      </div> {# footer #}
+      {% with hide_mobile_link=True %}
+        {% include 'amo_footer_small.html' %}
+      {% endwith %}
     {% endblock %}
-    <div id="get-satisfaction"></div>
     {# js #}
     {% block site_js %}
       <script src="{{ static(url('jsi18n')) }}"></script>
@@ -213,7 +97,6 @@
         <script async defer src="https://browserid.org/include.js"></script>
       {% endif %}
       {{ js('devreg-legacy') }}
-      <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
       <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
     {% endblock %}
     {% block js %}{% endblock %}

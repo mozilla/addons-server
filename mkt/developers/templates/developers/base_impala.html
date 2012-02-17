@@ -7,7 +7,7 @@
 {% if addon %}
   {% set editable = "no-edit" if not check_addon_ownership(request, addon, dev=True) %}
 {% endif %}
-{% block bodyclass %}developer-hub{{ ' apps' if webapp }} gutter {{ editable }}{% endblock %}
+{% block bodyclass %}{{ 'apps' if webapp }} gutter {{ editable }}{% endblock %}
 
 {% block bodyattrs %}
 {% if addon %}data-default-locale="{{ addon.default_locale|lower }}"{% endif %}
@@ -16,36 +16,7 @@
 {% block title %}{{ hub_page_title() }}{% endblock %}
 
 {% block extrahead %}
-  {{ css('zamboni/devhub_impala') }}
-{% endblock %}
-
-{% block aux_nav %}
-  <li class="nomenu">
-  {% if webapp %}
-    <a class="return" href="{{ url('apps.home') }}">{{ _('Back to Apps') }}</a>
-  {% else %}
-    <a class="return" href="{{ url('home') }}">{{ _('Back to Add-ons') }}</a>
-  {% endif %}
-  </li>
-{% endblock %}
-
-{% block site_header_title %}
-  {% with webapp=webapp %}
-    {% include "developers/nav.html" %}
-  {% endwith %}
-{% endblock %}
-
-{% set hide_mobile_link=True %}
-{% block footer %}
-  {% if webapp %}
-    {% with hide_mobile_link=True %}
-      {% include "amo_footer_small.html" %}
-    {% endwith %}
-  {% else %}
-    {{ super() }}
-  {% endif %}
-{% endblock %}
-
-{% block footer_extras %}
-  <img class="footerlogo" src="{{ media('img/developers/hub-logo-footer.png') }}" alt="">
+  <noscript>
+    <link rel="stylesheet" href="{{ media('css/legacy/nojs.css') }}">
+  </noscript>
 {% endblock %}

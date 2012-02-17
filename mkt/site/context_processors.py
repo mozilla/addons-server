@@ -1,15 +1,12 @@
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
-from django.utils.http import urlquote
 
 from tower import ugettext as _
 
 import amo
 from amo.context_processors import get_collect_timings
-from amo.helpers import loc
 from amo.urlresolvers import reverse
 from access import acl
-from cake.urlresolvers import remora_url
 from zadmin.models import get_config
 
 
@@ -25,15 +22,7 @@ def global_settings(request):
         amo_user = request.amo_user
         account_links = [
             {'text': _('Change Password'), 'href': 'https://browserid.org/'},
-            {'text': _('Log out'),
-             'href': remora_url('/users/logout?to=' + urlquote(request.path))},
-        ]
-
-        tools_links = [
-            {'text': loc('Manage My Submissions'),
-             'href': reverse('devhub.apps')},
-            {'text': _('Submit a New App'),
-             'href': reverse('devhub.submit_apps.1')},
+            {'text': _('Log out'), 'href': reverse('users.logout')},
         ]
 
         if acl.check_reviewer(request):
@@ -50,10 +39,11 @@ def global_settings(request):
     else:
         context['amo_user'] = AnonymousUser()
 
-    context.update({'account_links': account_links,
-                    'settings': settings, 'amo': amo,
-                    'tools_links': tools_links,
-                    'tools_title': tools_title,
-                    'ADMIN_MESSAGE': get_config('site_notice'),
-                    'collect_timings_percent': get_collect_timings()})
+    context.update(account_links=account_links,
+                   settings=settings,
+                   amo=amo,
+                   tools_links=tools_links,
+                   tools_title=tools_title,
+                   ADMIN_MESSAGE=get_config('site_notice'),
+                   collect_timings_percent=get_collect_timings())
     return context

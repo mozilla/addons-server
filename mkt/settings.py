@@ -162,13 +162,11 @@ MINIFY_BUNDLES['js'].update({
         'js/lib/underscore.js',
         'js/zamboni/browser.js',
         'js/amo2009/addons.js',
-        'js/zamboni/init.js',
+        'js/devreg/init.js',  # This one excludes buttons initialization, etc.
         'js/impala/capabilities.js',
         'js/zamboni/format.js',
         'js/lib/jquery.cookie.js',
         'js/zamboni/storage.js',
-        'js/zamboni/apps.js',
-        'js/zamboni/buttons.js',
         'js/zamboni/tabs.js',
 
         # jQuery UI.
@@ -184,8 +182,6 @@ MINIFY_BUNDLES['js'].update({
         'js/zamboni/truncation.js',
         'js/zamboni/helpers.js',
         'js/zamboni/global.js',
-        'js/impala/ratingwidget.js',
-        'js/lib/jquery-ui/jqModal.js',
         'js/zamboni/l10n.js',
         'js/zamboni/debouncer.js',
 
@@ -207,10 +203,8 @@ MINIFY_BUNDLES['js'].update({
         # Developer Hub-specific scripts.
         'js/zamboni/truncation.js',
         'js/zamboni/upload.js',
-        'js/impala/formset.js',
         'js/zamboni/devhub.js',
         'js/zamboni/validator.js',
-        'js/zamboni/packager.js',
     ),
     'hub': (
         'js/lib/underscore.js',
