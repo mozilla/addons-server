@@ -9,7 +9,6 @@ APP_PREVIEW = True
 MARKETPLACE = True
 
 ROOT_URLCONF = 'mkt.urls'
-TEMPLATE_DIRS += (path('mkt/templates'),)
 INSTALLED_APPS += (
     'mkt.site',
     'mkt.developers',
