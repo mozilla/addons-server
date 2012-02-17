@@ -6,7 +6,9 @@ from tower import ugettext as _
 
 import amo
 from amo.context_processors import get_collect_timings
+from amo.helpers import loc
 from amo.urlresolvers import reverse
+from access import acl
 from cake.urlresolvers import remora_url
 from zadmin.models import get_config
 
@@ -14,22 +16,44 @@ from zadmin.models import get_config
 def global_settings(request):
     """Store global Marketplace-wide info. used in the header."""
     account_links = []
+    tools_links = []
     context = {}
+
+    tools_title = _('Tools')
+
     if request.user.is_authenticated() and hasattr(request, 'amo_user'):
         amo_user = request.amo_user
-        account_links += [
-            {'text': _('My Profile'),
-             'href': amo_user.get_url_path()},
-            {'text': _('Account Settings'), 'href': reverse('users.edit')},
-            {'text': _('Log Out'),
+        account_links = [
+            {'text': _('Change Password'), 'href': 'https://browserid.org/'},
+            {'text': _('Log out'),
              'href': remora_url('/users/logout?to=' + urlquote(request.path))},
         ]
+
+        tools_links = [
+            {'text': loc('Manage My Submissions'),
+             'href': reverse('devhub.apps')},
+            {'text': _('Submit a New App'),
+             'href': reverse('devhub.submit_apps.1')},
+        ]
+
+        if acl.check_reviewer(request):
+            tools_links.append({'text': _('Editor Tools'),
+                                'href': reverse('editors.home')})
+        if acl.action_allowed(request, 'Localizers', '%'):
+            tools_links.append({'text': _('Localizer Tools'),
+                                'href': '/localizers'})
+        if acl.action_allowed(request, 'Admin', '%'):
+            tools_links.append({'text': _('Admin Tools'),
+                                'href': reverse('zadmin.home')})
+
         context['amo_user'] = amo_user
     else:
         context['amo_user'] = AnonymousUser()
-    context.update(account_links=account_links,
-                   settings=settings,
-                   amo=amo,
-                   ADMIN_MESSAGE=get_config('site_notice'),
-                   collect_timings_percent=get_collect_timings())
+
+    context.update({'account_links': account_links,
+                    'settings': settings, 'amo': amo,
+                    'tools_links': tools_links,
+                    'tools_title': tools_title,
+                    'ADMIN_MESSAGE': get_config('site_notice'),
+                    'collect_timings_percent': get_collect_timings()})
     return context

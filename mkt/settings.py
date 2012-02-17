@@ -21,17 +21,12 @@ SUPPORTED_NONAPPS += (
     'submit',
 )
 
-# Uncomment for new hotness:
-#TEMPLATE_CONTEXT_PROCESSORS = list(TEMPLATE_CONTEXT_PROCESSORS)
-#TEMPLATE_CONTEXT_PROCESSORS.remove('amo.context_processors.global_settings')
-#TEMPLATE_CONTEXT_PROCESSORS += [
-#    'mkt.site.context_processors.global_settings',
-#    'mkt.experiments.context_processors.fragment',
-#]
-
-TEMPLATE_CONTEXT_PROCESSORS += (
+TEMPLATE_CONTEXT_PROCESSORS = list(TEMPLATE_CONTEXT_PROCESSORS)
+TEMPLATE_CONTEXT_PROCESSORS.remove('amo.context_processors.global_settings')
+TEMPLATE_CONTEXT_PROCESSORS += [
+    'mkt.site.context_processors.global_settings',
     'mkt.experiments.context_processors.fragment',
-)
+]
 
 # Tests.
 NOSE_ARGS = [
