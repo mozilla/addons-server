@@ -38,9 +38,6 @@
   {% endwith %}
 {% endblock %}
 
-{# TODO: Disable developer search. #}
-{% block search_form %}{% include "devhub/search.html" %}{% endblock %}
-
 {% block js %}
   {# TODO(Kumar) move to base template? #}
   <script src="{{ url('wafflejs') }}"></script>

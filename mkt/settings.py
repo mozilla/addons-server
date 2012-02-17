@@ -185,6 +185,7 @@ MINIFY_BUNDLES['js'].update({
         'js/lib/jquery-ui/jquery.ui.datepicker.js',
         'js/lib/jquery-ui/jquery.ui.sortable.js',
 
+        'js/impala/footer.js',
         'js/zamboni/truncation.js',
         'js/zamboni/helpers.js',
         'js/zamboni/global.js',

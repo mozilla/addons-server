@@ -35,9 +35,6 @@
   {% endwith %}
 {% endblock %}
 
-{# TODO: Disable developer search. #}
-{% block search_form %}{% include "devhub/search.html" %}{% endblock %}
-
 {% set hide_mobile_link=True %}
 {% block footer %}
   {% if webapp %}
