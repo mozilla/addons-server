@@ -55,6 +55,7 @@ NO_CONSUMER_MODULES = (
     'files.views',
     'market.views',
     'piston',
+    'users.views.edit',
     'users.views.purchases',
     'users.views.payments',
     'search.views',

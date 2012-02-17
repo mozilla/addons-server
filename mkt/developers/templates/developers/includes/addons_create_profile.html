@@ -39,13 +39,6 @@
   {% endif %}
 </p>
 
-<h4>{{ _('Make sure your user profile is up to date.') }}</h4>
-<p>
-  {% trans url=url('users.edit') %}
-    <a href="{{ url }}"><strong>Update your user profile.</strong></a>
-  {% endtrans %}
-</p>
-
 <div class="container">
   <label class="optional above-the-field" for="the_reason" data-for="the_reason">
     {{ profile_form.the_reason.label }}
