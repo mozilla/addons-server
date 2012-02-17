@@ -54,12 +54,6 @@
           <li><a href="{{ url }}">{{ title }}</a></li>
         {% endfor %}
       </ul>
-      {% set view_urls = [(addon.get_url_path(), _('View App Listing'))] %}
-      <ul>
-        {% for url, title in view_urls %}
-          <li><a href="{{ url }}">{{ title }}</a></li>
-        {% endfor %}
-      </ul>
     </div>
   </li>
 </ul>

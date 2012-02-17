@@ -93,7 +93,6 @@ MINIFY_BUNDLES['css'].update({
         'css/devreg-legacy/developers.css',
         'css/devreg-legacy/docs.less',
         'css/devreg-legacy/developers.less',
-        'css/devreg-legacy/devhub-listing.less',
         'css/devreg-legacy/devhub-popups.less',
         'css/devreg-legacy/formset.less',
         'css/devreg-legacy/devhub-forms.less',

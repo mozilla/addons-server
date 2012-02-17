@@ -112,8 +112,6 @@ class TestFileValidation(amo.tests.TestCase):
         eq_(r.status_code, 200)
         eq_(r.context['addon'], self.addon)
         doc = pq(r.content)
-        assert not doc('#site-nav').hasClass('app-nav'), (
-            'Expected add-ons devhub nav')
         eq_(doc('header h2').text(),
             u'Validation Results for searchaddon11102010-20101217.xml')
         eq_(doc('#addon-validator-suite').attr('data-validateurl'),
@@ -125,10 +123,6 @@ class TestFileValidation(amo.tests.TestCase):
         r = self.client.get(self.url, follow=True)
         eq_(r.status_code, 200)
         eq_(r.context['addon'], self.addon)
-        doc = pq(r.content)
-        assert doc('#site-nav').hasClass('app-nav'), 'Expected apps devhub nav'
-        eq_(doc('#breadcrumbs a').eq(1).attr('href'),
-            reverse('mkt.developers.apps'))
 
     def test_only_dev_can_see_results(self):
         self.client.logout()

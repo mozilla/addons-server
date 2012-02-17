@@ -135,7 +135,7 @@ class TestEditBasicWebapp(amo.tests.TestCase):
     def test_appslug_visible(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        eq_(pq(r.content)('#slug_edit').remove('a').text(),
+        eq_(pq(r.content)('#slug_edit').remove('a, em').text(),
             u'/\u2026/%s' % self.webapp.app_slug)
 
     def test_edit_name_required(self):

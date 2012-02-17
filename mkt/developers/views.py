@@ -78,9 +78,7 @@ class AddonFilter(BaseFilter):
 
 class AppFilter(BaseFilter):
     opts = (('name', _lazy(u'Name')),
-            ('created', _lazy(u'Created')),
-            ('downloads', _lazy(u'Weekly Downloads')),
-            ('rating', _lazy(u'Rating')))
+            ('created', _lazy(u'Created')))
 
 
 def addon_listing(request, default='name', webapp=False):

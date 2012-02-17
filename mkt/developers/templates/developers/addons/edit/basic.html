@@ -47,7 +47,7 @@
                 {{ form.slug.errors }}
               {% else %}
                 {{ settings.SITE_URL }}/&hellip;/{{ addon.app_slug if webapp else addon.slug }}
-                <a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
+                <em class="edit-addon-details">{{ loc('(Not Available Yet)') }}</em>
               {% endif %}
             </td>
           </tr>

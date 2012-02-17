@@ -134,11 +134,9 @@ class TestAppDashboard(AppHubTest):
     def get_app(self):
         return Addon.objects.get(id=337141)
 
-    def test_dashboard(self):
-        eq_(self.client.get(self.url).status_code, 200)
-
     def test_no_apps(self):
         r = self.client.get(self.url)
+        eq_(r.status_code, 200)
         eq_(pq(r.content)('#dashboard .item').length, 0)
 
     def test_public_app(self):
@@ -147,8 +145,6 @@ class TestAppDashboard(AppHubTest):
         AddonUser.objects.create(addon=app, user=self.user_profile)
         doc = pq(self.client.get(self.url).content)
         item = doc('.item[data-addonid=%s]' % app.id)
-        assert item.find('p.downloads'), 'Expected weekly downloads'
-        assert not item.find('p.users'), 'Unexpected ADU'
         assert item.find('.price'), 'Expected price'
         assert item.find('.item-details'), 'Expected item details'
         assert not item.find('p.incomplete'), (
@@ -195,12 +191,6 @@ class TestAppDashboardSorting(AppHubTest):
 
     def test_newest_sort(self):
         test_listing_sort(self, 'created', 'created')
-
-    def test_downloads_sort(self):
-        test_listing_sort(self, 'downloads', 'weekly_downloads')
-
-    def test_rating_sort(self):
-        test_listing_sort(self, 'rating', 'bayesian_rating')
 
 
 class TestDevRequired(amo.tests.TestCase):

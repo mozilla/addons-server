@@ -12,37 +12,27 @@
         width: auto;
     }
     .info {
-        padding-left: 102px;
+        padding: 20px 10px 20px 102px;
     }
-    .item-info,
     .item-details {
         .border-box;
     }
-    .item-info {
-        border-left: 1px dotted @border-blue;
-        float: right;
-        margin-left: 2%;
-        padding-left: 2%;
-        width: 30%;
-        .downloads,
-        .users,
-        .price {
-            color: @green;
-            &.premium {
-                color: @orange;
-            }
+    .price {
+        color: @green;
+        &.premium {
+            color: @orange;
         }
-        .price {
-            font-size: 11px;
-            line-height: 13px;
-        }
-        p {
-            font-size: 13px;
-            line-height: 15px;
-            margin: 0;
-            + p {
-                margin-top: 2px;
-            }
+    }
+    .price {
+        font-size: 11px;
+        line-height: 13px;
+    }
+    p {
+        font-size: 13px;
+        line-height: 15px;
+        margin: 0;
+        + p {
+            margin-top: 2px;
         }
     }
     .item-details {
@@ -60,14 +50,7 @@
 
 .html-rtl .listing .item {
     .info {
-        padding-right: 102px;
-    }
-    .item-info {
-        float: left;
-        border: 0;
-        border-right: 1px dotted @border-blue;
-        margin: 0 2% 0 0;
-        padding: 0 2% 0 0;
+        padding: 20px 10px 20px 102px;
     }
 }
 

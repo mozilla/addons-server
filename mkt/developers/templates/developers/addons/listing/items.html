@@ -1,21 +1,15 @@
-{% from "developers/addons/listing/macros.html" import dev_heading, dev_item_info, dev_item_actions %}
-{% set collection = collection or None %}
-{% set username = request.amo_user.username if request.user.is_authenticated() else '' %}
+{% from 'developers/addons/listing/macros.html' import dev_heading %}
+{% from 'addons/macros.html' import price %}
 {% for addon in addons %}
-  <div class="item addon ignore-compatibility" data-addonid="{{ addon.id }}">
+  <div class="item addon" data-addonid="{{ addon.id }}">
     <div class="info">
       {{ dev_heading(addon, amo) }}
       {% if addon.is_incomplete() %}
         <p class="incomplete">
-          {% trans %}
-            This submission will be deleted automatically after a few days if
-            the submission process is not completed.
-          {% endtrans %}
+          {{ loc('This app will be deleted automatically after a few days if
+                  the submission process is not completed.') }}
         </p>
       {% else %}
-        <div class="item-info">
-          {{ dev_item_info(addon, amo) }}
-        </div>
         <ul class="item-details">
           {% if not webapp %}
             {% if addon.current_version %}
@@ -45,6 +39,12 @@
               {% endif %}
             </a>
           </li>
+          {% if waffle.switch('marketplace') %}
+            <li>
+              <strong>{{ loc('Price:') }}</strong>
+              {{ price(addon) }}
+            </li>
+          {% endif %}
         </ul>
       {% endif %}
       <div class="item-actions">
