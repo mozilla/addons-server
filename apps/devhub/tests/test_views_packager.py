@@ -2,6 +2,7 @@ import json
 import os
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 
 from mock import patch
 from nose.tools import eq_
@@ -238,8 +239,8 @@ class TestPackagerDownload(amo.tests.TestCase):
 
     def _unprep_package(self, name):
         package = packager_path(name)
-        if os.path.exists(package):
-            os.remove(package)
+        if storage.exists(package):
+            storage.delete(package)
 
     def test_package_pending(self):
         """

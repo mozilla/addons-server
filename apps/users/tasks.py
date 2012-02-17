@@ -1,6 +1,5 @@
-import os
-
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 
 import commonware.log
 import elasticutils
@@ -25,7 +24,7 @@ def delete_photo(dst, **kw):
         return
 
     try:
-        os.remove(dst)
+        storage.delete(dst)
     except Exception, e:
         task_log.error("Error deleting userpic: %s" % e)
 

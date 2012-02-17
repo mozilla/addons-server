@@ -27,7 +27,7 @@ import redisutils
 from tower import ugettext as _
 
 import amo
-from amo.utils import to_language, strip_bom
+from amo.utils import to_language, strip_bom, rm_local_tmp_dir
 from applications.models import AppVersion
 from versions.compare import version_int as vint
 
@@ -329,7 +329,7 @@ def extract_zip(source, remove=False, fatal=True):
         if zip.is_valid(fatal):
             zip.extract_to_dest(tempdir)
     except:
-        shutil.rmtree(tempdir)
+        rm_local_tmp_dir(tempdir)
         raise
 
     if remove:
@@ -396,7 +396,7 @@ def parse_xpi(xpi, addon=None):
         log.error('XPI parse error', exc_info=True)
         raise forms.ValidationError(_('Could not parse install.rdf.'))
     finally:
-        shutil.rmtree(path)
+        rm_local_tmp_dir(path)
 
     return check_rdf(rdf, addon)
 

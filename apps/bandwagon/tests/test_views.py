@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-import os
 import urlparse
 
 from django.conf import settings
@@ -10,7 +9,6 @@ from django.utils import encoding
 
 from mock import patch, Mock
 from nose.tools import eq_
-import path
 from pyquery import PyQuery as pq
 
 import amo
@@ -1110,10 +1108,6 @@ class TestCollectionForm(amo.tests.TestCase):
                         files={'icon': get_uploaded_file('transparent.png')},
                         initial={'author': collection.author,
                                  'application_id': collection.application.pk})
-        dest = (path.path(settings.COLLECTIONS_ICON_PATH) / 'uploads' /
-                          'collection_icons' / '57')
-        if not os.path.exists(dest):
-            os.makedirs(dest)
         assert form.is_valid()
         form.save()
         assert update_mock.called

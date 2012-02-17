@@ -2,6 +2,7 @@ import os
 import logging
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 from django.db import connection, transaction
 
 from celeryutils import task
@@ -85,7 +86,7 @@ def delete_preview_files(id, **kw):
     p = Preview(id=id)
     for f in (p.thumbnail_path, p.image_path):
         try:
-            os.remove(f)
+            storage.delete(f)
         except Exception, e:
             log.error('Error deleting preview file (%s): %s' % (f, e))
 
@@ -158,7 +159,7 @@ def delete_persona_image(dst, **kw):
         log.error("Someone tried deleting something they shouldn't: %s" % dst)
         return
     try:
-        os.remove(dst)
+        storage.delete(dst)
     except Exception, e:
         log.error('Error deleting persona image: %s' % e)
 
@@ -168,18 +169,18 @@ def delete_persona_image(dst, **kw):
 def create_persona_preview_image(src, dst, img_basename, **kw):
     """Creates a 680x100 thumbnail used for the Persona preview."""
     log.info('[1@None] Resizing persona image: %s' % dst)
-    if not os.path.exists(dst):
-        os.makedirs(dst)
     try:
         preview, full = amo.PERSONA_IMAGE_SIZES['header']
         new_w, new_h = preview
         orig_w, orig_h = full
-        i = Image.open(src)
-        # Crop image from the right.
-        i = i.crop((orig_w - (new_h * 2), 0, orig_w, orig_h))
-        i = i.resize(preview, Image.ANTIALIAS)
-        i.load()
-        i.save(os.path.join(dst, img_basename))
+        with storage.open(src) as fp:
+            i = Image.open(fp)
+            # Crop image from the right.
+            i = i.crop((orig_w - (new_h * 2), 0, orig_w, orig_h))
+            i = i.resize(preview, Image.ANTIALIAS)
+            i.load()
+            with storage.open(os.path.join(dst, img_basename), 'wb') as fp:
+                i.save(fp)
         return True
     except Exception, e:
         log.error('Error saving persona image: %s' % e)
@@ -190,11 +191,11 @@ def create_persona_preview_image(src, dst, img_basename, **kw):
 def save_persona_image(src, dst, img_basename, **kw):
     """Creates a JPG of a Persona header/footer image."""
     log.info('[1@None] Saving persona image: %s' % dst)
-    if not os.path.exists(dst):
-        os.makedirs(dst)
     try:
-        i = Image.open(src)
-        i.save(os.path.join(dst, img_basename))
+        with storage.open(src) as fp:
+            i = Image.open(fp)
+            with storage.open(os.path.join(dst, img_basename), 'wb') as fp:
+                i.save(fp)
         return True
     except Exception, e:
         log.error('Error saving persona image: %s' % e)

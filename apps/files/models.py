@@ -14,6 +14,7 @@ import zipfile
 
 import django.dispatch
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
@@ -21,13 +22,13 @@ from django.utils.encoding import smart_str
 
 import commonware
 from django_statsd.clients import statsd
-import path
 from uuidfield.fields import UUIDField
 import waffle
 
 import amo
 import amo.models
 import amo.utils
+from amo.storage_utils import copy_stored_file, move_stored_file
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from apps.amo.utils import memoize
@@ -148,9 +149,11 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     @classmethod
     def from_upload(cls, upload, version, platform, parse_data={}):
         f = cls(version=version, platform=platform)
-        upload.path = path.path(amo.utils.smart_path(nfd_str(upload.path)))
-        f.filename = f.generate_filename(extension=upload.path.ext or '.xpi')
-        f.size = int(max(1, round(upload.path.size / 1024, 0)))  # Kilobytes.
+        upload.path = amo.utils.smart_path(nfd_str(upload.path))
+        ext = os.path.splitext(upload.path)[1]
+        f.filename = f.generate_filename(extension=ext or '.xpi')
+        # Size in kilobytes.
+        f.size = int(max(1, round(storage.size(upload.path) / 1024, 0)))
         data = cls.get_jetpack_metadata(upload.path)
         f.jetpack_version = data['sdkVersion']
         f.builder_version = data['builderVersion']
@@ -177,13 +180,12 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         f.save()
         log.debug('New file: %r from %r' % (f, upload))
         # Move the uploaded file from the temp location.
-        destinations = [path.path(version.path_prefix)]
+        destinations = [version.path_prefix]
         if f.status in amo.MIRROR_STATUSES:
-            destinations.append(path.path(version.mirror_path_prefix))
+            destinations.append(version.mirror_path_prefix)
         for dest in destinations:
-            if not dest.exists():
-                dest.makedirs()
-            upload.path.copyfile(dest / nfd_str(f.filename))
+            copy_stored_file(upload.path,
+                             os.path.join(dest, nfd_str(f.filename)))
         if upload.validation:
             FileValidation.from_json(f, upload.validation)
         return f
@@ -299,12 +301,9 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     def mv(cls, src, dst, msg):
         """Move a file from src to dst."""
         try:
-            src, dst = path.path(src), path.path(dst)
-            if src.exists():
+            if storage.exists(src):
                 log.info(msg % (src, dst))
-                if not dst.dirname().exists():
-                    dst.dirname().makedirs()
-                src.rename(dst)
+                move_stored_file(src, dst)
         except UnicodeEncodeError:
             log.error('Move Failure: %s %s' % (smart_str(src), smart_str(dst)))
 
@@ -316,10 +315,10 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         self.mv(src, dst, 'Moving disabled file: %s => %s')
         # Remove the file from the mirrors if necessary.
         if (self.mirror_file_path and
-            os.path.exists(smart_str(self.mirror_file_path))):
+            storage.exists(smart_str(self.mirror_file_path))):
             log.info('Unmirroring disabled file: %s'
                      % self.mirror_file_path)
-            os.remove(smart_str(self.mirror_file_path))
+            storage.delete(smart_str(self.mirror_file_path))
 
     def unhide_disabled_file(self):
         if not self.filename:
@@ -331,16 +330,14 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         if not self.filename:
             return
         try:
-            if os.path.exists(self.file_path):
+            if storage.exists(self.file_path):
                 dst = self.mirror_file_path
                 if not dst:
                     return
 
                 log.info('Moving file to mirror: %s => %s'
                          % (self.file_path, dst))
-                if not os.path.exists(os.path.dirname(dst)):
-                    os.makedirs(os.path.dirname(dst))
-                shutil.copyfile(self.file_path, dst)
+                copy_stored_file(self.file_path, dst)
         except UnicodeEncodeError:
             log.info('Copy Failure: %s %s %s' %
                      (self.id, smart_str(self.filename),
@@ -500,10 +497,10 @@ def cleanup_file(sender, instance, **kw):
             filename = getattr(instance, path)
         except models.ObjectDoesNotExist:
             return
-        if os.path.exists(filename):
+        if storage.exists(filename):
             log.info('Removing filename: %s for file: %s'
                      % (filename, instance.pk))
-            os.remove(filename)
+            storage.delete(filename)
 
 
 @File.on_change
@@ -600,15 +597,13 @@ class FileUpload(amo.models.ModelBase):
 
     def add_file(self, chunks, filename, size, is_webapp=False):
         filename = smart_str(filename)
-        loc = path.path(settings.ADDONS_PATH) / 'temp' / uuid.uuid4().hex
-        if not loc.dirname().exists():
-            loc.dirname().makedirs()
-        ext = path.path(amo.utils.smart_path(filename)).ext
+        loc = os.path.join(settings.ADDONS_PATH, 'temp', uuid.uuid4().hex)
+        base, ext = os.path.splitext(amo.utils.smart_path(filename))
         if ext in EXTENSIONS:
             loc += ext
         log.info('UPLOAD: %r (%s bytes) to %r' % (filename, size, loc))
         hash = hashlib.sha256()
-        with open(loc, 'wb') as fd:
+        with storage.open(loc, 'wb') as fd:
             for chunk in chunks:
                 hash.update(chunk)
                 fd.write(chunk)

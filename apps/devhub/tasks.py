@@ -196,7 +196,7 @@ def resize_icon(src, dst, size, **kw):
             for s in size:
                 resize_image(src, '%s-%s.png' % (dst, s), (s, s),
                              remove_src=False)
-            os.remove(src)
+            storage.delete(src)
         else:
             resize_image(src, dst, (size, size), remove_src=True)
         return True

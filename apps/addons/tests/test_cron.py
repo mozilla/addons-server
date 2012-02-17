@@ -143,64 +143,58 @@ class TestHideDisabledFiles(amo.tests.TestCase):
             assert not os_mock.path.exists.called, (addon_status, file_status)
 
     @mock.patch('files.models.File.mv')
-    @mock.patch('files.models.os')
-    def test_move_user_disabled_addon(self, os_mock, mv_mock):
+    @mock.patch('files.models.storage')
+    def test_move_user_disabled_addon(self, m_storage, mv_mock):
         # Use Addon.objects.update so the signal handler isn't called.
         Addon.objects.filter(id=self.addon.id).update(
             status=amo.STATUS_PUBLIC, disabled_by_user=True)
         File.objects.update(status=amo.STATUS_PUBLIC)
-        #really only want to mock os.remove, so stick real os.path.join back in
-        os_mock.path.join.side_effect = os.path.join
         cron.hide_disabled_files()
         # Check that f2 was moved.
         f2 = self.f2
         mv_mock.assert_called_with(f2.file_path, f2.guarded_file_path,
                                    self.msg)
-        os_mock.remove.assert_called_with(f2.mirror_file_path)
+        m_storage.delete.assert_called_with(f2.mirror_file_path)
         # Check that f1 was moved as well.
         f1 = self.f1
         mv_mock.call_args = mv_mock.call_args_list[0]
-        os_mock.remove.call_args = os_mock.remove.call_args_list[0]
+        m_storage.delete.call_args = m_storage.delete.call_args_list[0]
         mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path,
                                    self.msg)
-        os_mock.remove.assert_called_with(f1.mirror_file_path)
+        m_storage.delete.assert_called_with(f1.mirror_file_path)
         # There's only 2 files, both should have been moved.
         eq_(mv_mock.call_count, 2)
-        eq_(os_mock.remove.call_count, 2)
+        eq_(m_storage.delete.call_count, 2)
 
     @mock.patch('files.models.File.mv')
-    @mock.patch('files.models.os')
-    def test_move_admin_disabled_addon(self, os_mock, mv_mock):
+    @mock.patch('files.models.storage')
+    def test_move_admin_disabled_addon(self, m_storage, mv_mock):
         Addon.objects.filter(id=self.addon.id).update(
             status=amo.STATUS_DISABLED)
         File.objects.update(status=amo.STATUS_PUBLIC)
-        #really only want to mock os.remove, so stick real os.path.join back in
-        os_mock.path.join.side_effect = os.path.join
         cron.hide_disabled_files()
         # Check that f2 was moved.
         f2 = self.f2
         mv_mock.assert_called_with(f2.file_path, f2.guarded_file_path,
                                    self.msg)
-        os_mock.remove.assert_called_with(f2.mirror_file_path)
+        m_storage.delete.assert_called_with(f2.mirror_file_path)
         # Check that f1 was moved as well.
         f1 = self.f1
         mv_mock.call_args = mv_mock.call_args_list[0]
-        os_mock.remove.call_args = os_mock.remove.call_args_list[0]
+        m_storage.delete.call_args = m_storage.delete.call_args_list[0]
         mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path,
                                    self.msg)
-        os_mock.remove.assert_called_with(f1.mirror_file_path)
+        m_storage.delete.assert_called_with(f1.mirror_file_path)
         # There's only 2 files, both should have been moved.
         eq_(mv_mock.call_count, 2)
-        eq_(os_mock.remove.call_count, 2)
+        eq_(m_storage.delete.call_count, 2)
 
     @mock.patch('files.models.File.mv')
-    @mock.patch('files.models.os')
-    def test_move_disabled_file(self, os_mock, mv_mock):
+    @mock.patch('files.models.storage')
+    def test_move_disabled_file(self, m_storage, mv_mock):
         Addon.objects.filter(id=self.addon.id).update(status=amo.STATUS_LITE)
         File.objects.filter(id=self.f1.id).update(status=amo.STATUS_DISABLED)
         File.objects.filter(id=self.f2.id).update(status=amo.STATUS_UNREVIEWED)
-        #really only want to mock os.remove, so stick real os.path.join back in
-        os_mock.path.join.side_effect = os.path.join
         cron.hide_disabled_files()
         # Only f1 should have been moved.
         f1 = self.f1
@@ -208,8 +202,8 @@ class TestHideDisabledFiles(amo.tests.TestCase):
                                    self.msg)
         eq_(mv_mock.call_count, 1)
         # It should have been removed from mirror stagins.
-        os_mock.remove.assert_called_with(f1.mirror_file_path)
-        eq_(os_mock.remove.call_count, 1)
+        m_storage.delete.assert_called_with(f1.mirror_file_path)
+        eq_(m_storage.delete.call_count, 1)
 
 
 class AvgDailyUserCountTestCase(amo.tests.TestCase):

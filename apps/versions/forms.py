@@ -3,6 +3,7 @@ import os
 
 from django import forms
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 
 import commonware.log
 import happyforms
@@ -69,17 +70,14 @@ class XPIForm(happyforms.Form):
         data = self.cleaned_data
         xpi = data['xpi']
         hash = hashlib.sha256()
-        path = os.path.join(settings.ADDONS_PATH, str(version.addon.id))
-        if not os.path.exists(path):
-            os.mkdir(path)
 
         f = File(version=version,
                  platform_id=amo.PLATFORM_DICT[data['platform']].id,
                  size=xpi.size)
 
         filename = f.generate_filename()
-
-        with open(os.path.join(path, filename), 'w') as destination:
+        path = os.path.join(settings.ADDONS_PATH, str(version.addon.id))
+        with storage.open(os.path.join(path, filename), 'wb') as destination:
             for chunk in xpi.chunks():
                 hash.update(chunk)
                 destination.write(chunk)

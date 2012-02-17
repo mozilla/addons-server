@@ -24,6 +24,7 @@ import amo.tests
 from amo.urlresolvers import reverse
 import amo
 import amo.utils
+from amo.utils import rm_local_tmp_dir
 import devhub.signals
 from addons.models import Addon
 from applications.models import Application, AppVersion
@@ -789,7 +790,7 @@ class TestZip(amo.tests.TestCase, amo.tests.AMOPaths):
             zipfile.ZipFile(xpi).extractall(dest)
             assert os.path.isdir(os.path.join(dest, 'chrome'))
         finally:
-            shutil.rmtree(dest)
+            rm_local_tmp_dir(dest)
 
 
 class TestParseSearch(amo.tests.TestCase, amo.tests.AMOPaths):

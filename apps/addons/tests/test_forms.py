@@ -6,12 +6,12 @@ import tempfile
 from mock import patch
 from nose.tools import eq_
 
-from django.core.files.storage import default_storage as storage
 from django.conf import settings
 
 import amo
 import amo.tests
 from amo.tests.test_helpers import get_image_path
+from amo.utils import rm_local_tmp_dir
 from addons import forms, cron
 from addons.models import Addon, AddonDeviceType, Category, DeviceType, Webapp
 from tags.models import Tag, AddonTag
@@ -215,7 +215,7 @@ class TestIconForm(amo.tests.TestCase):
             os.makedirs(self.icon_path)
 
     def tearDown(self):
-        shutil.rmtree(self.temp_dir)
+        rm_local_tmp_dir(self.temp_dir)
 
     def get_icon_paths(self):
         path = os.path.join(self.addon.get_icon_dir(), str(self.addon.id))

@@ -4,6 +4,7 @@ import re
 
 from django import forms
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 from django.forms.formsets import formset_factory
 
 import commonware.log
@@ -346,8 +347,8 @@ def icons():
     in the format (psuedo-mime-type, description).
     """
     icons = [('image/jpeg', 'jpeg'), ('image/png', 'png'), ('', 'default')]
-    dir_list = os.listdir(settings.ADDON_ICONS_DEFAULT_PATH)
-    for fname in dir_list:
+    dirs, files = storage.listdir(settings.ADDON_ICONS_DEFAULT_PATH)
+    for fname in files:
         if '32' in fname and not 'default' in fname:
             icon_name = fname.split('-')[0]
             icons.append(('icon/%s' % icon_name, icon_name))

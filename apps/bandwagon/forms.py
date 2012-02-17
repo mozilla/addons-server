@@ -2,6 +2,7 @@ import os
 
 from django import forms
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 
 import commonware.log
 from tower import ugettext as _, ugettext_lazy as _lazy
@@ -194,15 +195,9 @@ class CollectionForm(ModelForm):
             destination = os.path.join(dirname, '%d.png' % c.id)
             tmp_destination = os.path.join(dirname,
                                            '%d.png__unconverted' % c.id)
-
-            if not os.path.exists(dirname):
-                os.mkdir(dirname)
-
-            fh = open(tmp_destination, 'w')
-            for chunk in icon.chunks():
-                fh.write(chunk)
-
-            fh.close()
+            with storage.open(tmp_destination, 'w') as fh:
+                for chunk in icon.chunks():
+                    fh.write(chunk)
             tasks.resize_icon.delay(tmp_destination, destination,
                                     set_modified_on=[c])
 

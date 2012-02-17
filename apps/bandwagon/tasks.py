@@ -1,8 +1,8 @@
 import logging
 import math
-import os
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 from django.db.models import Count
 
 import elasticutils
@@ -60,7 +60,7 @@ def delete_icon(dst, **kw):
         return
 
     try:
-        os.remove(dst)
+        storage.delete(dst)
     except Exception, e:
         log.error("Error deleting icon: %s" % e)
 

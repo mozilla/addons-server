@@ -14,6 +14,7 @@ import path
 
 import amo
 import amo.utils
+from amo.utils import rm_local_tmp_dir
 from files.models import nfd_str
 from files.utils import extract_xpi, RDF
 from versions.models import Version
@@ -72,7 +73,7 @@ class Command(BaseCommand):
                         new_xpi = fix_xpi(xpi, xpi_dir, new_ver_str)
                         replace_xpi(file_, new_xpi, version)
                     finally:
-                        shutil.rmtree(tmp)
+                        rm_local_tmp_dir(tmp)
             except:
                 failed_ver_ids.append(version.pk)
                 transaction.rollback()

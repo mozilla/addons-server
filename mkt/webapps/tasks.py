@@ -1,11 +1,11 @@
 import hashlib
 import logging
-import os
 from tempfile import mkstemp
 
 from celeryutils import task
 
 from amo import set_user
+from amo.utils import rm_local_tmp_file
 from devhub.tasks import _fetch_content
 from files.utils import get_sha256
 from users.utils import get_task_user
@@ -57,7 +57,7 @@ def update_manifests(ids, **kw):
         except:
             task_log.info('Failed to get manifest for: %s' % id,
                           exc_info=True)
-            os.unlink(temp)
+            rm_local_tmp_file(temp)
             continue
 
         # Try to create a new version, if needed.
@@ -71,4 +71,4 @@ def update_manifests(ids, **kw):
             task_log.info('Failed to create version for: %s' % id,
                           exc_info=True)
         finally:
-            os.unlink(temp)
+            rm_local_tmp_file(temp)

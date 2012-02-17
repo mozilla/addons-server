@@ -4,6 +4,7 @@ from smtplib import SMTPException
 
 from django import forms
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 from django.contrib.auth import forms as auth_forms
 from django.forms.util import ErrorList
 
@@ -335,14 +336,10 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
             u.picture_type = 'image/png'
             tmp_destination = u.picture_path + '__unconverted'
 
-            if not os.path.exists(u.picture_dir):
-                os.makedirs(u.picture_dir)
+            with storage.open(tmp_destination, 'wb') as fh:
+                for chunk in photo.chunks():
+                    fh.write(chunk)
 
-            fh = open(tmp_destination, 'w')
-            for chunk in photo.chunks():
-                fh.write(chunk)
-
-            fh.close()
             tasks.resize_photo.delay(tmp_destination, u.picture_path,
                                      set_modified_on=[u])
 

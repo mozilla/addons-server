@@ -5,6 +5,7 @@ import tempfile
 
 from django.conf import settings
 from django.core.cache import cache
+from django.core.files.storage import default_storage as storage
 from django.db.models import Q
 
 from nose import SkipTest
@@ -678,7 +679,7 @@ class TestEditMedia(TestEdit):
 
     def test_image_status_fails(self):
         self.setup_image_status()
-        os.remove(self.icon_dest)
+        storage.delete(self.icon_dest)
         result = json.loads(self.client.get(self.url).content)
         assert not result['icons']
 
@@ -694,20 +695,20 @@ class TestEditMedia(TestEdit):
 
     def test_preview_status_fails(self):
         self.setup_image_status()
-        os.remove(self.preview.thumbnail_path)
+        storage.delete(self.preview.thumbnail_path)
         result = json.loads(self.client.get(self.url).content)
         assert not result['previews']
 
     def test_image_status_persona(self):
         self.setup_image_status()
-        os.remove(self.icon_dest)
+        storage.delete(self.icon_dest)
         self.get_addon().update(type=amo.ADDON_PERSONA)
         result = json.loads(self.client.get(self.url).content)
         assert result['icons']
 
     def test_image_status_default(self):
         self.setup_image_status()
-        os.remove(self.icon_dest)
+        storage.delete(self.icon_dest)
         self.get_addon().update(icon_type='icon/photos')
         result = json.loads(self.client.get(self.url).content)
         assert result['icons']

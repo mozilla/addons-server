@@ -1296,7 +1296,7 @@ def version_add_file(request, addon_id, addon, version_id):
         return json_view.error(form.errors)
     upload = form.cleaned_data['upload']
     new_file = File.from_upload(upload, version, form.cleaned_data['platform'])
-    upload.path.unlink()
+    storage.delete(upload.path)
     file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
     form = [f for f in file_form.forms if f.instance == new_file]
     return jingo.render(request, 'devhub/includes/version_file.html',
