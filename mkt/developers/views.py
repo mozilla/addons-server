@@ -39,7 +39,8 @@ from addons.decorators import addon_view, can_become_premium
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from mkt.developers.decorators import dev_required
-from mkt.developers.forms import CheckCompatibilityForm, InappConfigForm
+from mkt.developers.forms import (CheckCompatibilityForm, InappConfigForm,
+                                  AppFormBasic)
 from mkt.developers.models import ActivityLog, SubmitStep
 from mkt.developers import perf
 from editors.helpers import get_position
@@ -889,7 +890,7 @@ def ajax_dependencies(request, addon_id, addon):
 @dev_required(webapp=True)
 def addons_section(request, addon_id, addon, section, editable=False,
                    webapp=False):
-    basic = addon_forms.AppFormBasic if webapp else addon_forms.AddonFormBasic
+    basic = AppFormBasic if webapp else addon_forms.AddonFormBasic
     models = {'basic': basic,
               'media': addon_forms.AddonFormMedia,
               'details': addon_forms.AddonFormDetails,

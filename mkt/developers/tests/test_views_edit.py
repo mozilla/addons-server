@@ -23,7 +23,6 @@ from addons.models import (Addon, AddonCategory,
                            AddonDeviceType, AddonUser, Category, DeviceType)
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from mkt.developers.models import ActivityLog
-from tags.models import Tag, AddonTag
 from users.models import UserProfile
 
 
@@ -53,10 +52,6 @@ class TestEdit(amo.tests.TestCase):
         self.url = addon.get_dev_url()
         self.user = UserProfile.objects.get(pk=55021)
 
-        self.tags = ['tag3', 'tag2', 'tag1']
-        for t in self.tags:
-            Tag(tag_text=t).save_tag(addon)
-
         self.addon = self.get_addon()
 
     def get_addon(self):
@@ -68,8 +63,7 @@ class TestEdit(amo.tests.TestCase):
     def get_dict(self, **kw):
         fs = formset(self.cat_initial, initial_count=1)
         result = {'name': 'new name', 'slug': 'test_slug',
-                  'summary': 'new summary',
-                  'tags': ', '.join(self.tags)}
+                  'summary': 'new summary'}
         result.update(**kw)
         result.update(fs)
         return result
@@ -266,8 +260,6 @@ class TestEditBasic(TestEdit):
         eq_(unicode(addon.slug), data['slug'])
         eq_(unicode(addon.summary), data['summary'])
 
-        eq_([unicode(t) for t in addon.tags.all()], sorted(self.tags))
-
     def test_edit_check_description(self):
         # Make sure bug 629779 doesn't return.
         old_desc = self.addon.description
@@ -330,8 +322,6 @@ class TestEditBasic(TestEdit):
         eq_(unicode(addon.slug), data['slug'])
         eq_(unicode(addon.summary), data['summary'])
 
-        eq_([unicode(t) for t in addon.tags.all()], sorted(self.tags))
-
     def test_edit_name_required(self):
         data = self.get_dict(name='', slug='test_addon')
         r = self.client.post(self.basic_edit_url, data)
@@ -350,104 +340,6 @@ class TestEditBasic(TestEdit):
         r = self.client.post(self.basic_edit_url, data)
         eq_(r.status_code, 200)
         self.assertFormError(r, 'form', 'slug', 'This slug is already in use.')
-
-    def test_edit_add_tag(self):
-        count = ActivityLog.objects.all().count()
-        self.tags.insert(0, 'tag4')
-        data = self.get_dict()
-        r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
-
-        result = pq(r.content)('#addon_tags_edit').eq(0).text()
-
-        eq_(result, ', '.join(sorted(self.tags)))
-        eq_((ActivityLog.objects.for_addons(self.addon)
-             .get(action=amo.LOG.ADD_TAG.id)).to_string(),
-            '<a href="/en-US/firefox/tag/tag4">tag4</a> added to '
-            '<a href="/en-US/firefox/addon/test_slug/">new name</a>.')
-        eq_(ActivityLog.objects.filter(action=amo.LOG.ADD_TAG.id).count(),
-                                        count + 1)
-
-    def test_edit_blacklisted_tag(self):
-        Tag.objects.get_or_create(tag_text='blue', blacklisted=True)
-        data = self.get_dict(tags='blue')
-        r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
-
-        error = 'Invalid tag: blue'
-        self.assertFormError(r, 'form', 'tags', error)
-
-    def test_edit_blacklisted_tags_2(self):
-        Tag.objects.get_or_create(tag_text='blue', blacklisted=True)
-        Tag.objects.get_or_create(tag_text='darn', blacklisted=True)
-        data = self.get_dict(tags='blue, darn, swearword')
-        r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
-
-        error = 'Invalid tags: blue, darn'
-        self.assertFormError(r, 'form', 'tags', error)
-
-    def test_edit_blacklisted_tags_3(self):
-        Tag.objects.get_or_create(tag_text='blue', blacklisted=True)
-        Tag.objects.get_or_create(tag_text='darn', blacklisted=True)
-        Tag.objects.get_or_create(tag_text='swearword', blacklisted=True)
-        data = self.get_dict(tags='blue, darn, swearword')
-        r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
-
-        error = 'Invalid tags: blue, darn, swearword'
-        self.assertFormError(r, 'form', 'tags', error)
-
-    def test_edit_remove_tag(self):
-        self.tags.remove('tag2')
-
-        count = ActivityLog.objects.all().count()
-        data = self.get_dict()
-        r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
-
-        result = pq(r.content)('#addon_tags_edit').eq(0).text()
-
-        eq_(result, ', '.join(sorted(self.tags)))
-
-        eq_(ActivityLog.objects.filter(action=amo.LOG.REMOVE_TAG.id).count(),
-            count + 1)
-
-    def test_edit_minlength_tags(self):
-        tags = self.tags
-        tags.append('a' * (amo.MIN_TAG_LENGTH - 1))
-        data = self.get_dict()
-        r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
-
-        self.assertFormError(r, 'form', 'tags',
-                             'All tags must be at least %d characters.' %
-                             amo.MIN_TAG_LENGTH)
-
-    def test_edit_max_tags(self):
-        tags = self.tags
-
-        for i in range(amo.MAX_TAGS + 1):
-            tags.append('test%d' % i)
-
-        data = self.get_dict()
-        r = self.client.post(self.basic_edit_url, data)
-        self.assertFormError(r, 'form', 'tags', 'You have %d too many tags.' %
-                                                 (len(tags) - amo.MAX_TAGS))
-
-    def test_edit_tag_empty_after_slug(self):
-        start = Tag.objects.all().count()
-        data = self.get_dict(tags='>>')
-        self.client.post(self.basic_edit_url, data)
-
-        # Check that the tag did not get created.
-        eq_(start, Tag.objects.all().count())
-
-    def test_edit_tag_slugified(self):
-        data = self.get_dict(tags='<script>alert("foo")</script>')
-        self.client.post(self.basic_edit_url, data)
-        tag = Tag.objects.all().order_by('-pk')[0]
-        eq_(tag.tag_text, 'scriptalertfooscript')
 
     def test_edit_categories_add(self):
         eq_([c.id for c in self.get_addon().all_categories], [22])
@@ -597,16 +489,6 @@ class TestEditBasic(TestEdit):
         self.assertFormError(r, 'form', 'summary',
                              'Ensure this value has at most 250 '
                              'characters (it has 251).')
-
-    def test_edit_restricted_tags(self):
-        addon = self.get_addon()
-        tag = Tag.objects.create(tag_text='restartless', restricted=True)
-        AddonTag.objects.create(tag=tag, addon=addon)
-
-        res = self.client.get(self.basic_edit_url)
-        divs = pq(res.content)('#addon_tags_edit .edit-addon-details')
-        eq_(len(divs), 2)
-        assert 'restartless' in divs.eq(1).text()
 
     def test_text_not_none_when_has_flags(self):
         r = self.client.get(self.url)

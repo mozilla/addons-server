@@ -175,44 +175,6 @@
             </td>
           </tr>
           {% endif %}
-          <tr>
-            <th>
-              {% if webapp %}
-                {# TODO(apps): Finalize copy. #}
-                {{ tip('Tags',
-                       "Tags help users find your app and should be short
-                        descriptors such as tabs, toolbar, or twitter. You
-                        may have a maximum of {0} tags.".format(amo.MAX_TAGS)) }}
-              {% else %}
-                {{ tip(_("Tags"),
-                       _("Tags help users find your add-on and should be short
-                          descriptors such as tabs, toolbar, or twitter.  You
-                          may have a maximum of {0} tags.").format(amo.MAX_TAGS)) }}
-              {% endif %}
-            </th>
-            <td id="addon_tags_edit">
-              {% if editable %}
-                {{ form.tags }}
-                {{ form.tags.errors }}
-                <div class="edit-addon-details">
-                  {{ ngettext('Comma-separated, minimum of {0} character.',
-                              'Comma-separated, minimum of {0} characters.',
-                              amo.MIN_TAG_LENGTH)|f(amo.MIN_TAG_LENGTH) }}
-                  {{ _('Example: pop, hen, yum.  Limit 20.') }}
-                </div>
-                {% if restricted_tags %}
-                <div class="edit-addon-details">
-                    {{ ngettext('Reserved tag:', 'Reserved tags:', restricted_tags|length) }}
-                    {{ restricted_tags|join(', ') }}
-                </div>
-                {% endif %}
-              {% else %}
-                {% call empty_unless(tags) %}
-                  {{ tags|join(', ') }}
-                {% endcall %}
-              {% endif %}
-            </td>
-          </tr>
         </tbody>
       </table>
     </div>

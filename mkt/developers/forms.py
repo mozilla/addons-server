@@ -22,6 +22,7 @@ import waffle
 
 import amo
 import addons.forms
+from addons.forms import clean_name, slug_validator
 import paypal
 from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
                            BlacklistedSlug, Charity, Preview)
@@ -1167,3 +1168,65 @@ def DependencyFormSet(*args, **kw):
     FormSet = modelformset_factory(AddonDependency, formset=_FormSet,
                                    form=_Form, extra=0, can_delete=True)
     return FormSet(*args, **kw)
+
+
+class AppFormBasic(addons.forms.AddonFormBase):
+    """Form to edit basic app info."""
+    name = TransField(max_length=128)
+    slug = forms.CharField(max_length=30)
+    summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
+                         max_length=250)
+
+    class Meta:
+        model = Addon
+        fields = ('name', 'slug', 'summary')
+
+    def __init__(self, *args, **kw):
+        # Force the form to use app_slug if this is a webapp. We want to keep
+        # this under "slug" so all the js continues to work.
+        if kw['instance'].is_webapp():
+            kw.setdefault('initial', {})['slug'] = kw['instance'].app_slug
+
+        super(AppFormBasic, self).__init__(*args, **kw)
+        # Do not simply append validators, as validators will persist between
+        # instances.
+        validate_name = lambda x: clean_name(x, self.instance)
+        name_validators = list(self.fields['name'].validators)
+        name_validators.append(validate_name)
+        self.fields['name'].validators = name_validators
+
+    def _post_clean(self):
+        # Switch slug to app_slug in cleaned_data and self._meta.fields so
+        # we can update the app_slug field for webapps.
+        try:
+            self._meta.fields = list(self._meta.fields)
+            slug_idx = self._meta.fields.index('slug')
+            data = self.cleaned_data
+            if 'slug' in data:
+                data['app_slug'] = data.pop('slug')
+            self._meta.fields[slug_idx] = 'app_slug'
+            super(AppFormBasic, self)._post_clean()
+        finally:
+            self._meta.fields[slug_idx] = 'slug'
+
+    def clean_slug(self):
+        target = self.cleaned_data['slug']
+        slug_validator(target, lower=False)
+        slug_field = 'app_slug' if self.instance.is_webapp() else 'slug'
+
+        if target != getattr(self.instance, slug_field):
+            if Addon.objects.filter(**{slug_field: target}).exists():
+                raise forms.ValidationError(_('This slug is already in use.'))
+
+            if BlacklistedSlug.blocked(target):
+                raise forms.ValidationError(_('The slug cannot be: %s.'
+                                              % target))
+        return target
+
+    def save(self, addon, commit=False):
+        # We ignore `commit`, since we need it to be `False` so we can save
+        # the ManyToMany fields on our own.
+        addonform = super(AppFormBasic, self).save(commit=False)
+        addonform.save()
+
+        return addonform
