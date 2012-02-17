@@ -89,6 +89,7 @@ def install_cron(ctx):
 def deploy_app(ctx):
     ctx.remote(settings.REMOTE_UPDATE_SCRIPT)
     ctx.remote("/bin/touch %s/wsgi/zamboni.wsgi" % settings.REMOTE_APP)
+    ctx.remote("/bin/touch %s/wsgi/mkt.wsgi" % settings.REMOTE_APP)
     ctx.remote("/bin/touch %s/services/wsgi/verify.wsgi" % settings.REMOTE_APP)
     ctx.remote("/bin/touch %s/services/wsgi/application.wsgi" % settings.REMOTE_APP)
 
