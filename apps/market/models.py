@@ -263,3 +263,37 @@ class Refund(amo.models.ModelBase):
 
     def __unicode__(self):
         return u'%s (%s)' % (self.contribution, self.get_status_display())
+
+
+class AddonPaymentData(amo.models.ModelBase):
+    # Store information about the app. This can be entered manually
+    # or got from PayPal. At the moment, I'm just capturing absolutely
+    # everything from PayPal and that's what these fields are.
+    # Easier to do this and clean out later.
+    # See: http://bit.ly/xy5BTs and http://bit.ly/yRYbRx
+    #
+    # I've no idea what the biggest lengths of these are, so making
+    # up some aribtrary lengths.
+    addon = models.OneToOneField('addons.Addon')
+    # Basic.
+    first_name = models.CharField(max_length=255, blank=True)
+    last_name = models.CharField(max_length=255, blank=True)
+    email = models.EmailField(blank=True)
+    full_name = models.CharField(max_length=255, blank=True)
+    business_name = models.CharField(max_length=255, blank=True)
+    country = models.CharField(max_length=64)
+    payerID = models.CharField(max_length=255, blank=True)
+    # Advanced.
+    date_of_birth = models.DateField(blank=True, null=True)
+    post_code = models.CharField(max_length=128)
+    address_one = models.CharField(max_length=255)
+    address_two = models.CharField(max_length=255, blank=True)
+    post_code = models.CharField(max_length=128, blank=True)
+    state = models.CharField(max_length=64, blank=True)
+    phone = models.CharField(max_length=32, blank=True)
+
+    class Meta:
+        db_table = 'addon_payment_data'
+
+    def __unicode__(self):
+        return u'%s: %s' % (self.pk, self.addon)
