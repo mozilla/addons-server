@@ -76,6 +76,11 @@ NO_LOGIN_REQUIRED_MODULES = (
 # Extend the bundles.
 MINIFY_BUNDLES['css'].update({
     'devreg': (
+        # Popups, Modals, Tooltips.
+        'css/devreg/devhub-popups.less',
+
+        # Manage Authors.
+        'css/devreg/authors.less',
     ),
     'devreg-legacy': (
         'css/devreg-legacy/main.css',
@@ -93,7 +98,6 @@ MINIFY_BUNDLES['css'].update({
         'css/devreg-legacy/developers.css',
         'css/devreg-legacy/docs.less',
         'css/devreg-legacy/developers.less',
-        'css/devreg-legacy/devhub-popups.less',
         'css/devreg-legacy/formset.less',
         'css/devreg-legacy/devhub-forms.less',
         'css/devreg-legacy/submission.less',
@@ -132,7 +136,6 @@ MINIFY_BUNDLES['css'].update({
         # Developer Hub-specific styles.
         'css/devreg-impala/developers.less',
         'css/devreg-impala/devhub-listing.less',
-        'css/devreg-impala/devhub-popups.less',
         'css/devreg-impala/dashboard.less',
         'css/devreg-impala/devhub-forms.less',
         'css/devreg-impala/submission.less',

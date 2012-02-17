@@ -1,0 +1,212 @@
+@import '../impala/lib';
+
+.tooltip.ajax-loading {
+    .background-size(auto 12px);
+}
+
+.widgets .widget.ajax-loading,
+.widgets .widget:hover.ajax-loading,
+input.ui-autocomplete-loading,
+.modal.ajax-loading,
+.modal-actions.ajax-loading,
+.tooltip.ajax-loading,
+.tooltip:hover.ajax-loading {
+   background-image: url(../../img/zamboni/loading-white.gif);
+   background-position: 0 100%;
+   background-repeat: no-repeat;
+}
+.modal.ajax-loading {
+    background-position: 50% 50%;
+}
+input.ui-autocomplete-loading,
+.modal-actions.ajax-loading {
+    background-position: 100% 50%;
+}
+
+.popup,
+.modal {
+    ul, p {
+        margin: 1em 0 0;
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+}
+
+.popup,
+.modal {
+    position: absolute;
+    left: -15px;
+    margin-top: 5px;
+    background: #fff;
+    padding: 10px;
+    border: 3px solid #2e5186;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    z-index: 2001; /* because of devhub title */
+}
+
+.popup p:last-child,
+.popup ul:last-child {
+    margin-bottom: 0;
+}
+
+.modal form {
+    margin: 0;
+}
+.modal h2,
+.modal h3 {
+    margin-top: 0;
+    color: #2e5186;
+}
+.modal-delete h3 {
+    color: #6c1a1a;
+}
+
+.popup .msg {
+    background-repeat: no-repeat;
+    min-height: 32px;
+}
+
+/* append the left class if the bubble is to the far right */
+.install-note.left,
+.popup.left {
+    left: -160px;
+}
+
+.popup.warning {
+    border-color: #c90;
+}
+
+.popup.error,
+.modal-delete {
+    border-color: #6c1a1a;
+    color: #333;
+}
+
+.modal-overlay {
+    background-color: #fff;
+    height: 100%;
+    -khtml-opacity: 0.75;
+    -moz-opacity: 0.75;
+    opacity: 0.75;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+}
+
+
+/* http://nicolasgallagher.com/demo/pure-css-speech-bubbles/bubbles.html */
+/* Creates the larger triangle. */
+.install-note:before,
+.popup:before {
+    content: "\00a0";
+    display: block; /* reduce the damage in FF3.0 */
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 50px;
+    top: -20px; /* value = - border-top-width - border-bottom-width */
+    border: 10px solid transparent;
+    border-bottom-color: #2e5186;
+    pointer-events: none;
+}
+
+.unreviewed .install-note:before,
+.popup.warning:before {
+    border-bottom-color: #c90;
+}
+
+.popup.error:before {
+    border-bottom-color: #6c1a1a;
+}
+
+/* creates the smaller triangle */
+.install-note:after,
+.popup:after {
+    content: "\00a0";
+    display: block; /* reduce the damage in FF3.0 */
+    position: absolute;
+    left: 55px;
+    width: 0;
+    height: 0;
+    top: -10px; /* value = - border-top-width - border-bottom-width */
+    border: 5px solid transparent;
+    border-bottom-color: #fff;
+    pointer-events: none;
+}
+
+.install-note.left:before,
+.popup.left:before {
+    right: 71px; /* controls horizontal position */
+    left: auto;
+}
+
+.install-note.left:after,
+.popup.left:after {
+    right: 76px; /* value = (:before right) + (:before border-right) - (:after border-right) */
+    left: auto;
+}
+
+.install .install-note > *,
+.popup.warning > * {
+    margin-bottom: 1em;
+    padding-left: 50px;
+}
+
+.install .install-note strong,
+.popup strong {
+    margin: 0;
+    color: inherit;
+    font-size: inherit;
+}
+
+/** hover tooltip styles **/
+#tooltip {
+    display:none;
+    background: #2A4364;
+    color: white;
+    font-size: 11px;
+    border: 1px solid #fff;
+    -moz-border-radius: .8em;
+    -webkit-border-radius: .8em;
+    max-width: 300px;
+    text-align: center;
+    position: absolute;
+    padding: 0.5em 1em;
+    pointer-events: none;
+    z-index: 16389;
+}
+
+#tooltip.error {
+    background: #6C1a1a;
+}
+
+#tooltip span {
+    display: block;
+    line-height: 1.2em;
+}
+
+#tooltip:before {
+    content: "\00a0";
+    display: block; /* reduce the damage in FF3.0 */
+    position: absolute;
+    width: 0;
+    height: 0;
+    margin-left: -6px;
+    left: 50%;
+    bottom: -16px;
+    border: solid transparent;
+    border-width: 8px 6px;
+    border-top-color: #2A4364;
+    pointer-events: none;
+}
+#tooltip.error:before {
+    border-top-color: #6c1a1a;
+}

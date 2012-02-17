@@ -9,6 +9,8 @@
     {% block extrameta %}{% endblock %}
     <title>{% block title %}{{ loc('Mozilla Marketplace') }}{% endblock %}</title>
 
+    {{ css('devreg') }}
+
     {% block site_css %}
       {{ css('devreg-impala') }}
       <!--[if lt IE 9]>
