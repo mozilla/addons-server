@@ -4,7 +4,6 @@ import os
 import socket
 from datetime import datetime, timedelta
 from decimal import Decimal
-from collections import namedtuple
 
 from django.conf import settings
 from django.core import mail
@@ -3284,28 +3283,6 @@ class TestRequestReview(amo.tests.TestCase):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         eq_(self.get_version().nomination.timetuple()[0:5],
             orig_date.timetuple()[0:5])
-
-
-class TestNewsletter(amo.tests.TestCase):
-
-    def test_get(self):
-        r = self.client.get(reverse('mkt.developers.community.newsletter'))
-        eq_(r.status_code, 200)
-
-    @mock.patch('mkt.developers.tasks.urllib2.urlopen')
-    def test_post(self, v):
-        v.return_value = namedtuple('_', 'code')
-        v.return_value.code = 200
-        email = 'test@example.com'
-
-        url = reverse('mkt.developers.community.newsletter')
-        r = self.client.post(url, {'email': email, 'region': 'us',
-                                   'format': 'html', 'policy': 't'})
-        eq_(r.status_code, 302)
-
-        # Test call to responsys
-        eq_(v.call_args[0], ('http://awesomeness.mozilla.org/pub/rf',))
-        assert(urlencode({'EMAIL_ADDRESS_': email}) in v.call_args[1]['data'])
 
 
 class TestRemoveLocale(amo.tests.TestCase):

@@ -6,7 +6,6 @@ import sys
 import time
 import traceback
 import uuid
-import operator
 
 from django import http
 from django.core.files.storage import default_storage as storage
@@ -49,7 +48,6 @@ from market.models import AddonPremium, Refund
 from payments.models import InappConfig
 from paypal.check import Check
 import paypal
-from product_details import product_details
 from search.views import BaseAjaxSearch
 from stats.models import Contribution
 from translations.models import delete_translation
@@ -1592,33 +1590,6 @@ def docs(request, doc_name=None, doc_page=None):
         return redirect('mkt.developers.index')
 
     return jingo.render(request, 'developers/docs/%s' % filename)
-
-
-def builder(request):
-    return jingo.render(request, 'developers/builder.html')
-
-
-@anonymous_csrf
-def newsletter(request):
-    regions = product_details.get_regions(getattr(request, 'LANG',
-                                                  settings.LANGUAGE_CODE))
-    form = forms.NewsletterForm(request.POST or None,
-                                regions=sorted(regions.iteritems(),
-                                               key=operator.itemgetter(1)))
-
-    if request.method == 'POST':
-        if form.is_valid():
-            data = form.cleaned_data
-            # Responsys expects the URL in the format example.com/foo.
-            responsys_url = request.get_host() + request.get_full_path()
-            tasks.subscribe_to_responsys.delay('ABOUT_ADDONS', data['email'],
-                                               data['format'], responsys_url,
-                                               request.LANG, data['region'])
-            messages.success(request, _('Thanks for subscribing!'))
-            return redirect('mkt.developers.community.newsletter')
-
-    return jingo.render(request, 'developers/newsletter.html',
-                        {'newsletter_form': form})
 
 
 @json_view

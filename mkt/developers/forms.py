@@ -30,7 +30,6 @@ from amo.forms import AMOModelForm
 from amo.urlresolvers import reverse
 from amo.utils import raise_required, slugify
 
-from amo.widgets import EmailWidget
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon, VERSION_RE
@@ -744,22 +743,6 @@ class InlineRadioRenderer(forms.widgets.RadioFieldRenderer):
 
     def render(self):
         return mark_safe(''.join(force_unicode(w) for w in self))
-
-
-class NewsletterForm(forms.Form):
-    def __init__(self, *args, **kwargs):
-        regions = kwargs.pop('regions')
-        super(NewsletterForm, self).__init__(*args, **kwargs)
-        self.fields['region'].choices = regions
-
-    email = forms.EmailField(
-        widget=EmailWidget(placeholder=_lazy(u'Your Email Address')))
-    region = forms.ChoiceField(initial='us')
-    format = forms.ChoiceField(
-        widget=forms.widgets.RadioSelect(renderer=InlineRadioRenderer),
-        choices=(('html', _lazy(u'HTML')),
-                 ('text', _lazy(u'Text'))))
-    policy = forms.BooleanField()
 
 
 class PackagerBasicForm(forms.Form):

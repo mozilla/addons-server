@@ -231,13 +231,6 @@ urlpatterns = decorate(write, patterns('',
 
     url('^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
 
-    # Newsletter archive & signup
-    url('community/newsletter', views.newsletter,
-        name='mkt.developers.community.newsletter'),
-
-    # Add-on SDK page
-    url('builder$', views.builder, name='mkt.developers.builder'),
-
     # Developer docs
     url('docs/(?P<doc_name>[-_\w]+)?$',
         views.docs, name='mkt.developers.docs'),
