@@ -2,7 +2,7 @@
   {% set webapp, WEBAPPS = True, True %}
 {% endif %}
 
-{% extends "base.html" %}
+{% extends 'developers/skeleton_legacy.html' %}
 
 {% if addon %}
   {% set editable = "no-edit" if not check_addon_ownership(request, addon, dev=True) %}
@@ -44,7 +44,6 @@
 {% block js %}
   {# TODO(Kumar) move to base template? #}
   <script src="{{ url('wafflejs') }}"></script>
-  {{ js('zamboni/devhub') }}
 {% endblock %}
 
 {% set hide_mobile_link=True %}

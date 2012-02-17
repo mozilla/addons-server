@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="{{ LANG }}" dir="{{ DIR }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="robots" content="none">
+    {% if not settings.ENGAGE_ROBOTS %}
+      <!--<meta name="robots" content="noindex">-->
+    {% endif %}
+    {% block extrameta %}{% endblock %}
+    <title>{% block title %}{{ loc('Mozilla Marketplace') }}{% endblock %}</title>
+
+    {% block rss_feed %}{% endblock %}
+
+    {% block site_css %}
+      {{ css('devreg-legacy') }}
+      <!--[if IE]><link rel="stylesheet" href="{{ media('css/legacy/ie.css') }}"><![endif]-->
+      <!--[if IE 7]><link rel="stylesheet" href="{{ media('css/legacy/ie7.css') }}"><![endif]-->
+    {% endblock %}
+
+    {% block extrahead %}{% endblock %}
+    <noscript><link rel="stylesheet" href="{{ media('css/legacy/nojs.css') }}"></noscript>
+
+    {% if settings.DEBUG %}
+      {% if settings.LESS_LIVE_REFRESH %}
+        <meta id="live_refresh" name="live_refresh" value="1">
+      {% endif %}
+      {{ js('debug') }}
+    {% endif %}
+
+    {% if request.user.is_authenticated() %}
+      <meta name="csrf" content="{{ csrf_token }}">
+    {% endif %}
+  </head>
+  <body class="html-{{ DIR }} {{ request.APP.short }} moz-header-slim {% block bodyclass %}{% endblock %}"
+        data-app="{{ request.APP.short }}"
+        data-appname="{{ request.APP.pretty }}"
+        data-appid="{{ request.APP.id }}"
+        data-min-beta-version="{{ settings.MIN_BETA_VERSION }}"
+        data-anonymous="{{ (not request.user.is_authenticated())|json }}"
+        data-readonly="{{ settings.READ_ONLY|json }}"
+        data-media-url="{{ MEDIA_URL }}"
+        {% block bodyattrs %}{% endblock %}>
+
+    {% if ADMIN_MESSAGE or settings.READ_ONLY %}
+      <div id="site-notice">
+        {% if ADMIN_MESSAGE %}
+          <p>{{ ADMIN_MESSAGE|safe }}</p>
+        {% endif %}
+        {% if settings.READ_ONLY %}
+          <p>{{ _("Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly.") }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+    <div class="section">
+      {% block site_header %}
+        <div id="global-header-tab">
+          <a href="http://mozilla.org/"><img src="{{ media('img/zamboni/mozilla-tab.png') }}"></a>
+        </div>
+        <div class="amo-header">
+          <nav id="aux-nav" role="navigation" class="menu-nav c">
+            <ul>
+              {% if not settings.READ_ONLY %}
+                {% include "impala/user_login.html" %}
+              {% endif %}
+              {% block aux_nav %}
+                <li>
+                  <a href="#" id="other-apps"
+                     title="{{ _('Find add-ons for other applications') }}">
+                    {{ _('Other Applications') }}</a>
+                  <ul class="other-apps">
+                    {% for app in amo.APP_USAGE %}
+                      {% if app != request.APP and app != amo.ANDROID %}
+                        <li id="app-{{ app.short }}" class="{{ app.short }}">
+                          <a href="{{ locale_url(app.short) }}">{{ app.pretty }}</a>
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                </li>
+              {% endblock aux_nav %}
+            </ul>
+          </nav>
+          <div class="header-search" role="search">
+            {% block search_form %}
+              {% with query_term=query_term %}
+                {% include 'impala/search.html' %}
+              {% endwith %}
+            {% endblock %}
+          </div>
+          <div id="masthead">
+            {% block site_header_title %}
+            {% include "impala/header_title.html" %}
+            {{ site_nav() }}
+            {% endblock %}
+            {% block navbar %}{% endblock %}
+            {% block site_stats %}{% endblock %}
+          </div>
+        </div>
+      {% endblock site_header %}
+
+      {# Overridden in base_side_categories, which expands categories
+         on the side of the page. #}
+      {% block main_content %}
+        {# outer_content is for something you want above content on every page. #}
+        {% block outer_content %}{% include "messages.html" %}{% endblock %}
+        {% block content %}{% endblock %}
+      {% endblock %}
+    </div>
+    <div id="tooltip">
+      <span></span>
+    </div>
+    <div id="popup-staging">
+      {{ sharing_box() }}
+      <div id="add-to-collection" class="popup">
+        <div class="collection-add-login">
+          <p>{% trans %}
+            To create your own collections, you must have a Mozilla Add-ons account.
+          {% endtrans %}</p>
+          <p class="register-button">
+            <a class="button" href="{{ remora_url('users/register') }}">{{ _('Create an Add-ons Account') }}</a>
+          </p>
+          <p>
+            {% trans login=login_link() %}
+              or <a href="{{ login }}">log in to your current account</a>
+            {% endtrans %}
+          </p>
+        </div>
+      </div>
+      {% block popups %}
+      {% endblock %}
+    </div>
+    {# js #}
+    {% block site_js %}
+      <script src="{{ static(url('jsi18n')) }}"></script>
+      {{ js('devreg-legacy') }}
+      <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
+      <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
+    {% endblock %}
+    {% block js %}{% endblock %}
+    {% block footer %}
+      <div id="footer" role="contentinfo">
+        <div class="section">
+          {% block footer_extras %}
+            <img class="footerlogo" src="{{ media('img/zamboni/footer-logo-med.png') }}" alt="">
+          {% endblock %}
+          {% include "footer.html" %}
+        </div> {# section #}
+      </div> {# footer #}
+    {% endblock %}
+    {# Webtrends Stats Tracking #}
+    <script defer src="{{ media('js/webtrends/webtrends-v0.1.js') }}"></script>
+    <noscript>
+      <img id="DCSIMG" width="1" height="1"
+        src="https://statse.webtrendslive.com/dcso6de4r0000082npfcmh4rf_4b1e/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=8.6.2" />
+    </noscript>
+    {# End Webtrends #}
+  </body>
+</html>

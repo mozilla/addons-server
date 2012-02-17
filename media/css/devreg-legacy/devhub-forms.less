@@ -1,0 +1,199 @@
+@import '../impala/lib';
+
+.devhub-form {
+    position: relative;
+    table {
+        margin: 0;
+        width: 100%;
+        th, td {
+            border-top: 1px dotted #add0dc;
+            padding: 8px 0;
+        }
+        tr:first-child {
+            td, th {
+                border-top: medium none;
+            }
+        }
+        th {
+            padding-right: 20px;
+            vertical-align: top;
+            width: 130px;
+        }
+        ul {
+            margin: 0;
+        }
+        table td {
+            border-top-width: 0;
+        }
+        .screenshot.thumbnail {
+            width: 100px;
+            height: 75px;
+        }
+    }
+    table, tbody {
+        border-top: medium none;
+        border-bottom: medium none;
+    }
+}
+
+.html-rtl .devhub-form table th {
+    padding: 8px 0 8px 20px;
+}
+
+.devhub-form .tip,
+.addon-submission-process .tip {
+    margin-left: 3px;
+}
+
+.devhub-form .item {
+    .border-radius(8px);
+    background: #fff;
+    border: 1px solid @border-blue;
+    clear: both;
+    margin: 0 0 1em;
+    position: relative;
+    + h3 {
+        margin-top: 1.5em;
+    }
+}
+
+.devhub-form .listing-footer {
+    .border-radius(0 0 8px 8px);
+    border-top: 1px solid @border-blue;
+    padding: 9px;
+}
+
+.devhub-form .item_wrapper {
+    padding: 5px 13px;
+}
+
+.devhub-form .tip,
+.addon-submission-process .tip,
+ul.errorlist li span.tip,
+a.remove,
+span.remove {
+    .border-radius(20px);
+    background-color: #ddd;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    height: 18px;
+    line-height: 1.3em;
+    margin-top: 0;
+    text-align: center;
+    text-decoration: none;
+    width: 18px;
+}
+.devhub-form .tip,
+.addon-submission-process .tip {
+    vertical-align: top;
+}
+a.remove {
+    cursor: pointer;
+    line-height: 16px;
+    float: right;
+    margin-top: 2px;
+}
+span.remove {
+    background-color: #eee;
+}
+
+.devhub-form .author:hover .remove,
+.devhub-form tr:hover .tip,
+.devhub-form tr:hover > td > a.remove,
+.addon-submission-process #icon_preview:hover .tip,
+.compat-versions tr:hover a.remove,
+#existing_locales li:hover a.remove,
+#required-addons ul.dependencies li:hover a.remove {
+    background-color: #ccc;
+}
+
+.devhub-form tr:hover .tip:hover,
+.addon-submission-process tr:hover .tip:hover {
+    cursor: help;
+}
+
+span.tip:hover,
+a.remove:hover {
+    background-color: #2A4364 !important;
+}
+
+.devhub-form .empty {
+    color: @note-gray;
+    font-style: italic;
+}
+
+.add-button,
+.remove-button,
+.edit-button,
+.action-button {
+    background: #fefefe url(../../img/developers/add.png) no-repeat 10px 50%;
+    border: 1px solid #ccc;
+    .border-radius(10px);
+    padding: 3px 15px 3px 35px;
+    white-space: nowrap;
+}
+
+.remove-button {
+    background-image: url(../../img/developers/delete.png);
+}
+
+.edit-button {
+    background-image: url(../../img/developers/edit.png);
+}
+
+.html-rtl {
+    .add-button,
+    .remove-button,
+    .edit-button,
+    .action-button {
+        background-position: 95% 50%;
+        padding: 3px 35px 3px 15px;
+    }
+}
+
+.undo {
+    float: right;
+}
+.html-rtl .undo {
+    float: left;
+}
+
+#issue-refund {
+    font-size: 14px;
+}
+
+/* Tooltips: A half-baked tooltip implementation */
+.pretty-tooltip {
+    background-color: #888;
+    border-radius: 4px;
+    color: #fff;
+    display: inline-block;
+    padding: 5px 8px;
+    position: relative;
+    a {
+        color: #eee;
+        text-decoration: underline;
+    }
+    &.tl:before {
+        border-bottom: 6px solid #888;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        bottom: 0;
+        content: " ";
+        display: block;
+        height: 0;
+        left: 10px;
+        position: absolute;
+        top: -6px;
+        width: 0;
+    }
+}
+
+.html-rtl .pretty-tooltip {
+    &.tl:before {
+        left: auto;
+        right: 10px;
+    }
+}

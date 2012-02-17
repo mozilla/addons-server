@@ -1,0 +1,237 @@
+.big-link {
+    text-align: center;
+
+    a {
+        padding: 0.5em 1em;
+        margin: 0 1em;
+        background-color: #C8E8F3;
+        border-radius: 6px;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+
+        &:hover {
+            background-color: #9FD0E0;
+        }
+
+        &.submit {
+            background-color: #7DBC39;
+            color: #fff;
+
+            &:hover {
+                background-color: #67A427;
+            }
+        }
+
+        &.positive {
+            color: #fff;
+            background-color: #6AB524;
+            &:hover {
+                background-color: #56A805;
+            }
+        }
+    }
+}
+
+ol.numbered {
+    margin-left: 0;
+    list-style-type: none;
+
+    h3 {
+        margin-top: 7px;
+    }
+
+    h4.step {
+        background-color: #223355;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+        color: #FFFFFF;
+        font-size: 1.6em;
+        font-weight: lighter;
+        height: 28px;
+        left: 0;
+        padding: 5px;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 28px;
+    }
+    li {
+        position: relative;
+        margin-bottom: 1em;
+        overflow: hidden;
+        min-height:35px;
+        padding-left: 50px;
+    }
+}
+
+#getting-started .right-image {
+    padding: 1em;
+}
+.html-ltr #getting-started .right-image {
+    float: right;
+}
+.html-rtl #getting-started .right-image {
+    float: left;
+}
+
+.dev-docs {
+    .primary ul {
+        list-style: disc outside none;
+        margin-left: 2em;
+    }
+    ul.reflist, ul.blocks {
+        list-style: none;
+        margin-left: 0;
+        strong {
+            font-size: 1.3em;
+        }
+    }
+}
+
+.casestudies .blocks .item {
+    .logo {
+        float: left;
+        text-align: right;
+        width: 30%;
+        img {
+            max-width: 100%;
+        }
+    }
+    .info {
+        margin-left: 35%;
+    }
+    float: none;
+    height: auto;
+    padding: 2em;
+    width: auto;
+}
+
+#casestudy {
+    .info {
+        float: left;
+        width: 22%;
+        .dotted {
+            border-bottom: 2px dotted #C9E8F3;
+            margin: 0 0 0.5em;
+            padding: 0 0 0.5em;
+        }
+    }
+
+    .secondary {
+           width: 22%;
+    }
+
+    .hubtext {
+         margin: 0 25%;
+    }
+    .item {
+        width: auto;
+        min-width: 0;
+        padding: 1em;
+        max-width: 90%;
+
+        img {
+            max-width: 100%;
+        }
+    }
+
+    .pull {
+        max-width: 22%;
+        position: absolute;
+        right: 0;
+
+        p.caption {
+            color: #868686;
+            font-family: georgia,serif;
+            font-style: italic;
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            margin: 0 auto;
+        }
+    }
+    img.pull {
+        margin-top: 0;
+        max-width: 22%;
+    }
+
+    blockquote {
+        margin: 1em;
+        padding-left: 0.2em;
+
+        &:before {
+            color: #B5D9E5;
+            content: "“";
+            display: block;
+            float: left;
+            font-family: georgia,serif;
+            font-size: 400%;
+            height: 0;
+            line-height: 0;
+            margin-left: -0.5em;
+            margin-top: 0.3em;
+            width: 0;
+        }
+
+        p {
+            color: #868686;
+            font-family: georgia,sans-serif;
+            margin-bottom: 0.5em;
+        }
+
+        &.pull {
+            max-width: 19%;
+            &:before {
+                font-size: 500%;
+            }
+
+            p {
+                font-size: 130%;
+                line-height: 140%;
+            }
+        }
+
+        &.long {
+            font-style: normal;
+            p {
+                margin: 0.5em 0;
+            }
+        }
+    }
+}
+
+#dev-agreement {
+    ul, ol {
+        .loud-noises {
+            text-transform: uppercase;
+        }
+        li {
+            margin-bottom: 0.5em;
+        }
+        ul {
+            list-style: circle outside none;
+            margin: 1em 2em;
+        }
+    }
+}
+
+.html-rtl #casestudy {
+    .pull {
+        left: 0;
+        right: auto;
+    }
+
+    blockquote {
+        padding-left: 0;
+        padding-right: 0.2em;
+        &:before {
+            display: none;
+        }
+    }
+}
+

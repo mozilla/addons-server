@@ -1,0 +1,3537 @@
+/* Clearfix!!! */
+#persona #more-personas:after,
+.listing .item:after,
+.section:after,
+.notification .aux:after,
+.aux .button-wrapper:after,
+.object-lead .button-wrapper:after,
+.article.version:after,
+.article.review:after,
+.grouped_ratings li:after,
+.bars:after,
+.item:after,
+.secondary > div:after,
+.listing-header:after,
+.review-form p:after {
+    content: ".";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+/************************************/
+/*             ELEMENTS             */
+/************************************/
+.section,
+.notification .aux,
+.aux .button-wrapper,
+.object-lead .button-wrapper {
+    overflow: visible;
+}
+
+li.usertag {
+    overflow: hidden;
+}
+
+html {
+    background-color: #fff;
+    background-image: url(../../img/zamboni/global/bg-header.png);
+    background-position: left top;
+    background-repeat: repeat-x;
+}
+
+header {
+    display: block;
+}
+
+header ol.breadcrumbs {
+    margin-bottom: 0;
+}
+
+header hgroup h2 {
+    margin-bottom: 0.3em;
+    margin-top: 0.2em;
+}
+
+header hgroup h3 {
+    margin-top: 0;
+    color: #666;
+    font-family: "helvetica neue", arial, helvetica, sans-serif;
+    font-size: 16px;
+    margin-bottom: 14px;
+}
+
+ul.errorlist {
+    margin-bottom: 0;
+    color: #c00;
+    clear:both;
+}
+
+.html-ltr a.more-link:after {
+    content: '\25B8';
+    margin-left: .5em;
+}
+.html-rtl a.more-link:after {
+    content: '\25C2';
+    margin-right: .5em;
+}
+
+#publish_to {
+    margin-bottom: .25em;
+}
+
+.highlight .more-info {
+    float: none;
+}
+
+.highlight ul {
+    margin-bottom: .5em;
+}
+
+.other-author-addons li .addonitem {
+    padding-left: 20px;
+    background-image: url(../../img/icons/icons.png);
+    background-repeat: no-repeat;
+    background-position: 0px -200px;
+}
+
+.html-rtl .other-author-addons li .addonitem {
+    padding-right: 20px;
+    padding-left: 0;
+    background-position: 100% -200px;
+}
+
+.html-rtl.inverse .primary {
+    float: right;
+    clear: right;
+}
+
+.html-rtl.inverse .secondary {
+    float: left;
+    clear: left;
+}
+
+.html-rtl .object-lead .notification {
+    clear: right;
+}
+
+.js-hidden {
+    display: none;
+}
+
+.light {
+    color: #888;
+}
+
+.light .light {
+    color: #ccc;
+}
+
+/************************************/
+/*             GRADIENTS            */
+/************************************/
+/*  If you made a gradient, add it here.
+ *  If you want to use an existing gradient, add your selector here.
+**/
+
+/* 'listing header' */
+.listing-header {
+    background-color: #E0EFFD;
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        from(#FFFFFF),
+        to(#E0EFFD)
+    );
+    background: -moz-linear-gradient(#FFFFFF, #E0EFFD);
+}
+
+/* 'listing footer' */
+.listing-footer,
+.tab-wrapper .fm-control {
+    background-color: #E0EFFD;
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        from(#E0EFFD),
+        to(#FFFFFF)
+    );
+    background: -moz-linear-gradient(#E0EFFD, #FFFFFF);
+}
+
+/* 'listing item' */
+.object-lead,
+.listing .item {
+    background-color: #E0EFFD;
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        from(#FFFFFF),
+        to(#F6FBFF)
+    );
+    background: -moz-linear-gradient(#FFFFFF, #F6FBFF);
+}
+
+/* 'Mozilla' */
+#minimal-header a.mozilla,
+.categories h2,
+.categories h3,
+div.header-search form,
+#navbar li ul li:hover,
+#navbar,
+span.new  {
+    background: #33589f;
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        from(rgb(42,65,135)),
+        to(rgb(59,105,177))
+    );
+    background: -moz-linear-gradient(
+        center bottom,
+        rgb(42,65,135) 0%,
+        rgb(59,105,177) 100%
+    );
+    background: linear-gradient(
+        center bottom,
+        rgb(42,65,135) 0%,
+        rgb(59,105,177) 100%
+    );
+}
+
+/***** END GRADIENTS *******/
+
+
+/** Generic Button *********/
+a.button:link,
+a.button:visited,
+button,
+input[type=submit],
+input[type=button] {
+    font-weight: bold;
+    color: #fff;
+    background: #39f url("../../img/zamboni/button-blue.png") 0 50% repeat-x;
+    background: -moz-linear-gradient(top, #7bf 40%, #39f 60%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, #7bf), color-stop(60%, #39f));
+    border: 1px solid #3d6db5;
+    padding: 0 .95em;
+    margin: 0;
+    display: inline-block;
+    line-height: 1.538;
+    text-shadow: 0 -1px 0 #3d6db5;
+    -moz-box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
+    -webkit-box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
+    box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
+    -moz-border-radius: .95em;
+    -webkit-border-radius: .95em;
+    border-radius: .95em;
+}
+
+button,
+input[type=submit],
+input[type=button] {
+    padding: .2em .95em .3em;
+}
+
+.button span,
+button span {
+    border-left: 2px groove rgba(150,150,150,0.35);
+    padding: .3em .5em .2em .65em;
+    margin: 0 .25em 0 -.25em;
+    display: inline-block;
+    line-height: 1.2;
+    white-space: normal;
+}
+
+.html-rtl .button span,
+.html-rtl button span {
+    border-left: 0;
+    border-right: 2px groove rgba(150,150,150,0.35);
+    padding: .3em .65em .2em .5em;
+    margin: 0 -.25em 0 .25em;
+}
+
+.button.go span,
+button.go span {
+    border: 0;
+    padding: .3em 0 .2em;
+    margin: 0;
+}
+
+.button.concealed span {
+    border-color: rgba(130,160,175,0.15);
+}
+
+a.button:hover,
+a.button:focus,
+button:hover,
+button:focus,
+input[type=submit]:hover,
+input[type=button]:hover,
+input[type=submit]:focus,
+input[type=button]:focus {
+    border-color: #03c;
+    -moz-box-shadow: inset 0 0 2px rgba(255,255,255,1);
+    -webkit-box-shadow: inset 0 0 2px rgba(255,255,255,1);
+    box-shadow: inset 0 0 2px rgba(255,255,255,1);
+}
+
+a.button:active, button.button:active {
+    border-color: #03c;
+    background-image: url("../../img/zamboni/button-blue-on.png");
+    background: -moz-linear-gradient(top, #39f 40%, #6fb7ff 60%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, #39f), color-stop(60%, #6fb7ff));
+    -moz-box-shadow: inset 0 0 2px rgba(0,0,0,.5);
+    -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,.5);
+    box-shadow: inset 0 0 2px rgba(0,0,0,.5);
+}
+
+.cta a.button:link,
+.cta a.button:visited {
+    background: #5af;
+    background: -moz-linear-gradient(top, #acf, #5af);
+    background: -webkit-gradient(linear, left top, left bottom, from(#acf), to(#5af));
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    display: block;
+    line-height: 1.0;
+    white-space: normal;
+    padding: 0.75em 0.95em;
+    text-align: center;
+}
+.cta a.button:hover,
+.cta a.button:focus {
+    border-color: #25f;
+    -moz-box-shadow: inset 0 0 2px #fff;
+    -webkit-box-shadow: inset 0 0 2px #fff;
+    box-shadow: inset 0 0 2px #fff;
+}
+.cta a.button:active {
+    border-color: #03c;
+    background: #7bf;
+    background: -moz-linear-gradient(top, #5af, #7bf);
+    background: -webkit-gradient(linear, left top, left bottom, from(#5af), to(#7bf));
+    -moz-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+/* larger buttons for emphasis */
+a.button.prominent:link,
+a.button.prominent:visited,
+a.button.prominent:hover,
+a.button.prominent:focus,
+a.button.prominent:active,
+button.prominent,
+input[type=button].prominent,
+input[type=submit].prominent {
+    font-size: 1.2em;
+}
+
+/* Some buttons look like links */
+button.link {
+    background: transparent none;
+    text-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 0;
+    font-weight: bold;
+    color: #3d6db5;
+}
+
+.cta a.button.disabled,
+a.button.disabled,
+a.button[disabled],
+button.button:disabled,
+input[type=submit]:disabled,
+input[type=button]:disabled {
+    background: #a6a6a6;
+    border-color: #666;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    text-shadow: 0 -1px 0 #666;
+}
+
+
+button.link:hover,
+button.link:focus {
+    color: #003595;
+    text-decoration: underline;
+}
+
+/** =Green buttons: Add, Download, Mobile *********/
+a.button.add:link,
+a.button.add:visited,
+button.add,
+input[type=submit].add,
+input[type=button].add,
+a.button.download:link,
+a.button.download:visited,
+button.download,
+input[type=submit].download,
+input[type=button].download,
+a.button.mobile:link,
+a.button.mobile:visited,
+button.mobile,
+input[type=button].mobile,
+input[type=submit].mobile {
+    background: #55a802 url("../../img/zamboni/button-green.png") 0 50% repeat-x;
+    background: -moz-linear-gradient(top, #93c85e 30%, #55a802 55%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(30%, #93c85e), color-stop(55%, #55a802));
+    border-color: #3a7404;
+    text-shadow: 0 -1px 0 #3a7404;
+}
+
+a.button.add:hover,
+a.button.add:focus,
+button.add:hover,
+button.add:focus,
+input[type=submit].add:hover,
+input[type=button].add:hover,
+input[type=submit].add:focus,
+input[type=button].add:focus {
+    border-color: #1a5404;
+}
+
+a.button.add:active,
+a.button.download:active {
+    border-color: #1a5404;
+    background-image: url("../../img/zamboni/button-green-on.png");
+    background: -moz-linear-gradient(#55a802 40%, #83c046 65%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, #55a802), color-stop(65%, #83c046));
+}
+
+/** Temporary diagnostic styles to weed out redundant button classes *********/
+a.button.significant,
+button.significant,
+input[type=submit].significant,
+input[type=button].significant,
+a.button.positive,
+button.positive,
+input[type=submit].positive,
+input[type=button].positive,
+a.button.negative,
+button.negative,
+input[type=submit].negative,
+input[type=button].negative,
+a.button.neutral,
+button.neutral,
+input[type=submit].neutral,
+input[type=button].neutral,
+a.button.cool,
+button.cool,
+input[type=submit].cool,
+input[type=button].cool {
+    outline: 3px dotted red;
+}
+/** end of diagnostic styles **/
+
+/** Navigational Button *********/
+a.button.go:link,
+a.button.go:visited,
+button.go,
+input[type=submit].go,
+input[type=button].go {
+    color: #3d6db5;
+    background: #fff none;
+    border-color: #E0EFFD;
+    text-shadow: 0 1px 0 #fff;
+    -moz-box-shadow: inset 0 0 3px #c0e1ee;
+    -webkit-box-shadow: inset 0 0 3px #c0e1ee;
+}
+
+a.button.go:hover,
+a.button.go:focus,
+button.go:hover,
+button.go:focus,
+input[type=submit].go:hover,
+input[type=button].go:hover,
+input[type=submit].go:focus,
+input[type=button].go:focus {
+    color: #3d6db5;
+    border-color: #a8cedd;
+}
+
+a.button.go:active {
+    border-color: #95b9c5;
+    background-image: none;
+    -moz-box-shadow: inset 0 0 5px #ccc;
+    -webkit-box-shadow: inset 0 0 5px #ccc;
+}
+
+
+/** Cautionary Button *********/
+a.button.caution:link,
+a.button.caution:visited,
+button.caution,
+input[type=submit].caution,
+input[type=button].caution {
+    color: #333;
+    background: #fc0 url("../../img/zamboni/button-caution.png") 0 50% repeat-x;
+    background: -moz-linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 60%),
+    -moz-repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
+    border-color: #a70;
+    text-shadow: 0 1px 0 #ffe56b;
+}
+
+a.button.caution.concealed:link,
+a.button.caution.concealed:visited,
+button.caution.concealed,
+input[type=submit].caution.concealed,
+input[type=button].caution.concealed {
+    color: #859fae;
+    border-color: #a70;
+    background: -moz-linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6) 60%),
+    -moz-repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
+}
+
+a.button.caution: hover,
+a.button.caution:focus,
+button.caution:hover,
+button.caution:focus,
+input[type=submit].caution:hover,
+input[type=button].caution:hover,
+input[type=submit].caution:focus,
+input[type=button].caution:focus {
+    border-color: #850;
+}
+
+a.button.caution:active {
+    border-color: #850;
+    background-image: url("../../img/zamboni/button-caution-on.png");
+    background: -moz-linear-gradient(rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.3) 60%),
+    -moz-repeating-linear-gradient(45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
+    -moz-box-shadow: inset 0 0 5px rgba(0,0,0,.5);
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,.5);
+}
+
+/** Status Button *********/
+a.button.status:link,
+a.button.status:visited,
+button.status,
+input[type=submit].status,
+input[type=button].status {
+    color: #333;
+    background: #fff none;
+    border-color: #E0EFFD;
+    text-shadow: 0 1px 0 #fff;
+    -moz-box-shadow: inset 0 0 3px #c0e1ee;
+    -webkit-box-shadow: inset 0 0 3px #c0e1ee;
+}
+
+a.button.status:hover,
+a.button.status:focus,
+button.status:hover,
+button.status:focus,
+input[type=submit].status:hover,
+input[type=button].status:hover,
+input[type=submit].status:focus,
+input[type=button].status:focus {
+    color: #333;
+    border-color: #a8cedd;
+}
+
+a.button.status:active {
+    border-color: #95b9c5;
+    background-image: none;
+    -moz-box-shadow: inset 0 0 8px #a4cee2;
+    -webkit-box-shadow: inset 0 0 8px #a4cee2;
+}
+
+/** Concealed Button *********/
+a.button.concealed:link,
+a.button.concealed:visited,
+button.concealed,
+input[type=submit].concealed,
+input[type=button].concealed {
+    color: #859fae;
+    background: #fff none;
+    border-color: #E0EFFD;
+    text-shadow: 0 1px 0 #fff;
+    -moz-box-shadow: inset 0 0 3px #c0e1ee;
+    -webkit-box-shadow: inset 0 0 3px #c0e1ee;
+}
+
+a.button.concealed:hover,
+a.button.concealed:focus,
+button.concealed:hover,
+button.concealed:focus,
+input[type=submit].concealed:hover,
+input[type=button].concealed:hover,
+input[type=submit].concealed:focus,
+input[type=button].concealed:focus {
+    color: #657f8e;
+    border-color: #a8cedd;
+}
+
+a.button.concealed:active {
+    border-color: #95b9c5;
+    background-image: none;
+    -moz-box-shadow: inset 0 0 8px #a4cee2;
+    -webkit-box-shadow: inset 0 0 8px #a4cee2;
+}
+
+
+/** =Install Button *********/
+.item .install-shell .install {
+    float: left; /* Only in zamboni. */
+}
+
+.install-shell .extra {
+    font-size: .85em;
+    font-weight: bold;
+    clear: both;
+}
+
+.install-shell .notavail {
+    padding: 1px 0 1px 20px;
+    margin-left: 3px;  /* Match the padding of .install. */
+    background: url(../../img/zamboni/icons/no-14x14.png) 0 30% no-repeat;
+    white-space: nowrap;
+}
+
+.html-rtl .install-shell .notavail {
+    padding: 1px 20px 1px 0;
+    background-position: 100% 30%;
+}
+
+.item .install,
+.install-shell .install {
+    text-align: inherit;
+    margin: 0 0 .5em;
+}
+
+.item .install strong,
+.install strong {
+    font-weight: bold;
+    text-shadow: none;
+    margin: 0 4px;
+    font-size: 0.85em;
+    display: block;
+}
+
+.teaser-items .item .install strong {
+    margin: 0 4px;
+}
+
+.install.featuredaddon,
+.install.lite,
+.install.unreviewed,
+.install.selfhosted {
+    padding: 2px;
+    -moz-border-radius: .95em .95em .95em 0;
+    -webkit-border-radius: .95em;
+    -webkit-border-bottom-left-radius: 0;
+    border-radius: .95em .95em .95em 0;
+}
+
+.html-rtl .install.featuredaddon,
+.html-rtl .install.lite,
+.html-rtl .install.unreviewed,
+.html-rtl .install.selfhosted {
+    -moz-border-radius: .95em .95em 0 .95em;
+    -webkit-border-radius: .95em;
+    -webkit-border-bottom-left-radius: .95em;
+    -webkit-border-bottom-right-radius: 0;
+    border-radius: .95em .95em 0 .95em;
+}
+
+.install.featuredaddon {
+    background: #bcdba2;
+}
+.install.featuredaddon strong {
+    color: #360;
+}
+
+.install.lite,
+.install.unreviewed {
+    background: #ffe57f;
+}
+.install.lite strong,
+.install.unreviewed strong {
+    color: #333;
+}
+
+.install.selfhosted {
+    background: #d3ecf6;
+}
+.install.selfhosted strong {
+    color: #235;
+}
+
+/** =Button =icons *********/
+.button.add b,
+.button.download b,
+.button.mobile b,
+.button.contribute b,
+.button.status.ok b {
+    padding: .3em 1em .2em .85em;
+    margin: 0 0 0 -.5em;
+    width: 16px;
+    background: transparent url("../../img/zamboni/icons/button-icons.png") 25% 0 no-repeat;
+}
+
+.button.add b { background-position: 25% 0; }
+.button.add.prominent b { background-position: 25% -49px; }
+.button.download b { background-position: 25% -100px; }
+.button.download.prominent b { background-position: 25% -150px; }
+.button.add.caution b { background-position: 25% -400px; }
+.button.add.caution.prominent b { background-position: 25% -450px; }
+.button.download.caution b { background-position: 25% -500px; }
+.button.download.caution.prominent b { background-position: 25% -550px; }
+.button.add.concealed b { background-position: 25% -200px; }
+.button.add.concealed.prominent b { background-position: 25% -250px; }
+.button.download.concealed b { background-position: 25% -300px; }
+.button.download.concealed.prominent b { background-position: 25% -350px; }
+.button.mobile b { background-position: 25% -600px; }
+.button.mobile.prominent b { background-position: 25% -650px; }
+.button.mobile.caution b { background-position: 25% -700px; }
+.button.mobile.caution.prominent b { background-position: 25% -750px; }
+.button.contribute b { background-position: 25% -800px; }
+.button.contribute.prominent b { background-position: 25% -850px; }
+.button.status.ok b { background-position: 25% -900px; }
+
+.html-rtl .button b,
+.html-rtl button b {
+    padding: .3em 1em .2em .65em;
+    margin: 0 -.5em 0 .25em;
+}
+
+/* For other platforms */
+.install-button .button span.os {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-weight: normal;
+    display: inline;
+    white-space: nowrap;
+}
+
+.install-button .button.platform {
+    display: none;
+}
+
+.mac .button.mac,
+.linux .button.linux,
+.other .button.bsd,
+.other .button.solaris,
+.windows .button.windows {
+    display: inherit;
+}
+
+th, td {
+    text-align: left;
+    padding: 0.308em 0.537em 0.214em 0.231em; /* 4px 7px 3px 7px */
+}
+
+
+/** Button =Popups *********/
+.install {
+    position: relative;
+    padding: 2px 3px 3px;
+}
+
+.popup-shim {
+    position: relative;
+}
+div.popup-shim {
+    display: inline-block;
+}
+
+.popup p:last-child,
+.popup ul:last-child {
+    margin-bottom: 0;
+}
+
+.install-note .msg,
+.popup .msg,
+.app {
+    background-repeat: no-repeat;
+    min-height: 32px;
+}
+
+.mobile .install-note .msg, .mobile.app,
+.firefox .install-note .msg, .firefox.app { background-image: url(../../img/app-icons/small/firefox.png); }
+.thunderbird .install-note .msg, .thunderbird.app { background-image: url(../../img/app-icons/small/thunderbird.png); }
+.sunbird .install-note .msg, .sunbird.app { background-image: url(../../img/app-icons/small/sunbird.png); }
+.seamonkey .install-note .msg, .seamonkey.app { background-image: url(../../img/app-icons/small/seamonkey.png); }
+.android .install-note .msg, .android.app { background-image: url(../../img/app-icons/small/android.png); }
+.mz.app { background-image: url(../../img/app-icons/small/mozilla.png); }
+
+.install-note .msg.m-unreviewed,
+.install-note .msg.m-selfhosted,
+.popup.warning .msg {
+    background-image: url(../../img/zamboni/icons/alert-32x32.png);
+}
+
+.install-note .msg.m-platforms {
+    background-image: url(../../img/zamboni/icons/no-32x32.png);
+}
+
+.install-note .beta {
+    display: none;
+}
+
+.fxbeta .install-note .beta {
+    display: block;
+}
+
+.fxbeta .install-note .nobeta {
+    display: none;
+}
+
+.install-note,
+.popup,
+.modal {
+    position: absolute;
+    left: -15px;
+    margin-top: 5px;
+    background: #fff;
+    padding: 10px;
+    border: 3px solid #2e5186;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    z-index: 2001; /* because of devhub title */
+}
+.modal form {
+    margin: 0;
+}
+.modal h2,
+.modal h3 {
+    margin-top: 0;
+    color: #2e5186;
+}
+.modal-delete h3 {
+    color: #6c1a1a;
+}
+.install-note {
+    width: 300px;
+}
+/* append the left class if the bubble is to the far right */
+.install-note.left,
+.popup.left {
+    left: -160px;
+}
+
+.unreviewed .install-note,
+.popup.warning {
+    border-color: #c90;
+}
+
+.popup.error,
+.modal-delete {
+    border-color: #6c1a1a;
+    color: #333;
+}
+
+.modal-overlay {
+    background-color: #fff;
+    height: 100%;
+    -khtml-opacity: 0.75;
+    -moz-opacity: 0.75;
+    opacity: 0.75;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+}
+
+.install a * {
+   pointer-events: none;
+}
+
+/* http://nicolasgallagher.com/demo/pure-css-speech-bubbles/bubbles.html */
+/* Creates the larger triangle. */
+.install-note:before,
+.popup:before {
+    content: "\00a0";
+    display: block; /* reduce the damage in FF3.0 */
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 50px;
+    top: -20px; /* value = - border-top-width - border-bottom-width */
+    border: 10px solid transparent;
+    border-bottom-color: #2e5186;
+    pointer-events: none;
+}
+
+.unreviewed .install-note:before,
+.popup.warning:before {
+    border-bottom-color: #c90;
+}
+
+.popup.error:before {
+    border-bottom-color: #6c1a1a;
+}
+
+/* creates the smaller triangle */
+.install-note:after,
+.popup:after {
+    content: "\00a0";
+    display: block; /* reduce the damage in FF3.0 */
+    position: absolute;
+    left: 55px;
+    width: 0;
+    height: 0;
+    top: -10px; /* value = - border-top-width - border-bottom-width */
+    border: 5px solid transparent;
+    border-bottom-color: #fff;
+    pointer-events: none;
+}
+
+.install-note.left:before,
+.popup.left:before {
+    right: 71px; /* controls horizontal position */
+    left: auto;
+}
+
+.install-note.left:after,
+.popup.left:after {
+    right: 76px; /* value = (:before right) + (:before border-right) - (:after border-right) */
+    left: auto;
+}
+
+.install .install-note > *,
+.popup.warning > * {
+    margin-bottom: 1em;
+    padding-left: 50px;
+}
+
+.install .install-note strong,
+.popup strong {
+    margin: 0;
+    color: inherit;
+    font-size: inherit;
+}
+
+/** hover tooltip styles **/
+#tooltip {
+    display:none;
+    background: #2A4364;
+    color: white;
+    font-size: 11px;
+    border: 1px solid #fff;
+    -moz-border-radius: .8em;
+    -webkit-border-radius: .8em;
+    max-width: 300px;
+    text-align: center;
+    position: absolute;
+    padding: 0.5em 1em;
+    pointer-events: none;
+    z-index: 16389;
+}
+
+#tooltip.error {
+    background: #6C1a1a;
+}
+
+#tooltip span {
+    display: block;
+    line-height: 1.2em;
+}
+
+#tooltip:before {
+    content: "\00a0";
+    display: block; /* reduce the damage in FF3.0 */
+    position: absolute;
+    width: 0;
+    height: 0;
+    margin-left: -6px;
+    left: 50%;
+    bottom: -16px;
+    border: solid transparent;
+    border-width: 8px 6px;
+    border-top-color: #2A4364;
+    pointer-events: none;
+}
+#tooltip.error:before {
+    border-top-color: #6c1a1a;
+}
+
+
+/** =Search =Suggestions *********/
+
+#search-suggest {
+    background: #fff;
+    border: 1px solid #011234;
+    width: 38%;
+    padding: .5em 0;
+    position: absolute;
+    left: 1.4%;
+    z-index: 99;
+    display: none;
+}
+
+.html-rtl #search-suggest {
+    left: auto;
+    right: 1.4%;
+}
+
+#search-suggest .all {
+    margin: .5em 10px 0;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+#search-suggest ul {
+    margin: 0;
+}
+
+#search-suggest li a {
+    display: block;
+    padding: 2px 2px 2px 32px;
+    font-weight: bold;
+    font-size: .875em;
+    color: #444;
+    text-decoration: none;
+    background: transparent url("../../../media/img/zamboni/icons/suggest-types.png") 8px 2px no-repeat;
+}
+
+.html-rtl #search-suggest li a {
+    padding: 2px 32px 2px 2px;
+}
+
+#search-suggest li a:hover,
+#search-suggest li a:focus,
+#search-suggest li a:active {
+    background-color: #ecf7fb;
+    text-decoration: none;
+}
+
+/** Code Licenses *********/
+ul.license li {
+    display: block;
+    float: left;
+    list-style: none;
+}
+.html-rtl ul.license li {
+    float: right;
+}
+ul.license li.text {
+    font-size: 90%;
+    margin-top: -.2em;
+}
+.html-ltr ul.license li.text {
+    margin-left: .3em;
+}
+.html-rtl ul.license li.text {
+    margin-right: .3em;
+}
+ul.license li.icon {
+    background: url(../../img/zamboni/licenses.png) no-repeat top left;
+    height: 15px;
+    width: 15px;
+}
+ul.license li.cc-attrib { background-position: 0 0; }
+ul.license li.cc-noderiv { background-position: 0 -65px; }
+ul.license li.cc-noncom { background-position: 0 -130px; }
+ul.license li.cc-share { background-position: 0 -195px; }
+ul.license li.copyr { background-position: 0 -260px; }
+
+
+/** Personas *********/
+.persona-list,
+.persona-list-2col,
+.persona-list-3col {
+    overflow: hidden;
+}
+.persona-list-2col .persona {
+    float: left;
+    width: 50%;
+    margin-bottom: .6em;
+}
+.persona-list-3col .persona {
+    float: left;
+    width: 33.3%;
+    margin-bottom: .6em;
+}
+#more-artist .persona {
+    margin-bottom: .6em;
+}
+.persona-inner {
+    position: relative;
+    padding: .5em;
+    -moz-border-radius: .25em;
+}
+.persona-small .persona-inner {
+    max-width: 206px;
+}
+.persona-large .persona-inner {
+    max-width: 680px;
+}
+.persona-hover .persona-inner {
+    background: #c8e8f2;
+}
+.persona-hover .persona-install {
+    display: block;
+}
+.persona-preview {
+    position: relative;
+    display: block;
+    line-height: 1;
+}
+.persona-preview [data-browsertheme] {
+    display: block;
+    background: transparent no-repeat right top;
+    border: .25em solid #c8e8f2 !important;
+}
+.persona-hover .persona-preview [data-browsertheme] {
+    border-color: #fff !important;
+}
+.persona-small .persona-preview [data-browsertheme] {
+    height: 67px;
+}
+.persona-large .persona-preview [data-browsertheme] {
+    height: 100px;
+}
+
+.persona-preview .created,
+.persona-preview .users,
+.persona-preview .reviews {
+    background-color: #c8e8f2;
+    display: inline-block;
+    padding: .25em .5em;
+    font-size: .846em;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.html-rtl .persona-preview .created,
+.html-rtl .persona-preview .users,
+.html-rtl .persona-preview .reviews {
+    left: auto;
+    right: 0;
+}
+
+.persona-hover .created,
+.persona-hover .users,
+.persona-hover .reviews {
+    background-color: #fff;
+}
+
+.personas .created {
+    color: #222;
+}
+
+.personas .users b {
+    font-weight: bold;
+}
+
+.persona .users {
+    color: #390;
+}
+
+/** Persona Homepage **/
+.personas-featured .persona-list-3col {
+    border: 1px solid #E0EFFD;
+    -moz-border-radius: 5px;
+}
+
+.featured.personas-home {
+    position: relative;
+}
+
+.personas-home .intro {
+    font-size: 1.4em;
+    width: 450px;
+}
+
+#featured-addons.personas-home .featured-inner {
+    background: #fff url(../../img/zamboni/personas/promo-browser.png) no-repeat left bottom;
+    height: 345px;
+}
+
+.personas-home .intro .more-info {
+    background-position: 96% -151px;
+    float: none;
+}
+
+#featured-addons .personas-slider {
+    float: right;
+    height: 340px; /* 4 personas @ 85px; */
+    width: 30%;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+/************************************/
+/*               PAGES              */
+/************************************/
+
+#search-suggest li.ext a { background-position: 7px 2px; }
+#search-suggest li.col a { background-position: 7px -98px; }
+#search-suggest li.cat a { background-position: 7px -196px; }
+.html-rtl #search-suggest li.ext a { background-position: 98% 2px; }
+.html-rtl #search-suggest li.col a { background-position: 98% -98px; }
+.html-rtl #search-suggest li.cat a { background-position: 98% -196px; }
+
+
+#search-suggest em {
+    font-weight: normal;
+    font-style: normal;
+    color: #999;
+    margin: 0 8px;
+}
+
+/** =Form Elements *********/
+fieldset {
+    margin: 1em 0 1.5em;
+    border: 0;
+    padding: .25em 0 1em;
+    clear: both;
+    border-bottom: 1px dotted #a4cfde;
+}
+
+form fieldset:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+    margin-bottom: .5em;
+}
+
+fieldset legend { /* based on h3 */
+    font: normal 1.385em/1.1 georgia, serif;
+    color: #011234;
+    margin: 0.75em 0 0;
+}
+
+.user-input h3 {
+    margin: 0 0 .5em;
+}
+
+fieldset ol,
+fieldset ul,
+.html-rtl fieldset ol,
+.html-rtl fieldset ul {
+    list-style: none;
+    margin: 0;
+}
+
+fieldset li {
+    margin-bottom: .5em;
+}
+
+.user-input label {
+    display: block;
+    width: 320px;
+}
+
+.user-input .check label {
+    width: auto;
+    display: inline;
+}
+
+input[type="text"],
+input[type="url"],
+input[type="password"],
+select,
+textarea {
+    padding: 2px 5px;
+    border: 1px solid #5875a0;
+    color: #666;
+}
+
+select {
+  padding: 2px 0 2px 5px;
+}
+
+.html-rtl select {
+  padding: 2px 5px 2px 0;
+}
+
+input[type="text"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+select:focus,
+textarea:focus {
+    color: #444;
+}
+
+select:disabled {
+    color: #999;
+}
+
+.user-input input[type="text"],
+.user-input input[type="password"] {
+    width: 310px;
+}
+
+.user-input select {
+    width: 322px;
+}
+
+.user-input textarea {
+/*    width: 98%;*/
+}
+
+.user-input .instruct {
+    width: 70%;
+    margin-bottom: .75em;
+}
+
+form .note {
+    font-size: 0.846em; /* 11px */
+    line-height: 1.4;
+    color: #666;
+}
+
+form label .note {
+    font-weight: normal;
+    display: block;
+    margin-bottom: .5em;
+}
+
+.req {
+    color: #d52f2f;
+    font-weight: bold;
+}
+
+fieldset.inline {
+    margin: 1em 0 0;
+    padding: 0;
+    position: relative;
+}
+
+fieldset.inline legend {
+    font-size: 1.077em; /* 14px */
+}
+
+fieldset.inline ol,
+fieldset.inline ul {
+    margin-bottom: .5em;
+}
+
+fieldset.inline li {
+    display: inline;
+    margin-right: 10px;
+}
+
+fieldset.inline label {
+    display: inline;
+    margin-right: 5px;
+}
+
+fieldset.inline input[type="text"],
+fieldset.inline input[type="password"],
+fieldset.inline select {
+    width: auto;
+}
+
+form .error {
+    margin-bottom: 1em;
+}
+
+form .error .error,
+form .error .errorlist,
+form .error .errorlist li {
+    margin-bottom: 0;
+}
+
+form .error input[type="text"],
+form .error input[type="url"],
+form .error input[type="password"],
+form .error select,
+form .error textarea {
+    border-color: #c00;
+    border-width: 2px;
+}
+
+form .error .note {
+    color: inherit;
+}
+
+form .error .note.error {
+    color: inherit;
+    font-size: inherit;
+    display: block;
+}
+
+/************************************/
+/*               PAGES              */
+/************************************/
+
+/** =User =Edit *********/
+#user-profile ol {
+    padding-right: 280px;
+    min-height: 310px;
+    margin: 0;
+    position: relative;
+}
+
+.html-rtl #user-profile ol {
+    padding: 0 0 0 280px;
+}
+
+#acct-account label[for="account_hideemail"] {
+    font-weight: normal;
+    color: #666;
+}
+
+#user-profile input[type="text"] {
+    width: 90%;
+    max-width: 310px;
+}
+
+#user-profile .profile-photo {
+    width: 220px;
+    position: absolute;
+    right: 10%;
+    top: 0;
+    margin-left: 55%;
+}
+
+.html-rtl #user-profile .profile-photo {
+    left: 10%;
+    right: auto;
+    margin-left: 0;
+    margin-right: 55%;
+}
+
+#user-profile .profile-photo label {
+    width: auto;
+}
+
+#user-profile .avatar {
+    border: 3px solid #e0effd;
+    padding: 0;
+    margin-top: 1em;
+}
+
+#user-profile .trans {
+    width: 100%;
+    -moz-box-sizing: border-box;
+}
+
+.html-rtl #user-edit #acct-notify {
+    padding: 0 0 0 35%;
+}
+
+#user-edit #acct-delete {
+    margin: .25em 0;
+    float: right;
+}
+
+.html-rtl #user-edit #acct-delete {
+    float: left;
+}
+
+#acct-delete a {
+    color: #c00;
+}
+
+/** =User =Profile *********/
+.object-lead table {
+    margin: 0 0 1em;
+}
+
+.object-lead table tr th {
+    width: 160px;
+}
+
+.object-content .prose {
+    margin: 0 0 1em;
+}
+
+.object-content .editprofile {
+    border-top: 1px dotted #a5c9d5;
+    margin: .25em 0 0;
+    padding-top: .25em;
+}
+
+.object-content .editprofile a {
+    background: transparent url("../../img/icons/news-feed-sprite.png") 0 -538px no-repeat;
+    font-weight: bold;
+    font-size: .923em;
+    margin-right: 1em;
+    padding: .25em 0 .25em 22px;
+}
+
+.html-rtl .object-content .editprofile a {
+    background-position: 100% -538px;
+    padding: .25em 22px .25em 0;
+    margin-right: 0;
+    margin-left: 1em;
+}
+
+/** =Category Landing *********/
+.category-landing [role="main"] {
+    width: 73.47%;
+}
+
+.personas .persona-inner,
+.category-landing .persona-inner {
+    margin: 0 auto;
+}
+
+#featured-addons {
+    width: auto;
+}
+
+#featured-addons ul {
+    width: 96.7%;
+    padding-left: 3.3%;
+}
+
+#featured-addons li.addon {
+    width: 30%;
+    padding: 0;
+    margin: 0 3.33% 0 0;
+    overflow: visible;
+    float: left;
+}
+
+#featured-addons ul li.addon:last-child {
+    margin-right: 0;
+}
+
+#featured-addons .featured-inner {
+    padding: 10px;
+    background: #fff;
+    background: -moz-linear-gradient(#fff, #e4f5fb);
+}
+
+#featured-addons h3 {
+    margin-top: 0;
+}
+
+#featured-addons h3 a {
+    color: inherit;
+}
+
+.html-rtl #featured-addons li.addon {
+    float: right;
+    clear: none;
+    margin: 0 0 0 3.33%
+}
+
+#featured-addons .addon:last-child {
+    margin-right: 0;
+}
+
+.html-rtl #featured-addons .addon:last-child {
+    margin-left: 0;
+    margin-right: 3.33%;
+}
+
+#featured-addons .preview {
+    margin-bottom: .5em;
+    position: relative;
+    left: -3px;
+    overflow: hidden;
+}
+
+.html-rtl #featured-addons .preview {
+    left: 3px;
+    right: -3px;
+}
+
+#featured-addons .preview a {
+    border: 3px solid #e0effd;
+    display: block;
+    max-width: 200px;
+    height: 155px;
+    overflow: hidden;
+}
+
+#featured-addons .preview a:hover,
+#featured-addons .preview a:focus,
+#featured-addons .preview a:active {
+    border-color: #aedff3;
+}
+
+#featured-addons .addon-desc {
+    margin-bottom: .75em;
+    text-overflow: ellipsis;
+    min-height: 5em;
+}
+
+#featured-addons .addon-rating {
+    clear: both;
+    float: left;
+    margin-bottom: 1em;
+}
+
+.html-rtl #featured-addons .addon-rating {
+    clear: both;
+    float: right;
+    margin-bottom: 1em;
+}
+
+#featured-addons .install-shell {
+    display:block;
+}
+
+#featured-addons .item .install {
+    float: left;
+    clear: both;
+    margin: .5em 0;
+}
+
+.html-rtl #featured-addons .item .install {
+    float: right;
+}
+
+.category-landing .addons-column {
+    float: left;
+    padding: 0 2% 0 0;
+    width: 32%;
+    border: 0;
+}
+
+.html-rtl .category-landing .addons-column {
+    float: right;
+    padding: 0 0 2% 0;
+}
+
+.category-landing .addons-column:last-child {
+    padding-right: 0;
+}
+
+.html-rtl .category-landing .addons-column:last-child {
+    padding-right: 2%;
+    padding-left: 0;
+}
+
+.category-landing .addons-column h3 {
+    background: transparent none;
+    color: inherit;
+    font-family: georgia, serif;
+    margin: 0 2px .5em;
+}
+
+.category-landing .addons-column h3 a:link,
+.category-landing .addons-column h3 a:visited {
+    color: inherit;
+}
+
+.category-landing .addons-column h3 a:hover,
+.category-landing .addons-column h3 a:focus,
+.category-landing .addons-column h3 a:active {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.category-landing .addons-column ul {
+    border: 1px solid #E0EFFD;
+    -moz-border-radius: 5px;
+    padding: 0;
+    margin: 0;
+}
+
+.category-landing .addons-column ul.personas {
+    padding: .5em 5px 1.2em;
+}
+
+.category-landing .addons-column ul li {
+    border-top: 1px dotted #E0EFFD;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+}
+
+.category-landing .addons-column ul.personas li {
+    background-color: inherit;
+    padding: .6em 0 0;
+    border: 0;
+}
+
+.html-rtl.category-landing .addons-column ul li {
+    overflow: auto;
+}
+
+.category-landing .addons-column ul li a {
+    min-height: 50px;
+    height: auto;
+    display: block;
+    position: relative;
+    text-decoration: none;
+    padding: 0 5px 0 50px;
+}
+
+.html-rtl.category-landing .addons-column ul li a {
+    padding: 0 50px 0 5px;
+}
+
+.category-landing .addons-column ul li a:hover,
+.category-landing .addons-column ul li a:focus {
+    background-color: #e4f5fb;
+}
+
+.category-landing .addons-column ul li a .name {
+    font-size: 1em;
+    font-weight: bold;
+    color: #3d6db5;
+    padding: 8px 0 0;
+    margin-left: 0;
+    display: block;
+    height: 1.25em;
+    line-height: 1.25em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.category-landing .addons-column ul li a:hover .name,
+.category-landing .addons-column ul li a:focus .name,
+.category-landing .addons-column ul li a:active .name {
+    color: #003595;
+    text-decoration: underline;
+}
+
+.category-landing .addons-column ul li a .meta {
+    margin-left: 0;
+    position: static;
+    color: #777;
+    display: block;
+    font-size: 93%;
+}
+
+.category-landing .addons-column ul li a img.icon {
+    left: 5px;
+    top: 6px;
+    position: absolute;
+}
+
+.html-rtl.category-landing .addons-column ul li a img.icon {
+    left: auto;
+    right: 5px;
+}
+
+.category-landing .view-all {
+    background: transparent none;
+    margin-top: .75em;
+    font-weight: bold;
+    padding: 2px 0 2px 9px;
+}
+
+.category-landing .view-all a:link,
+.category-landing .view-all a:visited {
+    font-size: 1em;
+    color: #3d6db5;
+    padding-right: 10px;
+    background: transparent url(../../img/zamboni/icons/arrow-right-blue.png) 100% 55% no-repeat;
+}
+
+.html-rtl.category-landing .view-all a:link,
+.html-rtl.category-landing .view-all a:visited {
+    padding-right: 0;
+    padding-left: 10px;
+    background: transparent url(../../img/zamboni/icons/arrow-left-blue.png) 0 55% no-repeat;
+}
+
+.category-landing .view-all a:hover,
+.category-landing .view-all a:active {
+    color: #003595;
+}
+
+.category-landing .featured.personas .view-all {
+    border-top: 1px dotted #E0EFFD;
+    padding: 2px 7px;
+    margin: -15px 0 0;
+    text-align: right;
+}
+
+.html-rtl .category-landing .featured .view-all {
+    text-align: left;
+}
+
+/** =Search results *********/
+.results {
+    border: 4px solid #E0EFFD;
+    background-color: #E0EFFD;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-bottom: 2em;
+    clear: both;
+}
+.results-inner {
+    background-color: #fff;
+    border: 1px solid #2e5186;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    overflow: visible;
+}
+
+.listing-header .item-sort {
+    margin-right: 5px;
+}
+
+.listing-header .item-sort button {
+    position: absolute;
+    left: -999em;
+}
+
+.html-rtl .listing-header .item-sort button {
+    left: auto;
+    right: -999em;
+}
+
+.results .featured {
+    border-width: 0 0 1px;
+    background-color: transparent;
+    margin-bottom: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.result-count {
+    padding: 0 10px;
+    font-size: 1.231em;
+}
+
+.listing .contribute,
+.separated-listing .contribute,
+.collector-note,
+.item .performance-note {
+    background: #E0EFFD;
+    float: left;
+    padding: 3px 10px;
+    margin-top: 0.5em;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.html-rtl .listing .contribute,
+.html-rtl .separated-listing .contribute,
+.html-rtl .collector-note {
+    float: right;
+}
+
+.listing .contribute a {
+    font-weight: bold;
+}
+
+.html-rtl .listing .contribute {
+    float: right;
+}
+
+.primary .performance-note h3 {
+    font: normal bold 14px "helvetica neue", helvetica,arial,sans-serif;
+    line-height: 1.2em;
+    margin: 0;
+}
+.primary .performance-note span:first-child {
+    float: left;
+    width: 32px;
+    height: 32px;
+    background: url("../../img/zamboni/notifications.png") no-repeat 0px -226px;
+}
+.primary .performance-note {
+    background: #fff3cc;
+}
+.primary .performance-note div {
+    margin-left: 45px;
+}
+.item .performance-note {
+    background: url("../../img/zamboni/notifications.png") no-repeat 7px -300px #fff3cc;
+    padding-left: 28px;
+}
+
+.listing .item {
+    overflow: visible;
+}
+
+.listing .item h3 {
+    float: left;
+}
+
+.html-rtl .listing .item h3 {
+    float: right;
+}
+
+.item .install,
+.results .item .install {
+    float: left;
+    clear: both;
+    min-height: 2.75em;
+    margin-left: -3px;
+}
+
+.html-rtl .item .install {
+    float: right;
+    margin-right: -3px;
+    margin-left: 0;
+}
+
+.item .install-button {
+    margin-bottom: .25em;
+}
+
+.item-info .notavail,
+.item-info .addon-rating,
+.item-info .downloads,
+.item-info .updated {
+    font-size: .923em; /* 12px */
+    padding-top: 1px;
+    margin: 0;
+    clear: both;
+}
+
+.html-rtl .item-info .notavail,
+.html-rtl .item-info .addon-rating,
+.html-rtl .item-info .downloads,
+.html-rtl .item-info .updated {
+    margin: 0;
+}
+
+.listing .item blockquote {
+    clear: left;
+    overflow-x: hidden;
+}
+
+.html-rtl .listing .item blockquote {
+    clear: right;
+    padding-right: 0;
+    padding-left: 16em;
+}
+
+.listing .item blockquote img {
+    max-width: 100%;
+}
+
+.results-head {
+    position: relative;
+    width: auto;
+}
+
+.html-rtl .results-head {
+    padding-right: 0;
+}
+
+.results-head .suggest {
+    padding-left: 10px;
+    font-size: .923em;
+    line-height: 1.4;
+    position: absolute;
+    width: 280px;
+    padding: 6px 8px 6px 28px;
+    background: #ffc url("../../img/zamboni/icons/suggest-help.png") 6px .5em no-repeat;
+    border: 1px solid #fc6;
+    -moz-box-shadow: 2px 2px 0 #E0EFFD;
+    -webkit-box-shadow: 2px 2px 0 #E0EFFD;
+    box-shadow: 2px 2px 0 #E0EFFD;
+    top: 0;
+    right: 0;
+}
+
+
+.results-head .suggest a {
+    font-weight: bold;
+}
+
+.results-head .suggest strong {
+    display: block;
+}
+
+.results-head .suggest .point {
+    position: relative;
+    left: -28px;
+    margin-bottom: -19px;
+    display: block;
+    padding: 0 0 20px 28px;
+    background: transparent url("../../img/zamboni/suggest-point.png") 8px bottom no-repeat;
+}
+
+.html-rtl .results-head .suggest {
+    padding: 6px 28px 6px 8px;
+    background-position: 292px .5em;
+}
+
+.html-rtl .results-head .suggest .point {
+    left: auto;
+    right: -28px;
+    padding: 0 28px 20px 0;
+    background-image: url("../../img/zamboni/suggest-point-rtl.png");
+    background-position: 255px bottom;
+}
+
+.other-categories,
+#refine-results,
+.versions .primary > .warning {
+    background: #fff;
+    border: 1px solid #e0effd;
+}
+
+.versions .primary > .warning h2 {
+    font-style: italic;
+    margin: 0;
+}
+
+.versions .primary > .warning {
+    border-color: #C63717;
+}
+
+.versions .primary > .warning p {
+    margin-top: .5em;
+}
+
+.version nav.further-navigation {
+    display: block;
+    padding-top: .5em;
+    margin-top: 1em;
+    clear: right;
+    border-top: 1px dotted #E0EFFD;
+}
+
+.version a.source-code {
+    display: inline-block;
+    margin-top: 1em;
+    padding-left: 20px;
+}
+
+.version a.more-info {
+    float:right;
+    margin: 0;
+}
+
+.item.version {
+    padding: 2em;
+}
+
+.version .item-info {
+    margin-right: 0;
+    width: auto;
+}
+
+.item.version h5 {
+    font-size: 1em;
+}
+
+.article.version {
+    overflow: visible;
+}
+
+.article.version blockquote {
+    clear: left;
+    overflow-x: hidden;
+}
+
+.article.version h3 {
+    font-family: "helvetica neue",arial,helvetica,sans-serif;
+    font-size:1em;
+    float: left;
+    margin-top:0;
+}
+
+.article.version h3 span:before {
+    content: '\02013\00a0';
+}
+
+#refine-results h5 {
+    color: #235;
+}
+
+.secondary ul.refinements {
+    border-bottom: 1px dotted #94bfce;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+}
+
+#refine-results div:last-child ul.refinements {
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.secondary ul.refinements li a {
+    color: #3d6db5;
+    padding: 0 0 0 10px;
+    font-weight: bold;
+    font-size: .923em;
+}
+
+.html-rtl .secondary ul.refinements li a {
+    padding: 0 10px 0 0;
+}
+
+.secondary ul.refinements li.selected a {
+    background: transparent url("../../img/zamboni/arrow-right-blue.png") 0 .5em no-repeat;
+}
+
+.html-rtl .secondary ul.refinements li.selected a {
+    background: transparent url("../../img/zamboni/arrow-left-blue.png") 100% .5em no-repeat;
+}
+
+/** =Report abuse form *********/
+.abuse {
+    border: 0;
+    padding: 1em 0 0;
+}
+
+.abuse ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.abuse-wrapper legend {
+    float: right;
+}
+
+.abuse-wrapper ol {
+    padding-top: 3em;
+}
+
+.abuse label {
+    font-weight: normal;
+}
+
+.abuse legend {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: bold;
+}
+
+.abuse ol.hidden {
+    display: none;
+}
+
+.abuse legend a.abuse-image {
+    padding-left: 25px;
+    color: #3d6db5;
+    background: transparent url("../../img/zamboni/notifications.png") 0 -305px no-repeat;
+}
+
+.html-rtl .abuse legend span {
+    padding-left: 0;
+    padding-right: 25px;
+    background-position: 100% -1700px;
+}
+
+/* TODO(jbalogh): remove hasJS when we add the abuse pane. */
+.hasJS .abuse legend span {
+    cursor: pointer;
+}
+
+.hasJS .abuse legend span:hover {
+    text-decoration: underline;
+}
+
+.abuse textarea {
+    border: 1px solid #5875A0;
+    width: 60%;
+}
+
+
+/** =Personas Details page *********/
+.persona-img {
+    height: 100px;
+    overflow: hidden;
+}
+#persona-summary table {
+    display: block;
+    width: 320px;
+    float: right;
+}
+#persona-summary table th {
+    width: auto;
+    min-width: 120px;
+    vertical-align: top;
+}
+#persona-summary table .artist td {
+    font-weight: bold;
+}
+#persona-summary .share-arrow {
+    position: absolute;
+    z-index: 100;
+}
+#persona #more-personas {
+    margin-bottom: 3em;
+}
+#persona #more-personas h3 {
+    margin-top: 0;
+}
+#persona #more-category {
+    width: 65.6%;
+    float: left;
+}
+.html-rtl #persona #more-category {
+    float: right;
+}
+#persona #more-category.persona-list-3col {
+    width: 100%;
+}
+#persona #more-artist {
+    width: 32.5%;
+    float: right;
+}
+.html-rtl #persona #more-artist {
+    float: left;
+}
+#persona #more-personas .article {
+    margin-bottom: .3em;
+}
+#persona #more-personas .more-link {
+    font-weight: bold;
+}
+#persona-side .category-list h3 {
+    margin-top: 0;
+}
+
+/** Personas listing pages. **/
+.personas-grid {
+    padding: 0 10px;
+    margin: 1em auto;
+}
+.personas-grid li {
+    display: inline-block;
+    width: 32.9%;
+    vertical-align: top;
+    margin-bottom: .77em;
+}
+.personas-grid li .persona-inner {
+    margin: 0 auto;
+}
+.personas-grid li .details {
+    font-size: 0.846em;
+    line-height: 1.4;
+    margin: 0 .25em;
+}
+.personas-grid h6 {
+    margin: .5em .25em .25em;
+}
+.personas-grid li .details p {
+    margin: 0;
+}
+.personas-grid li .details .users {
+    background-color: inherit;
+    margin-left: 1em;
+    font-size: 1em;
+    padding: 0;
+    position: static;
+}
+.personas-grid li .details .users b {
+    font-weight: bold;
+}
+.html-rtl .personas-grid li .details .users {
+    margin-left: 0;
+    margin-right: 1em;
+}
+
+/** White category list **/
+.other-categories ul {
+    margin: 0;
+}
+
+.other-categories ul + ul,
+.other-categories .divider {
+    border-top: 1px dotted #94BFCE;
+    margin-top: 1em;
+    padding-top: 1em;
+}
+
+.other-categories ul li {
+    padding: 0 1em;
+    font-size: 1.05em;
+}
+
+#search-tools-sidebar h3 {
+    margin-bottom: 0.55em;
+}
+
+#search-tools-sidebar h4 {
+    margin-top: 0;
+    margin-bottom: 0.55em;
+    font-style: italic;
+    font-family: georgia, serif;
+    font-size: 1.0em;
+    font-weight: normal;
+    color: #565656;
+}
+
+/** Notifications **/
+.notification-box {
+    margin: 10px 0 28px;
+    border: 3px solid #1d4900;
+    background-color: #e0effd;
+    padding: 13px 13px 13px 58px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    font-family: "helvetica neue", arial, helvetica, sans-serif;
+    color: #444;
+    font-size: 13px;
+    position: relative;
+}
+
+.notification-box h2 {
+    margin: 0;
+    padding-top: 10px;
+    font-size: 130%;
+    line-height: 1.5em;
+    min-height: 38px;
+    color: #444444;
+}
+
+.notification-box p {
+     padding-top: 8px;
+}
+
+.notification-box p:first-child {
+     padding-top: 0pt;
+}
+
+.html-rtl .notification-box h2 {
+    padding-left: 0;
+    background-position: top right;
+}
+
+.notification-box:before {
+    content: "\00a0";
+    width: 32px;
+    height: 32px;
+    display: block;
+    left: 10px;
+    top: 50%;
+    margin-top: -16px;
+    position: absolute;
+    background-image:url(../../img/zamboni/notifications.png);
+}
+
+.html-rtl .notification-box:before {
+    right: 10px;
+    left: auto;
+}
+
+.notification-box.warning {
+    background-color: #FD9;
+    color: #444;
+    border: 3px solid #550b00;
+}
+
+.notification-box.warning:before {
+    background-position: 0 -225px;
+}
+
+.notification-box.error {
+    background-color: #FFA5A5;
+    color: #444;
+    border: 3px solid #550b00;
+}
+
+.notification-box.error:before {
+    background-position: 0 -83px;
+}
+
+.notification-box.error h2 {
+    color: #C63717;
+    background-position: 0 -150px;
+}
+
+.notification-box.info {
+    color: #444;
+    border: 3px solid #002955;
+}
+
+.notification-box.info:before {
+    background-position: 0 -435px;
+}
+
+.notification-box.info h2 {
+    color: #425A8B;
+    background-position: 0 -150px;
+}
+
+.html-rtl .notification-box {
+    padding: 13px 58px 13px 13px;
+}
+
+.notification-box h2 {
+    background: none;
+    font-weight: bold;
+    padding: 0;
+    font-family: "helvetica neue", arial, helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 1;
+    min-height: 0;
+}
+
+.notification-box p {
+    margin: 0;
+}
+
+/** Add-on detail page buttons. **/
+#addon-summary .install-shell .install {
+    float: left;
+    clear: both;
+}
+
+.html-rtl #addon-summary .install-shell .install {
+    float: right;
+}
+
+#addon-summary .install-shell .notavail {
+    clear: both;
+}
+
+.install-wrapper {
+    margin-bottom: 1.5em;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.install-shell {
+    display:inline-block;
+}
+
+.install-wrapper .warning {
+    clear: both;
+    padding: 0 4px;
+    margin: 0;
+}
+
+.privacy-policy {
+    display: inline-block;
+}
+
+.privacy-policy ul,
+.policy-statement ul {
+    list-style: disc outside none;
+    margin: 0 0 0 20px;
+}
+
+.privacy-policy ol,
+.policy-statement ol {
+    list-style: decimal outside none;
+    margin: 0 0 0 20px;
+}
+
+.privacy-policy blockquote,
+.policy-statement blockquote {
+    margin-bottom: 0;
+}
+
+.install-wrapper .extra {
+    border-top: 1px dotted #A5C9D5;
+    padding-top: 6px;
+}
+
+/* Contributions */
+#contribution.notification .aux {
+}
+
+#contribution .aux .button-wrapper {
+    padding-bottom: 10px;
+}
+
+#contribution h2 span {
+    top: 0;
+}
+
+#developers #contribution .aux {
+    width: 25%;
+    text-align: right;
+    float: right;
+}
+
+#developers #contribution .button-wrapper {
+    float: none;
+    padding: 10px 0 5px;
+}
+
+#developers #contribution h3 {
+    width: 75%;
+    float: left;
+}
+
+#developers #contribution h3.show-install {
+    float: none;
+    margin: 0;
+    width: 100%;
+}
+
+#developers #contribution .aux-bottom {
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px dashed #E0EFFD;
+}
+
+#developers #contribution .aux-bottom .button-wrapper {
+    float: left;
+    padding: 0;
+    width: 60%;
+}
+
+#developers .notification .continue,
+#developers .install,
+#developers .install_shell,
+#developers .aux-bottom #contribute-button {
+    float: left;
+}
+
+#developers .show-install h3 {
+    margin: 0;
+}
+
+/* Disable styling for stacked .extras. */
+.install-wrapper .extra + .extra {
+    border: none;
+    padding: 0;
+}
+
+.install-wrapper.lite .extra,
+.install-wrapper.unreviewed .extra {
+    border-top: 1px dotted #AA7700;
+}
+
+.install-wrapper.lite .install strong,
+.install-wrapper.unreviewed .install strong,
+.install-wrapper.selfhosted .install strong {
+    display: none;
+}
+
+.install-wrapper.lite .install-note strong,
+.install-wrapper.unreviewed .install-note strong,
+.install-wrapper.selfhosted .install-note strong {
+    display: inherit;
+}
+
+.install-wrapper.lite,
+.install-wrapper.unreviewed,
+.install-wrapper.selfhosted {
+    padding: 0.4em;
+}
+
+.install-wrapper.selfhosted {
+    background: #D3ECF6;
+}
+
+.install-wrapper.lite,
+.install-wrapper.unreviewed {
+    background: #FFE57F;
+}
+
+.aux .button-wrapper {
+    float: left;
+    margin: 0;
+    padding: 0.1em 0 1.5em;
+}
+
+/** Add-on listing on the homepage. */
+.listing.compact .item blockquote {
+    padding: 0;
+}
+
+.listing.compact .item .install-shell,
+.listing.compact .item .install {
+    float: right;
+    margin-left: 10px;
+}
+
+.html-rtl .listing.compact .item .install-shell,
+.html-rtl .listing.compact .item .install {
+    float: left;
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.listing.compact .item h3 {
+    float: none;
+}
+
+td .addon-rating,
+.listing.compact .item .meta .addon-rating,
+.listing.compact .item .meta .downloads,
+.listing.compact .item .meta .updated {
+    display: inline;
+}
+
+.listing.compact .item blockquote {
+    clear: both;
+}
+
+#discovery-modules .ordering input {
+    width: 2em;
+}
+
+#discovery-modules .module {
+    font-weight: bold;
+}
+
+#discovery-modules .locales input {
+    width: 20em;
+}
+
+/* Carousel arrows for personas carousel */
+
+.personas-home ol.breadcrumbs {
+    clear:none; /*don't want breadcrumbs clearing floats in this module*/
+}
+
+.arrow {
+    display: block;
+    float: right;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #7fcbd8;
+    -moz-border-radius: 13px;
+    cursor: pointer;
+    text-indent: -999px;
+    background: white;
+    position: absolute;
+    right: 108px;
+    overflow: hidden;
+}
+
+.arrow.prev {
+    top: -15px;
+}
+
+.arrow.next {
+    top: 355px;
+}
+
+.arrow:before {
+    content: "\00a0";
+    display: block; /* reduce the damage in FF3.0 */
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-style: solid;
+}
+
+.arrow.prev:before {
+    left: 6px;
+    top: 2px;
+    border-bottom-color: #0471ed;
+}
+
+.arrow.next:before {
+    left: 6px;
+    top: 9px;
+    border-top-color: #0471ed;
+}
+
+.other-note {
+    display: none;
+    clear: left;
+    padding: .25em 0 0 1em;
+    margin: 0;
+}
+.other-note input[type='text'] {
+    width: 150px;
+}
+.other-note input[type='submit'] {
+    margin-top: -2px;
+}
+.other .other-note,
+.review-reason a {
+    display: block;
+}
+
+/** Reviews *********/
+
+ul.review-options {
+    float: right;
+    font-size: .9em;
+    margin-top: 1em;
+    margin-bottom: 2px;
+    color: #aaa;
+}
+ul.review-options > li {
+    float: left;
+}
+.review ul.review-options > li > a {
+    font-weight: normal;
+    color: #aaa;
+    -moz-transition: color .2s;
+    -webkit-transition: color .2s;
+    transition: color .2s;
+}
+ul.review-options > li:not(:first-child) {
+    list-style-type: disc;
+    margin-left: 1.6em;
+}
+.article.review {
+    margin-bottom: 1em;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    overflow: visible;
+}
+.review h5 {
+    float: left;
+    margin-right: .8em;
+    font-size: 120%;
+}
+.html-rtl .review h5 {
+    float: right;
+    margin-right: inherit;
+    margin-left: .8em;
+}
+.review p {
+    margin: 1em 0 0 0;
+}
+.review .reviewed-on {
+    clear: left;
+    font-size: .9em;
+}
+.html-rtl .review .reviewed-on {
+    clear: right;
+}
+.review.deleted {
+    display: none;
+}
+h6.author, .author a {
+    font-weight: normal;
+}
+.reviews .highlight > span {
+    display: block;
+}
+.reviews .highlight hgroup {
+    display: block;
+    margin-bottom: 1em;
+}
+.reviews .highlight > div {
+    margin: 0;
+    padding: 1em .2em;
+    border-top: 1px dashed #ccc;
+    font-size: .9em;
+}
+.reviews .highlight > div:last-child {
+    text-align: center;
+    padding-bottom: 0;
+}
+
+.average_rating {
+    margin: 0 .2em;
+}
+
+.average_rating .stars {
+    margin-right: .9em;
+}
+
+.article .review-detail .show-more {
+    font-weight: normal;
+    float: right;
+}
+
+/* grouped ratings style */
+
+.grouped_ratings .rating_bar {
+    border-left: 1px solid black;
+    height: 2em;
+    float: left;
+    width: 0px;
+    overflow: visible;
+    width: 120px;
+}
+.num_ratings {
+    width: 1px;
+    position: absolute;
+    right: -4px;
+    top: -2px;
+    line-height: 1em;
+}
+.grouped_ratings .rating_bar span.bar {
+    display:block;
+    height: 100%;
+    position: relative;
+    background: #acd;
+    margin: .4em .5em 0 0;
+    height: .9em;
+}
+
+.html-rtl .grouped_ratings .rating_bar {
+    border-left: 0;
+    border-right: 1px solid black;
+    float: right;
+}
+
+.html-rtl .grouped_ratings .rating_bar span.bar {
+    float: right;
+    margin: .4em 0 0 .5em;
+}
+
+.html-rtl .grouped_ratings .rating_bar span.num_ratings {
+    right: auto;
+    left: -4px;
+}
+
+
+/* stacking the stars to the right for the grouped ratings */
+
+.grouped_ratings .stars-4 {
+    background-position: 13px 50%;
+}
+.grouped_ratings .stars-3 {
+    background-position: 26px 50%;
+}
+.grouped_ratings .stars-2 {
+    background-position: 39px 50%;
+}
+.grouped_ratings .stars-1 {
+    background-position: 52px 50%;
+}
+.grouped_ratings .stars-0 {
+    background-position: 65px 50%;
+}
+
+/* review form */
+
+#review-box form {
+    width: 48%;
+    height: 200px;
+    float: left;
+    padding: 0 10px 1em 0;
+    margin-right: 1em;
+}
+
+#review-box textarea {
+    margin-bottom: 1em;
+    height: 100px;
+}
+
+#review-box div {
+    padding-left: 48%;
+}
+
+.review-form p > label {
+    float: left;
+    width: 8em;
+}
+
+#review-form {
+    margin: 2em 1em 0 1em;
+}
+
+.review-form textarea {
+    margin: 1em 0 1em 0;
+    clear: left;
+}
+
+.review-form .ratingwidget {
+    float: left;
+    margin-bottom:0;
+}
+
+.review-form input[type='text'] {
+    width: 15em;
+}
+
+.ratingwidget input {
+    display: none;
+}
+
+.ratingwidget {
+    display: block;
+    float: none;
+    width: 65px;
+    margin-bottom: 1em;
+}
+
+.ratingwidget label {
+    text-indent: -5000px;
+    display: block;
+    float: left;
+    width: 13px;
+}
+
+.review:hover ul.review-options > li > a {
+    color: #3d6db5;
+}
+.review-wrapper {
+    position: relative;
+}
+.reviews header {
+    margin-left: 0;
+}
+.highlight h5 {
+    font-size: 120%;
+}
+.review.reply {
+    margin-left: 4em;
+    background: #f0f6f2;
+    border-color: #d0e2c5;
+}
+.review .review-note {
+    float: left;
+    font-size: .9em;
+    margin-top: 1em;
+    margin-bottom: 2px;
+    font-style: italic;
+}
+
+.review.reply-form {
+    background: #e0effd;
+    border: 0;
+}
+.reply-form form {
+    margin-bottom: 0;
+}
+.reply-form label {
+    display: block;
+    margin-top: 1em;
+}
+label > .optional {
+    font-weight: normal;
+    color: #888;
+}
+.reply-form textarea {
+    margin-bottom: 2em;
+    width: 80%;
+}
+.reply-form h3 {
+    margin: 0;
+}
+.reply-form input[type='text'] {
+    width: 60%;
+}
+
+.collection-add {
+    left: -42px;
+}
+
+.collection-add-dropdown, .collection-rate-dropdown {
+    margin: 0;
+    display: none;
+    width: 200px;
+    padding: 1em;
+}
+
+.collection-rate-dropdown {
+    margin-top:1em;
+}
+
+.upvote .collection-rate-dropdown {
+    left: -56px;
+}
+
+.downvote .collection-rate-dropdown {
+    left: inherit;
+    right: -76px;
+}
+
+.popup h3 {
+    margin-top: 0;
+}
+#add-to-collection form {
+    margin-bottom: 0;
+}
+#add-to-collection #id_description {
+    height: 6em;
+}
+
+.edit_with_prefix span, .edit_with_suffix span {
+    border: 1px solid #5875A0;
+    background: #eee;
+    color: #888;
+}
+.edit_with_prefix input:focus, .edit_with_suffix input:focus {
+    outline: 0;
+}
+
+.edit_with_prefix span {
+    border-right: 0 none;
+    padding: 2px 2px 2px 5px;
+}
+.edit_with_prefix input {
+    border-left: 0 none;
+}
+
+.edit_with_suffix span {
+    border-left: 0 none;
+    padding: 2px 5px 2px 2px;
+}
+.edit_with_suffix input {
+    border-right: 0 none;
+}
+
+.edit_initially_hidden {
+    display: none;
+}
+
+#slug_value {
+    font-weight: bold;
+    color: #222;
+}
+
+#collection-form-slug,
+#clear-recents {
+    font-size: .9em;
+}
+
+#collection-favorites-opts li {
+    display: inline-block;
+    margin-right: 1em;
+}
+
+.collections-details #id_name {
+    display: block;
+    -moz-box-sizing: border-box;
+    width: 100%;
+}
+
+#collection_listed {
+    margin-bottom: 1.5em;
+}
+
+#collection_listed ul label {
+    font-weight: normal;
+}
+
+#icon_upload {
+  padding-top: 5px;
+}
+
+#icon_upload .icon_preview  {
+  float: left;
+  text-align: center;
+  margin-right: 10px;
+  line-height: 1em;
+}
+
+#icon_upload .icon_preview img {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 1px solid #C1E0EA;
+  padding: 8px;
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+#ajax_collections_list {
+    margin: 0 0 .5em 0;
+}
+
+#ajax_new_collection {
+    border-top: 1px dashed #aecfda;
+    padding: .5em 0 0 30px;
+    margin: 0;
+}
+
+#ajax_collections_list li {
+    cursor: pointer;
+    padding-left: 30px;
+    background-repeat: no-repeat;
+    background-position: 0 4px;
+    background-image: url(../../img/zamboni/icons/checks.png);
+}
+
+#ajax_collections_list li:hover {
+    background-position: 0 -36px;
+}
+
+#ajax_collections_list li.selected {
+    background-position: 0 -76px;
+}
+
+#ajax_collections_list li.ajax-loading {
+   background-image: url(../../img/zamboni/loading-white.gif);
+   background-position: left bottom;
+}
+
+.collections-contributors tr a {
+    display: none;
+}
+
+.collections-contributors tr:hover a {
+    display: inline;
+}
+
+.collections-personas .personas-grid {
+    border: 1px solid #C9E8F3;
+    padding: 1em;
+    margin: 0 0 1em 0;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius :8px;
+    background-color: #ffffff;
+    clear:both;
+}
+
+.featured .meta {
+    margin-top: 0;
+}
+
+.featured .meta ul {
+    margin: 0;
+}
+
+.meta li {
+    line-height: 2em;
+}
+
+.followers {
+    color: #37a632;
+}
+.followers span {
+    font-weight: bold;
+}
+
+.listing-footer .delete {
+    float: right;
+    color: red;
+}
+.html-rtl .listing-footer .delete {float: left;}
+
+.tab-wrapper .content {
+    margin: 1em;
+}
+
+.tab-wrapper .listing-footer {
+    padding-top: .5em;
+    z-index: 0;
+}
+
+.tab-wrapper .content h3 {
+    display: none;
+}
+
+.tab-wrapper .content p {
+    margin-top: 2em;
+}
+
+input:-moz-placeholder {
+    color: #ccc;
+}
+input::-webkit-placeholder {
+    color: #ccc;
+}
+
+table#addons-list, table#contributors-list {
+    width: 100%;
+}
+#addons-list .comments {
+    display: none;
+    margin: 0 0 .2em 42px;
+}
+#addons-list .comments.hascomment {
+    display: block;
+}
+td.remove {
+    width: 20px;
+    text-align:center;
+}
+#addons-list thead,
+#contributors-list thead {
+    font-size: .9em;
+}
+#addons-list tbody tr,
+#contributors-list tbody tr {
+    border-top: 1px dotted #A5BFCE;
+}
+#addons-list tbody tr:hover,
+#contributors-list tbody tr:hover,
+.ui-state-hover {
+    background-color: #e4f5fb;
+}
+td.input {
+    background: #E0EFFD;
+    padding-top: .5em;
+    padding-bottom: .4em;
+}
+#addons-list h3 {
+    line-height: 36px;
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+#addons-list img {
+    float: left;
+    margin: 2px 1em 0 0;
+}
+#id_name {
+    display: block;
+}
+#addons-list a.remove,
+#addons-list a.comment,
+#contributors-list a.remove {
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin: 10px;
+    text-indent: -9000px;
+    background-repeat: no-repeat;
+    background-image: url(../../img/zamboni/icons/collections.png);
+}
+#addons-list a.remove,
+#contributors-list a.remove {
+    background-position: 0 -250px;
+}
+#addons-list a.remove:hover,
+#contributors-list a.remove:hover,
+.collection-admin a.delete {
+    background-position: 0 -200px;
+}
+#addons-list a.comment {
+    background-position: 0 -800px;
+}
+
+.collection-admin {
+    font-weight: bold;
+    padding: .5em 1em;
+    margin-bottom: 0;
+    display: inline-block;
+}
+.collection-admin a {
+    background-repeat: no-repeat;
+    background-image: url(../../img/zamboni/icons/collections.png);
+    margin-left: 1em;
+    white-space: nowrap;
+    padding-left: 22px;
+}
+.collection-admin a.edit {
+    background-position: 0 -300px;
+}
+.collection-create .featured-inner {
+    padding: 1em;
+}
+
+.contributor span {
+    position: relative;
+}
+#contributor-ac-error {
+    margin: 0;
+}
+.make-owner {
+    margin-left: 1em;
+}
+
+
+/* collections landing module */
+.collections-landing {
+    padding: 1em;
+    min-height: 190px;
+    background-image: url(../../img/illustrations/logo-collections-220x270.png),
+                      -moz-linear-gradient(#e4f5fb, #ffffff);
+    background-repeat: no-repeat;
+    background-position: 95% 30px, left top;
+}
+
+.collections-landing p {
+    font-size: 1.4em;
+    padding-right: 250px;
+    max-width: 450px;
+    line-height: 1.25em;
+}
+
+.collections-landing .breadcrumbs {
+   margin-bottom: 4px;
+}
+
+.collections-landing h2 {
+   font-family: inherit;  /* this should be Meta eventually */
+   font-size: 2.8em;
+   font-weight: bold;
+   margin-top: 0;
+}
+
+.html-rtl .collections-landing {
+    background-position: 5% 20px, left top;
+}
+.html-rtl .collections-landing p {
+    padding-right: 0;
+    padding-left: 250px;
+}
+
+
+a.outlink {
+    margin-left: 4px;
+    background-repeat: no-repeat;
+    background-image: url(../../img/zamboni/icons/collections.png);
+    white-space: nowrap;
+    padding-left: 16px;
+    background-position: 0 -850px;
+}
+a.outlink:hover {
+    background-position: 0 -900px;
+}
+
+
+
+#addon-collector-logo {
+    float: right;
+}
+.html-rtl #addon-collector-logo {
+    float: left;
+}
+
+
+/* Widgets! they're just fancy <a> tags donchaknow */
+.collection_widgets {
+    margin-top: .5em;
+}
+
+.collection_widgets .condensed {
+    margin-right: 4px;
+}
+
+.object-details .collection_widgets {
+    margin-bottom: 1em;
+}
+.widget {
+    background-image: url(../../img/zamboni/icons/collections.png);
+    background-repeat: no-repeat;
+    padding-left: 22px;
+    margin-right: 1em;
+    height: 16px;
+    line-height: 16px;
+}
+.html-rtl .widget {
+    margin-right: 0;
+    margin-left: 1em;
+}
+.widget.condensed {
+    margin-right: 8px;
+    padding-left: 16px;
+    width: 16px;
+}
+.html-rtl .widget.condensed {
+    margin-left: .8em;
+}
+#addon .widgets {
+    clear:left;
+}
+#addon .widget {
+    display: block;
+    margin-bottom: 1em;
+    float: left;
+}
+.html-rtl #addon .widget,
+.html-rtl #persona .widget {
+    float: right;
+}
+
+.widget.edit { background-position: 0 -350px; }
+.widget.edit:hover { background-position: 0 -300px; }
+.widget.copy { background-position: 0 -50px; }
+.widget.copy:hover { background-position: 0 0px; }
+.widget.watch { background-position: 0 -750px; }
+.widget.watch:hover { background-position: 0 -700px;}
+.widget.watching { background-position: 0 -650px; }
+.widget.favorite { background-position: 0 -500px; }
+.widget.favorite:hover { background-position: 0 -450px; }
+.widget.favorite.faved { background-position: 0 -400px; }
+.widget.condensed.collection { background-position: 0 -150px; }
+.widget.collection, .widget.condensed.collection:hover { background-position: 0 -100px;}
+.widget.condensed.share { background-position: 0 -600px; }
+.widget.share, .widget.condensed.share:hover { background-position: 0 -550px; }
+
+.widgets .widget.ajax-loading,
+.widgets .widget:hover.ajax-loading,
+input.ui-autocomplete-loading,
+.modal.ajax-loading,
+.tooltip.ajax-loading,
+.tooltip:hover.ajax-loading {
+   background-image: url(../../img/zamboni/loading-white.gif);
+   background-repeat: no-repeat;
+   background-position: left bottom;
+}
+input.ui-autocomplete-loading {
+    background-position: right center;
+}
+.modal.ajax-loading {
+    background-position: center center;
+}
+
+.modal-actions.ajax-loading {
+    background-image: url(../../img/zamboni/loading-white.gif);
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+.suggested-amount.ajax-loading,
+#contribute-box .ajax-loading {
+    background-image: url(../../img/zamboni/loading-white.gif);
+    background-repeat: no-repeat;
+    background-position: right center;
+    padding-right: 30px;
+}
+
+#contribute-box .ajax-loading {
+    margin-left: 0px;
+    font-weight: bold;
+}
+
+#popup-staging .popup {
+    display: none;
+}
+
+/** Add-on detail page QR Code area. Feature test from Bug 595561 **/
+#addon-qr-code {
+    -moz-border-radius: 5px;
+    background-color: #e0effd;
+    border: 6px solid #e0effd;
+    color: #223355;
+    float: right;
+    font-size: 0.9em;
+    margin-left: 0.5em;
+    width: 172px;
+}
+
+.html-rtl #addon-qr-code {
+    float: left;
+    margin-left: 0;
+    margin-right: 0.5em;
+}
+
+/** Hide Featured tab on Search Tools landing page when there's a category **/
+/** Bug 605670, 609318 **/
+.search-tools-for-cat li a[href*="?sort=featured"] {
+    display: none;
+}
+/** l10n */
+#l10n-menu {
+    float: right;
+}
+#l10n-menu p {
+    margin: 0;
+}
+.html-rtl #l10n-menu {
+    float: left;
+}
+#change-locale {
+    padding-right: 16px;
+}
+#change-locale:after {
+    position: relative;
+    top: 12px;
+    left: 4px;
+    content: "\00a0";
+    display: inline-block; /* reduce the damage in FF3.0 */
+    width: 0;
+    height: 0;
+    border: 4px solid transparent;
+    border-style: solid;
+    border-top-color: #003595;
+}
+#locale-popup section {
+    display: block;
+    overflow-y: auto;
+    height: 300px;
+    line-height: 30px;
+}
+#locale-popup section a {
+    display: block;
+}
+#locale-popup section a:hover {
+    background-color: #EEFAFE;
+    text-decoration: none;
+}
+#locale-popup section a em {
+    color: #98BFEF;
+}
+
+#locale-popup section > div,
+#locale-popup section > ul {
+    border-top: 1px dotted #a4cfde;
+    margin-bottom: 0;
+}
+#locale-popup section > div:first-child,
+#locale-popup section > ul:first-child {
+    border-top: none;
+}
+
+#existing_locales a.remove {
+    float: right;
+    display: block;
+    margin: 4px;
+}
+
+#existing_locales a.remove:hover {
+    background-color: #2A4364;
+}
+
+.trans [lang] {
+    display: none;
+}
+.trans [lang]:first-child {
+    display: block;
+}
+.trans .init-trans {
+    display: none;
+}
+
+.trans .cloned {
+    color: #ccc;
+    font-style: italic;
+}
+/* end l10n */
+
+/** "Some HTML Allowed" text/popup **/
+.html-support {
+    font-size: .9em;
+    color: #003595;
+    float: right;
+}
+
+.html-rtl .html-support {
+    float: left;
+}
+
+.html-support:hover {
+    color: #000;
+    cursor: help;
+}
+
+.errorlist .l10n {
+    cursor: pointer;
+}
+.errorlist .l10n:hover {
+    text-decoration: underline;
+}
+
+#no-restart {
+    margin: -1em 0 1.5em 0;
+}
+
+#no-restart-msg {
+    border: 1px solid #b6d9e5;
+    border-radius: 3px; /* Only shown in Fx4. */
+    padding: .2em .4em;
+    color: #294473;
+    font-weight: bold;
+    font-size: .9em;
+}
+
+#navbar {
+    display: none;
+}
+
+#paypal-error {
+    background: white url("../../img/zamboni/notification-error.png") no-repeat 5px;
+    padding-left: 50px;
+}
+
+#contribute-box {
+    position: fixed;
+    left: 50%;
+}
+
+#contribute-box .error {
+    padding: 10px 0px 10px 50px;
+}
+
+ul.errorlist li progress {
+    margin-left: 1em;
+}
+
+ul.errorlist li.strength {
+    color: #444444;
+}

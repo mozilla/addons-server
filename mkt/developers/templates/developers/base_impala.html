@@ -2,7 +2,7 @@
   {% set webapp, WEBAPPS = True, True %}
 {% endif %}
 
-{% extends "impala/base.html" %}
+{% extends 'developers/skeleton_impala.html' %}
 
 {% if addon %}
   {% set editable = "no-edit" if not check_addon_ownership(request, addon, dev=True) %}
@@ -37,10 +37,6 @@
 
 {# TODO: Disable developer search. #}
 {% block search_form %}{% include "devhub/search.html" %}{% endblock %}
-
-{% block js %}
-  {{ js('zamboni/devhub') }}
-{% endblock %}
 
 {% set hide_mobile_link=True %}
 {% block footer %}
