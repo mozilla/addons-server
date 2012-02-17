@@ -16,12 +16,14 @@
       data-profile-form-url="{{ url('users.complete_profile_form') }}">
       {{ loc('Log in / Register') }}
     </a>
+    &nbsp;<a href="http://support.mozilla.org/en-US/kb/how-do-i-manage-my-browserid-account#w_how-do-i-reset-my-browserid-password">
+      {{ loc('forgot your password?') }}
+    </a>
     <div class="user-message">
       {% trans %}
       Are you an <a href="#" id="show-normal-login">admin or editor</a>?
       {% endtrans %}
     </div>
-
   </fieldset>
   {% endif %}
   <div class="login-option grid prettyform">

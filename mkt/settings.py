@@ -197,6 +197,7 @@ MINIFY_BUNDLES['js'].update({
         'js/impala/forms.js',
 
         # Login.
+        'js/zamboni/browserid_support.js',
         'js/impala/login.js',
 
         # Fix-up outgoing links.

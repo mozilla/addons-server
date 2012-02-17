@@ -1,4 +1,4 @@
-{% extends "impala/base_shared.html" %}
+{% extends 'developers/skeleton_impala.html' %}
 
 {% block title %}{{ page_title(_('User Login')) }}{% endblock %}
 
@@ -13,20 +13,8 @@
 {% block content %}
 
 <div class="primary">
-  {% if not settings.APP_PREVIEW: %}
-  <div class="secondary">
-      <div id="login-help" class="article">
-          <h2>{{ _('Login Problems?') }}</h2>
-          <ul>
-            {% if not settings.APP_PREVIEW %}<li><a href="{{ url('users.register') }}">{{ _("I don't have an account.") }} </a></li>{% endif %}
-              <li><a href="{{ url('users.pwreset') }}">{{ _("I forgot my password.") }}</a></li>
-          </ul>
-      </div>
-  </div>
-  {% endif %}
   <section class="island hero primary grid {{ 'browserid' if waffle.switch('browserid-login') else 'prettyform' }}">
     <h1>{{ _('Log In') }}</h1>
-    {% if settings.APP_PREVIEW %}
     {# TODO(apps): Finalize copy. #}
     <strong>Welcome to the Apps Developer Preview!</strong>
       {% if registration_closed %}
@@ -42,17 +30,7 @@
 
     <p><strong>Important</strong>: All submissions from this preview will be discarded before launch, and we expect final designs and flows to differ
     significantly. We'd love to hear your <a href="http://groups.google.com/group/mozilla-apps">feedback</a>.</p>
-    {% elif waffle.switch('browserid-login') %}
-      <p>
-        {# TODO: Localize! #}
-        {% with url='https://browserid.org/' %}
-        The add-ons website is now using <a href="{{ url }}">BrowserID</a> for sign in. If you already have an account here, just use the
-        same email when signing in to BrowserID.
-        {% endwith %}
-      </p>
-    {% endif %}
     {% include "users/login_form.html" %}
   </section>
 </div>
 {% endblock content %}
-

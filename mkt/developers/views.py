@@ -28,7 +28,8 @@ from applications.models import Application, AppVersion
 import amo
 import amo.utils
 from amo import messages
-from amo.decorators import json_view, login_required, post_required, write
+from amo.decorators import (json_view, login_required, no_login_required,
+                            post_required, write)
 from amo.helpers import loc
 from amo.utils import escape_all, HttpResponseSendFile
 from amo.urlresolvers import reverse
@@ -52,6 +53,7 @@ from search.views import BaseAjaxSearch
 from stats.models import Contribution
 from translations.models import delete_translation
 from users.models import UserProfile
+from users.views import _login
 from versions.models import Version
 from webapps.models import Webapp
 from zadmin.models import ValidationResult
@@ -91,6 +93,12 @@ def addon_listing(request, default='name', webapp=False):
         model = Addon
     filter = Filter(request, qs, 'sort', default, model=model)
     return filter.qs, filter
+
+
+@anonymous_csrf
+@no_login_required
+def login(request, template=None):
+    return _login(request, template='developers/login.html')
 
 
 def index(request):
