@@ -174,33 +174,6 @@
             visibility: visible;
         }
     }
-    &.acr,
-    &.incompatible {
-        .install-shell {
-            font: 11px/11px @sans-stack;
-        }
-    }
-    &.incompatible {
-        &:hover {
-            .action {
-                border-color: @border-blue;
-                opacity: 1;
-            }
-            .extra .notavail {
-                color: @error-red;
-            }
-        }
-        .info, .action {
-            border-color: darken(@border-blue, 10%);
-            opacity: 0.4;
-        }
-        .install-shell {
-            visibility: visible;
-            .install, br {
-                display: none;
-            }
-        }
-    }
     h3 {
         font-size: 16px;
         font-weight: bold;
