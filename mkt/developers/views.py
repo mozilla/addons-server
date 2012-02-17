@@ -141,24 +141,20 @@ def edit(request, addon_id, addon, webapp=False):
 def delete(request, addon_id, addon, webapp=False):
     # Database deletes only allowed for free or incomplete addons.
     if not addon.can_be_deleted():
-        if webapp:
-            msg = loc('App cannot be deleted. Disable this app instead.')
-        else:
-            msg = _('Add-on cannot be deleted. Disable this add-on instead.')
+        msg = loc('App cannot be deleted. Disable this app instead.')
         messages.error(request, msg)
         return redirect(addon.get_dev_url('versions'))
 
+    # TODO: This short circuits the delete form which checks the password. When
+    # BrowserID adds re-auth support, update the form to check with BrowserID
+    # and remove the short circuit.
     form = forms.DeleteForm(request)
-    if form.is_valid():
+    if True or form.is_valid():
         addon.delete('Removed via devhub')
-        messages.success(request,
-            loc('App deleted.') if webapp else _('Add-on deleted.'))
-        return redirect('mkt.developers.%s' % ('apps' if webapp else 'addons'))
+        messages.success(request, loc('App deleted.'))
+        return redirect('mkt.developers.apps')
     else:
-        if webapp:
-            msg = loc('Password was incorrect. App was not deleted.')
-        else:
-            msg = _('Password was incorrect.  Add-on was not deleted.')
+        msg = _('Password was incorrect.  App was not deleted.')
         messages.error(request, msg)
         return redirect(addon.get_dev_url('versions'))
 

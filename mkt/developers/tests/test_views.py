@@ -1316,13 +1316,15 @@ class TestDelete(amo.tests.TestCase):
         return Addon.objects.no_cache().get(id=3615)
 
     def test_post_not(self):
+        # Update this test when BrowserID re-auth is available.
+        raise SkipTest()
         r = self.client.post(self.url, follow=True)
         eq_(pq(r.content)('.notification-box').text(),
-                          'Password was incorrect. Add-on was not deleted.')
+                          'Password was incorrect. App was not deleted.')
 
     def test_post(self):
-        r = self.client.post(self.url, dict(password='password'), follow=True)
-        eq_(pq(r.content)('.notification-box').text(), 'Add-on deleted.')
+        r = self.client.post(self.url, follow=True)
+        eq_(pq(r.content)('.notification-box').text(), 'App deleted.')
         self.assertRaises(Addon.DoesNotExist, self.get_addon)
 
 
@@ -2566,49 +2568,6 @@ class UploadTest(BaseUploadTest, amo.tests.TestCase):
         assert self.client.login(username='del@icio.us', password='password')
 
 
-class TestQueuePosition(UploadTest):
-    fixtures = ['base/apps', 'base/users',
-                'base/addon_3615', 'base/platforms']
-
-    def setUp(self):
-        super(TestQueuePosition, self).setUp()
-
-        self.url = reverse('mkt.developers.versions.add_file',
-                           args=[self.addon.slug, self.version.id])
-        self.edit_url = reverse('mkt.developers.versions.edit',
-                                args=[self.addon.slug, self.version.id])
-        version_files = self.version.files.all()[0]
-        version_files.platform_id = amo.PLATFORM_LINUX.id
-        version_files.save()
-
-    def test_not_in_queue(self):
-        r = self.client.get(self.addon.get_dev_url('versions'))
-
-        eq_(self.addon.status, amo.STATUS_PUBLIC)
-        eq_(pq(r.content)('.version-status-actions .dark').length, 0)
-
-    def test_in_queue(self):
-        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_NOMINATED),
-                    (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED),
-                    (amo.STATUS_LITE, amo.STATUS_UNREVIEWED)]
-
-        for addon_status in statuses:
-            self.addon.status = addon_status[0]
-            self.addon.save()
-
-            file = self.addon.latest_version.files.all()[0]
-            file.status = addon_status[1]
-            file.save()
-
-            r = self.client.get(self.addon.get_dev_url('versions'))
-            doc = pq(r.content)
-
-            span = doc('.version-status-actions .dark')
-
-            eq_(span.length, 1)
-            assert "Queue Position: 1 of 1" in span.text()
-
-
 class TestVersionAddFile(UploadTest):
     fixtures = ['base/apps', 'base/users',
                 'base/addon_3615', 'base/platforms']
@@ -2852,82 +2811,6 @@ class TestVersionAddFile(UploadTest):
         eq_(comments.length, 2)
 
 
-class TestUploadErrors(UploadTest):
-    fixtures = ['base/apps', 'base/users',
-                'base/addon_3615', 'base/platforms']
-    validator_success = json.dumps({
-        "errors": 0,
-        "success": True,
-        "warnings": 0,
-        "notices": 0,
-        "message_tree": {},
-        "messages": [],
-        "metadata": {},
-    })
-
-    def xpi(self):
-        return open(os.path.join(os.path.dirname(files.__file__),
-                                 'fixtures', 'files',
-                                 'delicious_bookmarks-2.1.106-fx.xpi'),
-                    'rb')
-
-    @mock.patch.object(waffle, 'flag_is_active')
-    @mock.patch('mkt.developers.tasks.run_validator')
-    def test_version_upload(self, run_validator, flag_is_active):
-        run_validator.return_value = ''
-        flag_is_active.return_value = True
-
-        # Load the versions page:
-        res = self.client.get(self.addon.get_dev_url('versions'))
-        eq_(res.status_code, 200)
-        doc = pq(res.content)
-
-        # javascript: upload file:
-        upload_url = doc('#upload-addon').attr('data-upload-url')
-        with self.xpi() as f:
-            res = self.client.post(upload_url, {'upload': f}, follow=True)
-        data = json.loads(res.content)
-
-        # Simulate the validation task finishing after a delay:
-        run_validator.return_value = self.validator_success
-        tasks.validator.delay(data['upload'])
-
-        # javascript: poll for status:
-        res = self.client.get(data['url'])
-        data = json.loads(res.content)
-        if data['validation'] and data['validation']['messages']:
-            raise AssertionError('Unexpected validation errors: %s'
-                                 % data['validation']['messages'])
-
-    @mock.patch.object(waffle, 'flag_is_active')
-    @mock.patch('mkt.developers.tasks.run_validator')
-    def test_dupe_xpi(self, run_validator, flag_is_active):
-        run_validator.return_value = ''
-        flag_is_active.return_value = True
-
-        # Submit a new addon:
-        self.client.post(reverse('mkt.developers.submit.1'))  # set cookie
-        res = self.client.get(reverse('mkt.developers.submit.2'))
-        eq_(res.status_code, 200)
-        doc = pq(res.content)
-
-        # javascript: upload file:
-        upload_url = doc('#upload-addon').attr('data-upload-url')
-        with self.xpi() as f:
-            res = self.client.post(upload_url, {'upload': f}, follow=True)
-        data = json.loads(res.content)
-
-        # Simulate the validation task finishing after a delay:
-        run_validator.return_value = self.validator_success
-        tasks.validator.delay(data['upload'])
-
-        # javascript: poll for results:
-        res = self.client.get(data['url'])
-        data = json.loads(res.content)
-        eq_(list(m['message'] for m in data['validation']['messages']),
-            [u'Duplicate UUID found.'])
-
-
 class TestAddVersion(UploadTest):
 
     def post(self, desktop_platforms=[amo.PLATFORM_MAC], mobile_platforms=[],
@@ -3157,28 +3040,22 @@ class TestDeleteApp(amo.tests.TestCase):
         self.webapp = Webapp.objects.get(id=337141)
         self.url = self.webapp.get_dev_url('delete')
         self.versions_url = self.webapp.get_dev_url('versions')
+        self.dev_url = reverse('mkt.developers.apps')
         self.client.login(username='admin@mozilla.com', password='password')
         waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+        waffle.models.Switch.objects.create(name='soft_delete', active=True)
 
     def test_delete_nonincomplete(self):
-        # When soft deletes work, this test should be killed.
-        r = self.client.post(self.url, dict(password='password'))
-        self.assertRedirects(r, self.versions_url)
-        eq_(Addon.objects.count(), 1, 'App should not have been deleted.')
-
-    def test_bad_password_incomplete(self):
-        self.webapp.update(status=amo.STATUS_NULL)
-        r = self.client.post(self.url, dict(password='turd'))
-        self.assertRedirects(r, self.versions_url)
-        eq_(Addon.objects.count(), 1, 'App should not have been deleted.')
+        r = self.client.post(self.url)
+        self.assertRedirects(r, self.dev_url)
+        eq_(Addon.objects.count(), 0, 'App should have been deleted.')
 
     def test_delete_incomplete(self):
         # When we can reauth with Persona, incomplete apps will be deletable.
         # (Future cvan: Pour some out for BrowserID.)
-        raise SkipTest
         self.webapp.update(status=amo.STATUS_NULL)
-        r = self.client.post(self.url, dict(password='password'))
-        self.assertRedirects(r, reverse('mkt.developers.apps'))
+        r = self.client.post(self.url)
+        self.assertRedirects(r, self.dev_url)
         eq_(Addon.objects.count(), 0, 'App should have been deleted.')
 
 

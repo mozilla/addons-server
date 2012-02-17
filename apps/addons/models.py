@@ -312,6 +312,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @use_master
     def clean_slug(self, slug_field='slug'):
+        if self.status == amo.STATUS_DELETED:
+            return
+
         slug = getattr(self, slug_field, None)
         if not slug:
             if not self.name:
@@ -350,28 +353,39 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 BlacklistedGuid(guid=self.guid, comments=msg).save()
             log.debug('Deleting add-on: %s' % self.id)
 
-            authors = [u.email for u in self.authors.all()]
             to = [settings.FLIGTAR]
             user = amo.get_user()
-            user_str = "%s, %s (%s)" % (user.display_name or user.username,
-                    user.email, user.id) if user else "Unknown"
+
+            context = {
+                'atype': amo.ADDON_TYPE.get(self.type).upper(),
+                'authors': [u.email for u in self.authors.all()],
+                'adu': self.average_daily_users,
+                'guid': self.guid,
+                'id': self.id,
+                'msg': msg,
+                'name': self.name,
+                'slug': self.slug,
+                'total_downloads': self.total_downloads,
+                'url': absolutify(self.get_url_path()),
+                'user_str': ("%s, %s (%s)" % (user.display_name or
+                                              user.username, user.email,
+                                              user.id) if user else "Unknown"),
+            }
 
             email_msg = u"""
-            The following add-on was deleted.
-            ADD-ON: %s
-            URL: %s
-            DELETED BY: %s
-            ID: %s
-            GUID: %s
-            AUTHORS: %s
-            TOTAL DOWNLOADS: %s
-            AVERAGE DAILY USERS: %s
-            NOTES: %s
-            """ % (self.name, absolutify(self.get_url_path()), user_str,
-                   self.id, self.guid, authors, self.total_downloads,
-                   self.average_daily_users, msg)
-            log.debug('Sending delete email for add-on %s' % self.id)
-            subject = 'Deleting add-on %s (%d)' % (self.slug, self.id)
+            The following %(atype)s was deleted.
+            %(atype)s: %(name)s
+            URL: %(url)s
+            DELETED BY: %(user_str)s
+            ID: %(id)s
+            GUID: %(guid)s
+            AUTHORS: %(authors)s
+            TOTAL DOWNLOADS: %(total_downloads)s
+            AVERAGE DAILY USERS: %(adu)s
+            NOTES: %(msg)s
+            """ % context
+            log.debug('Sending delete email for %(atype)s %(id)s' % context)
+            subject = 'Deleting %(atype)s %(slug)s (%(id)d)' % context
             if waffle.switch_is_active('soft_delete'):
                 self.status = amo.STATUS_DELETED
                 self.slug = self.app_slug = None
@@ -881,8 +895,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         """Only incomplete or free addons can be deleted."""
         if waffle.switch_is_active('soft_delete'):
             return not self.is_deleted
-        if self.is_webapp():
-            return False
         return self.is_incomplete() or not (
             self.is_premium() or self.is_webapp())
 

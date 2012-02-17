@@ -293,6 +293,10 @@ class TestAddonModels(amo.tests.TestCase):
         deleted_count = Addon.with_deleted.count()
         self._delete()
         eq_(deleted_count, Addon.with_deleted.count())
+        addon = Addon.with_deleted.get(pk=3615)
+        eq_(addon.status, amo.STATUS_DELETED)
+        eq_(addon.slug, None)
+        eq_(addon.app_slug, None)
 
     def _delete_url(self):
         """Test deleting addon has URL in the email."""

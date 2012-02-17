@@ -103,9 +103,6 @@ class TestFileValidation(amo.tests.TestCase):
     def test_version_list(self):
         r = self.client.get(self.addon.get_dev_url('versions'))
         eq_(r.status_code, 200)
-        a = pq(r.content)('td.file-validation a')
-        eq_(a.text(), '0 errors, 0 warnings')
-        eq_(a.attr('href'), self.url)
 
     def test_results_page(self):
         r = self.client.get(self.url, follow=True)
