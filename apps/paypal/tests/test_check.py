@@ -92,6 +92,13 @@ class TestCheck(amo.tests.TestCase):
         assert self.check.passed, self.check.state
 
     @patch('paypal.get_paykey')
+    def test_check_price_none(self, get_paykey):
+        self.addon.premium.price = None
+        self.check.check_currencies()
+        eq_(len(get_paykey.call_args_list), 1)
+        eq_(get_paykey.call_args[0][0]['amount'], '1.00')
+
+    @patch('paypal.get_paykey')
     def test_check_paykey_fails(self, get_paykey):
         get_paykey.side_effect = PaypalError()
         self.check.check_currencies()

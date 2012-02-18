@@ -88,9 +88,12 @@ class Check(object):
         test_id = 'currencies'
         if self.addon and self.addon.premium:
             price = self.addon.premium.price
-            tiers = [('USD', price.price)]
-            tiers += [(t.currency, t.price)
-                      for t in price._currencies.values()]
+            if not price:
+                tiers = [('USD', '1.00')]
+            else:
+                tiers = [('USD', price.price)]
+                tiers += [(t.currency, t.price)
+                          for t in price._currencies.values()]
         else:
             tiers = (('USD', '0.99'),)
 
