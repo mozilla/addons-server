@@ -40,7 +40,7 @@ from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (CheckCompatibilityForm, InappConfigForm,
-                                  AppFormBasic)
+                                  AppFormBasic, AppFormDetails)
 from mkt.developers.models import ActivityLog, SubmitStep
 from mkt.developers import perf
 from editors.helpers import get_position
@@ -974,7 +974,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
     basic = AppFormBasic if webapp else addon_forms.AddonFormBasic
     models = {'basic': basic,
               'media': addon_forms.AddonFormMedia,
-              'details': addon_forms.AddonFormDetails,
+              'details': AppFormDetails,
               'support': addon_forms.AddonFormSupport,
               'technical': addon_forms.AddonFormTechnical,
               'admin': forms.AdminForm}

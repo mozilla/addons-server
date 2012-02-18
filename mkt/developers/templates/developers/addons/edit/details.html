@@ -107,6 +107,28 @@
               {% endif %}
             </td>
           </tr>
+          <tr>
+            <th>
+              <label data-for="privacy_policy">
+                {{ _("Privacy Policy") }}
+                {{ tip(None,
+                       _("If your app transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used.")) }}
+              </label>
+            </th>
+            <td>
+              {% if editable %}
+                {{ form.privacy_policy }}
+                {{ form.privacy_policy.errors }}
+                {{ some_html_tip() }}
+              {% else %}
+                {% call empty_unless(addon.privacy_policy) %}
+                  <div id="addon-privacy-policy" class="prose">
+                    {{ addon|all_locales('privacy_policy', nl2br=True) }}
+                  </div>
+                {% endcall %}
+              {% endif %}
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

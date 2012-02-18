@@ -1255,3 +1255,37 @@ class PaypalPaymentData(happyforms.ModelForm):
                   'business_name', 'country', 'date_of_birth',
                   'address_one', 'address_two',
                   'post_code', 'state', 'phone']
+
+
+class AppFormDetails(addons.forms.AddonFormBase):
+    default_locale = forms.TypedChoiceField(choices=Addon.LOCALES)
+    privacy_policy = TransField(widget=TransTextarea(), required=False,
+        label=_lazy(u"Please specify your app's Privacy Policy:"))
+
+    class Meta:
+        model = Addon
+        fields = ('description', 'default_locale', 'homepage',
+                  'privacy_policy')
+
+    def clean(self):
+        # Make sure we have the required translations in the new locale.
+        required = 'name', 'summary', 'description'
+        data = self.cleaned_data
+        if not self.errors and 'default_locale' in self.changed_data:
+            fields = dict((k, getattr(self.instance, k + '_id'))
+                          for k in required)
+            locale = self.cleaned_data['default_locale']
+            ids = filter(None, fields.values())
+            qs = (Translation.objects.filter(locale=locale, id__in=ids,
+                                             localized_string__isnull=False)
+                  .values_list('id', flat=True))
+            missing = [k for k, v in fields.items() if v not in qs]
+            # They might be setting description right now.
+            if 'description' in missing and locale in data['description']:
+                missing.remove('description')
+            if missing:
+                raise forms.ValidationError(
+                    _('Before changing your default locale you must have a '
+                      'name, summary, and description in that locale. '
+                      'You are missing %s.') % ', '.join(map(repr, missing)))
+        return data

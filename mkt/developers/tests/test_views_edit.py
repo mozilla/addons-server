@@ -856,7 +856,9 @@ class TestEditDetails(TestEdit):
     def test_edit(self):
         data = dict(description='New description with <em>html</em>!',
                     default_locale='en-US',
-                    homepage='http://twitter.com/fligtarsmom')
+                    homepage='http://twitter.com/fligtarsmom',
+                    privacy_policy="fligtar's mom does <em>not</em> share your"
+                                   " data with third parties.")
 
         r = self.client.post(self.details_edit_url, data)
         eq_(r.context['form'].errors, {})
@@ -879,7 +881,17 @@ class TestEditDetails(TestEdit):
                 "This<br/><b>IS</b>&lt;script&gt;alert('awesome')"
                 '&lt;/script&gt;')
 
-    def test_edit_homepage_optional(self):
+    def test_privacy_policy_xss(self):
+        self.addon.privacy_policy = ("We\n<b>own</b>your"
+                                     "<script>alert('soul')</script>")
+        self.addon.save()
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(doc('#addon-privacy-policy span[lang]').html(),
+                "We<br/><b>own</b>your&lt;script&gt;"
+                "alert('soul')&lt;/script&gt;")
+
+    def test_edit_exclude_optional_fields(self):
         data = dict(description='New description with <em>html</em>!',
                     default_locale='en-US', homepage='')
 
