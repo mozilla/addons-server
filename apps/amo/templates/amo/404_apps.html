@@ -1,14 +1,10 @@
-{% set addon_type = amo.ADDON_WEBAPP %}
-{% extends 'impala/base_side_categories.html' %}
+{% extends 'developers/base_impala.html' %}
 
 {% block title %}{{ _('Not Found') }}{% endblock %}
 
-{% set search = url('apps.search') %}
-{% set home = url('apps.home') %}
-
 {# TODO(apps): Finalize copy. #}
 
-{% block primary %}
+{% block content %}
   <section class="primary">
     <header>
       <h1>We're sorry, but we can't find what you're looking for.</h1>
@@ -27,17 +23,6 @@
           our best to fix it.
         </li>
       </ul>
-      <p>Or you can just jump over to some of the popular pages on our website.</p>
-      <ul>
-        <li>
-          Do you want to <a href="{{ search }}">search for apps</a>? You may go to the
-          <a href="{{ search }}">search page</a> or just use the search field above.
-        </li>
-        <li>
-          If you prefer to start over, just go to the
-          <a href="{{ home }}">apps front page</a>.
-        </li>
-       </ul>
     </div>
   </section>
 {% endblock %}

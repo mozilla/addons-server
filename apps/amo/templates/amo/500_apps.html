@@ -1,13 +1,10 @@
-{% set addon_type = amo.ADDON_WEBAPP %}
-{% extends 'impala/base_side_categories.html' %}
+{% extends 'developers/base_impala.html' %}
 
 {% block title %}{{ _('Oops') }}{% endblock %}
 
-{% set home = url('apps.home') %}
-
 {# TODO(apps): Finalize copy. #}
 
-{% block primary %}
+{% block content %}
   <section class="primary">
     <header>
       <h1>Oops! We had an error.</h1>
@@ -15,8 +12,7 @@
     <div class="island hero prose">
       <p>We'll get to fixing that soon.</p>
       <p>
-        You can try refreshing the page, or head back to the
-        <a href="{{ home }}">Apps homepage</a>.
+        You can try refreshing the page, or try again later.
       </p>
     </div>
   </section>
