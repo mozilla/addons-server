@@ -9,17 +9,17 @@
 {% block content %}
 <header>
   {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
-  <h2>{{ title }}</h2>
+  <h1>{{ title }}</h1>
 </header>
-<section id="edit-addon" class="primary devhub-form" role="main">
+<section id="edit-addon" class="primary devhub-form manage" role="main">
 <form method="post" class="item" action="">
   {{ csrf() }}
   {{ user_form.management_form }}
-  <div class="item_wrapper">
+  <div class="island">
     <table>
       <tr>
         <th>
-          {{ _('Authors') }}
+          <span class="label">{{ _('Authors') }}</span>
           <a id="what-are-roles" href="#">{{ _('About author roles') }}</a>
         </th>
         <td>
@@ -48,8 +48,10 @@
         {% include "developers/includes/policy_form.html" %}
       {% endif %}
     </table>
+    <div class="listing-footer">
+      <button type="submit">{{ _('Save Changes') }}</button>
+    </div>
   </div>
-  <div class="listing-footer"><button type="submit">{{ _('Save Changes') }}</button></div>
 </form>
 {% with form=user_form.empty_form %}
 <ul id="user-form-template" class="hidden">
@@ -73,8 +75,8 @@
   <ul>
     <li><b>Owner:</b> Can manage all aspects of the app's listing, including adding and removing other authors</li>
     <li><b>Developer:</b> Can manage all aspects of the app's listing, except for adding and removing other authors and managing payments</li>
-    <li><b>Viewer:</b> Can view the app's settings, but cannot make any changes</li>
-    <li><b>Support:</b> Can view the app's settings and manage refund requests.</li>
+    <li><b>Viewer:</b> Can view the app's settings but cannot make any changes</li>
+    <li><b>Support:</b> Can view the app's settings and manage refund requests</li>
   </ul>
   <p><a href="#" class="cancel close">{{ _('Close') }}</a></p>
 </div>

@@ -88,11 +88,12 @@ NO_LOGIN_REQUIRED_MODULES = (
 MINIFY_BUNDLES['css'].update({
     'mkt/devreg': (
         # TODO: Port "READ ONLY" balloon from devreg-impala/header.less.
+        # TODO: Use `hub/css/terms.less` for submission.
 
         # Contains reset, clearfix, etc.
         'css/devreg-impala/base.css',
 
-        # Base styles (body, islands, breadcrumbs).
+        # Base styles (body, breadcrumbs, islands, columns).
         'css/devreg/base.less',
 
         # Typographical styles (font treatments, headings).
@@ -105,38 +106,49 @@ MINIFY_BUNDLES['css'].update({
         'css/devreg/listing.less',
         'css/devreg/paginator.less',
 
+        # Buttons (used for paginator, "Edit" buttons, Refunds page).
+        'css/devreg/buttons.less',
+
         # Popups, Modals, Tooltips.
         'css/devreg/devhub-popups.less',
 
-        # Manage Authors.
+        # L10n menu ("Localize for ...").
+        'css/devreg/l10n.less',
+
+        # Forms (used for tables on "Manage ..." pages).
+        'css/devreg/devhub-forms.less',
+
+        # "Manage ..." pages.
+        'css/devreg/manage.less',
         'css/devreg/authors.less',
 
         # Footer.
         'css/devreg/footer.less',
     ),
     'mkt/devreg-legacy': (
-        'css/devreg-legacy/main.css',
-        'css/devreg-legacy/main-mozilla.css',
-        'css/devreg-legacy/zamboni.css',
-        'css/devreg-legacy/formset.less',
+        #'css/devreg-legacy/main.css',
+        #'css/devreg-legacy/main-mozilla.css',
+        #'css/devreg-legacy/zamboni.css',
+        #'css/devreg-legacy/formset.less',
         #'css/devreg-legacy/moz-tab.css',
         #'css/devreg-legacy/faux-zamboni.less',
 
         # Developer Hub-specific styles.
-        'css/devreg-legacy/tooltips.less',
-        'css/devreg-legacy/developers.less',
-        'css/devreg-legacy/docs.less',
-        'css/devreg-legacy/developers.less',
-        'css/devreg-legacy/formset.less',
-        'css/devreg-legacy/devhub-forms.less',
+        #'css/devreg-legacy/tooltips.less',
+        'css/devreg-legacy/developers.less',  # Legacy galore.
+        #'css/devreg-legacy/docs.less',
+        #'css/devreg-legacy/developers.less',
+        #'css/devreg-legacy/formset.less',
+        #'css/devreg-legacy/devhub-forms.less',
         'css/devreg-legacy/submission.less',
         'css/devreg-legacy/refunds.less',
-        'css/devreg-legacy/devhub-buttons.less',
+        #'css/devreg-legacy/devhub-buttons.less',
         'css/devreg-legacy/in-app-config.less',
 
         # I am so sorry.
         #'css/devreg-impala/typography.less',
         #'css/devreg-impala/header.less',
+        'css/devreg-impala/forms.less',
     ),
     'mkt/devreg-impala': (
         #'css/devreg-impala/base.css',
@@ -146,12 +158,12 @@ MINIFY_BUNDLES['css'].update({
         #'css/devreg-impala/header.less',
         #'css/devreg-impala/moz-tab.css',
         #'css/devreg-impala/reviews.less',
-        'css/devreg-impala/buttons.less',
+        #'css/devreg-impala/buttons.less',
         #'css/devreg-impala/addon_details.less',
         #'css/devreg-impala/policy.less',
         #'css/devreg-impala/expando.less',
         'css/devreg-impala/popups.less',
-        'css/devreg-impala/l10n.less',
+        #'css/devreg-impala/l10n.less',
         #'css/devreg-impala/contributions.less',
         'css/devreg-impala/prose.less',
         #'css/devreg-impala/paginator.less',
@@ -168,7 +180,7 @@ MINIFY_BUNDLES['css'].update({
         'css/devreg-impala/developers.less',
         #'css/devreg-impala/devhub-listing.less',
         'css/devreg-impala/dashboard.less',
-        'css/devreg-impala/devhub-forms.less',
+        #'css/devreg-impala/devhub-forms.less',
         'css/devreg-impala/submission.less',
         'css/devreg-impala/refunds.less',
     ),

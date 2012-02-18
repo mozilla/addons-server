@@ -7,9 +7,9 @@
 <header>
   {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
   {{ l10n_menu(addon.default_locale) }}
-  <h2>{{ title }}</h2>
+  <h1>{{ title }}</h1>
 </header>
-<section class="primary" role="main">
+<section class="primary island manage">
   {% set remove_url = addon.get_dev_url('profile.remove') %}
   {% if addon.has_full_profile() and addon.takes_contributions %}
     <div id="status-bar">
@@ -34,10 +34,10 @@
       </form>
     </div>
   {% endif %}
-  <form id="profile-form" method="post" action="{{ addon.get_dev_url('profile') }}">
+  <form id="profile-form" class="devhub-form" method="post" action="{{ addon.get_dev_url('profile') }}">
     {{ csrf() }}
     {% include "developers/includes/addons_create_profile.html" %}
-    <p class="item-group">
+    <p class="listing-footer">
       <button>
         {{ _('Save Changes') if addon.has_profile() else _('Create Profile') }}
       </button>

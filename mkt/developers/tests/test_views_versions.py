@@ -24,7 +24,7 @@ class TestAppStatus(amo.tests.TestCase):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         eq_(r.context['webapp'], True)
-        title = 'Manage App Status'
+        title = 'Manage Status'
         doc = pq(r.content)
         eq_(doc('title').text(),
             '%s | %s | Mozilla Marketplace' % (title, self.webapp.name))

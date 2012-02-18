@@ -1,13 +1,20 @@
-@import '../impala/lib';
+@import 'lib';
 
 .devhub-form {
     position: relative;
+    h2 .button {
+        margin: 0 5px;
+    }
+    label, .label {
+        font-weight: bold;
+    }
     table {
         margin: 0;
         width: 100%;
         th, td {
-            border-top: 1px dotted #add0dc;
+            border-top: 1px dotted @border-taupe;
             padding: 8px 0;
+            vertical-align: top;
         }
         tr:first-child {
             td, th {
@@ -16,7 +23,6 @@
         }
         th {
             padding-right: 20px;
-            vertical-align: top;
             width: 130px;
         }
         ul {
@@ -45,26 +51,17 @@
     margin-left: 3px;
 }
 
-.devhub-form .item {
-    .border-radius(8px);
-    background: #fff;
-    border: 1px solid @border-blue;
-    clear: both;
-    margin: 0 0 1em;
-    position: relative;
-    + h3 {
-        margin-top: 1.5em;
-    }
-}
-
 .devhub-form .listing-footer {
+    .gradient-two-color(fadeOut(@border-blue, 80%), fadeOut(@border-blue, 90%));
     .border-radius(0 0 8px 8px);
-    border-top: 1px solid @border-blue;
+    border-top: 1px dotted @border-blue;
     padding: 9px;
-}
-
-.devhub-form .item_wrapper {
-    padding: 5px 13px;
+    button {
+        margin-right: 6px;
+    }
+    a {
+        margin-left: 4px;
+    }
 }
 
 .devhub-form .tip,
@@ -76,14 +73,14 @@ span.remove {
     background-color: #ddd;
     color: #fff;
     display: inline-block;
-    font-size: 14px;
+    font-size: 11px;
     font-weight: bold;
-    height: 18px;
-    line-height: 1.3em;
+    height: 16px;
+    line-height: 16px;
     margin-top: 0;
     text-align: center;
     text-decoration: none;
-    width: 18px;
+    width: 16px;
 }
 .devhub-form .tip,
 .addon-submission-process .tip {

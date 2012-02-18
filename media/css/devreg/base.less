@@ -1,7 +1,7 @@
 @import 'lib';
 
 body, html {
-    background: #fff !important;
+    background: #fff;
 }
 
 .pad {
@@ -60,8 +60,7 @@ a {
 
 .full {
     .border-box;
-    float: none;
-    margin: auto 0 !important;
+    margin: 0;
     width: 100%;
 }
 
@@ -83,7 +82,7 @@ a {
             color: @note-gray;
             font-weight: bold;
         }
-        a.home {
+        a.home, &:first-child a {
             background: url(../../img/impala/breadcrumb-home.png) no-repeat;
             display: block;
             float: left;

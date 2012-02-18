@@ -490,18 +490,6 @@ class TestEditBasic(TestEdit):
                              'Ensure this value has at most 250 '
                              'characters (it has 251).')
 
-    def test_text_not_none_when_has_flags(self):
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        eq_(doc('#addon-flags').text(), 'This is a site-specific add-on.')
-
-    def test_text_none_when_no_flags(self):
-        addon = self.get_addon()
-        addon.update(external_software=False, site_specific=False)
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        eq_(doc('#addon-flags').text(), 'None')
-
     def get_l10n_urls(self):
         paths = ('mkt.developers.addons.edit', 'mkt.developers.addons.profile')
         return [reverse(p, args=['a3615']) for p in paths]
@@ -1085,20 +1073,6 @@ class TestEditTechnical(TestEdit):
                 eq_(unicode(getattr(addon, k)), unicode(data[k]))
             else:
                 eq_(getattr(addon, k), True if data[k] == 'on' else False)
-
-    def test_auto_repackage_not_shown(self):
-        f = self.addon.current_version.all_files[0]
-        f.jetpack_version = None
-        f.save()
-        r = self.client.get(self.technical_edit_url)
-        self.assertNotContains(r, 'Upgrade SDK?')
-
-    def test_auto_repackage_shown(self):
-        f = self.addon.current_version.all_files[0]
-        f.jetpack_version = '1.0'
-        f.save()
-        r = self.client.get(self.technical_edit_url)
-        self.assertContains(r, 'Upgrade SDK?')
 
 
 class TestAdmin(amo.tests.TestCase):

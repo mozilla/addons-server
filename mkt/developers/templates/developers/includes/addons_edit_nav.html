@@ -18,9 +18,8 @@
   ) %}
 {% endif %}
 
-<section class="secondary" role="complementary">
-  <div class="highlight" id="edit-addon-nav">
-    <h3>{{ addon.name }}</h3>
+<section class="secondary manage" role="complementary">
+  <div class="island" id="edit-addon-nav">
     <ul class="refinements">
       {% for url, title in urls %}
         <li {% if url in request.path %}class="selected"{% endif %}>

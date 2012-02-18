@@ -1,6 +1,6 @@
 {% extends "developers/base.html" %}
 
-{% set title = loc('Manage App Status') %}
+{% set title = loc('Manage Status') %}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
 {% macro status(msg) %}
@@ -10,11 +10,11 @@
 {% block content %}
 <header>
   {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
-  <h2>{{ title }}</h2>
+  <h1>{{ title }}</h1>
 </header>
-<section id="edit-addon" class="primary devhub-form" role="main">
-  <h3>{{ _('Current Status') }}</h3>
-  <div class="item" id="version-status">
+<section id="edit-addon" class="primary devhub-form manage">
+  <h2>{{ _('Current Status') }}</h2>
+  <div class="island" id="version-status">
     <div>
       {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
         {{ status(loc('You have <b>disabled</b> this app.')|safe) }}

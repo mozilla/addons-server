@@ -1,0 +1,247 @@
+@import 'lib';
+
+.manage, .devhub-form {
+    &.primary {
+        float: right;
+        width: 70%;
+    }
+    &.secondary {
+        float: left;
+        width: 22%;
+    }
+    .refinements {
+        font-family: @open-stack;
+        a {
+            display: block;
+            padding: 8px 4px;
+            &:hover {
+                background: @faded-taupe;
+            }
+        }
+        li + li a {
+            border-top: 1px dotted @border-taupe;
+        }
+        .selected a {
+            background: @faded-taupe;
+            color: @orange;
+            font-weight: bold;
+        }
+    }
+}
+
+#edit-addon .edit-addon-section {
+    margin-bottom: 2em;
+    overflow: hidden;
+    width: 100%;
+}
+
+#edit-addon h2 a {
+    font-size: 11px;
+    font-style: normal;
+    position: relative;
+    top: -3px;
+    left: 3px;
+}
+
+#edit-addon h2 {
+    margin-top: 0;
+}
+
+.save-badge {
+    background: #41B300;
+    border-radius: 1em;
+    color: #fff;
+    font-family: helvetica, arial, sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: bold;
+    margin-left: 0.5em;
+    padding: 0.375em 1em;
+    -moz-transition-property: opacity;
+    -moz-transition-duration: 1s;
+}
+
+#setup h3,
+#marketplace-confirm h3,
+.addon-submission-process > h3,
+.developer-hub .primary > h3 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+#trans-tags input,
+#trans-name input {
+    width: 80%;
+}
+
+#submit-describe #trans-name {
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: bottom;
+}
+
+#submit-describe #trans-name input {
+    width: 370px;
+}
+
+/*#id_homepage, #id_support_url, #id_support_email {*/
+#trans-support_email input,
+#trans-homepage input,
+#trans-support_url input {
+    width: 60%;
+}
+
+#slug_edit span, #id_slug {
+  font-family: Verdana !important;
+  /** This is so they match up size-wise **/
+}
+
+#slug_edit a {
+    font-size: 10px;
+}
+
+#addon_tags_edit input {
+    width: 80%;
+}
+
+form .char-count,
+.html-rtl form .edit-addon-details .char-count {
+    float: left;
+}
+.html-rtl form .char-count,
+form .edit-addon-details .char-count {
+    float: right;
+}
+
+form .char-count {
+    font-size: 0.9em;
+}
+form .edit-addon-details .char-count,
+form .edit-addon-details .html-support {
+    font-size: 1em;
+}
+
+form .char-count.error,
+form .char-count.error b {
+    color: #c00;
+    margin-bottom: 0;
+}
+
+form .char-count b,
+span.locale,
+span.hint,
+.devhub-form label {
+    font-weight: normal;
+}
+.devhub-form th label {
+    font-weight: bold;
+    display: inline;
+}
+
+form .char-count,
+span.locale,
+span.hint {
+    color: #888;
+}
+
+span.locale,
+span.hint {
+    display: block;
+    font-size: .9em;
+    line-height: 1;
+    margin-top: 2px;
+}
+
+label.above-the-field .locale {
+    display: inline;
+    margin-left: 0.5em;
+}
+
+/*
+Bug 622030- TODO (potch) fix this later
+
+#addon-description,
+#developer_comments {
+    max-height: 6.4em;
+    overflow: hidden;
+}
+*/
+
+table .prose {
+    margin: 0;
+    overflow: hidden;
+}
+
+.edit-addon-details,
+.edit-media-details {
+    padding-top: 3px;
+    font-size: 0.9em;
+}
+
+.edit-addon-details,
+form .char-count b {
+    color: #555;
+}
+
+.edit-media-details {
+    padding-bottom: 5px;
+    color: #444;
+}
+
+.edit-media-details .tip {
+    font-size: 12px;
+    height: 16px;
+    width: 16px;
+}
+
+/* @group Add-on category selection */
+
+.addon-app-cats {
+    margin: 0 0 1.5em;
+}
+
+#edit-addon-basic p {
+    margin: 0;
+}
+
+#edit-addon-basic .addon-app-cats {
+    border-top: 1px dotted #add0dc;
+    margin: 8px 0 0;
+    padding-top: 8px;
+}
+#edit-addon-basic input + .addon-app-cats,
+#edit-addon-basic p.addon-app-cats:first-child {
+    border-top-width: 0;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.addon-categories {
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    column-count: 3;
+    -moz-column-gap: 1.5em;
+    -webkit-column-gap: 1.5em;
+    column-gap: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+#addon-categories-edit .addon-categories {
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
+}
+
+.addon-misc-category,
+.addon-app-cats-inline {
+    margin: 0;
+}
+
+.addon-categories label,
+.addon-misc-category label {
+    font-weight: normal;
+}
+
+.addon-app-cats-inline li b {
+    margin-right: 0.25em;
+}
