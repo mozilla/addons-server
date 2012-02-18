@@ -1,8 +1,11 @@
 from django.conf import settings
 from django.conf.urls.defaults import patterns, url, include
 
-from lib.urls_base import handler404, handler500, urlpatterns as base_urls
+from lib.urls_base import urlpatterns as base_urls
 from mkt.developers.views import login
+
+handler404 = 'mkt.site.views.handler404'
+handler500 = 'mkt.site.views.handler500'
 
 
 # These URLs take precedence over existing ones.

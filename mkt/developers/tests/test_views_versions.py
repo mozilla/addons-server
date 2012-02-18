@@ -1,6 +1,3 @@
-from django.conf import settings
-
-import mock
 from nose.plugins.skip import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -18,17 +15,6 @@ class TestAppStatus(amo.tests.TestCase):
         self.client.login(username='admin@mozilla.com', password='password')
         self.webapp = Addon.objects.get(id=337141)
         self.url = self.webapp.get_dev_url('versions')
-
-    @mock.patch.object(settings, 'APP_PREVIEW', False)
-    def test_apps_context(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        eq_(r.context['webapp'], True)
-        title = 'Manage Status'
-        doc = pq(r.content)
-        eq_(doc('title').text(),
-            '%s | %s | Mozilla Marketplace' % (title, self.webapp.name))
-        eq_(doc('h2').text(), title)
 
     def test_nav_link(self):
         r = self.client.get(self.url)

@@ -11,9 +11,6 @@ import mock
 from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
-# Unused, but needed so that we can patch jingo.
-from waffle import helpers
 
 import amo.tests
 from access import acl
@@ -44,12 +41,6 @@ class Test404(amo.tests.TestCase):
         for link in links:
             href = link.attrib['href']
             assert href.startswith('/en-US/thunderbird'), href
-
-    @patch.object(settings, 'APP_PREVIEW', True)
-    def test_404_webapps(self):
-        response = self.client.get('/xxx', follow=True)
-        eq_(response.status_code, 404)
-        self.assertTemplateUsed(response, 'amo/404_apps.html')
 
 
 class TestCommon(amo.tests.TestCase):

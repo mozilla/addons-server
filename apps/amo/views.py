@@ -33,6 +33,7 @@ quicktime_re = re.compile(r'^(application/(sdp|x-(mpeg|rtsp|sdp))|audio/(3gpp(2)
 java_re = re.compile(r'^application/x-java-((applet|bean)(;jpi-version=1\.5|;version=(1\.(1(\.[1-3])?|(2|4)(\.[1-2])?|3(\.1)?|5)))?|vm)$')
 wmp_re = re.compile(r'^(application/(asx|x-(mplayer2|ms-wmp))|video/x-ms-(asf(-plugin)?|wm(p|v|x)?|wvx)|audio/x-ms-w(ax|ma))$')
 
+
 @never_cache
 @no_login_required
 def monitor(request, format=None):
@@ -77,22 +78,18 @@ def robots(request):
 
 
 def handler404(request):
-    webapp = settings.APP_PREVIEW
-    template = 'amo/404%s.html' % ('_apps' if webapp else '')
     if request.path_info.startswith('/api/'):
         # Pass over to handler404 view in api if api was targeted
         return api.views.handler404(request)
     else:
-        return jingo.render(request, template, {'webapp': webapp}, status=404)
+        return jingo.render(request, 'amo/404.html', status=404)
 
 
 def handler500(request):
-    webapp = settings.APP_PREVIEW
-    template = 'amo/500%s.html' % ('_apps' if webapp else '')
     if request.path_info.startswith('/api/'):
         return api.views.handler500(request)
     else:
-        return jingo.render(request, template, {'webapp': webapp}, status=500)
+        return jingo.render(request, 'amo/500.html', status=500)
 
 
 def csrf_failure(request, reason=''):

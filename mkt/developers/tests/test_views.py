@@ -38,7 +38,6 @@ from browse.tests import test_listing_sort, test_default_sort
 from mkt.developers.forms import ContribForm
 from mkt.developers.models import ActivityLog, SubmitStep
 from mkt.developers import tasks
-import files
 from files.models import File, FileUpload, Platform
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import AddonPremium, Price, Refund
@@ -97,6 +96,14 @@ class TestHome(HubTest):
             r = self.client.get(url, follow=True)
             eq_(r.status_code, 200)
             self.assertTemplateUsed(r, 'developers/index.html')
+
+
+class Test404(amo.tests.TestCase):
+
+    def test_404_devhub(self):
+        response = self.client.get('/xxx', follow=True)
+        eq_(response.status_code, 404)
+        self.assertTemplateUsed(response, 'site/404.html')
 
 
 class TestAppBreadcrumbs(AppHubTest):
