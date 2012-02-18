@@ -87,11 +87,25 @@ NO_LOGIN_REQUIRED_MODULES = (
 # Extend the bundles.
 MINIFY_BUNDLES['css'].update({
     'mkt/devreg': (
+        # TODO: Port "READ ONLY" balloon from devreg-impala/header.less.
+
+        # Contains reset, clearfix, etc.
+        'css/devreg-impala/base.css',
+
+        # Base styles.
+        'css/devreg/base.less',
+
+        # Header.
+        'css/devreg/header.less',
+
         # Popups, Modals, Tooltips.
         'css/devreg/devhub-popups.less',
 
         # Manage Authors.
         'css/devreg/authors.less',
+
+        # Footer.
+        'css/devreg/footer.less',
     ),
     'mkt/devreg-legacy': (
         'css/devreg-legacy/main.css',
@@ -99,7 +113,7 @@ MINIFY_BUNDLES['css'].update({
         'css/devreg-legacy/zamboni.css',
         'css/devreg-legacy/formset.less',
         'css/devreg-legacy/moz-tab.css',
-        'css/devreg-legacy/faux-zamboni.less',
+        #'css/devreg-legacy/faux-zamboni.less',
 
         # Developer Hub-specific styles.
         'css/devreg-legacy/tooltips.less',
@@ -114,19 +128,15 @@ MINIFY_BUNDLES['css'].update({
         'css/devreg-legacy/in-app-config.less',
 
         # I am so sorry.
-        'css/devreg-impala/site.less',
         'css/devreg-impala/typography.less',
-        'css/devreg-impala/header.less',
-        'css/devreg-impala/footer.less',
+        #'css/devreg-impala/header.less',
     ),
     'mkt/devreg-impala': (
         'css/devreg-impala/base.css',
-        'css/devreg-impala/site.less',
         'css/devreg-impala/typography.less',
         # 'css/devreg-impala/headerfooter.css',  # Potch, Remove.
         'css/devreg-impala/forms.less',
-        'css/devreg-impala/header.less',
-        'css/devreg-impala/footer.less',
+        #'css/devreg-impala/header.less',
         'css/devreg-impala/moz-tab.css',
         'css/devreg-impala/reviews.less',
         'css/devreg-impala/buttons.less',
@@ -194,7 +204,6 @@ MINIFY_BUNDLES['js'].update({
         'js/lib/jquery-ui/jquery.ui.datepicker.js',
         'js/lib/jquery-ui/jquery.ui.sortable.js',
 
-        'js/impala/footer.js',
         'js/zamboni/truncation.js',
         'js/zamboni/helpers.js',
         'js/zamboni/global.js',

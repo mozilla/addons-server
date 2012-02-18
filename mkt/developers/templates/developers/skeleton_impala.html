@@ -82,23 +82,43 @@
         {% endblock %}
       {% endblock site_header %}
     </section>
-    <div id="page" class="section c">
-      {# Overridden in base_side_categories, which expands categories
-         on the side of the page. #}
-      {% block main_content %}
-        {# outer_content is for something you want above content on every page. #}
-        {% block outer_content %}{% include "messages.html" %}{% endblock %}
-        {% block content %}{% endblock %}
-      {% endblock %}
+    <div id="wrap">
+      <div id="page" class="pad section c">
+        {# Overridden in base_side_categories, which expands categories
+           on the side of the page. #}
+        {% block main_content %}
+          {# outer_content is for something you want above content on every page. #}
+          {% block outer_content %}{% include "messages.html" %}{% endblock %}
+          {% block content %}{% endblock %}
+        {% endblock %}
+      </div>
     </div>
     <div id="tooltip">
       <span></span>
     </div>
-    {% block footer %}
-      {% with hide_mobile_link=True %}
-        {% include 'amo_footer_small.html' %}
-      {% endwith %}
-    {% endblock %}
+    <footer id="footer" class="c">
+      <div class="pad">
+        <h1 id="footzilla">mozilla</h1>
+        <p>
+          {% trans %}
+            Except where otherwise
+            <a href="http://mozilla.com/about/legal.html#site">noted</a>,
+            content on this site is licensed under the <br />
+            <a href="http://creativecommons.org/licenses/by-sa/3.0/">
+              Creative Commons Attribution Share-Alike License v3.0
+            </a> or any later version.
+          {% endtrans %}
+        </p>
+        <ul>
+          <li><a href="http://mozilla.com/privacy-policy.html">
+            {{ _('Privacy Policy') }}</a></li>
+          <li><a href="http://mozilla.com/about/legal.html">
+            {{ _('Legal Notices') }}</a></li>
+          <li><a href="http://mozilla.com/legal/fraud-report/index.html">
+            {{ _('Report Trademark Abuse') }}</a></li>
+        </ul>
+      </div>
+    </footer>
     {# js #}
     {% block site_js %}
       <script src="{{ static(url('jsi18n')) }}"></script>

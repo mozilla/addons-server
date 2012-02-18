@@ -1,0 +1,109 @@
+@import 'lib';
+
+body, html {
+    background: #fff !important;
+}
+
+#wrap {
+    background: #f8f8f8;
+    padding: 2em 0;
+}
+
+.pad {
+    height: auto;
+    margin: 0 auto;
+    max-width: 960px;
+    padding: 0 2%;
+    position: relative;
+}
+
+header {
+    h2, h3 {
+        margin-bottom: 16px;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: @link;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.island {
+    background: #fff;
+    border: 1px solid @taupe;
+    .border-radius(5px);
+    .box-shadow(0 -2px 0 fadeOut(@taupe, 80%) inset,
+                0 0 1px rgba(0, 0, 0, 0.1));
+    display: block;
+    margin-bottom: 15px;
+    padding: 14px 14px 16px;
+    > section {
+        border-bottom: 1px solid #C9DDF2;
+        border-top: 1px solid transparent;
+        margin: 0 -14px;
+        padding: 14px;
+        float: left;
+        width: 100%;
+        &:first-child {
+            border-top: 0;
+            padding-top: 0;
+        }
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+}
+
+.full {
+    .border-box;
+    float: none;
+    margin: auto 0 !important;
+    width: 100%;
+}
+
+#breadcrumbs {
+    font-family: @serif-stack;
+    color: #666;
+    li {
+        display: inline;
+        &:before {
+            content: '\00bb';
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        a.home {
+            background: url(../../img/impala/breadcrumb-home.png) no-repeat;
+            display: block;
+            float: left;
+            height: 13px;
+            overflow: hidden;
+            text-indent: -9999px;
+            text-decoration: none;
+            width: 15px;
+            margin: 2px 2px 0 0;
+            &:hover {
+                opacity: .7;
+            }
+        }
+        &:first-child:before {
+            content: none;
+        }
+    }
+}
+
+#breadcrumbs,
+#breadcrumbs + h1 {
+    margin-bottom: 15px;
+}
+
+.island #breadcrumbs,
+.island #breadcrumbs + h1 {
+    margin-bottom: 5px;
+}
+
+.js-hidden, #popup-staging, .hidden {
+    display: none;
+}
