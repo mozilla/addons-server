@@ -303,7 +303,7 @@ function addonFormSubmit() {
                 if (!hasErrors) {
                     var e = $(format('<b class="save-badge">{0}</b>',
                                      [gettext('Changes Saved')]))
-                              .appendTo(parent_div.find('h3').first());
+                              .appendTo(parent_div.find('h2').first());
                     setTimeout(function(){
                         e.css('opacity', 0);
                         setTimeout(function(){ e.remove(); }, 200);
@@ -891,7 +891,7 @@ var imageStatus = {
             if (!node.find('b.image-message').length) {
                 $(format('<b class="save-badge image-message">{0}</b>',
                   [gettext('Image changes being processed')]))
-                  .appendTo(node.find('h3').first());
+                  .appendTo(node.find('h2').first());
             }
         }
     },

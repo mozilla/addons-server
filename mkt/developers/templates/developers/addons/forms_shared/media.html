@@ -4,11 +4,8 @@
 
 {% set editable = (context == 'edit' and editable) or context == 'submit' %}
 
-<div class="island">
+<div class="item island">
   <table>
-    {% if not webapp %}
-      <caption>{{ _('Add-on Media for {0}')|f(addon.name) }}</caption>
-    {% endif %}
     <tbody>
       <tr>
         {% if context == 'edit' %}

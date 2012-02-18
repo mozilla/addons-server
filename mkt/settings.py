@@ -120,6 +120,7 @@ MINIFY_BUNDLES['css'].update({
 
         # "Manage ..." pages.
         'css/devreg/manage.less',
+        'css/devreg/prose.less',
         'css/devreg/authors.less',
 
         # Footer.
@@ -165,7 +166,7 @@ MINIFY_BUNDLES['css'].update({
         'css/devreg-impala/popups.less',
         #'css/devreg-impala/l10n.less',
         #'css/devreg-impala/contributions.less',
-        'css/devreg-impala/prose.less',
+        #'css/devreg-impala/prose.less',
         #'css/devreg-impala/paginator.less',
         #'css/devreg-impala/listing.less',
         #'css/devreg-impala/versions.less',

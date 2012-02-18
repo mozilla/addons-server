@@ -173,43 +173,43 @@ button, .button {
         }
     }
 }
-.button:hover,
-.button:focus,
-.button:active,
-.button.selected {
-    text-decoration: none;
-    .box-shadow(0 1px rgba(0, 0, 0, 0.1),
-                0 -2px rgba(0, 0, 0, 0.1) inset,
-                0 0 100px rgba(255, 255, 255, 0.2) inset);
+button, .button {
+    &:hover,
+    &:focus,
+    &:active,
+    &.selected {
+        text-decoration: none;
+        .box-shadow(0 1px rgba(0, 0, 0, 0.1),
+                    0 -2px rgba(0, 0, 0, 0.1) inset,
+                    0 0 100px rgba(255, 255, 255, 0.2) inset);
+    }
+    :active,
+    .selected {
+        .box-shadow(0 0px rgba(0, 0, 0, 0.1),
+                    0 -2px rgba(0, 0, 0, 0.1) inset,
+                    0 0 100px rgba(255, 255, 255, 0.2) inset);
+    }
+    &:active,
+    &.selected,
+    &.prominent:active,
+    &.prominent.selected {
+        top: 2px;
+        &:before {
+            /* `top: 2px` creates a 2px "deadzone" making the link unclickable.
+                This effectively fills the deadzone. See bug 710284. */
+            content: "";
+            display: block;
+            height: 2px;
+            position: absolute;
+            top: -2px;
+            left: 0;
+            width: 100%;
+        }
+    }
 }
 
 .install.clickHijack a * {
     pointer-events: none;
-}
-
-.button:active,
-.button.selected {
-    .box-shadow(0 0px rgba(0, 0, 0, 0.1),
-                0 -2px rgba(0, 0, 0, 0.1) inset,
-                0 0 100px rgba(255, 255, 255, 0.2) inset);
-}
-
-.button:active,
-.button.selected,
-.button.prominent:active,
-.button.prominent.selected {
-    top: 2px;
-    &:before {
-        /* `top: 2px` creates a 2px "deadzone" making the link unclickable.
-            This effectively fills the deadzone. See bug 710284. */
-        content: "";
-        display: block;
-        height: 2px;
-        position: absolute;
-        top: -2px;
-        left: 0;
-        width: 100%;
-    }
 }
 
 .button.prominent:hover,
