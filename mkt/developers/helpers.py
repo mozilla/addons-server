@@ -56,8 +56,7 @@ def docs_page_title(context, title=None):
 
 @register.function
 @jinja2.contextfunction
-def hub_breadcrumbs(context, addon=None, items=None, add_default=False,
-                    impala=False):
+def hub_breadcrumbs(context, addon=None, items=None, add_default=False):
     """
     Wrapper function for ``breadcrumbs``. Prepends 'Developer Hub'
     breadcrumbs.
@@ -94,10 +93,7 @@ def hub_breadcrumbs(context, addon=None, items=None, add_default=False,
     if len(crumbs) == 1:
         crumbs = []
 
-    if impala:
-        return impala_breadcrumbs(context, crumbs, add_default)
-    else:
-        return breadcrumbs(context, crumbs, add_default)
+    return impala_breadcrumbs(context, crumbs, add_default)
 
 
 @register.function

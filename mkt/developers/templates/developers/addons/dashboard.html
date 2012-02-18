@@ -7,7 +7,7 @@
 {% block content %}
   <section class="primary">
     <header class="hero">
-      {{ hub_breadcrumbs(impala=True) }}
+      {{ hub_breadcrumbs() }}
       <h1>{{ title }}</h1>
       {% if addons %}
         {% set cnt = addons.paginator.count %}

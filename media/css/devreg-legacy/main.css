@@ -6,63 +6,9 @@ Use as a starting point upon which to build more CSS.
 By Clearleft.com
 */
 
-/* @group Font families */
-
-body,
-#title,
-.item h3,
-.section-teaser .addon-view h3 {
-    font-family: "helvetica neue", arial, helvetica, sans-serif;
-    font-style: normal;
-}
-
-h2,
-h3,
-#title em,
-.highlight h2,
-.highlight h3,
-.stats strong,
-h4.step {
-    font-family: georgia, serif;
-    font-style: italic;
-}
-
-pre, code, kbd, tt, samp, tt {
-    font-family: "andale mono", monospace;
-}
-
-/* @end */
-
-/* @group Headings */
-
-/* @group Lists */
-
-.prose ul,
-ul.xoxo,
-ul.xoxo ul {
-/* unordered lists more often DON'T require bullets except in extended bits of writing. Where bullets are required apply the .prose class to a container, or apply directly with .xoxo */
-    list-style-type: square;
-    margin-left: 1.5em; /* 21px */
-}
-
-.html-rtl .prose ul,
-.html-rtl ul.xoxo,
-.html-rtl ul.xoxo ul {
-/* unordered lists more often DON'T require bullets except in extended bits of writing. Where bullets are required apply the .prose class to a container, or apply directly with .xoxo */
-    list-style-type: square;
-    margin-left: 0em;
-    margin-right: 1.5em; /* 21px */
-}
-
-.prose ul li,
-ul.xoxo li,
-ul.xoxo ul li {
-    margin-bottom: 0.5em;
-}
-
 ol {    /* ordered lists usually DO require (numbered) bullets */
     list-style-type: decimal;
-    margin-left: 2em; /* 26px */
+    margin-left: 2em;
 }
 
 .html-rtl ol {
@@ -72,98 +18,24 @@ ol {    /* ordered lists usually DO require (numbered) bullets */
 
 dt {
     font-weight: bold;
-    margin-top: 1.5em; /* 19.5px */
+    margin-top: 1.5em;
 }
 
 ul ul, ol ol, ol ul, ul ol {
     margin-bottom: 0;
 }
 
-/* @end */
-
-/* @group Blockquotes */
-
-blockquote {
-    font-style: italic;
-    margin:0  1.5em  1.5em 1.5em; /* 19.5px */
-}
-
-p+p+blockquote {
-    margin-top: 1.5em /* 19.5px */;
-}
-
-blockquote cite, blockquote em {
-    font-style: normal;
-}
-
-/* @end */
-
-/* @group Other styling */
-
 p, ul, ol, dl, address, table, pre, form, fieldset {
     font-size: 1em /* 14px */;
     margin-bottom: 1.5em; /* 21px */
 }
 
-address {
-    font-style: normal;
-}
-
-ins {
-    text-decoration: underline;
-}
-
-del {
-    text-decoration: line-through;
-}
-
-/* @end */
-
-
-/* @end */
-
-/* @group Helper styles */
-
-/* @group Forms */
-
-/* @group Containers */
-
-form .container {
-    margin-bottom: 1.5em; /* 19.5px */
-}
-
-
-/* @group Fieldsets */
-
-fieldset {
-    border: 1px solid #ccc;
-    padding: 0 1.5em 1em 1.5em; /* 0 19.5px 13px 19.5px */
-}
-
-legend {
+label, legend {
     font-weight: bold;
 }
-
-form fieldset .container {
-    margin-top: 1em; /* 13px */
-    margin-bottom:0;
-    position: relative;
-}
-
-/* @end */
-
-/* @end */
-
-/* @group Labels */
 
 label {
-    font-weight: bold;
     cursor: pointer;
-}
-
-.meta-label {
-    font-weight: bold;
-    margin-bottom: 0;
 }
 
 .multi-container label,
@@ -181,19 +53,6 @@ label {
     display: inline;
 }
 
-/* @end */
-
-/* @group Meta */
-
-form .help {
-    display: block;
-    color: #777;
-    font-style: normal;
-    font-size: 0.923em; /* 12px */
-}
-
-/* @end */
-
 /* @group Form controls */
 
 input, textarea, select, button {
@@ -205,7 +64,6 @@ input, textarea, select, button {
 select {
     background-color: #fff; /* fixes bug in Opera which inherits bgcolor from container */
 }
-
 
 button {
     overflow: visible;
@@ -275,199 +133,8 @@ button.link {
 
 /* @end */
 
-/* @group Stars */
-
-.stars {
-    text-indent:-5000px;
-    background-image: url(../../img/icons/stars.png);
-    background-position: 0 50%;
-    background-repeat: no-repeat;
-    margin-right: 0.5em;
-    width: 63px;
-    display: block;
-    float: left;
-}
-.stars-4 {
-    background-position: -13px 50%;
-}
-.stars-3 {
-    background-position: -26px 50%;
-}
-.stars-2 {
-    background-position: -39px 50%;
-}
-.stars-1 {
-    background-position: -52px 50%;
-}
-.stars-0 {
-    background-position: -65px 50%;
-}
-
-/* @end */
-
-/* @end */
-
-/* @group indicators */
-
-.downloads {
-    color: #390;
-    clear: both;
-}
-
-.subscribe,
-.addons,
-.collections,
-.subscribers,
-.category,
-.tags,
-.digg,
-.delicious,
-.facebook,
-.friendfeed,
-.myspace,
-.twitter,
-.share-networks .email,
-.share-email .emailerror p {
-    background-image: url(../../img/icons/icons.png);
-    background-repeat: no-repeat;
-    padding-left: 20px;
-}
-
-.subscribe {
-    background-position: 0 2px;
-}
-
-.addons {
-    background-position: 0 -200px;
-    padding-bottom: 7px;
-}
-.collections {
-    background-position: 0 -300px;
-}
-.subscribers {
-    background-position: 0 -400px;
-    padding-bottom: 7px;
-}
-.category {
-    background-position: 0 -503px;
-}
-.tags {
-    background-position: 0 -600px;
-}
-.digg {
-    background-position: 0 -890px;
-}
-.delicious {
-    background-position: 0 -990px;
-}
-.facebook {
-    background-position: 0 -1090px;
-}
-.friendfeed {
-    background-position: 0 -1190px;
-}
-.myspace {
-    background-position: 0 -1290px;
-}
-.twitter {
-    background-position: 0 -1492px;
-}
-.share-networks .email {
-    background-position: 0 -1689px;
-}
-.share-email .emailerror p {
-    background-position: 0 -1798px;
-}
-
-span.new {
-    padding: 0.2em 0.5em;
-    background-color: #305083;
-    color: white;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
-    background-repeat: repeat-x;
-    background-position: bottom left;
-    border:  1px solid #021437;
-    text-transform: uppercase;
-    font-size: 0.611em;
-}
-
-h3 .secondary a:link, h3 .secondary a:active, h3 .secondary a:visited, h3 .secondary a:hover, h3 .secondary a:focus {
-    vertical-align: middle;
-}
-
-/* @end */
-
-/* @group hReviews */
-
-.review-detail {
-    border-bottom: 1px dotted #e0effd;
-    padding: 0.5em 0 1em 0;
-    margin-bottom: 0.5em;
-}
-
-.review-detail p {
-    margin-bottom: 0;
-}
-
-.review-detail:last-child {
-    border-bottom: none;
-}
-
-/* @end */
-
-/* @group More Info */
-
-.more-info,
-.more-info:link,
-.more-info:visited,
-.more-info:hover,
-.more-info:focus,
-.more-info:active {
-    font-weight: bold;
-    float: right;
-    background-image: url(../../img/icons/arrows.gif);
-    background-repeat: no-repeat;
-    background-position:right -153px;
-    padding-right: 1em;
-    color: #3d6db5;
-}
-
-.more-info:hover,
-.more-info:focus,
-.more-info:active {
-    background-position:right -203px;
-    color: #003595;
-}
-
-.html-rtl .more-info.n,
-.more-info.n {
-    float: none;
-}
-
-/* @end */
-
 /* @group Generic Image Styles */
 
-.pull-left {
-    margin-right: 1em;
-    float: left;
-}
-.html-rtl .pull-left {
-    margin-right: auto;
-    margin-left: 1em;
-    float: right;
-}
-.pull-right {
-    margin-left: 1em;
-    float: right;
-}
-.html-rtl .pull-right {
-    margin-left: auto;
-    margin-right: 1em;
-    float: left;
-}
 .teaser-img {
     text-align: center;
     display: block;
@@ -936,67 +603,6 @@ input[type=submit][disabled=disabled] {
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
-}
-
-#contribute-box {
-    display: none;
-    width: 480px;
-    margin-left: -240px;
-    padding: 16px;
-    background-color: #fff;
-    color: #444;
-    -moz-box-shadow: 0 0 15px rgba(0,0,0,.5);
-    -webkit-box-shadow: 0 0 15px rgba(0,0,0,.5);
-    box-shadow: 0 0 15px rgba(0,0,0,.5);
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-}
-#contribute-box h2 {
-    margin-top: 0;
-}
-#contribute-box form {
-    margin-bottom: 0;
-}
-#contribute-box p,
-#contribute-box h4,
-#contribute-box ul {
-    font-size: 16px;
-}
-#contribute-box .support {
-    font-size: 13px;
-}
-#contribute-box h4 {
-    margin-bottom: .5em;
-}
-#contribute-box h4.comment {
-    display: inline;
-}
-#contribute-box li {
-    line-height: 180%;
-}
-#contribute-box label {
-    font-weight: normal;
-}
-#contribute-box input[type=text] {
-    width: 4em;
-    padding:0 1px 1px 1px;
-}
-#contribute-box textarea {
-    width: 100%;
-    height: 6em;
-    margin-bottom: 0.4em;
-    padding:0 1px 1px 1px;
-}
-#contribute-box span {
-    margin-left: 2em;
-}
-#contribute-box .commentlen {
-    margin: 0;
-    float: right;
-}
-.contrib-overlay {
-    background-color: transparent;
 }
 
 .notification .toggle-info {
