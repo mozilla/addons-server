@@ -1,11 +1,9 @@
 {% set urls = [
   (addon.get_dev_url(), _('Edit Listing')),
-  (addon.get_dev_url('owner'), loc('Manage Authors') if webapp
-                               else _('Manage Authors & License')),
+  (addon.get_dev_url('owner'), loc('Manage Authors')),
   (addon.get_dev_url('profile'), _('Manage Developer Profile')),
   (addon.get_dev_url('payments'), _('Manage Payments')),
-  (addon.get_dev_url('versions'), loc('Manage App Status') if webapp
-                                  else _('Manage Status & Versions')),
+  (addon.get_dev_url('versions'), loc('Manage Status')),
 ] %}
 {% if addon.is_premium() and waffle.switch('allow-refund') %}
   {% do urls.insert(4, (addon.get_dev_url('refunds'), loc('Manage Refunds'))) %}
