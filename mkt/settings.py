@@ -94,17 +94,14 @@ MINIFY_BUNDLES['css'].update({
     'mkt/devreg-legacy': (
         'css/devreg-legacy/main.css',
         'css/devreg-legacy/main-mozilla.css',
-        'css/devreg-legacy/headerfooter.css',  # Potch, Remove.
         'css/devreg-legacy/zamboni.css',
         'css/devreg-legacy/formset.less',
-        'css/devreg-legacy/header.less',
         'css/devreg-legacy/moz-tab.css',
-        'css/devreg-legacy/footer.less',
         'css/devreg-legacy/faux-zamboni.less',
 
         # Developer Hub-specific styles.
         'css/devreg-legacy/tooltips.less',
-        'css/devreg-legacy/developers.css',
+        'css/devreg-legacy/developers.less',
         'css/devreg-legacy/docs.less',
         'css/devreg-legacy/developers.less',
         'css/devreg-legacy/formset.less',
@@ -113,6 +110,12 @@ MINIFY_BUNDLES['css'].update({
         'css/devreg-legacy/refunds.less',
         'css/devreg-legacy/devhub-buttons.less',
         'css/devreg-legacy/in-app-config.less',
+
+        # I am so sorry.
+        'css/devreg-impala/site.less',
+        'css/devreg-impala/typography.less',
+        'css/devreg-impala/header.less',
+        'css/devreg-impala/footer.less',
     ),
     'mkt/devreg-impala': (
         'css/devreg-impala/base.css',
