@@ -133,15 +133,15 @@ class Prefixer(object):
             locale = self.locale if self.locale else self.get_language()
             url_parts.append(locale)
 
-        # Temporarily force home page to /locale/developers/.
+        # Temporarily force home page to /<locale>/developers/.
         if settings.MARKETPLACE and not path.partition('/')[0]:
             url_parts.append('developers')
+
         elif path.partition('/')[0] not in settings.SUPPORTED_NONAPPS:
             app = self.app if self.app else self.get_app()
             url_parts.append(app)
 
-        if not (settings.MARKETPLACE and not path.partition('/')[0]):
-            url_parts.append(path)
+        url_parts.append(path)
 
         return '/'.join(url_parts)
 

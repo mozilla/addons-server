@@ -47,9 +47,10 @@ class MiddlewareTest(test.TestCase):
     def test_marketplace_redirection(self):
         # We're forcing en-US since Marketplace isn't localized yet.
         redirections = {
-            '/': '/en-US/developers',
-            '/en-US/': '/en-US/developers',
-            '/fr/': '/en-US/developers',
+            '/': '/en-US/developers/',
+            '/developers': '/en-US/developers',
+            '/en-US/': '/en-US/developers/',
+            '/fr/': '/en-US/developers/',
             '/fr/developers': '/en-US/developers',
         }
         for path, location in redirections.items():

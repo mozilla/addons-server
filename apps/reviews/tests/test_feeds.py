@@ -77,8 +77,13 @@ class TestAppsFeed(amo.tests.TestCase):
         assert url.endswith(self.url), (
             'Unexpected URL for <atom:link>: %r' % url)
 
-    @mock.patch.object(settings, 'APP_PREVIEW', True)
     def test_site_link(self):
         url = self.get_pq()('link').text()
-        assert url.endswith(reverse('apps.home')), (
+        assert url.endswith(reverse('home')), (
+            'Unexpected URL for <link>: %r' % url)
+
+    @mock.patch.object(settings, 'MARKETPLACE', True)
+    def test_site_link_mkt(self):
+        url = self.get_pq()('link').text()
+        assert url.endswith('/en-US/developers/'), (
             'Unexpected URL for <link>: %r' % url)
