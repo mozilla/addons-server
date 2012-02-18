@@ -1235,13 +1235,13 @@ class AppFormBasic(addons.forms.AddonFormBase):
 class PaypalSetupForm(happyforms.Form):
     business_account = forms.ChoiceField(widget=forms.RadioSelect,
                                           required=False,
-                                          choices=(('1', _('No')),
-                                                   ('2', _('Yes'))))
+                                          choices=(('no', _('No')),
+                                                   ('yes', _('Yes'))))
     email = forms.EmailField(required=False)
 
     def clean(self):
         data = self.cleaned_data
-        if data.get('business_account') and not data.get('email'):
+        if data.get('business_account') == 'yes' and not data.get('email'):
             raise forms.ValidationError('The PayPal email is required.')
 
         return data

@@ -483,7 +483,7 @@ class TestPersonalLookup(amo.tests.TestCase):
 
     def test_preapproval_absent(self, _call):
         _call.side_effect = self._call
-        eq_(paypal.get_personal_data('foo')['street2'], '')
+        eq_(paypal.get_personal_data('foo')['address_two'], '')
 
     def test_preapproval_unicode(self, _call):
         key = 'response.personalData(2).personalDataValue'

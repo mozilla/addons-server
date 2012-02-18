@@ -340,13 +340,14 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
     # A sanity check, I'm not sure if this should be fatal and will
     # occur on the prod server or it's just sandbox wierdness.
     data = paypal.get_personal_data(token)
-    if data['email'] != addon.paypal_id:
+    email = data.get('email')
+    if email != addon.paypal_id:
         paypal_log.debug('Addon paypal_id and personal data differ: '
-                         '%s vs %s' % (data['email'], addon.paypal_id))
+                         '%s vs %s' % (email, addon.paypal_id))
         messages.warning(request, 'Warning the email returned by Paypal (%s) '
                          'did not match the PayPal email you entered (%s), '
                          'please be sure that you have the correct account.'
-                         % (data['email'], addon.paypal_id))
+                         % (email, addon.paypal_id))
     apd.update(**data)
     paypal_log.debug('Updating personal data for: %s' % apd.pk)
 
