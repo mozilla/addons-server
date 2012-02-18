@@ -11,23 +11,11 @@
         </p>
       {% else %}
         <ul class="item-details">
-          {% if not webapp %}
-            {% if addon.current_version %}
-              {% set link = url('mkt.developers.versions.edit', addon.slug, addon.current_version.id) %}
-              {# L10n: {0} is a version number. #}
-              <li>{{ _('<strong>Latest version:</strong> <a href="{0}">{1}</a>'|
-                       f(link, addon.current_version))|xssafe }}</li>
-            {% endif %}
-            {% if sorting == 'created' %}
-              {# L10n: {0} is a date. #}
-              <li class="date-created">{{ _('<strong>Created:</strong> {0}'|
-                     f(addon.created|datetime))|safe }}</li>
-            {% else %}
-              {# L10n: {0} is a date. #}
-              <li class="date-updated">{{ _('<strong>Last updated:</strong> {0}'|
-                     f(addon.last_updated|datetime))|safe }}</li>
-            {% endif %}
-          {% endif %}
+          {# L10n: {0} is a date. #}
+          <li class="date-created">
+            <strong>{{ loc('Created:') }}</strong>
+            {{ addon.created|datetime }}
+          </li>
           <li id="version-status-item">
             <strong>{{ _('Status:') }}</strong>
             <a href="{{ addon.get_dev_url('versions') }}">

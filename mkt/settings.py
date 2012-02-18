@@ -92,11 +92,18 @@ MINIFY_BUNDLES['css'].update({
         # Contains reset, clearfix, etc.
         'css/devreg-impala/base.css',
 
-        # Base styles.
+        # Base styles (body, islands, breadcrumbs).
         'css/devreg/base.less',
 
-        # Header.
+        # Typographical styles (font treatments, headings).
+        'css/devreg/typography.less',
+
+        # Header (aux-nav, masthead, site-nav).
         'css/devreg/header.less',
+
+        # Item rows (used on Dashboard).
+        'css/devreg/listing.less',
+        'css/devreg/paginator.less',
 
         # Popups, Modals, Tooltips.
         'css/devreg/devhub-popups.less',
@@ -128,12 +135,12 @@ MINIFY_BUNDLES['css'].update({
         'css/devreg-legacy/in-app-config.less',
 
         # I am so sorry.
-        'css/devreg-impala/typography.less',
+        #'css/devreg-impala/typography.less',
         #'css/devreg-impala/header.less',
     ),
     'mkt/devreg-impala': (
-        'css/devreg-impala/base.css',
-        'css/devreg-impala/typography.less',
+        #'css/devreg-impala/base.css',
+        #'css/devreg-impala/typography.less',
         # 'css/devreg-impala/headerfooter.css',  # Potch, Remove.
         'css/devreg-impala/forms.less',
         #'css/devreg-impala/header.less',
@@ -147,8 +154,8 @@ MINIFY_BUNDLES['css'].update({
         'css/devreg-impala/l10n.less',
         #'css/devreg-impala/contributions.less',
         'css/devreg-impala/prose.less',
-        'css/devreg-impala/paginator.less',
-        'css/devreg-impala/listing.less',
+        #'css/devreg-impala/paginator.less',
+        #'css/devreg-impala/listing.less',
         #'css/devreg-impala/versions.less',
         #'css/devreg-impala/users.less',
         'css/devreg-impala/tooltips.less',
@@ -159,7 +166,7 @@ MINIFY_BUNDLES['css'].update({
 
         # Developer Hub-specific styles.
         'css/devreg-impala/developers.less',
-        'css/devreg-impala/devhub-listing.less',
+        #'css/devreg-impala/devhub-listing.less',
         'css/devreg-impala/dashboard.less',
         'css/devreg-impala/devhub-forms.less',
         'css/devreg-impala/submission.less',

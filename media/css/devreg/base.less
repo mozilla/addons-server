@@ -4,17 +4,18 @@ body, html {
     background: #fff !important;
 }
 
-#wrap {
-    background: #f8f8f8;
-    padding: 2em 0;
-}
-
 .pad {
     height: auto;
     margin: 0 auto;
     max-width: 960px;
     padding: 0 2%;
     position: relative;
+}
+
+#wrap {
+    background: #f8f8f8;
+    padding: 2em 0;
+        position: relative;
 }
 
 header {
@@ -66,7 +67,7 @@ a {
 
 #breadcrumbs {
     color: @medium-gray;
-    font-family: @serif-stack;
+    font-family: @open-stack;
     ol {
         list-style: none;
         margin: 0;
@@ -74,8 +75,12 @@ a {
     li {
         display: inline;
         &:before {
-            content: '\00bb';
+            content: '\00a0\00bb\00a0';
             font-size: 1.3em;
+            font-weight: bold;
+        }
+        a {
+            color: @note-gray;
             font-weight: bold;
         }
         a.home {
@@ -100,7 +105,7 @@ a {
 
 #breadcrumbs,
 #breadcrumbs + h1 {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 .island #breadcrumbs,
