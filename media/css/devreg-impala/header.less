@@ -29,10 +29,9 @@
         }
     }
 
-    h1, ul {
+    #masthead, .menu-nav {
         padding-left: 250px;
         position: relative;
-        z-index: 10;
     }
     /* Log in link loader */
     a.loading-submit:before {
@@ -134,34 +133,21 @@
                 border-color: transparent;
                 border-width: 1px 1px 0;
             }
-            &:hover {
-                > a {
-                    background: #fff;
-                }
+            &:hover, &.open {
                 > ul {
                     display: block;
-                }
-                &:after {
-                    content: "";
-                    width: 200px;
-                    z-index: 62;
-                    height: 5px;
-                    background: #fff;
-                    position: absolute;
-                    top: 18px;
-                    left: 1px;
                 }
             }
             > ul {
                 width: 190px;
                 position: absolute;
-                top: 17px;
+                top: 24px;
                 z-index: 59;
                 padding: 8px;
                 display: none;
                 background: #fff;
                 border: 1px solid @shadow-blue;
-                .border-radius(0 3px 3px);
+                .border-radius(3px);
                 .box-shadow(0 0 4px rgba(0, 0, 0, 0.4),
                             0 -2px 0 @inset-blue inset);
                 a {
