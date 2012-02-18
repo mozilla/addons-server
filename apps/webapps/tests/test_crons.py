@@ -36,7 +36,7 @@ class TestWeeklyDownloads(amo.tests.TestCase):
         eq_(self.get_webapp().weekly_downloads, 2)
 
     def test_recently(self):
-        self.add_install(created=datetime.today() - timedelta(days=7))
+        self.add_install(created=datetime.today() - timedelta(days=6))
         update_weekly_downloads()
         eq_(self.get_webapp().weekly_downloads, 1)
 
