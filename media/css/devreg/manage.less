@@ -9,20 +9,22 @@
         float: left;
         width: 22%;
     }
+    #edit-addon-nav {
+        background: fadeOut(@orange, 98%);
+    }
     .refinements {
         font-family: @open-stack;
+        a:hover, .selected a {
+            background: darken(@faded-taupe, 20%);
+        }
         a {
             display: block;
             padding: 8px 4px;
-            &:hover {
-                background: @faded-taupe;
-            }
         }
         li + li a {
             border-top: 1px dotted @border-taupe;
         }
         .selected a {
-            background: @faded-taupe;
             color: @orange;
             font-weight: bold;
         }
