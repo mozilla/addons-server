@@ -87,13 +87,10 @@ class AppHubTest(HubTest):
 
 class TestHome(HubTest):
 
-    def test_login_redirects(self):
+    def test_login_redirect(self):
         self.client.logout()
-        # Ensure these URLs get temporarily redirected to the login page.
-        sources = [self.url, reverse('home')]
-        for src in sources:
-            r = self.client.get(self.url)
-            self.assertLoginRedirects(r, '/en-US/developers/', 302)
+        r = self.client.get(self.url)
+        self.assertLoginRedirects(r, '/en-US/developers/', 302)
 
     def test_home(self):
         for url in [self.url, reverse('home')]:
