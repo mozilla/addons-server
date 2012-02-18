@@ -236,7 +236,7 @@ MINIFY_BUNDLES['js'].update({
         # Developer Hub-specific scripts.
         'js/zamboni/truncation.js',
         'js/zamboni/upload.js',
-        'js/zamboni/devhub.js',
+        'js/devreg/devhub.js',  # NEW.
         'js/zamboni/validator.js',
     ),
     'hub': (

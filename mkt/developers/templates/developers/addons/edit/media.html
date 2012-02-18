@@ -1,16 +1,13 @@
 {% from "developers/includes/macros.html" import tip, empty_unless %}
-<h3>
+<h2>
   {{ _('Images') }}
   {% if not editable %}
     <a href="#" data-editurl="{{ url('mkt.developers.addons.section', addon.slug, 'media', 'edit') }}" class="button">
     {{ _('Edit') }}</a>
   {% endif %}
-</h3>
-
+</h2>
 <form method="post" action="{{ url('mkt.developers.addons.section', addon.slug, 'media', 'edit') }}"
       enctype="multipart/form-data">
   {% set context = 'edit' %}
   {% include "developers/addons/forms_shared/media.html" %}
 </form>
-
-

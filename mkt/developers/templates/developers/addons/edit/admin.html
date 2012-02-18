@@ -1,18 +1,16 @@
 {% from "developers/includes/macros.html" import tip, some_html_tip, empty_unless, flags %}
-
 {% if not admin_form %}
   {% set admin_form = form %}
 {% endif %}
-
 <form method="post" action="{{ url('mkt.developers.addons.admin', addon.slug) }}">
   {{ csrf() }}
-  <h3>
+  <h2>
     Admin Settings
     {% if not editable %}
       <a href="#" data-editurl="{{ url('mkt.developers.addons.section', addon.slug, 'admin', 'edit') }}" class="button">
         {{ _('Edit') }}</a>
     {% endif %}
-  </h3>
+  </h2>
   <div class="item">
     <div class="item_wrapper">
       <table>
@@ -113,8 +111,7 @@
       <div class="listing-footer">
         <button>{{ _('Save Changes') }}</button> {{ _('or') }}
         <a href="{{ url('mkt.developers.addons.section', valid_slug, 'admin', 'edit') }}"
-           class="addon-edit-cancel">
-          {{ _('Cancel') }}</a>
+           class="addon-edit-cancel">{{ _('Cancel') }}</a>
       </div>
     {% endif %}
   </div>
