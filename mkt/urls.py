@@ -2,6 +2,7 @@ from django.conf import settings
 from django.conf.urls.defaults import patterns, url, include
 
 from lib.urls_base import handler404, handler500, urlpatterns as base_urls
+from mkt.developers.views import login
 
 
 # These URLs take precedence over existing ones.
@@ -13,11 +14,19 @@ urlpatterns = patterns('',
     ('^hub/', include('mkt.hub.urls')),
 )
 
+
 # Add our old patterns.
 urlpatterns += base_urls
 
 
-# Marketplace UI Experiments
+# Override old patterns.
+urlpatterns += patterns('',
+    # Developer Registration Login.
+    url('^login$', login, name='users.login'),
+)
+
+
+# Marketplace UI Experiments.
 if getattr(settings, 'POTCH_MARKETPLACE_EXPERIMENTS', False):
     urlpatterns += patterns('',
         ('^marketplace-experiments/', include('mkt.experiments.urls'))

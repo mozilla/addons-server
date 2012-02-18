@@ -218,9 +218,6 @@ packager_patterns = patterns('',
 urlpatterns = decorate(write, patterns('',
     url('^$', views.index, name='mkt.developers.index'),
 
-    # Developer Registration Login.
-    url('^login/$', views.login, name='mkt.developers.login'),
-
     # Redirect people who have /addons/ instead of /addon/.
     ('^addons/\d+/.*',
      lambda r: redirect(r.path.replace('addons', 'addon', 1))),

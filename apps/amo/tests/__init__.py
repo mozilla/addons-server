@@ -239,9 +239,9 @@ class TestCase(RedisTest, test_utils.TestCase):
                                   % (k, msg))
                     self.assertEquals(v.non_field_errors(), [])
 
-    def assertLoginRedirects(self, response, to):
+    def assertLoginRedirects(self, response, to, status_code=302):
         self.assertRedirects(response,
-                             '%s?to=%s' % (reverse('users.login'), to), 302)
+            '%s?to=%s' % (reverse('users.login'), to), status_code)
 
 
 class AMOPaths(object):

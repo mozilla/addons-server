@@ -1,4 +1,7 @@
 """Tests related to the ``mkt.developers.addons.owner`` view."""
+from django.conf import settings
+
+import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
@@ -59,9 +62,15 @@ class TestEditPolicy(TestOwnership):
     def test_edit_eula_locale(self):
         self.addon.eula = {'de': 'some eula', 'en-US': ''}
         self.addon.save()
+        res = self.client.get(self.url.replace('en-US', 'it'), follow=True)
+        eq_(pq(res.content)('#id_has_eula').attr('checked'), 'checked')
+
+    @mock.patch.object(settings, 'MARKETPLACE', False)
+    def test_edit_eula_locale_with_l10n_detection(self):
+        self.addon.eula = {'de': 'some eula', 'en-US': ''}
+        self.addon.save()
         res = self.client.get(self.url.replace('en-US', 'it'))
-        doc = pq(res.content)
-        eq_(doc('#id_has_eula').attr('checked'), 'checked')
+        eq_(pq(res.content)('#id_has_eula').attr('checked'), 'checked')
 
 
 class TestEditLicense(TestOwnership):

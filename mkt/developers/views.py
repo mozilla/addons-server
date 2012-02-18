@@ -102,6 +102,12 @@ def login(request, template=None):
     return _login(request, template='developers/login.html')
 
 
+def home(request):
+    # This is a temporary redirect.
+    return redirect('mkt.developers.index')
+
+
+@login_required
 def index(request):
     return jingo.render(request, 'developers/index.html')
 

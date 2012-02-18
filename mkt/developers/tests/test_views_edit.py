@@ -524,7 +524,7 @@ class TestEditBasic(TestEdit):
         Addon.objects.get(id=3615).update(default_locale='fr')
         for url in self.get_l10n_urls():
             url = '/id' + url[6:]
-            r = self.client.get(url)
+            r = self.client.get(url, follow=True)
             eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'fr',
                 'l10n menu not visible for %s' % url)
 

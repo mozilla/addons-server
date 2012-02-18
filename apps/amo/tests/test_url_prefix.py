@@ -42,8 +42,8 @@ class MiddlewareTest(test.TestCase):
             eq_(response.status_code, 301)
             eq_(response['Location'], location)
 
-    @patch.object(settings, 'APP_PREVIEW', True)  # To disable L10n detection.
-    @patch.object(settings, 'MARKETPLACE', True)  # For /developers/ redirect.
+    # Patch for /developers/ redirect and l10n detection disabling.
+    @patch.object(settings, 'MARKETPLACE', True)
     def test_marketplace_redirection(self):
         # We're forcing en-US since Marketplace isn't localized yet.
         redirections = {
@@ -53,10 +53,11 @@ class MiddlewareTest(test.TestCase):
             '/fr/developers': '/en-US/developers',
         }
         for path, location in redirections.items():
-            response = self.middleware.process_request(self.rf.get(path))
-            eq_(response.status_code, 301, 'Expected a 301 for %s' % path)
-            eq_(response['Location'], location,
-                '%s -> %s went to %s' % (path, location, response['Location']))
+            r = self.middleware.process_request(self.rf.get(path))
+            eq_(r.status_code, 302,
+                'Expected a 302 for %s. (Got a %s)' % (path, r.status_code))
+            eq_(r['Location'], location,
+                '%s -> %s went to %s' % (path, location, r['Location']))
 
     def process(self, *args, **kwargs):
         request = self.rf.get(*args, **kwargs)

@@ -4,7 +4,6 @@ Borrowed from: http://code.google.com/p/django-localeurl
 Note: didn't make sense to use localeurl since we need to capture app as well
 """
 import contextlib
-import time
 import urllib
 
 from django.conf import settings
@@ -38,9 +37,12 @@ class LocaleAndAppURLMiddleware(object):
     def process_request(self, request):
         # Find locale, app
         prefixer = urlresolvers.Prefixer(request)
-        # Force en-US until we localize Marketplace.
-        if settings.APP_PREVIEW:
+        redirect_type = HttpResponsePermanentRedirect
+        if settings.MARKETPLACE:
+            # Force en-US until we localize Marketplace.
             prefixer.locale = 'en-US'
+            # Use 302 redirects if these URLs are gonna change.
+            redirect_type = redirect
         urlresolvers.set_url_prefix(prefixer)
         full_path = prefixer.fix(prefixer.shortened_path)
 
@@ -51,7 +53,7 @@ class LocaleAndAppURLMiddleware(object):
             new_path = prefixer.fix(prefixer.shortened_path)
             query = dict((smart_str(k), request.GET[k]) for k in request.GET)
             query.pop('lang')
-            return HttpResponsePermanentRedirect(urlparams(new_path, **query))
+            return redirect_type(urlparams(new_path, **query))
 
         if full_path != request.path:
             query_string = request.META.get('QUERY_STRING', '')
@@ -60,9 +62,9 @@ class LocaleAndAppURLMiddleware(object):
             if query_string:
                 full_path = "%s?%s" % (full_path, query_string)
 
-            response = HttpResponsePermanentRedirect(full_path)
-            # Cache the redirect for a year.
-            if not settings.DEBUG:
+            response = redirect_type(full_path)
+            # Cache the redirect for a year. But not for Marketplace!
+            if not (settings.DEBUG or settings.MARKETPLACE):
                 patch_cache_control(response, max_age=60 * 60 * 24 * 365)
 
             # Vary on Accept-Language or User-Agent if we changed the locale or

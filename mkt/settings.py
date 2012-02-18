@@ -8,8 +8,8 @@ APP_PREVIEW = True
 # So temporary. Allow us to link to new devhub URLs from `Addon.get_dev_url()`.
 MARKETPLACE = True
 
-# Pretty temporary. Set the correct home for Marketplace. Redirects are lame.
-HOME = 'mkt.developers.views.index'
+# Pretty temporary. Set the correct home for Marketplace. Redirects are sick!
+HOME = 'mkt.developers.views.home'
 
 ROOT_URLCONF = 'mkt.urls'
 INSTALLED_APPS += (
@@ -23,6 +23,7 @@ SUPPORTED_NONAPPS += (
     'dev',
     'hub',
     'submit',
+    'login',
 )
 
 MIDDLEWARE_CLASSES += (
