@@ -111,6 +111,7 @@ MINIFY_BUNDLES['css'].update({
 
         # Popups, Modals, Tooltips.
         'css/devreg/devhub-popups.less',
+        'css/devreg/tooltips.less',
 
         # L10n menu ("Localize for ...").
         'css/devreg/l10n.less',
@@ -122,6 +123,12 @@ MINIFY_BUNDLES['css'].update({
         'css/devreg/manage.less',
         'css/devreg/prose.less',
         'css/devreg/authors.less',
+        'css/devreg/in-app-config.less',
+        'css/devreg/paypal.less',
+
+        # Submission.
+        'css/devreg/media.less',
+        'css/devreg/validation.less',
 
         # Footer.
         'css/devreg/footer.less',
@@ -144,18 +151,18 @@ MINIFY_BUNDLES['css'].update({
         'css/devreg-legacy/submission.less',
         'css/devreg-legacy/refunds.less',
         #'css/devreg-legacy/devhub-buttons.less',
-        'css/devreg-legacy/in-app-config.less',
+        #'css/devreg-legacy/in-app-config.less',
 
         # I am so sorry.
         #'css/devreg-impala/typography.less',
         #'css/devreg-impala/header.less',
-        'css/devreg-impala/forms.less',
+        #'css/devreg-impala/forms.less',
     ),
     'mkt/devreg-impala': (
         #'css/devreg-impala/base.css',
         #'css/devreg-impala/typography.less',
         # 'css/devreg-impala/headerfooter.css',  # Potch, Remove.
-        'css/devreg-impala/forms.less',
+        #'css/devreg-impala/forms.less',
         #'css/devreg-impala/header.less',
         #'css/devreg-impala/moz-tab.css',
         #'css/devreg-impala/reviews.less',
@@ -163,7 +170,7 @@ MINIFY_BUNDLES['css'].update({
         #'css/devreg-impala/addon_details.less',
         #'css/devreg-impala/policy.less',
         #'css/devreg-impala/expando.less',
-        'css/devreg-impala/popups.less',
+        #'css/devreg-impala/popups.less',
         #'css/devreg-impala/l10n.less',
         #'css/devreg-impala/contributions.less',
         #'css/devreg-impala/prose.less',
@@ -171,16 +178,16 @@ MINIFY_BUNDLES['css'].update({
         #'css/devreg-impala/listing.less',
         #'css/devreg-impala/versions.less',
         #'css/devreg-impala/users.less',
-        'css/devreg-impala/tooltips.less',
+        #'css/devreg-impala/tooltips.less',
         'css/devreg-impala/login.less',
-        'css/devreg-impala/apps.less',
-        'css/devreg-impala/formset.less',
-        'css/devreg-impala/tables.less',
+        #'css/devreg-impala/apps.less',
+        #'css/devreg-impala/formset.less',
+        #'css/devreg-impala/tables.less',
 
         # Developer Hub-specific styles.
-        'css/devreg-impala/developers.less',
+        #'css/devreg-impala/developers.less',
         #'css/devreg-impala/devhub-listing.less',
-        'css/devreg-impala/dashboard.less',
+        #'css/devreg-impala/dashboard.less',
         #'css/devreg-impala/devhub-forms.less',
         'css/devreg-impala/submission.less',
         'css/devreg-impala/refunds.less',

@@ -1,23 +1,6 @@
 {% from 'includes/forms.html' import required, optional %}
 {% from 'developers/includes/macros.html' import some_html_tip %}
 
-{% macro maybe_required() %}
-  {% if not slim %}
-    {% if addon.takes_contributions %}
-      {{ required() }}
-      <span class="req">
-        {% if webapp %}
-          {{ loc('(required since this app accepts contributions)') }}
-        {% else %}
-          {{ _('(required since this add-on accepts contributions)') }}
-        {% endif %}
-      </span>
-    {% else %}
-      {{ optional() }}
-    {% endif %}
-  {% endif %}
-{% endmacro %}
-
 {% if addon.has_profile() %}
   <h2>{{ _('Manage Your Developer Profile') }}</h2>
 {% else %}
@@ -25,24 +8,15 @@
 {% endif %}
 
 <p>
-  {% if webapp %}
-    {{ loc("Your developer profile will tell users about you, why you made this
-            app, and what's next for the app. This profile can be useful for
-            any developer interested in connecting with users.") }}
-  {% else %}
-    {% trans %}
-      Your developer profile will tell users about you, why you made this
-      add-on, and what's next for the add-on. This profile is required for
-      add-ons requesting contributions, but can be useful for any developer
-      interested in connecting with users.
-    {% endtrans %}
-  {% endif %}
+  {{ loc("Your developer profile will tell users about you, why you made this
+          app, and what's next for the app. This profile can be useful for
+          any developer interested in connecting with users.") }}
 </p>
 
 <div class="container">
   <label class="optional above-the-field" for="the_reason" data-for="the_reason">
     {{ profile_form.the_reason.label }}
-    {{ maybe_required() }}
+    {{ optional() }}
   </label>
   <span class="help">
     {% trans %}
@@ -58,7 +32,7 @@
 <div class="container">
   <label for="the_future" data-for="the_future" class="above-the-field">
     {{ profile_form.the_future.label }}
-    {{ maybe_required() }}
+    {{ optional() }}
   </label>
   <span class="help">
     {% trans %}

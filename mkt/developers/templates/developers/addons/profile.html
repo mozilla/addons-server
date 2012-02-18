@@ -11,12 +11,12 @@
 </header>
 <section class="primary island manage">
   {% set remove_url = addon.get_dev_url('profile.remove') %}
-  {% if addon.has_full_profile() and addon.takes_contributions %}
+  {% if addon.has_full_profile() %}
     <div id="status-bar">
-      <p>{% trans url=addon.meet_the_dev_url() %}
-        Your <a href="{{ url }}">developer profile</a> is currently
-        <strong>public</strong> and <strong>required</strong> for contributions.
-      {% endtrans %}</p>
+      <p>{% with url=addon.meet_the_dev_url() %}
+        Your <a href="{{ url }}">developer profile</a> will be
+        <strong>public</strong>.
+      {% endwith %}</p>
       <form method="post" action="{{ remove_url }}">
         {{ csrf() }}
         <button type="submit">{{ _('Remove Both') }}</button>
@@ -24,24 +24,24 @@
     </div>
   {% elif addon.has_profile() %}
     <div id="status-bar">
-      <p>{% trans url=addon.meet_the_dev_url() %}
-        Your <a href="{{ url }}">developer profile</a> is currently
+      <p>{% with url=addon.meet_the_dev_url() %}
+        Your <a href="{{ url }}">developer profile</a> will be
         <strong>public</strong>.
-      {% endtrans %}</p>
+      {% endwith %}</p>
       <form method="post" action="{{ remove_url }}">
         {{ csrf() }}
         <button type="submit">{{ _('Remove Profile') }}</button>
       </form>
     </div>
   {% endif %}
-  <form id="profile-form" class="devhub-form" method="post" action="{{ addon.get_dev_url('profile') }}">
+  <form id="profile-form" class="devhub-form" method="post"
+        action="{{ request.path }}">
     {{ csrf() }}
-    {% include "developers/includes/addons_create_profile.html" %}
+    {% include 'developers/includes/addons_create_profile.html' %}
     <p class="listing-footer">
       <button>
         {{ _('Save Changes') if addon.has_profile() else _('Create Profile') }}
       </button>
-      {{ _('or') }} <a href="{{ addon.get_dev_url() }}">{{ _('Cancel') }}</a>
     </p>
   </form>
 </section>
