@@ -4,14 +4,6 @@ html, body {
     .height-calc(~'100% - 2px', 100%);
 }
 
-html {
-    background: #fff url(../../img/zamboni/global/bg-header.png) repeat-x;
-}
-
-body {
-    border-top: 2px solid #686868;
-}
-
 #page {
     max-width: 960px;
     height: auto;
@@ -19,6 +11,7 @@ body {
     margin: 0 auto;
     position: relative;
     min-height: @page-min-height;
+    border-top: 2px solid #fff;
     header {
         &.hero {
             width: 720px;
@@ -38,11 +31,10 @@ a {
 }
 
 .island {
-    background: #FCFDFE;
-    .gradient-two-color(#FCFDFE, #F4F8FC);
-    border: 1px solid @border-blue;
+    background: #fff;
+    border: 1px solid @taupe;
     .border-radius(5px);
-    .box-shadow(0 -2px 0 rgba(204, 223, 243, 0.3) inset,
+    .box-shadow(0 -2px 0 fadeOut(@taupe, 80%) inset,
                 0 0 1px rgba(0, 0, 0, 0.1));
     display: block;
     float: left;

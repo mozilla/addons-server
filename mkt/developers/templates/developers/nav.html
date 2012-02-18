@@ -1,38 +1,36 @@
-<h1 class="site-title prominent">
-  <a href="{{ url('mkt.developers.index') }}"
-     title="{{ loc('Return to the Developer Hub homepage') }}">
-    <small>Marketplace</small> Developer Hub
-  </a>
-</h1>
-<nav id="site-nav" class="menu-nav app-nav no-img c">
-  <ul>
-    {% if request.user.is_authenticated() and request.amo_user.is_developer %}
-      <li class="top">
-        <a href="{{ url('mkt.developers.apps') }}">
-          {{ _('My Submissions') }}</a>
-        <ul>
-          {% set my_apps = request.amo_user.my_apps() %}
-          {% for addon in my_apps %}
-            {% if loop.index == 8 %}
-              <li><a href="{{ url('mkt.developers.apps') }}">
-                {{ _('more apps...') }}</a></li>
-            {% else %}
-              <li><a href="{{ addon.get_dev_url() }}">
-                {{ addon.name }}</a></li>
-            {% endif %}
-          {% endfor %}
-          <li><em><a href="{{ url('mkt.developers.submit_apps.1') }}">
-            {{ _('Submit a New App') }}</a></em></li>
-        </ul>
-      </li>
-    {% endif %}
-    <li class="slim">
-      <a href="http://developer.mozilla.org/en-US/apps">
-        {{ _('Documentation') }}</a>
-    </li>
-    <li class="slim">
-      <a href="{{ url('mkt.developers.submit_apps.1') }}">
-        {{ loc('Submit an App') }}</a>
-    </li>
-  </ul>
-</nav>
+<div id="site-nav">
+  <div class="pad">
+    <nav class="menu-nav app-nav no-img">
+      <ul class="c">
+        {% if request.user.is_authenticated() and request.amo_user.is_developer %}
+          <li class="top">
+            <a href="{{ url('mkt.developers.apps') }}">
+              {{ _('My Submissions') }}</a>
+            <ul>
+              {% set my_apps = request.amo_user.my_apps() %}
+              {% for addon in my_apps %}
+                {% if loop.index == 8 %}
+                  <li><a href="{{ url('mkt.developers.apps') }}">
+                    {{ _('more apps...') }}</a></li>
+                {% else %}
+                  <li><a href="{{ addon.get_dev_url() }}">
+                    {{ addon.name }}</a></li>
+                {% endif %}
+              {% endfor %}
+              <li><em><a href="{{ url('mkt.developers.submit_apps.1') }}">
+                {{ _('Submit a New App') }}</a></em></li>
+            </ul>
+          </li>
+        {% endif %}
+        <li class="slim">
+          <a href="http://developer.mozilla.org/en-US/apps">
+            {{ _('Documentation') }}</a>
+        </li>
+        <li class="slim">
+          <a href="{{ url('mkt.developers.submit_apps.1') }}">
+            {{ loc('Submit an App') }}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

@@ -1,9 +1,39 @@
 @import '../devreg/lib';
 
-.amo-header {
+#site-header {
     font-family: @head-sans;
     margin-bottom: 25px;
+    background: rgb(215,210,195);
+    border-top: 2px solid white;
 
+    .pad {
+        max-width: 960px;
+        height: auto;
+        width: 960px;
+        margin: 0 auto;
+        position: relative;
+    }
+    .upper-header {
+        padding-bottom: 7px;
+        &:before {
+            background: url(../../../media/img/developers/hub-logo-footer.png) 10% 0 no-repeat;
+            content: "";
+            display: block;
+            overflow: hidden;
+            position: absolute;
+            height: 180px;
+            left: -20px;
+            top: 10px;
+            z-index: 1000;
+            width: 245px;
+        }
+    }
+
+    h1, ul {
+        padding-left: 250px;
+        position: relative;
+        z-index: 10;
+    }
     /* Log in link loader */
     a.loading-submit:before {
         background-image: url("../../img/zamboni/loading-white.gif");
@@ -17,26 +47,20 @@
         top: 50%;
         width: 16px;
     }
+    margin-bottom: 48px;
 }
 
 #masthead {
-    padding-top: 45px;
     max-width: 600px;
 }
 
-#masthead h1 {
-    font: normal 40px/40px MetaBlack;
-    letter-spacing: -1px;
+#masthead {
+    font: bold 48px/1.2 @open-stack;
     text-transform: uppercase;
-    margin-bottom: 7px;
+    padding-top: 24px;
+    text-shadow: 0 1px 1px fadeOut(#fff, 25%);
 }
 
-#aux-nav {
-    float: right;
-}
-.html-rtl #aux-nav {
-    float: left;
-}
 
 .site-title img {
     float: left;
@@ -47,16 +71,22 @@
     margin: 0 0 0 12px;
 }
 
+#aux-nav {
+    float: right;
+    a {
+        color: #666;
+    }
+}
+
 .site-title {
     margin-bottom: 7px;
     a {
         color: #333;
         text-decoration: none;
         small {
-            color: #333;
+            color: #666;
             display: block;
-            font-size: 0.6em;
-            line-height: 0.5em;
+            font-size: 15px;
         }
     }
     a:hover, a:focus {
@@ -66,7 +96,7 @@
                      0 0 10px #fff;
     }
     &.prominent a, strong {
-        color: #D64203;
+        color: #C63717;
         &:hover {
             text-shadow: 0 0 #fff; // Color = stupid minifier hack
         }
@@ -78,6 +108,7 @@
 .menu-nav {
     font-size: 12px;
     margin-left: 64px;
+    position: relative;
     z-index: 50;
     &.no-img {
         margin-left: 0;
@@ -106,8 +137,6 @@
             &:hover {
                 > a {
                     background: #fff;
-                    border-color: @shadow-blue @shadow-blue #fff;
-                    .box-shadow(0 0 4px rgba(0, 0, 0, 0.4));
                 }
                 > ul {
                     display: block;
@@ -186,15 +215,21 @@
 }
 
 #site-nav {
-    > ul {
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    .menu-nav > ul {
+        padding-top: 1em;
+        padding-bottom: 1em;
         > li {
-            border-left: 1px solid #9FA7AF;
-            left: -9px;
+            border-left: 1px dotted #ccc;
+            padding: 0.5em 1em;
             &:first-child {
                 border: 0;
+                padding-left: 0;
             }
             > a {
-                padding: 4px 8px;
+                color: #484848;
+                padding: 0;
                 line-height: 12px;
                 text-transform: uppercase;
             }
@@ -204,17 +239,6 @@
 
 #aux-nav {
     > ul {
-        > li:not(:first-child):before {
-            content: "";
-            display: block;
-            position: absolute;
-            top: 0;
-            left: -1px;
-            width: 1px;
-            height: 32px;
-            background: -moz-linear-gradient(#9FA7AF, transparent);
-            background-size: 1px 100%;
-        }
         > li {
             margin-left: 1px;
             > a {
@@ -256,7 +280,6 @@
                 &:hover {
                     a {
                         background: transparent;
-                        .box-shadow(0 0 inset);
                         border-color: transparent;
                     }
                     &:after {

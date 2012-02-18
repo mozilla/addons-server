@@ -9,6 +9,8 @@
     {% block extrameta %}{% endblock %}
     <title>{% block title %}{{ loc('Mozilla Marketplace') }}{% endblock %}</title>
 
+    <link href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" rel="stylesheet" />
+
     {{ css('mkt/devreg') }}
 
     {% block site_css %}
@@ -42,12 +44,41 @@
         data-media-url="{{ MEDIA_URL }}"
         data-collect-timings="{{ url('amo.timing.record') }}:{{ collect_timings_percent }}"
         {% block bodyattrs %}{% endblock %}>
-    <div id="page" class="section c">
+    <!--
+    <div id="tabzilla-wrapper">
+      <a id="tabzilla" href="http://mozilla.org/">mozilla</a>
+    </div>
+    <nav id="aux-nav" role="navigation" class="menu-nav c">
+      <ul>
+        {% if not settings.READ_ONLY %}
+          {% include 'impala/user_login.html' %}
+        {% endif %}
+        {% block aux_nav %}{% endblock aux_nav %}
+      </ul>
+    </nav>
+    <nav id="site-nav" class="c">
+      <h1 class="site-title">
+        <a href="{{ url('hub.index') }}">
+          <small>Marketplace</small> Developer Hub
+        </a>
+      </h1>
+      <ul>
+        <li><a href="{{ url('hub.index') }}">
+          {{ _('Launchpad') }}</a></li>
+        <li><a href="{{ url('hub.index') }}">
+          {{ _('My Submissions') }}</a></li>
+        <li><a href="https://developer.mozilla.org/apps">
+          {{ _('Documentation') }}</a></li>
+        <li><a href="{{ url('submit') }}">
+          {{ _('Upload an App') }}</a></li>
+      </ul>
+    </nav>-->
+    <section id="site-header">
       {% block site_header %}
-        <div id="global-header-tab">
-          <a href="http://mozilla.org/"><img src="{{ media('img/zamboni/mozilla-tab.png') }}"></a>
-        </div>
-        <div class="amo-header">
+        <div class="pad upper-header">
+          <div id="tabzilla-wrapper">
+            <a id="tabzilla" href="http://mozilla.org/">mozilla</a>
+          </div>
           <nav id="aux-nav" role="navigation" class="menu-nav c">
             <ul>
               {% if not settings.READ_ONLY %}
@@ -55,11 +86,12 @@
               {% endif %}
             </ul>
           </nav>
-          <div id="masthead">
-            {% block site_header_title %}
-              {% include 'developers/nav.html' %}
-            {% endblock %}
-          </div>
+          <h1 id="masthead" class="site-title prominent">
+            <a href="{{ url('mkt.developers.index') }}"
+               title="{{ loc('Return to the Developer Hub homepage') }}">
+              <small>Marketplace</small> Developer Hub
+            </a>
+          </h1>
           {% if ADMIN_MESSAGE or settings.READ_ONLY %}
             <div class="site-balloon" id="site-notice">
               {% if ADMIN_MESSAGE %}
@@ -74,8 +106,12 @@
             </div>
           {% endif %}
         </div>
+        {% block site_header_title %}
+          {% include 'developers/nav.html' %}
+        {% endblock %}
       {% endblock site_header %}
-
+    </section>
+    <div id="page" class="section c">
       {# Overridden in base_side_categories, which expands categories
          on the side of the page. #}
       {% block main_content %}
@@ -103,6 +139,7 @@
     {% endblock %}
     {% block js %}{% endblock %}
     {# Webtrends Stats Tracking #}
+    <script defer async src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script>
     <script defer src="{{ media('js/webtrends/webtrends-v0.1.js') }}"></script>
     {% block js_extras %}{% endblock %}
     <noscript>

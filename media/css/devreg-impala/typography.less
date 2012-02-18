@@ -4,33 +4,28 @@
 /*             TYPOGRAPHY           */
 /************************************/
 
-@font-face {
-    font-family: 'MetaBlack';
-    src: url('https://www.mozilla.org/img/fonts/MetaWebPro-Black.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-}
-
-
 body {
     font-family: @sans-stack;
     font-style: normal;
     font-size: 13px;
+    background: #f8f8f8;
 }
 
 section + h1 {
     margin: 15px 0;
 }
 
-h1 {
-    font: italic 24px @serif-stack;
-    color: @red;
-    margin-bottom: 16px;
-}
+#page {
+    h1 {
+        font: normal 32px @serif-stack;
+        color: @red;
+        margin-bottom: 16px;
+    }
 
-h2 {
-    font: italic 18px @serif-stack;
-    color: @dark-gray;
+    h2 {
+        font: normal 20px @serif-stack;
+        color: @dark-gray;
+    }
 }
 
 hgroup {

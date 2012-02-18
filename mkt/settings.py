@@ -111,7 +111,7 @@ MINIFY_BUNDLES['css'].update({
         'css/devreg-impala/base.css',
         'css/devreg-impala/site.less',
         'css/devreg-impala/typography.less',
-        'css/devreg-impala/headerfooter.css',  # Potch, Remove.
+        # 'css/devreg-impala/headerfooter.css',  # Potch, Remove.
         'css/devreg-impala/forms.less',
         'css/devreg-impala/header.less',
         'css/devreg-impala/footer.less',
