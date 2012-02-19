@@ -19,7 +19,7 @@
       {% endwith %}</p>
       <form method="post" action="{{ remove_url }}">
         {{ csrf() }}
-        <button type="submit">{{ _('Remove Both') }}</button>
+        <button type="submit">{{ _('Remove Profile') }}</button>
       </form>
     </div>
   {% elif addon.has_profile() %}

@@ -13,7 +13,7 @@ import jingo
 import mock
 from nose.plugins.attrib import attr
 from nose.plugins.skip import SkipTest
-from nose.tools import eq_, assert_not_equal, assert_raises
+from nose.tools import eq_, assert_raises
 from PIL import Image
 from pyquery import PyQuery as pq
 import waffle
@@ -1303,7 +1303,7 @@ class TestProfileStatusBar(TestProfileBase):
         self.addon.save()
         doc = pq(self.client.get(self.url).content)
         assert doc('#status-bar')
-        eq_(doc('#status-bar button').text(), 'Remove Both')
+        eq_(doc('#status-bar button').text(), 'Remove Profile')
 
     def test_remove_profile(self):
         self.addon.the_reason = self.addon.the_future = '...'
@@ -1359,15 +1359,6 @@ class TestProfile(TestProfileBase):
 
         self.post(the_reason='to be hot', the_future='cold stuff')
         self.check(the_reason='to be hot', the_future='cold stuff')
-
-    def test_with_contributions_labels(self):
-        self.enable_addon_contributions()
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        assert doc('label[for=the_reason] .req').length, (
-               'the_reason field should be required.')
-        assert doc('label[for=the_future] .req').length, (
-               'the_future field should be required.')
 
     def test_log(self):
         self.enable_addon_contributions()
@@ -2730,63 +2721,6 @@ class TestVersionAddFile(UploadTest):
         eq_(comments.length, 2)
 
 
-class TestAddVersion(UploadTest):
-
-    def post(self, desktop_platforms=[amo.PLATFORM_MAC], mobile_platforms=[],
-                   expected_status=200):
-        d = dict(upload=self.upload.pk,
-                 desktop_platforms=[p.id for p in desktop_platforms],
-                 mobile_platforms=[p.id for p in mobile_platforms])
-        r = self.client.post(self.url, d)
-        eq_(r.status_code, expected_status)
-        return r
-
-    def setUp(self):
-        super(TestAddVersion, self).setUp()
-        self.url = reverse('mkt.developers.versions.add',
-                           args=[self.addon.slug])
-
-    def test_unique_version_num(self):
-        self.version.update(version='0.1')
-        r = self.post(expected_status=400)
-        assert_json_error(r, None, 'Version 0.1 already exists')
-
-    def test_success(self):
-        r = self.post()
-        version = self.addon.versions.get(version='0.1')
-        assert_json_field(r, 'url', reverse('mkt.developers.versions.edit',
-                                        args=[self.addon.slug, version.id]))
-
-    def test_public(self):
-        self.post()
-        fle = File.objects.all().order_by("-created")[0]
-        eq_(fle.status, amo.STATUS_PUBLIC)
-
-    def test_not_public(self):
-        self.addon.update(trusted=False)
-        self.post()
-        fle = File.objects.all().order_by("-created")[0]
-        assert_not_equal(fle.status, amo.STATUS_PUBLIC)
-
-    def test_multiple_platforms(self):
-        r = self.post(desktop_platforms=[amo.PLATFORM_MAC,
-                                         amo.PLATFORM_LINUX])
-        eq_(r.status_code, 200)
-        version = self.addon.versions.get(version='0.1')
-        eq_(len(version.all_files), 2)
-
-
-class TestVersionXSS(UploadTest):
-
-    def test_unique_version_num(self):
-        self.version.update(
-                version='<script>alert("Happy XSS-Xmas");</script>')
-        r = self.client.get(reverse('mkt.developers.addons'))
-        eq_(r.status_code, 200)
-        assert '<script>alert' not in r.content
-        assert '&lt;script&gt;alert' in r.content
-
-
 class UploadAddon(object):
 
     def post(self, desktop_platforms=[amo.PLATFORM_ALL], mobile_platforms=[],
@@ -2801,56 +2735,6 @@ class UploadAddon(object):
             if r.context and 'new_addon_form' in r.context:
                 eq_(r.context['new_addon_form'].errors.as_text(), '')
         return r
-
-
-class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/platforms']
-
-    def setUp(self):
-        super(TestCreateAddon, self).setUp()
-        self.upload = self.get_upload('extension.xpi')
-        self.url = reverse('mkt.developers.submit.2')
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
-        self.client.post(reverse('mkt.developers.submit.1'))
-
-    def assert_json_error(self, *args):
-        UploadTest().assert_json_error(self, *args)
-
-    def test_unique_name(self):
-        ReverseNameLookup().add('xpi name', 34)
-        r = self.post(expect_errors=True)
-        eq_(r.context['new_addon_form'].non_field_errors(),
-            ['This name is already in use. Please choose another.'])
-
-    def test_success(self):
-        eq_(Addon.objects.count(), 0)
-        r = self.post()
-        addon = Addon.objects.get()
-        self.assertRedirects(r, reverse('mkt.developers.submit.3',
-                                        args=[addon.slug]))
-        log_items = ActivityLog.objects.for_addons(addon)
-        assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
-            'New add-on creation never logged.')
-
-    def test_missing_platforms(self):
-        r = self.client.post(self.url, dict(upload=self.upload.pk))
-        eq_(r.status_code, 200)
-        eq_(r.context['new_addon_form'].errors.as_text(),
-            '* __all__\n  * Need at least one platform.')
-        doc = pq(r.content)
-        eq_(doc('ul.errorlist').text(),
-            'Need at least one platform.')
-
-    def test_one_xpi_for_multiple_platforms(self):
-        eq_(Addon.objects.count(), 0)
-        r = self.post(desktop_platforms=[amo.PLATFORM_MAC,
-                                         amo.PLATFORM_LINUX])
-        addon = Addon.objects.get()
-        self.assertRedirects(r, reverse('mkt.developers.submit.3',
-                                        args=[addon.slug]))
-        eq_(sorted([f.filename for f in addon.current_version.all_files]),
-            [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi'])
 
 
 class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
