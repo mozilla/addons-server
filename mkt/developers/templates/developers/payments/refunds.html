@@ -1,12 +1,7 @@
-{% extends 'developers/base.html' %}
+{% extends 'developers/base_impala.html' %}
 
 {% set title = _('Manage Refunds') %}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
-
-{% set can_edit = check_addon_ownership(request, addon) %}
-{% block bodyclass %}
-  {{ super() }}{% if not can_edit %} no-edit{% endif %}
-{% endblock %}
 
 {% macro base_th() %}
   <th>{{ _('Transaction ID') }}</th>
@@ -70,7 +65,7 @@
 {% block content %}
   <header>
     {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
-    <h2>{{ title }}</h2>
+    <h1>{{ title }}</h1>
   </header>
   <section id="refunds" class="primary payments devhub-form" role="main">
     {% if not addon.is_premium() %}
@@ -82,11 +77,11 @@
         </p>
       </div>
     {% else %}
-      <h3>
+      <h2>
         {{ amo.REFUND_STATUSES[amo.REFUND_PENDING] }}
         <em>({{ pending.paginator.count }})</em>
-      </h3>
-      <div class="item">
+      </h2>
+      <div class="island">
         {% if not pending.paginator.count %}
           <p id="queue-pending" class="no-results">
             {{ _('No pending refunds.') }}
@@ -122,11 +117,11 @@
       </div>
       {{ pending|paginator }}
 
-      <h3>
+      <h2>
         {{ amo.REFUND_STATUSES[amo.REFUND_APPROVED] }}
         <em>({{ approved.paginator.count }})</em>
-      </h3>
-      <div class="item">
+      </h2>
+      <div class="island">
         {% if not approved.paginator.count %}
           <p id="queue-approved" class="no-results">
             {{ _('No approved refunds.') }}
@@ -149,11 +144,11 @@
       </div>
       {{ approved|paginator }}
 
-      <h3>
+      <h2>
         {{ amo.REFUND_STATUSES[amo.REFUND_APPROVED_INSTANT] }}
         <em>({{ instant.paginator.count }})</em>
-      </h3>
-      <div class="item">
+      </h2>
+      <div class="island">
         {% if not instant.paginator.count %}
           <p id="queue-instant" class="no-results">
             {{ loc('No instantly approved refunds.') }}
@@ -176,11 +171,11 @@
       </div>
       {{ instant|paginator }}
 
-      <h3>
+      <h2>
         {{ amo.REFUND_STATUSES[amo.REFUND_DECLINED] }}
         <em>({{ declined.paginator.count }})</em>
-      </h3>
-      <div class="item">
+      </h2>
+      <div class="island">
         {% if not declined.paginator.count %}
           <p id="queue-declined" class="no-results">
             {{ loc('No declined refunds.') }}

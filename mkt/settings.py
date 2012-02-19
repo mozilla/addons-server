@@ -125,6 +125,7 @@ MINIFY_BUNDLES['css'].update({
         'css/devreg/authors.less',
         'css/devreg/in-app-config.less',
         'css/devreg/paypal.less',
+        'css/devreg/refunds.less',
 
         # Image Uploads (used for "Edit Listing" Images and Submission).
         'css/devreg/media.less',
@@ -151,7 +152,7 @@ MINIFY_BUNDLES['css'].update({
         #'css/devreg-legacy/formset.less',
         #'css/devreg-legacy/devhub-forms.less',
         'css/devreg-legacy/submission.less',
-        'css/devreg-legacy/refunds.less',
+        #'css/devreg-legacy/refunds.less',
         #'css/devreg-legacy/devhub-buttons.less',
         #'css/devreg-legacy/in-app-config.less',
 
@@ -192,7 +193,7 @@ MINIFY_BUNDLES['css'].update({
         #'css/devreg-impala/dashboard.less',
         #'css/devreg-impala/devhub-forms.less',
         'css/devreg-impala/submission.less',
-        'css/devreg-impala/refunds.less',
+        #'css/devreg-impala/refunds.less',
     ),
     'hub': (
         'css/impala/base.css',

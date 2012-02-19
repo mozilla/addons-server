@@ -1,14 +1,18 @@
-@import '../devreg/lib';
+@import 'lib';
 
 #refunds {
-    h3 {
+    h2 {
         clear: both;  /* To clear the old-style paginator. Let's kill that later. */
         em {
             color: @medium-gray;
         }
     }
-    .item {
+    .island {
+        margin-bottom: 25px;
         padding: 0;
+        p {
+            margin: .5em 0;
+        }
     }
     .price {
         color: @green;
