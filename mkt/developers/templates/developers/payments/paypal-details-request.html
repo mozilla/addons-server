@@ -1,20 +1,23 @@
-{% extends "developers/base.html" %}
+{% extends 'developers/base_impala.html' %}
 
-{% set title = _('Manage Paypal: Request permission') %}}
+{% set title = loc('Request Permission') %}}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
 {% block content %}
-<header>
-  {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
-  <h2>{{ title }}</h2>
-</header>
-<section class="primary payments devhub-form" role="main">
-  <p>{{ loc('In order to process refunds you approve through the Marketplace
-            as well as automatic refunds we need you to give permission to us
-            in PayPal. We also request permission to read your account information
-            from PayPal.') }}</p>
-  <a href="{{ paypal_url }}" class="button">Set up permissions</button>
-</section>
-{% include "developers/includes/addons_edit_nav.html" %}
+  <header>
+    {{ hub_breadcrumbs(addon, items=[(addon.get_dev_url('paypal_setup'),
+                                      loc('Manage PayPal')),
+                                     (None, title)]) }}
+    <h1>{{ title }}</h1>
+  </header>
+  <section class="primary payments island devhub-form" role="main">
+    <p>{{ loc('In order to process refunds you approve through the Marketplace
+              as well as automatic refunds we need you to give permission to us
+              in PayPal. We also request permission to read your account information
+              from PayPal.') }}</p>
+    <footer class="listing-footer">
+      <a href="{{ paypal_url }}" class="button">Set up permissions</a>
+    </footer>
+  </section>
+  {% include 'developers/includes/addons_edit_nav.html' %}
 {% endblock %}
-

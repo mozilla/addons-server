@@ -31,7 +31,9 @@
     }
     li {
         margin-left: 1em;
-        margin-bottom: 1em;
+        + li {
+            margin-top: .5em;
+        }
     }
     > ul, > ol, > p {
         &:first-child {

@@ -76,8 +76,8 @@ app_detail_patterns = patterns('',
 
     url('^payments$', views.payments, name='mkt.developers.apps.payments'),
     # PayPal specific stuff.
-    url('^payments/paypal', include(paypal_patterns('apps'))),
-    url('^payments/paypal', include(paypal_patterns('addons'))),
+    url('^paypal', include(paypal_patterns('apps'))),
+    url('^paypal', include(paypal_patterns('addons'))),
 
     # PayPal in-app stuff.
     url('^in-app-config$', views.in_app_config,
@@ -97,26 +97,8 @@ app_detail_patterns = patterns('',
     url('^issue_refund$', views.issue_refund,
         name='mkt.developers.apps.issue_refund'),
     url('^refunds$', views.refunds, name='mkt.developers.apps.refunds'),
-)
 
-# These will all start with /addon/<addon_id>/
-detail_patterns = patterns('',
-    url('^in-app-config$', views.in_app_config,
-        name='mkt.developers.apps.in_app_config'),
-    url('^in-app-secret$', views.in_app_secret,
-        name='mkt.developers.apps.in_app_secret'),
-    url('^payments/disable$', views.disable_payments,
-        name='mkt.developers.apps.payments.disable'),
-    url('^payments/permission/refund$', views.acquire_refund_permission,
-        name='mkt.developers.apps.acquire_refund_permission'),
     url('^payments/', include(marketplace_patterns('apps'))),
-
-    url('^profile$', views.profile, name='mkt.developers.apps.profile'),
-    url('^profile/remove$', views.remove_profile,
-        name='mkt.developers.apps.profile.remove'),
-    url('^issue_refund$', views.issue_refund,
-        name='mkt.developers.apps.issue_refund'),
-    url('^refunds$', views.refunds, name='mkt.developers.apps.refunds'),
 )
 
 # These will all start with /addon/<addon_id>/

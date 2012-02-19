@@ -1,5 +1,45 @@
 @import 'lib';
 
+.button-wrapper {
+    text-align: center;
+}
+
+.payments {
+    .listing-footer {
+        margin-top: 1.5em;
+    }
+    .button-wrapper {
+        .button:only-child {
+            margin-bottom: .25em;
+        }
+    }
+}
+
+.devhub-form .learn-more {
+    margin: 10px 0 0;
+}
+
+/* paypal-setup */
+.paypal-inline {
+    &.brform {
+        p, li label {
+            margin: 0;
+        }
+    }
+    li {
+        display: inline-block;
+        margin-right: 10px;
+        label {
+            /* For radios. */
+            &[for=id_business_account_0],
+            &[for=id_business_account_1] {
+                font-weight: normal;
+            }
+        }
+    }
+}
+
+
 /* Paypal checker */
 #id_paypal_id, #id_support_email {
     .border-box;
@@ -16,7 +56,7 @@
 #paypal-id-verify {
     display: inline-block;
     height: 16px;
-    left: -19px;
+    left: -23px;
     position: relative;
     top: 3px;
     width: 16px;
@@ -38,7 +78,7 @@
 
 .html-rtl #paypal-id-verify {
     left: auto;
-    right: -19px;
+    right: -23px;
 }
 
 #paypal-id-error {

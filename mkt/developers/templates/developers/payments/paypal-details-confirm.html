@@ -1,23 +1,26 @@
-{% extends "developers/base.html" %}
+{% extends 'developers/base_impala.html' %}
 
-{% set title = _('Manage Paypal: Confirm details') %}}
+{% set title = loc('Confirm Details') %}}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
 {% block content %}
-<header>
-  {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
-  <h2>{{ title }}</h2>
-</header>
-<section class="primary payments devhub-form" role="main">
+  <header>
+    {{ hub_breadcrumbs(addon, items=[(addon.get_dev_url('paypal_setup'),
+                                      loc('Manage PayPal')),
+                                     (None, title)]) }}
+    <h1>{{ title }}</h1>
+  </header>
+  <section class="primary payments island devhub-form" role="main">
     <form method="post">
-        {{ csrf() }}
-        {{ form }}
+      {{ csrf() }}
+      {{ form.as_p() }}
+      <footer class="listing-footer">
         <button type="submit">{{ _('Continue') }}</button>
         {% trans cancel=addon.get_dev_url('paypal_setup') %}
-            or <a href="{{ cancel }}">Cancel</a>
+          or <a href="{{ cancel }}">Cancel</a>
         {% endtrans %}
+      </footer>
     </form>
-</section>
-{% include "developers/includes/addons_edit_nav.html" %}
+  </section>
+  {% include "developers/includes/addons_edit_nav.html" %}
 {% endblock %}
-

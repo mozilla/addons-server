@@ -1,28 +1,31 @@
 {% extends "developers/base.html" %}
 
-{% set title = _('Manage Paypal: Checking set up') %}}
+{% set title = loc('Checking Setup') %}}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
 {% block content %}
-<header>
-  {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
-  <h2>{{ title }}</h2>
-</header>
-<section class="primary payments devhub-form" role="main">
-  {% if check.passed %}
-    <p>{{ loc('Your PayPal account appears to be configured correctly.') }}</p>
-  {% else %}
-    <p>{{ loc('There were some problems with your account when
-               checking PayPal. Please correct these as soon as possible.') }}</p>
-    <h3>{{ loc('Errors') }}</h3>
-    <ul>
-      {% for error in check.errors %}
-        <li>{{ error }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-  <p><a class="button" href="{{ addon.get_dev_url('paypal_setup') }}">Continue</a></p>
-</section>
-{% include "developers/includes/addons_edit_nav.html" %}
+  <header>
+    {{ hub_breadcrumbs(addon, items=[(addon.get_dev_url('paypal_setup'),
+                                      loc('Manage PayPal')),
+                                     (None, title)]) }}
+    <h1>{{ title }}</h1>
+  </header>
+  <section class="primary payments island devhub-form" role="main">
+    {% if check.passed %}
+      <p>{{ loc('Your PayPal account appears to be configured correctly.') }}</p>
+    {% else %}
+      <p>{{ loc('There were some problems with your account when
+                 checking PayPal. Please correct these as soon as possible.') }}</p>
+      <h2>{{ loc('Errors') }}</h2>
+      <ul>
+        {% for error in check.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <footer class="listing-footer">
+      <a class="button" href="{{ addon.get_dev_url('paypal_setup') }}">Continue</a>
+    </footer>
+  </section>
+  {% include "developers/includes/addons_edit_nav.html" %}
 {% endblock %}
-

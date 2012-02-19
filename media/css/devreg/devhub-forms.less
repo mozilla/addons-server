@@ -23,9 +23,12 @@ select {
     padding: 0;
 }
 
+label, .label {
+    font-weight: bold;
+}
 label {
     cursor: pointer;
-    font-weight: bold;
+    display: block;
 }
 
 .req,
@@ -56,25 +59,23 @@ textarea {
     width: 100%;
 }
 
-.notification-box {
+#page .notification-box {
     .border-radius(5px);
-    .box-shadow(0 -1px 0 #ddd inset, 0 1px 0 rgba(0, 0, 0, 0.05));
+    .box-shadow(0 -1px 0 #ddd inset, 0 1px 0 rgba(0,0,0,.1));
     border: 1px solid #CCD6E3;
-    padding: 14px;
+    padding: 15px;
     background: #E3EDFA;
     margin-bottom: 1em;
     p {
-        margin-top: .5em;
+        margin: .5em 0 0;
     }
     b {
         color: #333;
     }
     h2 {
         color: #458;
-        font-size: 1.3em;
-        font-style: normal;
+        font-size: 14px;
         font-weight: bold;
-        line-height: 1em;
         margin: 0;
     }
     &.error {
@@ -90,7 +91,16 @@ textarea {
     }
 }
 
+
 .devhub-form {
+    .brform {
+        margin-bottom: 15px;
+    }
+    .brform, p {
+        label {
+            margin: 15px 0 5px;
+        }
+    }
     .char-count, .html-support {
         margin: 5px 0 0;
     }
@@ -149,11 +159,6 @@ textarea {
     }
     textarea {
         vertical-align: text-top;
-    }
-    footer {
-        button {
-            float: right;
-        }
     }
     p {
         button {
@@ -230,9 +235,6 @@ button.loading-submit:after,
     h2 .button {
         margin: 0 5px;
     }
-    label, .label {
-        font-weight: bold;
-    }
     table {
         margin: 0;
         width: 100%;
@@ -284,7 +286,7 @@ button.loading-submit:after,
     .border-radius(0 0 8px 8px);
     border-top: 1px dotted @border-blue;
     padding: 9px;
-    button {
+    button, .button {
         margin-right: 6px;
     }
     a {

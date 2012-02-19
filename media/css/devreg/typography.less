@@ -1,4 +1,4 @@
-@import '../devreg/lib';
+@import 'lib';
 
 /************************************/
 /*             TYPOGRAPHY           */
@@ -24,6 +24,11 @@ section + h1 {
         font: normal 20px @open-stack;
         color: @dark-gray;
         margin-bottom: 10px;
+    }
+    p, ul, ol {
+        + h2 {
+            margin-top: 25px;
+        }
     }
 }
 
@@ -73,10 +78,13 @@ pre {
     > p:first-child {
         margin: 0;
     }
+    .indent {
+        color: @medium-gray;
+        margin-left: 1.5em;
+    }
     ul {
         &.indent {
             list-style: disc inside;
-            margin-left: 1em;
             margin-top: 1em;
         }
     }

@@ -22,7 +22,7 @@
   <div class="island" id="edit-addon-nav">
     <ul class="refinements">
       {% for url, title in urls %}
-        <li {% if url in request.path %}class="selected"{% endif %}>
+        <li{% if request.path.startswith(url) %} class="selected"{% endif %}>
           <a href="{{ url }}">{{ title }}</a></li>
       {% endfor %}
     </ul>

@@ -1,43 +1,56 @@
-{% extends "developers/base.html" %}
+{% extends 'developers/base_impala.html' %}
 
-{% set title = _('Manage Paypal: Check PayPal set up') %}}
+{% set title = loc('Manage PayPal') %}}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
 {% block content %}
-<header>
-  {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
-  <h2>{{ title }}</h2>
-</header>
-<section class="primary payments devhub-form" role="main">
-  {% if addon.paypal_id %}
-    <p>{{ loc('Your PayPal email for this addon.') }}</p>
-    <p>{{ addon.paypal_id }}</p>
-    <p><a class="button" href="{{ addon.get_dev_url('paypal_setup_check') }}" class="button">Check your account set up</a></p>
-    <p><a class="button" href="{{ addon.get_dev_url('paypal_setup_bounce') }}" class="button">Set up permissions</a></p>
-    <h3>Change your PayPal account</h3>
-    <p>{{ loc('Changing your PayPal account will mean setting up permissions
-               tokens again on the Marketplace and updating your data') }}</p>
-    <form method="post">
-       {{ csrf() }}
-       <div class="brform paypal">
-         {{ form }}
-       </div>
-      <button type="submit">{{ _('Change') }}</button>
-    </form>
-  {% else %}
-    <form method="post">
-      {{ csrf() }}
-      <div class="brform paypal">
-        <label for="id_paypal_id">{{ loc('Do you already have a PayPal Premier or business level account?') }}</label>
-        {{ form }}
-      </div>
-
-      <button type="submit">{{ _('Continue') }}</button>
-        {% trans cancel=addon.get_dev_url('paypal_setup') %}
+  <header>
+    {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
+    <h1>{{ title }}</h1>
+  </header>
+  <section class="primary payments devhub-form" role="main">
+    {% if addon.paypal_id %}
+    <div class="island">
+      <h2>{{ loc('Your PayPal email for this app') }}</h2>
+      <p class="indent">{{ addon.paypal_id }}</p>
+      <footer class="listing-footer">
+        <a class="button" href="{{ addon.get_dev_url('paypal_setup_check') }}" class="button">
+          Check your account setup</a>
+        <a class="button" href="{{ addon.get_dev_url('paypal_setup_bounce') }}" class="button">
+          Set up permissions</a>
+      </footer>
+    </div>
+    <div class="island">
+      <h2>Change your PayPal account</h2>
+      <p>{{ loc('Changing your PayPal account will mean setting up permissions
+                 tokens again on the Marketplace and updating your data') }}</p>
+      <form method="post">
+        {{ csrf() }}
+        <div class="brform paypal-inline paypal">
+          {{ form.as_p() }}
+        </div>
+        <footer class="listing-footer">
+          <button type="submit">{{ _('Change') }}</button>
+        </footer>
+      </form>
+    </div>
+    {% else %}
+      <form method="post">
+        {{ csrf() }}
+        <div class="brform paypal">
+          <label for="id_paypal_id">
+            {{ loc('Do you already have a PayPal Premier or business level account?') }}
+          </label>
+          {{ form.as_p() }}
+        </div>
+        <footer class="listing-footer">
+          <button type="submit">{{ _('Continue') }}</button>
+          {% trans cancel=addon.get_dev_url('paypal_setup') %}
             or <a href="{{ cancel }}">Cancel</a>
-        {% endtrans %}
-    </form>
-  {% endif %}
-</section>
-{% include "developers/includes/addons_edit_nav.html" %}
+          {% endtrans %}
+        </footer>
+      </form>
+    {% endif %}
+  </section>
+  {% include 'developers/includes/addons_edit_nav.html' %}
 {% endblock %}

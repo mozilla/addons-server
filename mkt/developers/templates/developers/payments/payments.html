@@ -1,4 +1,4 @@
-{% extends "developers/base.html" %}
+{% extends "developers/base_impala.html" %}
 
 {% set title = _('Manage Payments') %}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
@@ -11,9 +11,9 @@
 {% block content %}
 <header>
   {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
-  <h2>{{ title }}</h2>
+  <h1>{{ title }}</h1>
 </header>
-<section class="primary payments devhub-form" role="main">
+<section class="primary payments island devhub-form" role="main">
   {% set contrib = addon.takes_contributions and addon.has_full_profile() or errors %}
   {% if contrib and not errors %}
     <div id="status-bar">
@@ -50,10 +50,10 @@
       </p>
     {% endif %}
     {% if not webapp %}
-    <div class="intro">
-      <h3>{{ _('Voluntary Contributions') }}</h3>
+    <div class="intro prose">
+      <h2>{{ _('Voluntary Contributions') }}</h2>
       <p>{{ _('Add-ons enrolled in our contributions program can request voluntary financial support from users.') }}</p>
-      <ul>
+      <ul class="indent">
         <li>{{ _('Encourage users to support your add-on through your Developer Profile') }}</li>
         <li>{{ _('Choose when and how users are asked to contribute') }}</li>
         <li>{{ _('Receive contributions in your PayPal account or send them to an organization of your choice') }}</li>
@@ -97,8 +97,8 @@
     </div>
     {% endif %}
     {% if waffle.switch('marketplace') %}
-    <div class="intro{% if webapp %} full-intro{% endif %}">
-      <h3>{{ _('Mozilla Marketplace') }}</h3>
+    <div class="intro prose{% if webapp %} full-intro{% endif %}">
+      <h2>{{ _('Mozilla Marketplace') }}</h2>
       {% if webapp %}
         <p>{{ _('Premium apps can be sold in our marketplace by themselves or
                  as an upgrade to a free version of your app.') }}</p>
@@ -106,7 +106,7 @@
         <p>{{ _('Premium add-ons can be sold in our marketplace by themselves or
                  as an upgrade to a free version of your add-on.') }}</p>
       {% endif %}
-      <ul>
+      <ul class="indent">
         {% if webapp %}
           <li>{{ _('Set your price and place your app for sale') }}</li>
         {% else %}
@@ -139,15 +139,17 @@
           {% endif %}
         </p>
       {% else %}
-      <div class="button-wrapper">
-        <a href="#marketplace-confirm" id="do-marketplace" class="button prominent">
-          {{ _('Enroll in Marketplace') }}</a>
-      </div>
-      <div class="learn-more">
-        {% trans doc_url=url('mkt.developers.docs', doc_name='marketplace') %}
-          or <a href="{{ doc_url }}">learn more</a>
-        {% endtrans %}
-      </div>
+        <footer class="listing-footer button-wrapper">
+          <a href="#marketplace-confirm" id="do-marketplace" class="button prominent">
+            {{ _('Enroll in Marketplace') }}</a>
+          {# TODO(marketplace-docs):
+            <p class="learn-more">
+              {% trans doc_url=url('mkt.developers.docs', doc_name='marketplace') %}
+                or <a href="{{ doc_url }}">learn more</a>
+              {% endtrans %}
+            </p>
+          #}
+        </footer>
       {% endif %}
     </div>
     {% endif %}
