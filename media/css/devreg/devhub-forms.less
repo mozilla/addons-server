@@ -28,7 +28,6 @@ label, .label {
 }
 label {
     cursor: pointer;
-    display: block;
 }
 
 .req,
@@ -243,9 +242,17 @@ button.loading-submit:after,
             padding: 8px 0;
             vertical-align: top;
         }
-        tr:first-child {
-            td, th {
-                border-top: medium none;
+        tr {
+            &:first-child {
+                td, th {
+                    border-top: 0;
+                    padding-top: 0;
+                }
+            }
+            &:last-child {
+                td, th {
+                    padding-bottom: 0;
+                }
             }
         }
         th {
@@ -259,7 +266,7 @@ button.loading-submit:after,
             margin: 0;
         }
         table td {
-            border-top-width: 0;
+            border-top: 0;
         }
         .screenshot.thumbnail {
             width: 100px;
@@ -267,8 +274,8 @@ button.loading-submit:after,
         }
     }
     table, tbody {
-        border-top: medium none;
-        border-bottom: medium none;
+        border-top: 0;
+        border-bottom: 0;
     }
 }
 
@@ -318,9 +325,13 @@ span.remove {
 }
 a.remove {
     cursor: pointer;
-    line-height: 16px;
     float: right;
-    margin-top: 2px;
+    font-size: 12px;
+    line-height: 20px;
+    height: 21px;
+    padding-left: 1px;
+    margin-top: 4px;
+    width: 20px;
 }
 span.remove {
     background-color: #eee;
