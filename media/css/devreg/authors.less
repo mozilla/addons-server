@@ -27,19 +27,24 @@
         > label, > input, > select {
             margin-right: .5em;
         }
+        label {
+            font-weight: normal;
+        }
+    }
+    input {
+        &.formerror {
+            border-color: @error-red;
+        }
+        &.invalid {
+            background: url(../../img/zamboni/notifications.png) no-repeat 229px -157px;
+        }
+        &.valid {
+            background: url(../../img/zamboni/notifications.png) no-repeat 226px -363px;
+        }
     }
     .email-autocomplete {
         padding-right: 20px;
         width: 250px;
-    }
-    .blank {
-        border: 0;
-        .handle {
-            visibility: hidden;
-        }
-        .email-autocomplete {
-            display: inline;
-        }
     }
     .author .errorlist {
         display: none;
@@ -51,15 +56,20 @@
         height: 16px;
         width: 20px;
     }
-    input {
-        &.formerror {
-            border-color: @error-red;
+    .blank {
+        border: 0;
+        * {
+            /* Hide all other cruft. */
+            display: none;
         }
-        &.invalid {
-            background: url(../../img/zamboni/notifications.png) no-repeat 229px -157px;
+        .handle {
+            /* White out the row-handle icon so the fields line up. */
+            display: inline-block;
+            visibility: hidden;
         }
-        &.valid {
-            background: url(../../img/zamboni/notifications.png) no-repeat 226px -363px;
+        .email-autocomplete {
+            /* Show the email field. */
+            display: inline;
         }
     }
 }

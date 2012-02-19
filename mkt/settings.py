@@ -126,8 +126,10 @@ MINIFY_BUNDLES['css'].update({
         'css/devreg/in-app-config.less',
         'css/devreg/paypal.less',
 
-        # Submission.
+        # Image Uploads (used for "Edit Listing" Images and Submission).
         'css/devreg/media.less',
+
+        # Submission.
         'css/devreg/validation.less',
 
         # Footer.
