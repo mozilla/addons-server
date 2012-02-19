@@ -90,7 +90,6 @@ textarea {
     }
 }
 
-
 .devhub-form {
     .brform {
         margin-bottom: 15px;
@@ -101,7 +100,7 @@ textarea {
         }
     }
     .char-count, .html-support {
-        margin: 5px 0 0;
+        margin: 5px 0;
     }
     .char-count {
         float: left;
@@ -237,6 +236,9 @@ button.loading-submit:after,
     table {
         margin: 0;
         width: 100%;
+        + .listing-footer {
+            margin-top: 8px;
+        }
         th, td {
             border-top: 1px dotted @border-taupe;
             padding: 8px 0;
@@ -328,8 +330,7 @@ a.remove {
     float: right;
     font-size: 12px;
     line-height: 20px;
-    height: 21px;
-    padding-left: 1px;
+    height: 20px;
     margin-top: 4px;
     width: 20px;
 }
