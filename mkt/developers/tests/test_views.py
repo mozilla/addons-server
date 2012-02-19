@@ -2303,7 +2303,7 @@ class TestUpload(BaseUploadTest):
         eq_(FileUpload.objects.get().user, user)
 
     def test_fileupload_ascii_post(self):
-        path = 'apps/files/fixtures/files/jétpack.xpi'
+        path = 'apps/files/fixtures/files/jétpack.xpi'
         data = open(os.path.join(settings.ROOT, path))
 
         r = self.client.post(self.url, {'upload': data})
