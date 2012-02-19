@@ -23,7 +23,7 @@
     <div class="island">
       <h2>Change your PayPal account</h2>
       <p>{{ loc('Changing your PayPal account will mean setting up permissions
-                 tokens again on the Marketplace and updating your data') }}</p>
+                 tokens again on the Marketplace and updating your data.') }}</p>
       <form method="post">
         {{ csrf() }}
         <div class="brform paypal-inline paypal">
@@ -39,7 +39,7 @@
         {{ csrf() }}
         <div class="brform paypal">
           <label for="id_paypal_id">
-            {{ loc('Do you already have a PayPal Premier or business level account?') }}
+            {{ loc('Do you already have a PayPal Premier or business-level account?') }}
           </label>
           {{ form.as_p() }}
         </div>

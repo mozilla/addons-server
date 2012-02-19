@@ -13,33 +13,31 @@
           any developer interested in connecting with users.") }}
 </p>
 
-<div class="container">
+<div class="brform c">
   <label class="optional above-the-field" for="the_reason" data-for="the_reason">
     {{ profile_form.the_reason.label }}
     {{ optional() }}
   </label>
-  <span class="help">
+  <p class="help">
     {% trans %}
       Whether it was an idea while in line at the grocery store or the
       solution to one of life's great problems, share your story.
     {% endtrans %}
-  </span>
+  </p>
   {{ profile_form.the_reason.errors }}
   {{ profile_form.the_reason }}
   {{ some_html_tip() }}
-</div>
 
-<div class="container">
-  <label for="the_future" data-for="the_future" class="above-the-field">
+  <label class="above-the-field" for="the_future" data-for="the_future">
     {{ profile_form.the_future.label }}
     {{ optional() }}
   </label>
-  <span class="help">
+  <p class="help">
     {% trans %}
       Telling your users what's coming soon will give them something to
       look forward to.
     {% endtrans %}
-  </span>
+  </p>
   {{ profile_form.the_future.errors }}
   {{ profile_form.the_future }}
   {{ some_html_tip() }}
