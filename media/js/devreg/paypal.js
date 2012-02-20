@@ -28,15 +28,27 @@ exports.email_setup = function() {
 
 // This is the setup payments form.
 exports.payment_setup = function() {
-    if ($('section.payments input[name=premium_type]:checked').val() === '0') {
-        $('form div.brform').slice(1).hide();
+    var update_forms = function(value) {
+        var fields = [
+            // Free
+            [[], ['payments-support-type', 'payments-price-level',
+                  'payments-upsell']],
+            // Premium
+            [['payments-support-type', 'payments-price-level',
+              'payments-upsell'], []],
+            // Premium with in-app
+            [['payments-support-type', 'payments-price-level',
+              'payments-upsell'], []],
+            // Free with in-app
+            [['payments-support-type'],
+             ['payments-price-level', 'payments-upsell']],
+        ];
+        $.each(fields[value][0], function() { $('#' + this).show() })
+        $.each(fields[value][1], function() { $('#' + this).hide() })
     }
+    update_forms($('section.payments input[name=premium_type]:checked').val());
     $('section.payments input[name=premium_type]').click(function(e) {
-        if ($(this).val() === '0') {
-            $('form div.brform').slice(1).hide();
-        } else {
-            $('form div.brform').slice(1).show();
-        }
+        update_forms($(this).val());
     });
 };
 

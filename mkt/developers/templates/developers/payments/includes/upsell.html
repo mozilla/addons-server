@@ -1,5 +1,5 @@
 {% from 'developers/includes/macros.html' import some_html_tip %}
-<div class="brform c">
+<div class="brform c" id="payments-upsell">
   {% if form.fields['free'].queryset.count() %}
     {{ form.do_upsell.errors }}
     {{ form.do_upsell }}

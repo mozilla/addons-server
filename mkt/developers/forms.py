@@ -1008,7 +1008,8 @@ class PremiumForm(happyforms.Form):
                                 widget=forms.RadioSelect())
     price = forms.ModelChoiceField(queryset=Price.objects.active(),
                                    label=_('Add-on price'),
-                                   empty_label=None)
+                                   empty_label=None,
+                                   required=False)
     do_upsell = forms.TypedChoiceField(coerce=lambda x: bool(int(x)),
                                        choices=UPSELL_CHOICES,
                                        widget=forms.RadioSelect(),
@@ -1017,7 +1018,7 @@ class PremiumForm(happyforms.Form):
                                   required=False,
                                   empty_label='')
     text = forms.CharField(widget=forms.Textarea(), required=False)
-    support_email = forms.EmailField()
+    support_email = forms.EmailField(required=False)
 
     def __init__(self, *args, **kw):
         self.extra = kw.pop('extra')
@@ -1052,13 +1053,29 @@ class PremiumForm(happyforms.Form):
         for field in self.extra.get('exclude', []):
             del self.fields[field]
 
+    def clean_support_email(self):
+        # Note: this can't be FREES, because Free + Premium should have
+        # a support email.
+        if (not self.cleaned_data['premium_type'] == amo.ADDON_FREE
+            and not self.cleaned_data['support_email']):
+            raise_required()
+        return self.cleaned_data['support_email']
+
+    def clean_price(self):
+        if (self.cleaned_data['premium_type'] in amo.ADDON_PREMIUMS
+            and not self.cleaned_data['price']):
+            raise_required()
+        return self.cleaned_data['price']
+
     def clean_text(self):
-        if self.cleaned_data['do_upsell'] and not self.cleaned_data['text']:
+        if (self.cleaned_data['do_upsell']
+            and not self.cleaned_data['text']):
             raise_required()
         return self.cleaned_data['text']
 
     def clean_free(self):
-        if self.cleaned_data['do_upsell'] and not self.cleaned_data['free']:
+        if (self.cleaned_data['do_upsell']
+            and not self.cleaned_data['free']):
             raise_required()
         return self.cleaned_data['free']
 
