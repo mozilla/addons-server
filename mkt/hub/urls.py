@@ -9,7 +9,7 @@ from . import views
 # Decorate all the views as @write so as to bypass cache.
 urlpatterns = decorate(write, patterns('',
     # Submission.
-    ('', include('mkt.submit.urls')),
+    #('', include('mkt.submit.urls')),
     # Launchpad.
     url('^$', views.index, name='hub.index'),
 ))

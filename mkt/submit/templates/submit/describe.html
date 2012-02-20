@@ -1,18 +1,14 @@
-{% extends 'hub/base.html' %}
+{% extends 'developers/base_impala.html' %}
 
-{% block title %}Submit an App | Mozilla Marketplace{% endblock %}
+{% set title = '' %}
+
+{% block title %}{{ hub_page_title(title) }}{% endblock %}
 
 {% block content %}
-  <ol id="submission-progress" class="c">
-    <li class="active">Developer Account</li>
-    <li class="active">App Details</li>
-    <li>Manifest</li>
-    <li>Payments</li>
-    <li>Finished!</li>
-  </ol>
+  {{ progress(webapp, 'details') }}
   <section id="content" class="primary">
     <div id="describe">
-      <h1>Describe Your App</h1>
+      <h1>{{ mkt.APP_STEPS_TITLES['details'] }}</h1>
       <form class="c" method="post">
         <h2>Name</h2>
         <p><label><input type="text" name="name" class="large"></label></p>

@@ -1449,7 +1449,6 @@ class TestSubmitStep1(TestSubmitBase):
         assert doc('#site-nav').hasClass('app-nav'), 'Expected apps devhub nav'
         eq_(doc('#breadcrumbs a').eq(1).attr('href'),
             reverse('mkt.developers.apps'))
-        assert doc('h2.is_webapp'), 'Webapp submit has add-on heading'
 
 
 class TestSubmitStep2(amo.tests.TestCase):
@@ -2079,24 +2078,6 @@ class TestSubmitStep7(TestSubmitBase):
 
         # edit listing of freshly submitted add-on...
         eq_(next_steps.eq(1).attr('href'), addon.get_dev_url())
-
-    def test_finish_addon_for_prelim_review(self):
-        self.addon.update(status=amo.STATUS_UNREVIEWED)
-
-        response = self.client.get(self.url)
-        eq_(response.status_code, 200)
-        doc = pq(response.content)
-        intro = doc('.addon-submission-process p').text().strip()
-        assert 'Preliminary Review' in intro, ('Unexpected intro: %s' % intro)
-
-    def test_finish_addon_for_full_review(self):
-        self.addon.update(status=amo.STATUS_NOMINATED)
-
-        response = self.client.get(self.url)
-        eq_(response.status_code, 200)
-        doc = pq(response.content)
-        intro = doc('.addon-submission-process p').text().strip()
-        assert 'Full Review' in intro, ('Unexpected intro: %s' % intro)
 
     def test_incomplete_addon_no_versions(self):
         self.addon.update(status=amo.STATUS_NULL)

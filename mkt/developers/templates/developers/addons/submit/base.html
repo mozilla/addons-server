@@ -1,25 +1,18 @@
 {% extends "developers/base.html" %}
 
-{% if webapp %}
-  {% set title = _('Submit a New App') %}
-{% else %}
-  {% set title = _('Submit a New Add-on') %}
-{% endif %}
+{% set title = _('Submit a New App') %}
 
 {% block title %}
-{{ hub_page_title(title) }}
+  {{ hub_page_title(title) }}
 {% endblock %}
 
 {% block content %}
-{% set page_title = _('Submit App') if webapp else _('Submit Add-on') %}
-<header>
-  {{ hub_breadcrumbs(items=[(None, page_title)]) }}
-  <h2 class="{{ 'is_webapp' if webapp else 'is_addon' }}">{{ title }}</h2>
-</header>
-<section class="secondary" role="complementary">
-  {% include "developers/addons/submit/sidebar.html" %}
-</section>
-<section class="primary addon-submission-process" role="main">
-  {% block primary %}{% endblock %}
-</section>
-{% endblock content %}
+  {% set page_title = _('Submit App') %}
+  <header>
+    <h1>{{ title }}</h1>
+  </header>
+  {% include 'developers/addons/submit/sidebar.html' %}
+  <section class="primary submission-process">
+    {% block primary %}{% endblock %}
+  </section>
+{% endblock %}

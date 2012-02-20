@@ -136,6 +136,8 @@ MINIFY_BUNDLES['css'].update({
         'css/devreg/media.less',
 
         # Submission.
+        'css/devreg/submit-progress.less',
+        'css/devreg/submit-terms.less',
         'css/devreg/validation.less',
 
         # Developer Log In / Registration.

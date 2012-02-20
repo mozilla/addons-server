@@ -13,9 +13,9 @@ def submit(request):
     # If dev has already agreed, continue to next step.
     user = UserProfile.objects.get(pk=request.user.id)
     if user.read_dev_agreement:
-        return redirect('submit.describe')
+        return redirect('submit.app.describe')
     else:
-        return redirect('submit.terms')
+        return redirect('submit.app.terms')
 
 
 @login_required
@@ -24,17 +24,18 @@ def terms(request):
     # TODO: When this code is finalized, use request.amo_user instead.
     user = UserProfile.objects.get(pk=request.user.id)
     if user.read_dev_agreement:
-        return redirect('submit.describe')
+        return redirect('submit.app.describe')
     agreement_form = forms.DevAgreementForm({'read_dev_agreement': True},
                                             instance=user)
     if request.POST and agreement_form.is_valid():
         agreement_form.save()
-        return redirect('submit.describe')
+        return redirect('submit.app.describe')
     return jingo.render(request, 'submit/terms.html', {
         'agreement_form': agreement_form,
     })
 
 
+@login_required
 def describe(request):
     return jingo.render(request, 'submit/describe.html')
 

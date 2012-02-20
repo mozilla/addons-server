@@ -1,17 +1,11 @@
-{% extends 'hub/base.html' %}
+{% extends 'developers/base_impala.html' %}
 
-{% block title %}Submit an App | Mozilla Marketplace{% endblock %}
+{% set title = _('Submit a New App') %}
+
+{% block title %}{{ hub_page_title(title) }}{% endblock %}
 
 {% block content %}
-  <!-- TODO: Put in a helpers function. -->
-  <ol id="submission-progress" class="c"
-      data-current-step="1" data-max-step="5">
-    <li class="active">Developer Account</li>
-    <li>App Details</li>
-    <li>Manifest</li>
-    <li>Payments</li>
-    <li>Finished!</li>
-  </ol>
+  {{ progress('terms') }}
   <section id="content" class="primary">
     <div id="terms">
       <h1>Submit an App</h1>
@@ -85,17 +79,19 @@
               California to resolve any legal matter arising from this Agreement.</li>
           </ol>
         </div>
-        <div class="c" id="agreement-extra-links">
-          <a href="/en-US/developers/docs/policies/agreement">
-            Printable Version</a>
-        </div>
       </div>
-      <form action="{{ request.path }}" class="c" method="post">
+      {# TODO(marketplace-docs): When we have policies and a printable version...
+        <div id="agreement-extra-links" class="c">
+          <a href="">{{ _('Printable Version') }}</a> &middot;
+          <a href="">{{ loc('Additional Marketplace Policies') }}</a>
+        </div>
+      #}
+      <form action="{{ request.path }}" method="post">
         {# TODO: Add newsletter field. #}
         {{ csrf() }}
         {{ agreement_form.read_dev_agreement.errors }}
         {{ agreement_form.read_dev_agreement }}
-        <button class="pjax-trigger prominent">
+        <button class="good prominent">
           {{ agreement_form.read_dev_agreement.label }}
         </button>
       </form>

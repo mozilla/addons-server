@@ -8,7 +8,7 @@ from webapps.urls import APP_SLUG
 from . import views
 
 
-# These will all start with /submit/app/<app_slug>
+# These will all start with /submit/app/<app_slug>/.
 submit_apps_patterns = patterns('',
     url('^3$', use_apps(views.describe), name='submit.apps.3'),
     url('^4$', use_apps(views.media), name='submit.apps.4'),
@@ -19,8 +19,8 @@ submit_apps_patterns = patterns('',
 # Decorate all the views as @write so as to bypass cache.
 urlpatterns = decorate(write, patterns('',
     # App submission.
-    url('^app/submit/$', views.submit, name='submit'),
-    url('^app/submit/terms$', views.terms, name='submit.terms'),
-    url('^app/submit/describe$', views.describe, name='submit.describe'),
+    url('^$', views.submit, name='submit.app'),
+    url('^terms$', views.terms, name='submit.app.terms'),
+    url('^describe$', views.describe, name='submit.app.describe'),
 #    url('^app/%s/submit/' % APP_SLUG, include(submit_apps_patterns)),
 ))

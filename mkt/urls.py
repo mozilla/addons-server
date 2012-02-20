@@ -13,6 +13,9 @@ urlpatterns = patterns('',
     # Replace the "old" Developer Hub with the "new" Marketplace one.
     ('^developers/', include('mkt.developers.urls')),
 
+    # Submission.
+    ('^developers/submit/app/', include('mkt.submit.urls')),
+
     # The new hotness.
     ('^hub/', include('mkt.hub.urls')),
 )

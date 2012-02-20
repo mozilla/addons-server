@@ -17,6 +17,11 @@
 }
 
 button, .button {
+    &.prominent {
+        padding: 8px 16px 12px;
+        font-size: 16px;
+        .box-shadow(0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset);
+    }
     &.good {
         .gradient-two-color(@button-green-light, @button-green-dark,
                             @button-green-dark);
@@ -35,11 +40,6 @@ button, .button {
 
 .button {
     display: inline-block;
-    &.prominent {
-        padding: 8px 16px 12px;
-        font-size: 16px;
-        .box-shadow(0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset);
-    }
     &.add { // Green
         span {
             padding-left: 16px;
@@ -183,11 +183,27 @@ button, .button {
                     0 -2px rgba(0, 0, 0, 0.1) inset,
                     0 0 100px rgba(255, 255, 255, 0.2) inset);
     }
-    :active,
-    .selected {
+    &:active,
+    &.selected {
         .box-shadow(0 0px rgba(0, 0, 0, 0.1),
                     0 -2px rgba(0, 0, 0, 0.1) inset,
                     0 0 100px rgba(255, 255, 255, 0.2) inset);
+    }
+    &.prominent {
+        &:hover,
+        &:focus,
+        &:active,
+        &.selected {
+            .box-shadow(0 3px rgba(0, 0, 0, 0.1),
+                        0 -4px rgba(0, 0, 0, 0.1) inset,
+                        0 0 100px rgba(255, 255, 255, 0.2) inset);
+        }
+        &:active,
+        &.selected {
+            .box-shadow(0 1px rgba(0, 0, 0, 0.1),
+                        0 -4px rgba(0, 0, 0, 0.1) inset,
+                        0 0 100px rgba(255, 255, 255, 0.2) inset);
+        }
     }
     &:active,
     &.selected,
@@ -210,22 +226,6 @@ button, .button {
 
 .install.clickHijack a * {
     pointer-events: none;
-}
-
-.button.prominent:hover,
-.button.prominent:focus,
-.button.prominent:active,
-.button.prominent.selected {
-    .box-shadow(0 3px rgba(0, 0, 0, 0.1),
-                0 -4px rgba(0, 0, 0, 0.1) inset,
-                0 0 100px rgba(255, 255, 255, 0.2) inset);
-}
-
-.button.prominent:active,
-.button.prominent.selected {
-    .box-shadow(0 1px rgba(0, 0, 0, 0.1),
-                0 -4px rgba(0, 0, 0, 0.1) inset,
-                0 0 100px rgba(255, 255, 255, 0.2) inset);
 }
 
 .install-shell {

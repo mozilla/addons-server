@@ -7,6 +7,7 @@ import amo
 from amo.context_processors import get_collect_timings
 from amo.urlresolvers import reverse
 from access import acl
+import mkt
 from zadmin.models import get_config
 
 
@@ -41,7 +42,7 @@ def global_settings(request):
 
     context.update(account_links=account_links,
                    settings=settings,
-                   amo=amo,
+                   amo=amo, mkt=mkt,
                    tools_links=tools_links,
                    tools_title=tools_title,
                    ADMIN_MESSAGE=get_config('site_notice'),

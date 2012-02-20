@@ -1,0 +1,45 @@
+@import 'lib';
+
+#terms {
+    #agreement-container {
+        border: 1px solid @light-gray;
+        margin: 20px 0 10px;
+        max-height: 300px;
+        overflow: auto;
+        padding: 1em;
+        #dev-agreement {
+            p {
+                margin: 0 0 1em;
+            }
+            ul, ol {
+                list-style: decimal outside;
+                margin-left: 4ex;
+                .loud-noises {
+                    text-transform: uppercase;
+                }
+                li {
+                    margin-bottom: .5em;
+                }
+                ul {
+                    list-style: circle outside;
+                    margin: 1em 2em;
+                }
+            }
+        }
+    }
+    #agreement-extra-links {
+        a {
+            float: right;
+            font-size: 11px;
+        }
+    }
+    form {
+        margin-top: 1.5em;
+        label {
+            cursor: pointer;
+        }
+        button {
+            float: right;
+        }
+    }
+}

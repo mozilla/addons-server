@@ -1,0 +1,5 @@
+<ol id="submission-progress" class="c">
+  {% for step, label in steps %}
+    <li class="{{ 'current' if step == current }} {{ 'completed' if step in completed }}">{{ label }}</li>
+  {% endfor %}
+</ol>
