@@ -1214,7 +1214,6 @@ class AppFormBasic(addons.forms.AddonFormBase):
 
 class PaypalSetupForm(happyforms.Form):
     business_account = forms.ChoiceField(widget=forms.RadioSelect,
-                                         required=False,
                                          choices=(('no', _('No')),
                                                    ('yes', _('Yes'))))
     email = forms.EmailField(required=False,

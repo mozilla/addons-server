@@ -16,8 +16,11 @@ class Check(object):
     """
 
     def __init__(self, addon=None, paypal_id=None):
-        self.state = {}
-        for test in ['id', 'refund', 'currencies']:
+        # If this state flips to False, it means they need to
+        # go to Paypal and re-set up permissions. We'll assume the best.
+        self.state = {'permissions': True}
+        self.tests = ['id', 'refund', 'currencies']
+        for test in self.tests:
             # Three states for pass:
             #   None: haven't tried
             #   False: tried but failed
@@ -57,28 +60,33 @@ class Check(object):
     def check_refund(self):
         """Check that we have the refund permission."""
         test_id = 'refund'
-        msg = loc('Not able to check refund status.')
+        msg = loc('You have not setup permissions for us to check this '
+                  'paypal account.')
         if not self.addon:
             # If there's no addon there's not even any point checking.
             return
 
         premium = self.addon.premium
         if not premium:
+            self.state['permissions'] = False
             self.failure(test_id, msg)
             return
 
         token = premium.paypal_permissions_token
         if not token:
+            self.state['permissions'] = False
             self.failure(test_id, msg)
             return
 
         try:
             status = paypal.check_permission(token, ['REFUND'])
             if not status:
+                self.state['permissions'] = False
                 self.failure(test_id, loc('No permission to do refunds.'))
             else:
                 self.pass_(test_id)
         except paypal.PaypalError:
+            self.state['permissions'] = False
             self.failure(test_id, msg)
             log.info('Refund permission check returned an error '
                      'for %s' % id, exc_info=True)
@@ -135,8 +143,8 @@ class Check(object):
     @property
     def passed(self):
         """Returns a boolean to check that all the attempted tests passed."""
-        passes = [s['pass'] for s in self.state.values()
-                  if s['pass'] is not None]
+        values = [self.state[k] for k in self.tests]
+        passes = [s['pass'] for s in values if s['pass'] is not None]
         if passes:
             return all(passes)
         return False
@@ -144,8 +152,8 @@ class Check(object):
     @property
     def errors(self):
         errs = []
-        for v in self.state.values():
-            if v['pass'] is False:
-                for err in v['errors']:
+        for k in self.tests:
+            if self.state[k]['pass'] is False:
+                for err in self.state[k]['errors']:
                     errs.append(err)
         return errs

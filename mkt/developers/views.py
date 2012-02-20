@@ -258,7 +258,7 @@ def paypal_setup(request, addon_id, addon, webapp):
     context = {'addon': addon, 'form': form}
     if form.is_valid():
         existing = form.cleaned_data['business_account']
-        if existing == 'no':
+        if existing != 'yes':
             # Go create an account.
             # TODO: this will either become the API or something some better
             # URL for the future.
@@ -276,7 +276,9 @@ def paypal_setup(request, addon_id, addon, webapp):
 
 @dev_required(owner_for_post=True, webapp=True)
 def paypal_setup_check(request, addon_id, addon, webapp):
-    assert addon.paypal_id
+    if not addon.paypal_id:
+        messages.error(request, 'We need a PayPal email before continuing.')
+        return redirect(addon.get_dev_url('paypal_setup'))
     check = Check(addon)
     check.all()
     return jingo.render(request,
@@ -286,7 +288,9 @@ def paypal_setup_check(request, addon_id, addon, webapp):
 
 @dev_required(owner_for_post=True, webapp=True)
 def paypal_setup_bounce(request, addon_id, addon, webapp):
-    assert addon.paypal_id
+    if not addon.paypal_id:
+        messages.error(request, 'We need a PayPal email before continuing.')
+        return redirect(addon.get_dev_url('paypal_setup'))
     paypal_url = paypal.get_permission_url(addon, 'payments',
                                         ['REFUND',
                                          'ACCESS_BASIC_PERSONAL_DATA',
