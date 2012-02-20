@@ -28,7 +28,7 @@ exports.email_setup = function() {
 
 // This is the setup payments form.
 exports.payment_setup = function() {
-    if ($('section.payments input[name=premium_type]').val() === '0') {
+    if ($('section.payments input[name=premium_type]:checked').val() === '0') {
         $('form div.brform').slice(1).hide();
     }
     $('section.payments input[name=premium_type]').click(function(e) {
