@@ -17,35 +17,22 @@ class TestAppSubmissionChecklist(amo.tests.TestCase):
         eq_(self.cl.get_completed(), [])
 
     def test_terms(self):
-        self.cl.terms = True
-        self.cl.save()
+        self.cl.update(terms=True)
         eq_(self.cl.get_completed(), ['terms'])
 
     def test_manifest(self):
-        self.cl.terms = True
-        self.cl.manifest = True
-        self.cl.save()
+        self.cl.update(terms=True, manifest=True)
         eq_(self.cl.get_completed(), ['terms', 'manifest'])
 
     def test_details(self):
-        self.cl.terms = True
-        self.cl.manifest = True
-        self.cl.details = True
-        self.cl.save()
+        self.cl.update(terms=True, manifest=True, details=True)
         eq_(self.cl.get_completed(), ['terms', 'manifest', 'details'])
 
     def test_payments(self):
-        self.cl.terms = True
-        self.cl.manifest = True
-        self.cl.details = True
-        self.cl.payments = True
-        self.cl.save()
+        self.cl.update(terms=True, manifest=True, details=True, payments=True)
         eq_(self.cl.get_completed(),
             ['terms', 'manifest', 'details', 'payments'])
 
     def test_skipped_details(self):
-        self.cl.terms = True
-        self.cl.manifest = True
-        self.cl.payments = True
-        self.cl.save()
+        self.cl.update(terms=True, manifest=True, payments=True)
         eq_(self.cl.get_completed(), ['terms', 'manifest', 'payments'])

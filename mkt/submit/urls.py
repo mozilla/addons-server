@@ -9,9 +9,10 @@ from . import views
 
 # These URLs start with /developers/submit/app/<app_slug>/.
 submit_apps_patterns = patterns('',
-    url('^details$', views.details, name='submit.app.details'),
-    url('^payments$', views.payments, name='submit.app.payments'),
-    url('^done$', views.done, name='submit.app.done'),
+    url('^details/%s$' % APP_SLUG, views.details, name='submit.app.details'),
+    url('^payments/%s$' % APP_SLUG, views.payments,
+        name='submit.app.payments'),
+    url('^done/%s$' % APP_SLUG, views.done, name='submit.app.done'),
 )
 
 
@@ -21,5 +22,5 @@ urlpatterns = decorate(write, patterns('',
     url('^$', views.submit, name='submit.app'),
     url('^terms$', views.terms, name='submit.app.terms'),
     url('^manifest$', views.manifest, name='submit.app.manifest'),
-    url('^app/%s/submit/' % APP_SLUG, include(submit_apps_patterns)),
+    ('', include(submit_apps_patterns)),
 ))

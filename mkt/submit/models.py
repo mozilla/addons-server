@@ -1,9 +1,10 @@
 from django.db import models
 
+import amo.models
 import mkt
 
 
-class AppSubmissionChecklist(models.Model):
+class AppSubmissionChecklist(amo.models.ModelBase):
     addon = models.OneToOneField('addons.Addon')
     terms = models.BooleanField()
     manifest = models.BooleanField()

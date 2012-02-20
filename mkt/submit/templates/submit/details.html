@@ -5,9 +5,15 @@
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
 {% block content %}
+  {{ hub_breadcrumbs(items=[(None, _('Submit App'))]) }}
+  <h1>{{ _('Submit an App') }}</h1>
   {{ progress(request, addon=None, step=step) }}
   <section id="submit-details" class="primary">
-    <h1>{{ title }}</h1>
+    <h2>{{ title }}</h2>
+    <p>
+      {{ loc("Please review your listing information below. We've pre-filled "
+             "as much as we can from your manifest.") }}
+    </p>
     <form class="c" method="post">
       <h2>Name</h2>
       <p><label><input type="text" name="name" class="large"></label></p>
