@@ -112,8 +112,9 @@ def dashboard(request, webapp=False):
     addons, filter = addon_listing(request, webapp=webapp)
     addons = amo.utils.paginate(request, addons, per_page=10)
     blog_posts = _get_posts()
+    all_addons = request.amo_user.addons.exclude(type=amo.ADDON_WEBAPP)
     data = dict(addons=addons, sorting=filter.field, filter=filter,
-                items=_get_items(None, request.amo_user.addons.all())[:4],
+                items=_get_items(None, all_addons)[:4],
                 sort_opts=filter.opts, rss=_get_rss_feed(request),
                 blog_posts=blog_posts, timestamp=int(time.time()),
                 webapp=webapp)
@@ -239,7 +240,8 @@ def feed(request, addon_id=None):
         p = urlquote(request.get_full_path())
         return http.HttpResponseRedirect('%s?to=%s' % (url, p))
     else:
-        addons_all = request.amo_user.addons.all()
+        # We exclude apps on AMO.
+        addons_all = request.amo_user.addons.exclude(type=amo.ADDON_WEBAPP)
 
         if addon_id:
             addon = get_object_or_404(Addon.objects.id_or_slug(addon_id))
