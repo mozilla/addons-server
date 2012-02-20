@@ -43,8 +43,7 @@
         {% do manage_urls.insert(1,
           (addon.get_dev_url('refunds'), loc('Manage Refunds'))
         ) %}
-        {% endif %}
-        sdfsdfsdf7
+      {% endif %}
       {% if waffle.switch('in-app-payments') %}
         {% do manage_urls.insert(0,
           (addon.get_dev_url('in_app_config'), _('Manage In-App Payments'))

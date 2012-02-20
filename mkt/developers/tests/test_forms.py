@@ -103,29 +103,6 @@ class TestPreviewForm(amo.tests.TestCase):
             {u'image': [250, 297], u'thumbnail': [126, 150]})
 
 
-@mock.patch('market.models.AddonPremium.has_valid_permissions_token',
-            lambda z: True)
-@mock.patch('mkt.developers.forms.check_paypal_id', lambda z: True)
-class TestPremiumForm(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/users', 'prices']
-
-    def complete(self, data, exclude, dest='payment'):
-        return forms.PremiumForm(data, request=None, extra={
-            'addon': Addon.objects.get(pk=3615),
-            'amo_user': UserProfile.objects.get(pk=999),
-            'exclude': exclude,
-            'dest': dest})
-
-    def test_no_paypal_id(self):
-        addon = Addon.objects.get(pk=3615)
-        addon.update(paypal_id='some@id.com')
-        AddonPremium.objects.create(paypal_permissions_token='1',
-                                    addon=addon)
-        form = self.complete({}, ['paypal_id', 'support_email'])
-        assert not form.is_valid()
-        eq_(['price'], form.errors.keys())
-
-
 class TestPaypalSetupForm(amo.tests.TestCase):
 
     def test_email_not_required(self):
