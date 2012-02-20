@@ -11,6 +11,7 @@ import waffle
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
+from addons.models import Addon
 from files.tests.test_models import UploadTest as BaseUploadTest
 import mkt
 from translations.models import Translation
@@ -153,9 +154,9 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
                          {'read_dev_agreement': True})
 
     def post_addon(self):
-        eq_(Webapp.objects.count(), 0)
+        eq_(Addon.objects.count(), 0)
         self.post()
-        return Webapp.objects.get()
+        return Addon.objects.get()
 
 
 class TestCreateWebApp(BaseWebAppTest):
@@ -170,7 +171,7 @@ class TestCreateWebApp(BaseWebAppTest):
         self.assertRedirects(r,
             reverse('submit.app.details', args=[webapp.app_slug]))
 
-    def test_addon_from_uploaded_manifest(self):
+    def test_app_from_uploaded_manifest(self):
         addon = self.post_addon()
         eq_(addon.type, amo.ADDON_WEBAPP)
         eq_(addon.guid, None)
