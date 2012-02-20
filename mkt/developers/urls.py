@@ -76,8 +76,8 @@ app_detail_patterns = patterns('',
 
     url('^payments$', views.payments, name='mkt.developers.apps.payments'),
     # PayPal specific stuff.
-    url('^paypal', include(paypal_patterns('apps'))),
-    url('^paypal', include(paypal_patterns('addons'))),
+    url('^paypal/', include(paypal_patterns('apps'))),
+    url('^paypal/', include(paypal_patterns('addons'))),
 
     # PayPal in-app stuff.
     url('^in-app-config$', views.in_app_config,
