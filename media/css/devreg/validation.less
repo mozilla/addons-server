@@ -67,35 +67,23 @@
         color: @note-gray;
         font-size: 11px;
         margin: 0 0 10px;
-    }
-    .hint {
-        .transition(margin .75s ease-in);
-        color: @note-gray;
-        font-size: 12px;
+
+        .transition(padding-top .3s ease);
+        position: relative;
+        &.show-tip {
+            padding-top: 24px;
+        }
     }
     /* Pretty Tooltip. */
     #validate-error-protocol {
         opacity: 0;
-        .transition(opacity .5s ease-in-out);
-        span {
-            display: none;
-        }
-        &.protocol .protocol, &.invalid .invalid {
-            display: block;
-        }
+        position: absolute;
+        top: 0;
+        pointer-events: none;
         &.visible {
-            display: inline-block;
+            pointer-events: all;
+            .transition(opacity .3s ease);
             opacity: 1;
-        }
-        &.visible {
-            margin-top: 1em;
-            .transition(margin .5s);
-            &:before {
-                .transition(none);
-            }
-        }
-        &.visible + .hint {
-            margin-top: 1em;
         }
     }
     h3 {
