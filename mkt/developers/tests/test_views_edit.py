@@ -878,7 +878,8 @@ class TestEditDetails(TestEdit):
 
     def test_edit_exclude_optional_fields(self):
         data = dict(description='New description with <em>html</em>!',
-                    default_locale='en-US', homepage='')
+                    default_locale='en-US', homepage='',
+                    privacy_policy='we sell your data to everyone')
 
         r = self.client.post(self.details_edit_url, data)
         eq_(r.context['form'].errors, {})
@@ -889,8 +890,9 @@ class TestEditDetails(TestEdit):
 
     def test_edit_default_locale_required_trans(self):
         # name, summary, and description are required in the new locale.
-        description, homepage = map(unicode, [self.addon.description,
-                                              self.addon.homepage])
+        da = dict(description=unicode(self.addon.description),
+                  homepage=unicode(self.addon.homepage),
+                  privacy_policy='your data is delicious')
         # TODO: description should get fixed up with the form.
         fields = ['description', 'name', 'summary']
         error = ('Before changing your default locale you must have a name, '
@@ -898,34 +900,34 @@ class TestEditDetails(TestEdit):
                  'You are missing %s.')
         missing = lambda f: error % ', '.join(map(repr, f))
 
-        d = dict(description=description, homepage=homepage,
-                 default_locale='fr')
-        r = self.client.post(self.details_edit_url, d)
+        da.update(default_locale='fr')
+        r = self.client.post(self.details_edit_url, da)
         self.assertFormError(r, 'form', None, missing(fields))
 
         # Now we have a name.
         self.addon.name = {'fr': 'fr name'}
         self.addon.save()
         fields.remove('name')
-        r = self.client.post(self.details_edit_url, d)
+        r = self.client.post(self.details_edit_url, da)
         self.assertFormError(r, 'form', None, missing(fields))
 
         # Now we have a summary.
         self.addon.summary = {'fr': 'fr summary'}
         self.addon.save()
         fields.remove('summary')
-        r = self.client.post(self.details_edit_url, d)
+        r = self.client.post(self.details_edit_url, da)
         self.assertFormError(r, 'form', None, missing(fields))
 
         # Now we're sending an fr description with the form.
-        d['description_fr'] = 'fr description'
-        r = self.client.post(self.details_edit_url, d)
+        da['description_fr'] = 'fr description'
+        r = self.client.post(self.details_edit_url, da)
         eq_(r.context['form'].errors, {})
 
     def test_edit_default_locale_frontend_error(self):
-        d = dict(description='xx', homepage='yy', default_locale='fr')
-        r = self.client.post(self.details_edit_url, d)
-        self.assertContains(r, 'Before changing your default locale you must')
+        da = dict(description='xx', homepage='yy', default_locale='fr',
+                  privacy_policy='pp')
+        rp = self.client.post(self.details_edit_url, da)
+        self.assertContains(rp, 'Before changing your default locale you must')
 
     def test_edit_locale(self):
         addon = self.get_addon()

@@ -1259,7 +1259,7 @@ class PaypalPaymentData(happyforms.ModelForm):
 
 class AppFormDetails(addons.forms.AddonFormBase):
     default_locale = forms.TypedChoiceField(choices=Addon.LOCALES)
-    privacy_policy = TransField(widget=TransTextarea(), required=False,
+    privacy_policy = TransField(widget=TransTextarea(), required=True,
         label=_lazy(u"Please specify your app's Privacy Policy:"))
 
     class Meta:
