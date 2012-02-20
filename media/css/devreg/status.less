@@ -4,4 +4,54 @@
     border-top: 1px dotted @taupe;
     margin-top: 10px;
     padding-top: 5px;
+    form {
+        display: inline;
+    }
+}
+
+.status {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.status-none b {
+    color: @medium-gray;
+}
+
+.status-lite-nom i,
+.status-nominated b,
+.status-unreviewed b {
+    font-style: normal;
+    color: #3e7987;
+}
+
+.status-incomplete b,
+.status-disabled b,
+.status-admin-disabled b,
+.status-purgatory b {
+    color: #851006;
+}
+
+.status-fully-approved b,
+.status-lite b,
+.status-lite-nom b {
+    color: #329902;
+}
+
+
+#modal-delete {
+    .warning {
+        background: #fff0a6;
+        color: @medium-gray;
+        font-weight: bold;
+        margin-top: 15px;
+        padding: 8px;
+    }
+    .delete-button:hover,
+    .delete-button {
+        background: #c22;
+        .gradient-two-color(#f77, #c22, #c22);
+        border-color: #ad1212;
+        text-shadow: 0 -1px #e00;
+    }
 }

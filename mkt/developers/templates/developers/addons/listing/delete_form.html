@@ -3,15 +3,13 @@
   <h3>{{ loc('Delete App') }}</h3>
   {% if addon.highest_status or addon.status %}
     <p class="warning">
-      {{ loc('Deleting your app will permanently remove it from the site.') }}
-      <p>
-        <label>{{ loc('Are you sure you wish to delete your app?') }}</label>
-      </p>
-      <p>
-        <button class="delete-button" type="submit">{{ loc('Delete App') }}</button>
-        {{ _('or') }} <a href="#" class="close cancel">{{ _('Cancel') }}</a>
-      </p>
-      <a href="#" class="close">{{ _('Close') }}</a>
+      {{ loc('Deleting your app will permanently remove it from the site.
+              Are you sure you wish to delete your app?') }}
+    </p>
+    <p class="listing-footer">
+      <button class="delete-button" type="submit">{{ loc('Delete App') }}</button>
+      {{ _('or') }} <a href="#" class="close cancel">{{ _('Cancel') }}</a>
     </p>
   {% endif %}
 </form>
+<a href="#" class="close">{{ _('Cancel') }}</a>

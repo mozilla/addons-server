@@ -23,6 +23,10 @@ input.ui-autocomplete-loading,
     background-position: 100% 50%;
 }
 
+#modals {
+    display: none;
+}
+
 .popup,
 .modal {
     ul, p {
@@ -57,14 +61,25 @@ input.ui-autocomplete-loading,
     margin-bottom: 0;
 }
 
-.modal form {
-    margin: 0;
+.modal {
+    form {
+        margin: 0;
+    }
+    h2, h3 {
+        color: @blue;
+        margin: 0;
+        + p {
+            margin-top: 10px;
+        }
+    }
+    h2 {
+        font: bold 18px @open-stack;
+    }
+    h3 {
+        font: bold 14px @open-stack;
+    }
 }
-.modal h2,
-.modal h3 {
-    margin-top: 0;
-    color: #2e5186;
-}
+
 .modal-delete h3 {
     color: #6c1a1a;
 }
@@ -167,4 +182,40 @@ input.ui-autocomplete-loading,
     margin: 0;
     color: inherit;
     font-size: inherit;
+}
+
+.site-balloon, .site-tip, .modal {
+    > .close {
+        background: url(../../img/impala/banner-close.png) no-repeat;
+        .border-radius(4px);
+        cursor: pointer;
+        height: 25px;
+        margin: 0;
+        overflow: hidden;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        text-indent: -1000em;
+        width: 25px;
+        &:hover {
+            background-color: #c40000;
+            background-position: -25px 0;
+        }
+    }
+}
+.site-balloon, .site-tip {
+    > .close {
+        margin: auto;
+        top: 0;
+        bottom: 0;
+    }
+}
+
+.html-rtl {
+    .site-balloon, .site-tip, #lightbox, .modal {
+        > .close {
+            right: auto;
+            left: 10px;
+        }
+    }
 }
