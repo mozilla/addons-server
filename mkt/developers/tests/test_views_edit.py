@@ -200,10 +200,7 @@ class TestEditBasicWebapp(amo.tests.TestCase):
 
     def test_devices_listed(self):
         r = self.client.post(self.url, self.get_dict())
-        ul = pq(r.content)('#addon-device-types-edit ul')
-        li = ul.find('li')
-        eq_(li.length, 1)
-        eq_(li.text(), self.dtype.name)
+        eq_(pq(r.content)('#addon-device-types-edit').text(), self.dtype.name)
 
     def _test_edit_devices_add(self):
         new = DeviceType.objects.create(name='iSlate', class_name='slate')
