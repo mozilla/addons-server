@@ -2838,12 +2838,18 @@ class TestDeleteApp(amo.tests.TestCase):
         eq_(Addon.objects.count(), 0, 'App should have been deleted.')
 
     def test_delete_incomplete(self):
-        # When we can reauth with Persona, incomplete apps will be deletable.
-        # (Future cvan: Pour some out for BrowserID.)
         self.webapp.update(status=amo.STATUS_NULL)
         r = self.client.post(self.url)
         self.assertRedirects(r, self.dev_url)
         eq_(Addon.objects.count(), 0, 'App should have been deleted.')
+
+    def test_delete_incomplete_manually(self):
+        webapp = amo.tests.addon_factory(type=amo.ADDON_WEBAPP, name='Boop',
+                                         status=amo.STATUS_NULL)
+        eq_(list(Webapp.objects.filter(id=webapp.id)), [webapp])
+        webapp.delete('POOF!')
+        eq_(list(Webapp.objects.filter(id=webapp.id)), [],
+            'App should have been deleted.')
 
 
 class TestRequestReview(amo.tests.TestCase):

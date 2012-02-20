@@ -10,6 +10,7 @@ from django.utils import translation
 import caching.base
 import elasticutils
 import multidb.pinning
+import pyes.exceptions
 import queryset_transform
 
 from . import signals, search
@@ -295,7 +296,12 @@ class SearchMixin(object):
 
     @classmethod
     def unindex(cls, id):
-        elasticutils.get_es().delete(cls._get_index(), cls._meta.db_table, id)
+        es = elasticutils.get_es()
+        try:
+            es.delete(cls._get_index(), cls._meta.db_table, id)
+        except pyes.exceptions.NotFoundException:
+            # Item wasn't found, whatevs.
+            pass
 
     @classmethod
     def search(cls):

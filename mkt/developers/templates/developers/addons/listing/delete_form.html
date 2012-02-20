@@ -1,7 +1,7 @@
 <form method="post" action="{{ addon.get_dev_url('delete') }}">
   {{ csrf() }}
   <h3>{{ loc('Delete App') }}</h3>
-  {% if addon.highest_status or addon.status %}
+  {% if addon.can_be_deleted() %}
     <p class="warning">
       {{ loc('Deleting your app will permanently remove it from the site.
               Are you sure you wish to delete your app?') }}
