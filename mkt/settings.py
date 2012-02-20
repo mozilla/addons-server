@@ -272,6 +272,9 @@ MINIFY_BUNDLES['js'].update({
         'js/zamboni/upload.js',
         'js/devreg/devhub.js',  # NEW.
         'js/zamboni/validator.js',
+
+        # Specific stuff for making payments nicer.
+        'js/hub/dev-paypal.js',
     ),
     'hub': (
         'js/lib/underscore.js',

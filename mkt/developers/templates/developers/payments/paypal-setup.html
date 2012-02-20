@@ -11,8 +11,8 @@
   <section class="primary payments devhub-form" role="main">
     {% if addon.paypal_id %}
     <div class="island">
-      <h2>{{ loc('Your PayPal email for this app') }}</h2>
-      <p class="indent">{{ addon.paypal_id }}</p>
+      <p><strong>{{ loc('PayPal email address for this app.') }}</strong></p>
+      <p class="indent">{{ addon.paypal_id }} <a href="#" id="paypal-change-address">Change this</a></p>
       <footer class="listing-footer">
         <a class="button" href="{{ addon.get_dev_url('paypal_setup_check') }}" class="button">
           Check your account setup</a>
@@ -20,7 +20,7 @@
           Set up permissions</a>
       </footer>
     </div>
-    <div class="island">
+    <div class="island js-hidden" id="paypal-change-address-form">
       <h2>Change your PayPal account</h2>
       <p>{{ loc('Changing your PayPal account will mean setting up permissions
                  tokens again on the Marketplace and updating your data.') }}</p>
@@ -35,12 +35,13 @@
       </form>
     </div>
     {% else %}
-      <form method="post">
+    <div class="island">
+      <form method="post" class="devhub-form">
         {{ csrf() }}
-        <div class="brform paypal">
-          <label for="id_paypal_id">
-            {{ loc('Do you already have a PayPal Premier or business-level account?') }}
-          </label>
+        <div class="brform c paypal-inline paypal">
+          <p>{{ loc('Do you already have a PayPal Premier or business-level account?
+                     If not we will redirect you to PayPal to create an account.
+                     Return here when done to complete your setup.') }}</p>
           {{ form.as_p() }}
         </div>
         <footer class="listing-footer">
@@ -50,7 +51,8 @@
           {% endtrans %}
         </footer>
       </form>
+    </div>
     {% endif %}
-  </section>
+    </section>
   {% include 'developers/includes/addons_edit_nav.html' %}
 {% endblock %}

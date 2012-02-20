@@ -248,9 +248,7 @@ def ownership(request, addon_id, addon, webapp=False):
 
 @dev_required(owner_for_post=True, webapp=True)
 def payments(request, addon_id, addon, webapp=False):
-    if addon.is_premium():
-        return _premium(request, addon_id, addon, webapp)
-    return _voluntary(request, addon_id, addon, webapp)
+    return _premium(request, addon_id, addon, webapp)
 
 
 # PayPal config, the next generation.
@@ -260,7 +258,7 @@ def paypal_setup(request, addon_id, addon, webapp):
     context = {'addon': addon, 'form': form}
     if form.is_valid():
         existing = form.cleaned_data['business_account']
-        if not existing:
+        if existing == 'no':
             # Go create an account.
             # TODO: this will either become the API or something some better
             # URL for the future.

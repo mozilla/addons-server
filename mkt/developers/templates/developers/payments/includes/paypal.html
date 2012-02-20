@@ -1,11 +1,3 @@
-<div id="org-dev" class="brform paypal">
-  <label for="id_paypal_id">{{ loc('What is your PayPal email address?') }}</label>
-  {{ form.paypal_id.errors }}
-  <div>
-    {{ form.paypal_id }}<div id="paypal-id-verify" data-url="{{ url('mkt.developers.check_paypal') }}"></div>
-    <div id="paypal-id-error"></div>
-  </div>
-</div>
 <div class="brform">
   <label for="id_support_email">{{ form.support_email.label }}</label>
   <div class="extra">

@@ -12,6 +12,14 @@
   <section class="primary payments island devhub-form" role="main">
     <form method="post" action="{{ addon.get_dev_url('payments') }}">
       {{ csrf() }}
+      <div class="brform">
+        <label for="id_premium_type">{{ form.premium_type.label }}</label>
+        <div class="extra">
+          {{ loc('How your app will displayed on the marketplace.') }}
+        </div>
+        {{ form.premium_type.errors }}
+        <div>{{ form.premium_type }}</div>
+      </div>
       {% include 'developers/payments/includes/paypal.html' %}
       {% include 'developers/payments/includes/tier.html' %}
       {% include 'developers/payments/includes/upsell.html' %}

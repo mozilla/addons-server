@@ -116,35 +116,6 @@ class TestPremiumForm(amo.tests.TestCase):
             'exclude': exclude,
             'dest': dest})
 
-    @mock.patch('mkt.developers.forms.check_paypal_id', lambda z: True)
-    @mock.patch('django.contrib.messages.warning')
-    def test_remove_token(self, error):
-        addon = Addon.objects.get(pk=3615)
-        addon.update(paypal_id='')
-        ap = AddonPremium.objects.create(paypal_permissions_token='1',
-                                         addon=addon, price_id=1)
-        data = {'support_email': 'foo@bar.com', 'paypal_id': 'foo@bar.com'}
-        form = self.complete(data, ['price'])
-        assert form.is_valid()
-        form.save()
-        # Do not remove the token, we had no paypal_id.
-        assert AddonPremium.objects.get(pk=ap.pk).paypal_permissions_token
-
-        data['paypal_id'] = 'fooa@bar.com'
-        errmsgs = []
-        error.side_effect = lambda req, msg: errmsgs.append(msg)
-        form = self.complete(data, ['price'])
-        # Remove the token and fail the form.
-        assert not form.is_valid()
-        assert not AddonPremium.objects.get(pk=ap.pk).paypal_permissions_token
-        assert 'refund token' in errmsgs[0]
-        eq_(len(errmsgs), 1)
-        AddonPremium.objects.get(pk=ap.pk).update(paypal_permissions_token='a')
-        form = self.complete(data, ['price'])
-        # Do not remove the token if the paypal_id hasn't changed.
-        assert form.is_valid()
-        assert AddonPremium.objects.get(pk=ap.pk).paypal_permissions_token
-
     def test_no_paypal_id(self):
         addon = Addon.objects.get(pk=3615)
         addon.update(paypal_id='some@id.com')

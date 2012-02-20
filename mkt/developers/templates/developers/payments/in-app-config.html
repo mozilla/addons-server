@@ -6,7 +6,7 @@
 {% block content %}
 <header>
   {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
-  <h2>{{ title }}</h2>
+  <h1>{{ title }}</h1>
 </header>
 <section id="in-app-config" class="primary devhub-form island" role="main">
   <form class="item in-app-config" method="post" action="{{ request.path }}">

@@ -993,12 +993,19 @@ APP_UPSELL_CHOICES = (
 )
 
 
+class AddonChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return obj.name
+
+
 class PremiumForm(happyforms.Form):
     """
     The premium details for an addon, which is unfortunately
     distributed across a few models.
     """
-    paypal_id = forms.CharField()
+    premium_type = forms.TypedChoiceField(coerce=lambda x: int(x),
+                                choices=amo.ADDON_PREMIUM_TYPES.items(),
+                                widget=forms.RadioSelect())
     price = forms.ModelChoiceField(queryset=Price.objects.active(),
                                    label=_('Add-on price'),
                                    empty_label=None)
@@ -1006,7 +1013,7 @@ class PremiumForm(happyforms.Form):
                                        choices=UPSELL_CHOICES,
                                        widget=forms.RadioSelect(),
                                        required=False)
-    free = forms.ModelChoiceField(queryset=Addon.objects.none(),
+    free = AddonChoiceField(queryset=Addon.objects.none(),
                                   required=False,
                                   empty_label='')
     text = forms.CharField(widget=forms.Textarea(), required=False)
@@ -1017,8 +1024,8 @@ class PremiumForm(happyforms.Form):
         self.request = kw.pop('request')
         self.addon = self.extra['addon']
         kw['initial'] = {
-            'paypal_id': self.addon.paypal_id,
             'support_email': self.addon.support_email,
+            'premium_type': self.addon.premium_type,
             'do_upsell': 0,
         }
         if self.addon.premium:
@@ -1045,49 +1052,6 @@ class PremiumForm(happyforms.Form):
         for field in self.extra.get('exclude', []):
             del self.fields[field]
 
-    def _show_token_msg(self, message):
-        """Display warning for an invalid PayPal refund token."""
-        url = paypal.get_permission_url(self.addon,
-                                        self.extra.get('dest', 'payment'),
-                                        ['REFUND'])
-        msg = _(' <a href="%s">Visit PayPal to grant permission'
-                ' for refunds on your behalf.</a>') % url
-        messages.warning(self.request, '%s %s' % (message, Markup(msg)))
-        raise forms.ValidationError(message)
-
-    def clean_paypal_id(self):
-        paypal_id = self.cleaned_data['paypal_id']
-        # Check it's a valid paypal id.
-        check_paypal_id(paypal_id)
-
-        if (self.addon.paypal_id and self.addon.paypal_id != paypal_id
-            and self.addon.premium
-            and self.addon.premium.has_permissions_token()):
-            # If a user changes their paypal id, then we need
-            # to nuke the token, but don't do this when it's is blank.
-            self.addon.premium.paypal_permissions_token = ''
-            self.addon.premium.save()
-
-        return paypal_id
-
-    def clean(self):
-        paypal_id = self.cleaned_data.get('paypal_id', '')
-        if paypal_id:
-            # If we're going to prompt for refund permission, we need to
-            # record the PayPal ID first.
-            self.addon.paypal_id = paypal_id
-            self.addon.save()
-        # Check if third-party refund token is properly set up.
-        no_token = (not self.addon.premium or
-                    not self.addon.premium.has_permissions_token())
-        invalid_token = (self.addon.premium and
-                         not self.addon.premium.has_valid_permissions_token())
-        if no_token or invalid_token:
-            # L10n: We require PayPal users to have a third-party token set up.
-            self._show_token_msg(loc('PayPal third-party refund token has not '
-                                     'been set up or has recently expired.'))
-        return self.cleaned_data
-
     def clean_text(self):
         if self.cleaned_data['do_upsell'] and not self.cleaned_data['text']:
             raise_required()
@@ -1099,11 +1063,6 @@ class PremiumForm(happyforms.Form):
         return self.cleaned_data['free']
 
     def save(self):
-        if 'paypal_id' in self.cleaned_data:
-            self.addon.paypal_id = self.cleaned_data['paypal_id']
-            self.addon.support_email = self.cleaned_data['support_email']
-            self.addon.save()
-
         if 'price' in self.cleaned_data:
             premium = self.addon.premium
             if not premium:
@@ -1127,6 +1086,10 @@ class PremiumForm(happyforms.Form):
             upsell.save()
         elif not self.cleaned_data['do_upsell'] and upsell:
             upsell.delete()
+
+        self.addon.premium_type = self.cleaned_data['premium_type']
+        self.addon.support_email = self.cleaned_data['support_email']
+        self.addon.save()
 
 
 def DependencyFormSet(*args, **kw):
@@ -1234,10 +1197,11 @@ class AppFormBasic(addons.forms.AddonFormBase):
 
 class PaypalSetupForm(happyforms.Form):
     business_account = forms.ChoiceField(widget=forms.RadioSelect,
-                                          required=False,
-                                          choices=(('no', _('No')),
+                                         required=False,
+                                         choices=(('no', _('No')),
                                                    ('yes', _('Yes'))))
-    email = forms.EmailField(required=False)
+    email = forms.EmailField(required=False,
+                             label='PayPal email address')
 
     def clean(self):
         data = self.cleaned_data
