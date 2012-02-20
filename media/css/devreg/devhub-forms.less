@@ -245,36 +245,6 @@ button.loading-submit:after,
     top: 5px;
 }
 
-.edit_with_prefix, .edit-with-suffix {
-    span {
-        border: 1px solid @light-gray;
-        background: #eee;
-        color: #888;
-        padding: 5px;
-    }
-    input {
-        .border-radius(0);
-        .box-shadow(none);
-    }
-}
-.edit_with_prefix {
-    span {
-        .border-radius(5px 0 0 5px);
-        border-right: 0;
-        display: inline-block;
-        line-height: 1.2;
-        width: 150px;
-    }
-    input[type=text] {
-        .border-radius(0 5px 5px 0);
-        border-left: 0;
-        width: 239px;
-    }
-}
-.edit_initially_hidden {
-    display: none;
-}
-
 .devhub-form {
     position: relative;
     h2 .button {
@@ -310,6 +280,14 @@ button.loading-submit:after,
         }
         td {
             color: @medium-gray;
+            label {
+                font-weight: normal;
+            }
+            .addon-app-cats > label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
         }
         ul {
             margin: 0;
