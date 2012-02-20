@@ -5,33 +5,29 @@
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
 {% block content %}
-  <section class="primary">
-    <header class="hero">
-      {{ hub_breadcrumbs() }}
-      <h1>{{ title }}</h1>
-    </header>
-  </section>
-  {% if not addons %}
-    <div class="island action-needed">
+  <header class="hero">
+    {{ hub_breadcrumbs() }}
+    <h1>{{ title }}</h1>
+  </header>
+  <section id="dashboard" class="island listing primary full">
+    {% if not addons %}
       <h2>{{ _('Welcome to the Developer Dashboard') }}</h2>
       <p>
         {{ loc("You don't currently have any apps hosted on Mozilla Marketplace.
                 To learn how the process works and submit your first app, click
                 Get Started below.") }}
       </p>
-      <p class="button-wrapper">
+      <p class="listing-footer button-wrapper">
         <a href="{{ url('mkt.developers.submit_apps.1') }}"
            class="button prominent">{{ _('Get Started') }}</a>
       </p>
-    </div>
-  {% else %}
-    <section id="dashboard" class="island listing primary full">
+    {% else %}
       {{ impala_addon_listing_header(request.get_full_path(),
                                      search_filter=filter) }}
       <div class="items">
         {{ dev_addon_listing_items(addons.object_list) }}
       </div>
       {{ addons|impala_paginator }}
-    </section>
-  {% endif %}
+    {% endif %}
+  </section>
 {% endblock %}

@@ -29,36 +29,28 @@ input.ui-autocomplete-loading,
 
 .popup,
 .modal {
+    background: #fff;
+    border: 3px solid #2e5186;
+    .border-radius(8px);
+    .box-shadow(0 1px 3px rgba(0,0,0,0.35));
+    line-height: 1.3em;
+    margin-top: 25%;
+    padding: 10px;
+    position: absolute;
+    left: -15px;
+    z-index: 2001; /* because of devhub title */
     ul, p {
         margin: 1em 0 0;
         &:first-child {
             margin-top: 0;
         }
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
-}
-
-.popup,
-.modal {
-    line-height: 1.3em;
-    position: absolute;
-    left: -15px;
-    margin-top: 5px;
-    background: #fff;
-    padding: 10px;
-    border: 3px solid #2e5186;
-    .border-radius(8px);
-    .box-shadow(0 1px 3px rgba(0,0,0,0.35));
-    z-index: 2001; /* because of devhub title */
-}
-
-.popup p:first-child,
-.popup ul:first-child {
-    margin-top: 0;
-}
-
-.popup p:last-child,
-.popup ul:last-child {
-    margin-bottom: 0;
+    p.listing-footer, footer.listing-footer {
+        margin: 1em -10px -10px -10px;
+    }
 }
 
 .modal {
