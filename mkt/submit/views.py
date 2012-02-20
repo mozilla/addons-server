@@ -2,7 +2,13 @@ from django.shortcuts import redirect
 
 import jingo
 
+import amo
 from amo.decorators import login_required
+from addons.models import Addon, AddonUser
+from mkt.developers.decorators import dev_required
+from files.models import Platform
+from mkt.developers import tasks
+from mkt.submit.models import AppSubmissionChecklist
 from users.models import UserProfile
 from . import forms
 
@@ -44,12 +50,32 @@ def manifest(request):
     # TODO: Have decorator handle the redirection.
     user = UserProfile.objects.get(pk=request.user.id)
     if not user.read_dev_agreement:
+        # And we start back at one...
         return redirect('submit.app')
-    return jingo.render(request, 'submit/manifest.html', {'step': 'manifest'})
+
+    form = forms.NewWebappForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        data = form.cleaned_data
+
+        plats = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
+        addon = Addon.from_upload(data['upload'], plats)
+        tasks.fetch_icon.delay(addon)
+        AddonUser(addon=addon, user=request.amo_user).save()
+
+        # Checking it once. Checking it twice.
+        AppSubmissionChecklist.objects.create(addon=addon, terms=True,
+                                              manifest=True)
+
+        return redirect('submit.app.details', addon.app_slug)
+
+    return jingo.render(request, 'submit/manifest.html', {
+        'step': 'manifest',
+        'form': form,
+    })
 
 
-@login_required
-def details(request):
+@dev_required
+def details(request, addon_id, addon):
     return jingo.render(request, 'submit/details.html', {'step': 'details'})
 
 

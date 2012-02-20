@@ -3,8 +3,6 @@ import os
 import re
 import socket
 
-from jinja2 import Markup
-
 from django import forms
 from django.conf import settings
 from django.db.models import Q
@@ -12,7 +10,6 @@ from django.forms.models import modelformset_factory
 from django.forms.formsets import formset_factory, BaseFormSet
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_unicode
-from django.contrib import messages
 
 import commonware
 import happyforms
@@ -483,7 +480,7 @@ def verify_app_domain(manifest_url):
         domain = Webapp.domain_from_url(manifest_url)
         if Addon.objects.filter(app_domain=domain).exists():
             raise forms.ValidationError(
-                _('An app already exists on this domain, '
+                _('An app already exists on this domain; '
                   'only one app per domain is allowed.'))
 
 

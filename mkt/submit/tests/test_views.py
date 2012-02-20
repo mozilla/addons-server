@@ -1,11 +1,21 @@
+import json
+import os
+
+from django.conf import settings
+
+import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
+import waffle
 
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
+from files.tests.test_models import UploadTest as BaseUploadTest
 import mkt
+from translations.models import Translation
 from users.models import UserProfile
+from webapps.models import Webapp
 
 
 class TestSubmit(amo.tests.TestCase):
@@ -108,3 +118,119 @@ class TestManifest(TestSubmit):
     def test_progress_display(self):
         self._step()
         self._test_progress_display(['terms'], 'manifest')
+
+
+class UploadAddon(object):
+
+    def post(self, desktop_platforms=[amo.PLATFORM_ALL], mobile_platforms=[],
+             expect_errors=False):
+        d = dict(upload=self.upload.pk,
+                 desktop_platforms=[p.id for p in desktop_platforms],
+                 mobile_platforms=[p.id for p in mobile_platforms])
+        r = self.client.post(self.url, d, follow=True)
+        eq_(r.status_code, 200)
+        if not expect_errors:
+            # Show any unexpected form errors.
+            if r.context and 'form' in r.context:
+                eq_(r.context['form'].errors, {})
+        return r
+
+
+class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/platforms']
+
+    def setUp(self):
+        super(BaseWebAppTest, self).setUp()
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+        self.manifest = os.path.join(settings.ROOT, 'mkt', 'submit', 'tests',
+                                     'webapps', 'mozball.webapp')
+        self.upload = self.get_upload(abspath=self.manifest)
+        self.url = reverse('submit.app.manifest')
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        # Complete first step.
+        self.client.post(reverse('submit.app.terms'),
+                         {'read_dev_agreement': True})
+
+    def post_addon(self):
+        eq_(Webapp.objects.count(), 0)
+        self.post()
+        return Webapp.objects.get()
+
+
+class TestCreateWebApp(BaseWebAppTest):
+
+    def test_page_title(self):
+        eq_(pq(self.client.get(self.url).content)('title').text(),
+            'App Manifest | Developer Hub | Mozilla Marketplace')
+
+    def test_post_app_redirect(self):
+        r = self.post()
+        webapp = Webapp.objects.get()
+        self.assertRedirects(r,
+            reverse('submit.app.details', args=[webapp.app_slug]))
+
+    def test_addon_from_uploaded_manifest(self):
+        addon = self.post_addon()
+        eq_(addon.type, amo.ADDON_WEBAPP)
+        eq_(addon.guid, None)
+        eq_(unicode(addon.name), 'MozillaBall')
+        eq_(addon.slug, 'app-%s' % addon.id)
+        eq_(addon.app_slug, 'mozillaball')
+        eq_(addon.summary, u'Exciting Open Web development action!')
+        eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
+            u'Azione aperta emozionante di sviluppo di fotoricettore!')
+
+    def test_version_from_uploaded_manifest(self):
+        addon = self.post_addon()
+        eq_(addon.current_version.version, '1.0')
+
+    def test_file_from_uploaded_manifest(self):
+        addon = self.post_addon()
+        files = addon.current_version.files.all()
+        eq_(len(files), 1)
+        eq_(files[0].status, amo.STATUS_PUBLIC)
+
+
+class TestCreateWebAppFromManifest(BaseWebAppTest):
+
+    def setUp(self):
+        super(TestCreateWebAppFromManifest, self).setUp()
+        Webapp.objects.create(app_slug='xxx', app_domain='existing-app.com')
+
+    def upload_webapp(self, manifest_url, **post_kw):
+        self.upload.update(name=manifest_url)  # Simulate JS upload.
+        return self.post(**post_kw)
+
+    def post_manifest(self, manifest_url):
+        rs = self.client.post(reverse('mkt.developers.upload_manifest'),
+                              dict(manifest=manifest_url))
+        if 'json' in rs['content-type']:
+            rs = json.loads(rs.content)
+        return rs
+
+    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', True)
+    def test_duplicate_domain(self):
+        rs = self.upload_webapp('http://existing-app.com/my.webapp',
+                                expect_errors=True)
+        eq_(rs.context['form'].errors,
+            {'upload':
+             ['An app already exists on this domain; only one '
+              'app per domain is allowed.']})
+
+    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', False)
+    def test_allow_duplicate_domains(self):
+        self.upload_webapp('http://existing-app.com/my.webapp')  # No errors.
+
+    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', True)
+    def test_duplicate_domain_from_js(self):
+        data = self.post_manifest('http://existing-app.com/my.webapp')
+        eq_(data['validation']['errors'], 1)
+        eq_(data['validation']['messages'][0]['message'],
+            'An app already exists on this domain; '
+            'only one app per domain is allowed.')
+
+    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', False)
+    def test_allow_duplicate_domains_from_js(self):
+        rs = self.post_manifest('http://existing-app.com/my.webapp')
+        eq_(rs.status_code, 302)

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 import os
-import socket
 from datetime import datetime, timedelta
 from decimal import Decimal
 
@@ -23,8 +22,7 @@ from waffle import helpers
 import amo
 import amo.tests
 import paypal
-from amo.helpers import (absolutify, babel_datetime, url as url_reverse,
-                         timesince)
+from amo.helpers import (absolutify, babel_datetime, timesince)
 from amo.tests import (assert_no_validation_errors, close_to_now, formset,
                        initial)
 from amo.tests.test_helpers import get_image_path
@@ -35,7 +33,6 @@ from addons.models import (Addon, AddonCategory, AddonUpsell, AddonUser,
 from addons.utils import ReverseNameLookup
 from applications.models import Application
 from browse.tests import test_listing_sort, test_default_sort
-from mkt.developers.forms import ContribForm
 from mkt.developers.models import ActivityLog, SubmitStep
 from mkt.developers import tasks
 from files.models import File, FileUpload, Platform
@@ -2484,7 +2481,7 @@ class TestCreateWebAppFromManifest(BaseWebAppTest):
                                 expect_errors=True)
         eq_(rs.context['new_addon_form'].errors.as_text(),
             '* upload\n  '
-            '* An app already exists on this domain, only one '
+            '* An app already exists on this domain; only one '
             'app per domain is allowed.')
 
     @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', False)
@@ -2496,7 +2493,7 @@ class TestCreateWebAppFromManifest(BaseWebAppTest):
         data = self.post_manifest('http://existing-app.com/my.webapp')
         eq_(data['validation']['errors'], 1)
         eq_(data['validation']['messages'][0]['message'],
-            'An app already exists on this domain, '
+            'An app already exists on this domain; '
             'only one app per domain is allowed.')
 
     @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', False)

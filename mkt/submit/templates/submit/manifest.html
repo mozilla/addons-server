@@ -46,8 +46,7 @@
       <form method="post" id="upload-webapp">
         {{ csrf() }}
         <div class="hidden">
-          {# TODO: Hook up logic in view. #}
-          {# new_addon_form.upload #}
+          {{ form.upload }}
         </div>
         <footer class="listing-footer">
           <button class="upload-file-submit" type="submit">
