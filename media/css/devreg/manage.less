@@ -123,12 +123,8 @@
     float: left;
     padding: 0;
     width: 400px;
-    input {
-        .border-radius(0 5px 5px 0);
-        .box-shadow(none);
-        border: 0;
-        float: right;
-        width: 238px;
+    span, input {
+        .border-box;
     }
     span {
         border-right: 0 none;
@@ -136,9 +132,17 @@
         float: left;
         line-height: 1.2;
         overflow: hidden;
+        max-width: 195px;
         padding: 5px;
         text-overflow: ellipsis;
-        max-width: 170px;
+        white-space: nowrap;
+    }
+    input {
+        .border-radius(0 5px 5px 0);
+        .box-shadow(none);
+        border: 0;
+        float: right;
+        width: 150px;
     }
 }
 .edit_initially_hidden {
