@@ -278,6 +278,30 @@ class TestValidateFile(BaseUploadTest):
         eq_(addon.binary, True)
 
     @mock.patch('devhub.tasks.run_validator')
+    def test_ending_tier_is_preserved(self, v):
+        v.return_value = json.dumps({
+            "errors": 0,
+            "success": True,
+            "warnings": 0,
+            "notices": 0,
+            "message_tree": {},
+            "messages": [],
+            "ending_tier": 5,
+            "metadata": {
+                "contains_binary_extension": True,
+                "version": "1.0",
+                "name": "gK0Bes Bot",
+                "id": "gkobes@gkobes"
+            }
+        })
+        r = self.client.post(reverse('devhub.json_file_validation',
+                                     args=[self.addon.slug, self.file.id]),
+                             follow=True)
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        eq_(data['validation']['ending_tier'], 5)
+
+    @mock.patch('devhub.tasks.run_validator')
     def test_validator_sets_binary_flag_for_content(self, v):
         v.return_value = json.dumps({
             "errors": 0,

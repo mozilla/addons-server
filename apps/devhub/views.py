@@ -825,7 +825,7 @@ def make_validation_result(data, is_compatibility=False):
             # Just expose the message, not the traceback
             data['error'] = data['error'].strip().split('\n')[-1].strip()
     if data['validation']:
-        ending_tier = 0
+        ending_tier = data['validation'].get('ending_tier', 0)
         for msg in data['validation']['messages']:
             if msg['tier'] > ending_tier:
                 ending_tier = msg['tier']
