@@ -1,4 +1,4 @@
-<form method="post" action="{{ action }}" class="{% if is_ajax %}ajax-submit {% endif %}featured-inner object-lead user-input">
+<form method="post" action="{{ action }}" class="{% if is_ajax %}ajax-submit {% endif %}listing-footer">
   {{ csrf() }}
   {% if form.non_field_errors() %}
       <div class="notification-box error">
@@ -16,13 +16,16 @@
       data-profile-form-url="{{ url('users.complete_profile_form') }}">
       {{ loc('Log in / Register') }}
     </a>
-    &nbsp;<a href="http://support.mozilla.org/en-US/kb/how-do-i-manage-my-browserid-account#w_how-do-i-reset-my-browserid-password">
-      {{ loc('forgot your password?') }}
-    </a>
     <div class="user-message">
-      {% trans %}
-      Are you an <a href="#" id="show-normal-login">admin or editor</a>?
-      {% endtrans %}
+      <p>
+        <a href="https://browserid.org/forgot">
+          {{ loc('Forgot your password?') }}</a>
+      </p>
+      <p>
+        {% trans %}
+        Are you an <a href="#" id="show-normal-login">admin or editor</a>?
+        {% endtrans %}
+      </p>
     </div>
   </fieldset>
   {% endif %}
@@ -50,7 +53,10 @@
         {{ form.recaptcha_shown }}
         {{ recaptcha(form) }}
         {% endif %}
-        <li class="footer-submit">
+      </ul>
+      <footer class="listing-footer c">
+        <button id="login-submit" type="submit">{{ _('Log in') }}</button>
+        {{ _('or') }}
         {% if waffle.switch('browserid-login') %}
           <a href="#" class="browserid-login browserid-login-alt"
              data-url="{{ url('users.browserid_login') }}"
@@ -58,9 +64,7 @@
             {{ loc('Use BrowserID') }}
           </a>
         {% endif %}
-        <button id="login-submit" type="submit">{{ _('Log in') }}</button>
-        </li>
-      </ul>
+      </footer>
     </fieldset>
   </div>
 </form>

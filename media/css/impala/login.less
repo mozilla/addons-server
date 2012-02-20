@@ -13,8 +13,13 @@
         margin-right: 0;
     }
     .primary fieldset {
+        border-top: 1px dotted @taupe;
+        padding-top: 2em;
         margin: 1em 0 0;
         padding: 0;
+    }
+    .login-submit {
+        float: right;
     }
     #captcha {
         padding: 0 8px;
@@ -50,6 +55,11 @@
             color: @medium-gray;
             margin-top: 0.5em;
             font-size: 0.9em;
+            p + p {
+                border-top: 1px dotted @taupe;
+                margin-top: .5em;
+                padding-top: .5em;
+            }
         }
         #browserid-login {
             text-align: center;
@@ -57,7 +67,6 @@
         }
         #normal-login {
             display: none;
-            margin-top: 2em;
         }
     }
     .browserid-login-alt {

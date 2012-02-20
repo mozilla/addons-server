@@ -133,6 +133,9 @@ MINIFY_BUNDLES['css'].update({
         # Submission.
         'css/devreg/validation.less',
 
+        # Developer Log In / Registration.
+        'css/devreg/login.less',
+
         # Footer.
         'css/devreg/footer.less',
     ),
@@ -182,7 +185,7 @@ MINIFY_BUNDLES['css'].update({
         #'css/devreg-impala/versions.less',
         #'css/devreg-impala/users.less',
         #'css/devreg-impala/tooltips.less',
-        'css/devreg-impala/login.less',
+        #'css/devreg-impala/login.less',
         #'css/devreg-impala/apps.less',
         #'css/devreg-impala/formset.less',
         #'css/devreg-impala/tables.less',

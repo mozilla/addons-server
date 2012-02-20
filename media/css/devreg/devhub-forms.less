@@ -96,6 +96,46 @@ textarea {
     }
 }
 
+.prettyform {
+    &.grid {
+        li label {
+            color: #555;
+            display: inline-block;
+            font-weight: normal;
+            padding: 0 1em 1em 0;
+            width: 120px;
+            text-align: right;
+            &.check {
+                width: auto;
+                text-align: left;
+                color: #777;
+                &:hover {
+                    color: #555;
+                }
+            }
+        }
+        li:last-child label {
+            padding-bottom: .5em;
+        }
+        .errorlist {
+            color: #C63717;
+            margin-bottom: 13px;
+            margin-left: 137px;
+            margin-top: 0;
+        }
+        .formfields {
+            float: left;
+            max-width: 430px;
+            p:first-child {
+                margin-top: 0;
+            }
+        }
+        legend + p {
+            margin: 0 0 1em;
+        }
+    }
+}
+
 .devhub-form {
     .brform {
         margin-bottom: 15px;
@@ -152,7 +192,6 @@ textarea {
             font-size: 12px;
         }
     }
-
     input[type=checkbox],
     input[type=radio] {
         margin-left: 0;
@@ -298,7 +337,7 @@ button.loading-submit:after,
     margin-left: 3px;
 }
 
-.devhub-form .listing-footer {
+.listing-footer {
     .gradient-two-color(fadeOut(@border-blue, 80%), fadeOut(@border-blue, 90%));
     .border-radius(0 0 8px 8px);
     border-top: 1px dotted @border-blue;
