@@ -1056,13 +1056,13 @@ class PremiumForm(happyforms.Form):
     def clean_support_email(self):
         # Note: this can't be FREES, because Free + Premium should have
         # a support email.
-        if (not self.cleaned_data['premium_type'] == amo.ADDON_FREE
+        if (not self.cleaned_data.get('premium_type') == amo.ADDON_FREE
             and not self.cleaned_data['support_email']):
             raise_required()
         return self.cleaned_data['support_email']
 
     def clean_price(self):
-        if (self.cleaned_data['premium_type'] in amo.ADDON_PREMIUMS
+        if (self.cleaned_data.get('premium_type') in amo.ADDON_PREMIUMS
             and not self.cleaned_data['price']):
             raise_required()
         return self.cleaned_data['price']

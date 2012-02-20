@@ -332,7 +332,7 @@ class TestEditPayments(amo.tests.TestCase):
     def test_upsell(self, upsell):
         upsell.return_value = self.get_addon()
         d = dict(recipient='dev', suggested_amount=2, paypal_id='greed@dev',
-                 annoying=amo.CONTRIB_AFTER)
+                 annoying=amo.CONTRIB_AFTER, premium_type=amo.ADDON_PREMIUM)
         res = self.client.post(self.url, d)
         eq_('premium add-on' in res.content, True)
 
@@ -443,26 +443,6 @@ class MarketplaceMixin(object):
         AddonPremium.objects.create(addon=self.addon, price_id=self.price.pk)
         self.addon.update(premium_type=amo.ADDON_PREMIUM,
                           paypal_id='a@a.com')
-
-
-class TestRefundToken(MarketplaceMixin, amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
-
-    def test_no_token(self):
-        raise SkipTest
-        self.setup_premium()
-        res = self.client.post(self.url, {"paypal_id": "a@a.com",
-                                          "support_email": "dev@example.com"})
-        assert 'refund token' in pq(res.content)('.notification-box')[0].text
-
-    @mock.patch('paypal.check_permission')
-    def test_with_token(self, cp):
-        cp.return_value = True
-        self.setup_premium()
-        self.addon.addonpremium.update(paypal_permissions_token='foo')
-        res = self.client.post(self.url, {"paypal_id": "a@a.com",
-                                          "support_email": "dev@example.com"})
-        assert not pq(res.content)('.notification-box')
 
 
 # Mock out verifying the paypal id has refund permissions with paypal and
