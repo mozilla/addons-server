@@ -161,13 +161,10 @@
             {% else %}
               {% set device_types = addon.device_types %}
               {% call empty_unless(device_types) %}
-                <ul>
-                  {% for device in device_types %}
-                    <li class="{{ device.class_name }}">
-                      {{ device.name }}
-                    </li>
-                  {% endfor %}
-                </ul>
+                {# Jinja doesn't support list comprehensions. Comprehend this. #}
+                {% for device in device_types %}
+                  {{ device.name }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
               {% endcall %}
             {% endif %}
           </td>

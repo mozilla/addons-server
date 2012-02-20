@@ -113,7 +113,8 @@ class Webapp(Addon):
 
     @property
     def device_types(self):
-        return [d.device_type for d in self.addondevicetype_set.all()]
+        return [d.device_type for d in
+                self.addondevicetype_set.order_by('device_type__id')]
 
     @property
     def origin(self):
