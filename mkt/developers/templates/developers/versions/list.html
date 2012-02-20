@@ -15,7 +15,7 @@
 <section id="edit-addon" class="primary devhub-form manage">
   <h2>{{ _('Current Status') }}</h2>
   <div class="island" id="version-status">
-    <div>
+    <p>
       {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
         {{ status(loc('You have <b>disabled</b> this app.')|safe) }}
         {{ loc("Your app's listing is disabled and will not appear in our
@@ -49,20 +49,19 @@
             {{ _('Learn more') }}</a>
         {% endif %}
       #}
-
-      <div class="version-status-actions item-actions">
-        {% if check_addon_ownership(request, addon) %}
-          {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
-            <a href="{{ addon.get_dev_url('enable') }}" id="enable-addon">{{ loc('Enable App') }}</a>
-          {% elif not addon.is_disabled %}
-            <a href="#" id="disable-addon">{{ loc('Disable App') }}</a>
-          {% endif %}
-          {% if addon.can_be_deleted() %}
-            &middot; <a href="#" id="delete-addon">{{ loc('Delete App') }}</a>
-          {% endif %}
+    </p>
+    <p class="version-status-actions listing-footer">
+      {% if check_addon_ownership(request, addon) %}
+        {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
+          <a href="{{ addon.get_dev_url('enable') }}" class="button" id="enable-addon">{{ loc('Enable App') }}</a>
+        {% elif not addon.is_disabled %}
+          <a href="#" class="button" id="disable-addon">{{ loc('Disable App') }}</a>
         {% endif %}
-      </div>
-    </div>
+        {% if addon.can_be_deleted() %}
+          <a href="#" class="button delete-button" id="delete-addon">{{ loc('Delete App') }}</a>
+        {% endif %}
+      {% endif %}
+    </p>
   </div>
 
 </section>

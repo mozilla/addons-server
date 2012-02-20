@@ -33,11 +33,6 @@
     <form id="profile-form" class="devhub-form" method="post">
       {{ csrf() }}
       {% include 'developers/includes/addons_create_profile.html' %}
-      <footer class="listing-footer">
-        <button>
-          {{ _('Save Changes') if addon.has_profile() else _('Create Profile') }}
-        </button>
-      </footer>
     </form>
   </section>
   {% include 'developers/includes/addons_edit_nav.html' %}

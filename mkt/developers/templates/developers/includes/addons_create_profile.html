@@ -43,4 +43,9 @@
   {{ profile_form.the_future }}
   {{ some_html_tip() }}
 </div>
+<footer class="listing-footer">
+  <button>
+    {{ _('Save Changes') if addon.has_profile() else _('Create Profile') }}
+  </button>
+</footer>
 </div>
