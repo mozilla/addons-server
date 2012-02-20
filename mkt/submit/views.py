@@ -13,7 +13,8 @@ def submit(request):
     # If dev has already agreed, continue to next step.
     user = UserProfile.objects.get(pk=request.user.id)
     if user.read_dev_agreement:
-        return redirect('submit.app.describe')
+        # TODO: Have decorator redirect to next step.
+        return redirect('submit.app.manifest')
     else:
         return redirect('submit.app.terms')
 
@@ -24,25 +25,39 @@ def terms(request):
     # TODO: When this code is finalized, use request.amo_user instead.
     user = UserProfile.objects.get(pk=request.user.id)
     if user.read_dev_agreement:
-        return redirect('submit.app.describe')
+        # TODO: Have decorator redirect to next step.
+        return redirect('submit.app.manifest')
+
     agreement_form = forms.DevAgreementForm({'read_dev_agreement': True},
                                             instance=user)
     if request.POST and agreement_form.is_valid():
         agreement_form.save()
-        return redirect('submit.app.describe')
+        return redirect('submit.app.manifest')
     return jingo.render(request, 'submit/terms.html', {
+        'step': 'terms',
         'agreement_form': agreement_form,
     })
 
 
 @login_required
-def describe(request):
-    return jingo.render(request, 'submit/describe.html')
+def manifest(request):
+    # TODO: Have decorator handle the redirection.
+    user = UserProfile.objects.get(pk=request.user.id)
+    if not user.read_dev_agreement:
+        return redirect('submit.app')
+    return jingo.render(request, 'submit/manifest.html', {'step': 'manifest'})
 
 
-def media(request):
-    return jingo.render(request, 'submit/media.html')
+@login_required
+def details(request):
+    return jingo.render(request, 'submit/details.html', {'step': 'details'})
 
 
+@login_required
+def payments(request):
+    pass
+
+
+@login_required
 def done(request):
-    return jingo.render(request, 'submit/done.html')
+    pass

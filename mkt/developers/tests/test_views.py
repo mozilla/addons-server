@@ -1447,8 +1447,6 @@ class TestSubmitStep1(TestSubmitBase):
         eq_(response.status_code, 200)
         doc = pq(response.content)
         assert doc('#site-nav').hasClass('app-nav'), 'Expected apps devhub nav'
-        eq_(doc('#breadcrumbs a').eq(1).attr('href'),
-            reverse('mkt.developers.apps'))
 
 
 class TestSubmitStep2(amo.tests.TestCase):

@@ -75,12 +75,12 @@ def hub_breadcrumbs(context, addon=None, items=None, add_default=False):
     title = _('My Submissions')
     link = reverse('mkt.developers.apps')
 
-    if not addon and not items:
-        # We are at the end of the crumb trail.
-        crumbs.append((None, title))
-    else:
-        crumbs.append((link, title))
     if addon:
+        if not addon and not items:
+            # We are at the end of the crumb trail.
+            crumbs.append((None, title))
+        else:
+            crumbs.append((link, title))
         if items:
             url = addon.get_dev_url()
         else:

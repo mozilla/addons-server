@@ -1,0 +1,23 @@
+{% extends 'developers/base_impala.html' %}
+
+{% set title = loc('Verify App Details') %}
+
+{% block title %}{{ hub_page_title(title) }}{% endblock %}
+
+{% block content %}
+  {{ progress(request, addon=None, step=step) }}
+  <section id="submit-details" class="primary">
+    <h1>{{ title }}</h1>
+    <form class="c" method="post">
+      <h2>Name</h2>
+      <p><label><input type="text" name="name" class="large"></label></p>
+      <h2>Description</h2>
+      <p><label><textarea name="description" rows="4" cols="50"></textarea></label></p>
+      <footer>
+        <button class="prominent">
+          Continue
+        </button>
+      </footer>
+    </form>
+  </section>
+{% endblock %}

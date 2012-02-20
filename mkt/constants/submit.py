@@ -8,4 +8,4 @@ APP_STEPS = [
     ('payments', _('Payments')),
     ('done', _('Finished!')),
 ]
-APP_STEPS_TITLES = dict(APP_STEPS)
+APP_STEPS_TITLE = dict(APP_STEPS)

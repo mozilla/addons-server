@@ -4,7 +4,7 @@ import mkt
 
 
 class AppSubmissionChecklist(models.Model):
-    addon = models.ForeignKey('addons.Addon', unique=True)
+    addon = models.OneToOneField('addons.Addon')
     terms = models.BooleanField()
     manifest = models.BooleanField()
     details = models.BooleanField()
@@ -17,6 +17,6 @@ class AppSubmissionChecklist(models.Model):
         """Return a list of completed submission steps."""
         completed = []
         for step, label in mkt.APP_STEPS:
-            if getattr(self, mkt.APP_STEPS, False):
+            if getattr(self, step, False):
                 completed.append(step)
         return completed

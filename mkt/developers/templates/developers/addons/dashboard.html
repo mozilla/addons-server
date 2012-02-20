@@ -6,7 +6,7 @@
 
 {% block content %}
   <header class="hero">
-    {{ hub_breadcrumbs() }}
+    {{ hub_breadcrumbs(items=[(None, _('My Submissions'))]) }}
     <h1>{{ title }}</h1>
   </header>
   <section id="dashboard" class="island listing primary full">

@@ -2,26 +2,26 @@
 
 #submission-progress {
     display: table;
-    margin: 1em 0;
+    margin: 1em 0 1.5em;
     padding-bottom: 1em;
     table-layout: fixed;
     width: 100%;
     ol {
         display: table-row;
         counter-reset: item;
+        margin: 0;
     }
     li {
         color: @light-gray;
         display: table-cell;
         counter-increment: item;
         font: 16px @open-stack;
-        padding-bottom: 38px;
         text-align: center;
         white-space: nowrap;
         width: 100%;
         &:before {
             .border-radius(30px);
-            background: #eee;
+            background: @faint-gray;
             display: block;
             content: counter(item);
             font-size: 18px;
@@ -34,7 +34,7 @@
             z-index: 20;
         }
         &:after {
-            border-top: 1px solid #eee;
+            border-top: 1px solid @faint-gray;
             content: "";
             display: block;
             margin-top: -38px;
@@ -46,7 +46,7 @@
             color: @dark-gray;
             font-weight: bold;
             &:before {
-                background: #f8f8f8;
+                background: @bg-gray;
                 border: 1px solid @black;
                 color: @black;
                 z-index: 20;
@@ -56,8 +56,38 @@
                 margin-top: -39px;
             }
         }
+        &.current {
+            b {
+                background: @faint-gray;
+                display: block;
+                float: right;
+                margin-top: -39px;
+                position: relative;
+                width: 50%;
+                height: 1px;
+                z-index: 11;
+            }
+        }
     }
     li, li.active, li.active:before {
         .transition(~'1s color ease-in-out, 1s border linear');
     }
 }
+
+/* Toggle for no more lines. */
+/*
+#submission-progress {
+    border-bottom: 1px dotted @faint-gray;
+    margin: 1em 0;
+    padding-bottom: 2em;
+    li {
+        padding-bottom: 38px;
+        &:after {
+            border-top: 0;
+        }
+        &.current b {
+            display: none;
+        }
+    }
+}
+*/

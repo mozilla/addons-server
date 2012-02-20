@@ -1,29 +1,24 @@
 @import 'lib';
 
-
 #upload-file {
+    margin-top: 15px;
     #validate-field {
-        display: table;
-        width: 100%;
-        margin: 0;
-        border: 1px solid @teal;
-        overflow: hidden;
         .border-radius(5px);
+        border: 1px solid @light-gray;
+        display: table;
+        margin: 5px 0 0;
+        overflow: hidden;
+        width: 100%;
         #upload-webapp-url {
-            .border-box;
-            border: 0 none;
-            font-family: @sans-stack;
+            .border-radius(5px 0 0 5px);
+            border: 0;
             font-size: 1.3em;
-            margin: 0;
-            padding: 4px;
             width: 100%;
             &.loading {
-                background-image: url("../../img/zamboni/loading-white.gif");
-                background-position: 98% center;
-                background-repeat: no-repeat;
+                background: url(../../img/zamboni/loading-white.gif) 98% 50% no-repeat;
             }
             &:-moz-placeholder {
-                color: #ccc;
+                color: @light-gray;
             }
             &::-webkit-placeholder {
                 color: #cbcbcb;
@@ -33,7 +28,7 @@
                 border-bottom-color: red;
                 border-left-color: red;
                 border-top-color: red;
-                box-shadow: 0 0 !important;
+                .box-shadow(~'0 0 !important');
             }
         }
         > div {
@@ -43,14 +38,131 @@
             }
             &.vf-button button {
                 .border-radius(0);
-                border: none;
-                border-left: 1px solid @teal;
+                border: 0;
+                border-left: 1px solid @light-gray;
                 font-family: @sans-stack;
                 font-size: 1.3em;
-                line-height: 1em;
+                line-height: 1.3em;
                 margin: 0;
                 padding: 5px;
+                &:active {
+                    top: 0;
+                    .box-shadow(0 2px rgba(0, 0, 0, 0.1),
+                                0 -1px rgba(0, 0, 0, 0.1) inset,
+                                0 0 100px rgba(255, 255, 255, 0.4) inset);
+                }
             }
         }
     }
+    .upload-status {
+        margin-bottom: 10px;
+        div {
+            line-height: 1;
+            margin-top: 10px;
+            :first-child {
+                margin-top: 0;
+            }
+        }
+        #upload-status-results strong {
+            display: block;
+        }
+    }
+    .upload-details {
+        color: @note-gray;
+        font-size: 11px;
+        margin: 0 0 10px;
+    }
+    h3 {
+        margin-top: 0;
+    }
+    p {
+        margin-bottom: 10px;
+    }
+}
+
+.upload-file {
+    padding: 20px;
+}
+
+#upload-status-bar {
+    background-color: #F2F2F2;
+    .border-radius(5px);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    height: 20px;
+}
+
+#upload-status-bar.bar-fail {
+    background-color: #D81916;
+}
+
+#upload-status-bar.bar-success {
+    background-color: #325487;
+}
+
+#upload-status-bar div {
+    background-color: #8BC5FA;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    width: 0%;
+    height: 20px;
+}
+
+#upload-status-bar.progress-idle,
+#upload-status-bar.progress-idle div {
+    background-image: url('../../img/developers/progress.gif');
+}
+
+#upload-status-bar.progress-idle {
+    background-position: 0 -26px;
+}
+
+#upload-status-results ul {
+    font-size: 11px;
+    line-height: 1.4em;
+    list-style: disc inside none;
+    margin: 0 0 0 24px;
+    padding-top: 3px;
+}
+
+#upload-status-results {
+    background-repeat: no-repeat;
+    display: none;
+}
+
+#upload-status-results a.view-more {
+    color: #359AFF;
+    display: block;
+    font-size: 12px;
+    padding-left: 24px;
+    padding-top: 5px;
+}
+
+#upload-status-results.status-fail,
+#upload-status-results.status-pass {
+    display: block;
+}
+
+#upload-status-results strong {
+    background-image: url("../../img/zamboni/icons/checks.png");
+    background-repeat: no-repeat;
+    padding: 2px 0 2px 24px;
+}
+
+#upload-status-results.status-fail strong {
+    color: #D81916;
+    background-position: 0 -120px;
+}
+
+#upload-status-results.status-pass strong {
+    color: #325487;
+    background-position: 0 -80px;
+}
+
+#upload-file .upload-status #uploadstatus {
+    color: #777777;
+    font-size: 11px;
+    margin-top: 4px;
 }

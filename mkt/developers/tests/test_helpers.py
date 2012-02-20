@@ -48,21 +48,12 @@ class TestDevBreadcrumbs(unittest.TestCase):
 
     def test_no_args(self):
         s = render('{{ hub_breadcrumbs() }}', {'request': self.request})
-        doc = pq(s)
-        crumbs = doc('li')
-        eq_(len(crumbs), 2)
-        eq_(crumbs.text(), 'Developer Hub My Submissions')
-        eq_(crumbs.eq(1).children('a'), [])
+        eq_(s, '')
 
     def test_no_args_with_default(self):
         s = render('{{ hub_breadcrumbs(add_default=True) }}',
                    {'request': self.request})
-        doc = pq(s)
-        crumbs = doc('li')
-        eq_(crumbs.text(), 'Add-ons Developer Hub My Submissions')
-        eq_(crumbs.eq(1).children('a').attr('href'),
-            reverse('mkt.developers.index'))
-        eq_(crumbs.eq(2).children('a'), [])
+        eq_(pq(s).text(), 'Add-ons')
 
     def test_with_items(self):
         s = render("""{{ hub_breadcrumbs(items=[('/foo', 'foo'),
@@ -70,11 +61,11 @@ class TestDevBreadcrumbs(unittest.TestCase):
                   {'request': self.request})
         doc = pq(s)
         crumbs = doc('li>a')
-        eq_(len(crumbs), 4)
-        eq_(crumbs.eq(2).text(), 'foo')
-        eq_(crumbs.eq(2).attr('href'), '/foo')
-        eq_(crumbs.eq(3).text(), 'bar')
-        eq_(crumbs.eq(3).attr('href'), '/bar')
+        eq_(len(crumbs), 3)
+        eq_(crumbs.eq(1).text(), 'foo')
+        eq_(crumbs.eq(1).attr('href'), '/foo')
+        eq_(crumbs.eq(2).text(), 'bar')
+        eq_(crumbs.eq(2).attr('href'), '/bar')
 
     def test_with_app(self):
         addon = Mock()
