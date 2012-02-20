@@ -11,6 +11,9 @@ MARKETPLACE = True
 # Pretty temporary. Set the correct home for Marketplace. Redirects are sick!
 HOME = 'mkt.developers.views.home'
 
+# 403 view to render for CSRF failures.
+CSRF_FAILURE_VIEW = 'mkt.site.views.csrf_failure'
+
 ROOT_URLCONF = 'mkt.urls'
 INSTALLED_APPS += (
     'mkt.site',

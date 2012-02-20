@@ -93,10 +93,7 @@ def handler500(request):
 
 
 def csrf_failure(request, reason=''):
-    webapp = settings.APP_PREVIEW
-    template = 'amo/403%s.html' % ('_apps' if webapp else '')
-    return jingo.render(request, template,
-                        {'csrf': 'CSRF' in reason, 'webapp': webapp},
+    return jingo.render(request, 'amo/403.html', {'csrf': 'CSRF' in reason},
                         status=403)
 
 

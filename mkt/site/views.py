@@ -16,3 +16,8 @@ def handler500(request):
         return api.views.handler500(request)
     else:
         return jingo.render(request, 'site/500.html', status=500)
+
+
+def csrf_failure(request, reason=''):
+    return jingo.render(request, 'site/403.html', {'csrf': 'CSRF' in reason},
+                        status=403)
