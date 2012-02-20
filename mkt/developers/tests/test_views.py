@@ -86,6 +86,11 @@ class AppHubTest(HubTest):
 
 class TestHome(HubTest):
 
+    def test_legacy_login_redirect(self):
+        self.client.logout()
+        r = self.client.get('/en-US/firefox/users/login')
+        self.assertRedirects(r, '/en-US/login', 302)
+
     def test_login_redirect(self):
         self.client.logout()
         r = self.client.get(self.url)

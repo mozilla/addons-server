@@ -397,6 +397,8 @@ def login_modal(request, template=None):
 @no_login_required
 #@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def login(request, template=None):
+    if settings.MARKETPLACE:
+        return redirect('users.login')
     return _login(request, template=template)
 
 

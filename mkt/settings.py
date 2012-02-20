@@ -65,7 +65,6 @@ NO_CONSUMER_MODULES = (
     'market.views',
     'piston',
     'users.views.edit',
-    'users.views.login',
     'users.views.purchases',
     'users.views.payments',
     'search.views',
