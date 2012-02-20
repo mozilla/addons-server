@@ -13,9 +13,10 @@
     padding: 1em;
     pointer-events: none;
     &.error {
-        background: #6c1a1a;
+        background: darken(@error-red, 15%);
     }
     span {
+        color: #fff !important;
         display: block;
         line-height: 1.2em;
     }
@@ -34,7 +35,7 @@
         pointer-events: none;
     }
     &.error:before {
-        border-top-color: #6c1a1a;
+        border-top-color: darken(@error-red, 15%);
     }
 }
 
