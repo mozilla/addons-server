@@ -45,6 +45,9 @@
                 line-height: 1.3em;
                 margin: 0;
                 padding: 5px;
+                &.disabled {
+                    opacity: .5;
+                }
                 &:active {
                     top: 0;
                     .box-shadow(0 2px rgba(0, 0, 0, 0.1),
@@ -56,13 +59,6 @@
     }
     .upload-status {
         margin-bottom: 10px;
-        div {
-            line-height: 1;
-            margin-top: 10px;
-            :first-child {
-                margin-top: 0;
-            }
-        }
         #upload-status-results strong {
             display: block;
         }
@@ -71,6 +67,36 @@
         color: @note-gray;
         font-size: 11px;
         margin: 0 0 10px;
+    }
+    .hint {
+        .transition(margin .75s ease-in);
+        color: @note-gray;
+        font-size: 12px;
+    }
+    /* Pretty Tooltip. */
+    #validate-error-protocol {
+        opacity: 0;
+        .transition(opacity .5s ease-in-out);
+        span {
+            display: none;
+        }
+        &.protocol .protocol, &.invalid .invalid {
+            display: block;
+        }
+        &.visible {
+            display: inline-block;
+            opacity: 1;
+        }
+        &.visible {
+            margin-top: 1em;
+            .transition(margin .5s);
+            &:before {
+                .transition(none);
+            }
+        }
+        &.visible + .hint {
+            margin-top: 1em;
+        }
     }
     h3 {
         margin-top: 0;

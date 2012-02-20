@@ -60,9 +60,9 @@ $(document).ready(function() {
             if($this.attr('data-input') != $this.val()) {
                 // Show warning if 8+ characters have been typed but there's no protocol.
                 if($this.val().length >= 8 && !$this.val().match(/^(.+):\/\//)) {
-                    $('#validate-error-protocol').fadeIn();
+                    $('#validate-error-protocol').addClass('protocol visible');
                 } else {
-                    $('#validate-error-protocol').hide();
+                    $('#validate-error-protocol').removeClass('protocol visible');
                 }
 
                 // Show the button if valid

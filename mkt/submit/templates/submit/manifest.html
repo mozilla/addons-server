@@ -25,13 +25,19 @@
                      placeholder="http://" data-upload-url="{{ url('mkt.developers.upload_manifest') }}">
             </div>
             <div class="vf-button">
-              <button type="submit" id="validate_app">{{ _('Validate') }}</button>
+              <button type="submit" class="disabled" id="validate_app">{{ _('Validate') }}</button>
             </div>
           </form>
         </label>
         <div class="upload-details">
           <div id="validate-error-protocol" class="pretty-tooltip tl">
-            <strong>Don't forget a protocol!</strong> Try adding either <a href="#">http://</a> or <a href="#">https://</a>.
+            <span class="protocol">
+              <strong>Don't forget a protocol!</strong> Try adding either <a href="#">http://</a> or <a href="#">https://</a>.
+            </span>
+            <!-- TODO: We should expose a tooltip error if the URL looks malformed. -->
+            <span class="error">
+              <strong>Looks like an invalid URL!</strong> Try again.
+            </span>
           </div>
           <div class="hint">
             {{ loc('App URLs must start with a protocol (for example, '
