@@ -10,25 +10,27 @@
   <h1>{{ _('Submit an App') }}</h1>
   {{ progress(request, addon=addon, step=step) }}
   <section id="submit-details" class="primary">
-    <header>
+    <header class="island">
       <img src="{{ addon.icon_url }}">
       <h2>{{ addon.name }}</h2>
-      {{ loc('Details page:') }}
+      <p class="details-url">
+        <em>{{ loc('Details page:') }}</em>
+        {# The URL for the details page hasn't been finalized,
+           so let's not reverse it just yet. #}
+        {{ settings.SITE_URL }}/&hellip;/{{ addon.app_slug }}
+        <a href="#">{{ loc('Change name') }}</a>
+      </p>
     </header>
     <p>
       {{ loc("Please review your listing information below. We've pre-filled "
              "as much as we can from your manifest.") }}
     </p>
-    <form class="c" method="post">
-      <h2>Name</h2>
-      <p><label><input type="text" name="name" class="large"></label></p>
-      <h2>Description</h2>
-      <p><label><textarea name="description" rows="4" cols="50"></textarea></label></p>
-      <footer>
-        <button class="prominent">
-          Continue
-        </button>
-      </footer>
+    <form method="post">
+      {# TODO: Add newsletter field. #}
+      {{ csrf() }}
+      <button class="prominent" type="submit">
+        {{ _('Continue') }}
+      </button>
     </form>
   </section>
 {% endblock %}
