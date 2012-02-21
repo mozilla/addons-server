@@ -1,12 +1,12 @@
 import functools
 
 from django import http
+from django.core.exceptions import ObjectDoesNotExist
 import waffle
 
 from amo.decorators import login_required
 from access import acl
 from addons.decorators import addon_view
-from mkt.developers.models import SubmitStep
 
 
 def dev_required(owner_for_post=False, allow_editors=False, webapp=False):
@@ -35,7 +35,13 @@ def dev_required(owner_for_post=False, allow_editors=False, webapp=False):
             # Ignore disabled so they can view their add-on.
             elif acl.check_addon_ownership(request, addon, viewer=True,
                                            ignore_disabled=True):
-                step = SubmitStep.objects.filter(addon=addon)
+                try:
+                    # If it didn't go through the app submission
+                    # checklist. Don't die. This will be useful for
+                    # creating apps with an API later.
+                    step = addon.appsubmissionchecklist.get_next()
+                except ObjectDoesNotExist:
+                    step = None
                 # Redirect to the submit flow if they're not done.
                 if not getattr(f, 'submitting', False) and step:
                     return _resume(addon, step)

@@ -261,15 +261,12 @@ class TestDetails(TestSubmit):
         self._test_anonymous()
 
     def test_resume_step(self):
-        # Enable when the magic decorator jumps you to the correct step.
-        raise SkipTest
-        # I already read the Terms and uploaded my Manifest.
         self._step()
-        # So jump me to the Details step.
         payments_url = reverse('submit.app.payments',
                                args=[self.webapp.app_slug])
         r = self.client.get(payments_url, follow=True)
-        self.assertRedirects(r, reverse('submit.app.manifest'))
+        self.assertRedirects(r, reverse('submit.app.details',
+                                        args=[self.webapp.app_slug]))
 
     def test_not_owner(self):
         self._step()

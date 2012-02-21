@@ -1597,9 +1597,12 @@ def submit_resume(request, addon_id, addon):
 
 def _resume(addon, step):
     if step:
-        return redirect(_step_url(step[0].step, addon.is_webapp()), addon.slug)
+        if step in ['terms', 'manifest']:
+            return redirect('submit.app.%s' % step)
+        return redirect(reverse('submit.app.%s' % step,
+                                args=[addon.app_slug]))
 
-    return redirect(addon.get_dev_url('versions'))
+    return redirect(addon.get_dev_url('edit'))
 
 
 @login_required

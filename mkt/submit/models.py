@@ -21,3 +21,13 @@ class AppSubmissionChecklist(amo.models.ModelBase):
             if getattr(self, step, False):
                 completed.append(step)
         return completed
+
+    def get_next(self):
+        """Return the next step."""
+        # Look through all the steps as defined in order and
+        # see for each of the steps if they are completed or not.
+        #
+        # We don't care about done, plus there's no column for it.
+        for step, label in mkt.APP_STEPS[:-1]:
+            if not getattr(self, step, False):
+                return step

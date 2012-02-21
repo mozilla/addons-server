@@ -12,6 +12,7 @@ from mkt.developers import tasks
 from mkt.submit.models import AppSubmissionChecklist
 from users.models import UserProfile
 from . import forms
+from .decorators import submit_step
 
 
 @login_required
@@ -27,6 +28,7 @@ def submit(request):
 
 
 @login_required
+@submit_step('terms')
 def terms(request):
     # If dev has already agreed, continue to next step.
     # TODO: When this code is finalized, use request.amo_user instead.
@@ -47,6 +49,7 @@ def terms(request):
 
 
 @login_required
+@submit_step('manifest')
 def manifest(request):
     # TODO: Have decorator handle the redirection.
     user = UserProfile.objects.get(pk=request.user.id)
@@ -76,6 +79,7 @@ def manifest(request):
 
 
 @dev_required
+@submit_step('details')
 def details(request, addon_id, addon):
     form_basic = AppFormBasic(request.POST or None, instance=addon,
                               request=request)
@@ -91,6 +95,7 @@ def details(request, addon_id, addon):
 
 
 @dev_required
+@submit_step('payments')
 def payments(request, addon_id, addon):
     form = forms.PremiumTypeForm(request.POST or None)
     if request.POST and form.is_valid():
@@ -107,6 +112,7 @@ def payments(request, addon_id, addon):
 
 @dev_required
 def done(request, addon_id, addon):
+    # No submit step forced on this page, we don't really care.
     return jingo.render(request, 'submit/done.html', {
                         'step': 'done', 'addon': addon
                         })

@@ -3,6 +3,7 @@ from nose.tools import eq_
 from addons.models import Addon
 import amo
 import amo.tests
+from amo.urlresolvers import reverse
 from market.models import Price
 
 
@@ -85,3 +86,11 @@ class TestPaypal(amo.tests.TestCase):
         self.webapp.update(premium_type=amo.ADDON_FREE)
         res = self.client.get(self.url)
         eq_(res.status_code, 302)
+
+    def test_partial_submit(self):
+        from mkt.submit.models import AppSubmissionChecklist
+        AppSubmissionChecklist.objects.create(addon=self.webapp)
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 302)
+        self.assertRedirects(res, reverse('submit.app.terms'))
