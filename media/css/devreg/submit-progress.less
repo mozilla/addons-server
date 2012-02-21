@@ -31,10 +31,11 @@
             position: relative;
             text-align: center;
             width: 30px;
+            text-indent: 2px;
             z-index: 20;
         }
         &:after {
-            border-top: 1px solid @faint-gray;
+            border-top: 2px solid @faint-gray;
             content: "";
             display: block;
             margin-top: -38px;
@@ -46,14 +47,14 @@
             color: @dark-gray;
             font-weight: bold;
             &:before {
-                background: @bg-gray;
-                border: 1px solid @black;
-                color: @black;
+                background: #fff;
+                border: 2px solid @dark-gray;
+                color: @dark-gray;
                 z-index: 20;
             }
             &:after {
                 border-color: @medium-gray;
-                margin-top: -39px;
+                margin-top: -40px;
             }
         }
         &.current {
