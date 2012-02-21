@@ -571,45 +571,6 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         assert res['Location'].endswith(
             reverse('mkt.developers.addons.market.1', args=[self.addon.slug]))
 
-    @mock.patch('paypal.get_permissions_token', lambda x, y: x.upper())
-    @mock.patch('paypal.get_personal_data', lambda x: {})
-    def test_permissions_token_no_premium(self):
-        self.setup_premium()
-        # They could hit this URL before anything else, we need to cope
-        # with AddonPremium not being there.
-        self.addon.premium.delete()
-        self.addon.update(premium_type=amo.ADDON_FREE)
-        url = self.addon.get_dev_url('acquire_refund_permission')
-        data = {'request_token': 'foo', 'verification_code': 'bar'}
-        self.client.get('%s?%s' % (url, urlencode(data)))
-        self.addon = Addon.objects.get(pk=self.addon.pk)
-        eq_(self.addon.addonpremium.paypal_permissions_token, 'FOO')
-
-    def test_logs(self):
-        self.setup_premium()
-        self.addon.premium.update(paypal_permissions_token='foo')
-        url = self.addon.get_dev_url('market.4')
-        eq_(self.client.post(url, {}).status_code, 302)
-        eq_(ActivityLog.objects.for_addons(self.addon)[0].action,
-            amo.LOG.MAKE_PREMIUM.id)
-
-    def test_can_edit(self):
-        self.setup_premium()
-        assert 'no-edit' not in self.client.get(self.url).content
-
-    def test_no_delete_link_premium_addon(self):
-        self.setup_premium()
-        doc = pq(self.client.get(self.addon.get_dev_url('versions')).content)
-        eq_(len(doc('#delete-addon')), 0)
-
-    def test_no_delete_premium_addon(self):
-        self.setup_premium()
-        res = self.client.post(self.addon.get_dev_url('delete'),
-                               {'password': 'password'})
-        eq_(res.status_code, 302)
-        assert Addon.objects.filter(pk=self.addon.id).exists(), (
-            "Unexpected: Addon should exist")
-
 
 class TestIssueRefund(amo.tests.TestCase):
     fixtures = ('base/users', 'base/addon_3615')
