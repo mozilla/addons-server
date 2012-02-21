@@ -123,6 +123,9 @@ MINIFY_BUNDLES['css'].update({
         # Forms (used for tables on "Manage ..." pages).
         'css/devreg/devhub-forms.less',
 
+        # Landing page
+        'css/devreg/landing.less',
+
         # "Manage ..." pages.
         'css/devreg/manage.less',
         'css/devreg/prose.less',
