@@ -249,12 +249,15 @@ $(document).ready(function() {
     z.noEdit = $("body").hasClass("no-edit");
     if (z.noEdit) {
         $primary = $(".primary");
-        $els = $primary.find("input, select, textarea, button, a.button");
-        $els.attr("disabled", "disabled");
+        var $form_els = $primary.find("input, select, textarea, button");
+        $form_els.attr("disabled", "disabled");
+        var $link_els = $primary.find("a.button");
+        $link_els.addClass("disabled");
         $primary.find("span.handle, a.remove").hide();
         $('.primary h2 a.button').remove();
         $(document).ready(function() {
-            $els.unbind().undelegate();
+            $form_els.unbind().undelegate();
+            $link_els.unbind().undelegate();
         });
     }
 })();

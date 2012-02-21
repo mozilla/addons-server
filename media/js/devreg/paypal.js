@@ -60,7 +60,7 @@ exports.check_with_paypal = function() {
     var $paypal_verify = $('#paypal-id-verify'),
         target = '.paypal-fail';
     if ($paypal_verify.length) {
-        $.post($paypal_verify.attr('data-url'), function(d) {
+        $.get($paypal_verify.attr('data-url'), function(d) {
                 $paypal_verify.find('p').eq(0).hide();
                 target = d.valid ? '.paypal-pass' : '.paypal-fail';
                 $paypal_verify.find(target).show();
