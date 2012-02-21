@@ -274,10 +274,11 @@ def paypal_setup(request, addon_id, addon, webapp):
                         context)
 
 
+@json_view
 @dev_required(owner_for_post=True, webapp=True)
 def paypal_setup_check(request, addon_id, addon, webapp):
     if not addon.paypal_id:
-        return {'valid': False, 'message': ['No PayPal email']}
+        return {'valid': False, 'message': ['No PayPal email.']}
 
     check = Check(addon=addon)
     check.all()

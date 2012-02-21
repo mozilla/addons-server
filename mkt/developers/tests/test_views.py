@@ -22,6 +22,7 @@ from waffle import helpers
 import amo
 import amo.tests
 import paypal
+from paypal.check import Check
 from amo.helpers import (absolutify, babel_datetime, timesince)
 from amo.tests import (assert_no_validation_errors, close_to_now, formset,
                        initial)
@@ -335,45 +336,41 @@ class TestEditPayments(amo.tests.TestCase):
 
 
 class TestPaymentsProfile(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
-        self.addon = Addon.objects.get(id=3615)
-        assert self.client.login(username='del@icio.us', password='password')
+        self.addon = Addon.objects.get(id=337141)
+        AddonUser.objects.create(addon=self.addon,
+                                 user=UserProfile.objects.get(pk=999))
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        self.url = self.addon.get_dev_url('paypal_setup_check')
 
-    @mock.patch('paypal.check_paypal_id')
-    @mock.patch('paypal.get_paykey')
-    def test_checker_valid_addon(self, gp, cpi):
-        raise SkipTest
-        cpi.return_value = (True, "")
-        gp.return_value = "123abc"
-
-        url = self.addon.get_dev_url('paypal_setup_check')
-        res = self.client.get(url)
+    def test_checker_no_paypal_id(self):
+        res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        result = json.loads(r.content)
+        result = json.loads(res.content)
+        eq_(result['valid'], False)
+
+    @mock.patch.object(Check, 'all')
+    def test_checker_pass(self, all_):
+        self.addon.update(paypal_id='a@a.com')
+        Check.passed = True
+
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        result = json.loads(res.content)
         eq_(result['valid'], True)
 
-    @mock.patch('paypal.check_paypal_id')
-    @mock.patch('paypal.get_paykey')
-    def test_checker_no_paykey(self, gp, cpi):
-        raise SkipTest
-        cpi.return_value = (True, "")
-        gp.side_effect = paypal.PaypalError()
+    @mock.patch.object(Check, 'all')
+    def test_checker_error(self, all_):
+        self.addon.update(paypal_id='a@a.com')
+        Check.passed = False
 
-        url = self.addon.get_dev_url('paypal_setup_check')
-        res = self.client.get(url)
+        res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        result = json.loads(r.content)
-
+        result = json.loads(res.content)
         eq_(result[u'valid'], False)
-        assert len(result[u'message']) > 0, "No error on missing paykey"
-
-    @mock.patch('paypal.get_paykey')
-    def test_checker_no_pre_approval(self, get_paykey):
-        raise SkipTest
-        self.client.get(self.addon.get_dev_url('paypal_setup_check'))
-        assert 'preapprovalKey' not in get_paykey.call_args[0][0]
 
 
 class MarketplaceMixin(object):
