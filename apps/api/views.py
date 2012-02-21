@@ -339,6 +339,9 @@ class SearchView(APIView):
 
         qs = Addon.search().query(or_=name_query(query))
         filters.update(qs_filters)
+        if 'type' not in filters:
+            # Filter by ALL types, which is really all types except for apps.
+            filters['type__in'] = list(amo.ADDON_SEARCH_TYPES)
         qs = qs.filter(**filters)
 
         return self.render('api/search.xml', {
@@ -400,7 +403,7 @@ class ListView(APIView):
         """
         limit = min(MAX_LIMIT, int(limit))
         APP, platform = self.request.APP, platform.lower()
-        qs = Addon.objects.listed(APP)
+        qs = Addon.objects.listed(APP).exclude(type=amo.ADDON_WEBAPP)
         shuffle = True
 
         if list_type in ('by_adu', 'featured'):

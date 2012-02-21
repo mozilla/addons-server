@@ -552,6 +552,11 @@ class ListTest(TestCase):
         response = make_call('list')
         self.assertContains(response, '<addon id', 3)
 
+    def test_ignore_apps(self):
+        Addon.objects.update(type=amo.ADDON_WEBAPP)
+        response = make_call('list')
+        self.assertNotContains(response, '<addon id')
+
     def test_type_filter(self):
         """
         This tests that list filtering works.
@@ -833,6 +838,12 @@ class SearchTest(ESTestCase):
 
             response = self.client.get(url)
             self.assertContains(response, text, msg_prefix=url)
+
+    def test_ignore_apps(self):
+        Addon.objects.update(type=amo.ADDON_WEBAPP)
+        self.reindex(Addon)
+        rp = self.client.get('/en-US/firefox/api/1.2/search/delicious')
+        self.assertNotContains(rp, 'Delicious')
 
     def test_search_limits(self):
         """
