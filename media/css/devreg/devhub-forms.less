@@ -225,6 +225,7 @@ textarea {
 /* AJAX forms */
 input.loading-submit:after,
 button.loading-submit:after,
+#paypal-id-verify p.loading-submit:before,
 .browserid-login.loading-submit:after {
     background-image: url(../../img/zamboni/loading-white.gif);
     content: "";
@@ -235,6 +236,15 @@ button.loading-submit:after,
     right: -10px;
     top: 0;
     width: 16px;
+}
+
+#paypal-id-verify p.loading-submit:before {
+    display: inline-block;
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-left: 0px;
+    margin-right: 10px;
 }
 
 .browserid-login.loading-submit:after {

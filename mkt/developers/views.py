@@ -277,13 +277,11 @@ def paypal_setup(request, addon_id, addon, webapp):
 @dev_required(owner_for_post=True, webapp=True)
 def paypal_setup_check(request, addon_id, addon, webapp):
     if not addon.paypal_id:
-        messages.error(request, 'We need a PayPal email before continuing.')
-        return redirect(addon.get_dev_url('paypal_setup'))
-    check = Check(addon)
+        return {'valid': False, 'message': ['No PayPal email']}
+
+    check = Check(addon=addon)
     check.all()
-    return jingo.render(request,
-                        'developers/payments/paypal-check.html',
-                        {'addon': addon, 'check': check})
+    return {'valid': check.passed, 'message': check.errors}
 
 
 @dev_required(owner_for_post=True, webapp=True)
@@ -1691,15 +1689,3 @@ def docs(request, doc_name=None, doc_page=None):
     return jingo.render(request, 'developers/docs/%s' % filename)
 
 
-@json_view
-@post_required
-def check_paypal(request):
-    if 'email' not in request.POST:
-        raise http.Http404()
-
-    check = Check(paypal_id=request.POST['email'])
-    check.all()
-    # TODO(andym): we will want to l10n these messages at some point and
-    # we'll need to change this to give more detail back to the user than
-    # a tooltip at a later date.
-    return {'valid': check.passed, 'message': ' '.join(check.errors)}

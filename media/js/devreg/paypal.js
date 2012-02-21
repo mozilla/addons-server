@@ -47,16 +47,37 @@ exports.payment_setup = function() {
         $.each(fields[value][1], function() { $('#' + this).hide(); });
     };
 
-    update_forms($('section.payments input[name=premium_type]:checked').val());
-    $('section.payments input[name=premium_type]').click(function(e) {
-        update_forms($(this).val());
-    });
+    if ($('section.payments input[name=premium_type]').length) {
+        update_forms($('section.payments input[name=premium_type]:checked').val());
+        $('section.payments input[name=premium_type]').click(function(e) {
+            update_forms($(this).val());
+        });
+    };
 };
+
+
+exports.check_with_paypal = function() {
+    var $paypal_verify = $('#paypal-id-verify'),
+        target = '.paypal-fail';
+    if ($paypal_verify.length) {
+        $.post($paypal_verify.attr('data-url'), function(d) {
+                $paypal_verify.find('p').eq(0).hide();
+                target = d.valid ? '.paypal-pass' : '.paypal-fail';
+                $paypal_verify.find(target).show();
+                $.each(d.message, function() {
+                    $paypal_verify.find('ul').append('<li class="status-fail"><strong>' + d.message + '</strong></li>');
+                })
+            }
+        );
+    }
+};
+
 
 })(typeof exports === 'undefined' ? (this.dev_paypal = {}) : exports);
 
 $(document).ready(function() {
     dev_paypal.email_setup();
     dev_paypal.payment_setup();
+    dev_paypal.check_with_paypal();
 });
 

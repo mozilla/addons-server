@@ -36,20 +36,6 @@ submit_apps_patterns = patterns('',
 )
 
 
-# TODO: delete these and all related stuff.
-def marketplace_patterns(prefix):
-    return patterns('',
-        url('^1$', views.marketplace_paypal,
-            name='mkt.developers.%s.market.1' % prefix),
-        url('^2$', views.marketplace_pricing,
-            name='mkt.developers.%s.market.2' % prefix),
-        url('^3$', views.marketplace_upsell,
-            name='mkt.developers.%s.market.3' % prefix),
-        url('^4$', views.marketplace_confirm,
-            name='mkt.developers.%s.market.4' % prefix),
-    )
-
-
 def paypal_patterns(prefix):
     return patterns('',
         url('^$', views.paypal_setup,
@@ -97,8 +83,6 @@ app_detail_patterns = patterns('',
     url('^issue_refund$', views.issue_refund,
         name='mkt.developers.apps.issue_refund'),
     url('^refunds$', views.refunds, name='mkt.developers.apps.refunds'),
-
-    url('^payments/', include(marketplace_patterns('apps'))),
 )
 
 # These will all start with /addon/<addon_id>/
@@ -118,7 +102,6 @@ detail_patterns = patterns('',
         name='mkt.developers.addons.payments.disable'),
     url('^payments/permission/refund$', views.acquire_refund_permission,
         name='mkt.developers.addons.acquire_refund_permission'),
-    url('^payments/', include(marketplace_patterns('addons'))),
     url('^issue_refund$', views.issue_refund,
         name='mkt.developers.addons.issue_refund'),
     url('^refunds$', views.refunds, name='mkt.developers.addons.refunds'),
@@ -262,8 +245,4 @@ urlpatterns = decorate(write, patterns('',
         views.docs, name='mkt.developers.docs'),
     url('docs/(?P<doc_name>[-_\w]+)/(?P<doc_page>[-_\w]+)',
         views.docs, name='mkt.developers.docs'),
-
-    # PayPal Checker
-    url('^check_paypal$', views.check_paypal,
-        name='mkt.developers.check_paypal'),
 ))

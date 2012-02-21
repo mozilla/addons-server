@@ -12,14 +12,12 @@
     {% if addon.paypal_id %}
     <div class="island">
       <p><strong>{{ loc('PayPal email address for this app.') }}</strong></p>
-      <p class="indent">{{ addon.paypal_id }} <a href="#" id="paypal-change-address">Change this</a></p>
+      <p class="indent">{{ addon.paypal_id }}
       <footer class="listing-footer">
-        <a class="button" href="{{ addon.get_dev_url('paypal_setup_check') }}" class="button">
-          Check your account setup</a>
-        <a class="button" href="{{ addon.get_dev_url('paypal_setup_bounce') }}" class="button">
-          Set up permissions</a>
+        <a class="button" href="#" id="paypal-change-address">Change paypal email</a>
       </footer>
     </div>
+
     <div class="island js-hidden" id="paypal-change-address-form">
       <h2>Change your PayPal account</h2>
       <p>{{ loc('Changing your PayPal account will mean setting up permissions
@@ -34,6 +32,24 @@
         </footer>
       </form>
     </div>
+
+    <div class="island" id="paypal-id-verify" data-url="{{ addon.get_dev_url('paypal_setup_check') }}">
+      <p class="loading-submit">{{ loc('Checking your PayPal account configuration.') }}</p>
+      <div class="paypal-pass js-hidden">
+        <p><strong>{{ loc('Check passed.') }}</strong></p>
+        <p>{{ loc('Everything looks good for selling your app on the marketplace.') }}</p>
+      </div>
+      <div class="paypal-fail js-hidden">
+        <p><strong>{{ loc('Check failed.') }}</strong></p>
+        <p>{{ loc('There are errors on your paypal account that will need to be fixed.') }}</p>
+        <ul />
+     </div>
+     <footer class="listing-footer">
+        <a class="button" href="{{ addon.get_dev_url('paypal_setup_bounce') }}" class="button">
+          Set up permissions</a>
+      </footer>
+    </div>
+
     {% else %}
     <div class="island">
       <form method="post" class="devhub-form">
