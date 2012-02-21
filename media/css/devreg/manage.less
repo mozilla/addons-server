@@ -119,8 +119,7 @@
     border: 1px solid @light-gray;
     background: #eee;
     .border-radius(5px);
-    color: #888;
-    float: left;
+    color: @medium-gray;
     padding: 0;
     width: 400px;
     span, input {
@@ -132,17 +131,17 @@
         float: left;
         line-height: 1.2;
         overflow: hidden;
-        max-width: 195px;
+        max-width: 240px;
         padding: 5px;
         text-overflow: ellipsis;
         white-space: nowrap;
     }
-    input {
+    input[type=text] {
         .border-radius(0 5px 5px 0);
         .box-shadow(none);
         border: 0;
         float: right;
-        width: 150px;
+        width: 170px;
     }
 }
 .edit_initially_hidden {
