@@ -76,14 +76,17 @@ def manifest(request):
 
 @dev_required
 def details(request, addon_id, addon):
-    return jingo.render(request, 'submit/details.html', {'step': 'details'})
+    return jingo.render(request, 'submit/details.html', {
+        'step': 'details',
+        'addon': addon,
+    })
 
 
-@login_required
-def payments(request):
+@dev_required
+def payments(request, addon_id, addon):
     pass
 
 
-@login_required
-def done(request):
+@dev_required
+def done(request, addon_id, addon):
     pass

@@ -5,18 +5,19 @@ import mkt
 from mkt.submit.models import AppSubmissionChecklist
 
 
-def del_by_key(data, delete=[]):
+def del_by_key(data, delete):
     """Delete a tuple from a list of tuples based on its first item."""
     data = list(data)
     for idx, item in enumerate(data):
-        if item[0] in delete:
+        if ((isinstance(item[0], basestring) and item[0] == delete) or
+            (isinstance(item[0], (list, tuple)) and item[0] in delete)):
             del data[idx]
     return data
 
 
 @register.function
 def progress(request, addon, step):
-    if addon and addon.is_webapp():
+    if addon and not addon.is_webapp():
         return NotImplementedError
 
     steps = list(mkt.APP_STEPS)
@@ -26,11 +27,14 @@ def progress(request, addon, step):
     #if request.amo_user.read_dev_agreement:
     #    steps = del_by_key(steps, 'terms')
 
-    checklist = AppSubmissionChecklist.objects.filter(addon=addon)
-    if checklist.exists():
-        completed = checklist[0].get_completed()
-    elif step and step != 'terms':
-        # We don't yet have a checklist yet if we just read the Dev Agreement.
+    if addon:
+        try:
+            completed = addon.appsubmissionchecklist.get_completed()
+        except AppSubmissionChecklist.DoesNotExist:
+            pass
+
+    # We don't yet have a checklist yet if we just read the Dev Agreement.
+    if not completed and step and step != 'terms':
         completed = ['terms']
 
     # Payments step was skipped, so remove it.
