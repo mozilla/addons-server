@@ -9,6 +9,7 @@ from django.conf import settings
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
+import waffle
 
 import amo
 import amo.tests
@@ -547,6 +548,8 @@ class TestUserRegisterForm(UserFormBase):
 
     @patch.object(settings, 'APP_PREVIEW', True)
     def test_no_register(self):
+        waffle.models.Switch.objects.create(name='browserid-login',
+                                            active=True)
         res = self.client.post(reverse('users.register'), self.good_data())
         eq_(res.status_code, 200)
         eq_(len(pq(res.content)('div.error')), 1)
