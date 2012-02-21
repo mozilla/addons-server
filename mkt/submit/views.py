@@ -81,8 +81,7 @@ def details(request, addon_id, addon):
                               request=request)
     if request.POST and form_basic.is_valid():
         addon = form_basic.save(addon)
-        # TODO: Redirect to `payments` or `done` - depending on user choice.
-        return redirect('submit.payments')
+        return redirect('submit.app.payments', addon.app_slug)
     return jingo.render(request, 'submit/details.html', {
         'step': 'details',
         'addon': addon,
@@ -96,7 +95,7 @@ def payments(request, addon_id, addon):
     if request.POST and form.is_valid():
         # Save this to the addon, eg:
         addon.update(premium_type=form.cleaned_data['premium_type'])
-        return redirect('submit.done')
+        return redirect('submit.app.done', addon.app_slug)
     return jingo.render(request, 'submit/payments.html', {
                         'step': 'payments',
                         'addon': addon,

@@ -1,0 +1,27 @@
+{% extends 'developers/base_impala.html' %}
+
+{% set title = _('App Manifest') %}
+
+{% block title %}{{ hub_page_title(title) }}{% endblock %}
+
+{% block content %}
+  {{ hub_breadcrumbs(items=[(None, _('Submit App'))]) }}
+  <h1>{{ _('Submit an App') }}</h1>
+  {{ progress(request, addon=addon, step=step) }}
+  <section id="submit-payment" class="primary">
+    <h2>Marketplace Payments</h2>
+    <form method="post" id="upload-webapp">
+      <div class="brform island swagger c">
+        {{ csrf() }}
+        <p>{{ loc('Will your app use payments?') }} </p>
+        <p>
+          {{ form.premium_type.errors }}
+          {{ form.premium_type }}
+        </p>
+      </div>
+      <button class="prominent continue c" type="submit">
+        {{ _('Continue') }}
+      </button>
+    </form>
+  </section>
+{% endblock %}
