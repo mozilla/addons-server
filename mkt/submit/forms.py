@@ -6,8 +6,9 @@ import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
+from addons.forms import AddonFormBasic
+from addons.models import Addon
 from files.models import FileUpload
-from mkt.developers.forms import AppFormBasic as BaseAppFormBasic
 from translations.widgets import TransInput, TransTextarea
 from translations.fields import TransField
 from users.models import UserProfile
@@ -51,8 +52,8 @@ class PremiumTypeForm(happyforms.Form):
                                 widget=forms.RadioSelect())
 
 
-class AppDetailsBasicForm(BaseAppFormBasic):
-    """Form to add basic app info."""
+class AppDetailsBasicForm(AddonFormBasic):
+    """Form for "Details" submission step."""
     name = TransField(max_length=128, widget=TransInput(attrs={'class': 'l'}))
     slug = forms.CharField(max_length=30,
                            widget=forms.TextInput(attrs={'class': 'm'}))
@@ -60,3 +61,12 @@ class AppDetailsBasicForm(BaseAppFormBasic):
         label=_("Provide a brief summary of your app's functionality"),
         help_text=_('This summary will be shown in listings and searches.'),
         widget=TransInput(attrs={'rows': 4, 'class': 'full'}))
+    description = TransField(required=False,
+        label=_('Provide a more detailed description of your app'),
+        help_text=_('This description will appear on the details page.'),
+        widget=TransTextarea)
+
+    class Meta:
+        model = Addon
+        fields = ('name', 'slug', 'summary', 'tags', 'description',
+                  'homepage', 'support_email', 'support_url')

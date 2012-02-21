@@ -11,10 +11,16 @@
   {% if opt %}{{ optional() -}}{% endif %}
 
   {% if not tooltip %}{% set tooltip = field.help_text %}{% endif %}
-  {% if tooltip %}{{ tip(None, tooltip) }}{% endif %}
+  {% if not hint and tooltip %}{{ tip(None, tooltip) }}{% endif %}
+
   {% if not choice %}
     {{ field.as_widget(attrs=attrs) }}
   {% endif %}
+
+  {% if hint and tooltip %}
+    <span class="hint">{{ field.help_text }}</span>
+  {% endif %}
+
   {{ field.errors }}
 {% if tag %}
   </{{ tag }}>

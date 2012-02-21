@@ -290,7 +290,7 @@ class TestDetails(TestSubmit):
         data.update(**kw)
         return data
 
-    def test_submit_success(self):
+    def test_success(self):
         self._step()
         # Post and be redirected.
         self.client.post(self.url, self.get_dict())
@@ -301,7 +301,7 @@ class TestDetails(TestSubmit):
         eq_(unicode(addon.name), 'Test name')
         eq_(addon.app_slug, 'testname')
         eq_(addon.summary, 'Hello!')
-        #eq_(addon.description, 'desc')
+        eq_(addon.description, 'desc')
 
     def _setup_other_webapp(self):
         self._step()
@@ -309,41 +309,41 @@ class TestDetails(TestSubmit):
         app = amo.tests.addon_factory(type=amo.ADDON_WEBAPP, name='Cool App')
         eq_(ReverseNameLookup(webapp=True).get(app.name), app.id)
 
-    def test_submit_name_unique(self):
+    def test_name_unique(self):
         self._setup_other_webapp()
         r = self.client.post(self.url, self.get_dict(name='Cool App'))
         error = 'This name is already in use. Please choose another.'
         self.assertFormError(r, 'form_basic', 'name', error)
 
-    def test_submit_name_unique_strip(self):
+    def test_name_unique_strip(self):
         # Make sure we can't sneak in a name by adding a space or two.
         self._setup_other_webapp()
         r = self.client.post(self.url, self.get_dict(name='  Cool App  '))
         error = 'This name is already in use. Please choose another.'
         self.assertFormError(r, 'form_basic', 'name', error)
 
-    def test_submit_name_unique_case(self):
+    def test_name_unique_case(self):
         # Make sure unique names aren't case sensitive.
         self._setup_other_webapp()
         r = self.client.post(self.url, self.get_dict(name='cool app'))
         error = 'This name is already in use. Please choose another.'
         self.assertFormError(r, 'form_basic', 'name', error)
 
-    def test_submit_name_required(self):
+    def test_name_required(self):
         self._step()
         r = self.client.post(self.url, self.get_dict(name=''))
         eq_(r.status_code, 200)
         self.assertFormError(r, 'form_basic', 'name',
                              'This field is required.')
 
-    def test_submit_name_length(self):
+    def test_name_length(self):
         self._step()
         r = self.client.post(self.url, self.get_dict(name='a' * 129))
         eq_(r.status_code, 200)
         self.assertFormError(r, 'form_basic', 'name',
             'Ensure this value has at most 128 characters (it has 129).')
 
-    def test_submit_slug_invalid(self):
+    def test_slug_invalid(self):
         self._step()
         # Submit an invalid slug.
         d = self.get_dict(slug='slug!!! aksl23%%')
@@ -353,26 +353,31 @@ class TestDetails(TestSubmit):
             "Enter a valid 'slug' consisting of letters, numbers, underscores "
             "or hyphens.")
 
-    def test_submit_slug_required(self):
+    def test_slug_required(self):
         self._step()
         r = self.client.post(self.url, self.get_dict(slug=''))
         eq_(r.status_code, 200)
         self.assertFormError(r, 'form_basic', 'slug',
                              'This field is required.')
 
-    def test_submit_summary_required(self):
+    def test_summary_required(self):
         self._step()
         r = self.client.post(self.url, self.get_dict(summary=''))
         eq_(r.status_code, 200)
         self.assertFormError(r, 'form_basic', 'summary',
                              'This field is required.')
 
-    def test_submit_summary_length(self):
+    def test_summary_length(self):
         self._step()
         r = self.client.post(self.url, self.get_dict(summary='a' * 251))
         eq_(r.status_code, 200)
         self.assertFormError(r, 'form_basic', 'summary',
             'Ensure this value has at most 250 characters (it has 251).')
+
+    def test_description_optional(self):
+        self._step()
+        r = self.client.post(self.url, self.get_dict(description=''))
+        self.assertNoFormErrors(r)
 
 
 class TestPayments(TestSubmit):

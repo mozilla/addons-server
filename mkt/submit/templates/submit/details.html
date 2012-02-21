@@ -48,7 +48,8 @@
           </label>
         </div>
       </header>
-      {{ form_field(form_basic.summary) }}
+      {{ form_field(form_basic.summary, hint=True) }}
+      {{ form_field(form_basic.description, hint=True) }}
       <button class="prominent continue c" type="submit">
         {{ _('Continue') }}
       </button>
