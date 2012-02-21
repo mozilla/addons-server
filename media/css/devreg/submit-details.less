@@ -1,9 +1,10 @@
 @import 'lib';
 
-/* Houdinis are  */
+/* Houdinis are toggleable form fields. */
 label.houdini {
-    .before, .before * {
-        display: inline-block;
+    .before, .before *, .after .done {
+        /* If there is no `.active` nor `.ready`, then hide all toggles. */
+        display: none;
     }
     .edit, .done {
         margin-left: 5px;
@@ -23,39 +24,51 @@ label.houdini {
             color: @medium-gray;
         }
     }
-    .after {
-        /* This is where hidden content (i.e., form fields) lives. */
-        display: none;
+    &.ready {
+        .before, .before * {
+            display: inline-block;
+        }
+        .after {
+            /* This is where hidden content (i.e., form fields) lives. */
+            display: none;
+        }
     }
     &.active {
         /* Toggle content. */
         .before {
             display: none;
         }
-        .after {
+        .after, .after * {
             display: inline-block;
         }
     }
 }
 
+.devhub-form label.houdini {
+    display: inline-block;
+    margin: 0;
+}
+
 #submit-details {
     #general-details {
         font-family: @open-stack;
-        margin-top: 1em;
+        margin: 2em 0;
+        padding-left: 95px;
+        position: relative;
         h2 {
             color: @blue;
             font-weight: bold;
             margin: 0 0 5px;
         }
         img {
-            float: left;
-            margin-right: 15px;
+            position: absolute;
+            left: 15px;
         }
         b {
             color: @medium-gray;
         }
         .details-url {
-            margin: 0;
+            margin: 0 0 5px;
             .houdini {
                 .before {
                     margin: 6px 5px;
@@ -64,6 +77,9 @@ label.houdini {
                     margin-left: 5px;
                 }
             }
+        }
+        .errorlist {
+            margin: 5px 0 10px;
         }
     }
     .continue {

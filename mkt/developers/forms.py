@@ -33,8 +33,9 @@ from files.models import File, FileUpload, Platform
 from files.utils import parse_addon, VERSION_RE
 from market.models import AddonPremium, Price, AddonPaymentData
 from payments.models import InappConfig
-from translations.widgets import TranslationTextarea, TranslationTextInput
-from translations.fields import TransTextarea, TransField
+from translations.widgets import (TransInput, TransTextarea,
+                                  TranslationTextarea, TranslationTextInput)
+from translations.fields import TransField
 from translations.models import delete_translation, Translation
 from translations.forms import TranslationFormMixin
 from versions.models import License, Version, ApplicationsVersions
@@ -1149,8 +1150,9 @@ def DependencyFormSet(*args, **kw):
 
 class AppFormBasic(addons.forms.AddonFormBase):
     """Form to edit basic app info."""
-    name = TransField(max_length=128)
-    slug = forms.CharField(max_length=30)
+    name = TransField(max_length=128, widget=TransInput(attrs={'class': 'l'}))
+    slug = forms.CharField(max_length=30,
+                           widget=forms.TextInput(attrs={'class': 'm'}))
     summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
                          max_length=250)
 

@@ -15,38 +15,44 @@
       {{ loc("Please review your listing information below. We've pre-filled "
              "as much as we can from your manifest.") }}
     </p>
-    <header id="general-details" class="island swagger c">
-      <img src="{{ addon.get_icon_url(64) }}">
-      <label class="houdini inactive">
-        <span class="before">
-          <h2 class="output">{{ addon.name }}</h2>
-          <span class="edit">{{ _('Edit') }}</span>
-        </span>
-        <span class="after">
-          <input type="text" name="name" id="id_name" class="l" value="{{ addon.name }}">
-          <span class="done">{{ _('Done') }}</span>
-        </span>
-      </label>
-      <p class="details-url">
-        <b>{{ loc('Details page:') }}</b>
-        {# The URL for the details page hasn't been finalized,
-           so let's not reverse it just yet. #}
-        {{ settings.SITE_URL }}/&hellip;/
-        <label class="houdini inactive">
+    <form action="" method="post" class="devhub-form">
+      {{ csrf() }}
+      <header id="general-details" class="island swagger c">
+        <img src="{{ addon.get_icon_url(64) }}">
+        <label class="houdini {{ 'error' if form_basic.name.errors else 'ready' }}">
           <span class="before">
-            <span class="output">{{ addon.app_slug }}</span>
+            <h2 class="output">{{ addon.name }}</h2>
             <span class="edit">{{ _('Edit') }}</span>
           </span>
           <span class="after">
-            <input type="text" name="slug" id="id_slug" class="m" value="{{ addon.app_slug }}">
+            {{ form_basic.name }}
+            {{ form_basic.name.errors }}
             <span class="done">{{ _('Done') }}</span>
           </span>
         </label>
-      </p>
-    </header>
-    <form method="post">
-      {# TODO: Add newsletter field. #}
-      {{ csrf() }}
+        <div class="details-url">
+          <b>{{ loc('Details page:') }}</b>
+          {# The URL for the details page hasn't been finalized,
+             so let's not reverse it just yet. #}
+          {{ settings.SITE_URL }}/&hellip;/
+          <label class="houdini {{ 'error' if form_basic.slug.errors else 'ready' }}">
+            <span class="before">
+              <span class="output">{{ addon.app_slug }}</span>
+              <span class="edit">{{ _('Edit') }}</span>
+            </span>
+            <span class="after">
+              {{ form_basic.slug }}
+              {{ form_basic.slug.errors }}
+              <span class="done">{{ _('Done') }}</span>
+            </span>
+          </label>
+        </div>
+      </header>
+      <div class="brform">
+      {{ form_basic.summary.label_tag() }}
+      {{ form_basic.summary }}
+      {{ form_basic.summary.errors }}
+      </div>
       <button class="prominent continue c" type="submit">
         {{ _('Continue') }}
       </button>

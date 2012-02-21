@@ -3,12 +3,12 @@
 
     exports.houdini = function() {
         // Initialize magic labels.
-        $(document).delegate('.houdini.inactive', 'click', _pd(function(e) {
+        $(document).delegate('.houdini.ready', 'click', _pd(function(e) {
             var $label = $(this);
-            $label.removeClass('inactive').addClass('active');
+            $label.removeClass('ready').addClass('active');
         })).delegate('.houdini.active .done', 'click', _pd(function(e) {
             var $label = $(this).closest('.houdini');
-            $label.removeClass('active').addClass('inactive');
+            $label.removeClass('active').addClass('ready');
             // Replace text with new value.
             $label.find('.output').text($label.find('input').val());
         }));
