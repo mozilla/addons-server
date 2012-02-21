@@ -14,7 +14,6 @@
     {{ css('mkt/devreg') }}
 
     {% block site_css %}
-      {{ css('mkt/devreg-impala') }}
       <!--[if lt IE 9]>
         <script src="{{ media('js/lib/iepp.min.js') }}"></script>
       <![endif]-->
@@ -125,7 +124,7 @@
       {% if waffle.switch('browserid-login') %}
         <script async defer src="https://browserid.org/include.js"></script>
       {% endif %}
-      {{ js('mkt/devreg-legacy') }}
+      {{ js('mkt/devreg') }}
       <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
     {% endblock %}
     {% block js %}{% endblock %}

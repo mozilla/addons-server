@@ -95,7 +95,7 @@ MINIFY_BUNDLES['css'].update({
         # TODO: Use `hub/css/terms.less` for submission.
 
         # Contains reset, clearfix, etc.
-        'css/devreg-impala/base.css',
+        'css/devreg/base.css',
 
         # Base styles (body, breadcrumbs, islands, columns).
         'css/devreg/base.less',
@@ -148,63 +148,7 @@ MINIFY_BUNDLES['css'].update({
         'css/devreg/footer.less',
     ),
     'mkt/devreg-legacy': (
-        #'css/devreg-legacy/main.css',
-        #'css/devreg-legacy/main-mozilla.css',
-        #'css/devreg-legacy/zamboni.css',
-        #'css/devreg-legacy/formset.less',
-        #'css/devreg-legacy/moz-tab.css',
-        #'css/devreg-legacy/faux-zamboni.less',
-
-        # Developer Hub-specific styles.
-        #'css/devreg-legacy/tooltips.less',
         'css/devreg-legacy/developers.less',  # Legacy galore.
-        #'css/devreg-legacy/docs.less',
-        #'css/devreg-legacy/developers.less',
-        #'css/devreg-legacy/formset.less',
-        #'css/devreg-legacy/devhub-forms.less',
-        'css/devreg-legacy/submission.less',
-        #'css/devreg-legacy/refunds.less',
-        #'css/devreg-legacy/devhub-buttons.less',
-        #'css/devreg-legacy/in-app-config.less',
-
-        # I am so sorry.
-        #'css/devreg-impala/typography.less',
-        #'css/devreg-impala/header.less',
-        #'css/devreg-impala/forms.less',
-    ),
-    'mkt/devreg-impala': (
-        #'css/devreg-impala/base.css',
-        #'css/devreg-impala/typography.less',
-        # 'css/devreg-impala/headerfooter.css',  # Potch, Remove.
-        #'css/devreg-impala/forms.less',
-        #'css/devreg-impala/header.less',
-        #'css/devreg-impala/moz-tab.css',
-        #'css/devreg-impala/reviews.less',
-        #'css/devreg-impala/buttons.less',
-        #'css/devreg-impala/addon_details.less',
-        #'css/devreg-impala/policy.less',
-        #'css/devreg-impala/expando.less',
-        #'css/devreg-impala/popups.less',
-        #'css/devreg-impala/l10n.less',
-        #'css/devreg-impala/contributions.less',
-        #'css/devreg-impala/prose.less',
-        #'css/devreg-impala/paginator.less',
-        #'css/devreg-impala/listing.less',
-        #'css/devreg-impala/versions.less',
-        #'css/devreg-impala/users.less',
-        #'css/devreg-impala/tooltips.less',
-        #'css/devreg-impala/login.less',
-        #'css/devreg-impala/apps.less',
-        #'css/devreg-impala/formset.less',
-        #'css/devreg-impala/tables.less',
-
-        # Developer Hub-specific styles.
-        #'css/devreg-impala/developers.less',
-        #'css/devreg-impala/devhub-listing.less',
-        #'css/devreg-impala/dashboard.less',
-        #'css/devreg-impala/devhub-forms.less',
-        'css/devreg-impala/submission.less',
-        #'css/devreg-impala/refunds.less',
     ),
     'hub': (
         'css/impala/base.css',
@@ -224,7 +168,7 @@ MINIFY_BUNDLES['css'].update({
     ),
 })
 MINIFY_BUNDLES['js'].update({
-    'mkt/devreg-legacy': (
+    'mkt/devreg': (
         'js/lib/jquery-1.6.4.js',
         'js/lib/underscore.js',
         'js/zamboni/browser.js',
@@ -270,7 +214,10 @@ MINIFY_BUNDLES['js'].update({
         # Developer Hub-specific scripts.
         'js/zamboni/truncation.js',
         'js/zamboni/upload.js',
-        'js/devreg/devhub.js',  # NEW.
+
+        # New stuff.
+        'js/devreg/devhub.js',
+
         # Specific stuff for making payments nicer.
         'js/devreg/paypal.js',
         'js/zamboni/validator.js',
