@@ -5,6 +5,7 @@
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
 {% block content %}
+  {% include "developers/timeline.html" %}
   <header class="hero">
     {{ hub_breadcrumbs(items=[(None, _('My Submissions'))]) }}
     <h1>{{ title }}</h1>
