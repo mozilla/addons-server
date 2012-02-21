@@ -107,4 +107,6 @@ def payments(request, addon_id, addon):
 
 @dev_required
 def done(request, addon_id, addon):
-    pass
+    return jingo.render(request, 'submit/done.html', {
+                        'step': 'done', 'addon': addon
+                        })

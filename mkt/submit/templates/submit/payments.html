@@ -1,6 +1,6 @@
 {% extends 'developers/base_impala.html' %}
 
-{% set title = _('App Manifest') %}
+{% set title = _('App Payments') %}
 
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
@@ -9,7 +9,7 @@
   <h1>{{ _('Submit an App') }}</h1>
   {{ progress(request, addon=addon, step=step) }}
   <section id="submit-payment" class="primary">
-    <h2>Marketplace Payments</h2>
+    <h2>App Payments</h2>
     <form method="post" id="upload-webapp">
       <div class="brform island swagger c">
         {{ csrf() }}

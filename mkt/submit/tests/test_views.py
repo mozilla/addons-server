@@ -392,7 +392,7 @@ class TestPayments(TestSubmit):
     def _step(self):
         self.user.update(read_dev_agreement=True)
         self.cl = AppSubmissionChecklist.objects.create(addon=self.webapp,
-            terms=True, manifest=True)
+            terms=True, manifest=True, details=True)
         AddonUser.objects.create(addon=self.webapp, user=self.user)
 
     def test_anonymous(self):
@@ -417,3 +417,36 @@ class TestPayments(TestSubmit):
         res = self.client.post(self.url, {'premium_type': amo.ADDON_PREMIUM})
         eq_(res.status_code, 302)
         eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM)
+
+
+class TestDone(TestSubmit):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        super(TestDone, self).setUp()
+        self.webapp = self.get_webapp()
+        self.url = reverse('submit.app.done', args=[self.webapp.app_slug])
+
+    def get_webapp(self):
+        return Webapp.objects.get(id=337141)
+
+    def _step(self):
+        self.user.update(read_dev_agreement=True)
+        self.cl = AppSubmissionChecklist.objects.create(addon=self.webapp,
+            terms=True, manifest=True, details=True, payments=True)
+        AddonUser.objects.create(addon=self.webapp, user=self.user)
+
+    def test_anonymous(self):
+        self._test_anonymous()
+
+    def test_done(self):
+        self._step()
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+
+    def test_payments(self):
+        self._step()
+        self.get_webapp().update(premium_type=amo.ADDON_PREMIUM_INAPP)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(len(pq(res.content)('p.paypal-notes')), 1)
