@@ -1,10 +1,8 @@
 from django.shortcuts import redirect
 
 import jingo
-from tower import ugettext as _
 
 import amo
-from amo import messages
 from amo.decorators import login_required
 from addons.models import Addon, AddonUser
 from mkt.developers.decorators import dev_required
@@ -84,7 +82,7 @@ def details(request, addon_id, addon):
     if request.POST and form_basic.is_valid():
         addon = form_basic.save(addon)
         # TODO: Redirect to `payments` or `done` - depending on user choice.
-        messages.success(request, _('Changes successfully saved.'))
+        return redirect('submit.payments')
     return jingo.render(request, 'submit/details.html', {
         'step': 'details',
         'addon': addon,
@@ -94,7 +92,16 @@ def details(request, addon_id, addon):
 
 @dev_required
 def payments(request, addon_id, addon):
-    pass
+    form = forms.PremiumTypeForm(request.POST or None)
+    if request.POST and form.is_valid():
+        # Save this to the addon, eg:
+        addon.update(premium_type=form.cleaned_data['premium_type'])
+        return redirect('submit.done')
+    return jingo.render(request, 'submit/payments.html', {
+                        'step': 'payments',
+                        'addon': addon,
+                        'form': form
+                        })
 
 
 @dev_required

@@ -5,6 +5,7 @@ from django.utils.safestring import mark_safe
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
+import amo
 from files.models import FileUpload
 from users.models import UserProfile
 from webapps.models import Webapp
@@ -39,3 +40,9 @@ class NewWebappForm(happyforms.Form):
         upload = self.cleaned_data['upload']
         verify_app_domain(upload.name)  # JS puts manifest URL here.
         return upload
+
+
+class PremiumTypeForm(happyforms.Form):
+    premium_type = forms.TypedChoiceField(coerce=lambda x: int(x),
+                                choices=amo.ADDON_PREMIUM_TYPES.items(),
+                                widget=forms.RadioSelect())

@@ -376,3 +376,44 @@ class TestDetails(TestSubmit):
         eq_(r.status_code, 200)
         self.assertFormError(r, 'form_basic', 'summary',
             'Ensure this value has at most 250 characters (it has 251).')
+
+
+class TestPayments(TestSubmit):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        super(TestPayments, self).setUp()
+        self.webapp = self.get_webapp()
+        self.url = reverse('submit.app.payments', args=[self.webapp.app_slug])
+
+    def get_webapp(self):
+        return Webapp.objects.get(id=337141)
+
+    def _step(self):
+        self.user.update(read_dev_agreement=True)
+        self.cl = AppSubmissionChecklist.objects.create(addon=self.webapp,
+            terms=True, manifest=True)
+        AddonUser.objects.create(addon=self.webapp, user=self.user)
+
+    def test_anonymous(self):
+        self._test_anonymous()
+
+    def test_required(self):
+        self._step()
+        res = self.client.post(self.url, {'premium_type': ''})
+        eq_(res.status_code, 200)
+        self.assertFormError(res, 'form', 'premium_type',
+                             'This field is required.')
+
+    def test_not_valid(self):
+        self._step()
+        res = self.client.post(self.url, {'premium_type': 124})
+        eq_(res.status_code, 200)
+        self.assertFormError(res, 'form', 'premium_type',
+            'Select a valid choice. 124 is not one of the available choices.')
+
+    def test_valid(self):
+        self._step()
+        res = self.client.post(self.url, {'premium_type': amo.ADDON_PREMIUM})
+        eq_(res.status_code, 302)
+        eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM)
