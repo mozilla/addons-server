@@ -598,7 +598,7 @@ def can_override_reg_limit(request):
 @no_login_required
 def register(request):
 
-    if settings.APP_PREVIEW:
+    if settings.APP_PREVIEW and waffle.switch_is_active('browserid-login'):
         messages.error(request,
                        loc('Registrations must be through browserid.'))
         form = None

@@ -325,9 +325,18 @@ button.loading-submit:after,
     text-align: right;
     button, .button {
         margin-right: 6px;
+        &:only-child {
+            margin: 0;
+        }
     }
     a {
         margin-left: 4px;
+    }
+}
+
+.login, .modal {
+    .listing-footer {
+        text-align: left;
     }
 }
 
