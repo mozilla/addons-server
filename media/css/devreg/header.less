@@ -6,20 +6,8 @@
     font-family: @head-sans;
     .upper-header {
         padding: 0 0 7px;
-        &:before {
-            background: url(../../img/developers/hub-logo-footer.png) 10% 0 no-repeat;
-            content: "";
-            display: block;
-            overflow: hidden;
-            position: absolute;
-            height: 180px;
-            left: -20px;
-            top: 10px;
-            z-index: 1000;
-            width: 245px;
-        }
     }
-    #masthead, .menu-nav {
+    .menu-nav {
         padding-left: 250px;
         position: relative;
     }
@@ -47,6 +35,7 @@
     padding-top: 24px;
     text-shadow: 0 1px 1px fadeOut(#fff, 25%);
     text-transform: uppercase;
+    padding-left: 250px;
 }
 
 #aux-nav {
@@ -57,10 +46,25 @@
 }
 .site-title {
     margin: 0 0 7px;
+    display: block;
     a {
-        color: @red;
         display: block;
+        left: -250px;
+        padding-left: 250px;
+        position: relative;
         text-decoration: none;
+        color: @red;
+        &:before {
+            content: url(../../img/developers/hub-logo-footer.png);
+            display: block;
+            overflow: hidden;
+            position: absolute;
+            height: 180px;
+            left: -20px;
+            top: -14px;
+            z-index: 1100;
+            width: 245px;
+        }
         small {
             color: @medium-gray;
             display: block;
