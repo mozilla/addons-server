@@ -20,8 +20,7 @@
   <li class="account anonymous nomenu logout{{ ' legacy' if not waffle.switch('browserid-login') }}">
     {% if waffle.switch('browserid-login') %}
     <a contextmenu="login" href="{{ login_link() }}" class="browserid-login"
-       data-url="{{ url('users.browserid_login') }}"
-       data-profile-form-url="{{ url('users.complete_profile_form') }}">
+       data-url="{{ url('users.browserid_login') }}">
        {{ _('Log in / Register') }}</a>
 
     <menu type="context" id="login">

@@ -10,7 +10,6 @@ from django.contrib.auth.tokens import default_token_generator
 from django.forms.models import model_to_dict
 from django.utils.http import int_to_base36
 
-import jingo
 from jingo.helpers import datetime as datetime_filter
 from mock import patch
 from nose.tools import eq_
@@ -446,15 +445,6 @@ class TestLogin(UserViewBase):
                                      password='wrong')
         assert self.client.login(**self.data)
 
-    # waffle: browserid-login
-    @patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
-    def test_for_profile_completion_url(self):
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        doc = pq(res.content)
-        eq_(doc('.browserid-login').attr('data-profile-form-url'),
-            reverse('users.complete_profile_form'))
-
     def test_double_login(self):
         r = self.client.post(self.url, self.data, follow=True)
         self.assertRedirects(r, '/en-US/firefox/')
@@ -632,22 +622,6 @@ class TestLogin(UserViewBase):
         profiles = UserProfile.objects.filter(email=email)
         eq_(len(profiles), 1)
         eq_(profiles[0].username, 'newuser')
-        data = json.loads(res.content)
-        eq_(data['profile_needs_completion'], True)
-
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    @patch.object(settings, 'FORCE_PROFILE_COMPLETION', False)
-    @patch('httplib2.Http.request')
-    def test_disable_profile_completion(self, http_request):
-        email = 'newuser@example.com'
-        http_request.return_value = (200, json.dumps({'status': 'okay',
-                                                      'email': email}))
-        res = self.client.post(reverse('users.browserid_login'),
-                               data=dict(assertion='fake-assertion',
-                                         audience='fakeamo.org'))
-        eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        eq_(data['profile_needs_completion'], False)
 
     @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
     @patch.object(waffle, 'switch_is_active', lambda x: True)
@@ -768,33 +742,6 @@ class TestLogin(UserViewBase):
         eq_(profiles[0].username, 'jbalogh2')
         # Note: lower level unit tests for this functionality are in
         # TestAutoCreateUsername()
-
-
-class TestProfileCompletion(UserViewBase):
-    fixtures = ['users/test_backends', 'base/addon_3615']
-
-    def setUp(self):
-        self.profile = UserProfile.objects.get(email='jbalogh@mozilla.com')
-        assert self.client.login(username=self.profile.email, password='foo')
-
-    def test_show_form(self):
-        res = self.client.get(reverse('users.complete_profile_form'))
-        eq_(res.status_code, 200)
-        doc = pq(res.content)
-        eq_(doc('form').attr('action'), reverse('users.complete_profile'))
-
-    def test_use_logged_in_user(self):
-        res = self.client.get(reverse('users.complete_profile_form'))
-        eq_(res.context['profile_form'].instance.pk, self.profile.pk)
-
-    def test_complete(self):
-        res = self.client.post(reverse('users.complete_profile'),
-                               dict(username='newusername',
-                                    display_name=u'Ivan Kristi\u0107'))
-        eq_(res.status_code, 200)
-        pr = UserProfile.objects.get(pk=self.profile.pk)
-        eq_(pr.username, 'newusername')
-        eq_(pr.display_name, u'Ivan Kristi\u0107')
 
 
 @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', '')

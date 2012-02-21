@@ -339,33 +339,10 @@ def browserid_authenticate(request, assertion):
     return (profile, None)
 
 
-@login_required
-def complete_profile_form(request):
-    pf = forms.UserRegisterForm(instance=request.user.get_profile())
-    data = dict(profile_form=pf,
-                post_login_url=settings.LOGIN_REDIRECT_URL)
-    # TODO(Kumar) support mobile flow
-    return jingo.render(request, 'users/profile_form.html', data)
-
-
-@post_required
-@login_required
-@json_view
-def complete_profile(request):
-    form = forms.MinimalProfileForm(request.POST,
-                                    instance=request.user.get_profile())
-    if not form.is_valid():
-        return json_view.error(form.errors)
-    else:
-        form.save()
-        return {'success': True}
-
-
 @anonymous_csrf_exempt
 @post_required
 @no_login_required
 #@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
-@json_view
 def browserid_login(request):
     if waffle.switch_is_active('browserid-login'):
         if request.user.is_authenticated():
@@ -378,9 +355,7 @@ def browserid_login(request):
             if profile.needs_tougher_password:
                 return http.HttpResponse("", status=400)
             auth.login(request, profile.user)
-            comp = (profile.needs_completion()
-                    if settings.FORCE_PROFILE_COMPLETION else False)
-            return dict(profile_needs_completion=comp)
+            return http.HttpResponse(status=200)
     return http.HttpResponse(msg, status=401)
 
 

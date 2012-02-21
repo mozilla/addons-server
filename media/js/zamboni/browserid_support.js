@@ -1,17 +1,6 @@
 function browserIDRedirect(to, options) {
     if (!options) options = {};
     return function(data, textStatus, jqXHR) {
-        if (data.profile_needs_completion && canCompleteProfile()) {
-            // Ask registrant to complete her profile before redirecting.
-            var def = completeUserProfile($.extend({}, options, {to: to}))
-                        .done(function() {
-                            $('.loading-submit').removeClass('loading-submit');
-                            if(typeof to == "object") {
-                                to['on'].removeClass('loading-submit');
-                            }
-                        });
-            return def;
-        }
         if (to) {
             if(typeof to == "object") {
                 to['on'].removeClass('loading-submit').trigger(to['fire']);
@@ -87,110 +76,6 @@ function initBrowserID(win, ctx) {
             gotVerifiedEmail(assertion, redirectTo);
         });
     });
-}
-
-function canCompleteProfile() {
-    return (typeof modalFromURL !== 'undefined');
-    // When modalFromURL is undefined, we are in the mobile site.
-    // For now, defer profile completion until he/she logs in on desktop.
-    // TODO(Kumar) Support profile completion on mobile. bug 712494
-}
-
-function completeUserProfile(options) {
-    if (!options) options = {};
-    var $doc = options.doc || $(document),
-        $root = $('#login-complete-profile', $doc),
-        profileFormUrl = $('.browserid-login', $doc).attr('data-profile-form-url');
-    if (!profileFormUrl) {
-        throw new Error('misconfiguration: could not find data-profile-form-url');
-    }
-    if (!$root.length) {
-        // Complete profile via modal since we are probably not on the login page.
-        var def = $.Deferred();
-        modalFromURL(profileFormUrl, {callback: function() {
-            def.resolve();
-            var $box = $(this);
-            $box.attr('id', 'login-complete-profile');  // for styles
-            loadProfileCompletionForm($box, options);
-        }, 'deleteme': false, 'close': false, 'hideme': false});
-        return def;
-    }
-    $root.empty();
-    // Load form HTML via Ajax to get a unique CSRF token.
-    return $.ajax({url: profileFormUrl, type: 'GET', dataType: 'html'})
-                  .done(function(html) {
-                       $root.html(html);
-                       loadProfileCompletionForm($root, options);
-                  })
-                  .fail(function(xhr, textStatus, errorThrown) {
-                       if (typeof console !== 'undefined') {
-                           console.log('error:', xhr);
-                       }
-                  });
-}
-
-function loadProfileCompletionForm($root, options) {
-    if (!options) options = {};
-    var $error = $('.notification-box.error', $root),
-        win = options.window || window,
-        $form = $('form', $root),
-        handler;
-
-    // Don't let people log in twice; will cause error
-    $('#browserid-login, .browserid-login').hide();
-
-    $root.show();
-    $(win).trigger('resize'); // I hate this so much. I vow to someday fix this properly.
-    $('input[type="text"]', $root).eq(0).focus();
-    function handler(evt) {
-        evt.preventDefault();
-        $error.hide();
-        $('a.complete-profile', $form).addClass('loading-submit');
-        $.ajax({url: $form.attr('action'),
-                type: 'POST',
-                data: $form.serialize(),
-                dataType: 'json'})
-               .always(function() {
-                   $('button[type="submit"]', $form).removeClass('loading-submit');
-               })
-               .done(function(data) {
-                   if (options.to) {
-                       if (typeof options.to === 'object') {
-                           options.to['on'].trigger(options.to['fire']);
-                       } else {
-                           win.location = options.to;
-                       }
-                   } else {
-                       win.location = $form.attr('data-post-login-url');
-                   }
-                   $form.trigger('success.profile_completion');
-               })
-               .fail(function(xhr, textStatus, errorThrown) {
-                   var msg = [], data, ul = $('<ul></ul>');
-                   try {
-                       data = $.parseJSON(xhr.responseText);
-                   } catch (err) {}
-                   if (data) {
-                       // {username: ['already exists']...}
-                       $.each(data, function(field, errors) {
-                           $.each(errors, function(i, m) {
-                               msg.push($form.find('label[for="id_' + field + '"]').text() + ': ' + m);
-                           });
-                       });
-                   } else {
-                       msg = [gettext('Internal server error')];
-                   }
-                   $.each(msg, function(i, m) {
-                       ul.append('<li>' + m + '</li>');
-                   });
-                   $error.html(ul).show();
-                   $form.trigger('badresponse.profile_completion');
-
-                   $(win).trigger('resize');
-               });
-    }
-    $('a.complete-profile', $root).click(handler);
-    $form.submit(handler);
 }
 
 $(document).ready(function () {initBrowserID(window);});

@@ -12,8 +12,7 @@
   {% if waffle.switch('browserid-login') %}
   <fieldset id="browserid-login">
     <a href="#" class="browserid-login button"
-      data-url="{{ url('users.browserid_login') }}"
-      data-profile-form-url="{{ url('users.complete_profile_form') }}">
+      data-url="{{ url('users.browserid_login') }}">
       {{ loc('Log in / Register') }}
     </a>
     <div class="user-message">
@@ -59,8 +58,7 @@
         {% if waffle.switch('browserid-login') %}
           {{ _('or') }}
           <a href="#" class="browserid-login browserid-login-alt"
-             data-url="{{ url('users.browserid_login') }}"
-             data-profile-form-url="{{ url('users.complete_profile_form') }}">
+             data-url="{{ url('users.browserid_login') }}">
             {{ loc('Use BrowserID') }}
           </a>
         {% endif %}
@@ -68,6 +66,3 @@
     </fieldset>
   </div>
 </form>
-{% if waffle.switch('browserid-login') %}
-  <div id="login-complete-profile"></div>
-{% endif %}

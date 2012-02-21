@@ -360,14 +360,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
                                       .filter(type=amo.CONTRIB_PURCHASE)
                                       .order_by('pk'))
 
-    def needs_completion(self):
-        """True if user needs to complete her profile.
-
-        A profile is incomplete without a username and display name
-        since that's used for collections and other display items.
-        """
-        return not self.username or not self.display_name
-
     def get_preapproval(self):
         """
         Returns the pre approval object for this user, or None if it does

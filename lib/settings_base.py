@@ -952,9 +952,6 @@ LOGOUT_REDIRECT_URL = "/"
 # In the case of duplicates, the process is recursive up to this number
 # of times.
 MAX_GEN_USERNAME_TRIES = 50
-# When True, prompt user to fill in his username / display name if he
-# registered with browser ID
-FORCE_PROFILE_COMPLETION = True
 
 # Legacy Settings
 # used by old-style CSRF token

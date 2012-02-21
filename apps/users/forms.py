@@ -165,16 +165,6 @@ class UsernameMixin:
         return name
 
 
-class MinimalProfileForm(happyforms.ModelForm, UsernameMixin):
-    """Form to create a minimal profile.
-
-    This is just enough info to make the site usable. It was originally
-    intended to complete profiles after registering through Browser ID
-    """
-    username = forms.CharField(max_length=50)
-    display_name = forms.CharField(max_length=50)
-
-
 class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
     """
     For registering users.  We're not building off
