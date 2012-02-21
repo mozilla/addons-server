@@ -1,0 +1,24 @@
+{% extends 'developers/base_impala.html' %}
+
+{% set title = _('Done') %}
+
+{% block title %}{{ hub_page_title(title) }}{% endblock %}
+
+{% block content %}
+  {{ hub_breadcrumbs(items=[(None, _('Submit App'))]) }}
+  <h1>{{ _('Done') }}</h1>
+  {{ progress(request, addon=addon, step=step) }}
+  <section id="submit-payment" class="primary">
+    <h2>Done</h2>
+    <div class="brform island c">
+    <p>TODO(gkoberger): some copy.</p>
+    {% if addon.premium_type != amo.ADDON_FREE %}
+      <p class="paypal-notes">Since your app is using payments, you'll
+      need to set up a few more things. Please set up
+      <a href="{{ addon.get_dev_url('payments') }}">your payments</a> and
+      <a href="{{ addon.get_dev_url('paypal_setup') }}">your paypal account</a>.</p>
+    {% endif %}
+    </div>
+  </section>
+{% endblock %}
+
