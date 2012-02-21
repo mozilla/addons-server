@@ -1,12 +1,10 @@
 from nose.tools import eq_
-from pyquery import PyQuery as pq
-import waffle
 
 from addons.models import Addon
 import amo
 import amo.tests
-from payments.models import InappConfig
 from market.models import Price
+
 
 # Testing the payments page.
 class TestPayments(amo.tests.TestCase):
@@ -67,3 +65,23 @@ class TestPayments(amo.tests.TestCase):
                  'support_email': 'foo@bar.com'})
         eq_(res.status_code, 302)
         eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM_INAPP)
+
+
+# Testing the paypal page.
+class TestPaypal(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube',
+                'prices']
+
+    def setUp(self):
+        self.webapp = self.get_webapp()
+        self.url = self.webapp.get_dev_url('paypal_setup')
+        self.client.login(username='admin@mozilla.com', password='password')
+        self.price = Price.objects.all()[0]
+
+    def get_webapp(self):
+        return Addon.objects.get(pk=337141)
+
+    def test_not_premium(self):
+        self.webapp.update(premium_type=amo.ADDON_FREE)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 302)

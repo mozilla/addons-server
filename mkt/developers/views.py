@@ -254,6 +254,10 @@ def payments(request, addon_id, addon, webapp=False):
 # PayPal config, the next generation.
 @dev_required(owner_for_post=True, webapp=True)
 def paypal_setup(request, addon_id, addon, webapp):
+    if addon.premium_type == amo.ADDON_FREE:
+        messages.error(request, 'Your app does not use payments.')
+        return redirect(addon.get_dev_url('payments'))
+
     form = forms.PaypalSetupForm(request.POST or None)
     context = {'addon': addon, 'form': form}
     if form.is_valid():
@@ -371,6 +375,10 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
 @dev_required(owner_for_post=True, webapp=True)
 @transaction.commit_on_success
 def in_app_config(request, addon_id, addon, webapp=True):
+    if addon.premium_type not in amo.ADDON_INAPPS:
+        messages.error(request, 'Your app does not use payments.')
+        return redirect(addon.get_dev_url('payments'))
+
     try:
         inapp_config = InappConfig.objects.get(addon=addon,
                                                status=amo.INAPP_STATUS_ACTIVE)
@@ -1688,5 +1696,3 @@ def docs(request, doc_name=None, doc_page=None):
         return redirect('mkt.developers.index')
 
     return jingo.render(request, 'developers/docs/%s' % filename)
-
-

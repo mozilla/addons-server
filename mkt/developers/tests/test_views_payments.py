@@ -17,6 +17,7 @@ class TestInappConfig(amo.tests.TestCase):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self.webapp = Addon.objects.get(id=337141)
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM_INAPP)
         self.url = self.webapp.get_dev_url('in_app_config')
 
     def config(self, public_key='pub-key', private_key='priv-key',
@@ -111,3 +112,8 @@ class TestInappConfig(amo.tests.TestCase):
         self.config(status=amo.INAPP_STATUS_INACTIVE)
         resp = self.client.get(self.webapp.get_dev_url('in_app_secret'))
         eq_(resp.status_code, 404)
+
+    def test_not_inapp(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 302)
