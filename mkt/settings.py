@@ -139,6 +139,7 @@ MINIFY_BUNDLES['css'].update({
         'css/devreg/submit-progress.less',
         'css/devreg/submit-terms.less',
         'css/devreg/submit-manifest.less',
+        'css/devreg/submit-details.less',
         'css/devreg/validation.less',
 
         # Developer Log In / Registration.
@@ -217,6 +218,7 @@ MINIFY_BUNDLES['js'].update({
 
         # New stuff.
         'js/devreg/devhub.js',
+        'js/devreg/submit-details.js',
 
         # Specific stuff for making payments nicer.
         'js/devreg/paypal.js',

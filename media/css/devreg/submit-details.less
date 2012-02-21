@@ -1,0 +1,72 @@
+@import 'lib';
+
+/* Houdinis are  */
+label.houdini {
+    .before, .before * {
+        display: inline-block;
+    }
+    .edit, .done {
+        margin-left: 5px;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .edit {
+        color: @link;
+        &:hover {
+            color: darken(@link, 10%);
+        }
+    }
+    .done {
+        color: @dark-gray;
+        &:hover {
+            color: @medium-gray;
+        }
+    }
+    .after {
+        /* This is where hidden content (i.e., form fields) lives. */
+        display: none;
+    }
+    &.active {
+        /* Toggle content. */
+        .before {
+            display: none;
+        }
+        .after {
+            display: inline-block;
+        }
+    }
+}
+
+#submit-details {
+    #general-details {
+        font-family: @open-stack;
+        margin-top: 1em;
+        h2 {
+            color: @blue;
+            font-weight: bold;
+            margin: 0 0 5px;
+        }
+        img {
+            float: left;
+            margin-right: 15px;
+        }
+        b {
+            color: @medium-gray;
+        }
+        .details-url {
+            margin: 0;
+            .houdini {
+                .before {
+                    margin: 6px 5px;
+                }
+                .after {
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+    .continue {
+        float: right;
+    }
+}

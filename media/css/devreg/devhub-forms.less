@@ -13,10 +13,41 @@ input[type=text], input[type=password], select, textarea, #agreement-container {
         color: @black;
         border-color: @medium-gray;
     }
+    &[disabled], &[readonly] {
+        background-color: @faint-gray;
+        cursor: not-allowed;
+    }
 }
 
+input[type=file], select {
+    &:focus {
+        .box-shadow(none);
+    }
+}
 input:-moz-placeholder {
     color: #aaa;
+}
+
+input[type=text] {
+    &.t {
+        width: 60px;
+    }
+    &.s {
+        width: 90px;
+    }
+    &.m {
+        width: 200px;
+    }
+    &.l {
+        font-size: 16px;
+        width: 250px;
+    }
+    &.xl {
+        width: 400px;
+    }
+    &.xxl {
+        width: 550px;
+    }
 }
 
 select {
