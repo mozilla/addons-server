@@ -4,6 +4,7 @@ import os
 from django.conf import settings
 
 import mock
+from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
@@ -11,9 +12,10 @@ import waffle
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from addons.models import Addon
+from addons.models import Addon, AddonUser
 from files.tests.test_models import UploadTest as BaseUploadTest
 import mkt
+from mkt.submit.models import AppSubmissionChecklist
 from translations.models import Translation
 from users.models import UserProfile
 from webapps.models import Webapp
@@ -235,3 +237,48 @@ class TestCreateWebAppFromManifest(BaseWebAppTest):
     def test_allow_duplicate_domains_from_js(self):
         rs = self.post_manifest('http://existing-app.com/my.webapp')
         eq_(rs.status_code, 302)
+
+
+class TestDetails(TestSubmit):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        super(TestDetails, self).setUp()
+        self.webapp = Webapp.objects.get(id=337141)
+        self.url = reverse('submit.app.details', args=[self.webapp.app_slug])
+
+    def _step(self):
+        self.user.update(read_dev_agreement=True)
+        self.cl = AppSubmissionChecklist.objects.create(addon=self.webapp,
+            terms=True, manifest=True)
+        AddonUser.objects.create(addon=self.webapp, user=self.user)
+
+    def test_anonymous(self):
+        self._test_anonymous()
+
+    def test_resume_step(self):
+        # Enable when the magic decorator jumps you to the correct step.
+        raise SkipTest
+        # I already read the Terms and uploaded my Manifest.
+        self._step()
+        # So jump me to the Details step.
+        payments_url = reverse('submit.app.payments',
+                               args=[self.webapp.app_slug])
+        r = self.client.get(payments_url, follow=True)
+        self.assertRedirects(r, reverse('submit.app.manifest'))
+
+    def test_not_owner(self):
+        self._step()
+        assert self.client.login(username='clouserw@gmail.com',
+                                 password='password')
+        eq_(self.client.get(self.url).status_code, 403)
+
+    def test_page(self):
+        self._step()
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('#submit-details').length, 1)
+
+    def test_progress_display(self):
+        self._step()
+        self._test_progress_display(['terms', 'manifest'], 'details')
