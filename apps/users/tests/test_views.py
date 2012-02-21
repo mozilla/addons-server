@@ -743,6 +743,33 @@ class TestLogin(UserViewBase):
         # Note: lower level unit tests for this functionality are in
         # TestAutoCreateUsername()
 
+    def test_maybe_register_from_browserid(self):
+        email = 'jbalogh@mozilla.com'
+        user = UserProfile.objects.get(email=email)
+        user.password = ''
+        user.save()
+        res = self.client.get(reverse('users.maybe_register'),
+                              data=dict(email=email))
+
+        eq_(pq(res.content)('div.prettyform form')[0].get('action'),
+            reverse('users.pwreset'))
+
+    def test_maybe_register_already_registered(self):
+        email = 'jbalogh@mozilla.com'
+        res = self.client.get(reverse('users.maybe_register'),
+                              data=dict(email=email))
+        assert res._headers['location'][1].endswith(
+            urlparams(reverse('users.register'),
+                      email=email))
+
+    def test_maybe_register_from_new(self):
+        email = 'newuser@example.com'
+        res = self.client.get(reverse('users.maybe_register'),
+                              data=dict(email=email))
+        assert res._headers['location'][1].endswith(
+            urlparams(reverse('users.register'),
+                      email=email))
+
 
 @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', '')
 @patch('users.models.UserProfile.log_login_attempt')
