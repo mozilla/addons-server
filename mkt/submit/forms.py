@@ -7,6 +7,9 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 from files.models import FileUpload
+from mkt.developers.forms import AppFormBasic as BaseAppFormBasic
+from translations.widgets import TransInput, TransTextarea
+from translations.fields import TransField
 from users.models import UserProfile
 from webapps.models import Webapp
 
@@ -46,3 +49,14 @@ class PremiumTypeForm(happyforms.Form):
     premium_type = forms.TypedChoiceField(coerce=lambda x: int(x),
                                 choices=amo.ADDON_PREMIUM_TYPES.items(),
                                 widget=forms.RadioSelect())
+
+
+class AppDetailsBasicForm(BaseAppFormBasic):
+    """Form to add basic app info."""
+    name = TransField(max_length=128, widget=TransInput(attrs={'class': 'l'}))
+    slug = forms.CharField(max_length=30,
+                           widget=forms.TextInput(attrs={'class': 'm'}))
+    summary = TransField(max_length=250,
+        label=_("Provide a brief summary of your app's functionality"),
+        help_text=_('This summary will be shown in listings and searches.'),
+        widget=TransInput(attrs={'rows': 4, 'class': 'full'}))

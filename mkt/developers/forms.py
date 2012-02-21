@@ -1150,9 +1150,8 @@ def DependencyFormSet(*args, **kw):
 
 class AppFormBasic(addons.forms.AddonFormBase):
     """Form to edit basic app info."""
-    name = TransField(max_length=128, widget=TransInput(attrs={'class': 'l'}))
-    slug = forms.CharField(max_length=30,
-                           widget=forms.TextInput(attrs={'class': 'm'}))
+    name = TransField(max_length=128, widget=TransInput)
+    slug = forms.CharField(max_length=30, widget=forms.TextInput)
     summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
                          max_length=250)
 

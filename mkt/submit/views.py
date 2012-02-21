@@ -5,11 +5,11 @@ import jingo
 import amo
 from amo.decorators import login_required
 from addons.models import Addon, AddonUser
-from mkt.developers.decorators import dev_required
-from mkt.developers.forms import AppFormBasic
-from files.models import Platform
 from mkt.developers import tasks
+from mkt.developers.decorators import dev_required
+from mkt.submit.forms import AppDetailsBasicForm
 from mkt.submit.models import AppSubmissionChecklist
+from files.models import Platform
 from users.models import UserProfile
 from . import forms
 from .decorators import submit_step
@@ -81,8 +81,8 @@ def manifest(request):
 @dev_required
 @submit_step('details')
 def details(request, addon_id, addon):
-    form_basic = AppFormBasic(request.POST or None, instance=addon,
-                              request=request)
+    form_basic = AppDetailsBasicForm(request.POST or None, instance=addon,
+                                     request=request)
     if request.POST and form_basic.is_valid():
         addon = form_basic.save(addon)
         AppSubmissionChecklist.objects.get(addon=addon).update(details=True)

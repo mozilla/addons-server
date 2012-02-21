@@ -48,11 +48,7 @@
           </label>
         </div>
       </header>
-      <div class="brform">
-      {{ form_basic.summary.label_tag() }}
-      {{ form_basic.summary }}
-      {{ form_basic.summary.errors }}
-      </div>
+      {{ form_field(form_basic.summary) }}
       <button class="prominent continue c" type="submit">
         {{ _('Continue') }}
       </button>

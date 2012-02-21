@@ -28,28 +28,6 @@ input:-moz-placeholder {
     color: #aaa;
 }
 
-input[type=text] {
-    &.t {
-        width: 60px;
-    }
-    &.s {
-        width: 90px;
-    }
-    &.m {
-        width: 200px;
-    }
-    &.l {
-        font-size: 16px;
-        width: 250px;
-    }
-    &.xl {
-        width: 400px;
-    }
-    &.xxl {
-        width: 550px;
-    }
-}
-
 select {
     padding: 0;
 }
@@ -174,6 +152,11 @@ textarea {
             margin: 15px 0 5px;
         }
     }
+    .simple-field {
+        label {
+            display: inline-block;
+        }
+    }
     .char-count, .html-support {
         margin: 5px 0;
     }
@@ -226,6 +209,30 @@ textarea {
     }
     input[type=text] {
         width: 200px;
+        &.name {
+            font-size: 16px;
+        }
+        &.t {
+            width: 60px;
+        }
+        &.s {
+            width: 90px;
+        }
+        &.m {
+            width: 200px;
+        }
+        &.l {
+            width: 250px;
+        }
+        &.xl {
+            width: 400px;
+        }
+        &.xxl {
+            width: 550px;
+        }
+        &.full {
+            width: 100%;
+        }
     }
     input[type=color] {
         width: 80px;
@@ -382,7 +389,6 @@ button.loading-submit:after,
 }
 
 .devhub-form .tip,
-.addon-submission-process .tip,
 ul.errorlist li span.tip,
 a.remove,
 span.remove {
@@ -399,8 +405,7 @@ span.remove {
     text-decoration: none;
     width: 14px;
 }
-.devhub-form .tip,
-.addon-submission-process .tip {
+.devhub-form tr .tip {
     vertical-align: top;
 }
 a.remove {
