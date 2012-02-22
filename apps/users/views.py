@@ -7,6 +7,7 @@ from django.db import IntegrityError
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib import auth
+from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import default_token_generator
 from django.template import Context, loader
 from django.utils.datastructures import SortedDict
@@ -596,7 +597,8 @@ def register(request):
     elif request.method == 'POST':
 
         form = forms.UserRegisterForm(request.POST)
-
+        mkt_user = UserProfile.objects.filter(email=form.data['email'],
+                                              password='')
         if form.is_valid():
             try:
                 u = form.save(commit=False)
@@ -634,6 +636,13 @@ def register(request):
 
             return http.HttpResponseRedirect(reverse('users.login'))
 
+        elif mkt_user.exists():
+                f = PasswordResetForm()
+                f.users_cache = [mkt_user[0].user]
+                f.save(use_https=request.is_secure(),
+                       email_template_name='users/email/pwreset.ltxt',
+                        request=request)
+                return jingo.render(request, 'users/newpw_sent.html', {})
         else:
             messages.error(request, _('There are errors in this form'),
                             _('Please correct them and resubmit.'))
