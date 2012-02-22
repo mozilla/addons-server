@@ -132,6 +132,11 @@ $(function() {
         $(document.documentElement).animate({ scrollTop: top }, 500);
     });
 
+    // Install register dropdown
+    $('#amo-register').bind('click', function(e) {
+        $('#register-dropdown').show();});
+
+
     contributions.init();
 
     $("select[name='rating']").ratingwidget();

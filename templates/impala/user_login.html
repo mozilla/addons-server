@@ -27,9 +27,10 @@
       <menuitem data-url="{{ login_link() }}#open" label="{{ _('Admin / Editor Log in') }}" id="admin-login"></menuitem>
     </menu>
     {% else %}
-        {% trans reg=url('users.register'), login=login_link() %}
-            <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>
+        {% trans login=login_link() %}
+            <a id="amo-register" href="#">Register</a> or <a href="{{ login }}">Log in</a>
         {% endtrans %}
+            <div id="register-dropdown">Email: <form action="{{ url('users.maybe_register') }}" method="GET"><input type="text" name="email"><button type="submit">{{ _('Register') }}</button></div>
     {% endif %}
   </li>
 {% endif %}

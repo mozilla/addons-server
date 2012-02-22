@@ -14,6 +14,8 @@ from django.views.decorators.cache import never_cache
 from django.utils.decorators import method_decorator
 from django.utils.encoding import smart_str
 from django.utils.http import base36_to_int
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib.auth.forms import PasswordResetForm
 
 from django_browserid.auth import BrowserIDBackend
 from waffle.decorators import waffle_flag, waffle_switch
@@ -573,6 +575,21 @@ def can_override_reg_limit(request):
 
 @anonymous_csrf
 @no_login_required
+def maybe_register(request):
+    email = request.GET.get('email', '')
+    q = UserProfile.objects.filter(email=email)
+    if q.exists() and q[0].password == '':
+        form = PasswordResetForm(request.GET)
+        return jingo.render(request, 'users/newpw_request.html',
+                            {'form': form})
+    else:
+        return http.HttpResponseRedirect(
+            urlparams(reverse('users.register'),
+                      email=email))
+
+
+@anonymous_csrf
+@no_login_required
 def register(request):
 
     if settings.APP_PREVIEW and waffle.switch_is_active('browserid-login'):
@@ -594,7 +611,6 @@ def register(request):
         form = None
 
     elif request.method == 'POST':
-
         form = forms.UserRegisterForm(request.POST)
 
         if form.is_valid():
@@ -638,7 +654,8 @@ def register(request):
             messages.error(request, _('There are errors in this form'),
                             _('Please correct them and resubmit.'))
     else:
-        form = forms.UserRegisterForm()
+        initial = {'email': request.GET.get('email', '')}
+        form = forms.UserRegisterForm(initial=initial)
 
     reg_action = reverse('users.register')
     if request.GET.get('ro'):
