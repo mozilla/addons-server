@@ -19,7 +19,6 @@ CSRF_FAILURE_VIEW = 'mkt.site.views.csrf_failure'
 ROOT_URLCONF = 'mkt.urls'
 
 INSTALLED_APPS = list(INSTALLED_APPS)
-INSTALLED_APPS.remove('abuse')
 INSTALLED_APPS.remove('api')
 INSTALLED_APPS.remove('compat')
 INSTALLED_APPS.remove('discovery')
@@ -32,6 +31,7 @@ INSTALLED_APPS += (
     'mkt.hub',
     'mkt.submit',
     'mkt.experiments',
+    'devhub',  # Put here so helpers.py doesn't get loaded first.
 )
 SUPPORTED_NONAPPS += (
     'dev',
