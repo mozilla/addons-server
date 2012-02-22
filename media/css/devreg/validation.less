@@ -182,3 +182,130 @@ section.payments li.status-pass {
     font-size: 11px;
     margin-top: 4px;
 }
+
+/* validation results page */
+@lead-col-width: 320px;
+.results-intro, .suite-summary {
+    .border-radius(5px 5px 0 0);
+    border: 1px solid @border-gray;
+    background-color: @white;
+    width: 100%;
+    .border-box();
+    dt, dd, span {
+        color: @dark-gray;
+        font: 16px @open-stack;
+        padding: 10px;
+    }
+    dt, dd {
+        float: left;
+    }
+    dt {
+        width: @lead-col-width;
+        padding-right: 0;
+    }
+    dd {
+        padding-left: 0;
+    }
+    span {
+        display: block;
+    }
+}
+.html-rtl .results-intro {
+    dt, dd {
+        float: right;
+    }
+    dt {
+        text-align: right;
+        padding-right: 10px;
+        padding-left: 0;
+    }
+    dd {
+        padding-right: 0;
+        padding-left: 10px;
+    }
+}
+
+.suite-summary {
+    margin-top: 15px;
+}
+.html-rtl .suite-summary {
+    text-align: right;
+}
+
+.suite-container, .results {
+    .tiers {
+        border: 1px solid @border-gray;
+        .border-radius(0 0 5px 5px);
+    }
+    .tiers, .result {
+        border-top: 0;
+        .test-tier, .result-header {
+            padding: 10px 10px 0 10px;
+            border-bottom: 1px dotted #ddd;
+            &:last-child {
+                border-bottom: 0;
+            }
+        }
+        .tier-summary {
+            margin: 8px 0;
+        }
+        .tests-passed .tier-summary {
+            color: @green;
+        }
+        .tests-failed .tier-summary {
+            color: @red;
+        }
+    }
+}
+.html-rtl .suite-container .tiers {
+    text-align: right;
+}
+
+.results {
+    color: @dark-gray;
+    border: 1px solid @border-gray;
+    border-top: 0;
+    .border-radius(0 0 5px 5px);
+    h4 {
+        float: left;
+        width: @lead-col-width;
+    }
+    ul {
+        float: right;
+        li {
+            float: left;
+            padding: 0 8px;
+        }
+    }
+    .tier-results {
+        background-color: @white;
+        padding: 10px;
+    }
+    .result .result-header {
+        padding-bottom: 10px;
+    }
+    .result .tests-passed {
+        color: @green;
+    }
+    .result .tests-failed {
+        color: @red;
+    }
+    .result:last-child .tier-results {
+        .border-radius(0 0 5px 5px);
+    }
+}
+.html-rtl .results {
+    h4 {
+        float: right;
+        text-align: right;
+    }
+    ul {
+        float: left;
+    }
+    .result-summary {
+        text-align: right;
+    }
+    .tier-results {
+        text-align: right;
+    }
+}
