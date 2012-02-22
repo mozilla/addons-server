@@ -1,0 +1,27 @@
+{% extends "impala/base_shared.html" %}
+{% from 'includes/forms.html' import pretty_field %}
+
+{% block title %}{{ page_title(_('Password Reset')) }}{% endblock %}
+
+{% block content %}
+  <div class="primary full island prettyform">
+    <h1>{{ _('Password Reset') }}</h1>
+    <form method="post" action="{{ url('users.pwreset') }}">
+      {{ csrf() }}
+      <fieldset>
+        <p class="instruct">
+          {% trans %} You logged into an associated site that uses
+          BrowserID, but AMO doesn't use BrowserID yet. Verify your
+          email and we'll send you a link to set up your AMO account.
+          {% endtrans %}
+        </p>
+        <ul>
+          {{ pretty_field(form.email, _('Email Address')) }}
+        </ul>
+      </fieldset>
+      <p class="footer-submit">
+        <button type="submit">{{ _('Send password set link') }}</button>
+      </p>
+    </form>
+  </div>
+{% endblock content %}
