@@ -16,7 +16,7 @@ log_configure()
 
 error_log = commonware.log.getLogger('z.pfs')
 
-xml_template = """
+xml_template = """\
 <?xml version="1.0"?>
 <RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:pfs="http://www.mozilla.org/2004/pfs-rdf#">
 
