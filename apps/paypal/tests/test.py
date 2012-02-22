@@ -501,6 +501,8 @@ class TestPersonalLookup(amo.tests.TestCase):
 
 
 @mock.patch('urllib2.OpenerDirector.open')
+@mock.patch.object(settings, 'PAYPAL_EMBEDDED_AUTH',
+                   {'USER': 'a', 'PASSWORD': 'b', 'SIGNATURE': 'c'})
 class TestAuthWithToken(amo.tests.TestCase):
 
     def test_token_header(self, opener):
