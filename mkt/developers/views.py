@@ -10,6 +10,7 @@ import uuid
 from django import http
 from django.core.files.storage import default_storage as storage
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 from django import forms as django_forms
 from django.db import models, transaction
 from django.db.models import Count
@@ -1591,7 +1592,13 @@ def submit_done(request, addon_id, addon, step, webapp=False):
 
 @dev_required
 def submit_resume(request, addon_id, addon):
-    step = SubmitStep.objects.filter(addon=addon)
+    try:
+        # If it didn't go through the app submission
+        # checklist. Don't die. This will be useful for
+        # creating apps with an API later.
+        step = addon.appsubmissionchecklist.get_next()
+    except ObjectDoesNotExist:
+        step = None
     return _resume(addon, step)
 
 

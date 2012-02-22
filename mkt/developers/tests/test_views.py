@@ -35,6 +35,7 @@ from addons.utils import ReverseNameLookup
 from applications.models import Application
 from browse.tests import test_listing_sort, test_default_sort
 from mkt.developers.models import ActivityLog, SubmitStep
+from mkt.submit.models import AppSubmissionChecklist
 from mkt.developers import tasks
 from files.models import File, FileUpload, Platform
 from files.tests.test_models import UploadTest as BaseUploadTest
@@ -1712,60 +1713,28 @@ class TestResumeStep(TestSubmitBase):
 
     def setUp(self):
         super(TestResumeStep, self).setUp()
+        self.get_addon().update(type=amo.ADDON_WEBAPP, app_slug='a3615')
         self.url = reverse('mkt.developers.submit.resume', args=['a3615'])
 
     def test_no_step_redirect(self):
         r = self.client.get(self.url, follow=True)
-        self.assertRedirects(r, self.addon.get_dev_url('versions'), 302)
+        self.assertRedirects(r, self.get_addon().get_dev_url('edit'), 302)
 
     def test_step_redirects(self):
-        SubmitStep.objects.create(addon_id=3615, step=1)
-        for i in xrange(3, 7):
-            SubmitStep.objects.filter(addon=self.get_addon()).update(step=i)
-            r = self.client.get(self.url, follow=True)
-            self.assertRedirects(r, reverse('mkt.developers.submit.%s' % i,
-                                            args=['a3615']))
+        AppSubmissionChecklist.objects.create(addon=self.get_addon(),
+                                              terms=True, manifest=True)
+        r = self.client.get(self.url, follow=True)
+        self.assertRedirects(r, reverse('submit.app.details',
+                                        args=['a3615']))
 
     def test_redirect_from_other_pages(self):
-        SubmitStep.objects.create(addon_id=3615, step=4)
+        AppSubmissionChecklist.objects.create(addon=self.get_addon(),
+                                              terms=True, manifest=True,
+                                              details=True)
         r = self.client.get(reverse('mkt.developers.addons.edit',
                                     args=['a3615']), follow=True)
-        self.assertRedirects(r, reverse('mkt.developers.submit.4',
+        self.assertRedirects(r, reverse('submit.app.payments',
                                         args=['a3615']))
-
-
-class TestSubmitBump(TestSubmitBase):
-
-    def setUp(self):
-        super(TestSubmitBump, self).setUp()
-        self.url = reverse('mkt.developers.submit.bump', args=['a3615'])
-
-    def test_bump_acl(self):
-        r = self.client.post(self.url, {'step': 4})
-        eq_(r.status_code, 403)
-
-    def test_apps_bump_acl(self):
-        r = self.client.post(reverse('mkt.developers.submit_apps.bump',
-                                     args=['a3615']))
-        eq_(r.status_code, 403)
-
-    def test_bump_submit_and_redirect(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
-        r = self.client.post(self.url, {'step': 4}, follow=True)
-        self.assertRedirects(r, reverse('mkt.developers.submit.4',
-                                        args=['a3615']))
-        eq_(self.get_step().step, 4)
-
-    def test_apps_bump_submit_and_redirect(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
-        self.get_addon().update(type=amo.ADDON_WEBAPP)
-        url = reverse('mkt.developers.submit_apps.bump', args=['a3615'])
-        r = self.client.post(url, {'step': 4}, follow=True)
-        self.assertRedirects(r, reverse('mkt.developers.submit_apps.4',
-                                        args=['a3615']))
-        eq_(self.get_step().step, 4)
 
 
 class TestSubmitSteps(amo.tests.TestCase):
