@@ -7,13 +7,13 @@ from django.db import IntegrityError
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib import auth
+from django.contrib.auth.tokens import default_token_generator
 from django.template import Context, loader
 from django.utils.datastructures import SortedDict
 from django.views.decorators.cache import never_cache
 from django.utils.decorators import method_decorator
 from django.utils.encoding import smart_str
 from django.utils.http import base36_to_int
-from django.contrib.auth.tokens import default_token_generator
 
 from django_browserid.auth import BrowserIDBackend
 from waffle.decorators import waffle_flag, waffle_switch

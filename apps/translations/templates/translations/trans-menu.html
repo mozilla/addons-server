@@ -1,5 +1,5 @@
 <div class="transbox-new"
-     data-rm-locale="{{ url('devhub.remove-locale', addon.slug) }}"
+     data-rm-locale="{{ addon.get_dev_url('remove-locale', prefix_only=True) }}"
      data-default="{{ default_locale }}" id="l10n-menu">
   {% set dl = languages[default_locale] %}
   <p>

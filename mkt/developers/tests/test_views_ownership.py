@@ -65,13 +65,6 @@ class TestEditPolicy(TestOwnership):
         res = self.client.get(self.url.replace('en-US', 'it'), follow=True)
         eq_(pq(res.content)('#id_has_eula').attr('checked'), 'checked')
 
-    @mock.patch.object(settings, 'MARKETPLACE', False)
-    def test_edit_eula_locale_with_l10n_detection(self):
-        self.addon.eula = {'de': 'some eula', 'en-US': ''}
-        self.addon.save()
-        res = self.client.get(self.url.replace('en-US', 'it'))
-        eq_(pq(res.content)('#id_has_eula').attr('checked'), 'checked')
-
 
 class TestEditLicense(TestOwnership):
 

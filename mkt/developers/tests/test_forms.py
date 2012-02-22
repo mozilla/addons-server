@@ -13,8 +13,6 @@ import paypal
 from addons.models import Addon, Charity
 from mkt.developers import forms
 from files.models import FileUpload
-from market.models import AddonPremium
-from users.models import UserProfile
 
 
 class TestNewAddonForm(amo.tests.TestCase):

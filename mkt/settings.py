@@ -17,6 +17,15 @@ HOME = 'mkt.developers.views.home'
 CSRF_FAILURE_VIEW = 'mkt.site.views.csrf_failure'
 
 ROOT_URLCONF = 'mkt.urls'
+
+INSTALLED_APPS = list(INSTALLED_APPS)
+INSTALLED_APPS.remove('abuse')
+INSTALLED_APPS.remove('api')
+INSTALLED_APPS.remove('compat')
+INSTALLED_APPS.remove('discovery')
+INSTALLED_APPS.remove('devhub')
+INSTALLED_APPS = tuple(INSTALLED_APPS)
+
 INSTALLED_APPS += (
     'mkt.site',
     'mkt.developers',

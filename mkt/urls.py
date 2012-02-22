@@ -1,8 +1,11 @@
 from django.conf import settings
 from django.conf.urls.defaults import patterns, url, include
+from django.views.decorators.cache import cache_page
+from django.views.i18n import javascript_catalog
 
-from lib.urls_base import urlpatterns as base_urls
+from apps.users.views import logout
 from mkt.developers.views import login
+
 
 handler404 = 'mkt.site.views.handler404'
 handler500 = 'mkt.site.views.handler500'
@@ -16,22 +19,38 @@ urlpatterns = patterns('',
     # Submission.
     ('^developers/submit/app/', include('mkt.submit.urls')),
 
-    # The new hotness.
-    ('^hub/', include('mkt.hub.urls')),
-
     # Misc pages.
     ('', include('mkt.site.urls')),
+
+    # Editor tools.
+    ('editors/', include('editors.urls')),
+
+    # Home.
+    url('$^', settings.HOME, name='home'),
+
+    # Services.
+    ('', include('apps.amo.urls')),
+
+    # Web apps.
+    ('^apps/', include('webapps.urls')),
+
+    # Users.
+    ('', include('users.urls')),
+
+    # Javascript translations.
+    url('^jsi18n.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
+        {'domain': 'javascript', 'packages': ['zamboni']}, name='jsi18n'),
+
+    # AMO admin (not django admin).
+    ('^admin/', include('zadmin.urls')),
 )
-
-
-# Add our old patterns.
-urlpatterns += base_urls
 
 
 # Override old patterns.
 urlpatterns += patterns('',
     # Developer Registration Login.
     url('^login$', login, name='users.login'),
+    url('^logout$', logout, name='users.logout'),
 )
 
 

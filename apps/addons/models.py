@@ -445,15 +445,18 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # Used by Piston in output.
         return absolutify(self.get_url_path())
 
-    def get_dev_url(self, action='edit', args=[]):
+    def get_dev_url(self, action='edit', args=None, prefix_only=False):
         # Either link to the "new" Marketplace Developer Hub or the old one.
+        args = args or []
         prefix = ('mkt.developers' if getattr(settings, 'MARKETPLACE', False)
                   else 'devhub')
         if self.is_webapp():
-            return reverse('%s.apps.%s' % (prefix, action),
+            view_name = '%s.%s' if prefix_only else '%s.apps.%s'
+            return reverse(view_name % (prefix, action),
                            args=[self.app_slug] + args)
         else:
-            return reverse('%s.addons.%s' % (prefix, action),
+            view_name = '%s.%s' if prefix_only else '%s.addons.%s'
+            return reverse(view_name % (prefix, action),
                            args=[self.slug] + args)
 
     def get_detail_url(self, action='detail', args=[]):

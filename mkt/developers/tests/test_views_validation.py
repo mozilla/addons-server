@@ -20,9 +20,7 @@ import amo
 import amo.tests
 from addons.models import Addon
 from amo.tests import assert_no_validation_errors
-from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
-from applications.models import AppVersion, Application
 from files.models import File, FileUpload, FileValidation
 from files.tests.test_models import UploadTest as BaseUploadTest
 from files.utils import parse_addon, WebAppParser
@@ -103,16 +101,6 @@ class TestFileValidation(amo.tests.TestCase):
     def test_version_list(self):
         r = self.client.get(self.addon.get_dev_url('versions'))
         eq_(r.status_code, 200)
-
-    def test_results_page(self):
-        r = self.client.get(self.url, follow=True)
-        eq_(r.status_code, 200)
-        eq_(r.context['addon'], self.addon)
-        doc = pq(r.content)
-        eq_(doc('header h2').text(),
-            u'Validation Results for searchaddon11102010-20101217.xml')
-        eq_(doc('#addon-validator-suite').attr('data-validateurl'),
-            self.json_url)
 
     @mock.patch.object(settings, 'APP_PREVIEW', True)
     def test_app_results_page(self):
@@ -245,58 +233,6 @@ class TestValidateFile(BaseUploadTest):
             'ValueError: catastrophic failure in amo-validator')
 
     @mock.patch('mkt.developers.tasks.run_validator')
-    def test_validator_sets_binary_flag_for_extensions(self, v):
-        v.return_value = json.dumps({
-            "errors": 0,
-            "success": True,
-            "warnings": 0,
-            "notices": 0,
-            "message_tree": {},
-            "messages": [],
-            "metadata": {
-                "contains_binary_extension": True,
-                "version": "1.0",
-                "name": "gK0Bes Bot",
-                "id": "gkobes@gkobes"
-            }
-        })
-        eq_(self.addon.binary, False)
-        r = self.client.post(reverse('mkt.developers.json_file_validation',
-                                     args=[self.addon.slug, self.file.id]),
-                             follow=True)
-        eq_(r.status_code, 200)
-        data = json.loads(r.content)
-        assert_no_validation_errors(data)
-        addon = Addon.objects.get(pk=self.addon.id)
-        eq_(addon.binary, True)
-
-    @mock.patch('mkt.developers.tasks.run_validator')
-    def test_validator_sets_binary_flag_for_content(self, v):
-        v.return_value = json.dumps({
-            "errors": 0,
-            "success": True,
-            "warnings": 0,
-            "notices": 0,
-            "message_tree": {},
-            "messages": [],
-            "metadata": {
-                "contains_binary_content": True,
-                "version": "1.0",
-                "name": "gK0Bes Bot",
-                "id": "gkobes@gkobes"
-            }
-        })
-        eq_(self.addon.binary, False)
-        r = self.client.post(reverse('mkt.developers.json_file_validation',
-                                     args=[self.addon.slug, self.file.id]),
-                             follow=True)
-        eq_(r.status_code, 200)
-        data = json.loads(r.content)
-        assert_no_validation_errors(data)
-        addon = Addon.objects.get(pk=self.addon.id)
-        eq_(addon.binary, True)
-
-    @mock.patch('mkt.developers.tasks.run_validator')
     def test_linkify_validation_messages(self, v):
         v.return_value = json.dumps({
             "errors": 0,
@@ -339,44 +275,6 @@ class TestValidateFile(BaseUploadTest):
         data = json.loads(r.content)
         eq_(data['validation'], '')
         eq_(data['error'], 'RuntimeError: simulated task error')
-
-    @mock.patch.object(waffle, 'flag_is_active')
-    @mock.patch('mkt.developers.tasks.run_validator')
-    def test_rdf_parse_errors_are_ignored(self, run_validator,
-                                          flag_is_active):
-        run_validator.return_value = json.dumps({
-            "errors": 0,
-            "success": True,
-            "warnings": 0,
-            "notices": 0,
-            "message_tree": {},
-            "messages": [],
-            "metadata": {}
-        })
-        flag_is_active.return_value = True
-        addon = Addon.objects.get(pk=3615)
-        xpi = self.get_upload('extension.xpi')
-        d = parse_addon(xpi.path)
-        # Set up a duplicate upload:
-        addon.update(guid=d['guid'])
-        res = self.client.get(reverse('mkt.developers.validate_addon'))
-        doc = pq(res.content)
-        upload_url = doc('#upload-addon').attr('data-upload-url')
-        with open(xpi.path, 'rb') as f:
-            # Simulate JS file upload
-            res = self.client.post(upload_url, {'upload': f}, follow=True)
-        data = json.loads(res.content)
-        # Simulate JS result polling:
-        res = self.client.get(data['url'])
-        data = json.loads(res.content)
-        # Make sure we don't see a dupe UUID error:
-        eq_(data['validation']['messages'], [])
-        # Simulate JS result polling on detail page:
-        res = self.client.get(data['full_report_url'], follow=True)
-        res = self.client.get(res.context['validate_url'], follow=True)
-        data = json.loads(res.content)
-        # Again, make sure we don't see a dupe UUID error:
-        eq_(data['validation']['messages'], [])
 
 
 class TestCompatibilityResults(amo.tests.TestCase):
@@ -469,149 +367,6 @@ class TestCompatibilityResults(amo.tests.TestCase):
         data = self.validate()
         eq_(data['validation'], '')
         eq_(data['error'], 'RuntimeError: simulated task error')
-
-
-class TestUploadCompatCheck(BaseUploadTest):
-    fixtures = ['base/apps', 'base/appversions', 'base/addon_3615']
-    compatibility_result = json.dumps({
-        "errors": 0,
-        "success": True,
-        "warnings": 0,
-        "notices": 0,
-        "compatibility_summary": {"notices": 0,
-                                  "errors": 0,
-                                  "warnings": 1},
-        "message_tree": {},
-        "messages": [],
-        "metadata": {}
-    })
-
-    def setUp(self):
-        super(TestUploadCompatCheck, self).setUp()
-        assert self.client.login(username='del@icio.us', password='password')
-        self.app = Application.objects.get(pk=amo.FIREFOX.id)
-        self.appver = AppVersion.objects.get(application=self.app,
-                                             version='3.7a1pre')
-        self.upload_url = reverse('mkt.developers.standalone_upload')
-
-    def poll_upload_status_url(self, upload_uuid):
-        return reverse('mkt.developers.standalone_upload_detail',
-                       args=[upload_uuid])
-
-    def fake_xpi(self, filename=None):
-        """Any useless file that has a name property (for Django)."""
-        if not filename:
-            filename = get_image_path('non-animated.gif')
-        return open(filename, 'rb')
-
-    def upload(self, filename=None):
-        with self.fake_xpi(filename=filename) as f:
-            # Simulate how JS posts data w/ app/version from the form.
-            res = self.client.post(self.upload_url,
-                                   {'upload': f,
-                                    'app_id': self.app.pk,
-                                    'version_id': self.appver.pk},
-                                   follow=True)
-        return json.loads(res.content)
-
-    @mock.patch('mkt.developers.tasks.run_validator')
-    def test_js_upload_validates_compatibility(self, run_validator):
-        run_validator.return_value = ''  # Empty to simulate unfinished task.
-        data = self.upload()
-        kw = run_validator.call_args[1]
-        eq_(kw['for_appversions'], {self.app.guid: [self.appver.version]})
-        eq_(kw['overrides'],
-            {'targetapp_minVersion': {self.app.guid: self.appver.version},
-             'targetapp_maxVersion': {self.app.guid: self.appver.version}})
-        eq_(data['url'], self.poll_upload_status_url(data['upload']))
-
-    @mock.patch('mkt.developers.tasks.run_validator')
-    def test_js_poll_upload_status(self, run_validator):
-        run_validator.return_value = self.compatibility_result
-        data = self.upload()
-        url = self.poll_upload_status_url(data['upload'])
-        res = self.client.get(url)
-        data = json.loads(res.content)
-        if data['validation'] and data['validation']['messages']:
-            raise AssertionError('Unexpected validation errors: %s'
-                                 % data['validation']['messages'])
-
-    @mock.patch('mkt.developers.tasks.run_validator')
-    def test_compat_result_report(self, run_validator):
-        run_validator.return_value = self.compatibility_result
-        data = self.upload()
-        poll_url = self.poll_upload_status_url(data['upload'])
-        res = self.client.get(poll_url)
-        data = json.loads(res.content)
-        res = self.client.get(data['full_report_url'])
-        eq_(res.status_code, 200)
-        eq_(res.context['result_type'], 'compat')
-        doc = pq(res.content)
-        # Shows app/version on the results page.
-        eq_(doc('table tr td:eq(0)').text(), 'Firefox 3.7a1pre')
-        eq_(res.context['validate_url'], poll_url)
-
-    @mock.patch.object(waffle, 'flag_is_active')
-    @mock.patch('mkt.developers.tasks.run_validator')
-    def test_rdf_parse_errors_are_ignored(self, run_validator,
-                                          flag_is_active):
-        run_validator.return_value = self.compatibility_result
-        flag_is_active.return_value = True
-        addon = Addon.objects.get(pk=3615)
-        dupe_xpi = self.get_upload('extension.xpi')
-        d = parse_addon(dupe_xpi)
-        # Set up a duplicate upload:
-        addon.update(guid=d['guid'])
-        data = self.upload(filename=dupe_xpi.path)
-        # Make sure we don't see a dupe UUID error:
-        eq_(data['validation']['messages'], [])
-
-    @mock.patch('mkt.developers.tasks.run_validator')
-    def test_compat_summary_overrides(self, run_validator):
-        run_validator.return_value = json.dumps({
-            "success": True,
-            "errors": 0,
-            "warnings": 0,
-            "notices": 0,
-            "compatibility_summary": {"notices": 1,
-                                      "errors": 2,
-                                      "warnings": 3},
-            "message_tree": {},
-            "messages": [],
-            "metadata": {}
-        })
-        data = self.upload()
-        eq_(data['validation']['notices'], 1)
-        eq_(data['validation']['errors'], 2)
-        eq_(data['validation']['warnings'], 3)
-        res = self.client.get(self.poll_upload_status_url(data['upload']))
-        data = json.loads(res.content)
-        eq_(data['validation']['notices'], 1)
-        eq_(data['validation']['errors'], 2)
-        eq_(data['validation']['warnings'], 3)
-
-    @mock.patch('mkt.developers.tasks.run_validator')
-    def test_compat_error_type_override(self, run_validator):
-        run_validator.return_value = json.dumps({
-            "success": True,
-            "errors": 0,
-            "warnings": 0,
-            "notices": 0,
-            "compatibility_summary": {"notices": 0,
-                                      "errors": 1,
-                                      "warnings": 0},
-            "message_tree": {},
-            "messages": [{"type": "warning",
-                          "compatibility_type": "error",
-                          "tier": 1},
-                         {"type": "warning",
-                          "compatibility_type": None,
-                          "tier": 1}],
-            "metadata": {}
-        })
-        data = self.upload()
-        eq_(data['validation']['messages'][0]['type'], 'error')
-        eq_(data['validation']['messages'][1]['type'], 'warning')
 
 
 class TestWebApps(amo.tests.TestCase):
