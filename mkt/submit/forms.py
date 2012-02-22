@@ -64,9 +64,13 @@ class AppDetailsBasicForm(AddonFormBasic):
     description = TransField(required=False,
         label=_('Provide a more detailed description of your app'),
         help_text=_('This description will appear on the details page.'),
-        widget=TransTextarea)
+        widget=TransTextarea(attrs={'rows': 4}))
+    privacy_policy = TransField(required=True,
+        widget=TransTextarea(attrs={'rows': 6}),
+        label=_lazy(u"Please specify your app's Privacy Policy"))
 
     class Meta:
         model = Addon
         fields = ('name', 'slug', 'summary', 'tags', 'description',
-                  'homepage', 'support_email', 'support_url')
+                  'homepage', 'privacy_policy', 'support_email',
+                  'support_url')

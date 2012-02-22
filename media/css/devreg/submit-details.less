@@ -83,7 +83,26 @@ label.houdini {
             margin: 5px 0 10px;
         }
     }
-    .continue {
-        float: right;
+    #show-privacy {
+        &.error {
+            label.checkbox {
+                display: none;
+            }
+        }
+        &.ready {
+            .brform {
+                display: none;
+            }
+        }
+        &.active {
+            label.checkbox {
+                display: none;
+            }
+            .brform {
+                display: block;
+            }
+        }
+        .brform {
+        }
     }
 }

@@ -285,23 +285,41 @@ class TestDetails(TestSubmit):
         self._test_progress_display(['terms', 'manifest'], 'details')
 
     def get_dict(self, **kw):
-        data = {'name': 'Test name', 'slug': 'testname',
-                'summary': 'Hello!', 'description': 'desc'}
-        data.update(**kw)
-        return data
+        self.data = {
+            'name': 'Test name',
+            'slug': 'testname',
+            'summary': 'Hello!',
+            'description': 'desc',
+            'privacy_policy': "XXX <script>alert('xss')</script>"
+        }
+        self.data.update(**kw)
+        return self.data
+
+    def check_dict(self, data=None):
+        if data is None:
+            data = self.get_dict()
+        addon = self.get_webapp()
+
+        # Build a dictionary of expected results.
+        self.expected = self.data.copy()
+        del self.expected['slug']
+        self.expected.update(
+            app_slug='testname',
+            privacy_policy="XXX &lt;script&gt;alert('xss')&lt;/script&gt;"
+        )
+
+        for field, expected in self.expected.iteritems():
+            got = unicode(getattr(addon, field))
+            eq_(got, expected,
+                'Expected %r for %r. Got %r.' % (expected, field, got))
 
     def test_success(self):
         self._step()
         # Post and be redirected.
-        self.client.post(self.url, self.get_dict())
+        r = self.client.post(self.url, self.get_dict())
+        self.assertNoFormErrors(r)
         # TODO: Assert redirects when we go to next step.
-
-        # Check that data got updated.
-        addon = self.get_webapp()
-        eq_(unicode(addon.name), 'Test name')
-        eq_(addon.app_slug, 'testname')
-        eq_(addon.summary, 'Hello!')
-        eq_(addon.description, 'desc')
+        self.check_dict()
 
     def _setup_other_webapp(self):
         self._step()
@@ -378,6 +396,17 @@ class TestDetails(TestSubmit):
         self._step()
         r = self.client.post(self.url, self.get_dict(description=''))
         self.assertNoFormErrors(r)
+
+    def test_description_optional(self):
+        self._step()
+        r = self.client.post(self.url, self.get_dict(description=''))
+        self.assertNoFormErrors(r)
+
+    def test_privacy_policy_optional(self):
+        self._step()
+        r = self.client.post(self.url, self.get_dict(privacy_policy=''))
+        self.assertFormError(r, 'form_basic', 'privacy_policy',
+                             'This field is required.')
 
 
 class TestPayments(TestSubmit):

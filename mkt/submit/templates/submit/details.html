@@ -49,7 +49,21 @@
         </div>
       </header>
       {{ form_field(form_basic.summary, hint=True) }}
+
       {{ form_field(form_basic.description, hint=True) }}
+
+      {{ form_field(form_basic.privacy_policy) }}
+
+      {# TODO: Remove since Privacy Policy is required.
+        <div id="show-privacy" class="{{ 'error' if form_details.form_basic.errors else 'ready' }} brform simple-field">
+          <label class="checkbox">
+            <input type="checkbox" name="show_privacy">
+            {{ _('This app has a privacy policy') }}
+          </label>
+          {{ form_field(form_basic.privacy_policy) }}
+        </div>
+      #}
+
       <button class="prominent continue c" type="submit">
         {{ _('Continue') }}
       </button>

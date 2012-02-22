@@ -1236,9 +1236,14 @@ class PaypalPaymentData(happyforms.ModelForm):
 
 
 class AppFormDetails(addons.forms.AddonFormBase):
-    default_locale = forms.TypedChoiceField(choices=Addon.LOCALES)
+    description = TransField(required=False,
+        label=_(u'Provide a more detailed description of your app'),
+        help_text=_(u'This description will appear on the details page.'),
+        widget=TransTextarea)
+    default_locale = forms.TypedChoiceField(required=False,
+        choices=Addon.LOCALES)
     privacy_policy = TransField(widget=TransTextarea(), required=True,
-        label=_lazy(u"Please specify your app's Privacy Policy:"))
+        label=_lazy(u"Please specify your app's Privacy Policy"))
 
     class Meta:
         model = Addon

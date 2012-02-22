@@ -81,17 +81,30 @@ def manifest(request):
 @dev_required
 @submit_step('details')
 def details(request, addon_id, addon):
+    # Name, Slug, Summary, Description, Privacy Policy.
     form_basic = AppDetailsBasicForm(request.POST or None, instance=addon,
                                      request=request)
-    if request.POST and form_basic.is_valid():
+
+    # Device Types.
+    #device_type_form = addon_forms.DeviceTypeForm(request.POST or None,
+    #                                              addon=addon)
+
+    forms = {
+        'form_basic': form_basic,
+        #'form_details': form_details,
+    }
+
+    if request.POST and all(f.is_valid() for f in forms.values()):
         addon = form_basic.save(addon)
         AppSubmissionChecklist.objects.get(addon=addon).update(details=True)
         return redirect('submit.app.payments', addon.app_slug)
-    return jingo.render(request, 'submit/details.html', {
+
+    ctx = {
         'step': 'details',
         'addon': addon,
-        'form_basic': form_basic,
-    })
+    }
+    ctx.update(forms)
+    return jingo.render(request, 'submit/details.html', ctx)
 
 
 @dev_required
