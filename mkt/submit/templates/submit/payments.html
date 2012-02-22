@@ -10,13 +10,11 @@
   {{ progress(request, addon=addon, step=step) }}
   <section id="submit-payments" class="primary">
     <h2>App Payments</h2>
-    <form method="post" id="upload-webapp">
+    <form method="post" class="devhub-form">
       <div class="brform island swagger c">
         {{ csrf() }}
-        <p>{{ loc('Will your app use payments?') }} </p>
         <p>
-          {{ form.premium_type.errors }}
-          {{ form.premium_type }}
+          {{ form_field(form.premium_type) }}
         </p>
       </div>
       <button class="prominent continue c" type="submit">

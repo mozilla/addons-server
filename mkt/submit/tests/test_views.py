@@ -574,12 +574,41 @@ class TestPaymentsAdvanced(TestSubmit):
         eq_(res.status_code, 302)
         self.assertRedirects(res, self.get_url('payments.paypal'))
 
-    def test_upsell(self):
+    def test_price(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.post(self.get_url('payments.upsell'),
                                {'price': self.price.pk})
         eq_(res.status_code, 302)
+        eq_(self.get_webapp().premium.price.pk, self.price.pk)
         self.assertRedirects(res, self.get_url('payments.paypal'))
+
+    def test_upsell(self):
+        free = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        AddonUser.objects.create(addon=free,
+                                 user=self.webapp.authors.all()[0])
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.post(self.get_url('payments.upsell'),
+                               {'price': self.price.pk,
+                                'do_upsell': 1,
+                                'free': free.pk,
+                                'text': 'some upsell',
+                                })
+        eq_(self.get_webapp().premium.price.pk, self.price.pk)
+        eq_(self.get_webapp().upsold.free.pk, free.pk)
+        eq_(self.get_webapp().upsold.premium.pk, self.get_webapp().pk)
+        eq_(res.status_code, 302)
+        self.assertRedirects(res, self.get_url('payments.paypal'))
+
+    def test_upsell_missing(self):
+        free = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        AddonUser.objects.create(addon=free,
+                                 user=self.webapp.authors.all()[0])
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.post(self.get_url('payments.upsell'),
+                               {'price': self.price.pk,
+                                'do_upsell': 1,
+                                })
+        eq_(res.status_code, 200)
 
     def test_bad_upsell(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)

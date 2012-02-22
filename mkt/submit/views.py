@@ -142,8 +142,11 @@ def payments(request, addon_id, addon):
 @dev_required
 @submit_step('payments')
 def payments_upsell(request, addon_id, addon):
-    form = forms.UpsellForm(request.POST or None)
+    form = forms.UpsellForm(request.POST or None, request=request,
+                            extra={'addon': addon,
+                                   'amo_user': request.amo_user})
     if request.POST and form.is_valid():
+        form.save()
         return redirect('submit.app.payments.paypal', addon.app_slug)
     return jingo.render(request, 'submit/payments-upsell.html', {
                         'step': 'payments',

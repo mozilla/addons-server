@@ -10,16 +10,23 @@
   {{ progress(request, addon=addon, step=step) }}
   <section id="submit-payments" class="primary">
     <h2>App Payments</h2>
-    <form method="post" id="upload-webapp">
+    <form method="post" class="devhub-form">
       <div class="brform island swagger c">
         {{ csrf() }}
         <p>{{ loc("To sell your app in the Marketplace you'll first need
                    to set your price. Select a price tier for your add-on
                    below. Price tiers are based on US Dollars and are
                    fixed for all support countries.") }} </p>
-        <p>
-          {{ form.as_p() }}
-        </p>
+                   {{ form_field(form.price) }}
+        {% if form.fields['free'].queryset.count() %}
+          <p>{{ loc('Linking this app with its free counterpart allows you
+                     to promote your premium app next to the free version.
+                     Would you like to link the apps? You can always change
+                     your mind later.') }}</p>
+          {{ form_field(form.do_upsell) }}
+          {{ form_field(form.free) }}
+          {{ form_field(form.text) }}
+        {% endif %}
       </div>
       <button class="prominent continue c" type="submit">
         {{ _('Continue') }}

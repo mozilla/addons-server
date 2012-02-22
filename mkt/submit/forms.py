@@ -5,11 +5,12 @@ from django.utils.safestring import mark_safe
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
-import amo
 from addons.forms import AddonFormBasic
-from addons.models import Addon
+from addons.models import Addon, AddonUpsell
+import amo
+from amo.utils import raise_required
 from files.models import FileUpload
-from market.models import Price
+from market.models import AddonPremium, Price
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
 from translations.widgets import TransInput, TransTextarea
 from translations.fields import TransField
@@ -51,7 +52,8 @@ class NewWebappForm(happyforms.Form):
 class PremiumTypeForm(happyforms.Form):
     premium_type = forms.TypedChoiceField(coerce=lambda x: int(x),
                                 choices=amo.ADDON_PREMIUM_TYPES.items(),
-                                widget=forms.RadioSelect())
+                                widget=forms.RadioSelect(),
+                                label=_lazy('Will your app use payments?'))
 
 
 class UpsellForm(happyforms.Form):
@@ -63,12 +65,68 @@ class UpsellForm(happyforms.Form):
     do_upsell = forms.TypedChoiceField(coerce=lambda x: bool(int(x)),
                                        choices=APP_UPSELL_CHOICES,
                                        widget=forms.RadioSelect(),
+                                       label=_('Upsell this app'),
                                        required=False)
     free = AddonChoiceField(queryset=Addon.objects.none(),
-                                  required=False,
-                                  empty_label='')
-    text = forms.CharField(widget=forms.Textarea(), required=False)
+                            required=False,
+                            empty_label='',
+                            label=_('App to upgrade from'),
+                            widget=forms.Select())
+    text = forms.CharField(widget=forms.Textarea(),
+                           help_text=_('Describe the added benefits.'),
+                           required=False,
+                           label=_('Pitch your app'))
 
+    def __init__(self, *args, **kw):
+        self.extra = kw.pop('extra')
+        self.request = kw.pop('request')
+        self.addon = self.extra['addon']
+
+        if self.addon.premium:
+            kw['initial']['price'] = self.addon.premium.price
+
+        super(UpsellForm, self).__init__(*args, **kw)
+        self.fields['free'].queryset = (self.extra['amo_user'].addons
+                                        .exclude(pk=self.addon.pk)
+                                        .filter(premium_type=amo.ADDON_FREE,
+                                                type=self.addon.type))
+
+    def clean_text(self):
+        if (self.cleaned_data['do_upsell']
+            and not self.cleaned_data['text']):
+            raise_required()
+        return self.cleaned_data['text']
+
+    def clean_free(self):
+        if (self.cleaned_data['do_upsell']
+            and not self.cleaned_data['free']):
+            raise_required()
+        return self.cleaned_data['free']
+
+    def save(self):
+        if 'price' in self.cleaned_data:
+            premium = self.addon.premium
+            if not premium:
+                premium = AddonPremium()
+                premium.addon = self.addon
+            premium.price = self.cleaned_data['price']
+            premium.save()
+
+        upsell = self.addon.upsold
+        if (self.cleaned_data['do_upsell'] and
+            self.cleaned_data['text'] and self.cleaned_data['free']):
+
+            # Check if this app was already a premium version for another app.
+            if upsell and upsell.free != self.cleaned_data['free']:
+                upsell.delete()
+
+            if not upsell:
+                upsell = AddonUpsell(premium=self.addon)
+            upsell.text = self.cleaned_data['text']
+            upsell.free = self.cleaned_data['free']
+            upsell.save()
+        elif not self.cleaned_data['do_upsell'] and upsell:
+            upsell.delete()
 
 
 class AppDetailsBasicForm(AddonFormBasic):
