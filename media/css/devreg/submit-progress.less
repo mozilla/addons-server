@@ -41,7 +41,11 @@
             margin-top: -38px;
             position: relative;
             width: 100%;
+            left: -50%;
             z-index: 10;
+        }
+        &:first-child:after {
+            content: none;
         }
         &.current, &.completed {
             color: @dark-gray;
@@ -55,18 +59,6 @@
             &:after {
                 border-color: @dark-gray;
                 margin-top: -40px;
-            }
-        }
-        &.current {
-            b {
-                background: @faint-gray;
-                display: block;
-                float: right;
-                height: 2px;
-                margin-top: -40px;
-                position: relative;
-                width: 50%;
-                z-index: 11;
             }
         }
     }
