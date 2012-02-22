@@ -59,3 +59,20 @@ if getattr(settings, 'POTCH_MARKETPLACE_EXPERIMENTS', False):
     urlpatterns += patterns('',
         ('^marketplace-experiments/', include('mkt.experiments.urls'))
     )
+
+
+if settings.TEMPLATE_DEBUG:
+    # Remove leading and trailing slashes so the regex matches.
+    media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
+    urlpatterns += patterns('',
+        (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
+         {'document_root': settings.MEDIA_ROOT}),
+    )
+
+
+if settings.SERVE_TMP_PATH and settings.DEBUG:
+    # Serves any URL like /tmp/* from your local ./tmp/ dir
+    urlpatterns += patterns('',
+        (r'^tmp/(?P<path>.*)$', 'django.views.static.serve',
+         {'document_root': settings.TMP_PATH}),
+    )
