@@ -62,25 +62,27 @@
               <small>Marketplace </small>Developer Hub
             </a>
           </h1>
-          {% if ADMIN_MESSAGE or settings.READ_ONLY %}
-            <div class="site-balloon" id="site-notice">
-              {% if ADMIN_MESSAGE %}
-                <p>{{ ADMIN_MESSAGE|safe }}</p>
-              {% endif %}
-              {% if settings.READ_ONLY %}
-                <p>{% trans %}
-                  Some features are temporarily disabled while we perform
-                  website maintenance. We'll be back to full capacity shortly.
-                  {% endtrans %}</p>
-              {% endif %}
-            </div>
-          {% endif %}
         </div>
         {% block site_header_title %}
           {% include 'developers/nav.html' %}
         {% endblock %}
       {% endblock site_header %}
     </section>
+    {% if ADMIN_MESSAGE or settings.READ_ONLY %}
+      <div id="site-notice">
+        <div class="pad">
+          {% if ADMIN_MESSAGE %}
+            <p>{{ ADMIN_MESSAGE|safe }}</p>
+          {% endif %}
+          {% if settings.READ_ONLY %}
+            <p>{% trans %}
+              Some features are temporarily disabled while we perform
+              website maintenance. We'll be back to full capacity shortly.
+              {% endtrans %}</p>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
     <div id="wrap">
       <div id="page" class="pad section c">
         {# Overridden in base_side_categories, which expands categories
