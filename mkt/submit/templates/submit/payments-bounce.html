@@ -1,0 +1,26 @@
+{% extends 'developers/base_impala.html' %}
+
+{% set title = _('App Payments') %}
+
+{% block title %}{{ hub_page_title(title) }}{% endblock %}
+
+{% block content %}
+  {{ hub_breadcrumbs(items=[(None, _('Submit App'))]) }}
+  <h1>{{ _('Submit an App') }}</h1>
+  {{ progress(request, addon=addon, step=step) }}
+  <section id="submit-payments" class="primary">
+    <h2>App Payments</h2>
+      <div class="brform island swagger c">
+        <p>{{ loc('In order to process refunds you approve through the Marketplace
+              as well as automatic refunds we need you to give permission to us
+              in PayPal. We also request permission to read your account information
+              from PayPal.') }}</p>
+      <footer class="listing-footer">
+        <a href="{{ paypal_url }}" class="button">Set up permissions</a>
+      </footer>
+      </div>
+  </section>
+{% endblock %}
+
+
+

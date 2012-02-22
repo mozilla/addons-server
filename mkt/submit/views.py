@@ -1,15 +1,19 @@
 from django.shortcuts import redirect
 
 import jingo
+import waffle
 
 import amo
 from amo.decorators import login_required
 from addons.forms import CategoryFormSet, DeviceTypeForm
 from addons.models import Addon, AddonUser
+from market.models import AddonPaymentData
 from mkt.developers import tasks
 from mkt.developers.decorators import dev_required
+from mkt.developers.forms import PaypalSetupForm, PaypalPaymentData
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.submit.models import AppSubmissionChecklist
+import paypal
 from files.models import Platform
 from users.models import UserProfile
 from . import forms
@@ -118,11 +122,74 @@ def details(request, addon_id, addon):
 def payments(request, addon_id, addon):
     form = forms.PremiumTypeForm(request.POST or None)
     if request.POST and form.is_valid():
-        # Save this to the addon, eg:
         addon.update(premium_type=form.cleaned_data['premium_type'])
+
+        if waffle.flag_is_active(request, 'advanced-payments-submission'):
+            if addon.premium_type in amo.ADDON_PREMIUMS:
+                return redirect('submit.app.payments.upsell', addon.app_slug)
+            if addon.premium_type == amo.ADDON_FREE_INAPP:
+                return redirect('submit.app.payments.paypal', addon.app_slug)
+
         AppSubmissionChecklist.objects.get(addon=addon).update(payments=True)
         return redirect('submit.app.done', addon.app_slug)
     return jingo.render(request, 'submit/payments.html', {
+                        'step': 'payments',
+                        'addon': addon,
+                        'form': form
+                        })
+
+
+@dev_required
+@submit_step('payments')
+def payments_upsell(request, addon_id, addon):
+    form = forms.UpsellForm(request.POST or None)
+    if request.POST and form.is_valid():
+        return redirect('submit.app.payments.paypal', addon.app_slug)
+    return jingo.render(request, 'submit/payments-upsell.html', {
+                        'step': 'payments',
+                        'addon': addon,
+                        'form': form
+                        })
+
+
+@dev_required
+@submit_step('payments')
+def payments_paypal(request, addon_id, addon):
+    form = PaypalSetupForm(request.POST or None)
+    if request.POST and form.is_valid():
+        return redirect('submit.app.payments.bounce', addon.app_slug)
+    return jingo.render(request, 'submit/payments-paypal.html', {
+                        'step': 'payments',
+                        'addon': addon,
+                        'form': form
+                        })
+
+
+@dev_required
+@submit_step('payments')
+def payments_bounce(request, addon_id, addon):
+    paypal_url = paypal.get_permission_url(addon, 'submission',
+                                           ['REFUND',
+                                            'ACCESS_BASIC_PERSONAL_DATA',
+                                            'ACCESS_ADVANCED_PERSONAL_DATA'])
+    return jingo.render(request, 'submit/payments-bounce.html', {
+                        'step': 'payments',
+                        'paypal_url': paypal_url,
+                        'addon': addon
+                        })
+
+
+@dev_required
+@submit_step('payments')
+def payments_confirm(request, addon_id, addon):
+    adp, created = AddonPaymentData.objects.safer_get_or_create(addon=addon)
+    form = PaypalPaymentData(request.POST or None, instance=adp)
+    if request.method == 'POST' and form.is_valid():
+        adp.update(**form.cleaned_data)
+        AppSubmissionChecklist.objects.get(addon=addon).update(payments=True)
+        return redirect('submit.app.done', addon.app_slug)
+
+    return jingo.render(request, 'submit/payments-confirm.html', {
                         'step': 'payments',
                         'addon': addon,
                         'form': form

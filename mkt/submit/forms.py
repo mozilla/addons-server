@@ -9,6 +9,8 @@ import amo
 from addons.forms import AddonFormBasic
 from addons.models import Addon
 from files.models import FileUpload
+from market.models import Price
+from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
 from translations.widgets import TransInput, TransTextarea
 from translations.fields import TransField
 from users.models import UserProfile
@@ -50,6 +52,23 @@ class PremiumTypeForm(happyforms.Form):
     premium_type = forms.TypedChoiceField(coerce=lambda x: int(x),
                                 choices=amo.ADDON_PREMIUM_TYPES.items(),
                                 widget=forms.RadioSelect())
+
+
+class UpsellForm(happyforms.Form):
+    price = forms.ModelChoiceField(queryset=Price.objects.active(),
+                                   label=_('App price'),
+                                   empty_label=None,
+                                   required=True)
+
+    do_upsell = forms.TypedChoiceField(coerce=lambda x: bool(int(x)),
+                                       choices=APP_UPSELL_CHOICES,
+                                       widget=forms.RadioSelect(),
+                                       required=False)
+    free = AddonChoiceField(queryset=Addon.objects.none(),
+                                  required=False,
+                                  empty_label='')
+    text = forms.CharField(widget=forms.Textarea(), required=False)
+
 
 
 class AppDetailsBasicForm(AddonFormBasic):

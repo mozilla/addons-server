@@ -9,7 +9,8 @@ from access import acl
 from addons.decorators import addon_view
 
 
-def dev_required(owner_for_post=False, allow_editors=False, webapp=False):
+def dev_required(owner_for_post=False, allow_editors=False, webapp=False,
+                 skip_submit_check=False):
     """Requires user to be add-on owner or admin.
 
     When allow_editors is True, an editor can view the page.
@@ -35,16 +36,17 @@ def dev_required(owner_for_post=False, allow_editors=False, webapp=False):
             # Ignore disabled so they can view their add-on.
             elif acl.check_addon_ownership(request, addon, viewer=True,
                                            ignore_disabled=True):
-                try:
-                    # If it didn't go through the app submission
-                    # checklist. Don't die. This will be useful for
-                    # creating apps with an API later.
-                    step = addon.appsubmissionchecklist.get_next()
-                except ObjectDoesNotExist:
-                    step = None
-                # Redirect to the submit flow if they're not done.
-                if not getattr(f, 'submitting', False) and step:
-                    return _resume(addon, step)
+                if not skip_submit_check:
+                    try:
+                        # If it didn't go through the app submission
+                        # checklist. Don't die. This will be useful for
+                        # creating apps with an API later.
+                        step = addon.appsubmissionchecklist.get_next()
+                    except ObjectDoesNotExist:
+                        step = None
+                    # Redirect to the submit flow if they're not done.
+                    if not getattr(f, 'submitting', False) and step:
+                        return _resume(addon, step)
                 return fun()
             return http.HttpResponseForbidden()
         return wrapper

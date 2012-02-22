@@ -32,6 +32,7 @@ from applications.models import Application, AppVersion
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon, VERSION_RE
 from market.models import AddonPremium, Price, AddonPaymentData
+from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
 from payments.models import InappConfig
 from translations.widgets import (TransInput, TransTextarea,
                                   TranslationTextarea, TranslationTextInput)
@@ -981,21 +982,6 @@ class NewManifestForm(happyforms.Form):
         return manifest
 
 
-UPSELL_CHOICES = (
-    (0, _("I don't have a free add-on to associate.")),
-    (1, _('This is a premium upgrade to:')),
-)
-APP_UPSELL_CHOICES = (
-    (0, _("I don't have a free app to associate.")),
-    (1, _('This is a premium upgrade to:')),
-)
-
-
-class AddonChoiceField(forms.ModelChoiceField):
-    def label_from_instance(self, obj):
-        return obj.name
-
-
 class PremiumForm(happyforms.Form):
     """
     The premium details for an addon, which is unfortunately
@@ -1009,7 +995,7 @@ class PremiumForm(happyforms.Form):
                                    empty_label=None,
                                    required=False)
     do_upsell = forms.TypedChoiceField(coerce=lambda x: bool(int(x)),
-                                       choices=UPSELL_CHOICES,
+                                       choices=APP_UPSELL_CHOICES,
                                        widget=forms.RadioSelect(),
                                        required=False)
     free = AddonChoiceField(queryset=Addon.objects.none(),

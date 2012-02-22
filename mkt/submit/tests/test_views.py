@@ -5,6 +5,7 @@ from django.conf import settings
 
 import mock
 from nose.tools import eq_
+from nose import SkipTest
 from pyquery import PyQuery as pq
 import waffle
 
@@ -15,6 +16,7 @@ from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category, DeviceType)
 from addons.utils import ReverseNameLookup
 from files.tests.test_models import UploadTest as BaseUploadTest
+from market.models import Price
 import mkt
 from mkt.submit.models import AppSubmissionChecklist
 from translations.models import Translation
@@ -521,6 +523,86 @@ class TestPayments(TestSubmit):
         res = self.client.post(self.url, {'premium_type': amo.ADDON_PREMIUM})
         eq_(res.status_code, 302)
         eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM)
+
+
+class TestPaymentsAdvanced(TestSubmit):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        super(TestPaymentsAdvanced, self).setUp()
+        AppSubmissionChecklist.objects.all().delete()  # TODO fix this.
+        self.webapp = self.get_webapp()
+        self.url = self.get_url('payments')
+        self.price = Price.objects.create(price='1.00')
+        flag = (waffle.models.Flag
+                      .objects.create(name='advanced-payments-submission'))
+        flag.everyone = True
+        flag.save()
+        self._step()
+
+    def get_url(self, url):
+        return reverse('submit.app.%s' % url, args=[self.webapp.app_slug])
+
+    def get_webapp(self):
+        return Webapp.objects.get(id=337141)
+
+    def _step(self):
+        self.user.update(read_dev_agreement=True)
+        self.cl = AppSubmissionChecklist.objects.create(addon=self.webapp,
+            terms=True, manifest=True, details=True)
+        AddonUser.objects.create(addon=self.webapp, user=self.user)
+
+    def test_anonymous(self):
+        self._test_anonymous()
+
+    def test_valid(self):
+        res = self.client.post(self.get_url('payments'),
+                               {'premium_type': amo.ADDON_FREE})
+        eq_(res.status_code, 302)
+        self.assertRedirects(res, self.get_url('done'))
+
+    def test_premium(self):
+        for type_ in [amo.ADDON_PREMIUM, amo.ADDON_PREMIUM_INAPP]:
+            res = self.client.post(self.get_url('payments'),
+                                  {'premium_type': type_})
+            eq_(res.status_code, 302)
+            self.assertRedirects(res, self.get_url('payments.upsell'))
+
+    def test_free_inapp(self):
+        res = self.client.post(self.get_url('payments'),
+                               {'premium_type': amo.ADDON_FREE_INAPP})
+        eq_(res.status_code, 302)
+        self.assertRedirects(res, self.get_url('payments.paypal'))
+
+    def test_upsell(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.post(self.get_url('payments.upsell'),
+                               {'price': self.price.pk})
+        eq_(res.status_code, 302)
+        self.assertRedirects(res, self.get_url('payments.paypal'))
+
+    def test_bad_upsell(self):
+        # some tests for when it goes wrong
+        raise SkipTest
+
+    def test_paypal(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.post(self.get_url('payments.paypal'),
+                               {'business_account': 'yes', 'email': 'foo'})
+        eq_(res.status_code, 200)
+
+    def test_bad_paypal(self):
+        # some tests for when it goes wrong
+        raise SkipTest
+
+    def test_acquire(self):
+        raise SkipTest
+
+    def test_confirm(self):
+        raise SkipTest
+        # and this is where it all breaks down, need to figure out
+        # how to test this new flow.
+
 
 
 class TestDone(TestSubmit):

@@ -44,6 +44,7 @@ from mkt.developers.forms import (CheckCompatibilityForm, InappConfigForm,
                                   AppFormBasic, AppFormDetails)
 from mkt.developers.models import ActivityLog, SubmitStep
 from mkt.developers import perf
+from mkt.submit.decorators import submit_step
 from editors.helpers import get_position
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
@@ -295,7 +296,7 @@ def paypal_setup_bounce(request, addon_id, addon, webapp):
     if not addon.paypal_id:
         messages.error(request, 'We need a PayPal email before continuing.')
         return redirect(addon.get_dev_url('paypal_setup'))
-    paypal_url = paypal.get_permission_url(addon, 'payments',
+    paypal_url = paypal.get_permission_url(addon, 'management',
                                         ['REFUND',
                                          'ACCESS_BASIC_PERSONAL_DATA',
                                          'ACCESS_ADVANCED_PERSONAL_DATA'])
@@ -320,15 +321,28 @@ def paypal_setup_confirm(request, addon_id, addon, webapp):
 
 
 @write
-@dev_required(webapp=True)
+@dev_required(webapp=True, skip_submit_check=True)
 def acquire_refund_permission(request, addon_id, addon, webapp=False):
     """This is the callback from Paypal."""
+    # Set up our redirects.
+    if request.GET.get('dest', '') == 'submission':
+        on_good = reverse('submit.app.payments.confirm',
+                          args=[addon.app_slug])
+        on_error = reverse('submit.app.payments.paypal',
+                           args=[addon.app_slug])
+        show_good_msgs = False
+    else:
+        # The management pages are the default.
+        on_good = addon.get_dev_url('paypal_setup_confirm')
+        on_error = addon.get_dev_url('paypal_setup_bounce')
+        show_good_msgs = True
+
     if 'request_token' not in request.GET:
         paypal_log.debug('User did not approve permissions for'
                          ' addon: %s' % addon_id)
         messages.error(request, 'You will need to accept the permissions '
                                 'to continue.')
-        return redirect(addon.get_dev_url('paypal_setup_bounce'))
+        return redirect(on_error)
 
     paypal_log.debug('User approved permissions for addon: %s' % addon_id)
 
@@ -366,9 +380,10 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
     paypal_log.debug('AddonPremium saved with token: %s' % addonpremium.pk)
     amo.log(amo.LOG.EDIT_PROPERTIES, addon)
 
-    messages.success(request, 'Please confirm the data we '
-                              'received from PayPal.')
-    return redirect(addon.get_dev_url('paypal_setup_confirm'))
+    if show_good_msgs:
+        messages.success(request, 'Please confirm the data we '
+                                  'received from PayPal.')
+    return redirect(on_good)
 # End of new paypal stuff.
 
 
