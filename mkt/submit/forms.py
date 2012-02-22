@@ -131,7 +131,6 @@ class UpsellForm(happyforms.Form):
         elif not self.cleaned_data['do_upsell'] and upsell:
             upsell.delete()
 
-
 class AppDetailsBasicForm(AddonFormBasic):
     """Form for "Details" submission step."""
     name = TransField(max_length=128,
