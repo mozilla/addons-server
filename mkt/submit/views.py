@@ -157,6 +157,7 @@ def payments_upsell(request, addon_id, addon):
 def payments_paypal(request, addon_id, addon):
     form = PaypalSetupForm(request.POST or None)
     if request.POST and form.is_valid():
+        addon.update(paypal_id=form.cleaned_data['email'])
         return redirect('submit.app.payments.bounce', addon.app_slug)
     return jingo.render(request, 'submit/payments-paypal.html', {
                         'step': 'payments',

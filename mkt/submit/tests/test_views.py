@@ -582,14 +582,19 @@ class TestPaymentsAdvanced(TestSubmit):
         self.assertRedirects(res, self.get_url('payments.paypal'))
 
     def test_bad_upsell(self):
-        # some tests for when it goes wrong
-        raise SkipTest
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.post(self.get_url('payments.upsell'), {'price':''})
+        eq_(res.status_code, 200)
+        self.assertFormError(res, 'form', 'price', 'This field is required.')
 
     def test_paypal(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.post(self.get_url('payments.paypal'),
-                               {'business_account': 'yes', 'email': 'foo'})
-        eq_(res.status_code, 200)
+                               {'business_account': 'yes',
+                                'email': 'foo@bar.com'})
+        eq_(self.get_webapp().paypal_id, 'foo@bar.com')
+        eq_(res.status_code, 302)
+        self.assertRedirects(res, self.get_url('payments.bounce'))
 
     def test_bad_paypal(self):
         # some tests for when it goes wrong
