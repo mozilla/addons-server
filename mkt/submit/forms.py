@@ -54,20 +54,21 @@ class PremiumTypeForm(happyforms.Form):
 
 class AppDetailsBasicForm(AddonFormBasic):
     """Form for "Details" submission step."""
-    name = TransField(max_length=128, widget=TransInput(attrs={'class': 'l'}))
+    name = TransField(max_length=128,
+                      widget=TransInput(attrs={'class': 'name l'}))
     slug = forms.CharField(max_length=30,
                            widget=forms.TextInput(attrs={'class': 'm'}))
     summary = TransField(max_length=250,
-        label=_("Provide a brief summary of your app's functionality"),
+        label=_("Provide a brief summary of your app's functionality:"),
         help_text=_('This summary will be shown in listings and searches.'),
         widget=TransInput(attrs={'rows': 4, 'class': 'full'}))
     description = TransField(required=False,
-        label=_('Provide a more detailed description of your app'),
+        label=_('Provide a more detailed description of your app:'),
         help_text=_('This description will appear on the details page.'),
         widget=TransTextarea(attrs={'rows': 4}))
     privacy_policy = TransField(required=True,
         widget=TransTextarea(attrs={'rows': 6}),
-        label=_lazy(u"Please specify your app's Privacy Policy"))
+        label=_lazy(u"Please specify your app's privacy policy:"))
 
     class Meta:
         model = Addon

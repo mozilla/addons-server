@@ -4,7 +4,7 @@ import jingo
 
 import amo
 from amo.decorators import login_required
-from addons.forms import DeviceTypeForm
+from addons.forms import CategoryFormSet, DeviceTypeForm
 from addons.models import Addon, AddonUser
 from mkt.developers import tasks
 from mkt.developers.decorators import dev_required
@@ -86,16 +86,22 @@ def details(request, addon_id, addon):
     form_basic = AppDetailsBasicForm(request.POST or None, instance=addon,
                                      request=request)
 
+    form_cats = CategoryFormSet(request.POST or None, addon=addon,
+                                request=request)
+
     # Device Types.
     form_devices = DeviceTypeForm(request.POST or None, addon=addon)
 
     forms = {
         'form_basic': form_basic,
         'form_devices': form_devices,
+        'form_cats': form_cats,
     }
 
-    if request.POST and all(f.is_valid() for f in forms.values()):
+    if request.POST and all(f.is_valid() for f in forms.itervalues()):
         addon = form_basic.save(addon)
+        form_devices.save(addon)
+        form_cats.save()
         AppSubmissionChecklist.objects.get(addon=addon).update(details=True)
         return redirect('submit.app.payments', addon.app_slug)
 

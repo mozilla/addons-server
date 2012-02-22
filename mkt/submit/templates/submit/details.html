@@ -1,3 +1,4 @@
+{% from 'developers/includes/macros.html' import select_cats %}
 {% extends 'developers/base_impala.html' %}
 
 {% set title = loc('Verify App Details') %}
@@ -50,6 +51,18 @@
       </header>
 
       {{ form_field(form_basic.summary, hint=True) }}
+
+      <div id="addon-categories-edit"
+           data-max-categories="{{ amo.MAX_CATEGORIES }}">
+        {{ form_cats.non_form_errors() }}
+        {{ form_cats.management_form }}
+        {% for form in form_cats.initial_forms %}
+          {% if not form.disabled %}
+            {{ select_cats(amo.MAX_CATEGORIES, form, webapp=True, req=True) }}
+          {% endif %}
+        {% endfor %}
+      </div>
+
       {{ form_field(form_basic.description, hint=True) }}
       {{ form_field(form_basic.privacy_policy) }}
 

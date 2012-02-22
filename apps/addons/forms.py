@@ -203,7 +203,8 @@ class ApplicationChoiceField(forms.ModelChoiceField):
 
 
 class DeviceTypeForm(forms.Form):
-    device_types = forms.ModelMultipleChoiceField(label=_('Device Types'),
+    device_types = forms.ModelMultipleChoiceField(
+        label=loc('Which device types does your app work with?'),
         queryset=DeviceType.objects.all(), widget=forms.CheckboxSelectMultiple,
         required=True)
 

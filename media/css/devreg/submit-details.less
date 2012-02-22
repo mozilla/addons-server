@@ -105,4 +105,36 @@ label.houdini {
         .brform {
         }
     }
+    #addon-categories-edit {
+        label {
+            display: inline-block;
+        }
+        .addon-app-cats {
+            > label {
+                margin: 15px 0 5px;
+            }
+        }
+        .addon-categories {
+            .column-count(4);
+            label {
+                margin-top: 5px;
+            }
+        }
+    }
+}
+
+@media (max-width: 860px) {
+    #submit-details {
+        #addon-categories-edit .addon-categories {
+            .column-count(3);
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    #submit-details {
+        #addon-categories-edit .addon-categories {
+            .column-count(2);
+        }
+    }
 }

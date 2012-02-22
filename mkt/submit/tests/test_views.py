@@ -4,7 +4,6 @@ import os
 from django.conf import settings
 
 import mock
-from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
@@ -12,7 +11,8 @@ import waffle
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from addons.models import Addon, AddonDeviceType, AddonUser, DeviceType
+from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
+                           Category, DeviceType)
 from addons.utils import ReverseNameLookup
 from files.tests.test_models import UploadTest as BaseUploadTest
 import mkt
@@ -241,12 +241,13 @@ class TestCreateWebAppFromManifest(BaseWebAppTest):
 
 
 class TestDetails(TestSubmit):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
         super(TestDetails, self).setUp()
         self.webapp = self.get_webapp()
         self.url = reverse('submit.app.details', args=[self.webapp.app_slug])
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
 
     def get_webapp(self):
         return Webapp.objects.get(id=337141)
@@ -263,6 +264,14 @@ class TestDetails(TestSubmit):
         self.dtype = DeviceType.objects.create(name='fligphone')
         AddonDeviceType.objects.create(addon=self.webapp,
                                        device_type=self.dtype)
+
+        # Associate category with app.
+        self.cat1 = Category.objects.create(type=amo.ADDON_WEBAPP, name='Fun')
+        AddonCategory.objects.create(addon=self.webapp, category=self.cat1)
+
+        # Create initial formset for categories.
+        ctx = self.client.get(self.url).context['form_cats']
+        self.cat_initial = amo.tests.initial(ctx.initial_forms[0])
 
     def test_anonymous(self):
         self._test_anonymous()
@@ -301,6 +310,8 @@ class TestDetails(TestSubmit):
             'device_types': [self.dtype.id],
         }
         data.update(**kw)
+        # Build formset for categories.
+        data.update(amo.tests.formset(self.cat_initial, initial_count=1))
         # Remove fields without values.
         data = dict((k, v) for k, v in data.iteritems() if v is not None)
         return data
@@ -427,6 +438,48 @@ class TestDetails(TestSubmit):
         r = self.client.post(self.url, self.get_dict(device_types='999'))
         self.assertFormError(r, 'form_devices', 'device_types',
             'Select a valid choice. 999 is not one of the available choices.')
+
+    def test_categories_required(self):
+        self._step()
+        del self.cat_initial['categories']
+        r = self.client.post(self.url, self.get_dict())
+        eq_(r.context['form_cats'].errors[0]['categories'],
+            ['This field is required.'])
+
+    def test_categories_max(self):
+        self._step()
+        eq_(amo.MAX_CATEGORIES, 2)
+        cat2 = Category.objects.create(type=amo.ADDON_WEBAPP, name='bling')
+        cat3 = Category.objects.create(type=amo.ADDON_WEBAPP, name='blang')
+        self.cat_initial['categories'] = [self.cat1.id, cat2.id, cat3.id]
+        r = self.client.post(self.url, self.get_dict())
+        eq_(r.context['form_cats'].errors[0]['categories'],
+            ['You can have only 2 categories.'])
+
+    def _post_cats(self, cats):
+        self.cat_initial['categories'] = [c.id for c in cats]
+        self.client.post(self.url, self.get_dict())
+        eq_(sorted(self.get_webapp().categories.values_list('id', flat=True)),
+            sorted(c.id for c in cats))
+
+    def test_categories_add(self):
+        self._step()
+        cat2 = Category.objects.create(type=amo.ADDON_WEBAPP, name='bling')
+        self._post_cats([self.cat1, cat2])
+
+    def test_categories_add_and_remove(self):
+        self._step()
+        cat2 = Category.objects.create(type=amo.ADDON_WEBAPP, name='bling')
+        self._post_cats([cat2])
+
+    def test_categories_remove(self):
+        # Add another category here so it gets added to the initial formset.
+        cat2 = Category.objects.create(type=amo.ADDON_WEBAPP, name='bling')
+        AddonCategory.objects.create(addon=self.webapp, category=cat2)
+        self._step()
+
+        # `cat2` should get removed.
+        self._post_cats([self.cat1])
 
 
 class TestPayments(TestSubmit):

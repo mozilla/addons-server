@@ -40,8 +40,9 @@
 $(document).ready(function() {
     submit_details.houdini();
     $('#submit-details').exists(function () {
-        submit_details.general();
+        //submit_details.general();
         //submit_details.privacy();
+        initCatFields();
     });
     submit_details.houdini();
 });
