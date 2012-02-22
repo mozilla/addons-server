@@ -3,8 +3,8 @@
 {% block title %}{{ docs_page_title(_('Contacting Us')) }}{% endblock %}
 
 {% block content %}
-{{ docs_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='policies'), _("Add-on Policies")),
-                           (None, _("Contacting Us"))]) }}
+{{ mkt_doc_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='policies'), _("Add-on Policies")),
+                              (None, _("Contacting Us"))]) }}
 
 <h2>{{ _('Contacting Us') }}</h2>
 <div class="primary" role="main">

@@ -3,8 +3,8 @@
 {% block title %}{{ docs_page_title(_("Maintaining Your Add-ons")) }}{% endblock %}
 
 {% block content %}
-{{ docs_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='policies'), _("Add-on Policies")),
-                           (None, _("Maintaining Your Add-ons"))]) }}
+{{ mkt_doc_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='policies'), _("Add-on Policies")),
+                              (None, _("Maintaining Your Add-ons"))]) }}
 <h2>{{ _('Maintaining Your Add-ons') }}</h2>
 <div class="primary" role="main">
   <h3>{{ _('Submitting New Versions of Your Add-on') }}</h3>

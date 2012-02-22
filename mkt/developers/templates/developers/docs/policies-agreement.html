@@ -3,14 +3,13 @@
 {% block title %}{{ docs_page_title(_('Developer Agreement')) }}{% endblock %}
 
 {% block content %}
-{{ docs_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='policies'), _("Add-on Policies")),
-                           (None, _("Developer Agreement"))]) }}
+{{ mkt_doc_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='policies'), _("App Policies")),
+                              (None, _("Developer Agreement"))]) }}
 
-<h2>{{ _('Developer Agreement') }}</h2>
+<h1>{{ _('Developer Agreement') }}</h1>
 <div class="primary" role="main">
-  {% include 'amo/developer_agreement.html' %}
+  {% include 'site/dev-agreement.html' %}
 </div>
 <p id="license-disclosure"></p>
 {{ sidebar() }}
 {% endblock %}
-

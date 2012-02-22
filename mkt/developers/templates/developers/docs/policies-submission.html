@@ -3,8 +3,8 @@
 {% block title %}{{ docs_page_title(_('Submission Process')) }}{% endblock %}
 
 {% block content %}
-{{ docs_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='policies'), _("Add-on Policies")),
-                           (None, _("Submission Process"))]) }}
+{{ mkt_doc_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='policies'), _("Add-on Policies")),
+                              (None, _("Submission Process"))]) }}
 
 <h2>{{ _('Submission Process') }}</h2>
 <div class="primary" role="main">

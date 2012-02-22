@@ -3,8 +3,8 @@
 {% block title %}{{ docs_page_title(_('Theme Development')) }}{% endblock %}
 
 {% block content %}
-{{ docs_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='how-to'), _("How-to Library")),
-                           (None, _("Theme Development"))]) }}
+{{ mkt_doc_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='how-to'), _("How-to Library")),
+                              (None, _("Theme Development"))]) }}
 <h2>{{ _('Theme Development') }}</h2>
 <div class="primary" role="main">
   <p class="hub-category-description">

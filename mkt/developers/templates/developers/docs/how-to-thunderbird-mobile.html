@@ -3,8 +3,8 @@
 {% block title %}{{ docs_page_title(_('Thunderbird & Mobile Add-ons')) }}{% endblock %}
 
 {% block content %}
-{{ docs_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='how-to'), _("How-to Library")),
-                           (None, _("Thunderbird & Mobile Add-ons"))]) }}
+{{ mkt_doc_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='how-to'), _("How-to Library")),
+                              (None, _("Thunderbird & Mobile Add-ons"))]) }}
 
 <h2>{{ _('Thunderbird & Mobile Add-ons') }}</h2>
 <div class="primary" role="main">

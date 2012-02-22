@@ -3,8 +3,8 @@
 {% block title %}{{ docs_page_title(_('Extension Development')) }}{% endblock %}
 
 {% block content %}
-{{ docs_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='how-to'), _("How-to Library")),
-                           (None, _("Extension Development"))]) }}
+{{ mkt_doc_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='how-to'), _("How-to Library")),
+                              (None, _("Extension Development"))]) }}
 
 <h2>{{ _('Extension Development') }}</h2>
 <div class="primary" role="main">

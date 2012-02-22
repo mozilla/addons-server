@@ -3,8 +3,8 @@
 {% block title %}{{ docs_page_title('Cooliris Case Study') }}{% endblock %}
 
 {% block content %}
-{{ docs_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='case-studies'), 'Case Studies'),
-                           (None, 'Cooliris')]) }}
+{{ mkt_doc_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='case-studies'), 'Case Studies'),
+                              (None, 'Cooliris')]) }}
 
 {% set link_cooliris = url('addons.detail', 'cooliris') %}
 

@@ -3,8 +3,8 @@
 {% block title %}{{ docs_page_title('Download Statusbar Case Study') }}{% endblock %}
 
 {% block content %}
-{{ docs_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='case-studies'), 'Case Studies'),
-                           (None, 'Download Statusbar')]) }}
+{{ mkt_doc_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='case-studies'), 'Case Studies'),
+                              (None, 'Download Statusbar')]) }}
 
 {% set link_ds = url('addons.detail', 'download-statusbar') %}
 

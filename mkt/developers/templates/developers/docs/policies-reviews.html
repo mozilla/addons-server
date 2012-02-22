@@ -3,8 +3,8 @@
 {% block title %}{{ docs_page_title(_('Review Process')) }}{% endblock %}
 
 {% block content %}
-{{ docs_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='policies'), _("Add-on Policies")),
-                           (None, _("Review Process"))]) }}
+{{ mkt_doc_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='policies'), _("Add-on Policies")),
+                              (None, _("Review Process"))]) }}
 <h2>{{ _('Review Process') }}</h2>
 <div class="primary" role="main">
 <!-- Be sure to update the Last Updated date at the bottom when making changes -->

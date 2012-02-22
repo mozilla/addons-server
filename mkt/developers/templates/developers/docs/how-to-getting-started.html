@@ -3,8 +3,8 @@
 {% block title %}{{ docs_page_title(_('Getting Started')) }}{% endblock %}
 
 {% block content %}
-{{ docs_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='how-to'), _("How-to Library")),
-                           (None, _("Getting Started"))]) }}
+{{ mkt_doc_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='how-to'), _("How-to Library")),
+                              (None, _("Getting Started"))]) }}
 
 <h2>{{ _('Getting Started') }}</h2>
 <div class="primary" role="main">

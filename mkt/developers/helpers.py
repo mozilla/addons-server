@@ -98,9 +98,9 @@ def hub_breadcrumbs(context, addon=None, items=None, add_default=False):
 
 @register.function
 @jinja2.contextfunction
-def docs_breadcrumbs(context, items=None):
+def mkt_doc_breadcrumbs(context, items=None):
     """
-    Wrapper function for `breadcrumbs` for devhub docs.
+    Wrapper function for `breadcrumbs` for developer docs.
     """
     crumbs = [(reverse('mkt.developers.index'), _('Developer Hub')),
               (None, _('Developer Docs'))]
