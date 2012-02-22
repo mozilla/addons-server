@@ -2,6 +2,7 @@
 from cStringIO import StringIO
 from datetime import datetime, timedelta
 from decimal import Decimal
+import urllib
 import urlparse
 
 from django.conf import settings
@@ -30,6 +31,8 @@ auth_error = ('error(0).errorId=520003'
 other_error = ('error(0).errorId=520001&error(0).message=Foo')
 
 good_check_purchase = ('status=CREATED')  # There is more, but I trimmed it.
+
+good_token = urllib.urlencode({'token': 'foo', 'secret': 'bar'})
 
 
 class TestPayKey(amo.tests.TestCase):
@@ -284,7 +287,7 @@ class TestRefundPermissions(amo.tests.TestCase):
             paypal.get_permission_url(self.addon, '', [])
 
     def test_get_permissions_url_scope(self, _call):
-        _call.return_value = {'token': 'foo'}
+        _call.return_value = {'token': 'foo', 'tokenSecret': 'bar'}
         paypal.get_permission_url(self.addon, '', ['REFUND', 'FOO'])
         eq_(_call.call_args[0][1]['scope'], ['REFUND', 'FOO'])
 
@@ -294,7 +297,7 @@ class TestRefundPermissions(amo.tests.TestCase):
         doesn't put 'REFUND' in the permissions response.
         """
         _call.return_value = {'scope(0)': 'HAM_SANDWICH'}
-        assert not paypal.check_permission('foo', ['REFUND'])
+        assert not paypal.check_permission(good_token, ['REFUND'])
 
     def test_check_permission(self, _call):
         """
@@ -302,25 +305,25 @@ class TestRefundPermissions(amo.tests.TestCase):
         puts 'REFUND' in the permissions response.
         """
         _call.return_value = {'scope(0)': 'REFUND'}
-        eq_(paypal.check_permission('foo', ['REFUND']), True)
+        eq_(paypal.check_permission(good_token, ['REFUND']), True)
 
     def test_check_permission_error(self, _call):
         _call.side_effect = paypal.PaypalError
-        assert not paypal.check_permission('oh-noes', ['REFUND'])
+        assert not paypal.check_permission(good_token, ['REFUND'])
 
     def test_check_permission_settings(self, _call):
         settings.PAYPAL_PERMISSIONS_URL = ''
-        assert not paypal.check_permission('oh-noes', ['REFUND'])
+        assert not paypal.check_permission(good_token, ['REFUND'])
 
     def test_get_permissions_token(self, _call):
-        _call.return_value = {'token': 'FOO'}
-        eq_(paypal.get_permissions_token('foo', ''), 'FOO')
+        _call.return_value = {'token': 'foo', 'tokenSecret': 'bar'}
+        eq_(paypal.get_permissions_token('foo', ''), good_token)
 
     def test_get_permissions_subset(self, _call):
         _call.return_value = {'scope(0)': 'REFUND', 'scope(1)': 'HAM'}
-        eq_(paypal.check_permission('foo', ['REFUND', 'HAM']), True)
-        eq_(paypal.check_permission('foo', ['REFUND', 'JAM']), False)
-        eq_(paypal.check_permission('foo', ['REFUND']), True)
+        eq_(paypal.check_permission(good_token, ['REFUND', 'HAM']), True)
+        eq_(paypal.check_permission(good_token, ['REFUND', 'JAM']), False)
+        eq_(paypal.check_permission(good_token, ['REFUND']), True)
 
 
 good_refund_string = (
@@ -495,3 +498,17 @@ class TestPersonalLookup(amo.tests.TestCase):
     def test_preapproval_error(self, _call):
         _call.side_effect = paypal.PaypalError
         self.assertRaises(paypal.PaypalError, paypal.get_personal_data, 'foo')
+
+
+@mock.patch('urllib2.OpenerDirector.open')
+class TestAuthWithToken(amo.tests.TestCase):
+
+    def test_token_header(self, opener):
+        opener.return_value = StringIO(good_response)
+        paypal._call('http://some.url', {}, token=good_token)
+        assert opener.call_args[0][0].has_header('X-paypal-authorization')
+
+    def test_normal_header(self, opener):
+        opener.return_value = StringIO(good_response)
+        paypal._call('http://some.url', {})
+        assert opener.call_args[0][0].has_header('X-paypal-security-password')

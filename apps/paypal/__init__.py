@@ -13,6 +13,7 @@ from django.utils.http import urlencode, urlquote
 
 import commonware.log
 from django_statsd.clients import statsd
+from paypalx.getPermissionsAuthHeader import getAuthHeader as get_auth_header
 
 import amo
 from amo.helpers import absolutify, loc, urlparams
@@ -253,7 +254,8 @@ def get_personal_data(token):
     def call(api, data):
         try:
             with statsd.timer('paypal.get.personal'):
-                r = _call(settings.PAYPAL_PERMISSIONS_URL + api, data)
+                r = _call(settings.PAYPAL_PERMISSIONS_URL + api, data,
+                          token=token)
         except PaypalError, error:
             paypal_log.debug('Paypal returned an error when getting personal'
                              'data for token: %s... error: %s'
@@ -314,7 +316,7 @@ def check_permission(token, permissions):
     try:
         with statsd.timer('paypal.permissions.refund'):
             r = _call(settings.PAYPAL_PERMISSIONS_URL + 'GetPermissions',
-                      {'token': token})
+                      {'token': urlparse.parse_qs(token)['token']})
     except PaypalError, error:
         paypal_log.debug('Paypal returned error for token: %s.. error: %s'
                          % (token[:10], error))
@@ -372,7 +374,7 @@ def get_permissions_token(request_token, verification_code):
     with statsd.timer('paypal.permissions.token'):
         r = _call(settings.PAYPAL_PERMISSIONS_URL + 'GetAccessToken',
                   {'token': request_token, 'verifier': verification_code})
-    return r['token']
+    return urllib.urlencode({'token': r['token'], 'secret': r['tokenSecret']})
 
 
 def get_preapproval_key(data):
@@ -421,20 +423,38 @@ def _nvp_dump(data):
     return '&'.join(out)
 
 
-def _call(url, paypal_data, ip=None):
+def _call(url, paypal_data, ip=None, token=None):
     request = urllib2.Request(url)
-
+    auth = settings.PAYPAL_EMBEDDED_AUTH
     if 'requestEnvelope.errorLanguage' not in paypal_data:
         paypal_data['requestEnvelope.errorLanguage'] = 'en_US'
 
+    # We always need these headers.
     for key, value in [
-            ('security-userid', settings.PAYPAL_EMBEDDED_AUTH['USER']),
-            ('security-password', settings.PAYPAL_EMBEDDED_AUTH['PASSWORD']),
-            ('security-signature', settings.PAYPAL_EMBEDDED_AUTH['SIGNATURE']),
             ('application-id', settings.PAYPAL_APP_ID),
             ('request-data-format', 'NV'),
             ('response-data-format', 'NV')]:
         request.add_header('X-PAYPAL-%s' % key.upper(), value)
+
+    # If we've got a token, we need to auth using the token which uses the
+    # paypalx lib. This is primarily for the GetDetails API.
+    if token:
+        token = dict(urlparse.parse_qsl(token))
+        ts, sig = get_auth_header(auth['USER'], auth['PASSWORD'],
+                                  token['token'], token['secret'],
+                                  'POST', url)
+        request.add_header('X-PAYPAL-AUTHORIZATION',
+                           'timestamp=%s,token=%s,signature=%s'
+                           % (ts, token['token'], sig))
+
+    else:
+        # Otherwise, we just authenticate the normal way.
+        for key, value in [
+                ('application-id', settings.PAYPAL_APP_ID),
+                ('security-userid', auth['USER']),
+                ('security-password', auth['PASSWORD']),
+                ('security-signature', auth['SIGNATURE'])]:
+            request.add_header('X-PAYPAL-%s' % key.upper(), value)
 
     if ip:
         request.add_header('X-PAYPAL-DEVICE-IPADDRESS', ip)
