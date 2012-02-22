@@ -87,12 +87,12 @@ class AppFilter(BaseFilter):
 def addon_listing(request, default='name', webapp=False):
     """Set up the queryset and filtering for addon listing for Dashboard."""
     Filter = AppFilter if webapp else AddonFilter
+    addons = UserProfile.objects.get(pk=request.user.id).addons
     if webapp:
-        qs = Webapp.objects.filter(
-            id__in=request.amo_user.addons.filter(type=amo.ADDON_WEBAPP))
+        qs = Webapp.objects.filter(id__in=addons.filter(type=amo.ADDON_WEBAPP))
         model = Webapp
     else:
-        qs = request.amo_user.addons.exclude(type=amo.ADDON_WEBAPP)
+        qs = addons.exclude(type=amo.ADDON_WEBAPP)
         model = Addon
     filter = Filter(request, qs, 'sort', default, model=model)
     return filter.qs, filter

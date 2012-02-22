@@ -26,7 +26,7 @@
       {{ impala_addon_listing_header(request.get_full_path(),
                                      search_filter=filter) }}
       <div class="items">
-        {{ dev_addon_listing_items(addons.object_list) }}
+        {{ hub_addon_listing_items(addons.object_list) }}
       </div>
       {{ addons|impala_paginator }}
     {% endif %}
