@@ -74,7 +74,6 @@ NO_CONSUMER_MODULES = (
     'browse.views',
     'compat.views',
     'discovery.views',
-    'editors.views',
     'files.views',
     'market.views',
     'piston',
