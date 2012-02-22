@@ -18,6 +18,9 @@ urlpatterns = patterns('',
 
     # The new hotness.
     ('^hub/', include('mkt.hub.urls')),
+
+    # Misc pages.
+    ('', include('mkt.site.urls')),
 )
 
 
