@@ -236,6 +236,7 @@ button,
 input[type=submit],
 input[type=button] {
     padding: .2em .95em .3em;
+    cursor: pointer;
 }
 
 .button span,
