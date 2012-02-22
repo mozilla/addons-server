@@ -12,7 +12,7 @@ import waffle
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from addons.models import Addon, AddonUser
+from addons.models import Addon, AddonDeviceType, AddonUser, DeviceType
 from addons.utils import ReverseNameLookup
 from files.tests.test_models import UploadTest as BaseUploadTest
 import mkt
@@ -255,7 +255,14 @@ class TestDetails(TestSubmit):
         self.user.update(read_dev_agreement=True)
         self.cl = AppSubmissionChecklist.objects.create(addon=self.webapp,
             terms=True, manifest=True)
+
+        # Associate app with user.
         AddonUser.objects.create(addon=self.webapp, user=self.user)
+
+        # Associate device type with app.
+        self.dtype = DeviceType.objects.create(name='fligphone')
+        AddonDeviceType.objects.create(addon=self.webapp,
+                                       device_type=self.dtype)
 
     def test_anonymous(self):
         self._test_anonymous()
@@ -285,33 +292,39 @@ class TestDetails(TestSubmit):
         self._test_progress_display(['terms', 'manifest'], 'details')
 
     def get_dict(self, **kw):
-        self.data = {
+        data = {
             'name': 'Test name',
             'slug': 'testname',
             'summary': 'Hello!',
             'description': 'desc',
-            'privacy_policy': "XXX <script>alert('xss')</script>"
+            'privacy_policy': 'XXX <script>alert("xss")</script>',
+            'device_types': [self.dtype.id],
         }
-        self.data.update(**kw)
-        return self.data
+        data.update(**kw)
+        # Remove fields without values.
+        data = dict((k, v) for k, v in data.iteritems() if v is not None)
+        return data
 
-    def check_dict(self, data=None):
+    def check_dict(self, data=None, expected=None):
         if data is None:
             data = self.get_dict()
         addon = self.get_webapp()
 
         # Build a dictionary of expected results.
-        self.expected = self.data.copy()
-        del self.expected['slug']
-        self.expected.update(
-            app_slug='testname',
-            privacy_policy="XXX &lt;script&gt;alert('xss')&lt;/script&gt;"
-        )
+        expected = {
+            'name': 'Test name',
+            'app_slug': 'testname',
+            'summary': 'Hello!',
+            'description': 'desc',
+            'privacy_policy': 'XXX &lt;script&gt;alert("xss")&lt;/script&gt;',
+        }
+        expected.update(expected)
 
-        for field, expected in self.expected.iteritems():
+        for field, expected in expected.iteritems():
             got = unicode(getattr(addon, field))
             eq_(got, expected,
                 'Expected %r for %r. Got %r.' % (expected, field, got))
+        eq_(list(addon.device_types), [self.dtype])
 
     def test_success(self):
         self._step()
@@ -394,19 +407,26 @@ class TestDetails(TestSubmit):
 
     def test_description_optional(self):
         self._step()
-        r = self.client.post(self.url, self.get_dict(description=''))
+        r = self.client.post(self.url, self.get_dict(description=None))
         self.assertNoFormErrors(r)
 
-    def test_description_optional(self):
+    def test_privacy_policy_required(self):
         self._step()
-        r = self.client.post(self.url, self.get_dict(description=''))
-        self.assertNoFormErrors(r)
-
-    def test_privacy_policy_optional(self):
-        self._step()
-        r = self.client.post(self.url, self.get_dict(privacy_policy=''))
+        r = self.client.post(self.url, self.get_dict(privacy_policy=None))
         self.assertFormError(r, 'form_basic', 'privacy_policy',
                              'This field is required.')
+
+    def test_device_types_required(self):
+        self._step()
+        r = self.client.post(self.url, self.get_dict(device_types=None))
+        self.assertFormError(r, 'form_devices', 'device_types',
+                          'This field is required.')
+
+    def test_device_types_invalid(self):
+        self._step()
+        r = self.client.post(self.url, self.get_dict(device_types='999'))
+        self.assertFormError(r, 'form_devices', 'device_types',
+            'Select a valid choice. 999 is not one of the available choices.')
 
 
 class TestPayments(TestSubmit):

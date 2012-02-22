@@ -48,10 +48,9 @@
           </label>
         </div>
       </header>
+
       {{ form_field(form_basic.summary, hint=True) }}
-
       {{ form_field(form_basic.description, hint=True) }}
-
       {{ form_field(form_basic.privacy_policy) }}
 
       {# TODO: Remove since Privacy Policy is required.
@@ -63,6 +62,8 @@
           {{ form_field(form_basic.privacy_policy) }}
         </div>
       #}
+
+      {{ form_field(form_devices.device_types) }}
 
       <button class="prominent continue c" type="submit">
         {{ _('Continue') }}

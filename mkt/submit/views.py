@@ -4,6 +4,7 @@ import jingo
 
 import amo
 from amo.decorators import login_required
+from addons.forms import DeviceTypeForm
 from addons.models import Addon, AddonUser
 from mkt.developers import tasks
 from mkt.developers.decorators import dev_required
@@ -86,12 +87,11 @@ def details(request, addon_id, addon):
                                      request=request)
 
     # Device Types.
-    #device_type_form = addon_forms.DeviceTypeForm(request.POST or None,
-    #                                              addon=addon)
+    form_devices = DeviceTypeForm(request.POST or None, addon=addon)
 
     forms = {
         'form_basic': form_basic,
-        #'form_details': form_details,
+        'form_devices': form_devices,
     }
 
     if request.POST and all(f.is_valid() for f in forms.values()):
