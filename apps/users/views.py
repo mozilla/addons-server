@@ -331,6 +331,8 @@ def browserid_authenticate(request, assertion):
     profile = UserProfile.objects.create(username=username, email=email)
     profile.create_django_user()
     profile.user.backend = 'django_browserid.auth.BrowserIDBackend'
+    if settings.APP_PREVIEW:
+        profile.notes = '__market__'
     profile.user.save()
     profile.save()
     log_cef('New Account', 5, request, username=username,
