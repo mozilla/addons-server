@@ -173,8 +173,8 @@ class SearchTest(SphinxTestCase):
         """
 
         eq_(query('', limit=1, app=amo.MOBILE.id)[0].id, 11399)
-        # Poor sunbird, nobody likes them.
-        eq_(len(query('deli', app=amo.SUNBIRD.id)), 0)
+        # Poor seamonkey, nobody likes them.
+        eq_(len(query('deli', app=amo.SEAMONKEY.id)), 0)
 
     def test_category_filter(self):
         """This tests filtering by category."""

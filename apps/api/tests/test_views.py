@@ -790,7 +790,6 @@ class SearchTest(ESTestCase):
         """
         # The following URLs should yield zero results.
         zeros = (
-            '/en-US/sunbird/api/1.2/search/yslow',
             'yslow category:alerts',
             'jsonview version:1.0',
             'firebug type:dictionary',

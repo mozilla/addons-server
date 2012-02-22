@@ -967,8 +967,7 @@ class TestSearchSuggestions(TestAjaxSearch):
         self.search_applications('q=firefox', [amo.FIREFOX])
         self.search_applications('q=thunder', [amo.THUNDERBIRD])
         self.search_applications('q=monkey', [amo.SEAMONKEY])
-        self.search_applications('q=sun', [amo.SUNBIRD])
-        self.search_applications('q=bird', [amo.THUNDERBIRD, amo.SUNBIRD])
+        self.search_applications('q=bird', [amo.THUNDERBIRD])
         self.search_applications('q=mobile', [amo.MOBILE])
         self.search_applications('q=mozilla', [])
 

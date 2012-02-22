@@ -41,7 +41,6 @@ min_version.update({
     amo.FIREFOX: tuplize(amo.FIREFOX.min_display_version),
     amo.THUNDERBIRD: tuplize(amo.THUNDERBIRD.min_display_version),
     amo.SEAMONKEY: tuplize(amo.SEAMONKEY.min_display_version),
-    amo.SUNBIRD: tuplize(amo.SUNBIRD.min_display_version),
 })
 
 

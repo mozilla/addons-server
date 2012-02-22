@@ -230,7 +230,7 @@ ADMIN_MEDIA_PREFIX = '/admin-media/'
 SUPPORTED_NONAPPS = ('admin', 'apps', 'blocklist', 'developers', 'editors',
                      'img', 'jsi18n', 'localizers', 'media',
                      'marketplace-experiments', 'payments', 'robots.txt',
-                     'statistics', 'services')
+                     'statistics', 'services', 'sunbird')
 DEFAULT_APP = 'firefox'
 
 # paths that don't require a locale prefix

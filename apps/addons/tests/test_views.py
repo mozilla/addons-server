@@ -1045,13 +1045,13 @@ class TestDetailPage(amo.tests.TestCase):
         If current add-on's type is unsupported by app, redirect to an
         app that supports it.
         """
-        # Sunbird can't do Personas => redirect
+        # Thunderbird can't do search engines
         prefixer = amo.urlresolvers.get_url_prefix()
-        prefixer.app = amo.SUNBIRD.short
-        response = self.client.get(reverse('addons.detail', args=['a15663']),
+        prefixer.app = amo.THUNDERBIRD.short
+        response = self.client.get(reverse('addons.detail', args=['a4594']),
                                    follow=False)
         eq_(response.status_code, 301)
-        eq_(response['Location'].find(amo.SUNBIRD.short), -1)
+        eq_(response['Location'].find(amo.THUNDERBIRD.short), -1)
         assert (response['Location'].find(amo.FIREFOX.short) >= 0)
 
     def test_compatible_app_redirect(self):

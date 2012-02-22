@@ -179,7 +179,7 @@ class TestAddonManager(amo.tests.TestCase):
         eq_(f.count(), 3)
         eq_(sorted(x.id for x in f),
             [2464, 7661, 15679])
-        f = Addon.objects.featured(amo.SUNBIRD)
+        f = Addon.objects.featured(amo.THUNDERBIRD)
         assert not f.exists()
 
 
@@ -1278,7 +1278,7 @@ class TestAddonModelsFeatured(amo.tests.TestCase):
         eq_(sorted(f), [1001, 1003, 2464, 3481, 7661, 15679])
         f = Addon.featured_random(amo.FIREFOX, 'fr')
         eq_(sorted(f), [1001, 1003, 2464, 7661, 15679])
-        f = Addon.featured_random(amo.SUNBIRD, 'en-US')
+        f = Addon.featured_random(amo.THUNDERBIRD, 'en-US')
         eq_(f, [])
 
     def test_featured_random(self):

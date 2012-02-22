@@ -31,6 +31,7 @@
         "model": "applications.application",
         "fields": {
             "guid": "{718e30fb-e89b-41dd-9da7-e25a45638b28}",
+            "supported": "0",
             "modified": "2008-06-17 08:29:01",
             "created": "2007-03-05 13:09:26"
         }

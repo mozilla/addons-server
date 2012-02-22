@@ -59,6 +59,8 @@ class SEAMONKEY(App):
 
 
 class SUNBIRD(App):
+    """This application is retired and should not be used on the site.  It
+    remains as there are still some sunbird add-ons in the db."""
     id = 52
     short = 'sunbird'
     shortername = 'sb'
@@ -128,9 +130,8 @@ class MOZILLA(App):
     platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
 # UAs will attempt to match in this order
-APP_DETECT = (ANDROID, MOBILE, THUNDERBIRD, SEAMONKEY, SUNBIRD, FIREFOX)
-APP_USAGE = _apps = (FIREFOX, THUNDERBIRD, ANDROID,
-                     MOBILE, SEAMONKEY, SUNBIRD)
+APP_DETECT = (ANDROID, MOBILE, THUNDERBIRD, SEAMONKEY, FIREFOX)
+APP_USAGE = _apps = (FIREFOX, THUNDERBIRD, ANDROID, MOBILE, SEAMONKEY)
 APPS = dict((app.short, app) for app in _apps)
 APP_IDS = dict((app.id, app) for app in _apps)
 APP_GUIDS = dict((app.guid, app) for app in _apps)
