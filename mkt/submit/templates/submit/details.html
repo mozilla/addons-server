@@ -64,7 +64,7 @@
       </div>
 
       {{ form_field(form_basic.description, hint=True) }}
-      {{ form_field(form_basic.privacy_policy) }}
+      {{ form_field(form_basic.privacy_policy, hint=True) }}
 
       {# TODO: Remove since Privacy Policy is required.
         <div id="show-privacy" class="{{ 'error' if form_details.form_basic.errors else 'ready' }} brform simple-field">

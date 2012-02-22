@@ -16,8 +16,7 @@
   </td>
 </tr>
 <tr>
-  <th>{{ tip(_('Privacy Policy'),
-             _("If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used.")) }}</th>
+  <th>{{ tip(_('Privacy Policy'), policy_form.privacy_policy.help_text) }}</th>
   <td>
     {{ policy_form.has_priv }}
     {{ policy_form.has_priv.label_tag() }}

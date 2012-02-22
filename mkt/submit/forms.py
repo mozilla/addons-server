@@ -128,7 +128,6 @@ class UpsellForm(happyforms.Form):
         elif not self.cleaned_data['do_upsell'] and upsell:
             upsell.delete()
 
-
 class AppDetailsBasicForm(AddonFormBasic):
     """Form for "Details" submission step."""
     name = TransField(max_length=128,
@@ -136,16 +135,19 @@ class AppDetailsBasicForm(AddonFormBasic):
     slug = forms.CharField(max_length=30,
                            widget=forms.TextInput(attrs={'class': 'm'}))
     summary = TransField(max_length=250,
-        label=_("Provide a brief summary of your app's functionality:"),
-        help_text=_('This summary will be shown in listings and searches.'),
+        label=_lazy(u"Provide a brief summary of your app's functionality:"),
+        help_text=_lazy(u'This summary will be shown in listings and '
+                         'searches.'),
         widget=TransInput(attrs={'rows': 4, 'class': 'full'}))
     description = TransField(required=False,
-        label=_('Provide a more detailed description of your app:'),
-        help_text=_('This description will appear on the details page.'),
+        label=_lazy(u'Provide a more detailed description of your app:'),
+        help_text=_lazy(u'This description will appear on the details page.'),
         widget=TransTextarea(attrs={'rows': 4}))
-    privacy_policy = TransField(required=True,
-        widget=TransTextarea(attrs={'rows': 6}),
-        label=_lazy(u"Please specify your app's privacy policy:"))
+    privacy_policy = TransField(widget=TransTextarea(attrs={'rows': 6}),
+         label=_lazy("Please specify your app's Privacy Policy:"),
+         help_text=_lazy(u"A privacy policy is required that explains what "
+                          "data is transmitted from a user's computer and how "
+                          "it is used."))
 
     class Meta:
         model = Addon
