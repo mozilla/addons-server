@@ -21,6 +21,7 @@ submit_apps_patterns = patterns('',
     url('^payments/confirm/%s$' % APP_SLUG, views.payments_confirm,
         name='submit.app.payments.confirm'),
     url('^done/%s$' % APP_SLUG, views.done, name='submit.app.done'),
+    url('^resume/%s$' % APP_SLUG, views.resume, name='submit.app.resume'),
 )
 
 

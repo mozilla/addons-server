@@ -1,5 +1,4 @@
 import collections
-import functools
 import json
 import os
 import sys
@@ -10,7 +9,6 @@ import uuid
 from django import http
 from django.core.files.storage import default_storage as storage
 from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
 from django import forms as django_forms
 from django.db import models, transaction
 from django.db.models import Count
@@ -43,11 +41,10 @@ from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (CheckCompatibilityForm, InappConfigForm,
                                   AppFormBasic, AppFormDetails,
                                   PaypalSetupForm)
-from mkt.developers.models import ActivityLog, SubmitStep
+from mkt.developers.models import ActivityLog
 from mkt.developers import perf
-from mkt.submit.decorators import submit_step
 from editors.helpers import get_position
-from files.models import File, FileUpload, Platform
+from files.models import File, FileUpload
 from files.utils import parse_addon
 from market.models import AddonPremium, Refund, AddonPaymentData
 from payments.models import InappConfig
@@ -62,7 +59,7 @@ from versions.models import Version
 from webapps.models import Webapp
 from zadmin.models import ValidationResult
 
-from . import forms, tasks, signals
+from . import forms, tasks
 
 log = commonware.log.getLogger('z.devhub')
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -1327,39 +1324,6 @@ def version_stats(request, addon_id, addon):
 Step = collections.namedtuple('Step', 'current max')
 
 
-def submit_step(outer_step):
-    """Wraps the function with a decorator that bounces to the right step."""
-    def decorator(f):
-        @functools.wraps(f)
-        def wrapper(request, *args, **kw):
-            step = outer_step
-            webapp = kw.get('webapp', False)
-            if webapp and step == 7:
-                # decorator calls this step 7, but it's step 5 for apps
-                step = 5
-            max_step = 5 if webapp else 7
-            # We only bounce on pages with an addon id.
-            if 'addon' in kw:
-                addon = kw['addon']
-                on_step = SubmitStep.objects.filter(addon=addon)
-                if on_step:
-                    max_step = on_step[0].step
-                    if max_step < step:
-                        # The step was too high, so bounce to the saved step.
-                        return redirect(_step_url(max_step, webapp),
-                                        addon.slug)
-                elif step != max_step:
-                    # We couldn't find a step, so we must be done.
-                    return redirect(_step_url(7, webapp), addon.slug)
-            kw['step'] = Step(step, max_step)
-            return f(request, *args, **kw)
-        # Tell @dev_required that this is a function in the submit flow so it
-        # doesn't try to redirect into the submit flow.
-        wrapper.submitting = True
-        return wrapper
-    return decorator
-
-
 @dev_required(webapp=True)
 @can_become_premium
 def marketplace_paypal(request, addon_id, addon, webapp=False):
@@ -1448,203 +1412,6 @@ def _step_url(step, is_webapp):
     if is_webapp and str(step).isdigit() and step > 5:
         step = 5
     return '%s.%s' % (url_base, step)
-
-
-@login_required
-@submit_step(1)
-def submit(request, step, webapp=False):
-    if request.method == 'POST':
-        response = redirect(_step_url(2, webapp))
-        response.set_cookie(DEV_AGREEMENT_COOKIE)
-        return response
-
-    return jingo.render(request, 'developers/addons/submit/start.html',
-                        {'step': step, 'webapp': webapp})
-
-
-@login_required
-@submit_step(2)
-def submit_addon(request, step, webapp=False):
-    if DEV_AGREEMENT_COOKIE not in request.COOKIES:
-        return redirect(_step_url(1, webapp))
-    NewItem = forms.NewWebappForm if webapp else forms.NewAddonForm
-    form = NewItem(request.POST or None)
-    if request.method == 'POST':
-        if form.is_valid():
-            data = form.cleaned_data
-
-            if webapp:
-                p = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
-            else:
-                p = (list(data.get('desktop_platforms', [])) +
-                     list(data.get('mobile_platforms', [])))
-
-            addon = Addon.from_upload(data['upload'], p)
-            if webapp:
-                tasks.fetch_icon.delay(addon)
-            AddonUser(addon=addon, user=request.amo_user).save()
-            SubmitStep.objects.create(addon=addon, step=3)
-            return redirect(_step_url(3, webapp), addon.slug)
-    template = 'upload_webapp.html' if webapp else 'upload.html'
-    return jingo.render(request, 'developers/addons/submit/%s' % template,
-            {'step': step, 'webapp': webapp, 'new_addon_form': form})
-
-
-@dev_required(webapp=True)
-@submit_step(3)
-def submit_describe(request, addon_id, addon, step, webapp=False):
-    form_cls = forms.Step3WebappForm if addon.is_webapp() else forms.Step3Form
-    form = form_cls(request.POST or None, instance=addon, request=request)
-    cat_form = addon_forms.CategoryFormSet(request.POST or None, addon=addon,
-                                           request=request)
-    device_form = None
-    if webapp and waffle.switch_is_active('marketplace'):
-        device_form = addon_forms.DeviceTypeForm(request.POST or None,
-                                                 addon=addon)
-
-    if request.method == 'POST' and form.is_valid() and cat_form.is_valid():
-        if not device_form or device_form.is_valid():
-            addon = form.save(addon)
-            cat_form.save()
-            if device_form:
-                device_form.save(addon)
-            SubmitStep.objects.filter(addon=addon).update(step=4)
-            return redirect(_step_url(4, webapp), addon.slug)
-    return jingo.render(request, 'developers/addons/submit/describe.html',
-                        {'form': form, 'cat_form': cat_form, 'addon': addon,
-                         'step': step, 'webapp': addon.is_webapp(),
-                         'device_form': device_form})
-
-
-@dev_required(webapp=True)
-@submit_step(4)
-def submit_media(request, addon_id, addon, step, webapp=False):
-    form_icon = addon_forms.AddonFormMedia(request.POST or None,
-            request.FILES or None, instance=addon, request=request)
-    form_previews = forms.PreviewFormSet(request.POST or None,
-            prefix='files', queryset=addon.previews.all())
-
-    if (request.method == 'POST' and
-        form_icon.is_valid() and form_previews.is_valid()):
-        addon = form_icon.save(addon)
-
-        for preview in form_previews.forms:
-            preview.save(addon)
-
-        SubmitStep.objects.filter(addon=addon).update(step=5)
-
-        # Special handling for webapps, where this is jumping to the done step
-        if addon.is_webapp():
-            addon.update(status=amo.STATUS_PENDING if
-                         settings.WEBAPPS_RESTRICTED else amo.STATUS_PUBLIC)
-            SubmitStep.objects.filter(addon=addon).delete()
-            signals.submission_done.send(sender=addon)
-
-        return redirect(_step_url(5, webapp), addon.slug)
-
-    return jingo.render(request, 'developers/addons/submit/media.html',
-                        {'form': form_icon, 'addon': addon, 'step': step,
-                         'preview_form': form_previews,
-                         'webapp': addon.is_webapp()})
-
-
-@dev_required(webapp=True)
-@submit_step(5)
-def submit_license(request, addon_id, addon, step, webapp=False):
-    fs, ctx = [], {}
-    # Versions.
-    license_form = forms.LicenseForm(request.POST or None, addon=addon)
-    if not addon.is_webapp():
-        ctx.update(license_form.get_context())
-        fs.append(ctx['license_form'])
-    # Policy.
-    policy_form = forms.PolicyForm(request.POST or None, addon=addon)
-    fs.append(policy_form)
-    if request.method == 'POST' and all([form.is_valid() for form in fs]):
-        if license_form in fs:
-            license_form.save(log=False)
-        policy_form.save()
-        SubmitStep.objects.filter(addon=addon).update(step=6)
-        return redirect('mkt.developers.submit.6', addon.slug)
-    ctx.update(addon=addon, policy_form=policy_form, step=step,
-               webapp=addon.is_webapp())
-    return jingo.render(request, 'developers/addons/submit/license.html', ctx)
-
-
-@dev_required
-@submit_step(6)
-def submit_select_review(request, addon_id, addon, step):
-    review_type_form = forms.ReviewTypeForm(request.POST or None)
-    updated_status = None
-
-    if request.method == 'POST' and review_type_form.is_valid():
-        updated_status = review_type_form.cleaned_data['review_type']
-
-    if updated_status:
-        addon.update(status=updated_status)
-        SubmitStep.objects.filter(addon=addon).delete()
-        signals.submission_done.send(sender=addon)
-        return redirect('mkt.developers.submit.7', addon.slug)
-
-    return jingo.render(request, 'developers/addons/submit/select-review.html',
-                        {'addon': addon, 'review_type_form': review_type_form,
-                         'step': step})
-
-
-@dev_required(webapp=True)
-@submit_step(7)
-def submit_done(request, addon_id, addon, step, webapp=False):
-    # Bounce to the versions page if they don't have any versions.
-    if not addon.versions.exists():
-        return redirect(addon.get_dev_url('versions'))
-    sp = addon.current_version.supported_platforms
-    is_platform_specific = sp != [amo.PLATFORM_ALL]
-
-    return jingo.render(request, 'developers/addons/submit/done.html',
-                        {'addon': addon, 'step': step,
-                         'webapp': addon.is_webapp(),
-                         'is_platform_specific': is_platform_specific})
-
-
-@dev_required
-def submit_resume(request, addon_id, addon):
-    try:
-        # If it didn't go through the app submission
-        # checklist. Don't die. This will be useful for
-        # creating apps with an API later.
-        step = addon.appsubmissionchecklist.get_next()
-    except ObjectDoesNotExist:
-        step = None
-    return _resume(addon, step)
-
-
-def _resume(addon, step):
-    if step:
-        if step in ['terms', 'manifest']:
-            return redirect('submit.app.%s' % step)
-        return redirect(reverse('submit.app.%s' % step,
-                                args=[addon.app_slug]))
-
-    return redirect(addon.get_dev_url('edit'))
-
-
-@login_required
-@dev_required
-def submit_bump(request, addon_id, addon, webapp=False):
-    if not acl.action_allowed(request, 'Admin', 'EditSubmitStep'):
-        return http.HttpResponseForbidden()
-    step = SubmitStep.objects.filter(addon=addon)
-    step = step[0] if step else None
-    if request.method == 'POST' and request.POST.get('step'):
-        new_step = request.POST['step']
-        if step:
-            step.step = new_step
-        else:
-            step = SubmitStep(addon=addon, step=new_step)
-        step.save()
-        return redirect(_step_url('bump', webapp), addon.slug)
-    return jingo.render(request, 'developers/addons/submit/bump.html',
-                        dict(addon=addon, step=step))
 
 
 @dev_required

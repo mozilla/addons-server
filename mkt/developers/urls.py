@@ -12,30 +12,6 @@ from . import views
 PACKAGE_NAME = '(?P<package_name>[_\w]+)'
 
 
-# These will all start with /addon/<addon_id>/submit/
-submit_patterns = patterns('',
-    url('^$', lambda r, addon_id: redirect('mkt.developers.submit.7',
-                                           addon_id)),
-    url('^3$', views.submit_describe, name='mkt.developers.submit.3'),
-    url('^4$', views.submit_media, name='mkt.developers.submit.4'),
-    url('^5$', views.submit_license, name='mkt.developers.submit.5'),
-    url('^6$', views.submit_select_review, name='mkt.developers.submit.6'),
-    url('^7$', views.submit_done, name='mkt.developers.submit.7'),
-    url('^bump$', views.submit_bump, name='mkt.developers.submit.bump'),
-)
-
-submit_apps_patterns = patterns('',
-    url('^3$', use_apps(views.submit_describe),
-        name='mkt.developers.submit_apps.3'),
-    url('^4$', use_apps(views.submit_media),
-        name='mkt.developers.submit_apps.4'),
-    url('^5$', use_apps(views.submit_done),
-        name='mkt.developers.submit_apps.5'),
-    url('^bump$', use_apps(views.submit_bump),
-        name='mkt.developers.submit_apps.bump'),
-)
-
-
 def paypal_patterns(prefix):
     return patterns('',
         url('^$', views.paypal_setup,
@@ -147,9 +123,6 @@ detail_patterns = patterns('',
         views.json_bulk_compat_result,
         name='mkt.developers.json_bulk_compat_result'),
 
-    url('^submit/', include(submit_patterns)),
-    url('^submit/resume$', views.submit_resume,
-        name='mkt.developers.submit.resume'),
     url('^request-review/(?P<status>[%s])$'
         % ''.join(map(str, views.REQUEST_REVIEW)),
         views.request_review, name='mkt.developers.request-review'),
@@ -187,21 +160,6 @@ urlpatterns = decorate(write, patterns('',
     ('^addons/\d+/.*',
      lambda r: redirect(r.path.replace('addons', 'addon', 1))),
 
-    # Add-on submission
-    url('^addon/submit/$',
-        lambda r: redirect('mkt.developers.submit.1', permanent=True)),
-    url('^addon/submit/1$', views.submit, name='mkt.developers.submit.1'),
-    url('^addon/submit/2$', views.submit_addon,
-        name='mkt.developers.submit.2'),
-
-    # Web App submission
-    url('^app/submit/$',
-        lambda r: redirect('mkt.developers.submit_apps.1', permanent=True)),
-    url('^app/submit/1$', use_apps(views.submit),
-        name='mkt.developers.submit_apps.1'),
-    url('^app/submit/2$', use_apps(views.submit_addon),
-        name='mkt.developers.submit_apps.2'),
-
     # Standalone validator:
     url('^addon/validate/?$', views.validate_addon,
         name='mkt.developers.validate_addon'),
@@ -236,7 +194,6 @@ urlpatterns = decorate(write, patterns('',
     # URLs for a single add-on.
     url('^addon/%s/' % ADDON_ID, include(detail_patterns)),
     url('^app/%s/' % APP_SLUG, include(app_detail_patterns)),
-    url('^app/%s/submit/' % ADDON_ID, include(submit_apps_patterns)),
 
     url('^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
 

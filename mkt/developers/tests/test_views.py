@@ -979,7 +979,7 @@ class TestResumeStep(amo.tests.TestCase):
         assert self.client.login(username='del@icio.us', password='password')
         self.get_addon().update(type=amo.ADDON_WEBAPP, app_slug='a3615')
         self.addon = self.get_addon()
-        self.url = reverse('mkt.developers.submit.resume', args=['a3615'])
+        self.url = reverse('submit.app.resume', args=['a3615'])
 
     def test_no_step_redirect(self):
         r = self.client.get(self.url, follow=True)
@@ -1210,10 +1210,11 @@ class BaseWebAppTest(BaseUploadTest, amo.tests.TestCase):
         self.manifest = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
                                      'addons', 'mozball.webapp')
         self.upload = self.get_upload(abspath=self.manifest)
-        self.url = reverse('mkt.developers.submit_apps.2')
+        self.url = reverse('submit.app.manifest')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
-        self.client.post(reverse('mkt.developers.submit_apps.1'))
+        self.client.post(reverse('submit.app.terms'),
+                         {'read_dev_agreement': True})
 
     def post(self, desktop_platforms=[amo.PLATFORM_ALL], mobile_platforms=[],
              expect_errors=False):
@@ -1238,13 +1239,13 @@ class TestCreateWebApp(BaseWebAppTest):
 
     def test_page_title(self):
         eq_(pq(self.client.get(self.url).content)('title').text(),
-            'Step 2 | Developer Hub | Mozilla Marketplace')
+            'App Manifest | Developer Hub | Mozilla Marketplace')
 
     def test_post_app_redirect(self):
         r = self.post()
         addon = Addon.objects.get()
-        self.assertRedirects(r, reverse('mkt.developers.submit_apps.3',
-                                        args=[addon.slug]))
+        self.assertRedirects(r, reverse('submit.app.details',
+                                        args=[addon.app_slug]))
 
     def test_addon_from_uploaded_manifest(self):
         addon = self.post_addon()
@@ -1266,51 +1267,6 @@ class TestCreateWebApp(BaseWebAppTest):
         files = addon.current_version.files.all()
         eq_(len(files), 1)
         eq_(files[0].status, amo.STATUS_PUBLIC)
-
-
-class TestCreateWebAppFromManifest(BaseWebAppTest):
-
-    def setUp(self):
-        super(TestCreateWebAppFromManifest, self).setUp()
-        Addon.objects.create(type=amo.ADDON_WEBAPP,
-                             app_domain='existing-app.com')
-
-    def upload_webapp(self, manifest_url, **post_kw):
-        self.upload.update(name=manifest_url)  # simulate JS upload
-        return self.post(**post_kw)
-
-    def post_manifest(self, manifest_url):
-        rs = self.client.post(reverse('mkt.developers.upload_manifest'),
-                              dict(manifest=manifest_url))
-        if 'json' in rs['content-type']:
-            rs = json.loads(rs.content)
-        return rs
-
-    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', True)
-    def test_duplicate_domain(self):
-        rs = self.upload_webapp('http://existing-app.com/my.webapp',
-                                expect_errors=True)
-        eq_(rs.context['new_addon_form'].errors.as_text(),
-            '* upload\n  '
-            '* An app already exists on this domain; only one '
-            'app per domain is allowed.')
-
-    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', False)
-    def test_allow_duplicate_domains(self):
-        self.upload_webapp('http://existing-app.com/my.webapp')  # no errors
-
-    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', True)
-    def test_duplicate_domain_from_js(self):
-        data = self.post_manifest('http://existing-app.com/my.webapp')
-        eq_(data['validation']['errors'], 1)
-        eq_(data['validation']['messages'][0]['message'],
-            'An app already exists on this domain; '
-            'only one app per domain is allowed.')
-
-    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', False)
-    def test_allow_duplicate_domains_from_js(self):
-        rs = self.post_manifest('http://existing-app.com/my.webapp')
-        eq_(rs.status_code, 302)
 
 
 class TestDeleteApp(amo.tests.TestCase):

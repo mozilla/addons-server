@@ -3,7 +3,7 @@
 {% if addon.is_incomplete() %}
   {% if check_addon_ownership(request, addon, dev=True) %}
     <li>
-      <a href="{{ url('mkt.developers.submit.resume', addon.slug) }}" class="tooltip"
+      <a href="{{ url('submit.app.resume', addon.app_slug) }}" class="tooltip"
          title="{{ _("Resume the submission process for this app.")}}">
       {{ _('Resume') }}</a>
     </li>

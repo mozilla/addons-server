@@ -1,6 +1,6 @@
+from cStringIO import StringIO
 import json
 import os
-import path
 import shutil
 import socket
 import tempfile
@@ -73,7 +73,7 @@ def _uploader(resize_size, final_size):
 
     if isinstance(final_size, list):
         for rsize, fsize in zip(resize_size, final_size):
-            dest_name = str(path.path(settings.ADDON_ICONS_PATH) / '1234')
+            dest_name = os.path.join(settings.ADDON_ICONS_PATH, '1234')
 
             tasks.resize_icon(src.name, dest_name, resize_size)
             dest_image = Image.open("%s-%s.png" % (dest_name, rsize))
@@ -225,22 +225,22 @@ class TestFetchIcon(BaseWebAppTest):
     def setUp(self):
         super(TestFetchIcon, self).setUp()
         self.content_type = 'image/png'
-        self.apps_path = (path.path(settings.ROOT) / 'apps'
-                          / 'devhub' / 'tests' / 'addons')
+        self.apps_path = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
+                                      'addons')
         patcher = mock.patch('mkt.developers.tasks.urllib2.urlopen')
         self.urlopen_mock = patcher.start()
+        self.urlopen_mock.return_value = StringIO('mozballin')
         self.addCleanup(patcher.stop)
 
     def webapp_from_path(self, path):
         self.upload = self.get_upload(abspath=path)
-        self.url = reverse('mkt.developers.submit.2')
+        self.url = reverse('submit.app.manifest')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
-        self.client.post(reverse('mkt.developers.submit.1'))
         return self.post_addon()
 
     def test_no_icons(self):
-        path = self.apps_path / 'noicon.webapp'
+        path = os.path.join(self.apps_path, 'noicon.webapp')
         iconless_app = self.webapp_from_path(path)
         tasks.fetch_icon(iconless_app)
         assert not self.urlopen_mock.called
@@ -261,7 +261,7 @@ class TestFetchIcon(BaseWebAppTest):
                 eq_(checker.img.size, (size, size))
 
     def test_data_uri(self):
-        app_path = self.apps_path / 'dataicon.webapp'
+        app_path = os.path.join(self.apps_path, 'dataicon.webapp')
         webapp = self.webapp_from_path(app_path)
 
         tasks.fetch_icon(webapp)
@@ -270,10 +270,10 @@ class TestFetchIcon(BaseWebAppTest):
         self.check_icons(webapp)
 
     def test_hosted_icon(self):
-        app_path = self.apps_path / 'mozball.webapp'
+        app_path = os.path.join(self.apps_path, 'mozball.webapp')
         webapp = self.webapp_from_path(app_path)
 
-        img_path = self.apps_path / 'mozball-128.png'
+        img_path = os.path.join(self.apps_path, 'mozball-128.png')
         with open(img_path, 'r') as content:
             tasks.save_icon(webapp, content.read())
         eq_(webapp.icon_type, self.content_type)

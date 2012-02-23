@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect
 
 import jingo
@@ -6,6 +7,7 @@ import waffle
 
 import amo
 from amo.decorators import login_required
+from amo.urlresolvers import reverse
 from addons.forms import CategoryFormSet, DeviceTypeForm
 from addons.models import Addon, AddonUser
 from market.models import AddonPaymentData
@@ -230,3 +232,25 @@ def done(request, addon_id, addon):
     return jingo.render(request, 'submit/done.html', {
                         'step': 'done', 'addon': addon
                         })
+
+
+@dev_required
+def resume(request, addon_id, addon):
+    try:
+        # If it didn't go through the app submission
+        # checklist. Don't die. This will be useful for
+        # creating apps with an API later.
+        step = addon.appsubmissionchecklist.get_next()
+    except ObjectDoesNotExist:
+        step = None
+    return _resume(addon, step)
+
+
+def _resume(addon, step):
+    if step:
+        if step in ['terms', 'manifest']:
+            return redirect('submit.app.%s' % step)
+        return redirect(reverse('submit.app.%s' % step,
+                                args=[addon.app_slug]))
+
+    return redirect(addon.get_dev_url('edit'))

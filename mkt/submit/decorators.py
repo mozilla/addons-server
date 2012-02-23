@@ -6,7 +6,7 @@ def submit_step(outer_step):
     def decorator(f):
         @functools.wraps(f)
         def wrapper(request, *args, **kw):
-            from mkt.developers.views import _resume
+            from mkt.submit.views import _resume
             from mkt.submit.models import AppSubmissionChecklist
             addon = kw.get('addon', False)
             if addon:

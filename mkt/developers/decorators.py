@@ -20,7 +20,7 @@ def dev_required(owner_for_post=False, allow_editors=False, webapp=False,
         @login_required
         @functools.wraps(f)
         def wrapper(request, addon, *args, **kw):
-            from mkt.developers.views import _resume
+            from mkt.submit.views import _resume
             if webapp:
                 kw['webapp'] = addon.is_webapp()
             fun = lambda: f(request, addon_id=addon.id, addon=addon,
