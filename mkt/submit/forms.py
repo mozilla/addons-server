@@ -9,14 +9,15 @@ import happyforms
 from quieter_formset.formset import BaseModelFormSet
 from tower import ugettext as _, ugettext_lazy as _lazy
 
-from addons.forms import AddonFormBasic
+from addons.forms import (AddonFormBasic, AddonFormBase, icons,
+                          IconWidgetRenderer)
 from addons.models import Addon, AddonUpsell, Preview
 import amo
-from amo.utils import raise_required
-from devhub import tasks as devhub_tasks
+from amo.utils import raise_required, remove_icons
 from files.models import FileUpload
 from market.models import AddonPremium, Price
 from mkt.developers.forms import PaypalSetupForm as OriginalPaypalSetupForm
+from mkt.developers import tasks
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
 from translations.widgets import TransInput, TransTextarea
 from translations.fields import TransField
@@ -209,9 +210,9 @@ class PreviewForm(happyforms.ModelForm):
                 upload_hash = self.cleaned_data['upload_hash']
                 upload_path = os.path.join(settings.TMP_PATH, 'preview',
                                            upload_hash)
-                devhub_tasks.resize_preview.delay(upload_path,
-                                            self.instance,
-                                            set_modified_on=[self.instance])
+                tasks.resize_preview.delay(upload_path,
+                                           self.instance,
+                                           set_modified_on=[self.instance])
 
     class Meta:
         model = Preview
@@ -237,3 +238,37 @@ class BasePreviewFormSet(BaseModelFormSet):
 PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,
                                       form=PreviewForm, can_delete=True,
                                       extra=1)
+
+
+class AddonFormMedia(AddonFormBase):
+    icon_type = forms.CharField(widget=forms.RadioSelect(
+            renderer=IconWidgetRenderer, choices=[]), required=False)
+    icon_upload_hash = forms.CharField(required=False)
+    unsaved_icon_data = forms.CharField(widget=forms.HiddenInput,
+                                        required=False)
+
+    class Meta:
+        model = Addon
+        fields = ('icon_upload_hash', 'icon_type')
+
+    def __init__(self, *args, **kwargs):
+        super(AddonFormMedia, self).__init__(*args, **kwargs)
+
+        # Add icons here so we only read the directory when
+        # AddonFormMedia is actually being used.
+        self.fields['icon_type'].widget.choices = icons()
+
+    def save(self, addon, commit=True):
+        if self.cleaned_data['icon_upload_hash']:
+            upload_hash = self.cleaned_data['icon_upload_hash']
+            upload_path = os.path.join(settings.TMP_PATH, 'icon', upload_hash)
+
+            dirname = addon.get_icon_dir()
+            destination = os.path.join(dirname, '%s' % addon.id)
+
+            remove_icons(destination)
+            tasks.resize_icon.delay(upload_path, destination,
+                                    amo.ADDON_ICON_SIZES,
+                                    set_modified_on=[addon])
+
+        return super(AddonFormMedia, self).save(commit)

@@ -532,6 +532,7 @@ function initUploadIcon() {
             $('#icons_default a.active').removeClass('active');
 
             $('#icon_preview img').attr('src', file.dataURL);
+            $('#id_unsaved_icon_data').val(file.dataURL);
 
             $('#icons_default input:checked').attr('checked', false);
             $('input[name="icon_type"][value="'+file.type+'"]', $('#icons_default'))
@@ -563,6 +564,15 @@ function initUploadIcon() {
             $('#icon_preview').hide();
         }
       });
+
+    // Display icons that were already uploaded but not yet saved because of
+    // other non-related form errors.
+    $('#submit-media [name$="unsaved_icon_data"]').each(function(i, elem) {
+        var $data = $(elem);
+        if ($data.val()) {
+            $('#submit-media #icon_preview img').attr('src', $data.val());
+        }
+    });
 }
 
 function fixPasswordField($context) {

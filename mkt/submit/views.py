@@ -6,14 +6,14 @@ import waffle
 
 import amo
 from amo.decorators import login_required
-from addons.forms import CategoryFormSet, DeviceTypeForm, AddonFormMedia
+from addons.forms import CategoryFormSet, DeviceTypeForm
 from addons.models import Addon, AddonUser
 from market.models import AddonPaymentData
 from mkt.developers import tasks
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import PaypalPaymentData
 from mkt.submit.forms import (AppDetailsBasicForm, PaypalSetupForm,
-                              PreviewFormSet)
+                              PreviewFormSet, AddonFormMedia)
 from mkt.submit.models import AppSubmissionChecklist
 import paypal
 from files.models import Platform
