@@ -257,5 +257,17 @@ MINIFY_BUNDLES['js'].update({
     ),
 })
 
+CELERY_ROUTES.update({
+    # Devhub.
+    'mkt.developers.tasks.validator': {'queue': 'devhub'},
+    'mkt.developers.tasks.fetch_manifest': {'queue': 'devhub'},
+    'mkt.developers.tasks.fetch_icon': {'queue': 'devhub'},
+    'mkt.developers.tasks.file_validator': {'queue': 'devhub'},
+
+    # Images.
+    'mkt.developers.tasks.resize_icon': {'queue': 'images'},
+    'mkt.developers.tasks.resize_preview': {'queue': 'images'},
+})
+
 # Feature flags.
 POTCH_MARKETPLACE_EXPERIMENTS = False
