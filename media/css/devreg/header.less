@@ -8,8 +8,9 @@
         padding: 0 0 7px;
     }
     .menu-nav {
-        padding-left: 250px;
+        padding-left: 252px;
         position: relative;
+        max-width: 960px;
     }
     /* Log in link loader */
     a.loading-submit:before {
@@ -53,7 +54,7 @@
         padding-left: 250px;
         position: relative;
         text-decoration: none;
-        color: @red;
+        color: darken(@red, 10%);
         &:before {
             content: url(../../img/developers/hub-logo-footer.png);
             display: block;
@@ -69,10 +70,10 @@
             color: @medium-gray;
             display: block;
             font-size: 15px;
-            padding: 0 3px;
+            padding: 0 2px;
         }
         &:hover {
-            color: darken(@red, 10%);
+            color: darken(@red, 20%);
             small {
                 color: @dark-gray;
             }
@@ -185,6 +186,9 @@
 #site-nav {
     background: #fff;
     border-bottom: 1px solid @border-gray;
+    .pad {
+        padding: 0;
+    }
     .menu-nav > ul {
         > li {
             border-left: 1px dotted @light-gray;
