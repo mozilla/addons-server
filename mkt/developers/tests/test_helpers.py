@@ -77,12 +77,11 @@ class TestDevBreadcrumbs(unittest.TestCase):
                    {'request': self.request, 'addon': addon})
         doc = pq(s)
         crumbs = doc('li')
-        eq_(crumbs.text(), 'Developer Hub My Submissions Firebug')
-        eq_(crumbs.eq(1).text(), 'My Submissions')
-        eq_(crumbs.eq(1).children('a').attr('href'),
+        eq_(crumbs.eq(0).text(), 'My Submissions')
+        eq_(crumbs.eq(0).children('a').attr('href'),
             reverse('mkt.developers.apps'))
-        eq_(crumbs.eq(2).text(), 'Firebug')
-        eq_(crumbs.eq(2).children('a'), [])
+        eq_(crumbs.eq(1).text(), 'Firebug')
+        eq_(crumbs.eq(1).children('a'), [])
 
     def test_with_addon_and_items(self):
         addon = Mock()
@@ -98,13 +97,13 @@ class TestDevBreadcrumbs(unittest.TestCase):
                    {'request': self.request, 'addon': addon})
         doc = pq(s)
         crumbs = doc('li')
-        eq_(len(crumbs), 5)
-        eq_(crumbs.eq(2).text(), 'Firebug')
-        eq_(crumbs.eq(2).children('a').attr('href'), addon.get_dev_url())
-        eq_(crumbs.eq(3).text(), 'foo')
-        eq_(crumbs.eq(3).children('a').attr('href'), '/foo')
-        eq_(crumbs.eq(4).text(), 'bar')
-        eq_(crumbs.eq(4).children('a').attr('href'), '/bar')
+        eq_(len(crumbs), 4)
+        eq_(crumbs.eq(1).text(), 'Firebug')
+        eq_(crumbs.eq(1).children('a').attr('href'), addon.get_dev_url())
+        eq_(crumbs.eq(2).text(), 'foo')
+        eq_(crumbs.eq(2).children('a').attr('href'), '/foo')
+        eq_(crumbs.eq(3).text(), 'bar')
+        eq_(crumbs.eq(3).children('a').attr('href'), '/bar')
 
 
 def test_summarize_validation():

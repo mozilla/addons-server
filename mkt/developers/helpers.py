@@ -56,7 +56,8 @@ def docs_page_title(context, title=None):
 
 @register.function
 @jinja2.contextfunction
-def hub_breadcrumbs(context, addon=None, items=None, add_default=False):
+def hub_breadcrumbs(context, addon=None, items=None, add_default=False,
+                    landing_galore=False):
     """
     Wrapper function for ``breadcrumbs``. Prepends 'Developer Hub'
     breadcrumbs.
@@ -71,16 +72,23 @@ def hub_breadcrumbs(context, addon=None, items=None, add_default=False):
     **impala**
         Whether to use the impala_breadcrumbs helper. Default is False.
     """
-    crumbs = [(reverse('mkt.developers.index'), _('Developer Hub'))]
-    title = _('My Submissions')
-    link = reverse('mkt.developers.apps')
+    if landing_galore:
+        crumbs = [(reverse('mkt.developers.index'), _('Developer Hub'))]
+    else:
+        crumbs = [(reverse('mkt.developers.apps'), _('My Submissions'))]
+    if landing_galore:
+        title = _('My Submissions')
+        link = reverse('mkt.developers.apps')
+    else:
+        title = link = None
 
     if addon:
-        if not addon and not items:
-            # We are at the end of the crumb trail.
-            crumbs.append((None, title))
-        else:
-            crumbs.append((link, title))
+        if landing_galore:
+            if not addon and not items:
+                # We are at the end of the crumb trail.
+                crumbs.append((None, title))
+            else:
+                crumbs.append((link, title))
         if items:
             url = addon.get_dev_url()
         else:

@@ -54,7 +54,7 @@ class HubTest(amo.tests.TestCase):
     fixtures = ['browse/nameless-addon', 'base/users']
 
     def setUp(self):
-        self.url = reverse('mkt.developers.index')
+        self.url = reverse('mkt.developers.apps')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         eq_(self.client.get(self.url).status_code, 200)
@@ -86,13 +86,13 @@ class TestHome(HubTest):
     def test_login_redirect(self):
         self.client.logout()
         r = self.client.get(self.url)
-        self.assertLoginRedirects(r, '/en-US/developers/', 302)
+        self.assertLoginRedirects(r, '/en-US/developers/submissions', 302)
 
     def test_home(self):
         for url in [self.url, reverse('home')]:
             r = self.client.get(url, follow=True)
             eq_(r.status_code, 200)
-            self.assertTemplateUsed(r, 'developers/index.html')
+            self.assertTemplateUsed(r, 'developers/addons/dashboard.html')
 
 
 class Test404(amo.tests.TestCase):
@@ -109,24 +109,21 @@ class TestAppBreadcrumbs(AppHubTest):
         super(TestAppBreadcrumbs, self).setUp()
         waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
 
-    @mock.patch.object(settings, 'APP_PREVIEW', True)
-    def test_impala_breadcrumbs(self):
-        r = self.client.get(reverse('mkt.developers.apps'))
+    def test_regular_breadcrumbs(self):
+        r = self.client.get(reverse('submit.app'), follow=True)
         eq_(r.status_code, 200)
         expected = [
-            ('Developer Hub', reverse('mkt.developers.index')),
-            ('My Submissions', None),
+            ('My Submissions', reverse('mkt.developers.apps')),
+            ('Submit App', None),
         ]
         amo.tests.check_links(expected, pq(r.content)('#breadcrumbs li'))
 
-    @mock.patch.object(settings, 'APP_PREVIEW', True)
-    def test_legacy_breadcrumbs(self):
+    def test_webapp_management_breadcrumbs(self):
         webapp = Webapp.objects.get(id=337141)
         AddonUser.objects.create(user=self.user_profile, addon=webapp)
         r = self.client.get(webapp.get_dev_url('edit'))
         eq_(r.status_code, 200)
         expected = [
-            ('Developer Hub', reverse('mkt.developers.index')),
             ('My Submissions', reverse('mkt.developers.apps')),
             (unicode(webapp.name), None),
         ]
