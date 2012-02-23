@@ -25,10 +25,11 @@ def global_settings(request):
             {'text': _('Change Password'), 'href': 'https://browserid.org/'},
             {'text': _('Log out'), 'href': reverse('users.logout')},
         ]
-
-        if acl.check_reviewer(request):
-            tools_links.append({'text': _('Editor Tools'),
-                                'href': reverse('editors.home')})
+# Not right now. This leads to a rabbit hole of issues. See bug 729751
+# or ask andym for more.
+#        if acl.check_reviewer(request):
+#            tools_links.append({'text': _('Editor Tools'),
+#                                'href': reverse('editors.home')})
         if acl.action_allowed(request, 'Localizers', '%'):
             tools_links.append({'text': _('Localizer Tools'),
                                 'href': '/localizers'})
