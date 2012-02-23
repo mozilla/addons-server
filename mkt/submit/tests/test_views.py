@@ -11,6 +11,7 @@ import waffle
 
 import amo
 import amo.tests
+from amo.tests import formset, initial
 from amo.urlresolvers import reverse
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category, DeviceType)
@@ -302,6 +303,20 @@ class TestDetails(TestSubmit):
         self._step()
         self._test_progress_display(['terms', 'manifest'], 'details')
 
+    def new_preview_formset(self, *args, **kw):
+        ctx = self.client.get(self.url).context
+
+        blank = initial(ctx['form_previews'].forms[-1])
+        blank.update(**kw)
+        return blank
+
+    def preview_formset(self, *args, **kw):
+        kw.setdefault('initial_count', 0)
+        kw.setdefault('prefix', 'files')
+
+        fs = formset(*[a for a in args] + [self.new_preview_formset()], **kw)
+        return dict([(k, '' if v is None else v) for k, v in fs.items()])
+
     def get_dict(self, **kw):
         data = {
             'name': 'Test name',
@@ -311,6 +326,11 @@ class TestDetails(TestSubmit):
             'privacy_policy': 'XXX <script>alert("xss")</script>',
             'device_types': [self.dtype.id],
         }
+        # Add the required screenshot.
+        data.update(self.preview_formset({
+            'upload_hash': '<hash>',
+            'position': 0
+        }))
         data.update(**kw)
         # Build formset for categories.
         data.update(amo.tests.formset(self.cat_initial, initial_count=1))
@@ -341,11 +361,12 @@ class TestDetails(TestSubmit):
 
     def test_success(self):
         self._step()
+        data = self.get_dict()
         # Post and be redirected.
-        r = self.client.post(self.url, self.get_dict())
+        r = self.client.post(self.url, data)
         self.assertNoFormErrors(r)
         # TODO: Assert redirects when we go to next step.
-        self.check_dict()
+        self.check_dict(data=data)
 
     def _setup_other_webapp(self):
         self._step()
@@ -379,6 +400,16 @@ class TestDetails(TestSubmit):
         eq_(r.status_code, 200)
         self.assertFormError(r, 'form_basic', 'name',
                              'This field is required.')
+
+    def test_screenshot_required(self):
+        self._step()
+        data = self.get_dict()
+        for k in data:
+            if k.startswith('files') and k.endswith('upload_hash'):
+                data[k] = ''
+        rp = self.client.post(self.url, data)
+        eq_(rp.context['form_previews'].non_form_errors(),
+            ['You must upload at least one screen shot.'])
 
     def test_name_length(self):
         self._step()
@@ -612,7 +643,7 @@ class TestPaymentsAdvanced(TestSubmit):
 
     def test_bad_upsell(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.post(self.get_url('payments.upsell'), {'price':''})
+        res = self.client.post(self.get_url('payments.upsell'), {'price': ''})
         eq_(res.status_code, 200)
         self.assertFormError(res, 'form', 'price', 'This field is required.')
 
@@ -636,7 +667,6 @@ class TestPaymentsAdvanced(TestSubmit):
         raise SkipTest
         # and this is where it all breaks down, need to figure out
         # how to test this new flow.
-
 
 
 class TestDone(TestSubmit):

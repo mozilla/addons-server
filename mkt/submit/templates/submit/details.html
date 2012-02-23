@@ -16,7 +16,7 @@
       {{ loc("Please review your listing information below. We've pre-filled "
              "as much as we can from your manifest.") }}
     </p>
-    <form action="" method="post" class="devhub-form">
+    <form action="" enctype="multipart/form-data" method="post" class="devhub-form">
       {{ csrf() }}
       <header id="general-details" class="island swagger c">
         <img src="{{ addon.get_icon_url(64) }}">
@@ -77,6 +77,52 @@
       #}
 
       {{ form_field(form_devices.device_types) }}
+
+      <div class="brform simple-field" id="submit-media">
+        <label>
+          {{ loc('Please provide at least one screen shot of your app:') }}
+        </label>
+        <span class="req" title="required">*</span>
+        {{ form_previews.management_form }}
+        {{ form_previews.non_form_errors() }}
+        <div id="file-list">
+          {% for form in form_previews.forms %}
+            <div class="preview">
+              <span class="handle">&nbsp;</span>
+              {% if form.instance.id %}
+                <div class="preview-thumb" style="background-image:url({{ form.instance.thumbnail_url }})">
+                </div>
+              {% else %}
+                <div class="preview-thumb"></div>
+              {% endif %}
+              {{ form.id }}
+              <span class="js-hidden delete">{{ form.DELETE }}{{ form.DELETE.label_tag() }}</span>
+              <div class="edit-previews-text">
+                <label data-for="{{ form.prefix }}-{{ form.caption.name }}" class="above-the-field">
+                  {{ _('Please provide a caption for this screenshot:') }}
+                </label>
+                {{ form.caption }}
+                <a href="#" class="remove">x</a>
+              </div>
+              <div class="js-hidden position">
+                {{ form.position }}
+              </div>
+              <div class="preview_extra">
+                {{ form.upload_hash }}
+              </div>
+              {{ form.errors }}
+            </div>
+          {% endfor %}
+        </div>
+        <div class="invisible-upload">
+          <a class="button" href="#">{{ _('Add a Screenshot...') }}</a>
+          <input type="file" id="screenshot_upload" name="uploads" multiple
+                 data-upload-url="{{ url('mkt.developers.addons.upload_preview', addon.slug) }}">
+        </div>
+        <div>
+          <span class="hint">{{ loc('JPG, PNG, and GIF supported. Max size is 700 x 520 px.') }}</span>
+        </div>
+      </div>
 
       <button class="prominent continue c" type="submit">
         {{ _('Continue') }}

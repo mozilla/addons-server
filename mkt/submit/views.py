@@ -11,7 +11,7 @@ from market.models import AddonPaymentData
 from mkt.developers import tasks
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import PaypalSetupForm, PaypalPaymentData
-from mkt.submit.forms import AppDetailsBasicForm
+from mkt.submit.forms import AppDetailsBasicForm, PreviewFormSet
 from mkt.submit.models import AppSubmissionChecklist
 import paypal
 from files.models import Platform
@@ -89,23 +89,26 @@ def details(request, addon_id, addon):
     # Name, Slug, Summary, Description, Privacy Policy.
     form_basic = AppDetailsBasicForm(request.POST or None, instance=addon,
                                      request=request)
-
     form_cats = CategoryFormSet(request.POST or None, addon=addon,
                                 request=request)
-
-    # Device Types.
     form_devices = DeviceTypeForm(request.POST or None, addon=addon)
+    form_previews = PreviewFormSet(request.POST or None,
+                                   prefix='files',
+                                   queryset=addon.previews.all())
 
     forms = {
         'form_basic': form_basic,
         'form_devices': form_devices,
         'form_cats': form_cats,
+        'form_previews': form_previews,
     }
 
     if request.POST and all(f.is_valid() for f in forms.itervalues()):
         addon = form_basic.save(addon)
         form_devices.save(addon)
         form_cats.save()
+        for preview in form_previews.forms:
+            preview.save(addon)
         AppSubmissionChecklist.objects.get(addon=addon).update(details=True)
         return redirect('submit.app.payments', addon.app_slug)
 

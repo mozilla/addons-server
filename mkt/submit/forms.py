@@ -1,14 +1,17 @@
 from django import forms
 from django.conf import settings
+from django.forms.models import modelformset_factory
 from django.utils.safestring import mark_safe
 
 import happyforms
+from quieter_formset.formset import BaseModelFormSet
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 from addons.forms import AddonFormBasic
-from addons.models import Addon, AddonUpsell
+from addons.models import Addon, AddonUpsell, Preview
 import amo
 from amo.utils import raise_required
+from devhub.forms import PreviewForm
 from files.models import FileUpload
 from market.models import AddonPremium, Price
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
@@ -128,6 +131,7 @@ class UpsellForm(happyforms.Form):
         elif not self.cleaned_data['do_upsell'] and upsell:
             upsell.delete()
 
+
 class AppDetailsBasicForm(AddonFormBasic):
     """Form for "Details" submission step."""
     name = TransField(max_length=128,
@@ -154,3 +158,24 @@ class AppDetailsBasicForm(AddonFormBasic):
         fields = ('name', 'slug', 'summary', 'tags', 'description',
                   'homepage', 'privacy_policy', 'support_email',
                   'support_url')
+
+
+class BasePreviewFormSet(BaseModelFormSet):
+
+    def clean(self):
+        if any(self.errors):
+            return
+        at_least_one = False
+        for i in range(0, self.total_form_count()):
+            form = self.forms[i]
+            if (not form.cleaned_data.get('DELETE') and
+                form.cleaned_data.get('upload_hash')):
+                at_least_one = True
+        if not at_least_one:
+            raise forms.ValidationError(_('You must upload at least one '
+                                          'screen shot.'))
+
+
+PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,
+                                      form=PreviewForm, can_delete=True,
+                                      extra=1)
