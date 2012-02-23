@@ -1,4 +1,5 @@
 {% extends 'developers/base_impala.html' %}
+{% from 'developers/includes/macros.html' import some_html_tip %}
 
 {% set title = _('App Payments') %}
 
@@ -27,6 +28,7 @@
           {{ form_field(form.do_upsell) }}
           {{ form_field(form.free) }}
           {{ form_field(form.text) }}
+          {{ some_html_tip() }}
         {% endif %}
       </div>
       <button class="prominent continue c" type="submit">
