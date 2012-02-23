@@ -99,6 +99,9 @@ class UpsellForm(happyforms.Form):
         self.request = kw.pop('request')
         self.addon = self.extra['addon']
 
+        if 'initial' not in kw:
+            kw['initial'] = {}
+
         if self.addon.premium:
             kw['initial']['price'] = self.addon.premium.price
 
