@@ -69,7 +69,10 @@ def manifest(request):
 
         plats = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
         addon = Addon.from_upload(data['upload'], plats)
-        tasks.fetch_icon.delay(addon)
+        # Let's see if we forgo the `delay` on this task (bug 729847).
+        # If celery gets sorted out, revert this.
+        # What's up, doc? Let's not get carroted away now.
+        tasks.fetch_icon(addon)
         AddonUser(addon=addon, user=request.amo_user).save()
 
         # Checking it once. Checking it twice.
