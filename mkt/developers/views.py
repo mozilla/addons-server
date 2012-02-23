@@ -1093,7 +1093,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
 
 
 @never_cache
-@dev_required
+@dev_required(skip_submit_check=True)
 @json_view
 def image_status(request, addon_id, addon):
     # Default icon needs no checking.
