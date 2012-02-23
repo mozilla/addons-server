@@ -7,14 +7,16 @@ def submit_step(outer_step):
         @functools.wraps(f)
         def wrapper(request, *args, **kw):
             from mkt.developers.views import _resume
+            from mkt.submit.models import AppSubmissionChecklist
             addon = kw.get('addon', False)
             if addon:
-                step = addon.appsubmissionchecklist.get_next()
-                if step != outer_step:
+                try:
+                    step = addon.appsubmissionchecklist.get_next()
+                except AppSubmissionChecklist.DoesNotExist:
+                    step = None
+                if step and step != outer_step:
                     return _resume(addon, step)
             return f(request, *args, **kw)
         wrapper.submitting = True
         return wrapper
     return decorator
-
-

@@ -1044,6 +1044,10 @@ class TestResumeStep(amo.tests.TestCase):
         self.assertRedirects(r, reverse('submit.app.payments',
                                         args=['a3615']))
 
+    def test_resume_without_checklist(self):
+        r = self.client.get(reverse('submit.app.details', args=['a3615']))
+        eq_(r.status_code, 200)
+
 
 class TestUpload(BaseUploadTest):
     fixtures = ['base/apps', 'base/users']
