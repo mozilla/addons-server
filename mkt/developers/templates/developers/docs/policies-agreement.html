@@ -1,15 +1,15 @@
 {% extends "developers/docs/policies.html" %}
 
-{% block title %}{{ docs_page_title(_('Developer Agreement')) }}{% endblock %}
+{% block title %}{{ mkt_page_title(_('Developer Agreement')) }}{% endblock %}
 
 {% block content %}
-{{ mkt_doc_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='policies'), _("App Policies")),
-                              (None, _("Developer Agreement"))]) }}
-
+{# TODO(marketplace-docs): Uncomment this when we have legit policies pages.
+  {{ hub_breadcrumbs(items=[(url('mkt.developers.docs', doc_name='policies'), _("App Policies")),
+                            (None, _("Developer Agreement"))]) }}
+#}
+{{ hub_breadcrumbs(items=[(None, _('Developer Agreement'))]) }}
 <h1>{{ _('Developer Agreement') }}</h1>
-<div class="primary" role="main">
+<div class="primary prose" role="main">
   {% include 'site/dev-agreement.html' %}
 </div>
-<p id="license-disclosure"></p>
-{{ sidebar() }}
 {% endblock %}

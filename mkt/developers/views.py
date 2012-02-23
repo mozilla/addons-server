@@ -1472,14 +1472,11 @@ def admin(request, addon):
 def docs(request, doc_name=None, doc_page=None):
     filename = ''
 
-    all_docs = {'getting-started': [], 'reference': [],
-                'policies': ['submission', 'reviews', 'maintenance',
-                             'recommended', 'agreement', 'contact'],
-                'case-studies': ['cooliris', 'stumbleupon',
-                                 'download-statusbar'],
-                'how-to': ['getting-started', 'extension-development',
-                           'thunderbird-mobile', 'theme-development',
-                           'other-addons']}
+    all_docs = {'getting-started': [],
+                'reference': [],
+                'policies': ['agreement'],
+                'case-studies': [],
+                'how-to': []}
 
     if waffle.switch_is_active('marketplace'):
         all_docs['marketplace'] = ['voluntary']
@@ -1488,6 +1485,9 @@ def docs(request, doc_name=None, doc_page=None):
         filename = '%s.html' % doc_name
         if doc_page and doc_page in all_docs[doc_name]:
             filename = '%s-%s.html' % (doc_name, doc_page)
+        else:
+            # TODO: Temporary until we have a `policies` docs index.
+            filename = None
 
     if not filename:
         return redirect('mkt.developers.index')
