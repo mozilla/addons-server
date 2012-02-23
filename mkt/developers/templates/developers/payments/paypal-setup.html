@@ -61,6 +61,7 @@
                      Return here when done to complete your setup.') }}</p>
           {{ form_field(form.business_account) }}
           {{ form_field(form.email) }}
+          <p>{{ loc('Learn about <a href="{0}">different PayPal account types</a>.')|f("https://www.paypal.com/cgi-bin/webscr?cmd=xpt/Marketing/general/PayPalAccountTypes-outside")|xssafe }}</p>
         </div>
         <footer class="listing-footer">
           <button type="submit">{{ _('Continue') }}</button>

@@ -19,6 +19,7 @@
                    you create one.") }}</p>
         {{ form_field(form.business_account) }}
         {{ form_field(form.email) }}
+        <p>{{ loc('Learn about <a href="{0}">different PayPal account types</a>.')|f("https://www.paypal.com/cgi-bin/webscr?cmd=xpt/Marketing/general/PayPalAccountTypes-outside")|xssafe }}</p>
       </div>
       <button class="prominent continue c" type="submit">
         {{ _('Continue') }}
