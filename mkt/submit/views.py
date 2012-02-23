@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import redirect
 
 import jingo
@@ -168,6 +169,12 @@ def payments_upsell(request, addon_id, addon):
 def payments_paypal(request, addon_id, addon):
     form = PaypalSetupForm(request.POST or None)
     if request.POST and form.is_valid():
+        existing = form.cleaned_data['business_account']
+        if existing != 'yes':
+            # Go create an account.
+            # TODO: this will either become the API or something some better
+            # URL for the future.
+            return redirect(settings.PAYPAL_CGI_URL)
         addon.update(paypal_id=form.cleaned_data['email'])
         return redirect('submit.app.payments.bounce', addon.app_slug)
     return jingo.render(request, 'submit/payments-paypal.html', {
