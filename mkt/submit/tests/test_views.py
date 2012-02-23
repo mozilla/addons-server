@@ -324,6 +324,9 @@ class TestDetails(TestSubmit):
             'summary': 'Hello!',
             'description': 'desc',
             'privacy_policy': 'XXX <script>alert("xss")</script>',
+            'homepage': 'http://www.goodreads.com/user/show/7595895-krupa',
+            'support_url': 'http://www.goodreads.com/user_challenges/351558',
+            'support_email': 'krupa+to+the+rescue@goodreads.com',
             'device_types': [self.dtype.id],
         }
         # Add the required screenshot.
@@ -459,6 +462,38 @@ class TestDetails(TestSubmit):
         r = self.client.post(self.url, self.get_dict(privacy_policy=None))
         self.assertFormError(r, 'form_basic', 'privacy_policy',
                              'This field is required.')
+
+    def test_homepage_url_optional(self):
+        self._step()
+        r = self.client.post(self.url, self.get_dict(homepage=None))
+        self.assertNoFormErrors(r)
+
+    def test_homepage_url_invalid(self):
+        self._step()
+        r = self.client.post(self.url, self.get_dict(homepage='xxx'))
+        self.assertFormError(r, 'form_basic', 'homepage', 'Enter a valid URL.')
+
+    def test_support_url_optional(self):
+        self._step()
+        r = self.client.post(self.url, self.get_dict(support_url=None))
+        self.assertNoFormErrors(r)
+
+    def test_support_url_invalid(self):
+        self._step()
+        r = self.client.post(self.url, self.get_dict(support_url='xxx'))
+        self.assertFormError(r, 'form_basic', 'support_url',
+                             'Enter a valid URL.')
+
+    def test_support_email_optional(self):
+        self._step()
+        r = self.client.post(self.url, self.get_dict(support_email=None))
+        self.assertNoFormErrors(r)
+
+    def test_support_email_invalid(self):
+        self._step()
+        r = self.client.post(self.url, self.get_dict(support_email='xxx'))
+        self.assertFormError(r, 'form_basic', 'support_email',
+                             'Enter a valid e-mail address.')
 
     def test_device_types_required(self):
         self._step()

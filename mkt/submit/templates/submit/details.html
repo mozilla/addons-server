@@ -77,6 +77,13 @@
         </div>
       #}
 
+      {{ form_field(form_basic.homepage, hint=True) }}
+
+      <div id="support-fields" class="c">
+        {{ form_field(form_basic.support_url, hint=True) }}
+        {{ form_field(form_basic.support_email, hint=True) }}
+      </div>
+
       {{ form_field(form_devices.device_types) }}
 
       <div class="brform simple-field" id="submit-media">

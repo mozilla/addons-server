@@ -86,7 +86,8 @@ def manifest(request):
 @dev_required
 @submit_step('details')
 def details(request, addon_id, addon):
-    # Name, Slug, Summary, Description, Privacy Policy.
+    # Name, Slug, Summary, Description, Privacy Policy,
+    # Homepage URL, Support URL, Support Email.
     form_basic = AppDetailsBasicForm(request.POST or None, instance=addon,
                                      request=request)
     form_cats = CategoryFormSet(request.POST or None, addon=addon,

@@ -151,12 +151,26 @@ class AppDetailsBasicForm(AddonFormBasic):
          help_text=_lazy(u"A privacy policy is required that explains what "
                           "data is transmitted from a user's computer and how "
                           "it is used."))
+    homepage = TransField.adapt(forms.URLField)(required=False,
+        verify_exists=False, label=_lazy(u'Homepage'),
+        help_text=_(u'If your app has another homepage, enter its address '
+                     'here.'),
+        widget=TransInput(attrs={'class': 'full'}))
+    support_url = TransField.adapt(forms.URLField)(required=False,
+       verify_exists=False, label=_lazy(u'Support Website'),
+       help_text=_(u'If your app has a support website or forum, enter '
+                    'its address here.'),
+        widget=TransInput(attrs={'class': 'full'}))
+    support_email = TransField.adapt(forms.EmailField)(required=False,
+        label=_lazy(u'Support Email'),
+        help_text=_(u'If you wish to display an email address for support '
+                     'inquiries, enter it here.'),
+        widget=TransInput(attrs={'class': 'full'}))
 
     class Meta:
         model = Addon
         fields = ('name', 'slug', 'summary', 'tags', 'description',
-                  'homepage', 'privacy_policy', 'support_email',
-                  'support_url')
+                  'privacy_policy', 'homepage', 'support_url', 'support_email')
 
 
 class BasePreviewFormSet(BaseModelFormSet):

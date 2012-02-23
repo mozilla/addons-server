@@ -39,13 +39,11 @@
             <label data-for="support_url">
               {{ _("Website") }}
               {% if webapp %}
-                {# TODO(apps): Finalize copy. #}
                 {{ tip(None,
-                       "If your app has a support website or forum, enter
-                        its address here. If your website is localized into
-                        other languages, multiple translations of this field can
-                        be added. If you use a GetSatisfaction URL, users will
-                        be able to interact with a GetSatisfaction widget.") }}
+                       loc("If your app has a support website or forum, enter
+                            its address here. If your website is localized into
+                            other languages, multiple translations of this
+                            field can be added.")) }}
               {% else %}
                 {{ tip(None,
                        _("If your add-on has a support website or forum, enter
