@@ -1205,7 +1205,6 @@ class PaypalSetupForm(happyforms.Form):
     email = forms.EmailField(required=False,
                              label='PayPal email address')
 
-
     def __init__(self, *args, **kw):
         super(PaypalSetupForm, self).__init__(*args, **kw)
         self.fields['business_account'].choices = (('yes', _lazy('Yes')),
@@ -1238,6 +1237,8 @@ class AppFormDetails(addons.forms.AddonFormBase):
         choices=Addon.LOCALES)
     privacy_policy = TransField(widget=TransTextarea(), required=True,
         label=_lazy(u"Please specify your app's Privacy Policy"))
+    homepage = TransField.adapt(forms.URLField)(required=False,
+                                                verify_exists=False)
 
     class Meta:
         model = Addon

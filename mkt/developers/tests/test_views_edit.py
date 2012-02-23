@@ -838,13 +838,17 @@ class TestEditDetails(TestEdit):
         self.details_url = self.get_url('details')
         self.details_edit_url = self.get_url('details', edit=True)
 
-    def test_edit(self):
+    def get_dict(self, **kw):
         data = dict(description='New description with <em>html</em>!',
                     default_locale='en-US',
                     homepage='http://twitter.com/fligtarsmom',
                     privacy_policy="fligtar's mom does <em>not</em> share your"
                                    " data with third parties.")
+        data.update(kw)
+        return data
 
+    def test_edit(self):
+        data = self.get_dict()
         r = self.client.post(self.details_edit_url, data)
         eq_(r.context['form'].errors, {})
         addon = self.get_addon()
@@ -924,8 +928,8 @@ class TestEditDetails(TestEdit):
         eq_(r.context['form'].errors, {})
 
     def test_edit_default_locale_frontend_error(self):
-        da = dict(description='xx', homepage='yy', default_locale='fr',
-                  privacy_policy='pp')
+        da = dict(description='xx', homepage='http://google.com',
+                  default_locale='fr', privacy_policy='pp')
         rp = self.client.post(self.details_edit_url, da)
         self.assertContains(rp, 'Before changing your default locale you must')
 
@@ -934,6 +938,15 @@ class TestEditDetails(TestEdit):
         addon.update(default_locale='en-US')
         r = self.client.get(self.details_url)
         eq_(pq(r.content)('.addon_edit_locale').eq(0).text(), 'English (US)')
+
+    def test_homepage_url_optional(self):
+        r = self.client.post(self.details_edit_url, self.get_dict(homepage=''))
+        self.assertNoFormErrors(r)
+
+    def test_homepage_url_invalid(self):
+        r = self.client.post(self.details_edit_url,
+                             self.get_dict(homepage='xxx'))
+        self.assertFormError(r, 'form', 'homepage', 'Enter a valid URL.')
 
 
 class TestEditSupport(TestEdit):
