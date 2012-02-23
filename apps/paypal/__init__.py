@@ -143,11 +143,9 @@ def get_paykey(data):
     if data['pattern']:
         complete = reverse(data['pattern'], args=[data['slug'], 'complete'])
         cancel = reverse(data['pattern'], args=[data['slug'], 'cancel'])
-        notif = absolutify(reverse('amo.paypal'))
     else:
         # If there's no pattern given, just fake some urls.
-        # TODO (andym): not happy about this, esp. the IPN
-        complete = cancel = notif = settings.SITE_URL + '/paypal/dummy/'
+        complete = cancel = settings.SITE_URL + '/paypal/dummy/'
 
     qs = {'uuid': data['uuid']}
     if 'qs' in data:
@@ -160,7 +158,7 @@ def get_paykey(data):
         'cancelUrl': absolutify('%s?%s' % (cancel, uuid_qs)),
         'returnUrl': absolutify('%s?%s' % (complete, uuid_qs)),
         'trackingId': data['uuid'],
-        'ipnNotificationUrl': notif}
+        'ipnNotificationUrl': absolutify(reverse('amo.paypal'))}
 
     receivers = (data.get('chains', ()), data['email'], data['amount'],
                  data['uuid'])

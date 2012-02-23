@@ -41,6 +41,9 @@ urlpatterns = patterns('',
     url('^jsi18n.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
         {'domain': 'javascript', 'packages': ['zamboni']}, name='jsi18n'),
 
+    # Paypal, needed for IPNs only.
+    ('', include('paypal.urls')),
+
     # AMO admin (not django admin).
     ('^admin/', include('zadmin.urls')),
 )
