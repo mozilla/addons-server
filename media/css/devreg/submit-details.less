@@ -161,8 +161,34 @@ label.houdini {
             right: 0;
             line-height: 18px;
         }
-        #screenshots > label {
-            margin-top: 0;
+    }
+    #icon_preview {
+        width: 64px;
+        &:hover:after {
+            content: "Edit";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 64px;
+            color: @blue;
+            height: 64px;
+            line-height: 64px;
+            background: fadeOut(@bg-gray, 50%);
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            pointer-events: none;
+        }
+        margin: 0;
+        position: absolute;
+        left: 15px;
+        img {
+            position: static;
+        }
+        .icon_preview {
+            padding: 0;
+            background: none;
+            border: 0;
         }
     }
 }
