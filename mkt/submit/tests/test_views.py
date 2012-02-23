@@ -630,6 +630,13 @@ class TestPaymentsAdvanced(TestSubmit):
         eq_(res.status_code, 302)
         self.assertRedirects(res, self.get_url('payments.paypal'))
 
+    def test_no_upsell(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.get(self.get_url('payments.upsell'),
+                               {'price': self.price.pk})
+        eq_(res.status_code, 200)
+        eq_(len(pq(res.content)('div.brform')), 2)
+
     def test_upsell_missing(self):
         free = Addon.objects.create(type=amo.ADDON_WEBAPP)
         AddonUser.objects.create(addon=free,
