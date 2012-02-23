@@ -132,7 +132,7 @@ class Check(object):
         currency: valid paypal currency, defaults to USD (optional)
         """
         data.update({
-            'pattern': 'addons.purchase.finished',
+            'pattern': '',
             'ip': '127.0.0.1',
             'preapproval': None,
             'slug': 'foo',
