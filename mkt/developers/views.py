@@ -313,6 +313,8 @@ def paypal_setup_confirm(request, addon_id, addon, webapp):
     if request.method == 'POST' and form.is_valid():
         adp.update(**form.cleaned_data)
         messages.success(request, 'PayPal set up complete.')
+        if addon.status == amo.STATUS_NULL and addon.paypal_id:
+            addon.mark_done()
         return redirect(addon.get_dev_url('paypal_setup'))
 
     return jingo.render(request,

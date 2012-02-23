@@ -1,10 +1,13 @@
+from mock import patch
 from nose.tools import eq_
+
+from django.conf import settings
 
 from addons.models import Addon
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from market.models import Price
+from market.models import Price, AddonPaymentData
 
 
 # Testing the payments page.
@@ -94,3 +97,33 @@ class TestPaypal(amo.tests.TestCase):
         res = self.client.get(self.url)
         eq_(res.status_code, 302)
         self.assertRedirects(res, reverse('submit.app.terms'))
+
+
+@patch.object(settings, 'WEBAPPS_RESTRICTED', True)
+class TestPaypalResponse(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        self.webapp = self.get_webapp()
+        self.url = self.webapp.get_dev_url('paypal_setup_confirm')
+        self.webapp.update(status=amo.STATUS_NULL)
+        self.client.login(username='admin@mozilla.com', password='password')
+
+    def get_webapp(self):
+        return Addon.objects.get(pk=337141)
+
+    def test_paypal_updates(self):
+        self.webapp.update(status=amo.STATUS_NULL, paypal_id='bob@dog.com')
+        AddonPaymentData.objects.create(addon=self.webapp)
+        res = self.client.post(self.url, {'country': 'bob',
+                                          'address_one': '123 bob st.'})
+        eq_(res.status_code, 302)
+        eq_(self.get_webapp().status, amo.STATUS_PENDING)
+
+    def test_not_paypal_updates(self):
+        self.webapp.update(status=amo.STATUS_PUBLIC, paypal_id='bob@dog.com')
+        AddonPaymentData.objects.create(addon=self.webapp)
+        res = self.client.post(self.url, {'country': 'bob',
+                                          'address_one': '123 bob st.'})
+        eq_(res.status_code, 302)
+        eq_(self.get_webapp().status, amo.STATUS_PUBLIC)
