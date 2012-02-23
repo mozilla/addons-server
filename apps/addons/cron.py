@@ -150,6 +150,8 @@ def _update_addon_average_daily_users(data, **kw):
             task_log.info('Readjusted ADU counts for addon %s' % addon.slug)
             addon.update(average_daily_users=addon.total_downloads)
         else:
+            task_log.debug('[bug 726569] Updating "%s" :: ADU %s -> %s' %
+                           (addon.slug, addon.average_daily_users, count))
             addon.update(average_daily_users=count)
 
 
