@@ -13,9 +13,8 @@
     <form method="post" class="devhub-form">
       <div class="brform island swagger c">
         {{ csrf() }}
-        <p>
-          {{ form_field(form.premium_type) }}
-        </p>
+        {{ form_field(form.premium_type) }}
+        <p>{{ loc('Learn about <a href="{0}">different payment types</a>.')|f('https://developer.mozilla.org/en/Apps/Marketplace_Payments')|xssafe }}</p>
       </div>
       <button class="prominent continue c" type="submit">
         {{ _('Continue') }}

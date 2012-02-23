@@ -19,6 +19,7 @@
         </div>
         {{ form.premium_type.errors }}
         <div>{{ form.premium_type }}</div>
+        <p>{{ loc('Learn about <a href="{0}">different payment types</a>.')|f('https://developer.mozilla.org/en/Apps/Marketplace_Payments')|xssafe }}</p>
       </div>
       {% include 'developers/payments/includes/paypal.html' %}
       {% include 'developers/payments/includes/tier.html' %}
