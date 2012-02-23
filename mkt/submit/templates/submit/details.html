@@ -86,11 +86,13 @@
 
       {{ form_field(form_devices.device_types) }}
 
-      <div class="brform simple-field" id="submit-media">
+      <div>
         <label>
           {{ loc('Please provide at least one screen shot of your app:') }}
         </label>
         {{ required() }}
+      </div>
+      <div class="brform simple-field island" id="submit-media">
         {{ form_previews.management_form }}
         {{ form_previews.non_form_errors() }}
         <div id="file-list">
