@@ -14,12 +14,12 @@
     {% if not addons %}
       <h2>{{ _('Welcome to the Developer Dashboard') }}</h2>
       <p>
-        {{ loc("You don't currently have any apps hosted on Mozilla Marketplace.
-                To learn how the process works and submit your first app, click
-                Get Started below.") }}
+        You haven't yet submitted an app to the Mozilla Marketplace.
+        Once you've <a href="https://developer.mozilla.org/apps">
+        created your app</a>, click Submit Your App below.
       </p>
       <p class="listing-footer button-wrapper">
-        <a href="{{ url('mkt.developers.submit_apps.1') }}"
+        <a href="{{ url('submit.app') }}"
            class="button prominent">{{ _('Submit An App') }}</a>
       </p>
     {% else %}
