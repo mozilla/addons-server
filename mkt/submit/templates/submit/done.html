@@ -1,22 +1,23 @@
 {% extends 'developers/base_impala.html' %}
 
-{% set title = _('Done') %}
+{% set title = _('Finished!') %}
 
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
 {% block content %}
   {{ hub_breadcrumbs(items=[(None, _('Submit App'))]) }}
-  <h1>{{ _('Done') }}</h1>
+  <h1>{{ title }}</h1>
   {{ progress(request, addon=addon, step=step) }}
   <section id="submit-payment" class="primary">
     <h2>Success! What happens now?</h2>
-    <div class="brform island c devhub-form">
-    <p>{{ loc("We've got your app saved and ready to go for our
-               Marketplace Beta coming soon. Until then, feel free to
-               look around and tweak your app's metadata and settings.") }}</p>
-               <a href="{{ addon.get_dev_url('edit') }}" class="button prominent">Manage My App</a>
-               <a href="{{ url('submit.app.manifest') }}" class="button prominent">Submit Another App</a>
+    <div class="island devhub-form c">
+      <p>{{ loc("We've got your app saved and ready to go for our
+                 Marketplace Beta coming soon. Until then, feel free to
+                 look around and tweak your app's metadata and settings.") }}</p>
+      <footer class="listing-footer button-wrapper">
+        <a href="{{ addon.get_dev_url('edit') }}" class="button prominent">Manage My App</a>
+        <a href="{{ url('submit.app.manifest') }}" class="button prominent">Submit Another App</a>
+      </footer>
     </div>
   </section>
 {% endblock %}
-
