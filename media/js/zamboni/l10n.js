@@ -254,7 +254,9 @@ $(document).ready(function () {
         $(format(".trans>:not([lang='{0}'])", currentLocale)).hide();
         $(format(".trans [lang='{0}']", currentLocale)).show();
         initCharCount();
-        $.cookie('current_locale', currentLocale, {expires: 0});
+        if ($.cookie('current_locale') != currentLocale) {
+            $.cookie('current_locale', currentLocale, {expires: 0});
+        }
     }
 
     function discoverLocales(locale) {
