@@ -41,34 +41,39 @@
         height: 0;
     }
 }
-#locale-popup section {
-    display: block;
-    height: 300px;
-    line-height: 30px;
-    overflow-y: auto;
-    a {
-        display: block;
-        &:hover {
-            background-color: #eefafe;
-            text-decoration: none;
-        }
-        em {
-            color: #98bfef;
-        }
+#locale-popup {
+    &:after {
+        right: 53px;
     }
-    > div,
-    > ul {
-        border-top: 1px dotted #A4CFDE;
-        margin-bottom: 0;
-        &:first-child {
-            border-top: medium none;
+    &:before {
+        right: 48px;
+    }
+    section {
+        display: block;
+        height: 300px;
+        line-height: 30px;
+        margin-right: -10px;
+        overflow-y: auto;
+        a {
+            display: block;
+            &:hover {
+                background-color: #eefafe;
+                text-decoration: none;
+            }
+            em {
+                color: #98bfef;
+            }
+        }
+        ul {
+            margin: 0;
         }
     }
 }
 #existing_locales a.remove {
     display: block;
     float: right;
-    margin: 4px;
+    margin: 4px 8px;
+    line-height: 18px;
     &:hover {
         background-color: #2a4364;
     }

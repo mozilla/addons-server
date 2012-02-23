@@ -3421,41 +3421,40 @@ input.ui-autocomplete-loading {
     border-style: solid;
     border-top-color: #003595;
 }
+#locale-popup:after {
+  right: 53px;
+}
+#locale-popup:before {
+  right: 48px;
+}
 #locale-popup section {
-    display: block;
-    overflow-y: auto;
-    height: 300px;
-    line-height: 30px;
+  display: block;
+  height: 300px;
+  line-height: 30px;
+  margin-right: -10px;
+  overflow-y: auto;
 }
 #locale-popup section a {
-    display: block;
+  display: block;
 }
 #locale-popup section a:hover {
-    background-color: #EEFAFE;
-    text-decoration: none;
+  background-color: #eefafe;
+  text-decoration: none;
 }
 #locale-popup section a em {
-    color: #98BFEF;
+  color: #98bfef;
 }
-
-#locale-popup section > div,
-#locale-popup section > ul {
-    border-top: 1px dotted #a4cfde;
-    margin-bottom: 0;
+#locale-popup section ul {
+  margin: 0;
 }
-#locale-popup section > div:first-child,
-#locale-popup section > ul:first-child {
-    border-top: none;
-}
-
 #existing_locales a.remove {
-    float: right;
-    display: block;
-    margin: 4px;
+  display: block;
+  float: right;
+  margin: 4px 8px;
+  line-height: 18px;
 }
-
 #existing_locales a.remove:hover {
-    background-color: #2A4364;
+  background-color: #2a4364;
 }
 
 .trans [lang] {
