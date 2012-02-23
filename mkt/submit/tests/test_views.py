@@ -680,10 +680,27 @@ class TestPaymentsAdvanced(TestSubmit):
         eq_(self.get_webapp().premium.price.pk, self.price.pk)
         self.assertRedirects(res, self.get_url('payments.paypal'))
 
-    def test_upsell(self):
+    def _make_upsell(self):
         free = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        free.update(status=amo.STATUS_PUBLIC)
         AddonUser.objects.create(addon=free,
                                  user=self.webapp.authors.all()[0])
+        return free
+
+    def test_upsell_states(self):
+        free = self._make_upsell()
+        free.update(status=amo.STATUS_NULL)
+        res = self.client.get(self.get_url('payments.upsell'))
+        eq_(len(res.context['form'].fields['free'].choices), 0)
+
+    def test_upsell_states_inapp(self):
+        free = self._make_upsell()
+        free.update(premium_type=amo.ADDON_FREE_INAPP)
+        res = self.client.get(self.get_url('payments.upsell'))
+        eq_(len(res.context['form'].fields['free'].choices), 1)
+
+    def test_upsell(self):
+        free = self._make_upsell()
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.post(self.get_url('payments.upsell'),
                                {'price': self.price.pk,

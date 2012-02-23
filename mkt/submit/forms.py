@@ -103,9 +103,10 @@ class UpsellForm(happyforms.Form):
 
         super(UpsellForm, self).__init__(*args, **kw)
         self.fields['free'].queryset = (self.extra['amo_user'].addons
-                                        .exclude(pk=self.addon.pk)
-                                        .filter(premium_type=amo.ADDON_FREE,
-                                                type=self.addon.type))
+                                    .exclude(pk=self.addon.pk)
+                                    .filter(premium_type__in=amo.ADDON_FREES,
+                                            status__in=amo.VALID_STATUSES,
+                                            type=self.addon.type))
 
     def clean_text(self):
         if (self.cleaned_data['do_upsell']

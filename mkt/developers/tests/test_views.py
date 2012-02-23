@@ -389,6 +389,7 @@ class MarketplaceMixin(object):
         self.price_two = Price.objects.create(price='1.99')
         self.other_addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
                                                 premium_type=amo.ADDON_FREE)
+        self.other_addon.update(status=amo.STATUS_PUBLIC)
         AddonUser.objects.create(addon=self.other_addon,
                                  user=self.addon.authors.all()[0])
         AddonPremium.objects.create(addon=self.addon, price_id=self.price.pk)
@@ -404,68 +405,44 @@ class MarketplaceMixin(object):
 class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
-    @mock.patch('addons.models.Addon.can_become_premium')
-    def test_ask_page(self, can_become_premium):
-        raise SkipTest
-        can_become_premium.return_value = True
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        doc = pq(res.content)
-        eq_(len(doc('div.intro')), 2)
-
-    @mock.patch('addons.models.Addon.can_become_premium')
-    def test_cant_become_premium(self, can_become_premium):
-        raise SkipTest
-        can_become_premium.return_value = False
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        doc = pq(res.content)
-        eq_(len(doc('.error')), 2)
-
-    @mock.patch('addons.models.Addon.upsell')
-    def test_addon_upsell(self, upsell):
-        raise SkipTest
-        upsell.return_value = True
-        res = self.client.get(self.url)
-        doc = pq(res.content)
-        assert 'You cannot enroll in the Marketplace' in doc('p.error').text()
-
     def get_data(self):
         return {
-            'paypal_id': 'a@a.com',
             'price': self.price.pk,
             'free': self.other_addon.pk,
-            'support_email': 'b@b.com',
             'do_upsell': 1,
             'text': 'some upsell',
+            'premium_type': amo.ADDON_PREMIUM,
+            'support_email': 'c@c.com',
         }
 
     def test_initial(self):
-        raise SkipTest
         self.setup_premium()
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(res.context['form'].initial['price'], self.price)
-        eq_(res.context['form'].initial['paypal_id'], 'a@a.com')
 
     def test_set(self):
-        raise SkipTest
         self.setup_premium()
         res = self.client.post(self.url, data={
             'support_email': 'c@c.com',
             'price': self.price_two.pk,
+            'premium_type': amo.ADDON_PREMIUM
         })
         eq_(res.status_code, 302)
         self.addon = Addon.objects.get(pk=self.addon.pk)
-        eq_(self.addon.paypal_id, 'b@b.com')
         eq_(self.addon.addonpremium.price, self.price_two)
 
     def test_set_upsell(self):
-        raise SkipTest
         self.setup_premium()
         res = self.client.post(self.url, data=self.get_data())
         eq_(res.status_code, 302)
         eq_(len(self.addon._upsell_to.all()), 1)
+
+    def test_set_upsell_wrong_status(self):
+        self.setup_premium()
+        self.other_addon.update(status=amo.STATUS_NULL)
+        res = self.client.post(self.url, data=self.get_data())
+        eq_(res.status_code, 200)
 
     def test_set_upsell_wrong_type(self):
         self.setup_premium()
@@ -489,7 +466,6 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         eq_(res.status_code, 200)
 
     def test_remove_upsell(self):
-        raise SkipTest
         self.setup_premium()
         upsell = AddonUpsell.objects.create(free=self.other_addon,
                                             premium=self.addon)
@@ -500,7 +476,6 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         eq_(len(self.addon._upsell_to.all()), 0)
 
     def test_change_upsell(self):
-        raise SkipTest
         self.setup_premium()
         AddonUpsell.objects.create(free=self.other_addon,
                                    premium=self.addon, text='foo')
@@ -511,7 +486,6 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         eq_(self.addon._upsell_to.all()[0].text, 'bar')
 
     def test_replace_upsell(self):
-        raise SkipTest
         self.setup_premium()
         # Make this add-on an upsell of some free add-on.
         AddonUpsell.objects.create(free=self.other_addon,
@@ -519,6 +493,7 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         # And this will become our new upsell, replacing the one above.
         new = Addon.objects.create(type=amo.ADDON_EXTENSION,
                                    premium_type=amo.ADDON_FREE)
+        new.update(status=amo.STATUS_PUBLIC)
         AddonUser.objects.create(addon=new, user=self.addon.authors.all()[0])
 
         eq_(self.addon._upsell_to.all()[0].text, 'foo')
@@ -546,24 +521,6 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         self.client.get('%s?%s' % (url, urlencode(data)))
         self.addon = Addon.objects.get(pk=self.addon.pk)
         eq_(self.addon.premium.paypal_permissions_token, 'FOO')
-
-    @mock.patch('paypal.get_permissions_token', lambda x, y: x.upper())
-    @mock.patch('paypal.get_personal_data', lambda x: {})
-    def test_permissions_token_redirect(self):
-        raise SkipTest
-        self.setup_premium()
-        eq_(self.addon.premium.paypal_permissions_token, '')
-        url = reverse('mkt.developers.addons.acquire_refund_permission',
-                      args=[self.addon.slug])
-        data = {'request_token': 'foo', 'verification_code': 'bar'}
-        res = self.client.get(url, data=data)
-        assert res['Location'].endswith(
-            reverse('mkt.developers.addons.payments', args=[self.addon.slug]))
-
-        data['dest'] = 'wizard'
-        res = self.client.get(url, data=data)
-        assert res['Location'].endswith(
-            reverse('mkt.developers.addons.market.1', args=[self.addon.slug]))
 
 
 class TestIssueRefund(amo.tests.TestCase):

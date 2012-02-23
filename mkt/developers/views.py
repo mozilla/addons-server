@@ -436,11 +436,11 @@ def _premium(request, addon_id, addon, webapp=False):
                                      extra={'addon': addon,
                                             'amo_user': request.amo_user,
                                             'dest': 'payment'})
+
     if request.method == 'POST' and premium_form.is_valid():
         premium_form.save()
         messages.success(request, _('Changes successfully saved.'))
         return redirect(addon.get_dev_url('payments'))
-
     return jingo.render(request, 'developers/payments/premium.html',
                         dict(addon=addon, webapp=webapp, premium=addon.premium,
                              form=premium_form))

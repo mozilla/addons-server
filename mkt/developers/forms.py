@@ -1029,9 +1029,10 @@ class PremiumForm(happyforms.Form):
             self.fields['price'].label = loc('App price')
             self.fields['do_upsell'].choices = APP_UPSELL_CHOICES
         self.fields['free'].queryset = (self.extra['amo_user'].addons
-                                        .exclude(pk=self.addon.pk)
-                                        .filter(premium_type=amo.ADDON_FREE,
-                                                type=self.addon.type))
+                                    .exclude(pk=self.addon.pk)
+                                    .filter(premium_type__in=amo.ADDON_FREES,
+                                            status__in=amo.VALID_STATUSES,
+                                            type=self.addon.type))
 
         # For the wizard, we need to remove some fields.
         for field in self.extra.get('exclude', []):
