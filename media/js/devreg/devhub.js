@@ -409,11 +409,13 @@ function initUploadPreview() {
 
         // Don't let users submit a form.
         $('.edit-media-button button').attr('disabled', true);
+        $('#submit-media button.prominent').attr('disabled', true);
     }
 
     function upload_finished_all(e) {
         // They can submit again
         $('.edit-media-button button').attr('disabled', false);
+        $('#submit-media button.prominent').attr('disabled', false);
     }
 
     function upload_start(e, file) {
