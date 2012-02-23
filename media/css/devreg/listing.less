@@ -156,13 +156,9 @@
     width: 100%;
 }
 
-.listing .items {
-    display: table;
-}
-
 .listing .item {
     color: @note-gray;
-    display: table-row;
+    width: 100%;
     &:hover,
     &.static {
         background-color: @faded-taupe;
@@ -176,8 +172,8 @@
         line-height: 18px;
         img {
             display: block;
+            left: 15px;
             position: absolute;
-            left: 50px;
             max-height: 64px;
             max-width: 64px;
         }
@@ -199,46 +195,23 @@
     .info,
     .action {
         border-top: 1px dotted @border-taupe;
-        display: table-cell;
         padding: 20px 0;
         vertical-align: top;
     }
     .info {
         overflow: hidden;
         padding-left: 58px;
-        max-width: 470px;
-    }
-    .install-shell {
-        padding: 0 10px;
-        text-align: right;
-        visibility: hidden;
-        .install {
-            margin: 0 0 6px;
-        }
-        p.install-button {
-            margin: 0;
-            text-align: left;
-        }
-        .extra {
-            margin: 0 0 6px;
-            .notavail {
-                color: @note-gray;
-                font-size: 10px;
-            }
-        }
+        position: relative;
     }
 }
 
 .html-rtl .listing .item {
     h3 img {
         left: auto;
-        right: 5%;
+        right: 15px;
     }
     .info {
         padding: 20px 58px 20px 0;
-    }
-    .install-shell {
-        text-align: left;
     }
 }
 
