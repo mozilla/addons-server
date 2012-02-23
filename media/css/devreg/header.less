@@ -7,10 +7,12 @@
     .upper-header {
         padding: 0 0 7px;
     }
-    .menu-nav {
-        padding-left: 252px;
-        position: relative;
-        max-width: 960px;
+    #site-nav {
+        .menu-nav {
+            padding-left: 252px;
+            position: relative;
+            max-width: 960px;
+        }
     }
     /* Log in link loader */
     a.loading-submit:before {
@@ -55,6 +57,7 @@
         position: relative;
         text-decoration: none;
         color: darken(@red, 10%);
+        width: 100%;
         &:before {
             content: url(../../img/developers/hub-logo-footer.png);
             display: block;
@@ -295,5 +298,32 @@
             right: 4px;
             left: auto;
         }
+    }
+}
+
+@media (max-width: 860px) {
+    #site-header {
+        h1 {
+            font-size: 42px;
+            small {
+                font-size: 13px;
+                padding: 0 2px;
+            }
+        }
+    }
+}
+
+@media (max-width: 650px) {
+    #site-header {
+        h1, #site-nav .menu-nav {
+            padding-left: 2%;
+        }
+        h1 {
+            font-size: 28px;
+        }
+        a:before {
+            display: none;
+        }
+
     }
 }
