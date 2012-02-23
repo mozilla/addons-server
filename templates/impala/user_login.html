@@ -30,7 +30,7 @@
         {% trans login=login_link() %}
             <a id="amo-register" href="#">Register</a> or <a href="{{ login }}">Log in</a>
         {% endtrans %}
-            <div id="register-dropdown">Email: <form action="{{ url('users.maybe_register') }}" method="GET"><input type="text" name="email"><button type="submit">{{ _('Register') }}</button></div>
+            <div id="register-dropdown">Email: <form action="{{ url('users.maybe_register') }}" method="GET"><input type="text" name="email"><button type="submit">{{ _('Register') }}</button></form></div>
     {% endif %}
   </li>
 {% endif %}
