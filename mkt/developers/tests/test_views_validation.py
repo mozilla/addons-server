@@ -54,7 +54,7 @@ class TestUploadValidation(BaseUploadTest):
                                     args=[upload.uuid]))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('.results-intro dd:first-child').text(), 'December  6, 2010')
+        eq_(doc('.results-intro time').text(), 'December  6, 2010')
 
 
 class TestUploadErrors(BaseUploadTest):

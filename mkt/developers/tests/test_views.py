@@ -1179,7 +1179,7 @@ class TestUploadDetail(BaseUploadTest):
                                     args=[upload.uuid]))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('header h2').text(), 'Validation Results for animated.png')
+        eq_(doc('header h1').text(), 'Validation Results for animated.png')
         suite = doc('#addon-validator-suite')
         eq_(suite.attr('data-validateurl'),
             reverse('mkt.developers.standalone_upload_detail',
