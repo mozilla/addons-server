@@ -1199,7 +1199,9 @@ class AppFormBasic(addons.forms.AddonFormBase):
 class PaypalSetupForm(happyforms.Form):
     business_account = forms.ChoiceField(widget=forms.RadioSelect,
                                          choices=(('no', _('No')),
-                                                   ('yes', _('Yes'))))
+                                                   ('yes', _('Yes'))),
+                                         label="""Do you already have a PayPal 
+                                               Premier or Business account?""")
     email = forms.EmailField(required=False,
                              label='PayPal email address')
 
