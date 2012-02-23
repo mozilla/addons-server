@@ -13,10 +13,11 @@
     <form method="post" class="devhub-form">
       <div class="brform island swagger c">
         {{ csrf() }}
-        <p>{{ loc("To sell your app in the Marketplace you'll first need
-                   to set your price. Select a price tier for your add-on
-                   below. Price tiers are based on US Dollars and are
-                   fixed for all support countries.") }} </p>
+        <p>To sell your app in the Marketplace, you'll first need to set its
+        price tier below. Price tiers are based on US Dollars and are fixed
+        for all supported currencies.
+        <a href="https://developer.mozilla.org/en/Apps/Marketplace_Payments#Price_tiers">
+        Learn more about price tiers</a></p>
                    {{ form_field(form.price) }}
         {% if form.fields['free'].queryset.count() %}
           <p>{{ loc('Linking this app with its free counterpart allows you
