@@ -54,7 +54,7 @@ class TestUploadValidation(BaseUploadTest):
                                     args=[upload.uuid]))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('td').text(), 'December  6, 2010')
+        eq_(doc('.results-intro dd:first-child').text(), 'December  6, 2010')
 
 
 class TestUploadErrors(BaseUploadTest):
@@ -344,7 +344,7 @@ class TestCompatibilityResults(amo.tests.TestCase):
         eq_(r.status_code, 200)
         doc = pq(r.content)
         assert doc('time').text()
-        eq_(doc('table tr td:eq(1)').text(), 'Firefox 4.0.*')
+        eq_(doc('.results-intro dd:last-child').text(), 'Firefox 4.0.*')
 
     @mock.patch.object(settings, 'EXPOSE_VALIDATOR_TRACEBACKS', True)
     def test_validation_error(self):
