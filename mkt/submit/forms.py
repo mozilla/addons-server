@@ -1,3 +1,5 @@
+import os
+
 from django import forms
 from django.conf import settings
 from django.forms.models import modelformset_factory
@@ -11,7 +13,7 @@ from addons.forms import AddonFormBasic
 from addons.models import Addon, AddonUpsell, Preview
 import amo
 from amo.utils import raise_required
-from devhub.forms import PreviewForm
+from devhub import tasks as devhub_tasks
 from files.models import FileUpload
 from market.models import AddonPremium, Price
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
@@ -171,6 +173,37 @@ class AppDetailsBasicForm(AddonFormBasic):
         model = Addon
         fields = ('name', 'slug', 'summary', 'tags', 'description',
                   'privacy_policy', 'homepage', 'support_url', 'support_email')
+
+
+class PreviewForm(happyforms.ModelForm):
+    caption = TransField(widget=TransTextarea, required=False)
+    file_upload = forms.FileField(required=False)
+    upload_hash = forms.CharField(required=False)
+    unsaved_image_data = forms.CharField(widget=forms.HiddenInput,
+                                         required=False)
+
+    def save(self, addon, commit=True):
+        if self.cleaned_data:
+            self.instance.addon = addon
+            if self.cleaned_data.get('DELETE'):
+                # Existing preview.
+                if self.instance.id:
+                    self.instance.delete()
+                # User has no desire to save this preview.
+                return
+
+            super(PreviewForm, self).save(commit=commit)
+            if self.cleaned_data['upload_hash']:
+                upload_hash = self.cleaned_data['upload_hash']
+                upload_path = os.path.join(settings.TMP_PATH, 'preview',
+                                           upload_hash)
+                devhub_tasks.resize_preview.delay(upload_path,
+                                            self.instance,
+                                            set_modified_on=[self.instance])
+
+    class Meta:
+        model = Preview
+        fields = ('caption', 'file_upload', 'upload_hash', 'id', 'position')
 
 
 class BasePreviewFormSet(BaseModelFormSet):

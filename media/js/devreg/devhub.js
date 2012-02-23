@@ -434,6 +434,7 @@ function initUploadPreview() {
     function upload_success(e, file, upload_hash) {
         form = forms['form_' + file.instance];
         form.find('[name$="upload_hash"]').val(upload_hash);
+        form.find('[name$="unsaved_image_data"]').val(file.dataURL);
     }
 
     function upload_errors(e, file, errors) {
@@ -475,6 +476,15 @@ function initUploadPreview() {
         var row = $(this).closest(".preview");
         row.find(".delete input").attr("checked", "checked");
         row.slideUp(300, renumberPreviews);
+    });
+
+    // Display images that were already uploaded but not yet saved
+    // because of other non-related form errors.
+    $('#file-list .preview_extra [name$="unsaved_image_data"]').each(function(i, elem) {
+        var $data = $(elem);
+        if ($data.val()) {
+            $data.parents('.preview').find('.preview-thumb').css('background-image', 'url(' + $data.val() + ')');
+        }
     });
 }
 

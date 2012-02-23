@@ -12,10 +12,12 @@ import waffle
 import amo
 import amo.tests
 from amo.tests import formset, initial
+from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category, DeviceType)
 from addons.utils import ReverseNameLookup
+from files.models import FileUpload
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import Price
 import mkt
@@ -255,6 +257,14 @@ class TestDetails(TestSubmit):
     def get_webapp(self):
         return Webapp.objects.get(id=337141)
 
+    def upload_preview(self):
+        url = reverse('mkt.developers.addons.upload_preview',
+                      args=[self.webapp.slug])
+        with open(get_image_path('non-animated.png'), 'rb') as data:
+            rp = self.client.post(url, {'upload_image': data})
+        eq_(rp.status_code, 200)
+        return json.loads(rp.content)['upload_hash']
+
     def _step(self):
         self.user.update(read_dev_agreement=True)
         self.cl = AppSubmissionChecklist.objects.create(addon=self.webapp,
@@ -370,6 +380,19 @@ class TestDetails(TestSubmit):
         self.assertNoFormErrors(r)
         # TODO: Assert redirects when we go to next step.
         self.check_dict(data=data)
+
+    def test_screenshot(self):
+        self._step()
+        im_hash = self.upload_preview()
+        data = self.get_dict()
+        data.update(self.preview_formset({
+            'upload_hash': im_hash,
+            'position': 0
+        }))
+        rp = self.client.post(self.url, data)
+        eq_(rp.status_code, 302)
+        ad = Addon.objects.get(pk=self.webapp.pk)
+        eq_(ad.previews.all().count(), 1)
 
     def _setup_other_webapp(self):
         self._step()
