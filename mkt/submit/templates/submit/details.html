@@ -27,33 +27,48 @@
                    data-upload-url="{{ url('mkt.developers.addons.upload_icon', addon.slug) }}">
           </div>
         </div>
-        <label class="houdini {{ 'error' if form_basic.name.errors else 'ready' }}">
-          <span class="before">
+        <div class="houdini {{ 'error' if form_basic.name.errors or
+                                          form_basic.slug.errors else 'ready' }}">
+          <div class="before">
             <h2 class="output">{{ addon.name }}</h2>
-            <span class="edit">{{ _('Edit') }}</span>
-          </span>
-          <span class="after">
-            {{ form_basic.name }}
-            {{ form_basic.name.errors }}
-            <span class="done">{{ _('Done') }}</span>
-          </span>
-        </label>
-        <div class="details-url">
-          <b>{{ loc('Details page:') }}</b>
-          {# The URL for the details page hasn't been finalized,
-             so let's not reverse it just yet. #}
-          {{ settings.SITE_URL }}/&hellip;/
-          <label class="houdini {{ 'error' if form_basic.slug.errors else 'ready' }}">
-            <span class="before">
-              <span class="output">{{ addon.app_slug }}</span>
-              <span class="edit">{{ _('Edit') }}</span>
-            </span>
-            <span class="after">
-              {{ form_basic.slug }}
-              {{ form_basic.slug.errors }}
-              <span class="done">{{ _('Done') }}</span>
-            </span>
-          </label>
+            <b>{{ loc('Details page:') }}</b>
+            {# The URL for the details page hasn't been finalized,
+               so let's not reverse it just yet. #}
+            {{ settings.SITE_URL }}/&hellip;/
+            {{ addon.app_slug }}
+            <em class="edit-addon-details">{{ loc('(Not Available Yet)') }}</em>
+          </div>
+          <div class="after">
+            <table>
+              <tr>
+                <th>
+                  <label for="{{ form_basic.name.auto_id }}">
+                    {{ _('Name') }}
+                  </label>
+                </th>
+                <td>
+                  {{ form_basic.name }}
+                  {{ form_basic.name.errors }}
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <label for="{{ form_basic.name.auto_id }}">
+                    {{ _('App URL') }}
+                  </label>
+                </th>
+                <td>
+                  <div class="edit_with_prefix c">
+                    <span>{{ settings.SITE_URL }}/&hellip;/</span>{{ form_basic.slug }}
+                  </div>
+                  {{ form_basic.slug.errors }}
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="before">
+            <span class="edit">{{ ('Change name') }}</span>
+          </div>
         </div>
         <div class="js-hidden">
           {{ form_icon.icon_upload_hash }}

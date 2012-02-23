@@ -5,7 +5,10 @@
         // Initialize magic labels.
         $(document).delegate('.houdini.ready', 'click', _pd(function(e) {
             var $label = $(this);
-            $label.removeClass('ready').addClass('active');
+            $label.addClass('fading');
+            setTimeout(function() {
+                $label.removeClass('ready').addClass('active');
+            }, 500);
         })).delegate('.houdini.active .done', 'click', _pd(function(e) {
             var $label = $(this).closest('.houdini');
             $label.removeClass('active').addClass('ready');
@@ -15,7 +18,7 @@
     };
 
     // Handle Name and Slug.
-    exports.general = function() {
+    exports.nameHoudini = function() {
         var $ctx = $('#general-details');
     };
 

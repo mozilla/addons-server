@@ -1,19 +1,24 @@
 @import 'lib';
 
 /* Houdinis are toggleable form fields. */
-label.houdini {
-    .before, .before *, .after .done {
+.houdini {
+    .transition(~'all .8s ease-in-out');
+    .before, .after .done {
         /* If there is no `.active` nor `.ready`, then hide all toggles. */
         display: none;
     }
     .edit, .done {
-        margin-left: 5px;
+        /*margin-left: 5px;*/
         &:hover {
             text-decoration: underline;
         }
     }
     .edit {
         color: @link;
+        cursor: pointer;
+        display: block;
+        font-weight: bold;
+        margin-top: 5px;
         &:hover {
             color: darken(@link, 10%);
         }
@@ -26,27 +31,31 @@ label.houdini {
         }
     }
     &.ready {
-        .before, .before * {
-            display: inline-block;
+        .before {
+            display: block;
         }
         .after {
             /* This is where hidden content (i.e., form fields) lives. */
             display: none;
         }
     }
+    &.fading {
+        opacity: 0;
+    }
     &.active {
+        opacity: 1;
         /* Toggle content. */
         .before {
             display: none;
         }
-        .after, .after * {
-            display: inline-block;
+        .after {
+            display: block;
         }
     }
 }
 
 .devhub-form label.houdini {
-    display: inline-block;
+    display: block;
     margin: 0;
 }
 
@@ -54,12 +63,18 @@ label.houdini {
     #general-details {
         font-family: @open-stack;
         margin: 2em 0;
+        min-height: 64px;
         padding-left: 95px;
         position: relative;
+        table {
+        }
         h2 {
             color: @blue;
             font-weight: bold;
-            margin: 0 0 5px;
+            margin: 0 0 10px;
+        }
+        .details-url {
+            margin: 10px 0;
         }
         img {
             position: absolute;
@@ -68,16 +83,30 @@ label.houdini {
         b {
             color: @medium-gray;
         }
-        .details-url {
-            margin: 0 0 5px;
-            .houdini {
-                .before {
-                    margin: 6px 5px;
-                }
-                .after {
-                    margin-left: 5px;
-                }
+        th, td {
+            border-top: 0;
+            padding: 0;
+            label {
+                display: block;
+                margin-top: 8px;
             }
+        }
+        th {
+            width: 10%;
+        }
+        tr:first-child {
+            th, td {
+                padding-bottom: 5px;
+            }
+        }
+        #trans-name {
+            margin: 0;
+            input {
+                font-weight: bold;
+            }
+        }
+        #icon_preview .icon_preview img {
+            vertical-align: top;
         }
         .errorlist {
             margin: 5px 0 10px;
