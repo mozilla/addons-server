@@ -3,11 +3,6 @@
 {% set title = _('Manage Payments') %}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
-{% set editable = check_addon_ownership(request, addon) %}
-{% block bodyclass %}
-  {{ super() }}{% if not editable %} no-edit{% endif %}
-{% endblock %}
-
 {% block content %}
   <header>
     {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
