@@ -60,7 +60,9 @@
         </div>
       </header>
 
-      {{ form_field(form_basic.summary, hint=True) }}
+      {{ form_field(form_basic.summary, hint=True,
+                    cc_startswith=form_basic.summary.auto_id + '_',
+                    cc_maxlength=form_basic.summary.field.max_length) }}
 
       <div id="addon-categories-edit"
            data-max-categories="{{ amo.MAX_CATEGORIES }}">
@@ -73,7 +75,7 @@
         {% endfor %}
       </div>
 
-      {{ form_field(form_basic.description, hint=True) }}
+      {{ form_field(form_basic.description, hint=True, some_html=True) }}
       {{ form_field(form_basic.privacy_policy, hint=True) }}
 
       {# TODO: Remove since Privacy Policy is required.
@@ -142,7 +144,6 @@
           <span class="hint">{{ loc('JPG, PNG, and GIF supported. Max size is 700 x 520 px.') }}</span>
         </div>
       </div>
-
       <button class="prominent continue c" type="submit">
         {{ _('Continue') }}
       </button>

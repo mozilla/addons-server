@@ -43,6 +43,9 @@ $(document).ready(function() {
         //submit_details.general();
         //submit_details.privacy();
         initCatFields();
+        initCharCount();
+        initSubmit();
+        initTruncateSummary();
     });
     submit_details.houdini();
 });

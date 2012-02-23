@@ -1,6 +1,7 @@
 {% from 'includes/forms.html' import required, optional, tip %}
+{% from 'developers/includes/macros.html' import some_html_tip %}
 {% if tag %}
-  <{{ tag }} class="brform simple-field {{ class }}{{ ' error' if field.errors }}">
+  <{{ tag }} class="brform simple-field c {{ class }}{{ ' error' if field.errors }}">
 {% endif %}
 {% set choice = field|is_choice_field %}
   <label class="{{ 'choice' if choice }}" for="{{ field.auto_id }}">
@@ -21,6 +22,16 @@
     <span class="hint">{{ field.help_text }}</span>
   {% endif %}
   {{ field.errors }}
+  {% if some_html %}
+    {{ some_html_tip() }}
+  {% endif %}
+
+  {% if cc_maxlength %}
+    <div class="char-count" data-maxlength="{{ cc_maxlength }}"
+      {% if cc_startswith %}
+        data-for-startswith="{{ cc_startswith }}"
+      {% endif %}></div>
+  {% endif %}
 {% if tag %}
   </{{ tag }}>
 {% endif %}

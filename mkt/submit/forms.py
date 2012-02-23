@@ -141,7 +141,7 @@ class AppDetailsBasicForm(AddonFormBasic):
         label=_lazy(u"Provide a brief summary of your app's functionality:"),
         help_text=_lazy(u'This summary will be shown in listings and '
                          'searches.'),
-        widget=TransInput(attrs={'rows': 4, 'class': 'full'}))
+        widget=TransTextarea(attrs={'rows': 2, 'class': 'full'}))
     description = TransField(required=False,
         label=_lazy(u'Provide a more detailed description of your app:'),
         help_text=_lazy(u'This description will appear on the details page.'),

@@ -984,7 +984,7 @@ function hideSameSizedIcons() {
 function initTruncateSummary() {
     // If the summary from a manifest is too long, truncate it!
     // EN-US only, since it'll be way too hard to accomodate all languages properly.
-    var $submit_describe = $('#submit-describe'),
+    var $submit_describe = $('#submit-describe, #submit-details'),
         $summary = $('textarea[name=summary_en-us]', $submit_describe),
         $desc = $('textarea[name=description_en-us]', $submit_describe);
 
