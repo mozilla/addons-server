@@ -257,10 +257,20 @@ class TestDetails(TestSubmit):
     def get_webapp(self):
         return Webapp.objects.get(id=337141)
 
-    def upload_preview(self):
+    def upload_preview(self, image_file=None):
         url = reverse('mkt.developers.addons.upload_preview',
                       args=[self.webapp.slug])
-        with open(get_image_path('non-animated.png'), 'rb') as data:
+        return self._upload_image(url, image_file=image_file)
+
+    def upload_icon(self, image_file=None):
+        url = reverse('mkt.developers.addons.upload_icon',
+                      args=[self.webapp.slug])
+        return self._upload_image(url, image_file=image_file)
+
+    def _upload_image(self, url, image_file=None):
+        if not image_file:
+            image_file = get_image_path('non-animated.png')
+        with open(image_file, 'rb') as data:
             rp = self.client.post(url, {'upload_image': data})
         eq_(rp.status_code, 200)
         return json.loads(rp.content)['upload_hash']
@@ -393,6 +403,21 @@ class TestDetails(TestSubmit):
         eq_(rp.status_code, 302)
         ad = Addon.objects.get(pk=self.webapp.pk)
         eq_(ad.previews.all().count(), 1)
+
+    def test_icon(self):
+        self._step()
+        im_hash = self.upload_icon()
+        data = self.get_dict()
+        data['icon_upload_hash'] = im_hash
+        data['icon_type'] = 'image/png'
+        rp = self.client.post(self.url, data)
+        eq_(rp.status_code, 302)
+        ad = self.get_webapp()
+        eq_(ad.icon_type, 'image/png')
+        for size in amo.ADDON_ICON_SIZES:
+            fn = '%s-%s.png' % (ad.id, size)
+            assert os.path.exists(os.path.join(ad.get_icon_dir(), fn)), (
+                    'Expected %s in %s' % (fn, os.listdir(ad.get_icon_dir())))
 
     def _setup_other_webapp(self):
         self._step()
