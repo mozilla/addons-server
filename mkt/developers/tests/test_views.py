@@ -8,12 +8,10 @@ from django.conf import settings
 from django.core import mail
 from django.utils.http import urlencode
 
-import jingo
 import mock
 from nose.plugins.attrib import attr
 from nose.plugins.skip import SkipTest
-from nose.tools import eq_, assert_raises
-from PIL import Image
+from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
 # Unused, but needed so that we can patch jingo.
@@ -23,28 +21,23 @@ import amo
 import amo.tests
 import paypal
 from paypal.check import Check
-from amo.helpers import (absolutify, babel_datetime, timesince)
-from amo.tests import (assert_no_validation_errors, close_to_now, formset,
-                       initial)
+from amo.helpers import babel_datetime, timesince
+from amo.tests import assert_no_validation_errors, close_to_now
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
-from addons import cron
-from addons.models import (Addon, AddonCategory, AddonUpsell, AddonUser,
-                           Category, Charity)
-from addons.utils import ReverseNameLookup
-from applications.models import Application
+from addons.models import Addon, AddonUpsell, AddonUser, Charity
 from browse.tests import test_listing_sort, test_default_sort
-from mkt.developers.models import ActivityLog, SubmitStep
+from mkt.developers.models import ActivityLog
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.developers import tasks
-from files.models import File, FileUpload, Platform
+from files.models import File, FileUpload
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import AddonPremium, Price, Refund
 from reviews.models import Review
 from stats.models import Contribution
 from translations.models import Translation
 from users.models import UserProfile
-from versions.models import License, Version
+from versions.models import Version
 from webapps.models import Webapp
 
 
