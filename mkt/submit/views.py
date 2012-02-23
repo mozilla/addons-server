@@ -5,7 +5,7 @@ import waffle
 
 import amo
 from amo.decorators import login_required
-from addons.forms import CategoryFormSet, DeviceTypeForm
+from addons.forms import CategoryFormSet, DeviceTypeForm, AddonFormMedia
 from addons.models import Addon, AddonUser
 from market.models import AddonPaymentData
 from mkt.developers import tasks
@@ -93,6 +93,8 @@ def details(request, addon_id, addon):
     form_cats = CategoryFormSet(request.POST or None, addon=addon,
                                 request=request)
     form_devices = DeviceTypeForm(request.POST or None, addon=addon)
+    form_icon = AddonFormMedia(request.POST or None, request.FILES or None,
+                               instance=addon, request=request)
     form_previews = PreviewFormSet(request.POST or None,
                                    prefix='files',
                                    queryset=addon.previews.all())
@@ -101,6 +103,7 @@ def details(request, addon_id, addon):
         'form_basic': form_basic,
         'form_devices': form_devices,
         'form_cats': form_cats,
+        'form_icon': form_icon,
         'form_previews': form_previews,
     }
 
@@ -108,6 +111,7 @@ def details(request, addon_id, addon):
         addon = form_basic.save(addon)
         form_devices.save(addon)
         form_cats.save()
+        form_icon.save(addon)
         for preview in form_previews.forms:
             preview.save(addon)
         AppSubmissionChecklist.objects.get(addon=addon).update(details=True)

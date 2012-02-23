@@ -17,10 +17,14 @@
       {{ loc("Please review your listing information below. We've pre-filled "
              "as much as we can from your manifest.") }}
     </p>
-    <form action="" enctype="multipart/form-data" method="post" class="devhub-form">
+    <form action="" enctype="multipart/form-data" method="post" class="devhub-form" id="submit-media">
       {{ csrf() }}
       <header id="general-details" class="island swagger c">
-        <img src="{{ addon.get_icon_url(64) }}">
+        <div id="icon_preview">
+          <div id="icon_preview_64" class="icon_preview">
+            <img src="{{ addon.get_icon_url(64) }}">
+          </div>
+        </div>
         <label class="houdini {{ 'error' if form_basic.name.errors else 'ready' }}">
           <span class="before">
             <h2 class="output">{{ addon.name }}</h2>
@@ -49,6 +53,22 @@
             </span>
           </label>
         </div>
+        <ul id="icons_default">
+          {{ form_icon.icon_type }}
+        </ul>
+        <div class="invisible-upload">
+          <a class="button" href="#">{{ _('Upload a Custom Icon...') }}</a>
+          <input type="file" id="id_icon_upload" name="icon_upload"
+                 data-upload-url="{{ url('mkt.developers.addons.upload_icon', addon.slug) }}">
+        </div>
+        <div class="js-hidden">
+          {{ form_icon.icon_upload_hash }}
+        </div>
+        <span class="hint">
+          {% trans %}
+          PNG and JPG supported. Icons resized to 64x64 pixels if larger.
+          {% endtrans %}
+        </span>
       </header>
 
       {{ form_field(form_basic.summary, hint=True) }}
