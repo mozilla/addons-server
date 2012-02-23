@@ -293,6 +293,22 @@ section.payments li.status-pass {
     .result:last-child .tier-results {
         .border-radius(0 0 5px 5px);
     }
+    .result .msg-error {
+        padding-bottom: 10px;
+        p, h5 {
+            line-height: 22px;
+        }
+        h5 {
+            color: @dark-gray;
+            font-weight: normal;
+            border-bottom: 1px dotted @border-gray;
+            padding-bottom: 5px;
+            margin-bottom: 4px;
+        }
+        &:last-child {
+            padding-bottom: 0;
+        }
+    }
 }
 .html-rtl .results {
     h4 {
