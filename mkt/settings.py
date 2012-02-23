@@ -16,6 +16,10 @@ HOME = 'mkt.developers.views.home'
 # 403 view to render for CSRF failures.
 CSRF_FAILURE_VIEW = 'mkt.site.views.csrf_failure'
 
+# Set log in/log out URLs for redirects to work.
+LOGIN_URL = '/login'
+LOGOUT_URL = '/logout'
+
 ROOT_URLCONF = 'mkt.urls'
 
 INSTALLED_APPS = list(INSTALLED_APPS)
@@ -40,6 +44,7 @@ SUPPORTED_NONAPPS += (
     'login',
     'privacy-policy',
     'terms-of-use',
+    'users',
 )
 
 MIDDLEWARE_CLASSES += (
