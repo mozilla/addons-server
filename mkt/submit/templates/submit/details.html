@@ -1,4 +1,5 @@
 {% from 'developers/includes/macros.html' import select_cats %}
+{% from 'includes/forms.html' import required %}
 {% extends 'developers/base_impala.html' %}
 
 {% set title = loc('Verify App Details') %}
@@ -82,7 +83,7 @@
         <label>
           {{ loc('Please provide at least one screen shot of your app:') }}
         </label>
-        <span class="req" title="required">*</span>
+        {{ required() }}
         {{ form_previews.management_form }}
         {{ form_previews.non_form_errors() }}
         <div id="file-list">
