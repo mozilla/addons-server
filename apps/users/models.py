@@ -114,7 +114,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
     resetcode_expires = models.DateTimeField(default=datetime.now, null=True,
                                              blank=True)
     sandboxshown = models.BooleanField(default=False)
-    read_dev_agreement = models.BooleanField(default=False)
+    read_dev_agreement = models.DateTimeField(null=True)
 
     last_login_ip = models.CharField(default='', max_length=45, editable=False)
     last_login_attempt = models.DateTimeField(null=True, editable=False)
@@ -158,8 +158,8 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
     @amo.cached_property
     def apps_listed(self):
         """Public apps this user is listed as author of."""
-        return self.addons.reviewed().filter(
-            addonuser__user=self, addonuser__listed=True, type=amo.ADDON_WEBAPP)
+        return self.addons.reviewed().filter(type=amo.ADDON_WEBAPP,
+            addonuser__user=self, addonuser__listed=True)
 
     def my_addons(self, n=8):
         """Returns n addons (anything not a webapp)"""

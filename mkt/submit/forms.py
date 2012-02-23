@@ -1,9 +1,9 @@
+import datetime
 import os
 
 from django import forms
 from django.conf import settings
 from django.forms.models import modelformset_factory
-from django.utils.safestring import mark_safe
 
 import happyforms
 from quieter_formset.formset import BaseModelFormSet
@@ -14,6 +14,8 @@ from addons.forms import (AddonFormBasic, AddonFormBase, icons,
 from addons.models import Addon, AddonUpsell, Preview
 import amo
 from amo.utils import raise_required, remove_icons
+from apps.users.notifications import app_surveys
+from apps.users.models import UserNotification
 from files.models import FileUpload
 from market.models import AddonPremium, Price
 from mkt.developers.forms import PaypalSetupForm as OriginalPaypalSetupForm
@@ -21,18 +23,25 @@ from mkt.developers import tasks
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
 from translations.widgets import TransInput, TransTextarea
 from translations.fields import TransField
-from users.models import UserProfile
 from webapps.models import Webapp
 
 
-class DevAgreementForm(happyforms.ModelForm):
-    read_dev_agreement = forms.BooleanField(
-        label=mark_safe(_lazy('<b>Agree</b> and Continue')),
-        widget=forms.HiddenInput)
+class DevAgreementForm(happyforms.Form):
+    read_dev_agreement = forms.BooleanField(label=_lazy(u'Agree and Continue'),
+                                            widget=forms.HiddenInput)
+    newsletter = forms.BooleanField(required=False, label=app_surveys.label,
+                                    widget=forms.CheckboxInput)
 
-    class Meta:
-        model = UserProfile
-        fields = ('read_dev_agreement',)
+    def __init__(self, *args, **kw):
+        self.instance = kw.pop('instance')
+        super(DevAgreementForm, self).__init__(*args, **kw)
+
+    def save(self):
+        self.instance.read_dev_agreement = datetime.datetime.now()
+        self.instance.save()
+        if self.cleaned_data.get('newsletter'):
+            UserNotification.update_or_create(user=self.instance,
+                notification_id=app_surveys.id, update={'enabled': True})
 
 
 def verify_app_domain(manifest_url):
@@ -148,6 +157,7 @@ class UpsellForm(happyforms.Form):
             upsell.save()
         elif not self.cleaned_data['do_upsell'] and upsell:
             upsell.delete()
+
 
 class AppDetailsBasicForm(AddonFormBasic):
     """Form for "Details" submission step."""

@@ -3,7 +3,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect
 
 import jingo
-import waffle
 
 import amo
 from amo.decorators import login_required
@@ -30,7 +29,6 @@ def submit(request):
     # If dev has already agreed, continue to next step.
     user = UserProfile.objects.get(pk=request.user.id)
     if user.read_dev_agreement:
-        # TODO: Have decorator redirect to next step.
         return redirect('submit.app.manifest')
     else:
         return redirect('submit.app.terms')
@@ -46,8 +44,8 @@ def terms(request):
         # TODO: Have decorator redirect to next step.
         return redirect('submit.app.manifest')
 
-    agreement_form = forms.DevAgreementForm({'read_dev_agreement': True},
-                                            instance=user)
+    agreement_form = forms.DevAgreementForm(
+        request.POST or {'read_dev_agreement': True}, instance=user)
     if request.POST and agreement_form.is_valid():
         agreement_form.save()
         return redirect('submit.app.manifest')

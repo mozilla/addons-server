@@ -25,18 +25,24 @@
         {% include 'site/dev-agreement.html' %}
       </div>
     </div>
-    <div id="agreement-extra-links" class="c">
-      <a href="{{ url('mkt.developers.docs', 'policies', 'agreement') }}">{{ _('Printable Version') }}</a>
-      {# TODO: What's this supposed to link to?
-      &middot; <a href="">{{ loc('Additional Marketplace Policies') }}</a>
-      #}
-    </div>
+    <ol id="agreement-extra-links">
+      <li>
+        <a href="{{ url('mkt.developers.docs', 'policies', 'agreement') }}" target="_blank">
+          {{ _('Printable Version') }}</a>
+      </li>
+      <li>
+        <a href="https://developer.mozilla.org/en/Apps/Marketplace_Review" target="_blank">
+          {{ _('Additional Marketplace Policies') }}</a>
+      </li>
+    </ol>
     <form method="post">
       {# TODO: Add newsletter field. #}
       {{ csrf() }}
-      {{ agreement_form.read_dev_agreement.errors }}
+      {{ form_field(agreement_form.newsletter, opt=True) }}
+      {{ agreement_form.newsletter.errors }}
       {{ agreement_form.read_dev_agreement }}
-      <button class="prominent">
+      {{ agreement_form.read_dev_agreement.errors }}
+      <button class="continue prominent">
         {{ agreement_form.read_dev_agreement.label }}
       </button>
     </form>

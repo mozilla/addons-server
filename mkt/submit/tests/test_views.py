@@ -1,3 +1,4 @@
+import datetime
 import json
 import os
 
@@ -11,12 +12,14 @@ import waffle
 
 import amo
 import amo.tests
-from amo.tests import formset, initial
+from amo.tests import close_to_now, formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category, DeviceType)
 from addons.utils import ReverseNameLookup
+from apps.users.models import UserNotification
+from apps.users.notifications import app_surveys
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import Price
 import mkt
@@ -84,12 +87,28 @@ class TestTerms(TestSubmit):
     def test_agree(self):
         r = self.client.post(self.url, {'read_dev_agreement': True})
         self.assertRedirects(r, reverse('submit.app.manifest'))
-        eq_(self.get_user().read_dev_agreement, True)
+        dt = self.get_user().read_dev_agreement
+        assert close_to_now(dt), (
+            'Expected date of agreement read to be close to now. Was %s' % dt)
+        eq_(UserNotification.objects.count(), 0)
+
+    def test_agree_and_sign_me_up(self):
+        r = self.client.post(self.url, {'read_dev_agreement': True,
+                                        'newsletter': True})
+        self.assertRedirects(r, reverse('submit.app.manifest'))
+        dt = self.get_user().read_dev_agreement
+        assert close_to_now(dt), (
+            'Expected date of agreement read to be close to now. Was %s' % dt)
+        eq_(UserNotification.objects.count(), 1)
+        notes = UserNotification.objects.filter(user=self.user, enabled=True,
+                                                notification_id=app_surveys.id)
+        eq_(notes.count(), 1, 'Expected to not be subscribed to newsletter')
 
     def test_disagree(self):
         r = self.client.post(self.url)
         eq_(r.status_code, 200)
-        eq_(self.user.read_dev_agreement, False)
+        eq_(self.user.read_dev_agreement, None)
+        eq_(UserNotification.objects.count(), 0)
 
 
 class TestManifest(TestSubmit):
@@ -100,7 +119,7 @@ class TestManifest(TestSubmit):
         self.url = reverse('submit.app.manifest')
 
     def _step(self):
-        self.user.update(read_dev_agreement=True)
+        self.user.update(read_dev_agreement=datetime.datetime.now())
 
     def test_anonymous(self):
         self._test_anonymous()
@@ -283,7 +302,7 @@ class TestDetails(TestSubmit):
         return json.loads(rp.content)['upload_hash']
 
     def _step(self):
-        self.user.update(read_dev_agreement=True)
+        self.user.update(read_dev_agreement=datetime.datetime.now())
         self.cl = AppSubmissionChecklist.objects.create(addon=self.webapp,
             terms=True, manifest=True)
 
@@ -632,7 +651,6 @@ class TestPayments(TestSubmit):
         return Webapp.objects.get(id=337141)
 
     def _step(self):
-        self.user.update(read_dev_agreement=True)
         self.cl = AppSubmissionChecklist.objects.create(addon=self.webapp,
             terms=True, manifest=True, details=True)
         AddonUser.objects.create(addon=self.webapp, user=self.user)
@@ -796,7 +814,6 @@ class TestDone(TestSubmit):
         return Webapp.objects.get(id=337141)
 
     def _step(self):
-        self.user.update(read_dev_agreement=True)
         self.cl = AppSubmissionChecklist.objects.create(addon=self.webapp,
             terms=True, manifest=True, details=True, payments=True)
         AddonUser.objects.create(addon=self.webapp, user=self.user)
