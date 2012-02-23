@@ -47,6 +47,9 @@ urlpatterns = patterns('',
 
     # AMO admin (not django admin).
     ('^admin/', include('zadmin.urls')),
+
+    # Accept extra junk at the end for a cache-busting build id.
+    url('^addons/buttons.js(?:/.+)?$', 'addons.buttons.js'),
 )
 
 
