@@ -167,6 +167,11 @@ class Webapp(Addon):
         self.update_version()
         amo.log(amo.LOG.MANIFEST_UPDATED, self)
 
+    def mark_done(self):
+        """When the submission process is done, update status accordingly."""
+        self.update(status=amo.STATUS_PENDING if settings.WEBAPPS_RESTRICTED
+                           else amo.STATUS_PUBLIC)
+
 
 # Pull all translated_fields from Addon over to Webapp.
 Webapp._meta.translated_fields = Addon._meta.translated_fields

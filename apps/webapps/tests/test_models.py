@@ -67,6 +67,19 @@ class TestWebapp(test_utils.TestCase):
         assert Webapp(premium_type=True).can_be_purchased()
         assert not Webapp(premium_type=False).can_be_purchased()
 
+    def test_mark_done_pending(self):
+        w = Webapp()
+        eq_(w.status, amo.STATUS_NULL)
+        w.mark_done()
+        eq_(w.status, amo.STATUS_PENDING)
+
+    @mock.patch.object(settings, 'WEBAPPS_RESTRICTED', False)
+    def test_mark_done_public(self):
+        w = Webapp()
+        eq_(w.status, amo.STATUS_NULL)
+        w.mark_done()
+        eq_(w.status, amo.STATUS_PUBLIC)
+
 
 class TestWebappVersion(amo.tests.TestCase):
     fixtures = ['base/platforms']

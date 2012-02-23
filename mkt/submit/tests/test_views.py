@@ -17,7 +17,6 @@ from amo.urlresolvers import reverse
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category, DeviceType)
 from addons.utils import ReverseNameLookup
-from files.models import FileUpload
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import Price
 import mkt
@@ -251,6 +250,7 @@ class TestDetails(TestSubmit):
     def setUp(self):
         super(TestDetails, self).setUp()
         self.webapp = self.get_webapp()
+        self.webapp.update(status=amo.STATUS_NULL)
         self.url = reverse('submit.app.details', args=[self.webapp.app_slug])
         waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
 
@@ -621,6 +621,7 @@ class TestPaymentsAdvanced(TestSubmit):
         super(TestPaymentsAdvanced, self).setUp()
         AppSubmissionChecklist.objects.all().delete()  # TODO fix this.
         self.webapp = self.get_webapp()
+        self.webapp.update(status=amo.STATUS_NULL)
         self.url = self.get_url('payments')
         self.price = Price.objects.create(price='1.00')
         flag = (waffle.models.Flag
@@ -644,11 +645,19 @@ class TestPaymentsAdvanced(TestSubmit):
     def test_anonymous(self):
         self._test_anonymous()
 
-    def test_valid(self):
+    def _test_valid(self, expected_status):
         res = self.client.post(self.get_url('payments'),
                                {'premium_type': amo.ADDON_FREE})
         eq_(res.status_code, 302)
         self.assertRedirects(res, self.get_url('done'))
+        eq_(self.get_webapp().status, expected_status)
+
+    def test_valid_pending(self):
+        self._test_valid(amo.STATUS_PENDING)
+
+    @mock.patch.object(settings, 'WEBAPPS_RESTRICTED', False)
+    def test_valid_public(self):
+        self._test_valid(amo.STATUS_PUBLIC)
 
     def test_premium(self):
         for type_ in [amo.ADDON_PREMIUM, amo.ADDON_PREMIUM_INAPP]:

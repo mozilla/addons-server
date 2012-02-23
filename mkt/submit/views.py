@@ -140,6 +140,7 @@ def payments(request, addon_id, addon):
                 return redirect('submit.app.payments.paypal', addon.app_slug)
 
         AppSubmissionChecklist.objects.get(addon=addon).update(payments=True)
+        addon.mark_done()
         return redirect('submit.app.done', addon.app_slug)
     return jingo.render(request, 'submit/payments.html', {
                         'step': 'payments',
@@ -206,6 +207,7 @@ def payments_confirm(request, addon_id, addon):
     if request.method == 'POST' and form.is_valid():
         adp.update(**form.cleaned_data)
         AppSubmissionChecklist.objects.get(addon=addon).update(payments=True)
+        addon.mark_done()
         return redirect('submit.app.done', addon.app_slug)
 
     return jingo.render(request, 'submit/payments-confirm.html', {
