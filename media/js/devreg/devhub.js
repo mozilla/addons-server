@@ -48,7 +48,7 @@ $(document).ready(function() {
     }
 
     if($('#upload-webapp-url').exists()) {
-        $('#upload-webapp-url').bind("keyup change blur", function(e) {
+        $('#upload-webapp-url').bind("keyup change paste blur", function(e) {
             var $this = $(this),
                 $button = $('#validate_app'),
                 // Ensure it's at least "protocol://host/something.(webapp/json)"
