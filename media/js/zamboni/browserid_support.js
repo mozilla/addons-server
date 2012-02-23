@@ -35,7 +35,7 @@ function gotVerifiedEmail(assertion, redirectTo, domContext) {
                     var msg = jqXHR.responseText;
                     if (!msg) {
                         msg = gettext("BrowserID login failed. Maybe you don't have an account under that email address?") +
-                                      " textStatus: " + textStatus + " errorThrown: " + errorThrown;
+                                      " " + textStatus + " " + errorThrown;
                     }
                     displayErrBox(msg);
                 }

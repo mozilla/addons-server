@@ -4,7 +4,7 @@
       <div class="notification-box error">
         <ul>
         {% for error in form.non_field_errors() %}
-        <li><h2>{{ error }}</h2></li>
+        <li>{{ error }}</li>
         {% endfor %}
         </ul>
       </div>
@@ -28,20 +28,21 @@
     </div>
   </fieldset>
   {% endif %}
-  <div class="login-option grid prettyform">
+  <div class="login-option grid devhub-form prettyform">
     <fieldset id="normal-login">
       <ul>
-        <li>
+        <li{% if form.username.errors %} class="error"{% endif %}>
         <label for="id_username">{{ _('Email address') }}</label>
         {{ form.username }}
         {{ form.username.errors }}
         </li>
-        <li>
+        <li{% if form.password.errors %} class="error"{% endif %}>
         <label for="id_password">{{ _('Password') }}</label>
         {{ form.password }}
         {{ form.password.errors }}
         </li>
-        <li id="remember-me">
+        <li id="remember-me"
+            {% if form.rememberme.errors %}class="error"{% endif %}>
         <label for="id_rememberme" class="check">
           {{ form.rememberme }}
           {{ _('Remember me on this computer') }}
@@ -49,8 +50,8 @@
         {{ form.rememberme.errors }}
         </li>
         {% if form.recaptcha %}
-        {{ form.recaptcha_shown }}
-        {{ recaptcha(form) }}
+          {{ form.recaptcha_shown }}
+          {{ recaptcha(form) }}
         {% endif %}
       </ul>
       <footer class="listing-footer c">
