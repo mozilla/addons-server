@@ -6,14 +6,14 @@ exports.email_setup = function() {
     if ($('div.paypal-inline').length) {
         // Don't hide this if there was an error.
         if (!$('ul.errorlist').length) {
-            $('#id_email').closest('p').addClass('js-hidden');
+            $('#id_email').closest('div').addClass('js-hidden');
         }
 
         $('div.paypal-inline input[type=radio]').click(function(e) {
             if ($(this).val() === 'no') {
-                $('#id_email').closest('p').hide();
+                $('#id_email').closest('div').hide();
             } else {
-                $('#id_email').closest('p').show();
+                $('#id_email').closest('div').show();
             }
         });
     }

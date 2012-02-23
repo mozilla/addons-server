@@ -9,15 +9,13 @@
   <h1>{{ _('Done') }}</h1>
   {{ progress(request, addon=addon, step=step) }}
   <section id="submit-payment" class="primary">
-    <h2>Done</h2>
-    <div class="brform island c">
-    <p>TODO(gkoberger): some copy.</p>
-    {% if addon.premium_type != amo.ADDON_FREE %}
-      <p class="paypal-notes">Since your app is using payments, you'll
-      need to set up a few more things. Please set up
-      <a href="{{ addon.get_dev_url('payments') }}">your payments</a> and
-      <a href="{{ addon.get_dev_url('paypal_setup') }}">your paypal account</a>.</p>
-    {% endif %}
+    <h2>Success! What happens now?</h2>
+    <div class="brform island c devhub-form">
+    <p>{{ loc("We've got your app saved and ready to go for our
+               Marketplace Beta coming soon. Until then, feel free to
+               look around and tweak your app's metadata and settings.") }}</p>
+               <a href="{{ addon.get_dev_url('edit') }}" class="button prominent">Manage My App</a>
+               <a href="{{ url('submit.app.manifest') }}" class="button prominent">Submit Another App</a>
     </div>
   </section>
 {% endblock %}

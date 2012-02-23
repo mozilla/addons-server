@@ -11,9 +11,9 @@
   <section id="submit-payments" class="primary">
     <h2>App Payments</h2>
     <form method="post" id="upload-webapp">
-      <div class="brform island swagger c">
+      <div class="brform island swagger c devhub-form">
         {{ csrf() }}
-        <p>{{ loc("Your PayPal is all set up! The last thing we need is
+        <p>{{ loc("Your PayPal account is all set up! The last thing we need is
                    your real name and contact information.") }}</p>
         <p>
           {{ form.as_p() }}

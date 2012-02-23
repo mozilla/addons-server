@@ -663,10 +663,3 @@ class TestDone(TestSubmit):
         self._step()
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-
-    def test_payments(self):
-        self._step()
-        self.get_webapp().update(premium_type=amo.ADDON_PREMIUM_INAPP)
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        eq_(len(pq(res.content)('p.paypal-notes')), 1)

@@ -1206,7 +1206,8 @@ class PaypalSetupForm(happyforms.Form):
     def clean(self):
         data = self.cleaned_data
         if data.get('business_account') == 'yes' and not data.get('email'):
-            raise forms.ValidationError('The PayPal email is required.')
+            msg = 'The PayPal email is required.'
+            self._errors['email'] = self.error_class([msg])
 
         return data
 

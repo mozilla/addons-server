@@ -24,8 +24,9 @@
                  tokens again on the Marketplace and updating your data.') }}</p>
       <form method="post">
         {{ csrf() }}
-        <div class="brform paypal-inline paypal">
-          {{ form.as_p() }}
+        <div class="brform paypal-inline paypal devhub-form">
+          {{ form_field(form.business_account) }}
+          {{ form_field(form.email) }}
         </div>
         <footer class="listing-footer">
           <button type="submit">{{ _('Change') }}</button>
@@ -54,11 +55,12 @@
     <div class="island">
       <form method="post" class="devhub-form">
         {{ csrf() }}
-        <div class="brform c paypal-inline paypal">
+        <div class="brform c paypal-inline paypal devhub-form">
           <p>{{ loc('Do you already have a PayPal Premier or business-level account?
                      If not we will redirect you to PayPal to create an account.
                      Return here when done to complete your setup.') }}</p>
-          {{ form.as_p() }}
+          {{ form_field(form.business_account) }}
+          {{ form_field(form.email) }}
         </div>
         <footer class="listing-footer">
           <button type="submit">{{ _('Continue') }}</button>

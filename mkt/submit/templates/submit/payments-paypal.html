@@ -10,14 +10,15 @@
   {{ progress(request, addon=addon, step=step) }}
   <section id="submit-payments" class="primary">
     <h2>App Payments</h2>
-    <form method="post" id="upload-webapp">
-      <div class="brform island swagger c">
+    <form method="post" class="devhub-form">
+      {{ csrf() }}
+      <div class="brform island swagger c paypal-inline">
         {{ csrf() }}
         <p>{{ loc("Next, we'll set up your PayPal account so you can
-                   receive payments.") }}</p>
-        <p>
-          {{ form.as_p() }}
-        </p>
+                   receive payments. If you don't have a PayPal account
+                   you'll have to go and set one up on PayPal.") }}</p>
+        {{ form_field(form.business_account) }}
+        {{ form_field(form.email) }}
       </div>
       <button class="prominent continue c" type="submit">
         {{ _('Continue') }}
