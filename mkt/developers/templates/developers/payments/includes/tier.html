@@ -2,23 +2,9 @@
   <label for="id_price">{{ form.price.label }}</label>
   <div class="extra">
     <p>
-      {% if webapp %}
-        {% with doc_url=url('mkt.developers.docs', doc_name='marketplace') %}
           {{ loc('Select a price tier for your app below. Price tiers are based
                   on US Dollars and are fixed for all supported countries.') }}
-        {% endwith %}
-        {# TODO(marketplace-docs):
-          For more information <a href="{{ doc_url }}">view our pricing matrix</a>.
-        #}
-      {% else %}
-        {% with doc_url=url('mkt.developers.docs', doc_name='marketplace') %}
-          {{ loc('Select a price tier for your add-on below. Price tiers are
-                  based on US Dollars and are fixed for all supported countries.') }}
-        {% endwith %}
-        {# TODO(marketplace-docs):
-           For more information <a href="{{ doc_url }}">view our pricing matrix</a>.
-        #}
-      {% endif %}
+          {{ loc('For more information <a href="https://developer.mozilla.org/en/Apps/Marketplace_Payments#Price_tiers">view our pricing matrix</a>.'|xssafe) }}
     </p>
   </div>
   {{ form.price.errors }}
