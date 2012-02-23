@@ -41,7 +41,8 @@ from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (CheckCompatibilityForm, InappConfigForm,
-                                  AppFormBasic, AppFormDetails)
+                                  AppFormBasic, AppFormDetails,
+                                  PaypalSetupForm)
 from mkt.developers.models import ActivityLog, SubmitStep
 from mkt.developers import perf
 from mkt.submit.decorators import submit_step
@@ -260,7 +261,7 @@ def paypal_setup(request, addon_id, addon, webapp):
         messages.error(request, 'Your app does not use payments.')
         return redirect(addon.get_dev_url('payments'))
 
-    form = forms.PaypalSetupForm(request.POST or None)
+    form = PaypalSetupForm(request.POST or None)
     context = {'addon': addon, 'form': form}
     if form.is_valid():
         existing = form.cleaned_data['business_account']

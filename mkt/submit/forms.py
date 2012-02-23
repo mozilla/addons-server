@@ -16,6 +16,7 @@ from amo.utils import raise_required
 from devhub import tasks as devhub_tasks
 from files.models import FileUpload
 from market.models import AddonPremium, Price
+from mkt.developers.forms import PaypalSetupForm as OriginalPaypalSetupForm
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
 from translations.widgets import TransInput, TransTextarea
 from translations.fields import TransField
@@ -52,6 +53,16 @@ class NewWebappForm(happyforms.Form):
         upload = self.cleaned_data['upload']
         verify_app_domain(upload.name)  # JS puts manifest URL here.
         return upload
+
+
+class PaypalSetupForm(OriginalPaypalSetupForm):
+
+    def __init__(self, *args, **kw):
+        super(PaypalSetupForm, self).__init__(*args, **kw)
+        self.fields['business_account'].choices = (
+                ('yes', _lazy('Yes')),
+                ('no', _lazy('No')),
+                ('later', _lazy("I'll link my PayPal account later.")))
 
 
 class PremiumTypeForm(happyforms.Form):

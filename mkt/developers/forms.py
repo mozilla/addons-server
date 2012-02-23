@@ -1198,12 +1198,17 @@ class AppFormBasic(addons.forms.AddonFormBase):
 
 class PaypalSetupForm(happyforms.Form):
     business_account = forms.ChoiceField(widget=forms.RadioSelect,
-                                         choices=(('no', _('No')),
-                                                   ('yes', _('Yes'))),
-                                         label="""Do you already have a PayPal 
+                                         choices=[],
+                                         label="""Do you already have a PayPal
                                                Premier or Business account?""")
     email = forms.EmailField(required=False,
                              label='PayPal email address')
+
+
+    def __init__(self, *args, **kw):
+        super(PaypalSetupForm, self).__init__(*args, **kw)
+        self.fields['business_account'].choices = (('yes', _lazy('Yes')),
+                                                   ('no', _lazy('No')))
 
     def clean(self):
         data = self.cleaned_data

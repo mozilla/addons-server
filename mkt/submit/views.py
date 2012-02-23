@@ -11,8 +11,9 @@ from addons.models import Addon, AddonUser
 from market.models import AddonPaymentData
 from mkt.developers import tasks
 from mkt.developers.decorators import dev_required
-from mkt.developers.forms import PaypalSetupForm, PaypalPaymentData
-from mkt.submit.forms import AppDetailsBasicForm, PreviewFormSet
+from mkt.developers.forms import PaypalPaymentData
+from mkt.submit.forms import (AppDetailsBasicForm, PaypalSetupForm,
+                              PreviewFormSet)
 from mkt.submit.models import AppSubmissionChecklist
 import paypal
 from files.models import Platform
@@ -174,6 +175,12 @@ def payments_paypal(request, addon_id, addon):
     form = PaypalSetupForm(request.POST or None)
     if request.POST and form.is_valid():
         existing = form.cleaned_data['business_account']
+        if existing == 'later':
+            # We'll have a premium or similar account with no PayPal id
+            # at this point.
+            (AppSubmissionChecklist.objects.get(addon=addon)
+                                           .update(payments=True))
+            return redirect('submit.app.done', addon.app_slug)
         if existing != 'yes':
             # Go create an account.
             # TODO: this will either become the API or something some better

@@ -10,10 +10,10 @@ exports.email_setup = function() {
         }
 
         $('div.paypal-inline input[type=radio]').click(function(e) {
-            if ($(this).val() === 'no') {
-                $('#id_email').closest('div').hide();
-            } else {
+            if ($(this).val() === 'yes') {
                 $('#id_email').closest('div').show();
+            } else {
+                $('#id_email').closest('div').hide();
             }
         });
     }

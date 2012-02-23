@@ -737,6 +737,13 @@ class TestPaymentsAdvanced(TestSubmit):
         eq_(res.status_code, 302)
         eq_(res._headers['location'][1], settings.PAYPAL_CGI_URL)
 
+    def test_later_paypal(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.post(self.get_url('payments.paypal'),
+                               {'business_account': 'later'})
+        eq_(res.status_code, 302)
+        self.assertRedirects(res, self.get_url('done'))
+
     def test_bad_paypal(self):
         # some tests for when it goes wrong
         raise SkipTest
