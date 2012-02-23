@@ -22,7 +22,7 @@
                 Mozilla Marketplace. You may re-enable it at any time below.") }}
       {% elif addon.status == amo.STATUS_NULL %}
         {{ status(loc('This app is <b>incomplete</b>.')|safe) }}
-        <a href="{{ url('mkt.developers.submit.resume', addon.slug) }}">
+        <a href="{{ url('submit.app.resume', addon.slug) }}">
           {{ _('Please complete your app.') -}}
         </a>
       {% elif addon.status == amo.STATUS_PENDING %}
