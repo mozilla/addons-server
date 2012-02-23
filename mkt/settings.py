@@ -38,6 +38,8 @@ SUPPORTED_NONAPPS += (
     'hub',
     'submit',
     'login',
+    'privacy-policy',
+    'terms-of-use',
 )
 
 MIDDLEWARE_CLASSES += (
