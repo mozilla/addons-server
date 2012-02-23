@@ -14,13 +14,19 @@
 
 <div class="primary">
   <section class="island swagger hero primary grid {{ 'browserid' if waffle.switch('browserid-login') else 'prettyform' }}">
-    <h1>{{ _('Log In') }}</h1>
-    {# TODO(apps): Finalize copy. #}
-    <strong>Welcome to the Marketplace Developer Beta Launch!</strong>
-    <p>If you'd like to try a demo of our app submission process, log in or register below with your <a href="https://browserid.org">BrowserID</a>
-      account. We encourage everyone interested in apps to
-      <a href="https://developer.mozilla.org/en-US/apps">read our documentation</a>.</p>
-    <p>We'd love to hear your <a href="http://groups.google.com/group/mozilla-apps">feedback</a>.</p>
+    <h1>Developer Registration</h1>
+    <h2>Want to make an app?</h2>
+    <p>
+      Learn all about creating an HTML5 app at the
+      <a href="https://developer.mozilla.org/en-US/Apps">
+        Mozilla Developer Network</a>.
+    </p>
+    <h2>Already have an app?</h2>
+    <p>
+      Reserve your spot in our Marketplace by submitting your app today.
+      Just log in or register with your
+      <a href="https://browserid.org">BrowserID</a> account below.
+    </p>
     {% include "users/login_form.html" %}
   </section>
 </div>
