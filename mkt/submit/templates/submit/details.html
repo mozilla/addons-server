@@ -9,6 +9,7 @@
 {% block content %}
   {# TODO: Someone decide what the breadcrumbs/h1 should say for a resumable step. #}
   {{ hub_breadcrumbs(addon, items=[(None, _('Submit App'))]) }}
+  <div id="temp-locale-container">{{ l10n_menu(addon.default_locale) }}</div>
   <h1>{{ _('Submit an App') }}</h1>
   {{ progress(request, addon=addon, step=step) }}
   <section id="submit-details" class="primary">
