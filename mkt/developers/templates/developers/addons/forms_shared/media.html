@@ -40,7 +40,7 @@
           {% if editable %}
             <div id="icon_preview">
               <div class="icon_preview" id="icon_preview_32">
-                <img src="{{ addon.icon_url }}">
+                <img src="{{ addon.get_icon_url(32) }}">
               </div>
               <div class="edit-media-details">
                 {# L10n: The size of the icon #}
@@ -91,10 +91,12 @@
               <li id="edit-icon-error"></li>
             </ul>
           {% else %}
-            <div id="icon_preview_readonly">
+            {% call empty_unless(addon.icon_type) %}
+              <div id="icon_preview_readonly">
                 <img src="{{ addon.get_icon_url(64) }}">
                 <img src="{{ addon.icon_url }}">
-            </div>
+              </div>
+            {% endcall %}
           {% endif %}
         </td>
       </tr>
