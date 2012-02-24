@@ -100,7 +100,8 @@ NO_LOGIN_REQUIRED_MODULES = (
     'csp.views.report',
     'django.views.i18n.javascript_catalog',
     'django.contrib.auth.views.password_reset',
-    'django.contrib.auth.views.password_reset_done'
+    'django.contrib.auth.views.password_reset_done',
+    'jingo.views.direct_to_template'
 )
 
 # Extend the bundles.
