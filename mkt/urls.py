@@ -1,11 +1,14 @@
 from django.conf import settings
 from django.conf.urls.defaults import patterns, url, include
+from django.contrib import admin
 from django.views.decorators.cache import cache_page
 from django.views.i18n import javascript_catalog
 
 from apps.users.views import logout
 from mkt.developers.views import login
 
+
+admin.autodiscover()
 
 handler404 = 'mkt.site.views.handler404'
 handler500 = 'mkt.site.views.handler500'
