@@ -153,7 +153,7 @@
 
 #edit-addon-support #trans-support_email,
 #edit-addon-support #trans-support_url,
-#edit-addon-details #trans-homepage, {
+#edit-addon-details #trans-homepage {
     input {
         width: 400px;
     }
@@ -175,9 +175,10 @@ form .edit-addon-details .char-count {
 form .char-count {
     font-size: 0.9em;
 }
-form .edit-addon-details .char-count,
-form .edit-addon-details .html-support {
-    font-size: 1em;
+form .edit-addon-details {
+    .char-count, .html-support {
+        font-size: 1em;
+    }
 }
 
 form .char-count.error,
