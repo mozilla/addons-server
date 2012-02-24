@@ -603,56 +603,11 @@ class TestPayments(TestSubmit):
 
     def setUp(self):
         super(TestPayments, self).setUp()
-        self.webapp = self.get_webapp()
-        self.url = reverse('submit.app.payments', args=[self.webapp.app_slug])
-
-    def get_webapp(self):
-        return Webapp.objects.get(id=337141)
-
-    def _step(self):
-        self.user.update(read_dev_agreement=True)
-        self.cl = AppSubmissionChecklist.objects.create(addon=self.webapp,
-            terms=True, manifest=True, details=True)
-        AddonUser.objects.create(addon=self.webapp, user=self.user)
-
-    def test_anonymous(self):
-        self._test_anonymous()
-
-    def test_required(self):
-        self._step()
-        res = self.client.post(self.url, {'premium_type': ''})
-        eq_(res.status_code, 200)
-        self.assertFormError(res, 'form', 'premium_type',
-                             'This field is required.')
-
-    def test_not_valid(self):
-        self._step()
-        res = self.client.post(self.url, {'premium_type': 124})
-        eq_(res.status_code, 200)
-        self.assertFormError(res, 'form', 'premium_type',
-            'Select a valid choice. 124 is not one of the available choices.')
-
-    def test_valid(self):
-        self._step()
-        res = self.client.post(self.url, {'premium_type': amo.ADDON_PREMIUM})
-        eq_(res.status_code, 302)
-        eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM)
-
-
-class TestPaymentsAdvanced(TestSubmit):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
-
-    def setUp(self):
-        super(TestPaymentsAdvanced, self).setUp()
         AppSubmissionChecklist.objects.all().delete()  # TODO fix this.
         self.webapp = self.get_webapp()
         self.webapp.update(status=amo.STATUS_NULL)
         self.url = self.get_url('payments')
         self.price = Price.objects.create(price='1.00')
-        flag = (waffle.models.Flag
-                      .objects.create(name='advanced-payments-submission'))
-        flag.everyone = True
-        flag.save()
         self._step()
 
     def get_url(self, url):
@@ -669,6 +624,23 @@ class TestPaymentsAdvanced(TestSubmit):
 
     def test_anonymous(self):
         self._test_anonymous()
+
+    def test_required(self):
+        res = self.client.post(self.url, {'premium_type': ''})
+        eq_(res.status_code, 200)
+        self.assertFormError(res, 'form', 'premium_type',
+                             'This field is required.')
+
+    def test_premium_type_not_valid(self):
+        res = self.client.post(self.url, {'premium_type': 124})
+        eq_(res.status_code, 200)
+        self.assertFormError(res, 'form', 'premium_type',
+            'Select a valid choice. 124 is not one of the available choices.')
+
+    def test_premium_type_valid(self):
+        res = self.client.post(self.url, {'premium_type': amo.ADDON_PREMIUM})
+        eq_(res.status_code, 302)
+        eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM)
 
     def _test_valid(self, expected_status):
         res = self.client.post(self.get_url('payments'),

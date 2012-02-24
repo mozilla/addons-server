@@ -136,11 +136,10 @@ def payments(request, addon_id, addon):
     if request.POST and form.is_valid():
         addon.update(premium_type=form.cleaned_data['premium_type'])
 
-        if waffle.flag_is_active(request, 'advanced-payments-submission'):
-            if addon.premium_type in amo.ADDON_PREMIUMS:
-                return redirect('submit.app.payments.upsell', addon.app_slug)
-            if addon.premium_type == amo.ADDON_FREE_INAPP:
-                return redirect('submit.app.payments.paypal', addon.app_slug)
+        if addon.premium_type in amo.ADDON_PREMIUMS:
+            return redirect('submit.app.payments.upsell', addon.app_slug)
+        if addon.premium_type == amo.ADDON_FREE_INAPP:
+            return redirect('submit.app.payments.paypal', addon.app_slug)
 
         AppSubmissionChecklist.objects.get(addon=addon).update(payments=True)
         addon.mark_done()
