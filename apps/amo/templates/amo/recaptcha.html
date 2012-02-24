@@ -1,5 +1,5 @@
 {% from 'includes/forms.html' import required %}
-<li>
+<li id="recap-container">
 <label for="recaptcha_response_field">
   {{ _('Are you human?') }} {{ required() }}
   <a href="#" id="recaptcha_help">{{ _("What's this?") }}</a>
@@ -21,7 +21,7 @@
     <input type="text" name="recaptcha_response_field"
            id="recaptcha_response_field" size="30" />
   </p>
-  
+
 </div>
 </li>
 {{ form.recaptcha.errors }}

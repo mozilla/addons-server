@@ -92,3 +92,35 @@
         }
     }
 }
+
+#recap-container {
+    background-color: @white;
+    .border-radius(5px);
+    border: 1px solid @border-gray;
+    padding: 15px;
+    label {
+        width: auto;
+        display: block;
+        text-align: center;
+        font-size: 15px;
+        border-bottom: 1px solid @border-gray;
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+        a {
+            font-size: 11px;
+        }
+    }
+    + .errorlist {
+        position: relative;
+        top: -22px;
+    }
+}
+
+.login #recaptcha_image + p {
+    text-align: left;
+    padding-left: 120px;
+}
+.html-rtl .login #recaptcha_image + p {
+    text-align: right;
+    padding-right: 120px;
+}
