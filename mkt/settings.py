@@ -98,6 +98,8 @@ NO_CONSUMER_MODULES = (
 NO_LOGIN_REQUIRED_MODULES = (
     'csp.views.policy',
     'csp.views.report',
+    'mkt.developers',
+    'mkt.submit',
     'django.views.i18n.javascript_catalog',
     'django.contrib.auth.views.password_reset',
     'django.contrib.auth.views.password_reset_done',
